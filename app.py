@@ -1,6 +1,6 @@
 # GLBackend Dummy backend for testing GLClient
-from flask import Flask, render_template, request, redirect, url_for, flash, jsonify
-
+from flask import Flask, jsonify, request
+from logging import FileHandler
 dummy_tip_form = { 'type' : 2,
                   '0' : {'title': 'Help us fight Corruption!',
                          'fields': [{'name': 'tip', 
@@ -79,31 +79,37 @@ dummy_tip = { 'receipt': "1234567890",
 class Tip(object):
     """dummy Tip model"""
     
-    def __init__(self, id = None):
-        self.id = id
+    def __init__(self, tid = None):
+        self.tid = tid
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
 app.config['SECRET_KEY'] = 's3cr3tz!'
 
+app.logger.addHandler(FileHandler("logfile.log"))
+
 @app.route('/tip', methods=['POST'])
 def create_tip():
+    app.logger.debug("POST TIP")
+    app.logger.debug("DATA: %s", jsonify(request.form))
     tip = dummy_tip
     return jsonify(tip)
     
 
-@app.route('/tip/<id>', methods=['GET'])
-def read_tip(id):
+@app.route('/tip/<tid>', methods=['GET'])
+def read_tip(tid):
+    app.logger.debug("GET TIP - TID: %s", tid)
     tip = dummy_tip
     return jsonify(tip)
 
-@app.route('/tip/<id>', methods=['PUT'])
-def update_tip(id):
-    pass
+@app.route('/tip/<tid>', methods=['PUT'])
+def update_tip(tid):
+    app.logger.debug("PUT TIP - TID: %s", tid)
+    app.logger.debug("DATA: %s", jsonify(request.form))
 
-@app.route('/tip/<id>', methods=['DELETE'])
-def delete_tip(id):
-    pass
+@app.route('/tip/<tid>', methods=['DELETE'])
+def delete_tip(tid):
+    app.logger.debug("DELETE TIP - TID: %s", tid)
 
 if __name__ == '__main__':
     app.run()
