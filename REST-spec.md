@@ -1,6 +1,7 @@
 # Public API
 
-* /info/
+## /info/
+
     Returns information on the GlobaLeaks node. This includes
     submission paramters and how information should be presented
     by the client side application.
@@ -111,7 +112,8 @@
         * Reponse:
           Status Code: 501 (Not implemented)
 
-* /tip/
+## /tip/
+
     (this happens when no <t_id> is specified)
     :GET
         None
@@ -123,7 +125,8 @@
         * Response:
           Status code: 201 (Created)
 
-* /tip/<string t_id>
+## /tip/<string t_id>
+
     :GET
         Returns the content of the submission with the specified
         ID.
@@ -248,15 +251,15 @@
 
 # Admin API
 
-* /targets/
+## /targets/
 TODO
 
-* /groups/
+## /groups/
 TODO
 
-* /admin/
+## /admin/
 TODO
 
-* /stats/
+## /stats/
 TODO
 
