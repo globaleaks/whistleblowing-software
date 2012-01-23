@@ -125,7 +125,7 @@
         * Response:
           Status code: 201 (Created)
 
-`/tip/\<string t_id\>`
+`/tip/<string t_id>`
 
     :GET
         Returns the content of the submission with the specified
@@ -165,7 +165,7 @@
         * Response:
           Status Code: 204 (No Content)
 
-`/tip/\<string t_id\>/statistics/`
+`/tip/<string t_id>/statistics/`
 
     :GET
         Used to retrieve the statistics for a particular
@@ -182,7 +182,7 @@
     :POST
         None
 
-`/tip/\<string t_id\>/comments/?\<c_id\>`
+`/tip/<string t_id>/comments/?<c_id>`
 
     :GET
         Used to retrieve the comments for a submission. They
@@ -204,7 +204,7 @@
         * Response:
           Status Code: 200 (OK)
 
-`/tip/\<string t_id\>/material/`
+`/tip/<string t_id>/material/`
 
     :GET
         Used to retrieve all the list of currently uploaded
