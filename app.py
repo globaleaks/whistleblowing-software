@@ -1,5 +1,8 @@
 # GLBackend Dummy backend for testing GLClient
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request, make_response
+
+import json
+
 from logging import FileHandler
 dummy_tip_form = { 'type' : 2,
                   '0' : {'title': 'Help us fight Corruption!',
@@ -71,10 +74,12 @@ dummy_tip_form = { 'type' : 2,
                   }
                     
 # This is a dummy tip that gives an idea of the structure of tips
-dummy_tip = { 'receipt': "1234567890",
+dummy_tip = [{'receipt': "1234567890",
             'form': dummy_tip_form,
-            'data': None
-           }
+            'data': None}]
+
+print json.dumps(dummy_tip)
+
 
 class Tip(object):
     """dummy Tip model"""
@@ -88,24 +93,31 @@ app.config['SECRET_KEY'] = 's3cr3tz!'
 
 app.logger.addHandler(FileHandler("logfile.log"))
 
+# Access-Control-Allow-Origin directive to allow bypassing of SOP
+origin = '*'
+
 @app.route('/tip', methods=['POST'])
 def create_tip():
     app.logger.debug("POST TIP")
-    app.logger.debug("DATA: %s", jsonify(request.form))
+    app.logger.debug("DATA: %s", json.dumps(request.form))
     tip = dummy_tip
-    return jsonify(tip)
+    response = make_response(json.dumps(tip))
+    response.headers['Access-Control-Allow-Origin'] = origin
+    return response
     
-
+@app.route('/tip', methods=['GET'])
 @app.route('/tip/<tid>', methods=['GET'])
-def read_tip(tid):
+def read_tip(tid=None):
     app.logger.debug("GET TIP - TID: %s", tid)
     tip = dummy_tip
-    return jsonify(tip)
+    response = make_response(json.dumps(tip))
+    response.headers['Access-Control-Allow-Origin'] = origin
+    return response
 
 @app.route('/tip/<tid>', methods=['PUT'])
 def update_tip(tid):
     app.logger.debug("PUT TIP - TID: %s", tid)
-    app.logger.debug("DATA: %s", jsonify(request.form))
+    app.logger.debug("DATA: %s", json.dumps(request.form))
 
 @app.route('/tip/<tid>', methods=['DELETE'])
 def delete_tip(tid):
