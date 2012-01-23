@@ -1,6 +1,6 @@
 # Public API
 
-## /info/
+`/info/`
 
     Returns information on the GlobaLeaks node. This includes
     submission paramters and how information should be presented
@@ -112,7 +112,7 @@
         * Reponse:
           Status Code: 501 (Not implemented)
 
-## /tip/
+`/tip/`
 
     (this happens when no <t_id> is specified)
     :GET
@@ -125,7 +125,7 @@
         * Response:
           Status code: 201 (Created)
 
-## /tip/\<string t_id\>
+`/tip/\<string t_id\>`
 
     :GET
         Returns the content of the submission with the specified
@@ -165,7 +165,7 @@
         * Response:
           Status Code: 204 (No Content)
 
-## /statistics/
+`/tip/\<string t_id\>/statistics/`
 
     :GET
         Used to retrieve the statistics for a particular
@@ -182,7 +182,7 @@
     :POST
         None
 
-## /comments/?\<c_id\>
+`/tip/\<string t_id\>/comments/?\<c_id\>`
 
     :GET
         Used to retrieve the comments for a submission. They
@@ -204,7 +204,7 @@
         * Response:
           Status Code: 200 (OK)
 
-## /material/
+`/tip/\<string t_id\>/material/`
 
     :GET
         Used to retrieve all the list of currently uploaded
@@ -253,15 +253,19 @@
 
 # Admin API
 
-## /targets/
-TODO
+`/targets/`
 
-## /groups/
-TODO
+    TODO
 
-## /admin/
-TODO
+`/groups/`
 
-## /stats/
-TODO
+    TODO
+
+`/admin/`
+
+    TODO
+
+`/stats/`
+
+    TODO
 
