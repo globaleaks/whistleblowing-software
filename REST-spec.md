@@ -125,7 +125,7 @@
         * Response:
           Status code: 201 (Created)
 
-## /tip/<string t_id>
+## /tip/\<string t_id\>
 
     :GET
         Returns the content of the submission with the specified
@@ -165,89 +165,91 @@
         * Response:
           Status Code: 204 (No Content)
 
-    /statistics/
-        :GET
-            Used to retrieve the statistics for a particular
-            submission.
-            * Response:
-              Status Code: 200 (OK)
-              {'0': {'name': <string name of the target>,
-                     'downloads': <int download count>,
-                     'views': <int view count>
-                     },
-                '1': ...
-                ...
-              }
-        :POST
-            None
+## /statistics/
 
-    /comments/?<c_id>
-        :GET
-            Used to retrieve the comments for a submission. They
-            are ordered from most recent to oldest to newest (0 is
-            oldest). The optional c_id value allow to retrieve
-            only comments with id >= c_id.
-            * Response:
-              Status Code: 200 (OK)
-              {'0': {'name': <string name of the commenter>,
-                     'comment': <string content of the comment>
-                    },
-                '1': ...
-                ...
-              }
-        :POST
-            Used to post a comment to the submission.
-            * Request:
-              {'comment': <string Comment contents>}
-            * Response:
-              Status Code: 200 (OK)
+    :GET
+        Used to retrieve the statistics for a particular
+        submission.
+        * Response:
+          Status Code: 200 (OK)
+          {'0': {'name': <string name of the target>,
+                 'downloads': <int download count>,
+                 'views': <int view count>
+                 },
+            '1': ...
+            ...
+          }
+    :POST
+        None
 
-    /material/
-        :GET
-            Used to retrieve all the list of currently uploaded
-            material. They are sorted from oldest to newest (0
-            oldest)
-            * Response:
-              Status Code: 200 (OK)
-              {'0': {'id': <string the id of the material>,
-                     'link': <string link to download the material>,
-                     'files': [{'id': <string id of the file>,
-                                'name': <string file name>,
-                                'size': <string file size>,
-                                'desc': <string (optional) description of the file>},
-                                ...
-                              ],
-                     'desc': <string (optional) Description of the material>
-                     },
-                ...
-              }
+## /comments/?\<c_id\>
 
-         :POST
-            Used to add a description to an already uploaded material.
-            * Request:
-              {'id': <string the id of the material>,
-               'desc': <string content of the description>,
-               'fid': <string (optional) the id of the file>
-              }
-            * Response:
-              Status Code: 200 (OK)
-              If file or material already has a description:
-              Status Code: 304 (Not Modified)
+    :GET
+        Used to retrieve the comments for a submission. They
+        are ordered from most recent to oldest to newest (0 is
+        oldest). The optional c_id value allow to retrieve
+        only comments with id >= c_id.
+        * Response:
+          Status Code: 200 (OK)
+          {'0': {'name': <string name of the commenter>,
+                 'comment': <string content of the comment>
+                },
+            '1': ...
+            ...
+          }
+    :POST
+        Used to post a comment to the submission.
+        * Request:
+          {'comment': <string Comment contents>}
+        * Response:
+          Status Code: 200 (OK)
 
-         :PUT
-            Used to add material to a submission.
-            * Request:
-              {'name': <string file name>,
-               'id': <string (optional) the id of an in progress material submission>,
-               'fin': <bool (optional) used to close the material package>,
-               'desc': <string (optional) description of the file>
-               }
-            * Response:
-              When a material is not finalized:
-              Status Code: 202 (Accepted)
+## /material/
 
-              When it is final
-              Status Code: 200 (OK)
+    :GET
+        Used to retrieve all the list of currently uploaded
+        material. They are sorted from oldest to newest (0
+        oldest)
+        * Response:
+          Status Code: 200 (OK)
+          {'0': {'id': <string the id of the material>,
+                 'link': <string link to download the material>,
+                 'files': [{'id': <string id of the file>,
+                            'name': <string file name>,
+                            'size': <string file size>,
+                            'desc': <string (optional) description of the file>},
+                            ...
+                          ],
+                 'desc': <string (optional) Description of the material>
+                 },
+            ...
+          }
+
+     :POST
+        Used to add a description to an already uploaded material.
+        * Request:
+          {'id': <string the id of the material>,
+           'desc': <string content of the description>,
+           'fid': <string (optional) the id of the file>
+          }
+        * Response:
+          Status Code: 200 (OK)
+          If file or material already has a description:
+          Status Code: 304 (Not Modified)
+     :PUT
+        Used to add material to a submission.
+        * Request:
+          {'name': <string file name>,
+           'id': <string (optional) the id of an in progress material submission>,
+           'fin': <bool (optional) used to close the material package>,
+           'desc': <string (optional) description of the file>
+           }
+        * Response:
+          When a material is not finalized:
+          Status Code: 202 (Accepted)
+
+          When it is final
+          Status Code: 200 (OK)
 
 # Admin API
 
