@@ -1,4 +1,7 @@
-.settings
-.project
-.pydevproject
-logfile.log
+*.py[co]
+*.bak
+.*.swp
+*.DS_Store
+
+*.egg-info
+*.log
