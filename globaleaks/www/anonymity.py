@@ -1,3 +1,9 @@
+"""
+Handle the web app anonymity:
+    - override socket.socket so that the application will pass though tor proxy;
+    - start/stop/receive statistics about the current tor network;
+    - create a new hidden node
+"""
 import socket
 
 import socks
