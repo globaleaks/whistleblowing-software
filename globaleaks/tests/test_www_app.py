@@ -40,12 +40,12 @@ class TestWWWWApp(unittest.TestCase):
         self.response = message
         tornado.ioloop.IOLoop.instance().stop()
 
-    def fetch(self, page):
+    def fetch(self, page, method='GET'):
         """
         Fetch an http page using self.client, then store the response to
         self.response.
         """
-        self.client.fetch(self.urlfor(page), self.handle_request)
+        self.client.fetch(self.urlfor(page), self.handle_request, method=method)
         tornado.ioloop.IOLoop.instance().start()
 
     def test_index(self):

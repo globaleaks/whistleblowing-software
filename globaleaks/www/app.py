@@ -46,6 +46,10 @@ class TipCommentsHandler(tornado.web.RequestHandler):
     Retrive comments for a specific submission.
     """
 
+    def get(self, submission_id, comment_id):
+        print submission_id, comment_id
+        # raise NotImplementedError
+
 class TipMaterialHandler(tornado.web.RequestHandler):
     """
     """
@@ -55,8 +59,10 @@ class TipMaterialHandler(tornado.web.RequestHandler):
 application = tornado.web.Application([
     (r"^/$", IndexHandler),
     (r"^/info/$", InfoHandler),
-    (r"^/tip/[\d\w]{5}/$", TipHandler),
-    (r"^/tip/[\d\w]{5}/statistics$", TipHandler),
+    (r"^/tip/([\d\w]{5})/$", TipHandler),
+    (r"^/tip/([\d\w]{5})/statistics$", TipHandler),
+    # fuck shit this regexp doesnt work XXX
+    (r"^/tip/([\d\w]{5})/comments/(\?([^#][\d\w]+))$", TipCommentsHandler),
 
 ])
 
