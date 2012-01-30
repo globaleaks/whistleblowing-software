@@ -27,9 +27,9 @@ and be developed indipendently.
 The main components are the `GLBackend`_, that handles
 the interaction with all the other sub-components. The `GLClient`_
 that is the means through which the user is able to
-interact with GL software. The `Notification system`_,
+interact with GL software. The `Notification and Delivery`_ system,
 that signals the targets of the existance of material on the GL
-Node. The Storage system (see 1.4), that is responsible for
+Node. The `Storage`_ system, that is responsible for
 storing the data and/or metadata associated with the WB submission.
 
 GLBackend
@@ -37,12 +37,28 @@ GLBackend
 
 The backend system will expose a REST interface that allows any
 application to interact with it.
+The functionalities of `Submission`_, `Storage`_, `Status Page`_
+and `Notification and Delivery`_ should be highly modularized.
+GlobaLeaks should be able to function properly even by removing
+the `Status Page`_ and `Notification and Delivery`_ components.
 
 Submission
 ----------
 
 This interface enables a client to load a submission onto the
-GL node.
+GL node. Through this component the client application learns
+what fields are supported by the globaleaks nodes and its
+properties.
+
+Fields
+``````
+
+This is the contextual data associated with a submission. The
+fields are fetched though an API that tells the client what
+their names are and what is the description. The client will
+optionally send the submission identifier that has been generated
+in the material upload phase.
+
 
 Material
 ````````
@@ -54,15 +70,6 @@ is then sent once the submission fields are sent.
 The data sent to the GL Node will be encrypted client side with
 an asymetric crypto system.
 
-Fields
-``````
-
-This is the contextual data associated with a submission. The
-fields are fetched though an API that tells the client what
-their names are and what is the description. The client will
-optionally send the submission identifier that has been generated
-in the material upload phase.
-
 Storage
 -------
 
@@ -71,15 +78,15 @@ TODO.
 Status Page
 -----------
 
-a TULIP is a Temporary Unique Information Provider. Is enables
+This is the page that keeps track of a client submission. Is enables
 both Targets and WB to access a submission that is present on
 a GL Node. This interface will return the list of fields with
-their value.
+their value. This page will also be called Tip.
 
 Comments
 ````````
 
-Each TULIP also has a comment board that allows secure communication
+Each Tip also has a comment board that allows secure communication
 between the targets and the WB. The target can use this to get
 extra information on the submission and prompt the WB to upload new
 material.
@@ -87,16 +94,16 @@ material.
 Statistics
 ``````````
 
-Every time a target visits a TULIP page and downloads some material
+Every time a target visits a Tip page and downloads some material
 the view and download counters are incremented. It is possible to
 interrogate to get a list of views for every target from any
-authenticated target TULIP page.
+authenticated target Tip page.
 
 Deletion
 ````````
 
-A target is able to delete any TULIP associated with his profile.
-When all the targets have deleted there TULIPs or all of them have
+A target is able to delete any Tip associated with his profile.
+When all the targets have deleted there Tips or all of them have
 expired the material is removed and the database in cleaned of the
 submission entry.
 
