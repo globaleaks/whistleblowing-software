@@ -29,6 +29,7 @@ class TestWWWWApp(unittest.TestCase):
     def urlfor(self, *page):
         """
         Construct an url using keywords given.
+        XXX: use RequestHandler.static_url
         """
         return 'http://localhost:%d/%s' % (self.port, '/'.join(page))
 
