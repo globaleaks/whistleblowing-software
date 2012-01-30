@@ -57,7 +57,7 @@ def tor_running(func):
         conn.close()
         return func
 
-class TorListener(TorCtl.PostEventListener):
+class TorListener(object, TorCtl.PostEventListener):
     """
     Listener for tor events.
     """
