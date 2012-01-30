@@ -7,7 +7,6 @@ XXX: should use a .cfg file or not?
 __all__ = ['Config']
 
 
-
 class Config(object):
     db = database.Connection('localhost', 'gl.db')
 

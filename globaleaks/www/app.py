@@ -55,7 +55,6 @@ class TipMaterialHandler(tornado.web.RequestHandler):
     """
 
 
-
 application = tornado.web.Application([
     (r"^/$", IndexHandler),
     (r"^/info/$", InfoHandler),
@@ -63,9 +62,7 @@ application = tornado.web.Application([
     (r"^/tip/([\d\w]{5})/statistics$", TipHandler),
     # fuck shit this regexp doesnt work XXX
     (r"^/tip/([\d\w]{5})/comments/(\?([^#][\d\w]+))$", TipCommentsHandler),
-
 ])
-
 
 if __name__ == '__main__':
     application.listen(8888)
