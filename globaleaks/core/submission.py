@@ -1,5 +1,17 @@
 import tornado.database
 
+__all__ = ['Submission']
+
+@classmethod
+def escape_query(cls, func):
+    """
+    Decorator for accesses to database that require a layer of security.
+    """
+    def escape(key):
+        if '--' in key or '\'' in key or '\"' in key:
+            raise KeyError
+        else:
+            return func(key)
 
 
 class Submission(object):
@@ -30,6 +42,19 @@ class Submission(object):
     def __contains__(self, elt):
         return contains(elt)
 
+    @eascape_query
+    def __getitem__(self, k):
+        """
+        Return a value for the specific sid.
+        """
+        # XXX: maybe create a list of items.
+
+    @escape_query
+    def __setitem__(self, k, value):
+        """
+        Edit the submission setting k to value.
+        """
+
     @staticmethod
     def _close():
         """
@@ -53,7 +78,7 @@ def create():
     # XXX: query to the database
     sid = '0000'
 
-    reuturn Submission(sid)
+    return Submission(sid)
 
 
 _dbpath = 'submissions.db'
