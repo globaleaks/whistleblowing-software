@@ -9,6 +9,6 @@ Documetation
 ============
 
 For an overview of the GlobaLeaks architecture check out
-`docs/architecture.rst`
+`docs/architecture.rst`_
 
 
