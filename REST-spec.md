@@ -1,101 +1,65 @@
 # Public API
 
-`/info/`
+## Under writting!
+
+## Open GLBackend/docs/specification/GLBackend-18-5-2012.png
+
+`/node/`
 
     Returns information on the GlobaLeaks node. This includes
     submission paramters and how information should be presented
     by the client side application.
 
+    Follow the resource describing Node (uniq instance, opened to all)
+
     :GET
         Returns a json object containing all the information of the node.
         * Response:
             Status Code: 200 (OK)
-            { 'type': <int type>,
-              '0': { 'title': <string Title of this step>
-                     'fields': [{'name': <string Name of the form element>,
-                                 'title': <string Label of this element>,
-                                 'description': <string Long description>,
-                                 'type': <string text|files|select|radio>,
-                                 'size': <string (optional) length of text field. w=words, c=characters>,
-                                 'options': (optional) [[<string Name of select option>,
-                                                        <string Label of select option>],
-                                                        ...
-                                                        ]
-                               }],
-                      'buttons': {'next': <string Title of the next button>}
-                    },
-              '1': ...
-              ...
-            }
+             { 
+              'name': <string Name of the initiative>,
+              'statistics': <string, general statistics>,
+              'properties': [ array, lists of node Yes:No selection,
+                              describing chooses in Backend setup.
+                              Info can be used by LeakDirectory or other
+                              external aggregator of nodes.
+                            ]
+              'contexts': [{'context_number': <Int of managed receiver groups>},
+                           {'context_1': <String name of group>}, 
+                           {'context_1_field': 
+                                [1: { 'field_name', 'field_type', 'Required' },
+                                [#F: { 'field_name', 'field_type', 'Required' }]
+                           {'context_#N': <String name of group>}],
+                           {'context_#N_field': 
+                                [1: { 'field_name', 'field_type', 'Required' },
+                                [#F: { 'field_name', 'field_type', 'Required' }]
+               'descriptiom': <string, descrption headline>,
+               'public_site': <string, url>,
+               'hidden_service': <string, url.onion>,
+             },
         example of a result:
-            { 'type' : 2,
-              '0' : {'title': 'Help us fight Corruption!',
-                     'fields': [{'name': 'tip',
-                                 'title': 'Your tip',
-                                 'description': 'Explain the issue in less than 3000 chars',
-                                  'type': 'text',
-                                  'size': '3000c',
-                                  }],
-                     'buttons': {'next': 'Add some files'}
-                    },
-              '1' : {'title': 'Load Documents',
-                     'fields': [{'name': 'files',
-                                 'title': 'select files',
-                                 'type': 'files'
-                                 },
-                                {'name': 'documentDescription',
-                                 'title': 'Describe the documents',
-                                 'description': 'Explain the content of the \
-                                 uploaded material in less than 100 words',
-                                  'type': 'text',
-                                  'size': '100w',
-                                  }
-                                ],
-                     'buttons': {'next': 'Add more details',
-                                 'finish': 'Finalize the submission'}
-                     },
-              '2' : {'title': '',
-                     'fields': [
-                                {'name': 'someText1',
-                                 'title': 'Some Text',
-                                 'description': '',
-                                  'type': 'text',
-                                  'size': None,
-                                  },
-                                {'name': 'someText2',
-                                 'title': 'Some Text',
-                                 'description': '',
-                                  'type': 'string',
-                                  'size': None
-                                  },
-                                {'name': 'someText3',
-                                 'title': 'Some Text',
-                                 'description': '',
-                                  'type': 'select',
-                                  'options': [
-                                              ['Something', 'something'],
-                                              ['Something else', 'somethingelse']
-                                              ]
-                                  },
-                                {'name': 'someText4',
-                                 'title': 'Some Text',
-                                 'description': '',
-                                  'type': 'date',
-                                  'size': None,
-                                  },
-                                {'name': 'someText5',
-                                 'title': 'Some Text',
-                                 'description': '',
-                                  'type': 'radio',
-                                  'options': [
-                                              ['Option 1', 'opt1'],
-                                              ['Option 2', 'opt2'],
-                                              ['Option 3', 'opt3']
-                                              ],
-                                  'size': None,
-                                  }
-                                ]
-                     }
+             { 
+              'name': "blue meth fighting in alberoque",
+              'statistics': <string, general statistics>,
+              'properties': [ {'end2end_encryption_enforced': True},
+                              {'are_receivers_part_of_the_admin': False},
+                              {'anonymity_enforced': True},
+                            ]
+              'contexts': [{'context_number': 2 },
+                               {'context_1': 'Heisenberg saitings'},
+                               {'context_1_field': 
+                                    [ { 'headline', 'text', True },
+                                      { 'photo', 'img', False },
+                                      { 'descriptio', 'text', True }, ] 
+                               }
+                               {'context_2': <String name of group>}],
+                               {'context_2_field': 
+                                    [ { 'headline', 'text', True },
+                                      { 'photo', 'img', False },
+                                      { 'descriptio', 'text', True }, ] 
+               'descriptiom': 'This node aggregate expert of the civil society in fighting the crystal meth, producted by the infamous Heisenberg',
+               'public_site': 'http://figthmeth.net',
+               'hidden_service': 'vbg7fb8yuvewb9vuww.onion',
               }
     :POST
         None
