@@ -5,8 +5,8 @@ GlobaLeaks empowers people to report on malpractice and abuse on a local level a
 The flexibility of GlobaLeaks make it suitable for various different kinds of whistleblowing initiatives. An activist should be enabled to use the GlobaLeaks platform but it should scale
 to also be applied to a corporation, public administration or newspaper.
 
-Documetation
-============
+Documentation
+=============
 
 For an overview of the GlobaLeaks architecture check out the
 `Architecture <docs/architecture.rst>`_ doc.
