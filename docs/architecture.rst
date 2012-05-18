@@ -18,15 +18,25 @@ Glossary
 ========
 
 `Submission`_: is the action performed by an user.
+
 `Tip`_: The name of a single submission inside the GlobaLeaks system.
+
 `WhistleBlower`_: is the user which perform a submission, containing the information he want communicate outside.
+
 `Receiver`_: The user which receive a Tip.
+
 `GlobaLeaks`_: is the name of our project, free software, security oriented, flexible whistleblowing platform.
+
 `Node`_: The name of a single GlobaLeaks installation, configured to handle submissions and notify it to the receivers.
+
 `NodeAdmin`_: The user which run a GlobaLeaks node.
+
 `GLBackend`_: Python software exposing REST interfaces, based on twisted and sqlalchemy, manage the submission logic.
+
 `GlClient`_: User interface for whistleblowers and/or receivers, various implementation are possible (eg: Mobile environment, javascript or machine2machine), calls the REST interface implemented in GLBackend.
+
 `Notification`_: Method used to notify a receiver that a new Tip is available. Every Receiver and the NodeAdmin may modify notification settings.
+
 `Delivery`_: Method used by receiver to download the submitted material, Every Receiver and the NodeAdmin may modify delivery settings.
 
 
