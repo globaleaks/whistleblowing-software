@@ -2,6 +2,7 @@
 GlobaLeaks Architecture
 =======================
 
+0. `Glossary`_
 1. `Overview`_
 2. `GLBackend`_
 
@@ -12,6 +13,22 @@ GlobaLeaks Architecture
 
 3. `GLClient`_
 4. `Application Packaging`_
+
+Glossary
+========
+
+`Submission`_: is the action performed by an user.
+`Tip`_: The name of a single submission inside the GlobaLeaks system.
+`WhistleBlower`_: is the user which perform a submission, containing the information he want communicate outside.
+`Receiver`_: The user which receive a Tip.
+`GlobaLeaks`_: is the name of our project, free software, security oriented, flexible whistleblowing platform.
+`Node`_: The name of a single GlobaLeaks installation, configured to handle submissions and notify it to the receivers.
+`NodeAdmin`_: The user which run a GlobaLeaks node.
+`GLBackend`_: Python software exposing REST interfaces, based on twisted and sqlalchemy, manage the submission logic.
+`GlClient`_: User interface for whistleblowers and/or receivers, various implementation are possible (eg: Mobile environment, javascript or machine2machine), calls the REST interface implemented in GLBackend.
+`Notification`_: Method used to notify a receiver that a new Tip is available. Every Receiver and the NodeAdmin may modify notification settings.
+`Delivery`_: Method used by receiver to download the submitted material, Every Receiver and the NodeAdmin may modify delivery settings.
+
 
 Overview
 ========
@@ -28,7 +45,7 @@ The main components are the `GLBackend`_, that handles
 the interaction with all the other sub-components. The `GLClient`_
 that is the means through which the user is able to
 interact with GL software. The `Notification and Delivery`_ system,
-that signals the targets of the existance of material on the GL
+that signals the `Receivers`_ of the existance of material on the GL
 Node. The `Storage`_ system, that is responsible for
 storing the data and/or metadata associated with the WB submission.
 
@@ -79,7 +96,7 @@ Status Page
 -----------
 
 This is the page that keeps track of a client submission. Is enables
-both Targets and WB to access a submission that is present on
+both `Receivers`_ and WB to access a submission that is present on
 a GL Node. This interface will return the list of fields with
 their value. This page will also be called Tip.
 
@@ -87,23 +104,23 @@ Comments
 ````````
 
 Each Tip also has a comment board that allows secure communication
-between the targets and the WB. The target can use this to get
+between the `Receivers`_ and the WB. The `Receiver`_ can use this to get
 extra information on the submission and prompt the WB to upload new
 material.
 
 Statistics
 ``````````
 
-Every time a target visits a Tip page and downloads some material
+Every time a `Receiver`_ visits a Tip page and downloads some material
 the view and download counters are incremented. It is possible to
-interrogate to get a list of views for every target from any
-authenticated target Tip page.
+interrogate to get a list of views for every `Receiver`_ from any
+authenticated `Receiver`_ Tip page.
 
 Deletion
 ````````
 
-A target is able to delete any Tip associated with his profile.
-When all the targets have deleted there Tips or all of them have
+A `Receiver`_ is able to delete any Tip associated with his profile.
+When all the `Receivers`_ have deleted there Tips or all of them have
 expired the material is removed and the database in cleaned of the
 submission entry.
 
