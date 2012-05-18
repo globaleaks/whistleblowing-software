@@ -8,7 +8,7 @@ to also be applied to a corporation, public administration or newspaper.
 Documetation
 ============
 
-For an overview of the GlobaLeaks architecture check out
-`docs/architecture.rst`
+For an overview of the GlobaLeaks architecture check out the
+`Architecture <docs/architecture.rst>`_ doc.
 
 
