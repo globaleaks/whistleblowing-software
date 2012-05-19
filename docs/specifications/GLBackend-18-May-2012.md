@@ -89,7 +89,7 @@
  * **total_download_count**
  How many times the owner of this unique Tip has downloaded the material
 
- * **relateive_view_count**
+ * **relative_view_count**
  Number of views since last reset (when a comment or material is added the
  relative counter is decreased)
 
