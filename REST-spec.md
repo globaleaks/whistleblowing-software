@@ -61,18 +61,15 @@ Both WB and Receiver can write a comment in a Tip (POST only)
 `/tip/<string t_id>/update_file`
 
 Update material available for download, a new material has resetted 
-counter for download limits. The material is published when 'finalized' (POST only)
-
-`/tip/<string t_id>/remove_file`
-
-Remove an uploaded file (possibile only in not-finalized update) (POST only)
+counter for download limits. 
+The material is published when 'finalized'. (PUT, GET, DELETE)
 
 `/tip/<string t_id>/finalize_update`
 
-Used to add a description to an already uploaded material, this action
-make the new uploaded material available for download. If this action is
-missed, the material can be published after a timeout expiring at midnight 
-(MAY BE REVIEWED) (POST only)
+Used to add a description in the uploaded files. 
+This action make the new uploaded data available for download. 
+If this action is missed, the material can be published after a timeout expiring 
+at midnight (MAY BE REVIEWED) (POST only)
 
 ### tip subsection API Receivers only
 
@@ -187,6 +184,7 @@ For setting up storage methods.
         * Reponse:
           Status Code: 501 (Not implemented)
 
+
 `/submission`
 
     :GET
@@ -205,6 +203,7 @@ For setting up storage methods.
         _ If configuration REQUIRE anonymous upload, and the WB is not anonymous
           Status Code: 415 (Unsupported Media Type)
           { error-message: 'Anonymity required to perform a submission' }
+
 
 `/submission/<submission_id>`
 
@@ -234,6 +233,7 @@ For setting up storage methods.
           Status Code: 204 (No Content)
           { error-message: 'submission ID is invalid' }
 
+
 `/submission/<submission_id>/submit_fields`
 
     :POST
@@ -253,6 +253,7 @@ For setting up storage methods.
           Status Code: 204 (No Content)
           { error-message: 'submission ID is invalid' }
 
+
 `/submission/<submission_id>/add_group`
 
     :POST
@@ -267,6 +268,7 @@ For setting up storage methods.
         _ If submission_id is invalid
           Status Code: 204 (No Content)
           { error-message: 'submission ID is invalid' }
+
 
 `/submission/<submission_id>/finalize`, 
 
@@ -285,6 +287,7 @@ For setting up storage methods.
         _ If submission_id is invalid
           Status Code: 204 (No Content)
           { error-message: 'submission ID is invalid' }
+
 
 `/submission/<submission_id>/upload_file`, 
 
@@ -307,6 +310,7 @@ For setting up storage methods.
         _ If submission_id is invalid
           Status Code: 204 (No Content)
           { error-message: 'submission ID is invalid' }
+
 
 `/tip/<string t_id>`
 
@@ -331,8 +335,8 @@ For setting up storage methods.
             'comments': [{'name': <string name of the commenter>,
                           'date': <DATE 32 bit time_t>,
                           'comment': <string content of the comment> },]
-            'material-group': [{
-                    'id': <string the id of the material>,
+            'material-sets': [{
+                    'id': <string the id of the material set>,
                     'link': <string link to download the material>,
                     'files': [ { filename: <string>, comment: <String>, 
                                 size: <Int, in bytes>, content-type: <string> } ], 
@@ -343,19 +347,22 @@ For setting up storage methods.
                             'views': <Int view count> }]
            }
 
-           `/download_material`, used to download the material from the
-           submission. Can only be requested if the user is a Receiver and the
-           relative download count is < max_downloads.
-
-           * Request:
-           {'id': <material_id>}
-           
-          * Response:
-           Stauts Code: 200 (OK)
-
         _ If t_id is invalid
           Status Code: 204 (No Content)
           { error-message: 'requested Tip ID is expired or invalid' }
+
+    :DELETE
+        Used to delete a submission if the users has sufficient priviledges.
+        Administrative settings can configure if all or some, receivers or
+        WB, can delete the submission. default is False.
+
+        * Response:
+          If the user has right permissions:
+          Status Code: 200 (OK)
+
+        _ If the user has not permission:
+          Status Code: 204 (No Content)
+
 
 `/tip/<string t_id>/add_comment`
 
@@ -370,9 +377,87 @@ For setting up storage methods.
           Status Code: 200 (OK)
         _ Error handling as per `/tip/<string t_id>/`
 
---- BELOW HERE IS UNDER HEAVY MODS --- CONFLICT AHEAD ---
---- BELOW HERE IS UNDER HEAVY MODS --- CONFLICT AHEAD ---
---- BELOW HERE IS UNDER HEAVY MODS --- CONFLICT AHEAD ---
+
+`/tip/<string t_id>/update_file`
+
+    perform update operations. If a Material Set has been started, the file is appended
+    in the same pack. A Material Set is closed when the `finalize_update` is called.
+
+    :GET
+        return the unfinalized elements accumulated by the whistleblower. The unfinalized
+        material are promoted as 'Set' if the WB do not finalize them before a configurable
+        timeout.
+        
+        * Request: /
+        * Response:
+        every object is repeated for every "NOT YET finalized Material Set":
+        [ 
+          'finalized-material-date': <DATE, 32bit time value>,
+          'description': <String, description of the Material Set>,
+         { filename: <string>, comment: <String>, size: <Int, in bytes>, content-type: <string> },
+         { filename: <string>, comment: <String>, size: <Int, in bytes>, content-type: <string> }
+        ]
+        
+    :PUT
+        Permitted only to the WB.
+        Used to append a file to a submission.
+
+        * Request:
+          { 'comment': <string, file description> }
+          { file upload as per HTTP method }
+
+        * Response:
+          Status Code: 202 (Accepted)
+
+        _ If a system error happen:
+          Status Code: 409 (Conflict)
+          { 'error-message' : 'Unexpected IO error' }
+
+    :DELETE
+
+        Used to remove a file not yet finalized.
+
+        * Request:
+        { 'filename': <String, file name> }
+
+        * Response:
+          Status Code: 202 (Accepted)
+
+     :(GET, PUT, DELETE)
+        _ Error handling as per `/tip/<string t_id>/`
+
+
+`/tip/<string t_id>/finalize_update`
+
+    Used to add description in the Material set not yet completed (optional)
+    Used to complete the files upload, completing the Material Set.
+
+    :POST
+        * Request:
+        { 'description': <String, optional description of the Material Set> },
+        { 'finalize': True }
+
+        * Response:
+            if files are available to be finalized:
+            Status Code: 202 (Accepted)
+
+        _ Error handling as per `/tip/<string t_id>/`
+
+
+`/tip/<string t_id>/download_material`, 
+
+    used to download the material from the
+    submission. Can only be requested if the user is a Receiver and the
+    relative download count is < max_downloads.
+
+    :GET
+        * Request:
+        {'id': <material_set_id>}
+
+        * Response:
+        Stauts Code: 200 (OK)
+        _ Error handling as per `/tip/<string t_id>/`
+
 
 `/tip/<string t_id>/pertinence`, 
 
@@ -381,72 +466,16 @@ For setting up storage methods.
     This can only be done by a receiver that has not yet voted.
 
     :POST
-        * Response:
-          Status Code: 202 (Accepted)
-
-
-        `/add_description`
-        Used to add a description to an already uploaded material.
-        * Request:
-          {'id': <string the id of the material>,
-           'desc': <string content of the description>,
-           'fid': <string (optional) the id of the file>
-          }
-        * Response:
-          Status Code: 200 (OK)
-          If file or material already has a description:
-          Status Code: 304 (Not Modified)
-
-    :DELETE
-        Used to delete a submission if the receiver has sufficient priviledges.
-        * Response:
-          Status Code: 204 (No Content)
-
-
-`/tip/<string t_id>/material`
-
-    Query the material available, and perform update operations
-
-    :GET
-        Permitted to Receivers and WB, return list of 'material packages' available
-        
-        * Request: /
-        * Response:
-        every object is repeated for every "finalized group of files":
-        [ 
-          'finalized-material-date': <DATE, 32bit time value>,
-          { name: <string, filename>, size: <Int, expressed in bytes>, content-type: <string, ct> }
-          { name: <string, filename>, size: <Int, expressed in bytes>, content-type: <string, ct> }
-        ]
-        
-    :POST
-        Permitted to WB only, finalize the currently not finalized uploads performed 
-        by PUT.
-        
-        * Request:
-        { 'finalize': True }
-        
-        * Response:
-        
-        if files are available to be finalized:
-            Status Code: 202 (Accepted)
-        else
-            Status Code: 204 (No Content)
-
-    :PUT
-        Permitted only to the WB.
-        Used to append a file to a submission.
-
-        * Request:
-          {'name': <string file name>,
-           'id': <string (optional) the id of an in progress material submission>,
-           'fin': <bool (optional) used to close the material package>,
-           'desc': <string (optional) description of the file>
-           }
+        * Request: 
+        { 'pertinence-vote': <Bool, True mean +1, False mean -1> }
 
         * Response:
           Status Code: 202 (Accepted)
+        _ Error handling as per `/tip/<string t_id>/`
 
+### REVIEWED ONLY BEFORE, NOT YET BELOW 
+## REVIEWED ONLY BEFORE, NOT YET BELOW 
+### REVIEWED ONLY BEFORE, NOT YET BELOW 
 
 # Admin API
 
