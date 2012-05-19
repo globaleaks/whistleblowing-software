@@ -109,7 +109,19 @@ For setting up storage methods.
 
 # Public API
 
-## Open GLBackend/docs/specification/GLBackend-18-5-2012.png
+### Open GLBackend/docs/specification/GLBackend-18-5-2012.png
+
+### GLBackend native object specification
+
+file descriptor, every completed file upload is always stored and represented with this dict:
+
+    { filename: <string>, comment: <String>, size: <Int, in bytes>, content-type: <string> }
+
+<LocaLDict>, the Local Dict is an object used to store localized texts, in example:
+
+    { 'IT' : 'Sono io, Mario!' },
+    { 'EN' : 'Its a me, Mario!' },
+    { 'FR' : 'Suis je, Mario!' }
 
 `/node/`
 
@@ -124,22 +136,25 @@ For setting up storage methods.
         * Response:
             Status Code: 200 (OK)
             {
-              'name': <string Name of the initiative>,
-              'statistics': <string, general statistics>,
-              'properties': [ array, lists of node Yes:No selection,
+              'name': <LocaLDict Name of the initiative>,
+              'statistics': <Array - To be defined, general statistics>,
+              'properties': [ array, lists of node properties in (True|False) selection,
                               describing chooses in Backend setup.
                               Info can be used by LeakDirectory or other
                               external aggregator of nodes.
-                            ]
+                            ],
               'contexts': [
-                           {'name': <String name of context>,
-                            'groups': [ { 'group_ID' : 'group_name' }, { ... } ]
-                            'fields': [ 
-                                  { 'name' : <string field_name>, type: (txt|int|img), 'Required': <Bool> },
-                                  { 'name' : <string field_name>, type: (txt|int|img), 'Required': <Bool> },
-                                ]
-                            }]
-               'descriptiom': <string, descrption headline>,
+                           {'name': <LocaLDict name of context>,
+                            'groups': [
+                              { 'id': <Int>, 'description' : '<LocaLDict description>', 
+                               'name' : '<LocaLDict title>', lang: '<Array, list of supported lang>' }
+                              { 'id': <Int>, 'description' : '<LocaLDict description>', 
+                               'name' : '<LocaLDict title>', lang: '<Array, list of supported lang>' } ]
+                            'fields': [
+                              { 'name' : <LocaLDict field>, type: (txt|int|img), 'Required': <Bool> },
+                              { 'name' : <LocalDict field>, type: (txt|int|img), 'Required': <Bool> } ]
+                            },
+               'description': <LocalDict, descrption headline>,
                'public_site': <string, url>,
                'hidden_service': <string, url.onion>,
              }
@@ -153,19 +168,23 @@ For setting up storage methods.
                             ]
               'contexts': [
                             { 'name' : 'Heisenberg sightings',
-                              'groups' : [ { 0 : 'police' , 1 : 'vigilantes', 2 : 'Cartel', 3: 'Rihab' } ],
+                              'groups' : [ 
+                                    { 'id' : 0, name : 'police', description: 'Our national strength',
+                                        lang: 'EN, ES' },
+                                    { 'id' : 1, name : 'vigilantes', description: 'Batman progeny',
+                                        lang, 'IT, PT, LT, EN, ES' } ],
                               'fields': [ { 'name': 'headline', 'type':'text', 'Required': True },
                                           { 'name': 'photo', 'type':'img', 'Required':False },
                                           { 'name': 'description', 'type': 'txt', 'Required':True }, ]
                             },
-                            {'name': 'Milan EXPO 2015'],
+                            {'name': 'Crystal Meth report',
                               'groups': [ { 0 : 'police' , 1 : 'journalists', 2 : 'Municipality'} ],
                               'fields': [ { 'name': 'headline', 'type':'text', 'Required': True },
                                           { 'name': 'proof', 'type':'file', 'Required':True },
                                           { 'name': 'description', 'type': 'txt', 'Required':True }, ]
                             }
                           ]
-               'descriptiom': 'This node aggregate expert of the civil society in fighting the crystal meth, producted by the infamous Heisenberg',
+               'description': 'This node aggregate expert of the civil society in fighting the crystal meth, producted by the infamous Heisenberg',
                'public_site': 'http://fightmeth.net',
                'hidden_service': 'vbg7fb8yuvewb9vuww.onion',
               }
@@ -202,7 +221,7 @@ For setting up storage methods.
 
         _ If configuration REQUIRE anonymous upload, and the WB is not anonymous
           Status Code: 415 (Unsupported Media Type)
-          { error-message: 'Anonymity required to perform a submission' }
+          { error-code: <Int>, error-details: 'Anonymity required to perform a submission' }
 
 
 `/submission/<submission_id>`
@@ -231,7 +250,7 @@ For setting up storage methods.
 
         _ If submission_id is invalid
           Status Code: 204 (No Content)
-          { error-message: 'submission ID is invalid' }
+          { error-code: <Int>, error-message: 'submission ID is invalid' }
 
 
 `/submission/<submission_id>/submit_fields`
@@ -251,7 +270,7 @@ For setting up storage methods.
 
         _ If submission_id is invalid
           Status Code: 204 (No Content)
-          { error-message: 'submission ID is invalid' }
+          { error-code: <Int>, error-message: 'submission ID is invalid' }
 
 
 `/submission/<submission_id>/add_group`
@@ -260,14 +279,14 @@ For setting up storage methods.
         adds a group to the list of recipients for the selected submission.
 
         * Request:
-        {'groups': [<list_of_groups>]}
+        {'groups': [ ID(s) of selected groups ] }
 
         * Response:
           Status Code: 202 (accepted)
 
         _ If submission_id is invalid
           Status Code: 204 (No Content)
-          { error-message: 'submission ID is invalid' }
+          { error-code: <Int>, error-message: 'submission ID is invalid' }
 
 
 `/submission/<submission_id>/finalize`, 
@@ -282,14 +301,18 @@ For setting up storage methods.
 
         _ If the check fail
           Status Code: 406 (Not Acceptable)
-          { 'error-message': <String, error description in detail> }
+          { 'error-code': <Int>, 'error-message': <String, error description in detail> }
 
         _ If submission_id is invalid
           Status Code: 204 (No Content)
-          { error-message: 'submission ID is invalid' }
+          { 'error-code': <Int>, error-message: 'submission ID is invalid' }
 
 
 `/submission/<submission_id>/upload_file`, 
+
+    :GET
+        return the status of the file upload, 
+        TODO: supports resume. Check JQuery FileUploader and their REST/protocol
 
     :PUT
         attach a file to the selected submission_id.
@@ -309,10 +332,10 @@ For setting up storage methods.
     :(either PUT & DELETE)
         _ If submission_id is invalid
           Status Code: 204 (No Content)
-          { error-message: 'submission ID is invalid' }
+          { 'error-code': <Int>, error-message: 'submission ID is invalid' }
 
 
-`/tip/<string t_id>`
+`/tip/<string t_id>` (shared between Rcvr & Wb)
 
     :GET
         Permit either to WB authorized by Receipt, or to Receivers.
@@ -349,7 +372,7 @@ For setting up storage methods.
 
         _ If t_id is invalid
           Status Code: 204 (No Content)
-          { error-message: 'requested Tip ID is expired or invalid' }
+          { error-code: <Int>, error-message: 'requested Tip ID is expired or invalid' }
 
     :DELETE
         Used to delete a submission if the users has sufficient priviledges.
@@ -364,7 +387,7 @@ For setting up storage methods.
           Status Code: 204 (No Content)
 
 
-`/tip/<string t_id>/add_comment`
+`/tip/<string t_id>/add_comment` (shared between Rcvr & Wb)
 
     Permit either to WB authorized by Receipt, or to Receivers.
     adds a new comment to the submission.
@@ -378,7 +401,7 @@ For setting up storage methods.
         _ Error handling as per `/tip/<string t_id>/`
 
 
-`/tip/<string t_id>/update_file`
+`/tip/<string t_id>/update_file` (Wb only)
 
     perform update operations. If a Material Set has been started, the file is appended
     in the same pack. A Material Set is closed when the `finalize_update` is called.
@@ -399,7 +422,6 @@ For setting up storage methods.
         ]
         
     :PUT
-        Permitted only to the WB.
         Used to append a file to a submission.
 
         * Request:
@@ -411,7 +433,7 @@ For setting up storage methods.
 
         _ If a system error happen:
           Status Code: 409 (Conflict)
-          { 'error-message' : 'Unexpected IO error' }
+          { 'error-code': <Int>, 'error-message' : 'Unexpected IO error' }
 
     :DELETE
 
@@ -427,7 +449,7 @@ For setting up storage methods.
         _ Error handling as per `/tip/<string t_id>/`
 
 
-`/tip/<string t_id>/finalize_update`
+`/tip/<string t_id>/finalize_update` (Wb only)
 
     Used to add description in the Material set not yet completed (optional)
     Used to complete the files upload, completing the Material Set.
@@ -444,7 +466,7 @@ For setting up storage methods.
         _ Error handling as per `/tip/<string t_id>/`
 
 
-`/tip/<string t_id>/download_material`, 
+`/tip/<string t_id>/download_material` (Rcvr only)
 
     used to download the material from the
     submission. Can only be requested if the user is a Receiver and the
@@ -452,14 +474,14 @@ For setting up storage methods.
 
     :GET
         * Request:
-        {'id': <material_set_id>}
+        {'id': <material_set_id>, 'option-format': (encrypt|compressed) }
 
         * Response:
         Stauts Code: 200 (OK)
         _ Error handling as per `/tip/<string t_id>/`
 
 
-`/tip/<string t_id>/pertinence`, 
+`/tip/<string t_id>/pertinence` (Rcvr only)
 
     Optional (shall not be supported by configuration settings)
     express a vote on pertinence of a certain submission.
@@ -473,10 +495,6 @@ For setting up storage methods.
           Status Code: 202 (Accepted)
         _ Error handling as per `/tip/<string t_id>/`
 
-### REVIEWED ONLY BEFORE, NOT YET BELOW 
-## REVIEWED ONLY BEFORE, NOT YET BELOW 
-### REVIEWED ONLY BEFORE, NOT YET BELOW 
-
 # Admin API
 
 `/admin/receivers/`
@@ -487,10 +505,12 @@ For setting up storage methods.
         * Response:
           Status Code: 200 (OK)
 
-          {'groups': [{'groupName': <GroupName>,
-                       'groupDescription': <GroupDescription>},
-                      {'groupName': <GroupName>,
-                       'groupDescription': <GroupDescription>}
+          {'groups': [{'groupName': <String GroupName>,
+                       'groupDescription': <String GroupDescription>,
+                       'lang': <Array, language supported> },
+                      {'groupName': <String GroupName>,
+                       'groupDescription': <String GroupDescription>,
+                       'lang': <Array, language supported> }
                       ]
 
            'receivers': [{'ID': <num>, 'PublicName': <PublicName>,
@@ -616,6 +636,12 @@ For setting up storage methods.
                'descriptiom': <string, descrption headline>,
                'public_site': <string, url>,
                'hidden_service': <string, url.onion>,
+               'preference_settings': [ Array, lists of options related in
+                                        Tip management, like:
+                                        max download available per Material Set,
+                                        maximum time for finalize a Material,
+                                        whistleblowers can delete
+                                        whistleblowers can select groups ]
              }
     :POST
         Changes the node public node configuration settings
@@ -642,6 +668,12 @@ For setting up storage methods.
                'descriptiom': <string, descrption headline>,
                'public_site': <string, url>,
                'hidden_service': <string, url.onion>,
+               'preference_settings': [ Array, lists of options related in
+                                        Tip management, like:
+                                        max download available per Material Set,
+                                        maximum time for finalize a Material,
+                                        whistleblowers can delete
+                                        whistleblowers can select groups ]
              }
 
         * Response:
