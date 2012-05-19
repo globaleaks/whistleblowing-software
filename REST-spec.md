@@ -14,37 +14,36 @@ by the client side application.
 
 This creates an empty submission and returns the ID
 to be used when referencing it as a whistleblower.
+ID is a random 64bit integer.
 
 `/submission/<submission_id>`
 
-Returns the currently submitted fields and material filenames and size
-
+Returns the currently submitted fields and material filenames and size.
 
 `/submission/<submission_id>/submit_fields`
 
 does the submission of the fields that are supported by
-the node in question and adds it the selected submission_id
+the node in question and update the selected submission_id
 
 `/submission/<submission_id>/add_group`
 
 adds a group to the list of recipients for the selected
-submission.
+submission. group are addressed by their ID.
 
 `/submission/<submission_id>/finalize`
 
 completes the submission in progress and
 returns a receipt.
 
-`/submission/<submission_id>/add_material`
+`/submission/<submission_id>/upload_file`
 
-adds material to the selected submission_id.
+upload a file to the selected submission_id.
 
 `/tip/<string t_id>`
 
-Returns the content of the submission with the specified
-ID.
+Returns the content of the submission with the specified ID.
 Inside of the request headers, if supported, the password for accessing
-the tulip can be passed. This returns a session cookie that is then
+the tip can be passed. This returns a session token that is then
 used for all future requests to be authenticated.
 
 `/tip/<string t_id>/download_material`
@@ -55,16 +54,23 @@ relative download count is < max_downloads
 
 `/tip/<string t_id>/add_comment`
 
-adds a new commnet to the submission
+adds a new comment to the submission
 
 `/tip/<string t_id>/pertinence`
 
 express a vote on pertinence of a certain submission.
-This can only be done by a receiver that has not yet voted
+This can only be done by a receiver that has not yet voted.
 
 `/tip/<string t_id>/add_description`
 
-Used to add a description to an already uploaded material.
+Used to add a description to an already uploaded material. Only the WB
+authenticated by their Receipt can do it.
+
+`/tip/<string t_id>/`
+
+Used to add a description to an already uploaded material. Only the WB
+authenticated by their Receipt can do it.
+
 
 ## Admin API
 
@@ -110,16 +116,13 @@ For setting up storage methods.
                               Info can be used by LeakDirectory or other
                               external aggregator of nodes.
                             ]
-              'contexts': [{'context_number': <Int of managed receiver groups>},
-                           {'context_1': <String name of group>},
-                           {'context_1_field':
-                                [1: { 'field_name', 'field_type', 'Required' },
-                                #F: { 'field_name', 'field_type', 'Required' }]
-                            },
-                           {'context_#N': <String name of group>},
-                           {'context_#N_field':
-                                [1: { 'field_name', 'field_type', 'Required' },
-                                #F: { 'field_name', 'field_type', 'Required' }]
+              'contexts': [
+                           {'name': <String name of context>,
+                            'groups': [ { 'group_ID' : 'group_name' }, { ... } ]
+                            'fields': [ 
+                                  { 'name' : <string field_name>, type: (txt|int|img), 'Required': <Bool> },
+                                  { 'name' : <string field_name>, type: (txt|int|img), 'Required': <Bool> },
+                                ]
                             }]
                'descriptiom': <string, descrption headline>,
                'public_site': <string, url>,
@@ -133,18 +136,20 @@ For setting up storage methods.
                               {'are_receivers_part_of_the_admin': False},
                               {'anonymity_enforced': True},
                             ]
-              'contexts': [{'context_number': 2 },
-                               {'context_1': 'Heisenberg sightings'},
-                               {'context_1_field':
-                                    [ { 'headline', 'text', True },
-                                      { 'photo', 'img', False },
-                                      { 'descriptio', 'text', True }, ]
-                               }
-                               {'context_2': <String name of group>}],
-                               {'context_2_field':
-                                    [ { 'headline', 'text', True },
-                                      { 'photo', 'img', False },
-                                      { 'descriptio', 'text', True }, ]
+              'contexts': [ 
+                            { 'name' : 'Heisenberg sightings',
+                              'groups' : [ { 0 : 'police' , 1 : 'vigilantes', 2 : 'Cartel', 3: 'Rihab' } ]
+                              'fields': [ { 'name': 'headline', 'type':'text', 'Required': True },
+                                          { 'name': 'photo', 'type':'img', 'Required':False },
+                                          { 'name': 'description', 'type': 'txt', 'Required':True }, ]
+                             },
+                             { 'name': 'Milan EXPO 2015'],
+                               'groups': [ { 0 : 'police' , 1 : 'journalists', 2 : 'Municipality'} ]
+                               'fields': [ { 'headline', 'text', True },
+                                           { 'description', 'txt', True },
+                                           { 'proof', 'file', True }, ]
+                             }
+                           ]
                'descriptiom': 'This node aggregate expert of the civil society in fighting the crystal meth, producted by the infamous Heisenberg',
                'public_site': 'http://fightmeth.net',
                'hidden_service': 'vbg7fb8yuvewb9vuww.onion',
@@ -206,8 +211,8 @@ For setting up storage methods.
         * Response:
           Status Code: 202 (accepted)
 
-        `/finalize`, completes the submission in progress and
-        returns a receipt.
+        `/finalize`, checks if all the 'Required' fields are present, then 
+        completes the submission in progress and returns a receipt.
 
         * Request:
         (optional) It supports inline submission of submission fields, to avoid
@@ -222,23 +227,29 @@ For setting up storage methods.
           Status Code: 201 (created)
 
     :PUT
-        **add_material**, adds material to the selected submission_id.
+        **upload_file**, attach a file to the selected submission_id.
 
         * Request:
         {'desc': <string (optional) description of the file>}}
 
         * Response:
+        {'name': <string, name of the uploaded file>, 'id': <Int, associated file ID>}
           Status Code: 202 (accepted)
 
     :DELETE
+        * Request:
+        { delete_id : <Int, ID of the file to be deleted> }
+          Status Code: 202 (accepted)
 
 `/tip/<string t_id>`
 
     :GET
-        Returns the content of the submission with the specified
-        ID.
+        Permit either to WB authorized by Receipt, or to Receivers,
+        authorized by univoke "t_id".
+        
+        Returns the content of the submission with the specified ID.
         Inside of the request headers, if supported, the password for accessing
-        the tulip can be passed. This returns a session cookie that is then
+        the tip can be passed. This returns a session cookie that is then
         used for all future requests to be authenticated.
 
         * Response:
@@ -283,9 +294,14 @@ For setting up storage methods.
 
            * Request:
            {'id': <material_id>}
+           
+          * Response:
+            TODO - a lots of incongruence need to be handled here
+            TODO - A LOTS OF INCONGRUENCE NEED TO BE HANDLED HERE
+           Stauts Code: 200 (OK)
 
     :POST
-        `/add_comment`, adds a new commnet to the submission.
+        `/add_comment`, adds a new comment to the submission.
 
         * Request:
           {'comment': <content_of_the_comment>}
@@ -311,9 +327,45 @@ For setting up storage methods.
           If file or material already has a description:
           Status Code: 304 (Not Modified)
 
+    :DELETE
+        Used to delete a submission if the receiver has sufficient priviledges.
+        * Response:
+          Status Code: 204 (No Content)
+
+
+`/tip/<string t_id>/material`
+
+    Query the material available, and perform update operations
+
+    :GET
+        Permitted to Receivers and WB, return list of 'material packages' available
+        
+        * Request: /
+        * Response:
+        every object is repeated for every "finalized group of files":
+        [ 
+          'finalized-material-date': <DATE, 32bit time value>,
+          { name: <string, filename>, size: <Int, expressed in bytes>, content-type: <string, ct> }
+          { name: <string, filename>, size: <Int, expressed in bytes>, content-type: <string, ct> }
+        ]
+        
+    :POST
+        Permitted to WB only, finalize the currently not finalized uploads performed 
+        by PUT.
+        
+        * Request:
+        { 'finalize': True }
+        
+        * Response:
+        
+        if files are available to be finalized:
+            Status Code: 202 (Accepted)
+        else
+            Status Code: 204 (No Content)
+
     :PUT
-        Used to append material to a submission. This can only be done by the
-        whistleblower.
+        Permitted only to the WB.
+        Used to append a file to a submission.
 
         * Request:
           {'name': <string file name>,
@@ -324,11 +376,6 @@ For setting up storage methods.
 
         * Response:
           Status Code: 202 (Accepted)
-
-    :DELETE
-        Used to delete a submission if the receiver has sufficient priviledges.
-        * Response:
-          Status Code: 204 (No Content)
 
 
 # Admin API
