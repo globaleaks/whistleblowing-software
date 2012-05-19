@@ -138,6 +138,9 @@
     :PUT
         **add_material**, adds material to the selected submission_id.
 
+        * Request:
+        {'desc': <string (optional) description of the file>}}
+
         * Response:
           Status Code: 202 (accepted)
 
@@ -192,6 +195,9 @@
            submission. Can only be requested if the user is a Receiver and the
            relative download count is < max_downloads.
 
+           * Request:
+           {'id': <material_id>}
+
     :POST
         `/add_comment`, adds a new commnet to the submission.
 
@@ -234,7 +240,7 @@
           Status Code: 202 (Accepted)
 
     :DELETE
-        Used to delete a submission.
+        Used to delete a submission if the receiver has sufficient priviledges.
         * Response:
           Status Code: 204 (No Content)
 
@@ -260,11 +266,19 @@
                  'Groups': [<list_of_groups>],
                  'deliveryMethod': {'type': <type>,
                                     'address': <adress>,
-                                    'security_method': {'type': <type>, 'content': <content>}
+                                    'auth_method': [{'type': <type>,
+                                                     'content': <content>}]
+                                    },
+                                    {'type': 'local',
+                                     'address': None,
+                                     'auth_method': [{'type': 'password',
+                                                      'content': 'antani'}]
+                                     'enc_method': [{'type': 'pgp',
+                                                     'content': <public_pgp_key>}]
                                     },
                  'notificationMethod': {'type': <type>,
                                     'address': <adress>,
-                                    'security_method': {'type': <type>, 'content': <content>}
+                                    'enc_method': {'type': <type>, 'content': <content>}
                                     }
                 },
            {'ID', <num>, 'PublicName': <PublicName>,
@@ -272,11 +286,14 @@
                  'Groups': [<list_of_groups>],
                  'deliveryMethod': {'type': <type>,
                                     'address': <adress>,
-                                    'security_method': {'type': <type>, 'content': <content>}
+                                    'auth_method': [{'type': <type>,
+                                                     'content': <content>}],
+                                    'enc_method': [{'type': <type>,
+                                                    'content': <content>}]
                                     },
                  'notificationMethod': {'type': <type>,
                                     'address': <adress>,
-                                    'security_method': {'type': <type>, 'content': <content>}
+                                    'enc_method': {'type': <type>, 'content': <content>}
                                     }
                 }
             ]
@@ -292,11 +309,15 @@
              'Groups': [<groupA>, <groupB>]
              'deliveryMethod': {'type': <type>,
                                 'address': <adress>,
-                                'security_method': {'type': <type>, 'content': <content>}
+
+                                'auth_method': [{'type': <type>,
+                                                 'content': <content>}],
+                                'enc_method': [{'type': <type>,
+                                                'content': <content>}]
                                 },
              'notificationMethod': {'type': <type>,
                                     'address': <adress>,
-                                    'security_method': {'type': <type>, 'content': <content>}
+                                    'enc_method': {'type': <type>, 'content': <content>}
                                     }
             }
 
@@ -312,11 +333,15 @@
              'Groups': [<groupA>, <groupB>]
              'deliveryMethod': {'type': <type>,
                                 'address': <adress>,
-                                'security_method': {'type': <type>, 'content': <content>}
+
+                                'auth_method': [{'type': <type>,
+                                                 'content': <content>}],
+                                'enc_method': [{'type': <type>,
+                                                'content': <content>}]
                                 },
              'notificationMethod': {'type': <type>,
                                     'address': <adress>,
-                                    'security_method': {'type': <type>, 'content': <content>}
+                                    'enc_method': {'type': <type>, 'content': <content>}
                                     }
         }
 
