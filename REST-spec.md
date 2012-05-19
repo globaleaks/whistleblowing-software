@@ -468,3 +468,55 @@
     Status Code: 202 (Accepted)
 
 
+`/admin/config/storage`
+
+    :GET
+    Returns the currently installed storage methods
+
+    * Response:
+
+    {'storage_modules': [{'type': 'ftp', 'settings':
+                                            {'ftp_server': <address>,
+                                             'user_name': <username>,
+                                             'password': <password>,
+                                             'ssl': <bool>,
+                                            },
+                          {'type': 'scp', 'settings':
+                                            {'scp_server': <address>,
+                                             'user_name': <username>,
+                                             'private_key': <private_key>,
+                                             'password': <password>,
+                                             'ssl': <bool>,
+                                            },
+                           },
+                           {'type': 'mysql', 'settings':
+                                            {'mysql_server': <address>,
+                                             'user_name': <username>,
+                                             'database': <database_name>,
+                                             'password': <password>,
+                                            },
+                          },
+                          {'type': 'local', 'settings': {'path': <path>}},
+                          {'type': <type_name>, 'settings': {}}
+                          ]
+     }
+
+
+    :POST
+    Update the currently configured storage modules.
+
+    * Request:
+    {'storage_modules': [{'type': 'ftp', 'settings':
+                                            {'ftp_server': <address>,
+                                             'user_name': <username>,
+                                             'password': <password>,
+                                             'ssl': <bool>,
+                                            }
+                          {'type': <type_name>, 'settings': {}}
+                          ]
+     }
+
+    * Response
+    Status Code: 202 (Accepted)
+
+
