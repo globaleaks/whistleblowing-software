@@ -48,7 +48,7 @@
                               {'anonymity_enforced': True},
                             ]
               'contexts': [{'context_number': 2 },
-                               {'context_1': 'Heisenberg saitings'},
+                               {'context_1': 'Heisenberg sightings'},
                                {'context_1_field':
                                     [ { 'headline', 'text', True },
                                       { 'photo', 'img', False },
@@ -60,7 +60,7 @@
                                       { 'photo', 'img', False },
                                       { 'descriptio', 'text', True }, ]
                'descriptiom': 'This node aggregate expert of the civil society in fighting the crystal meth, producted by the infamous Heisenberg',
-               'public_site': 'http://figthmeth.net',
+               'public_site': 'http://fightmeth.net',
                'hidden_service': 'vbg7fb8yuvewb9vuww.onion',
               }
     :POST
@@ -79,16 +79,6 @@
           Status Code: 501 (Not implemented)
 
 `/submission`
-
-    create
-
-    add_material
-
-    submit_fields
-
-    add_group
-
-    finalize
 
     :GET
         None
@@ -109,20 +99,38 @@
           Status Code: 200
 
     :POST
-        **submit_fields**, does the submission of the fields that are supported by
+        `/submit_fields`, does the submission of the fields that are supported by
         the node in question and adds it the selected submission_id.
 
+        * Request:
+        {'context_1_field':
+            {'field_name1': <content>},
+            {'field_name2': <content>}
+        }
+
         * Response:
           Status Code: 202 (accepted)
 
-        **add_group**, adds a group to the list of recipients for the selected
+        `/add_group`, adds a group to the list of recipients for the selected
         submission.
 
+        * Request:
+        {'groups': [<list_of_groups>]}
+
         * Response:
           Status Code: 202 (accepted)
 
-        **finalize_submission**, completes the submission in progress and
+        `/finalize`, completes the submission in progress and
         returns a receipt.
+
+        * Request:
+        (optional) It supports inline submission of submission fields, to avoid
+        doing two separate requests for finalization and fields sending.
+
+        {'context_1_field':
+            {'field_name1': <content>},
+            {'field_name2': <content>}
+        }
 
         * Response:
           Status Code: 201 (created)
@@ -180,12 +188,12 @@
                           }
            }
 
-           **download_material**, used to download the material from the
+           `/download_material`, used to download the material from the
            submission. Can only be requested if the user is a Receiver and the
            relative download count is < max_downloads.
 
     :POST
-        **add_comment**, adds a new commnet to the submission.
+        `/add_comment`, adds a new commnet to the submission.
 
         * Request:
           {'comment': <content_of_the_comment>}
@@ -193,13 +201,13 @@
         * Response:
           Status Code: 200 (OK)
 
-        **pertinence**, express a vote on pertinence of a certain submission.
+        `/pertinence`, express a vote on pertinence of a certain submission.
         This can only be done by a receiver that has not yet voted.
 
         * Response:
           Status Code: 202 (Accepted)
 
-        **add_description**
+        `/add_description`
         Used to add a description to an already uploaded material.
         * Request:
           {'id': <string the id of the material>,
@@ -295,7 +303,7 @@
         * Response:
           Status: 201 (Created)
 
-        **edit_receiver**
+        `/edit_receiver`
 
         * Request:
 
