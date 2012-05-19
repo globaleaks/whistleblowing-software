@@ -16,7 +16,7 @@
         Returns a json object containing all the information of the node.
         * Response:
             Status Code: 200 (OK)
-             {
+            {
               'name': <string Name of the initiative>,
               'statistics': <string, general statistics>,
               'properties': [ array, lists of node Yes:No selection,
@@ -28,15 +28,17 @@
                            {'context_1': <String name of group>},
                            {'context_1_field':
                                 [1: { 'field_name', 'field_type', 'Required' },
-                                [#F: { 'field_name', 'field_type', 'Required' }]
-                           {'context_#N': <String name of group>}],
+                                #F: { 'field_name', 'field_type', 'Required' }]
+                            },
+                           {'context_#N': <String name of group>},
                            {'context_#N_field':
                                 [1: { 'field_name', 'field_type', 'Required' },
-                                [#F: { 'field_name', 'field_type', 'Required' }]
+                                #F: { 'field_name', 'field_type', 'Required' }]
+                            }]
                'descriptiom': <string, descrption headline>,
                'public_site': <string, url>,
                'hidden_service': <string, url.onion>,
-             },
+             }
         example of a result:
              {
               'name': "blue meth fighting in alberoque",
@@ -231,19 +233,205 @@
 
 # Admin API
 
-`/targets/`
+`/admin/receivers/`
 
-    TODO
+    :GET
+        Returns the current receivers list.
 
-`/groups/`
+        * Response:
+          Status Code: 200 (OK)
 
-    TODO
+          {'groups': [{'groupName': <GroupName>,
+                       'groupDescription': <GroupDescription>},
+                      {'groupName': <GroupName>,
+                       'groupDescription': <GroupDescription>}
+                      ]
 
-`/admin/`
+           'receivers': [{'ID': <num>, 'PublicName': <PublicName>,
+                 'PrivateName': <PrivateName>,
+                 'Groups': [<list_of_groups>],
+                 'deliveryMethod': {'type': <type>,
+                                    'address': <adress>,
+                                    'security_method': {'type': <type>, 'content': <content>}
+                                    },
+                 'notificationMethod': {'type': <type>,
+                                    'address': <adress>,
+                                    'security_method': {'type': <type>, 'content': <content>}
+                                    }
+                },
+           {'ID', <num>, 'PublicName': <PublicName>,
+                 'PrivateName': <PrivateName>,
+                 'Groups': [<list_of_groups>],
+                 'deliveryMethod': {'type': <type>,
+                                    'address': <adress>,
+                                    'security_method': {'type': <type>, 'content': <content>}
+                                    },
+                 'notificationMethod': {'type': <type>,
+                                    'address': <adress>,
+                                    'security_method': {'type': <type>, 'content': <content>}
+                                    }
+                }
+            ]
+          }
 
-    TODO
+    :POST
+        Adds a new receiver to the list of receivers.
 
-`/stats/`
+        * Request:
 
-    TODO
+            {'PublicName': <PublicName>,
+             'PrivateName': <PrivateName>,
+             'Groups': [<groupA>, <groupB>]
+             'deliveryMethod': {'type': <type>,
+                                'address': <adress>,
+                                'security_method': {'type': <type>, 'content': <content>}
+                                },
+             'notificationMethod': {'type': <type>,
+                                    'address': <adress>,
+                                    'security_method': {'type': <type>, 'content': <content>}
+                                    }
+            }
+
+        * Response:
+          Status: 201 (Created)
+
+        **edit_receiver**
+
+        * Request:
+
+        {'PublicName': <PublicName>,
+             'PrivateName': <PrivateName>,
+             'Groups': [<groupA>, <groupB>]
+             'deliveryMethod': {'type': <type>,
+                                'address': <adress>,
+                                'security_method': {'type': <type>, 'content': <content>}
+                                },
+             'notificationMethod': {'type': <type>,
+                                    'address': <adress>,
+                                    'security_method': {'type': <type>, 'content': <content>}
+                                    }
+        }
+
+        * Response:
+          Status: 202 (Modified)
+
+    :DELETE
+
+        * Request:
+        {'ID': <num>}
+
+        * Response:
+          Status: 202 (Accepted)
+
+`/admin/config/node`
+
+    :GET
+        Returns a json object containing all the information of the node.
+        * Response:
+            Status Code: 200 (OK)
+             {
+              'name': <string Name of the initiative>,
+              'statistics': <string, general statistics>,
+              'properties': [ array, lists of node Yes:No selection,
+                              describing chooses in Backend setup.
+                              Info can be used by LeakDirectory or other
+                              external aggregator of nodes.
+                            ]
+              'contexts': [{'context_number': <Int of managed receiver groups>},
+                           {'context_1': <String name of group>},
+                           {'context_1_field':
+                                [1: { 'field_name', 'field_type', 'Required' },
+                                #F: { 'field_name', 'field_type', 'Required' }]
+                            },
+                           {'context_#N': <String name of group>},
+                           {'context_#N_field':
+                                [1: { 'field_name', 'field_type', 'Required' },
+                                #F: { 'field_name', 'field_type', 'Required' }]
+                            }]
+               'descriptiom': <string, descrption headline>,
+               'public_site': <string, url>,
+               'hidden_service': <string, url.onion>,
+             }
+    :POST
+        Changes the node public node configuration settings
+        * Request:
+            {
+              'name': <string Name of the initiative>,
+              'statistics': <string, general statistics>,
+              'properties': [ array, lists of node Yes:No selection,
+                              describing chooses in Backend setup.
+                              Info can be used by LeakDirectory or other
+                              external aggregator of nodes.
+                            ]
+              'contexts': [{'context_number': <Int of managed receiver groups>},
+                           {'context_1': <String name of group>},
+                           {'context_1_field':
+                                [1: { 'field_name', 'field_type', 'Required' },
+                                #F: { 'field_name', 'field_type', 'Required' }]
+                            },
+                           {'context_#N': <String name of group>},
+                           {'context_#N_field':
+                                [1: { 'field_name', 'field_type', 'Required' },
+                                #F: { 'field_name', 'field_type', 'Required' }]
+                            }]
+               'descriptiom': <string, descrption headline>,
+               'public_site': <string, url>,
+               'hidden_service': <string, url.onion>,
+             }
+
+        * Response:
+          Status: 202 (Accepted)
+
+`/admin/config/delivery`
+
+    :GET
+    Returns the currently installe delivery and notification modules.
+
+    * Response:
+
+    {'delivery_modules': [{'type': 'email', 'settings':
+                                            {'smtp_server': <address>,
+                                             'user_name': <username>,
+                                             'password': <password>,
+                                             'ssl': <bool>,
+                                            }
+                          {'type': <type_name>, 'settings': {}}
+                          ]
+     'notification_modules': [{'type': 'email', 'settings':
+                                            {'smtp_server': <address>,
+                                             'user_name': <username>,
+                                             'password': <password>,
+                                             'ssl': <bool>,
+                                            }
+                          {'type': <type_name>, 'settings': {}}
+                          ]
+    }
+
+
+    :POST
+    Update the currently configured delivery and notification modules.
+
+
+    * Request:
+    {'delivery_modules': [{'type': 'email', 'settings':
+                                            {'smtp_server': <address>,
+                                             'user_name': <username>,
+                                             'password': <password>,
+                                             'ssl': <bool>,
+                                            }
+                          {'type': <type_name>, 'settings': {}}
+                          ]
+     'notification_modules': [{'type': 'email', 'settings':
+                                            {'smtp_server': <address>,
+                                             'user_name': <username>,
+                                             'password': <password>,
+                                             'ssl': <bool>,
+                                            }
+                          {'type': <type_name>, 'settings': {}}
+                          ]
+    }
+
+    * Response
+    Status Code: 202 (Accepted)
+
 
