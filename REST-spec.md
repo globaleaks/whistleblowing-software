@@ -1,3 +1,89 @@
+# Summary
+
+This is a breif summary of the REST API specification.
+
+## Public API
+
+`/node/`
+
+Returns information on the GlobaLeaks node. This includes
+submission paramters and how information should be presented
+by the client side application.
+
+`/submission`
+
+This creates an empty submission and returns the ID
+to be used when referencing it as a whistleblower.
+
+`/submission/<submission_id>`
+
+Returns the currently submitted fields and material filenames and size
+
+
+`/submission/<submission_id>/submit_fields`
+
+does the submission of the fields that are supported by
+the node in question and adds it the selected submission_id
+
+`/submission/<submission_id>/add_group`
+
+adds a group to the list of recipients for the selected
+submission.
+
+`/submission/<submission_id>/finalize`
+
+completes the submission in progress and
+returns a receipt.
+
+`/submission/<submission_id>/add_material`
+
+adds material to the selected submission_id.
+
+`/tip/<string t_id>`
+
+Returns the content of the submission with the specified
+ID.
+Inside of the request headers, if supported, the password for accessing
+the tulip can be passed. This returns a session cookie that is then
+used for all future requests to be authenticated.
+
+`/tip/<string t_id>/download_material`
+
+used to download the material from the
+submission. Can only be requested if the user is a Receiver and the
+relative download count is < max_downloads
+
+`/tip/<string t_id>/add_comment`
+
+adds a new commnet to the submission
+
+`/tip/<string t_id>/pertinence`
+
+express a vote on pertinence of a certain submission.
+This can only be done by a receiver that has not yet voted
+
+`/tip/<string t_id>/add_description`
+
+Used to add a description to an already uploaded material.
+
+## Admin API
+
+`/admin/receivers/`
+
+Interact with the current receivers list.
+
+`/admin/config/node`
+
+For configuring the public details of the node.
+
+`/admin/config/delivery`
+
+For setting up delivery and notification methods.
+
+`/admin/config/storage`
+
+For setting up storage methods.
+
 # Public API
 
 ## Under writting!
