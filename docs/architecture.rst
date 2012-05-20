@@ -77,6 +77,9 @@ GL node. Through this component the client application learns
 what fields are supported by the globaleaks nodes and its
 properties.
 
+The submission system has anti-spam features allowing to configure a captcha
+that is activated once a certain submission/time threshold is reached.
+
 Fields
 ``````
 
@@ -142,7 +145,13 @@ TODO.
 Notification and Delivery
 -------------------------
 
-TODO.
+The notification and delivery system is built to be modular. Notification and
+delivery systems are configured and setup by the node administrator. Once the
+delivery of the submission is completed the notification of it is fired and put
+into the notification queue. The notification queue can either be flushes
+immediately (if the receiver is configured to receive real-time notifications)
+or after a certain threshold is reached (if the receiver has been configured to
+receive notification digests).
 
 
 GLClient
