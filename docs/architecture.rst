@@ -103,7 +103,17 @@ an asymetric crypto system.
 Storage
 -------
 
-TODO.
+GlobaLeaks should support various different storage mechanisms
+The storage interface should be designed in a way that it
+is agnostic to the underlying system that will be used to
+save the information.
+If specified the node administrator should be able to configure
+that the infomration stored on the node is encrypted with
+his symetric key or the public keys of all the receivers.
+
+Possible storage systems that should be implemented are:
+Locally to drive, SCP, online file storage services,
+tahoe-lafs.
 
 Status Page
 -----------
@@ -171,13 +181,22 @@ Look at the etterpad for the updated version of this doc.
 Goal
 ----
 
-The anonymous web application framework goal is to provide a web application environment that automatically publish itself to the Tor network as a Tor Hidden Service.
+The anonymous web application framework goal is to provide a web
+application environment that automatically publish itself to the
+Tor network as a Tor Hidden Service.
 
-The framework allow to build Python Tornado-based Web Application deliverying the apps as a Desktop Application (Program.exe / Program.app) or as a Nix package, so that it would extremely reduce the complexity to "run a server anonymously", even on a PC at home.
+The framework allow to build Python Tornado-based Web Application
+deliverying the apps as a Desktop Application (Program.exe /
+Program.app) or as a Nix package, so that it would extremely reduce
+the complexity to "run a server anonymously", even on a PC at home.
 
-That way it would be possible to easily build app web application that run on self-contained webserver that got automatically published anonymously as Tor Hidden Services, without the need to have a public ip address, buy a server or a domain.
+That way it would be possible to easily build app web application
+that run on self-contained webserver that got automatically published
+anonymously as Tor Hidden Services, without the need to have a public
+ip address, buy a server or a domain.
 
-The framework contain built-in and self-contained all the technologies required:
+The framework contain built-in and self-contained all the technologies
+required:
 * Python
 * Tor
 * TornadoWeb
@@ -185,9 +204,17 @@ The framework contain built-in and self-contained all the technologies required:
 Example use cases
 -----------------
 
-An ONG would like to easily setup a Whistleblowing site on it's own pc at office by using the framework integrated version of GlobaLeaks http://globaleaks.org .
-A private person in a sensitve environment may deploy a temporary web chat application running on it's Windows PC, exposed via Tor Hidden Service, to handle sensitive untraceable encrypted chat.
-A group of person would like to setup an email-server on Tor Hidden Service running the server at-home of one of the group on it's macintosh by using the framework integrated version of http://lamsonproject.org by developing also a simple tornadoweb based management application.
+An ONG would like to easily setup a Whistleblowing site on it's own
+pc at office by using the framework integrated version of GlobaLeaks
+http://globaleaks.org .
+A private person in a sensitve environment may deploy a temporary web
+chat application running on it's Windows PC, exposed via Tor Hidden
+Service, to handle sensitive untraceable encrypted chat.
+A group of person would like to setup an email-server on Tor Hidden
+Service running the server at-home of one of the group on it's
+macintosh by using the framework integrated version of
+http://lamsonproject.org by developing also a simple tornadoweb based
+management application.
 
 Startup Procedure
 -----------------
@@ -195,30 +222,42 @@ Startup Procedure
 - First Startup Procedure
 `````````````````````````
 
-The first time the application starts it must uncompress itself and create the directory structure it need to operate.
-It may be required to execute specific scripts and/or other software to adjust system config, so the startup procedure must allow to easily add custom scripts.
-The application automatically setup the appropriate configuration files for the applications built-in (Tor, TornadoWeb, TornadoWeb Applications).
+The first time the application starts it must uncompress itself and
+create the directory structure it need to operate.
+It may be required to execute specific scripts and/or other software
+to adjust system config, so the startup procedure must allow to easily
+add custom scripts.
+The application automatically setup the appropriate configuration
+files for the applications built-in (Tor, TornadoWeb, TornadoWeb
+Applications).
 
 - Splash Screen
 ```````````````
 
-The application at startup display a splash screent hat contain a progressbar with the startup information.
-The image of the splash screen must be of ease modification (it may be a PE32 resources on windows, or a file on MacOSX/Linux) or change.
+The application at startup display a splash screent hat contain a
+progressbar with the startup information.
+The image of the splash screen must be of ease modification (it
+may be a PE32 resources on windows, or a file on MacOSX/Linux) or change.
 
 - Database initialization
 `````````````````````````
 
-The first time the application start, it must initiatlize the database with the application schema and initialization data provided with the build-system.
+The first time the application start, it must initiatlize the database
+with the application schema and initialization data provided with the
+build-system.
 
 Default Web Application
-The default web application built within the Anonymous Web Application framework include several functionalities available trough a minimalistic web interface:
+The default web application built within the Anonymous Web Application
+framework include several functionalities available trough a
+minimalistic web interface:
 
 - Tor Hidden Service Setup
 ``````````````````````````
 
 GlobaLeaks relies on Tor Hidden Services for exposing itself to the internet.
 Tor can be configured to automatically create a Tor Hidden Service at startup.
-The web application automatically detect if Tor has properly setup a Tor Hidden Service and read it's .onion domain name.
+The web application automatically detect if Tor has properly setup a Tor Hidden
+Service and read it's .onion domain name.
 
 - Tor Startup
 `````````````
@@ -233,14 +272,18 @@ The application let the user edit the default Tor configuration file, save it.
 - Tor Hidden Service reachability test
 ``````````````````````````````````````
 
-The application let the user check if the Tor Hidden Service is properly reachable by making a an outgoing connection and seeing as a Tor client that the Tor Hidden Service is working properly (make sure that the Tor HS is published
+The application let the user check if the Tor Hidden Service is properly reachable by
+making a an outgoing connection and seeing as a Tor client that the Tor Hidden Service
+is working properly (make sure that the Tor HS is published
 to the DA, by default this is done every 10 minutes, but can be tweaked to be less).
 
 - Tor2web publishing
 ````````````````````
 
-Tor Hidden Services are automatically exposed trough the internet by the Tor2web project (http://www.tor2web.org).
-The node by default is automatically exposed to via Tor2web, must it must be possible to disable inbound connection coming from Tor2web.
+Tor Hidden Services are automatically exposed trough the internet by the Tor2web project
+(http://www.tor2web.org).
+The node by default is automatically exposed to via Tor2web, must it must be possible to
+disable inbound connection coming from Tor2web.
 The web application let the user to disable/re-enable inbound connections via Tor2web.
 Tech: This can be done by looking at the X-Tor2web: HTTP header
 
@@ -248,19 +291,22 @@ Tech: This can be done by looking at the X-Tor2web: HTTP header
 ````````````````````````
 
 The application let the user define the bind address of the application.
-By default the application only bind to 127.0.0.1 but it may be possible to bind it also on other IP address or 0.0.0.0 .
+By default the application only bind to 127.0.0.1 but it may be possible to bind it also
+on other IP address or 0.0.0.0 .
 
 - User interface
 ````````````````
 
 The status of the node and the setup procedure should be configurable from a user interface.
-We should figure out the best way to present this, but at least insert into the application logic the fact that the user will be guided through
+We should figure out the best way to present this, but at least insert into the application
+logic the fact that the user will be guided through
 a wizard to setup their node. They will also be shown the current status of the node.
 
 - Browser Startup
 `````````````````
 
-The application when started and initiatlized must automatically open the system browser on http://localhost:8080 (or other port where the tornadoweb listen)
+The application when started and initiatlized must automatically open the system browser
+on http://localhost:8080 (or other port where the tornadoweb listen)
 
 Security Features
 -----------------
@@ -269,17 +315,21 @@ Outbound Connection Torrification
 `````````````````````````````````
 
 The framework must automatically provide support to make anonymous outbound connection via Tor.
-The entire web application framework (Tornadoweb) should be forbidden to make any outbound connections directly and have all connections automatically torrified.
-A possible approach would be to directly override DNS Resolution and TCP outbound socks of Python interpreter using torsocks on Linux/OSX and torcap/freecap on Win32.
+The entire web application framework (Tornadoweb) should be forbidden to make any outbound
+connections directly and have all connections automatically torrified.
+A possible approach would be to directly override DNS Resolution and TCP outbound socks of
+Python interpreter using torsocks on Linux/OSX and torcap/freecap on Win32.
 Torcap: http://www.freehaven.net/~aphex/torcap/
 Freecap: http://www.freecap.ru/eng/
 TorSocks: http://code.google.com/p/torsocks/
-note: It probably may require some specific win32 coding in order to make the Python32.exe to have torrified dns-query/tcp-sockets automatically.
+note: It probably may require some specific win32 coding in order to make the Python32.exe
+to have torrified dns-query/tcp-sockets automatically.
 
 Reduced Privileges for Tornadoweb
 `````````````````````````````````
 
-The application should start TornadoWeb (it will be tornado based web app) with reduced priviledges using the native provided functionalities to restrict the application.
+The application should start TornadoWeb (it will be tornado based web app) with reduced
+priviledges using the native provided functionalities to restrict the application.
 Win32: TODO: what can we use???
 OSX: Sandbox
 Linux: AppArmor profile?
@@ -292,7 +342,8 @@ The build system must be configurable and should allow easy configuration of the
 - third party application dependancy (es: Tor, p7zip, gpg)
 - python libraries application dependancy (es: socksify)
 
-The build system must be as cross-platform as possible and must be able to deliver self-contained installable packages for:
+The build system must be as cross-platform as possible and must be able to deliver self-contained
+installable packages for:
 - Win32: MyApplication.exe
 - OSX: MyApplication.app (inside an Application.dmg container)
 - Linux: Deb build
@@ -305,11 +356,13 @@ Related links of possible base framework to use:
 
 - Mac OS X Builder
 
-On OSX it should be a self contained MyApplication.app with inside the python interpreter. Possible projects to look at are:
+On OSX it should be a self contained MyApplication.app with inside the python interpreter. Possible
+ projects to look at are:
 py2app - http://svn.pythonmac.org/py2app/py2app/trunk/doc/index.html
 
 - Tor downloader
-The buildsystem should download latests release of Tor for the appropriate platform and extract the required files into the build structure, in order to be packaged within the application.
+The buildsystem should download latests release of Tor for the appropriate platform and extract the
+required files into the build structure, in order to be packaged within the application.
 
 Documentation
 -------------

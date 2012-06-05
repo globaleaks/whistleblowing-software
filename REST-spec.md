@@ -35,7 +35,9 @@ submission. group are addressed by their ID (POST only)
 
 `/submission/<submission_id>/finalize`
 
-completes the submission in progress and returns a receipt (POST only)
+completes the submission in progress, **give to the server the receipt secret**
+and confirm the receipt (or answer with a part of them). settings dependent.
+(POST only)
 
 `/submission/<submission_id>/upload_file`
 
@@ -56,7 +58,7 @@ permitted by configuration)
 
 Both WB and Receiver can write a comment in a Tip (POST only)
 
-### tip subsection API WhistleBlower only
+### tip subsection API (WhistleBlower only)
 
 `/tip/<string t_id>/update_file`
 
@@ -71,7 +73,7 @@ This action make the new uploaded data available for download.
 If this action is missed, the material can be published after a timeout expiring 
 at midnight (MAY BE REVIEWED) (POST only)
 
-### tip subsection API Receivers only
+### tip subsection (API Receivers only)
 
 `/tip/<string t_id>/download_material`
 
@@ -89,29 +91,63 @@ mode (compressed, encrypted)
 This interface can be disabled by administrative settings.
 express a pertinence value (-1 or +1, True/False) (POST only)
 
+## Receiver API
+
+`/receiver/<string t_id>/overview`
+
+Brief summary of all related Tip, and personal settings customizable by
+the receiver.
+
 ## Admin API
 
 `/admin/receivers/`
 
-Interact with the current receivers list.
+Interact with the current receivers list, the GET is supported and 
+not intended to be redoundand with GET /node/, because maybe the 
+public output shall be different from the admin capability of view (GET, POST)
 
-`/admin/config/node`
+`/admin/node`
 
-For configuring the public details of the node.
+For configuring the *public* details of the node, the private details are
+set in the specific resources
 
-`/admin/config/delivery`
+`/admin/delivery`
+`/admin/notification`
 
-For setting up delivery and notification methods.
+For setting up delivery and notification modules. perform host dependent
+configuration.
 
 `/admin/config/storage`
 
 For setting up storage methods.
 
-# Public API
+# Synthesis 
 
-### Open GLBackend/docs/specification/GLBackend-18-5-2012.png
+`/node/`
 
-### GLBackend native object specification
+`/submission`
+`/submission/<submission_id>`
+`/submission/<submission_id>/submit_fields`
+`/submission/<submission_id>/add_group`
+`/submission/<submission_id>/finalize`
+`/submission/<submission_id>/upload_file`
+
+`/tip/<string auth t_id>`
+`/tip/<string t_id>/add_comment`
+`/tip/<string t_id>/update_file`
+`/tip/<string t_id>/finalize_update`
+`/tip/<string t_id>/download_material`
+`/tip/<string t_id>/pertinence`
+
+`/receiver/<string t_id>/overview`
+
+`/admin/receivers/`
+`/admin/node`
+`/admin/delivery`
+`/admin/notification/`
+`/admin/storage/`
+
+# Data Object involved
 
 file descriptor, every completed file upload is always stored and represented with this dict:
 
@@ -120,8 +156,51 @@ file descriptor, every completed file upload is always stored and represented wi
 <LocaLDict>, the Local Dict is an object used to store localized texts, in example:
 
     { 'IT' : 'Sono io, Mario!' },
-    { 'EN' : 'Its a me, Mario!' },
-    { 'FR' : 'Suis je, Mario!' }
+    { 'EN' : 'Mario am I!' },
+    { 'FR' : 'je suis Mario!' }
+
+
+<RDict>, an object of boolean values, expressing the permissions given to a receiver, 
+         They need to be specified separately. Possible permissions can be:
+         . can delete a submission (not just a Tip)
+         . can postopone expiration date
+         . can configure his own notification settings
+         . can configure his own delivery settings
+
+<NDict>, an object of booleand values, expressing the properties of the node,
+         They need to be specified separately.
+         Those properties likey can be communicated to an external directory 
+         (LeakDirectory) and express the safety, the features and the reliability
+         of a GL node. 
+         Possible properties can be:
+         . end to end encryption enforced,
+         . are receivers part of the admin group ?
+         . anonymity enforced ?
+         . are the receivers identity published ?
+
+<ModuleDataStruct>, is an object used to describe the current status of a 
+
+    [ 'name': <String>, 
+      'active': <Bool>, 
+      'options': <Form fields>,
+      'service-message': <String>
+    ]
+
+<ModuleAdminConfig>, basically has the same field of <ModuleDataStruct>, except:
+    . it contains the field that need to be configured once per node, by the admin
+      the 'options' fields therefore differ from the 'options' in ModuleDataStruct
+    . the active: True|False cause the activation of the module for the receiver
+
+ModuleAdminConfig is used in the REST of /admin/* path, ModuleDataStruct in /receiver/*
+
+# Details: Requests and Answers
+
+### Addictional resources:
+
+Object specification [[GLBackend/docs/Obj-spec-latest.png]]
+Issue tracking [[https://github.com/globaleaks/GLBackend/issues/3]]
+
+### GLBackend REST specification
 
 `/node/`
 
@@ -138,11 +217,7 @@ file descriptor, every completed file upload is always stored and represented wi
             {
               'name': <LocaLDict Name of the initiative>,
               'statistics': <Array - To be defined, general statistics>,
-              'properties': [ array, lists of node properties in (True|False) selection,
-                              describing chooses in Backend setup.
-                              Info can be used by LeakDirectory or other
-                              external aggregator of nodes.
-                            ],
+              'node-properties': <NDict>,
               'contexts': [
                            {'name': <LocaLDict name of context>,
                             'groups': [
@@ -162,10 +237,7 @@ file descriptor, every completed file upload is always stored and represented wi
              {
               'name': "blue meth fighting in alberoque",
               'statistics': <string, general statistics>,
-              'properties': [ {'end2end_encryption_enforced': True},
-                              {'are_receivers_part_of_the_admin': False},
-                              {'anonymity_enforced': True},
-                            ]
+              'node-properties': <end2end_encryption: Yes, Anonymous_receiver: Yes>,
               'contexts': [
                             { 'name' : 'Heisenberg sightings',
                               'groups' : [ 
@@ -295,38 +367,55 @@ file descriptor, every completed file upload is always stored and represented wi
         checks if all the 'Required' fields are present, then 
         completes the submission in progress and returns a receipt.
 
+        * Request:
+          { 'choosen-Receipt': <String, user selected receipt> }
+
         * Response:
+          If the receipt is fine with the node requisite, and is saved as 
+          identificative for the WB Tip, is echoed back to the client
           Status Code: 201 (created)
           { 'Receipt': <String, receipt value> }
 
-        _ If the check fail
+        _ If the receipt is expected but is not provided, The submission is
+          finalized, and the server create a receipt:
+          Status Code: 417 (Expectation Failed)
+          { 
+            'error-code': <Int>, 
+            'error-message': 'Invalid receipt requested',
+            'Receipt': <String, receipt value> 
+          }
+
+        _ If the field check fail
           Status Code: 406 (Not Acceptable)
-          { 'error-code': <Int>, 'error-message': <String, error description in detail> }
+          { 'error-code': <Int>, 'error-message': 'fields requirement not respected' }
 
         _ If submission_id is invalid
           Status Code: 204 (No Content)
-          { 'error-code': <Int>, error-message: 'submission ID is invalid' }
+          { 'error-code': <Int>, 'error-message': 'submission ID is invalid' }
 
 
 `/submission/<submission_id>/upload_file`, 
 
     :GET
-        return the status of the file upload, 
-        TODO: supports resume. Check JQuery FileUploader and their REST/protocol
+        return the status of the file uploaded under submission_id,
+        TODO: 
+        REMIND:
+            supports resume. Check JQuery FileUploader and their REST/protocol
+            FileUploader has a dedicated REST interface to handle start|stop|delete.
 
     :PUT
         attach a file to the selected submission_id.
 
         * Request:
-        {'comment': <string (optional) description of the file>}}
+          {'comment': <string (optional) description of the file>}
 
         * Response:
-        { filename: <string>, comment: <String>, size: <Int, in bytes>, content-type: <string> }
+          { filename: <string>, comment: <String>, size: <Int, in bytes>, content-type: <string> }
           Status Code: 202 (accepted)
 
     :DELETE
         * Request:
-        { delete_id : <Int, ID of the file to be deleted> }
+          { delete_id : <Int, ID of the file to be deleted> }
           Status Code: 202 (accepted)
 
     :(either PUT & DELETE)
@@ -410,7 +499,7 @@ file descriptor, every completed file upload is always stored and represented wi
         return the unfinalized elements accumulated by the whistleblower. The unfinalized
         material are promoted as 'Set' if the WB do not finalize them before a configurable
         timeout.
-        
+
         * Request: /
         * Response:
         every object is repeated for every "NOT YET finalized Material Set":
@@ -420,7 +509,7 @@ file descriptor, every completed file upload is always stored and represented wi
          { filename: <string>, comment: <String>, size: <Int, in bytes>, content-type: <string> },
          { filename: <string>, comment: <String>, size: <Int, in bytes>, content-type: <string> }
         ]
-        
+
     :PUT
         Used to append a file to a submission.
 
@@ -478,6 +567,7 @@ file descriptor, every completed file upload is always stored and represented wi
 
         * Response:
         Stauts Code: 200 (OK)
+
         _ Error handling as per `/tip/<string t_id>/`
 
 
@@ -495,120 +585,162 @@ file descriptor, every completed file upload is always stored and represented wi
           Status Code: 202 (Accepted)
         _ Error handling as per `/tip/<string t_id>/`
 
+
+# Receiver API
+
+`/receiver/<string t_id>/overview`
+
+This interface expose all the receiver related info, require one valid Tip authentication.
+This interface returns all the options available for the receiver (notification and delivery)
+and contain the require field (empty or compiled)
+
+depends from the node administator choose and delivery/notification extension, the capability
+to be configured by the user.
+
+(tmp note: overview is the replacement of the previous release "Bouquet")
+
+    :GET
+       * Response:
+         Stauts Code: 200 (OK)
+         {
+             'tip-list': { [ 'tip-token': <T_id>, 'tip-title': <String> ],
+                           [ 'tip-token': <T_id>, 'tip-title': <String> ] },
+             'notification-method': { <ModuleDataStruct>, <ModuleDataStruct>, ... },
+             'delivery-method': { <ModuleDataStruct>, <ModuleDataStruct>, ... },
+             'receiver-properties': <RDict>
+         }
+
+    :POST
+       * Request:
+         {
+             'notification-method': { <ModuleDataStruct>, <ModuleDataStruct> },
+             'delivery-method': { <ModuleDataStruct>, <ModuleDataStruct> }
+         }
+
+       * Response:
+         Stauts Code: 200 (OK)
+
+
+    :(GET and POST)
+        * Error code:
+        _ If t_id is invalid
+          Status Code: 204 (No Content)
+          { error-code: <Int>, error-message: 'requested Tip ID is expired or invalid' }
+
 # Admin API
 
 `/admin/receivers/`
 
     :GET
-        Returns the current receivers list.
-
+        Returns a json object containing all the receivers information.
         * Response:
-          Status Code: 200 (OK)
-
-          {'groups': [{'groupName': <String GroupName>,
-                       'groupDescription': <String GroupDescription>,
-                       'lang': <Array, language supported> },
-                      {'groupName': <String GroupName>,
-                       'groupDescription': <String GroupDescription>,
-                       'lang': <Array, language supported> }
-                      ]
-
-           'receivers': [{'ID': <num>, 'PublicName': <PublicName>,
-                 'PrivateName': <PrivateName>,
-                 'Groups': [<list_of_groups>],
-                 'deliveryMethod': {'type': <type>,
-                                    'address': <adress>,
-                                    'auth_method': [{'type': <type>,
-                                                     'content': <content>}]
-                                    },
-                                    {'type': 'local',
-                                     'address': None,
-                                     'auth_method': [{'type': 'password',
-                                                      'content': 'antani'}]
-                                     'enc_method': [{'type': 'pgp',
-                                                     'content': <public_pgp_key>}]
-                                    },
-                 'notificationMethod': {'type': <type>,
-                                    'address': <adress>,
-                                    'enc_method': {'type': <type>, 'content': <content>}
-                                    }
+            Status Code 200 (OK)
+            {
+               'groups': [ {'groupName': <String GroupName>,
+                            'groupDescription': <String GroupDescription>,
+                            'lang': <Array, language supported>,
+                            'group-id': <Int> },
+                           {'groupName': <String GroupName>,
+                            'groupDescription': <String GroupDescription>,
+                            'lang': <Array, language supported>,
+                            'group-id': <Int> },
+                         ]
+               'receiver-description': [{
+                   'name': <String name>, 'description': <String>, 'receiver-ID' : <Int>,
+                     'notification-method': { <ModuleAdminConfig>, <ModuleAdminConfig> },
+                     'delivery-method': { <ModuleAdminConfig>, <ModuleAdminConfig> }
+                        receiver-properties: <RDict>
+                        group-list: [ 
+                                  { 'group-id' : <Int>, 'group-name': <String> },
+                                  { 'group-id' : <Int>, 'group-name': <String> }
+                                ],
+                   'last-access': <Timeval>,
+                   'creation-time' : <Timeval>,
+                   'last-update': <Timeval>,
+                   'tip-active': <Int, #counter>
                 },
-           {'ID', <num>, 'PublicName': <PublicName>,
-                 'PrivateName': <PrivateName>,
-                 'Groups': [<list_of_groups>],
-                 'deliveryMethod': {'type': <type>,
-                                    'address': <adress>,
-                                    'auth_method': [{'type': <type>,
-                                                     'content': <content>}],
-                                    'enc_method': [{'type': <type>,
-                                                    'content': <content>}]
-                                    },
-                 'notificationMethod': {'type': <type>,
-                                    'address': <adress>,
-                                    'enc_method': {'type': <type>, 'content': <content>}
-                                    }
-                }
-            ]
-          }
+                { ... } ]
+             }
 
-    :POST
+     :POST
+        set the value in few generic fields related to the receiver. If a field is empty,
+        is kept the previous value. ID is required 
+        * content:
+            {
+               'ID' : <Int>, 'PublicName': <String name>, 'description': <String>, 
+               'PrivateName': <String>,
+               'group-list': <Pickle, list of group ID>
+            }
+        * Response:
+            Status Code 200 (OK)
+
+          if ID is not related to an active receiver:
+            Status Code 204 (No Content)
+
+     :PUT
         Adds a new receiver to the list of receivers.
+        delivery method and notification method are set with default value,
+        they need to be specified by a dedicated interface, due to their
+        modular/flexible nature
+
+        (as default, a freshly created receiver, can have id and date, but 
+         not yet notification/delivery configured)
 
         * Request:
-
-            {'PublicName': <PublicName>,
+            {
+             'PublicName': <PublicName>,
              'PrivateName': <PrivateName>,
-             'Groups': [<groupA>, <groupB>]
-             'deliveryMethod': {'type': <type>,
-                                'address': <adress>,
-
-                                'auth_method': [{'type': <type>,
-                                                 'content': <content>}],
-                                'enc_method': [{'type': <type>,
-                                                'content': <content>}]
-                                },
-             'notificationMethod': {'type': <type>,
-                                    'address': <adress>,
-                                    'enc_method': {'type': <type>, 'content': <content>}
-                                    }
+             'Description': <String>,
+             'Groups': <Pickle, list of groups ID>,
+              receiver-properties: <RDict>
             }
 
         * Response:
-          Status: 201 (Created)
+            {'ID': <num>}
+              Status: 201 (Created)
 
-        `/edit_receiver`
-
-        * Request:
-
-        {'PublicName': <PublicName>,
-             'PrivateName': <PrivateName>,
-             'Groups': [<groupA>, <groupB>]
-             'deliveryMethod': {'type': <type>,
-                                'address': <adress>,
-
-                                'auth_method': [{'type': <type>,
-                                                 'content': <content>}],
-                                'enc_method': [{'type': <type>,
-                                                'content': <content>}]
-                                },
-             'notificationMethod': {'type': <type>,
-                                    'address': <adress>,
-                                    'enc_method': {'type': <type>, 'content': <content>}
-                                    }
-        }
-
-        * Response:
-          Status: 202 (Modified)
+          If a system error happen: 
+              Status: 404 (Server Error)
 
     :DELETE
-
+        Delete a receiver and all the information related to him (stats, Tip)
         * Request:
         {'ID': <num>}
 
         * Response:
-          Status: 202 (Accepted)
+          Status: 200 (Accepted)
 
-`/admin/config/node`
+`/admin/notification/`
+`/admin/delivery/`
+`/admin/storage/`
+
+These interface show the available modules for notification, delivery and storage.
+The admin can enable them and configure the host dependent options. 
+<ModuleAdminConfig> is the datatype defined in the section before this.
+
+    :GET
+        * Response:
+            { 'notification-method': <ModuleAdminConfig> }
+          or
+            { 'delivery-method': <ModuleAdminConfig> }
+          or
+            { 'storage-method': <ModuleAdminConfig> }
+
+        * Response:
+          Status: 200 (Accepted)
+
+    :POST
+        * Request:
+            { 'notification-method': <ModuleAdminConfig> }
+          or
+            { 'delivery-method': <ModuleAdminConfig> }
+          or
+            { 'storage-method': <ModuleAdminConfig> }
+
+        * Response:
+          Status: 202 (Modified)
+
+`/admin/node`
 
     :GET
         Returns a json object containing all the information of the node.
@@ -617,11 +749,7 @@ file descriptor, every completed file upload is always stored and represented wi
              {
               'name': <string Name of the initiative>,
               'statistics': <string, general statistics>,
-              'properties': [ array, lists of node Yes:No selection,
-                              describing chooses in Backend setup.
-                              Info can be used by LeakDirectory or other
-                              external aggregator of nodes.
-                            ]
+              'node-properties': <NDict>,
               'contexts': [{'context_number': <Int of managed receiver groups>},
                            {'context_1': <String name of group>},
                            {'context_1_field':
@@ -633,9 +761,10 @@ file descriptor, every completed file upload is always stored and represented wi
                                 [1: { 'field_name', 'field_type', 'Required' },
                                 #F: { 'field_name', 'field_type', 'Required' }]
                             }]
-               'descriptiom': <string, descrption headline>,
-               'public_site': <string, url>,
-               'hidden_service': <string, url.onion>,
+               'descriptiom': <String, descrption headline>,
+               'public_site': <String, public URL of the site, if available>,
+               'tor2web': <String, public URL of tor2web trusted entry point, if available>,
+               'hidden_service': <String, .onion service, if available>,
                'preference_settings': [ Array, lists of options related in
                                         Tip management, like:
                                         max download available per Material Set,
@@ -649,11 +778,7 @@ file descriptor, every completed file upload is always stored and represented wi
             {
               'name': <string Name of the initiative>,
               'statistics': <string, general statistics>,
-              'properties': [ array, lists of node Yes:No selection,
-                              describing chooses in Backend setup.
-                              Info can be used by LeakDirectory or other
-                              external aggregator of nodes.
-                            ]
+              'node-properties': <NDict>,
               'contexts': [{'context_number': <Int of managed receiver groups>},
                            {'context_1': <String name of group>},
                            {'context_1_field':
@@ -665,9 +790,10 @@ file descriptor, every completed file upload is always stored and represented wi
                                 [1: { 'field_name', 'field_type', 'Required' },
                                 #F: { 'field_name', 'field_type', 'Required' }]
                             }]
-               'descriptiom': <string, descrption headline>,
-               'public_site': <string, url>,
-               'hidden_service': <string, url.onion>,
+               'descriptiom': <String, descrption headline>,
+               'public_site': <String, public URL of the site, if available>,
+               'tor2web': <String, public URL of tor2web trusted entry point, if available>,
+               'hidden_service': <String, .onion service, if available>,
                'preference_settings': [ Array, lists of options related in
                                         Tip management, like:
                                         max download available per Material Set,
@@ -678,109 +804,4 @@ file descriptor, every completed file upload is always stored and represented wi
 
         * Response:
           Status: 202 (Accepted)
-
-`/admin/config/delivery`
-
-    :GET
-    Returns the currently installe delivery and notification modules.
-
-    * Response:
-
-    {'delivery_modules': [{'type': 'email', 'settings':
-                                            {'smtp_server': <address>,
-                                             'user_name': <username>,
-                                             'password': <password>,
-                                             'ssl': <bool>,
-                                            }
-                          {'type': <type_name>, 'settings': {}}
-                          ]
-     'notification_modules': [{'type': 'email', 'settings':
-                                            {'smtp_server': <address>,
-                                             'user_name': <username>,
-                                             'password': <password>,
-                                             'ssl': <bool>,
-                                            }
-                          {'type': <type_name>, 'settings': {}}
-                          ]
-    }
-
-
-    :POST
-    Update the currently configured delivery and notification modules.
-
-
-    * Request:
-    {'delivery_modules': [{'type': 'email', 'settings':
-                                            {'smtp_server': <address>,
-                                             'user_name': <username>,
-                                             'password': <password>,
-                                             'ssl': <bool>,
-                                            }
-                          {'type': <type_name>, 'settings': {}}
-                          ]
-     'notification_modules': [{'type': 'email', 'settings':
-                                            {'smtp_server': <address>,
-                                             'user_name': <username>,
-                                             'password': <password>,
-                                             'ssl': <bool>,
-                                            }
-                          {'type': <type_name>, 'settings': {}}
-                          ]
-    }
-
-    * Response
-    Status Code: 202 (Accepted)
-
-
-`/admin/config/storage`
-
-    :GET
-    Returns the currently installed storage methods
-
-    * Response:
-
-    {'storage_modules': [{'type': 'ftp', 'settings':
-                                            {'ftp_server': <address>,
-                                             'user_name': <username>,
-                                             'password': <password>,
-                                             'ssl': <bool>,
-                                            },
-                          {'type': 'scp', 'settings':
-                                            {'scp_server': <address>,
-                                             'user_name': <username>,
-                                             'private_key': <private_key>,
-                                             'password': <password>,
-                                             'ssl': <bool>,
-                                            },
-                           },
-                           {'type': 'mysql', 'settings':
-                                            {'mysql_server': <address>,
-                                             'user_name': <username>,
-                                             'database': <database_name>,
-                                             'password': <password>,
-                                            },
-                          },
-                          {'type': 'local', 'settings': {'path': <path>}},
-                          {'type': <type_name>, 'settings': {}}
-                          ]
-     }
-
-
-    :POST
-    Update the currently configured storage modules.
-
-    * Request:
-    {'storage_modules': [{'type': 'ftp', 'settings':
-                                            {'ftp_server': <address>,
-                                             'user_name': <username>,
-                                             'password': <password>,
-                                             'ssl': <bool>,
-                                            }
-                          {'type': <type_name>, 'settings': {}}
-                          ]
-     }
-
-    * Response
-    Status Code: 202 (Accepted)
-
 
