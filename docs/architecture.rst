@@ -14,31 +14,50 @@ GlobaLeaks Architecture
 3. `GLClient`_
 4. `Application Packaging`_
 
+Associated documentation
+========================
+
+Read the REST-spec.md would help in understand how client and server interact.
+Read the Desgin-pattern.md would explain how the code is organized.
+Read the Module-roles.md for understand the flexibility provided by GL.
+And checks https://github.com/globaleaks/GLBackend/wiki
+
 Glossary
 ========
 
-`Submission`_: is the action performed by an user.
-
-`Tip`_: The name of a single submission inside the GlobaLeaks system.
-
-`WhistleBlower`_: is the user which perform a submission, containing the information he want communicate outside.
-
-`Receiver`_: The user which receive a Tip.
-
 `GlobaLeaks`_: is the name of our project, free software, security oriented, flexible whistleblowing platform.
 
-`Node`_: The name of a single GlobaLeaks installation, configured to handle submissions and notify it to the receivers.
+`GLBackend`_: Python software exposing REST interfaces, handling the communications between WB and Receiver, characterized by NodeAdmin configurations and Modules selection.
 
 `NodeAdmin`_: The user which run a GlobaLeaks node.
 
-`GLBackend`_: Python software exposing REST interfaces, based on twisted and sqlalchemy, manage the submission logic.
+`Node`_: The name of a single GlobaLeaks installation, configured to handle submissions and notify it to the receivers.
 
 `GlClient`_: User interface for whistleblowers and/or receivers, various implementation are possible (eg: Mobile environment, javascript or machine2machine), calls the REST interface implemented in GLBackend.
+
+`WhistleBlower`_: is the user which perform a submission, containing the information he want communicate outside.
+
+`Context`_: A single topic managed by a Node. A node would have more contests. Every context has differnet internal policy and goals.
+
+`Group`_: The users which receive a Tip, more groups may stay inside the same Context.
+
+`Receiver`_: The final user which receive a Tip, the receiver list is handled by the Group configuration, more receivers may stay inside a group.
+
+`Submission`_: Is the action performed by the WhistleBlower. A submission trigger the creation of various Tip(s).
+
+`Tip`_: Every users who need to interact with a submission, access thru a Tip interface: an unique personal and time expiring secret that enable a limited access in the submission.
+
+`Modules`_: Extensions of the original software implementing new features. The modules cover specific extension environment, used to notify a receiver that a new Tip is available. Every Receiver and the NodeAdmin may modify notification settings.
+
+`InputFlow`_: is sequence of action performed by a GL node when a new submission is provided.
 
 `Notification`_: Method used to notify a receiver that a new Tip is available. Every Receiver and the NodeAdmin may modify notification settings.
 
 `Delivery`_: Method used by receiver to download the submitted material, Every Receiver and the NodeAdmin may modify delivery settings.
 
+`DiskStorage`_: Is the technological interface adopted by the Node when a file need to be saved locally.
+
+`DataBaseStorage`_: Is the technological interface adopted by the Node, and inherit by the modules, when is required reas and write over a database table.
 
 Overview
 ========
@@ -87,21 +106,53 @@ This is the contextual data associated with a submission. The
 fields are fetched though an API that tells the client what
 their names are and what is the description. The client will
 optionally send the submission identifier that has been generated
-in the material upload phase.
+in the folder upload phase.
 
 
-Material
-````````
+Folder
+``````
 
-Though this interface material can be loaded on the Node and
-associated with a submission. If a submission id is not supplied
-the application will generate a submission identifier, that
-is then sent once the submission fields are sent.
+A group or a single file uploaded compose a folder.
+Though this interface, a folder can be loaded and composed on the 
+Node and associated with a submission. If a submission ID is not 
+supplied the application will generate a submission identifier, 
+that is then sent once the submission fields are sent.
 The data sent to the GL Node will be encrypted client side with
 an asymetric crypto system.
 
-Storage
--------
+
+Receiver
+````````
+Receiver is the final destination for the submission process, would be
+either someone formed and teched about whistleblowing environment, or
+would also be not (depends from initiative working model).
+
+Receiver receive a notification (a communication that update it about
+the presence of a new Tip available to be consulted) or a delivery 
+(the very submitted data: can be receiver in PUSH mode or in POP, in
+example if choosse to download the avail files)
+
+Group
+`````
+
+Group is an aggregation of Receiver for technical or personal
+shared criteria.
+
+A Receiver don't need to be specified with a specific contact data,
+would be specified inside a group, permitting the administrator
+to supports different media type for different receivers. In example,
+someone would be notified by twitter, and then would be put in
+the twitter group. someone other would receive notification via
+email, and then is kept in email group. Every group has a different
+module handling the contact type.
+
+Group would be also relative a specific kind of receivers, and the
+NodeAdmin may choose if permit to the whistleblower the ability 
+to select which group interact to.
+
+
+DiskStorage
+-----------
 
 GlobaLeaks should support various different storage mechanisms
 The storage interface should be designed in a way that it
@@ -114,6 +165,13 @@ his symetric key or the public keys of all the receivers.
 Possible storage systems that should be implemented are:
 Locally to drive, SCP, online file storage services,
 tahoe-lafs.
+
+DataBaseStorage
+---------------
+
+GlobaLeaks should supports various different interfaces
+for database. Those interface would be loaded by the 
+administrator choose, and are used by all the GL componentes.
 
 Status Page
 -----------
@@ -150,7 +208,18 @@ submission entry.
 Security
 ````````
 
-TODO.
+As the modular ability of GlobaLeaks permit, the most of the secury 
+feature would be enabled selecting an appropriate module.
+By theory, a Node Administrator need a threat model for their 
+initiative, and need to select the security features properly.
+
+Security feature can range between an enforcing policy of configuration,
+example: permit only submission thru Tor network instead of Tor2Web 
+users, or, permit only submision with a receipt long almost 16 bytes.
+
+Or Security feature can cover issue related in receiver communication,
+like, enabling a module that disable all the receiver who have not
+yet upload a public GPG key, for receive secure notifications.
 
 Notification and Delivery
 -------------------------
@@ -163,6 +232,18 @@ immediately (if the receiver is configured to receive real-time notifications)
 or after a certain threshold is reached (if the receiver has been configured to
 receive notification digests).
 
+Every notification and delivery can create their own REST interface, and 
+every module can define a series of field that need to be configured by 
+administrator or receivers.
+
+InputFlow
+---------
+
+InputFlow is the name given to the module that manage the various check 
+performed when a submission is receiver, or under the process of 
+being accepted. Like every module, permit administrator settings and 
+can expose addictional REST interfaces.
+
 
 GLClient
 ========
@@ -174,16 +255,15 @@ for WB to securely submit data.
 Application Packaging
 =====================
 
-Note: this is just a copy in date 30-01-2012 of the document present
-on the etterpad https://piratenpad.de/p/AnonymousWebApplicationFramework.
-Look at the etterpad for the updated version of this doc.
+Application Packaging would be provided by the Tor project, sponsored 
+by Google Summer Of Code, called APAF (Anonymous Python Application
+Framework): https://github.com/mmaker/APAF
 
 Goal
 ----
 
-The anonymous web application framework goal is to provide a web
-application environment that automatically publish itself to the
-Tor network as a Tor Hidden Service.
+APAF goal is to provide a web application environment that automatically 
+publish itself to the Tor network as a Tor Hidden Service.
 
 The framework allow to build Python Tornado-based Web Application
 deliverying the apps as a Desktop Application (Program.exe /
