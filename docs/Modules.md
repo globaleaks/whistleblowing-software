@@ -1,3 +1,30 @@
+# Modules
+
+###
+
+Modules are abstract factory extending GlobaLeaks node capabilities, here are
+reported their role.
+
+Every module can access to the general_utilities function, documented in
+GeneralUtils.md and called from all code sections
+
+## Notification
+
+## Delivery
+
+## InputFilter
+
+## ReceiverHandler
+
+## DiskStorage
+
+## DatabaseStorage
+
+
+
+# OLD FILE SECTION
+# OLD FILE SECTION
+# OLD FILE SECTION below
 
 ## Notification and Delivery modules specification
 
