@@ -43,7 +43,7 @@ Completes the submission in progress, **give to the server the receipt secret** 
 
 P7 `/submission/<submission_id>/upload_file`
 
-upload a file to the selected submission_id (PUT only)
+upload a file to the selected submission_id (REST depends from JQueryFileUpload integration)
 
 ### API shared between WhistleBlowers and Receiver (require auth)
 
@@ -207,7 +207,7 @@ of the datatype-name, the list and the detailed meaning would be found in:
 
         {   'IT' : 'Io mi chiamo Mario.',
             'EN' : 'Is a me, Mario!!1!',
-            'FR' : 'je m'appelle Marìò, pppffff' 
+            'FR' : "je m'appelle Marìò, pppffff"
         }
 
   * **ReceiverDesc**, series of tuple with boolean values, expressing the permissions given 
@@ -476,28 +476,34 @@ permit to update fields content and group selection.
     :POST
         checks if all the 'Required' fields are present, then 
         completes the submission in progress and returns a receipt.
+        The WB may propose a receipt (because is a personal secret 
+        like a password, afterall)
 
-        * Request:
+        * Request (optional, see "Rensponse Variant" below):
           { 
-            'choosen-Receipt': 'String' 
+            'proposed-receipt': 'String'
           }
 
-        * Response:
-          If the receipt is fine with the node requisite, and is saved as 
-          identificative for the WB Tip, is echoed back to the client
+        * Response (HTTP code 200):
+          If the receipt is acceptable with the node requisite (minimum length
+          respected, lowecase/uppercase, and other detail that need to be setup
+          during the context configuration), rs saved as authenticative secret for 
+          the WB Tip, is echoed back to the client Status Code: 201 (Created)
+
+          Status Code: 200 (OK)
+          { 'receipt': 'String' }
+
+        * Variant Response (HTTP code 201):
+          If the receipt do not fit node prerequisite, or is expected but not provide
+          the submission is finalized, and the server create a receipt. 
+          The client print back to the WB, who record that 
+
           Status Code: 201 (Created)
-          { 'Receipt': 'String' }
+          { 'receipt': 'String' }
+
 
         * Error handling:
           As per "common behaviour in /submission/<submission_$ID/*"
-
-          If the receipt is expected but is not provided, The submission is
-          finalized, and the server create a receipt. The client need to check
-          differencies, because 
-          Status Code: 201 (Created)
-          { 
-            'Receipt': 'String'
-          }
 
           If the field check fail
           Status Code: 406 (Not Acceptable)
