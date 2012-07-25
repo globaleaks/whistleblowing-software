@@ -10,48 +10,55 @@ import json
 from twisted.web import resource
 from globaleaks.rest.utils import processChildren
 
-__all__ = ['infoHandler','nodeHandler','submissionHandler',
-           'adminReceiversHandler', 'nodeConfigHandler',
-           'deliveryConfigHandler', 'storageConfigHandler',
-           'parameterHandler', 'addCommentHandler', 'pertinenceHandler',
-           'downloadMaterialHandler', 'addDescriptionHandler', 'tipHandler']
+__all__ = [ 'nodeHandler', 'submissionHandlers', 'tipHandlers',
+            'adminContextHandler', 'adminNodeHandler', 'adminGroupHandlers', 
+            'adminReceiversHandlers', 'adminModulesHandlers' ]
 
-class infoHandler(resource.Resource):
+class nodeHandler(resource.Resource):
     def __init__(self, name="default"):
         self.name = name
         resource.Resource.__init__(self)
 
     def render_GET(self, request):
+        print "infoHandler " + "GET"
         return json.dumps(API.keys())
 
     def render_POST(self, request):
+        print "infoHandler " + "POST"
         pass
 
 class nodeHandler(resource.Resource):
     def render_GET(self, request):
         return str(self.__class__)
 
-class submissionHandler(resource.Resource):
+class submissionHandlers(resource.Resource):
     def render_GET(self, request):
         return str(self.__class__)
 
-class adminReceiversHandler(resource.Resource):
+class adminContextHandler(resource.Resource):
     def render_GET(self, request):
         return str(self.__class__)
 
-class nodeConfigHandler(resource.Resource):
+class adminNodeHandler(resource.Resource):
     def render_GET(self, request):
         return str(self.__class__)
 
-class deliveryConfigHandler(resource.Resource):
+class adminGroupHandlers(resource.Resource):
+    def render_GET(self, request):
+        print "admin group hahaha"
+        import pdb
+        #pdb.set_trace()
+        return str(self.__class__)
+
+class adminReceiversHandlers(resource.Resource):
     def render_GET(self, request):
         return str(self.__class__)
 
-class storageConfigHandler(resource.Resource):
+class adminModulesHandlers(resource.Resource):
     def render_GET(self, request):
         return str(self.__class__)
 
-# Tip Handlers
+# Follow the Tip Handlers, 
 
 class parameterHandler(resource.Resource):
     regexp = ''
@@ -84,20 +91,19 @@ class addDescriptionHandler(parameterHandler):
     def render_GET(self, request, parameter):
         return str(self.__class__)
 
-tipAPI = {'download_material': downloadMaterialHandler,
-          'add_comment': addCommentHandler,
-          'pertinence': pertinenceHandler,
-          'add_description': addDescriptionHandler}
 
-
-class tipHandler(resource.Resource):
+class tipHandlers(resource.Resource):
     path = 'default'
+
+    tipAPImap = { 'download_material': downloadMaterialHandler,
+              'add_comment': addCommentHandler,
+              'pertinence': pertinenceHandler,
+              'add_description': addDescriptionHandler}
 
     def __init__(self):
         resource.Resource.__init__(self)
-        processChildren(self, tipAPI)
+        processChildren(self, self.tipAPI)
 
     def getChild(self, path, request):
         print "Got child request!"
-        return tipHandler()
-
+        return tipHandlers()
