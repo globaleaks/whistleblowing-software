@@ -1,7 +1,7 @@
 
 ## GLBackend design
 
-/Creational pattern instead of inheritance based pattern/
+_Creational pattern instead of inheritance based pattern_
 
 Creational patterns become important as systems evolve to depend moreon object
 composition than class inheritance. As that happens,emphasis shifts away from
@@ -13,17 +13,15 @@ objects withparticular behaviors requires more than simply instantiating a class
 
 ## Issues and goals
 
-**Having a ligtwave datamodel**, callable by all the code sections.
-Twisted based development is /callback based/ therefore you need to
-have preshared some generic way, that permit 
+**Have a ligtwave datamodel**, callable by all the code sections, this is 
+a series of Storm extensions that handle ORM interaction.
 
 **Have a flexible design for extensions**: Notification, Delivery, Input,
 Storage Database, Storage FileSystem, Receiver retriveral need to be implemented
 as an abstract factory, that dispatch modules coherently with configuration or
-runtime requests.
+runtime requests. 
+All the module use Creational pattern inside.
 
-**Have a fixed functions as helper**, functions that manage the commonly used 
-datatype of GLbackend (from the REST point of view, they are pointed out in
-/Data object involved/)
-
-
+**Have a set of helper functions**, functions that manage the commonly used 
+datatype of GLbackend. 
+Are implemented in globaleaks/utils/ code, use inheritance based pattern.
