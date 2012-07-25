@@ -63,8 +63,14 @@ class adminModulesHandlers(resource.Resource):
 class parameterHandler(resource.Resource):
     regexp = ''
     isLeaf = True
+
+    print self.__class__ + str(request)
+
     def render(self, request):
         m = getattr(self, 'render_' + request.method, None)
+
+        print self.__class__ + str(m)
+
         if not m:
             # This needs to be here until the deprecated subclasses of the
             # below three error resources in twisted.web.error are removed.
@@ -92,6 +98,7 @@ class addDescriptionHandler(parameterHandler):
         return str(self.__class__)
 
 
+# XXX Tip Factory would dispatch those APIs, only if needed.
 class tipHandlers(resource.Resource):
     path = 'default'
 
@@ -101,8 +108,9 @@ class tipHandlers(resource.Resource):
               'add_description': addDescriptionHandler}
 
     def __init__(self):
+        print self.__class__
         resource.Resource.__init__(self)
-        processChildren(self, self.tipAPI)
+        processChildren(self, self.tipAPImap)
 
     def getChild(self, path, request):
         print "Got child request!"

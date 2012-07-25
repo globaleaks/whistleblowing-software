@@ -7,10 +7,11 @@ sqlalchemy has not to run in the same thread.
 
     __init__.py
 
-storage/
+core/
 
-    since storage class depends db functions, and manage
-    the saving, encryption, distribution of the files
+    ORM
+    task
+    submission
 
 db/
 
@@ -25,6 +26,8 @@ db/
         aggregate commit functions, supports DB-objects sync
         dump, resume operations
 
+    XXX TO BE CLEANED - REMOVED ?
+
 rest/
 
     api.py
@@ -32,17 +35,24 @@ rest/
         import twisted
 
     handlers.py
-        in future will be splitted,
+        XXX in future will be splitted,
         contains function called by REST
 
     utils.py
-
-    accessauth.py
-        to be implemented, contain authentication function
-        for Receivers and WB 
-
-notify/
+        utilities used by api and handlers,
 
 
 
-delivery/
+modules/
+
+    contains abstract Factories and their implementation:
+
+
+    diskstorage/
+    databasestorage/
+    notification/
+    delivery/
+    tip/
+    receivers/
+    inputfilter/
+
