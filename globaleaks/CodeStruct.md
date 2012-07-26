@@ -6,27 +6,13 @@ sqlalchemy has not to run in the same thread.
 /
 
     __init__.py
+    backend.py (main!)
 
 core/
 
-    ORM
+    ORM (TODO)
     task
     submission
-
-db/
-
-    db directory contains the following files:
-
-    receiver.py
-    tip.py
-    filestorage.py
- 
-    DBIO.py
-        support declaration of the object under modification,
-        aggregate commit functions, supports DB-objects sync
-        dump, resume operations
-
-    XXX TO BE CLEANED - REMOVED ?
 
 rest/
 
@@ -41,8 +27,6 @@ rest/
     utils.py
         utilities used by api and handlers,
 
-
-
 modules/
 
     contains abstract Factories and their implementation:
@@ -56,3 +40,8 @@ modules/
     receivers/
     inputfilter/
 
+
+utils/
+
+    random.py
+    JSONhelper.py

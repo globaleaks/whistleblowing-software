@@ -195,13 +195,16 @@ of the datatype-name, the list and the detailed meaning would be found in:
   * **File**: file descriptor element, every file (uploaded or available in download) is 
     represented with this dict:
 
-        {   'filename': <String>, 
-            'comment': <String>, 
+        {   'filename': 'String', 
+            'comment': 'String', 
             'size': 'Int', 
-            'content-type': 'String',
+            'content_type': 'String',
             'date': 'Time',
-            'CleanedMetaData': 'enum' 
+            'CleanedMetaData': 'int'
         }
+
+    CleanedMetaData maybe expanded, actually are 0 (unknow) 1 (cleaned) 2 (not cleaned),
+    and is declared by the user.
 
   * **LocalDict**: the Local Dict is an object used to store localized texts, in example:
 
