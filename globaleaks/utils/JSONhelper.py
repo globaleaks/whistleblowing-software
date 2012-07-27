@@ -4,18 +4,16 @@ import os
 def diff(func):
 
     def wrapper(self, v):
-        print "checking: '_" + func.__name__ + "'" 
         values = getattr(self, "_values")
-        print values['filename'] + " yay " + values[func.__name__]
 
-        if values.has_key(func.__name__):
-            print "beh ?" + values.get(func.__name__) + values.get('filename')
-
-        if hasattr(self, '_' + func.__name__):
-            if not getattr(self, '_' + func.__name__) == 'v':
-                print "field value change [" + func.__name__ + "] from: '" + getattr(self, '_' + func.__name__) + "' to '" + v  + "'"
+        import pdb
+        #pdb.set_trace()
+        if type(values.get(func.__name__)) == type(0) and values.get(func.__name__) == 0:
+            print "field change " + func.__name__ + " = " + str(v) + " was: " + str(values.get(func.__name__))
+        elif type(values.get(func.__name__)) == type('') and values.get(func.__name__) == '':
+            print "field change " + func.__name__ + " = " + v + " was: " + values.get(func.__name__) 
         else:
-            print "missing requested attr based on function name " + func.__name__
+            print "field set" + func.__name__ + ' = ' + v
 
         # finally lanch the RestJSONwrapper.function, having
         # kept only 'readonly' operation in the _variables
@@ -45,55 +43,42 @@ class FileRest(RestJSONwrapper):
 
     @diff
     def content_type(self, v):
-        self._content_type = v
-        print 'a' + self.__name__
-        self._values[self.__name__] = v
+        self._values['content_type'] = v
 
     @diff
     def size(self, v):
-        self._size = v
-        self._values[self.__name__] = v
+        self._values['size'] = v
 
     @diff
     def time(self, v):
-        self._time = v
-        self._values[self.__name__] = v
+        self._values['time'] = v
 
     @diff
     def comment(self, v):
-        self._comment = v
-        print dir(self)
-        print self
-        import pdb
-        pdb.set_trace()
-        print self.__name__
-        self._values[self.__name__] = v
+        self._values['comment'] = v
 
     @diff
     def metadata(self, v):
-        self._clean = v
-        self._values[self.__name__] = v
+        self._values['metadata'] = v
 
     def printJSON(self):
-        if not self._size or not self._mod_time:
+        if not self._values['size'] or not self.value['time']:
             statinfo = os.stat(self._filename)
-            self._size = statinfo.st_size
-            self._mod_time = statinfo.st_mtime
+            self._values['size'] = statinfo.st_size
+            self._values['date'] = statinfo.st_mtime
 
-        if self._content_type == '' or self._comment == '' or self._clean == 0:
-            print "missing field"
-
-        obj4json = dict({ 
-            'filename' : self._filename,
-            'comment' : self._comment,
-            'size' : self._size,
-            'content_type' : self._content_type,
-            'date' : self._mod_time,
-            'CleanedMetaData' : self._clean })
+        for key, value in self._values.items():
+            if type(value) == type(' ') and value == '':
+                print "missing text field in " + key
+            elif type(value) == type(1) and value == 0:
+                print "missing int field in " + key
+            else:
+                print "invalid field type in: " + key + " = " + str(value)
 
         import sys
-        json.dump(obj4json, sys.stdout)
+        json.dump(self._values, sys.stdout)
         print "\n"
+
 
 
 # test
@@ -102,7 +87,7 @@ mineuse = FileRest("/etc/passwd")
 mineuse.comment("This is an extremely sensitive document")
 mineuse.content_type("text/plain")
 mineuse.content_type("text/html")
-mineuse.CleanMetaData(1)
+mineuse.metadata(1)
 mineuse.printJSON()
 
 
