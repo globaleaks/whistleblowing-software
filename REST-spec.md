@@ -179,7 +179,7 @@ possible presence of other elements is represented by " { } " before the array c
 The simplex involved datatype used in this REST specification are:
 
     'Int', a numeric positive value
-    'String'
+    'string'
     'Bool', True|False
 
     { 'key' : 'value' }, a tuple
@@ -192,13 +192,13 @@ of the datatype-name, the list and the detailed meaning would be found in:
   * **ID**: Identified, is an unique value amount the same kind of data, and would be
     and integer or a string user choosen. The property of the Id is to be unique.
 
-  * **File**: file descriptor element, every file (uploaded or available in download) is 
+  * **fileDict**: file descriptor element, every file (uploaded or available in download) is 
     represented with this dict:
 
-        {   'filename': 'String', 
-            'comment': 'String', 
+        {   'filename': 'string', 
+            'comment': 'string', 
             'size': 'Int', 
-            'content_type': 'String',
+            'content_type': 'string',
             'date': 'Time',
             'CleanedMetaData': 'int'
         }
@@ -206,14 +206,14 @@ of the datatype-name, the list and the detailed meaning would be found in:
     CleanedMetaData maybe expanded, actually are 0 (unknow) 1 (cleaned) 2 (not cleaned),
     and is declared by the user.
 
-  * **LocalDict**: the Local Dict is an object used to store localized texts, in example:
+  * **localizationDict**: the Local Dict is an object used to store localized texts, in example:
 
         {   'IT' : 'Io mi chiamo Mario.',
             'EN' : 'Is a me, Mario!!1!',
             'FR' : "je m'appelle Marìò, pppffff"
         }
 
-  * **ReceiverDesc**, series of tuple with boolean values, expressing the permissions given 
+  * **receiverDescriptionDict**, series of tuple with boolean values, expressing the permissions given 
     to a receiver, and series of descriptive data for the single receiver.
 
     **Those properties list need to be reviewed with the community and the legal team**
@@ -223,14 +223,14 @@ of the datatype-name, the list and the detailed meaning would be found in:
             'CanPostponeExpiration': 'Bool',
             'CanConfigureNotification': 'Bool',
             'CanConfigureDelivery': 'Bool',
-            'receiver_name': 'String',
-            'receiver_description': 'String',
-            'receiver_tags': 'String',
-            'contact_data': 'String',
+            'receiver_name': 'string',
+            'receiver_description': 'string',
+            'receiver_tags': 'string',
+            'contact_data': 'string',
             'creation_date': 'Time',
             'update_date': 'Time'
             'module_id': $ID,
-            'module_dependent_data': '$FormFields',
+            'module_dependent_data': '$formFieldsDict',
             'module_dependent_stats': 'Array'
         }
 
@@ -238,7 +238,7 @@ of the datatype-name, the list and the detailed meaning would be found in:
     and personal management interface (/receivers/...)
 
 
-  * **NodeProperties**, series of tuple with boolean value, expressing the property
+  * **nodePropertiesDict**, series of tuple with boolean value, expressing the property
     configured in the node (those property would be in the future linked with the
     privacy policy of the node, and the security capabilities enforced in the node)
 
@@ -252,61 +252,61 @@ of the datatype-name, the list and the detailed meaning would be found in:
     **Those properties list need to be reviewed with the community and the legal team**
     **Along with the privacy policy and ethics agreement of the receivers**
 
-  * **NodeStats**, series of arrays containing the node statistics, _need to
+  * **nodeStatisticsDict**, series of arrays containing the node statistics, _need to
     be defined_, and their generation would be controlled by the node administrator.
     Those information goes public.
 
-  * **FormFields**, series of element describing an series of Field using keyword:
+  * **formFieldsDict**, series of element describing an series of Field using keyword:
 
-        {   'element-name': 'String', 
+        {   'element-name': 'string', 
             'element-type': 'Enum', 
-            'default-value': 'String',
+            'default-value': 'string',
             'required': 'Bool' 
         }
 
-  * **ModuleDataStruct**, is an generic object used to describe flexible object in GLBackend:
+  * **moduleDataDict**, is an generic object used to describe flexible object in GLBackend:
 
         {   'name': '$ID', 
             'active': 'Bool', 
-            'module_type': 'String'
-            'module_name': 'String'
-            'description': 'String',
-            'admin_options': '$FormFields',
-            'user_options': '$FormFields',
-            'service-message': 'String'
+            'module_type': 'string'
+            'module_name': 'string'
+            'description': 'string',
+            'admin_options': '$formFieldsDict',
+            'user_options': '$formFieldsDict',
+            'service-message': 'string'
         }
 
-  * **GroupDescription**, is an object used to describe a group of receivers, more than
+  * **groupDescriptionDict**, is an object used to describe a group of receivers, more than
      one group can exist in the same context (and more context can exist in the same node)
      Another way to see a group is an aggregate view of the TAGS used to describe a receiver.
 
         {   'group_id' : '$ID',
-            'group_name': 'String',
-            'description' : 'LocaLDict',
+            'group_name': 'string',
+            'description' : '$localizationDict',
             'spoken_language': 'Array, list of spoken languages',
-            'group_tags': 'String',
+            'group_tags': 'string',
             'receiver_list': 'Array',
-            'group_id': 'String',
-            'associated_module': '$ModuleDataStruct',
+            'group_id': 'string',
+            'associated_module': '$moduleDataDict',
             'creation_date': 'Time',
             'update_date': 'Time'
         }
 
-  * /TipStats/, composite object containing the stats of a single Tip, concept of 
+  * /tipStatistics/, composite object containing the stats of a single Tip, concept of 
      access and delivery limit need to be supported (or simply unset) inside the
      different modules.
 
         {   'tip_access_ID': '$ID',
-            'tip_title': 'String',
+            'tip_title': 'string',
             'last_access': 'Time',
             'last_comment': 'Time',
-            'notification_msg': 'String',
-            'delivery_msg': 'String',
+            'notification_msg': 'string',
+            'delivery_msg': 'string',
             'expiration_date': 'Time',
             'pertinence_overall': 'Int',
-            'requested_fields': '$FormFields',
-            'context_name': 'String',
-            'group': '$GroupDescription'
+            'requested_fields': '$formFieldsDict',
+            'context_name': 'string',
+            'group': '$groupDescriptionDict'
         }
 
     notification_msg and delivery_msg is the implementation of the old concept
@@ -322,32 +322,32 @@ of the datatype-name, the list and the detailed meaning would be found in:
     expiration date instead is a core feature system dependent. would be 
     postponed, the data can be replicated, but this concept would remain.
 
-  * /TipIndex/, this is a block of informations for the receiver, and descrive Tip lists
+  * /tipIndexDict/, this is a block of informations for the receiver, and descrive Tip lists
 
         {   'tip_access_ID': '$ID', 
-            'tip_title': 'String',
+            'tip_title': 'string',
             'context_ID': '$ID',
             'group_ID': '$ID',
-            'notification_adopted': 'String',
-            'notification_msg': 'String',
-            'delivery_adopted': 'String',
-            'delivery_msg': 'String',
+            'notification_adopted': 'string',
+            'notification_msg': 'string',
+            'delivery_adopted': 'string',
+            'delivery_msg': 'string',
             'expiration_date': 'Time',
             'creation_date': 'Time',
             'update_date': 'Time'
         }
 
-  * /ContexDescription/, this series of field contain the description of a
+  * /contextDescriptionDict/, this series of field contain the description of a
     context. Which data is expected by the whistleblower and which group are
     configured for receive the data. If some module are enabled here and 
     policy, description, public information about a context.
 
         {   'context_id': '$ID'
-            'name': 'LocaLDict',
-            'groups': [ $GroupDescription, {} ],
-            'fields': '$FormFields',
-            'description': 'String',
-            'style': 'String',
+            'name': '$localizationDict',
+            'groups': [ $groupDescriptionDict, {} ],
+            'fields': '$formFieldsDict',
+            'description': 'string',
+            'style': 'string',
             'creation_date': 'Time',
             'update_date': 'Time'
         }
@@ -384,9 +384,8 @@ Issue tracking [[https://github.com/globaleaks/GLBackend/issues/3]]
 
     :DELETE
     :PUT
-        no PUT, DELETE and other methods beside GET and POST has been 
-        implemented in his REST. This choose is an adaptation to
-        some proxy limits.
+        PUT and DELETE has been implemented in some operations, and
+        use a POST (with create or delete boolean parameter) as fallback.
 
 
 # Resources
@@ -402,13 +401,13 @@ Follow the resource describing Node (uniq instance, opened to all)
         * Response:
             Status Code: 200 (OK)
             {
-              'name': 'String',
-              'statistics': '$NodeStats',
-              'node_properties': '$NodeProperties',
-              'contexts': [ '$ContextDescription', { }, ],
-              'description': '$LocalDict',
-              'public_site': 'String',
-              'hidden_service': 'String',
+              'name': 'string',
+              'statistics': '$nodeStatisticsDict',
+              'node_properties': '$nodePropertiesDict',
+              'contexts': [ '$contextDescriptionDict', { }, ],
+              'description': '$localizationDict',
+              'public_site': 'string',
+              'hidden_service': 'string',
               'url_schema': 'string'
              }
 
@@ -449,9 +448,9 @@ permit to update fields content and group selection.
         Returns the currently submitted fields, selected group, and uploaded files.
         * Response:
           { 
-            'fields': '$FormField',
+            'fields': '$formFieldsDict',
             'group_matrix': [ '$ID', '$ID' ],
-            'uploaded_file': [ '$File', {} ]
+            'uploaded_file': [ '$fileDict', {} ]
             'creation_time': 'Time'
           }
 
@@ -461,7 +460,7 @@ permit to update fields content and group selection.
     :POST
         * Request:
           { 
-            'fields': '$FormField',
+            'fields': '$formFieldsDict',
             'group_matrix': [ '$ID', '$ID' ]
           }
 
@@ -484,7 +483,7 @@ permit to update fields content and group selection.
 
         * Request (optional, see "Rensponse Variant" below):
           { 
-            'proposed-receipt': 'String'
+            'proposed-receipt': 'string'
           }
 
         * Response (HTTP code 200):
@@ -494,7 +493,7 @@ permit to update fields content and group selection.
           the WB Tip, is echoed back to the client Status Code: 201 (Created)
 
           Status Code: 200 (OK)
-          { 'receipt': 'String' }
+          { 'receipt': 'string' }
 
         * Variant Response (HTTP code 201):
           If the receipt do not fit node prerequisite, or is expected but not provide
@@ -502,7 +501,7 @@ permit to update fields content and group selection.
           The client print back to the WB, who record that 
 
           Status Code: 201 (Created)
-          { 'receipt': 'String' }
+          { 'receipt': 'string' }
 
 
         * Error handling:
@@ -516,6 +515,7 @@ permit to update fields content and group selection.
 `/submission/<submission_$ID>/upload_file`, 
 
     XXX
+    XXX
 
     This interface supports resume. 
     This interface expose the JQuery FileUploader and the REST/protocol
@@ -524,8 +524,12 @@ permit to update fields content and group selection.
     Need to be studied in a separate way.
 
     The uploaded files are shown in /status/ with the appropriate
-    '$File' description structure.
+    '$fileDict' description structure.
 
+**At the moment is under research:**
+https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPRbsoz_Hs3TTSnK7NzY86S4/edit?pli=1
+
+    XXX
     XXX
 
 
@@ -543,25 +547,25 @@ permit to update fields content and group selection.
         * Response:
           Status Code: 200 (OK)
           { 
-            'fields': '$FormFields',
-            'comments': [ { 'author_name': 'String',
+            'fields': '$formFieldsDict',
+            'comments': [ { 'author_name': 'string',
                             'date': 'Time',
-                            'comment': 'String' },
+                            'comment': 'string' },
                           { }
                         ],
 
-            'delivery_method': 'String',
-            'delivery_data': 'String',
-            'notification_method': 'String',
-            'notification_data': 'String',
+            'delivery_method': 'string',
+            'delivery_data': 'string',
+            'notification_method': 'string',
+            'notification_data': 'string',
 
             'folders': [ { 'id': 'Int' ,
                            'data': 'Time',
-                           'description': 'String',
-                           'delivery_way' : 'String' },
+                           'description': 'string',
+                           'delivery_way' : 'string' },
                          { }
                        ],
-            'statistics': '$TipStats',
+            'statistics': '$tipStatistics',
           }
 
         * Error handling:
@@ -595,7 +599,7 @@ permit to update fields content and group selection.
     :POST
         * Request:
             {
-                'comment': 'String' 
+                'comment': 'string' 
             }
 
         * Response:
@@ -619,8 +623,8 @@ permit to update fields content and group selection.
         every object is repeated for every "NOT YET finalized Material Set":
         { 
           'finalized-material-date': 'Time',
-          'description': 'String',
-          'uploaded': [ $File, {} ],
+          'description': 'string',
+          'uploaded': [ $fileDict, {} ],
         }
 
      :POST
@@ -640,7 +644,7 @@ permit to update fields content and group selection.
 
     :POST
         * Request:
-        { 'description': 'String' }
+        { 'description': 'string' }
 
         Field description is optional
 
@@ -704,10 +708,10 @@ Tip opened for him. This default behaviour would be overrided by modules.
        * Response:
          Stauts Code: 200 (OK)
          {
-             'Tips': [ '$TipIndex', { } ]
-             'notification-method': [ '$ModuleDataStruct', { } ],
-             'delivery-method': [ '$ModuleDataStruct', { }  ],
-             'receiver-properties': '$ReceiverDesc'
+             'tips': [ '$tipIndexDict', { } ]
+             'notification-method': [ '$moduleDataDict', { } ],
+             'delivery-method': [ '$moduleDataDict', { }  ],
+             'receiver-properties': '$receiverDescriptionDict'
          }
 
     :(GET and POST)
@@ -725,13 +729,13 @@ used in Notification and Delivery modules.
         * Response:
           Status Code: 200 (OK)
           {
-              'module_description': '$LocalDict'
-              'pref': '$ModuleDataStruct'
+              'module_description': '$localizationDict'
+              'pref': '$moduleDataDict'
           }
 
     :POST
           {
-              'pref': '$ModuleDataStruct'
+              'pref': '$moduleDataDict'
           }
 
 # Admin API
@@ -784,16 +788,28 @@ used in Notification and Delivery modules.
         * Response:
           Status Code: 200 (OK)
         {
-          'contexts': [ '$ContextDescription', { } ]
+          'contexts': [ '$contextDescriptionDict', { } ]
         }
 
     :POST
         * Request:
-          Status Code: 200 (OK)
+          Implements the fallback if PUT and DELETE method do not work
         { 
           'create': 'Bool',
           'delete': 'Bool',
           'context': '$ContexDescription',
+        }
+
+    :DELETE
+        Remove an existing context, same effect of POST with delete = True
+        {
+          'context': '$ContexDescription'
+        }
+
+    :PUT
+        Create a new context, same effect of POST with create = True
+        {
+          'context': '$ContexDescription'
         }
 
         * Response:
@@ -810,8 +826,8 @@ used in Notification and Delivery modules.
        Returns a json object listing the available group and the available modules 
        * Response:
             {
-                'groups': '$GroupDescription',
-                'modules_available': [ '$ModuleDataStruct', { } ]
+                'groups': '$groupDescriptionDict',
+                'modules_available': [ '$moduleDataDict', { } ]
             }
 
         receiver_module need to be specified always, does not exist a group
@@ -820,11 +836,25 @@ used in Notification and Delivery modules.
         retrive receivers list in the group.
 
     :POST
+        Implement the fallback in PUT|DELETE method
        * Request:
             {
-                'group': '$GroupDescription',
+                'group': '$groupDescriptionDict',
                 'create': 'Bool',
                 'delete': 'Bool',
+            }
+
+    :PUT
+        * Request:
+          Create a new group, same effect of POST with create = True
+            {
+                'group': '$groupDescriptionDict'
+            }
+    :DELETE
+        * Request:
+          Delete the selected group, same effect of POST with delete = True
+            {
+                'group': '$groupDescriptionDict'
             }
 
          If group_id is missing, is created a new one 
@@ -847,7 +877,7 @@ used in Notification and Delivery modules.
         * Response:
           Status Code 200 (OK)
             {
-               'receivers' : [ '$ReceiverDesc', { } ]
+               'receivers' : [ '$receiverDescriptionDict', { } ]
             }
 
           In this case, the remote ticketing system module, has not a single receiver 
@@ -858,11 +888,28 @@ used in Notification and Delivery modules.
 
     :POST
         * Request:
-          update or create a new receiver (if permitted) in the associated module
+          update or create a new receiver (if permitted) in the associated module,
+          works as fallback if PUT or DELETE method are not usable.
             {
               'delete': 'Bool',
               'create: 'Bool',
-              'receiver': '$ReceiverDesc'
+              'receiver': '$receiverDescriptionDict'
+            }
+
+    :DELETE
+        delete an available receiver, in the selected module/group, 
+        same effect of POST with delete = True
+        * Request:
+            {
+              'receiver': '$receiverDescriptionDict'
+            }
+
+    :PUT
+        create a new receiver (if available), in the selected module/group
+        same effect of POST with create = True
+        * Request
+            {
+              'receiver': '$receiverDescriptionDict'
             }
 
        * Response:
@@ -888,7 +935,7 @@ and one of those keyword need to be requested in the REST interface.
     :GET
         * Response:
         {
-          'modules_available': [ '$ModuleDataStruct', { } ]
+          'modules_available': [ '$moduleDataDict', { } ]
           'context_applied': { 
                       'module_$ID': [ 'context_$ID', 'context_$ID' ], 
                       { } }
@@ -899,7 +946,7 @@ and one of those keyword need to be requested in the REST interface.
         {
           'status': 'Bool',
           'targetContext': [ 'context_$ID', 'context_$ID' ],
-          'module_settings': '$ModuleDataStruct'
+          'module_settings': '$moduleDataDict'
         }
 
         * Response:
@@ -923,34 +970,34 @@ and one of those keyword need to be requested in the REST interface.
         * Response:
             Status Code: 200 (OK)
             {
-              'name': 'String',
-              'statistics': '$NodeStats',
+              'name': 'string',
+              'statistics': '$nodeStatisticsDict',
               'private_stats': { },
-              'node_properties': '$NodeProperties',
-              'contexts': [ '$ContextDescription', { }, ],
-              'description': '$LocalDict',
-              'public_site': 'String',
-              'hidden_service': 'String',
+              'node_properties': '$nodePropertiesDict',
+              'contexts': [ '$contextDescriptionDict', { }, ],
+              'description': '$localizationDict',
+              'public_site': 'string',
+              'hidden_service': 'string',
               'url_schema': 'string'
              }
 
-        'private_stats' need do be defined, along with $NodeStats.
+        'private_stats' need do be defined, along with $nodeStatisticsDict.
 
     :POST
         Changes the node public node configuration settings
         * Request:
             {
-              'name': 'String',
-              'node_properties': '$NodeProperties',
-              'description': '$LocalDict',
-              'public_site': 'String',
-              'hidden_service': 'String',
+              'name': 'string',
+              'node_properties': '$nodePropertiesDict',
+              'description': '$localizationDict',
+              'public_site': 'string',
+              'hidden_service': 'string',
               'url_schema': 'string'
 
               'enable_stats': [ ],
               'do_leakdirectory_update': 'Bool',
-              'new_admin_password': 'String',
+              'new_admin_password': 'string',
 
              }
 
-        'enable_stats' need to be defined along with $NodeStats.
+        'enable_stats' need to be defined along with $nodeStatisticsDict.

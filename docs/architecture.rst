@@ -104,12 +104,14 @@ that is activated once a certain submission/time threshold is reached.
 Receipt
 ```````
 
-A secret possessed by the WhistleBlower for access at the Tip, needed 
-whenever it want interact with the associated previous submission. 
-An active receipt is unieque and different from every other receipt in
-the Node.
-Receipt may be disabled by the context, and may be implemented with
-modules (in the InputFlow hook) that expand security functionality.
+Is a secret possessed by the WhistleBlower for access at the Tip, needed 
+whenever it want interact with the Tip of its submission.
+When a receipt is active (until the Tip expire), its checked to be
+unique.
+Receipt may be configued differently for the various context.
+Maybe disabled (is not returned to the WB), would be implemented
+in modules (in the InputFlow hook) permitting to expand security 
+functionality.
 A receiver may suggest a portion of the Receipt, and the server 
 need to add some random segment (a word, a number, etc).
 The server sent back the receipt to the users.

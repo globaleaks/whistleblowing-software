@@ -281,6 +281,9 @@ class genericDict(RestJSONwrapper):
         json.dump(self._values, sys.stdout)
         print "\n"
 
+"""
+FormField is the field description for every FORM
+"""
 
 
 ################################################################
