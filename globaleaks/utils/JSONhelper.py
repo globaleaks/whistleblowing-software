@@ -282,8 +282,68 @@ class genericDict(RestJSONwrapper):
         print "\n"
 
 """
-FormField is the field description for every FORM
+formFieldDict is the field description for every FORM
 """
+
+"""
+nodePropertiesDict, actually is defined to be 
+simply the "Configurable Boolean Parameters"
+but need to be review in the next days -- 08/12
+"""
+class nodePropertiesDict(RestJSONwrapper):
+
+    def __init__(self, CBP):
+        self._values = ({})
+        RestJSONwrapper.__init__(self)
+
+
+"""
+nodeStatisticsDict, need to be defined
+"""
+class nodeStatisticsDict(RestJSONwrapper):
+
+    def __init__(self):
+        print self.__class__, "not yet defined"
+        pass
+
+
+"""
+moduleDataDict
+"""
+class moduleDataDict(RestJSONwrapper):
+
+    def __init__(self, mID):
+        self._values = ({ 
+            'ID' : '', 'active' : None, 'module_type' : '', 
+            'module_name' : '', 'description' : '', 
+            'admin_options' : {}, 'user_options' : {}, 
+            'service_message' : '' })
+
+        self._values['ID'] = rID
+        RestJSONwrapper.__init__(self)
+
+
+
+
+
+"""
+groupDescriptionDict
+"""
+class groupDescriptionDict(RestJSONwrapper):
+
+"""
+contextDescriptionDict
+"""
+class contextDescriptionDict(RestJSONwrapper):
+"""
+tipIndexDict
+"""
+class tipIndexDict(RestJSONwrapper):
+"""
+tipStatistics
+"""
+class tipStatistics(RestJSONwrapper):
+
 
 
 ################################################################

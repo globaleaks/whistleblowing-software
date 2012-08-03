@@ -273,7 +273,7 @@ of the datatype-name, the list and the detailed meaning would be found in:
             'description': 'string',
             'admin_options': '$formFieldsDict',
             'user_options': '$formFieldsDict',
-            'service-message': 'string'
+            'service_message': 'string'
         }
 
   * **groupDescriptionDict**, is an object used to describe a group of receivers, more than

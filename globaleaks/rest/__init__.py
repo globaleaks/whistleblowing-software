@@ -1,1 +1,1 @@
-__all__ = [ 'api', 'handlers', 'utils' ]
+__all__ = [ 'api', 'handlers', 'utils', 'external_loader' ]
