@@ -1,4 +1,5 @@
 from twisted.web import resource
+from twisted.python.reflect import prefixedMethodNames
 
 """
 This file contains:
@@ -49,11 +50,7 @@ class parameterHandler(resource.Resource):
 
     def render(self, request):
 
-        print "X: called render in", self.__class__.__name__, request.method, request
-
         m = getattr(self, 'render_' + request.method, None)
-
-        print self.__class__.__name__ + str(m)
 
         if not m:
             # This needs to be here until the deprecated subclasses of the
@@ -62,10 +59,95 @@ class parameterHandler(resource.Resource):
             allowedMethods = (getattr(self, 'allowedMethods', 0) or _computeAllowedMethods(self))
             raise UnsupportedMethod(allowedMethods)
 
+        print request.path.split('/')
         parameter = request.path.split('/')[2]
 
-        print "render: method right:", str(m), request, parameter
+        print "render: method right:", request, parameter
 
         return m(request, parameter)
 
+def _computeAllowedMethods(resource):
+    """
+    Compute the allowed methods on a C{Resource} based on defined render_FOO
+    methods. Used when raising C{UnsupportedMethod} but C{Resource} does
+    not define C{allowedMethods} attribute.
+    """
+    allowedMethods = []
+    for name in prefixedMethodNames(resource.__class__, "render_"):
+        print "debug _computeAllowMeth", resource.__class__, "and", name
+        allowedMethods.append(name)
+    return allowedMethods
+
+
+class ErrorPage(resource.Resource):
+    """
+    L{ErrorPage} is a resource which responds with a particular
+    (parameterized) status and a body consisting of HTML containing some
+    descriptive text.  This is useful for rendering simple error pages.
+
+    @ivar template: A C{str} which will have a dictionary interpolated into
+        it to generate the response body.  The dictionary has the following
+        keys:
+
+          - C{"code"}: The status code passed to L{ErrorPage.__init__}.
+          - C{"brief"}: The brief description passed to L{ErrorPage.__init__}.
+          - C{"detail"}: The detailed description passed to
+            L{ErrorPage.__init__}.
+
+    @ivar code: An integer status code which will be used for the response.
+    @ivar brief: A short string which will be included in the response body.
+    @ivar detail: A longer string which will be included in the response body.
+    """
+
+    template = """
+<html>
+  <head><title>GlobaLeaks backend debug %(code)s - %(brief)s</title></head>
+  <body>
+    <h1>%(brief)s</h1>
+    <p>%(detail)s</p>
+  </body>
+</html>
+"""
+
+    def __init__(self, status, brief, detail):
+        Resource.__init__(self)
+        self.code = status
+        self.brief = brief
+        self.detail = detail
+
+
+    def render(self, request):
+        request.setResponseCode(self.code)
+        request.setHeader("content-type", "text/html; charset=utf-8")
+        return self.template % dict(
+            code=self.code,
+            brief=self.brief,
+            detail=self.detail)
+
+
+    def getChild(self, chnam, request):
+        return self
+
+
+
+class NoResource(ErrorPage):
+    """
+    L{NoResource} is a specialization of L{ErrorPage} which returns the HTTP
+    response code I{NOT FOUND}.
+    """
+    def __init__(self, message="Sorry. No luck finding that resource."):
+        ErrorPage.__init__(self, http.NOT_FOUND,
+                           "No Such Resource",
+                           message)
+
+
+class ForbiddenResource(ErrorPage):
+    """
+    L{ForbiddenResource} is a specialization of L{ErrorPage} which returns the
+    I{FORBIDDEN} HTTP response code.
+    """
+    def __init__(self, message="Sorry, resource is forbidden."):
+        ErrorPage.__init__(self, http.FORBIDDEN,
+                           "Forbidden Resource",
+                           message)
 

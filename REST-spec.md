@@ -123,8 +123,9 @@ kind of receiver present.
 
 A4 `/admin/receivers/<group_$ID>/`
 
-Having the group_$ID
-
+Having the group_$ID of a certain group, the admin can perform
+CURD operation over the group. Adding receiver, change properties, 
+delete and update.
 
 A5 `/admin/modules/<string module_type>/`
 
@@ -797,19 +798,19 @@ used in Notification and Delivery modules.
         { 
           'create': 'Bool',
           'delete': 'Bool',
-          'context': '$ContexDescription',
+          'context': '$contexDescriptionDict',
         }
 
     :DELETE
         Remove an existing context, same effect of POST with delete = True
         {
-          'context': '$ContexDescription'
+          'context': '$contexDescriptionDict'
         }
 
     :PUT
         Create a new context, same effect of POST with create = True
         {
-          'context': '$ContexDescription'
+          'context': '$contexDescriptionDict'
         }
 
         * Response:
@@ -927,7 +928,8 @@ available modules.
 The modules are flexible implementation extending a specific part of GLBackend,
 The modules would be part of a restricted group of elements:
 
-    TODO METTI QUI LA LISTA DELLE ABSTRACT CLASS
+    TODO PUT HERE THE LIST OF EXTENDABLE ABSTRACT CLASS
+    BECAUSE THEY ARE ALSO THE "CATEGORIES" WHERE A MODULE NEED TO FIT INTO
 
 and one of those keyword need to be requested in the REST interface.
 
@@ -964,6 +966,11 @@ and one of those keyword need to be requested in the REST interface.
             Status Code 200 (OK)
 
 `/admin/node`
+
+    The Get interface is thinked as first blob of data able to present the node, 
+    therefore not all the information are specific of this resource (like 
+    contexts description or statististics), but for reduce the amount of request
+    performed by the client, has been collapsed into.
 
     :GET
         Returns a json object containing all the information of the node.
