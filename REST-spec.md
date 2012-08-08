@@ -287,7 +287,6 @@ of the datatype-name, the list and the detailed meaning would be found in:
             'spoken_language': 'Array, list of spoken languages',
             'group_tags': 'string',
             'receiver_list': 'Array',
-            'group_id': 'string',
             'associated_module': '$moduleDataDict',
             'creation_date': 'Time',
             'update_date': 'Time'

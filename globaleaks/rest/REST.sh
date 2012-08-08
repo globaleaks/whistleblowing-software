@@ -14,7 +14,9 @@ perform_test() {
     of=$dumpdir$url
     mkdir -p $of
 
-    echo "starting test with method: $method in $url..."
+    echo "\n\nstarting test with method: $method in $url..."
+    echo "press enter to continue..."
+    read Y
 
     case $method in
         "PUT")
@@ -41,8 +43,7 @@ perform_test() {
 
     echo "test $testname ($method $url) completed"
     ls -l $of$method*
-    echo "\npress enter to continue...\n"
-    read Y
+    head -2 $of$method.out
 
 }
 
@@ -115,6 +116,16 @@ response='{ "name": "string",
               "public_site": "string", "hidden_service": "string", "url_schema": "string" }'
 perform_test $testname $url $method $response $request 
 
+testname='P1Put'
+url='/node/'
+method='PUT'
+request="unused"
+response='{ "name": "string",
+              "statistics": '${nodeStatisticsDict}', "node_properties": '${nodePropertiesDict}', "contexts": 
+              [ '${contextDescriptionDict}', '${localizationDict}', ],
+              "public_site": "string", "hidden_service": "string", "url_schema": "string" }'
+perform_test $testname $url $method $response $request 
+
 
 # REMIND: needed tests are:
 # P1-P7, T1-T6, R1-R2, A1-A5
@@ -141,7 +152,7 @@ perform_test $testname $url $method $response $request
 # A5 `/admin/modules/<string module_type>/`
 # 
 
-################ # CURD A3
+# CURD A3
 testname='A3C'
 method='PUT'
 request=' { "group": '${groupDescriptionDict}' }'
@@ -165,12 +176,13 @@ method='DELETE'
 request=' { "group": '${groupDescriptionDict}' }'
 perform_test $testname $url $method $response $request 
 
-error_group_id='{ "error_code": "Int", "error_message": Invalid group ID" }'
+# end of A3
+# --- switched to unitTestRest.py
+# --- switched to unitTestRest.py
+# --- switched to unitTestRest.py
+echo "development and unitTest, switched to unitTestRest.py"
 
-echo "not yet supported tests below"
-echo "not yet supported tests below"
-echo "not yet supported tests below"
-
+testname='A4R'
 url='/admin/receiver/group_ID_XYZ/'
 method='GET'
 response=' { "receivers" : [ '${receiverDescriptionDict}', '${receiverDescriptionDict}', ] }'

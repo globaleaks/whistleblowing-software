@@ -33,13 +33,18 @@ __all__ = [ 'nodeHandler',
 """
 Public resource (P1) /node/ return a general amount of info
 """
-class nodeHandler(resource.Resource):
+class nodeHandler(parameterHandler):
 
     def __init__(self, name="default"):
         self.name = name
+        print "iniziato ortomio"
         resource.Resource.__init__(self)
 
-    def render_GET(self, request):
+    def render_GET(self, request, parameter):
+        print type(request)
+        print type(parameter)
+        import pdb
+        pdb.set_trace()
         print "nodeHandler (public info) GET:" + request.path 
         return "nodeHandler (public info) GET:" + request.path 
 

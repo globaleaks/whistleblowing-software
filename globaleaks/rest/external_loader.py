@@ -11,7 +11,7 @@ def simulation_of_module_loading_rest():
 
     class internalHandler(resource.Resource):
 
-        def __init__(self, name="module_exteral_test"):
+        def __init__(self, name="module_external_test"):
             self.name = name
             resource.Resource.__init__(self)
 
@@ -24,6 +24,6 @@ def simulation_of_module_loading_rest():
             return name + "POST" + str(request)
   
     modular_rest = internalHandler()
-    print "putChild di external_test", str(internalHandler)
+    print "putChild external_test:", str(internalHandler)
     modular_rest.putChild("/external_test/", internalHandler() )
 
