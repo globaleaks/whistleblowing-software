@@ -125,8 +125,9 @@ class fileDict(RestJSONwrapper):
         self.fieldreview(self._values['filename'], self._values)
 
         import sys
-        json.dump(self._values, sys.stdout)
-        print "\n"
+        ret = json.dump(self._values, sys.stdout)
+        print ret, "\n"
+        return ret
 
 
 """
@@ -329,20 +330,22 @@ class moduleDataDict(RestJSONwrapper):
 """
 groupDescriptionDict
 """
-class groupDescriptionDict(RestJSONwrapper):
+#class groupDescriptionDict(RestJSONwrapper):
 
 """
 contextDescriptionDict
 """
-class contextDescriptionDict(RestJSONwrapper):
+#class contextDescriptionDict(RestJSONwrapper):
+
 """
 tipIndexDict
 """
-class tipIndexDict(RestJSONwrapper):
+#class tipIndexDict(RestJSONwrapper):
+
 """
 tipStatistics
 """
-class tipStatistics(RestJSONwrapper):
+#class tipStatistics(RestJSONwrapper):
 
 
 
@@ -350,48 +353,51 @@ class tipStatistics(RestJSONwrapper):
 ################################################################
 # TEST
 
-mine1 = fileDict("/etc/passwd")
+if __name__ == '__main__':
+
+
+    mine1 = fileDict("/etc/passwd")
 # simple update
-mine1.comment("This is an extremely sensitive document")
-mine1.metadata(1)
+    mine1.comment("This is an extremely sensitive document")
+    mine1.metadata(1)
 # diff checkINT
-mine1.content_type("text/plain")
-mine1.content_type("text/html")
-mine1.printJSON()
+    mine1.content_type("text/plain")
+    mine1.content_type("text/html")
+    mine1.printJSON()
 
-mine2 = localizationDict("test1")
+    mine2 = localizationDict("test1")
 # simple update
-mine2.add_translation({'test2' : { 'IT' : 'it_2', 'EN' : 'en_2' }})
+    mine2.add_translation({'test2' : { 'IT' : 'it_2', 'EN' : 'en_2' }})
 # verify diff in translation
-mine2.add_translation({'test2' : { 'IT' : 'due', 'EN' : 'two', 'C' : '2' }})
+    mine2.add_translation({'test2' : { 'IT' : 'due', 'EN' : 'two', 'C' : '2' }})
 # add languages in both
-mine2.add_language({'FR': 'fr_1' }, 'test1')
-mine2.add_language({'FR': 'fr_2'}, 'test2')
+    mine2.add_language({'FR': 'fr_1' }, 'test1')
+    mine2.add_language({'FR': 'fr_2'}, 'test2')
 # verify diff in language
-mine2.add_language({'FR': 'un' }, 'test1')
-mine2.add_language({'FR': 'deux' }, 'test2')
-mine2.printJSON()
+    mine2.add_language({'FR': 'un' }, 'test1')
+    mine2.add_language({'FR': 'deux' }, 'test2')
+    mine2.printJSON()
 
-mine3 = receiverDescriptionDict('A22')
-mine3.name('vectra')
-mine3.description('well trainer driver of pack mule')
-mine3.contact_data('some kind of useful data, to be defined')
-mine3.module_id('localmailstorage')
-mine3.module_dependent_stats('32432')
-mine3.module_dependent_data('lioness@mjoll.the')
-mine3.printJSON()
+    mine3 = receiverDescriptionDict('A22')
+    mine3.name('vectra')
+    mine3.description('well trainer driver of pack mule')
+    mine3.contact_data('some kind of useful data, to be defined')
+    mine3.module_id('localmailstorage')
+    mine3.module_dependent_stats('32432')
+    mine3.module_dependent_data('lioness@mjoll.the')
+    mine3.printJSON()
 
-mine4 = genericDict('optionalName')
-mine4.add_int(2, 'integer')
-mine4.add_int(2, 'other_int')
-mine4.add_int(2, 'another_int')
-mine4.add_int(3, 'another_int')
-mine4.add_string('blah', 'text1')
-mine4.add_string('yadda', 'text2')
-subdict = ({'blah': [ 1,2,3], 'otherarray': [ 3,4,5 ] })
-mine4.add_dict(subdict, 'arbitrary_dict')
-mine4.add_dict({'xxx': 'yyy'}, '2nd_dict')
-mine4.add_dict({'AAA': 'BBB'}, '2nd_dict')
-mine4.printJSON()
+    mine4 = genericDict('optionalName')
+    mine4.add_int(2, 'integer')
+    mine4.add_int(2, 'other_int')
+    mine4.add_int(2, 'another_int')
+    mine4.add_int(3, 'another_int')
+    mine4.add_string('blah', 'text1')
+    mine4.add_string('yadda', 'text2')
+    subdict = ({'blah': [ 1,2,3], 'otherarray': [ 3,4,5 ] })
+    mine4.add_dict(subdict, 'arbitrary_dict')
+    mine4.add_dict({'xxx': 'yyy'}, '2nd_dict')
+    mine4.add_dict({'AAA': 'BBB'}, '2nd_dict')
+    mine4.printJSON()
 
 

@@ -11,6 +11,7 @@
 import json
 from twisted.web import resource
 from globaleaks.rest.utils import processChildren, parameterHandler
+from globaleaks.utils.JSONhelper import genericDict
 
 __all__ = [ 'nodeHandler', 
                 # single, P1
@@ -43,10 +44,27 @@ class nodeHandler(parameterHandler):
     def render_GET(self, request, parameter):
         print type(request)
         print type(parameter)
-        import pdb
-        pdb.set_trace()
         print "nodeHandler (public info) GET:" + request.path 
-        return "nodeHandler (public info) GET:" + request.path 
+
+        retjson = genericDict('render_GET_P1')
+        retjson.add_string('FunkyNodeName', 'name')
+        retjson.add_string('statz', 'statistic')
+        retjson.add_string('BOOLofPROPERTIES', 'node_properties')
+        retjson.add_string('This is the description', 'description')
+        retjson.add_string('http://funkytransparency.pin', 'public_site')
+        retjson.add_string('http://nf940289fn24fewifnm.onion', 'hidden_service')
+        retjson.add_string('/', 'url_schema')
+        return retjson.printJSON()
+
+        """
+        retDict = dict({'expected_result' : ({ "name": "string", "statistics": "S_nodeStatisticsDict", 
+                        "node_properties": "S_nodePropertiesDict",
+                        "contexts": [ "A_contextDescriptionDict" ],
+                        "description": "F_localizationDict(nodeDesc)",
+                        "public_site": "string", "hidden_service": "string", "url_schema": "string" })
+                      })
+        print retDict
+        """
 
 class submissionHandlers(resource.Resource):
     def render_GET(self, request):
