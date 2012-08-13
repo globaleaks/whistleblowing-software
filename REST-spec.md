@@ -137,30 +137,32 @@ a remote access.
 
 # Synthesis 
 
-`/node/`
+P1 `/node/`
 
-`/submission`
-`/submission/<submission_$ID>/status`
-`/submission/<submission_$ID>/upload_file`
-`/submission/<submission_$ID>/finalize`
+P2 `/submission`
+P3 `/submission/<submission_$ID>/status`
+P4 `/submission/<submission_$ID>/submit_fields`
+P5 `/submission/<submission_$ID>/submit_group`
+P6 `/submission/<submission_$ID>/finalize`
+P7 `/submission/<submission_$ID>/upload_file`
 
-`/receiver/<string t_id>/overview`
-`/receiver/<string t_id>/<string module_name>`
+R1 `/receiver/<string t_id>/overview`
+R2 `/receiver/<string t_id>/<string module_name>`
 
-`/admin/contexts/`
-`/admin/group/<context_$ID>/`
-`/admin/receivers/<group_$ID>/`
-`/admin/modules/<string module_type>/`
-`/admin/node/`
+A1 `/admin/node/`
+A2 `/admin/contexts/`
+A3 `/admin/group/<context_$ID>/`
+A4 `/admin/receivers/<group_$ID>/`
+A5 `/admin/modules/<string module_type>/`
 
 _Note: all the Tip interfaces depends on Tip implementation, the presented interface are the default Tip_
 
-`/tip/<uniq_Tip_$ID>`
-`/tip/<uniq_Tip_$ID>/add_comment`
-`/tip/<uniq_Tip_$ID>/update_file`
-`/tip/<uniq_Tip_$ID>/finalize_update`
-`/tip/<uniq_Tip_$ID>/pertinence`
-`/tip/<uniq_Tip_$ID>/download_material`
+T1 `/tip/<uniq_Tip_$ID>`
+T2 `/tip/<uniq_Tip_$ID>/add_comment`
+T3 `/tip/<uniq_Tip_$ID>/update_file`
+T4 `/tip/<uniq_Tip_$ID>/finalize_update`
+T5 `/tip/<uniq_Tip_$ID>/download_material`
+T6 `/tip/<uniq_Tip_$ID>/pertinence`
 
 # Description syntax adopted in this document
 
@@ -390,7 +392,7 @@ Issue tracking [[https://github.com/globaleaks/GLBackend/issues/3]]
 
 # Resources
 
-`/node/`
+P1 `/node/`
 
 Returns information on the GlobaLeaks node. This includes submission paramters and how information should be presented by the client side application.
 
@@ -411,7 +413,7 @@ Follow the resource describing Node (uniq instance, opened to all)
               'url_schema': 'string'
              }
 
-`/submission`
+P2 `/submission`
 
     :GET
         This creates an empty submission and returns the ID
@@ -437,7 +439,7 @@ Error handling
         Status Code: 204 (No Content)
         { 'error_code': 'Int', 'error_message': 'submission ID is invalid' }
 
-`/submission/<submission_$ID>/status`
+P3 `/submission/<submission_$ID>/status`
 
 This interface represent the state of the submission. Will show the
 current uploaded data, choosen group, and file uploaded.
@@ -472,8 +474,10 @@ permit to update fields content and group selection.
           If group ID is invalid:
             { 'error_code': 'Int', 'error_message': 'group selected ID is invalid' }
 
+P4 `/submission/<submission_$ID>/submit_fields`
+P5 `/submission/<submission_$ID>/submit_group`
 
-`/submission/<submission_$ID>/finalize`, 
+P6 `/submission/<submission_$ID>/finalize`
 
     :POST
         checks if all the 'Required' fields are present, then 
@@ -512,7 +516,7 @@ permit to update fields content and group selection.
           { 'error_code': 'Int', 'error_message': 'fields requirement not respected' }
 
 
-`/submission/<submission_$ID>/upload_file`, 
+P7 `/submission/<submission_$ID>/upload_file`, 
 
     XXX
     XXX
@@ -533,7 +537,7 @@ https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPR
     XXX
 
 
-`/tip/<uniq_Tip_$ID>` (shared between Receiver and WhistleBlower)
+T1 `/tip/<uniq_Tip_$ID>` (shared between Receiver and WhistleBlower)
 
     :GET
         Permit either to WB authorized by Receipt, or to Receivers.
@@ -591,7 +595,7 @@ https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPR
           Status Code: 204 (No Content)
 
 
-`/tip/<uniq_Tip_$ID>/add_comment` (shared between Receiver and WhistleBlowe)
+T2 `/tip/<uniq_Tip_$ID>/add_comment` (shared between Receiver and WhistleBlowe)
 
     Permit either to WB authorized by Receipt, or to Receivers.
     adds a new comment to the submission.
@@ -608,10 +612,12 @@ https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPR
           as per `GET /tip/<uniq_Tip_$ID>/`
 
 
-`/tip/<uniq_Tip_$ID>/update_file` (WhistleBlower only)
+T3 `/tip/<uniq_Tip_$ID>/update_file` (WhistleBlower only)
 
     perform update operations. If a Material Set has been started, the file is appended
     in the same pack. A Material Set is closed when the `finalize_update` is called.
+
+    This interface is implemented using (jQueryFileUploader) in the same way of P7
 
     :GET
         return the unfinalized elements accumulated by the whistleblower. The unfinalized
@@ -637,7 +643,7 @@ https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPR
          and as per `/tip/<uniq:_Tip_$ID>/`
 
 
-`/tip/<uniq_Tip_$ID>/finalize_update` (WhistleBlowing)
+T4 `/tip/<uniq_Tip_$ID>/finalize_update` (WhistleBlowing)
 
     Used to add description in the Material set not yet completed (optional)
     Used to complete the files upload, completing the Material Set.
@@ -655,7 +661,7 @@ https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPR
         * Error handling as per `/tip/<uniq_Tip_$ID>/`
 
 
-`/tip/<uniq_Tip_$ID>/download_material` (Receiver - **Delivery module dependent**)
+T5 `/tip/<uniq_Tip_$ID>/download_material` (Receiver - **Delivery module dependent**)
 
     This REST interface would be likely present, and in future would be moved
     in a separate documentation of optional REST interfaces. Is implemented by
@@ -674,7 +680,7 @@ https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPR
              Status Code: 200 (OK)
 
 
-`/tip/<uniq_Tip_$ID>/pertinence` (Receiver only)
+T6 `/tip/<uniq_Tip_$ID>/pertinence` (Receiver only)
 
     Optional (shall not be supported by configuration settings)
     express a vote on pertinence of a certain submission.
@@ -691,7 +697,7 @@ https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPR
 
 # Receiver API
 
-`/receiver/<uniq_Tip_$ID>/overview`
+R1 `/receiver/<uniq_Tip_$ID>/overview`
 
 This interface expose all the receiver related info, require one valid Tip authentication.
 This interface returns all the options available for the receiver (notification and delivery)
@@ -720,7 +726,7 @@ Tip opened for him. This default behaviour would be overrided by modules.
           Status Code: 204 (No Content)
           { 'error_code': 'Int', 'error_message': 'requested Tip ID is expired or invalid' }
 
-`/receiver/<string t_id>/<string module_name>`
+R2 `/receiver/<string t_id>/<string module_name>`
 
 Every module need a way to specify a personal interface where receive preferences, this would be
 used in Notification and Delivery modules.
@@ -779,7 +785,7 @@ used in Notification and Delivery modules.
             { 'error_code': 'Int', 'error_message' : 'Invalid $ID in request' }
 
 
-`/admin/contexts/`
+A2 `/admin/contexts/`
 
     List, create, delete and update all the contexts in the Node.
 
@@ -815,7 +821,7 @@ used in Notification and Delivery modules.
         * Response:
           As per **common behaviour in Admin resorces**
 
-`/admin/group/<context_$ID>/`
+A3 `/admin/group/<context_$ID>/`
 
     Retrive, create, update or delete the target group 
     (the context_$ID or name are supposed previously obtained by `/admin/contexts/` 
@@ -864,7 +870,7 @@ used in Notification and Delivery modules.
           As per **common behaviour in Admin resorces**
 
 
-`/admin/receiver/<group_$ID>/`
+A4 `/admin/receiver/<group_$ID>/`
 
     All the operations, in case of wrong group_$ID, return:
         Error Code 400 (Bad Request)
@@ -920,7 +926,7 @@ used in Notification and Delivery modules.
             { 'error_code': 'Int', 'error_message' : 'module error details' }
 
 
-`/admin/modules/<string module_type>/`
+A5 `/admin/modules/<string module_type>/`
 
 These interface permit to list, configure, enable and disasble all the 
 available modules.
@@ -964,7 +970,7 @@ and one of those keyword need to be requested in the REST interface.
           Otherwise, if request is accepted:
             Status Code 200 (OK)
 
-`/admin/node`
+A1 `/admin/node`
 
     The Get interface is thinked as first blob of data able to present the node, 
     therefore not all the information are specific of this resource (like 
@@ -1007,3 +1013,7 @@ and one of those keyword need to be requested in the REST interface.
              }
 
         'enable_stats' need to be defined along with $nodeStatisticsDict.
+
+    This interface does not return an error, except as wrong authentication,
+    need to be readed: http://twistedmatrix.com/documents/10.1.0/web/howto/web-in-60/http-auth.html
+

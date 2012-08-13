@@ -21,8 +21,8 @@ __all__ = [ 'nodeHandler',
                 # (parameter + parameter) and (parameter + fixed), R1-R2
             'adminHandlers',
                 # generic handler of /admin/ resource
-            'ContextHandler', 'NodeHandler', 'GroupHandlers', 
-            'ReceiversHandlers', 'ModulesHandlers',
+            'adminContextHandler', 'adminNodeHandler', 'adminGroupHandlers', 
+            'adminReceiversHandlers', 'adminModulesHandlers',
                 # (parameter + fixed), A1-A5
             'tipHandlers',
             'downloadMaterialHandler', 'addCommentHandler',
@@ -38,13 +38,10 @@ class nodeHandler(parameterHandler):
 
     def __init__(self, name="default"):
         self.name = name
-        print "iniziato ortomio"
         resource.Resource.__init__(self)
 
     def render_GET(self, request, parameter):
-        print type(request)
-        print type(parameter)
-        print "nodeHandler (public info) GET:" + request.path 
+        print __name__, request.path, type(request), type(parameter)
 
         retjson = genericDict('render_GET_P1')
         retjson.add_string('FunkyNodeName', 'name')
@@ -55,16 +52,6 @@ class nodeHandler(parameterHandler):
         retjson.add_string('http://nf940289fn24fewifnm.onion', 'hidden_service')
         retjson.add_string('/', 'url_schema')
         return retjson.printJSON()
-
-        """
-        retDict = dict({'expected_result' : ({ "name": "string", "statistics": "S_nodeStatisticsDict", 
-                        "node_properties": "S_nodePropertiesDict",
-                        "contexts": [ "A_contextDescriptionDict" ],
-                        "description": "F_localizationDict(nodeDesc)",
-                        "public_site": "string", "hidden_service": "string", "url_schema": "string" })
-                      })
-        print retDict
-        """
 
 class submissionHandlers(resource.Resource):
     def render_GET(self, request):
@@ -92,31 +79,45 @@ NodeHandler part of adminHandlers covert, /admin/node
 do not expect a parameter. handle READ and SET
 A1
 """
-class NodeHandler(parameterHandler):
+class adminNodeHandler(parameterHandler):
     def render_GET(self, request, parameter):
         """
         return the information of the node, various blob of data
         object contained: nodeStatisticDict, nodePropertiesDict,
         contextDescription (array of), localizationDict
         """
-        print "node GET:" + request.path 
-        return "node GET:" + request.path 
+        print __name__, request.path, type(request), type(parameter)
+
+        retjson = genericDict('render_GET_A1')
+        retjson.add_string('NodeNameForTheAdmin', 'name')
+        retjson.add_string('StatisticToBeXXX', 'statistics')
+        retjson.add_string('SomePrivateStatsasBefore', 'private_stats')
+        retjson.add_string('ConfigurableBooleanParameter', 'node_properties')
+        retjson.add_string('thisIStheDescription', 'description')
+        retjson.add_string('http://www.globaltest.int/whistleblowing/', 'public_site')
+        retjson.add_string('nco2nfio4nioniof2n43.onion', 'hidden_service')
+        retjson.add_string('/whistleblowing/', 'url_schema')
+        return retjson.printJSON()
 
 
     def render_POST(self, request, parameter):
         """
         await partially the data returned by GET, and some node 
-        specific configuration.
+        specific configuration. return as GET with the updated
+        values
         """
-        print "node POST:" + request.path 
-        return "node POST:" + request.path
+
+        print __name__, request.path, type(request), type(parameter)
+        print "received request", request, "... going to render_GET"
+        return render_GET(self, request, parameter)
+
 
 
 """
 ContextHandler part of adminHandlers covert /admin/contexts CURD
 A2
 """
-class ContextHandler(parameterHandler):
+class adminContextHandler(parameterHandler):
 
     def render_GET(self, request, parameter):
         """
@@ -160,7 +161,7 @@ GroupHandler part of adminHandlers covert
 /admin/groups/<context_$ID> CURD
 A3
 """
-class GroupHandlers(parameterHandler):
+class adminGroupHandlers(parameterHandler):
     def render_GET(self, request, parameter):
         """
         return two Arrays, groupDescriptionDict
@@ -204,7 +205,7 @@ class GroupHandlers(parameterHandler):
 ReceiverHandlers part of adminHandlers covers
 /admin/receivers/<group_$ID> A4
 """
-class ReceiversHandlers(parameterHandler):
+class adminReceiversHandlers(parameterHandler):
     def render_GET(self, request, parameter):
         """
         return Array of receiverDescriptionDict,
@@ -244,7 +245,7 @@ class ReceiversHandlers(parameterHandler):
 """
 ModulesHandlers handle /admin/modules/<string module_type> A5
 """
-class ModulesHandlers(parameterHandler):
+class adminModulesHandlers(parameterHandler):
     def render_GET(self, request, parameter):
         """
         return the list of module present in a node,

@@ -67,11 +67,11 @@ if __name__ == "__main__":
                 }
 
     adminAPImap = { 
-           'contexts': ContextHandler,
-           'node': NodeHandler,
-           'group' : GroupHandlers,        # WC
-           'receivers': ReceiversHandlers, # WC
-           'modules': ModulesHandlers      # WC 
+           'contexts': adminContextHandler,
+           'node': adminNodeHandler,
+           'group' : adminGroupHandlers,        # WC
+           'receivers': adminReceiversHandlers, # WC
+           'modules': adminModulesHandlers      # WC 
         }
 
     APImap = {
@@ -100,19 +100,4 @@ if __name__ == "__main__":
 
     reactor.listenTCP(8082, server.Site(RESTful(APImap)))
     reactor.run()
-
-
-# ORIGINAL API MAP
-#    APImap = {
-#       'node': nodeHandler,
-#       'submission': submissionHandlers,        # wildcard handling (WC)
-#       'tip': tipHandlers,                      # WC
-#       'admin': { 
-#           'contexts': adminContextHandler,
-#           'node': adminNodeHandler,
-#           'group' : adminGroupHandlers,        # WC
-#           'receivers': adminReceiversHandlers, # WC
-#           'modules': adminModulesHandlers      # WC 
-#                }
-#    }
 

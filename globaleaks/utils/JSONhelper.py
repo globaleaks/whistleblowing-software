@@ -124,8 +124,7 @@ class fileDict(RestJSONwrapper):
         # implemented in the master class
         self.fieldreview(self._values['filename'], self._values)
 
-        import sys
-        ret = json.dump(self._values, sys.stdout)
+        ret = json.dumps(self._values)
         print ret, "\n"
         return ret
 
@@ -187,9 +186,9 @@ class localizationDict(RestJSONwrapper):
 
         self.fieldreview(self._firstkey, self._values)
 
-        import sys
-        json.dump(self._values, sys.stdout)
-        print "\n"
+        ret = json.dumps(self._values)
+        print ret, "\n"
+        return ret
 
 
 class receiverDescriptionDict(RestJSONwrapper):
@@ -237,9 +236,9 @@ class receiverDescriptionDict(RestJSONwrapper):
 
         self.fieldreview(self._values['ID'], self._values)
 
-        import sys
-        json.dump(self._values, sys.stdout)
-        print "\n"
+        ret = json.dumps(self._values)
+        print ret, "\n"
+        return ret
 
 """
 genericDict is intended to be used 
@@ -278,9 +277,9 @@ class genericDict(RestJSONwrapper):
 
         self.fieldreview(self._tempnam, self._values)
 
-        import sys
-        json.dump(self._values, sys.stdout)
-        print "\n"
+        ret = json.dumps(self._values)
+        print ret, "\n"
+        return ret
 
 """
 formFieldDict is the field description for every FORM

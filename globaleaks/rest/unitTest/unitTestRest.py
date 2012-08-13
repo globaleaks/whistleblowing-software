@@ -152,6 +152,26 @@ def do_curl(url, method, not_encoded_parm=''):
 
     return data
 
+def clean_debug(rec, targetdict):
+
+    rec += 1
+    for k, v in targetdict.items():
+        if isinstance(v, dict):
+            for i in xrange(0, rec): print "\t",
+            print k
+            clean_debug(rec, v)
+        elif type(v) == type([]):
+            for elem in v:
+                if isinstance(elem, dict):
+                    clean_debug(rec, elem)
+                else:
+                    for i in xrange(0, rec): print "\t",
+                    print k," => ", str(elem)
+
+        else:
+            for i in xrange(0, rec): print "\t",
+            print k," => ", str(v)
+
 
 # P1 `/node/`
 class P1(unittest.TestCase):
@@ -161,36 +181,76 @@ class P1(unittest.TestCase):
 
     def P1_GET(self):
 
-
-        #"""
-        url='/node/'
-        method='GET'
-        expected_result=dict({ "name": "string", "statistics": nodeStatisticsDict, 
-                               "node_properties": nodePropertiesDict, 
-                               "contexts": [ contextDescriptionDict ],
-                               "description": localizationDict('nodeDesc'),
-                               "public_site": "string", "hidden_service": "string", "url_schema": "string" })
-
-        print url, method
-        result = do_curl(url, method )
-        self.assertEqual(result, expected_result)
-        """
         settings = testDict[self.__class__.__name__]
-        #import pdb
-        #pdb.set_trace()
+        print "GET debug", self.__class__.__name__
+        clean_debug(1, settings)
+
         if not settings['request']:
             result = do_curl(settings['url'], settings['method'] )
         else:
             result = do_curl(settings['url'], settings['method'], settings['request'])
 
         self.assertEqual(result, settings['expected_result'])
-        """
 
 class rest_A3(unittest.TestCase):
 
-    def test_A3_PUT(self):
-        pass
+    def do_tests(self):
+        self.A3_PUT()
+        self.A3_GET()
+        self.A3_POST()
+        self.A3_DELETE()
 
+    def A3_PUT(self):
+        settings = testDict[self.__class__.__name__]
+        print "PUT debug", self.__class__.__name__
+        clean_debug(1, settings)
+
+        if not settings['request']:
+            result = do_curl(settings['url'], settings['method'] )
+        else:
+            result = do_curl(settings['url'], settings['method'], settings['request'])
+
+        self.assertEqual(result, settings['expected_result'])
+
+    def A3_GET(self):
+        settings = testDict[self.__class__.__name__]
+        print "GET debug", self.__class__.__name__
+        clean_debug(1, settings)
+
+        if not settings['request']:
+            result = do_curl(settings['url'], settings['method'] )
+        else:
+            result = do_curl(settings['url'], settings['method'], settings['request'])
+
+        self.assertEqual(result, settings['expected_result'])
+
+
+    def A3_POST(self):
+        settings = testDict[self.__class__.__name__]
+        print "POST debug", self.__class__.__name__
+        clean_debug(1, settings)
+
+        if not settings['request']:
+            result = do_curl(settings['url'], settings['method'] )
+        else:
+            result = do_curl(settings['url'], settings['method'], settings['request'])
+
+        self.assertEqual(result, settings['expected_result'])
+
+    def A3_DELETE(self):
+        settings = testDict[self.__class__.__name__]
+        print "DELETE debug", self.__class__.__name__
+        clean_debug(1, settings)
+
+        if not settings['request']:
+            result = do_curl(settings['url'], settings['method'] )
+        else:
+            result = do_curl(settings['url'], settings['method'], settings['request'])
+
+        self.assertEqual(result, settings['expected_result'])
+
+
+# class rest_A3(unittest.TestCase):
 
 # HERE START THE TEST
 for x in testDict.iteritems():
@@ -742,4 +802,3 @@ t_P1.do_tests()
 # #              }
 # # 
 # #         "enable_stats" need to be defined along with $nodeStatisticsDict.
-# 
