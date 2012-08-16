@@ -1,9 +1,11 @@
-"""
-    Submission
-    **********
+#   submission
+#   **********
+#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
+#   :author: Arturo Filastò <art@globaleaks.org>
+#   :license: see LICENSE
+#
+#   Implements a GlobaLeaks submission.
 
-    Implements a GlobaLeaks submission.
-"""
 import random
 import string
 

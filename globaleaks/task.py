@@ -1,3 +1,12 @@
+#   task
+#   ****
+#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
+#   :author: Arturo Filastò <art@globaleaks.org>
+#   :license: see LICENSE
+#
+#   Contains all the logic for handling tip related operations.
+
+
 from zope.interface import Interface, Attribute
 from twisted.internet import defer
 from twisted.internet import reactor

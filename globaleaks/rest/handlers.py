@@ -1,11 +1,13 @@
-"""
-    handlers
-    ********
-
-    This contains all of the handlers for the REST interface.
-    Should not contain any logic that is specific to the operations to be done
-    by the particular REST interface.
-"""
+#   handlers
+#   ********
+#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
+#   :author: Arturo Filastò <art@globaleaks.org>
+#   :license: see LICENSE file
+#
+#   This contains all of the handlers for the REST interface.
+#   Should not contain any logic that is specific to the operations to be done
+#   by the particular REST interface.
+#
 
 from globaleaks import node
 from globaleaks.tip import Tip
@@ -26,11 +28,22 @@ class GLBackendHandler(RequestHandler):
     target = DummyHandler()
 
     def initialize(self, action=None):
+        """
+        Get the argument passed by the API dict.
+
+        Configure the target handler to point to the GLBackendHandler. This
+        allows the globaleaks core handlers to reach the request object.
+
+        :action the action such request is referring to.
+        """
         self.action = action
         self.target.handler = self
-        print self.request
 
     def prepare(self):
+        """
+        If we detect that the client is using the "post hack" to send a method
+        not supported by their browser, perform the "post hack".
+        """
         if self.request.method.lower() is 'post' and \
                 self.get_argument('method'):
             self.post_hack(self.get_argument('method'))
@@ -46,6 +59,16 @@ class GLBackendHandler(RequestHandler):
             raise HTTPError(405)
 
     def handle(self, method, *arg, **kw):
+        """
+        Make the target handle deal with the request.
+        Basically we do Target->method(*arg, **kw)
+
+        :method the name of the method to be called on self.target
+
+        :args the arguments that will be passed to self.target->method()
+
+        :kw the keyword arguments passed to self.target->method()
+        """
         ret = {}
         if method:
             func = getattr(self.target, method)
@@ -53,6 +76,9 @@ class GLBackendHandler(RequestHandler):
         return ret
 
     def any_method(self, method, *arg, **kw):
+        """
+        Simple hack to by default handle all methods with the same handler.
+        """
         ret = self.handle(self.action, *arg, **kw)
         self.write(dict(ret))
 

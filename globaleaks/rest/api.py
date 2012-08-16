@@ -1,11 +1,13 @@
-"""
-    api
-    ***
-
-    This contains the specification of the API.
-    Read this if you want to have an overall view of what API calls are handled
-    by what.
-"""
+#   api
+#   ***
+#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
+#   :author: Arturo Filastò <art@globaleaks.org>
+#   :license: see LICENSE file
+#
+#   Contains all the logic for handling tip related operations.
+#   This contains the specification of the API.
+#   Read this if you want to have an overall view of what API calls are handled
+#   by what.
 
 
 from globaleaks.rest.handlers import *

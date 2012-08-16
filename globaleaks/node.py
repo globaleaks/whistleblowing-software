@@ -1,3 +1,9 @@
+#   node
+#   ****
+#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
+#   :author: Arturo Filastò <art@globaleaks.org>
+#   :license: see LICENSE
+#
 from cyclone.util import ObjectDict as OD
 
 info = OD()
