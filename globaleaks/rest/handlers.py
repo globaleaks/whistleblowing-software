@@ -6,115 +6,115 @@
     Should not contain any logic that is specific to the operations to be done
     by the particular REST interface.
 """
-import json
-from twisted.web import resource
+
+from globaleaks import node
+from globaleaks.tip import Tip
+from globaleaks.admin import Admin
+from globaleaks.receiver import Receiver
+from globaleaks.submission import Submission
+
+from globaleaks import DummyHandler
 from globaleaks.utils.JSONhelper import genericDict
+
 from cyclone import escape
 from cyclone.web import RequestHandler
 
 class GLBackendHandler(RequestHandler):
+    """
+    Provides common functionality for GLBackend Request handlers.
+    """
+    target = DummyHandler()
+
+    def initialize(self, action=None):
+        self.action = action
+        self.target.handler = self
+        print self.request
+
     def prepare(self):
         if self.request.method.lower() is 'post' and \
                 self.get_argument('method'):
-            self.handle_post_hack(self.get_argument('method'))
+            self.post_hack(self.get_argument('method'))
+
+    def post_hack(self, method):
         """
-        handlers = self._get_host_handlers(request)
-        for spec in handlers:
-            match = spec.regex.match(request.path)
-            if match:
-                handler = spec.handler_class(self, request, **spec.kwargs)
-                if spec.regex.groups:
-                    # None-safe wrapper around url_unescape to handle
-                    # unmatched optional groups correctly
-                    def unquote(s):
-                        if s is None:
-                            return s
-                        return escape.url_unescape(s, encoding=None)
-                    # Pass matched groups to the handler.  Since
-                    # match.groups() includes both named and
-                    # unnamed groups,we want to use either groups
-                    # or groupdict but not both.
-                    # Note that args are passed as bytes so the handler can
-                    # decide what encoding to use.
-
-                    if spec.regex.groupindex:
-                        kwargs = dict(
-                            (str(k), unquote(v))
-                            for (k, v) in match.groupdict().iteritems())
-                    else:
-                        args = [unquote(s) for s in match.groups()]
-                break
-        if not handler:
-            handler = ErrorHandler(self, request, status_code=404)
-
+        This serves to map a POST with argument method set to one of the
+        allowed methods (DELETE, PUT) to that method call.
         """
-
-    def handle_post_hack(self, method):
         if method in self.SUPPORTED_METHODS:
             self.request.method = method
         else:
             raise HTTPError(405)
 
-    def get(self, action=None, *arg, **kw):
-        print self.request
-        self.write({"GET": str(self.__class__)})
+    def handle(self, method, *arg, **kw):
+        ret = {}
+        if method:
+            func = getattr(self.target, method)
+            ret = func(*arg, **kw)
+        return ret
 
+    def any_method(self, method, *arg, **kw):
+        ret = self.handle(self.action, *arg, **kw)
+        self.write(dict(ret))
 
-    def post(self, action=None, *arg, **kw):
-        print self.request
-        self.write({"POST": str(self.__class__)})
+    def get(self, *arg, **kw):
+        self.any_method('get', *arg, **kw)
 
-    def put(self, action=None, *arg, **kw):
-        """
-        Override these to provide support for
-        """
-        self.write({'error': 'not supported'})
+    def post(self, *arg, **kw):
+        self.any_method('post', *arg, **kw)
 
-    def delete(self, action=None, *arg, **kw):
-        return {'error': 'not supported'}
+    def put(self, *arg, **kw):
+        self.any_method('put', *arg, **kw)
+
+    def delete(self, *arg, **kw):
+        self.any_method('delete', *arg, **kw)
 
 class nodeHandler(GLBackendHandler):
     """
-    Public resource (P1) /node/.
-
-    Returns all the public information about the node.
+    # Node Handler
+        * /node
     """
     def get(self):
-        print self.request
-        # self.get_argument('foo')
-
-        retjson = genericDict('render_GET_P1')
-        retjson.add_string('FunkyNodeName', 'name')
-        retjson.add_string('statz', 'statistic')
-        retjson.add_string('BOOLofPROPERTIES', 'node_properties')
-        retjson.add_string('This is the description', 'description')
-        retjson.add_string('http://funkytransparency.pin', 'public_site')
-        retjson.add_string('http://nf940289fn24fewifnm.onion', 'hidden_service')
-        retjson.add_string('/', 'url_schema')
-        return retjson.printJSON()
+        self.write(dict(node.info))
 
 class submissionHandler(GLBackendHandler):
-    pass
-
-class receiverHandler(GLBackendHandler):
-    pass
-
-class adminHandler(GLBackendHandler):
-    def get(self, action=None, *arg, **kw):
-        pass
     """
-        retjson = genericDict('render_GET_A1')
-        retjson.add_string('NodeNameForTheAdmin', 'name')
-        retjson.add_string('StatisticToBeXXX', 'statistics')
-        retjson.add_string('SomePrivateStatsasBefore', 'private_stats')
-        retjson.add_string('ConfigurableBooleanParameter', 'node_properties')
-        retjson.add_string('thisIStheDescription', 'description')
-        retjson.add_string('http://www.globaltest.int/whistleblowing/', 'public_site')
-        retjson.add_string('nco2nfio4nioniof2n43.onion', 'hidden_service')
-        retjson.add_string('/whistleblowing/', 'url_schema')
-        return retjson.printJSON()
+    # Submission Handlers
+        * /submission/<ID>/
+        * /submission/<ID>/fields
+        * /submission/<ID>/groups
+        * /submission/<ID>/files
+        * /submission/<ID>/finalize
     """
+    target = Submission()
 
 class tipHandler(GLBackendHandler):
-    pass
+    """
+    # Tip Handlers
+        * /tip/<ID>/
+        * /tip/<ID>/comment
+        * /tip/<ID>/files
+        * /tip/<ID>/finalize
+        * /tip/<ID>/download
+        * /tip/<ID>/pertinence
+    """
+    target = Tip()
+
+class receiverHandler(GLBackendHandler):
+    """
+    # Receiver Handlers
+        * /reciever/<ID>/
+        * /receiver/<ID>/<MODULE>
+    """
+    target = Receiver()
+
+class adminHandler(GLBackendHandler):
+    """
+    # Admin Handlers
+        * /admin/node
+        * /admin/contexts
+        * /admin/groups/<ID>
+        * /admin/receivers/<ID>
+        * /admin/modules/<MODULE>
+    """
+    target = Admin()
 
