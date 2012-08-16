@@ -80,6 +80,7 @@ do not expect a parameter. handle READ and SET
 A1
 """
 class adminNodeHandler(parameterHandler):
+
     def render_GET(self, request, parameter):
         """
         return the information of the node, various blob of data
@@ -99,7 +100,6 @@ class adminNodeHandler(parameterHandler):
         retjson.add_string('/whistleblowing/', 'url_schema')
         return retjson.printJSON()
 
-
     def render_POST(self, request, parameter):
         """
         await partially the data returned by GET, and some node 
@@ -109,8 +109,11 @@ class adminNodeHandler(parameterHandler):
 
         print __name__, request.path, type(request), type(parameter)
         print "received request", request, "... going to render_GET"
-        return render_GET(self, request, parameter)
+        return self.render_GET(request, parameter)
 
+    def getChild(self, path, request):
+        print self.__class__.name, "child request!", path, request
+        return adminNodeHandler()
 
 
 """
@@ -133,6 +136,7 @@ class adminContextHandler(parameterHandler):
         return as get or errors
         """
         print "context POST:" + request.path + ", " + parameter
+        return self.render_GET(request, parameter)
         return "context POST:" + request.path + ", " + parameter
 
     def render_PUT(self, request, parameter):
@@ -141,6 +145,7 @@ class adminContextHandler(parameterHandler):
         return as get or errors
         """
         print "context PUT:" + request.path + ", " + parameter
+        return self.render_GET(request, parameter)
         return "context PUT:" + request.path + ", " + parameter
 
 
@@ -150,10 +155,12 @@ class adminContextHandler(parameterHandler):
         return as get or errors
         """
         print "context DELETE:" + request.path + ", " + parameter
+        return self.render_GET(request, parameter)
         return "context DELETE:" + request.path + ", " + parameter
 
     def getChild(self, path, request):
         print self.__class__.name, "GroupH child request!", path, request
+        return adminContextHandler()
 
 
 """
@@ -162,13 +169,19 @@ GroupHandler part of adminHandlers covert
 A3
 """
 class adminGroupHandlers(parameterHandler):
+
     def render_GET(self, request, parameter):
         """
         return two Arrays, groupDescriptionDict
         and modules_available (moduleDataDict)
         """
         print "GroupH GET:" + request.path + ", " + parameter
-        return "GroupH GET:" + request.path + ", " + parameter
+
+        retjson = genericDict('render_GET_A3')
+        retjson.add_dict({'tobedone' : 1, 'other': 'XXX'}, 'groups')
+        # retjson.add_array
+        retjson.add_string('themodulearraydict', 'modules_available')
+        return retjson.printJSON()
 
     def render_POST(self, request, parameter):
         """
@@ -176,8 +189,17 @@ class adminGroupHandlers(parameterHandler):
         groupDescriptionDict to be updated
         return as get
         """
-        print "GroupH POST:" + request.path + ", " + parameter
-        return "GroupH POST:" + request.path + ", " + parameter
+
+        receivedjson = genericDict('received_A3_POST')
+        print type(request)
+        print request
+        if isinstance(request, dict):
+            receivedjson.push_fields(request)
+            print "stampa antani"
+            print receivedjson.printJSON()
+
+        print "GroupH POST:" + request.path + ", " + parameter + "return as GET"
+        return self.render_GET(request, parameter)
 
     def render_PUT(self, request, parameter):
         """
@@ -186,6 +208,7 @@ class adminGroupHandlers(parameterHandler):
         """
         print "GroupH PUT:" + request.path + ", " + parameter
         return "GroupH PUT:" + request.path + ", " + parameter
+        return self.render_GET(request, parameter)
 
 
     def render_DELETE(self, request, parameter):
@@ -195,6 +218,7 @@ class adminGroupHandlers(parameterHandler):
         """
         print "GroupH DELETE:" + request.path + ", " + parameter
         return "GroupH DELETE:" + request.path + ", " + parameter
+        return self.render_GET(request, parameter)
 
     def getChild(self, path, request):
         print self.__class__.name, "GroupH child request!", path, request

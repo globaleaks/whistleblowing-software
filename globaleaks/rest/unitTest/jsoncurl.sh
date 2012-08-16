@@ -1,5 +1,6 @@
 #!/bin/sh
 
+echo "This is a test useful for comparation, do not use this script for tests"
 
 url="node"
 payload="{'fuffa': 'xxx', 'antani': 1, 'tapioco': '1'}"

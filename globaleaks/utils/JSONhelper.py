@@ -241,7 +241,7 @@ class receiverDescriptionDict(RestJSONwrapper):
         return ret
 
 """
-genericDict is intended to be used 
+genericDict is intended to be used, for all the REST blob not defined before
 """
 class genericDict(RestJSONwrapper):
 

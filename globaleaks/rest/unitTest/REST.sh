@@ -1,5 +1,7 @@
 #!/bin/sh
 
+echo "This script is used for comparation, do not use this script as test"
+
 dumpdir="/tmp/RESTtest"
 
 # perform_test $testname $url $method $response $request 

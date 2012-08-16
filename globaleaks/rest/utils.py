@@ -74,7 +74,6 @@ def _computeAllowedMethods(resource):
     """
     allowedMethods = []
     for name in prefixedMethodNames(resource.__class__, "render_"):
-        print "debug _computeAllowMeth", resource.__class__, "and", name
         allowedMethods.append(name)
     return allowedMethods
 

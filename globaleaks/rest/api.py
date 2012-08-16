@@ -58,20 +58,20 @@ if __name__ == "__main__":
 
     # not all APIs are know at the start of the software,
     # modules can implement their own REST
-    
+
     tipAPImap = { 
             'download_material': downloadMaterialHandler,
             'add_comment': addCommentHandler,
             'pertinence': pertinenceHandler,
             'add_description': addDescriptionHandler
-                }
+        }
 
     adminAPImap = { 
            'contexts': adminContextHandler,
            'node': adminNodeHandler,
            'group' : adminGroupHandlers,        # WC
            'receivers': adminReceiversHandlers, # WC
-           'modules': adminModulesHandlers      # WC 
+           'modules': adminModulesHandlers      # WC
         }
 
     APImap = {

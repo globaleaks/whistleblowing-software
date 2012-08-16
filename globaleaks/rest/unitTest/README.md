@@ -13,5 +13,11 @@ In another console
     $ cd globaleaks/rest/unitTest
     $ python unitTestRest.py
 
+or try the option
 
-REST.sh and jsoncurl.sh are testing script useful for some comparative tests, they are extremely poor.
+    $ python unitTestRest.py v
+
+enable the verbose dumping of the sent/receiver JSON object (or errors)
+
+REST.sh and jsoncurl.sh are testing script useful for some comparative tests, 
+they are extremely poor, and is not intended to be used as test reference.
