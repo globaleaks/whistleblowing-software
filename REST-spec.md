@@ -28,20 +28,20 @@ P3 `/submission/<submission_id>`
 
 Returns the currently submitted fields and material filenames and size, this is the only interface giving back the complete submission status (GET only)
 
-P4 `/submission/<submission_id>/submit_fields`
+P4 `/submission/<submission_id>/fields`
 
 does the submission of the fields that are supported by the node in question and update the selected submission_id (POST only)
 
-P5 `/submission/<submission_id>/submit_group`
+P5 `/submission/<submission_id>/groups`
 
-Optional Interface (may not be provided by Node Options) select the groups into the list of recipients for the selected submission. 
-Group are addressed by their Id (POST only) 
+Optional Interface (may not be provided by Node Options) select the groups into the list of recipients for the selected submission.
+Group are addressed by their Id (POST only)
 
 P6 `/submission/<submission_id>/finalize`
 
 Completes the submission in progress, **give to the server the receipt secret** and confirm the receipt (or answer with a part of them). settings dependent.  (POST only)
 
-P7 `/submission/<submission_id>/upload_file`
+P7 `/submission/<submission_id>files`
 
 upload a file to the selected submission_id (REST depends from JQueryFileUpload integration)
 
@@ -50,33 +50,33 @@ upload a file to the selected submission_id (REST depends from JQueryFileUpload 
 T1 `/tip/<string auth t_id>`
 
 Returns the content of the submission with the specified Id.
-Inside of the request headers, if supported, the password for accessing the tip can be passed. 
-This returns a session token that is then used for all future requests to be authenticated. 
+Inside of the request headers, if supported, the password for accessing the tip can be passed.
+This returns a session token that is then used for all future requests to be authenticated.
 Supports GET (all status data), POST (comment and pertinence)
 
-T2 `/tip/<uniq_Tip_$ID>/add_comment`
+T2 `/tip/<uniq_Tip_$ID>/comment`
 
 Both WB and Receiver can write a comment in a Tip (POST only)
 
 ### Tip subsection API (WhistleBlower only)
 
-T3 `/tip/<uniq_Tip_$ID>/update_file`
+T3 `/tip/<uniq_Tip_$ID>/files`
 
 Add a new folder files in the associated submission, (update the Tip for all the
 receiver, in regards of the modules supports)
 The material is published when 'finalized'.
 (GET, POST)
 
-T4 `/tip/<string t_id>/finalize_update`
+T4 `/tip/<string t_id>/finalize`
 
-Used to add a description in the uploaded files. 
-This action make the new uploaded data available for download. 
-If this action is missed, the material can be published after a timeout expiring 
+Used to add a description in the uploaded files.
+This action make the new uploaded data available for download.
+If this action is missed, the material can be published after a timeout expiring
 at midnight (MAY BE REVIEWED) (POST only)
 
 ### Tip subsection (API Receivers only)
 
-T5 `/tip/<string t_id>/download_material`
+T5 `/tip/<string t_id>/download`
 
 This interface can be disabled by delivery configuration.
 
@@ -96,7 +96,7 @@ express a pertinence value (-1 or +1, True/False) (POST only)
 
 R1 `/receiver/<string t_id>/overview`
 
-Brief summary of all related Tip, and brief view of personal settings 
+Brief summary of all related Tip, and brief view of personal settings
 customizable by the receiver.
 
 R2 `/receiver/<string t_id>/<string module_name>`
@@ -118,33 +118,33 @@ context_$ID, properties, description.
 A3 `/admin/groups/<context_$ID>/`
 
 Having the context_$ID, list, delete, update or create groups of receiver,
-every group has an extension module configured to manage correctly the 
+every group has an extension module configured to manage correctly the
 kind of receiver present.
 
 A4 `/admin/receivers/<group_$ID>/`
 
 Having the group_$ID of a certain group, the admin can perform
-CURD operation over the group. Adding receiver, change properties, 
+CURD operation over the group. Adding receiver, change properties,
 delete and update.
 
 A5 `/admin/modules/<string module_type>/`
 
 as defined in [issue #15](https://github.com/globaleaks/GLBackend/issues/15), there
-are various flexible section of GLBackend configurable and choosable by the 
+are various flexible section of GLBackend configurable and choosable by the
 administrator. Here would be listed, selected and configured. Every module
 is a python file present in the running code, update the modules list would require
 a remote access.
 
-# Synthesis 
+# Synthesis
 
 P1 `/node/`
 
 P2 `/submission`
 P3 `/submission/<submission_$ID>/status`
-P4 `/submission/<submission_$ID>/submit_fields`
-P5 `/submission/<submission_$ID>/submit_group`
+P4 `/submission/<submission_$ID>/fields`
+P5 `/submission/<submission_$ID>/groups`
 P6 `/submission/<submission_$ID>/finalize`
-P7 `/submission/<submission_$ID>/upload_file`
+P7 `/submission/<submission_$ID>files`
 
 R1 `/receiver/<string t_id>/overview`
 R2 `/receiver/<string t_id>/<string module_name>`
@@ -158,10 +158,10 @@ A5 `/admin/modules/<string module_type>/`
 _Note: all the Tip interfaces depends on Tip implementation, the presented interface are the default Tip_
 
 T1 `/tip/<uniq_Tip_$ID>`
-T2 `/tip/<uniq_Tip_$ID>/add_comment`
-T3 `/tip/<uniq_Tip_$ID>/update_file`
-T4 `/tip/<uniq_Tip_$ID>/finalize_update`
-T5 `/tip/<uniq_Tip_$ID>/download_material`
+T2 `/tip/<uniq_Tip_$ID>/comment`
+T3 `/tip/<uniq_Tip_$ID>/files`
+T4 `/tip/<uniq_Tip_$ID>/finalize`
+T5 `/tip/<uniq_Tip_$ID>/download`
 T6 `/tip/<uniq_Tip_$ID>/pertinence`
 
 # Description syntax adopted in this document
@@ -171,10 +171,10 @@ When this format is used:
 
      'key': [
                { 'label1': 'value-one', 'label2' : 'SpecialType-two' },
-               { } 
+               { }
             ]
 
-Mean that key address an array of elements. The format of the element is reported only once, and the 
+Mean that key address an array of elements. The format of the element is reported only once, and the
 possible presence of other elements is represented by " { } " before the array closure.
 
 # Data Object involved
@@ -195,12 +195,12 @@ of the datatype-name, the list and the detailed meaning would be found in:
   * **ID**: Identified, is an unique value amount the same kind of data, and would be
     and integer or a string user choosen. The property of the Id is to be unique.
 
-  * **fileDict**: file descriptor element, every file (uploaded or available in download) is 
+  * **fileDict**: file descriptor element, every file (uploaded or available in download) is
     represented with this dict:
 
-        {   'filename': 'string', 
-            'comment': 'string', 
-            'size': 'Int', 
+        {   'filename': 'string',
+            'comment': 'string',
+            'size': 'Int',
             'content_type': 'string',
             'date': 'Time',
             'CleanedMetaData': 'int'
@@ -216,7 +216,7 @@ of the datatype-name, the list and the detailed meaning would be found in:
             'FR' : "je m'appelle Marìò, pppffff"
         }
 
-  * **receiverDescriptionDict**, series of tuple with boolean values, expressing the permissions given 
+  * **receiverDescriptionDict**, series of tuple with boolean values, expressing the permissions given
     to a receiver, and series of descriptive data for the single receiver.
 
     **Those properties list need to be reviewed with the community and the legal team**
@@ -249,7 +249,7 @@ of the datatype-name, the list and the detailed meaning would be found in:
             'AdminAreReceivers': 'Bool',
             'NodeProvideDocsPublication': 'Bool',
             'FixedCorpusOfReceiver': 'Bool',
-            'ReceiverAreAnonymous': 'Bool' 
+            'ReceiverAreAnonymous': 'Bool'
         }
 
     **Those properties list need to be reviewed with the community and the legal team**
@@ -261,16 +261,16 @@ of the datatype-name, the list and the detailed meaning would be found in:
 
   * **formFieldsDict**, series of element describing an series of Field using keyword:
 
-        {   'element-name': 'string', 
-            'element-type': 'Enum', 
+        {   'element-name': 'string',
+            'element-type': 'Enum',
             'default-value': 'string',
-            'required': 'Bool' 
+            'required': 'Bool'
         }
 
   * **moduleDataDict**, is an generic object used to describe flexible object in GLBackend:
 
-        {   'name': '$ID', 
-            'active': 'Bool', 
+        {   'name': '$ID',
+            'active': 'Bool',
             'module_type': 'string'
             'module_name': 'string'
             'description': 'string',
@@ -294,7 +294,7 @@ of the datatype-name, the list and the detailed meaning would be found in:
             'update_date': 'Time'
         }
 
-  * /tipStatistics/, composite object containing the stats of a single Tip, concept of 
+  * /tipStatistics/, composite object containing the stats of a single Tip, concept of
      access and delivery limit need to be supported (or simply unset) inside the
      different modules.
 
@@ -318,15 +318,15 @@ of the datatype-name, the list and the detailed meaning would be found in:
         'access_performed': 'Int', 'delivery_used': 'Int',
 
     those elements, in spite of being core feature of the Tip, would be overried
-    by specific notification and delivery modules, therefore, also their 
+    by specific notification and delivery modules, therefore, also their
     message likely need to be moven in a flexible approach.
 
-    expiration date instead is a core feature system dependent. would be 
+    expiration date instead is a core feature system dependent. would be
     postponed, the data can be replicated, but this concept would remain.
 
   * /tipIndexDict/, this is a block of informations for the receiver, and descrive Tip lists
 
-        {   'tip_access_ID': '$ID', 
+        {   'tip_access_ID': '$ID',
             'tip_title': 'string',
             'context_ID': '$ID',
             'group_ID': '$ID',
@@ -341,7 +341,7 @@ of the datatype-name, the list and the detailed meaning would be found in:
 
   * /contextDescriptionDict/, this series of field contain the description of a
     context. Which data is expected by the whistleblower and which group are
-    configured for receive the data. If some module are enabled here and 
+    configured for receive the data. If some module are enabled here and
     policy, description, public information about a context.
 
         {   'context_id': '$ID'
@@ -420,7 +420,7 @@ P2 `/submission`
         to be used when referencing it as a whistleblower.
         ID is a random 64bit integer
         * Response:
-          { 
+          {
               'submission_id': '$ID',
               'creation_time': 'Time'
           }
@@ -449,7 +449,7 @@ permit to update fields content and group selection.
     :GET
         Returns the currently submitted fields, selected group, and uploaded files.
         * Response:
-          { 
+          {
             'fields': '$formFieldsDict',
             'group_matrix': [ '$ID', '$ID' ],
             'uploaded_file': [ '$fileDict', {} ]
@@ -461,7 +461,7 @@ permit to update fields content and group selection.
 
     :POST
         * Request:
-          { 
+          {
             'fields': '$formFieldsDict',
             'group_matrix': [ '$ID', '$ID' ]
           }
@@ -474,26 +474,26 @@ permit to update fields content and group selection.
           If group ID is invalid:
             { 'error_code': 'Int', 'error_message': 'group selected ID is invalid' }
 
-P4 `/submission/<submission_$ID>/submit_fields`
-P5 `/submission/<submission_$ID>/submit_group`
+P4 `/submission/<submission_$ID>/fields`
+P5 `/submission/<submission_$ID>/groups`
 
 P6 `/submission/<submission_$ID>/finalize`
 
     :POST
-        checks if all the 'Required' fields are present, then 
+        checks if all the 'Required' fields are present, then
         completes the submission in progress and returns a receipt.
-        The WB may propose a receipt (because is a personal secret 
+        The WB may propose a receipt (because is a personal secret
         like a password, afterall)
 
         * Request (optional, see "Rensponse Variant" below):
-          { 
+          {
             'proposed-receipt': 'string'
           }
 
         * Response (HTTP code 200):
           If the receipt is acceptable with the node requisite (minimum length
           respected, lowecase/uppercase, and other detail that need to be setup
-          during the context configuration), rs saved as authenticative secret for 
+          during the context configuration), rs saved as authenticative secret for
           the WB Tip, is echoed back to the client Status Code: 201 (Created)
 
           Status Code: 200 (OK)
@@ -501,8 +501,8 @@ P6 `/submission/<submission_$ID>/finalize`
 
         * Variant Response (HTTP code 201):
           If the receipt do not fit node prerequisite, or is expected but not provide
-          the submission is finalized, and the server create a receipt. 
-          The client print back to the WB, who record that 
+          the submission is finalized, and the server create a receipt.
+          The client print back to the WB, who record that
 
           Status Code: 201 (Created)
           { 'receipt': 'string' }
@@ -516,12 +516,12 @@ P6 `/submission/<submission_$ID>/finalize`
           { 'error_code': 'Int', 'error_message': 'fields requirement not respected' }
 
 
-P7 `/submission/<submission_$ID>/upload_file`, 
+P7 `/submission/<submission_$ID>files`,
 
     XXX
     XXX
 
-    This interface supports resume. 
+    This interface supports resume.
     This interface expose the JQuery FileUploader and the REST/protocol
     implemented on it.
     FileUploader has a dedicated REST interface to handle start|stop|delete.
@@ -550,7 +550,7 @@ T1 `/tip/<uniq_Tip_$ID>` (shared between Receiver and WhistleBlower)
 
         * Response:
           Status Code: 200 (OK)
-          { 
+          {
             'fields': '$formFieldsDict',
             'comments': [ { 'author_name': 'string',
                             'date': 'Time',
@@ -595,7 +595,7 @@ T1 `/tip/<uniq_Tip_$ID>` (shared between Receiver and WhistleBlower)
           Status Code: 204 (No Content)
 
 
-T2 `/tip/<uniq_Tip_$ID>/add_comment` (shared between Receiver and WhistleBlowe)
+T2 `/tip/<uniq_Tip_$ID>/comment` (shared between Receiver and WhistleBlowe)
 
     Permit either to WB authorized by Receipt, or to Receivers.
     adds a new comment to the submission.
@@ -603,19 +603,19 @@ T2 `/tip/<uniq_Tip_$ID>/add_comment` (shared between Receiver and WhistleBlowe)
     :POST
         * Request:
             {
-                'comment': 'string' 
+                'comment': 'string'
             }
 
         * Response:
           Status Code: 200 (OK)
-        * Error handling 
+        * Error handling
           as per `GET /tip/<uniq_Tip_$ID>/`
 
 
-T3 `/tip/<uniq_Tip_$ID>/update_file` (WhistleBlower only)
+T3 `/tip/<uniq_Tip_$ID>/files` (WhistleBlower only)
 
     perform update operations. If a Material Set has been started, the file is appended
-    in the same pack. A Material Set is closed when the `finalize_update` is called.
+    in the same pack. A Material Set is closed when the `finalize` is called.
 
     This interface is implemented using (jQueryFileUploader) in the same way of P7
 
@@ -627,7 +627,7 @@ T3 `/tip/<uniq_Tip_$ID>/update_file` (WhistleBlower only)
         * Request: /
         * Response:
         every object is repeated for every "NOT YET finalized Material Set":
-        { 
+        {
           'finalized-material-date': 'Time',
           'description': 'string',
           'uploaded': [ $fileDict, {} ],
@@ -636,14 +636,14 @@ T3 `/tip/<uniq_Tip_$ID>/update_file` (WhistleBlower only)
      :POST
 
         This interface need to be reviewed when jQuery FileUploader,
-        and expose the same interface of upload_file
+        and expose the same interface of file
 
        * Error handling:
          As per jQueryFileUploader
          and as per `/tip/<uniq:_Tip_$ID>/`
 
 
-T4 `/tip/<uniq_Tip_$ID>/finalize_update` (WhistleBlowing)
+T4 `/tip/<uniq_Tip_$ID>/finalize` (WhistleBlowing)
 
     Used to add description in the Material set not yet completed (optional)
     Used to complete the files upload, completing the Material Set.
@@ -661,7 +661,7 @@ T4 `/tip/<uniq_Tip_$ID>/finalize_update` (WhistleBlowing)
         * Error handling as per `/tip/<uniq_Tip_$ID>/`
 
 
-T5 `/tip/<uniq_Tip_$ID>/download_material` (Receiver - **Delivery module dependent**)
+T5 `/tip/<uniq_Tip_$ID>/download` (Receiver - **Delivery module dependent**)
 
     This REST interface would be likely present, and in future would be moved
     in a separate documentation of optional REST interfaces. Is implemented by
@@ -687,7 +687,7 @@ T6 `/tip/<uniq_Tip_$ID>/pertinence` (Receiver only)
     This can only be done by a receiver that has not yet voted.
 
     :POST
-        * Request: 
+        * Request:
           { 'pertinence-vote': 'Bool' }
 
         * Response:
@@ -731,7 +731,7 @@ R2 `/receiver/<string t_id>/<string module_name>`
 Every module need a way to specify a personal interface where receive preferences, this would be
 used in Notification and Delivery modules.
 
-    :GET 
+    :GET
         * Response:
           Status Code: 200 (OK)
           {
@@ -764,7 +764,7 @@ used in Notification and Delivery modules.
 
       * Response
 
-    if 'create' is True, 
+    if 'create' is True,
         SpecificObjet['id'] is ignored, SpecificObject is copied and a new resource created.
         return as GET
 
@@ -800,7 +800,7 @@ A2 `/admin/contexts/`
     :POST
         * Request:
           Implements the fallback if PUT and DELETE method do not work
-        { 
+        {
           'create': 'Bool',
           'delete': 'Bool',
           'context': '$contexDescriptionDict',
@@ -823,13 +823,13 @@ A2 `/admin/contexts/`
 
 A3 `/admin/group/<context_$ID>/`
 
-    Retrive, create, update or delete the target group 
-    (the context_$ID or name are supposed previously obtained by `/admin/contexts/` 
+    Retrive, create, update or delete the target group
+    (the context_$ID or name are supposed previously obtained by `/admin/contexts/`
     or `/admin/node/`, having every context one or more group, you can access all of
     them from this interface)
 
     :GET
-       Returns a json object listing the available group and the available modules 
+       Returns a json object listing the available group and the available modules
        * Response:
             {
                 'groups': '$groupDescriptionDict',
@@ -838,7 +838,7 @@ A3 `/admin/group/<context_$ID>/`
 
         receiver_module need to be specified always, does not exist a group
         without a module that define how the receiver list has been retrivered.
-        confiuration_type is a string depending from the configured module used to 
+        confiuration_type is a string depending from the configured module used to
         retrive receivers list in the group.
 
     :POST
@@ -863,7 +863,7 @@ A3 `/admin/group/<context_$ID>/`
                 'group': '$groupDescriptionDict'
             }
 
-         If group_id is missing, is created a new one 
+         If group_id is missing, is created a new one
          If group_id is present, are updated the current data
 
        * Response:
@@ -875,7 +875,7 @@ A4 `/admin/receiver/<group_$ID>/`
     All the operations, in case of wrong group_$ID, return:
         Error Code 400 (Bad Request)
         { 'error_code': 'Int', 'error_message': Invalid group ID' }
- 
+
     :GET
         Returns a json object containing all the receivers information,
         coherently to the module requested.
@@ -886,10 +886,10 @@ A4 `/admin/receiver/<group_$ID>/`
                'receivers' : [ '$receiverDescriptionDict', { } ]
             }
 
-          In this case, the remote ticketing system module, has not a single receiver 
+          In this case, the remote ticketing system module, has not a single receiver
           confiugured.
-          This module is configured to describe a specific group, and when the users 
-          of this group need to be contacted, the module relay. the properties are 
+          This module is configured to describe a specific group, and when the users
+          of this group need to be contacted, the module relay. the properties are
           UnSet because not used (the submission is dispatch in a remote system).
 
     :POST
@@ -903,7 +903,7 @@ A4 `/admin/receiver/<group_$ID>/`
             }
 
     :DELETE
-        delete an available receiver, in the selected module/group, 
+        delete an available receiver, in the selected module/group,
         same effect of POST with delete = True
         * Request:
             {
@@ -928,7 +928,7 @@ A4 `/admin/receiver/<group_$ID>/`
 
 A5 `/admin/modules/<string module_type>/`
 
-These interface permit to list, configure, enable and disasble all the 
+These interface permit to list, configure, enable and disasble all the
 available modules.
 The modules are flexible implementation extending a specific part of GLBackend,
 The modules would be part of a restricted group of elements:
@@ -943,8 +943,8 @@ and one of those keyword need to be requested in the REST interface.
         * Response:
         {
           'modules_available': [ '$moduleDataDict', { } ]
-          'context_applied': { 
-                      'module_$ID': [ 'context_$ID', 'context_$ID' ], 
+          'context_applied': {
+                      'module_$ID': [ 'context_$ID', 'context_$ID' ],
                       { } }
         }
 
@@ -972,8 +972,8 @@ and one of those keyword need to be requested in the REST interface.
 
 A1 `/admin/node`
 
-    The Get interface is thinked as first blob of data able to present the node, 
-    therefore not all the information are specific of this resource (like 
+    The Get interface is thinked as first blob of data able to present the node,
+    therefore not all the information are specific of this resource (like
     contexts description or statististics), but for reduce the amount of request
     performed by the client, has been collapsed into.
 

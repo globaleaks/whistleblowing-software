@@ -1,47 +1,87 @@
 """
-    Handler
-    *******
+    handlers
+    ********
 
     This contains all of the handlers for the REST interface.
     Should not contain any logic that is specific to the operations to be done
     by the particular REST interface.
-
-    It's simply implement the inteface 
 """
 import json
 from twisted.web import resource
-from globaleaks.rest.utils import processChildren, parameterHandler
 from globaleaks.utils.JSONhelper import genericDict
+from cyclone import escape
+from cyclone.web import RequestHandler
 
-__all__ = [ 'nodeHandler', 
-                # single, P1
-            'submissionHandlers', 
-                # (parameter  + fixed), P2-P7
-            'receiverHandlers',
-                # (parameter + parameter) and (parameter + fixed), R1-R2
-            'adminHandlers',
-                # generic handler of /admin/ resource
-            'adminContextHandler', 'adminNodeHandler', 'adminGroupHandlers', 
-            'adminReceiversHandlers', 'adminModulesHandlers',
-                # (parameter + fixed), A1-A5
-            'tipHandlers',
-            'downloadMaterialHandler', 'addCommentHandler',
-            'pertinenceHandler', 'addDescriptionHandler' 
-                # Tip handler (implemented as external REST), T1-T6
-                # XXX - not yet externalized, the external one is /external_test/
-            ]
+class GLBackendHandler(RequestHandler):
+    def prepare(self):
+        if self.request.method.lower() is 'post' and \
+                self.get_argument('method'):
+            self.handle_post_hack(self.get_argument('method'))
+        """
+        handlers = self._get_host_handlers(request)
+        for spec in handlers:
+            match = spec.regex.match(request.path)
+            if match:
+                handler = spec.handler_class(self, request, **spec.kwargs)
+                if spec.regex.groups:
+                    # None-safe wrapper around url_unescape to handle
+                    # unmatched optional groups correctly
+                    def unquote(s):
+                        if s is None:
+                            return s
+                        return escape.url_unescape(s, encoding=None)
+                    # Pass matched groups to the handler.  Since
+                    # match.groups() includes both named and
+                    # unnamed groups,we want to use either groups
+                    # or groupdict but not both.
+                    # Note that args are passed as bytes so the handler can
+                    # decide what encoding to use.
 
-"""
-Public resource (P1) /node/ return a general amount of info
-"""
-class nodeHandler(parameterHandler):
+                    if spec.regex.groupindex:
+                        kwargs = dict(
+                            (str(k), unquote(v))
+                            for (k, v) in match.groupdict().iteritems())
+                    else:
+                        args = [unquote(s) for s in match.groups()]
+                break
+        if not handler:
+            handler = ErrorHandler(self, request, status_code=404)
 
-    def __init__(self, name="default"):
-        self.name = name
-        resource.Resource.__init__(self)
+        """
 
-    def render_GET(self, request, parameter):
-        print __name__, request.path, type(request), type(parameter)
+    def handle_post_hack(self, method):
+        if method in self.SUPPORTED_METHODS:
+            self.request.method = method
+        else:
+            raise HTTPError(405)
+
+    def get(self, action=None, *arg, **kw):
+        print self.request
+        self.write({"GET": str(self.__class__)})
+
+
+    def post(self, action=None, *arg, **kw):
+        print self.request
+        self.write({"POST": str(self.__class__)})
+
+    def put(self, action=None, *arg, **kw):
+        """
+        Override these to provide support for
+        """
+        self.write({'error': 'not supported'})
+
+    def delete(self, action=None, *arg, **kw):
+        return {'error': 'not supported'}
+
+class nodeHandler(GLBackendHandler):
+    """
+    Public resource (P1) /node/.
+
+    Returns all the public information about the node.
+    """
+    def get(self):
+        print self.request
+        # self.get_argument('foo')
 
         retjson = genericDict('render_GET_P1')
         retjson.add_string('FunkyNodeName', 'name')
@@ -53,41 +93,16 @@ class nodeHandler(parameterHandler):
         retjson.add_string('/', 'url_schema')
         return retjson.printJSON()
 
-class submissionHandlers(resource.Resource):
-    def render_GET(self, request):
-        return str(self.__class__.__name__ )
+class submissionHandler(GLBackendHandler):
+    pass
 
-class receiverHandlers(resource.Resource):
-    def render_GET(self, request):
-        return str(self.__class__.__name__ )
+class receiverHandler(GLBackendHandler):
+    pass
 
-##############################################################
-# Follow the Admin Handlers
-class adminHandlers(resource.Resource):
-    path = 'default'
-
-    def __init__(self):
-        print "init of adminHandlers"
-        resource.Resource.__init__(self)
-
-    def getChild(self, path, request):
-        print self.__class__.name, "ADMIN Got child request!", path, request
-        return adminHandlers()
-
-"""
-NodeHandler part of adminHandlers covert, /admin/node
-do not expect a parameter. handle READ and SET
-A1
-"""
-class adminNodeHandler(parameterHandler):
-    def render_GET(self, request, parameter):
-        """
-        return the information of the node, various blob of data
-        object contained: nodeStatisticDict, nodePropertiesDict,
-        contextDescription (array of), localizationDict
-        """
-        print __name__, request.path, type(request), type(parameter)
-
+class adminHandler(GLBackendHandler):
+    def get(self, action=None, *arg, **kw):
+        pass
+    """
         retjson = genericDict('render_GET_A1')
         retjson.add_string('NodeNameForTheAdmin', 'name')
         retjson.add_string('StatisticToBeXXX', 'statistics')
@@ -98,236 +113,8 @@ class adminNodeHandler(parameterHandler):
         retjson.add_string('nco2nfio4nioniof2n43.onion', 'hidden_service')
         retjson.add_string('/whistleblowing/', 'url_schema')
         return retjson.printJSON()
+    """
 
+class tipHandler(GLBackendHandler):
+    pass
 
-    def render_POST(self, request, parameter):
-        """
-        await partially the data returned by GET, and some node 
-        specific configuration. return as GET with the updated
-        values
-        """
-
-        print __name__, request.path, type(request), type(parameter)
-        print "received request", request, "... going to render_GET"
-        return render_GET(self, request, parameter)
-
-
-
-"""
-ContextHandler part of adminHandlers covert /admin/contexts CURD
-A2
-"""
-class adminContextHandler(parameterHandler):
-
-    def render_GET(self, request, parameter):
-        """
-        return array of contextDescriptionDict
-        """
-        print "context GET:" + request.path + ", " + parameter
-        return "context GET:" + request.path + ", " + parameter
-
-    def render_POST(self, request, parameter):
-        """
-        check 'create' or 'delete' and wait a
-        contextDescriptionDict to be updated
-        return as get or errors
-        """
-        print "context POST:" + request.path + ", " + parameter
-        return "context POST:" + request.path + ", " + parameter
-
-    def render_PUT(self, request, parameter):
-        """
-        await a context to add, and assign an ID
-        return as get or errors
-        """
-        print "context PUT:" + request.path + ", " + parameter
-        return "context PUT:" + request.path + ", " + parameter
-
-
-    def render_DELETE(self, request, parameter):
-        """
-        await a context to delete, check if exists
-        return as get or errors
-        """
-        print "context DELETE:" + request.path + ", " + parameter
-        return "context DELETE:" + request.path + ", " + parameter
-
-    def getChild(self, path, request):
-        print self.__class__.name, "GroupH child request!", path, request
-
-
-"""
-GroupHandler part of adminHandlers covert 
-/admin/groups/<context_$ID> CURD
-A3
-"""
-class adminGroupHandlers(parameterHandler):
-    def render_GET(self, request, parameter):
-        """
-        return two Arrays, groupDescriptionDict
-        and modules_available (moduleDataDict)
-        """
-        print "GroupH GET:" + request.path + ", " + parameter
-        return "GroupH GET:" + request.path + ", " + parameter
-
-    def render_POST(self, request, parameter):
-        """
-        check 'create' or 'delete' and wait a
-        groupDescriptionDict to be updated
-        return as get
-        """
-        print "GroupH POST:" + request.path + ", " + parameter
-        return "GroupH POST:" + request.path + ", " + parameter
-
-    def render_PUT(self, request, parameter):
-        """
-        await a groupDescriptionDict, verify, create ID
-        return as get
-        """
-        print "GroupH PUT:" + request.path + ", " + parameter
-        return "GroupH PUT:" + request.path + ", " + parameter
-
-
-    def render_DELETE(self, request, parameter):
-        """
-        await a valid groupDescriptionDict,
-        return as get or error if ID is missing
-        """
-        print "GroupH DELETE:" + request.path + ", " + parameter
-        return "GroupH DELETE:" + request.path + ", " + parameter
-
-    def getChild(self, path, request):
-        print self.__class__.name, "GroupH child request!", path, request
-        return GroupHandlers()
-
-
-"""
-ReceiverHandlers part of adminHandlers covers
-/admin/receivers/<group_$ID> A4
-"""
-class adminReceiversHandlers(parameterHandler):
-    def render_GET(self, request, parameter):
-        """
-        return Array of receiverDescriptionDict,
-        """
-        print "RecvH GET:" + request.path + ", " + parameter
-        return "RecvH GET:" + request.path + ", " + parameter
-
-    def render_POST(self, request, parameter):
-        """
-        check 'create' or 'delete' and wait a
-        receiverDescriptionDict to be updated
-        return as get
-        """
-        print "RecvH POST:" + request.path + ", " + parameter
-        return "RecvH POST:" + request.path + ", " + parameter
-
-    def render_PUT(self, request, parameter):
-        """
-        await a receiverDescriptionDict, verify, create
-        return as get
-        """
-        print "RecvH PUT:" + request.path + ", " + parameter
-        return "RecvH PUT:" + request.path + ", " + parameter
-
-
-    def render_DELETE(self, request, parameter):
-        """
-        await a valid groupDescriptionDict,
-        return as get or error if ID is missing
-        """
-        print "RecvH DELETE:" + request.path + ", " + parameter
-
-    def getChild(self, path, request):
-        print self.__class__.name, "RECEIVER child request!", path, request
-        return ReceiversHandlers()
-
-"""
-ModulesHandlers handle /admin/modules/<string module_type> A5
-"""
-class adminModulesHandlers(parameterHandler):
-    def render_GET(self, request, parameter):
-        """
-        return the list of module present in a node,
-        (moduleDataDict array), array of applyed module
-        per context.
-        """
-        print "Modules GET:" + request.path + ", " + parameter
-        return "Modules GET:" + request.path + ", " + parameter
-
-    def render_POST(self, requst, parameter):
-        """
-        await: a single moduleDataDict, a matrix of target,
-        the status of active|deactive.
-        """
-        print "Modules POST:" + request.path + ", " + parameter
-        return "Modules POST:" + request.path + ", " + parameter
-
-
-    def getChild(self, path, request):
-        print self.__class__.name, "Modules - ENUM - child request!", path, request
-        return ModulesHandlers()
-
-#############################################
-
-
-# Follow the Tip Handlers, 
-class tipHandlers(resource.Resource):
-    path = 'default'
-
-    def __init__(self):
-        resource.Resource.__init__(self)
-
-        # Tip can be expanded by a module, then in this 
-        # point, the module list need to be already loaded, 
-        # because here is request if other REST would be exposed.
-
-        """
-        tipAPImap = { 
-            'download_material': downloadMaterialHandler,
-            'add_comment': addCommentHandler,
-            'pertinence': pertinenceHandler,
-            'add_description': addDescriptionHandler
-                }
-
-        processChildren(self, self.tipAPImap)
-        """
-
-    def getChild(self, path, request):
-        print self.__class__.name, "TIP Got child request!", path, request
-        return tipHandlers()
-
-
-class addCommentHandler(parameterHandler):
-
-    def render_GET(self, request, parameter):
-        return "GET " + str(self.__class__) + "<br>" + parameter
-
-    def render_POST(self, request, parameter):
-        return "POST " + str(self.__class__) + "<br>" + parameter
-
-class pertinenceHandler(parameterHandler):
-
-    def render_GET(self, request, parameter):
-        return "GET " + str(self.__class__) + "<br>" + parameter
-
-    def render_POST(self, request, parameter):
-        return "POST " + str(self.__class__) + "<br>" + parameter
-
-class downloadMaterialHandler(parameterHandler):
-
-    def render_GET(self, request, parameter):
-        return "GET " + str(self.__class__) + "<br>" + parameter
-
-    def render_POST(self, request, parameter):
-        return "POST " + str(self.__class__) + "<br>" + parameter
-
-class addDescriptionHandler(parameterHandler):
-
-    def render_GET(self, request, parameter):
-        return "GET " + str(self.__class__) + "<br>" + parameter
-
-    def render_POST(self, request, parameter):
-        return "POST " + str(self.__class__) + "<br>" + parameter
-
-#############################################
