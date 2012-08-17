@@ -30,6 +30,8 @@ class GLBackendHandler(RequestHandler):
     """
     target = DummyHandler()
 
+    # Used for passing status code from handlers to client
+    status_code = None
     def initialize(self, action=None):
         """
         Get the argument passed by the API dict.
@@ -87,6 +89,8 @@ class GLBackendHandler(RequestHandler):
         if DEBUG:
             print "[+] Handling %s with %s %s" % (method, arg, kw)
         ret = self.handle(self.action, *arg, **kw)
+        if self.status_code:
+            self.set_status(self.status_code)
         self.write(dict(ret))
 
     def get(self, *arg, **kw):

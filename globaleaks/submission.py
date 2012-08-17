@@ -23,11 +23,12 @@ def random_receipt_id():
 
 class Submission:
     handler = None
+
     def new(self, *arg, **kw):
         """
         Creates an empty submission and returns the ID to the WB.
         """
-        self.handler.set_status(201)
+        self.handler.status_code = 201
         return {'submission_id': random_submission_id()}
 
     def status(self, submission_id, *arg, **kw):
@@ -71,6 +72,6 @@ class Submission:
         Finalize the submission and create data inside of the database.
         """
         receipt_id = random_receipt_id()
-        self.handler.set_status(201)
+        self.handler.status_code = 201
         return {'receipt': receipt_id}
 
