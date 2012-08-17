@@ -1,5 +1,8 @@
+# -*- coding: UTF-8
+#
 #   admin
 #   *****
+#
 #   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
 #   :author: Arturo Filastò <art@globaleaks.org>
 #   :license: see LICENSE

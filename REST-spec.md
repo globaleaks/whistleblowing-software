@@ -515,6 +515,8 @@ P6 `/submission/<submission_$ID>/finalize`
           Status Code: 406 (Not Acceptable)
           { 'error_code': 'Int', 'error_message': 'fields requirement not respected' }
 
+XXX I don't understand what you mean with the variant. Can you try and better
+explain it? - Art.
 
 P7 `/submission/<submission_$ID>files`,
 

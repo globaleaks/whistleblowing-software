@@ -1,3 +1,4 @@
+# -*- coding: UTF-8
 #   submission
 #   **********
 #   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
@@ -6,15 +7,40 @@
 #
 #   Implements a GlobaLeaks submission.
 
-import random
-import string
-
 from globaleaks.utils.random import random_string
 
+def random_submission_id():
+    import random
+    import string
+    length = 50
+    return ''.join(random.choice(string.ascii_letters) for x in range(length))
+
+def random_receipt_id():
+    import random
+    import string
+    length = 10
+    return ''.join(random.choice('0123456789') for x in range(length))
+
 class Submission:
-    rest = None
+    handler = None
     def new(self, *arg, **kw):
-        return {'submission_id': 12345}
+        """
+        Creates an empty submission and returns the ID to the WB.
+        """
+        self.handler.set_status(201)
+        return {'submission_id': random_submission_id()}
+
+    def status(self, submission_id, *arg, **kw):
+        from datetime import datetime
+        status_dict = { 'fields': {'foo': 1234},
+                        'groups': ['A', 'B'],
+                        'files': [{'name': 'fileA', 'location': '/tmp/foo', 'percent': 100},
+                                 {'name': 'fileB', 'location': '/tmp/foo', 'percent': 100},
+                                 {'name': 'fileC', 'location': '/tmp/foo', 'percent': 100}],
+                        'creation_time': str(datetime.now())
+                      }
+        return status_dict
+
 
     def files(self, submission_id, *arg, **kw):
         """
@@ -44,17 +70,7 @@ class Submission:
         """
         Finalize the submission and create data inside of the database.
         """
-        return {'submission_id': submission_id}
-
-    def status(self, submission_id, *arg, **kw):
-        from datetime import datetime
-        status_dict = { 'fields': {'foo': 1234},
-                        'groups': ['A', 'B'],
-                        'files': [{'name': 'fileA', 'location': '/tmp/foo', 'percent': 100},
-                                 {'name': 'fileB', 'location': '/tmp/foo', 'percent': 100},
-                                 {'name': 'fileC', 'location': '/tmp/foo', 'percent': 100}],
-                        'creation_time': str(datetime.now())
-                      }
-        return status_dict
-
+        receipt_id = random_receipt_id()
+        self.handler.set_status(201)
+        return {'receipt': receipt_id}
 

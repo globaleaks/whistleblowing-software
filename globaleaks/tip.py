@@ -1,3 +1,4 @@
+# -*- coding: UTF-8
 #   tip
 #   ***
 #   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project

@@ -1,3 +1,4 @@
+# -*- coding: UTF-8
 #   handlers
 #   ********
 #   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
@@ -20,6 +21,8 @@ from globaleaks.utils.JSONhelper import genericDict
 
 from cyclone import escape
 from cyclone.web import RequestHandler
+
+DEBUG = True
 
 class GLBackendHandler(RequestHandler):
     """
@@ -71,6 +74,8 @@ class GLBackendHandler(RequestHandler):
         """
         ret = {}
         if method:
+            if DEBUG:
+                print "[+] calling %s->%s with %s %s" % (self.target, method, arg, kw)
             func = getattr(self.target, method)
             ret = func(*arg, **kw)
         return ret
@@ -79,6 +84,8 @@ class GLBackendHandler(RequestHandler):
         """
         Simple hack to by default handle all methods with the same handler.
         """
+        if DEBUG:
+            print "[+] Handling %s with %s %s" % (method, arg, kw)
         ret = self.handle(self.action, *arg, **kw)
         self.write(dict(ret))
 
