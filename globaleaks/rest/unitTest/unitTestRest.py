@@ -310,7 +310,6 @@ class myUnitTest(unittest.TestCase):
 
         print "[do_METHOD] using url", settings['url'], "request", settings['request']
 
-
         if len(sys.argv) == 2 and sys.argv[1] == 'v':
             clean_debug(1, settings)
 

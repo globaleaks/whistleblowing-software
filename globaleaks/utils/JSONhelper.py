@@ -183,9 +183,98 @@ class localizationDict(RestJSONwrapper):
 
 
     def printJSON(self):
-
         self.fieldreview(self._firstkey, self._values)
+        ret = json.dumps(self._values)
+        print ret, "\n"
+        return ret
 
+
+"""
+contextDescriptionDict
+"""
+class contextDescriptionDict(RestJSONwrapper):
+
+    def __init__(self, cID):
+        self._values = ({ 'context_id': '', 'name': '',
+            'groups': [], 'fields': ({}), 'description': 'string', 
+            'style': 'string', 'creation_date': 0, 'update_date': 0
+            })
+
+        self._values['context_id'] = cID
+        RestJSONwrapper.__init__(self)
+
+    @diff
+    def name(self, v):
+        self._values['name'] = v
+
+    @diff
+    def description(self, v):
+        self._values['description'] = v
+
+    @diff
+    def style(self, v):
+        self._values['style'] = v
+
+    @diff
+    def creation_date(self, v):
+        self._values['creation_date'] = v
+
+    @diff
+    def update_date(self, v):
+        self._values['update_date'] = v
+
+    def printJSON(self):
+        self.fieldreview(self._values['context_id'], self._values)
+        ret = json.dumps(self._values)
+        print ret, "\n"
+        return ret
+
+class groupDescriptionDict(RestJSONwrapper):
+
+    def __init__(self, gID):
+        self._values = ({ 
+            'group_id': '', 'group_name' : '', 'description': 'localizedTODO',
+            'spoken_language': 'arrayTODO', 'group_tags': '', 'receiver_list': 'ArrayTODO',
+            'associated_module': 'moduleDataDictTodo', 'creation_date' : 0, 
+            'update_date' : 0 })
+
+        self._values['group_id'] = gID
+        RestJSONwrapper.__init__(self)
+
+    @diff
+    def group_name(self, v):
+        self._values['group_name'] = v
+
+    @diff
+    def description(self, v):
+        self._values['description'] = v
+
+    @diff
+    def spoken_language(self, v):
+        self._values['spoken_language'] = v + '_TODO_Array'
+
+    @diff
+    def group_tags(self, v):
+        self._values['group_tags'] = v 
+
+    @diff
+    def receiver_list(self, v):
+        self._values['receiver_list'] = v + '_TODO_Array'
+
+    @diff
+    def associated_module(self, v):
+        self._values['associated_module'] = v + '_TODO_Dict'
+
+    @diff
+    def creation_data(self, v):
+        self._values['creation_date'] = v
+
+    @diff
+    def update_date(self, v):
+        self._values['update_date'] = v
+
+    def printJSON(self):
+        self.fieldreview(self._values['group_id'], self._values)
         ret = json.dumps(self._values)
         print ret, "\n"
         return ret
@@ -229,7 +318,7 @@ class receiverDescriptionDict(RestJSONwrapper):
 
     def set_CBP(self, v):
         """
-        to be implemented - Configurable Boolean Parameter
+        Configurable Boolean Parameter (receiver, TBD)
         """
 
     def printJSON(self):
@@ -254,29 +343,32 @@ class genericDict(RestJSONwrapper):
     @diff
     def add_int(self, v, key):
         if type(v) != type(1):
-            print "invalid argument in add_int", v, "is not an INT"
+            print "invalid argument in add_int", str(v), type(v), "is not an INT"
             quit()
-
         self._values.update({key : v})
 
     @diff
     def add_string(self, v, key):
         if type(v) != type('str'):
-            print "invalid argument in add_string", v, "is not a string"
+            print "invalid argument in add_string", str(v), type(v), "is not a string"
             quit()
         self._values.update({key : v})
 
     @diff
     def add_dict(self, v, key):
         if type(v) != type({}):
-            print "invalid argument in add_dict", v, "is not a dict"
+            print "invalid argument in add_dict", str(v), type(v), "is not a dict"
+            quit()
+        self._values.update({key : v})
+
+    def add_array(self, v, key):
+        if type(v) != type([]):
+            print "invalid argument in add_array", str(v), type(v), "is not an array"
             quit()
         self._values.update({key : v})
 
     def printJSON(self):
-
         self.fieldreview(self._tempnam, self._values)
-
         ret = json.dumps(self._values)
         print ret, "\n"
         return ret
@@ -331,9 +423,6 @@ groupDescriptionDict
 """
 #class groupDescriptionDict(RestJSONwrapper):
 
-"""
-contextDescriptionDict
-"""
 #class contextDescriptionDict(RestJSONwrapper):
 
 """

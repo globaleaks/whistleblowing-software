@@ -11,4 +11,13 @@ Documentation
 For an overview of the GlobaLeaks architecture check out the
 `Architecture <docs/architecture.rst>`_ doc.
 
+Testing the software
+====================
 
+Actually only REST unitTest is partially developed, check it out in `Rest testing <globaleaks/rest/unitTest/README.md>`_.
+
+
+Previous release
+================
+
+`GlobaLeaks 0.1 <https://github.com/globaleaks/GlobaLeaks.git>`_ Is the usable release.

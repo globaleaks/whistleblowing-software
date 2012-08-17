@@ -11,7 +11,7 @@
 import json
 from twisted.web import resource
 from globaleaks.rest.utils import processChildren, parameterHandler
-from globaleaks.utils.JSONhelper import genericDict
+from globaleaks.utils.JSONhelper import *
 
 __all__ = [ 'nodeHandler', 
                 # single, P1
@@ -127,7 +127,25 @@ class adminContextHandler(parameterHandler):
         return array of contextDescriptionDict
         """
         print "context GET:" + request.path + ", " + parameter
-        return "context GET:" + request.path + ", " + parameter
+
+        context1 = contextDescriptionDict('c1_render_GET_A2')
+        context1.name('context_1_Name')
+        context1.description('context_1_description')
+        context1.style('context_1_style')
+        context1.creation_date(123450)
+        context1.update_date(123456)
+
+        context2 = contextDescriptionDict('c2_render_GET_A2')
+        context2.name('context_2_Name')
+        context2.description('context_2_description')
+        context2.style('context_2_style')
+        context2.creation_date(444440)
+        context2.update_date(444446)
+
+        retjson = genericDict('context_GET_A2_array')
+        retjson.add_array([ context1.printJSON(), context2.printJSON() ], 'contexts')
+
+        return retjson.printJSON()
 
     def render_POST(self, request, parameter):
         """
@@ -136,8 +154,15 @@ class adminContextHandler(parameterHandler):
         return as get or errors
         """
         print "context POST:" + request.path + ", " + parameter
+        receivedjson = genericDict('received_A2_POST')
+        print type(request)
+        print request
+        # check delete - create
+        if isinstance(request, dict):
+            receivedjson.push_fields(request)
+            print "received JSON imported by RestJSONwrapper: ",
+            print receivedjson.printJSON()
         return self.render_GET(request, parameter)
-        return "context POST:" + request.path + ", " + parameter
 
     def render_PUT(self, request, parameter):
         """
@@ -145,8 +170,14 @@ class adminContextHandler(parameterHandler):
         return as get or errors
         """
         print "context PUT:" + request.path + ", " + parameter
+        receivedjson = genericDict('received_A2_PUT')
+        print type(request)
+        print request
+        if isinstance(request, dict):
+            receivedjson.push_fields(request)
+            print "received JSON imported by RestJSONwrapper: ",
+            print receivedjson.printJSON()
         return self.render_GET(request, parameter)
-        return "context PUT:" + request.path + ", " + parameter
 
 
     def render_DELETE(self, request, parameter):
@@ -155,8 +186,14 @@ class adminContextHandler(parameterHandler):
         return as get or errors
         """
         print "context DELETE:" + request.path + ", " + parameter
+        receivedjson = genericDict('received_A2_DELETE')
+        print type(request)
+        print request
+        if isinstance(request, dict):
+            receivedjson.push_fields(request)
+            print "received JSON imported by RestJSONwrapper: ",
+            print receivedjson.printJSON()
         return self.render_GET(request, parameter)
-        return "context DELETE:" + request.path + ", " + parameter
 
     def getChild(self, path, request):
         print self.__class__.name, "GroupH child request!", path, request
@@ -177,10 +214,22 @@ class adminGroupHandlers(parameterHandler):
         """
         print "GroupH GET:" + request.path + ", " + parameter
 
+        group1 = groupDescriptionDict('group_A3_elem1')
+
+        group1.group_name('group_1_name')
+        group1.description('new description for group 1')
+        group1.spoken_language('array-1 TBD')
+        group1.group_tags('tag11, targ12, tag13')
+
+        group2 = groupDescriptionDict('group_A3_elem2')
+
+        group2.group_name('group_2_name')
+        group2.description('new description for group 2')
+        group2.spoken_language('array-2 TBD')
+        group2.group_tags('tag21, targ22, tag23')
+
         retjson = genericDict('render_GET_A3')
-        retjson.add_dict({'tobedone' : 1, 'other': 'XXX'}, 'groups')
-        # retjson.add_array
-        retjson.add_string('themodulearraydict', 'modules_available')
+        retjson.add_array([ group1.printJSON(), group2.printJSON()], 'groups')
         return retjson.printJSON()
 
     def render_POST(self, request, parameter):
@@ -195,7 +244,7 @@ class adminGroupHandlers(parameterHandler):
         print request
         if isinstance(request, dict):
             receivedjson.push_fields(request)
-            print "stampa antani"
+            print "received JSON imported by RestJSONwrapper: ",
             print receivedjson.printJSON()
 
         print "GroupH POST:" + request.path + ", " + parameter + "return as GET"
@@ -208,6 +257,13 @@ class adminGroupHandlers(parameterHandler):
         """
         print "GroupH PUT:" + request.path + ", " + parameter
         return "GroupH PUT:" + request.path + ", " + parameter
+        receivedjson = genericDict('received_A3_PUT')
+        print type(request)
+        print request
+        if isinstance(request, dict):
+            receivedjson.push_fields(request)
+            print "received JSON imported by RestJSONwrapper: ",
+            print receivedjson.printJSON()
         return self.render_GET(request, parameter)
 
 
@@ -216,8 +272,14 @@ class adminGroupHandlers(parameterHandler):
         await a valid groupDescriptionDict,
         return as get or error if ID is missing
         """
+        receivedjson = genericDict('received_A3_DELETE')
+        print type(request)
+        print request
+        if isinstance(request, dict):
+            receivedjson.push_fields(request)
+            print "received JSON imported by RestJSONwrapper: ",
+            print receivedjson.printJSON()
         print "GroupH DELETE:" + request.path + ", " + parameter
-        return "GroupH DELETE:" + request.path + ", " + parameter
         return self.render_GET(request, parameter)
 
     def getChild(self, path, request):
@@ -235,7 +297,28 @@ class adminReceiversHandlers(parameterHandler):
         return Array of receiverDescriptionDict,
         """
         print "RecvH GET:" + request.path + ", " + parameter
-        return "RecvH GET:" + request.path + ", " + parameter
+
+        receiver1= receiverDescriptionDict('receiver_A4_R1')
+        receiver1.name('receiverName1')
+        receiver1.description('blah blah-1')
+        receiver1.contact_data('configured-email: receiver1@dm.tld')
+        receiver1.module_id('email_receiver_module_handler')
+
+        # Change name of "_data" in "_message" ? 
+        # this is a message appearing as flavor text, 
+        # explaining what's the working status, if detected.
+        receiver1.module_dependent_data('yor email has been verified')
+
+        receiver2= receiverDescriptionDict('receiver_A4_R2')
+        receiver2.name('receiverName2')
+        receiver2.description('blah blah-2')
+        receiver2.contact_data('configured-email: receiver2@dm.tld')
+        receiver2.module_id('email_receiver_module_handler')
+
+        retjson = genericDict('render_GET_A4')
+        retjson.add_array([ receiver1.printJSON(), receiver2.printJSON()], 'receivers')
+        return retjson.printJSON()
+
 
     def render_POST(self, request, parameter):
         """
@@ -244,7 +327,14 @@ class adminReceiversHandlers(parameterHandler):
         return as get
         """
         print "RecvH POST:" + request.path + ", " + parameter
-        return "RecvH POST:" + request.path + ", " + parameter
+        receivedjson = genericDict('received_A4_POST')
+        print type(request)
+        print request
+        if isinstance(request, dict):
+            receivedjson.push_fields(request)
+            print "received JSON imported by RestJSONwrapper: ",
+            print receivedjson.printJSON()
+        return self.render_GET(request. parameter)
 
     def render_PUT(self, request, parameter):
         """
@@ -252,7 +342,14 @@ class adminReceiversHandlers(parameterHandler):
         return as get
         """
         print "RecvH PUT:" + request.path + ", " + parameter
-        return "RecvH PUT:" + request.path + ", " + parameter
+        receivedjson = genericDict('received_A4_PUT')
+        print type(request)
+        print request
+        if isinstance(request, dict):
+            receivedjson.push_fields(request)
+            print "received JSON imported by RestJSONwrapper: ",
+            print receivedjson.printJSON()
+        return self.render_GET(request. parameter)
 
 
     def render_DELETE(self, request, parameter):
@@ -261,6 +358,14 @@ class adminReceiversHandlers(parameterHandler):
         return as get or error if ID is missing
         """
         print "RecvH DELETE:" + request.path + ", " + parameter
+        receivedjson = genericDict('received_A4_DELETE')
+        print type(request)
+        print request
+        if isinstance(request, dict):
+            receivedjson.push_fields(request)
+            print "received JSON imported by RestJSONwrapper: ",
+            print receivedjson.printJSON()
+        return self.render_GET(request. parameter)
 
     def getChild(self, path, request):
         print self.__class__.name, "RECEIVER child request!", path, request
@@ -276,7 +381,7 @@ class adminModulesHandlers(parameterHandler):
         (moduleDataDict array), array of applyed module
         per context.
         """
-        print "Modules GET:" + request.path + ", " + parameter
+        print "Modules GET - to be reviewed --- may be made like other CURD ?:" + request.path + ", " + parameter
         return "Modules GET:" + request.path + ", " + parameter
 
     def render_POST(self, requst, parameter):
@@ -284,9 +389,16 @@ class adminModulesHandlers(parameterHandler):
         await: a single moduleDataDict, a matrix of target,
         the status of active|deactive.
         """
-        print "Modules POST:" + request.path + ", " + parameter
+        print "Modules POST - to be reviewed --- may be made like other CURD ?:" + request.path + ", " + parameter
         return "Modules POST:" + request.path + ", " + parameter
 
+    def render_PUT(self, requst, parameter):
+        print "Modules PUT - to be reviewed --- may be made like other CURD ?:" + request.path + ", " + parameter
+        return "Modules PUT:" + request.path + ", " + parameter
+
+    def render_DELETE(self, requst, parameter):
+        print "Modules DELETE- to be reviewed --- may be made like other CURD ?:" + request.path + ", " + parameter
+        return "Modules DELETE:" + request.path + ", " + parameter
 
     def getChild(self, path, request):
         print self.__class__.name, "Modules - ENUM - child request!", path, request
