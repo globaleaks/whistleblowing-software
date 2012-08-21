@@ -731,17 +731,33 @@ R2 `/receiver/<string t_id>/<string module_name>`
 Every module need a way to specify a personal interface where receive preferences, this would be
 used in Notification and Delivery modules.
 
+    The REST concept is the CURD used in A2,A3,A4
+
     :GET 
         * Response:
           Status Code: 200 (OK)
           {
-              'module_description': '$localizationDict'
-              'pref': '$moduleDataDict'
+              'modules': [ '$moduleDataDict', {} ]
           }
 
     :POST
+        * Request:
           {
-              'pref': '$moduleDataDict'
+              'create': 'Bool',
+              'delete': 'Bool',
+              'module': '$moduleDataDict'
+          }
+
+    :PUT
+        * Request:
+          {
+              'module': '$moduleDataDict'
+          }
+
+    :DELETE
+        * Request:
+          {
+              'module': '$moduleDataDict'
           }
 
 # Admin API

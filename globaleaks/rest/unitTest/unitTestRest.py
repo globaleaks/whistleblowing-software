@@ -56,6 +56,7 @@ contextDescriptionDict= dict({ "context_id": randomID('context'), "name": locali
             "groups": [ groupDescriptionDict, groupDescriptionDict ],
             "fields": formFieldsDict, "description": "string", "style": "string",
             "creation_date": "Time", "update_date": "Time" })
+
 nodeStatisticsDict=dict({ "something": "toBedefined", "something_other": 12345 })
 
 
@@ -244,6 +245,34 @@ testDict['A5'] = [
         'expected_result' : A5_recurring_result,
         }) ]
 
+R1_recurring_result = dict ({
+        "modules": [ moduleDataDict, moduleDataDict ]
+     })
+
+testDict['R1'] = [
+        ({
+        'method': 'GET',
+        'request' : False,
+        'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
+        'expected_result' : A5_recurring_result,
+        }), ({
+        'method': 'PUT',
+        'request' : ({ "module": moduleDataDict }),
+        'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
+        'expected_result' : A5_recurring_result,
+        }), ({
+        'method': 'POST',
+        'request' : ({ "create": True, "delete": False, "module": moduleDataDict }),
+        'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
+        'expected_result' : A5_recurring_result,
+        }), ({
+        'method': 'DELETE',
+        'request' : ({ "module": moduleDataDict }),
+        'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
+        '}expected_result' : A5_recurring_result,
+        }) ]
+
+
 
 def do_curl(url, method, not_encoded_parm=''):
     params = urllib.urlencode(not_encoded_parm)
@@ -361,6 +390,12 @@ class A5(myUnitTest):
         self.do_METHOD('POST', 'A5')
         self.do_METHOD('DELETE', 'A5')
 
+class R1(myUnitTest):
+    def do_tests(self):
+        self.do_METHOD('GET', 'R1')
+
+
+
 # HERE START THE TEST
 
 P1().do_tests()
@@ -370,4 +405,7 @@ A2().do_tests()
 A3().do_tests()
 A4().do_tests()
 A5().do_tests()
+
+R1().do_tests()
+
 

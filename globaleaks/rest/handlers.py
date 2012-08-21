@@ -53,25 +53,66 @@ class nodeHandler(parameterHandler):
         retjson.add_string('/', 'url_schema')
         return retjson.printJSON()
 
+"""
+Submission, GET only
+P2
+"""
 class submissionHandlers(resource.Resource):
     def render_GET(self, request):
-        return str(self.__class__.__name__ )
+        print "render_GET", request
+        retjson = genericDict('render_GET_P2')
+        retjson.add_string('submission-ID')
+        retjson.add_int('creation-Time', 123456789)
+        return retjson.printJSON()
 
-class receiverHandlers(resource.Resource):
-    def render_GET(self, request):
-        return str(self.__class__.__name__ )
+"""
+receiverHandlers, /receiver/<uniq_Tip_$ID>/overview
+R1
+"""
+class receiverHandlers(parameterHandler):
+    path = 'default'
 
-##############################################################
-# Follow the Admin Handlers
+    def __init__(self):
+        resource.Resource.__init__(self)
+
+    def getChild(self, path, request):
+        print "receiverHandlers got child request!", path, request
+        return receiverHandlers()
+
+    def render_GET(self, request, parameter):
+        """
+        return the list of all the description of the available 
+        notification/delivery modules configurable by the user.
+        """
+        print __name__, request.path, type(request), type(parameter)
+        retjson = genericDict('render_GET_R2')
+        retjson.add_string('TheWouldBeAListOfNotificationAndDeliveryModules', 'modules')
+        return retjson.printJSON()
+
+    def render_POST(self, request, parameter):
+        print __name__, request.path, type(request), type(parameter), "now render_GET"
+        return self.render_GET(request, parameter)
+
+    def render_PUT(self, request, parameter):
+        print __name__, request.path, type(request), type(parameter), "now render_GET"
+        return self.render_GET(request, parameter)
+
+    def render_DELETE(self, request, parameter):
+        print __name__, request.path, type(request), type(parameter), "now render_GET"
+        return self.render_GET(request, parameter)
+
+
+"""
+adminHandlers cover A1,A5
+"""
 class adminHandlers(resource.Resource):
     path = 'default'
 
     def __init__(self):
-        print "init of adminHandlers"
         resource.Resource.__init__(self)
 
-    def getChild(self, path, request):
-        print self.__class__.name, "ADMIN Got child request!", path, request
+    def getChild(self, path):
+        print self.__class__.name, "adminHanlders got child request!", path
         return adminHandlers()
 
 """
@@ -106,7 +147,6 @@ class adminNodeHandler(parameterHandler):
         specific configuration. return as GET with the updated
         values
         """
-
         print __name__, request.path, type(request), type(parameter)
         print "received request", request, "... going to render_GET"
         return self.render_GET(request, parameter)
@@ -334,7 +374,7 @@ class adminReceiversHandlers(parameterHandler):
             receivedjson.push_fields(request)
             print "received JSON imported by RestJSONwrapper: ",
             print receivedjson.printJSON()
-        return self.render_GET(request. parameter)
+        return self.render_GET(request, parameter)
 
     def render_PUT(self, request, parameter):
         """
@@ -349,7 +389,7 @@ class adminReceiversHandlers(parameterHandler):
             receivedjson.push_fields(request)
             print "received JSON imported by RestJSONwrapper: ",
             print receivedjson.printJSON()
-        return self.render_GET(request. parameter)
+        return self.render_GET(request, parameter)
 
 
     def render_DELETE(self, request, parameter):
@@ -365,7 +405,7 @@ class adminReceiversHandlers(parameterHandler):
             receivedjson.push_fields(request)
             print "received JSON imported by RestJSONwrapper: ",
             print receivedjson.printJSON()
-        return self.render_GET(request. parameter)
+        return self.render_GET(request, parameter)
 
     def getChild(self, path, request):
         print self.__class__.name, "RECEIVER child request!", path, request
