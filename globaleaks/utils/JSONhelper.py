@@ -29,6 +29,9 @@ def diff(func):
         elif type(values.get(key)) == type('') and values.get(key) != '':
             print "DIFF catch: field '"+key+"' will be", str(v), "was:", str(values.get(key))
             func(self, v) if key == func.__name__ else func(self, v, key)
+        elif type(values.get(key)) == type(True):
+            print "'Boolean assignment: field'"+key+"' will be", str(v), "was:", str(values.get(key))
+            func(self, v) if key == func.__name__ else func(self, v, key)
         else:
             # it's a new assignment
             func(self, v) if key == func.__name__ else func(self, v, key)
@@ -404,18 +407,45 @@ moduleDataDict
 """
 class moduleDataDict(RestJSONwrapper):
 
-    def __init__(self, mID):
+    def __init__(self, mID, module_type):
         self._values = ({ 
-            'ID' : '', 'active' : None, 'module_type' : '', 
-            'module_name' : '', 'description' : '', 
-            'admin_options' : {}, 'user_options' : {}, 
-            'service_message' : '' })
+            'ID' : '', 'active' : False, 'type' : '', 'name' : '', 'description' : '', 
+            # check if bool can be True - False - None and use None as default
+            'admin_options' : '', 'user_options' : '', 'service_message' : '' })
 
-        self._values['ID'] = rID
+        self._values['ID'] = mID
+        self._values['module_type'] = module_type
         RestJSONwrapper.__init__(self)
 
+    @diff
+    def active(self, v, key='active'):
+        self._values.update({key : v})
 
+    @diff
+    def name(self, v, key='name'):
+        self._values.update({key : v})
 
+    @diff
+    def description(self, v, key='description'):
+        self._values.update({key : v})
+
+    @diff
+    def admin_options(self, v, key='admin_options'):
+        self._values.update({key : v})
+
+    @diff
+    def user_options(self, v, key='user_options'):
+        self._values.update({key : v})
+
+    @diff
+    def service_message(self, v, key='service_message'):
+        self._values.update({key : v})
+
+    def printJSON(self):
+        self.fieldreview(self._values['ID'], self._values)
+        ret = json.dumps(self._values)
+        print ret, "\n"
+        return ret
 
 
 """

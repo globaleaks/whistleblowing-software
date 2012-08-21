@@ -35,8 +35,8 @@ receiverDescriptionDict=dict({   "ReceiverID": randomID('receiver'), "CanDeleteS
 nodePropertiesDict=dict({   "AnonymousSubmissionOnly": False, "AdminAreReceivers": False, "NodeProvideDocsPublication": False,
             "FixedCorpusOfReceiver": False, "ReceiverAreAnonymous": False })
 
-moduleDataDict=({"name": randomID('module'), "active": False, "module_type": "string",
-            "module_name": "string", "description": "string", "admin_options": formFieldsDict, 
+moduleDataDict=({"ID": randomID('module'), "active": False, "type": "string",
+            "name": "string", "description": "string", "admin_options": formFieldsDict, 
             "user_options": formFieldsDict,  "service_message": "string" })
 
 groupDescriptionDict=dict({ "group_id" : randomID('group'), "group_name": "string", "description" : localizationDict('groupDesc'),
@@ -106,6 +106,13 @@ testDict['P1'] = ({
                                "description": localizationDict('nodeDesc'),
                                "public_site": "string", "hidden_service": "string", "url_schema": "string" })
         })
+
+testDict['P2'] = ({
+        'method' : 'GET',
+        'request': False,
+        'url' : '/submission/',
+        'expected_result': ({ 'submission-ID' : 'string', 'creation-Time': 'Time' })
+    })
 
 A1_recurring_result = dict ({ 
                    'name': 'string',
@@ -189,7 +196,7 @@ testDict['A3'] = [
         }), ({
         'method': 'DELETE',
         'request' : ({ "group": groupDescriptionDict }),
-        'url' : '/admin/groups' + randomID('group'),
+        'url' : '/admin/groups/' + randomID('group'),
         'expected_result' : A3_recurring_result
         }) ]
 
@@ -218,7 +225,7 @@ testDict['A4'] = [
         }) ]
 
 A5_recurring_result = dict ({
-        "groups":groupDescriptionDict, 
+        "group_matrix" : 'Array_of_modules-group_application',
         "modules_available": [ moduleDataDict, moduleDataDict, ]
      })
 
@@ -226,22 +233,22 @@ testDict['A5'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/admin/groups/' + randomID('context'),
+        'url' : '/admin/modules/' + randomID('module-ENUM'),
         'expected_result' : A5_recurring_result,
         }), ({
         'method': 'PUT',
-        'request' : ({ "group": groupDescriptionDict }),
-        'url' : '/admin/groups/' + randomID('context'),
+        'request' : ({ "module": moduleDataDict, "group_matrix" : 'Array_of_MGA' }),
+        'url' : '/admin/modules/' + randomID('module-ENUM'),
         'expected_result' : A5_recurring_result,
         }), ({
         'method': 'POST',
-        'request' : ({ "create": True, "delete": False, "group": groupDescriptionDict }),
-        'url' : '/admin/groups/' + randomID('context'),
+        'request' : ({ "create": True, "delete": False, "module": moduleDataDict, "group_matrix": 'Array_of_MGA' }),
+        'url' : '/admin/modules/' + randomID('module-ENUM'),
         'expected_result' : A5_recurring_result,
         }), ({
         'method': 'DELETE',
-        'request' : ({ "group": groupDescriptionDict }),
-        'url' : '/admin/groups' + randomID('context'),
+        'request' : ({ "module": moduleDataDict }),
+        'url' : '/admin/modules/' + randomID('module-ENUM'),
         'expected_result' : A5_recurring_result,
         }) ]
 
@@ -289,7 +296,9 @@ def do_curl(url, method, not_encoded_parm=''):
     conn.request(method, url, params, headers)
 
     response = conn.getresponse()
-    print "[+] RESPONSE TYPE:", type(response)
+    import pdb
+    # pdb.set_trace()
+    print "[+] RESPONSE:", response.read()
 
     data = response.read()
     conn.close()
@@ -357,6 +366,11 @@ class P1(myUnitTest):
     def do_tests(self):
         self.do_METHOD('GET', 'P1')
 
+class P2(myUnitTest):
+
+    def do_tests(self):
+        self.do_METHOD('GET', 'P2')
+
 class A1(myUnitTest):
     def do_tests(self):
         self.do_METHOD('GET', 'A1')
@@ -393,6 +407,9 @@ class A5(myUnitTest):
 class R1(myUnitTest):
     def do_tests(self):
         self.do_METHOD('GET', 'R1')
+        self.do_METHOD('PUT', 'R1')
+        self.do_METHOD('POST', 'R1')
+        self.do_METHOD('DELETE', 'R1')
 
 
 

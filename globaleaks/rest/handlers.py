@@ -41,7 +41,7 @@ class nodeHandler(parameterHandler):
         resource.Resource.__init__(self)
 
     def render_GET(self, request, parameter):
-        print __name__, request.path, type(request), type(parameter)
+        print "P1 GET", __name__, request.path, type(request), type(parameter)
 
         retjson = genericDict('render_GET_P1')
         retjson.add_string('FunkyNodeName', 'name')
@@ -54,15 +54,15 @@ class nodeHandler(parameterHandler):
         return retjson.printJSON()
 
 """
-Submission, GET only
+Submission, GET only, /submission
 P2
 """
 class submissionHandlers(resource.Resource):
     def render_GET(self, request):
-        print "render_GET", request
+        print "P2 GET", request
         retjson = genericDict('render_GET_P2')
-        retjson.add_string('submission-ID')
-        retjson.add_int('creation-Time', 123456789)
+        retjson.add_string('blah_subm_ID_4324242', 'submission-ID')
+        retjson.add_int(1234567890, 'creation-Time')
         return retjson.printJSON()
 
 """
@@ -70,7 +70,7 @@ receiverHandlers, /receiver/<uniq_Tip_$ID>/overview
 R1
 """
 class receiverHandlers(parameterHandler):
-    path = 'default'
+    path = 'overview'
 
     def __init__(self):
         resource.Resource.__init__(self)
@@ -84,21 +84,21 @@ class receiverHandlers(parameterHandler):
         return the list of all the description of the available 
         notification/delivery modules configurable by the user.
         """
-        print __name__, request.path, type(request), type(parameter)
+        print "R1 GET", __name__, request.path
         retjson = genericDict('render_GET_R2')
         retjson.add_string('TheWouldBeAListOfNotificationAndDeliveryModules', 'modules')
         return retjson.printJSON()
 
     def render_POST(self, request, parameter):
-        print __name__, request.path, type(request), type(parameter), "now render_GET"
+        print "R1 POST", __name__, request.path, "now render_GET"
         return self.render_GET(request, parameter)
 
     def render_PUT(self, request, parameter):
-        print __name__, request.path, type(request), type(parameter), "now render_GET"
+        print "R1 PUT", __name__, request.path, "now render_GET"
         return self.render_GET(request, parameter)
 
     def render_DELETE(self, request, parameter):
-        print __name__, request.path, type(request), type(parameter), "now render_GET"
+        print "R1 DELETE", __name__, request.path, "now render_GET"
         return self.render_GET(request, parameter)
 
 
@@ -128,7 +128,7 @@ class adminNodeHandler(parameterHandler):
         object contained: nodeStatisticDict, nodePropertiesDict,
         contextDescription (array of), localizationDict
         """
-        print __name__, request.path, type(request), type(parameter)
+        print "A1 GET", __name__, request.path, type(request), type(parameter)
 
         retjson = genericDict('render_GET_A1')
         retjson.add_string('NodeNameForTheAdmin', 'name')
@@ -148,11 +148,11 @@ class adminNodeHandler(parameterHandler):
         values
         """
         print __name__, request.path, type(request), type(parameter)
-        print "received request", request, "... going to render_GET"
+        print "A1 POST", request, "render_GET"
         return self.render_GET(request, parameter)
 
     def getChild(self, path, request):
-        print self.__class__.name, "child request!", path, request
+        print self.__class__.name, "A1 child request!", path, request
         return adminNodeHandler()
 
 
@@ -166,7 +166,7 @@ class adminContextHandler(parameterHandler):
         """
         return array of contextDescriptionDict
         """
-        print "context GET:" + request.path + ", " + parameter
+        print "A2 GET:" + request.path + ", " + parameter
 
         context1 = contextDescriptionDict('c1_render_GET_A2')
         context1.name('context_1_Name')
@@ -193,7 +193,7 @@ class adminContextHandler(parameterHandler):
         contextDescriptionDict to be updated
         return as get or errors
         """
-        print "context POST:" + request.path + ", " + parameter
+        print "A2 POST:" + request.path + ", " + parameter
         receivedjson = genericDict('received_A2_POST')
         print type(request)
         print request
@@ -209,7 +209,7 @@ class adminContextHandler(parameterHandler):
         await a context to add, and assign an ID
         return as get or errors
         """
-        print "context PUT:" + request.path + ", " + parameter
+        print "A2 PUT:" + request.path + ", " + parameter
         receivedjson = genericDict('received_A2_PUT')
         print type(request)
         print request
@@ -225,7 +225,7 @@ class adminContextHandler(parameterHandler):
         await a context to delete, check if exists
         return as get or errors
         """
-        print "context DELETE:" + request.path + ", " + parameter
+        print "A2 DELETE:" + request.path + ", " + parameter
         receivedjson = genericDict('received_A2_DELETE')
         print type(request)
         print request
@@ -236,14 +236,14 @@ class adminContextHandler(parameterHandler):
         return self.render_GET(request, parameter)
 
     def getChild(self, path, request):
-        print self.__class__.name, "GroupH child request!", path, request
+        print self.__class__.name, "A2 child request!", path, request
         return adminContextHandler()
 
 
 """
 GroupHandler part of adminHandlers covert 
 /admin/groups/<context_$ID> CURD
-A3
+# A3
 """
 class adminGroupHandlers(parameterHandler):
 
@@ -252,7 +252,7 @@ class adminGroupHandlers(parameterHandler):
         return two Arrays, groupDescriptionDict
         and modules_available (moduleDataDict)
         """
-        print "GroupH GET:" + request.path + ", " + parameter
+        print "A3 GET:" + request.path + ", " + parameter
 
         group1 = groupDescriptionDict('group_A3_elem1')
 
@@ -278,6 +278,7 @@ class adminGroupHandlers(parameterHandler):
         groupDescriptionDict to be updated
         return as get
         """
+        print "A3 POST:" + request.path + ", " + parameter + "return as GET"
 
         receivedjson = genericDict('received_A3_POST')
         print type(request)
@@ -287,7 +288,6 @@ class adminGroupHandlers(parameterHandler):
             print "received JSON imported by RestJSONwrapper: ",
             print receivedjson.printJSON()
 
-        print "GroupH POST:" + request.path + ", " + parameter + "return as GET"
         return self.render_GET(request, parameter)
 
     def render_PUT(self, request, parameter):
@@ -295,8 +295,8 @@ class adminGroupHandlers(parameterHandler):
         await a groupDescriptionDict, verify, create ID
         return as get
         """
-        print "GroupH PUT:" + request.path + ", " + parameter
-        return "GroupH PUT:" + request.path + ", " + parameter
+        print "A3 PUT:" + request.path + ", " + parameter
+
         receivedjson = genericDict('received_A3_PUT')
         print type(request)
         print request
@@ -304,6 +304,7 @@ class adminGroupHandlers(parameterHandler):
             receivedjson.push_fields(request)
             print "received JSON imported by RestJSONwrapper: ",
             print receivedjson.printJSON()
+
         return self.render_GET(request, parameter)
 
 
@@ -312,6 +313,8 @@ class adminGroupHandlers(parameterHandler):
         await a valid groupDescriptionDict,
         return as get or error if ID is missing
         """
+        print "A3 DELETE:" + request.path + ", " + parameter
+
         receivedjson = genericDict('received_A3_DELETE')
         print type(request)
         print request
@@ -319,12 +322,12 @@ class adminGroupHandlers(parameterHandler):
             receivedjson.push_fields(request)
             print "received JSON imported by RestJSONwrapper: ",
             print receivedjson.printJSON()
-        print "GroupH DELETE:" + request.path + ", " + parameter
+
         return self.render_GET(request, parameter)
 
     def getChild(self, path, request):
-        print self.__class__.name, "GroupH child request!", path, request
-        return GroupHandlers()
+        print self.__class__.name, "A3 child request!", path, request
+        return adminGroupHandlers()
 
 
 """
@@ -336,10 +339,10 @@ class adminReceiversHandlers(parameterHandler):
         """
         return Array of receiverDescriptionDict,
         """
-        print "RecvH GET:" + request.path + ", " + parameter
+        print "A4 GET:" + request.path + ", " + parameter
 
         receiver1= receiverDescriptionDict('receiver_A4_R1')
-        receiver1.name('receiverName1')
+        receiver1.name('receiverName1-A4')
         receiver1.description('blah blah-1')
         receiver1.contact_data('configured-email: receiver1@dm.tld')
         receiver1.module_id('email_receiver_module_handler')
@@ -366,7 +369,7 @@ class adminReceiversHandlers(parameterHandler):
         receiverDescriptionDict to be updated
         return as get
         """
-        print "RecvH POST:" + request.path + ", " + parameter
+        print "A4 POST:" + request.path + ", " + parameter
         receivedjson = genericDict('received_A4_POST')
         print type(request)
         print request
@@ -381,7 +384,7 @@ class adminReceiversHandlers(parameterHandler):
         await a receiverDescriptionDict, verify, create
         return as get
         """
-        print "RecvH PUT:" + request.path + ", " + parameter
+        print "A4 PUT:" + request.path + ", " + parameter
         receivedjson = genericDict('received_A4_PUT')
         print type(request)
         print request
@@ -397,7 +400,7 @@ class adminReceiversHandlers(parameterHandler):
         await a valid groupDescriptionDict,
         return as get or error if ID is missing
         """
-        print "RecvH DELETE:" + request.path + ", " + parameter
+        print "A4 DELETE:" + request.path + ", " + parameter
         receivedjson = genericDict('received_A4_DELETE')
         print type(request)
         print request
@@ -408,8 +411,8 @@ class adminReceiversHandlers(parameterHandler):
         return self.render_GET(request, parameter)
 
     def getChild(self, path, request):
-        print self.__class__.name, "RECEIVER child request!", path, request
-        return ReceiversHandlers()
+        print self.__class__.name, "A4 child request!", path, request
+        return adminReceiversHandlers()
 
 """
 ModulesHandlers handle /admin/modules/<string module_type> A5
@@ -418,35 +421,67 @@ class adminModulesHandlers(parameterHandler):
     def render_GET(self, request, parameter):
         """
         return the list of module present in a node,
-        (moduleDataDict array), array of applyed module
-        per context.
+        (moduleDataDict array), inside of them there are
+        the 'actived' field
         """
-        print "Modules GET - to be reviewed --- may be made like other CURD ?:" + request.path + ", " + parameter
-        return "Modules GET:" + request.path + ", " + parameter
+        print "A5 GET:" + request.path + ", " + parameter
 
-    def render_POST(self, requst, parameter):
+        mod1 = moduleDataDict('module_GET_A5_1', 'Delivery1')
+        mod1.active(True)
+        mod1.name('Module for good 1')
+        mod1.description("I'm the desc of module Delivery active 1")
+        mod1.admin_options('some dummy option for admin 1')
+        mod1.user_options('some dummy option for user 1')
+        mod1.service_message('some spare data of module ONE')
+
+        mod2 = moduleDataDict('module_GET_A5_2', 'Delivery2')
+        mod2.active(False)
+        mod2.name('Module for bad 2')
+        mod2.description("I'm the desc of module Delivery inactive 2")
+        mod2.admin_options('some dummy option for admin 2')
+        mod2.service_message('blah blah - thankyou for chooing bad2')
+
+        retjson = genericDict('render_GET_A5')
+        retjson.add_array([ mod1.printJSON(), mod2.printJSON()], 'modules')
+        retjson.add_string("TODO TODO TODO", 'group_matrix')
+        return retjson.printJSON()
+
+    def render_POST(self, request, parameter):
         """
-        await: a single moduleDataDict, a matrix of target,
-        the status of active|deactive.
+        check 'create' or 'delete' and wait a
+        moduleDataDict to be updated
+        return as get
+        inside the moduleDataDict would find also the 'active' flag
+        inside the group_matrix follow the application table of 
+        all the module and the groups.
         """
-        print "Modules POST - to be reviewed --- may be made like other CURD ?:" + request.path + ", " + parameter
-        return "Modules POST:" + request.path + ", " + parameter
+        print "A5 POST:" + request.path + ", " + parameter, "render_GET"
+        return self.render_GET(request, parameter)
 
-    def render_PUT(self, requst, parameter):
-        print "Modules PUT - to be reviewed --- may be made like other CURD ?:" + request.path + ", " + parameter
-        return "Modules PUT:" + request.path + ", " + parameter
 
-    def render_DELETE(self, requst, parameter):
-        print "Modules DELETE- to be reviewed --- may be made like other CURD ?:" + request.path + ", " + parameter
-        return "Modules DELETE:" + request.path + ", " + parameter
+    def render_PUT(self, request, parameter):
+        """
+        put a new moduleDataDict in db storage and update the group_matrix
+        """
+        print "A5 PUT:" + request.path + ", " + parameter
+        return self.render_GET(request, parameter)
+
+    def render_DELETE(self, request, parameter):
+        """
+        delete a module configuration (remain returned in GET with the
+        module not configured neither active, and flush all occurrencies
+        in the group_matrix)
+        group_matrix ignored
+        """
+        print "A5 DELETE:" + request.path + ", " + parameter
+        return self.render_GET(request, parameter)
 
     def getChild(self, path, request):
-        print self.__class__.name, "Modules - ENUM - child request!", path, request
-        return ModulesHandlers()
+        print self.__class__.name, "A5 child request!", path, request
+        return adminModulesHandlers()
+
 
 #############################################
-
-
 # Follow the Tip Handlers, 
 class tipHandlers(resource.Resource):
     path = 'default'
