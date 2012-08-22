@@ -1,0 +1,32 @@
+@import url(bootstrap.css);
+@import url(bootstrap-responsive.css);
+
+@media (min-width: 980px) {
+    body {
+        /* 60px to make the container go all the way to the bottom of the topbar */
+        padding-top: 60px;
+    }
+}
+
+/* Just some styles to use for this demo, you can remove them
+   for your project. */
+.demo .span4 {
+    text-align: center;
+}
+.demo ul {
+    text-align: left;
+    padding-left: 20px;
+}
+
+.latenzaStatusBox {
+    z-index: 9999;
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    opacity: 0.5;
+}
+
+.currentRequests dd {
+    margin-top: 6px;
+    width: 200px
+}

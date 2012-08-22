@@ -1,2 +1,1 @@
-# GLClient
-GlobaLeaks Client interface
+

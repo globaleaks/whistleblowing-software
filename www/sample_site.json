@@ -1,0 +1,8 @@
+{'title': 'Lorem ipsum',
+ 'menu': {'foobar': '/latenza/foobar',
+          'barfoo': '/latenza/barfoo'},
+ 'submenu': {'foo': '/latenza/foo'},
+ 'home': ['MarkdownStuff...', {'type': 'fileupload', 'value': 'foobar'},
+          'Markdown']
+}
+'{"submenu": {"foo": "/latenza/foo"}, "menu": {"foobar": "/latenza/foobar","barfoo": "/latenza/barfoo"}, "home": ["MarkdownStuff...", {"type": "fileupload", "value": "foobar"}, "Markdown"], "title": "Lorem ipsum"}'

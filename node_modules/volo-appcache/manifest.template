@@ -1,0 +1,11 @@
+CACHE MANIFEST
+# {stamp}
+
+CACHE:
+{files}
+
+# catch-all for anything else
+NETWORK:
+*
+http://*
+https://*
