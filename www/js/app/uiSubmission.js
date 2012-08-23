@@ -23,7 +23,7 @@ define(function (require) {
             }
             var cTemplate = hogan.compile(template);
             var rendered = cTemplate.render(data);
-            console.log(rendered);
+            // console.log(rendered);
             return rendered;
         };
 
@@ -75,14 +75,14 @@ define(function (require) {
         };
 
         function submitForm(data) {
-            console.log(data);
+            // console.log(data);
             var x,
                 form = $(data.target.parentElement);
 
             var inputs = form.find('input');
 
             for (x in inputs) {
-                console.log(inputs[x]);
+                // console.log(inputs[x]);
             };
             return false;
         };
@@ -91,7 +91,7 @@ define(function (require) {
             var x, target,
                 allowed_types = ['string', 'text','checkbox', 'radio'];
             for (x in form) {
-                console.log(form[x].type);
+                // console.log(form[x].type);
                 if (allowed_types.indexOf(form[x].type) != -1) {
                     if ((x % 2) == 0) {
                         target = $('.submissionFormLeft');
@@ -112,15 +112,16 @@ define(function (require) {
                                 form.hide();
                                 var parsed = JSON.parse(data);
                                 form.after('<div class="alert">Receipt: '+parsed.receipt+'</div>');
-                                console.log(data);
+                                // console.log(data);
                               });
                 return false;
             });
         };
 
-        latenza.ajax({'url': '/submission/'}).done(function(data) {
-            var formdata = JSON.parse(data);
-            processForm(formdata);
+        latenza.ajax({'url': '/node'}).done(function(data) {
+            var formdata = data;
+            console.log(formdata);
+            processForm(formdata.contexts[0].fields);
         });
 
 
