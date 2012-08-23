@@ -13,7 +13,7 @@
 
 from globaleaks.rest.handlers import *
 from globaleaks.submission import Submission
-from cyclone.web import Application
+from cyclone.web import Application, StaticFileHandler
 
 tip_regexp = '\w+'
 submission_id_regexp = '\w+'
@@ -87,7 +87,11 @@ spec = [
     (r'/admin/receivers/(' + id_regexp + ')',
                     adminHandler, dict(action='receivers')),
     (r'/admin/modules/(' + module_regexp + ')', adminHandler,
-        dict(action='module'))]
+        dict(action='module')),
+    ## Main Web app ##
+    # * /
+    (r"/(.*)", StaticFileHandler, {'path': '/home/x/code/web/GLClient/www/'})
+    ]
 
 if __name__ == "__main__":
     """
