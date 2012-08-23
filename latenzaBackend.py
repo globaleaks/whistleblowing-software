@@ -57,11 +57,27 @@ class SubmissionHandler(cyclone.web.RequestHandler):
         ]
         self.write(json.dumps(data))
 
+class aboutHandler(cyclone.web.RequestHandler):
+    def get(self):
+        aboutDict = {'title': 'About this node',
+                     'subtitle': 'we rock!',
+                     'content': """Sustainable tattooed sriracha, in velit
+                     farm-to-table fanny pack kale chips messenger bag. Ethnic
+                     deserunt accusamus scenester fixie vegan, blog enim. Retro
+                     butcher thundercats lo-fi assumenda, master cleanse occupy
+                     aliqua cosby sweater quinoa nesciunt truffaut
+                     williamsburg. Mlkshk sed tumblr sunt, cray street art
+                     pour-over typewriter. Twee mustache qui cardigan. Freegan
+                     adipisicing direct trade deserunt. Anim cliche ennui
+                     officia commodo terry richardson."""}
+        self.write(json.dumps(aboutDict))
+
 def main():
     log.startLogging(sys.stdout)
     application = cyclone.web.Application([
         (r"/submission/", SubmissionHandler),
         (r"/submission/new", SubmissionNewHandler),
+        (r"/about/", aboutHandler),
         (r"/static/(.*)", cyclone.web.StaticFileHandler, {'path': '/home/x/code/web/GLClient/www/'}),
     ])
 

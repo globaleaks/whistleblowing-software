@@ -229,6 +229,14 @@ define('latenza', ['jquery', 'hogan', 'marked'], function($, hogan, marked) {
         ///////////////////////////////////
         // UI Related functions
         ///////////////////////////////////
+       
+        renderProgressbar: function(target, template) {
+            template = template || '<div class="progress progress-striped"><div class="bar" style="width: 0%"></div></div>';
+            target.html(template);
+
+            target.find('.bar').animate({'width': '100%'}, this.latency);
+
+        },
 
         _addRequestToBox: function(url, id) {
             var template = '<dt class="{{id}}">{{url}}</dt>';

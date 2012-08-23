@@ -7,8 +7,11 @@ define(function (require) {
         hasher = require('hasher'),
         hogan = require('hogan'),
         crossroads = require('crossroads'),
-        templates = {};
-   
+        templates = {},
+        handlers = {};
+    
+    handlers.submission = require('./handlers/submission');
+
     templates.home = hogan.compile(require('text!./templates/home.html'));
     templates.about = hogan.compile(require('text!./templates/about.html'));
     templates.submission = hogan.compile(require('text!./templates/submission.html'));
@@ -16,20 +19,19 @@ define(function (require) {
     templates.admin = hogan.compile(require('text!./templates/admin.html'));
     templates.receiver = hogan.compile(require('text!./templates/receiver.html'));
     
+    templates.loading = hogan.compile(require('text!./templates/loading.html'));
+
     function homeHandler(data) {
         var content = templates.home.render();
         $('.contentElement').html(content);
     };
 
     function aboutHandler(data) {
-        var content = templates.about.render();
-        $('.contentElement').html(content);
-    };
-
-    function submissionHandler(data) {
-        var content = templates.submission.render();
-        $('.contentElement').html(content);
-        require('./uiSubmission')();
+        latenza.ajax({'url': '/about/'}).done(function(data) {
+            var parsed = JSON.parse(data);
+            var content = templates.about.render(parsed);
+            $('.contentElement').html(content);
+        });
     };
 
     function statusHandler(token) {
@@ -56,7 +58,7 @@ define(function (require) {
         
         crossroads.addRoute('', homeHandler); 
         crossroads.addRoute('about', aboutHandler); 
-        crossroads.addRoute('submission', submissionHandler); 
+        crossroads.addRoute('submission', handlers.submission); 
         crossroads.addRoute('status/{token}', statusHandler); 
         crossroads.addRoute('admin', adminHandler); 
         crossroads.addRoute('receiver/{token}', receiverHandler); 
@@ -72,7 +74,7 @@ define(function (require) {
             }
             $('#'+oldHash+'Menu').removeClass('active');
             $('#'+newHash+'Menu').addClass('active');
-            $('.contentElement').html(''); 
+            latenza.renderProgressbar($('.contentElement'), templates.loading.render()); 
             crossroads.parse(newHash);
         }
 
