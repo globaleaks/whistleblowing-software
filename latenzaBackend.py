@@ -4,12 +4,6 @@ import json
 from twisted.internet import reactor
 from twisted.python import log
 
-f = open('markdown1.md')
-markdown1 = ''.join(f.readlines())
-f.close()
-f = open('markdown2.md')
-markdown2 = ''.join(f.readlines())
-f.close()
 class SubmissionNewHandler(cyclone.web.RequestHandler):
     def get(self):
         import random
@@ -55,25 +49,12 @@ class SubmissionHandler(cyclone.web.RequestHandler):
         ]
         self.write(json.dumps(data))
 
-class LatenzaHandler(cyclone.web.RequestHandler):
-    def get(self):
-        homeDict = {'title': 'Lorem ipsum',
-                    'menu': {'foobar': '/latenza/foobar',
-                              'barfoo': '/latenza/barfoo'},
-                    'submenu': {'foo': '/latenza/foo'},
-                    'home': [markdown1, {'type': 'fileupload',
-                             'value': 'foobar'},
-                             markdown2]
-                   }
-        self.write(json.dumps(homeDict))
-
 def main():
     log.startLogging(sys.stdout)
     application = cyclone.web.Application([
         (r"/submission/", SubmissionHandler),
         (r"/submission/new", SubmissionNewHandler),
-        (r"/latenza/", LatenzaHandler),
-        (r"/static/(.*)", cyclone.web.StaticFileHandler, {'path': '/home/x/code/web/latenza.js/www/'}),
+        (r"/static/(.*)", cyclone.web.StaticFileHandler, {'path': '/home/x/code/web/GLClient/www/'}),
     ])
 
     reactor.listenTCP(8888, application, interface="127.0.0.1")

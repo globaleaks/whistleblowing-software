@@ -23,7 +23,8 @@ define(function (require) {
             }
             var cTemplate = hogan.compile(template);
             var rendered = cTemplate.render(data);
-            $('.formTest').append(rendered);
+            console.log(rendered);
+            $('.submissionForm').append(rendered);
         };
 
         var process = {
@@ -95,6 +96,7 @@ define(function (require) {
                     process[form[x].type](form[x]);
                 }
             };
+            $('.submissionForm').append('<input type="submit"/>');
 
             // XXX refactor this
             $('form').submit(function(){

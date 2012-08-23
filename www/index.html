@@ -10,8 +10,15 @@
         <div class="navbar-inner">
             <div class="container">
 
-                <a class="brand" href="#">Latenza.js</a>
+                <a class="brand" href="#">GLClient</a>
                 <ul class="nav menuElement">
+                  <li id="homeMenu" class="active"><a href="#">Home</a></li>
+                  <li id="submissionMenu"><a href="#/submission">Submission</a></li>
+                  <li id="aboutMenu"><a href="#/about">About</a></li>
+                  <li id="statusMenu"><a href="#/status/foo">Status Page</a></li>
+                  <li id="receiverMenu"><a href="#/receiver/foo">Receiver</a></li>
+                  <li id="adminMenu"><a href="#/admin">Admin</a></li>
+
                 </ul>
 
                 <ul class="nav pull-right">
@@ -35,16 +42,6 @@
     </div>
 
     <div class="container demo">
-        <h1>Latenza.js</h1>
-        <p>
-        Latenz.js is a boilerplate for building web applications that
-        use a high latency network and are driven by a RESTful backend.
-        </p>
-        <form>
-            <div class="formTest">
-            </div>
-        <input type='submit'>
-        </form>
         <div>
             <div style="display: none;" class="webapp-error alert alert-block">
                 <a class="close" data-dismiss="alert">×</a>
@@ -52,53 +49,11 @@
                 <span class="webapp-error-details"></span>
             </div>
         </div>
+    </div>
 
+    <div class="contentElement container">
 
-        <div class="row">
-            <div class="span4">
-                <h2>Network Tests</h2>
-                    <button onclick='latenza.test(1)' class="btn
-                        btn-primary">Fire one request</button>
-                    <button onclick='latenza.test(2)' class="btn
-                        btn-primary">Fire 100 good requests</button>
-                    <button onclick='latenza.test(3)' class="btn
-                        btn-primary">Fire 100 good n bad</button>
-
-                </ul>
-            </div>
-
-            <div class="span4">
-                <h2>AppCache Status</h2>
-
-                <p>
-                    <span class="appCacheStatus label">n/a</span>
-                </p>
-
-                <p>
-                    <div class="updateAlert well" style="display: none;">
-                        <p>There is an application update. Update now?</p>
-                        <button class="updateButton btn btn-primary">Update</button>
-                    </div>
-                </p>
-
-                <p>
-                    <button class="checkUpdate btn btn-primary"
-                            style="display: none;">Check for Update</button>
-                </p>
-
-                <div class="eventSection" style="display: none;">
-                    <p>appCache events fired (most recent first):</p>
-                    <div class="appCacheEvent"></div>
-                </div>
-            </div>
-
-            <div class="span4">
-            </div>
-        </div>
-        <hr/>
-        <div class="row contentElement">
-
-        </div>
+    </div>
     <!-- Load the main app module via the module loader -->
     <script async data-main="js/app" src="js/lib/require.js" charset="utf-8"></script>
 </body>

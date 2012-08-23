@@ -12,7 +12,9 @@
       "hogan": "https://raw.github.com/twitter/hogan.js/master/web/builds/2.0.0/hogan-2.0.0.amd.js",
       "signals": "https://raw.github.com/millermedeiros/js-signals/master/dist/signals.js",
       "crossroads": "https://raw.github.com/millermedeiros/crossroads.js/master/dist/crossroads.js",
-      "marked": "https://raw.github.com/chjj/marked/master/lib/marked.js"
+      "marked": "https://raw.github.com/chjj/marked/master/lib/marked.js",
+      "hasher": "https://raw.github.com/millermedeiros/Hasher/master/dist/js/hasher.js",
+      "text": "github:requirejs/text/2.0.3"
     }
   }
 }
