@@ -24,7 +24,7 @@ define(function (require) {
             var cTemplate = hogan.compile(template);
             var rendered = cTemplate.render(data);
             console.log(rendered);
-            $('.submissionForm').append(rendered);
+            return rendered;
         };
 
         var process = {
@@ -36,14 +36,14 @@ define(function (require) {
                 template +=        'value="{{default}}" placeholder="{{hint}}"';
                 template +=        'required="{{required}}"/>';
 
-                renderTemplate(template, data);
+                return renderTemplate(template, data);
             },
 
             text: function(data) {
                 var template;
                 template = '<label>{{label}}</label>\n';
                 template += '<textarea name="{{name}}" required={{required}}>{{default}}</textarea>\n';
-                renderTemplate(template, data);
+                return renderTemplate(template, data);
             },
 
             checkbox: function(data) {
@@ -51,7 +51,7 @@ define(function (require) {
                 template = '<label class="checkbox">\n';
                 template += '<input type="checkbox" name="{{name}}" required={{required}}>{{label}}\n';
                 template += '</label>';
-                renderTemplate(template, data);
+                return renderTemplate(template, data);
             },
 
             radio: function(data) {
@@ -67,7 +67,7 @@ define(function (require) {
                     template += '{{label'+x+'}}\n';
                     template += '</label>';
                 }
-                renderTemplate(template, parsed_data);
+                return renderTemplate(template, parsed_data);
             }
         };
 
@@ -88,12 +88,17 @@ define(function (require) {
         };
 
         function processForm(form) {
-            var x,
+            var x, target,
                 allowed_types = ['string', 'text','checkbox', 'radio'];
             for (x in form) {
                 console.log(form[x].type);
                 if (allowed_types.indexOf(form[x].type) != -1) {
-                    process[form[x].type](form[x]);
+                    if ((x % 2) == 0) {
+                        target = $('.submissionFormLeft');
+                    } else {
+                        target = $('.submissionFormRight');
+                    }
+                    target.append(process[form[x].type](form[x]));
                 }
             };
             $('.submissionForm').append('<input type="submit"/>');
@@ -106,7 +111,7 @@ define(function (require) {
                                 var form = $('form')
                                 form.hide();
                                 var parsed = JSON.parse(data);
-                                form.after('Receipt: '+parsed.receipt);
+                                form.after('<div class="alert">Receipt: '+parsed.receipt+'</div>');
                                 console.log(data);
                               });
                 return false;

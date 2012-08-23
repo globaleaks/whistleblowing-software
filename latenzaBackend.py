@@ -37,6 +37,14 @@ class SubmissionHandler(cyclone.web.RequestHandler):
           'hint': 'check if this applies',
           'required': True},
 
+          {'name': 'othercheckbox', 
+          'label': 'Is this true?',
+          'type': 'checkbox', 
+          'help': '',
+          'hint': 'check if this applies',
+          'required': False},
+
+
           {'name': 'option',
            'label': 'What option?',
            'type': 'radio',

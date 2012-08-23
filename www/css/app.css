@@ -30,3 +30,15 @@
     margin-top: 6px;
     width: 200px
 }
+
+
+
+.submissionContainer {
+    background-color: #F7F7F9;
+    border: 1px solid #E1E1E8;
+    padding: 20px;
+    width: 620px;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+}

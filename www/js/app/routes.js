@@ -27,7 +27,7 @@ define(function (require) {
     };
 
     function submissionHandler(data) {
-        var content = templates.submission.render({'intro': 'Foobar'});
+        var content = templates.submission.render();
         $('.contentElement').html(content);
         require('./uiSubmission')();
     };
