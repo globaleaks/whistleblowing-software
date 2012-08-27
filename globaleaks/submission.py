@@ -9,6 +9,10 @@
 
 from globaleaks.utils.random import random_string
 
+"""
+Move this utility in globaleaks.utils.random or globaleaks.utils.id ?
+remind: ID need to be unique, and may support a prefix
+"""
 def random_submission_id():
     import random
     import string

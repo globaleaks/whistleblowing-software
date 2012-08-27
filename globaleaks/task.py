@@ -7,11 +7,9 @@
 #
 #   Contains all the logic for handling tip related operations.
 
-
 from zope.interface import Interface, Attribute
 from twisted.internet import defer
 from twisted.internet import reactor
-
 
 import itertools
 
@@ -47,6 +45,11 @@ class TaskQueue(object):
         return d
 
 
+"""
+XXX comment that,
+WHO call this method
+WHY call this method ?
+"""
 class DummyMethod:
     def __init__(self, type):
         self.type = type

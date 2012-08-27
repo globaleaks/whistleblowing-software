@@ -1,103 +1,105 @@
-import json
-from twisted.web import resource
+# -*- coding: UTF-8
+#   api
+#   ***
+#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
+#   :author: Arturo Filastò <art@globaleaks.org>
+#   :license: see LICENSE file
+#
+#   Contains all the logic for handling tip related operations.
+#   This contains the specification of the API.
+#   Read this if you want to have an overall view of what API calls are handled
+#   by what.
+
+
 from globaleaks.rest.handlers import *
-from globaleaks.rest.utils import processChildren
+from globaleaks.submission import Submission
+from cyclone.web import Application, StaticFileHandler
 
-__all__ = ['RESTful', 'attach_rest' ]
+tip_regexp = '\w+'
+submission_id_regexp = '\w+'
+module_regexp = '\w+'
+id_regexp = '\w+'
+spec = [
+    ## Node Handler ##
+    #  * /node
+    (r'/node', nodeHandler),
+    ## Submission Handlers ##
+    #  * /submission/<ID>/
+    #  * /submission/<ID>/fields
+    #  * /submission/<ID>/groups
+    #  * /submission/<ID>/files
+    #  * /submission/<ID>/finalize
+    #  * /submission/<ID>/status
+    (r'/submission', submissionHandler, dict(action='new')),
+    (r'/submission/(' + submission_id_regexp + ')',
+                     submissionHandler, dict(action='new')),
+    (r'/submission/(' + submission_id_regexp + ')/fields',
+                     submissionHandler, dict(action='fields')),
+    (r'/submission/(' + submission_id_regexp + ')/groups',
+                     submissionHandler, dict(action='groups')),
+    (r'/submission/(' + submission_id_regexp + ')/files',
+                     submissionHandler, dict(action='files')),
+    (r'/submission/(' + submission_id_regexp + ')/finalize',
+                     submissionHandler, dict(action='finalize')),
+    (r'/submission/(' + submission_id_regexp + ')/status',
+                     submissionHandler, dict(action='status')),
 
-"""
-This file contains:
+    ## Tip Handlers ##
+    #  * /tip/<ID>/
+    #  * /tip/<ID>/comment
+    #  * /tip/<ID>/files
+    #  * /tip/<ID>/finalize
+    #  * /tip/<ID>/download
+    #  * /tip/<ID>/pertinence
+    (r'/tip/(' + tip_regexp + ')',
+                     tipHandler, dict(action='main')),
+    (r'/tip/(' + tip_regexp + ')/comment',
+                     tipHandler, dict(action='comment')),
+    (r'/tip/(' + tip_regexp + ')/files',
+                     tipHandler, dict(action='files')),
+    (r'/tip/(' + tip_regexp + ')/finalize',
+                     tipHandler, dict(action='finalize')),
+    (r'/tip/(' + tip_regexp + ')/download',
+                     tipHandler, dict(action='dowload')),
+    (r'/tip/(' + tip_regexp + ')/pertinence',
+                     tipHandler, dict(action='pertinence')),
 
-    class RESTful(resource.Resource)
-        getChild
-"""
+    ## Receiver Handlers ##
+    #  * /reciever/<ID>/
+    #  * /receiver/<ID>/<MODULE>
+    (r'/receiver/(' + tip_regexp + ')',
+                     receiverHandler, dict(action='main')),
+    (r'/receiver/(' + tip_regexp + ')/(' + module_regexp + ')',
+                     receiverHandler, dict(action='module')),
 
-"""
-http://twistedmatrix.com/documents/12.1.0/api/twisted.web.resource.IResource.html
-"""
-class RESTful(resource.Resource):
-
-
-    def __init__(self, APImap):
-        """
-        Create the root of the restful interface and create the children
-        handlers for handlers that don't take a parameter.
-
-        APImap is a dict collected by all the modules that want
-        expose a REST interface
-        """
-        resource.Resource.__init__(self)
-
-        # this function is in utils.py, and is a recursive function
-        processChildren(self, APImap)
-
-        # call the module(s) that load REST interface
-        from globaleaks.rest.external_loader import simulation_of_module_loading_rest
-        simulation_of_module_loading_rest()
-
-    def getChild(self, path, request):
-        """
-        When trying to access a child that does not exist return an empty
-        resource.
-        This method is overriden when you need to handle 'stuff/$random/child'
-        """
-        print "(default error ?) getChild ", path, request
-        return resource.Resource()
-
-
-"""
-The follwing part of code is intended to be moved in the
-backend/core logic, and implemented here just for 
-"""
+    ## Admin Handlers ##
+    #  * /admin/node
+    #  * /admin/contexts
+    #  * /admin/groups/<ID>
+    #  * /admin/receivers/<ID>
+    #  * /admin/modules/<MODULE>
+    (r'/admin/node',
+                    adminHandler, dict(action='node')),
+    (r'/admin/contexts',
+                    adminHandler, dict(action='context')),
+    (r'/admin/groups/(' + id_regexp + ')',
+                    adminHandler, dict(action='groups')),
+    (r'/admin/receivers/(' + id_regexp + ')',
+                    adminHandler, dict(action='receivers')),
+    (r'/admin/modules/(' + module_regexp + ')', adminHandler,
+        dict(action='module')),
+    ## Main Web app ##
+    # * /
+    (r"/(.*)", StaticFileHandler, {'path': '/home/x/code/web/GLClient/www/'})
+    ]
 
 if __name__ == "__main__":
-
+    """
+    if invoked directly we will run the application.
+    """
     from twisted.internet import reactor
-    from twisted.web import server
 
-
-    # not all APIs are know at the start of the software,
-    # modules can implement their own REST
-
-    tipAPImap = { 
-            'download_material': downloadMaterialHandler,
-            'add_comment': addCommentHandler,
-            'pertinence': pertinenceHandler,
-            'add_description': addDescriptionHandler
-        }
-
-    adminAPImap = { 
-           'contexts': adminContextHandler,
-           'node': adminNodeHandler,
-           'group' : adminGroupHandlers,        # WC
-           'receivers': adminReceiversHandlers, # WC
-           'modules': adminModulesHandlers      # WC
-        }
-
-    APImap = {
-       'node': nodeHandler,
-       'submission': submissionHandlers, # wildcard handling 
-       'tip': tipAPImap, # tipHandlers,   # handle the default path
-       'admin': adminAPImap, #  adminHandlers, # too
-       'receiver' : receiverHandlers # too!
-    }
-
-    print "\n"
-    print "adminAPImap", len(adminAPImap)
-    print "APImap", len(APImap)
-    print "tipAPImap", len(tipAPImap)
-    #APImap.update(tipAPImap)
-    #APImap.update(adminAPImap)
-    print "sum:", len(APImap)
-
-    for k, v in APImap.items():
-        if isinstance(v, dict):
-            print k
-            for sk, sv in v.items():
-                print "\t",sk," => ", str(sv)
-        else:
-            print k," => ", str(v)
-
-    reactor.listenTCP(8082, server.Site(RESTful(APImap)))
+    application = Application(spec)
+    reactor.listenTCP(8082, application)
     reactor.run()
 
