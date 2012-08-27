@@ -5,6 +5,11 @@ import sys
 
 
 """
+This value is changed using a first argument of host:port
+"""
+baseurl = "127.0.0.1:8082"
+
+"""
 Generic object definition
 """
 
@@ -289,7 +294,6 @@ def do_curl(url, method, not_encoded_parm=''):
      "Accept": "application/json" 
               }
 
-    baseurl = "127.0.0.1:8082"
     conn = httplib.HTTPConnection(baseurl)
     print "[+] CONNECTION REQUEST:", method, baseurl, url, params, headers,"\n\n"
 
@@ -348,7 +352,7 @@ class myUnitTest(unittest.TestCase):
 
         print "[do_METHOD] using url", settings['url'], "request", settings['request']
 
-        if len(sys.argv) == 2 and sys.argv[1] == 'v':
+        if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
             clean_debug(1, settings)
 
         if method == 'GET':
@@ -356,7 +360,7 @@ class myUnitTest(unittest.TestCase):
         else:
             result = do_curl(settings['url'], settings['method'], settings['request'])
 
-        if len(sys.argv) == 2 and sys.argv[1] == 'v':
+        if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
             clean_debug(1, result)
 
         # self.assertEqual(result, settings['expected_result'])
@@ -414,6 +418,19 @@ class R1(myUnitTest):
 
 
 # HERE START THE TEST
+
+if len(sys.argv) >= 2:
+    for x in enumerate(sys.argv):
+        if x[1].find(':') != -1:
+            baseurl = x[1]
+            print "using base url", baseurl
+else:
+    print "using default base url", baseurl
+
+if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
+    print "verbose modality is ON"
+else:
+    print "verbose modality is OFF"
 
 P1().do_tests()
 
