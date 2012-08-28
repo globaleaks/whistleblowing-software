@@ -3,6 +3,8 @@ from globaleaks.tip import Tip
 from globaleaks.admin import Admin
 from globaleaks.receiver import Receiver
 from globaleaks.submission import Submission
+from globaleaks.rest.hooks.validators import *
+from globaleaks.rest.hooks.sanitizers import *
 
 from globaleaks import DummyHandler
 from globaleaks.utils.JSONhelper import genericDict
@@ -70,9 +72,9 @@ class GLBackendHandler(RequestHandler):
         """
         sanitize_function = lambda *x,**y: (x,y)
         try:
-            sanitize_function = getattr(self.target, method+'Sanitize')
+            sanitize_function = getattr(self.sanitizer, self.action)
         except:
-            print "[!] Warning, no sanitization function is present."
+            sanitizer_function = getattr(self.sanitizer, 'sanitize')
 
         # XXX should we return args and kw or only kw?
         sanitized_args, sanitized_kw = sanitize_function(*self.arguments, **self.keywordArguments)
@@ -105,12 +107,10 @@ class GLBackendHandler(RequestHandler):
                                                                 self.keywordArguments,
                                                                 self.target,
                                                                 self.action)
-
         try:
-            validate_function = getattr(self.target, self.action+'Validate')
+            validate_function = getattr(self.validator, self.action)
         except:
-            print "[!] Warning, no validation function is present."
-            return True
+            validate_function = getattr(self.validator, 'validate')
 
         if validate_function:
             valid = validate_function(*self.arguments,
@@ -216,6 +216,8 @@ class submissionHandler(GLBackendHandler):
         * /submission/<ID>/finalize
     """
     target = Submission()
+    validator = SubmissionValidator
+    sanitizer = SubmissionSanitizer
 
 class tipHandler(GLBackendHandler):
     """
@@ -228,6 +230,8 @@ class tipHandler(GLBackendHandler):
         * /tip/<ID>/pertinence
     """
     target = Tip()
+    validator = TipValidator
+    sanitizer = TipSanitizer
 
 class receiverHandler(GLBackendHandler):
     """
@@ -236,6 +240,8 @@ class receiverHandler(GLBackendHandler):
         * /receiver/<ID>/<MODULE>
     """
     target = Receiver()
+    validator = ReceiverValidator
+    sanitizer = ReceiverSanitizer
 
 class adminHandler(GLBackendHandler):
     """
@@ -247,3 +253,5 @@ class adminHandler(GLBackendHandler):
         * /admin/modules/<MODULE>
     """
     target = Admin()
+    validator = AdminValidator
+    sanitizer = AdminSanitizer
