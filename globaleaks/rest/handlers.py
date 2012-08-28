@@ -8,7 +8,7 @@ from globaleaks import DummyHandler
 from globaleaks.utils.JSONhelper import genericDict
 
 from cyclone import escape
-from cyclone.web import RequestHandler
+from cyclone.web import RequestHandler, HTTPError
 
 DEBUG = True
 
@@ -20,7 +20,14 @@ class GLBackendHandler(RequestHandler):
 
     # Used for passing status code from handlers to client
     status_code = None
-    def initialize(self, action=None):
+
+    # The request method
+    method = None
+
+    # Arguments being sent from client and/or cyclone dict
+    arguments = []
+    keywordArguments = {}
+    def initialize(self, action=None, supportedMethods=None):
         """
         Get the argument passed by the API dict.
 
@@ -30,6 +37,8 @@ class GLBackendHandler(RequestHandler):
         :action the action such request is referring to.
         """
         self.action = action
+        ## XXX check this shit out
+        self.SUPPORTED_METHODS = supportedMethods
         self.target.handler = self
 
     def prepare(self):
@@ -51,53 +60,143 @@ class GLBackendHandler(RequestHandler):
         else:
             raise HTTPError(405)
 
-    def handle(self, method, *arg, **kw):
+    def invalidRequest(self):
+        return 'Invalid function'
+
+    def sanitizeRequest(self):
+        """
+        Sanitize the request. Sets the arguments array and dict to the sanized
+        values.
+        """
+        sanitize_function = lambda *x,**y: (x,y)
+        try:
+            sanitize_function = getattr(self.target, method+'Sanitize')
+        except:
+            print "[!] Warning, no sanitization function is present."
+
+        # XXX should we return args and kw or only kw?
+        sanitized_args, sanitized_kw = sanitize_function(*self.arguments, **self.keywordArguments)
+
+        self.arguments = sanitized_args
+        self.keywordArguments = sanitized_kw
+
+    def isSupportedMethod(self):
+        """
+        Check if the request method is supported.
+        """
+        if not self.supportedMethods:
+            return True
+
+        if self.method in self.supportedMethods:
+            return True
+
+        else:
+            return False
+
+    def validateRequest(self):
+        """
+        Validate the incomming request.
+
+        Returns True if the request is valid, False if it is not.
+        """
+        valid = True
+        if DEBUG:
+            print "[+] validating %s %s via %s->%sValidate" % (self.arguments,
+                                                                self.keywordArguments,
+                                                                self.target,
+                                                                self.action)
+
+        try:
+            validate_function = getattr(self.target, self.action+'Validate')
+        except:
+            print "[!] Warning, no validation function is present."
+            return True
+
+        if validate_function:
+            valid = validate_function(*self.arguments,
+                                       **self.keywordArguments)
+        return valid
+
+    def handle(self, action):
         """
         Make the target handle deal with the request.
         Basically we do Target->method(*arg, **kw)
 
-        :method the name of the method to be called on self.target
-
-        :args the arguments that will be passed to self.target->method()
-
-        :kw the keyword arguments passed to self.target->method()
+        :action the name of the method to be called on self.target
         """
-        ret = {}
-        if method:
-            if DEBUG:
-                print "[+] calling %s->%s with %s %s" % (self.target, method, arg, kw)
-            func = getattr(self.target, method)
-            ret = func(*arg, **kw)
-        return ret
+        self.action = action
+        return_value = {}
+        validate_function = None
+        processor = None
 
-    def any_method(self, method, *arg, **kw):
+        if not action:
+            return return_value
+
+        if DEBUG:
+            print "[+] calling %s->%s with %s %s" % (self.target, self.method,
+                                                     self.arguments,
+                                                     self.keywordArguments)
+        if not self.isSupportedMethod():
+            raise HTTPError(405, "Request method not supported by this API call")
+
+        if not self.validateRequest():
+            print "[!] Detected an invalid request, are we under attack?"
+            return self.invalidRequest()
+
+        self.sanitizeRequest()
+
+        processor = getattr(self.target, action)
+        return_value = processor(self.arguments, self.keywordArguments)
+
+        return return_value
+
+    def any_method(self, *arg, **kw):
         """
         Simple hack to by default handle all methods with the same handler.
         """
         if DEBUG:
-            print "[+] Handling %s with %s %s" % (method, arg, kw)
+            print "[+] Handling %s with %s %s" % (self.method, arg, kw)
+
+        self.arguments = arg
+        self.keywordArguments = kw
+
         ret = self.handle(self.action, *arg, **kw)
+
         if self.status_code:
             self.set_status(self.status_code)
         self.write(dict(ret))
 
     def get(self, *arg, **kw):
-        self.any_method('get', *arg, **kw)
+        self.method = 'GET'
+        self.any_method(*arg, **kw)
 
     def post(self, *arg, **kw):
-        self.any_method('post', *arg, **kw)
+        self.method = 'POST'
+        self.any_method(*arg, **kw)
 
     def put(self, *arg, **kw):
-        self.any_method('put', *arg, **kw)
+        self.method = 'PUT'
+        self.any_method(*arg, **kw)
 
     def delete(self, *arg, **kw):
-        self.any_method('delete', *arg, **kw)
+        self.method = 'DELETE'
+        self.any_method(*arg, **kw)
 
 
 """
 XXX
 please, clarify if the handlers extend GLBackendHandler or DummyHandler
                 if the handlers are implemented here or in ../$namestuff.py
+---
+I renamed the class that was DummyHandler to Processor. Handlers now are only
+what provide Request Handling capabilities. Processors are what do the actual
+logic based on the data taken from the client.
+
+It looks something like this:
+
+API -> Handlers -> Processors -> All GL Classes
+
+- Art.
 """
 class nodeHandler(GLBackendHandler):
     """

@@ -30,19 +30,46 @@ spec = [
     #  * /submission/<ID>/files
     #  * /submission/<ID>/finalize
     #  * /submission/<ID>/status
-    (r'/submission', submissionHandler, dict(action='new')),
+    (r'/submission', submissionHandler,
+                     dict(action='new',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/submission/(' + submission_id_regexp + ')',
-                     submissionHandler, dict(action='new')),
+                     submissionHandler,
+                     dict(action='new',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/submission/(' + submission_id_regexp + ')/fields',
-                     submissionHandler, dict(action='fields')),
+                     submissionHandler,
+                     dict(action='fields',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/submission/(' + submission_id_regexp + ')/groups',
-                     submissionHandler, dict(action='groups')),
+                     submissionHandler,
+                     dict(action='groups',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/submission/(' + submission_id_regexp + ')/files',
-                     submissionHandler, dict(action='files')),
+                     submissionHandler,
+                     dict(action='files',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/submission/(' + submission_id_regexp + ')/finalize',
-                     submissionHandler, dict(action='finalize')),
+                     submissionHandler,
+                     dict(action='finalize',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/submission/(' + submission_id_regexp + ')/status',
-                     submissionHandler, dict(action='status')),
+                     submissionHandler,
+                     dict(action='status',
+                          supportedMethods=['GET']
+                         )),
 
     ## Tip Handlers ##
     #  * /tip/<ID>/
@@ -52,25 +79,55 @@ spec = [
     #  * /tip/<ID>/download
     #  * /tip/<ID>/pertinence
     (r'/tip/(' + tip_regexp + ')',
-                     tipHandler, dict(action='main')),
+                     tipHandler,
+                     dict(action='main',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/tip/(' + tip_regexp + ')/comment',
-                     tipHandler, dict(action='comment')),
+                     tipHandler,
+                     dict(action='comment',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/tip/(' + tip_regexp + ')/files',
-                     tipHandler, dict(action='files')),
+                     tipHandler,
+                     dict(action='files',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/tip/(' + tip_regexp + ')/finalize',
-                     tipHandler, dict(action='finalize')),
+                     tipHandler,
+                     dict(action='finalize',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/tip/(' + tip_regexp + ')/download',
-                     tipHandler, dict(action='dowload')),
+                     tipHandler,
+                     dict(action='dowload',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/tip/(' + tip_regexp + ')/pertinence',
-                     tipHandler, dict(action='pertinence')),
+                     tipHandler,
+                     dict(action='pertinence',
+                          supportedMethods=['GET']
+                         )),
 
     ## Receiver Handlers ##
     #  * /reciever/<ID>/
     #  * /receiver/<ID>/<MODULE>
     (r'/receiver/(' + tip_regexp + ')',
-                     receiverHandler, dict(action='main')),
+                     receiverHandler,
+                     dict(action='main',
+                          supportedMethods=['GET']
+                         )),
+
     (r'/receiver/(' + tip_regexp + ')/(' + module_regexp + ')',
-                     receiverHandler, dict(action='module')),
+                     receiverHandler,
+                     dict(action='module',
+                          supportedMethods=['GET']
+                         )),
 
     ## Admin Handlers ##
     #  * /admin/node
@@ -78,16 +135,31 @@ spec = [
     #  * /admin/groups/<ID>
     #  * /admin/receivers/<ID>
     #  * /admin/modules/<MODULE>
-    (r'/admin/node',
-                    adminHandler, dict(action='node')),
-    (r'/admin/contexts',
-                    adminHandler, dict(action='context')),
+    (r'/admin/node', adminHandler,
+                        dict(action='node',
+                             supportedMethods=['GET']
+                            )),
+
+    (r'/admin/contexts', adminHandler,
+                        dict(action='context',
+                             supportedMethods=['GET']
+                            )),
     (r'/admin/groups/(' + id_regexp + ')',
-                    adminHandler, dict(action='groups')),
+                    adminHandler,
+                    dict(action='groups',
+                         supportedMethods=['GET']
+                        )),
+
     (r'/admin/receivers/(' + id_regexp + ')',
-                    adminHandler, dict(action='receivers')),
+                    adminHandler,
+                    dict(action='receivers',
+                         supportedMethods=['GET']
+                        )),
+
     (r'/admin/modules/(' + module_regexp + ')', adminHandler,
-        dict(action='module')),
+                    dict(action='module',
+                         supportedMethods=['GET']
+                        )),
     ## Main Web app ##
     # * /
     (r"/(.*)", StaticFileHandler, {'path': '/home/x/code/web/GLClient/www/'})

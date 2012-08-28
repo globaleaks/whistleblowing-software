@@ -9,6 +9,18 @@
 #
 
 
-from globaleaks import DummyHandler
-class Admin(DummyHandler):
-    pass
+from globaleaks import Processor
+
+class Admin(Processor):
+    def node(self, *arg, **kw):
+        return {'arg': arg, 'kw': kw}
+
+    def context(self, *arg, **kw):
+        return {'arg': arg, 'kw': kw}
+
+    def groups(self, *arg, **kw):
+        return {'arg': arg, 'kw': kw}
+
+    def receivers(self, *arg, **kw):
+        return {'arg': arg, 'kw': kw}
+

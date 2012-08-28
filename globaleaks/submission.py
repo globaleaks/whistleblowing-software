@@ -28,12 +28,18 @@ def random_receipt_id():
 class Submission:
     handler = None
 
+    def newValidate(self, *arg, **kw):
+        return True
+
     def new(self, *arg, **kw):
         """
         Creates an empty submission and returns the ID to the WB.
         """
         self.handler.status_code = 201
         return {'submission_id': random_submission_id()}
+
+    def statusValidate(self, *arg, **kw):
+        return True
 
     def status(self, submission_id, *arg, **kw):
         from datetime import datetime
@@ -46,6 +52,8 @@ class Submission:
                       }
         return status_dict
 
+    def filesValidate(self, submission_id, *arg, **kw):
+        return True
 
     def files(self, submission_id, *arg, **kw):
         """
@@ -55,6 +63,9 @@ class Submission:
         """
         return {'submission_id': submission_id}
 
+    def fieldsValidate(self, submission_id, *arg, **kw):
+        return True
+
     def fields(self, submission_id, *arg, **kw):
         """
         Add the fields to the submission.
@@ -62,6 +73,9 @@ class Submission:
         :fields: a dict containing the submitted fields
         """
         return {'submission_id': submission_id}
+
+    def groupsValidate(self, submission_id, *arg, **kw):
+        return True
 
     def groups(self, submission_id, *arg, **kw):
         """
