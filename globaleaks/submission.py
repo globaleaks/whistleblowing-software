@@ -54,12 +54,13 @@ class Submission:
         """
         return {'submission_id': submission_id}
 
-    def fields(self, submission_id, *arg, **kw):
+    def fields(self, submission_id, fields=None, *arg, **kw):
         """
         Add the fields to the submission.
 
         :fields: a dict containing the submitted fields
         """
+        print fields
         return {'submission_id': submission_id}
 
     def groups(self, submission_id, *arg, **kw):

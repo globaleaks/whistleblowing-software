@@ -36,32 +36,32 @@ groups = [{'id' : 0,
            'creation_date': footime,
            'update_date': footime}]
 
-fields = [{'name': 'title', 
+fields = [{'name': 'title',
           'label': 'Title',
-          'type': 'string', 
+          'type': 'string',
           'hint': 'Insert your title here',
           'default': '',
           'help': 'Place here your help text',
           'required': True},
 
-          {'name': 'description', 
+          {'name': 'description',
           'label': 'Description',
-          'type': 'text', 
+          'type': 'text',
           'hint': 'Insert your description here',
           'default': '',
           'help': 'Place here your help text',
           'required': True},
 
-          {'name': 'eyewitness', 
+          {'name': 'eyewitness',
           'label': 'Eye witness?',
-          'type': 'checkbox', 
+          'type': 'checkbox',
           'help': '',
           'hint': 'check if this applies',
           'required': True},
 
-          {'name': 'othercheckbox', 
+          {'name': 'othercheckbox',
           'label': 'Is this true?',
-          'type': 'checkbox', 
+          'type': 'checkbox',
           'help': '',
           'hint': 'check if this applies',
           'required': False},
@@ -85,19 +85,18 @@ info.properties = {'x': True, 'y': False}
 info.https_address = 'https://example.com/'
 info.httpo_address = 'httpo://foobar.onion/'
 
-info.contexts = [{'id': 0, 'name': 'context1', 
+info.contexts = [{'id': 0, 'name': 'context1',
                   'groups': groups,
                   'fields': fields,
                   'description': lorem,
                   'style': 'default',
                   'creation_date': footime,
                   'update_date': footime},
-                 {'id': 1, 'name': 'context2', 
+                 {'id': 1, 'name': 'context2',
                   'groups': groups,
                   'fields': fields,
                   'description': lorem,
                   'style': 'default',
                   'creation_date': footime,
                   'update_date': footime}]
-
 
