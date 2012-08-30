@@ -39,8 +39,8 @@ class GLBackendHandler(RequestHandler):
         :action the action such request is referring to.
         """
         self.action = action
-        ## XXX check this shit out
-        self.SUPPORTED_METHODS = supportedMethods
+        if supportedMethods:
+            self.SUPPORTED_METHODS = supportedMethods
         self.target.handler = self
 
     def prepare(self):
@@ -70,6 +70,9 @@ class GLBackendHandler(RequestHandler):
         Sanitize the request. Sets the arguments array and dict to the sanized
         values.
         """
+        if not self.sanitize:
+            return
+
         sanitize_function = lambda *x,**y: (x,y)
         try:
             sanitize_function = getattr(self.sanitizer, self.action)
@@ -107,6 +110,9 @@ class GLBackendHandler(RequestHandler):
                                                                 self.keywordArguments,
                                                                 self.target,
                                                                 self.action)
+        if not self.validator:
+            return valid
+
         try:
             validate_function = getattr(self.validator, self.action)
         except:
@@ -145,12 +151,17 @@ class GLBackendHandler(RequestHandler):
 
         self.sanitizeRequest()
 
-        processor = getattr(self.target, action)
+        try:
+            # We want to call target.action(GET|POST|DELETE|PUT)
+            processor = getattr(self.target, action+self.method.upper())
+        except:
+            processor = getattr(self.target, action)
+
         return_value = processor(self.arguments, self.keywordArguments)
 
         return return_value
 
-    def any_method(self, *arg, **kw):
+    def anyMethod(self, *arg, **kw):
         """
         Simple hack to by default handle all methods with the same handler.
         """
@@ -168,19 +179,19 @@ class GLBackendHandler(RequestHandler):
 
     def get(self, *arg, **kw):
         self.method = 'GET'
-        self.any_method(*arg, **kw)
+        self.anyMethod(*arg, **kw)
 
     def post(self, *arg, **kw):
         self.method = 'POST'
-        self.any_method(*arg, **kw)
+        self.anyMethod(*arg, **kw)
 
     def put(self, *arg, **kw):
         self.method = 'PUT'
-        self.any_method(*arg, **kw)
+        self.anyMethod(*arg, **kw)
 
     def delete(self, *arg, **kw):
         self.method = 'DELETE'
-        self.any_method(*arg, **kw)
+        self.anyMethod(*arg, **kw)
 
 
 """
@@ -204,6 +215,7 @@ class nodeHandler(GLBackendHandler):
         * /node
     """
     def get(self):
+        self.method = 'GET'
         self.write(dict(node.info))
 
 class submissionHandler(GLBackendHandler):

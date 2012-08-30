@@ -32,18 +32,12 @@ Submission does not extend anything ?
 class Submission:
     handler = None
 
-    def newValidate(self, *arg, **kw):
-        return True
-
     def new(self, *arg, **kw):
         """
         Creates an empty submission and returns the ID to the WB.
         """
         self.handler.status_code = 201
         return {'submission_id': random_submission_id()}
-
-    def statusValidate(self, *arg, **kw):
-        return True
 
     def status(self, submission_id, *arg, **kw):
         from datetime import datetime
@@ -56,9 +50,6 @@ class Submission:
                       }
         return status_dict
 
-    def filesValidate(self, submission_id, *arg, **kw):
-        return True
-
     def files(self, submission_id, *arg, **kw):
         """
         Adds the material to the specified submission id.
@@ -67,19 +58,14 @@ class Submission:
         """
         return {'submission_id': submission_id}
 
-    def fieldsValidate(self, submission_id, *arg, **kw):
-        return True
-
-    def fields(self, submission_id, *arg, **kw):
+    def fields(self, submission_id, fields=None, *arg, **kw):
         """
         Add the fields to the submission.
 
         :fields: a dict containing the submitted fields
         """
+        print fields
         return {'submission_id': submission_id}
-
-    def groupsValidate(self, submission_id, *arg, **kw):
-        return True
 
     def groups(self, submission_id, *arg, **kw):
         """

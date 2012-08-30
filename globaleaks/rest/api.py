@@ -9,7 +9,9 @@
 #   This contains the specification of the API.
 #   Read this if you want to have an overall view of what API calls are handled
 #   by what.
-
+import sys
+sys.path.insert(0, '../../')
+sys.path.insert(0, '/home/x/code/web/cyclone')
 
 from globaleaks.rest.handlers import *
 from globaleaks.submission import Submission
@@ -44,31 +46,31 @@ spec = [
     (r'/submission/(' + submission_id_regexp + ')/fields',
                      submissionHandler,
                      dict(action='fields',
-                          supportedMethods=['GET']
+                          supportedMethods=['GET', 'POST']
                          )),
 
     (r'/submission/(' + submission_id_regexp + ')/groups',
                      submissionHandler,
                      dict(action='groups',
-                          supportedMethods=['GET']
+                          supportedMethods=['GET', 'POST']
                          )),
 
     (r'/submission/(' + submission_id_regexp + ')/files',
                      submissionHandler,
                      dict(action='files',
-                          supportedMethods=['GET']
+                          supportedMethods=['GET', 'POST']
                          )),
 
     (r'/submission/(' + submission_id_regexp + ')/finalize',
                      submissionHandler,
                      dict(action='finalize',
-                          supportedMethods=['GET']
+                          supportedMethods=['POST']
                          )),
 
     (r'/submission/(' + submission_id_regexp + ')/status',
                      submissionHandler,
                      dict(action='status',
-                          supportedMethods=['GET']
+                          supportedMethods=['GET', 'POST']
                          )),
 
     ## Tip Handlers ##
@@ -81,25 +83,25 @@ spec = [
     (r'/tip/(' + tip_regexp + ')',
                      tipHandler,
                      dict(action='main',
-                          supportedMethods=['GET']
+                          supportedMethods=['GET', 'DELETE']
                          )),
 
     (r'/tip/(' + tip_regexp + ')/comment',
                      tipHandler,
                      dict(action='comment',
-                          supportedMethods=['GET']
+                          supportedMethods=['POST']
                          )),
 
     (r'/tip/(' + tip_regexp + ')/files',
                      tipHandler,
                      dict(action='files',
-                          supportedMethods=['GET']
+                          supportedMethods=['GET', 'POST']
                          )),
 
     (r'/tip/(' + tip_regexp + ')/finalize',
                      tipHandler,
                      dict(action='finalize',
-                          supportedMethods=['GET']
+                          supportedMethods=['POST']
                          )),
 
     (r'/tip/(' + tip_regexp + ')/download',
@@ -126,7 +128,7 @@ spec = [
     (r'/receiver/(' + tip_regexp + ')/(' + module_regexp + ')',
                      receiverHandler,
                      dict(action='module',
-                          supportedMethods=['GET']
+                          supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
                          )),
 
     ## Admin Handlers ##
@@ -170,8 +172,11 @@ if __name__ == "__main__":
     if invoked directly we will run the application.
     """
     from twisted.internet import reactor
+    from twisted.python import log
 
-    application = Application(spec)
+    log.startLogging(sys.stdout)
+
+    application = Application(spec, debug=True)
     reactor.listenTCP(8082, application)
     reactor.run()
 
