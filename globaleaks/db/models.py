@@ -1,9 +1,11 @@
 from storm.twisted.transact import transact
 from storm.locals import *
 
-__all__ = ['InternalTip', 'MaterialSet',
-           'StoredFile', 'Tip','ReceiverTip',
-           'WhistleblowerTip', 'Node', 'Receiver']
+from globaleaks.db import getStore, transactor
+
+__all__ = ['InternalTip', 'Folder',
+           'File', 'Tip','ReceiverTip',
+           'Submission', 'Node', 'Receiver']
 
 class TXModel(object):
     """
@@ -14,56 +16,66 @@ class TXModel(object):
     @transact. Be sure *not* to return any reference to Storm objects, these
     where retrieved in a different thread and cannot exit the matrix.
     """
-    create_query = ""
-    def __init__(self):
-        from globaleaks.db import transactor, database
-        self.transactor = transactor
-        self.database = database
-
-    def _create_store(self):
-        self.store = Store(self.database)
+    createQuery = ""
+    transactor = transactor
 
     @transact
-    def create_table(self):
-        self._create_store()
-        try:
-            self.store.execute(self.create_query)
-        except:
-            pass
-        self.store.commit()
+    def createTable(self):
+        store = getStore()
+        store.execute(self.createQuery)
+        store.commit()
 
     @transact
-    def store(self):
-        self._create_store()
-        self.store.add(self)
-        self.store.commit()
+    def save(self):
+        store = getStore()
+        store.add(self)
+        store.commit()
 
-class StoredFile(TXModel):
-    """
-    Represents a material: a file.
-    """
-    __storm_table__ = 'material'
 
-    create_query = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, file_location VARCHAR, description VARCHAR, "\
-                   " materialset_id INTEGER)"
+class Submission(TXModel):
+    """
+    This represents a temporary submission. Submissions should be stored here
+    until they are transformed into a Tip.
+    """
+    __storm_table__ = 'submission'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, temporary_id INTEGER, fields VARCHAR, "\
+                   " created VARCHAR)"
 
     id = Int(primary=True)
 
-    file_location = Unicode()
+    temporary_id = Int()
+
+    fields = Pickle()
+    created = Date()
+
+class File(TXModel):
+    """
+    Represents a file: a file.
+    """
+    __storm_table__ = 'file'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, location VARCHAR, description VARCHAR, "\
+                   " folder_id INTEGER)"
+
+    id = Int(primary=True)
+
+    location = Unicode()
     description = Unicode()
 
-    materialset_id = Int()
+    folder_id = Int()
 
-    #materialset = Reference(materialset_id, MaterialSet.id)
+    #folder = Reference(folder_id, Folder.id)
 
-class MaterialSet(TXModel):
+class Folder(TXModel):
     """
-    This represents a material set: a collection of files.
+    This represents a file set: a collection of files.
     """
-    __storm_table__ = 'materialset'
+    __storm_table__ = 'folder'
 
-    create_query = "CREATE TABLE " + __storm_table__ +\
+    createQuery = "CREATE TABLE " + __storm_table__ +\
                    "(id INTEGER PRIMARY KEY, description VARCHAR, "\
                    " internaltip_id INTEGER)"
 
@@ -73,7 +85,7 @@ class MaterialSet(TXModel):
     internaltip_id = Int()
 
     #tip = Reference(internaltip_id, InternalTip.id)
-    files = ReferenceSet(id, StoredFile.materialset_id)
+    files = ReferenceSet(id, File.folder_id)
 
 class InternalTip(TXModel):
     """
@@ -84,33 +96,34 @@ class InternalTip(TXModel):
     """
     __storm_table__ = 'internaltip'
 
-    create_query = "CREATE TABLE " + __storm_table__ +\
+    createQuery = "CREATE TABLE " + __storm_table__ +\
                    "(id INTEGER PRIMARY KEY, fields VARCHAR, comments VARCHAR,"\
-                   " pertinence INTEGER, expiration_time VARCHAR, material_id INT)"
+                   " pertinence INTEGER, expires VARCHAR, file_id INT)"
 
     id = Int(primary=True)
 
     fields = Pickle()
     comments = Pickle()
     pertinence = Int()
-    expiration_time = Date()
+    expires = Date()
 
-    material_id = Int()
+    file_id = Int()
 
-    # Material sets associated with the submission
-    material = ReferenceSet(id, MaterialSet.internaltip_id)
+    # Folders associated with the submission
+    folders = ReferenceSet(id, Folder.internaltip_id)
+
     # Tips associated with this InternalTip
     # children = ReferenceSet(id, Tip.internaltip_id)
 
     def __repr__(self):
         return "<InternalTip: (%s, %s, %s, %s, %s)" % (self.fields, \
-                self.material, self.comments, self.pertinence, \
-                self.expiration_time)
+                self.file, self.comments, self.pertinence, \
+                self.expires)
 
 class Tip(TXModel):
     __storm_table__ = 'tip'
 
-    create_query = "CREATE TABLE " + __storm_table__ +\
+    createQuery = "CREATE TABLE " + __storm_table__ +\
                    "(id INTEGER PRIMARY KEY, address VARCHAR, password VARCHAR,"\
                    " type INTEGER, internaltip_id INTEGER, total_view_count INTEGER, "\
                    " total_download_count INTEGER, relative_view_count INTEGER, "\
@@ -125,45 +138,11 @@ class Tip(TXModel):
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
-    def get_type(self):
-        if self.__class__ is ReceiverTip:
-            return 0
-        elif self.__class__ is WhistleblowerTip:
-            return 1
-        elif self.__class is Tip:
-            return 9
-
-    def gen_address(self):
-        # XXX DANGER CHANGE!!
-        self.address = sha.sha(''.join(str(random.randint(1,100)) for x in range(1,10))).hexdigest()
-        self.password = ""
-
-    def add_comment(self, data):
-        pass
-
 class ReceiverTip(Tip):
     total_view_count = Int()
     total_download_count = Int()
     relative_view_count = Int()
     relative_download_count = Int()
-
-    def increment_visit(self):
-        pass
-
-    def increment_download(self):
-        pass
-
-    def delete_tulip(self):
-        pass
-
-    def download_material(self, id):
-        pass
-
-class WhistleblowerTip(Tip):
-
-    def add_material(self):
-        pass
-
 
 class Node(TXModel):
     __storm_table__ = 'node'

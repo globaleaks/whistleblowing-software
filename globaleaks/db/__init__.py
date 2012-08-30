@@ -24,18 +24,24 @@ threadpool = ThreadPool(0, 10)
 threadpool.start()
 transactor = Transactor(threadpool)
 
+def getStore():
+    store = Store(database)
+    return store
+
 @inlineCallbacks
-def create_tables():
+def createTables():
     from globaleaks.db import models
+
     def create(query):
-        store = Store(database)
+        store = getStore()
         store.execute(query)
         store.commit()
 
     for x in models.__all__:
-        query = getattr(models.__getattribute__(x), 'create_query')
+        query = getattr(models.__getattribute__(x), 'createQuery')
         try:
             yield transactor.run(create, query)
         except:
             log.msg("Failing in creating table for %s. Maybe it already exists?" % x)
+
 

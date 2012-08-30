@@ -62,9 +62,6 @@ class GLBackendHandler(RequestHandler):
         else:
             raise HTTPError(405)
 
-    def invalidRequest(self):
-        return 'Invalid function'
-
     def sanitizeRequest(self):
         """
         Sanitize the request. Sets the arguments array and dict to the sanized
@@ -147,7 +144,7 @@ class GLBackendHandler(RequestHandler):
 
         if not self.validateRequest():
             print "[!] Detected an invalid request, are we under attack?"
-            return self.invalidRequest()
+            raise HTTPError(405, "Invalid request")
 
         self.sanitizeRequest()
 

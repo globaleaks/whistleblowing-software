@@ -5,6 +5,18 @@ GlobaLeaks empowers people to report on malpractice and abuse on a local level a
 The flexibility of GlobaLeaks make it suitable for various different kinds of whistleblowing initiatives. An activist should be enabled to use the GlobaLeaks platform but it should scale
 to also be applied to a corporation, public administration or newspaper.
 
+Dependencies
+============
+
+* Python
+* Twisted
+* STORM
+* Transaction
+
+installation one liner:
+
+    apt-get install python python-twisted python-storm python-transaction
+
 Documentation
 =============
 
