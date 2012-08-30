@@ -7,7 +7,9 @@
 #
 #   Implements a GlobaLeaks submission.
 
-from globaleaks.db import models
+from twisted.internet.defer import returnValue, inlineCallbacks
+from globaleaks.db import models, transactor
+from globaleaks.db import transact
 from globaleaks.utils.random import random_string
 
 """
@@ -28,6 +30,8 @@ def random_receipt_id():
 
 class Submission:
     handler = None
+    model = models.Submission()
+    transactor = transactor
 
     def new(self, *arg, **kw):
         """
@@ -61,7 +65,7 @@ class Submission:
 
         :fields: a dict containing the submitted fields
         """
-        print fields
+        print "Fields: %s" % fields
         return {'submission_id': submission_id}
 
     def groups(self, submission_id, *arg, **kw):
@@ -72,11 +76,23 @@ class Submission:
         """
         return {'submission_id': submission_id}
 
-    def finalize(self, submission_id, *arg, **kw):
+    @inlineCallbacks
+    def finalize(self, submission_id, **form_fields):
         """
         Finalize the submission and create data inside of the database.
         """
-        receipt_id = random_receipt_id()
+        receipt_id = unicode(random_receipt_id())
         self.handler.status_code = 201
-        return {'receipt': receipt_id}
+        internal_tip = models.InternalTip()
+        internal_tip.fields = form_fields
+
+        yield internal_tip.save()
+
+        whistleblower_tip = models.Tip()
+        whistleblower_tip.internaltip_id = internal_tip.id
+        whistleblower_tip.address = receipt_id
+
+        yield whistleblower_tip.save()
+
+        returnValue({'receipt': receipt_id})
 

@@ -1,3 +1,4 @@
+from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import node
 from globaleaks.tip import Tip
 from globaleaks.admin import Admin
@@ -10,7 +11,7 @@ from globaleaks import DummyHandler
 from globaleaks.utils.JSONhelper import genericDict
 
 from cyclone import escape
-from cyclone.web import RequestHandler, HTTPError
+from cyclone.web import RequestHandler, HTTPError, asynchronous
 
 DEBUG = True
 
@@ -26,9 +27,20 @@ class GLBackendHandler(RequestHandler):
     # The request method
     method = None
 
-    # Arguments being sent from client and/or cyclone dict
+    # Arguments being sent from client via POST/GET/DELETE/PUT
     arguments = []
-    keywordArguments = {}
+    # Arguments matched from the in the regexp of the REST spec
+    matchedArguments = []
+
+    # The methods supported by this specific handler
+    supportedMethods = None
+
+    # The class responsible for handling sanitization
+    sanitizer = None
+
+    # The class responsible for handling validation
+    validator = None
+
     def initialize(self, action=None, supportedMethods=None):
         """
         Get the argument passed by the API dict.
@@ -67,20 +79,19 @@ class GLBackendHandler(RequestHandler):
         Sanitize the request. Sets the arguments array and dict to the sanized
         values.
         """
-        if not self.sanitize:
+        if not self.sanitizer:
             return
 
-        sanitize_function = lambda *x,**y: (x,y)
+        sanitize_function = lambda request: request.request.arguments
         try:
             sanitize_function = getattr(self.sanitizer, self.action)
         except:
             sanitizer_function = getattr(self.sanitizer, 'sanitize')
 
         # XXX should we return args and kw or only kw?
-        sanitized_args, sanitized_kw = sanitize_function(*self.arguments, **self.keywordArguments)
+        sanitized_arguments = sanitize_function(self)
 
-        self.arguments = sanitized_args
-        self.keywordArguments = sanitized_kw
+        self.arguments = sanitized_arguments
 
     def isSupportedMethod(self):
         """
@@ -104,7 +115,7 @@ class GLBackendHandler(RequestHandler):
         valid = True
         if DEBUG:
             print "[+] validating %s %s via %s->%sValidate" % (self.arguments,
-                                                                self.keywordArguments,
+                                                               self.matchedArguments,
                                                                 self.target,
                                                                 self.action)
         if not self.validator:
@@ -116,10 +127,11 @@ class GLBackendHandler(RequestHandler):
             validate_function = getattr(self.validator, 'validate')
 
         if validate_function:
-            valid = validate_function(*self.arguments,
-                                       **self.keywordArguments)
+            valid = validate_function(self)
+
         return valid
 
+    @inlineCallbacks
     def handle(self, action):
         """
         Make the target handle deal with the request.
@@ -133,12 +145,12 @@ class GLBackendHandler(RequestHandler):
         processor = None
 
         if not action:
-            return return_value
+            returnValue(return_value)
 
         if DEBUG:
             print "[+] calling %s->%s with %s %s" % (self.target, self.method,
                                                      self.arguments,
-                                                     self.keywordArguments)
+                                                     self.matchedArguments)
         if not self.isSupportedMethod():
             raise HTTPError(405, "Request method not supported by this API call")
 
@@ -154,10 +166,12 @@ class GLBackendHandler(RequestHandler):
         except:
             processor = getattr(self.target, action)
 
-        return_value = processor(self.arguments, self.keywordArguments)
+        return_value = yield processor(*self.matchedArguments, **self.arguments)
 
-        return return_value
+        returnValue(return_value)
 
+    @asynchronous
+    @inlineCallbacks
     def anyMethod(self, *arg, **kw):
         """
         Simple hack to by default handle all methods with the same handler.
@@ -165,14 +179,14 @@ class GLBackendHandler(RequestHandler):
         if DEBUG:
             print "[+] Handling %s with %s %s" % (self.method, arg, kw)
 
-        self.arguments = arg
-        self.keywordArguments = kw
+        self.matchedArguments = arg if arg else []
 
-        ret = self.handle(self.action, *arg, **kw)
+        ret = yield self.handle(self.action)
 
         if self.status_code:
             self.set_status(self.status_code)
         self.write(dict(ret))
+        self.finish()
 
     def get(self, *arg, **kw):
         self.method = 'GET'
