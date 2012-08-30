@@ -32,4 +32,4 @@ Actually only REST unitTest is partially developed, check it out in `Rest testin
 Previous release
 ================
 
-`GlobaLeaks 0.1 <https://github.com/globaleaks/GlobaLeaks.git>`_ Is the usable release.
+`GlobaLeaks 0.1 <https://github.com/globaleaks/globaleaks-0.1>`_ Is the usable release.
