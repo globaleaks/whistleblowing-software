@@ -21,7 +21,8 @@ Documentation
 =============
 
 For an overview of the GlobaLeaks architecture check out the
-`Architecture <docs/architecture.rst>`_ doc.
+`Architecture https://github.com/globaleaks/GLBackend/blob/master/docs/to-move-to-main-repo/architecture.rst`_ doc. 
+TODO: This is a temporary location, getting moved to main GL repo
 
 Testing the software
 ====================
