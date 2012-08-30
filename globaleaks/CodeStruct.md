@@ -1,20 +1,29 @@
 ## Code Structure
 
-In the file, we can specify the Threaded logic, this shall be helpful, twisted and
-sqlalchemy has not to run in the same thread.
+In this file, are reported the files below the tree of globaleaks/, keeping track of the 
+functions and classess exported
 
-/
+globaleaks/
 
     __init__.py
-    backend.py (main!)
+    backend.py
+    task.py
+        TaskQueue
+        DummyMethod
+        Task
 
-core/
+    node.py (Processor)
+        Node
+    admin.py (Processor)
+        Admin
+    tip.py (Processor)
+        Tip
 
-    ORM (TODO)
-    task
-    submission
+globaleaks/receiver/
 
-rest/
+    __init__.py (I don't get it, why in __init__ ?)
+
+globaleaks/rest/
 
     api.py
         specify API name and handle the REST paths
@@ -27,21 +36,22 @@ rest/
     utils.py
         utilities used by api and handlers,
 
-modules/
+globaleaks/modules/
 
     contains abstract Factories and their implementation:
 
-
-    diskstorage/
-    databasestorage/
-    notification/
+    notify/
     delivery/
-    tip/
-    receivers/
-    inputfilter/
+
+    not yet written:
+        diskstorage/
+        databasestorage/
+        tip/
+        receivers/
+        inputfilter/
 
 
-utils/
+globaleaks/utils/
 
     random.py
     JSONhelper.py
