@@ -44,4 +44,3 @@ def createTables():
         except:
             log.msg("Failing in creating table for %s. Maybe it already exists?" % x)
 
-

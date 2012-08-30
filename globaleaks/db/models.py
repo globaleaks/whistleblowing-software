@@ -15,6 +15,9 @@ class TXModel(object):
     The methods that should be run on the Storm ORM should be decorated with
     @transact. Be sure *not* to return any reference to Storm objects, these
     where retrieved in a different thread and cannot exit the matrix.
+
+    When you decorate object methods with @transact be sure to also set the
+    transactor attribute to that of a working transactor.
     """
     createQuery = ""
     transactor = transactor

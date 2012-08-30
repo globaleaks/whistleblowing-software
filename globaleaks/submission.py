@@ -7,6 +7,7 @@
 #
 #   Implements a GlobaLeaks submission.
 
+from globaleaks.db import models
 from globaleaks.utils.random import random_string
 
 """
