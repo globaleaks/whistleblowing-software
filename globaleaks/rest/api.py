@@ -9,6 +9,7 @@
 #   This contains the specification of the API.
 #   Read this if you want to have an overall view of what API calls are handled
 #   by what.
+from globaleaks import config
 from globaleaks.rest.handlers import *
 from globaleaks.submission import Submission
 from cyclone.web import StaticFileHandler
@@ -160,6 +161,6 @@ spec = [
                         )),
     ## Main Web app ##
     # * /
-    (r"/(.*)", StaticFileHandler, {'path': '/home/x/code/web/GLClient/www/'})
+    (r"/(.*)", StaticFileHandler, {'path': config.glbackend.glclient_path})
     ]
 
