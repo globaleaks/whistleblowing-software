@@ -9,13 +9,10 @@
 #   This contains the specification of the API.
 #   Read this if you want to have an overall view of what API calls are handled
 #   by what.
-import sys
-sys.path.insert(0, '../../')
-sys.path.insert(0, '/home/x/code/web/cyclone')
-
+from globaleaks import config
 from globaleaks.rest.handlers import *
 from globaleaks.submission import Submission
-from cyclone.web import Application, StaticFileHandler
+from cyclone.web import StaticFileHandler
 
 tip_regexp = '\w+'
 submission_id_regexp = '\w+'
@@ -164,19 +161,6 @@ spec = [
                         )),
     ## Main Web app ##
     # * /
-    (r"/(.*)", StaticFileHandler, {'path': '/home/x/code/web/GLClient/www/'})
+    (r"/(.*)", StaticFileHandler, {'path': config.glbackend.glclient_path})
     ]
-
-if __name__ == "__main__":
-    """
-    if invoked directly we will run the application.
-    """
-    from twisted.internet import reactor
-    from twisted.python import log
-
-    log.startLogging(sys.stdout)
-
-    application = Application(spec, debug=True)
-    reactor.listenTCP(8082, application)
-    reactor.run()
 
