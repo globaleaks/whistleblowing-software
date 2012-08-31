@@ -5,9 +5,9 @@ from globaleaks.receiver import Receiver
 from globaleaks.submission import Submission
 from globaleaks.rest.hooks.validators import *
 from globaleaks.rest.hooks.sanitizers import *
+from globaleaks.utils import logging
 
 from globaleaks import DummyHandler
-from globaleaks.utils.JSONhelper import genericDict
 
 from cyclone import escape
 from cyclone.web import RequestHandler, HTTPError
@@ -29,6 +29,7 @@ class GLBackendHandler(RequestHandler):
     # Arguments being sent from client and/or cyclone dict
     arguments = []
     keywordArguments = {}
+
     def initialize(self, action=None, supportedMethods=None):
         """
         Get the argument passed by the API dict.
@@ -195,10 +196,6 @@ class GLBackendHandler(RequestHandler):
 
 
 """
-XXX
-please, clarify if the handlers extend GLBackendHandler or DummyHandler
-                if the handlers are implemented here or in ../$namestuff.py
----
 I renamed the class that was DummyHandler to Processor. Handlers now are only
 what provide Request Handling capabilities. Processors are what do the actual
 logic based on the data taken from the client.

@@ -36,6 +36,14 @@ globaleaks/rest/
     utils.py
         utilities used by api and handlers,
 
+globaleaks/utils/
+
+    random.py
+        random_string
+
+    log.py
+        Logging
+
 globaleaks/modules/
 
     contains abstract Factories and their implementation:
