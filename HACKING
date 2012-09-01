@@ -9,7 +9,11 @@ should follow when writing code.
 Getting started - useful things
 *******************************
 
+pip install storm 
+(broken under linux ?)
 
+aptitute intall python-storm
+(not enough to run storm ?)
 
 
 Python funnyties
