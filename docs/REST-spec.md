@@ -22,28 +22,20 @@ Returns information on the GlobaLeaks node. This includes submission paramters a
 P2 `/submission`
 
 This creates an empty submission and returns the Id to be used when referencing it as a whistleblower.
-Id is a random 64bit integer (POST only)
+Id is a random 64bit integer (GET)
 
-P3 `/submission/<submission_id>`
+P3 `/submission/<submission_id>/status`
 
-Returns the currently submitted fields and material filenames and size, this is the only interface giving back the complete submission status (GET only)
+Returns the currently submitted fields and material filenames and size, this is the only interface giving back the complete submission status (GET, POST)
+Awaits for the group matrix selection, awaits for the fields.
 
-P4 `/submission/<submission_id>/fields`
+P4 `/submission/<submission_id>/finalize`
 
-does the submission of the fields that are supported by the node in question and update the selected submission_id (POST only)
+Completes the submission in progress, **give to the server the receipt secret** and confirm the receipt (or answer with a part of them). settings dependent.  (POST)
 
-P5 `/submission/<submission_id>/groups`
+P5 `/submission/<submission_id>/files`
 
-Optional Interface (may not be provided by Node Options) select the groups into the list of recipients for the selected submission.
-Group are addressed by their Id (POST only)
-
-P6 `/submission/<submission_id>/finalize`
-
-Completes the submission in progress, **give to the server the receipt secret** and confirm the receipt (or answer with a part of them). settings dependent.  (POST only)
-
-P7 `/submission/<submission_id>/files`
-
-upload a file to the selected submission_id (REST depends from JQueryFileUpload integration)
+upload a file to the selected submission_id (REST depends from JQueryFileUpload integration, probabily GET, POST, DELETE, PUT)
 
 ### API shared between WhistleBlowers and Receiver (require auth)
 
@@ -141,10 +133,8 @@ P1 `/node/`
 
 P2 `/submission`
 P3 `/submission/<submission_$ID>/status`
-P4 `/submission/<submission_$ID>/fields`
-P5 `/submission/<submission_$ID>/groups`
-P6 `/submission/<submission_$ID>/finalize`
-P7 `/submission/<submission_$ID>files`
+P4 `/submission/<submission_$ID>/finalize`
+P5 `/submission/<submission_$ID>files`
 
 R1 `/receiver/<string t_id>/overview`
 R2 `/receiver/<string t_id>/<string module_name>`
@@ -474,10 +464,7 @@ permit to update fields content and group selection.
           If group ID is invalid:
             { 'error_code': 'Int', 'error_message': 'group selected ID is invalid' }
 
-P4 `/submission/<submission_$ID>/fields`
-P5 `/submission/<submission_$ID>/groups`
-
-P6 `/submission/<submission_$ID>/finalize`
+P4 `/submission/<submission_$ID>/finalize`
 
     :POST
         checks if all the 'Required' fields are present, then
@@ -493,20 +480,23 @@ P6 `/submission/<submission_$ID>/finalize`
         * Response (HTTP code 200):
           If the receipt is acceptable with the node requisite (minimum length
           respected, lowecase/uppercase, and other detail that need to be setup
-          during the context configuration), rs saved as authenticative secret for
+          during the context configuration), i saved as authenticative secret for
           the WB Tip, is echoed back to the client Status Code: 201 (Created)
 
           Status Code: 200 (OK)
-          { 'receipt': 'string' }
+          { 'receipt': 'string (with receipt EQUAL to proposed-receipt)' }
 
-        * Variant Response (HTTP code 201):
-          If the receipt do not fit node prerequisite, or is expected but not provide
+        * Response (HTTP code 201):
+          If the receipt do not fit node prerequisite, or is missing,
           the submission is finalized, and the server create a receipt.
-          The client print back to the WB, who record that
+          The client print back the receipt to the WB.
 
           Status Code: 201 (Created)
           { 'receipt': 'string' }
 
+        Both response finalize the submission and the only difference is in the HTTP
+        return code. This has been discussed (or would be discussed)
+        [issue #19, Receipt, proposal of expansion](https://github.com/globaleaks/GLBackend/issues/19)
 
         * Error handling:
           As per "common behaviour in /submission/<submission_$ID/*"
@@ -515,12 +505,8 @@ P6 `/submission/<submission_$ID>/finalize`
           Status Code: 406 (Not Acceptable)
           { 'error_code': 'Int', 'error_message': 'fields requirement not respected' }
 
-XXX I don't understand what you mean with the variant. Can you try and better
-explain it? - Art.
+P5 `/submission/<submission_$ID>files`,
 
-P7 `/submission/<submission_$ID>files`,
-
-    XXX
     XXX
 
     This interface supports resume.
@@ -535,7 +521,6 @@ P7 `/submission/<submission_$ID>files`,
 **At the moment is under research:**
 https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPRbsoz_Hs3TTSnK7NzY86S4/edit?pli=1
 
-    XXX
     XXX
 
 
@@ -580,21 +565,26 @@ T1 `/tip/<uniq_Tip_$ID>` (shared between Receiver and WhistleBlower)
           { 'error_code': 'Int', 'error_message': 'requested Tip ID is expired or invalid' }
 
     :POST
-        Used to delete a submission if the users has sufficient priviledges.
-        Administrative settings can configure if all or some, receivers or
-        WB, can delete the submission. (by default they cannot).
+        Used to delete a Tip. Two different kind of removal can exists actually,
+        the "personal-delete" remove the Tip of the receiver (or of the whistleblower,
+        and "submission-delete" remote all the Tip relative to a specific submission.
+        (remove options are present if the users has sufficient priviledges, depends
+        on the configuration settings)
 
         * Request:
         {
-            'delete': 'Bool'
+            'personal-delete': 'Bool',
+            'submission-delete': 'Bool'
         }
 
         * Response:
           If the user has right permissions:
+          the requested content is deleted and:
           Status Code: 200 (OK)
 
           If the user has not permission:
           Status Code: 204 (No Content)
+          { 'error_code': 'Int', 'error_message': 'Operation forbidden' }
 
 
 T2 `/tip/<uniq_Tip_$ID>/comment` (shared between Receiver and WhistleBlowe)
@@ -610,6 +600,11 @@ T2 `/tip/<uniq_Tip_$ID>/comment` (shared between Receiver and WhistleBlowe)
 
         * Response:
           Status Code: 200 (OK)
+
+        * Error Response, happen when comment are disable:
+          Status Code: 204 (No Content)
+          { 'error_code': 'Int', 'error_message': 'Operation forbidden' }
+
         * Error handling
           as per `GET /tip/<uniq_Tip_$ID>/`
 
@@ -728,12 +723,16 @@ Tip opened for him. This default behaviour would be overrided by modules.
           Status Code: 204 (No Content)
           { 'error_code': 'Int', 'error_message': 'requested Tip ID is expired or invalid' }
 
-R2 `/receiver/<string t_id>/<string module_name>`
+R2 `/receiver/<string t_id>/<string module_type>`
 
 Every module need a way to specify a personal interface where receive preferences, this would be
 used in Notification and Delivery modules.
 
     The REST concept is the CURD used in A2,A3,A4
+
+    <module_type> assume, for R2, only two kind of types:
+    'notification'
+    'delivery'
 
     :GET
         * Response:
@@ -801,6 +800,54 @@ used in Notification and Delivery modules.
         else
             Error Code 400 (Bad Request)
             { 'error_code': 'Int', 'error_message' : 'Invalid $ID in request' }
+
+
+A1 `/admin/node`
+
+    The Get interface is thinked as first blob of data able to present the node,
+    therefore not all the information are specific of this resource (like
+    contexts description or statististics), but for reduce the amount of request
+    performed by the client, has been collapsed into.
+
+    :GET
+        Returns a json object containing all the information of the node.
+        * Response:
+            Status Code: 200 (OK)
+            {
+              'name': 'string',
+              'statistics': '$nodeStatisticsDict',
+              'private_stats': { },
+              'node_properties': '$nodePropertiesDict',
+              'contexts': [ '$contextDescriptionDict', { }, ],
+              'description': '$localizationDict',
+              'public_site': 'string',
+              'hidden_service': 'string',
+              'url_schema': 'string'
+             }
+
+        'private_stats' need do be defined, along with $nodeStatisticsDict.
+
+    :POST
+        Changes the node public node configuration settings
+        * Request:
+            {
+              'name': 'string',
+              'node_properties': '$nodePropertiesDict',
+              'description': '$localizationDict',
+              'public_site': 'string',
+              'hidden_service': 'string',
+              'url_schema': 'string'
+
+              'enable_stats': [ ],
+              'do_leakdirectory_update': 'Bool',
+              'new_admin_password': 'string',
+
+             }
+
+        'enable_stats' need to be defined along with $nodeStatisticsDict.
+
+    This interface does not return an error, except as wrong authentication,
+    need to be readed: http://twistedmatrix.com/documents/10.1.0/web/howto/web-in-60/http-auth.html
 
 
 A2 `/admin/contexts/`
@@ -952,10 +999,18 @@ The modules are flexible implementation extending a specific part of GLBackend,
 The modules would be part of a restricted group of elements:
 
     TODO PUT HERE THE LIST OF EXTENDABLE ABSTRACT CLASS
-    BECAUSE THEY ARE ALSO THE "CATEGORIES" WHERE A MODULE NEED TO FIT INTO
+    BECAUSE THEY ARE ALSO THE "TYPES" WHERE A MODULE NEED TO FIT INTO
 
-and one of those keyword need to be requested in the REST interface.
+    and all of those keyword need to be requested in the REST interface,
+    actually are:
 
+    "notification"
+    "delivery"
+    "inputfilter"
+    "tip"
+    "receiver"
+    "filestorage"
+    "databasestorage"
 
     :GET
         * Response:
@@ -987,51 +1042,3 @@ and one of those keyword need to be requested in the REST interface.
 
           Otherwise, if request is accepted:
             Status Code 200 (OK)
-
-A1 `/admin/node`
-
-    The Get interface is thinked as first blob of data able to present the node,
-    therefore not all the information are specific of this resource (like
-    contexts description or statististics), but for reduce the amount of request
-    performed by the client, has been collapsed into.
-
-    :GET
-        Returns a json object containing all the information of the node.
-        * Response:
-            Status Code: 200 (OK)
-            {
-              'name': 'string',
-              'statistics': '$nodeStatisticsDict',
-              'private_stats': { },
-              'node_properties': '$nodePropertiesDict',
-              'contexts': [ '$contextDescriptionDict', { }, ],
-              'description': '$localizationDict',
-              'public_site': 'string',
-              'hidden_service': 'string',
-              'url_schema': 'string'
-             }
-
-        'private_stats' need do be defined, along with $nodeStatisticsDict.
-
-    :POST
-        Changes the node public node configuration settings
-        * Request:
-            {
-              'name': 'string',
-              'node_properties': '$nodePropertiesDict',
-              'description': '$localizationDict',
-              'public_site': 'string',
-              'hidden_service': 'string',
-              'url_schema': 'string'
-
-              'enable_stats': [ ],
-              'do_leakdirectory_update': 'Bool',
-              'new_admin_password': 'string',
-
-             }
-
-        'enable_stats' need to be defined along with $nodeStatisticsDict.
-
-    This interface does not return an error, except as wrong authentication,
-    need to be readed: http://twistedmatrix.com/documents/10.1.0/web/howto/web-in-60/http-auth.html
-
