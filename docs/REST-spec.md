@@ -348,8 +348,7 @@ of the datatype-name, the list and the detailed meaning would be found in:
 
 ### Addictional resources:
 
-Object specification [[GLBackend/docs/Obj-spec-latest.png]]
-Issue tracking [[https://github.com/globaleaks/GLBackend/issues/3]]
+[Rest specification, issue #3 GLBackend](https://github.com/globaleaks/GLBackend/issues/3)
 
 ### GLBackend REST specification
 
