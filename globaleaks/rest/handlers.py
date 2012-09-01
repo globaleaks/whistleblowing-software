@@ -1,3 +1,7 @@
+"""
+https://en.wikipedia.org/wiki/Http_error_code
+"""
+
 from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import node
 from globaleaks.tip import Tip
@@ -8,8 +12,6 @@ from globaleaks.rest.hooks.validators import *
 from globaleaks.rest.hooks.sanitizers import *
 from globaleaks.utils import logging
 
-from globaleaks import DummyHandler
-
 from cyclone import escape
 from cyclone.web import RequestHandler, HTTPError, asynchronous
 
@@ -19,7 +21,9 @@ class GLBackendHandler(RequestHandler):
     """
     Provides common functionality for GLBackend Request handlers.
     """
-    target = DummyHandler()
+    target = RequestHandler() # wtf does it mean 'target' ? variable name need to be explicit expressing the content. 
+                              # This 'target' was = DummyHandler(), i guess is RequestHandler now
+                              # XXX
 
     # Used for passing status code from handlers to client
     status_code = None
@@ -53,6 +57,8 @@ class GLBackendHandler(RequestHandler):
 
         :action the action such request is referring to.
         """
+        print self.__class__, "supported", supportedMethods, "action", action
+
         self.action = action
         if supportedMethods:
             self.SUPPORTED_METHODS = supportedMethods
@@ -62,7 +68,12 @@ class GLBackendHandler(RequestHandler):
         """
         If we detect that the client is using the "post hack" to send a method
         not supported by their browser, perform the "post hack".
+
+        XXX - understand if make sense, would be check in the derivate implementation of post
+              is the only place where is know if the handler describe a 4 method CURD or not.
         """
+        print self.__class__, "prepare ?"
+
         if self.request.method.lower() is 'post' and \
                 self.get_argument('method'):
             self.post_hack(self.get_argument('method'))
@@ -71,17 +82,23 @@ class GLBackendHandler(RequestHandler):
         """
         This serves to map a POST with argument method set to one of the
         allowed methods (DELETE, PUT) to that method call.
+
+        XXX - same as before
         """
+        print self.__class__, "post_hack ?"
+
         if method in self.SUPPORTED_METHODS:
             self.request.method = method
         else:
-            raise HTTPError(405)
+            raise HTTPError(405) # method not allowed
 
     def sanitizeRequest(self):
         """
         Sanitize the request. Sets the arguments array and dict to the sanized
         values.
         """
+        print self.__class__, "sanitizer", self.sanitizer, "action", self.action
+
         if not self.sanitizer:
             return
 
@@ -100,12 +117,13 @@ class GLBackendHandler(RequestHandler):
         """
         Check if the request method is supported.
         """
+
+        # having not configured supportedMethods mean TRUE in all methods ? XXX
         if not self.supportedMethods:
             return True
 
         if self.method in self.supportedMethods:
             return True
-
         else:
             return False
 
@@ -137,11 +155,13 @@ class GLBackendHandler(RequestHandler):
     @inlineCallbacks
     def handle(self, action):
         """
-        Make the target handle deal with the request.
+        Make the requested handler deal with the request.
         Basically we do Target->method(*arg, **kw)
 
         :action the name of the method to be called on self.target
         """
+        print self.__class__, "handle action:", action
+
         self.action = action
         return_value = {}
         validate_function = None
@@ -191,6 +211,10 @@ class GLBackendHandler(RequestHandler):
         self.write(dict(ret))
         self.finish()
 
+    """
+    why implement the method in the generic handler ?
+    we don't need their existance as a check of moethod allowed|not allowed ?
+    """
     def get(self, *arg, **kw):
         self.method = 'GET'
         self.anyMethod(*arg, **kw)
@@ -207,24 +231,14 @@ class GLBackendHandler(RequestHandler):
         self.method = 'DELETE'
         self.anyMethod(*arg, **kw)
 
-
-"""
-I renamed the class that was DummyHandler to Processor. Handlers now are only
-what provide Request Handling capabilities. Processors are what do the actual
-logic based on the data taken from the client.
-
-It looks something like this:
-
-API -> Handlers -> Processors -> All GL Classes
-
-- Art.
-"""
 class nodeHandler(GLBackendHandler):
     """
     # Node Handler
         * /node
     """
+    # remind: move this shit in the appropiate fileclass
     def get(self):
+        print self.__class__, "get"
         self.method = 'GET'
         self.write(dict(node.info))
 
@@ -232,8 +246,7 @@ class submissionHandler(GLBackendHandler):
     """
     # Submission Handlers
         * /submission/<ID>/
-        * /submission/<ID>/fields
-        * /submission/<ID>/groups
+        * /submission/<ID>/status
         * /submission/<ID>/files
         * /submission/<ID>/finalize
     """
@@ -277,3 +290,9 @@ class adminHandler(GLBackendHandler):
     target = Admin()
     validator = AdminValidator
     sanitizer = AdminSanitizer
+
+
+
+"""
+tha world is a bucket of shit and is written in python.
+"""

@@ -1,9 +1,19 @@
 Hacking on GLBackend
-***************
+********************
 
 This documents gives guidelines on where to start looking
 for helping out in developing on GLBackend and what guidelines you
 should follow when writing code.
+
+
+Getting started - useful things
+*******************************
+
+
+
+
+Python funnyties
+****************
 
 We try to follow the general python best practices and styling
 guides as specified in PEP.
@@ -32,16 +42,24 @@ guides as specified in PEP.
 
 If you need to be reminded of this, you can always import this ;).
 
-Code Structure
----------
+External required resource
+**************************
 
-- HACKING
-    The document you are currently reading.
-
-- REST-spec.md
+REST specification
     Specification of RESTful interface. required to implement compatible
     client, and understand which users profile can interact with GL
     (all user, admin auth, receiver auth, whistleblower auth)
+    https://github.com/globaleaks/GlobaLeaks/blob/master/docs/REST-spec.md
+
+General architecture (and glossary)
+    https://github.com/globaleaks/GlobaLeaks/blob/master/docs/architecture.rst
+
+
+Code Structure - XXX to be updated, its in progress
+---------------------------------------------------
+
+- HACKING
+    The document you are currently reading.
 
 - globaleaks/
     The code
@@ -72,7 +90,6 @@ Code Structure
     the classes Notification and Delivery are intended
     to extend node capability and features for 
     receivers.
-
 
 Style guide
 -----------
