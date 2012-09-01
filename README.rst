@@ -8,14 +8,16 @@ to also be applied to a corporation, public administration or newspaper.
 Dependencies
 ============
 
-* Python
-* Twisted
-* STORM
+* Python 2.7
+* Cyclone
+* Storm
 * Transaction
+* Zope component
 
-installation one liner:
+How install them in a debian based environment:
 
-    apt-get install python python-twisted python-storm python-transaction
+    apt-get install python python2.7-dev python-transaction python-pip python2.7-zope.component
+    pip install cyclone storm
 
 Documentation
 =============

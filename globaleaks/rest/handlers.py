@@ -10,7 +10,6 @@ from globaleaks.receiver import Receiver
 from globaleaks.submission import Submission
 from globaleaks.rest.hooks.validators import *
 from globaleaks.rest.hooks.sanitizers import *
-from globaleaks.utils import logging
 
 from cyclone import escape
 from cyclone.web import RequestHandler, HTTPError, asynchronous
@@ -21,9 +20,9 @@ class GLBackendHandler(RequestHandler):
     """
     Provides common functionality for GLBackend Request handlers.
     """
-    target = RequestHandler() # wtf does it mean 'target' ? variable name need to be explicit expressing the content. 
-                              # This 'target' was = DummyHandler(), i guess is RequestHandler now
-                              # XXX
+    #target = DummyHandler() # wtf does it mean 'target' ? variable name need to be explicit and express their content
+                             # DummyHandler has to be removed, what's role for this vars ?
+                             # XXX review
 
     # Used for passing status code from handlers to client
     status_code = None
