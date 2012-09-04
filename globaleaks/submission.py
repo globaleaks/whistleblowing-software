@@ -28,6 +28,10 @@ def random_receipt_id():
     length = 10
     return ''.join(random.choice('0123456789') for x in range(length))
 
+"""
+XXX
+Submission does not extend anything ?
+"""
 class Submission:
     handler = None
     model = models.Submission()

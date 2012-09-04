@@ -45,14 +45,10 @@ class TaskQueue(object):
         return d
 
 
-"""
-XXX comment that,
-WHO call this method
-WHY call this method ?
-"""
 class DummyMethod:
     def __init__(self, type):
         self.type = type
+        # remind: wtf ?
         self.deferred = defer.Deferred()
 
     def deliver(self, receiver):
@@ -62,6 +58,10 @@ class DummyMethod:
     def notify(self, receiver):
         print "Doing notification via %s" % self.type
         print "To: %s" % receiver
+
+    def periodic_24H(self, stuff):
+        print "Every 24 hours this task must run, but I don't get the DummyMethod concept"
+        print "stuff", stuff
 
 class Task:
     """
@@ -73,6 +73,7 @@ class Task:
     tip = None
 
     def __init__(self, type, receiver, tip):
+        print "Task", type, receiver, tip
         self.type = type
         self.receiver = receiver
         self.notify_method = self._get_notification_method()
@@ -86,7 +87,23 @@ class Task:
     def _get_notification_method(self):
         return DummyMethod(self.type)
 
+    """
+    Task contains periodic activity like:
+    24H cleaning of unfinished session
+    1M don't know, just for test
+    periodic event: required for output accumulation, like multiple notification
+    """
+    def _get_periodic_24H(self):
+        return DummyMethod(self.type)
+
+    def _get_periodic_1M(self):
+        return DummyMethod(self.type)
+
+    def _get_periodic_flush(self):
+        return DummyMethod(self.type)
+
     def spam_check(self):
+        # why spam check goes here and not in the InputFilter hook ?
         pass
 
     def doneTask(self):

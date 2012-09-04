@@ -6,6 +6,26 @@
 #   :license: see LICENSE
 #
 from cyclone.util import ObjectDict as OD
+from globaleaks import Processor
+
+class Node(Processor):
+    """
+
+    the method need to update the stats values,
+
+        'name': 'string',
+        'statistics': '$nodeStatisticsDict',
+        'node_properties': '$nodePropertiesDict',
+        'contexts': [ '$contextDescriptionDict', { }, ],
+        'description': '$localizationDict',
+        'public_site': 'string',
+        'hidden_service': 'string',
+        'url_schema': 'string'
+    """
+
+    def method(self, *arg, **kw):
+        return {'arg': arg, 'kw': kw}
+
 
 lorem = "Letterpress whatever incididunt consequat proident ennui, in post-ironic tofu. Shoreditch banksy four loko, wayfarers mollit brunch minim jean shorts chillwave raw denim squid twee cosby sweater sunt. Farm-to-table authentic sunt, wayfarers DIY cred viral wes anderson lomo aliqua proident. Fingerstache twee mlkshk, williamsburg ea nostrud master cleanse single-origin coffee accusamus pitchfork voluptate skateboard delectus sapiente. Mixtape beard magna semiotics dolor art party. Cray commodo occaecat twee thundercats, viral veniam in. In typewriter vegan, mixtape put a bird on it trust fund ex wayfarers retro commodo semiotics."
 
