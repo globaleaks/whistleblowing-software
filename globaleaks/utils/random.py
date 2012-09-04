@@ -1,4 +1,9 @@
-from Crypto.Random import random
+try:
+    from Crypto.Random import random
+except:
+    print "Warning!! We will be using an insecure random number generator."
+    print "Please install Pycrypto"
+    import random
 
 def random_string(length, type):
     """

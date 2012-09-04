@@ -13,6 +13,24 @@ Dependencies
 * STORM
 * Transaction
 
+
+Getting Started
+===============
+
+We highly recommend you use virtualenv to handle the dependencies of
+globaleaks.
+
+Once you have virtual env this is what you need to get GLBackend up and
+running:
+
+    virtualenv2 ENV
+    source ENV/bin/activate
+    pip install transaction
+    pip install zope.component
+    pip install twisted
+    pip install cyclone
+    pip install storm
+
 installation one liner:
 
     apt-get install python python-twisted python-storm python-transaction
@@ -21,7 +39,7 @@ Documentation
 =============
 
 For an overview of the GlobaLeaks architecture check out the
-`Architecture https://github.com/globaleaks/GLBackend/blob/master/docs/to-move-to-main-repo/architecture.rst`_ doc. 
+`Architecture https://github.com/globaleaks/GLBackend/blob/master/docs/to-move-to-main-repo/architecture.rst`_ doc.
 TODO: This is a temporary location, getting moved to main GL repo
 
 Testing the software
