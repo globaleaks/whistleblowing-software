@@ -18,40 +18,48 @@ DEBUG = True
 
 class GLBackendHandler(RequestHandler):
     """
-    Provides common functionality for GLBackend Request handlers.
+    GLBackendHandler is responsible for the verification and sanitization of
+    requests based on what is defined in the API specification (api.py).
+
+    It will do all the top level wiring to make sure that what is being
+    requested from the user is handled by the respectivee processor class.
+
+    The processor classes are:
+        * Node
+        * Submission
+        * Tip
+        * Admin
+        * Receiver
+
+    These are found in globaleaks/.
+
+    The hooks for sanitization and verification of user supplied data is found
+    inside of globaleaks/rest/hooks/.
     """
-    #target = DummyHandler() # wtf does it mean 'target' ? variable name need to be explicit and express their content
-                             # DummyHandler has to be removed, what's role for this vars ?
-                             # XXX review
 
     # Used for passing status code from handlers to client
     status_code = None
-
-    # The request method
     method = None
-
-    # Arguments being sent from client via POST/GET/DELETE/PUT
-    arguments = []
-
-    keywordArguments = {}
 
     # Arguments matched from the in the regexp of the REST spec
     matchedArguments = []
+    # Store the sanitized request
+    requestDict = None
 
-    # The methods supported by this specific handler
     supportedMethods = None
 
-    # The class responsible for handling sanitization
+    # Validation and sanitization classes
     sanitizer = None
-
-    # The class responsible for handling validation
     validator = None
+
+    # The target class that will be responsible for handling the request
+    processor = None
 
     def initialize(self, action=None, supportedMethods=None):
         """
         Get the argument passed by the API dict.
 
-        Configure the target handler to point to the GLBackendHandler. This
+        Configure the processor handler to point to the GLBackendHandler. This
         allows the globaleaks core handlers to reach the request object.
 
         :action the action such request is referring to.
@@ -61,7 +69,9 @@ class GLBackendHandler(RequestHandler):
         self.action = action
         if supportedMethods:
             self.SUPPORTED_METHODS = supportedMethods
-        self.target.handler = self
+
+        if self.processor:
+            self.processor.handler = self
 
     def prepare(self):
         """
@@ -101,16 +111,20 @@ class GLBackendHandler(RequestHandler):
         if not self.sanitizer:
             return
 
-        sanitize_function = lambda request: request.request.arguments
+        # We first try and call the method named after action.
+        # If that method does not exist we fail over to calling the "sanitize"
+        # method.
+        # If no method named "sanitize" exists in the sanitizer function, we
+        # will throw an error.
         try:
             sanitize_function = getattr(self.sanitizer, self.action)
         except:
             sanitizer_function = getattr(self.sanitizer, 'sanitize')
 
         # XXX should we return args and kw or only kw?
-        sanitized_arguments = sanitize_function(self)
+        sanitized_request = sanitize_function(self.request)
 
-        self.arguments = sanitized_arguments
+        self.requestDict = sanitized_request
 
     def isSupportedMethod(self):
         """
@@ -136,7 +150,7 @@ class GLBackendHandler(RequestHandler):
         if DEBUG:
             print "[+] validating %s %s via %s->%sValidate" % (self.arguments,
                                                                self.matchedArguments,
-                                                                self.target,
+                                                                self.processor,
                                                                 self.action)
         if not self.validator:
             return valid
@@ -147,17 +161,17 @@ class GLBackendHandler(RequestHandler):
             validate_function = getattr(self.validator, 'validate')
 
         if validate_function:
-            valid = validate_function(self)
+            valid = validate_function(self.request)
 
         return valid
 
     @inlineCallbacks
     def handle(self, action):
         """
-        Make the requested handler deal with the request.
-        Basically we do Target->method(*arg, **kw)
+        Make the processor handle deal with the request.
+        Basically we do Processor->method(*arg, **kw)
 
-        :action the name of the method to be called on self.target
+        :action the name of the method to be called on self.processor
         """
         print self.__class__, "handle action:", action
 
@@ -170,7 +184,7 @@ class GLBackendHandler(RequestHandler):
             returnValue(return_value)
 
         if DEBUG:
-            print "[+] calling %s->%s with %s %s" % (self.target, self.method,
+            print "[+] calling %s->%s with %s %s" % (self.processor, self.method,
                                                      self.arguments,
                                                      self.matchedArguments)
         if not self.isSupportedMethod():
@@ -183,12 +197,13 @@ class GLBackendHandler(RequestHandler):
         self.sanitizeRequest()
 
         try:
-            # We want to call target.action(GET|POST|DELETE|PUT)
-            processor = getattr(self.target, action+self.method.upper())
+            # We want to call processor.action(GET|POST|DELETE|PUT)
+            processor = getattr(self.processor, action+self.method.upper())
         except:
-            processor = getattr(self.target, action)
+            processor = getattr(self.processor, action)
 
-        return_value = yield processor(*self.matchedArguments, **self.arguments)
+        return_value = yield processor(*self.matchedArguments,
+                **self.requestDict)
 
         returnValue(return_value)
 
@@ -249,7 +264,7 @@ class submissionHandler(GLBackendHandler):
         * /submission/<ID>/files
         * /submission/<ID>/finalize
     """
-    target = Submission()
+    processor = Submission()
     validator = SubmissionValidator
     sanitizer = SubmissionSanitizer
 
@@ -263,7 +278,7 @@ class tipHandler(GLBackendHandler):
         * /tip/<ID>/download
         * /tip/<ID>/pertinence
     """
-    target = Tip()
+    processor = Tip()
     validator = TipValidator
     sanitizer = TipSanitizer
 
@@ -273,7 +288,7 @@ class receiverHandler(GLBackendHandler):
         * /reciever/<ID>/
         * /receiver/<ID>/<MODULE>
     """
-    target = Receiver()
+    processor = Receiver()
     validator = ReceiverValidator
     sanitizer = ReceiverSanitizer
 
@@ -286,7 +301,7 @@ class adminHandler(GLBackendHandler):
         * /admin/receivers/<ID>
         * /admin/modules/<MODULE>
     """
-    target = Admin()
+    processor = Admin()
     validator = AdminValidator
     sanitizer = AdminSanitizer
 

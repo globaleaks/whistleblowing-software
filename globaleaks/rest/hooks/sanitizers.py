@@ -1,24 +1,24 @@
 class SubmissionSanitizer(object):
     @classmethod
-    def sanitize(*args, **kw):
+    def sanitize(request):
         return (args, kw)
 
     @classmethod
-    def files(*args, **kw):
+    def files(request):
         return (args, kw)
 
 class TipSanitizer(object):
     @classmethod
-    def sanitize(*args, **kw):
+    def sanitize(request):
         return (args, kw)
 
 class ReceiverSanitizer(object):
     @classmethod
-    def sanitize(*args, **kw):
+    def sanitize(request):
         return (args, kw)
 
 class AdminSanitizer(object):
     @classmethod
-    def sanitize(*args, **kw):
+    def sanitize(request):
         return (args, kw)
 
