@@ -1,26 +1,55 @@
-GlobaLeaks, main repo
-=====================
+# GlobaLeaks
 
-GlobaLeaks is an open source project aimed to create a worldwide, anonymous, censorship-resistant, distributed whistleblowing platform.
+GlobaLeaks is an open source project aimed at create an open source
+whistleblowing platform.
 
-This is the main repository, and reference for the complete project status.
+## GlobaLeaks 0.1
 
-## Documentation
+This is the first implementation of the GlobaLeaks workflow.
 
-[General architecture]
-TODO, general documentation of GlobaLeaks would be collected here.
+People interested in installing and running a GlobaLeaks node *now* should look
+into running [GlobaLeaks 0.1](https://github.com/globaleaks/GlobaLeaks-0.1.git).
 
-GloaLeaks is a project based in two largest subproject:
+GlobaLeaks 0.1 is an "Adanced Prototype" and it has helped us understand the
+limits of certain technological choices and lead us towards the new branch of
+development.
 
-## GLBackend
+We will keep maintaining GlobaLeaks 0.1 and make migrating to GlobaLeaks 0.2 as
+seamless as possible, but it is not the main direction of development.
 
-GLbackend is a portable service of whistleblowing, optionally permit anonymous service using Tor (this is our nicest feat: ability of publish a service without a dedicated IP/domain, and without a registration or whatsoever)
+## GlobaLeaks 0.2
 
-[GLBackend](https://github.com/globaleaks/GLBackend.git)
+This is a full rewrite and it collects all of the experience and knowledge
+gained in building GlobaLeaks 0.1.
 
-## GLClient
+All future development will continue in this direction.
 
-Is a javascript application that can be installed in a browser, and manage communication between users of GlobaLeaks (whistleblowers, administrator or receiver)
+The two main components of GlobaLeaks 0.2 are
+[GLClient](https://github.com/globaleaks/GLClient.git) and
+[GLBackend](https://github.com/globaleaks/GLBackend.git).
 
-[GLClient](https://github.com/globaleaks/GLClient.git)
+[GLClient](https://github.com/globaleaks/GLClient.git) is a javascript web
+application that communicates to the Backend component of GlobaLeaks. It is the
+standard means for a Whistleblower, Administrator or Receiver to interact with
+a GlobaLeaks node.
+
+[GLBackend](https://github.com/globaleaks/GLBackend.git) is the server side
+component of GlobaLeaks. It is through this piece of software that the Node
+Administrator is able to anonymously setup and expose GlobaLeaks Node.
+
+# What is in this repo?
+
+This is the main repository that serves to keep track of the overall
+development of the GlobaLeaks platform as a whole.
+
+Here we collect all the knowledge that is not specific to the client or backend
+component.
+
+## Table of Contents
+
+* [Project Glossary]
+
+* [General Architecture]
+
+* [REST API Specification]
 
