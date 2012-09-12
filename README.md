@@ -6,7 +6,7 @@ GlobaLeaks is an open source project aimed to create a worldwide, anonymous, cen
 GlobaLeaks is composed by two main section: [GLBackend](https://github.com/globaleaks/GLBackend.git) and [GLClient](https://github.com/globaleaks/GLClient.git).
 
 GlobaLeaks rely in architectural technology, developed for the community and extremely
-required in GL design: [APAF](https://github.com/mmaker/APAF.git) and [Tor2Web-3.0](https://github.com/globaleaks/GLBackend.git)
+required in GL design: [APAF](https://github.com/globaleaks/APAF.git) and [Tor2Web-3.0](https://github.com/globaleaks/GLBackend.git)
 
 you can be interested in GlobaLeaks [official site](http://globaleaks.org)(need to be
 updated!) and public mailing list
