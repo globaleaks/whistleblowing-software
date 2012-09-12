@@ -8,15 +8,6 @@ development of the GlobaLeaks platform as a whole.
 Here we collect all the knowledge that is not specific to the client or backend
 component.
 
-## Table of Contents
-
-* [Project Glossary]
-
-* [General Architecture]
-
-* [REST API Specification]
-
-
 ## GlobaLeaks 0.1
 
 This is the first implementation of the GlobaLeaks workflow.
@@ -50,4 +41,8 @@ a GlobaLeaks node.
 [GLBackend](https://github.com/globaleaks/GLBackend.git) is the server side
 component of GlobaLeaks. It is through this piece of software that the Node
 Administrator is able to anonymously setup and expose GlobaLeaks Node.
+
+# Are you a developer?
+
+Learn more about GlobaLeaks by checking out the [developer documentation](https://github.com/globaleaks/GlobaLeaks/wiki/Home)!
 
