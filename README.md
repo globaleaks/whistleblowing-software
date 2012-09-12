@@ -10,11 +10,11 @@ component.
 
 ## Table of Contents
 
-* [Project Glossary]('https://github.com/globaleaks/GlobaLeaks/wiki/Glossary')
+* [Project Glossary](https://github.com/globaleaks/GlobaLeaks/wiki/Glossary)
 
-* [General Architecture]('')
+* [General Architecture](https://github.com/globaleaks/GlobaLeaks/wiki/Architecture)
 
-* [REST API Specification]('https://github.com/globaleaks/GlobaLeaks/wiki/API-Specification')
+* [REST API Specification](https://github.com/globaleaks/GlobaLeaks/wiki/API-Specification)
 
 
 ## GlobaLeaks 0.1
