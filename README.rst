@@ -37,10 +37,9 @@ Documentation
 =============
 
 For an overview of the GlobaLeaks architecture check out the
-`Architecture https://github.com/globaleaks/GLBackend/blob/master/docs/to-move-to-main-repo/architecture.rst`_ doc.
-TODO: This is a temporary location, getting moved to main GL repo
+`Architecture https://github.com/globaleaks/GlobaLeaks/docs/architecture.rst`.
 
-Testing the software
+Testing the REST interface
 ====================
 
 Actually only REST unitTest is partially developed, check it out in `Rest testing <globaleaks/rest/unitTest/README.md>`_.
