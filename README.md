@@ -1,7 +1,6 @@
 # GlobaLeaks
 
-GlobaLeaks is an open source project aimed at create an open source
-whistleblowing platform.
+GlobaLeaks is an open source project aimed at create a whistleblowing platform.
 
 ## GlobaLeaks 0.1
 
@@ -47,9 +46,10 @@ component.
 
 ## Table of Contents
 
-* [Project Glossary]
+* [Project Glossary](https://github.com/globaleaks/
+
+* [API Specification](https://github.com/globaleaks/GlobaLeaks/wiki/API-Specification)
 
 * [General Architecture]
 
-* [REST API Specification]
 
