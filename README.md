@@ -1,7 +1,21 @@
 # GlobaLeaks
 
-GlobaLeaks is an open source project aimed at create an open source
-whistleblowing platform.
+GlobaLeaks is a project aimed at creating a whistleblowing platform built on FLOSS.
+
+This is the main repository that serves to keep track of the overall
+development of the GlobaLeaks platform as a whole.
+
+Here we collect all the knowledge that is not specific to the client or backend
+component.
+
+## Table of Contents
+
+* [Project Glossary]
+
+* [General Architecture]
+
+* [REST API Specification]
+
 
 ## GlobaLeaks 0.1
 
@@ -36,20 +50,4 @@ a GlobaLeaks node.
 [GLBackend](https://github.com/globaleaks/GLBackend.git) is the server side
 component of GlobaLeaks. It is through this piece of software that the Node
 Administrator is able to anonymously setup and expose GlobaLeaks Node.
-
-# What is in this repo?
-
-This is the main repository that serves to keep track of the overall
-development of the GlobaLeaks platform as a whole.
-
-Here we collect all the knowledge that is not specific to the client or backend
-component.
-
-## Table of Contents
-
-* [Project Glossary]
-
-* [General Architecture]
-
-* [REST API Specification]
 
