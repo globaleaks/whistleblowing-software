@@ -45,7 +45,7 @@ How install them in a debian based environment:
   * [Main GlobaLeaks documentation](https://github.com/globaleaks/GlobaLeaks/wiki/Home)
   * [GLBackend specific documentation](https://github.com/globaleaks/GLBackend/wiki/Home)
   * [APAF](https://github.com/globaleaks/APAF/wiki/Home): is the package manager developed for
-    expose GLBackend as Tor hidden service.
+    expose GLBackend as [Tor](http://www.torproject.org) [hidden service](https://www.torproject.org/docs/tor-hidden-service.html.en).
 
 # Testing the software
 
