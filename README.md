@@ -43,10 +43,11 @@ How install them in a debian based environment:
 # Documentation
 
   * [Main GlobaLeaks documentation](https://github.com/globaleaks/GlobaLeaks/wiki/Home)
-
   * [GLBackend specific documentation](https://github.com/globaleaks/GLBackend/wiki/Home)
+  * [APAF](https://github.com/globaleaks/APAF/wiki/Home): is the package manager developed for
+    expose GLBackend as Tor hidden service.
 
 # Testing the software
 
-Actually only REST unitTest is partially developed, check it out in `Rest testing <globaleaks/rest/unitTest/README.md>`_.
+WEB API (a.k.a. REST unitTest) is partially developed, check it out in [Rest testing](globaleaks/rest/unitTest/README.md)
 
