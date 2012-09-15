@@ -16,29 +16,16 @@ If you are interested in running a GlobaLeaks node, you should try
 
 # Dependencies
 
-* Python 2.7
-* Cyclone
-* Storm
-* Transaction
-* Zope component
+GLBackend is written in Python version [2.7](http://docs.python.org/whatsnew/) 
+and is mostly based on [twisted](twistedmatrix.com). For more informations, 
+
+```$ cat requirements.txt ```
+
 
 
 # Getting Started
 
-We highly recommend you use virtualenv to handle the dependencies of
-globaleaks.
-
-Once you have virtual env this is what you need to get GLBackend up and
-running:
-
-    virtualenv2 ENV
-    source ENV/bin/activate
-    pip install transaction zope.component twisted cyclone storm
-
-How install them in a debian based environment:
-
-    apt-get install python python2.7-dev python-transaction python-pip python2.7-zope.component
-    pip install cyclone storm
+See wiki page [Setting up Development Environment](https://github.com/globaleaks/GLBackend/wiki/Setting-up-development-environment)
 
 # Documentation
 
