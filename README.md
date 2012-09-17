@@ -29,18 +29,21 @@ gained in building GlobaLeaks 0.1.
 
 All future development will continue in this direction.
 
-The two main components of GlobaLeaks 0.2 are
+The main components of GlobaLeaks 0.2 are
 [GLClient](https://github.com/globaleaks/GLClient.git) and
 [GLBackend](https://github.com/globaleaks/GLBackend.git).
+[APAF](https://github.com/globaleaks/APAF.git).
 
 [GLClient](https://github.com/globaleaks/GLClient.git) is a javascript web
 application that communicates to the Backend component of GlobaLeaks. It is the
 standard means for a Whistleblower, Administrator or Receiver to interact with
 a GlobaLeaks node.
 
-[GLBackend](https://github.com/globaleaks/GLBackend.git) is the server side
-component of GlobaLeaks. It is through this piece of software that the Node
-Administrator is able to anonymously setup and expose GlobaLeaks Node.
+[APAF](https://github.com/globaleaks/APAF.git) , aka Anonymous Python Application Framework, 
+is a multi-platform build system framework and a library for developing Python/Twisted based 
+server applications, exposed as Tor Hidden Service, easy to be installed and managed on multiple
+platforms (Windows, OSX, Debian) with a particular focus for desktop environments.
+
 
 # Are you a developer?
 
