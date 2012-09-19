@@ -66,15 +66,13 @@ nodeStatisticsDict=dict({ "something": "toBedefined", "something_other": 12345 }
 
 
 # REMIND: needed tests are:
-# P1-P7, T1-T6, R1-R2, P1-A5, Tip external
+# U1-U7, T1-T6, R1-R2, P1-A5, Tip external
 # 
-# P1 `/node/`                                           (test implemented)
-# P2 `/submission`
-# P3 `/submission/<submission_id>`
-# P4 `/submission/<submission_id>/submit_fields`
-# P5 `/submission/<submission_id>/submit_group`
-# P6 `/submission/<submission_id>/finalize`
-# P7 `/submission/<submission_id>/upload_file`
+# U1 `/node/`                                           (test implemented)
+# U2 `/submission`
+# U3 `/submission/<submission_id>`
+# U4 `/submission/<submission_id>/finalize`
+# U5 `/submission/<submission_id>/upload_file`
 # T1 `/tip/<string auth t_id>`
 # T2 `/tip/<uniq_Tip_$ID>/add_comment`
 # T3 `/tip/<uniq_Tip_$ID>/update_file`
@@ -85,39 +83,34 @@ nodeStatisticsDict=dict({ "something": "toBedefined", "something_other": 12345 }
 # R2 `/receiver/<string t_id>/<string module_name>`
 # P1 `/admin/node/`                                     (test implemented)
 # A2 `/admin/contexts/`                                 (test implemented)
-# A3 `/admin/groups/<context_$ID>/`                     (test implemented)
-# A4 `/admin/receivers/<group_$ID>/`                    (test implemented)
+# A4 `/admin/receivers/<context_$ID>/`                    (test implemented)
 # A5 `/admin/modules/<string module_type>/`             (test implemented)
 
 #
 # THIS REFERENCE IS PRESENT IN:
-# REST-spec.md
+# http://github.com/globaleaks/GlobaLeaks/wiki/API-Specification
 # globaleaks/rest/*.py code
-# (this file, and all tests)
-# github issue tracking
 # 
-# THEREFORE, EVERY TIME A REST INTERFACE NEED TO BE ADDRESSED OR IMPLEMENTED, ITS
-# IMPORTANT USE THE SAME ADDRESSING LOGIC.
  
 testDict = dict()
 
-testDict['P1'] = ({
+testDict['P1'] = [ ({
         'method' : 'GET',
         'request' : False,
-        'url' : '/node/',
+        'url' : '/node',
         'expected_result' : ({ "name": "string", "statistics": nodeStatisticsDict, 
                                "node_properties": nodePropertiesDict,
                                "contexts": [ contextDescriptionDict ],
                                "description": localizationDict('nodeDesc'),
                                "public_site": "string", "hidden_service": "string", "url_schema": "string" })
-        })
+        }) ]
 
-testDict['P2'] = ({
+testDict['P2'] = [ ({
         'method' : 'GET',
         'request': False,
-        'url' : '/submission/',
+        'url' : '/submission',
         'expected_result': ({ 'submission-ID' : 'string', 'creation-Time': 'Time' })
-    })
+    }) ]
 
 A1_recurring_result = dict ({ 
                    'name': 'string',
@@ -135,7 +128,7 @@ testDict['A1'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/admin/node/',
+        'url' : '/admin/node',
         'expected_result' : A1_recurring_result
         }), ({
         'method': 'POST',
@@ -147,9 +140,9 @@ testDict['A1'] = [
                   'hidden_service': 'string',
                   'url_schema': 'string',
                   'enable_stats': 'StatsThatNeedToBeDefinedBeforeChooseWhichHasToBeEnabledAndWhichMustNot',
-                  'do_leakdirectory_update': 'Bool',
+                  'do_leakdirectory_update': True,
                   'new_admin_password': 'string' }),
-        'url' : '/admin/node/',
+        'url' : '/admin/node',
         'expected_result' : A1_recurring_result
         }) ]
 
@@ -158,103 +151,90 @@ testDict['A2'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/admin/contexts/' + randomID('contexts'),
+        'url' : '/admin/contexts/' + randomID('context'),
         'expected_result' : A2_recurring_result
         }), ({
         'method': 'PUT',
         'request' : ({ "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('contexts'),
-        'expected_result' : A2_recurring_result
-        }), ({
-        'method': 'POST',
-        'request' : ({ "create": True, "delete": False, "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('contexts'),
+        'url' : '/admin/contexts/' + randomID('context'),
         'expected_result' : A2_recurring_result
         }), ({
         'method': 'DELETE',
         'request' : ({ "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('contexts'),
+        'url' : '/admin/contexts/' + randomID('context'),
         'expected_result' : A2_recurring_result
         }) ]
 
-A3_recurring_result = dict ({
-        "groups":groupDescriptionDict, 
-        "modules_available": [ moduleDataDict, moduleDataDict, ]
-     })
+# test the fallback of post_hack and approriate error handling
+testDict['A2F'] = [
+        ({
+        'method': 'POST',
+        'request' : ({ 'put': True, 'delete': False, "context": contextDescriptionDict }),
+        'url' : '/admin/contexts/' + randomID('context'),
+        'expected_result' : A2_recurring_result
+        }), ({
+        'method': 'POST',
+        'request' : ({ 'put': True, 'delete': True , "context": contextDescriptionDict }),
+        'url' : '/admin/contexts/' + randomID('context'),
+        'expected_result' : A2_recurring_result
+        }), ({
+        'method': 'POST',
+        'request' : ({ 'put': False, 'delete': True, "context": contextDescriptionDict }),
+        'url' : '/admin/contexts/' + randomID('context'),
+        'expected_result' : A2_recurring_result
+        }) ]
 
+
+A3_recurring_result = dict ({ "receivers": [ receiverDescriptionDict, receiverDescriptionDict ] })
 testDict['A3'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/admin/groups/' + randomID('group'),
-        'expected_result' : A3_recurring_result
-        }), ({
-        'method': 'PUT',
-        'request' : ({ "group": groupDescriptionDict }),
-        'url' : '/admin/groups/' + randomID('group'),
-        'expected_result' : A3_recurring_result
-        }), ({
-        'method': 'POST',
-        'request' : ({ "create": True, "delete": False, "group": groupDescriptionDict }),
-        'url' : '/admin/groups/' + randomID('group'),
-        'expected_result' : A3_recurring_result
-        }), ({
-        'method': 'DELETE',
-        'request' : ({ "group": groupDescriptionDict }),
-        'url' : '/admin/groups/' + randomID('group'),
-        'expected_result' : A3_recurring_result
-        }) ]
-
-A4_recurring_result = dict ({ "receivers": [ receiverDescriptionDict, receiverDescriptionDict ] })
-testDict['A4'] = [
-        ({
-        'method': 'GET',
-        'request' : False,
         'url' : '/admin/receiver/' + randomID('receiver'),
-        'expected_result' : A4_recurring_result
+        'expected_result' : A3_recurring_result
         }), ({
         'method': 'PUT',
         'request' : ({ "receiver": receiverDescriptionDict }),
         'url' : '/admin/receiver/' + randomID('receiver'),
-        'expected_result' : A4_recurring_result
+        'expected_result' : A3_recurring_result
         }), ({
         'method': 'POST',
-        'request' : ({ "create": True, "delete": False, "receiver": receiverDescriptionDict }),
+        'request' : ({ "put": True, "delete": False, "receiver": receiverDescriptionDict }),
         'url' : '/admin/receiver/' + randomID('receiver'),
-        'expected_result' : A4_recurring_result
+        'expected_result' : A3_recurring_result
         }), ({
         'method': 'DELETE',
         'request' : ({ "receiver": receiverDescriptionDict }),
         'url' : '/admin/receiver/' + randomID('receiver'),
-        'expected_result' : A4_recurring_result
+        'expected_result' : A3_recurring_result
         }) ]
 
-A5_recurring_result = dict ({
+A4_recurring_result = dict ({
         "group_matrix" : 'Array_of_modules-group_application',
         "modules_available": [ moduleDataDict, moduleDataDict, ]
      })
 
-testDict['A5'] = [
+testDict['A4'] = [
         ({
         'method': 'GET',
         'request' : False,
         'url' : '/admin/modules/' + randomID('module-ENUM'),
-        'expected_result' : A5_recurring_result,
+        'expected_result' : A4_recurring_result,
         }), ({
         'method': 'PUT',
         'request' : ({ "module": moduleDataDict, "group_matrix" : 'Array_of_MGA' }),
         'url' : '/admin/modules/' + randomID('module-ENUM'),
-        'expected_result' : A5_recurring_result,
+        'expected_result' : A4_recurring_result,
         }), ({
         'method': 'POST',
-        'request' : ({ "create": True, "delete": False, "module": moduleDataDict, "group_matrix": 'Array_of_MGA' }),
+        'request' : ({ "put": True, "delete": False, "module": moduleDataDict, "group_matrix": 'Array_of_MGA' }),
         'url' : '/admin/modules/' + randomID('module-ENUM'),
-        'expected_result' : A5_recurring_result,
+        'expected_result' : A4_recurring_result,
         }), ({
         'method': 'DELETE',
         'request' : ({ "module": moduleDataDict }),
         'url' : '/admin/modules/' + randomID('module-ENUM'),
-        'expected_result' : A5_recurring_result,
+        'expected_result' : A4_recurring_result,
         }) ]
 
 R1_recurring_result = dict ({
@@ -266,22 +246,22 @@ testDict['R1'] = [
         'method': 'GET',
         'request' : False,
         'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
-        'expected_result' : A5_recurring_result,
+        'expected_result' : R1_recurring_result,
         }), ({
         'method': 'PUT',
         'request' : ({ "module": moduleDataDict }),
         'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
-        'expected_result' : A5_recurring_result,
+        'expected_result' : R1_recurring_result,
         }), ({
         'method': 'POST',
-        'request' : ({ "create": True, "delete": False, "module": moduleDataDict }),
+        'request' : ({ "put": True, "delete": False, "module": moduleDataDict }),
         'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
-        'expected_result' : A5_recurring_result,
+        'expected_result' : R1_recurring_result,
         }), ({
         'method': 'DELETE',
         'request' : ({ "module": moduleDataDict }),
         'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
-        '}expected_result' : A5_recurring_result,
+        '}expected_result' : R1_recurring_result,
         }) ]
 
 
@@ -300,8 +280,6 @@ def do_curl(url, method, not_encoded_parm=''):
     conn.request(method, url, params, headers)
 
     response = conn.getresponse()
-    import pdb
-    # pdb.set_trace()
     print "[+] RESPONSE:", response.read()
 
     data = response.read()
@@ -343,25 +321,22 @@ class myUnitTest(unittest.TestCase):
         dictID = restName + '_' + method
         test_sets = testDict[restName]
 
-        if not isinstance(testDict[restName], dict):
-            for x in testDict[restName]:
-                if x['method'] == method:
-                    settings = x
-        else:
-            settings = testDict[restName]
+        for i, x in enumerate(testDict[restName]):
+            if x['method'] == method:
+                settings = x
 
-        print "[do_METHOD] using url", settings['url'], "request", settings['request']
+                print "[do_METHOD]", i," using url", settings['url'], "request", settings['request']
 
-        if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
-            clean_debug(1, settings)
+                if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
+                    clean_debug(1, settings)
 
-        if method == 'GET':
-            result = do_curl(settings['url'], settings['method'] )
-        else:
-            result = do_curl(settings['url'], settings['method'], settings['request'])
+                if method == 'GET':
+                    result = do_curl(settings['url'], settings['method'] )
+                else:
+                    result = do_curl(settings['url'], settings['method'], settings['request'])
 
-        if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
-            clean_debug(1, result)
+                if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
+                    clean_debug(1, result)
 
         # self.assertEqual(result, settings['expected_result'])
 
@@ -384,8 +359,10 @@ class A2(myUnitTest):
     def do_tests(self):
         self.do_METHOD('PUT', 'A2')
         self.do_METHOD('GET', 'A2')
-        self.do_METHOD('POST', 'A2')
         self.do_METHOD('DELETE', 'A2')
+
+        # do_METHOD loops over all the three POSTs
+        self.do_METHOD('POST', 'A2F')
 
 class A3(myUnitTest):
     def do_tests(self):
@@ -400,13 +377,6 @@ class A4(myUnitTest):
         self.do_METHOD('GET', 'A4')
         self.do_METHOD('POST', 'A4')
         self.do_METHOD('DELETE', 'A4')
-
-class A5(myUnitTest):
-    def do_tests(self):
-        self.do_METHOD('PUT', 'A5')
-        self.do_METHOD('GET', 'A5')
-        self.do_METHOD('POST', 'A5')
-        self.do_METHOD('DELETE', 'A5')
 
 class R1(myUnitTest):
     def do_tests(self):
@@ -433,12 +403,12 @@ else:
     print "verbose modality is OFF"
 
 P1().do_tests()
+P2().do_tests()
 
 A1().do_tests()
 A2().do_tests()
 A3().do_tests()
 A4().do_tests()
-A5().do_tests()
 
 R1().do_tests()
 
