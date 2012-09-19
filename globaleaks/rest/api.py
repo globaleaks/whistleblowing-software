@@ -21,31 +21,31 @@ id_regexp = '\w+'
 
 spec = [
     ## Node Handler ##
-    #  * /node P1
+    #  * /node U1
     (r'/node', nodeHandler),
 
     ## Submission Handlers ##
-    #  * /submission/<ID>/ P2
+    #  * /submission/<ID>/ U2
     (r'/submission', submissionHandler,
                      dict(action='new',
                           supportedMethods=['GET']
                          )),
 
-    #  * /submission/<ID>/status P3
+    #  * /submission/<ID>/status U3
     (r'/submission/(' + submission_id_regexp + ')/status',
                      submissionHandler,
                      dict(action='status',
                           supportedMethods=['GET', 'POST']
                          )),
 
-    #  * /submission/<ID>/finalize P4
+    #  * /submission/<ID>/finalize U4
     (r'/submission/(' + submission_id_regexp + ')/finalize',
                      submissionHandler,
                      dict(action='finalize',
                           supportedMethods=['POST']
                          )),
 
-    #  * /submission/<ID>/files P5
+    #  * /submission/<ID>/files U5
     (r'/submission/(' + submission_id_regexp + ')/files',
                      submissionHandler,
                      dict(action='files',
@@ -112,33 +112,27 @@ spec = [
                          )),
 
     ## Admin Handlers ##
-    #  * /admin/node
+    #  * /admin/node A1
     (r'/admin/node', adminHandler,
                         dict(action='node',
                              supportedMethods=['GET', 'POST']
                             )),
 
-    #  * /admin/contexts
-    (r'/admin/contexts', adminHandler,
+    #  * /admin/contexts A2
+    (r'/admin/contexts/(' + id_regexp + ')',
+                        adminHandler,
                         dict(action='context',
                              supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
                             )),
 
-    #  * /admin/groups/<ID>
-    (r'/admin/groups/(' + id_regexp + ')',
-                    adminHandler,
-                    dict(action='groups',
-                         supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
-                        )),
-
-    #  * /admin/receivers/<ID>
+    #  * /admin/receivers/<context_ID> A3
     (r'/admin/receivers/(' + id_regexp + ')',
                     adminHandler,
                     dict(action='receivers',
                          supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
                         )),
 
-    #  * /admin/modules/<MODULE TYPE>
+    #  * /admin/modules/<MODULE TYPE> A4
     (r'/admin/modules/(' + module_regexp + ')', adminHandler,
                     dict(action='module',
                          supportedMethods=['GET', 'POST']

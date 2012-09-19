@@ -7,11 +7,11 @@
 #
 import sys
 import os
-print __file__
+
 # hack to add globaleaks to the sys path
+# this would avoid export PYTHONPATH=`pwd`
 cwd = '/'.join(__file__.split('/')[:-1])
 sys.path.insert(0, os.path.join(cwd, '../'))
-sys.path.insert(0, '/home/x/code/web/cyclone')
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.db import createTables, threadpool

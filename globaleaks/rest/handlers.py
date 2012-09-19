@@ -5,6 +5,7 @@ https://en.wikipedia.org/wiki/Http_error_code
 from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import node
 from globaleaks.tip import Tip
+from globaleaks.node import Node
 from globaleaks.admin import Admin
 from globaleaks.receiver import Receiver
 from globaleaks.submission import Submission
@@ -13,6 +14,10 @@ from globaleaks.rest.hooks.sanitizers import *
 
 from cyclone import escape
 from cyclone.web import RequestHandler, HTTPError, asynchronous
+
+# decorator @removeslash in cyclone.web may remove final '/' if not 
+# expected. would be nice use it, but the Cyclone code check only HEAD and GET
+# while we need checks in a complete CURD
 
 DEBUG = True
 
@@ -44,7 +49,7 @@ class GLBackendHandler(RequestHandler):
     # Arguments matched from the in the regexp of the REST spec
     matchedArguments = []
     # Store the sanitized request
-    requestDict = None
+    safeRequest = None
 
     supportedMethods = None
 
@@ -64,7 +69,6 @@ class GLBackendHandler(RequestHandler):
 
         :action the action such request is referring to.
         """
-        print self.__class__, "supported", supportedMethods, "action", action
 
         self.action = action
         if supportedMethods:
@@ -72,29 +76,53 @@ class GLBackendHandler(RequestHandler):
 
         if self.processor:
             self.processor.handler = self
+        else:
+            print "[!] processor not intialized, you'd make a mistake"
 
     def prepare(self):
         """
         If we detect that the client is using the "post hack" to send a method
         not supported by their browser, perform the "post hack".
-
-        XXX - understand if make sense, would be check in the derivate implementation of post
-              is the only place where is know if the handler describe a 4 method CURD or not.
         """
-        print self.__class__, "prepare ?"
 
-        if self.request.method.lower() is 'post' and \
-                self.get_argument('method'):
-            self.post_hack(self.get_argument('method'))
+        if self.request.method.lower() is 'post':
+            wrappedMethod = None
+
+            try:
+                if self.get_argument('put'):
+                    print "I've PUT"
+                    wrappedMethod = 'put'
+
+                if self.get_argument('delete'):
+                    print "I've DELETE"
+                    # if both are present, its an error
+                    if wrappedMethod:
+                        print "[!] Conflict in PUT|DELETE wrapper"
+                        raise HTTPError(409) # Conflict
+
+                    wrappedMethod = 'delete'
+
+                if wrappedMethod:
+                    print "[^] Forwarding", wrappedMethod, "from POST"
+                    self.post_hack(wrappedMethod)
+
+            except HTTPError:
+                pass
+
 
     def post_hack(self, method):
         """
         This serves to map a POST with argument method set to one of the
         allowed methods (DELETE, PUT) to that method call.
 
-        XXX - same as before
+        The POST format has been checked before, the wrapping 
+        flags are removed, and the PUT|DELETE are treated like every
+        other CURD operation
         """
-        print self.__class__, "post_hack ?"
+
+        print self.request
+        self.request = 'fuffa'
+        print self.request
 
         if method in self.SUPPORTED_METHODS:
             self.request.method = method
@@ -117,14 +145,11 @@ class GLBackendHandler(RequestHandler):
         # If no method named "sanitize" exists in the sanitizer function, we
         # will throw an error.
         try:
-            sanitize_function = getattr(self.sanitizer, self.action)
+            sanitizer_function = getattr(self.sanitizer, self.action)
         except:
             sanitizer_function = getattr(self.sanitizer, 'sanitize')
 
-        # XXX should we return args and kw or only kw?
-        sanitized_request = sanitize_function(self.request)
-
-        self.requestDict = sanitized_request
+        self.safeRequest = sanitizer_function(self.request)
 
     def isSupportedMethod(self):
         """
@@ -133,7 +158,11 @@ class GLBackendHandler(RequestHandler):
 
         # having not configured supportedMethods mean TRUE in all methods ? XXX
         if not self.supportedMethods:
+            print "Hell yes! self.supportedMethods = NONE"
             return True
+        else:
+            print "Hell NO ! self.supportedMethods = some", str(self.supportedMethods)
+
 
         if self.method in self.supportedMethods:
             return True
@@ -143,17 +172,19 @@ class GLBackendHandler(RequestHandler):
     def validateRequest(self):
         """
         Validate the incomming request.
-
         Returns True if the request is valid, False if it is not.
+        Validate perform logical checks and logging
         """
-        valid = True
+        isValid = True
         if DEBUG:
-            print "[+] validating %s %s via %s->%sValidate" % (self.arguments,
-                                                               self.matchedArguments,
-                                                                self.processor,
-                                                                self.action)
+            import urllib
+            print "[+] validating %s %s via %s->%sValidate" %  (
+                                        urllib.unquote_plus(str(self.request)),
+                                        self.matchedArguments, self.processor, 
+                                        self.action)
+
         if not self.validator:
-            return valid
+            return isValid
 
         try:
             validate_function = getattr(self.validator, self.action)
@@ -161,50 +192,65 @@ class GLBackendHandler(RequestHandler):
             validate_function = getattr(self.validator, 'validate')
 
         if validate_function:
-            valid = validate_function(self.request)
+            isalid = validate_function(self.request)
 
-        return valid
+        return isValid
 
     @inlineCallbacks
-    def handle(self, action):
+    def handle(self, reqMethod):
         """
         Make the processor handle deal with the request.
         Basically we do Processor->method(*arg, **kw)
 
-        :action the name of the method to be called on self.processor
+        :reqMethod is the method to be called on self.processor
         """
-        print self.__class__, "handle action:", action
+        print self.__class__, "handle action:", reqMethod
 
-        self.action = action
         return_value = {}
         validate_function = None
         processor = None
 
-        if not action:
+        if not reqMethod:
             returnValue(return_value)
 
+        self.action = reqMethod
+
         if DEBUG:
-            print "[+] calling %s->%s with %s %s" % (self.processor, self.method,
-                                                     self.arguments,
+            print type(self.request)
+            import urllib
+            print "[+] calling %s->%s with %s [=] %s %s" % (self.processor, self.method,
+                                                     urllib.unquote_plus(str(self.request)),
+                                                     self.action,
                                                      self.matchedArguments)
         if not self.isSupportedMethod():
             raise HTTPError(405, "Request method not supported by this API call")
 
         if not self.validateRequest():
-            print "[!] Detected an invalid request, are we under attack?"
+            print "[!] Detected malformed request: are we under attack?"
             raise HTTPError(405, "Invalid request")
 
         self.sanitizeRequest()
+        # after this point, self.request would NOT BE USED, use instead
+        # self.safeRequest
 
         try:
-            # We want to call processor.action(GET|POST|DELETE|PUT)
-            processor = getattr(self.processor, action+self.method.upper())
+            # We aim to processor.$action => processor.[GET|POST|DELETE|PUT]
+            targetMethod = getattr(self.processor, self.action+self.method.upper())
+            print "1) found method using the sum:", action+self.method.upper()
         except:
-            processor = getattr(self.processor, action)
+            targetMethod = getattr(self.processor, self.action)
+            print "2) found method using just:", self.action
 
-        return_value = yield processor(*self.matchedArguments,
-                **self.requestDict)
+# return_value = yield targetMethod(*self.matchedArguments, **self.safeRequest)
+# cause:
+# exceptions.TypeError: context() argument after ** must be a mapping, not HTTPRequest
+        return_value = targetMethod(self)
 
+        if DEBUG:
+            print "[?] handled %s->%s with %s %s retval %s" % (
+                                                     self.processor, self.method,
+                                                     self.action,
+                                                     self.matchedArguments, return_value)
         returnValue(return_value)
 
     @asynchronous
@@ -225,10 +271,6 @@ class GLBackendHandler(RequestHandler):
         self.write(dict(ret))
         self.finish()
 
-    """
-    why implement the method in the generic handler ?
-    we don't need their existance as a check of moethod allowed|not allowed ?
-    """
     def get(self, *arg, **kw):
         self.method = 'GET'
         self.anyMethod(*arg, **kw)
@@ -245,68 +287,107 @@ class GLBackendHandler(RequestHandler):
         self.method = 'DELETE'
         self.anyMethod(*arg, **kw)
 
+"""
+Follow the GLBackend handlers, extending GLBackendHandlers
+"""
 class nodeHandler(GLBackendHandler):
     """
-    # Node Handler
+    # Node Handler (U1, GET)
         * /node
+
+    This class has not a sanitized because
+    is only a GET request, anyway has a validator
+    because some logging functionality may be 
+    implemented in *Validator classess
     """
-    # remind: move this shit in the appropiate fileclass
-    def get(self):
-        print self.__class__, "get"
+    processor = Node()
+    validator = NodeValidator
+
+    def get(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
         self.method = 'GET'
         self.write(dict(node.info))
 
 class submissionHandler(GLBackendHandler):
     """
-    # Submission Handlers
-        * /submission/<ID>/
+    # Submission Handlers (U2, U3, U4: POST GET)
+                          (U5: CURD, file upload):
+        * /submission/<ID> 
         * /submission/<ID>/status
-        * /submission/<ID>/files
         * /submission/<ID>/finalize
+        * /submission/<ID>/files
     """
     processor = Submission()
     validator = SubmissionValidator
     sanitizer = SubmissionSanitizer
 
+    def get(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
+        self.write({'answer': 'something'})
+
+    def post(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
+        self.write({'answer': 'something'})
+
+
 class tipHandler(GLBackendHandler):
     """
-    # Tip Handlers
-        * /tip/<ID>/
-        * /tip/<ID>/comment
-        * /tip/<ID>/files
-        * /tip/<ID>/finalize
-        * /tip/<ID>/download
-        * /tip/<ID>/pertinence
+    # Tip Handlers 
+        * /tip/<ID>            T1 GET POST (all)
+        * /tip/<ID>/comment    T2 POST (wb/rcv)
+        * /tip/<ID>/files      T3 CURD (wb)
+        * /tip/<ID>/finalize   T4 post (wb)
+        * /tip/<ID>/download   T5 GET (rcv)
+        * /tip/<ID>/pertinence T6 POST (rcv)
     """
     processor = Tip()
     validator = TipValidator
     sanitizer = TipSanitizer
 
+    def get(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
+        self.write({'answer': 'something'})
+
+    def post(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
+        self.write({'answer': 'something'})
+
+
 class receiverHandler(GLBackendHandler):
     """
-    # Receiver Handlers
-        * /reciever/<ID>/
-        * /receiver/<ID>/<MODULE>
+    # Receiver Handlers (R1 GET, R2 CURD)
+        * /reciever/<ID>
+        * /receiver/<ID>/<MODULE_TYPE>
     """
     processor = Receiver()
     validator = ReceiverValidator
     sanitizer = ReceiverSanitizer
 
+    def get(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
+        self.write({'answer': 'something'})
+
+    def post(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
+        self.write({'answer': 'something'})
+
 class adminHandler(GLBackendHandler):
     """
-    # Admin Handlers
-        * /admin/node
+    # Admin Handlers (A1 GET POST, A2 A3 A4 CURD)
+        * /admin/node  
         * /admin/contexts
-        * /admin/groups/<ID>
-        * /admin/receivers/<ID>
-        * /admin/modules/<MODULE>
+        * /admin/receivers/<context_ID>
+        * /admin/modules/<MODULE_TYPE>
     """
     processor = Admin()
     validator = AdminValidator
     sanitizer = AdminSanitizer
 
+    def get(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
+        self.write({'answer': 'something'})
 
+    def post(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
+        self.write({'answer': 'something'})
 
-"""
-tha world is a bucket of shit and is written in python.
-"""
