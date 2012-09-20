@@ -17,10 +17,7 @@ If you are interested in running a GlobaLeaks node, you should try
 # Dependencies
 
 GLBackend is written in Python version [2.7](http://docs.python.org/whatsnew/) 
-and is mostly based on [twisted](twistedmatrix.com). For more informations, 
-
-```$ cat requirements.txt ```
-
+and is mostly based on [twisted](twistedmatrix.com). For more informations see [requirements.txt](https://github.com/globaleaks/GLBackend/blob/master/requirements.txt)
 
 
 # Getting Started
