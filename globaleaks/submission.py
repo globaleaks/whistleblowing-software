@@ -11,6 +11,7 @@ from twisted.internet.defer import returnValue, inlineCallbacks
 from globaleaks.db import models, transactor
 from globaleaks.db import transact
 from globaleaks.utils.random import random_string
+from globaleaks import Processor
 
 """
 Move this utility in globaleaks.utils.random or globaleaks.utils.id ?
@@ -28,23 +29,24 @@ def random_receipt_id():
     length = 10
     return ''.join(random.choice('0123456789') for x in range(length))
 
-"""
-XXX
-Submission does not extend anything ?
-"""
-class Submission:
+class Submission(Processor):
     handler = None
     model = models.Submission()
     transactor = transactor
 
-    def new(self, *arg, **kw):
+    def root_GET(self, *arg, **kw):
         """
         Creates an empty submission and returns the ID to the WB.
         """
         self.handler.status_code = 201
         return {'submission_id': random_submission_id()}
 
-    def status(self, submission_id, *arg, **kw):
+    """
+    GET operation is called as return values of other API,
+    then nothing has to be *written* then the codeflow
+    run here
+    """
+    def status_GET(self, submission_id, *arg, **kw):
         from datetime import datetime
         status_dict = { 'fields': {'foo': 1234},
                         'groups': ['A', 'B'],
@@ -55,33 +57,58 @@ class Submission:
                       }
         return status_dict
 
-    def files(self, submission_id, *arg, **kw):
+    """
+    status handle the group receiver selection 
+    (if enabled in the context settings)
+           handle the fields submission
+    (import the fields in the temporary submission_id entry)
+    """
+    def status_POST(self, submission_id, *arg, **kw):
         """
-        Adds the material to the specified submission id.
+        :fields
+        :group
+        """
+        print "status_POST: id", submission_id
+        print arg
+        print kw, "return as GET"
+        return status_GET(submission_id, *arg, **kw)
 
-        :material: append the material to the material set
+    def files_GET(self, submission_id, *arg, **kw):
+        """
+        retrive the status of the file uploaded, the 
+        submission_id has only one folder during the first
+        submission
+
+        XXX remind: in the API-interface is not yet defined
         """
         return {'submission_id': submission_id}
 
-    def fields(self, submission_id, fields=None, *arg, **kw):
+    def files_PUT(self, submission_id, *arg, **kw):
         """
-        Add the fields to the submission.
+        Take the new data and append to the file, contain sync,
+        need to be checked prorperly
+        """
+        return files_GET(submission_id, *arg, **kw)
 
-        :fields: a dict containing the submitted fields
+    def files_POST(self, submission_id, *arg, **kw):
         """
-        print "Fields: %s" % fields
-        return {'submission_id': submission_id}
+        :description, dict of text describig the file uploaded
+         (or not yet complete) by PUT, every time a new
+         files_POST is reached, all the files description is 
+         updated
+        """
+        return files_GET(submission_id, *arg, **kw)
 
-    def groups(self, submission_id, *arg, **kw):
+    def files_DELETE(self, submission_id, *arg, **kw):
         """
-        Adds the group to the list of groups.
+        :filename, remove a complete or a partial uploaded 
+         file
+        """
+        return files_GET(submission_id, *arg, **kw)
 
-        :group: the group to be appendend to the group array.
-        """
-        return {'submission_id': submission_id}
 
     @inlineCallbacks
-    def finalize(self, submission_id, **form_fields):
+    def finalize_POST(self, submission_id, **form_fields):
         """
         Finalize the submission and create data inside of the database.
         """

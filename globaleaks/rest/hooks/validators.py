@@ -1,62 +1,107 @@
 """
-Validator perform intetrigy checks in the submitted field,
+Validator perform integrity checks in the submitted field,
 and perform every sanity checks in the submitted type
 it may perform loggin for specific operation if enabled.
 
-Validator DO NOT PERFORM logical checks, in example, if
-only a receiver can express pertinencies in a Tip, this 
-would be answered by the Tip object.
+Validator perform integrity check only, not logical checks
+that need knowledge of data meaning.
 
-If one of the:
-    is_$type() function return False
-    (see at the end of th file)
-than the expected type is wrong, and an exception is raise.
+What's validator DO NOT:
+
+. only a receiver can express pertinencies in a Tip,
+  if a whistleblower Tip is used to express a pertinency this error
+  would be detected and managed by the Tip object.
+
+. not all contexts supports the option for delete a Tip as
+  receiver option. This check would be performed by the Tip
+  object, also if is a context dependent settings.
+
+Validatator DO:
+
+. Verify that all the fields and the matched arguments
+  are coherent with the API-specification
+. Perform eventually logging in a specific operations
+. Act as blacklisting module if some keywork/behaviour
+  would be blocked, or managed in a particular way.
+
+Validator is the first layer of checks after the HTTP
+request, after the validator procedure not all the 
+request may be passed.
 """
 
 class SubmissionValidator(object):
+
     @classmethod
-    def validate(*args, **kw):
-        print "Submission you're validate ", args, kw
+    def default_validate(*args, **kw):
         return True
 
     @classmethod
     def files(*args, **kw):
-        print "Submission (files) you're validate ", args, kw
         return True
 
 class TipValidator(object):
-    @classmethod
-    def validate(*args, **kw):
-        print "Tip you're validate ", args, kw
 
+    """
+    used by root, finalize, pertinence, download
+    """
+    @classmethod
+    def default_validate(*args, **kw):
         return True
+
+    @classmethod
+    def files(*args, **kw):
+        return True
+
+    @classmethod
+    def comment(*args, **kw):
+        return True
+
 
 class ReceiverValidator(object):
+
     @classmethod
     def validate(*args, **kw):
-        print "Receiver you're validate ", args, kw
         return True
 
-class AdminValidator(object):
     @classmethod
-    def validate(*args, **kw):
-        print "Admin you're validate ", args, kw
+    def modules(*args, **kw):
+        return True
+
+
+class AdminValidator(object):
+
+    @classmethod
+    def node(*args, **kw):
+        return True
+
+    @classmethod
+    def contexts(*args, **kw):
+        return True
+
+    @classmethod
+    def receivers(*args, **kw):
+        return True
+
+    @classmethod
+    def modules(*args, **kw):
         return True
 
 class NodeValidator(object):
+
+    """
+    The simplest GET don't need to be validated
+    """
     @classmethod
-    def validate(*args, **kw):
-        print "Node, a GET without parameter, is valid"
+    def default_validate(*args, **kw):
         return True
 
 
 """
-Regular expressions validator functions
+Regular expressions validator functions,
+TODO, mode them in globaleaks.utils.sanitychecks ?
+for sure they need to be called also by modules
 """
 
-"""
-Check if is a number and positive and with max 10 digits
-"""
 def is_positive(value):
     return True
 

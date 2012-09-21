@@ -8,19 +8,71 @@
 #   :license: see LICENSE
 #
 
-
 from globaleaks import Processor
+from globaleaks import node
 
 class Admin(Processor):
-    def node(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
 
-    def context(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
+    # A1
+    def node_GET(self, *arg, **kw):
+        print arg
+        print kw
+        return dict(node.info)
 
-    def groups(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
+    def node_POST(self, *arg, **kw):
+        print arg
+        print kw
+        return dict(node.info)
 
-    def receivers(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
+    # A2
+    def contexts_GET(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A2 G'}
 
+    def contexts_POST(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A2 O'}
+
+    def contexts_PUT(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A2 U'}
+
+    def contexts_DELETE(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A2 D'}
+
+    # A3
+    def receivers_GET(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A3 G'}
+
+    def receivers_POST(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A3 O'}
+
+    def receivers_PUT(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A3 U'}
+
+    def receivers_DELETE(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A3 D'}
+
+    # A4
+    def modules_GET(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A4 G'}
+
+    def modules_POST(self, *arg, **kw):
+        print arg
+        print kw
+        return  {'iwascalledin': __name__, 'code': 'A4 P'}

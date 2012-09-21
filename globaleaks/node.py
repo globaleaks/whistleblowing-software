@@ -10,8 +10,8 @@ from globaleaks import Processor
 import pdb
 
 class Node(Processor):
-    """
 
+    """
     the method need to update the stats values,
 
         'name': 'string',
@@ -24,18 +24,15 @@ class Node(Processor):
         'url_schema': 'string'
     """
 
-    # before this format was expected, but after I've changed 
-    # with the oe of GET
-    def method(self, *arg, **kw):
-        pdb.print_stack_trace()
-        return {'arg': arg, 'kw': kw}
-
-    def GET(self):
-        pdb.print_stack_trace()
-        return {'return': 'value', 'arandom': 123132, 'bool': True}
+    def root_GET(*arg, **kw):
+        print arg
+        print kw
+        testrv = {'return': info, 'arandom': 123132, 'bool': True}
+        print testrv
+        return testrv
 
 
-lorem = "Letterpress whatever incididunt consequat proident ennui, in post-ironic tofu. Shoreditch banksy four loko, wayfarers mollit brunch minim jean shorts chillwave raw denim squid twee cosby sweater sunt. Farm-to-table authentic sunt, wayfarers DIY cred viral wes anderson lomo aliqua proident. Fingerstache twee mlkshk, williamsburg ea nostrud master cleanse single-origin coffee accusamus pitchfork voluptate skateboard delectus sapiente. Mixtape beard magna semiotics dolor art party. Cray commodo occaecat twee thundercats, viral veniam in. In typewriter vegan, mixtape put a bird on it trust fund ex wayfarers retro commodo semiotics."
+lorem = "Letterpress whatever incididunt commodo semiotics."
 
 footime = '2012-08-23 13:36:30.355617'
 

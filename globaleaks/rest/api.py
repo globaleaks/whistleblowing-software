@@ -22,12 +22,15 @@ id_regexp = '\w+'
 spec = [
     ## Node Handler ##
     #  * /node U1
-    (r'/node', nodeHandler),
+    (r'/node', nodeHandler,
+                     dict(action='root',
+                          supportedMethods=['GET']
+                         )),
 
     ## Submission Handlers ##
     #  * /submission/<ID>/ U2
     (r'/submission', submissionHandler,
-                     dict(action='new',
+                     dict(action='root',
                           supportedMethods=['GET']
                          )),
 
@@ -57,7 +60,7 @@ spec = [
     #  * /tip/<ID>/ T1
     (r'/tip/(' + tip_regexp + ')',
                      tipHandler,
-                     dict(action='main',
+                     dict(action='root',
                           supportedMethods=['GET', 'POST']
                          )),
 
@@ -85,7 +88,7 @@ spec = [
     #  * /tip/<ID>/download T5
     (r'/tip/(' + tip_regexp + ')/download',
                      tipHandler,
-                     dict(action='dowload',
+                     dict(action='download',
                           supportedMethods=['GET']
                          )),
 
@@ -121,7 +124,7 @@ spec = [
     #  * /admin/contexts A2
     (r'/admin/contexts/(' + id_regexp + ')',
                         adminHandler,
-                        dict(action='context',
+                        dict(action='contexts',
                              supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
                             )),
 
@@ -134,7 +137,7 @@ spec = [
 
     #  * /admin/modules/<MODULE TYPE> A4
     (r'/admin/modules/(' + module_regexp + ')', adminHandler,
-                    dict(action='module',
+                    dict(action='modules',
                          supportedMethods=['GET', 'POST']
                         )),
 
