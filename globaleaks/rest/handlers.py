@@ -18,8 +18,9 @@ from cyclone.web import RequestHandler, HTTPError, asynchronous
 # decorator @removeslash in cyclone.web may remove final '/' if not 
 # expected. would be nice use it, but the Cyclone code check only HEAD and GET
 # while we need checks in a complete CURD
+# -- may this be a request to be opened in Cyclone ?
 
-DEBUG = True
+DEBUG = True # == False
 
 class GLBackendHandler(RequestHandler):
     """
@@ -48,10 +49,8 @@ class GLBackendHandler(RequestHandler):
 
     # Arguments matched from the in the regexp of the REST spec
     matchedArguments = []
-    # Store the sanitized request
-    safeRequest = None
-
-    supportedMethods = None
+    # Store the sanitized request in a dict (*arg, **kw)
+    safeRequest = { }
 
     # Validation and sanitization classes
     sanitizer = None
@@ -60,19 +59,19 @@ class GLBackendHandler(RequestHandler):
     # The target class that will be responsible for handling the request
     processor = None
 
-    def initialize(self, action=None, supportedMethods=None):
+    def initialize(self, action, supportedMethods):
         """
         Get the argument passed by the API dict.
 
         Configure the processor handler to point to the GLBackendHandler. This
         allows the globaleaks core handlers to reach the request object.
 
-        :action the action such request is referring to.
+        :action is the arbitrary name used in Processor classed for
+         address a method+HTTP method, its required in api.spec
         """
 
         self.action = action
-        if supportedMethods:
-            self.SUPPORTED_METHODS = supportedMethods
+        self.SUPPORTED_METHODS = supportedMethods
 
         if self.processor:
             self.processor.handler = self
@@ -81,8 +80,9 @@ class GLBackendHandler(RequestHandler):
 
     def prepare(self):
         """
-        If we detect that the client is using the "post hack" to send a method
-        not supported by their browser, perform the "post hack".
+        This method is called by cyclone, and is implemented to 
+        handle the POST fallback, in environment where PUT and DELETE 
+        method may not be used.
         """
 
         if self.request.method.lower() is 'post':
@@ -90,11 +90,10 @@ class GLBackendHandler(RequestHandler):
 
             try:
                 if self.get_argument('put'):
-                    print "I've PUT"
                     wrappedMethod = 'put'
 
                 if self.get_argument('delete'):
-                    print "I've DELETE"
+
                     # if both are present, its an error
                     if wrappedMethod:
                         print "[!] Conflict in PUT|DELETE wrapper"
@@ -104,30 +103,10 @@ class GLBackendHandler(RequestHandler):
 
                 if wrappedMethod:
                     print "[^] Forwarding", wrappedMethod, "from POST"
-                    self.post_hack(wrappedMethod)
+                    self.request.method = wrappedMethod
 
             except HTTPError:
                 pass
-
-
-    def post_hack(self, method):
-        """
-        This serves to map a POST with argument method set to one of the
-        allowed methods (DELETE, PUT) to that method call.
-
-        The POST format has been checked before, the wrapping 
-        flags are removed, and the PUT|DELETE are treated like every
-        other CURD operation
-        """
-
-        print self.request
-        self.request = 'fuffa'
-        print self.request
-
-        if method in self.SUPPORTED_METHODS:
-            self.request.method = method
-        else:
-            raise HTTPError(405) # method not allowed
 
     def sanitizeRequest(self):
         """
@@ -136,7 +115,9 @@ class GLBackendHandler(RequestHandler):
         """
         print self.__class__, "sanitizer", self.sanitizer, "action", self.action
 
+        # this may happen in the GET request
         if not self.sanitizer:
+            self.safeRequest = dict({'safeRequest' : ''})
             return
 
         # We first try and call the method named after action.
@@ -147,24 +128,16 @@ class GLBackendHandler(RequestHandler):
         try:
             sanitizer_function = getattr(self.sanitizer, self.action)
         except:
-            sanitizer_function = getattr(self.sanitizer, 'sanitize')
+            sanitizer_function = getattr(self.sanitizer, 'default_sanitize')
 
-        self.safeRequest = sanitizer_function(self.request)
+        self.safeRequest  = sanitizer_function(self.request)
 
     def isSupportedMethod(self):
         """
         Check if the request method is supported.
         """
 
-        # having not configured supportedMethods mean TRUE in all methods ? XXX
-        if not self.supportedMethods:
-            print "Hell yes! self.supportedMethods = NONE"
-            return True
-        else:
-            print "Hell NO ! self.supportedMethods = some", str(self.supportedMethods)
-
-
-        if self.method in self.supportedMethods:
+        if self.method in self.SUPPORTED_METHODS:
             return True
         else:
             return False
@@ -184,12 +157,14 @@ class GLBackendHandler(RequestHandler):
                                         self.action)
 
         if not self.validator:
+            print "[!] development error: we need to put a constrain, every input need to \
+            pass thru validator function, validator maybe expanded with logging functionality"
             return isValid
 
         try:
             validate_function = getattr(self.validator, self.action)
         except:
-            validate_function = getattr(self.validator, 'validate')
+            validate_function = getattr(self.validator, 'default_validate')
 
         if validate_function:
             isalid = validate_function(self.request)
@@ -197,31 +172,28 @@ class GLBackendHandler(RequestHandler):
         return isValid
 
     @inlineCallbacks
-    def handle(self, reqMethod):
+    def handle(self, action):
         """
         Make the processor handle deal with the request.
-        Basically we do Processor->method(*arg, **kw)
+        Basically we do Processor->reqApi(*arg, **kw)
 
-        :reqMethod is the method to be called on self.processor
+        :action the string defined in api.spec, and would 
+         compose with $action_$httpmethod the method inside
+         of the appropriate Process class
         """
-        print self.__class__, "handle action:", reqMethod
+        assert action
 
         return_value = {}
         validate_function = None
         processor = None
 
-        if not reqMethod:
-            returnValue(return_value)
-
-        self.action = reqMethod
-
         if DEBUG:
-            print type(self.request)
             import urllib
             print "[+] calling %s->%s with %s [=] %s %s" % (self.processor, self.method,
                                                      urllib.unquote_plus(str(self.request)),
                                                      self.action,
                                                      self.matchedArguments)
+
         if not self.isSupportedMethod():
             raise HTTPError(405, "Request method not supported by this API call")
 
@@ -231,26 +203,25 @@ class GLBackendHandler(RequestHandler):
 
         self.sanitizeRequest()
         # after this point, self.request would NOT BE USED, use instead
-        # self.safeRequest
+        # ____ self.safeRequest ____
 
-        try:
-            # We aim to processor.$action => processor.[GET|POST|DELETE|PUT]
-            targetMethod = getattr(self.processor, self.action+self.method.upper())
-            print "1) found method using the sum:", action+self.method.upper()
-        except:
-            targetMethod = getattr(self.processor, self.action)
-            print "2) found method using just:", self.action
 
-# return_value = yield targetMethod(*self.matchedArguments, **self.safeRequest)
-# cause:
-# exceptions.TypeError: context() argument after ** must be a mapping, not HTTPRequest
-        return_value = targetMethod(self)
+        targetMethod = getattr(self.processor, self.action + '_' + self.method.upper())
+
+        print self.matchedArguments
+        print self.safeRequest
+#        return_value = yield targetMethod(*self.matchedArguments, **self.safeRequest)
+        return_value = yield targetMethod(self.matchedArguments, self.safeRequest)
 
         if DEBUG:
-            print "[?] handled %s->%s with %s %s retval %s" % (
+            print "[?] handled %s->%s with %s %s retval %s (%s)" % (
                                                      self.processor, self.method,
                                                      self.action,
-                                                     self.matchedArguments, return_value)
+                                                     self.matchedArguments, return_value,
+                                                     type(return_value))
+
+        # ufff - test XXX
+        self.write(return_value)
         returnValue(return_value)
 
     @asynchronous
@@ -260,7 +231,7 @@ class GLBackendHandler(RequestHandler):
         Simple hack to by default handle all methods with the same handler.
         """
         if DEBUG:
-            print "[+] Handling %s with %s %s" % (self.method, arg, kw)
+            print "[+] anyMethod -- Handling %s with %s %s" % (self.method, arg, kw)
 
         self.matchedArguments = arg if arg else []
 
@@ -273,18 +244,26 @@ class GLBackendHandler(RequestHandler):
 
     def get(self, *arg, **kw):
         self.method = 'GET'
+        import traceback
+        traceback.print_stack()
         self.anyMethod(*arg, **kw)
 
     def post(self, *arg, **kw):
         self.method = 'POST'
+        import traceback
+        traceback.print_stack()
         self.anyMethod(*arg, **kw)
 
     def put(self, *arg, **kw):
         self.method = 'PUT'
+        import traceback
+        traceback.print_stack()
         self.anyMethod(*arg, **kw)
 
     def delete(self, *arg, **kw):
         self.method = 'DELETE'
+        import traceback
+        traceback.print_stack()
         self.anyMethod(*arg, **kw)
 
 """
@@ -303,10 +282,16 @@ class nodeHandler(GLBackendHandler):
     processor = Node()
     validator = NodeValidator
 
+    """
     def get(self, *arg, **kw):
         print self.__class__,__name__ , arg, kw
-        self.method = 'GET'
-        self.write(dict(node.info))
+        self.write({'answer': 'something'})
+
+    def post(self, *arg, **kw):
+        print self.__class__,__name__ , arg, kw
+        self.write({'answer': 'something'})
+    """
+
 
 class submissionHandler(GLBackendHandler):
     """
@@ -321,13 +306,6 @@ class submissionHandler(GLBackendHandler):
     validator = SubmissionValidator
     sanitizer = SubmissionSanitizer
 
-    def get(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
-
-    def post(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
 
 
 class tipHandler(GLBackendHandler):
@@ -345,12 +323,10 @@ class tipHandler(GLBackendHandler):
     sanitizer = TipSanitizer
 
     def get(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
+        print self.__class__,__name__ 
 
     def post(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
+        print self.__class__,__name__ 
 
 
 class receiverHandler(GLBackendHandler):
@@ -382,12 +358,3 @@ class adminHandler(GLBackendHandler):
     processor = Admin()
     validator = AdminValidator
     sanitizer = AdminSanitizer
-
-    def get(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
-
-    def post(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
-

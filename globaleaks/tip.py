@@ -11,22 +11,44 @@ from globaleaks import Processor
 
 class Tip(Processor):
 
-    def main(self, *arg, **kw):
+    def root_GET(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
-    def comment(self, *arg, **kw):
+    """
+    root of /tip/ POST handle deleting and forwarding options,
+    they are checked in the tip-properties 
+    (assigned by the tip propetary)
+    """
+    def root_POST(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
-    def files(self, *arg, **kw):
+    def comment_POST(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
-    def finalize(self, *arg, **kw):
+    def files_GET(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
-    def download(self, *arg, **kw):
+    def files_PUT(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
-    def pertinence(self, *arg, **kw):
+    def files_POST(self, *arg, **kw):
+        return {'arg': arg, 'kw': kw}
+
+    def files_DELETE(self, *arg, **kw):
+        return {'arg': arg, 'kw': kw}
+
+    def finalize_POST(self, *arg, **kw):
+        return {'arg': arg, 'kw': kw}
+
+    def download_GET(self, *arg, **kw):
+        return {'arg': arg, 'kw': kw}
+
+    """
+    pertinence is marked as GET, but need to be a POST,
+    either because a receiver may express +1 -1 values,
+    and because can be extended in the future
+    """
+    def pertinence_POST(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
     """
