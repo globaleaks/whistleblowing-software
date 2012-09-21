@@ -73,15 +73,18 @@ nodeStatisticsDict=dict({ "something": "toBedefined", "something_other": 12345 }
 # U3 `/submission/<submission_id>`
 # U4 `/submission/<submission_id>/finalize`
 # U5 `/submission/<submission_id>/upload_file`
+
 # T1 `/tip/<string auth t_id>`
 # T2 `/tip/<uniq_Tip_$ID>/add_comment`
 # T3 `/tip/<uniq_Tip_$ID>/update_file`
 # T4 `/tip/<string t_id>/finalize_update`
 # T5 `/tip/<string t_id>/download_material`
 # T6 `/tip/<string t_id>/pertinence`
+
 # R1 `/receiver/<string t_id>/overview`
 # R2 `/receiver/<string t_id>/<string module_name>`
-# P1 `/admin/node/`                                     (test implemented)
+
+# A1 `/admin/node/`                                     (test implemented)
 # A2 `/admin/contexts/`                                 (test implemented)
 # A4 `/admin/receivers/<context_$ID>/`                    (test implemented)
 # A5 `/admin/modules/<string module_type>/`             (test implemented)
@@ -275,12 +278,16 @@ def do_curl(url, method, not_encoded_parm=''):
               }
 
     conn = httplib.HTTPConnection(baseurl)
-    print "[+] CONNECTION REQUEST:", method, baseurl, url, params, headers,"\n\n"
+
+    if checkOpt('request'):
+        print "[+] CONNECTION REQUEST:", method, baseurl, url, params, headers,"\n"
 
     conn.request(method, url, params, headers)
 
     response = conn.getresponse()
-    print "[+] RESPONSE:", response.read()
+
+    if checkOpt('response'):
+        print "[+] RESPONSE:", response.read(),"\n"
 
     data = response.read()
     conn.close()
@@ -313,10 +320,18 @@ def clean_debug(rec, targetdict):
             for i in xrange(0, rec): print "\t",
             print k," => ", str(v)
 
+def checkOpt(option):
+
+    for arg in sys.argv:
+        if arg == option:
+            return True
+
+    return False
+
 class myUnitTest(unittest.TestCase):
 
     def do_METHOD(self, method, restName):
-        print "[do_METHOD] testing", restName, "method", method
+        print "[do_METHOD] testing", restName, "method", method, "in", testDict[restName][0]['url']
 
         dictID = restName + '_' + method
         test_sets = testDict[restName]
@@ -325,20 +340,20 @@ class myUnitTest(unittest.TestCase):
             if x['method'] == method:
                 settings = x
 
-                print "[do_METHOD]", i," using url", settings['url'], "request", settings['request']
+                if checkOpt('request') or checkOpt('verbose'):
+                    print "[do_METHOD]", i," using url", settings['url'], "request", settings['request']
 
-                if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
+                if checkOpt('verbose'):
                     clean_debug(1, settings)
 
                 if method == 'GET':
-                    result = do_curl(settings['url'], settings['method'] )
+                    result = do_curl(settings['url'], settings['method'])
                 else:
-                    result = do_curl(settings['url'], settings['method'], settings['request'])
+                    result = do_curl(settings['url'], settings['method'], settings['request'] )
 
-                if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
+                if checkOpt('verbose'):
                     clean_debug(1, result)
 
-        # self.assertEqual(result, settings['expected_result'])
 
 class P1(myUnitTest):
 
@@ -393,14 +408,16 @@ if len(sys.argv) >= 2:
     for x in enumerate(sys.argv):
         if x[1].find(':') != -1:
             baseurl = x[1]
-            print "using base url", baseurl
-else:
-    print "using default base url", baseurl
 
-if len(sys.argv) >= 2 and sys.argv[1] == 'verbose':
-    print "verbose modality is ON"
-else:
-    print "verbose modality is OFF"
+print "starting tests to:", baseurl
+
+if checkOpt('verbose'):
+    print "verbose is ON (imply response, request and some other details)"
+if checkOpt('response'):
+    print "Response verbosity printing is ON"
+if checkOpt('request'):
+    print "Request verbosity printing is ON"
+
 
 P1().do_tests()
 P2().do_tests()

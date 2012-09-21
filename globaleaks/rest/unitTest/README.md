@@ -12,7 +12,13 @@
 In another console
 
     $ cd globaleaks/rest/unitTest
-    $ python restTest_curl.py <optional:verbose> <optional:HOSTNAME:PORT>
+    $ python restTest_curl.py [verbosity options] <optional:HOSTNAME:PORT>
+
+The verbosity options are:
+
+    verbose
+    request
+    response
 
 enable the verbose dumping of the sent/receiver JSON object (or errors)
 
@@ -20,5 +26,3 @@ enable the verbose dumping of the sent/receiver JSON object (or errors)
 
     $ cd globaleaks/rest/unitTest
     $ python restTest_unit.py
-    TODO (@hellais can you describe this testing logic ?)
-
