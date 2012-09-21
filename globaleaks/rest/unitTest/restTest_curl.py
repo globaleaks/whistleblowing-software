@@ -17,7 +17,8 @@ counter = 0
 def randomID(seed):
     global counter
     counter += 1
-    return 'ID_'+seed+'_'+str(counter)
+    # return 'ID'+seed+'_'+str(counter)
+    return 'ID'+str(counter)
 
 def localizationDict(seed):
     global counter
@@ -40,7 +41,7 @@ receiverDescriptionDict=dict({   "ReceiverID": randomID('receiver'), "CanDeleteS
 nodePropertiesDict=dict({   "AnonymousSubmissionOnly": False, "AdminAreReceivers": False, "NodeProvideDocsPublication": False,
             "FixedCorpusOfReceiver": False, "ReceiverAreAnonymous": False })
 
-moduleDataDict=({"ID": randomID('module'), "active": False, "type": "string",
+moduleDataDict=dict({"ID": randomID('module'), "active": False, "type": "string",
             "name": "string", "description": "string", "admin_options": formFieldsDict, 
             "user_options": formFieldsDict,  "service_message": "string" })
 
@@ -172,17 +173,12 @@ testDict['A2'] = [
 testDict['A2F'] = [
         ({
         'method': 'POST',
-        'request' : ({ 'put': True, 'delete': False, "context": contextDescriptionDict }),
+        'request' : ({ 'method': 'put', "context": contextDescriptionDict }),
         'url' : '/admin/contexts/' + randomID('context'),
         'expected_result' : A2_recurring_result
         }), ({
         'method': 'POST',
-        'request' : ({ 'put': True, 'delete': True , "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('context'),
-        'expected_result' : A2_recurring_result
-        }), ({
-        'method': 'POST',
-        'request' : ({ 'put': False, 'delete': True, "context": contextDescriptionDict }),
+        'request' : ({ 'method': 'delete', "context": contextDescriptionDict }),
         'url' : '/admin/contexts/' + randomID('context'),
         'expected_result' : A2_recurring_result
         }) ]
@@ -193,22 +189,22 @@ testDict['A3'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/admin/receiver/' + randomID('receiver'),
+        'url' : '/admin/receivers/' + randomID('receiver'),
         'expected_result' : A3_recurring_result
         }), ({
         'method': 'PUT',
         'request' : ({ "receiver": receiverDescriptionDict }),
-        'url' : '/admin/receiver/' + randomID('receiver'),
+        'url' : '/admin/receivers/' + randomID('receiver'),
         'expected_result' : A3_recurring_result
         }), ({
         'method': 'POST',
         'request' : ({ "put": True, "delete": False, "receiver": receiverDescriptionDict }),
-        'url' : '/admin/receiver/' + randomID('receiver'),
+        'url' : '/admin/receivers/' + randomID('receiver'),
         'expected_result' : A3_recurring_result
         }), ({
         'method': 'DELETE',
         'request' : ({ "receiver": receiverDescriptionDict }),
-        'url' : '/admin/receiver/' + randomID('receiver'),
+        'url' : '/admin/receivers/' + randomID('receiver'),
         'expected_result' : A3_recurring_result
         }) ]
 
@@ -240,31 +236,80 @@ testDict['A4'] = [
         'expected_result' : A4_recurring_result,
         }) ]
 
+
 R1_recurring_result = dict ({
-        "modules": [ moduleDataDict, moduleDataDict ]
+        "tips": [ tipIndexDict, tipIndexDict ],
+        "notification": [ moduleDataDict, moduleDataDict ],
+        "delivery": [ moduleDataDict, moduleDataDict ],
+        "properties": [ receiverDescriptionDict ],
      })
 
 testDict['R1'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
+        'url' : '/receiver/' + randomID('Tip-ID'),
         'expected_result' : R1_recurring_result,
+        }) ]
+
+R2_recurring_result = dict ({
+        "notification": [ moduleDataDict, moduleDataDict ],
+        "delivery": [ moduleDataDict, moduleDataDict ],
+     })
+
+testDict['R2'] = [
+        ({
+        'method': 'GET',
+        'request' : False,
+        'url' : '/receiver/' + randomID('Tip-NOT') + '/notification/module',
+        'expected_result' : R2_recurring_result,
+        }), 
+        ({
+        'method': 'GET',
+        'request' : False,
+        'url' : '/receiver/' + randomID('Tip-DEL') + '/delivery/module',
+        'expected_result' : R2_recurring_result,
+        }), 
+        ({
+        'method': 'PUT',
+        'request' : ({ "module": moduleDataDict }),
+        'url' : '/receiver/' + randomID('Tip-NOT') + '/notification/module',
+        'expected_result' : R2_recurring_result,
         }), ({
         'method': 'PUT',
         'request' : ({ "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
-        'expected_result' : R1_recurring_result,
+        'url' : '/receiver/' + randomID('Tip-DEL') + '/delivery/module',
+        'expected_result' : R2_recurring_result,
         }), ({
         'method': 'POST',
-        'request' : ({ "put": True, "delete": False, "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
-        'expected_result' : R1_recurring_result,
+        'request' : ({ "method": 'delete', "module": moduleDataDict }),
+        'url' : '/receiver/' + randomID('Tip-DELDEL') + '/delivery/module',
+        'expected_result' : R2_recurring_result,
+        }), ({
+        'method': 'POST',
+        'request' : ({ "method": 'put', "module": moduleDataDict }),
+        'url' : '/receiver/' + randomID('Tip-DELPUT') + '/delivery/module',
+        'expected_result' : R2_recurring_result,
+        }), ({
+        'method': 'POST',
+        'request' : ({ "method": 'delete', "module": moduleDataDict }),
+        'url' : '/receiver/' + randomID('Tip-NOTDEL') + '/notification/module',
+        'expected_result' : R2_recurring_result,
+        }), ({
+        'method': 'POST',
+        'request' : ({ "method": 'put', "module": moduleDataDict }),
+        'url' : '/receiver/' + randomID('Tip-NOTPUT') + '/notification/module',
+        'expected_result' : R2_recurring_result,
         }), ({
         'method': 'DELETE',
         'request' : ({ "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-ID') + '/overview',
-        '}expected_result' : R1_recurring_result,
+        'url' : '/receiver/' + randomID('Tip-NOT') + '/notification/module',
+        '}expected_result' : R2_recurring_result,
+        }), ({
+        'method': 'DELETE',
+        'request' : ({ "module": moduleDataDict }),
+        'url' : '/receiver/' + randomID('Tip-DEL') + '/delivery/module',
+        '}expected_result' : R2_recurring_result,
         }) ]
 
 
@@ -396,10 +441,14 @@ class A4(myUnitTest):
 class R1(myUnitTest):
     def do_tests(self):
         self.do_METHOD('GET', 'R1')
-        self.do_METHOD('PUT', 'R1')
-        self.do_METHOD('POST', 'R1')
-        self.do_METHOD('DELETE', 'R1')
 
+class R2(myUnitTest):
+    def do_tests(self):
+        # loop in all the extended /{notification|delivery}/
+        self.do_METHOD('GET', 'R2')
+        self.do_METHOD('PUT', 'R2')
+        self.do_METHOD('POST', 'R2')
+        self.do_METHOD('DELETE', 'R2')
 
 
 # HERE START THE TEST
@@ -419,14 +468,15 @@ if checkOpt('request'):
     print "Request verbosity printing is ON"
 
 
-P1().do_tests()
-P2().do_tests()
+#P1().do_tests()
+#P2().do_tests()
 
-A1().do_tests()
-A2().do_tests()
-A3().do_tests()
-A4().do_tests()
+#A1().do_tests()
+#A2().do_tests()
+#A3().do_tests()
+#A4().do_tests()
 
 R1().do_tests()
+R2().do_tests()
 
 
