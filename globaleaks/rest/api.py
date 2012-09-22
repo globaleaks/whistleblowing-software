@@ -14,10 +14,19 @@ from globaleaks.rest.handlers import *
 from globaleaks.submission import Submission
 from cyclone.web import StaticFileHandler
 
+# long sha hash, fixed len
 tip_regexp = '\w+'
+
+# temporary long int or so far
 submission_id_regexp = '\w+'
-module_regexp = '\w+'
-id_regexp = '\w+'
+
+# <modulename> + "fixed separator" + other ID (tip or context)
+mixedmod_regexp = '\w+'
+
+# simple uniq id, not a security issue for be not guessable
+context_id_regexp = '\w+'
+
+
 
 spec = [
     ## Node Handler ##
@@ -103,12 +112,12 @@ spec = [
     #  * /reciever/<ID>/ R1
     (r'/receiver/(' + tip_regexp + ')',
                      receiverHandler,
-                     dict(action='main',
+                     dict(action='root',
                           supportedMethods=['GET']
                          )),
 
-    #  * /receiver/<ID>/<MODULE TYPE> R2
-    (r'/receiver/(' + tip_regexp + ')/(' + module_regexp + ')',
+    #  * /receiver/<MODULE TYPE><fixedsep><TIP ID>/module R2
+    (r'/receiver/(' + mixedmod_regexp + ')/module',
                      receiverHandler,
                      dict(action='module',
                           supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
@@ -122,21 +131,22 @@ spec = [
                             )),
 
     #  * /admin/contexts A2
-    (r'/admin/contexts/(' + id_regexp + ')',
+    (r'/admin/contexts/(' + context_id_regexp + ')',
                         adminHandler,
                         dict(action='contexts',
                              supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
                             )),
 
     #  * /admin/receivers/<context_ID> A3
-    (r'/admin/receivers/(' + id_regexp + ')',
+    (r'/admin/receivers/(' + context_id_regexp + ')',
                     adminHandler,
                     dict(action='receivers',
                          supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
                         )),
 
-    #  * /admin/modules/<MODULE TYPE> A4
-    (r'/admin/modules/(' + module_regexp + ')', adminHandler,
+    #  * /admin/modules/<MODULE TYPE><fixedsep><context_ID> A4
+    (r'/admin/modules/( ' + mixedmod_regexp + ')',
+                    adminHandler,
                     dict(action='modules',
                          supportedMethods=['GET', 'POST']
                         )),
