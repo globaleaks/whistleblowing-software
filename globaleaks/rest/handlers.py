@@ -20,7 +20,7 @@ from cyclone.web import RequestHandler, HTTPError, asynchronous
 # while we need checks in a complete CURD
 # -- may this be a request to be opened in Cyclone ?
 
-DEBUG = True # == False
+DEBUG = True == False
 
 class GLBackendHandler(RequestHandler):
     """
@@ -85,26 +85,13 @@ class GLBackendHandler(RequestHandler):
         method may not be used.
         """
 
-        if self.request.method.lower() is 'post':
-            wrappedMethod = None
-
+        if self.request.method.lower() == 'post':
+            print "POST! prepare ******************************************"
             try:
-                if self.get_argument('put'):
-                    wrappedMethod = 'put'
-
-                if self.get_argument('delete'):
-
-                    # if both are present, its an error
-                    if wrappedMethod:
-                        print "[!] Conflict in PUT|DELETE wrapper"
-                        raise HTTPError(409) # Conflict
-
-                    wrappedMethod = 'delete'
-
-                if wrappedMethod:
-                    print "[^] Forwarding", wrappedMethod, "from POST"
+                wrappedMethod = self.get_argument('method')
+                print "[^] Forwarding", wrappedMethod, "from POST"
+                if wrappedMethod == 'delete' or wrappedMethod == 'put':
                     self.request.method = wrappedMethod
-
             except HTTPError:
                 pass
 
@@ -184,12 +171,10 @@ class GLBackendHandler(RequestHandler):
         assert action
 
         return_value = {}
-        validate_function = None
-        processor = None
 
         if DEBUG:
             import urllib
-            print "[+] calling %s->%s with %s [=] %s %s" % (self.processor, self.method,
+            print "[+] calling %s->%s with %s [=] %s MA/ %s" % (self.processor, self.method,
                                                      urllib.unquote_plus(str(self.request)),
                                                      self.action,
                                                      self.matchedArguments)
@@ -199,39 +184,37 @@ class GLBackendHandler(RequestHandler):
 
         if not self.validateRequest():
             print "[!] Detected malformed request: are we under attack?"
-            raise HTTPError(405, "Invalid request")
+            raise HTTPError(409, "Invalid request")
 
         self.sanitizeRequest()
         # after this point, self.request would NOT BE USED, use instead
         # ____ self.safeRequest ____
 
-
+        print(dir(self.processor))
         targetMethod = getattr(self.processor, self.action + '_' + self.method.upper())
 
-        print self.matchedArguments
-        print self.safeRequest
-#        return_value = yield targetMethod(*self.matchedArguments, **self.safeRequest)
         return_value = yield targetMethod(self.matchedArguments, self.safeRequest)
 
         if DEBUG:
+            import urllib
             print "[?] handled %s->%s with %s %s retval %s (%s)" % (
                                                      self.processor, self.method,
                                                      self.action,
-                                                     self.matchedArguments, return_value,
+                                                     self.matchedArguments, 
+                                                     urllib.unquote_plus(str(return_value)),
                                                      type(return_value))
 
-        # ufff - test XXX
-        self.write(return_value)
         returnValue(return_value)
 
     @asynchronous
     @inlineCallbacks
     def anyMethod(self, *arg, **kw):
         """
-        Simple hack to by default handle all methods with the same handler.
+        Simple hack to by default handle all methods with the same handler:
+        it's useful ? ATM no API has not a dedicated action.
         """
         if DEBUG:
-            print "[+] anyMethod -- Handling %s with %s %s" % (self.method, arg, kw)
+            print "[+] anyMethod -- Handling %s %s with %s %s" % (self.action, self.method, arg, kw)
 
         self.matchedArguments = arg if arg else []
 
@@ -239,31 +222,24 @@ class GLBackendHandler(RequestHandler):
 
         if self.status_code:
             self.set_status(self.status_code)
+
         self.write(dict(ret))
         self.finish()
 
     def get(self, *arg, **kw):
         self.method = 'GET'
-        import traceback
-        traceback.print_stack()
         self.anyMethod(*arg, **kw)
 
     def post(self, *arg, **kw):
         self.method = 'POST'
-        import traceback
-        traceback.print_stack()
         self.anyMethod(*arg, **kw)
 
     def put(self, *arg, **kw):
         self.method = 'PUT'
-        import traceback
-        traceback.print_stack()
         self.anyMethod(*arg, **kw)
 
     def delete(self, *arg, **kw):
         self.method = 'DELETE'
-        import traceback
-        traceback.print_stack()
         self.anyMethod(*arg, **kw)
 
 """
@@ -282,16 +258,6 @@ class nodeHandler(GLBackendHandler):
     processor = Node()
     validator = NodeValidator
 
-    """
-    def get(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
-
-    def post(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
-    """
-
 
 class submissionHandler(GLBackendHandler):
     """
@@ -305,7 +271,6 @@ class submissionHandler(GLBackendHandler):
     processor = Submission()
     validator = SubmissionValidator
     sanitizer = SubmissionSanitizer
-
 
 
 class tipHandler(GLBackendHandler):
@@ -322,30 +287,15 @@ class tipHandler(GLBackendHandler):
     validator = TipValidator
     sanitizer = TipSanitizer
 
-    def get(self, *arg, **kw):
-        print self.__class__,__name__ 
-
-    def post(self, *arg, **kw):
-        print self.__class__,__name__ 
-
-
 class receiverHandler(GLBackendHandler):
     """
     # Receiver Handlers (R1 GET, R2 CURD)
-        * /reciever/<ID>
-        * /receiver/<ID>/<MODULE_TYPE>
+        * /reciever/<TID>
+        * /receiver/<MODULE_TYPE><fixd><TID>/module
     """
     processor = Receiver()
     validator = ReceiverValidator
     sanitizer = ReceiverSanitizer
-
-    def get(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
-
-    def post(self, *arg, **kw):
-        print self.__class__,__name__ , arg, kw
-        self.write({'answer': 'something'})
 
 class adminHandler(GLBackendHandler):
     """
@@ -353,7 +303,7 @@ class adminHandler(GLBackendHandler):
         * /admin/node  
         * /admin/contexts
         * /admin/receivers/<context_ID>
-        * /admin/modules/<MODULE_TYPE>
+        * /admin/modules/<MODULE_TYPE><fixd><context_ID>
     """
     processor = Admin()
     validator = AdminValidator

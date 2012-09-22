@@ -86,6 +86,17 @@ class AdminValidator(object):
     def modules(*args, **kw):
         return True
 
+class ReceiverValidator(object):
+
+    """
+    has a complete CURD 
+    """
+    @classmethod
+    def default_validate(*args, **kw):
+        return True
+
+
+
 class NodeValidator(object):
 
     """

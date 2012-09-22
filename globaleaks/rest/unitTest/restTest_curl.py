@@ -83,12 +83,12 @@ nodeStatisticsDict=dict({ "something": "toBedefined", "something_other": 12345 }
 # T6 `/tip/<string t_id>/pertinence`
 
 # R1 `/receiver/<string t_id>/overview`
-# R2 `/receiver/<string t_id>/<string module_name>`
+# R2 `/receiver/<string module_name><string t_id>/module`
 
-# A1 `/admin/node/`                                     (test implemented)
-# A2 `/admin/contexts/`                                 (test implemented)
-# A4 `/admin/receivers/<context_$ID>/`                    (test implemented)
-# A5 `/admin/modules/<string module_type>/`             (test implemented)
+# A1 `/admin/node/`                                       (test implemented)
+# A2 `/admin/contexts/`                                   (test implemented)
+# A3 `/admin/receivers/<context_$ID>/`                    (test implemented)
+# A4 `/admin/modules/<context_$ID>/<string module_type>/` (test implemented)
 
 #
 # THIS REFERENCE IS PRESENT IN:
@@ -174,17 +174,18 @@ testDict['A2F'] = [
         ({
         'method': 'POST',
         'request' : ({ 'method': 'put', "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('context'),
+        'url' : '/admin/contexts/' + randomID('contextput'),
         'expected_result' : A2_recurring_result
         }), ({
         'method': 'POST',
         'request' : ({ 'method': 'delete', "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('context'),
+        'url' : '/admin/contexts/' + randomID('contextdelete'),
         'expected_result' : A2_recurring_result
         }) ]
 
 
 A3_recurring_result = dict ({ "receivers": [ receiverDescriptionDict, receiverDescriptionDict ] })
+
 testDict['A3'] = [
         ({
         'method': 'GET',
@@ -205,34 +206,56 @@ testDict['A3'] = [
         'method': 'DELETE',
         'request' : ({ "receiver": receiverDescriptionDict }),
         'url' : '/admin/receivers/' + randomID('receiver'),
-        'expected_result' : A3_recurring_result
+        r'expected_result' : A3_recurring_result
         }) ]
 
 A4_recurring_result = dict ({
-        "group_matrix" : 'Array_of_modules-group_application',
         "modules_available": [ moduleDataDict, moduleDataDict, ]
      })
+
+def A4_url(moduletype):
+    return '/admin/modules/' +  moduletype + 'AAAA' + randomID('context')
 
 testDict['A4'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/admin/modules/' + randomID('module-ENUM'),
-        'expected_result' : A4_recurring_result,
-        }), ({
-        'method': 'PUT',
-        'request' : ({ "module": moduleDataDict, "group_matrix" : 'Array_of_MGA' }),
-        'url' : '/admin/modules/' + randomID('module-ENUM'),
+        'url' : A4_url('notification'),
         'expected_result' : A4_recurring_result,
         }), ({
         'method': 'POST',
-        'request' : ({ "put": True, "delete": False, "module": moduleDataDict, "group_matrix": 'Array_of_MGA' }),
-        'url' : '/admin/modules/' + randomID('module-ENUM'),
+        'request' : ({  "module": moduleDataDict  }),
+        'url' : A4_url('notification'),
         'expected_result' : A4_recurring_result,
         }), ({
-        'method': 'DELETE',
-        'request' : ({ "module": moduleDataDict }),
-        'url' : '/admin/modules/' + randomID('module-ENUM'),
+        'method': 'GET',
+        'request' : False,
+        'url' : A4_url('delivery'),
+        'expected_result' : A4_recurring_result,
+        }), ({
+        'method': 'POST',
+        'request' : ({  "module": moduleDataDict  }),
+        'url' : A4_url('delivery'),
+        'expected_result' : A4_recurring_result,
+        }), ({
+        'method': 'GET',
+        'request' : False,
+        'url' : A4_url('inputfilter'),
+        'expected_result' : A4_recurring_result,
+        }), ({
+        'method': 'POST',
+        'request' : ({  "module": moduleDataDict  }),
+        'url' : A4_url('inputfilter'),
+        'expected_result' : A4_recurring_result,
+        }), ({
+        'method': 'GET',
+        'request' : False,
+        'url' : A4_url('dbstorage'),
+        'expected_result' : A4_recurring_result,
+        }), ({
+        'method': 'POST',
+        'request' : ({  "module": moduleDataDict  }),
+        'url' : A4_url('dbstorage'),
         'expected_result' : A4_recurring_result,
         }) ]
 
@@ -257,71 +280,73 @@ R2_recurring_result = dict ({
         "delivery": [ moduleDataDict, moduleDataDict ],
      })
 
+def url_R2(moduletype):
+    return '/receiver/' + moduletype + 'BBBB' + randomID('TIPID') + '/module'
+
 testDict['R2'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/receiver/' + randomID('Tip-NOT') + '/notification/module',
+        'url': url_R2('notification'),
         'expected_result' : R2_recurring_result,
-        }), 
-        ({
+        }), ({
         'method': 'GET',
         'request' : False,
-        'url' : '/receiver/' + randomID('Tip-DEL') + '/delivery/module',
-        'expected_result' : R2_recurring_result,
-        }), 
-        ({
-        'method': 'PUT',
-        'request' : ({ "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-NOT') + '/notification/module',
+        'url': url_R2('delivery'),
         'expected_result' : R2_recurring_result,
         }), ({
         'method': 'PUT',
         'request' : ({ "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-DEL') + '/delivery/module',
+        'url': url_R2('notification'),
+        'expected_result' : R2_recurring_result,
+        }), ({
+        'method': 'PUT',
+        'request' : ({ "module": moduleDataDict }),
+        'url': url_R2('delivery'),
         'expected_result' : R2_recurring_result,
         }), ({
         'method': 'POST',
         'request' : ({ "method": 'delete', "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-DELDEL') + '/delivery/module',
+        'url': url_R2('notification'),
         'expected_result' : R2_recurring_result,
         }), ({
         'method': 'POST',
         'request' : ({ "method": 'put', "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-DELPUT') + '/delivery/module',
+        'url': url_R2('delivery'),
         'expected_result' : R2_recurring_result,
         }), ({
         'method': 'POST',
         'request' : ({ "method": 'delete', "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-NOTDEL') + '/notification/module',
+        'url': url_R2('notification'),
         'expected_result' : R2_recurring_result,
         }), ({
         'method': 'POST',
         'request' : ({ "method": 'put', "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-NOTPUT') + '/notification/module',
+        'url': url_R2('delivery'),
         'expected_result' : R2_recurring_result,
         }), ({
         'method': 'DELETE',
         'request' : ({ "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-NOT') + '/notification/module',
-        '}expected_result' : R2_recurring_result,
+        'url': url_R2('notification'),
+        'expected_result' : R2_recurring_result,
         }), ({
         'method': 'DELETE',
         'request' : ({ "module": moduleDataDict }),
-        'url' : '/receiver/' + randomID('Tip-DEL') + '/delivery/module',
-        '}expected_result' : R2_recurring_result,
+        'url': url_R2('delivery'),
+        'expected_result' : R2_recurring_result,
         }) ]
-
 
 
 def do_curl(url, method, not_encoded_parm=''):
     params = urllib.urlencode(not_encoded_parm)
     headers = {
-     "Content-type": "application/x-www-form-urlencoded", 
-     "Accept": "text/plain", # is useful ? XXX
-     "Accept": "application/json" 
+     "Content-type": "application/x-www-form-urlencoded",
+     "Accept": "text/plain",
+     "Accept": "application/json"
               }
 
+    import time
+    time.sleep(0.2)
     conn = httplib.HTTPConnection(baseurl)
 
     if checkOpt('request'):
@@ -376,7 +401,6 @@ def checkOpt(option):
 class myUnitTest(unittest.TestCase):
 
     def do_METHOD(self, method, restName):
-        print "[do_METHOD] testing", restName, "method", method, "in", testDict[restName][0]['url']
 
         dictID = restName + '_' + method
         test_sets = testDict[restName]
@@ -385,6 +409,7 @@ class myUnitTest(unittest.TestCase):
             if x['method'] == method:
                 settings = x
 
+                print "[do_METHOD] testing", restName, "method", method, "in", settings['url']
                 if checkOpt('request') or checkOpt('verbose'):
                     print "[do_METHOD]", i," using url", settings['url'], "request", settings['request']
 
@@ -433,10 +458,8 @@ class A3(myUnitTest):
 
 class A4(myUnitTest):
     def do_tests(self):
-        self.do_METHOD('PUT', 'A4')
         self.do_METHOD('GET', 'A4')
         self.do_METHOD('POST', 'A4')
-        self.do_METHOD('DELETE', 'A4')
 
 class R1(myUnitTest):
     def do_tests(self):
@@ -474,9 +497,9 @@ if checkOpt('request'):
 #A1().do_tests()
 #A2().do_tests()
 #A3().do_tests()
-#A4().do_tests()
+A4().do_tests()
 
-R1().do_tests()
+#R1().do_tests()
 R2().do_tests()
 
 
