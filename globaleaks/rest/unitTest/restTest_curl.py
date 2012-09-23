@@ -67,7 +67,7 @@ nodeStatisticsDict=dict({ "something": "toBedefined", "something_other": 12345 }
 
 
 # REMIND: needed tests are:
-# U1-U7, T1-T6, R1-R2, P1-A5, Tip external
+# U1-U5, T1-T6, R1-R2, A1-A4, Tip external
 # 
 # U1 `/node/`                                           (test implemented)
 # U2 `/submission`
@@ -95,10 +95,27 @@ nodeStatisticsDict=dict({ "something": "toBedefined", "something_other": 12345 }
 # http://github.com/globaleaks/GlobaLeaks/wiki/API-Specification
 # globaleaks/rest/*.py code
 # 
- 
+
+"""
+whistlist:
+
+testBlock = restDummy('A4', [GET|POST|PUT|DELETE], uriargs)
+
+testBlock['method'], 'request', 'url', 'result'
+request and result are not dict, but GLOD (extending OD), with
+ comparation checks (do not compare content, but format)
+ type validation with regexp
+
+
+issues:
+--- Arturo would begone crazy if I use A4 as index
+--- I would be crazy if I've to grep "/admin/modules/" for debug
+
+"""
+
 testDict = dict()
 
-testDict['P1'] = [ ({
+testDict['U1'] = [ ({
         'method' : 'GET',
         'request' : False,
         'url' : '/node',
@@ -109,7 +126,7 @@ testDict['P1'] = [ ({
                                "public_site": "string", "hidden_service": "string", "url_schema": "string" })
         }) ]
 
-testDict['P2'] = [ ({
+testDict['U2'] = [ ({
         'method' : 'GET',
         'request': False,
         'url' : '/submission',
@@ -137,7 +154,7 @@ testDict['A1'] = [
         }), ({
         'method': 'POST',
         'request' : ({
-                  'name': 'string',
+                  'name': 'A1_string',
                   'node_properties': nodePropertiesDict,
                   'description': localizationDict,
                   'public_site': 'string',
@@ -155,17 +172,17 @@ testDict['A2'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/admin/contexts/' + randomID('context'),
+        'url' : '/admin/contexts/' + randomID('context_A2'),
         'expected_result' : A2_recurring_result
         }), ({
         'method': 'PUT',
         'request' : ({ "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('context'),
+        'url' : '/admin/contexts/' + randomID('context_A2'),
         'expected_result' : A2_recurring_result
         }), ({
         'method': 'DELETE',
         'request' : ({ "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('context'),
+        'url' : '/admin/contexts/' + randomID('context_A2'),
         'expected_result' : A2_recurring_result
         }) ]
 
@@ -174,12 +191,12 @@ testDict['A2F'] = [
         ({
         'method': 'POST',
         'request' : ({ 'method': 'put', "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('contextput'),
+        'url' : '/admin/contexts/' + randomID('contextwrappedput_A2'),
         'expected_result' : A2_recurring_result
         }), ({
         'method': 'POST',
         'request' : ({ 'method': 'delete', "context": contextDescriptionDict }),
-        'url' : '/admin/contexts/' + randomID('contextdelete'),
+        'url' : '/admin/contexts/' + randomID('contextwrappeddelete_A2'),
         'expected_result' : A2_recurring_result
         }) ]
 
@@ -190,22 +207,22 @@ testDict['A3'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/admin/receivers/' + randomID('receiver'),
+        'url' : '/admin/receivers/' + randomID('receiver_A3'),
         'expected_result' : A3_recurring_result
         }), ({
         'method': 'PUT',
         'request' : ({ "receiver": receiverDescriptionDict }),
-        'url' : '/admin/receivers/' + randomID('receiver'),
+        'url' : '/admin/receivers/' + randomID('receiver_A3'),
         'expected_result' : A3_recurring_result
         }), ({
         'method': 'POST',
         'request' : ({ "put": True, "delete": False, "receiver": receiverDescriptionDict }),
-        'url' : '/admin/receivers/' + randomID('receiver'),
+        'url' : '/admin/receivers/' + randomID('receiver_A3'),
         'expected_result' : A3_recurring_result
         }), ({
         'method': 'DELETE',
         'request' : ({ "receiver": receiverDescriptionDict }),
-        'url' : '/admin/receivers/' + randomID('receiver'),
+        'url' : '/admin/receivers/' + randomID('receiver_A3'),
         r'expected_result' : A3_recurring_result
         }) ]
 
@@ -214,7 +231,7 @@ A4_recurring_result = dict ({
      })
 
 def A4_url(moduletype):
-    return '/admin/modules/' +  moduletype + 'AAAA' + randomID('context')
+    return '/admin/modules/' +  randomID('context_A4') + '/' + moduletype
 
 testDict['A4'] = [
         ({
@@ -247,16 +264,6 @@ testDict['A4'] = [
         'request' : ({  "module": moduleDataDict  }),
         'url' : A4_url('inputfilter'),
         'expected_result' : A4_recurring_result,
-        }), ({
-        'method': 'GET',
-        'request' : False,
-        'url' : A4_url('dbstorage'),
-        'expected_result' : A4_recurring_result,
-        }), ({
-        'method': 'POST',
-        'request' : ({  "module": moduleDataDict  }),
-        'url' : A4_url('dbstorage'),
-        'expected_result' : A4_recurring_result,
         }) ]
 
 
@@ -271,7 +278,7 @@ testDict['R1'] = [
         ({
         'method': 'GET',
         'request' : False,
-        'url' : '/receiver/' + randomID('Tip-ID'),
+        'url' : '/receiver/' + randomID('Tip_ID_R1'),
         'expected_result' : R1_recurring_result,
         }) ]
 
@@ -281,7 +288,7 @@ R2_recurring_result = dict ({
      })
 
 def url_R2(moduletype):
-    return '/receiver/' + moduletype + 'BBBB' + randomID('TIPID') + '/module'
+    return '/receiver/' + randomID('TIPID_R2') + '/' + moduletype
 
 testDict['R2'] = [
         ({
@@ -335,6 +342,8 @@ testDict['R2'] = [
         'url': url_R2('delivery'),
         'expected_result' : R2_recurring_result,
         }) ]
+
+
 
 
 def do_curl(url, method, not_encoded_parm=''):
@@ -425,15 +434,15 @@ class myUnitTest(unittest.TestCase):
                     clean_debug(1, result)
 
 
-class P1(myUnitTest):
+class U1(myUnitTest):
 
     def do_tests(self):
-        self.do_METHOD('GET', 'P1')
+        self.do_METHOD('GET', 'U1')
 
-class P2(myUnitTest):
+class U2(myUnitTest):
 
     def do_tests(self):
-        self.do_METHOD('GET', 'P2')
+        self.do_METHOD('GET', 'U2')
 
 class A1(myUnitTest):
     def do_tests(self):
@@ -491,15 +500,15 @@ if checkOpt('request'):
     print "Request verbosity printing is ON"
 
 
-#P1().do_tests()
-#P2().do_tests()
+U1().do_tests()
+U2().do_tests()
 
-#A1().do_tests()
-#A2().do_tests()
-#A3().do_tests()
+A1().do_tests()
+A2().do_tests()
+A3().do_tests()
 A4().do_tests()
 
-#R1().do_tests()
+R1().do_tests()
 R2().do_tests()
 
 

@@ -29,6 +29,17 @@ request, after the validator procedure not all the
 request may be passed.
 """
 
+"""
+    dynamic argument schema:
+
+    def default_validate(*arg, **kw):
+
+    action  = name of the action looked by
+    method  = name of the HTTP method used
+    uriargs = the regexp matched in the URL, defined in spec.api
+    body    = the raw body
+"""
+
 class SubmissionValidator(object):
 
     @classmethod
@@ -84,17 +95,44 @@ class AdminValidator(object):
 
     @classmethod
     def modules(*args, **kw):
+        """
+        whistlist:
+        xx = GLDO.moduleDataDict()
+        for k,v kw['body']:
+            xx.isValid(k, v)
+        """
         return True
 
 class ReceiverValidator(object):
 
     """
-    has a complete CURD 
+    This is used in R1 (GET only)
     """
     @classmethod
     def default_validate(*args, **kw):
         return True
 
+    """
+    This is used in R2 CURD
+    """
+    @classmethod
+    def module_GET(*args, **kw):
+        return True
+
+    """
+    This is used in R2 POST|PUT|DELETE
+    """
+    @classmethod
+    def module(*args, **kw):
+        print "checking ",kw['body'], "expecting a moduleDataDict and a 'method'"
+
+        """
+        if invalidPOSThack(kw['method'], kw['body']):
+            return False
+        """
+
+        return True
+    
 
 
 class NodeValidator(object):
@@ -106,25 +144,4 @@ class NodeValidator(object):
     def default_validate(*args, **kw):
         return True
 
-
-"""
-Regular expressions validator functions,
-TODO, mode them in globaleaks.utils.sanitychecks ?
-for sure they need to be called also by modules
-"""
-
-def is_positive(value):
-    return True
-
-# well this need to be converted in unicode before ?
-def is_string(value):
-    return True
-
-# expect a 32bit format date
-def is_date(value):
-    return True
-
-# checks between the module enumeration
-def is_moduleType(value):
-    return True
 

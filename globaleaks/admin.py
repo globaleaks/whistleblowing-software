@@ -76,3 +76,6 @@ class Admin(Processor):
         print __file__,arg
         print __file__,kw
         return  {'AAAAAAAAAAAAAA': __name__, 'code': 'A4 P'}
+
+
+

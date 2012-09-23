@@ -7,7 +7,6 @@
 #
 from cyclone.util import ObjectDict as OD
 from globaleaks import Processor
-import pdb
 
 class Node(Processor):
 
@@ -25,11 +24,17 @@ class Node(Processor):
     """
 
     def root_GET(*arg, **kw):
+        """
+        whistlist:
+
+        X = nodeDescriptionDict()
+        y = databasewrapper('nodeDescription')
+        x.populateObject(y)
+        return x.render()
+        """
         print arg
         print kw
-        testrv = {'return': info, 'arandom': 123132, 'bool': True}
-        print testrv
-        return testrv
+        return ({'return': info, 'arandom': 123132, 'bool': True})
 
 
 lorem = "Letterpress whatever incididunt commodo semiotics."

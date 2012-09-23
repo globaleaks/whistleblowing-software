@@ -63,12 +63,11 @@ class Submission(Processor):
            handle the fields submission
     (import the fields in the temporary submission_id entry)
     """
-    def status_POST(self, submission_id, *arg, **kw):
+    def status_POST(self, *arg, **kw):
         """
         :fields
         :group
         """
-        print "status_POST: id", submission_id
         print arg
         print kw, "return as GET"
         return status_GET(submission_id, *arg, **kw)
