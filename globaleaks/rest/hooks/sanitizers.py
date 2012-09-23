@@ -16,6 +16,18 @@ Sanitizer classes facts:
   own sanitizer method, globaleaks.utils.modules support in that
 """
 
+
+"""
+    dynamic argument schema:
+
+    def default_sanitize(*arg, **kw):
+
+    action  = name of the action looked by
+    method  = name of the HTTP method used
+    uriargs = the regexp matched in the URL, defined in spec.api
+    body    = the validated body
+"""
+
 class SubmissionSanitizer(object):
 
     """
@@ -55,6 +67,11 @@ class TipSanitizer(object):
 
     @classmethod
     def comment(*arg, **kw):
+        """
+        whistlist:
+        retDict = genericObj()
+        retDict.comment = textSanitize(kw['body']['comment'])
+        """
         return (arg, kw)
 
 
@@ -67,7 +84,8 @@ class ReceiverSanitizer(object):
     """
     @classmethod
     def default_sanitize(*arg, **kw):
-        return (arg, kw)
+
+        return ({'Imarandomdict': True, 'meaniingless': False })
 
 
 """

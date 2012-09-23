@@ -15,17 +15,19 @@ from globaleaks.submission import Submission
 from cyclone.web import StaticFileHandler
 
 # long sha hash, fixed len
-tip_regexp = '\w+'
+tip_regexp = '(\w+)'
 
 # temporary long int or so far
-submission_id_regexp = '\w+'
+submission_id_regexp = '(\w+)'
 
-# <modulename> + "fixed separator" + other ID (tip or context)
-mixedmod_regexp = '\w+'
+# <user_modulename>
+user_module_regexp = '(notification|delivery)'
+
+# <admin_modulename>
+admin_module_regexp = '(notification|delivery|inputfilter|dbstorage)'
 
 # simple uniq id, not a security issue for be not guessable
-context_id_regexp = '\w+'
-
+context_id_regexp = '(\w+)'
 
 
 spec = [
@@ -44,21 +46,21 @@ spec = [
                          )),
 
     #  * /submission/<ID>/status U3
-    (r'/submission/(' + submission_id_regexp + ')/status',
+    (r'/submission/' + submission_id_regexp + '/status',
                      submissionHandler,
                      dict(action='status',
                           supportedMethods=['GET', 'POST']
                          )),
 
     #  * /submission/<ID>/finalize U4
-    (r'/submission/(' + submission_id_regexp + ')/finalize',
+    (r'/submission/' + submission_id_regexp + '/finalize',
                      submissionHandler,
                      dict(action='finalize',
                           supportedMethods=['POST']
                          )),
 
     #  * /submission/<ID>/files U5
-    (r'/submission/(' + submission_id_regexp + ')/files',
+    (r'/submission/' + submission_id_regexp + '/files',
                      submissionHandler,
                      dict(action='files',
                           supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
@@ -67,42 +69,41 @@ spec = [
 
     ## Tip Handlers ##
     #  * /tip/<ID>/ T1
-    (r'/tip/(' + tip_regexp + ')',
-                     tipHandler,
+    (r'/tip/' + tip_regexp, tipHandler,
                      dict(action='root',
                           supportedMethods=['GET', 'POST']
                          )),
 
     #  * /tip/<ID>/comment T2
-    (r'/tip/(' + tip_regexp + ')/comment',
+    (r'/tip/' + tip_regexp + '/comment',
                      tipHandler,
                      dict(action='comment',
                           supportedMethods=['POST']
                          )),
 
     #  * /tip/<ID>/files T3
-    (r'/tip/(' + tip_regexp + ')/files',
+    (r'/tip/' + tip_regexp + '/files',
                      tipHandler,
                      dict(action='files',
                           supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
                          )),
 
     #  * /tip/<ID>/finalize T4
-    (r'/tip/(' + tip_regexp + ')/finalize',
+    (r'/tip/' + tip_regexp + '/finalize',
                      tipHandler,
                      dict(action='finalize',
                           supportedMethods=['POST']
                          )),
 
     #  * /tip/<ID>/download T5
-    (r'/tip/(' + tip_regexp + ')/download',
+    (r'/tip/' + tip_regexp + '/download',
                      tipHandler,
                      dict(action='download',
                           supportedMethods=['GET']
                          )),
 
     #  * /tip/<ID>/pertinence T6
-    (r'/tip/(' + tip_regexp + ')/pertinence',
+    (r'/tip/' + tip_regexp + '/pertinence',
                      tipHandler,
                      dict(action='pertinence',
                           supportedMethods=['GET']
@@ -110,14 +111,13 @@ spec = [
 
     ## Receiver Handlers ##
     #  * /reciever/<ID>/ R1
-    (r'/receiver/(' + tip_regexp + ')',
-                     receiverHandler,
+    (r'/receiver/' + tip_regexp, receiverHandler,
                      dict(action='root',
                           supportedMethods=['GET']
                          )),
 
-    #  * /receiver/<MODULE TYPE><fixedsep><TIP ID>/module R2
-    (r'/receiver/(' + mixedmod_regexp + ')/module',
+    #  * /receiver/<TIP ID>/<user moduletype> R2
+    (r'/receiver/' + tip_regexp + '/' + user_module_regexp,
                      receiverHandler,
                      dict(action='module',
                           supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
@@ -131,21 +131,21 @@ spec = [
                             )),
 
     #  * /admin/contexts A2
-    (r'/admin/contexts/(' + context_id_regexp + ')',
+    (r'/admin/contexts/' + context_id_regexp,
                         adminHandler,
                         dict(action='contexts',
                              supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
                             )),
 
     #  * /admin/receivers/<context_ID> A3
-    (r'/admin/receivers/(' + context_id_regexp + ')',
+    (r'/admin/receivers/' + context_id_regexp,
                     adminHandler,
                     dict(action='receivers',
                          supportedMethods=['GET', 'POST', 'PUT', 'DELETE']
                         )),
 
-    #  * /admin/modules/<MODULE TYPE><fixedsep><context_ID> A4
-    (r'/admin/modules/( ' + mixedmod_regexp + ')',
+    #  * /admin/modules/<context_ID>/<MODULE TYPE> A4
+    (r'/admin/modules/' + context_id_regexp + '/' + admin_module_regexp,
                     adminHandler,
                     dict(action='modules',
                          supportedMethods=['GET', 'POST']

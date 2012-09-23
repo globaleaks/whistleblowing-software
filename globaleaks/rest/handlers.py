@@ -1,7 +1,3 @@
-"""
-https://en.wikipedia.org/wiki/Http_error_code
-"""
-
 from twisted.internet.defer import inlineCallbacks, returnValue
 from globaleaks import node
 from globaleaks.tip import Tip
@@ -15,12 +11,21 @@ from globaleaks.rest.hooks.sanitizers import *
 from cyclone import escape
 from cyclone.web import RequestHandler, HTTPError, asynchronous
 
+"""
+https://en.wikipedia.org/wiki/Http_error_code
+
+The error code actually used in this file are:
+    404 (Not found: handled by Cyclone)
+    405 (Method not allowed)
+    503 (Service not available)
+"""
+
 # decorator @removeslash in cyclone.web may remove final '/' if not 
 # expected. would be nice use it, but the Cyclone code check only HEAD and GET
 # while we need checks in a complete CURD
 # -- may this be a request to be opened in Cyclone ?
 
-DEBUG = True == False
+DEBUG = False
 
 class GLBackendHandler(RequestHandler):
     """
@@ -86,56 +91,31 @@ class GLBackendHandler(RequestHandler):
         """
 
         if self.request.method.lower() == 'post':
-            print "POST! prepare ******************************************"
             try:
                 wrappedMethod = self.get_argument('method')
                 print "[^] Forwarding", wrappedMethod, "from POST"
-                if wrappedMethod == 'delete' or wrappedMethod == 'put':
-                    self.request.method = wrappedMethod
+                if wrappedMethod.lower() == 'delete' or \
+                        wrappedMethod.lower() == 'put':
+                    self.request.method = wrappedMethod.upper()
             except HTTPError:
                 pass
-
-    def sanitizeRequest(self):
-        """
-        Sanitize the request. Sets the arguments array and dict to the sanized
-        values.
-        """
-        print self.__class__, "sanitizer", self.sanitizer, "action", self.action
-
-        # this may happen in the GET request
-        if not self.sanitizer:
-            self.safeRequest = dict({'safeRequest' : ''})
-            return
-
-        # We first try and call the method named after action.
-        # If that method does not exist we fail over to calling the "sanitize"
-        # method.
-        # If no method named "sanitize" exists in the sanitizer function, we
-        # will throw an error.
-        try:
-            sanitizer_function = getattr(self.sanitizer, self.action)
-        except:
-            sanitizer_function = getattr(self.sanitizer, 'default_sanitize')
-
-        self.safeRequest  = sanitizer_function(self.request)
 
     def isSupportedMethod(self):
         """
         Check if the request method is supported.
         """
-
-        if self.method in self.SUPPORTED_METHODS:
-            return True
-        else:
-            return False
+        return (self.method in self.SUPPORTED_METHODS)
 
     def validateRequest(self):
         """
         Validate the incomming request.
         Returns True if the request is valid, False if it is not.
         Validate perform logical checks and logging
+        ALL the HTTP calls need to pass thru Validator
         """
         isValid = True
+        validator_function = None
+
         if DEBUG:
             import urllib
             print "[+] validating %s %s via %s->%sValidate" %  (
@@ -144,19 +124,69 @@ class GLBackendHandler(RequestHandler):
                                         self.action)
 
         if not self.validator:
-            print "[!] development error: we need to put a constrain, every input need to \
-            pass thru validator function, validator maybe expanded with logging functionality"
-            return isValid
+            raise HTTPError(503, "Missing of Validator Class/Method")
 
-        try:
-            validate_function = getattr(self.validator, self.action)
-        except:
-            validate_function = getattr(self.validator, 'default_validate')
+        for x in [ self.action + '_' + self.method, self.action, 'default_validate' ]:
+            try:
+                validator_function = getattr(self.validator, x)
+                break
+            except:
+                pass
 
-        if validate_function:
-            isalid = validate_function(self.request)
+        """
+        self.request is an object: cyclone.httpserver.HTTPRequest, the important
+        object values in our analysis are:
+        matchedArguments (by cyclone API)
+        body
+        (in the future, perhaps) header
+        """
+        if validator_function:
+            print self.request.body
+            print len(self.request.body)
+            isValid = validator_function(action=self.action, \
+                    uriargs=self.matchedArguments, body=self.request.body)
+        else:
+            raise HTTPError(503, "Missing of validator function")
 
         return isValid
+
+    def sanitizeRequest(self):
+        """
+        Sanitize the request. Sets the arguments array and dict to the sanized
+        values.
+        """
+        # this may happen in the GET request, would not be accepted in other method
+        if not self.sanitizer:
+            if self.method.lower() == 'get':
+                self.safeRequest = dict({'safeRequest' : ''})
+                return
+            else:
+                raise HTTPError(503, "Missing of Sanitizer Class/Method")
+
+        # We first try and call the method named after action + HTTP METHOD,
+        # If that method does not exist we fail over to calling the action,
+        # If that method does not exist we fail over to calling the 
+        # "default_sanitize" method.
+        # If no getattr return a method, we will throw an error.
+        sanitizer_function = None
+
+        for x in [ self.action + '_' + self.method, self.action, 'default_sanitize' ]:
+            try:
+                sanitizer_function = getattr(self.sanitizer, x)
+                break
+            except:
+                pass
+
+        if sanitizer_function:
+            self.safeRequest = sanitizer_function(action=self.action, \
+                    uriargs=self.matchedArguments, body=self.request.body)
+            # remind that you want to do:
+            # self.request = None
+        else:
+            raise HTTPError(503, "Missing of sanitizer function")
+        """
+        return having a fixed self.safeRequest dict now available
+        """
 
     @inlineCallbacks
     def handle(self, action):
@@ -168,8 +198,6 @@ class GLBackendHandler(RequestHandler):
          compose with $action_$httpmethod the method inside
          of the appropriate Process class
         """
-        assert action
-
         return_value = {}
 
         if DEBUG:
@@ -190,19 +218,15 @@ class GLBackendHandler(RequestHandler):
         # after this point, self.request would NOT BE USED, use instead
         # ____ self.safeRequest ____
 
-        print(dir(self.processor))
         targetMethod = getattr(self.processor, self.action + '_' + self.method.upper())
-
-        return_value = yield targetMethod(self.matchedArguments, self.safeRequest)
+        return_value = yield targetMethod(uriargs=self.matchedArguments, safereq=self.safeRequest)
 
         if DEBUG:
             import urllib
-            print "[?] handled %s->%s with %s %s retval %s (%s)" % (
-                                                     self.processor, self.method,
-                                                     self.action,
-                                                     self.matchedArguments, 
-                                                     urllib.unquote_plus(str(return_value)),
-                                                     type(return_value))
+            print "[?] handled %s->%s_%s with %s retval %s " % (
+                                                     self.processor, self.action,
+                                                     self.method, self.matchedArguments, 
+                                                     urllib.unquote_plus(str(return_value)))
 
         returnValue(return_value)
 
@@ -211,10 +235,10 @@ class GLBackendHandler(RequestHandler):
     def anyMethod(self, *arg, **kw):
         """
         Simple hack to by default handle all methods with the same handler:
-        it's useful ? ATM no API has not a dedicated action.
         """
         if DEBUG:
-            print "[+] anyMethod -- Handling %s %s with %s %s" % (self.action, self.method, arg, kw)
+            print "[+] anyMethod -- Handling %s %s with %s %s + %s" % (self.action, \
+                    self.method, arg, kw, self.matchedArguments)
 
         self.matchedArguments = arg if arg else []
 
