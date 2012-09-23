@@ -70,12 +70,12 @@ class Admin(Processor):
     def modules_GET(self, *arg, **kw):
         print __file__,arg
         print __file__,kw
-        return  {'AAAAAAAAAAAAA': __name__, 'code': 'A4 G'}
+        return  {'iwascalledin': __name__, 'code': 'A4 G'}
 
     def modules_POST(self, *arg, **kw):
         print __file__,arg
         print __file__,kw
-        return  {'AAAAAAAAAAAAAA': __name__, 'code': 'A4 P'}
+        return  {'iwascalledin': __name__, 'code': 'A4 O'}
 
 
 
