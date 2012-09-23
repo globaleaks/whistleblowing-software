@@ -141,8 +141,6 @@ class GLBackendHandler(RequestHandler):
         (in the future, perhaps) header
         """
         if validator_function:
-            print self.request.body
-            print len(self.request.body)
             isValid = validator_function(action=self.action, \
                     uriargs=self.matchedArguments, body=self.request.body)
         else:

@@ -24,7 +24,7 @@ submission_id_regexp = '(\w+)'
 user_module_regexp = '(notification|delivery)'
 
 # <admin_modulename>
-admin_module_regexp = '(notification|delivery|inputfilter|dbstorage)'
+admin_module_regexp = '(notification|delivery|inputfilter)'
 
 # simple uniq id, not a security issue for be not guessable
 context_id_regexp = '(\w+)'
