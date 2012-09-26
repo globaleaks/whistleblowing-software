@@ -121,7 +121,7 @@ define(function (require) {
         latenza.ajax({'url': '/node'}).done(function(data) {
             var formdata = data;
             console.log(formdata);
-            processForm(formdata.contexts[0].fields);
+            processForm(formdata.return.contexts[0].fields);
         });
 
     };
