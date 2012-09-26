@@ -55,8 +55,8 @@ define(function (require) {
             },
 
             radio: function(data) {
-                var x, 
-                    template = '', 
+                var x,
+                    template = '',
                     parsed_data = data;
 
                 for (x in data.options) {
@@ -105,8 +105,9 @@ define(function (require) {
 
             // XXX refactor this
             $('form').submit(function(){
-                latenza.ajax({'url': '/submission/new',
-                              'data': $(this).serialize()
+                latenza.ajax({'url': '/submission/foobar/finalize',
+                              'data': $(this).serialize(),
+                              'type': 'POST'
                              }).done(function(data) {
                                 var form = $('form')
                                 form.hide();

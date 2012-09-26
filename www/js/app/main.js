@@ -21,6 +21,7 @@ define(function (require) {
         require('./uiNetwork')();
         require('./uiAppCache')();
         require('./uiWebAppInstall')();
+        $('#tor2web').hide();
         //require('./uiSubmission')();
 
     });

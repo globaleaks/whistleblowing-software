@@ -9,6 +9,7 @@
 // directory.
 requirejs.config({
     baseUrl: 'js/lib',
+    waitSeconds: 20,
     paths: {
         app: '../app'
     }
