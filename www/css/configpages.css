@@ -80,16 +80,27 @@
 .config-page input {
     font-size: 17px;
     height: 30px;
-    width: 360px;
+    width: 456px;
 }
 
 .config-page textarea {
     font-size: 17px;
     height: 200px;
-    width: 360px;
+    width: 456px;
 }
 
 .config-page .row {
     margin-bottom: 30px;
 }
 
+
+.config-page .language-setting {
+    float: right;
+}
+label.inline {
+    font-size: 15px;
+}
+.inline input {
+    width: auto;
+    height: auto;
+}

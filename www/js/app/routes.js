@@ -18,7 +18,11 @@ define(function (require) {
     templates.about = hogan.compile(require('text!./templates/about.html'));
     templates.submission = hogan.compile(require('text!./templates/submission.html'));
     templates.status = hogan.compile(require('text!./templates/status.html'));
-    templates.admin = hogan.compile(require('text!./templates/admin.html'));
+    templates.admin = {}
+    templates.admin.content = hogan.compile(require('text!./templates/admin/content.html'));
+    templates.admin.wizard = hogan.compile(require('text!./templates/admin/wizard.html'));
+    templates.admin.basic = hogan.compile(require('text!./templates/admin/basic.html'));
+    templates.admin.advanced = hogan.compile(require('text!./templates/admin/advanced.html'));
 
     templates.receiver = {}
     templates.receiver.list = hogan.compile(require('text!./templates/receiver/list.html'));
@@ -45,7 +49,7 @@ define(function (require) {
     };
 
     function adminHandler(data) {
-        var content = templates.admin.render();
+        var content = templates.admin.content.render();
         $('.contentElement').html(content);
     };
 
