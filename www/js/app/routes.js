@@ -9,16 +9,21 @@ define(function (require) {
         crossroads = require('crossroads'),
         templates = {},
         handlers = {};
-    
+
     handlers.submission = require('./handlers/submission');
+
+    handlers.receiver = require('./handlers/receiver');
 
     templates.home = hogan.compile(require('text!./templates/home.html'));
     templates.about = hogan.compile(require('text!./templates/about.html'));
     templates.submission = hogan.compile(require('text!./templates/submission.html'));
     templates.status = hogan.compile(require('text!./templates/status.html'));
     templates.admin = hogan.compile(require('text!./templates/admin.html'));
-    templates.receiver = hogan.compile(require('text!./templates/receiver.html'));
-    
+
+    templates.receiver = {}
+    templates.receiver.list = hogan.compile(require('text!./templates/receiver/list.html'));
+    templates.receiver.preferences = hogan.compile(require('text!./templates/receiver/preferences.html'));
+
     templates.loading = hogan.compile(require('text!./templates/loading.html'));
 
     function homeHandler(data) {
@@ -35,9 +40,8 @@ define(function (require) {
     };
 
     function statusHandler(token) {
-        var content = templates.status.render();
+        var content = templates.status.render({tip_id: token});
         $('.contentElement').html(content);
-        console.log(data);
     };
 
     function adminHandler(data) {
@@ -45,23 +49,32 @@ define(function (require) {
         $('.contentElement').html(content);
     };
 
-    function receiverHandler(data) {
-        var content = templates.receiver.render();
+    function receiverHandlerList(token) {
+        var content = templates.receiver.list.render()
         $('.contentElement').html(content);
+        handlers.receiver();
+    };
+
+    function receiverHandlerPreferences(token) {
+        var content = templates.receiver.preferences.render()
+        $('.contentElement').html(content);
+        handlers.receiver();
     };
 
 
     return function routes(parentDom) {
-        
+
 
         parentDom = parentDom || $('body');
-        
-        crossroads.addRoute('', homeHandler); 
-        crossroads.addRoute('about', aboutHandler); 
-        crossroads.addRoute('submission', handlers.submission); 
-        crossroads.addRoute('status/{token}', statusHandler); 
-        crossroads.addRoute('admin', adminHandler); 
-        crossroads.addRoute('receiver/{token}', receiverHandler); 
+
+        crossroads.addRoute('', homeHandler);
+        crossroads.addRoute('about', aboutHandler);
+        crossroads.addRoute('submission', handlers.submission);
+        crossroads.addRoute('status/{token}', statusHandler);
+        crossroads.addRoute('admin', adminHandler);
+        crossroads.addRoute('receiver/{token}', receiverHandlerList);
+        crossroads.addRoute('receiver/{token}/preferences', receiverHandlerPreferences);
+        crossroads.addRoute('receiver/{token}/list', receiverHandlerList);
 
         crossroads.routed.add(console.log, console); //log all routes
          
@@ -74,7 +87,7 @@ define(function (require) {
             }
             $('#'+oldHash+'Menu').removeClass('active');
             $('#'+newHash+'Menu').addClass('active');
-            latenza.renderProgressbar($('.contentElement'), templates.loading.render()); 
+            latenza.renderProgressbar($('.contentElement'), templates.loading.render());
             crossroads.parse(newHash);
         }
 

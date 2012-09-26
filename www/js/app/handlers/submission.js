@@ -6,9 +6,9 @@ define(function (require) {
     var $ = require('jquery'),
         hogan = require('hogan'),
         template = hogan.compile(require('text!../templates/submission.html'));
-    
+
     return function submissionHandler(data) {
-        var content = template.render();
+        var content = template.render(data);
         $('.contentElement').html(content);
         require('../uiSubmission')();
     };

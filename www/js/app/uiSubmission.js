@@ -118,13 +118,11 @@ define(function (require) {
                 return false;
             });
         };
-
         latenza.ajax({'url': '/node'}).done(function(data) {
             var formdata = data;
             console.log(formdata);
             processForm(formdata.contexts[0].fields);
         });
-
 
     };
 });

@@ -10,8 +10,9 @@ define(function (require) {
     // to other objects, like jQuery. These are just used in the example
     // bootstrap modal, not directly in the UI for the network and appCache
     // displays.
-    require('bootstrap/modal');
-    require('bootstrap/transition');
+    require('bootstrap');
+
+    require('datatables');
 
     // Wait for the DOM to be ready before showing the network and appCache
     // state.

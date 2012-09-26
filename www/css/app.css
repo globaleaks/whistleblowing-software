@@ -1,11 +1,180 @@
 @import url(bootstrap.css);
 @import url(bootstrap-responsive.css);
+@import url(datatables.css);
+@import url(configpages.css);
 
-@media (min-width: 980px) {
-    body {
-        /* 60px to make the container go all the way to the bottom of the topbar */
-        padding-top: 60px;
-    }
+body {
+  position: relative;
+  padding-top: 40px;
+}
+/* Base class, inspired by bootstrap jumbotron */
+
+.jumbotron {
+  position: relative;
+  padding: 40px 0;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
+  background: #547980; /* Old browsers */
+  background: -moz-linear-gradient(45deg,  #547980 0%, #45ada8 100%); /* FF3.6+ */
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#547980), color-stop(100%,#45ada8)); /* Chrome,Safari4+ */
+  background: -webkit-linear-gradient(45deg,  #547980 0%,#45ada8 100%); /* Chrome10+,Safari5.1+ */
+  background: -o-linear-gradient(45deg,  #547980 0%,#45ada8 100%); /* Opera 11.10+ */
+  background: -ms-linear-gradient(45deg,  #547980 0%,#45ada8 100%); /* IE10+ */
+  background: linear-gradient(45deg,  #547980 0%,#45ada8 100%); /* W3C */
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#547980', endColorstr='#45ada8',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+  -webkit-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+     -moz-box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+          box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
+}
+
+/* Link styles (used on .masthead-links as well) */
+.jumbotron a {
+  color: #fff;
+  color: rgba(255,255,255,.5);
+  -webkit-transition: all .2s ease-in-out;
+     -moz-transition: all .2s ease-in-out;
+          transition: all .2s ease-in-out;
+}
+.jumbotron a:hover {
+  color: #fff;
+  text-shadow: 0 0 10px rgba(255,255,255,.25);
+}
+
+.jumbotron h1 {
+  font-size: 60px;
+  font-weight: bold;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+.jumbotron p {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 30px;
+}
+
+.jumbotron .container {
+  position: relative;
+  z-index: 2;
+}
+
+.jumbotron select {
+  font-size: 15px;
+  font-weight: bold;
+  height: 30px;
+}
+/* Subhead (other pages)
+------------------------- */
+.subhead {
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+.subhead h1 {
+  font-size: 60px;
+}
+.subhead p {
+  margin-bottom: 20px;
+}
+.subhead .navbar {
+  display: none;
+}
+
+/* Home Splash screen jumbotron */
+/* Language selector */
+.homeSplash .lang {
+  font-size: 20px;
+  height: 40px;
+  margin-top: 10px;
+}
+
+.homeSplash h1 {
+  font-size: 100px;
+  font-weight: bold;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+.homeSplash p {
+  font-size: 40px;
+  font-weight: 200;
+  line-height: 1.25;
+  margin-bottom: 30px;
+}
+/* Blow the Whistle button */
+.homeSplash .btn {
+  padding: 14px 24px;
+  font-size: 24px;
+  font-weight: 200;
+  color: #fff; /* redeclare to override the `.jumbotron a` */
+  border: 0;
+  -webkit-border-radius: 6px;
+     -moz-border-radius: 6px;
+          border-radius: 6px;
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+  -webkit-transition: none;
+     -moz-transition: none;
+          transition: none;
+}
+.homeSplash .btn:hover {
+  -webkit-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+     -moz-box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+          box-shadow: inset 0 1px 0 rgba(255,255,255,.1), 0 1px 5px rgba(0,0,0,.25);
+}
+.homeSplash .btn:active {
+  -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+     -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+          box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+}
+
+.homeIntro {
+  text-align: center;
+  color: #5a5a5a;
+}
+
+.homeIntro h1 {
+  margin: 60px 0 10px 0;
+  font-size: 60px;
+  font-weight: 200;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.homeIntro p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.homeIntro .homeIntro-byline {
+  margin-bottom: 40px;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 25px;
+  color: #999;
+}
+
+
+/* Footer */
+.footer {
+padding: 70px 0;
+margin-top: 70px;
+border-top: 1px solid #E5E5E5;
+background-color: whiteSmoke;
+}
+
+
+.footer p {
+  margin-bottom: 0;
+  color: #777;
+}
+.footer-links {
+  margin: 10px 0;
+}
+.footer-links li {
+  display: inline;
+  margin-right: 10px;
 }
 
 /* Just some styles to use for this demo, you can remove them
@@ -41,4 +210,10 @@
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
+}
+
+
+/*** Receiver Page ***/
+.table-container {
+    margin-top: 30px;
 }
