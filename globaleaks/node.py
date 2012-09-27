@@ -20,6 +20,8 @@ class nodeMainSettings(GLT.GLTypes):
         self.define("url_schema", "string")
         self.define("name", "string")
         self.define("node_properties", GLT.nodePropertiesDict() )
+        self.define("contexts", GLT.contextDescriptionDict() )
+
         """
         variables that may or may not exists:
         'contexts' (Array of contextDescriptionDict() )
@@ -30,5 +32,9 @@ class Node(Processor):
     def root_GET(*arg, **kw):
 
         ret = GLT.publicStatisticsDict()
+        ret.contexts.cID = "contextID"
+        ret.contexts.name = "corruption in the hell"
+        ret.context.context_description = "some descriptive stuff"
+
         return ret.unroll()
 
