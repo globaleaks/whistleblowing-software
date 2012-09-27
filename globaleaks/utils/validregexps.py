@@ -7,6 +7,9 @@
 #
 #   Contains all the logic for handling tip related operations.
 
+# ------
+# remind: raise TypeError
+
 import datetime
 
 class validatorRegExps:
@@ -17,10 +20,7 @@ class validatorRegExps:
 
     @classmethod
     def boolcheckf(self, value):
-        if type(value) == type(True)
-            return True
-        else
-            raise TypeError("Invalid bool element:", type(value))
+        return True
 
     """
     regexp (\w+) with a size limit

@@ -88,7 +88,8 @@ class GLTypes:
         """
         if not typecheckf:
             if isinstance(value, GLTypes):
-                print "[O] updating", attrname, "with a new object", value.unroll()
+                if self.__dict__.get(attrname):
+                    print "[++] updating", attrname, "with a new object", value.unroll()
                 self.__dict__[attrname] = value
                 return
             else:
@@ -102,7 +103,8 @@ class GLTypes:
             raise AttributeError("Invalid content in",attrname,"expected:",
                     typecheckname)
 
-        print "[+] updating", attrname, "with", value
+        if self.__dict__.get(attrname):
+            print "[+] updating", attrname, "with", value
         self.__dict__[attrname] = value
 
 
@@ -319,9 +321,15 @@ class receiverDescriptionDict(GLTypes):
         self.define("last_update_date", "time") 
             # update the name
 
+        # those 'extended' elements in fact would not be 
+        # extended here, but inside the handler, because some time
+        # would be 0, other 1, other an Array
+        # what's its to be specified, is that MAYBE an array
+        # and then the aquire/regexp should be applied correctly in the 
+        # three cases
+        #
+        # -- TODO
         self.define("LanguageSupported", "string")
-        self.extension("LanguageSupported", "string")
-        self.extension("LanguageSupported", "string")
         self.extension("LanguageSupported", "string")
             # update - before was in the group element
 
@@ -388,6 +396,11 @@ class formFieldsDict(GLTypes):
         self.define("required", "bool")
         self.define("field_description", "string")
 
+        # field_type need to be defined as ENUM, in the future, 
+        # and would be the set of keyword supported by the 
+        # client (text, textarea, checkbox, GPS coordinate)
+        self.define("field_type", "string")
+
 
 class moduleDataDict(GLTypes):
 
@@ -440,7 +453,7 @@ class contextDescriptionDict(GLTypes):
             # in the documentation there are the group concept
             # actually removed
 
-        self.define("EscalationTreshoold", "int")
+        self.define("EscalationTreshold", "int")
             # need to be documented - along with escalation 
             # properties in Receiver element
 

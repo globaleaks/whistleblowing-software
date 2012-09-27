@@ -7,6 +7,7 @@
 #
 from globaleaks import Processor
 from globaleaks.utils import recurringtypes as GLT
+from globaleaks.utils import dummy
 
 class nodeMainSettings(GLT.GLTypes):
 
@@ -14,14 +15,12 @@ class nodeMainSettings(GLT.GLTypes):
 
         GLT.GLTypes.__init__(self, self.__class__.__name__)
 
-        self.define("public_statistics", GLT.publicStatisticsDict() )
+        self.define("name", "string")
         self.define("public_site", "string")
         self.define("hidden_service", "string")
         self.define("url_schema", "string")
-        self.define("name", "string")
         self.define("node_properties", GLT.nodePropertiesDict() )
-        self.define("contexts", GLT.contextDescriptionDict() )
-
+        self.define("public_statistics", GLT.publicStatisticsDict() )
         """
         variables that may or may not exists:
         'contexts' (Array of contextDescriptionDict() )
@@ -31,10 +30,8 @@ class Node(Processor):
 
     def root_GET(*arg, **kw):
 
-        ret = GLT.publicStatisticsDict()
-        ret.contexts.cID = "contextID"
-        ret.contexts.name = "corruption in the hell"
-        ret.context.context_description = "some descriptive stuff"
+        ret = nodeMainSettings()
+
+        dummy.NODE_ROOT_GET(ret)
 
         return ret.unroll()
-
