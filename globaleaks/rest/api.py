@@ -39,9 +39,9 @@ spec = [
                          )),
 
     ## Submission Handlers ##
-    #  * /submission/<ID>/ U2
+    #  * /submission/ U2
     (r'/submission', submissionHandler,
-                     dict(action='root',
+                     dict(action='new',
                           supportedMethods=['GET']
                          )),
 

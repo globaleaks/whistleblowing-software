@@ -6,6 +6,29 @@
 #   :license: see LICENSE
 #
 from globaleaks import Processor
+from globaleaks.utils import recurringtypes as GLT
+
+class commonReceiverAnswer(GLT.GLTypes):
+
+    def __init__(self):
+
+        GLT.GLTypes.__init__(self, self.__class__.__name__)
+
+        self.define("tips", GLT.tipIndexDict() )
+        self.define("receiver_properties", GLT.receiverDescriptionDict() )
+
+        self.define("notification_method", GLT.moduleDataDict() )
+        self.extension("notification_method", GLT.moduleDataDict() )
+
+        self.define("delivery_method", GLT.moduleDataDict() )
+        self.extension("delivery_method", GLT.moduleDataDict() )
+
+class receiverModuleAnswer(GLT.GLTypes):
+
+    def __init__(self):
+        GLT.GLTypes.__init__(self, self.__class__.__name__)
+        self.define("modules", GLT.moduleDataDict() )
+
 
 class Receiver(Processor):
     """
@@ -18,40 +41,23 @@ class Receiver(Processor):
 
     # R1
     def root_GET(self, *arg, **kw):
-        print __file__,arg
-        print __file__,kw
-        return {'arg': arg, 'kw': kw}
+
+        ret = commonReceiverAnswer()
+        return ret.unroll()
  
     # R2
     def module_GET(self, *arg, **kw):
-        print __file__,arg
-        print __file__,kw
-        return {'arg': arg, 'kw': kw}
+
+        ret = receiverModuleAnswer()
+        ret.extension("modules", GLT.moduleDataDict() )
+        ret.extension("modules", GLT.moduleDataDict() )
+        return ret.unroll()
 
     def module_POST(self, *arg, **kw):
-        print __file__,arg
-        print __file__,kw
-        return {'arg': arg, 'kw': kw}
+        return self.module_GET(arg, kw)
 
     def module_PUT(self, *arg, **kw):
-        print __file__,arg
-        print __file__,kw
-        return {'arg': arg, 'kw': kw}
+        return self.module_GET(arg, kw)
 
     def module_DELETE(self, *arg, **kw):
-        print __file__,arg
-        print __file__,kw
-        return {'arg': arg, 'kw': kw}
-
-    def import_fields(blah):
-        """
-        this function import the received JSON and make it fit in a
-        receiverDict format.
-        """
-        pass
-
-    def dummyDict(blah):
-        """
-        this function return a dummy moduleDict used during the test
-        """
-        pass
+        return self.module_GET(arg, kw)

@@ -8,23 +8,31 @@
 #   Contains all the logic for handling tip related operations.
 
 from globaleaks import Processor
+from globaleaks.utils import recurringtypes as GLT
 
 class Tip(Processor):
 
     def root_GET(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
+        ret = GLT.tipDetailsDict()
+        return ret.unroll()
 
     """
-    root of /tip/ POST handle deleting and forwarding options,
+    root of /tip/ POST handle *deleting* and *forwarding* options,
     they are checked in the tip-properties 
     (assigned by the tip propetary)
     """
     def root_POST(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
+        return self.root_GET(arg, kw)
 
     def comment_POST(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
+        # set return code to 200 
+        return None
 
+
+    """
+    files CURD at the moment is not yet finished
+    along with the javascript part.
+    """
     def files_GET(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
@@ -37,9 +45,14 @@ class Tip(Processor):
     def files_DELETE(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
-    def finalize_POST(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
 
+    def finalize_POST(self, *arg, **kw):
+        # set return code to 200 
+        return None
+
+    """
+    Receiver only - enabled only if local delivery is set
+    """
     def download_GET(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
@@ -49,24 +62,6 @@ class Tip(Processor):
     and because can be extended in the future
     """
     def pertinence_POST(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
-
-    """
-    TODO - import_filds of
-    tipStatistic (representation of one single Tip)
-    tipIndexDict (list of minimal info of all Tip)
-    """
-
-    """
-    TODO - dummyDict of tipStatistic and tipIndexDict
-    """
-
-    """
-    XXX
-        GLBackend/docs/RestJSONwrappers.md address to "tipStatistics" but in fact
-        would be renamed in tipWholeDict, because contain all the info
-        for the WB/receiver in a Tip.
-
-        maybe useful fork with different stats for the admin ?
-    """
+        # set return code to 200 
+        return None
 

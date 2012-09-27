@@ -245,6 +245,10 @@ class GLBackendHandler(RequestHandler):
         if self.status_code:
             self.set_status(self.status_code)
 
+        if not ret:
+            print "There is not return value !?"
+            ret = ({'error': 'no return value available'})
+
         self.write(dict(ret))
         self.finish()
 
