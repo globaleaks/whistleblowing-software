@@ -17,7 +17,10 @@ class validatorRegExps:
 
     @classmethod
     def boolcheckf(self, value):
-        return True
+        if type(value) == type(True)
+            return True
+        else
+            raise TypeError("Invalid bool element:", type(value))
 
     """
     regexp (\w+) with a size limit
