@@ -12,6 +12,9 @@ from globaleaks.db import models, transactor
 from globaleaks.db import transact
 from globaleaks.utils.random import random_string
 from globaleaks import Processor
+from globaleaks.utils import recurringtypes as GLT
+from datetime import datetime
+
 
 """
 Move this utility in globaleaks.utils.random or globaleaks.utils.id ?
@@ -29,17 +32,36 @@ def random_receipt_id():
     length = 10
     return ''.join(random.choice('0123456789') for x in range(length))
 
+class newSubmission(GLT.GLTypes):
+    def __init__(self):
+        GLT.GLTypes.__init__(self, self.__class__.__name__)
+
+class submissionStatus(GLT.GLTypes):
+
+    def __init__(self):
+
+        GLT.GLTypes.__init__(self, self.__class__.__name__)
+        self.define('fields', GLT.formFieldsDict() )
+        self.define('creation_time', 'Time')
+
+
 class Submission(Processor):
     handler = None
     model = models.Submission()
     transactor = transactor
 
-    def root_GET(self, *arg, **kw):
+    def new_GET(self, *arg, **kw):
         """
         Creates an empty submission and returns the ID to the WB.
         """
         self.handler.status_code = 201
-        return {'submission_id': random_submission_id()}
+
+        ret = newSubmission()
+        ret.define("submission_id", "int", random_submission_id() )
+        # str(datetime.now() ) or datetime.datatime.ctime(datetime.now() ) ?
+        ret.define("creation_time", "time", str(datetime.now()) )
+
+        return ret.unroll()
 
     """
     GET operation is called as return values of other API,
@@ -47,30 +69,31 @@ class Submission(Processor):
     run here
     """
     def status_GET(self, submission_id, *arg, **kw):
-        from datetime import datetime
-        status_dict = { 'fields': {'foo': 1234},
-                        'groups': ['A', 'B'],
-                        'files': [{'name': 'fileA', 'location': '/tmp/foo', 'percent': 100},
-                                 {'name': 'fileB', 'location': '/tmp/foo', 'percent': 100},
-                                 {'name': 'fileC', 'location': '/tmp/foo', 'percent': 100}],
-                        'creation_time': str(datetime.now())
-                      }
-        return status_dict
+
+        ret = submissionStatus()
+
+        # if some receiver are selected, or, if all are fixed
+        ret.define('receivers_selected', "receiverID")
+        ret.extension('receivers_selected', "receiverID")
+
+        # if some file has been uploaded 
+        ret.define('uploaded_file', GLT.fileDict() )
+        ret.uploaded_file.filename = "FileNameYay"
+
+        return ret.unroll()
 
     """
     status handle the group receiver selection 
-    (if enabled in the context settings)
-           handle the fields submission
-    (import the fields in the temporary submission_id entry)
+        (if enabled in the context settings)
+    handle the fields submission
+        (import the fields in the temporary submission_id entry)
     """
     def status_POST(self, *arg, **kw):
         """
         :fields
         :group
         """
-        print arg
-        print kw, "return as GET"
-        return status_GET(submission_id, *arg, **kw)
+        return status_GET(arg, kw)
 
     def files_GET(self, submission_id, *arg, **kw):
         """
@@ -80,14 +103,15 @@ class Submission(Processor):
 
         XXX remind: in the API-interface is not yet defined
         """
-        return {'submission_id': submission_id}
+        ret = GLT.fileDict()
+        return ret.unroll()
 
     def files_PUT(self, submission_id, *arg, **kw):
         """
         Take the new data and append to the file, contain sync,
         need to be checked prorperly
         """
-        return files_GET(submission_id, *arg, **kw)
+        return files_GET(arg, kw)
 
     def files_POST(self, submission_id, *arg, **kw):
         """

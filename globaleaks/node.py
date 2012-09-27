@@ -5,128 +5,30 @@
 #   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
 #   :license: see LICENSE
 #
-from cyclone.util import ObjectDict as OD
 from globaleaks import Processor
+from globaleaks.utils import recurringtypes as GLT
+
+class nodeMainSettings(GLT.GLTypes):
+
+    def __init__(self):
+
+        GLT.GLTypes.__init__(self, self.__class__.__name__)
+
+        self.define("public_statistics", GLT.publicStatisticsDict() )
+        self.define("public_site", "string")
+        self.define("hidden_service", "string")
+        self.define("url_schema", "string")
+        self.define("name", "string")
+        self.define("node_properties", GLT.nodePropertiesDict() )
+        """
+        variables that may or may not exists:
+        'contexts' (Array of contextDescriptionDict() )
+        """
 
 class Node(Processor):
 
-    """
-    the method need to update the stats values,
-
-        'name': 'string',
-        'statistics': '$nodeStatisticsDict',
-        'node_properties': '$nodePropertiesDict',
-        'contexts': [ '$contextDescriptionDict', { }, ],
-        'description': '$localizationDict',
-        'public_site': 'string',
-        'hidden_service': 'string',
-        'url_schema': 'string'
-    """
-
     def root_GET(*arg, **kw):
-        """
-        whistlist:
 
-        X = nodeDescriptionDict()
-        y = databasewrapper('nodeDescription')
-        x.populateObject(y)
-        return x.render()
-        """
-        print arg
-        print kw
-        return ({'return': info, 'arandom': 123132, 'bool': True})
-
-
-lorem = "Letterpress whatever incididunt commodo semiotics."
-
-footime = '2012-08-23 13:36:30.355617'
-
-"""
-XXX
-
-ID, every "ID" field in the dict, is an UNIQUE STRING
-(this because sometime is addressed as /restful/<ID>/action, and we do not want that an element like ID can be guessed)
-"""
-groups = [{'id' : 0,
-           'name': 'group1',
-           'description' : lorem,
-           'spoken_language': 'Array, list of spoken languages',
-           'tags': 'string',
-           'receiver_list': 'Array',
-           'associated_module': "GLmodule().dummyDesc()",
-           'creation_date': footime,
-           'update_date': footime },
-          {'id' : 1,
-           'name': 'group2',
-           'description' : lorem,
-           'spoken_language': 'Array, list of spoken languages',
-           'tags': 'string',
-           'receiver_list': 'Array',
-           'associated_module': '$moduleDataDict',
-           'creation_date': footime,
-           'update_date': footime}]
-
-fields = [{'name': 'title',
-          'label': 'Title',
-          'type': 'string',
-          'hint': 'Insert your title here',
-          'default': '',
-          'help': 'Place here your help text',
-          'required': True},
-
-          {'name': 'description',
-          'label': 'Description',
-          'type': 'text',
-          'hint': 'Insert your description here',
-          'default': '',
-          'help': 'Place here your help text',
-          'required': True},
-
-          {'name': 'eyewitness',
-          'label': 'Eye witness?',
-          'type': 'checkbox',
-          'help': '',
-          'hint': 'check if this applies',
-          'required': True},
-
-          {'name': 'othercheckbox',
-          'label': 'Is this true?',
-          'type': 'checkbox',
-          'help': '',
-          'hint': 'check if this applies',
-          'required': False},
-
-          {'name': 'option',
-           'label': 'What option?',
-           'type': 'radio',
-           'help': 'Place here your help text',
-           'options': [{'label': 'Option 1', 'value': 'option1'},
-                      {'label': 'Option 2', 'value': 'option2'}],
-           'hint': 'Pick one of these many options',
-           'required': False,
-          }
-        ]
-
-info = OD()
-info.name = "Node Name"
-info.description = lorem
-info.statistics = {'x': 20, 'y': 300, 'z': 123}
-info.properties = {'x': True, 'y': False}
-info.https_address = 'https://example.com/'
-info.httpo_address = 'httpo://foobar.onion/'
-
-info.contexts = [{'id': 0, 'name': 'context1',
-                  'groups': groups,
-                  'fields': fields,
-                  'description': lorem,
-                  'style': 'default',
-                  'creation_date': footime,
-                  'update_date': footime},
-                 {'id': 1, 'name': 'context2',
-                  'groups': groups,
-                  'fields': fields,
-                  'description': lorem,
-                  'style': 'default',
-                  'creation_date': footime,
-                  'update_date': footime}]
+        ret = GLT.publicStatisticsDict()
+        return ret.unroll()
 
