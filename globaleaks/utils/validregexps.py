@@ -58,6 +58,9 @@ class validatorRegExps:
     @classmethod
     def receiverIDcheckf(self, value):
         return True
+    @classmethod
+    def sessionIDcheckf(self, value):
+        return True
 
     """
     ("your"|"external"|"whistleblower")
@@ -97,7 +100,6 @@ class defltvals:
 
     @classmethod
     def moduleIDdeflt(self):
-        print "ordo", type(self), dir(self)
         self.IDcounter += 1
         return 'm_00000' + str(self.IDcounter)
 
@@ -115,6 +117,11 @@ class defltvals:
     def receiverIDdeflt(self):
         self.IDcounter += 1
         return 'r_ID_unset_' + str(self.IDcounter)
+
+    @classmethod
+    def sessionIDdeflt(self):
+        self.IDcounter += 1
+        return 's_ID_unset_' + str(self.IDcounter)
 
     @classmethod
     def commentENUMdeflt(self):
