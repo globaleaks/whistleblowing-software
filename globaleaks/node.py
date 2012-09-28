@@ -21,10 +21,7 @@ class nodeMainSettings(GLT.GLTypes):
         self.define("url_schema", "string")
         self.define("node_properties", GLT.nodePropertiesDict() )
         self.define("public_statistics", GLT.publicStatisticsDict() )
-        """
-        variables that may or may not exists:
-        'contexts' (Array of contextDescriptionDict() )
-        """
+        self.define_array("contexts", GLT.contextDescriptionDict() )
 
 class Node(Processor):
 

@@ -12,11 +12,8 @@ import validregexps
 
 """
 types is a module supporting the recurring types format in JSON
-communications. It's documented in: TODO
-
-
-inspired by cyclone.util.ObjectDict, OD has became useless,
-because of the __setattr__ and __getattr__ here extended.
+communications. It's documented in
+https://github.com/globaleaks/GlobaLeaks/wiki/recurring-data-types
 """
 class GLTypes:
 
@@ -26,11 +23,14 @@ class GLTypes:
 
     The recurring elements in GLBackend, researched here:
     https://github.com/globaleaks/GLBackend/issues/14
-    and documented in TODO
-    are class derived from GLTypes
+    and documented in https://github.com/globaleaks/GlobaLeaks/wiki/recurring-data-types
+    are instances based on GLTypes
     """
     def __init__(self, childname):
         """
+        childname: useful for keep track of the source object, its used
+            in development process
+        GLTypes 
         _typetrack would be a dict so filled:
 
         self._typetrack['field1']['type'] = "string"
@@ -56,14 +56,17 @@ class GLTypes:
         self.define("___typename", "string", childname)
 
     def __setattr__(self, attrname, value):
+        """
+        This method would not be called, and is the wrapper that apply 
+        regular expression in the new values.
+        """
 
         """
         elements with "___" three underscore are created by init, and would not 
         be modified by the developer
         """
         if len(attrname) > 4 and attrname[0:2] == "___":
-            print "temporary debug - XXX need to became an exception: you can't do that"
-            return
+            raise TypeError("You can assign a new value to ___*:", attrname)
 
         """
         do not apply regexp enforcing for all attribute starting with "_"
@@ -73,27 +76,35 @@ class GLTypes:
             return
 
         """
-        all the other elements, need to be verified before the assgnement
+        all the other elements, need to be validated before the assignement
         """
         try:
             typecheckf = self._typetrack[attrname]['function']
         except KeyError or TypeError:
-            raise AttributeError("Use define method before access to", attrname)
+            raise AttributeError("Use 'define' method, before access to:", attrname)
 
         """
-        If the checking function is False,
-        (imply -> attrname isinstacence of GLTypes / but check is performed again)
-        there are a complete object replacement, and the sanity checks
-        are performed inside of the child object.
+        If the checking function is False, and value is an instance
+        of GLTypes, we're in an object assignment/replacement, then
+        the object itself has been already checked.
         """
-        if not typecheckf:
-            if isinstance(value, GLTypes):
-                if self.__dict__.get(attrname):
-                    print "[++] updating", attrname, "with a new object", value.unroll()
-                self.__dict__[attrname] = value
-                return
-            else:
-                raise AttributeError("unexpected condition!")
+        if not typecheckf and isinstance(value, GLTypes):
+            if self.__dict__.get(attrname):
+                print "[++] updating", attrname, "with a new object", value.unroll()
+            self.__dict__[attrname] = value
+            return
+
+        try:
+            if type(self.__dict__[attrname]) == type([]):
+                raise AttributeError("Can't assign to a declared array, use append")
+        except KeyError:
+            pass
+
+        """
+        There are a missing feature required: in an array, you can actually
+        add an object with .append or .insert without being checked by the
+        validation. -- XXX need to be solved.
+        """
 
         """
         Otherwise, is a varialble, perform the check and raise an exception if
@@ -108,18 +119,18 @@ class GLTypes:
         self.__dict__[attrname] = value
 
 
-    """
-    Define is the core function of this object: every json field need to
-    be defined along with is type. every type has a default value and 
-    a validator function (included by validatoregexps.py)
-    The variable value maybe initialized.
-    """
     def define(self, attrname, attrtype, firstval=None):
-
-        if self._typetrack.get(attrname) or self.__dict__.get(attrname):
-            raise AttributeError("Attribute [", attrname, " already exist in the object")
-        else:
-            self._typetrack[attrname] = {}
+        """
+        attrname: name of the variable to be defined as JSON key
+        attrtype: a valid string containing the expected type, or an instance 
+            derived from GLTypes.
+        firstval: a value different from the default
+        'define' is the core function of GLTypes: every JSON struct need to
+        be defined with is method or 'define_array'. This permit that further 
+        assigment in the declared variable (accessible thru Obj.attrtype),
+        shall be validated with a proper regexp
+        """
+        self._typetrack_initcheck(attrname)
 
         valueByType = self._getValue(attrtype, firstval)
 
@@ -144,15 +155,42 @@ class GLTypes:
         self._typetrack[attrname]['type'] = attrtype
 
 
+    def define_array(self, attrname, attrtype, elements=0):
+        """
+        attrname: name of the variable to be defined as JSON key
+        attrtype: a valid string or a derived class from GLTypes
+        elements: number of default elements to instance in the array
+        Array may contains simple or complex object.
+        Arrays should have 0, 1 or N elements.
+        An array instance with 0 elements, may be expanded with the classic:
+        ObjectName.attrname.append() or .insert()
+        """
+
+        self._typetrack_initcheck(attrname)
+
+        if isinstance(attrtype, GLTypes):
+            self._typetrack[attrname]['function'] = False
+        else:
+            valf = getattr(validregexps.validatorRegExps, attrtype + "checkf")
+            self._typetrack[attrname]['function'] = valf
+
+        # define_array don't expect assignment
+        valuedefault = self._getValue(attrtype, None)
+
+        self.__dict__[attrname] = []
+
+        for i in range(0, elements):
+            self.__dict__[attrname].append( valuedefault )
+
     """
-    Internal utility function called by define and extension,
+    Internal utility function called by define and define_array,
     it handles the value to be assigned, managing the various arguments
     and typology that may happen.
     """
     def _getValue(self, typorboth, firstassign):
         """
-        :typorboth = type or both (type + value, happen in the instance)
-        :firstassign= None or an assignment
+        typorboth: type or both (type + value, happen in the instance)
+        firstassign: None or an assignment
         """
         if isinstance(typorboth, GLTypes):
 
@@ -167,96 +205,80 @@ class GLTypes:
             defaultv = getattr(validregexps.defltvals, typorboth + "deflt")
             return defaultv()
 
-
-    """
-    Extension create an array of elements. The validation function
-    remain the same
-    """
-    def extension(self, attrname, attrtype, firstval=None):
-
-        if not self._typetrack.get(attrname):
-            raise AttributeError("Attribute [", attrname, "] can't be extended \
-                    if not yet defined")
-
-        valueByType = self._getValue(attrtype, firstval)
-
+    def _typetrack_initcheck(self, attrname):
         """
-        Check if its already an array, if so update.
-        otherwise, make a temporary backup and create it
+        do not call directly,
+        shared by define() and define_array()
         """
-        if type(self.__dict__.get(attrname)) == type([]):
-            self.__dict__[attrname].append(valueByType)
+        if self._typetrack.has_key(attrname):
+            raise AttributeError("Attribute [", attrname, " already exist in the GLType")
         else:
-            backup = self.__dict__[attrname]
-            self.__dict__[attrname] = [ backup, valueByType ]
+            self._typetrack[attrname] = {}
 
-    """
-    we got four possible combination of data to be dumped by JSON format,
-    and are:
-    1) the common variable
-    2) the referenced object, need to be called the printJSON inside of them recursively
-    3) the array of common variable
-    4) the array of referenced object.
 
-    follow the three functions moving in the tree:
+    def _unroll_array(self, key, arrayvalue):
+        """
+        do not call directly this method, is used by self.unroll()
+        """
 
-    'debug' function (print to stdout)
-    'unroll' return a dict walking in the child objects/arrays
-    'toJSON', take a dict as argument, and return a JSON
+        if len(arrayvalue) == 0:
+            return({ key : '' })
 
-    """
-    def debug(self):
+        # in the followng case, we have 1 or more elements
+        arraydumps = [ ]
 
-        for k in self._typetrack.iterkeys():
-            v = self.__dict__.get(k)
-            if isinstance(v, GLTypes):
-                print "entering recursion in", k
-                v.debug()
-            elif type(v) == type([]) and not isinstance(v[0], GLTypes):
-                print "array of ",len(v), "in ", k
-                for i, val in enumerate(v):
-                    print "  ",val
-            elif type(v) == type([]) and isinstance(v[0], GLTypes):
-                print "array of an instance ",len(v), "in ", k
-                for i, val in enumerate(v):
-                    print "recursion #", i
-                    val.debug()
-            else:
-                print "dumping of", k, " = ", v
+        if isinstance(arrayvalue[0], GLTypes):
+
+            for i, singleval in enumerate(arrayvalue):
+                arraydumps.append( singleval.unroll() )
+
+            return({ key : arraydumps})
+
+        # otherwise, is not isinstance(GLTypes)
+        for i, val in enumerate(arrayvalue):
+            arraydumps.append( val )
+
+        return({ key : arraydumps })
+
 
     def unroll(self):
+        """
+        we got four possible combination of data to be dumped in dict, and are:
+        1) the common variable
+        2) the referenced object, need to be called the printJSON inside of them recursively
+        3) the array of (common variable|referenced object) of 0 to many items
+        'unroll' return a dict walking in the child objects/arrays
+        'toJSON', take a dict as argument, and return a JSON
+        """
         ret = {}
+
         for k in self._typetrack.iterkeys():
+
             v = self.__dict__.get(k)
-            if isinstance(v, GLTypes):
+
+            if type(v) == type([]):
+                ret.update(self._unroll_array(k, v))
+            elif isinstance(v, GLTypes):
                 ret.update( v.unroll() )
-            elif type(v) == type([]) and not isinstance(v[0], GLTypes):
-                ret.update({ k : v })
-            elif type(v) == type([]) and isinstance(v[0], GLTypes):
-                objs = []
-                for i, val in enumerate(v):
-                    objs.append( val.unroll() )
-                ret.update({ k : objs })
             else:
                 ret.update({ k : v })
 
         return ret
 
+
     def toJSON(self, unrolled):
+        """
+        unrolled: a dict to be dumped in JSON format
+        """
         import json
         return json.dumps(unrolled, default=dthandler)
 
-    """
-    'aquire' is the method used for import and validate the
-    received object. Its loop over the received dict, for 
-    every key check if in fact exists, and 
-    """
-    """
-    ACTUALLY IS BUGGED - NEED TO BE FIXED IN HANDLING SUB DICT
-    AND ARRAYS (that are optionals: can be #0 element, can be #N,
-    can be #1)
-    """
     def aquire(self, receivedDict):
+        """
+        'aquire' is the method used for import and validate the
+        received object. Its loop over the received dict. check if
+        a key exists, and apply the validation regexp.
+        """
 
         for k in receivedDict.iterkeys():
 
@@ -321,17 +343,7 @@ class receiverDescriptionDict(GLTypes):
         self.define("last_update_date", "time") 
             # update the name
 
-        # those 'extended' elements in fact would not be 
-        # extended here, but inside the handler, because some time
-        # would be 0, other 1, other an Array
-        # what's its to be specified, is that MAYBE an array
-        # and then the aquire/regexp should be applied correctly in the 
-        # three cases
-        #
-        # -- TODO
-        self.define("LanguageSupported", "string")
-        self.extension("LanguageSupported", "string")
-            # update - before was in the group element
+        self.define_array("LanguageSupported", "string", 1)
 
 
 
@@ -395,6 +407,7 @@ class formFieldsDict(GLTypes):
         self.define("name", "string")
         self.define("required", "bool")
         self.define("field_description", "string")
+        self.define("value", "string")
 
         # field_type need to be defined as ENUM, in the future, 
         # and would be the set of keyword supported by the 
@@ -410,19 +423,13 @@ class moduleDataDict(GLTypes):
 
         self.define("mID", "moduleID")
         self.define("active", "bool")
-        self.define("type", "moduleENUM")
+        self.define("module_type", "moduleENUM")
         self.define("name", "string")
         self.define("module_description", "string")
         self.define("service_message", "string")
 
-        self.define("admin_options", formFieldsDict() )
-        self.extension("admin_options", formFieldsDict() )
-        self.extension("admin_options", formFieldsDict() )
-        self.extension("admin_options", formFieldsDict() )
-
-        self.define("user_options", formFieldsDict() )
-        self.extension("user_options", formFieldsDict() )
-        self.extension("user_options", formFieldsDict() )
+        self.define_array("admin_options", formFieldsDict(), 1 )
+        self.define_array("user_options", formFieldsDict(), 1 )
 
 
 class contextDescriptionDict(GLTypes):
@@ -437,32 +444,20 @@ class contextDescriptionDict(GLTypes):
         self.define("creation_date", "time")
         self.define("update_date", "time")
 
-        self.define("fields", formFieldsDict() )
-        self.extension("fields", formFieldsDict() )
-        self.extension("fields", formFieldsDict() )
-        self.extension("fields", formFieldsDict() )
+        self.define_array("fields", formFieldsDict() , 4)
 
         self.define("SelectableReceiver", "bool") 
             # update, the previous flag before was documented as
             # node-wise configuration, now is context-wise
 
-        self.define("receivers", receiverDescriptionDict() )
-        self.extension("receivers", receiverDescriptionDict() )
-        self.extension("receivers", receiverDescriptionDict() )
-        self.extension("receivers", receiverDescriptionDict() )
-            # in the documentation there are the group concept
-            # actually removed
+        self.define_array("receivers", receiverDescriptionDict() )
 
         self.define("EscalationTreshold", "int")
             # need to be documented - along with escalation 
             # properties in Receiver element
 
-        self.define("LanguageSupported", "string")
-        self.extension("LanguageSupported", "string")
-        self.extension("LanguageSupported", "string")
-        self.extension("LanguageSupported", "string")
-        self.extension("LanguageSupported", "string")
-            # need to be updated, before was in the group
+        self.define_array("LanguageSupported", "string")
+            # it's the collection of Language from 'receivers'
 
 
 class commentDescriptionDict(GLTypes):
@@ -473,7 +468,7 @@ class commentDescriptionDict(GLTypes):
         GLTypes.__init__(self, self.__class__.__name__)
 
         self.define("writtentext", "string")
-        self.define("type", "commentENUM")
+        self.define("commenttype", "commentENUM")
         self.define("author", "string")
         self.define("date", "time")
 
@@ -491,9 +486,7 @@ class tipIndexDict(GLTypes):
         GLTypes.__init__(self, self.__class__.__name__)
 
         self.define("cID", "contextID")
-        self.define("tiplist", tipSubIndex() )
-        self.extension("tiplist", tipSubIndex() )
-        self.extension("tiplist", tipSubIndex() )
+        self.define_array("tiplist", tipSubIndex() )
 
 
 class tipSubIndex(GLTypes):
@@ -537,23 +530,10 @@ class tipDetailsDict(GLTypes):
         """
         What's follow are the details Tip dependent
         """
-        self.define("tip_data", formFieldsDict() )
-        self.extension("tip_data", formFieldsDict() )
-        self.extension("tip_data", formFieldsDict() )
-
-        self.define("folder", fileDict() )
-        self.extension("folder", fileDict() )
-        self.extension("folder", fileDict() )
-
-        self.define("comment", commentDescriptionDict() )
-        self.extension("comment", commentDescriptionDict() )
-        self.extension("comment", commentDescriptionDict() )
-        self.extension("comment", commentDescriptionDict() )
-
-        self.define("receiver_selected", receiverDescriptionDict() )
-        self.extension("receiver_selected", receiverDescriptionDict() )
-        self.extension("receiver_selected", receiverDescriptionDict() )
-        self.extension("receiver_selected", receiverDescriptionDict() )
+        self.define_array("tip_data", formFieldsDict() )
+        self.define_aray("folder", fileDict() )
+        self.define_array("comment", commentDescriptionDict() )
+        self.define_array("receiver_selected", receiverDescriptionDict() )
 
 
 

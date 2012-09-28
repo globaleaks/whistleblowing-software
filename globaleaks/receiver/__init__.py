@@ -7,6 +7,7 @@
 #
 from globaleaks import Processor
 from globaleaks.utils import recurringtypes as GLT
+from globaleaks.utils import dummy
 
 class commonReceiverAnswer(GLT.GLTypes):
 
@@ -17,17 +18,14 @@ class commonReceiverAnswer(GLT.GLTypes):
         self.define("tips", GLT.tipIndexDict() )
         self.define("receiver_properties", GLT.receiverDescriptionDict() )
 
-        self.define("notification_method", GLT.moduleDataDict() )
-        self.extension("notification_method", GLT.moduleDataDict() )
-
-        self.define("delivery_method", GLT.moduleDataDict() )
-        self.extension("delivery_method", GLT.moduleDataDict() )
+        self.define_array("notification_method", GLT.moduleDataDict() , 1)
+        self.define_array("delivery_method", GLT.moduleDataDict() , 1)
 
 class receiverModuleAnswer(GLT.GLTypes):
 
     def __init__(self):
         GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define("modules", GLT.moduleDataDict() )
+        self.define_array("modules", GLT.moduleDataDict() )
 
 
 class Receiver(Processor):
@@ -43,14 +41,18 @@ class Receiver(Processor):
     def root_GET(self, *arg, **kw):
 
         ret = commonReceiverAnswer()
+
+        dummy.RECEIVER_ROOT_GET(ret)
+
         return ret.unroll()
  
     # R2
     def module_GET(self, *arg, **kw):
 
         ret = receiverModuleAnswer()
-        ret.extension("modules", GLT.moduleDataDict() )
-        ret.extension("modules", GLT.moduleDataDict() )
+
+        dummy.RECEIVER_MODULE_GET(ret)
+
         return ret.unroll()
 
     def module_POST(self, *arg, **kw):

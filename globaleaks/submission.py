@@ -12,8 +12,10 @@ from globaleaks.db import models, transactor
 from globaleaks.db import transact
 from globaleaks.utils.random import random_string
 from globaleaks import Processor
+
 from globaleaks.utils import recurringtypes as GLT
 from datetime import datetime
+from globaleaks.utils import dummy
 
 
 """
@@ -35,14 +37,17 @@ def random_receipt_id():
 class newSubmission(GLT.GLTypes):
     def __init__(self):
         GLT.GLTypes.__init__(self, self.__class__.__name__)
+        self.define('submission_id', 'sessionID')
 
 class submissionStatus(GLT.GLTypes):
 
     def __init__(self):
 
         GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define('fields', GLT.formFieldsDict() )
+
         self.define('creation_time', 'Time')
+        self.define_array('fields', GLT.formFieldsDict(), 1)
+        self.define_array('receivers')
 
 
 class Submission(Processor):
@@ -50,35 +55,28 @@ class Submission(Processor):
     model = models.Submission()
     transactor = transactor
 
+    # U2
     def new_GET(self, *arg, **kw):
         """
         Creates an empty submission and returns the ID to the WB.
         """
         self.handler.status_code = 201
-
         ret = newSubmission()
-        ret.define("submission_id", "int", random_submission_id() )
-        # str(datetime.now() ) or datetime.datatime.ctime(datetime.now() ) ?
-        ret.define("creation_time", "time", str(datetime.now()) )
+
+        dummy.SUBMISSION_NEW_GET(ret)
 
         return ret.unroll()
 
     """
     GET operation is called as return values of other API,
     then nothing has to be *written* then the codeflow
-    run here
+    run here -- U3
     """
     def status_GET(self, submission_id, *arg, **kw):
 
         ret = submissionStatus()
 
-        # if some receiver are selected, or, if all are fixed
-        ret.define('receivers_selected', "receiverID")
-        ret.extension('receivers_selected', "receiverID")
-
-        # if some file has been uploaded 
-        ret.define('uploaded_file', GLT.fileDict() )
-        ret.uploaded_file.filename = "FileNameYay"
+        dummy.SUBMISSION_STATUS_GET(ret)
 
         return ret.unroll()
 
@@ -95,6 +93,7 @@ class Submission(Processor):
         """
         return status_GET(arg, kw)
 
+    # U4
     def files_GET(self, submission_id, *arg, **kw):
         """
         retrive the status of the file uploaded, the 
@@ -104,6 +103,7 @@ class Submission(Processor):
         XXX remind: in the API-interface is not yet defined
         """
         ret = GLT.fileDict()
+        dummy.SUBMISSION_FILES_GET(ret)
         return ret.unroll()
 
     def files_PUT(self, submission_id, *arg, **kw):
@@ -130,6 +130,7 @@ class Submission(Processor):
         return files_GET(submission_id, *arg, **kw)
 
 
+    # U5
     @inlineCallbacks
     def finalize_POST(self, submission_id, **form_fields):
         """

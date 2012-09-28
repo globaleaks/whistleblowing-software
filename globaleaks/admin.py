@@ -11,6 +11,7 @@
 from globaleaks import Processor
 from globaleaks import node
 from globaleaks.utils import recurringtypes as GLT
+from globaleaks.utils import dummy
 
 
 class nodeMainSettings(GLT.GLTypes):
@@ -28,10 +29,7 @@ class nodeMainSettings(GLT.GLTypes):
         # localizationDict -- i need to understand how can be interfaced
         # with POT files
 
-        """
-        variables that may or may not exists:
-        'contexts' (Array of contextDescriptionDict() )
-        """
+        self.define_array("contexts", GLT.contextDescriptionDict() )
         self.define("public_site", "string")
         self.define("hidden_service", "string")
         self.define("url_schema", "string")
@@ -40,14 +38,17 @@ class nodeMainSettings(GLT.GLTypes):
 class adminContextsCURD(GLT.GLTypes):
     def __init__(self):
         GLT.GLTypes.__init__(self, self.__class__.__name__)
+        self.define_array("contexts", GLT.contextDescriptionDict() )
 
 class adminReceiverCURD(GLT.GLTypes):
     def __init__(self):
         GLT.GLTypes.__init__(self, self.__class__.__name__)
+        self.define_array("receivers", GLT.receiverDescriptionDict() )
 
 class adminModulesUR(GLT.GLTypes):
     def __init__(self):
         GLT.GLTypes.__init__(self, self.__class__.__name__)
+        self.define_array("modules", GLT.moduleDataDict() )
 
 
 class Admin(Processor):
@@ -59,12 +60,8 @@ class Admin(Processor):
     def node_GET(self, *arg, **kw):
 
         ret = nodeMainSettings()
-        ret.name = "NodeNameGetByDB"
 
-        # if some contexts are available ...
-        ret.define("contexts", GLT.contextDescriptionDict() )
-        ret.extension("contexts", GLT.contextDescriptionDict() )
-        ret.extension("contexts", GLT.contextDescriptionDict() )
+        dummy.ADMIN_NODE_GET(ret)
 
         return ret.unroll()
 
@@ -80,9 +77,8 @@ class Admin(Processor):
 
         ret = adminContextsCURD()
 
-        # if some contexts are available ...
-        ret.define("contexts", GLT.contextDescriptionDict() )
-        ret.extension("contexts", GLT.contextDescriptionDict() )
+        dummy.ADMIN_CONTEXTS_GET(ret)
+
         return ret.unroll()
 
     def contexts_POST(self, *arg, **kw):
@@ -103,9 +99,8 @@ class Admin(Processor):
 
         ret = adminReceiverCURD()
 
-        # if some receivers are present...
-        ret.define("receivers", GLT.receiverDescriptionDict() )
-        ret.extension("receivers", GLT.receiverDescriptionDict() )
+        dummy.ADMIN_RECEIVERS_GET(ret)
+
         return ret.unroll()
 
     def receivers_POST(self, *arg, **kw):
@@ -127,9 +122,9 @@ class Admin(Processor):
 
         ret = adminModulesUR()
 
-        # append here the available modules
-        ret.define("modules", GLT.moduleDataDict() )
-        ret.extension("modules", GLT.moduleDataDict() )
+        dummy.ADMIN_MODULES_GET(ret)
+
+        return ret
 
     def modules_POST(self, *arg, **kw):
         return self.modules_GET(arg, kw)

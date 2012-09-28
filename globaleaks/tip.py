@@ -9,11 +9,16 @@
 
 from globaleaks import Processor
 from globaleaks.utils import recurringtypes as GLT
+from globaleaks.utils import dummy
 
 class Tip(Processor):
 
     def root_GET(self, *arg, **kw):
+
         ret = GLT.tipDetailsDict()
+
+        dummy.TIP_ROOT_GET(ret)
+
         return ret.unroll()
 
     """
