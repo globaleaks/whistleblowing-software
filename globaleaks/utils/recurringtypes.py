@@ -444,7 +444,8 @@ class contextDescriptionDict(GLTypes):
         self.define("creation_date", "time")
         self.define("update_date", "time")
 
-        self.define_array("fields", formFieldsDict() , 4)
+        self.define_array("fields", formFieldsDict() , 1)
+            # one or more, but almost one field is needed
 
         self.define("SelectableReceiver", "bool") 
             # update, the previous flag before was documented as

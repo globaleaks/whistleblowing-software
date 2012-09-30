@@ -190,21 +190,26 @@ def __contextDescriptionDict_0(datao):
     # "creation_date", "time"
     # "append_date", "time"
 
+    # only 1 form is *required*, other can be expanded
     __formFieldsDict_0(datao.fields[0])
-    __formFieldsDict_1(datao.fields[1])
-    __formFieldsDict_2(datao.fields[2])
-    __formFieldsDict_3(datao.fields[3])
+
+    # datao.fields.append ( GLT.formFieldsDict() )
+    # __formFieldsDict_1(datao.fields[1])
+    # datao.fields.append ( GLT.formFieldsDict() )
+    # __formFieldsDict_2(datao.fields[2])
+    # datao.fields.append ( GLT.formFieldsDict() )
+    # __formFieldsDict_3(datao.fields[3])
 
     datao.SelectableReceiver = False
 
     datao.receivers.append ( GLT.receiverDescriptionDict() )
     __receiverDescriptionDict_0(datao.receivers[0])
-    datao.receivers.append ( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_1(datao.receivers[1])
-    datao.receivers.append ( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_2(datao.receivers[2])
-    datao.receivers.append ( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_3(datao.receivers[3])
+    #datao.receivers.append ( GLT.receiverDescriptionDict() )
+    #__receiverDescriptionDict_1(datao.receivers[1])
+    #datao.receivers.append ( GLT.receiverDescriptionDict() )
+    #__receiverDescriptionDict_2(datao.receivers[2])
+    #datao.receivers.append ( GLT.receiverDescriptionDict() )
+    #__receiverDescriptionDict_3(datao.receivers[3])
 
     datao.EscalationTreshold = 4
 
@@ -283,12 +288,11 @@ in example dummynode is called by node.py
 """
 def NODE_ROOT_GET(datao):
 
-    dir(datao)
     datao.contexts.append( GLT.contextDescriptionDict() )
     __contextDescriptionDict_0(datao.contexts[0])
 
-    datao.contexts.append( GLT.contextDescriptionDict() )
-    __contextDescriptionDict_1(datao.contexts[1])
+    #datao.contexts.append( GLT.contextDescriptionDict() )
+    #__contextDescriptionDict_1(datao.contexts[1])
 
     __publicStatisticsDict(datao.public_statistics)
     __nodePropertiesDict(datao.node_properties)
