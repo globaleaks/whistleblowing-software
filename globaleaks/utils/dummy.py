@@ -108,8 +108,9 @@ def __formFieldsDict_0(datao):
 
     datao.presentation_order = 1
     datao.name = "city"
+    datao.label = "city"
     datao.required = True
-    datao.description = "the city of the autovelox"
+    datao.hint = "the city of the autovelox"
     datao.type = "text"
     datao.value = "this is the default value"
 
@@ -117,9 +118,10 @@ def __formFieldsDict_0(datao):
 def __formFieldsDict_1(datao):
 
     datao.presentation_order = 2
+    datao.label = "road"
     datao.name = "road"
     datao.required = True
-    datao.description = "the road where the autovelox is running"
+    datao.hint = "the road where the autovelox is running"
     datao.type = "text"
     datao.value = "this is the default value"
 
@@ -127,9 +129,10 @@ def __formFieldsDict_1(datao):
 def __formFieldsDict_2(datao):
 
     datao.presentation_order = 3
-    datao.name = "penality details"
+    datao.label = "penality details"
+    datao.name = "dict2"
     datao.required = True
-    datao.description = "put the number of the penality"
+    datao.hint = "put the number of the penality"
     datao.type = "int"
     datao.value = "this is the default value"
 
@@ -137,9 +140,10 @@ def __formFieldsDict_2(datao):
 def __formFieldsDict_3(datao):
 
     datao.presentation_order = 4
-    datao.name = "how do you know that ?"
+    datao.label = "how do you know that ?"
+    datao.name = "dict3"
     datao.required = False
-    datao.description = "details: eg, do you present your case to a judge ?"
+    datao.hint = "details: eg, do you present your case to a judge ?"
     datao.type = "text"
     datao.value = "this is the default value"
 
