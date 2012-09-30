@@ -406,8 +406,10 @@ class formFieldsDict(GLTypes):
         self.define("presentation_order", "int")
         self.define("name", "string")
         self.define("required", "bool")
-        self.define("description", "string")
+        self.define("hint", "string")
         self.define("value", "string")
+
+        self.define("label", "string")
 
         # type need to be defined as ENUM, in the future,
         # and would be the set of keyword supported by the
