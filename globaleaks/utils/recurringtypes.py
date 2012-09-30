@@ -30,7 +30,7 @@ class GLTypes:
         """
         childname: useful for keep track of the source object, its used
             in development process
-        GLTypes 
+        GLTypes
         _typetrack would be a dict so filled:
 
         self._typetrack['field1']['type'] = "string"
@@ -38,7 +38,7 @@ class GLTypes:
 
         and when an assignmed event is called, is checked:
 
-        self._typetrack['field1']['function'] 
+        self._typetrack['field1']['function']
 
         that verify if in fact the new assigned data is appropriate
         with the string regexp, and then you have:
@@ -49,7 +49,7 @@ class GLTypes:
         self._typetrack = {}
 
         """
-        this maybe useful for versioning between client/server 
+        this maybe useful for versioning between client/server
         in the case a single object is updated.
         """
         self.define("___version", "string", "1")
@@ -57,12 +57,12 @@ class GLTypes:
 
     def __setattr__(self, attrname, value):
         """
-        This method would not be called, and is the wrapper that apply 
+        This method would not be called, and is the wrapper that apply
         regular expression in the new values.
         """
 
         """
-        elements with "___" three underscore are created by init, and would not 
+        elements with "___" three underscore are created by init, and would not
         be modified by the developer
         """
         if len(attrname) > 4 and attrname[0:2] == "___":
@@ -122,11 +122,11 @@ class GLTypes:
     def define(self, attrname, attrtype, firstval=None):
         """
         attrname: name of the variable to be defined as JSON key
-        attrtype: a valid string containing the expected type, or an instance 
+        attrtype: a valid string containing the expected type, or an instance
             derived from GLTypes.
         firstval: a value different from the default
         'define' is the core function of GLTypes: every JSON struct need to
-        be defined with is method or 'define_array'. This permit that further 
+        be defined with is method or 'define_array'. This permit that further
         assigment in the declared variable (accessible thru Obj.attrtype),
         shall be validated with a proper regexp
         """
@@ -138,11 +138,11 @@ class GLTypes:
         Assign the validator regexp and the default value.
 
         if is found to be an istance of this class, is because
-        a "recurring elements" contain other elements. 
+        a "recurring elements" contain other elements.
         """
         if isinstance(attrtype, GLTypes):
             """
-            In this case, we do not assign a validator function 
+            In this case, we do not assign a validator function
             because their fields has been already evaluated, and
             the attrtype is also the first assigned value
             """
@@ -282,7 +282,7 @@ class GLTypes:
 
         for k in receivedDict.iterkeys():
 
-            print "next iter ",k, 
+            print "next iter ",k,
             try:
                 localAttrib = getattr(self, k)
             except AttributeError:
@@ -331,8 +331,8 @@ class receiverDescriptionDict(GLTypes):
         self.define("CanConfigureDelivery", "bool")
 
             # -----------------------------------------
-        self.define("CanTriggerEscalation", "bool") 
-        self.define("ReceiverLevel", "int") 
+        self.define("CanTriggerEscalation", "bool")
+        self.define("ReceiverLevel", "int")
             # remind: both of them need to be specified
 
         self.define("receiver_name", "string")
@@ -340,7 +340,7 @@ class receiverDescriptionDict(GLTypes):
         self.define("receiver_tags", "string")
             # verify - is it specified ?
         self.define("creation_date", "time")
-        self.define("last_update_date", "time") 
+        self.define("last_update_date", "time")
             # update the name
 
         self.define_array("LanguageSupported", "string", 1)
@@ -381,9 +381,9 @@ class adminStatisticsDict(GLTypes):
 
 """
 The following container is used for the public statistic,
-collected by site that perform uptime and/or measurement, 
+collected by site that perform uptime and/or measurement,
 or readed by users.
-Need to be defined, depends what's is considered to be 
+Need to be defined, depends what's is considered to be
 harmless for node life, and what's can be easily collected
 """
 class publicStatisticsDict(GLTypes):
@@ -406,13 +406,13 @@ class formFieldsDict(GLTypes):
         self.define("presentation_order", "int")
         self.define("name", "string")
         self.define("required", "bool")
-        self.define("field_description", "string")
+        self.define("description", "string")
         self.define("value", "string")
 
-        # field_type need to be defined as ENUM, in the future, 
-        # and would be the set of keyword supported by the 
+        # type need to be defined as ENUM, in the future,
+        # and would be the set of keyword supported by the
         # client (text, textarea, checkbox, GPS coordinate)
-        self.define("field_type", "string")
+        self.define("type", "string")
 
 
 class moduleDataDict(GLTypes):
@@ -446,14 +446,14 @@ class contextDescriptionDict(GLTypes):
 
         self.define_array("fields", formFieldsDict() , 4)
 
-        self.define("SelectableReceiver", "bool") 
+        self.define("SelectableReceiver", "bool")
             # update, the previous flag before was documented as
             # node-wise configuration, now is context-wise
 
         self.define_array("receivers", receiverDescriptionDict() )
 
         self.define("EscalationTreshold", "int")
-            # need to be documented - along with escalation 
+            # need to be documented - along with escalation
             # properties in Receiver element
 
         self.define_array("LanguageSupported", "string")
