@@ -109,8 +109,8 @@ def __formFieldsDict_0(datao):
     datao.presentation_order = 1
     datao.name = "city"
     datao.required = True
-    datao.field_description = "the city of the autovelox"
-    datao.field_type = "text"
+    datao.description = "the city of the autovelox"
+    datao.type = "text"
     datao.value = "this is the default value"
 
 
@@ -119,8 +119,8 @@ def __formFieldsDict_1(datao):
     datao.presentation_order = 2
     datao.name = "road"
     datao.required = True
-    datao.field_description = "the road where the autovelox is running"
-    datao.field_type = "text"
+    datao.description = "the road where the autovelox is running"
+    datao.type = "text"
     datao.value = "this is the default value"
 
 
@@ -129,8 +129,8 @@ def __formFieldsDict_2(datao):
     datao.presentation_order = 3
     datao.name = "penality details"
     datao.required = True
-    datao.field_description = "put the number of the penality"
-    datao.field_type = "int"
+    datao.description = "put the number of the penality"
+    datao.type = "int"
     datao.value = "this is the default value"
 
 
@@ -139,8 +139,8 @@ def __formFieldsDict_3(datao):
     datao.presentation_order = 4
     datao.name = "how do you know that ?"
     datao.required = False
-    datao.field_description = "details: eg, do you present your case to a judge ?"
-    datao.field_type = "text"
+    datao.description = "details: eg, do you present your case to a judge ?"
+    datao.type = "text"
     datao.value = "this is the default value"
 
 
@@ -157,7 +157,7 @@ def __moduleDataDict_N(datao):
     # datao.service_message = "Your PGP key is correctly configured"
     datao.service_message = "You have not yet configured your PGP key"
     # those was the first three "service_message" that come in mind,
-    # this field act as report/error/status message from the module to 
+    # this field act as report/error/status message from the module to
     # the users.
     # this message is not displayed to the administrator
 
@@ -208,7 +208,7 @@ def __contextDescriptionDict_0(datao):
 
     datao.EscalationTreshold = 4
 
-    # this would be derived by the mix of the supported 
+    # this would be derived by the mix of the supported
     # language in the receivers corpus
     datao.LanguageSupported.append( "string ")
     datao.LanguageSupported[0] = "EN"
@@ -278,7 +278,7 @@ def __localizationDict(datao):
 
 
 """
-Those functions may be called by the various handlers, 
+Those functions may be called by the various handlers,
 in example dummynode is called by node.py
 """
 def NODE_ROOT_GET(datao):
@@ -306,10 +306,10 @@ def SUBMISSION_NEW_GET(datao):
 
 def SUBMISSION_STATUS_GET(datao):
 
-    datao.receivers_selected.append( GLT.receiverDescriptionDict() ) 
+    datao.receivers_selected.append( GLT.receiverDescriptionDict() )
     __receiverDescriptionDict_1(datao.receivers_selected[0])
 
-    datao.receivers_selected.append( GLT.receiverDescriptionDict() ) 
+    datao.receivers_selected.append( GLT.receiverDescriptionDict() )
     __receiverDescriptionDict_2(datao.receivers_selected[1])
 
     # the first one is always present, because may not exists a submission
