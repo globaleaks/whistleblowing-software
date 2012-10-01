@@ -10,29 +10,12 @@
 from twisted.internet.defer import returnValue, inlineCallbacks
 from globaleaks.db import models, transactor
 from globaleaks.db import transact
-from globaleaks.utils.random import random_string
+from globaleaks.utils import idops
 from globaleaks import Processor
 
 from globaleaks.utils import recurringtypes as GLT
 from datetime import datetime
 from globaleaks.utils import dummy
-
-
-"""
-Move this utility in globaleaks.utils.random or globaleaks.utils.id ?
-remind: ID need to be unique, and may support a prefix
-"""
-def random_submission_id():
-    import random
-    import string
-    length = 50
-    return ''.join(random.choice(string.ascii_letters) for x in range(length))
-
-def random_receipt_id():
-    import random
-    import string
-    length = 10
-    return ''.join(random.choice('0123456789') for x in range(length))
 
 class newSubmission(GLT.GLTypes):
     def __init__(self):
@@ -63,6 +46,7 @@ class Submission(Processor):
         self.handler.status_code = 201
         ret = newSubmission()
 
+        # submission_id = idops.random_submission_id()
         dummy.SUBMISSION_NEW_GET(ret)
 
         return ret.unroll()
@@ -136,7 +120,7 @@ class Submission(Processor):
         """
         Finalize the submission and create data inside of the database.
         """
-        receipt_id = unicode(random_receipt_id())
+        receipt_id = unicode(idops.random_receipt_id())
         self.handler.status_code = 201
         internal_tip = models.InternalTip()
         internal_tip.fields = form_fields
@@ -149,5 +133,9 @@ class Submission(Processor):
 
         yield whistleblower_tip.save()
 
+        # this has not to return directly, ya ? need to be 
+        # returned by handers (that perform the GLTypes.unroll() operation,
+        # perhaps, so we're sure that would not be hardcoded an 
+        # arbitrary dict
         returnValue({'receipt': receipt_id})
 
