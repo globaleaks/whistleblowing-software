@@ -111,8 +111,8 @@ class GLTypes:
         something goes wrong with the regexp validation.
         """
         if not typecheckf(value):
-            raise AttributeError("Invalid content in",attrname,"expected:",
-                    typecheckname)
+            raise AttributeError("Invalid content assigned to:",attrname,"defined as:",
+                    self._typetrack[attrname]['type'])
 
         if self.__dict__.get(attrname):
             print "[+] updating", attrname, "with", value
@@ -151,8 +151,8 @@ class GLTypes:
             valf = getattr(validregexps.validatorRegExps, attrtype + "checkf")
             self._typetrack[attrname]['function'] = valf
 
-        self.__setattr__(attrname, valueByType)
         self._typetrack[attrname]['type'] = attrtype
+        self.__setattr__(attrname, valueByType)
 
 
     def define_array(self, attrname, attrtype, elements=0):

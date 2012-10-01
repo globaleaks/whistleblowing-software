@@ -28,7 +28,7 @@ def __fileDict(datao):
 
 def __receiverDescriptionDict_0(datao):
 
-    datao.rID = "r_HIGLEVEL_1_ID"
+    datao.rID = "r_ZEROrrAAAABBBBBBBBBBDDDDDDDDDDRRRRRRRRRRPPPPPPPPPP"
     datao.CanDeleteSubmission = True
     datao.CanPostponeExpiration = True
     datao.CanConfigureNotification = True
@@ -46,7 +46,7 @@ def __receiverDescriptionDict_0(datao):
 
 def __receiverDescriptionDict_1(datao):
 
-    datao.rID = "r_HIGHLEVEL_2_ID"
+    datao.rID = "r_ONErrAAAAABBBBBBBBBBDDDDDDDDDDRRRRRRRRRRPPPPPPPPPP"
     datao.CanDeleteSubmission = True
     datao.CanPostponeExpiration = True
     datao.CanConfigureNotification = True
@@ -64,7 +64,7 @@ def __receiverDescriptionDict_1(datao):
 
 def __receiverDescriptionDict_2(datao):
 
-    datao.rID = "r_LOWLEVEL_3_ID"
+    datao.rID = "r_TWOrrAAAAABBBBBBBBBBDDDDDDDDDDRRRRRRRRRRPPPPPPPPPP"
     datao.CanDeleteSubmission = False
     datao.CanPostponeExpiration = False
     datao.CanConfigureNotification = True
@@ -81,7 +81,7 @@ def __receiverDescriptionDict_2(datao):
 
 def __receiverDescriptionDict_3(datao):
 
-    datao.rID = "r_LOWLEVEL_4_ID"
+    datao.rID = "r_THREErrAAABBBBBBBBBBDDDDDDDDDDRRRRRRRRRRPPPPPPPPPP"
     datao.CanDeleteSubmission = False
     datao.CanPostponeExpiration = False
     datao.CanConfigureNotification = True
@@ -146,7 +146,7 @@ def __formFieldsDict_3(datao):
 
 def __moduleDataDict_N(datao):
 
-    datao.mID = "m_312321123"
+    datao.mID = "m_1234567890"
     datao.active = True
     datao.module_type = "notification"
     datao.name = "Encrypted E-Mail"
@@ -167,7 +167,7 @@ def __moduleDataDict_N(datao):
 
 def __moduleDataDict_D(datao):
 
-    datao.mID = "m_8888888"
+    datao.mID = "m_0987654321"
     datao.active = True
     datao.module_type = "delivery"
     datao.name = "upload in FTP"
@@ -184,7 +184,7 @@ remind: are declared FOUR fields by base
 """
 def __contextDescriptionDict_0(datao):
 
-    datao.cID = "c_CONTEXT_1"
+    datao.cID = "c_AAAAAAAAAABBBBBBBBBBDcontextzeroRRRRRRRRPPPPPPPPPP"
     datao.name ="Autovelox broken"
     datao.context_description = "tell us which autovelox is working bad, we're tired of wrong fines!"
     # "creation_date", "time"
@@ -233,7 +233,7 @@ def __commentDescriptionDict(datao):
 
 def __tipIndexDict(datao):
 
-    datao.cID = "c_context31312_ID"
+    datao.cID = "c_AAAAAAAAAABBcontextrandomDDDDDRRRRRRRRRRPPPPPPPPPP"
 
     datao.tiplist.append( GLT.tipSubIndex() )
     __tipSubIndex(datao.tiplist[0])
@@ -241,7 +241,7 @@ def __tipIndexDict(datao):
 
 def __tipSubIndex(datao):
 
-    datao.tID = "t_321312312"
+    datao.tID = "t_AAAAAAAAAATIPTIPTIPTIPTIPTIPxxRRRRRRRRRRKKKKKKKKKK"
     datao.tip_title = "Greatest secret of all world - Enter the ninja"
 
     datao.notification_adopted = "default email"
@@ -306,7 +306,7 @@ def SUBMISSION_NEW_GET(datao):
 
     # this would be useless when the default value would
     # be already assigned
-    datao.submission_id = "s_Temporary_submt_ID"
+    datao.submission_id = "s_AAAAAAAAAABBBBBBBBBBDDDDDDsubmissionRRRRPPPPPPPPPP"
 
 def SUBMISSION_STATUS_GET(datao):
 
@@ -325,10 +325,6 @@ def SUBMISSION_STATUS_GET(datao):
 
     datao.fields.append( GLT.formFieldDict() )
     __formFieldsDict_2(datao.fields[2])
-
-def SUBMISSION_NEW_GET(datao):
-
-    datao.submission_id = "s_312342112_ID"
 
 def SUBMISSION_FILES_GET(datao):
 
