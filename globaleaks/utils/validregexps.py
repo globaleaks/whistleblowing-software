@@ -61,6 +61,9 @@ class validatorRegExps:
     @classmethod
     def sessionIDcheckf(self, value):
         return idops.regexp_submission_id(value)
+    @classmethod
+    def folderIDcheckf(self, value):
+        return idops.regexp_folder_id(value)
 
     """
     receipt format, default 10 digits, its a configurable format
@@ -127,6 +130,10 @@ class defltvals:
     @classmethod
     def sessionIDdeflt(self):
         return idops.random_submission_id()
+
+    @classmethod
+    def folderIDdeflt(self):
+        return idops.random_folder_id()
 
     @classmethod
     def commentENUMdeflt(self):

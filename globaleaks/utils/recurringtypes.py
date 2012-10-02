@@ -301,7 +301,7 @@ class GLTypes:
 
 
 """
-Object derivation from GLTypes, they are documented in: TODO
+Object derivation from GLTypes, they are documented in:
 """
 
 class fileDict(GLTypes):
@@ -316,7 +316,23 @@ class fileDict(GLTypes):
         self.define("content_type", "string")
         self.define("date", "time")
         self.define("cleaned_meta_data", "bool")
+        self.define("completed", "bool")
 
+class folderDict(GLTypes):
+
+    def __init__(self):
+
+        GLTypes.__init__(self, self.__class__.__name__)
+
+        self.define("fID", "folderID")
+        self.define("folder_name", "string")
+        self.define("folder_description", "string")
+        self.define("download_performed", "int")
+        self.define_array("files", fileDict() )
+            # this information is comunicated along the 
+            # folderDict, also if tracked in the TipReceiver
+            # table. this is useful because some Folder would not be
+            # downloadable when other are.
 
 class receiverDescriptionDict(GLTypes):
 
@@ -503,7 +519,7 @@ class tipSubIndex(GLTypes):
         self.define("delivery_adopted", "string")
 
         self.define("download_limit", "int")
-        self.define("download_performed", "int")
+            # remind: download_performed is inside the folderDict
         self.define("access_limit", "int")
         self.define("access_performed", "int")
 
@@ -532,7 +548,7 @@ class tipDetailsDict(GLTypes):
         What's follow are the details Tip dependent
         """
         self.define_array("tip_data", formFieldsDict() )
-        self.define_aray("folder", fileDict() )
+        self.define_array("folder", folderDict() )
         self.define_array("comment", commentDescriptionDict() )
         self.define_array("receiver_selected", receiverDescriptionDict() )
 

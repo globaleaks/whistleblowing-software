@@ -13,24 +13,9 @@ from globaleaks.db import transact
 from globaleaks.utils import idops
 from globaleaks import Processor
 
+from globaleaks.utils import dummy_answers as dummy
+from globaleaks.rest import answers
 from globaleaks.utils import recurringtypes as GLT
-from datetime import datetime
-from globaleaks.utils import dummy
-
-class newSubmission(GLT.GLTypes):
-    def __init__(self):
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define('submission_id', 'sessionID')
-
-class submissionStatus(GLT.GLTypes):
-
-    def __init__(self):
-
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-
-        self.define('creation_time', 'Time')
-        self.define_array('fields', GLT.formFieldsDict(), 1)
-        self.define_array('receivers')
 
 
 class Submission(Processor):
@@ -44,7 +29,7 @@ class Submission(Processor):
         Creates an empty submission and returns the ID to the WB.
         """
         self.handler.status_code = 201
-        ret = newSubmission()
+        ret = answers.newSubmission()
 
         # submission_id = idops.random_submission_id()
         dummy.SUBMISSION_NEW_GET(ret)
@@ -58,7 +43,7 @@ class Submission(Processor):
     """
     def status_GET(self, submission_id, *arg, **kw):
 
-        ret = submissionStatus()
+        ret = answers.submissionStatus()
 
         dummy.SUBMISSION_STATUS_GET(ret)
 
@@ -137,5 +122,7 @@ class Submission(Processor):
         # returned by handers (that perform the GLTypes.unroll() operation,
         # perhaps, so we're sure that would not be hardcoded an 
         # arbitrary dict
-        returnValue({'receipt': receipt_id})
 
+        ret = answers.finalizeSubmission()
+        # you can't use "return" in a function with generators
+        returnValue(ret.unroll())
