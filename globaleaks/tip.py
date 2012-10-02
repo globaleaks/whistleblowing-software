@@ -8,14 +8,14 @@
 #   Contains all the logic for handling tip related operations.
 
 from globaleaks import Processor
-from globaleaks.utils import recurringtypes as GLT
-from globaleaks.utils import dummy
+from globaleaks.rest import answers
+from globaleaks.utils import dummy_answers as dummy
 
 class Tip(Processor):
 
     def root_GET(self, *arg, **kw):
 
-        ret = GLT.tipDetailsDict()
+        ret = answers.tipDetailsDict()
 
         dummy.TIP_ROOT_GET(ret)
 

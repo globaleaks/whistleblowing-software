@@ -66,12 +66,25 @@ def random_context_id():
     home page, or not all context need to be disclosed publicly), but need to be
     short, just for do not create a loooong URL
     """
-    length = 50
+    length = 20
     return 'c_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def regexp_context_id(cID):
 
-    outre = re.match('c_[a-zA-Z]{50,50}$', cID)
+    outre = re.match('c_[a-zA-Z]{20,20}$', cID)
+    return True if outre != None else False
+
+
+def random_folder_id():
+    """
+    need to be random 
+    """
+    length = 20
+    return 'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+
+def regexp_context_id(cID):
+
+    outre = re.match('c_[a-zA-Z]{20,20}$', cID)
     return True if outre != None else False
 
 
@@ -81,12 +94,12 @@ def random_receiver_id():
     then every time is used as input, need to be checked in coherence, in the context.
     anyway we made it not guessable, just to avoid enumeration.
     """
-    length = 50
+    length = 20
     return 'r_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def regexp_receiver_id(rID):
 
-    outre = re.match('r_[a-zA-Z]{50,50}$', rID)
+    outre = re.match('r_[a-zA-Z]{20,20}$', rID)
     return True if outre != None else False
 
 
