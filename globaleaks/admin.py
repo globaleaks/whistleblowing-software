@@ -11,7 +11,7 @@
 from globaleaks import Processor
 from globaleaks import node
 from globaleaks.rest import answers
-from globaleaks.utils import dummy_answers as dummy
+from globaleaks.utils.dummy import dummy_answers as dummy
 
 
 class Admin(Processor):
