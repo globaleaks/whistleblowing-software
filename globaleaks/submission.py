@@ -13,7 +13,7 @@ from globaleaks.db import transact
 from globaleaks.utils import idops
 from globaleaks import Processor
 
-from globaleaks.utils import dummy_answers as dummy
+from globaleaks.utils.dummy import dummy_answers as dummy
 from globaleaks.rest import answers
 from globaleaks.utils import recurringtypes as GLT
 
