@@ -13,7 +13,7 @@ would be understimated.
 
 ### curted usage examples 
 
-    $ python curteg.py [API selection] [verbosity options] (HOSTNAME:PORT)
+    $ python curteg.py [API selection] [HTTP METHOD LIST] [verbosity options] (HOSTNAME:PORT)
 
 all the option are optionals
 
@@ -33,11 +33,6 @@ The API selection are made with the [U|R|T|A] + number
   * R1 = /receiver/(string t_id)/overview
   * R2 = /receiver/(string t_id)/(module_type)/
 
-  * A1 = /admin/node/
-  * A2 = /admin/contexts/
-  * A3 = /admin/receivers/(context_ID)/
-  * A4 = /admin/modules/(context_ID)/(module_type)/
-
   * T1 = /tip/(Tip_ID)
   * T2 = /tip/(Tip_ID)/add_comment
   * T3 = /tip/(Tip_ID)/update_file
@@ -45,3 +40,9 @@ The API selection are made with the [U|R|T|A] + number
   * T5 = /tip/(Tip_ID)/download_material
   * T6 = /tip/(Tip_ID)/pertinence
 
+  * A1 = /admin/node/
+  * A2 = /admin/contexts/
+  * A3 = /admin/receivers/(context_ID)/
+  * A4 = /admin/modules/(context_ID)/(module_type)/
+
+The method should be GET POST DELETE PUT, and permit to request only the specified method(s)

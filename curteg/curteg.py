@@ -39,176 +39,75 @@ from globaleaks.utils.dummy import dummy_requests
 
 
 """
-Request schema definition, is derived by a parsing of 
-globaleaks.rest.api spec array
+Request schema,
+linking the identificative synthesis, the URL, the method
 """
-
 schema = {
      "U1" :['/node', ['GET'],'root'],
      "U2" :['/submission', ['GET'],'new'],
-     "U3" :['/submission/'+sID()+'/status',['GET','POST'],'status'],
-     # "U5" :['/submission/'+sID()+'/files', ['GET','POST','PUT','DELETE'],'files'],
-     "U4" :['/submission/'+sID()+'/finalize',['POST'],'finalize'],
-     "T1" :['/tip/', ['GET','POST'],'tip'],
-     "T2" :['/tip/'+tID()+'/comment', ['POST'],'comment'],
-     # "T3" :['/tip/'+tID()+'/files', ['GET','POST','PUT','DELETE'],'tipfiles'],
-     "T4" :['/tip/'+tID()+'/finalize', ['POST'],'tipfinalize'],
-     "T5" :['/tip/'+tID()+'/download', ['GET'],'download'],
-     "T6" :['/tip/'+tID()+'/pertinence', ['GET'],'pertinence'],
-     "R1" :['/receiver/' + tID(), ['GET'],'receiver'],
-     "R2" :['/receiver/' + tID() +'/notification', ['GET','POST','PUT','DELETE'],'module'],
-     "A1" :['/admin/node', ['GET','POST'],'node_adm'],
-     "A2" :['/admin/contexts/' + cID(), ['GET','POST','PUT','DELETE'],'contexts_adm'],
-     "A3" :['/admin/receivers/' +cID(), ['GET','POST','PUT','DELETE'],'receivers_adm'],
-     "A4" :['/admin/modules/'+cID()+'/notification', ['GET','POST'],'modules_adm']
+     "U3" :['/submission/'+sID()+'/status', {
+          'GET' : None,
+          'POST' : [ requests.submissionUpdate, dummy_requests.SUBMISSION_STATUS_POST ] 
+          } ],
+     # "U5" :['/submission/'+sID()+'/files', ['GET','POST','PUT','DELETE']],
+     "U4" :['/submission/'+sID()+'/finalize', {
+         'POST': [ requests.finalizeSubmission, dummy_requests.SUBMISSION_FINALIZE_POST ]
+         } ],
+     "T1" :['/tip/', {
+         'GET' : None,
+         'POST' : [ requests.tipOperations, dummy_requests.TIP_OPTIONS_POST ]
+         } ],
+     "T2" :['/tip/'+tID()+'/comment', {
+         'POST' : [ requests.sendComment, dummy_requests.TIP_COMMENT_POST ]
+         } ],
+     # "T3" :['/tip/'+tID()+'/files', ['GET','POST','PUT','DELETE']],
+     "T4" :['/tip/'+tID()+'/finalize', {
+         'POST' : [ requests.finalizeIntegration, dummy_requests.TIP_FINALIZE_POST ]
+         } ],
+     "T5" :['/tip/'+tID()+'/download', {
+         'GET' : None
+         } ],
+     "T6" :['/tip/'+tID()+'/pertinence', { 
+         'POST' : [ requests.pertinenceVote, dummy_requests.TIP_PERTINENCE_POST ]
+         } ],
+     "R1" :['/receiver/' + tID(), {
+         'GET' : None,
+         } ],
+     "R2" :['/receiver/' + tID() +'/notification', {
+         'GET' : None,
+         'POST' : [ requests.receiverOptions, dummy_requests.RECEIVER_MODULE_POST ],
+         'PUT' : [ requests.receiverOptions, dummy_requests.RECEIVER_MODULE_PUT ],
+         'DELETE' : [ requests.receiverOptions, dummy_requests.RECEIVER_MODULE_DELETE ]
+         } ],
+     "A1" :['/admin/node', {
+         'GET' : None,
+         'POST' : [ requests.nodeAdminSetup, dummy_requests.ADMIN_NODE_POST ]
+         } ],
+     "A2" :['/admin/contexts/' + cID(), {
+         'GET' : None,
+         'POST' : [ requests.contextConfiguration, dummy_requests.ADMIN_CONTEXTS_POST ],
+         'PUT' : [ requests.contextConfiguration, dummy_requests.ADMIN_CONTEXTS_PUT ],
+         'DELETE' : [ requests.contextConfiguration, dummy_requests.ADMIN_CONTEXTS_DELETE ]
+         } ],
+     "A3" :['/admin/receivers/' +cID(), {
+         'GET' : None,
+         'POST' : [ requests.receiverConfiguration, dummy_requests.ADMIN_RECEIVERS_POST ],
+         'PUT' : [ requests.receiverConfiguration(), dummy_requests.ADMIN_RECEIVERS_PUT ],
+         'DELETE' : [ requests.receiverConfiguration, dummy_requests.ADMIN_RECEIVERS_DELETE ]
+         } ],
+     "A4" :['/admin/modules/'+cID()+'/notification', {
+         'GET' : None,
+         'POST' : [ requests.moduleConfiguration, dummy_requests.ADMIN_MODULES_POST ]
+         } ]
 }
 
 baseurl = "127.0.0.1:8082"
 
 
 """
-In the requests, all the _GET are not reported.
-I understand that may seem lazy.
-err... maybe is not the best optimized code ever, having a so common
-sequence of code, with just two variable changing.
+29 elements, possible answerd that would be checked in integrity 
+             to understand if the backend hasanswered well
 """
-class requestorCollection:
-
-    @classmethod
-    def status_POST(self):
-
-        ret = requests.submissionUpdate()
-        dummy_requests.SUBMISSION_STATUS_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def finalize_POST(self):
-
-        ret = requests.finalizeSubmission()
-        dummy_requests.SUBMISSION_FINALIZE_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def tip_POST(self):
-
-        ret = requests.tipOperations()
-        dummy_requests.TIP_OPTIONS_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def comment_POST(self):
-
-        ret = requests.sendComment()
-        dummy_requests.TIP_COMMENT_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def tipfinalize_POST(self):
-
-        ret = requests.finalizeIntegration()
-        dummy_requests.TIP_FINALIZE_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def pertinence_POST(self):
-
-        ret = requests.pertinenceVote()
-        dummy_requests.TIP_PERTINENCE_VOTE(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def module_POST(self):
-
-        ret = requests.receiverOptions()
-        dummy_requests.RECEIVER_MODULE_POST(ret)
-        return ret.unroll()
-
-    @classmethod
-    def module_PUT(self):
-
-        ret = requests.receiverOptions()
-        dummy_requests.RECEIVER_MODULE_PUT(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def module_DELETE(self):
-
-        ret = requests.receiverOptions()
-        dummy_requests.RECEIVER_MODULE_DELETE(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def node_adm_POST(self):
-
-        ret = requests.nodeAdminSetup()
-        dummy_requests.ADMIN_NODE_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def contexts_adm_POST(self):
-
-        ret = requests.contextConfiguration()
-        dummy_requests.ADMIN_CONTEXTS_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def contexts_adm_PUT(self):
-
-        ret = requests.contextConfiguration()
-        dummy_requests.ADMIN_CONTEXTS_PUT(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def contexts_adm_DELETE(self):
-
-        ret = requests.contextConfiguration()
-        dummy_requests.ADMIN_CONTEXTS_PUT(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def receivers_adm_POST(self):
-
-        ret = requests.receiverConfiguration()
-        dummy_requests.ADMIN_RECEIVERS_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def receivers_adm_PUT(self):
-
-        ret = requests.receiverConfiguration()
-        dummy_requests.ADMIN_RECEIVERS_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def receivers_adm_DELETE(self):
-
-        ret = requests.receiverConfiguration()
-        dummy_requests.ADMIN_RECEIVERS_POST(ret)
-        return ret.unroll()
-
-
-    @classmethod
-    def modules_adm_POST(self):
-
-        ret = requests.moduleConfiguration()
-        dummy_requests.ADMIN_MODULES_POST(ret)
-        return ret.unroll()
-
-
 class answerorCollection:
 
     @classmethod
@@ -334,25 +233,47 @@ def do_curl(url, method, not_encoded_parm=''):
     return data
 
 
+"""
+['/submission/s_LCjNrPCGDqeMbQaIUbNbKUPtrrDuArvkEMlSAUwduQgJewpIfR/status', {'POST': [<class
+globaleaks.rest.requests.submissionUpdate at 0x224a0b8>, <function SUBMISSION_STATUS_POST at
+0x2252050>], 'GET': None}]
+"""
 def handle_selected_test(keyapi):
 
     url = schema[keyapi][0]
-    supportedMethods = schema[keyapi][1]
-    action = schema[keyapi][2]
+    methodsAndFunctions = schema[keyapi][1]
 
-    for method in supportedMethods:
+    requestedMethods = []
+    for meth in [ 'GET', 'POST', 'PUT', 'DELETE' ]:
+        if checkOpt(meth):
+            requestedMethods.append(meth)
 
-        if method != 'GET':
-            datareqf = getattr(requestorCollection, action + '_' + method)
-            request = datareqf()
-            output = do_curl(url, method, request)
-        else:
+    for method in methodsAndFunctions.iterkeys():
+        if len(requestedMethods) > 0 and not (method in requestedMethods):
+            print "skipping", url, method
+            continue
+
+        #___ answerGLT = methodsAndFunctions.get(method)[2]()
+
+        # GET has not a request, then
+        if method == 'GET':
             output = do_curl(url, method)
+            #___ compare_output(output, answerGLT)
+            continue
 
-        dataexpectf = getattr(answerorCollection, action + '_' + method)
-        # expected = dataexpectf()
+        # request generation: call globaleaks.rest.requests
+        requestGLT = methodsAndFunctions.get(method)[0]()
+        # request filling: call globaleaks.utils.dummy.dummy_requests
+        methodsAndFunctions.get(method)[1](requestGLT)
+        # requestGLT need to be .unroll() for be a dict
+        request = requestGLT.unroll()
 
-        # XXX compare 'output' with 'expected'
+        # If the option request modification of the request, here has to appen
+
+        # XXX
+
+        output = do_curl(url, method, request)
+        #___ compare_output(output, answerGLT)
 
 
 def checkOpt(option):
@@ -381,14 +302,14 @@ if checkOpt('request'):
 selective = False
 
 if len(sys.argv) >= 2:
-    for x in enumerate(sys.argv):
-        if x[1].find(':') != -1:
+    for opt in enumerate(sys.argv):
+        if opt[1].find(':') != -1:
             baseurl = x[1]
             print "switching test service to:", baseurl
 
-        if len(x[1]) == 2 and int(x[1][1]) < 7:
+        if len(opt[1]) == 2 and int(opt[1][1]) < 9:
             selective = True
-            handle_selected_test(x[1])
+            handle_selected_test(opt[1])
 
 if not selective:
     for tests in schema.iterkeys():
