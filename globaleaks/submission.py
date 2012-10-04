@@ -17,6 +17,12 @@ from globaleaks.utils.dummy import dummy_answers as dummy
 from globaleaks.rest import answers
 from globaleaks.utils import recurringtypes as GLT
 
+def mydirtydebug(body, uriargs, args, kw):
+    print "body", type(body), body
+    print "uriargs", type(uriargs), uriargs
+    print "args", type(args), args
+    print "kw", type(kw), kw
+
 
 class Submission(Processor):
     handler = None
@@ -101,15 +107,17 @@ class Submission(Processor):
 
     # U5
     @inlineCallbacks
-    def finalize_POST(self, submission_id, **form_fields):
+#    def finalize_POST(self, submission_id, **form_fields):
+    def finalize_POST(self, uriargs, body, *arg, **kw):
+        mydirtydebug(uriargs, body, arg, kw)
         """
         Finalize the submission and create data inside of the database.
         """
         receipt_id = unicode(idops.random_receipt_id())
-        self.handler.status_code = 201
         internal_tip = models.InternalTip()
         internal_tip.fields = form_fields
 
+        self.handler.status_code = 201
         yield internal_tip.save()
 
         whistleblower_tip = models.Tip()

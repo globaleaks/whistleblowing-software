@@ -9,6 +9,7 @@
 
 from datetime import datetime
 import validregexps
+import json
 
 """
 types is a module supporting the recurring types format in JSON
@@ -270,15 +271,19 @@ class GLTypes:
         """
         unrolled: a dict to be dumped in JSON format
         """
-        import json
-        return json.dumps(unrolled, default=dthandler)
+        return json.dumps(unrolled)
 
-    def aquire(self, receivedDict):
+    def aquire(self, receivedJson):
         """
         'aquire' is the method used for import and validate the
         received object. Its loop over the received dict. check if
         a key exists, and apply the validation regexp.
+        receivedJson: 
         """
+        print receivedJson
+        # receivedDict = dict(receivedJson)
+        # HOW TO SOLVE THIS THING ? 
+        return
 
         for k in receivedDict.iterkeys():
 
@@ -478,7 +483,6 @@ class contextDescriptionDict(GLTypes):
 
 
 class commentDescriptionDict(GLTypes):
-    # update: this is new
 
     def __init__(self):
 
