@@ -182,6 +182,8 @@ class GLBackendHandler(RequestHandler):
             # self.request = None
         else:
             raise HTTPError(503, "Missing of sanitizer function")
+
+        print "XX", self.safeRequest
         """
         return having a fixed self.safeRequest dict now available
         """

@@ -1,5 +1,5 @@
-import httplib, urllib, httplib2
-import sys, os
+import httplib, json
+import sys, os, time
 
 cwd = '/'.join(__file__.split('/')[:-1])
 sys.path.insert(0, os.path.join(cwd, '../'))
@@ -202,23 +202,20 @@ class answerorCollection:
 """
 
 def do_curl(url, method, not_encoded_parm=''):
-    params = urllib.urlencode(not_encoded_parm)
-    headers = {
-     "Content-type": "application/x-www-form-urlencoded",
-     "Accept": "text/plain",
-     "Accept": "application/json"
-              }
 
-    import time
+    headers = {'Content-Type': 'application/json-rpc; charset=utf-8'}
+    params = json.dumps(not_encoded_parm, ensure_ascii=False)
+    params.encode('utf-8')
+
     time.sleep(0.1)
     conn = httplib.HTTPConnection(baseurl)
 
     """
-    XXX here may be modify the dict struct
+    XXX here may be modify the dict struct, if option request
     """
 
     if checkOpt('request'):
-        print "[+] CONNECTION REQUEST:", method, baseurl, url, params, headers,"\n"
+        print "[+] CONNECTION REQUEST:", method, baseurl, url, not_encoded_parm, headers,"\n"
 
     conn.request(method, url, params, headers)
 
