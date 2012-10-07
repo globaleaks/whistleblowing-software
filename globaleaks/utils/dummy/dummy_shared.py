@@ -1,34 +1,58 @@
 from globaleaks.utils import recurringtypes as GLT
+from globaleaks.utils import idops
 
 """
-follow the internal filling methods called by the dummy filled below
+What's follow are the GLTypes base, filled with plausible buzzwords, usable by the
+dummy requests/answers files
 """
 
-def __publicStatisticsDict(datao):
+def _publicStatisticsDict(datao):
 
     datao.active_contexts = 2
     datao.active_receivers = 3
     datao.uptime_days = 100
 
 
-def __nodePropertiesDict(datao):
+def _nodePropertiesDict(datao):
 
     datao.AnonymousSubmissionOnly = True
 
 
-def __fileDict(datao):
+def _fileDict1(datao):
 
     datao.filename = "passwd.txt"
     datao.file_description = "a list of encrypted password"
-    datao.size = "4242"
+    datao.size = 4242
     datao.content_type = "plain/text"
     # datao.date
     datao.cleaned_meta_data = False
 
+def _fileDict2(datao):
 
-def __receiverDescriptionDict_0(datao):
+    datao.filename = "antani.pdf"
+    datao.file_description = "a list of terrible secrets"
+    datao.size = 3231
+    datao.content_type = "application/pdf"
+    # datao.date
+    datao.cleaned_meta_data = True
 
-    datao.rID = "r_HIGLEVEL_1_ID"
+
+def _folderDict(datao):
+
+    datao.fID = idops.random_folder_id()
+    datao.folder_name = "those from my chief personal USB key"
+    datao.folder_description = "He left the key in the office, does not contain jobs files, but some proof that is a Mafia thug"
+    datao.download_performed = 2
+
+    # one is sure
+    _FileDict(datao.files[0])
+    datao.files.append( GLT.fileDict() )
+    _FileDict(datao.files[1])
+
+
+def _receiverDescriptionDict0(datao):
+
+    datao.rID = idops.random_receiver_id()
     datao.CanDeleteSubmission = True
     datao.CanPostponeExpiration = True
     datao.CanConfigureNotification = True
@@ -44,9 +68,9 @@ def __receiverDescriptionDict_0(datao):
     datao.LanguageSupported[1] = "ES"
 
 
-def __receiverDescriptionDict_1(datao):
+def _receiverDescriptionDict1(datao):
 
-    datao.rID = "r_HIGHLEVEL_2_ID"
+    datao.rID = idops.random_receiver_id()
     datao.CanDeleteSubmission = True
     datao.CanPostponeExpiration = True
     datao.CanConfigureNotification = True
@@ -62,9 +86,9 @@ def __receiverDescriptionDict_1(datao):
     datao.LanguageSupported[1] = "FR"
 
 
-def __receiverDescriptionDict_2(datao):
+def _receiverDescriptionDict2(datao):
 
-    datao.rID = "r_LOWLEVEL_3_ID"
+    datao.rID = idops.random_receiver_id()
     datao.CanDeleteSubmission = False
     datao.CanPostponeExpiration = False
     datao.CanConfigureNotification = True
@@ -79,9 +103,9 @@ def __receiverDescriptionDict_2(datao):
     datao.LanguageSupported[1] = "KK"
 
 
-def __receiverDescriptionDict_3(datao):
+def _receiverDescriptionDict3(datao):
 
-    datao.rID = "r_LOWLEVEL_4_ID"
+    datao.rID = idops.random_receiver_id()
     datao.CanDeleteSubmission = False
     datao.CanPostponeExpiration = False
     datao.CanConfigureNotification = True
@@ -96,7 +120,7 @@ def __receiverDescriptionDict_3(datao):
     datao.LanguageSupported[1] = "KK"
 
 
-def __adminStatisticsDict(datao):
+def _adminStatisticsDict(datao):
 
     datao.hours_interval = 3
     datao.download_number = 30
@@ -104,7 +128,7 @@ def __adminStatisticsDict(datao):
     datao.submission_received = 2
 
 
-def __formFieldsDict_0(datao):
+def _formFieldsDict0(datao):
 
     datao.presentation_order = 1
     datao.name = "city"
@@ -115,7 +139,7 @@ def __formFieldsDict_0(datao):
     datao.value = "this is the default value"
 
 
-def __formFieldsDict_1(datao):
+def _formFieldsDict1(datao):
 
     datao.presentation_order = 2
     datao.label = "road"
@@ -126,7 +150,7 @@ def __formFieldsDict_1(datao):
     datao.value = "this is the default value"
 
 
-def __formFieldsDict_2(datao):
+def _formFieldsDict2(datao):
 
     datao.presentation_order = 3
     datao.label = "penality details"
@@ -137,7 +161,7 @@ def __formFieldsDict_2(datao):
     datao.value = "this is the default value"
 
 
-def __formFieldsDict_3(datao):
+def _formFieldsDict3(datao):
 
     datao.presentation_order = 4
     datao.label = "how do you know that ?"
@@ -148,9 +172,9 @@ def __formFieldsDict_3(datao):
     datao.value = "this is the default value"
 
 
-def __moduleDataDict_N(datao):
+def _moduleDataDict_N(datao):
 
-    datao.mID = "m_312321123"
+    datao.mID = idops.random_module_id()
     datao.active = True
     datao.module_type = "notification"
     datao.name = "Encrypted E-Mail"
@@ -165,13 +189,13 @@ def __moduleDataDict_N(datao):
     # the users.
     # this message is not displayed to the administrator
 
-    __formFieldsDict_0(datao.admin_options[0])
-    __formFieldsDict_1(datao.user_options[0])
+    _formFieldsDict0(datao.admin_options[0])
+    _formFieldsDict1(datao.user_options[0])
 
 
-def __moduleDataDict_D(datao):
+def _moduleDataDict_D(datao):
 
-    datao.mID = "m_8888888"
+    datao.mID = idops.random_module_id()
     datao.active = True
     datao.module_type = "delivery"
     datao.name = "upload in FTP"
@@ -179,36 +203,41 @@ def __moduleDataDict_D(datao):
 
     datao.service_message = "The latest time a delivery has been sent, it worked!"
 
-    __formFieldsDict_0(datao.admin_options[0])
-    __formFieldsDict_1(datao.user_options[0])
+    _formFieldsDict0(datao.admin_options[0])
+    _formFieldsDict1(datao.user_options[0])
 
 
 """
 remind: are declared FOUR fields by base
 """
-def __contextDescriptionDict_0(datao):
+def _contextDescriptionDict0(datao):
 
-    datao.cID = "c_CONTEXT_1"
+    datao.cID = idops.random_context_id()
     datao.name ="Autovelox broken"
     datao.context_description = "tell us which autovelox is working bad, we're tired of wrong fines!"
     # "creation_date", "time"
     # "append_date", "time"
 
-    __formFieldsDict_0(datao.fields[0])
-    __formFieldsDict_1(datao.fields[1])
-    __formFieldsDict_2(datao.fields[2])
-    __formFieldsDict_3(datao.fields[3])
+    # only 1 form is *required*, other can be expanded
+    _formFieldsDict0(datao.fields[0])
+
+    datao.fields.append ( GLT.formFieldsDict() )
+    _formFieldsDict1(datao.fields[1])
+    datao.fields.append ( GLT.formFieldsDict() )
+    _formFieldsDict2(datao.fields[2])
+    datao.fields.append ( GLT.formFieldsDict() )
+    _formFieldsDict3(datao.fields[3])
 
     datao.SelectableReceiver = False
 
     datao.receivers.append ( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_0(datao.receivers[0])
+    _receiverDescriptionDict0(datao.receivers[0])
     datao.receivers.append ( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_1(datao.receivers[1])
+    _receiverDescriptionDict1(datao.receivers[1])
     datao.receivers.append ( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_2(datao.receivers[2])
+    _receiverDescriptionDict2(datao.receivers[2])
     datao.receivers.append ( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_3(datao.receivers[3])
+    _receiverDescriptionDict3(datao.receivers[3])
 
     datao.EscalationTreshold = 4
 
@@ -218,11 +247,11 @@ def __contextDescriptionDict_0(datao):
     datao.LanguageSupported[0] = "EN"
 
 
-def __contextDescriptionDict_1(datao):
-    __contextDescriptionDict_0(datao)
+def _contextDescriptionDict1(datao):
+    _contextDescriptionDict0(datao)
 
 
-def __commentDescriptionDict(datao):
+def _commentDescriptionDict(datao):
 
     datao.writtentext = "Hello, I've readed your stuff, I like it"
     datao.commenttype = "receiver"
@@ -230,24 +259,23 @@ def __commentDescriptionDict(datao):
     # date ? default
 
 
-def __tipIndexDict(datao):
+def _tipIndexDict(datao):
 
-    datao.cID = "c_context31312_ID"
+    datao.cID = idops.random_context_id()
 
     datao.tiplist.append( GLT.tipSubIndex() )
-    __tipSubIndex(datao.tiplist[0])
+    _tipSubIndex(datao.tiplist[0])
 
 
-def __tipSubIndex(datao):
+def _tipSubIndex(datao):
 
-    datao.tID = "t_321312312"
+    datao.tID = idops.random_tip_id()
     datao.tip_title = "Greatest secret of all world - Enter the ninja"
 
     datao.notification_adopted = "default email"
     datao.delivery_adopted = "default download"
 
     datao.download_limit = 5
-    datao.download_performed = 2
     datao.access_limit = 100
     datao.access_performed = 33
 
@@ -260,144 +288,24 @@ def __tipSubIndex(datao):
     datao.overall_pertinence = 101
 
 
-def tipDetailsDict(datao):
+def _tipDetailsDict(datao):
 
-    __tipSubIndex(datao.tip)
+    _tipSubIndex(datao.tip)
 
     datao.tip_data.append( GLT.formFieldsDict() )
-    __formFieldsDict_3(datao.tip_data[0])
+    _formFieldsDict3(datao.tip_data[0])
 
     datao.folder.append( GLT.fileDict() )
-    __fileDict(datao.folder[0])
+    _fileDict(datao.folder[0])
 
     datao.comment.append( GLT.commentDescriptionDict() )
-    __commentDescriptionDict(datao.comment[0])
+    _commentDescriptionDict(datao.comment[0])
 
     datao.receiver_selected.append( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_0(datao.receiver_selected)
+    _receiverDescriptionDict0(datao.receiver_selected)
 
 
-def __localizationDict(datao):
+def _localizationDict(datao):
     pass
 
-
-"""
-Those functions may be called by the various handlers,
-in example dummynode is called by node.py
-"""
-def NODE_ROOT_GET(datao):
-
-    dir(datao)
-    datao.contexts.append( GLT.contextDescriptionDict() )
-    __contextDescriptionDict_0(datao.contexts[0])
-
-    datao.contexts.append( GLT.contextDescriptionDict() )
-    __contextDescriptionDict_1(datao.contexts[1])
-
-    __publicStatisticsDict(datao.public_statistics)
-    __nodePropertiesDict(datao.node_properties)
-
-    datao.public_site = "http://www.matrixenter.int"
-    datao.hidden_service = "cnwoecowiecnirnio23rn23io.onion"
-    datao.url_schema = "/"
-    datao.name = "don't track us: AUTOVELOX"
-
-def SUBMISSION_NEW_GET(datao):
-
-    # this would be useless when the default value would
-    # be already assigned
-    datao.submission_id = "s_Temporary_submt_ID"
-
-def SUBMISSION_STATUS_GET(datao):
-
-    datao.receivers_selected.append( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_1(datao.receivers_selected[0])
-
-    datao.receivers_selected.append( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_2(datao.receivers_selected[1])
-
-    # the first one is always present, because may not exists a submission
-    # without almost 1 field
-    __formFieldsDict_0(datao.fields[0])
-
-    datao.fields.append( GLT.formFieldDict() )
-    __formFieldsDict_1(datao.fields[1])
-
-    datao.fields.append( GLT.formFieldDict() )
-    __formFieldsDict_2(datao.fields[2])
-
-def SUBMISSION_NEW_GET(datao):
-
-    datao.submission_id = "s_312342112_ID"
-
-def SUBMISSION_FILES_GET(datao):
-
-    __fileDict(datao)
-
-def RECEIVER_ROOT_GET(datao):
-
-    __tipIndexDict(datao.tips)
-    __receiverDescriptionDict_3(datao.receiver_properties)
-
-    # both of them are already present, because do not exist
-    # a backend with almost one of them.
-    __moduleDataDict_N(datao.notification_method[0])
-    __moduleDataDict_D(datao.delivery_method[0])
-
-def RECEIVER_MODULE_GET(datao):
-
-    # no one may be available
-    datao.modules.append( GLT.moduleDataDict() )
-    __moduleDataDict_N(datao.modules[0])
-
-    datao.modules.append( GLT.moduleDataDict() )
-    __moduleDataDict_D(datao.modules[1])
-
-def TIP_ROOT_GET(datao):
-
-    __tipDetailsDict(datao)
-
-def ADMIN_NODE_GET(datao):
-
-    datao.name = "don't track us: AUTOVELOX"
-
-    __adminStatisticsDict(datao.admin_statistics)
-    __publicStatisticsDict(datao.public_statistics)
-    __nodePropertiesDict(datao.node_properties)
-
-    datao.contexts.append( GLT.contextDescriptionDict() )
-    __contextDescriptionDict_0(datao.contexts[0])
-
-    datao.contexts.append( GLT.contextDescriptionDict() )
-    __contextDescriptionDict_1(datao.contexts[1])
-
-    datao.public_site = "http://www.matrixenter.int"
-    datao.hidden_service = "cnwoecowiecnirnio23rn23io.onion"
-    datao.url_schema = "/"
-
-
-def ADMIN_CONTEXTS_GET(datao):
-
-    datao.contexts.append( GLT.contextDescriptionDict() )
-    __contextDescriptionDict_0(datao.contexts[0])
-
-
-def ADMIN_RECEIVERS_GET(datao):
-
-    datao.receivers.append( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_0(datao.receivers[0])
-    datao.receivers.append( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_1(datao.receivers[1])
-    datao.receivers.append( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_2(datao.receivers[2])
-    datao.receivers.append( GLT.receiverDescriptionDict() )
-    __receiverDescriptionDict_3(datao.receivers[3])
-
-def ADMIN_MODULES_GET(datao):
-
-    datao.modules.append( GLT.moduleDataDict() )
-    __moduleDataDict_N(datao.modules[0])
-
-    datao.modules.append( GLT.moduleDataDict() )
-    __moduleDataDict_D(datao.modules[1])
 

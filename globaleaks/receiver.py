@@ -6,26 +6,8 @@
 #   :license: see LICENSE
 #
 from globaleaks import Processor
-from globaleaks.utils import recurringtypes as GLT
-from globaleaks.utils import dummy
-
-class commonReceiverAnswer(GLT.GLTypes):
-
-    def __init__(self):
-
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-
-        self.define("tips", GLT.tipIndexDict() )
-        self.define("receiver_properties", GLT.receiverDescriptionDict() )
-
-        self.define_array("notification_method", GLT.moduleDataDict() , 1)
-        self.define_array("delivery_method", GLT.moduleDataDict() , 1)
-
-class receiverModuleAnswer(GLT.GLTypes):
-
-    def __init__(self):
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define_array("modules", GLT.moduleDataDict() )
+from globaleaks.rest import answers
+from globaleaks.utils.dummy import dummy_answers as dummy
 
 
 class Receiver(Processor):
@@ -40,7 +22,7 @@ class Receiver(Processor):
     # R1
     def root_GET(self, *arg, **kw):
 
-        ret = commonReceiverAnswer()
+        ret = answers.commonReceiverAnswer()
 
         dummy.RECEIVER_ROOT_GET(ret)
 
@@ -49,7 +31,7 @@ class Receiver(Processor):
     # R2
     def module_GET(self, *arg, **kw):
 
-        ret = receiverModuleAnswer()
+        ret = answers.receiverModuleAnswer()
 
         dummy.RECEIVER_MODULE_GET(ret)
 

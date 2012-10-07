@@ -1,20 +1,18 @@
-"""
-Sanitizer goals: every field need to be checked, escaped
-if something is wrong in format, raise an exception
+# Sanitizer goals: every field need to be checked, escaped
+# if something is wrong in format, raise an exception
 
-Sanitizer classes facts:
+# Sanitizer classes facts:
 
-. The variables returned from all the following functions, 
-  is a dict, because in the next step would be passed as (*arg, **kw)
-. sanitizer is called after the validation, therefore we're
-  guarantee that the fields here analyzed are coherent with the
-  specified API
-. Text would be converted in unicode in this functions
-. Exist some helper function performing the checks, they are
-  private modules implemented in globaleaks.utils.sanitychecks
-. Modules, having a dedicated set of fields, implement their
-  own sanitizer method, globaleaks.utils.modules support in that
-"""
+# . The variables returned from all the following functions,
+#   is a dict, because in the next step would be passed as (*arg, **kw)
+# . sanitizer is called after the validation, therefore we're
+#   guarantee that the fields here analyzed are coherent with the
+#  specified API
+# . Text would be converted in unicode in this functions
+# . Exist some helper function performing the checks, they are
+#   private modules implemented in globaleaks.utils.sanitychecks
+# . Modules, having a dedicated set of fields, implement their
+#   own sanitizer method, globaleaks.utils.modules support in that
 
 
 """
