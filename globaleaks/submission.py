@@ -10,44 +10,12 @@
 from twisted.internet.defer import returnValue, inlineCallbacks
 from globaleaks.db import models, transactor
 from globaleaks.db import transact
-from globaleaks.utils.random import random_string
+from globaleaks.utils import idops
 from globaleaks import Processor
 
+from globaleaks.utils.dummy import dummy_answers as dummy
+from globaleaks.rest import answers
 from globaleaks.utils import recurringtypes as GLT
-from datetime import datetime
-from globaleaks.utils import dummy
-
-
-"""
-Move this utility in globaleaks.utils.random or globaleaks.utils.id ?
-remind: ID need to be unique, and may support a prefix
-"""
-def random_submission_id():
-    import random
-    import string
-    length = 50
-    return ''.join(random.choice(string.ascii_letters) for x in range(length))
-
-def random_receipt_id():
-    import random
-    import string
-    length = 10
-    return ''.join(random.choice('0123456789') for x in range(length))
-
-class newSubmission(GLT.GLTypes):
-    def __init__(self):
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define('submission_id', 'sessionID')
-
-class submissionStatus(GLT.GLTypes):
-
-    def __init__(self):
-
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-
-        self.define('creation_time', 'Time')
-        self.define_array('fields', GLT.formFieldsDict(), 1)
-        self.define_array('receivers')
 
 
 class Submission(Processor):
@@ -61,8 +29,9 @@ class Submission(Processor):
         Creates an empty submission and returns the ID to the WB.
         """
         self.handler.status_code = 201
-        ret = newSubmission()
+        ret = answers.newSubmission()
 
+        # submission_id = idops.random_submission_id()
         dummy.SUBMISSION_NEW_GET(ret)
 
         return ret.unroll()
@@ -74,7 +43,7 @@ class Submission(Processor):
     """
     def status_GET(self, submission_id, *arg, **kw):
 
-        ret = submissionStatus()
+        ret = answers.submissionStatus()
 
         dummy.SUBMISSION_STATUS_GET(ret)
 
@@ -136,7 +105,7 @@ class Submission(Processor):
         """
         Finalize the submission and create data inside of the database.
         """
-        receipt_id = unicode(random_receipt_id())
+        receipt_id = unicode(idops.random_receipt_id())
         self.handler.status_code = 201
         internal_tip = models.InternalTip()
         internal_tip.fields = form_fields
@@ -149,5 +118,11 @@ class Submission(Processor):
 
         yield whistleblower_tip.save()
 
-        returnValue({'receipt': receipt_id})
+        # this has not to return directly, ya ? need to be 
+        # returned by handers (that perform the GLTypes.unroll() operation,
+        # perhaps, so we're sure that would not be hardcoded an 
+        # arbitrary dict
 
+        ret = answers.finalizeSubmission()
+        # you can't use "return" in a function with generators
+        returnValue(ret.unroll())

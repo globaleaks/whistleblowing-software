@@ -1,6 +1,7 @@
 try:
     from Crypto.Random import random
 except:
+    # remind -- XXX it's just during the dev time
     print "Warning!! We will be using an insecure random number generator."
     print "Please install Pycrypto"
     import random

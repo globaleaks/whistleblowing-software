@@ -10,45 +10,8 @@
 
 from globaleaks import Processor
 from globaleaks import node
-from globaleaks.utils import recurringtypes as GLT
-from globaleaks.utils import dummy
-
-
-class nodeMainSettings(GLT.GLTypes):
-
-    def __init__(self):
-
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-
-        self.define("name", "string")
-        self.define("admin_statistics", GLT.adminStatisticsDict() )
-        self.define("public_statistics", GLT.publicStatisticsDict() )
-        self.define("node_properties", GLT.nodePropertiesDict() )
-
-        # self.define("node_description", GLT.localizationDict() )
-        # localizationDict -- i need to understand how can be interfaced
-        # with POT files
-
-        self.define_array("contexts", GLT.contextDescriptionDict() )
-        self.define("public_site", "string")
-        self.define("hidden_service", "string")
-        self.define("url_schema", "string")
-
-
-class adminContextsCURD(GLT.GLTypes):
-    def __init__(self):
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define_array("contexts", GLT.contextDescriptionDict() )
-
-class adminReceiverCURD(GLT.GLTypes):
-    def __init__(self):
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define_array("receivers", GLT.receiverDescriptionDict() )
-
-class adminModulesUR(GLT.GLTypes):
-    def __init__(self):
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define_array("modules", GLT.moduleDataDict() )
+from globaleaks.rest import answers
+from globaleaks.utils.dummy import dummy_answers as dummy
 
 
 class Admin(Processor):
@@ -59,7 +22,7 @@ class Admin(Processor):
     """
     def node_GET(self, *arg, **kw):
 
-        ret = nodeMainSettings()
+        ret = answers.nodeMainSettings()
 
         dummy.ADMIN_NODE_GET(ret)
 
@@ -75,7 +38,7 @@ class Admin(Processor):
     """
     def contexts_GET(self, *arg, **kw):
 
-        ret = adminContextsCURD()
+        ret = answers.adminContextsCURD()
 
         dummy.ADMIN_CONTEXTS_GET(ret)
 
@@ -97,7 +60,7 @@ class Admin(Processor):
     """
     def receivers_GET(self, *arg, **kw):
 
-        ret = adminReceiverCURD()
+        ret = answers.adminReceiverCURD()
 
         dummy.ADMIN_RECEIVERS_GET(ret)
 
@@ -120,7 +83,7 @@ class Admin(Processor):
     """
     def modules_GET(self, *arg, **kw):
 
-        ret = adminModulesUR()
+        ret = answers.adminModulesUR()
 
         dummy.ADMIN_MODULES_GET(ret)
 
