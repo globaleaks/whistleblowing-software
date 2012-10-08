@@ -42,7 +42,7 @@ class validatorRegExps:
     context start with "c_", 
     module with "m_"
     receiver with "r_"
-    session with "s_" 
+    submission with "s_" 
 
     for be easily recognezed by human eye 
     """
@@ -59,7 +59,7 @@ class validatorRegExps:
     def receiverIDcheckf(self, value):
         return idops.regexp_receiver_id(value)
     @classmethod
-    def sessionIDcheckf(self, value):
+    def submissionIDcheckf(self, value):
         return idops.regexp_submission_id(value)
     @classmethod
     def folderIDcheckf(self, value):
@@ -71,7 +71,6 @@ class validatorRegExps:
     @classmethod
     def receiptIDcheckf(self, value):
         return idops.regexp_receipt_id(value)
-
 
 
     """
@@ -124,11 +123,15 @@ class defltvals:
         return idops.random_tip_id()
 
     @classmethod
+    def receiptIDdeflt(self):
+        return idops.random_receipt_id()
+
+    @classmethod
     def receiverIDdeflt(self):
         return idops.random_receiver_id()
 
     @classmethod
-    def sessionIDdeflt(self):
+    def submissionIDdeflt(self):
         return idops.random_submission_id()
 
     @classmethod
