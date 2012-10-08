@@ -32,7 +32,7 @@ class nodeMainSettings(GLT.GLTypes):
 class newSubmission(GLT.GLTypes):
     def __init__(self):
         GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define('submission_id', 'sessionID')
+        self.define('submission_id', 'submissionID')
         self.define('creation_time', 'time')
 
 # U3 
