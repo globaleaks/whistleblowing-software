@@ -2,7 +2,7 @@ from globaleaks.utils import recurringtypes as GLT
 from globaleaks.utils import idops
 
 """
-What's follow are the GLTypes base, filled with plausible buzzwords, usable by the 
+What's follow are the GLTypes base, filled with plausible buzzwords, usable by the
 dummy requests/answers files
 """
 
@@ -132,39 +132,43 @@ def _formFieldsDict0(datao):
 
     datao.presentation_order = 1
     datao.name = "city"
+    datao.label = "city"
     datao.required = True
-    datao.field_description = "the city of the autovelox"
-    datao.field_type = "text"
+    datao.hint = "the city of the autovelox"
+    datao.type = "text"
     datao.value = "this is the default value"
 
 
 def _formFieldsDict1(datao):
 
     datao.presentation_order = 2
+    datao.label = "road"
     datao.name = "road"
     datao.required = True
-    datao.field_description = "the road where the autovelox is running"
-    datao.field_type = "text"
+    datao.hint = "the road where the autovelox is running"
+    datao.type = "text"
     datao.value = "this is the default value"
 
 
 def _formFieldsDict2(datao):
 
     datao.presentation_order = 3
-    datao.name = "penality details"
+    datao.label = "penality details"
+    datao.name = "dict2"
     datao.required = True
-    datao.field_description = "put the number of the penality"
-    datao.field_type = "int"
+    datao.hint = "put the number of the penality"
+    datao.type = "int"
     datao.value = "this is the default value"
 
 
 def _formFieldsDict3(datao):
 
     datao.presentation_order = 4
-    datao.name = "how do you know that ?"
+    datao.label = "how do you know that ?"
+    datao.name = "dict3"
     datao.required = False
-    datao.field_description = "details: eg, do you present your case to a judge ?"
-    datao.field_type = "text"
+    datao.hint = "details: eg, do you present your case to a judge ?"
+    datao.type = "text"
     datao.value = "this is the default value"
 
 
@@ -181,7 +185,7 @@ def _moduleDataDict_N(datao):
     # datao.service_message = "Your PGP key is correctly configured"
     datao.service_message = "You have not yet configured your PGP key"
     # those was the first three "service_message" that come in mind,
-    # this field act as report/error/status message from the module to 
+    # this field act as report/error/status message from the module to
     # the users.
     # this message is not displayed to the administrator
 
@@ -237,7 +241,7 @@ def _contextDescriptionDict0(datao):
 
     datao.EscalationTreshold = 4
 
-    # this would be derived by the mix of the supported 
+    # this would be derived by the mix of the supported
     # language in the receivers corpus
     datao.LanguageSupported.append( "string ")
     datao.LanguageSupported[0] = "EN"
