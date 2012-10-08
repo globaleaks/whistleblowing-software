@@ -14,13 +14,17 @@ import string
 #                     first argument, if fit with the appropriate format
 
 
-def random_submission_id():
+def random_submission_id(testingmode=False):
     """
     this need to be not guessable because this secret auth the WB
     during the submission procedure.
     """
     length = 50
-    return 's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+
+    if testingmode:
+        return 's_'+(''.join(random.choice('A') for x in range(length)))
+    else:
+        return 's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def regexp_submission_id(sID):
 
@@ -28,7 +32,7 @@ def regexp_submission_id(sID):
     return True if outre != None else False
 
 
-def random_receipt_id():
+def random_receipt_id(testingmode=False):
     """
     need to be NOT guessable
     internal settings may change the kind of the output provided (in example,
@@ -36,7 +40,11 @@ def random_receipt_id():
     the authentication of receiver maybe extended in security freature
     """
     length = 10
-    return ''.join(random.choice('0123456789') for x in range(length))
+
+    if testingmode:
+        return '1234567890'
+    else:
+        return ''.join(random.choice('0123456789') for x in range(length))
 
 def regexp_receipt_id(receipt):
 
