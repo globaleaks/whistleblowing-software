@@ -49,3 +49,21 @@ platforms (Windows, OSX, Debian) with a particular focus for desktop environment
 
 Learn more about GlobaLeaks by checking out the [developer documentation](https://github.com/globaleaks/GlobaLeaks/wiki/Home)!
 
+# Sneak peak of WIP
+
+If you are dying to try out the new GlobaLeaks 0.2 you can run the following commands to start GLBackend and see the client UI.
+
+    git clone https://github.com/globaleaks/GLBackend
+    git clone https://github.com/globaleaks/GLClient
+    # It is important that they are both in the same directory
+    cd GLBackend
+    virtualenv -p python2.7 glenv
+    source glenv/bin/activate
+    pip -r requirements.txt
+    python globaleaks/backend.py
+    
+Now you may point your browser to http://127.0.0.1:8082/index.html and have a sneak peak at GL 0.2.
+
+Have fun :)
+
+
