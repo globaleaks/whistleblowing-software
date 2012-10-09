@@ -21,6 +21,7 @@ The verbosity options are:
 
     request
     response
+    verbose
 
 The API selection are made with the [U|R|T|A] + number
 
@@ -30,8 +31,8 @@ The API selection are made with the [U|R|T|A] + number
   * U4 = /submission/(submission_id)/finalize
   * U5 = /submission/(submission_id)/upload_file
 
-  * R1 = /receiver/(string t_id)/overview
-  * R2 = /receiver/(string t_id)/(module_type)/
+  * R1 = /receiver/(Tip_ID)/overview
+  * R2 = /receiver/(Tip_ID)/(module_type)/
 
   * T1 = /tip/(Tip_ID)
   * T2 = /tip/(Tip_ID)/add_comment
@@ -46,3 +47,34 @@ The API selection are made with the [U|R|T|A] + number
   * A4 = /admin/modules/(context_ID)/(module_type)/
 
 The method should be GET POST DELETE PUT, and permit to request only the specified method(s)
+
+### special options
+
+Two special options are available, that enable more creative usage and testing combos for
+GLBackend.
+
+    hand
+    print-[*]
+
+As the other options, they can be put in every section of the command line.
+
+**hand** permit to edit by hand the JSON struct that is ready to be sent, it open a vim editor
+and a pickle object (ok, nasty to be edited, but works)
+
+**print-[*]** work in conjunction with other keywords, like "print-submission\_id". The output
+printed is just the receiver submission\_id in this case, and its useful for script sequence
+of operations that perform a complete submission, in example, or automated operations.
+
+### ID selection
+
+Tip, Context and Submission IDs shall be set via command line, like:
+
+    python curteg.py U3 sid s_aFBKvAqTiZWhaIiHVnqSRUtFOGOnsAbeABMTrmaDUPoRyXyWUu
+
+Just for remind, the expected format of the ID is defined in
+**/globaleaks/utils/validregexps.py**
+
+### Combined script
+
+more complex sequence shall be organized using curteg, and emulate large amount of submission,
+access and so on. Some example shall be found in the scripts subdirectory
