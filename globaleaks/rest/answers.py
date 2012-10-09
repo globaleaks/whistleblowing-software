@@ -11,6 +11,29 @@
 
 from globaleaks.utils import recurringtypes as GLT
 
+# This is the struct containing the errors
+class errorMessage(GLT.GLTypes):
+
+    def __init__(self, httpErrorCode=False, errorDict=False):
+        """
+        errorMessage may be used as inline object declaration and assignment
+        """
+
+        GLT.GLTypes.__init__(self, self.__class__.__name__)
+
+        self.define("http_error_code", "int")
+        self.define("error_code", "int")
+        self.define("error_message", "string")
+            # this is just a string, in the client the right
+            # translated error, would be hooked using error_code
+
+        if httpErrorCode:
+            self.http_error_code = httpErrorCode
+
+        if errorDict:
+            self.error_code = errorDict.get('code')
+            self.error_message = errorDict.get('message')
+
 # U1
 class nodeMainSettings(GLT.GLTypes):
 
@@ -32,7 +55,7 @@ class nodeMainSettings(GLT.GLTypes):
 class newSubmission(GLT.GLTypes):
     def __init__(self):
         GLT.GLTypes.__init__(self, self.__class__.__name__)
-        self.define('submission_id', 'submissionID')
+        self.define('submission_id', 'sessionID')
         self.define('creation_time', 'time')
 
 # U3 
