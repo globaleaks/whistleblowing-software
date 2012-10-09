@@ -1,5 +1,9 @@
 from storm.twisted.transact import transact
 from storm.locals import *
+import pickle
+
+# under the voce of "needlessy overcomplications", Twister + Storm
+# http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
 
 from globaleaks.db import getStore, transactor
 
@@ -43,15 +47,54 @@ class Submission(TXModel):
     __storm_table__ = 'submission'
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, temporary_id INTEGER, fields VARCHAR, "\
-                   " created VARCHAR)"
+                   "(id INTEGER PRIMARY KEY, submission_id VARCHAR, fields VARCHAR, "\
+                   " opening_date DATETIME, receivers VARCHAR, folder_id INTEGER)"
 
+    """
+    A doubt: but does this variable need to be class variable, and not object vars ?
+    """
     id = Int(primary=True)
-
-    temporary_id = Int()
-
+    submission_id = unicode() # Int()
+    folder_id = Int()
     fields = Pickle()
-    created = Date()
+    receivers = Pickle()
+    opening_date = Date()
+
+    def submissionDebug(self):
+
+        unp_fields = unp_recvs = ''
+
+        if self.fields:
+            unp_fields = pickle.loads(self.fields)
+        if self.receivers:
+            unp_recvs = pickle.loads(self.receivers)
+
+        print "[D] id, submission_id, fields, receivers, date", self.id, self.submission_id, unp_fields, unp_recvs, self.opening_date
+
+    @transact
+    def resume(self, received_sid):
+
+        store = getStore()
+
+        # TODO checks if multiple match exists, in this case, is an administrative error
+        choosen = store.find(Submission, Submission.submission_id == received_sid).one()
+
+        # XXX something is not working here :(
+
+        if not choosen:
+            store.close()
+            raise AttributeError("received submission_id not found")
+            # I'm using AttributeError just because generic Exception
+            # is giving some python issue -- would be used a more appropriate way
+
+        Submission.id = choosen.id
+        Submission.submission_id = choosen.submission_id
+        Submission.receivers = choosen.receivers
+        Submission.opening_date = choosen.opening_date
+        Submission.fields = choosen.fields
+
+        store.close()
+
 
 class File(TXModel):
     """
@@ -167,3 +210,7 @@ class Receiver(TXModel):
     private_name = Unicode()
 
 
+"""
+Triva, this file implement the 0.2 version of GlobaLeaks, then:
+Enter the Ginger - http://www.youtube.com/watch?v=uUD9NBSJvqo 
+"""

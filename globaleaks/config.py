@@ -10,3 +10,9 @@ except:
     path = '/tmp'
 print "Path %s" % path
 glbackend.glclient_path = path
+
+# temporary use for implement submission.py
+glbackend.test = OD()
+glbackend.test.wbCanSetReceivers = True
+glbackend.test.defaultAllReceiverSets = True
+glbackend.test.permitReceiptChoose = True

@@ -43,11 +43,9 @@ request may be passed.
 """
 from globaleaks.rest import requests
 
-def mydirtydebug(body, uriargs, args, kw):
-    print "body", type(body), body
-    print "uriargs", type(uriargs), uriargs
-    print "args", type(args), args
-    print "kw", type(kw), kw
+def mydirtydebug(who, body, uriargs, args, kw):
+    print who, body, uriargs,  args, kw
+    pass
 
 class SubmissionValidator(object):
 
@@ -68,7 +66,7 @@ class SubmissionValidator(object):
         """
         U3, has uriargs and body
         """
-        mydirtydebug(body, uriargs, args, kw)
+        mydirtydebug(__name__, body, uriargs, args, kw)
         expected = requests.submissionUpdate()
         expected.aquire(body)
         return True
@@ -78,7 +76,7 @@ class SubmissionValidator(object):
         """
         finalize the folder, receive comments, stabilize fields/receivers
         """
-        mydirtydebug(body, uriargs, args, kw)
+        mydirtydebug(__name__, body, uriargs, args, kw)
         expected = requests.finalizeSubmission()
         expected.aquire(body)
         return True
@@ -105,7 +103,7 @@ class TipValidator(object):
         """
         finalize the update of a new folder
         """
-        mydirtydebug(body, uriargs, args, kw)
+        mydirtydebug(__name__, body, uriargs, args, kw)
 
         expected = requests.finalizeIntegration()
         expected.aquire(body)
@@ -117,7 +115,7 @@ class TipValidator(object):
         """
         Validation of comment
         """
-        mydirtydebug(body, uriargs, args, kw)
+        mydirtydebug(__name__, body, uriargs, args, kw)
 
         expected = requests.sendComment()
         expected.aquire(body)
@@ -141,7 +139,7 @@ class ReceiverValidator(object):
     """
     @classmethod
     def module(self, uriargs, body, *args, **kw):
-        mydirtydebug(body, uriargs, args, kw)
+        mydirtydebug(__name__, body, uriargs, args, kw)
         expected = requests.receiverOptions()
         expected.aquire(body)
         return True

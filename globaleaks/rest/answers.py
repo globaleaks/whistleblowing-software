@@ -69,7 +69,7 @@ class submissionStatus(GLT.GLTypes):
         self.define_array('receivers', GLT.receiverDescriptionDict() )
         self.define('creation_time', 'time')
 
-# U5
+# U4
 class finalizeSubmission(GLT.GLTypes):
 
     def __init__(self):
@@ -77,6 +77,7 @@ class finalizeSubmission(GLT.GLTypes):
         GLT.GLTypes.__init__(self, self.__class__.__name__)
         self.define('receipt', 'receiptID')
 
+# U5 -- files -- TODO
 
 # T1 use the base GLT.tipDetailsDict
 
