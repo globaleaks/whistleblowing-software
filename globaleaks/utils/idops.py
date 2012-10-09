@@ -90,9 +90,9 @@ def random_folder_id():
     length = 20
     return 'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def regexp_context_id(cID):
+def regexp_folder_id(fID):
 
-    outre = re.match('c_[a-zA-Z]{20,20}$', cID)
+    outre = re.match('f_[a-zA-Z]{20,20}$', cID)
     return True if outre != None else False
 
 
