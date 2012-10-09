@@ -135,8 +135,8 @@ def _formFieldsDict0(datao):
     datao.label = "city"
     datao.required = True
     datao.hint = "the city of the autovelox"
-    datao.type = "text"
     datao.value = "this is the default value"
+    datao.type = "text"
 
 
 def _formFieldsDict1(datao):
@@ -146,8 +146,8 @@ def _formFieldsDict1(datao):
     datao.name = "road"
     datao.required = True
     datao.hint = "the road where the autovelox is running"
-    datao.type = "text"
     datao.value = "this is the default value"
+    datao.type = "text"
 
 
 def _formFieldsDict2(datao):
@@ -157,8 +157,8 @@ def _formFieldsDict2(datao):
     datao.name = "dict2"
     datao.required = True
     datao.hint = "put the number of the penality"
-    datao.type = "int"
     datao.value = "this is the default value"
+    datao.type = "int"
 
 
 def _formFieldsDict3(datao):
@@ -168,8 +168,8 @@ def _formFieldsDict3(datao):
     datao.name = "dict3"
     datao.required = False
     datao.hint = "details: eg, do you present your case to a judge ?"
-    datao.type = "text"
     datao.value = "this is the default value"
+    datao.type = "text"
 
 
 def _moduleDataDict_N(datao):

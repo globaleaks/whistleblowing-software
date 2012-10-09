@@ -8,52 +8,90 @@
 #   Implements a GlobaLeaks submission.
 
 from twisted.internet.defer import returnValue, inlineCallbacks
+
 from globaleaks.db import models, transactor
-from globaleaks.db import transact
 from globaleaks.utils import idops
 from globaleaks import Processor
 
 from globaleaks.utils.dummy import dummy_answers as dummy
-from globaleaks.rest import answers
 from globaleaks.utils import recurringtypes as GLT
+from globaleaks.rest import answers
+from globaleaks.rest.errors import GLErrorCode
 
-def mydirtydebug(body, uriargs, args, kw):
-    print "body", type(body), body
-    print "uriargs", type(uriargs), uriargs
-    print "args", type(args), args
-    print "kw", type(kw), kw
+import pickle
+
+def mydirtydebug(whoami, safereq, uriargs, args, kw):
+    print "[:>]", whoami, safereq, type(uriargs), uriargs, args, kw
 
 
 class Submission(Processor):
     handler = None
-    model = models.Submission()
-    transactor = transactor
+    model = models.Submission() # idem, non viene mai usata
+    transactor = transactor # TO be removed  ?
 
-    # U2
-    def new_GET(self, *arg, **kw):
+    @inlineCallbacks
+    def new_GET(self, uriargs, safereq, *arg, **kw):
         """
-        Creates an empty submission and returns the ID to the WB.
+        U2, Creates an empty submission and returns the ID to the WB.
         """
         self.handler.status_code = 201
-        ret = answers.newSubmission()
 
-        # submission_id = idops.random_submission_id()
-        dummy.SUBMISSION_NEW_GET(ret)
+        newSubmsn = models.Submission()
+        newSubmsn.submission_id =  idops.random_submission_id(False)
+            # need to be unicode ?
+        newSubmsn.folder_id = 0
 
-        return ret.unroll()
+        # --------------------------------------
+        # In a stable implementation, .fields would be set with the
+        # default taken by context
+        # In this case, are used the dummy values
+        # 'fields' and 'receivers' both
+        from globaleaks.utils.dummy import dummy_shared
 
-    """
-    GET operation is called as return values of other API,
-    then nothing has to be *written* then the codeflow
-    run here -- U3
-    """
-    def status_GET(self, submission_id, *arg, **kw):
+        testField1 = GLT.formFieldsDict()
+        dummy_shared._formFieldsDict0(testField1)
+        testField2 = GLT.formFieldsDict()
+        dummy_shared._formFieldsDict1(testField1)
 
-        ret = answers.submissionStatus()
+        fakeFieldDict = {}
+        fakeFieldDict.update({'fields' : [ testField1.unroll(),  testField2.unroll() ]})
+        newSubmsn.fields = pickle.dumps(fakeFieldDict)
 
-        dummy.SUBMISSION_STATUS_GET(ret)
+        fakeReceiversDict = {}
+        fakeReceiversDict.update({'receivers' : [ idops.random_receiver_id(),
+                                                 idops.random_receiver_id(),
+                                                 idops.random_receiver_id(),
+                                                 idops.random_receiver_id() ] })
+        newSubmsn.receivers = pickle.dumps(fakeReceiversDict)
+        # --------------------------------------
 
-        return ret.unroll()
+        output = answers.newSubmission()
+        output.submission_id = newSubmsn.submission_id
+
+        yield newSubmsn.save()
+
+        # dummy.SUBMISSION_NEW_GET(output)
+        returnValue(output.unroll())
+
+    def status_GET(self, uriargs, safereq, *arg, **kw):
+        """
+        U3, refresh whistleblower client with the previously uploaded data
+        """
+        mydirtydebug(__name__, safereq, uriargs, arg, kw )
+
+        resumed = models.Submission()
+        try:
+            resumed.resume(uriargs)
+        except AttributeError:
+            self.handler.status_code = 404 # (Not Found)
+            returnValue(answers.errorMessage(404, GLErrorCode.invalid_sID).unroll())
+
+        resumed.submissionDebug()
+
+        self.handler.status_code = 200
+        output = answers.submissionStatus()
+        # dummy.SUBMISSION_STATUS_GET(output)
+        returnValue(output.unroll())
 
     """
     status handle the group receiver selection 
@@ -61,14 +99,58 @@ class Submission(Processor):
     handle the fields submission
         (import the fields in the temporary submission_id entry)
     """
-    def status_POST(self, *arg, **kw):
+    def status_POST(self, uriargs, safereq, *arg, **kw):
         """
-        :fields
-        :group
+        U3, update the whistleblower stored data, expect in safereq
+        fields: an array of formFieldsDict
+        receivers: an array of receiverID
+        verify in the local settings if the receivers shall be choosen by WB
+        if some fields are required, is not check here.
         """
-        return status_GET(arg, kw)
+        mydirtydebug(__name__, uriargs, safereq, arg, kw)
 
+        # safereq.fields.convertToPickle() -- TODO
+
+        # print "pickle: ", pickle.dumps(safereq.fields)
+
+        # return self.status_GET(uriargs, safereq, arg, kw)
+        returnValue(self.status_GET(uriargs, safereq, arg, kw))
+
+
+#    def finalize_POST(self, submission_id, **form_fields):
     # U4
+    @inlineCallbacks
+    def finalize_POST(self, uriargs, safereq, *arg, **kw):
+        """
+        Finalize the submission and create data inside of the database,
+        perform checks if the required fiels has been set
+        """
+        mydirtydebug(__name__, uriargs, safereq, arg, kw)
+
+        resumed = models.Submission()
+        resumed.resume(uriargs)
+        resumed.submissionDebug()
+
+        self.handler.status_code = 406 # (Not Acceptable)
+        returnValue(answers.errorMessage(406, GLErrorCode.incomplete_fields).unroll())
+
+        receipt_id = unicode(idops.random_receipt_id())
+        internal_tip = models.InternalTip()
+        internal_tip.fields = pickle.dumps( {'shittest': 'isatest'} )
+
+        self.handler.status_code = 201
+        yield internal_tip.save()
+
+        whistleblower_tip = models.Tip()
+        whistleblower_tip.internaltip_id = internal_tip.id
+        whistleblower_tip.address = receipt_id
+
+        yield whistleblower_tip.save()
+
+        ret = answers.finalizeSubmission()
+        returnValue(ret.unroll())
+
+    # U5
     def files_GET(self, submission_id, *arg, **kw):
         """
         retrive the status of the file uploaded, the 
@@ -103,34 +185,3 @@ class Submission(Processor):
          file
         """
         return files_GET(submission_id, *arg, **kw)
-
-
-    # U5
-    @inlineCallbacks
-#    def finalize_POST(self, submission_id, **form_fields):
-    def finalize_POST(self, uriargs, body, *arg, **kw):
-        mydirtydebug(uriargs, body, arg, kw)
-        """
-        Finalize the submission and create data inside of the database.
-        """
-        receipt_id = unicode(idops.random_receipt_id())
-        internal_tip = models.InternalTip()
-        internal_tip.fields = form_fields
-
-        self.handler.status_code = 201
-        yield internal_tip.save()
-
-        whistleblower_tip = models.Tip()
-        whistleblower_tip.internaltip_id = internal_tip.id
-        whistleblower_tip.address = receipt_id
-
-        yield whistleblower_tip.save()
-
-        # this has not to return directly, ya ? need to be 
-        # returned by handers (that perform the GLTypes.unroll() operation,
-        # perhaps, so we're sure that would not be hardcoded an 
-        # arbitrary dict
-
-        ret = answers.finalizeSubmission()
-        # you can't use "return" in a function with generators
-        returnValue(ret.unroll())

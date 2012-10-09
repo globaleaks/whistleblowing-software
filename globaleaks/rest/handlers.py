@@ -183,9 +183,9 @@ class GLBackendHandler(RequestHandler):
         else:
             raise HTTPError(503, "Missing of sanitizer function")
 
-        print "XX", self.safeRequest
         """
-        return having a fixed self.safeRequest dict now available
+        return having self.safeRequest available.
+        TODO, need to be a GLType returned in the action + method handler ?
         """
 
     @inlineCallbacks
@@ -218,8 +218,10 @@ class GLBackendHandler(RequestHandler):
         # after this point, self.request would NOT BE USED, use instead
         # ____ self.safeRequest ____
 
+
         targetMethod = getattr(self.processor, self.action + '_' + self.method.upper())
-        return_value = yield targetMethod(uriargs=self.matchedArguments, safereq=self.safeRequest)
+        return_value = yield targetMethod(uriargs=self.matchedArguments,
+                safereq=self.safeRequest)
 
         if DEBUG:
             import urllib
