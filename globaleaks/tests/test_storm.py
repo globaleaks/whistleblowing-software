@@ -33,26 +33,33 @@ class TestModels(unittest.TestCase):
         except:
             print "Already exists!"
 
-        def getStore():
-            store = Store(database)
-            return store
 
         class DummyModel(TXModel):
             transactor = self.transactor
+            stores = []
+
             __storm_table__ = 'test'
 
             id = Int(primary=True)
             test = Int()
 
+            def getStore(self):
+                store = Store(database)
+                print "Current Stores"
+                for store in self.stores:
+                    print store
+                self.stores.append(store)
+                return store
+
             @transact
             def save(self):
-                store = getStore()
+                store = self.getStore()
                 store.add(self)
                 store.commit()
 
             @transact
             def find(self):
-                store = getStore()
+                store = self.getStore()
                 res = store.find(DummyModel, DummyModel.test == 42).one()
                 store.close()
                 return res
@@ -60,7 +67,7 @@ class TestModels(unittest.TestCase):
             @transact
             def find_more(self):
                 output = []
-                store = getStore()
+                store = self.getStore()
                 res = store.find(DummyModel, DummyModel.test > 2)
                 for x in res:
                     output.append(x)
