@@ -74,48 +74,48 @@ class WorkManager(object):
         self.runningJobs = []
 
         self.nextRun = time.time()
-        self.callLock = False
+
+        self.callLock = None
+        self.nextCall = time.time()
 
     def add(self, obj):
         """
         Adds an object to the queue. The object must have the attribute .run()
         set to something that will return a deferred.
         """
-        print "Adding %s to queue" % obj
-        if obj.running:
-            print "It appears that %s is still running" % obj
         obj.running = False
 
         self.workQueue.append(obj)
 
-        print "[!] This job is to be run before the already scheduled next run"
-        self.nextRun = obj.scheduledTime
+        # Set the next time to run to this newly added object we will set the
+        # next time to hit the scheduler to the most optimal value when we do
+        # the next run.
+        # For the time being we are either about to hit the scheduler again
+
+        if self.callLock and obj.scheduledTime < self.nextRun:
+            self.nextRun = obj.scheduledTime
+            self.callLock.cancel()
 
         if not self.callLock:
-            print "The call lock is not set, therefore we will register to call later"
-            reactor.callLater(self.getTimeout(), self.run)
-            self.callLock = True
+            # The call lock is not set, therefore we will register to call later
+            self.nextRun = obj.scheduledTime
+            self.callLock = reactor.callLater(self.getTimeout(), self.run)
 
-        print "Going to run in %s" % self.getTimeout()
 
     def _success(self, result, obj):
-        print "[*] Completed task %s" % obj
+        # Successfully completed the job
         self.workQueue.remove(obj)
         obj.running = False
 
-    def _completed(self, result, obj):
-        print "[*] did all my calls."
-
     def _failed(self, failure, obj):
-        print "[!] Failed on %s" % obj
         obj.failures.append(failure)
         self.workQueue.remove(obj)
+
         if len(obj.failures) > len(self.retries):
             # Too many failures, give up trying
-            print "[!] Giving up on this one."
             self.failedQueue.append(obj)
         else:
-            print "[*] Re-adding to the queue"
+            # Reschedule the envent by readding it to the queue
             obj.scheduledTime = time.time()
             obj.scheduledTime += self.retries[len(obj.failures) - 1]
             obj.running = False
@@ -131,7 +131,10 @@ class WorkManager(object):
             print x
 
     def saveState(self, output='manager.state'):
-        print "Saving state"
+        """
+        This saves the current state to a local pickle file.
+        XXX replace this to write the state to database.
+        """
         fp = open(output, 'w')
         pickle.dump(self, fp)
         fp.close()
@@ -139,44 +142,39 @@ class WorkManager(object):
     def _done(self, result):
         self.saveState()
 
-
     def run(self):
-        print "[*] Running!"
+        """
+        Here we actually go through the work that is the queue.
+        We then return a deferred list that contains the jobs that are now
+        currently running.
+        """
         dlist = []
         current_time = time.time()
         run_later = False
 
         self.saveState()
-        self.callLock = False
+        self.callLock = None
 
         for obj in self.workQueue:
-            print "[*] Processing this obj: %s" % obj
-
             if current_time < obj.scheduledTime:
-                print "[!] We are not ready to run this object"
+                # We are not ready to run this object
                 if obj.scheduledTime < self.nextRun:
-                    print "[!] Setting the next clock to hit on this object"
+                    # Setting the next clock to hit on this object
                     self.nextRun = obj.scheduledTime
                 run_later = True
                 continue
 
             if not obj.running:
-                print "Running %s" % obj
                 obj.running = True
                 d = obj.run()
                 d.addErrback(self._failed, obj)
                 d.addCallback(self._success, obj)
                 dlist.append(d)
-            else:
-                print "Object already running!"
-
-        print "Next call %s - %s" % (self.nextRun, current_time)
-        print "dl %s" % dlist
 
         if run_later:
-            print "We should run again!"
-            reactor.callLater(self.getTimeout(), self.run)
-            self.callLock = True
+            # We should set the schedule clock to hit again because there are
+            # items that are not ready to be run just yet.
+            self.callLock = reactor.callLater(self.getTimeout(), self.run)
 
         dl = DeferredList(dlist)
         dl.addBoth(self._done)
@@ -184,9 +182,15 @@ class WorkManager(object):
         return dl
 
     def getTimeout(self):
+        """
+        Returns the distance in seconds from when the next run of the schedule
+        clocks should happen. We add a 1 as margin to round to the upper
+        nearest whole number (we just don't want to be off by half a second
+        when we hit run again).
+        If the distance is negative we set the timeout to 1.
+        """
         timeout = int(self.nextRun - time.time()) + 1
         if timeout < 0:
-            print "[!] Got a negative timeout"
             timeout = 1
         return timeout
 
