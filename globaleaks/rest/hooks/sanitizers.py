@@ -18,12 +18,10 @@
 """
     dynamic argument schema:
 
-    def default_sanitize(*arg, **kw):
+    def default(body, *uriargs):
 
-    action  = name of the action looked by
-    method  = name of the HTTP method used
+    body  = the body of the request
     uriargs = the regexp matched in the URL, defined in spec.api
-    body    = the validated body
 """
 
 class SubmissionSanitizer(object):
@@ -32,21 +30,23 @@ class SubmissionSanitizer(object):
     finalize and root actions covered here,
     boolean or int only
     """
-    @classmethod
-    def default_sanitize(*arg, **kw):
-        return (arg, kw)
+    @staticmethod
+    def default(body, *uriarg):
+        return body
 
-    @classmethod
-    def files(*arg, **kw):
-        return (arg, kw)
+    @staticmethod
+    def files(body, *arg, **kw):
+        return body
 
     """
     status contain the fields and the group selection
     """
-    @classmethod
-    def status(*arg, **kw):
-        return (arg, kw)
-
+    @staticmethod
+    def status(body, *arg, **kw):
+        print "Going at it!"
+        print arg,kw
+        print body
+        return body
 
 
 class TipSanitizer(object):
@@ -55,23 +55,22 @@ class TipSanitizer(object):
     root, pertinence and finalize are covered here,
     because their fields are boolean or int
     """
-    @classmethod
-    def default_sanitize(*arg, **kw):
-        return (arg, kw)
+    @staticmethod
+    def default(body, *uriarg):
+        return body
 
-    @classmethod
-    def files(*arg, **kw):
-        return (arg, kw)
+    @staticmethod
+    def files(body, *arg, **kw):
+        return body
 
-    @classmethod
-    def comment(*arg, **kw):
+    @staticmethod
+    def comment(body, *arg, **kw):
         """
         whistlist:
         retDict = genericObj()
         retDict.comment = textSanitize(kw['body']['comment'])
         """
-        return (arg, kw)
-
+        return body
 
 class ReceiverSanitizer(object):
 
@@ -80,32 +79,29 @@ class ReceiverSanitizer(object):
     maybe the CURD need to be splitted properly
     (and the, sanizer handled with a _HTTPMETHOD selection)
     """
-    @classmethod
-    def default_sanitize(*arg, **kw):
-
-        return ({'Imarandomdict': True, 'meaniingless': False })
-
+    @staticmethod
+    def default(body, *uriarg):
+        return body
 
 """
-AdminSanitezer has not default_sanitized, because all
+AdminSanitezer has not defaultd, because all
 the four action in admin API had a large set of elements
 that need to be checked carefully
 """
 class AdminSanitizer(object):
 
-    @classmethod
-    def contexts(*arg, **kw):
-        return (arg, kw)
+    @staticmethod
+    def contexts(body, *arg, **kw):
+        return body
 
-    @classmethod
-    def receivers(*arg, **kw):
-        return (arg, kw)
+    @staticmethod
+    def receivers(body, *arg, **kw):
+        return body
 
-    @classmethod
-    def modules(*arg, **kw):
-        return (arg, kw)
+    @staticmethod
+    def modules(body, *arg, **kw):
+        return body
 
-    @classmethod
-    def node(*arg, **kw):
-        return (arg, kw)
-
+    @staticmethod
+    def node(body, *arg, **kw):
+        return body

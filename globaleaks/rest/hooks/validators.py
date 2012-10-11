@@ -34,54 +34,17 @@ request may be passed.
 """
     dynamic argument schema:
 
-    def default_validate(*arg, **kw):
+    def default(*arg, **kw):
 
     action  = name of the action looked by
     method  = name of the HTTP method used
     uriargs = the regexp matched in the URL, defined in spec.api
     body    = the raw body
 """
-from globaleaks.rest import requests
-
-def mydirtydebug(who, body, uriargs, args, kw):
-    print who, body, uriargs,  args, kw
-    pass
-
 class SubmissionValidator(object):
-
-    @classmethod
-    def default_validate(self, action, body, uriargs, *args, **kw):
-        print self.__class__.__name__,"default_validate", action, uriargs, body
-        return True
-
-    @classmethod
-    def files(self, uriargs, body, *args, **kw):
-        """
-        That's depend from JQFU patches
-        """
-        return True
-
-    @classmethod
-    def status_POST(self, uriargs, body, *args, **kw):
-        """
-        U3, has uriargs and body
-        """
-        mydirtydebug(__name__, body, uriargs, args, kw)
-        expected = requests.submissionUpdate()
-        expected.aquire(body)
-        return True
-
-    @classmethod
-    def finalize_POST(self, uriargs, body, *args, **kw):
-        """
-        finalize the folder, receive comments, stabilize fields/receivers
-        """
-        mydirtydebug(__name__, body, uriargs, args, kw)
-        expected = requests.finalizeSubmission()
-        expected.aquire(body)
-        return True
-
-
+    @staticmethod
+    def default(body, *uriargs):
+        pass
 
 
 class TipValidator(object):
@@ -89,120 +52,29 @@ class TipValidator(object):
     """
     used by root, pertinence, download
     """
-    @classmethod
-    def default_validate(self, action, body, uriargs, *args, **kw):
-        print self.__class__.__name__,"default_validate", action, uriargs, body
-        return True
-
-    @classmethod
-    def files(self, uriargs, body, *args, **kw):
-        return True
-
-    @classmethod
-    def finalize_POST(self, body, uriargs, *args, **kw):
-        """
-        finalize the update of a new folder
-        """
-        mydirtydebug(__name__, body, uriargs, args, kw)
-
-        expected = requests.finalizeIntegration()
-        expected.aquire(body)
-
-        return True
-
-    @classmethod
-    def comment_POST(self, body, uriargs, *args, **kw):
-        """
-        Validation of comment
-        """
-        mydirtydebug(__name__, body, uriargs, args, kw)
-
-        expected = requests.sendComment()
-        expected.aquire(body)
-
-        return True
+    @staticmethod
+    def default(body, *uriargs):
+        pass
 
 
 class ReceiverValidator(object):
-
-    @classmethod
-    def default_validate(self, action, body, uriargs, *args, **kw):
-        print self.__class__.__name__,"default_validate", action, uriargs, body
-        return True
-
-    """
-    Cover module operations, CURD, R2,
-    but we have not to cover the GET request...
-    maybe nice make a decorator able to define which kind of
-    method need to be wrapped, and reduce, in handlers, the looping test,
-    using just the default_valudate as fallback -- XXX
-    """
-    @classmethod
-    def module(self, uriargs, body, *args, **kw):
-        mydirtydebug(__name__, body, uriargs, args, kw)
-        expected = requests.receiverOptions()
-        expected.aquire(body)
-        return True
-
+    @staticmethod
+    def default(body, *uriargs):
+        pass
 
 class AdminValidator(object):
-
-    @classmethod
-    def node(self, uriargs, body, *args, **kw):
-        return True
-
-    @classmethod
-    def contexts(self, uriargs, body, *args, **kw):
-        return True
-
-    @classmethod
-    def receivers(self, uriargs, body, *args, **kw):
-        return True
-
-    @classmethod
-    def modules(self, uriargs, body, *args, **kw):
-        """
-        whistlist:
-        xx = GLDO.moduleDataDict()
-        for k,v kw['body']:
-            xx.isValid(k, v)
-        """
-        return True
+    @staticmethod
+    def default(body, *uriargs):
+        pass
 
 class ReceiverValidator(object):
 
     """
     This is used in R1 (GET only)
     """
-    @classmethod
-    def default_validate(self, action, body, uriargs, *args, **kw):
-        print self.__class__.__name__,"default_validate", action, uriargs, body
-        return True
-
-    """
-    This is used in R2 CURD
-    """
-    @classmethod
-    def module_GET(self, uriargs, body, *args, **kw):
-        return True
-
-    """
-    This is used in R2 POST|PUT|DELETE
-    """
-    @classmethod
-    def module(self, uriargs, body, *args, **kw):
-        try:
-            print "checking ",kw['body'], "expecting a moduleDataDict and a 'method'"
-        except:
-            print "No body"
-
-        """
-        if invalidPOSThack(kw['method'], kw['body']):
-            return False
-        """
-
-        return True
-
+    @staticmethod
+    def default(body, *uriargs):
+        pass
 
 
 class NodeValidator(object):
@@ -210,9 +82,6 @@ class NodeValidator(object):
     """
     The simplest GET don't need to be validated
     """
-    @classmethod
-    def default_validate(self, action, body, uriargs, *args, **kw):
-        print self.__class__.__name__,"default_validate", action, uriargs, body
-        return True
-
-
+    @staticmethod
+    def default(body, *uriargs):
+        pass

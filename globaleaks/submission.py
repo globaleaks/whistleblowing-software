@@ -30,69 +30,60 @@ class Submission(Processor):
     transactor = transactor # TO be removed  ?
 
     @inlineCallbacks
-    def new_GET(self, uriargs, safereq, *arg, **kw):
+    def new_GET(self, safereq, *uriargs):
         """
         U2, Creates an empty submission and returns the ID to the WB.
         """
         self.handler.status_code = 201
 
-        newSubmsn = models.Submission()
-        newSubmsn.submission_id =  idops.random_submission_id(False)
-            # need to be unicode ?
-        newSubmsn.folder_id = 0
+        new_submission = models.Submission()
+        new_submission.submission_id = unicode(idops.random_submission_id(False))
+        new_submission.folder_id = 0
 
         # --------------------------------------
         # In a stable implementation, .fields would be set with the
         # default taken by context
         # In this case, are used the dummy values
         # 'fields' and 'receivers' both
-        from globaleaks.utils.dummy import dummy_shared
+        from globaleaks.messages.dummy import shared, answers, requests
 
-        testField1 = GLT.formFieldsDict()
-        dummy_shared._formFieldsDict0(testField1)
-        testField2 = GLT.formFieldsDict()
-        dummy_shared._formFieldsDict1(testField1)
+        fake_submission = requests.submissionStatusPost
+        new_submission.fields = fake_submission
 
-        fakeFieldDict = {}
-        fakeFieldDict.update({'fields' : [ testField1.unroll(),  testField2.unroll() ]})
-        newSubmsn.fields = pickle.dumps(fakeFieldDict)
+        fake_receivers = {
+            'receivers': [idops.random_receiver_id(),
+                          idops.random_receiver_id(),
+                          idops.random_receiver_id(),
+                          idops.random_receiver_id()]
+        }
+        new_submission.receivers = fake_receivers
 
-        fakeReceiversDict = {}
-        fakeReceiversDict.update({'receivers' : [ idops.random_receiver_id(),
-                                                 idops.random_receiver_id(),
-                                                 idops.random_receiver_id(),
-                                                 idops.random_receiver_id() ] })
-        newSubmsn.receivers = pickle.dumps(fakeReceiversDict)
-        # --------------------------------------
+        output = {"submission_id": new_submission.submission_id}
 
-        output = answers.newSubmission()
-        output.submission_id = newSubmsn.submission_id
-
-        yield newSubmsn.save()
+        yield new_submission.save()
 
         # dummy.SUBMISSION_NEW_GET(output)
-        returnValue(output.unroll())
+        returnValue(output)
 
-    def status_GET(self, uriargs, safereq, *arg, **kw):
+    def status_GET(self, safe_req, submission_id):
         """
         U3, refresh whistleblower client with the previously uploaded data
         """
-        mydirtydebug(__name__, safereq, uriargs, arg, kw )
 
         resumed = models.Submission()
         try:
-            resumed.resume(uriargs)
+            resumed.resume(submission_id)
         except AttributeError:
-            self.handler.status_code = 404 # (Not Found)
-            returnValue(answers.errorMessage(404, GLErrorCode.invalid_sID).unroll())
+            raise HTTPError(404, "Not found")
 
         # XXX remove this in future
-        print resumed
+        from globaleaks.messages.dummy import shared, answers, requests
 
         self.handler.status_code = 200
-        output = answers.submissionStatus()
+
+        output = answers.submissionStatusGet
         # dummy.SUBMISSION_STATUS_GET(output)
-        returnValue(output.unroll())
+        returnValue(output)
 
     """
     status handle the group receiver selection
@@ -100,7 +91,7 @@ class Submission(Processor):
     handle the fields submission
         (import the fields in the temporary submission_id entry)
     """
-    def status_POST(self, uriargs, safereq, *arg, **kw):
+    def status_POST(self, safe_req, submission_id, *uriargs):
         """
         U3, update the whistleblower stored data, expect in safereq
         fields: an array of formFieldsDict
@@ -108,31 +99,26 @@ class Submission(Processor):
         verify in the local settings if the receivers shall be choosen by WB
         if some fields are required, is not check here.
         """
-        mydirtydebug(__name__, uriargs, safereq, arg, kw)
 
         # safereq.fields.convertToPickle() -- TODO
 
         # print "pickle: ", pickle.dumps(safereq.fields)
 
         # return self.status_GET(uriargs, safereq, arg, kw)
-        returnValue(self.status_GET(uriargs, safereq, arg, kw))
+        returnValue(self.status_GET(safe_req, submission_id, *uriargs))
 
 
 #    def finalize_POST(self, submission_id, **form_fields):
     # U4
     @inlineCallbacks
-    def finalize_POST(self, uriargs, safereq, *arg, **kw):
+    def finalize_POST(self, safereq, *uriargs):
         """
         Finalize the submission and create data inside of the database,
         perform checks if the required fiels has been set
         """
-        mydirtydebug(__name__, uriargs, safereq, arg, kw)
 
         resumed = models.Submission()
         resumed.resume(uriargs)
-
-        # XXX remove this in future
-        print resumed
 
         self.handler.status_code = 406 # (Not Acceptable)
         returnValue(answers.errorMessage(406, GLErrorCode.incomplete_fields).unroll())
@@ -154,7 +140,7 @@ class Submission(Processor):
         returnValue(ret.unroll())
 
     # U5
-    def files_GET(self, submission_id, *arg, **kw):
+    def files_GET(self, submission_id, *uriarg):
         """
         retrive the status of the file uploaded, the
         submission_id has only one folder during the first
@@ -166,25 +152,25 @@ class Submission(Processor):
         dummy.SUBMISSION_FILES_GET(ret)
         return ret.unroll()
 
-    def files_PUT(self, submission_id, *arg, **kw):
+    def files_PUT(self, submission_id, *uriarg):
         """
         Take the new data and append to the file, contain sync,
         need to be checked prorperly
         """
         return files_GET(arg, kw)
 
-    def files_POST(self, submission_id, *arg, **kw):
+    def files_POST(self, submission_id, *uriarg):
         """
         :description, dict of text describig the file uploaded
          (or not yet complete) by PUT, every time a new
          files_POST is reached, all the files description is
          updated
         """
-        return files_GET(submission_id, *arg, **kw)
+        return files_GET(submission_id, *uriarg)
 
     def files_DELETE(self, submission_id, *arg, **kw):
         """
         :filename, remove a complete or a partial uploaded
          file
         """
-        return files_GET(submission_id, *arg, **kw)
+        return files_GET(submission_id, *uriarg)
