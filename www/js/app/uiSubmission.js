@@ -157,7 +157,7 @@ define(function (require) {
           }
         });
 
-         $("#buttonA").click(function() {
+         $("#finalize_button").click(function() {
           latenza.ajax({'url': '/submission/foobar/finalize',
                         'data': JSON.stringify(dummy_requests.submissionFinalizePost),
                         'type': 'POST'
