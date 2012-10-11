@@ -54,10 +54,6 @@ class Submission(TXModel):
     createQuery = "CREATE TABLE " + __storm_table__ +\
                    "(id INTEGER PRIMARY KEY, submission_id VARCHAR, fields VARCHAR, "\
                    " opening_date DATETIME, receivers VARCHAR, folder_id INTEGER)"
-
-    """
-    A doubt: but does this variable need to be class variable, and not object vars ?
-    """
     id = Int(primary=True)
     submission_id = Unicode() # Int()
     folder_id = Int()
@@ -65,21 +61,39 @@ class Submission(TXModel):
     receivers = Pickle()
     opening_date = Date()
 
-    def __str__(self):
-        vals = (self.__class__, str(self.submission_id), self.folder_id, self.receivers, self.fields)
-        format_string = "<%s submission_id=%s,folder_id=%s,receivers=%s,fields=%s>"
-        return format_string % vals
+    @transact
+    def status(self, submission_id):
+        store = getStore()
+        s = store.find(Submission, Submission.submission_id==submission_id).one()
 
-    def submissionDebug(self):
+        status = {'receivers_selected': s.receivers,
+                  'fields': s.fields}
 
-        unp_fields = unp_recvs = ''
+        store.commit()
+        store.close()
+        returnValue(status)
 
-        if self.fields:
-            unp_fields = pickle.loads(self.fields)
-        if self.receivers:
-            unp_recvs = pickle.loads(self.receivers)
+    @transact
+    def create_tips(self, submission_id, receipt):
+        store = getStore()
+        s = store.find(Submission, Submission.submission_id==submission_id).one()
 
-        print "[D] id, submission_id, fields, receivers, date", self.id, self.submission_id, unp_fields, unp_recvs, self.opening_date
+        internal_tip = InternalTip()
+        internal_tip.fields = s.fields
+        store.add(internal_tip)
+
+        whistleblower_tip = Tip()
+        whistleblower_tip.internal_tip_id = internal_tip.id
+        whistleblower_tip.address = receipt
+        store.add(whistleblower_tip)
+
+        # XXX lookup the list of receivers and create their tips too.
+
+        # Delete the temporary submission
+        store.remove(s)
+
+        store.commit()
+        store.close()
 
 class File(TXModel):
     """
@@ -145,9 +159,6 @@ class InternalTip(TXModel):
 
     # Tips associated with this InternalTip
     # children = ReferenceSet(id, Tip.internaltip_id)
-    def __repr__(self):
-        return "<InternalTip %s>" % json.dumps({'fields': self.fields, 'comments': self.comments})
-
 
 
 class Tip(TXModel):
@@ -172,13 +183,9 @@ class Tip(TXModel):
     def internaltip(self):
         store = getStore()
         the_one = store.find(InternalTip, InternalTip.id == self.internaltip_id).one()
+        store.commit()
         store.close()
         return the_one
-
-    def __repr__(self):
-        return json.dumps({'address': self.address, 'password': self.password,
-                'type': self.type, 'internaltip_id': self.internaltip_id})
-
 
 class ReceiverTip(Tip):
     total_view_count = Int()
