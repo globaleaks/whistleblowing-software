@@ -12,27 +12,14 @@
 from globaleaks.utils import recurringtypes as GLT
 
 # This is the struct containing the errors
-class errorMessage(GLT.GLTypes):
-
-    def __init__(self, httpErrorCode=False, errorDict=False):
-        """
-        errorMessage may be used as inline object declaration and assignment
-        """
-
-        GLT.GLTypes.__init__(self, self.__class__.__name__)
-
-        self.define("http_error_code", "int")
-        self.define("error_code", "int")
-        self.define("error_message", "string")
-            # this is just a string, in the client the right
-            # translated error, would be hooked using error_code
-
-        if httpErrorCode:
-            self.http_error_code = httpErrorCode
-
-        if errorDict:
-            self.error_code = errorDict.get('code')
-            self.error_message = errorDict.get('message')
+def errorMessage(httpErrorCode=500, errorDict={}):
+    """
+    errorMessage may be used as inline object declaration and assignment
+    """
+    response = {'http_error_code':  httpErrorCode,
+                'error_code': errorDict.get('code'),
+                'error_message': errorDict.get('string')}
+    return response
 
 # U1
 class nodeMainSettings(GLT.GLTypes):
@@ -48,7 +35,7 @@ class nodeMainSettings(GLT.GLTypes):
         self.define("node_properties", GLT.nodePropertiesDict() )
         self.define("public_statistics", GLT.publicStatisticsDict() )
         self.define_array("contexts", GLT.contextDescriptionDict() )
-        # self.define("description", localization) 
+        # self.define("description", localization)
         # GlClient -- how would be handled the localization ?
 
 # U2
@@ -58,7 +45,7 @@ class newSubmission(GLT.GLTypes):
         self.define('submission_id', 'submissionID')
         self.define('creation_time', 'time')
 
-# U3 
+# U3
 class submissionStatus(GLT.GLTypes):
 
     def __init__(self):
