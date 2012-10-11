@@ -46,10 +46,9 @@ class TimeoutJob(Job):
         pass
 
     def _timedOut(self, d, *arg, **kw):
-        print "TJ: Timed out!"
-        print arg, kw
         self.timedOut()
-        d.errback(JobTimedout("%s timed out after %s" % (self.__class__, self.timeout)))
+        d.errback(JobTimedout("%s timed out after %s" % (self.__class__,
+            self.timeout)))
 
     def _run(self, manager=None):
         d = Job._run(self, manager)
@@ -74,7 +73,7 @@ class WorkManager(object):
     XXX in the future we may want to support a cronish like syntax for such
         timeouts (1m, 1h, 2d, 1m etc.)
     """
-    retries = [3, 6, 10]
+    retries = [1]
 
     def __init__(self):
         self.workQueue = []
@@ -87,6 +86,8 @@ class WorkManager(object):
 
         self.callLock = None
         self.nextCall = time.time()
+
+        self.deferred = Deferred()
 
     def add(self, obj):
         """
@@ -118,17 +119,14 @@ class WorkManager(object):
         obj.running = False
 
     def _failed(self, failure, obj):
-        print "Failed %s" % obj
         obj.failures.append(failure)
         self.workQueue.remove(obj)
 
         if len(obj.failures) > len(self.retries):
             # Too many failures, give up trying
-            print "Too many failures"
             self.failedQueue.append(obj)
         else:
             # Reschedule the envent by readding it to the queue
-            print "Rescheduling"
             obj.scheduledTime = time.time()
             obj.scheduledTime += self.retries[len(obj.failures) - 1]
             obj.running = False
@@ -136,25 +134,32 @@ class WorkManager(object):
         return failure
 
     def showState(self):
-        print "Fail Queue"
+        print "Work Queue"
+        print "----------"
         for x in self.workQueue:
             print x
-        print "Work Queue"
+        print "----------"
+        print ""
+        print "Failed Queue"
+        print "----------"
         for x in self.failedQueue:
             print x
+        print "----------"
 
     def saveState(self, output='manager.state'):
         """
         This saves the current state to a local pickle file.
         XXX replace this to write the state to database.
         """
-        fp = open(output, 'w+')
-        pickle.dump(self, fp)
-        fp.close()
+        #fp = open(output, 'w+')
+        #pickle.dump(self, fp)
+        #fp.close()
+        pass
 
-    def _done(self, result):
-        print "Done all!"
+    def _done(self, result, *arg, **kw):
         self.saveState()
+        if len(self.workQueue) == 0:
+            self.deferred.callback(None)
 
     def run(self):
         """
@@ -193,7 +198,8 @@ class WorkManager(object):
         dl = DeferredList(dlist)
         dl.addBoth(self._done)
         self.runningJobs = dl
-        return dl
+
+        return self.deferred
 
     def getTimeout(self):
         """
