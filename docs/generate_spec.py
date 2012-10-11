@@ -12,7 +12,7 @@
 
 
 import inspect
-from globaleaks.rest.messages import base
+from globaleaks.messages import base
 
 def create_spec(spec):
     doc = ""
@@ -27,9 +27,22 @@ def create_class_doc(klass):
         doc += '\n'.join(docstring)
     doc += "\n"
     doc += create_spec(klass.specification)
+    doc += "\n\n"
     return doc
 
+def create_special_doc(klass):
+    doc = "  * %s: '%s'\n\n" % (klass.__name__, klass.regexp)
+    return doc
+
+types_doc = ""
+special_doc = ""
 for name, klass in inspect.getmembers(base, inspect.isclass):
     if issubclass(klass, base.GLTypes) and klass != base.GLTypes:
-        print create_class_doc(klass)
+        types_doc += create_class_doc(klass)
+    elif issubclass(klass, base.SpecialType) and klass != base.SpecialType:
+        special_doc += create_special_doc(klass)
 
+print "# Simple data elements\n"
+print special_doc
+print "# Complex data elements"
+print types_doc
