@@ -31,13 +31,14 @@ class TXModel(object):
         store = getStore()
         store.execute(self.createQuery)
         store.commit()
+        store.close()
 
     @transact
     def save(self):
         store = getStore()
         store.add(self)
         store.commit()
-
+        store.close()
 
 class Submission(TXModel):
     """
@@ -54,12 +55,16 @@ class Submission(TXModel):
     A doubt: but does this variable need to be class variable, and not object vars ?
     """
     id = Int(primary=True)
-    submission_id = unicode() # Int()
+    submission_id = Unicode() # Int()
     folder_id = Int()
     fields = Pickle()
     receivers = Pickle()
     opening_date = Date()
 
+    def __str__(self):
+        vals = (self.__class__, str(self.submission_id), self.folder_id, self.receivers, self.fields)
+        format_string = "<%s submission_id=%s,folder_id=%s,receivers=%s,fields=%s>"
+        return format_string % vals
     def submissionDebug(self):
 
         unp_fields = unp_recvs = ''
@@ -73,13 +78,11 @@ class Submission(TXModel):
 
     @transact
     def resume(self, received_sid):
-
         store = getStore()
 
         # TODO checks if multiple match exists, in this case, is an administrative error
-        choosen = store.find(Submission, Submission.submission_id == received_sid).one()
-
-        # XXX something is not working here :(
+        choosen = store.find(Submission, Submission.submission_id ==
+                unicode(received_sid)).one()
 
         if not choosen:
             store.close()
@@ -212,5 +215,5 @@ class Receiver(TXModel):
 
 """
 Triva, this file implement the 0.2 version of GlobaLeaks, then:
-Enter the Ginger - http://www.youtube.com/watch?v=uUD9NBSJvqo 
+Enter the Ginger - http://www.youtube.com/watch?v=uUD9NBSJvqo
 """

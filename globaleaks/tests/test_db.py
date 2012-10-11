@@ -1,6 +1,7 @@
 import json
 import sys
 import os
+import pickle
 print __file__
 # hack to add globaleaks to the sys path
 cwd = '/'.join(__file__.split('/')[:-1])
@@ -20,11 +21,17 @@ from globaleaks.db.models import *
 
 class DBTestCase(unittest.TestCase):
 
+    def setUp(self):
+        threadpool.start()
+
+    def tearDown(self):
+        threadpool.stop()
+
     @inlineCallbacks
     def test_add_tip(self):
         from datetime import datetime
-        yield createTables()
         tip = InternalTip()
+        yield tip.createTable()
         tip.fields = {'hello': 'world'}
         tip.comments = {'hello': 'world'}
         tip.pertinence = 0
@@ -36,11 +43,29 @@ class DBTestCase(unittest.TestCase):
         def findtip(what):
             store = getStore()
             x = list(store.find(InternalTip, InternalTip.id == what))
+            store.close()
             return x
 
         r_tip = yield transactor.run(findtip, tip.id)
         self.assertEqual(r_tip[0].fields['hello'], 'world')
         self.assertEqual(r_tip[0].comments['hello'], 'world')
-        print "I am here now!"
-        threadpool.stop()
+
+    @inlineCallbacks
+    def test_resume_submission(self):
+        submission_id = '0000000000'
+        submission = Submission()
+        yield submission.createTable()
+
+        submission.submission_id = unicode(submission_id)
+        submission.folder_id = 0
+
+        submission.fields = pickle.dumps({'fields': [{'hello': 'world'}]})
+
+        submission.receivers = pickle.dumps({'receivers': [{'hello': 'world'}]})
+        yield submission.save()
+
+        resumed_submission = Submission()
+        yield resumed_submission.resume(submission_id)
+
+
 
