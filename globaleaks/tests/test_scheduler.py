@@ -1,8 +1,9 @@
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.trial import unittest
-from globaleaks.scheduler.work import WorkManager, Job, TimeoutJob
 
+from globaleaks.scheduler.manager import *
+from globaleaks.scheduler.jobs import *
 
 class DummyJob(Job):
     def dummy(self, d):
