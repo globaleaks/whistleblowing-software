@@ -10,6 +10,10 @@ submissionStatusPost = {"receiver_selected": idops.random_receiver_id(),
     "fields": [shared.formFieldsDicts[0]]
 }
 
+submissionSubmitPost = {"receiver_selected": idops.random_receiver_id(),
+    "fields": [shared.formFieldsDicts[0]]
+}
+
 submissionFinalizePost = {"proposed_receipt": "this is my secret receipt",
     "folder_name":  "MY first file pack",
     "folder_description":  "This stuff rox, I've collected for years"

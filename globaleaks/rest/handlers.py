@@ -20,12 +20,12 @@ The error code actually used in this file are:
     503 (Service not available)
 """
 
-# decorator @removeslash in cyclone.web may remove final '/' if not 
+# decorator @removeslash in cyclone.web may remove final '/' if not
 # expected. would be nice use it, but the Cyclone code check only HEAD and GET
 # while we need checks in a complete CURD
 # -- may this be a request to be opened in Cyclone ?
 
-DEBUG = False
+DEBUG = True
 
 class GLBackendHandler(RequestHandler):
     """
@@ -55,7 +55,7 @@ class GLBackendHandler(RequestHandler):
     # Arguments matched from the in the regexp of the REST spec
     matchedArguments = []
     # Store the sanitized request in a dict (*arg, **kw)
-    safeRequest = { }
+    safeRequest = {}
 
     # Validation and sanitization classes
     sanitizer = None
@@ -85,8 +85,8 @@ class GLBackendHandler(RequestHandler):
 
     def prepare(self):
         """
-        This method is called by cyclone, and is implemented to 
-        handle the POST fallback, in environment where PUT and DELETE 
+        This method is called by cyclone, and is implemented to
+        handle the POST fallback, in environment where PUT and DELETE
         method may not be used.
         """
 
@@ -120,13 +120,13 @@ class GLBackendHandler(RequestHandler):
             import urllib
             print "[+] validating %s %s via %s->%sValidate" %  (
                                         urllib.unquote_plus(str(self.request)),
-                                        self.matchedArguments, self.processor, 
+                                        self.matchedArguments, self.processor,
                                         self.action)
 
         if not self.validator:
             raise HTTPError(503, "Missing of Validator Class/Method")
 
-        for x in [ self.action + '_' + self.method, self.action, 'default_validate' ]:
+        for x in [ self.action + '_' + self.method, self.action, 'default' ]:
             try:
                 validator_function = getattr(self.validator, x)
                 break
@@ -141,8 +141,8 @@ class GLBackendHandler(RequestHandler):
         (in the future, perhaps) header
         """
         if validator_function:
-            isValid = validator_function(action=self.action, \
-                    uriargs=self.matchedArguments, body=self.request.body)
+            isValid = validator_function(self.request.body,
+                    *self.matchedArguments)
         else:
             raise HTTPError(503, "Missing of validator function")
 
@@ -155,20 +155,19 @@ class GLBackendHandler(RequestHandler):
         """
         # this may happen in the GET request, would not be accepted in other method
         if not self.sanitizer:
-            if self.method.lower() == 'get':
-                self.safeRequest = dict({'safeRequest' : ''})
+            if self.method.upper() == 'GET':
                 return
             else:
                 raise HTTPError(503, "Missing of Sanitizer Class/Method")
 
         # We first try and call the method named after action + HTTP METHOD,
         # If that method does not exist we fail over to calling the action,
-        # If that method does not exist we fail over to calling the 
+        # If that method does not exist we fail over to calling the
         # "default_sanitize" method.
         # If no getattr return a method, we will throw an error.
         sanitizer_function = None
 
-        for x in [ self.action + '_' + self.method, self.action, 'default_sanitize' ]:
+        for x in [ self.action + '_' + self.method, self.action, 'default' ]:
             try:
                 sanitizer_function = getattr(self.sanitizer, x)
                 break
@@ -176,8 +175,8 @@ class GLBackendHandler(RequestHandler):
                 pass
 
         if sanitizer_function:
-            self.safeRequest = sanitizer_function(action=self.action, \
-                    uriargs=self.matchedArguments, body=self.request.body)
+            self.safeRequest = sanitizer_function(self.request.body,
+                *self.matchedArguments)
             # remind that you want to do:
             # self.request = None
         else:
@@ -194,7 +193,7 @@ class GLBackendHandler(RequestHandler):
         Make the processor handle deal with the request.
         Basically we do Processor->reqApi(*arg, **kw)
 
-        :action the string defined in api.spec, and would 
+        :action the string defined in api.spec, and would
          compose with $action_$httpmethod the method inside
          of the appropriate Process class
         """
@@ -210,24 +209,24 @@ class GLBackendHandler(RequestHandler):
         if not self.isSupportedMethod():
             raise HTTPError(405, "Request method not supported by this API call")
 
-        if not self.validateRequest():
-            print "[!] Detected malformed request: are we under attack?"
-            raise HTTPError(409, "Invalid request")
-
+        self.validateRequest()
         self.sanitizeRequest()
+
         # after this point, self.request would NOT BE USED, use instead
         # ____ self.safeRequest ____
 
-
+        if self.matchedArguments:
+            matchedArguments = self.matchedArguments
+        else:
+            matchedArguments = []
         targetMethod = getattr(self.processor, self.action + '_' + self.method.upper())
-        return_value = yield targetMethod(uriargs=self.matchedArguments,
-                safereq=self.safeRequest)
+        return_value = yield targetMethod(self.safeRequest, *matchedArguments)
 
         if DEBUG:
             import urllib
             print "[?] handled %s->%s_%s with %s retval %s " % (
                                                      self.processor, self.action,
-                                                     self.method, self.matchedArguments, 
+                                                     self.method, self.matchedArguments,
                                                      urllib.unquote_plus(str(return_value)))
 
         returnValue(return_value)
@@ -282,7 +281,7 @@ class nodeHandler(GLBackendHandler):
 
     This class has not a sanitized because
     is only a GET request, anyway has a validator
-    because some logging functionality may be 
+    because some logging functionality may be
     implemented in *Validator classess
     """
     processor = Node()
@@ -293,7 +292,7 @@ class submissionHandler(GLBackendHandler):
     """
     # Submission Handlers (U2, U3, U4: POST GET)
                           (U5: CURD, file upload):
-        * /submission/<ID> 
+        * /submission/<ID>
         * /submission/<ID>/status
         * /submission/<ID>/finalize
         * /submission/<ID>/files
@@ -305,7 +304,7 @@ class submissionHandler(GLBackendHandler):
 
 class tipHandler(GLBackendHandler):
     """
-    # Tip Handlers 
+    # Tip Handlers
         * /tip/<ID>            T1 GET POST (all)
         * /tip/<ID>/comment    T2 POST (wb/rcv)
         * /tip/<ID>/files      T3 CURD (wb)
@@ -330,7 +329,7 @@ class receiverHandler(GLBackendHandler):
 class adminHandler(GLBackendHandler):
     """
     # Admin Handlers (A1 GET POST, A2 A3 A4 CURD)
-        * /admin/node  
+        * /admin/node
         * /admin/contexts
         * /admin/receivers/<context_ID>
         * /admin/modules/<MODULE_TYPE><fixd><context_ID>

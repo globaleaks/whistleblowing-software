@@ -171,4 +171,9 @@ class WorkManager(object):
             timeout = 1
         return timeout
 
+class DBWorkManager(WorkManager):
+    """
+    This is a database driven work manager. It uses the provided database to
+    store the current state of the work queues.
+    """
 

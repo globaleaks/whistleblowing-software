@@ -15,22 +15,22 @@ from globaleaks.utils import idops
 
 class validatorRegExps:
 
-    @classmethod
+    @staticmethod
     def timecheckf(self, value):
         return True
 
-    @classmethod
+    @staticmethod
     def boolcheckf(self, value):
         return True
 
     """
     regexp (\w+) with a size limit
     """
-    @classmethod
+    @staticmethod
     def stringcheckf(self, value):
         return True
 
-    @classmethod
+    @staticmethod
     def intcheckf(self, value):
         return True
 
@@ -39,36 +39,36 @@ class validatorRegExps:
     letter recalling the meaning of the ID, in example:
 
     tip with "t_"
-    context start with "c_", 
+    context start with "c_",
     module with "m_"
     receiver with "r_"
-    submission with "s_" 
+    submission with "s_"
 
-    for be easily recognezed by human eye 
+    for be easily recognezed by human eye
     """
-    @classmethod
+    @staticmethod
     def tipIDcheckf(self, value):
         return idops.regexp_tip_id(value)
-    @classmethod
+    @staticmethod
     def contextIDcheckf(self, value):
         return idops.regexp_context_id(value)
-    @classmethod
+    @staticmethod
     def moduleIDcheckf(self, value):
         return idops.regexp_module_id(value)
-    @classmethod
+    @staticmethod
     def receiverIDcheckf(self, value):
         return idops.regexp_receiver_id(value)
-    @classmethod
+    @staticmethod
     def submissionIDcheckf(self, value):
         return idops.regexp_submission_id(value)
-    @classmethod
+    @staticmethod
     def folderIDcheckf(self, value):
         return idops.regexp_folder_id(value)
 
     """
     receipt format, default 10 digits, its a configurable format
     """
-    @classmethod
+    @staticmethod
     def receiptIDcheckf(self, value):
         return idops.regexp_receipt_id(value)
 
@@ -76,14 +76,14 @@ class validatorRegExps:
     """
     ("your"|"external"|"whistleblower")
     """
-    @classmethod
+    @staticmethod
     def commentENUMcheckf(self, value):
         return True
 
     """
     ("notification"|"delivery"|"inputfilter"|"dbstorage")
     """
-    @classmethod
+    @staticmethod
     def moduleENUMcheckf(self, value):
         return True
 
@@ -98,55 +98,55 @@ class defltvals:
 
     IDcounter = 0
 
-    @classmethod
+    @staticmethod
     def booldeflt(self):
         return False
 
-    @classmethod
+    @staticmethod
     def stringdeflt(self):
         return 'defaultWRONGstring'
 
-    @classmethod
+    @staticmethod
     def intdeflt(self):
         return 12345678
 
-    @classmethod
+    @staticmethod
     def moduleIDdeflt(self):
         return idops.random_module_id()
 
-    @classmethod
+    @staticmethod
     def contextIDdeflt(self):
         return idops.random_context_id()
 
-    @classmethod
+    @staticmethod
     def tipIDdeflt(self):
         return idops.random_tip_id()
 
-    @classmethod
+    @staticmethod
     def receiptIDdeflt(self):
         return idops.random_receipt_id()
 
-    @classmethod
+    @staticmethod
     def receiverIDdeflt(self):
         return idops.random_receiver_id()
 
-    @classmethod
+    @staticmethod
     def submissionIDdeflt(self):
         return idops.random_submission_id()
 
-    @classmethod
+    @staticmethod
     def folderIDdeflt(self):
         return idops.random_folder_id()
 
-    @classmethod
+    @staticmethod
     def commentENUMdeflt(self):
         return 'comment_ENUM_UNSET'
 
-    @classmethod
+    @staticmethod
     def moduleENUMdeflt(self):
         return 'module_ENUM_UNSET'
 
-    @classmethod
+    @staticmethod
     def timedeflt(self):
         return datetime.datetime.ctime(datetime.datetime.today())
         # yay, it's shit
