@@ -1,8 +1,8 @@
 import json
 from twisted.trial import unittest
 
-from globaleaks.rest.messages.base import *
-from globaleaks.rest.messages.errors import *
+from globaleaks.messages.base import *
+from globaleaks.messages.errors import *
 
 dummy_file_dict = {"filename": 'hello',
     "file_description": 'world',
@@ -13,7 +13,7 @@ dummy_file_dict = {"filename": 'hello',
     "completed": False
 }
 
-dummy_receiver_dict = {"rID": "dummy",
+dummy_receiver_dict = {"rID": "r_aaaabbbbccddddeeeeff",
             "can_delete_submission": True,
             "can_postpone_expiration": True,
             "can_configure_notification": True,
@@ -32,7 +32,7 @@ dummy_receiver_dict = {"rID": "dummy",
             "language_supported": ['a', 'b']
             }
 
-dummy_folder_dict = {"fID": '12341231',
+dummy_folder_dict = {"fID": 'f_aaaabbbbccddddeeeeff',
          "folder_name": 'foobar',
          "folder_description": 'world',
          "download_performed": 10,
@@ -71,3 +71,12 @@ class TestMessages(unittest.TestCase):
         message = json.dumps(invalid_rd)
         self.failUnlessRaises(GLTypeError, validateMessage, message,
                 receiverDescriptionDict)
+
+    def test_invalid_special_field(self):
+        invalid_rd = dummy_receiver_dict.copy()
+        invalid_rd["rID"] = 'sux'
+        message = json.dumps(invalid_rd)
+        self.failUnlessRaises(GLTypeError, validateMessage, message,
+                receiverDescriptionDict)
+
+

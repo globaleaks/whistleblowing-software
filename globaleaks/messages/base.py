@@ -10,7 +10,7 @@ import inspect
 from datetime import datetime
 import json
 
-from globaleaks.rest.messages.errors import *
+from globaleaks.messages.errors import *
 
 ## TODO of the file:
 # - aquired
@@ -120,8 +120,13 @@ def validateMessage(message, messageType):
 
 
 class SpecialType(object):
+    regexp = ""
     def validate(self, data):
-        pass
+        import re
+        if re.match(self.regexp, data):
+            return
+        else:
+            raise GLTypeError("%s does not match %s" % (data, self.regexp))
 
 class dateType(SpecialType):
     pass
@@ -130,25 +135,31 @@ class timeType(SpecialType):
     pass
 
 class folderID(SpecialType):
-    pass
+    regexp = "f_[a-zA-Z]{20,20}$"
+
+class receiptID(SpecialType):
+    regexp = "\d{10,10}$"
+
+class submissionID(SpecialType):
+    regexp = "s_[a-zA-Z]{50,50}$"
 
 class receiverID(SpecialType):
-    pass
+    regexp = "r_[a-zA-Z]{20,20}$"
 
 class moduleID(SpecialType):
-    pass
+    regexp = "m_\d{10,10}$"
 
 class moduleENUM(SpecialType):
-    pass
+    regexp = "(notification|delivery|inputfilter)"
 
 class contextID(SpecialType):
-    pass
+    regexp = "c_[a-zA-Z]{20,20}$"
 
 class commentENUM(SpecialType):
-    pass
+    regexp = "(your|external|whistleblower)"
 
 class tipID(SpecialType):
-    pass
+    regexp = "t_[a-zA-Z]{50,50}$"
 
 class fileDict(GLTypes):
     specification = {"filename": unicode,
