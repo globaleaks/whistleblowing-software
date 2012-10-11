@@ -1,4 +1,8 @@
-from globaleaks.utils import recurringtypes as GLT
+# -*- encoding: utf-8 -*-
+#
+# :authors: Claudio Agosti, Arturo Filastò
+# :licence: see LICENSE
+
 from globaleaks.utils import idops
 
 """
@@ -6,7 +10,7 @@ What's follow are the GLTypes base, filled with plausible buzzwords, usable by t
 dummy requests/answers files
 """
 
-publicStatistics = {"active_contexts": 2,
+publicStatisticsDict = {"active_contexts": 2,
         "active_receivers": 3,
         "uptime_days": 100}
 

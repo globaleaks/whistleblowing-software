@@ -1,3 +1,8 @@
+# -*- encoding: utf-8 -*-
+#
+# :authors: Claudio Agosti, Arturo Filastò
+# :licence: see LICENSE
+
 from globaleaks.utils import idops
 from globaleaks.messages.dummy import shared
 
