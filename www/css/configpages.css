@@ -60,6 +60,7 @@
   opacity: 1;
 }
 .config-sidenav.affix {
+  position: absolute;
   top: 40px;
 }
 .config-sidenav.affix-bottom {
@@ -100,7 +101,12 @@
 label.inline {
     font-size: 15px;
 }
+
 .inline input {
     width: auto;
     height: auto;
+}
+
+.config-page .sub-menu {
+    background-color: #ECECF0;
 }
