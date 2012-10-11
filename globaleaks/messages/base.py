@@ -37,6 +37,9 @@ class GLTypes(dict):
     def __setitem__(self, key, val):
         self.specification[key] = val
 
+    def __call__(self):
+        return self.specification
+
 def validateType(value, validType):
     if type(value) is validType:
         return
