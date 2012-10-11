@@ -111,37 +111,6 @@ define(function (require) {
         };
         $('.submissionForm').append('<button id="submit_button">Submit</button>');
 
-        var dummy_requests = require('./dummy/requests');
-        var submissionID = null;
-
-        $("#create_new").click(function() {
-          latenza.ajax({'url': '/submission',
-                        'type': 'GET'
-          }).done(function(data) {
-            submissionID = data['submission_id'];
-          });
-        });
-
-        $("#status").click(function() {
-          var request = dummy_requests.submissionStatusPost;
-          if (submissionID) {
-            latenza.ajax({'url': '/submission/'+submissionID+'/status',
-                          'data': JSON.stringify(request),
-                          'type': 'POST'
-            });
-          } else {
-            alert("Run create new first!");
-          }
-        });
-
-         $("#buttonA").click(function() {
-          latenza.ajax({'url': '/submission/foobar/finalize',
-                        'data': JSON.stringify(dummy_requests.submissionFinalizePost),
-                        'type': 'POST'
-          });
-        });
-
-
         $('#submit_button').click(function(){
           latenza.ajax({'url': '/submission/foobar/status',
                         'data': processFields($(this).serializeArray()),
@@ -156,10 +125,53 @@ define(function (require) {
           return false;
         });
     };
+
+    function debugDeck() {
+        var debug = require('./debug'),
+            dummy_requests = require('./dummy/requests'),
+            submissionID = null;
+
+        debug.write("FOOBAR");
+
+        $("#create_new").click(function() {
+          latenza.ajax({'url': '/submission',
+                        'type': 'GET'
+          }).done(function(data) {
+            submissionID = data['submission_id'];
+            debug.write(data, 'create_new');
+          });
+        });
+
+        $("#status").click(function() {
+          var request = dummy_requests.submissionStatusPost;
+          if (submissionID) {
+            latenza.ajax({'url': '/submission/'+submissionID+'/status',
+                          'data': JSON.stringify(request),
+                          'type': 'POST'
+            }).done(function(data){
+              debug.write(data, 'status');
+            });
+
+          } else {
+            alert("Run create new first!");
+          }
+        });
+
+         $("#buttonA").click(function() {
+          latenza.ajax({'url': '/submission/foobar/finalize',
+                        'data': JSON.stringify(dummy_requests.submissionFinalizePost),
+                        'type': 'POST'
+          }).done(function(data) {
+              debug.write(data, 'finalize');
+          });
+        });
+    };
+
     latenza.ajax({'url': '/node'}).done(function(data) {
         var formdata = data;
         console.log(formdata);
         processForm(formdata.contexts[0].fields);
+        debugDeck();
     });
 
   };
