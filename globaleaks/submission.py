@@ -86,7 +86,8 @@ class Submission(Processor):
             self.handler.status_code = 404 # (Not Found)
             returnValue(answers.errorMessage(404, GLErrorCode.invalid_sID).unroll())
 
-        resumed.submissionDebug()
+        # XXX remove this in future
+        print resumed
 
         self.handler.status_code = 200
         output = answers.submissionStatus()
@@ -94,7 +95,7 @@ class Submission(Processor):
         returnValue(output.unroll())
 
     """
-    status handle the group receiver selection 
+    status handle the group receiver selection
         (if enabled in the context settings)
     handle the fields submission
         (import the fields in the temporary submission_id entry)
@@ -129,7 +130,9 @@ class Submission(Processor):
 
         resumed = models.Submission()
         resumed.resume(uriargs)
-        resumed.submissionDebug()
+
+        # XXX remove this in future
+        print resumed
 
         self.handler.status_code = 406 # (Not Acceptable)
         returnValue(answers.errorMessage(406, GLErrorCode.incomplete_fields).unroll())
@@ -153,7 +156,7 @@ class Submission(Processor):
     # U5
     def files_GET(self, submission_id, *arg, **kw):
         """
-        retrive the status of the file uploaded, the 
+        retrive the status of the file uploaded, the
         submission_id has only one folder during the first
         submission
 
@@ -174,14 +177,14 @@ class Submission(Processor):
         """
         :description, dict of text describig the file uploaded
          (or not yet complete) by PUT, every time a new
-         files_POST is reached, all the files description is 
+         files_POST is reached, all the files description is
          updated
         """
         return files_GET(submission_id, *arg, **kw)
 
     def files_DELETE(self, submission_id, *arg, **kw):
         """
-        :filename, remove a complete or a partial uploaded 
+        :filename, remove a complete or a partial uploaded
          file
         """
         return files_GET(submission_id, *arg, **kw)
