@@ -81,28 +81,6 @@ class Submission(TXModel):
 
         print "[D] id, submission_id, fields, receivers, date", self.id, self.submission_id, unp_fields, unp_recvs, self.opening_date
 
-    @transact
-    def resume(self, received_sid):
-        store = getStore()
-
-        # TODO checks if multiple match exists, in this case, is an administrative error
-        choosen = store.find(Submission, Submission.submission_id ==
-                unicode(received_sid)).one()
-
-        if not choosen:
-            store.close()
-            raise AttributeError("received submission_id not found")
-            # I'm using AttributeError just because generic Exception
-            # is giving some python issue -- would be used a more appropriate way
-
-        Submission.id = choosen.id
-        Submission.submission_id = choosen.submission_id
-        Submission.receivers = choosen.receivers
-        Submission.opening_date = choosen.opening_date
-        Submission.fields = choosen.fields
-        store.close()
-
-
 class File(TXModel):
     """
     Represents a file: a file.

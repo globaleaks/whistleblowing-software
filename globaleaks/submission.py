@@ -47,14 +47,12 @@ class Submission(Processor):
         from globaleaks.messages.dummy import shared, answers, requests
 
         fake_submission = requests.submissionStatusPost
-        new_submission.fields = fake_submission
+        new_submission.fields = fake_submission['fields']
 
-        fake_receivers = {
-            'receivers': [idops.random_receiver_id(),
+        fake_receivers = [idops.random_receiver_id(),
                           idops.random_receiver_id(),
                           idops.random_receiver_id(),
                           idops.random_receiver_id()]
-        }
         new_submission.receivers = fake_receivers
 
         output = {"submission_id": new_submission.submission_id}
@@ -64,25 +62,25 @@ class Submission(Processor):
         # dummy.SUBMISSION_NEW_GET(output)
         returnValue(output)
 
+    @inlineCallbacks
     def status_GET(self, safe_req, submission_id):
         """
         U3, refresh whistleblower client with the previously uploaded data
         """
 
-        resumed = models.Submission()
-        try:
-            resumed.resume(submission_id)
-        except AttributeError:
-            raise HTTPError(404, "Not found")
+        submission = yield db.find_one(models.Submission,
+                models.Submission.submission_id==submission_id)
 
+        print "Found submission!"
+        print submission
         # XXX remove this in future
         from globaleaks.messages.dummy import shared, answers, requests
 
         self.handler.status_code = 200
-
-        output = answers.submissionStatusGet
-        # dummy.SUBMISSION_STATUS_GET(output)
-        returnValue(output)
+        status = {'receivers_selected': submission.receivers,
+                  'fields': submission.fields}
+        print status
+        returnValue(status)
 
     """
     status handle the group receiver selection
@@ -90,6 +88,7 @@ class Submission(Processor):
     handle the fields submission
         (import the fields in the temporary submission_id entry)
     """
+    @inlineCallbacks
     def status_POST(self, safe_req, submission_id, *uriargs):
         """
         U3, update the whistleblower stored data, expect in safereq
@@ -104,7 +103,8 @@ class Submission(Processor):
         # print "pickle: ", pickle.dumps(safereq.fields)
 
         # return self.status_GET(uriargs, safereq, arg, kw)
-        returnValue(self.status_GET(safe_req, submission_id, *uriargs))
+        res = yield self.status_GET(safe_req, submission_id, *uriargs)
+        returnValue(res)
 
 
     # def finalize_POST(self, submission_id, **form_fields):
@@ -115,8 +115,8 @@ class Submission(Processor):
         Finalize the submission and create data inside of the database,
         perform checks if the required fiels has been set
         """
-        submission = models.Submission()
-        submission.resume(submission_id)
+        submission = yield db.find_one(models.Submission,
+                models.Submission.submission_id==submission_id)
 
         receipt_id = unicode(idops.random_receipt_id())
         internal_tip = models.InternalTip()
