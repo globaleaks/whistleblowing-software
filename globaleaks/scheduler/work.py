@@ -14,6 +14,7 @@ class Job(object):
     def __init__(self, scheduledTime=time.time(), delay=None):
         self.scheduledTime = scheduledTime
 
+        self.manager = None
         self.running = False
         self.failures = []
         if delay:
@@ -28,24 +29,32 @@ class Job(object):
         else:
             raise Exception("date argument must be an instance of datetime")
 
+    def _run(self, manager=None):
+        d = self.run()
+        self.manager = manager
+        return d
+
     def run(self):
         pass
 
-class DummyJob(Job):
-    def dummy(self, d):
-        print "----- Did dummy stuff ---"
-        d.callback(None)
+class JobTimedout(Exception):
+    pass
 
-    def run(self):
-        print "-------- Dummy Job ----------"
-        d = Deferred()
-        reactor.callLater(1, self.dummy, d)
+class TimeoutJob(Job):
+    timeout = 2
+    def timedOut(self):
+        pass
+
+    def _timedOut(self, d, *arg, **kw):
+        print "TJ: Timed out!"
+        print arg, kw
+        self.timedOut()
+        d.errback(JobTimedout("%s timed out after %s" % (self.__class__, self.timeout)))
+
+    def _run(self, manager=None):
+        d = Job._run(self, manager)
+        reactor.callLater(self.timeout, self._timedOut, d)
         return d
-
-class FailJob(DummyJob):
-    def dummy(self, d):
-        d.errback(Exception("I have failed"))
-
 
 class WorkManager(object):
     """
@@ -70,6 +79,7 @@ class WorkManager(object):
     def __init__(self):
         self.workQueue = []
         self.failedQueue = []
+        self.timeoutQueue = []
 
         self.runningJobs = []
 
@@ -108,14 +118,17 @@ class WorkManager(object):
         obj.running = False
 
     def _failed(self, failure, obj):
+        print "Failed %s" % obj
         obj.failures.append(failure)
         self.workQueue.remove(obj)
 
         if len(obj.failures) > len(self.retries):
             # Too many failures, give up trying
+            print "Too many failures"
             self.failedQueue.append(obj)
         else:
             # Reschedule the envent by readding it to the queue
+            print "Rescheduling"
             obj.scheduledTime = time.time()
             obj.scheduledTime += self.retries[len(obj.failures) - 1]
             obj.running = False
@@ -135,11 +148,12 @@ class WorkManager(object):
         This saves the current state to a local pickle file.
         XXX replace this to write the state to database.
         """
-        fp = open(output, 'w')
+        fp = open(output, 'w+')
         pickle.dump(self, fp)
         fp.close()
 
     def _done(self, result):
+        print "Done all!"
         self.saveState()
 
     def run(self):
@@ -166,7 +180,7 @@ class WorkManager(object):
 
             if not obj.running:
                 obj.running = True
-                d = obj.run()
+                d = obj._run(self)
                 d.addErrback(self._failed, obj)
                 d.addCallback(self._success, obj)
                 dlist.append(d)
@@ -193,25 +207,5 @@ class WorkManager(object):
         if timeout < 0:
             timeout = 1
         return timeout
-
-try:
-    taskManager = pickle.load(open('manager.state', 'r'))
-    print taskManager.showState()
-
-except:
-    print "No state file, creating a new instance!"
-    taskManager = WorkManager()
-
-job1 = DummyJob()
-job2 = DummyJob()
-job3 = FailJob()
-
-taskManager.add(job1)
-taskManager.add(job2)
-taskManager.add(job3)
-
-taskManager.run()
-
-reactor.run()
 
 
