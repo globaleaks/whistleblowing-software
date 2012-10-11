@@ -67,19 +67,11 @@ class Submission(Processor):
         """
         U3, refresh whistleblower client with the previously uploaded data
         """
-
-        submission = yield db.find_one(models.Submission,
-                models.Submission.submission_id==submission_id)
-
-        print "Found submission!"
-        print submission
-        # XXX remove this in future
-        from globaleaks.messages.dummy import shared, answers, requests
+        submission = models.Submission()
+        status = yield submission.status(submission_id)
 
         self.handler.status_code = 200
-        status = {'receivers_selected': submission.receivers,
-                  'fields': submission.fields}
-        print status
+
         returnValue(status)
 
     """
@@ -97,12 +89,6 @@ class Submission(Processor):
         verify in the local settings if the receivers shall be choosen by WB
         if some fields are required, is not check here.
         """
-
-        # safereq.fields.convertToPickle() -- TODO
-
-        # print "pickle: ", pickle.dumps(safereq.fields)
-
-        # return self.status_GET(uriargs, safereq, arg, kw)
         res = yield self.status_GET(safe_req, submission_id, *uriargs)
         returnValue(res)
 
@@ -115,25 +101,13 @@ class Submission(Processor):
         Finalize the submission and create data inside of the database,
         perform checks if the required fiels has been set
         """
-        submission = yield db.find_one(models.Submission,
-                models.Submission.submission_id==submission_id)
-
         receipt_id = unicode(idops.random_receipt_id())
-        internal_tip = models.InternalTip()
-        internal_tip.fields = submission.fields
+
+        submission = models.Submission()
+        yield submission.create_tips(submission_id, receipt_id)
 
         self.handler.status_code = 201
-        yield internal_tip.save()
 
-        whistleblower_tip = models.Tip()
-        whistleblower_tip.internaltip_id = internal_tip.id
-        whistleblower_tip.address = receipt_id
-
-        yield whistleblower_tip.save()
-
-        tip = yield db.find_one(models.Tip, models.Tip.address==receipt_id)
-
-        inttip = yield tip.internaltip()
         receipt = {"receipt": receipt_id}
         returnValue(receipt)
 
