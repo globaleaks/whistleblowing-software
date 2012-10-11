@@ -9,12 +9,11 @@
 
 from twisted.internet.defer import returnValue, inlineCallbacks
 
+from globaleaks import db
 from globaleaks.db import models, transactor
 from globaleaks.utils import idops
 from globaleaks import Processor
 
-from globaleaks.utils.dummy import dummy_answers as dummy
-from globaleaks.utils import recurringtypes as GLT
 from globaleaks.rest import answers
 from globaleaks.rest.errors import GLErrorCode
 
@@ -108,24 +107,20 @@ class Submission(Processor):
         returnValue(self.status_GET(safe_req, submission_id, *uriargs))
 
 
-#    def finalize_POST(self, submission_id, **form_fields):
+    # def finalize_POST(self, submission_id, **form_fields):
     # U4
     @inlineCallbacks
-    def finalize_POST(self, safereq, *uriargs):
+    def finalize_POST(self, safereq, submission_id, *uriargs):
         """
         Finalize the submission and create data inside of the database,
         perform checks if the required fiels has been set
         """
-
-        resumed = models.Submission()
-        resumed.resume(uriargs)
-
-        self.handler.status_code = 406 # (Not Acceptable)
-        returnValue(answers.errorMessage(406, GLErrorCode.incomplete_fields).unroll())
+        submission = models.Submission()
+        submission.resume(submission_id)
 
         receipt_id = unicode(idops.random_receipt_id())
         internal_tip = models.InternalTip()
-        internal_tip.fields = pickle.dumps( {'shittest': 'isatest'} )
+        internal_tip.fields = submission.fields
 
         self.handler.status_code = 201
         yield internal_tip.save()
@@ -136,8 +131,11 @@ class Submission(Processor):
 
         yield whistleblower_tip.save()
 
-        ret = answers.finalizeSubmission()
-        returnValue(ret.unroll())
+        tip = yield db.find_one(models.Tip, models.Tip.address==receipt_id)
+
+        inttip = yield tip.internaltip()
+        receipt = {"receipt": receipt_id}
+        returnValue(receipt)
 
     # U5
     def files_GET(self, submission_id, *uriarg):
@@ -148,16 +146,16 @@ class Submission(Processor):
 
         XXX remind: in the API-interface is not yet defined
         """
-        ret = GLT.fileDict()
-        dummy.SUBMISSION_FILES_GET(ret)
-        return ret.unroll()
+        from globaleaks.messages.dummy import shared, answers, requests
+
+        return shared.fileDicts[0]
 
     def files_PUT(self, submission_id, *uriarg):
         """
         Take the new data and append to the file, contain sync,
         need to be checked prorperly
         """
-        return files_GET(arg, kw)
+        return self.files_GET(submission_id, *uriarg)
 
     def files_POST(self, submission_id, *uriarg):
         """
@@ -166,11 +164,11 @@ class Submission(Processor):
          files_POST is reached, all the files description is
          updated
         """
-        return files_GET(submission_id, *uriarg)
+        return self.files_GET(submission_id, *uriarg)
 
     def files_DELETE(self, submission_id, *arg, **kw):
         """
         :filename, remove a complete or a partial uploaded
          file
         """
-        return files_GET(submission_id, *uriarg)
+        return self.files_GET(submission_id, *uriarg)

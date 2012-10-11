@@ -1,3 +1,7 @@
+import json
+
+from twisted.internet.defer import returnValue
+
 from storm.twisted.transact import transact
 from storm.locals import *
 import pickle
@@ -65,6 +69,7 @@ class Submission(TXModel):
         vals = (self.__class__, str(self.submission_id), self.folder_id, self.receivers, self.fields)
         format_string = "<%s submission_id=%s,folder_id=%s,receivers=%s,fields=%s>"
         return format_string % vals
+
     def submissionDebug(self):
 
         unp_fields = unp_recvs = ''
@@ -95,7 +100,6 @@ class Submission(TXModel):
         Submission.receivers = choosen.receivers
         Submission.opening_date = choosen.opening_date
         Submission.fields = choosen.fields
-
         store.close()
 
 
@@ -163,11 +167,10 @@ class InternalTip(TXModel):
 
     # Tips associated with this InternalTip
     # children = ReferenceSet(id, Tip.internaltip_id)
-
     def __repr__(self):
-        return "<InternalTip: (%s, %s, %s, %s, %s)" % (self.fields, \
-                self.file, self.comments, self.pertinence, \
-                self.expires)
+        return "<InternalTip %s>" % json.dumps({'fields': self.fields, 'comments': self.comments})
+
+
 
 class Tip(TXModel):
     __storm_table__ = 'tip'
@@ -185,7 +188,19 @@ class Tip(TXModel):
     password = Unicode()
 
     internaltip_id = Int()
-    internaltip = Reference(internaltip_id, InternalTip.id)
+    internaltip_ref = Reference(internaltip_id, InternalTip.id)
+
+    @transact
+    def internaltip(self):
+        store = getStore()
+        the_one = store.find(InternalTip, InternalTip.id == self.internaltip_id).one()
+        store.close()
+        return the_one
+
+    def __repr__(self):
+        return json.dumps({'address': self.address, 'password': self.password,
+                'type': self.type, 'internaltip_id': self.internaltip_id})
+
 
 class ReceiverTip(Tip):
     total_view_count = Int()
