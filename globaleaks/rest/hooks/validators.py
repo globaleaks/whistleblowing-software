@@ -27,7 +27,7 @@ Validatator DO:
   would be blocked, or managed in a particular way.
 
 Validator is the first layer of checks after the HTTP
-request, after the validator procedure not all the 
+request, after the validator procedure not all the
 request may be passed.
 """
 
@@ -70,7 +70,7 @@ class SubmissionValidator(object):
         expected = requests.submissionUpdate()
         expected.aquire(body)
         return True
-   
+
     @classmethod
     def finalize_POST(self, uriargs, body, *args, **kw):
         """
@@ -131,9 +131,9 @@ class ReceiverValidator(object):
         return True
 
     """
-    Cover module operations, CURD, R2, 
+    Cover module operations, CURD, R2,
     but we have not to cover the GET request...
-    maybe nice make a decorator able to define which kind of 
+    maybe nice make a decorator able to define which kind of
     method need to be wrapped, and reduce, in handlers, the looping test,
     using just the default_valudate as fallback -- XXX
     """
@@ -191,7 +191,10 @@ class ReceiverValidator(object):
     """
     @classmethod
     def module(self, uriargs, body, *args, **kw):
-        print "checking ",kw['body'], "expecting a moduleDataDict and a 'method'"
+        try:
+            print "checking ",kw['body'], "expecting a moduleDataDict and a 'method'"
+        except:
+            print "No body"
 
         """
         if invalidPOSThack(kw['method'], kw['body']):
@@ -199,7 +202,7 @@ class ReceiverValidator(object):
         """
 
         return True
-    
+
 
 
 class NodeValidator(object):

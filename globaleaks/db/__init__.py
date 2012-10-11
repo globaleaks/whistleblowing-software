@@ -38,6 +38,7 @@ def createTables():
         store = getStore()
         store.execute(query)
         store.commit()
+        store.close()
 
     for x in models.__all__:
         query = getattr(models.__getattribute__(x), 'createQuery')
