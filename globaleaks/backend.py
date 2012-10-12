@@ -17,12 +17,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.db import createTables, threadpool
 from globaleaks.rest import api
 
-# XXX perhaps we actually don't want this to go here.
-@inlineCallbacks
-def initializeDB():
-    print "[+] Creating dummy tables..."
-    yield createTables()
-
 if __name__ == "__main__":
     """
     if invoked directly we will run the application.
@@ -31,11 +25,14 @@ if __name__ == "__main__":
     from twisted.python import log
     from cyclone.web import Application
 
-    log.startLogging(sys.stdout)
+    def start_backend(*arg):
+        log.startLogging(sys.stdout)
+        application = Application(api.spec, debug=True)
+        reactor.listenTCP(8082, application)
+        reactor.addSystemEventTrigger('after', 'shutdown', threadpool.stop)
 
-    application = Application(api.spec, debug=True)
-    initializeDB()
-    reactor.listenTCP(8082, application)
-    reactor.addSystemEventTrigger('after', 'shutdown', threadpool.stop)
+    d = createTables()
+    d.addCallback(start_backend)
+
     reactor.run()
 

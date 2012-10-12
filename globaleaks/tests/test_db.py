@@ -15,57 +15,64 @@ from twisted.web.http_headers import Headers
 from twisted.internet.protocol import Protocol
 from twisted.internet.defer import Deferred, inlineCallbacks
 
-from globaleaks.db import createTables, threadpool
-from globaleaks.db import transactor, getStore
-from globaleaks.db.models import *
+from storm.twisted.transact import Transactor
+from storm.twisted.testing import FakeThreadPool, FakeTransactor
+from storm.databases.sqlite import SQLite
+from storm.uri import URI
 
-class DBTestCase(unittest.TestCase):
+from globaleaks.db import models
 
+class BaseDBTest(unittest.TestCase):
     def setUp(self):
-        threadpool.start()
+        fake_thread_pool = FakeThreadPool()
+        self.transactor = Transactor(fake_thread_pool)
+        self.database = SQLite(URI("sqlite:///test.db"))
 
-    def tearDown(self):
-        threadpool.stop()
-
-    @inlineCallbacks
-    def test_add_tip(self):
-        from datetime import datetime
-        tip = InternalTip()
-        yield tip.createTable()
-        tip.fields = {'hello': 'world'}
-        tip.comments = {'hello': 'world'}
-        tip.pertinence = 0
-        expiration_time = datetime.now()
-        tip.expiration_time = expiration_time
-
-        yield tip.save()
-
-        def findtip(what):
-            store = getStore()
-            x = list(store.find(InternalTip, InternalTip.id == what))
-            store.close()
-            return x
-
-        r_tip = yield transactor.run(findtip, tip.id)
-        self.assertEqual(r_tip[0].fields['hello'], 'world')
-        self.assertEqual(r_tip[0].comments['hello'], 'world')
+    def mock_model(self):
+        mock = self.baseModel()
+        mock.transactor = self.transactor
+        mock.database = self.database
+        return mock
 
     @inlineCallbacks
-    def test_resume_submission(self):
-        submission_id = '0000000000'
-        submission = Submission()
-        yield submission.createTable()
+    def create_table(self):
+        mock = self.mock_model()
+        try:
+            yield mock.createTable()
+        except:
+            pass
 
-        submission.submission_id = unicode(submission_id)
-        submission.folder_id = 0
+class TestSubmission(BaseDBTest):
+    baseModel = models.Submission
 
-        submission.fields = pickle.dumps({'fields': [{'hello': 'world'}]})
+    @inlineCallbacks
+    def test_create_table(self):
+        yield self.create_table()
 
-        submission.receivers = pickle.dumps({'receivers': [{'hello': 'world'}]})
-        yield submission.save()
+    @inlineCallbacks
+    def test_new_submission(self):
+        from globaleaks.utils import idops
+        from globaleaks.messages.dummy import requests
+        yield self.create_table()
 
-        resumed_submission = Submission()
-        yield resumed_submission.resume(submission_id)
+        test_id = unicode(idops.random_submission_id())
+        test_submission = self.mock_model()
+        test_submission.submission_id = test_id
+        test_submission.folder_id = 0
+
+        test_submission.fields = requests.submissionStatusPost['fields']
+        test_submission.receivers = requests.submissionStatusPost['receivers_selected']
+        yield test_submission.save()
+
+        status = yield test_submission.status(test_id)
+        self.assertEqual(status['fields'],
+                requests.submissionStatusPost['fields'])
+        self.assertEqual(status['receivers_selected'],
+                requests.submissionStatusPost['receivers_selected'])
+
+class TestTip(BaseDBTest):
+    pass
 
 
-
+class TestReceivers(BaseDBTest):
+    pass

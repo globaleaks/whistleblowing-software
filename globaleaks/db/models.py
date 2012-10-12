@@ -9,7 +9,7 @@ import pickle
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
 
-from globaleaks.db import getStore, transactor
+from globaleaks.db import getStore, transactor, database
 
 __all__ = ['InternalTip', 'Folder',
            'File', 'Tip','ReceiverTip',
@@ -29,17 +29,22 @@ class TXModel(object):
     """
     createQuery = ""
     transactor = transactor
+    database = database
+
+    def getStore(self):
+        store = Store(self.database)
+        return store
 
     @transact
     def createTable(self):
-        store = getStore()
+        store = self.getStore()
         store.execute(self.createQuery)
         store.commit()
         store.close()
 
     @transact
     def save(self):
-        store = getStore()
+        store = self.getStore()
         store.add(self)
         store.commit()
         store.close()
@@ -63,7 +68,7 @@ class Submission(TXModel):
 
     @transact
     def status(self, submission_id):
-        store = getStore()
+        store = self.getStore()
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
         status = {'receivers_selected': s.receivers,
@@ -71,11 +76,11 @@ class Submission(TXModel):
 
         store.commit()
         store.close()
-        returnValue(status)
+        return status
 
     @transact
     def create_tips(self, submission_id, receipt):
-        store = getStore()
+        store = self.getStore()
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
         internal_tip = InternalTip()
@@ -88,7 +93,9 @@ class Submission(TXModel):
         store.add(whistleblower_tip)
 
         # XXX lookup the list of receivers and create their tips too.
-
+        print "Receivers!"
+        for receiver in s.receivers:
+            print receiver
         # Delete the temporary submission
         store.remove(s)
 
@@ -177,11 +184,11 @@ class Tip(TXModel):
     password = Unicode()
 
     internaltip_id = Int()
-    internaltip_ref = Reference(internaltip_id, InternalTip.id)
+    internaltip = Reference(internaltip_id, InternalTip.id)
 
     @transact
-    def internaltip(self):
-        store = getStore()
+    def internaltip_get(self):
+        store = self.getStore()
         the_one = store.find(InternalTip, InternalTip.id == self.internaltip_id).one()
         store.commit()
         store.close()
@@ -193,12 +200,151 @@ class ReceiverTip(Tip):
     relative_view_count = Int()
     relative_download_count = Int()
 
-class Node(TXModel):
-    __storm_table__ = 'node'
+    @transact
+    def create(self, receiver_id):
+        store = self.getStore()
+
+        receiver = store.find(Receiver, Receiver.receiver_id==receiver_id)
+
+
+class ReceiverContext(TXModel):
+    __storm_table__ = 'receivers_context'
+
+    __storm_primary__ = "context_id", "receiver_id"
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(context_id INTEGER, receiver_id INTEGER "\
+                   " PRIMARY KEY (context_id, receiver_id) "\
+                   ")"
+
+    context_id = Int()
+    receiver_id = Int()
+
+
+class Receiver(TXModel):
+    __storm_table__ = 'receivers'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, receiver_id VARCHAR,"\
+                   " receiver_name VARCHAR, "\
+                   " receiver_description VARCHAR, receiver_tags VARCHAR, "\
+                   " creation_date VARCHAR, last_update_date VARCHAR, "\
+                   " languages_supported VARCHAR, can_delete_submission INT, "\
+                   " can_postpone_expiration INT, can_configure_delivery INT, "\
+                   " can_configure_notification INT, can_trigger_escalation INT, "\
+                   " receiver_level INT)"
 
     id = Int(primary=True)
 
-    context = Pickle()
+    receiver_id = Unicode()
+    receiver_name = Unicode()
+    receiver_description = Unicode()
+    receiver_tags = Unicode()
+
+    creation_date = Date()
+    last_update_date = Date()
+
+    languages_supported = Pickle()
+
+    can_delete_submission = Bool()
+    can_postpone_expiration = Bool()
+    can_configure_delivery = Bool()
+    can_configure_notification = Bool()
+
+    can_trigger_escalation = Bool()
+
+    receiver_level = Int()
+
+    @transact
+    def receiver_dicts(self):
+        store = self.getStore()
+
+        receiver_dicts = []
+
+        for receiver in store.find(Receiver):
+            receiver_dict = {}
+            receiver_dict['receiver_id'] = receiver.receiver_id
+            receiver_dict['receiver_name'] = receiver.receiver_name
+            receiver_dict['receiver_description'] = receiver.receiver_description
+
+            receiver_dict['can_delete_submission'] = receiver.can_delete_submission
+            receiver_dict['can_postpone_expiration'] = receiver.can_postpone_expiration
+            receiver_dict['can_configure_delivery'] = receiver.can_configure_delivery
+
+            receiver_dict['can_configure_notification'] = receiver.can_configure_notification
+            receiver_dict['can_trigger_escalation'] = receiver.can_trigger_escalation
+
+            receiver_dict['languages_supported'] = receiver.languages_supported
+            receiver_dicts.append(receiver_dict)
+
+        store.commit()
+        store.close()
+
+        return receiver_dicts
+
+    @transact
+    def create_dummy_receivers(self):
+        from globaleaks.messages.dummy import shared
+        store = self.getStore()
+
+        for receiver_dict in shared.receiverDescriptionDicts:
+            receiver = Receiver()
+            receiver.receiver_id = receiver_dict['receiver_id']
+            receiver.receiver_name = receiver_dict['receiver_name']
+            receiver.receiver_description = receiver_dict['receiver_description']
+
+            receiver.can_delete_submission = receiver_dict['can_delete_submission']
+            receiver.can_postpone_expiration = receiver_dict['can_postpone_expiration']
+            receiver.can_configure_delivery = receiver_dict['can_configure_delivery']
+            receiver.can_configure_notification = receiver_dict['can_configure_notification']
+            receiver.can_trigger_escalation = receiver_dict['can_trigger_escalation']
+
+            receiver.languages_supported = receiver_dict['languages_supported']
+
+            store.add(receiver)
+            store.commit()
+
+        store.close()
+        return shared.receiverDescriptionDicts
+
+class Context(TXModel):
+    __storm_table__ = 'contexts'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, node_id INT,"\
+                   " contexts VARCHAR, description VARCHAR, "\
+                   " fields VARCHAR, selectable_receiver INT, "\
+                   " receivers VARCHAR, escalation_threshold INT, "\
+                   " languages_supported VARCHAR)"
+
+    id = Int(primary=True)
+
+    node_id = Int()
+    context_id = Unicode()
+
+    name = Unicode()
+    description = Unicode()
+    fields = Pickle()
+    selectable_receiver = Bool()
+
+    escalation_threshold = Int()
+    languages_supported = Pickle()
+
+Context.receivers = ReferenceSet(Context.id,
+                                 ReceiverContext.context_id,
+                                 ReceiverContext.receiver_id,
+                                 Receiver.id)
+class Node(TXModel):
+    __storm_table__ = 'node'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, contexts VARCHAR,"\
+                   " properties VARCHAR, description VARCHAR, "\
+                   " name VARCHAR, public_site VARCHAR, "\
+                   " hidden_service VARCHAR)"
+
+    id = Int(primary=True)
+
     statistics = Pickle()
     properties = Pickle()
     description = Unicode()
@@ -206,12 +352,11 @@ class Node(TXModel):
     public_site = Unicode()
     hidden_service = Unicode()
 
-class Receiver(TXModel):
-    __storm_table = 'receivers'
+    @transact
+    def list_contexts(self):
+        pass
 
-    public_name = Unicode()
-    private_name = Unicode()
-
+Node.contexts = ReferenceSet(Node.id, Context.node_id)
 
 """
 Triva, this file implement the 0.2 version of GlobaLeaks, then:

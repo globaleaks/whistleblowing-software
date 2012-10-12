@@ -6,11 +6,11 @@
 from globaleaks.utils import idops
 from globaleaks.messages.dummy import shared
 
-submissionStatusPost = {"receiver_selected": idops.random_receiver_id(),
+submissionStatusPost = {"receivers_selected": idops.random_receiver_id(),
     "fields": [shared.formFieldsDicts[0]]
 }
 
-submissionSubmitPost = {"receiver_selected": idops.random_receiver_id(),
+submissionSubmitPost = {"receivers_selected": idops.random_receiver_id(),
     "fields": [shared.formFieldsDicts[0]]
 }
 
