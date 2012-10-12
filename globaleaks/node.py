@@ -10,4 +10,5 @@ from globaleaks.rest import answers
 
 class Node(Processor):
     def root_GET(*arg, **kw):
-        return answers.nodeMainSettings()
+        response = {"contexts": []}
+        return response

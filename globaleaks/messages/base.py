@@ -175,7 +175,7 @@ class fileDict(GLTypes):
                 }
 
 class folderDict(GLTypes):
-    specification = {"fID": folderID,
+    specification = {"folder_id": folderID,
             "folder_name": unicode,
             "folder_description": unicode,
             "download_performed": int,
@@ -187,7 +187,7 @@ class folderDict(GLTypes):
             # downloadable when other are.
 
 class receiverDescriptionDict(GLTypes):
-    specification = {"rID": receiverID,
+    specification = {"receiver_id": receiverID,
             "can_delete_submission": bool,
             "can_postpone_expiration": bool,
             "can_configure_notification": bool,
@@ -203,7 +203,7 @@ class receiverDescriptionDict(GLTypes):
             "creation_date": timeType,
             "last_update_date": timeType,
             # update the name
-            "language_supported": [unicode],
+            "languages_supported": [unicode],
             }
 class nodePropertiesDict(GLTypes):
     """
@@ -332,7 +332,7 @@ class tipDetailsDict(GLTypes):
             "tip_data": formFieldsDict,
             "folder": folderDict,
             "comment": commentDescriptionDict,
-            "receiver_selected": receiverDescriptionDict}
+            "receivers_selected": receiverDescriptionDict}
 
 
 class localizationDict(GLTypes):

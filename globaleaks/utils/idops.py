@@ -22,9 +22,9 @@ def random_submission_id(testingmode=False):
     length = 50
 
     if testingmode:
-        return 's_'+(''.join(random.choice('A') for x in range(length)))
+        return u's_'+(''.join(random.choice('A') for x in range(length)))
     else:
-        return 's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+        return u's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def regexp_submission_id(sID):
 
@@ -42,9 +42,9 @@ def random_receipt_id(testingmode=False):
     length = 10
 
     if testingmode:
-        return '1234567890'
+        return u'1234567890'
     else:
-        return ''.join(random.choice('0123456789') for x in range(length))
+        return u''.join(random.choice('0123456789') for x in range(length))
 
 def regexp_receipt_id(receipt):
 
@@ -56,11 +56,11 @@ def random_module_id():
     """
     XXX maybe requested the:
     module_name: the name of the module, don't need to be random, but neet to be
-        almost stripped of the not URL-able character that shall be present in 
+        almost stripped of the not URL-able character that shall be present in
         the module name
     """
     length = 10
-    return 'm_'+(''.join(random.choice('0123456789') for x in range(length)))
+    return u'm_'+(''.join(random.choice('0123456789') for x in range(length)))
 
 def regexp_module_id(mID):
 
@@ -70,12 +70,12 @@ def regexp_module_id(mID):
 
 def random_context_id():
     """
-    need to be random (because not all context maybe reachable directly from the 
+    need to be random (because not all context maybe reachable directly from the
     home page, or not all context need to be disclosed publicly), but need to be
     short, just for do not create a loooong URL
     """
     length = 20
-    return 'c_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    return u'c_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def regexp_context_id(cID):
 
@@ -85,10 +85,10 @@ def regexp_context_id(cID):
 
 def random_folder_id():
     """
-    need to be random 
+    need to be random
     """
     length = 20
-    return 'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    return u'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def regexp_folder_id(fID):
 
@@ -103,7 +103,7 @@ def random_receiver_id():
     anyway we made it not guessable, just to avoid enumeration.
     """
     length = 20
-    return 'r_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    return u'r_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def regexp_receiver_id(rID):
 
@@ -116,7 +116,7 @@ def random_tip_id():
     need to be NOT guessable
     """
     length = 50
-    return 't_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    return u't_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def regexp_tip_id(tID):
 

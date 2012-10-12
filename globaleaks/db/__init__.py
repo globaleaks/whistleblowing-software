@@ -9,7 +9,7 @@ __all__ = ['models']
 
 from twisted.python import log
 from twisted.python.threadpool import ThreadPool
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks, returnValue, Deferred
 from storm.twisted.transact import Transactor, transact
 from storm.locals import *
 from storm.uri import URI
@@ -26,50 +26,14 @@ threadpool = ThreadPool(0, 10)
 threadpool.start()
 transactor = Transactor(threadpool)
 
-class StorePool(object):
-    def __init__(self, database=database):
-        self.database = database
-        self._stores = []
-        self._stores_created = 0
-        self._pending_get = []
-        self._store_refs = []
-
 def getStore():
-    """
-    if name in storepool:
-        return storepool[name]
-    else:
-        storepool[name] = Store(database)
-        return storepool[name]
-    """
     s = Store(database)
     return s
 
 @inlineCallbacks
-def find_one(*arg, **kw):
-    store = getStore()
-    print "Find one!"
-    results = yield transactor.run(store.find, *arg, **kw)
-    the_one = results.one()
-    print the_one
-    store.commit()
-    store.close()
-    print the_one
-    returnValue(the_one)
-
-@inlineCallbacks
-def remove(obj, *arg, **kw):
-    print "Removing!"
-    store = getStore()
-    #Store.of(obj)
-    results = yield transactor.run(store.remove, obj)
-    store.commit()
-    store.close()
-
-@inlineCallbacks
 def createTables():
     from globaleaks.db import models
-
+    d = Deferred()
     def create(query):
         store = getStore()
         store.execute(query)
@@ -80,6 +44,20 @@ def createTables():
         query = getattr(models.__getattribute__(x), 'createQuery')
         try:
             yield transactor.run(create, query)
+            pass
         except:
             log.msg("Failing in creating table for %s. Maybe it already exists?" % x)
+
+    r = models.Receiver()
+    receiver_dicts = yield r.receiver_dicts()
+
+    if not receiver_dicts:
+        print "Creating dummy receiver tables"
+        receiver_dicts = yield r.create_dummy_receivers()
+
+    print "These are the the installed receivers:"
+    for receiver in receiver_dicts:
+        print "-----------------"
+        print receiver
+        print "-----------------"
 

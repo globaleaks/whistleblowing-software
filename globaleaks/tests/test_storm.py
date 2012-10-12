@@ -13,7 +13,6 @@ from globaleaks.db.models import TXModel
 createQuery = "CREATE TABLE test"\
               "(id INTEGER PRIMARY KEY, test INTEGER)"
 
-
 class TestModels(unittest.TestCase):
     created = False
 
@@ -32,7 +31,6 @@ class TestModels(unittest.TestCase):
             c_store.commit()
         except:
             print "Already exists!"
-
 
         class DummyModel(TXModel):
             transactor = self.transactor
