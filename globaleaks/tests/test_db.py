@@ -93,8 +93,48 @@ class TestSubmission(BaseDBTest):
 
         yield test_submission.create_tips(my_id, u'1234567890')
 
+class TestReceivers(BaseDBTest):
+    baseModel = models.Receiver
+
+    @inlineCallbacks
+    def create_tables(self):
+        yield self.create_table(models.Receiver)
+        yield self.create_table(models.ReceiverContext)
+        yield self.create_table(models.Context)
+
+    @inlineCallbacks
+    def test_create_tables(self):
+        yield self.create_tables()
+
+    @inlineCallbacks
+    def test_create_dummy_receivers(self):
+        test_receiver = self.mock_model()
+        yield self.create_table()
+        result = yield test_receiver.create_dummy_receivers()
+        receiver_dict = yield test_receiver.receiver_dicts()
+
+        # XXX by doing this test in this way we are assuming ordering on the
+        # receiver dict table. This assumption may be wrong.
+        self.assertEqual(result[0], receiver_dict[0])
+
+    @inlineCallbacks
+    def test_add_receiver_to_context(self):
+        context_id = u'c_thisisatestcontext'
+        test_receiver = self.mock_model()
+        test_context = self.mock_model(models.Context)
+        test_context.name = u'test context'
+        test_context.context_id = context_id
+
+        yield self.create_tables()
+        yield test_context.save()
+
+        result = yield test_receiver.create_dummy_receivers()
+
+        receiver_id = result[0]['receiver_id']
+        yield test_context.add_receiver(context_id, receiver_id)
+
+
 class TestTip(BaseDBTest):
     pass
 
-class TestReceivers(BaseDBTest):
-    pass
+
