@@ -83,6 +83,10 @@ class Submission(TXModel):
         store = self.getStore()
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
+        if not s:
+            print s
+            raise Exception("Did not find a submission with that ID")
+
         internal_tip = InternalTip()
         internal_tip.fields = s.fields
         store.add(internal_tip)
