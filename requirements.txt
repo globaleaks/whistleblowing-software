@@ -3,3 +3,4 @@ zope.component
 cyclone
 storm
 transaction
+pycrypto
