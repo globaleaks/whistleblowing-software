@@ -84,7 +84,6 @@ class Submission(TXModel):
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
         if not s:
-            print s
             raise Exception("Did not find a submission with that ID")
 
         internal_tip = InternalTip()
@@ -97,9 +96,10 @@ class Submission(TXModel):
         store.add(whistleblower_tip)
 
         # XXX lookup the list of receivers and create their tips too.
-        print "Receivers!"
         for receiver in s.receivers:
-            print receiver
+            #print receiver
+            pass
+
         # Delete the temporary submission
         store.remove(s)
 
@@ -205,11 +205,17 @@ class ReceiverTip(Tip):
     relative_download_count = Int()
 
     @transact
-    def create(self, receiver_id):
+    def create(self, internaltip, receiver_id):
         store = self.getStore()
 
         receiver = store.find(Receiver, Receiver.receiver_id==receiver_id)
 
+        tip = ReceiverTip()
+        tip.internaltip = internaltip
+        store.add(tip)
+
+        store.commit()
+        store.close()
 
 class ReceiverContext(TXModel):
     __storm_table__ = 'receivers_context'
@@ -217,9 +223,8 @@ class ReceiverContext(TXModel):
     __storm_primary__ = "context_id", "receiver_id"
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(context_id INTEGER, receiver_id INTEGER "\
-                   " PRIMARY KEY (context_id, receiver_id) "\
-                   ")"
+                   "(context_id INTEGER, receiver_id INTEGER, "\
+                   " PRIMARY KEY (context_id, receiver_id))"
 
     context_id = Int()
     receiver_id = Int()
@@ -316,7 +321,8 @@ class Context(TXModel):
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
                    "(id INTEGER PRIMARY KEY, node_id INT,"\
-                   " contexts VARCHAR, description VARCHAR, "\
+                   " context_id VARCHAR, "\
+                   " name VARCHAR, description VARCHAR, "\
                    " fields VARCHAR, selectable_receiver INT, "\
                    " receivers VARCHAR, escalation_threshold INT, "\
                    " languages_supported VARCHAR)"
@@ -333,6 +339,20 @@ class Context(TXModel):
 
     escalation_threshold = Int()
     languages_supported = Pickle()
+
+    @transact
+    def add_receiver(self, context_id, receiver_id):
+        store = self.getStore()
+
+        receiver = store.find(Receiver,
+                        Receiver.receiver_id==receiver_id).one()
+        context = store.find(Context,
+                        Context.context_id==context_id).one()
+
+        context.receivers.add(receiver)
+
+        store.commit()
+        store.close()
 
 Context.receivers = ReferenceSet(Context.id,
                                  ReceiverContext.context_id,
