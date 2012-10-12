@@ -55,8 +55,6 @@ If you are dying to try out the new GlobaLeaks 0.2 you can run the following com
 
 This procedure is tested on Ubuntu 12.04
 
-Ubuntu 12.04
-
     # apt-get install python-virtualenv git gcc python-dev
     # git clone https://github.com/globaleaks/GLBackend
     # git clone https://github.com/globaleaks/GLClient
