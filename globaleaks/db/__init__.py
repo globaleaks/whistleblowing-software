@@ -5,7 +5,24 @@
     :copyright: (c) 2012 by GlobaLeaks
     :license: see LICENSE for more details
 """
-__all__ = ['models']
+
+# __all__ = ['models', 'tips', 'admin', 'receiver', 'submission'  ]
+
+# this need to be completed for be included, but no more for be used in the
+# createQuery loop
+
+__all__ = ['getStore', 'createTables', 'database', 'transactor']
+
+"""
+Quick reference for the content:
+
+    base:        TXModel
+    tips:        StoredData, Folders, Files, Comments, SpecialTip
+    admin:       SytemSettings, Contexts, ModulesProfiles, ReceiversInfo, AdminStats, LocalizedTexts
+    receiver:    PersonalPreference, ReceiverTip
+    submission:  Submission, PublicStats
+
+"""
 
 from twisted.python import log
 from twisted.python.threadpool import ThreadPool
@@ -34,13 +51,17 @@ def getStore():
 def createTables():
     from globaleaks.db import models
     d = Deferred()
+
     def create(query):
         store = getStore()
         store.execute(query)
         store.commit()
         store.close()
 
-    for x in models.__all__:
+    """
+    XXX can't work at the moment
+    """
+    for x in base.__all__:
         query = getattr(models.__getattribute__(x), 'createQuery')
         try:
             yield transactor.run(create, query)
