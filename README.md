@@ -53,14 +53,31 @@ Learn more about GlobaLeaks by checking out the [developer documentation](https:
 
 If you are dying to try out the new GlobaLeaks 0.2 you can run the following commands to start GLBackend and see the client UI.
 
+This procedure is tested on Ubuntu 12.04
+
+Ubuntu 12.04
+
+    apt-get install python-virtualenv git gcc python-dev
     git clone https://github.com/globaleaks/GLBackend
     git clone https://github.com/globaleaks/GLClient
+
     # It is important that they are both in the same directory
     cd GLBackend
     virtualenv -p python2.7 glenv
-    source glenv/bin/activate
-    pip -r requirements.txt
+
+    # virtualenv -p python2.7 glenv
+        Running virtualenv with interpreter /usr/bin/python2.7
+        New python executable in glenv/bin/python2.7
+        Also creating executable in glenv/bin/python
+        Installing distribute.............................................................................................................................................................................................done.
+        Installing pip...............done.
+
+        root@nite:~/GLBackend# source glenv/bin/activate
+    (glenv)root@nite:~/GLBackend# 
+
+    (glenv)root@nite:~/GLBackend# pip install -r requirements.txt
     python globaleaks/backend.py
+        Path /GLClient/www
     
 Now you may point your browser to http://127.0.0.1:8082/index.html and have a sneak peak at GL 0.2.
 
