@@ -131,25 +131,33 @@ define(function (require) {
             dummy_requests = require('./dummy/requests'),
             submissionID = null;
 
-        debug.write("FOOBAR");
+        $("#node_button").click(function() {
+          latenza.ajax({'url': '/node',
+                        'type': 'GET'
+          }).done(function(data) {
+            submissionID = data['submission_id'];
+            debug.write(data, 'GET /node');
+          });
+        });
 
         $("#create_new").click(function() {
           latenza.ajax({'url': '/submission',
                         'type': 'GET'
           }).done(function(data) {
             submissionID = data['submission_id'];
-            debug.write(data, 'create_new');
+            debug.write(data, 'GET /submission');
           });
         });
 
-        $("#status").click(function() {
+        $("#send_fields").click(function() {
           var request = dummy_requests.submissionStatusPost;
           if (submissionID) {
-            latenza.ajax({'url': '/submission/'+submissionID+'/status',
+            var path = '/submission/'+submissionID+'/status';
+            latenza.ajax({'url': path,
                           'data': JSON.stringify(request),
                           'type': 'POST'
             }).done(function(data){
-              debug.write(data, 'status');
+              debug.write(data, 'POST '+path);
             });
 
           } else {
@@ -157,13 +165,38 @@ define(function (require) {
           }
         });
 
-         $("#finalize_button").click(function() {
-          latenza.ajax({'url': '/submission/foobar/finalize',
-                        'data': JSON.stringify(dummy_requests.submissionFinalizePost),
-                        'type': 'POST'
-          }).done(function(data) {
-              debug.write(data, 'finalize');
-          });
+
+        $("#status").click(function() {
+          var request = dummy_requests.submissionStatusPost;
+          if (submissionID) {
+            var path = '/submission/'+submissionID+'/status';
+            latenza.ajax({'url': path,
+                          'type': 'GET'
+            }).done(function(data){
+              debug.write(data, 'GET '+path);
+            });
+
+          } else {
+            alert("Run create new first!");
+          }
+        });
+
+        $("#finalize_button").click(function() {
+          if (submissionID) {
+            var request = {'proposed_receipt': 'igotnicereceipt',
+                           'folder_name': 'My Documents',
+                           'folder_description': 'I have lots of warez!'};
+            var path = '/submission/'+submissionID+'/finalize';
+            latenza.ajax({'url': path,
+                          'data': JSON.stringify(request),
+                          'type': 'POST'
+            }).done(function(data){
+              debug.write(data, 'POST '+path);
+            });
+
+          } else {
+            alert("Run create new first!");
+          }
         });
     };
 
