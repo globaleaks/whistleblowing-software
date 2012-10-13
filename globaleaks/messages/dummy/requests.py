@@ -6,11 +6,11 @@
 from globaleaks.utils import idops
 from globaleaks.messages.dummy import base
 
-submissionStatusPost = {"receivers_selected": idops.random_receiver_id(),
+submissionStatusPost = {"context_selected": idops.random_context_id(),
     "fields": [base.formFieldsDicts[0]]
 }
 
-submissionSubmitPost = {"receivers_selected": idops.random_receiver_id(),
+submissionSubmitPost = {"context_selected": idops.random_context_id(),
     "fields": [base.formFieldsDicts[0]]
 }
 

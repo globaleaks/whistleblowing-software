@@ -9,22 +9,12 @@ __all__ = ['Receiver', 'ReceiverPreferences']
 class Receiver(TXModel):
     __storm_table__ = 'receivers'
 
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, receiver_id VARCHAR,"\
-                   " receiver_name VARCHAR, "\
-                   " receiver_description VARCHAR, receiver_tags VARCHAR, "\
-                   " creation_date VARCHAR, last_update_date VARCHAR, "\
-                   " languages_supported VARCHAR, can_delete_submission INT, "\
-                   " can_postpone_expiration INT, can_configure_delivery INT, "\
-                   " can_configure_notification INT, can_trigger_escalation INT, "\
-                   " receiver_level INT)"
-
     id = Int(primary=True)
 
     receiver_id = Unicode()
-    receiver_name = Unicode()
-    receiver_description = Unicode()
-    receiver_tags = Unicode()
+    name = Unicode()
+    description = Unicode()
+    tags = Unicode()
 
     creation_date = Date()
     last_update_date = Date()
@@ -46,10 +36,11 @@ class Receiver(TXModel):
         receiver_dicts = []
 
         for receiver in store.find(Receiver):
+            print "Receiver %s" % receiver
             receiver_dict = {}
-            receiver_dict['receiver_id'] = receiver.receiver_id
-            receiver_dict['receiver_name'] = receiver.receiver_name
-            receiver_dict['receiver_description'] = receiver.receiver_description
+            receiver_dict['id'] = receiver.receiver_id
+            receiver_dict['name'] = receiver.name
+            receiver_dict['description'] = receiver.description
 
             receiver_dict['can_delete_submission'] = receiver.can_delete_submission
             receiver_dict['can_postpone_expiration'] = receiver.can_postpone_expiration
@@ -64,7 +55,7 @@ class Receiver(TXModel):
         store.commit()
         store.close()
 
-        returnValue(receiver_dicts)
+        return receiver_dicts
 
     @transact
     def create_dummy_receivers(self):
@@ -72,9 +63,9 @@ class Receiver(TXModel):
         store = self.getStore()
         for receiver_dict in base.receiverDescriptionDicts:
             receiver = Receiver()
-            receiver.receiver_id = receiver_dict['receiver_id']
-            receiver.receiver_name = receiver_dict['receiver_name']
-            receiver.receiver_description = receiver_dict['receiver_description']
+            receiver.receiver_id = receiver_dict['id']
+            receiver.name = receiver_dict['name']
+            receiver.description = receiver_dict['description']
 
             receiver.can_delete_submission = receiver_dict['can_delete_submission']
             receiver.can_postpone_expiration = receiver_dict['can_postpone_expiration']
@@ -86,24 +77,11 @@ class Receiver(TXModel):
             store.add(receiver)
             store.commit()
         store.close()
-        returnValue(base.receiverDescriptionDicts)
+        return base.receiverDescriptionDicts
 
 class ReceiverPreferences(TXModel):
 
     __storm_table__ = 'receiver_preferences'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                  "(id INTEGER PRIMARY KEY, receiver_gus VARCHAR, "\
-                  " notification_selected INT, notification_fields VARCHAR, "\
-                  " delivery_selected INT, delivery_fields VARCHAR, "\
-                  " creation_date DATETIME, last_access DATETIME, "\
-                  " know_languages VARCHAR, receiver_name VARCHAR, "\
-                  " receiver_description VARCHAR, receiver_tags VARCHAR, "\
-                  " receiver_level INT, receiver_properties VARCHAR, "\
-                  " can_delete_submission BOOL, can_postpone_expiration BOOL,"\
-                  " can_configure_delivery BOOL, receiver_secret VARCHAR, "\
-                  " can_configure_notification BOOL, "\
-                  " can_trigger_escalation BOOL, contexts_followed VARCHAR)"
 
     """
     Perhaps the various properties before need to be aggregated in a Pickle, and managed

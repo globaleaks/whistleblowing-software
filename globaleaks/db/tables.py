@@ -77,7 +77,12 @@ def createTable(model, transactor, database):
         from globaleaks.db import database
     store = Store(database)
     createQuery = generateCreateQuery(model)
-    store.execute(createQuery)
+    try:
+        store.execute(createQuery)
+    except Exception, e:
+        print "Failed to create table!"
+        print e
+        store.close()
     store.commit()
     store.close()
 

@@ -56,15 +56,21 @@ def createTables():
     """
     from globaleaks import models
     from globaleaks.db import tables
+    from globaleaks.messages import dummy
 
-    for m in [models.receiver, models.submission, models.tip]:
+    for m in [models.receiver, models.submission, models.tip, models.admin]:
         for model_name in m.__all__:
-            model = getattr(m, model_name)
             try:
+                model = getattr(m, model_name)
+            except Exception, e:
+                print e
+            try:
+                print "Creating %s" % model
                 yield tables.runCreateTable(model, transactor, database)
-            except:
+            except Exception, e:
+                print e
                 print "Failed. Probably the '%s' table exists." % model_name
-
+    print "In her et0"
     r = models.receiver.Receiver()
     receiver_dicts = yield r.receiver_dicts()
 
@@ -77,4 +83,23 @@ def createTables():
         print "-----------------"
         print receiver
         print "-----------------"
+
+    c = models.admin.Context()
+    context_dict = {"name": u"Context 1",
+            "description": u"Test description",
+            "selectable_receiver": True,
+            "escalation_threshold": 10,
+            "languages_supported": [u'ENG', u'ITA'],
+            "fields": dummy.base.formFieldsDicts,
+            "receivers": receiver_dicts,
+            }
+    context_dicts = yield c.list_description_dicts()
+    if len(context_dicts) == 0:
+        print "No contexts. Creating dummy ones!"
+        context_dicts = yield c.new(context_dict)
+
+    print "We have these contexts:"
+    for context in context_dicts:
+        print "#### %s ####" % context['name']
+        print context
 

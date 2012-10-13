@@ -1,25 +1,20 @@
 from storm.twisted.transact import transact
 from storm.locals import *
 import pickle
+from globaleaks.utils import gltime, idops
 
 from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
 
-__all__ = [ 'SytemSettings', 'Contexts', 'ModulesProfiles',
+__all__ = [ 'SystemSettings', 'Context', 'ModulesProfiles',
             'AdminStats', 'LocalizedTexts', 'ReceiverContext',
-            'Context', 'Node']
+            'Node']
 
 class SystemSettings(TXModel):
     """
     This table represent the settings choosen System-wide
     """
     __storm_table__ = 'systemsettings'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                  "(id INTEGER PRIMARY KEY, public_key VARCHAR, name VARCHAR, "\
-                  " creation_time DATETIME, description VARCHAR, pubic_site VARCHAR, "\
-                  " hidden_service VARCHAR, url_schema VARCHAR, "\
-                  " leakdirectory_entry VARCHAR, private_stats_delta INT, public_stats_delta INT)"
 
     """
     To be defined and specified:
@@ -45,67 +40,6 @@ class SystemSettings(TXModel):
     GlobaLeaks release (and some of the GL 0.1 details are specified in Context)
     """
 
-
-class Contexts(TXModel):
-
-    __storm_table__ = 'contexts'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, context_gus VARCHAR, name VARCHAR, "\
-                   " desciption VARCHAR, fields VARCHAR, creation_time DATETIME, "\
-                   " last_activity DATETIME, selectable_receiver BOOL, "\
-                   " escalation_threshold INT, langs VARCHAR, receivers VARCHAR, "\
-                   " notification_profiles VARCHAR, delivery_profiles VARCHAR, "\
-                   " inputfilter_chain VARCHAR, tip_max_access INT, folder_max_download INT," \
-                   " tip_timetolive INT)"
-
-    """
-    Remind: langs do not contain the language supported by the node, but the
-            aggregate information of the languages supported by receivers knowledge
-    """
-
-    id = Int(primary=True)
-    context_gus = Unicode()
-
-    name = Unicode()
-    description = Unicode()
-
-    fields = Pickle()
-    receivers = Pickle()
-    langs = Pickle()
-
-    creation_time = DateTime()
-    last_activity = DateTime()
-
-    selectable_receiver = Bool()
-    escalation_threshold = Int()
-
-    tip_max_access = Int()
-    tip_timetolive = Int()
-    folder_max_download = Int()
-
-    notification_profiles = Pickle()
-    delivery_profiles = Pickle()
-    inputfilter_chain = Pickle()
-
-    """
-    the following add_receiver has not been reviewed during the refactor
-    """
-    @transact
-    def add_receiver(self, context_id, receiver_id):
-        store = self.getStore()
-
-        receiver = store.find(Receiver,
-            Receiver.receiver_id==receiver_id).one()
-        context = store.find(Context,
-            Context.context_id==context_id).one()
-
-        context.receivers.add(receiver)
-
-        store.commit()
-        store.close()
-
-
 class ModulesProfiles(TXModel):
     """
     remind: may exists more module profiles, also for the same module, in this
@@ -119,10 +53,6 @@ class ModulesProfiles(TXModel):
     """
 
     __storm_table__ = 'modules'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, description VARCHAR, type VARCHAR, "\
-                   " admin_fields VARCHAR, user_fields VARCHAR, active BOOL, module_gus VARCHAR)"
 
     id = Int(primary=True)
     description = Unicode()
@@ -140,10 +70,6 @@ class AdminStats(TXModel):
     node.private_stats_delta (expressed in minutes)
     """
     __storm_table__ = 'adminstats'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, receiver_access INT, submissions INT, download INT, whistleblower_access INT," \
-                   " download_forbidden INT, access_forbidden INT, removed_submissions INT)"
 
     id = Int(primary=True)
 
@@ -168,10 +94,7 @@ class LocalizedTexts(TXModel):
     need to be defined an API, that permit the admin, to convert all the description texts and
     localize them
     """
-    __storm_table__ = 'adminstats'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                  "(id INTEGER PRIMARY KEY, reference VARCHAR, translated VARCHAR)"
+    __storm_table__ = 'localizedtexts'
 
     id = Int(primary=True)
     reference = Pickle()
@@ -187,23 +110,12 @@ class ReceiverContext(TXModel):
 
     __storm_primary__ = "context_id", "receiver_id"
 
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(context_id INTEGER, receiver_id INTEGER, "\
-                   " PRIMARY KEY (context_id, receiver_id))"
-
     context_id = Int()
     receiver_id = Int()
 
 class Context(TXModel):
     __storm_table__ = 'contexts'
 
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, node_id INT,"\
-                   " context_id VARCHAR, "\
-                   " name VARCHAR, description VARCHAR, "\
-                   " fields VARCHAR, selectable_receiver INT, "\
-                   " receivers VARCHAR, escalation_threshold INT, "\
-                   " languages_supported VARCHAR)"
 
     id = Int(primary=True)
 
@@ -217,6 +129,92 @@ class Context(TXModel):
 
     escalation_threshold = Int()
     languages_supported = Pickle()
+
+    langs = Pickle()
+
+    creation_time = DateTime()
+    last_activity = DateTime()
+
+    selectable_receiver = Bool()
+    escalation_threshold = Int()
+
+    tip_max_access = Int()
+    tip_timetolive = Int()
+    folder_max_download = Int()
+
+    notification_profiles = Pickle()
+    delivery_profiles = Pickle()
+    inputfilter_chain = Pickle()
+
+    @transact
+    def new(self, context_dict):
+        store = self.getStore()
+
+        context = Context()
+
+        context.creation_date = gltime.utcDateNow()
+        context.update_date = gltime.utcDateNow()
+        context.context_id = idops.random_context_id()
+
+        context.name = context_dict["name"]
+        context.description = context_dict["description"]
+        context.selectable_receiver = context_dict["selectable_receiver"]
+
+        context.escalation_threshold = context_dict["escalation_threshold"]
+        context.languages_supported = context_dict["languages_supported"]
+
+        context.fields = context_dict["fields"]
+
+        for recv in context_dict["receivers"]:
+            receiver = store.find(Receiver,
+                        Receiver.receiver_id==recv['id']).one()
+            context.receivers.add(receiver)
+
+        store.add(context)
+        store.commit()
+        store.close()
+
+    def generate_description_dict(self, receivers):
+        description_dict = {"id": self.context_id,
+                            "name": self.name,
+                            "description": self.description,
+                            "selectable_receiver": self.selectable_receiver,
+                            "escalation_threshold": self.escalation_threshold,
+                            "languages_supported": self.languages_supported,
+                            "fields": self.fields,
+                            "receivers": receivers
+        }
+        return description_dict
+
+    @transact
+    def list_description_dicts(self):
+        store = self.getStore()
+        dicts = []
+        result = store.find(Context)
+        for context in result:
+            dd = context.generate_description_dict(context.list_receiver_dicts())
+            dicts.append(dd)
+        store.commit()
+        store.close()
+        return dicts
+
+    def list_receiver_dicts(self):
+        receiver_dicts = []
+        for receiver in self.receivers:
+            receiver_dict = {"id": receiver.receiver_id,
+                    "can_delete_submission": receiver.can_delete_submission,
+                    "can_postpone_expiration": receiver.can_postpone_expiration,
+                    "can_configure_notification": receiver.can_configure_notification,
+                    "can_configure_delivery": receiver.can_configure_delivery,
+                    "can_trigger_escalation": receiver.can_trigger_escalation,
+                    "name": receiver.name,
+                    "description": receiver.description,
+
+                    # one language is the default
+                    "languages_supported": receiver.languages_supported
+            }
+            receiver_dicts.append(receiver_dict)
+        return receiver_dicts
 
     @transact
     def add_receiver(self, context_id, receiver_id):
@@ -233,17 +231,12 @@ class Context(TXModel):
         store.close()
 
 Context.receivers = ReferenceSet(Context.id,
-                                 ReceiverContext.context_id,
-                                 ReceiverContext.receiver_id,
-                                 Receiver.id)
+                             ReceiverContext.context_id,
+                             ReceiverContext.receiver_id,
+                             Receiver.id)
+
 class Node(TXModel):
     __storm_table__ = 'node'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, contexts VARCHAR,"\
-                   " properties VARCHAR, description VARCHAR, "\
-                   " name VARCHAR, public_site VARCHAR, "\
-                   " hidden_service VARCHAR)"
 
     id = Int(primary=True)
 
