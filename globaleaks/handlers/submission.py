@@ -12,28 +12,26 @@ from twisted.internet.defer import returnValue, inlineCallbacks
 from globaleaks import db
 from globaleaks.db import models, transactor
 from globaleaks.utils import idops
-from globaleaks import Processor
 
 from globaleaks.rest import answers
 from globaleaks.rest.errors import GLErrorCode
 
-import pickle
+from cyclone.web import RequestHandler, asynchronous, HTTPError
 
 def mydirtydebug(whoami, safereq, uriargs, args, kw):
     print "[:>]", whoami, safereq, type(uriargs), uriargs, args, kw
 
 
-class Submission(Processor):
-    handler = None
-    model = models.Submission() # idem, non viene mai usata
-    transactor = transactor # TO be removed  ?
-
+class SubmissionRoot(RequestHandler):
+    @asynchronous
     @inlineCallbacks
-    def new_GET(self, safereq, *uriargs):
+    def get(self, *uriargs):
         """
         U2, Creates an empty submission and returns the ID to the WB.
         """
-        self.handler.status_code = 201
+        # XXX do sanitization and validation here
+
+        self.set_status(201)
 
         new_submission = models.Submission()
         new_submission.submission_id = unicode(idops.random_submission_id(False))
@@ -58,21 +56,25 @@ class Submission(Processor):
         output = {"submission_id": new_submission.submission_id}
 
         yield new_submission.save()
-
+        self.write(output)
+        self.finish()
         # dummy.SUBMISSION_NEW_GET(output)
-        returnValue(output)
 
+class SubmissionStatus(RequestHandler):
+    @asynchronous
     @inlineCallbacks
-    def status_GET(self, safe_req, submission_id):
+    def get(self, submission_id):
         """
         U3, refresh whistleblower client with the previously uploaded data
         """
         submission = models.Submission()
         status = yield submission.status(submission_id)
 
-        self.handler.status_code = 200
+        self.set_status(200)
 
-        returnValue(status)
+        self.write(status)
+
+        self.finish()
 
     """
     status handle the group receiver selection
@@ -80,8 +82,10 @@ class Submission(Processor):
     handle the fields submission
         (import the fields in the temporary submission_id entry)
     """
+
+    @asynchronous
     @inlineCallbacks
-    def status_POST(self, safe_req, submission_id, *uriargs):
+    def post(self, submission_id, *uriargs):
         """
         U3, update the whistleblower stored data, expect in safereq
         fields: an array of formFieldsDict
@@ -89,14 +93,13 @@ class Submission(Processor):
         verify in the local settings if the receivers shall be choosen by WB
         if some fields are required, is not check here.
         """
-        res = yield self.status_GET(safe_req, submission_id, *uriargs)
-        returnValue(res)
+        yield self.get(submission_id, *uriargs)
 
 
-    # def finalize_POST(self, submission_id, **form_fields):
-    # U4
+class SubmissionFinalize(RequestHandler):
+    @asynchronous
     @inlineCallbacks
-    def finalize_POST(self, safereq, submission_id, *uriargs):
+    def post(self, submission_id, *uriargs):
         """
         Finalize the submission and create data inside of the database,
         perform checks if the required fiels has been set
@@ -106,13 +109,15 @@ class Submission(Processor):
         submission = models.Submission()
         yield submission.create_tips(submission_id, receipt_id)
 
-        self.handler.status_code = 201
+        self.set_status(201)
 
         receipt = {"receipt": receipt_id}
-        returnValue(receipt)
+        self.write(receipt)
+        self.finish()
 
+class SubmissionFiles(RequestHandler):
     # U5
-    def files_GET(self, submission_id, *uriarg):
+    def get(self, submission_id, *uriarg):
         """
         retrive the status of the file uploaded, the
         submission_id has only one folder during the first
@@ -124,25 +129,25 @@ class Submission(Processor):
 
         return shared.fileDicts[0]
 
-    def files_PUT(self, submission_id, *uriarg):
+    def put(self, submission_id, *uriarg):
         """
         Take the new data and append to the file, contain sync,
         need to be checked prorperly
         """
-        return self.files_GET(submission_id, *uriarg)
+        return self.get(submission_id, *uriarg)
 
-    def files_POST(self, submission_id, *uriarg):
+    def post(self, submission_id, *uriarg):
         """
         :description, dict of text describig the file uploaded
          (or not yet complete) by PUT, every time a new
          files_POST is reached, all the files description is
          updated
         """
-        return self.files_GET(submission_id, *uriarg)
+        return self.get(submission_id, *uriarg)
 
-    def files_DELETE(self, submission_id, *arg, **kw):
+    def delete(self, submission_id, *arg, **kw):
         """
         :filename, remove a complete or a partial uploaded
          file
         """
-        return self.files_GET(submission_id, *uriarg)
+        return self.get(submission_id, *uriarg)

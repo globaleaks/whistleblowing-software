@@ -11,9 +11,11 @@ from globaleaks import Processor
 from globaleaks.rest import answers
 from globaleaks.utils.dummy import dummy_answers as dummy
 
-class Tip(Processor):
+from globaleaks.handlers.base import BaseHandler
 
-    def root_GET(self, *arg, **kw):
+class TipRoot(BaseHandler):
+
+    def get(self, *arg, **kw):
 
         ret = answers.tipDetailsDict()
 
@@ -23,50 +25,54 @@ class Tip(Processor):
 
     """
     root of /tip/ POST handle *deleting* and *forwarding* options,
-    they are checked in the tip-properties 
+    they are checked in the tip-properties
     (assigned by the tip propetary)
     """
-    def root_POST(self, *arg, **kw):
+    def post(self, *arg, **kw):
         return self.root_GET(arg, kw)
 
-    def comment_POST(self, *arg, **kw):
-        # set return code to 200 
+class TipComment(BaseHandler):
+    def post(self, *arg, **kw):
+        # set return code to 200
         return None
 
-
+class TipFiles(BaseHandler):
     """
     files CURD at the moment is not yet finished
     along with the javascript part.
     """
-    def files_GET(self, *arg, **kw):
+    def get(self, *arg, **kw):
+        pass
+
+    def put(self, *arg, **kw):
+        pass
+
+    def post(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
-    def files_PUT(self, *arg, **kw):
+    def delete(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
-    def files_POST(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
-
-    def files_DELETE(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
-
-
-    def finalize_POST(self, *arg, **kw):
-        # set return code to 200 
+class TipFinalize(BaseHandler):
+    def post(self, *arg, **kw):
+        # set return code to 200
         return None
 
+
+class TipDownload(BaseHandler):
     """
     Receiver only - enabled only if local delivery is set
     """
-    def download_GET(self, *arg, **kw):
+    def get(self, *arg, **kw):
         return {'arg': arg, 'kw': kw}
 
+class TipPertinence(BaseHandler):
     """
     pertinence is marked as GET, but need to be a POST,
     either because a receiver may express +1 -1 values,
     and because can be extended in the future
     """
-    def pertinence_POST(self, *arg, **kw):
-        # set return code to 200 
+    def post(self, *arg, **kw):
+        # set return code to 200
         return None
 

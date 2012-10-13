@@ -7,36 +7,34 @@
 #   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
 #   :license: see LICENSE
 #
-
-from globaleaks import Processor
-from globaleaks import node
 from globaleaks.rest import answers
 from globaleaks.utils.dummy import dummy_answers as dummy
 
+from globaleaks.handlers.base import BaseHandler
 
-class Admin(Processor):
+class AdminNode(BaseHandler):
 
     # A1
     """
     Get the node main settings, update the node main settings
     """
-    def node_GET(self, *arg, **kw):
+    def get(self, *arg, **kw):
 
         ret = answers.nodeMainSettings()
 
         dummy.ADMIN_NODE_GET(ret)
-
         return ret.unroll()
 
-    def node_POST(self, *arg, **kw):
+    def post(self, *arg, **kw):
         return self.node_GET(arg, kw)
 
 
+class AdminContexts(BaseHandler):
     # A2
     """
     classic CURD in the 'contexts'
     """
-    def contexts_GET(self, *arg, **kw):
+    def get(self, context_id):
 
         ret = answers.adminContextsCURD()
 
@@ -44,21 +42,22 @@ class Admin(Processor):
 
         return ret.unroll()
 
-    def contexts_POST(self, *arg, **kw):
-        return self.contexts_GET(arg, kw)
+    def post(self, context_id):
+        return self.get(context_id)
 
-    def contexts_PUT(self, *arg, **kw):
-        return self.contexts_GET(arg, kw)
+    def put(self, context_id):
+        return self.get(context_id)
 
-    def contexts_DELETE(self, *arg, **kw):
-        return self.contexts_GET(arg, kw)
+    def delete(self, context_id):
+        return self.get(context_id)
 
 
+class AdminReceivers(BaseHandler):
     # A3
     """
     classic CURD in the 'receivers'
     """
-    def receivers_GET(self, *arg, **kw):
+    def get(self, context_id):
 
         ret = answers.adminReceiverCURD()
 
@@ -66,22 +65,23 @@ class Admin(Processor):
 
         return ret.unroll()
 
-    def receivers_POST(self, *arg, **kw):
-        return self.receivers_GET(arg, kw)
+    def post(self, context_id):
+        return self.get(context_id)
 
-    def receivers_PUT(self, *arg, **kw):
-        return self.receivers_GET(arg, kw)
+    def put(self, context_id):
+        return self.get(context_id)
 
-    def receivers_DELETE(self, *arg, **kw):
-        return self.receivers_GET(arg, kw)
+    def delete(self, context_id):
+        return self.get(context_id)
 
 
+class AdminModules(BaseHandler):
     # A4
     """
     A limited CURD (we've not creation|delete, just update, with
     maybe a flag that /disable/ a module)
     """
-    def modules_GET(self, *arg, **kw):
+    def get(self, context_id, module_id):
 
         ret = answers.adminModulesUR()
 
@@ -89,6 +89,6 @@ class Admin(Processor):
 
         return ret
 
-    def modules_POST(self, *arg, **kw):
-        return self.modules_GET(arg, kw)
+    def post(self, context_id, module_id):
+        return self.get(context_id, module_id)
 
