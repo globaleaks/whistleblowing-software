@@ -6,16 +6,18 @@ import pickle
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
 
-from globaleaks.db import getStore, transactor
+from globaleaks.models.base import TXModel, Receiver
+
 
 __all__ = [ 'StoredData', 'Folders', 'Files', 'Comments', 'SpecialTip' ]
 
 """
 Quick reference for the content:
 
-    models:         TXModel
-    tips:           StoredTips, Folders, Files, Comments, SpecialTip
-    admin:          SytemSettings, Contexts, ModulesProfiles, ReceiversInfo, AdminStats, LocalizedTexts
+    base:           TXModel
+    tip:            StoredTip, Folder, File, Comment, SpecialTip
+    admin:          SytemSettings, Context, ModulesProfile, ReceiversInfo,
+                    AdminStats, LocalizedText
     receiver:       PersonalPreference, ReceiverTip
     whistleblower:  Submission, PublicStats
 
@@ -25,7 +27,7 @@ Quick reference for the content:
 class StoredTip(TXModel):
     """
     Every tip has a certain shared data between all, and they are here collected, and
-    this StoredTips.id is referenced by Folders, Files, Comments, and the derived Tips
+    this StoredTip.id is referenced by Folders, Files, Comments, and the derived Tips
     """
     __storm_table__ = 'storedtips'
 
@@ -59,8 +61,6 @@ class StoredTip(TXModel):
         timeoftheday is >= expired_date
         """
 
-    def
-
 class Folder(TXModel):
     """
     This represents a file set: a collection of files, description, time
@@ -74,26 +74,31 @@ class Folder(TXModel):
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
                    " (id INTEGER PRIMARY KEY, folder_gus VARCHAR, description VARCHAR, "\
-                   " associated_receiver_id INT, property_applied VARCHAR, "
-                   " upload_time DATETIME, storedtip_id INTEGER, downloaded_count INT, files_related VARCHAR)"
+                   " associated_receiver_id INT, property_applied VARCHAR, "\
+                   " upload_time DATETIME, storedtip_id INTEGER, "\
+                   " downloaded_count INT, files_related VARCHAR)"
 
     id = Int(primary=True)
     folder_gus = Unicode()
     description = Unicode()
     property_applied = Pickle()
-        # actually there are not property, but here would be marked if symmetric
-        # asymmetric encryption has been used.
+    # actually there are not property, but here would be marked if symmetric
+    # asymmetric encryption has been used.
+
     upload_time = Date()
     downloaded_count = Int()
     files_related = Pickle()
 
-    Reference(associated_receiver_id, Receiver.id)
-        # associated_receiver_id is useful for show, in the general page of the
-        # receiver, eventually the latest available folders
-    Reference(storedtip_id, StoredTips.id)
-        # is associated to the ORM.id, not to the tip_uniq_ID, eventually,
-        # having the Folder.folder_id can be shared and downloaded by
-        # someone that has not access to the Tip
+    associated_receiver_id = Int()
+    associated_receiver = Reference(associated_receiver_id, Receiver.id)
+    # associated_receiver_id is useful for show, in the general page of the
+    # receiver, eventually the latest available folders
+
+    storedtip_id = Int()
+    storedtip = Reference(storedtip_id, StoredTip.id)
+    # is associated to the ORM.id, not to the tip_uniq_ID, eventually,
+    # having the Folder.folder_id can be shared and downloaded by
+    # someone that has not access to the Tip
 
 
 class File(TXModel):
@@ -117,7 +122,8 @@ class File(TXModel):
     metadata_cleaned = Bool()
     uploaded_date = Date()
 
-    Reference(folder_id, Folder.id)
+    folder_id = Int()
+    folder = Reference(folder_id, Folder.id)
 
 class Comment(TXModel):
     __storm_table__ = 'comments'
@@ -133,7 +139,8 @@ class Comment(TXModel):
     author = Unicode()
     comment_date = Date()
 
-    Reference(storedtip_id, StoredTips.id)
+    storedtip_id = Int()
+    storedtip = Reference(storedtip_id, StoredTip.id)
 
 class SpecialTip(TXModel):
     """

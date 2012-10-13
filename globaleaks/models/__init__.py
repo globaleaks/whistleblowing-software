@@ -14,8 +14,8 @@
 # The names of the modules is singular with no s.
 
 __all__ = ['base', 'admin', 'receiver', 'tip', 'whistleblower']
-import .base
-import .admin
-import .receiver
-import .tip
-import .whistleblower
+from . import base
+from . import admin
+from . import receiver
+from . import tip
+from . import whistleblower

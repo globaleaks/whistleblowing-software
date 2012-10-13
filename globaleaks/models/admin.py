@@ -1,9 +1,10 @@
 from storm.twisted.transact import transact
 from storm.locals import *
 import pickle
-from globaleaks.db import getStore, transactor
 
-__all__ = [ 'SytemSettings', 'Contexts', 'ModulesProfiles', 
+from globaleaks.models.base import TXModel
+
+__all__ = [ 'SytemSettings', 'Contexts', 'ModulesProfiles',
             'AdminStats', 'LocalizedTexts']
 
 class SystemSettings(TXModel):
@@ -57,7 +58,7 @@ class Contexts(TXModel):
                    " tip_timetolive INT)"
 
     """
-    Remind: langs do not contain the language supported by the node, but the 
+    Remind: langs do not contain the language supported by the node, but the
             aggregate information of the languages supported by receivers knowledge
     """
 
@@ -159,7 +160,7 @@ class AdminStats(TXModel):
     has been forbidden, expire, created, downloaded, etc. Can be a detailed monitor of the activities.
     """
 
-class LocalizedTexts(Tip):
+class LocalizedTexts(TXModel):
     """
     need to be defined an API, that permit the admin, to convert all the description texts and
     localize them

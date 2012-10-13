@@ -1,6 +1,8 @@
 from storm.twisted.transact import transact
 from storm.locals import *
-from globaleaks.db.base import TXModel
+
+from globaleaks.models.base import TXModel
+from globaleaks.models.tip import Folder
 
 __all__ = ['Submission', 'PublicStats' ]
 
@@ -26,7 +28,8 @@ class Submission(TXModel):
     receivers = Pickle()
     opening_date = Date()
 
-    Reference(folder_id, Folder.id)
+    folder_id = Int()
+    folder = Reference(folder_id, Folder.id)
 
     """
     The following methos has not been reviewed after the refactor

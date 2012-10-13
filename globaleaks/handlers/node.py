@@ -6,12 +6,12 @@
 #   :license: see LICENSE
 #
 from globaleaks.rest import answers
-from globaleaks.db import models
+from globaleaks import models
 
 from cyclone.web import RequestHandler
 
 def create_node(contextDict):
-    context = models.Context()
+    context = models.base.Context()
     context.name = contextDict['name']
     context.description = contextDict['description']
     context.fields = contextDict['fields']
