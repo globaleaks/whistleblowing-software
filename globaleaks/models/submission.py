@@ -23,14 +23,13 @@ class Submission(TXModel):
     """
     __storm_table__ = 'submission'
 
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, submission_id VARCHAR, fields VARCHAR, "\
-                   " creation_time DATETIME, receivers VARCHAR, folder_id INTEGER)"
     id = Int(primary=True)
     submission_id = Unicode() # Int()
     folder_id = Int()
     fields = Pickle()
-    receivers = Pickle()
+
+    context_selected = Pickle()
+
     creation_time = Date()
 
     @transact
@@ -68,10 +67,10 @@ class Submission(TXModel):
 
 
     @transact
-    def select_receiver(self, submission_id, receiver):
+    def select_context(self, submission_id, context):
         store = self.getStore()
         s = store.find(Submission, Submission.submission_id==submission_id).one()
-        s.reciever_selected = receiver
+        s.context_selected = context
         store.commit()
         store.close()
 
@@ -80,7 +79,7 @@ class Submission(TXModel):
         store = self.getStore()
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
-        status = {'receivers_selected': s.receivers,
+        status = {'context_selected': s.context_selected,
                   'fields': s.fields}
 
         store.commit()
@@ -99,6 +98,8 @@ class Submission(TXModel):
             raise Exception("Collision detected! HELP THE WORLD WILL END!")
 
         if not s:
+            store.commit()
+            store.close()
             raise Exception("Did not find a submission with that ID")
 
         internal_tip = InternalTip()
@@ -110,13 +111,14 @@ class Submission(TXModel):
         whistleblower_tip.address = receipt
         store.add(whistleblower_tip)
 
-        if not s.receivers:
+        if not s.context_selected:
+            store.commit()
+            store.close()
             raise SubmissionError("No receivers selected")
 
         # XXX lookup the list of receivers and create their tips too.
-        for receiver in s.receivers:
-            #print receiver
-            pass
+        # receivers = Context.get_receivers(s.context_selected)
+
 
         # Delete the temporary submission
         store.remove(s)

@@ -121,15 +121,15 @@ class SubmissionStatus(BaseHandler):
         request = json.loads(self.request.body)
 
         submission = models.submission.Submission()
-
         if 'fields' in request and request['fields']:
+            print "Updating fields with %s" % request
             submission.update_fields(submission_id, request['fields'])
 
-        if 'receiver_selected' in request and request['receiver_selected']:
-            submission.select_receiver(submission_id, request['receiver_selected'])
+        if 'context_selected' in request and request['context_selected']:
+            print "Updating context with %s" % request
+            submission.select_context(submission_id, request['context_selected'])
 
         self.set_status(202)
-        self.finish()
 
 
 class SubmissionFinalize(BaseHandler):
@@ -186,7 +186,8 @@ class SubmissionFinalize(BaseHandler):
         submission = models.submission.Submission()
         try:
             yield submission.create_tips(submission_id, receipt_id)
-        except:
+        except Exception, e:
+            print e
             self.set_status(412)
             # XXX add here errors and such
             self.finish()

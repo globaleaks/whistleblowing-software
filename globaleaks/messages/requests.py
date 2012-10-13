@@ -15,7 +15,7 @@ from globaleaks.messages import base
 # U3 (POST)
 class submissionStatus(GLTypes):
     specification = {"fields": [base.formFieldsDict],
-                     "receiver_selected": [base.receiverID]}
+                     "context_selected": base.contextID}
 
 # U4 (POST)
 class finalizeSubmission(GLTypes):
