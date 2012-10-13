@@ -6,6 +6,9 @@
 #   :license: see LICENSE
 #
 #   Contains all the logic for handling tip related operations.
+#
+#   XXX This should probably be deprecated in favor of what is inside of
+#   /scheduler.
 
 from zope.interface import Interface, Attribute
 from twisted.internet import defer
