@@ -121,7 +121,7 @@ formFieldsDicts.append({
     "required": True,
     "hint": u'the city of the autovelox',
     "value": u'this is the default value',
-    "type": u'text',
+    "type": u'string',
     })
 
 formFieldsDicts.append({
@@ -131,7 +131,7 @@ formFieldsDicts.append({
     "required": True,
     "hint": u'the road where the autovelox is running',
     "value": u'this is the default value',
-    "type": u'text',
+    "type": u'string',
     })
 
 formFieldsDicts.append({
@@ -141,7 +141,7 @@ formFieldsDicts.append({
     "required": True,
     "hint": u'put the number of the penality',
     "value": u'this is the default value',
-    "type": u'int',
+    "type": u'string',
     })
 
 formFieldsDicts.append({

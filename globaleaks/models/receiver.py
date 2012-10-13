@@ -42,9 +42,7 @@ class Receiver(TXModel):
 
     @transact
     def receiver_dicts(self):
-        print "going at it"
         store = self.getStore()
-        print "In here t0"
         receiver_dicts = []
 
         for receiver in store.find(Receiver):
@@ -72,7 +70,6 @@ class Receiver(TXModel):
     def create_dummy_receivers(self):
         from globaleaks.messages.dummy import base
         store = self.getStore()
-        print "Acting on %s" % self.database
         for receiver_dict in base.receiverDescriptionDicts:
             receiver = Receiver()
             receiver.receiver_id = receiver_dict['receiver_id']
@@ -88,9 +85,7 @@ class Receiver(TXModel):
             receiver.languages_supported = receiver_dict['languages_supported']
             store.add(receiver)
             store.commit()
-        print "Done"
         store.close()
-        print "closed"
         returnValue(base.receiverDescriptionDicts)
 
 class ReceiverPreferences(TXModel):
