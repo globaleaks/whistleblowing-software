@@ -1,11 +1,18 @@
 import json
 from twisted.trial import unittest
 
+from globaleaks.messages import validateMessage, validateWith
 from globaleaks.messages.base import *
 from globaleaks.messages.errors import *
 from globaleaks.messages.dummy import *
 
+from cyclone.util import ObjectDict
+
 class TestMessages(unittest.TestCase):
+
+    def setUp(self):
+        self.request = ObjectDict()
+        self.request.body = base.fileDicts[0].copy()
 
     def test_file_dict(self):
         test_fd = base.fileDicts[0].copy()
@@ -49,4 +56,7 @@ class TestMessages(unittest.TestCase):
     def test_admin_statistics(self):
         message = json.dumps(base.adminStatisticsDict)
         validateMessage(message, adminStatisticsDict)
+
+    def test_validator_decorator(self):
+        pass
 
