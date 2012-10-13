@@ -5,7 +5,7 @@ from storm.locals import *
 """
 Quick reference for the content:
 
-    models:         TXModel
+    base:           TXModel
     tips:           StoredTips, Folders, Files, Comments, SpecialTip
     admin:          SytemSettings, Contexts, ModulesProfiles, AdminStats, LocalizedTexts
     receiver:       PersonalPreference, ReceiverTip

@@ -22,7 +22,7 @@ Quick reference for the content:
 """
 
 
-class StoredTips(TXModel):
+class StoredTip(TXModel):
     """
     Every tip has a certain shared data between all, and they are here collected, and
     this StoredTips.id is referenced by Folders, Files, Comments, and the derived Tips
@@ -70,7 +70,7 @@ class Folder(TXModel):
     and if uncrypted situation, simply the Files referenced here are also
     referenced in the other Folders.
     """
-    __storm_table__ = 'folder'
+    __storm_table__ = 'folders'
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
                    " (id INTEGER PRIMARY KEY, folder_gus VARCHAR, description VARCHAR, "\
@@ -119,7 +119,7 @@ class File(TXModel):
 
     Reference(folder_id, Folder.id)
 
-class Comments(TXModel):
+class Comment(TXModel):
     __storm_table__ = 'comments'
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
