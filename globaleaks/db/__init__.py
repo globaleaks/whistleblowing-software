@@ -56,7 +56,6 @@ def createTables():
     """
     from globaleaks import models
     from globaleaks.db import tables
-    d = Deferred()
 
     for m in [models.receiver, models.submission, models.tip]:
         for model_name in m.__all__:

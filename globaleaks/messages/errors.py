@@ -1,0 +1,3 @@
+class GLTypeError(Exception):
+    pass
+
