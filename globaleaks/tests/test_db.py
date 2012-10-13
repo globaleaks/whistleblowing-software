@@ -20,7 +20,7 @@ from storm.twisted.testing import FakeThreadPool, FakeTransactor
 from storm.databases.sqlite import SQLite
 from storm.uri import URI
 
-from globaleaks.db import models
+from globaleaks.db import base
 
 from globaleaks.messages.dummy import requests
 
@@ -49,7 +49,7 @@ class BaseDBTest(unittest.TestCase):
 
 class TestSubmission(BaseDBTest):
 
-    baseModel = models.Submission
+    baseModel = base.Submission
     submission_id = u'r_testsubmissionid'
 
     @inlineCallbacks
@@ -86,21 +86,21 @@ class TestSubmission(BaseDBTest):
         test_submission = self.mock_model()
         my_id = self.submission_id+'fina'
 
-        yield self.create_table(models.InternalTip)
-        yield self.create_table(models.Tip)
+        yield self.create_table(base.InternalTip)
+        yield self.create_table(base.Tip)
 
         yield self.create_dummy_submission(my_id)
 
         yield test_submission.create_tips(my_id, u'1234567890')
 
 class TestReceivers(BaseDBTest):
-    baseModel = models.Receiver
+    baseModel = base.Receiver
 
     @inlineCallbacks
     def create_tables(self):
-        yield self.create_table(models.Receiver)
-        yield self.create_table(models.ReceiverContext)
-        yield self.create_table(models.Context)
+        yield self.create_table(base.Receiver)
+        yield self.create_table(base.ReceiverContext)
+        yield self.create_table(base.Context)
 
     @inlineCallbacks
     def test_create_tables(self):
@@ -121,7 +121,7 @@ class TestReceivers(BaseDBTest):
     def test_add_receiver_to_context(self):
         context_id = u'c_thisisatestcontext'
         test_receiver = self.mock_model()
-        test_context = self.mock_model(models.Context)
+        test_context = self.mock_model(base.Context)
         test_context.name = u'test context'
         test_context.context_id = context_id
 

@@ -8,7 +8,7 @@ from storm.locals import *
 from storm.databases.sqlite import SQLite
 from storm.uri import URI
 
-from globaleaks.db.models import TXModel
+from globaleaks.models.base import TXModel
 
 createQuery = "CREATE TABLE test"\
               "(id INTEGER PRIMARY KEY, test INTEGER)"
