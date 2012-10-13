@@ -27,6 +27,7 @@ Quick reference for the content:
 from twisted.python import log
 from twisted.python.threadpool import ThreadPool
 from twisted.internet.defer import inlineCallbacks, returnValue, Deferred
+
 from storm.twisted.transact import Transactor, transact
 from storm.locals import *
 from storm.uri import URI
@@ -49,6 +50,10 @@ def getStore():
 
 @inlineCallbacks
 def createTables():
+    """
+    XXX this is to be refactored and only exists for experimentation.
+    This will become part of the setup wizard.
+    """
     from globaleaks.db import models
     d = Deferred()
 
@@ -58,10 +63,7 @@ def createTables():
         store.commit()
         store.close()
 
-    """
-    XXX can't work at the moment
-    """
-    for x in base.__all__:
+    for x in models.__all__:
         query = getattr(models.__getattribute__(x), 'createQuery')
         try:
             yield transactor.run(create, query)
