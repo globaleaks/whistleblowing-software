@@ -117,7 +117,8 @@ def validateMessage(message, messageType):
         try:
             validType = messageSpec[k]
         except:
-            raise GLTypeError("Not supported field")
+            raise GLTypeError("Specified field is not supported."
+                              "could not find %s in message spec" % k)
 
         validateItem(val, validType)
 
@@ -254,7 +255,7 @@ class formFieldsDict(GLTypes):
 
 
 class moduleDataDict(GLTypes):
-    specification = {"mID": moduleID,
+    specification = {"module_id": moduleID,
             "active": bool,
             "module_type": moduleENUM,
             "name": unicode,
@@ -276,7 +277,7 @@ class contextDescriptionDict(GLTypes):
 
     language_supported: it's the collection of Language from 'receivers'
     """
-    specification = {"c_id": contextID,
+    specification = {"context_id": contextID,
             "name": unicode,
             "context_description": unicode,
             "creation_date": timeType,
@@ -295,7 +296,7 @@ class commentDescriptionDict(GLTypes):
 
 
 class tipSubIndex(GLTypes):
-    specification = {"tID": tipID,
+    specification = {"tip_id": tipID,
             "tip_title": unicode,
             "notification_adopted": unicode,
             "delivery_adopted": unicode,

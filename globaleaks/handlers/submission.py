@@ -42,7 +42,7 @@ class SubmissionRoot(RequestHandler):
         # default taken by context
         # In this case, are used the dummy values
         # 'fields' and 'receivers' both
-        from globaleaks.messages.dummy import shared, answers, requests
+        from globaleaks.messages.dummy import base, answers, requests
 
         fake_submission = requests.submissionStatusPost
         new_submission.fields = fake_submission['fields']
@@ -125,9 +125,9 @@ class SubmissionFiles(RequestHandler):
 
         XXX remind: in the API-interface is not yet defined
         """
-        from globaleaks.messages.dummy import shared, answers, requests
+        from globaleaks.messages.dummy import base, answers, requests
 
-        return shared.fileDicts[0]
+        return base.fileDicts[0]
 
     def put(self, submission_id, *uriarg):
         """
