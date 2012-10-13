@@ -20,9 +20,12 @@ from storm.twisted.testing import FakeThreadPool, FakeTransactor
 from storm.databases.sqlite import SQLite
 from storm.uri import URI
 
-from globaleaks.db import base
+from globaleaks import models
+from globaleaks.db.tables import runCreateTable
 
 from globaleaks.messages.dummy import requests
+
+from globaleaks.db import tables
 
 class BaseDBTest(unittest.TestCase):
     def setUp(self):
@@ -41,15 +44,26 @@ class BaseDBTest(unittest.TestCase):
 
     @inlineCallbacks
     def create_table(self, model=None):
-        mock = self.mock_model(model)
+        if not model:
+            model = self.baseModel
         try:
-            yield mock.createTable()
+            yield runCreateTable(model, self.transactor, self.database)
         except:
             pass
 
+class TablesTest(BaseDBTest):
+    def test_base(self):
+        good_query = "CREATE TABLE submission (fields BLOB, folder_id INTEGER, id INTEGER, opening_date VARCHAR, receivers BLOB, submission_id VARCHAR, PRIMARY KEY (id))"
+        self.assertEqual(tables.generateCreateQuery(models.submission.Submission),
+                good_query)
+
+    @inlineCallbacks
+    def test_create(self):
+        yield self.create_table(models.submission.Submission)
+
 class TestSubmission(BaseDBTest):
 
-    baseModel = base.Submission
+    baseModel = models.submission.Submission
     submission_id = u'r_testsubmissionid'
 
     @inlineCallbacks
@@ -83,24 +97,25 @@ class TestSubmission(BaseDBTest):
 
     @inlineCallbacks
     def test_finalize_submission(self):
+        yield self.create_table()
+
         test_submission = self.mock_model()
         my_id = self.submission_id+'fina'
 
-        yield self.create_table(base.InternalTip)
-        yield self.create_table(base.Tip)
+        yield self.create_table(models.tip.InternalTip)
+        yield self.create_table(models.tip.Tip)
 
         yield self.create_dummy_submission(my_id)
-
         yield test_submission.create_tips(my_id, u'1234567890')
 
 class TestReceivers(BaseDBTest):
-    baseModel = base.Receiver
+    baseModel = models.receiver.Receiver
 
     @inlineCallbacks
     def create_tables(self):
-        yield self.create_table(base.Receiver)
-        yield self.create_table(base.ReceiverContext)
-        yield self.create_table(base.Context)
+        yield self.create_table(models.receiver.Receiver)
+        yield self.create_table(models.admin.ReceiverContext)
+        yield self.create_table(models.admin.Context)
 
     @inlineCallbacks
     def test_create_tables(self):
@@ -108,24 +123,25 @@ class TestReceivers(BaseDBTest):
 
     @inlineCallbacks
     def test_create_dummy_receivers(self):
+        yield self.create_tables()
+
         test_receiver = self.mock_model()
-        yield self.create_table()
         result = yield test_receiver.create_dummy_receivers()
         receiver_dict = yield test_receiver.receiver_dicts()
-
         # XXX by doing this test in this way we are assuming ordering on the
         # receiver dict table. This assumption may be wrong.
         self.assertEqual(result[0], receiver_dict[0])
 
     @inlineCallbacks
     def test_add_receiver_to_context(self):
+        yield self.create_tables()
+
         context_id = u'c_thisisatestcontext'
         test_receiver = self.mock_model()
-        test_context = self.mock_model(base.Context)
+        test_context = self.mock_model(models.admin.Context)
         test_context.name = u'test context'
         test_context.context_id = context_id
 
-        yield self.create_tables()
         yield test_context.save()
 
         result = yield test_receiver.create_dummy_receivers()

@@ -6,8 +6,8 @@ import pickle
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
 
-from globaleaks.models.base import TXModel, Receiver
-
+from globaleaks.models.base import TXModel
+from globaleaks.models.receiver import Receiver
 
 __all__ = [ 'StoredData', 'Folders', 'Files', 'Comments', 'SpecialTip' ]
 
@@ -23,44 +23,6 @@ Quick reference for the content:
 
 """
 
-
-class StoredTip(TXModel):
-    """
-    Every tip has a certain shared data between all, and they are here collected, and
-    this StoredTip.id is referenced by Folders, Files, Comments, and the derived Tips
-    """
-    __storm_table__ = 'storedtips'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, fields VARCHAR, "\
-                   " creation_date DATETIME, pertinence_value INT,"\
-                   " escalation_threshold INT, expire_time DATETIME, access_limit INT, download_limit INT)"
-
-    id = Int(primary=True)
-    fields = Pickle()
-    pertinence_value = Int()
-    escalation_trashold = Int()
-    creation_date = Date()
-    expire_date = Date()
-
-        # the LIMITS are defined and declared *here*, and then
-        # in the (Special|Receiver)Tip there are the view_count
-        # in Folders(every Receiver has 1 to N folders), has the download_count
-    access_limit = Int()
-    download_limit = Int()
-
-    def postpone_expiration(self):
-        """
-        function called when a receiver has this option
-        """
-
-    def tip_total_delete(self):
-        """
-        function called when a receiver choose to remove a submission
-        and all the derived tips. is called by scheduler when
-        timeoftheday is >= expired_date
-        """
-
 class Folder(TXModel):
     """
     This represents a file set: a collection of files, description, time
@@ -75,7 +37,7 @@ class Folder(TXModel):
     createQuery = "CREATE TABLE " + __storm_table__ +\
                    " (id INTEGER PRIMARY KEY, folder_gus VARCHAR, description VARCHAR, "\
                    " associated_receiver_id INT, property_applied VARCHAR, "\
-                   " upload_time DATETIME, storedtip_id INTEGER, "\
+                   " upload_time DATETIME, internaltip_id INTEGER, "\
                    " downloaded_count INT, files_related VARCHAR)"
 
     id = Int(primary=True)
@@ -94,8 +56,12 @@ class Folder(TXModel):
     # associated_receiver_id is useful for show, in the general page of the
     # receiver, eventually the latest available folders
 
-    storedtip_id = Int()
-    storedtip = Reference(storedtip_id, StoredTip.id)
+    # XXX do we actually need this? Folder will always be instantiated from
+    # internaltip, I do not think it will happend vice versa.
+    #internaltip = Reference(internaltip_id, InternalTip.id)
+
+    internaltip_id = Int()
+
     # is associated to the ORM.id, not to the tip_uniq_ID, eventually,
     # having the Folder.folder_id can be shared and downloaded by
     # someone that has not access to the Tip
@@ -130,7 +96,7 @@ class Comment(TXModel):
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
                   "(id INTEGER PRIMARY KEY, content VARCHAR, type VARCHAR,"\
-                  " author VARCHAR, comment_date DATETIME, storedtip_id INT)"
+                  " author VARCHAR, comment_date DATETIME, internaltip_id INT)"
 
     id = Int(primary=True)
 
@@ -139,10 +105,185 @@ class Comment(TXModel):
     author = Unicode()
     comment_date = Date()
 
-    storedtip_id = Int()
-    storedtip = Reference(storedtip_id, StoredTip.id)
+    internaltip_id = Int()
+    #internaltip = Reference(internaltip_id, InternalTip.id)
 
-class SpecialTip(TXModel):
+
+class InternalTip(TXModel):
+    """
+    This is the internal representation of a Tip that has been submitted to the
+    GlobaLeaks node.
+    It has a one-to-many association with the individual Tips of every receiver
+    and whistleblower.
+
+    Every tip has a certain shared data between all, and they are here collected, and
+    this StoredTip.id is referenced by Folders, Files, Comments, and the derived Tips
+    """
+    __storm_table__ = 'internaltips'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, fields VARCHAR, "\
+                   " comments VARCHAR, pertinence INTEGER, "\
+                   " creation_date DATETIME, pertinence_value INT,"\
+                   " escalation_threshold INT, expire_date DATETIME,"\
+                   " access_limit INT, download_limit INT, file_id INTEGER)"
+
+    id = Int(primary=True)
+    fields = Pickle()
+
+    pertinence_value = Int()
+    escalation_threshold = Int()
+
+    comments = Pickle()
+    pertinence = Int()
+
+    creation_date = Date()
+    expire_date = Date()
+
+    # the LIMITS are defined and declared *here*, and then
+    # in the (Special|Receiver)Tip there are the view_count
+    # in Folders(every Receiver has 1 to N folders), has the download_count
+    access_limit = Int()
+    download_limit = Int()
+
+    file_id = Int()
+
+    folders = ReferenceSet(id, Folder.internaltip_id)
+    comments = ReferenceSet(id, Comment.internaltip_id)
+
+    def postpone_expiration(self):
+        """
+        function called when a receiver has this option
+        """
+
+    def tip_total_delete(self):
+        """
+        function called when a receiver choose to remove a submission
+        and all the derived tips. is called by scheduler when
+        timeoftheday is >= expired_date
+        """
+
+
+class Tip(TXModel):
+    __storm_table__ = 'tips'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, address VARCHAR, password VARCHAR,"\
+                   " type INTEGER, internaltip_id INTEGER, total_view_count INTEGER, "\
+                   " total_download_count INTEGER, relative_view_count INTEGER, "\
+                   " relative_download_count INTEGER, "\
+                   " notification_date DATE, authoptions VARCHAR, "\
+                   " last_access DATE, pertinence_vote INTEGER)"
+
+    id = Int(primary=True)
+
+    type = Int()
+    address = Unicode()
+    password = Unicode()
+
+    internaltip_id = Int()
+    internaltip = Reference(internaltip_id, InternalTip.id)
+
+    @transact
+    def internaltip_get(self):
+        store = self.getStore()
+        the_one = store.find(InternalTip, InternalTip.id == self.internaltip_id).one()
+        store.commit()
+        store.close()
+        return the_one
+
+class ReceiverTip(Tip):
+    """
+    This is the table keeping track of ALL the receivers activities and
+    date in a Tip, Tip core data are stored in StoredTip. The data here
+    provide accountability of Receiver accesses, operations, options.
+    """
+    notification_date = Date()
+    authoptions = Pickle()
+    # remind: here we can make a password checks, PersonalPreference has a
+    # stored hash of the actual password. when Receiver change a password, do not change
+    # in explicit way also the single Tips password.
+
+    total_view_count = Int()
+    total_download_count = Int()
+    relative_view_count = Int()
+    relative_download_count = Int()
+
+    last_access = Date()
+    pertinence_vote = Int()
+
+    """
+    this method has not yet reviewed during the refactor, also the method below, receiver_dicts
+    """
+    @transact
+    def create(self, internaltip, receiver_id):
+        store = self.getStore()
+
+        receiver = store.find(Receiver, Receiver.receiver_id==receiver_id)
+
+        tip = ReceiverTip()
+        tip.internaltip = internaltip
+        store.add(tip)
+
+        store.commit()
+        store.close()
+
+
+    @transact
+    def receiver_dicts(self):
+        store = self.getStore()
+
+        receiver_dicts = []
+
+        for receiver in store.find(Receiver):
+            receiver_dict = {}
+            receiver_dict['receiver_id'] = receiver.receiver_id
+            receiver_dict['receiver_name'] = receiver.receiver_name
+            receiver_dict['receiver_description'] = receiver.receiver_description
+
+            receiver_dict['can_delete_submission'] = receiver.can_delete_submission
+            receiver_dict['can_postpone_expiration'] = receiver.can_postpone_expiration
+            receiver_dict['can_configure_delivery'] = receiver.can_configure_delivery
+
+            receiver_dict['can_configure_notification'] = receiver.can_configure_notification
+            receiver_dict['can_trigger_escalation'] = receiver.can_trigger_escalation
+
+            receiver_dict['languages_supported'] = receiver.languages_supported
+            receiver_dicts.append(receiver_dict)
+
+        store.commit()
+        store.close()
+
+        return receiver_dicts
+
+    @transact
+    def create_dummy_receivers(self):
+        from globaleaks.messages.dummy import base
+        store = self.getStore()
+
+        for receiver_dict in base.receiverDescriptionDicts:
+            receiver = Receiver()
+            receiver.receiver_id = receiver_dict['receiver_id']
+            receiver.receiver_name = receiver_dict['receiver_name']
+            receiver.receiver_description = receiver_dict['receiver_description']
+
+            receiver.can_delete_submission = receiver_dict['can_delete_submission']
+            receiver.can_postpone_expiration = receiver_dict['can_postpone_expiration']
+            receiver.can_configure_delivery = receiver_dict['can_configure_delivery']
+            receiver.can_configure_notification = receiver_dict['can_configure_notification']
+            receiver.can_trigger_escalation = receiver_dict['can_trigger_escalation']
+
+            receiver.languages_supported = receiver_dict['languages_supported']
+
+            store.add(receiver)
+            store.commit()
+
+        store.close()
+        return base.receiverDescriptionDicts
+
+
+
+class WhistleblowerTip(Tip):
     """
     SpecialTip is intended, at the moment, to provide a whistleblower access to the Tip.
     differently from the ReceiverTips, has a secret and/or authentication checks, has
@@ -152,13 +293,6 @@ class SpecialTip(TXModel):
     SpecialTip contains some information, but the tip data returned to the WB, is
     composed by SpecialTip + Tip
     """
-    __storm_table__ = 'specialtip'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, secret VARCHAR, view_count VARCHAR,"\
-                   " last_access DATETIME )"
-
-    id = Int(primary=True)
 
     """
     need to have a tip_US (unique string) ? may even not, in fact, in the 0.1 release
@@ -170,8 +304,36 @@ class SpecialTip(TXModel):
     """
 
     secret = Pickle()
-    view_count = Int()
-    last_access = Date()
+
+    # XXX we probably don't want to store this stuff for the WB receipt.
+    #     we may just want to store the last_access count, but properly
+    #     anonymize it, like only store the fact that they logged in in the
+    #     last week. So store just a week number.
+    #view_count = Int()
+    #last_access = Date()
+
+class PublicStats(TXModel):
+    """
+    * Follow the same logic of admin.AdminStats,
+    * need to be organized along with the information that we want to shared to the WBs:
+       *  active_submission represent the amount of submission active in the moment
+       *  node activities is a sum of admin + receiver operation
+    * that's all time dependent information
+       * remind: maybe also non-time dependent information would exists, if a node want to publish also their own analyzed submission, (but this would require another db table)
+    """
+    __storm_table__ = 'publicstats'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, active_submissions INT, node_activities INT, uptime INT"
+
+    id = Int(primary=True)
+
+    active_submissions = Int()
+    node_activities = Int()
+    uptime = Int()
+    """
+    likely would be expanded, but avoiding to spread information that may lead an attacker advantaged
+    """
 
 
 """
