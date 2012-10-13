@@ -30,7 +30,7 @@ class TestModels(unittest.TestCase):
             c_store.execute(createQuery)
             c_store.commit()
         except:
-            print "Already exists!"
+            pass
 
         class DummyModel(TXModel):
             transactor = self.transactor
@@ -43,10 +43,6 @@ class TestModels(unittest.TestCase):
 
             def getStore(self):
                 store = Store(database)
-                print "Current Stores"
-                for store in self.stores:
-                    print store
-                self.stores.append(store)
                 return store
 
             @transact
@@ -54,6 +50,7 @@ class TestModels(unittest.TestCase):
                 store = self.getStore()
                 store.add(self)
                 store.commit()
+                store.close()
 
             @transact
             def find(self):
@@ -65,10 +62,11 @@ class TestModels(unittest.TestCase):
             @transact
             def find_more(self):
                 output = []
-                store = self.getStore()
+                store = Store(database)
                 res = store.find(DummyModel, DummyModel.test > 2)
                 for x in res:
-                    output.append(x)
+                    output.append(x.test)
+                store.commit()
                 store.close()
                 return output
 
@@ -95,6 +93,6 @@ class TestModels(unittest.TestCase):
 
         i = 3
         for r in result:
-            self.assertEqual(r.test, i)
+            self.assertEqual(r, i)
             i += 1
 
