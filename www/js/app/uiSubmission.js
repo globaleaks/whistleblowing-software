@@ -129,13 +129,15 @@ define(function (require) {
     function debugDeck() {
         var debug = require('./debug'),
             dummy_requests = require('./dummy/requests'),
-            submissionID = null;
+            submissionID = null,
+            context_id = null;
+
 
         $("#node_button").click(function() {
           latenza.ajax({'url': '/node',
                         'type': 'GET'
           }).done(function(data) {
-            submissionID = data['submission_id'];
+            context_id = data['contexts'][0]['context_id'];
             debug.write(data, 'GET /node');
           });
         });
@@ -150,8 +152,8 @@ define(function (require) {
         });
 
         $("#send_fields").click(function() {
-          var request = dummy_requests.submissionStatusPost;
           if (submissionID) {
+            var request = {"fields": {"FieldA": "hello", "FieldB": "world!"}};
             var path = '/submission/'+submissionID+'/status';
             latenza.ajax({'url': path,
                           'data': JSON.stringify(request),
@@ -164,6 +166,23 @@ define(function (require) {
             alert("Run create new first!");
           }
         });
+
+        $("#select_context").click(function() {
+          if (submissionID) {
+            var request = {"context_selected": context_id};
+            var path = '/submission/'+submissionID+'/status';
+            latenza.ajax({'url': path,
+                          'data': JSON.stringify(request),
+                          'type': 'POST'
+            }).done(function(data){
+              debug.write(data, 'POST '+path);
+            });
+
+          } else {
+            alert("Run create new first!");
+          }
+        });
+
 
 
         $("#status").click(function() {
