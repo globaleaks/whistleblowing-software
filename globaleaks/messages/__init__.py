@@ -1,5 +1,6 @@
-__all__ = ['base']
+__all__ = ['base', 'requests']
 from . import base
+from . import requests
 
 from globaleaks.messages.errors import GLTypeError
 from globaleaks.messages.base import SpecialType, GLTypes
@@ -87,6 +88,7 @@ def validateMessage(message, messageType):
                               "could not find %s in message spec" % k)
 
         validateItem(val, validType)
+    return obj
 
 def validateWith(fn):
     """

@@ -9,19 +9,9 @@ import pickle
 from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
 
-__all__ = [ 'StoredData', 'Folders', 'Files', 'Comments', 'SpecialTip' ]
-
-"""
-Quick reference for the content:
-
-    base:           TXModel
-    tip:            StoredTip, Folder, File, Comment, SpecialTip
-    admin:          SytemSettings, Context, ModulesProfile, ReceiversInfo,
-                    AdminStats, LocalizedText
-    receiver:       PersonalPreference, ReceiverTip
-    whistleblower:  Submission, PublicStats
-
-"""
+__all__ = [ 'Folder', 'File', 'Comment',
+            'InternalTip', 'Tip', 'ReceiverTip',
+            'WhistleblowerTip', 'PublicStats']
 
 class Folder(TXModel):
     """

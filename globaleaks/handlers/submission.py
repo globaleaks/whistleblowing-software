@@ -6,7 +6,7 @@
 #   :license: see LICENSE
 #
 #   Implements a GlobaLeaks submission.
-
+import json
 from twisted.internet.defer import returnValue, inlineCallbacks
 
 from globaleaks import models
@@ -17,10 +17,10 @@ from globaleaks import messages
 
 from globaleaks.rest import answers
 from globaleaks.rest.errors import GLErrorCode
-
 from globaleaks.handlers.base import BaseHandler
-
 from cyclone.web import asynchronous, HTTPError
+
+from globaleaks import messages
 
 def mydirtydebug(whoami, safereq, uriargs, args, kw):
     print "[:>]", whoami, safereq, type(uriargs), uriargs, args, kw
@@ -42,32 +42,21 @@ class SubmissionRoot(BaseHandler):
               Status code: 201 (Created)
         """
         # XXX do sanitization and validation here
-
         self.set_status(201)
 
-        new_submission = models.base.Submission()
-        new_submission.submission_id = unicode(idops.random_submission_id(False))
-        new_submission.folder_id = 0
+        submission = models.submission.Submission()
 
-        # --------------------------------------
-        # In a stable implementation, .fields would be set with the
-        # default taken by context
-        # In this case, are used the dummy values
-        # 'fields' and 'receivers' both
-        from globaleaks.messages.dummy import base, answers, requests
+        #fake_submission = requests.submissionStatusPost
+        #new_submission.fields = fake_submission['fields']
 
-        fake_submission = requests.submissionStatusPost
-        new_submission.fields = fake_submission['fields']
+        #fake_receivers = [idops.random_receiver_id(),
+        #                  idops.random_receiver_id(),
+        #                  idops.random_receiver_id(),
+        #                  idops.random_receiver_id()]
+        #new_submission.receivers = fake_receivers
 
-        fake_receivers = [idops.random_receiver_id(),
-                          idops.random_receiver_id(),
-                          idops.random_receiver_id(),
-                          idops.random_receiver_id()]
-        new_submission.receivers = fake_receivers
+        output = yield submission.new()
 
-        output = {"submission_id": new_submission.submission_id}
-
-        yield new_submission.save()
         self.write(output)
         self.finish()
         # dummy.SUBMISSION_NEW_GET(output)
@@ -91,13 +80,11 @@ class SubmissionStatus(BaseHandler):
             'creation_time': 'Time'
           }
         """
-        submission = models.base.Submission()
+        submission = models.submission.Submission()
         status = yield submission.status(submission_id)
 
         self.set_status(200)
-
         self.write(status)
-
         self.finish()
 
     """
@@ -108,8 +95,6 @@ class SubmissionStatus(BaseHandler):
     """
 
     #messageTypes['post'] = messages.base.fileDict
-    @asynchronous
-    @inlineCallbacks
     def post(self, submission_id, *uriargs):
         """
         * Request:
@@ -130,7 +115,21 @@ class SubmissionStatus(BaseHandler):
           If the property of "receiver selection" is not set, the receiver_selected value
           is IGNORED.
         """
-        yield self.get(submission_id, *uriargs)
+        #request = messages.validateMessage(self.request.body,
+        #                            messages.requests.submissionStatus)
+
+        request = json.loads(self.request.body)
+
+        submission = models.submission.Submission()
+
+        if 'fields' in request and request['fields']:
+            submission.update_fields(submission_id, request['fields'])
+
+        if 'receiver_selected' in request and request['receiver_selected']:
+            submission.select_receiver(submission_id, request['receiver_selected'])
+
+        self.set_status(202)
+        self.finish()
 
 
 class SubmissionFinalize(BaseHandler):
@@ -184,8 +183,14 @@ class SubmissionFinalize(BaseHandler):
         """
         receipt_id = unicode(idops.random_receipt_id())
 
-        submission = models.base.Submission()
-        yield submission.create_tips(submission_id, receipt_id)
+        submission = models.submission.Submission()
+        try:
+            yield submission.create_tips(submission_id, receipt_id)
+        except:
+            self.set_status(412)
+            # XXX add here errors and such
+            self.finish()
+            return
 
         self.set_status(201)
 

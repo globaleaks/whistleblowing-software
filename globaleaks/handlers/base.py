@@ -3,7 +3,7 @@
 # :authors: Arturo Filastò
 # :licence: see LICENSE
 
-from cyclone.web import RequestHandler
+from cyclone.web import RequestHandler, HTTPError
 
 """
 https://en.wikipedia.org/wiki/Http_error_code
@@ -48,7 +48,7 @@ class BaseHandler(RequestHandler):
         handle the POST fallback, in environment where PUT and DELETE
         method may not be used.
         """
-
+        print "Just got %s" % self.request.body
         if self.request.method.lower() == 'post':
             try:
                 wrappedMethod = self.get_argument('method')
