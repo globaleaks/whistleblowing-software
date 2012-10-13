@@ -9,8 +9,8 @@
 
 from twisted.internet.defer import returnValue, inlineCallbacks
 
-from globaleaks import db
-from globaleaks.db import models, transactor
+from globaleaks import models
+from globaleaks.db import transactor
 from globaleaks.utils import idops
 
 from globaleaks.rest import answers
@@ -33,7 +33,7 @@ class SubmissionRoot(RequestHandler):
 
         self.set_status(201)
 
-        new_submission = models.Submission()
+        new_submission = models.base.Submission()
         new_submission.submission_id = unicode(idops.random_submission_id(False))
         new_submission.folder_id = 0
 
@@ -67,7 +67,7 @@ class SubmissionStatus(RequestHandler):
         """
         U3, refresh whistleblower client with the previously uploaded data
         """
-        submission = models.Submission()
+        submission = models.base.Submission()
         status = yield submission.status(submission_id)
 
         self.set_status(200)
@@ -106,7 +106,7 @@ class SubmissionFinalize(RequestHandler):
         """
         receipt_id = unicode(idops.random_receipt_id())
 
-        submission = models.Submission()
+        submission = models.base.Submission()
         yield submission.create_tips(submission_id, receipt_id)
 
         self.set_status(201)

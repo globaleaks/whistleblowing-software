@@ -54,7 +54,7 @@ def createTables():
     XXX this is to be refactored and only exists for experimentation.
     This will become part of the setup wizard.
     """
-    from globaleaks.db import models
+    from globaleaks.models import base
     d = Deferred()
 
     def create(query):
@@ -63,15 +63,15 @@ def createTables():
         store.commit()
         store.close()
 
-    for x in models.__all__:
-        query = getattr(models.__getattribute__(x), 'createQuery')
+    for model_name in base.__all__:
+        model = getattr(base, model_name)
+        query = getattr(model, 'createQuery')
         try:
             yield transactor.run(create, query)
-            pass
         except:
-            log.msg("Failing in creating table for %s. Maybe it already exists?" % x)
+            print "Failed. Probably the '%s' table exists." % model_name
 
-    r = models.Receiver()
+    r = base.Receiver()
     receiver_dicts = yield r.receiver_dicts()
 
     if not receiver_dicts:

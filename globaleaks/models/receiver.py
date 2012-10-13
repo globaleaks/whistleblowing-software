@@ -1,12 +1,14 @@
 from storm.twisted.transact import transact
 from storm.locals import *
 
+from globaleaks.models.base import TXModel
+from globaleaks.models.tip import StoredTip
 
 """
 Quick reference for the content:
 
     base:           TXModel
-    tips:           StoredTips, Folders, Files, Comments, SpecialTip
+    tip:           StoredTip, Folders, Files, Comments, SpecialTip
     admin:          SytemSettings, Contexts, ModulesProfiles, AdminStats, LocalizedTexts
     receiver:       PersonalPreference, ReceiverTip
     whistleblower:  Submission, PublicStats
@@ -19,13 +21,17 @@ class PersonalPreference(TXModel):
     __storm_table__ = 'receiverpref'
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
-                  "(id INTEGER PRIMARY KEY, receiver_gus VARCHAR, notification_selected INT," \
-                  " notification_fields VARCHAR, delivery_selected INT, delivery_fields VARCHAR, " \
-                  " creation_date DATETIME, last_access DATETIME, know_languages VARCHAR, "\
-                  " receiver_name VARCHAR, receiver_description VARCHAR, receiver_tags VARCHAR, "\
-                  " receiver_level INT, receiver_properties VARCHAR, can_delete_submission BOOL, "\
-                  " can_postpone_expiration BOOL, can_configure_delivery BOOL, receiver_secret VARCHAR"\
-                  " can_configure_notification BOOL, can_trigger_escalation BOOL, contexts_followed VARCHAR)"
+                  "(id INTEGER PRIMARY KEY, receiver_gus VARCHAR, "\
+                  " notification_selected INT, notification_fields VARCHAR, "\
+                  " delivery_selected INT, delivery_fields VARCHAR, "\
+                  " creation_date DATETIME, last_access DATETIME, "\
+                  " know_languages VARCHAR, receiver_name VARCHAR, "\
+                  " receiver_description VARCHAR, receiver_tags VARCHAR, "\
+                  " receiver_level INT, receiver_properties VARCHAR, "\
+                  " can_delete_submission BOOL, can_postpone_expiration BOOL,"\
+                  " can_configure_delivery BOOL, receiver_secret VARCHAR, "\
+                  " can_configure_notification BOOL, "\
+                  " can_trigger_escalation BOOL, contexts_followed VARCHAR)"
 
     """
     Perhaps the various properties before need to be aggregated in a Pickle, and managed
@@ -47,26 +53,26 @@ class PersonalPreference(TXModel):
     receiver_tags = Unicode()
 
     receiver_secret = RawStr()
-        # receiver_secret would be a passphrase hash, we need to think that a receiver
-        # may need to configure notification/delivery also if NO ONE tip is available
-        # to him/her, and perhaps, this secret shall be used also as addictional
-        # auth beside the Tip_GUS (this was a request of one of our adopters, btw)
-        #   --- remind, API do not support that yet
+    # receiver_secret would be a passphrase hash, we need to think that a receiver
+    # may need to configure notification/delivery also if NO ONE tip is available
+    # to him/her, and perhaps, this secret shall be used also as addictional
+    # auth beside the Tip_GUS (this was a request of one of our adopters, btw)
+    #   --- remind, API do not support that yet
 
-        # receiver_properties = Pickle()
+    # receiver_properties = Pickle()
     can_delete_submission = Bool()
     can_postpone_expiration = Bool()
     can_configure_delivery = Bool()
     can_configure_notification = Bool()
 
-        # escalation related fiels, if escalation is not configured, both are 0
+    # escalation related fiels, if escalation is not configured, both are 0
     can_trigger_escalation = Int()
-        # receiver_level, mean first or second level of receiver
+    # receiver_level, mean first or second level of receiver
     receiver_level = Int()
 
     context_followed = Pickle()
-        # a receiver may stay in more than one contexts, this is because there are
-        # not a reference between Context.id and this table
+    # a receiver may stay in more than one contexts, this is because there are
+    # not a reference between Context.id and this table
 
     @transact
     def update_language_mask(self):
@@ -107,7 +113,8 @@ class ReceiverTip(TXModel):
     last_access = Date()
     pertinence_vote = Int()
 
-    Reference(storedtip_id, StoredTips.id)
+    storedtip_id = Int()
+    storedtip = Reference(storedtip_id, StoredTip.id)
 
     """
     this method has not yet reviewed during the refactor, also the method below, receiver_dicts
