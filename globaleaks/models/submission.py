@@ -69,18 +69,28 @@ class Submission(TXModel):
     @transact
     def select_context(self, submission_id, context):
         store = self.getStore()
-        s = store.find(Submission, Submission.submission_id==submission_id).one()
-        s.context_selected = context
+        try:
+            s = store.find(Submission, Submission.submission_id==submission_id).one()
+            s.context_selected = context
+        except Exception, e:
+            print "Got exception in select_context"
+            print e
+
         store.commit()
         store.close()
 
     @transact
     def status(self, submission_id):
         store = self.getStore()
-        s = store.find(Submission, Submission.submission_id==submission_id).one()
+        status = None
+        try:
+            s = store.find(Submission, Submission.submission_id==submission_id).one()
 
-        status = {'context_selected': s.context_selected,
-                  'fields': s.fields}
+            status = {'context_selected': s.context_selected,
+                      'fields': s.fields}
+        except Exception, e:
+            print "Got exception in status"
+            print e
 
         store.commit()
         store.close()
@@ -102,19 +112,20 @@ class Submission(TXModel):
             store.close()
             raise Exception("Did not find a submission with that ID")
 
-        internal_tip = InternalTip()
-        internal_tip.fields = s.fields
-        store.add(internal_tip)
-
-        whistleblower_tip = Tip()
-        whistleblower_tip.internal_tip_id = internal_tip.id
-        whistleblower_tip.address = receipt
-        store.add(whistleblower_tip)
-
         if not s.context_selected:
             store.commit()
             store.close()
             raise SubmissionError("No receivers selected")
+
+        internal_tip = InternalTip()
+        internal_tip.fields = s.fields
+        internal_tip.context_id = s.context_selected
+        store.add(internal_tip)
+
+        whistleblower_tip = Tip()
+        whistleblower_tip.internaltip = internal_tip
+        whistleblower_tip.address = receipt
+        store.add(whistleblower_tip)
 
         # XXX lookup the list of receivers and create their tips too.
         # receivers = Context.get_receivers(s.context_selected)

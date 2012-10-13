@@ -7,11 +7,12 @@ import pickle
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
 
 from globaleaks.models.base import TXModel
+from globaleaks.models.admin import Context
 from globaleaks.models.receiver import Receiver
 
 __all__ = [ 'Folder', 'File', 'Comment',
-            'InternalTip', 'Tip', 'ReceiverTip',
-            'WhistleblowerTip', 'PublicStats']
+            'InternalTip',  'ReceiverTip',
+            'PublicStats']
 
 class Folder(TXModel):
     """
@@ -111,13 +112,6 @@ class InternalTip(TXModel):
     """
     __storm_table__ = 'internaltips'
 
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, fields VARCHAR, "\
-                   " comments VARCHAR, pertinence INTEGER, "\
-                   " creation_date DATETIME, pertinence_value INT,"\
-                   " escalation_threshold INT, expire_date DATETIME,"\
-                   " access_limit INT, download_limit INT, file_id INTEGER)"
-
     id = Int(primary=True)
     fields = Pickle()
 
@@ -128,7 +122,7 @@ class InternalTip(TXModel):
     pertinence = Int()
 
     creation_date = Date()
-    expire_date = Date()
+    expiration_date = Date()
 
     # the LIMITS are defined and declared *here*, and then
     # in the (Special|Receiver)Tip there are the view_count
@@ -140,6 +134,10 @@ class InternalTip(TXModel):
 
     folders = ReferenceSet(id, Folder.internaltip_id)
     comments = ReferenceSet(id, Comment.internaltip_id)
+
+    context_id = Unicode()
+    context = Reference(context_id, Context.context_id)
+
 
     def postpone_expiration(self):
         """
@@ -157,14 +155,6 @@ class InternalTip(TXModel):
 class Tip(TXModel):
     __storm_table__ = 'tips'
 
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, address VARCHAR, password VARCHAR,"\
-                   " type INTEGER, internaltip_id INTEGER, total_view_count INTEGER, "\
-                   " total_download_count INTEGER, relative_view_count INTEGER, "\
-                   " relative_download_count INTEGER, "\
-                   " notification_date DATE, authoptions VARCHAR, "\
-                   " last_access DATE, pertinence_vote INTEGER)"
-
     id = Int(primary=True)
 
     type = Int()
@@ -181,6 +171,51 @@ class Tip(TXModel):
         store.commit()
         store.close()
         return the_one
+
+    def get_sub_index(self):
+        print self.internaltip
+        ret = {
+        #"notification_adopted": unicode,
+        #"delivery_adopted": unicode,
+        "download_limit": self.internaltip.download_limit,
+        # remind: download_performed is inside the folderDict
+        "access_limit": self.internaltip.access_limit,
+        #"access_performed": self.,
+        "expiration_date": self.internaltip.expiration_date,
+        "creation_date": self.internaltip.creation_date,
+        #"last_update_date": self.internaltip.last_update_date,
+        "comment_number": len(list(self.internaltip.comments)),
+        "folder_number": len(list(self.internaltip.folders)),
+        "overall_pertinence": self.internaltip.pertinence
+        }
+        return ret
+
+    @transact
+    def lookup(self, receipt):
+        store = self.getStore()
+
+        tip = store.find(Tip, Tip.address == receipt).one()
+        tip_sub_index = tip.get_sub_index()
+
+        folders = tip.internaltip.folders
+
+        comments = tip.internaltip.comments
+        context = tip.internaltip.context_id
+
+        receiver_dicts = tip.internaltip.context.list_receiver_dicts()
+
+        tip_details = {'tip': tip_sub_index,
+                   'fields': tip.internaltip.fields,
+                   'folders': None,#folders,
+                   'comments': None, #comments,
+                   'context': context,
+                   'receivers': receiver_dicts
+        }
+        print tip_details
+        store.commit()
+        store.close()
+
+        return tip_details
 
 class ReceiverTip(Tip):
     """
@@ -301,6 +336,7 @@ class WhistleblowerTip(Tip):
     #     last week. So store just a week number.
     #view_count = Int()
     #last_access = Date()
+
 
 class PublicStats(TXModel):
     """

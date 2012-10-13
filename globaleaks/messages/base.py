@@ -106,7 +106,7 @@ class folderDict(GLTypes):
             # downloadable when other are.
 
 class receiverDescriptionDict(GLTypes):
-    specification = {"receiver_id": receiverID,
+    specification = {"id": receiverID,
             "can_delete_submission": bool,
             "can_postpone_expiration": bool,
             "can_configure_notification": bool,
@@ -115,9 +115,9 @@ class receiverDescriptionDict(GLTypes):
             "can_trigger_escalation": bool,
             "receiver_level": int,
             # remind: both of them need to be specified
-            "receiver_name": unicode,
-            "receiver_description": unicode,
-            "receiver_tags": unicode,
+            "name": unicode,
+            "description": unicode,
+            "tags": unicode,
             # verify - is it specified ?
             "creation_date": timeType,
             "last_update_date": timeType,
@@ -197,14 +197,14 @@ class contextDescriptionDict(GLTypes):
     """
     specification = {"context_id": contextID,
             "name": unicode,
-            "context_description": unicode,
+            "description": unicode,
             "creation_date": timeType,
-            "update_date": "time",
+            "update_date": timeType,
             "fields": [formFieldsDict()],
             "selectable_receiver": bool,
             "receivers": [receiverDescriptionDict],
             "escalation_threshold": int,
-            "language_supported": unicode}
+            "languages_supported": [unicode]}
 
 class commentDescriptionDict(GLTypes):
     specification = {"writtentext": unicode,
@@ -215,7 +215,6 @@ class commentDescriptionDict(GLTypes):
 
 class tipSubIndex(GLTypes):
     specification = {"tip_id": tipID,
-            "tip_title": unicode,
             "notification_adopted": unicode,
             "delivery_adopted": unicode,
             "download_limit": int,
@@ -248,10 +247,11 @@ class tipDetailsDict(GLTypes):
     What's follow are the details Tip dependent
     """
     specification = {"tip": tipSubIndex,
-            "tip_data": formFieldsDict,
-            "folder": folderDict,
-            "comment": commentDescriptionDict,
-            "receivers_selected": receiverDescriptionDict}
+            "fields": formFieldsDict,
+            "folders": [folderDict],
+            "comments": commentDescriptionDict,
+            "context": contextDescriptionDict,
+            "receivers": receiverDescriptionDict}
 
 
 class localizationDict(GLTypes):

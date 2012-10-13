@@ -48,14 +48,14 @@ folderDict = {"folder_id": idops.random_folder_id(),
 receiverDescriptionDicts = []
 
 receiverDescriptionDicts.append({
-        "receiver_id": idops.random_receiver_id(),
+        "id": idops.random_receiver_id(),
         "can_delete_submission": True,
         "can_postpone_expiration": True,
         "can_configure_notification": True,
         "can_configure_delivery": True,
         "can_trigger_escalation": True,
-        "receiver_name": u'cool antivelox organization',
-        "receiver_description": u'we\'re fighting against wrong penalities since 1492',
+        "name": u'cool antivelox organization',
+        "description": u'we\'re fighting against wrong penalities since 1492',
 
         # one language is the default
         "languages_supported": ["IT", "ES"]
@@ -63,22 +63,22 @@ receiverDescriptionDicts.append({
 
 
 receiverDescriptionDicts.append({
-    "receiver_id": idops.random_receiver_id(),
+    "id": idops.random_receiver_id(),
     "can_delete_submission": True,
     "can_postpone_expiration": True,
     "can_configure_notification": True,
     "can_configure_delivery": True,
     "can_trigger_escalation": True,
 
-    "receiver_name": u'the police chief',
-    "receiver_description": u'we\'re the police chief, we\'re the law',
+    "name": u'the police chief',
+    "description": u'we\'re the police chief, we\'re the law',
 
     # one language is the default
     "languages_supported": ["IT", "EN"]
     })
 
 receiverDescriptionDicts.append({
-    "receiver_id": idops.random_receiver_id(),
+    "id": idops.random_receiver_id(),
 
     "can_delete_submission": False,
     "can_postpone_expiration": False,
@@ -86,13 +86,13 @@ receiverDescriptionDicts.append({
     "can_configure_delivery": False,
     "can_trigger_escalation": False,
 
-    "receiver_name": u'the police thug',
-    "receiver_description": u'we can close our eyes if an autovelox is reported to be wrong',
+    "name": u'the police thug',
+    "description": u'we can close our eyes if an autovelox is reported to be wrong',
     "languages_supported": ["IT", "ES"]
     })
 
 receiverDescriptionDicts.append({
-    "receiver_id": idops.random_receiver_id(),
+    "id": idops.random_receiver_id(),
 
     "can_delete_submission": False,
     "can_postpone_expiration": False,
@@ -100,8 +100,8 @@ receiverDescriptionDicts.append({
     "can_configure_delivery": False,
     "can_trigger_escalation": False,
 
-    "receiver_name": u'the guys with painting rifle',
-    "receiver_description": u'we can close the eyes of the autovelox',
+    "name": u'the guys with painting rifle',
+    "description": u'we can close the eyes of the autovelox',
 
     "languages_supported": ["IT", "ES"]
     })

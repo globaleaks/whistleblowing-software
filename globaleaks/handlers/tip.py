@@ -7,21 +7,22 @@
 #
 #   Contains all the logic for handling tip related operations.
 
-from globaleaks import Processor
-from globaleaks.rest import answers
-from globaleaks.utils.dummy import dummy_answers as dummy
+from twisted.internet.defer import inlineCallbacks
+from cyclone.web import asynchronous, HTTPError
 
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.models.tip import Tip
 
 class TipRoot(BaseHandler):
 
-    def get(self, *arg, **kw):
-
-        ret = answers.tipDetailsDict()
-
-        dummy.TIP_ROOT_GET(ret)
-
-        return ret.unroll()
+    @asynchronous
+    @inlineCallbacks
+    def get(self, receipt):
+        print "Processing %s" % receipt
+        tip = Tip()
+        tip_dict = yield tip.lookup(receipt)
+        self.write(tip_dict)
+        self.finish()
 
     """
     root of /tip/ POST handle *deleting* and *forwarding* options,
@@ -29,12 +30,11 @@ class TipRoot(BaseHandler):
     (assigned by the tip propetary)
     """
     def post(self, *arg, **kw):
-        return self.root_GET(arg, kw)
+        pass
 
 class TipComment(BaseHandler):
     def post(self, *arg, **kw):
-        # set return code to 200
-        return None
+        pass
 
 class TipFiles(BaseHandler):
     """
@@ -48,15 +48,14 @@ class TipFiles(BaseHandler):
         pass
 
     def post(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
+        pass
 
     def delete(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
+        pass
 
 class TipFinalize(BaseHandler):
     def post(self, *arg, **kw):
-        # set return code to 200
-        return None
+        pass
 
 
 class TipDownload(BaseHandler):
@@ -64,7 +63,7 @@ class TipDownload(BaseHandler):
     Receiver only - enabled only if local delivery is set
     """
     def get(self, *arg, **kw):
-        return {'arg': arg, 'kw': kw}
+        pass
 
 class TipPertinence(BaseHandler):
     """
@@ -73,6 +72,5 @@ class TipPertinence(BaseHandler):
     and because can be extended in the future
     """
     def post(self, *arg, **kw):
-        # set return code to 200
-        return None
+        pass
 
