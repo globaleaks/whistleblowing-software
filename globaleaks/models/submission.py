@@ -58,11 +58,10 @@ class Submission(TXModel):
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
         if not s.fields:
-            s.fields = []
+            s.fields = {}
 
-        for field in fields:
-            s.fields.append(field)
-
+        for k, v in fields.items():
+            s.fields[k] = v
 
         store.commit()
         store.close()
