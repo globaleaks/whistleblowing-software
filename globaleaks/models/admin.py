@@ -3,6 +3,7 @@ from storm.locals import *
 import pickle
 
 from globaleaks.models.base import TXModel
+from globaleaks.models.receiver import Receiver
 
 __all__ = [ 'SytemSettings', 'Contexts', 'ModulesProfiles',
             'AdminStats', 'LocalizedTexts']
@@ -26,7 +27,7 @@ class SystemSettings(TXModel):
     """
 
     id = Int(primary=True)
-    public_key = Unicode()
+    psublic_key = Unicode()
     name = Unicode()
     creation_time = DateTime()
     description = Unicode()
@@ -103,6 +104,7 @@ class Contexts(TXModel):
         store.commit()
         store.close()
 
+
 class ModulesProfiles(TXModel):
     """
     remind: may exists more module profiles, also for the same module, in this
@@ -178,5 +180,83 @@ class LocalizedTexts(TXModel):
     need to be defined with the Client and in the API, but most likely would be
     a struct like the POT file, pickled in the database, and managed by administrators input
     """
+
+class ReceiverContext(TXModel):
+    __storm_table__ = 'receivers_context'
+
+    __storm_primary__ = "context_id", "receiver_id"
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(context_id INTEGER, receiver_id INTEGER, "\
+                   " PRIMARY KEY (context_id, receiver_id))"
+
+    context_id = Int()
+    receiver_id = Int()
+
+class Context(TXModel):
+    __storm_table__ = 'contexts'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, node_id INT,"\
+                   " context_id VARCHAR, "\
+                   " name VARCHAR, description VARCHAR, "\
+                   " fields VARCHAR, selectable_receiver INT, "\
+                   " receivers VARCHAR, escalation_threshold INT, "\
+                   " languages_supported VARCHAR)"
+
+    id = Int(primary=True)
+
+    node_id = Int()
+    context_id = Unicode()
+
+    name = Unicode()
+    description = Unicode()
+    fields = Pickle()
+    selectable_receiver = Bool()
+
+    escalation_threshold = Int()
+    languages_supported = Pickle()
+
+    @transact
+    def add_receiver(self, context_id, receiver_id):
+        store = self.getStore()
+
+        receiver = store.find(Receiver,
+                        Receiver.receiver_id==receiver_id).one()
+        context = store.find(Context,
+                        Context.context_id==context_id).one()
+
+        context.receivers.add(receiver)
+
+        store.commit()
+        store.close()
+
+Context.receivers = ReferenceSet(Context.id,
+                                 ReceiverContext.context_id,
+                                 ReceiverContext.receiver_id,
+                                 Receiver.id)
+class Node(TXModel):
+    __storm_table__ = 'node'
+
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, contexts VARCHAR,"\
+                   " properties VARCHAR, description VARCHAR, "\
+                   " name VARCHAR, public_site VARCHAR, "\
+                   " hidden_service VARCHAR)"
+
+    id = Int(primary=True)
+
+    statistics = Pickle()
+    properties = Pickle()
+    description = Unicode()
+    name = Unicode()
+    public_site = Unicode()
+    hidden_service = Unicode()
+
+    @transact
+    def list_contexts(self):
+        pass
+
+Node.contexts = ReferenceSet(Node.id, Context.node_id)
 
 

@@ -22,7 +22,12 @@ for resource in spec:
     path = resource[0]
     paths.append(path)
     handler = resource[1]
-    handlers.append(detailHandler(handler))
+    handler_doc = ""
+    if handler.__doc__:
+        handler_doc += "%s\n" % cleanup_docstring(handler.__doc__)
+
+    handler_doc += detailHandler(handler)
+    handlers.append(handler_doc)
 
 print "## Summary of API"
 for path in paths:

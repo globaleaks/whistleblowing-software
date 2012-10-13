@@ -1,8 +1,8 @@
+from twisted.internet.defer import returnValue
 from storm.twisted.transact import transact
 from storm.locals import *
 
 from globaleaks.models.base import TXModel
-from globaleaks.models.tip import StoredTip
 
 """
 Quick reference for the content:
@@ -14,7 +14,91 @@ Quick reference for the content:
     whistleblower:  Submission, PublicStats
 
 """
+class Receiver(TXModel):
+    __storm_table__ = 'receivers'
 
+    createQuery = "CREATE TABLE " + __storm_table__ +\
+                   "(id INTEGER PRIMARY KEY, receiver_id VARCHAR,"\
+                   " receiver_name VARCHAR, "\
+                   " receiver_description VARCHAR, receiver_tags VARCHAR, "\
+                   " creation_date VARCHAR, last_update_date VARCHAR, "\
+                   " languages_supported VARCHAR, can_delete_submission INT, "\
+                   " can_postpone_expiration INT, can_configure_delivery INT, "\
+                   " can_configure_notification INT, can_trigger_escalation INT, "\
+                   " receiver_level INT)"
+
+    id = Int(primary=True)
+
+    receiver_id = Unicode()
+    receiver_name = Unicode()
+    receiver_description = Unicode()
+    receiver_tags = Unicode()
+
+    creation_date = Date()
+    last_update_date = Date()
+
+    languages_supported = Pickle()
+
+    can_delete_submission = Bool()
+    can_postpone_expiration = Bool()
+    can_configure_delivery = Bool()
+    can_configure_notification = Bool()
+
+    can_trigger_escalation = Bool()
+
+    receiver_level = Int()
+
+    @transact
+    def receiver_dicts(self):
+        store = self.getStore()
+        print "In here t0"
+        receiver_dicts = []
+
+        for receiver in store.find(Receiver):
+            receiver_dict = {}
+            receiver_dict['receiver_id'] = receiver.receiver_id
+            receiver_dict['receiver_name'] = receiver.receiver_name
+            receiver_dict['receiver_description'] = receiver.receiver_description
+
+            receiver_dict['can_delete_submission'] = receiver.can_delete_submission
+            receiver_dict['can_postpone_expiration'] = receiver.can_postpone_expiration
+            receiver_dict['can_configure_delivery'] = receiver.can_configure_delivery
+
+            receiver_dict['can_configure_notification'] = receiver.can_configure_notification
+            receiver_dict['can_trigger_escalation'] = receiver.can_trigger_escalation
+
+            receiver_dict['languages_supported'] = receiver.languages_supported
+            receiver_dicts.append(receiver_dict)
+
+        store.commit()
+        store.close()
+
+        returnValue(receiver_dicts)
+
+    @transact
+    def create_dummy_receivers(self):
+        from globaleaks.messages.dummy import base
+        store = self.getStore()
+        print "Acting on %s" % self.database
+        for receiver_dict in base.receiverDescriptionDicts:
+            receiver = Receiver()
+            receiver.receiver_id = receiver_dict['receiver_id']
+            receiver.receiver_name = receiver_dict['receiver_name']
+            receiver.receiver_description = receiver_dict['receiver_description']
+
+            receiver.can_delete_submission = receiver_dict['can_delete_submission']
+            receiver.can_postpone_expiration = receiver_dict['can_postpone_expiration']
+            receiver.can_configure_delivery = receiver_dict['can_configure_delivery']
+            receiver.can_configure_notification = receiver_dict['can_configure_notification']
+            receiver.can_trigger_escalation = receiver_dict['can_trigger_escalation']
+
+            receiver.languages_supported = receiver_dict['languages_supported']
+            store.add(receiver)
+            store.commit()
+        print "Done"
+        store.close()
+        print "closed"
+        returnValue(base.receiverDescriptionDicts)
 
 class PersonalPreference(TXModel):
 
@@ -89,103 +173,5 @@ class PersonalPreference(TXModel):
     * supports module profile selection and configuration
     * maybe has sense create a table with the latest operation of the Receiver, this would be a nice information resume for the users
     """
-
-class ReceiverTip(TXModel):
-    """
-    This is the table keeping track of ALL the receivers activities and
-    date in a Tip, Tip core data are stored in StoredTip. The data here
-    provide accountability of Receiver accesses, operations, options.
-    """
-    __storm_table__ = 'receivertip'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                  "(INTEGER PRIMARY KEY, submission_gus VARCHAR, authoptions VARCHAR, notification_date DATETIME, "\
-                  " view_count INTEGER, last_access DATETIME, pertinence_vote INTEGER, "\
-                  " storedtip_id INTEGER)"
-
-    submission_gus = Unicode()
-    notification_date = Date()
-    authoptions = Pickle()
-        # remind: here we can make a password checks, PersonalPreference has a
-        # stored hash of the actual password. when Receiver change a password, do not change
-        # in explicit way also the single Tips password.
-    view_count = Int()
-    last_access = Date()
-    pertinence_vote = Int()
-
-    storedtip_id = Int()
-    storedtip = Reference(storedtip_id, StoredTip.id)
-
-    """
-    this method has not yet reviewed during the refactor, also the method below, receiver_dicts
-    """
-    @transact
-    def create(self, internaltip, receiver_id):
-        store = self.getStore()
-
-        receiver = store.find(Receiver, Receiver.receiver_id==receiver_id)
-
-        tip = ReceiverTip()
-        tip.internaltip = internaltip
-        store.add(tip)
-
-        store.commit()
-        store.close()
-
-
-    """
-    @transact
-    def receiver_dicts(self):
-        store = self.getStore()
-
-        receiver_dicts = []
-
-        for receiver in store.find(Receiver):
-            receiver_dict = {}
-            receiver_dict['receiver_id'] = receiver.receiver_id
-            receiver_dict['receiver_name'] = receiver.receiver_name
-            receiver_dict['receiver_description'] = receiver.receiver_description
-
-            receiver_dict['can_delete_submission'] = receiver.can_delete_submission
-            receiver_dict['can_postpone_expiration'] = receiver.can_postpone_expiration
-            receiver_dict['can_configure_delivery'] = receiver.can_configure_delivery
-
-            receiver_dict['can_configure_notification'] = receiver.can_configure_notification
-            receiver_dict['can_trigger_escalation'] = receiver.can_trigger_escalation
-
-            receiver_dict['languages_supported'] = receiver.languages_supported
-            receiver_dicts.append(receiver_dict)
-
-        store.commit()
-        store.close()
-
-        return receiver_dicts
-
-    @transact
-    def create_dummy_receivers(self):
-        from globaleaks.messages.dummy import base
-        store = self.getStore()
-
-        for receiver_dict in base.receiverDescriptionDicts:
-            receiver = Receiver()
-            receiver.receiver_id = receiver_dict['receiver_id']
-            receiver.receiver_name = receiver_dict['receiver_name']
-            receiver.receiver_description = receiver_dict['receiver_description']
-
-            receiver.can_delete_submission = receiver_dict['can_delete_submission']
-            receiver.can_postpone_expiration = receiver_dict['can_postpone_expiration']
-            receiver.can_configure_delivery = receiver_dict['can_configure_delivery']
-            receiver.can_configure_notification = receiver_dict['can_configure_notification']
-            receiver.can_trigger_escalation = receiver_dict['can_trigger_escalation']
-
-            receiver.languages_supported = receiver_dict['languages_supported']
-
-            store.add(receiver)
-            store.commit()
-
-        store.close()
-        return base.receiverDescriptionDicts
-        """
-
 
 
