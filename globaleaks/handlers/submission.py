@@ -30,7 +30,16 @@ class SubmissionRoot(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
         """
-        U2, Creates an empty submission and returns the ID to the WB.
+        This creates an empty submission and returns the ID
+        to be used when referencing it as a whistleblower.
+        sessionID is defined in recurringtypes, and is a 50byte random string.
+            * Response:
+              Status Code: 200 (OK)
+              {
+                  'submission_id': 'sessionID',
+                  'creation_time': 'Time'
+              }
+              Status code: 201 (Created)
         """
         # XXX do sanitization and validation here
 
@@ -64,11 +73,23 @@ class SubmissionRoot(BaseHandler):
         # dummy.SUBMISSION_NEW_GET(output)
 
 class SubmissionStatus(BaseHandler):
+    """
+    This interface represent the state of the submission. Will show the current
+    uploaded data, choosen group, and file uploaded.
+
+    permit to update fields content and group selection.
+    """
     @asynchronous
     @inlineCallbacks
     def get(self, submission_id):
         """
-        U3, refresh whistleblower client with the previously uploaded data
+        Returns the currently submitted fields, selected group, and uploaded files.
+        * Response:
+          {
+            'fields': [ '$formFieldsDict' ],
+            'receivers_selected': [ '$receiverDescriptionDict' ],
+            'creation_time': 'Time'
+          }
         """
         submission = models.base.Submission()
         status = yield submission.status(submission_id)
@@ -91,11 +112,23 @@ class SubmissionStatus(BaseHandler):
     @inlineCallbacks
     def post(self, submission_id, *uriargs):
         """
-        U3, update the whistleblower stored data, expect in safereq
-        fields: an array of formFieldsDict
-        receivers: an array of receiverID
-        verify in the local settings if the receivers shall be choosen by WB
-        if some fields are required, is not check here.
+        * Request:
+          {
+            'fields': [ '$formFieldsDict' ]
+            'receiver_selected': [ 'receiverID', 'receiverID' ]
+          }
+
+        * Response:
+          Status Code: 202 (accepted)
+
+        * Error handling:
+          As per "common behaviour in /submission/<submission_$ID/*"
+          If receiver ID is invalid:
+            { 'error_code': 'Int', 'error_message': 'receiver selected ID is invalid' }
+          a receiver ID is invalid if:
+            . receiver do not match in the context
+          If the property of "receiver selection" is not set, the receiver_selected value
+          is IGNORED.
         """
         yield self.get(submission_id, *uriargs)
 
@@ -105,8 +138,49 @@ class SubmissionFinalize(BaseHandler):
     @inlineCallbacks
     def post(self, submission_id, *uriargs):
         """
-        Finalize the submission and create data inside of the database,
-        perform checks if the required fiels has been set
+        checks if all the 'Required' fields are present, then
+        completes the submission in progress and returns a receipt.
+        The WB may propose a receipt (because is a personal secret
+        like a password, afterall)
+
+        * Request (optional, see "Rensponse Variant" below):
+          {
+            'proposed-receipt': 'string'
+            'folder_name': 'string'
+            'folder_description': 'string'
+          }
+
+        * Response (HTTP code 412, Precondition Failed):
+          If one of the fileDict is not complete, the finalize can't be performed.
+          { 'error_code': 'Int', 'error_message': 'The upload appears not yet complete' }
+
+        * Response (HTTP code 200):
+          If the receipt is acceptable with the node requisite (minimum length
+          respected, lowecase/uppercase, and other detail that need to be setup
+          during the context configuration), i saved as authenticative secret for
+          the WB Tip, is echoed back to the client Status Code: 201 (Created)
+
+          Status Code: 200 (OK)
+          { 'receipt': 'string (with receipt EQUAL to proposed-receipt)' }
+
+        * Response (HTTP code 201):
+          If the receipt do not fit node prerequisite, or is missing,
+          the submission is finalized, and the server create a receipt.
+          The client print back the receipt to the WB.
+
+          Status Code: 201 (Created)
+          { 'receipt': 'string' }
+
+        Both response finalize the submission and the only difference is in the
+        HTTP return code. This has been discussed (or would be discussed)
+        [issue #19, Receipt, proposal of expansion](https://github.com/globaleaks/GLBackend/issues/19)
+        * Error handling:
+          As per "common behaviour in /submission/<submission_$ID/*"
+
+          If the field check fail
+          Status Code: 406 (Not Acceptable)
+          { 'error_code': 'Int', 'error_message': 'fields requirement not respected' }
+
         """
         receipt_id = unicode(idops.random_receipt_id())
 
@@ -120,14 +194,26 @@ class SubmissionFinalize(BaseHandler):
         self.finish()
 
 class SubmissionFiles(BaseHandler):
+    """
+    This interface supports resume.
+    This interface expose the JQuery FileUploader and the REST/protocol
+    implemented on it.
+    FileUploader has a dedicated REST interface to handle start|stop|delete.
+    Need to be studied in a separate way.
+
+    The uploaded files are shown in /status/ with the appropriate
+    '$fileDict' description structure.
+
+    At the moment is under research: <https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPRbsoz_Hs3TTSnK7NzY86S4/edit?pli=1>
+
+    """
     # U5
     def get(self, submission_id, *uriarg):
         """
-        retrive the status of the file uploaded, the
-        submission_id has only one folder during the first
-        submission
-
-        XXX remind: in the API-interface is not yet defined
+        need to return the uploaded files for the session, in fileDict. fileDict
+        contain also the actual size and if the file is completed or not.
+        differents fileDict may exists for the same session_id, and the filename works
+        as unique idetified (then, may not be uploaded two different file with the same filename)
         """
         from globaleaks.messages.dummy import base, answers, requests
 
