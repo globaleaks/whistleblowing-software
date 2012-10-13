@@ -41,6 +41,11 @@ class BaseHandler(RequestHandler):
     The hooks for sanitization and verification of user supplied data is found
     inside of globaleaks/rest/hooks/.
     """
+    messageTypes = {'get': None,
+                    'post': None,
+                    'put': None,
+                    'delete': None}
+
     def prepare(self):
         """
         This method is called by cyclone, and is implemented to
@@ -57,4 +62,7 @@ class BaseHandler(RequestHandler):
                     self.request.method = wrappedMethod.upper()
             except HTTPError:
                 pass
+        if self.messageTypes[self.request.method]:
+            validMessage = self.messageTypes[self.request.method]
+            validateMessage(self.request.body, validMessage)
 

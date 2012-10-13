@@ -13,16 +13,19 @@ from globaleaks import models
 from globaleaks.db import transactor
 from globaleaks.utils import idops
 
+from globaleaks import messages
+
 from globaleaks.rest import answers
 from globaleaks.rest.errors import GLErrorCode
 
-from cyclone.web import RequestHandler, asynchronous, HTTPError
+from globaleaks.handlers.base import BaseHandler
+
+from cyclone.web import asynchronous, HTTPError
 
 def mydirtydebug(whoami, safereq, uriargs, args, kw):
     print "[:>]", whoami, safereq, type(uriargs), uriargs, args, kw
 
-
-class SubmissionRoot(RequestHandler):
+class SubmissionRoot(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
@@ -60,7 +63,7 @@ class SubmissionRoot(RequestHandler):
         self.finish()
         # dummy.SUBMISSION_NEW_GET(output)
 
-class SubmissionStatus(RequestHandler):
+class SubmissionStatus(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def get(self, submission_id):
@@ -83,6 +86,7 @@ class SubmissionStatus(RequestHandler):
         (import the fields in the temporary submission_id entry)
     """
 
+    #messageTypes['post'] = messages.base.fileDict
     @asynchronous
     @inlineCallbacks
     def post(self, submission_id, *uriargs):
@@ -96,7 +100,7 @@ class SubmissionStatus(RequestHandler):
         yield self.get(submission_id, *uriargs)
 
 
-class SubmissionFinalize(RequestHandler):
+class SubmissionFinalize(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def post(self, submission_id, *uriargs):
@@ -115,7 +119,7 @@ class SubmissionFinalize(RequestHandler):
         self.write(receipt)
         self.finish()
 
-class SubmissionFiles(RequestHandler):
+class SubmissionFiles(BaseHandler):
     # U5
     def get(self, submission_id, *uriarg):
         """

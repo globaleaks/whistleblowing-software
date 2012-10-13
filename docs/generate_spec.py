@@ -13,6 +13,7 @@
 
 import inspect
 from globaleaks.messages import base
+from utils import cleanup_docstring
 
 def create_spec(spec):
     doc = ""
@@ -23,8 +24,7 @@ def create_spec(spec):
 def create_class_doc(klass):
     doc = "## %s\n" % klass.__name__
     if klass.__doc__:
-        docstring = [line.strip() for line in klass.__doc__.split("\n")]
-        doc += '\n'.join(docstring)
+        cleanup_docstring(klass.__doc__)
     doc += "\n"
     doc += create_spec(klass.specification)
     doc += "\n\n"
