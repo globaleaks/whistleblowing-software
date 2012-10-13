@@ -39,7 +39,7 @@ fileDicts.append({
         })
 
 
-folderDict = {"fID": idops.random_folder_id(),
+folderDict = {"folder_id": idops.random_folder_id(),
         "folder_name": u'those from my chief personal USB key',
         "folder_description": u'He left the key in the office, does not contain jobs files, but some proof that is a Mafia thug',
         "download_performed": 2,
@@ -155,7 +155,7 @@ formFieldsDicts.append({
     })
 
 moduleDataDict_N = {
-    "mID": idops.random_module_id(),
+    "module_id": idops.random_module_id(),
     "active": True,
     "module_type": u'notification',
     "name": u'Encrypted E-Mail',
@@ -179,7 +179,7 @@ moduleDataDict_N = {
 
 
 moduleDataDict_D = {
-    "mID": idops.random_module_id(),
+    "module_id": idops.random_module_id(),
     "active": True,
     "module_type": u'delivery',
     "name": u'upload in FTP',

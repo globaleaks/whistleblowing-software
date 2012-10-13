@@ -4,15 +4,15 @@
 # :licence: see LICENSE
 
 from globaleaks.utils import idops
-from globaleaks.messages.dummy import shared
+from globaleaks.messages.dummy import base
 
 """
 Those functions may be called by the various handlers,
 in example NODE_ROOT_GET is called by node.py
 """
-nodeRootGet = {"contexts": [shared.contextDescriptionDicts[0]],
-    "public_statistics": shared.publicStatisticsDict,
-    "node_properties": shared.nodePropertiesDict,
+nodeRootGet = {"contexts": [base.contextDescriptionDicts[0]],
+    "public_statistics": base.publicStatisticsDict,
+    "node_properties": base.nodePropertiesDict,
     "public_site":  "http://www.matrixenter.int",
     "hidden_service":  "cnwoecowiecnirnio23rn23io.onion",
     "url_schema":  "/",
@@ -26,44 +26,44 @@ submissionNewGet = {
 }
 
 submissionStatusGet = {
-    "receivers_selected": [shared.receiverDescriptionDicts[0],
-                           shared.receiverDescriptionDicts[1]],
+    "receivers_selected": [base.receiverDescriptionDicts[0],
+                           base.receiverDescriptionDicts[1]],
 
-    "fields": [shared.formFieldsDicts[0],
-               shared.formFieldsDicts[1],
-               shared.formFieldsDicts[2]]
+    "fields": [base.formFieldsDicts[0],
+               base.formFieldsDicts[1],
+               base.formFieldsDicts[2]]
 }
 
 
-submissionFilesGet = shared.fileDicts[0].copy()
+submissionFilesGet = base.fileDicts[0].copy()
 
 receiverRootGet = {
-    "tips": shared.tipIndexDict,
-    "receiver_properties": shared.receiverDescriptionDicts[3],
+    "tips": base.tipIndexDict,
+    "receiver_properties": base.receiverDescriptionDicts[3],
 
     # both of them are already present, because do not exist
     # a backend with almost one of them.
 
-    "notification_method": [shared.moduleDataDict_N],
-    "delivery_method": [shared.moduleDataDict_D]
+    "notification_method": [base.moduleDataDict_N],
+    "delivery_method": [base.moduleDataDict_D]
 }
 
 receiverModuleGet = {
     # no one may be available
-    "modules": [shared.moduleDataDict_N, shared.moduleDataDict_D]
+    "modules": [base.moduleDataDict_N, base.moduleDataDict_D]
 }
 
-tipRootGet = shared.tipDetailsDict.copy()
+tipRootGet = base.tipDetailsDict.copy()
 
 adminNodeGet = {
     "name":  "don't track us: AUTOVELOX",
 
-    "admin_statistics": shared.adminStatisticsDict,
-    "public_statistics": shared.publicStatisticsDict,
-    "node_properties": shared.nodePropertiesDict,
+    "admin_statistics": base.adminStatisticsDict,
+    "public_statistics": base.publicStatisticsDict,
+    "node_properties": base.nodePropertiesDict,
 
-    "contexts": [shared.contextDescriptionDicts[0],
-                 shared.contextDescriptionDicts[1]],
+    "contexts": [base.contextDescriptionDicts[0],
+                 base.contextDescriptionDicts[1]],
 
     "public_site":  "http://www.matrixenter.int",
     "hidden_service":  "cnwoecowiecnirnio23rn23io.onion",
@@ -71,15 +71,15 @@ adminNodeGet = {
 }
 
 adminContextsGet = {
-    "contexts": [shared.contextDescriptionDicts[0]]
+    "contexts": [base.contextDescriptionDicts[0]]
 }
 
 adminReceiversGet = {
-    "receivers": shared.receiverDescriptionDicts
+    "receivers": base.receiverDescriptionDicts
 }
 
 adminModulesGet = {
-    "modules": [shared.moduleDataDict_N,
-                shared.moduleDataDict_D]
+    "modules": [base.moduleDataDict_N,
+                base.moduleDataDict_D]
 }
 

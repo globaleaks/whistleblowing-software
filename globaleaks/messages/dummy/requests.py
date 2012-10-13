@@ -4,14 +4,14 @@
 # :licence: see LICENSE
 
 from globaleaks.utils import idops
-from globaleaks.messages.dummy import shared
+from globaleaks.messages.dummy import base
 
 submissionStatusPost = {"receivers_selected": idops.random_receiver_id(),
-    "fields": [shared.formFieldsDicts[0]]
+    "fields": [base.formFieldsDicts[0]]
 }
 
 submissionSubmitPost = {"receivers_selected": idops.random_receiver_id(),
-    "fields": [shared.formFieldsDicts[0]]
+    "fields": [base.formFieldsDicts[0]]
 }
 
 submissionFinalizePost = {"proposed_receipt": "this is my secret receipt",
@@ -30,7 +30,7 @@ tipOptionsPost = {
 
 # T2 sendComment
 tipOptionsPost = {
-    "comment": shared.commentDescriptionDict
+    "comment": base.commentDescriptionDict
 }
 
 # T3 (files) -- not yet defined
@@ -51,18 +51,18 @@ tipPertinencePost = {
 # R2 receiverOptions
 receiverModulePost = {
     # optional: POST hack
-    "module": shared.moduleDataDict_N
+    "module": base.moduleDataDict_N
 }
 
 # R2 receiverOptions
 receiverModulePut = {
-    "module": shared.moduleDataDict_N
+    "module": base.moduleDataDict_N
 }
 
 
 # R2 receiverOptions
 receiverModuleDelete = {
-    "module": shared.moduleDataDict_N
+    "module": base.moduleDataDict_N
 }
 
 # A1 nodeAdminSetup
@@ -70,7 +70,7 @@ adminNodePost = {
     "name":  "new name for the node",
     "admin_statistics_ratio":  2,
     "public_statistics_ratio":  3,
-    "node_properties": shared.nodePropertiesDict,
+    "node_properties": base.nodePropertiesDict,
 
     "node_description":  "well, I'm a node, you know ?",
     "public_site":  "https://asimpleleaksite.blogspot.come",
@@ -84,41 +84,41 @@ adminNodePost = {
 
 # A2 contextConfiguration
 adminContextsPost = {
-    "context": shared.contextDescriptionDicts[0]
+    "context": base.contextDescriptionDicts[0]
 }
 
 # A2 contextConfiguration
 adminContextsPut = {
-    "context": shared.contextDescriptionDicts[0]
+    "context": base.contextDescriptionDicts[0]
 }
 
 # A2 contextConfiguration
 adminContextsDelete = {
-    "context": shared.contextDescriptionDicts[0]
+    "context": base.contextDescriptionDicts[0]
 }
 
 
 # A3 receiverConfiguration
 adminReceiversPost = {
     # optional: POST hack
-    "receivers": shared.receiverDescriptionDicts[0]
+    "receivers": base.receiverDescriptionDicts[0]
 }
 
 # A3 receiverConfiguration
 adminReceiversPut = {
-    "receivers": shared.receiverDescriptionDicts[0]
+    "receivers": base.receiverDescriptionDicts[0]
 }
 
 
 # A3 receiverConfiguration
 adminReceiversDelete = {
-    "receivers": shared.receiverDescriptionDicts[0]
+    "receivers": base.receiverDescriptionDicts[0]
 }
 
 
 # A4 moduleConfiguration
 adminModulesPost = {
-    "module": shared.moduleDataDict_N
+    "module": base.moduleDataDict_N
 }
 
 

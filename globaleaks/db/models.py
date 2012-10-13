@@ -293,10 +293,10 @@ class Receiver(TXModel):
 
     @transact
     def create_dummy_receivers(self):
-        from globaleaks.messages.dummy import shared
+        from globaleaks.messages.dummy import base
         store = self.getStore()
 
-        for receiver_dict in shared.receiverDescriptionDicts:
+        for receiver_dict in base.receiverDescriptionDicts:
             receiver = Receiver()
             receiver.receiver_id = receiver_dict['receiver_id']
             receiver.receiver_name = receiver_dict['receiver_name']
@@ -314,7 +314,7 @@ class Receiver(TXModel):
             store.commit()
 
         store.close()
-        return shared.receiverDescriptionDicts
+        return base.receiverDescriptionDicts
 
 class Context(TXModel):
     __storm_table__ = 'contexts'
