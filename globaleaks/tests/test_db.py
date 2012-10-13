@@ -53,7 +53,7 @@ class BaseDBTest(unittest.TestCase):
 
 class TablesTest(BaseDBTest):
     def test_base(self):
-        good_query = "CREATE TABLE submission (fields BLOB, folder_id INTEGER, id INTEGER, opening_date VARCHAR, receivers BLOB, submission_id VARCHAR, PRIMARY KEY (id))"
+        good_query = "CREATE TABLE submission (creation_time VARCHAR, fields BLOB, folder_id INTEGER, id INTEGER, receivers BLOB, submission_id VARCHAR, PRIMARY KEY (id))"
         self.assertEqual(tables.generateCreateQuery(models.submission.Submission),
                 good_query)
 
@@ -79,6 +79,11 @@ class TestSubmission(BaseDBTest):
         test_submission.fields = requests.submissionStatusPost['fields']
         test_submission.receivers = requests.submissionStatusPost['receivers_selected']
         yield test_submission.save()
+
+    @inlineCallbacks
+    def test_create_new_submission(self):
+        submission = self.mock_model()
+        res = yield submission.new()
 
     @inlineCallbacks
     def test_submission_status(self):

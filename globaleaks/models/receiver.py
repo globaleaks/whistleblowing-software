@@ -4,16 +4,8 @@ from storm.locals import *
 
 from globaleaks.models.base import TXModel
 
-"""
-Quick reference for the content:
+__all__ = ['Receiver', 'ReceiverPreferences']
 
-    base:           TXModel
-    tip:           StoredTip, Folders, Files, Comments, SpecialTip
-    admin:          SytemSettings, Contexts, ModulesProfiles, AdminStats, LocalizedTexts
-    receiver:       PersonalPreference, ReceiverTip
-    whistleblower:  Submission, PublicStats
-
-"""
 class Receiver(TXModel):
     __storm_table__ = 'receivers'
 
@@ -50,6 +42,7 @@ class Receiver(TXModel):
 
     @transact
     def receiver_dicts(self):
+        print "going at it"
         store = self.getStore()
         print "In here t0"
         receiver_dicts = []
@@ -100,9 +93,9 @@ class Receiver(TXModel):
         print "closed"
         returnValue(base.receiverDescriptionDicts)
 
-class PersonalPreference(TXModel):
+class ReceiverPreferences(TXModel):
 
-    __storm_table__ = 'receiverpref'
+    __storm_table__ = 'receiver_preferences'
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
                   "(id INTEGER PRIMARY KEY, receiver_gus VARCHAR, "\

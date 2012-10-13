@@ -24,3 +24,4 @@ class Node(RequestHandler):
         from globaleaks.messages.dummy import answers
         response = answers.nodeRootGet
         self.write(response)
+        print "Doing node!"

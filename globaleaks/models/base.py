@@ -9,7 +9,7 @@ import pickle
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
 
-from globaleaks.db import getStore, transactor, database
+from globaleaks.db import transactor, database
 from globaleaks.db import tables
 
 __all__ = ['InternalTip', 'Folder',
