@@ -8,6 +8,14 @@ from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 
 from globaleaks.db import createTables
+class GLBaseRunner:
+    """
+    This is a specialized runner that is responsible for starting the specified
+    service.
+    The purpose of it is to do the equivalent of what would be done with
+    launching twistd from command line (daemonizing the process, creating the
+    PID file, etc).
+    """
 
 class GLBaseRunner(app.ApplicationRunner):
     """
