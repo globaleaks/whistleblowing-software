@@ -1,6 +1,13 @@
 from storm.twisted.transact import transact
-from storm.locals import *
-import pickle
+# -*- encoding: utf-8 -*-
+#
+# :authors: Arturo Filastò
+# :licence: see LICENSE
+
+from storm.locals import Int, Pickle, Date
+from storm.locals import Unicode, Bool, DateTime
+from storm.locals import ReferenceSet
+
 from globaleaks.utils import gltime, idops
 
 from globaleaks.models.base import TXModel
@@ -210,6 +217,7 @@ class Context(TXModel):
     def create_receiver_tips(self, internaltip):
         receiver_tips = []
         for receiver in self.receivers:
+            from globaleaks.models.tip import ReceiverTip
             receiver_tip = ReceiverTip()
             receiver_tip.new(internaltip.internaltip_id)
             receiver_tips.append(receiver_tip)

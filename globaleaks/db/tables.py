@@ -1,8 +1,13 @@
 from twisted.internet.defer import inlineCallbacks
 
-from storm.locals import *
+from storm.locals import Store
 from storm.properties import PropertyColumn
-from storm.variables import *
+
+from storm.variables import BoolVariable, DateTimeVariable, DateVariable
+from storm.variables import DecimalVariable, EnumVariable
+from storm.variables import FloatVariable, IntVariable, RawStrVariable
+from storm.variables import TimeDeltaVariable, TimeVariable, UUIDVariable
+from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
 def variableToSQLite(var_type):
     sqlite_type = "VARCHAR"

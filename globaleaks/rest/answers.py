@@ -22,7 +22,7 @@ def errorMessage(httpErrorCode=500, errorDict={}):
     return response
 
 # U1
-def nodeMainSettings():
+def nodeRoot():
     response = answers.nodeRootGet.copy()
     # "description", localization)
     # GlClient -- how would be handled the localization ?

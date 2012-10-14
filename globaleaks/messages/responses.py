@@ -43,7 +43,7 @@ def nodeMainSettings():
     return response
 
 # U2
-def newSubmission():
+def newSubmission(submissionID, time):
     response = {
         "submission_id": submissionID,
         "creation_time": time
@@ -51,11 +51,11 @@ def newSubmission():
     return response
 
 # R1
-class commonReceiverAnswer(GLT.GLTypes):
-    response = {"tips": GLT.tipIndexDict,
+def commonReceiverAnswer():
+    response = {"tips": dummy.base.tipIndexDict,
             "receiver_properties": dummy.base.receiverDescriptionDicts,
-            "notification_method": dummy.base.moduleDataDict,
-            "delivery_method": dummy.base.moduleDataDict
+            "notification_method": dummy.base.moduleDataDict_N,
+            "delivery_method": dummy.base.moduleDataDict_D
     }
     return response
 

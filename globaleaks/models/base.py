@@ -1,20 +1,13 @@
-import json
-
-from twisted.internet.defer import returnValue
-
-from storm.twisted.transact import transact
-from storm.locals import *
-import pickle
-
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
+
+from storm.locals import Store
+from storm.twisted.transact import transact
 
 from globaleaks.db import transactor, database
 from globaleaks.db import tables
 
-__all__ = ['InternalTip', 'Folder',
-           'File', 'Tip','ReceiverTip',
-           'Submission', 'Node', 'Receiver']
+__all__ = ['TXModel', 'ModelError']
 
 class TXModel(object):
     """

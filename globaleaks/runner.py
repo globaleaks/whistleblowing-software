@@ -14,7 +14,7 @@ if platformType == "win32":
         WindowsApplicationRunner
     class GLBaseRunner(WindowsApplicationRunner):
         def postApplication(self):
-            def runApp(*a):
+            def runApp(res):
                 service.IService(self.application).privilegedStartService()
                 app.startApplication(self.application, not self.config['no_save'])
                 app.startApplication(internet.TimerService(0.1, lambda:None), 0)
@@ -31,7 +31,7 @@ else:
     ServerOptions = ServerOptions
     class GLBaseRunner(UnixApplicationRunner):
         def postApplication(self):
-            def runApp(*a):
+            def runApp(res):
                 self.startApplication(self.application)
                 print "GLBackend is now running"
                 print "Visit http://127.0.0.1:8082/index.html to interact with me"

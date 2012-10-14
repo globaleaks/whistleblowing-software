@@ -14,7 +14,7 @@ from globaleaks import models
 from cyclone.web import RequestHandler, asynchronous
 
 def create_node(contextDict):
-    context = models.base.Context()
+    context = models.admin.Context()
     context.name = contextDict['name']
     context.description = contextDict['description']
     context.fields = contextDict['fields']

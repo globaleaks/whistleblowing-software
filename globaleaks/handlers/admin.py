@@ -8,7 +8,6 @@
 #   :license: see LICENSE
 #
 from globaleaks.rest import answers
-from globaleaks.utils.dummy import dummy_answers as dummy
 
 from globaleaks.handlers.base import BaseHandler
 
@@ -18,15 +17,11 @@ class AdminNode(BaseHandler):
     """
     Get the node main settings, update the node main settings
     """
-    def get(self, *arg, **kw):
+    def get(self):
+        pass
 
-        ret = answers.nodeMainSettings()
-
-        dummy.ADMIN_NODE_GET(ret)
-        return ret.unroll()
-
-    def post(self, *arg, **kw):
-        return self.node_GET(arg, kw)
+    def post(self):
+        pass
 
 
 class AdminContexts(BaseHandler):
@@ -35,21 +30,16 @@ class AdminContexts(BaseHandler):
     classic CURD in the 'contexts'
     """
     def get(self, context_id):
-
-        ret = answers.adminContextsCURD()
-
-        dummy.ADMIN_CONTEXTS_GET(ret)
-
-        return ret.unroll()
+        pass
 
     def post(self, context_id):
-        return self.get(context_id)
+        pass
 
     def put(self, context_id):
-        return self.get(context_id)
+        pass
 
     def delete(self, context_id):
-        return self.get(context_id)
+        pass
 
 
 class AdminReceivers(BaseHandler):
@@ -58,21 +48,16 @@ class AdminReceivers(BaseHandler):
     classic CURD in the 'receivers'
     """
     def get(self, context_id):
-
-        ret = answers.adminReceiverCURD()
-
-        dummy.ADMIN_RECEIVERS_GET(ret)
-
-        return ret.unroll()
+        pass
 
     def post(self, context_id):
-        return self.get(context_id)
+        pass
 
     def put(self, context_id):
-        return self.get(context_id)
+        pass
 
     def delete(self, context_id):
-        return self.get(context_id)
+        pass
 
 
 class AdminModules(BaseHandler):
@@ -82,13 +67,7 @@ class AdminModules(BaseHandler):
     maybe a flag that /disable/ a module)
     """
     def get(self, context_id, module_id):
-
-        ret = answers.adminModulesUR()
-
-        dummy.ADMIN_MODULES_GET(ret)
-
-        return ret
+        pass
 
     def post(self, context_id, module_id):
-        return self.get(context_id, module_id)
-
+        pass

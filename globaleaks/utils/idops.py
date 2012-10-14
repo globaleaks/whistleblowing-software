@@ -92,7 +92,7 @@ def random_folder_id():
 
 def regexp_folder_id(fID):
 
-    outre = re.match('f_[a-zA-Z]{20,20}$', cID)
+    outre = re.match('f_[a-zA-Z]{20,20}$', fID)
     return True if outre != None else False
 
 
