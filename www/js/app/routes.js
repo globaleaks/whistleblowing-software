@@ -14,6 +14,8 @@ define(function (require) {
 
     handlers.receiver = require('./handlers/receiver');
 
+    handlers.status = require('./handlers/status');
+
     templates.home = hogan.compile(require('text!./templates/home.html'));
     templates.about = hogan.compile(require('text!./templates/about.html'));
     templates.submission = hogan.compile(require('text!./templates/submission.html'));
@@ -74,7 +76,7 @@ define(function (require) {
         crossroads.addRoute('', homeHandler);
         crossroads.addRoute('about', aboutHandler);
         crossroads.addRoute('submission', handlers.submission);
-        crossroads.addRoute('status/{token}', statusHandler);
+        crossroads.addRoute('status/{token}', handlers.status);
         crossroads.addRoute('admin', adminHandler);
         crossroads.addRoute('receiver/{token}', receiverHandlerList);
         crossroads.addRoute('receiver/{token}/preferences', receiverHandlerPreferences);
