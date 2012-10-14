@@ -1,9 +1,4 @@
-define(['jquery'], function($) {
-
-  function htmlEntities(str) {
-    return String(str).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
-  }
-
+define(['jquery', '../utils'], function($, utils) {
   return {
     processStatusGet: function(data) {
       console.log("Processing " );
@@ -16,9 +11,9 @@ define(['jquery'], function($) {
         value = data.fields[name];
 
         console.log(name + " | " + value);
-        safe_name = htmlEntities(name);
+        safe_name = utils.htmlEntities(name);
         if (value) {
-          safe_value = htmlEntities(value);
+          safe_value = utils.htmlEntities(value);
           safe_data['fields'].push({'name': safe_name, 'value': safe_value});
         } else {
           console.log("skipping");

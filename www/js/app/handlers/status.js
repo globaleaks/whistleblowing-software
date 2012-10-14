@@ -6,6 +6,7 @@ define(function (require) {
     var $ = require('jquery'),
         hasher = require('hasher'),
         hogan = require('hogan'),
+        utils = require('../utils'),
         template = hogan.compile(require('text!../templates/status.html')),
         requests = {},
         messages = {};
@@ -15,7 +16,9 @@ define(function (require) {
     return function statusHandler(receipt, bar) {
         requests.status.get(receipt).done(function(result) {
           var safe_data = messages.responses.processStatusGet(result),
-              content = template.render(safe_data);
+              content;
+          safe_data['receipt'] = utils.htmlEntities(receipt);
+          content = template.render(safe_data);
           $('.contentElement').html(content);
         });
 

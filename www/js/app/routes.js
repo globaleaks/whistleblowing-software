@@ -86,13 +86,6 @@ define(function (require) {
          
         //setup hasher
         function parseHash(newHash, oldHash){
-            if (newHash != '') {
-                $('#homeMenu').removeClass('active');
-            } else {
-                $('#homeMenu').addClass('active');
-            }
-            $('#'+oldHash+'Menu').removeClass('active');
-            $('#'+newHash+'Menu').addClass('active');
             latenza.renderProgressbar($('.contentElement'), templates.loading.render());
             crossroads.parse(newHash);
         }

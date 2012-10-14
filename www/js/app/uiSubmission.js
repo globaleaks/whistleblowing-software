@@ -181,7 +181,7 @@ define(function (require) {
       $('.submissionForm').hide();
       $('.submissionContainer').append("<h2>Here is your receipt</h2>");
       $('.submissionContainer').append("<h3>"+receipt_id+"</h3>");
-      $('.submissionContainer').append("<a href='/tip/"+receipt_id+"'>debug link</a>");
+      $('.submissionContainer').append("<a href='#/status/"+receipt_id+"'>Visit Tip</a>");
     };
 
     function processForm(form) {
