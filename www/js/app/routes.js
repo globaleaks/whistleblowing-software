@@ -79,8 +79,8 @@ define(function (require) {
         crossroads.addRoute('status/{token}', handlers.status);
         crossroads.addRoute('admin', adminHandler);
         crossroads.addRoute('receiver/{token}', receiverHandlerList);
-        crossroads.addRoute('receiver/{token}/preferences', receiverHandlerPreferences);
-        crossroads.addRoute('receiver/{token}/list', receiverHandlerList);
+        crossroads.addRoute('receiver/{token}/preferences',handlers.receiver.preferences);
+        crossroads.addRoute('receiver/{token}/list', handlers.receiver.list);
 
         crossroads.routed.add(console.log, console); //log all routes
          

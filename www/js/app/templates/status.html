@@ -29,10 +29,24 @@
     </div>
   </div>
   <div class="row">
+  <div class="span4">
+   <div class="table-container">
+   <table class="table table-striped table-bordered dataTable" id="receiverList">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+
+    <tbody id="receiverListBody">
+    </tbody>
+  </table>
+
     <ul>
     {{#receivers}}
-    <li>{{name}}</li>
-    <li>{{description}}</li>
+    <td>{{name}}</td>
+    <td>{{description}}</td>
     {{/receivers}}
     </ul>
   </div>

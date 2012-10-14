@@ -33,6 +33,16 @@
     </thead>
 
     <tbody id="tipListTableBody">
+      {{#tips}}
+      <tr class="{{parity}}">
+        <td>{{name}}</td>
+        <td>{{date}}</td>
+        <td>{{my_view}}</td>
+        <td>{{views}}</td>
+        <td>{{downloads}}</td>
+        <td>{{pertinence}}</td>
+      </tr>
+      {{/tips}}
     </tbody>
   </table>
   </div>
