@@ -1,0 +1,91 @@
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+#
+# :authors: Arturo Filastò
+# :licence: see LICENSE
+
+import os
+import sys
+red="\033[1;31m"
+ARGD=0
+
+c1="\033[47m\033[34m"
+c2="\033[0m"
+c3="\033[47m\033[30m"
+w=" "
+
+
+print c1+"MMMMMMMMM.$$$$$$$$$$$$$$$Z.DNNNNNNNNNNNNNNN .NNNNNNNNNNNNNNNZ.NNNNNNNNNNNNNNNN M"+c2
+print c1+"MMMMMMMM Z$ZZZZZZZZZZZZZ$..NNNNNNNNNNNNNNN7.NNNNNNNNNNNNNNNN.NNNNNNNNNNNNNNNNM.M"+c2
+print c1+"MMMMMMM.,Z$ZZZZZZZZZZZZZ=.NNNNNNNNNNNNNNNM.NNNNNNNNNNNNNNNN.DNNNNNNNNNNNNNNNNM.M"+c2
+print c1+"MMMMMM+.ZZZZZZZZZZZZZZZZ.MNNNNNNNNNNNNNNM.NNNNNNNNNNNNNNNN ,NNNNNNNNNNNNNNNNNM.M"+c2
+print c1+"MMMMMN.$ZZZZZZZZZZZZZZ$.NNNNNNNNNNNNNNNN.:NNNNNNNNNNNNNNM=.NNNNNNNNNNNNNNNNNNM.M"+c2
+print c1+"MMMMM.Z$ZZZZZ$ZZZZZZZ$.ZNNNNNNNNNNNNNNN..NNNNNNNNNNNNNNN$.NNNNNNNNNNNNNNNNNNNM.M"+c2
+print c1+"MMMM.IZZZZZ~.+ZZZZZZ$..MNNNNM..NNNNNNN8.NNNNNN..NNNNNNNN.MNNNNN..MNNNNNNNNNNNM.M"+c2
+print c1+"MMM..ZZZZZZZZZZZZZZ$I.NNNNNNNNNNNNNNNN.NNNNNNNNNNNNNNNM.8NNNNNNNNNNNNNNNNNNNNM.M"+c2
+print c1+"MMO.ZZZZZZZZZZZZZZZZ.MNNNNNNNNNNNNNNN.DNNNNNNNNNNNNNNN.=NNNNNNNNNNNNNNNNNNNNNM M"+c2
+print c1+"MM.ZZZZZZZZZZZZZZZZ.NNNNNNNNNNNNNNNN.~NNNNNNNNNNNNNNN~.NNNNNNNNNNNNNNNNNNNNNNM.M"+c2
+print c1+"M.$$$$Z$ZZZZZZZZZ$.,NNNNNNNNNNNNNNN= NNNNNNNNNNNNNNN8.NNNNNNNNNNNNNNNNNNNNNNNM M"+c2
+print c1+"   .. Z$ZZZZZZZZZ......,NNNNNNNNNN$......NNNNNNNNNNM......NNNNNNNNNNNNNNNNNNNM M"+c2
+print c1+"MMMMM ZZZZZZZZZZZZZZZ$..NNNNNNNNNNNNNNN: +NNNNNNNNNNNNNN8.:MNNNNNNNNNNNNNNNNNM M"+c2
+print c1+"MMMM.?ZZZZZZZZZZZ$$=.?   :.MNNNNNNNN8.~. .$.INNNNNNNNN.,   ..:MNNNNNNNNNNNNNNM M"+c2
+print c1+"MMMM.$Z$ZZZZZZZZZZZ       ..NNNNNNNN  . .   .MNNNNNNN.        ?NNNNNNNNNNNNNNM M"+c2
+print c1+"MMM . .Z$ZZZZZZ$Z7.        .NNNNNNM.         MNNNNNN.         ?NNNNNNNNNNNNNNM M"+c2
+print c1+"MMM . ..ZZZZZZZZ$      .   .M:NNNN.         .N7?NNN:          ?N:MNNNNNNNNNNNM M"+c2
+print c1+"MM:.. ..7ZZZZZZZ$             .MNN.         ..  MNN:    .     =. =NNNNNNNNNNNM M"+c2
+print c1+"MM... ..$ZZZZZZZ$             7NNN.   . .     ..NNN:            .NNNNNNNNNNNNM M"+c2
+print c1+"M8.::~ZZZZZZZZZZ$           ..MNNN.           .NNNN:            ONNNNNNNNNNNNM M"+c2
+print c1+"M.$ZZZZZZZZZZZZZ$ . .     . .NNNNN.   . .     .NNNN:            NNNNNNNNNNNNNM M"+c2
+print c1+"M.ZZZZZZZZZZZZZZ$ . .       .NNNNN.         ..NNNNN:          .NNNNNNNNNNNNNNM M"+c2
+print c1+16*" "+"_____ _       _"+49*" "+c2
+#print c2+c3+15*" "+" _"+c2+c1+"                 _"+" "*60+c2
+
+print c1+15*" "+"/ ____| |     | |         "+c2+c3+"| |"+c2+c1+15*" "+"| |"+18*" "+c2
+
+
+print c1+14*" "+"| |  __| | ___ | |__   __ _"+c2+c3+"| |"+c2+c1+"      ___  __ _| | _____            "+c2
+
+print c1+14*" "+"| | |_ | |/ _ \| '_ \ / _\`"+c2+c3+"| |"+c2+c1+"     / _ \/ _\`| |/ / __|           "+c2
+
+print c1+14*" "+"| |__| | | (_) | |_) | (_| "+c2+c3+"| |____"+c2+c1+"|  __/ (_| |   <\__ \           "+c2
+
+print c1+15*" "+"\_____|_|\___/|_.__/ \__,_"+c2+c3+"|______|"+c2+c1+"\___|\__,_|_|\_\___/           "+c2
+
+print c1+"                                                                                "+c2
+
+print "\033[34mWelcome\033[0m \033[1;33mto\033[0m "\
+      "Globa\033[0m\033[47m\033[30mL\033[0m\033[47m\033[34meaks\033[0m\033[0m 0.2"
+print "Please handle with extreme care."\
+      "Actually, you should not even be running this thing. WTF are you doing?"
+
+# Avoid the export PYTHONPATH insanity
+sys.path[:] = map(os.path.abspath, sys.path)
+this_directory = os.path.dirname(__file__)
+root = os.path.abspath(os.path.join(this_directory, '..'))
+sys.path.insert(0, root)
+
+backend_script = os.path.join(root, 'globaleaks', 'backend.py')
+
+from twisted.python import log, usage
+from twisted.internet import reactor
+from twisted.application import app
+
+from globaleaks import runner
+from globaleaks.backend import application
+
+import sys
+sys.argv[1:] = ['-ny', backend_script]
+
+def runApp(config):
+    print "Starting GlobaLeaks"
+    runner.GLBaseRunner(config).run()
+
+config = runner.ServerOptions()
+try:
+    config.parseOptions()
+except usage.error, ue:
+    print config
+    print "%s: %s" % (sys.argv[0], ue)
+else:
+    runApp(config)
+

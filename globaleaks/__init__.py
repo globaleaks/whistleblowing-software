@@ -5,8 +5,7 @@
     :copyright: (c) 2012 by GlobaLeaks
     :license: see LICENSE for more details
 """
-__all__ = [ 'core', 'rest', 'modules', 'utils']
-
+__all__ = [ 'core', 'rest', 'modules', 'utils', 'backend']
 
 class DummyHandler:
     handler = None
