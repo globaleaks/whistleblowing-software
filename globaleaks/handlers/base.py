@@ -27,20 +27,32 @@ class BaseHandler(RequestHandler):
     GLBackendHandler is responsible for the verification and sanitization of
     requests based on what is defined in the API specification (api.py).
 
-    It will do all the top level wiring to make sure that what is being
-    requested from the user is handled by the respectivee processor class.
+    I will take care of instantiating models classes that will generate for me
+    output to be sent to GLClient.
 
-    The processor classes are:
-        * Node
-        * Submission
-        * Tip
-        * Admin
-        * Receiver
+    Keep in mind the following gotchas:
 
-    These are found in globaleaks/.
+    When you decorate a handler with @inlineCallbacks or are returning a
+    deferred be sure to decorate it also with @asynchronous (order does not
+    matter).
 
-    The hooks for sanitization and verification of user supplied data is found
-    inside of globaleaks/rest/hooks/.
+    Operations on objects should go inside of models, because in here it is not
+    possible to instantiate a Store object without blocking.
+
+
+    Messages can be validated with messages.validateMessage. This will output
+    the validated message.
+
+    An example usage:
+        request = message.validateMessage(self.request.body,
+                            message.requests.submissionStatus)
+
+    Request is now a dict that I can interacti with.
+
+    XXX This part is not fully tested and should not be used at the moment. We
+    should first get everything to work and then start doing validation, since
+    the API may change and we don't want to have a layer in between us and the
+    code to be tested.
     """
     requestTypes = {}
     def prepare(self):
