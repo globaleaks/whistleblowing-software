@@ -56,7 +56,7 @@ define(function (require) {
           if (submissionID) {
             var path = '/submission/'+submissionID+'/status';
             requests.submission.status_post(submissionID, {'context_selected':
-                            nodeinfo.selected_context}).done(function(data){
+                            nodeinfo.context_selected}).done(function(data){
               debug.write(data, 'POST '+path);
             });
 
@@ -168,12 +168,20 @@ define(function (require) {
         return false;
     };
 
-    function processFields(data) {
-        console.log(dummy_requests);
-        for (field in data) {
-            console.log(data[field]);
-        }
-        return JSON.stringify(dummy_requests.submissionStatusPost);
+    function processFields(form) {
+      var data = form.serializeArray(),
+          fields = {};
+      for (var field in data) {
+        fields[data[field].name] = data[field].value;
+      }
+      return fields;
+    };
+
+    function showReceipt(receipt_id) {
+      $('.submissionForm').hide();
+      $('.submissionContainer').append("<h2>Here is your receipt</h2>");
+      $('.submissionContainer').append("<h3>"+receipt_id+"</h3>");
+      $('.submissionContainer').append("<a href='/tip/"+receipt_id+"'>debug link</a>");
     };
 
     function processForm(form) {
@@ -196,17 +204,22 @@ define(function (require) {
         };
         $('.submissionForm').append('<button id="submit_button">Submit</button>');
 
+        // XXX refactor this to remove this nesting insanity!
         $('#submit_button').click(function(){
-          latenza.ajax({'url': '/submission/foobar/status',
-                        'data': processFields($(this).serializeArray()),
-                        'type': 'POST'
-                      }).done(function(data) {
-                        var form = $('form');
-                        form.hide();
-                        var parsed = JSON.parse(data);
-                        form.after('<div class="alert">Receipt: '+parsed.receipt+'</div>');
-                            // console.log(data);
-                      });
+          requests.submission.root().done(function(data) {
+            var fields = processFields($('.submissionForm'));
+            requests.submission.status_post(data['submission_id'],
+                  {'fields': fields,
+                   'context_selected': nodeinfo.context_selected}).done(function(args){
+                     var proposed_receipt = "ididntchangeit",
+                         folder_name = "foldername",
+                         folder_description = "folderdesc";
+                     requests.submission.finalize_post(data['submission_id'], proposed_receipt,
+                                    folder_name, folder_description).done(function(data){
+                                      showReceipt(data.receipt);
+                                    });
+            });
+          });
           return false;
         });
     };
@@ -225,7 +238,7 @@ define(function (require) {
           context_id, fields;
       context_selector.change(function(){
         context_id = $('#context_selector option:selected')[0].value;
-        nodeinfo.selected_context = contexts[0].id;
+        nodeinfo.context_selected = contexts[0].id;
         fields = getContextFields(context_id);
         processForm(fields);
       });
@@ -241,7 +254,7 @@ define(function (require) {
         var contexts;
         nodeinfo = data;
         nodeinfo.contexts = processContexts(nodeinfo.contexts);
-        nodeinfo.selected_context = nodeinfo.contexts[0].id;
+        nodeinfo.context_selected = nodeinfo.contexts[0].id;
         processForm(nodeinfo.contexts[0].fields);
         debugDeck();
     });
