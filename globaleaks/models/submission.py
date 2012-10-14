@@ -1,6 +1,7 @@
 from twisted.internet.defer import returnValue, inlineCallbacks
 from storm.twisted.transact import transact
 from storm.locals import *
+from storm.exceptions import NotOneError, NoneError
 
 from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel, ModelError
@@ -15,6 +16,21 @@ for the WBs, other elements used by WBs stay on globaleaks.db.tips.SpecialTip
 """
 
 class SubmissionModelError(ModelError):
+    pass
+
+class SubmissionNotFoundError(SubmissionModelError):
+    pass
+
+class SubmissionNotOneError(SubmissionModelError):
+    pass
+
+class SubmissionNoReceiversSelectedError(SubmissionModelError):
+    pass
+
+class SubmissionContextNotFoundError(SubmissionModelError):
+    pass
+
+class SubmissionContextNotOneError(SubmissionModelError):
     pass
 
 class Submission(TXModel):
@@ -72,11 +88,15 @@ class Submission(TXModel):
         store = self.getStore()
         try:
             s = store.find(Submission, Submission.submission_id==submission_id).one()
-            s.context_selected = context
-        except Exception, e:
-            print "Got exception in select_context"
-            print e
+        except NotOneError, e:
+            # XXX these log lines will be removed in the near future
+            log.msg("Problem looking up %s" % submission_id)
+            log.msg(e)
+            store.rollback()
+            store.close()
+            raise SubmissionNotFoundError
 
+        s.context_selected = context
         store.commit()
         store.close()
 
@@ -87,11 +107,18 @@ class Submission(TXModel):
         try:
             s = store.find(Submission, Submission.submission_id==submission_id).one()
 
-            status = {'context_selected': s.context_selected,
-                      'fields': s.fields}
-        except Exception, e:
-            print "Got exception in status"
-            print e
+        except NotOneError, e:
+            store.rollback()
+            store.close()
+            raise SubmissionNotOneError
+
+        if not s:
+            store.rollback()
+            store.close()
+            raise SubmissionNotFoundError
+
+        status = {'context_selected': s.context_selected,
+                  'fields': s.fields}
 
         store.commit()
         store.close()
@@ -103,20 +130,36 @@ class Submission(TXModel):
         try:
             s = store.find(Submission,
                 Submission.submission_id==submission_id).one()
-        except Exception, e:
-            store.commit()
+        except NotOneError, e:
+            log.msg("Problem creating tips for %s" % submission_id)
+            log.msg(e)
+            store.rollback()
             store.close()
+            # XXX if this happens we probably have to delete one row in the DB
             raise SubmissionModelError("Collision detected! HELP THE WORLD WILL END!")
 
         if not s:
-            store.commit()
+            store.rollback()
             store.close()
-            raise SubmissionModel("Did not find a submission with that ID")
+            raise SubmissionNotFoundError
 
         if not s.context_selected:
-            store.commit()
+            store.rollback()
             store.close()
-            raise SubmissionModelError("No receivers selected")
+            raise SubmissionNoReceiversSelectedError
+
+        try:
+            context = store.find(Context,
+                    Context.context_id == s.context_selected).one()
+        except NotOneError, e:
+            store.rollback()
+            store.close()
+            raise SubmissionContextNotOneError
+
+        if not context:
+            store.rollback()
+            store.close()
+            raise SubmissionContextNotFoundError
 
         internal_tip = InternalTip()
         internal_tip.fields = s.fields
@@ -127,7 +170,6 @@ class Submission(TXModel):
         whistleblower_tip.internaltip = internal_tip
         whistleblower_tip.address = receipt
         store.add(whistleblower_tip)
-        context = store.find(Context, Context.context_id == s.context_selected).one()
 
         #receiver_tips = context.create_receiver_tips(internal_tip)
         for receiver in context.receivers:
