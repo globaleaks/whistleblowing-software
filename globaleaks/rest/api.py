@@ -11,7 +11,7 @@
 #   by what.
 from globaleaks import config
 
-from globaleaks.handlers import node, submission, tip, admin
+from globaleaks.handlers import node, submission, tip, admin, receiver
 
 from cyclone.web import StaticFileHandler
 
