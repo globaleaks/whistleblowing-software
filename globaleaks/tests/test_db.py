@@ -135,11 +135,12 @@ class TestReceivers(BaseDBTest):
         yield self.create_tables()
 
         test_receiver = self.mock_model()
+
+        initial_count = yield test_receiver.count()
         result = yield test_receiver.create_dummy_receivers()
-        receiver_dict = yield test_receiver.receiver_dicts()
-        # XXX by doing this test in this way we are assuming ordering on the
-        # receiver dict table. This assumption may be wrong.
-        # self.assertEqual(result[0], receiver_dict[0])
+
+        receiver_count = yield test_receiver.count()
+        self.assertEqual(receiver_count, initial_count + 4)
 
     @inlineCallbacks
     def test_add_receiver_to_context(self):

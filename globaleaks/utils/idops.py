@@ -26,9 +26,9 @@ def random_submission_id(testingmode=False):
     else:
         return u's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def regexp_submission_id(sID):
+def regexp_submission_id(submission_id):
 
-    outre = re.match('s_[a-zA-Z]{50,50}$', sID)
+    outre = re.match('s_[a-zA-Z]{50,50}$', submission_id)
     return True if outre != None else False
 
 
@@ -62,9 +62,9 @@ def random_module_id():
     length = 10
     return u'm_'+(''.join(random.choice('0123456789') for x in range(length)))
 
-def regexp_module_id(mID):
+def regexp_module_id(module_id):
 
-    outre = re.match('m_\d{10,10}$', mID)
+    outre = re.match('m_\d{10,10}$', module_id)
     return True if outre != None else False
 
 
@@ -77,9 +77,9 @@ def random_context_id():
     length = 20
     return u'c_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def regexp_context_id(cID):
+def regexp_context_id(context_id):
 
-    outre = re.match('c_[a-zA-Z]{20,20}$', cID)
+    outre = re.match('c_[a-zA-Z]{20,20}$', context_id)
     return True if outre != None else False
 
 
@@ -105,9 +105,9 @@ def random_receiver_id():
     length = 20
     return u'r_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def regexp_receiver_id(rID):
+def regexp_receiver_id(receiver_id):
 
-    outre = re.match('r_[a-zA-Z]{20,20}$', rID)
+    outre = re.match('r_[a-zA-Z]{20,20}$', receiver_id)
     return True if outre != None else False
 
 

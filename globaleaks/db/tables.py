@@ -12,7 +12,6 @@ from storm.exceptions import StormError
 from storm.variables import BoolVariable, DateTimeVariable, DateVariable
 from storm.variables import DecimalVariable, EnumVariable
 from storm.variables import FloatVariable, IntVariable, RawStrVariable
-from storm.variables import TimeDeltaVariable, TimeVariable, UUIDVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
 def variableToSQLite(var_type):
@@ -105,9 +104,9 @@ def createTable(model, transactor, database):
     if not database:
         from globaleaks.db import database
     store = Store(database)
-    createQuery = generateCreateQuery(model)
+    create_query = generateCreateQuery(model)
     try:
-        store.execute(createQuery)
+        store.execute(create_query)
     # XXX trap the specific error that is raised when the table exists
     except StormError, e:
         print "Failed to create table!"
