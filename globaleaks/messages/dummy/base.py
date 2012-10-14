@@ -154,6 +154,48 @@ formFieldsDicts.append({
     "type": u'text',
     })
 
+formFieldsDicts2 = []
+formFieldsDicts2.append({
+    "presentation_order": 1,
+    "name": u'name',
+    "label": u'name',
+    "required": True,
+    "hint": u'What is the name of this?',
+    "value": u'this is the default value',
+    "type": u'string',
+    })
+
+formFieldsDicts2.append({
+    "presentation_order": 2,
+    "label": u'fuffa?',
+    "name": u'fuffa',
+    "required": True,
+    "hint": u'Just enter random stuff',
+    "value": u'this is the default value',
+    "type": u'string',
+    })
+
+formFieldsDicts2.append({
+    "presentation_order": 3,
+    "label": u'Other junk',
+    "name": u'other',
+    "required": True,
+    "hint": u'Just some other junk.',
+    "value": u'this is the default value',
+    "type": u'string',
+    })
+
+formFieldsDicts2.append({
+    "presentation_order": 4,
+    "label": u'Input entropy',
+    "name": u'entropy',
+    "required": False,
+    "hint": u'dasjadshb1u23bJHSBDUb1823byhbkasdh',
+    "value": u'this is the default value',
+    "type": u'text',
+    })
+
+
 moduleDataDict_N = {
     "module_id": idops.random_module_id(),
     "active": True,
@@ -200,7 +242,7 @@ contextDescriptionDicts = []
 
 contextDescriptionDicts.append({
     "context_id": idops.random_context_id(),
-    "name":"Autovelox broken",
+    "name":u"Autovelox broken",
     "description": u'tell us which autovelox is working bad, we\'re tired of wrong fines!',
     # "creation_date", "time"
     # "append_date", "time"
