@@ -4,56 +4,80 @@
 #   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
 #   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
 #   :license: see LICENSE
-#
-#   This file contain the definition of all the requests struct perfomed to GLB
-#   is used by curteg client (for compose the requests) and by GLB (to sanitize having the
-#   right structured code)
+
+"""
+This file contain the specification of all the requests that can be made by a
+GLClient to a GLBackend.
+These specifications may be used with messages.validateMessage() inside of the
+handler to verify if the request is correct.
+"""
 
 from globaleaks.messages.base import GLTypes
 from globaleaks.messages import base
 
-# U3 (POST)
 class submissionStatus(GLTypes):
+    """
+    U3 (POST)
+    """
     specification = {"fields": [base.formFieldsDict],
                      "context_selected": base.contextID}
 
-# U4 (POST)
+
 class finalizeSubmission(GLTypes):
+    """
+    U4 (POST)
+    """
     specification = {"proposed_receipt": unicode,
             "folder_name": unicode,
             "folder_description": unicode}
 
 # U5 (file, CURD) -- not yet defined
 
-# T1 (POST) - receiver only
-class tipOperations(GLTypes):
 
+class tipOperations(GLTypes):
+    """
+    T1 (POST) - receiver only
+    """
     specification = {"personal_delete": bool,
             "submission_delete": bool,
             "escalate": bool}
 
-# T2 (POST)
+
 class sendComment(GLTypes):
+    """
+    T2 (POST)
+    """
     specification = {"comment": base.commentDescriptionDict}
 
 # T3 (files) -- not yet defined
 
-# T4 (POST - finalize Folder upload)
+
 class finalizeIntegration(GLTypes):
+    """
+    T4 (POST - finalize Folder upload)
+    """
     specification = {"folder_name": unicode,
             "folder_description": unicode}
 
-# T6 (POST) - receiver only
+
 class pertinenceVote(GLTypes):
+    """
+    T6 (POST) - receiver only
+    """
     specification = {"pertinence": int}
 
-# R2 (CURD)
+
 class receiverOptions(GLTypes):
+    """
+    R2 (CURD)
+    """
     specification = {"module": base.moduleDataDict}
 
-# A1 (POST)
-class nodeAdminSetup(GLTypes):
 
+class nodeAdminSetup(GLTypes):
+    """
+    A1 (POST)
+    """
     specification = {"name": unicode,
             "admin_statistics_ratio": int,
             "public_statistics_ratio": int,
@@ -73,16 +97,25 @@ class nodeAdminSetup(GLTypes):
             "new_admin_password": unicode
     }
 
-# A2 (CURD)
+
 class contextConfiguration(GLTypes):
+    """
+    A2 (CURD)
+    """
     specification = {"context": base.contextDescriptionDict}
 
-# A3 (CURD)
+
 class receiverConfiguration(GLTypes):
+    """
+    A3 (CURD)
+    """
     specification = {"receiver": base.receiverDescriptionDict}
 
-# A4 (POST)
+
 class moduleConfiguration(GLTypes):
+    """
+    A4 (POST)
+    """
     specification = {"module": base.moduleDataDict}
 
 

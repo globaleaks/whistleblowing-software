@@ -11,7 +11,7 @@
 # this need to be completed for be included, but no more for be used in the
 # createQuery loop
 
-__all__ = ['getStore', 'createTables', 'database', 'transactor']
+__all__ = ['createTables', 'database', 'transactor']
 
 """
 Quick reference for the content:
@@ -43,10 +43,6 @@ database = SQLite(URI(database_uri))
 threadpool = ThreadPool(0, 10)
 threadpool.start()
 transactor = Transactor(threadpool)
-
-def getStore():
-    s = Store(database)
-    return s
 
 @inlineCallbacks
 def createTables():
