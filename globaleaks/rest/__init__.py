@@ -1,1 +1,2 @@
-__all__ = [ 'api', 'handlers' ]
+from . import api
+__all__ = [ 'api']

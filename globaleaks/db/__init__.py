@@ -71,9 +71,9 @@ def createTables():
                 #        str(model_name))
 
     r = models.receiver.Receiver()
-    receiver_dicts = yield r.receiver_dicts()
+    receiver_count = yield r.count()
 
-    if not receiver_dicts:
+    if receiver_count == 0:
         print "Creating dummy receiver tables"
         receiver_dicts = yield r.create_dummy_receivers()
         print receiver_dicts
