@@ -7,13 +7,19 @@ import pickle
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
 from globaleaks.utils import idops
 
-from globaleaks.models.base import TXModel
+from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.admin import Context
 from globaleaks.models.receiver import Receiver
 
 __all__ = [ 'Folder', 'File', 'Comment',
             'InternalTip',  'ReceiverTip',
             'PublicStats']
+
+class TipModelError(ModelError):
+    pass
+
+class TipNotFoundError(TipModelError):
+    pass
 
 class Folder(TXModel):
     """
@@ -165,14 +171,6 @@ class Tip(TXModel):
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
-    @transact
-    def internaltip_get(self):
-        store = self.getStore()
-        the_one = store.find(InternalTip, InternalTip.id == self.internaltip_id).one()
-        store.commit()
-        store.close()
-        return the_one
-
     def get_sub_index(self):
         print self.internaltip
         ret = {
@@ -196,6 +194,11 @@ class Tip(TXModel):
         store = self.getStore()
 
         tip = store.find(Tip, Tip.address == receipt).one()
+        if not tip:
+            store.rollback()
+            store.close()
+            raise TipNotFoundError
+
         tip_sub_index = tip.get_sub_index()
 
         folders = tip.internaltip.folders
@@ -212,7 +215,6 @@ class Tip(TXModel):
                    'context': context,
                    'receivers': receiver_dicts
         }
-        print tip_details
         store.commit()
         store.close()
 
