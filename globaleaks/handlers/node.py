@@ -23,10 +23,34 @@ def create_node(context_dict):
     context.languages_supported = context_dict['languages_supported']
 
 class Node(RequestHandler):
+    """
+    Returns information on the GlobaLeaks node. This includes submission
+    paramters and how information should be presented by the client side
+    application.
 
+    Follow the resource describing Node (uniq instance, opened to all)
+
+
+    """
     @asynchronous
     @inlineCallbacks
     def get(self):
+        """
+        Returns a json object containing all the information of the node.
+        * Response:
+            Status Code: 200 (OK)
+            {
+              'name': 'string',
+              'statistics': '$nodeStatisticsDict',
+              'node_properties': '$nodePropertiesDict',
+              'contexts': [ '$contextDescriptionDict', { }, ],
+              'description': '$localizationDict',
+              'public_site': 'string',
+              'hidden_service': 'string',
+              'url_schema': 'string'
+             }
+
+        """
         from globaleaks.messages import dummy
 
         context = models.admin.Context()
