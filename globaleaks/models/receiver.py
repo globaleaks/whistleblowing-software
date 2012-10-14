@@ -34,30 +34,12 @@ class Receiver(TXModel):
         self.internaltip_id = internaltip_id
 
     @transact
-    def receiver_dicts(self):
+    def count(self):
         store = self.getStore()
-        receiver_dicts = []
-
-        for receiver in store.find(Receiver):
-            receiver_dict = {}
-            receiver_dict['id'] = receiver.receiver_id
-            receiver_dict['name'] = receiver.name
-            receiver_dict['description'] = receiver.description
-
-            receiver_dict['can_delete_submission'] = receiver.can_delete_submission
-            receiver_dict['can_postpone_expiration'] = receiver.can_postpone_expiration
-            receiver_dict['can_configure_delivery'] = receiver.can_configure_delivery
-
-            receiver_dict['can_configure_notification'] = receiver.can_configure_notification
-            receiver_dict['can_trigger_escalation'] = receiver.can_trigger_escalation
-
-            receiver_dict['languages_supported'] = receiver.languages_supported
-            receiver_dicts.append(receiver_dict)
-
+        receiver_count = store.find(Receiver).count()
         store.commit()
         store.close()
-
-        return receiver_dicts
+        return receiver_count
 
     @transact
     def create_dummy_receivers(self):
