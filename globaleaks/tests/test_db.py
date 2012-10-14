@@ -112,7 +112,10 @@ class TestSubmission(BaseDBTest):
         yield self.create_table(models.tip.Tip)
 
         yield self.create_dummy_submission(my_id)
-        yield test_submission.create_tips(my_id, u'1234567890')
+        try:
+            yield test_submission.create_tips(my_id, u'1234567890')
+        except Exception, e:
+            print e
 
 class TestReceivers(BaseDBTest):
     baseModel = models.receiver.Receiver

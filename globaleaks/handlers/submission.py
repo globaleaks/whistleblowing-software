@@ -18,6 +18,9 @@ from globaleaks import messages
 from globaleaks.rest import answers
 from globaleaks.rest.errors import GLErrorCode
 from globaleaks.handlers.base import BaseHandler
+
+from globaleaks.models.base import ModelError
+
 from cyclone.web import asynchronous, HTTPError
 
 from globaleaks import messages
@@ -190,9 +193,10 @@ class SubmissionFinalize(BaseHandler):
         submission = models.submission.Submission()
         try:
             yield submission.create_tips(submission_id, receipt_id)
-        except Exception, e:
-            print e
+        except ModelError, e:
             self.set_status(412)
+            log.err("Error in finalize submission")
+            log.err(e)
             # XXX add here errors and such
             self.finish()
             return
