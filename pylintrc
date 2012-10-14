@@ -34,7 +34,7 @@ load-plugins=
 # multiple time (only on the command line, not in the configuration file where
 # it should appear only once).
 disable=E1121
-
+#E1121
 
 [REPORTS]
 
@@ -148,7 +148,6 @@ zope=no
 # system, and so shouldn't trigger E0201 when accessed. Python regular
 # expressions are accepted.
 generated-members=REQUEST,acl_users,aq_parent
-#E1121
 
 
 [MISCELLANEOUS]

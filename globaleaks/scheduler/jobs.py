@@ -6,10 +6,8 @@
 
 import time
 import datetime
-import pickle
 
 from twisted.internet import reactor
-from twisted.internet.defer import DeferredList, Deferred
 
 class Job(object):
     def __init__(self, scheduledTime=time.time(), delay=None):
