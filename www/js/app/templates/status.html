@@ -29,25 +29,28 @@
     </div>
   </div>
   <div class="row">
-  <div class="span4">
-   <div class="table-container">
-   <table class="table table-striped table-bordered dataTable" id="receiverList">
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-
-    <tbody id="receiverListBody">
-    </tbody>
-  </table>
-
-    <ul>
-    {{#receivers}}
-    <td>{{name}}</td>
-    <td>{{description}}</td>
-    {{/receivers}}
-    </ul>
+    <div class="span4">
+      <h3>Receiver List</h3>
+      <div class="table-container">
+      <table class="table table-striped table-bordered dataTable" id="receiverList">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Languages</th>
+          </tr>
+        </thead>
+        <tbody id="receiverListBody">
+          {{#receivers}}
+          <tr>
+            <td>{{name}}</td>
+            <td>{{description}}</td>
+            <td>{{languages_supported}}</td>
+          </tr>
+          {{/receivers}}
+        </tbody>
+      </table>
+      </div>
+    </div>
   </div>
 </div>
