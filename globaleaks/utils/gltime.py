@@ -9,3 +9,10 @@ def utcTimeNow():
 
 def dateToTime(date):
     return time.mktime(date.timetuple())
+
+def prettyDateNow():
+    return datetime.now().ctime()
+
+def utcPrettyDateNow():
+    return datetime.utcnow().ctime()
+

@@ -10,29 +10,32 @@ import os
 
 # hack to add globaleaks to the sys path
 # this would avoid export PYTHONPATH=`pwd`
-cwd = '/'.join(__file__.split('/')[:-1])
-sys.path.insert(0, os.path.join(cwd, '../'))
+#cwd = '/'.join(__file__.split('/')[:-1])
+#sys.path.insert(0, os.path.join(cwd, '../'))
 
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.utils import logging
+from globaleaks.utils.logging import log
+
 from globaleaks.db import createTables, threadpool
 from globaleaks.rest import api
 
-if __name__ == "__main__":
-    """
-    if invoked directly we will run the application.
-    """
-    from twisted.internet import reactor
-    from twisted.python import log
-    from cyclone.web import Application
+from twisted.application import service, internet, app
 
-    def start_backend(*arg):
-        log.startLogging(sys.stdout)
-        application = Application(api.spec, debug=True)
-        reactor.listenTCP(8082, application)
-        reactor.addSystemEventTrigger('after', 'shutdown', threadpool.stop)
+from twisted.internet import reactor
+from twisted.python import log
+from cyclone.web import Application
 
-    d = createTables()
-    d.addCallback(start_backend)
+from twisted.python.log import ILogObserver, FileLogObserver
+from twisted.python.logfile import DailyLogFile
 
-    reactor.run()
+application = service.Application('GLBackend')
+GLBackendAPIFactory = Application(api.spec, debug=True)
+GLBackendAPI = internet.TCPServer(8082, GLBackendAPIFactory)
+GLBackendAPI.setServiceParent(application)
 
+logfile = DailyLogFile("glbackend.log", "/tmp")
+application.setComponent(ILogObserver, FileLogObserver(logfile).emit)
+
+reactor.addSystemEventTrigger('after', 'shutdown', threadpool.stop)

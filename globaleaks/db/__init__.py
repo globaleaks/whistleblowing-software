@@ -57,32 +57,40 @@ def createTables():
     from globaleaks import models
     from globaleaks.db import tables
     from globaleaks.messages import dummy
+    try:
+        log.msg("y0y0y00y0y")
+        print "in da house"
+    except Exception, e:
+        print "Fail!"
+        print e
 
     for m in [models.receiver, models.submission, models.tip, models.admin]:
         for model_name in m.__all__:
             try:
                 model = getattr(m, model_name)
             except Exception, e:
-                print e
+                log.err("Error in db initting")
+                log.err(e)
             try:
                 print "Creating %s" % model
                 yield tables.runCreateTable(model, transactor, database)
             except Exception, e:
                 print e
-                print "Failed. Probably the '%s' table exists." % model_name
-    print "In her et0"
+                #log.msg(e)
+                #log.msg("Failed. Probably the '%s' table exists." %
+                #        str(model_name))
+
     r = models.receiver.Receiver()
     receiver_dicts = yield r.receiver_dicts()
 
     if not receiver_dicts:
         print "Creating dummy receiver tables"
         receiver_dicts = yield r.create_dummy_receivers()
+        print receiver_dicts
 
     print "These are the the installed receivers:"
     for receiver in receiver_dicts:
-        print "-----------------"
-        print receiver
-        print "-----------------"
+        print "*** %s *** " % str(receiver)
 
     c = models.admin.Context()
     context_dict = {"name": u"Random Context",
@@ -96,6 +104,7 @@ def createTables():
     dummy_context = dummy.base.contextDescriptionDicts[0].copy()
     dummy_context['receivers'] = receiver_dicts
     context_dicts = yield c.list_description_dicts()
+
     if len(context_dicts) == 0:
         print "No contexts. Creating dummy ones!"
         yield c.new(context_dict)
@@ -105,5 +114,4 @@ def createTables():
     print "We have these contexts:"
     for context in context_dicts:
         print "#### %s ####" % context['name']
-        print context
 
