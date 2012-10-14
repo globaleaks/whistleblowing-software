@@ -8,11 +8,22 @@ from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 
 from globaleaks.db import createTables
+class GLBaseRunner:
+    """
+    This is a specialized runner that is responsible for starting the specified
+    service.
+    The purpose of it is to do the equivalent of what would be done with
+    launching twistd from command line (daemonizing the process, creating the
+    PID file, etc).
+    """
 
 if platformType == "win32":
     from twisted.scripts._twistw import ServerOptions, \
         WindowsApplicationRunner
     class GLBaseRunner(WindowsApplicationRunner):
+        """
+        This runner is specific to windows.
+        """
         def postApplication(self):
             def runApp(res):
                 service.IService(self.application).privilegedStartService()
@@ -30,6 +41,9 @@ else:
         UnixApplicationRunner
     ServerOptions = ServerOptions
     class GLBaseRunner(UnixApplicationRunner):
+        """
+        This runner is specific to Unix systems.
+        """
         def postApplication(self):
             def runApp(res):
                 self.startApplication(self.application)

@@ -10,6 +10,10 @@ from storm.variables import TimeDeltaVariable, TimeVariable, UUIDVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
 def variableToSQLite(var_type):
+    """
+    We take as input a storm.variable and we output the SQLite string it
+    represents.
+    """
     sqlite_type = "VARCHAR"
     if isinstance(var_type, BoolVariable):
         sqlite_type = "INTEGER"
@@ -43,6 +47,17 @@ def variableToSQLite(var_type):
     return "%s" % sqlite_type
 
 def varsToParametersSQLite(variables, primary_keys):
+    """
+    Takes as input a list of variables (convered to SQLite syntax and in the
+    form of strings) and primary_keys.
+    Outputs these variables converted into paramter syntax for SQLites.
+
+    ex.
+        variables: ["var1 INTEGER", "var2 BOOL", "var3 INTEGER"]
+        primary_keys: ["var1"]
+
+        output: "(var1 INTEGER, var2 BOOL, var3 INTEGER PRIMARY KEY (var1))"
+    """
     params = "("
     for var in variables[:-1]:
         params += "%s %s, " % var
@@ -57,6 +72,9 @@ def varsToParametersSQLite(variables, primary_keys):
     return params
 
 def generateCreateQuery(model):
+    """
+    This takes as input a Storm model and outputs the creation query for it.
+    """
     query = "CREATE TABLE "+ model.__storm_table__ + " "
 
     variables = []
@@ -76,6 +94,12 @@ def generateCreateQuery(model):
     return query
 
 def createTable(model, transactor, database):
+    """
+    Create the table for the specified model.
+    It will default to using globaleaks.db transactor and database if none is
+    specified.
+    Specification of a transactor and database is useful in unittesting.
+    """
     if not transactor:
         from globaleaks.db import transactor
     if not database:
@@ -93,5 +117,9 @@ def createTable(model, transactor, database):
 
 @inlineCallbacks
 def runCreateTable(model, transactor=None, database=None):
+    """
+    Runs the table creation query wrapped in a transaction.
+    Transactions run in a separate thread.
+    """
     yield transactor.run(createTable, model, transactor, database)
 
