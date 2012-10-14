@@ -258,9 +258,9 @@ class ReceiverTip(Tip):
 
         for receiver in store.find(Receiver):
             receiver_dict = {}
-            receiver_dict['receiver_id'] = receiver.receiver_id
-            receiver_dict['receiver_name'] = receiver.receiver_name
-            receiver_dict['receiver_description'] = receiver.receiver_description
+            receiver_dict['id'] = receiver.receiver_id
+            receiver_dict['name'] = receiver.receiver_name
+            receiver_dict['description'] = receiver.receiver_description
 
             receiver_dict['can_delete_submission'] = receiver.can_delete_submission
             receiver_dict['can_postpone_expiration'] = receiver.can_postpone_expiration
@@ -276,32 +276,6 @@ class ReceiverTip(Tip):
         store.close()
 
         return receiver_dicts
-
-    @transact
-    def create_dummy_receivers(self):
-        from globaleaks.messages.dummy import base
-        store = self.getStore()
-
-        for receiver_dict in base.receiverDescriptionDicts:
-            receiver = Receiver()
-            receiver.receiver_id = receiver_dict['receiver_id']
-            receiver.receiver_name = receiver_dict['receiver_name']
-            receiver.receiver_description = receiver_dict['receiver_description']
-
-            receiver.can_delete_submission = receiver_dict['can_delete_submission']
-            receiver.can_postpone_expiration = receiver_dict['can_postpone_expiration']
-            receiver.can_configure_delivery = receiver_dict['can_configure_delivery']
-            receiver.can_configure_notification = receiver_dict['can_configure_notification']
-            receiver.can_trigger_escalation = receiver_dict['can_trigger_escalation']
-
-            receiver.languages_supported = receiver_dict['languages_supported']
-
-            store.add(receiver)
-            store.commit()
-
-        store.close()
-        return base.receiverDescriptionDicts
-
 
 
 class WhistleblowerTip(Tip):
