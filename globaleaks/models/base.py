@@ -20,6 +20,30 @@ class TXModel(object):
 
     When you decorate object methods with @transact be sure to also set the
     transactor attribute to that of a working transactor.
+
+    It is very important that all exceptions that happen when a the store is
+    open are trapped and the store is rolled back and closed. If this is not
+    done we will start having database locking issues and we will start to
+    enter a valley of pain.
+
+    An example of what is the right way to do it (taken from
+    models/submission.py):
+        store = self.getStore()
+        [...]
+        s = store.find(Submission,
+                    Submission.submission_id==submission_id).one()
+        [...]
+        if not s:
+            store.rollback()
+            store.close()
+            raise SubmissionNotFoundError
+
+        ... Do other stuff with s ...
+
+    Where SubmissionNotFoundError is a subclass of ModelError.
+
+    This exception should then be trapped in the handler and set the error
+    status code and write the error out.
     """
     createQuery = ""
     transactor = transactor
