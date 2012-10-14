@@ -25,13 +25,13 @@ already do validation on the input side.
 """
 
 # This is the struct containing the errors
-def errorMessage(httpErrorCode=500, errorDict={}):
+def errorMessage(http_error_code=500, error_dict={}):
     """
     errorMessage may be used as inline object declaration and assignment
     """
-    response = {'http_error_code':  httpErrorCode,
-                'error_code': errorDict.get('code'),
-                'error_message': errorDict.get('string')}
+    response = {'http_error_code':  http_error_code,
+                'error_code': error_dict.get('code'),
+                'error_message': error_dict.get('string')}
     return response
 
 # U1
@@ -56,9 +56,9 @@ def nodeMainSettings():
     return response
 
 # U2
-def newSubmission(submissionID, time):
+def newSubmission(submission_id, time):
     response = {
-        "submission_id": submissionID,
+        "submission_id": submission_id,
         "creation_time": time
     }
     return response
