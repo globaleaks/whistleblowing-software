@@ -93,11 +93,13 @@ def createTables():
             "fields": dummy.base.formFieldsDicts,
             "receivers": receiver_dicts,
             }
+
     context_dicts = yield c.list_description_dicts()
     if len(context_dicts) == 0:
         print "No contexts. Creating dummy ones!"
-        context_dicts = yield c.new(context_dict)
+        yield c.new(context_dict)
 
+    context_dicts = yield c.list_description_dicts()
     print "We have these contexts:"
     for context in context_dicts:
         print "#### %s ####" % context['name']

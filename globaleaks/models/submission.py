@@ -1,10 +1,11 @@
-from twisted.internet.defer import returnValue
+from twisted.internet.defer import returnValue, inlineCallbacks
 from storm.twisted.transact import transact
 from storm.locals import *
 
 from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel
-from globaleaks.models.tip import Folder, InternalTip, Tip
+from globaleaks.models.tip import Folder, InternalTip, Tip, ReceiverTip
+from globaleaks.models.admin import Context
 
 __all__ = ['Submission']
 
@@ -126,15 +127,18 @@ class Submission(TXModel):
         whistleblower_tip.internaltip = internal_tip
         whistleblower_tip.address = receipt
         store.add(whistleblower_tip)
+        context = store.find(Context, Context.context_id == s.context_selected).one()
 
-        # XXX lookup the list of receivers and create their tips too.
-        # receivers = Context.get_receivers(s.context_selected)
-
+        #receiver_tips = context.create_receiver_tips(internal_tip)
+        for receiver in context.receivers:
+            receiver_tip = ReceiverTip()
+            receiver_tip.internaltip = internal_tip
+            receiver_tip.new()
+            store.add(receiver_tip)
 
         # Delete the temporary submission
         store.remove(s)
 
         store.commit()
         store.close()
-
 

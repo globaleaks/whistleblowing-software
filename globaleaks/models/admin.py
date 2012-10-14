@@ -173,6 +173,7 @@ class Context(TXModel):
         store.add(context)
         store.commit()
         store.close()
+        return context_dict
 
     def generate_description_dict(self, receivers):
         description_dict = {"id": self.context_id,
@@ -186,17 +187,6 @@ class Context(TXModel):
         }
         return description_dict
 
-    @transact
-    def list_description_dicts(self):
-        store = self.getStore()
-        dicts = []
-        result = store.find(Context)
-        for context in result:
-            dd = context.generate_description_dict(context.list_receiver_dicts())
-            dicts.append(dd)
-        store.commit()
-        store.close()
-        return dicts
 
     def list_receiver_dicts(self):
         receiver_dicts = []
@@ -215,6 +205,27 @@ class Context(TXModel):
             }
             receiver_dicts.append(receiver_dict)
         return receiver_dicts
+
+
+    def create_receiver_tips(self, internaltip):
+        receiver_tips = []
+        for receiver in self.receivers:
+            receiver_tip = ReceiverTip()
+            receiver_tip.new(internaltip.internaltip_id)
+            receiver_tips.append(receiver_tip)
+        return receiver_tips
+
+    @transact
+    def list_description_dicts(self):
+        store = self.getStore()
+        dicts = []
+        result = store.find(Context)
+        for context in result:
+            dd = context.generate_description_dict(context.list_receiver_dicts())
+            dicts.append(dd)
+        store.commit()
+        store.close()
+        return dicts
 
     @transact
     def add_receiver(self, context_id, receiver_id):

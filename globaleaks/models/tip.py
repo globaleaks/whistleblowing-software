@@ -5,6 +5,7 @@ import pickle
 
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
+from globaleaks.utils import idops
 
 from globaleaks.models.base import TXModel
 from globaleaks.models.admin import Context
@@ -157,7 +158,7 @@ class Tip(TXModel):
 
     id = Int(primary=True)
 
-    type = Int()
+    type = Unicode()
     address = Unicode()
     password = Unicode()
 
@@ -237,22 +238,17 @@ class ReceiverTip(Tip):
     last_access = Date()
     pertinence_vote = Int()
 
-    """
-    this method has not yet reviewed during the refactor, also the method below, receiver_dicts
-    """
-    @transact
-    def create(self, internaltip, receiver_id):
-        store = self.getStore()
+    def new(self):
+        self.total_view_count = 0
+        self.total_view_count = 0
+        self.relative_view_count = 0
+        self.relative_download_count = 0
 
-        receiver = store.find(Receiver, Receiver.receiver_id==receiver_id)
+        self.authoptions = {}
 
-        tip = ReceiverTip()
-        tip.internaltip = internaltip
-        store.add(tip)
-
-        store.commit()
-        store.close()
-
+        self.address = idops.random_tip_id()
+        #self.password =
+        self.type = u'receiver'
 
     @transact
     def receiver_dicts(self):
