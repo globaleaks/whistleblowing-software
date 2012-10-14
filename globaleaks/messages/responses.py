@@ -10,6 +10,19 @@
 #   and by glbackend for format & sanitize output
 
 from globaleaks.messages import dummy
+"""
+Here should go the functions for generating the responses to be sent by a
+GLBackend to a GLClient.
+
+XXX
+Initially we were thinking of doing sanitization of data in input and in ouput,
+but I believe that since the client must be hostproof in the sense that if it
+is purely client side loaded it should be responsible for sanitizing and
+validating the messages that come in. For this reason I believe we should only
+put here helper functions that are useful for generating complex responses, but
+we should not worry about making sure the types of them are valid since we
+already do validation on the input side.
+"""
 
 # This is the struct containing the errors
 def errorMessage(httpErrorCode=500, errorDict={}):
