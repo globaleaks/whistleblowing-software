@@ -7,17 +7,21 @@
     </div>
 </div>
 <div class="submission container">
-    <p>{{intro}}</p>
-    <div class="submissionContainer">
-        <form class="submissionForm">
-            <div class="row">
-                <div class="submissionFormLeft span4">
-                </div>
-                <div class="submissionFormRight span4">
-                </div>
-            </div>
-        </form>
+  <p>{{intro}}</p>
+  <div class="submissionContainer span8">
+    <div class="receipt hide">
     </div>
+    <form class="submissionForm">
+      <div class="row">
+        <div class="submissionFormLeft span4">
+        </div>
+        <div class="submissionFormRight span4">
+        </div>
+      </div>
+    </form>
+  </div>
+  <div class="row hide debug_info">
+    <div class="span4">
     <h2>Debug functions</h2>
     <button id="node_button">Node info</button>
     <button id="create_new">Create New</button>
@@ -25,6 +29,5 @@
     <button id="select_context">Select context</button>
     <button id="status">Status</button>
     <button id="finalize_button">Finalize</button>
-
+  </div>
 </div>
-

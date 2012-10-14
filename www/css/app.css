@@ -206,7 +206,6 @@ background-color: whiteSmoke;
     background-color: #F7F7F9;
     border: 1px solid #E1E1E8;
     padding: 20px;
-    width: 620px;
     -webkit-border-radius: 4px;
     -moz-border-radius: 4px;
     border-radius: 4px;
@@ -218,6 +217,14 @@ background-color: whiteSmoke;
     margin-top: 30px;
 }
 
+@font-face {
+    font-family: "Sansation Bold";
+    src: url('/fonts/Sansation_Bold.ttf') format("truetype");
+}
+
+.receipt h2 {
+    font-family: "Sansation Bold", sans-serif;
+}
 
 /*** Debug header ***/
 

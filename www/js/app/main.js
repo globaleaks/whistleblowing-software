@@ -3,8 +3,10 @@
 define(function (require) {
     'use strict';
 
-    var $ = require('jquery');
-    var latenza = require('latenza');
+    var $ = require('jquery'),
+        latenza = require('latenza');
+
+    require('jquery.validate');
 
     // Dependencies that do not have an export of their own, just attach
     // to other objects, like jQuery. These are just used in the example

@@ -5,9 +5,11 @@ define(function (require) {
       network = require('network'),
       latenza = require('latenza'),
       hogan = require('hogan'),
+      templates = {},
       requests = {},
       nodeinfo = {};
 
+  templates.receipt = hogan.compile(require('text!./templates/receipt.html'));
   requests.submission = require('./requests/submission');
   requests.node = require('./requests/node');
 
@@ -179,9 +181,8 @@ define(function (require) {
 
     function showReceipt(receipt_id) {
       $('.submissionForm').hide();
-      $('.submissionContainer').append("<h2>Here is your receipt</h2>");
-      $('.submissionContainer').append("<h3>"+receipt_id+"</h3>");
-      $('.submissionContainer').append("<a href='#/status/"+receipt_id+"'>Visit Tip</a>");
+      $('.receipt').show();
+      $('.receipt').html(templates.receipt.render({'receipt_id': receipt_id}));
     };
 
     function processForm(form) {
@@ -205,9 +206,11 @@ define(function (require) {
         $('.submissionForm').append('<button id="submit_button">Submit</button>');
 
         // XXX refactor this to remove this nesting insanity!
-        $('#submit_button').click(function(){
+        $('.submissionForm').validate({submitHandler: function(form) {
+          console.log("I iz valid!");
           requests.submission.root().done(function(data) {
             var fields = processFields($('.submissionForm'));
+            console.log("Going for the hit with " + nodeinfo.context_selected);
             requests.submission.status_post(data['submission_id'],
                   {'fields': fields,
                    'context_selected': nodeinfo.context_selected}).done(function(args){
@@ -220,8 +223,8 @@ define(function (require) {
                                     });
             });
           });
-          return false;
-        });
+        }});
+
     };
 
     function getContextFields(context_id) {
