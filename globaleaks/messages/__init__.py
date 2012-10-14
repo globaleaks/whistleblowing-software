@@ -7,15 +7,15 @@ from globaleaks.messages.base import SpecialType, GLTypes
 
 import json
 
-def validateType(value, validType):
-    if type(value) is validType:
+def validateType(value, valid_type):
+    if type(value) is valid_type:
         return
     else:
-        raise GLTypeError("%s must be of %s type. Got %s instead" % (value, validType, type(value)))
+        raise GLTypeError("%s must be of %s type. Got %s instead" % (value, valid_type, type(value)))
 
-def validateGLType(value, glType):
+def validateGLType(value, gl_type):
     message = json.dumps(value)
-    validateMessage(message, glType)
+    validateMessage(message, gl_type)
 
 def validateSpecialType(value, specialType):
     """
@@ -24,7 +24,7 @@ def validateSpecialType(value, specialType):
     """
     specialType.validate(value)
 
-def validateItem(val, validType):
+def validateItem(val, valid_type):
     """
     Takes as input an object and a type that it should match and raises an
     error if it does not match the type it is supposed to be.
@@ -34,33 +34,33 @@ def validateItem(val, validType):
 
     val: value to be to validated. This is a python object.
 
-    validType: a subclass of GLTypes, SpecialType, type or list. This is what
+    valid_type: a subclass of GLTypes, SpecialType, type or list. This is what
     val should look like.
     """
-    if type(validType) is list:
+    if type(valid_type) is list:
         if not type(val) is list:
             raise GLTypeError("%s must be of type list" % val)
-        valid = validType[0]
+        valid = valid_type[0]
         for item in val:
             if type(item) is dict:
                 validateGLType(item, valid)
             else:
                 validateItem(item, valid)
 
-    elif issubclass(validType, SpecialType):
-        validType = validType()
-        validType.validate(val)
+    elif issubclass(valid_type, SpecialType):
+        valid_type = valid_type()
+        valid_type.validate(val)
 
-    elif issubclass(validType, GLTypes):
-        validateGLType(val, validType)
+    elif issubclass(valid_type, GLTypes):
+        validateGLType(val, valid_type)
 
-    elif type(validType) is type:
-        validateType(val, validType)
+    elif type(valid_type) is type:
+        validateType(val, valid_type)
 
     else:
         raise GLTypeError("Invalid type specification")
 
-def validateMessage(message, messageType):
+def validateMessage(message, message_type):
     """
     Takes a string that represents a JSON messages and checks to see if it
     conforms to the message type it is supposed to be.
@@ -70,9 +70,9 @@ def validateMessage(message, messageType):
 
     message: the message string that should be validated
 
-    messageType: the GLType class it should match.
+    message_type: the GLType class it should match.
     """
-    messageSpec = messageType()
+    messageSpec = message_type()
 
     obj = json.loads(message)
     if type(obj) is list:
@@ -82,23 +82,23 @@ def validateMessage(message, messageType):
 
     for k, val in obj.items():
         try:
-            validType = messageSpec[k]
+            valid_type = messageSpec[k]
         except:
             raise GLTypeError("Specified field is not supported."
                               "could not find %s in message spec" % k)
 
-        validateItem(val, validType)
+        validateItem(val, valid_type)
     return obj
 
 def validateWith(fn):
     """
     This is a decorator that does validation of the content in
-    self.request.body and makes sure it is of the correct messageType.
+    self.request.body and makes sure it is of the correct message_type.
     """
-    def decorator(self, messageType):
+    def decorator(self, message_type):
         print "Validating"
         print self.request.body
-        validateMessage(self.request.body, messageType)
+        validateMessage(self.request.body, message_type)
         fn(self)
     return decorator
 

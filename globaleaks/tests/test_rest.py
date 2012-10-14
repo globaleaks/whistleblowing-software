@@ -7,8 +7,6 @@ sys.path.insert(0, '../../')
 from cyclone.util import ObjectDict as OD
 from twisted.trial import unittest
 
-from globaleaks.handlers import *
-
 class RestTestCase(unittest.TestCase):
     def setUp(self):
         pass
