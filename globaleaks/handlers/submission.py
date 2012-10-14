@@ -121,6 +121,10 @@ class SubmissionStatus(BaseHandler):
         request = json.loads(self.request.body)
 
         submission = models.submission.Submission()
+        if not request:
+            self.set_status(400)
+            return
+
         if 'fields' in request and request['fields']:
             print "Updating fields with %s" % request
             submission.update_fields(submission_id, request['fields'])

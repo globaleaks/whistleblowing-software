@@ -85,19 +85,21 @@ def createTables():
         print "-----------------"
 
     c = models.admin.Context()
-    context_dict = {"name": u"Context 1",
+    context_dict = {"name": u"Random Context",
             "description": u"Test description",
             "selectable_receiver": True,
             "escalation_threshold": 10,
             "languages_supported": [u'ENG', u'ITA'],
-            "fields": dummy.base.formFieldsDicts,
+            "fields": dummy.base.formFieldsDicts2,
             "receivers": receiver_dicts,
-            }
-
+    }
+    dummy_context = dummy.base.contextDescriptionDicts[0].copy()
+    dummy_context['receivers'] = receiver_dicts
     context_dicts = yield c.list_description_dicts()
     if len(context_dicts) == 0:
         print "No contexts. Creating dummy ones!"
         yield c.new(context_dict)
+        yield c.new(dummy_context)
 
     context_dicts = yield c.list_description_dicts()
     print "We have these contexts:"
