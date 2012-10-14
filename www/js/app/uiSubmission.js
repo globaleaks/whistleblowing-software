@@ -1,13 +1,16 @@
-
-/*global window */
-
 define(function (require) {
   'use strict';
 
   var $ = require('jquery'),
       network = require('network'),
       latenza = require('latenza'),
-      hogan = require('hogan');
+      hogan = require('hogan'),
+      requests = {},
+      nodeinfo = {};
+
+  requests.submission = require('./requests/submission');
+  requests.node = require('./requests/node');
+
 
   // Return a function that can be called to do the DOM binding given a
   // jQuery DOM object to use as the parent container.
@@ -15,6 +18,84 @@ define(function (require) {
 
     // Use the body element if no parentDom provided
     parentDom = parentDom || $('body');
+
+    function debugDeck() {
+        var debug = require('./debug'),
+            dummy_requests = require('./dummy/requests'),
+            submissionID = null;
+
+        $("#node_button").click(function() {
+          latenza.ajax({'url': '/node',
+                        'type': 'GET'
+          }).done(function(data) {
+            debug.write(data, 'GET /node');
+          });
+        });
+
+        $("#create_new").click(function() {
+          requests.submission.root().done(function(data) {
+                  submissionID = data['submission_id'];
+                  debug.write(data, 'GET /submission');
+          });
+        });
+
+        $("#send_fields").click(function() {
+          if (submissionID) {
+            var fields = {"FieldA": "hello", "FieldB": "world!"};
+            var path = '/submission/'+submissionID+'/status';
+            requests.submission.status_post(submissionID, {'fields': fields}).done(function(data){
+              debug.write(data, 'POST '+path);
+            });
+
+          } else {
+            alert("Run create new first!");
+          }
+        });
+
+        $("#select_context").click(function() {
+          if (submissionID) {
+            var path = '/submission/'+submissionID+'/status';
+            requests.submission.status_post(submissionID, {'context_selected':
+                            nodeinfo.selected_context}).done(function(data){
+              debug.write(data, 'POST '+path);
+            });
+
+          } else {
+            alert("Run create new first!");
+          }
+        });
+
+        $("#status").click(function() {
+          var request = dummy_requests.submissionStatusPost;
+          if (submissionID) {
+            var path = '/submission/'+submissionID+'/status';
+            requests.submission.status_get(submissionID).done(function(data){
+              debug.write(data, 'GET '+path);
+            });
+
+          } else {
+            alert("Run create new first!");
+          }
+        });
+
+        $("#finalize_button").click(function() {
+          if (submissionID) {
+            var request = {'proposed_receipt': 'igotnicereceipt',
+                           'folder_name': 'My Documents',
+                           'folder_description': 'I have lots of warez!'};
+            var path = '/submission/'+submissionID+'/finalize';
+            latenza.ajax({'url': path,
+                          'data': JSON.stringify(request),
+                          'type': 'POST'
+            }).done(function(data){
+              debug.write(data, 'POST '+path);
+            });
+
+          } else {
+            alert("Run create new first!");
+          }
+        });
+    };
 
 
     function renderTemplate(template, data) {
@@ -96,6 +177,10 @@ define(function (require) {
     };
 
     function processForm(form) {
+        $('.submissionFormLeft')[0].innerHTML = "";
+        $('.submissionFormRight')[0].innerHTML = "";
+        $('.submissionForm button').remove();
+
         var x, target,
             allowed_types = ['string', 'text','checkbox', 'radio'];
         for (x in form) {
@@ -126,103 +211,38 @@ define(function (require) {
         });
     };
 
-    function debugDeck() {
-        var debug = require('./debug'),
-            dummy_requests = require('./dummy/requests'),
-            submissionID = null,
-            context_id = null;
-
-
-        $("#node_button").click(function() {
-          latenza.ajax({'url': '/node',
-                        'type': 'GET'
-          }).done(function(data) {
-            context_id = data['contexts'][0]['context_id'];
-            debug.write(data, 'GET /node');
-          });
-        });
-
-        $("#create_new").click(function() {
-          latenza.ajax({'url': '/submission',
-                        'type': 'GET'
-          }).done(function(data) {
-            submissionID = data['submission_id'];
-            debug.write(data, 'GET /submission');
-          });
-        });
-
-        $("#send_fields").click(function() {
-          if (submissionID) {
-            var request = {"fields": {"FieldA": "hello", "FieldB": "world!"}};
-            var path = '/submission/'+submissionID+'/status';
-            latenza.ajax({'url': path,
-                          'data': JSON.stringify(request),
-                          'type': 'POST'
-            }).done(function(data){
-              debug.write(data, 'POST '+path);
-            });
-
-          } else {
-            alert("Run create new first!");
-          }
-        });
-
-        $("#select_context").click(function() {
-          if (submissionID) {
-            var request = {"context_selected": context_id};
-            var path = '/submission/'+submissionID+'/status';
-            latenza.ajax({'url': path,
-                          'data': JSON.stringify(request),
-                          'type': 'POST'
-            }).done(function(data){
-              debug.write(data, 'POST '+path);
-            });
-
-          } else {
-            alert("Run create new first!");
-          }
-        });
-
-
-
-        $("#status").click(function() {
-          var request = dummy_requests.submissionStatusPost;
-          if (submissionID) {
-            var path = '/submission/'+submissionID+'/status';
-            latenza.ajax({'url': path,
-                          'type': 'GET'
-            }).done(function(data){
-              debug.write(data, 'GET '+path);
-            });
-
-          } else {
-            alert("Run create new first!");
-          }
-        });
-
-        $("#finalize_button").click(function() {
-          if (submissionID) {
-            var request = {'proposed_receipt': 'igotnicereceipt',
-                           'folder_name': 'My Documents',
-                           'folder_description': 'I have lots of warez!'};
-            var path = '/submission/'+submissionID+'/finalize';
-            latenza.ajax({'url': path,
-                          'data': JSON.stringify(request),
-                          'type': 'POST'
-            }).done(function(data){
-              debug.write(data, 'POST '+path);
-            });
-
-          } else {
-            alert("Run create new first!");
-          }
-        });
+    function getContextFields(context_id) {
+      for (var name in nodeinfo.contexts) {
+        var context = nodeinfo.contexts[name];
+        if (context.id == context_id) {
+          return context.fields;
+        }
+      }
     };
 
-    latenza.ajax({'url': '/node'}).done(function(data) {
-        var formdata = data;
-        console.log(formdata);
-        processForm(formdata.contexts[0].fields);
+    function processContexts(contexts) {
+      var context_selector = $("#context_selector"),
+          context_id, fields;
+      context_selector.change(function(){
+        context_id = $('#context_selector option:selected')[0].value;
+        nodeinfo.selected_context = contexts[0].id;
+        fields = getContextFields(context_id);
+        processForm(fields);
+      });
+      for (var i in contexts) {
+        // XXX do validation here.
+        var context_option = "<option value=" + contexts[i].id + ">" + contexts[i].name + "</option>";
+        context_selector.append(context_option);
+      };
+      return contexts;
+    };
+
+    requests.node.root().done(function(data) {
+        var contexts;
+        nodeinfo = data;
+        nodeinfo.contexts = processContexts(nodeinfo.contexts);
+        nodeinfo.selected_context = nodeinfo.contexts[0].id;
+        processForm(nodeinfo.contexts[0].fields);
         debugDeck();
     });
 
