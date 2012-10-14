@@ -35,35 +35,12 @@ GLBackendAPIFactory = Application(api.spec, debug=True)
 GLBackendAPI = internet.TCPServer(8082, GLBackendAPIFactory)
 GLBackendAPI.setServiceParent(application)
 
-class GLBackendLog(FileLogObserver):
-    logout = log.StdioOnnaStick(0, getattr(sys.stdout, "encoding", None))
-    logerr = log.StdioOnnaStick(1, getattr(sys.stderr, "encoding", None))
-
-    def emit(self, eventDict):
-        text = log.textFromEventDict(eventDict)
-        if text is None:
-            return
-
-        if eventDict['isError']:
-            output = sys.stderr
-        else:
-            output = sys.stdout
-        timeStr = self.formatTime(eventDict['time'])
-        fmtDict = {'system': eventDict['system'], 'text': text.replace("\n", "\n\t")}
-
-        msgStr = _safeFormat("[%(system)s] %(text)s\n", fmtDict)
-
-        util.untilConcludes(self.write, timeStr + " ***** " + msgStr)
-        util.untilConcludes(self.flush)  # Hoorj!
-        sys.stdout = self.logout
-        sys.stderr = self.logerr
-
 # XXX make this a config option
 log_file = "/tmp/glbackend.log"
 
 log_folder = os.path.join('/', *log_file.split('/')[:-1])
 log_filename = log_file.split('/')[-1]
 daily_logfile = DailyLogFile(log_filename, log_folder)
-application.setComponent(ILogObserver, GLBackendLog(daily_logfile).emit)
+log.addObserver(FileLogObserver(daily_logfile).emit)
 
 reactor.addSystemEventTrigger('after', 'shutdown', threadpool.stop)
