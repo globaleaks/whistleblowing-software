@@ -18,7 +18,7 @@ from globaleaks.db import threadpool
 from globaleaks.rest import api
 
 from twisted.application.service import Application
-from twisted.application.internet import TCPServer
+from twisted.application import internet
 
 from twisted.internet import reactor
 
@@ -30,7 +30,7 @@ from twisted.python.logfile import DailyLogFile
 
 application = Application('GLBackend')
 GLBackendAPIFactory = web.Application(api.spec, debug=True)
-GLBackendAPI = TCPServer(8082, GLBackendAPIFactory)
+GLBackendAPI = internet.TCPServer(8082, GLBackendAPIFactory)
 GLBackendAPI.setServiceParent(application)
 
 # XXX make this a config option
