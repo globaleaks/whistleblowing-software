@@ -30,7 +30,7 @@ class SubmissionNotFoundError(SubmissionModelError):
 class SubmissionNotOneError(SubmissionModelError):
     pass
 
-class SubmissionNoReceiversSelectedError(SubmissionModelError):
+class SubmissionNoContextSelectedError(SubmissionModelError):
     pass
 
 class SubmissionContextNotFoundError(SubmissionModelError):
@@ -56,7 +56,7 @@ class Submission(TXModel):
     creation_time = Date()
 
     @transact
-    def new(self):
+    def new(self, context_id):
         store = self.getStore()
 
         submission_id = idops.random_submission_id(False)
@@ -106,6 +106,9 @@ class Submission(TXModel):
         store.commit()
         store.close()
 
+    # TODO def select_receiver 
+    
+
     @transact
     def status(self, submission_id):
         store = self.getStore()
@@ -125,6 +128,7 @@ class Submission(TXModel):
 
         status = {'context_selected': s.context_selected,
                   'fields': s.fields}
+                # TODO 'creation_time' and 'expiration_time'
 
         store.commit()
         store.close()
@@ -152,7 +156,7 @@ class Submission(TXModel):
         if not s.context_selected:
             store.rollback()
             store.close()
-            raise SubmissionNoReceiversSelectedError
+            raise SubmissionNoContextSelectedError
 
         try:
             context = store.find(Context,
