@@ -57,12 +57,6 @@ def createTables():
     from globaleaks import models
     from globaleaks.db import tables
     from globaleaks.messages import dummy
-    try:
-        log.msg("y0y0y00y0y")
-        print "in da house"
-    except Exception, e:
-        print "Fail!"
-        print e
 
     for m in [models.receiver, models.submission, models.tip, models.admin]:
         for model_name in m.__all__:
@@ -88,9 +82,10 @@ def createTables():
         receiver_dicts = yield r.create_dummy_receivers()
         print receiver_dicts
 
-    print "These are the the installed receivers:"
+    print "# Currently installed receivers"
     for receiver in receiver_dicts:
-        print "*** %s *** " % str(receiver)
+        print "* %s " % receiver['name']
+    print ""
 
     c = models.admin.Context()
     context_dict = {"name": u"Random Context",
@@ -106,12 +101,13 @@ def createTables():
     context_dicts = yield c.list_description_dicts()
 
     if len(context_dicts) == 0:
-        print "No contexts. Creating dummy ones!"
+        print "[!] No contexts. Creating dummy ones!"
         yield c.new(context_dict)
         yield c.new(dummy_context)
 
     context_dicts = yield c.list_description_dicts()
-    print "We have these contexts:"
+    print "# We have these contexts:"
     for context in context_dicts:
-        print "#### %s ####" % context['name']
+        print "* %s " % context['name']
+    print ""
 

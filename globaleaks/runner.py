@@ -32,10 +32,10 @@ else:
     class GLBaseRunner(UnixApplicationRunner):
         def postApplication(self):
             def runApp(*a):
-                print "Starting application"
                 self.startApplication(self.application)
+                print "GLBackend is now running"
+                print "Visit http://127.0.0.1:8082/index.html to interact with me"
 
-            print "Running pre startup operations."
             d = createTables()
             d.addBoth(runApp)
 
