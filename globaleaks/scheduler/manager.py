@@ -4,13 +4,11 @@
 # :licence: see LICENSE
 
 import time
-import datetime
-import pickle
 
 from twisted.internet import reactor
 from twisted.internet.defer import DeferredList, Deferred
 
-from globaleaks.scheduler.jobs import *
+#from globaleaks.scheduler.jobs import *
 
 class WorkManager(object):
     """

@@ -1,7 +1,6 @@
 from storm.twisted.transact import transact
-from storm.locals import *
-from globaleaks.db import *
-import pickle
+from storm.locals import Int, Pickle, Date, Unicode, RawStr, Bool
+from storm.locals import Reference, ReferenceSet
 
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
@@ -31,12 +30,6 @@ class Folder(TXModel):
     referenced in the other Folders.
     """
     __storm_table__ = 'folders'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   " (id INTEGER PRIMARY KEY, folder_gus VARCHAR, description VARCHAR, "\
-                   " associated_receiver_id INT, property_applied VARCHAR, "\
-                   " upload_time DATETIME, internaltip_id INTEGER, "\
-                   " downloaded_count INT, files_related VARCHAR)"
 
     id = Int(primary=True)
     folder_gus = Unicode()
@@ -71,11 +64,6 @@ class File(TXModel):
     """
     __storm_table__ = 'files'
 
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                  "(id INTEGER PRIMARY KEY, filename VARCHAR, filecontent VARCHAR, description VARCHAR, "\
-                  " content_type VARCHAR, size INT, metadata_cleaned BOOL, uploaded_date DATETIME, folder_id INTEGER," \
-                  " hash VARCHAR)"
-
     id = Int(primary=True)
     filename = Unicode()
     filecontent = RawStr()
@@ -91,10 +79,6 @@ class File(TXModel):
 
 class Comment(TXModel):
     __storm_table__ = 'comments'
-
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                  "(id INTEGER PRIMARY KEY, content VARCHAR, type VARCHAR,"\
-                  " author VARCHAR, comment_date DATETIME, internaltip_id INT)"
 
     id = Int(primary=True)
 
