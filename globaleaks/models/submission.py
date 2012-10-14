@@ -3,7 +3,7 @@ from storm.twisted.transact import transact
 from storm.locals import *
 
 from globaleaks.utils import idops, gltime
-from globaleaks.models.base import TXModel
+from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.tip import Folder, InternalTip, Tip, ReceiverTip
 from globaleaks.models.admin import Context
 
@@ -14,7 +14,7 @@ This ORM implementation is called whistleblower, because contain the information
 for the WBs, other elements used by WBs stay on globaleaks.db.tips.SpecialTip
 """
 
-class SubmissionError(Exception):
+class SubmissionModelError(ModelError):
     pass
 
 class Submission(TXModel):
@@ -106,17 +106,17 @@ class Submission(TXModel):
         except Exception, e:
             store.commit()
             store.close()
-            raise Exception("Collision detected! HELP THE WORLD WILL END!")
+            raise SubmissionModelError("Collision detected! HELP THE WORLD WILL END!")
 
         if not s:
             store.commit()
             store.close()
-            raise Exception("Did not find a submission with that ID")
+            raise SubmissionModel("Did not find a submission with that ID")
 
         if not s.context_selected:
             store.commit()
             store.close()
-            raise SubmissionError("No receivers selected")
+            raise SubmissionModelError("No receivers selected")
 
         internal_tip = InternalTip()
         internal_tip.fields = s.fields

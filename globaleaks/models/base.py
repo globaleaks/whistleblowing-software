@@ -51,6 +51,8 @@ class TXModel(object):
         store.commit()
         store.close()
 
+class ModelError(Exception):
+    pass
 
 """
 Triva, this file implement the 0.2 version of GlobaLeaks, then:
