@@ -30,13 +30,15 @@ class Receiver(TXModel):
 
     receiver_level = Int()
 
+    def new(self, internaltip_id):
+        self.internaltip_id = internaltip_id
+
     @transact
     def receiver_dicts(self):
         store = self.getStore()
         receiver_dicts = []
 
         for receiver in store.find(Receiver):
-            print "Receiver %s" % receiver
             receiver_dict = {}
             receiver_dict['id'] = receiver.receiver_id
             receiver_dict['name'] = receiver.name

@@ -1,3 +1,4 @@
+ENV
 *.py[co]
 *.bak
 .*.swp
