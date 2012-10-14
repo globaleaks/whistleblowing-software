@@ -6,7 +6,6 @@
 #   :license: see LICENSE
 #
 from globaleaks.rest import answers
-from globaleaks.utils.dummy import dummy_answers as dummy
 
 from globaleaks.handlers import base
 
@@ -20,29 +19,19 @@ class ReceiverRoot(base.BaseHandler):
     """
 
     # R1
-    def get(self, *arg, **kw):
-
-        ret = answers.commonReceiverAnswer()
-
-        dummy.RECEIVER_ROOT_GET(ret)
-
-        return ret.unroll()
+    def get(self):
+        pass
 
 class ReceiverModule(base.BaseHandler):
     # R2
-    def get(self, *arg, **kw):
+    def get(self):
+        pass
 
-        ret = answers.receiverModuleAnswer()
+    def post(self):
+        pass
 
-        dummy.RECEIVER_MODULE_GET(ret)
+    def put(self):
+        pass
 
-        return ret.unroll()
-
-    def post(self, *arg, **kw):
-        return self.get(*arg, **kw)
-
-    def put(self, *arg, **kw):
-        return self.get(*arg, **kw)
-
-    def delete(self, *arg, **kw):
-        return self.get(*arg, **kw)
+    def delete(self):
+        pass

@@ -3,6 +3,7 @@
 # :authors: Arturo Filastò
 # :licence: see LICENSE
 
+from globaleaks.messages import validateMessage
 from cyclone.web import RequestHandler, HTTPError
 
 """
@@ -51,7 +52,7 @@ class BaseHandler(RequestHandler):
         print "Just got %s" % self.request.body
         if self.request.method.lower() == 'post':
             try:
-                wrappedMethod = self.get_argument('method')
+                wrappedMethod = self.get_argument('method')[0]
                 print "[^] Forwarding", wrappedMethod, "from POST"
                 if wrappedMethod.lower() == 'delete' or \
                         wrappedMethod.lower() == 'put':
@@ -59,6 +60,6 @@ class BaseHandler(RequestHandler):
             except HTTPError:
                 pass
         if self.request.method in self.requestTypes:
-            validMessage = self.messageTypes[self.request.method]
+            validMessage = self.requestTypes[self.request.method]
             validateMessage(self.request.body, validMessage)
 

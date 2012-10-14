@@ -8,8 +8,8 @@ import pickle
 from globaleaks.utils import idops
 
 from globaleaks.models.base import TXModel, ModelError
-from globaleaks.models.admin import Context
 from globaleaks.models.receiver import Receiver
+from globaleaks.models.admin import Context
 
 __all__ = [ 'Folder', 'File', 'Comment',
             'InternalTip',  'ReceiverTip',

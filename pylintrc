@@ -12,7 +12,7 @@ profile=no
 
 # Add files or directories to the blacklist. They should be base names, not
 # paths.
-ignore=CVS
+ignore=CVS,trial_temp
 
 # Pickle collected data for later comparisons.
 persistent=yes
@@ -95,25 +95,25 @@ bad-functions=map,filter,apply,input
 module-rgx=(([a-z_][a-z0-9_]*)|([A-Z][a-zA-Z0-9]+))$
 
 # Regular expression which should only match correct module level names
-const-rgx=[a-z_][a-z0-9_]{2,30}$
+const-rgx=[a-zA-Z0-9_]{2,30}$
 
 # Regular expression which should only match correct class names
-class-rgx=[A-Z_][a-zA-Z0-9]+$
+class-rgx=[A-Z][a-zA-Z0-9]+$
 
 # Regular expression which should only match correct function names
-function-rgx=[a-z_][a-z0-9_]{2,30}$
+function-rgx=[a-z_][a-zA-Z0-9_]{2,30}$
 
 # Regular expression which should only match correct method names
-method-rgx=[a-z_][a-z0-9_]{2,30}$
+method-rgx=[a-z][a-zA-Z0-9]{2,30}$
 
 # Regular expression which should only match correct instance attribute names
-attr-rgx=[a-z_][a-z0-9_]{2,30}$
+attr-rgx=[a-z][a-zA-Z0-9]{2,30}$
 
 # Regular expression which should only match correct argument names
 argument-rgx=[a-z_][a-z0-9_]{2,30}$
 
 # Regular expression which should only match correct variable names
-variable-rgx=[a-z_][a-z0-9_]{2,30}$
+variable-rgx=[a-z0-9_]{1,30}$
 
 # Regular expression which should only match correct list comprehension /
 # generator expression variable names

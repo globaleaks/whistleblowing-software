@@ -1,6 +1,6 @@
 from twisted.internet.defer import returnValue
 from storm.twisted.transact import transact
-from storm.locals import *
+from storm.locals import Int, Pickle, Date, Unicode, Bool, RawStr
 
 from globaleaks.models.base import TXModel
 

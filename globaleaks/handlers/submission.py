@@ -7,15 +7,15 @@
 #
 #   Implements a GlobaLeaks submission.
 import json
+
+from twisted.python import log
 from twisted.internet.defer import returnValue, inlineCallbacks
 
 from globaleaks import models
-from globaleaks.db import transactor
 from globaleaks.utils import idops
 
 from globaleaks import messages
 
-from globaleaks.rest import answers
 from globaleaks.rest.errors import GLErrorCode
 from globaleaks.handlers.base import BaseHandler
 
@@ -249,7 +249,7 @@ class SubmissionFiles(BaseHandler):
         """
         return self.get(submission_id, *uriarg)
 
-    def delete(self, submission_id, *arg, **kw):
+    def delete(self, submission_id, *uriarg):
         """
         :filename, remove a complete or a partial uploaded
          file

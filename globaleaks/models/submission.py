@@ -1,6 +1,12 @@
+# -*- encoding: utf-8 -*-
+#
+# :authors: Arturo Filastò
+# :licence: see LICENSE
+
+from twisted.python import log
 from twisted.internet.defer import returnValue, inlineCallbacks
 from storm.twisted.transact import transact
-from storm.locals import *
+from storm.locals import Int, Pickle, Date, Unicode
 from storm.exceptions import NotOneError, NoneError
 
 from globaleaks.utils import idops, gltime

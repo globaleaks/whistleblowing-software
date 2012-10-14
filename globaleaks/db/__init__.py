@@ -29,7 +29,7 @@ from twisted.python.threadpool import ThreadPool
 from twisted.internet.defer import inlineCallbacks, returnValue, Deferred
 
 from storm.twisted.transact import Transactor, transact
-from storm.locals import *
+from storm.locals import Store
 from storm.uri import URI
 from storm.databases.sqlite import SQLite
 
