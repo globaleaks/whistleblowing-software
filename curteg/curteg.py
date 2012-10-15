@@ -88,15 +88,15 @@ linking the identificative synthesis, the URL, the method
 schema = {
      "U1" :['/node', {
             'GET' : [
-            False, False, answers.nodeMainSettings
+            False, answers.nodeMainSettings
          ] } ],
      "U2" :['/submission', {
             'GET': [
-            False, False, answers.newSubmission
+            False, answers.newSubmission
          ] } ],
      "U3" :['/submission/'+sID()+'/status', {
           'GET' : [
-            False, False, answers.submissionStatus ],
+            False, answers.submissionStatus ],
           'POST' : [
             requests.submissionStatus.specification,
             answers.submissionStatus
@@ -109,9 +109,9 @@ schema = {
      # "U5" :['/submission/'+sID()+'/files', ['GET','POST','PUT','DELETE']],
      "T1" :['/tip/', {
          'GET' : [
-             False, False, recurringtypes.tipDetailsDict ],
+             False, False ], # recurringtypes.tipDetailsDict ],
          'POST' : [
-             requests.tipOperations,specification,
+             requests.tipOperations.specification,
              False
          ] } ],
      "T2" :['/tip/'+tID()+'/comment', {
@@ -127,7 +127,7 @@ schema = {
          ] } ],
      "T5" :['/tip/'+tID()+'/download', {
          'GET' : [
-             False, False, False
+             False, False
          ] } ],
      "T6" :['/tip/'+tID()+'/pertinence', { 
          'POST' : [
@@ -136,11 +136,11 @@ schema = {
          ] } ],
      "R1" :['/receiver/' + tID(), {
          'GET' : [
-             False, False, answers.commonReceiverAnswer
+             False, answers.commonReceiverAnswer
          ] } ],
      "R2" :['/receiver/' + tID() +'/notification', {
          'GET' : [
-             False, False, answers.receiverModuleAnswer ],
+             False, answers.receiverModuleAnswer ],
          'POST' : [
              requests.receiverOptions.specification,
              answers.receiverModuleAnswer ],
@@ -153,14 +153,14 @@ schema = {
          ] } ],
      "A1" :['/admin/node', {
          'GET' : [
-             False, False, answers.nodeMainSettings ],
+             False, answers.nodeMainSettings ],
          'POST' : [
-             requests.nodeAdminSetup.specificiation,
+             requests.nodeAdminSetup.specification,
              answers.nodeMainSettings
          ] } ],
      "A2" :['/admin/contexts/' + cID(), {
          'GET' : [
-             False, False, answers.adminContextsCURD ],
+             False, answers.adminContextsCURD ],
          'POST' : [
              requests.contextConfiguration.specification,
              answers.adminContextsCURD ],
@@ -173,7 +173,7 @@ schema = {
          ] } ],
      "A3" :['/admin/receivers/' +cID(), {
          'GET' : [
-             False, False, answers.adminReceiverCURD ],
+             False, answers.adminReceiverCURD ],
          'POST' : [
              requests.receiverConfiguration.specification,
              answers.adminReceiverCURD ],
@@ -186,7 +186,7 @@ schema = {
          ] } ],
      "A4" :['/admin/modules/'+cID()+'/notification', {
          'GET' : [
-             False, False, answers.adminModulesUR ],
+             False, answers.adminModulesUR ],
          'POST' : [
              requests.moduleConfiguration.specification,
              answers.adminModulesUR
@@ -236,9 +236,10 @@ def do_curl(url, method, not_encoded_parm=''):
         print "Response status code:", response.status
 
     # as dict ? or need to be imported as json ?
-    convertedInAdict = json.loads(received_data)
-    # outputOptionsApply(dict(received_data))
-    outputOptionsApply(convertedInAdict)
+    #convertedInAdict = json.loads(received_data)
+    #outputOptionsApply(dict(received_data))
+    print received_data
+    #outputOptionsApply(convertedInAdict)
 
     conn.close()
 
@@ -264,8 +265,8 @@ def handle_selected_test(keyapi):
         if len(requestedMethods) > 0 and not (method in requestedMethods):
             continue
 
-        if  methodsAndFunctions.get(method)[2]:
-            answerGLT = methodsAndFunctions.get(method)[2]()
+        if  methodsAndFunctions.get(method)[1]:
+            answerGLT = methodsAndFunctions.get(method)[1]()
         else:
             answerGLT = None
 
@@ -274,13 +275,7 @@ def handle_selected_test(keyapi):
             output = do_curl(url, method)
         else:
             # request generation: call globaleaks.rest.requests
-            requestGLT = methodsAndFunctions.get(method)[0]()
-
-            # request filling: call globaleaks.utils.dummy.dummy_requests
-            methodsAndFunctions.get(method)[1](requestGLT)
-
-            # requestGLT need to be .unroll() for be a dict
-            request = requestGLT.unroll()
+            request = methodsAndFunctions.get(method)[0]
 
             # is input data exists, may be modified
             realRequest = inputOptionsApply(request)

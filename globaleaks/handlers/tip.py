@@ -13,35 +13,15 @@ from cyclone.web import asynchronous, HTTPError
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.tip import Tip
 
-class TipWbAccess(BaseHandler):
-    """
-    * This need to be defined in the API *
-    actually we have TipRoot that is accessed with a receipt OR with an url-based auth.
-    They need to be split. TipWbAccess would handle the receipt (or the WB auth method)
-    and TipRoot would handle /tip/$tipid for receivers
-    """
-
-    @asynchronous
-    @inlineCallbacks
-    def post(self, receipt):
-        print "Processing WB auth %s" % receipt
-        tip = Tip()
-
-        tip_dict = yield tip.wb_auth(receipt)
-
-        self.write(tip_dict)
-        self.finish()
-
-
 class TipRoot(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, tip_id):
-        print "Processing WB auth %s" % receipt
+    def get(self, receipt):
+        print "Processing %s" % receipt
         tip = Tip()
 
-        tip_dict = yield tip.lookup(tip_id)
+        tip_dict = yield tip.lookup(receipt)
 
         self.write(tip_dict)
         self.finish()

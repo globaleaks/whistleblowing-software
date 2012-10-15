@@ -210,10 +210,12 @@ class Tip(TXModel):
         return ret
 
     @transact
-    def wb_auth(self, receipt):
+    def lookup(self, receipt):
         """
-        Awaits a receipt and check in the WhistleBlower tip
-        (XXX why WBtip is an extension of Tip class, instead be a different class with a reference ?)
+        receipt actually is either a random_tip_id and a random_receipt_id,
+        in the future, would be the hash of a random_receipt_id.
+
+        the string to be matched stay in, 'address'
         """
         store = self.getStore()
 
@@ -244,38 +246,6 @@ class Tip(TXModel):
                    'comments': None, #comments,
                    'context': context,
                    'receivers': receiver_dicts
-        }
-        store.commit()
-        store.close()
-
-        return tip_details
-
-    @transact
-    def lookup(self, tip_id):
-        store = self.getStore()
-
-        tip = store.find(Tip, Tip.address == tip_id).one()
-        if not tip:
-            store.rollback()
-            store.close()
-            raise TipNotFoundError
-
-        tip_sub_index = tip.get_sub_index()
-
-        folders = tip.internaltip.folders
-        comments = tip.internaltip.comments
-
-        context = tip.internaltip.context_id
-
-        receiver_dicts = tip.internaltip.context.receiver_dicts()
-        folders = tip.internaltip.folder_dicts()
-
-        tip_details = {'tip': tip_sub_index,
-                       'fields': tip.internaltip.fields,
-                       'folders': folders,#folders,
-                       'comments': None, #comments,
-                       'context': context,
-                       'receivers': receiver_dicts
         }
         store.commit()
         store.close()
