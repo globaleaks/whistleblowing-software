@@ -44,11 +44,11 @@ define(function (require) {
         );
       },
       progressall: function (e, data) {
-          var progress = parseInt(data.loaded / data.total * 100, 10);
-          $('#progress .bar').css(
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('.fileupload-progress .progress .bar').css(
               'width',
               progress + '%'
-          );
+        );
       },
       add: function (e, data) {
           //console.log("ADDING");
