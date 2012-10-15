@@ -7,3 +7,12 @@
 [submodule "submodules/jquery.ui"]
 	path = submodules/jquery.ui
 	url = https://github.com/jquery/jquery-ui.git
+[submodule "submodules/load-image"]
+	path = submodules/load-image
+	url = https://github.com/blueimp/JavaScript-Load-Image.git
+[submodule "submodules/canvas-to-blob"]
+	path = submodules/canvas-to-blob
+	url = https://github.com/blueimp/JavaScript-Canvas-to-Blob.git
+[submodule "submodules/jquery.tmpl"]
+	path = submodules/jquery.tmpl
+	url = https://github.com/jquery/jquery-tmpl.git
