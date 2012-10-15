@@ -33,5 +33,7 @@ See wiki page [Setting up Development Environment](https://github.com/globaleaks
 
 # Testing the software
 
-WEB API (a.k.a. REST unitTest) is partially developed, check it out in [Rest testing](globaleaks/rest/unitTest/README.md)
+GLBackend/ $ trial globaleaks/tests/test\_\*.py
+
+GLBackend/curteg $ python curteg.py (curl tester globaleaks)
 

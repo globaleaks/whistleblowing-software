@@ -25,9 +25,6 @@ from cyclone.web import asynchronous, HTTPError
 
 from globaleaks import messages
 
-def mydirtydebug(whoami, safereq, uriargs, args, kw):
-    print "[:>]", whoami, safereq, type(uriargs), uriargs, args, kw
-
 class SubmissionRoot(BaseHandler):
     @asynchronous
     @inlineCallbacks
@@ -35,7 +32,10 @@ class SubmissionRoot(BaseHandler):
         """
         This creates an empty submission and returns the ID
         to be used when referencing it as a whistleblower.
-        sessionID is defined in recurringtypes, and is a 50byte random string.
+        sessionID is defined in recurringtypes, and is a 50byte random string,
+        is used as authentication secrect for the nexts interaxtion.
+        expire after the time set by Admin.
+
             * Response:
               Status Code: 200 (OK)
               {
@@ -48,39 +48,30 @@ class SubmissionRoot(BaseHandler):
         self.set_status(201)
 
         submission = models.submission.Submission()
-
-        #fake_submission = requests.submissionStatusPost
-        #new_submission.fields = fake_submission['fields']
-
-        #fake_receivers = [idops.random_receiver_id(),
-        #                  idops.random_receiver_id(),
-        #                  idops.random_receiver_id(),
-        #                  idops.random_receiver_id()]
-        #new_submission.receivers = fake_receivers
-
         output = yield submission.new()
 
         self.write(output)
         self.finish()
-        # dummy.SUBMISSION_NEW_GET(output)
 
 class SubmissionStatus(BaseHandler):
     """
     This interface represent the state of the submission. Will show the current
-    uploaded data, choosen group, and file uploaded.
-
-    permit to update fields content and group selection.
+    uploaded data, selected context, file uploaded.
+    permit to update fields content, context selection, and if supported, specify receivers
     """
     @asynchronous
     @inlineCallbacks
     def get(self, submission_id):
         """
-        Returns the currently submitted fields, selected group, and uploaded files.
+        Returns the currently submitted fields, selected context, and time to live of the
+        submission
+
         * Response:
           {
             'fields': [ '$formFieldsDict' ],
             'receivers_selected': [ '$receiverDescriptionDict' ],
             'creation_time': 'Time'
+            'expiration_time': 'Time'
           }
         """
         submission = models.submission.Submission()
@@ -104,6 +95,7 @@ class SubmissionStatus(BaseHandler):
           {
             'fields': [ '$formFieldsDict' ]
             'receiver_selected': [ 'receiverID', 'receiverID' ]
+            'context_selected': 'contextID'
           }
 
         * Response:
@@ -136,6 +128,8 @@ class SubmissionStatus(BaseHandler):
             print "Updating context with %s" % request
             submission.select_context(submission_id, request['context_selected'])
 
+        # TODO implemnt receiver_selected if context supports 
+
         self.set_status(202)
 
 
@@ -151,7 +145,7 @@ class SubmissionFinalize(BaseHandler):
 
         * Request (optional, see "Rensponse Variant" below):
           {
-            'proposed-receipt': 'string'
+            'proposed_receipt': 'string'
             'folder_name': 'string'
             'folder_description': 'string'
           }
