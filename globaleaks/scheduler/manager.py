@@ -8,6 +8,9 @@ import time
 from twisted.internet import reactor
 from twisted.internet.defer import DeferredList, Deferred
 
+from twisted.internet.threads import deferToThreadPool
+
+from globaleaks import scheduler_threadpool
 from globaleaks.utils import log, gltime
 
 class WorkManager(object):
@@ -88,10 +91,13 @@ class WorkManager(object):
 
             if not obj.running:
                 obj.running = True
-                d = obj._run(self, *obj.arg)
-                d.addErrback(self._failed, obj)
-                d.addCallback(self._success, obj)
-                dlist.append(d)
+                # XXX figure out how to do the multithreaded version of this
+                #d = deferToThreadPool(reactor, scheduler_threadpool,
+                #        obj._run, self)
+                #d.addErrback(self._failed, obj)
+                #d.addCallback(self._success, obj)
+                #dlist.append(d)
+                obj._run(self)
 
         if run_later:
             # We should set the schedule clock to hit again because there are
@@ -192,4 +198,6 @@ class DBWorkManager(WorkManager):
         print "Restoring state from DB"
 
 
+work_manager = DBWorkManager()
+work_manager.restoreState()
 

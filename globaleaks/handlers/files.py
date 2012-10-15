@@ -49,31 +49,29 @@ class FilesHandler(RequestHandler):
         with open(filelocation, 'a+') as f:
             f.write(data)
 
-    def process_file(self, file, submission_id):
+    def process_file(self, file, submission_id, file_id):
         # XXX do here all the file sanitization stuff
         filename = re.sub(r'^.*\\', '', file['filename'])
 
         result = {}
-        result['name'] = filename
+        result['name'] = file_id
         result['type'] = file['content_type']
         result['size'] = len(file['body'])
 
-        file_location = self.getFileLocation(submission_id, filename)
+        file_location = self.getFileLocation(submission_id, file_id)
         filetoken = submission_id
 
         result['token'] = filetoken
 
+        log.debug("Saving file to %s" % file_location)
         self.saveFile(file['body'], file_location)
         return result
 
-    def getFileLocation(self, submission_id, filename):
+    def getFileLocation(self, submission_id, file_id):
         """
         Ovewrite me with your own function to generate the location of where
         the file should be stored.
         """
-        rname = hashlib.sha256(filename).hexdigest()
-        name = self.filenamePrefix+rname
-
         if not os.path.isdir(config.advanced.submissions_dir):
             log.debug("%s does not exist. Creating it." % config.advanced.submissions_dir)
             os.mkdir(config.advanced.submissions_dir)
@@ -84,7 +82,7 @@ class FilesHandler(RequestHandler):
             log.debug("%s does not exist. Creating it." % this_submission_dir)
             os.mkdir(this_submission_dir)
 
-        location = os.path.join(this_submission_dir, name)
+        location = os.path.join(this_submission_dir, file_id)
         return location
 
     def options(self):
@@ -109,12 +107,14 @@ class FilesHandler(RequestHandler):
         file_array, files = self.request.files.popitem()
         for file in files:
             start_time = time.time()
-            result = self.process_file(file, submission_id)
+
+            submission = models.submission.Submission()
+            file_id = yield submission.add_file(submission_id)
+            log.debug("Created file with file id %s" % file_id)
+            result = self.process_file(file, submission_id, file_id)
             result['elapsed_time'] = time.time() - start_time
             results.append(result)
 
-            submission = models.submission.Submission()
-            yield submission.add_file(submission_id, result['name'])
 
         response = json.dumps(results, separators=(',',':'))
 

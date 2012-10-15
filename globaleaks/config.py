@@ -49,4 +49,5 @@ advanced.scheduler_thread_pool_size = 10
 
 advanced.data_dir = os.path.join(get_root_path(), '_gldata')
 advanced.submissions_dir = os.path.join(advanced.data_dir, 'submissions')
+advanced.delivery_dir = os.path.join(advanced.data_dir, 'delivery')
 
