@@ -65,6 +65,7 @@ This procedure is tested on Ubuntu 12.04
     virtualenv -p python2.7 glenv
     source glenv/bin/activate
     pip install -r requirements.txt
+    export PYTHONPATH=`pwd`
     ./bin/startglobaleaks
 
 Now you may point your browser to http://127.0.0.1:8082/index.html and have a sneak peak at GL 0.2.
