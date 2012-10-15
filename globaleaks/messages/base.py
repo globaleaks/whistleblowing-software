@@ -57,31 +57,31 @@ class timeType(SpecialType):
     pass
 
 class folderID(SpecialType):
-    regexp = "f_[a-zA-Z]{20,20}$"
+    regexp = r"(f_[a-zA-Z]{20,20}$)"
 
 class receiptID(SpecialType):
-    regexp = "\d{10,10}$"
+    regexp = r"(\d{10,10}$)"
 
 class submissionID(SpecialType):
-    regexp = "s_[a-zA-Z]{50,50}$"
+    regexp = r"(s_[a-zA-Z]{50,50}$)"
 
 class receiverID(SpecialType):
-    regexp = "r_[a-zA-Z]{20,20}$"
+    regexp = r"(r_[a-zA-Z]{20,20}$)"
 
 class moduleID(SpecialType):
-    regexp = "m_\d{10,10}$"
+    regexp = r"(m_\d{10,10}$)"
 
 class moduleENUM(SpecialType):
     regexp = "(notification|delivery|inputfilter)"
 
 class contextID(SpecialType):
-    regexp = "c_[a-zA-Z]{20,20}$"
+    regexp = r"(c_[a-zA-Z]{20,20}$)"
 
 class commentENUM(SpecialType):
-    regexp = "(your|external|whistleblower)"
+    regexp = r"(your|external|whistleblower)"
 
 class tipID(SpecialType):
-    regexp = "t_[a-zA-Z]{50,50}$"
+    regexp = r"(t_[a-zA-Z]{50,50}$)"
 
 class fileDict(GLTypes):
     specification = {"filename": unicode,
