@@ -47,3 +47,6 @@ main.database_uri = 'sqlite:'+get_db_file()
 advanced.db_thread_pool_size = 10
 advanced.scheduler_thread_pool_size = 10
 
+advanced.data_dir = os.path.join(get_root_path(), '_gldata')
+advanced.submissions_dir = os.path.join(advanced.data_dir, 'submissions')
+

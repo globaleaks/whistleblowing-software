@@ -6,19 +6,19 @@
 
 from __future__ import with_statement
 
-from globaleaks import models
-
-from twisted.internet.defer import inlineCallbacks
-from cyclone.web import RequestHandler, HTTPError, asynchronous
-
 import json, re, urllib
 import time, hashlib
 import sys, os
 
-listen_port = 8888
+from twisted.internet.defer import inlineCallbacks
+from cyclone.web import RequestHandler, HTTPError, asynchronous
+
+from globaleaks.utils import log
+from globaleaks import models
+from globaleaks import config
 
 class FilesHandler(RequestHandler):
-    filenamePrefix = "cyclone_upload_"
+    filenamePrefix = "f_"
     # Set to None for no size restrictions
     maxFileSize = 500 * 1000 * 1000 # MB
 
@@ -46,10 +46,11 @@ class FilesHandler(RequestHandler):
         XXX This is currently blocking. MUST be refactored to not be blocking
         otherwise we loose...
         """
-        with open(filelocation, 'w+') as f:
+        with open(filelocation, 'a+') as f:
             f.write(data)
 
-    def process_file(self, file):
+    def process_file(self, file, submission_id):
+        # XXX do here all the file sanitization stuff
         filename = re.sub(r'^.*\\', '', file['filename'])
 
         result = {}
@@ -57,29 +58,34 @@ class FilesHandler(RequestHandler):
         result['type'] = file['content_type']
         result['size'] = len(file['body'])
 
-        filelocation = self.getFileLocation(filename)
-        filetoken = self.getFileToken(filelocation)
+        file_location = self.getFileLocation(submission_id, filename)
+        filetoken = submission_id
 
         result['token'] = filetoken
 
-        self.saveFile(file['body'], filelocation)
+        self.saveFile(file['body'], file_location)
         return result
 
-    def getFileToken(self, filelocation):
-        """
-        Ovewrite this with a function that returns the token to be given to the
-        user for accessing the file.
-        """
-        return filelocation
-
-    def getFileLocation(self, filename):
+    def getFileLocation(self, submission_id, filename):
         """
         Ovewrite me with your own function to generate the location of where
         the file should be stored.
         """
         rname = hashlib.sha256(filename).hexdigest()
-        name = self.filenamePrefix+rname+'.file'
-        return name
+        name = self.filenamePrefix+rname
+
+        if not os.path.isdir(config.advanced.submissions_dir):
+            log.debug("%s does not exist. Creating it." % config.advanced.submissions_dir)
+            os.mkdir(config.advanced.submissions_dir)
+
+        this_submission_dir = os.path.join(config.advanced.submissions_dir, submission_id)
+
+        if not os.path.isdir(this_submission_dir):
+            log.debug("%s does not exist. Creating it." % this_submission_dir)
+            os.mkdir(this_submission_dir)
+
+        location = os.path.join(this_submission_dir, name)
+        return location
 
     def options(self):
         pass
@@ -103,7 +109,7 @@ class FilesHandler(RequestHandler):
         file_array, files = self.request.files.popitem()
         for file in files:
             start_time = time.time()
-            result = self.process_file(file)
+            result = self.process_file(file, submission_id)
             result['elapsed_time'] = time.time() - start_time
             results.append(result)
 
