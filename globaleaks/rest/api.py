@@ -17,7 +17,7 @@ from globaleaks.handlers import node, submission, tip, admin, receiver, files
 from globaleaks.messages.base import tipID, submissionID, contextID, moduleENUM
 
 
-more_lax = r'(\w+)'
+more_lax = r'(\w+)' # would be changed with regexp.submission_id | regexp.receipt_id
 
 spec = [
     ## Node Handler ##
@@ -38,9 +38,6 @@ spec = [
     # https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPRbsoz_Hs3TTSnK7NzY86S4/edit?pli=1
 
     ## Tip Handlers ##
-    #  * /tip without t_ID, POST only, used by WB to submit receipt
-    (r'/tip', tip.TipWbAccess),
-
     #  * /tip/<ID>/ T1
     (r'/tip/' + more_lax, tip.TipRoot),
 
