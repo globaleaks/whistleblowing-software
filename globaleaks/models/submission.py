@@ -175,6 +175,9 @@ class Submission(TXModel):
 
     @transact
     def create_tips(self, submission_id, receipt):
+        """
+        XXX how is possibile that is not created/used idops.generate_random_tip() ?
+        """
         store = self.getStore()
         try:
             submission = store.find(Submission,
