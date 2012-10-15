@@ -33,22 +33,18 @@ class Folder(TXModel):
 
     id = Unicode(primary=True)
 
+    name = Unicode()
     description = Unicode()
     property_applied = Pickle()
     # actually there are not property, but here would be marked if symmetric
     # asymmetric encryption has been used.
 
     upload_time = Date()
-    downloaded_count = Int()
 
     associated_receiver_id = Int()
     associated_receiver = Reference(associated_receiver_id, Receiver.id)
     # associated_receiver_id is useful for show, in the general page of the
     # receiver, eventually the latest available folders
-
-    # XXX do we actually need this? Folder will always be instantiated from
-    # internaltip, I do not think it will happend vice versa.
-    #internaltip = Reference(internaltip_id, InternalTip.id)
 
     internaltip_id = Int()
 
@@ -63,7 +59,9 @@ class Folder(TXModel):
 
     def file_dicts(self):
         file_dicts = []
+        print "Going over %s" % self.files
         for f in self.files:
+            print "In here y0 %s" % f
             file_dict = {'name': f.name,
                     'description': f.description,
                     'size': f.size,
@@ -101,7 +99,7 @@ class File(TXModel):
     folder_id = Unicode()
     folder = Reference(folder_id, Folder.id)
 
-Folder.files = ReferenceSet(File.folder_id, Folder.id)
+Folder.files = ReferenceSet(Folder.id, File.folder_id)
 
 class Comment(TXModel):
     __storm_table__ = 'comments'
@@ -141,6 +139,8 @@ class InternalTip(TXModel):
     creation_date = Date()
     expiration_date = Date()
 
+    downloads = Int()
+
     # the LIMITS are defined and declared *here*, and then
     # in the (Special|Receiver)Tip there are the view_count
     # in Folders(every Receiver has 1 to N folders), has the download_count
@@ -155,14 +155,13 @@ class InternalTip(TXModel):
     context_id = Unicode()
     context = Reference(context_id, Context.context_id)
 
-
     def folder_dicts(self):
         folder_dicts = []
         for folder in self.folders:
             folder_dict = {'name': folder.name,
                     'description': folder.description,
-                    'downloads': folder.downloads,
-                    'files': folder.file_dicts}
+                    'downloads': self.downloads,
+                    'files': folder.file_dicts()}
             folder_dicts.append(folder_dict)
         return folder_dicts
 
@@ -177,7 +176,8 @@ class InternalTip(TXModel):
         and all the derived tips. is called by scheduler when
         timeoftheday is >= expired_date
         """
-
+# XXX Refactor this to use the internaltip_id (replace .id with internaltip_id)
+Folder.internaltip = Reference(Folder.internaltip_id, InternalTip.id)
 
 class Tip(TXModel):
     __storm_table__ = 'tips'
