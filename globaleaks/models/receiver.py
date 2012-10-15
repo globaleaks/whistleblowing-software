@@ -9,6 +9,10 @@ __all__ = ['Receiver', 'ReceiverPreferences']
 class Receiver(TXModel):
     __storm_table__ = 'receivers'
 
+    # XXX change this be the Unicode receiver_id
+    #     warning! This requires changes in everything
+    #     calling the Receiver object and the receiver
+    #     attributes.
     id = Int(primary=True)
 
     receiver_id = Unicode()

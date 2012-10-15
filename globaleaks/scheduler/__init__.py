@@ -1,3 +1,2 @@
-__all__ = ['manager', 'jobs']
+__all__ = ['manager']
 from . import manager
-from . import jobs
