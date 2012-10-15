@@ -57,11 +57,6 @@ class Folder(TXModel):
     # having the Folder.folder_id can be shared and downloaded by
     # someone that has not access to the Tip
 
-    def new(self):
-        folder_id = idops.random_folder_id()
-        self.id = folder_id
-        return folder_id
-
     def file_dicts(self):
         file_dicts = []
         log.debug("Processing %s" % self.files)
@@ -86,7 +81,7 @@ class File(TXModel):
     """
     __storm_table__ = 'files'
 
-    id = Int(primary=True)
+    id = Unicode(primary=True)
 
     name = Unicode()
     content = RawStr()

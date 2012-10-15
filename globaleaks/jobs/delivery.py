@@ -6,10 +6,14 @@
 
 import time
 import datetime
+import shutil
+import os
 
 from twisted.internet.defer import Deferred
 from twisted.internet import reactor
 
+from globaleaks import config
+from globaleaks.utils import log
 from globaleaks.jobs.base import Job
 
 class Delivery(Job):
@@ -25,9 +29,19 @@ class Delivery(Job):
         return d
 
     def run(self, *arg):
-        d = Deferred()
-        f = open('/tmp/testingout.txt', "a+")
-        f.write(str(arg)+'\n')
-        f.close()
-        return d
+        submission_id = self.submission_id
+        receipt_id = self.receipt_id
+        if not os.path.isdir(config.advanced.delivery_dir):
+            log.debug("%s does not exist. creating it." % config.advanced.delivery_dir)
+            os.mkdir(config.advanced.delivery_dir)
+
+        dst_dir = os.path.join(config.advanced.delivery_dir, receipt_id)
+        #if not os.path.isdir(receipt_dir):
+        #    log.debug("%s does not exist. creating it." % receipt_dir)
+        #    os.mkdir(receipt_dir)
+
+        src_dir = os.path.join(config.advanced.submissions_dir, submission_id)
+
+        log.debug("Copying %s into %s" % (src_dir, dst_dir))
+        shutil.copytree(src_dir, dst_dir)
 

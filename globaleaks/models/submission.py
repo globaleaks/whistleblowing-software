@@ -14,7 +14,7 @@ from globaleaks.models.tip import InternalTip, Tip, ReceiverTip, File, Folder
 from globaleaks.models.admin import Context
 
 from globaleaks.jobs.delivery import Delivery
-from globaleaks import work_manager
+from globaleaks.scheduler.manager import work_manager
 from globaleaks.utils import log
 
 __all__ = ['Submission']
@@ -77,7 +77,7 @@ class Submission(TXModel):
         submission.creation_time = creation_time
 
         folder = Folder()
-        folder_id = folder.new()
+        folder.id = idops.random_folder_id()
         store.add(folder)
 
         submission.folder = folder
@@ -88,12 +88,12 @@ class Submission(TXModel):
 
         response = {"submission_id": submission_id,
             "creation_time": gltime.dateToTime(creation_time),
-            "folder_id": folder_id
+            "folder_id": folder.id
         }
         return response
 
     @transact
-    def add_file(self, submission_id, file_name):
+    def add_file(self, submission_id, file_name=None):
         log.debug("Adding file %s to %s" % (submission_id, file_name))
 
         store = self.getStore()
@@ -104,16 +104,26 @@ class Submission(TXModel):
             store.close()
             raise SubmissionNotFoundError
 
+        new_file_id = idops.random_file_id()
+        log.debug("Generated this file id %s" % new_file_id)
         new_file = File()
-
-        new_file.name = file_name
-        new_file.folder_id = submission.folder.id
+        #new_file.folder = submission.folder
+        # XXX setting this to random for the moment
+        #new_file.name = new_file_id
+        new_file.id = unicode(new_file_id)
         store.add(new_file)
 
-        log.debug("Added file %s to %s" % (submission_id, file_name))
+        try:
+            store.commit()
+        except Exception, e:
+            log.exception("Error in file adding")
+            store.rollback()
+            store.close()
+            raise SubmissionModelError(e)
 
-        store.commit()
+        log.debug("Added file %s to %s" % (submission_id, file_name))
         store.close()
+        return new_file_id
 
     @transact
     def update_fields(self, submission_id, fields):
@@ -245,7 +255,7 @@ class Submission(TXModel):
         log.debug("Created internal tip %s" % internal_tip.context_id)
 
         if submission.folder:
-            log.debug("Creating submission folder %s" % submission.folder_id)
+            log.debug("Creating submission folder table %s" % submission.folder_id)
             folder = submission.folder
             folder.internaltip = internal_tip
             try:
@@ -256,7 +266,7 @@ class Submission(TXModel):
                 store.rollback()
                 store.close()
                 raise SubmissionModelError
-            log.debug("Submission folder created %s" % folder)
+            log.debug("Submission folder created")
 
         log.debug("Creating tip for whistleblower")
         whistleblower_tip = Tip()
@@ -277,7 +287,8 @@ class Submission(TXModel):
 
             log.debug("Creating delivery jobs")
             delivery_job = Delivery()
-            delivery_job.receiver = receiver.receiver_id
+            delivery_job.submission_id = submission_id
+            delivery_job.receipt_id = receiver_tip.address
             work_manager.add(delivery_job)
             log.debug("Added delivery to %s to the work manager" % receiver.receiver_id)
 
