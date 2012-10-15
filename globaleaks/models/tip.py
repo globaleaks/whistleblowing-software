@@ -233,12 +233,21 @@ class Tip(TXModel):
         tip_sub_index = tip.get_sub_index()
 
         folders = tip.internaltip.folders
-        # XXX folders do not exist in the Tip variables, why ?
+        # ANSWERED folders do not exist in the Tip variables, why ?
         # + folders shall not be downloaded by the WB, this info can be stripped
         # off the folder_ID (required to download)
+        #
+        # As mentioned on IRC for the moment we want to keep it simple and not
+        # have a folder per receiver.
+        # Once we will have the functionality to add the settings that
+        # distinguish the folders based on the receiver we will change the
+        # folders here to do a lookup on folders for the tip that is specific
+        # to this receiver
 
         comments = tip.internaltip.comments
-        # XXX comments do not exist in the Tip variables, why ?
+        # ANSWERED comments do not exist in the Tip variables, why ?
+        # They are not properties of the Tip variable, but of the internal tip.
+        # The comments are currently global to every tip.
 
         context = tip.internaltip.context_id
 
@@ -291,7 +300,9 @@ class ReceiverTip(Tip):
 
         self.address = idops.random_tip_id()
         # was called tip_gus (globaleaks uniqe string) to AVOID MISTAKES!!!
+        # ANSWERED ok, change the name then, but make sure to not break stuff.
         #self.password =
+
         self.type = u'receiver'
         log.debug("Created!")
 
