@@ -216,6 +216,12 @@ class Tip(TXModel):
 
     @transact
     def lookup(self, receipt):
+        """
+        receipt actually is either a random_tip_id and a random_receipt_id,
+        in the future, would be the hash of a random_receipt_id.
+
+        the string to be matched stay in, 'address'
+        """
         store = self.getStore()
 
         tip = store.find(Tip, Tip.address == receipt).one()
@@ -227,8 +233,13 @@ class Tip(TXModel):
         tip_sub_index = tip.get_sub_index()
 
         folders = tip.internaltip.folders
+        # XXX folders do not exist in the Tip variables, why ?
+        # + folders shall not be downloaded by the WB, this info can be stripped
+        # off the folder_ID (required to download)
 
         comments = tip.internaltip.comments
+        # XXX comments do not exist in the Tip variables, why ?
+
         context = tip.internaltip.context_id
 
         receiver_dicts = tip.internaltip.context.receiver_dicts()
@@ -279,6 +290,7 @@ class ReceiverTip(Tip):
         self.authoptions = {}
 
         self.address = idops.random_tip_id()
+        # was called tip_gus (globaleaks uniqe string) to AVOID MISTAKES!!!
         #self.password =
         self.type = u'receiver'
         log.debug("Created!")

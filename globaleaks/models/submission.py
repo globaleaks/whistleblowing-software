@@ -177,6 +177,11 @@ class Submission(TXModel):
 
     @transact
     def create_tips(self, submission_id, receipt):
+        """
+        ANSWERED how is possibile that is not created/used idops.generate_random_tip() ?
+        idops is used inside of models.tips.ReceiverTip.new().
+            - Art.
+        """
         log.debug("Creating tips for %s" % submission_id)
 
         store = self.getStore()
