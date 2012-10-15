@@ -52,8 +52,8 @@ define(function (require) {
       nodeinfo = data;
       nodeinfo.contexts = ui.submission.processContexts(nodeinfo.contexts);
       nodeinfo.context_selected = nodeinfo.contexts[0].id;
-      ui.submission.processForm(nodeinfo.contexts[0].fields);
       requests.submission.root().done(function(submission) {
+        ui.submission.processForm(nodeinfo.contexts[0].fields, nodeinfo, submission);
         var fileupload = templates.fileupload.render({submission_id:
                                     submission['submission_id']});
         $('.fileUpload').html(fileupload);

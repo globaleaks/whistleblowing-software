@@ -67,6 +67,22 @@ define(function (require) {
       }
   };
 
+  function processFields(form) {
+      var form_spec = form.serializeArray(),
+          fields = {};
+      for (var field in form_spec) {
+        fields[form_spec[field].name] = form_spec[field].value;
+      }
+      return fields;
+  };
+
+  function showReceipt(receipt_id) {
+      $('.submissionForm').hide();
+      $('.receipt').show();
+      $('.receipt').html(templates.receipt.render({'receipt_id': receipt_id}));
+  };
+
+
   return {
     debugDeck: function() {
       var debug = require('../debug'),
@@ -146,22 +162,7 @@ define(function (require) {
       });
     },
 
-    processFields: function(form) {
-      var data = form.serializeArray(),
-          fields = {};
-      for (var field in data) {
-        fields[data[field].name] = data[field].value;
-      }
-      return fields;
-    },
-
-    showReceipt: function(receipt_id) {
-      $('.submissionForm').hide();
-      $('.receipt').show();
-      $('.receipt').html(templates.receipt.render({'receipt_id': receipt_id}));
-    },
-
-    processForm: function(form) {
+    processForm: function(form, nodeinfo, submission) {
         $('.submissionFormLeft')[0].innerHTML = "";
         $('.submissionFormRight')[0].innerHTML = "";
         $('.submissionForm button').remove();
@@ -184,21 +185,21 @@ define(function (require) {
         // XXX refactor this to remove this nesting insanity!
         $('.submissionForm').validate({submitHandler: function(form) {
           console.log("I iz valid!");
-          //requests.submission.root().done(function(data) {
-            var fields = processFields($('.submissionForm'));
-            console.log("Going for the hit with " + nodeinfo.context_selected);
-            requests.submission.status_post(data['submission_id'],
-                  {'fields': fields,
-                   'context_selected': nodeinfo.context_selected}).done(function(args){
-                     var proposed_receipt = "ididntchangeit",
-                         folder_name = "foldername",
-                         folder_description = "folderdesc";
-                     requests.submission.finalize_post(data['submission_id'], proposed_receipt,
-                                    folder_name, folder_description).done(function(data){
-                                      showReceipt(data.receipt);
-                                    });
-            });
-          //});
+          console.log(nodeinfo);
+          var fields = processFields($('.submissionForm'));
+          console.log("Going for the hit with " + nodeinfo.context_selected);
+          requests.submission.status_post(submission['submission_id'],
+                {'fields': fields,
+                 'context_selected': nodeinfo.context_selected}).done(function(args){
+                   var proposed_receipt = "ididntchangeit",
+                       folder_name = "foldername",
+                       folder_description = "folderdesc";
+                   requests.submission.finalize_post(submission['submission_id'],
+                                  proposed_receipt, folder_name,
+                                  folder_description).done(function(data){
+                                    showReceipt(data.receipt);
+                                  });
+          });
         }});
 
     },
