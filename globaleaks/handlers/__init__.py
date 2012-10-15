@@ -17,5 +17,5 @@ globaleaks.messages.
 
 See base.BaseHandler for details on the handlers.
 """
-from . import base, node, admin, submission, tip, receiver
-__all__ = ['base', 'node', 'admin', 'submission', 'tip', 'receiver']
+from . import base, node, admin, submission, tip, receiver, files
+__all__ = ['base', 'node', 'admin', 'submission', 'tip', 'receiver', 'files']

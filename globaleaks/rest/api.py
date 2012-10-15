@@ -11,24 +11,24 @@
 #   by what.
 from globaleaks import config
 
-from globaleaks.handlers import node, submission, tip, admin, receiver
+from globaleaks.handlers import node, submission, tip, admin, receiver, files
 
 from cyclone.web import StaticFileHandler
 
 # long sha hash, fixed len
-tip_regexp = '(\w+)'
+tip_regexp = r'(\w+)'
 
 # temporary long int or so far
-submission_id_regexp = '(\w+)'
+submission_id_regexp = r'(\w+)'
 
 # <user_modulename>
-user_module_regexp = '(notification|delivery)'
+user_module_regexp = r'(notification|delivery)'
 
 # <admin_modulename>
-admin_module_regexp = '(notification|delivery|inputfilter)'
+admin_module_regexp = r'(notification|delivery|inputfilter)'
 
 # simple uniq id, not a security issue for be not guessable
-context_id_regexp = '(\w+)'
+context_id_regexp = r'(\w+)'
 
 spec = [
     ## Node Handler ##
@@ -49,7 +49,7 @@ spec = [
 
     #  * /submission/<ID>/files U5
     (r'/submission/' + submission_id_regexp + '/files',
-                     submission.SubmissionFiles),
+                     files.FilesHandler),
     # https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPRbsoz_Hs3TTSnK7NzY86S4/edit?pli=1
 
     ## Tip Handlers ##
