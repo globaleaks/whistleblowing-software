@@ -82,6 +82,26 @@ define(function (require) {
       $('.receipt').html(templates.receipt.render({'receipt_id': receipt_id}));
   };
 
+  function generateForm(form) {
+      var formContent = {left: [], right: []}
+      var x, target,
+          allowed_types = ['string', 'text','checkbox', 'radio'];
+      for (x in form) {
+        if (allowed_types.indexOf(form[x].type) != -1) {
+          var element, position;
+          if ((x % 2) == 0) {
+            position = formContent.left;
+          } else {
+            position = formContent.right;
+          }
+          element = process[form[x].type](form[x]);
+          position.push(element);
+        }
+      };
+      return formContent;
+  };
+
+
 
   return {
     debugDeck: function() {
@@ -161,47 +181,53 @@ define(function (require) {
         }
       });
     },
+    processForm: function(fields, nodeinfo, submission) {
+        var form_content = generateForm(fields);
 
-    processForm: function(form, nodeinfo, submission) {
         $('.submissionFormLeft')[0].innerHTML = "";
         $('.submissionFormRight')[0].innerHTML = "";
-        $('.submissionForm button').remove();
+        //$('.submissionForm button').remove();
+        //$('.submissionForm').remove();
 
-        var x, target,
-            allowed_types = ['string', 'text','checkbox', 'radio'];
-        for (x in form) {
-          // console.log(form[x].type);
-          if (allowed_types.indexOf(form[x].type) != -1) {
-            if ((x % 2) == 0) {
-              target = $('.submissionFormLeft');
-            } else {
-              target = $('.submissionFormRight');
-            }
-            target.append(process[form[x].type](form[x]));
+        //console.log("Adding");
+        //console.log(form_content);
+        for (var el in form_content.left) {
+          $('.submissionFormLeft').append(form_content.left[el]);
+        }
+
+        for (var el in form_content.right) {
+          $('.submissionFormRight').append(form_content.right[el]);
+        }
+        // XXX still too much nesting, but it's probably phisiological
+        $('.submissionForm').change(function() {
+          if ($('.submissionForm').valid()) {
+            $('.submissionForm button#submit_button').addClass('btn-success');
+            $('.submissionForm button#submit_button').removeClass('disabled');
+            $('.submissionForm button#submit_button').removeClass('btn-warning');
+
+            $('.submissionForm button#submit_button').click(function(){
+              var fields = processFields($('.submissionForm'));
+              console.log("Going for the hit with " + nodeinfo.context_selected);
+              requests.submission.status_post(submission['submission_id'],
+                    {'fields': fields,
+                     'context_selected': nodeinfo.context_selected}).done(function(args){
+                var proposed_receipt = "ididntchangeit",
+                folder_name = "foldername",
+                folder_description = "folderdesc";
+                requests.submission.finalize_post(submission['submission_id'],
+                  proposed_receipt, folder_name,
+                  folder_description).done(function(data){
+                  showReceipt(data.receipt);
+                });
+              });
+              return false;
+            });
+          } else {
+            $('.submissionForm button#submit_button').addClass('btn-warning');
+            $('.submissionForm button#submit_button').addClass('disabled');
+            $('.submissionForm button#submit_button').removeClass('btn-success');
           }
-        };
-        $('.submissionForm').append('<button id="submit_button">Submit</button>');
-
-        // XXX refactor this to remove this nesting insanity!
-        $('.submissionForm').validate({submitHandler: function(form) {
-          console.log("I iz valid!");
-          console.log(nodeinfo);
-          var fields = processFields($('.submissionForm'));
-          console.log("Going for the hit with " + nodeinfo.context_selected);
-          requests.submission.status_post(submission['submission_id'],
-                {'fields': fields,
-                 'context_selected': nodeinfo.context_selected}).done(function(args){
-                   var proposed_receipt = "ididntchangeit",
-                       folder_name = "foldername",
-                       folder_description = "folderdesc";
-                   requests.submission.finalize_post(submission['submission_id'],
-                                  proposed_receipt, folder_name,
-                                  folder_description).done(function(data){
-                                    showReceipt(data.receipt);
-                                  });
-          });
-        }});
-
+        });
     },
 
     getContextFields: function(context_id) {
