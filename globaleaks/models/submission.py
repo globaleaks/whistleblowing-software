@@ -56,7 +56,7 @@ class Submission(TXModel):
     creation_time = Date()
 
     @transact
-    def new(self, context_id):
+    def new(self):
         store = self.getStore()
 
         submission_id = idops.random_submission_id(False)
@@ -106,8 +106,8 @@ class Submission(TXModel):
         store.commit()
         store.close()
 
-    # TODO def select_receiver 
-    
+    # TODO def select_receiver
+
 
     @transact
     def status(self, submission_id):
