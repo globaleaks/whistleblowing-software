@@ -8,6 +8,8 @@ import time
 from twisted.internet import reactor
 from twisted.internet.defer import DeferredList, Deferred
 
+from globaleaks.utils import log, gltime
+
 class WorkManager(object):
     """
     WorkManager is a queue driven job scheduler. You can add jobs to it
@@ -21,13 +23,9 @@ class WorkManager(object):
 
     This allows it to resume state across restarts.
 
-    retries: through this parameter you can specify a list of intervals after
-    which a retry should happen. This is time in seconds.
-    XXX in the future we may want to support a cronish like syntax for such
-        timeouts (1m, 1h, 2d, 1m etc.)
+    WARNING API CHANGE:
+    the retries parameter is now part of Job.
     """
-    retries = [1]
-
     def __init__(self):
         self.workQueue = []
         self.failedQueue = []
@@ -65,62 +63,6 @@ class WorkManager(object):
             # The call lock is not set, therefore we will register to call later
             self.nextRun = obj.scheduledTime
             self.callLock = reactor.callLater(self.getTimeout(), self.run)
-
-
-    def _success(self, result, obj):
-        # Successfully completed the job
-        self.workQueue.remove(obj)
-        obj.running = False
-
-    def _failed(self, failure, obj):
-        obj.failures.append(failure)
-        self.workQueue.remove(obj)
-
-        if len(obj.failures) > len(self.retries):
-            # Too many failures, give up trying
-            self.failedQueue.append(obj)
-        else:
-            # Reschedule the envent by readding it to the queue
-            obj.scheduledTime = time.time()
-            obj.scheduledTime += self.retries[len(obj.failures) - 1]
-            obj.running = False
-            self.add(obj)
-        return failure
-
-    def showState(self):
-        print "Work Queue"
-        print "----------"
-        for x in self.workQueue:
-            print x
-        print "----------"
-        print ""
-        print "Failed Queue"
-        print "----------"
-        for x in self.failedQueue:
-            print x
-        print "----------"
-
-    def loadState(self):
-        """
-        Put in here your logic for resting state.
-        """
-        print "Restoring state!"
-        pass
-
-    def saveState(self, output='manager.state'):
-        """
-        This saves the current state to a local pickle file.
-        XXX replace this to write the state to database.
-        """
-        #fp = open(output, 'w+')
-        #pickle.dump(self, fp)
-        #fp.close()
-        pass
-
-    def _done(self, result, *arg, **kw):
-        self.saveState()
-        if len(self.workQueue) == 0:
-            self.deferred.callback(None)
 
     def run(self):
         """
@@ -160,6 +102,70 @@ class WorkManager(object):
         dl.addBoth(self._done)
         self.runningJobs = dl
 
+
+
+    def _success(self, result, obj):
+        """
+        We have successfully run the Job obj.
+        """
+        self.workQueue.remove(obj)
+        obj.running = False
+
+    def _failed(self, failure, obj):
+        """
+        This Job obj has failed. We should figure out if it's worth our time to
+        try again.
+        """
+        log.debug("The job %s has failed" % obj)
+        obj.failures.append(failure)
+        self.workQueue.remove(obj)
+
+        if len(obj.failures) > len(obj.retries):
+            log.debug("Too many failures, give up trying")
+            obj.failedRetries()
+            self.failedQueue.append(obj)
+        else:
+            log.debug("Rescheduling the event")
+            obj.failed()
+            obj.scheduledTime = time.time()
+            obj.scheduledTime += obj.retries[len(obj.failures) - 1]
+            obj.running = False
+            log.debug("Going to run it at %s" % gltime.timeToPrettyDate(obj.scheduledTime))
+            self.add(obj)
+        return failure
+
+    def showState(self):
+        log.debug("Work Queue")
+        for x in self.workQueue:
+            log.debug("* "+x)
+        log.debug("Failed Queue")
+        for x in self.failedQueue:
+            log.debug("* "+x)
+
+    def loadState(self):
+        """
+        Put in here your logic for resting state.
+        """
+        log.debug("loading state.")
+        pass
+
+    def saveState(self, output='manager.state'):
+        """
+        This saves the current state to a local pickle file.
+        XXX replace this to write the state to database.
+        """
+        #fp = open(output, 'w+')
+        #pickle.dump(self, fp)
+        #fp.close()
+        pass
+
+    def _done(self, result, *arg, **kw):
+        log.debug("Run all jobs in the deferred list. Saving state.")
+        self.saveState()
+        log.debug("State saved")
+        if len(self.workQueue) == 0:
+            log.debug("The work queue is empty. I am going to start idling.")
+            self.deferred.callback(None)
 
     def getTimeout(self):
         """

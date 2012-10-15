@@ -64,8 +64,9 @@ class Folder(TXModel):
 
     def file_dicts(self):
         file_dicts = []
-        print "Going over %s" % self.files
+        log.debug("Processing %s" % self.files)
         for f in self.files:
+            log.debug("Generating file dict")
             print "In here y0 %s" % f
             file_dict = {'name': f.name,
                     'description': f.description,
@@ -74,6 +75,7 @@ class Folder(TXModel):
                     'date': f.uploaded_date,
                     'metadata_cleaned': f.metadata_cleaned,
                     'completed': f.completed}
+            log.debug("Done %s" % file_dict)
             file_dicts.append(file_dict)
         return file_dicts
 
