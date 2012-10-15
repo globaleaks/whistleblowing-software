@@ -195,6 +195,12 @@ class Submission(TXModel):
             store.close()
             # XXX if this happens we probably have to delete one row in the DB
             raise SubmissionModelError("Collision detected! HELP THE WORLD WILL END!")
+        except Exception, e:
+            log.err("Other random exception")
+            log.err(e)
+            store.rollback()
+            store.close()
+            raise SubmissionModelError
 
         if not submission:
             store.rollback()
@@ -224,20 +230,33 @@ class Submission(TXModel):
             log.msg("Did not find the context for %s submission" % submission_id)
             raise SubmissionContextNotFoundError
 
-
         log.debug("Creating internal tip")
-        internal_tip = InternalTip()
-        internal_tip.fields = submission.fields
-        internal_tip.context_id = submission.context_selected
-        store.add(internal_tip)
-        log.debug("Created internal tip %s" % internal_tip.id)
+        try:
+            internal_tip = InternalTip()
+            internal_tip.fields = submission.fields
+            internal_tip.context_id = submission.context_selected
+            store.add(internal_tip)
+        except Exception, e:
+            log.err(e)
+            store.rollback()
+            store.close()
+            raise SubmissionModelError
+
+        log.debug("Created internal tip %s" % internal_tip.context_id)
 
         if submission.folder:
             log.debug("Creating submission folder %s" % submission.folder_id)
             folder = submission.folder
             folder.internaltip = internal_tip
-            store.add(folder)
-            store.commit()
+            try:
+                store.add(folder)
+                store.commit()
+            except Exception, e:
+                log.err(e)
+                store.rollback()
+                store.close()
+                raise SubmissionModelError
+            log.debug("Submission folder created %s" % folder)
 
         log.debug("Creating tip for whistleblower")
         whistleblower_tip = Tip()
@@ -263,8 +282,14 @@ class Submission(TXModel):
             log.debug("Added delivery to %s to the work manager" % receiver.receiver_id)
 
         log.debug("Deleting the temporary submission %s" % submission.id)
+
         store.remove(submission)
 
-        store.commit()
+        try:
+            store.commit()
+        except Exception, e:
+            log.err("Could not create submission")
+            log.err(e)
+            store.rollback()
         store.close()
 
