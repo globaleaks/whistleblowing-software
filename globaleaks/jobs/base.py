@@ -13,6 +13,7 @@ class Job(object):
     def __init__(self, scheduledTime=time.time(), delay=None):
         self.scheduledTime = scheduledTime
 
+        self.args = ()
         self.manager = None
         self.running = False
         self.failures = []
@@ -28,9 +29,9 @@ class Job(object):
         else:
             raise Exception("date argument must be an instance of datetime")
 
-    def _run(self, manager=None):
+    def _run(self, *args):
         d = self.run()
-        self.manager = manager
+        self.args = args
         return d
 
     def run(self):

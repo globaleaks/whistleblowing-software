@@ -1,10 +1,15 @@
+# -*- encoding: utf-8 -*-
+#
+# :authors: Arturo Filastò
+# :licence: see LICENSE
+
 from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, Date, Unicode, RawStr, Bool
 from storm.locals import Reference, ReferenceSet
 
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
-from globaleaks.utils import idops
+from globaleaks.utils import idops, log
 
 from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.receiver import Receiver
@@ -261,7 +266,11 @@ class ReceiverTip(Tip):
     last_access = Date()
     pertinence_vote = Int()
 
-    def new(self):
+    receiver_id = Unicode()
+    receiver = Reference(receiver_id, Receiver.id)
+
+    def new(self, receiver_id):
+        log.debug("Creating receiver tip for %s" % receiver_id)
         self.total_view_count = 0
         self.total_view_count = 0
         self.relative_view_count = 0
@@ -272,6 +281,7 @@ class ReceiverTip(Tip):
         self.address = idops.random_tip_id()
         #self.password =
         self.type = u'receiver'
+        log.debug("Created!")
 
     @transact
     def receiver_dicts(self):

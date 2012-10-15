@@ -78,6 +78,6 @@ spec = [
 
     ## Main Web app ##
     # * /
-    (r"/(.*)", StaticFileHandler, {'path': config.glbackend.glclient_path})
+    (r"/(.*)", StaticFileHandler, {'path': config.main.glclient_path})
 ]
 

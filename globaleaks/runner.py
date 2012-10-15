@@ -8,6 +8,7 @@ from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 
 from globaleaks.db import createTables
+from globaleaks.utils import log
 
 class GLBaseRunner(app.ApplicationRunner):
     """
@@ -77,6 +78,7 @@ else:
                 """
                 Start the actual service Application.
                 """
+                print "Running start."
                 self.startApplication(self.application)
                 print "GLBackend is now running"
                 print "Visit http://127.0.0.1:8082/index.html to interact with me"
@@ -88,3 +90,6 @@ else:
             self.removePID(self.config['pidfile'])
 
     GLBaseRunner = GLBaseRunnerUnix
+
+GLBaseRunner.loggerFactory = log.LoggerFactory
+

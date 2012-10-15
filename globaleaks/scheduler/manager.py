@@ -8,8 +8,6 @@ import time
 from twisted.internet import reactor
 from twisted.internet.defer import DeferredList, Deferred
 
-#from globaleaks.scheduler.jobs import *
-
 class WorkManager(object):
     """
     WorkManager is a queue driven job scheduler. You can add jobs to it
@@ -44,12 +42,13 @@ class WorkManager(object):
 
         self.deferred = Deferred()
 
-    def add(self, obj):
+    def add(self, obj, *arg):
         """
-        Adds an object to the queue. The object must have the attribute .run()
-        set to something that will return a deferred.
+        Adds a Job object to the queue. args specifies the arguments to be
+        passed to run when running the job.
         """
         obj.running = False
+        obj.arg = arg
 
         self.workQueue.append(obj)
 
@@ -101,6 +100,13 @@ class WorkManager(object):
             print x
         print "----------"
 
+    def loadState(self):
+        """
+        Put in here your logic for resting state.
+        """
+        print "Restoring state!"
+        pass
+
     def saveState(self, output='manager.state'):
         """
         This saves the current state to a local pickle file.
@@ -140,7 +146,7 @@ class WorkManager(object):
 
             if not obj.running:
                 obj.running = True
-                d = obj._run(self)
+                d = obj._run(self, *obj.arg)
                 d.addErrback(self._failed, obj)
                 d.addCallback(self._success, obj)
                 dlist.append(d)
@@ -154,7 +160,6 @@ class WorkManager(object):
         dl.addBoth(self._done)
         self.runningJobs = dl
 
-        return self.deferred
 
     def getTimeout(self):
         """
@@ -174,4 +179,11 @@ class DBWorkManager(WorkManager):
     This is a database driven work manager. It uses the provided database to
     store the current state of the work queues.
     """
+    def saveState(self):
+        print "Saving state to DB"
+
+    def restoreState(self):
+        print "Restoring state from DB"
+
+
 
