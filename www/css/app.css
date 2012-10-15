@@ -2,6 +2,7 @@
 @import url(bootstrap-responsive.css);
 @import url(datatables.css);
 @import url(configpages.css);
+@import url('jquery.fileupload-ui.css');
 
 body {
   position: relative;

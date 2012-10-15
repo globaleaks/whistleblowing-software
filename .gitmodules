@@ -1,0 +1,9 @@
+[submodule "submodules/jquery.file.upload"]
+	path = submodules/jquery.file.upload
+	url = https://github.com/blueimp/jQuery-File-Upload.git
+[submodule "submodules/jquery.ui.bootstrap"]
+	path = submodules/jquery.ui.bootstrap
+	url = https://github.com/addyosmani/jquery-ui-bootstrap.git
+[submodule "submodules/jquery.ui"]
+	path = submodules/jquery.ui
+	url = https://github.com/jquery/jquery-ui.git
