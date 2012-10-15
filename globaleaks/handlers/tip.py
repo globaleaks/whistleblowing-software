@@ -20,20 +20,27 @@ class TipRoot(BaseHandler):
     def get(self, receipt):
         print "Processing %s" % receipt
         tip = Tip()
+
         tip_dict = yield tip.lookup(receipt)
+
         self.write(tip_dict)
         self.finish()
+
 
     """
     root of /tip/ POST handle *deleting* and *forwarding* options,
     they are checked in the tip-properties
-    (assigned by the tip propetary)
+    (assigned by the tip propetary), only the receiver may have
+    this properties
     """
-    def post(self, *arg, **kw):
+    def post(self, tip_id, *arg, **kw):
         pass
 
 class TipComment(BaseHandler):
-    def post(self, *arg, **kw):
+
+    def post(self, tip_id, *arg, **kw):
+        print "Processing %s" % tip_id
+
         pass
 
 class TipFiles(BaseHandler):

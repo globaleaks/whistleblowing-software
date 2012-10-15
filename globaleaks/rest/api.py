@@ -17,7 +17,7 @@ from globaleaks.handlers import node, submission, tip, admin, receiver, files
 from globaleaks.messages.base import tipID, submissionID, contextID, moduleENUM
 
 
-more_lax = r'(\w+)'
+more_lax = r'(\w+)' # would be changed with regexp.submission_id | regexp.receipt_id
 
 spec = [
     ## Node Handler ##
