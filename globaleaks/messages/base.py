@@ -84,20 +84,20 @@ class tipID(SpecialType):
     regexp = r"(t_[a-zA-Z]{50,50})"
 
 class fileDict(GLTypes):
-    specification = {"filename": unicode,
-                "file_description": unicode,
+    specification = {"name": unicode,
+                "description": unicode,
                 "size": int,
                 "content_type": unicode,
                 "date": dateType,
-                "cleaned_meta_data": bool,
+                "metadata_cleaned": bool,
                 "completed": bool
                 }
 
 class folderDict(GLTypes):
-    specification = {"folder_id": folderID,
-            "folder_name": unicode,
-            "folder_description": unicode,
-            "download_performed": int,
+    specification = {"id": folderID,
+            "name": unicode,
+            "description": unicode,
+            "downloads": int,
             "files": [fileDict],
             }
             # this information is comunicated along the

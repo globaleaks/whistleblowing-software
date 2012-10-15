@@ -6,7 +6,10 @@
 
 from __future__ import with_statement
 
-from cyclone.web import RequestHandler, HTTPError
+from globaleaks import models
+
+from twisted.internet.defer import inlineCallbacks
+from cyclone.web import RequestHandler, HTTPError, asynchronous
 
 import json, re, urllib
 import time, hashlib
@@ -40,7 +43,8 @@ class FilesHandler(RequestHandler):
 
     def saveFile(self, data, filelocation):
         """
-        This can be ovewritten to implement your own file writing functions.
+        XXX This is currently blocking. MUST be refactored to not be blocking
+        otherwise we loose...
         """
         with open(filelocation, 'w+') as f:
             f.write(data)
@@ -77,18 +81,6 @@ class FilesHandler(RequestHandler):
         name = self.filenamePrefix+rname+'.file'
         return name
 
-    def handle_upload(self):
-        results = []
-        # XXX will this ever be bigger than 1?
-        file_array, files = self.request.files.popitem()
-        for file in files:
-            start_time = time.time()
-
-            result = self.process_file(file)
-            result['elapsed_time'] = time.time() - start_time
-            results.append(result)
-            return results
-
     def options(self):
         pass
 
@@ -98,17 +90,32 @@ class FilesHandler(RequestHandler):
     def get(self, *arg, **kw):
         pass
 
-    def post(self, *arg, **kw):
-        print "In her edog"
+    @asynchronous
+    @inlineCallbacks
+    def post(self, submission_id):
         method_hack = self.get_arguments('_method')
         if method_hack and method_hack == 'DELETE':
-            return self.delete()
+            self.delete()
 
-        s = json.dumps(self.handle_upload(), separators=(',',':'))
+        results = []
+
+        # XXX will this ever be bigger than 1?
+        file_array, files = self.request.files.popitem()
+        for file in files:
+            print "Processing %s" % file
+            start_time = time.time()
+            result = self.process_file(file)
+            result['elapsed_time'] = time.time() - start_time
+            results.append(result)
+
+            submission = models.submission.Submission()
+            yield submission.add_file(submission_id, result['name'])
+
+        response = json.dumps(results, separators=(',',':'))
 
         if 'application/json' in self.request.headers.get('Accept'):
             self.set_header('Content-Type', 'application/json')
-        self.write(s)
+        self.write(response)
 
     def delete(self):
         pass

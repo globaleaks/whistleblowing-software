@@ -6,12 +6,12 @@
 from twisted.python import log
 from twisted.internet.defer import returnValue, inlineCallbacks
 from storm.twisted.transact import transact
-from storm.locals import Int, Pickle, Date, Unicode
+from storm.locals import Int, Pickle, Date, Unicode, Reference
 from storm.exceptions import NotOneError, NoneError
 
 from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel, ModelError
-from globaleaks.models.tip import Folder, InternalTip, Tip, ReceiverTip
+from globaleaks.models.tip import InternalTip, Tip, ReceiverTip, File, Folder
 from globaleaks.models.admin import Context
 
 __all__ = ['Submission']
@@ -46,14 +46,21 @@ class Submission(TXModel):
     """
     __storm_table__ = 'submission'
 
+    # XXX we probably want to remove this useless Int ID and only use the
+    # random submission_id. This also decreases the kind of derivate data we
+    # store on db.
     id = Int(primary=True)
     submission_id = Unicode() # Int()
-    folder_id = Int()
+
     fields = Pickle()
 
     context_selected = Pickle()
 
+    folder_id = Unicode()
+    folder = Reference(folder_id, Folder.id)
+
     creation_time = Date()
+
 
     @transact
     def new(self):
@@ -61,18 +68,44 @@ class Submission(TXModel):
 
         submission_id = idops.random_submission_id(False)
         creation_time = gltime.utcDateNow()
-        response = {"submission_id": submission_id,
-                    "creation_time": gltime.dateToTime(creation_time)}
 
         submission = Submission()
         submission.submission_id = submission_id
-        submission.folder_id = 0
         submission.creation_time = creation_time
 
+        folder = Folder()
+        folder_id = folder.new()
+        store.add(folder)
+
+        submission.folder = folder
         store.add(submission)
+
         store.commit()
         store.close()
+
+        response = {"submission_id": submission_id,
+            "creation_time": gltime.dateToTime(creation_time),
+            "folder_id": folder_id
+        }
         return response
+
+    @transact
+    def add_file(self, submission_id, file_name):
+        store = self.getStore()
+        s = store.find(Submission, Submission.submission_id==submission_id).one()
+
+        if not s:
+            store.rollback()
+            store.close()
+            raise SubmissionNotFoundError
+
+        new_file = File()
+        new_file.name = file_name
+        new_file.folder_id = s.folder_id
+        store.add(new_file)
+
+        store.commit()
+        store.close()
 
     @transact
     def update_fields(self, submission_id, fields):
@@ -138,8 +171,8 @@ class Submission(TXModel):
     def create_tips(self, submission_id, receipt):
         store = self.getStore()
         try:
-            s = store.find(Submission,
-                Submission.submission_id==submission_id).one()
+            submission = store.find(Submission,
+                            Submission.submission_id==submission_id).one()
         except NotOneError, e:
             log.msg("Problem creating tips for %s" % submission_id)
             log.msg(e)
@@ -148,12 +181,12 @@ class Submission(TXModel):
             # XXX if this happens we probably have to delete one row in the DB
             raise SubmissionModelError("Collision detected! HELP THE WORLD WILL END!")
 
-        if not s:
+        if not submission:
             store.rollback()
             store.close()
             raise SubmissionNotFoundError
 
-        if not s.context_selected:
+        if not submission.context_selected:
             store.rollback()
             store.close()
             raise SubmissionNoContextSelectedError
@@ -175,6 +208,8 @@ class Submission(TXModel):
         internal_tip.fields = s.fields
         internal_tip.context_id = s.context_selected
         store.add(internal_tip)
+
+        submission.folder.internaltip_id = internal_tip.id
 
         whistleblower_tip = Tip()
         whistleblower_tip.internaltip = internal_tip

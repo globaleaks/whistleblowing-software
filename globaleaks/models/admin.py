@@ -195,7 +195,7 @@ class Context(TXModel):
         return description_dict
 
 
-    def list_receiver_dicts(self):
+    def receiver_dicts(self):
         receiver_dicts = []
         for receiver in self.receivers:
             receiver_dict = {"id": receiver.receiver_id,
@@ -229,7 +229,7 @@ class Context(TXModel):
         dicts = []
         result = store.find(Context)
         for context in result:
-            dd = context.generate_description_dict(context.list_receiver_dicts())
+            dd = context.generate_description_dict(context.receiver_dicts())
             dicts.append(dd)
         store.commit()
         store.close()

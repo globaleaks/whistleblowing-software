@@ -31,8 +31,8 @@ class Folder(TXModel):
     """
     __storm_table__ = 'folders'
 
-    id = Int(primary=True)
-    folder_gus = Unicode()
+    id = Unicode(primary=True)
+
     description = Unicode()
     property_applied = Pickle()
     # actually there are not property, but here would be marked if symmetric
@@ -40,7 +40,6 @@ class Folder(TXModel):
 
     upload_time = Date()
     downloaded_count = Int()
-    files_related = Pickle()
 
     associated_receiver_id = Int()
     associated_receiver = Reference(associated_receiver_id, Receiver.id)
@@ -57,6 +56,24 @@ class Folder(TXModel):
     # having the Folder.folder_id can be shared and downloaded by
     # someone that has not access to the Tip
 
+    def new(self):
+        folder_id = idops.random_folder_id()
+        self.id = folder_id
+        return folder_id
+
+    def file_dicts(self):
+        file_dicts = []
+        for f in self.files:
+            file_dict = {'name': f.name,
+                    'description': f.description,
+                    'size': f.size,
+                    'content_type': f.content_type,
+                    'date': f.uploaded_date,
+                    'metadata_cleaned': f.metadata_cleaned,
+                    'completed': f.completed}
+            file_dicts.append(file_dict)
+        return file_dicts
+
 
 class File(TXModel):
     """
@@ -65,17 +82,26 @@ class File(TXModel):
     __storm_table__ = 'files'
 
     id = Int(primary=True)
-    filename = Unicode()
-    filecontent = RawStr()
-    hash = RawStr()
+
+    name = Unicode()
+    content = RawStr()
+
+    completed = Bool()
+
+    shasum = RawStr()
+
     description = Unicode()
     content_type = Unicode()
+
     size = Int()
+
     metadata_cleaned = Bool()
     uploaded_date = Date()
 
-    folder_id = Int()
+    folder_id = Unicode()
     folder = Reference(folder_id, Folder.id)
+
+Folder.files = ReferenceSet(File.folder_id, Folder.id)
 
 class Comment(TXModel):
     __storm_table__ = 'comments'
@@ -129,6 +155,16 @@ class InternalTip(TXModel):
     context_id = Unicode()
     context = Reference(context_id, Context.context_id)
 
+
+    def folder_dicts(self):
+        folder_dicts = []
+        for folder in self.folders:
+            folder_dict = {'name': folder.name,
+                    'description': folder.description,
+                    'downloads': folder.downloads,
+                    'files': folder.file_dicts}
+            folder_dicts.append(folder_dict)
+        return folder_dicts
 
     def postpone_expiration(self):
         """
@@ -190,11 +226,12 @@ class Tip(TXModel):
         comments = tip.internaltip.comments
         context = tip.internaltip.context_id
 
-        receiver_dicts = tip.internaltip.context.list_receiver_dicts()
+        receiver_dicts = tip.internaltip.context.receiver_dicts()
+        folders = tip.internaltip.folder_dicts()
 
         tip_details = {'tip': tip_sub_index,
                    'fields': tip.internaltip.fields,
-                   'folders': None,#folders,
+                   'folders': folders,#folders,
                    'comments': None, #comments,
                    'context': context,
                    'receivers': receiver_dicts
