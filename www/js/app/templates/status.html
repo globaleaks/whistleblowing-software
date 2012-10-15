@@ -17,15 +17,17 @@
       </dl>
     </div>
     <div class="span4">
-      <h3>Files</h3>
+      <h3>Folders</h3>
+      {{#folders}}
       <div class="well">
+        <h4>{{name}}</h4>
         <ul>
-          <li><i class="icon-book"></i> Document.pdf</li>
-          <li><i class="icon-book"></i> Document.pdf</li>
-          <li><i class="icon-book"></i> Document.pdf</li>
-          <li><i class="icon-book"></i> Document.pdf</li>
+          {{#files}}
+          <li><i class="icon-book"></i> {{name}}</li>
+          {{/files}}
         </ul>
       </div>
+      {{/folders}}
     </div>
   </div>
   <div class="row">
