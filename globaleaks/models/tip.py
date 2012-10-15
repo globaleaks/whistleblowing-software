@@ -210,7 +210,11 @@ class Tip(TXModel):
         return ret
 
     @transact
-    def lookup(self, receipt):
+    def wb_auth(self, receipt):
+        """
+        Awaits a receipt and check in the WhistleBlower tip
+        (XXX why WBtip is an extension of Tip class, instead be a different class with a reference ?)
+        """
         store = self.getStore()
 
         tip = store.find(Tip, Tip.address == receipt).one()
@@ -222,8 +226,13 @@ class Tip(TXModel):
         tip_sub_index = tip.get_sub_index()
 
         folders = tip.internaltip.folders
+        # XXX folders do not exist in the Tip variables, why ?
+        # + folders shall not be downloaded by the WB, this info can be stripped
+        # off the folder_ID (required to download)
 
         comments = tip.internaltip.comments
+        # XXX comments do not exist in the Tip variables, why ?
+
         context = tip.internaltip.context_id
 
         receiver_dicts = tip.internaltip.context.receiver_dicts()
@@ -235,6 +244,38 @@ class Tip(TXModel):
                    'comments': None, #comments,
                    'context': context,
                    'receivers': receiver_dicts
+        }
+        store.commit()
+        store.close()
+
+        return tip_details
+
+    @transact
+    def lookup(self, tip_id):
+        store = self.getStore()
+
+        tip = store.find(Tip, Tip.address == tip_id).one()
+        if not tip:
+            store.rollback()
+            store.close()
+            raise TipNotFoundError
+
+        tip_sub_index = tip.get_sub_index()
+
+        folders = tip.internaltip.folders
+        comments = tip.internaltip.comments
+
+        context = tip.internaltip.context_id
+
+        receiver_dicts = tip.internaltip.context.receiver_dicts()
+        folders = tip.internaltip.folder_dicts()
+
+        tip_details = {'tip': tip_sub_index,
+                       'fields': tip.internaltip.fields,
+                       'folders': folders,#folders,
+                       'comments': None, #comments,
+                       'context': context,
+                       'receivers': receiver_dicts
         }
         store.commit()
         store.close()
@@ -270,6 +311,7 @@ class ReceiverTip(Tip):
         self.authoptions = {}
 
         self.address = idops.random_tip_id()
+        # was called tip_gus (globaleaks uniqe string) to AVOID MISTAKES!!!
         #self.password =
         self.type = u'receiver'
 

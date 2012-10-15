@@ -10,10 +10,7 @@ from globaleaks.utils.idops import random_tip_id
 from globaleaks.utils.idops import random_context_id
 
 from globaleaks.rest import answers
-from globaleaks.rest import requests
-from globaleaks.utils.dummy import dummy_answers
-from globaleaks.utils.dummy import dummy_requests
-from globaleaks.utils import recurringtypes
+from globaleaks.messages import requests
 
 # U1 `/node/`
 # U2 `/submission`
@@ -101,14 +98,12 @@ schema = {
           'GET' : [
             False, False, answers.submissionStatus ],
           'POST' : [
-            requests.submissionUpdate,
-            dummy_requests.SUBMISSION_STATUS_POST,
+            requests.submissionStatus.specification,
             answers.submissionStatus
          ] } ],
      "U4" :['/submission/'+sID()+'/finalize', {
          'POST': [
-            requests.finalizeSubmission,
-            dummy_requests.SUBMISSION_FINALIZE_POST,
+            requests.finalizeSubmission.specification,
             answers.finalizeSubmission
          ] } ],
      # "U5" :['/submission/'+sID()+'/files', ['GET','POST','PUT','DELETE']],
@@ -116,21 +111,18 @@ schema = {
          'GET' : [
              False, False, recurringtypes.tipDetailsDict ],
          'POST' : [
-             requests.tipOperations,
-             dummy_requests.TIP_OPTIONS_POST,
+             requests.tipOperations,specification,
              False
          ] } ],
      "T2" :['/tip/'+tID()+'/comment', {
          'POST' : [
-             requests.sendComment,
-             dummy_requests.TIP_COMMENT_POST,
+             requests.sendComment.specification,
              False
          ] } ],
      # "T3" :['/tip/'+tID()+'/files', ['GET','POST','PUT','DELETE']],
      "T4" :['/tip/'+tID()+'/finalize', {
          'POST' : [
-             requests.finalizeIntegration,
-             dummy_requests.TIP_FINALIZE_POST,
+             requests.finalizeIntegration.specification,
              False
          ] } ],
      "T5" :['/tip/'+tID()+'/download', {
@@ -139,8 +131,7 @@ schema = {
          ] } ],
      "T6" :['/tip/'+tID()+'/pertinence', { 
          'POST' : [
-             requests.pertinenceVote,
-             dummy_requests.TIP_PERTINENCE_POST,
+             requests.pertinenceVote.specification,
              False
          ] } ],
      "R1" :['/receiver/' + tID(), {
@@ -151,64 +142,53 @@ schema = {
          'GET' : [
              False, False, answers.receiverModuleAnswer ],
          'POST' : [
-             requests.receiverOptions,
-             dummy_requests.RECEIVER_MODULE_POST,
+             requests.receiverOptions.specification,
              answers.receiverModuleAnswer ],
          'PUT' : [
-             requests.receiverOptions,
-             dummy_requests.RECEIVER_MODULE_PUT,
+             requests.receiverOptions.specification,
              answers.receiverModuleAnswer ],
          'DELETE' : [
-             requests.receiverOptions,
-             dummy_requests.RECEIVER_MODULE_DELETE,
+             requests.receiverOptions.specification,
              answers. receiverModuleAnswer
          ] } ],
      "A1" :['/admin/node', {
          'GET' : [
              False, False, answers.nodeMainSettings ],
          'POST' : [
-             requests.nodeAdminSetup,
-             dummy_requests.ADMIN_NODE_POST,
+             requests.nodeAdminSetup.specificiation,
              answers.nodeMainSettings
          ] } ],
      "A2" :['/admin/contexts/' + cID(), {
          'GET' : [
              False, False, answers.adminContextsCURD ],
          'POST' : [
-             requests.contextConfiguration,
-             dummy_requests.ADMIN_CONTEXTS_POST,
+             requests.contextConfiguration.specification,
              answers.adminContextsCURD ],
          'PUT' : [
-             requests.contextConfiguration,
-             dummy_requests.ADMIN_CONTEXTS_PUT,
+             requests.contextConfiguration.specification,
              answers.adminContextsCURD ],
          'DELETE' : [
-             requests.contextConfiguration,
-             dummy_requests.ADMIN_CONTEXTS_DELETE,
+             requests.contextConfiguration.specification,
              answers.adminContextsCURD
          ] } ],
      "A3" :['/admin/receivers/' +cID(), {
          'GET' : [
              False, False, answers.adminReceiverCURD ],
          'POST' : [
-             requests.receiverConfiguration,
-             dummy_requests.ADMIN_RECEIVERS_POST,
+             requests.receiverConfiguration.specification,
              answers.adminReceiverCURD ],
          'PUT' : [
-             requests.receiverConfiguration,
-             dummy_requests.ADMIN_RECEIVERS_PUT,
+             requests.receiverConfiguration.specification,
              answers.adminReceiverCURD ],
          'DELETE' : [
-             requests.receiverConfiguration,
-             dummy_requests.ADMIN_RECEIVERS_DELETE,
+             requests.receiverConfiguration.specification,
              answers.adminReceiverCURD
          ] } ],
      "A4" :['/admin/modules/'+cID()+'/notification', {
          'GET' : [
              False, False, answers.adminModulesUR ],
          'POST' : [
-             requests.moduleConfiguration,
-             dummy_requests.ADMIN_MODULES_POST,
+             requests.moduleConfiguration.specification,
              answers.adminModulesUR
          ] } ]
 }
