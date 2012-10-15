@@ -57,7 +57,7 @@ This procedure is tested on Ubuntu 12.04
 
     apt-get install python-virtualenv git gcc python-dev
     git clone https://github.com/globaleaks/GLBackend
-    git clone https://github.com/globaleaks/GLClient
+    git clone --recursive https://github.com/globaleaks/GLClient
 
     # It is important that they are both in the same directory
     cd GLBackend
