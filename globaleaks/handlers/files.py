@@ -99,6 +99,7 @@ class FilesHandler(RequestHandler):
         pass
 
     def post(self, *arg, **kw):
+        print "In her edog"
         method_hack = self.get_arguments('_method')
         if method_hack and method_hack == 'DELETE':
             return self.delete()
