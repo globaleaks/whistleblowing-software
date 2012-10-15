@@ -102,7 +102,6 @@ class FilesHandler(RequestHandler):
         # XXX will this ever be bigger than 1?
         file_array, files = self.request.files.popitem()
         for file in files:
-            print "Processing %s" % file
             start_time = time.time()
             result = self.process_file(file)
             result['elapsed_time'] = time.time() - start_time
@@ -116,6 +115,7 @@ class FilesHandler(RequestHandler):
         if 'application/json' in self.request.headers.get('Accept'):
             self.set_header('Content-Type', 'application/json')
         self.write(response)
+        self.finish()
 
     def delete(self):
         pass

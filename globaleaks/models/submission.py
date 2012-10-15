@@ -92,20 +92,26 @@ class Submission(TXModel):
     @transact
     def add_file(self, submission_id, file_name):
         store = self.getStore()
-        s = store.find(Submission, Submission.submission_id==submission_id).one()
+        submission = store.find(Submission, Submission.submission_id==submission_id).one()
 
-        if not s:
+        if not submission:
             store.rollback()
             store.close()
             raise SubmissionNotFoundError
 
         new_file = File()
+
+        print "No show!"
         new_file.name = file_name
-        new_file.folder_id = s.folder_id
+        print "Got it!"
+        new_file.folder_id = submission.folder.id
+        print "No show!"
         store.add(new_file)
 
+        print "No show!"
         store.commit()
         store.close()
+        print "Closed!"
 
     @transact
     def update_fields(self, submission_id, fields):
@@ -193,7 +199,7 @@ class Submission(TXModel):
 
         try:
             context = store.find(Context,
-                    Context.context_id == s.context_selected).one()
+                    Context.context_id == submission.context_selected).one()
         except NotOneError, e:
             store.rollback()
             store.close()
@@ -205,11 +211,15 @@ class Submission(TXModel):
             raise SubmissionContextNotFoundError
 
         internal_tip = InternalTip()
-        internal_tip.fields = s.fields
-        internal_tip.context_id = s.context_selected
+        internal_tip.fields = submission.fields
+        internal_tip.context_id = submission.context_selected
         store.add(internal_tip)
 
-        submission.folder.internaltip_id = internal_tip.id
+        if submission.folder:
+            folder = submission.folder
+            folder.internaltip = internal_tip
+            store.add(folder)
+            store.commit()
 
         whistleblower_tip = Tip()
         whistleblower_tip.internaltip = internal_tip
@@ -224,7 +234,7 @@ class Submission(TXModel):
             store.add(receiver_tip)
 
         # Delete the temporary submission
-        store.remove(s)
+        # store.remove(submission)
 
         store.commit()
         store.close()
