@@ -222,6 +222,9 @@ background-color: whiteSmoke;
     src: url('/fonts/Sansation_Bold.ttf') format("truetype");
 }
 
+.receipt {
+    text-align: center;
+}
 .receipt h2 {
     font-family: "Sansation Bold", sans-serif;
 }
