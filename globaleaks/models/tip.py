@@ -178,7 +178,7 @@ class InternalTip(TXModel):
         """
         function called when a receiver has this option
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "postpone_expiration"
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "postpone_expiration")
 
     def tip_total_delete(self):
         """
@@ -186,7 +186,7 @@ class InternalTip(TXModel):
         and all the derived tips. is called by scheduler when
         timeoftheday is >= expired_date
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "tip_total_delete"
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "tip_total_delete")
 
 
 # XXX Refactor this to use the internaltip_id (replace .id with internaltip_id)
