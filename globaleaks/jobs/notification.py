@@ -17,7 +17,10 @@ from globaleaks.utils import log
 from globaleaks.jobs.base import Job
 
 class Notification(Job):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class Notification", "Job", Job)
+
     def success(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Delivery", "success")
         address = self.address
         receipt_id = self.receipt_id
         log.debug("Successfully run notification of %s to %s" % (receipt_id, address))
@@ -25,6 +28,8 @@ class Notification(Job):
         # deliveries and delete the submisssion directory.
 
     def run(self, *arg):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Delivery", "run")
+
         address = self.address
         receipt_id = self.receipt_id
         dummy_file = os.path.join(config.advanced.data_dir,

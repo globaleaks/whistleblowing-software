@@ -10,6 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest import answers
 from globaleaks import models
+from globaleaks.utils import log
 
 from cyclone.web import RequestHandler, asynchronous
 
@@ -32,6 +33,8 @@ class Node(RequestHandler):
 
 
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "RequestHandler", RequestHandler)
+
     @asynchronous
     @inlineCallbacks
     def get(self):
@@ -51,6 +54,8 @@ class Node(RequestHandler):
              }
 
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get")
+
         from globaleaks.messages import dummy
 
         context = models.admin.Context()

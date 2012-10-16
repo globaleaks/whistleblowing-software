@@ -197,7 +197,7 @@ class Tip(TXModel):
     internaltip = Reference(internaltip_id, InternalTip.id)
 
     def get_sub_index(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "get_sub_index", "self", type(self))
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "get_sub_index")
         log.debug("%s %s" % __file__ % __name__, type(self) )
         print self.internaltip
         ret = {
@@ -225,7 +225,7 @@ class Tip(TXModel):
 
         the string to be matched stay in, 'address'
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "lookup", "receipt", receipt, "self", type(self) )
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "lookup", "receipt", receipt )
         store = self.getStore()
 
         tip = store.find(Tip, Tip.address == receipt).one()
@@ -276,7 +276,7 @@ class Tip(TXModel):
         From a Tip hook the internalTip, and update comments inside.
         Passing thru Tip, permit to detect the comment_type
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "add_comment", "receipt", receipt, "comment", comment, "self", type(self))
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "add_comment", "receipt", receipt, "comment", comment)
         store = self.getStore()
 
         # tip = store.find(Tip, Tip.address == receipt).one()
@@ -331,7 +331,7 @@ class ReceiverTip(Tip):
     receiver = Reference(receiver_id, Receiver.id)
 
     def new(self, receiver_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "new", "receiver_id", receiver_id, "self", type(self) )
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "new", "receiver_id", receiver_id )
         log.debug("Creating receiver tip for %s" % receiver_id)
 
         # all this four details need to be properly moved/renamed
@@ -352,7 +352,7 @@ class ReceiverTip(Tip):
 
     @transact
     def receiver_dicts(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "receiver_dicts", "self", type(self) )
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "receiver_dicts" )
         store = self.getStore()
 
         receiver_dicts = []

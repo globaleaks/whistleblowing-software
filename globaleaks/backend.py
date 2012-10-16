@@ -36,6 +36,8 @@ from globaleaks.rest import api
 
 from globaleaks.utils import log
 
+log.debug("[D] %s %s " % (__file__, __name__), "backend.py")
+
 application = Application('GLBackend')
 GLBackendAPIFactory = web.Application(api.spec, debug=True)
 GLBackendAPI = internet.TCPServer(8082, GLBackendAPIFactory)

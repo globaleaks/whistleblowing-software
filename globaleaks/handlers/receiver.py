@@ -6,6 +6,7 @@
 #   :license: see LICENSE
 #
 from globaleaks.rest import answers
+from globaleaks.utils import log
 
 from globaleaks.handlers import base
 
@@ -18,8 +19,11 @@ class ReceiverRoot(base.BaseHandler):
     it should be inside of the globaleaks/receiver/ directory)
     """
 
+    log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverRoot", "base.BaseHandler", base.BaseHandler)
+
     # R1
     def get(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverRoot", "base.BaseHandler", base.BaseHandler)
         pass
 
 class ReceiverModule(base.BaseHandler):
