@@ -15,11 +15,6 @@ The error code actually used in this file are:
     503 (Service not available)
 """
 
-# decorator @removeslash in cyclone.web may remove final '/' if not
-# expected. would be nice use it, but the Cyclone code check only HEAD and GET
-# while we need checks in a complete CURD
-# -- may this be a request to be opened in Cyclone ?
-
 DEBUG = True
 
 class BaseHandler(RequestHandler):

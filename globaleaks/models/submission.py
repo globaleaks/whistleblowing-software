@@ -3,7 +3,6 @@
 # :authors: Arturo Filastò
 # :licence: see LICENSE
 
-from twisted.python import log
 from twisted.internet.defer import returnValue, inlineCallbacks
 from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, Date, Unicode, Reference
@@ -13,6 +12,10 @@ from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.tip import InternalTip, Tip, ReceiverTip, File, Folder
 from globaleaks.models.admin import Context
+
+from globaleaks.jobs.delivery import Delivery
+from globaleaks.scheduler.manager import work_manager
+from globaleaks.utils import log
 
 __all__ = ['Submission']
 
@@ -73,7 +76,7 @@ class Submission(TXModel):
         submission.creation_time = creation_time
 
         folder = Folder()
-        folder_id = folder.new()
+        folder.id = idops.random_folder_id()
         store.add(folder)
 
         submission.folder = folder
@@ -84,12 +87,14 @@ class Submission(TXModel):
 
         response = {"submission_id": submission_id,
             "creation_time": gltime.dateToTime(creation_time),
-            "folder_id": folder_id
+            "folder_id": folder.id
         }
         return response
 
     @transact
-    def add_file(self, submission_id, file_name):
+    def add_file(self, submission_id, file_name=None):
+        log.debug("Adding file %s to %s" % (submission_id, file_name))
+
         store = self.getStore()
         submission = store.find(Submission, Submission.submission_id==submission_id).one()
 
@@ -98,19 +103,26 @@ class Submission(TXModel):
             store.close()
             raise SubmissionNotFoundError
 
+        new_file_id = idops.random_file_id()
+        log.debug("Generated this file id %s" % new_file_id)
         new_file = File()
-
-        print "No show!"
-        new_file.name = file_name
-        print "Got it!"
-        new_file.folder_id = submission.folder.id
-        print "No show!"
+        #new_file.folder = submission.folder
+        # XXX setting this to random for the moment
+        #new_file.name = new_file_id
+        new_file.id = unicode(new_file_id)
         store.add(new_file)
 
-        print "No show!"
-        store.commit()
+        try:
+            store.commit()
+        except Exception, e:
+            log.exception("Error in file adding")
+            store.rollback()
+            store.close()
+            raise SubmissionModelError(e)
+
+        log.debug("Added file %s to %s" % (submission_id, file_name))
         store.close()
-        print "Closed!"
+        return new_file_id
 
     @transact
     def update_fields(self, submission_id, fields):
@@ -174,6 +186,8 @@ class Submission(TXModel):
 
     @transact
     def create_tips(self, submission_id, receipt):
+        log.debug("Creating tips for %s" % submission_id)
+
         store = self.getStore()
         try:
             submission = store.find(Submission,
@@ -185,21 +199,31 @@ class Submission(TXModel):
             store.close()
             # XXX if this happens we probably have to delete one row in the DB
             raise SubmissionModelError("Collision detected! HELP THE WORLD WILL END!")
+        except Exception, e:
+            log.err("Other random exception")
+            log.err(e)
+            store.rollback()
+            store.close()
+            raise SubmissionModelError
 
         if not submission:
             store.rollback()
             store.close()
+            log.msg("Did not find the %s submission" % submission_id)
             raise SubmissionNotFoundError
 
         if not submission.context_selected:
             store.rollback()
             store.close()
+            log.msg("Did not find the context for %s submission" % submission_id)
             raise SubmissionNoContextSelectedError
 
         try:
             context = store.find(Context,
                     Context.context_id == submission.context_selected).one()
         except NotOneError, e:
+            # XXX will this actually ever happen?
+            # Investigate!
             store.rollback()
             store.close()
             raise SubmissionContextNotOneError
@@ -207,35 +231,70 @@ class Submission(TXModel):
         if not context:
             store.rollback()
             store.close()
+            log.msg("Did not find the context for %s submission" % submission_id)
             raise SubmissionContextNotFoundError
 
-        internal_tip = InternalTip()
-        internal_tip.fields = submission.fields
-        internal_tip.context_id = submission.context_selected
-        store.add(internal_tip)
+        log.debug("Creating internal tip")
+        try:
+            internal_tip = InternalTip()
+            internal_tip.fields = submission.fields
+            internal_tip.context_id = submission.context_selected
+            store.add(internal_tip)
+        except Exception, e:
+            log.err(e)
+            store.rollback()
+            store.close()
+            raise SubmissionModelError
+
+        log.debug("Created internal tip %s" % internal_tip.context_id)
 
         if submission.folder:
+            log.debug("Creating submission folder table %s" % submission.folder_id)
             folder = submission.folder
             folder.internaltip = internal_tip
-            store.add(folder)
-            store.commit()
+            try:
+                store.add(folder)
+                store.commit()
+            except Exception, e:
+                log.err(e)
+                store.rollback()
+                store.close()
+                raise SubmissionModelError
+            log.debug("Submission folder created")
 
+        log.debug("Creating tip for whistleblower")
         whistleblower_tip = Tip()
         whistleblower_tip.internaltip = internal_tip
         whistleblower_tip.address = receipt
         store.add(whistleblower_tip)
+        log.debug("Created tip with address %s" % whistleblower_tip.address)
 
         #receiver_tips = context.create_receiver_tips(internal_tip)
+        log.debug("Looking up receivers")
         for receiver in context.receivers:
+            log.debug("Creating tip for %s" % receiver.receiver_id)
             receiver_tip = ReceiverTip()
             receiver_tip.internaltip = internal_tip
-            receiver_tip.address = idops.random_tip_id()
-            receiver_tip.new()
+            receiver_tip.new(receiver.receiver_id)
             store.add(receiver_tip)
+            log.debug("Tip created")
 
-        # Delete the temporary submission
-        # store.remove(submission)
+            log.debug("Creating delivery jobs")
+            delivery_job = Delivery()
+            delivery_job.submission_id = submission_id
+            delivery_job.receipt_id = receiver_tip.address
+            work_manager.add(delivery_job)
+            log.debug("Added delivery to %s to the work manager" % receiver.receiver_id)
 
-        store.commit()
+        log.debug("Deleting the temporary submission %s" % submission.id)
+
+        store.remove(submission)
+
+        try:
+            store.commit()
+        except Exception, e:
+            log.err("Could not create submission")
+            log.err(e)
+            store.rollback()
         store.close()
 

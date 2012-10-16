@@ -39,3 +39,5 @@ def utcPrettyDateNow():
     """
     return datetime.utcnow().ctime()
 
+def timeToPrettyDate(time_val):
+    return time.ctime(time_val)

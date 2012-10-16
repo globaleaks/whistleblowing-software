@@ -47,6 +47,9 @@ class sendComment(GLTypes):
     """
     T2 (POST)
     """
+    # this is wrong, comment is expected just as text, and is returned
+    # with a commentDescriptionDict (inside there are some information that
+    # are gurantee by server, not written by client)
     specification = {"comment": base.commentDescriptionDict}
 
 # T3 (files) -- not yet defined
