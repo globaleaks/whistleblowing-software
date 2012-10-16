@@ -1,6 +1,7 @@
 twisted
 zope.component
+zope.interface
 cyclone
 storm
 transaction
-pycrypto
+PyCrypto
