@@ -42,4 +42,4 @@ GLBackendAPI = internet.TCPServer(8082, GLBackendAPIFactory)
 GLBackendAPI.setServiceParent(application)
 
 reactor.addSystemEventTrigger('after', 'shutdown', db_threadpool.stop)
-reactor.addSystemEventTrigger('after', 'shutdown', db_threadpool.stop)
+reactor.addSystemEventTrigger('after', 'shutdown', scheduler_threadpool.stop)
