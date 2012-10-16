@@ -43,6 +43,7 @@ class SubmissionRoot(BaseHandler):
               }
               Status code: 201 (Created)
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionRoot", "get")
         # XXX do sanitization and validation here
         self.set_status(201)
 
@@ -73,6 +74,7 @@ class SubmissionStatus(BaseHandler):
             'expiration_time': 'Time'
           }
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionStatus", "get", "submission_id", submission_id )
         submission = models.submission.Submission()
         status = yield submission.status(submission_id)
 
@@ -109,6 +111,7 @@ class SubmissionStatus(BaseHandler):
           If the property of "receiver selection" is not set, the receiver_selected value
           is IGNORED.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionStatus", "post", "submission_id", submission_id )
         #request = messages.validateMessage(self.request.body,
         #                            messages.requests.submissionStatus)
 
@@ -181,7 +184,7 @@ class SubmissionFinalize(BaseHandler):
           { 'error_code': 'Int', 'error_message': 'fields requirement not respected' }
 
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionFinalize", "post", "submission_id", type(submission_id) )
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionFinalize", "post", "submission_id", submission_id )
 
         receipt_id = unicode(idops.random_receipt_id())
 
