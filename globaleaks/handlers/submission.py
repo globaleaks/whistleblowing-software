@@ -8,11 +8,10 @@
 #   Implements a GlobaLeaks submission.
 import json
 
-from twisted.python import log
 from twisted.internet.defer import returnValue, inlineCallbacks
 
 from globaleaks import models
-from globaleaks.utils import idops
+from globaleaks.utils import idops, log
 
 from globaleaks import messages
 
@@ -182,6 +181,8 @@ class SubmissionFinalize(BaseHandler):
           { 'error_code': 'Int', 'error_message': 'fields requirement not respected' }
 
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionFinalize", "post", "submission_id", type(submission_id) )
+
         receipt_id = unicode(idops.random_receipt_id())
 
         submission = models.submission.Submission()

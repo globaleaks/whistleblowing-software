@@ -98,12 +98,15 @@ schema = {
           'GET' : [
             False, answers.submissionStatus ],
           'POST' : [
-            requests.submissionStatus.specification,
+            # requests.submissionStatus.specification,
+            {"fields":{"city":"ncxiosdcnsdio","dict2":"cnsdcnsdkjl","road":"cnsdjcsndjk","dict3":"cnsjdkcnjkncsjkd"},"context_selected":"c_vHEBaPMGUNbgtIeSIABl"},
             answers.submissionStatus
          ] } ],
      "U4" :['/submission/'+sID()+'/finalize', {
          'POST': [
-            requests.finalizeSubmission.specification,
+            # requests.finalizeSubmission.specification,
+            {'proposed_receipt': u'1234567890', 'folder_name': u'f_432432432423',
+                'folder_description': u'jesus fucking christ, dexter'},
             answers.finalizeSubmission
          ] } ],
      # "U5" :['/submission/'+sID()+'/files', ['GET','POST','PUT','DELETE']],
@@ -211,7 +214,8 @@ def do_curl(url, method, not_encoded_parm=''):
     if checkOpt('request'):
         print "[+] CONNECTION REQUEST:", method, baseurl, url, not_encoded_parm, headers,"\n"
 
-    params = json.dumps(not_encoded_parm, ensure_ascii=False)
+    # XXX solve the unicode issue
+    params = json.dumps(not_encoded_parm, skipkeys=True, ensure_ascii=False)
     params.encode('utf-8')
 
     conn.request(method, url, params, headers)
@@ -253,8 +257,11 @@ globaleaks.rest.requests.submissionUpdate at 0x224a0b8>, <function SUBMISSION_ST
 """
 def handle_selected_test(keyapi):
 
+    print keyapi
     url = schema[keyapi][0]
+    print url
     methodsAndFunctions = schema[keyapi][1]
+    print methodsAndFunctions
 
     requestedMethods = []
     for meth in [ 'GET', 'POST', 'PUT', 'DELETE' ]:
@@ -323,6 +330,7 @@ def outputOptionsApply(theDict):
         if uarg.startswith('print-'):
             choosen = uarg[6:]
 
+            print "the dict", type(theDict), str(theDict)
             if theDict.has_key(choosen):
                 print theDict[choosen]
             else:
