@@ -92,12 +92,12 @@ class WorkManager(object):
             if not obj.running:
                 obj.running = True
                 # XXX figure out how to do the multithreaded version of this
-                #d = deferToThreadPool(reactor, scheduler_threadpool,
-                #        obj._run, self)
-                #d.addErrback(self._failed, obj)
-                #d.addCallback(self._success, obj)
-                #dlist.append(d)
-                obj._run(self)
+                d = deferToThreadPool(reactor, scheduler_threadpool,
+                        obj._run, self)
+                d.addErrback(self._failed, obj)
+                d.addCallback(self._success, obj)
+                dlist.append(d)
+                #obj._run(self)
 
         if run_later:
             # We should set the schedule clock to hit again because there are
@@ -114,6 +114,7 @@ class WorkManager(object):
         """
         We have successfully run the Job obj.
         """
+        obj.success()
         self.workQueue.remove(obj)
         obj.running = False
 

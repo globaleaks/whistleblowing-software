@@ -28,6 +28,13 @@ class Delivery(Job):
         d = self.run(*arg)
         return d
 
+    def success(self):
+        submission_id = self.submission_id
+        receipt_id = self.receipt_id
+        log.debug("Successfully run %s delivery" % receipt_id)
+        # XXX add here logic to check if we have finished with all the
+        # deliveries and delete the submisssion directory.
+
     def run(self, *arg):
         submission_id = self.submission_id
         receipt_id = self.receipt_id
