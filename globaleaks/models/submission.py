@@ -14,6 +14,8 @@ from globaleaks.models.tip import InternalTip, Tip, ReceiverTip, File, Folder
 from globaleaks.models.admin import Context
 
 from globaleaks.jobs.delivery import Delivery
+from globaleaks.jobs.notification import Notification
+
 from globaleaks.scheduler.manager import work_manager
 from globaleaks.utils import log
 
@@ -284,7 +286,13 @@ class Submission(TXModel):
             delivery_job.submission_id = submission_id
             delivery_job.receipt_id = receiver_tip.address
             work_manager.add(delivery_job)
+
             log.debug("Added delivery to %s to the work manager" % receiver.receiver_id)
+
+            notification_job = Notification()
+            notification_job.address = receiver.name
+            notification_job.receipt_id = receiver_tip.address
+            work_manager.add(notification_job)
 
         log.debug("Deleting the temporary submission %s" % submission.id)
 
