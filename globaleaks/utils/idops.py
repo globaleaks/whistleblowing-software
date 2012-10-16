@@ -86,8 +86,17 @@ def regexp_context_id(context_id):
 def random_folder_id():
     """
     need to be random
+    XXX this has been changed to starting d_ for directory.
     """
     length = 20
+    return u'd_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+
+def random_file_id():
+    """
+    need to be random
+    XXX file is now starting with f_ and is supposed to be random
+    """
+    length = 30
     return u'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def regexp_folder_id(fID):

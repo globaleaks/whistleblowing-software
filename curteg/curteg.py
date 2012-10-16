@@ -42,7 +42,7 @@ def checkOpt(option):
     if option in sys.argv:
         return True
 
-    if option in [ 'requests', 'response' ] and 'verbose' in sys.argv:
+    if option in [ 'requests', 'response'  ] and 'verbose' in sys.argv :
         return True
 
     return False
@@ -116,7 +116,7 @@ schema = {
          ] } ],
      "T2" :['/tip/'+tID()+'/comment', {
          'POST' : [
-             requests.sendComment.specification,
+             ({'comment': 'test comment blah'}),
              False
          ] } ],
      # "T3" :['/tip/'+tID()+'/files', ['GET','POST','PUT','DELETE']],
@@ -266,9 +266,9 @@ def handle_selected_test(keyapi):
             continue
 
         if  methodsAndFunctions.get(method)[1]:
-            answerGLT = methodsAndFunctions.get(method)[1]()
+            answer = methodsAndFunctions.get(method)[1]()
         else:
-            answerGLT = None
+            answer = None
 
         # GET has not a request, then
         if methodsAndFunctions.get(method)[0] == False:
@@ -282,10 +282,10 @@ def handle_selected_test(keyapi):
 
             output = do_curl(url, method, realRequest)
 
-        if answerGLT:
+        if answer:
 
             if output:
-                compare_output(output, answerGLT)
+                compare_output(output, answer)
             else:
                 print "Expected output, but not output received!"
 
@@ -294,7 +294,7 @@ def compare_output(received, expected):
 
     # TODO compare extending GLTypes
     if checkOpt('verbose'):
-        print "received has", received, "expected", expected.unroll()
+        print "received has", received, "expected", expected
 
 
 def inputOptionsApply(theDict):
@@ -314,6 +314,8 @@ def inputOptionsApply(theDict):
         f.close()
 
         return theNewDict
+
+    return theDict
 
 def outputOptionsApply(theDict):
 

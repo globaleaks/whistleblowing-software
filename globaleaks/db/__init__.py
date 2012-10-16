@@ -24,25 +24,15 @@ Quick reference for the content:
 
 """
 
-from twisted.python import log
 from twisted.python.threadpool import ThreadPool
 from twisted.internet.defer import inlineCallbacks, returnValue, Deferred
 
-from storm.twisted.transact import Transactor, transact
 from storm.locals import Store
 from storm.uri import URI
 from storm.databases.sqlite import SQLite
 
-# File sqlite database
-database_uri = 'sqlite:///globaleaks.db'
-# In memory database
-# database_uri = 'sqlite:'
-
-database = SQLite(URI(database_uri))
-
-threadpool = ThreadPool(0, 10)
-threadpool.start()
-transactor = Transactor(threadpool)
+from globaleaks import database, transactor
+from globaleaks.utils import log
 
 @inlineCallbacks
 def createTables():
@@ -62,10 +52,10 @@ def createTables():
                 log.err("Error in db initting")
                 log.err(e)
             try:
-                print "Creating %s" % model
+                log.debug("Creating %s" % model)
                 yield tables.runCreateTable(model, transactor, database)
             except Exception, e:
-                print e
+                log.debug(str(e))
                 #log.msg(e)
                 #log.msg("Failed. Probably the '%s' table exists." %
                 #        str(model_name))
@@ -74,14 +64,13 @@ def createTables():
     receiver_count = yield r.count()
 
     if receiver_count == 0:
-        print "Creating dummy receiver tables"
+        log.debug("Creating dummy receiver tables")
         receiver_dicts = yield r.create_dummy_receivers()
-        print receiver_dicts
+        log.debug(str(receiver_dicts))
 
-    print "# Currently installed receivers"
+    log.msg("# Currently installed receivers")
     for receiver in receiver_dicts:
-        print "* %s " % receiver['name']
-    print ""
+        log.msg("* %s " % receiver['name'])
 
     c = models.admin.Context()
     context_dict = {"name": u"Random Context",
@@ -97,13 +86,12 @@ def createTables():
     context_dicts = yield c.list_description_dicts()
 
     if len(context_dicts) == 0:
-        print "[!] No contexts. Creating dummy ones!"
+        log.debug("[!] No contexts. Creating dummy ones!")
         yield c.new(context_dict)
         yield c.new(dummy_context)
 
     context_dicts = yield c.list_description_dicts()
-    print "# We have these contexts:"
+    log.debug("# We have these contexts:")
     for context in context_dicts:
-        print "* %s " % context['name']
-    print ""
+        log.debug("* %s " % context['name'])
 

@@ -1,10 +1,15 @@
+# -*- encoding: utf-8 -*-
+#
+# :authors: Arturo Filastò
+# :licence: see LICENSE
+
 from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, Date, Unicode, RawStr, Bool
 from storm.locals import Reference, ReferenceSet
 
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
-from globaleaks.utils import idops
+from globaleaks.utils import idops, log
 
 from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.receiver import Receiver
@@ -52,15 +57,11 @@ class Folder(TXModel):
     # having the Folder.folder_id can be shared and downloaded by
     # someone that has not access to the Tip
 
-    def new(self):
-        folder_id = idops.random_folder_id()
-        self.id = folder_id
-        return folder_id
-
     def file_dicts(self):
         file_dicts = []
-        print "Going over %s" % self.files
+        log.debug("Processing %s" % self.files)
         for f in self.files:
+            log.debug("Generating file dict")
             print "In here y0 %s" % f
             file_dict = {'name': f.name,
                     'description': f.description,
@@ -69,6 +70,7 @@ class Folder(TXModel):
                     'date': f.uploaded_date,
                     'metadata_cleaned': f.metadata_cleaned,
                     'completed': f.completed}
+            log.debug("Done %s" % file_dict)
             file_dicts.append(file_dict)
         return file_dicts
 
@@ -79,7 +81,7 @@ class File(TXModel):
     """
     __storm_table__ = 'files'
 
-    id = Int(primary=True)
+    id = Unicode(primary=True)
 
     name = Unicode()
     content = RawStr()
@@ -230,12 +232,21 @@ class Tip(TXModel):
         tip_sub_index = tip.get_sub_index()
 
         folders = tip.internaltip.folders
-        # XXX folders do not exist in the Tip variables, why ?
+        # ANSWERED folders do not exist in the Tip variables, why ?
         # + folders shall not be downloaded by the WB, this info can be stripped
         # off the folder_ID (required to download)
+        #
+        # As mentioned on IRC for the moment we want to keep it simple and not
+        # have a folder per receiver.
+        # Once we will have the functionality to add the settings that
+        # distinguish the folders based on the receiver we will change the
+        # folders here to do a lookup on folders for the tip that is specific
+        # to this receiver
 
         comments = tip.internaltip.comments
-        # XXX comments do not exist in the Tip variables, why ?
+        # ANSWERED comments do not exist in the Tip variables, why ?
+        # They are not properties of the Tip variable, but of the internal tip.
+        # The comments are currently global to every tip.
 
         context = tip.internaltip.context_id
 
@@ -299,7 +310,11 @@ class ReceiverTip(Tip):
     last_access = Date()
     pertinence_vote = Int()
 
-    def new(self):
+    receiver_id = Unicode()
+    receiver = Reference(receiver_id, Receiver.id)
+
+    def new(self, receiver_id):
+        log.debug("Creating receiver tip for %s" % receiver_id)
         self.total_view_count = 0
         self.total_view_count = 0
         self.relative_view_count = 0
@@ -309,8 +324,11 @@ class ReceiverTip(Tip):
 
         self.address = idops.random_tip_id()
         # was called tip_gus (globaleaks uniqe string) to AVOID MISTAKES!!!
+        # ANSWERED ok, change the name then, but make sure to not break stuff.
         #self.password =
+
         self.type = u'receiver'
+        log.debug("Created!")
 
     @transact
     def receiver_dicts(self):

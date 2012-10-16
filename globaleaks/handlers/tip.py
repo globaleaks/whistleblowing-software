@@ -12,6 +12,7 @@ from cyclone.web import asynchronous, HTTPError
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.tip import Tip
+import json
 
 class TipRoot(BaseHandler):
 
@@ -38,10 +39,22 @@ class TipRoot(BaseHandler):
 
 class TipComment(BaseHandler):
 
-    def post(self, tip_id, *arg, **kw):
-        print "Processing %s" % tip_id
+    @asynchronous
+    @inlineCallbacks
+    def post(self, receipt):
 
-        pass
+        print "New comment in %s" % receipt
+        request = json.loads(self.request.body)
+
+        if 'comment' in request and request['comment']:
+            tip = Tip()
+            yield tip.add_comment(receipt, request['comment'])
+
+            self.set_status(200)
+        else:
+            self.set_status(404)
+
+        self.finish()
 
 class TipFiles(BaseHandler):
     """

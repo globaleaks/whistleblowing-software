@@ -4,6 +4,8 @@ ENV
 .*.swp
 *.DS_Store
 
+_gldata
+
 *.egg-info
 *.log
 *_trial_temp*
