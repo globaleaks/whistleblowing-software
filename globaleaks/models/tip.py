@@ -23,6 +23,7 @@ class TipModelError(ModelError):
     pass
 
 class TipNotFoundError(TipModelError):
+    print "what I need to do ?"
     pass
 
 class Folder(TXModel):
@@ -195,6 +196,7 @@ class Tip(TXModel):
     internaltip = Reference(internaltip_id, InternalTip.id)
 
     def get_sub_index(self):
+        log.debug("%s %s" % __file__ % __name__, type(self) )
         print self.internaltip
         ret = {
         #"notification_adopted": unicode,
@@ -273,6 +275,16 @@ class Tip(TXModel):
         """
         store = self.getStore()
 
+        # tip = store.find(Tip, Tip.address == receipt).one()
+        # hack, find the first tip avail
+        tip = store.find(Tip) # .order_by(Tip.internaltip_id).first()
+        tip_c = tip.count()
+        if tip_c == 0:
+            print "DO NOT EXISTS TIP IN THIS MOMENT - holy fucking god"
+            store.close()
+            return
+
+        print "looking for tip", receipt
         tip = store.find(Tip, Tip.address == receipt).one()
         if not tip:
             store.rollback()
@@ -302,6 +314,7 @@ class ReceiverTip(Tip):
     # stored hash of the actual password. when Receiver change a password, do not change
     # in explicit way also the single Tips password.
 
+    # all this four details need to be properly moved/renamed
     total_view_count = Int()
     total_download_count = Int()
     relative_view_count = Int()
@@ -315,8 +328,10 @@ class ReceiverTip(Tip):
 
     def new(self, receiver_id):
         log.debug("Creating receiver tip for %s" % receiver_id)
+
+        # all this four details need to be properly moved/renamed
         self.total_view_count = 0
-        self.total_view_count = 0
+        self.total_download_count = 0
         self.relative_view_count = 0
         self.relative_download_count = 0
 
