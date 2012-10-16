@@ -72,7 +72,6 @@ class Job(object):
         pass
 
     def __str__(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Job", "__str__")
         return str("%s - %s - %s" % (self.__class__, self.scheduledTime, self.running))
 
     def schedule(self, date):
