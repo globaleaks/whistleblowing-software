@@ -114,7 +114,6 @@ class Comment(TXModel):
     internaltip_id = Int()
     #internaltip = Reference(internaltip_id, InternalTip.id)
 
-
 class InternalTip(TXModel):
     """
     This is the internal representation of a Tip that has been submitted to the
@@ -176,6 +175,8 @@ class InternalTip(TXModel):
         and all the derived tips. is called by scheduler when
         timeoftheday is >= expired_date
         """
+
+
 # XXX Refactor this to use the internaltip_id (replace .id with internaltip_id)
 Folder.internaltip = Reference(Folder.internaltip_id, InternalTip.id)
 
@@ -208,6 +209,7 @@ class Tip(TXModel):
         "overall_pertinence": self.internaltip.pertinence
         }
         return ret
+
 
     @transact
     def lookup(self, receipt):
@@ -251,6 +253,31 @@ class Tip(TXModel):
         store.close()
 
         return tip_details
+
+    @transact
+    def add_comment(self, receipt, comment):
+        """
+        From a Tip hook the internalTip, and update comments inside.
+        Passing thru Tip, permit to detect the comment_type
+        """
+        store = self.getStore()
+
+        tip = store.find(Tip, Tip.address == receipt).one()
+        if not tip:
+            store.rollback()
+            store.close()
+            raise TipNotFoundError
+
+        newcomment = Comment()
+        newcomment.internaltip_id = tip.internaltip
+        newcomment.type = tip.type
+        newcomment.content = comment
+        newcomment.author = "TODO"
+
+        store.add(newcomment)
+        store.commit()
+        store.close()
+
 
 class ReceiverTip(Tip):
     """
