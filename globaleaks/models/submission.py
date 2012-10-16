@@ -49,6 +49,7 @@ class Submission(TXModel):
     This represents a temporary submission. Submissions should be stored here
     until they are transformed into a Tip.
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class Submission")
     __storm_table__ = 'submission'
 
     # XXX we probably want to remove this useless Int ID and only use the
@@ -68,7 +69,7 @@ class Submission(TXModel):
 
     @transact
     def new(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new")
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new", "self", type(self))
         store = self.getStore()
 
         submission_id = idops.random_submission_id(False)
@@ -96,7 +97,7 @@ class Submission(TXModel):
 
     @transact
     def add_file(self, submission_id, file_name=None):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id , "file_name", file_name )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id , "file_name", file_name, "self", type(self) )
         store = self.getStore()
         submission = store.find(Submission, Submission.submission_id==submission_id).one()
 
@@ -117,7 +118,7 @@ class Submission(TXModel):
         try:
             store.commit()
         except Exception, e:
-            log.exception("Exception: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id, "file_name", file_name )
+            log.exception("Exception: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id, "file_name", file_name, "self", type(self) )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
@@ -128,7 +129,7 @@ class Submission(TXModel):
 
     @transact
     def update_fields(self, submission_id, fields):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields, "self", type(self) )
         store = self.getStore()
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
@@ -140,7 +141,7 @@ class Submission(TXModel):
         try:
             store.commit()
         except Exception, e:
-            log.exception("Exception: %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
+            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields, "self", type(self) )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
@@ -149,7 +150,7 @@ class Submission(TXModel):
 
     @transact
     def select_context(self, submission_id, context):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_id", submission_id, "context", context )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_id", submission_id, "context", context, "self", type(self) )
         store = self.getStore()
         try:
             s = store.find(Submission, Submission.submission_id==submission_id).one()
@@ -166,7 +167,7 @@ class Submission(TXModel):
         try:
             store.commit()
         except Exception, e:
-            log.exception("Exception: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_id", submission_id, "context", context )
+            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_id", submission_id, "context", context )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
@@ -178,7 +179,7 @@ class Submission(TXModel):
 
     @transact
     def status(self, submission_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_id", submission_id )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_id", submission_id, "self", type(self) )
         store = self.getStore()
         status = None
         try:
@@ -205,7 +206,7 @@ class Submission(TXModel):
     @transact
     def create_tips(self, submission_id, receipt):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt, "self", type(self) )
         log.debug("Creating tips for %s" % submission_id)
 
         store = self.getStore()
@@ -319,7 +320,7 @@ class Submission(TXModel):
         try:
             store.commit()
         except Exception, e:
-            log.err("Could not create submission")
+            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", type(submission_id), "file_name", type(file_name), "Could not create submission" )
             log.err(e)
             store.rollback()
         store.close()

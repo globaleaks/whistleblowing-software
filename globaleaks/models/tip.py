@@ -184,6 +184,7 @@ class InternalTip(TXModel):
 Folder.internaltip = Reference(Folder.internaltip_id, InternalTip.id)
 
 class Tip(TXModel):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class Tip")
     __storm_table__ = 'tips'
 
     id = Int(primary=True)
@@ -196,6 +197,7 @@ class Tip(TXModel):
     internaltip = Reference(internaltip_id, InternalTip.id)
 
     def get_sub_index(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "get_sub_index", "self", type(self))
         log.debug("%s %s" % __file__ % __name__, type(self) )
         print self.internaltip
         ret = {
@@ -223,6 +225,7 @@ class Tip(TXModel):
 
         the string to be matched stay in, 'address'
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "lookup", "receipt", receipt, "self", type(self) )
         store = self.getStore()
 
         tip = store.find(Tip, Tip.address == receipt).one()
@@ -273,6 +276,7 @@ class Tip(TXModel):
         From a Tip hook the internalTip, and update comments inside.
         Passing thru Tip, permit to detect the comment_type
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "add_comment", "receipt", receipt, "comment", comment, "self", type(self))
         store = self.getStore()
 
         # tip = store.find(Tip, Tip.address == receipt).one()
@@ -327,6 +331,7 @@ class ReceiverTip(Tip):
     receiver = Reference(receiver_id, Receiver.id)
 
     def new(self, receiver_id):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "new", "receiver_id", receiver_id, "self", type(self) )
         log.debug("Creating receiver tip for %s" % receiver_id)
 
         # all this four details need to be properly moved/renamed
@@ -347,6 +352,7 @@ class ReceiverTip(Tip):
 
     @transact
     def receiver_dicts(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "receiver_dicts", "self", type(self) )
         store = self.getStore()
 
         receiver_dicts = []
@@ -392,7 +398,7 @@ class WhistleblowerTip(Tip):
 
     This is the reason because here is not placed a t_US, but just a secret
     """
-
+    log.debug("[D] %s %s " % (__file__, __name__), "Class WhistleblowerTip")
     secret = Pickle()
 
     # XXX we probably don't want to store this stuff for the WB receipt.
@@ -412,6 +418,7 @@ class PublicStats(TXModel):
     * that's all time dependent information
        * remind: maybe also non-time dependent information would exists, if a node want to publish also their own analyzed submission, (but this would require another db table)
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class PublicStats")
     __storm_table__ = 'publicstats'
 
     createQuery = "CREATE TABLE " + __storm_table__ +\
