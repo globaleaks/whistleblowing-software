@@ -61,7 +61,6 @@ class Submission(TXModel):
 
     creation_time = Date()
 
-
     @transact
     def new(self):
         store = self.getStore()
@@ -175,9 +174,6 @@ class Submission(TXModel):
 
     @transact
     def create_tips(self, submission_id, receipt):
-        """
-        XXX how is possibile that is not created/used idops.generate_random_tip() ?
-        """
         store = self.getStore()
         try:
             submission = store.find(Submission,
@@ -233,6 +229,7 @@ class Submission(TXModel):
         for receiver in context.receivers:
             receiver_tip = ReceiverTip()
             receiver_tip.internaltip = internal_tip
+            receiver_tip.address = idops.random_tip_id()
             receiver_tip.new()
             store.add(receiver_tip)
 
