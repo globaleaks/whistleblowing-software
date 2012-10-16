@@ -207,7 +207,6 @@ class Tip(TXModel):
 
     def get_sub_index(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "get_sub_index")
-        log.debug("%s %s" % __file__ % __name__, type(self) )
         print self.internaltip
         ret = {
         #"notification_adopted": unicode,

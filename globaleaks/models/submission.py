@@ -130,7 +130,10 @@ class Submission(TXModel):
     @transact
     def update_fields(self, submission_id, fields):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
-        store = self.getStore()
+
+        # XXX: If we re-enable this store = self.getStore we end-up after submission of files in the error
+        # "Database is locked". We should identify before that update_fields,  in create_tips why the database is not properly closed
+#        store = self.getStore()
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
         if not s.fields:
@@ -210,6 +213,7 @@ class Submission(TXModel):
         log.debug("Creating tips for %s" % submission_id)
 
         store = self.getStore()
+
         try:
             submission = store.find(Submission,
                             Submission.submission_id==submission_id).one()
@@ -226,6 +230,8 @@ class Submission(TXModel):
             store.rollback()
             store.close()
             raise SubmissionModelError
+
+
 
         if not submission:
             store.rollback()
@@ -323,5 +329,7 @@ class Submission(TXModel):
             log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", type(submission_id), "file_name", type(file_name), "Could not create submission" )
             log.err(e)
             store.rollback()
+
+        log.debug("create_tips Before close")
         store.close()
 
