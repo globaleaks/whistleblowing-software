@@ -20,9 +20,11 @@ __all__ = [ 'Folder', 'File', 'Comment',
             'PublicStats']
 
 class TipModelError(ModelError):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class TipModelError", "ModelError", ModelError)
     pass
 
 class TipNotFoundError(TipModelError):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class TipNotFoundError", "TipModelError", TipModelError)
     print "what I need to do ?"
     pass
 
@@ -35,6 +37,7 @@ class Folder(TXModel):
     and if uncrypted situation, simply the Files referenced here are also
     referenced in the other Folders.
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Folder", "TXModel", TXModel)
     __storm_table__ = 'folders'
 
     id = Unicode(primary=True)
@@ -80,6 +83,7 @@ class File(TXModel):
     """
     The file are *stored* here, along with their properties
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "File", "TXModel", TXModel)
     __storm_table__ = 'files'
 
     id = Unicode(primary=True)
@@ -105,6 +109,7 @@ class File(TXModel):
 Folder.files = ReferenceSet(Folder.id, File.folder_id)
 
 class Comment(TXModel):
+    log.debug("[D] %s %s " % (__file__, __name__), "Comment", "TXModel", TXModel)
     __storm_table__ = 'comments'
 
     id = Int(primary=True)
@@ -127,6 +132,7 @@ class InternalTip(TXModel):
     Every tip has a certain shared data between all, and they are here collected, and
     this StoredTip.id is referenced by Folders, Files, Comments, and the derived Tips
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "TXModel", TXModel)
     __storm_table__ = 'internaltips'
 
     id = Int(primary=True)
@@ -158,6 +164,7 @@ class InternalTip(TXModel):
     context = Reference(context_id, Context.context_id)
 
     def folder_dicts(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "folder_dicts")
         folder_dicts = []
         for folder in self.folders:
             folder_dict = {'name': folder.name,
@@ -171,6 +178,7 @@ class InternalTip(TXModel):
         """
         function called when a receiver has this option
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "postpone_expiration"
 
     def tip_total_delete(self):
         """
@@ -178,13 +186,14 @@ class InternalTip(TXModel):
         and all the derived tips. is called by scheduler when
         timeoftheday is >= expired_date
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "tip_total_delete"
 
 
 # XXX Refactor this to use the internaltip_id (replace .id with internaltip_id)
 Folder.internaltip = Reference(Folder.internaltip_id, InternalTip.id)
 
 class Tip(TXModel):
-    log.debug("[D] %s %s " % (__file__, __name__), "Class Tip")
+    log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "TXModel", TXModel)
     __storm_table__ = 'tips'
 
     id = Int(primary=True)
