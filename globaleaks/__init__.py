@@ -15,13 +15,17 @@ from storm.databases.sqlite import SQLite
 
 from twisted.python.threadpool import ThreadPool
 
+from globaleaks.jobs.base import Job
 from globaleaks import config
+from globaleaks.utils import log
 
+log.debug("[D] %s %s " % (__file__, __name__), "Starting db_threadpool")
 database = SQLite(URI(config.main.database_uri))
 db_threadpool = ThreadPool(0, config.advanced.db_thread_pool_size)
 db_threadpool.start()
 transactor = Transactor(db_threadpool)
 
+log.debug("[D] %s %s " % (__file__, __name__), "Starting scheduler_threadpool")
 scheduler_threadpool = ThreadPool(0, config.advanced.scheduler_thread_pool_size)
 scheduler_threadpool.start()
 

@@ -18,11 +18,13 @@ from globaleaks import models
 from globaleaks import config
 
 class FilesHandler(RequestHandler):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class FilesHandler", "RequestHandler", RequestHandler)
     filenamePrefix = "f_"
     # Set to None for no size restrictions
     maxFileSize = 500 * 1000 * 1000 # MB
 
     def acceptedFileType(self, type):
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "acceptedFileType", "type", type)
         regexp = None
         # regexp = re.compile('image/(gif|p?jpeg|(x-)?png)')
         if regexp and regexp.match(type):
@@ -35,6 +37,7 @@ class FilesHandler(RequestHandler):
         Takes as input a file object and raises an exception if the file does
         not conform to the criteria.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "validate", "file", file)
         if self.maxFileSize and file['size'] < self.maxFileSize:
             raise HTTPError(406, "File too big")
 
@@ -46,10 +49,12 @@ class FilesHandler(RequestHandler):
         XXX This is currently blocking. MUST be refactored to not be blocking
         otherwise we loose...
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "savefile", "data", type(data), "filelocation", filelocation)
         with open(filelocation, 'a+') as f:
             f.write(data)
 
     def process_file(self, file, submission_id, file_id):
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "process_file", "file",type(file), "submission_id", submission_id, "file_id", file_id)
         # XXX do here all the file sanitization stuff
         filename = re.sub(r'^.*\\', '', file['filename'])
 
@@ -72,6 +77,7 @@ class FilesHandler(RequestHandler):
         Ovewrite me with your own function to generate the location of where
         the file should be stored.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "getFileLocation", "submission_id", submission_id, "file_id", file_id)
         if not os.path.isdir(config.advanced.submissions_dir):
             log.debug("%s does not exist. Creating it." % config.advanced.submissions_dir)
             os.mkdir(config.advanced.submissions_dir)
@@ -86,17 +92,21 @@ class FilesHandler(RequestHandler):
         return location
 
     def options(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "options")
         pass
 
     def head(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "head")
         pass
 
     def get(self, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "get")
         pass
 
     @asynchronous
     @inlineCallbacks
     def post(self, submission_id):
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "post", "submission_id", submission_id)
         method_hack = self.get_arguments('_method')
         if method_hack and method_hack == 'DELETE':
             self.delete()
@@ -124,5 +134,6 @@ class FilesHandler(RequestHandler):
         self.finish()
 
     def delete(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "delete")
         pass
 

@@ -3,10 +3,12 @@ from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, Date, Unicode, Bool, RawStr
 
 from globaleaks.models.base import TXModel
+from globaleaks.utils import log
 
 __all__ = ['Receiver', 'ReceiverPreferences']
 
 class Receiver(TXModel):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver")
     __storm_table__ = 'receivers'
 
     # XXX change this be the Unicode receiver_id
@@ -35,10 +37,12 @@ class Receiver(TXModel):
     receiver_level = Int()
 
     def new(self, internaltip_id):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "new", "internaltip_id", internaltip_id)
         self.internaltip_id = internaltip_id
 
     @transact
     def count(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "count")
         store = self.getStore()
         receiver_count = store.find(Receiver).count()
         store.commit()
@@ -47,6 +51,7 @@ class Receiver(TXModel):
 
     @transact
     def create_dummy_receivers(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "create_dummy_receivers")
         from globaleaks.messages.dummy import base
         store = self.getStore()
         for receiver_dict in base.receiverDescriptionDicts:
@@ -69,6 +74,7 @@ class Receiver(TXModel):
 
 class ReceiverPreferences(TXModel):
 
+    log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPreferences")
     __storm_table__ = 'receiver_preferences'
 
     """
@@ -127,5 +133,5 @@ class ReceiverPreferences(TXModel):
     * supports module profile selection and configuration
     * maybe has sense create a table with the latest operation of the Receiver, this would be a nice information resume for the users
     """
-
+    log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "update_language_mask")
 

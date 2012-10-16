@@ -6,6 +6,7 @@ from storm.twisted.transact import transact
 
 from globaleaks.db import transactor, database
 from globaleaks.db import tables
+from globaleaks.utils import log
 
 __all__ = ['TXModel', 'ModelError']
 
@@ -45,16 +46,19 @@ class TXModel(object):
     This exception should then be trapped in the handler and set the error
     status code and write the error out.
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel")
     createQuery = ""
     transactor = transactor
     database = database
 
     def getStore(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel", "getStore")
         store = Store(self.database)
         return store
 
     @transact
     def createTable(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel", "createTable")
         store = self.getStore()
         createQuery = tables.generateCreateQuery(self)
         store.execute(createQuery)
@@ -63,12 +67,14 @@ class TXModel(object):
 
     @transact
     def save(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel", "save")
         store = self.getStore()
         store.add(self)
         store.commit()
         store.close()
 
 class ModelError(Exception):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class ModelError")
     pass
 
 """

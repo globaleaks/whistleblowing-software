@@ -12,13 +12,17 @@ from cyclone.web import asynchronous, HTTPError
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.tip import Tip
+from globaleaks.utils import log
 import json
 
 class TipRoot(BaseHandler):
 
+    log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "BaseHandler", BaseHandler)
+
     @asynchronous
     @inlineCallbacks
     def get(self, receipt):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "get", "receipt", receipt)
         print "Processing %s" % receipt
         tip = Tip()
 
@@ -35,14 +39,17 @@ class TipRoot(BaseHandler):
     this properties
     """
     def post(self, tip_id, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "post", "tip_id", tip_id)
         pass
 
 class TipComment(BaseHandler):
 
+    log.debug("[D] %s %s " % (__file__, __name__), "Class TipComment", "BaseHandler", BaseHandler)
+
     @asynchronous
     @inlineCallbacks
     def post(self, receipt):
-
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipComment", "post", receipt)
         print "New comment in %s" % receipt
         request = json.loads(self.request.body)
 
@@ -61,20 +68,28 @@ class TipFiles(BaseHandler):
     files CURD at the moment is not yet finished
     along with the javascript part.
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "BaseHandler", BaseHandler)
     def get(self, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "get")
         pass
 
     def put(self, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "put")
         pass
 
     def post(self, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "post")
         pass
 
     def delete(self, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "delete")
         pass
 
 class TipFinalize(BaseHandler):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class TipFinalize", "BaseHandler", BaseHandler)
+
     def post(self, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFinalize", "post")
         pass
 
 
@@ -82,7 +97,10 @@ class TipDownload(BaseHandler):
     """
     Receiver only - enabled only if local delivery is set
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class TipDownload", "BaseHandler", BaseHandler)
+
     def get(self, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipDownload", "get")
         pass
 
 class TipPertinence(BaseHandler):
@@ -91,6 +109,9 @@ class TipPertinence(BaseHandler):
     either because a receiver may express +1 -1 values,
     and because can be extended in the future
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class TipPertinence", "BaseHandler", BaseHandler)
+
     def post(self, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipPertinence", "post")
         pass
 

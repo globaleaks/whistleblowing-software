@@ -69,7 +69,7 @@ class Submission(TXModel):
 
     @transact
     def new(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new", "self", type(self))
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new")
         store = self.getStore()
 
         submission_id = idops.random_submission_id(False)
@@ -97,7 +97,7 @@ class Submission(TXModel):
 
     @transact
     def add_file(self, submission_id, file_name=None):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id , "file_name", file_name, "self", type(self) )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id , "file_name", file_name )
         store = self.getStore()
         submission = store.find(Submission, Submission.submission_id==submission_id).one()
 
@@ -118,7 +118,7 @@ class Submission(TXModel):
         try:
             store.commit()
         except Exception, e:
-            log.exception("Exception: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id, "file_name", file_name, "self", type(self) )
+            log.exception("Exception: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id, "file_name", file_name )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
@@ -129,7 +129,7 @@ class Submission(TXModel):
 
     @transact
     def update_fields(self, submission_id, fields):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields, "self", type(self) )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
         store = self.getStore()
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
@@ -141,7 +141,7 @@ class Submission(TXModel):
         try:
             store.commit()
         except Exception, e:
-            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields, "self", type(self) )
+            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
@@ -150,7 +150,7 @@ class Submission(TXModel):
 
     @transact
     def select_context(self, submission_id, context):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_id", submission_id, "context", context, "self", type(self) )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_id", submission_id, "context", context )
         store = self.getStore()
         try:
             s = store.find(Submission, Submission.submission_id==submission_id).one()
@@ -167,7 +167,7 @@ class Submission(TXModel):
         try:
             store.commit()
         except Exception, e:
-            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_id", submission_id, "context", context )
+            log.debug("[E]: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_id", submission_id, "context", context )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
@@ -179,7 +179,7 @@ class Submission(TXModel):
 
     @transact
     def status(self, submission_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_id", submission_id, "self", type(self) )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_id", submission_id )
         store = self.getStore()
         status = None
         try:
@@ -206,7 +206,7 @@ class Submission(TXModel):
     @transact
     def create_tips(self, submission_id, receipt):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt, "self", type(self) )
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt )
         log.debug("Creating tips for %s" % submission_id)
 
         store = self.getStore()

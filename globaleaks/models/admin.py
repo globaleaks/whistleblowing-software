@@ -12,6 +12,8 @@ from globaleaks.utils import gltime, idops
 
 from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
+from globaleaks.utils import log
+
 
 __all__ = [ 'SystemSettings', 'Context', 'ModulesProfiles',
             'AdminStats', 'LocalizedTexts', 'ReceiverContext',
@@ -21,6 +23,7 @@ class SystemSettings(TXModel):
     """
     This table represent the settings choosen System-wide
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class SystemSettings")
     __storm_table__ = 'systemsettings'
 
     """
@@ -58,7 +61,7 @@ class ModulesProfiles(TXModel):
     The module_id is addressed in Context.notification_profiles, Context.delivery_profiles
     and Context.inputfilter_chain
     """
-
+    log.debug("[D] %s %s " % (__file__, __name__), "Class ModulesProfiles")
     __storm_table__ = 'modules'
 
     id = Int(primary=True)
@@ -76,6 +79,7 @@ class AdminStats(TXModel):
     every entry is the collection of the elements in the last
     node.private_stats_delta (expressed in minutes)
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class AdminStats")
     __storm_table__ = 'adminstats'
 
     id = Int(primary=True)
@@ -101,6 +105,7 @@ class LocalizedTexts(TXModel):
     need to be defined an API, that permit the admin, to convert all the description texts and
     localize them
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "Class LocalizedTexts")
     __storm_table__ = 'localizedtexts'
 
     id = Int(primary=True)
@@ -113,6 +118,7 @@ class LocalizedTexts(TXModel):
     """
 
 class ReceiverContext(TXModel):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverContext")
     __storm_table__ = 'receivers_context'
 
     __storm_primary__ = "context_id", "receiver_id"
@@ -121,6 +127,7 @@ class ReceiverContext(TXModel):
     receiver_id = Int()
 
 class Context(TXModel):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class Context")
     __storm_table__ = 'contexts'
 
 

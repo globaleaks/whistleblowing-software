@@ -25,6 +25,9 @@ from cyclone.web import asynchronous, HTTPError
 from globaleaks import messages
 
 class SubmissionRoot(BaseHandler):
+
+    log.debug("[D] %s %s " % (__file__, __name__), "Class SubmissionRoot", "BaseHandler", BaseHandler)
+
     @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
@@ -59,6 +62,9 @@ class SubmissionStatus(BaseHandler):
     uploaded data, selected context, file uploaded.
     permit to update fields content, context selection, and if supported, specify receivers
     """
+
+    log.debug("[D] %s %s " % (__file__, __name__), "Class SubmissionStatus", "BaseHandler", BaseHandler)
+
     @asynchronous
     @inlineCallbacks
     def get(self, submission_id):
