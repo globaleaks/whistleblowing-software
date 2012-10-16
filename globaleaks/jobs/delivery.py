@@ -31,7 +31,7 @@ class Delivery(Job):
     def success(self):
         submission_id = self.submission_id
         receipt_id = self.receipt_id
-        log.debug("Successfully run %s delivery" % receipt_id)
+        log.debug("Successfully run %s delivery %s" % (submission_id, receipt_id))
         # XXX add here logic to check if we have finished with all the
         # deliveries and delete the submisssion directory.
 
