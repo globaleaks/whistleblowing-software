@@ -46,7 +46,7 @@ class Job(object):
         We will by default attempt to re-run the Job the number of retry times
         that are specified in self.retries
         """
-        raise NotImplemented
+        pass
 
     def failedRetries(self):
         """
@@ -57,8 +57,13 @@ class Job(object):
 
         Ideally we just want to log this, and move on with out life.
         """
-        raise NotImplemented
+        pass
 
+    def success(self):
+        """
+        What to do when the job has run successfully.
+        """
+        pass
 
     def __str__(self):
         return str("%s - %s - %s" % (self.__class__, self.scheduledTime, self.running))
