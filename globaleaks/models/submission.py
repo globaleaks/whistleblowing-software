@@ -68,6 +68,7 @@ class Submission(TXModel):
 
     @transact
     def new(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new")
         store = self.getStore()
 
         submission_id = idops.random_submission_id(False)
@@ -95,8 +96,7 @@ class Submission(TXModel):
 
     @transact
     def add_file(self, submission_id, file_name=None):
-        log.debug("Adding file %s to %s" % (submission_id, file_name))
-
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id , "file_name", file_name )
         store = self.getStore()
         submission = store.find(Submission, Submission.submission_id==submission_id).one()
 
@@ -117,7 +117,7 @@ class Submission(TXModel):
         try:
             store.commit()
         except Exception, e:
-            log.exception("Error in file adding")
+            log.exception("Exception: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id, "file_name", file_name )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
@@ -128,6 +128,7 @@ class Submission(TXModel):
 
     @transact
     def update_fields(self, submission_id, fields):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
         store = self.getStore()
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
@@ -136,13 +137,19 @@ class Submission(TXModel):
 
         for k, v in fields.items():
             s.fields[k] = v
-
-        store.commit()
+        try:
+            store.commit()
+        except Exception, e:
+            log.exception("Exception: %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
+            store.rollback()
+            store.close()
+            raise SubmissionModelError(e)
         store.close()
 
 
     @transact
     def select_context(self, submission_id, context):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_id", submission_id, "context", context )
         store = self.getStore()
         try:
             s = store.find(Submission, Submission.submission_id==submission_id).one()
@@ -155,7 +162,15 @@ class Submission(TXModel):
             raise SubmissionNotFoundError
 
         s.context_selected = context
-        store.commit()
+
+        try:
+            store.commit()
+        except Exception, e:
+            log.exception("Exception: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_id", submission_id, "context", context )
+            store.rollback()
+            store.close()
+            raise SubmissionModelError(e)
+
         store.close()
 
     # TODO def select_receiver
@@ -163,6 +178,7 @@ class Submission(TXModel):
 
     @transact
     def status(self, submission_id):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_id", submission_id )
         store = self.getStore()
         status = None
         try:
@@ -188,7 +204,8 @@ class Submission(TXModel):
 
     @transact
     def create_tips(self, submission_id, receipt):
-        log.debug("Creating tips for %s" % submission_id)
+    log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt )
+    log.debug("Creating tips for %s" % submission_id)
 
         store = self.getStore()
         try:
@@ -274,7 +291,7 @@ class Submission(TXModel):
         #receiver_tips = context.create_receiver_tips(internal_tip)
         log.debug("Looking up receivers")
         for receiver in context.receivers:
-            log.debug("Creating tip for %s" % receiver.receiver_id)
+            log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "Creating tip for %s" % receiver.receiver_id)
             receiver_tip = ReceiverTip()
             receiver_tip.internaltip = internal_tip
             receiver_tip.new(receiver.receiver_id)
