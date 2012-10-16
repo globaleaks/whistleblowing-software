@@ -204,8 +204,9 @@ class Submission(TXModel):
 
     @transact
     def create_tips(self, submission_id, receipt):
-    log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt )
-    log.debug("Creating tips for %s" % submission_id)
+
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt )
+        log.debug("Creating tips for %s" % submission_id)
 
         store = self.getStore()
         try:
