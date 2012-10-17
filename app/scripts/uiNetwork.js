@@ -2,12 +2,8 @@
 
 /*global window */
 
-define(function (require) {
+define(['jquery','utils/network', 'utils/latenza'], function($, network, latenza) {
     'use strict';
-
-    var $ = require('jquery'),
-        network = require('utils/network'),
-        latenza = require('utils/latenza');
 
     // Return a function that can be called to do the DOM binding given a
     // jQuery DOM object to use as the parent container.

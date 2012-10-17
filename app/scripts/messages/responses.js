@@ -1,4 +1,4 @@
-define(['libs/jquery', 'utils/util'], function($, utils) {
+define(['jquery', 'utils/util'], function($, utils) {
   return {
     processStatusGet: function(data) {
       console.log("Processing " );

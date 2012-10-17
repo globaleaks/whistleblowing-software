@@ -1,8 +1,8 @@
 var latenza = {};
 
-define('latenza', ['libs/jquery',
-                   'libs/hogan',
-                   'libs/marked'], function($, hogan, marked) {
+define('latenza', ['jquery',
+                   'hogan',
+                   'marked'], function($, hogan, marked) {
     'use strict';
 
     latenza = {

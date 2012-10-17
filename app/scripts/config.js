@@ -45,7 +45,7 @@ function($, latenza) {
       // XXX move instantiation of this to main.js
       require(["app/routes"], function(r){
         r();
-        require(["app/uiNetwork"], function(u){u();});
+        //require(["app/uiNetwork"], function(u){u();});
       });
       $('#tor2web').hide();
   });
