@@ -30,19 +30,23 @@ def safeGetStorage(targetObj, info=''):
     from time import sleep
     import sqlite3
 
-    delaytime = 0.1
+    delaytime = 0.01
     safe_but_not_deadlock = 0
     store = None
 
     while(1):
+
+        if safe_but_not_deadlock > 3:
+            raise Exception("Storm Hell")
+
         try:
             store = targetObj.getStore()
-            print "completed getStore successfully", info,
+            log.debug("[W] completed getStore successfully %s" % info)
             break
         except sqlite3.OperationalError:
             safe_but_not_deadlock += 1
-            print "getStore/ db locked, but", delaytime, "sleep and check again", safe_but_not_deadlock, info
-            sleep(0.1)
+            log.debug("[W] getStore/ db locked, but %f sleep and check again %d %s" % ( delaytime, safe_but_not_deadlock, info) )
+            sleep(delaytime)
             continue
 
     return store
@@ -51,18 +55,26 @@ def safeCommit(targetStore, info=''):
     from time import sleep
     import sqlite3
 
-    delaytime = 0.1
+    delaytime = 0.01
+    """
+    for same TwistedStorm reason, putting a sleep of 0.01 cause a sleep of 2 second.
+    causing a 2 second sleep, cause a block of 4 seconds, and so on.
+    """
     safe_but_not_deadlock = 0
 
     while(1):
+
+        if safe_but_not_deadlock > 3:
+            raise Exception("Storm Hell")
+
         try:
             targetStore.commit()
-            print "completed getStore successfully", info
+            log.debug("[W] completed commit successfully %s" % info)
             break
         except sqlite3.OperationalError:
             safe_but_not_deadlock += 1
-            print "commit/ db locked, but", delaytime, "sleep and check again", safe_but_not_deadlock, info
-            sleep(0.1)
+            log.debug("[W] commit/ db locked, but %f sleep and check again %d %s" % ( delaytime, safe_but_not_deadlock, info) )
+            sleep(delaytime)
             continue
 
 class SubmissionModelError(ModelError):
@@ -201,8 +213,8 @@ class Submission(TXModel):
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
-        store.close()
         """
+        store.close()
 
 
     @transact
@@ -234,7 +246,6 @@ class Submission(TXModel):
             store.close()
             raise SubmissionModelError(e)
         """
-
         store.close()
 
     # TODO def select_receiver
@@ -271,6 +282,9 @@ class Submission(TXModel):
 
     @transact
     def create_tips(self, submission_id, receipt):
+        """
+        this function is became simply unmaintainable
+        """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt )
         log.debug("Creating tips for %s" % submission_id)
@@ -363,7 +377,8 @@ class Submission(TXModel):
             log.debug("Submission folder created withour error")
         else:
             print "I don't believe this is possible, actually, submission.folder is created on new()"
-            # XXX
+            # XXX, and I don't get why folder id is returned by new(), btw, because file uploader
+            # use submission_id as reference, do not need folder_id too.
 
         log.debug("Creating tip for whistleblower")
         whistleblower_tip = Tip()
@@ -382,6 +397,16 @@ class Submission(TXModel):
             store.add(receiver_tip)
             log.debug("Tip created")
 
+            """
+            http://freeworld.thc.org/root/phun/unmaintain.html
+            Naming paragraph
+
+            Hello ladys and gentlement, usually I overcome on a simple violation of code understanding guidelines,
+            but below you have a rare example of two differents variable naming horrors: "Be Abstract", "Misleading Names"
+            --- did you spot them ?
+
+            a cookie for the winner!
+            """
             log.debug("Creating delivery jobs")
             delivery_job = Delivery()
             delivery_job.submission_id = submission_id
