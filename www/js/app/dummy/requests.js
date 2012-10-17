@@ -1,4 +1,6 @@
-define({
+define(function() {
+
+  return {
     submissionStatusPost: {"receiver_selected": 'idops.random_receiver_id()',
         "fields": {"fieldA": "Hello", "fieldB": "World"}
     },
@@ -112,5 +114,6 @@ define({
     adminModulesPost: {
         "module": "shared.moduleDataDict_N"
     }
+  }
 });
 

@@ -20,6 +20,9 @@ define(function (require) {
     templates.about = hogan.compile(require('text!./templates/about.html'));
     templates.submission = hogan.compile(require('text!./templates/submission.html'));
     templates.status = hogan.compile(require('text!./templates/status.html'));
+
+    templates.debug = hogan.compile(require('text!./templates/debug.html'));
+
     templates.admin = {}
     templates.admin.content = hogan.compile(require('text!./templates/admin/content.html'));
     templates.admin.wizard = hogan.compile(require('text!./templates/admin/wizard.html'));
@@ -31,6 +34,15 @@ define(function (require) {
     templates.receiver.preferences = hogan.compile(require('text!./templates/receiver/preferences.html'));
 
     templates.loading = hogan.compile(require('text!./templates/loading.html'));
+
+    function debugHandler(data) {
+      var content = templates.debug.render(),
+          debug = require('./debug');
+
+      require('./dummy/requests');
+      $('.contentElement').html(content);
+      debug.debugDeck();
+    };
 
     function homeHandler(data) {
         var content = templates.home.render();
@@ -81,6 +93,9 @@ define(function (require) {
         crossroads.addRoute('receiver/{token}', receiverHandlerList);
         crossroads.addRoute('receiver/{token}/preferences',handlers.receiver.preferences);
         crossroads.addRoute('receiver/{token}/list', handlers.receiver.list);
+
+        // Hi, I am a new feature to assist you in debugging :)
+        crossroads.addRoute('debug', debugHandler);
 
         crossroads.routed.add(console.log, console); //log all routes
          
