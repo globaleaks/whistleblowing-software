@@ -132,6 +132,10 @@ class SubmissionStatus(BaseHandler):
             print "Updating fields with %s" % request
             submission.update_fields(submission_id, request['fields'])
 
+        import time
+        time.sleep(2)
+        # print "just a timeout to make sure that the issue #25 is not for this parallel calling"
+
         if 'context_selected' in request and request['context_selected']:
             print "Updating context with %s" % request
             submission.select_context(submission_id, request['context_selected'])
