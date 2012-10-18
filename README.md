@@ -71,6 +71,7 @@ This procedure is tested on Ubuntu 12.04
 Now you may point your browser to http://127.0.0.1:8082/index.html and have a sneak peak at GL 0.2.
 
 If you want to try on Mac OS X, follow the instruction to setup [virtualenv on OSX](http://jamiecurle.co.uk/blog/installing-pip-virtualenv-and-virtualenvwrapper-on-os-x/)
+
 Have fun :)
 
 
