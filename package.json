@@ -1,20 +1,23 @@
 {
-  "amd": {
-    "baseUrl": "www/js/lib"
+  "name": "GLClient",
+  "version": "0.0.1",
+  "description": "The user interface to GLBackend",
+  "keywords": [
+    "whistleblowing",
+    "hidden services",
+    "anonymity",
+    "file upload",
+    "submission"
+  ],
+  "author": "Arturo Filastò <art@globaleaks.org>",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/globaleaks/GLClient.git"
   },
-  "dependencies": {
-    "volo-ghdeploy": "*",
-    "volo-appcache": "*"
-  },
-  "volo": {
-    "dependencies": {
-      "jquery": "github:jquery/jquery/1.7.2",
-      "hogan": "https://raw.github.com/twitter/hogan.js/master/web/builds/2.0.0/hogan-2.0.0.amd.js",
-      "signals": "https://raw.github.com/millermedeiros/js-signals/master/dist/signals.js",
-      "crossroads": "https://raw.github.com/millermedeiros/crossroads.js/master/dist/crossroads.js",
-      "marked": "https://raw.github.com/chjj/marked/master/lib/marked.js",
-      "hasher": "https://raw.github.com/millermedeiros/Hasher/master/dist/js/hasher.js",
-      "text": "github:requirejs/text/2.0.3"
-    }
+  "devDependencies": {
+    "jquery": "*",
+    "mocha": "*",
+    "chai": "*",
+    "superagent": "*"
   }
 }

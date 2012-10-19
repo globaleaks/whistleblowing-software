@@ -35,7 +35,6 @@ define([
 ],
 
 function($, latenza) {
-  console.log("In here dog");
   /*
   require("jquery.validate"); // XXX do we always need this?
   require("datatables"); // XXX fix this to be lazy loaded,
@@ -45,7 +44,7 @@ function($, latenza) {
       // XXX move instantiation of this to main.js
       require(["app/routes"], function(r){
         r();
-        //require(["app/uiNetwork"], function(u){u();});
+        require(["app/uiNetwork"], function(u){u();});
       });
       $('#tor2web').hide();
   });

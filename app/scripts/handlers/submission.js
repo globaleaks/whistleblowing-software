@@ -7,7 +7,10 @@ define(['jquery',
         'text!templates/filelist.html',
         'text!templates/receipt.html',
         'requests/node',
-        'requests/submission'
+        'requests/submission',
+        'libs/jquery.iframe-transport',
+        // Load jquery file uploader
+        'libs/jquery.fileupload'
         ],
   function ($, hogan,
             submission_template,
@@ -37,80 +40,75 @@ define(['jquery',
     console.log("running on ");
     console.log(element);
     // Iframe transport for file upload
-    require(['libs/jquery.iframe-transport',
-              // Load jquery file uploader
-              'libs/jquery.fileupload'],
-    function() {
 
-      // XXX decided not to go for using this. Investigate if there is some stuff in
-      // it that we would like to take.
-      // Load file processing plugin
-      //require('jquery.fileupload-fp');
-      //
-      // XXX This is possibly more generic and could work well for us. Try it out!
-      //require('jquery.fileupload-ui');
+    // XXX decided not to go for using this. Investigate if there is some stuff in
+    // it that we would like to take.
+    // Load file processing plugin
+    //require('jquery.fileupload-fp');
+    //
+    // XXX This is possibly more generic and could work well for us. Try it out!
+    //require('jquery.fileupload-ui');
 
-      element.fileupload({
-        progress: function (e, data) {
-          console.log(data);
-          var progress = parseInt(data.loaded / data.total * 100, 10);
-          $('#progress .bar').css(
-                'width', progress + '%'
-          );
-        },
-        progressall: function (e, data) {
-          var progress = parseInt(data.loaded / data.total * 100, 10);
-          $('.fileupload-progress .progress .bar').css(
-                'width',
-                progress + '%'
-          );
-        },
-        add: function (e, data) {
-            //console.log("ADDING");
-            //console.log(data);
-            var filelist =  "";
+    element.fileupload({
+      progress: function (e, data) {
+        console.log(data);
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('#progress .bar').css(
+              'width', progress + '%'
+        );
+      },
+      progressall: function (e, data) {
+        var progress = parseInt(data.loaded / data.total * 100, 10);
+        $('.fileupload-progress .progress .bar').css(
+              'width',
+              progress + '%'
+        );
+      },
+      add: function (e, data) {
+          //console.log("ADDING");
+          //console.log(data);
+          var filelist =  "";
 
-            for (var file in data.files) {
+          for (var file in data.files) {
 
-              var file_info,
-                  item_id = data.files[file].name.replace(/\./g, "");
+            var file_info,
+                item_id = data.files[file].name.replace(/\./g, "");
 
-              file_info = {'name': data.files[file].name,
-                'filesize': data.files[file].size,
-                'error': 'None',
-                'type': data.files[file].type,
-                'last_modified_data': data.files[file].lastModifiedDate,
-                'item_id': item_id
-                  };
+            file_info = {'name': data.files[file].name,
+              'filesize': data.files[file].size,
+              'error': 'None',
+              'type': data.files[file].type,
+              'last_modified_data': data.files[file].lastModifiedDate,
+              'item_id': item_id
+                };
 
-              filelist += templates.filelist.render(file_info);
-            }
-            //console.log("Rendered");
-            //console.log(filelist);
-            $('.files').append(filelist);
+            filelist += templates.filelist.render(file_info);
+          }
+          //console.log("Rendered");
+          //console.log(filelist);
+          $('.files').append(filelist);
 
-            data.submit();
-            //data.context = $('<p/>').text('Uploading...').appendTo(element);
-        },
-        done: function (e, data) {
-            var result = data.result,
-                textStatus = data.textStatus,
-                item_id;
-            //console.log("Finished!");
-            //console.log(result);
-            //
-            // XXX do sanitization and validation here
-            result = JSON.parse(result);
-            // XXX this is a hack to keep track of what things are finished.
-            // fix this by having a lookup table of the in progress submissions
-            // and their element id.
-            item_id = result[0].name.replace(/\./g, "");
-            $("#"+item_id+" .bar").css('width', "100%");
-        }
-      });
+          data.submit();
+          //data.context = $('<p/>').text('Uploading...').appendTo(element);
+      },
+      done: function (e, data) {
+          var result = data.result,
+              textStatus = data.textStatus,
+              item_id;
+          //console.log("Finished!");
+          //console.log(result);
+          //
+          // XXX do sanitization and validation here
+          result = JSON.parse(result);
+          // XXX this is a hack to keep track of what things are finished.
+          // fix this by having a lookup table of the in progress submissions
+          // and their element id.
+          item_id = result[0].name.replace(/\./g, "");
+          $("#"+item_id+" .bar").css('width', "100%");
+      }
     });
 
-  }
+  };
 
   function renderTemplate(template, data) {
       if (data.help) {

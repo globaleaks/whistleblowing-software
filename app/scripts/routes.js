@@ -10,7 +10,6 @@ define(["jquery", "hasher",
         handlers = {};
 
 
-
     templates.debug = hogan.compile(debug_template)
 
     //templates.admin = {}
