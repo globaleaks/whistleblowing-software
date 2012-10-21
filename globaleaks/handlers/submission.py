@@ -8,8 +8,9 @@
 #   Implements a GlobaLeaks submission.
 import json
 
-from twisted.python import log
 from twisted.internet.defer import returnValue, inlineCallbacks
+
+from cyclone.web import asynchronous, HTTPError
 
 from globaleaks import models
 from globaleaks.utils import idops
@@ -21,9 +22,8 @@ from globaleaks.handlers.base import BaseHandler
 
 from globaleaks.models.base import ModelError
 
-from cyclone.web import asynchronous, HTTPError
-
 from globaleaks import messages
+from globaleaks.utils import log
 
 class SubmissionRoot(BaseHandler):
     @asynchronous
@@ -128,7 +128,7 @@ class SubmissionStatus(BaseHandler):
             print "Updating context with %s" % request
             submission.select_context(submission_id, request['context_selected'])
 
-        # TODO implemnt receiver_selected if context supports 
+        # TODO implemnt receiver_selected if context supports
 
         self.set_status(202)
 
