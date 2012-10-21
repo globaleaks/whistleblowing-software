@@ -304,10 +304,10 @@ class Tip(TXModel):
             raise TipNotFoundError
 
         newcomment = Comment()
-        newcomment.internaltip_id = tip.internaltip
+        newcomment.internaltip_id = tip.internaltip.id
         newcomment.type = tip.type
         newcomment.content = comment
-        newcomment.author = "TODO"
+        newcomment.author = u"TODO"
 
         store.add(newcomment)
         store.commit()
