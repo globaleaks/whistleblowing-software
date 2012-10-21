@@ -17,7 +17,7 @@ def get_glclient_path():
     path = '/tmp'
 
     # XXX move all these variables to a config file
-    glclient_path = os.path.join(get_install_path(), 'GLClient', 'www')
+    glclient_path = os.path.join(get_install_path(), 'GLClient', 'app')
     path = os.path.abspath(glclient_path)
     if not os.path.isdir(path):
         raise ConfigError("GLClient not found at the %s path" % glclient_path)
