@@ -3,9 +3,12 @@ ENV
 *.bak
 .*.swp
 *.DS_Store
-
 _gldata
-
 *.egg-info
 *.log
 *_trial_temp*
+.idea/*
+bin/twistd.pid
+glenv/
+sqlite-jdbc-3.7.2.jar
+xerial-sqlite-license.txt

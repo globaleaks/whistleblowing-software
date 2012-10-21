@@ -5,6 +5,7 @@
 
 from globaleaks.messages import validateMessage
 from cyclone.web import RequestHandler, HTTPError
+from globaleaks.utils import log
 
 """
 https://en.wikipedia.org/wiki/Http_error_code
@@ -14,11 +15,6 @@ The error code actually used in this file are:
     405 (Method not allowed)
     503 (Service not available)
 """
-
-# decorator @removeslash in cyclone.web may remove final '/' if not
-# expected. would be nice use it, but the Cyclone code check only HEAD and GET
-# while we need checks in a complete CURD
-# -- may this be a request to be opened in Cyclone ?
 
 DEBUG = True
 
@@ -54,6 +50,8 @@ class BaseHandler(RequestHandler):
     the API may change and we don't want to have a layer in between us and the
     code to be tested.
     """
+    log.debug("[D] %s %s " % (__file__, __name__), "BaseHandler", "RequestHandler", RequestHandler)
+
     requestTypes = {}
     def prepare(self):
         """
@@ -61,6 +59,7 @@ class BaseHandler(RequestHandler):
         handle the POST fallback, in environment where PUT and DELETE
         method may not be used.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "BaseHandler", "prepare")
         print "Just got %s" % self.request.body
         if self.request.method.lower() == 'post':
             try:

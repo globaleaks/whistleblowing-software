@@ -35,5 +35,6 @@ See wiki page [Setting up Development Environment](https://github.com/globaleaks
 
 GLBackend/ $ trial globaleaks/tests/test\_\*.py
 
-GLBackend/curteg $ python curteg.py (curl tester globaleaks)
+GLBackend/shooter, use the shell scripts available, perform automatic operation using the raw client
+shooter.py
 

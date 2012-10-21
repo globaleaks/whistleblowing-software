@@ -13,7 +13,7 @@ from twisted.internet.defer import returnValue, inlineCallbacks
 from cyclone.web import asynchronous, HTTPError
 
 from globaleaks import models
-from globaleaks.utils import idops
+from globaleaks.utils import idops, log
 
 from globaleaks import messages
 
@@ -26,6 +26,9 @@ from globaleaks import messages
 from globaleaks.utils import log
 
 class SubmissionRoot(BaseHandler):
+
+    log.debug("[D] %s %s " % (__file__, __name__), "Class SubmissionRoot", "BaseHandler", BaseHandler)
+
     @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
@@ -44,6 +47,7 @@ class SubmissionRoot(BaseHandler):
               }
               Status code: 201 (Created)
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionRoot", "get")
         # XXX do sanitization and validation here
         self.set_status(201)
 
@@ -59,6 +63,9 @@ class SubmissionStatus(BaseHandler):
     uploaded data, selected context, file uploaded.
     permit to update fields content, context selection, and if supported, specify receivers
     """
+
+    log.debug("[D] %s %s " % (__file__, __name__), "Class SubmissionStatus", "BaseHandler", BaseHandler)
+
     @asynchronous
     @inlineCallbacks
     def get(self, submission_id):
@@ -74,6 +81,7 @@ class SubmissionStatus(BaseHandler):
             'expiration_time': 'Time'
           }
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionStatus", "get", "submission_id", submission_id )
         submission = models.submission.Submission()
         status = yield submission.status(submission_id)
 
@@ -110,6 +118,7 @@ class SubmissionStatus(BaseHandler):
           If the property of "receiver selection" is not set, the receiver_selected value
           is IGNORED.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionStatus", "post", "submission_id", submission_id )
         #request = messages.validateMessage(self.request.body,
         #                            messages.requests.submissionStatus)
 
@@ -123,6 +132,10 @@ class SubmissionStatus(BaseHandler):
         if 'fields' in request and request['fields']:
             print "Updating fields with %s" % request
             submission.update_fields(submission_id, request['fields'])
+
+        import time
+        time.sleep(2)
+        # print "just a timeout to make sure that the issue #25 is not for this parallel calling"
 
         if 'context_selected' in request and request['context_selected']:
             print "Updating context with %s" % request
@@ -182,6 +195,8 @@ class SubmissionFinalize(BaseHandler):
           { 'error_code': 'Int', 'error_message': 'fields requirement not respected' }
 
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionFinalize", "post", "submission_id", submission_id )
+
         receipt_id = unicode(idops.random_receipt_id())
 
         submission = models.submission.Submission()

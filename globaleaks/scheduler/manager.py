@@ -48,6 +48,7 @@ class WorkManager(object):
         Adds a Job object to the queue. args specifies the arguments to be
         passed to run when running the job.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WorkManager", "add", "obj", obj)
         obj.running = False
         obj.arg = arg
 
@@ -73,6 +74,7 @@ class WorkManager(object):
         We then return a deferred list that contains the jobs that are now
         currently running.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WorkManager", "run")
         dlist = []
         current_time = time.time()
         run_later = False
@@ -114,6 +116,7 @@ class WorkManager(object):
         """
         We have successfully run the Job obj.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WorkManager", "_success", "result", result, "obj", obj)
         obj.success()
         self.workQueue.remove(obj)
         obj.running = False
@@ -123,6 +126,7 @@ class WorkManager(object):
         This Job obj has failed. We should figure out if it's worth our time to
         try again.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WorkManager", "_failed", "failure", failure, "obj", obj)
         log.debug("The job %s has failed" % obj)
         obj.failures.append(failure)
         self.workQueue.remove(obj)
@@ -142,6 +146,7 @@ class WorkManager(object):
         return failure
 
     def showState(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WorkManager", "showState")
         log.debug("Work Queue")
         for x in self.workQueue:
             log.debug("* "+x)
@@ -153,6 +158,7 @@ class WorkManager(object):
         """
         Put in here your logic for resting state.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WorkManager", "loadState")
         log.debug("loading state.")
         pass
 
@@ -164,9 +170,11 @@ class WorkManager(object):
         #fp = open(output, 'w+')
         #pickle.dump(self, fp)
         #fp.close()
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WorkManager", "saveState", "output", output)
         pass
 
     def _done(self, result, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WorkManager", "_done", "result", result)
         log.debug("Run all jobs in the deferred list. Saving state.")
         self.saveState()
         log.debug("State saved")
@@ -182,6 +190,7 @@ class WorkManager(object):
         when we hit run again).
         If the distance is negative we set the timeout to 1.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WorkManager", "getTimeout")
         timeout = int(self.nextRun - time.time()) + 1
         if timeout < 0:
             timeout = 1
@@ -192,10 +201,15 @@ class DBWorkManager(WorkManager):
     This is a database driven work manager. It uses the provided database to
     store the current state of the work queues.
     """
+
+    log.debug("[D] %s %s " % (__file__, __name__), "Class DBWorkManager")
+
     def saveState(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class DBWorkManager", "saveState")
         print "Saving state to DB"
 
     def restoreState(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class DBWorkManager", "restoreState")
         print "Restoring state from DB"
 
 
