@@ -84,7 +84,6 @@ define(["jquery", "hasher",
 
     function submissionHandler(data) {
       require(['handlers/submission'], function(submission, data) {
-
         //hogan.compile(require('text!templates/submission.html'));
         submission(data);
       });

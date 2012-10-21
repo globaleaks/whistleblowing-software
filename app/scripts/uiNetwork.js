@@ -2,7 +2,10 @@
 
 /*global window */
 
-define(['jquery','utils/network', 'utils/latenza'], function($, network, latenza) {
+define(['jquery',
+        'utils/network',
+        'utils/latenza'],
+  function($, network, latenza) {
     'use strict';
 
     // Return a function that can be called to do the DOM binding given a
@@ -40,7 +43,7 @@ define(['jquery','utils/network', 'utils/latenza'], function($, network, latenza
         // Display the current network state.
         updateNetworkDisplay(network());
 
-        latenza.getLatency(updateLatencyDisplay);
+        //latenza.getLatency(updateLatencyDisplay);
 
         // Listen for changes in the network.
         network.on('online', function () {
