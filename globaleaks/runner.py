@@ -23,6 +23,7 @@ class GLBaseRunner(app.ApplicationRunner):
         We don't actually want to override this method since there is nothing
         interesting to do in here.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunner", "preApplication")
         pass
 
     def postApplication(self):
@@ -32,6 +33,7 @@ class GLBaseRunner(app.ApplicationRunner):
         Here we will take care of the launching of the reactor and the
         operations to be done after it's shutdown.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunner", "postApplication")
         pass
 
 if platformType == "win32":
@@ -41,15 +43,18 @@ if platformType == "win32":
         """
         This runner is specific to windows.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerWindows")
         def postApplication(self):
             """
             This code is taken directly from the method postApplication of
             WindowsApplicationRunner.
             """
+            log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerWindows", "postApplication")
             def runApp(res):
                 """
                 Start the actual service Application.
                 """
+                log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunner", "preApplication", "runApp")
                 service.IService(self.application).privilegedStartService()
                 app.startApplication(self.application, not self.config['no_save'])
                 app.startApplication(internet.TimerService(0.1, lambda:None), 0)
@@ -70,14 +75,17 @@ else:
         """
         This runner is specific to Unix systems.
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerUnix")
         def postApplication(self):
             """
             THis code is taken directly from UnixApplicationRunner
             """
+            log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerUnix", "postApplication")
             def runApp(res):
                 """
                 Start the actual service Application.
                 """
+                log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerUnix", "postApplication", "runApp")
                 print "Running start."
                 self.startApplication(self.application)
                 print "GLBackend is now running"

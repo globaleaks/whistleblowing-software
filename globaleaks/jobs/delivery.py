@@ -17,6 +17,7 @@ from globaleaks.utils import log
 from globaleaks.jobs.base import Job
 
 class Delivery(Job):
+    log.debug("[D] %s %s " % (__file__, __name__), "Class Delivery", "Job", Job)
     target = None
     def schedule(self, date):
         if isinstance(date, datetime.datetime):
@@ -25,10 +26,12 @@ class Delivery(Job):
             raise Exception("date argument must be an instance of datetime")
 
     def _run(self, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Delivery", "_run")
         d = self.run(*arg)
         return d
 
     def success(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Delivery", "success")
         submission_id = self.submission_id
         receipt_id = self.receipt_id
         log.debug("Successfully run %s delivery %s" % (submission_id, receipt_id))
@@ -36,6 +39,7 @@ class Delivery(Job):
         # deliveries and delete the submisssion directory.
 
     def run(self, *arg):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Delivery", "run")
         submission_id = self.submission_id
         receipt_id = self.receipt_id
         if not os.path.isdir(config.advanced.delivery_dir):
