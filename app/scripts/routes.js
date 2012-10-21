@@ -34,9 +34,12 @@ define(["jquery", "hasher",
     };
 
     function homeHandler(data) {
-      templates.home = hogan.compile(require('text!templates/home.html'));
-      var content = templates.home.render();
-      $('.contentElement').html(content);
+      require(['text!templates/home.html'], function(template) {
+        var compiled = hogan.compile(template),
+          content = compiled.render();
+        $('.contentElement').html(content);
+
+      });
     };
 
     function aboutHandler(data) {
