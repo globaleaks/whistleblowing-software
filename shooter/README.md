@@ -1,12 +1,13 @@
 # shooter
 
 a REST shooter for GLBackend, used for testing, development and perform shell controlled
-client emulation.
+client emulation. is based on **HTTPie**, a pretty curl interface for testing REST with JSON
+utilities.
 
-### Recently changed
+### Shooter.py
 
 after the while refactor of the code, the previous curteg is became completely obsolete, and
-now a new implementation is done. Is based on:
+now a new implementation is done. Its called **shooter**, is based on:
 
     https://github.com/jkbr/httpie
 
@@ -14,7 +15,7 @@ and need to be installed in your system (or in your pyenv) with:
 
     pip install --upgrade https://github.com/jkbr/httpie/tarball/master
 
-### Actual API
+### API actually supported
 
      '/node': 'GET' ,
      '/submission': 'GET',
@@ -50,11 +51,14 @@ default base URL is http://127.0.0.1:8082
 ### Usage
 
 
+### JSON files
+
+
 ## Scripts
 
     submission.sh 
     
-perform a submission
+emulate a submission, in the first context presented by '/node'
 
     comment.sh
 
