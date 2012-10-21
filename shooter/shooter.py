@@ -139,10 +139,12 @@ def do_httpie(method, url, request_list):
     except subprocess.CalledProcessError:
         print "invalid execution of httpie!"
         print "check the file", errfname
-        quit()
+        quit(1)
 
     if outfname == None:
-        quit()
+        # verbose option, do not permit output parsing,
+        # good exit code here
+        quit(0)
 
     os.close(tstdout)
     with open(outfname, 'r') as outfstream:
@@ -151,8 +153,8 @@ def do_httpie(method, url, request_list):
     if len(readed) > 5:
         return json.loads(readed)
 
-    # no output body!
-    quit()
+    # no output body!, good exit code
+    quit(0)
 
 
 
@@ -164,23 +166,33 @@ def checkOpt(option):
 def getOpt(seekd):
 
     if seekd in sys.argv:
-        return sys.argv[sys.argv.index(seekd) + 1]
+
+        retarg = sys.argv[sys.argv.index(seekd) + 1]
+
+        # tip, sid, cid has all the (t|s|c)_(\w+) regexp
+        if retarg[1] != '_':
+            print "invalied indexed", seekd,"! taken", retarg
+            quit(1)
+
+        return retarg
 
     return None
 
-def fix_url(url):
+def fix_varline(inputline):
 
-    for urlvar,argopt in { '@TIP@': 'tip', '@CID@': 'cid', '@SID@':'sid' }.iteritems():
-        if url.find(urlvar) > 0:
+    for var,argopt in { '@TIP@': 'tip', '@CID@': 'cid', '@SID@':'sid' }.iteritems():
+        if inputline.find(var) > 0:
             # it's passed in command line 'tip' 'cid' 'sid'
-            user_url_parm = getOpt(argopt)
-            if user_url_parm is None:
-                print "URL has a variable, you need to specify the appropriate sid/tip/cid"
-                quit()
-            urlsplit = url.split(urlvar)
-            return (urlsplit[0] + user_url_parm + urlsplit[1])
+            user_parm = getOpt(argopt)
 
-    return url
+            if user_parm is None:
+                print "processed line has a variable(", inputline, "), you need to specify", argopt
+                quit(1)
+
+            linesplit = inputline.split(var)
+            return (linesplit[0] + user_parm + linesplit[1])
+
+    return inputline
 
 # simple utility used in the spelunking_int_*
 def getMethIf(argv_index):
@@ -200,7 +212,7 @@ def spelunking_into_schema():
 
     if len(requested_rest) == 0:
         print "not found pattern", sys.argv[1], "in rest list"
-        quit()
+        quit(1)
 
     meth = getMethIf(2)
     if meth:
@@ -214,7 +226,7 @@ def spelunking_into_schema():
         print "expected only one selected REST, your query match", len(requested_rest)
         for rest in requested_rest:
             print "\t", rest
-        quit()
+        quit(1)
 
     # (url, meth, aggregate)
     splitted_aggr = requested_rest[0].split('_')
@@ -232,7 +244,7 @@ def spelunking_into_URTA():
         aggregate = URTA[assembled_key]
     else:
         print "The U|R|T|A code + method requested is invalid", assembled_key
-        quit()
+        quit(1)
 
     # (url, meth, aggregate)
     return (aggregate.split("_")[1], meth, aggregate)
@@ -256,10 +268,11 @@ def search_jsonfile(searched_rest):
                 if line[0] == '#':
                     continue
 
-                retlist.append(line)
+                expanded_line = fix_varline(line)
+                retlist.append(expanded_line)
     else:
         print "input JSON file is missing, searched:", fname
-        quit()
+        quit(1)
 
 
 def outputOptionsApply(theDict):
@@ -295,7 +308,7 @@ if __name__ == '__main__':
 
     if len(sys.argv) < 2:
         print sys.argv[0], "[portion of REST]|URTA code", "<method>", "<sid>|<cid>|<tip>"
-        quit()
+        quit(1)
 
     # handle 'shooter.py U1' and 'shooter.py U1 POST'
     if len(sys.argv[1]) == 2:
@@ -309,9 +322,10 @@ if __name__ == '__main__':
     else:
         request_list = None
 
-    url_fixed = fix_url(url)
+    url_fixed = fix_varline(url)
     received_data = do_httpie(meth, url_fixed, request_list)
 
     # If we're received data, mean that 'verbose' option was not present
     outputOptionsApply(received_data)
+    quit(0)
 
