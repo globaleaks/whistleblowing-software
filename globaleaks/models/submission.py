@@ -131,7 +131,20 @@ class Submission(TXModel):
     def update_fields(self, submission_id, fields):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
         store = self.getStore()
-        s = store.find(Submission, Submission.submission_id==submission_id).one()
+        try:
+            s = store.find(Submission, Submission.submission_id==submission_id).one()
+        except NotOneError, e:
+            # XXX these log lines will be removed in the near future
+            log.err("update_fields: Problem looking up %s" % submission_id)
+            log.err(e)
+            store.rollback()
+            store.close()
+            raise SubmissionNotFoundError
+
+        if not s:
+            store.rollback()
+            store.close()
+            raise SubmissionNotFoundError
 
         if not s.fields:
             s.fields = {}
