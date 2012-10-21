@@ -142,8 +142,8 @@ class Submission(TXModel):
             "folder_id": folder.id
         }
 
-        # store.commit()
-        safeCommit(store, ("(new %s)" % submission_id) )
+        store.commit()
+        #safeCommit(store, ("(new %s)" % submission_id) )
         store.close()
 
         return response
@@ -168,8 +168,8 @@ class Submission(TXModel):
         new_file.id = unicode(new_file_id)
         store.add(new_file)
 
-        # store.commit()
-        safeCommit(store, ("(store %s)" % file_name) )
+        store.commit()
+        #safeCommit(store, ("(store %s)" % file_name) )
         # remind -- rollback operation need to be used when an exception different from
         # lock is raised.
         """
@@ -192,8 +192,9 @@ class Submission(TXModel):
 
         # XXX: If we re-enable this store = self.getStore we end-up after submission of files in the error
         # "Database is locked". We should identify before that update_fields,  in create_tips why the database is not properly closed
-        #store = self.getStore()
-        store = safeGetStorage(self, ("(update_fields %s" % submission_id) )
+
+        store = self.getStore()
+        #store = safeGetStorage(self, ("(update_fields %s" % submission_id) )
         s = store.find(Submission, Submission.submission_id==submission_id).one()
 
         if not s.fields:
@@ -202,8 +203,8 @@ class Submission(TXModel):
         for k, v in fields.items():
             s.fields[k] = v
 
-        # store.commit()
-        safeCommit(store, ("(update_fields %s)" % submission_id) )
+        store.commit()
+        #safeCommit(store, ("(update_fields %s)" % submission_id) )
         # idem as before
         """
         try:
@@ -220,8 +221,8 @@ class Submission(TXModel):
     @transact
     def select_context(self, submission_id, context):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_id", submission_id, "context", context )
-        #store = self.getStore()
-        store = safeGetStorage(self, ("(select_context %s" % submission_id) )
+        store = self.getStore()
+        #store = safeGetStorage(self, ("(select_context %s" % submission_id) )
         try:
             s = store.find(Submission, Submission.submission_id==submission_id).one()
         except NotOneError, e:
@@ -234,8 +235,8 @@ class Submission(TXModel):
 
         s.context_selected = context
 
-        # store.commit()
-        safeCommit(store, ("(select_context %s)" % submission_id) )
+        store.commit()
+        #safeCommit(store, ("(select_context %s)" % submission_id) )
         # idem as before
         """
         try:
@@ -255,8 +256,8 @@ class Submission(TXModel):
     def status(self, submission_id):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_id", submission_id )
 
-        #store = self.getStore()
-        store = safeGetStorage(self, ("(status %s" % submission_id) )
+        store = self.getStore()
+        #store = safeGetStorage(self, ("(status %s" % submission_id) )
 
         try:
             s = store.find(Submission, Submission.submission_id==submission_id).one()
@@ -274,8 +275,8 @@ class Submission(TXModel):
                   'fields': s.fields}
                 # TODO 'creation_time' and 'expiration_time'
 
-        # store.commit()
-        safeCommit(store, ("(status %s)" % submission_id) )
+        store.commit()
+        #safeCommit(store, ("(status %s)" % submission_id) )
 
         store.close()
         return status
@@ -289,8 +290,8 @@ class Submission(TXModel):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt )
         log.debug("Creating tips for %s" % submission_id)
 
-        #store = self.getStore()
-        store = safeGetStorage(self, ("(create_tips %s" % submission_id) )
+        store = self.getStore()
+        #store = safeGetStorage(self, ("(create_tips %s" % submission_id) )
 
         try:
             submission = store.find(Submission,
@@ -362,7 +363,8 @@ class Submission(TXModel):
             folder.internaltip = internal_tip
 
             store.add(folder) # copyed from the commented block before, for put a:
-            safeCommit(store, ("(create_tips / folder %s)" % submission_id) )
+            #safeCommit(store, ("(create_tips / folder %s)" % submission_id) )
+            store.commit()
             """
             try:
                 store.add(folder)
@@ -425,8 +427,8 @@ class Submission(TXModel):
         store.remove(submission)
         # maybe also this operation can give the lock problem
 
-        # store.commit()
-        safeCommit(store, ("(create_tips / all the stuff %s)" % submission_id) )
+        store.commit()
+        #safeCommit(store, ("(create_tips / all the stuff %s)" % submission_id) )
 
         """
         try:
