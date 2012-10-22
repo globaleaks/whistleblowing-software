@@ -2,7 +2,7 @@
 
 SHOOTER="python shooter.py"
 
-context_id=`$SHOOTER U1 GET sid print-id`
+context_id=`$SHOOTER U1 GET print-id`
 if [ $? != 0 ]; then echo "\tError in U1 GET" && exit; fi
 echo "context_id $context_id"
 
