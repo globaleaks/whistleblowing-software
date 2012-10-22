@@ -167,11 +167,15 @@ def getOpt(seekd):
 
     if seekd in sys.argv:
 
-        retarg = sys.argv[sys.argv.index(seekd) + 1]
+        try:
+            retarg = sys.argv[sys.argv.index(seekd) + 1]
+        except IndexError:
+            print "unable to get [", seekd,"] required parameter"
+            quit(1)
 
         # tip, sid, cid has all the (t|s|c)_(\w+) regexp
         if retarg[1] != '_':
-            print "invalied indexed", seekd,"! taken", retarg
+            print "invaid [", seekd,"], collected: [", retarg, "]"
             quit(1)
 
         return retarg
