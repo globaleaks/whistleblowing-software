@@ -8,13 +8,11 @@ import string
 # an ID style is updated, please change also the methods below,
 # implementing the appropria regexp that match the ID
 
-# The method present here are divided in two kind:
-# the random_ method: return an ID, providing randomness where request)
-# the regexp_ method: return True|False, and with a regexp verify if the
-#                     first argument, if fit with the appropriate format
+# The regular expression matching those formats, are implemented
+# in globaleaks/messages/base.py
 
 
-def random_submission_id(testingmode=False):
+def random_submission_gus(testingmode=False):
     """
     this need to be not guessable because this secret auth the WB
     during the submission procedure.
@@ -26,13 +24,7 @@ def random_submission_id(testingmode=False):
     else:
         return u's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def regexp_submission_id(submission_id):
-
-    outre = re.match('s_[a-zA-Z]{50,50}$', submission_id)
-    return True if outre != None else False
-
-
-def random_receipt_id(testingmode=False):
+def random_receipt_gus(testingmode=False):
     """
     need to be NOT guessable
     internal settings may change the kind of the output provided (in example,
@@ -46,29 +38,11 @@ def random_receipt_id(testingmode=False):
     else:
         return u''.join(random.choice('0123456789') for x in range(length))
 
-def regexp_receipt_id(receipt):
-
-    outre = re.match('\d{10,10}$', receipt)
-    return True if outre != None else False
-
-
-def random_module_id():
-    """
-    XXX maybe requested the:
-    module_name: the name of the module, don't need to be random, but neet to be
-        almost stripped of the not URL-able character that shall be present in
-        the module name
-    """
+def random_module_gus():
     length = 10
     return u'm_'+(''.join(random.choice('0123456789') for x in range(length)))
 
-def regexp_module_id(module_id):
-
-    outre = re.match('m_\d{10,10}$', module_id)
-    return True if outre != None else False
-
-
-def random_context_id():
+def random_context_gus():
     """
     need to be random (because not all context maybe reachable directly from the
     home page, or not all context need to be disclosed publicly), but need to be
@@ -77,13 +51,7 @@ def random_context_id():
     length = 20
     return u'c_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def regexp_context_id(context_id):
-
-    outre = re.match('c_[a-zA-Z]{20,20}$', context_id)
-    return True if outre != None else False
-
-
-def random_folder_id():
+def random_folder_gus():
     """
     need to be random
     XXX this has been changed to starting d_ for directory.
@@ -91,7 +59,7 @@ def random_folder_id():
     length = 20
     return u'd_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def random_file_id():
+def random_file_gus():
     """
     need to be random
     XXX file is now starting with f_ and is supposed to be random
@@ -99,13 +67,7 @@ def random_file_id():
     length = 30
     return u'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def regexp_folder_id(fID):
-
-    outre = re.match('f_[a-zA-Z]{20,20}$', fID)
-    return True if outre != None else False
-
-
-def random_receiver_id():
+def random_receiver_gus():
     """
     maybe guessable, because is an information available to the whistleblower, and
     then every time is used as input, need to be checked in coherence, in the context.
@@ -114,21 +76,9 @@ def random_receiver_id():
     length = 20
     return u'r_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def regexp_receiver_id(receiver_id):
-
-    outre = re.match('r_[a-zA-Z]{20,20}$', receiver_id)
-    return True if outre != None else False
-
-
-def random_tip_id():
+def random_tip_gus():
     """
     need to be NOT guessable
     """
     length = 50
     return u't_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
-
-def regexp_tip_id(tID):
-
-    outre = re.match('t_[a-zA-Z]{50,50}$', tID)
-    return True if outre != None else False
-

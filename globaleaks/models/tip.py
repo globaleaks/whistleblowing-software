@@ -15,9 +15,10 @@ from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.admin import Context
 
-__all__ = [ 'Folder', 'File', 'Comment',
-            'InternalTip',  'ReceiverTip',
-            'PublicStats']
+from globaleaks.messages.responses import errorMessage
+
+__all__ = [ 'InternalTip', 'Folder', 'File', 'Comment',
+            'ReceiverTip', 'PublicStats', 'WhistleblowerTip' ]
 
 class TipModelError(ModelError):
     log.debug("[D] %s %s " % (__file__, __name__), "Class TipModelError", "ModelError", ModelError)
@@ -25,8 +26,12 @@ class TipModelError(ModelError):
 
 class TipNotFoundError(TipModelError):
     log.debug("[D] %s %s " % (__file__, __name__), "Class TipNotFoundError", "TipModelError", TipModelError)
-    print "what I need to do ?"
     pass
+    # errorMessage(510, error_code=510, error_message="510 error code: it's a test + tip not found")
+    # how this stuff is intended to be used ? It's a derivation of TipModelError, that's
+    # is a derivation of ModelError, that simple print an error. What we need it's just
+    # the possibility of return errorMessage from an exception (btw, why is an exception and
+    # not just a method ?
 
 class Folder(TXModel):
     """
@@ -40,28 +45,33 @@ class Folder(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "Folder", "TXModel", TXModel)
     __storm_table__ = 'folders'
 
-    id = Unicode(primary=True)
+    folder_gus = Unicode(primary=True)
 
     name = Unicode()
     description = Unicode()
+
     property_applied = Pickle()
     # actually there are not property, but here would be marked if symmetric
     # asymmetric encryption has been used.
 
     upload_time = Date()
 
-    associated_receiver_id = Int()
-    associated_receiver = Reference(associated_receiver_id, Receiver.id)
+    # to be expanded in the near future XXX
+    # at the moment, folder is not associated to a receiver
+    #  associated_receiver_id = Int()
+    #  associated_receiver = Reference(associated_receiver_id, Receiver.id)
     # associated_receiver_id is useful for show, in the general page of the
     # receiver, eventually the latest available folders
 
     internaltip_id = Int()
+    # internaltip = Reference(internaltip_id, InternalTip.id)
+    # GLBackend/globaleaks/models/tip.py", line 67, in Folder
+    # internaltip = Reference(internaltip_id, InternalTip.id)
+    # NameError: name 'InternalTip' is not defined
+    # -- then, I moved that line after InternalTip
 
-    # is associated to the ORM.id, not to the tip_uniq_ID, eventually,
-    # having the Folder.folder_id can be shared and downloaded by
-    # someone that has not access to the Tip
 
-    def file_dicts(self):
+def file_dicts(self):
         file_dicts = []
         log.debug("Processing %s" % self.files)
         for f in self.files:
@@ -86,7 +96,7 @@ class File(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "File", "TXModel", TXModel)
     __storm_table__ = 'files'
 
-    id = Unicode(primary=True)
+    file_gus = Unicode(primary=True)
 
     name = Unicode()
     content = RawStr()
@@ -103,10 +113,10 @@ class File(TXModel):
     metadata_cleaned = Bool()
     uploaded_date = Date()
 
-    folder_id = Unicode()
-    folder = Reference(folder_id, Folder.id)
+    folder_gus = Unicode()
+    folder = Reference(folder_gus, Folder.folder_gus)
 
-Folder.files = ReferenceSet(Folder.id, File.folder_id)
+Folder.files = ReferenceSet(Folder.folder_gus, File.folder_gus)
 
 class Comment(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "Comment", "TXModel", TXModel)
@@ -120,7 +130,12 @@ class Comment(TXModel):
     comment_date = Date()
 
     internaltip_id = Int()
-    #internaltip = Reference(internaltip_id, InternalTip.id)
+    # internaltip = Reference(internaltip_id, InternalTip.id)
+    # GLBackend/globaleaks/models/tip.py", line 133, in Comment
+    # internaltip = Reference(internaltip_id, InternalTip.id)
+    # NameError: name 'InternalTip' is not defined
+    # -- then, I moved that line after InternalTip decl
+
 
 class InternalTip(TXModel):
     """
@@ -135,6 +150,7 @@ class InternalTip(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "TXModel", TXModel)
     __storm_table__ = 'internaltips'
 
+    # an InternalTip has not a _gus, then is used classic id = Int()
     id = Int(primary=True)
     fields = Pickle()
 
@@ -155,13 +171,13 @@ class InternalTip(TXModel):
     access_limit = Int()
     download_limit = Int()
 
-    file_id = Int()
-
     folders = ReferenceSet(id, Folder.internaltip_id)
+        # remind: I've removed file reference from InternalTip
+        # because do not exists file leaved alone
     comments = ReferenceSet(id, Comment.internaltip_id)
 
-    context_id = Unicode()
-    context = Reference(context_id, Context.context_id)
+    context_gus = Unicode()
+    context = Reference(context_gus, Context.context_gus)
 
     def folder_dicts(self):
         log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "folder_dicts")
@@ -188,18 +204,17 @@ class InternalTip(TXModel):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "tip_total_delete")
 
-
-# XXX Refactor this to use the internaltip_id (replace .id with internaltip_id)
 Folder.internaltip = Reference(Folder.internaltip_id, InternalTip.id)
+Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 
 class Tip(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "TXModel", TXModel)
     __storm_table__ = 'tips'
 
-    id = Int(primary=True)
+    # remind: the previous name of this variable was 'address'
+    tip_gus = Unicode(primary=True)
 
     type = Unicode()
-    address = Unicode()
     password = Unicode()
 
     internaltip_id = Int()
@@ -223,19 +238,16 @@ class Tip(TXModel):
         }
         return ret
 
-
     @transact
     def lookup(self, receipt):
         """
-        receipt actually is either a random_tip_id and a random_receipt_id,
-        in the future, would be the hash of a random_receipt_id.
-
-        the string to be matched stay in, 'address'
+        receipt actually is either a random_tip_gus and a random_receipt_gus,
+        in the future, would be the hash of a random_receipt_gus.
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "lookup", "receipt", receipt )
         store = self.getStore()
 
-        tip = store.find(Tip, Tip.address == receipt).one()
+        tip = store.find(Tip, Tip.tip_gus == receipt).one()
         if not tip:
             store.rollback()
             store.close()
@@ -246,7 +258,7 @@ class Tip(TXModel):
         folders = tip.internaltip.folders
         # ANSWERED folders do not exist in the Tip variables, why ?
         # + folders shall not be downloaded by the WB, this info can be stripped
-        # off the folder_ID (required to download)
+        # off the folder_gus (required to download)
         #
         # As mentioned on IRC for the moment we want to keep it simple and not
         # have a folder per receiver.
@@ -260,7 +272,7 @@ class Tip(TXModel):
         # They are not properties of the Tip variable, but of the internal tip.
         # The comments are currently global to every tip.
 
-        context = tip.internaltip.context_id
+        context = tip.internaltip.context_gus
 
         receiver_dicts = tip.internaltip.context.receiver_dicts()
         folders = tip.internaltip.folder_dicts()
@@ -276,41 +288,6 @@ class Tip(TXModel):
         store.close()
 
         return tip_details
-
-    @transact
-    def add_comment(self, receipt, comment):
-        """
-        From a Tip hook the internalTip, and update comments inside.
-        Passing thru Tip, permit to detect the comment_type
-        """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "add_comment", "receipt", receipt, "comment", comment)
-        store = self.getStore()
-
-        # tip = store.find(Tip, Tip.address == receipt).one()
-        # hack, find the first tip avail
-        tip = store.find(Tip) # .order_by(Tip.internaltip_id).first()
-        tip_c = tip.count()
-        if tip_c == 0:
-            print "DO NOT EXISTS TIP IN THIS MOMENT - holy fucking god"
-            store.close()
-            return
-
-        print "looking for tip", receipt
-        tip = store.find(Tip, Tip.address == receipt).one()
-        if not tip:
-            store.rollback()
-            store.close()
-            raise TipNotFoundError
-
-        newcomment = Comment()
-        newcomment.internaltip_id = tip.internaltip.id
-        newcomment.type = tip.type
-        newcomment.content = comment
-        newcomment.author = u"TODO"
-
-        store.add(newcomment)
-        store.commit()
-        store.close()
 
 
 class ReceiverTip(Tip):
@@ -334,25 +311,23 @@ class ReceiverTip(Tip):
     last_access = Date()
     pertinence_vote = Int()
 
-    receiver_id = Unicode()
-    receiver = Reference(receiver_id, Receiver.id)
+    receiver_gus = Unicode()
+    receiver = Reference(receiver_gus, Receiver.receiver_gus)
 
-    def new(self, receiver_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "new", "receiver_id", receiver_id )
-        log.debug("Creating receiver tip for %s" % receiver_id)
+    def new(self, receiver_gus):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "new", "receiver_id", receiver_gus )
+        log.debug("Creating receiver tip for %s" % receiver_gus)
 
         # all this four details need to be properly moved/renamed
         self.total_view_count = 0
         self.total_download_count = 0
         self.relative_view_count = 0
         self.relative_download_count = 0
+        self.receiver_gus = receiver_gus
 
         self.authoptions = {}
 
-        self.address = idops.random_tip_id()
-        # was called tip_gus (globaleaks uniqe string) to AVOID MISTAKES!!!
-        # ANSWERED ok, change the name then, but make sure to not break stuff.
-        #self.password =
+        self.tip_gus = idops.random_tip_gus()
 
         self.type = u'receiver'
         log.debug("Created!")
@@ -366,8 +341,8 @@ class ReceiverTip(Tip):
 
         for receiver in store.find(Receiver):
             receiver_dict = {}
-            receiver_dict['id'] = receiver.receiver_id
-            receiver_dict['name'] = receiver.receiver_name
+            receiver_dict['gus'] = receiver.receiver_gus
+            receiver_dict['name'] = receiver.name
             receiver_dict['description'] = receiver.receiver_description
 
             receiver_dict['can_delete_submission'] = receiver.can_delete_submission
@@ -385,10 +360,50 @@ class ReceiverTip(Tip):
 
         return receiver_dicts
 
+    @transact
+    def add_comment(self, tip_gus, comment):
+        """
+        From a Tip hook the internalTip, and update comments inside.
+        comment_type and name of the author need to be written at the commit
+        time, and not when comments are show to the users (perhaps, some user would
+        remove a tip, breaking reference. this separation it's required for that).
+        comment_type of those comments is "receiver" (other are "whistleblower" and
+        "system")
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "ReceiverTip class", "add_comment", "tip_gus", tip_gus, "comment", comment)
+        store = self.getStore()
+
+        try:
+            # XXX - aarrgghh - naming refactor remind!
+            tip = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        except NotOneError, e:
+            log.err("add_comment (receiver side): Problem looking up %s" % tip_gus)
+            store.rollback()
+            store.close()
+            raise TipNotFoundError
+
+        if not tip:
+            store.rollback()
+            store.close()
+            raise TipNotFoundError
+
+        newcomment = Comment()
+        newcomment.internaltip_id = tip.internaltip.id
+        newcomment.type = u"receiver" # XXX its commentENUM
+        newcomment.content = comment
+
+        print "debug 1", type(tip.receiver)
+        print "debug 2", type(tip.receiver_gus)
+        newcomment.author = u'temp fake name'
+
+        store.add(newcomment)
+        store.commit()
+        store.close()
+
 
 class WhistleblowerTip(Tip):
     """
-    SpecialTip is intended, at the moment, to provide a whistleblower access to the Tip.
+    WhisteleblowerTip is intended, at the moment, to provide a whistleblower access to the Tip.
     differently from the ReceiverTips, has a secret and/or authentication checks, has
     different capabilities, like: cannot not download, cannot express pertinence, and
     other operation permitted to the WB shall be configured by the Admin.

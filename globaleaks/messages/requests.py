@@ -20,7 +20,7 @@ class submissionStatus(GLTypes):
     U3 (POST)
     """
     specification = {"fields": [base.formFieldsDict],
-                     "context_selected": base.contextID}
+                     "context_selected": base.contextGUS}
 
 
 class finalizeSubmission(GLTypes):
