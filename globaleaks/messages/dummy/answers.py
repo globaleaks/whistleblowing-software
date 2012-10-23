@@ -21,7 +21,7 @@ nodeRootGet = {"contexts": [base.contextDescriptionDicts[0]],
 submissionNewGet = {
     # this would be useless when the default value would
     # be already assigned
-    "submission_id":  "s_AAAAAAAAAABBBBBBBBBBDDDDDDsubmissionRRRRPPPPPPPPPP"
+    "submission_gus":  "s_AAAAAAAAAABBBBBBBBBBDDDDDDsubmissionRRRRPPPPPPPPPP"
 }
 
 submissionStatusGet = {

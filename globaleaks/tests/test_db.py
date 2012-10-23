@@ -54,7 +54,7 @@ class BaseDBTest(unittest.TestCase):
 class TablesTest(BaseDBTest):
     def disable_test_base(self):
         # XXX disabled because of WIP on database
-        good_query = "CREATE TABLE submission (creation_time VARCHAR, fields BLOB, folder_id INTEGER, id INTEGER, receivers BLOB, submission_id VARCHAR, PRIMARY KEY (id))"
+        good_query = "CREATE TABLE submission (creation_time VARCHAR, fields BLOB, folder_gus INTEGER, id INTEGER, receivers BLOB, submission_gus VARCHAR, PRIMARY KEY (id))"
         self.assertEqual(tables.generateCreateQuery(models.submission.Submission),
                 good_query)
 
@@ -65,17 +65,17 @@ class TablesTest(BaseDBTest):
 class TestSubmission(BaseDBTest):
 
     baseModel = models.submission.Submission
-    submission_id = u'r_testsubmissionid'
+    submission_gus = u'r_testsubmissionid'
 
     @inlineCallbacks
     def test_create_table(self):
         yield self.create_table()
 
     @inlineCallbacks
-    def create_dummy_submission(self, submission_id):
+    def create_dummy_submission(self, submission_gus):
         test_submission = self.mock_model()
-        test_submission.submission_id = submission_id
-        test_submission.folder_id = 0
+        test_submission.submission_gus = submission_gus
+        test_submission.folder_gus = 0
 
         test_submission.fields = requests.submissionStatusPost['fields']
         test_submission.context_selected = requests.submissionStatusPost['context_selected']
@@ -91,10 +91,10 @@ class TestSubmission(BaseDBTest):
         yield self.create_table()
 
         test_submission = self.mock_model()
-        my_id = self.submission_id+'stat'
+        my_gus = self.submission_gus+'stat'
 
-        yield self.create_dummy_submission(my_id)
-        status = yield test_submission.status(my_id)
+        yield self.create_dummy_submission(my_gus)
+        status = yield test_submission.status(my_gus)
 
         self.assertEqual(status['fields'],
                 requests.submissionStatusPost['fields'])
@@ -106,14 +106,14 @@ class TestSubmission(BaseDBTest):
         yield self.create_table()
 
         test_submission = self.mock_model()
-        my_id = self.submission_id+'fina'
+        my_gus = self.submission_gus+'fina'
 
         yield self.create_table(models.tip.InternalTip)
         yield self.create_table(models.tip.Tip)
 
-        yield self.create_dummy_submission(my_id)
+        yield self.create_dummy_submission(my_gus)
         try:
-            yield test_submission.create_tips(my_id, u'1234567890')
+            yield test_submission.create_tips(my_gus, u'1234567890')
         except Exception, e:
             print e
 
@@ -146,18 +146,18 @@ class TestReceivers(BaseDBTest):
     def test_add_receiver_to_context(self):
         yield self.create_tables()
 
-        context_id = u'c_thisisatestcontext'
+        context_gus = u'c_thisisatestcontext'
         test_receiver = self.mock_model()
         test_context = self.mock_model(models.admin.Context)
         test_context.name = u'test context'
-        test_context.context_id = context_id
+        test_context.context_gus = context_gus
 
         yield test_context.save()
 
         result = yield test_receiver.create_dummy_receivers()
 
-        receiver_id = result[0]['id']
-        yield test_context.add_receiver(context_id, receiver_id)
+        receiver_gus = result[0]['receiver_gus']
+        yield test_context.add_receiver(context_gus, receiver_gus)
 
 
 class TestTip(BaseDBTest):

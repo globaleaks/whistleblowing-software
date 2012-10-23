@@ -39,7 +39,7 @@ fileDicts.append({
         })
 
 
-folderDict = {"folder_id": idops.random_folder_id(),
+folderDict = {"folder_gus": idops.random_folder_gus(),
         "folder_name": u'those from my chief personal USB key',
         "folder_description": u'He left the key in the office, does not contain jobs files, but some proof that is a Mafia thug',
         "download_performed": 2,
@@ -48,7 +48,7 @@ folderDict = {"folder_id": idops.random_folder_id(),
 receiverDescriptionDicts = []
 
 receiverDescriptionDicts.append({
-        "id": idops.random_receiver_id(),
+        "receiver_gus": idops.random_receiver_gus(),
         "can_delete_submission": True,
         "can_postpone_expiration": True,
         "can_configure_notification": True,
@@ -63,7 +63,7 @@ receiverDescriptionDicts.append({
 
 
 receiverDescriptionDicts.append({
-    "id": idops.random_receiver_id(),
+    "receiver_gus": idops.random_receiver_gus(),
     "can_delete_submission": True,
     "can_postpone_expiration": True,
     "can_configure_notification": True,
@@ -78,7 +78,7 @@ receiverDescriptionDicts.append({
     })
 
 receiverDescriptionDicts.append({
-    "id": idops.random_receiver_id(),
+    "receiver_gus": idops.random_receiver_gus(),
 
     "can_delete_submission": False,
     "can_postpone_expiration": False,
@@ -92,7 +92,7 @@ receiverDescriptionDicts.append({
     })
 
 receiverDescriptionDicts.append({
-    "id": idops.random_receiver_id(),
+    "receiver_gus": idops.random_receiver_gus(),
 
     "can_delete_submission": False,
     "can_postpone_expiration": False,
@@ -197,7 +197,7 @@ formFieldsDicts2.append({
 
 
 moduleDataDict_N = {
-    "module_id": idops.random_module_id(),
+    "module_gus": idops.random_module_gus(),
     "active": True,
     "module_type": u'notification',
     "name": u'Encrypted E-Mail',
@@ -221,7 +221,7 @@ moduleDataDict_N = {
 
 
 moduleDataDict_D = {
-    "module_id": idops.random_module_id(),
+    "module_gus": idops.random_module_gus(),
     "active": True,
     "module_type": u'delivery',
     "name": u'upload in FTP',
@@ -241,7 +241,7 @@ remind: are declared FOUR fields by base
 contextDescriptionDicts = []
 
 contextDescriptionDicts.append({
-    "context_id": idops.random_context_id(),
+    "context_gus": idops.random_context_gus(),
     "name":u"Autovelox broken",
     "description": u'tell us which autovelox is working bad, we\'re tired of wrong fines!',
     # "creation_date", "time"
@@ -267,7 +267,7 @@ commentDescriptionDict = {
     }
 
 tipSubIndex = {
-    "tID": idops.random_tip_id(),
+    "tip_gus": idops.random_tip_gus(),
     "tip_title": u'Greatest secret of all world - Enter the ninja',
 
     "notification_adopted": u'default email',
@@ -286,7 +286,7 @@ tipSubIndex = {
     "overall_pertinence": 101}
 
 tipIndexDict = {
-    "cID": idops.random_context_id(),
+    "context_gus": idops.random_context_gus(),
     "tiplist": tipSubIndex
     }
 

@@ -56,9 +56,9 @@ def nodeMainSettings():
     return response
 
 # U2
-def newSubmission(submission_id, time):
+def newSubmission(submission_gus, time):
     response = {
-        "submission_id": submission_id,
+        "submission_gus": submission_gus,
         "creation_time": time
     }
     return response

@@ -103,18 +103,14 @@ class Submission(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "Class Submission")
     __storm_table__ = 'submission'
 
-    # XXX we probably want to remove this useless Int ID and only use the
-    # random submission_id. This also decreases the kind of derivate data we
-    # store on db.
-    id = Int(primary=True)
-    submission_id = Unicode() # Int()
+    submission_gus = Unicode(primary=True) # Int()
 
     fields = Pickle()
 
     context_selected = Pickle()
 
-    folder_id = Unicode()
-    folder = Reference(folder_id, Folder.id)
+    folder_gus = Unicode()
+    folder = Reference(folder_gus, Folder.folder_gus)
 
     creation_time = Date()
 
@@ -123,49 +119,49 @@ class Submission(TXModel):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new")
         store = self.getStore()
 
-        submission_id = idops.random_submission_id(False)
+        submission_gus = idops.random_submission_gus(False)
         creation_time = gltime.utcDateNow()
 
         submission = Submission()
-        submission.submission_id = submission_id
+        submission.submission_gus = submission_gus
         submission.creation_time = creation_time
 
         folder = Folder()
-        folder.id = idops.random_folder_id()
+        folder.folder_gus = idops.random_folder_gus()
         store.add(folder)
 
         submission.folder = folder
         store.add(submission)
 
-        response = {"submission_id": submission_id,
+        response = {
+            "submission_gus": submission_gus,
             "creation_time": gltime.dateToTime(creation_time),
-            "folder_id": folder.id
+            "folder_gus": folder.folder_gus
         }
 
         store.commit()
-        #safeCommit(store, ("(new %s)" % submission_id) )
+        #safeCommit(store, ("(new %s)" % submission_gus) )
         store.close()
 
         return response
 
     @transact
-    def add_file(self, submission_id, file_name=None):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id , "file_name", file_name )
+    def add_file(self, submission_gus, file_name=None):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_gus", submission_gus , "file_name", file_name )
         store = self.getStore()
-        submission = store.find(Submission, Submission.submission_id==submission_id).one()
+        submission = store.find(Submission, Submission.submission_gus==submission_gus).one()
 
         if not submission:
             store.rollback()
             store.close()
             raise SubmissionNotFoundError
 
-        new_file_id = idops.random_file_id()
-        log.debug("Generated this file id %s" % new_file_id)
+        new_file_gus = idops.random_file_gus()
+        log.debug("Generated this file id %s" % new_file_gus)
         new_file = File()
-        #new_file.folder = submission.folder
-        # XXX setting this to random for the moment
-        #new_file.name = new_file_id
-        new_file.id = unicode(new_file_id)
+
+        new_file.folder_gus = submission.folder_gus
+        new_file.file_gus = unicode(new_file_gus)
         store.add(new_file)
 
         store.commit()
@@ -176,30 +172,30 @@ class Submission(TXModel):
         try:
             store.commit()
         except Exception, e:
-            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", submission_id, "file_name", file_name )
+            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_gus", submission_gus, "file_name", file_name )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
         """
 
-        log.debug("Added file %s to %s" % (submission_id, file_name))
+        log.debug("Added file %s to %s" % (submission_gus, file_name))
         store.close()
-        return new_file_id
+        return new_file_gus
 
     @transact
-    def update_fields(self, submission_id, fields):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
+    def update_fields(self, submission_gus, fields):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_gus", submission_gus, "fields", fields )
 
         # XXX: If we re-enable this store = self.getStore we end-up after submission of files in the error
         # "Database is locked". We should identify before that update_fields,  in create_tips why the database is not properly closed
 
         store = self.getStore()
-        #store = safeGetStorage(self, ("(update_fields %s" % submission_id) )
+        #store = safeGetStorage(self, ("(update_fields %s" % submission_gus) )
         try:
-            s = store.find(Submission, Submission.submission_id==submission_id).one()
+            s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
             # XXX these log lines will be removed in the near future
-            log.err("update_fields: Problem looking up %s" % submission_id)
+            log.err("update_fields: Problem looking up %s" % submission_gus)
             log.err(e)
             store.rollback()
             store.close()
@@ -217,13 +213,13 @@ class Submission(TXModel):
             s.fields[k] = v
 
         store.commit()
-        #safeCommit(store, ("(update_fields %s)" % submission_id) )
+        #safeCommit(store, ("(update_fields %s)" % submission_gus) )
         # idem as before
         """
         try:
             store.commit()
         except Exception, e:
-            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_id", submission_id, "fields", fields )
+            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_gus", submission_gus, "fields", fields )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
@@ -232,15 +228,15 @@ class Submission(TXModel):
 
 
     @transact
-    def select_context(self, submission_id, context):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_id", submission_id, "context", context )
+    def select_context(self, submission_gus, context):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_gus", submission_gus, "context", context )
         store = self.getStore()
-        #store = safeGetStorage(self, ("(select_context %s" % submission_id) )
+        #store = safeGetStorage(self, ("(select_context %s" % submission_gus) )
         try:
-            s = store.find(Submission, Submission.submission_id==submission_id).one()
+            s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
             # XXX these log lines will be removed in the near future
-            log.msg("Problem looking up %s" % submission_id)
+            log.msg("Problem looking up %s" % submission_gus)
             log.msg(e)
             store.rollback()
             store.close()
@@ -249,13 +245,13 @@ class Submission(TXModel):
         s.context_selected = context
 
         store.commit()
-        #safeCommit(store, ("(select_context %s)" % submission_id) )
+        #safeCommit(store, ("(select_context %s)" % submission_gus) )
         # idem as before
         """
         try:
             store.commit()
         except Exception, e:
-            log.debug("[E]: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_id", submission_id, "context", context )
+            log.debug("[E]: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_gus", submission_gus, "context", context )
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
@@ -266,14 +262,14 @@ class Submission(TXModel):
 
 
     @transact
-    def status(self, submission_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_id", submission_id )
+    def status(self, submission_gus):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_gus", submission_gus )
 
         store = self.getStore()
-        #store = safeGetStorage(self, ("(status %s" % submission_id) )
+        #store = safeGetStorage(self, ("(status %s" % submission_gus) )
 
         try:
-            s = store.find(Submission, Submission.submission_id==submission_id).one()
+            s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
             store.rollback()
             store.close()
@@ -289,28 +285,28 @@ class Submission(TXModel):
                 # TODO 'creation_time' and 'expiration_time'
 
         store.commit()
-        #safeCommit(store, ("(status %s)" % submission_id) )
+        #safeCommit(store, ("(status %s)" % submission_gus) )
 
         store.close()
         return status
 
     @transact
-    def create_tips(self, submission_id, receipt):
+    def create_tips(self, submission_gus, receipt):
         """
         this function is became simply unmaintainable
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_id", submission_id, "receipt", receipt )
-        log.debug("Creating tips for %s" % submission_id)
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_gus", submission_gus, "receipt", receipt )
+        log.debug("Creating tips for %s" % submission_gus)
 
         store = self.getStore()
-        #store = safeGetStorage(self, ("(create_tips %s" % submission_id) )
+        #store = safeGetStorage(self, ("(create_tips %s" % submission_gus) )
 
         try:
             submission = store.find(Submission,
-                            Submission.submission_id==submission_id).one()
+                            Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
-            log.msg("Problem creating tips for %s" % submission_id)
+            log.msg("Problem creating tips for %s" % submission_gus)
             log.msg(e)
             store.rollback()
             store.close()
@@ -328,18 +324,18 @@ class Submission(TXModel):
             # this can never happen, would be catch by NotOneError before
             store.rollback()
             store.close()
-            log.msg("Did not find the %s submission" % submission_id)
+            log.msg("Did not find the %s submission" % submission_gus)
             raise SubmissionNotFoundError
 
         if not submission.context_selected:
             store.rollback()
             store.close()
-            log.msg("Did not find the context for %s submission" % submission_id)
+            log.msg("Did not find the context for %s submission" % submission_gus)
             raise SubmissionNoContextSelectedError
 
         try:
             context = store.find(Context,
-                    Context.context_id == submission.context_selected).one()
+                    Context.context_gus == submission.context_selected).one()
         except NotOneError, e:
             # XXX will this actually ever happen?
             # Investigate!
@@ -350,7 +346,7 @@ class Submission(TXModel):
             raise SubmissionContextNotOneError
 
         if not context:
-            log.msg("Did not find the context for %s submission" % submission_id)
+            log.msg("Did not find the context for %s submission" % submission_gus)
             # shall be the rollback to create a logest timeout, and then make lock the other operation ?
             store.rollback()
             store.close()
@@ -360,7 +356,7 @@ class Submission(TXModel):
         try:
             internal_tip = InternalTip()
             internal_tip.fields = submission.fields
-            internal_tip.context_id = submission.context_selected
+            internal_tip.context_gus = submission.context_selected
             store.add(internal_tip)
         except Exception, e:
             log.err(e)
@@ -368,15 +364,15 @@ class Submission(TXModel):
             store.close()
             raise SubmissionModelError
 
-        log.debug("Created internal tip %s" % internal_tip.context_id)
+        log.debug("Created internal tip %s" % internal_tip.context_gus)
 
         if submission.folder:
-            log.debug("Creating submission folder table %s" % submission.folder_id)
+            log.debug("Creating submission folder table %s" % submission.folder_gus)
             folder = submission.folder
             folder.internaltip = internal_tip
 
             store.add(folder) # copyed from the commented block before, for put a:
-            #safeCommit(store, ("(create_tips / folder %s)" % submission_id) )
+            #safeCommit(store, ("(create_tips / folder %s)" % submission_gus) )
             store.commit()
             """
             try:
@@ -392,62 +388,60 @@ class Submission(TXModel):
             log.debug("Submission folder created withour error")
         else:
             print "I don't believe this is possible, actually, submission.folder is created on new()"
-            # XXX, and I don't get why folder id is returned by new(), btw, because file uploader
-            # use submission_id as reference, do not need folder_id too.
+            # XXX, and I don't get why folder_gus is returned by new():
+            # because file uploader # use submission_gus as reference, do not need folder_gus too.
+            # because if someone want restore an upload, use the file_gus instead of folder_gus
 
         log.debug("Creating tip for whistleblower")
         whistleblower_tip = Tip()
         whistleblower_tip.internaltip = internal_tip
         whistleblower_tip.address = receipt
+                # holy shit XXX here
         store.add(whistleblower_tip)
         log.debug("Created tip with address %s" % whistleblower_tip.address)
 
         #receiver_tips = context.create_receiver_tips(internal_tip)
         log.debug("Looking up receivers")
         for receiver in context.receivers:
-            log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "Creating tip for %s" % receiver.receiver_id)
+            log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "Creating tip for %s" % receiver.receiver_gus)
             receiver_tip = ReceiverTip()
             receiver_tip.internaltip = internal_tip
-            receiver_tip.new(receiver.receiver_id)
+            receiver_tip.new(receiver.receiver_gus)
             store.add(receiver_tip)
             log.debug("Tip created")
 
             """
-            http://freeworld.thc.org/root/phun/unmaintain.html
-            Naming paragraph
 
-            Hello ladys and gentlement, usually I overcome on a simple violation of code understanding guidelines,
-            but below you have a rare example of two differents variable naming horrors: "Be Abstract", "Misleading Names"
-            --- did you spot them ?
+            At the moment the scheduler queue is bugged,
 
-            a cookie for the winner!
-            """
+
             log.debug("Creating delivery jobs")
             delivery_job = Delivery()
-            delivery_job.submission_id = submission_id
+            delivery_job.submission_gus = submission_gus
             delivery_job.receipt_id = receiver_tip.address
             work_manager.add(delivery_job)
 
-            log.debug("Added delivery to %s to the work manager" % receiver.receiver_id)
+            log.debug("Added delivery to %s to the work manager" % receiver.receiver_gus)
 
             notification_job = Notification()
             notification_job.address = receiver.name
-            notification_job.receipt_id = receiver_tip.address
+            notification_job.receipt_gus = receiver_tip.address
             work_manager.add(notification_job)
+            """
 
-        log.debug("Deleting the temporary submission %s" % submission.id)
+        log.debug("Deleting the temporary submission %s" % submission.submission_gus)
 
         store.remove(submission)
         # maybe also this operation can give the lock problem
 
         store.commit()
-        #safeCommit(store, ("(create_tips / all the stuff %s)" % submission_id) )
+        #safeCommit(store, ("(create_tips / all the stuff %s)" % submission_gus) )
 
         """
         try:
             store.commit()
         except Exception, e:
-            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_id", type(submission_id), "file_name", type(file_name), "Could not create submission" )
+            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_gus", type(submission_gus), "file_name", type(file_name), "Could not create submission" )
             log.err(e)
             store.rollback()
             store.close()

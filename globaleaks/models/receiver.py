@@ -1,44 +1,49 @@
-from twisted.internet.defer import returnValue
 from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, Date, Unicode, Bool, RawStr
 
 from globaleaks.models.base import TXModel
 from globaleaks.utils import log
 
-__all__ = ['Receiver', 'ReceiverPreferences']
+__all__ = ['Receiver' ]
 
+"""
+The association between Receiver and Context is performed in models/admin.py ContextReceivers table
+"""
 class Receiver(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver")
     __storm_table__ = 'receivers'
 
-    # XXX change this be the Unicode receiver_id
-    #     warning! This requires changes in everything
-    #     calling the Receiver object and the receiver
-    #     attributes.
-    id = Int(primary=True)
+    receiver_gus = Unicode(primary=True)
 
-    receiver_id = Unicode()
     name = Unicode()
     description = Unicode()
     tags = Unicode()
+    know_languages = Pickle()
 
     creation_date = Date()
     last_update_date = Date()
 
-    languages_supported = Pickle()
+    notification_selected = Int()
+    notification_fields = Pickle()
+    delivery_selected = Int()
+    delivery_fields = Pickle()
 
     can_delete_submission = Bool()
     can_postpone_expiration = Bool()
     can_configure_delivery = Bool()
     can_configure_notification = Bool()
 
-    can_trigger_escalation = Bool()
-
+    # escalation related fiels, if escalation is not configured, both are 0
+    can_trigger_escalation = Int()
+    # receiver_level, mean first or second level of receiver
     receiver_level = Int()
 
-    def new(self, internaltip_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "new", "internaltip_id", internaltip_id)
-        self.internaltip_id = internaltip_id
+    receiver_secret = RawStr()
+    # receiver_secret would be a passphrase hash, we need to think that a receiver
+    # may need to configure notification/delivery also if NO ONE tip is available
+    # to him/her, and perhaps, this secret shall be used also as addictional
+    # auth beside the Tip_GUS (this was a request of one of our adopters, btw)
+    #   --- remind, API do not support that yet
 
     @transact
     def count(self):
@@ -56,7 +61,7 @@ class Receiver(TXModel):
         store = self.getStore()
         for receiver_dict in base.receiverDescriptionDicts:
             receiver = Receiver()
-            receiver.receiver_id = receiver_dict['id']
+            receiver.receiver_gus = receiver_dict['receiver_gus']
             receiver.name = receiver_dict['name']
             receiver.description = receiver_dict['description']
 
@@ -66,57 +71,12 @@ class Receiver(TXModel):
             receiver.can_configure_notification = receiver_dict['can_configure_notification']
             receiver.can_trigger_escalation = receiver_dict['can_trigger_escalation']
 
-            receiver.languages_supported = receiver_dict['languages_supported']
+            receiver.know_languages = receiver_dict['languages_supported']
             store.add(receiver)
             store.commit()
         store.close()
         return base.receiverDescriptionDicts
 
-class ReceiverPreferences(TXModel):
-
-    log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPreferences")
-    __storm_table__ = 'receiver_preferences'
-
-    """
-    Perhaps the various properties before need to be aggregated in a Pickle, and managed
-    more easily with a function inside of PersonalPreference. Is in fact a bitmask.
-    """
-
-    id = Int(primary=True)
-    receiver_gus = Unicode()
-    notification_selected = Int()
-    notification_fields = Pickle()
-    delivery_selected = Int()
-    delivery_fields = Pickle()
-    creation_date = Date()
-    last_access = Date()
-    know_languages = Pickle()
-
-    receiver_name = Unicode()
-    receiver_description = Unicode()
-    receiver_tags = Unicode()
-
-    receiver_secret = RawStr()
-    # receiver_secret would be a passphrase hash, we need to think that a receiver
-    # may need to configure notification/delivery also if NO ONE tip is available
-    # to him/her, and perhaps, this secret shall be used also as addictional
-    # auth beside the Tip_GUS (this was a request of one of our adopters, btw)
-    #   --- remind, API do not support that yet
-
-    # receiver_properties = Pickle()
-    can_delete_submission = Bool()
-    can_postpone_expiration = Bool()
-    can_configure_delivery = Bool()
-    can_configure_notification = Bool()
-
-    # escalation related fiels, if escalation is not configured, both are 0
-    can_trigger_escalation = Int()
-    # receiver_level, mean first or second level of receiver
-    receiver_level = Int()
-
-    context_followed = Pickle()
-    # a receiver may stay in more than one contexts, this is because there are
-    # not a reference between Context.id and this table
 
     @transact
     def update_language_mask(self):
@@ -125,13 +85,15 @@ class ReceiverPreferences(TXModel):
             select all the receivers in the context:
                 sum the language, update the context
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "update_language_mask")
+        pass
 
     """
+    TODO
     * having some columns related the activity of the receiver
     * supports utility for store and manage boolean parameter (may be extended heavily, without having to change the db, and without having an huge amount of columns flags) -- receiver_properties Picke()
     * having two methods of extraction (commonly exposed receiver data, and private extraction)
     * supports module profile selection and configuration
     * maybe has sense create a table with the latest operation of the Receiver, this would be a nice information resume for the users
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "update_language_mask")
 

@@ -56,31 +56,31 @@ class dateType(SpecialType):
 class timeType(SpecialType):
     pass
 
-class folderID(SpecialType):
+class folderGUS(SpecialType):
     regexp = r"(f_[a-zA-Z]{20,20})"
 
-class receiptID(SpecialType):
+class receiptGUS(SpecialType):
     regexp = r"(\d{10,10})"
 
-class submissionID(SpecialType):
+class submissionGUS(SpecialType):
     regexp = r"(s_[a-zA-Z]{50,50})"
 
-class receiverID(SpecialType):
+class receiverGUS(SpecialType):
     regexp = r"(r_[a-zA-Z]{20,20})"
 
-class moduleID(SpecialType):
+class moduleGUS(SpecialType):
     regexp = r"(m_\d{10,10})"
 
 class moduleENUM(SpecialType):
     regexp = "(notification|delivery|inputfilter)"
 
-class contextID(SpecialType):
+class contextGUS(SpecialType):
     regexp = r"(c_[a-zA-Z]{20,20})"
 
 class commentENUM(SpecialType):
-    regexp = r"(your|external|whistleblower)"
+    regexp = r"(receiver|system|whistleblower)"
 
-class tipID(SpecialType):
+class tipGUS(SpecialType):
     regexp = r"(t_[a-zA-Z]{50,50})"
 
 class fileDict(GLTypes):
@@ -94,7 +94,7 @@ class fileDict(GLTypes):
                 }
 
 class folderDict(GLTypes):
-    specification = {"id": folderID,
+    specification = {"gus": folderGUS,
             "name": unicode,
             "description": unicode,
             "downloads": int,
@@ -106,7 +106,7 @@ class folderDict(GLTypes):
             # downloadable when other are.
 
 class receiverDescriptionDict(GLTypes):
-    specification = {"id": receiverID,
+    specification = {"gus": receiverGUS,
             "can_delete_submission": bool,
             "can_postpone_expiration": bool,
             "can_configure_notification": bool,
@@ -173,7 +173,7 @@ class formFieldsDict(GLTypes):
 
 
 class moduleDataDict(GLTypes):
-    specification = {"module_id": moduleID,
+    specification = {"gus": moduleGUS,
             "active": bool,
             "module_type": moduleENUM,
             "name": unicode,
@@ -195,7 +195,7 @@ class contextDescriptionDict(GLTypes):
 
     language_supported: it's the collection of Language from 'receivers'
     """
-    specification = {"context_id": contextID,
+    specification = {"context_gus": contextGUS,
             "name": unicode,
             "description": unicode,
             "creation_date": timeType,
@@ -214,7 +214,7 @@ class commentDescriptionDict(GLTypes):
 
 
 class tipSubIndex(GLTypes):
-    specification = {"tip_id": tipID,
+    specification = {"tip_gus": tipGUS,
             "notification_adopted": unicode,
             "delivery_adopted": unicode,
             "download_limit": int,
@@ -234,7 +234,7 @@ class tipIndexDict(GLTypes):
     Remind: this object is the LIST OF ACTIVE TIP, does not
     cover the content.
     """
-    specification = {"cID": contextID,
+    specification = {"context_gus": contextGUS,
             "tiplist": [tipSubIndex]}
 
 class tipDetailsDict(GLTypes):

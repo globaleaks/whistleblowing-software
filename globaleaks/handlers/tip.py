@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous, HTTPError
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.tip import Tip
+from globaleaks.models.tip import Tip, ReceiverTip
 from globaleaks.utils import log
 import json
 
@@ -38,8 +38,8 @@ class TipRoot(BaseHandler):
     (assigned by the tip propetary), only the receiver may have
     this properties
     """
-    def post(self, tip_id, *arg, **kw):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "post", "tip_id", tip_id)
+    def post(self, tip_gus, *arg, **kw):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "post", "tip_gus", tip_gus)
         pass
 
 class TipComment(BaseHandler):
@@ -54,7 +54,9 @@ class TipComment(BaseHandler):
         request = json.loads(self.request.body)
 
         if 'comment' in request and request['comment']:
-            tip = Tip()
+            tip = ReceiverTip()
+            # REMIND - spòlit between receiver and wb, because you need to
+            # know derivated tip infos.
             yield tip.add_comment(receipt, request['comment'])
 
             self.set_status(200)

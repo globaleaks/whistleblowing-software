@@ -14,10 +14,10 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks import config
 from globaleaks.handlers import node, submission, tip, admin, receiver, files
-from globaleaks.messages.base import tipID, submissionID, contextID, moduleENUM
+from globaleaks.messages.base import tipGUS, submissionGUS, contextGUS, moduleENUM
 
 
-more_lax = r'(\w+)' # would be changed with regexp.submission_id | regexp.receipt_id
+more_lax = r'(\w+)' # XXX need to be changed with regexp.submission_id | regexp.receipt_id
 
 spec = [
     ## Node Handler ##
@@ -28,53 +28,53 @@ spec = [
     #  * /submission/ U2
     (r'/submission', submission.SubmissionRoot),
 
-    #  * /submission/<ID>/status U3
-    (r'/submission/' + submissionID.regexp + '/status', submission.SubmissionStatus),
+    #  * /submission/<GUS>/status U3
+    (r'/submission/' + submissionGUS.regexp + '/status', submission.SubmissionStatus),
 
-    #  * /submission/<ID>/finalize U4
-    (r'/submission/' + submissionID.regexp + '/finalize', submission.SubmissionFinalize),
+    #  * /submission/<GUS>/finalize U4
+    (r'/submission/' + submissionGUS.regexp + '/finalize', submission.SubmissionFinalize),
 
-    (r'/submission/' + submissionID.regexp + '/files', files.FilesHandler),
+    (r'/submission/' + submissionGUS.regexp + '/files', files.FilesHandler),
     # https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPRbsoz_Hs3TTSnK7NzY86S4/edit?pli=1
 
     ## Tip Handlers ##
-    #  * /tip/<ID>/ T1
+    #  * /tip/<GUS>/ T1
     (r'/tip/' + more_lax, tip.TipRoot),
 
-    #  * /tip/<ID>/comment T2
-    (r'/tip/' + tipID.regexp + '/comment', tip.TipComment),
+    #  * /tip/<GUS>/comment T2
+    (r'/tip/' + tipGUS.regexp + '/comment', tip.TipComment),
 
-    #  * /tip/<ID>/files T3
-    (r'/tip/' + tipID.regexp + '/files', tip.TipFiles),
+    #  * /tip/<GUS>/files T3
+    (r'/tip/' + tipGUS.regexp + '/files', tip.TipFiles),
 
-    #  * /tip/<ID>/finalize T4
-    (r'/tip/' + tipID.regexp + '/finalize', tip.TipFinalize),
+    #  * /tip/<GUS>/finalize T4
+    (r'/tip/' + tipGUS.regexp + '/finalize', tip.TipFinalize),
 
-    #  * /tip/<ID>/download T5
-    (r'/tip/' + tipID.regexp + '/download', tip.TipDownload),
+    #  * /tip/<GUS>/download T5
+    (r'/tip/' + tipGUS.regexp + '/download', tip.TipDownload),
 
-    #  * /tip/<ID>/pertinence T6
-    (r'/tip/' + tipID.regexp + '/pertinence', tip.TipPertinence),
+    #  * /tip/<GUS>/pertinence T6
+    (r'/tip/' + tipGUS.regexp + '/pertinence', tip.TipPertinence),
 
     ## Receiver Handlers ##
-    #  * /reciever/<ID>/ R1
-    (r'/receiver/' + tipID.regexp, receiver.ReceiverRoot),
+    #  * /reciever/<GUS>/ R1
+    (r'/receiver/' + tipGUS.regexp, receiver.ReceiverRoot),
 
-    #  * /receiver/<TIP ID>/<user moduletype> R2
-    (r'/receiver/' + tipID.regexp + '/' + moduleENUM.regexp, receiver.ReceiverModule),
+    #  * /receiver/<TIP GUS>/<user moduletype> R2
+    (r'/receiver/' + tipGUS.regexp + '/' + moduleENUM.regexp, receiver.ReceiverModule),
 
     ## Admin Handlers ##
     #  * /admin/node A1
     (r'/admin/node', admin.AdminNode),
 
     #  * /admin/contexts A2
-    (r'/admin/contexts/' + contextID.regexp, admin.AdminContexts),
+    (r'/admin/contexts/' + contextGUS.regexp, admin.AdminContexts),
 
-    #  * /admin/receivers/<context_ID> A3
-    (r'/admin/receivers/' + contextID.regexp, admin.AdminReceivers),
+    #  * /admin/receivers/<context_GUS> A3
+    (r'/admin/receivers/' + contextGUS.regexp, admin.AdminReceivers),
 
-    #  * /admin/modules/<context_ID>/<MODULE TYPE> A4
-    (r'/admin/modules/' + contextID.regexp + '/' + moduleENUM.regexp, admin.AdminModules),
+    #  * /admin/modules/<context_GUS>/<MODULE TYPE> A4
+    (r'/admin/modules/' + contextGUS.regexp + '/' + moduleENUM.regexp, admin.AdminModules),
 
     ## Main Web app ##
     # * /
