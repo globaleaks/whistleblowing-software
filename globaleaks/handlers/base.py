@@ -43,14 +43,14 @@ class BaseHandler(RequestHandler):
         request = message.validateMessage(self.request.body,
                             message.requests.submissionStatus)
 
-    Request is now a dict that I can interacti with.
+    Request is now a dict that I can interact with.
 
     XXX This part is not fully tested and should not be used at the moment. We
     should first get everything to work and then start doing validation, since
     the API may change and we don't want to have a layer in between us and the
     code to be tested.
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "BaseHandler", "RequestHandler", RequestHandler)
+    log.debug("[D] %s %s " % (__file__, __name__), "BaseHandler")
 
     requestTypes = {}
     def prepare(self):

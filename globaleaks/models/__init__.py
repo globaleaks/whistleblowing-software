@@ -15,11 +15,12 @@ singular (no s).
 The names of the modules is singular with no s
 """
 
-__all__ = ['base', 'admin', 'receiver', 'tip', 'submission']
+__all__ = ['base', 'admin', 'receiver', 'tip', 'submission', 'node']
 from . import base
 from . import admin
 from . import submission
 from . import receiver
 from . import tip
+from . import node
 
 

@@ -1,5 +1,5 @@
 from storm.twisted.transact import transact
-from storm.locals import Int, Pickle, Date, Unicode, Bool, RawStr
+from storm.locals import Int, Pickle, Date, Unicode, Bool
 
 from globaleaks.models.base import TXModel
 from globaleaks.utils import log
@@ -37,13 +37,6 @@ class Receiver(TXModel):
     can_trigger_escalation = Int()
     # receiver_level, mean first or second level of receiver
     receiver_level = Int()
-
-    receiver_secret = RawStr()
-    # receiver_secret would be a passphrase hash, we need to think that a receiver
-    # may need to configure notification/delivery also if NO ONE tip is available
-    # to him/her, and perhaps, this secret shall be used also as addictional
-    # auth beside the Tip_GUS (this was a request of one of our adopters, btw)
-    #   --- remind, API do not support that yet
 
     @transact
     def count(self):

@@ -4,7 +4,7 @@ from storm.twisted.transact import transact
 # :authors: Arturo Filastò
 # :licence: see LICENSE
 
-from storm.locals import Int, Pickle, Date
+from storm.locals import Int, Pickle
 from storm.locals import Unicode, Bool, DateTime
 from storm.locals import ReferenceSet
 
@@ -15,40 +15,8 @@ from globaleaks.models.receiver import Receiver
 from globaleaks.utils import log
 
 
-__all__ = [ 'SystemSettings', 'Context', 'ModulesProfiles',
-            'AdminStats', 'LocalizedTexts', 'ReceiverContext',
-            'Node']
-
-class SystemSettings(TXModel):
-    """
-    This table represent the settings choosen System-wide
-    """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class SystemSettings")
-    __storm_table__ = 'systemsettings'
-
-    """
-    To be defined and specified:
-    public_key,
-    leakdirectory_entry
-    """
-
-    id = Int(primary=True)
-    public_key = Unicode()
-    name = Unicode()
-    creation_time = DateTime()
-    description = Unicode()
-    public_site = Unicode()
-    hidden_service = Unicode()
-    url_schema = Unicode()
-    leakdirectory_entry = Unicode()
-    private_stats_delta = Int()
-    public_stata_delta = Int()
-
-    """
-    This table has only one instance, has the "id", but would not exists a second element
-    of this table. This table act, more or less, like the configuration file of the previous
-    GlobaLeaks release (and some of the GL 0.1 details are specified in Context)
-    """
+__all__ = [ 'Context', 'ModulesProfiles',
+            'AdminStats', 'LocalizedTexts', 'ReceiverContext' ]
 
 class ModulesProfiles(TXModel):
     """
@@ -129,7 +97,6 @@ class ReceiverContext(TXModel):
     receiver_gus = Int()
 
 class Context(TXModel):
-    log.debug("[D] %s %s " % (__file__, __name__), "Class Context")
     __storm_table__ = 'contexts'
 
     context_gus = Unicode(primary=True)
@@ -161,6 +128,8 @@ class Context(TXModel):
 
     @transact
     def new(self, context_dict):
+        log.debug("[D] %s %s " % (__file__, __name__), "Context new", context_dict)
+
         store = self.getStore()
 
         context = Context()
@@ -189,6 +158,8 @@ class Context(TXModel):
         return context_dict
 
     def generate_description_dict(self, receivers):
+        log.debug("[D] %s %s " % (__file__, __name__), "Context generate_description_dict")
+
         description_dict = {"context_gus": self.context_gus,
                             "name": self.name,
                             "description": self.description,
@@ -202,6 +173,8 @@ class Context(TXModel):
 
 
     def receiver_dicts(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Context receiver_dicts")
+
         receiver_dicts = []
         for receiver in self.receivers:
             receiver_dict = {"receiver_gus": receiver.receiver_gus,
@@ -221,6 +194,8 @@ class Context(TXModel):
 
 
     def create_receiver_tips(self, internaltip):
+        log.debug("[D] %s %s " % (__file__, __name__), "Context create_receiver_tips", internaltip)
+
         receiver_tips = []
         for receiver in self.receivers:
             from globaleaks.models.tip import ReceiverTip
@@ -231,6 +206,8 @@ class Context(TXModel):
 
     @transact
     def list_description_dicts(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Context list_description_dicts")
+
         store = self.getStore()
         dicts = []
         result = store.find(Context)
@@ -243,6 +220,8 @@ class Context(TXModel):
 
     @transact
     def add_receiver(self, context_gus, receiver_gus):
+        log.debug("[D] %s %s " % (__file__, __name__), "Context add_receiver")
+
         store = self.getStore()
 
         receiver = store.find(Receiver,
@@ -260,21 +239,4 @@ Context.receivers = ReferenceSet(Context.context_gus,
                              ReceiverContext.receiver_gus,
                              Receiver.receiver_gus)
 
-class Node(TXModel):
-    __storm_table__ = 'node'
-
-    id = Int(primary=True)
-
-    statistics = Pickle()
-    properties = Pickle()
-    description = Unicode()
-    name = Unicode()
-    public_site = Unicode()
-    hidden_service = Unicode()
-
-    @transact
-    def list_contexts(self):
-        pass
-
-Node.contexts = ReferenceSet(Node.id, Context.node_id)
 
