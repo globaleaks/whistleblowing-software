@@ -6,23 +6,10 @@
     :license: see LICENSE for more details
 """
 
-# __all__ = ['models', 'tips', 'admin', 'receiver', 'submission'  ]
-
 # this need to be completed for be included, but no more for be used in the
 # createQuery loop
 
 __all__ = ['createTables', 'database', 'transactor']
-
-"""
-Quick reference for the content:
-
-    base:        TXModel
-    tips:        StoredData, Folders, Files, Comments, SpecialTip
-    admin:       SytemSettings, Contexts, ModulesProfiles, ReceiversInfo, AdminStats, LocalizedTexts
-    receiver:    PersonalPreference, ReceiverTip
-    submission:  Submission, PublicStats
-
-"""
 
 from twisted.python.threadpool import ThreadPool
 from twisted.internet.defer import inlineCallbacks, returnValue, Deferred
@@ -44,7 +31,7 @@ def createTables():
     from globaleaks.db import tables
     from globaleaks.messages import dummy
 
-    for m in [models.receiver, models.submission, models.tip, models.admin]:
+    for m in [models.node, models.receiver, models.submission, models.tip, models.admin ]:
         for model_name in m.__all__:
             try:
                 model = getattr(m, model_name)
@@ -56,9 +43,16 @@ def createTables():
                 yield tables.runCreateTable(model, transactor, database)
             except Exception, e:
                 log.debug(str(e))
-                #log.msg(e)
-                #log.msg("Failed. Probably the '%s' table exists." %
-                #        str(model_name))
+
+
+    nod = models.node.Node()
+    is_only_one = yield nod.only_one()
+
+    if False == is_only_one:
+        yield nod.initialize_node()
+        # initvals = yield nod.get_admin_info()
+        initvals = yield nod.get_public_info()
+        print "Node initialized with", initvals
 
     r = models.receiver.Receiver()
     receiver_count = yield r.count()

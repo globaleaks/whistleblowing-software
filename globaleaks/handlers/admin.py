@@ -7,39 +7,40 @@
 #   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
 #   :license: see LICENSE
 #
-from globaleaks.handlers.base import BaseHandler
 
+from globaleaks.handlers.base import BaseHandler
+from globaleaks.models import node, admin
+from globaleaks.utils import log
+from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
 
-from storm.locals import Int, Pickle, Date
-from storm.locals import Unicode, Bool, DateTime
-from storm.locals import ReferenceSet
-
-from globaleaks.utils import gltime, idops
-
-from globaleaks.models.base import TXModel
-from globaleaks.models.receiver import Receiver
-from globaleaks.utils import log
-from globaleaks.rest import answers
-from globaleaks import models
-from globaleaks.utils import log
-
-from cyclone.web import RequestHandler, asynchronous
-
 class AdminNode(BaseHandler):
-
-    log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "BaseHandler", BaseHandler)
     """
-    # A1
+    A1
     Get the node main settings, update the node main settings, it works in a single static
     table, in models/admin.py
     """
-    def get(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "get")
 
-        pass
+    @asynchronous
+    @inlineCallbacks
+    def get(self, *uriargs):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Admin Node", "get")
 
-    def post(self):
+        context = admin.Context()
+        context_description_dicts = yield context.list_description_dicts()
+
+        node_info = node.Node()
+        node_description_dicts = yield node_info.get_admin_info()
+
+        # it's obviously a madness that need to be solved
+        node_description_dicts.update({"contexts": context_description_dicts})
+
+        self.write(node_description_dicts)
+        self.finish()
+
+    @asynchronous
+    @inlineCallbacks
+    def post(self, *uriargs):
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "post")
         pass
 
