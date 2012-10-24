@@ -8,22 +8,13 @@
 #   Implements a GlobaLeaks submission.
 import json
 
-from twisted.internet.defer import returnValue, inlineCallbacks
-
-from cyclone.web import asynchronous, HTTPError
-
+from twisted.internet.defer import inlineCallbacks
+from cyclone.web import asynchronous
 from globaleaks import models
 from globaleaks.utils import idops, log
-
-from globaleaks import messages
-
-from globaleaks.rest.errors import GLErrorCode
 from globaleaks.handlers.base import BaseHandler
-
 from globaleaks.models.base import ModelError
 
-from globaleaks import messages
-from globaleaks.utils import log
 
 class SubmissionRoot(BaseHandler):
 
