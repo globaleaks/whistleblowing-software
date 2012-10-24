@@ -7,20 +7,36 @@
 #   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
 #   :license: see LICENSE
 #
-from globaleaks.rest import answers
-
 from globaleaks.handlers.base import BaseHandler
+
+from twisted.internet.defer import inlineCallbacks
+
+from storm.locals import Int, Pickle, Date
+from storm.locals import Unicode, Bool, DateTime
+from storm.locals import ReferenceSet
+
+from globaleaks.utils import gltime, idops
+
+from globaleaks.models.base import TXModel
+from globaleaks.models.receiver import Receiver
 from globaleaks.utils import log
+from globaleaks.rest import answers
+from globaleaks import models
+from globaleaks.utils import log
+
+from cyclone.web import RequestHandler, asynchronous
 
 class AdminNode(BaseHandler):
 
     log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "BaseHandler", BaseHandler)
-    # A1
     """
-    Get the node main settings, update the node main settings
+    # A1
+    Get the node main settings, update the node main settings, it works in a single static
+    table, in models/admin.py
     """
     def get(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "get")
+
         pass
 
     def post(self):

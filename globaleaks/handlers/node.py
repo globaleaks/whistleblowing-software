@@ -8,30 +8,19 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.rest import answers
-from globaleaks import models
 from globaleaks.utils import log
+from globaleaks import models
 
 from cyclone.web import RequestHandler, asynchronous
 
-def create_node(context_dict):
-    context = models.admin.Context()
-    context.name = context_dict['name']
-    context.description = context_dict['description']
-    context.fields = context_dict['fields']
-    context.selectable_receiver = context_dict['selectable_receiver']
-    context.escalation_threshold = context_dict['escalation_threshold']
-    context.languages_supported = context_dict['languages_supported']
-
 class Node(RequestHandler):
     """
+    U1
     Returns information on the GlobaLeaks node. This includes submission
     paramters and how information should be presented by the client side
     application.
 
-    Follow the resource describing Node (uniq instance, opened to all)
-
-
+    Follow the resource describing Node (uniq instance, accessible to all)
     """
     log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "RequestHandler", RequestHandler)
 
@@ -60,7 +49,16 @@ class Node(RequestHandler):
 
         context = models.admin.Context()
         context_description_dicts = yield context.list_description_dicts()
+
+        print "debug thafucq ", context_description_dicts
+        node = models.node.Node()
+        node_description_dicts = yield node.get_public_info()
+
+        print "dabeg thyfacq ", node_description_dicts
+
+        # this is madness ?
         response = {"contexts": context_description_dicts,
+            # THIS IS SPARTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
                     "public_statistics": dummy.base.publicStatisticsDict,
                     "node_properties": dummy.base.nodePropertiesDict,
                     "public_site": "http://www.fuffa.org/",
