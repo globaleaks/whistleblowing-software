@@ -27,11 +27,6 @@ class TipModelError(ModelError):
 class TipNotFoundError(TipModelError):
     log.debug("[D] %s %s " % (__file__, __name__), "Class TipNotFoundError", "TipModelError", TipModelError)
     pass
-    # errorMessage(510, error_code=510, error_message="510 error code: it's a test + tip not found")
-    # how this stuff is intended to be used ? It's a derivation of TipModelError, that's
-    # is a derivation of ModelError, that simple print an error. What we need it's just
-    # the possibility of return errorMessage from an exception (btw, why is an exception and
-    # not just a method ?
 
 class Folder(TXModel):
     """
@@ -330,7 +325,7 @@ class ReceiverTip(Tip):
         self.tip_gus = idops.random_tip_gus()
 
         self.type = u'receiver'
-        log.debug("Created!")
+        log.debug("Created tip", self.tip_gus, "for", receiver_gus)
 
     @transact
     def receiver_dicts(self):

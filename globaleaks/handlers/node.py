@@ -9,11 +9,11 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils import log
-from globaleaks import models
+from globaleaks.models import node, admin
+from globaleaks.handlers.base import BaseHandler
+from cyclone.web import asynchronous
 
-from cyclone.web import RequestHandler, asynchronous
-
-class Node(RequestHandler):
+class Node(BaseHandler):
     """
     U1
     Returns information on the GlobaLeaks node. This includes submission
@@ -22,11 +22,10 @@ class Node(RequestHandler):
 
     Follow the resource describing Node (uniq instance, accessible to all)
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "RequestHandler", RequestHandler)
 
     @asynchronous
     @inlineCallbacks
-    def get(self):
+    def get(self, *uriargs):
         """
         Returns a json object containing all the information of the node.
         * Response:
@@ -43,27 +42,26 @@ class Node(RequestHandler):
              }
 
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get")
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get", uriargs)
 
-        from globaleaks.messages import dummy
+        """
+        try:
+        """
+        nodeinfo = node.Node()
+        node_description_dicts = yield nodeinfo.get_public_info()
+        """
+        except NodeNotFoundError, e:
+            log.err("Fatal ? node not found!")
+            print e.error_message, dir(e)
+            self.write('errormessage')
+            self.finish()
+        """
 
-        context = models.admin.Context()
+        context = admin.Context()
+        # XXX change that stuff, extract only the public information
         context_description_dicts = yield context.list_description_dicts()
 
-        print "debug thafucq ", context_description_dicts
-        node = models.node.Node()
-        node_description_dicts = yield node.get_public_info()
+        node_description_dicts.update({"contexts": context_description_dicts})
 
-        print "dabeg thyfacq ", node_description_dicts
-
-        # this is madness ?
-        response = {"contexts": context_description_dicts,
-            # THIS IS SPARTAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
-                    "public_statistics": dummy.base.publicStatisticsDict,
-                    "node_properties": dummy.base.nodePropertiesDict,
-                    "public_site": "http://www.fuffa.org/",
-                    "hidden_service": "cnwoecowiecnirnio23rn23io.onion",
-                    "url_schema": "/",
-                    "name": "don't track us: AUTOVELOX"}
-        self.write(response)
+        self.write(node_description_dicts)
         self.finish()

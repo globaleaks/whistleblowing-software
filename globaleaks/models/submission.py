@@ -103,7 +103,7 @@ class Submission(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "Class Submission")
     __storm_table__ = 'submission'
 
-    submission_gus = Unicode(primary=True) # Int()
+    submission_gus = Unicode(primary=True)
 
     fields = Pickle()
 
