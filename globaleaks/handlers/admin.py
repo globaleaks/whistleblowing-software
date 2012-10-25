@@ -8,7 +8,7 @@
 #   :license: see LICENSE
 #
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import node, admin
+from globaleaks.models import node, admin, context
 from globaleaks.utils import log
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks

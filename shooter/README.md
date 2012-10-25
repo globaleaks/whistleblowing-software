@@ -56,6 +56,10 @@ default base URL is http://127.0.0.1:8082
 
 ## Scripts
 
+    wizard.sh
+
+emulate the wizard at the startup (create the first context and the firsts receivers)
+
     submission.sh 
     
 emulate a submission, in the first context presented by '/node'
@@ -64,3 +68,8 @@ emulate a submission, in the first context presented by '/node'
 
 send a comment to a tip (need to be passed the tip globaleaks unique string, something
 like: t\_DjAXRhikjKsovldfqXDswsfkPNTCopKTdenkPiRaYZCDrkUuQd as argument)
+
+    contextloop.sh
+
+continuos loop of create-update-get-delete of contexts, would be expanded with all the
+operations triggering errors.

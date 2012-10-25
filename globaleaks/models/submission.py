@@ -11,7 +11,7 @@ from storm.exceptions import NotOneError, NoneError
 from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.tip import InternalTip, Tip, ReceiverTip, File, Folder
-from globaleaks.models.admin import Context
+from globaleaks.models.context import Context
 
 from globaleaks.jobs.delivery import Delivery
 from globaleaks.jobs.notification import Notification

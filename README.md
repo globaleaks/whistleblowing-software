@@ -19,10 +19,18 @@ If you are interested in running a GlobaLeaks node, you should try
 GLBackend is written in Python version [2.7](http://docs.python.org/whatsnew/) 
 and is mostly based on [twisted](twistedmatrix.com). For more informations see [requirements.txt](https://github.com/globaleaks/GLBackend/blob/master/requirements.txt)
 
-
 # Getting Started
 
 See wiki page [Setting up Development Environment](https://github.com/globaleaks/GLBackend/wiki/Setting-up-development-environment)
+
+Emulate the starting wizard using:
+
+   cd shooter/
+   ./wizard.sh
+
+  * shooter.py act like a client and is update with the interface supported in GLBacked. 
+  * The script creating the first context and receivers, emulating the wizards that would be
+    implemented in GLClient.
 
 # Documentation
 
@@ -35,6 +43,4 @@ See wiki page [Setting up Development Environment](https://github.com/globaleaks
 
 GLBackend/ $ trial globaleaks/tests/test\_\*.py
 
-GLBackend/shooter, use the shell scripts available, perform automatic operation using the raw client
-shooter.py
-
+[GLBackend/shooter](https://github.com/globaleaks/GLBackend/tree/master/shooter), can be used by hand or using the shell scripts. Those perform a sequence of operation emulating the behavior of one or more users.
