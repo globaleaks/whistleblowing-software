@@ -41,7 +41,7 @@ class Receiver(TXModel):
     @transact
     def count(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "count")
-        store = self.getStore()
+        store = self.getStore('count')
         receiver_count = store.find(Receiver).count()
         store.commit()
         store.close()
@@ -51,7 +51,9 @@ class Receiver(TXModel):
     def create_dummy_receivers(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "create_dummy_receivers")
         from globaleaks.messages.dummy import base
-        store = self.getStore()
+
+        store = self.getStore('create_dummy_receivers')
+
         for receiver_dict in base.receiverDescriptionDicts:
             receiver = Receiver()
             receiver.receiver_gus = receiver_dict['receiver_gus']

@@ -132,7 +132,7 @@ class Context(TXModel):
     def new(self, context_dict):
         log.debug("[D] %s %s " % (__file__, __name__), "Context new", context_dict)
 
-        store = self.getStore()
+        store = self.getStore('context new')
 
         context = Context()
 
@@ -210,7 +210,7 @@ class Context(TXModel):
     def list_description_dicts(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Context list_description_dicts")
 
-        store = self.getStore()
+        store = self.getStore('context, list_description_dict')
         dicts = []
         result = store.find(Context)
         for context in result:
@@ -224,7 +224,7 @@ class Context(TXModel):
     def add_receiver(self, context_gus, receiver_gus):
         log.debug("[D] %s %s " % (__file__, __name__), "Context add_receiver")
 
-        store = self.getStore()
+        store = self.getStore('add_receivers')
 
         receiver = store.find(Receiver,
                         Receiver.receiver_gus==receiver_gus).one()

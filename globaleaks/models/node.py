@@ -67,7 +67,7 @@ class Node(TXModel):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "configure_node", input_block)
 
-        store = self.getStore()
+        store = self.getStore('configure_node')
         node_data = store.find(Node, 1 == Node.id).one()
 
         # node_data.properties
@@ -88,7 +88,7 @@ class Node(TXModel):
     def get_public_info(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get_public_info")
 
-        store = self.getStore()
+        store = self.getStore('get_public_info')
         node_data = store.find(Node, 1 == Node.id).one()
 
         if not node_data:
@@ -114,8 +114,7 @@ class Node(TXModel):
     def get_admin_info(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get_admin_info")
 
-        store = self.getStore()
-
+        store = self.getStore('get_admin_info')
         node_data = store.find(Node, 1 == Node.id).one()
 
         if not node_data:
@@ -148,7 +147,7 @@ class Node(TXModel):
         This function is called only one time in a node life, and initialize
         the table. all the calls use an edit of this row
         """
-        store = self.getStore()
+        store = self.getStore('initialize_node')
 
         onlyNode = Node()
 
@@ -173,7 +172,7 @@ class Node(TXModel):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "only_one")
 
-        store = self.getStore()
+        store = self.getStore('only_one')
         nodenum = store.find(Node).count()
         store.commit()
         store.close()
