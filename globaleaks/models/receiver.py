@@ -51,7 +51,6 @@ class Receiver(TXModel):
     def create_receiver(self):
         pass
 
-
     @transact
     def create_dummy_receivers(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "create_dummy_receivers")

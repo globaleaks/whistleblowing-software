@@ -54,7 +54,7 @@ class AdminNode(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Admin Node", "get")
 
         context = admin.Context()
-        context_description_dicts = yield context.list_description_dicts()
+        context_description_dicts = yield context.get_all_contexts()
 
         node_info = node.Node()
         node_description_dicts = yield node_info.get_admin_info()
@@ -103,34 +103,130 @@ class AdminNode(BaseHandler):
 
 
 class AdminContexts(BaseHandler):
-
+    """
+    classic CRUD in the 'contexts', not all expect a context_gus in the URL,
+    in example PUT need context_gus because Cyclone regexp expect them, but
+    do not require a valid data because is generated when the resource is PUT-ted
+    """
     log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "BaseHandler", BaseHandler)
-    # A2
-    """
-    classic CURD in the 'contexts'
-    """
-    def get(self, context_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "get")
-        pass
 
-    def post(self, context_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "post")
-        pass
+    @asynchronous
+    @inlineCallbacks
+    def get(self, context_gus, *uriargs):
+        """
+        :GET
+          * Response
+            Return the requested contexts, described with:
+            contextDescriptionDict
+               {
+                "context_gus": "context_gus"
+                "name": "string"
+                "context_description": "string"
+                "creation_date": "time"
+                "update_date": "time"
+                "fields": [ formFieldsDict ]
+                "SelectableReceiver": "bool"
+                "receivers": [ receiverDescriptionDict ]
+                "escalation_treshold": "int"
+                "LanguageSupported": [ "string" ]
+               }
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "GET")
 
-    def put(self, context_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "put")
-        pass
+        context_iface = admin.Context()
 
-    def delete(self, context_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "delete")
-        pass
+        try:
+            context_description = yield context_iface.get_single_context(context_gus)
+
+            self._status_code = 200
+            self.write(context_description)
+
+        except admin.InvalidContext, e:
+
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+    @asynchronous
+    @inlineCallbacks
+    def post(self, context_gus, *uriargs):
+        """
+        Update a previously created context
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "POST")
+
+        request = json.loads(self.request.body)
+
+        if not request:
+            # holy fucking sick atheist god
+            # no validation at the moment.
+            self.write(__file__)
+            self.write('error message to be managed using the appropriate format')
+            self.finish()
+
+        context_iface = admin.Context()
+        yield context_iface.update(context_gus, request)
+
+        # return value as get
+        yield self.get(context_gus)
+
+    @asynchronous
+    @inlineCallbacks
+    def put(self, context_gus, *uriargs):
+        """
+        create a new context and return as get
+        :PUT
+         * Request {
+            "context_gus": empty or missing
+            [...]
+           }
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "PUT")
+        request = json.loads(self.request.body)
+
+        if not request:
+            # holy fucking sick atheist god
+            # no validation at the moment.
+            self.write(__file__)
+            self.write('error message to be managed using the appropriate format')
+            self.finish()
+
+        context_iface = admin.Context()
+        new_context_gus = yield context_iface.new(request)
+
+        # return value as get
+        yield self.get(new_context_gus)
+
+
+    @asynchronous
+    @inlineCallbacks
+    def delete(self, context_gus, *uriargs):
+        """
+        Expect just a context_gus, do not check in the body request
+        (at the moment, is specify in a different way, to avoid conflict
+        """
+
+        context_iface = admin.Context()
+
+        try:
+            yield context_iface.delete_context(context_gus)
+            self._status_code = 200
+
+        except admin.InvalidContext, e:
+
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
 
 
 class AdminReceivers(BaseHandler):
     log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "BaseHandler", BaseHandler)
     # A3
     """
-    classic CURD in the 'receivers'
+    classic CRUD in the 'receivers'
     """
     def get(self, context_id):
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "get")
@@ -153,7 +249,7 @@ class AdminModules(BaseHandler):
     log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "BaseHandler", BaseHandler)
     # A4
     """
-    A limited CURD (we've not creation|delete, just update, with
+    A limited CRUD (we've not creation|delete, just update, with
     maybe a flag that /disable/ a module)
     """
     def get(self, context_id, module_id):
