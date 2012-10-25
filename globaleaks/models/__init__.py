@@ -24,3 +24,7 @@ from . import tip
 from . import node
 
 
+from storm.tracer import debug
+import sys
+# TODO: from config file enable the debug of Storm and JSON I/O of Cyclone
+debug(True, sys.stdout)
