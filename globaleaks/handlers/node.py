@@ -58,8 +58,7 @@ class Node(BaseHandler):
         """
 
         context = admin.Context()
-        # XXX change that stuff, extract only the public information
-        context_description_dicts = yield context.list_description_dicts()
+        context_description_dicts = yield context.get_all_contexts()
 
         node_description_dicts.update({"contexts": context_description_dicts})
 

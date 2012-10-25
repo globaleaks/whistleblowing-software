@@ -31,7 +31,7 @@ def createTables():
     from globaleaks.db import tables
     from globaleaks.messages import dummy
 
-    for m in [models.node, models.receiver, models.submission, models.tip, models.admin ]:
+    for m in [models.node, models.context, models.receiver, models.submission, models.tip, models.admin ]:
         for model_name in m.__all__:
             try:
                 model = getattr(m, model_name)
@@ -53,6 +53,9 @@ def createTables():
         initvals = yield nod.get_admin_info()
         print "Node initialized with", initvals
 
+    # the following block of code is substituted by
+    # wizard emulation
+    """
     r = models.receiver.Receiver()
     receiver_count = yield r.count()
 
@@ -87,4 +90,5 @@ def createTables():
     log.debug("# We have these contexts:")
     for context in context_dicts:
         log.debug("* %s " % context['name'])
+    """
 
