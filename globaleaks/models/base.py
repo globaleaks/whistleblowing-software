@@ -51,27 +51,40 @@ class TXModel(object):
     transactor = transactor
     database = database
 
-    def getStore(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel", "getStore")
-        store = Store(self.database)
-        return store
+    # class variable keeping track in incremental mode to DB I/O access
+    sequencial_dbop = 0
+
+    def getStore(self, operation_desc=''):
+
+        TXModel.sequencial_dbop += 1
+
+        log.debug("[IO] %d getStore: [%s] " % (TXModel.sequencial_dbop, operation_desc) )
+        return Store(self.database)
 
     @transact
-    def createTable(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel", "createTable")
-        store = self.getStore()
-        createQuery = tables.generateCreateQuery(self)
-        store.execute(createQuery)
-        store.commit()
-        store.close()
-
-    @transact
-    def save(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel", "save")
-        store = self.getStore()
+    def save(self, operation_desc='TXModel.save'):
+        """
+        This function actually is not used, like the removed createTable.
+        createTable has the same name of another createTable db operation, than
+        deserve to die. but save, perhaps should be an userful helper.
+        """
+        store = self.getStore(operation_desc)
         store.add(self)
+        log.debug('[IO] %d save' % TXModel.sequencial_dbop)
         store.commit()
         store.close()
+
+    # remind, I've try to make a wrapper around the store.close()
+    # in order to help debug. no, can't work:
+    #
+    #   sqlite3.ProgrammingError: SQLite objects created in a thread can only be used
+    #   in that same thread.The object was created in thread id 140400639661824
+    #   and this is thread id 140400631269120
+    #
+    # and is extremely difficult debug this crap, without assistance, the
+    # 'database is locked' should happen also when a transact function has a typo
+    # inside, and silently would simply stay freezed, keeping DB locked.
+
 
 
 class ModelError(Exception):

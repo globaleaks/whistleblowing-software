@@ -240,7 +240,7 @@ class Tip(TXModel):
         in the future, would be the hash of a random_receipt_gus.
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "lookup", "receipt", receipt )
-        store = self.getStore()
+        store = self.getStore('lookup')
 
         tip = store.find(Tip, Tip.tip_gus == receipt).one()
         if not tip:
@@ -330,7 +330,7 @@ class ReceiverTip(Tip):
     @transact
     def receiver_dicts(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "receiver_dicts" )
-        store = self.getStore()
+        store = self.getStore('receiver_dicts')
 
         receiver_dicts = []
 
@@ -366,7 +366,7 @@ class ReceiverTip(Tip):
         "system")
         """
         log.debug("[D] %s %s " % (__file__, __name__), "ReceiverTip class", "add_comment", "tip_gus", tip_gus, "comment", comment)
-        store = self.getStore()
+        store = self.getStore('add_comment')
 
         try:
             # XXX - aarrgghh - naming refactor remind!

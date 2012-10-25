@@ -50,8 +50,7 @@ def createTables():
 
     if False == is_only_one:
         yield nod.initialize_node()
-        # initvals = yield nod.get_admin_info()
-        initvals = yield nod.get_public_info()
+        initvals = yield nod.get_admin_info()
         print "Node initialized with", initvals
 
     r = models.receiver.Receiver()

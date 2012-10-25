@@ -26,57 +26,6 @@ This ORM implementation is called whistleblower, because contain the information
 for the WBs, other elements used by WBs stay on globaleaks.db.tips.SpecialTip
 """
 
-def safeGetStorage(targetObj, info=''):
-    from time import sleep
-    import sqlite3
-
-    delaytime = 0.01
-    safe_but_not_deadlock = 0
-    store = None
-
-    while(1):
-
-        if safe_but_not_deadlock > 3:
-            raise Exception("Storm Hell")
-
-        try:
-            store = targetObj.getStore()
-            log.debug("[W] completed getStore successfully %s" % info)
-            break
-        except sqlite3.OperationalError:
-            safe_but_not_deadlock += 1
-            log.debug("[W] getStore/ db locked, but %f sleep and check again %d %s" % ( delaytime, safe_but_not_deadlock, info) )
-            sleep(delaytime)
-            continue
-
-    return store
-
-def safeCommit(targetStore, info=''):
-    from time import sleep
-    import sqlite3
-
-    delaytime = 0.01
-    """
-    for same TwistedStorm reason, putting a sleep of 0.01 cause a sleep of 2 second.
-    causing a 2 second sleep, cause a block of 4 seconds, and so on.
-    """
-    safe_but_not_deadlock = 0
-
-    while(1):
-
-        if safe_but_not_deadlock > 3:
-            raise Exception("Storm Hell")
-
-        try:
-            targetStore.commit()
-            log.debug("[W] completed commit successfully %s" % info)
-            break
-        except sqlite3.OperationalError:
-            safe_but_not_deadlock += 1
-            log.debug("[W] commit/ db locked, but %f sleep and check again %d %s" % ( delaytime, safe_but_not_deadlock, info) )
-            sleep(delaytime)
-            continue
-
 class SubmissionModelError(ModelError):
     pass
 
@@ -117,7 +66,7 @@ class Submission(TXModel):
     @transact
     def new(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new")
-        store = self.getStore()
+        store = self.getStore('new')
 
         submission_gus = idops.random_submission_gus(False)
         creation_time = gltime.utcDateNow()
@@ -140,7 +89,6 @@ class Submission(TXModel):
         }
 
         store.commit()
-        #safeCommit(store, ("(new %s)" % submission_gus) )
         store.close()
 
         return response
@@ -148,7 +96,7 @@ class Submission(TXModel):
     @transact
     def add_file(self, submission_gus, file_name=None):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_gus", submission_gus , "file_name", file_name )
-        store = self.getStore()
+        store = self.getStore('add_file')
         submission = store.find(Submission, Submission.submission_gus==submission_gus).one()
 
         if not submission:
@@ -164,11 +112,6 @@ class Submission(TXModel):
         new_file.file_gus = unicode(new_file_gus)
         store.add(new_file)
 
-        store.commit()
-        #safeCommit(store, ("(store %s)" % file_name) )
-        # remind -- rollback operation need to be used when an exception different from
-        # lock is raised.
-        """
         try:
             store.commit()
         except Exception, e:
@@ -176,7 +119,6 @@ class Submission(TXModel):
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
-        """
 
         log.debug("Added file %s to %s" % (submission_gus, file_name))
         store.close()
@@ -189,8 +131,7 @@ class Submission(TXModel):
         # XXX: If we re-enable this store = self.getStore we end-up after submission of files in the error
         # "Database is locked". We should identify before that update_fields,  in create_tips why the database is not properly closed
 
-        store = self.getStore()
-        #store = safeGetStorage(self, ("(update_fields %s" % submission_gus) )
+        store = self.getStore('update_fields')
         try:
             s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
@@ -212,10 +153,6 @@ class Submission(TXModel):
         for k, v in fields.items():
             s.fields[k] = v
 
-        store.commit()
-        #safeCommit(store, ("(update_fields %s)" % submission_gus) )
-        # idem as before
-        """
         try:
             store.commit()
         except Exception, e:
@@ -223,15 +160,14 @@ class Submission(TXModel):
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
-        """
+
         store.close()
 
 
     @transact
     def select_context(self, submission_gus, context):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_gus", submission_gus, "context", context )
-        store = self.getStore()
-        #store = safeGetStorage(self, ("(select_context %s" % submission_gus) )
+        store = self.getStore('select_context')
         try:
             s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
@@ -244,10 +180,6 @@ class Submission(TXModel):
 
         s.context_selected = context
 
-        store.commit()
-        #safeCommit(store, ("(select_context %s)" % submission_gus) )
-        # idem as before
-        """
         try:
             store.commit()
         except Exception, e:
@@ -255,18 +187,18 @@ class Submission(TXModel):
             store.rollback()
             store.close()
             raise SubmissionModelError(e)
-        """
+
         store.close()
 
-    # TODO def select_receiver
-
+    @transact
+    def select_receiver(self, submission_gus, receiver_id_list):
+        pass
 
     @transact
     def status(self, submission_gus):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_gus", submission_gus )
 
-        store = self.getStore()
-        #store = safeGetStorage(self, ("(status %s" % submission_gus) )
+        store = self.getStore('status')
 
         try:
             s = store.find(Submission, Submission.submission_gus==submission_gus).one()
@@ -285,8 +217,6 @@ class Submission(TXModel):
                 # TODO 'creation_time' and 'expiration_time'
 
         store.commit()
-        #safeCommit(store, ("(status %s)" % submission_gus) )
-
         store.close()
         return status
 
@@ -299,8 +229,7 @@ class Submission(TXModel):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_gus", submission_gus, "receipt", receipt )
         log.debug("Creating tips for %s" % submission_gus)
 
-        store = self.getStore()
-        #store = safeGetStorage(self, ("(create_tips %s" % submission_gus) )
+        store = self.getStore('create_tips')
 
         try:
             submission = store.find(Submission,
@@ -371,8 +300,7 @@ class Submission(TXModel):
             folder = submission.folder
             folder.internaltip = internal_tip
 
-            store.add(folder) # copyed from the commented block before, for put a:
-            #safeCommit(store, ("(create_tips / folder %s)" % submission_gus) )
+            store.add(folder) 
             store.commit()
             """
             try:
@@ -434,10 +362,6 @@ class Submission(TXModel):
         store.remove(submission)
         # maybe also this operation can give the lock problem
 
-        store.commit()
-        #safeCommit(store, ("(create_tips / all the stuff %s)" % submission_gus) )
-
-        """
         try:
             store.commit()
         except Exception, e:
@@ -445,7 +369,6 @@ class Submission(TXModel):
             log.err(e)
             store.rollback()
             store.close()
-        """
 
         log.debug("create_tips complete, commit done, closing storage")
         store.close()
