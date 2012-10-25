@@ -7,12 +7,12 @@
 #   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
 #   :license: see LICENSE
 #
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import node, admin
 from globaleaks.utils import log
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
+import json
 
 class AdminNode(BaseHandler):
     """
@@ -24,6 +24,33 @@ class AdminNode(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
+        """
+        The Get interface is thinked as first blob of data able to present the node,
+        therefore not all the information are specific of this resource (like
+        contexts description or statististics), but for reduce the amount of request
+        performed by the client, has been collapsed into.
+
+        Returns a json object containing all the information of the node.
+        * Response:
+            Status Code: 200 (OK)
+            {
+              'name': 'string',
+              'admin_statistics': '$adminStatisticsDict',
+              'public_stats': '$publicStatisticsDict,
+              'node_properties': '$nodePropertiesDict',
+              'contexts': [ '$contextDescriptionDict', { }, ],
+              'node_description': '$localizationDict',
+              'public_site': 'string',
+              'hidden_service': 'string',
+              'url_schema': 'string'
+             }
+
+        not yet implemented: admin_stats (stats need to be moved in contexts)
+        node_properties: should not be separate array
+        url_schema: no more needed ?
+        stats_delta couple.
+        """
+
         log.debug("[D] %s %s " % (__file__, __name__), "Class Admin Node", "get")
 
         context = admin.Context()
@@ -41,8 +68,38 @@ class AdminNode(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def post(self, *uriargs):
+        """
+        Changes the node public node configuration settings
+        * Request:
+            {
+              'name': 'string',
+              'admin_stats_delta', 'int',
+              'public_stats_delta', 'int',
+              'description': '$localizationDict',
+              'public_site': 'string',
+              'hidden_service': 'string',
+             }
+
+        The two "_delta" variables, mean the minutes interval for collect statistics,
+        because the stats are collection of the node status made over periodic time,
+
+        """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "post")
-        pass
+
+        request = json.loads(self.request.body)
+
+        if not request:
+            # holy fucking sick atheist god
+            # no validation at the moment.
+            self.write(__file__)
+            self.write('error message to be managed using the appropriate format')
+            self.finish()
+
+        node_info = node.Node()
+        yield node_info.configure_node(request)
+
+        # return value as get
+        yield self.get()
 
 
 class AdminContexts(BaseHandler):

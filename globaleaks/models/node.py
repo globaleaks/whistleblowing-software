@@ -66,18 +66,33 @@ class Node(TXModel):
         @return: None
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "configure_node", input_block)
-        pass
 
+        store = self.getStore()
+        node_data = store.find(Node, 1 == Node.id).one()
+
+        # node_data.properties
+        print "test: Is", node_data.description
+        node_data.description = input_block['description']
+        print "and now Is", node_data.description
+        node_data.name = input_block['name']
+        node_data.public_site = input_block['public_site']
+        node_data.hidden_service = input_block['hidden_service']
+        node_data.public_stats_delta = int(input_block['public_stats_delta'])
+        node_data.private_stats_delta = int(input_block['private_stats_delta'])
+
+        # log.info("Updated node main configuration")
+        store.commit()
+        store.close()
 
     @transact
     def get_public_info(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get_public_info")
 
         store = self.getStore()
-
         node_data = store.find(Node, 1 == Node.id).one()
 
         if not node_data:
+            store.commit()
             store.close()
             raise NodeNotFoundError
 
@@ -91,6 +106,7 @@ class Node(TXModel):
                         'public_stats_delta' : node_data.public_stats_delta,
                     }
 
+        store.commit()
         store.close()
         return retTmpDict
 
@@ -103,6 +119,7 @@ class Node(TXModel):
         node_data = store.find(Node, 1 == Node.id).one()
 
         if not node_data:
+            store.commit()
             store.close()
             raise NodeNotFoundError
 
@@ -116,6 +133,7 @@ class Node(TXModel):
                 'public_stats_delta' : node_data.public_stats_delta,
                 'private_stats_delta' : node_data.private_stats_delta }
 
+        store.commit()
         store.close()
         return retAdminDict
 
