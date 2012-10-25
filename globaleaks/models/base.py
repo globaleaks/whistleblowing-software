@@ -96,9 +96,7 @@ class ModelError(Exception):
 
     error_message = "Exception/Error not set"
     error_code = 0
-    http_status = 399
+    http_status = 500 # generic Server error
 
-"""
-Triva, this file implement the 0.2 version of GlobaLeaks, then:
-Enter the Ginger - http://www.youtube.com/watch?v=uUD9NBSJvqo
-"""
+# Triva, this file implement the 0.2 version of GlobaLeaks, then:
+# Enter the Ginger - http://www.youtube.com/watch?v=uUD9NBSJvqo

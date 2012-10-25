@@ -149,10 +149,7 @@ class Context(TXModel):
 
         context.fields = context_dict["fields"]
 
-        for recv in context_dict["receivers"]:
-            receiver = store.find(Receiver,
-                        Receiver.receiver_gus==recv['receiver_gus']).one()
-            context.receivers.add(receiver)
+        # the receiver is not added here
 
         store.add(context)
         store.commit()
@@ -160,6 +157,7 @@ class Context(TXModel):
         return context_dict
 
     def generate_description_dict(self, receivers):
+
         log.debug("[D] %s %s " % (__file__, __name__), "Context generate_description_dict")
 
         description_dict = {"context_gus": self.context_gus,
@@ -216,6 +214,7 @@ class Context(TXModel):
         for context in result:
             dd = context.generate_description_dict(context.receiver_dicts())
             dicts.append(dd)
+
         store.commit()
         store.close()
         return dicts

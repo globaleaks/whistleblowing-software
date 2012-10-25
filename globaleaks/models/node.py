@@ -52,12 +52,12 @@ class Node(TXModel):
 
     # XXX missing: languages
 
-    # XXX I've removed url-schema, I've read that was an extremely useful
-    # trick in REST maintenance, but at the moment for us is useless
-
     # XXX public site would not be "tor2web domain conversion" but the
     # URL of the initiative in the Internet, like, the blog or the
     # newspaper.
+
+    # XXX tor2web would be a list of translated t2w domain, with a certain
+    #     priority
 
     @transact
     def configure_node(self, input_block):
@@ -71,9 +71,7 @@ class Node(TXModel):
         node_data = store.find(Node, 1 == Node.id).one()
 
         # node_data.properties
-        print "test: Is", node_data.description
         node_data.description = input_block['description']
-        print "and now Is", node_data.description
         node_data.name = input_block['name']
         node_data.public_site = input_block['public_site']
         node_data.hidden_service = input_block['hidden_service']
@@ -83,6 +81,7 @@ class Node(TXModel):
         # log.info("Updated node main configuration")
         store.commit()
         store.close()
+        print "It's done ?"
 
     @transact
     def get_public_info(self):

@@ -48,6 +48,11 @@ class Receiver(TXModel):
         return receiver_count
 
     @transact
+    def create_receiver(self):
+        pass
+
+
+    @transact
     def create_dummy_receivers(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "create_dummy_receivers")
         from globaleaks.messages.dummy import base
