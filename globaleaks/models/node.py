@@ -81,7 +81,6 @@ class Node(TXModel):
         # log.info("Updated node main configuration")
         store.commit()
         store.close()
-        print "It's done ?"
 
     @transact
     def get_public_info(self):

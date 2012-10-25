@@ -240,6 +240,7 @@ def spelunking_into_URTA():
 
     meth = getMethIf(2)
     if not meth:
+        print "assumed method: GET"
         meth = 'GET'
 
     assembled_key = sys.argv[1] + "_" + meth
@@ -321,7 +322,7 @@ if __name__ == '__main__':
     # handle option 'shooter.py admin/module POST'
         (url, meth, aggregate) = spelunking_into_schema()
 
-    if meth != 'GET':
+    if meth != 'GET' and meth != 'DELETE':
         request_list = search_jsonfile(aggregate)
     else:
         request_list = None
