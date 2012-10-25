@@ -73,12 +73,17 @@ class TXModel(object):
         store.commit()
         store.close()
 
+
 class ModelError(Exception):
+    """
+    ModelError is inherit by other classed. They need to set the class variables
+    before, and hopefully being catched in the hanlders.
+    """
     log.debug("[D] %s %s " % (__file__, __name__), "Class ModelError")
 
     error_message = "Exception/Error not set"
     error_code = 0
-    http_code = 399
+    http_status = 399
 
 """
 Triva, this file implement the 0.2 version of GlobaLeaks, then:
