@@ -1,0 +1,14 @@
+name=Bradly Hussein Obama
+description=a journalist of Truth Corp and freelancer of www.unknow.net
+tags:=[ "ninja", "facilitator", "journalist" ]
+know_languages:=[ "IT", "EN", "ES" ]
+can_trigger_escalation:=4
+receiver_level:=1
+can_delete_submission:=true
+can_postpone_expiration:=true
+can_configure_delivery:=true
+can_configure_notification:=true
+notification_selected=email
+delivery_selected=local
+notification_fields=vecna@globaleaks.org
+delivery_fields:=false

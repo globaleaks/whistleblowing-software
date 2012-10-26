@@ -8,7 +8,7 @@ from storm.locals import Reference
 from globaleaks.utils import gltime, idops
 
 from globaleaks.models.base import TXModel, ModelError
-from globaleaks.models.receiver import Receiver
+# from globaleaks.models.receiver import Receiver
 from globaleaks.models.node import Node
 from globaleaks.utils import log
 
@@ -19,7 +19,7 @@ __all__ = [ 'Context', 'InvalidContext' ]
 class InvalidContext(ModelError):
     ModelError.error_message = "Invalid Context addressed with context_gus"
     ModelError.error_code = 1 # need to be resumed the table and come back in use them
-    ModelError.http_status = 500
+    ModelError.http_status = 400 # Bad Request
 
 class Context(TXModel):
     __storm_table__ = 'contexts'
@@ -113,7 +113,9 @@ class Context(TXModel):
         try:
             requested_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
-            log.debug("[Error] looked for .one() fail with context_gus %s " % context_gus)
+            store.close()
+            raise InvalidContext
+        if requested_c is None:
             store.close()
             raise InvalidContext
 
@@ -147,7 +149,9 @@ class Context(TXModel):
         try:
             requested_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
-            log.debug("[Error] looked for .one() fail with context_gus %s " % context_gus)
+            store.close()
+            raise InvalidContext
+        if requested_c is None:
             store.close()
             raise InvalidContext
 
@@ -168,7 +172,9 @@ class Context(TXModel):
         try:
             requested_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
-            log.debug("[Error] looked for .one() fail with context_gus %s " % context_gus)
+            store.close()
+            raise InvalidContext
+        if requested_c is None:
             store.close()
             raise InvalidContext
 
@@ -197,6 +203,7 @@ class Context(TXModel):
         store = self.getStore('context get_all')
         dicts = []
         result = store.find(Context)
+        # also if "None", simply is returned an empty array
         for context in result:
             dd = context.generate_description_dict(context.receiver_dicts())
             dicts.append(dd)
