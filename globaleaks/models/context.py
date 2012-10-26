@@ -52,6 +52,11 @@ class Context(TXModel):
     inputfilter_chain = Pickle()
     # to be implemented in REST / dict
 
+    # to be defined ans supported
+    scheduled_jobs = Int()
+    # public stats reference
+    # private stats reference
+
     @transact
     def new(self, context_dict):
         """
@@ -151,9 +156,8 @@ class Context(TXModel):
         store.commit()
         store.close()
 
-
     @transact
-    def get_single_context(self, context_gus):
+    def admin_get_single(self, context_gus):
         """
         @param context_gus: UUID of the contexts
         @return: the contextDescriptionDict requested, or an exception if do not exists
@@ -184,7 +188,7 @@ class Context(TXModel):
         return retContext
 
     @transact
-    def get_all_contexts(self):
+    def admin_get_all(self):
         """
         @return: an array containing all contextDescriptionDict
         """
@@ -200,6 +204,34 @@ class Context(TXModel):
         store.commit()
         store.close()
         return dicts
+
+    @transact
+    def public_get_single(self, context_gus):
+        pass
+
+    @transact
+    def public_get_all(self):
+        pass
+
+    @transact
+    def exists(self, context_gus):
+        """
+        @param context_gus: check if the requested context exists or not
+        @return: True if exist, False if not, do not raise exception.
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Context exists", context_gus)
+
+        store = self.getStore('context get_single')
+
+        try:
+            requested_c = store.find(Context, Context.context_gus == context_gus).one()
+            retval = True
+        except NotOneError:
+            retval = False
+
+        store.close()
+        return retval
+
 
     # under review
     # under review, at the moment submission is broken

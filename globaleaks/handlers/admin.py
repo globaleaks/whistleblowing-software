@@ -8,7 +8,7 @@
 #   :license: see LICENSE
 #
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import node, admin, context
+from globaleaks.models import node, admin, context, receiver
 from globaleaks.utils import log
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
@@ -19,6 +19,11 @@ class AdminNode(BaseHandler):
     A1
     Get the node main settings, update the node main settings, it works in a single static
     table, in models/admin.py
+
+    Since this point start the administration chain:
+    . admin get A1 (full context description with private infos)
+      . admin works in A2 (context management, having the context_gus list)
+      . admin works in A3 (receiver management, having the receiver_gus list)
     """
 
     @asynchronous
@@ -54,7 +59,7 @@ class AdminNode(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Admin Node", "get")
 
         context = admin.Context()
-        context_description_dicts = yield context.get_all_contexts()
+        context_description_dicts = yield context.admin_get_all()
 
         node_info = node.Node()
         node_description_dicts = yield node_info.get_admin_info()
@@ -104,7 +109,7 @@ class AdminNode(BaseHandler):
 
 class AdminContexts(BaseHandler):
     """
-    classic CRUD in the 'contexts', not all expect a context_gus in the URL,
+    A2: classic CRUD in the 'contexts', not all expect a context_gus in the URL,
     in example PUT need context_gus because Cyclone regexp expect them, but
     do not require a valid data because is generated when the resource is PUT-ted
     """
@@ -127,21 +132,21 @@ class AdminContexts(BaseHandler):
                 "fields": [ formFieldsDict ]
                 "SelectableReceiver": "bool"
                 "receivers": [ receiverDescriptionDict ]
-                "escalation_treshold": "int"
+                "escalation_threshold": "int"
                 "LanguageSupported": [ "string" ]
                }
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "GET")
 
-        context_iface = admin.Context()
+        context_iface = context.Context()
 
         try:
-            context_description = yield context_iface.get_single_context(context_gus)
+            context_description = yield context_iface.admin_get_single(context_gus)
 
             self._status_code = 200
             self.write(context_description)
 
-        except admin.InvalidContext, e:
+        except context.InvalidContext, e:
 
             self._status_code = e.http_status
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -165,7 +170,7 @@ class AdminContexts(BaseHandler):
             self.write('error message to be managed using the appropriate format')
             self.finish()
 
-        context_iface = admin.Context()
+        context_iface = context.Context()
         yield context_iface.update(context_gus, request)
 
         # return value as get
@@ -192,7 +197,7 @@ class AdminContexts(BaseHandler):
             self.write('error message to be managed using the appropriate format')
             self.finish()
 
-        context_iface = admin.Context()
+        context_iface = context.Context()
         new_context_gus = yield context_iface.new(request)
 
         # return value as get
@@ -204,16 +209,33 @@ class AdminContexts(BaseHandler):
     def delete(self, context_gus, *uriargs):
         """
         Expect just a context_gus, do not check in the body request
-        (at the moment, is specify in a different way, to avoid conflict
-        """
+        * Request:
+            DELETE /admin/context/<context_gus>
 
-        context_iface = admin.Context()
+        * Response:
+            200 if Context exists when requested
+            XXX if Context is invalid
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContext", "delete", context_gus)
+
+
+        context_iface = context.Context()
+
+        # XXX just a litle consideration: if a context has some tip, jobs, whatever
+        # in queue, maybe the client ask a sort of "are you really sure ?"
+        # this operation is not related to this REST DELETE, but perhaps in the
+        # administrative view of the contexts, also the presence|absence|description
+        # of the queued operations, would be useful.
+
+        # This delete operation, its fucking permanant, and kills all the Tip related
+        # to the context. (not the receivers: they can be possesed also by other context,
+        # but the target context is deleted also in the receiver reference)
 
         try:
             yield context_iface.delete_context(context_gus)
             self._status_code = 200
 
-        except admin.InvalidContext, e:
+        except context.InvalidContext, e:
 
             self._status_code = e.http_status
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -223,25 +245,42 @@ class AdminContexts(BaseHandler):
 
 
 class AdminReceivers(BaseHandler):
-    log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "BaseHandler", BaseHandler)
-    # A3
     """
-    classic CRUD in the 'receivers'
+    A3: AdminReceivers: classic CRUD in a 'receiver' resource
+    A receiver can stay in more than one context, then is expected in POST/PUT
+    operations a list of target contexts is passed. Operation here, mostly are
+    handled by models/receiver.py, and act on the administrative side of the
+    receiver. a receiver performing operation in their profile, has an API
+    implemented in handlers.receiver
     """
-    def get(self, context_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "get")
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, receiver_gus, *uriargs):
+
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "get", receiver_gus)
+
         pass
 
-    def post(self, context_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "post")
+
+    @asynchronous
+    @inlineCallbacks
+    def post(self, receiver_gus, *uriargs):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "post", receiver_gus)
         pass
 
-    def put(self, context_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "put")
+
+    @asynchronous
+    @inlineCallbacks
+    def put(self, receiver_gus, *uriargs):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "put", receiver_gus)
         pass
 
-    def delete(self, context_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "delete")
+
+    @asynchronous
+    @inlineCallbacks
+    def delete(self, receiver_gus, *uriargs):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "delete", receiver_gus)
         pass
 
 
@@ -252,10 +291,10 @@ class AdminModules(BaseHandler):
     A limited CRUD (we've not creation|delete, just update, with
     maybe a flag that /disable/ a module)
     """
-    def get(self, context_id, module_id):
+    def get(self, context_gus, *uriargs, module_id):
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "get")
         pass
 
-    def post(self, context_id, module_id):
+    def post(self, context_gus, *uriargs, module_id):
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "post")
         pass
