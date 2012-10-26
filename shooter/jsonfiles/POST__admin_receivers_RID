@@ -12,3 +12,4 @@ notification_selected=email
 delivery_selected=local
 notification_fields=vecna@delirandom.net
 delivery_fields:=false
+context_gus_list:=[@RAW@]

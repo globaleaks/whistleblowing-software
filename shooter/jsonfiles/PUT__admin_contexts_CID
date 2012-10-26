@@ -1,6 +1,9 @@
 name=context by shooter.py
 description=we await whistleblowes about the latest iPhooxy phone product. we know its contain cesium, and this is bad for your health.
-escalation_threshold:=4
 fields:=[ { "hint": "the city of the autovelox", "label": "city", "name": "city", "presentation_order": 1, "required": true, "type": "string", "value": "Yadda I'm default with apostrophe" }, { "hint": "the road where the autovelox is running", "label": "road", "name": "road", "presentation_order": 2, "required": true, "type": "string", "value": "bloblo" }, { "hint": "put the number of the penality", "label": "penality details", "name": "dict2", "presentation_order": 3, "required": true, "type": "string", "value": "666 the default value" }, { "hint": "details: did you present your case to a judge ?", "label": "how do you know that ?", "name": "dict3", "presentation_order": 4, "required": false, "type": "text", "value": "buh ?" } ]
 languages_supported:=["EN", "IT", "ES" ]
 selectable_receiver:=false
+tip_max_access:=50
+tip_timetolive:=20
+folder_max_download:=5
+escalation_threshold:=2

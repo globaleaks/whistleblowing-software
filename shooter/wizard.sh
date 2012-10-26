@@ -14,9 +14,9 @@ if [ $? != 0 ]; then echo "\tError context creation " && exit; fi
 four=`$SHOOTER A2 PUT cid c_OOOOOOOOOOOOOOOOOOOO print-context_gus`
 if [ $? != 0 ]; then echo "\tError context creation " && exit; fi
 
-rcvr=`$SHOOTER A3 PUT rid r_AAAAAAAAAAAAAAAAAAAA print-receiver_gus`
-if [ $? != 0 ]; then echo "\tError context creation " && exit; fi
+rcvr=`$SHOOTER A3 PUT rid r_AAAAAAAAAAAAAAAAAAAA print-receiver_gus raw \"$one\",\"$two\"`
+if [ $? != 0 ]; then echo "\tError receiver creation " && exit; fi
 
 echo "created four contexts: $one $two $three $four"
-echo "created one receiver: $rcvr"
+echo "created one receiver: $rcvr associated in ($one and $two)"
 

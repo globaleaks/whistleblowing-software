@@ -21,11 +21,6 @@ from globaleaks.utils import log
 
 __all__ = ['Submission']
 
-"""
-This ORM implementation is called whistleblower, because contain the information mostly useful
-for the WBs, other elements used by WBs stay on globaleaks.db.tips.SpecialTip
-"""
-
 class SubmissionModelError(ModelError):
     pass
 
@@ -127,9 +122,6 @@ class Submission(TXModel):
     @transact
     def update_fields(self, submission_gus, fields):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_gus", submission_gus, "fields", fields )
-
-        # XXX: If we re-enable this store = self.getStore we end-up after submission of files in the error
-        # "Database is locked". We should identify before that update_fields,  in create_tips why the database is not properly closed
 
         store = self.getStore('update_fields')
         try:

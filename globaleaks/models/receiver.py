@@ -100,20 +100,18 @@ class Receiver(TXModel):
         thaman.receiver_level = receiver_dict['receiver_level']
 
         # every context need to be checked here
-        """
         checker = Context()
 
-        for c_gus in receiver_dict['context_gus_list']:
+        for cntx_gus in receiver_dict['context_gus_list']:
 
             # yield ?
-            response = checker.exists(c_gus)
+            response = checker.exists(cntx_gus)
             if response:
                 print "yep! exists"
             else:
                 print "no, do not exists, it's bad"
                 raise
 
-        """
         store.add(thaman)
         store.commit()
         store.close()

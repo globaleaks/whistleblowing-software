@@ -7,20 +7,20 @@
 #
 
 from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.utils import log
-from globaleaks.models import node, admin
+from globaleaks.models.node import Node, NodeNotFoundError
+from globaleaks.models.context import Context
 from globaleaks.handlers.base import BaseHandler
 from cyclone.web import asynchronous
 
-class Node(BaseHandler):
+class PublicInfo(BaseHandler):
     """
     U1
     Returns information on the GlobaLeaks node. This includes submission
-    paramters and how information should be presented by the client side
+    parameters and how information should be presented by the client side
     application.
 
-    Follow the resource describing Node (uniq instance, accessible to all)
+    Follow the resource describing Node (unique instance, accessible to all)
     """
 
     @asynchronous
@@ -44,23 +44,19 @@ class Node(BaseHandler):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get", uriargs)
 
-        """
         try:
-        """
-        nodeinfo = node.Node()
-        node_description_dicts = yield nodeinfo.get_public_info()
-        """
+            nodeinfo = Node()
+            node_description_dicts = yield nodeinfo.get_public_info()
+
+            context_view = Context()
+            public_context_view = yield context_view.public_get_all()
+            node_description_dicts.update({"contexts": public_context_view})
+
+            self.write(node_description_dicts)
+
         except NodeNotFoundError, e:
-            log.err("Fatal ? node not found!")
-            print e.error_message, dir(e)
-            self.write('errormessage')
-            self.finish()
-        """
 
-        context = admin.Context()
-        context_description_dicts = yield context.get_all_contexts()
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
-        node_description_dicts.update({"contexts": context_description_dicts})
-
-        self.write(node_description_dicts)
         self.finish()

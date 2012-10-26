@@ -104,14 +104,15 @@ URTA = {
 
 baseurl = "http://127.0.0.1:8082"
 
-
+# just to keep clean /tmp/
+outfname = errfname = ''
 
 def do_httpie(method, url, request_list):
     """
     @param url:
     @param method:
     @param request_list: should not be present, is the value in HTTPie format. ref search_jsonfile
-    @return: the dict of the received data, or null
+    @return: No return, the code execution end here.
     """
     (tstderr, errfname) = tempfile.mkstemp(suffix="_shootErr")
 
@@ -151,9 +152,11 @@ def do_httpie(method, url, request_list):
         readed = outfstream.read()
 
     if len(readed) > 5:
-        return json.loads(readed)
+        # If we're received data, mean that 'verbose' option was not present
+        outputOptionsApply(json.loads(readed))
 
-    # no output body!, good exit code
+    os.unlink(outfname)
+    os.unlink(errfname)
     quit(0)
 
 
@@ -173,9 +176,13 @@ def getOpt(seekd):
             print "unable to get [", seekd,"] required parameter"
             quit(1)
 
+        # something an entire JSON array content is passed, then...
+        if seekd == 'raw':
+            return retarg
+
         # tip, sid, cid has all the (t|s|c)_(\w+) regexp
         if retarg[1] != '_':
-            print "invaid [", seekd,"], collected: [", retarg, "]"
+            print "invalid [", seekd,"], collected: [", retarg, "]"
             quit(1)
 
         return retarg
@@ -184,9 +191,12 @@ def getOpt(seekd):
 
 def fix_varline(inputline):
 
-    for var,argopt in { '@TIP@': 'tip', '@CID@': 'cid', '@SID@':'sid', '@RID@' : 'rid' }.iteritems():
+    for var,argopt in { '@TIP@': 'tip', '@CID@': 'cid', '@SID@':'sid', '@RID@' : 'rid',
+            '@RAW@' : 'raw' }.iteritems():
+
         if inputline.find(var) > 0:
-            # it's passed in command line 'tip' 'cid' 'sid'
+
+            # is expected in command line: tip,rid,cid,sid or raw
             user_parm = getOpt(argopt)
 
             if user_parm is None:
@@ -306,7 +316,6 @@ def outputOptionsApply(theDict):
                         break
 
 
-# http://www.youtube.com/watch?v=DaN4LrieCjo - show me your labi-a!
 if __name__ == '__main__':
 
     if len(sys.argv) < 2:
@@ -326,9 +335,4 @@ if __name__ == '__main__':
         request_list = None
 
     url_fixed = fix_varline(url)
-    received_data = do_httpie(meth, url_fixed, request_list)
-
-    # If we're received data, mean that 'verbose' option was not present
-    outputOptionsApply(received_data)
-    quit(0)
-
+    do_httpie(meth, url_fixed, request_list)

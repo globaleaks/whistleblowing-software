@@ -69,7 +69,6 @@ emulate a submission, in the first context presented by '/node'
 send a comment to a tip (need to be passed the tip globaleaks unique string, something
 like: t\_DjAXRhikjKsovldfqXDswsfkPNTCopKTdenkPiRaYZCDrkUuQd as argument)
 
-    contextloop.sh
+    admincycle.sh
 
-continuos loop of create-update-get-delete of contexts, would be expanded with all the
-operations triggering errors.
+emulate the lifecycle of an administrator, performing CURD in context and recevers
