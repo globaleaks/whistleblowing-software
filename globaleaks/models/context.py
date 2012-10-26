@@ -179,18 +179,7 @@ class Context(TXModel):
             store.close()
             raise InvalidContext
 
-        # This is BAD! but actually we have not yet re-defined a policy to manage
-        # REST answers
-        retContext = {'context_gus' : requested_c.context_gus,
-                      'name': requested_c.name,
-                      'description' : requested_c.description,
-                      'selectable_receiver' : requested_c.selectable_receiver,
-                      'fields' : requested_c.fields,
-                      'tip_max_access' : requested_c.tip_max_access,
-                      'tip_timetolive' : requested_c.tip_timetolive,
-                      'folder_max_download' : requested_c.folder_max_download,
-                      'escalation_threshold' : requested_c.escalation_threshold }
-        # This is missing of all the other need to be implemented fields
+        retContext = requested_c._description_dict([])
 
         store.close()
         return retContext
@@ -303,6 +292,8 @@ class Context(TXModel):
 
         log.debug("[D] %s %s " % (__file__, __name__), "Context _description_dict")
 
+        # This is BAD! but actually we have not yet re-defined a policy to manage
+        # REST answers
         description_dict = {"context_gus": self.context_gus,
                             "name": self.name,
                             "description": self.description,
