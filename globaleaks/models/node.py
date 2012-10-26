@@ -2,6 +2,7 @@
 Manage the single table containing all the node general information,
 can be accessed with different privileges (admin and unprivileged).
 """
+from storm.exceptions import NotOneError
 
 from storm.twisted.transact import transact
 
@@ -12,14 +13,12 @@ from globaleaks.models.base import TXModel, ModelError
 from globaleaks.utils import log
 
 
-__all__ = [ 'Node' ]
+__all__ = [ 'Node', 'NodeNotFoundError' ]
 
 class NodeNotFoundError(ModelError):
-    log.debug("[D] %s %s " % (__file__, __name__), "Exception NodeNotFoundError")
-
     ModelError.error_message = "Node not found"
-    ModelError.error_code = 123456
-    ModelError.http_code = 505
+    ModelError.error_code = 1 # To be resumed in rest/error.py
+    ModelError.http_code = 500 # Internal Server Error
 
 
 class Node(TXModel):
@@ -68,7 +67,15 @@ class Node(TXModel):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "configure_node", input_block)
 
         store = self.getStore('configure_node')
-        node_data = store.find(Node, 1 == Node.id).one()
+
+        try:
+            node_data = store.find(Node, 1 == Node.id).one()
+        except NotOneError:
+            store.close()
+            raise NodeNotFoundError
+        if node_data is None:
+            store.close()
+            raise NodeNotFoundError
 
         # node_data.properties
         node_data.description = input_block['description']
@@ -78,7 +85,7 @@ class Node(TXModel):
         node_data.public_stats_delta = int(input_block['public_stats_delta'])
         node_data.private_stats_delta = int(input_block['private_stats_delta'])
 
-        # log.info("Updated node main configuration")
+        log.msg("Updated node main configuration")
         store.commit()
         store.close()
 
@@ -87,10 +94,13 @@ class Node(TXModel):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get_public_info")
 
         store = self.getStore('get_public_info')
-        node_data = store.find(Node, 1 == Node.id).one()
 
-        if not node_data:
-            store.commit()
+        try:
+            node_data = store.find(Node, 1 == Node.id).one()
+        except NotOneError:
+            store.close()
+            raise NodeNotFoundError
+        if node_data is None:
             store.close()
             raise NodeNotFoundError
 
@@ -113,10 +123,13 @@ class Node(TXModel):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get_admin_info")
 
         store = self.getStore('get_admin_info')
-        node_data = store.find(Node, 1 == Node.id).one()
 
-        if not node_data:
-            store.commit()
+        try:
+            node_data = store.find(Node, 1 == Node.id).one()
+        except NotOneError:
+            store.close()
+            raise NodeNotFoundError
+        if node_data is None:
             store.close()
             raise NodeNotFoundError
 
@@ -143,7 +156,7 @@ class Node(TXModel):
         """
         @return: True | False
         This function is called only one time in a node life, and initialize
-        the table. all the calls use an edit of this row
+        the table. the configure_node run edit of this row (id = 1)
         """
         store = self.getStore('initialize_node')
 

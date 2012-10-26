@@ -105,13 +105,15 @@ def createTable(model, transactor, database):
         from globaleaks.db import database
     store = Store(database)
     create_query = generateCreateQuery(model)
+
     try:
         store.execute(create_query)
     # XXX trap the specific error that is raised when the table exists
+    # seem to be OperationalError raised, but not a specific error exists.
     except StormError, e:
-        print "Failed to create table!"
-        print e
+        print "Failed to create table!", e
         store.close()
+
     store.commit()
     store.close()
 

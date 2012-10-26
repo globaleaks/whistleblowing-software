@@ -22,7 +22,7 @@ more_lax = r'(\w+)' # XXX need to be changed with regexp.submission_id | regexp.
 spec = [
     ## Node Handler ##
     #  * /node U1
-    (r'/node', node.Node),
+    (r'/node', node.PublicInfo),
 
     ## Submission Handlers ##
     #  * /submission/ U2
