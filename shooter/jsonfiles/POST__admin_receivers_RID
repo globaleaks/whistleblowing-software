@@ -1,0 +1,14 @@
+name=Updated Name, now I'm unnamed!
+description=a journalist of Truth Corp and freelancer of https://www.unknow.net
+tags:=[ "environmental", "technologist", "journalist" ]
+know_languages:=[ "IT", "XX", "KK" ]
+can_trigger_escalation:=4
+receiver_level:=1
+can_delete_submission:=true
+can_postpone_expiration:=true
+can_configure_delivery:=true
+can_configure_notification:=true
+notification_selected=email
+delivery_selected=local
+notification_fields=vecna@delirandom.net
+delivery_fields:=false

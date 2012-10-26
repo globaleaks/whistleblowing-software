@@ -14,7 +14,7 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks import config
 from globaleaks.handlers import node, submission, tip, admin, receiver, files
-from globaleaks.messages.base import tipGUS, submissionGUS, contextGUS, moduleENUM
+from globaleaks.messages.base import tipGUS, receiverGUS, submissionGUS, contextGUS, moduleENUM
 
 
 more_lax = r'(\w+)' # XXX need to be changed with regexp.submission_id | regexp.receipt_id
@@ -70,8 +70,8 @@ spec = [
     #  * /admin/contexts A2
     (r'/admin/contexts/' + contextGUS.regexp, admin.AdminContexts),
 
-    #  * /admin/receivers/<context_GUS> A3
-    (r'/admin/receivers/' + contextGUS.regexp, admin.AdminReceivers),
+    #  * /admin/receivers/<receiver_GUS> A3
+    (r'/admin/receivers/' + receiverGUS.regexp, admin.AdminReceivers),
 
     #  * /admin/modules/<context_GUS>/<MODULE TYPE> A4
     (r'/admin/modules/' + contextGUS.regexp + '/' + moduleENUM.regexp, admin.AdminModules),

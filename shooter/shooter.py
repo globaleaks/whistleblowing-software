@@ -58,10 +58,10 @@ schema = {
      '/admin/contexts/@CID@': 'POST', #A2
      '/admin/contexts/@CID@': 'PUT', #A2
      '/admin/contexts/@CID@': 'DELETE', #A2
-     '/admin/receivers/@CID@': 'GET', #A3
-     '/admin/receivers/@CID@': 'POST', #A3
-     '/admin/receivers/@CID@': 'DELETE', #A3
-     '/admin/receivers/@CID@': 'PUT', #A3
+     '/admin/receivers/@RID@': 'GET', #A3
+     '/admin/receivers/@RID@': 'POST', #A3
+     '/admin/receivers/@RID@': 'DELETE', #A3
+     '/admin/receivers/@RID@': 'PUT', #A3
      '/admin/modules/@CID@/notification': 'GET', #A4
      '/admin/modules/@CID@/notification': 'POST' #A4
 }
@@ -94,10 +94,10 @@ URTA = {
     'A2_POST':'POST_/admin/contexts/@CID@', #A2
     'A2_PUT':'PUT_/admin/contexts/@CID@', #A2
     'A2_DELETE':'DELETE_/admin/contexts/@CID@', #A2
-    'A3_GET':'GET_/admin/receivers/@CID@', #A3
-    'A3_POST':'POST_/admin/receivers/@CID@', #A3
-    'A3_DELETE':'DELETE_/admin/receivers/@CID@', #A3
-    'A3_PUT':'PUT_/admin/receivers/@CID@', #A3
+    'A3_GET':'GET_/admin/receivers/@RID@', #A3
+    'A3_POST':'POST_/admin/receivers/@RID@', #A3
+    'A3_DELETE':'DELETE_/admin/receivers/@RID@', #A3
+    'A3_PUT':'PUT_/admin/receivers/@RID@', #A3
     'A4_GET':'GET_/admin/modules/@CID@/notification', #A4
     'A4_POST':'POST_/admin/modules/@CID@/notification' #A4
 }
@@ -184,7 +184,7 @@ def getOpt(seekd):
 
 def fix_varline(inputline):
 
-    for var,argopt in { '@TIP@': 'tip', '@CID@': 'cid', '@SID@':'sid' }.iteritems():
+    for var,argopt in { '@TIP@': 'tip', '@CID@': 'cid', '@SID@':'sid', '@RID@' : 'rid' }.iteritems():
         if inputline.find(var) > 0:
             # it's passed in command line 'tip' 'cid' 'sid'
             user_parm = getOpt(argopt)
@@ -306,13 +306,11 @@ def outputOptionsApply(theDict):
                         break
 
 
-    #print "requested key", choosen, "missing from the received data"
-
 # http://www.youtube.com/watch?v=DaN4LrieCjo - show me your labi-a!
 if __name__ == '__main__':
 
     if len(sys.argv) < 2:
-        print sys.argv[0], "[portion of REST]|URTA code", "<method>", "<sid>|<cid>|<tip>"
+        print sys.argv[0], "[portion of REST]|URTA code", "<method>", "<sid>|<cid>|<tip>|<rid>"
         quit(1)
 
     # handle 'shooter.py U1' and 'shooter.py U1 POST'

@@ -21,7 +21,7 @@ class AdminNode(BaseHandler):
     table, in models/admin.py
 
     Since this point start the administration chain:
-    . admin get A1 (full context description with private infos)
+    . admin GET A1 (full context description with private infos)
       . admin works in A2 (context management, having the context_gus list)
       . admin works in A3 (receiver management, having the receiver_gus list)
     """
@@ -56,7 +56,7 @@ class AdminNode(BaseHandler):
         stats_delta couple.
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Admin Node", "get")
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Admin Node", "GET")
 
         context = admin.Context()
         context_description_dicts = yield context.admin_get_all()
@@ -89,7 +89,7 @@ class AdminNode(BaseHandler):
         because the stats are collection of the node status made over periodic time,
 
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "post")
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "POST")
 
         request = json.loads(self.request.body)
 
@@ -103,7 +103,7 @@ class AdminNode(BaseHandler):
         node_info = node.Node()
         yield node_info.configure_node(request)
 
-        # return value as get
+        # return value as GET
         yield self.get()
 
 
@@ -173,14 +173,14 @@ class AdminContexts(BaseHandler):
         context_iface = context.Context()
         yield context_iface.update(context_gus, request)
 
-        # return value as get
+        # return value as GET
         yield self.get(context_gus)
 
     @asynchronous
     @inlineCallbacks
     def put(self, context_gus, *uriargs):
         """
-        create a new context and return as get
+        create a new context and return as GET
         :PUT
          * Request {
             "context_gus": empty or missing
@@ -200,7 +200,7 @@ class AdminContexts(BaseHandler):
         context_iface = context.Context()
         new_context_gus = yield context_iface.new(request)
 
-        # return value as get
+        # return value as GET
         yield self.get(new_context_gus)
 
 
@@ -216,7 +216,7 @@ class AdminContexts(BaseHandler):
             200 if Context exists when requested
             XXX if Context is invalid
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContext", "delete", context_gus)
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContext", "DELETE", context_gus)
 
 
         context_iface = context.Context()
@@ -227,9 +227,9 @@ class AdminContexts(BaseHandler):
         # administrative view of the contexts, also the presence|absence|description
         # of the queued operations, would be useful.
 
-        # This delete operation, its fucking permanant, and kills all the Tip related
+        # This DELETE operation, its fucking permanant, and kills all the Tip related
         # to the context. (not the receivers: they can be possesed also by other context,
-        # but the target context is deleted also in the receiver reference)
+        # but the tarGET context is DELETEd also in the receiver reference)
 
         try:
             yield context_iface.delete_context(context_gus)
@@ -248,7 +248,7 @@ class AdminReceivers(BaseHandler):
     """
     A3: AdminReceivers: classic CRUD in a 'receiver' resource
     A receiver can stay in more than one context, then is expected in POST/PUT
-    operations a list of target contexts is passed. Operation here, mostly are
+    operations a list of tarGET contexts is passed. Operation here, mostly are
     handled by models/receiver.py, and act on the administrative side of the
     receiver. a receiver performing operation in their profile, has an API
     implemented in handlers.receiver
@@ -258,43 +258,104 @@ class AdminReceivers(BaseHandler):
     @inlineCallbacks
     def get(self, receiver_gus, *uriargs):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "get", receiver_gus)
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "GET", receiver_gus)
 
-        pass
+        receiver_iface = receiver.Receiver()
+
+        try:
+            receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
+
+            self._status_code = 200
+            self.write(receiver_description)
+
+        except context.InvalidContext, e:
+
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except receiver.InvalidReceiver, e:
+
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
 
 
     @asynchronous
     @inlineCallbacks
     def post(self, receiver_gus, *uriargs):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "post", receiver_gus)
-        pass
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "POST", receiver_gus)
+
+        request = json.loads(self.request.body)
+
+        if not request:
+            # holy fucking sick atheist god
+            # no validation at the moment.
+            self.write(__file__)
+            self.write('error message to be managed using the appropriate format')
+            self.finish()
+
+        receiver_iface = receiver.Receiver()
+        yield receiver_iface.admin_update(receiver_gus, request)
+
+        yield self.get(receiver_gus)
 
 
     @asynchronous
     @inlineCallbacks
     def put(self, receiver_gus, *uriargs):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "put", receiver_gus)
-        pass
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "PUT", receiver_gus)
+
+        request = json.loads(self.request.body)
+
+        if not request:
+            # holy fucking sick atheist god
+            # no validation at the moment.
+            self.write(__file__)
+            self.write('error message to be managed using the appropriate format')
+            self.finish()
+
+        receiver_iface = receiver.Receiver()
+        new_receiver_gus = yield receiver_iface.new(request)
+
+        # return value as GET of the new receiver
+        yield self.get(new_receiver_gus)
 
 
     @asynchronous
     @inlineCallbacks
     def delete(self, receiver_gus, *uriargs):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "delete", receiver_gus)
-        pass
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "DELETE", receiver_gus)
 
+        receiver_iface = receiver.Receiver()
+
+        try:
+            yield receiver_iface.receiver_delete(receiver_gus)
+            self._status_code = 200
+
+        except context.InvalidContext, e:
+
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except receiver.InvalidReceiver, e:
+
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
 
 class AdminModules(BaseHandler):
     log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "BaseHandler", BaseHandler)
     # A4
     """
-    A limited CRUD (we've not creation|delete, just update, with
+    A limited CRUD (we've not creation|DELETE, just update, with
     maybe a flag that /disable/ a module)
     """
-    def get(self, context_gus, *uriargs, module_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "get")
+    def get(self, module_gus, *uriargs):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "GET")
         pass
 
-    def post(self, context_gus, *uriargs, module_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "post")
+    def post(self, module_gus, *uriargs):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "POST")
         pass

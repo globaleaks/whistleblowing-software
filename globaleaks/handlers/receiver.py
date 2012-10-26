@@ -21,6 +21,7 @@ class ReceiverRoot(base.BaseHandler):
 
     log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverRoot", "base.BaseHandler", base.BaseHandler)
 
+    # remind, for be auth here need a tip_gus and a receiver_gus, a Receiver.secret if secret if supported
     # R1
     def get(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverRoot", "base.BaseHandler", base.BaseHandler)
