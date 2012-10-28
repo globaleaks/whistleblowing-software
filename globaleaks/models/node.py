@@ -16,9 +16,11 @@ from globaleaks.utils import log
 __all__ = [ 'Node', 'NodeNotFoundError' ]
 
 class NodeNotFoundError(ModelError):
-    ModelError.error_message = "Node not found"
-    ModelError.error_code = 1 # To be resumed in rest/error.py
-    ModelError.http_code = 500 # Internal Server Error
+
+    def __init__(self):
+        ModelError.error_message = "Node not found"
+        ModelError.error_code = 1 # To be resumed in rest/error.py
+        ModelError.http_code = 500 # Internal Server Error
 
 
 class Node(TXModel):

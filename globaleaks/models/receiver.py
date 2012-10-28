@@ -9,9 +9,11 @@ from globaleaks.utils import log, idops, gltime
 __all__ = ['Receiver', 'InvalidReceiver' ]
 
 class InvalidReceiver(ModelError):
-    ModelError.error_message = "Invalid Receiver addressed with receiver_gus"
-    ModelError.error_code = 1 # need to be resumed the table and come back in use them
-    ModelError.http_status = 400 # Bad Request
+
+    def __init__(self):
+        ModelError.error_message = "Invalid Receiver addressed with receiver_gus"
+        ModelError.error_code = 1 # need to be resumed the table and come back in use them
+        ModelError.http_status = 400 # Bad Request
 
 # The association between Receiver and Context is performed in models/admin.py ContextReceivers table
 
