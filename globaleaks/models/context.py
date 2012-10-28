@@ -14,9 +14,11 @@ __all__ = [ 'Context', 'InvalidContext' ]
 
 
 class InvalidContext(ModelError):
-    ModelError.error_message = "Invalid Context addressed with context_gus"
-    ModelError.error_code = 1 # need to be resumed the table and come back in use them
-    ModelError.http_status = 400 # Bad Request
+
+    def __init__(self):
+        ModelError.error_message = "Invalid Context addressed with context_gus"
+        ModelError.error_code = 1 # need to be resumed the table and come back in use them
+        ModelError.http_status = 400 # Bad Request
 
 class Context(TXModel):
     from globaleaks.models.node import Node
