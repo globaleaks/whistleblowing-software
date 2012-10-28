@@ -1,7 +1,7 @@
-name=Updated Name, now I'm unnamed!
-description=a journalist of Truth Corp and freelancer of https://www.unknow.net
-tags:=[ "environmental", "technologist", "journalist" ]
-know_languages:=[ "IT", "XX", "KK" ]
+name=Kim Kong Lee, Korean Leader!
+description=a fellow of Truth Corp for a 'greater good'
+tags:=[ "dictator", "korean", "WMD", "rich" ]
+know_languages:=[ "CHI", "RUS", "THAI" ]
 can_trigger_escalation:=4
 receiver_level:=1
 can_delete_submission:=true

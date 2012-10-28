@@ -1,7 +1,7 @@
 name=Bradly Hussein Obama
 description=a journalist of Truth Corp and freelancer of www.unknow.net
 tags:=[ "ninja", "facilitator", "journalist" ]
-know_languages:=[ "IT", "EN", "ES" ]
+know_languages:=[ "IT", "FR" ]
 can_trigger_escalation:=4
 receiver_level:=1
 can_delete_submission:=true

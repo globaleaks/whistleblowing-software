@@ -8,10 +8,7 @@ from storm.locals import Reference
 from globaleaks.utils import gltime, idops
 
 from globaleaks.models.base import TXModel, ModelError
-# from globaleaks.models.receiver import Receiver
-from globaleaks.models.node import Node
 from globaleaks.utils import log
-
 
 __all__ = [ 'Context', 'InvalidContext' ]
 
@@ -22,6 +19,8 @@ class InvalidContext(ModelError):
     ModelError.http_status = 400 # Bad Request
 
 class Context(TXModel):
+    from globaleaks.models.node import Node
+
     __storm_table__ = 'contexts'
 
     context_gus = Unicode(primary=True)
@@ -144,7 +143,21 @@ class Context(TXModel):
         @param context_gus: the universal unique identifier of the context
         @return: None if is deleted correctly, or raise an exception if something is wrong.
         """
+        from globaleaks.models.receiver import Receiver
         log.debug("[D] %s %s " % (__file__, __name__), "Context delete of", context_gus)
+
+        # first, perform existence checks, this would avoid continuos try/except here
+        if not self.exists(context_gus):
+            raise InvalidContext
+
+        # delete all the reference to the context in the receivers
+        receiver_iface = Receiver()
+
+        unlinked_receivers = receiver_iface.unlink_context(context_gus)
+
+        # TODO - delete all the tips associated with the context
+        # TODO - delete all the jobs associated with the context
+        # TODO - delete all the stats associated with the context
 
         store = self.getStore('context delete')
 
@@ -157,10 +170,13 @@ class Context(TXModel):
             store.close()
             raise InvalidContext
 
-        log.msg("Deleted context %s, created in %s" % (requested_c.name, requested_c.creation_date) )
         store.remove(requested_c)
         store.commit()
         store.close()
+
+        log.msg("Deleted context %s, created in %s used by %d receivers" %
+                (requested_c.name, requested_c.creation_date, unlinked_receivers) )
+
 
     @transact
     def admin_get_single(self, context_gus):
@@ -179,10 +195,11 @@ class Context(TXModel):
             store.close()
             raise InvalidContext
 
-        retContext = requested_c._description_dict([])
+        ret_context_dict = requested_c._description_dict()
+        ret_context_dict.update({'receivers' : requested_c.get_receivers(context_gus, 'admin')})
 
         store.close()
-        return retContext
+        return ret_context_dict
 
     @transact
     def admin_get_all(self):
@@ -191,17 +208,21 @@ class Context(TXModel):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Context admin_get_all")
 
-        store = self.getStore('context get_all')
-        dicts = []
+        store = self.getStore('context admin_get_all')
+        ret_contexts_dicts = []
 
         result = store.find(Context)
+
         # also if "None", simply is returned an empty array
         for requested_c in result:
-            dd = requested_c._description_dict(requested_c.receiver_dicts())
-            dicts.append(dd)
+
+            description_dict = requested_c._description_dict()
+            description_dict.update({'receivers' : requested_c.get_receivers(requested_c.context_gus, 'admin') })
+
+            ret_contexts_dicts.append(description_dict)
 
         store.close()
-        return dicts
+        return ret_contexts_dicts
 
     @transact
     def public_get_single(self, context_gus):
@@ -220,15 +241,17 @@ class Context(TXModel):
             store.close()
             raise InvalidContext
 
-        retContext = requested_c._description_dict([])
+        ret_context_dict = requested_c._description_dict()
         # remove the keys private in the public diplay of node informations
-        retContext.pop('tip_max_access')
-        retContext.pop('tip_timetolive')
-        retContext.pop('folder_max_download')
-        retContext.pop('escalation_threshold')
+        ret_context_dict.pop('tip_max_access')
+        ret_context_dict.pop('tip_timetolive')
+        ret_context_dict.pop('folder_max_download')
+        ret_context_dict.pop('escalation_threshold')
+
+        ret_context_dict.update({'receivers' : requested_c.get_receivers(context_gus, 'public') })
 
         store.close()
-        return retContext
+        return ret_context_dict
 
     @transact
     def public_get_all(self):
@@ -236,22 +259,25 @@ class Context(TXModel):
 
         store = self.getStore('context public_get_all')
 
-        dicts = []
+        ret_contexts_dicts = []
         result = store.find(Context)
         # also "None" is fine: simply is returned an empty array
 
-        for cntx in result:
-            dd = cntx._description_dict(cntx.receiver_dicts())
-            # remove the keys private in the public diplay of node informations
-            dd.pop('tip_max_access')
-            dd.pop('tip_timetolive')
-            dd.pop('folder_max_download')
-            dd.pop('escalation_threshold')
+        for requested_c in result:
 
-            dicts.append(dd)
+            description_dict = requested_c._description_dict()
+            # remove the keys private in the public diplay of node informations
+            description_dict.pop('tip_max_access')
+            description_dict.pop('tip_timetolive')
+            description_dict.pop('folder_max_download')
+            description_dict.pop('escalation_threshold')
+
+            description_dict.update({'receivers' : requested_c.get_receivers(requested_c.context_gus, 'public') })
+
+            ret_contexts_dicts.append(description_dict)
 
         store.close()
-        return dicts
+        return ret_contexts_dicts
 
     @transact
     def count(self):
@@ -269,9 +295,9 @@ class Context(TXModel):
         @param context_gus: check if the requested context exists or not
         @return: True if exist, False if not, do not raise exception.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Context exists", context_gus)
+        log.debug("[D] %s %s " % (__file__, __name__), "Context exists ?", context_gus)
 
-        store = self.getStore('context get_single')
+        store = self.getStore('context exist')
 
         try:
             requested_c = store.find(Context, Context.context_gus == context_gus).one()
@@ -287,10 +313,94 @@ class Context(TXModel):
         store.close()
         return retval
 
-    # This is not a transact method, is used internally by this class
-    def _description_dict(self, receivers):
+    # this is called by Receiver.admin_update and would be
+    # called also by Receiver.self_update.
+    #
+    # ----- Optionally a function like that would be implemented in async,
+    # like a submission transformation in Tips, and Tips transformation
+    # in notification and delivery.
+    # I would avoid this approach, because mean that Context resource
+    # may change when an user do not know, and then require a
+    # continuos refresh, unacceptable in a Tor link. ------------------
+    def update_languages(self, context_gus):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Context _description_dict")
+        log.debug("[D] %s %s " % (__file__, __name__), "update_languages ", context_gus)
+
+        language_list = []
+
+        # for each receiver check every languages supported, if not
+        # present in the context declared language, append on it
+        for rcvr in self.get_receivers(context_gus, 'internal'):
+            for language in rcvr.get('know_languages'):
+                if not language in language_list:
+                    language_list.append(language)
+
+        store = self.getStore('context update_languages')
+        requested_c = store.find(Context, Context.context_gus == context_gus).one()
+        log.debug("[L] before language update, context", context_gus, "was", requested_c.languages_supported, "and after got", language_list)
+
+        requested_c.languages_supported = language_list
+        requested_c.update_date = gltime.utcDateNow()
+
+        store.commit()
+        store.close()
+
+    # this is called internally by a @transact functions
+    def get_receivers(self, context_gus, info_type):
+        """
+        @param context_gus: target context to be searched between receivers
+        @info_type: its a string with three possible values:
+           'submission': called for get the information required in the submission/tip process
+           'public': get the information represented to the WB and in public
+           'internal': a series of data used by internal calls
+           'admin': complete dump of the information, wrap Receiver._description_dict
+        @return: a list, 0 to MANY receiverDict tuned for the caller requirements
+        """
+        from globaleaks.models.receiver import Receiver
+
+        typology = [ 'submission', 'public', 'internal', 'admin' ]
+
+        if not info_type in typology:
+            log.debug("[Fatal]", info_type, "not found in", typology)
+            raise NotImplementedError
+
+        store = self.getStore('context get_receivers')
+
+        # I've made some experiment with https://storm.canonical.com/Manual#IN (in vain)
+        # the goal is search which context_gus is present in the Receiver.context_gus_list
+        # and then work in the selected Receiver.
+
+        results = store.find(Receiver)
+
+        receiver_list = []
+        for r in results:
+            if context_gus in r.context_gus_list:
+                partial_info = {}
+
+                if info_type == typology[0]: # submission
+                    partial_info.update({'receiver_gus' : r.receiver_gus})
+                    partial_info.update({'notification_selected' : r.notification_selected })
+                    partial_info.update({'notification_fields' : r.notification_fields })
+                if info_type == typology[1]: # public
+                    partial_info.update({'receiver_gus' : r.receiver_gus})
+                    partial_info.update({'name': r.name })
+                    partial_info.update({'description': r.description })
+                if info_type == typology[2]: # internal
+                    partial_info.update({'receiver_gus' : r.receiver_gus})
+                    partial_info.update({'know_languages' : r.know_languages })
+                if info_type == typology[3]: # admin
+                    partial_info = r._description_dict()
+
+                receiver_list.append(partial_info)
+
+        store.close()
+        return receiver_list
+
+
+    # This is not a transact method, is used internally by this class to assembly
+    # response dict. This method return all the information of a context, the
+    # called using .pop() should remove the 'confidential' value, if any
+    def _description_dict(self):
 
         # This is BAD! but actually we have not yet re-defined a policy to manage
         # REST answers
@@ -303,38 +413,53 @@ class Context(TXModel):
                             'tip_timetolive' : self.tip_timetolive,
                             'folder_max_download' : self.folder_max_download,
                             'escalation_threshold' : self.escalation_threshold,
-                            "fields": self.fields,
-                            "receivers": receivers }
-        # This is missing of all the other need to be implemented fields
+                            "fields": self.fields }
+        # This is missing of all the other need to be implemented fields,
+        # receivers is missing because is append only when needed.
 
         return description_dict
+
+    @transact
+    # Not yet used except unit test - need to be tested
+    def add_receiver(self, context_gus, receiver_gus):
+        """
+        @param context_gus: the context to add the receiver
+        @param receiver_gus: receiver that would be added
+        @return: None, or raise an exception if Receiver or Context are invalid
+        add_receiver should be call every time a Context is updated. If a receiver is
+        already present, do not perform operation in that resource.
+        """
+        from globaleaks.models.receiver import Receiver, InvalidReceiver
+
+        log.debug("[D] %s %s " % (__file__, __name__), "Context add_receiver", context_gus, receiver_gus)
+
+        if not self.exists(context_gus):
+            raise InvalidContext
+
+        store = self.getStore('add_receiver')
+
+        try:
+            requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+        except NotOneError:
+            store.close()
+            return InvalidReceiver
+        if requested_r is None:
+            store.close()
+            return InvalidReceiver
+
+        if not context_gus in requested_r.context_gus_list:
+            requested_r.context_gus_list.append(context_gus)
+            # update last activities, in context and receiver
+
+        log.msg("Addedd receiver", requested_r.receiver_gus, requested_r.name, "to context", context_gus)
+        store.commit()
+        store.close()
 
 
     # under review
     # under review, at the moment submission is broken
     # under review
     # under review
-    def receiver_dicts(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Context receiver_dicts")
-
-        receiver_dicts = []
-        for receiver in self.receivers:
-            receiver_dict = {"receiver_gus": receiver.receiver_gus,
-                    "can_delete_submission": receiver.can_delete_submission,
-                    "can_postpone_expiration": receiver.can_postpone_expiration,
-                    "can_configure_notification": receiver.can_configure_notification,
-                    "can_configure_delivery": receiver.can_configure_delivery,
-                    "can_trigger_escalation": receiver.can_trigger_escalation,
-                    "name": receiver.name,
-                    "description": receiver.description,
-
-                    # one language is the default
-                    "languages_supported": receiver.languages_supported
-            }
-            receiver_dicts.append(receiver_dict)
-        return receiver_dicts
-
-
     # under review
     def create_receiver_tips(self, internaltip):
         log.debug("[D] %s %s " % (__file__, __name__), "Context create_receiver_tips", internaltip)
@@ -347,19 +472,3 @@ class Context(TXModel):
             receiver_tips.append(receiver_tip)
         return receiver_tips
 
-    # under review
-    @transact
-    def add_receiver(self, context_gus, receiver_gus):
-        log.debug("[D] %s %s " % (__file__, __name__), "Context add_receiver")
-
-        store = self.getStore('add_receiver')
-
-        receiver = store.find(Receiver,
-                        Receiver.receiver_gus==receiver_gus).one()
-        context = store.find(Context,
-                        Context.context_gus==context_gus).one()
-
-        context.receivers.add(receiver)
-
-        store.commit()
-        store.close()

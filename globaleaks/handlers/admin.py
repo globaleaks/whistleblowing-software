@@ -8,7 +8,7 @@
 #   :license: see LICENSE
 #
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import node, admin, context, receiver
+from globaleaks.models import node, context, receiver
 from globaleaks.utils import log
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
@@ -58,8 +58,8 @@ class AdminNode(BaseHandler):
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class Admin Node", "GET")
 
-        context = admin.Context()
-        context_description_dicts = yield context.admin_get_all()
+        context_iface = context.Context()
+        context_description_dicts = yield context_iface.admin_get_all()
 
         node_info = node.Node()
         node_description_dicts = yield node_info.get_admin_info()
@@ -171,10 +171,17 @@ class AdminContexts(BaseHandler):
             self.finish()
 
         context_iface = context.Context()
-        yield context_iface.update(context_gus, request)
 
-        # return value as GET
-        yield self.get(context_gus)
+        try:
+            yield context_iface.update(context_gus, request)
+            yield self.get(context_gus)
+
+        except context.InvalidContext, e:
+
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.finish()
+
 
     @asynchronous
     @inlineCallbacks
@@ -198,6 +205,9 @@ class AdminContexts(BaseHandler):
             self.finish()
 
         context_iface = context.Context()
+
+        # XXX detect which operation can fail, and eventually make an appropriate
+        # exception, with the logic used in self.post
         new_context_gus = yield context_iface.new(request)
 
         # return value as GET
@@ -296,9 +306,24 @@ class AdminReceivers(BaseHandler):
             self.finish()
 
         receiver_iface = receiver.Receiver()
-        yield receiver_iface.admin_update(receiver_gus, request)
 
-        yield self.get(receiver_gus)
+        try:
+            yield receiver_iface.admin_update(receiver_gus, request)
+
+            yield self.get(receiver_gus)
+
+        except context.InvalidContext:
+
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.finish()
+
+        except receiver.InvalidReceiver, e:
+
+            self._status_code = e.http_status
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.finish()
+
 
 
     @asynchronous
