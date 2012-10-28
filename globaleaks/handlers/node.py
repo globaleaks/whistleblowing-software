@@ -8,8 +8,6 @@
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import log
-from globaleaks.models.node import Node, NodeNotFoundError
-from globaleaks.models.context import Context
 from globaleaks.handlers.base import BaseHandler
 from cyclone.web import asynchronous
 
@@ -42,6 +40,9 @@ class PublicInfo(BaseHandler):
              }
 
         """
+        from globaleaks.models.node import Node, NodeNotFoundError
+        from globaleaks.models.context import Context
+
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get", uriargs)
 
         try:

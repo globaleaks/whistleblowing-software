@@ -13,7 +13,7 @@ from globaleaks.utils import idops, log
 
 from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.receiver import Receiver
-from globaleaks.models.admin import Context
+from globaleaks.models.context import Context
 
 from globaleaks.messages.responses import errorMessage
 

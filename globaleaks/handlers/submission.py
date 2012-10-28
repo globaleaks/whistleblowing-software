@@ -73,6 +73,7 @@ class SubmissionStatus(BaseHandler):
           }
         """
         log.debug("[D] %s %s " % (__file__, __name__), "SubmissionStatus", "get", "submission_id", submission_id )
+
         submission = models.submission.Submission()
         status = yield submission.status(submission_id)
 

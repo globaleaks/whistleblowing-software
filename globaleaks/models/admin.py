@@ -13,12 +13,10 @@ from storm.locals import ReferenceSet, Reference
 from globaleaks.utils import gltime, idops
 
 from globaleaks.models.base import TXModel, ModelError
-from globaleaks.models.receiver import Receiver
-from globaleaks.models.context import Context
 from globaleaks.utils import log
 
 
-__all__ = [ 'ModulesProfiles', 'AdminStats', 'LocalizedTexts', 'ReceiverContext' ]
+__all__ = [ 'ModulesProfiles', 'AdminStats', 'LocalizedTexts' ]
 
 class ModulesProfiles(TXModel):
     """
@@ -88,19 +86,5 @@ class LocalizedTexts(TXModel):
     need to be defined with the Client and in the API, but most likely would be
     a struct like the POT file, pickled in the database, and managed by administrators input
     """
-
-class ReceiverContext(TXModel):
-    log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverContext")
-    __storm_table__ = 'receivers_context'
-    __storm_primary__ = "context_gus", "receiver_gus"
-
-    context_gus = Int()
-    # holy shit, here receiver_gus is an Int, not a Unicode()/globaleaks uniq string
-    receiver_gus = Int()
-
-Context.receivers = ReferenceSet(Context.context_gus,
-                             ReceiverContext.context_gus,
-                             ReceiverContext.receiver_gus,
-                             Receiver.receiver_gus)
 
 
