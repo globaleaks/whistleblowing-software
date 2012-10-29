@@ -30,6 +30,7 @@ sys.path.insert(0, os.path.join(cwd, '../'))
 # T5 `/tip/<string t_id>/download_material`
 # T6 `/tip/<string t_id>/pertinence`
 
+# remind: this code section is copyed also in README.md
 schema = {
      '/node': 'GET' , #U1
      '/submission': 'GET', #U2
@@ -47,11 +48,10 @@ schema = {
      '/tip/@TIP@/pertinence': 'POST', #T6
      '/receiver/@TIP@': 'GET', #R1
      '/receiver/@TIP@/notification': 'GET', #R2
-        # /notification or /delivery
+        # would be /notification or /delivery
      '/receiver/@TIP@/notification': 'POST', #R2
      '/receiver/@TIP@/notification': 'PUT', #R2
      '/receiver/@TIP@/notification': 'DELETE', #R2
-        # admin not yet supported, because who knows..
      '/admin/node':'GET', #A1
      '/admin/node':'POST', #A1
      '/admin/contexts/@CID@': 'GET', #A2
