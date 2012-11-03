@@ -67,6 +67,7 @@ class AdminNode(BaseHandler):
         # it's obviously a madness that need to be solved
         node_description_dicts.update({"contexts": context_description_dicts})
 
+        self.set_status(200)
         self.write(node_description_dicts)
         self.finish()
 
@@ -143,12 +144,12 @@ class AdminContexts(BaseHandler):
         try:
             context_description = yield context_iface.admin_get_single(context_gus)
 
-            self._status_code = 200
+            self.set_status(200)
             self.write(context_description)
 
         except context.InvalidContext, e:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
@@ -176,11 +177,14 @@ class AdminContexts(BaseHandler):
             yield context_iface.update(context_gus, request)
             yield self.get(context_gus)
 
+            self.set_status(200)
+
         except context.InvalidContext, e:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-            self.finish()
+
+        self.finish()
 
 
     @asynchronous
@@ -243,11 +247,11 @@ class AdminContexts(BaseHandler):
 
         try:
             yield context_iface.delete_context(context_gus)
-            self._status_code = 200
+            self.set_status(200)
 
         except context.InvalidContext, e:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
@@ -275,17 +279,17 @@ class AdminReceivers(BaseHandler):
         try:
             receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
 
-            self._status_code = 200
+            self.set_status(200)
             self.write(receiver_description)
 
         except context.InvalidContext, e:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except receiver.InvalidReceiver, e:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
@@ -301,8 +305,10 @@ class AdminReceivers(BaseHandler):
         if not request:
             # holy fucking sick atheist god
             # no validation at the moment.
+
             self.write(__file__)
             self.write('error message to be managed using the appropriate format')
+            self.set_status(400)
             self.finish()
 
         receiver_iface = receiver.Receiver()
@@ -314,13 +320,13 @@ class AdminReceivers(BaseHandler):
 
         except context.InvalidContext:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
             self.finish()
 
         except receiver.InvalidReceiver, e:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
             self.finish()
 
@@ -356,16 +362,16 @@ class AdminReceivers(BaseHandler):
 
         try:
             yield receiver_iface.receiver_delete(receiver_gus)
-            self._status_code = 200
+            self.set_status(200)
 
         except context.InvalidContext, e:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except receiver.InvalidReceiver, e:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
