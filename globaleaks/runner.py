@@ -8,7 +8,11 @@ from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 
 from globaleaks.db import createTables
+
+# same name mistake = shit,
+# log appears to not be used, but is called as log.debug
 from globaleaks.utils import log
+# XXX
 
 class GLBaseRunner(app.ApplicationRunner):
     """
@@ -36,9 +40,65 @@ class GLBaseRunner(app.ApplicationRunner):
         log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunner", "postApplication")
         pass
 
+
+def startAsynchronous():
+    """
+    Initialize the asynchronous operation, scheduled in the system
+    https://github.com/globaleaks/GLBackend/wiki/Asynchronous-and-synchronous-operations
+
+    This method would be likely put in GLBaseRunner.postApplication, but is not executed by
+    startglobaleaks.runApp, then is called by the OS-depenedent runner below
+    """
+    from apscheduler.scheduler import Scheduler
+    from globaleaks.jobs import notification_sched, statistics_sched, tip_sched, \
+        delivery_sched, cleaning_sched, welcome_sched, digest_sched
+
+    GLAsynchronous = Scheduler()
+    # When the application boot, maybe because has been restarted. then, execute all the
+    # periodic operation by hand.
+
+    StatsSched = statistics_sched.APSStatistics()
+    StatsSched.force_execution(GLAsynchronous, seconds=10)
+    GLAsynchronous.add_interval_job(StatsSched.operation, StatsSched.get_node_delta() )
+
+    WelcomSched = welcome_sched.APSWelcome()
+    WelcomSched.force_execution(GLAsynchronous, seconds=15)
+    GLAsynchronous.add_interval_job(WelcomSched.operation, minutes=5)
+
+    TipSched = tip_sched.APSTip()
+    TipSched.force_execution(GLAsynchronous, seconds=20)
+    GLAsynchronous.add_interval_job(TipSched.operation, minutes=1)
+
+    # TODO - InputFilter processing, before considering a Folder safe, need
+    #        to be scheduler and then would be 'data available' for delivery
+
+    DeliverSched = delivery_sched.APSDelivery()
+    DeliverSched.force_execution(GLAsynchronous, seconds=25)
+    GLAsynchronous.add_interval_job(DeliverSched.operation, minutes=2)
+
+    NotifSched = notification_sched.APSNotification()
+    NotifSched.force_execution(GLAsynchronous, seconds=30)
+    GLAsynchronous.add_interval_job(NotifSched.operation, minutes=3)
+
+    CleanSched = cleaning_sched.APSCleaning()
+    CleanSched.force_execution(GLAsynchronous, seconds=35)
+    GLAsynchronous.add_interval_job(CleanSched.operation, hours=6)
+    # TODO not hours=6 but CleanSched.get_contexts_policies()
+
+    DigestSched = digest_sched.APSDigest()
+    GLAsynchronous.add_interval_job(DigestSched.operation, minutes=10)
+    # TODO not minutes=10 but DigestSched.get_context_policies()
+
+    # start the scheduler
+    GLAsynchronous.start()
+
+
+# System dependent runner (windows and Unix)
+
 if platformType == "win32":
-    from twisted.scripts._twistw import ServerOptions, \
-        WindowsApplicationRunner
+
+    from twisted.scripts._twistw import ServerOptions, WindowsApplicationRunner
+
     class GLBaseRunnerWindows(WindowsApplicationRunner):
         """
         This runner is specific to windows.
@@ -58,6 +118,7 @@ if platformType == "win32":
                 service.IService(self.application).privilegedStartService()
                 app.startApplication(self.application, not self.config['no_save'])
                 app.startApplication(internet.TimerService(0.1, lambda:None), 0)
+                startAsynchronous()
 
             print "WARNING! Windows is not tested!"
             d = createTables()
@@ -67,10 +128,12 @@ if platformType == "win32":
             log.msg("Server Shut Down.")
 
     GLBaseRunner = GLBaseRunnerWindows
+
 else:
-    from twisted.scripts._twistd_unix import ServerOptions, \
-        UnixApplicationRunner
+
+    from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
     ServerOptions = ServerOptions
+
     class GLBaseRunnerUnix(UnixApplicationRunner):
         """
         This runner is specific to Unix systems.
@@ -88,6 +151,7 @@ else:
                 log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerUnix", "postApplication", "runApp")
                 print "Running start."
                 self.startApplication(self.application)
+                startAsynchronous()
                 print "GLBackend is now running"
                 print "Visit http://127.0.0.1:8082/index.html to interact with me"
 

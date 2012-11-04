@@ -356,6 +356,7 @@ class Submission(TXModel):
         for single_s in searched_s:
             retVal.append(single_s._description_dict())
 
+        store.close()
         return retVal
 
 
