@@ -14,6 +14,7 @@ from globaleaks import models
 from globaleaks.utils import idops, log
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.base import ModelError
+from globaleaks.models.context import InvalidContext
 
 
 class SubmissionRoot(BaseHandler):
@@ -22,30 +23,38 @@ class SubmissionRoot(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self, context_gus, *uriargs):
         """
-        This creates an empty submission and returns the ID
-        to be used when referencing it as a whistleblower.
-        sessionID is defined in recurringtypes, and is a 50byte random string,
-        is used as authentication secrect for the nexts interaxtion.
-        expire after the time set by Admin.
+            * Request
+              GET /submission/<$context_gus>/new
+
+        This creates an empty submission for the requested context,
+        and returns a GlobaLEaks Uniqe String, to be used during the submission
+        procedure.
+        sessionGUS is used as authentication secrect for the next interaction.
+        expire after the time set by Admin, in the Context
 
             * Response:
-              Status Code: 200 (OK)
               {
                   'submission_gus': 'sessionID',
                   'creation_time': 'Time'
               }
               Status code: 201 (Created)
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionRoot", "get")
-        # XXX do sanitization and validation here
-        self.set_status(201)
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionRoot", "GET / context = ", context_gus)
 
         submission = models.submission.Submission()
-        output = yield submission.new()
 
-        self.write(output)
+        try:
+            output = yield submission.new(context_gus)
+            self.set_status(201)
+            self.write(output)
+
+        except InvalidContext, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
         self.finish()
 
 class SubmissionStatus(BaseHandler):
@@ -133,7 +142,11 @@ class SubmissionStatus(BaseHandler):
             yield submission.select_context(submission_gus, request['context_selected'])
             self.set_status(202)
 
-        # TODO implemnt receiver_selected if context supports
+        if 'receiver_selected' in request and request['receiver_selected']:
+            log.debug("Receiver selection in %s" % submission_gus)
+            yield submission.select_receiver(submission_gus, request['receiver_selected'])
+            # TODO handle default behaviour, a context do not permit receiver selection
+            self.set_status(202)
 
         self.finish()
 

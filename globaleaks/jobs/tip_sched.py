@@ -1,9 +1,10 @@
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
-from globaleaks.models.submission import Submission
-from storm.twisted.transact import transact
 from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.models.submission import Submission
+from globaleaks.models.context import Context
 
 from globaleaks.models.tip import InternalTip, ReceiverTip
 
@@ -34,7 +35,10 @@ class APSTip(GLJob):
 
         for single_submission in finalized_submissions:
             print "I've to create ReceiverTip about:", single_submission
-            yield self._create_receiver_tips(single_submission)
+
+            context_iface = Context()
+
+            yield context_iface.create_receiver_tips(single_submission)
             # create ReceiverTip, status = u'not notified'
 
         # loops over the InternalTip and checks the escalation threshold
@@ -46,9 +50,6 @@ class APSTip(GLJob):
             print "not finalized", single_submission
 
 
-    # check in Context what's the appropriate iface
-    # NEED to be performed in a TXModel
-    # NEED to be patched SubmissionRoot and be SURE that a context is present
     def _create_receiver_tips(self, submissionDescriptionDict):
         pass
 
@@ -60,6 +61,7 @@ class APSTip(GLJob):
         # InternalTip - to update tracking of ReceiverTip [gus and notification status]
         # Submission - for remove the temporary submission
         # Folder - to be determined the operation sequence, along with the delivery logic
+
 
         """
         receiver_tips = context.create_receiver_tips(internal_tip)
