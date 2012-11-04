@@ -80,12 +80,14 @@ def runApp(config):
     print "Starting GlobaLeaks"
     runner.GLBaseRunner(config).run()
 
+# XXX this is causing a double execution of backend.py
+# verified having two equal scheduled operations running
 config = runner.ServerOptions()
 try:
     config.parseOptions()
 except usage.error, ue:
-    print config
     print "%s: %s" % (sys.argv[0], ue)
 else:
     runApp(config)
 
+runApp(config)

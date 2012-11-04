@@ -113,7 +113,7 @@ class TestSubmission(BaseDBTest):
 
         yield self.create_dummy_submission(my_gus)
         try:
-            yield test_submission.create_tips(my_gus, u'1234567890')
+            yield test_submission.complete_submission(my_gus, u'1234567890')
         except Exception, e:
             print e
 
