@@ -1,0 +1,7 @@
+Actually I've got some problems in using those scheduler,
+
+jobs_base was the previously know jobs/base.py file
+
+At the moment those file are not used, and the scheduler is provided by the standard python
+apscheduler (http://packages.python.org/APScheduler/modules/scheduler.html) It's pretty good,
+support all the feature we need, and works without problem.
