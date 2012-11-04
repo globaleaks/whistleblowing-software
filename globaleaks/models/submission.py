@@ -13,30 +13,46 @@ from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.tip import InternalTip, Tip, ReceiverTip, File, Folder
 from globaleaks.models.context import Context
 
-from globaleaks.jobs.delivery import Delivery
-from globaleaks.jobs.notification import Notification
-
-from globaleaks.scheduler.manager import work_manager
 from globaleaks.utils import log
 
 __all__ = ['Submission']
 
-class SubmissionModelError(ModelError):
+class SubmissionNotFoundError(ModelError):
+
+    def __init__(self):
+        ModelError.error_message = "Invalid Submission addressed with submission_gus"
+        ModelError.error_code = 1 # need to be resumed the table and come back in use them
+        ModelError.http_status = 400 # Bad Request
+
+# may it exists ? I've used that for wrap eventually "database is locked", but
+# we've see that database locked is an effect of a programmer bug, not a
+# common behavior, also in multiple requests
+class SubmissionGenericError(ModelError):
+
+    def __init__(self):
+        ModelError.error_message = " Submission internal error: sorry!"
+        ModelError.error_code = 1 # need to be resumed the table and come back in use them
+        ModelError.http_status = 500 # Server Error
+
+
+# TODO - remove this possibility
+class SubmissionNoContextSelectedError(ModelError):
+
+    def __init__(self):
+        ModelError.error_message = "Invalid context selected"
+        ModelError.error_code = 1 # need to be resumed the table and come back in use them
+        ModelError.http_status = 412 # Precondition Failed
+
+# TODO - remove this possibility, too
+class SubmissionContextNotFoundError(ModelError):
     pass
 
-class SubmissionNotFoundError(SubmissionModelError):
+# implausible - is controlled by Admin the amount of Contexts
+class SubmissionContextNotOneError(ModelError):
     pass
 
-class SubmissionNotOneError(SubmissionModelError):
-    pass
-
-class SubmissionNoContextSelectedError(SubmissionModelError):
-    pass
-
-class SubmissionContextNotFoundError(SubmissionModelError):
-    pass
-
-class SubmissionContextNotOneError(SubmissionModelError):
+# TODO - would be an error when we start to check presence of required fields
+class SubmissionFailRequiremers(ModelError):
     pass
 
 class Submission(TXModel):
@@ -48,13 +64,18 @@ class Submission(TXModel):
     __storm_table__ = 'submission'
 
     submission_gus = Unicode(primary=True)
+    context_selected = Unicode()
 
     fields = Pickle()
 
-    context_selected = Pickle()
 
     folder_gus = Unicode()
     folder = Reference(folder_gus, Folder.folder_gus)
+    mark = Unicode()
+        # TODO ENUM: 'incomplete' 'finalized'
+
+    internaltip_id = Int()
+    internaltip = Reference(internaltip_id, InternalTip.id)
 
     creation_time = Date()
 
@@ -69,6 +90,7 @@ class Submission(TXModel):
         submission = Submission()
         submission.submission_gus = submission_gus
         submission.creation_time = creation_time
+        mark = u'incomplete'
 
         folder = Folder()
         folder.folder_gus = idops.random_folder_gus()
@@ -113,7 +135,7 @@ class Submission(TXModel):
             log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_gus", submission_gus, "file_name", file_name )
             store.rollback()
             store.close()
-            raise SubmissionModelError(e)
+            raise SubmissionGenericError
 
         log.debug("Added file %s to %s" % (submission_gus, file_name))
         store.close()
@@ -128,7 +150,7 @@ class Submission(TXModel):
             s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
             # XXX these log lines will be removed in the near future
-            log.err("update_fields: Problem looking up %s" % submission_gus)
+            log.err("[E] update_fields: Problem looking up %s" % submission_gus)
             log.err(e)
             store.rollback()
             store.close()
@@ -151,34 +173,43 @@ class Submission(TXModel):
             log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_gus", submission_gus, "fields", fields )
             store.rollback()
             store.close()
-            raise SubmissionModelError(e)
+            raise SubmissionGenericError
 
         store.close()
 
-
+    # TODO - context need to be selected when submission_gus is received, is not to be declared via
+    # parameter, because different context may have different expiring time. and then, in the
+    # asynchronous cleaning procedure, may exists a submission without context and then without
+    # expiring time. This would be avoided making the context declared when submission_gus is
+    # received. in client side, the fields of every context is already know, then this is not
+    # a blocking operation.
+    #
+    # when this patch in API - handlers - client, happen, this function would be removed.
     @transact
-    def select_context(self, submission_gus, context):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select-context", "submission_gus", submission_gus, "context", context )
+    def select_context(self, submission_gus, context_gus):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select_context", "submission_gus", submission_gus, "context", context_gus )
+
         store = self.getStore('select_context')
+
         try:
-            s = store.find(Submission, Submission.submission_gus==submission_gus).one()
-        except NotOneError, e:
-            # XXX these log lines will be removed in the near future
-            log.msg("Problem looking up %s" % submission_gus)
-            log.msg(e)
-            store.rollback()
+            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+        except NotOneError:
+            # its not possible: is a primary key
+            store.close()
+            raise SubmissionNotFoundError
+        if requested_s is None:
             store.close()
             raise SubmissionNotFoundError
 
-        s.context_selected = context
+        requested_s.context_selected = context_gus
 
         try:
             store.commit()
         except Exception, e:
-            log.debug("[E]: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_gus", submission_gus, "context", context )
+            log.debug("[E]: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_gus", submission_gus, "context", context_gus )
             store.rollback()
             store.close()
-            raise SubmissionModelError(e)
+            raise SubmissionGenericError
 
         store.close()
 
@@ -193,121 +224,83 @@ class Submission(TXModel):
         store = self.getStore('status')
 
         try:
-            s = store.find(Submission, Submission.submission_gus==submission_gus).one()
-        except NotOneError, e:
-            store.rollback()
+            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+        except NotOneError:
+            # its not possible: is a primary key
             store.close()
-            raise SubmissionNotOneError
-
-        if not s:
-            store.rollback()
+            raise SubmissionNotFoundError
+        if requested_s is None:
             store.close()
             raise SubmissionNotFoundError
 
-        status = {'context_selected': s.context_selected,
-                  'fields': s.fields}
+        statusDict = {'context_selected': requested_s.context_selected,
+                      'fields': requested_s.fields}
                 # TODO 'creation_time' and 'expiration_time'
+                # would be done when date format is clear
 
-        store.commit()
         store.close()
-        return status
+        return statusDict
 
     @transact
-    def create_tips(self, submission_gus, receipt):
+    def complete_submission(self, submission_gus, proposed_receipt):
         """
         this function is became simply unmaintainable
         """
+        log.debug("[D] ",__file__, __name__, "Submission complete_submission", submission_gus, "proposed_receipt", proposed_receipt)
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "submission_gus", submission_gus, "receipt", receipt )
-        log.debug("Creating tips for %s" % submission_gus)
-
-        store = self.getStore('create_tips')
+        store = self.getStore('complete_submission')
 
         try:
-            submission = store.find(Submission,
-                            Submission.submission_gus==submission_gus).one()
-        except NotOneError, e:
-            log.msg("Problem creating tips for %s" % submission_gus)
-            log.msg(e)
-            store.rollback()
+            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+        except NotOneError:
             store.close()
-            # XXX if this happens we probably have to delete one row in the DB
-            raise SubmissionModelError("Collision detected! HELP THE WORLD WILL END!")
-        except Exception, e:
-            log.err("Other random exception")
-            log.err(e)
-            store.rollback()
+            raise SubmissionNotFoundError
+        if requested_s is None:
             store.close()
-            raise SubmissionModelError
-
-        if not submission:
-            # XXX investigate
-            # this can never happen, would be catch by NotOneError before
-            store.rollback()
-            store.close()
-            log.msg("Did not find the %s submission" % submission_gus)
             raise SubmissionNotFoundError
 
-        if not submission.context_selected:
-            store.rollback()
+        if not requested_s.context_selected:
             store.close()
-            log.msg("Did not find the context for %s submission" % submission_gus)
             raise SubmissionNoContextSelectedError
 
         try:
-            context = store.find(Context,
-                    Context.context_gus == submission.context_selected).one()
-        except NotOneError, e:
-            # XXX will this actually ever happen?
-            # Investigate!
-            # CAN) yes, is not checked in update_fields, and here need to be checked, (also the fields,
-            #      need to be compared/validated with
-            store.rollback()
+            requested_c = store.find(Context,
+                    Context.context_gus == requested_s.context_selected).one()
+        except NotOneError:
             store.close()
             raise SubmissionContextNotOneError
-
-        if not context:
-            log.msg("Did not find the context for %s submission" % submission_gus)
-            # shall be the rollback to create a logest timeout, and then make lock the other operation ?
-            store.rollback()
+        if not requested_c:
             store.close()
             raise SubmissionContextNotFoundError
 
-        log.debug("Creating internal tip")
+        log.debug("Creating internal tip", requested_c.context_gus, requested_s.submission_gus)
+
         try:
             internal_tip = InternalTip()
-            internal_tip.fields = submission.fields
-            internal_tip.context_gus = submission.context_selected
+            internal_tip.fields = requested_s.fields
+            internal_tip.context_gus = requested_s.context_selected
             store.add(internal_tip)
         except Exception, e:
             log.err(e)
             store.rollback()
             store.close()
-            raise SubmissionModelError
+            raise SubmissionGenericError
 
         log.debug("Created internal tip %s" % internal_tip.context_gus)
 
-        if submission.folder:
-            log.debug("Creating submission folder table %s" % submission.folder_gus)
-            folder = submission.folder
+        # this is wrong, we need to check if some file has been added TODO
+        # temporary fail in this check, folder would be associated in internaltip, but
+        # marked coherently with the asynchronous delivery logic
+        if requested_s.folder and 1 == 0:
+            log.debug("Creating submission folder table %s" % requested_s.folder_gus)
+            folder = requested_s.folder
             folder.internaltip = internal_tip
 
             store.add(folder) 
             store.commit()
-            """
-            try:
-                store.add(folder)
-                store.commit()
-            except Exception, e:
-                log.err(e)
-                store.rollback()
-                store.close()
-                raise SubmissionModelError
-            """
 
-            log.debug("Submission folder created withour error")
-        else:
-            print "I don't believe this is possible, actually, submission.folder is created on new()"
+            log.debug("Submission folder created without error")
+
             # XXX, and I don't get why folder_gus is returned by new():
             # because file uploader # use submission_gus as reference, do not need folder_gus too.
             # because if someone want restore an upload, use the file_gus instead of folder_gus
@@ -315,53 +308,97 @@ class Submission(TXModel):
         log.debug("Creating tip for whistleblower")
         whistleblower_tip = Tip()
         whistleblower_tip.internaltip = internal_tip
-        whistleblower_tip.address = receipt
-                # holy shit XXX here
+
+        # if context permit that receiver propose the receipt:
+        whistleblower_tip.address = proposed_receipt
+        # because is already an hashed receipt
+        # else... receipt_string = idops.random_receipt_id()
+        #         hash(receipt_string)
+        #         return receipt_string
+        # AND, check if not other equal receipt are present, in that case, reject
+        # XXX this should bring security issue... mmmhh....
+
+
         store.add(whistleblower_tip)
         log.debug("Created tip with address %s" % whistleblower_tip.address)
 
-        #receiver_tips = context.create_receiver_tips(internal_tip)
-        log.debug("Looking up receivers")
-        for receiver in context.receivers:
-            log.debug("[D] %s %s " % (__file__, __name__), "Submission", "create_tips", "Creating tip for %s" % receiver.receiver_gus)
-            receiver_tip = ReceiverTip()
-            receiver_tip.internaltip = internal_tip
-            receiver_tip.new(receiver.receiver_gus)
-            store.add(receiver_tip)
-            log.debug("Tip created")
 
-            """
+        log.debug("Submision is not removed now, because need to be processed by tip_creation async. Instead, has now internaltip linked")
+        requested_s.mark = u'finalized'
+        requested_s.internaltip = internal_tip
 
-            At the moment the scheduler queue is bugged,
-
-
-            log.debug("Creating delivery jobs")
-            delivery_job = Delivery()
-            delivery_job.submission_gus = submission_gus
-            delivery_job.receipt_id = receiver_tip.address
-            work_manager.add(delivery_job)
-
-            log.debug("Added delivery to %s to the work manager" % receiver.receiver_gus)
-
-            notification_job = Notification()
-            notification_job.address = receiver.name
-            notification_job.receipt_gus = receiver_tip.address
-            work_manager.add(notification_job)
-            """
-
-        log.debug("Deleting the temporary submission %s" % submission.submission_gus)
-
-        store.remove(submission)
-        # maybe also this operation can give the lock problem
-
-        try:
-            store.commit()
-        except Exception, e:
-            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_gus", type(submission_gus), "file_name", type(file_name), "Could not create submission" )
-            log.err(e)
-            store.rollback()
-            store.close()
-
-        log.debug("create_tips complete, commit done, closing storage")
+        store.commit()
         store.close()
 
+        log.debug("create_internaltip and whistleblower tip")
+
+        return proposed_receipt
+
+    @transact
+    def get_submissions(self, mark):
+        """
+        @param mark: one of them:
+        # TODO ENUM: 'incomplete' 'finalized'
+        @return: an array, emptry or with one or more dict.
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Submission", "get_submissions", mark)
+
+        retVal = []
+        store = self.getStore('submission - get_submissions')
+
+        try:
+            searched_s = store.find(Submission, Submission.mark == mark)
+        except:
+            log.debug("get_submissions with mark %s goes in unknow exception !?" % mark)
+            store.close()
+            return retVal
+
+        for single_s in searched_s:
+            retVal.append(single_s._description_dict())
+
+        return retVal
+
+
+    @transact
+    def admin_get_single(self, submission_gus):
+        """
+        @return a receiverDescriptionDict
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Submission", "admin_get_single", submission_gus)
+
+        store = self.getStore('submission - admin_get_single')
+
+        # I didn't understand why, but NotOneError is not raised even if the search return None
+        try:
+            requested_s = store.find(Submission, Submission.submission_gus == submission_gus).one()
+        except NotOneError:
+            store.close()
+            raise SubmissionNotFoundError
+        if requested_s is None:
+            store.close()
+            raise SubmissionNotFoundError
+
+        retSubmission = requested_s._description_dict()
+
+        store.close()
+        return retSubmission
+
+    @transact
+    def admin_get_all(self):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Submission", "admin_get_all")
+        pass
+
+
+    def _description_dict(self):
+
+        descriptionDict = {
+            'submission_gus': self.submission_gus,
+            'fields' : self.fields,
+            'context_selected' : self.context_selected,
+            'mark' : self.mark,
+            # folder and internaltip would be reported as sub-dict only if present
+            'folder_gus' : self.folder_gus,
+            'internaltip_id' : self.internaltip_id
+        }
+
+        return descriptionDict
