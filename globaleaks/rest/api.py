@@ -25,8 +25,8 @@ spec = [
     (r'/node', node.PublicInfo),
 
     ## Submission Handlers ##
-    #  * /submission/ U2
-    (r'/submission', submission.SubmissionRoot),
+    #  * /submission/<context_GUS> U2
+    (r'/submission/' + contextGUS.regexp + '/new', submission.SubmissionRoot),
 
     #  * /submission/<GUS>/status U3
     (r'/submission/' + submissionGUS.regexp + '/status', submission.SubmissionStatus),
@@ -38,29 +38,29 @@ spec = [
     # https://docs.google.com/a/apps.globaleaks.org/document/d/17GXsnczhI8LgTNj438oWPRbsoz_Hs3TTSnK7NzY86S4/edit?pli=1
 
     ## Tip Handlers ##
-    #  * /tip/<GUS>/ T1
+    #  * /tip/<tip_GUS>/ T1
     (r'/tip/' + more_lax, tip.TipRoot),
 
-    #  * /tip/<GUS>/comment T2
+    #  * /tip/<tip_GUS>/comment T2
     (r'/tip/' + tipGUS.regexp + '/comment', tip.TipComment),
 
-    #  * /tip/<GUS>/files T3
+    #  * /tip/<tip_GUS>/files T3
     (r'/tip/' + tipGUS.regexp + '/files', tip.TipFiles),
 
-    #  * /tip/<GUS>/finalize T4
+    #  * /tip/<tip_GUS>/finalize T4
     (r'/tip/' + tipGUS.regexp + '/finalize', tip.TipFinalize),
 
-    #  * /tip/<GUS>/download T5
+    #  * /tip/<tip_GUS>/download T5
     (r'/tip/' + tipGUS.regexp + '/download', tip.TipDownload),
 
-    #  * /tip/<GUS>/pertinence T6
+    #  * /tip/<tip_GUS>/pertinence T6
     (r'/tip/' + tipGUS.regexp + '/pertinence', tip.TipPertinence),
 
     ## Receiver Handlers ##
-    #  * /reciever/<GUS>/ R1
+    #  * /reciever/<tip_GUS>/ R1
     (r'/receiver/' + tipGUS.regexp, receiver.ReceiverRoot),
 
-    #  * /receiver/<TIP GUS>/<user moduletype> R2
+    #  * /receiver/<tip_GUS>/<user moduletype> R2
     (r'/receiver/' + tipGUS.regexp + '/' + moduleENUM.regexp, receiver.ReceiverModule),
 
     ## Admin Handlers ##

@@ -5,10 +5,9 @@ from storm.locals import Int, Pickle
 from storm.locals import Unicode, Bool, Date
 from storm.locals import Reference
 
-from globaleaks.utils import gltime, idops
+from globaleaks.utils import gltime, idops, log
 
 from globaleaks.models.base import TXModel, ModelError
-from globaleaks.utils import log
 
 __all__ = [ 'Context', 'InvalidContext' ]
 
@@ -53,8 +52,6 @@ class Context(TXModel):
     inputfilter_chain = Pickle()
     # to be implemented in REST / dict
 
-    # to be defined ans supported
-    scheduled_jobs = Int()
     # public stats reference
     # private stats reference
 
@@ -356,11 +353,12 @@ class Context(TXModel):
            'public': get the information represented to the WB and in public
            'internal': a series of data used by internal calls
            'admin': complete dump of the information, wrap Receiver._description_dict
+           'gus': only the list of receiver globaleaks uniq strings
         @return: a list, 0 to MANY receiverDict tuned for the caller requirements
         """
         from globaleaks.models.receiver import Receiver
 
-        typology = [ 'submission', 'public', 'internal', 'admin' ]
+        typology = [ 'submission', 'public', 'internal', 'admin', 'gus' ]
 
         if not info_type in typology:
             log.debug("[Fatal]", info_type, "not found in", typology)
@@ -392,6 +390,8 @@ class Context(TXModel):
                     partial_info.update({'know_languages' : r.know_languages })
                 if info_type == typology[3]: # admin
                     partial_info = r._description_dict()
+                if info_type == typology[4]: # gus_only
+                    partial_info.update({'receiver_gus' : r.receiver_gus})
 
                 receiver_list.append(partial_info)
 
@@ -457,15 +457,22 @@ class Context(TXModel):
         store.commit()
         store.close()
 
+    def create_receiver_tips(self, submissionDict):
+        """
+        @param submissionDict:
+        @return:
+        """
+        from globaleaks.models.submission import Submission
 
-    # under review
-    # under review, at the moment submission is broken
-    # under review
-    # under review
-    # under review
-    def create_receiver_tips(self, internaltip):
-        log.debug("[D] %s %s " % (__file__, __name__), "Context create_receiver_tips", internaltip)
+        log.debug("[D] %s %s " % (__file__, __name__), "Context create_receiver_tips", submissionDict)
 
+        store = self.getStore('create_receiver_tips')
+
+        source_s = store.find(Submission, Submission.submission_gus == submissionDict['submission_gus']).one()
+
+        store.close()
+
+        """
         receiver_tips = []
         for receiver in self.receivers:
             from globaleaks.models.tip import ReceiverTip
@@ -473,4 +480,5 @@ class Context(TXModel):
             receiver_tip.new(internaltip.internaltip_id)
             receiver_tips.append(receiver_tip)
         return receiver_tips
+        """
 

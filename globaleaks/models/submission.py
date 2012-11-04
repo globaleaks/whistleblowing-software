@@ -3,15 +3,14 @@
 # :authors: Arturo Filastò
 # :licence: see LICENSE
 
-from twisted.internet.defer import returnValue, inlineCallbacks
 from storm.twisted.transact import transact
-from storm.locals import Int, Pickle, Date, Unicode, Reference
-from storm.exceptions import NotOneError, NoneError
+from storm.locals import Int, Pickle, DateTime, Unicode, Reference
+from storm.exceptions import NotOneError
 
 from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel, ModelError
-from globaleaks.models.tip import InternalTip, Tip, ReceiverTip, File, Folder
-from globaleaks.models.context import Context
+from globaleaks.models.tip import InternalTip, Tip, File, Folder
+from globaleaks.models.context import Context, InvalidContext
 
 from globaleaks.utils import log
 
@@ -64,52 +63,68 @@ class Submission(TXModel):
     __storm_table__ = 'submission'
 
     submission_gus = Unicode(primary=True)
-    context_selected = Unicode()
 
     fields = Pickle()
+    creation_time = DateTime()
+    expiration_time = DateTime()
 
+    receivers_gus_list = Pickle()
 
     folder_gus = Unicode()
     folder = Reference(folder_gus, Folder.folder_gus)
+
     mark = Unicode()
         # TODO ENUM: 'incomplete' 'finalized'
 
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
-    creation_time = Date()
+    context_gus = Unicode()
+    context = Reference(context_gus, Context.context_gus)
 
     @transact
-    def new(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new")
-        store = self.getStore('new')
+    def new(self, context_gus):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new in %s", context_gus)
+        store = self.getStore('new submission')
 
-        submission_gus = idops.random_submission_gus(False)
-        creation_time = gltime.utcDateNow()
+        try:
+            associated_c = store.find(Context, Context.context_gus == context_gus).one()
+        except NotOneError:
+            store.close()
+            raise InvalidContext
+        if associated_c is None:
+            store.close()
+            raise InvalidContext
 
         submission = Submission()
-        submission.submission_gus = submission_gus
-        submission.creation_time = creation_time
-        mark = u'incomplete'
+        submission.submission_gus = idops.random_submission_gus(False)
 
-        folder = Folder()
-        folder.folder_gus = idops.random_folder_gus()
-        store.add(folder)
+        submission.context_gus = context_gus
+        submission.context = associated_c
 
-        submission.folder = folder
+        submission.receivers_gus_list = associated_c.get_receivers(context_gus, 'gus')
+        # TODO submission.context.update_stats()
+
+        submission.creation_time = gltime.utcDateNow()
+        submission.expiration_time = gltime.utcFutureDate(seconds=1, minutes=1, hours=1)
+        submission.mark = u'incomplete'
+
         store.add(submission)
-
-        response = {
-            "submission_gus": submission_gus,
-            "creation_time": gltime.dateToTime(creation_time),
-            "folder_gus": folder.folder_gus
-        }
-
         store.commit()
+
+        submissionDesc = submission._description_dict()
+        log.debug("[D] submission created", submission._description_dict())
+        submissionDesc.pop('mark')
+        submissionDesc.pop('folder_gus')
+        submissionDesc.pop('internaltip_id')
+
         store.close()
 
-        return response
+        return submissionDesc
 
+    # XXX ---
+    # need to be refactored with delivery schedule ops
+    # XXX ---
     @transact
     def add_file(self, submission_gus, file_name=None):
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_gus", submission_gus , "file_name", file_name )
@@ -120,6 +135,17 @@ class Submission(TXModel):
             store.rollback()
             store.close()
             raise SubmissionNotFoundError
+
+        """
+        this part of code was in new(), now having a Folder is not mandatory in a submission,
+        Folder need a Storm obj + skeleton providing InputFilter and Delivery supports.
+
+        folder = Folder()
+        folder.folder_gus = idops.random_folder_gus()
+        store.add(folder)
+        submission.folder = folder
+        """
+
 
         new_file_gus = idops.random_file_gus()
         log.debug("Generated this file id %s" % new_file_gus)
@@ -177,45 +203,10 @@ class Submission(TXModel):
 
         store.close()
 
-    # TODO - context need to be selected when submission_gus is received, is not to be declared via
-    # parameter, because different context may have different expiring time. and then, in the
-    # asynchronous cleaning procedure, may exists a submission without context and then without
-    # expiring time. This would be avoided making the context declared when submission_gus is
-    # received. in client side, the fields of every context is already know, then this is not
-    # a blocking operation.
-    #
-    # when this patch in API - handlers - client, happen, this function would be removed.
     @transact
-    def select_context(self, submission_gus, context_gus):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select_context", "submission_gus", submission_gus, "context", context_gus )
-
-        store = self.getStore('select_context')
-
-        try:
-            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
-        except NotOneError:
-            # its not possible: is a primary key
-            store.close()
-            raise SubmissionNotFoundError
-        if requested_s is None:
-            store.close()
-            raise SubmissionNotFoundError
-
-        requested_s.context_selected = context_gus
-
-        try:
-            store.commit()
-        except Exception, e:
-            log.debug("[E]: %s %s " % (__file__, __name__), "Submission", "select_context", "submission_gus", submission_gus, "context", context_gus )
-            store.rollback()
-            store.close()
-            raise SubmissionGenericError
-
-        store.close()
-
-    @transact
-    def select_receiver(self, submission_gus, receiver_id_list):
-        pass
+    def select_receiver(self, submission_gus, receiver_gus_list):
+        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select_receiver", "submission_gus",\
+            submission_gus, "receiver_gus_list", receiver_gus_list, "NOT IMPLEMENTED ATM" )
 
     @transact
     def status(self, submission_gus):
@@ -233,10 +224,9 @@ class Submission(TXModel):
             store.close()
             raise SubmissionNotFoundError
 
-        statusDict = {'context_selected': requested_s.context_selected,
-                      'fields': requested_s.fields}
-                # TODO 'creation_time' and 'expiration_time'
-                # would be done when date format is clear
+        statusDict = requested_s._description_dict()
+        statusDict.pop('folder_gus')
+        statusDict.pop('internaltip_id')
 
         store.close()
         return statusDict
@@ -259,26 +249,15 @@ class Submission(TXModel):
             store.close()
             raise SubmissionNotFoundError
 
-        if not requested_s.context_selected:
-            store.close()
-            raise SubmissionNoContextSelectedError
-
-        try:
-            requested_c = store.find(Context,
-                    Context.context_gus == requested_s.context_selected).one()
-        except NotOneError:
-            store.close()
-            raise SubmissionContextNotOneError
-        if not requested_c:
-            store.close()
-            raise SubmissionContextNotFoundError
-
-        log.debug("Creating internal tip", requested_c.context_gus, requested_s.submission_gus)
+        log.debug("Creating internal tip in", requested_s.context_gus, requested_s.submission_gus)
 
         try:
             internal_tip = InternalTip()
             internal_tip.fields = requested_s.fields
-            internal_tip.context_gus = requested_s.context_selected
+            internal_tip.context_gus = requested_s.context_gus
+
+            # TODO list of receiver with 'notification' infos and threshold
+
             store.add(internal_tip)
         except Exception, e:
             log.err(e)
@@ -395,7 +374,10 @@ class Submission(TXModel):
         descriptionDict = {
             'submission_gus': self.submission_gus,
             'fields' : self.fields,
-            'context_selected' : self.context_selected,
+            'context_gus' : self.context_gus,
+            'creation_time' : gltime.prettyDateTime(self.creation_time),
+            'expiration_time' : gltime.prettyDateTime(self.expiration_time),
+            'receiver_gus_list' : self.receivers_gus_list,
             'mark' : self.mark,
             # folder and internaltip would be reported as sub-dict only if present
             'folder_gus' : self.folder_gus,

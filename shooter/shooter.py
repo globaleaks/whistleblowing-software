@@ -10,30 +10,30 @@ cwd = '/'.join(__file__.split('/')[:-1])
 sys.path.insert(0, os.path.join(cwd, '../'))
 
 # U1 `/node/`
-# U2 `/submission`
-# U3 `/submission/<submission_id>`
-# U4 `/submission/<submission_id>/finalize`
-# U5 `/submission/<submission_id>/upload_file`
+# U2 `/submission/<context_gus>`
+# U3 `/submission/<submission_gus>`
+# U4 `/submission/<submission_gus>/finalize`
+# U5 `/submission/<submission_gus>/upload_file`
 
-# R1 `/receiver/<string t_id>/overview`
-# R2 `/receiver/<string module_name><string t_id>/module`
+# R1 `/receiver/<string t_gus>/overview`
+# R2 `/receiver/<string module_name><string t_gus>/module`
 
 # A1 `/admin/node/`
-# A2 `/admin/contexts/`
-# A3 `/admin/receivers/<context_$ID>/`
+# A2 `/admin/contexts/<context_gus>`
+# A3 `/admin/receivers/<receiver_gus>/`
 # A4 `/admin/modules/<context_$ID>/<string module_type>/`
 
-# T1 `/tip/<string auth t_id>`
+# T1 `/tip/<string auth t_gus>`
 # T2 `/tip/<uniq_Tip_$ID>/comment`
 # T3 `/tip/<uniq_Tip_$ID>/update_file`
-# T4 `/tip/<string t_id>/finalize_update`
-# T5 `/tip/<string t_id>/download_material`
-# T6 `/tip/<string t_id>/pertinence`
+# T4 `/tip/<string t_gus>/finalize_update`
+# T5 `/tip/<string t_gus>/download_material`
+# T6 `/tip/<string t_gus>/pertinence`
 
 # remind: this code section is copyed also in README.md
 schema = {
      '/node': 'GET' , #U1
-     '/submission': 'GET', #U2
+     '/submission/@CID@/new': 'GET', #U2
      '/submission/@SID@/status': 'GET', #U3
      '/submission/@SID@/status': 'POST', #U3
      '/submission/@SID@/finalize': 'POST', #U4
@@ -68,7 +68,7 @@ schema = {
 
 URTA = {
     'U1_GET':'GET_/node', #U1
-    'U2_GET':'GET_/submission',#U2
+    'U2_GET':'GET_/submission/@CID@/new',#U2
     'U3_GET':'GET_/submission/@SID@/status', #U3
     'U3_POST':'POST_/submission/@SID@/status', #U3
     'U4_POST':'POST_/submission/@SID@/finalize', #U4
