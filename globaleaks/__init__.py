@@ -15,7 +15,6 @@ from storm.databases.sqlite import SQLite
 
 from twisted.python.threadpool import ThreadPool
 
-from globaleaks.jobs.base import Job
 from globaleaks import config
 from globaleaks.utils import log
 
