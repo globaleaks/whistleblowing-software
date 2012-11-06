@@ -11,6 +11,7 @@ from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.tip import InternalTip, Tip, File, Folder
 from globaleaks.models.context import Context, InvalidContext
+from globaleaks.models.receiver import Receiver
 
 from globaleaks.utils import log
 
@@ -73,12 +74,6 @@ class Submission(TXModel):
     folder_gus = Unicode()
     folder = Reference(folder_gus, Folder.folder_gus)
 
-    mark = Unicode()
-        # TODO ENUM: 'incomplete' 'finalized'
-
-    internaltip_id = Int()
-    internaltip = Reference(internaltip_id, InternalTip.id)
-
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
 
@@ -102,21 +97,18 @@ class Submission(TXModel):
         submission.context_gus = context_gus
         submission.context = associated_c
 
-        submission.receivers_gus_list = associated_c.get_receivers(context_gus, 'gus')
+        submission.receivers_gus_list = associated_c.get_receivers('public')
         # TODO submission.context.update_stats()
 
         submission.creation_time = gltime.utcDateNow()
         submission.expiration_time = gltime.utcFutureDate(seconds=1, minutes=1, hours=1)
-        submission.mark = u'incomplete'
 
         store.add(submission)
         store.commit()
 
         submissionDesc = submission._description_dict()
         log.debug("[D] submission created", submission._description_dict())
-        submissionDesc.pop('mark')
         submissionDesc.pop('folder_gus')
-        submissionDesc.pop('internaltip_id')
 
         store.close()
 
@@ -204,9 +196,25 @@ class Submission(TXModel):
         store.close()
 
     @transact
-    def select_receiver(self, submission_gus, receiver_gus_list):
+    def select_receiver(self, submission_gus, receivers_gus_list):
+
         log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select_receiver", "submission_gus",\
-            submission_gus, "receiver_gus_list", receiver_gus_list, "NOT IMPLEMENTED ATM" )
+            submission_gus, "receiver_gus_list", receivers_gus_list, "NOT IMPLEMENTED ATM" )
+
+        store = self.getStore('select_receiver')
+
+        try:
+            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+        except NotOneError:
+            # its not possible: is a primary key
+            store.close()
+            raise SubmissionNotFoundError
+        if requested_s is None:
+            store.close()
+            raise SubmissionNotFoundError
+
+        store.commit()
+        store.close()
 
     @transact
     def status(self, submission_gus):
@@ -225,8 +233,9 @@ class Submission(TXModel):
             raise SubmissionNotFoundError
 
         statusDict = requested_s._description_dict()
+
+        # strip internal/incomplete/reserved information
         statusDict.pop('folder_gus')
-        statusDict.pop('internaltip_id')
 
         store.close()
         return statusDict
@@ -251,13 +260,22 @@ class Submission(TXModel):
 
         log.debug("Creating internal tip in", requested_s.context_gus, requested_s.submission_gus)
 
+        internal_tip = InternalTip()
+
+        # Initialize all the Storm fields inherit by Submission and Context
+        internal_tip.initialize(requested_s)
+
+
+        # here is created the table with receiver selected (an information stored only in the submission)
+        # and the threshold escalation. Is not possible have a both threshold and receiver
+        # selection in this moment (other complications can derived from use them both)
+        for single_r in requested_s.receivers_gus_list:
+
+            receiver_gus = single_r.get('receiver_gus')
+            selected_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            internal_tip.associate_receiver(selected_r)
+
         try:
-            internal_tip = InternalTip()
-            internal_tip.fields = requested_s.fields
-            internal_tip.context_gus = requested_s.context_gus
-
-            # TODO list of receiver with 'notification' infos and threshold
-
             store.add(internal_tip)
         except Exception, e:
             log.err(e)
@@ -297,47 +315,17 @@ class Submission(TXModel):
         # AND, check if not other equal receipt are present, in that case, reject
         # XXX this should bring security issue... mmmhh....
 
-
         store.add(whistleblower_tip)
         log.debug("Created tip with address %s" % whistleblower_tip.address)
 
+        log.debug("created_InternalTip", internal_tip.id," and WhistleBlowerTip, removed submission")
 
-        log.debug("Submision is not removed now, because need to be processed by tip_creation async. Instead, has now internaltip linked")
-        requested_s.mark = u'finalized'
-        requested_s.internaltip = internal_tip
-
+        store.remove(requested_s)
         store.commit()
         store.close()
 
-        log.debug("create_internaltip and whistleblower tip")
 
         return proposed_receipt
-
-    @transact
-    def get_submissions(self, mark):
-        """
-        @param mark: one of them:
-        # TODO ENUM: 'incomplete' 'finalized'
-        @return: an array, emptry or with one or more dict.
-        """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Submission", "get_submissions", mark)
-
-        retVal = []
-        store = self.getStore('submission - get_submissions')
-
-        try:
-            searched_s = store.find(Submission, Submission.mark == mark)
-        except:
-            log.debug("get_submissions with mark %s goes in unknow exception !?" % mark)
-            store.close()
-            return retVal
-
-        for single_s in searched_s:
-            retVal.append(single_s._description_dict())
-
-        store.close()
-        return retVal
-
 
     @transact
     def admin_get_single(self, submission_gus):
@@ -369,6 +357,7 @@ class Submission(TXModel):
         pass
 
 
+    # called by a transact method, return
     def _description_dict(self):
 
         descriptionDict = {
@@ -378,10 +367,8 @@ class Submission(TXModel):
             'creation_time' : gltime.prettyDateTime(self.creation_time),
             'expiration_time' : gltime.prettyDateTime(self.expiration_time),
             'receiver_gus_list' : self.receivers_gus_list,
-            'mark' : self.mark,
-            # folder and internaltip would be reported as sub-dict only if present
-            'folder_gus' : self.folder_gus,
-            'internaltip_id' : self.internaltip_id
+            # folder would be reported as sub-dict if present - XXX
+            'folder_gus' : self.folder_gus
         }
 
         return descriptionDict

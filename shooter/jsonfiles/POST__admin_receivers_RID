@@ -2,7 +2,6 @@ name=Kim Kong Lee, Korean Leader!
 description=a fellow of Truth Corp for a 'greater good'
 tags:=[ "dictator", "korean", "WMD", "rich" ]
 know_languages:=[ "CHI", "RUS", "THAI" ]
-can_trigger_escalation:=4
 receiver_level:=1
 can_delete_submission:=true
 can_postpone_expiration:=true

@@ -75,15 +75,8 @@ class Context(TXModel):
         cntx.update_date = gltime.utcDateNow()
         cntx.last_activity = gltime.utcDateNow()
 
-        cntx.name = context_dict["name"]
-        cntx.fields = context_dict["fields"]
-        cntx.description = context_dict["description"]
-        cntx.selectable_receiver = context_dict["selectable_receiver"]
-        cntx.escalation_threshold = context_dict["escalation_threshold"]
+        cntx._import_dict(context_dict)
 
-        cntx.tip_max_access = context_dict['tip_max_access']
-        cntx.tip_timetolive = context_dict['tip_timetolive']
-        cntx.folder_max_download = context_dict['folder_max_download']
 
         # context.languages_supported = context_dict["languages_supported"]
         # this is not taked by the dict, come from receivers declared knowledge
@@ -119,16 +112,7 @@ class Context(TXModel):
             store.close()
             raise InvalidContext
 
-        requested_c.name = context_dict['name']
-        requested_c.fields = context_dict['fields']
-        requested_c.description = context_dict['description']
-        requested_c.selectable_receiver = context_dict['selectable_receiver']
-        requested_c.escalation_threshold = context_dict['escalation_threshold']
-
-        requested_c.tip_max_access = context_dict['tip_max_access']
-        requested_c.tip_timetolive = context_dict['tip_timetolive']
-        requested_c.folder_max_download = context_dict['folder_max_download']
-
+        requested_c._import_dict(context_dict)
         requested_c.update_date = gltime.utcDateNow()
 
         store.commit()
@@ -195,7 +179,7 @@ class Context(TXModel):
             raise InvalidContext
 
         ret_context_dict = requested_c._description_dict()
-        ret_context_dict.update({'receivers' : requested_c.get_receivers(context_gus, 'admin')})
+        ret_context_dict.update({'receivers' : requested_c.get_receivers('admin')})
 
         store.close()
         return ret_context_dict
@@ -216,7 +200,7 @@ class Context(TXModel):
         for requested_c in result:
 
             description_dict = requested_c._description_dict()
-            description_dict.update({'receivers' : requested_c.get_receivers(requested_c.context_gus, 'admin') })
+            description_dict.update({'receivers' : requested_c.get_receivers('admin') })
 
             ret_contexts_dicts.append(description_dict)
 
@@ -247,7 +231,7 @@ class Context(TXModel):
         ret_context_dict.pop('folder_max_download')
         ret_context_dict.pop('escalation_threshold')
 
-        ret_context_dict.update({'receivers' : requested_c.get_receivers(context_gus, 'public') })
+        ret_context_dict.update({'receivers' : requested_c.get_receivers('public') })
 
         store.close()
         return ret_context_dict
@@ -271,7 +255,7 @@ class Context(TXModel):
             description_dict.pop('folder_max_download')
             description_dict.pop('escalation_threshold')
 
-            description_dict.update({'receivers' : requested_c.get_receivers(requested_c.context_gus, 'public') })
+            description_dict.update({'receivers' : requested_c.get_receivers('public') })
 
             ret_contexts_dicts.append(description_dict)
 
@@ -329,7 +313,7 @@ class Context(TXModel):
 
         # for each receiver check every languages supported, if not
         # present in the context declared language, append on it
-        for rcvr in self.get_receivers(context_gus, 'internal'):
+        for rcvr in self.get_receivers('internal', context_gus):
             for language in rcvr.get('know_languages'):
                 if not language in language_list:
                     language_list.append(language)
@@ -345,20 +329,19 @@ class Context(TXModel):
         store.close()
 
     # this is called internally by a @transact functions
-    def get_receivers(self, context_gus, info_type):
+    def get_receivers(self, info_type, context_gus=None):
         """
-        @param context_gus: target context to be searched between receivers
+        @param context_gus: target context to be searched between receivers, if not specified,
+            the receivers returned are searched in 'self'
         @info_type: its a string with three possible values:
-           'submission': called for get the information required in the submission/tip process
            'public': get the information represented to the WB and in public
            'internal': a series of data used by internal calls
            'admin': complete dump of the information, wrap Receiver._description_dict
-           'gus': only the list of receiver globaleaks uniq strings
         @return: a list, 0 to MANY receiverDict tuned for the caller requirements
         """
         from globaleaks.models.receiver import Receiver
 
-        typology = [ 'submission', 'public', 'internal', 'admin', 'gus' ]
+        typology = [ 'public', 'internal', 'admin' ]
 
         if not info_type in typology:
             log.debug("[Fatal]", info_type, "not found in", typology)
@@ -374,52 +357,25 @@ class Context(TXModel):
 
         receiver_list = []
         for r in results:
-            if context_gus in r.context_gus_list:
+
+            if (context_gus is None and self.context_gus in r.context_gus_list) or context_gus in r.context_gus_list:
                 partial_info = {}
 
-                if info_type == typology[0]: # submission
-                    partial_info.update({'receiver_gus' : r.receiver_gus})
-                    partial_info.update({'notification_selected' : r.notification_selected })
-                    partial_info.update({'notification_fields' : r.notification_fields })
-                if info_type == typology[1]: # public
-                    partial_info.update({'receiver_gus' : r.receiver_gus})
+                if info_type == typology[0]: # public
+                    partial_info.update({'receiver_gus' : r.receiver_gus })
                     partial_info.update({'name': r.name })
                     partial_info.update({'description': r.description })
-                if info_type == typology[2]: # internal
-                    partial_info.update({'receiver_gus' : r.receiver_gus})
+                if info_type == typology[1]: # internal
+                    partial_info.update({'receiver_gus' : r.receiver_gus })
                     partial_info.update({'know_languages' : r.know_languages })
-                if info_type == typology[3]: # admin
+                if info_type == typology[2]: # admin
                     partial_info = r._description_dict()
-                if info_type == typology[4]: # gus_only
-                    partial_info.update({'receiver_gus' : r.receiver_gus})
 
                 receiver_list.append(partial_info)
 
         store.close()
         return receiver_list
 
-
-    # This is not a transact method, is used internally by this class to assembly
-    # response dict. This method return all the information of a context, the
-    # called using .pop() should remove the 'confidential' value, if any
-    def _description_dict(self):
-
-        # This is BAD! but actually we have not yet re-defined a policy to manage
-        # REST answers
-        description_dict = {"context_gus": self.context_gus,
-                            "name": self.name,
-                            "description": self.description,
-                            "selectable_receiver": self.selectable_receiver,
-                            "languages_supported": self.languages_supported,
-                            'tip_max_access' : self.tip_max_access,
-                            'tip_timetolive' : self.tip_timetolive,
-                            'folder_max_download' : self.folder_max_download,
-                            'escalation_threshold' : self.escalation_threshold,
-                            "fields": self.fields }
-        # This is missing of all the other need to be implemented fields,
-        # receivers is missing because is append only when needed.
-
-        return description_dict
 
     @transact
     # Not yet used except unit test - need to be tested
@@ -457,28 +413,44 @@ class Context(TXModel):
         store.commit()
         store.close()
 
-    def create_receiver_tips(self, submissionDict):
-        """
-        @param submissionDict:
-        @return:
-        """
-        from globaleaks.models.submission import Submission
+    # This is not a transact method, is used internally by this class to assembly
+    # response dict. This method return all the information of a context, the
+    # called using .pop() should remove the 'confidential' value, if any
+    def _description_dict(self):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Context create_receiver_tips", submissionDict)
+        # This is BAD! but actually we have not yet re-defined a policy to manage
+        # REST answers
+        description_dict = {"context_gus": self.context_gus,
+                            "name": self.name,
+                            "description": self.description,
+                            "selectable_receiver": self.selectable_receiver,
+                            "languages_supported": self.languages_supported,
+                            'tip_max_access' : self.tip_max_access,
+                            'tip_timetolive' : self.tip_timetolive,
+                            'folder_max_download' : self.folder_max_download,
+                            'escalation_threshold' : self.escalation_threshold,
+                            "fields": self.fields }
+        # This is missing of all the other need to be implemented fields,
+        # receivers is missing because is append only when needed.
 
-        store = self.getStore('create_receiver_tips')
+        return description_dict
 
-        source_s = store.find(Submission, Submission.submission_gus == submissionDict['submission_gus']).one()
+    # this method import the remote received dict.
+    # would be expanded with defaults value (if configured) and with checks about
+    # expected fields. is called by new() and update()
 
-        store.close()
+    def _import_dict(self, context_dict):
 
-        """
-        receiver_tips = []
-        for receiver in self.receivers:
-            from globaleaks.models.tip import ReceiverTip
-            receiver_tip = ReceiverTip()
-            receiver_tip.new(internaltip.internaltip_id)
-            receiver_tips.append(receiver_tip)
-        return receiver_tips
-        """
+        self.name = context_dict['name']
+        self.fields = context_dict['fields']
+        self.description = context_dict['description']
+        self.selectable_receiver = context_dict['selectable_receiver']
+        self.escalation_threshold = context_dict['escalation_threshold']
+        self.tip_max_access = context_dict['tip_max_access']
+        self.tip_timetolive = context_dict['tip_timetolive']
+        self.folder_max_download = context_dict['folder_max_download']
+
+        if self.selectable_receiver and self.escalation_threshold:
+            log.msg("[!] Selectable receiver feature and escalation threshold can't work both: threshold ignored")
+            self.escalation_threshold = 0
 

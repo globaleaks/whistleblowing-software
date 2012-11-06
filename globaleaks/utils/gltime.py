@@ -31,7 +31,10 @@ def prettyDateTime(when):
     @param when: a datetime like the stored DateTime in Storm
     @return: the pretty string
     """
-    return when.ctime()
+    if when is None or when == 0:
+        return "Never"
+    else:
+        return when.ctime()
 
 def utcTimeNow():
     """

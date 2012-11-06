@@ -29,8 +29,8 @@ class APSWelcome(GLJob):
 
         receiver_iface = Receiver()
 
-        # noobceivers = yield receiver_iface.get_receivers(status=u'not welcomed')
-        # noobceivers = receiver_iface.get_receivers(status=u'not welcomed')
+        # noobceivers = yield receiver_iface.lookup(status=u'not welcomed')
+        # noobceivers = receiver_iface.lookup(status=u'not welcomed')
         noobceivers = []
 
         for noob in noobceivers:

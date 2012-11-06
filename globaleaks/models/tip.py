@@ -2,14 +2,15 @@
 #
 # :authors: Arturo Filastò
 # :licence: see LICENSE
+from storm.exceptions import NotOneError
 
 from storm.twisted.transact import transact
-from storm.locals import Int, Pickle, Date, Unicode, RawStr, Bool
+from storm.locals import Int, Pickle, Date, Unicode, RawStr, Bool, DateTime
 from storm.locals import Reference, ReferenceSet
 
 # under the voce of "needlessy overcomplications", Twister + Storm
 # http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
-from globaleaks.utils import idops, log
+from globaleaks.utils import idops, log, gltime
 
 from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.receiver import Receiver
@@ -136,51 +137,166 @@ class InternalTip(TXModel):
     """
     This is the internal representation of a Tip that has been submitted to the
     GlobaLeaks node.
-    It has a one-to-many association with the individual Tips of every receiver
-    and whistleblower.
 
-    Every tip has a certain shared data between all, and they are here collected, and
-    this StoredTip.id is referenced by Folders, Files, Comments, and the derived Tips
+    It has a not associated map for keep track of Receivers, Tips, Folders,
+    Comments and WhistleblowerTip.
+    All of those element has a Storm Reference with the InternalTip.id, not
+    vice-versa
+
+    Every tip has a certain shared data between all, and they are here collected
     """
     log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "TXModel", TXModel)
     __storm_table__ = 'internaltips'
 
-    # an InternalTip has not a _gus, then is used classic id = Int()
     id = Int(primary=True)
+
     fields = Pickle()
-
-    pertinence_value = Int()
+    pertinence_counter = Int()
     escalation_threshold = Int()
-
-    comments = Pickle()
-    pertinence = Int()
-
     creation_date = Date()
     expiration_date = Date()
 
-    downloads = Int()
-
-    # the LIMITS are defined and declared *here*, and then
-    # in the (Special|Receiver)Tip there are the view_count
-    # in Folders(every Receiver has 1 to N folders), has the download_count
+    # the LIMITS are defined and declared *here*, and track in
+    # ReceiverTip (access) and Folders (download, if delivery supports)
     access_limit = Int()
     download_limit = Int()
 
+    mark = Unicode()
+        # TODO ENUM: new, first, second
+
+    receivers_map = Pickle()
+
+    context_gus = Unicode()
+    context = Reference(context_gus, Context.context_gus)
+
+        # Both to be cleaned and uniformed
+    comments = Pickle()
     folders = ReferenceSet(id, Folder.internaltip_id)
         # remind: I've removed file reference from InternalTip
         # because do not exists file leaved alone
     comments = ReferenceSet(id, Comment.internaltip_id)
 
-    context_gus = Unicode()
-    context = Reference(context_gus, Context.context_gus)
+    # called by a transact: submission.complete_submission
+    def initialize(self, submission):
+        """
+        initialized an internalTip having the context
+        @return: none
+        """
+        self.creation_date = gltime.utcDateNow()
+        self.context_gus = submission.context.context_gus
+        self.context = submission.context
+        self.escalation_threshold = submission.context.escalation_threshold
+        self.access_limit = submission.context.tip_max_access
+        self.expiration_date = submission.expiration_time
+        self.fields = submission.fields
+        self.pertinence = 0
+        self.download_limit = submission.context.folder_max_download
+        self.receivers_map = []
+        self.mark = u'new'
+        # all the fields copied by context, can by logic be
+        # obtained via InternalTip.context, but this kind of
+        # optimization I prefer is done when code is barely stable :P
 
+    # called by a transact: submission.complete_submission
+    def associate_receiver(self, chosen_r):
+
+        self.receivers_map.append({
+            'receiver_gus' : chosen_r.receiver_gus,
+            'receiver_level' : chosen_r.receiver_level,
+            'tip_gus' : None,
+            'notification_selected' : chosen_r.notification_selected,
+            'notification_fields' : chosen_r.notification_fields  })
+
+        log.debug("associate_receiver, called by complete_submission", self.receivers_map)
+
+    # perhaps get_newly_generated and get_newly_escalated can be melted
+    @transact
+    def get_newly_generated(self):
+        """
+        @return: all the internaltips with mark == u'new', in a list of id
+        """
+        store = self.getStore('get_newly_generated')
+
+        new_itips = store.find(InternalTip, InternalTip.mark == u'new')
+
+        retVal = []
+        for single_itip in new_itips:
+            retVal.append(single_itip.id)
+
+        store.close()
+        return retVal
+
+    @transact
+    def get_newly_escalated(self):
+        """
+        @return: all the internaltips with pertinence >= escalation_threshold and mark == u'first',
+            in a list of id
+        """
+        #store = self.getStore('get_newly_escalated')
+        #store.close()
+        return {}
+
+    @transact
+    def flip_mark(self, subject_id, newmark):
+        """
+        @param newmark: u'first' or u'second'
+        @subject_id: InternalTip.id to be changed
+        @return: None
+        """
+        store = self.getStore('flip mark')
+
+        requested_t = store.find(InternalTip, InternalTip.id == subject_id).one()
+        requested_t.mark = newmark
+
+        store.commit()
+        store.close()
+
+    # This method is separated by initialize routine, because in a certain future
+    # would be exported outside of InternalTip and implemented in a module, like
+    # notification or delivery
+    @transact
+    def create_receiver_tips(self, id, tier):
+        """
+        act on self. create the ReceiverTip based on self.receivers_map
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip create_receiver_tips", id, "on tier", tier)
+
+        store = self.getStore('create_receiver_tips')
+
+        selected_it = store.find(InternalTip, InternalTip.id == id).one()
+
+        for i, mapped in enumerate(selected_it.receivers_map):
+
+            if not mapped['receiver_level'] == tier:
+                continue
+
+            receiver_subject = store.find(Receiver, Receiver.receiver_gus == selected_it.receivers_map[i]['receiver_gus']).one()
+
+            receiver_tip = ReceiverTip()
+
+            # is initialized a Tip that need to be notified
+            receiver_tip.initialize(mapped, selected_it, receiver_subject)
+
+            receiver_subject.update_timings()
+
+            selected_it.receivers_map[i]['tip_gus'] = receiver_tip.tip_gus
+            print "** Debug: adding to ", selected_it.id, "in the map", receiver_tip.tip_gus, "I wonder if it saved without specific update"
+            store.add(receiver_tip)
+
+        # commit InternalTip.receivers_map[only requested tier]['tip_gus'] & ReceiverTip(s)
+        store.commit()
+        store.close()
+
+    # ----------------------------------------------------
+    # -- ALL BELOW NEED TO BE REFACTORED WITH THE DELIVERY
+    #
     def folder_dicts(self):
         log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "folder_dicts")
         folder_dicts = []
         for folder in self.folders:
             folder_dict = {'name': folder.name,
                     'description': folder.description,
-                    'downloads': self.downloads,
+                    # 'downloads': self.downloads, # downloads need to be tracked in Folder
                     'files': folder.file_dicts()}
             folder_dicts.append(folder_dict)
         return folder_dicts
@@ -215,24 +331,27 @@ class Tip(TXModel):
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
+    # need totally to be refactored, and partially implemented in InternalTip
     def get_sub_index(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "get_sub_index")
         ret = {
-        #"notification_adopted": unicode,
-        #"delivery_adopted": unicode,
-        "download_limit": self.internaltip.download_limit,
-        # remind: download_performed is inside the folderDict
-        "access_limit": self.internaltip.access_limit,
-        #"access_performed": self.,
-        "expiration_date": self.internaltip.expiration_date,
-        "creation_date": self.internaltip.creation_date,
-        #"last_update_date": self.internaltip.last_update_date,
-        "comment_number": len(list(self.internaltip.comments)),
-        "folder_number": len(list(self.internaltip.folders)),
-        "overall_pertinence": self.internaltip.pertinence
+            #"notification_adopted": unicode,
+            #"delivery_adopted": unicode,
+            "download_limit": self.internaltip.download_limit,
+            # remind: download_performed is inside the folderDict
+            "access_limit": self.internaltip.access_limit,
+            #"access_performed": self.,
+            "expiration_date": gltime.prettyDateTime(self.internaltip.expiration_date),
+            "creation_date": gltime.prettyDateTime(self.internaltip.creation_date),
+            #"last_update_date": self.internaltip.last_update_date,
+            # "comment_number": len(list(self.internaltip.comments)),
+            # "folder_number": len(list(self.internaltip.folders)),
+            "pertinence": self.internaltip.pertinence_counter
         }
         return ret
 
+    #  ----------------
+    # NEED TO BE REFACTORED
     @transact
     def lookup(self, receipt):
         """
@@ -291,70 +410,82 @@ class ReceiverTip(Tip):
     date in a Tip, Tip core data are stored in StoredTip. The data here
     provide accountability of Receiver accesses, operations, options.
     """
-    notification_date = Date()
+
     authoptions = Pickle()
-    # remind: here we can make a password checks, PersonalPreference has a
-    # stored hash of the actual password. when Receiver change a password, do not change
-    # in explicit way also the single Tips password.
+        # this can be a security expansion to be evaluated, actually ther
+        # password checks in the tip, is only one for Receiver, and is stored
+        # in Receiver
 
-    # all this four details need to be properly moved/renamed
-    total_view_count = Int()
-    total_download_count = Int()
-    relative_view_count = Int()
-    relative_download_count = Int()
-
+    access_counter = Int()
     last_access = Date()
+
+    relative_view_count = Int()
+        # wtf would be relative view count ? the checks that if a comment
+        # or update is present, than the number of view count is incremented ?
+        # in this case, is much more sane keeping track in InternalTip, inside
+        # of the max_access_counter. but this automatized escalation can bring to
+        # abuse. I don't feel is the right solution and we need to make a little
+        # analysis before implement it.
+
+    relative_download_count = Int()
+        # TODO all the download ref need to be removed an moved in Folder
+        # the max amount of download is tracked in InternalTip
+        # what about free speech mr president ? http://www.youtube.com/watch?v=MokNvbiRqCM
+
     pertinence_vote = Int()
+
+    notification_date = DateTime()
+    mark = Unicode()
+        # TODO ENUM 'not notified' 'notified' 'unable to notify'
+
 
     receiver_gus = Unicode()
     receiver = Reference(receiver_gus, Receiver.receiver_gus)
 
-    def new(self, receiver_gus):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "new", "receiver_id", receiver_gus )
-        log.debug("Creating receiver tip for %s" % receiver_gus)
+    # is not a transact operation, just a self filling
+    def initialize(self, mapped, selected_it, receiver_subject):
 
-        # all this four details need to be properly moved/renamed
-        self.total_view_count = 0
-        self.total_download_count = 0
-        self.relative_view_count = 0
-        self.relative_download_count = 0
-        self.receiver_gus = receiver_gus
-
-        self.authoptions = {}
+        log.debug("ReceverTip initialize, with", mapped)
+        print "initialize with", mapped
 
         self.tip_gus = idops.random_tip_gus()
 
-        self.type = u'receiver'
-        log.debug("Created tip", self.tip_gus, "for", receiver_gus)
+        self.notification_mark = u'not notified'
 
-    @transact
-    def receiver_dicts(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "receiver_dicts" )
-        store = self.getStore('receiver_dicts')
+        self.notification_date = 0
+        self.last_access = 0
+        self.access_counter= 0
+        self.pertinence_vote = 0
+        self.authoptions = {}
 
-        receiver_dicts = []
+        self.receiver_gus = mapped['receiver_gus']
+        self.receiver = receiver_subject
 
-        for receiver in store.find(Receiver):
-            receiver_dict = {}
-            receiver_dict['gus'] = receiver.receiver_gus
-            receiver_dict['name'] = receiver.name
-            receiver_dict['description'] = receiver.receiver_description
+        # 'notification_selected'
+        # 'notification_fields'
+        # XXX shall be reached by self.receiver, evaluate if remove
+        # from receiver_map
 
-            receiver_dict['can_delete_submission'] = receiver.can_delete_submission
-            receiver_dict['can_postpone_expiration'] = receiver.can_postpone_expiration
-            receiver_dict['can_configure_delivery'] = receiver.can_configure_delivery
 
-            receiver_dict['can_configure_notification'] = receiver.can_configure_notification
-            receiver_dict['can_trigger_escalation'] = receiver.can_trigger_escalation
+        log.debug("Initizalized ReceivcerTip", self.tip_gus, "to", self.receiver.name)
 
-            receiver_dict['languages_supported'] = receiver.languages_supported
-            receiver_dicts.append(receiver_dict)
+    # called by a transact operation, dump the ReceverTip
+    def _description_dict(self):
 
-        store.commit()
-        store.close()
+        descriptionDict = {
+            'tip_gus' : self.tip_gus,
+            'notification_mark' : self.notification_mark,
+            'notification_date' : gltime.prettyDateTime(self.notification_date),
+            'last_access' : gltime.prettyDateTime(self.last_access),
+            'access_counter' : self.access_counter,
+            'pertinence_vote': self.pertinence_vote,
+            'receiver_gus' : self.receiver_gus,
+            'authoptions' : self.authoptions
+        }
+        return descriptionDict
 
-        return receiver_dicts
 
+    # Perhaps to be moved in InternalTip XXX
     @transact
     def add_comment(self, tip_gus, comment):
         """

@@ -47,9 +47,8 @@ class Receiver(TXModel):
     can_configure_delivery = Bool()
     can_configure_notification = Bool()
 
-    # escalation related fields, if escalation is not configured, both are 0
-    can_trigger_escalation = Int()
-    # receiver_level, mean first or second level of receiver
+    # receiver_tier = 1 or 2. Mean being part of the first or second level
+    # of receivers body. if threshold is configured in the context. default 1
     receiver_level = Int()
 
     # this for keeping the same feature of GL 0.1
@@ -255,8 +254,12 @@ class Receiver(TXModel):
         store.close()
         return unassigned_count
 
-    # this is non @trasact called by method that needs to import the remote received dict
-    # woukd be expanded with defaults value (if configured) and with checks about
+    # called by a trasnact, update last mod on self, called when a new Tip is present
+    def update_timings(self):
+        pass
+
+    # this method import the remote received dict.
+    # would be expanded with defaults value (if configured) and with checks about
     # expected fields. is called by new() and admin_update() (and self_update() not yet!)
     def _import_dict(self, source_rd):
 
@@ -275,7 +278,6 @@ class Receiver(TXModel):
         self.can_configure_delivery = source_rd['can_configure_delivery']
         self.can_configure_notification = source_rd['can_configure_notification']
 
-        self.can_trigger_escalation = source_rd['can_trigger_escalation']
         self.receiver_level = source_rd['receiver_level']
 
     # this is non @transact method used when is required to dump the objects
@@ -292,12 +294,10 @@ class Receiver(TXModel):
             'notification_fields' : self.notification_fields,
             'delivery_selected' :  self.delivery_selected,
             'delivery_fields' :  self.delivery_fields,
-            #'creation_date' : self.creation_date,
-            #'update_date' : self.update_date,
-            #'last_access' : self.last_access,
-            # datetime.date(2012, 10, 26) is not JSON serializable
+            'creation_date' : gltime.prettyDateTime(self.creation_date),
+            'update_date' : gltime.prettyDateTime(self.update_date),
+            'last_access' : gltime.prettyDateTime(self.last_access),
             'context_gus_list' : self.context_gus_list,
-            'can_trigger_escalation' : self.can_trigger_escalation,
             'receiver_level' : self.receiver_level,
             'can_delete_submission' : self.can_delete_submission,
             'can_postpone_expiration' : self.can_postpone_expiration,
