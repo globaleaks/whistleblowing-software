@@ -177,8 +177,6 @@ class AdminContexts(BaseHandler):
             yield context_iface.update(context_gus, request)
             yield self.get(context_gus)
 
-            self.set_status(200)
-
         except context.InvalidContext, e:
 
             self.set_status(e.http_status)

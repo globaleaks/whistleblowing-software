@@ -137,15 +137,10 @@ class SubmissionStatus(BaseHandler):
             yield submission.update_fields(submission_gus, request['fields'])
             self.set_status(202)
 
-        if 'context_selected' in request and request['context_selected']:
-            log.debug("Updating context with %s" % request['context_selected'])
-            yield submission.select_context(submission_gus, request['context_selected'])
-            self.set_status(202)
-
         if 'receiver_selected' in request and request['receiver_selected']:
             log.debug("Receiver selection in %s" % submission_gus)
             yield submission.select_receiver(submission_gus, request['receiver_selected'])
-            # TODO handle default behaviour, a context do not permit receiver selection
+            # TODO handle errors: a context may not permit receivers selection
             self.set_status(202)
 
         self.finish()

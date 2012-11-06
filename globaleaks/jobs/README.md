@@ -9,43 +9,43 @@ roles of those classes
 Those file are called with the \_sched.py suffix, to avoid same name mistakes (tip,
 notification, delivery, statistics, would be used also in models, in modules and in handlers)
 
-    delivery\_sched.py
+    delivery_sched.py
         class APSDelivery
 
  **delivery** prepare the receiver Folder to be downloaded or sent them in the remote way,
  specified by the delivery module.
 
-    notification\_sched.py
+    notification_sched.py
         class APSNotification
 
  **notification** send the Tip authenticative string to the receiver, using the configured
  module.
 
-    statistics\_sched.py
+    statistics_sched.py
         class APSStatistics
 
  **statistics** every TOT minutues a new statistics row is created, where would be collected
  the event of the next timeframe. 
 
-    tip\_sched.py
+    tip_sched.py
         class APSTip
 
  **tip** create the ReceiverTip, this operation was part of the finalize operation executied
  in the Cyclone flow. Tip operation instead would be time consuming, and require to be managed
  in asynchronous way, to manage features.
 
-    welcome\_sched.py
+    welcome_sched.py
         class APSWelcome
 
  **welcome** send a welcome message to the new receiver, with an authenticative token that
  permit early configuration.
 
-    cleaning\_sched.py
+    cleaning_sched.py
         class APSCleaning
 
  **cleaning** remove old Tip, unfinished sumibssion and elements that reach an expiring date.
 
-    digest\_sched.py
+    digest_sched.py
         class APSDigest
 
  **digest** manage the message queue for the mail subsistem, append the message present in a
