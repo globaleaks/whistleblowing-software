@@ -452,8 +452,8 @@ class ReceiverTip(Tip):
 
         self.notification_mark = u'not notified'
 
-        self.notification_date = 0
-        self.last_access = 0
+        self.notification_date = None
+        self.last_access = None
         self.access_counter= 0
         self.pertinence_vote = 0
         self.authoptions = {}

@@ -160,7 +160,6 @@ def do_httpie(method, url, request_list):
     quit(0)
 
 
-
 def checkOpt(option):
 
     if option in sys.argv:
@@ -181,7 +180,7 @@ def getOpt(seekd):
             return retarg
 
         # tip, sid, cid has all the (t|s|c)_(\w+) regexp
-        if retarg[1] != '_':
+        if len(retarg) > 2 and retarg[1] != '_':
             print "invalid [", seekd,"], collected: [", retarg, "]"
             quit(1)
 
@@ -269,7 +268,18 @@ def spelunking_into_URTA():
 def search_jsonfile(searched_rest):
 
     fileconv = string.replace(string.replace(searched_rest, '@', ''), '/', '_')
-    fname = 'jsonfiles/' + fileconv
+
+    variation = getOpt('variation')
+    if variation is not None:
+        
+        if not (int(variation) > 0 and int(variation) < 9):
+            print "invalid 'variation', expected [0-9]", variation
+            quit(1)
+
+        fname = 'jsonfiles/' + fileconv + '.' + variation
+    else:
+        fname = 'jsonfiles/' + fileconv
+
     if os.access(fname, os.R_OK):
         retlist = [] # it's a list because every line is a different parm in httpie
         with open(fname, 'r') as f:
