@@ -42,6 +42,11 @@ $SHOOTER A2 GET cid $cntx_gus1 verbose > /tmp/ctx_one
 $SHOOTER A2 GET cid $cntx_gus2 verbose > /tmp/ctx_two
 # automatic checks in TODO :P
 
+if [ -n "$1" ] && [ "$1" = "keep" ]; then
+    echo "keep option detected, creation not removed"
+    exit
+fi
+
 
 echo -n "testing context delete..."
 $SHOOTER A2 DELETE cid $cntx_gus1

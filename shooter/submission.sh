@@ -2,9 +2,14 @@
 
 SHOOTER="python shooter.py"
 
-context_gus=`$SHOOTER U1 GET print-context_gus`
-if [ $? != 0 ]; then echo "\tError in U1 GET" && exit; fi
-echo "context_gus $context_gus"
+if [ -n "$1" ]; then
+    echo "If an option is present, is choosen as context_gus"
+    context_gus=$1
+else
+    context_gus=`$SHOOTER U1 GET print-context_gus`
+    if [ $? != 0 ]; then echo "\tError in U1 GET" && exit; fi
+    echo "context_gus $context_gus"
+fi
 
 submission_gus=`$SHOOTER U2 GET cid $context_gus print-submission_gus`
 if [ $? != 0 ]; then echo "\tError in U2 GET" && exit; fi
