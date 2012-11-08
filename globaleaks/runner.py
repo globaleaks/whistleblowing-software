@@ -88,6 +88,7 @@ def startAsynchronous():
     DigestSched = digest_sched.APSDigest()
     GLAsynchronous.add_interval_job(DigestSched.operation, minutes=10)
     # TODO not minutes=10 but DigestSched.get_context_policies()
+    # TODO digest is a system-library-like
 
     # start the scheduler
     GLAsynchronous.start()

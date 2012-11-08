@@ -49,4 +49,3 @@ class APSTip(GLJob):
             yield internaltip_iface.flip_mark(id, u'second')
 
             # loops over the InternalTip and checks the escalation threshold
-

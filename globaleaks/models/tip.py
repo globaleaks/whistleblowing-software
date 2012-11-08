@@ -280,7 +280,6 @@ class InternalTip(TXModel):
             receiver_subject.update_timings()
 
             selected_it.receivers_map[i]['tip_gus'] = receiver_tip.tip_gus
-            print "** Debug: adding to ", selected_it.id, "in the map", receiver_tip.tip_gus, "I wonder if it saved without specific update"
             store.add(receiver_tip)
 
         # commit InternalTip.receivers_map[only requested tier]['tip_gus'] & ReceiverTip(s)
@@ -436,8 +435,7 @@ class ReceiverTip(Tip):
 
     notification_date = DateTime()
     mark = Unicode()
-        # TODO ENUM 'not notified' 'notified' 'unable to notify'
-
+        # TODO ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
 
     receiver_gus = Unicode()
     receiver = Reference(receiver_gus, Receiver.receiver_gus)
@@ -467,9 +465,36 @@ class ReceiverTip(Tip):
         # from receiver_map
 
 
-        log.debug("Initizalized ReceivcerTip", self.tip_gus, "to", self.receiver.name)
+    # This would be moved in the new 'task queue'
+    @transact
+    def get_tips(self, status=None):
+        """
+        @param staus: '
+        @return:
+        """
+        store = self.getStore('get_tips')
 
-    # called by a transact operation, dump the ReceverTip
+        notification_status = [ 'not notified', 'notified', 'unable to notify', 'notification ignore' ]
+        if not status in notification_status:
+            raise Exception("Invalid developer brain dictionary")
+
+        # TODO ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
+        marked_tips = store.find(ReceiverTip, Receiver.mark == status)
+
+        retVal = {}
+        for single_tip in marked_tips:
+            retVal.update({
+                'notification_fields' : single_tip.receiver.notification_fields,
+                'notification_selected' : single_tip.receiver.notification_selected,
+                'tip_gus' : single_tip.tip_gus
+            })
+
+        store.close()
+
+        print "***************** to be notified", retVal
+        return retVal
+
+    # called by a transact operation, dump the ReceiverTip
     def _description_dict(self):
 
         descriptionDict = {
