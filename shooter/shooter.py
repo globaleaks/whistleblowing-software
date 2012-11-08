@@ -22,6 +22,8 @@ sys.path.insert(0, os.path.join(cwd, '../'))
 # A2 `/admin/contexts/<context_gus>`
 # A3 `/admin/receivers/<receiver_gus>/`
 # A4 `/admin/modules/<context_$ID>/<string module_type>/`
+# A5 /admin/overview/<tablenames>
+# A6 /admin/tasks/<tasknames>
 
 # T1 `/tip/<string auth t_gus>`
 # T2 `/tip/<uniq_Tip_$ID>/comment`
@@ -63,7 +65,9 @@ schema = {
      '/admin/receivers/@RID@': 'DELETE', #A3
      '/admin/receivers/@RID@': 'PUT', #A3
      '/admin/modules/@CID@/notification': 'GET', #A4
-     '/admin/modules/@CID@/notification': 'POST' #A4
+     '/admin/modules/@CID@/notification': 'POST', #A4
+     '/admin/overview/@OID@' : 'GET', #A5
+     '/admin/tasks/@OID@' : 'GET' #A6
 }
 
 URTA = {
@@ -99,7 +103,9 @@ URTA = {
     'A3_DELETE':'DELETE_/admin/receivers/@RID@', #A3
     'A3_PUT':'PUT_/admin/receivers/@RID@', #A3
     'A4_GET':'GET_/admin/modules/@CID@/notification', #A4
-    'A4_POST':'POST_/admin/modules/@CID@/notification' #A4
+    'A4_POST':'POST_/admin/modules/@CID@/notification', #A4
+    'A5_GET':'GET_/admin/overview/@OID@', #A5
+    'A6_GET':'GET_/admin/tasks/@OID@', #A6
 }
 
 baseurl = "http://127.0.0.1:8082"
@@ -175,8 +181,8 @@ def getOpt(seekd):
             print "unable to get [", seekd,"] required parameter"
             quit(1)
 
-        # something an entire JSON array content is passed, then...
-        if seekd == 'raw':
+        # oid and raw can be less checked than the other variables...
+        if seekd == 'raw' or seekd == 'oid':
             return retarg
 
         # tip, sid, cid has all the (t|s|c)_(\w+) regexp
@@ -191,11 +197,11 @@ def getOpt(seekd):
 def fix_varline(inputline):
 
     for var,argopt in { '@TIP@': 'tip', '@CID@': 'cid', '@SID@':'sid', '@RID@' : 'rid',
-            '@RAW@' : 'raw' }.iteritems():
+            '@RAW@' : 'raw', '@OID@' : 'oid' }.iteritems():
 
         if inputline.find(var) > 0:
 
-            # is expected in command line: tip,rid,cid,sid or raw
+            # is expected in command line: tip,rid,cid,sid,oid or raw
             user_parm = getOpt(argopt)
 
             if user_parm is None:

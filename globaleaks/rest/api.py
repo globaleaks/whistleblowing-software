@@ -18,6 +18,7 @@ from globaleaks.messages.base import tipGUS, receiverGUS, submissionGUS, context
 
 
 more_lax = r'(\w+)' # XXX need to be changed with regexp.submission_id | regexp.receipt_id
+not_defined_regexp = r'(\w+)'
 
 spec = [
     ## Node Handler ##
@@ -75,6 +76,12 @@ spec = [
 
     #  * /admin/modules/<context_GUS>/<MODULE TYPE> A4
     (r'/admin/modules/' + contextGUS.regexp + '/' + moduleENUM.regexp, admin.AdminModules),
+
+    #  * /admin/overview A5
+    (r'/admin/overview/' + not_defined_regexp, admin.AdminOverView),
+
+    #  * /admin/tasks/ A6
+    (r'/admin/tasks/' + not_defined_regexp, admin.AdminTasks),
 
     ## Main Web app ##
     # * /
