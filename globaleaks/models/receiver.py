@@ -193,7 +193,18 @@ class Receiver(TXModel):
     @transact
     def admin_get_all(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "admin_get_all")
-        pass
+
+        store = self.getStore('receiver - admin_get_all')
+
+        all_r = store.find(Receiver)
+
+        retVal = {}
+        for rcvr in all_r:
+            retVal.append(rcvr._description_dict())
+
+        store.close()
+        return retVal
+
 
     @transact
     def public_get_single(self, receiver_gus):

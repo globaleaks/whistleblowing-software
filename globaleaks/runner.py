@@ -14,6 +14,9 @@ from globaleaks.db import createTables
 from globaleaks.utils import log
 # XXX
 
+# The scheduler is a global variable, because can be used to force execution
+GLAsynchronous = None
+
 class GLBaseRunner(app.ApplicationRunner):
     """
     This is a specialized runner that is responsible for starting the specified

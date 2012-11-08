@@ -88,6 +88,8 @@ shooter.py U3 GET sid s\_VeLvSDfpKsxUdGLHEDDKWFBIAnTrMbbuqSPuEYylJpkxSozTmd
      '/admin/receivers/@RID@': 'PUT', #A3
      '/admin/modules/@CID@/notification': 'GET', #A4
      '/admin/modules/@CID@/notification': 'POST' #A4
+     '/admin/overview/@OID@': 'GET' #A5
+     '/admin/tasks/@OID@': 'GET' #A6
 
 ### printing options
 

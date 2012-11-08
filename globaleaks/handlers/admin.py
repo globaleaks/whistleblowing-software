@@ -388,3 +388,87 @@ class AdminModules(BaseHandler):
     def post(self, module_gus, *uriargs):
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "POST")
         pass
+
+# A5, not yet documented, overview handler to enhance control on GLB tasks and tables
+# /admin/overview/<stuff> CRUD
+class AdminOverView(BaseHandler):
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, what, *uriargs):
+        """
+        /admin/overview GET should return up to all the tables of GLBackend
+        """
+        from globaleaks.models import tip
+
+        expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'all' ]
+
+        print "***", dir(self)
+
+        if what == 'receivers' or what == 'all':
+
+            receiver_iface = receiver.Receiver()
+            receiver_list = yield receiver_iface.admin_get_all()
+            self.write({ 'receivers_elements' : len(receiver_list) })
+            self.write({ 'receivers' : receiver_list })
+
+        if what == 'itip' or what == 'all':
+
+            itip_iface = tip.InternalTip()
+            itip_list = yield itip_iface.admin_get_all()
+            self.write({ 'internaltips_elements' : len(itip_list) })
+            self.write({ 'internaltips' : itip_list })
+
+        if what == 'rtip' or what == 'all':
+            pass
+            # rtip_iface = tip.ReceiverTip()
+
+        if what == 'wtip' or what == 'all':
+            pass
+            # wtip_iface = tip.WhistleblowerTip()
+
+        self.set_status(200)
+        self.finish()
+
+class AdminTasks(BaseHandler):
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, what, *uriargs):
+        """
+        /admin/tasks/ GET, force the execution of an otherwise scheduled event
+        """
+        from globaleaks.runner import GLAsynchronous
+        from globaleaks.jobs import notification_sched, statistics_sched, tip_sched,\
+            delivery_sched, cleaning_sched, welcome_sched, digest_sched
+
+        expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'digest' ]
+
+        if what == 'statistics':
+            yield notification_sched.APSNotification().operation()
+        if what == 'welcome':
+            yield welcome_sched.APSWelcome().operation()
+        if what == 'tip':
+            yield tip_sched.APSTip().operation()
+        if what == 'delivery':
+            yield delivery_sched.APSDelivery().operation()
+        if what == 'notification':
+            yield notification_sched.APSNotification().operation()
+        if what == 'cleaning':
+            yield cleaning_sched.APSCleaning().operation()
+        if what == 'digest':
+            yield digest_sched.APSDigest().operation()
+
+        self.set_status(200)
+        self.finish()
+
+
+
+
+
+
+
+
+
+
+

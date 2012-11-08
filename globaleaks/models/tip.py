@@ -189,7 +189,7 @@ class InternalTip(TXModel):
         self.access_limit = submission.context.tip_max_access
         self.expiration_date = submission.expiration_time
         self.fields = submission.fields
-        self.pertinence = 0
+        self.pertinence_counter = 0
         self.download_limit = submission.context.folder_max_download
         self.receivers_map = []
         self.mark = u'new'
@@ -229,7 +229,7 @@ class InternalTip(TXModel):
     @transact
     def get_newly_escalated(self):
         """
-        @return: all the internaltips with pertinence >= escalation_threshold and mark == u'first',
+        @return: all the internaltips with pertinence_counter >= escalation_threshold and mark == u'first',
             in a list of id
         """
         #store = self.getStore('get_newly_escalated')
@@ -286,6 +286,37 @@ class InternalTip(TXModel):
         store.commit()
         store.close()
 
+    @transact
+    def admin_get_all(self):
+
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip admin_print_all")
+
+        store = self.getStore('admin_print_all')
+        all_itips = store.find(InternalTip)
+
+        retVal = []
+        for itip in all_itips:
+            retVal.append(itip._description_dict() )
+
+        store.close()
+        return retVal
+
+    def _description_dict(self):
+
+        description_dict = {
+            'id' : self.id,
+            'context_ref' : [ self.context.name, self.context_gus ],
+            'creation_date' : gltime.prettyDateTime(self.creation_date),
+            'expiration_date' : gltime.prettyDateTime(self.creation_date),
+            'fields' : self.fields,
+            'pertinence' : self.pertinence_counter,
+            'download_limit' : self.download_limit,
+            'access_limit' : self.access_limit,
+            'mark' : self.mark,
+            'receiver_map' : self.receivers_map # it's already a dict
+        }
+        return description_dict
+
     # ----------------------------------------------------
     # -- ALL BELOW NEED TO BE REFACTORED WITH THE DELIVERY
     #
@@ -316,6 +347,8 @@ class InternalTip(TXModel):
 
 Folder.internaltip = Reference(Folder.internaltip_id, InternalTip.id)
 Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
+
+
 
 class Tip(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "TXModel", TXModel)
