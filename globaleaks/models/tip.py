@@ -363,6 +363,24 @@ class Tip(TXModel):
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
+    @transact
+    def get_all_admin(self):
+        """
+        @return: all Receivers Tip, printed by 'overview' admin API
+        """
+
+    @transact
+    def get_all_receiver(self, tip_gus):
+        """
+        @param tip_gus: get all the tip for the receiver auth with a valid tip_gus
+        @return: the simpler index, used as tip list
+        """
+
+    @transact
+    def get_single_receiver(self, tip_gus):
+        # is the lookup
+        pass
+
     # need totally to be refactored, and partially implemented in InternalTip
     def get_sub_index(self):
         log.debug("[D] %s %s " % (__file__, __name__), "Class Tip", "get_sub_index")
@@ -467,7 +485,7 @@ class ReceiverTip(Tip):
     pertinence_vote = Int()
 
     notification_date = DateTime()
-    mark = Unicode()
+    notification_mark = Unicode()
         # TODO ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
 
     receiver_gus = Unicode()
@@ -502,17 +520,17 @@ class ReceiverTip(Tip):
     @transact
     def get_tips(self, status=None):
         """
-        @param staus: '
+        @param status: unicode!
         @return:
         """
         store = self.getStore('get_tips')
 
-        notification_status = [ 'not notified', 'notified', 'unable to notify', 'notification ignore' ]
+        notification_status = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
         if not status in notification_status:
             raise Exception("Invalid developer brain dictionary")
 
         # TODO ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
-        marked_tips = store.find(ReceiverTip, Receiver.mark == status)
+        marked_tips = store.find(ReceiverTip, ReceiverTip.mark == status)
 
         retVal = {}
         for single_tip in marked_tips:
@@ -524,13 +542,27 @@ class ReceiverTip(Tip):
 
         store.close()
 
-        print "***************** to be notified", retVal
+        return retVal
+
+    @transact
+    def admin_get_all(self):
+
+        store = self.getStore('receiver tips - admin_get_all')
+
+        all_rt = store.find(ReceiverTip)
+
+        retVal = []
+        for single_rt in all_rt:
+            retVal.append(single_rt._description_dict())
+
+        store.close()
         return retVal
 
     # called by a transact operation, dump the ReceiverTip
     def _description_dict(self):
 
         descriptionDict = {
+            'internaltip_id' : self.internaltip_id,
             'tip_gus' : self.tip_gus,
             'notification_mark' : self.notification_mark,
             'notification_date' : gltime.prettyDateTime(self.notification_date),
@@ -613,6 +645,30 @@ class WhistleblowerTip(Tip):
     #     last week. So store just a week number.
     #view_count = Int()
     #last_access = Date()
+
+    @transact
+    def admin_get_all(self):
+
+        store = self.getStore('wb_tips - admin_get_all')
+
+        all_wt = store.find(WhistleblowerTip)
+
+        retVal = []
+        for single_wt in all_wt:
+            retVal.append(single_wt._description_dict())
+
+        store.close()
+        return retVal
+
+    # called by a transact operation, dump the WhistleBlower Tip
+    def _description_dict(self):
+
+        descriptionDict = {
+            'internaltip_id' : self.internaltip_id,
+            'tip_gus' : self.tip_gus
+            # 'secret' : self.secret
+        }
+        return descriptionDict
 
 
 class PublicStats(TXModel):

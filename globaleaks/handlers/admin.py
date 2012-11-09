@@ -403,7 +403,10 @@ class AdminOverView(BaseHandler):
 
         expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'all' ]
 
-        print "***", dir(self)
+        if not what in expected:
+            self.set_status(405)
+        else:
+            self.set_status(200)
 
         if what == 'receivers' or what == 'all':
 
@@ -420,14 +423,19 @@ class AdminOverView(BaseHandler):
             self.write({ 'internaltips' : itip_list })
 
         if what == 'rtip' or what == 'all':
-            pass
-            # rtip_iface = tip.ReceiverTip()
+
+            rtip_iface = tip.ReceiverTip()
+            rtip_list = yield rtip_iface.admin_get_all()
+            self.write({ 'receivers_tips_elements' : len(rtip_list) })
+            self.write({ 'receivers_tips' : rtip_list })
 
         if what == 'wtip' or what == 'all':
-            pass
-            # wtip_iface = tip.WhistleblowerTip()
 
-        self.set_status(200)
+            wtip_iface = tip.WhistleblowerTip()
+            wtip_list = yield wtip_iface.admin_get_all()
+            self.write({ 'whistleblower_tips_elements' : len(wtip_list) })
+            self.write({ 'whistleblower_tips' : wtip_list })
+
         self.finish()
 
 class AdminTasks(BaseHandler):
@@ -444,6 +452,11 @@ class AdminTasks(BaseHandler):
 
         expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'digest' ]
 
+        if not what in expected:
+            self.set_status(405)
+        else:
+            self.set_status(200)
+
         if what == 'statistics':
             yield notification_sched.APSNotification().operation()
         if what == 'welcome':
@@ -459,7 +472,6 @@ class AdminTasks(BaseHandler):
         if what == 'digest':
             yield digest_sched.APSDigest().operation()
 
-        self.set_status(200)
         self.finish()
 
 

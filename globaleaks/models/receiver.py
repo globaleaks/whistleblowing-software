@@ -198,7 +198,7 @@ class Receiver(TXModel):
 
         all_r = store.find(Receiver)
 
-        retVal = {}
+        retVal = []
         for rcvr in all_r:
             retVal.append(rcvr._description_dict())
 
