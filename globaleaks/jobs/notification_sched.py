@@ -27,22 +27,16 @@ class APSNotification(GLJob):
         login/password, network errors) would be marked as:
         'unable to be notified', and a retry logic is in TODO
         """
-        from globaleaks.plugins.notification import email
-
         log.debug("[D]", self.__class__, 'operation', datetime.today().ctime())
 
         receivertip_iface = ReceiverTip()
 
-        # TODO +check delivery mark
+        # TODO +check delivery mark - would be moved in task queue
         not_notified_tips = yield receivertip_iface.get_tips(status=u'not notified')
 
         for single_tip in not_notified_tips:
 
             print "sendig email for" , single_tip
 
-            GLBMailService(single_tip['tip_gus'],
-                "I'm the subject",
-                single_tip['notification_fields'],
-                "I'm the body"
-            )
+            GLBMailService(single_tip['tip_gus'], single_tip['notification_fields'])
 
