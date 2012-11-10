@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous, HTTPError
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.tip import Tip, ReceiverTip
+from globaleaks.models.externaltip import  ReceiverTip
 from globaleaks.utils import log
 import json
 

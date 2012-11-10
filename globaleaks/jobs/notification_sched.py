@@ -1,6 +1,6 @@
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
-from globaleaks.models.tip import ReceiverTip
+from globaleaks.models.externaltip import ReceiverTip
 from datetime import datetime
 from globaleaks.plugins.notification.mailclient import GLBMailService
 

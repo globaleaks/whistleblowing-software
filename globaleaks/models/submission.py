@@ -9,7 +9,8 @@ from storm.exceptions import NotOneError
 
 from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel, ModelError
-from globaleaks.models.tip import InternalTip, Tip, File, Folder
+from globaleaks.models.externaltip import File, Folder
+from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.context import Context, InvalidContext
 from globaleaks.models.receiver import Receiver
 
