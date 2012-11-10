@@ -9,7 +9,7 @@ from storm.exceptions import NotOneError
 
 from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel, ModelError
-from globaleaks.models.externaltip import File, Folder
+from globaleaks.models.externaltip import File, Folder, WhistleblowerTip
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.context import Context, InvalidContext
 from globaleaks.models.receiver import Receiver
@@ -35,22 +35,6 @@ class SubmissionGenericError(ModelError):
         ModelError.error_code = 1 # need to be resumed the table and come back in use them
         ModelError.http_status = 500 # Server Error
 
-
-# TODO - remove this possibility
-class SubmissionNoContextSelectedError(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "Invalid context selected"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 412 # Precondition Failed
-
-# TODO - remove this possibility, too
-class SubmissionContextNotFoundError(ModelError):
-    pass
-
-# implausible - is controlled by Admin the amount of Contexts
-class SubmissionContextNotOneError(ModelError):
-    pass
 
 # TODO - would be an error when we start to check presence of required fields
 class SubmissionFailRequiremers(ModelError):
@@ -244,7 +228,7 @@ class Submission(TXModel):
     @transact
     def complete_submission(self, submission_gus, proposed_receipt):
         """
-        this function is became simply unmaintainable
+        Need to be refactored in Tip the Folder thing
         """
         log.debug("[D] ",__file__, __name__, "Submission complete_submission", submission_gus, "proposed_receipt", proposed_receipt)
 
@@ -265,7 +249,6 @@ class Submission(TXModel):
 
         # Initialize all the Storm fields inherit by Submission and Context
         internal_tip.initialize(requested_s)
-
 
         # here is created the table with receiver selected (an information stored only in the submission)
         # and the threshold escalation. Is not possible have a both threshold and receiver
@@ -304,17 +287,11 @@ class Submission(TXModel):
             # because if someone want restore an upload, use the file_gus instead of folder_gus
 
         log.debug("Creating tip for whistleblower")
-        whistleblower_tip = Tip()
+        whistleblower_tip = WhistleblowerTip()
+        whistleblower_tip.internaltip_id = internal_tip.id
         whistleblower_tip.internaltip = internal_tip
-
-        # if context permit that receiver propose the receipt:
         whistleblower_tip.address = proposed_receipt
-        # because is already an hashed receipt
-        # else... receipt_string = idops.random_receipt_id()
-        #         hash(receipt_string)
-        #         return receipt_string
-        # AND, check if not other equal receipt are present, in that case, reject
-        # XXX this should bring security issue... mmmhh....
+        # authoptions would be filled here
 
         store.add(whistleblower_tip)
         log.debug("Created tip with address %s" % whistleblower_tip.address)
@@ -324,7 +301,6 @@ class Submission(TXModel):
         store.remove(requested_s)
         store.commit()
         store.close()
-
 
         return proposed_receipt
 

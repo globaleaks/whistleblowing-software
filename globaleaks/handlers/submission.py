@@ -10,10 +10,9 @@ import json
 
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
-from globaleaks import models
+from globaleaks.models.submission import Submission, SubmissionNotFoundError
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.base import ModelError
 from globaleaks.models.context import InvalidContext
 
 
@@ -43,7 +42,7 @@ class SubmissionRoot(BaseHandler):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "SubmissionRoot", "GET / context = ", context_gus)
 
-        submission = models.submission.Submission()
+        submission = Submission()
 
         try:
             output = yield submission.new(context_gus)
@@ -83,14 +82,14 @@ class SubmissionStatus(BaseHandler):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "SubmissionStatus", "get", "submission_gus", submission_gus )
 
-        submission = models.submission.Submission()
+        submission = Submission()
 
         try:
             status = yield submission.status(submission_gus)
             self.set_status(200)
             self.write(status)
 
-        except ModelError, e:
+        except SubmissionNotFoundError, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -126,7 +125,7 @@ class SubmissionStatus(BaseHandler):
 
         request = json.loads(self.request.body)
 
-        submission = models.submission.Submission()
+        submission = Submission()
 
         # set a Bad Request return value, that is not override if fields or
         # context is not present. TODO: fields or receivers.
@@ -204,7 +203,7 @@ class SubmissionFinalize(BaseHandler):
         if 'proposed_receipt' in request and request['proposed_receipt']:
             wb_proposal = request['proposed_receipt']
 
-        submission = models.submission.Submission()
+        submission = Submission()
 
         try:
             receipt_used = yield submission.complete_submission(submission_gus, wb_proposal)
@@ -218,7 +217,7 @@ class SubmissionFinalize(BaseHandler):
                 receipt = { "receipt" : receipt_used}
                 self.write(receipt)
 
-        except ModelError, e:
+        except SubmissionNotFoundError, e:
             self.set_status(e.http_status) # all error need to be managed with different code
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
