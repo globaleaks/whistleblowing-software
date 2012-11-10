@@ -24,7 +24,7 @@ def createTables():
     from globaleaks.db import tables
 
     for m in [models.node, models.context, models.receiver, models.submission,
-              models.tip, models.admin ]:
+              models.externaltip, models.internaltip, models.admin ]:
         for model_name in m.__all__:
             try:
                 model = getattr(m, model_name)

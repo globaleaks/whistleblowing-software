@@ -459,19 +459,8 @@ class PublicStats(TXModel):
     log.debug("[D] %s %s " % (__file__, __name__), "Class PublicStats")
     __storm_table__ = 'publicstats'
 
-    createQuery = "CREATE TABLE " + __storm_table__ +\
-                   "(id INTEGER PRIMARY KEY, active_submissions INT, node_activities INT, uptime INT"
-
     id = Int(primary=True)
 
     active_submissions = Int()
     node_activities = Int()
     uptime = Int()
-    """
-    likely would be expanded, but avoiding to spread information that may lead an attacker advantaged
-    """
-
-
-"""
-The classic tip stay in receiver.ReceiverTip
-"""
