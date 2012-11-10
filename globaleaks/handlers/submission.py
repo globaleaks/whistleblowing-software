@@ -11,7 +11,7 @@ import json
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 from globaleaks import models
-from globaleaks.utils import idops, log
+from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.base import ModelError
 from globaleaks.models.context import InvalidContext

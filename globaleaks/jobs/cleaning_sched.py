@@ -2,7 +2,7 @@ from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from globaleaks.models.submission import Submission
 from globaleaks.models.context import Context
-from globaleaks.models.tip import InternalTip
+from globaleaks.models.internaltip import InternalTip
 from datetime import datetime
 
 __all__ = ['APSCleaning']
