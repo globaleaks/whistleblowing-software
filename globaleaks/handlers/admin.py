@@ -329,7 +329,6 @@ class AdminReceivers(BaseHandler):
             self.finish()
 
 
-
     @asynchronous
     @inlineCallbacks
     def put(self, receiver_gus, *uriargs):
