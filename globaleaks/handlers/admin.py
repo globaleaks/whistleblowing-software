@@ -414,29 +414,25 @@ class AdminOverView(BaseHandler):
 
             receiver_iface = Receiver()
             receiver_list = yield receiver_iface.admin_get_all()
-            self.write({ 'receivers_elements' : len(receiver_list) })
-            self.write({ 'receivers' : receiver_list })
+            self.write({ 'elements' : len(receiver_list), 'receivers' : receiver_list })
 
         if what == 'itip' or what == 'all':
 
             itip_iface = InternalTip()
             itip_list = yield itip_iface.admin_get_all()
-            self.write({ 'internaltips_elements' : len(itip_list) })
-            self.write({ 'internaltips' : itip_list })
+            self.write({ 'elements' : len(itip_list), 'internaltips' : itip_list })
 
         if what == 'rtip' or what == 'all':
 
             rtip_iface = ReceiverTip()
             rtip_list = yield rtip_iface.admin_get_all()
-            self.write({ 'receivers_tips_elements' : len(rtip_list) })
-            self.write({ 'receivers_tips' : rtip_list })
+            self.write({ 'elements' : len(rtip_list), 'receivers_tips' : rtip_list })
 
         if what == 'wtip' or what == 'all':
 
             wtip_iface = WhistleblowerTip()
             wtip_list = yield wtip_iface.admin_get_all()
-            self.write({ 'whistleblower_tips_elements' : len(wtip_list) })
-            self.write({ 'whistleblower_tips' : wtip_list })
+            self.write({ 'elements' : len(wtip_list), 'whistleblower_tips' : wtip_list })
 
         self.finish()
 
