@@ -4,7 +4,7 @@ a REST shooter for GLBackend, used for testing, development and perform shell co
 client emulation. is based on **HTTPie**, a pretty curl interface for testing REST with JSON
 utilities.
 
-### Shooter.py
+### Requirement
 
 after the while refactor of the code, the previous curteg is became completely obsolete, and
 now a new implementation is done. Its called **shooter**, is based on:

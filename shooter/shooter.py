@@ -126,9 +126,8 @@ def do_httpie(method, url, request_list):
         tstdout = sys.stdout
         outfname = None
     else:
-        (tstdout, outfname) = tempfile.mkstemp(suffix="_shoOut")
+        (tstdout, outfname) = tempfile.mkstemp(suffix="_shootOut")
 
-    # TEMP
     tstderr = sys.stderr
     defurl = baseurl + url
 
@@ -146,6 +145,9 @@ def do_httpie(method, url, request_list):
     except subprocess.CalledProcessError:
         print "invalid execution of httpie!"
         print "check the file", errfname
+        quit(1)
+    except OSError:
+        print "You need HTTPie installed. Check 'Requirement' section in README.md"
         quit(1)
 
     if outfname == None:
