@@ -41,6 +41,7 @@ they need to be specified with an appropriate keyword:
     tip (and follow a Tip unique string)
     rid (and follow a Receiver unique string)
     sid (and follow a Submission unique string)
+    oid
 
 in the JSON files is possibile specifiy also raw JSON data. If you make an assignment works
 like an Unicode string, but for integer, boolean, list or dictionary, you need raw assignment.
@@ -110,6 +111,12 @@ interface informations about the selected context, using A2 (/admin/contexts)
     r\_WUYXasvtYfXygtcODcSY
     $ python shooter.py A3 GET rid r\_WUYXasvtYfXygtcODcSY print-notification\_fields
     vecna@globaleaks.org
+
+using 
+
+    $ python shooter.py help
+
+print the URTA table and relationship with the path.
 
 ### JSON files
 
