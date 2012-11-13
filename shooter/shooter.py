@@ -335,8 +335,16 @@ def outputOptionsApply(theDict):
 if __name__ == '__main__':
 
     if len(sys.argv) < 2:
-        print sys.argv[0], "[portion of REST]|URTA code", "<method>", "<sid>|<cid>|<tip>|<rid>"
+        print sys.argv[0], "[portion of REST]|URTA code", "<method>",
+        "<sid>|<cid>|<tip>|<rid>|<raw>|<oid>"
         quit(1)
+
+    if sys.argv[1] == 'help':
+        for key, value in URTA.iteritems():
+            (urta, method) = key.split("_")
+            (dirt, path) = value.split("_")
+            print "%s\t%s\t%s" % (urta, method, path)
+        quit(0)
 
     # handle 'shooter.py U1' and 'shooter.py U1 POST'
     if len(sys.argv[1]) == 2:
