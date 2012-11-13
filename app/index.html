@@ -1,59 +1,70 @@
 <!DOCTYPE html>
-<html>
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="styles/app.css" rel="stylesheet">
-</head>
-<body data-spy="scroll" data-offset-top="200" data-target=".config-sidebar">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <title></title>
+        <meta name="description" content=""/>
+        <meta name="viewport" content="width=device-width"/>
+        <link rel="stylesheet" href="styles/app.css"/>
 
-<div class="modal show fade debug-header">
-  <div class="modal-header">
-    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-    <h3>Debug Header</h3>
-  </div>
-  <div class="modal-body">
-    <ul id="debug-header-loglist">
-    </ul>
-  </div>
-  <div class="modal-footer">
-    <button class="btn btn-primary" data-dismiss="modal">Close</button>
-  </div>
-</div>
-    <div class="well latenzaStatusBox">
-        <h4>Network Status</h4>
-        <span class="networkStatus label"></span>
-        <h4>Latency</h4>
-        <span class="latencyStatus label"></span>
-        <h4>Current requests</h4>
-        <dl class="currentRequests">
-        </dl>
-    </div>
+    </head>
+    <body ng-app="GLClient">
+        <!--[if lt IE 7]>
+            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+        <![endif]-->
 
-    <div class="container demo">
-        <div>
-            <div style="display: none;" class="webapp-error alert alert-block">
-                <a class="close" data-dismiss="alert">×</a>
-                <h4 class="alert-heading">Install error</h4>
-                <span class="webapp-error-details"></span>
-            </div>
-        </div>
-    </div>
+        <!--[if lt IE 9]>
+            <script src="scripts/vendor/es5-shim.min.js"></script>
+            <script src="scripts/vendor/json3.min.js"></script>
+        <![endif]-->
 
-    <div class="contentElement">
+        <!-- Add your site or application content here -->
+        <div class="contentContainer" ng-view></div>
 
-    </div>
-    <footer class="footer">
-      <div class="container">
-        <p>
-Culpa dolor pickled cupidatat, chillwave dreamcatcher assumenda post-ironic. Sustainable    cardigan organic, pour-over viral labore mollit qui retro trust fund fap. 8-bit occupy enim        commodo, terry richardson mlkshk shoreditch mumblecore pork belly farm-to-table. Beard             dreamcatcher commodo, ennui irony incididunt 8-bit fixie selvage ea deserunt. Odio veniam sed      bushwick, irony in quinoa aliqua vero mollit tofu +1. Polaroid ut craft beer locavore authentic    minim. Nesciunt fixie keffiyeh anim assumenda, american apparel Austin readymade sunt shoreditch   typewriter aliqua.</p>
-        <ul class="footer-links">
-          <li><a href="https://github.com/globaleaks/GLClient/">Source code</a></li>
-          <li><a href="http://wiki.globaleaks.org/">GlobaLeaks wiki</a></li>
-        </ul>
-      </div>
-    </footer>
-    <!-- Load the main app module via the module loader -->
-    <script async data-main="scripts/config" src="scripts/libs/require.js" charset="utf-8"></script>
-</body>
+        <footer class="footer">
+          <div class="container">
+            <p>
+            Culpa dolor pickled cupidatat, chillwave dreamcatcher assumenda
+            post-ironic. Sustainable cardigan organic, pour-over viral labore
+            mollit qui retro trust fund fap. 8-bit occupy enim commodo, terry
+            richardson mlkshk shoreditch mumblecore pork belly farm-to-table. Beard
+            dreamcatcher commodo, ennui irony incididunt 8-bit fixie selvage ea
+            deserunt. Odio veniam sed bushwick, irony in quinoa aliqua vero
+            mollit tofu +1. Polaroid ut craft beer locavore authentic minim.
+            Nesciunt fixie keffiyeh anim assumenda, american apparel Austin readymade
+            sunt shoreditch typewriter aliqua.
+            </p>
+            <ul class="footer-links">
+              <li>
+                <a href="https://github.com/globaleaks/GLClient/">Source code</a>
+              </li>
+              <li>
+                <a href="http://wiki.globaleaks.org/">GlobaLeaks wiki</a>
+              </li>
+            </ul>
+          </div>
+        </footer>
+
+        <script src="scripts/vendor/angular.js"></script>
+        <script src="components/underscore/underscore.js"></script>
+        <script src="components/jquery/jquery.js"></script>
+        <script src="components/jquery-ui/ui/jquery-ui.js"></script>
+        <script src="components/jquery.fileupload/index.js"></script>
+        <script src="components/jquery.fileupload-fp/index.js"></script>
+        <script src="components/jquery.fileupload-ui/index.js"></script>
+
+        <!-- build:js scripts/scripts.js -->
+        <script src="scripts/app.js"></script>
+        <script src="scripts/filters.js"></script>
+        <script src="scripts/requests.js"></script>
+        <script src="scripts/ui.js"></script>
+        <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/submission.js"></script>
+        <!-- endbuild -->
+
+    </body>
 </html>

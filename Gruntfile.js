@@ -1,13 +1,3 @@
-/*
- *
- * author: Arturo "hellais" Filastò <art@fuffa.org>
- * license: see LICENSE
- *
- * This gruntfile provides all the necessary glue to automate building and run
- * unittesting task.
- */
-
-
 module.exports = function( grunt ) {
   'use strict';
   //
@@ -29,16 +19,14 @@ module.exports = function( grunt ) {
     coffee: {
       compile: {
         files: {
-          'temp/scripts/*.js': 'app/scripts/**/*.coffee'
-        },
-        options: {
-          basePath: 'app/scripts'
+          'app/scripts/*.js': 'app/scripts/**/*.coffee',
+          'test/spec/*.js': 'test/spec/**/*.coffee'
         }
       }
     },
 
     // compile .scss/.sass to .css using Compass
-    /* compass: {
+    compass: {
       dist: {
         // http://compass-style.org/help/tutorials/configuration-reference/#configuration-properties
         options: {
@@ -49,16 +37,11 @@ module.exports = function( grunt ) {
           force: true
         }
       }
-    },*/
+    },
 
     // generate application cache manifest
     manifest:{
       dest: ''
-    },
-
-    // headless testing through PhantomJS
-    mocha: {
-      all: ['test/**/*.html']
     },
 
     // default watch configuration
@@ -67,17 +50,18 @@ module.exports = function( grunt ) {
         files: 'app/scripts/**/*.coffee',
         tasks: 'coffee reload'
       },
-      //compass: {
-      //  files: [
-      //    'app/styles/**/*.{scss,sass}'
-      //  ],
-      //  tasks: 'compass reload'
-      //},
+      compass: {
+        files: [
+          'app/styles/**/*.{scss,sass}'
+        ],
+        tasks: 'compass reload'
+      },
       reload: {
         files: [
           'app/*.html',
           'app/styles/**/*.css',
           'app/scripts/**/*.js',
+          'app/views/**/*.html',
           'app/images/**/*'
         ],
         tasks: 'reload'
@@ -111,7 +95,7 @@ module.exports = function( grunt ) {
         browser: true
       },
       globals: {
-        jQuery: true
+        angular: true
       }
     },
 
@@ -178,22 +162,16 @@ module.exports = function( grunt ) {
       // no minification, is done by the min task
       optimize: 'none',
       baseUrl: './scripts',
-      wrap: true,
-      name: 'main'
-    },
-
-    // While Yeoman handles concat/min when using
-    // usemin blocks, you can still use them manually
-    concat: {
-      dist: ''
-    },
-
-    min: {
-      dist: ''
+      wrap: true
     }
   });
 
-  // Alias the `test` task to run the `mocha` task instead
-  grunt.registerTask('test', 'server:phantom mocha');
-
+  // Alias the `test` task to run `testacular` instead
+  grunt.registerTask('test', 'run the testacular test driver', function () {
+    var done = this.async();
+    require('child_process').exec('testacular start --single-run', function (err, stdout) {
+      grunt.log.write(stdout);
+      done(err);
+    });
+  });
 };
