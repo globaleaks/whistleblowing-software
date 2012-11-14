@@ -23,6 +23,11 @@
         <![endif]-->
 
         <!-- Add your site or application content here -->
+        <div class="pendingRequests">
+          <ul>
+            <li ng-repeat="request in pending_requests">{{request.name}}</li>
+          </ul>
+        </div>
         <div class="contentContainer" ng-view></div>
 
         <footer class="footer">
@@ -50,6 +55,7 @@
         </footer>
 
         <script src="scripts/vendor/angular.js"></script>
+        <script src="scripts/vendor/angular-resource.js"></script>
         <script src="components/underscore/underscore.js"></script>
         <script src="components/jquery/jquery.js"></script>
         <script src="components/jquery-ui/ui/jquery-ui.js"></script>
@@ -60,9 +66,10 @@
         <!-- build:js scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/filters.js"></script>
-        <script src="scripts/requests.js"></script>
+        <script src="scripts/services.js"></script>
         <script src="scripts/ui.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/controllers/admin.js"></script>
         <script src="scripts/controllers/submission.js"></script>
         <!-- endbuild -->
 

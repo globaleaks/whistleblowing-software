@@ -2,7 +2,7 @@
 // http://docs.angularjs.org/api/ngResource.$resource
 
 angular.module('nodeServices', ['ngResource']).
-  factory('nodeRequests', function($resource) {
+  factory('Node', function($resource) {
     return $resource('/node', {}, {
       info: {method: 'GET', url: '/node'}
     })
@@ -16,7 +16,7 @@ angular.module('submissionServices', ['ngResource']).
     // to the creation of submissions
     return $resource('/submission/:id_or_gus/:action', {action: 'status'}, {
       create: {method: 'GET',
-        params: {id_or_gus: '@context_gus',
+        params: {
           action: 'new'},
       },
       // XXX in
@@ -24,13 +24,13 @@ angular.module('submissionServices', ['ngResource']).
       // takes receiver_selected in post while it returns receivers_selected
       // in the GET. This should be made uniform.
       update: {method: 'POST',
-        params: {id_or_gus: '@submission_id',
+        params: {id_or_gus: '@submission_gus',
           action: 'status'
         }
       },
       // XXX file is not included here because that is a task for the fileuploader plugin
       finalize: {method: 'POST',
-        params: {id_or_gus: '@submission_id',
+        params: {id_or_gus: '@submission_gus',
           action: 'finalize'
         }
       }
@@ -86,5 +86,10 @@ angular.module('adminServices', ['ngResource']).
     return $resource('/admin/modules/:module_type',
       {module_type: '@module_type'}
     )
+});
+
+angular.module('helpServices', ['ngResource']).
+  factory('HelpStrings', function($resource) {
+    return $resource('/scripts/help_strings/node_info.json')
 });
 

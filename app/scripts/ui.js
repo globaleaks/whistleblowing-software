@@ -49,34 +49,37 @@ angular.module('submissionUI', [], function($compileProvider) {
       $(element).fileupload({
         progress: function (e, data) {
           var progress = parseInt(data.loaded / data.total * 100, 10);
-          $('.progress-extended .progress .bar').css(
+          console.log($(element).find('.progress .bar'));
+          $(element).find('.progress .bar').css(
                 'width', progress + '%'
           );
+          console.log("Progress " + progress);
         },
 
         progressall: function (e, data) {
-          console.log("Progress " + data);
           var progress = parseInt(data.loaded / data.total * 100, 10);
-          $('.progress .bar').css(
-                'width',
-                progress + '%'
+          $(element).find('.progress .bar').css(
+                'width', progress + '%'
           );
+          console.log("Progress " + progress);
         },
 
         add: function (e, data) {
           for (var file in data.files) {
             var file_info,
-              item_id = data.files[file].name.replace(/\./g, "");
+              file_id = scope.uploaded_files.length + file;
 
             file_info = {'name': data.files[file].name,
               'filesize': data.files[file].size,
               'error': 'None',
               'type': data.files[file].type,
-              'last_modified_data': data.files[file].lastModifiedDate,
-              'item_id': item_id
+              'last_modified_date': data.files[file].lastModifiedDate,
+              'file_id': file_id
             };
-            // We use the scope variable uploaded_files to keep track of the files that are uploaded.
-            $(element).find('.files').append('<td')
+
+            scope.$apply(function() {
+              scope.uploaded_files.push(file_info);
+            });
 
           }
           data.submit();
@@ -86,7 +89,7 @@ angular.module('submissionUI', [], function($compileProvider) {
           var result = data.result,
             textStatus = data.textStatus,
             item_id;
-
+          console.log(data);
           // XXX do sanitization and validation here
           // XXX this is a hack to keep track of what things are finished.
           // fix this by having a lookup table of the in progress submissions
