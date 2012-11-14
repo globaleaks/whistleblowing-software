@@ -15,6 +15,14 @@
 <div class="container">
   <div class="well">
     <p>{{get_current_context().description}}</p>
+    <label>
+      Current List of receivers
+    </label>
+    <ul class="receiver-list">
+      <li ng-repeat="receiver in get_current_context().receivers">
+      {{receiver.name}} - {{receiver.description}} - {{receiver.tags}} - {{receiver.languages_supported}}
+      </li>
+    </ul>
     <form>
       <div ng-repeat="field in get_current_context().fields"
         class="row span4">
@@ -23,9 +31,10 @@
         </label>
         <!--
           This is a special directive that can be found in directive.js 
-        -->
-        <div submission-field="">
-        </div>
+          -->
+          <input type="{{field.type}}" name="{{field.name}}"
+              placeholder="{{field.value}}"
+              {{field.required | required-filter}}>
       </div>
     </form>
     <div class="fileUpload">
@@ -57,13 +66,20 @@
       <table role="presentation" class="table table-striped">
         <tbody class="files">
           <tr ng-repeat="uploaded_file in uploaded_files">
-            <td>1111 --- {{uploaded_file}}</td>
+            <td>{{uploaded_file.name}}</td>
+            <td>
+              <div class="uploaded_file_{{uploaded_file.file_id}} progress progress-success progress-striped active" role="progressbar"  aria-valuemin="0" aria-valuemax="100">
+                <div class="bar" style="width:0%;"></div>
+              </div>
+            </td>
+            <td>{{uploaded_file.error}}</td>
+            <td>{{uploaded_file.last_modified_date}}</td>
           </tr>
         </tbody>
       </table>
     </form>
     </div>
-    <button ng-click="submit(submission_id)" class="btn btn-large">Submit</button>
+    <button ng-click="submit(submission_id)" class="btn">Submit</button>
   </div>
 </div>
 
