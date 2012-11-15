@@ -1,25 +1,25 @@
 <!--
 The following code is based off of http://jsfiddle.net/ProLoser/bp3Qu/light/
 -->
-<div ng:controller="FormBuilderCtrl">
+<div ng-controller="FormBuilderCtrl">
   <div id="jv-formbuilder">
     <h2>Form Builder</h2>
-    <form ng:submit="saveField()">
+    <form ng-submit="saveField()">
       <div class="input">
         <label for="newField-name">Field Name:</label>
-        <input type="text" id="newField-name" ng:model="newField.name" ng:required>
+        <input type="text" id="newField-name" ng-model="newField.name" ng-required>
       </div>
       <div class="input">
         <label for="newField-required">Required:</label>
-        <input type="checkbox" id="newField-required" ng:model="newField.required">
+        <input type="checkbox" id="newField-required" ng-model="newField.required">
       </div>
       <div class="input">
         <label for="newField-order">Order Weight:</label>
-        <input type="number" id="newField-order" ng:model="newField.order" value="0" ng:required placeholder="0">
+        <input type="number" id="newField-order" ng-model="newField.order" value="0" ng-required placeholder="0">
       </div>
       <div class="input">
         <label for="newField-type">Field Type:</label>
-        <select id="newField-type" ng:model="newField.type" ng:required>
+        <select id="newField-type" ng-model="newField.type" ng-required>
           <option value="text" selected>Text</option>
           <option value="radio">Radio Buttons</option>
           <option value="select">Drop Menu (Select)</option>
@@ -34,84 +34,37 @@ The following code is based off of http://jsfiddle.net/ProLoser/bp3Qu/light/
           <option value="header">Heading</option>
         </select>
       </div>
-      <ng:switch on="typeSwitch(newField.type)">
-      <div ng:switch-default class="input">
+      <div ng-switch on="typeSwitch(newField.type)">
+      <div ng-switch-default class="input">
         <label for="newField-placeholder">Instructions:</label>
-        <input type="text" id="newField-placeholder" ng:model="newField.placeholder">
+        <input type="text" id="newField-placeholder" ng-model="newField.placeholder">
       </div>
-      <fieldset ng:switch-when="multiple">
-        <legend><a ng:click="addOption()">Add Option</a></legend>
-        <div class="newOption" ng:repeat="option in newField.options.$orderBy('order')">
+      <fieldset ng-switch-when="multiple">
+        <legend><a ng-click="addOption()">Add Option</a></legend>
+        <div class="newOption" ng-repeat="option in newField.options.$orderBy('order')">
           <strong>Option:</strong>
-          <button class="delete" ng:click="splice(option, newField.options)">Remove</button>
+          <button class="delete" ng-click="splice(option, newField.options)">Remove</button>
           <label>
             Name:
-            <input type="text" ng:model="option.name" ng:required>
+            <input type="text" ng-model="option.name" ng-required>
           </label>
           <label>
             Value:
-            <input type="text" ng:model="option.value">
+            <input type="text" ng-model="option.value">
           </label>
           <label>
             Order:
-            <input type="number" ng:model="option.order">
+            <input type="number" ng-model="option.order">
           </label>
         </div>
       </fieldset>
-      <span ng:switch-when="checkbox"></span>
-      <span ng:switch-when="header"></span>
-      </ng:switch>
+      <span ng-switch-when="checkbox"></span>
+      <span ng-switch-when="header"></span>
+      </div ng-switch>
       <div><input type="submit" value="Save Field"></div>
     </form>
 
 
-    <h2>Preview</h2>
-    <div ng:repeat="field in fields.$orderBy('order')">
-      <ng:switch on="field.type">
-      <h3 ng:switch-when="header">
-        {{field.name}}
-        <span class="order">{{field.order}}</span>
-        <button class="edit" ng:click="editField(field)">Edit</button>
-        <button class="delete" ng:click="splice(field, fields)">Remove</button>
-      </h3>
-      <div ng:switch-default class="input {{field.type}}" ng:class="field.required && 'required'">
-        <label>
-          <button class="edit" ng:click="editField(field)">Edit</button>
-          <button class="delete" ng:click="splice(field, fields)">Remove</button>
-          {{field.name}}
-          <span class="order">{{field.order}}</span>
-        </label>
-        <ng:switch on="field.type">
-        <input ng:switch-default type="{{field.type}}"
-        ng:model="field.value" ng:bind-attr="{required:'{{field.required}}'}" value="{{field.value}}" placeholder="{{field.placeholder}}">
-        <input ng:switch-when="checkbox" type="checkbox"
-        ng:model="field.value" value="{{field.value}}" id="field" placeholder="{{field.instructions}}">
-        <textarea ng:switch-when="textarea"
-          ng:model="field.value" placeholder="{{field.instructions}}">{{field.value}}</textarea>
-        <select ng:switch-when="select"
-          ng:model="field.value" >
-          <option ng:repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
-        </select>
-        <select ng:switch-when="multiple"
-          ng:model="field.value" multiple>
-          <option ng:repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
-        </select>
-        <fieldset ng:switch-when="radio">
-          <label ng:repeat="option in field.options">
-            <input type="radio" ng:model="field.value" value="{{option.value}}">
-            {{option.name}}
-          </label>
-        </fieldset>
-        <fieldset ng:switch-when="checkboxes">
-          <label ng:repeat="option in field.options">
-            <input type="checkbox" ng:model="field.value[tokenize(option.name)]" value="{{option.value}}">
-            {{option.name}}
-          </label>
-        </fieldset>
-        </ng:switch>
-      </div>
-    </ng:switch>
-  </div>
-  <h2>Data:</h2>
+    <h2>Data:</h2>
   <pre>{{fields}}</pre>
 </div>

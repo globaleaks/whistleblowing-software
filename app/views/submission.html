@@ -1,85 +1,85 @@
 <div class="jumbotron subhead">
   <div class="container">
-  <h1>New Submission</h1>
-  <p>I want to report on
-  <select ng-model="current_context_gus" ng-change="create_submission()">
-    <!-- using the ng-repeat directive:
-         http://docs.angularjs.org/api/ng.directive:ngRepeat
-    -->
-    <option ng-repeat="context in contexts" 
-          value="{{context.context_gus}}">{{context.name}}</option>
-  </select>
-  <h2>submission id: {{submission_gus}}</h2>
+    <h1>New Submission</h1>
+    <p>I want to report on
+    <select
+      ng-model="current_context"
+      ng-options="context.name for context in node_info.contexts"
+      ng-change="create_submission()"
+    >
+    </select>
+    <p>{{current_context.description}}</p>
+
+    <h2>Step {{steps.current}}/{{steps.all.length}}</h2>
   </div>
 </div>
 <div class="container">
-  <div class="well">
-    <p>{{get_current_context().description}}</p>
-    <label>
-      Current List of receivers
-    </label>
-    <ul class="receiver-list">
-      <li ng-repeat="receiver in get_current_context().receivers">
-      {{receiver.name}} - {{receiver.description}} - {{receiver.tags}} - {{receiver.languages_supported}}
-      </li>
-    </ul>
-    <form>
-      <div ng-repeat="field in get_current_context().fields"
-        class="row span4">
-        <label>
-          {{field.label}}
-        </label>
-        <!--
-          This is a special directive that can be found in directive.js 
-          -->
-          <input type="{{field.type}}" name="{{field.name}}"
-              placeholder="{{field.value}}"
-              {{field.required | required-filter}}>
+  <div class="submission-wizard" ng-switch on="steps.current">
+    <!-- Begin the first step of the submission -->
+    <div class="row" ng-switch-default>
+      <div class="submission-form span6"
+        ng-include="'views/submissionform.html'"
+        ng-controller="FormBuilderCtrl">
       </div>
-    </form>
-    <div class="fileUpload">
-      <form id="fileupload" action="/submission/{{submission_gus}}/files" method="POST" 
-          enctype="multipart/form-data" file-upload="">
-      <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the    upload -->
-      <div class="row fileupload-buttonbar">
-        <div class="span7">
-          <!-- The fileinput-button span is used to style the file input field as button -->
-          <span class="btn btn-info fileinput-button">
-            <i class="icon-plus icon-white"></i>
-            <span>Add files...</span>
-            <input type="file" name="files[]" multiple>
-          </span>
-        </div>
-        <!-- The global progress information -->
-        <div class="span5 fileupload-progress">
-          <!-- The global progress bar -->
-          <div class="progress progress-success progress-striped active" role="progressbar"  aria-valuemin="0" aria-valuemax="100">
-            <div class="bar" style="width:0%;"></div>
-          </div>
-          <!-- The extended global progress information -->
-          <div class="progress-extended">&nbsp;</div>
+      <div class="span6">
+        <div class="file-upload"
+          ng-include="'views/fileupload.html'">
         </div>
       </div>
-      <!-- The loading indicator is shown during file processing -->
-      <div class="fileupload-loading">Upload in progress</div>
-      <!-- The table listing the files available for upload/download -->
-      <table role="presentation" class="table table-striped">
-        <tbody class="files">
-          <tr ng-repeat="uploaded_file in uploaded_files">
-            <td>{{uploaded_file.name}}</td>
-            <td>
-              <div class="uploaded_file_{{uploaded_file.file_id}} progress progress-success progress-striped active" role="progressbar"  aria-valuemin="0" aria-valuemax="100">
-                <div class="bar" style="width:0%;"></div>
-              </div>
-            </td>
-            <td>{{uploaded_file.error}}</td>
-            <td>{{uploaded_file.last_modified_date}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
     </div>
-    <button ng-click="submit(submission_id)" class="btn">Submit</button>
+    <!-- End first step -->
+
+    <!-- Begin second step -->
+    <div class="row" ng-switch-when="2">
+      <div class="span12 receiver-list">
+        <label>
+        Current List of receivers
+        </label>
+        <ul class="receiver-list">
+          <li ng-repeat="receiver in current_context.receivers">
+          {{receiver.name}} - {{receiver.description}} - {{receiver.tags}} - {{receiver.languages_supported}}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!-- End second step -->
+
+    <!-- Begin third step -->
+    <div class="row" ng-switch-when="3">
+      <div class="span12 receiver-list">
+        <p>
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </p>
+        <label class="checkbox">
+          <input type="checkbox"
+          ng-model="fields.disclaimer"
+          name="disclaimer" value="ack"> Agree
+        </label>
+      </div>
+    </div>
+    <!-- End third step -->
+  </div>
+
+  <!-- wizard controls -->
+  <div class="row wizard-control">
+    <div class="span12">
+      <button ng-click="back()"
+        class="btn" 
+        ng-disabled="disable.back">Back</button>
+
+      <button ng-click="next()"
+        class="btn" 
+        ng-disabled="disable.next">Next</button>
+
+      <button ng-click="submit()"
+        class="btn"
+        ng-disabled="disable.submit_button()">Submit</button>
+    </div>
   </div>
 </div>
 

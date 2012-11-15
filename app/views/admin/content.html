@@ -4,54 +4,46 @@
     <p>Administration Interface</p>
   </div>
 </div>
-
 <div class="container config-page">
   <div class="row">
     <!-- Begin Nav Bar -->
-    <div class="span3 sidebar-nav config-sidebar">
-      <ul class="nav nav-list config-sidenav">
-        <li class="active"><a
-            href="#/admin/contents">
-            <i class="icon-chevron-right"></i>
-            Content Settings
-        </a></li>
-        <li class="sub-menu"><a
-            href="#general">
-            <i class="icon-chevron-right"></i>
-            General
-        </a></li>
-        <li class="sub-menu"><a
-            href="#internationalization">
-            <i class="icon-chevron-right"></i>
-            Internationalization
-        </a></li>
-        <li><a href="#/admin/wizard"><i class="icon-chevron-right"></i>
-        Setup Wizard
-        </a></li>
-        <li><a href="#/admin/basic"><i class="icon-chevron-right"></i>
-        Basic Configuration
-        </a></li>
-        <li><a href="#/admin/advanced"><i class="icon-chevron-right"></i>
-        Advanced Configuration
-        </a></li>
-      </ul>
+    <div class="span3 config-sidebar"
+      // Note the use of ''
+      // This is the ng-inlcude directive: 
+      // http://docs.angularjs.org/api/ng.directive:ngInclude
+      ng-include="'views/admin/sidebar.html'">
     </div>
+    <!-- End Nav Bar -->
+    <div class="span9">
     <form class="config-form">
-    <!-- XXX here there is a bug. I would like it if the sidebar were not on
-    the same row as the rest of the page. Otherwise this will lead to the h2
-    being on the same row as the option and the comment will appear to apply
-    also to h2.-->
-
-    <section id="general">
+    <h2>General</h2>
     <div class="span5">
-      <h2>General</h2>
-      <label>Site Title
-      <select class="language-setting">
-        <option>English</option>
-        <option>Serbian</option>
+      <label>Site Title</label>
+      <select class="language-setting" ng-model="basic.site_title.selected_language">
+        <option ng-repeat="language in available_languages" 
+          value="{{language.value}}">{{language.name}}</option>
       </select>
-      </label>
-      <input type="text" placeholder="GlobaLeaks Node">
+
+      {{node_info.admin_statistics}}
+
+      {{node_info}}
+
+      {{node_info.contexts}}
+
+      {{node_info.public_stats}}
+
+      {{node_info.node_description}}
+
+      {{node_info.public_site}}
+
+      {{node_info.hidden_service}}
+
+      {{node_info.url_schema}}
+
+      <input type="text"
+        ng-model="node_info.name">
+        <button class="btn"
+          ng-click="node_info.$save()">Save</button>
     </div>
 
     <div class="span4">
@@ -61,14 +53,14 @@
         href="https://github.com/globaleaks/GlobaLeaks/wiki">Learn More</a></p>
 
     </div>
-</div>
+  </div>
   <div class="row">
     <div class="offset3 span5">
-      <label>Keywords
+      <label>Keywords</label>
       <select class="language-setting">
         <option>English</option>
         <option>Serbian</option>
-      </select></label>
+      </select>
       <textarea placeholder="fuffa, foo, antani, supercazzola, religione, cristo, lamadonna"></textarea>
     </div>
     <div class="span4">
@@ -83,53 +75,6 @@
     <div class="offset3 span5">
       <label>Email</label>
       <input type="text" placeholder="me@example.com">
-    </div>
-    <div class="span4">
-      <p>Wayfarers tumblr next level american apparel mumblecore authentic
-      master cleanse. Vinyl bushwick labore nesciunt readymade, jean shorts
-      hoodie polaroid food truck. Dolor eiusmod +1 put a bird on it bespoke.<a
-        href="https://github.com/globaleaks/GlobaLeaks/wiki">Learn More</a></p>
-    </div>
-</div>
-</section>
-<section id="internationalization">
-
-  <div class="row">
-    <div class="offset3 span5">
-      <h2 id="internationalization">Internationalization</h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="offset3 span5">
-        <label>Enabled languages</label>
-        <label class="checkbox inline"><input type="checkbox" id="languageEnglish"
-              value="English" checked="on">English</input></label>
-        <label class="checkbox inline"><input type="checkbox" id="languageSerbian"
-              value="Serbian" checked="on">Serbian</input></label>
-        <label class="checkbox inline"><input type="checkbox" id="languageGerman" value="German">German</input></label>
-        <label class="checkbox inline"><input type="checkbox" id="languageSpanish"
-              value="Spanish">Spanish</input></label>
-    </div>
-    <div class="span4">
-      <p>Wayfarers tumblr next level american apparel mumblecore authentic
-      master cleanse. Vinyl bushwick labore nesciunt readymade, jean shorts
-      hoodie polaroid food truck. Dolor eiusmod +1 put a bird on it bespoke.<a
-        href="https://github.com/globaleaks/GlobaLeaks/wiki">Learn More</a></p>
-    </div>
-  </div>
-
-  <div class="row">
-      <div class="offset3 span5">
-        <button class="btn btn-primary">Add new language</button>
-    </div>
-  </div>
-
-  <div class="row">
-      <div class="offset3 span5">
-          <label>Default Language</label>
-          <select>
-              <option>English</option>
-              <option>Serbian</option>
     </div>
     <div class="span4">
       <p>Wayfarers tumblr next level american apparel mumblecore authentic
