@@ -6,48 +6,15 @@
 // of a tag to a directive defined here and then you will be able to interact
 // with it.
 // To learn more see: http://docs.angularjs.org/guide/directive
-angular.module('submissionUI', [], function($compileProvider) {
-  $compileProvider.directive('submissionField', function($compile){
-    // We are now able to do something like <div submission-field=""></div> and
-    // then stuff will happen to that field. This is required to have our
-    // dynamic generation of HTML elements.
-    return function(scope, element, attrs) {
-      var fieldtype = scope.field.type,
-        placeholder = scope.field.value,
-        required = scope.field.required,
-        // this is the basic template for dynamic creation of the submission
-        // form that are of input type
-        // XXX refactor these to use the templating system of angular
-        input_template = '<input type="<%= type %>"'+
-                ' placeholder="<%= placeholder %>"' +
-                ' required="<%= required %>">',
-        // This is the basic template for dynamic creation of submission form
-        // that is of textarea type
-        textarea_template = '<textarea placeholder="<%= placeholder %>"'+
-                ' required="<%= required %>"></textarea>';
-
-      console.log("This field has type " + fieldtype);
-      // XXX perhaps we can change the API to better accomodate this
-      if ( fieldtype == "text" ) {
-        $(element).replaceWith(_.template(textarea_template, {
-          'placeholder': placeholder, 'required': required}));
-      } else if ( fieldtype == "string" )  {
-        $(element).replaceWith(_.template(input_template, {'type': 'text',
-          'placeholder': placeholder, 'required': required}));
-      } else if ( fieldtype == "radio" ){
-        // XXX add support for radio buttons.
-      } else if ( fieldtype == "other type" ) {
-        // XXX and something else...
-      }
-    }
-  });
-
+angular.module('submissionUI', []).
   // XXX this needs some major refactoring.
-  $compileProvider.directive('fileUpload', function($compile){
-    // The purpose of this directive is to register the jquery-fileupload plugin
+  directive('fileUpload', function(){
+    // The purpose of this directive is to register the jquery-fileupload
+    // plugin
     return function(scope, element, attrs) {
       $(element).fileupload({
         progress: function (e, data) {
+          console.log("loaded file uploader!");
           var progress = parseInt(data.loaded / data.total * 100, 10);
           console.log($(element).find('.progress .bar'));
           $(element).find('.progress .bar').css(
@@ -99,5 +66,45 @@ angular.module('submissionUI', [], function($compileProvider) {
         }
       });
     }
-  });
-});
+}).
+  directive('latenzaBox', ['$timeout', function($timeout){
+    return function(scope, element, attrs) {
+      // This directive serves for making our latenza box work.
+      //
+      // Basically you are able to set the loading variable in
+      // global scope to either true or false. When it is set
+      // to true the loading box will be displayed and a
+      // message containing some trivia on whistleblowing will
+      // be displayed.
+      //
+      // Basically you must just do as follows:
+      // $scope.loading = true (if loading is in progress)
+      // $scope.loading = false (if loading has completed)
+      //
+      // XXX in future there may acutally be a cleaner way of
+      // doing this.
+
+      $timeout(function(){
+        // XXX this is a hack to avoid calling the watch while
+        // there is an apply in progress. Basically $timeout will
+        // execute what is contained in the function when
+        // everything that needs to happen in a digest cycle has
+        // happened. This was the solution that people interested
+        // in doing things like this have reached. See:
+        // http://stackoverflow.com/questions/11135864/scope-watch-is-not-updating-value-fetched-from-resource-on-custom-directive
+        // http://jsfiddle.net/jtowell/j8hnr/
+        // https://github.com/angular/angular.js/issues/1250
+        scope.$watch('loading', function() {
+            if (scope.loading === true) {
+              element.modal('show');
+            } else if (scope.loading === false){
+              element.modal('hide');
+            } else {
+              element.modal('show');
+            }
+          }, true);
+      });
+
+    }
+
+}]);

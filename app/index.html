@@ -22,13 +22,28 @@
             <script src="scripts/vendor/json3.min.js"></script>
         <![endif]-->
 
-        <!-- Add your site or application content here -->
-        <div class="pendingRequests">
+        <div ng-controller="LatenzaCtrl"
+          latenza-box
+          class="pending-requests modal fade hide">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h3>Loading...</h3>
+          </div>
+          <div class="modal-body">
+            <h2>Did you know?</h2>
+            <p>The term whistle-blower comes from the whistle a referee uses to
+            indicate an illegal or foul play. US civic activist Ralph
+            Nader coined the phrase in the early 1970s to avoid the negative
+            connotations found in other words such as "informers" and
+            "snitches"</p>
+          </div>
           <ul>
             <li ng-repeat="request in pending_requests">{{request.name}}</li>
           </ul>
         </div>
-        <div class="contentContainer" ng-view></div>
+
+        <!-- In here is the main GLClient application content -->
+        <div class="page-content" ng-view></div>
 
         <footer class="footer">
           <div class="container">
@@ -54,23 +69,29 @@
           </div>
         </footer>
 
+        <script src="scripts/vendor/jquery.js"></script>
+        <script src="scripts/vendor/bootstrap.js"></script>
+
+        <script src="scripts/vendor/jquery.ui.js"></script>
+        <script src="scripts/vendor/jquery.fileupload.js"></script>
+        <script src="scripts/vendor/jquery.fileupload-fp.js"></script>
+        <script src="scripts/vendor/jquery.fileupload-ui.js"></script>
+
         <script src="scripts/vendor/angular.js"></script>
         <script src="scripts/vendor/angular-resource.js"></script>
-        <script src="components/underscore/underscore.js"></script>
-        <script src="components/jquery/jquery.js"></script>
-        <script src="components/jquery-ui/ui/jquery-ui.js"></script>
-        <script src="components/jquery.fileupload/index.js"></script>
-        <script src="components/jquery.fileupload-fp/index.js"></script>
-        <script src="components/jquery.fileupload-ui/index.js"></script>
+
+
 
         <!-- build:js scripts/scripts.js -->
+        <script src="scripts/ui.js"></script>
         <script src="scripts/app.js"></script>
         <script src="scripts/filters.js"></script>
         <script src="scripts/services.js"></script>
-        <script src="scripts/ui.js"></script>
+        <script src="scripts/controllers/latenza.js"></script>
         <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/admin.js"></script>
         <script src="scripts/controllers/submission.js"></script>
+        <script src="scripts/controllers/formbuilder.js"></script>
         <!-- endbuild -->
 
     </body>
