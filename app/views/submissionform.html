@@ -1,5 +1,5 @@
-<form>
-<div ng-repeat="field in fields">
+<form name="submission">
+<div ng-repeat="field in current_context.fields">
   <div ng-switch on="field.type">
     <h3 ng-switch-when="header">
       {{field.name}}
@@ -16,7 +16,7 @@
         </label>
         <div ng-switch on="field.type">
         <input ng-switch-default type="{{field.type}}"
-        ng-model="field.value"
+        ng-model="fields.value"
         ng-bind-attr="{required:'{{field.required}}'}" 
         value="{{field.value}}"
         placeholder="{{field.placeholder}}">
@@ -26,14 +26,13 @@
         id="field"
         placeholder="{{field.instructions}}">
 
-        <!-- XXX this is hackish because of the API -->
-        <input ng-switch-when="string" type="text"
+        <input ng-switch-when="text" type="text"
         ng-model="field.value"
         ng-bind-attr="{required:'{{field.required}}'}" 
         value="{{field.value}}"
         placeholder="{{field.placeholder}}">
 
-        <textarea ng-switch-when="text"
+        <textarea ng-switch-when="textarea"
           ng-model="field.value" 
           placeholder="{{field.instructions}}">{{field.value}}</textarea>
         <select ng-switch-when="select"

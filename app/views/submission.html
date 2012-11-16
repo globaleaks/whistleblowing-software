@@ -4,12 +4,19 @@
     <p>I want to report on
     <select
       ng-model="current_context"
-      ng-options="context.name for context in node_info.contexts"
+      ng-options="context.get_context_name() for context in node_info.contexts"
       ng-change="create_submission()"
     >
-    </select>
-    <p>{{current_context.description}}</p>
-
+  </select>
+  <!--  XXX enable for debugging
+  <pre>
+  {{submission}}
+  </pre>
+  <pre>
+  {{current_context.fields}}
+  </pre>
+  -->
+    <p>{{current_context.get_context_description()}}</p>
     <h2>Step {{steps.current}}/{{steps.all.length}}</h2>
   </div>
 </div>
@@ -29,17 +36,17 @@
     </div>
     <!-- End first step -->
 
+    <form name="finalsteps" novalidate>
     <!-- Begin second step -->
     <div class="row" ng-switch-when="2">
       <div class="span12 receiver-list">
-        <label>
-        Current List of receivers
-        </label>
-        <ul class="receiver-list">
-          <li ng-repeat="receiver in current_context.receivers">
-          {{receiver.name}} - {{receiver.description}} - {{receiver.tags}} - {{receiver.languages_supported}}
-          </li>
-        </ul>
+        <h2>Current List of receivers</h2>
+        <div ng-repeat="receiver in current_context.receivers">
+          {{receiver.name}} -
+          {{receiver.description}} -
+          {{receiver.tags}} -
+          {{receiver.languages_supported}}
+        </div>
       </div>
     </div>
     <!-- End second step -->
@@ -47,6 +54,9 @@
     <!-- Begin third step -->
     <div class="row" ng-switch-when="3">
       <div class="span12 receiver-list">
+        <input type="text"
+          ng-model="submission.submission_receipt"
+        >
         <p>
         Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
         tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -57,12 +67,13 @@
         </p>
         <label class="checkbox">
           <input type="checkbox"
-          ng-model="fields.disclaimer"
+          required
           name="disclaimer" value="ack"> Agree
         </label>
       </div>
     </div>
     <!-- End third step -->
+  </form>
   </div>
 
   <!-- wizard controls -->
@@ -78,7 +89,8 @@
 
       <button ng-click="submit()"
         class="btn"
-        ng-disabled="disable.submit_button()">Submit</button>
+        ng-disabled="submission.$invalid || finalsteps.$invalid"
+        >Submit</button>
     </div>
   </div>
 </div>

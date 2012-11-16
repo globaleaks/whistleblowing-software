@@ -14,34 +14,13 @@ angular.module('submissionServices', ['ngResource']).
   factory('Submission', function($resource) {
     // This is a factory function responsible for creating functions related
     // to the creation of submissions
-    return $resource('/submission/:id_or_gus/:action', {action: 'status',
-      id_or_gus: '@submission_gus'}, {
-
-      create: {method: 'GET'},
-      // XXX in
-      // https://github.com/globaleaks/GlobaLeaks/wiki/API-Specification it
-      // takes receiver_selected in post while it returns receivers_selected
-      // in the GET. This should be made uniform.
-
-      update: {method: 'POST'},
-      // XXX file is not included here because that is a task for the fileuploader plugin
-      finalize: {method: 'POST'}
-    });
+    return $resource('/submission/');
 });
 
 angular.module('tipServices', ['ngResource']).
   factory('Tip', function($resource) {
-    return $resource('/tip/:tip_id/:action',
+    return $resource('/tip/:tip_id/',
         {tip_id: '@tip_id'}, {
-        // GET and POST of / come for free.
-        comment: {method: 'POST',
-          params: {action: 'comment'},
-        },
-
-        // This takes as the body of the request folder_name,
-        finalize: {method: 'POST',
-          params: {action: 'finalize'}
-        }
     })
 });
 

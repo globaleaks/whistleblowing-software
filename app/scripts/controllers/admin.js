@@ -9,7 +9,7 @@ GLClient.controller('AdminCtrl',
   // hackish callback
   scope.loading = true;
   $scope.node_info = AdminNode.get(function() {
-    
+    scope.loading = true;
     // XXX I need in the API of the admin to get back the list of languages that
     // it supports.
     // The language code should follow:

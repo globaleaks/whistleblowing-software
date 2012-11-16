@@ -1,14 +1,15 @@
-<div class="jumbotron homeSplash">
-    <h1>Welcome to GLClient!</h1>
+<div class="jumbotron homeSplash" ng-controller='MainCtrl'>
+    <h1>Welcome to {{node_name()}}</h1>
     <p>I speak
-    <select class="lang">
-        <option>English</option>
-        <option>Serbian</option>
-    </select>
+    <select class="lang" 
+      ng-model="selected_language"
+      ng-options="lang.code as lang.name for lang in node_info.available_languages"
+      ></select>
     </p>
 
     <p>
-    <a href="#/submission" class="btn btn-primary btn-large">Blow the Whistle</a>
+    <a href="#/submission" 
+      class="btn btn-primary btn-large">Blow the Whistle</a>
     </p>
 </div>
 <div class="container">
