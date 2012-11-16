@@ -29,7 +29,7 @@ seamless as possible, but it is not the main direction of development.
 This is a full rewrite and it collects all of the experience and knowledge
 gained in building GlobaLeaks 0.1.
 
-All future development will continue in this direction.
+All future development will continue in this direction. The complete [Project Plan](http://globaleaks.org/ProjectPlan.pdf).pdf describe the goal withoth technical details.
 
 The main components of GlobaLeaks 0.2 are
 [GLClient](https://github.com/globaleaks/GLClient.git) and
