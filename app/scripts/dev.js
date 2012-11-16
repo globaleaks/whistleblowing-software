@@ -190,11 +190,11 @@ GLClientDev.run(function($httpBackend) {
       if (!data['submission_gus']) {
         response = create_submission(data);
       } else if (!data['submission_receipt']) {
-        console.log("got a proposed receipt");
+        console.log("did not get a proposed receipt");
         response = data;
         response['submission_receipt'] = 'somerandomstring';
       } else {
-        console.log("did not get a proposed receipt");
+        console.log("got a proposed receipt");
         response = data;
       }
       response = JSON.stringify(response);

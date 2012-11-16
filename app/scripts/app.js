@@ -1,8 +1,7 @@
 'use strict';
 
-var GLClient = angular.module('GLClient', ['nodeServices',
-    'submissionServices', 'helpServices', 'submissionUI',
-    'adminServices', 'GLClientFilters']).
+var GLClient = angular.module('GLClient', ['resourceServices', 
+    'submissionUI', 'localeServices', 'GLClientFilters']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {

@@ -14,8 +14,10 @@ GLClient.controller('AdminCtrl',
     // it supports.
     // The language code should follow:
     // http://en.wikipedia.org/wiki/ISO_639-1
-    $scope.node_info.available_languages = [{'name': 'English', 'code': 'en'}, 
-      {'name': 'Italiano', 'code': 'it'}];
+    $scope.node_info.available_languages = [
+      {'name': 'English', 'code': 'en'}, 
+      {'name': 'Italiano', 'code': 'it'}
+    ];
     $scope.selected_language = $scope.node_info.available_languages[1].code;
 
     // XXX I need this in the API

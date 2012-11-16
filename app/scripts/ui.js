@@ -14,13 +14,10 @@ angular.module('submissionUI', []).
     return function(scope, element, attrs) {
       $(element).fileupload({
         progress: function (e, data) {
-          console.log("loaded file uploader!");
           var progress = parseInt(data.loaded / data.total * 100, 10);
-          console.log($(element).find('.progress .bar'));
           $(element).find('.progress .bar').css(
                 'width', progress + '%'
           );
-          console.log("Progress " + progress);
         },
 
         progressall: function (e, data) {
@@ -28,7 +25,6 @@ angular.module('submissionUI', []).
           $(element).find('.progress .bar').css(
                 'width', progress + '%'
           );
-          console.log("Progress " + progress);
         },
 
         add: function (e, data) {
@@ -56,7 +52,6 @@ angular.module('submissionUI', []).
           var result = data.result,
             textStatus = data.textStatus,
             item_id;
-          console.log(data);
           // XXX do sanitization and validation here
           // XXX this is a hack to keep track of what things are finished.
           // fix this by having a lookup table of the in progress submissions
