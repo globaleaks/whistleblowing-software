@@ -1,30 +1,38 @@
-from globaleaks.plugins.notification.password import data
-
-# after hours throw in the cesspool in trying - in vain - how to do a Twister SMTPS client:
+from globaleaks.utils import log
 import smtplib
+import string
 
 def GLBMailService(tip_gus, receiver_addr):
+    """
+    This is a temporary email supports not yet pluginized
+    """
+    username='globaleaksnode1@gmail.com'
+    password='Antani1234'
+    serverport='smtp.gmail.com:587'
 
-    x = smtplib.SMTP( data['host'], data['port'] )
-    x.set_debuglevel(True)
-    x.starttls()
-    # x.login( data['username'], data['password'] ) # google do not support that ?
-    x.ehlo()
+    subject = "I'm an email for %s containing %s" % ( receiver_addr.split('@')[0], tip_gus[:6])
 
-    fromAddr = data['from']
-    fromName = 'Debra Morgan'
-    toName = 'Special Agent Landi'
-    # ignored receiver_addr ATM
-    toAddr = 'vecna@apps.globaleaks.org'
+    text = "I'm an email Notification, this is your Tip: %s" % tip_gus
 
-    subject = "new tip for you"
-    body = "I'm Debra Morgan, Miami Omicide Tenent, and I approve this message\n\r%s" % tip_gus
+    body = string.join(("From: GLBackend postino <%s>" % username,
+                        "To: Estimeed Receiver <%s>" % receiver_addr,
+                        "Subject: %s" % subject, text), "\r\n")
 
-    msg = ("From: <%s> %s\r\nTo: <%s> %s\r\n" % (fromName, fromAddr, toName, toAddr) )
-    msg = msg + ("Subject: %s" % subject) + "\r\n\r\n" + body + "\r\n"
+    server = smtplib.SMTP(serverport)
+    server.starttls()
+    server.login(username, password)
 
-    x.sendmail(fromAddr, [ toAddr ] , msg)
-    x.quit()
+    try:
+        server.sendmail(username, [ receiver_addr ], body)
+        log.debug("sent email with Tip %s to %s (%s) " % (tip_gus, receiver_addr, subject) )
+        server.quit()
+        retval = True
+    except smtplib.SMTPRecipientsRefused, smtplib.SMTPSenderRefused:
+        # remind, other error can be handled http://docs.python.org/2/library/smtplib.html
+        log.err("[E] error in sending the email to %s %s (%s)" % (receiver_addr, tip_gus, subject))
+        retval = False
+
+    return retval
 
 
 # class email(Notification)

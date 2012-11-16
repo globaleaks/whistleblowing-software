@@ -51,7 +51,7 @@ $SHOOTER U4 POST sid $submission_gus verbose
 if [ $? != 0 ]; then echo "\tError in U4 POST" && exit; fi
 
 # A6 is an administrative interface that force the execution of the Tip, otherwise scheduled,
-# job.
+# job. -- this generate the ReceiverTip(s)
 $SHOOTER A6 GET oid tip 
 if [ $? != 0 ]; then echo "\tError in A6 GET (force tip job)" && exit; fi
 
@@ -63,4 +63,14 @@ if [ $? != 0 ]; then echo "\tError in A5 GET" && exit; fi
 
 if [ $((beforecount + 1)) != $aftercount ]; then
     echo "serious error in tip generation :("
+else
+    echo "correct InternalTip generation..."
 fi
+
+echo "forcing delivery job"
+# Force ReceiverTip delivery and notification
+$SHOOTER A6 GET oid delivery 
+if [ $? != 0 ]; then echo "\tError in A6 GET (force delivery job)" && exit; fi
+echo "forcing notification job"
+$SHOOTER A6 GET oid notification
+if [ $? != 0 ]; then echo "\tError in A6 GET (force notification job)" && exit; fi

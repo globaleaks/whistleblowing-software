@@ -2,12 +2,14 @@ from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from globaleaks.models.externaltip import ReceiverTip
 from datetime import datetime
+from twisted.internet.defer import inlineCallbacks
 from globaleaks.plugins.notification.mailclient import GLBMailService
 
 __all__ = ['APSNotification']
 
 class APSNotification(GLJob):
 
+    @inlineCallbacks
     def operation(self):
         """
         Goal of this function is to check all the:
@@ -32,11 +34,21 @@ class APSNotification(GLJob):
         receivertip_iface = ReceiverTip()
 
         # TODO +check delivery mark - would be moved in task queue
-        not_notified_tips = yield receivertip_iface.get_tips(status=u'not notified')
+        not_notified_tips = yield receivertip_iface.get_tips(marker=u'not notified')
 
         for single_tip in not_notified_tips:
 
-            print "sendig email for" , single_tip
+            # instead of checking if 'email' is set, in the future, open the plugin called like
+            # notification_selected, and pass the notification_fields to them.
+            if single_tip['notification_selected'] == u'email':
 
-            GLBMailService(single_tip['tip_gus'], single_tip['notification_fields'])
+                if GLBMailService(single_tip['tip_gus'], single_tip['notification_fields']):
+                    receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
+                else:
+                    receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
+
+            else:
+                log.err("[E]: not yet supported notification %s (%s)" %
+                        (single_tip['notification_selected'], single_tip['notification_fields'])
+                )
 
