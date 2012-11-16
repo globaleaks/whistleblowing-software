@@ -7,11 +7,11 @@ var GLClient = angular.module('GLClient', ['nodeServices',
     $routeProvider.
       when('/', {
         templateUrl: 'views/home.html',
-        controller: 'MainCtrl'
+        controller: 'PageCtrl'
       }).
       when('/about', {
         templateUrl: 'views/about.html',
-        controller: 'MainCtrl',
+        controller: 'PageCtrl',
       }).
       when('/submission', {
         templateUrl: 'views/submission.html',
@@ -19,19 +19,19 @@ var GLClient = angular.module('GLClient', ['nodeServices',
       }).
       when('/status/:token', {
         templateUrl: 'views/status.html',
-        controller: 'MainCtrl',
+        controller: 'PageCtrl',
       }).
       when('/receiver/:token', {
         templateUrl: 'views/receiver/main.html',
-        controller: 'MainCtrl',
+        controller: 'PageCtrl',
       }).
       when('/receiver/:token/preferences', {
         templateUrl: 'views/receiver/preferences.html',
-        controller: 'MainCtrl'
+        controller: 'PageCtrl'
       }).
       when('/receiver/:token/list', {
         templateUrl: 'views/receiver/list.html',
-        controller: 'MainCtrl'
+        controller: 'PageCtrl'
       }).
       when('/admin/basic', {
         templateUrl: 'views/admin/basic.html',
