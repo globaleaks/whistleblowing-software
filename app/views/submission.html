@@ -3,7 +3,7 @@
     <h1>New Submission</h1>
     <p>I want to report on
     <select
-      ng-model="current_context"
+      ng-model="localization.current_context"
       ng-options="context.get_context_name() for context in localization.node_info.contexts"
       ng-change="create_submission()"
     >
@@ -33,7 +33,7 @@
     <div class="row" ng-switch-when="2">
       <div class="span12 receiver-list">
         <h2>Current List of receivers</h2>
-        <div ng-repeat="receiver in current_context.receivers">
+        <div ng-repeat="receiver in localization.current_context.receivers">
           {{receiver.name}} -
           {{receiver.description}} -
           {{receiver.tags}} -

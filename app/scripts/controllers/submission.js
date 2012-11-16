@@ -2,15 +2,16 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
     'Submission', function($scope, 
       localization, Node, Submission) {
 
+  $scope.submission_complete = false;
+  $scope.localization = localization;
+
   // XXX here we are actually violating the principle for which the
   // controller should not be stateful. This can possibly be fixed by
   // refactoring how the API works, or by making the logic for creation of
   // the submission into a service.
   // We use the scope variable uploaded_files to keep track of the files
   // that are uploaded.
-  $scope.localization = localization;
   $scope.uploaded_files = [];
-  $scope.current_context = localization.current_context;
 
   $scope.create_submission = function(){
     $scope.submission = new Submission({
@@ -18,16 +19,15 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
       // performing a network operation
       context_gus: localization.current_context_gus
     });
-    console.log('got this response');
-    console.log($scope.submission);
     $scope.submission.$save();
   }
-
+  
   $scope.submit = function() {
-    angular.forEach($scope.current_context.fields, function(field, k) {
+    angular.forEach(localization.current_context.fields, function(field, k) {
       $scope.submission.fields[field.name] = field.value;
     });
     $scope.submission.$save();
+    $scope.submission_complete = true;
   }
 
   // Here goes step by step wizard related funcions

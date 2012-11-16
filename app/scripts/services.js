@@ -55,17 +55,19 @@ angular.module('helpServices', ['ngResource']).
 angular.module('localeServices', ['resourceServices']).
   factory('localization', function(Node){
     var localization = {};
+
     if (!localization.node_info) {
       // We set this to the parent scope that that we don't have to make this
       // request again later.
-      localization.node_info = Node.info(function() {
+      var node_info = Node.info(function() {
         // Here are functions that are specific to language localization. They
         // are somwhat hackish and I am sure there is a javascript ninja way of
         // doing them.
         // XXX refactor these into something more 1337
+        
+        localization.node_info = node_info;
         localization.selected_language =
           localization.node_info.available_languages[0].code;
-
         localization.get_node_name = function() {
           return localization.node_info.name[localization.selected_language];
         }
