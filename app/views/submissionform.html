@@ -1,5 +1,5 @@
-<form name="submission">
-<div ng-repeat="field in current_context.fields">
+<form name="submission" novalidate>
+<div ng-repeat="field in localization.current_context.fields">
   <div ng-switch on="field.type">
     <h3 ng-switch-when="header">
       {{field.name}}
@@ -17,24 +17,24 @@
         <div ng-switch on="field.type">
         <input ng-switch-default type="{{field.type}}"
         ng-model="fields.value"
-        ng-bind-attr="{required:'{{field.required}}'}" 
+        ng-required="field.required"
         value="{{field.value}}"
         placeholder="{{field.placeholder}}">
         <input ng-switch-when="checkbox" type="checkbox"
         ng-model="field.value"
         value="{{field.value}}"
         id="field"
-        placeholder="{{field.instructions}}">
+        placeholder="{{field.placeholder}}">
 
         <input ng-switch-when="text" type="text"
         ng-model="field.value"
-        ng-bind-attr="{required:'{{field.required}}'}" 
+        ng-required="field.required"
         value="{{field.value}}"
         placeholder="{{field.placeholder}}">
 
         <textarea ng-switch-when="textarea"
-          ng-model="field.value" 
-          placeholder="{{field.instructions}}">{{field.value}}</textarea>
+          ng-model="field.value"
+          placeholder="{{field.placeholder}}">{{field.value}}</textarea>
         <select ng-switch-when="select"
           ng-model="field.value" >
           <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
