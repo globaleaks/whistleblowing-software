@@ -73,25 +73,25 @@ class ReceiverTip(TXModel):
         self.internaltip = selected_it
 
 
-    # This would be moved in the new 'task queue', it's a get_tips_by_status
+    # XXX This would be moved in the new 'task queue', it's a get_tips_by_marker
     @transact
-    def get_tips(self, status=None):
+    def get_tips(self, marker=None):
         """
         @param status: unicode!
         @return:
         """
         store = self.getStore('get_tips')
 
-        notification_status = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
-        if not status in notification_status:
+        notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
+        if not marker in notification_markers:
             raise Exception("Invalid developer brain dictionary")
 
-        # TODO ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
-        marked_tips = store.find(ReceiverTip, ReceiverTip.mark == status)
+        # XXX ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
+        marked_tips = store.find(ReceiverTip, ReceiverTip.notification_mark == marker)
 
-        retVal = {}
+        retVal = []
         for single_tip in marked_tips:
-            retVal.update({
+            retVal.append({
                 'notification_fields' : single_tip.receiver.notification_fields,
                 'notification_selected' : single_tip.receiver.notification_selected,
                 'tip_gus' : single_tip.tip_gus
@@ -100,6 +100,23 @@ class ReceiverTip(TXModel):
         store.close()
 
         return retVal
+
+    # XXX this would be moved in the new 'task queue'
+    @transact
+    def flip_mark(self, tip_gus, newmark):
+
+        notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
+
+        if not newmark in notification_markers:
+            raise Exception("Invalid developer brain dictionary")
+
+        store = self.getStore('flip mark')
+
+        requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        requested_t.notification_mark = newmark
+
+        store.commit()
+        store.close()
 
     @transact
     def admin_get_all(self):

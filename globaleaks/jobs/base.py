@@ -1,5 +1,6 @@
 from apscheduler.scheduler import Scheduler
 from datetime import date
+from globaleaks.utils import gltime
 
 class GLJob:
 
@@ -12,7 +13,10 @@ class GLJob:
         if not seconds:
             self.operation()
         else:
-            print "TODO: postpone operation of", seconds
-            #  aps.add_interval_job(self.operation, seconds=seconds)
-            # remind: is not the correct way, need
-            # add_date_job
+            # this hours=1 need to be managed with CEST/CET timezone checks
+            plan_exec = gltime.utcFutureDate(hours=1, seconds=seconds)
+
+            print "Stored execution of %s postpone to %s" % \
+                  (self.__class__.__name__, gltime.prettyDateTime(plan_exec) )
+
+            aps.add_date_job(self.operation, plan_exec)

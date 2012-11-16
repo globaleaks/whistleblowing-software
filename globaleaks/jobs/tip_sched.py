@@ -2,7 +2,7 @@ from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.models.internaltip import  InternalTip
+from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.externaltip import ReceiverTip
 
 __all__ = ['APSTip']
