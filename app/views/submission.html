@@ -12,13 +12,31 @@
     <h2>Step {{steps.current}}/{{steps.all.length}}</h2>
   </div>
 </div>
+<div 
+  class="submission-receipt modal"
+  ng-show="submission_complete">
+  <div class="modal-header">
+    <h3>Submission Created!</h3>
+  </div>
+  <div class="modal-body">
+    <h2>{{submission.submission_receipt}}</h2>
+    <p>This number here is your receipt keep good care of it as it will
+    allow you to access your submission</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#/tip/{{submission.submission_receipt}}" class="btn btn-primary">View Tip</a>
+  </div>
+</div>
+
 <div class="container">
+  <form name="form" novalidate>
   <div class="submission-wizard" ng-switch on="steps.current">
     <!-- Begin the first step of the submission -->
     <div class="row" ng-switch-default>
-      <div class="submission-form span6"
+      <div class="span6"
         ng-include="'views/submissionform.html'"
-        ng-controller="FormBuilderCtrl">
+        ng-controller="FormBuilderCtrl"
+        >
       </div>
       <div class="span6">
         <div class="file-upload"
@@ -28,7 +46,6 @@
     </div>
     <!-- End first step -->
 
-    <form name="finalsteps" novalidate>
     <!-- Begin second step -->
     <div class="row" ng-switch-when="2">
       <div class="span12 receiver-list">
@@ -59,13 +76,11 @@
         </p>
         <label class="checkbox">
           <input type="checkbox"
-          required
-          name="disclaimer" value="ack"> Agree
+          name="disclaimer" value="agree"> Agree
         </label>
       </div>
     </div>
     <!-- End third step -->
-  </form>
   </div>
 
   <!-- wizard controls -->
@@ -81,7 +96,7 @@
 
       <button ng-click="submit()"
         class="btn"
-        ng-disabled="submission.$invalid || finalsteps.$invalid"
+        ng-disabled="form.$invalid"
         >Submit</button>
     </div>
   </div>
