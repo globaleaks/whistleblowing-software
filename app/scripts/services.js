@@ -43,7 +43,6 @@ angular.module('tipServices', ['ngResource']).
           params: {action: 'finalize'}
         }
     })
-      })
 });
 
 angular.module('receiverServices', ['ngResource']).
