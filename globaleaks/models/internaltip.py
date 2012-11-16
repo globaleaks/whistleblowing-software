@@ -161,18 +161,11 @@ class InternalTip(TXModel):
             if found_tip_gus:
                 ret_gus_list.append(found_tip_gus)
 
-
-                if receiver_mapped.get('receiver_gus') == receiver_gus and exists_tip_gus is not None:
-                    ret_gus_list.append(exists_tip_gus)
-                    break
-
         store.close()
-
-        print "*** I'm returning", len(ret_gus_list), "#", ret_gus_list
         return ret_gus_list
 
 
-    # perhaps get_newly_generated and get_newly_escalated can be melted
+    # perhaps get_newly_generated and get_newly_escalated can be melted, and in task queue
     @transact
     def get_newly_generated(self):
         """
@@ -230,6 +223,29 @@ class InternalTip(TXModel):
         store.close()
         return retVal
 
+    # not a transact, because called by the ReceiverTip.pertinence_vote
+    def pertinence_update(self, vote):
+        """
+        @vote: a boolean that express if the Tip is pertinent or not
+        @return: None, just increment in self of 1 unit the pertinence count
+        """
+        if vote:
+            self.pertinence_counter += 1
+        else:
+            self.pertinence_counter -= 1
+
+        # TODO last update time
+        # TODO system comment in the Tip,
+        # TODO system comment in the Tip + special message if escalation threshold has been reached
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "pertinence_update:", self.pertinence_counter)
+
+    # not transact, called by ReceiverTip.personal_delete
+    def receiver_remove(self):
+        """
+        @return: None, a receiver has choose to remove self from the Tip, notify with a system message the others
+        """
+        pass
+
     @transact
     def postpone_expiration(self):
         """
@@ -242,7 +258,7 @@ class InternalTip(TXModel):
         """
         function called when a receiver choose to remove a submission
         and all the derived tips. is called by scheduler when
-        timeoftheday is >= expired_date
+        timeoftheday is >= expired_date, or is called by ReceiverTip.total_delete
         """
         log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "tip_total_delete")
 
@@ -262,6 +278,7 @@ class InternalTip(TXModel):
         }
         return description_dict
 
-    def _receiver_description(self):
-        pass
+    def _receivers_description(self):
+        return [ 'sorry, TODO' ]
+
 

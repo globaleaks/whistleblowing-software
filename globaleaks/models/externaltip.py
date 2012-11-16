@@ -12,15 +12,29 @@ from globaleaks.models.receiver import Receiver
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.messages.responses import errorMessage
 
-__all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip' ]
+__all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip',
+            'TipGusANotFoundError', 'TipReceiptNotFoundError', 'TipPertinenceExpressed' ]
 
-class TipModelError(ModelError):
-    log.debug("[D] %s %s " % (__file__, __name__), "Class TipModelError", "ModelError", ModelError)
-    pass
+class TipGusNotFoundError(ModelError):
 
-class TipNotFoundError(TipModelError):
-    log.debug("[D] %s %s " % (__file__, __name__), "Class TipNotFoundError", "TipModelError", TipModelError)
-    pass
+    def __init__(self):
+        ModelError.error_message = "Invalid Globaleask Unique String referred to a Tip"
+        ModelError.error_code = 1 # need to be resumed the table and come back in use them
+        ModelError.http_status = 400 # Bad Request
+
+class TipReceiptNotFoundError(ModelError):
+
+    def __init__(self):
+        ModelError.error_message = "The inserted receipt do not exists in GlobaLeaks"
+        ModelError.error_code = 1 # need to be resumed the table and come back in use them
+        ModelError.http_status = 400 # Bad Request
+
+class TipPertinenceExpressed(ModelError):
+
+    def __init__(self):
+        ModelError.error_message = "Pertinence evaluation has been already expressed"
+        ModelError.error_code = 1 # need to be resumed the table and come back in use them
+        ModelError.http_status = 406 # Conflict
 
 
 class ReceiverTip(TXModel):
@@ -151,10 +165,10 @@ class ReceiverTip(TXModel):
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
             store.close()
-            raise TipNotFoundError
+            raise TipGusNotFoundError
         if not requested_t:
             store.close()
-            raise TipNotFoundError
+            raise TipGusNotFoundError
 
         requested_t.last_activity = gltime.utcPrettyDateNow()
         store.commit()
@@ -162,13 +176,14 @@ class ReceiverTip(TXModel):
         tip_details = requested_t.internaltip._description_dict()
         tip_details.pop('id')
 
-        folders = requested_t.internaltip.get_folder_public()
-        comments = requested_t.internaltip.get_comment_public()
+        #folders = requested_t.internaltip.get_folder_public()
+        #comments = requested_t.internaltip.get_comment_public()
+        # XXX XXX TEMP COMMENT
 
         complete_tip_dict = tip_details
         complete_tip_dict.update({'receivers' : requested_t.internaltip._receivers_description() })
-        complete_tip_dict.update({'folders' : folders})
-        complete_tip_dict.update({'comments' : comments})
+        #complete_tip_dict.update({'folders' : folders})
+        #complete_tip_dict.update({'comments' : comments})
 
         store.close()
 
@@ -179,6 +194,57 @@ class ReceiverTip(TXModel):
         """
         Return a small portion of the Tip, just the element useful to create tipIndexDict
         """
+
+    @transact
+    def pertinence_vote(self, tip_gus, vote):
+        """
+        check if the receiver has already voted. if YES: raise an exception, if NOT
+        mark the expressed vote and call the internaltip to register the fact.
+        @vote would be True or False, default is "I'm not expressed"
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "pertinence_vote", tip_gus)
+
+        store = self.getStore('pertinence_vote')
+
+        try:
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        except NotOneError, e:
+            store.close()
+            raise TipGusNotFoundError
+        if not requested_t:
+            store.close()
+            raise TipGusNotFoundError
+
+        if requested_t.expressed_pertinence:
+            store.close()
+            raise TipPertinenceExpressed
+
+        # TODO, in fact we had three meanings: True, False, Unset, and can't use -1
+        if vote:
+            requested_t.expressed_pertinence = 2
+        else:
+            requested_t.expressed_pertinence = 1
+
+        requested_t.internaltip.pertinence_update(vote)
+        requested_t.last_activity = gltime.utcPrettyDateNow()
+
+        store.commit()
+        store.close()
+
+    @transact
+    def total_delete(self, tip_gus):
+        """
+        checks if Receiver has the right of this operation, and forward to InternalTip.tip_total_delete()
+        """
+        pass
+
+    @transact
+    def personal_delete(self, tip_gus):
+        """
+        remove the Receiver Tip access, then forward to InternalTip.receiver_remove()
+        """
+
+        pass
 
     @transact
     def exists(self, tip_gus):
@@ -192,10 +258,10 @@ class ReceiverTip(TXModel):
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
             store.close()
-            raise TipNotFoundError
+            raise TipGusNotFoundError
         if not requested_t:
             store.close()
-            raise TipNotFoundError
+            raise TipGusNotFoundError
 
         ret_internaltip_id = requested_t.internaltip.id
         store.close()
@@ -210,7 +276,7 @@ class ReceiverTip(TXModel):
         """
         act on self. create the ReceiverTip based on self.receivers_map
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip create_receiver_tips", id, "on tier", tier)
+        log.debug("[D] %s %s " % (__file__, __name__), "ReceiverTip create_receiver_tips", id, "on tier", tier)
 
         store = self.getStore('create_receiver_tips')
 
@@ -288,10 +354,10 @@ class WhistleblowerTip(TXModel):
             requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
         except NotOneError, e:
             store.close()
-            raise TipNotFoundError
+            raise TipReceiptNotFoundError
         if not requested_t:
             store.close()
-            raise TipNotFoundError
+            raise TipReceiptNotFoundError
 
         wb_tip_dict = requested_t.internaltip._description_dict()
         wb_tip_dict.pop('id')
@@ -331,9 +397,11 @@ class WhistleblowerTip(TXModel):
         }
         return descriptionDict
 
-
     @transact
     def delete_access(self):
+        """
+        a WhistleBlower can delete is own access.
+        """
         pass
 
 

@@ -8,7 +8,6 @@
 #   Contains all the logic for handling tip related operations.
 import inspect
 import json
-
 from datetime import datetime
 from globaleaks.messages.errors import *
 
@@ -59,6 +58,7 @@ class timeType(SpecialType):
 class folderGUS(SpecialType):
     regexp = r"(f_[a-zA-Z]{20,20})"
 
+# XXX not true anymore, need to be update the specification and the glossary
 class receiptGUS(SpecialType):
     regexp = r"(\d{10,10})"
 
