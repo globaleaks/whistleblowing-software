@@ -54,9 +54,6 @@ spec = [
     #  * /tip/<tip_GUS>/download T5
     (r'/tip/' + tipGUS.regexp + '/download', tip.TipDownload),
 
-    #  * /tip/<tip_GUS>/pertinence T6
-    (r'/tip/' + tipGUS.regexp + '/pertinence', tip.TipPertinence),
-
     ## Receiver Handlers ##
     #  * /reciever/<tip_GUS>/ R1
     (r'/receiver/' + tipGUS.regexp, receiver.ReceiverRoot),
