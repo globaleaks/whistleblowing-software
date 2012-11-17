@@ -109,9 +109,7 @@ URTA = {
 }
 
 baseurl = "http://127.0.0.1:8082"
-
-# just to keep clean /tmp/
-outfname = errfname = ''
+output_handling = False
 
 def do_httpie(method, url, request_list):
     """
@@ -159,9 +157,13 @@ def do_httpie(method, url, request_list):
     with open(outfname, 'r') as outfstream:
         readed = outfstream.read()
 
-    if len(readed) > 5:
+    if len(readed) > 5 and output_handling == True:
         # If we're received data, mean that 'verbose' option was not present
-        outputOptionsApply(json.loads(readed))
+        if outputOptionsApply(json.loads(readed)) == False:
+            os.unlink(outfname)
+            os.unlink(errfname)
+            print "pattern searched not found in the output"
+            quit(1)
 
     os.unlink(outfname)
     os.unlink(errfname)
@@ -184,7 +186,7 @@ def getOpt(seekd):
             quit(1)
 
         # oid and raw can be less checked than the other variables...
-        if seekd == 'raw' or seekd == 'oid':
+        if seekd == 'raw' or seekd == 'oid' or seekd == 'variation':
             return retarg
 
         # tip, sid, cid has all the (t|s|c)_(\w+) regexp
@@ -278,12 +280,8 @@ def search_jsonfile(searched_rest):
     fileconv = string.replace(string.replace(searched_rest, '@', ''), '/', '_')
 
     variation = getOpt('variation')
-    if variation is not None:
-        
-        if not (int(variation) > 0 and int(variation) < 9):
-            print "invalid 'variation', expected [0-9]", variation
-            quit(1)
 
+    if variation:
         fname = 'jsonfiles/' + fileconv + '.' + variation
     else:
         fname = 'jsonfiles/' + fileconv
@@ -310,28 +308,30 @@ def search_jsonfile(searched_rest):
 
 def outputOptionsApply(theDict):
 
+    retval = False
+
     if type(theDict) != type({}):
-        return False
+        return retval 
 
     for uarg in sys.argv:
         if uarg.startswith('print-'):
+            # more than one print- option can be present
             choosen = uarg[6:]
 
             if theDict.has_key(choosen):
                 print theDict[choosen]
-                return True
+                retval = True
 
             for key, value in theDict.iteritems():
                 # it's a list ?
                 if type(value) == type([]):
                     for element in theDict.get(key):
-                        if outputOptionsApply(element):
-                            break
+                        retval |= outputOptionsApply(element)
 
                 # it's a dict ?
                 if type(value) == type({}):
-                    if outputOptionsApply(value):
-                        break
+                    retval |= outputOptionsApply(value)
+    return retval
 
 
 if __name__ == '__main__':
@@ -346,7 +346,13 @@ if __name__ == '__main__':
             (urta, method) = key.split("_")
             (dirt, path) = value.split("_")
             print "%s\t%s\t%s" % (urta, method, path)
+        print "A5 oid = [receivers|itip|rtip|wtip|all]"
+        print "A6 oid = [statistics|welcome|tip|delivery|notification|cleaning|digest]"
         quit(0)
+
+    for uarg in sys.argv:
+        if uarg.startswith('print-'):
+            output_handling = True
 
     # handle 'shooter.py U1' and 'shooter.py U1 POST'
     if len(sys.argv[1]) == 2:

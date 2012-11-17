@@ -69,13 +69,14 @@ class InternalTip(TXModel):
         """
         self.last_activity = gltime.utcDateNow()
         self.creation_date = gltime.utcDateNow()
-        self.context_gus = submission.context.context_gus
         self.context = submission.context
+
+        # those four can be referenced thru self.context.
+        self.context_gus = submission.context.context_gus
         self.escalation_threshold = submission.context.escalation_threshold
-        # access_limit and download_limit
         self.access_limit = submission.context.tip_max_access
         self.download_limit = submission.context.folder_max_download
-        # TODO
+
         self.expiration_date = submission.expiration_time
         self.fields = submission.fields
         self.pertinence_counter = 0
@@ -185,18 +186,27 @@ class InternalTip(TXModel):
     @transact
     def get_newly_escalated(self):
         """
-        @return: all the internaltips with pertinence_counter >= escalation_threshold and mark == u'first',
+        @return: all the internaltips with
+            pertinence_counter >= escalation_threshold and mark == u'first',
             in a list of id
         """
-        #store = self.getStore('get_newly_escalated')
-        #store.close()
-        return {}
+        store = self.getStore('get_newly_escalated')
+
+        escalated_itips = store.find(InternalTip, InternalTip.mark == u'first', InternalTip.pertinence_counter >= InternalTip.escalation_threshold )
+
+        retVal = []
+        for single_itip in escalated_itips:
+            print single_itip._description_dict()
+            retVal.append(single_itip.id)
+
+        store.close()
+        return retVal
 
     @transact
     def flip_mark(self, subject_id, newmark):
         """
-        @param newmark: u'first' or u'second'
-        @subject_id: InternalTip.id to be changed
+        @param newmark: u'first' or u'second', at the start is u'new'
+        @subject_id: InternalTip.id to be changed, this mark represent the progress of the iTip
         @return: None
         """
         store = self.getStore('flip mark')
@@ -270,10 +280,11 @@ class InternalTip(TXModel):
             'creation_date' : gltime.prettyDateTime(self.creation_date),
             'expiration_date' : gltime.prettyDateTime(self.creation_date),
             'fields' : self.fields,
-            'pertinence' : self.pertinence_counter,
             'download_limit' : self.download_limit,
             'access_limit' : self.access_limit,
             'mark' : self.mark,
+            'pertinence' : self.pertinence_counter,
+            'escalation_treshold' : self.escalation_threshold,
             'receiver_map' : self.receivers_map # it's already a dict
         }
         return description_dict

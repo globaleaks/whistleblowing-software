@@ -38,12 +38,9 @@ class APSTip(GLJob):
 
         # loops over the InternalTip and checks the escalation threshold
         # It may require the creation of second-step Tips
-
         internal_id_list = yield internaltip_iface.get_newly_escalated()
 
         for id in internal_id_list:
 
-            yield internaltip_iface.create_receiver_tips(id, 2)
+            yield receivertip_iface.create_receiver_tips(id, 2)
             yield internaltip_iface.flip_mark(id, u'second')
-
-            # loops over the InternalTip and checks the escalation threshold
