@@ -31,7 +31,7 @@ echo " receiver 1= $rcvr1, 2= $rcvr2, 3= $rcvr3 created"
 echo -n "testing receiver update..."
 $SHOOTER A3 POST rid $rcvr3 raw \"$cntx_gus2\"
 if [ $? != 0 ]; then echo "\tError receiver creation " && exit; fi
-echo " modified receiver: 1= $rcvr1 in 1= $cntx_gus1, 2= $rcvr2 and 3= $rcvr3 in 2= $cntx_gus2"
+echo " modified receiver: r1 $rcvr1 in c1 $cntx_gus1 | r2 $rcvr2 + r3 $rcvr3 in c2 $cntx_gus2"
 
 
 echo "testing effectiveness of the previous operations... (dumped files)"

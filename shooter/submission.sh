@@ -10,9 +10,9 @@ if [ -n "$1" ]; then
     echo "If an option is present, is choosen as context_gus"
     context_gus=$1
 else
-    context_gus=`$SHOOTER U1 GET print-context_gus`
-    if [ $? != 0 ]; then echo "\tError in U1 GET" && exit; fi
-    echo "context_gus $context_gus"
+    context_gus=`$SHOOTER U1 GET print-context_gus | head -1`
+    if [ $? != 0 ]; then echo "\tError in U1 GET $context_gus" && exit; fi
+    echo "context used: $context_gus"
 fi
 
 # the first command line optionally used, is 
@@ -36,7 +36,7 @@ if [ $? != 0 ]; then echo "\tError in A5 GET" && exit; fi
 # submission_gus, the globaleaks unique string usable as token
 submission_gus=`$SHOOTER U2 GET cid $context_gus print-submission_gus`
 if [ $? != 0 ]; then echo "\tError in U2 GET" && exit; fi
-echo "submission_gus $submission_gus"
+echo "submission token: $submission_gus"
 
 # get the submission status using the submnission token
 $SHOOTER U3 GET sid $submission_gus

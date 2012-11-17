@@ -13,7 +13,7 @@ from globaleaks.models.internaltip import InternalTip
 from globaleaks.messages.responses import errorMessage
 
 __all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip',
-            'TipGusANotFoundError', 'TipReceiptNotFoundError', 'TipPertinenceExpressed' ]
+            'TipGusNotFoundError', 'TipReceiptNotFoundError', 'TipPertinenceExpressed' ]
 
 class TipGusNotFoundError(ModelError):
 
@@ -35,7 +35,6 @@ class TipPertinenceExpressed(ModelError):
         ModelError.error_message = "Pertinence evaluation has been already expressed"
         ModelError.error_code = 1 # need to be resumed the table and come back in use them
         ModelError.http_status = 406 # Conflict
-
 
 class ReceiverTip(TXModel):
     """
@@ -98,7 +97,7 @@ class ReceiverTip(TXModel):
 
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
         if not marker in notification_markers:
-            raise Exception("Invalid developer brain dictionary")
+            raise Exception("Invalid developer brain dictionary", marker)
 
         # XXX ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
         marked_tips = store.find(ReceiverTip, ReceiverTip.notification_mark == marker)
@@ -122,7 +121,7 @@ class ReceiverTip(TXModel):
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
 
         if not newmark in notification_markers:
-            raise Exception("Invalid developer brain dictionary")
+            raise Exception("Invalid developer brain dictionary", newmark)
 
         store = self.getStore('flip mark')
 
@@ -219,11 +218,11 @@ class ReceiverTip(TXModel):
             store.close()
             raise TipPertinenceExpressed
 
-        # TODO, in fact we had three meanings: True, False, Unset, and can't use -1
-        if vote:
-            requested_t.expressed_pertinence = 2
-        else:
-            requested_t.expressed_pertinence = 1
+        # expressed_pertinence has those meanings:
+        # 0 = unassigned
+        # 1 = negative vote
+        # 2 = positive vote
+        requested_t.expressed_pertinence = 2 if vote else 1
 
         requested_t.internaltip.pertinence_update(vote)
         requested_t.last_activity = gltime.utcPrettyDateNow()
@@ -516,7 +515,7 @@ class Comment(TXModel):
             "id", id, "source", source, "name", name)
 
         if not source in [ u'receiver', u'whistleblower', u'system' ]:
-            raise Exception("Invalid developer brain status")
+            raise Exception("Invalid developer brain status", source)
 
         store = self.getStore('add_comment')
 

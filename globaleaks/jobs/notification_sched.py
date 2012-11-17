@@ -43,9 +43,9 @@ class APSNotification(GLJob):
             if single_tip['notification_selected'] == u'email':
 
                 if GLBMailService(single_tip['tip_gus'], single_tip['notification_fields']):
-                    receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
+                    yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
                 else:
-                    receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
+                    yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
 
             else:
                 log.err("[E]: not yet supported notification %s (%s)" %
