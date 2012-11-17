@@ -30,7 +30,6 @@ sys.path.insert(0, os.path.join(cwd, '../'))
 # T3 `/tip/<uniq_Tip_$ID>/update_file`
 # T4 `/tip/<string t_gus>/finalize_update`
 # T5 `/tip/<string t_gus>/download_material`
-# T6 `/tip/<string t_gus>/pertinence`
 
 # remind: this code section is copyed also in README.md
 schema = {
@@ -47,7 +46,6 @@ schema = {
      '/tip/@TIP@/finalize': 'POST', #T4
      '/tip/@TIP@/download': 'GET',  #T5
         # /download/ need a folderID insted of Tip ? XXX
-     '/tip/@TIP@/pertinence': 'POST', #T6
      '/receiver/@TIP@': 'GET', #R1
      '/receiver/@TIP@/notification': 'GET', #R2
         # would be /notification or /delivery
@@ -84,7 +82,6 @@ URTA = {
     'T4_POST':'POST_/tip/@TIP@/finalize', #T4
     'T5_GET':'GET_/tip/@TIP@/download',  #T5
     # /download/ need a folderID insted of Tip ? XXX
-    'T6_POST':'POST_/tip/@TIP@/pertinence', #T6
     'R1_GET':'GET_/receiver/@TIP@', #R1
     'R2_GET':'GET_/receiver/@TIP@/notification', #R2
     # /notification or /delivery

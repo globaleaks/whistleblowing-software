@@ -63,13 +63,6 @@ class finalizeIntegration(GLTypes):
             "folder_description": unicode}
 
 
-class pertinenceVote(GLTypes):
-    """
-    T6 (POST) - receiver only
-    """
-    specification = {"pertinence": int}
-
-
 class receiverOptions(GLTypes):
     """
     R2 (CURD)

@@ -43,11 +43,6 @@ tipFinalizePost = {
 }
 
 
-# T6 pertinenceVote
-tipPertinencePost = {
-    "pertinence":  102
-}
-
 # R2 receiverOptions
 receiverModulePost = {
     # optional: POST hack

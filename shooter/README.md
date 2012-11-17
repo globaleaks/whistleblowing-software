@@ -70,7 +70,6 @@ shooter.py U3 GET sid s\_VeLvSDfpKsxUdGLHEDDKWFBIAnTrMbbuqSPuEYylJpkxSozTmd
      '/tip/@TIP@/finalize': 'POST', #T4
      '/tip/@TIP@/download': 'GET',  #T5
         # /download/ need a folderID insted of Tip ? XXX
-     '/tip/@TIP@/pertinence': 'POST', #T6
      '/receiver/@TIP@': 'GET', #R1
      '/receiver/@TIP@/notification': 'GET', #R2
         # /notification or /delivery
