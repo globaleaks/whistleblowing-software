@@ -429,7 +429,8 @@ class WhistleblowerTip(TXModel):
 
         descriptionDict = {
             'internaltip_id' : self.internaltip_id,
-            'authoption' : self.authoptions
+            'authoption' : self.authoptions,
+            'receipt' : self.receipt
         }
         return descriptionDict
 
@@ -536,12 +537,12 @@ class Comment(TXModel):
 
 
     @transact
-    def add_comment(self, id, comment, source, name):
+    def add_comment(self, id, comment, source, name=None):
         """
         @param id: InternalTip.id of reference, need to be addressed
         @param comment: the unicode text expected to be recorded
         @param source: the source kind of the comment (receiver, wb, system)
-        @param name: the Comment author name to be show and recorded.
+        @param name: the Comment author name to be show and recorded, can be absent if source is enough
         @return: None
         """
         log.debug("[D] %s %s " % (__file__, __name__), "InternalTip class", "add_comment",
@@ -562,6 +563,7 @@ class Comment(TXModel):
         store.add(self)
         store.commit()
         store.close()
+
 
     # this is obvious, after the alpha release, all the mark/status info for the scheduler would be moved in
     # a dedicated class
@@ -619,6 +621,22 @@ class Comment(TXModel):
 
         return retVal
 
+    @transact
+    def admin_get_all(self):
+        """
+        This is called by API /admin/overview only
+        """
+
+        store = self.getStore('comment - admin_get_all')
+
+        comments = store.find(Comment)
+
+        retVal = []
+        for single_c in comments:
+            retVal.append(single_c._description_dict())
+
+        store.close()
+        return retVal
 
     def _description_dict(self):
 

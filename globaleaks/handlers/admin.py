@@ -429,12 +429,10 @@ class AdminOverView(BaseHandler):
             wtip_list = yield wtip_iface.admin_get_all()
             self.write({ 'elements' : len(wtip_list), 'whistleblower_tips' : wtip_list })
 
-        """
         if what == 'comment' or what == 'all':
             comment_iface = Comment()
             comment_list = yield comment_iface.admin_get_all()
             self.write({ 'elements' : len(comment_list), 'comments' : comment_list })
-        """
 
 
         self.finish()
