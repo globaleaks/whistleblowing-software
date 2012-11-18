@@ -51,14 +51,10 @@ class InternalTip(TXModel):
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
 
-        # Both to be cleaned and uniformed
-    comments = Pickle()
-
     """
     folders = ReferenceSet(id, Folder.internaltip_id)
         # remind: I've removed file reference from InternalTip
         # because do not exists file leaved alone
-    comments = ReferenceSet(id, Comment.internaltip_id)
     """
 
     # called by a transact: submission.complete_submission
@@ -88,12 +84,10 @@ class InternalTip(TXModel):
         """
         The existence of this function is important!
         Also if apparently the data may seem redounded. The selected
-        receiver may not be all the receiver of the context, therefore only when
-        submission is still available we had those information selected. put a
-        reference with receiver would have chain effect that we have to manage
-        properly, with errors and log, then a safe place where the receiver are
-        stored is that. plus, the receiver_level and escalation_threshold are
-        managed in this function.
+        receivers CAN BE A SUB-GROUP of the context, therefore only when
+        submission is still available we had those information selected that information
+        is available.
+        Here this information is stored, with the tip_gus that would be None or a valid Tip.
         """
 
         self.receivers_map.append({
@@ -237,17 +231,17 @@ class InternalTip(TXModel):
     def pertinence_update(self, vote):
         """
         @vote: a boolean that express if the Tip is pertinent or not
-        @return: None, just increment in self of 1 unit the pertinence count
+        @return: the pertinence counter
         """
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "pertinence_update:", self.pertinence_counter, vote)
+
         if vote:
             self.pertinence_counter += 1
         else:
             self.pertinence_counter -= 1
 
         # TODO last update time
-        # TODO system comment in the Tip,
-        # TODO system comment in the Tip + special message if escalation threshold has been reached
-        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "pertinence_update:", self.pertinence_counter)
+        return self.pertinence_counter
 
     # not transact, called by ReceiverTip.personal_delete
     def receiver_remove(self):
@@ -284,12 +278,12 @@ class InternalTip(TXModel):
             'access_limit' : self.access_limit,
             'mark' : self.mark,
             'pertinence' : self.pertinence_counter,
-            'escalation_treshold' : self.escalation_threshold,
+            'escalation_threshold' : self.escalation_threshold,
             'receiver_map' : self.receivers_map # it's already a dict
         }
         return description_dict
 
+    # perhaps need to be a @transact method called by handlers
     def _receivers_description(self):
-        return [ 'sorry, TODO' ]
-
+        pass
 

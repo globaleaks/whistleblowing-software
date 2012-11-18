@@ -398,11 +398,11 @@ class AdminOverView(BaseHandler):
         """
         /admin/overview GET should return up to all the tables of GLBackend
         """
-        from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip
+        from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment
         from globaleaks.models.internaltip import InternalTip
         from globaleaks.models.receiver import Receiver
 
-        expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'all' ]
+        expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'comment', 'all' ]
 
         if not what in expected:
             self.set_status(405)
@@ -410,28 +410,32 @@ class AdminOverView(BaseHandler):
             self.set_status(200)
 
         if what == 'receivers' or what == 'all':
-
             receiver_iface = Receiver()
             receiver_list = yield receiver_iface.admin_get_all()
-            self.write({ 'elements' : len(receiver_list), 'receivers' : receiver_list })
+            self.write({ 'elements' : len(receiver_list), 'receivers' : receiver_list})
 
         if what == 'itip' or what == 'all':
-
             itip_iface = InternalTip()
             itip_list = yield itip_iface.admin_get_all()
             self.write({ 'elements' : len(itip_list), 'internaltips' : itip_list })
 
         if what == 'rtip' or what == 'all':
-
             rtip_iface = ReceiverTip()
             rtip_list = yield rtip_iface.admin_get_all()
             self.write({ 'elements' : len(rtip_list), 'receivers_tips' : rtip_list })
 
         if what == 'wtip' or what == 'all':
-
             wtip_iface = WhistleblowerTip()
             wtip_list = yield wtip_iface.admin_get_all()
             self.write({ 'elements' : len(wtip_list), 'whistleblower_tips' : wtip_list })
+
+        """
+        if what == 'comment' or what == 'all':
+            comment_iface = Comment()
+            comment_list = yield comment_iface.admin_get_all()
+            self.write({ 'elements' : len(comment_list), 'comments' : comment_list })
+        """
+
 
         self.finish()
 
