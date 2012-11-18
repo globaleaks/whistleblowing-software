@@ -7,7 +7,7 @@ from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, DateTime, Unicode, Reference
 from storm.exceptions import NotOneError
 
-from globaleaks.utils import idops, gltime
+from globaleaks.utils import idops, gltime, random
 from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.externaltip import File, Folder, WhistleblowerTip
 from globaleaks.models.internaltip import InternalTip
@@ -289,12 +289,14 @@ class Submission(TXModel):
         log.debug("Creating tip for whistleblower")
         whistleblower_tip = WhistleblowerTip()
         whistleblower_tip.internaltip_id = internal_tip.id
-        whistleblower_tip.internaltip = internal_tip
-        whistleblower_tip.address = proposed_receipt
-        # authoptions would be filled here
+        # whistleblower_tip.internaltip = internal_tip
+
+        used_receipt = proposed_receipt + '-' + random.random_string(5, 'A-Z,0-9')
+        whistleblower_tip.receipt = used_receipt
+        # whistleblower_tip.authoptions would be filled here
 
         store.add(whistleblower_tip)
-        log.debug("Created tip with address %s" % whistleblower_tip.address)
+        log.debug("Created tip with address %s" % whistleblower_tip.receipt)
 
         log.debug("created_InternalTip", internal_tip.id," and WhistleBlowerTip, removed submission")
 
@@ -302,7 +304,7 @@ class Submission(TXModel):
         store.commit()
         store.close()
 
-        return proposed_receipt
+        return used_receipt
 
     @transact
     def admin_get_single(self, submission_gus):

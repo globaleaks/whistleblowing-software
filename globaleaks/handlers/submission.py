@@ -28,9 +28,9 @@ class SubmissionRoot(BaseHandler):
               GET /submission/<$context_gus>/new
 
         This creates an empty submission for the requested context,
-        and returns a GlobaLEaks Uniqe String, to be used during the submission
+        and returns a GlobaLeaks Uniqe String, to be used during the submission
         procedure.
-        sessionGUS is used as authentication secrect for the next interaction.
+        sessionGUS is used as authentication secret for the next interaction.
         expire after the time set by Admin, in the Context
 
             * Response:
@@ -214,8 +214,7 @@ class SubmissionFinalize(BaseHandler):
                 self.set_status(200) # OK, receipt accepted
             else:
                 self.set_status(201) # Created new receipt
-                receipt = { "receipt" : receipt_used}
-                self.write(receipt)
+                self.write({ "receipt" : receipt_used})
 
         except SubmissionNotFoundError, e:
             self.set_status(e.http_status) # all error need to be managed with different code
