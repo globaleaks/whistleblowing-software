@@ -291,7 +291,7 @@ class Submission(TXModel):
         whistleblower_tip.internaltip_id = internal_tip.id
         # whistleblower_tip.internaltip = internal_tip
 
-        used_receipt = proposed_receipt + '-' + random.random_string(5, 'A-Z,0-9')
+        used_receipt = proposed_receipt + '_' + random.random_string(5, 'A-Z,0-9')
         whistleblower_tip.receipt = used_receipt
         # whistleblower_tip.authoptions would be filled here
 

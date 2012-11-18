@@ -43,13 +43,14 @@ spec = [
     (r'/tip/' + more_lax, tip.TipRoot),
 
     #  * /tip/<tip_GUS>/comment T2
-    (r'/tip/' + tipGUS.regexp + '/comment', tip.TipComment),
+    (r'/tip/' + more_lax + '/comment', tip.TipComment),
 
     #  * /tip/<tip_GUS>/files T3
-    (r'/tip/' + tipGUS.regexp + '/files', tip.TipFiles),
+    (r'/tip/' + more_lax +  '/files', tip.TipFiles),
 
     #  * /tip/<tip_GUS>/finalize T4
-    (r'/tip/' + tipGUS.regexp + '/finalize', tip.TipFinalize),
+    (r'/tip/' + more_lax + '/finalize', tip.TipFinalize),
+    # but would be just receipt_id, just receipt_id is not more coherent
 
     #  * /tip/<tip_GUS>/download T5
     (r'/tip/' + tipGUS.regexp + '/download', tip.TipDownload),
