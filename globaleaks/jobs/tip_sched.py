@@ -3,7 +3,7 @@ from globaleaks.jobs.base import GLJob
 from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.externaltip import ReceiverTip
+from globaleaks.models.externaltip import ReceiverTip, Comment
 
 __all__ = ['APSTip']
 
@@ -40,7 +40,11 @@ class APSTip(GLJob):
         # It may require the creation of second-step Tips
         internal_id_list = yield internaltip_iface.get_newly_escalated()
 
+        # This event would be notified as system Comment
+        comment_iface = Comment()
+
         for id in internal_id_list:
 
+            yield comment_iface.add_comment(id, u"Escalation threshold has been reached", u'system')
             yield receivertip_iface.create_receiver_tips(id, 2)
             yield internaltip_iface.flip_mark(id, u'second')

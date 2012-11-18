@@ -158,7 +158,7 @@ class TipComment(BaseHandler):
                 else:
                     wbt_iface = WhistleblowerTip()
                     tip_description = yield wbt_iface.admin_get_single(tip_token)
-                    yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'], u"whistleblower", "whistleblower")
+                    yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'], u"whistleblower")
                     # TODO: internaltip <> last_usage_time_update()
 
                 self.set_status(200)

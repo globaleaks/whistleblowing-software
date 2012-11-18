@@ -182,15 +182,6 @@ def getOpt(seekd):
             print "unable to get [", seekd,"] required parameter"
             quit(1)
 
-        # oid and raw can be less checked than the other variables...
-        if seekd == 'raw' or seekd == 'oid' or seekd == 'variation':
-            return retarg
-
-        # tip, sid, cid has all the (t|s|c)_(\w+) regexp
-        if len(retarg) > 2 and retarg[1] != '_':
-            print "invalid [", seekd,"], collected: [", retarg, "]"
-            quit(1)
-
         return retarg
 
     return None

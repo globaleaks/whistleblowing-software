@@ -39,8 +39,8 @@ if [ $? != 0 ]; then echo "\tError in A5 GET (list of itip)" && exit; fi
 for tip_gus in $tip_gus_list; do
     $SHOOTER T1 POST tip $tip_gus variation vote
     if [ $? != 0 ]; then echo "\tError in T1 POST (expressing pertinence vote)" && exit; fi
+    echo -n "."
 done
 
 force_jobs
-echo "final status of the itip:"
-$SHOOTER A5 GET oid itip verbose
+echo "\nwant to see InternalTip ? $SHOOTER A5 GET oid itip verbose"
