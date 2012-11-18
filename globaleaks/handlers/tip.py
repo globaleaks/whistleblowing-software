@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip,\
+from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip,\
     TipGusNotFoundError, TipReceiptNotFoundError, TipPertinenceExpressed
 from globaleaks.utils import log
 import globaleaks.messages.base
@@ -38,7 +38,10 @@ class TipRoot(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "get", "tip_token", tip_token)
 
         # tip_token can be: a tip_gus for a receiver, or a WhistleBlower receipt, understand
-        # the format, help in addrressing which kind of Tip need to be handled.
+        # the format, help in addressing which kind of Tip need to be handled.
+
+        comment_iface = Comment()
+        # folder_iface = Folder()
 
         if is_receiver_token(tip_token):
 
@@ -46,8 +49,10 @@ class TipRoot(BaseHandler):
 
             try:
                 tip_description = yield requested_t.receiver_get_single(tip_token)
+                comment_list = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
+
                 self.set_status(200)
-                self.write(tip_description)
+                self.write({'tip' : tip_description, 'comments' : comment_list})
 
             except TipGusNotFoundError, e:
                 self.set_status(e.http_status)
@@ -59,8 +64,10 @@ class TipRoot(BaseHandler):
 
             try:
                 tip_description = yield requested_t.whistleblower_get_single(tip_token)
+                comment_list = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
+
                 self.set_status(200)
-                self.write(tip_description)
+                self.write({'tip' : tip_description, 'comments' : comment_list})
 
             except TipReceiptNotFoundError, e:
                 self.set_status(e.http_status)
@@ -118,26 +125,50 @@ class TipRoot(BaseHandler):
 
 class TipComment(BaseHandler):
 
-    log.debug("[D] %s %s " % (__file__, __name__), "Class TipComment", "BaseHandler", BaseHandler)
-
     @asynchronous
     @inlineCallbacks
-    def post(self, receipt):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipComment", "post", receipt)
-        print "New comment in %s" % receipt
+    def post(self, tip_token):
+        """
+        /tip/$tip/comment
+        *Request
+            {
+            'comment' : 'tha shit'
+            }
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipComment", "post", tip_token)
+
         request = json.loads(self.request.body)
 
-        if 'comment' in request and request['comment']:
-            tip = ReceiverTip()
-            # REMIND - spòlit between receiver and wb, because you need to
-            # know derivated tip infos.
-            yield tip.add_comment(receipt, request['comment'])
-
-            self.set_status(200)
+        # this is not yet the
+        if not 'comment' in request:
+            self.set_status(406)
+        elif not request['comment']:
+            self.set_status(406)
         else:
-            self.set_status(404)
+            comment_iface = Comment()
+
+            try:
+
+                if is_receiver_token(tip_token):
+                    receivert_iface = ReceiverTip()
+                    tip_description = yield receivert_iface.admin_get_single(tip_token)
+                    yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'], u"receiver", tip_description['receiver_name'])
+                    # TODO: internaltip <> last_usage_time_update()
+
+                else:
+                    wbt_iface = WhistleblowerTip()
+                    tip_description = yield wbt_iface.admin_get_single(tip_token)
+                    yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'], u"whistleblower", "whistleblower")
+                    # TODO: internaltip <> last_usage_time_update()
+
+                self.set_status(200)
+
+            except TipGusNotFoundError, e:
+                self.set_status(e.http_status)
+                self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
+
 
 class TipFiles(BaseHandler):
     """

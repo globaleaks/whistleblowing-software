@@ -1,6 +1,6 @@
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
-from globaleaks.models.externaltip import ReceiverTip
+from globaleaks.models.externaltip import ReceiverTip, Comment
 from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.plugins.notification.mailclient import GLBMailService
@@ -51,4 +51,8 @@ class APSNotification(GLJob):
                 log.err("[E]: not yet supported notification %s (%s)" %
                         (single_tip['notification_selected'], single_tip['notification_fields'])
                 )
+
+        # Comment to be notified
+        # comment_iface = Comment()
+        # not_notified_comments = yield comment_iface.get_comment_by_mark(marker=u'not notified')
 

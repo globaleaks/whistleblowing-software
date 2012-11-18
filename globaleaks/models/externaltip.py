@@ -148,6 +148,25 @@ class ReceiverTip(TXModel):
         store.close()
         return retVal
 
+    @transact
+    def admin_get_single(self, tip_gus):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "admin_get_single", tip_gus)
+
+        store = self.getStore('admin_get_single')
+
+        try:
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        except NotOneError, e:
+            store.close()
+            raise TipGusNotFoundError
+        if not requested_t:
+            store.close()
+            raise TipGusNotFoundError
+
+        retDict = requested_t._description_dict()
+        store.close()
+
+        return retDict
 
     @transact
     def receiver_get_single(self, tip_gus):
@@ -175,18 +194,14 @@ class ReceiverTip(TXModel):
         tip_details = requested_t.internaltip._description_dict()
         tip_details.pop('id')
 
-        #folders = requested_t.internaltip.get_folder_public()
-        #comments = requested_t.internaltip.get_comment_public()
-        # XXX XXX TEMP COMMENT
+        receivers_info = requested_t.internaltip._receivers_description()
+        tip_info = requested_t._description_dict()
 
-        complete_tip_dict = tip_details
-        complete_tip_dict.update({'receivers' : requested_t.internaltip._receivers_description() })
-        #complete_tip_dict.update({'folders' : folders})
-        #complete_tip_dict.update({'comments' : comments})
+        ret_dict = { 'tip_details' : tip_details, 'tip_info' : tip_info, 'receivers_info' : receivers_info }
 
         store.close()
 
-        return complete_tip_dict
+        return ret_dict
 
     @transact
     def receiver_get_index(self, tip_gus):
@@ -314,6 +329,7 @@ class ReceiverTip(TXModel):
             'access_counter' : self.access_counter,
             'expressed_pertinence': self.expressed_pertinence,
             'receiver_gus' : self.receiver_gus,
+            'receiver_name' : self.receiver.name,
             'authoptions' : self.authoptions
         }
         return descriptionDict
@@ -386,6 +402,27 @@ class WhistleblowerTip(TXModel):
 
         store.close()
         return retVal
+
+    @transact
+    def admin_get_single(self, receipt):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class WhistleBlowerTip", "admin_get_single", receipt)
+
+        store = self.getStore('admin_get_single')
+
+        try:
+            requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
+        except NotOneError, e:
+            store.close()
+            log.err("[E] -- Collision fatal error, receipt is not unique [%s]" % receipt)
+            raise TipGusNotFoundError
+        if not requested_t:
+            store.close()
+            raise TipGusNotFoundError
+
+        retDict = requested_t._description_dict()
+        store.close()
+
+        return retDict
 
     # called by a transact operation, dump the WhistleBlower Tip
     def _description_dict(self):
@@ -488,19 +525,16 @@ class Comment(TXModel):
 
     id = Int(primary=True)
 
-    type = Unicode()
-    content = Unicode()
-    author = Unicode()
-    comment_date = Date()
-
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
+    creation_time = DateTime()
+    source = Unicode()
+    content = Unicode()
+    author = Unicode()
+    notification_mark = Unicode()
 
-    # botton - up approach: is checked in ReceiverTip, using context,
-    # if comment is possible, then are returned value about receiver
-    # and internaltip, then in Comment is created a newcomment having the
-    # right references
+
     @transact
     def add_comment(self, id, comment, source, name):
         """
@@ -508,9 +542,8 @@ class Comment(TXModel):
         @param comment: the unicode text expected to be recorded
         @param source: the source kind of the comment (receiver, wb, system)
         @param name: the Comment author name to be show and recorded.
-        @return:
+        @return: None
         """
-
         log.debug("[D] %s %s " % (__file__, __name__), "InternalTip class", "add_comment",
             "id", id, "source", source, "name", name)
 
@@ -519,17 +552,87 @@ class Comment(TXModel):
 
         store = self.getStore('add_comment')
 
-        newcomment = Comment()
-        newcomment.internaltip_id = id
-        newcomment.source = source
-        newcomment.content = comment
-        newcomment.author = name
+        self.internaltip_id = id
+        self.creation_time = gltime.utcTimeNow()
+        self.source = source
+        self.content = comment
+        self.author = name
+        self.notification_mark = u'not notified'
 
-        self.last_activity = gltime.utcDateNow()
-
-        store.add(newcomment)
+        store.add(self)
         store.commit()
         store.close()
+
+    # this is obvious, after the alpha release, all the mark/status info for the scheduler would be moved in
+    # a dedicated class
+    @transact
+    def flip_mark(self, comment_id, newmark):
+
+        log.debug("[D] %s %s " % (__file__, __name__), "Comment class", "flip_mark ", comment_id, newmark)
+
+        notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
+
+        if not newmark in notification_markers:
+            raise Exception("Invalid developer brain dictionary", newmark)
+
+        store = self.getStore('flip mark')
+
+        requested_c = store.find(Comment, Comment.id  == comment_id).one()
+        requested_c.notification_mark = newmark
+
+        store.commit()
+        store.close()
+
+    @transact
+    def get_comment_related(self, internltip_id):
+        """
+        return all the comment child of the same InternalTip.
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Comment class", "get_comment_related", internltip_id)
+
+        store = self.getStore('get_comment_related')
+
+        comment_list = store.find(Comment, Comment.internaltip_id == internltip_id)
+
+        retDict = []
+        for single_comment in comment_list:
+            retDict.append(single_comment._description_dict())
+
+        store.close()
+        return retDict
+
+    @transact
+    # XXX part of the schedule object refactor in TODO
+    def get_comment_by_mark(self, marker):
+
+        store = self.getStore('get_comment_by_mark')
+
+        notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
+        if not marker in notification_markers:
+            raise Exception("Invalid developer brain dictionary", marker)
+
+        marked_comments = store.find(Comment, Comment.notification_mark == marker)
+
+        retVal = []
+        for single_comment in marked_comments:
+            retVal.append(single_comment._description_dict())
+
+        return retVal
+
+
+    def _description_dict(self):
+
+        descriptionDict = {
+            'source' : self.source,
+            'content' : self.content,
+            'author' : self.author,
+            'notification_mark': self.notification_mark,
+            'internaltip_id' : self.internaltip_id,
+            'creation_time' : gltime.prettyDateTime(self.creation_time)
+        }
+        return descriptionDict
+
+
 
 class PublicStats(TXModel):
     """

@@ -2,14 +2,13 @@
 
 SHOOTER="python shooter.py"
 
-if [ -n "$1" ]; then
-    $SHOOTER T1 GET tip $1 
-    if [ $? != 0 ]; then echo "\tError in T1 GET" && exit; fi
-    $SHOOTER T2 POST tip $1
-    if [ $? != 0 ]; then echo "\tError in T2 POST" && exit; fi
-    $SHOOTER T1 GET tip $1 verbose
-    if [ $? != 0 ]; then echo "\tError in T1 GET (second check)" && exit; fi
-else
-    echo "you need to specify an active tip (no receipt!)"
-fi
+# get all the receiver tips
+tip_list=`$SHOOTER A5 GET oid itip print-tip_gus | grep -v None`
+for tip in $tip_list; do
+    $SHOOTER T2 POST tip $tip
+    if [ $? != 0 ]; then echo "\tError in T2 POST (comment)" && exit; fi
+    echo "comment sent to $tip"
+done
+$SHOOTER T1 GET tip $tip verbose
+if [ $? != 0 ]; then echo "\tError in T1 GET (tip)" && exit; fi
 
