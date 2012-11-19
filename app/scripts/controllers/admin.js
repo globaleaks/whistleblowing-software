@@ -13,7 +13,15 @@ GLClient.controller('AdminCtrl',
   $scope.localization = localization;
   $scope.node_info = localization.node_info;
 
-  $scope.adminNode = new AdminNode();
-  $scope.adminNode.$get();
+  $scope.adminNode = AdminNode.get();
+  $scope.adminReceivers = AdminReceivers.query();
+
+  $scope.new_receiver = function() {
+    console.log("antani");
+    var receiver = new AdminReceivers;
+    receiver.notification_address = $scope.new_receiver_address;
+    receiver.name = $scope.new_receiver_name;
+    receiver.$save();
+  }
 
 }]);

@@ -27,7 +27,7 @@
               ng-model="localization.selected_language"
               ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
             </select>
-            <input type="text"
+            <input class="big-input" type="text"
               ng-model="adminNode.name[localization.selected_language]"
               value="{{adminNode.name[localization.selected_language]}}">
             <button class="btn"
@@ -47,7 +47,7 @@
               ng-model="localization.selected_language"
               ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
             </select>
-            <textarea
+            <textarea class="big-input"
               ng-model="adminNode.description[localization.selected_language]">{{adminNode.description[localization.selected_language]}}</textarea>
             <button class="btn"
               ng-click="adminNode.$save()">Save</button>
@@ -62,7 +62,7 @@
         <div class="row">
           <div class="span5">
             <label>Keywords</label>
-            <textarea 
+            <textarea class="big-input"
               ng-model="adminNode.keywords">{{adminNode.keywords}}</textarea>
           </div>
           <div class="span4">
@@ -74,7 +74,7 @@
         <div class="row">
           <div class="span5">
             <label>Email</label>
-            <input type="text"
+            <input class="big-input" type="text"
               value="{{adminNode.admin_email}}">
             <button class="btn"
               ng-click="adminNode.$save()">Save</button>

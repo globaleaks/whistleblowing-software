@@ -78,16 +78,24 @@
     font-size: 20px;
 }
 
-.config-page input[type=text] {
+.config-page input {
     font-size: 17px;
-    height: 30px;
-    width: 456px;
 }
 
 .config-page textarea {
     font-size: 17px;
-    height: 200px;
+}
+
+.config-page .big-input {
     width: 456px;
+}
+
+.config-page input.big-input {
+    height: 30px;
+}
+
+.config-page textarea.big-input {
+    height: 200px;
 }
 
 .config-page .row {

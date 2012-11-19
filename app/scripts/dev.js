@@ -251,7 +251,7 @@ GLClientDev.run(function($httpBackend) {
     console.log(data);
     return [200, description_dict];
   });
-
+  
   $httpBackend.whenGET('/tip/(.*)/comments').respond(function(method, url, data){
     console.log(method);
     console.log(url);
@@ -287,6 +287,42 @@ GLClientDev.run(function($httpBackend) {
     console.log("saving node data");
     console.log(data);
     return [200, data];
+  });
+
+  $httpBackend.whenGET('/admin/receivers').respond(function(method, url, data){
+    function receiver(){
+      return {
+      'gus': 'r_receivergus1',
+      'can_delete_submission': true,
+      'can_postpone_expiration': true,
+      'can_configure_notification': true,
+      'can_configure_delivery': true,
+      'can_trigger_escalation': true,
+      'level': 1,
+      'name': 'Beppe',
+      'description': 'This is an activist',
+      'tags': 'activism, something',
+      'creation_date': '1353312789',
+      'last_update_time': '1353312789',
+      'languages_supported': ['en', 'it'],
+      'notification_address': 'beppe@example.com'
+      }
+    };
+
+    var response = [];
+    for (var i = 0;i <= 10;i++) {
+      var r_copy = new receiver;
+      r_copy.name += i;
+      r_copy.notification_address += i;
+      response.push(r_copy);
+    }
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/receivers').respond(function(method, url, data){
+    console.log(method);
+    console.log(url);
+    console.log(data);
   });
 
   $httpBackend.whenGET(/^views\//).passThrough();
