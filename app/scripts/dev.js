@@ -289,7 +289,6 @@ GLClientDev.run(function($httpBackend) {
     return [200, data];
   });
 
-  $httpBackend.whenGET(/^scripts\/help_strings\//).passThrough();
   $httpBackend.whenGET(/^views\//).passThrough();
 
 });

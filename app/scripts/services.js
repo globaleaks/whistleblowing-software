@@ -47,11 +47,6 @@ angular.module('resourceServices', ['ngResource']).
       {module_type: '@module_type'});
 });
 
-angular.module('helpServices', ['ngResource']).
-  factory('HelpStrings', function($resource) {
-    return $resource('/scripts/help_strings/node_info.json');
-});
-
 angular.module('localeServices', ['resourceServices']).
   factory('localization', function(Node){
     var localization = {};

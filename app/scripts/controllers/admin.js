@@ -1,21 +1,19 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$http', 'localization', 'AdminNode',
-    'AdminContexts', 'AdminReceivers', 'HelpStrings',
-    function($scope, $http, localization, AdminNode, AdminContexts,
-      AdminReceivers, HelpStrings) {
+    ['$scope', '$http', '$location', 'localization', 'AdminNode',
+    'AdminContexts', 'AdminReceivers',
+    function($scope, $http, $location, localization, AdminNode, AdminContexts,
+      AdminReceivers) {
+
+  // XXX convert this to a directive
+  // This is used for setting the current menu in the sidebar
+  var current_menu = $location.path().split('/').slice(-1);
+  $scope.active = {};
+  $scope.active[current_menu] = "active";
 
   $scope.localization = localization;
   $scope.node_info = localization.node_info;
 
   $scope.adminNode = new AdminNode();
   $scope.adminNode.$get();
-  
-  //$scope.node_info.admin_email = 'me@example.com';
-
-  //$scope.help_strings = {};
-
-  //$scope.all_help_strings = HelpStrings.get(function() {
-  //  $scope.help_strings.name =  $scope.all_help_strings.name[$scope.selected_language];
-  //});
 
 }]);
