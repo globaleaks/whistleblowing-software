@@ -1,32 +1,29 @@
 <div class="jumbotron subhead">
   <div class="container">
-  <h1>Tip Status Page</h1>
-  <p>You receipt is <input id="receiptNumber" type="text" value="{{receipt}}"></p>
+    <h1>Tip Status Page</h1>
+    <p>You receipt is <input id="receiptNumber" type="text"
+    value="{{tip.tip_id}}"></p>
   </div>
 </div>
-
 <div class="container statusPage">
   <div class="row">
     <div class="span4">
-      <dl>
-        {{#fields}}
-        <dt>{{name}}</dt>
-        <dd>{{value}}</dd>
-        {{/fields}}
+      <dl ng-repeat="field in tip.fields">
+        <dt>{{field.name}}</dt>
+        <dd>{{field.value}}</dd>
       </dl>
     </div>
     <div class="span4">
       <h3>Folders</h3>
-      {{#folders}}
-      <div class="well">
-        <h4>{{name}}</h4>
+      <div class="well"
+        ng-repeat="folder in tip.folders">
+        <h4>{{folder.name}}</h4>
         <ul>
-          {{#files}}
-          <li><i class="icon-book"></i> {{name}}</li>
-          {{/files}}
+          <li ng-repeat="file in folder.files">
+            <i class="icon-book"></i> {{file.name}}
+          </li>
         </ul>
       </div>
-      {{/folders}}
     </div>
   </div>
   <div class="row">
@@ -42,13 +39,11 @@
           </tr>
         </thead>
         <tbody id="receiverListBody">
-          {{#receivers}}
-          <tr>
-            <td>{{name}}</td>
-            <td>{{description}}</td>
-            <td>{{languages_supported}}</td>
+          <tr ng-repeat="receiver in receiver_list">
+            <td>{{receiver.name}}</td>
+            <td>{{receiver.description}}</td>
+            <td>{{receiver.languages_supported}}</td>
           </tr>
-          {{/receivers}}
         </tbody>
       </table>
       </div>

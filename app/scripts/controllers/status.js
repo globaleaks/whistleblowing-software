@@ -1,14 +1,18 @@
-GLClient.controller('StatusCtrl', function($scope, 
-      $routeParams, $http) {
-  var receipt_id = $routeParams.receipt_id;
-  $http({method: 'GET', url: '/tip/'+receipt_id}).
-    done(function(result) {
-      // XXX add sanitization and validation
-      var p_result = JSON.parse(result);
-      $scope.tip = p_result['tip'];
-      $scope.tip_data = p_result['tip_data'];
-      $scope.folder = p_result['folder'];
-      $scope.comment = p_result['comment'];
-      $scope.receiver_selected = p_result['receiver_selected'];
+GLClient.controller('StatusCtrl', ['$scope', '$routeParams',
+    'Tip', 'localization', function($scope, $routeParams, Tip,
+      localization) { $scope.receipt_id =
+        $routeParams.receipt_id;
+  $scope.tip = new Tip();
+  $scope.tip.tip_id = $scope.receipt_id;
+  $scope.tip.$get(function(){
+    $scope.receiver_list = [];
+    angular.forEach($scope.tip.receiver_map, function(value){
+      var receiver = {};
+      receiver = value;
+      receiver.name = value.receiver_gus;
+      $scope.receiver_list.append(receiver.receiver_gus);
+    });
   });
-});
+  $scope.node_info = localization.node_info;
+
+}]);

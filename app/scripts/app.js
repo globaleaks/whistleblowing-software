@@ -1,7 +1,7 @@
 'use strict';
 
 var GLClient = angular.module('GLClient', ['resourceServices', 
-    'submissionUI', 'localeServices', 'GLClientFilters']).
+    'submissionUI', 'localeServices', 'helpServices', 'GLClientFilters']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {
@@ -16,21 +16,21 @@ var GLClient = angular.module('GLClient', ['resourceServices',
         templateUrl: 'views/submission.html',
         controller: 'SubmissionCtrl',
       }).
-      when('/status/:token', {
+      when('/status/:receipt_id', {
         templateUrl: 'views/status.html',
-        controller: 'PageCtrl',
+        controller: 'StatusCtrl',
       }).
       when('/receiver/:token', {
         templateUrl: 'views/receiver/main.html',
-        controller: 'PageCtrl',
+        controller: 'ReceiverCtrl',
       }).
       when('/receiver/:token/preferences', {
         templateUrl: 'views/receiver/preferences.html',
-        controller: 'PageCtrl'
+        controller: 'ReceiverCtrl'
       }).
       when('/receiver/:token/list', {
         templateUrl: 'views/receiver/list.html',
-        controller: 'PageCtrl'
+        controller: 'ReceiverCtrl'
       }).
       when('/admin/basic', {
         templateUrl: 'views/admin/basic.html',
