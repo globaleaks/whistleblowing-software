@@ -20,3 +20,7 @@ done
 # get the latest tip as visible check
 $SHOOTER T1 GET tip $tip verbose
 if [ $? != 0 ]; then echo "\tError in T1 GET (tip)" && exit; fi
+
+echo "forcing comments notification"
+$SHOOTER A6 GET oid notification
+

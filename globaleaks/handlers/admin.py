@@ -405,11 +405,6 @@ class AdminOverView(BaseHandler):
 
         expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'comment', 'all' ]
 
-        if not what in expected:
-            self.set_status(405)
-        else:
-            self.set_status(200)
-
         if what == 'receivers' or what == 'all':
             receiver_iface = Receiver()
             receiver_list = yield receiver_iface.admin_get_all()
@@ -435,6 +430,10 @@ class AdminOverView(BaseHandler):
             comment_list = yield comment_iface.admin_get_all()
             self.write({ 'elements' : len(comment_list), 'comments' : comment_list })
 
+        if not what in expected:
+            self.set_status(405)
+        else:
+            self.set_status(200)
 
         self.finish()
 
@@ -452,11 +451,6 @@ class AdminTasks(BaseHandler):
 
         expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'digest' ]
 
-        if not what in expected:
-            self.set_status(405)
-        else:
-            self.set_status(200)
-
         if what == 'statistics':
             yield notification_sched.APSNotification().operation()
         if what == 'welcome':
@@ -472,15 +466,9 @@ class AdminTasks(BaseHandler):
         if what == 'digest':
             yield digest_sched.APSDigest().operation()
 
+        if not what in expected:
+            self.set_status(405)
+        else:
+            self.set_status(200)
+
         self.finish()
-
-
-
-
-
-
-
-
-
-
-

@@ -159,6 +159,24 @@ class InternalTip(TXModel):
         store.close()
         return ret_gus_list
 
+    @transact
+    def get_notification_list(self, id):
+        """
+        @param id: InternalTip id to be queried
+        @return: a list of list [ 'notification_selected', 'notification_field'] [...],
+            called by scheduler operation (notification_sched.py)
+        """
+        store = self.getStore('get_notification_list')
+
+        selected_it = store.find(InternalTip, InternalTip.id == id).one()
+
+        retVal = []
+        for single_receiver in selected_it.receivers_map:
+            if single_receiver['tip_gus'] != None:
+                retVal.append([ single_receiver['notification_selected'], single_receiver['notification_fields'] ])
+
+        store.close()
+        return retVal
 
     # perhaps get_newly_generated and get_newly_escalated can be melted, and in task queue
     @transact
@@ -190,7 +208,6 @@ class InternalTip(TXModel):
 
         retVal = []
         for single_itip in escalated_itips:
-            print single_itip._description_dict()
             retVal.append(single_itip.id)
 
         store.close()
