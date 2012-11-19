@@ -168,21 +168,22 @@ class AdminContexts(BaseHandler):
             # holy fucking sick atheist god
             # no validation at the moment.
             self.write(__file__)
+            self.set_status(406)
             self.write('error message to be managed using the appropriate format')
             self.finish()
 
-        context_iface = context.Context()
+        else:
+            context_iface = context.Context()
 
-        try:
-            yield context_iface.update(context_gus, request)
-            yield self.get(context_gus)
+            try:
+                yield context_iface.update(context_gus, request)
+                yield self.get(context_gus)
 
-        except context.InvalidContext, e:
+            except context.InvalidContext, e:
 
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        self.finish()
+                self.set_status(e.http_status)
+                self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+                self.finish()
 
 
     @asynchronous
