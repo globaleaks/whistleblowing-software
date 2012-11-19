@@ -78,7 +78,7 @@
     font-size: 20px;
 }
 
-.config-page input {
+.config-page input[type=text] {
     font-size: 17px;
     height: 30px;
     width: 456px;

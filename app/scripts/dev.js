@@ -3,7 +3,8 @@
 //
 // It also includes some changes that I would need made to the API.
 
-GLClientDev = angular.module('GLClientDev', ['GLClient', 'ngMockE2E']);
+GLClientDev = angular.module('GLClientDev',
+    ['GLClient', 'ngMockE2E']);
 GLClientDev.run(function($httpBackend) {
   var form_fields = [];
 
@@ -63,7 +64,7 @@ GLClientDev.run(function($httpBackend) {
     }];
 
   var node_info = {
-    'name': {'en': 'Some Node Name', 
+    'name': {'en': 'Some Node Name',
       'it': 'Il nome del nodo'},
 
     'statistics': {'active_contexts': 2,
@@ -184,6 +185,7 @@ GLClientDev.run(function($httpBackend) {
       //   'folder_name': '',
       //   'folder_description': ''
       // }
+
       var data = JSON.parse(data),
           response;
 
@@ -199,14 +201,95 @@ GLClientDev.run(function($httpBackend) {
       }
       response = JSON.stringify(response);
       console.log(response);
-      return [200, response];
 
+      return [200, response];
   });
 
   // XXX this is not implemented for the moment.
   // We need to invert the order of the parameters to make it uniform with the rest of the API.
   //$httpBackend.whenPOST('/submission/files/<submission_id>');
+  //
+  $httpBackend.whenGET(/\/tip\/(.*)/).respond(function(method, url, data){
+    console.log("Got this shit...");
+    description_dict = {
+      'id' : '12345',
+      // Why do we have the name also?
+      'context_gus' : ['Antani Name', 'c_testingit' ],
+      'creation_date' : '1353312789',
+      'expiration_date' : '1353314789',
+      'fields' : [{'label': 'Item 2',
+      'name': 'item2', 'required': true,
+      'type': 'text',
+      'value': 'Item 2 value', 
+      'hint': 'this is the hint for the form'
+      }],
+      'download_limit' : 100,
+      'access_limit' : 20,
+      'mark' : 0,
+      'pertinence' : 10,
+      'escalation_treshold' : 10,
+      'receiver_map' : [{
+        'receiver_gus': 'r_antanisblinda',
+        'receiver_level': 1,
+        // XXX what is the purpose of this?
+        'tip_gus': 't_helloworld',
+        'notification_selected': 'email',
+        // XXX what is this?
+        'notification_fields': 'XXXX'
+      },
+      {'receiver_gus': 'r_antanisblinda',
+        'receiver_level': 1,
+        // XXX what is the purpose of this?
+        'tip_gus': 't_helloworld',
+        'notification_selected': 'email',
+        // XXX what is this?
+        'notification_fields': 'XXXX'
+      }]
+    }
+    console.log(method);
+    console.log(url);
+    console.log(data);
+    return [200, description_dict];
+  });
 
+  $httpBackend.whenGET('/tip/(.*)/comments').respond(function(method, url, data){
+    console.log(method);
+    console.log(url);
+    console.log(data);
+  });
+
+  $httpBackend.whenPOST('/tip/(.*)/comments').respond(function(method, url, data){
+    console.log(method);
+    console.log(url);
+    console.log(data);
+  });
+
+  $httpBackend.whenGET('/admin/node').respond(function(method, url, data){
+    var response = {
+      'admin_email': 'admin@example.com',
+      'keywords': 'keyword1, keyword2, keyword3',
+      'description': {'en': 'Node Description English',
+            'it': 'Descrizione nodo italiano'
+        },
+      'name': {'en': 'Node name english',
+        'it': 'Nome nodo italiano'
+        },
+      'supported_languages': {'en': 'English',
+        'it': 'Italiano', 'sr': 'Serbian'},
+      'enabled_languages': {'en': true, 'sr': false, 'it': true},
+      'default_language': 'it'
+    };
+
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/node').respond(function(method, url, data){
+    console.log("saving node data");
+    console.log(data);
+    return [200, data];
+  });
+
+  $httpBackend.whenGET(/^scripts\/help_strings\//).passThrough();
   $httpBackend.whenGET(/^views\//).passThrough();
 
 });
