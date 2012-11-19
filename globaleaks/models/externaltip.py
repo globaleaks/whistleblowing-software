@@ -521,7 +521,10 @@ class File(TXModel):
 
 
 class Comment(TXModel):
-    log.debug("[D] %s %s " % (__file__, __name__), "Comment", "TXModel", TXModel)
+    """
+    This table handle the, 311 americano, remind.
+    This table handle the comment collection, has an InternalTip referenced
+    """
     __storm_table__ = 'comments'
 
     id = Int(primary=True)
@@ -537,28 +540,28 @@ class Comment(TXModel):
 
 
     @transact
-    def add_comment(self, id, comment, source, name=None):
+    def add_comment(self, itip_id, comment, source, name=None):
         """
-        @param id: InternalTip.id of reference, need to be addressed
+        @param itip_id: InternalTip.id of reference, need to be addressed
         @param comment: the unicode text expected to be recorded
         @param source: the source kind of the comment (receiver, wb, system)
         @param name: the Comment author name to be show and recorded, can be absent if source is enough
         @return: None
         """
         log.debug("[D] %s %s " % (__file__, __name__), "InternalTip class", "add_comment",
-            "id", id, "source", source, "name", name)
+            "itip_id", itip_id, "source", source, "name", name)
 
         if not source in [ u'receiver', u'whistleblower', u'system' ]:
             raise Exception("Invalid developer brain status", source)
 
         store = self.getStore('add_comment')
 
-        self.internaltip_id = id
         self.creation_time = gltime.utcTimeNow()
         self.source = source
         self.content = comment
         self.author = name
         self.notification_mark = u'not notified'
+        self.internaltip_id = itip_id
 
         store.add(self)
         store.commit()
@@ -584,6 +587,7 @@ class Comment(TXModel):
 
         store.commit()
         store.close()
+
 
     @transact
     def get_comment_related(self, internltip_id):
@@ -619,6 +623,7 @@ class Comment(TXModel):
         for single_comment in marked_comments:
             retVal.append(single_comment._description_dict())
 
+        store.close()
         return retVal
 
     @transact
@@ -626,7 +631,6 @@ class Comment(TXModel):
         """
         This is called by API /admin/overview only
         """
-
         store = self.getStore('comment - admin_get_all')
 
         comments = store.find(Comment)
@@ -641,6 +645,7 @@ class Comment(TXModel):
     def _description_dict(self):
 
         descriptionDict = {
+            'comment_id' : self.id,
             'source' : self.source,
             'content' : self.content,
             'author' : self.author,

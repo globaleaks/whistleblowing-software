@@ -9,12 +9,13 @@ def do_not_email(subject, body, receiver_addr):
     from globaleaks.utils import gltime
 
     with file("/tmp/do_not_email_please", 'a+') as f:
-        f.write(gltime.utcPrettyDateNow())
-        f.write(receiver_addr)
-        f.write(subject)
+        f.write('\r\nTime: %s' % gltime.utcPrettyDateNow())
+        f.write('\r\nDest: %s' % receiver_addr)
+        f.write('\r\nSubject: %s\r\n' % subject)
         f.write(body)
+        f.write("\r\n---\r\n")
 
-def GLBMailService(tip_gus, receiver_addr):
+def GLBMailService(eventdate, infotext, receiver_addr):
     """
     This is a temporary email supports not yet pluginized
     """
@@ -22,19 +23,18 @@ def GLBMailService(tip_gus, receiver_addr):
     password='Antani1234'
     serverport='smtp.gmail.com:587'
 
-    subject = "I'm an email for %s containing %s" % ( receiver_addr.split('@')[0], tip_gus[:6])
+    subject = "Email notification for %s" % (receiver_addr.split('@')[0])
 
-    text = "I'm an email Notification, this is your Tip: %s" % tip_gus
+    text = "In %s an info for you: [%s]" % (eventdate, infotext)
+
+    # XXX just for avoid getting spammed when testing GLB :P
+    if not I_WANT_TO_BE_SPAMMED:
+        do_not_email(subject, text, receiver_addr)
+        return True
 
     body = string.join(("From: GLBackend postino <%s>" % username,
                         "To: Estimeed Receiver <%s>" % receiver_addr,
                         "Subject: %s" % subject, text), "\r\n")
-
-
-    # XXX just for avoid getting spammed when testing GLB :P:
-    if not I_WANT_TO_BE_SPAMMED:
-        do_not_email(subject, body, receiver_addr)
-        return True
 
     server = smtplib.SMTP(serverport)
     server.starttls()
@@ -42,12 +42,12 @@ def GLBMailService(tip_gus, receiver_addr):
 
     try:
         server.sendmail(username, [ receiver_addr ], body)
-        log.debug("sent email with Tip %s to %s (%s) " % (tip_gus, receiver_addr, subject) )
+        log.debug("Success in email %s " % tip_gus)
         server.quit()
         retval = True
     except smtplib.SMTPRecipientsRefused, smtplib.SMTPSenderRefused:
         # remind, other error can be handled http://docs.python.org/2/library/smtplib.html
-        log.err("[E] error in sending the email to %s %s (%s)" % (receiver_addr, tip_gus, subject))
+        log.err("[E] error in sending the email to %s %s (%s)" % (receiver_addr, infotext, subject))
         retval = False
 
     return retval

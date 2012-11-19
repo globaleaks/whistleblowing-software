@@ -3,7 +3,6 @@
 SHOOTER="python shooter.py"
 
 force_jobs() {
-    # force the job
     $SHOOTER A6 GET oid delivery 
     if [ $? != 0 ]; then echo "\tError in A6 GET (force delivery job)" && exit; fi
     $SHOOTER A6 GET oid notification
@@ -30,7 +29,7 @@ if [ $? != 0 ]; then echo "\tError in U4 POST" && exit; fi
 $SHOOTER A6 GET oid tip 
 if [ $? != 0 ]; then echo "\tError in A6 GET (force tip job)" && exit; fi
 
-force_jobs
+#force_jobs
 
 # now we need to be the receiver with the tip, and vote pertinence.
 
@@ -42,5 +41,5 @@ for tip_gus in $tip_gus_list; do
     echo -n "."
 done
 
-force_jobs
+#force_jobs
 echo "\nwant to see InternalTip ? $SHOOTER A5 GET oid itip verbose"
