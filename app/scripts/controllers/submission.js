@@ -21,7 +21,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
     });
     $scope.submission.$save();
   }
-  
+
   $scope.submit = function() {
     angular.forEach(localization.current_context.fields, function(field, k) {
       $scope.submission.fields[field.name] = field.value;

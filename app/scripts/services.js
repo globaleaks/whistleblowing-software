@@ -16,7 +16,7 @@ angular.module('resourceServices', ['ngResource']).
         {tip_id: '@tip_id'}, {
     });
 }).
-  factory('Receiver', function($resource) {
+  factory('ReceiverSettings', function($resource) {
     return $resource('/receiver/:tip_id',
       {tip_id: '@tip_id'}
     );
@@ -64,7 +64,7 @@ angular.module('localeServices', ['resourceServices']).
         // are somwhat hackish and I am sure there is a javascript ninja way of
         // doing them.
         // XXX refactor these into something more 1337
-        
+
         localization.node_info = node_info;
         localization.selected_language =
           localization.node_info.available_languages[0].code;

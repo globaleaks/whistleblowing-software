@@ -1,6 +1,6 @@
 /*global window */
 
-GLClient.controller('ReceiverListCtrl', function($scope) {
+GLClient.controller('ReceiverCtrl', function($scope) {
   for (var i = 0;i < 120;i++) {
     var parity = (i % 2 == 0) ? 'even' : 'odd';
 
