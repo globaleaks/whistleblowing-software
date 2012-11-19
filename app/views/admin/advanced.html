@@ -1,93 +1,119 @@
 <div class="jumbotron subhead">
   <div class="container">
-    <h1>Content Settings</h1>
+    <!-- XXX we want to parametrize this perhaps -->
+    <h1>Advanced Configuration</h1>
     <p>Administration Interface</p>
   </div>
 </div>
 <div class="container config-page">
   <div class="row">
     <!-- Begin Nav Bar -->
+    <!--  Note the use of "''", yeah two of them.
+            This is the ng-inlcude directive:
+            http://docs.angularjs.org/api/ng.directive:ngInclude
+      -->
     <div class="span3 config-sidebar"
-      // Note the use of ''
-      // This is the ng-inlcude directive: 
-      // http://docs.angularjs.org/api/ng.directive:ngInclude
       ng-include="'views/admin/sidebar.html'">
     </div>
     <!-- End Nav Bar -->
+
     <div class="span9">
-    <form class="config-form">
-    <h2>General</h2>
-    <div class="span5">
-      <label>Site Title</label>
-      <select class="language-setting" ng-model="basic.site_title.selected_language">
-        <option ng-repeat="language in available_languages" 
-          value="{{language.value}}">{{language.name}}</option>
-      </select>
+      <form class="config-form">
+        <div class="row">
+          <div class="span5">
+            <h2>General</h2>
+            <label>Label 1</label>
+            <select class="language-setting"
+              ng-model="localization.selected_language"
+              ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
+            </select>
+            <input type="text"
+              ng-model="adminNode.name[localization.selected_language]"
+              value="{{adminNode.name[localization.selected_language]}}">
+            <button class="btn"
+              ng-click="adminNode.$save()">Save</button>
+          </div>
+          <div class="span4">
+            <p>
+            XXX
+            <a href="XXX">Learn More</a></p>
+          </div>
+        </div>
 
-      {{node_info.admin_statistics}}
+        <div class="row">
+          <div class="span5">
+            <label>Description</label>
+            <select class="language-setting"
+              ng-model="localization.selected_language"
+              ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
+            </select>
+            <textarea
+              ng-model="adminNode.description[localization.selected_language]">{{adminNode.description[localization.selected_language]}}</textarea>
+            <button class="btn"
+              ng-click="adminNode.$save()">Save</button>
+          </div>
+          <div class="span4">
+            <p>
+            XXX
+            <a href="XXX">Learn More</a></p>
+          </div>
+        </div>
 
-      {{node_info}}
+        <div class="row">
+          <div class="span5">
+            <label>Keywords</label>
+            <textarea 
+              ng-model="adminNode.keywords">{{adminNode.keywords}}</textarea>
+          </div>
+          <div class="span4">
+            <p>
+            XXX
+            <a href="XXXX">Learn More</a></p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="span5">
+            <label>Email</label>
+            <input type="text"
+              value="{{adminNode.admin_email}}">
+            <button class="btn"
+              ng-click="adminNode.$save()">Save</button>
+          </div>
+          <div class="span4">
+            <p ng-model="help_strings.name">XXXX
+            <a href="XXX">Learn More</a></p>
+          </div>
+        </div>
 
-      {{node_info.contexts}}
+        <div class="row">
+          <div class="span5">
+            <h2>Internationalization</h2>
+            <label>Enabled Languages</label>
+            <div ng-repeat="(code, name) in adminNode.supported_languages">
+              <label class="checkbox">
+                <input type="checkbox"
+                ng-model="adminNode.enabled_languages[code]">
+                {{name}}
+              </label>
+            </div>
+            <label>Default language</label>
+            <select
+              ng-model="adminNode.default_language"
+              ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
+            </select>
+            <br/>
+            <button class="btn"
+              ng-click="adminNode.$save()">Save</button>
 
-      {{node_info.public_stats}}
+          </div>
+          <div class="span4">
+            <p>
+            XXX
+            <a href="XXX">Learn More</a></p>
+          </div>
+        </div>
 
-      {{node_info.node_description}}
-
-      {{node_info.public_site}}
-
-      {{node_info.hidden_service}}
-
-      {{node_info.url_schema}}
-
-      <input type="text"
-        ng-model="node_info.name">
-        <button class="btn"
-          ng-click="node_info.$save()">Save</button>
-    </div>
-
-    <div class="span4">
-      <p>Wayfarers tumblr next level american apparel mumblecore authentic
-      master cleanse. Vinyl bushwick labore nesciunt readymade, jean shorts
-      hoodie polaroid food truck. Dolor eiusmod +1 put a bird on it bespoke.<a
-        href="https://github.com/globaleaks/GlobaLeaks/wiki">Learn More</a></p>
-
+      </form>
     </div>
   </div>
-  <div class="row">
-    <div class="offset3 span5">
-      <label>Keywords</label>
-      <select class="language-setting">
-        <option>English</option>
-        <option>Serbian</option>
-      </select>
-      <textarea placeholder="fuffa, foo, antani, supercazzola, religione, cristo, lamadonna"></textarea>
-    </div>
-    <div class="span4">
-      <p>Wayfarers tumblr next level american apparel mumblecore authentic
-      master cleanse. Vinyl bushwick labore nesciunt readymade, jean shorts
-      hoodie polaroid food truck. Dolor eiusmod +1 put a bird on it bespoke.<a
-        href="https://github.com/globaleaks/GlobaLeaks/wiki">Learn More</a></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="offset3 span5">
-      <label>Email</label>
-      <input type="text" placeholder="me@example.com">
-    </div>
-    <div class="span4">
-      <p>Wayfarers tumblr next level american apparel mumblecore authentic
-      master cleanse. Vinyl bushwick labore nesciunt readymade, jean shorts
-      hoodie polaroid food truck. Dolor eiusmod +1 put a bird on it bespoke.<a
-        href="https://github.com/globaleaks/GlobaLeaks/wiki">Learn More</a></p>
-    </div>
-  </div>
-
-
-  <div class="row">
-    <div class="offset3 span5"><button type="submit" class="btn btn-success">Save</button></div>
-  </div>
-
-  </form>
 </div>
