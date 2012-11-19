@@ -12,7 +12,9 @@
     <h2>Step {{steps.current}}/{{steps.all.length}}</h2>
   </div>
 </div>
-<div 
+
+<!-- This will be visualized once the subission is created -->
+<div
   class="submission-receipt modal"
   ng-show="submission_complete">
   <div class="modal-header">
@@ -24,9 +26,10 @@
     allow you to access your submission</p>
   </div>
   <div class="modal-footer">
-    <a href="#/tip/{{submission.submission_receipt}}" class="btn btn-primary">View Tip</a>
+    <a href="#/status/{{submission.submission_receipt}}" class="btn btn-primary">View Tip</a>
   </div>
 </div>
+<!-- End -->
 
 <div class="container">
   <form name="form" novalidate>
