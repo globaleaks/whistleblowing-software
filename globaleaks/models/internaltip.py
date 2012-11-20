@@ -204,7 +204,7 @@ class InternalTip(TXModel):
         """
         store = self.getStore('get_newly_escalated')
 
-        escalated_itips = store.find(InternalTip, InternalTip.mark == u'first', InternalTip.pertinence_counter >= InternalTip.escalation_threshold )
+        escalated_itips = store.find(InternalTip, (InternalTip.mark == u'first' and InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
 
         retVal = []
         for single_itip in escalated_itips:
@@ -223,6 +223,7 @@ class InternalTip(TXModel):
         store = self.getStore('flip mark')
 
         requested_t = store.find(InternalTip, InternalTip.id == subject_id).one()
+        log.debug("flip mark in InternalTip %d, from [%s] to [%s]" % (requested_t.id, requested_t.mark, newmark))
         requested_t.mark = newmark
 
         store.commit()
