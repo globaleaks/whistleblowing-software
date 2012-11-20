@@ -31,20 +31,24 @@ class APSTip(GLJob):
 
         internal_id_list = yield internaltip_iface.get_newly_generated()
 
-        for id in internal_id_list:
+        if len(internal_id_list):
+            log.debug("TipSched: found %d new Tip: %s" % (len(internal_id_list), str(internal_id_list)))
 
+        for id in internal_id_list:
             yield receivertip_iface.create_receiver_tips(id, 1)
             yield internaltip_iface.flip_mark(id, u'first')
 
         # loops over the InternalTip and checks the escalation threshold
         # It may require the creation of second-step Tips
-        internal_id_list = yield internaltip_iface.get_newly_escalated()
+        escalated_id_list = yield internaltip_iface.get_newly_escalated()
 
-        # This event would be notified as system Comment
-        comment_iface = Comment()
+        if len(escalated_id_list):
+            log.debug("TipSched: %d Tip are escalated: %s" % (len(escalated_id_list), str(escalated_id_list)))
 
-        for id in internal_id_list:
+            # This event would be notified as system Comment
+            comment_iface = Comment()
 
-            yield comment_iface.add_comment(id, u"Escalation threshold has been reached", u'system')
-            yield receivertip_iface.create_receiver_tips(id, 2)
-            yield internaltip_iface.flip_mark(id, u'second')
+            for id in escalated_id_list:
+                yield comment_iface.add_comment(id, u"Escalation threshold has been reached", u'system')
+                yield receivertip_iface.create_receiver_tips(id, 2)
+                yield internaltip_iface.flip_mark(id, u'second')
