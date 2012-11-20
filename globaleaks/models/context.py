@@ -272,7 +272,7 @@ class Context(TXModel):
         store.close()
         return contextnum
 
-    @transact
+    # called always by transact method, from models
     def exists(self, context_gus):
         """
         @param context_gus: check if the requested context exists or not
