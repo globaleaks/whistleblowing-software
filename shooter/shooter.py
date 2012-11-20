@@ -65,7 +65,8 @@ schema = {
      '/admin/modules/@CID@/notification': 'GET', #A4
      '/admin/modules/@CID@/notification': 'POST', #A4
      '/admin/overview/@OID@' : 'GET', #A5
-     '/admin/tasks/@OID@' : 'GET' #A6
+     '/admin/tasks/@OID@' : 'GET', #A6
+     '/admin/tasks/@OID@' : 'DELETE' #A6
 }
 
 URTA = {
@@ -103,6 +104,7 @@ URTA = {
     'A4_POST':'POST_/admin/modules/@CID@/notification', #A4
     'A5_GET':'GET_/admin/overview/@OID@', #A5
     'A6_GET':'GET_/admin/tasks/@OID@', #A6
+    'A6_DELETE':'DELETE_/admin/tasks/@OID@' #A6
 }
 
 baseurl = "http://127.0.0.1:8082"

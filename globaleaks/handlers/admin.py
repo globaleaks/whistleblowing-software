@@ -445,11 +445,12 @@ class AdminTasks(BaseHandler):
         """
         /admin/tasks/ GET, force the execution of an otherwise scheduled event
         """
-        from globaleaks.runner import GLAsynchronous
         from globaleaks.jobs import notification_sched, statistics_sched, tip_sched,\
             delivery_sched, cleaning_sched, welcome_sched, digest_sched
 
         expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'digest' ]
+
+        log.debug("[D] manual execution of scheduled operation (%s)" % what)
 
         if what == 'statistics':
             yield notification_sched.APSNotification().operation()
@@ -472,3 +473,22 @@ class AdminTasks(BaseHandler):
             self.set_status(200)
 
         self.finish()
+
+
+    @asynchronous
+    @inlineCallbacks
+    def delete(self, what, *uriargs):
+        """
+        @param what: ignored at the moment
+        @param uriargs: ignored at the moment
+        @return: simply STOP the scheduler. Jobs operation whould be performed only via GET /admin/tasks/
+        """
+        from globaleaks.runner import GLAsynchronous
+
+        yield GLAsynchronous.shutdown(shutdown_threadpool=False)
+        log.debug("[D] stopped scheduled operations queue")
+
+        self.set_status(200)
+        self.finish()
+
+
