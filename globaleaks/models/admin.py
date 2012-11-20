@@ -1,6 +1,4 @@
 # coding=utf-8
-from storm.exceptions import NotOneError
-from storm.twisted.transact import transact
 # -*- encoding: utf-8 -*-
 #
 # :authors: Arturo Filastò
@@ -8,11 +6,7 @@ from storm.twisted.transact import transact
 
 from storm.locals import Int, Pickle
 from storm.locals import Unicode
-from storm.locals import ReferenceSet, Reference
-
-from globaleaks.utils import gltime, idops
-
-from globaleaks.models.base import TXModel, ModelError
+from globaleaks.models.base import TXModel
 from globaleaks.utils import log
 
 

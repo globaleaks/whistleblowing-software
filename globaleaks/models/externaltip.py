@@ -260,28 +260,6 @@ class ReceiverTip(TXModel):
 
         pass
 
-    @transact
-    def exists(self, tip_gus):
-        """
-        check the existence of tip_gus and return the internaltip.id referenced
-        """
-
-        store = self.getStore('receiver_get_single')
-
-        try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
-        except NotOneError, e:
-            store.close()
-            raise TipGusNotFoundError
-        if not requested_t:
-            store.close()
-            raise TipGusNotFoundError
-
-        ret_internaltip_id = requested_t.internaltip.id
-        store.close()
-
-        return ret_internaltip_id
-
     # This method is separated by initialize routine, because the tip creation
     # event can be exported/overriden/implemented by a plugin in a certain future.
     # like notification or delivery, it has a dedicated event in the scheduler
