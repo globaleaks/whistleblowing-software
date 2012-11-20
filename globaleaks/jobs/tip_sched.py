@@ -49,6 +49,6 @@ class APSTip(GLJob):
             comment_iface = Comment()
 
             for id in escalated_id_list:
-                yield comment_iface.add_comment(id, u"Escalation threshold has been reached", u'system')
+                # yield comment_iface.add_comment(id, u"Escalation threshold has been reached", u'system')
                 yield receivertip_iface.create_receiver_tips(id, 2)
                 yield internaltip_iface.flip_mark(id, u'second')

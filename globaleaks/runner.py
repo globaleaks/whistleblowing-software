@@ -8,6 +8,7 @@ from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 
 from globaleaks.db import createTables
+from apscheduler.scheduler import Scheduler
 
 # same name mistake = shit,
 # log appears to not be used, but is called as log.debug
@@ -15,7 +16,9 @@ from globaleaks.utils import log
 # XXX
 
 # The scheduler is a global variable, because can be used to force execution
-GLAsynchronous = None
+__all__ = ['GLAsynchronous']
+
+GLAsynchronous = Scheduler()
 
 class GLBaseRunner(app.ApplicationRunner):
     """
@@ -52,11 +55,9 @@ def startAsynchronous():
     This method would be likely put in GLBaseRunner.postApplication, but is not executed by
     startglobaleaks.runApp, then is called by the OS-depenedent runner below
     """
-    from apscheduler.scheduler import Scheduler
     from globaleaks.jobs import notification_sched, statistics_sched, tip_sched, \
         delivery_sched, cleaning_sched, welcome_sched, digest_sched
 
-    GLAsynchronous = Scheduler()
     # When the application boot, maybe because has been restarted. then, execute all the
     # periodic operation by hand.
 

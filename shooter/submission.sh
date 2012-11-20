@@ -4,7 +4,9 @@ SHOOTER="python shooter.py"
 
 #
 # This script wrap the shooter.py script. do not include any of the globaleaks files
-#
+
+# disable scheduled operations
+$SHOOTER A6 DELETE oid alljobs
 
 if [ -n "$1" ]; then
     echo "If an option is present, is choosen as context_gus"
