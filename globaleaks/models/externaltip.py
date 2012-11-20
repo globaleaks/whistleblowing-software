@@ -556,14 +556,19 @@ class Comment(TXModel):
 
         store = self.getStore('add_comment')
 
-        self.creation_time = gltime.utcTimeNow()
-        self.source = source
-        self.content = comment
-        self.author = name
-        self.notification_mark = u'not notified'
-        self.internaltip_id = itip_id
+        # this approach is a little different from the other classes in ExternalTip
+        # they use a new Object() in the caller method, and then Object.initialize
+        # to fill with data.
+        # XXX this would be refactored when TaskQueue would be engineered
+        newcomment = Comment()
+        newcomment.creation_time = gltime.utcTimeNow()
+        newcomment.source = source
+        newcomment.content = comment
+        newcomment.author = name
+        newcomment.notification_mark = u'not notified'
+        newcomment.internaltip_id = itip_id
+        store.add(newcomment)
 
-        store.add(self)
         store.commit()
         store.close()
 
