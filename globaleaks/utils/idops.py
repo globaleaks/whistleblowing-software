@@ -1,6 +1,4 @@
-from globaleaks.utils.random import random_string
 from Crypto.Random import random
-import re
 import string
 
 # follow the various random ID generation, with their prefix.
@@ -38,9 +36,9 @@ def random_receipt_gus(testingmode=False):
     else:
         return u''.join(random.choice('0123456789') for x in range(length))
 
-def random_module_gus():
+def random_plugin_gus():
     length = 10
-    return u'm_'+(''.join(random.choice('0123456789') for x in range(length)))
+    return u'p_'+(''.join(random.choice('0123456789') for x in range(length)))
 
 def random_context_gus():
     """
