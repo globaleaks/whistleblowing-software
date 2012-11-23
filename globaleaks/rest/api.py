@@ -14,8 +14,7 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks import config
 from globaleaks.handlers import node, submission, tip, admin, receiver, files
-from globaleaks.messages.base import tipGUS, receiverGUS, submissionGUS, contextGUS, moduleENUM
-
+from globaleaks.messages.base import tipGUS, receiverGUS, submissionGUS, contextGUS, profileGUS
 
 more_lax = r'(\w+)' # XXX need to be changed with regexp.submission_id | regexp.receipt_id
 not_defined_regexp = r'(\w+)'
@@ -59,8 +58,8 @@ spec = [
     #  * /reciever/<tip_GUS>/ R1
     (r'/receiver/' + tipGUS.regexp, receiver.ReceiverRoot),
 
-    #  * /receiver/<tip_GUS>/<user moduletype> R2
-    (r'/receiver/' + tipGUS.regexp + '/' + moduleENUM.regexp, receiver.ReceiverModule),
+    #  * /receiver/<tip_GUS>/
+    (r'/receiver/' + tipGUS.regexp + '/options', receiver.ReceiverOptions),
 
     ## Admin Handlers ##
     #  * /admin/node A1
@@ -72,8 +71,8 @@ spec = [
     #  * /admin/receivers/<receiver_GUS> A3
     (r'/admin/receivers/' + receiverGUS.regexp, admin.AdminReceivers),
 
-    #  * /admin/modules/<context_GUS>/<MODULE TYPE> A4
-    (r'/admin/modules/' + contextGUS.regexp + '/' + moduleENUM.regexp, admin.AdminModules),
+    #  * /admin/plugins/<profile_GUS>/ A4
+    (r'/admin/plugins/' + profileGUS.regexp, admin.AdminPlugin),
 
     #  * /admin/overview A5
     (r'/admin/overview/' + not_defined_regexp, admin.AdminOverView),

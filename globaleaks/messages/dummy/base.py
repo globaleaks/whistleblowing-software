@@ -197,7 +197,7 @@ formFieldsDicts2.append({
 
 
 moduleDataDict_N = {
-    "module_gus": idops.random_module_gus(),
+    "module_gus": None,
     "active": True,
     "module_type": u'notification',
     "name": u'Encrypted E-Mail',

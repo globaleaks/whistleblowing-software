@@ -47,11 +47,10 @@ schema = {
      '/tip/@TIP@/download': 'GET',  #T5
         # /download/ need a folderID insted of Tip ? XXX
      '/receiver/@TIP@': 'GET', #R1
-     '/receiver/@TIP@/notification': 'GET', #R2
-        # would be /notification or /delivery
-     '/receiver/@TIP@/notification': 'POST', #R2
-     '/receiver/@TIP@/notification': 'PUT', #R2
-     '/receiver/@TIP@/notification': 'DELETE', #R2
+     '/receiver/@TIP@/options': 'GET', #R2
+     '/receiver/@TIP@/options': 'POST', #R2
+     '/receiver/@TIP@/options': 'PUT', #R2
+     '/receiver/@TIP@/options': 'DELETE', #R2
      '/admin/node':'GET', #A1
      '/admin/node':'POST', #A1
      '/admin/contexts/@CID@': 'GET', #A2
@@ -62,8 +61,8 @@ schema = {
      '/admin/receivers/@RID@': 'POST', #A3
      '/admin/receivers/@RID@': 'DELETE', #A3
      '/admin/receivers/@RID@': 'PUT', #A3
-     '/admin/modules/@CID@/notification': 'GET', #A4
-     '/admin/modules/@CID@/notification': 'POST', #A4
+     '/admin/plugins/@CID@/notification': 'GET', #A4
+     '/admin/plugins/@CID@/notification': 'POST', #A4
      '/admin/overview/@OID@' : 'GET', #A5
      '/admin/tasks/@OID@' : 'GET', #A6
      '/admin/tasks/@OID@' : 'DELETE' #A6
@@ -84,12 +83,10 @@ URTA = {
     'T5_GET':'GET_/tip/@TIP@/download',  #T5
     # /download/ need a folderID insted of Tip ? XXX
     'R1_GET':'GET_/receiver/@TIP@', #R1
-    'R2_GET':'GET_/receiver/@TIP@/notification', #R2
-    # /notification or /delivery
-    'R2_POST':'POST_/receiver/@TIP@/notification', #R2
-    'R2_PUT':'PUT_/receiver/@TIP@/notification', #R2
-    'R2_DELETE':'DELETE_/receiver/@TIP@/notification', #R2
-    # admin not yet supported, because who knows..
+    'R2_GET':'GET_/receiver/@TIP@/options', #R2
+    'R2_POST':'POST_/receiver/@TIP@/options', #R2
+    'R2_PUT':'PUT_/receiver/@TIP@/options', #R2
+    'R2_DELETE':'DELETE_/receiver/@TIP@/options', #R2
     'A1_GET':'GET_/admin/node', #A1
     'A1_POST':'POST_/admin/node', #A1
     'A2_GET':'GET_/admin/contexts/@CID@', #A2
@@ -100,8 +97,10 @@ URTA = {
     'A3_POST':'POST_/admin/receivers/@RID@', #A3
     'A3_DELETE':'DELETE_/admin/receivers/@RID@', #A3
     'A3_PUT':'PUT_/admin/receivers/@RID@', #A3
-    'A4_GET':'GET_/admin/modules/@CID@/notification', #A4
-    'A4_POST':'POST_/admin/modules/@CID@/notification', #A4
+    'A4_GET':'GET_/admin/plugins/@PID@', #A4
+    'A4_POST':'POST_/admin/plugins/@PID@', #A4
+    'A4_POST':'PUT_/admin/plugins/@PID@', #A4
+    'A4_POST':'DELETE_/admin/plugins/@PID@', #A4
     'A5_GET':'GET_/admin/overview/@OID@', #A5
     'A6_GET':'GET_/admin/tasks/@OID@', #A6
     'A6_DELETE':'DELETE_/admin/tasks/@OID@' #A6
