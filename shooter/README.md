@@ -41,7 +41,10 @@ they need to be specified with an appropriate keyword:
     tip (and follow a Tip unique string)
     rid (and follow a Receiver unique string)
     sid (and follow a Submission unique string)
-    oid
+    oid (statistics|welcome|tip|delivery|notification|cleaning|digest)
+        (itip|wtip|rtip|receivers|comment|profiles|rcfg|all)
+    pid (Profile unique string)
+    cn (configuration number)
 
 in the JSON files is possibile specifiy also raw JSON data. If you make an assignment works
 like an Unicode string, but for integer, boolean, list or dictionary, you need raw assignment.
@@ -58,37 +61,51 @@ shooter.py U3 GET sid s\_VeLvSDfpKsxUdGLHEDDKWFBIAnTrMbbuqSPuEYylJpkxSozTmd
 ## API list and shortname
 
      '/node': 'GET' , #U1
+
      '/submission': 'GET', #U2
+
      '/submission/@SID@/status': 'GET', #U3
      '/submission/@SID@/status': 'POST', #U3
+
      '/submission/@SID@/finalize': 'POST', #U4
-        # file not yet 
+
      '/tip/@TIP@': 'GET', #T1
      '/tip/@TIP@' : 'POST', #T1
      '/tip/@TIP@/comment': 'POST', #T2
-        # "T3" : file uploader, not checked/used
+
      '/tip/@TIP@/finalize': 'POST', #T4
+
      '/tip/@TIP@/download': 'GET',  #T5
-        # /download/ need a folderID insted of Tip ? XXX
+
      '/receiver/@TIP@': 'GET', #R1
-     '/receiver/@TIP@/notification': 'GET', #R2
-        # /notification or /delivery
-     '/receiver/@TIP@/notification': 'POST', #R2
-     '/receiver/@TIP@/notification': 'PUT', #R2
-     '/receiver/@TIP@/notification': 'DELETE', #R2
+     '/receiver/@TIP@': 'PUT', #R1
+
+     '/receiver/@TIP@/management/@PID@': 'GET', #R2
+     '/receiver/@TIP@/management/@PID@': 'POST', #R2
+     '/receiver/@TIP@/management/@PID@': 'PUT', #R2
+     '/receiver/@TIP@/management/@PID@': 'DELETE', #R2
+
      '/admin/node':'GET', #A1
      '/admin/node':'POST', #A1
+
      '/admin/contexts/@CID@': 'GET', #A2
      '/admin/contexts/@CID@': 'POST', #A2
      '/admin/contexts/@CID@': 'PUT', #A2
      '/admin/contexts/@CID@': 'DELETE', #A2
+
      '/admin/receivers/@RID@': 'GET', #A3
      '/admin/receivers/@RID@': 'POST', #A3
      '/admin/receivers/@RID@': 'DELETE', #A3
      '/admin/receivers/@RID@': 'PUT', #A3
-     '/admin/modules/@CID@/notification': 'GET', #A4
-     '/admin/modules/@CID@/notification': 'POST' #A4
+
+     '/admin/plugins/@PID@/': 'GET', #A4
+     '/admin/plugins/@PID@/': 'POST' #A4
+     '/admin/plugins/@PID@/': 'PUT' #A4
+     '/admin/plugins/@PID@/': 'DELETE' #A4
+
      '/admin/overview/@OID@': 'GET' #A5
+
+     '/admin/tasks/@OID@': 'GET' #A6
      '/admin/tasks/@OID@': 'GET' #A6
 
 ### printing options

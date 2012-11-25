@@ -59,7 +59,7 @@ spec = [
     (r'/receiver/' + tipGUS.regexp + '/management', receiver.ReceiverManagement),
 
     #  * /receiver/<tip_GUS>/plugin/<profile_GUS>/<ReceiverConf_numeric_ID> R2
-    (r'/receiver/' + tipGUS.regexp + '/plugin' + profileGUS.regexp + '/' + 'r(\d+)', receiver.ReceiverPluginConf),
+    (r'/receiver/' + tipGUS.regexp + '/plugin/' + profileGUS.regexp + '/' + 'r(\d+)', receiver.ReceiverPluginConf),
 
     ## Admin Handlers ##
     #  * /admin/node A1

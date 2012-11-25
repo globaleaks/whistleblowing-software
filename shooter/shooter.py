@@ -9,65 +9,6 @@ import json
 cwd = '/'.join(__file__.split('/')[:-1])
 sys.path.insert(0, os.path.join(cwd, '../'))
 
-# U1 `/node/`
-# U2 `/submission/<context_gus>`
-# U3 `/submission/<submission_gus>`
-# U4 `/submission/<submission_gus>/finalize`
-# U5 `/submission/<submission_gus>/upload_file`
-
-# R1 `/receiver/<string t_gus>/overview`
-# R2 `/receiver/<string module_name><string t_gus>/module`
-
-# A1 `/admin/node/`
-# A2 `/admin/contexts/<context_gus>`
-# A3 `/admin/receivers/<receiver_gus>/`
-# A4 `/admin/modules/<context_$ID>/<string module_type>/`
-# A5 /admin/overview/<tablenames>
-# A6 /admin/tasks/<tasknames>
-
-# T1 `/tip/<string auth t_gus>`
-# T2 `/tip/<uniq_Tip_$ID>/comment`
-# T3 `/tip/<uniq_Tip_$ID>/update_file`
-# T4 `/tip/<string t_gus>/finalize_update`
-# T5 `/tip/<string t_gus>/download_material`
-
-# remind: this code section is copyed also in README.md
-schema = {
-     '/node': 'GET' , #U1
-     '/submission/@CID@/new': 'GET', #U2
-     '/submission/@SID@/status': 'GET', #U3
-     '/submission/@SID@/status': 'POST', #U3
-     '/submission/@SID@/finalize': 'POST', #U4
-        # file not yet 
-     '/tip/@TIP@': 'GET', #T1
-     '/tip/@TIP@' : 'POST', #T1
-     '/tip/@TIP@/comment': 'POST', #T2
-        # "T3" :['/tip/'+tID()+'/files', ['GET','POST','PUT','DELETE']],
-     '/tip/@TIP@/finalize': 'POST', #T4
-     '/tip/@TIP@/download': 'GET',  #T5
-        # /download/ need a folderID insted of Tip ? XXX
-     '/receiver/@TIP@': 'GET', #R1
-     '/receiver/@TIP@/options': 'GET', #R2
-     '/receiver/@TIP@/options': 'POST', #R2
-     '/receiver/@TIP@/options': 'PUT', #R2
-     '/receiver/@TIP@/options': 'DELETE', #R2
-     '/admin/node':'GET', #A1
-     '/admin/node':'POST', #A1
-     '/admin/contexts/@CID@': 'GET', #A2
-     '/admin/contexts/@CID@': 'POST', #A2
-     '/admin/contexts/@CID@': 'PUT', #A2
-     '/admin/contexts/@CID@': 'DELETE', #A2
-     '/admin/receivers/@RID@': 'GET', #A3
-     '/admin/receivers/@RID@': 'POST', #A3
-     '/admin/receivers/@RID@': 'DELETE', #A3
-     '/admin/receivers/@RID@': 'PUT', #A3
-     '/admin/plugins/@CID@/notification': 'GET', #A4
-     '/admin/plugins/@CID@/notification': 'POST', #A4
-     '/admin/overview/@OID@' : 'GET', #A5
-     '/admin/tasks/@OID@' : 'GET', #A6
-     '/admin/tasks/@OID@' : 'DELETE' #A6
-}
-
 URTA = {
     'U1_GET':'GET_/node', #U1
     'U2_GET':'GET_/submission/@CID@/new',#U2
@@ -82,11 +23,12 @@ URTA = {
     'T4_POST':'POST_/tip/@TIP@/finalize', #T4
     'T5_GET':'GET_/tip/@TIP@/download',  #T5
     # /download/ need a folderID insted of Tip ? XXX
-    'R1_GET':'GET_/receiver/@TIP@', #R1
-    'R2_GET':'GET_/receiver/@TIP@/options', #R2
-    'R2_POST':'POST_/receiver/@TIP@/options', #R2
-    'R2_PUT':'PUT_/receiver/@TIP@/options', #R2
-    'R2_DELETE':'DELETE_/receiver/@TIP@/options', #R2
+    'R1_GET':'GET_/receiver/@TIP@/management', #R1
+    'R1_PUT':'GET_/receiver/@TIP@/management', #R1
+    'R2_GET':'GET_/receiver/@TIP@/plugin/@PID@/@CN@', #R2
+    'R2_POST':'POST_/receiver/@TIP@/plugin/@PID@/@CN@', #R2
+    'R2_PUT':'PUT_/receiver/@TIP@/plugin/@PID@/@CN@', #R2
+    'R2_DELETE':'DELETE_/receiver/@TIP@/plugin/@PID@/@CN@', #R2
     'A1_GET':'GET_/admin/node', #A1
     'A1_POST':'POST_/admin/node', #A1
     'A2_GET':'GET_/admin/contexts/@CID@', #A2
@@ -99,8 +41,8 @@ URTA = {
     'A3_PUT':'PUT_/admin/receivers/@RID@', #A3
     'A4_GET':'GET_/admin/plugins/@PID@', #A4
     'A4_POST':'POST_/admin/plugins/@PID@', #A4
-    'A4_POST':'PUT_/admin/plugins/@PID@', #A4
-    'A4_POST':'DELETE_/admin/plugins/@PID@', #A4
+    'A4_PUT':'PUT_/admin/plugins/@PID@', #A4
+    'A4_DELETE':'DELETE_/admin/plugins/@PID@', #A4
     'A5_GET':'GET_/admin/overview/@OID@', #A5
     'A6_GET':'GET_/admin/tasks/@OID@', #A6
     'A6_DELETE':'DELETE_/admin/tasks/@OID@' #A6
@@ -189,8 +131,16 @@ def getOpt(seekd):
 
 def fix_varline(inputline):
 
-    for var,argopt in { '@TIP@': 'tip', '@CID@': 'cid', '@SID@':'sid', '@RID@' : 'rid',
-            '@RAW@' : 'raw', '@OID@' : 'oid' }.iteritems():
+    for var,argopt in { 
+            '@TIP@': 'tip', # Tip GUS
+            '@CID@': 'cid', # Context GUS
+            '@SID@': 'sid', # Session GUS
+            '@RID@': 'rid', # Receiver GUS
+            '@RAW@': 'raw', # RAW JSON string
+            '@OID@': 'oid', # task scheduled type, or table shortnames
+            '@PID' : 'pid', # Profile GUS (plugin)
+            '@CN@' : 'cn'   # Configuration Number (numeric ID)
+                }.iteritems():
 
         if inputline.find(var) > 0:
 
@@ -213,36 +163,6 @@ def getMethIf(argv_index):
             return sys.argv[argv_index].upper()
 
     return None
-
-def spelunking_into_schema():
-
-    requested_rest = []
-
-    for rest,method in schema.iteritems():
-        if rest.find(sys.argv[1]) > 0:
-            requested_rest.append(method + '_' + rest)
-
-    if len(requested_rest) == 0:
-        print "not found pattern", sys.argv[1], "in rest list"
-        quit(1)
-
-    meth = getMethIf(2)
-    if meth:
-        unfiltered_rest = requested_rest
-        requested_rest = []
-        for meth_rest in unfiltered_rest:
-            if meth_rest.find(meth) == 0:
-                requested_rest.append(meth_rest)
-
-    if len(requested_rest) != 1:
-        print "expected only one selected REST, your query match", len(requested_rest)
-        for rest in requested_rest:
-            print "\t", rest
-        quit(1)
-
-    # (url, meth, aggregate)
-    splitted_aggr = requested_rest[0].split('_')
-    return (splitted_aggr[1], splitted_aggr[0], requested_rest[0])
 
 def spelunking_into_URTA():
 
@@ -327,7 +247,7 @@ if __name__ == '__main__':
 
     if len(sys.argv) < 2:
         print sys.argv[0], "[portion of REST]|URTA code", "<method>",
-        "<sid>|<cid>|<tip>|<rid>|<raw>|<oid>"
+        "<sid>|<cid>|<tip>|<rid>|<raw>|<oid>|<pid>|<cn>"
         quit(1)
 
     if sys.argv[1] == 'help':
@@ -344,11 +264,11 @@ if __name__ == '__main__':
             output_handling = True
 
     # handle 'shooter.py U1' and 'shooter.py U1 POST'
-    if len(sys.argv[1]) == 2:
-        (url, meth, aggregate) = spelunking_into_URTA()
-    else:
-    # handle option 'shooter.py admin/module POST'
-        (url, meth, aggregate) = spelunking_into_schema()
+    if len(sys.argv[1]) != 2:
+        print "expected a code like (U|R|T|A) with a number"
+        quit(1)
+
+    (url, meth, aggregate) = spelunking_into_URTA()
 
     if meth != 'GET' and meth != 'DELETE':
         request_list = search_jsonfile(aggregate)

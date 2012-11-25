@@ -29,8 +29,8 @@ class ReceiverManagement(BaseHandler):
 
     and permit the overall view of all the Tips related to the receiver
     GET and PUT /receiver/(auth_secret_token)/management
-
     """
+
     @asynchronous
     @inlineCallbacks
     def get(self, tip_gus, *uriargs):
@@ -50,7 +50,6 @@ class ReceiverManagement(BaseHandler):
 
         self.set_status(500)
         self.finish()
-
 
 
 class ReceiverPluginConf(BaseHandler):
@@ -80,17 +79,17 @@ class ReceiverPluginConf(BaseHandler):
         receivertip_iface = externaltip.ReceiverTip()
 
         try:
-            receiverdesc = yield receivertip_iface.get_receiver_by_tip(tip_gus)
+            receiver_d = yield receivertip_iface.get_receiver_by_tip(tip_gus)
         except externaltip.TipGusNotFoundError, e:
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-            receiverdesc = None
+            receiver_d = None
 
-        if receiverdesc:
+        if receiver_d:
 
             confs_iface = options.ReceiverConfs()
 
-            receiver_confs = yield confs_iface.receiver_get_all(receiverdesc['receiver_gus'])
+            receiver_confs = yield confs_iface.receiver_get_all(receiver_d['receiver_gus'])
 
             self.set_status(200)
             self.write(receiver_confs)
@@ -113,13 +112,13 @@ class ReceiverPluginConf(BaseHandler):
         profile_iface = options.PluginProfiles()
 
 
-        profile_description = plugin_code = receiverdesc = None
+        profile_d = plugin_code = receiver_d = None
         try:
-            receiverdesc = yield receivertip_iface.get_receiver_by_tip(tip_gus)
+            receiver_d = yield receivertip_iface.get_receiver_by_tip(tip_gus)
 
             plugin_code = plugin_manager.get_plugins(request['plugin_type']).get(['plugin_name'])
 
-            profile_description = profile_iface.admin_get_single(profile_gus)
+            profile_d = profile_iface.admin_get_single(profile_gus)
 
         except externaltip.TipGusNotFoundError, e:
 
@@ -142,14 +141,14 @@ class ReceiverPluginConf(BaseHandler):
             self.set_status(400)
             self.write({'error_message': 'Missing request!', 'error_code' : 123})
 
-        if receiverdesc and plugin_code and profile_description:
+        if receiver_d and plugin_code and profile_d:
 
             config_iface = options.ReceiverConfs()
 
             # XXX also GLPlugin would raise an exception ya, just, I've too much commits in the belly XXX
-            if plugin_code.validate_receiver_opt(profile_description['admin_fields'], request['receiver_fields']):
+            if plugin_code.validate_receiver_opt(profile_d['admin_fields'], request['receiver_fields']):
 
-                yield config_iface.newconf(receiverdesc['receiver_gus'], profile_gus, request['receiver_fields'], request['active'])
+                yield config_iface.newconf(receiver_d['receiver_gus'], profile_gus, request['receiver_fields'], request['active'])
                 self.set_status(200)
 
             else:
@@ -175,13 +174,13 @@ class ReceiverPluginConf(BaseHandler):
         plugin_manager = GLPluginManager()
         profile_iface = options.PluginProfiles()
 
-        profile_description = plugin_code = receiverdesc = None
+        profile_d = plugin_code = receiver_d = None
         try:
-            receiverdesc = yield receivertip_iface.get_receiver_by_tip(tip_gus)
+            receiver_d = yield receivertip_iface.get_receiver_by_tip(tip_gus)
 
             plugin_code = plugin_manager.get_plugins(request['plugin_type']).get(['plugin_name'])
 
-            profile_description = profile_iface.admin_get_single(profile_gus)
+            profile_d = profile_iface.admin_get_single(profile_gus)
 
         except externaltip.TipGusNotFoundError, e:
 
@@ -204,12 +203,12 @@ class ReceiverPluginConf(BaseHandler):
             self.set_status(400)
             self.write({'error_message': 'Missing request!', 'error_code' : 123})
 
-        if receiverdesc and plugin_code and profile_description:
+        if receiver_d and plugin_code and profile_d:
 
             config_iface = options.ReceiverConfs()
 
             # XXX also GLPlugin would raise an exception ya, just, I've too much commits in the belly XXX
-            if plugin_code.validate_receiver_opt(profile_description['admin_fields'], request['receiver_fields']):
+            if plugin_code.validate_receiver_opt(profile_d['admin_fields'], request['receiver_fields']):
 
                 yield config_iface.updateconf(conf_id, request['receiver_fields'], request['active'])
                 self.set_status(200)

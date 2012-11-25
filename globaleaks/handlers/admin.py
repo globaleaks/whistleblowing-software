@@ -546,10 +546,11 @@ class AdminOverView(BaseHandler):
         /admin/overview GET should return up to all the tables of GLBackend
         """
         from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment
+        from globaleaks.models.options import PluginProfiles, ReceiverConfs
         from globaleaks.models.internaltip import InternalTip
         from globaleaks.models.receiver import Receiver
 
-        expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'comment', 'all' ]
+        expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'comment', 'profiles', 'rcfg', 'all' ]
 
         if what == 'receivers' or what == 'all':
             receiver_iface = Receiver()
@@ -576,6 +577,17 @@ class AdminOverView(BaseHandler):
             comment_list = yield comment_iface.admin_get_all()
             self.write({ 'elements' : len(comment_list), 'comments' : comment_list })
 
+        if what == 'profiles' or what == 'all':
+            profile_iface = PluginProfiles()
+            profile_list = yield profile_iface.admin_get_all()
+            self.write({ 'elements' : len(profile_list), 'profiles' : profile_list })
+
+        if what == 'rcfg' or what == 'all':
+            rconf_iface = ReceiverConfs()
+            rconf_list = yield rconf_iface.admin_get_all()
+            self.write({ 'elements' : len(rconf_list), 'profiles' : rconf_list })
+
+
         if not what in expected:
             self.set_status(405)
         else:
@@ -583,7 +595,11 @@ class AdminOverView(BaseHandler):
 
         self.finish()
 
+
 class AdminTasks(BaseHandler):
+    """
+    A6 controls task and scheduled
+    """
 
     @asynchronous
     @inlineCallbacks
@@ -636,5 +652,3 @@ class AdminTasks(BaseHandler):
 
         self.set_status(200)
         self.finish()
-
-
