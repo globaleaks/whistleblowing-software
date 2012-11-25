@@ -114,6 +114,28 @@ class ReceiverTip(TXModel):
 
         return retVal
 
+    @transact
+    def get_receiver_by_tip(self, tip_gus):
+        """
+        @param tip_gus: a valid tip gus
+        @return: Receiver description based on the associated tip_gus
+        """
+        store = self.getStore('get_receiver_by_tip')
+
+        try:
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        except NotOneError, e:
+            store.close()
+            raise TipGusNotFoundError
+        if not requested_t:
+            store.close()
+            raise TipGusNotFoundError
+
+        retDict = requested_t.receiver._description_dict()
+        store.close()
+        return retDict
+
+
     # XXX this would be moved in the new 'task queue'
     @transact
     def flip_mark(self, tip_gus, newmark):
