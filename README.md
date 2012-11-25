@@ -40,7 +40,9 @@ Emulate the starting wizard using:
     expose GLBackend as [Tor](http://www.torproject.org) [hidden service](https://www.torproject.org/docs/tor-hidden-service.html.en).
 
 # Testing the software
-
-GLBackend/ $ trial globaleaks/tests/test\_\*.py
+```
+ $ cd GLBackend/ 
+ $ trial globaleaks
+```
 
 [GLBackend/shooter](https://github.com/globaleaks/GLBackend/tree/master/shooter), can be used by hand or using the shell scripts. Those perform a sequence of operation emulating the behavior of one or more users.
