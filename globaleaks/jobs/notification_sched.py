@@ -4,7 +4,7 @@ from globaleaks.models.externaltip import ReceiverTip, Comment
 from globaleaks.models.internaltip import InternalTip
 from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.plugins.notification.mailclient import GLBMailService
+from globaleaks.plugins import GLPluginManager
 
 __all__ = ['APSNotification']
 
@@ -32,6 +32,8 @@ class APSNotification(GLJob):
         """
         log.debug("[D]", self.__class__, 'operation', datetime.today().ctime())
 
+        notification_plugins = GLPluginManager('notification')
+
         receivertip_iface = ReceiverTip()
 
         # TODO +check delivery mark - would be moved in task queue
@@ -39,19 +41,20 @@ class APSNotification(GLJob):
 
         for single_tip in not_notified_tips:
 
-            # instead of checking if 'email' is set, in the future, open the plugin called like
-            # notification_selected, and pass the notification_fields to them.
-            if single_tip['notification_selected'] == u'email':
+            # XXX This key is guarantee (except if the plugin has not been removed)
+            plugin_code = notification_plugins.get(single_tip['notificaton_selected'])
 
-                if GLBMailService("tip_time", single_tip['tip_gus'], single_tip['notification_fields']):
-                    yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
-                else:
-                    yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
+            print "XXX selected plugin", plugin_code.plugin_name, plugin_code.plugin_type, "XXXXXXXXX"
 
+            # TODO digest (but It's better refactor scheduler in the same time)
+
+            information = [ single_tip['creation_time'], "New Tip: %s" % single_tip['tip_gus'] ]
+
+            if plugin_code.do_notify(single_tip['notification_fields'], information):
+                yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
             else:
-                log.err("[E]: not yet supported notification %s (%s)" %
-                        (single_tip['notification_selected'], single_tip['notification_fields'])
-                )
+                yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
+
 
         # Comment Notification procedure
         internaltip_iface = InternalTip()
@@ -63,16 +66,19 @@ class APSNotification(GLJob):
 
             source_name = comment['author'] if comment['author'] else comment['source']
             receivers_list = yield internaltip_iface.get_notification_list(comment['internaltip_id'])
+            # receiver_list is composed by [ notification_selected, notification_fields ]
 
             for receiver_info in receivers_list:
 
-                plugin = receiver_info[0]
-                notification_opt = receiver_info[1]
+                plugin_code = notification_plugins.get(receiver_info[0])
 
-                GLBMailService(comment['creation_time'], source_name, notification_opt)
+                # TODO digest check
+                information = [ comment['creation_time'], "New comment from: %s" % source_name ]
+                # new scheduler logic will fix also the lacking of comments notification status
+                plugin_code.do_notify(receiver_info[1], information)
 
             # this is not yet related to every receiver, because there are not yet a tracking
             # struct about the notifications statuses.
             yield comment_iface.flip_mark(comment['comment_id'], u'notified')
-            # This would be refactored with with the task manager
+            # This would be refactored with with the task manager + a comment for every receiver
 
