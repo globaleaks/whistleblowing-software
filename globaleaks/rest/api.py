@@ -55,11 +55,11 @@ spec = [
     (r'/tip/' + tipGUS.regexp + '/download', tip.TipDownload),
 
     ## Receiver Handlers ##
-    #  * /reciever/<tip_GUS>/ R1
-    (r'/receiver/' + tipGUS.regexp, receiver.ReceiverRoot),
+    #  * /reciever/<tip_GUS>/management R1
+    (r'/receiver/' + tipGUS.regexp + '/management', receiver.ReceiverManagement),
 
-    #  * /receiver/<tip_GUS>/
-    (r'/receiver/' + tipGUS.regexp + '/options', receiver.ReceiverOptions),
+    #  * /receiver/<tip_GUS>/plugin/<profile_GUS>/<ReceiverConf_numeric_ID> R2
+    (r'/receiver/' + tipGUS.regexp + '/plugin' + profileGUS.regexp + '/' + 'r(\d+)', receiver.ReceiverPluginConf),
 
     ## Admin Handlers ##
     #  * /admin/node A1

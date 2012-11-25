@@ -18,34 +18,38 @@ class InvalidReceiver(ModelError):
 # The association between Receiver and Context is performed in models/admin.py ContextReceivers table
 
 class Receiver(TXModel):
-    log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver")
+    """
+    Receiver description model, some Receiver dependent information are
+    also in globaleaks.models.plugin ReceiverConfs table
+    """
     __storm_table__ = 'receivers'
 
     receiver_gus = Unicode(primary=True)
-
-    name = Unicode()
-    description = Unicode()
-    tags = Pickle()
-    know_languages = Pickle()
 
     creation_date = Date()
     update_date = Date()
     last_access = Date()
 
+    # Those four variable can be changed by the Receiver
+    name = Unicode()
+    description = Unicode()
+    # Tags and know_languages reflect in the Context
+    tags = Pickle()
+    know_languages = Pickle()
+
+    # Those four would be removed and used ReceiverConfs.receiver_gus
+    # reference, fields, profile, etc
     notification_selected = Unicode()
-        # need to be a module_gus, but at the moment is just "email"
     delivery_selected = Unicode()
-        # need to be a module_gus, but at the moment is just "local"
-
     notification_fields = Pickle()
-        # email is the first development (email is stored here)
     delivery_fields = Pickle()
-        # local delivery is the first configured delivery (no info here)
 
+    # Admin choosen options
     can_delete_submission = Bool()
     can_postpone_expiration = Bool()
     can_configure_delivery = Bool()
     can_configure_notification = Bool()
+    admin_description = Unicode() # XXX: update API, scripts and outputs
 
     # receiver_tier = 1 or 2. Mean being part of the first or second level
     # of receivers body. if threshold is configured in the context. default 1
