@@ -52,7 +52,7 @@ class PluginProfiles(TXModel):
     # those fields MAY be changed when profile has been created
     external_description = Unicode()
     profile_name = Unicode()
-    admin_settings = Pickle()
+    admin_fields = Pickle()
 
     # contexts_assigned = Pickle()
     # TODO - at the moment, just the context reference their Profiles and not vice-versa
@@ -85,7 +85,7 @@ class PluginProfiles(TXModel):
         newone.required_fields = plugreq
 
         if settings:
-            newone.admin_settings = settings
+            newone.admin_fields = settings
 
         if desc:
             newone.external_description = desc
@@ -116,7 +116,7 @@ class PluginProfiles(TXModel):
             raise ProfileGusNotFoundError
 
         if settings:
-            looked_p.admin_settings = settings
+            looked_p.admin_fields = settings
 
         if profname:
             looked_p.profile_name = profname
@@ -175,7 +175,7 @@ class PluginProfiles(TXModel):
                    'creation_time' : None,
                    'profile_name' : self.profile_name,
                    'external_description' : self.external_description,
-                   'admin_settings' : self.admin_settings }
+                   'admin_fields' : self.admin_fields }
 
         return retVal
 
@@ -199,7 +199,7 @@ class ReceiverConfs(TXModel):
     receiver_gus = Unicode()
     receiver = Reference(receiver_gus, Receiver.receiver_gus)
 
-    configured_fields = Pickle()
+    receiver_fields = Pickle()
     profile_gus = Unicode()
     profile = Reference(profile_gus, PluginProfiles.profile_gus)
     active = Bool()
@@ -220,7 +220,7 @@ class ReceiverConfs(TXModel):
 
         newone = ReceiverConfs()
         newone.receiver_gus = receiver_gus
-        newone.configured_fields = settings
+        newone.receiver_fields = settings
         newone.profile_gus = profile_gus
         newone.active = active
 
@@ -252,7 +252,7 @@ class ReceiverConfs(TXModel):
             store.close()
             raise ReceiverConfInvalid
 
-        looked_c.configured_fields = settings
+        looked_c.receiver_fields = settings
         looked_c.active = active
 
         store.commit()
@@ -294,7 +294,7 @@ class ReceiverConfs(TXModel):
             'receiver_gus' : self.receiver_gus,
             'active' : self.active,
             'id' : self.id,
-            'configured_fields' : self.configured_fields,
+            'receiver_fields' : self.receiver_fields,
             'profile_gus' : self.profile_gus
         }
         return retVal
