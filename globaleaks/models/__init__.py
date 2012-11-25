@@ -15,7 +15,7 @@ singular (no s).
 The names of the modules is singular with no s
 """
 
-__all__ = ['base', 'admin', 'receiver', 'internaltip', 'externaltip' 'submission', 'node', 'context' ]
+__all__ = ['base', 'admin', 'receiver', 'internaltip', 'externaltip' 'submission', 'node', 'context', 'options' ]
 
 from . import base
 from . import admin
@@ -25,6 +25,7 @@ from . import internaltip
 from . import externaltip
 from . import node
 from . import context
+from . import options
 
 
 from storm.tracer import debug

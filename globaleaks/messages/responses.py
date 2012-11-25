@@ -44,7 +44,7 @@ def nodeMainSettings():
                 "public_statistics": {'active_contexts': 1,
                                       'active_receivers': 10,
                                       'uptime_days': 100},
-                "contexts": dummy.base.contextDescriptionDicts
+                "contexts": null # contextDescriptionDict
                 }
     # XXX run function to do validation of this data in output
     #
