@@ -1,18 +1,24 @@
 ## Plugins directory 
 
-The section of code included in the subdirectory here, have the goal to expand GLBackend
-capabilities without modification of the code code. Here are documented, and inside of the
-subdirectories here you can found a **skeleton.example** explaining the plugins hooks
-
 https://github.com/globaleaks/GLBackend/wiki/Plugins
 
-and are based on http://pypi.python.org/pypi/Plugins/0.5a1dev
+## Shared elements between plugins
+
+    self.plugin_name
+    self.plugin_description
+    self.admin_fields
+    self.receiver_fields
+
+    def validate_admin_opt(self, pushed_af)
+    def validate_receiver_opt(self, admin_fields, receiver_fields)
 
 
 ### Notification
 
+    def digest_check(self, settings, stored_data, new_data)
+    def do_notify(self, settings, stored_data)
+
 ### Delivery 
 
 ### InputFilter 
-
 

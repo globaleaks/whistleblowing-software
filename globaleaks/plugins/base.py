@@ -1,13 +1,19 @@
 
 
 class GLPlugingManager:
+    """
+    This plugin manager is temporary, perhaps https://code.google.com/p/pyplugin/
+    or http://pypi.python.org/pypi/Plugins/0.5a1dev
+    """
 
     def __init__(self):
         from globaleaks.plugins.notification.mail_plugin import MailNotification
+        from globaleaks.plugins.notification.irc_plugin import IRCNotification
 
         # only here the plugin object is instanced
         self.notification_dict = {
-            'email', MailNotification()
+            'email', MailNotification(),
+            'irc', IRCNotification()
         }
         self.delivery_dict = {}
         self.inputfilter_dict = {}
