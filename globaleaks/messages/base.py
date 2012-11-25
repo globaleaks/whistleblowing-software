@@ -68,8 +68,8 @@ class submissionGUS(SpecialType):
 class receiverGUS(SpecialType):
     regexp = r"(r_[a-zA-Z]{20,20})"
 
-class moduleGUS(SpecialType):
-    regexp = r"(m_\d{10,10})"
+class profileGUS(SpecialType):
+    regexp = r"(p_\d{10,10})"
 
 class moduleENUM(SpecialType):
     regexp = "(notification|delivery|inputfilter)"
@@ -173,14 +173,16 @@ class formFieldsDict(GLTypes):
 
 
 class moduleDataDict(GLTypes):
-    specification = {"gus": moduleGUS,
+    specification = {
+            "profile_gus": profileGUS,
             "active": bool,
-            "module_type": moduleENUM,
+            "module_type": unicode,
             "name": unicode,
             "module_description": unicode,
             "service_message": unicode,
-            "admin_options": [formFieldsDict],
-            "user_options": [formFieldsDict]}
+            "admin_fields": [formFieldsDict],
+            "receiver_options": [formFieldsDict]
+    }
 
 
 class contextDescriptionDict(GLTypes):
