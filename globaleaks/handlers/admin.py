@@ -7,12 +7,14 @@
 #   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
 #   :license: see LICENSE
 #
-from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import node, context, receiver
-from globaleaks.utils import log
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
 import json
+
+from globaleaks.handlers.base import BaseHandler
+from globaleaks.models import node, context, receiver, options
+from globaleaks.utils import log
+from globaleaks.plugins import GLPluginManager
 
 class AdminNode(BaseHandler):
     """
@@ -374,20 +376,164 @@ class AdminReceivers(BaseHandler):
 
         self.finish()
 
-class AdminModules(BaseHandler):
-    log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "BaseHandler", BaseHandler)
-    # A4
+# A4
+class AdminPlugin(BaseHandler):
     """
-    A limited CRUD (we've not creation|DELETE, just update, with
-    maybe a flag that /disable/ a module)
+    This class enable and configure the profiles, a profile is a plugin configuration,
+    and the same plugin may have multiple
     """
-    def get(self, module_gus, *uriargs):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "GET")
-        pass
 
-    def post(self, module_gus, *uriargs):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminModules", "POST")
-        pass
+    @asynchronous
+    @inlineCallbacks
+    def get(self, profile_gus, *uriargs):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "GET", profile_gus)
+
+        plugin_iface = options.PluginProfiles()
+
+        try:
+            profile_description = yield plugin_iface.admin_get_single(profile_gus)
+
+            self.set_status(200)
+            self.write(profile_description)
+
+        except options.ProfileGusNotFoundError, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+    @asynchronous
+    @inlineCallbacks
+    def post(self, profile_gus, *uriargs):
+        """
+        POST create a new resource, I've mistaken in all the CRUD and caused that PUT create and
+        POST update. I would flip that method in the next (and last) API refactor-cleaning
+
+        @param profile_gus: an unchecked variable that just need to fit A4 regexp
+        @return:
+        """
+
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "POST")
+
+        request = json.loads(self.request.body)
+
+        # this is not the right approach, the validation would be implemented
+        # correctly in short time, when can be reviewed the generation of doc and
+        # validation of input/output
+        if not request:
+            self.write({'error_message': 'Missing request!', 'error_code' : 123})
+            self.set_status(400)
+            self.finish()
+            # this behaviour cause an error from Cyclone
+
+        plugin_manager = GLPluginManager()
+
+        if not plugin_manager.plugin_exists(request['plugin_type'], request['plugin_name']):
+
+            self.set_status(406)
+            self.write({'error_message': 'Invalid plugin (type/name) requested', 'error_code' : 123 })
+
+        else:
+            # reach the GLPlugin class implementation
+            plugin_code = plugin_manager.get_plugin(request['plugin_type'], request['plugin_name'])
+
+            if plugin_code.validate_admin_opt(request['admin_fields']) and request['profile_name']:
+
+                plugin_iface = options.PluginProfiles()
+
+                try:
+                    new_profile = yield plugin_iface.newprofile(request['plugin_type'], request['plugin_name'],
+                        request['profile_name'],
+                        { 'admin' : plugin_code.admin_fields, 'receiver' : plugin_code.admin_fields},
+                        request['description'],  request['profile_settings'] )
+
+                    self.set_status(200)
+                    self.write({'profile_gus': new_profile})
+
+                except options.ProfileNameConflict, e:
+
+                    self.set_status(e.http_status)
+                    self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+            else:
+                self.set_status(406)
+                self.write({'error_message':
+                    'Invalid request format in Profile creation (profile name, fields content)',
+                    'error_code' : 123 })
+
+        self.finish()
+
+
+    @asynchronous
+    @inlineCallbacks
+    def put(self, profile_gus, *uriargs):
+        """
+        @param profile_gus: the target profile to be updated
+        @param uriargs: None
+        @return: as get, or error if wrong request/profile_gus is passed
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "PUT", profile_gus)
+
+        request = json.loads(self.request.body)
+
+        if not request:
+            self.write({'error_message': 'Missing request', 'error_code' : 123})
+            self.set_status(400)
+
+        else:
+
+            plugin_manager = GLPluginManager()
+
+            if not plugin_manager.plugin_exists(request['plugin_type'], request['plugin_name']):
+
+                self.set_status(406)
+                self.write({'error_message': 'Invalid plugin (type/name) requested', 'error_code' : 123 })
+
+            else:
+
+                # reach the GLPlugin class implementation
+                plugin_code = plugin_manager.get_plugin(request['plugin_type'], request['plugin_name'])
+
+                new_settings = request['admin_fields'] if request['admin_fields'] else None
+                new_name = request['profile_name'] if request['profile_name']  else None
+                new_desc = request['description'] if request['description'] else None
+
+                if not plugin_code.validate_admin_opt(new_settings):
+                    self.set_status(406)
+                    self.write({'error_message':
+                                    'Invalid request format in Profile creation (fields content)',
+                                'error_code' : 123 })
+                else:
+
+                    plugin_iface = options.PluginProfiles()
+
+                    try:
+                        yield plugin_iface.update_profile(profile_gus, settings=new_settings, desc=new_desc, profname=new_name)
+
+                        self.set_status(200)
+
+                    except options.ProfileNameConflict, e:
+
+                        self.set_status(e.http_status)
+                        self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+                    except options.ProfileGusNotFoundError, e:
+
+                        self.set_status(e.http_status)
+                        self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+    @asynchronous
+    @inlineCallbacks
+    def delete(self, profile_gus, *uriargs):
+        """
+        Not yet implemented <:
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
+
 
 # A5, not yet documented, overview handler to enhance control on GLB tasks and tables
 # /admin/overview/<stuff> CRUD
