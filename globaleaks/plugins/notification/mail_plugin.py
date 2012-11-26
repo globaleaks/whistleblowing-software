@@ -1,14 +1,14 @@
-from globaleaks.utils import log
+
+from globaleaks.utils import log, gltime
+from globaleaks.plugins.base import GLPlugin
 import smtplib
 import string
-
-from globaleaks.plugins import GLPlugin
-from globaleaks.utils import gltime
 
 class MailNotification(GLPlugin):
 
     def __init__(self):
         self.plugin_name = 'email'
+        self.plugin_type = 'notification'
         self.plugin_description = "Mail notification, with encryption options"
 
         # this is not the right fields description, because would contain also
@@ -21,26 +21,32 @@ class MailNotification(GLPlugin):
         if self._get_SMTP(pushed_af['server'], pushed_af['port'], pushed_af['ssl'],
                 pushed_af['username'], pushed_af['password']):
             return True
-        else
+        else:
             return False
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
         return True
 
-    def _append_email():
+    def _append_email(self):
+        pass
         # TODO use http://docs.python.org/2/library/email
-        # before was used:
+        #body = string.join(("From: GLBackend postino <%s>" % username,
+        #                    "To: Estimeed Receiver <%s>" % receiver_addr,
+        #                    "Subject: %s" % subject, text), "\r\n")
 
-        body = string.join(("From: GLBackend postino <%s>" % username,
-                            "To: Estimeed Receiver <%s>" % receiver_addr,
-                            "Subject: %s" % subject, text), "\r\n")
-        return body
 
-    def _get_SMTP(server, port, tls, username, password):
+    def _create_email(self, body, source, dest, subject):
+        # TODO use http://docs.python.org/2/library/email
+        print body, source, dest, subject
+        return string.join(("From: GLBackend postino <%s>" % source,
+                            "To: Estimeed Receiver <%s>" % dest,
+                            "Subject: %s" % subject, body), "\r\n")
+
+    def _get_SMTP(self, server, port, tls, username, password):
 
         try:
-            socket = smtplib.SMTP(server + ':' + port)
+            socket = smtplib.SMTP("%s:%d" % (server, port))
             if tls:
                 socket.starttls()
             socket.login(username, password)
@@ -50,8 +56,7 @@ class MailNotification(GLPlugin):
             log.debug("Error, Connection error to %s:%d" % (server, port) )
             return None
         except smtplib.SMTPAuthenticationError:
-            log.debug("Error, Invalid Login/Password provided for server %s (%s)" % (server
-                    username) )
+            log.debug("Error, Invalid Login/Password provided for server %s (%s)" % (server, username) )
             return None
 
         return socket
@@ -63,10 +68,11 @@ class MailNotification(GLPlugin):
 
     def do_notify(self, settings, stored_data):
 
-        af = settings['admin_field']
-        rf = settings['receiver_field']
+        af = settings['admin_fields']
+        rf = settings['receiver_fields']
 
-        body = self._create_email(stored_data)
+        body = self._create_email( ("at %s happen %s" % (stored_data[0], stored_data[1]) ),
+            af['username'], rf['mail_addr'], 'New notification')
 
         smtpsock = self._get_SMTP(af['server'], af['port'], af['ssl'],
                 af['username'], af['password'])
@@ -75,13 +81,13 @@ class MailNotification(GLPlugin):
             smtpsock.sendmail(af['username'], [ rf['mail_addr'] ], body)
             smtpsock.quit()
 
-            log.debug("Success in email %s " % tip_gus)
+            log.debug("Success in email %s " % rf['mail_addr'])
             retval = True
 
         except smtplib.SMTPRecipientsRefused, smtplib.SMTPSenderRefused:
 
             # remind, other error can be handled http://docs.python.org/2/library/smtplib.html
-            log.err("[E] error in sending the email to %s %s (%s)" % (receiver_addr, infotext, subject))
+            log.err("[E] error in sending the email to %s (username: %s)" % (rf['mail_addr'], af['username']))
             retval = False
 
         return retval

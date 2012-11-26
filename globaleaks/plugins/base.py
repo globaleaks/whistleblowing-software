@@ -1,6 +1,7 @@
 
+__all__ = ['GLPluginManager', 'GLPlugin']
 
-class GLPlugingManager:
+class GLPluginManager:
     """
     This plugin manager is temporary, perhaps https://code.google.com/p/pyplugin/
     or http://pypi.python.org/pypi/Plugins/0.5a1dev
@@ -13,31 +14,44 @@ class GLPlugingManager:
 
         # only here the plugin object is instanced
         self.notification_dict = {
-            'email', MailNotification(),
-            'irc', IRCNotification(),
-            'file', FILENotification()
+            'email': MailNotification(),
+            'irc': IRCNotification(),
+            'file': FILENotification()
         }
         self.delivery_dict = {}
         self.inputfilter_dict = {}
+
+    def get_types(self, ptype):
+        """
+        Return the list of plugin per types
+        """
+        if ptype == 'notification':
+            return self.notification_dict
+        if ptype == 'delivery':
+            return self.delivery_dict
+        if ptype == 'inputfilter':
+            return self.inputfilter_dict
+
+        Exception("invalid request type in GLPluginManager")
 
     def get_plugin(self, pname, ptype):
         """
         Return the plugin object
         """
-        plugin_registered = getattr(self, ptype + '_dict')
+        plugin_registered = self.get_types(ptype)
         return plugin_registered.get(pname)
 
     def plugin_exists(self, pname, ptype):
         """
         return a bool, if plugin type contains a plugin with the requested name
         """
-
-        plugin_registered = getattr(self, ptype + '_dict')
+        plugin_registered = self.get_types(ptype)
 
         if plugin_registered.has_key(pname):
             return True
         else:
             return False
+
 
 class GLPlugin:
     """

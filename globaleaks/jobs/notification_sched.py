@@ -4,7 +4,7 @@ from globaleaks.models.externaltip import ReceiverTip, Comment
 from globaleaks.models.internaltip import InternalTip
 from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.plugins import GLPluginManager
+from globaleaks.plugins.base import GLPluginManager
 
 __all__ = ['APSNotification']
 
@@ -32,25 +32,40 @@ class APSNotification(GLJob):
         """
         log.debug("[D]", self.__class__, 'operation', datetime.today().ctime())
 
-        notification_plugins = GLPluginManager('notification')
+        notification_plugins = GLPluginManager().get_types('notification')
 
         receivertip_iface = ReceiverTip()
 
         # TODO +check delivery mark - would be moved in task queue
+        # TODO digest check missing (but It's better refactor scheduler in the same time)
         not_notified_tips = yield receivertip_iface.get_tips(marker=u'not notified')
 
         for single_tip in not_notified_tips:
 
             # XXX This key is guarantee (except if the plugin has not been removed)
-            plugin_code = notification_plugins.get(single_tip['notificaton_selected'])
+            # Actually can't be removed a plugin!
+            plugin_code = notification_plugins[single_tip['notification_selected']]
 
-            print "XXX selected plugin", plugin_code.plugin_name, plugin_code.plugin_type, "XXXXXXXXX"
-
-            # TODO digest (but It's better refactor scheduler in the same time)
+            # temporary way fo get admin settings, it's an XXX
 
             information = [ single_tip['creation_time'], "New Tip: %s" % single_tip['tip_gus'] ]
 
-            if plugin_code.do_notify(single_tip['notification_fields'], information):
+            # XXX XXX XXX
+            # XXX XXX XXX
+            if single_tip['notification_selected'] == 'email':
+                settings = { 'admin_fields' :  { 'server' :  'smtp.gmail.com', 'port' : 587,
+                                                 'username':'globaleaksnode1@gmail.com', 'password':'Antani1234', 'ssl': True },
+                             'receiver_fields' :  { 'mail_addr' : single_tip['notification_fields'] }
+                           }
+            else: # single_tip['notification_selected'] == 'irc':
+                settings = { 'admin_fields' :  { 'server' :  'irc.oftc.net', 'channel' : '#globaleaks',
+                                                 'node_user':'GlobaLx' },
+                              'receiver_fields' : { 'receiver_user' : 'vecna'}
+                           }
+            # XXX XXX XXX
+            # XXX XXX XXX
+
+            if plugin_code.do_notify(settings, information):
                 yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
             else:
                 yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
@@ -70,7 +85,7 @@ class APSNotification(GLJob):
 
             for receiver_info in receivers_list:
 
-                plugin_code = notification_plugins.get(receiver_info[0])
+                plugin_code = notification_plugins[receiver_info[0]]
 
                 # TODO digest check
                 information = [ comment['creation_time'], "New comment from: %s" % source_name ]

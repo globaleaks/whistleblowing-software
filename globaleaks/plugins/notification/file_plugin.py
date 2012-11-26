@@ -1,10 +1,11 @@
 from globaleaks.utils import log, gltime
-from globaleaks.plugins import GLPlugin
+from globaleaks.plugins.base import GLPlugin
 
 class FILENotification(GLPlugin):
 
     def __init__(self):
         self.plugin_name = 'file'
+        self.plugin_type = 'notification'
         self.plugin_description = "Just a notification Mail notification, with encryption options"
 
         # this is not the right fields description, because would contain also
