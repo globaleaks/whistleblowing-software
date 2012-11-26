@@ -14,7 +14,7 @@ import json
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import node, context, receiver, options
 from globaleaks.utils import log
-from globaleaks.plugins import GLPluginManager
+from globaleaks.plugins.base import GLPluginManager
 
 class AdminNode(BaseHandler):
     """
@@ -607,27 +607,32 @@ class AdminTasks(BaseHandler):
         """
         /admin/tasks/ GET, force the execution of an otherwise scheduled event
         """
-        from globaleaks.jobs import notification_sched, statistics_sched, tip_sched,\
-            delivery_sched, cleaning_sched, welcome_sched, digest_sched
+        from globaleaks.jobs.notification_sched import APSNotification
+        from globaleaks.jobs.tip_sched import APSTip
+        from globaleaks.jobs.delivery_sched import APSDelivery
+        from globaleaks.jobs.welcome_sched import APSWelcome
+        from globaleaks.jobs.cleaning_sched import APSCleaning
+        from globaleaks.jobs.statistics_sched import APSStatistics
+        from globaleaks.jobs.digest_sched import APSDigest
 
         expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'digest' ]
 
         log.debug("[D] manual execution of scheduled operation (%s)" % what)
 
         if what == 'statistics':
-            yield notification_sched.APSNotification().operation()
+            yield APSNotification().operation()
         if what == 'welcome':
-            yield welcome_sched.APSWelcome().operation()
+            yield APSWelcome().operation()
         if what == 'tip':
-            yield tip_sched.APSTip().operation()
+            yield APSTip().operation()
         if what == 'delivery':
-            yield delivery_sched.APSDelivery().operation()
+            yield APSDelivery().operation()
         if what == 'notification':
-            yield notification_sched.APSNotification().operation()
+            yield APSNotification().operation()
         if what == 'cleaning':
-            yield cleaning_sched.APSCleaning().operation()
+            yield APSCleaning().operation()
         if what == 'digest':
-            yield digest_sched.APSDigest().operation()
+            yield APSDigest().operation()
 
         if not what in expected:
             self.set_status(405)

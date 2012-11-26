@@ -107,7 +107,8 @@ class ReceiverTip(TXModel):
             retVal.append({
                 'notification_fields' : single_tip.receiver.notification_fields,
                 'notification_selected' : single_tip.receiver.notification_selected,
-                'tip_gus' : single_tip.tip_gus
+                'tip_gus' : single_tip.tip_gus,
+                'creation_time' : single_tip.internaltip.creation_date
             })
 
         store.close()

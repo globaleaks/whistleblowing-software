@@ -221,7 +221,7 @@ moduleDataDict_N = {
 
 
 moduleDataDict_D = {
-    "module_gus": idops.random_module_gus(),
+    "module_gus": None,
     "active": True,
     "module_type": u'delivery',
     "name": u'upload in FTP',

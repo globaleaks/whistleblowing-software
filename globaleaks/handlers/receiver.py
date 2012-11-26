@@ -16,7 +16,7 @@ from globaleaks.models import receiver
 from globaleaks.models import options
 from globaleaks.models import internaltip
 from globaleaks.models import externaltip
-from globaleaks.plugins import GLPluginManager
+from globaleaks.plugins.base import GLPluginManager
 
 
 class ReceiverManagement(BaseHandler):
