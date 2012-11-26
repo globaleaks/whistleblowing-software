@@ -6,3 +6,4 @@ cyclone
 storm
 transaction
 PyCrypto
+ircutils
