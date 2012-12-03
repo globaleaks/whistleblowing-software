@@ -31,6 +31,17 @@ def is_receiver_token(tip_token):
     return not retcheck
 
 class TipRoot(BaseHandler):
+    """
+    T1
+    This interface expose the Tip.
+    Tip is the safe area, created with an expiration time, where Receivers (and optionally)
+    Whistleblower can discuss about the submission, comments, collaborative voting, forward,
+    promote, and perform other operation in this closed environment.
+    In the request is present an unique token, aim to authenticate the users accessing to the
+    resource, and giving accountability in resource accesses.
+    Some limitation in access, security extensions an special token can exists, implemented by
+    the extensions plugins.
+    """
 
     @asynchronous
     @inlineCallbacks
@@ -124,6 +135,10 @@ class TipRoot(BaseHandler):
 
 
 class TipComment(BaseHandler):
+    """
+    T2
+    Interface use to read/write comments inside of a Tip
+    """
 
     @asynchronous
     @inlineCallbacks
@@ -172,6 +187,7 @@ class TipComment(BaseHandler):
 
 class TipFiles(BaseHandler):
     """
+    T3
     files CURD at the moment is not yet finished
     along with the javascript part.
     """
@@ -193,6 +209,10 @@ class TipFiles(BaseHandler):
         pass
 
 class TipFinalize(BaseHandler):
+    """
+    T4
+    This interface aim to close the file uploading - need to be removed in the next (and last) API refactor
+    """
     log.debug("[D] %s %s " % (__file__, __name__), "Class TipFinalize", "BaseHandler", BaseHandler)
 
     def post(self, *arg, **kw):
@@ -202,23 +222,12 @@ class TipFinalize(BaseHandler):
 
 class TipDownload(BaseHandler):
     """
-    Receiver only - enabled only if local delivery is set
+    T5
+    Receiver only - enabled only if local delivery is set - not yet implemented nor documented
     """
     log.debug("[D] %s %s " % (__file__, __name__), "Class TipDownload", "BaseHandler", BaseHandler)
 
     def get(self, *arg, **kw):
         log.debug("[D] %s %s " % (__file__, __name__), "Class TipDownload", "get")
-        pass
-
-class TipPertinence(BaseHandler):
-    """
-    pertinence is marked as GET, but need to be a POST,
-    either because a receiver may express +1 -1 values,
-    and because can be extended in the future
-    """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class TipPertinence", "BaseHandler", BaseHandler)
-
-    def post(self, *arg, **kw):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipPertinence", "post")
         pass
 

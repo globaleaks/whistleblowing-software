@@ -21,7 +21,8 @@ from globaleaks.plugins.base import GLPluginManager
 
 class ReceiverManagement(BaseHandler):
     """
-    R1 This class permit the operations in the Receiver model options,
+    R1
+    This class permit the operations in the Receiver model options,
         Receiver.know_languages
         Receiver.name
         Receiver.tags
@@ -54,7 +55,8 @@ class ReceiverManagement(BaseHandler):
 
 class ReceiverPluginConf(BaseHandler):
     """
-    R2 This class handle the receiver plugins configuration settings, its a
+    R2
+    This class handle the receiver plugins configuration settings, its a
     CRUD operation actinv over ReceiverConfs entries, and specially in those fields:
         ReceiverConfs.configured_fields
         ReceiverConfs.active

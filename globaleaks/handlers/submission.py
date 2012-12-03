@@ -17,6 +17,10 @@ from globaleaks.models.context import InvalidContext
 
 
 class SubmissionRoot(BaseHandler):
+    """
+    U2
+    This is the interface for push data in the submission
+    """
 
     log.debug("[D] %s %s " % (__file__, __name__), "Class SubmissionRoot", "BaseHandler", BaseHandler)
 
@@ -58,6 +62,7 @@ class SubmissionRoot(BaseHandler):
 
 class SubmissionStatus(BaseHandler):
     """
+    U3
     This interface represent the state of the submission. Will show the current
     uploaded data, selected context, file uploaded.
     permit to update fields content, context selection, and if supported, specify receivers
@@ -146,6 +151,12 @@ class SubmissionStatus(BaseHandler):
 
 
 class SubmissionFinalize(BaseHandler):
+    """
+    U4
+    This interface cause the ending of the submnission process, need to be
+    merged with whatever TODO.
+    """
+
     @asynchronous
     @inlineCallbacks
     def post(self, submission_gus, *uriargs):

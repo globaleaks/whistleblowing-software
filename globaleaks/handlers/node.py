@@ -15,29 +15,31 @@ class PublicInfo(BaseHandler):
     """
     U1
     Returns information on the GlobaLeaks node. This includes submission
-    parameters and how information should be presented by the client side
-    application.
-
-    Follow the resource describing Node (unique instance, accessible to all)
+    parameters (contexts description, fields, public receiver list).
+    Contains System-wide properties.
     """
 
     @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
+        Request: None
+        Response: NodeResponse
+        Errors: None
+
         Returns a json object containing all the information of the node.
-        * Response:
-            Status Code: 200 (OK)
-            {
-              'name': 'string',
-              'statistics': '$nodeStatisticsDict',
-              'node_properties': '$nodePropertiesDict',
-              'contexts': [ '$contextDescriptionDict', { }, ],
-              'description': '$localizationDict',
-              'public_site': 'string',
-              'hidden_service': 'string',
-              'url_schema': 'string'
-             }
+
+        Status Code: 200 (OK)
+        {
+          'name': 'string',
+          'statistics': '$nodeStatisticsDict',
+          'node_properties': '$nodePropertiesDict',
+          'contexts': [ '$contextDescriptionDict', { }, ],
+          'description': '$localizationDict',
+          'public_site': 'string',
+          'hidden_service': 'string',
+          'url_schema': 'string'
+         }
 
         """
         from globaleaks.models.node import Node, NodeNotFoundError
