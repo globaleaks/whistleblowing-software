@@ -18,6 +18,11 @@ from globaleaks import models
 from globaleaks import config
 
 class FilesHandler(RequestHandler):
+    """
+    U5
+    This interface is not related, at the moment, to Tip or Submission, and need to be refactored
+    """
+
     log.debug("[D] %s %s " % (__file__, __name__), "Class FilesHandler", "RequestHandler", RequestHandler)
     filenamePrefix = "f_"
     # Set to None for no size restrictions
@@ -100,12 +105,18 @@ class FilesHandler(RequestHandler):
         pass
 
     def get(self, *arg, **kw):
+        """
+        GET in fileHandlers need to be refactored-engineered
+        """
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "get")
         pass
 
     @asynchronous
     @inlineCallbacks
     def post(self, submission_id):
+        """
+        POST in fileHandlers need to be refactored-engineered
+        """
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "post", "submission_id", submission_id)
         method_hack = self.get_arguments('_method')
         if method_hack and method_hack == 'DELETE':
@@ -134,6 +145,9 @@ class FilesHandler(RequestHandler):
         self.finish()
 
     def delete(self):
+        """
+        DELETE in fileHandlers need to be refactored-engineered
+        """
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "delete")
         pass
 

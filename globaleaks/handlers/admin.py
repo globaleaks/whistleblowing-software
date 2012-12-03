@@ -112,7 +112,8 @@ class AdminNode(BaseHandler):
 
 class AdminContexts(BaseHandler):
     """
-    A2: classic CRUD in the 'contexts', not all expect a context_gus in the URL,
+    A2
+    classic CRUD in the 'contexts', not all expect a context_gus in the URL,
     in example PUT need context_gus because Cyclone regexp expect them, but
     do not require a valid data because is generated when the resource is PUT-ted
     """
@@ -261,7 +262,8 @@ class AdminContexts(BaseHandler):
 
 class AdminReceivers(BaseHandler):
     """
-    A3: AdminReceivers: classic CRUD in a 'receiver' resource
+    A3
+    AdminReceivers: classic CRUD in a 'receiver' resource
     A receiver can stay in more than one context, then is expected in POST/PUT
     operations a list of tarGET contexts is passed. Operation here, mostly are
     handled by models/receiver.py, and act on the administrative side of the
@@ -376,9 +378,9 @@ class AdminReceivers(BaseHandler):
 
         self.finish()
 
-# A4
 class AdminPlugin(BaseHandler):
     """
+    A4
     This class enable and configure the profiles, a profile is a plugin configuration,
     and the same plugin may have multiple
     """
@@ -535,9 +537,11 @@ class AdminPlugin(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
 
 
-# A5, not yet documented, overview handler to enhance control on GLB tasks and tables
-# /admin/overview/<stuff> CRUD
 class AdminOverView(BaseHandler):
+    """
+    A5
+    Full view of the elements in the tables
+    """
 
     @asynchronous
     @inlineCallbacks
@@ -598,7 +602,8 @@ class AdminOverView(BaseHandler):
 
 class AdminTasks(BaseHandler):
     """
-    A6 controls task and scheduled
+    A6
+    controls task and scheduled
     """
 
     @asynchronous
