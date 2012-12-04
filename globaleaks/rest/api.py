@@ -14,7 +14,7 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks import config
 from globaleaks.handlers import node, submission, tip, admin, receiver, files
-from globaleaks.messages.base import tipGUS, receiverGUS, submissionGUS, contextGUS, profileGUS
+from globaleaks.messages.base import tipGUS, contextGUS
 
 more_lax = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'

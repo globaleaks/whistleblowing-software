@@ -11,7 +11,7 @@ from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from cyclone.web import asynchronous
 
-class PublicInfo(BaseHandler):
+class InfoAvailable(BaseHandler):
     """
     U1
     Returns information on the GlobaLeaks node. This includes submission
@@ -23,11 +23,11 @@ class PublicInfo(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
         """
-        Request: None
-        Response: NodeResponse
-        Errors: None
+        Response: globaleaks.messages.NodeResponse
+        Errors: NodeNotFoundError
 
-        Returns a json object containing all the information of the node.
+        Returns a json object containing all the information of the node, are the same informations
+        likely recorded by WhistleBlower-service Indexers
 
         Status Code: 200 (OK)
         {
@@ -55,6 +55,8 @@ class PublicInfo(BaseHandler):
             public_context_view = yield context_view.public_get_all()
             node_description_dicts.update({"contexts": public_context_view})
 
+            # XXX this is an aggregate answer, need to be output-validated here
+
             self.write(node_description_dicts)
 
         except NodeNotFoundError, e:
@@ -63,3 +65,24 @@ class PublicInfo(BaseHandler):
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
+
+
+class StatsAvailable(BaseHandler):
+    """
+    U4
+    Interface for the public statistics, configured between the Node settings and the
+    Contexts settings
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, *uriargs):
+        """
+        Parameters: TODO
+        Response: globaleaks.models.statistics
+        Errors: StatsNotCollectedError
+
+        This interface return the collected statistics for the public audience.
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class StatsAvailable", "get", uriargs)
+        pass
