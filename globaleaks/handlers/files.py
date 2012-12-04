@@ -6,21 +6,17 @@
 
 from __future__ import with_statement
 
-import json, re, urllib
-import time, hashlib
-import sys, os
-
+import json, os, time
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import RequestHandler, HTTPError, asynchronous
-
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils import log
-from globaleaks import models
-from globaleaks import config
+from globaleaks import models, config
 
-class FilesHandler(RequestHandler):
+class FilesHandler(BaseHandler):
     """
     U5
-    This interface is not related, at the moment, to Tip or Submission, and need to be refactored
+    need a complete redesign with async Tip/Submission
     """
 
     log.debug("[D] %s %s " % (__file__, __name__), "Class FilesHandler", "RequestHandler", RequestHandler)
@@ -31,7 +27,6 @@ class FilesHandler(RequestHandler):
     def acceptedFileType(self, type):
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "acceptedFileType", "type", type)
         regexp = None
-        # regexp = re.compile('image/(gif|p?jpeg|(x-)?png)')
         if regexp and regexp.match(type):
             return True
         else:
@@ -60,8 +55,6 @@ class FilesHandler(RequestHandler):
 
     def process_file(self, file, submission_id, file_id):
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "process_file", "file",type(file), "submission_id", submission_id, "file_id", file_id)
-        # XXX do here all the file sanitization stuff
-        filename = re.sub(r'^.*\\', '', file['filename'])
 
         result = {}
         result['name'] = file_id
@@ -104,6 +97,8 @@ class FilesHandler(RequestHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "head")
         pass
 
+    @asynchronous
+    @inlineCallbacks
     def get(self, *arg, **kw):
         """
         GET in fileHandlers need to be refactored-engineered
@@ -144,6 +139,8 @@ class FilesHandler(RequestHandler):
         self.write(response)
         self.finish()
 
+    @asynchronous
+    @inlineCallbacks
     def delete(self):
         """
         DELETE in fileHandlers need to be refactored-engineered

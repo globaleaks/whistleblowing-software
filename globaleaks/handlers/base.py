@@ -35,7 +35,6 @@ class BaseHandler(RequestHandler):
     Operations on objects should go inside of models, because in here it is not
     possible to instantiate a Store object without blocking.
 
-
     Messages can be validated with messages.validateMessage. This will output
     the validated message.
 
@@ -45,10 +44,6 @@ class BaseHandler(RequestHandler):
 
     Request is now a dict that I can interact with.
 
-    XXX This part is not fully tested and should not be used at the moment. We
-    should first get everything to work and then start doing validation, since
-    the API may change and we don't want to have a layer in between us and the
-    code to be tested.
     """
     log.debug("[D] %s %s " % (__file__, __name__), "BaseHandler")
 
