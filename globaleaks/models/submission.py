@@ -54,6 +54,7 @@ class Submission(TXModel):
     creation_time = DateTime()
     expiration_time = DateTime()
 
+    actual_receipt = Unicode()
     receivers_gus_list = Pickle()
 
     folder_gus = Unicode()
@@ -225,12 +226,43 @@ class Submission(TXModel):
         store.close()
         return statusDict
 
+    # not a transact, need to check self.context and evaluate receipt strength
+    # would be solved in security by: https://github.com/globaleaks/GLBackend/issues/33
+    def _receipt_evaluation(self, receipt_proposal=None):
+
+        if not receipt_proposal:
+            return random.random_string(10, 'A-Z,0,9')
+
+        temp_stuff = "%s_%s" % (receipt_proposal, random.random_string(5, 'A-Z,0-9') )
+        return temp_stuff
+
     @transact
-    def complete_submission(self, submission_gus, proposed_receipt):
+    def receipt_proposal(self, submission_gus, proposed_receipt):
+
+        store = self.getStore('receipt_proposal')
+
+        try:
+            # XXX need to be checked the presence of a collision, but this bring to insecurity
+            # so ... at the moment this issue is not solved.
+            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+        except NotOneError:
+            store.close()
+            raise SubmissionNotFoundError
+        if requested_s is None:
+            store.close()
+            raise SubmissionNotFoundError
+
+        requested_s.actual_receipt = self._receipt_evaluation(proposed_receipt)
+
+        store.commit()
+        store.close()
+
+    @transact
+    def complete_submission(self, submission_gus):
         """
         Need to be refactored in Tip the Folder thing
         """
-        log.debug("[D] ",__file__, __name__, "Submission complete_submission", submission_gus, "proposed_receipt", proposed_receipt)
+        log.debug("[D] ",__file__, __name__, "Submission complete_submission", submission_gus)
 
         store = self.getStore('complete_submission')
 
@@ -291,7 +323,11 @@ class Submission(TXModel):
         whistleblower_tip.internaltip_id = internal_tip.id
         # whistleblower_tip.internaltip = internal_tip
 
-        used_receipt = proposed_receipt + '_' + random.random_string(5, 'A-Z,0-9')
+        if not requested_s.actual_receipt:
+            used_receipt = requested_s._receipt_evaluation()
+        else:
+            used_receipt = requested_s.actual_receipt
+
         whistleblower_tip.receipt = used_receipt
         # whistleblower_tip.authoptions would be filled here
 
