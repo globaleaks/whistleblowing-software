@@ -1,6 +1,8 @@
-__all__ = ['base', 'requests']
+__all__ = ['base', 'requests', 'responses', 'errors']
 from . import base
 from . import requests
+from . import responses
+from . import errors
 
 from globaleaks.messages.errors import GLTypeError
 from globaleaks.messages.base import SpecialType, GLTypes
@@ -78,16 +80,16 @@ def validateMessage(message, message_type):
     if type(obj) is list:
         obj = obj.pop()
     elif type(obj) is not dict:
-        raise Exception("Message is not in dict format")
+        raise GLTypeError("Message is not in dict format")
 
     for k, val in obj.items():
         try:
             valid_type = messageSpec[k]
         except:
-            raise GLTypeError("Specified field is not supported."
-                              "could not find %s in message spec" % k)
+            raise GLTypeError("Messagge validation fail: missing field %s" % k)
 
         validateItem(val, valid_type)
+
     return obj
 
 def validateWith(fn):

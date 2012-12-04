@@ -13,13 +13,13 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils import log
 from globaleaks import models, config
 
-class FilesHandler(BaseHandler):
+class FileCrud(BaseHandler):
     """
     U5
     need a complete redesign with async Tip/Submission
     """
 
-    log.debug("[D] %s %s " % (__file__, __name__), "Class FilesHandler", "RequestHandler", RequestHandler)
+    log.debug("[D] %s %s " % (__file__, __name__), "Class FileCrud", "RequestHandler", RequestHandler)
     filenamePrefix = "f_"
     # Set to None for no size restrictions
     maxFileSize = 500 * 1000 * 1000 # MB

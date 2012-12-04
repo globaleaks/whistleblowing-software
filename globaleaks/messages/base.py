@@ -55,7 +55,7 @@ class dateType(SpecialType):
 class timeType(SpecialType):
     pass
 
-class folderGUS(SpecialType):
+class fileGUS(SpecialType):
     regexp = r"(f_[a-zA-Z]{20,20})"
 
 # XXX not true anymore, need to be update the specification and the glossary
@@ -92,18 +92,6 @@ class fileDict(GLTypes):
                 "metadata_cleaned": bool,
                 "completed": bool
                 }
-
-class folderDict(GLTypes):
-    specification = {"gus": folderGUS,
-            "name": unicode,
-            "description": unicode,
-            "downloads": int,
-            "files": [fileDict],
-            }
-            # this information is comunicated along the
-            # folderDict, also if tracked in the TipReceiver
-            # table. this is useful because some Folder would not be
-            # downloadable when other are.
 
 class receiverDescriptionDict(GLTypes):
     specification = {"gus": receiverGUS,
@@ -220,14 +208,13 @@ class tipSubIndex(GLTypes):
             "notification_adopted": unicode,
             "delivery_adopted": unicode,
             "download_limit": int,
-            # remind: download_performed is inside the folderDict
             "access_limit": int,
             "access_performed": int,
             "expiration_date": timeType,
             "creation_date": timeType,
             "last_update_date": timeType,
             "comment_number": int,
-            "folder_number": int,
+            "files_number": int,
             "overall_pertinence": int}
 
 class tipIndexDict(GLTypes):
@@ -250,7 +237,7 @@ class tipDetailsDict(GLTypes):
     """
     specification = {"tip": tipSubIndex,
             "fields": formFieldsDict,
-            "folders": [folderDict],
+            "files": [fileGUS],
             "comments": commentDescriptionDict,
             "context": contextDescriptionDict,
             "receivers": receiverDescriptionDict}
@@ -263,3 +250,23 @@ class localizationDict(GLTypes):
     """
     specification = {}
 
+
+# https://github.com/globaleaks/GLClient/blob/master/app/scripts/dev.js#
+# + filesGUS list: need to be added
+# + complete boolean: because receipt can be proposed/received also before the
+#   Submission has been finished.
+# - folder_name and _description has been removed, because the scheduled and
+#   InputFilter operation are performed on the single file.
+# file are handled separately and XXX Architecture need to be updated about it.
+class submissionStatus(GLTypes):
+
+    specification = {
+                "fields": [ formFieldsDict ],
+                "context_selected": contextGUS,
+                "submission_gus" : submissionGUS,
+                "proposed_receipt": unicode,
+                "files_description": unicode,
+                "receiver_selected": [ receiverGUS ],
+                "files_selected" : [ fileGUS ],
+                "complete" : bool
+    }

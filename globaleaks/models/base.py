@@ -94,7 +94,7 @@ class ModelError(Exception):
     """
     log.debug("[D] %s %s " % (__file__, __name__), "Class ModelError")
 
-    error_message = "Exception/Error not set"
+    error_message = "Model Error not set"
     error_code = 0
     http_status = 500 # generic Server error
 

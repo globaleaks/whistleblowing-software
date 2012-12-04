@@ -53,7 +53,13 @@ class ReceiverManagement(BaseHandler):
         self.finish()
 
 
-class ReceiverPluginConf(BaseHandler):
+class ProfilesAvailable(BaseHandler):
+
+    def get(self, *uriargs):
+        pass
+
+
+class ProfileCrud(BaseHandler):
     """
     R2
     This class handle the receiver plugins configuration settings, its a

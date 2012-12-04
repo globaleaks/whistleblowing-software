@@ -30,7 +30,7 @@ def is_receiver_token(tip_token):
 
     return not retcheck
 
-class TipRoot(BaseHandler):
+class TipManagement(BaseHandler):
     """
     T1
     This interface expose the Tip.
@@ -46,7 +46,7 @@ class TipRoot(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def get(self, tip_token):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "get", "tip_token", tip_token)
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipManagement", "get", "tip_token", tip_token)
 
         # tip_token can be: a tip_gus for a receiver, or a WhistleBlower receipt, understand
         # the format, help in addressing which kind of Tip need to be handled.
