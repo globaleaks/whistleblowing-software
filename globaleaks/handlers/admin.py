@@ -589,7 +589,7 @@ class AdminOverView(BaseHandler):
         if what == 'rcfg' or what == 'all':
             rconf_iface = ReceiverConfs()
             rconf_list = yield rconf_iface.admin_get_all()
-            self.write({ 'elements' : len(rconf_list), 'profiles' : rconf_list })
+            self.write({ 'elements' : len(rconf_list), 'settings' : rconf_list })
 
 
         if not what in expected:
