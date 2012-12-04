@@ -36,10 +36,6 @@ class SubmissionGenericError(ModelError):
         ModelError.http_status = 500 # Server Error
 
 
-# TODO - would be an error when we start to check presence of required fields
-class SubmissionFailRequiremers(ModelError):
-    pass
-
 class Submission(TXModel):
     """
     This represents a temporary submission. Submissions should be stored here
@@ -54,9 +50,10 @@ class Submission(TXModel):
     creation_time = DateTime()
     expiration_time = DateTime()
 
-    actual_receipt = Unicode()
+    real_receipt = Unicode()
     receivers_gus_list = Pickle()
 
+    # XXX remove Folder, use File
     folder_gus = Unicode()
     folder = Reference(folder_gus, Folder.folder_gus)
 
@@ -252,7 +249,7 @@ class Submission(TXModel):
             store.close()
             raise SubmissionNotFoundError
 
-        requested_s.actual_receipt = self._receipt_evaluation(proposed_receipt)
+        requested_s.real_receipt = self._receipt_evaluation(proposed_receipt)
 
         store.commit()
         store.close()
@@ -323,10 +320,10 @@ class Submission(TXModel):
         whistleblower_tip.internaltip_id = internal_tip.id
         # whistleblower_tip.internaltip = internal_tip
 
-        if not requested_s.actual_receipt:
+        if not requested_s.real_receipt:
             used_receipt = requested_s._receipt_evaluation()
         else:
-            used_receipt = requested_s.actual_receipt
+            used_receipt = requested_s.real_receipt
 
         whistleblower_tip.receipt = used_receipt
         # whistleblower_tip.authoptions would be filled here
@@ -341,6 +338,27 @@ class Submission(TXModel):
         store.close()
 
         return used_receipt
+
+    @transact
+    def submission_delete(self, submission_gus):
+
+        log.debug("[D] ",__file__, __name__, "Submission delete by user request", submission_gus)
+
+        store = self.getStore('receipt_proposal')
+
+        try:
+            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+        except NotOneError:
+            store.close()
+            raise SubmissionNotFoundError
+        if requested_s is None:
+            store.close()
+            raise SubmissionNotFoundError
+
+        store.remove(requested_s)
+        store.commit()
+        store.close()
+
 
     @transact
     def admin_get_single(self, submission_gus):
@@ -382,8 +400,8 @@ class Submission(TXModel):
             'creation_time' : gltime.prettyDateTime(self.creation_time),
             'expiration_time' : gltime.prettyDateTime(self.expiration_time),
             'receiver_gus_list' : self.receivers_gus_list,
-            # folder would be reported as sub-dict if present - XXX
-            'folder_gus' : self.folder_gus
+            'file_gus_list' : self.folder_gus,
+            'real_receipt' : self.real_receipt
         }
 
         return descriptionDict

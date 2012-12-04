@@ -55,8 +55,8 @@ spec = [
     #  * /receiver/<receiver_token_auth>/pluginprofiles R2
     (r'/receiver/' + tipGUS.regexp + '/pluginprofiles', receiver.ProfilesAvailable),
 
-    #  * /receiver/<tip_GUS>/plugin R3
-    (r'/receiver/' + tipGUS.regexp + '/plugin/', receiver.PluginCrud),
+    #  * /receiver/<tip_GUS>/pluginprofile R3
+    (r'/receiver/' + tipGUS.regexp + '/plugin/', receiver.ProfileCrud),
 
     ## Admin Handlers ##
     #  * /admin/node A1
@@ -78,7 +78,7 @@ spec = [
     (r'/admin/plugins/', admin.PluginsAvailable),
 
     #  * /admin/profile/ A7
-    (r'/admin/profile/', admin.ProfilesCrud),
+    (r'/admin/profile/', admin.ProfileCrud),
 
     #  * /admin/statistics/ A8
     (r'/admin/statistics/', admin.StatisticsAvailable),

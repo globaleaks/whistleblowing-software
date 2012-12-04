@@ -16,7 +16,7 @@ from globaleaks.models import node, context, receiver, options
 from globaleaks.utils import log
 from globaleaks.plugins.base import GLPluginManager
 
-class AdminNode(BaseHandler):
+class NodeManagement(BaseHandler):
     """
     A1
     Get the node main settings, update the node main settings, it works in a single static
@@ -109,15 +109,21 @@ class AdminNode(BaseHandler):
         # return value as GET
         yield self.get()
 
-
-class AdminContexts(BaseHandler):
+class ContextsAvailable(BaseHandler):
     """
     A2
-    classic CRUD in the 'contexts', not all expect a context_gus in the URL,
-    in example PUT need context_gus because Cyclone regexp expect them, but
-    do not require a valid data because is generated when the resource is PUT-ted
+    Return a list of all the available contexts, in elements
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "BaseHandler", BaseHandler)
+
+    def get(self, *uriargs):
+        pass
+
+
+class ContextCrud(BaseHandler):
+    """
+    A3
+    classic CRUD in the single Context resource. It
+    """
 
     @asynchronous
     @inlineCallbacks
@@ -259,10 +265,20 @@ class AdminContexts(BaseHandler):
         self.finish()
 
 
-
-class AdminReceivers(BaseHandler):
+class ReceiversAvailable(BaseHandler):
     """
-    A3
+    A4
+    List all available receivers present in the node.
+    """
+
+    def get(self, *uriargs):
+        pass
+
+
+
+class ReceiverCrud(BaseHandler):
+    """
+    A5
     AdminReceivers: classic CRUD in a 'receiver' resource
     A receiver can stay in more than one context, then is expected in POST/PUT
     operations a list of tarGET contexts is passed. Operation here, mostly are
@@ -378,9 +394,18 @@ class AdminReceivers(BaseHandler):
 
         self.finish()
 
-class AdminPlugin(BaseHandler):
+class PluginsAvailable(BaseHandler):
     """
-    A4
+    A6
+    List all plugins available in the node (used as base resource for create profiles)
+    """
+
+    def get(self, *uriargs):
+        pass
+
+class ProfileCrud(BaseHandler):
+    """
+    A7
     This class enable and configure the profiles, a profile is a plugin configuration,
     and the same plugin may have multiple
     """
@@ -537,10 +562,20 @@ class AdminPlugin(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
 
 
-class AdminOverView(BaseHandler):
+class StatisticsAvailable(BaseHandler):
     """
-    A5
-    Full view of the elements in the tables
+    A8
+    Return all administrative statistics of the node.
+    """
+
+    def get(self, *uriargs):
+        pass
+
+
+class EntryAvailable(BaseHandler):
+    """
+    A9
+    Interface for dumps elements in the tables, used in debug and detailed analysis.
     """
 
     @asynchronous
@@ -600,9 +635,9 @@ class AdminOverView(BaseHandler):
         self.finish()
 
 
-class AdminTasks(BaseHandler):
+class TaskManagement(BaseHandler):
     """
-    A6
+    A0
     controls task and scheduled
     """
 

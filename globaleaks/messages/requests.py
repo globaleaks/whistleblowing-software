@@ -15,24 +15,6 @@ handler to verify if the request is correct.
 from globaleaks.messages.base import GLTypes
 from globaleaks.messages import base
 
-class submissionStatus(GLTypes):
-    """
-    U3 (POST)
-    """
-    specification = {"fields": [base.formFieldsDict],
-                     "context_selected": base.contextGUS}
-
-
-class finalizeSubmission(GLTypes):
-    """
-    U4 (POST)
-    """
-    specification = {"proposed_receipt": unicode,
-            "folder_name": unicode,
-            "folder_description": unicode}
-
-# U5 (file, CURD) -- not yet defined
-
 
 class tipOperations(GLTypes):
     """
