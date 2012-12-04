@@ -9,43 +9,12 @@ import json
 cwd = '/'.join(__file__.split('/')[:-1])
 sys.path.insert(0, os.path.join(cwd, '../'))
 
+# Need to be updated, this table and the options usable in shooter.py
+# TODO - to be fixed with generate_docs.py
+# Remind: this was the format
 URTA = {
     'U1_GET':'GET_/node', #U1
     'U2_GET':'GET_/submission/@CID@/new',#U2
-    'U3_GET':'GET_/submission/@SID@/status', #U3
-    'U3_POST':'POST_/submission/@SID@/status', #U3
-    'U4_POST':'POST_/submission/@SID@/finalize', #U4
-    # file not yet
-    'T1_GET':'GET_/tip/@TIP@', #T1
-    'T1_POST':'POST_/tip/@TIP@', #T1
-    'T2_POST':'POST_/tip/@TIP@/comment', #T2
-    # "T3" :['/tip/'+tID()+'/files', ['GET','POST','PUT','DELETE']],
-    'T4_POST':'POST_/tip/@TIP@/finalize', #T4
-    'T5_GET':'GET_/tip/@TIP@/download',  #T5
-    # /download/ need a folderID insted of Tip ? XXX
-    'R1_GET':'GET_/receiver/@TIP@/management', #R1
-    'R1_PUT':'GET_/receiver/@TIP@/management', #R1
-    'R2_GET':'GET_/receiver/@TIP@/plugin/@PID@/@CN@', #R2
-    'R2_POST':'POST_/receiver/@TIP@/plugin/@PID@/@CN@', #R2
-    'R2_PUT':'PUT_/receiver/@TIP@/plugin/@PID@/@CN@', #R2
-    'R2_DELETE':'DELETE_/receiver/@TIP@/plugin/@PID@/@CN@', #R2
-    'A1_GET':'GET_/admin/node', #A1
-    'A1_POST':'POST_/admin/node', #A1
-    'A2_GET':'GET_/admin/contexts/@CID@', #A2
-    'A2_POST':'POST_/admin/contexts/@CID@', #A2
-    'A2_PUT':'PUT_/admin/contexts/@CID@', #A2
-    'A2_DELETE':'DELETE_/admin/contexts/@CID@', #A2
-    'A3_GET':'GET_/admin/receivers/@RID@', #A3
-    'A3_POST':'POST_/admin/receivers/@RID@', #A3
-    'A3_DELETE':'DELETE_/admin/receivers/@RID@', #A3
-    'A3_PUT':'PUT_/admin/receivers/@RID@', #A3
-    'A4_GET':'GET_/admin/plugins/@PID@', #A4
-    'A4_POST':'POST_/admin/plugins/@PID@', #A4
-    'A4_PUT':'PUT_/admin/plugins/@PID@', #A4
-    'A4_DELETE':'DELETE_/admin/plugins/@PID@', #A4
-    'A5_GET':'GET_/admin/overview/@OID@', #A5
-    'A6_GET':'GET_/admin/tasks/@OID@', #A6
-    'A6_DELETE':'DELETE_/admin/tasks/@OID@' #A6
 }
 
 baseurl = "http://127.0.0.1:8082"

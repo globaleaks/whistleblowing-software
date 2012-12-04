@@ -7,15 +7,6 @@ from globaleaks.messages import validateMessage
 from cyclone.web import RequestHandler, HTTPError
 from globaleaks.utils import log
 
-"""
-https://en.wikipedia.org/wiki/Http_error_code
-
-The error code actually used in this file are:
-    404 (Not found: handled by Cyclone)
-    405 (Method not allowed)
-    503 (Service not available)
-"""
-
 DEBUG = True
 
 class BaseHandler(RequestHandler):
