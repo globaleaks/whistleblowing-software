@@ -144,9 +144,16 @@ GLClientDev.run(function($httpBackend) {
     return response;
   }
 
+  /******************/
+  /** Node Handler **/
+  /******************/
+  // * /node U1
   // returns the node information
   $httpBackend.whenGET('/node').respond(node_info);
 
+  /*************************/
+  /** Submission Handlers **/
+  /*************************/
   $httpBackend.whenPOST('/submission')
     .respond(function(method, url, data){
       // This interface is used both for the creation of a new submission 
@@ -205,23 +212,39 @@ GLClientDev.run(function($httpBackend) {
       return [200, response];
   });
 
+  /** /file U4 **/
+  /** XXX if this is on a separate line perhaps rename it to /upload? **/
+  $httpBackend.whenGET('/file').
+    respond(function(method, url, data){
+  });
+
+  /** /statistics U4 **/
+  $httpBackend.whenGET('/statistics').
+    respond(function(method, url, data){
+  });
+
+  /******************/
+  /** Tip Handlers **/
+  /******************/
+
+  // /tip/<tip_GUS>/ T1
   // XXX this is not implemented for the moment.
   // We need to invert the order of the parameters to make it uniform with the rest of the API.
   //$httpBackend.whenPOST('/submission/files/<submission_id>');
-  //
+
   $httpBackend.whenGET(/\/tip\/(.*)/).respond(function(method, url, data){
-    console.log("Got this shit...");
-    description_dict = {
+    var tip_description_dict = {
       'id' : '12345',
       // Why do we have the name also?
       'context_gus' : ['Antani Name', 'c_testingit' ],
       'creation_date' : '1353312789',
       'expiration_date' : '1353314789',
       'fields' : [{'label': 'Item 2',
-      'name': 'item2', 'required': true,
-      'type': 'text',
-      'value': 'Item 2 value', 
-      'hint': 'this is the hint for the form'
+        'name': 'item2',
+        'required': true,
+        'type': 'text',
+        'value': 'Item 2 value',
+        'hint': 'this is the hint for the form'
       }],
       'download_limit' : 100,
       'access_limit' : 20,
@@ -251,20 +274,77 @@ GLClientDev.run(function($httpBackend) {
     console.log(data);
     return [200, description_dict];
   });
-  
-  $httpBackend.whenGET('/tip/(.*)/comments').respond(function(method, url, data){
+
+  // XXX Are these implemented in GLB?
+  $httpBackend.whenGET('/\/tip\/(.*)\/comments/').respond(function(method, url, data){
     console.log(method);
     console.log(url);
     console.log(data);
   });
 
-  $httpBackend.whenPOST('/tip/(.*)/comments').respond(function(method, url, data){
+  // XXX Are these implemented in GLB?
+  $httpBackend.whenPOST('/\/tip\/(.*)\/comments/').respond(function(method, url, data){
     console.log(method);
     console.log(url);
     console.log(data);
   });
 
-  $httpBackend.whenGET('/admin/node').respond(function(method, url, data){
+  // * /tips/<tip_GUS> T2
+  $httpBackend.whenGET(/\/tips\/(.*)/).
+    respond(function(method, url, data){
+    console.log(method);
+    console.log(url);
+    console.log(data);
+  });
+
+  /***********************/
+  /** Receiver Handlers **/
+  /***********************/
+
+  // * /reciever/<receiver_token_auth>/management R1
+  //
+  $httpBackend.whenGET(/\/receiver\/(.*)\/management/).
+    respond(function(method, url, data){
+    console.log(method);
+    console.log(url);
+    console.log(data);
+  });
+
+  // * /receiver/<receiver_token_auth>/management R2
+  $httpBackend.whenGET(/\/receiver\/(.*)\/management/).
+    respond(function(method, url, data){
+    console.log(method);
+    console.log(url);
+    console.log(data);
+
+  });
+
+  // XXX is this profiles or pluginprofiles?
+  // * /receiver/<receiver_token_auth>/profiles R2
+  $httpBackend.whenGET(/\/receiver\/(.*)\/pluginprofiles/).
+    respond(function(method, url, data){
+    console.log(method);
+    console.log(url);
+    console.log(data);
+  });
+
+  // XXX is this settings or plugin?
+  // I think settings.
+  // * /receiver/<receiver_token_auth>/settings R3
+  $httpBackend.whenGET(/\/receiver\/(.*)\/settings/).
+    respond(function(method, url, data){
+    console.log(method);
+    console.log(url);
+    console.log(data);
+
+  });
+  /********************/
+  /** Admin Handlers **/
+  /********************/
+
+  // * /admin/node A1
+  $httpBackend.whenGET('/admin/node').
+    respond(function(method, url, data){
     var response = {
       'admin_email': 'admin@example.com',
       'keywords': 'keyword1, keyword2, keyword3',
@@ -283,13 +363,42 @@ GLClientDev.run(function($httpBackend) {
     return [200, response];
   });
 
-  $httpBackend.whenPOST('/admin/node').respond(function(method, url, data){
+  $httpBackend.whenPOST('/admin/node').
+    respond(function(method, url, data){
     console.log("saving node data");
     console.log(data);
     return [200, data];
   });
 
-  $httpBackend.whenGET('/admin/receivers').respond(function(method, url, data){
+  // * /admin/contexts A2
+  $httpBackend.whenGET('/admin/contexts').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/contexts').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  // * /admin/context A3
+  $httpBackend.whenGET('/admin/context').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/context').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  // * /admin/receivers A4
+  $httpBackend.whenGET('/admin/receivers').
+    respond(function(method, url, data){
     function receiver(){
       return {
       'gus': 'r_receivergus1',
@@ -324,6 +433,85 @@ GLClientDev.run(function($httpBackend) {
     console.log(url);
     console.log(data);
   });
+
+  // * /admin/receiver A5
+  $httpBackend.whenGET('/admin/receiver').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/receiver').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  // * /admin/plugins A6
+  $httpBackend.whenGET('/admin/plugins').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/plugins').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  // * /admin/profile A7
+  $httpBackend.whenGET('/admin/profile').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/profile').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  // * /admin/statistics A8
+  $httpBackend.whenGET('/admin/statistics').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/statistics').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  // * /admin/overview A9
+  $httpBackend.whenGET('/admin/overview').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/overview').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  // * /admin/tasks/ AA
+  $httpBackend.whenGET('/admin/tasks').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
+  $httpBackend.whenPOST('/admin/tasks').
+    respond(function(method, url, data){
+    var response = {};
+    return [200, response];
+  });
+
 
   $httpBackend.whenGET(/^views\//).passThrough();
 
