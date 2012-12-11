@@ -275,20 +275,6 @@ GLClientDev.run(function($httpBackend) {
     return [200, description_dict];
   });
 
-  // XXX Are these implemented in GLB?
-  $httpBackend.whenGET('/\/tip\/(.*)\/comments/').respond(function(method, url, data){
-    console.log(method);
-    console.log(url);
-    console.log(data);
-  });
-
-  // XXX Are these implemented in GLB?
-  $httpBackend.whenPOST('/\/tip\/(.*)\/comments/').respond(function(method, url, data){
-    console.log(method);
-    console.log(url);
-    console.log(data);
-  });
-
   // * /tips/<tip_GUS> T2
   $httpBackend.whenGET(/\/tips\/(.*)/).
     respond(function(method, url, data){
@@ -338,6 +324,7 @@ GLClientDev.run(function($httpBackend) {
     console.log(data);
 
   });
+
   /********************/
   /** Admin Handlers **/
   /********************/
