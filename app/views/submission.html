@@ -13,6 +13,100 @@
   </div>
 </div>
 
+<div ng-controller="WizardCtrl" class="container">
+  <form class="form-horizontal">
+    <ul class="nav nav-tabs">
+      <li ng-repeat="step in steps"
+        ng-class="{active: $index==getCurrentStepIndex()}">
+        <a href="javascript:void(0)"
+          ng-click="goToStep($index)">{{step}}</a>
+      </li>
+    </ul>
+    <div ng-switch on="selection">
+
+      <!-- First Step -->
+      <div ng-switch-when="1">
+        <div class="row">
+          <div class="span6"
+            ng-include="'views/submissionform.html'"
+            ng-controller="FormBuilderCtrl"
+            >
+          </div>
+          <div class="span6">
+            <div class="file-upload"
+              ng-include="'views/fileupload.html'">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Second Step -->
+      <div ng-switch-when="2">
+        <div class="span12 receiver-list">
+          <h2>Current List of receivers</h2>
+          <fieldset>
+            <label ng-repeat="receiver in localization.current_context.receivers">
+              <input
+              ng-model="receivers_selected[receiver.gus]"
+              type="checkbox"
+              value="{{receiver.gus}}"
+              >
+            {{receiver.name}} -
+            {{receiver.description}} -
+            {{receiver.tags}} -
+            {{receiver.languages_supported}}
+            {{receiver.gus}}
+            </label>
+          </fieldset>
+          </div>
+
+      </div>
+
+      <!-- Third Step -->
+      <div ng-switch-when="3">
+        <div class="span12 receiver-list">
+          <label class="text">
+            Receipt Number (optional)
+          </label>
+          <input type="text"
+            ng-model="submission.submission_receipt"
+            >
+          <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          </p>
+          <label class="checkbox">
+            <input type="checkbox"
+            name="disclaimer" value="agree"> Agree
+          </label>
+        </div>
+      </div>
+
+    </div>
+    <div class="clearfix"></div>
+    <ul class="pager pull-left">
+
+      <li>
+        <button class="btn" ng-class="{disabled: !hasPreviousStep()}" ng-click="decrementStep()">&larr; Previous Step</button>
+      </li>
+
+      <li>
+        <button class="btn" ng-class="{disabled: !hasNextStep()}" ng-click="incrementStep()">Next Step &rarr;</button>
+      </li>
+
+    </ul>
+    <div class="pull-right">
+      <button style="margin:20px 0;" class="btn btn-success">Submit</button>
+    </div>
+    <div class="clearfix"></div>
+
+  </form>
+</div>
+
 <!-- This will be visualized once the subission is created -->
 <div
   class="submission-receipt modal"
@@ -31,80 +125,4 @@
 </div>
 <!-- End -->
 
-<div class="container">
-  <form name="form" novalidate>
-  <div class="submission-wizard" ng-switch on="steps.current">
-    <!-- Begin the first step of the submission -->
-    <div class="row" ng-switch-default>
-      <div class="span6"
-        ng-include="'views/submissionform.html'"
-        ng-controller="FormBuilderCtrl"
-        >
-      </div>
-      <div class="span6">
-        <div class="file-upload"
-          ng-include="'views/fileupload.html'">
-        </div>
-      </div>
-    </div>
-    <!-- End first step -->
-
-    <!-- Begin second step -->
-    <div class="row" ng-switch-when="2">
-      <div class="span12 receiver-list">
-        <h2>Current List of receivers</h2>
-        <div ng-repeat="receiver in localization.current_context.receivers">
-          {{receiver.name}} -
-          {{receiver.description}} -
-          {{receiver.tags}} -
-          {{receiver.languages_supported}}
-        </div>
-      </div>
-    </div>
-    <!-- End second step -->
-
-    <!-- Begin third step -->
-    <div class="row" ng-switch-when="3">
-      <div class="span12 receiver-list">
-        <label class="text">
-          Receipt Number (optional)
-        </label>
-        <input type="text"
-          ng-model="submission.submission_receipt"
-          >
-        <p>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-        tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-        quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-        cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-        non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-        </p>
-        <label class="checkbox">
-          <input type="checkbox"
-          name="disclaimer" value="agree"> Agree
-        </label>
-      </div>
-    </div>
-    <!-- End third step -->
-  </div>
-
-  <!-- wizard controls -->
-  <div class="row wizard-control">
-    <div class="span12">
-      <button ng-click="back()"
-        class="btn"
-        ng-disabled="disable.back">Back</button>
-
-      <button ng-click="next()"
-        class="btn"
-        ng-disabled="disable.next">Next</button>
-
-      <button ng-click="submit()"
-        class="btn"
-        ng-disabled="form.$invalid"
-        >Submit</button>
-    </div>
-  </div>
-</div>
 

@@ -1,4 +1,3 @@
-<form name="form" novalidate>
 <div ng-repeat="field in localization.current_context.fields">
   <div ng-switch on="field.type">
     <h3 ng-switch-when="header">
@@ -51,8 +50,8 @@
       </fieldset>
       <fieldset ng-switch-when="checkboxes">
         <label ng-repeat="option in field.options">
-          <input type="checkbox" 
-          ng-model="field.value[tokenize(option.name)]" 
+          <input type="checkbox"
+          ng-model="field.value[tokenize(option.name)]"
           value="{{option.value}}">
           {{option.name}}
         </label>
@@ -61,4 +60,3 @@
     </div>
   </div ng-switch>
 </div>
-</form>
