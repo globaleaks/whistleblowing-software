@@ -32,7 +32,8 @@ GLClientDev.run(function($httpBackend) {
     'value': '', 'hint': 'this is the hint for the form'
   }];
 
-  var receivers = [{"gus": 'r_antanisblinda1',
+  var receivers = [{
+     "gus": 'r_antanisblinda1',
      "can_delete_submission": true,
      "can_postpone_expiration": true,
      "can_configure_notification": true,
@@ -47,20 +48,21 @@ GLClientDev.run(function($httpBackend) {
      "last_update_date": 12345678922,
      "languages_supported": ['en', 'it'],
     },
-    {"gus": 'r_antanisblinda2',
-     "can_delete_submission": false,
-     "can_postpone_expiration": false,
-     "can_configure_notification": false,
-     "can_configure_delivery": false,
-     "can_trigger_escalation": false,
-     "receiver_level": 1,
-     "name": "Pasquale Achille",
-     "description": "A famous journalist",
-     "tags": "journalism",
+    {
+       "gus": 'r_antanisblinda2',
+       "can_delete_submission": false,
+       "can_postpone_expiration": false,
+       "can_configure_notification": false,
+       "can_configure_delivery": false,
+       "can_trigger_escalation": false,
+       "receiver_level": 1,
+       "name": "Pasquale Achille",
+       "description": "A famous journalist",
+       "tags": "journalism",
 
-     "creation_date": 123567890,
-     "last_update_date": 123345678,
-     "languages_supported": ['en', 'it']
+       "creation_date": 123567890,
+       "last_update_date": 123345678,
+       "languages_supported": ['en', 'it']
     }];
 
   var node_info = {
@@ -106,7 +108,25 @@ GLClientDev.run(function($httpBackend) {
     'available_languages': [{'code': 'en',
        'name': 'English'}, {'name': 'Italiano',
        'code': 'it'}]
-  }
+  };
+
+  var comment_description_dict = {
+      'comment_id' : 1,
+      'source' : 'receiver', //receiver, wb, system
+      'content' : 'Lorem Ipsum',
+      'author' : 'Beppe',
+      'notification_mark': 'not notified', // u'not notified',
+            // u'notified', u'unable to notify', u'notification ignored'
+
+      // XXX is this returned by GLB?
+      'internaltip_id' : 'foobar',
+      // XXX we may want to change this to seconds since epoch in UTC
+      // this involves just doing a grep -rn "prettyDateTime" globaleaks/
+      // and replacing it with "utcTimeNow"
+      // We probably want to change "utcTimeNow" to return an int instead of a
+      // float.
+      'creation_time' : 1355236662
+  };
 
   var create_submission = function(data) {
     var context_gus = data['context_gus'],
@@ -232,7 +252,8 @@ GLClientDev.run(function($httpBackend) {
   // We need to invert the order of the parameters to make it uniform with the rest of the API.
   //$httpBackend.whenPOST('/submission/files/<submission_id>');
 
-  $httpBackend.whenGET(/\/tip\/(.*)/).respond(function(method, url, data){
+  $httpBackend.whenGET(/\/tip\/(.*)/).
+    respond(function(method, url, data){
     var tip_description_dict = {
       'id' : '12345',
       // Why do we have the name also?
@@ -268,7 +289,9 @@ GLClientDev.run(function($httpBackend) {
         // XXX what is this?
         'notification_fields': 'XXXX'
       }]
-    }
+    },
+
+        comments = [];
     console.log(method);
     console.log(url);
     console.log(data);
@@ -302,7 +325,6 @@ GLClientDev.run(function($httpBackend) {
     console.log(method);
     console.log(url);
     console.log(data);
-
   });
 
   // XXX is this profiles or pluginprofiles?
@@ -322,7 +344,6 @@ GLClientDev.run(function($httpBackend) {
     console.log(method);
     console.log(url);
     console.log(data);
-
   });
 
   /********************/
