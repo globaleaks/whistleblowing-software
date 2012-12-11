@@ -34,6 +34,7 @@ class TipManagement(BaseHandler):
     """
     T1
     This interface expose the Tip.
+
     Tip is the safe area, created with an expiration time, where Receivers (and optionally)
     Whistleblower can discuss about the submission, comments, collaborative voting, forward,
     promote, and perform other operation in this closed environment.
@@ -41,11 +42,20 @@ class TipManagement(BaseHandler):
     resource, and giving accountability in resource accesses.
     Some limitation in access, security extensions an special token can exists, implemented by
     the extensions plugins.
+
+    /tip/<tip_token>/
+    tip_token is either a receiver_tip_gus or a whistleblower auth token
     """
 
     @asynchronous
     @inlineCallbacks
-    def get(self, tip_token):
+    def get(self, tip_token, *args):
+        """
+        Parameters: None
+        Response: base.tipDetails
+        Errors: InvalidTipAuthToken
+        """
+
         log.debug("[D] %s %s " % (__file__, __name__), "Class TipManagement", "get", "tip_token", tip_token)
 
         # tip_token can be: a tip_gus for a receiver, or a WhistleBlower receipt, understand
@@ -90,9 +100,11 @@ class TipManagement(BaseHandler):
     @inlineCallbacks
     def post(self, tip_token, *arg, **kw):
         """
-        root of /tip/ POST manage delete, forwarding and pertinence options.
-        Only the receiver may have this properties.
+        Request: base.tipDetails
+        Response: base.tipDetails
+        Errors: InvalidTipAuthToken, InvalidInputFormat
         """
+
         log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "post", "tip_token", tip_token)
 
         request = json.loads(self.request.body)
@@ -134,21 +146,51 @@ class TipManagement(BaseHandler):
         self.finish()
 
 
-class TipComment(BaseHandler):
+class TipsAvailable(BaseHandler):
     """
     T2
-    Interface use to read/write comments inside of a Tip
+    This interface return the summary list of the Tips available for the authenticated Receiver
+    GET /tips/<receiver_tip_GUS>/
     """
 
     @asynchronous
     @inlineCallbacks
-    def post(self, tip_token):
+    def get(self, tip_token):
         """
-        /tip/$tip/comment
-        *Request
-            {
-            'comment' : 'tha shit'
-            }
+        Parameters: None
+        Response: base.tipSummaryList
+        Errors: InvalidTipAuthToken
+        """
+        pass
+
+
+# FULLY REVIEW TODO
+class TipCommentManagement(BaseHandler):
+    """
+    T3
+    Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
+    needs, at the moment, to delete/update comments once has been published. Comments is intended, now,
+    as a stone written consideration about Tip reliability, therefore no editing and rethinking is
+    permitted.
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, tip_token, *uriargs):
+        """
+        Parameters: None (TODO start/end)
+        Response: base.commentContentList
+        Errors: InvalidTipAuthToken
+        """
+        pass
+
+    @asynchronous
+    @inlineCallbacks
+    def post(self, tip_token, *uriargs):
+        """
+        Request: base.commentContent
+        Response: None
+        Errors: InvalidTipAuthToken, InvalidInputFormat
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class TipComment", "post", tip_token)
 
@@ -185,6 +227,7 @@ class TipComment(BaseHandler):
         self.finish()
 
 
+# REMOVE
 class TipFiles(BaseHandler):
     """
     T3
@@ -208,6 +251,7 @@ class TipFiles(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "delete")
         pass
 
+# REMOVE
 class TipFinalize(BaseHandler):
     """
     T4
@@ -220,6 +264,7 @@ class TipFinalize(BaseHandler):
         pass
 
 
+# REMOVE
 class TipDownload(BaseHandler):
     """
     T5

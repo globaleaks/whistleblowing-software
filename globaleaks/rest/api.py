@@ -32,7 +32,7 @@ receiver_token_auth = r'(\w+)' # This would cover regexp.tip_gus | regexp.welcom
 spec = [
     ## Node Handler ##
     #  * /node U1
-    (r'/node', node.InfoAvailable),
+    (r'/node/', node.InfoAvailable),
 
     ## Submission Handlers ##
     #  * /submission/ U2
@@ -45,11 +45,14 @@ spec = [
     (r'/statistics/', node.StatsAvailable),
 
     ## Tip Handlers ##
-    #  * /tip/<tip_GUS>/ T1
+    #  * /tip/<tip_access_token>/ T1
     (r'/tip/' + more_lax, tip.TipManagement),
 
-    #  * /tips/<tip_GUS> T2
+    #  * /tips/<receiver_tip_GUS> T2
     (r'/tips/' +  tipGUS.regexp, tip.TipsAvailable),
+
+    #  * /tip/<tip_access_token>/comment T3
+    (r'/tip/' + more_lax, tip.TipCommentManagement),
 
     ## Receiver Handlers ##
     #  * /reciever/<receiver_token_auth>/management R1
