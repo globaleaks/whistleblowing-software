@@ -48,15 +48,18 @@ spec = [
     #  * /tip/<tip_GUS>/ T1
     (r'/tip/' + more_lax, tip.TipManagement),
 
+    #  * /tips/<tip_GUS> T2
+    (r'/tips/' +  tipGUS.regexp, tip.TipsAvailable),
+
     ## Receiver Handlers ##
     #  * /reciever/<receiver_token_auth>/management R1
     (r'/receiver/' + receiver_token_auth + '/management', receiver.ReceiverManagement),
 
-    #  * /receiver/<receiver_token_auth>/pluginprofiles R2
-    (r'/receiver/' + tipGUS.regexp + '/pluginprofiles', receiver.ProfilesAvailable),
+    #  * /receiver/<receiver_token_auth>/profiles R2
+    (r'/receiver/' + receiver_token_auth + '/pluginprofiles', receiver.ProfilesAvailable),
 
-    #  * /receiver/<tip_GUS>/pluginprofile R3
-    (r'/receiver/' + tipGUS.regexp + '/plugin/', receiver.ProfileCrud),
+    #  * /receiver/<receiver_token_auth>/settings R3
+    (r'/receiver/' + receiver_token_auth + '/plugin/', receiver.ProfileCrud),
 
     ## Admin Handlers ##
     #  * /admin/node A1
