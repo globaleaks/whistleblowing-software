@@ -34,7 +34,12 @@ class ReceiverManagement(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, tip_gus, *uriargs):
+    def get(self, receiver_token_auth, *uriargs):
+        """
+        Parameters: None
+        Response: base.submissionStatus
+        Errors: InvalidInputFormat
+        """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverManagement", "GET", tip_gus,
             "NOT YET IMPLEMENTED -- need to return tip list and receiver option, status, stats")
@@ -44,7 +49,12 @@ class ReceiverManagement(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def put(self, tip_gus, *uriargs):
+    def put(self, receiver_token_auth, *uriargs):
+        """
+        Request: base.receiverDescriptionDict
+        Response: base.receiverDescriptionDict
+        Errors: ReceiverNotFound, InvalidInputFormat
+        """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverManagement", "PUT", tip_gus,
             "NOT YET IMPLEMENTED -- need to accept update in know_languages, name, description, tags")
@@ -54,29 +64,42 @@ class ReceiverManagement(BaseHandler):
 
 
 class ProfilesAvailable(BaseHandler):
+    """
+    R2
+    This class show the profiles configured by the Administrator available in a specific context
 
-    def get(self, *uriargs):
+    GET /receiver/(auth_secret_token)/pluginprofiles
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, receiver_token_auth, *uriargs):
+        """
+        Parameters: None
+        Response: base.receiverProfilesAvail
+        Errors: NoProfileAvailable
+        """
         pass
 
 
 class ProfileCrud(BaseHandler):
     """
-    R2
+    R3
     This class handle the receiver plugins configuration settings, its a
-    CRUD operation actinv over ReceiverConfs entries, and specially in those fields:
+    CRUD operation active over ReceiverConfs entries, and specially in those fields:
         ReceiverConfs.configured_fields
         ReceiverConfs.active
 
-    CRUD /receiver/(auth_secret_token)/plugins/ID
+    CRUD /receiver/(auth_secret_token)/plugin
     """
 
     @asynchronous
     @inlineCallbacks
-    def get(self, tip_gus, conf_id, *uriargs):
+    def get(self, receiver_token_auth, *uriargs):
         """
-        @param tip_gus: required as auth secret
-        @param conf_id: ignored in this API (get returns all the receiver settings)
-        @return: a list of dict describing the stored configuration settings
+        Parameters: None
+        Response: base.receiverProfileConf
+        Errors: ProfileNotFound, InvalidInputFormat
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverOptions", "GET", tip_gus, conf_id)
@@ -106,7 +129,12 @@ class ProfileCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def post(self, tip_gus, profile_gus, conf_id, *uriargs):
+    def post(self, receiver_token_auth, *uriargs):
+        """
+        Request:  base.receiverProfileConf
+        Response: base.receiverProfileConf
+        Errors: InvalidInputFormat
+        """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPluginConf", "POST")
 
@@ -169,7 +197,12 @@ class ProfileCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def put(self, tip_gus, profile_gus, conf_id, *uriargs):
+    def put(self, receiver_token_auth, *uriargs):
+        """
+        Request:  base.receiverProfileConf
+        Response: base.receiverProfileConf
+        Errors: ProfileNotFound, InvalidInputFormat
+        """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPluginConf", "PUT")
 
@@ -231,9 +264,11 @@ class ProfileCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def delete(self, tip_gus, profile_gus, conf_id, *uriargs):
+    def delete(self, receiver_token_auth, *uriargs):
         """
-        Not yet implemented <:
+        Request:  base.receiverProfileConf
+        Response: None
+        Errors: ProfileNotFound, InvalidInputFormat
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
 

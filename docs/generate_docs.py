@@ -1,6 +1,9 @@
 from globaleaks.rest.api import spec
 from globaleaks.messages import base
+from globaleaks.messages import requests
+from globaleaks.messages import responses
 from utils import cleanup_docstring
+import inspect
 import sys, string
 
 
@@ -57,7 +60,6 @@ def fill_doctree():
 
         # URTA_combo is an array of ( URTA, description )
         URTA_map.update({ resource[0] : URTA_combo  })
-        print resource[0]
         doctree.update({resource[0]: {} })
 
         handler_child = {}
@@ -92,32 +94,78 @@ def travel_over_tree(wikidoc, URTAindex=None):
             continue
 
         wikidoc.add_h2(key)
-        print key
+        print "processing API: ", key
 
         for method, text in value.iteritems():
 
-            print "\t", method
+            print "\t", method.upper()
 
             lines = text.split("\n")
-            wikidoc.add_h3("%s %s" % (method.upper(), key ))
+            wikidoc.add_h3("%s %s" % (method.upper(), key), text)
 
+            matrix = [
+                  [ wikidoc.add_response, 'Response:', False],
+                  [ wikidoc.add_error, 'Errors:', False ],
+                  [ wikidoc.add_request, 'Request:', False],
+                  [ wikidoc.add_param, 'Parameter:', False ]
+                ]
+
+            # for each line, check one of the keyword above, and
+            # use the appropriate method in wikidoc.
             for line in lines:
 
-                request_i = line.find('Request:')
-                answer_i = line.find('Answer:')
-                error_i = line.find('Errors:')
-                param_i = line.find('Parameter:')
+                parsed_correctly = False
+                for ndx, entry in enumerate(matrix):
 
-                if request_i != -1:
-                    wikidoc.add_request(get_request(line[request_i:]))
-                elif answer_i != -1:
-                    wikidoc.add_answer(get_answer(line[answer_i:]))
-                elif error_i != -1:
-                    wikidoc.add_error(get_errors(line[error_i:]))
-                elif param_i != -1:
-                    wikidoc.add_param(get_param(line[param_i:]))
-                else:
+                    x_i = line.find(entry[1])
+                    if x_i != -1:
+                        index = x_i + len(entry[1]) + 1
+                        entry[0](get_request(line[index:]))
+                        parsed_correctly = True
+                        matrix[ndx][2] = True
+
+
+                if not parsed_correctly:
                     wikidoc.add_line(line)
+
+            if method.upper() == 'GET':
+                if not matrix[0][2] or not matrix[1][2]:
+                    print "Missing Response/Error"
+                    quit()
+            else:
+                if not matrix[0][2] or not matrix[1][2] or not matrix[2][2]:
+                    print "Missing Request/Response/Error"
+                    quit()
+
+
+def create_spec(spec):
+    doc = ""
+    for k, v in spec.items():
+        doc += "    %s: %s\n" % (k, v)
+    return doc
+
+def create_class_doc(klass):
+    doc = "## %s\n" % klass.__name__
+    if klass.__doc__:
+        cleanup_docstring(klass.__doc__)
+    doc += "\n"
+    doc += create_spec(klass.specification)
+    doc += "\n\n"
+    return doc
+
+def create_special_doc(klass):
+    doc = "  * %s: '%s'\n\n" % (klass.__name__, klass.regexp)
+    return doc
+
+
+def handle_klass_entry(source, name, klass):
+
+    if issubclass(klass, base.GLTypes) and klass != base.GLTypes:
+        types_doc = create_class_doc(klass)
+        print "Complex ", source, ":\n", types_doc
+    elif issubclass(klass, base.SpecialType) and klass != base.SpecialType:
+        special_doc = create_special_doc(klass)
+        print "Special ", source, ":\n", special_doc
 
 
 class reStructuredText:
@@ -125,12 +173,13 @@ class reStructuredText:
     def __init__(self):
         self.collected = ''
 
-    def add_h3(self, text):
-        text = text.strip("\n")
-        self.collected += text + "\n"
-        for i in range(0, len(text)):
+    def add_h3(self, title, text):
+        title = title.strip("\n")
+        self.collected += title + "\n"
+        for i in range(0, len(title)):
             self.collected += '-'
         self.collected += "\n\n"
+        self.collected += text + "\n"
 
     def add_h2(self, text):
         text = text.strip("\n")
@@ -139,10 +188,13 @@ class reStructuredText:
             self.collected += '='
         self.collected += "\n\n"
 
+    def add_entrylist(self, error, answer, request=None, param=None):
+        pass
+
     def add_request(self, reqname):
         self.collected += reqname + "\n"
 
-    def add_answer(self, answname):
+    def add_response(self, answname):
         self.collected += answname + "\n"
 
     def add_error(self, errorname):
@@ -154,7 +206,15 @@ class reStructuredText:
     def add_line(self, linestuff):
         self.collected += linestuff + "\n"
 
+    for name, klass in inspect.getmembers(base, inspect.isclass):
+        handle_klass_entry('base', name, klass)
+    for name, klass in inspect.getmembers(requests, inspect.isclass):
+        handle_klass_entry('requests', name, klass)
+    for name, klass in inspect.getmembers(responses, inspect.isclass):
+        handle_klass_entry('responses', name, klass)
+
 if __name__ == '__main__':
+    import datetime
 
     wikidoc = reStructuredText()
     fill_doctree()
@@ -164,6 +224,15 @@ if __name__ == '__main__':
     travel_over_tree(wikidoc, 'T')
     travel_over_tree(wikidoc, 'A')
 
+    newstring = "This is an autogenerated file based on **docs/generate_docs.py**.\n"+\
+                "The script looks in the docstrings inside of the Handlers Class"+\
+                " and Method implementations\n\nThis version has been generated"+\
+                " in: %s\n\n.. contents:: Table of Contents\n\n%s" % \
+                (datetime.date.today(), wikidoc.collected )
+
+    wikidoc.collected = newstring
+
     with file("APIdocGenerated.reST", 'w+') as f:
         f.write(wikidoc.collected)
+
 
