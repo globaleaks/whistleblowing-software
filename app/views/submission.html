@@ -11,8 +11,9 @@
   </div>
 </div>
 
-<div ng-controller="WizardCtrl" class="container">
-  <form class="form-horizontal">
+<div ng-controller="WizardCtrl"
+  class="container">
+  <form class="form-horizontal tabbable tabs-below">
     <ul class="nav nav-tabs">
       <li ng-repeat="step in steps"
         ng-class="{active: $index==getCurrentStepIndex()}">
@@ -39,24 +40,36 @@
 
       <!-- Second Step -->
       <div ng-switch-when="2">
-        <div class="span12 receiver-list">
-          <h3>Receiver List</h3>
+        <div class="span12 receiverlistSelection">
           <fieldset>
-            <label ng-repeat="receiver in localization.current_context.receivers">
+            <div class="receiverlistReceiver"
+              ng-repeat="receiver in localization.current_context.receivers">
+            <dl class="dl-horizontal">
+              <dt>Name</dt>
+              <dd>{{receiver.name}}</dd>
+              <dt>Description</dt>
+              <dd>{{receiver.description}}</dd>
+              <dt>Tags</dt>
+              <dd>
+                <span ng-repeat="tag in receiver.tags.split(',')"
+                  class="label label-info">{{tag}}</span>
+              </dd>
+              <dt>Languages</dt>
+              <dd>
+                <i ng-repeat="lang in receiver.languages_supported"
+                  class="icon-white lflag lflag-{{lang}}"></i>
+              </dd>
+              <dt>Selected</dt>
+              <dd>
               <input
-              ng-model="receivers_selected[receiver.gus]"
-              type="checkbox"
-              value="{{receiver.gus}}"
+                ng-model="receivers_selected[receiver.gus]"
+                type="checkbox"
+                value="{{receiver.gus}}"
               >
-            {{receiver.name}} -
-            {{receiver.description}} -
-            {{receiver.tags}} -
-            <i ng-repeat="lang in receiver.languages_supported"
-              class="icon-white lflag lflag-{{lang}}"></i>
-            </label>
+              </dd>
+            </dl>
           </fieldset>
-          </div>
-
+        </div>
       </div>
 
       <!-- Third Step -->
@@ -84,6 +97,7 @@
       </div>
 
     </div>
+    <!-- END step -->
     <div class="clearfix"></div>
     <ul class="pager pull-left">
 
