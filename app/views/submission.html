@@ -7,12 +7,11 @@
       ng-options="context.get_context_name() for context in localization.node_info.contexts"
       ng-change="create_submission()"
     >
-  </select>
+    </select>
   </div>
 </div>
 
-<div ng-controller="WizardCtrl"
-  class="container">
+<div ng-controller="WizardCtrl" class="container">
   <form class="form-horizontal tabbable tabs-below">
     <ul class="nav nav-tabs">
       <li ng-repeat="step in steps"
@@ -24,6 +23,37 @@
     <div ng-switch on="selection">
       <!-- First Step -->
       <div ng-switch-when="1">
+        <div class="span12 receiverlistSelection">
+          <dl class="dl-horizontal"
+            ng-repeat="receiver in localization.current_context.receivers">
+            <dt>Name</dt>
+            <dd>{{receiver.name}}</dd>
+            <dt>Description</dt>
+            <dd>{{receiver.description}}</dd>
+            <dt>Tags</dt>
+            <dd>
+              <span ng-repeat="tag in receiver.tags.split(',')"
+                class="label label-info">{{tag}}</span>
+            </dd>
+            <dt>Languages</dt>
+            <dd>
+              <i ng-repeat="lang in receiver.languages_supported"
+                class="icon-white lflag lflag-{{lang}}"></i>
+            </dd>
+            <dt>Selected</dt>
+            <dd>
+            <input
+              ng-model="receivers_selected[receiver.gus]"
+              type="checkbox"
+              value="{{receiver.gus}}"
+            >
+            </dd>
+          </dl>
+        </div>
+      </div>
+
+      <!-- Second Step -->
+      <div ng-switch-when="2">
         <div class="row">
           <div class="span6"
             ng-include="'views/submissionform.html'"
@@ -38,61 +68,29 @@
         </div>
       </div>
 
-      <!-- Second Step -->
-      <div ng-switch-when="2">
-        <div class="span12 receiverlistSelection">
-          <fieldset>
-            <div class="receiverlistReceiver"
-              ng-repeat="receiver in localization.current_context.receivers">
-            <dl class="dl-horizontal">
-              <dt>Name</dt>
-              <dd>{{receiver.name}}</dd>
-              <dt>Description</dt>
-              <dd>{{receiver.description}}</dd>
-              <dt>Tags</dt>
-              <dd>
-                <span ng-repeat="tag in receiver.tags.split(',')"
-                  class="label label-info">{{tag}}</span>
-              </dd>
-              <dt>Languages</dt>
-              <dd>
-                <i ng-repeat="lang in receiver.languages_supported"
-                  class="icon-white lflag lflag-{{lang}}"></i>
-              </dd>
-              <dt>Selected</dt>
-              <dd>
-              <input
-                ng-model="receivers_selected[receiver.gus]"
-                type="checkbox"
-                value="{{receiver.gus}}"
-              >
-              </dd>
-            </dl>
-          </fieldset>
-        </div>
-      </div>
-
       <!-- Third Step -->
       <div ng-switch-when="3">
-        <div class="span12 receiver-list">
-          <label class="text">
-            Receipt Number (optional)
-          </label>
-          <input type="text"
-            ng-model="submission.submission_receipt"
-            >
-          <p>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-          tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-          quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-          consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-          cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
-          non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-          </p>
-          <label class="checkbox">
-            <input type="checkbox"
-            name="disclaimer" value="agree"> Agree
-          </label>
+        <div class="row">
+          <div class="span12">
+            <label class="text">
+              Receipt Number (optional)
+            </label>
+            <input type="text"
+              ng-model="submission.submission_receipt"
+              >
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <label class="checkbox">
+              <input type="checkbox"
+              name="disclaimer" value="agree"> Agree
+            </label>
+          </div>
         </div>
       </div>
 
@@ -101,17 +99,29 @@
     <div class="clearfix"></div>
     <ul class="pager pull-left">
 
-      <li>
-        <button class="btn" ng-class="{disabled: !hasPreviousStep()}" ng-click="decrementStep()">&larr; Previous Step</button>
+      <li ng-class="{disabled: !hasPreviousStep()}"
+          class="previous">
+        <a ng-click="decrementStep()">&larr; Previous Step</a>
       </li>
 
-      <li>
-        <button class="btn" ng-class="{disabled: !hasNextStep()}" ng-click="incrementStep()">Next Step &rarr;</button>
+      <li class="next"
+          ng-hide="!hasNextStep()">
+        <a ng-click="incrementStep()">Next Step &rarr;</a>
+      </li>
+
+      <li class="next"
+          ng-show="!hasNextStep()">
+        <button ng-click="submit()"
+          class="btn btn-success">Submit</button>
       </li>
 
     </ul>
     <div class="pull-right">
-      <button style="margin:20px 0;" class="btn btn-success">Submit</button>
+      <button ng-click="submit()"
+          style="margin: 20px 0;"
+          ng-hide="!hasNextStep()"
+          class="btn btn-success">Submit</button>
+
     </div>
     <div class="clearfix"></div>
 

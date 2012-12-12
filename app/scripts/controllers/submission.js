@@ -12,6 +12,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
   // We use the scope variable uploaded_files to keep track of the files
   // that are uploaded.
   $scope.uploaded_files = [];
+
   $scope.receivers_selected = {};
 
   $scope.create_submission = function(){
@@ -20,25 +21,29 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
     $scope.submission = new Submission({
       context_gus: localization.current_context_gus
     });
-    $scope.submission.$save();
-  }
 
-  // angular.forEach(localization.current_context.receivers, function(field, k){
-  //   $scope.receivers_selected[field.gus] = true;
-  // });
+    $scope.submission.$save(function(){
+      // Make sure all the receivers are selected by default
+       _.each(localization.current_context.receivers, function(field, k){
+         $scope.receivers_selected[field.gus] = true;
+      });
+    });
+  }
 
   $scope.submit = function() {
 
     // Set the submission field values
-    angular.forEach(localization.current_context.fields, function(field, k) {
+    _.each(localization.current_context.fields, function(field, k) {
       $scope.submission.fields[field.name] = field.value;
     });
 
     // Set the currently selected receivers
     $scope.submission.receivers = [];
-    angular.forEach(localization.current_context.receivers, function(field, k){
-      $scope.submission.receivers.push(k);
-    });
+      _.each($scope.receivers_selected, function(selected, receiver_gus){
+        if (selected) {
+          $scope.submission.receivers.push(receiver_gus);
+        }
+      });
 
     $scope.submission.$save();
     $scope.submission_complete = true;
