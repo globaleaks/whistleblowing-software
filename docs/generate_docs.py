@@ -74,17 +74,9 @@ def fill_doctree():
     return doctree
 
 
-def get_request(partial_line):
-    return partial_line.strip(" ,")
-
-def get_answer(partial_line):
-    return partial_line
-
-def get_errors(partial_line):
-    return partial_line
-
-def get_param(partial_line):
-    return partial_line
+def get_elementNames(partial_line):
+    line = partial_line.strip(" \n")
+    return line.split(",")
 
 def travel_over_tree(wikidoc, URTAindex=None):
 
@@ -94,11 +86,8 @@ def travel_over_tree(wikidoc, URTAindex=None):
             continue
 
         wikidoc.add_h2(key)
-        print "processing API: ", key
 
         for method, text in value.iteritems():
-
-            print "\t", method.upper()
 
             lines = text.split("\n")
             wikidoc.add_h3("%s %s" % (method.upper(), key), text)
@@ -120,21 +109,29 @@ def travel_over_tree(wikidoc, URTAindex=None):
                     x_i = line.find(entry[1])
                     if x_i != -1:
                         index = x_i + len(entry[1]) + 1
-                        entry[0](get_request(line[index:]))
-                        parsed_correctly = True
-                        matrix[ndx][2] = True
 
+                        parsed_correctly = True
+
+                        elements = get_elementNames(line[index:])
+
+                        for element in elements:
+                            doctree_update = entry[0](element)
+
+                            if doctree_update:
+                                matrix[ndx][2] = True
+                            else:
+                                print method.upper(), " ", key, "Definition of", element, "NOT FOUND\n",
 
                 if not parsed_correctly:
                     wikidoc.add_line(line)
 
             if method.upper() == 'GET':
                 if not matrix[0][2] or not matrix[1][2]:
-                    print "Missing Response/Error"
+                    print "Error: missing Response/Error"
                     quit()
             else:
                 if not matrix[0][2] or not matrix[1][2] or not matrix[2][2]:
-                    print "Missing Request/Response/Error"
+                    print "Error: missing Request/Response/Error"
                     quit()
 
 
@@ -162,10 +159,10 @@ def handle_klass_entry(source, name, klass):
 
     if issubclass(klass, base.GLTypes) and klass != base.GLTypes:
         types_doc = create_class_doc(klass)
-        print "Complex ", source, ":\n", types_doc
+        return types_doc
     elif issubclass(klass, base.SpecialType) and klass != base.SpecialType:
         special_doc = create_special_doc(klass)
-        print "Special ", source, ":\n", special_doc
+        return special_doc
 
 
 class reStructuredText:
@@ -188,30 +185,51 @@ class reStructuredText:
             self.collected += '='
         self.collected += "\n\n"
 
-    def add_entrylist(self, error, answer, request=None, param=None):
-        pass
-
     def add_request(self, reqname):
-        self.collected += reqname + "\n"
 
-    def add_response(self, answname):
-        self.collected += answname + "\n"
+        if typestree.has_key(reqname):
+            self.collected += typestree[reqname] + "\n"
+            return True
+
+        for name, klass in inspect.getmembers(responses, inspect.isclass):
+            if name == reqname:
+                typedesc = handle_klass_entry('requests', name, klass)
+                typestree.update({reqname : typedesc })
+                self.collected += "`" + reqname + "`:" + typedesc + "\n"
+                return True
+
+    def add_response(self, responame):
+
+        if typestree.has_key(responame):
+            self.collected += typestree[responame] + "\n"
+            return True
+
+        for name, klass in inspect.getmembers(responses, inspect.isclass):
+            if name == responame:
+                typedesc = handle_klass_entry('responses', name, klass)
+                typestree.update({responame : typedesc })
+                self.collected += "`" + responame + "`:" + typedesc + "\n"
+                return True
 
     def add_error(self, errorname):
-        self.collected += errorname + "\n"
+
+        if typestree.has_key(errorname):
+            self.collected += typestree[errorname] + "\n"
+            return True
+
+        for name, klass in inspect.getmembers(responses, inspect.isclass):
+            if name == errorname:
+                typedesc = handle_klass_entry('errors', name, klass)
+                typestree.update({errorname: typedesc })
+                self.collected += "`" + errorname + "`:" + typedesc + "\n"
+                return True
 
     def add_param(self, paramname):
-        self.collected += paramname + "\n"
+        self.collected += "Parameter NotYetSupported: " + paramname + "\n"
+        return True
 
     def add_line(self, linestuff):
         self.collected += linestuff + "\n"
-
-    for name, klass in inspect.getmembers(base, inspect.isclass):
-        handle_klass_entry('base', name, klass)
-    for name, klass in inspect.getmembers(requests, inspect.isclass):
-        handle_klass_entry('requests', name, klass)
-    for name, klass in inspect.getmembers(responses, inspect.isclass):
-        handle_klass_entry('responses', name, klass)
 
 if __name__ == '__main__':
     import datetime
@@ -234,5 +252,7 @@ if __name__ == '__main__':
 
     with file("APIdocGenerated.reST", 'w+') as f:
         f.write(wikidoc.collected)
+
+    #`travel_over_tree had filled typestree dictionary!
 
 
