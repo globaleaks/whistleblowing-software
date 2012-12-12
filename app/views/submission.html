@@ -8,8 +8,6 @@
       ng-change="create_submission()"
     >
   </select>
-    <p>{{current_context.get_context_description()}}</p>
-    <h2>Step {{steps.current}}/{{steps.all.length}}</h2>
   </div>
 </div>
 
@@ -23,7 +21,6 @@
       </li>
     </ul>
     <div ng-switch on="selection">
-
       <!-- First Step -->
       <div ng-switch-when="1">
         <div class="row">
