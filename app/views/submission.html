@@ -12,7 +12,9 @@
 </div>
 
 <div ng-controller="WizardCtrl" class="container">
-  <form class="form-horizontal tabbable tabs-below">
+
+  <div class="tabbable tabs-below">
+
     <ul class="nav nav-tabs">
       <li ng-repeat="step in steps"
         ng-class="{active: $index==getCurrentStepIndex()}">
@@ -20,57 +22,74 @@
           ng-click="goToStep($index)">{{step}}</a>
       </li>
     </ul>
+
     <div ng-switch on="selection">
+
       <!-- First Step -->
-      <div ng-switch-when="1">
-        <div class="span12 receiverlistSelection">
-          <dl class="dl-horizontal"
-            ng-repeat="receiver in localization.current_context.receivers">
-            <dt>Name</dt>
-            <dd>{{receiver.name}}</dd>
-            <dt>Description</dt>
-            <dd>{{receiver.description}}</dd>
-            <dt>Tags</dt>
-            <dd>
-              <span ng-repeat="tag in receiver.tags.split(',')"
-                class="label label-info">{{tag}}</span>
-            </dd>
-            <dt>Languages</dt>
-            <dd>
-              <i ng-repeat="lang in receiver.languages_supported"
-                class="icon-white lflag lflag-{{lang}}"></i>
-            </dd>
-            <dt>Selected</dt>
-            <dd>
-            <input
-              ng-model="receivers_selected[receiver.gus]"
-              type="checkbox"
-              value="{{receiver.gus}}"
+      <div ng-switch-when="1 Receiver selection"
+        class="receiverCards">
+        <p class="lead">Choose the receivers that will be sure to transform your submission into action!</p>
+        <div ng-repeat="receiver in localization.current_context.receivers">
+
+          <div class="receiverCard span5"
+            ng-class="{selected: receivers_selected[receiver.gus]}"
+            ng-class-odd="{receiverCardOdd: true}"
+            ng-class-even="{receiverCardEven: true}"
             >
-            </dd>
-          </dl>
+            <input ng-model="receivers_selected[receiver.gus]"
+                  type="checkbox" value="{{receiver.gus}}"
+                  class="receiverSelection">
+            <div class="row">
+              <div class="span2">
+                <img src="http://placehold.it/120x120"
+                    class="img-polaroid">
+              </div>
+              <div class="span3">
+                <h3>{{receiver.name}}</h3>
+                <p>{{receiver.description}}</p>
+                <span ng-repeat="tag in receiver.tags.split(',')"
+                class="label label-info">{{tag}}</span>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="span5">
+                <h4>I speak these languages:</h4>
+                <i ng-repeat="lang in receiver.languages_supported"
+                  class="icon-white lflag lflag-{{lang}}"></i>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
+      <!-- /1 -->
 
       <!-- Second Step -->
-      <div ng-switch-when="2">
+      <div ng-switch-when="2 Fill out your submission">
         <div class="row">
-          <div class="span6"
-            ng-include="'views/submissionform.html'"
-            ng-controller="FormBuilderCtrl"
-            >
-          </div>
+
+          <form class="form-horizontal"  name="submissionFields">
+            <div class="span6"
+              ng-include="'views/submissionform.html'"
+              ng-controller="FormBuilderCtrl">
+            </div>
+          </form>
+
           <div class="span6">
             <div class="file-upload"
               ng-include="'views/fileupload.html'">
             </div>
           </div>
+
         </div>
       </div>
+      <!-- /2 -->
 
       <!-- Third Step -->
-      <div ng-switch-when="3">
+      <div ng-switch-when="3 Choose receipt">
+
         <div class="row">
+
           <div class="span12">
             <label class="text">
               Receipt Number (optional)
@@ -88,14 +107,16 @@
             </p>
             <label class="checkbox">
               <input type="checkbox"
-              name="disclaimer" value="agree"> Agree
+              ng-model="accept_disclaimer"> Agree
             </label>
           </div>
+
         </div>
       </div>
+      <!-- /3 -->
 
     </div>
-    <!-- END step -->
+    <!-- END steps -->
     <div class="clearfix"></div>
     <ul class="pager pull-left">
 
@@ -112,20 +133,30 @@
       <li class="next"
           ng-show="!hasNextStep()">
         <button ng-click="submit()"
+          ng-disabled="!submissionFields.$valid"
           class="btn btn-success">Submit</button>
       </li>
 
     </ul>
-    <div class="pull-right">
-      <button ng-click="submit()"
-          style="margin: 20px 0;"
-          ng-hide="!hasNextStep()"
-          class="btn btn-success">Submit</button>
 
+    <div class="pull-right">
+      <pre>
+      Antanisblinda -
+      {{submissionFields.$valid}}
+      {{submissionFields}}
+      {{accept_disclaimer}}
+      </pre>
+      <button
+        ng-click="submit()"
+        style="margin: 20px 0;"
+        ng-hide="!hasNextStep()"
+        ng-disabled="!submissionForm.$valid"
+        class="btn btn-success">Submit</button>
     </div>
     <div class="clearfix"></div>
 
-  </form>
+  </div>
+
 </div>
 
 <!-- This will be visualized once the subission is created -->
