@@ -1,7 +1,6 @@
 GLClient.controller('WizardCtrl',
   ['$scope', function($scope) {
 
-  $scope.steps = ['1', '2', '3'];
   $scope.selection = $scope.steps[0];
 
   $scope.getCurrentStepIndex = function(){

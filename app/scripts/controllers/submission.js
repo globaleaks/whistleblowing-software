@@ -4,6 +4,11 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
 
   $scope.submission_complete = false;
   $scope.localization = localization;
+  $scope.accept_disclaimer = false;
+  $scope.steps = ['1 Receiver selection',
+    '2 Fill out your submission',
+    '3 Choose receipt'
+  ];
 
   // XXX here we are actually violating the principle for which the
   // controller should not be stateful. This can possibly be fixed by
