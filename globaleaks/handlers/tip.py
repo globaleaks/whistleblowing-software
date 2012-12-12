@@ -52,7 +52,7 @@ class TipManagement(BaseHandler):
     def get(self, tip_token, *args):
         """
         Parameters: None
-        Response: base.tipDetails
+        Response: actorsTipDesc
         Errors: InvalidTipAuthToken
         """
 
@@ -100,8 +100,8 @@ class TipManagement(BaseHandler):
     @inlineCallbacks
     def post(self, tip_token, *arg, **kw):
         """
-        Request: base.tipDetails
-        Response: base.tipDetails
+        Request: actorsTipDesc
+        Response: actorsTipDesc
         Errors: InvalidTipAuthToken, InvalidInputFormat
         """
 
@@ -158,7 +158,7 @@ class TipsAvailable(BaseHandler):
     def get(self, tip_token):
         """
         Parameters: None
-        Response: base.tipSummaryList
+        Response: receiverTipsList
         Errors: InvalidTipAuthToken
         """
         pass
@@ -179,7 +179,7 @@ class TipCommentManagement(BaseHandler):
     def get(self, tip_token, *uriargs):
         """
         Parameters: None (TODO start/end)
-        Response: base.commentContentList
+        Response: actorsCommentList
         Errors: InvalidTipAuthToken
         """
         pass
@@ -188,8 +188,8 @@ class TipCommentManagement(BaseHandler):
     @inlineCallbacks
     def post(self, tip_token, *uriargs):
         """
-        Request: base.commentContent
-        Response: None
+        Request: actorsCommentDesc
+        Response: actorsCommentDesc
         Errors: InvalidTipAuthToken, InvalidInputFormat
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class TipComment", "post", tip_token)
@@ -226,53 +226,4 @@ class TipCommentManagement(BaseHandler):
 
         self.finish()
 
-
-# REMOVE
-class TipFiles(BaseHandler):
-    """
-    T3
-    files CURD at the moment is not yet finished
-    along with the javascript part.
-    """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "BaseHandler", BaseHandler)
-    def get(self, *arg, **kw):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "get")
-        pass
-
-    def put(self, *arg, **kw):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "put")
-        pass
-
-    def post(self, *arg, **kw):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "post")
-        pass
-
-    def delete(self, *arg, **kw):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFiles", "delete")
-        pass
-
-# REMOVE
-class TipFinalize(BaseHandler):
-    """
-    T4
-    This interface aim to close the file uploading - need to be removed in the next (and last) API refactor
-    """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class TipFinalize", "BaseHandler", BaseHandler)
-
-    def post(self, *arg, **kw):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipFinalize", "post")
-        pass
-
-
-# REMOVE
-class TipDownload(BaseHandler):
-    """
-    T5
-    Receiver only - enabled only if local delivery is set - not yet implemented nor documented
-    """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class TipDownload", "BaseHandler", BaseHandler)
-
-    def get(self, *arg, **kw):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipDownload", "get")
-        pass
 

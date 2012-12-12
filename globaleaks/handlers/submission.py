@@ -29,7 +29,7 @@ class SubmissionCrud(BaseHandler):
     def get(self, *uriargs):
         """
         Parameters: None
-        Response: base.submissionStatus
+        Response: wbSubmissionDesc
         Errors: SubmissionNotFoundError, InvalidInputFormat
 
         Get the status of the current submission.
@@ -61,8 +61,8 @@ class SubmissionCrud(BaseHandler):
     @inlineCallbacks
     def post(self, *uriargs):
         """
-        Request: base.submissionStatus
-        Response: base.submissionStatus
+        Request: wbSubmissionDesc
+        Response: wbSubmissionDesc
         Errors: InvalidContext, InvalidInputFormat, InvalidFields
 
         This creates an empty submission for the requested context,
@@ -105,8 +105,8 @@ class SubmissionCrud(BaseHandler):
 
     def put(self, *uriargs):
         """
-        Request: base.submissionStatus
-        Response: base.submissionStatus
+        Request: wbSubmissionDesc
+        Response: wbSubmissionDesc
         Errors: InvalidContext, InvalidInputFormat, InvalidSubmissionFields, SubmissionNotFound
 
         Update a Submission resource with the appropriate data
@@ -160,7 +160,7 @@ class SubmissionCrud(BaseHandler):
 
     def delete(self, *uriargs):
         """
-        Request: base.submissionStatus
+        Request: wbSubmissionDesc
         Response: None
         Errors: SubmissionNotFound. InvalidInputFormat
 

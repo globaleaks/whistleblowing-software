@@ -23,25 +23,10 @@ class InfoAvailable(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
         """
-        Response: globaleaks.messages.NodeResponse
+        Response: publicNodeDesc
         Errors: NodeNotFoundError
-
-        Returns a json object containing all the information of the node, are the same informations
-        likely recorded by WhistleBlower-service Indexers
-
-        Status Code: 200 (OK)
-        {
-          'name': 'string',
-          'statistics': '$nodeStatisticsDict',
-          'node_properties': '$nodePropertiesDict',
-          'contexts': [ '$contextDescriptionDict', { }, ],
-          'description': '$localizationDict',
-          'public_site': 'string',
-          'hidden_service': 'string',
-          'url_schema': 'string'
-         }
-
         """
+
         from globaleaks.models.node import Node, NodeNotFoundError
         from globaleaks.models.context import Context
 
@@ -79,7 +64,7 @@ class StatsAvailable(BaseHandler):
     def get(self, *uriargs):
         """
         Parameters: TODO
-        Response: globaleaks.models.statistics
+        Response: publicStatsList
         Errors: StatsNotCollectedError
 
         This interface return the collected statistics for the public audience.

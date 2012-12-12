@@ -37,8 +37,8 @@ class ReceiverManagement(BaseHandler):
     def get(self, receiver_token_auth, *uriargs):
         """
         Parameters: None
-        Response: base.submissionStatus
-        Errors: InvalidInputFormat
+        Response: receiverReceiverDesc
+        Errors: ReceiverNotFound, InvalidInputFormat
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverManagement", "GET", tip_gus,
@@ -51,8 +51,8 @@ class ReceiverManagement(BaseHandler):
     @inlineCallbacks
     def put(self, receiver_token_auth, *uriargs):
         """
-        Request: base.receiverDescriptionDict
-        Response: base.receiverDescriptionDict
+        Request: receiverReceiverDesc
+        Response: receiverReceiverDesc
         Errors: ReceiverNotFound, InvalidInputFormat
         """
 
@@ -76,7 +76,7 @@ class ProfilesAvailable(BaseHandler):
     def get(self, receiver_token_auth, *uriargs):
         """
         Parameters: None
-        Response: base.receiverProfilesAvail
+        Response: receiverProfilesList
         Errors: NoProfileAvailable
         """
         pass
@@ -98,8 +98,8 @@ class ProfileCrud(BaseHandler):
     def get(self, receiver_token_auth, *uriargs):
         """
         Parameters: None
-        Response: base.receiverProfileConf
-        Errors: ProfileNotFound, InvalidInputFormat
+        Response: receiverProfileDesc
+        Errors: InvalidInputFormat, ProfileNotFound
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverOptions", "GET", tip_gus, conf_id)
@@ -131,9 +131,9 @@ class ProfileCrud(BaseHandler):
     @inlineCallbacks
     def post(self, receiver_token_auth, *uriargs):
         """
-        Request:  base.receiverProfileConf
-        Response: base.receiverProfileConf
-        Errors: InvalidInputFormat
+        Request: receiverProfileDesc
+        Response: receiverProfileDesc
+        Errors: InvalidInputFormat, ProfileNotFound
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPluginConf", "POST")
@@ -199,9 +199,9 @@ class ProfileCrud(BaseHandler):
     @inlineCallbacks
     def put(self, receiver_token_auth, *uriargs):
         """
-        Request:  base.receiverProfileConf
-        Response: base.receiverProfileConf
-        Errors: ProfileNotFound, InvalidInputFormat
+        Request: receiverProfileDesc
+        Response: receiverProfileDesc
+        Errors: InvalidInputFormat, ProfileNotFound
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPluginConf", "PUT")
@@ -266,9 +266,8 @@ class ProfileCrud(BaseHandler):
     @inlineCallbacks
     def delete(self, receiver_token_auth, *uriargs):
         """
-        Request:  base.receiverProfileConf
+        Request: receiverProfileDesc
         Response: None
-        Errors: ProfileNotFound, InvalidInputFormat
+        Errors: InvalidInputFormat, ProfileNotFound
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
-
