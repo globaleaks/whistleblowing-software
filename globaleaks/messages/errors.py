@@ -14,3 +14,14 @@ class InvalidInputFormat(GLTypeError):
         GLTypeError.error_message = "Invalid Input Format"
         GLTypeError.error_code = 100 # need to be resumed the table and come back in use them
         GLTypeError.http_status = 406 # Bad Request
+
+
+# This is the struct containing the errors
+def errorMessage(http_error_code=500, error_dict={}):
+    """
+    errorMessage may be used as inline object declaration and assignment
+    """
+    response = {'http_error_code':  http_error_code,
+                'error_code': error_dict.get('code'),
+                'error_message': error_dict.get('string')}
+    return response

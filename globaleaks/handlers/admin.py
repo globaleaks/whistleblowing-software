@@ -22,41 +22,22 @@ class NodeManagement(BaseHandler):
     Get the node main settings, update the node main settings, it works in a single static
     table, in models/admin.py
 
-    Since this point start the administration chain:
-    . admin GET A1 (full context description with private infos)
-      . admin works in A2 (context management, having the context_gus list)
-      . admin works in A3 (receiver management, having the receiver_gus list)
+    This would be likely see as the starting point of the administration chain:
     """
 
     @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
-        The Get interface is thinked as first blob of data able to present the node,
-        therefore not all the information are specific of this resource (like
-        contexts description or statististics), but for reduce the amount of request
-        performed by the client, has been collapsed into.
+        Parameters: None
+        Response: adminNodeDescription
+        Errors: None
 
-        Returns a json object containing all the information of the node.
-        * Response:
-            Status Code: 200 (OK)
-            {
-              'name': 'string',
-              'admin_statistics': '$adminStatisticsDict',
-              'public_stats': '$publicStatisticsDict,
-              'node_properties': '$nodePropertiesDict',
-              'contexts': [ '$contextDescriptionDict', { }, ],
-              'node_description': '$localizationDict',
-              'public_site': 'string',
-              'hidden_service': 'string',
-              'url_schema': 'string'
-             }
-
-        not yet implemented: admin_stats (stats need to be moved in contexts)
-        node_properties: should not be separate array
-        url_schema: no more needed ?
-        stats_delta couple.
         """
+        #not yet implemented: admin_stats (stats need to be moved in contexts)
+        #node_properties: should not be separate array
+        #url_schema: no more needed ?
+        #stats_delta couple.
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class Admin Node", "GET")
 
@@ -78,19 +59,9 @@ class NodeManagement(BaseHandler):
     def post(self, *uriargs):
         """
         Changes the node public node configuration settings
-        * Request:
-            {
-              'name': 'string',
-              'admin_stats_delta', 'int',
-              'public_stats_delta', 'int',
-              'description': '$localizationDict',
-              'public_site': 'string',
-              'hidden_service': 'string',
-             }
-
-        The two "_delta" variables, mean the minutes interval for collect statistics,
-        because the stats are collection of the node status made over periodic time,
-
+        Request: adminNodeDescription
+        Response: adminNodeDescription
+        Errors: InvalidInputFormat
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "POST")
 
@@ -116,6 +87,11 @@ class ContextsAvailable(BaseHandler):
     """
 
     def get(self, *uriargs):
+        """
+        Parameters: None
+        Response: adminContextList
+        Errors: None
+        """
         pass
 
 
@@ -129,22 +105,9 @@ class ContextCrud(BaseHandler):
     @inlineCallbacks
     def get(self, context_gus, *uriargs):
         """
-        :GET
-          * Response
-            Return the requested contexts, described with:
-            contextDescriptionDict
-               {
-                "context_gus": "context_gus"
-                "name": "string"
-                "context_description": "string"
-                "creation_date": "time"
-                "update_date": "time"
-                "fields": [ formFieldsDict ]
-                "SelectableReceiver": "bool"
-                "receivers": [ receiverDescriptionDict ]
-                "escalation_threshold": "int"
-                "LanguageSupported": [ "string" ]
-               }
+        Parameters: None
+        Response: adminContextDesc
+        Errors: None
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "GET")
 
@@ -167,8 +130,11 @@ class ContextCrud(BaseHandler):
     @inlineCallbacks
     def post(self, context_gus, *uriargs):
         """
-        Update a previously created context
+        Request: adminContextDesc
+        Response: adminContextDesc
+        Errors: InvalidInputFormat
         """
+
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "POST")
 
         request = json.loads(self.request.body)
@@ -199,12 +165,9 @@ class ContextCrud(BaseHandler):
     @inlineCallbacks
     def put(self, context_gus, *uriargs):
         """
-        create a new context and return as GET
-        :PUT
-         * Request {
-            "context_gus": empty or missing
-            [...]
-           }
+        Request: adminContextDesc
+        Response: adminContextDesc
+        Errors: InvalidInputFormat, ContextNotFound
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "PUT")
         request = json.loads(self.request.body)
@@ -230,13 +193,9 @@ class ContextCrud(BaseHandler):
     @inlineCallbacks
     def delete(self, context_gus, *uriargs):
         """
-        Expect just a context_gus, do not check in the body request
-        * Request:
-            DELETE /admin/context/<context_gus>
-
-        * Response:
-            200 if Context exists when requested
-            XXX if Context is invalid
+        Request: adminContextDesc
+        Response: None
+        Errors: InvalidInputFormat, ContextNotFound
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContext", "DELETE", context_gus)
 
@@ -272,6 +231,11 @@ class ReceiversAvailable(BaseHandler):
     """
 
     def get(self, *uriargs):
+        """
+        Parameters: None
+        Response: adminReceiverList
+        Errors: None
+        """
         pass
 
 
@@ -290,6 +254,11 @@ class ReceiverCrud(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def get(self, receiver_gus, *uriargs):
+        """
+        Parameters: None
+        Response: adminReceiverDesc
+        Errors: None
+        """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "GET", receiver_gus)
 
@@ -317,6 +286,12 @@ class ReceiverCrud(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def post(self, receiver_gus, *uriargs):
+        """
+        Request: adminReceiverDesc
+        Response: adminReceiverDesc
+        Errors: InvalidInputFormat
+        """
+
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "POST", receiver_gus)
 
         request = json.loads(self.request.body)
@@ -353,6 +328,11 @@ class ReceiverCrud(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def put(self, receiver_gus, *uriargs):
+        """
+        Request: adminReceiverDesc
+        Response: adminReceiverDesc
+        Errors: InvalidInputFormat, ReceiverNotFound
+        """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "PUT", receiver_gus)
 
         request = json.loads(self.request.body)
@@ -374,6 +354,11 @@ class ReceiverCrud(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def delete(self, receiver_gus, *uriargs):
+        """
+        Request: adminReceiverDesc
+        Response: None
+        Errors: InvalidInputFormat, ReceiverNotFound
+        """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "DELETE", receiver_gus)
 
         receiver_iface = receiver.Receiver()
@@ -401,6 +386,11 @@ class PluginsAvailable(BaseHandler):
     """
 
     def get(self, *uriargs):
+        """
+        Parameters: None
+        Response: adminPluginList
+        Errors: None
+        """
         pass
 
 class ProfileCrud(BaseHandler):
@@ -413,6 +403,11 @@ class ProfileCrud(BaseHandler):
     @asynchronous
     @inlineCallbacks
     def get(self, profile_gus, *uriargs):
+        """
+        Parameters: None
+        Response: adminProfileDesc
+        Errors: ProfileNotFound
+        """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "GET", profile_gus)
 
         plugin_iface = options.PluginProfiles()
@@ -434,11 +429,9 @@ class ProfileCrud(BaseHandler):
     @inlineCallbacks
     def post(self, profile_gus, *uriargs):
         """
-        POST create a new resource, I've mistaken in all the CRUD and caused that PUT create and
-        POST update. I would flip that method in the next (and last) API refactor-cleaning
-
-        @param profile_gus: an unchecked variable that just need to fit A4 regexp
-        @return:
+        Request: adminProfileDesc
+        Response: adminProfileDesc
+        Errors: ProfileNotFound, InvalidInputFormat
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "POST")
@@ -496,9 +489,9 @@ class ProfileCrud(BaseHandler):
     @inlineCallbacks
     def put(self, profile_gus, *uriargs):
         """
-        @param profile_gus: the target profile to be updated
-        @param uriargs: None
-        @return: as get, or error if wrong request/profile_gus is passed
+        Request: adminProfileDesc
+        Response: adminProfileDesc
+        Errors: ProfileNotFound, InvalidInputFormat
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "PUT", profile_gus)
 
@@ -557,7 +550,9 @@ class ProfileCrud(BaseHandler):
     @inlineCallbacks
     def delete(self, profile_gus, *uriargs):
         """
-        Not yet implemented <:
+        Request: adminProfileDesc
+        Response: None
+        Errors: ProfileNotFound, InvalidInputFormat
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
 
@@ -569,6 +564,11 @@ class StatisticsAvailable(BaseHandler):
     """
 
     def get(self, *uriargs):
+        """
+        Parameters: None
+        Response: adminStatsList
+        Errors: None
+        """
         pass
 
 
@@ -582,6 +582,10 @@ class EntryAvailable(BaseHandler):
     @inlineCallbacks
     def get(self, what, *uriargs):
         """
+        Parameters: None
+        Response: Unknown
+        Errors: None
+
         /admin/overview GET should return up to all the tables of GLBackend
         """
         from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment
@@ -645,6 +649,10 @@ class TaskManagement(BaseHandler):
     @inlineCallbacks
     def get(self, what, *uriargs):
         """
+        Parameters: None
+        Response: Unknown
+        Errors: None
+
         /admin/tasks/ GET, force the execution of an otherwise scheduled event
         """
         from globaleaks.jobs.notification_sched import APSNotification
@@ -686,9 +694,11 @@ class TaskManagement(BaseHandler):
     @inlineCallbacks
     def delete(self, what, *uriargs):
         """
-        @param what: ignored at the moment
-        @param uriargs: ignored at the moment
-        @return: simply STOP the scheduler. Jobs operation whould be performed only via GET /admin/tasks/
+        Request: None
+        Response: None
+        Errors: None
+
+        simply STOP the scheduler. Jobs operation whould be performed only via GET /admin/tasks/
         """
         from globaleaks.runner import GLAsynchronous
 

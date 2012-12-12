@@ -5,12 +5,9 @@ from storm.locals import Int, Pickle, Date, Unicode, RawStr, Bool, DateTime
 from storm.locals import Reference, ReferenceSet
 
 from globaleaks.utils import idops, log, gltime
-
 from globaleaks.models.base import TXModel, ModelError
 from globaleaks.models.receiver import Receiver
-
 from globaleaks.models.internaltip import InternalTip
-from globaleaks.messages.responses import errorMessage
 
 __all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip',
             'TipGusNotFoundError', 'TipReceiptNotFoundError', 'TipPertinenceExpressed' ]

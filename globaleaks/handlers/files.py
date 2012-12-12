@@ -101,6 +101,11 @@ class FileCrud(BaseHandler):
     @inlineCallbacks
     def get(self, *arg, **kw):
         """
+        Parameters: Unknown
+        Request: None
+        Response: Unknown
+        Errors: Unknown
+
         GET in fileHandlers need to be refactored-engineered
         """
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "get")
@@ -110,6 +115,10 @@ class FileCrud(BaseHandler):
     @inlineCallbacks
     def post(self, submission_id):
         """
+        Request: Unknown
+        Response: Unknown
+        Errors: Unknown
+
         POST in fileHandlers need to be refactored-engineered
         """
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "post", "submission_id", submission_id)
@@ -143,6 +152,10 @@ class FileCrud(BaseHandler):
     @inlineCallbacks
     def delete(self):
         """
+        Request: Unknown
+        Response: Unknown
+        Errors: Unknown
+
         DELETE in fileHandlers need to be refactored-engineered
         """
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "delete")
