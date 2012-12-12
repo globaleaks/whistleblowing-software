@@ -43,7 +43,7 @@
       <!-- Second Step -->
       <div ng-switch-when="2">
         <div class="span12 receiver-list">
-          <h2>Current List of receivers</h2>
+          <h3>Receiver List</h3>
           <fieldset>
             <label ng-repeat="receiver in localization.current_context.receivers">
               <input
@@ -54,8 +54,8 @@
             {{receiver.name}} -
             {{receiver.description}} -
             {{receiver.tags}} -
-            {{receiver.languages_supported}}
-            {{receiver.gus}}
+            <i ng-repeat="lang in receiver.languages_supported"
+              class="icon-white lflag lflag-{{lang}}"></i>
             </label>
           </fieldset>
           </div>

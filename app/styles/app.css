@@ -1,6 +1,7 @@
 @import url(bootstrap.css);
 @import url(datatables.css);
 @import url(configpages.css);
+@import url(lflags.css);
 @import url('jquery.fileupload-ui.css');
 
 /* Base class, inspired by bootstrap jumbotron */
