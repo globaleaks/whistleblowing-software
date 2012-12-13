@@ -18,6 +18,26 @@ GLClientDev.run(function($httpBackend) {
     'name': 'item2', 'required': true,
     'type': 'text', 'placeholder': 'Enter the Item 2',
     'value': '', 'hint': 'this is the hint for the form'
+  },
+  {'label': 'Item 2',
+    'name': 'item2', 'required': true,
+    'type': 'text', 'placeholder': 'Enter the Item 2',
+    'value': '', 'hint': 'this is the hint for the form'
+  },
+  {'label': 'Item 3',
+    'name': 'item3', 'required': false,
+    'type': 'text', 'placeholder': 'Enter the Item 2',
+    'value': '', 'hint': 'this is the hint for the form'
+  },
+  {'label': 'Item 3',
+    'name': 'item3', 'required': false,
+    'type': 'text', 'placeholder': 'Enter the Item 2',
+    'value': '', 'hint': 'this is the hint for the form'
+  },
+  {'label': 'Item 4',
+    'name': 'item4', 'required': false,
+    'type': 'text', 'placeholder': 'Enter the Item 2',
+    'value': '', 'hint': 'this is the hint for the form'
   }];
 
   form_fields[1] = [{
