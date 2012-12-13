@@ -13,8 +13,9 @@ from globaleaks.models.submission import Submission, SubmissionNotFoundError
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.context import InvalidContext
-from globaleaks import messages
-from globaleaks.messages.errors import InvalidInputFormat
+from globaleaks.rest import requests, responses
+from globaleaks.rest.base import validateMessage
+from globaleaks.rest.errors import InvalidInputFormat
 
 class SubmissionCrud(BaseHandler):
     """
@@ -27,7 +28,7 @@ class SubmissionCrud(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
         """
-        Parameters: None
+        Parameters: submission_gus
         Response: wbSubmissionDesc
         Errors: SubmissionNotFoundError, InvalidInputFormat
 
@@ -38,8 +39,10 @@ class SubmissionCrud(BaseHandler):
         submission = Submission()
 
         try:
-            request = messages.validateMessage(self.request.body, messages.base.submissionStatus)
-            status = yield submission.status(request.submission_gus)
+
+            requested_sg = self.get_argument('submission_gus')
+            # TODO perform validation of single GLtype
+            status = yield submission.status(requested_sg)
             self.set_status(200)
             self.write(status)
 
@@ -73,7 +76,7 @@ class SubmissionCrud(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud POST")
 
         try:
-            request = messages.validateMessage(self.request.body, messages.base.submissionStatus)
+            request = validateMessage(self.request.body, requests.wbSubmissionDesc)
             submission = Submission()
 
             status = yield submission.new(request.context_gus)
@@ -113,7 +116,7 @@ class SubmissionCrud(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud PUT")
 
         try:
-            request = messages.validateMessage(self.request.body, messages.base.submissionStatus)
+            request = validateMessage(self.request.body, requests.wbSubmissionDesc)
             submission = Submission()
 
             log.debug("Updating fields with %s" % request['fields'])
@@ -168,7 +171,7 @@ class SubmissionCrud(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud DELETE")
 
         try:
-            request = messages.validateMessage(self.request.body, messages.base.submissionStatus)
+            request = validateMessage(self.request.body, requests.wbSubmissionDesc)
             submission = Submission()
 
             submission.submission_delete(request.submission_gus)

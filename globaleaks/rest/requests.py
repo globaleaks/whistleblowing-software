@@ -4,11 +4,11 @@
 # 
 # This file contain the specification of all the requests that can be made by a
 # GLClient to a GLBackend.
-# These specifications may be used with messages.validateMessage() inside of the
+# These specifications may be used with rest.validateMessage() inside of the
 # handler to verify if the request is correct.
 
-from globaleaks.messages.base import GLTypes
-from globaleaks.messages import base
+from globaleaks.rest.base import GLTypes
+from globaleaks.rest import base
 
 
 class tipOperations(GLTypes):

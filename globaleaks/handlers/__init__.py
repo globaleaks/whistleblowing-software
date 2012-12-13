@@ -9,7 +9,7 @@
 # In here we are also tasked with doing the validation of the user supplied
 # input. This must be done before instantiating any models object.
 # Validation of input may be done with the functions inside of
-# globaleaks.messages.
+# globaleaks.rest.
 #
 # See base.BaseHandler for details on the handlers.
 
