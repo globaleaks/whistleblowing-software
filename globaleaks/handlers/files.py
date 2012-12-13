@@ -1,8 +1,10 @@
 # -*- coding: utf-8 -*-
 #
-# jQuery File Upload Plugin cyclone example
-# by Arturo Filastò <arturo@filasto.net>
-#
+#  files
+#  *****
+# 
+# Backend supports for jQuery File Uploader, and implementation of the
+# classes executed when an HTTP client contact /files/* URI
 
 from __future__ import with_statement
 

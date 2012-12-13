@@ -1,7 +1,10 @@
 # -*- encoding: utf-8 -*-
 #
-# :authors: Arturo Filastò
-# :licence: see LICENSE
+#   tables
+#   ******
+# 
+# Collect from the classes in models the structure of the DB tables, then
+# Initialize the table if missing (executed only at the first start)
 
 from twisted.internet.defer import inlineCallbacks
 

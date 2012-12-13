@@ -1,3 +1,11 @@
+# -*- coding: UTF-8
+#
+#   models/context
+#   **************
+# 
+# Implementation of the Storm DB side of context table and ORM
+
+
 from storm.exceptions import NotOneError
 from storm.twisted.transact import transact
 

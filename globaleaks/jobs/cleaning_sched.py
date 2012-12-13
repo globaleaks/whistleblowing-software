@@ -1,3 +1,11 @@
+# -*- coding: UTF-8
+#   cleaning_sched
+#   **************
+# 
+# Implementation of the cleaning operations (delete incomplete submission,
+# delete expired tips, etc)
+
+
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from globaleaks.models.submission import Submission

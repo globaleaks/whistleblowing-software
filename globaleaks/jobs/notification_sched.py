@@ -1,3 +1,10 @@
+# -*- coding: UTF-8
+#   backend
+#   *******
+#
+# Notification implementation, documented along the others asynchronousd
+# operatios, in Architecture and in jobs/README.md
+
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from globaleaks.models.externaltip import ReceiverTip, Comment

@@ -1,3 +1,14 @@
+# -*- coding: UTF-8
+#
+#   digest_sched
+#   ************
+#
+# Digest perhaps need to be removed, because integrated in the notification 
+# plugin/execution.
+#
+# TODO review - remove perhaps
+
+
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from datetime import date

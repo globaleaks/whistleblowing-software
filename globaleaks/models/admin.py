@@ -1,8 +1,11 @@
-# coding=utf-8
-# -*- encoding: utf-8 -*-
-#
-# :authors: Arturo Filastò
-# :licence: see LICENSE
+# -*- coding: UTF-8
+# 
+#   models/admin
+#   ************
+# 
+# This module had implemented some admin related classes, but now has been moved in
+# other modules. TODO need to be implemented the statistics and defined the localization
+
 
 from storm.locals import Int, Pickle
 from storm.locals import Unicode

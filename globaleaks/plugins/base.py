@@ -1,3 +1,8 @@
+# -*- coding: UTF-8
+# 
+#   plugin/base
+#   ***********
+# Two helper classes used to define and handle plugins
 
 __all__ = ['GLPluginManager', 'GLPlugin']
 

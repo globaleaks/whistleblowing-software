@@ -1,10 +1,13 @@
-"""
-Options contain the plugin preferences settings. Is divided in two classes:
-
- Admin preferences: from a single plugin are create one or more profile, stored here
- Receiver preferences: from the available profiles, each receiver configured their settings
-
-"""
+# -*- coding: UTF-8
+#
+#   models/options
+#   **************
+#
+# Options contain the plugin preferences settings. Is divided in two classes:
+#
+#  Admin preferences: from a single plugin are create one or more profile, stored here
+#  Receiver preferences: from the available profiles, each receiver configured their settings
+#
 
 from storm.twisted.transact import transact
 from storm.exceptions import NotOneError

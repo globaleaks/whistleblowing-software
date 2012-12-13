@@ -1,19 +1,13 @@
 # -*- coding: UTF-8
 #   tip
 #   ***
-#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
-#   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
-#   :license: see LICENSE
 #
 #   Contains all the logic for handling tip related operations.
+
 import inspect
 import json
 from datetime import datetime
 from globaleaks.messages.errors import *
-
-## TODO of the file:
-# - aquired
-# - comparation of structure
 
 class GLTypes(dict):
     """

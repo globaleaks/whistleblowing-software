@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 #
-# :authors: Arturo Filastò
-# :licence: see LICENSE
+# Log observer, need to be extended to report
+# application error in an appropriate DB table, and 
+# need to be enable by the config options
 
 import sys
 import os

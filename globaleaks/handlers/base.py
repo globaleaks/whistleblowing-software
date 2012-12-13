@@ -1,7 +1,12 @@
 # -*- encoding: utf-8 -*-
 #
-# :authors: Arturo Filastò
-# :licence: see LICENSE
+#  base
+#  ****
+#
+# Implementation of BaseHandler, the Cyclone class RequestHandler extended with our
+# needings.
+#
+# TODO - test the prepare/POST wrapper, because has never been tested
 
 from globaleaks.messages import validateMessage
 from cyclone.web import RequestHandler, HTTPError

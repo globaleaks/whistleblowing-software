@@ -1,11 +1,9 @@
 # -*- coding: UTF-8
 #   tip
 #   ***
-#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
-#   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
-#   :license: see LICENSE
 #
-#   Contains all the logic for handling tip related operations.
+#   Contains all the logic for handling tip related operations, handled and
+#   executed with /tip/* URI PATH interaction.
 
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous

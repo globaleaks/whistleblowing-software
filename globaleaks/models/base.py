@@ -1,5 +1,9 @@
-# under the voce of "needlessy overcomplications", Twister + Storm
-# http://twistedmatrix.com/users/radix/storm-api/storm.store.ResultSet.html
+# -*- coding: UTF-8
+#
+#   models/base
+#   *******
+# 
+# TXModel class is the superclass of all the Storm operation in models/*.py
 
 from storm.locals import Store
 from storm.twisted.transact import transact

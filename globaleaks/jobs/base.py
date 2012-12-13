@@ -1,3 +1,9 @@
+# -*- coding: UTF-8
+#   jobs/base
+#   *********
+#
+# Base class for implement the scheduled tasks
+
 from apscheduler.scheduler import Scheduler
 from datetime import date
 from globaleaks.utils import gltime

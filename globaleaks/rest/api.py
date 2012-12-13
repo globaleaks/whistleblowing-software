@@ -1,10 +1,7 @@
 # -*- coding: UTF-8
 #   api
 #   ***
-#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
-#   :author: Arturo Filastò <art@globaleaks.org>
-#   :license: see LICENSE file
-#
+# 
 #   Contains all the logic for handling tip related operations.
 #   This contains the specification of the API.
 #   Read this if you want to have an overall view of what API calls are handled
@@ -22,6 +19,7 @@ receiver_token_auth = r'(\w+)' # This would cover regexp.tip_gus | regexp.welcom
 
 # Here is mapped a path and the associated class to be invoked,
 # Three kind of Classes can be distigued:
+#
 # * Crud (SubmissionCrud, FileCrud, etc)
 #   supports a complete CRUD (PUT, POST, DELETE, GET)
 # * Management (TipManagement, ReceiverManagement)

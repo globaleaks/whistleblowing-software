@@ -1,19 +1,15 @@
 # -*- encoding: utf-8 -*-
 #
-# :authors: Arturo Filastò
-# :licence: see LICENSE
+# Here is implemented the preApplication and postApplication method
+# along the Asynchronous event schedule
 
 from twisted.python import log
 from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
-
-from globaleaks.db import createTables
 from apscheduler.scheduler import Scheduler
 
-# same name mistake = shit,
-# log appears to not be used, but is called as log.debug
+from globaleaks.db import createTables
 from globaleaks.utils import log
-# XXX
 
 # The scheduler is a global variable, because can be used to force execution
 __all__ = ['GLAsynchronous']
@@ -58,8 +54,9 @@ def startAsynchronous():
     from globaleaks.jobs import notification_sched, statistics_sched, tip_sched, \
         delivery_sched, cleaning_sched, welcome_sched, digest_sched
 
-    # When the application boot, maybe because has been restarted. then, execute all the
-    # periodic operation by hand.
+    # When the application boot, maybe because has been after a restart, then
+    # with the method *.force_execution, we reschedule the execution of all the
+    # operations -- TODO, maybe refactored along the scheduler review in TODO
 
     StatsSched = statistics_sched.APSStatistics()
     StatsSched.force_execution(GLAsynchronous, seconds=10)

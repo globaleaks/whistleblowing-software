@@ -1,7 +1,11 @@
-"""
-Manage the single table containing all the node general information,
-can be accessed with different privileges (admin and unprivileged).
-"""
+# -*- coding: UTF-8
+#
+#   models/node
+#   *******
+#
+# Manage the single table containing all the node general information,
+# can be accessed with different privileges (admin and unprivileged).
+
 from storm.exceptions import NotOneError
 
 from storm.twisted.transact import transact

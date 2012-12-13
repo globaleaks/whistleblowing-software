@@ -1,10 +1,9 @@
 # -*- coding: UTF-8
 #   node
 #   ****
-#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
-#   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
-#   :license: see LICENSE
 #
+# Implementation of classes handling the HTTP request to /node, public
+# exposed API.
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import log

@@ -1,3 +1,10 @@
+# -*- coding: UTF-8
+#
+#   models/receiver
+#   ***************
+# 
+# Storm DB implementation of the receiver table and ORM
+
 from storm.exceptions import NotOneError
 from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, Date, Unicode, Bool

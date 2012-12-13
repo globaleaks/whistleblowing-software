@@ -1,3 +1,11 @@
+# -*- coding: UTF-8
+#   statistics_sched
+#   ****************
+# 
+#  Statistics works collecting every N-th minutes the amount of important 
+#  operations happened
+
+
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from globaleaks.models.admin import AdminStats

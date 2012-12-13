@@ -1,13 +1,7 @@
-"""
-    GLBackend Database
-    ******************
+# -*- coding: UTF-8
+#   GLBackend Database
+#   ******************
 
-    :copyright: (c) 2012 by GlobaLeaks
-    :license: see LICENSE for more details
-"""
-
-# this need to be completed for be included, but no more for be used in the
-# createQuery loop
 
 __all__ = ['createTables', 'database', 'transactor']
 
@@ -43,7 +37,6 @@ def createTables():
 
     if False == is_only_one:
         yield nod.initialize_node()
-        initvals = yield nod.get_admin_info()
-        print "Node initialized with", initvals
-
-
+        # no more verbose debugging
+        # initvals = yield nod.get_admin_info()
+        # print "Node initialized with", initvals

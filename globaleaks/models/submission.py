@@ -1,7 +1,10 @@
-# -*- encoding: utf-8 -*-
+# -*- coding: UTF-8
 #
-# :authors: Arturo Filastò
-# :licence: see LICENSE
+#   models/submission
+#   *****************
+#
+# Storm DB table and ORM of the submisson temporary table
+
 
 from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, DateTime, Unicode, Reference
