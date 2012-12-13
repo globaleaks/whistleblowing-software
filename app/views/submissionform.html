@@ -11,6 +11,10 @@
             <button class="delete" ng-click="splice(field, fields)">Remove</button-->
             {{field.label}}
             <span class="order">{{field.order}}</span>
+            <a href="" data-content="{{field.hint}}"
+              data-trigger="hover" bs-popover="{{field.label}}">
+              <i class="icon-question-sign"></i>
+            </a>
           </label>
           <div ng-switch on="field.type">
           <input ng-switch-default type="{{field.type}}"

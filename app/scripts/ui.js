@@ -102,4 +102,16 @@ angular.module('submissionUI', []).
 
     }
 
-}]);
+}]).
+  directive('bsPopover', function(){
+      return function(scope, element, attrs) {
+        // We watch to see when the bsPopover attribute is set
+        scope.$watch(attrs.bsPopover, function(value){
+          if (attrs.bsPopover) {
+            element.popover({'title': attrs.bsPopover});
+            scope.$destroy();
+          }
+        });
+      };
+});
+
