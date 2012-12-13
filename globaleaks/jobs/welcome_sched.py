@@ -1,3 +1,12 @@
+# -*- coding: UTF-8
+#   welcome_sched
+#   *************
+#
+# Welcome is the operation performed when a new receiver is registered.
+# It obtain a token, permitting to perform settings and configuration before
+# start to receive the Tips.
+
+
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from globaleaks.models.receiver import Receiver

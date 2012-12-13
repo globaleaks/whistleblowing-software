@@ -1,12 +1,8 @@
 # -*- encoding: utf-8 -*-
 #
-# :authors: Arturo Filastò
-# :licence: see LICENSE
+# In here we shall keep track of all variables and objects that should be
+# instantiated only once and be common to pieces of GLBackend code.
 
-"""
-In here we shall keep track of all variables and objects that should be
-instantiated only once and be common to pieces of GLBackend code.
-"""
 __all__ = ['database', 'db_threadpool', 'scheduler_threadpool', 'work_manager']
 
 from storm.uri import URI

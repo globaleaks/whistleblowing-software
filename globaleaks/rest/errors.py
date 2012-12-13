@@ -1,12 +1,15 @@
-"""
-Here shall go all the error messages that a GLBackend can generate.
-"""
+# -*- coding: UTF-8
+#
+#   errors
+#   ******
+#
+# Here shall go all the error messages that a GLBackend can generate.
+
 class GLTypeError(Exception):
 
     error_message = "GLTypesError not set"
     error_code = 0
     http_status = 500 # generic Server error
-
 
 class InvalidInputFormat(GLTypeError):
 

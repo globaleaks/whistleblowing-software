@@ -1,3 +1,11 @@
+# -*- coding: UTF-8
+#   delivery_sched
+#   **************
+#
+# Implements the delivery operations performed when a new submission
+# is created, or a new file is append to an existing Tip. delivery 
+# works on the file and on the fields, not in the comments.
+
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from globaleaks.models.internaltip import InternalTip

@@ -1,4 +1,8 @@
-
+# -*- coding: UTF-8
+#
+#   models/internaltip
+#   ******************
+#
 # There are a Bottom-Up approach with InternalTip being "UP" and
 # Folders, Comments, Files, WhistleblowerTip and ReceiverTip (externaltip.py)
 # that reference InternalTip

@@ -1,3 +1,10 @@
+# -*- coding: UTF-8
+#
+#   tip_sched
+#   *********
+#
+# Tip creation is an asyncronous operation, here implemented
+
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from datetime import datetime

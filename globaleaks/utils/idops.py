@@ -1,13 +1,25 @@
+# -*- coding: UTF-8
+#   idops
+#   *****
+#
+# follow the various random ID generation, being a string,
+# they taken the name of GUS (GlobaLeaks Unique String) 
+# and the ID is used only for the incremental integer identifier
+#
+# The regular expression matching those formats, are implemented
+# in globaleaks/rest/base.py
+#
+# All the GUS string had byte in 
+# the start, identify in visual way what's is the roles of the GUS, 
+# like "s_" is a submnission_gus, "t_" a tip_gus
+#
+# TODO
+# The regexp maybe uniformed, using the same of submission/tip instead
+# select some gus with a number only, or a shorter list.
+
+
 from Crypto.Random import random
 import string
-
-# follow the various random ID generation, with their prefix.
-# the regual expression are matched in validregexps, but when
-# an ID style is updated, please change also the methods below,
-# implementing the appropria regexp that match the ID
-
-# The regular expression matching those formats, are implemented
-# in globaleaks/messages/base.py
 
 
 def random_submission_gus(testingmode=False):

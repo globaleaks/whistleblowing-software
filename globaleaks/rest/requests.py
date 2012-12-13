@@ -1,16 +1,11 @@
 # -*- coding: UTF-8
 #   Requests
 #   ********
-#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
-#   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
-#   :license: see LICENSE
-
-"""
-This file contain the specification of all the requests that can be made by a
-GLClient to a GLBackend.
-These specifications may be used with messages.validateMessage() inside of the
-handler to verify if the request is correct.
-"""
+# 
+# This file contain the specification of all the requests that can be made by a
+# GLClient to a GLBackend.
+# These specifications may be used with messages.validateMessage() inside of the
+# handler to verify if the request is correct.
 
 from globaleaks.messages.base import GLTypes
 from globaleaks.messages import base

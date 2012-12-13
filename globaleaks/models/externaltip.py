@@ -1,3 +1,11 @@
+# -*- coding: UTF-8
+#
+#   models/externaltip
+#   ******************
+#
+# implementatin of Storm DB side of ReceiverTip and WhistleblowerTip
+# and File and Comment tables, all those tables has relationship with
+# InternalTip
 
 from storm.twisted.transact import transact
 from storm.exceptions import NotOneError

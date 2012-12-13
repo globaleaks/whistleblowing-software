@@ -1,11 +1,10 @@
 # -*- coding: UTF-8
 #   submission
 #   **********
-#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
-#   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
-#   :license: see LICENSE
 #
-#   Implements a GlobaLeaks submission.
+#   Implements a GlobaLeaks submission, then the operations performed
+#   by an HTTP client in /submission URI
+
 import json
 
 from twisted.internet.defer import inlineCallbacks

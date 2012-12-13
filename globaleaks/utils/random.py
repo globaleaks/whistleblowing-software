@@ -1,9 +1,16 @@
+# -*- coding: UTF-8
+#   random
+#   ******
+#
+# Interface for generate random string using a safe random number generator.
+
+
 try:
     from Crypto.Random import random
 except:
-    # remind -- XXX it's just during the dev time
-    print "Warning!! We will be using an insecure random number generator."
+    print "Error!! You are using an insecure random number generator."
     print "Please install Pycrypto"
+    print "This error is accepted only until the development is not completed"
     import random
 
 def random_string(length, type):

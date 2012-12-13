@@ -1,10 +1,9 @@
 # -*- coding: UTF-8
 #   receiver
 #   ********
-#   :copyright: 2012 Hermes No Profit Association - GlobaLeaks Project
-#   :author: Claudio Agosti <vecna@globaleaks.org>, Arturo Filastò <art@globaleaks.org>
-#   :license: see LICENSE
 #
+# Implement the classes handling the requests performed to /receiver/* URI PATH
+# Used by receivers in the GlobaLeaks Node.
 
 from cyclone.web import asynchronous
 from globaleaks.utils import log
