@@ -1,16 +1,24 @@
 <div class="jumbotron subhead">
   <div class="container">
-    <h1>New Submission</h1>
-    <p>I want to report on
-    <select
-      ng-model="localization.current_context"
-      ng-options="context.get_context_name() for context in localization.node_info.contexts"
-      ng-change="create_submission()"
-    >
-    </select>
+    <div class="row">
+      <div class="span2">
+        <img data-src="holder.js/140x140" holder class="img-rounded">
+      </div>
+      <div class="span10">
+        <!-- XXX come up with a way to make this inherit from the header.html template -->
+
+        <h1>New Submission</h1>
+        <p>I want to report on
+        <select
+          ng-model="localization.current_context"
+          ng-options="context.get_context_name() for context in localization.node_info.contexts"
+          ng-change="create_submission()"
+        >
+        </select>
+      </div>
+    </div>
   </div>
 </div>
-
 <div ng-controller="WizardCtrl" class="container">
 
   <div class="tabbable tabs-below">
@@ -110,8 +118,7 @@
                 </a>
               </label>
               <input type="text"
-                ng-model="submission.submission_receipt"
-                >
+                ng-model="submission.submission_receipt">
               <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -185,5 +192,4 @@
   </div>
 </div>
 <!-- End -->
-
 
