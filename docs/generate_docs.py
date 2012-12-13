@@ -1,7 +1,5 @@
 from globaleaks.rest.api import spec
-from globaleaks.messages import base
-from globaleaks.messages import requests
-from globaleaks.messages import responses
+from globaleaks.rest import requests, responses, errors, base
 from utils import cleanup_docstring
 import inspect
 import sys, string
@@ -164,6 +162,10 @@ def handle_klass_entry(source, name, klass):
         special_doc = create_special_doc(klass)
         return special_doc
 
+def handle_errortype_entry(errorklass):
+
+    if issubclass(errorklass, errors.GLTypeError):
+        return errorklass.__doc__
 
 class reStructuredText:
 
@@ -191,12 +193,24 @@ class reStructuredText:
             self.collected += typestree[reqname] + "\n"
             return True
 
-        for name, klass in inspect.getmembers(responses, inspect.isclass):
-            if name == reqname:
-                typedesc = handle_klass_entry('requests', name, klass)
-                typestree.update({reqname : typedesc })
-                self.collected += "`" + reqname + "`:" + typedesc + "\n"
-                return True
+        typedesc = None
+        if reqname == "Unknown":
+            typedesc = "Unknown"
+        elif reqname == "None":
+            typedesc = "None"
+        else:
+            for name, klass in inspect.getmembers(requests, inspect.isclass):
+                if name == reqname:
+                    typedesc = handle_klass_entry('responses', name, klass)
+
+            if typedesc is None or typedesc == "":
+                print "Missing description of requests", reqname
+                return False
+
+        typestree.update({reqname : typedesc })
+        self.collected += "`" + reqname + "`:" + typedesc + "\n"
+        return True
+
 
     def add_response(self, responame):
 
@@ -204,12 +218,24 @@ class reStructuredText:
             self.collected += typestree[responame] + "\n"
             return True
 
-        for name, klass in inspect.getmembers(responses, inspect.isclass):
-            if name == responame:
-                typedesc = handle_klass_entry('responses', name, klass)
-                typestree.update({responame : typedesc })
-                self.collected += "`" + responame + "`:" + typedesc + "\n"
-                return True
+        typedesc = None
+        if responame == "Unknown":
+            typedesc = "Unknown"
+        elif responame == "None":
+            typedesc = "None"
+        else:
+            for name, klass in inspect.getmembers(responses, inspect.isclass):
+                if name == responame:
+                    typedesc = handle_klass_entry('responses', name, klass)
+
+            if typedesc is None or typedesc == "":
+                print "Missing description of responses", responame
+                return False
+
+        typestree.update({responame : typedesc })
+        self.collected += "`" + responame + "`:" + typedesc + "\n"
+        return True
+
 
     def add_error(self, errorname):
 
@@ -217,12 +243,24 @@ class reStructuredText:
             self.collected += typestree[errorname] + "\n"
             return True
 
-        for name, klass in inspect.getmembers(responses, inspect.isclass):
-            if name == errorname:
-                typedesc = handle_klass_entry('errors', name, klass)
-                typestree.update({errorname: typedesc })
-                self.collected += "`" + errorname + "`:" + typedesc + "\n"
-                return True
+        typedesc = None
+        if errorname == "Unknown":
+            typedesc = "Unknown"
+        elif errorname == "None":
+            typedesc = "None"
+        else:
+            for name, klass in inspect.getmembers(errors, inspect.isclass):
+                if name == errorname:
+                    typedesc = handle_errortype_entry(klass)
+
+            if typedesc is None:
+                print "Missing description of GLTypeError:", errorname
+                return False
+
+        typestree.update({errorname: typedesc })
+        self.collected += "`" + errorname + "`:" + typedesc + "\n"
+        return True
+
 
     def add_param(self, paramname):
         self.collected += "Parameter NotYetSupported: " + paramname + "\n"
