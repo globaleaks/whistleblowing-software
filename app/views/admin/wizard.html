@@ -28,86 +28,86 @@
           </li>
         </ul>
 
-        <div ng-switch on="selection">
+        <form class="config-form">
+          <div ng-switch on="selection">
 
-          <!-- First Step -->
-          <div ng-switch-when="1 Content settings">
+            <!-- First Step -->
+            <div ng-switch-when="1 Content settings">
 
-            <p class="lead">Enter the information that is relevant to your
-            submission and upload the files you need to upload</p>
+              <p class="lead">Enter the information that is relevant to your
+              submission and upload the files you need to upload</p>
 
-            <div ng-include="'views/admin/content/internationalization.html'">
+              <div ng-include="'views/admin/content/internationalization.html'">
+              </div>
+
+
+              <div ng-include="'views/admin/content/title.html'">
+              </div>
+
+              <!-- Description -->
+              <div ng-include="'views/admin/content/description.html'">
+              </div>
+
             </div>
+            <!-- /1 -->
 
+            <!-- Second Step -->
+            <div ng-switch-when="2 Notification and Delivery">
 
-            <div ng-include="'views/admin/content/title.html'">
+              <p class="lead">Enter the information that is relevant to your
+              submission and upload the files you need to upload</p>
+
+              <!-- ReceiverList -->
+              <div ng-include="'views/admin/basic/receiverlist.html'">
+              </div>
+
             </div>
+            <!-- /2 -->
 
-            <!-- Description -->
-            <div ng-include="'views/admin/content/description.html'">
+            <!-- Third Step -->
+            <div ng-switch-when="3 Review your settings">
+
+              <p class="lead">Enter the information that is relevant to your
+              submission and upload the files you need to upload</p>
+
+              <div class="row">
+              </div>
+
             </div>
-
-
-            </div>
+            <!-- /3 -->
 
           </div>
-          <!-- /1 -->
+          <!-- END steps -->
+          <div class="clearfix"></div>
+          <ul class="pager pull-left">
 
-          <!-- Second Step -->
-          <div ng-switch-when="2 Notification and Delivery">
+            <li ng-class="{disabled: !hasPreviousStep()}"
+                class="previous">
+              <a ng-click="decrementStep()">&larr; Previous Step</a>
+            </li>
 
-            <p class="lead">Enter the information that is relevant to your
-            submission and upload the files you need to upload</p>
+            <li class="next"
+                ng-hide="!hasNextStep()">
+              <a ng-click="incrementStep()">Next Step &rarr;</a>
+            </li>
 
-            <div class="row">
-            </div>
+            <li class="next"
+                ng-show="!hasNextStep()">
+              <button ng-click="submit()"
+                class="btn btn-success">Submit</button>
+            </li>
 
-          </div>
-          <!-- /2 -->
+          </ul>
 
-          <!-- Third Step -->
-          <div ng-switch-when="3 Review your settings">
-
-            <p class="lead">Enter the information that is relevant to your
-            submission and upload the files you need to upload</p>
-
-            <div class="row">
-            </div>
-
-          </div>
-          <!-- /3 -->
-
-        </div>
-        <!-- END steps -->
-        <div class="clearfix"></div>
-        <ul class="pager pull-left">
-
-          <li ng-class="{disabled: !hasPreviousStep()}"
-              class="previous">
-            <a ng-click="decrementStep()">&larr; Previous Step</a>
-          </li>
-
-          <li class="next"
-              ng-hide="!hasNextStep()">
-            <a ng-click="incrementStep()">Next Step &rarr;</a>
-          </li>
-
-          <li class="next"
-              ng-show="!hasNextStep()">
-            <button ng-click="submit()"
+          <div class="pull-right">
+            <button
+              ng-click="submit()"
+              style="margin: 20px 0;"
+              ng-hide="!hasNextStep()"
               class="btn btn-success">Submit</button>
-          </li>
-
-        </ul>
-
-        <div class="pull-right">
-          <button
-            ng-click="submit()"
-            style="margin: 20px 0;"
-            ng-hide="!hasNextStep()"
-            class="btn btn-success">Submit</button>
-        </div>
-        <div class="clearfix"></div>
+          </div>
+          <div class="clearfix"></div>
+        </form>
 
       </div>
 

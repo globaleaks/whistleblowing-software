@@ -1,0 +1,36 @@
+<div class="row">
+  <div class="span5">
+    <h2>Receivers</h2>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr ng-repeat="receiver in adminReceivers">
+          <td>{{receiver.name}}</td>
+          <td>{{receiver.notification_address}}</td>
+        </tr>
+        <tr>
+          <td><input type="text"
+            ng-model="new_receiver_name"></td>
+          <td><input type="email"
+            ng-model="new_receiver_address"></td>
+          <td><button class="btn"
+              ng-click="new_receiver()">Add</button></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="span4">
+    <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+    </p>
+    <a href="XXX">Learn More</a>
+  </div>
+</div>
+
