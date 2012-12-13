@@ -28,10 +28,6 @@ def errorMessage(http_error_code=500, error_dict={}):
                 'error_code': error_dict.get('code'),
                 'error_message': error_dict.get('string')}
     return response
-"""
-This class has just dictionary values, derived by REST specification in
-https://github.com/globaleaks/GlobaLeaks/wiki/API-Specification
-"""
 
 from cyclone.util import ObjectDict as OD
 

@@ -12,7 +12,8 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip,\
     TipGusNotFoundError, TipReceiptNotFoundError, TipPertinenceExpressed
 from globaleaks.utils import log
-import globaleaks.messages.base
+from globaleaks.rest import base
+
 import json
 
 def is_receiver_token(tip_token):
@@ -22,7 +23,7 @@ def is_receiver_token(tip_token):
     """
 
     try:
-        retcheck = globaleaks.messages.base.tipGUS().validate(tip_token)
+        retcheck = base.tipGUS().validate(tip_token)
     except:
         retcheck = True
 

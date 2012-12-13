@@ -4,7 +4,7 @@
 ### Complex messages naming
 
 The names of the messages used between globaleaks/handlers and
-globaleaks/messages/responses.py and globaleaks/messages/requests.py follow certain rules
+globaleaks/rest/responses.py and globaleaks/rest/requests.py follow certain rules
 that, when learned, would easily make recognize the role of the messages.
 
 **All the responses are composed by three section, every section has a keyword:**

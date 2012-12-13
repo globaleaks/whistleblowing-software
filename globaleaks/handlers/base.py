@@ -8,7 +8,7 @@
 #
 # TODO - test the prepare/POST wrapper, because has never been tested
 
-from globaleaks.messages import validateMessage
+from globaleaks.rest.base import validateMessage
 from cyclone.web import RequestHandler, HTTPError
 from globaleaks.utils import log
 
@@ -16,7 +16,7 @@ DEBUG = True
 
 class BaseHandler(RequestHandler):
     """
-    GLBackendHandler is responsible for the verification and sanitization of
+    BaseHandler is responsible for the verification and sanitization of
     requests based on what is defined in the API specification (api.py).
 
     I will take care of instantiating models classes that will generate for me
@@ -31,12 +31,14 @@ class BaseHandler(RequestHandler):
     Operations on objects should go inside of models, because in here it is not
     possible to instantiate a Store object without blocking.
 
-    Messages can be validated with messages.validateMessage. This will output
+    Messages can be validated with rest.validateMessage. This will output
     the validated message.
 
     An example usage:
-        request = message.validateMessage(self.request.body,
-                            message.requests.submissionStatus)
+        request = globaleaks.rest.validateMessage(
+                            self.request.body,
+                            globaleaks.rest.requests.$MessageName
+                        )
 
     Request is now a dict that I can interact with.
 
