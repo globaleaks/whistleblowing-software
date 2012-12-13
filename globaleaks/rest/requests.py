@@ -11,6 +11,10 @@ from globaleaks.rest.base import GLTypes
 from globaleaks.rest import base
 
 
+
+## below the method not reviewed after the API refactor of December 2012
+## below the method not reviewed after the API refactor of December 2012
+## below the method not reviewed after the API refactor of December 2012
 class tipOperations(GLTypes):
     """
     T1 (POST) - receiver only
