@@ -113,5 +113,11 @@ angular.module('submissionUI', []).
           }
         });
       };
+}).
+  directive('holder', function(){
+      return function(scope, element, attrs) {
+        var size = attrs.holder;
+        Holder.run();
+      };
 });
 
