@@ -73,28 +73,7 @@
     margin-top: 30px;
 }
 
-.config-page label {
-    margin-bottom: 10px;
-    font-size: 20px;
-}
-
-.config-page input {
-    font-size: 17px;
-}
-
 .config-page textarea {
-    font-size: 17px;
-}
-
-.config-page .big-input {
-    width: 456px;
-}
-
-.config-page input.big-input {
-    height: 30px;
-}
-
-.config-page textarea.big-input {
     height: 200px;
 }
 
@@ -105,9 +84,6 @@
 
 .config-page .language-setting {
     float: right;
-}
-label.inline {
-    font-size: 15px;
 }
 
 .inline input {

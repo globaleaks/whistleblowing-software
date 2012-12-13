@@ -16,103 +16,103 @@
     </div>
     <!-- End Nav Bar -->
 
-    <div class="span9">
-      <form class="config-form">
-        <div class="row">
-          <div class="span5">
-            <h2>General</h2>
-            <label>Site Title</label>
-            <select class="language-setting"
-              ng-model="localization.selected_language"
-              ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
-            </select>
-            <input type="text"
-              ng-model="adminNode.name[localization.selected_language]"
-              value="{{adminNode.name[localization.selected_language]}}">
-            <button class="btn"
-              ng-click="adminNode.$save()">Save</button>
-          </div>
-          <div class="span4">
-            <p>
-            XXX
-            <a href="XXX">Learn More</a></p>
-          </div>
-        </div>
+    <div ng-controller="WizardCtrl" class="span9 container">
 
-        <div class="row">
-          <div class="span5">
-            <label>Description</label>
-            <select class="language-setting"
-              ng-model="localization.selected_language"
-              ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
-            </select>
-            <textarea
-              ng-model="adminNode.description[localization.selected_language]">{{adminNode.description[localization.selected_language]}}</textarea>
-            <button class="btn"
-              ng-click="adminNode.$save()">Save</button>
-          </div>
-          <div class="span4">
-            <p>
-            XXX
-            <a href="XXX">Learn More</a></p>
-          </div>
-        </div>
+      <div class="tabbable tabs-below">
 
-        <div class="row">
-          <div class="span5">
-            <label>Keywords</label>
-            <textarea 
-              ng-model="adminNode.keywords">{{adminNode.keywords}}</textarea>
-          </div>
-          <div class="span4">
-            <p>
-            XXX
-            <a href="XXXX">Learn More</a></p>
-          </div>
-        </div>
-        <div class="row">
-          <div class="span5">
-            <label>Email</label>
-            <input type="text"
-              value="{{adminNode.admin_email}}">
-            <button class="btn"
-              ng-click="adminNode.$save()">Save</button>
-          </div>
-          <div class="span4">
-            <p ng-model="help_strings.name">XXXX
-            <a href="XXX">Learn More</a></p>
-          </div>
-        </div>
+        <ul class="nav nav-tabs">
+          <li ng-repeat="step in steps"
+            ng-class="{active: $index==getCurrentStepIndex()}">
+            <a href="javascript:void(0)"
+              ng-click="goToStep($index)">{{step}}</a>
+          </li>
+        </ul>
 
-        <div class="row">
-          <div class="span5">
-            <h2>Internationalization</h2>
-            <label>Enabled Languages</label>
-            <div ng-repeat="(code, name) in adminNode.supported_languages">
-              <label class="checkbox">
-                <input type="checkbox"
-                ng-model="adminNode.enabled_languages[code]">
-                {{name}}
-              </label>
+        <div ng-switch on="selection">
+
+          <!-- First Step -->
+          <div ng-switch-when="1 Content settings">
+
+            <p class="lead">Enter the information that is relevant to your
+            submission and upload the files you need to upload</p>
+
+            <div ng-include="'views/admin/content/internationalization.html'">
             </div>
-            <label>Default language</label>
-            <select
-              ng-model="adminNode.default_language"
-              ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
-            </select>
-            <br/>
-            <button class="btn"
-              ng-click="adminNode.$save()">Save</button>
+
+
+            <div ng-include="'views/admin/content/title.html'">
+            </div>
+
+            <!-- Description -->
+            <div ng-include="'views/admin/content/description.html'">
+            </div>
+
+
+            </div>
 
           </div>
-          <div class="span4">
-            <p>
-            XXX
-            <a href="XXX">Learn More</a></p>
+          <!-- /1 -->
+
+          <!-- Second Step -->
+          <div ng-switch-when="2 Notification and Delivery">
+
+            <p class="lead">Enter the information that is relevant to your
+            submission and upload the files you need to upload</p>
+
+            <div class="row">
+            </div>
+
           </div>
+          <!-- /2 -->
+
+          <!-- Third Step -->
+          <div ng-switch-when="3 Review your settings">
+
+            <p class="lead">Enter the information that is relevant to your
+            submission and upload the files you need to upload</p>
+
+            <div class="row">
+            </div>
+
+          </div>
+          <!-- /3 -->
+
         </div>
+        <!-- END steps -->
+        <div class="clearfix"></div>
+        <ul class="pager pull-left">
 
-      </form>
+          <li ng-class="{disabled: !hasPreviousStep()}"
+              class="previous">
+            <a ng-click="decrementStep()">&larr; Previous Step</a>
+          </li>
+
+          <li class="next"
+              ng-hide="!hasNextStep()">
+            <a ng-click="incrementStep()">Next Step &rarr;</a>
+          </li>
+
+          <li class="next"
+              ng-show="!hasNextStep()">
+            <button ng-click="submit()"
+              class="btn btn-success">Submit</button>
+          </li>
+
+        </ul>
+
+        <div class="pull-right">
+          <button
+            ng-click="submit()"
+            style="margin: 20px 0;"
+            ng-hide="!hasNextStep()"
+            class="btn btn-success">Submit</button>
+        </div>
+        <div class="clearfix"></div>
+
+      </div>
+
     </div>
+
+
   </div>
 </div>

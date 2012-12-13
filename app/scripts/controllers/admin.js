@@ -17,11 +17,16 @@ GLClient.controller('AdminCtrl',
   $scope.adminReceivers = AdminReceivers.query();
 
   $scope.new_receiver = function() {
-    console.log("antani");
     var receiver = new AdminReceivers;
     receiver.notification_address = $scope.new_receiver_address;
     receiver.name = $scope.new_receiver_name;
     receiver.$save();
   }
+
+  $scope.steps = [
+    '1 Content settings',
+    '2 Notification and Delivery',
+    '3 Review your settings',
+  ];
 
 }]);

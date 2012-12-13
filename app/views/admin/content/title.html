@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="span5">
+    <h2>General</h2>
+    <label>Site Title
+    <select class="language-setting"
+      ng-model="localization.selected_language"
+      ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
+    </select>
+    </label>
+    <input class="big-input" type="text"
+      ng-model="adminNode.name[localization.selected_language]"
+      value="{{adminNode.name[localization.selected_language]}}">
+  </div>
+  <div class="span4">
+    <p>
+    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
+    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+    </p>
+    <a href="XXX">Learn More</a>
+  </div>
+</div>
