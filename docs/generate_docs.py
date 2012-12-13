@@ -254,5 +254,6 @@ if __name__ == '__main__':
         f.write(wikidoc.collected)
 
     #`travel_over_tree had filled typestree dictionary!
+    print typestree
 
 
