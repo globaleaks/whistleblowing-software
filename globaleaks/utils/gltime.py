@@ -1,11 +1,10 @@
-# -*- encoding: utf-8 -*-
-#
-# :authors: Arturo Filastò
-# :licence: see LICENSE
+# -*- coding: UTF-8
+#   gltimes
+#   *******
+# 
+# Here is the location for all time and date related utility functions.
 
-"""
-Here is the location for all time and date related utility functions.
-"""
+
 import time
 from datetime import datetime, timedelta
 
