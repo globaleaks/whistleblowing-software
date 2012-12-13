@@ -5,7 +5,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
   $scope.submission_complete = false;
   $scope.localization = localization;
   $scope.accept_disclaimer = false;
-  $scope.steps = ['1 Receiver selection',
+  $scope.steps = [
+    '1 Receiver selection',
     '2 Fill out your submission',
     '3 Choose receipt'
   ];

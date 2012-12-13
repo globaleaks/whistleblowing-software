@@ -1,62 +1,63 @@
-<div ng-repeat="field in localization.current_context.fields">
-  <div ng-switch on="field.type">
-    <h3 ng-switch-when="header">
-      {{field.name}}
-        <span class="order">{{field.order}}</span>
-        <button class="edit" ng-click="editField(field)">Edit</button>
-        <button class="delete" ng-click="splice(field, fields)">Remove</button>
-    </h3>
-    <div ng-switch-default class="input {{field.type}}" ng-class="field.required && 'required'">
-      <label>
-        <!-- button class="edit" ng-click="editField(field)">Edit</button>
-        <button class="delete" ng-click="splice(field, fields)">Remove</button-->
-        {{field.label}}
-        <span class="order">{{field.order}}</span>
-      </label>
+<form name="submissionFormFields" ng-controller="FormBuilderCtrl">
+  <fieldset>
+    <legend>Details</legend>
+    <div ng-repeat="field in localization.current_context.fields">
       <div ng-switch on="field.type">
-      <input ng-switch-default type="{{field.type}}"
-      ng-model="fields.value"
-      ng-required="field.required"
-      value="{{field.value}}"
-      placeholder="{{field.placeholder}}">
-      <input ng-switch-when="checkbox" type="checkbox"
-      ng-model="field.value"
-      value="{{field.value}}"
-      id="field"
-      placeholder="{{field.placeholder}}">
+        <div ng-switch-default
+          class="input {{field.type}}"
+          ng-class="field.required && 'required'">
+          <label>
+            <!-- button class="edit" ng-click="editField(field)">Edit</button>
+            <button class="delete" ng-click="splice(field, fields)">Remove</button-->
+            {{field.label}}
+            <span class="order">{{field.order}}</span>
+          </label>
+          <div ng-switch on="field.type">
+          <input ng-switch-default type="{{field.type}}"
+          ng-model="fields.value"
+          ng-required="field.required"
+          value="{{field.value}}"
+          placeholder="{{field.placeholder}}">
+          <input ng-switch-when="checkbox" type="checkbox"
+          ng-model="field.value"
+          value="{{field.value}}"
+          id="field"
+          placeholder="{{field.placeholder}}">
 
-      <input ng-switch-when="text" type="text"
-      ng-model="field.value"
-      ng-required="field.required"
-      value="{{field.value}}"
-      placeholder="{{field.placeholder}}">
+          <input ng-switch-when="text" type="text"
+          ng-model="field.value"
+          ng-required="field.required"
+          value="{{field.value}}"
+          placeholder="{{field.placeholder}}">
 
-      <textarea ng-switch-when="textarea"
-        ng-model="field.value"
-        placeholder="{{field.placeholder}}">{{field.value}}</textarea>
-      <select ng-switch-when="select"
-        ng-model="field.value" >
-        <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
-      </select>
-      <select ng-switch-when="multiple"
-        ng-model="field.value" multiple>
-        <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
-      </select>
-      <fieldset ng-switch-when="radio">
-        <label ng-repeat="option in field.options">
-          <input type="radio" ng-model="field.value" value="{{option.value}}">
-          {{option.name}}
-        </label>
-      </fieldset>
-      <fieldset ng-switch-when="checkboxes">
-        <label ng-repeat="option in field.options">
-          <input type="checkbox"
-          ng-model="field.value[tokenize(option.name)]"
-          value="{{option.value}}">
-          {{option.name}}
-        </label>
-      </fieldset>
+          <textarea ng-switch-when="textarea"
+            ng-model="field.value"
+            placeholder="{{field.placeholder}}">{{field.value}}</textarea>
+          <select ng-switch-when="select"
+            ng-model="field.value" >
+            <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
+          </select>
+          <select ng-switch-when="multiple"
+            ng-model="field.value" multiple>
+            <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
+          </select>
+          <fieldset ng-switch-when="radio">
+            <label ng-repeat="option in field.options">
+              <input type="radio" ng-model="field.value" value="{{option.value}}">
+              {{option.name}}
+            </label>
+          </fieldset>
+          <fieldset ng-switch-when="checkboxes">
+            <label ng-repeat="option in field.options">
+              <input type="checkbox"
+              ng-model="field.value[tokenize(option.name)]"
+              value="{{option.value}}">
+              {{option.name}}
+            </label>
+          </fieldset>
+          </div ng-switch>
+        </div>
       </div ng-switch>
     </div>
-  </div ng-switch>
-</div>
+  </fieldset>
+</form>

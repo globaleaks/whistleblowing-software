@@ -198,7 +198,6 @@ background-color: whiteSmoke;
 }
 
 
-
 .submissionContainer {
     background-color: #F7F7F9;
     border: 1px solid #E1E1E8;
@@ -207,6 +206,8 @@ background-color: whiteSmoke;
     -moz-border-radius: 4px;
     border-radius: 4px;
 }
+
+/** Receiver selection page **/
 
 .receiverCards {
   position: relative;
@@ -242,7 +243,13 @@ background-color: whiteSmoke;
   float: right;
 }
 
-/*** Receiver Page ***/
+/** Submission details **/
+
+.submissionDetails textarea {
+  width: 300px;
+  height: 200px;
+}
+
 .table-container {
     margin-top: 30px;
 }
