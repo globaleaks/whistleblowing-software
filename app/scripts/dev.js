@@ -452,6 +452,7 @@ GLClientDev.run(function($httpBackend) {
       var r_copy = new receiver;
       r_copy.name += i;
       r_copy.notification_address += i;
+      r_copy.gus += i;
       response.push(r_copy);
     }
     return [200, response];
