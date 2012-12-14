@@ -15,6 +15,7 @@ GLClient.controller('AdminCtrl',
 
   $scope.adminNode = AdminNode.get();
   $scope.adminReceivers = AdminReceivers.query();
+  $scope.adminContexts = AdminContexts.query();
 
   $scope.new_receiver = function() {
     var receiver = new AdminReceivers;

@@ -1,4 +1,7 @@
 @import url(bootstrap.css);
+@import url(angular-ui.css);
+@import url(select2.css);
+
 @import url(datatables.css);
 @import url(configpages.css);
 @import url(lflags.css);

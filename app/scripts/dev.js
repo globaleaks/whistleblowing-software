@@ -85,15 +85,7 @@ GLClientDev.run(function($httpBackend) {
        "languages_supported": ['en', 'it']
     }];
 
-  var node_info = {
-    'name': {'en': 'Some Node Name',
-      'it': 'Il nome del nodo'},
-
-    'statistics': {'active_contexts': 2,
-      'active_receivers': 2,
-      'uptime_days': 10
-    },
-    'contexts': [{
+  var contexts = [{
         'gus': "1",
         'name':
           {'en': 'Context Name 1',
@@ -120,8 +112,17 @@ GLClientDev.run(function($httpBackend) {
         'update_date': 1353060996,
         'fields': form_fields[1],
         'receivers': receivers
-      }
-    ],
+  }];
+
+  var node_info = {
+    'name': {'en': 'Some Node Name',
+      'it': 'Il nome del nodo'},
+
+    'statistics': {'active_contexts': 2,
+      'active_receivers': 2,
+      'uptime_days': 10
+    },
+    'contexts': contexts,
     'node_properties': {'anonymous_submission_only': true},
     'public_site': 'http://example.com/',
     'hidden_service': 'httpo://example.onion',
@@ -401,14 +402,14 @@ GLClientDev.run(function($httpBackend) {
   // * /admin/contexts A2
   $httpBackend.whenGET('/admin/contexts').
     respond(function(method, url, data){
-    var response = {};
-    return [200, response];
+    console.log("Admin contexts");
+    console.log(contexts);
+    return [200, contexts];
   });
 
   $httpBackend.whenPOST('/admin/contexts').
     respond(function(method, url, data){
-    var response = {};
-    return [200, response];
+    return [200, data];
   });
 
   // * /admin/context A3
