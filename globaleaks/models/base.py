@@ -9,10 +9,9 @@ from storm.locals import Store
 from storm.twisted.transact import transact
 
 from globaleaks.db import transactor, database
-from globaleaks.db import tables
 from globaleaks.utils import log
 
-__all__ = ['TXModel', 'ModelError']
+__all__ = ['TXModel' ]
 
 class TXModel(object):
     """
@@ -45,12 +44,11 @@ class TXModel(object):
 
         ... Do other stuff with s ...
 
-    Where SubmissionNotFoundError is a subclass of ModelError.
-
-    This exception should then be trapped in the handler and set the error
-    status code and write the error out.
+    SubmnissionNotFoundError is defined in globlaeaks.rest.errors and
+    subclass a generic Exception.
     """
     log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel")
+
     createQuery = ""
     transactor = transactor
     database = database
@@ -89,18 +87,6 @@ class TXModel(object):
     # 'database is locked' should happen also when a transact function has a typo
     # inside, and silently would simply stay freezed, keeping DB locked.
 
-
-
-class ModelError(Exception):
-    """
-    ModelError is inherit by other classed. They need to set the class variables
-    before, and hopefully being catched in the hanlders.
-    """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class ModelError")
-
-    error_message = "Model Error not set"
-    error_code = 0
-    http_status = 500 # generic Server error
 
 # Triva, this file implement the 0.2 version of GlobaLeaks, then:
 # Enter the Ginger - http://www.youtube.com/watch?v=uUD9NBSJvqo

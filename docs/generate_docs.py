@@ -162,7 +162,7 @@ def handle_klass_entry(source, name, klass):
 
 def handle_errortype_entry(errorklass):
 
-    if issubclass(errorklass, errors.GLTypeError):
+    if issubclass(errorklass, errors.GLException):
         return errorklass.__doc__
 
 class reStructuredText:
@@ -199,7 +199,7 @@ class reStructuredText:
         else:
             for name, klass in inspect.getmembers(requests, inspect.isclass):
                 if name == reqname:
-                    typedesc = handle_klass_entry('responses', name, klass)
+                    typedesc = handle_klass_entry('requests', name, klass)
                     break
 
             if typedesc is None or typedesc == "":
@@ -255,7 +255,7 @@ class reStructuredText:
                     break
 
             if typedesc is None:
-                print "Missing description of GLTypeError:", errorname,
+                print "Missing description of GLException:", errorname,
                 return False
 
         typestree.update({errorname: typedesc })

@@ -1,7 +1,7 @@
 # -*- coding: UTF-8
 #
 #   models/node
-#   *******
+#   ***********
 #
 # Manage the single table containing all the node general information,
 # can be accessed with different privileges (admin and unprivileged).
@@ -13,18 +13,11 @@ from storm.twisted.transact import transact
 from storm.locals import Int, Pickle
 from storm.locals import Unicode, DateTime
 
-from globaleaks.models.base import TXModel, ModelError
+from globaleaks.models.base import TXModel
 from globaleaks.utils import log
+from globaleaks.rest.errors import NodeNotFound
 
-
-__all__ = [ 'Node', 'NodeNotFoundError' ]
-
-class NodeNotFoundError(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "Node not found"
-        ModelError.error_code = 1 # To be resumed in rest/error.py
-        ModelError.http_code = 500 # Internal Server Error
+__all__ = [ 'Node' ]
 
 
 class Node(TXModel):
@@ -78,10 +71,10 @@ class Node(TXModel):
             node_data = store.find(Node, 1 == Node.id).one()
         except NotOneError:
             store.close()
-            raise NodeNotFoundError
+            raise NodeNotFound
         if node_data is None:
             store.close()
-            raise NodeNotFoundError
+            raise NodeNotFound
 
         # node_data.properties
         node_data.description = input_block['description']
@@ -134,10 +127,10 @@ class Node(TXModel):
             node_data = store.find(Node, 1 == Node.id).one()
         except NotOneError:
             store.close()
-            raise NodeNotFoundError
+            raise NodeNotFound
         if node_data is None:
             store.close()
-            raise NodeNotFoundError
+            raise NodeNotFound
 
         # this unmaintainable crap need to be removed in the future,
         # and the dict/output generation shall not be scattered
@@ -199,7 +192,3 @@ class Node(TXModel):
         else:
             print "Unexpected status (exception made for first start), node configured", nodenum
             return False
-
-# Node.contexts = ReferenceSet(Node.id, Context.node_id)
-
-

@@ -52,6 +52,9 @@ spec = [
     #  * /tip/<tip_access_token>/comment T3
     (r'/tip/' + more_lax, tip.TipCommentManagement),
 
+    #  * /tip/<tip_access_token>/receivers T4
+    (r'/tip/' + more_lax, tip.TipReceiversAvailable),
+
     ## Receiver Handlers ##
     #  * /reciever/<receiver_token_auth>/management R1
     (r'/receiver/' + receiver_token_auth + '/management', receiver.ReceiverManagement),

@@ -9,18 +9,12 @@ from storm.exceptions import NotOneError
 from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, Date, Unicode, Bool
 
-from globaleaks.models.context import Context, InvalidContext
-from globaleaks.models.base import TXModel, ModelError
+from globaleaks.models.context import Context
+from globaleaks.models.base import TXModel
 from globaleaks.utils import log, idops, gltime
+from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound
 
-__all__ = ['Receiver', 'InvalidReceiver' ]
-
-class InvalidReceiver(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "Invalid Receiver addressed with receiver_gus"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 400 # Bad Request
+__all__ = ['Receiver']
 
 # The association between Receiver and Context is performed in models/admin.py ContextReceivers table
 
@@ -109,7 +103,7 @@ class Receiver(TXModel):
                 thaman.context_gus_list.append(c)
             else:
                 store.close()
-                raise InvalidContext
+                raise ContextGusNotFound
 
         store.add(thaman)
         store.commit()
@@ -138,10 +132,10 @@ class Receiver(TXModel):
             requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
         except NotOneError:
             store.close()
-            raise InvalidReceiver
+            raise ReceiverGusNotFound
         if requested_r is None:
             store.close()
-            raise InvalidReceiver
+            raise ReceiverGusNotFound
 
         requested_r._import_dict(receiver_dict)
         requested_r.update_date = gltime.utcDateNow()
@@ -159,7 +153,7 @@ class Receiver(TXModel):
             else:
                 store.rollback()
                 store.close()
-                raise InvalidContext
+                raise ContextGusNotFound
 
         store.commit()
         store.close()
@@ -190,10 +184,10 @@ class Receiver(TXModel):
             requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
         except NotOneError:
             store.close()
-            raise InvalidReceiver
+            raise ReceiverGusNotFound
         if requested_r is None:
             store.close()
-            raise InvalidReceiver
+            raise ReceiverGusNotFound
 
         retReceiver = requested_r._description_dict()
 
@@ -240,10 +234,10 @@ class Receiver(TXModel):
             requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
         except NotOneError:
             store.close()
-            raise InvalidReceiver
+            raise ReceiverGusNotFound
         if requested_r is None:
             store.close()
-            raise InvalidReceiver
+            raise ReceiverGusNotFound
 
         # log.info()
         store.remove(requested_r)
