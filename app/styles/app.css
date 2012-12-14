@@ -81,6 +81,11 @@
   display: none;
 }
 
+/* This is used to create a space of the size of the fixed with header */
+.spacer {
+  margin-bottom: 40px;
+}
+
 /* Home Splash screen jumbotron */
 /* Language selector */
 .homeSplash .lang {
@@ -248,16 +253,17 @@ background-color: whiteSmoke;
 
 /** Admin pages **/
 
-.configSaveScrollfix {
-  position: absolute;
-  top: 120px;
-  z-index: 1000;
+.configToolbar {
+  margin-top: 4px;
 }
 
-.configSaveScrollfix .configSaveButton {
-  position: fixed;
-}
+/* This is somewhat of a hack to make the <select> bar align.
+ * XXX May be inconsisten accross browsers. Only tested on chrome
+ * */
 
+.configToolbar select {
+  margin-top: 10px;
+}
 /** Submission details **/
 
 .submissionDetails textarea {

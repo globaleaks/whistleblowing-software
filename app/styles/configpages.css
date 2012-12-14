@@ -75,6 +75,7 @@
 
 .config-page textarea {
     height: 200px;
+    width: 400px;
 }
 
 .config-page .language-setting {
@@ -88,4 +89,13 @@
 
 .config-page .sub-menu {
     background-color: #ECECF0;
+}
+
+
+.adminContexts {
+}
+
+.config-page .adminContexts textarea {
+  height: 100px;
+  width: 220px;
 }

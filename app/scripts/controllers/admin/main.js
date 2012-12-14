@@ -14,6 +14,7 @@ GLClient.controller('AdminCtrl',
   $scope.node_info = localization.node_info;
 
   $scope.adminNode = AdminNode.get();
+  $scope.adminReceivers = AdminReceivers.query();
 
   // XXX find a more elegant solution
   // This is required for the step by step wizard.

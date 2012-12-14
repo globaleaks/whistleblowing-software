@@ -2,10 +2,6 @@
   <div class="span5">
     <h2>General</h2>
     <label>Site Title
-    <select class="language-setting"
-      ng-model="localization.selected_language"
-      ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
-    </select>
     </label>
     <input class="big-input" type="text"
       ng-model="adminNode.name[localization.selected_language]"

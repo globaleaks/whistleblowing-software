@@ -1,12 +1,11 @@
+<div ng-include="'views/admin/toolbar.html'"
+  onload="target=adminNode">
+</div>
+
 <div ng-include="'views/header.html'"
   onload="header_title='Basic Configuration';
   header_subtitle='Administration Interface'"
 >
-</div>
-
-<!-- ConfigSave -->
-<div ng-include="'views/widgets/configsave.html'"
-  onload="target=adminNode">
 </div>
 
 <div class="container config-page">
@@ -24,7 +23,7 @@
 
 
     <div class="span9">
-      <form name="configForm" class="configForm">
+      <form name="configForm" class="config-form">
 
         <!-- ReceiverList -->
         <div ng-include="'views/admin/basic/receiverlist.html'">
