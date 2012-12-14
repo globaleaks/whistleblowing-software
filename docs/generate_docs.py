@@ -2,7 +2,7 @@ from globaleaks.rest.api import spec
 from globaleaks.rest import requests, responses, errors, base
 from utils import cleanup_docstring
 import inspect
-import sys, string
+import string
 
 
 doctree = {}
@@ -28,7 +28,6 @@ def pop_URTA(descriptionstring):
         cleandesc = string.join(descinlist)
     else:
         return False
-
 
     if len(URTA) == 2 and len(cleandesc) > 10:
         return (URTA, cleandesc)
@@ -73,8 +72,7 @@ def fill_doctree():
 
 
 def get_elementNames(partial_line):
-    line = partial_line.strip(" \n")
-    return line.split(",")
+    return partial_line.replace(" ", '').split(",")
 
 def travel_over_tree(wikidoc, URTAindex=None):
 
@@ -118,18 +116,18 @@ def travel_over_tree(wikidoc, URTAindex=None):
                             if doctree_update:
                                 matrix[ndx][2] = True
                             else:
-                                print method.upper(), " ", key, "Definition of", element, "NOT FOUND\n",
+                                print "From ", key, "(", method.upper(), ")"
 
                 if not parsed_correctly:
                     wikidoc.add_line(line)
 
             if method.upper() == 'GET':
                 if not matrix[0][2] or not matrix[1][2]:
-                    print "Error: missing Response/Error"
+                    print "Error: lacking of reqirements"
                     quit()
             else:
                 if not matrix[0][2] or not matrix[1][2] or not matrix[2][2]:
-                    print "Error: missing Request/Response/Error"
+                    print "Error: lacking of reqirements"
                     quit()
 
 
@@ -202,9 +200,10 @@ class reStructuredText:
             for name, klass in inspect.getmembers(requests, inspect.isclass):
                 if name == reqname:
                     typedesc = handle_klass_entry('responses', name, klass)
+                    break
 
             if typedesc is None or typedesc == "":
-                print "Missing description of requests", reqname
+                print "Missing description of requests", reqname,
                 return False
 
         typestree.update({reqname : typedesc })
@@ -227,9 +226,10 @@ class reStructuredText:
             for name, klass in inspect.getmembers(responses, inspect.isclass):
                 if name == responame:
                     typedesc = handle_klass_entry('responses', name, klass)
+                    break
 
             if typedesc is None or typedesc == "":
-                print "Missing description of responses", responame
+                print "Missing description of responses", responame,
                 return False
 
         typestree.update({responame : typedesc })
@@ -252,9 +252,10 @@ class reStructuredText:
             for name, klass in inspect.getmembers(errors, inspect.isclass):
                 if name == errorname:
                     typedesc = handle_errortype_entry(klass)
+                    break
 
             if typedesc is None:
-                print "Missing description of GLTypeError:", errorname
+                print "Missing description of GLTypeError:", errorname,
                 return False
 
         typestree.update({errorname: typedesc })

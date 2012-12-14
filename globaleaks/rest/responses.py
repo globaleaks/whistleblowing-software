@@ -1,8 +1,9 @@
 # -*- coding: UTF-8
+#
 #   Answers
 #   *******
 # 
-#   This file contain the definition of all the answer struct perfomed by GLB,
+#   This file contain the definition of all the answer struct performed by GLB,
 #   and are used to make output validation, sanitization, and operations
 
 
@@ -17,6 +18,7 @@ class publicStatsElement(GLTypes):
     from the adminStatsElement
     """
     specification = {
+
         'completed_submission' : int,
         'tip_accesses' : int
     }
@@ -60,6 +62,14 @@ class adminStatsList(GLTypes):
 
 
 
+
+# All the REST interface SHARE the same structures between response and request
+# and the generate_docs.py script check in responses.py and requests.py
+# To avoid code duplication, here follow the classes duplicated.
+# responses.py copy from requests.py:
+
+from globaleaks.rest.requests import wbSubmissionDesc as imported_wbSubmissionDesc
+wbSubmissionDesc = imported_wbSubmissionDesc
 
 
 
