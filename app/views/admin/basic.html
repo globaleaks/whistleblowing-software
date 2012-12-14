@@ -3,7 +3,14 @@
   header_subtitle='Administration Interface'"
 >
 </div>
+
+<!-- ConfigSave -->
+<div ng-include="'views/widgets/configsave.html'"
+  onload="target=adminNode">
+</div>
+
 <div class="container config-page">
+
   <div class="row">
     <!-- Begin Nav Bar -->
     <!--  Note the use of "''", yeah two of them.
@@ -15,8 +22,9 @@
     </div>
     <!-- End Nav Bar -->
 
+
     <div class="span9">
-      <form class="config-form">
+      <form name="configForm" class="configForm">
 
         <!-- ReceiverList -->
         <div ng-include="'views/admin/basic/receiverlist.html'">

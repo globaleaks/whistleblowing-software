@@ -4,6 +4,11 @@
 >
 </div>
 
+<!-- ConfigSave -->
+<div ng-include="'views/widgets/configsave.html'"
+  onload="target=adminNode">
+</div>
+
 <div class="container config-page">
   <div class="row">
     <!-- Begin Nav Bar -->
@@ -30,7 +35,7 @@
               ng-model="adminNode.name[localization.selected_language]"
               value="{{adminNode.name[localization.selected_language]}}">
             <button class="btn"
-              ng-click="adminNode.$save()">Save</button>
+              ng-click="">Save</button>
           </div>
           <div class="span4">
             <p>

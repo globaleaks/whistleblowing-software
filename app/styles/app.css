@@ -246,6 +246,18 @@ background-color: whiteSmoke;
   float: right;
 }
 
+/** Admin pages **/
+
+.configSaveScrollfix {
+  position: absolute;
+  top: 120px;
+  z-index: 1000;
+}
+
+.configSaveScrollfix .configSaveButton {
+  position: fixed;
+}
+
 /** Submission details **/
 
 .submissionDetails textarea {

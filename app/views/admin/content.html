@@ -2,6 +2,12 @@
   onload="header_title='Content Settings';
   header_subtitle='Administration Interface'">
 </div>
+
+<!-- ConfigSave -->
+<div ng-include="'views/widgets/configsave.html'"
+  onload="target=adminNode">
+</div>
+
 <div class="container config-page">
   <div class="row">
     <!-- Begin Nav Bar -->
@@ -13,9 +19,6 @@
       ng-include="'views/admin/sidebar.html'">
     </div>
     <!-- End Nav Bar -->
-    <button class="btn"
-      ng-click="adminNode.$save()">Save</button>
-
     <div class="span9">
 
       <form class="config-form">
