@@ -402,13 +402,14 @@ GLClientDev.run(function($httpBackend) {
   // * /admin/contexts A2
   $httpBackend.whenGET('/admin/contexts').
     respond(function(method, url, data){
-    console.log("Admin contexts");
-    console.log(contexts);
+    console.log("GET /admin/contexts");
     return [200, contexts];
   });
 
   $httpBackend.whenPOST('/admin/contexts').
     respond(function(method, url, data){
+    console.log("POST /admin/contexts");
+    console.log(data);
     return [200, data];
   });
 
@@ -459,20 +460,24 @@ GLClientDev.run(function($httpBackend) {
   });
 
   $httpBackend.whenPOST('/admin/receivers').respond(function(method, url, data){
+    console.log("POST /admin/receivers");
     console.log(method);
     console.log(url);
     console.log(data);
+    return [200, data];
   });
 
   // * /admin/receiver A5
   $httpBackend.whenGET('/admin/receiver').
     respond(function(method, url, data){
+    console.log("GET /admin/receiver");
     var response = {};
     return [200, response];
   });
 
   $httpBackend.whenPOST('/admin/receiver').
     respond(function(method, url, data){
+    console.log("POST /admin/receiver");
     var response = {};
     return [200, response];
   });
@@ -480,6 +485,7 @@ GLClientDev.run(function($httpBackend) {
   // * /admin/plugins A6
   $httpBackend.whenGET('/admin/plugins').
     respond(function(method, url, data){
+    console.log("GET /admin/plugins");
     var response = {};
     return [200, response];
   });
