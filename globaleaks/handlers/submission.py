@@ -9,13 +9,13 @@ import json
 
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
-from globaleaks.models.submission import Submission, SubmissionNotFoundError
+from globaleaks.models.submission import Submission
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.context import InvalidContext
 from globaleaks.rest import requests, responses
 from globaleaks.rest.base import validateMessage
-from globaleaks.rest.errors import InvalidInputFormat
+from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
+    ContextGusNotFound, SubmissionFailFields
 
 class SubmissionCrud(BaseHandler):
     """
@@ -30,7 +30,7 @@ class SubmissionCrud(BaseHandler):
         """
         Parameters: submission_gus
         Response: wbSubmissionDesc
-        Errors: SubmissionNotFoundError, InvalidInputFormat
+        Errors: SubmissionGusNotFound, InvalidInputFormat
 
         Get the status of the current submission.
         """
@@ -42,11 +42,12 @@ class SubmissionCrud(BaseHandler):
 
             requested_sg = self.get_argument('submission_gus')
             # TODO perform validation of single GLtype
+
             status = yield submission.status(requested_sg)
             self.set_status(200)
             self.write(status)
 
-        except SubmissionNotFoundError, e:
+        except SubmissionGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -65,7 +66,7 @@ class SubmissionCrud(BaseHandler):
         """
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
-        Errors: InvalidContext, InvalidInputFormat, InvalidFields
+        Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields
 
         This creates an empty submission for the requested context,
         and returns submissionStatus with empty fields and a Submission Uniqe String,
@@ -93,12 +94,17 @@ class SubmissionCrud(BaseHandler):
             # TODO - output processing
             self.write(status)
 
-        except InvalidContext, e:
+        except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except SubmissionFailFields, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -109,7 +115,7 @@ class SubmissionCrud(BaseHandler):
         """
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
-        Errors: InvalidContext, InvalidInputFormat, InvalidSubmissionFields, SubmissionNotFound
+        Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields, SubmissionGusNotFound
 
         Update a Submission resource with the appropriate data
         """
@@ -139,20 +145,22 @@ class SubmissionCrud(BaseHandler):
             # TODO - output processing
             self.write(status)
 
-        except InvalidContext, e:
+        except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
-        # XXX
-        # need to be split between InvalidInputFormat (used by all the REST making input
-        # validation) and InvalidSubmissionFields (checks the fields list of submissionStatus)
+        except SubmissionFailFields, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
-        except SubmissionNotFoundError, e:
+        except SubmissionGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -164,7 +172,7 @@ class SubmissionCrud(BaseHandler):
         """
         Request: wbSubmissionDesc
         Response: None
-        Errors: SubmissionNotFound. InvalidInputFormat
+        Errors: SubmissionGusNotFound, InvalidInputFormat
 
         A whistleblower is deleting a Submission because has understand that won't really be an hero. :P
         """
@@ -176,7 +184,7 @@ class SubmissionCrud(BaseHandler):
 
             submission.submission_delete(request.submission_gus)
 
-        except SubmissionNotFoundError, e:
+        except SubmissionGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})

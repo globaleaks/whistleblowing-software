@@ -15,25 +15,12 @@ from storm.locals import Int, Pickle, Unicode, Bool, DateTime
 from storm.locals import Reference
 
 from globaleaks.utils import idops, log, gltime
-from globaleaks.models.base import TXModel, ModelError
+from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.context import Context
+from globaleaks.rest.errors import ProfileGusNotFound, ProfileNameConflict
 
 __all__ = [ 'PluginProfiles', 'ReceiverConfs' ]
-
-class ProfileGusNotFoundError(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "Invalid Plugin Identificative for requested profile"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 400 # Bad Request
-
-class ProfileNameConflict(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "The proposed name is already in use by another profile"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 410 # Conflict
 
 
 class PluginProfiles(TXModel):
@@ -113,10 +100,10 @@ class PluginProfiles(TXModel):
             looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
         except NotOneError:
             store.close()
-            raise ProfileGusNotFoundError
+            raise ProfileGusNotFound
         if not looked_p:
             store.close()
-            raise ProfileGusNotFoundError
+            raise ProfileGusNotFound
 
         if settings:
             looked_p.admin_fields = settings
@@ -160,10 +147,10 @@ class PluginProfiles(TXModel):
             looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
         except NotOneError:
             store.close()
-            raise ProfileGusNotFoundError
+            raise ProfileGusNotFound
         if not looked_p:
             store.close()
-            raise ProfileGusNotFoundError
+            raise ProfileGusNotFound
 
         retVal = looked_p._description_dict()
         store.close()
@@ -182,12 +169,7 @@ class PluginProfiles(TXModel):
 
         return retVal
 
-class ReceiverConfInvalid(ModelError):
 
-    def __init__(self):
-        ModelError.error_message = "ReceiverConf ID do not exists"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 406 # Conflict
 
 class ReceiverConfs(TXModel):
     """
@@ -296,7 +278,7 @@ class ReceiverConfs(TXModel):
         retVal = {
             'receiver_gus' : self.receiver_gus,
             'active' : self.active,
-            'id' : self.id,
+            'config_id' : self.id,
             'receiver_fields' : self.receiver_fields,
             'profile_gus' : self.profile_gus
         }

@@ -5,7 +5,6 @@
 # 
 # Implementation of the Storm DB side of context table and ORM
 
-
 from storm.exceptions import NotOneError
 from storm.twisted.transact import transact
 
@@ -14,18 +13,11 @@ from storm.locals import Unicode, Bool, Date
 from storm.locals import Reference
 
 from globaleaks.utils import gltime, idops, log
+from globaleaks.models.base import TXModel
+from globaleaks.rest.errors import ContextGusNotFound
 
-from globaleaks.models.base import TXModel, ModelError
+__all__ = [ 'Context' ]
 
-__all__ = [ 'Context', 'InvalidContext' ]
-
-
-class InvalidContext(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "Invalid Context addressed with context_gus"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 400 # Bad Request
 
 class Context(TXModel):
     from globaleaks.models.node import Node
@@ -115,10 +107,10 @@ class Context(TXModel):
             requested_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
         if requested_c is None:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
 
         requested_c._import_dict(context_dict)
         requested_c.update_date = gltime.utcDateNow()
@@ -139,7 +131,7 @@ class Context(TXModel):
 
         # first, perform existence checks, this would avoid continuos try/except here
         if not self.exists(context_gus):
-            raise InvalidContext
+            raise ContextGusNotFound
 
         # delete all the reference to the context in the receivers
         receiver_iface = Receiver()
@@ -156,10 +148,10 @@ class Context(TXModel):
             requested_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
         if requested_c is None:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
 
         store.remove(requested_c)
         store.commit()
@@ -181,10 +173,10 @@ class Context(TXModel):
             requested_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
         if requested_c is None:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
 
         ret_context_dict = requested_c._description_dict()
         ret_context_dict.update({'receivers' : requested_c.get_receivers('admin')})
@@ -227,10 +219,10 @@ class Context(TXModel):
             requested_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
         if requested_c is None:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
 
         ret_context_dict = requested_c._description_dict()
         # remove the keys private in the public diplay of node informations
@@ -395,12 +387,13 @@ class Context(TXModel):
         add_receiver should be call every time a Context is updated. If a receiver is
         already present, do not perform operation in that resource.
         """
-        from globaleaks.models.receiver import Receiver, InvalidReceiver
+        from globaleaks.models.receiver import Receiver
+        from globaleaks.rest.errors import ReceiverGusNotFound
 
         log.debug("[D] %s %s " % (__file__, __name__), "Context add_receiver", context_gus, receiver_gus)
 
         if not self.exists(context_gus):
-            raise InvalidContext
+            raise ContextGusNotFound
 
         store = self.getStore('add_receiver')
 
@@ -408,16 +401,16 @@ class Context(TXModel):
             requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
         except NotOneError:
             store.close()
-            return InvalidReceiver
+            return ReceiverGusNotFound
         if requested_r is None:
             store.close()
-            return InvalidReceiver
+            return ReceiverGusNotFound
 
         if not context_gus in requested_r.context_gus_list:
             requested_r.context_gus_list.append(context_gus)
             # update last activities, in context and receiver
 
-        log.msg("Addedd receiver", requested_r.receiver_gus, requested_r.name, "to context", context_gus)
+        log.msg("Added receiver", requested_r.receiver_gus, requested_r.name, "to context", context_gus)
         store.commit()
         store.close()
 
@@ -426,20 +419,18 @@ class Context(TXModel):
     # called using .pop() should remove the 'confidential' value, if any
     def _description_dict(self):
 
-        # This is BAD! but actually we have not yet re-defined a policy to manage
-        # REST answers
-        description_dict = {"context_gus": self.context_gus,
-                            "name": self.name,
-                            "description": self.description,
-                            "selectable_receiver": self.selectable_receiver,
-                            "languages_supported": self.languages_supported,
-                            'tip_max_access' : self.tip_max_access,
-                            'tip_timetolive' : self.tip_timetolive,
-                            'folder_max_download' : self.folder_max_download,
-                            'escalation_threshold' : self.escalation_threshold,
-                            "fields": self.fields }
-        # This is missing of all the other need to be implemented fields,
-        # receivers is missing because is append only when needed.
+        description_dict = {
+            "context_gus": self.context_gus,
+            "name": self.name,
+            "description": self.description,
+            "selectable_receiver": self.selectable_receiver,
+            "languages_supported": self.languages_supported,
+            'tip_max_access' : self.tip_max_access,
+            'tip_timetolive' : self.tip_timetolive,
+            'folder_max_download' : self.folder_max_download,
+            'escalation_threshold' : self.escalation_threshold,
+            "fields": self.fields
+        }
 
         return description_dict
 

@@ -9,6 +9,9 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from cyclone.web import asynchronous
+from globaleaks.models.node import Node
+from globaleaks.models.context import Context
+from globaleaks.rest.errors import NodeNotFound
 
 class InfoAvailable(BaseHandler):
     """
@@ -23,11 +26,9 @@ class InfoAvailable(BaseHandler):
     def get(self, *uriargs):
         """
         Response: publicNodeDesc
-        Errors: NodeNotFoundError
+        Errors: NodeNotFound
         """
 
-        from globaleaks.models.node import Node, NodeNotFoundError
-        from globaleaks.models.context import Context
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get", uriargs)
 
@@ -43,7 +44,7 @@ class InfoAvailable(BaseHandler):
 
             self.write(node_description_dicts)
 
-        except NodeNotFoundError, e:
+        except NodeNotFound, e:
 
             self._status_code = e.http_status
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})

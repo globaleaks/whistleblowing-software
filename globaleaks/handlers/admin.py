@@ -13,6 +13,8 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import node, context, receiver, options
 from globaleaks.utils import log
 from globaleaks.plugins.base import GLPluginManager
+from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
+    NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict
 
 class NodeManagement(BaseHandler):
     """
@@ -28,10 +30,10 @@ class NodeManagement(BaseHandler):
     def get(self, *uriargs):
         """
         Parameters: None
-        Response: adminNodeDescription
-        Errors: None
-
+        Response: adminNodeDesc
+        Errors: NodeNotFound
         """
+
         #not yet implemented: admin_stats (stats need to be moved in contexts)
         #node_properties: should not be separate array
         #url_schema: no more needed ?
@@ -56,10 +58,11 @@ class NodeManagement(BaseHandler):
     @inlineCallbacks
     def post(self, *uriargs):
         """
-        Changes the node public node configuration settings
-        Request: adminNodeDescription
-        Response: adminNodeDescription
+        Request: adminNodeDesc
+        Response: adminNodeDesc
         Errors: InvalidInputFormat
+
+        Changes the node public node configuration settings
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "POST")
 
@@ -103,13 +106,14 @@ class ContextCrud(BaseHandler):
     @inlineCallbacks
     def get(self, context_gus, *uriargs):
         """
-        Parameters: None
+        Parameters: context_gus
         Response: adminContextDesc
-        Errors: None
+        Errors: ContextGusNotFound, InvalidInputFormat
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "GET")
 
         context_iface = context.Context()
+        # TODO REMIND XXX - context_gus validation
 
         try:
             context_description = yield context_iface.admin_get_single(context_gus)
@@ -117,7 +121,7 @@ class ContextCrud(BaseHandler):
             self.set_status(200)
             self.write(context_description)
 
-        except context.InvalidContext, e:
+        except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -152,7 +156,8 @@ class ContextCrud(BaseHandler):
                 yield context_iface.update(context_gus, request)
                 yield self.get(context_gus)
 
-            except context.InvalidContext, e:
+            # REFACTOR remind
+            except ContextGusNotFound, e:
 
                 self.set_status(e.http_status)
                 self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -165,7 +170,7 @@ class ContextCrud(BaseHandler):
         """
         Request: adminContextDesc
         Response: adminContextDesc
-        Errors: InvalidInputFormat, ContextNotFound
+        Errors: InvalidInputFormat, ContextGusNotFound
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "PUT")
         request = json.loads(self.request.body)
@@ -193,7 +198,7 @@ class ContextCrud(BaseHandler):
         """
         Request: adminContextDesc
         Response: None
-        Errors: InvalidInputFormat, ContextNotFound
+        Errors: InvalidInputFormat, ContextGusNotFound
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContext", "DELETE", context_gus)
 
@@ -214,7 +219,7 @@ class ContextCrud(BaseHandler):
             yield context_iface.delete_context(context_gus)
             self.set_status(200)
 
-        except context.InvalidContext, e:
+        except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -251,15 +256,17 @@ class ReceiverCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, receiver_gus, *uriargs):
+    def get(self, *uriargs):
         """
-        Parameters: None
+        Parameters: receiver_gus
         Response: adminReceiverDesc
-        Errors: None
+        Errors: InvalidInputFormat, ReceiverGusNotFound
         """
 
+        receiver_gus = 123 # TODO REMIND REFACTOR parameter validation
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "GET", receiver_gus)
 
+        # TODO parameter validation
         receiver_iface = receiver.Receiver()
 
         try:
@@ -268,12 +275,7 @@ class ReceiverCrud(BaseHandler):
             self.set_status(200)
             self.write(receiver_description)
 
-        except context.InvalidContext, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except receiver.InvalidReceiver, e:
+        except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -283,14 +285,15 @@ class ReceiverCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def post(self, receiver_gus, *uriargs):
+    def post(self, *uriargs):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
-        Errors: InvalidInputFormat
+        Errors: InvalidInputFormat, ReceiverGusNotFound
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "POST", receiver_gus)
+        receiver_gus = 123 # TODO - input validation
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "POST")
 
         request = json.loads(self.request.body)
 
@@ -310,13 +313,7 @@ class ReceiverCrud(BaseHandler):
 
             yield self.get(receiver_gus)
 
-        except context.InvalidContext:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-            self.finish()
-
-        except receiver.InvalidReceiver, e:
+        except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -325,12 +322,13 @@ class ReceiverCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def put(self, receiver_gus, *uriargs):
+    def put(self, *uriargs):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
-        Errors: InvalidInputFormat, ReceiverNotFound
+        Errors: InvalidInputFormat, ReceiverGusNotFound
         """
+        receiver_gus = 123 # TODO - input validation
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "PUT", receiver_gus)
 
         request = json.loads(self.request.body)
@@ -351,12 +349,13 @@ class ReceiverCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def delete(self, receiver_gus, *uriargs):
+    def delete(self, *uriargs):
         """
         Request: adminReceiverDesc
         Response: None
-        Errors: InvalidInputFormat, ReceiverNotFound
+        Errors: InvalidInputFormat, ReceiverGusNotFound
         """
+        receiver_gus = 123 # TODO - input validation
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "DELETE", receiver_gus)
 
         receiver_iface = receiver.Receiver()
@@ -365,12 +364,7 @@ class ReceiverCrud(BaseHandler):
             yield receiver_iface.receiver_delete(receiver_gus)
             self.set_status(200)
 
-        except context.InvalidContext, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except receiver.InvalidReceiver, e:
+        except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -402,9 +396,9 @@ class ProfileCrud(BaseHandler):
     @inlineCallbacks
     def get(self, profile_gus, *uriargs):
         """
-        Parameters: None
+        Parameters: profile_gus
         Response: adminProfileDesc
-        Errors: ProfileNotFound
+        Errors: ProfileGusNotFound
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "GET", profile_gus)
 
@@ -416,7 +410,7 @@ class ProfileCrud(BaseHandler):
             self.set_status(200)
             self.write(profile_description)
 
-        except options.ProfileGusNotFoundError, e:
+        except ProfileGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -429,7 +423,7 @@ class ProfileCrud(BaseHandler):
         """
         Request: adminProfileDesc
         Response: adminProfileDesc
-        Errors: ProfileNotFound, InvalidInputFormat
+        Errors: ProfileGusNotFound, InvalidInputFormat, ProfileNameConflict
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "POST")
@@ -469,7 +463,7 @@ class ProfileCrud(BaseHandler):
                     self.set_status(200)
                     self.write({'profile_gus': new_profile})
 
-                except options.ProfileNameConflict, e:
+                except ProfileNameConflict, e:
 
                     self.set_status(e.http_status)
                     self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -489,7 +483,7 @@ class ProfileCrud(BaseHandler):
         """
         Request: adminProfileDesc
         Response: adminProfileDesc
-        Errors: ProfileNotFound, InvalidInputFormat
+        Errors: ProfileGusNotFound, InvalidInputFormat, ProfileNameConflict
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "PUT", profile_gus)
 
@@ -531,12 +525,12 @@ class ProfileCrud(BaseHandler):
 
                         self.set_status(200)
 
-                    except options.ProfileNameConflict, e:
+                    except ProfileNameConflict, e:
 
                         self.set_status(e.http_status)
                         self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
-                    except options.ProfileGusNotFoundError, e:
+                    except ProfileGusNotFound, e:
 
                         self.set_status(e.http_status)
                         self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -550,7 +544,7 @@ class ProfileCrud(BaseHandler):
         """
         Request: adminProfileDesc
         Response: None
-        Errors: ProfileNotFound, InvalidInputFormat
+        Errors: ProfileGusNotFound, InvalidInputFormat
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
 

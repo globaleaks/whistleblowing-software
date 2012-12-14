@@ -10,7 +10,7 @@ from cyclone.web import asynchronous
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip,\
-    TipGusNotFoundError, TipReceiptNotFoundError, TipPertinenceExpressed
+    TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
 from globaleaks.utils import log
 from globaleaks.rest import base
 
@@ -74,7 +74,7 @@ class TipManagement(BaseHandler):
                 self.set_status(200)
                 self.write({'tip' : tip_description, 'comments' : comment_list})
 
-            except TipGusNotFoundError, e:
+            except TipGusNotFound, e:
                 self.set_status(e.http_status)
                 self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
@@ -89,7 +89,7 @@ class TipManagement(BaseHandler):
                 self.set_status(200)
                 self.write({'tip' : tip_description, 'comments' : comment_list})
 
-            except TipReceiptNotFoundError, e:
+            except TipReceiptNotFound, e:
                 self.set_status(e.http_status)
                 self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
@@ -127,7 +127,7 @@ class TipManagement(BaseHandler):
 
                 self.set_status(200)
 
-            except TipGusNotFoundError, e:
+            except TipGusNotFound, e:
                 self.set_status(e.http_status)
                 self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
@@ -157,7 +157,7 @@ class TipsAvailable(BaseHandler):
     def get(self, tip_token):
         """
         Parameters: None
-        Response: receiverTipsList
+        Response: receiverTipList
         Errors: InvalidTipAuthToken
         """
         pass
@@ -177,7 +177,7 @@ class TipCommentManagement(BaseHandler):
     @inlineCallbacks
     def get(self, tip_token, *uriargs):
         """
-        Parameters: None (TODO start/end)
+        Parameters: None (TODO start/end, date)
         Response: actorsCommentList
         Errors: InvalidTipAuthToken
         """
@@ -219,10 +219,26 @@ class TipCommentManagement(BaseHandler):
 
                 self.set_status(200)
 
-            except TipGusNotFoundError, e:
+            except TipGusNotFound, e:
                 self.set_status(e.http_status)
                 self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
 
+class TipReceiversAvailable(BaseHandler):
+    """
+    T4
+    This interface return the list of the Receiver active in a Tip.
+    GET /tip/<auth_tip_token>/receivers
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, tip_token):
+        """
+        Parameters: None
+        Response: actorsReceiverList
+        Errors: InvalidTipAuthToken
+        """
+        pass

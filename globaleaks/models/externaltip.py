@@ -13,33 +13,12 @@ from storm.locals import Int, Pickle, Date, Unicode, RawStr, Bool, DateTime
 from storm.locals import Reference, ReferenceSet
 
 from globaleaks.utils import idops, log, gltime
-from globaleaks.models.base import TXModel, ModelError
+from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.internaltip import InternalTip
+from globaleaks.rest.errors import TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
 
-__all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip',
-            'TipGusNotFoundError', 'TipReceiptNotFoundError', 'TipPertinenceExpressed' ]
-
-class TipGusNotFoundError(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "Invalid Globaleask Unique String referred to a Tip"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 400 # Bad Request
-
-class TipReceiptNotFoundError(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "The inserted receipt do not exists in GlobaLeaks"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 400 # Bad Request
-
-class TipPertinenceExpressed(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "Pertinence evaluation has been already expressed"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 406 # Conflict
+__all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip' ]
 
 class ReceiverTip(TXModel):
     """
@@ -132,10 +111,10 @@ class ReceiverTip(TXModel):
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
             store.close()
-            raise TipGusNotFoundError
+            raise TipGusNotFound
         if not requested_t:
             store.close()
-            raise TipGusNotFoundError
+            raise TipGusNotFound
 
         retDict = requested_t.receiver._description_dict()
         store.close()
@@ -186,10 +165,10 @@ class ReceiverTip(TXModel):
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
             store.close()
-            raise TipGusNotFoundError
+            raise TipGusNotFound
         if not requested_t:
             store.close()
-            raise TipGusNotFoundError
+            raise TipGusNotFound
 
         retDict = requested_t._description_dict()
         store.close()
@@ -211,10 +190,10 @@ class ReceiverTip(TXModel):
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
             store.close()
-            raise TipGusNotFoundError
+            raise TipGusNotFound
         if not requested_t:
             store.close()
-            raise TipGusNotFoundError
+            raise TipGusNotFound
 
         requested_t.last_activity = gltime.utcPrettyDateNow()
         store.commit()
@@ -252,10 +231,10 @@ class ReceiverTip(TXModel):
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
             store.close()
-            raise TipGusNotFoundError
+            raise TipGusNotFound
         if not requested_t:
             store.close()
-            raise TipGusNotFoundError
+            raise TipGusNotFound
 
         if requested_t.expressed_pertinence:
             store.close()
@@ -375,10 +354,10 @@ class WhistleblowerTip(TXModel):
             requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
         except NotOneError, e:
             store.close()
-            raise TipReceiptNotFoundError
+            raise TipReceiptNotFound
         if not requested_t:
             store.close()
-            raise TipReceiptNotFoundError
+            raise TipReceiptNotFound
 
         wb_tip_dict = requested_t.internaltip._description_dict()
         wb_tip_dict.pop('id')
@@ -420,10 +399,10 @@ class WhistleblowerTip(TXModel):
         except NotOneError, e:
             store.close()
             log.err("[E] -- Collision fatal error, receipt is not unique [%s]" % receipt)
-            raise TipGusNotFoundError
+            raise TipGusNotFound
         if not requested_t:
             store.close()
-            raise TipGusNotFoundError
+            raise TipGusNotFound
 
         retDict = requested_t._description_dict()
         store.close()

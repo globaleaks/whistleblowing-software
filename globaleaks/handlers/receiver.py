@@ -16,6 +16,8 @@ from globaleaks.models import options
 from globaleaks.models import internaltip
 from globaleaks.models import externaltip
 from globaleaks.plugins.base import GLPluginManager
+from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
+    ProfileGusNotFound, ReceiverConfNotFound, InvalidTipAuthToken, TipGusNotFound
 
 
 class ReceiverManagement(BaseHandler):
@@ -37,10 +39,10 @@ class ReceiverManagement(BaseHandler):
         """
         Parameters: None
         Response: receiverReceiverDesc
-        Errors: ReceiverNotFound, InvalidInputFormat
+        Errors: ReceiverGusNotFound, InvalidInputFormat, InvalidTipAuthToken
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverManagement", "GET", tip_gus,
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverManagement", "GET", receiver_token_auth,
             "NOT YET IMPLEMENTED -- need to return tip list and receiver option, status, stats")
 
         self.set_status(500)
@@ -52,10 +54,10 @@ class ReceiverManagement(BaseHandler):
         """
         Request: receiverReceiverDesc
         Response: receiverReceiverDesc
-        Errors: ReceiverNotFound, InvalidInputFormat
+        Errors: ReceiverGusNotFound, InvalidInputFormat, InvalidTipAuthToken
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverManagement", "PUT", tip_gus,
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverManagement", "PUT", receiver_token_auth,
             "NOT YET IMPLEMENTED -- need to accept update in know_languages, name, description, tags")
 
         self.set_status(500)
@@ -75,8 +77,8 @@ class ProfilesAvailable(BaseHandler):
     def get(self, receiver_token_auth, *uriargs):
         """
         Parameters: None
-        Response: receiverProfilesList
-        Errors: NoProfileAvailable
+        Response: receiverProfileList
+        Errors: None
         """
         pass
 
@@ -98,7 +100,7 @@ class ProfileCrud(BaseHandler):
         """
         Parameters: None
         Response: receiverProfileDesc
-        Errors: InvalidInputFormat, ProfileNotFound
+        Errors: InvalidInputFormat, ProfileGusNotFound, TipGusNotFound, InvalidTipAuthToken
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverOptions", "GET", tip_gus, conf_id)
@@ -110,7 +112,8 @@ class ProfileCrud(BaseHandler):
 
         try:
             receiver_d = yield receivertip_iface.get_receiver_by_tip(tip_gus)
-        except externaltip.TipGusNotFoundError, e:
+            # It's an auth, need to be managed in other way for supports welcome token
+        except TipGusNotFound, e:
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
             receiver_d = None
@@ -132,7 +135,7 @@ class ProfileCrud(BaseHandler):
         """
         Request: receiverProfileDesc
         Response: receiverProfileDesc
-        Errors: InvalidInputFormat, ProfileNotFound
+        Errors: InvalidInputFormat, ProfileGusNotFound
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPluginConf", "POST")
@@ -155,7 +158,7 @@ class ProfileCrud(BaseHandler):
 
             profile_d = profile_iface.admin_get_single(profile_gus)
 
-        except externaltip.TipGusNotFoundError, e:
+        except TipGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -165,7 +168,7 @@ class ProfileCrud(BaseHandler):
             self.set_status(406)
             self.write({'error_message': 'Invalid plugin requested', 'error_code' : 123 })
 
-        except options.ProfileGusNotFoundError, e:
+        except ProfileGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -200,7 +203,7 @@ class ProfileCrud(BaseHandler):
         """
         Request: receiverProfileDesc
         Response: receiverProfileDesc
-        Errors: InvalidInputFormat, ProfileNotFound
+        Errors: InvalidInputFormat, ProfileGusNotFound
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPluginConf", "PUT")
@@ -222,7 +225,7 @@ class ProfileCrud(BaseHandler):
 
             profile_d = profile_iface.admin_get_single(profile_gus)
 
-        except externaltip.TipGusNotFoundError, e:
+        except externaltip.TipGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -232,7 +235,7 @@ class ProfileCrud(BaseHandler):
             self.set_status(406)
             self.write({'error_message': 'Invalid plugin requested', 'error_code' : 123 })
 
-        except options.ProfileGusNotFoundError, e:
+        except ProfileGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -267,6 +270,6 @@ class ProfileCrud(BaseHandler):
         """
         Request: receiverProfileDesc
         Response: None
-        Errors: InvalidInputFormat, ProfileNotFound
+        Errors: InvalidInputFormat, ProfileGusNotFound
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")

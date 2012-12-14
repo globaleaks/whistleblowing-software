@@ -11,32 +11,16 @@ from storm.locals import Int, Pickle, DateTime, Unicode, Reference
 from storm.exceptions import NotOneError
 
 from globaleaks.utils import idops, gltime, random
-from globaleaks.models.base import TXModel, ModelError
+from globaleaks.models.base import TXModel
 from globaleaks.models.externaltip import File, Folder, WhistleblowerTip
 from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.context import Context, InvalidContext
+from globaleaks.models.context import Context
+from globaleaks.rest.errors import ContextGusNotFound, SubmissionFailFields, SubmissionGusNotFound
 from globaleaks.models.receiver import Receiver
 
 from globaleaks.utils import log
 
 __all__ = ['Submission']
-
-class SubmissionNotFoundError(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = "Invalid Submission addressed with submission_gus"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 400 # Bad Request
-
-# may it exists ? I've used that for wrap eventually "database is locked", but
-# we've see that database locked is an effect of a programmer bug, not a
-# common behavior, also in multiple requests
-class SubmissionGenericError(ModelError):
-
-    def __init__(self):
-        ModelError.error_message = " Submission internal error: sorry!"
-        ModelError.error_code = 1 # need to be resumed the table and come back in use them
-        ModelError.http_status = 500 # Server Error
 
 
 class Submission(TXModel):
@@ -72,10 +56,10 @@ class Submission(TXModel):
             associated_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
         if associated_c is None:
             store.close()
-            raise InvalidContext
+            raise ContextGusNotFound
 
         submission = Submission()
         submission.submission_gus = idops.random_submission_gus(False)
@@ -112,7 +96,7 @@ class Submission(TXModel):
         if not submission:
             store.rollback()
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
 
         """
         this part of code was in new(), now having a Folder is not mandatory in a submission,
@@ -131,18 +115,13 @@ class Submission(TXModel):
 
         new_file.folder_gus = submission.folder_gus
         new_file.file_gus = unicode(new_file_gus)
-        store.add(new_file)
-
-        try:
-            store.commit()
-        except Exception, e:
-            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "add_file", "submission_gus", submission_gus, "file_name", file_name )
-            store.rollback()
-            store.close()
-            raise SubmissionGenericError
 
         log.debug("Added file %s to %s" % (submission_gus, file_name))
+
+        store.add(new_file)
+        store.commit()
         store.close()
+
         return new_file_gus
 
     @transact
@@ -153,17 +132,11 @@ class Submission(TXModel):
         try:
             s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
-            # XXX these log lines will be removed in the near future
-            log.err("[E] update_fields: Problem looking up %s" % submission_gus)
-            log.err(e)
-            store.rollback()
             store.close()
-            raise SubmissionNotFoundError
-
+            raise SubmissionGusNotFound
         if not s:
-            store.rollback()
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
 
         if not s.fields:
             s.fields = {}
@@ -171,14 +144,7 @@ class Submission(TXModel):
         for k, v in fields.items():
             s.fields[k] = v
 
-        try:
-            store.commit()
-        except Exception, e:
-            log.exception("[E]: %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_gus", submission_gus, "fields", fields )
-            store.rollback()
-            store.close()
-            raise SubmissionGenericError
-
+        store.commit()
         store.close()
 
     @transact
@@ -194,10 +160,10 @@ class Submission(TXModel):
         except NotOneError:
             # its not possible: is a primary key
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
         if requested_s is None:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
 
         store.commit()
         store.close()
@@ -213,10 +179,10 @@ class Submission(TXModel):
         except NotOneError:
             # its not possible: is a primary key
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
         if requested_s is None:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
 
         statusDict = requested_s._description_dict()
 
@@ -247,10 +213,10 @@ class Submission(TXModel):
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
         if requested_s is None:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
 
         requested_s.real_receipt = self._receipt_evaluation(proposed_receipt)
 
@@ -270,10 +236,10 @@ class Submission(TXModel):
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
         if requested_s is None:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
 
         log.debug("Creating internal tip in", requested_s.context_gus, requested_s.submission_gus)
 
@@ -291,13 +257,7 @@ class Submission(TXModel):
             selected_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
             internal_tip.associate_receiver(selected_r)
 
-        try:
-            store.add(internal_tip)
-        except Exception, e:
-            log.err(e)
-            store.rollback()
-            store.close()
-            raise SubmissionGenericError
+        store.add(internal_tip)
 
         log.debug("Created internal tip %s" % internal_tip.context_gus)
 
@@ -353,10 +313,10 @@ class Submission(TXModel):
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
         if requested_s is None:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
 
         store.remove(requested_s)
         store.commit()
@@ -377,10 +337,10 @@ class Submission(TXModel):
             requested_s = store.find(Submission, Submission.submission_gus == submission_gus).one()
         except NotOneError:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
         if requested_s is None:
             store.close()
-            raise SubmissionNotFoundError
+            raise SubmissionGusNotFound
 
         retSubmission = requested_s._description_dict()
 
@@ -396,6 +356,15 @@ class Submission(TXModel):
     # called by a transact method, return
     def _description_dict(self):
 
-
+        descriptionDict = {
+            'submission_gus': self.submission_gus,
+            'fields' : self.fields,
+            'context_gus' : self.context_gus,
+            'creation_time' : gltime.prettyDateTime(self.creation_time),
+            'expiration_time' : gltime.prettyDateTime(self.expiration_time),
+            'receiver_gus_list' : self.receivers_gus_list,
+            'file_gus_list' : self.folder_gus,
+            'real_receipt' : self.real_receipt
+        }
 
         return descriptionDict
