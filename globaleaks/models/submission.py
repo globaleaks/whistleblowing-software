@@ -396,15 +396,6 @@ class Submission(TXModel):
     # called by a transact method, return
     def _description_dict(self):
 
-        descriptionDict = {
-            'submission_gus': self.submission_gus,
-            'fields' : self.fields,
-            'context_gus' : self.context_gus,
-            'creation_time' : gltime.prettyDateTime(self.creation_time),
-            'expiration_time' : gltime.prettyDateTime(self.expiration_time),
-            'receiver_gus_list' : self.receivers_gus_list,
-            'file_gus_list' : self.folder_gus,
-            'real_receipt' : self.real_receipt
-        }
+
 
         return descriptionDict

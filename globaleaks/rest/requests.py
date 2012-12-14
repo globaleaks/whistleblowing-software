@@ -7,8 +7,21 @@
 # These specifications may be used with rest.validateMessage() inside of the
 # handler to verify if the request is correct.
 
-from globaleaks.rest.base import GLTypes
+from globaleaks.rest.base import submissionGUS, GLTypes, formFieldsDict, contextGUS, timeType, receiverGUS, fileGUS
 from globaleaks.rest import base
+
+class wbSubmissionDesc(GLTypes):
+
+    specification = {
+        'submission_gus': submissionGUS,
+        'fields' : [ formFieldsDict ],
+        'context_gus' : contextGUS,
+        'creation_time' : timeType,
+        'expiration_time' : timeType,
+        'receiver_gus_list' : [ receiverGUS ],
+        'file_gus_list' : [ fileGUS ],
+        'real_receipt' : unicode
+    }
 
 
 
