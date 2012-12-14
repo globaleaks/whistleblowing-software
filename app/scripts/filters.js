@@ -21,5 +21,3 @@ angular.module('GLClientFilters', []).
     }
 });
 
-
-

@@ -8,18 +8,26 @@ var GLClient = angular.module('GLClient', ['ui', 'resourceServices',
         templateUrl: 'views/home.html',
         controller: 'PageCtrl'
       }).
+
+
       when('/about', {
         templateUrl: 'views/about.html',
         controller: 'PageCtrl',
       }).
+
+
       when('/submission', {
         templateUrl: 'views/submission.html',
         controller: 'SubmissionCtrl',
       }).
+
+
       when('/status/:receipt_id', {
         templateUrl: 'views/status.html',
         controller: 'StatusCtrl',
       }).
+
+
       when('/receiver/:token', {
         templateUrl: 'views/receiver/main.html',
         controller: 'ReceiverCtrl',
@@ -32,6 +40,8 @@ var GLClient = angular.module('GLClient', ['ui', 'resourceServices',
         templateUrl: 'views/receiver/list.html',
         controller: 'ReceiverCtrl'
       }).
+
+
       when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
@@ -48,6 +58,8 @@ var GLClient = angular.module('GLClient', ['ui', 'resourceServices',
         templateUrl: 'views/admin/wizard.html',
         controller: 'AdminCtrl',
       }).
+
+
       otherwise({
         redirectTo: '/'
       })
