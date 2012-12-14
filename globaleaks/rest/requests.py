@@ -7,7 +7,8 @@
 # These specifications may be used with rest.validateMessage() inside of the
 # handler to verify if the request is correct.
 
-from globaleaks.rest.base import submissionGUS, GLTypes, formFieldsDict, contextGUS, timeType, receiverGUS, fileGUS
+from globaleaks.rest.base import submissionGUS, GLTypes, formFieldsDict, contextGUS,\
+    timeType, receiverGUS, fileGUS, profileGUS, tipGUS
 from globaleaks.rest import base
 
 class wbSubmissionDesc(GLTypes):
@@ -23,89 +24,120 @@ class wbSubmissionDesc(GLTypes):
         'real_receipt' : unicode
     }
 
+class receiverProfileDesc(GLTypes):
 
-
-## below the method not reviewed after the API refactor of December 2012
-## below the method not reviewed after the API refactor of December 2012
-## below the method not reviewed after the API refactor of December 2012
-class tipOperations(GLTypes):
-    """
-    T1 (POST) - receiver only
-    """
-    specification = {"personal_delete": bool,
-            "submission_delete": bool,
-            "escalate": bool}
-
-
-class sendComment(GLTypes):
-    """
-    T2 (POST)
-    """
-    # this is wrong, comment is expected just as text, and is returned
-    # with a commentDescriptionDict (inside there are some information that
-    # are gurantee by server, not written by client)
-    specification = {"comment": base.commentDescriptionDict}
-
-# T3 (files) -- not yet defined
-
-
-class finalizeIntegration(GLTypes):
-    """
-    T4 (POST - finalize Folder upload)
-    """
-    specification = {"folder_name": unicode,
-            "folder_description": unicode}
-
-
-class receiverOptions(GLTypes):
-    """
-    R2 (CURD)
-    """
-    specification = {"module": base.moduleDataDict}
-
-
-class nodeAdminSetup(GLTypes):
-    """
-    A1 (POST)
-    """
-    specification = {"name": unicode,
-            "admin_statistics_ratio": int,
-            "public_statistics_ratio": int,
-            "node_properties": base.nodePropertiesDict,
-
-            "node_description": unicode,
-            # GLT.localizationDict() )
-            # XXX may exists different description fields, like "about us"
-            # "privacy policy" and the other in the footer
-            # also logo upload need to be handled
-
-            "public_site": unicode,
-            "hidden_service": unicode,
-            "url_schema": unicode,
-
-            "do_leakdirectory_update": bool,
-            "new_admin_password": unicode
+    specification = {
+        'receiver_gus' : receiverGUS,
+        'active' : bool,
+        'config_id' : int,
+        'receiver_fields' : unicode,
+        'profile_gus' : profileGUS
     }
 
+class receiverReceiverDesc(GLTypes):
 
-class contextConfiguration(GLTypes):
-    """
-    A2 (CURD)
-    """
-    specification = {"context": base.contextDescriptionDict}
+    specification =  {
+        'receiver_gus' : receiverGUS,
+        'name' : unicode,
+        'description' : unicode,
+        'tags': unicode,
+        'know_languages' : unicode,
+        'creation_date' : timeType,
+        'update_date' : timeType,
+        'last_access' : timeType,
+        'context_gus_list' : [ contextGUS ],
+        'receiver_level' : int,
+        'can_delete_submission' : bool,
+        'can_postpone_expiration' : bool,
+        'can_configure_delivery' : bool,
+        'can_configure_notification' : bool
+    }
 
+class receiverTipDesc(GLTypes):
 
-class receiverConfiguration(GLTypes):
-    """
-    A3 (CURD)
-    """
-    specification = {"receiver": base.receiverDescriptionDict}
+    specification = {
+        'tip_gus' : tipGUS,
+        'notification_status' : unicode,
+        'notification_date' : timeType,
+        'last_access' : timeType,
+        'access_counter' : int,
+        'expressed_pertinence': int,
+        'authoptions' : unicode,
+    }
 
+class actorsCommentDesc(GLTypes):
 
-class moduleConfiguration(GLTypes):
-    """
-    A4 (POST)
-    """
-    specification = {"module": base.moduleDataDict}
+    specification = {
+        'source' : unicode,
+        'content' : unicode,
+        'author' : unicode,
+        'notification_status': unicode, # To be specified
+        'creation_time' : timeType
+    }
 
+class adminNodeDesc(GLTypes):
 
+    specification = {
+        'name': unicode,
+        'description' : unicode,
+        'hidden_service' : unicode,
+        'public_site' : unicode,
+        'leakdirectory_entry': unicode,
+        'public_stats_delta' : int,
+        'private_stats_delta' : int,
+        'authoptions' : unicode,
+    }
+
+class adminContextDesc(GLTypes):
+
+    specification = {
+        'context_gus': contextGUS,
+        'name': unicode,
+        'description': unicode,
+        'selectable_receiver': bool,
+        'languages_supported': unicode,
+        'tip_max_access' : int,
+        'tip_timetolive' : int,
+        'folder_max_download' : int,
+        'escalation_threshold' : int,
+        'fields': [ formFieldsDict ]
+    }
+
+class adminReceiverDesc(GLTypes):
+
+    specification =  {
+        'receiver_gus' : receiverGUS,
+        'name' : unicode,
+        'description' : unicode,
+        'tags': unicode,
+        'know_languages' : unicode,
+        'creation_date' : timeType,
+        'update_date' : timeType,
+        'last_access' : timeType,
+        'context_gus_list' : [ contextGUS ],
+        'receiver_level' : int,
+        'can_delete_submission' : bool,
+        'can_postpone_expiration' : bool,
+        'can_configure_delivery' : bool,
+        'can_configure_notification' : bool
+    }
+
+class adminPluginDesc(GLTypes):
+
+    specification = {
+        'plugin_type': unicode,
+        'plugin_name' : unicode,
+        'description' : unicode,
+    }
+
+class adminProfileDesc(GLTypes):
+
+    specification = {
+        'plugin_type': unicode, # profileENUM
+        'plugin_name' : unicode,
+        'profile_gus' : profileGUS,
+        'creation_time' : timeType,
+        'profile_name' : unicode,
+        'profile_description' : unicode,
+        'admin_fields' : [ formFieldsDict ]
+    }

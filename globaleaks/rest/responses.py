@@ -9,6 +9,26 @@
 
 from globaleaks.rest.base import GLTypes
 
+# All the REST interface SHARE the same structures between response and request
+# and the generate_docs.py script check in responses.py and requests.py
+# To avoid code duplication, here follow the classes duplicated.
+# responses.py copy from requests.py:
+
+from globaleaks.rest.requests import wbSubmissionDesc
+from globaleaks.rest.requests import receiverProfileDesc
+from globaleaks.rest.requests import receiverReceiverDesc
+from globaleaks.rest.requests import receiverTipDesc
+from globaleaks.rest.requests import actorsCommentDesc
+from globaleaks.rest.requests import adminContextDesc
+from globaleaks.rest.requests import adminReceiverDesc
+from globaleaks.rest.requests import adminPluginDesc
+from globaleaks.rest.requests import adminProfileDesc
+
+
+
+# -------------------------------------------------------
+# Here start the definition of the Response-only messages
+
 class publicStatsElement(GLTypes):
     """
     Public statistic, just information that would be useful to the
@@ -45,121 +65,70 @@ class adminStatsElement(GLTypes):
         'comments' : int
     }
 
+class publicNodeDesc(GLTypes):
+
+    specification = {
+        'name': unicode,
+        'description' : unicode,
+        'hidden_service' : unicode,
+        'public_site' : unicode,
+        'leakdirectory_entry': unicode,
+        'public_stats_delta' : int
+    }
+
+
 class adminStatsList(GLTypes):
 
     specification = {
         'admin_stats' : [ adminStatsElement ]
     }
 
+class receiverProfileList(GLTypes):
+
+    specification = {
+        'receiver_profiles': [ receiverProfileDesc ]
+    }
+
+class receiverTipList(GLTypes):
+
+    specification = {
+        'tips' : [ receiverTipDesc ]
+    }
+
+class actorsCommentList(GLTypes):
+
+    specification = {
+        'comments' : [ actorsCommentDesc ]
+    }
+
+class actorsReceiverList(GLTypes):
+
+    specification = {
+        'receivers' : [ receiverReceiverDesc ]
+    }
+
+class adminReceiverList(GLTypes):
+
+    specification = {
+        'receivers' : [ adminReceiverDesc ]
+    }
+
+class adminContextList(GLTypes):
+
+    specification = {
+        'contexts' : [ adminContextDesc ]
+    }
+
+class adminPluginList(GLTypes):
+
+    specification = {
+        'plugins' : [ adminPluginDesc ]
+    }
+
+class adminProfileList(GLTypes):
+
+    specification = {
+        'profiles' : [ adminProfileDesc ]
+    }
 
 
-
-
-
-
-
-
-
-
-
-
-# All the REST interface SHARE the same structures between response and request
-# and the generate_docs.py script check in responses.py and requests.py
-# To avoid code duplication, here follow the classes duplicated.
-# responses.py copy from requests.py:
-
-from globaleaks.rest.requests import wbSubmissionDesc as imported_wbSubmissionDesc
-wbSubmissionDesc = imported_wbSubmissionDesc
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""
-adminNodeDesc
-
-        The two "_delta" variables, mean the minutes interval for collect statistics,
-        because the stats are collection of the node status made over periodic time,
-
-    'name': 'string',
-    'admin_statistics': '$adminStatisticsDict',
-    'public_stats': '$publicStatisticsDict,
-    'node_properties': '$nodePropertiesDict',
-    'contexts': [ '$contextDescriptionDict', { }, ],
-    'node_description': '$localizationDict',
-    'public_site': 'string',
-    'hidden_service': 'string',
-    'url_schema': 'string'
-
-
-adminContextDesc
-   {
-    "context_gus": "context_gus"
-    "name": "string"
-    "context_description": "string"
-    "creation_date": "time"
-    "update_date": "time"
-    "fields": [ formFieldsDict ]
-    "SelectableReceiver": "bool"
-    "receivers": [ receiverDescriptionDict ]
-    "escalation_threshold": "int"
-    "LanguageSupported": [ "string" ]
-   }
-
-adminContextList
-
-publicContextDesc
-   {
-    "context_gus": "context_gus"
-    "name": "string"
-    "context_description": "string"
-    "creation_date": "time"
-    "update_date": "time"
-    "fields": [ formFieldsDict ]
-    "SelectableReceiver": "bool"
-    "receivers": [ receiverDescriptionDict ]
-    "escalation_threshold": "int"
-    "LanguageSupported": [ "string" ]
-   }
-
-adminReceiverList
-
-
-publicReceiverDesc
-
-adminReceiverDesc
-
-
-adminPluginList
-
-
-"""
