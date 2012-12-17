@@ -38,6 +38,7 @@ angular.module('resourceServices', ['ngResource']).
 angular.module('localeServices', ['resourceServices']).
   factory('localization', function(Node){
     var localization = {};
+    localization.languages = {'en': "English", 'it': "Italiano"};
 
     if (!localization.node_info) {
       // We set this to the parent scope that that we don't have to make this

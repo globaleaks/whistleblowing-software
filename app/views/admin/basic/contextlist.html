@@ -1,5 +1,5 @@
 <div class="row" ng-controller="AdminContextsCtrl">
-  <div class="span5 adminContexts">
+  <div class="span9 adminContexts">
     <h2>Contexts</h2>
     <table class="table table-striped">
       <thead>
@@ -22,12 +22,13 @@
                 ng-model="context.description">context.description}}</textarea>
           </td>
           <td>
-
-            <!-- <select multiple ui-select2 style="width: 200px"> -->
-            <!--   <option -->
-            <!--     ng-repeat="receiver in adminReceivers" -->
-            <!--     value="{{receiver.gus}}">{{receiver.name}}</option> -->
-            <!-- </select> -->
+            {{context.receivers}}
+            <select multiple ui-select2 style="width: 200px"
+              ng-model="context.receivers">
+              <option
+                ng-repeat="receiver in adminReceivers"
+                value="{{receiver.receiver_gus}}">{{receiver.name}}</option>
+            </select>
 
             <button class="btn btn-success"
               ng-disabled="!configForm.$dirty"
@@ -45,14 +46,6 @@
         </tr>
       </tbody>
     </table>
-  </div>
-  <div class="span4">
-    <p>
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-    tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-    veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-    </p>
-    <a href="XXX">Learn More</a>
   </div>
 </div>
 

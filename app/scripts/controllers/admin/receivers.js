@@ -2,25 +2,44 @@ GLClient.controller('AdminReceiversCtrl', ['$scope', 'localization',
                     'AdminReceivers',
 function($scope, localization, AdminReceivers) {
 
-  $scope.adminReceivers = AdminReceivers.query();
 
   $scope.new_receiver = function() {
     var receiver = new AdminReceivers;
 
-    receiver.notification_address = $scope.new_receiver_address;
     receiver.name = $scope.new_receiver_name;
     receiver.description = $scope.new_receiver_name;
 
-    receiver.fields = $scope.new_receiver_fields;
-    receiver.escalation_threshold =  42;
-    receiver.file_max_download = 42;
-    receiver.tip_max_access = 42;
-    receiver.selectable_receiver = true;
-    receiver.tip_timetolive = 42;
+    receiver.notification_selected = 'email';
+    receiver.notification_fields = '';
+
+    receiver.languages = ['en', 'it'];
+
+    // Under here go default settings
+    receiver.can_postpone_expiration = true;
+    receiver.can_configure_notification = true;
+    receiver.can_configure_delivery = true;
+    receiver.can_delete_submission = true;
+
+    receiver.delivery_selected = 'local';
+    receiver.delivery_fields = '';
+
+    receiver.receiver_level = 1;
+
+    receiver.tags = [];
+    receiver.contexts =  [];
 
     receiver.$save(function(created_receiver){
       $scope.adminReceivers.push(created_receiver);
     });
   }
+
+  $scope.delete_receiver = function(receiver) {
+    var idx = _.indexOf($scope.adminReceivers, receiver);
+    window.antanisblinda = $scope.adminReceivers;
+
+    receiver.$delete();
+    $scope.adminReceivers.splice(idx, 1);
+  }
+
 
 }]);
