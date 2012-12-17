@@ -105,7 +105,7 @@ spec = [
 
     ## Main Web app ##
     # * /
-    (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path} ),
+    (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path, 'default_filename': "index.html" } ),
 
     #  -------------- ADMIN DEBUG ONLY -------------------
     #  AA
