@@ -12,8 +12,6 @@ from globaleaks.rest.base import validateMessage
 from cyclone.web import RequestHandler, HTTPError
 from globaleaks.utils import log
 
-DEBUG = True
-
 class BaseHandler(RequestHandler):
     """
     BaseHandler is responsible for the verification and sanitization of

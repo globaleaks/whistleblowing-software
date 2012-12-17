@@ -21,10 +21,11 @@ class InvalidInputFormat(GLException):
     respected by the data body in the HTTP request.
     """
 
-    def __init__(self):
-        GLException.error_message = "invalid input format"
+    def __init__(self, wrong_source):
+        GLException.error_message = "Invalid Input Format [%s]" % wrong_source
         GLException.error_code = 10
         GLException.http_status = 406 # Not Acceptable
+
 
 class StatsNotCollectedError(GLException):
     """
@@ -33,7 +34,7 @@ class StatsNotCollectedError(GLException):
     """
 
     def __init__(self):
-        GLException.error_message = "statistics disabled"
+        GLException.error_message = "Statistics Disabled"
         GLException.error_code = 11
         GLException.http_status = 500 # Internal Server Error
 

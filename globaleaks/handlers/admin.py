@@ -179,7 +179,10 @@ class ContextInstance(BaseHandler):
             context_iface = context.Context()
 
             yield context_iface.update(context_gus, request)
-            yield self.get(context_gus)
+            context_description = yield context_iface.admin_get_single(context_gus)
+
+            self.set_status(200)
+            self.write(context_description)
 
         except InvalidInputFormat, e:
 
@@ -263,7 +266,7 @@ class ReceiversCollection(BaseHandler):
         """
 
         try:
-            request = validateMessage(self.request.body, requests.adminContextDesc)
+            request = validateMessage(self.request.body, requests.adminReceiverDesc)
 
             receiver_iface = receiver.Receiver()
             new_receiver_gus = yield receiver_iface.new(request)
@@ -334,7 +337,7 @@ class ReceiverInstance(BaseHandler):
 
         try:
             # TODO parameter validation - InvalidInputFormat
-            request = validateMessage(self.request.body, requests.adminContextDesc)
+            request = validateMessage(self.request.body, requests.adminReceiverDesc)
 
             receiver_iface = receiver.Receiver()
 

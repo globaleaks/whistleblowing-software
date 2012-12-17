@@ -62,7 +62,7 @@ class publicContextDesc(GLTypes):
         'description' : unicode,
         'fields' : [ formFieldsDict ],
         'selectable_receiver': bool,
-        'languages_supported': unicode,
+        'languages_supported': list,
         'tip_timetolive' : int,
         'creation_date' : timeType,
         'update_date' : timeType
