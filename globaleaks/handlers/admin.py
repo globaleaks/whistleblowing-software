@@ -15,6 +15,8 @@ from globaleaks.utils import log
 from globaleaks.plugins.base import GLPluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
     NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict
+from globaleaks.rest.base import validateMessage
+from globaleaks.rest import requests
 
 class NodeInstance(BaseHandler):
     """
@@ -95,11 +97,20 @@ class ContextsCollection(BaseHandler):
         Response: adminContextList
         Errors: None
         """
-        pass
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "GET")
+
+        context_iface = context.Context()
+        all_contexts = yield context_iface.admin_get_all()
+
+        self.set_status(200)
+        # TODO output filter would include JSON inside of the method
+        self.write(json.dumps(all_contexts))
+        self.finish()
+
 
     @asynchronous
     @inlineCallbacks
-    def post(self, context_gus, *uriargs):
+    def post(self, *uriargs):
         """
         Request: adminContextDesc
         Response: adminContextDesc
@@ -108,29 +119,24 @@ class ContextsCollection(BaseHandler):
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "POST")
 
-        request = json.loads(self.request.body)
+        context_iface = context.Context()
+        try:
 
-        if not request:
-            # holy fucking sick atheist god
-            # no validation at the moment.
-            self.write(__file__)
-            self.set_status(406)
-            self.write('error message to be managed using the appropriate format')
-            self.finish()
+            request = validateMessage(self.request.body, requests.adminContextDesc)
+            new_context_gus = yield context_iface.new(request)
 
-        else:
-            context_iface = context.Context()
+            context_description = yield context_iface.admin_get_single(new_context_gus)
 
-            try:
-                yield context_iface.update(context_gus, request)
-                yield self.get(context_gus)
+            self.set_status(201) # Created
+            self.write(context_description)
 
-            # REFACTOR TODO
-            except ContextGusNotFound, e:
+        except InvalidInputFormat, e:
 
-                self.set_status(e.http_status)
-                self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-                self.finish()
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
 
 
 class ContextInstance(BaseHandler):
@@ -186,12 +192,11 @@ class ContextInstance(BaseHandler):
 
         context_iface = context.Context()
 
-        # XXX detect which operation can fail, and eventually make an appropriate
-        # exception, with the logic used in self.post
-        new_context_gus = yield context_iface.new(request)
+        yield context_iface.update(context_gus, request)
+        yield self.get(context_gus)
 
-        # return value as GET
-        yield self.get(new_context_gus)
+        self.finish()
+
 
 
     @asynchronous
