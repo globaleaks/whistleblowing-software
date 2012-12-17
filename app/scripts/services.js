@@ -1,17 +1,6 @@
-var baseUrl = 'http://127.0.0.1:8082';
-
 angular.module('resourceServices', ['ngResource']).
-  factory('Node', function($resource) {
-    // XXX this is a quite dirty
-    // we probably want to subclass $resource
-    var url = '/node';
-    if (baseUrl) {
-      url = baseUrl + url;
-    }
-
-    return $resource(url, {}, {
-      info: {method: 'GET', url: '/node'}
-    });
+  factory('Node', function($http, $resource) {
+    return $resource('/node');
 }).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
@@ -19,56 +8,32 @@ angular.module('resourceServices', ['ngResource']).
     // This is a factory function responsible for creating functions related
     // to the creation of submissions
 
-    var url = '/submission';
-    if (baseUrl) {
-      url = baseUrl + url;
-    }
-
-    return $resource(url);
+    return $resource('/submission');
 }).
   factory('Tip', function($resource) {
-    var url = '/tip';
-    if (baseUrl) {
-      url = baseUrl + url;
-    }
-
-    return $resource(url + '/:tip_id/',
+    return $resource('/tip/:tip_id/',
         {tip_id: '@tip_id'}, {
     });
 }).
   factory('AdminNode', function($resource) {
-    var url = '/admin/node';
-    if (baseUrl) {
-      url = baseUrl + url;
-    }
-
-    return $resource(url);
+    return $resource('/admin/node');
 }).
   factory('AdminContexts', function($resource) {
-    var url = '/admin/contexts';
-    if (baseUrl) {
-      url = baseUrl + url;
-    }
-
-    return $resource(url);
+    return $resource('/admin/context/:context_id',
+      {context_id: '@context_gus'},
+      {
+        update:
+          {method: 'PUT'}
+      });
 }).
   factory('AdminReceivers', function($resource) {
-    var url = '/admin/receivers';
-    if (baseUrl) {
-      url = baseUrl + url;
-    }
-
-    return $resource(url);
+    return $resource('/admin/receiver');
 }).
   factory('AdminModules', function($resource) {
-    var url = '/admin/modules';
-    if (baseUrl) {
-      url = baseUrl + url;
-    }
-
-    return $resource(url + '/:module_type',
+    return $resource(url + '/admin/module/:module_type',
       {module_type: '@module_type'});
 });
+
 
 angular.module('localeServices', ['resourceServices']).
   factory('localization', function(Node){
@@ -77,7 +42,7 @@ angular.module('localeServices', ['resourceServices']).
     if (!localization.node_info) {
       // We set this to the parent scope that that we don't have to make this
       // request again later.
-      var node_info = Node.info(function() {
+      var node_info = Node.get(function() {
         // Here are functions that are specific to language localization. They
         // are somwhat hackish and I am sure there is a javascript ninja way of
         // doing them.

@@ -467,21 +467,6 @@ GLClientDev.run(function($httpBackend) {
     return [200, data];
   });
 
-  // * /admin/receiver A5
-  $httpBackend.whenGET('/admin/receiver').
-    respond(function(method, url, data){
-    console.log("GET /admin/receiver");
-    var response = {};
-    return [200, response];
-  });
-
-  $httpBackend.whenPOST('/admin/receiver').
-    respond(function(method, url, data){
-    console.log("POST /admin/receiver");
-    var response = {};
-    return [200, response];
-  });
-
   // * /admin/plugins A6
   $httpBackend.whenGET('/admin/plugins').
     respond(function(method, url, data){
