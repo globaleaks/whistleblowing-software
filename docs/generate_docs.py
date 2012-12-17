@@ -31,8 +31,7 @@ def shooter_list_dump():
         for k,v in URTA_map.iteritems():
             print k,"\t",v
 
-        f.write()
-
+        f.write('xxx')
 
 
 def pop_URTA(descriptionstring):
@@ -72,8 +71,8 @@ def fill_doctree():
             quit()
 
         # URTA_combo is an array of ( URTA, description )
-        URTA_map.update({ resource[0] : URTA_combo  })
-        doctree.update({resource[0]: {} })
+        URTA_map.update({ resource[0] : URTA_combo })
+        doctree.update({ resource[0]: {} })
 
         handler_child = {}
         for method in ['get', 'post', 'put', 'delete']:
@@ -154,14 +153,27 @@ def travel_over_tree(wikidoc, URTAindex=None):
 
 def create_spec(rec, spec):
     doc = ""
-    for k, v in spec.items():
-        if type(v) == type([]):
 
-            doc += "list %s" % k
-        else:
-            doc += k + "\n"
-            doc += "%s\n" % handle_klass_entry(rec + 1, v)
-        # doc += "    %s: %s\n" % (k, v)
+    if type(spec) == type([]):
+
+        this_rec = rec + 1
+        for element in spec:
+            doc += "is List of elements:\n"
+            doc += create_spec(this_rec, element)
+
+    elif type(spec) == type({}):
+
+        for k, v in spec.items():
+            if type(v) == type([]):
+                doc += "list %s" % k
+            else:
+                doc += k + "\n"
+                doc += "%s\n" % handle_klass_entry(rec + 1, v)
+                # doc += "    %s: %s\n" % (k, v)
+    else:
+
+        doc += "\ndoc of a type: %s" % spec
+
     return doc
 
 def create_class_doc(rec, klass):
@@ -257,9 +269,8 @@ class reStructuredText:
         else:
             for name, klass in inspect.getmembers(responses, inspect.isclass):
                 if name == responame:
-                    print "responses match", name
-                    import pdb
-                    pdb.set_trace()
+                    #import pdb
+                    #pdb.set_trace()
                     typedesc = handle_klass_entry(1, klass)
                     break
 

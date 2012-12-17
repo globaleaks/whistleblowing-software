@@ -41,7 +41,7 @@ class receiverReceiverDesc(GLTypes):
         'name' : unicode,
         'description' : unicode,
         'tags': unicode,
-        'know_languages' : unicode,
+        'know_languages' : list,
         'creation_date' : timeType,
         'update_date' : timeType,
         'last_access' : timeType,
@@ -75,6 +75,13 @@ class actorsCommentDesc(GLTypes):
         'creation_time' : timeType
     }
 
+class actorsTipOpsDesc(GLTypes):
+
+    specification = {
+        'personal_delete' : bool,
+        'is_pertinent': bool
+    }
+
 class adminNodeDesc(GLTypes):
 
     specification = {
@@ -98,7 +105,7 @@ class adminContextDesc(GLTypes):
         'languages_supported': unicode,
         'tip_max_access' : int,
         'tip_timetolive' : int,
-        'folder_max_download' : int,
+        'file_max_download' : int,
         'escalation_threshold' : int,
         'fields': [ formFieldsDict ]
     }

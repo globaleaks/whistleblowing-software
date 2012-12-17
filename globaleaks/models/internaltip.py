@@ -43,7 +43,9 @@ class InternalTip(TXModel):
     last_activity = DateTime()
 
     # the LIMITS are defined and declared *here*, and track in
-    # ReceiverTip (access) and Folders (download, if delivery supports)
+    # ReceiverTip (access) and Folders (download, if delivery supports).
+    # *Here*, because the values are copied by Context.* but Admin can modify them,
+    # if needed.
     access_limit = Int()
     download_limit = Int()
 

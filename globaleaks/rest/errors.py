@@ -179,5 +179,14 @@ class PluginNameNotFound(GLException):
         GLException.error_code = 23
         GLException.http_status = 401 # Unauthorized
 
+class ForbiddenOperation(GLException):
+    """
+    Receiver or Whistleblower has tried one operation not permitted by their privileges
+    """
+
+    def __init__(self):
+        GLException.error_code = "Operation Forbidden"
+        GLException.error_code = 24
+        GLException.http_status = 401 # Unauthorized
 
 
