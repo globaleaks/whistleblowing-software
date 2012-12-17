@@ -9,11 +9,45 @@ basePath = '';
 files = [
   JASMINE,
   JASMINE_ADAPTER,
+  //'app/scripts/*.js',
+  //'app/scripts/**/*.js',
+
+  'app/scripts/vendor/jquery.js',
+  'app/scripts/vendor/bootstrap.js',
+  'app/scripts/vendor/underscore.js',
+
+  'app/scripts/vendor/jquery.ui.js',
+  'app/scripts/vendor/jquery.fileupload.js',
+  'app/scripts/vendor/jquery.fileupload-fp.js',
+  'app/scripts/vendor/jquery.fileupload-ui.js',
+
+  'app/scripts/vendor/select2/select2.js',
+
   'app/scripts/vendor/angular.js',
-  'test/vendor/angular-mocks.js',
-  'app/scripts/*.js',
-  'app/scripts/**/*.js',
-  'test/mock/**/*.js',
+  'app/scripts/vendor/angular-resource.js',
+  'app/scripts/vendor/angular-mocks.js',
+  'app/scripts/vendor/angular-ui.js',
+
+  'app/scripts/services.js',
+
+  'app/scripts/app.js',
+  'app/scripts/ui.js',
+  'app/scripts/filters.js',
+
+  'app/scripts/controllers/wizard.js',
+  'app/scripts/controllers/latenza.js',
+  'app/scripts/controllers/main.js',
+
+  'app/scripts/controllers/page.js',
+  'app/scripts/controllers/status.js',
+
+  'app/scripts/controllers/admin/main.js',
+  'app/scripts/controllers/admin/receivers.js',
+  'app/scripts/controllers/admin/contexts.js',
+
+  'app/scripts/controllers/submission.js',
+  'app/scripts/controllers/formbuilder.js',
+
   'test/spec/**/*.js'
 ];
 
