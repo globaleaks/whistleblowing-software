@@ -16,6 +16,7 @@ from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, profileGUS, su
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'
 receiver_token_auth = r'(\w+)' # This would cover regexp.tip_gus | regexp.welcome_token_gus
+wb_receipt = r'(\w+)'
 
 # Here is mapped a path and the associated class to be invoked,
 # Two kind of Classes:
@@ -41,7 +42,7 @@ spec = [
     (r'/submission/' + submissionGUS.regexp, submission.SubmissionInstance),
 
     #  U4
-    (r'/file/', files.FileInstance),
+    (r'/submission/' + submissionGUS.regexp + '/file', files.FileInstance),
 
     #  U5
     (r'/statistics', node.StatsCollection),
@@ -61,6 +62,9 @@ spec = [
 
     #  T3
     (r'/tip/' + tip_access_token + r'/receivers', tip.TipReceiversCollection),
+
+    #  T4 = only the whistlebower can access to this interface, then the regexp match properly
+    (r'/tip/' + wb_receipt + '/file', files.FileInstance),
 
     ## Receiver Handlers ##
     #  R1

@@ -14,14 +14,12 @@ from globaleaks.rest.base import GLTypes, formFieldsDict, timeType
 # To avoid code duplication, here follow the classes duplicated.
 # responses.py copy from requests.py:
 
-from globaleaks.rest.requests import wbSubmissionDesc
 from globaleaks.rest.requests import receiverProfileDesc
 from globaleaks.rest.requests import receiverReceiverDesc
 from globaleaks.rest.requests import receiverTipDesc
 from globaleaks.rest.requests import actorsCommentDesc
 from globaleaks.rest.requests import adminContextDesc
 from globaleaks.rest.requests import adminReceiverDesc
-from globaleaks.rest.requests import adminPluginDesc
 from globaleaks.rest.requests import adminProfileDesc
 
 
@@ -62,7 +60,7 @@ class publicContextDesc(GLTypes):
         'description' : unicode,
         'fields' : [ formFieldsDict ],
         'selectable_receiver': bool,
-        'languages_supported': list,
+        'languages': list,
         'tip_timetolive' : int,
         'creation_date' : timeType,
         'update_date' : timeType
@@ -74,7 +72,7 @@ class publicReceiverDesc(GLTypes):
         'name' : unicode,
         'description' : unicode,
         'tags' : unicode,
-        'know_languages' : unicode
+        'languages' : unicode
     }
 
 class publicReceiverList(GLTypes):
@@ -142,6 +140,15 @@ class adminReceiverList(GLTypes):
 class adminContextList(GLTypes):
 
     specification =  [ adminContextDesc ]
+
+class adminPluginDesc(GLTypes):
+
+    specification = {
+        'plugin_type': unicode,
+        'plugin_name' : unicode,
+        'description' : unicode,
+        }
+
 
 class adminPluginList(GLTypes):
 
