@@ -236,6 +236,8 @@ class ReceiversCollection(BaseHandler):
     List all available receivers present in the node.
     """
 
+    @asynchronous
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -307,7 +309,6 @@ class ReceiverInstance(BaseHandler):
         """
 
         try:
-
             # TODO parameter validation - InvalidInputFormat
             receiver_iface = receiver.Receiver()
 
@@ -394,6 +395,8 @@ class PluginCollection(BaseHandler):
     univoque name) available on the system.
     """
 
+    @asynchronous
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -411,6 +414,8 @@ class ProfileCollection(BaseHandler):
     GET|POST /admin/plugin/<plugin_name>/profile
     """
 
+    @asynchronous
+    @inlineCallbacks
     def get(self, plugin_name, *uriargs):
         """
         Parameters: None
@@ -586,6 +591,8 @@ class StatisticsCollection(BaseHandler):
     Return all administrative statistics of the node.
     """
 
+    @asynchronous
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None

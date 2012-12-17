@@ -12,7 +12,7 @@ from storm.locals import Int, Pickle, Date, Unicode, Bool
 from globaleaks.models.context import Context
 from globaleaks.models.base import TXModel
 from globaleaks.utils import log, idops, gltime
-from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound
+from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound, InvalidInputFormat
 
 __all__ = ['Receiver']
 
@@ -59,11 +59,10 @@ class Receiver(TXModel):
     # this for keeping the same feature of GL 0.1
     secret = Unicode()
 
-    context_gus_list = Pickle()
+    contexts = Pickle()
 
     @transact
     def count(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "count")
         store = self.getStore('receiver count')
         receiver_count = store.find(Receiver).count()
         store.commit()
@@ -80,27 +79,31 @@ class Receiver(TXModel):
         One that want review the whistles blowed documents. It's a sort of
         transparency baptism: here you get your GlobaLeaks Unique String, sir!
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Receiver new", receiver_dict)
 
         store = self.getStore('receiver new')
 
         thaman = Receiver()
 
-        thaman._import_dict(receiver_dict)
+        try:
+            thaman._import_dict(receiver_dict)
+        except KeyError:
+            store.close()
+            raise InvalidInputFormat("Error near the Storm")
+
         thaman.receiver_gus = idops.random_receiver_gus()
 
         thaman.creation_date = gltime.utcDateNow()
         thaman.update_date = gltime.utcDateNow()
         # last_access is not initialized
 
-        thaman.context_gus_list = []
+        thaman.contexts = []
         context_iface = Context()
 
         # every context need to be checked here
-        for c in receiver_dict['context_gus_list']:
+        for c in receiver_dict['contexts']:
 
             if context_iface.exists(c):
-                thaman.context_gus_list.append(c)
+                thaman.contexts.append(c)
             else:
                 store.close()
                 raise ContextGusNotFound
@@ -110,7 +113,7 @@ class Receiver(TXModel):
         store.close()
 
         # update contexts where needed
-        for c in receiver_dict['context_gus_list']:
+        for c in receiver_dict['contexts']:
             context_iface.update_languages(c)
 
         return thaman.receiver_gus
@@ -123,7 +126,6 @@ class Receiver(TXModel):
         may edit more elements than the next method (self_update)
         the dict need to be already validated
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "admin_update", receiver_gus)
 
         store = self.getStore('receiver admin_update')
 
@@ -137,19 +139,24 @@ class Receiver(TXModel):
             store.close()
             raise ReceiverGusNotFound
 
-        requested_r._import_dict(receiver_dict)
+        try:
+            requested_r._import_dict(receiver_dict)
+        except KeyError:
+            store.close()
+            raise InvalidInputFormat("Error near the Storm")
+
         requested_r.update_date = gltime.utcDateNow()
 
         context_iface = Context()
 
         # actual receiver list is zeroed and rewritten.
-        requested_r.context_gus_list = []
+        requested_r.contexts = []
         # every context need to be checked here, it do not exist: "Bad Request"
-        for c in receiver_dict['context_gus_list']:
+        for c in receiver_dict['contexts']:
 
             context_exists = context_iface.exists(c)
             if context_exists:
-                requested_r.context_gus_list.append(c)
+                requested_r.contexts.append(c)
             else:
                 store.rollback()
                 store.close()
@@ -159,7 +166,7 @@ class Receiver(TXModel):
         store.close()
 
         # all the contexts would be updated in some aspects
-        for c in receiver_dict['context_gus_list']:
+        for c in receiver_dict['contexts']:
             context_iface.update_languages(c)
 
 
@@ -175,7 +182,6 @@ class Receiver(TXModel):
         """
         @return a receiverDescriptionDict
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "admin_get_single", receiver_gus)
 
         store = self.getStore('receiver - admin_get_single')
 
@@ -197,7 +203,6 @@ class Receiver(TXModel):
 
     @transact
     def admin_get_all(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "admin_get_all")
 
         store = self.getStore('receiver - admin_get_all')
 
@@ -213,21 +218,17 @@ class Receiver(TXModel):
 
     @transact
     def public_get_single(self, receiver_gus):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "public_get_single", receiver_gus)
-        pass
+        raise Exception("not implemented")
 
     @transact
     def public_get_all(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Receiver", "public_get_all")
-        pass
+        raise Exception("not implemented")
 
     @transact
     def receiver_delete(self, receiver_gus):
         """
         Delete a receiver, or raise an exception if do not exist
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Receiver delete of", receiver_gus)
-
         store = self.getStore('receiver delete')
 
         try:
@@ -256,14 +257,14 @@ class Receiver(TXModel):
         """
         store = self.getStore('receiver unlink_context')
 
-        # same consideration of Context.get_receivers: probabily there are a more
+        # same consideration of Context.get_receivers: probably there are a more
         # efficient selection query, for search a context_gus in a list
         results = store.find(Receiver)
 
         unassigned_count = 0
         for r in results:
-            if context_gus in r.context_gus_list:
-                r.context_gus_list.remove(context_gus)
+            if context_gus in r.contexts:
+                r.contexts.remove(context_gus)
                 unassigned_count += 1
 
         store.commit()
@@ -304,8 +305,8 @@ class Receiver(TXModel):
             'receiver_gus' : self.receiver_gus,
             'name' : self.name,
             'description' : self.description,
-            'tags = receiver':self.tags,
-            'know_languages' : self.know_languages,
+            'tags' : self.tags if self.tags else [],
+            'languages' : self.know_languages if self.know_languages else [],
             'notification_selected' : self.notification_selected,
             'notification_fields' : self.notification_fields,
             'delivery_selected' :  self.delivery_selected,
@@ -313,7 +314,7 @@ class Receiver(TXModel):
             'creation_date' : gltime.prettyDateTime(self.creation_date),
             'update_date' : gltime.prettyDateTime(self.update_date),
             'last_access' : gltime.prettyDateTime(self.last_access),
-            'context_gus_list' : self.context_gus_list,
+            'contexts' : self.contexts if self.contexts else [],
             'receiver_level' : self.receiver_level,
             'can_delete_submission' : self.can_delete_submission,
             'can_postpone_expiration' : self.can_postpone_expiration,

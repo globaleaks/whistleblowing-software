@@ -83,7 +83,8 @@ class Context(TXModel):
             raise InvalidInputFormat("Import failed near the Storm")
 
         # context.languages_supported = context_dict["languages_supported"]
-        # this is not taked by the dict, come from receivers declared knowledge
+        # this is not taked by the dict and maybe would be removed, because
+        # would simply became a node-wide properties
 
         # Receiver is associated with a Context, in Receiver.new or Receiver.admin_update
 
@@ -367,7 +368,7 @@ class Context(TXModel):
         store = self.getStore('context get_receivers')
 
         # I've made some experiment with https://storm.canonical.com/Manual#IN (in vain)
-        # the goal is search which context_gus is present in the Receiver.context_gus_list
+        # the goal is search which context_gus is present in the Receiver.contexts
         # and then work in the selected Receiver.
 
         results = store.find(Receiver)
@@ -375,7 +376,7 @@ class Context(TXModel):
         receiver_list = []
         for r in results:
 
-            if (context_gus is None and self.context_gus in r.context_gus_list) or context_gus in r.context_gus_list:
+            if (context_gus is None and self.context_gus in r.contexts) or context_gus in r.contexts:
                 partial_info = {}
 
                 if info_type == typology[0]: # public
@@ -423,8 +424,8 @@ class Context(TXModel):
             store.close()
             return ReceiverGusNotFound
 
-        if not context_gus in requested_r.context_gus_list:
-            requested_r.context_gus_list.append(context_gus)
+        if not context_gus in requested_r.contexts:
+            requested_r.contexts.append(context_gus)
             # update last activities, in context and receiver
 
         log.msg("Added receiver", requested_r.receiver_gus, requested_r.name, "to context", context_gus)
@@ -441,7 +442,7 @@ class Context(TXModel):
             "name": self.name,
             "description": self.description,
             "selectable_receiver": self.selectable_receiver,
-            "languages_supported": self.languages_supported if self.languages_supported else [],
+            "languages": self.languages_supported if self.languages_supported else [],
             'tip_max_access' : self.tip_max_access,
             'tip_timetolive' : self.tip_timetolive,
             'file_max_download' : self.file_max_download,

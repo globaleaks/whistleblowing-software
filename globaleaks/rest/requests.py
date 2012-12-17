@@ -40,13 +40,17 @@ class receiverReceiverDesc(GLTypes):
         'receiver_gus' : receiverGUS,
         'name' : unicode,
         'description' : unicode,
-        'tags': unicode,
-        'know_languages' : list,
+        'tags': list,
+        'languages' : list,
         'creation_date' : timeType,
         'update_date' : timeType,
         'last_access' : timeType,
-        'context_gus_list' : [ contextGUS ],
+        'contexts' : [ contextGUS ],
         'receiver_level' : int,
+        'notification_selected' : unicode,
+        'notification_fields' : unicode,
+        'delivery_selected' : unicode,
+        'delivery_fields' : unicode,
         'can_delete_submission' : bool,
         'can_postpone_expiration' : bool,
         'can_configure_delivery' : bool,
@@ -102,7 +106,7 @@ class adminContextDesc(GLTypes):
         'name': unicode,
         'description': unicode,
         'selectable_receiver': bool,
-        'languages_supported': list,
+        'languages': list,
         'tip_max_access' : int,
         'tip_timetolive' : int,
         'file_max_download' : int,
@@ -117,27 +121,23 @@ class adminReceiverDesc(GLTypes):
         'receiver_gus' : receiverGUS,
         'name' : unicode,
         'description' : unicode,
-        'tags': unicode,
-        'know_languages' : unicode,
+        'tags': list,
+        'languages' : list,
         'creation_date' : timeType,
         'update_date' : timeType,
         'last_access' : timeType,
-        'context_gus_list' : [ contextGUS ],
+        'contexts' : [ contextGUS ],
         'receiver_level' : int,
+        'notification_selected' : unicode,
+        'notification_fields' : unicode,
+        'delivery_selected' : unicode,
+        'delivery_fields' : unicode,
         'can_delete_submission' : bool,
         'can_postpone_expiration' : bool,
         'can_configure_delivery' : bool,
         'can_configure_notification' : bool
     }
 
-# XXX move in responses.py
-class adminPluginDesc(GLTypes):
-
-    specification = {
-        'plugin_type': unicode,
-        'plugin_name' : unicode,
-        'description' : unicode,
-    }
 
 class adminProfileDesc(GLTypes):
 
