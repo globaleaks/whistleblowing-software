@@ -1,10 +1,6 @@
 <div class="row" ng-controller="AdminContextsCtrl">
   <div class="span5 adminContexts">
     <h2>Contexts</h2>
-    <select class="language-setting"
-        ng-model="localization.selected_language"
-        ng-options="lang.code as lang.name for lang in localization.node_info.available_languages">
-    </select>
     <table class="table table-striped">
       <thead>
         <tr>
@@ -17,19 +13,25 @@
           <td>
             <label>Name</label>
             <input type="text"
-                ng-model="context.name[localization.selected_language]"
-                value="{{context.name[localization.selected_language]}}">
+                ng-model="context.name"
+                value="{{context.name}}">
             <label>Description</label>
             <textarea
-                ng-model="context.description[localization.selected_language]"
-            >context.description[localization.selected_language]}}</textarea>
+                ng-model="context.description"
+            >context.description}}</textarea>
           </td>
           <td>
-            <select multiple ui-select2 style="width: 200px">
-              <option
-                ng-repeat="receiver in adminReceivers"
-                value="{{receiver.gus}}">{{receiver.name}}</option>
-            </select>
+            <!-- <select multiple ui-select2 style="width: 200px"> -->
+            <!--   <option -->
+            <!--     ng-repeat="receiver in adminReceivers" -->
+            <!--     value="{{receiver.gus}}">{{receiver.name}}</option> -->
+            <!-- </select> -->
+
+            <button class="btn btn-success"
+              ng-click="context.$update()">Save</button>
+            <button class="btn btn-danger"
+              ng-click="delete_context(context)">Delete</button>
+
           </td>
         </tr>
         <tr>

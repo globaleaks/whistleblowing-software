@@ -1,6 +1,6 @@
 var request = require('superagent');
 
-module.exports = specrequest;
+module.exports = request;
 
 function specrequest(spec, address) {
   var req = new request.Request(spec.method, address+spec.url);

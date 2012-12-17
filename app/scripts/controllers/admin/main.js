@@ -15,6 +15,7 @@ GLClient.controller('AdminCtrl',
 
   $scope.adminNode = AdminNode.get();
   $scope.adminReceivers = AdminReceivers.query();
+  $scope.adminContexts = AdminContexts.query();
 
   // XXX find a more elegant solution
   // This is required for the step by step wizard.
@@ -23,5 +24,12 @@ GLClient.controller('AdminCtrl',
     '2 Notification and Delivery',
     '3 Review your settings'
   ];
+
+  $scope.saveall = function() {
+    $scope.adminNode.$save();
+    //$scope.adminReceivers.$save();
+    console.log($scope.adminContexts);
+    $scope.adminContexts.$save();
+  }
 
 }]);

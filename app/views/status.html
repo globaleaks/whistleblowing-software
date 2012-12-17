@@ -2,7 +2,7 @@
   <div class="container">
     <h1>Tip Status Page</h1>
     <p>You receipt is <input id="receiptNumber" type="text"
-    value="{{tip.tip_id}}"></p>
+    value="{{receipt_id}}"></p>
   </div>
 </div>
 <div class="container statusPage">
@@ -39,7 +39,7 @@
           </tr>
         </thead>
         <tbody id="receiverListBody">
-          <tr ng-repeat="receiver in receiver_list">
+          <tr ng-repeat="receiver in tip.receiver_map">
             <td>{{receiver.name}}</td>
             <td>{{receiver.description}}</td>
             <td>{{receiver.languages_supported}}</td>

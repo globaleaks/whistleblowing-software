@@ -212,6 +212,30 @@ GLClientDev.run(function($httpBackend) {
       // {
       //   'context_gus': context_gus,
       // }
+
+      var data = JSON.parse(data),
+          response;
+
+      if (!data['submission_gus']) {
+        response = create_submission(data);
+      } else if (!data['submission_receipt']) {
+        console.log("did not get a proposed receipt");
+        response = data;
+        response['submission_receipt'] = 'somerandomstring';
+      } else {
+        console.log("got a proposed receipt");
+        response = data;
+      }
+      response = JSON.stringify(response);
+      console.log(response);
+
+      return [200, response];
+  });
+
+  $httpBackend.whenPUT(/\/submission\/(.*)/)
+    .respond(function(method, url, data){
+      // This allows to add data to a created submission.
+      // The key used is the submission id
       //
       // If you are updating a submission:
       // {
@@ -233,6 +257,7 @@ GLClientDev.run(function($httpBackend) {
       //   'folder_name': '',
       //   'folder_description': ''
       // }
+
 
       var data = JSON.parse(data),
           response;
@@ -310,17 +335,15 @@ GLClientDev.run(function($httpBackend) {
         // XXX what is this?
         'notification_fields': 'XXXX'
       }]
-    },
-
-        comments = [];
+    }, comments = [];
     console.log(method);
     console.log(url);
     console.log(data);
-    return [200, description_dict];
+    return [200, tip_description_dict];
   });
 
   // * /tips/<tip_GUS> T2
-  $httpBackend.whenGET(/\/tips\/(.*)/).
+  $httpBackend.whenPOST(/\/tips\/(.*)/).
     respond(function(method, url, data){
     console.log(method);
     console.log(url);
