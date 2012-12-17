@@ -8,15 +8,15 @@
 import inspect
 import json
 from datetime import datetime
-from globaleaks.rest import errors
+from globaleaks.rest.errors import InvalidInputFormat
 
-__all__ = ['validateMessages', 'GLTypes', 'SpecialType', 'GLTypeError' ]
+__all__ = ['validateMessages', 'GLTypes', 'SpecialType' ]
 
 def validateType(value, valid_type):
     if type(value) is valid_type:
         return
     else:
-        raise GLTypeError("%s must be of %s type. Got %s instead" % (value, valid_type, type(value)))
+        raise InvalidInputFormat
 
 def validateGLType(value, gl_type):
     message = json.dumps(value)
@@ -44,7 +44,7 @@ def validateItem(val, valid_type):
     """
     if type(valid_type) is list:
         if not type(val) is list:
-            raise GLTypeError("%s must be of type list" % val)
+            raise InvalidInputFormat
         valid = valid_type[0]
         for item in val:
             if type(item) is dict:
@@ -63,7 +63,7 @@ def validateItem(val, valid_type):
         validateType(val, valid_type)
 
     else:
-        raise GLTypeError("Invalid type specification")
+        raise InvalidInputFormat
 
 def validateMessage(message, message_type):
     """
@@ -83,13 +83,13 @@ def validateMessage(message, message_type):
     if type(obj) is list:
         obj = obj.pop()
     elif type(obj) is not dict:
-        raise GLTypeError("Message is not in dict format")
+        raise InvalidInputFormat
 
     for k, val in obj.items():
         try:
             valid_type = messageSpec[k]
         except:
-            raise GLTypeError("Messagge validation fail: missing field %s" % k)
+            raise  InvalidInputFormat
 
         validateItem(val, valid_type)
 
@@ -144,7 +144,7 @@ class SpecialType(object):
         if re.match(self.regexp, data):
             return
         else:
-            raise errors.GLTypeError("%s does not match %s" % (data, self.regexp))
+            raise InvalidInputFormat
 
 class dateType(SpecialType):
     pass

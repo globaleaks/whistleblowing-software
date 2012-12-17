@@ -89,7 +89,7 @@ class TipInstance(BaseHandler):
                 comment_list = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
 
                 self.set_status(200)
-                self.write({'tip' : tip_description, 'comments' : comment_list})
+                self.write({'tip' : tip_description, 'comments' : comment_list}) # Refactor remind XXX TODO
 
             except TipReceiptNotFound, e:
                 self.set_status(e.http_status)
@@ -99,14 +99,18 @@ class TipInstance(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def post(self, tip_token, *uriargs):
+    def put(self, tip_token, *uriargs):
         """
-        Request: actorsTipDesc
+        Request: actorsTipOpsDesc
         Response: actorsTipDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat
+        Errors: InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation
+
+        This interface modify some tip status value. pertinence, personal delete are handled here.
+        Total delete operation is handled in this class, by the DELETE HTTP method.
+        Those operations (may) trigger a 'system comment' inside of the Tip comment list.
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "post", "tip_token", tip_token)
+        log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "PUT", "tip_token", tip_token)
 
         request = json.loads(self.request.body)
 
@@ -120,6 +124,7 @@ class TipInstance(BaseHandler):
             requested_t = ReceiverTip()
 
             try:
+                # XXX refactor with validateMessage
                 if request['total_delete']:
                     yield requested_t.total_delete(tip_token)
                 elif request['personal_delete']:
@@ -146,6 +151,18 @@ class TipInstance(BaseHandler):
 
         self.finish()
 
+
+    @asynchronous
+    @inlineCallbacks
+    def delete(self, tip_token, *uriargs):
+        """
+        Request: None
+        Response: None
+        Errors: ForbiddenOperation
+
+        When an uber-receiver decide to "total delete" a Tip, is handled by this call.
+        """
+        pass
 
 # FULLY REVIEW TODO
 class TipCommentCollection(BaseHandler):
