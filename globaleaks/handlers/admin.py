@@ -41,7 +41,6 @@ class NodeInstance(BaseHandler):
         #url_schema: no more needed ?
         #stats_delta couple.
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Admin Node", "GET")
 
         context_iface = context.Context()
         context_description_dicts = yield context_iface.admin_get_all()
@@ -66,7 +65,6 @@ class NodeInstance(BaseHandler):
 
         Changes the node public node configuration settings
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminNode", "POST")
 
         request = json.loads(self.request.body)
 
@@ -83,6 +81,7 @@ class NodeInstance(BaseHandler):
         # return value as GET
         yield self.get()
 
+
 class ContextsCollection(BaseHandler):
     """
     A2
@@ -97,7 +96,6 @@ class ContextsCollection(BaseHandler):
         Response: adminContextList
         Errors: None
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "GET")
 
         context_iface = context.Context()
         all_contexts = yield context_iface.admin_get_all()
@@ -116,8 +114,6 @@ class ContextsCollection(BaseHandler):
         Response: adminContextDesc
         Errors: InvalidInputFormat
         """
-
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "POST")
 
         context_iface = context.Context()
         try:
@@ -138,7 +134,6 @@ class ContextsCollection(BaseHandler):
         self.finish()
 
 
-
 class ContextInstance(BaseHandler):
     """
     A3
@@ -153,12 +148,10 @@ class ContextInstance(BaseHandler):
         Response: adminContextDesc
         Errors: ContextGusNotFound, InvalidInputFormat
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "GET")
-
-        context_iface = context.Context()
-        # TODO REMIND XXX - context_gus validation
 
         try:
+            # TODO REMIND XXX - context_gus validation - InvalidInputFormat
+            context_iface = context.Context()
             context_description = yield context_iface.admin_get_single(context_gus)
 
             self.set_status(200)
@@ -171,7 +164,6 @@ class ContextInstance(BaseHandler):
 
         self.finish()
 
-
     @asynchronous
     @inlineCallbacks
     def put(self, context_gus, *uriargs):
@@ -180,24 +172,26 @@ class ContextInstance(BaseHandler):
         Response: adminContextDesc
         Errors: InvalidInputFormat, ContextGusNotFound
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "PUT")
-        request = json.loads(self.request.body)
 
-        if not request:
-            # holy fucking sick atheist god
-            # no validation at the moment.
-            self.write(__file__)
-            self.write('error message to be managed using the appropriate format')
-            self.finish()
+        try:
+            request = validateMessage(self.request.body, requests.adminContextDesc)
 
-        context_iface = context.Context()
+            context_iface = context.Context()
 
-        yield context_iface.update(context_gus, request)
-        yield self.get(context_gus)
+            yield context_iface.update(context_gus, request)
+            yield self.get(context_gus)
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ContextGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
-
-
 
     @asynchronous
     @inlineCallbacks
@@ -207,8 +201,6 @@ class ContextInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, ContextGusNotFound
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContext", "DELETE", context_gus)
-
 
         context_iface = context.Context()
 
@@ -218,10 +210,11 @@ class ContextInstance(BaseHandler):
         # administrative view of the contexts, also the presence|absence|description
         # of the queued operations, would be useful.
 
-        # This DELETE operation, its fucking permanant, and kills all the Tip related
+        # This DELETE operation, its fucking permanent, and kills all the Tip related
         # to the context. (not the receivers: they can be possesed also by other context,
         # but the tarGET context is DELETEd also in the receiver reference)
 
+        # TODO REMIND XXX - context_gus validation
         try:
             yield context_iface.delete_context(context_gus)
             self.set_status(200)
@@ -245,8 +238,18 @@ class ReceiversCollection(BaseHandler):
         Parameters: None
         Response: adminReceiverList
         Errors: None
+
+        Admin operation: return all the receiver present in the Node
         """
-        pass
+
+        receiver_iface = receiver.Receiver()
+        all_receivers = yield receiver_iface.admin_get_all()
+
+        self.set_status(200)
+        # TODO output filter would include JSON inside of the method
+        self.write(json.dumps(all_receivers))
+        self.finish()
+
 
     @asynchronous
     @inlineCallbacks
@@ -254,35 +257,28 @@ class ReceiversCollection(BaseHandler):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
-        Errors: InvalidInputFormat, ReceiverGusNotFound
+        Errors: InvalidInputFormat
+
+        Create a new receiver,
         """
 
-        receiver_gus = 123 # TODO - input validation
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "POST")
-
-        request = json.loads(self.request.body)
-
-        if not request:
-            # holy fucking sick atheist god
-            # no validation at the moment.
-
-            self.write(__file__)
-            self.write('error message to be managed using the appropriate format')
-            self.set_status(400)
-            self.finish()
-
-        receiver_iface = receiver.Receiver()
-
         try:
-            yield receiver_iface.admin_update(receiver_gus, request)
+            request = validateMessage(self.request.body, requests.adminContextDesc)
 
-            yield self.get(receiver_gus)
+            receiver_iface = receiver.Receiver()
+            new_receiver_gus = yield receiver_iface.new(request)
 
-        except ReceiverGusNotFound, e:
+            new_receiver_desc = yield receiver_iface.admin_get_single(new_receiver_gus)
+
+            self.set_status(201) # Created
+            self.write(new_receiver_desc)
+
+        except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-            self.finish()
+
+        self.finish()
 
 
 class ReceiverInstance(BaseHandler):
@@ -303,15 +299,15 @@ class ReceiverInstance(BaseHandler):
         Parameters: receiver_gus
         Response: adminReceiverDesc
         Errors: InvalidInputFormat, ReceiverGusNotFound
+
+        Get an existent Receiver instance.
         """
 
-        receiver_gus = 123 # TODO REMIND REFACTOR parameter validation
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "GET", receiver_gus)
-
-        # TODO parameter validation
-        receiver_iface = receiver.Receiver()
-
         try:
+
+            # TODO parameter validation - InvalidInputFormat
+            receiver_iface = receiver.Receiver()
+
             receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
 
             self.set_status(200)
@@ -332,40 +328,49 @@ class ReceiverInstance(BaseHandler):
         Request: adminReceiverDesc
         Response: adminReceiverDesc
         Errors: InvalidInputFormat, ReceiverGusNotFound
+
+        Update information about a Receiver, return the instance updated.
         """
-        receiver_gus = 123 # TODO - input validation
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "PUT", receiver_gus)
 
-        request = json.loads(self.request.body)
+        try:
+            # TODO parameter validation - InvalidInputFormat
+            request = validateMessage(self.request.body, requests.adminContextDesc)
 
-        if not request:
-            # holy fucking sick atheist god
-            # no validation at the moment.
-            self.write(__file__)
-            self.write('error message to be managed using the appropriate format')
-            self.finish()
+            receiver_iface = receiver.Receiver()
 
-        receiver_iface = receiver.Receiver()
-        new_receiver_gus = yield receiver_iface.new(request)
+            yield receiver_iface.admin_update(receiver_gus, request)
 
-        # return value as GET of the new receiver
-        yield self.get(new_receiver_gus)
+            receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
+            self.set_status(200)
+            self.write(receiver_description)
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
 
 
     @asynchronous
     @inlineCallbacks
     def delete(self, receiver_gus, *uriargs):
         """
-        Request: adminReceiverDesc
+        Parameter: receiver_gus
+        Request: None
         Response: None
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
-        receiver_gus = 123 # TODO - input validation
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "DELETE", receiver_gus)
 
         receiver_iface = receiver.Receiver()
 
         try:
+            # TODO parameter validation - InvalidInputFormat
             yield receiver_iface.receiver_delete(receiver_gus)
             self.set_status(200)
 
@@ -375,6 +380,9 @@ class ReceiverInstance(BaseHandler):
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
+
+
+# BELOW ARE TO BE REFACTORED WITH THE NEW API
 
 class PluginCollection(BaseHandler):
     """
@@ -417,7 +425,6 @@ class ProfileCollection(BaseHandler):
         Errors: ProfileGusNotFound, InvalidInputFormat, ProfileNameConflict, PluginNameNotFound
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "POST")
 
         request = json.loads(self.request.body)
 
@@ -484,7 +491,6 @@ class ProfileInstance(BaseHandler):
         Response: adminProfileDesc
         Errors: ProfileGusNotFound
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "GET", profile_gus)
 
         plugin_iface = options.PluginProfiles()
 
@@ -509,7 +515,6 @@ class ProfileInstance(BaseHandler):
         Response: adminProfileDesc
         Errors: ProfileGusNotFound, InvalidInputFormat, ProfileNameConflict
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "PUT", profile_gus)
 
         request = json.loads(self.request.body)
 
@@ -570,7 +575,6 @@ class ProfileInstance(BaseHandler):
         Response: None
         Errors: ProfileGusNotFound, InvalidInputFormat
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
 
 
 class StatisticsCollection(BaseHandler):
@@ -681,7 +685,6 @@ class TaskInstance(BaseHandler):
 
         expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'digest' ]
 
-        log.debug("[D] manual execution of scheduled operation (%s)" % what)
 
         if what == 'statistics':
             yield APSNotification().operation()
@@ -719,7 +722,6 @@ class TaskInstance(BaseHandler):
         from globaleaks.runner import GLAsynchronous
 
         yield GLAsynchronous.shutdown(shutdown_threadpool=False)
-        log.debug("[D] stopped scheduled operations queue")
 
         self.set_status(200)
         self.finish()
