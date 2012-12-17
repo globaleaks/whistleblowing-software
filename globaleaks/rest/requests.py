@@ -106,7 +106,7 @@ class adminContextDesc(GLTypes):
         'name': unicode,
         'description': unicode,
         'selectable_receiver': bool,
-        'languages': list,
+        'languages_supported': list,
         'tip_max_access' : int,
         'tip_timetolive' : int,
         'file_max_download' : int,
@@ -135,6 +135,12 @@ class adminReceiverDesc(GLTypes):
         'can_delete_submission' : bool,
         'can_postpone_expiration' : bool,
         'can_configure_delivery' : bool,
+        'selectable_receiver': bool,
+        'tip_timetolive' : int,
+        'escalation_threshold' : int,
+        'notification_address' : unicode,
+        'file_max_download' : int,
+        'tip_max_access' : int,
         'can_configure_notification' : bool
     }
 
