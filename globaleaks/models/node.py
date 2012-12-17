@@ -98,10 +98,10 @@ class Node(TXModel):
             node_data = store.find(Node, 1 == Node.id).one()
         except NotOneError:
             store.close()
-            raise NodeNotFoundError
+            raise NodeNotFound
         if node_data is None:
             store.close()
-            raise NodeNotFoundError
+            raise NodeNotFound
 
         # I'd prefer wrap get_admin_info and then .pop() the
         # private variables, but wrap a defered cause you can't return,

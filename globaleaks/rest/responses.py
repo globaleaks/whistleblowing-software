@@ -29,7 +29,7 @@ from globaleaks.rest.requests import adminProfileDesc
 # -------------------------------------------------------
 # Here start the definition of the Response-only messages
 
-class publicStatsElement(GLTypes):
+class publicStatsDesc(GLTypes):
     """
     Public statistic, just information that would be useful to the
     public, to make well know if a GL Node has live inside or dead.
@@ -46,10 +46,10 @@ class publicStatsElement(GLTypes):
 class publicStatsList(GLTypes):
 
     specification = {
-        'public_stats' : [ publicStatsElement ]
+        'public_stats' : [ publicStatsDesc ]
     }
 
-class adminStatsElement(GLTypes):
+class adminStatsDesc(GLTypes):
     """
     Admin Stats, information useful to the admin, for understand
     They need to be implemented and specified, too :((
@@ -80,7 +80,7 @@ class publicNodeDesc(GLTypes):
 class adminStatsList(GLTypes):
 
     specification = {
-        'admin_stats' : [ adminStatsElement ]
+        'admin_stats' : [ adminStatsDesc ]
     }
 
 class receiverProfileList(GLTypes):
