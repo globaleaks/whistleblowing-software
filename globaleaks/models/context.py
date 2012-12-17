@@ -148,7 +148,7 @@ class Context(TXModel):
         # delete all the reference to the context in the receivers
         receiver_iface = Receiver()
 
-        unlinked_receivers = receiver_iface.unlink_context(context_gus)
+        unlinked_receivers = yield receiver_iface.unlink_context(context_gus)
 
         # TODO - delete all the tips associated with the context
         # TODO - delete all the jobs associated with the context
