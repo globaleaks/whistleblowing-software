@@ -85,7 +85,7 @@ class adminNodeDesc(GLTypes):
         'leakdirectory_entry': unicode,
         'public_stats_delta' : int,
         'private_stats_delta' : int,
-        'authoptions' : unicode,
+        'authoptions' : unicode
     }
 
 class adminContextDesc(GLTypes):
@@ -122,6 +122,7 @@ class adminReceiverDesc(GLTypes):
         'can_configure_notification' : bool
     }
 
+# XXX move in responses.py
 class adminPluginDesc(GLTypes):
 
     specification = {

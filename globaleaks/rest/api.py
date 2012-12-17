@@ -11,93 +11,103 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks import config
 from globaleaks.handlers import node, submission, tip, admin, receiver, files
-from globaleaks.rest.base import tipGUS, contextGUS
+from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, profileGUS
 
-more_lax = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
+tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'
 receiver_token_auth = r'(\w+)' # This would cover regexp.tip_gus | regexp.welcome_token_gus
 
 # Here is mapped a path and the associated class to be invoked,
 # Three kind of Classes can be distigued:
 #
-# * Crud (SubmissionCrud, FileCrud, etc)
-#   supports a complete CRUD (PUT, POST, DELETE, GET)
-# * Management (TipManagement, ReceiverManagement)
-#   supports operation of interaction (GET, PUT), Never Creation (POST) and maybe Delete
-# * Available
-#   supports only GET operation, returning a list of elements
+# * Instance
+#         MAY supports: PUT, DELETE, GET
+# * Collection
+#         supports GET operation, returning a list of elements, and (maybe) POST
+#         for create a new elements of the collection.
 
 spec = [
     ## Node Handler ##
-    #  * /node U1
-    (r'/node/', node.InfoAvailable),
+    #  U1
+    (r'/node', node.InfoCollection),
 
     ## Submission Handlers ##
-    #  * /submission/ U2
-    (r'/submission/' + contextGUS.regexp + '/new', submission.SubmissionCrud),
+    #  U2
+    (r'/submission/' + contextGUS.regexp + '/new', submission.SubmissionInstance),
 
-    #  * /file/ U3
-    (r'/file/', files.FileCrud),
+    #  U3
+    (r'/file/', files.FileInstance),
 
-    # * /statistics/ U4
-    (r'/statistics/', node.StatsAvailable),
+    #  U4
+    (r'/statistics', node.StatsCollection),
+
+    #  U5
+    (r'/contexts', node.ContextsCollection),
+
+    #  U6
+    (r'/receivers' , node.ReceiversCollection),
 
     ## Tip Handlers ##
-    #  * /tip/<tip_access_token>/ T1
-    (r'/tip/' + more_lax, tip.TipManagement),
+    #  T1
+    (r'/tip/' + tip_access_token, tip.TipInstance),
 
-    #  * /tips/<receiver_tip_GUS> T2
-    (r'/tips/' +  tipGUS.regexp, tip.TipsAvailable),
+    #  T2
+    (r'/tip/' + tip_access_token + r'/comments', tip.TipCommentCollection),
 
-    #  * /tip/<tip_access_token>/comment T3
-    (r'/tip/' + more_lax, tip.TipCommentManagement),
-
-    #  * /tip/<tip_access_token>/receivers T4
-    (r'/tip/' + more_lax, tip.TipReceiversAvailable),
+    #  T3
+    (r'/tip/' + tip_access_token + r'/receivers', tip.TipReceiversCollection),
 
     ## Receiver Handlers ##
-    #  * /reciever/<receiver_token_auth>/management R1
-    (r'/receiver/' + receiver_token_auth + '/management', receiver.ReceiverManagement),
+    #  R1
+    (r'/receiver/' + receiver_token_auth + '/settings', receiver.ReceiverInstance),
 
-    #  * /receiver/<receiver_token_auth>/profiles R2
-    (r'/receiver/' + receiver_token_auth + '/pluginprofiles', receiver.ProfilesAvailable),
+    #  R2
+    (r'/receiver/' + receiver_token_auth + '/profile', receiver.ProfilesCollection),
 
-    #  * /receiver/<receiver_token_auth>/settings R3
-    (r'/receiver/' + receiver_token_auth + '/plugin/', receiver.ProfileCrud),
+    #  R3
+    (r'/receiver/' + receiver_token_auth + '/profile/' + profileGUS.regexp, receiver.ProfileInstance),
+
+    #  R4
+    (r'/receiver/' + receiver_token_auth + '/tip', tip.TipsCollection),
 
     ## Admin Handlers ##
-    #  * /admin/node A1
-    (r'/admin/node', admin.NodeManagement),
+    #  A1
+    (r'/admin/node', admin.NodeInstance),
 
-    #  * /admin/contexts/ A2
-    (r'/admin/contexts/', admin.ContextsAvailable),
+    #  A2
+    (r'/admin/context', admin.ContextsCollection),
 
-    #  * /admin/context/ A3
-    (r'/admin/context/', admin.ContextCrud),
+    #  A3
+    (r'/admin/context/' + contextGUS.regexp, admin.ContextInstance),
 
-    #  * /admin/receivers/ A4
-    (r'/admin/receivers/', admin.ReceiversAvailable),
+    #  A4
+    (r'/admin/receiver', admin.ReceiversCollection),
 
-    #  * /admin/receiver/ A5
-    (r'/admin/receiver/', admin.ReceiverCrud),
+    #  A5
+    (r'/admin/receiver/' + receiverGUS.regexp, admin.ReceiverInstance),
 
-    #  * /admin/plugins/ A6
-    (r'/admin/plugins/', admin.PluginsAvailable),
+    #  A6
+    (r'/admin/plugin', admin.PluginCollection),
 
-    #  * /admin/profile/ A7
-    (r'/admin/profile/', admin.ProfileCrud),
+    #  A7
+    (r'/admin/plugin/' + not_defined_regexp + r'/profile', admin.ProfileCollection),
 
-    #  * /admin/statistics/ A8
-    (r'/admin/statistics/', admin.StatisticsAvailable),
+    #  A8
+    (r'/admin/plugin/' + not_defined_regexp + r'/profile/' + profileGUS.regexp, admin.ProfileInstance),
 
-    #  * /admin/overview A9
-    (r'/admin/overview/' + not_defined_regexp, admin.EntryAvailable),
-
-    #  * /admin/tasks/ AA
-    (r'/admin/tasks/' + not_defined_regexp, admin.TaskManagement),
+    #  A9
+    (r'/admin/statistics/', admin.StatisticsCollection),
 
     ## Main Web app ##
     # * /
-    (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path})
+    (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path} ),
+
+    #  -------------- ADMIN DEBUG ONLY -------------------
+    #  AA
+    (r'/admin/overview/' + not_defined_regexp, admin.EntryCollection),
+
+    #  AB
+    (r'/admin/tasks/' + not_defined_regexp, admin.TaskInstance)
+
 ]
 
