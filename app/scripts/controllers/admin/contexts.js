@@ -10,6 +10,8 @@ GLClient.controller('AdminContextsCtrl',
     context.description = '';
 
     context.fields = [];
+    context.languages_supported = [];
+
     context.escalation_threshold =  42;
     context.file_max_download = 42;
     context.tip_max_access = 42;

@@ -13,14 +13,16 @@
           <td>
             <label>Name</label>
             <input type="text"
+                required
                 ng-model="context.name"
                 value="{{context.name}}">
             <label>Description</label>
             <textarea
-                ng-model="context.description"
-            >context.description}}</textarea>
+                required
+                ng-model="context.description">context.description}}</textarea>
           </td>
           <td>
+
             <!-- <select multiple ui-select2 style="width: 200px"> -->
             <!--   <option -->
             <!--     ng-repeat="receiver in adminReceivers" -->
@@ -28,7 +30,8 @@
             <!-- </select> -->
 
             <button class="btn btn-success"
-              ng-click="context.$update()">Save</button>
+              ng-disabled="!configForm.$dirty"
+              ng-click="context.$update();configForm.$dirty=false;">Save</button>
             <button class="btn btn-danger"
               ng-click="delete_context(context)">Delete</button>
 
