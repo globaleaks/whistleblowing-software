@@ -16,7 +16,7 @@ def validateType(value, valid_type):
     if type(value) is valid_type:
         return
     else:
-        raise InvalidInputFormat
+        raise InvalidInputFormat("%s is not %s" % (value, str(valid_type) ) )
 
 def validateGLType(value, gl_type):
     message = json.dumps(value)
@@ -63,7 +63,8 @@ def validateItem(val, valid_type):
         validateType(val, valid_type)
 
     else:
-        raise InvalidInputFormat
+        raise InvalidInputFormat(valid_type.__name__)
+
 
 def validateMessage(message, message_type):
     """
@@ -83,13 +84,13 @@ def validateMessage(message, message_type):
     if type(obj) is list:
         obj = obj.pop()
     elif type(obj) is not dict:
-        raise InvalidInputFormat
+        raise InvalidInputFormat("not list nor dict")
 
     for k, val in obj.items():
         try:
             valid_type = messageSpec[k]
         except:
-            raise  InvalidInputFormat
+            raise InvalidInputFormat(k)
 
         validateItem(val, valid_type)
 
@@ -109,8 +110,7 @@ def validateWith(fn):
 
 
 
-## follow the base messages 
-
+## Follow the base messages
 
 class GLTypes(dict):
     """

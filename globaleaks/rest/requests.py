@@ -102,11 +102,12 @@ class adminContextDesc(GLTypes):
         'name': unicode,
         'description': unicode,
         'selectable_receiver': bool,
-        'languages_supported': unicode,
+        'languages_supported': list,
         'tip_max_access' : int,
         'tip_timetolive' : int,
         'file_max_download' : int,
         'escalation_threshold' : int,
+        'receivers' : [ receiverGUS ],
         'fields': [ formFieldsDict ]
     }
 

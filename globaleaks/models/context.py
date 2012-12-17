@@ -14,7 +14,7 @@ from storm.locals import Reference
 
 from globaleaks.utils import gltime, idops, log
 from globaleaks.models.base import TXModel
-from globaleaks.rest.errors import ContextGusNotFound
+from globaleaks.rest.errors import ContextGusNotFound, InvalidInputFormat
 
 __all__ = [ 'Context' ]
 
@@ -75,8 +75,12 @@ class Context(TXModel):
         cntx.update_date = gltime.utcDateNow()
         cntx.last_activity = gltime.utcDateNow()
 
-        cntx._import_dict(context_dict)
-
+        try:
+            cntx._import_dict(context_dict)
+        except KeyError:
+            store.rollback()
+            store.close()
+            raise InvalidInputFormat("Import failed near the Storm")
 
         # context.languages_supported = context_dict["languages_supported"]
         # this is not taked by the dict, come from receivers declared knowledge
@@ -112,12 +116,19 @@ class Context(TXModel):
             store.close()
             raise ContextGusNotFound
 
-        requested_c._import_dict(context_dict)
+        try:
+            requested_c._import_dict(context_dict)
+        except KeyError:
+            store.rollback()
+            store.close()
+            raise InvalidInputFormat("Import failed near the Storm")
+
         requested_c.update_date = gltime.utcDateNow()
 
         store.commit()
         log.msg("Updated context %s in %s, created in %s" %
                 (requested_c.name, requested_c.update_date, requested_c.creation_date) )
+
         store.close()
 
     @transact
@@ -179,7 +190,9 @@ class Context(TXModel):
             raise ContextGusNotFound
 
         ret_context_dict = requested_c._description_dict()
-        ret_context_dict.update({'receivers' : requested_c.get_receivers('admin')})
+
+        receiver_list = requested_c.get_receivers('admin')
+        ret_context_dict.update({'receivers' : receiver_list if receiver_list else []})
 
         store.close()
         return ret_context_dict
@@ -200,7 +213,9 @@ class Context(TXModel):
         for requested_c in result:
 
             description_dict = requested_c._description_dict()
-            description_dict.update({'receivers' : requested_c.get_receivers('admin') })
+
+            receiver_list = requested_c.get_receivers('admin')
+            description_dict.update({'receivers' : receiver_list if receiver_list else []})
 
             ret_contexts_dicts.append(description_dict)
 
@@ -231,7 +246,8 @@ class Context(TXModel):
         ret_context_dict.pop('file_max_download')
         ret_context_dict.pop('escalation_threshold')
 
-        ret_context_dict.update({'receivers' : requested_c.get_receivers('public') })
+        receiver_list = requested_c.get_receivers('public')
+        ret_context_dict.update({'receivers' : receiver_list if receiver_list else []})
 
         store.close()
         return ret_context_dict
@@ -255,7 +271,8 @@ class Context(TXModel):
             description_dict.pop('file_max_download')
             description_dict.pop('escalation_threshold')
 
-            description_dict.update({'receivers' : requested_c.get_receivers('public') })
+            receiver_list = requested_c.get_receivers('public')
+            description_dict.update({'receivers' : receiver_list if receiver_list else []})
 
             ret_contexts_dicts.append(description_dict)
 
@@ -424,13 +441,14 @@ class Context(TXModel):
             "name": self.name,
             "description": self.description,
             "selectable_receiver": self.selectable_receiver,
-            "languages_supported": self.languages_supported,
+            "languages_supported": self.languages_supported if self.languages_supported else [],
             'tip_max_access' : self.tip_max_access,
             'tip_timetolive' : self.tip_timetolive,
             'file_max_download' : self.file_max_download,
             'escalation_threshold' : self.escalation_threshold,
             "fields": self.fields
         }
+        # receivers is added
 
         return description_dict
 
