@@ -1,0 +1,436 @@
+// This uses:
+// https://github.com/visionmedia/supertest
+// and mocha
+
+var request = require('supertest');
+
+// Tells where the backend is listening
+request = request.bind(request, 'http://192.168.33.102:8082');
+
+describe("Node Admin API functionality", function(){
+
+  var dummyFields = [{'label': 'Some Fancy Name',
+      'name': 'someFancyName',
+
+      'value': 'I will appear by default',
+      'hint': 'I will help you understand what I mean',
+
+      'required': false,
+      'type': 'text'
+  }];
+
+  var dummyContext = {
+      name: 'dummyContext',
+      description: 'dummyContextDescription',
+      //languages_supported: ['en', 'it'],
+      fields: dummyFields,
+
+      escalation_threshold: 42,
+      file_max_download: 42,
+      tip_max_access: 42,
+      selectable_receiver: true,
+      tip_timetolive: 42
+  };
+
+  var invalidContextNoName = {
+      description: 'dummyContextDescription',
+      //languages_supported: ['en', 'it'],
+      fields: dummyFields,
+
+      escalation_threshold: 42,
+      file_max_download: 42,
+      tip_max_access: 42,
+      selectable_receiver: true,
+      tip_timetolive: 42
+  };
+
+
+  var dummyReceiver = {
+    name: 'dummyName',
+    description: 'dummyDescription',
+    can_postpone_expiration: true,
+    tags: ['tag1', 'tag2', 'tag3'],
+    context_gus_list: ['c_foobar'],
+    can_configure_notification: true,
+    can_configure_delivery: true,
+    can_delete_submission: true,
+    receiver_level: 1,
+    know_languages: ['en', 'it'],
+  };
+
+  var dummyContextID = 'c_ElevenCharsNineChars';
+  var dummyReceiverID = 'r_ElevenCharsNineChars';
+  var dummyTipID = 'someRandomString';
+
+  var dummySubmission = {
+    real_receipt: 'foobar',
+    creation_time: 'globaleaks.rest.base.timeType',
+    receiver_gus_list: [dummyReceiverID],
+    // XXX perhaps this should go as a paramater
+    submission_gus: 'XXX',
+    fields: [
+      {'someFancyName': 'Some Fancy Content'}
+    ],
+    expiration_time: 'XXX',
+    context_gus: 'XXX',
+    file_gus_list: ['']
+  }
+
+  beforeEach(function(done){
+    request()
+    .post('/admin/context/')
+    .send(dummyContext)
+    //.expect(200)
+    .end(function(err, res){
+      if (err) return done(err);
+      done();
+    });
+
+
+  });
+
+// 
+//   it("Should allow the Node Admin to access the admin interface", function(done){
+// 
+//     request()
+//     .get('/admin/node')
+//     .expect(200)
+//     .end(function(err, res){
+//       var response = JSON.parse(res.text);
+//       expect(response['name']);
+//       expect(response['description']);
+//       expect(response['hidden_service']);
+//       expect(response['public_site']);
+//       expect(response['leakdirectory_entry']);
+//       expect(response['public_stats_delta']);
+//       expect(response['private_stats_delta']);
+//       expect(response['authoptions']);
+//     });
+// 
+//   });
+// 
+//   it("Should allow the Node Admin to change it's password", function(done){
+// 
+//     request()
+//     .put('/admin/settings')
+//     .send({'password': 'foobar'})
+//     .expect(200, done);
+// 
+//   });
+
+  it("Should allow the Node Admin to add context", function(done){
+
+    request()
+    .post('/admin/context')
+    .send(dummyContext)
+    .expect(201, done);
+
+  });
+
+  it("Should create an error when the Node Admin does not specify a name", function(done){
+    request()
+    .post('/admin/context')
+    .send(dummyContext)
+    .expect(201)
+    .end(function(err, res){
+      if (err) return done(err);
+      var response = JSON.parse(res.text),
+        contextID = response['context_gus']
+
+      // console.log(response);
+      // console.log(contextID);
+      // response.should.be.a('object');
+
+      request()
+      .put('/admin/context/' + contextID)
+      .send(invalidContextNoName)
+      .expect(406)
+      .expect('{"error_message": "Invalid Input Format '+
+              '[Import failed near the Storm]", "error_code": 10}', done);
+
+    });
+
+  });
+
+  it("Should allow the Node Admin to add and edit context", function(done){
+
+    request()
+    .post('/admin/context')
+    .send(dummyContext)
+    .expect(201)
+    .end(function(err, res){
+      if (err) return done(err);
+      var response = JSON.parse(res.text),
+        contextID = response['context_gus'],
+        updatedContext = dummyContext;
+
+      updatedContext['name'] = 'dummyContextChanged';
+
+      // console.log(response);
+      // console.log(contextID);
+      // response.should.be.a('object');
+
+      request()
+      .put('/admin/context/' + contextID)
+      .send(dummyContext)
+      .expect(200)
+      .expect(/dummyContextChanged/, done);
+
+    });
+
+  });
+
+
+  it("Should allow the Node Admin to list contexts", function(done){
+
+    request()
+    .get('/admin/context')
+    .expect(200)
+    .end(function(err, res){
+      if (err) return done(err);
+      var response = JSON.parse(res.text);
+      response.indexOf(0);
+      //response.should.be.a('object');
+      done();
+    });
+
+  });
+
+
+
+  it("Should allow the Node Admin to add receiver details", function(done){
+
+    request()
+    //put('/admin/receiver').
+    .post('/admin/receiver')
+    .send(dummyReceiver)
+    .expect(200)
+    .end(function(err, res){
+      if (err) return done(err);
+      console.log(res.text);
+      done();
+    });
+
+  });
+
+
+//   it("Should allow the Node Admin to add email details for configuration", function(done){
+// 
+//     request()
+//     // XXX not sure
+//     .post('/admin/plugins/')
+//     .end(function(err, res){
+//       if (err) return done(err);
+//       done();
+//     });
+// 
+//   });
+// 
+//   it("Should allow the Node Admin to configure submission form", function(done){
+// 
+//     request()
+//     .put('/admin/context/'+dummyContextID)
+//     .send()
+//     .end(function(err, res){
+//       if (err) return done(err);
+//       done();
+//     });
+// 
+//   });
+
+});
+
+
+// describe("Whistleblower API functionality", function(){
+//   it("Should allow the Whistleblower to access whistleblowing website", function(done){
+// 
+//     request()
+//     .put('/node')
+//     .expect(200, done);
+// 
+//   });
+// 
+//   it("Should allow the Whistleblower to select a context", function(done){
+// 
+//     request()
+//     .post('/submission')
+//     .send({'c_id': dummyContextID})
+//     .expect(201)
+//     .end(function(err, res){
+//       if (err) return done(err);
+// 
+//       var response = JSON.parse(res.text),
+//         submissionID = response['id'];
+// 
+//       request()
+//       .post('/submission/'+submissionID)
+//       .send({'context_gus': dummyContextID})
+//       .expect(200, done);
+// 
+//     });
+// 
+//   });
+// 
+//   it("Should allow the Whistleblower to submit form data", function(done){
+// 
+//     request()
+//     .post('/submission')
+//     .send({'c_id': dummyContextID})
+//     .expect(201)
+//     .end(function(err, res){
+//       if (err) return done(err);
+// 
+//       var response = JSON.parse(res.text),
+//         submissionID = response['id'];
+// 
+//       request()
+//       .post('/submission/'+submissionID)
+//       .send(dummySubmission)
+//       .expect(200, done);
+// 
+//     });
+// 
+//   });
+// 
+//   it("Should allow the Whistleblower to add one or more files on submission interface", function(){
+// 
+//   });
+// 
+//   it("Should allow the Whistleblower to receive a Receipt", function(done){
+// 
+//     request()
+//     .post('/submission')
+//     .send({'c_id': dummyContextID})
+//     .expect(201)
+//     .end(function(err, res){
+//       if (err) return done(err);
+// 
+//       var response = JSON.parse(res.text),
+//         submissionID = response['id'];
+// 
+//       request()
+//       .post('/submission/' + submissionID)
+//       .send(dummySubmission)
+//       .expect(200)
+//       .end(function(err, res){
+//         if (err) return done(err);
+// 
+//         var response = JSON.parse(res.text),
+//           receiptID = response['real_receipt'];
+// 
+//         done();
+//       });
+// 
+//     });
+// 
+//   });
+// 
+//   it("Should allow the Whistleblower to access his Tip with it's Receipt", function(done){
+// 
+//     request()
+//     .get('/tip/' + dummyTipID)
+//     .expect(200, done);
+// 
+//   });
+// 
+//   it("Should allow the Whistleblower to add comments to his Tip", function(done){
+// 
+//     request()
+//     .post('/tip/' + dummyTipID + '/comments')
+//     .expect(201, done);
+// 
+//   });
+// 
+//   it("Should allow the Whistleblower to see all comments to his Tip", function(done){
+// 
+//     request()
+//     .get('/tip/' + dummyTipID + '/comments')
+//     .expect(200, done);
+// 
+//   });
+// 
+//   it("Should allow the Whistleblower to add new files to his Tip", function(done){
+// 
+//     // Separate API
+//     done();
+// 
+//   });
+// 
+//   it("Should allow the Whistleblower to see access/download statistics", function(done){
+// 
+//     request()
+//     .get('/tip/' + dummyTipID)
+//     .expect(/tip/)
+//     .expect(/comments/)
+//     .end(function(err, res){
+//       if (err) return done(err);
+//       done();
+//     });
+// 
+//   });
+// 
+// });
+// 
+// describe("Receiver API functionality", function(){
+// 
+//   it("Should allow the Receiver to get notified of a new Tip by email", function(done){
+//     done();
+//   });
+// 
+//   it("Should allow the Receiver to get notified of a new files or comment on existing Tip by email", function(done){
+// 
+//     request()
+//     .end(function(err, res){
+//       if (err) return done(err);
+//       done();
+//     });
+// 
+//   });
+// 
+//   it("Should allow the Receiver to access his Tip by clicking on Tip link receiver by email", function(done){
+// 
+//     request()
+//     .end(function(err, res){
+//       if (err) return done(err);
+//       done();
+//     });
+// 
+//   });
+// 
+//   it("Should allow the Receiver to download files received on his Tip", function(done){
+// 
+//     request()
+//     .end(function(err, res){
+//       if (err) return done(err);
+//       done();
+//     });
+// 
+//   });
+// 
+//   it("Should allow the Receiver to add a comment on his Tip", function(done){
+//     request()
+//     .end(function(err, res){
+//       if (err) return done(err);
+//       done();
+//     });
+// 
+//   });
+// 
+//   it("Should allow the Receiver to see all comments on his Tip", function(done){
+//     request()
+//     .end(function(err, res){
+//       if (err) return done(err);
+//       done();
+//     });
+//   });
+// 
+//   it("Should allow the Receiver to see access/download statistics", function(done){
+//     request()
+//     .end(function(err, res){
+//       if (err) return done(err);
+//       done();
+//     });
+//   });
+// 
+// });
+// 
