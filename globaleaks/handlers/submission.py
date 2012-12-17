@@ -17,16 +17,78 @@ from globaleaks.rest.base import validateMessage
 from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
     ContextGusNotFound, SubmissionFailFields
 
-class SubmissionCrud(BaseHandler):
+class SubmissionCreate(BaseHandler):
     """
     U2
+    This class create the submission, receiving a partial wbSubmissionDesc, and
+    returning a submission_gus, usable in update operation.
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def post(self, *uriargs):
+        """
+        Request: wbSubmissionDesc
+        Response: wbSubmissionDesc
+        Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields
+
+        This creates an empty submission for the requested context,
+        and returns submissionStatus with empty fields and a Submission Unique String,
+        This is the unique token used during the submission procedure.
+        sessionGUS is used as authentication secret for the next interaction.
+        expire after the time set by Admin (Context dependent setting)
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud POST")
+
+        try:
+            request = validateMessage(self.request.body, requests.wbSubmissionDesc)
+            submission = Submission()
+
+            # TODO open Context() and hook to requested context, for defaults and so on
+
+            status = yield submission.new(request.context_gus)
+            submission_gus = status['submission_gus']
+
+            if request.fields:
+                log.debug("Fields present in creation: %s" % request['fields'])
+                yield submission.update_fields(submission_gus, request.fields)
+
+            # TODO check if context supports receiver_selection
+            if request.receiver_selected:
+                yield submission.select_receiver(submission_gus, request.receiver_selected)
+
+            self.set_status(201) # Created
+            # TODO - output processing
+            self.write(status)
+
+        except ContextGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except SubmissionFailFields, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+class SubmissionInstance(BaseHandler):
+    """
+    U3
     This is the interface for create, populate and complete a submission.
     Relay in the client-server update and exchange of the submissionStatus message.
     """
 
     @asynchronous
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self, submission_gus, *uriargs):
         """
         Parameters: submission_gus
         Response: wbSubmissionDesc
@@ -60,59 +122,9 @@ class SubmissionCrud(BaseHandler):
         self.finish()
 
 
-    @asynchronous
-    @inlineCallbacks
-    def post(self, *uriargs):
+    def put(self, submission_gus, *uriargs):
         """
-        Request: wbSubmissionDesc
-        Response: wbSubmissionDesc
-        Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields
-
-        This creates an empty submission for the requested context,
-        and returns submissionStatus with empty fields and a Submission Uniqe String,
-        This is the unique token used during the submission procedure.
-        sessionGUS is used as authentication secret for the next interaction.
-        expire after the time set by Admin (Context dependent setting)
-        """
-        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud POST")
-
-        try:
-            request = validateMessage(self.request.body, requests.wbSubmissionDesc)
-            submission = Submission()
-
-            status = yield submission.new(request.context_gus)
-            submission_gus = status['submission_gus']
-
-            log.debug("Updating fields with %s" % request['fields'])
-            if request.fields:
-                yield submission.update_fields(submission_gus, request.fields)
-
-            if request.receiver_selected:
-                yield submission.select_receiver(submission_gus, request.receiver_selected)
-
-            self.set_status(201) # Created
-            # TODO - output processing
-            self.write(status)
-
-        except ContextGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except SubmissionFailFields, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        self.finish()
-
-    def put(self, *uriargs):
-        """
+        Parameter: submission_gus
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
         Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields, SubmissionGusNotFound
@@ -168,8 +180,9 @@ class SubmissionCrud(BaseHandler):
         self.finish()
 
 
-    def delete(self, *uriargs):
+    def delete(self, submission_gus, *uriargs):
         """
+        Parameter: submission_gus
         Request: wbSubmissionDesc
         Response: None
         Errors: SubmissionGusNotFound, InvalidInputFormat
@@ -195,3 +208,5 @@ class SubmissionCrud(BaseHandler):
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
+
+

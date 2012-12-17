@@ -1,4 +1,5 @@
 # -*- coding: UTF-8
+#
 #   tip
 #   ***
 #
@@ -16,6 +17,7 @@ from globaleaks.rest import base
 
 import json
 
+# XXX need to be updated along the receipt hashing and format
 def is_receiver_token(tip_token):
     """
     @param tip_token: the received string from /tip/$whatever
@@ -29,7 +31,7 @@ def is_receiver_token(tip_token):
 
     return not retcheck
 
-class TipManagement(BaseHandler):
+class TipInstance(BaseHandler):
     """
     T1
     This interface expose the Tip.
@@ -48,7 +50,7 @@ class TipManagement(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, tip_token, *args):
+    def get(self, tip_token, *uriargs):
         """
         Parameters: None
         Response: actorsTipDesc
@@ -97,7 +99,7 @@ class TipManagement(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def post(self, tip_token, *arg, **kw):
+    def post(self, tip_token, *uriargs):
         """
         Request: actorsTipDesc
         Response: actorsTipDesc
@@ -145,28 +147,10 @@ class TipManagement(BaseHandler):
         self.finish()
 
 
-class TipsAvailable(BaseHandler):
+# FULLY REVIEW TODO
+class TipCommentCollection(BaseHandler):
     """
     T2
-    This interface return the summary list of the Tips available for the authenticated Receiver
-    GET /tips/<receiver_tip_GUS>/
-    """
-
-    @asynchronous
-    @inlineCallbacks
-    def get(self, tip_token):
-        """
-        Parameters: None
-        Response: receiverTipList
-        Errors: InvalidTipAuthToken
-        """
-        pass
-
-
-# FULLY REVIEW TODO
-class TipCommentManagement(BaseHandler):
-    """
-    T3
     Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
     needs, at the moment, to delete/update comments once has been published. Comments is intended, now,
     as a stone written consideration about Tip reliability, therefore no editing and rethinking is
@@ -226,19 +210,20 @@ class TipCommentManagement(BaseHandler):
         self.finish()
 
 
-class TipReceiversAvailable(BaseHandler):
+class TipReceiversCollection(BaseHandler):
     """
-    T4
+    T3
     This interface return the list of the Receiver active in a Tip.
     GET /tip/<auth_tip_token>/receivers
     """
 
     @asynchronous
     @inlineCallbacks
-    def get(self, tip_token):
+    def get(self, tip_token, *uriargs):
         """
         Parameters: None
         Response: actorsReceiverList
         Errors: InvalidTipAuthToken
         """
-        pass
+
+

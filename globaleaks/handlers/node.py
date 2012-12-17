@@ -13,7 +13,7 @@ from globaleaks.models.node import Node
 from globaleaks.models.context import Context
 from globaleaks.rest.errors import NodeNotFound
 
-class InfoAvailable(BaseHandler):
+class InfoCollection(BaseHandler):
     """
     U1
     Returns information on the GlobaLeaks node. This includes submission
@@ -44,54 +44,18 @@ class InfoAvailable(BaseHandler):
 
         except NodeNotFound, e:
 
-            self._status_code = e.http_status
+            self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
+# U2 Submission create
+# U3 Submission update/status/delete
+# U4 Files
 
-class ContextsAvailable(BaseHandler):
+class StatsCollection(BaseHandler):
     """
     U5
-    """
-
-    @asynchronous
-    @inlineCallbacks
-    def get(self, *uriargs):
-        """
-        Parameters: None
-        Response:
-        Errors:
-        """
-
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get", uriargs)
-
-        try:
-            context_view = Context()
-            public_context_view = yield context_view.public_get_all()
-            node_description_dicts.update({"contexts": public_context_view})
-
-            # todo output filter
-        except KeyError: # TODO the error returned by the in
-
-class ReceiversAvailable(BaseHandler):
-    """
-    U6
-    """
-
-    @asynchronous
-    @inlineCallbacks
-    def get(self, *uriargs):
-        """
-        Parameters: None
-        Response:
-        Errors:
-        """
-
-
-class StatsAvailable(BaseHandler):
-    """
-    U4
     Interface for the public statistics, configured between the Node settings and the
     Contexts settings
     """
@@ -108,3 +72,57 @@ class StatsAvailable(BaseHandler):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class StatsAvailable", "get", uriargs)
         pass
+
+class ContextsCollection(BaseHandler):
+    """
+    U6
+    Return the public list of contexts, those information are shown in client
+    and would be memorized in a third party indexer service. This is way some dates
+    are returned within.
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, *uriargs):
+        """
+        Parameters: None
+        Response: publicContextList
+        Errors: None
+        """
+
+        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get", uriargs)
+
+        try:
+            context_view = Context()
+            public_context_view = yield context_view.public_get_all()
+
+            # TODO output filter
+
+            self.set_status(200)
+            self.write(public_context_view)
+
+        except KeyError: # TODO the error returned by the in
+
+            self.set_status(444)
+            self.write({'error_message': 'do not exist but TODO', 'error_code' : 12345})
+
+        self.finish()
+
+
+class ReceiversCollection(BaseHandler):
+    """
+    U7
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, *uriargs):
+        """
+        Parameters: None
+        Response: publicReceiverList
+        Errors: None
+        """
+
+
+
+

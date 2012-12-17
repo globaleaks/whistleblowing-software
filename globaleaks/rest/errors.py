@@ -168,36 +168,16 @@ class InvalidTipAuthToken(GLException):
         GLException.http_status = 401 # Unauthorized
 
 
-
-
-
-
-
-
-
-
-# This is the struct containing the errors
-def errorMessage(http_error_code=500, error_dict={}):
+class PluginNameNotFound(GLException):
     """
-    errorMessage may be used as inline object declaration and assignment
+    Authentication is failed, for Receiver or Whistleblower, because do not rely
+    only in the secret Token (Tip Gus knowledge or receipt).
     """
-    response = {'http_error_code':  http_error_code,
-                'error_code': error_dict.get('code'),
-                'error_message': error_dict.get('string')}
-    return response
+
+    def __init__(self):
+        GLException.error_message = "Authentication in Tip failed"
+        GLException.error_code = 23
+        GLException.http_status = 401 # Unauthorized
 
 
-# from cyclone.util import ObjectDict as OD
-# GLErrorCode = OD()
-# # All
-# GLErrorCode.malformed_requst = {'code': 0, 'message': 'Malformed Request'}
-#
-# # U2,U3,U4
-# GLErrorCode.invalid_sID = {'code': 1, 'message': 'submission ID invalid'}
-#
-# # U3
-# GLErrorCode.invalid_receiver = {'code': 2, 'message': 'selected receiver ID is invalid in the context'}
-#
-# # U4
-# GLErrorCode.incomplete_fields = {'code': 3, 'message': 'fields requirement not respected'}
-# GLErrorCode.incomplete_upload = {'code': 4, 'message': 'An upload appears not yet completed'}
+
