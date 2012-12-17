@@ -15,9 +15,9 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils import log
 from globaleaks import models, config
 
-class FileCrud(BaseHandler):
+class FileInstance(BaseHandler):
     """
-    U5
+    U4
     need a complete redesign with async Tip/Submission
     """
 

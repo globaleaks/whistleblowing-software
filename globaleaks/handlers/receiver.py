@@ -20,7 +20,7 @@ from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
     ProfileGusNotFound, ReceiverConfNotFound, InvalidTipAuthToken, TipGusNotFound
 
 
-class ReceiverManagement(BaseHandler):
+class ReceiverInstance(BaseHandler):
     """
     R1
     This class permit the operations in the Receiver model options,
@@ -64,12 +64,11 @@ class ReceiverManagement(BaseHandler):
         self.finish()
 
 
-class ProfilesAvailable(BaseHandler):
+class ProfilesCollection(BaseHandler):
     """
     R2
     This class show the profiles configured by the Administrator available in a specific context
-
-    GET /receiver/(auth_secret_token)/pluginprofiles
+    GET /receiver/(auth_secret_token)/plugin
     """
 
     @asynchronous
@@ -83,7 +82,7 @@ class ProfilesAvailable(BaseHandler):
         pass
 
 
-class ProfileCrud(BaseHandler):
+class ProfileInstance(BaseHandler):
     """
     R3
     This class handle the receiver plugins configuration settings, its a
@@ -91,19 +90,19 @@ class ProfileCrud(BaseHandler):
         ReceiverConfs.configured_fields
         ReceiverConfs.active
 
-    CRUD /receiver/(auth_secret_token)/plugin
+    CRUD /receiver/(auth_secret_token)/plugin/<plugin_gus>
     """
 
     @asynchronous
     @inlineCallbacks
-    def get(self, receiver_token_auth, *uriargs):
+    def get(self, receiver_token_auth, plugin_gus, *uriargs):
         """
         Parameters: None
         Response: receiverProfileDesc
         Errors: InvalidInputFormat, ProfileGusNotFound, TipGusNotFound, InvalidTipAuthToken
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverOptions", "GET", tip_gus, conf_id)
+        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverOptions", "GET", receiver_token_auth, plugin_gus)
 
         # TODO define an auth method usable easily before every Receiver operations, and
         # TODO various auth system
@@ -111,6 +110,7 @@ class ProfileCrud(BaseHandler):
         receivertip_iface = externaltip.ReceiverTip()
 
         try:
+            tip_gus = receiver_token_auth # XXX - XXX
             receiver_d = yield receivertip_iface.get_receiver_by_tip(tip_gus)
             # It's an auth, need to be managed in other way for supports welcome token
         except TipGusNotFound, e:
@@ -131,7 +131,7 @@ class ProfileCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def post(self, receiver_token_auth, *uriargs):
+    def post(self, receiver_token_auth, plugin_gus, *uriargs):
         """
         Request: receiverProfileDesc
         Response: receiverProfileDesc
@@ -199,7 +199,7 @@ class ProfileCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def put(self, receiver_token_auth, *uriargs):
+    def put(self, receiver_token_auth, plugin_gus, *uriargs):
         """
         Request: receiverProfileDesc
         Response: receiverProfileDesc
@@ -266,10 +266,29 @@ class ProfileCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def delete(self, receiver_token_auth, *uriargs):
+    def delete(self, receiver_token_auth, plugin_gus, *uriargs):
         """
         Request: receiverProfileDesc
         Response: None
         Errors: InvalidInputFormat, ProfileGusNotFound
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
+
+
+class TipsCollection(BaseHandler):
+    """
+    T4
+    This interface return the summary list of the Tips available for the authenticated Receiver
+    GET /tips/<receiver_token_auth/tip
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, receiver_token_auth, *uriargs):
+        """
+        Parameters: None
+        Response: receiverTipList
+        Errors: InvalidTipAuthToken
+        """
+        pass
+

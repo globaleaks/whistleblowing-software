@@ -7,7 +7,7 @@
 #   and are used to make output validation, sanitization, and operations
 
 
-from globaleaks.rest.base import GLTypes
+from globaleaks.rest.base import GLTypes, formFieldsDict, timeType
 
 # All the REST interface SHARE the same structures between response and request
 # and the generate_docs.py script check in responses.py and requests.py
@@ -25,29 +25,8 @@ from globaleaks.rest.requests import adminPluginDesc
 from globaleaks.rest.requests import adminProfileDesc
 
 
-
 # -------------------------------------------------------
 # Here start the definition of the Response-only messages
-
-class publicStatsDesc(GLTypes):
-    """
-    Public statistic, just information that would be useful to the
-    public, to make well know if a GL Node has live inside or dead.
-
-    tip_accesses is the sum of wb_accesses and receiver_accesses
-    from the adminStatsElement
-    """
-    specification = {
-
-        'completed_submission' : int,
-        'tip_accesses' : int
-    }
-
-class publicStatsList(GLTypes):
-
-    specification = {
-        'public_stats' : [ publicStatsDesc ]
-    }
 
 class adminStatsDesc(GLTypes):
     """
@@ -76,59 +55,87 @@ class publicNodeDesc(GLTypes):
         'public_stats_delta' : int
     }
 
+class publicContextDesc(GLTypes):
+
+    specification =  {
+        'name': unicode,
+        'description' : unicode,
+        'fields' : [ formFieldsDict ],
+        'selectable_receiver': bool,
+        'languages_supported': unicode,
+        'tip_timetolive' : int,
+        'creation_date' : timeType,
+        'update_date' : timeType
+    }
+
+class publicReceiverDesc(GLTypes):
+
+    specification =  {
+        'name' : unicode,
+        'description' : unicode,
+        'tags' : unicode,
+        'know_languages' : unicode
+    }
+
+class publicReceiverList(GLTypes):
+
+    specification = [ publicReceiverDesc ]
+
+class publicContextList(GLTypes):
+
+    specification = [ publicContextDesc ]
+
+class publicStatsDesc(GLTypes):
+    """
+    Public statistic, just information that would be useful to the
+    public, to make well know if a GL Node has live inside or dead.
+
+    tip_accesses is the sum of wb_accesses and receiver_accesses
+    from the adminStatsElement
+    """
+    specification = {
+        'completed_submission' : int,
+        'tip_accesses' : int
+    }
+
+class publicStatsList(GLTypes):
+
+    specification = [ publicStatsDesc ]
 
 class adminStatsList(GLTypes):
 
-    specification = {
-        'admin_stats' : [ adminStatsDesc ]
-    }
+    specification = [ adminStatsDesc ]
 
 class receiverProfileList(GLTypes):
 
-    specification = {
-        'receiver_profiles': [ receiverProfileDesc ]
-    }
+    specification = [ receiverProfileDesc ]
 
 class receiverTipList(GLTypes):
 
-    specification = {
-        'tips' : [ receiverTipDesc ]
-    }
+    specification = [ receiverTipDesc ]
 
 class actorsCommentList(GLTypes):
 
-    specification = {
-        'comments' : [ actorsCommentDesc ]
-    }
+    specification = [ actorsCommentDesc ]
 
 class actorsReceiverList(GLTypes):
 
-    specification = {
-        'receivers' : [ receiverReceiverDesc ]
-    }
+    specification = [ receiverReceiverDesc ]
 
 class adminReceiverList(GLTypes):
 
-    specification = {
-        'receivers' : [ adminReceiverDesc ]
-    }
+    specification = [ adminReceiverDesc ]
 
 class adminContextList(GLTypes):
 
-    specification = {
-        'contexts' : [ adminContextDesc ]
-    }
+    specification =  [ adminContextDesc ]
 
 class adminPluginList(GLTypes):
 
-    specification = {
-        'plugins' : [ adminPluginDesc ]
-    }
+    specification = [ adminPluginDesc ]
 
 class adminProfileList(GLTypes):
 
-    specification = {
-        'profiles' : [ adminProfileDesc ]
-    }
+    specification = [ adminProfileDesc ]
 
 

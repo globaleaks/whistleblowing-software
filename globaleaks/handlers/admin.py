@@ -16,7 +16,7 @@ from globaleaks.plugins.base import GLPluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
     NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict
 
-class NodeManagement(BaseHandler):
+class NodeInstance(BaseHandler):
     """
     A1
     Get the node main settings, update the node main settings, it works in a single static
@@ -81,12 +81,14 @@ class NodeManagement(BaseHandler):
         # return value as GET
         yield self.get()
 
-class ContextsAvailable(BaseHandler):
+class ContextsCollection(BaseHandler):
     """
     A2
     Return a list of all the available contexts, in elements
     """
 
+    @asynchronous
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -95,8 +97,43 @@ class ContextsAvailable(BaseHandler):
         """
         pass
 
+    @asynchronous
+    @inlineCallbacks
+    def post(self, context_gus, *uriargs):
+        """
+        Request: adminContextDesc
+        Response: adminContextDesc
+        Errors: InvalidInputFormat
+        """
 
-class ContextCrud(BaseHandler):
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "POST")
+
+        request = json.loads(self.request.body)
+
+        if not request:
+            # holy fucking sick atheist god
+            # no validation at the moment.
+            self.write(__file__)
+            self.set_status(406)
+            self.write('error message to be managed using the appropriate format')
+            self.finish()
+
+        else:
+            context_iface = context.Context()
+
+            try:
+                yield context_iface.update(context_gus, request)
+                yield self.get(context_gus)
+
+            # REFACTOR TODO
+            except ContextGusNotFound, e:
+
+                self.set_status(e.http_status)
+                self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+                self.finish()
+
+
+class ContextInstance(BaseHandler):
     """
     A3
     classic CRUD in the single Context resource. It
@@ -127,41 +164,6 @@ class ContextCrud(BaseHandler):
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
-
-    @asynchronous
-    @inlineCallbacks
-    def post(self, context_gus, *uriargs):
-        """
-        Request: adminContextDesc
-        Response: adminContextDesc
-        Errors: InvalidInputFormat
-        """
-
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminContexts", "POST")
-
-        request = json.loads(self.request.body)
-
-        if not request:
-            # holy fucking sick atheist god
-            # no validation at the moment.
-            self.write(__file__)
-            self.set_status(406)
-            self.write('error message to be managed using the appropriate format')
-            self.finish()
-
-        else:
-            context_iface = context.Context()
-
-            try:
-                yield context_iface.update(context_gus, request)
-                yield self.get(context_gus)
-
-            # REFACTOR remind
-            except ContextGusNotFound, e:
-
-                self.set_status(e.http_status)
-                self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-                self.finish()
 
 
     @asynchronous
@@ -227,7 +229,7 @@ class ContextCrud(BaseHandler):
         self.finish()
 
 
-class ReceiversAvailable(BaseHandler):
+class ReceiversCollection(BaseHandler):
     """
     A4
     List all available receivers present in the node.
@@ -240,48 +242,6 @@ class ReceiversAvailable(BaseHandler):
         Errors: None
         """
         pass
-
-
-
-class ReceiverCrud(BaseHandler):
-    """
-    A5
-    AdminReceivers: classic CRUD in a 'receiver' resource
-    A receiver can stay in more than one context, then is expected in POST/PUT
-    operations a list of tarGET contexts is passed. Operation here, mostly are
-    handled by models/receiver.py, and act on the administrative side of the
-    receiver. a receiver performing operation in their profile, has an API
-    implemented in handlers.receiver
-    """
-
-    @asynchronous
-    @inlineCallbacks
-    def get(self, *uriargs):
-        """
-        Parameters: receiver_gus
-        Response: adminReceiverDesc
-        Errors: InvalidInputFormat, ReceiverGusNotFound
-        """
-
-        receiver_gus = 123 # TODO REMIND REFACTOR parameter validation
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "GET", receiver_gus)
-
-        # TODO parameter validation
-        receiver_iface = receiver.Receiver()
-
-        try:
-            receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
-
-            self.set_status(200)
-            self.write(receiver_description)
-
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        self.finish()
-
 
     @asynchronous
     @inlineCallbacks
@@ -320,9 +280,49 @@ class ReceiverCrud(BaseHandler):
             self.finish()
 
 
+class ReceiverInstance(BaseHandler):
+    """
+    A5
+    AdminReceivers: classic CRUD in a 'receiver' resource
+    A receiver can stay in more than one context, then is expected in POST/PUT
+    operations a list of tarGET contexts is passed. Operation here, mostly are
+    handled by models/receiver.py, and act on the administrative side of the
+    receiver. a receiver performing operation in their profile, has an API
+    implemented in handlers.receiver
+    """
+
     @asynchronous
     @inlineCallbacks
-    def put(self, *uriargs):
+    def get(self, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus
+        Response: adminReceiverDesc
+        Errors: InvalidInputFormat, ReceiverGusNotFound
+        """
+
+        receiver_gus = 123 # TODO REMIND REFACTOR parameter validation
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminReceivers", "GET", receiver_gus)
+
+        # TODO parameter validation
+        receiver_iface = receiver.Receiver()
+
+        try:
+            receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
+
+            self.set_status(200)
+            self.write(receiver_description)
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+    @asynchronous
+    @inlineCallbacks
+    def put(self, receiver_gus, *uriargs):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
@@ -349,7 +349,7 @@ class ReceiverCrud(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def delete(self, *uriargs):
+    def delete(self, receiver_gus, *uriargs):
         """
         Request: adminReceiverDesc
         Response: None
@@ -371,10 +371,11 @@ class ReceiverCrud(BaseHandler):
 
         self.finish()
 
-class PluginsAvailable(BaseHandler):
+class PluginCollection(BaseHandler):
     """
     A6
-    List all plugins available in the node (used as base resource for create profiles)
+    Return the list of all pluging (python file containing a self contained name, with an
+    univoque name) available on the system.
     """
 
     def get(self, *uriargs):
@@ -385,45 +386,30 @@ class PluginsAvailable(BaseHandler):
         """
         pass
 
-class ProfileCrud(BaseHandler):
+
+class ProfileCollection(BaseHandler):
     """
     A7
-    This class enable and configure the profiles, a profile is a plugin configuration,
-    and the same plugin may have multiple
+    Return the list of all profiles configured based on the selected plugin name
+
+    GET|POST /admin/plugin/<plugin_name>/profile
     """
 
-    @asynchronous
-    @inlineCallbacks
-    def get(self, profile_gus, *uriargs):
+    def get(self, plugin_name, *uriargs):
         """
-        Parameters: profile_gus
-        Response: adminProfileDesc
-        Errors: ProfileGusNotFound
+        Parameters: None
+        Response: adminProfileList
+        Errors: PluginNameNotFound
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "GET", profile_gus)
-
-        plugin_iface = options.PluginProfiles()
-
-        try:
-            profile_description = yield plugin_iface.admin_get_single(profile_gus)
-
-            self.set_status(200)
-            self.write(profile_description)
-
-        except ProfileGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        self.finish()
+        pass
 
     @asynchronous
     @inlineCallbacks
-    def post(self, profile_gus, *uriargs):
+    def post(self, plugin_name, *uriargs):
         """
         Request: adminProfileDesc
         Response: adminProfileDesc
-        Errors: ProfileGusNotFound, InvalidInputFormat, ProfileNameConflict
+        Errors: ProfileGusNotFound, InvalidInputFormat, ProfileNameConflict, PluginNameNotFound
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "POST")
@@ -471,15 +457,48 @@ class ProfileCrud(BaseHandler):
             else:
                 self.set_status(406)
                 self.write({'error_message':
-                    'Invalid request format in Profile creation (profile name, fields content)',
-                    'error_code' : 123 })
+                                'Invalid request format in Profile creation (profile name, fields content)',
+                            'error_code' : 123 })
 
         self.finish()
 
 
+
+class ProfileInstance(BaseHandler):
+    """
+    A8
+    This class enable and configure the profiles, a profile is a plugin configuration,
+    and the same plugin may have multiple
+    """
+
     @asynchronous
     @inlineCallbacks
-    def put(self, profile_gus, *uriargs):
+    def get(self, plugin_name, profile_gus, *uriargs):
+        """
+        Parameters: profile_gus
+        Response: adminProfileDesc
+        Errors: ProfileGusNotFound
+        """
+        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin", "GET", profile_gus)
+
+        plugin_iface = options.PluginProfiles()
+
+        try:
+            profile_description = yield plugin_iface.admin_get_single(profile_gus)
+
+            self.set_status(200)
+            self.write(profile_description)
+
+        except ProfileGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+    @asynchronous
+    @inlineCallbacks
+    def put(self, plugin_name, profile_gus, *uriargs):
         """
         Request: adminProfileDesc
         Response: adminProfileDesc
@@ -549,9 +568,9 @@ class ProfileCrud(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
 
 
-class StatisticsAvailable(BaseHandler):
+class StatisticsCollection(BaseHandler):
     """
-    A8
+    A9
     Return all administrative statistics of the node.
     """
 
@@ -564,9 +583,9 @@ class StatisticsAvailable(BaseHandler):
         pass
 
 
-class EntryAvailable(BaseHandler):
+class EntryCollection(BaseHandler):
     """
-    A9
+    AA
     Interface for dumps elements in the tables, used in debug and detailed analysis.
     """
 
@@ -631,9 +650,9 @@ class EntryAvailable(BaseHandler):
         self.finish()
 
 
-class TaskManagement(BaseHandler):
+class TaskInstance(BaseHandler):
     """
-    A0
+    AB
     controls task and scheduled
     """
 

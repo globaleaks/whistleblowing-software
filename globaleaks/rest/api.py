@@ -11,20 +11,22 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks import config
 from globaleaks.handlers import node, submission, tip, admin, receiver, files
-from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, profileGUS
+from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, profileGUS, submissionGUS
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'
 receiver_token_auth = r'(\w+)' # This would cover regexp.tip_gus | regexp.welcome_token_gus
 
 # Here is mapped a path and the associated class to be invoked,
-# Three kind of Classes can be distigued:
+# Two kind of Classes:
 #
 # * Instance
 #         MAY supports: PUT, DELETE, GET
 # * Collection
 #         supports GET operation, returning a list of elements, and (maybe) POST
 #         for create a new elements of the collection.
+#
+# [ special guest: SubmissionCreate, our lovely black sheep ;) ]
 
 spec = [
     ## Node Handler ##
@@ -33,18 +35,21 @@ spec = [
 
     ## Submission Handlers ##
     #  U2
-    (r'/submission/' + contextGUS.regexp + '/new', submission.SubmissionInstance),
+    (r'/submission/', submission.SubmissionCreate),
 
     #  U3
-    (r'/file/', files.FileInstance),
+    (r'/submission/' + submissionGUS.regexp, submission.SubmissionInstance),
 
     #  U4
-    (r'/statistics', node.StatsCollection),
+    (r'/file/', files.FileInstance),
 
     #  U5
-    (r'/contexts', node.ContextsCollection),
+    (r'/statistics', node.StatsCollection),
 
     #  U6
+    (r'/contexts', node.ContextsCollection),
+
+    #  U7
     (r'/receivers' , node.ReceiversCollection),
 
     ## Tip Handlers ##
@@ -68,7 +73,7 @@ spec = [
     (r'/receiver/' + receiver_token_auth + '/profile/' + profileGUS.regexp, receiver.ProfileInstance),
 
     #  R4
-    (r'/receiver/' + receiver_token_auth + '/tip', tip.TipsCollection),
+    (r'/receiver/' + receiver_token_auth + '/tip', receiver.TipsCollection),
 
     ## Admin Handlers ##
     #  A1

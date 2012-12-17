@@ -44,7 +44,7 @@ class Context(TXModel):
 
     tip_max_access = Int()
     tip_timetolive = Int()
-    folder_max_download = Int()
+    file_max_download = Int()
 
     # to be implemented in REST / dict
     notification_profiles = Pickle()
@@ -228,7 +228,7 @@ class Context(TXModel):
         # remove the keys private in the public diplay of node informations
         ret_context_dict.pop('tip_max_access')
         ret_context_dict.pop('tip_timetolive')
-        ret_context_dict.pop('folder_max_download')
+        ret_context_dict.pop('file_max_download')
         ret_context_dict.pop('escalation_threshold')
 
         ret_context_dict.update({'receivers' : requested_c.get_receivers('public') })
@@ -252,7 +252,7 @@ class Context(TXModel):
             # remove the keys private in the public diplay of node informations
             description_dict.pop('tip_max_access')
             description_dict.pop('tip_timetolive')
-            description_dict.pop('folder_max_download')
+            description_dict.pop('file_max_download')
             description_dict.pop('escalation_threshold')
 
             description_dict.update({'receivers' : requested_c.get_receivers('public') })
@@ -427,7 +427,7 @@ class Context(TXModel):
             "languages_supported": self.languages_supported,
             'tip_max_access' : self.tip_max_access,
             'tip_timetolive' : self.tip_timetolive,
-            'folder_max_download' : self.folder_max_download,
+            'file_max_download' : self.file_max_download,
             'escalation_threshold' : self.escalation_threshold,
             "fields": self.fields
         }
@@ -447,7 +447,7 @@ class Context(TXModel):
         self.escalation_threshold = context_dict['escalation_threshold']
         self.tip_max_access = context_dict['tip_max_access']
         self.tip_timetolive = context_dict['tip_timetolive']
-        self.folder_max_download = context_dict['folder_max_download']
+        self.file_max_download = context_dict['file_max_download']
 
         if self.selectable_receiver and self.escalation_threshold:
             log.msg("[!] Selectable receiver feature and escalation threshold can't work both: threshold ignored")
