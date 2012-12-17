@@ -2,7 +2,8 @@
 // https://github.com/visionmedia/supertest
 // and mocha
 
-var request = require('supertest');
+var request = require('supertest'),
+  should = require('should');
 
 // Tells where the backend is listening
 request = request.bind(request, 'http://192.168.33.102:8082');
@@ -44,18 +45,43 @@ describe("Node Admin API functionality", function(){
       tip_timetolive: 42
   };
 
+// {
+//   "name":"Testing", 
+//   "description":"Testing", 
+//   "notification_selected":"email",
+//   "notification_fields":"admin@example.com", 
+//   "know_languages":["en","it"],
+//   "can_postpone_expiration":true, 
+//   "can_configure_delivery":true,
+//   "can_delete_submission":true, 
+//   "delivery_selected":"local",
+//   "delivery_fields":"",
+//   "receiver_level":1, 
+//   "tags": ["tag1","tag2","tag3"], 
+//   "contexts":[]
+// }
 
   var dummyReceiver = {
     name: 'dummyName',
     description: 'dummyDescription',
     can_postpone_expiration: true,
     tags: ['tag1', 'tag2', 'tag3'],
-    context_gus_list: ['c_foobar'],
+
+    contexts: [],
+    //context_gus_list: [],
+
     can_configure_notification: true,
     can_configure_delivery: true,
     can_delete_submission: true,
+
     receiver_level: 1,
-    know_languages: ['en', 'it'],
+    languages: ['en', 'it'],
+    notification_selected: 'email',
+    notification_fields: 'admin@example.com',
+
+    delivery_selected: 'local',
+    delivery_fields: ''
+
   };
 
   var dummyContextID = 'c_ElevenCharsNineChars';
@@ -89,26 +115,32 @@ describe("Node Admin API functionality", function(){
 
   });
 
-// 
-//   it("Should allow the Node Admin to access the admin interface", function(done){
-// 
-//     request()
-//     .get('/admin/node')
-//     .expect(200)
-//     .end(function(err, res){
-//       var response = JSON.parse(res.text);
-//       expect(response['name']);
-//       expect(response['description']);
-//       expect(response['hidden_service']);
-//       expect(response['public_site']);
-//       expect(response['leakdirectory_entry']);
-//       expect(response['public_stats_delta']);
-//       expect(response['private_stats_delta']);
-//       expect(response['authoptions']);
-//     });
-// 
-//   });
-// 
+
+  it("Should allow the Node Admin to access the admin interface", function(done){
+
+    request()
+    .get('/admin/node')
+    .expect(200)
+    .end(function(err, res){
+      var response = JSON.parse(res.text);
+
+      console.log("----------------");
+      //console.log(res.text);
+      console.log("----------------");
+
+      response.should.have.property('name');
+      response.should.have.property('description');
+      response.should.have.property('hidden_service');
+      response.should.have.property('public_site');
+      response.should.have.property('leakdirectory_entry');
+      response.should.have.property('public_stats_delta');
+      response.should.have.property('private_stats_delta');
+      response.should.have.property('authoptions');
+
+    });
+
+  });
+
 //   it("Should allow the Node Admin to change it's password", function(done){
 // 
 //     request()
@@ -188,31 +220,107 @@ describe("Node Admin API functionality", function(){
     .expect(200)
     .end(function(err, res){
       if (err) return done(err);
+
+      // console.log("----------------");
+      // console.log(res.text);
+      // console.log("----------------")
+
       var response = JSON.parse(res.text);
       response.indexOf(0);
-      //response.should.be.a('object');
       done();
     });
 
   });
 
-
-
-  it("Should allow the Node Admin to add receiver details", function(done){
+  it("Should allow the Node Admin to list receivers", function(done){
 
     request()
     //put('/admin/receiver').
-    .post('/admin/receiver')
-    .send(dummyReceiver)
+    .get('/admin/receiver')
     .expect(200)
     .end(function(err, res){
       if (err) return done(err);
+
+      console.log("----------------");
       console.log(res.text);
+      console.log("----------------");
+
       done();
     });
 
   });
 
+  it("Should allow the Node Admin to add receiver details", function(done){
+    request()
+    .post('/admin/receiver')
+    .send(dummyReceiver)
+    .expect(201)
+    .end(function(err, res){
+      if (err) {
+        console.log(res.text);
+        return done(err);
+      }
+
+      var response = JSON.parse(res.text);
+
+      response.should.have.property('receiver_gus');
+
+      console.log("-----2----------");
+      console.log(err);
+      console.log(res.text);
+      console.log("----------------")
+
+      done();
+    });
+
+  });
+
+  it("Should allow the Node Admin to add a context and receiver details", function(done){
+    request()
+    .post('/admin/context')
+    .send(dummyContext)
+    .expect(201)
+    .end(function(err, res){
+      if (err) return done(err);
+      var response = JSON.parse(res.text),
+        contextID = response['context_gus'];
+
+      response.should.have.property('name');
+      response.should.have.property('description');
+
+      // console.log("-------1--------");
+      // console.log(err);
+      // console.log(res.text);
+      // console.log("----------------")
+
+     dummyReceiver.contexts.push(contextID);
+
+      request()
+      //put('/admin/receiver').
+      .post('/admin/receiver')
+      .send(dummyReceiver)
+      .expect(201)
+      .end(function(err, res){
+        if (err) {
+          console.log(res.text);
+          return done(err);
+        }
+
+        var response = JSON.parse(res.text);
+
+        response.should.have.property('receiver_gus');
+        response['contexts'][0].should.equal(contextID);
+
+        // console.log("-----2----------");
+        // console.log(err);
+        // console.log(res.text);
+        // console.log("----------------")
+
+        done();
+      });
+    });
+
+  });
 
 //   it("Should allow the Node Admin to add email details for configuration", function(done){
 // 
