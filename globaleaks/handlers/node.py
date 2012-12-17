@@ -36,10 +36,6 @@ class InfoCollection(BaseHandler):
             nodeinfo = Node()
             node_description_dicts = yield nodeinfo.get_public_info()
 
-
-            # Remind: this is no more an aggregate answer, a client need to perform
-            # a GET /contexts to retrive list of contexts.
-
             self.write(node_description_dicts)
 
         except NodeNotFound, e:
@@ -112,6 +108,8 @@ class ContextsCollection(BaseHandler):
 class ReceiversCollection(BaseHandler):
     """
     U7
+    Return the description of all the receiver visible from the outside. A receiver is associated
+    to one or more context, and is present in the "first tier" if a multi level review is configured.
     """
 
     @asynchronous
@@ -122,6 +120,7 @@ class ReceiversCollection(BaseHandler):
         Response: publicReceiverList
         Errors: None
         """
+        pass
 
 
 
