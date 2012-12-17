@@ -1,6 +1,15 @@
+var baseUrl = 'http://127.0.0.1:8082';
+
 angular.module('resourceServices', ['ngResource']).
   factory('Node', function($resource) {
-    return $resource('/node', {}, {
+    // XXX this is a quite dirty
+    // we probably want to subclass $resource
+    var url = '/node';
+    if (baseUrl) {
+      url = baseUrl + url;
+    }
+
+    return $resource(url, {}, {
       info: {method: 'GET', url: '/node'}
     });
 }).
@@ -9,41 +18,55 @@ angular.module('resourceServices', ['ngResource']).
   factory('Submission', function($resource) {
     // This is a factory function responsible for creating functions related
     // to the creation of submissions
-    return $resource('/submission');
+
+    var url = '/submission';
+    if (baseUrl) {
+      url = baseUrl + url;
+    }
+
+    return $resource(url);
 }).
   factory('Tip', function($resource) {
-    return $resource('/tip/:tip_id/',
+    var url = '/tip';
+    if (baseUrl) {
+      url = baseUrl + url;
+    }
+
+    return $resource(url + '/:tip_id/',
         {tip_id: '@tip_id'}, {
     });
 }).
-  factory('ReceiverSettings', function($resource) {
-    return $resource('/receiver/:tip_id',
-      {tip_id: '@tip_id'}
-    );
-}).
-  factory('ReceiverNotification', function($resource) {
-    // This implements the receiver notification component personalizations
-    return $resource('/receiver/:tip_id/notification',
-      {tip_id: '@tip_id'}
-    );
-}).
-  factory('ReceiverDelivery', function($resource) {
-    // This implements the receiver delivery component personalizations
-    return $resource('/receiver/:tip_id/delivery',
-      {tip_id: '@tip_id'}
-    );
-}).
   factory('AdminNode', function($resource) {
-    return $resource('/admin/node');
+    var url = '/admin/node';
+    if (baseUrl) {
+      url = baseUrl + url;
+    }
+
+    return $resource(url);
 }).
   factory('AdminContexts', function($resource) {
-    return $resource('/admin/contexts');
+    var url = '/admin/contexts';
+    if (baseUrl) {
+      url = baseUrl + url;
+    }
+
+    return $resource(url);
 }).
   factory('AdminReceivers', function($resource) {
-    return $resource('/admin/receivers');
+    var url = '/admin/receivers';
+    if (baseUrl) {
+      url = baseUrl + url;
+    }
+
+    return $resource(url);
 }).
   factory('AdminModules', function($resource) {
-    return $resource('/admin/modules/:module_type',
+    var url = '/admin/modules';
+    if (baseUrl) {
+      url = baseUrl + url;
+    }
+
+    return $resource(url + '/:module_type',
       {module_type: '@module_type'});
 });
 
