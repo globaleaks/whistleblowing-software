@@ -283,7 +283,7 @@ class Receiver(TXModel):
         self.name = source_rd['name']
         self.description = source_rd['description']
         self.tags = source_rd['tags']
-        self.know_languages = source_rd['know_languages']
+        self.know_languages = source_rd['languages']
 
         self.notification_selected = source_rd['notification_selected']
         self.notification_fields = source_rd['notification_fields']
