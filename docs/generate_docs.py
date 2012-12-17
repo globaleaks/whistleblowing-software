@@ -1,6 +1,5 @@
 from globaleaks.rest.api import spec
 from globaleaks.rest import requests, responses, errors, base
-from utils import cleanup_docstring
 import inspect
 import string
 
@@ -15,8 +14,25 @@ URTA_map = {}
 #       the item of this key is an array with the collected info from the docstring
 
 typestree = {}
-
 # typestree is the dict containing the data types description and content
+
+def shooter_list_dump():
+
+    # 'U2_GET':'GET_/submission/@CID@/new',#U2
+
+    with file("shooter.include", 'w+') as f:
+
+        for k,v in typestree.iteritems():
+            print k,"\t",v
+
+        for k,v in doctree.iteritems():
+            print k,"\t",v
+
+        for k,v in URTA_map.iteritems():
+            print k,"\t",v
+
+        f.write()
+
 
 
 def pop_URTA(descriptionstring):
@@ -70,6 +86,11 @@ def fill_doctree():
 
     return doctree
 
+def cleanup_docstring(docstring):
+    doc = ""
+    stripped = [line.strip() for line in docstring.split("\n")]
+    doc += '\n'.join(stripped)
+    return doc
 
 def get_elementNames(partial_line):
     return partial_line.replace(" ", '').split(",")
@@ -123,41 +144,51 @@ def travel_over_tree(wikidoc, URTAindex=None):
 
             if method.upper() == 'GET':
                 if not matrix[0][2] or not matrix[1][2]:
-                    print "Error: lacking of reqirements"
+                    print "Error: lacking of requirements"
                     quit()
             else:
                 if not matrix[0][2] or not matrix[1][2] or not matrix[2][2]:
-                    print "Error: lacking of reqirements"
+                    print "Error: lacking of requirements"
                     quit()
 
 
-def create_spec(spec):
+def create_spec(rec, spec):
     doc = ""
     for k, v in spec.items():
-        doc += "    %s: %s\n" % (k, v)
+        if type(v) == type([]):
+
+            doc += "list %s" % k
+        else:
+            doc += k + "\n"
+            doc += "%s\n" % handle_klass_entry(rec + 1, v)
+        # doc += "    %s: %s\n" % (k, v)
     return doc
 
-def create_class_doc(klass):
-    doc = "## %s\n" % klass.__name__
+def create_class_doc(rec, klass):
+    doc = "\n`%s`_\n\n" % klass.__name__
     if klass.__doc__:
         cleanup_docstring(klass.__doc__)
     doc += "\n"
-    doc += create_spec(klass.specification)
+    doc += create_spec(rec +1, klass.specification)
     doc += "\n\n"
     return doc
 
 def create_special_doc(klass):
-    doc = "  * %s: '%s'\n\n" % (klass.__name__, klass.regexp)
+    doc = "\n`%s`_\n%s\n" % (klass.__name__, klass.regexp)
     return doc
 
 
-def handle_klass_entry(source, name, klass):
+def handle_klass_entry(rec, klass):
 
     if issubclass(klass, base.GLTypes) and klass != base.GLTypes:
-        types_doc = create_class_doc(klass)
+        types_doc = create_class_doc(rec, klass)
+        for x in range(0, rec):
+            types_doc ="\t" + types_doc
         return types_doc
     elif issubclass(klass, base.SpecialType) and klass != base.SpecialType:
         special_doc = create_special_doc(klass)
+        for x in range(1, rec):
+            special_doc ="\t" + special_doc
         return special_doc
 
 def handle_errortype_entry(errorklass):
@@ -199,7 +230,8 @@ class reStructuredText:
         else:
             for name, klass in inspect.getmembers(requests, inspect.isclass):
                 if name == reqname:
-                    typedesc = handle_klass_entry('requests', name, klass)
+                    print "requests match", name
+                    typedesc = handle_klass_entry(1, klass)
                     break
 
             if typedesc is None or typedesc == "":
@@ -225,7 +257,10 @@ class reStructuredText:
         else:
             for name, klass in inspect.getmembers(responses, inspect.isclass):
                 if name == responame:
-                    typedesc = handle_klass_entry('responses', name, klass)
+                    print "responses match", name
+                    import pdb
+                    pdb.set_trace()
+                    typedesc = handle_klass_entry(1, klass)
                     break
 
             if typedesc is None or typedesc == "":
@@ -293,6 +328,10 @@ if __name__ == '__main__':
         f.write(wikidoc.collected)
 
     #`travel_over_tree had filled typestree dictionary!
-    print typestree
+    for k,v in typestree.iteritems():
+        print k,"\t",v
+
+    # dump API list in shooter.py format
+    shooter_list_dump()
 
 

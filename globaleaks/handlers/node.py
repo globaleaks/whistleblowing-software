@@ -25,10 +25,10 @@ class InfoAvailable(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
         """
+        Parameters: None
         Response: publicNodeDesc
         Errors: NodeNotFound
         """
-
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get", uriargs)
 
@@ -40,7 +40,8 @@ class InfoAvailable(BaseHandler):
             public_context_view = yield context_view.public_get_all()
             node_description_dicts.update({"contexts": public_context_view})
 
-            # XXX this is an aggregate answer, need to be output-validated here
+            # Remind: this is no more an aggregate answer, a client need to perform
+            # a GET /contexts to retrive list of contexts.
 
             self.write(node_description_dicts)
 
@@ -63,7 +64,7 @@ class StatsAvailable(BaseHandler):
     @inlineCallbacks
     def get(self, *uriargs):
         """
-        Parameters: TODO
+        Parameters: None
         Response: publicStatsList
         Errors: StatsNotCollectedError
 
