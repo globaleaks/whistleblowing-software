@@ -145,7 +145,8 @@ class Context(TXModel):
         # delete all the reference to the context in the receivers
         receiver_iface = Receiver()
 
-        unlinked_receivers = yield receiver_iface.unlink_context(context_gus)
+        # this is not a yield because getStore is not yet called!
+        unlinked_receivers = receiver_iface.unlink_context(context_gus)
 
         # TODO - delete all the tips associated with the context
         # TODO - delete all the jobs associated with the context
@@ -382,14 +383,17 @@ class Context(TXModel):
         for c in presents_context:
 
             # if is not present in context.receivers and is requested: add
-            if not (receiver_gus in c.receivers) and (c.context_gus in context_selected):
-                debug_counter += 1
-                c.receivers.append(receiver_gus)
+            if c.receivers and not receiver_gus in c.receivers:
+                if c.context_gus in context_selected:
+                    debug_counter += 1
+                    c.receivers.append(str(receiver_gus))
 
             # if is present in receiver.contexts and is not selected: remove
-            if (receiver_gus in c.receivers) and not (c.context_gus in context_selected):
-                debug_counter += 1
-                c.receivers.remove(receiver_gus)
+            if c.receivers and (receiver_gus in c.receivers):
+                if not c.context_gus in context_selected:
+                    debug_counter += 1
+                    c.receivers.remove(receiver_gus)
+
 
         log.debug("    %%%%   full_context_align in all contexts after %s has been set with %s: %d mods" %
                   ( receiver_gus, str(context_selected), debug_counter ) )
@@ -415,7 +419,9 @@ class Context(TXModel):
             store.close()
             raise ContextGusNotFound
 
-        requested_c.contexts = receiver_selected
+        requested_c.receivers = []
+        for r in receiver_selected:
+            requested_c.receivers.append(str(r))
 
         log.debug("    ++++   context_align in receiver %s with receivers %s" %
                   ( context_gus, str(receiver_selected) ) )

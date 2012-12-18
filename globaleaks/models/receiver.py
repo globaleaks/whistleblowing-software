@@ -203,14 +203,17 @@ class Receiver(TXModel):
         for r in presents_receiver:
 
             # if is not present in receiver.contexts and is requested: add
-            if not (context_gus in r.contexts) and (r.receiver_gus in receiver_selected):
-                debug_counter += 1
-                r.contexts.append(context_gus)
+            if r.contexts and not context_gus in r.contexts:
+                if str(r.receiver_gus) in receiver_selected:
+                    debug_counter += 1
+                    r.contexts.append(str(context_gus))
 
             # if is present in context.receiver and is not selected: remove
-            if (context_gus in r.contexts) and not (r.receiver_gus in receiver_selected):
-                debug_counter += 1
-                r.contexts.remove(context_gus)
+            if r.contexts and context_gus in r.contexts:
+                if not str(r.receiver_gus) in receiver_selected:
+                    debug_counter += 1
+                    r.contexts.remove(context_gus)
+
 
         log.debug("    ****   full_receiver_align in all receivers after %s has been set with %s: %d mods" %
                   ( context_gus, str(receiver_selected), debug_counter ) )
@@ -235,7 +238,9 @@ class Receiver(TXModel):
             store.close()
             raise ReceiverGusNotFound
 
-        requested_r.contexts = context_selected
+        requested_r.contexts = []
+        for c in context_selected:
+            requested_r.contexts.append(str(c))
 
         log.debug("    ++++   receiver_align in receiver %s with contexts %s" %
                   ( receiver_gus, str(context_selected) ) )
@@ -281,8 +286,13 @@ class Receiver(TXModel):
         results = store.find(Receiver)
 
         unassigned_count = 0
+
         for r in results:
-            if context_gus in r.contexts:
+
+            if not r.contexts:
+                continue
+
+            if str(context_gus) in r.contexts:
                 r.contexts.remove(context_gus)
                 unassigned_count += 1
 

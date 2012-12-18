@@ -63,7 +63,6 @@ class Node(TXModel):
         @param input_block: its a totally unmaintainable dict
         @return: None
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "configure_node", input_block)
 
         store = self.getStore('configure_node')
 
@@ -90,7 +89,6 @@ class Node(TXModel):
 
     @transact
     def get_public_info(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get_public_info")
 
         store = self.getStore('get_public_info')
 
@@ -118,7 +116,6 @@ class Node(TXModel):
 
     @transact
     def get_admin_info(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get_admin_info")
 
         store = self.getStore('get_admin_info')
 
@@ -134,19 +131,18 @@ class Node(TXModel):
         # this unmaintainable crap need to be removed in the future,
         # and the dict/output generation shall not be scattered
         # around here.
-        retAdminDict= {'name' : node_data.name,
-                'description' : node_data.description,
-                'hidden_service' : node_data.hidden_service,
-                'public_site' : node_data.public_site,
-                'public_stats_delta' : node_data.public_stats_delta,
-                'private_stats_delta' : node_data.private_stats_delta }
+        retAdminDict= { 'name' : node_data.name,
+                        'description' : node_data.description,
+                        'hidden_service' : node_data.hidden_service,
+                        'public_site' : node_data.public_site,
+                        'public_stats_update_time' : node_data.public_stats_update_time,
+                        'private_stats_update_time' : node_data.private_stats_update_time,
+                        'email' : node_data.email,
+                        'lanaguages' : node_data.languages
+            }
 
         store.close()
         return retAdminDict
-
-    @transact
-    def list_contexts(self):
-        pass
 
     @transact
     def initialize_node(self):
@@ -178,7 +174,6 @@ class Node(TXModel):
         @return: True or False
         check if the table in Node is only one
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "only_one")
 
         store = self.getStore('only_one')
         nodenum = store.find(Node).count()

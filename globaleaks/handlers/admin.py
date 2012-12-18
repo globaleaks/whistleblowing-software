@@ -121,8 +121,8 @@ class ContextsCollection(BaseHandler):
 
             if request['receivers']:
                 receiver_iface = receiver.Receiver()
-                yield receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
                 yield context_iface.context_align(new_context_gus, request['receivers'])
+                yield receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
 
             context_description = yield context_iface.admin_get_single(new_context_gus)
 
@@ -189,8 +189,8 @@ class ContextInstance(BaseHandler):
 
             if request['receivers']:
                 receiver_iface = receiver.Receiver()
-                yield receiver_iface.full_receiver_align(context_gus, request['receivers'])
                 yield context_iface.context_align(context_gus, request['receivers'])
+                yield receiver_iface.full_receiver_align(context_gus, request['receivers'])
 
             context_description = yield context_iface.admin_get_single(context_gus)
 
@@ -235,7 +235,6 @@ class ContextInstance(BaseHandler):
         # to the context. (not the receivers: they can be possesed also by other context,
         # but the tarGET context is DELETEd also in the receiver reference)
 
-        # TODO REMIND XXX - context_gus validation
         try:
             yield context_iface.delete_context(context_gus)
             self.set_status(200)
@@ -282,7 +281,7 @@ class ReceiversCollection(BaseHandler):
         Response: adminReceiverDesc
         Errors: InvalidInputFormat, ContextGusNotFound
 
-        Create a new receiver,
+        Create a new receiver
         """
 
         try:
@@ -294,8 +293,8 @@ class ReceiversCollection(BaseHandler):
 
             if request['contexts']:
                 context_iface = context.Context()
-                yield context_iface.full_context_align(new_receiver_gus, request['contexts'])
                 yield receiver_iface.receiver_align(new_receiver_gus, request['contexts'])
+                yield context_iface.full_context_align(new_receiver_gus, request['contexts'])
 
             new_receiver_desc = yield receiver_iface.admin_get_single(new_receiver_gus)
 
@@ -375,8 +374,8 @@ class ReceiverInstance(BaseHandler):
 
             if request['contexts']:
                 context_iface = context.Context()
-                yield context_iface.full_context_align(receiver_gus, request['contexts'])
                 yield receiver_iface.receiver_align(receiver_gus, request['contexts'])
+                yield context_iface.full_context_align(receiver_gus, request['contexts'])
 
             receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
 
