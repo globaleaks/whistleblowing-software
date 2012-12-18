@@ -10,12 +10,14 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip,\
-    TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
+from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip
 from globaleaks.utils import log
-from globaleaks.rest import base
+from globaleaks.rest.base import validateMessage
+from globaleaks.rest import requests
+from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
 
 import json
+import globaleaks.rest.base
 
 # XXX need to be updated along the receipt hashing and format
 def is_receiver_token(tip_token):
@@ -55,45 +57,38 @@ class TipInstance(BaseHandler):
         Parameters: None
         Response: actorsTipDesc
         Errors: InvalidTipAuthToken
+
+        tip_token can be: a tip_gus for a receiver, or a WhistleBlower receipt, understand
+        the format, help in addressing which kind of Tip need to be handled.
         """
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class TipManagement", "get", "tip_token", tip_token)
 
-        # tip_token can be: a tip_gus for a receiver, or a WhistleBlower receipt, understand
-        # the format, help in addressing which kind of Tip need to be handled.
 
-        comment_iface = Comment()
-        # folder_iface = Folder()
+        # file_iface = File()
 
-        if is_receiver_token(tip_token):
+        try:
+            if is_receiver_token(tip_token):
+                print "I'm a receiver with %s" % tip_token
+                requested_t = ReceiverTip()
+            else:
+                print "I'm a whistleblower with %s" % tip_token
+                requested_t = WhistleblowerTip()
 
-            requested_t = ReceiverTip()
+            tip_description = yield requested_t.receiver_get_single(tip_token)
 
-            try:
-                tip_description = yield requested_t.receiver_get_single(tip_token)
-                comment_list = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
+            self.set_status(200)
+            self.write({'tip' : tip_description})
 
-                self.set_status(200)
-                self.write({'tip' : tip_description, 'comments' : comment_list})
+        except TipGusNotFound, e:
 
-            except TipGusNotFound, e:
-                self.set_status(e.http_status)
-                self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
-        else:
+        except TipReceiptNotFound, e:
 
-            requested_t = WhistleblowerTip()
-
-            try:
-                tip_description = yield requested_t.whistleblower_get_single(tip_token)
-                comment_list = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
-
-                self.set_status(200)
-                self.write({'tip' : tip_description, 'comments' : comment_list}) # Refactor remind XXX TODO
-
-            except TipReceiptNotFound, e:
-                self.set_status(e.http_status)
-                self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -110,39 +105,40 @@ class TipInstance(BaseHandler):
         Those operations (may) trigger a 'system comment' inside of the Tip comment list.
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipRoot", "PUT", "tip_token", tip_token)
+        try:
+            request = validateMessage(self.request.body, requests.actorsTipOpsDesc)
 
-        request = json.loads(self.request.body)
-
-        if not request:
-            # this need a dedicated entry in error dict
-            self.set_status(408)
-            self.write({'error_message' : 'expected messages in POST', 'error_code' : 123})
-
-        elif is_receiver_token(tip_token):
+            if not is_receiver_token(tip_token):
+                raise ForbiddenOperation
 
             requested_t = ReceiverTip()
 
-            try:
-                # XXX refactor with validateMessage
-                if request['total_delete']:
-                    yield requested_t.total_delete(tip_token)
-                elif request['personal_delete']:
-                    yield requested_t.personal_delete(tip_token)
-                elif request['is_pertinent']:
-                    yield requested_t.pertinence_vote(tip_token, request['is_pertinent'])
+            if request['personal_delete']:
+                yield requested_t.personal_delete(tip_token)
+            if request['is_pertinent']:
+                yield requested_t.pertinence_vote(tip_token, request['is_pertinent'])
 
-                self.set_status(200)
+            self.set_status(200)
 
-            except TipGusNotFound, e:
-                self.set_status(e.http_status)
-                self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+        except InvalidInputFormat, e:
 
-            except TipPertinenceExpressed, e:
-                self.set_status(e.http_status)
-                self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
-            # TODO, error handling for lacking of total_delete privileges
+        except ForbiddenOperation, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+
+        except TipGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+
+        except TipPertinenceExpressed, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         else:
             # this need a dedicated entry in error dict
@@ -162,9 +158,23 @@ class TipInstance(BaseHandler):
 
         When an uber-receiver decide to "total delete" a Tip, is handled by this call.
         """
-        pass
+        try:
 
-# FULLY REVIEW TODO
+            if not is_receiver_token(tip_token):
+                raise ForbiddenOperation
+
+            requested_t = ReceiverTip()
+            yield requested_t.total_delete(tip_token)
+
+            self.set_status(200)
+
+        except ForbiddenOperation, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+
+
+
 class TipCommentCollection(BaseHandler):
     """
     T2
@@ -182,7 +192,35 @@ class TipCommentCollection(BaseHandler):
         Response: actorsCommentList
         Errors: InvalidTipAuthToken
         """
-        pass
+
+        try:
+
+            if is_receiver_token(tip_token):
+                print "Comment: I'm a receiver with %s" % tip_token
+                requested_t = ReceiverTip()
+            else:
+                print "Comment: I'm a whistleblower with %s" % tip_token
+                requested_t = WhistleblowerTip()
+
+            comment_iface = Comment()
+
+            tip_description = yield requested_t.receiver_get_single(tip_token)
+            comment_list = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
+
+            self.set_status(200)
+            self.write({'comments' : comment_list})
+
+        except TipGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+
+        except TipReceiptNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
 
     @asynchronous
     @inlineCallbacks
@@ -190,41 +228,53 @@ class TipCommentCollection(BaseHandler):
         """
         Request: actorsCommentDesc
         Response: actorsCommentDesc
-        Errors: InvalidTipAuthToken, InvalidInputFormat
+        Errors: InvalidTipAuthToken, InvalidInputFormat, TipGusNotFound, TipReceiptNotFound
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipComment", "post", tip_token)
 
-        request = json.loads(self.request.body)
+        comment_iface = Comment()
 
-        # this is not yet the
-        if not 'comment' in request:
-            self.set_status(406)
-        elif not request['comment']:
-            self.set_status(406)
-        else:
-            comment_iface = Comment()
+        try:
+            request = validateMessage(self.request.body, requests.actorsCommentDesc)
 
-            try:
+            if is_receiver_token(tip_token):
 
-                if is_receiver_token(tip_token):
-                    receivert_iface = ReceiverTip()
-                    tip_description = yield receivert_iface.admin_get_single(tip_token)
-                    yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'], u"receiver", tip_description['receiver_name'])
-                    # TODO: internaltip <> last_usage_time_update()
+                print "Comment: I'm a receiver with %s" % tip_token
+                requested_t = ReceiverTip()
 
-                else:
-                    wbt_iface = WhistleblowerTip()
-                    tip_description = yield wbt_iface.admin_get_single(tip_token)
-                    yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'], u"whistleblower")
-                    # TODO: internaltip <> last_usage_time_update()
+                tip_description = yield requested_t.admin_get_single(tip_token)
+                yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'],
+                    u"receiver", tip_description['receiver_name'])
 
-                self.set_status(200)
+                # TODO: internaltip <> last_usage_time_update()
+            else:
 
-            except TipGusNotFound, e:
-                self.set_status(e.http_status)
-                self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+                print "Comment: I'm a whistleblower with %s" % tip_token
+                requested_t = WhistleblowerTip()
+
+                tip_description = yield requested_t.admin_get_single(tip_token)
+                yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'], u"whistleblower")
+
+                # TODO: internaltip <> last_usage_time_update()
+
+            tip_description = yield requested_t.whistleblower_get_single(tip_token)
+
+            comment_stored = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
+
+            self.set_status(200)
+            self.write({'comment' : comment_stored})
+
+        except TipGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+
+        except TipReceiptNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
+
 
 
 class TipReceiversCollection(BaseHandler):
