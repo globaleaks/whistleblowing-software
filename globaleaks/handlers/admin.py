@@ -112,21 +112,32 @@ class ContextsCollection(BaseHandler):
         """
         Request: adminContextDesc
         Response: adminContextDesc
-        Errors: InvalidInputFormat
+        Errors: InvalidInputFormat, ReceiverGusNotFound
         """
 
         context_iface = context.Context()
+        receiver_iface = receiver.Receiver()
+
         try:
 
             request = validateMessage(self.request.body, requests.adminContextDesc)
             new_context_gus = yield context_iface.new(request)
 
+            #yield receiver_iface.full_receiver_align()
+            #yield context_iface.align_receiver(new_context_gus, request['receivers'])
+
             context_description = yield context_iface.admin_get_single(new_context_gus)
+
 
             self.set_status(201) # Created
             self.write(context_description)
 
         except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -170,7 +181,7 @@ class ContextInstance(BaseHandler):
         """
         Request: adminContextDesc
         Response: adminContextDesc
-        Errors: InvalidInputFormat, ContextGusNotFound
+        Errors: InvalidInputFormat, ContextGusNotFound, ReceiverGusNotFound
         """
 
         try:
@@ -179,6 +190,10 @@ class ContextInstance(BaseHandler):
             context_iface = context.Context()
 
             yield context_iface.update(context_gus, request)
+
+            #yield receiver_iface.full_receiver_align()
+            #yield context_iface.align_receiver(context_gus, request['receivers'])
+
             context_description = yield context_iface.admin_get_single(context_gus)
 
             self.set_status(200)
@@ -190,6 +205,11 @@ class ContextInstance(BaseHandler):
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})

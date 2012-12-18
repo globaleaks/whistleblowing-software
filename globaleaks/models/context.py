@@ -346,6 +346,36 @@ class Context(TXModel):
         store.commit()
         store.close()
 
+    @transact
+    def align_receiver(self, context_gus, receiver_gus_list):
+        """
+        @param context_gus: target Context which working into
+        @param receiver_gus_list: new map of receivers associated
+        @return: None
+
+        This function is called by handler when a context is new or updated
+        """
+
+        print "context.align_receiver", context_gus, receiver_gus_list
+
+        store = self.getStore('align_receiver')
+
+        try:
+            requested_c = store.find(Context, Context.context_gus == context_gus).one()
+        except NotOneError:
+            store.close()
+            raise ContextGusNotFound
+        if requested_c is None:
+            store.close()
+            raise ContextGusNotFound
+
+        requested_c.receivers = receiver_gus_list
+
+        store.commit()
+        store.close()
+
+
+
     # this is called internally by a @transact functions
     def get_receivers(self, info_type, context_gus=None):
         """

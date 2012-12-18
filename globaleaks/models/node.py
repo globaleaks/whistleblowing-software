@@ -106,14 +106,13 @@ class Node(TXModel):
         # I'd prefer wrap get_admin_info and then .pop() the
         # private variables, but wrap a defered cause you can't return,
         # so would be nice but I don't have clear if workarounds costs too much
-        retTmpDict = {'name' : node_data.name,
+        retTmpDict= {'name' : node_data.name,
                         'description' : node_data.description,
                         'hidden_service' : node_data.hidden_service,
                         'public_site' : node_data.public_site,
                         'public_stats_delta' : node_data.public_stats_delta,
                     }
 
-        store.commit()
         store.close()
         return retTmpDict
 
@@ -142,7 +141,6 @@ class Node(TXModel):
                 'public_stats_delta' : node_data.public_stats_delta,
                 'private_stats_delta' : node_data.private_stats_delta }
 
-        store.commit()
         store.close()
         return retAdminDict
 
@@ -157,7 +155,7 @@ class Node(TXModel):
         This function is called only one time in a node life, and initialize
         the table. the configure_node run edit of this row (id = 1)
         """
-        store = self.getStore('initialize_node')
+        store = self.getStore('first node init')
 
         onlyNode = Node()
 
@@ -184,7 +182,6 @@ class Node(TXModel):
 
         store = self.getStore('only_one')
         nodenum = store.find(Node).count()
-        store.commit()
         store.close()
 
         if 1 == nodenum:
