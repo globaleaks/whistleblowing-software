@@ -16,7 +16,10 @@ angular.module('resourceServices', ['ngResource']).
     });
 }).
   factory('AdminNode', function($resource) {
-    return $resource('/admin/node');
+    return $resource('/admin/node', {},
+      {update:
+          {method: 'PUT'}
+      });
 }).
   factory('AdminContexts', function($resource) {
     return $resource('/admin/context/:context_id',
@@ -47,7 +50,7 @@ angular.module('resourceServices', ['ngResource']).
       });
 }).
   factory('AdminModules', function($resource) {
-    return $resource(url + '/admin/module/:module_type',
+    return $resource('/admin/module/:module_type',
       {module_type: '@module_type'});
 });
 
@@ -68,7 +71,8 @@ angular.module('localeServices', ['resourceServices']).
 
         localization.node_info = node_info;
         localization.selected_language =
-          localization.node_info.available_languages[0].code;
+          localization.node_info.languages[0].code;
+
         localization.get_node_name = function() {
           return localization.node_info.name[localization.selected_language];
         }
@@ -84,6 +88,7 @@ angular.module('localeServices', ['resourceServices']).
             return this.description[localization.selected_language];
           }
         }
+
         localization.current_context = localization.node_info.contexts[0];
         // XXX this is somewhat hackish
         localization.current_context_gus = localization.current_context.gus;

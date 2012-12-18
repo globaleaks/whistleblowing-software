@@ -31,7 +31,7 @@ function($scope, localization, AdminReceivers) {
     receiver.$save(function(created_receiver){
       $scope.adminReceivers.push(created_receiver);
     });
-  }
+  };
 
   $scope.delete_receiver = function(receiver) {
     var idx = _.indexOf($scope.adminReceivers, receiver);
@@ -39,7 +39,7 @@ function($scope, localization, AdminReceivers) {
 
     receiver.$delete();
     $scope.adminReceivers.splice(idx, 1);
-  }
+  };
 
 
 }]);

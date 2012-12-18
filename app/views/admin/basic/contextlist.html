@@ -31,8 +31,9 @@
             </select>
 
             <button class="btn btn-success"
-              ng-disabled="!configForm.$dirty"
-              ng-click="context.$update();configForm.$dirty=false;">Save</button>
+              ng-disabled="configForm.$invalid || isUnchanged(context)"
+              ng-click="update(context)">Save</button>
+
             <button class="btn btn-danger"
               ng-click="delete_context(context)">Delete</button>
 

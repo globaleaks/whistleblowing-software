@@ -57,8 +57,9 @@
             </select>
 
             <button class="btn btn-success"
-              ng-disabled="!configForm.$dirty"
-              ng-click="receiver.$update();configForm.$dirty=false;">Save</button>
+              ng-disabled="configForm.$invalid || isUnchanged(receiver)"
+              ng-click="update(receiver)">Save</button>
+
             <button class="btn btn-danger"
               ng-click="delete_receiver(receiver)">Delete</button>
           </td>

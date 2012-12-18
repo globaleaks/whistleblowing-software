@@ -19,17 +19,37 @@
 
 
     <div class="span9">
-      <form name="configForm" class="config-form">
 
+      <form name="nodeConfigForm" class="config-form">
+        <!-- Node -->
+        <div ng-include="'views/admin/advanced/node.html'">
+        </div>
+
+        <button class="btn btn-success"
+          ng-disabled="nodeConfigForm.$invalid || isUnchanged(adminNode)"
+          ng-click="update(adminNode)">Save</button>
+
+      </form>
+
+      <form name="deliveryNotificationForm" class="config-form">
         <!-- Delivery -->
         <div ng-include="'views/admin/advanced/delivery.html'">
         </div>
+        <button class="btn btn-success"
+          ng-disabled="deliveryNotificationForm.$invalid || isUnchanged(adminDelivery)"
+          ng-click="update(adminDelivery)">Save</button>
 
         <!-- Notification -->
         <div ng-include="'views/admin/advanced/notification.html'">
         </div>
 
+        <button class="btn btn-success"
+          ng-disabled="deliveryNotificationForm.$invalid || isUnchanged(adminNotification)"
+          ng-click="update(adminNotification)">Save</button>
+
+
       </form>
+
     </div>
   </div>
 </div>

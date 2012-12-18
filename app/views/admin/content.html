@@ -16,7 +16,7 @@
     <!-- End Nav Bar -->
     <div class="span9">
 
-      <form class="config-form">
+      <form name="contentForm" novalidate>
 
         <div ng-include="'views/admin/content/title.html'">
         </div>
@@ -26,14 +26,18 @@
         </div>
 
         <!-- Keywords and email -->
-        <div ng-include="'views/admin/content/keywords.html'">
-        </div>
+        <!-- <div ng-include="'views/admin/content/keywords.html'"> -->
+        <!-- </div> -->
 
         <div ng-include="'views/admin/content/email.html'">
         </div>
 
-        <div ng-include="'views/admin/content/internationalization.html'">
-        </div>
+        <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
+        <!-- </div> -->
+
+        <button class="btn btn-success"
+          ng-disabled="contentForm.$invalid || isUnchanged(adminNode)"
+          ng-click="update(adminNode)">Save</button>
 
       </form>
     </div>
