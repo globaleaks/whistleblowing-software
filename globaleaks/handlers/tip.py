@@ -11,15 +11,11 @@ from cyclone.web import asynchronous
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip
-from globaleaks.models.receiver import Receiver
 from globaleaks.models.internaltip import InternalTip
-from globaleaks.utils import log
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
-
 import json
-import globaleaks.rest.base
 
 # XXX need to be updated along the receipt hashing and format
 def is_receiver_token(tip_token):
@@ -77,7 +73,7 @@ class TipInstance(BaseHandler):
                 tip_description = yield requested_t.whistleblower_get_single(tip_token)
 
             self.set_status(200)
-            self.write({'tip' : tip_description})
+            self.write(json.dumps(tip_description))
 
         except TipGusNotFound, e:
 
@@ -207,7 +203,7 @@ class TipCommentCollection(BaseHandler):
             comment_list = yield comment_iface.get_comment_related(tip_description['internaltip_id'])
 
             self.set_status(200)
-            self.write({'comments' : comment_list})
+            self.write(json.dumps(comment_list))
 
         except TipGusNotFound, e:
 
@@ -255,7 +251,7 @@ class TipCommentCollection(BaseHandler):
 
             # TODO: internaltip <> last_usage_time_update()
             self.set_status(200)
-            self.write({'comment' : comment_stored})
+            self.write(json.dumps(comment_stored))
 
         except TipGusNotFound, e:
 
@@ -306,7 +302,7 @@ class TipReceiversCollection(BaseHandler):
 
             inforet = yield itip_iface.get_receivers_map(tip_description['internaltip_id'])
 
-            self.write({'receivers' : inforet})
+            self.write(json.dumps(inforet))
             self.set_status(200)
 
         except TipGusNotFound, e:

@@ -285,6 +285,7 @@ class Submission(TXModel):
         log.debug("Creating tip for whistleblower")
         whistleblower_tip = WhistleblowerTip()
         whistleblower_tip.internaltip_id = internal_tip.id
+        whistleblower_tip.internaltip = internal_tip
 
         if not requested_s.receipt:
             requested_s.receipt = requested_s._receipt_evaluation()
