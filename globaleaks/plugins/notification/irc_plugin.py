@@ -5,9 +5,6 @@ from ircutils import client
 class IRCNotification(GLPlugin):
 
     def __init__(self):
-
-        return # TODO
-
         self.plugin_name = 'irc'
         self.plugin_type = 'notification'
         self.plugin_description = "IRC notification"

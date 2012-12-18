@@ -13,7 +13,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.rest.base import validateMessage
-from globaleaks.rest import requests
+from globaleaks.rest import requests, base
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
 import json
 
@@ -24,12 +24,10 @@ def is_receiver_token(tip_token):
     @return: True if is a tip_gus format, false if is not
     """
 
-    try:
-        retcheck = base.tipGUS().validate(tip_token)
-    except:
-        retcheck = True
-
-    return not retcheck
+    if len(tip_token) == 52 and tip_token[0] == 't' and tip_token[1] == '_':
+        return True
+    else:
+        return False
 
 class TipInstance(BaseHandler):
     """

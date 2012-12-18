@@ -140,10 +140,7 @@ class Submission(TXModel):
             store.close()
             raise SubmissionGusNotFound
 
-        if not s.fields:
-            s.fields = []
-        else:
-            s.fields = fields
+        s.fields = fields
 
         store.commit()
         store.close()
@@ -243,6 +240,9 @@ class Submission(TXModel):
 
         log.debug("Creating internal tip in", requested_s.context_gus, requested_s.submission_gus)
 
+        if not requested_s.fields:
+            raise SubmissionFailFields
+
         internal_tip = InternalTip()
 
         # Initialize all the Storm fields inherit by Submission and Context
@@ -253,6 +253,8 @@ class Submission(TXModel):
         # selection in this moment (other complications can derived from use them both)
         for single_r in requested_s.receivers:
 
+            # this is an hack that need to be fixed short as possible.
+            # receiver_map is an outdated concept
             if type(single_r) == type({}):
                 receiver_gus = single_r.get('receiver_gus')
             else:

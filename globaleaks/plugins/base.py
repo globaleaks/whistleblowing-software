@@ -20,7 +20,7 @@ class GLPluginManager:
         # only here the plugin object is instanced
         self.notification_dict = {
             'email': MailNotification(),
-            'irc': IRCNotification(),
+            # 'irc': IRCNotification(),
             'file': FILENotification()
         }
         self.delivery_dict = {}
