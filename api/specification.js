@@ -104,36 +104,36 @@ describe("Node Admin API functionality", function(){
     file_gus_list: ['']
   }
 
-//   beforeEach(function(done){
-//     // Delete all the configured contexts
-//     request()
-//     .get('/admin/context')
-//     .expect(200)
-//     .end(function(err, res){
-//       if (err) return done(err);
-//       var response = JSON.parse(res.text);
-// 
-//       for (var i in response) {
-//         console.log('deleting '+response[i])
-//         request()
-//         .del('/admin/context/' + response[i].context_gus)
-//         .expect(200);
-//       }
-//     });
-// 
-//     request()
-//     .post('/admin/context')
-//     .send(dummyContext)
-//     .expect(201)
-//     .end(function(err, res){
-//       if (err) return done(err);
-//       var response = JSON.parse(res.text);
-//       dummyContextID = response['context_gus'];
-//       done();
-//     });
-// 
-//   });
-// 
+  beforeEach(function(done){
+    // Delete all the configured contexts
+    request()
+    .get('/admin/context')
+    .expect(200)
+    .end(function(err, res){
+      if (err) return done(err);
+      var response = JSON.parse(res.text);
+
+      for (var i in response) {
+        console.log('deleting '+response[i].context_gus)
+        request()
+        .del('/admin/context/' + response[i].context_gus)
+        .expect(200);
+      }
+    });
+
+    request()
+    .post('/admin/context')
+    .send(dummyContext)
+    .expect(201)
+    .end(function(err, res){
+      if (err) return done(err);
+      var response = JSON.parse(res.text);
+      dummyContextID = response['context_gus'];
+      done();
+    });
+
+  });
+
 
   it("Should allow the Node Admin to access the admin interface", function(done){
 
