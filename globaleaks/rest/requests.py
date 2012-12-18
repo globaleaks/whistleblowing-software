@@ -93,10 +93,10 @@ class adminNodeDesc(GLTypes):
         'description' : unicode,
         'hidden_service' : unicode,
         'public_site' : unicode,
-        'leakdirectory_entry': unicode,
-        'public_stats_delta' : int,
-        'private_stats_delta' : int,
-        'authoptions' : unicode
+        'public_stats_update_time' : int,
+        'private_stats_update_time' : int,
+        'email' : unicode,
+        'languages' : list
     }
 
 class adminContextDesc(GLTypes):

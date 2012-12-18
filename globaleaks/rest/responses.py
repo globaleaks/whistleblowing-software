@@ -49,8 +49,9 @@ class publicNodeDesc(GLTypes):
         'description' : unicode,
         'hidden_service' : unicode,
         'public_site' : unicode,
-        'leakdirectory_entry': unicode,
-        'public_stats_delta' : int
+        'public_stats_update_time' : int,
+        'email' : unicode,
+        'languages' : list
     }
 
 class publicContextDesc(GLTypes):

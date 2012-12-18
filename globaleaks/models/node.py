@@ -28,34 +28,22 @@ class Node(TXModel):
 
     This table represent the System-wide settings
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class Node")
+
     __storm_table__ = 'systemsettings'
 
     id = Int(primary=True)
 
-    properties = Pickle()
     description = Unicode()
     name = Unicode()
     public_site = Unicode()
     hidden_service = Unicode()
+    email = Unicode()
+    languages = Pickle()
 
     creation_time = DateTime()
 
-    public_stats_delta = Int()
-    private_stats_delta = Int()
-
-    # XXX To be implemented with APAF: public_key,
-
-    # XXX to be partially specified: leakdirectory_entry
-
-    # XXX missing: languages
-
-    # XXX public site would not be "tor2web domain conversion" but the
-    # URL of the initiative in the Internet, like, the blog or the
-    # newspaper.
-
-    # XXX tor2web would be a list of translated t2w domain, with a certain
-    #     priority
+    public_stats_update_time = Int()
+    private_stats_update_time = Int()
 
     @transact
     def configure_node(self, input_block):
@@ -75,13 +63,14 @@ class Node(TXModel):
             store.close()
             raise NodeNotFound
 
-        # node_data.properties
         node_data.description = input_block['description']
         node_data.name = input_block['name']
         node_data.public_site = input_block['public_site']
         node_data.hidden_service = input_block['hidden_service']
-        node_data.public_stats_delta = int(input_block['public_stats_delta'])
-        node_data.private_stats_delta = int(input_block['private_stats_delta'])
+        node_data.public_stats_update_time = int(input_block['public_stats_update_time'])
+        node_data.private_stats_update_time = int(input_block['private_stats_update_time'])
+        node_data.email = input_block['email']
+        node_data.languages = input_block['languages']
 
         log.msg("Updated node main configuration")
         store.commit()
@@ -104,11 +93,13 @@ class Node(TXModel):
         # I'd prefer wrap get_admin_info and then .pop() the
         # private variables, but wrap a defered cause you can't return,
         # so would be nice but I don't have clear if workarounds costs too much
-        retTmpDict= {'name' : node_data.name,
-                        'description' : node_data.description,
-                        'hidden_service' : node_data.hidden_service,
-                        'public_site' : node_data.public_site,
-                        'public_stats_delta' : node_data.public_stats_delta,
+        retTmpDict= { 'name' : node_data.name,
+                      'description' : node_data.description,
+                      'hidden_service' : node_data.hidden_service,
+                      'public_site' : node_data.public_site,
+                      'public_stats_update_time' : node_data.public_stats_update_time,
+                      'email' : node_data.email,
+                      'languages' : node_data.languages
                     }
 
         store.close()
@@ -138,7 +129,7 @@ class Node(TXModel):
                         'public_stats_update_time' : node_data.public_stats_update_time,
                         'private_stats_update_time' : node_data.private_stats_update_time,
                         'email' : node_data.email,
-                        'lanaguages' : node_data.languages
+                        'languages' : node_data.languages
             }
 
         store.close()
@@ -156,12 +147,14 @@ class Node(TXModel):
         onlyNode = Node()
 
         onlyNode.id = 1
-        onlyNode.name = u"uncofigured name"
-        onlyNode.description = u"unconfigured description"
-        onlyNode.hidden_service = u"unconfigured hidden service"
-        onlyNode.public_site = u"unconfigured public site"
-        onlyNode.private_stats_delta = 30 # minutes
-        onlyNode.public_stats_delta = 120 # minutes
+        onlyNode.name = u"Please, set me: name/title"
+        onlyNode.description = u"Please, set me: description"
+        onlyNode.hidden_service = u"Please, set me: hidden service"
+        onlyNode.public_site = u"Please, set me: public site"
+        onlyNode.email = u"email@dumnmy.net"
+        onlyNode.private_stats_update_time = 30 # minutes
+        onlyNode.public_stats_update_time = 120 # minutes
+        onlyNode.languages = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" },  {"code" : "vv", "name" : u"ζ Vecnish"} ]
 
         store.add(onlyNode)
         store.commit()

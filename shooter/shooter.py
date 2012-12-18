@@ -13,6 +13,29 @@ sys.path.insert(0, os.path.join(cwd, '../'))
 # TODO - to be fixed with generate_docs.py
 # Remind: this was the format
 URTA = {
+
+    'U1_GET':'GET_/node',
+    'U2_POST':'POST_/submission/',
+    'U3_PUT':'PUT_/submission/@SID@',
+    'U3_DELETE':'DELETE_/submission/@SID@',
+    'U3_GET':'GET_/submission/@SID@',
+    'U4_POST':'POST_/submission/@SID@/file',
+    'U4_DELETE':'DELETE_/submission/@SID@/file',
+    'U4_GET':'GET_/submission/@SID@/file',
+    'U5_GET':'GET_/statistics',
+    'U6_GET':'GET_/contexts',
+    'U7_GET':'GET_/receivers',
+
+
+    'T1_PUT':'PUT_/tip/@TID@',
+    'T1_DELETE':'DELETE_/tip/@TID@',
+    'T1_GET':'GET_/tip/@TID@',
+    'T2_POST':'POST_/tip/@TID@/comments',
+    'T2_GET':'GET_/tip/@TID@/comments',
+    'T3_GET':'GET_/tip/@TID@/receivers',
+    'T4_GET':'GET_/receiver/@TID@/tip',
+
+
     'A5_PUT':'PUT_/admin/receiver/@RID@',
     'A5_DELETE':'DELETE_/admin/receiver/@RID@',
     'A5_GET':'GET_/admin/receiver/@RID@',
