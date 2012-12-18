@@ -6,8 +6,8 @@ var request = require('supertest'),
   should = require('should');
 
 // Tells where the backend is listening
-//request = request.bind(request, 'http://192.168.33.102:8082');
-request = request.bind(request, 'http://127.0.0.1:8082');
+request = request.bind(request, 'http://192.168.33.102:8082');
+//request = request.bind(request, 'http://127.0.0.1:8082');
 
 describe("Node Admin API functionality", function(){
 
@@ -104,15 +104,32 @@ describe("Node Admin API functionality", function(){
   }
 
   beforeEach(function(done){
+    // Delete all the configured contexts
+    request()
+    .get('/admin/context')
+    .expect(200)
+    .end(function(err, res){
+      if (err) return done(err);
+      var response = JSON.parse(res.text);
+
+      for (var i in response) {
+        console.log('deleting '+response[i])
+        request()
+        .del('/admin/context/' + response[i].context_gus)
+        .expect(200);
+      }
+    });
+
     request()
     .post('/admin/context/')
     .send(dummyContext)
-    //.expect(200)
+    .expect(200)
     .end(function(err, res){
       if (err) return done(err);
+      var response = JSON.parse(res.text);
+      dummyContextID = response['context_gus'];
       done();
     });
-
 
   });
 
@@ -125,9 +142,9 @@ describe("Node Admin API functionality", function(){
     .end(function(err, res){
       var response = JSON.parse(res.text);
 
-      console.log("----------------");
-      //console.log(res.text);
-      console.log("----------------");
+      // console.log("----------------");
+      // console.log(res.text);
+      // console.log("----------------");
 
       response.should.have.property('name');
       response.should.have.property('description');
@@ -160,27 +177,17 @@ describe("Node Admin API functionality", function(){
   });
 
   it("Should create an error when the Node Admin does not specify a name", function(done){
+    // console.log(response);
+    // console.log(contextID);
+    // response.should.be.a('object');
+
     request()
-    .post('/admin/context')
-    .send(dummyContext)
-    .expect(201)
-    .end(function(err, res){
-      if (err) return done(err);
-      var response = JSON.parse(res.text),
-        contextID = response['context_gus']
+    .put('/admin/context/' + dummyContextID)
+    .send(invalidContextNoName)
+    .expect(406)
+    .expect('{"error_message": "Invalid Input Format '+
+            '[Import failed near the Storm]", "error_code": 10}', done);
 
-      // console.log(response);
-      // console.log(contextID);
-      // response.should.be.a('object');
-
-      request()
-      .put('/admin/context/' + contextID)
-      .send(invalidContextNoName)
-      .expect(406)
-      .expect('{"error_message": "Invalid Input Format '+
-              '[Import failed near the Storm]", "error_code": 10}', done);
-
-    });
 
   });
 
@@ -320,6 +327,42 @@ describe("Node Admin API functionality", function(){
       });
     });
 
+  });
+
+  it("Should add the receiver to the default context when only one context exists", function(done){
+    request()
+    .get('/admin/context')
+    .expect(200)
+    .end(function(err, res){
+      if (err) return done(err);
+      var response = JSON.parse(res.text),
+        defaultContextID = response[0].context_gus;
+
+      response.should.have.length(1);
+
+      request()
+      .post('/admin/receiver')
+      .send(dummyReceiver)
+      .expect(201)
+      .end(function(err, res){
+        if (err) {
+          console.log(res.text);
+          return done(err);
+        }
+
+        var response = JSON.parse(res.text);
+
+        response.should.have.property('receiver_gus');
+        response['contexts'][0].should.equal(defaultContextID);
+
+        // console.log("-----2----------");
+        // console.log(err);
+        // console.log(res.text);
+        // console.log("----------------")
+
+        done();
+      });
+    });
   });
 
   it("Should allow the Node Admin to add a context and receiver details", function(done){
