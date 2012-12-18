@@ -257,15 +257,14 @@ class ReceiverTip(TXModel):
         """
         checks if Receiver has the right of this operation, and forward to InternalTip.tip_total_delete()
         """
-        pass
+        raise Exception("total_delete do not implement ATM")
 
     @transact
     def personal_delete(self, tip_gus):
         """
         remove the Receiver Tip access, then forward to InternalTip.receiver_remove()
         """
-
-        pass
+        raise Exception("personal_delete do not implemented ATM")
 
     # This method is separated by initialize routine, because the tip creation
     # event can be exported/overriden/implemented by a plugin in a certain future.
@@ -554,8 +553,12 @@ class Comment(TXModel):
         newcomment.internaltip_id = itip_id
         store.add(newcomment)
 
+        retVal = newcomment._description_dict()
+
         store.commit()
         store.close()
+
+        return retVal
 
 
     # this is obvious, after the alpha release, all the mark/status info for the scheduler would be moved in

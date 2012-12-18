@@ -107,16 +107,15 @@ spec = [
     #  A9
     (r'/admin/statistics/', admin.StatisticsCollection),
 
-    ## Main Web app ##
-    # * /
-    (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path, 'default_filename': "index.html" } ),
-
     #  -------------- ADMIN DEBUG ONLY -------------------
     #  AA
     (r'/admin/overview/' + not_defined_regexp, admin.EntryCollection),
 
     #  AB
-    (r'/admin/tasks/' + not_defined_regexp, admin.TaskInstance)
+    (r'/admin/tasks/' + not_defined_regexp, admin.TaskInstance),
 
+    ## Main Web app ##
+    # * /
+    (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path, 'default_filename': "index.html" } )
 ]
 

@@ -734,7 +734,6 @@ class TaskInstance(BaseHandler):
 
         expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'digest' ]
 
-
         if what == 'statistics':
             yield APSNotification().operation()
         if what == 'welcome':
