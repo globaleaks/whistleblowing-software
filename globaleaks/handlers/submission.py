@@ -50,7 +50,6 @@ class SubmissionCreate(BaseHandler):
             status = yield submission.new(request['context_gus'])
             submission_gus = status['submission_gus']
 
-            print context_info
             # submission.receivers = context_iface.
 
             if request.has_key('fields'):

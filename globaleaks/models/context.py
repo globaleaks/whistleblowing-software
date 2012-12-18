@@ -385,7 +385,6 @@ class Context(TXModel):
         # :)
 
         store.close()
-        print "XXXXXXXXXXXXXXXXXXXXXXXXXX", receiver_list
         return receiver_list
 
 

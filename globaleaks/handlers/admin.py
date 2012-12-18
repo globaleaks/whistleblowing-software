@@ -424,7 +424,11 @@ class ReceiverInstance(BaseHandler):
         self.finish()
 
 
-# BELOW ARE TO BE REFACTORED WITH THE NEW API
+# _______________________________________
+# BELOW TO BE REFACTORED WITH THE NEW API
+# _______________________________________
+# BELOW TO BE REFACTORED WITH THE NEW API
+# _______________________________________
 
 class PluginCollection(BaseHandler):
     """
@@ -470,7 +474,6 @@ class ProfileCollection(BaseHandler):
         Response: adminProfileDesc
         Errors: ProfileGusNotFound, InvalidInputFormat, ProfileNameConflict, PluginNameNotFound
         """
-
 
         request = json.loads(self.request.body)
 
@@ -622,6 +625,11 @@ class ProfileInstance(BaseHandler):
         Errors: ProfileGusNotFound, InvalidInputFormat
         """
 
+# _______________________________________
+# BEFORE NEED TO BE REFACTORED WITH THE NEW API
+# _______________________________________
+# BEFORE NEED TO BE REFACTORED WITH THE NEW API
+# _______________________________________
 
 class StatisticsCollection(BaseHandler):
     """

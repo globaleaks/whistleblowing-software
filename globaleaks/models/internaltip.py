@@ -96,8 +96,6 @@ class InternalTip(TXModel):
         Here this information is stored, with the tip_gus that would be None or a valid Tip.
         """
 
-        print "YYY yyy", chosen_r._description_dict()
-
         self.receivers_map.append({
             'receiver_gus' : chosen_r.receiver_gus,
             'receiver_level' : chosen_r.receiver_level,
@@ -283,6 +281,20 @@ class InternalTip(TXModel):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "InternalTip", "postpone_expiration")
 
+
+    @transact
+    def get_receivers_map(self, internaltip_id):
+
+        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip admin_print_all")
+
+        store = self.getStore('internaltip - get_receivers')
+        refitip = store.find(InternalTip, InternalTip.id == internaltip_id).one()
+
+        retVal = refitip.receivers_map
+
+        store.close()
+        return retVal
+
     @transact
     def tip_total_delete(self):
         """
@@ -296,6 +308,7 @@ class InternalTip(TXModel):
 
         description_dict = {
             'id' : self.id,
+            'internaltip_id' : self.id, # running in debug!
             'context_name' : "hardcoded", # self.context.name,
             'context_gus': "useless", # self.context_gus,
             'creation_date' : gltime.prettyDateTime(self.creation_date),
