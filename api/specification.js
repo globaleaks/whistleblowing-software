@@ -6,7 +6,8 @@ var request = require('supertest'),
   should = require('should');
 
 // Tells where the backend is listening
-request = request.bind(request, 'http://192.168.33.102:8082');
+//request = request.bind(request, 'http://192.168.33.102:8082');
+request = request.bind(request, 'http://127.0.0.1:8082');
 
 describe("Node Admin API functionality", function(){
 
@@ -132,7 +133,6 @@ describe("Node Admin API functionality", function(){
       response.should.have.property('description');
       response.should.have.property('hidden_service');
       response.should.have.property('public_site');
-      response.should.have.property('leakdirectory_entry');
       response.should.have.property('public_stats_delta');
       response.should.have.property('private_stats_delta');
       response.should.have.property('authoptions');
@@ -271,6 +271,53 @@ describe("Node Admin API functionality", function(){
       console.log("----------------")
 
       done();
+    });
+
+  });
+
+  it("Should allow the Node Admin to add a context and receiver details", function(done){
+    request()
+    .post('/admin/context')
+    .send(dummyContext)
+    .expect(201)
+    .end(function(err, res){
+      if (err) return done(err);
+      var response = JSON.parse(res.text),
+        contextID = response['context_gus'];
+
+      response.should.have.property('name');
+      response.should.have.property('description');
+
+      // console.log("-------1--------");
+      // console.log(err);
+      // console.log(res.text);
+      // console.log("----------------")
+
+     dummyReceiver.contexts.push(contextID);
+
+      request()
+      //put('/admin/receiver').
+      .post('/admin/receiver')
+      .send(dummyReceiver)
+      .expect(201)
+      .end(function(err, res){
+        if (err) {
+          console.log(res.text);
+          return done(err);
+        }
+
+        var response = JSON.parse(res.text);
+
+        response.should.have.property('receiver_gus');
+        response['contexts'][0].should.equal(contextID);
+
+        // console.log("-----2----------");
+        // console.log(err);
+        // console.log(res.text);
+        // console.log("----------------")
+
+        done();
+      });
     });
 
   });
