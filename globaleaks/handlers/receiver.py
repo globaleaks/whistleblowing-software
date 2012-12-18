@@ -102,8 +102,6 @@ class ProfileInstance(BaseHandler):
         Errors: InvalidInputFormat, ProfileGusNotFound, TipGusNotFound, InvalidTipAuthToken
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverOptions", "GET", receiver_token_auth, plugin_gus)
-
         # TODO define an auth method usable easily before every Receiver operations, and
         # TODO various auth system
 
@@ -137,8 +135,6 @@ class ProfileInstance(BaseHandler):
         Response: receiverProfileDesc
         Errors: InvalidInputFormat, ProfileGusNotFound
         """
-
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPluginConf", "POST")
 
         # we have to make various check in this handler:
         # tip validation (thru ReceiverTip)
@@ -205,8 +201,6 @@ class ProfileInstance(BaseHandler):
         Response: receiverProfileDesc
         Errors: InvalidInputFormat, ProfileGusNotFound
         """
-
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverPluginConf", "PUT")
 
         # we have to make various check in this handler:
         # tip validation (thru ReceiverTip)

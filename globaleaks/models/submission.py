@@ -68,7 +68,8 @@ class Submission(TXModel):
         submission.context = associated_c
 
         submission.receivers = associated_c.get_receivers('public')
-        print "I receiver in questa submission sono:", submission.receivers
+        submission.receivers = associated_c.receivers
+        print "I receiver in questa submission sono:", submission.receivers, "x", associated_c.receivers, "QUESTO DEVE ANDAREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
 
         # TODO submission.context.update_stats()
 
@@ -217,7 +218,7 @@ class Submission(TXModel):
             store.close()
             raise SubmissionGusNotFound
 
-        requested_s.receipt = self._receipt_evaluation(proposed_receipt)
+        requested_s.receipt = unicode(self._receipt_evaluation(proposed_receipt))
 
         store.commit()
         store.close()
@@ -280,16 +281,14 @@ class Submission(TXModel):
         log.debug("Creating tip for whistleblower")
         whistleblower_tip = WhistleblowerTip()
         whistleblower_tip.internaltip_id = internal_tip.id
-        # whistleblower_tip.internaltip = internal_tip
 
         if not requested_s.receipt:
-            used_receipt = requested_s._receipt_evaluation()
-        else:
-            used_receipt = requested_s.receipt
+            requested_s.receipt = requested_s._receipt_evaluation()
 
         statusDict = requested_s._description_dict()
 
-        whistleblower_tip.receipt = used_receipt
+        # remind: receipt is the UNICODE PRIMARY KEY of WhistleblowerTip
+        whistleblower_tip.receipt = unicode(requested_s.receipt)
         # TODO whistleblower_tip.authoptions would be filled here
 
         store.add(whistleblower_tip)

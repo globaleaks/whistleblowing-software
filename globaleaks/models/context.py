@@ -353,15 +353,18 @@ class Context(TXModel):
         else:
             workinobj = self
 
+        # Hi. I'm a really DIRTY HACK.
+        # :)
+        # Hi. I'm a really DIRTY HACK.
+        # :)
+
         receiver_list = workinobj.receivers
+        #store.close()
+        #return receiver_list
 
-        store.close()
-        return receiver_list
+        all_r = store.find(Receiver)
+        for r in all_r:
 
-        """
-        for receiver_gus in receiver_list:
-
-            r = store.find(Receiver, Receiver.receiver_gus == str(receiver_gus)).one()
             partial_info = {}
 
             if info_type == typology[0]: # public
@@ -376,9 +379,14 @@ class Context(TXModel):
 
             receiver_list.append(partial_info)
 
+        # GoodBye. I'm a really DIRTY HACK.
+        # :)
+        # GoodBye. I'm a really DIRTY HACK.
+        # :)
+
         store.close()
+        print "XXXXXXXXXXXXXXXXXXXXXXXXXX", receiver_list
         return receiver_list
-        """
 
 
     @transact

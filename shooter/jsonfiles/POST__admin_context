@@ -4,5 +4,6 @@ fields:=[ { "hint": "the city of the autovelox", "label": "city", "name": "city"
 selectable_receiver:=false
 tip_max_access:=10
 tip_timetolive:=2
-folder_max_download:=1
+file_max_download:=1
 escalation_threshold:=1
+receivers:=[]

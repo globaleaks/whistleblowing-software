@@ -279,9 +279,10 @@ class ReceiverTip(TXModel):
         store = self.getStore('create_receiver_tips')
 
         selected_it = store.find(InternalTip, InternalTip.id == id).one()
-
+        print selected_it.receivers_map
         for i, mapped in enumerate(selected_it.receivers_map):
 
+            print "XXX xxx", mapped, id, tier
             if not mapped['receiver_level'] == tier:
                 continue
 
@@ -291,6 +292,8 @@ class ReceiverTip(TXModel):
 
             # is initialized a Tip that need to be notified
             receiver_tip.initialize(mapped, selected_it, receiver_subject)
+
+            print "XXX xxx", self._description_dict()
 
             receiver_subject.update_timings()
 
@@ -313,7 +316,7 @@ class ReceiverTip(TXModel):
             'access_counter' : self.access_counter,
             'expressed_pertinence': self.expressed_pertinence,
             'receiver_gus' : self.receiver_gus,
-            'receiver_name' : self.receiver.name,
+            'receiver_name' : "Hardcoded receiver Name", # self.receiver.name,
             'authoptions' : self.authoptions
         }
         return descriptionDict
@@ -435,7 +438,6 @@ class Folder(TXModel):
     and if uncrypted situation, simply the Files referenced here are also
     referenced in the other Folders.
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "Folder", "TXModel", TXModel)
     __storm_table__ = 'folders'
 
     folder_gus = Unicode(primary=True)
@@ -477,7 +479,6 @@ class File(TXModel):
     """
     The file are *stored* here, along with their properties
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "File", "TXModel", TXModel)
     __storm_table__ = 'files'
 
     file_gus = Unicode(primary=True)
@@ -659,7 +660,6 @@ class PublicStats(TXModel):
     * that's all time dependent information
        * remind: maybe also non-time dependent information would exists, if a node want to publish also their own analyzed submission, (but this would require another db table)
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class PublicStats")
     __storm_table__ = 'publicstats'
 
     id = Int(primary=True)

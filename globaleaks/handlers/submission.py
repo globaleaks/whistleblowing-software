@@ -5,11 +5,10 @@
 #   Implements a GlobaLeaks submission, then the operations performed
 #   by an HTTP client in /submission URI
 
-import json
-
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 from globaleaks.models.submission import Submission
+from globaleaks.models.context import Context
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests, responses
@@ -43,11 +42,16 @@ class SubmissionCreate(BaseHandler):
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
 
             submission = Submission()
+            context_iface = Context()
 
-            # TODO open Context() and hook to requested context, for defaults and so on
+            context_info = context_iface.public_get_single(request['context_gus'])
+            # use requested context, for defaults and so on
 
             status = yield submission.new(request['context_gus'])
             submission_gus = status['submission_gus']
+
+            print context_info
+            # submission.receivers = context_iface.
 
             if request.has_key('fields'):
                 log.debug("Fields present in creation: %s" % request['fields'])
@@ -101,8 +105,6 @@ class SubmissionInstance(BaseHandler):
 
         Get the status of the current submission.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud GET")
-
         submission = Submission()
 
         try:
@@ -127,6 +129,8 @@ class SubmissionInstance(BaseHandler):
         self.finish()
 
 
+    @asynchronous
+    @inlineCallbacks
     def put(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus
@@ -136,21 +140,21 @@ class SubmissionInstance(BaseHandler):
 
         PUT finalize and complete the Submission
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud PUT")
 
         try:
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
             submission = Submission()
 
-            log.debug("Updating fields with %s" % request['fields'])
-            if request.fields:
-                yield submission.update_fields(request.submission_gus, request['fields'])
+            if request.has_key('fields'):
+                log.debug("Updating fields with %s" % request['fields'])
+                yield submission.update_fields(submission_gus, request['fields'])
 
-            if request.receiver_selected:
-                yield submission.select_receiver(request.submission_gus, request['receiver_selected'])
+            if request.has_key('receivers'):
+                log.debug("processing receiver selected: %s" % request['receivers'])
+                yield submission.select_receiver(submission_gus, request['receivers'])
 
-            if request['receipt']:
-                yield submission.receipt_proposal(request.submission_gus, request['receipt'])
+            if request.has_key('receipt'):
+                yield submission.receipt_proposal(submission_gus, request['receipt'])
 
             status = yield submission.complete_submission(submission_gus)
 
@@ -159,6 +163,7 @@ class SubmissionInstance(BaseHandler):
             self.write(status)
 
         except ContextGusNotFound, e:
+            # XXX ITS wrong, if a submission start with a context, you can't change them.
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -178,9 +183,16 @@ class SubmissionInstance(BaseHandler):
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
+        except KeyError:
+
+            self.set_status(410)
+            self.write({'error_message': "Error not handled", 'error_code' : 12345})
+
         self.finish()
 
 
+    @asynchronous
+    @inlineCallbacks
     def delete(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus
@@ -190,7 +202,6 @@ class SubmissionInstance(BaseHandler):
 
         A whistleblower is deleting a Submission because has understand that won't really be an hero. :P
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud DELETE")
 
         try:
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
