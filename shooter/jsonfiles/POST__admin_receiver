@@ -1,0 +1,14 @@
+name=Kim Kong Lee, Korean Leader!
+description=a fellow of Truth Corp for a 'greater good'
+tags:=[ "dictator", "korean", "WMD", "rich" ]
+languages:=[ "CHI", "RUS", "THAI" ]
+receiver_level:=1
+can_delete_submission:=true
+can_postpone_expiration:=true
+can_configure_delivery:=true
+can_configure_notification:=true
+notification_selected=irc
+delivery_selected=local
+notification_fields=vecna@delirandom.net
+delivery_fields:=false
+contexts:=[@RAW@]
