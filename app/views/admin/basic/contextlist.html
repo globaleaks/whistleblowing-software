@@ -19,10 +19,9 @@
             <label>Description</label>
             <textarea
                 required
-                ng-model="context.description">context.description}}</textarea>
+                ng-model="context.description">{{context.description}}</textarea>
           </td>
           <td>
-            {{context.receivers}}
             <select multiple ui-select2 style="width: 200px"
               ng-model="context.receivers">
               <option

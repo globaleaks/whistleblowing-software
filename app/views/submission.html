@@ -6,14 +6,11 @@
       </div>
       <div class="span10">
         <!-- XXX come up with a way to make this inherit from the header.html template -->
-
         <h1>New Submission</h1>
         <p>I want to report on
         <select
           ng-model="localization.current_context"
-          ng-options="context.get_context_name() for context in localization.node_info.contexts"
-          ng-change="create_submission()"
-        >
+          ng-options="context as context.name for context in localization.contexts">
         </select>
       </div>
     </div>
@@ -38,15 +35,15 @@
       <div ng-switch-when="1 Receiver selection"
         class="receiverCards">
         <p class="lead">Choose the receivers that will be sure to transform your submission into action!</p>
-        <div ng-repeat="receiver in localization.current_context.receivers">
+        <div ng-repeat="receiver in localization.receivers">
 
           <div class="receiverCard span5"
-            ng-class="{selected: receivers_selected[receiver.gus]}"
+            ng-class="{selected: receivers_selected[receiver.receiver_gus]}"
             ng-class-odd="{receiverCardOdd: true}"
             ng-class-even="{receiverCardEven: true}"
             >
-            <input ng-model="receivers_selected[receiver.gus]"
-                  type="checkbox" value="{{receiver.gus}}"
+            <input ng-model="receivers_selected[receiver.receiver_gus]"
+                  type="checkbox" value="{{receiver.receiver_gus}}"
                   class="receiverSelection">
             <div class="row">
               <div class="span2">
@@ -78,6 +75,7 @@
 
         <p class="lead">Enter the information that is relevant to your
         submission and upload the files you need to upload</p>
+        <p>{{localization.current_context.description}}</p>
 
         <div class="row">
 

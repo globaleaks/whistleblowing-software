@@ -4,6 +4,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
 
   $scope.submission_complete = false;
   $scope.localization = localization;
+  $scope.receivers_selected = localization.receivers_selected;
+
   $scope.accept_disclaimer = false;
   $scope.steps = [
     '1 Receiver selection',
@@ -20,21 +22,53 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
   $scope.uploaded_files = [];
 
   $scope.receivers_selected = {};
+  $scope.current_context_receivers = {};
 
-  $scope.create_submission = function(){
-    // XXX This is required because localization is lazily loaded and it is
-    // performing a network operation
-    $scope.submission = new Submission({
-      context_gus: localization.current_context_gus
+  var isReceiverInContext = function(receiver, context) {
+
+    if (receiver.contexts.indexOf(context.context_gus)) {
+      return true;
+    } else {
+      return false
+    };
+
+  };
+
+  var setReceiversForCurrentContext = function(submissionID) {
+
+    // Make sure all the receivers are selected by default
+    for (var r in $scope.localization.receivers) {
+      var c_receiver = $scope.localization.receivers[r];
+
+      // Check if receiver belongs to the currently selected context
+      if (isReceiverInContext(c_receiver,
+          $scope.localization.current_context)) {
+        $scope.current_context_receivers[r] = c_receiver;
+        $scope.receivers_selected[c_receiver.receiver_gus] = true;
+      }
+    }
+
+  };
+
+  var createSubmission = function() {
+    new_submission = new Submission({context_gus:
+        $scope.localization.current_context.context_gus});
+
+    new_submission.$save(function(submissionID){
+      setReceiversForCurrentContext(submissionID);
     });
 
-    $scope.submission.$save(function(){
-      // Make sure all the receivers are selected by default
-       _.each(localization.current_context.receivers, function(field, k){
-         $scope.receivers_selected[field.gus] = true;
-      });
-    });
-  }
+  };
+
+  // XXX This is not as clean as I would like it to be.
+  // The issue lies in the fact that we need to wait for the localization
+  // current context to be initialized via an async XML HTTP request.
+  // There may be a better way to do this.
+  $scope.$watch('localization.current_context', function(){
+    if ($scope.localization.current_context) {
+      createSubmission();
+    }
+  });
 
   $scope.submit = function() {
 
@@ -54,7 +88,5 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
     $scope.submission.$save();
     $scope.submission_complete = true;
   }
-
-  $scope.create_submission();
 
 }]);

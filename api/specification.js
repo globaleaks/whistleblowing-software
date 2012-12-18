@@ -156,9 +156,7 @@ describe("Node Admin API functionality", function(){
       response.should.have.property('public_stats_update_time');
       response.should.have.property('private_stats_update_time');
 
-      response.should.have.property('auth_options');
-
-      response.should.have.property('contexts');
+      response.should.have.property('languages');
 
       done();
 

@@ -34,7 +34,6 @@ function($scope, $http, $location, localization, AdminNode, AdminContexts,
   $scope.saveall = function() {
     $scope.adminNode.$save();
     //$scope.adminReceivers.$save();
-    console.log($scope.adminContexts);
     $scope.adminContexts.$save();
   };
 

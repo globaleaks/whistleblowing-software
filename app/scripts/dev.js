@@ -126,8 +126,7 @@ GLClientDev.run(function($httpBackend) {
     'node_properties': {'anonymous_submission_only': true},
     'public_site': 'http://example.com/',
     'hidden_service': 'httpo://example.onion',
-    'available_languages': [{'code': 'en',
-       'name': 'English'}, {'name': 'Italiano',
+    'languages': [{'code': 'en', 'name': 'English'}, {'name': 'Italiano',
        'code': 'it'}]
   };
 
