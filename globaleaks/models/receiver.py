@@ -59,6 +59,7 @@ class Receiver(TXModel):
     # this for keeping the same feature of GL 0.1
     secret = Unicode()
 
+    # list of context_gus which receiver is associated
     contexts = Pickle()
 
     @transact
@@ -82,41 +83,25 @@ class Receiver(TXModel):
 
         store = self.getStore('receiver new')
 
-        thaman = Receiver()
+        baptized_receiver = Receiver()
 
         try:
-            thaman._import_dict(receiver_dict)
+            baptized_receiver._import_dict(receiver_dict)
         except KeyError:
             store.close()
             raise InvalidInputFormat("Error near the Storm")
 
-        thaman.receiver_gus = idops.random_receiver_gus()
+        baptized_receiver.receiver_gus = idops.random_receiver_gus()
 
-        thaman.creation_date = gltime.utcDateNow()
-        thaman.update_date = gltime.utcDateNow()
+        baptized_receiver.creation_date = gltime.utcDateNow()
+        baptized_receiver.update_date = gltime.utcDateNow()
         # last_access is not initialized
 
-        thaman.contexts = []
-        context_iface = Context()
-
-        # every context need to be checked here
-        for c in receiver_dict['contexts']:
-
-            if context_iface.exists(c):
-                thaman.contexts.append(c)
-            else:
-                store.close()
-                raise ContextGusNotFound
-
-        store.add(thaman)
+        store.add(baptized_receiver)
         store.commit()
         store.close()
 
-        # update contexts where needed
-        for c in receiver_dict['contexts']:
-            context_iface.update_languages(c)
-
-        return thaman.receiver_gus
+        return baptized_receiver.receiver_gus
 
 
     @transact
@@ -147,28 +132,8 @@ class Receiver(TXModel):
 
         requested_r.update_date = gltime.utcDateNow()
 
-        context_iface = Context()
-
-        # actual receiver list is zeroed and rewritten.
-        requested_r.contexts = []
-        # every context need to be checked here, it do not exist: "Bad Request"
-        for c in receiver_dict['contexts']:
-
-            context_exists = context_iface.exists(c)
-            if context_exists:
-                requested_r.contexts.append(c)
-            else:
-                store.rollback()
-                store.close()
-                raise ContextGusNotFound
-
         store.commit()
         store.close()
-
-        # all the contexts would be updated in some aspects
-        for c in receiver_dict['contexts']:
-            context_iface.update_languages(c)
-
 
     @transact
     def self_update(self, receiver_gus, receiver_dict):
@@ -225,6 +190,60 @@ class Receiver(TXModel):
         raise Exception("not implemented")
 
     @transact
+    def full_receiver_align(self, context_gus, receiver_selected):
+        """
+        Called by Context handlers (PUT|POST), roll in all the receiver and delete|add|skip
+        with the presence of context_gus
+        """
+        store = self.getStore('full_receiver_align')
+
+        presents_receiver = store.find(Receiver)
+
+        debug_counter = 0
+        for r in presents_receiver:
+
+            # if is not present in receiver.contexts and is requested: add
+            if not (context_gus in r.contexts) and (r.receiver_gus in receiver_selected):
+                debug_counter += 1
+                r.contexts.append(context_gus)
+
+            # if is present in context.receiver and is not selected: remove
+            if (context_gus in r.contexts) and not (r.receiver_gus in receiver_selected):
+                debug_counter += 1
+                r.contexts.remove(context_gus)
+
+        log.debug("    ****   full_receiver_align in all receivers after %s has been set with %s: %d mods" %
+                  ( context_gus, str(receiver_selected), debug_counter ) )
+
+        store.commit()
+        store.close()
+
+    @transact
+    def receiver_align(self, receiver_gus, context_selected):
+        """
+        Called by Receiver handler, (PUT|POST), just take the receiver and update the
+        associated contexts
+        """
+        store = self.getStore('receiver_align')
+
+        try:
+            requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+        except NotOneError:
+            store.close()
+            raise ReceiverGusNotFound
+        if requested_r is None:
+            store.close()
+            raise ReceiverGusNotFound
+
+        requested_r.contexts = context_selected
+
+        log.debug("    ++++   receiver_align in receiver %s with contexts %s" %
+                  ( receiver_gus, str(context_selected) ) )
+
+        store.commit()
+        store.close()
+
+    @transact
     def receiver_delete(self, receiver_gus):
         """
         Delete a receiver, or raise an exception if do not exist
@@ -245,7 +264,7 @@ class Receiver(TXModel):
         store.commit()
         store.close()
 
-    # being a method called by another @transact, do not require @tranact
+    # being a method called by another @transact, do not require @transact
     # too, because otherwise the order is screwed
     def unlink_context(self, context_gus):
         """
@@ -322,6 +341,7 @@ class Receiver(TXModel):
             'can_configure_notification' : self.can_configure_notification
         }
         return descriptionDict
+
 
 # Receivers are NEVER slippery: http://i.imgur.com/saLqb.jpg
 

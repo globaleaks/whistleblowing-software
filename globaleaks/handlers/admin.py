@@ -48,16 +48,13 @@ class NodeInstance(BaseHandler):
         node_info = node.Node()
         node_description_dicts = yield node_info.get_admin_info()
 
-        # it's obviously a madness that need to be solved
-        node_description_dicts.update({"contexts": context_description_dicts})
-
         self.set_status(200)
         self.write(node_description_dicts)
         self.finish()
 
     @asynchronous
     @inlineCallbacks
-    def post(self, *uriargs):
+    def put(self, *uriargs):
         """
         Request: adminNodeDesc
         Response: adminNodeDesc
@@ -115,19 +112,19 @@ class ContextsCollection(BaseHandler):
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
 
-        context_iface = context.Context()
-        receiver_iface = receiver.Receiver()
 
         try:
-
             request = validateMessage(self.request.body, requests.adminContextDesc)
+
+            context_iface = context.Context()
             new_context_gus = yield context_iface.new(request)
 
-            #yield receiver_iface.full_receiver_align()
-            #yield context_iface.align_receiver(new_context_gus, request['receivers'])
+            if request['receivers']:
+                receiver_iface = receiver.Receiver()
+                yield receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
+                yield context_iface.context_align(new_context_gus, request['receivers'])
 
             context_description = yield context_iface.admin_get_single(new_context_gus)
-
 
             self.set_status(201) # Created
             self.write(context_description)
@@ -188,11 +185,12 @@ class ContextInstance(BaseHandler):
             request = validateMessage(self.request.body, requests.adminContextDesc)
 
             context_iface = context.Context()
-
             yield context_iface.update(context_gus, request)
 
-            #yield receiver_iface.full_receiver_align()
-            #yield context_iface.align_receiver(context_gus, request['receivers'])
+            if request['receivers']:
+                receiver_iface = receiver.Receiver()
+                yield receiver_iface.full_receiver_align(context_gus, request['receivers'])
+                yield context_iface.context_align(context_gus, request['receivers'])
 
             context_description = yield context_iface.admin_get_single(context_gus)
 
@@ -282,7 +280,7 @@ class ReceiversCollection(BaseHandler):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
-        Errors: InvalidInputFormat
+        Errors: InvalidInputFormat, ContextGusNotFound
 
         Create a new receiver,
         """
@@ -291,7 +289,13 @@ class ReceiversCollection(BaseHandler):
             request = validateMessage(self.request.body, requests.adminReceiverDesc)
 
             receiver_iface = receiver.Receiver()
+
             new_receiver_gus = yield receiver_iface.new(request)
+
+            if request['contexts']:
+                context_iface = context.Context()
+                yield context_iface.full_context_align(new_receiver_gus, request['contexts'])
+                yield receiver_iface.receiver_align(new_receiver_gus, request['contexts'])
 
             new_receiver_desc = yield receiver_iface.admin_get_single(new_receiver_gus)
 
@@ -299,6 +303,11 @@ class ReceiversCollection(BaseHandler):
             self.write(new_receiver_desc)
 
         except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -351,7 +360,7 @@ class ReceiverInstance(BaseHandler):
         """
         Request: adminReceiverDesc
         Response: adminReceiverDesc
-        Errors: InvalidInputFormat, ReceiverGusNotFound
+        Errors: InvalidInputFormat, ReceiverGusNotFound, ContextGus
 
         Update information about a Receiver, return the instance updated.
         """
@@ -364,7 +373,13 @@ class ReceiverInstance(BaseHandler):
 
             yield receiver_iface.admin_update(receiver_gus, request)
 
+            if request['contexts']:
+                context_iface = context.Context()
+                yield context_iface.full_context_align(receiver_gus, request['contexts'])
+                yield receiver_iface.receiver_align(receiver_gus, request['contexts'])
+
             receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
+
             self.set_status(200)
             self.write(receiver_description)
 
@@ -374,6 +389,11 @@ class ReceiverInstance(BaseHandler):
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})

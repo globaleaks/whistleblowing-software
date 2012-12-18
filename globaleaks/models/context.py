@@ -46,6 +46,9 @@ class Context(TXModel):
     tip_timetolive = Int()
     file_max_download = Int()
 
+    # list of receiver_gus
+    receivers = Pickle()
+
     # to be implemented in REST / dict
     notification_profiles = Pickle()
     delivery_profiles = Pickle()
@@ -81,12 +84,6 @@ class Context(TXModel):
             store.rollback()
             store.close()
             raise InvalidInputFormat("Import failed near the Storm")
-
-        # context.languages_supported = context_dict["languages_supported"]
-        # this is not taked by the dict and maybe would be removed, because
-        # would simply became a node-wide properties
-
-        # Receiver is associated with a Context, in Receiver.new or Receiver.admin_update
 
         store.add(cntx)
         log.msg("Created context %s at the %s" % (cntx.name, cntx.creation_date) )
@@ -141,7 +138,7 @@ class Context(TXModel):
         from globaleaks.models.receiver import Receiver
         log.debug("[D] %s %s " % (__file__, __name__), "Context delete of", context_gus)
 
-        # first, perform existence checks, this would avoid continuos try/except here
+        # first, perform existence checks, this would avoid continuous try/except here
         if not self.exists(context_gus):
             raise ContextGusNotFound
 
@@ -153,6 +150,7 @@ class Context(TXModel):
         # TODO - delete all the tips associated with the context
         # TODO - delete all the jobs associated with the context
         # TODO - delete all the stats associated with the context
+        # TODO - align all the receivers present in self.receivers
 
         store = self.getStore('context delete')
 
@@ -192,9 +190,6 @@ class Context(TXModel):
 
         ret_context_dict = requested_c._description_dict()
 
-        receiver_list = requested_c.get_receivers('admin')
-        ret_context_dict.update({'receivers' : receiver_list if receiver_list else []})
-
         store.close()
         return ret_context_dict
 
@@ -206,19 +201,12 @@ class Context(TXModel):
         log.debug("[D] %s %s " % (__file__, __name__), "Context admin_get_all")
 
         store = self.getStore('context admin_get_all')
-        ret_contexts_dicts = []
 
         result = store.find(Context)
 
-        # also if "None", simply is returned an empty array
+        ret_contexts_dicts = []
         for requested_c in result:
-
-            description_dict = requested_c._description_dict()
-
-            receiver_list = requested_c.get_receivers('admin')
-            description_dict.update({'receivers' : receiver_list if receiver_list else []})
-
-            ret_contexts_dicts.append(description_dict)
+            ret_contexts_dicts.append( requested_c._description_dict() )
 
         store.close()
         return ret_contexts_dicts
@@ -247,9 +235,6 @@ class Context(TXModel):
         ret_context_dict.pop('file_max_download')
         ret_context_dict.pop('escalation_threshold')
 
-        receiver_list = requested_c.get_receivers('public')
-        ret_context_dict.update({'receivers' : receiver_list if receiver_list else []})
-
         store.close()
         return ret_context_dict
 
@@ -271,9 +256,6 @@ class Context(TXModel):
             description_dict.pop('tip_timetolive')
             description_dict.pop('file_max_download')
             description_dict.pop('escalation_threshold')
-
-            receiver_list = requested_c.get_receivers('public')
-            description_dict.update({'receivers' : receiver_list if receiver_list else []})
 
             ret_contexts_dicts.append(description_dict)
 
@@ -314,15 +296,7 @@ class Context(TXModel):
         store.close()
         return retval
 
-    # this is called by Receiver.admin_update and would be
-    # called also by Receiver.self_update.
-    #
-    # ----- Optionally a function like that would be implemented in async,
-    # like a submission transformation in Tips, and Tips transformation
-    # in notification and delivery.
-    # I would avoid this approach, because mean that Context resource
-    # may change when an user do not know, and then require a
-    # continuos refresh, unacceptable in a Tor link. ------------------
+    @transact
     def update_languages(self, context_gus):
 
         log.debug("[D] %s %s " % (__file__, __name__), "update_languages ", context_gus)
@@ -345,36 +319,6 @@ class Context(TXModel):
 
         store.commit()
         store.close()
-
-    @transact
-    def align_receiver(self, context_gus, receiver_gus_list):
-        """
-        @param context_gus: target Context which working into
-        @param receiver_gus_list: new map of receivers associated
-        @return: None
-
-        This function is called by handler when a context is new or updated
-        """
-
-        print "context.align_receiver", context_gus, receiver_gus_list
-
-        store = self.getStore('align_receiver')
-
-        try:
-            requested_c = store.find(Context, Context.context_gus == context_gus).one()
-        except NotOneError:
-            store.close()
-            raise ContextGusNotFound
-        if requested_c is None:
-            store.close()
-            raise ContextGusNotFound
-
-        requested_c.receivers = receiver_gus_list
-
-        store.commit()
-        store.close()
-
-
 
     # this is called internally by a @transact functions
     def get_receivers(self, info_type, context_gus=None):
@@ -424,41 +368,58 @@ class Context(TXModel):
         store.close()
         return receiver_list
 
+    @transact
+    def full_context_align(self, receiver_gus, context_selected):
+        """
+        Called by Receiver handlers (PUT|POST), roll in all the context and delete|add|skip
+        with the presence of receiver_gus
+        """
+        store = self.getStore('full_context_align')
+
+        presents_context =  store.find(Context)
+
+        debug_counter = 0
+        for c in presents_context:
+
+            # if is not present in context.receivers and is requested: add
+            if not (receiver_gus in c.receivers) and (c.context_gus in context_selected):
+                debug_counter += 1
+                c.receivers.append(receiver_gus)
+
+            # if is present in receiver.contexts and is not selected: remove
+            if (receiver_gus in c.receivers) and not (c.context_gus in context_selected):
+                debug_counter += 1
+                c.receivers.remove(receiver_gus)
+
+        log.debug("    %%%%   full_context_align in all contexts after %s has been set with %s: %d mods" %
+                  ( receiver_gus, str(context_selected), debug_counter ) )
+
+        store.commit()
+        store.close()
+
 
     @transact
-    # Not yet used except unit test - need to be tested
-    def add_receiver(self, context_gus, receiver_gus):
+    def context_align(self, context_gus, receiver_selected):
         """
-        @param context_gus: the context to add the receiver
-        @param receiver_gus: receiver that would be added
-        @return: None, or raise an exception if Receiver or Context are invalid
-        add_receiver should be call every time a Context is updated. If a receiver is
-        already present, do not perform operation in that resource.
+        Called by Context handler, (PUT|POST), just take the context and update the
+        associated receivers
         """
-        from globaleaks.models.receiver import Receiver
-        from globaleaks.rest.errors import ReceiverGusNotFound
-
-        log.debug("[D] %s %s " % (__file__, __name__), "Context add_receiver", context_gus, receiver_gus)
-
-        if not self.exists(context_gus):
-            raise ContextGusNotFound
-
-        store = self.getStore('add_receiver')
+        store = self.getStore('context_align')
 
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            requested_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
             store.close()
-            return ReceiverGusNotFound
-        if requested_r is None:
+            raise ContextGusNotFound
+        if requested_c is None:
             store.close()
-            return ReceiverGusNotFound
+            raise ContextGusNotFound
 
-        if not context_gus in requested_r.contexts:
-            requested_r.contexts.append(context_gus)
-            # update last activities, in context and receiver
+        requested_c.contexts = receiver_selected
 
-        log.msg("Added receiver", requested_r.receiver_gus, requested_r.name, "to context", context_gus)
+        log.debug("    ++++   context_align in receiver %s with receivers %s" %
+                  ( context_gus, str(receiver_selected) ) )
+
         store.commit()
         store.close()
 
@@ -477,7 +438,9 @@ class Context(TXModel):
             'tip_timetolive' : self.tip_timetolive,
             'file_max_download' : self.file_max_download,
             'escalation_threshold' : self.escalation_threshold,
-            "fields": self.fields
+            'fields': self.fields,
+            'receivers' : self.receivers if self.receivers else []
+
         }
         # receivers is added
 
