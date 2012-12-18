@@ -62,20 +62,17 @@ class TipInstance(BaseHandler):
         the format, help in addressing which kind of Tip need to be handled.
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class TipManagement", "get", "tip_token", tip_token)
-
-
         # file_iface = File()
 
         try:
             if is_receiver_token(tip_token):
                 print "I'm a receiver with %s" % tip_token
                 requested_t = ReceiverTip()
+                tip_description = yield requested_t.receiver_get_single(tip_token)
             else:
                 print "I'm a whistleblower with %s" % tip_token
                 requested_t = WhistleblowerTip()
-
-            tip_description = yield requested_t.receiver_get_single(tip_token)
+                tip_description = yield requested_t.whistleblower_get_single(tip_token)
 
             self.set_status(200)
             self.write({'tip' : tip_description})
@@ -198,13 +195,13 @@ class TipCommentCollection(BaseHandler):
             if is_receiver_token(tip_token):
                 print "Comment: I'm a receiver with %s" % tip_token
                 requested_t = ReceiverTip()
+                tip_description = yield requested_t.receiver_get_single(tip_token)
             else:
                 print "Comment: I'm a whistleblower with %s" % tip_token
                 requested_t = WhistleblowerTip()
+                tip_description = yield requested_t.whistleblower_get_single(tip_token)
 
             comment_iface = Comment()
-
-            tip_description = yield requested_t.receiver_get_single(tip_token)
             comment_list = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
 
             self.set_status(200)
@@ -242,24 +239,19 @@ class TipCommentCollection(BaseHandler):
                 requested_t = ReceiverTip()
 
                 tip_description = yield requested_t.admin_get_single(tip_token)
-                yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'],
-                    u"receiver", tip_description['receiver_name'])
+                comment_stored = yield comment_iface.add_comment(tip_description['internaltip_id'],
+                    request['comment'], u"receiver", tip_description['receiver_name'])
 
-                # TODO: internaltip <> last_usage_time_update()
             else:
 
                 print "Comment: I'm a whistleblower with %s" % tip_token
                 requested_t = WhistleblowerTip()
 
                 tip_description = yield requested_t.admin_get_single(tip_token)
-                yield comment_iface.add_comment(tip_description['internaltip_id'], request['comment'], u"whistleblower")
+                comment_stored = yield comment_iface.add_comment(tip_description['internaltip_id'],
+                    request['comment'], u"whistleblower")
 
-                # TODO: internaltip <> last_usage_time_update()
-
-            tip_description = yield requested_t.whistleblower_get_single(tip_token)
-
-            comment_stored = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
-
+            # TODO: internaltip <> last_usage_time_update()
             self.set_status(200)
             self.write({'comment' : comment_stored})
 
