@@ -1,26 +1,27 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$routeParams', 'Tip',
-   'localization',
-  function($scope, $routeParams, Tip, localization) {
+  ['$scope', '$routeParams', 'Tip', 'TipReceivers',
+    'TipComments', 'localization',
+  function($scope, $routeParams, Tip, TipReceivers, TipComments, localization) {
 
-    $scope.receipt_id = $routeParams.receipt_id;
+    var tip_id = {tip_id: $routeParams.tip_id};
 
-    $scope.tip = Tip({'receipt': 'foobar'});
+    $scope.tip = Tip.get(tip_id, function(data){
+      console.log("Got this data from server");
+      console.log(data);
 
-    // $scope.tip.tip_id = $scope.receipt_id;
-    // $scope.receiver_list = [];
+      $scope.tip.receivers = TipReceivers.get(tip_id);
 
-    // $scope.tip.$get(function(){
-    //   $scope.receiver_list = [];
-    //   angular.forEach($scope.tip.receiver_map, function(value){
-    //     var receiver = {};
-    //     receiver = value;
-    //     receiver.name = value.receiver_gus;
-    //     $scope.receiver_list.push(receiver);
-    //     console.log(receiver);
-    //   });
-    // });
+      // , function(receivers){
+      //   angular.forEach(receivers, function(receiver){
+      //     $scope.receiver_list.push(receiver);
+      //   });
+      // });
 
-    $scope.node_info = localization.node_info;
+      $scope.tip.comments = TipComments.get(tip_id);
+
+      $scope.tip.receivers.get();
+
+    });
+
 
 }]);

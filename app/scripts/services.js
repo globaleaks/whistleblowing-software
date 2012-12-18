@@ -15,7 +15,17 @@ angular.module('resourceServices', ['ngResource']).
 }).
   factory('Tip', function($resource) {
     return $resource('/tip/:tip_id/',
+          {tip_id: '@tip_id'}, {
+      });
+}).
+  factory('TipReceivers', function($resource) {
+      return $resource('/tip/:tip_id/receivers',
         {tip_id: '@tip_id'}, {
+      });
+}).
+  factory('TipComments', function($resource) {
+    return $resource('/tip/:tip_id/comments',
+      {tip_id: '@tip_id'}, {
     });
 }).
   factory('Contexts', function($resource) {

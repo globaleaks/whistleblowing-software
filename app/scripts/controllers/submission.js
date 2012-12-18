@@ -87,8 +87,13 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
         }
       });
 
-    $scope.submission.$submit();
-    $scope.submission_complete = true;
+    $scope.submission.$submit(function(result){
+      if (result) {
+        console.log(result);
+        $scope.submission_complete = true;
+      }
+
+    });
   }
 
 }]);

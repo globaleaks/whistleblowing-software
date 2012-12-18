@@ -22,7 +22,7 @@ var GLClient = angular.module('GLClient', ['ui', 'resourceServices',
       }).
 
 
-      when('/status/:receipt_id', {
+      when('/status/:tip_id', {
         templateUrl: 'views/status.html',
         controller: 'StatusCtrl',
       }).
