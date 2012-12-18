@@ -253,7 +253,13 @@ class Submission(TXModel):
         # selection in this moment (other complications can derived from use them both)
         for single_r in requested_s.receivers:
 
-            receiver_gus = single_r.get('receiver_gus')
+            if type(single_r) == type({}):
+                receiver_gus = single_r.get('receiver_gus')
+            else:
+                receiver_gus = single_r
+
+            print "I hope seriously this is an unicode:", receiver_gus
+
             selected_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
             internal_tip.associate_receiver(selected_r)
 
