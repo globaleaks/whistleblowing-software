@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.join(cwd, '../'))
 URTA = {
 
     'U1_GET':'GET_/node',
-    'U2_POST':'POST_/submission/',
+    'U2_POST':'POST_/submission',
     'U3_PUT':'PUT_/submission/@SID@',
     'U3_DELETE':'DELETE_/submission/@SID@',
     'U3_GET':'GET_/submission/@SID@',

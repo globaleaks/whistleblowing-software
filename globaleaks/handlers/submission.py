@@ -38,24 +38,26 @@ class SubmissionCreate(BaseHandler):
         sessionGUS is used as authentication secret for the next interaction.
         expire after the time set by Admin (Context dependent setting)
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud POST")
 
         try:
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
+
             submission = Submission()
 
             # TODO open Context() and hook to requested context, for defaults and so on
 
-            status = yield submission.new(request.context_gus)
+            print "************* Submission POST", request
+
+            status = yield submission.new(request['context_gus'])
             submission_gus = status['submission_gus']
 
-            if request.fields:
+            if request.has_key('fields'):
                 log.debug("Fields present in creation: %s" % request['fields'])
-                yield submission.update_fields(submission_gus, request.fields)
+                yield submission.update_fields(submission_gus, request['fields'])
 
             # TODO check if context supports receiver_selection
-            if request.receiver_selected:
-                yield submission.select_receiver(submission_gus, request.receiver_selected)
+            if request.has_key('receiver_selected'):
+                yield submission.select_receiver(submission_gus, request['receiver_selected'])
 
             self.set_status(201) # Created
             # TODO - output processing
@@ -75,6 +77,11 @@ class SubmissionCreate(BaseHandler):
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except AssertionError:
+
+            self.set_status(415)
+            self.write({'error_message': "KeyError", 'error_code' : 12345})
 
         self.finish()
 
@@ -136,6 +143,8 @@ class SubmissionInstance(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
             submission = Submission()
+
+            print "************* Submission PUT", request
 
             log.debug("Updating fields with %s" % request['fields'])
             if request.fields:

@@ -92,6 +92,7 @@ class Receiver(TXModel):
             raise InvalidInputFormat("Error near the Storm")
 
         baptized_receiver.receiver_gus = idops.random_receiver_gus()
+        baptized_receiver.contexts = []
 
         baptized_receiver.creation_date = gltime.utcDateNow()
         baptized_receiver.update_date = gltime.utcDateNow()
@@ -182,46 +183,36 @@ class Receiver(TXModel):
 
 
     @transact
-    def public_get_single(self, receiver_gus):
-        raise Exception("not implemented")
-
-    @transact
-    def public_get_all(self):
-        raise Exception("not implemented")
-
-    @transact
-    def full_receiver_align(self, context_gus, receiver_selected):
+    def full_receiver_align(self, context_gus, un_receiver_selected):
         """
         Called by Context handlers (PUT|POST), roll in all the receiver and delete|add|skip
         with the presence of context_gus
         """
         store = self.getStore('full_receiver_align')
 
+        receiver_selected = []
+        for r in un_receiver_selected:
+            receiver_selected.append(str(r))
+
         presents_receiver = store.find(Receiver)
 
         debug_counter = 0
         for r in presents_receiver:
 
-            print r.receiver_gus
-
-            print "OK ", r.receiver_gus, context_gus, receiver_selected
-
             # if is not present in receiver.contexts and is requested: add
             if r.contexts and not context_gus in r.contexts:
-                if str(r.receiver_gus) in receiver_selected:
+                if r.receiver_gus in receiver_selected:
                     debug_counter += 1
                     r.contexts.append(str(context_gus))
 
             # if is present in context.receiver and is not selected: remove
             if r.contexts and context_gus in r.contexts:
-                if not str(r.receiver_gus) in receiver_selected:
+                if not r.receiver_gus in receiver_selected:
                     debug_counter += 1
-                    r.contexts.remove(context_gus)
-
-            print "OOOOO ", r.receiver_gus, context_gus, receiver_selected
+                    r.contexts.remove(str(context_gus))
 
         log.debug("    ****   full_receiver_align in all receivers after %s has been set with %s: %d mods" %
-                  ( context_gus, str(receiver_selected), debug_counter ) )
+                  ( context_gus, receiver_selected, debug_counter ) )
 
         store.commit()
         store.close()
@@ -298,7 +289,7 @@ class Receiver(TXModel):
                 continue
 
             if str(context_gus) in r.contexts:
-                r.contexts.remove(context_gus)
+                r.contexts.remove(str(context_gus))
                 unassigned_count += 1
 
         store.commit()

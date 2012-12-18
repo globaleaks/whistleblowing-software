@@ -44,7 +44,7 @@ def validateItem(val, valid_type):
     """
     if type(valid_type) is list:
         if not type(val) is list:
-            raise InvalidInputFormat
+            raise InvalidInputFormat("type(%s) = %s not list" % (str(val), type(val)) )
         valid = valid_type[0]
         for item in val:
             if type(item) is dict:
@@ -141,10 +141,14 @@ class SpecialType(object):
     regexp = ""
     def validate(self, data):
         import re
-        if re.match(self.regexp, data):
-            return
-        else:
-            raise InvalidInputFormat
+        try:
+            if re.match(self.regexp, data):
+                return True
+            else:
+                raise InvalidInputFormat("failed regexp [%s] vs [%s]" % (self.regexp, data) )
+
+        except TypeError:
+            raise InvalidInputFormat("TypeError in regexp [%s] vs [%s]" % (self.regexp, data) )
 
 class dateType(SpecialType):
     pass
