@@ -1,6 +1,6 @@
 GLClient.controller('AdminContextsCtrl', 
-    ['$scope', 'localization', 'AdminContexts',
-    function($scope, localization, AdminContexts) {
+    ['$scope', '$rootScope', 'localization', 'AdminContexts',
+    function($scope, $rootScope, localization, AdminContexts) {
 
   $scope.new_context = function() {
     var context = new AdminContexts;
@@ -22,7 +22,13 @@ GLClient.controller('AdminContextsCtrl',
     context.$save(function(created_context){
       $scope.adminContexts.push(created_context);
     });
-  }
+  };
+
+  $scope.editFields = function(fields) {
+    // XXX this is *very* hackish. See #15 for a bug.
+    $rootScope.fieldEditor = true;
+    $rootScope.fieldsToEdit = fields;
+  };
 
   $scope.delete_context = function(context) {
     var idx = _.indexOf($scope.adminContexts, context);

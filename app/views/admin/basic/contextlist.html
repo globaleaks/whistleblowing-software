@@ -29,6 +29,9 @@
                 value="{{receiver.receiver_gus}}">{{receiver.name}}</option>
             </select>
 
+            <button class="btn"
+              ng-click="editFields(context.fields)">Edit fields</button>
+
             <button class="btn btn-success"
               ng-disabled="isUnchanged(context)"
               ng-click="update(context)">Save</button>

@@ -2,21 +2,23 @@
 The following code is based off of http://jsfiddle.net/ProLoser/bp3Qu/light/
 -->
 <div ng-controller="FormBuilderCtrl">
-  <div id="jv-formbuilder">
-    <h2>Form Builder</h2>
+  <div class="span3">
     <form ng-submit="saveField()">
       <div class="input">
         <label for="newField-name">Field Name:</label>
         <input type="text" id="newField-name" ng-model="newField.name" ng-required>
       </div>
+
+      <div class="input">
+        <label for="newField-label">Field Label:</label>
+        <input type="text" id="newField-label" ng-model="newField.label" ng-required>
+      </div>
+
       <div class="input">
         <label for="newField-required">Required:</label>
         <input type="checkbox" id="newField-required" ng-model="newField.required">
       </div>
-      <div class="input">
-        <label for="newField-order">Order Weight:</label>
-        <input type="number" id="newField-order" ng-model="newField.order" value="0" ng-required placeholder="0">
-      </div>
+
       <div class="input">
         <label for="newField-type">Field Type:</label>
         <select id="newField-type" ng-model="newField.type" ng-required>
@@ -36,12 +38,12 @@ The following code is based off of http://jsfiddle.net/ProLoser/bp3Qu/light/
       </div>
       <div ng-switch on="typeSwitch(newField.type)">
       <div ng-switch-default class="input">
-        <label for="newField-placeholder">Instructions:</label>
-        <input type="text" id="newField-placeholder" ng-model="newField.placeholder">
+        <label for="newField-placeholder">Hint:</label>
+        <input type="text" id="newField-placeholder" ng-model="newField.hint">
       </div>
       <fieldset ng-switch-when="multiple">
         <legend><a ng-click="addOption()">Add Option</a></legend>
-        <div class="newOption" ng-repeat="option in newField.options.$orderBy('order')">
+        <div class="newOption" ng-repeat="option in newField.options">
           <strong>Option:</strong>
           <button class="delete" ng-click="splice(option, newField.options)">Remove</button>
           <label>
@@ -52,19 +54,25 @@ The following code is based off of http://jsfiddle.net/ProLoser/bp3Qu/light/
             Value:
             <input type="text" ng-model="option.value">
           </label>
-          <label>
-            Order:
-            <input type="number" ng-model="option.order">
-          </label>
         </div>
       </fieldset>
       <span ng-switch-when="checkbox"></span>
       <span ng-switch-when="header"></span>
       </div ng-switch>
-      <div><input type="submit" value="Save Field"></div>
+      <div><input type="submit" class="btn btn-success" value="Add Field"></div>
     </form>
+  </div>
 
+  <div class="span2">
+    <dl ng-repeat="field in fieldsToEdit">
+      <dt>Label</dt>
+      <dd>{{field.label}}</dd>
 
-    <h2>Data:</h2>
-  <pre>{{fields}}</pre>
+      <dt>Name</dt>
+      <dd>{{field.name}}</dd>
+
+      <dt>type</dt>
+      <dd>{{field.type}}</dd>
+    </dl>
+  </div>
 </div>

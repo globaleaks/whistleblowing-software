@@ -1,13 +1,7 @@
 GLClient.controller('FormBuilderCtrl',
-    ['$scope', function ($scope, $rootScope) {
+    ['$scope', '$rootScope', function ($scope, $rootScope) {
 
   $scope.newField = {};
-  $scope.fields = [{
-    type: 'text',
-      name: 'Name',
-      placeholder: 'John Doe',
-      order: 10
-  }];
 
   $scope.editing = false;
   $scope.tokenize = function(slug1, slug2) {
@@ -27,16 +21,16 @@ GLClient.controller('FormBuilderCtrl',
       $scope.newField.value = {};
     }
     if ($scope.editing !== false) {
-      $scope.fields[$scope.editing] = $scope.newField;
+      $rootScope.fieldsToEdit[$scope.editing] = $scope.newField;
       $scope.editing = false;
     } else {
-      $scope.fields.push($scope.newField);
+      $rootScope.fieldsToEdit.push($scope.newField);
     }
     $scope.newField = { order: 0 };
   };
 
   $scope.editField = function(field) {
-    $scope.editing = $scope.fields.indexOf(field);
+    $scope.editing = $rootScope.fieldsToEdit.indexOf(field);
     $scope.newField = field;
   };
 
@@ -52,10 +46,9 @@ GLClient.controller('FormBuilderCtrl',
   };
 
   $scope.typeSwitch = function(type) {
-    if (angular.Array.indexOf(['checkboxes','select','radio'], type) === -1)
+    if (_.indexOf(['checkboxes','select','radio'], type) === -1)
       return type;
     return 'multiple';
-  }
-
+  };
 
 }]);
