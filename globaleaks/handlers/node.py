@@ -11,7 +11,9 @@ from globaleaks.handlers.base import BaseHandler
 from cyclone.web import asynchronous
 from globaleaks.models.node import Node
 from globaleaks.models.context import Context
+from globaleaks.models.receiver import Receiver
 from globaleaks.rest.errors import NodeNotFound
+import json
 
 class InfoCollection(BaseHandler):
     """
@@ -86,18 +88,15 @@ class ContextsCollection(BaseHandler):
         Errors: None
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get", uriargs)
-
         try:
             context_view = Context()
             public_context_view = yield context_view.public_get_all()
 
-            # TODO output filter
-
             self.set_status(200)
-            self.write(public_context_view)
+            self.write(json.dumps(public_context_view))
+            # TODO output filter + json
 
-        except KeyError: # TODO the error returned by the in
+        except KeyError: # TODO there are some error that can be returned ?
 
             self.set_status(444)
             self.write({'error_message': 'do not exist but TODO', 'error_code' : 12345})
@@ -120,7 +119,21 @@ class ReceiversCollection(BaseHandler):
         Response: publicReceiverList
         Errors: None
         """
-        pass
+
+        try:
+            receiver_view = Receiver()
+            public_receiver_view = yield receiver_view.public_get_all()
+
+            self.set_status(200)
+            self.write(json.dumps(public_receiver_view))
+            # TODO output filter + json
+
+        except KeyError: # TODO there are some error that can be returned ?
+
+            self.set_status(444)
+            self.write({'error_message': 'do not exist but TODO', 'error_code' : 12345})
+
+        self.finish()
 
 
 

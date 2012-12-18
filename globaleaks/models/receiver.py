@@ -202,6 +202,10 @@ class Receiver(TXModel):
         debug_counter = 0
         for r in presents_receiver:
 
+            print r.receiver_gus
+
+            print "OK ", r.receiver_gus, context_gus, receiver_selected
+
             # if is not present in receiver.contexts and is requested: add
             if r.contexts and not context_gus in r.contexts:
                 if str(r.receiver_gus) in receiver_selected:
@@ -214,6 +218,7 @@ class Receiver(TXModel):
                     debug_counter += 1
                     r.contexts.remove(context_gus)
 
+            print "OOOOO ", r.receiver_gus, context_gus, receiver_selected
 
         log.debug("    ****   full_receiver_align in all receivers after %s has been set with %s: %d mods" %
                   ( context_gus, str(receiver_selected), debug_counter ) )

@@ -382,6 +382,8 @@ class Context(TXModel):
         debug_counter = 0
         for c in presents_context:
 
+            print "OK ", c.context_gus, context_selected, receiver_gus
+
             # if is not present in context.receivers and is requested: add
             if c.receivers and not receiver_gus in c.receivers:
                 if c.context_gus in context_selected:
@@ -394,6 +396,7 @@ class Context(TXModel):
                     debug_counter += 1
                     c.receivers.remove(receiver_gus)
 
+            print "AAA ", c.context_gus, context_selected, receiver_gus
 
         log.debug("    %%%%   full_context_align in all contexts after %s has been set with %s: %d mods" %
                   ( receiver_gus, str(context_selected), debug_counter ) )
