@@ -7,8 +7,10 @@ angular.module('resourceServices', ['ngResource']).
   factory('Submission', function($resource) {
     // This is a factory function responsible for creating functions related
     // to the creation of submissions
-    return $resource('/submission/:submission_id',
-        {submission_id: '@submission_id'}, {
+    return $resource('/submission/:submission_id/',
+        {submission_id: '@submission_gus'},
+        {submit:
+          {method: 'PUT'}
     });
 }).
   factory('Tip', function($resource) {

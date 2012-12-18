@@ -51,10 +51,12 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
   };
 
   var createSubmission = function() {
-    new_submission = new Submission({context_gus:
+    $scope.submission = new Submission({context_gus:
         $scope.localization.current_context.context_gus});
 
-    new_submission.$save(function(submissionID){
+    $scope.submission.$save(function(submissionID){
+      // XXX the backend should return this.
+      $scope.submission.fields = {};
       setReceiversForCurrentContext(submissionID);
     });
 
@@ -85,7 +87,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
         }
       });
 
-    $scope.submission.$save();
+    $scope.submission.$submit();
     $scope.submission_complete = true;
   }
 
