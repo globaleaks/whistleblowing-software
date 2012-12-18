@@ -36,7 +36,7 @@ spec = [
 
     ## Submission Handlers ##
     #  U2
-    (r'/submission/', submission.SubmissionCreate),
+    (r'/submission', submission.SubmissionCreate),
 
     #  U3
     (r'/submission/' + submissionGUS.regexp, submission.SubmissionInstance),

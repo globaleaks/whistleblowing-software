@@ -77,6 +77,7 @@ class Context(TXModel):
         cntx.creation_date = gltime.utcDateNow()
         cntx.update_date = gltime.utcDateNow()
         cntx.last_activity = gltime.utcDateNow()
+        cntx.receivers = []
 
         try:
             cntx._import_dict(context_dict)
@@ -346,43 +347,51 @@ class Context(TXModel):
         # the goal is search which context_gus is present in the Receiver.contexts
         # and then work in the selected Receiver.
 
-        results = store.find(Receiver)
 
-        receiver_list = []
-        for r in results:
+        if context_gus:
+            workinobj = store.find(Context, Context.context_gus == context_gus).one()
+        else:
+            workinobj = self
 
-            if (context_gus is None and self.context_gus in r.contexts) or context_gus in r.contexts:
-                partial_info = {}
+        receiver_list = workinobj.receivers
 
-                if info_type == typology[0]: # public
-                    partial_info.update({'receiver_gus' : r.receiver_gus })
-                    partial_info.update({'name': r.name })
-                    partial_info.update({'description': r.description })
-                if info_type == typology[1]: # internal
-                    partial_info.update({'receiver_gus' : r.receiver_gus })
-                    partial_info.update({'know_languages' : r.know_languages })
-                if info_type == typology[2]: # admin
-                    partial_info = r._description_dict()
+        for receiver_gus in receiver_list:
 
-                receiver_list.append(partial_info)
+            r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            partial_info = {}
+
+            if info_type == typology[0]: # public
+                partial_info.update({'receiver_gus' : r.receiver_gus })
+                partial_info.update({'name': r.name })
+                partial_info.update({'description': r.description })
+            if info_type == typology[1]: # internal
+                partial_info.update({'receiver_gus' : r.receiver_gus })
+                partial_info.update({'know_languages' : r.know_languages })
+            if info_type == typology[2]: # admin
+                partial_info = r._description_dict()
+
+            receiver_list.append(partial_info)
 
         store.close()
         return receiver_list
 
+
     @transact
-    def full_context_align(self, receiver_gus, context_selected):
+    def full_context_align(self, receiver_gus, un_context_selected):
         """
         Called by Receiver handlers (PUT|POST), roll in all the context and delete|add|skip
         with the presence of receiver_gus
         """
         store = self.getStore('full_context_align')
 
+        context_selected = []
+        for c in un_context_selected:
+            context_selected.append(str(c))
+
         presents_context =  store.find(Context)
 
         debug_counter = 0
         for c in presents_context:
-
-            print "OK ", c.context_gus, context_selected, receiver_gus
 
             # if is not present in context.receivers and is requested: add
             if c.receivers and not receiver_gus in c.receivers:
@@ -394,9 +403,7 @@ class Context(TXModel):
             if c.receivers and (receiver_gus in c.receivers):
                 if not c.context_gus in context_selected:
                     debug_counter += 1
-                    c.receivers.remove(receiver_gus)
-
-            print "AAA ", c.context_gus, context_selected, receiver_gus
+                    c.receivers.remove(str(receiver_gus))
 
         log.debug("    %%%%   full_context_align in all contexts after %s has been set with %s: %d mods" %
                   ( receiver_gus, str(context_selected), debug_counter ) )

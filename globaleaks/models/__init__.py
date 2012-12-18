@@ -25,4 +25,6 @@ from . import options
 from storm.tracer import debug
 import sys
 # TODO: from config file enable the debug of Storm and JSON I/O of Cyclone
-debug(True, sys.stdout)
+
+# Storm DB dump:
+#debug(True, sys.stdout)

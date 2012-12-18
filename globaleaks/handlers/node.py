@@ -90,7 +90,7 @@ class ContextsCollection(BaseHandler):
 
         try:
             context_view = Context()
-            public_context_view = yield context_view.public_get_all()
+            public_context_view = yield context_view.admin_get_all()
 
             self.set_status(200)
             self.write(json.dumps(public_context_view))
@@ -122,7 +122,7 @@ class ReceiversCollection(BaseHandler):
 
         try:
             receiver_view = Receiver()
-            public_receiver_view = yield receiver_view.public_get_all()
+            public_receiver_view = yield receiver_view.admin_get_all()
 
             self.set_status(200)
             self.write(json.dumps(public_receiver_view))

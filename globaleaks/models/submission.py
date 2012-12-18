@@ -68,6 +68,8 @@ class Submission(TXModel):
         submission.context = associated_c
 
         submission.receivers_gus_list = associated_c.get_receivers('public')
+        print "I receiver in questa submission sono:", submission.receivers_gus_list
+
         # TODO submission.context.update_stats()
 
         submission.creation_time = gltime.utcDateNow()
@@ -78,7 +80,6 @@ class Submission(TXModel):
 
         submissionDesc = submission._description_dict()
         log.debug("[D] submission created", submission._description_dict())
-        submissionDesc.pop('folder_gus')
 
         store.close()
 
@@ -139,10 +140,9 @@ class Submission(TXModel):
             raise SubmissionGusNotFound
 
         if not s.fields:
-            s.fields = {}
-
-        for k, v in fields.items():
-            s.fields[k] = v
+            s.fields = []
+        else:
+            s.fields = fields
 
         store.commit()
         store.close()
@@ -150,20 +150,19 @@ class Submission(TXModel):
     @transact
     def select_receiver(self, submission_gus, receivers_gus_list):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "select_receiver", "submission_gus",\
-            submission_gus, "receiver_gus_list", receivers_gus_list, "NOT IMPLEMENTED ATM" )
-
         store = self.getStore('select_receiver')
 
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
-            # its not possible: is a primary key
             store.close()
             raise SubmissionGusNotFound
         if requested_s is None:
             store.close()
             raise SubmissionGusNotFound
+
+        # TODO checks that all the receiver declared in receivers_gus_list exists
+
 
         store.commit()
         store.close()
