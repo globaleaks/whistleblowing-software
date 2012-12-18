@@ -19,6 +19,7 @@
     </div>
   </div>
 </div>
+
 <div ng-controller="WizardCtrl" class="container">
 
   <div class="tabbable tabs-below">
@@ -63,7 +64,7 @@
             <div class="row">
               <div class="span5">
                 <h4>I speak these languages:</h4>
-                <i ng-repeat="lang in receiver.languages_supported"
+                <i ng-repeat="lang in receiver.languages"
                   class="icon-white lflag lflag-{{lang}}"></i>
               </div>
             </div>

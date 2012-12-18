@@ -66,7 +66,7 @@ GLClientDev.run(function($httpBackend) {
 
      "creation_date": 123467898765,
      "last_update_date": 12345678922,
-     "languages_supported": ['en', 'it'],
+     "languages": ['en', 'it'],
     },
     {
        "gus": 'r_antanisblinda2',
@@ -82,7 +82,7 @@ GLClientDev.run(function($httpBackend) {
 
        "creation_date": 123567890,
        "last_update_date": 123345678,
-       "languages_supported": ['en', 'it']
+       "languages": ['en', 'it']
     }];
 
   var contexts = [{
@@ -466,7 +466,7 @@ GLClientDev.run(function($httpBackend) {
       'tags': 'activism, something',
       'creation_date': '1353312789',
       'last_update_time': '1353312789',
-      'languages_supported': ['en', 'it'],
+      'languages': ['en', 'it'],
       'notification_address': 'beppe@example.com'
       }
     };
