@@ -26,6 +26,10 @@ class InvalidInputFormat(GLException):
         GLException.error_code = 10
         GLException.http_status = 406 # Not Acceptable
 
+        print "!!!   ", GLException.error_message
+        import traceback
+        traceback.print_stack()
+
 
 class StatsNotCollectedError(GLException):
     """

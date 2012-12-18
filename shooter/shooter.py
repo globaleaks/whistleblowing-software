@@ -63,6 +63,8 @@ URTA = {
     'A3_DELETE':'DELETE_/admin/context/@CID@',
     'A3_GET':'GET_/admin/context/@CID@',
 
+    'AB_DELETE':'DELETE_/admin/tasks/@OID@',
+    'AB_GET':'GET_/admin/tasks/@OID@'
 }
 
 baseurl = "http://127.0.0.1:8082"
