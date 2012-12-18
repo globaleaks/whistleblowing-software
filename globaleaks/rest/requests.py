@@ -19,7 +19,7 @@ class wbSubmissionDesc(GLTypes):
         'context_gus' : contextGUS,
         'creation_time' : timeType,
         'expiration_time' : timeType,
-        'receiver_gus_list' : [ receiverGUS ],
+        'receivers' : [ receiverGUS ],
         'file_gus_list' : [ fileGUS ],
         'real_receipt' : unicode
     }

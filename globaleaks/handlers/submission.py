@@ -56,8 +56,8 @@ class SubmissionCreate(BaseHandler):
                 yield submission.update_fields(submission_gus, request['fields'])
 
             # TODO check if context supports receiver_selection
-            if request.has_key('receiver_selected'):
-                yield submission.select_receiver(submission_gus, request['receiver_selected'])
+            if request.has_key('receivers'):
+                yield submission.select_receiver(submission_gus, request['receivers'])
 
             self.set_status(201) # Created
             # TODO - output processing
