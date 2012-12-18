@@ -107,7 +107,7 @@ class Context(TXModel):
         store = self.getStore('context update')
 
         try:
-            requested_c = store.find(Context, Context.context_gus == context_gus).one()
+            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             store.close()
             raise ContextGusNotFound
@@ -157,7 +157,7 @@ class Context(TXModel):
         store = self.getStore('context delete')
 
         try:
-            requested_c = store.find(Context, Context.context_gus == context_gus).one()
+            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             store.close()
             raise ContextGusNotFound
@@ -182,7 +182,7 @@ class Context(TXModel):
         store = self.getStore('context admin_get_single')
 
         try:
-            requested_c = store.find(Context, Context.context_gus == context_gus).one()
+            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             store.close()
             raise ContextGusNotFound
@@ -222,7 +222,7 @@ class Context(TXModel):
         store = self.getStore('context public_get_single')
 
         try:
-            requested_c = store.find(Context, Context.context_gus == context_gus).one()
+            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             store.close()
             raise ContextGusNotFound
@@ -285,7 +285,7 @@ class Context(TXModel):
         store = self.getStore('context exist')
 
         try:
-            requested_c = store.find(Context, Context.context_gus == context_gus).one()
+            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
 
             if requested_c is None:
                 retval = False
@@ -313,7 +313,7 @@ class Context(TXModel):
                     language_list.append(language)
 
         store = self.getStore('context update_languages')
-        requested_c = store.find(Context, Context.context_gus == context_gus).one()
+        requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         log.debug("[L] before language update, context", context_gus, "was", requested_c.languages_supported, "and after got", language_list)
 
         requested_c.languages_supported = language_list
@@ -349,15 +349,19 @@ class Context(TXModel):
 
 
         if context_gus:
-            workinobj = store.find(Context, Context.context_gus == context_gus).one()
+            workinobj = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         else:
             workinobj = self
 
         receiver_list = workinobj.receivers
 
+        store.close()
+        return receiver_list
+
+        """
         for receiver_gus in receiver_list:
 
-            r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            r = store.find(Receiver, Receiver.receiver_gus == str(receiver_gus)).one()
             partial_info = {}
 
             if info_type == typology[0]: # public
@@ -374,6 +378,7 @@ class Context(TXModel):
 
         store.close()
         return receiver_list
+        """
 
 
     @transact
@@ -421,7 +426,7 @@ class Context(TXModel):
         store = self.getStore('context_align')
 
         try:
-            requested_c = store.find(Context, Context.context_gus == context_gus).one()
+            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             store.close()
             raise ContextGusNotFound

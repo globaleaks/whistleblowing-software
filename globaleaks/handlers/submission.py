@@ -46,8 +46,6 @@ class SubmissionCreate(BaseHandler):
 
             # TODO open Context() and hook to requested context, for defaults and so on
 
-            print "************* Submission POST", request
-
             status = yield submission.new(request['context_gus'])
             submission_gus = status['submission_gus']
 
@@ -136,15 +134,13 @@ class SubmissionInstance(BaseHandler):
         Response: wbSubmissionDesc
         Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields, SubmissionGusNotFound
 
-        Update a Submission resource with the appropriate data
+        PUT finalize and complete the Submission
         """
         log.debug("[D] %s %s " % (__file__, __name__), "SubmissionCrud PUT")
 
         try:
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
             submission = Submission()
-
-            print "************* Submission PUT", request
 
             log.debug("Updating fields with %s" % request['fields'])
             if request.fields:
@@ -153,14 +149,10 @@ class SubmissionInstance(BaseHandler):
             if request.receiver_selected:
                 yield submission.select_receiver(request.submission_gus, request['receiver_selected'])
 
-            if request.receipt:
-                yield submission.receipt_proposal(request.submission_gus, request.receipt)
+            if request['receipt']:
+                yield submission.receipt_proposal(request.submission_gus, request['receipt'])
 
-            status = yield submission.status(request.submission_gus)
-
-            if request.complete:
-                confirmed_receipt = yield submission.complete_submission(request.submission_gus)
-                status['real_receipt'] = confirmed_receipt
+            status = yield submission.complete_submission(submission_gus)
 
             self.set_status(202) # Updated
             # TODO - output processing

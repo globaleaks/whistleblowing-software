@@ -117,7 +117,7 @@ class Receiver(TXModel):
 
         # I didn't understand why, but NotOneError is not raised even if the search return None
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             store.close()
             raise ReceiverGusNotFound
@@ -153,7 +153,7 @@ class Receiver(TXModel):
 
         # I didn't understand why, but NotOneError is not raised even if the search return None
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             store.close()
             raise ReceiverGusNotFound
@@ -226,7 +226,7 @@ class Receiver(TXModel):
         store = self.getStore('receiver_align')
 
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             store.close()
             raise ReceiverGusNotFound
@@ -252,7 +252,7 @@ class Receiver(TXModel):
         store = self.getStore('receiver delete')
 
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             store.close()
             raise ReceiverGusNotFound

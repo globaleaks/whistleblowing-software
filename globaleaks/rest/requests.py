@@ -21,7 +21,7 @@ class wbSubmissionDesc(GLTypes):
         'expiration_time' : timeType,
         'receivers' : [ receiverGUS ],
         'file_gus_list' : [ fileGUS ],
-        'real_receipt' : unicode
+        'receipt' : unicode,
     }
 
 class receiverProfileDesc(GLTypes):

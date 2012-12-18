@@ -81,20 +81,23 @@ def validateMessage(message, message_type):
     messageSpec = message_type()
 
     obj = json.loads(message)
-    if type(obj) is list:
-        obj = obj.pop()
-    elif type(obj) is not dict:
-        raise InvalidInputFormat("not list nor dict")
-
-    for k, val in obj.items():
-        try:
-            valid_type = messageSpec[k]
-        except:
-            raise InvalidInputFormat(k)
-
-        validateItem(val, valid_type)
-
     return obj
+
+    # ...
+    #
+    # if type(obj) is list:
+    #     obj = obj.pop()
+    # elif type(obj) is not dict:
+    #     raise InvalidInputFormat("not list nor dict")
+
+    # for k, val in obj.items():
+    #     try:
+    #         valid_type = messageSpec[k]
+    #     except:
+    #         raise InvalidInputFormat(k)
+
+    #     validateItem(val, valid_type)
+    # return obj
 
 def validateWith(fn):
     """
