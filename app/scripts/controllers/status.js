@@ -6,22 +6,12 @@ GLClient.controller('StatusCtrl',
     var tip_id = {tip_id: $routeParams.tip_id};
 
     $scope.tip = Tip.get(tip_id, function(data){
-      console.log("Got this data from server");
-      console.log(data);
+      TipReceivers(tip_id, function(receivers){
+       $scope.tip.receivers = receivers;
+       console.log($scope.tip.receivers);
+      });
 
-      $scope.tip.receivers = TipReceivers.get(tip_id);
-
-      // , function(receivers){
-      //   angular.forEach(receivers, function(receiver){
-      //     $scope.receiver_list.push(receiver);
-      //   });
-      // });
-
-      $scope.tip.comments = TipComments.get(tip_id);
-
-      $scope.tip.receivers.get();
+      $scope.tip.comments = TipComments.query(tip_id);
 
     });
-
-
 }]);

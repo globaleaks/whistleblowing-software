@@ -18,11 +18,30 @@ angular.module('resourceServices', ['ngResource']).
           {tip_id: '@tip_id'}, {
       });
 }).
-  factory('TipReceivers', function($resource) {
-      return $resource('/tip/:tip_id/receivers',
-        {tip_id: '@tip_id'}, {
+  factory('TipReceivers', ['$resource', 'localization',
+          function($resource, localization) {
+    var receiversresource = $resource('/tip/:tip_id/receivers',
+      {tip_id: '@tip_id'}, {});
+
+    return function(tipID, fn) {
+      var receivers = [];
+      receiversResource.query(tipID, function(receiverResources){
+        for (var i in receiverResources) {
+          var receiver = {},
+            receiver_id = receiverResources[i].receiver_gus;
+
+          receiver = _.filter(localization.receivers, function(r){
+            if (r.receiver_gus === receiver_id) return true
+            else return false
+          });
+          receivers.push(receiver[0]);
+        };
+        // XXX perhaps make this return a lazyly instanced item.
+        // look at $resource code for inspiration.
+        fn(receivers);
       });
-}).
+    };
+}]).
   factory('TipComments', function($resource) {
     return $resource('/tip/:tip_id/comments',
       {tip_id: '@tip_id'}, {
