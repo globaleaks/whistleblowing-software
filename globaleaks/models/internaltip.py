@@ -77,7 +77,7 @@ class InternalTip(TXModel):
         self.context_gus = submission.context.context_gus
         self.escalation_threshold = submission.context.escalation_threshold
         self.access_limit = submission.context.tip_max_access
-        self.download_limit = submission.context.folder_max_download
+        self.download_limit = submission.context.file_max_download
 
         self.expiration_date = submission.expiration_time
         self.fields = submission.fields
@@ -95,6 +95,8 @@ class InternalTip(TXModel):
         is available.
         Here this information is stored, with the tip_gus that would be None or a valid Tip.
         """
+
+        print "YYY yyy", chosen_r._description_dict()
 
         self.receivers_map.append({
             'receiver_gus' : chosen_r.receiver_gus,
@@ -294,7 +296,8 @@ class InternalTip(TXModel):
 
         description_dict = {
             'id' : self.id,
-            'context_ref' : [ self.context.name, self.context_gus ],
+            'context_name' : "hardcoded", # self.context.name,
+            'context_gus': "useless", # self.context_gus,
             'creation_date' : gltime.prettyDateTime(self.creation_date),
             'expiration_date' : gltime.prettyDateTime(self.creation_date),
             'fields' : self.fields,

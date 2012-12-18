@@ -112,7 +112,6 @@ class ContextsCollection(BaseHandler):
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
 
-
         try:
             request = validateMessage(self.request.body, requests.adminContextDesc)
 

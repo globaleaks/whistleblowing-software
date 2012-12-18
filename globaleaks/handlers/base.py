@@ -41,7 +41,6 @@ class BaseHandler(RequestHandler):
     Request is now a dict that I can interact with.
 
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "BaseHandler")
 
     requestTypes = {}
     def prepare(self):
@@ -50,8 +49,9 @@ class BaseHandler(RequestHandler):
         handle the POST fallback, in environment where PUT and DELETE
         method may not be used.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "BaseHandler", "prepare")
+
         print "Just got %s" % self.request.body
+
         if self.request.method.lower() == 'post':
             try:
                 wrappedMethod = self.get_argument('method')[0]
@@ -61,6 +61,7 @@ class BaseHandler(RequestHandler):
                     self.request.method = wrappedMethod.upper()
             except HTTPError:
                 pass
+
         if self.request.method in self.requestTypes:
             validMessage = self.requestTypes[self.request.method]
             validateMessage(self.request.body, validMessage)
