@@ -13,8 +13,33 @@ sys.path.insert(0, os.path.join(cwd, '../'))
 # TODO - to be fixed with generate_docs.py
 # Remind: this was the format
 URTA = {
-    'U1_GET':'GET_/node', #U1
-    'U2_GET':'GET_/submission/@CID@/new',#U2
+    'A5_PUT':'PUT_/admin/receiver/@RID@',
+    'A5_DELETE':'DELETE_/admin/receiver/@RID@',
+    'A5_GET':'GET_/admin/receiver/@RID@',
+    'A7_POST':'POST_/admin/plugin/email/profile',
+    'A7_GET':'GET_/admin/plugin/email/profile',
+    'U3_PUT':'PUT_/submission/@SID@',
+    'U3_DELETE':'DELETE_/submission/@SID@',
+    'U3_GET':'GET_/submission/@SID@',
+    'A2_POST':'POST_/admin/context',
+    'A2_GET':'GET_/admin/context',
+    'U4_POST':'POST_/submission/@SID@/file',
+    'U4_DELETE':'DELETE_/submission/@SID@/file',
+    'U4_GET':'GET_/submission/@SID@/file',
+    'A8_PUT':'PUT_/admin/plugin/email/profile/@PID@',
+    'A8_DELETE':'DELETE_/admin/plugin/email/profile/@PID@',
+    'A8_GET':'GET_/admin/plugin/(\w+)/profile/@PID@',
+    'A1_POST':'POST_/admin/node',
+    'A1_GET':'GET_/admin/node',
+    'A4_POST':'POST_/admin/receiver',
+    'A4_GET':'GET_/admin/receiver',
+    'A6_GET':'GET_/admin/plugin',
+    'A9_GET':'GET_/admin/statistics/',
+    'AA_GET':'GET_/admin/overview/@OID@',
+    'A3_PUT':'PUT_/admin/context/@CID@',
+    'A3_DELETE':'DELETE_/admin/context/@CID@',
+    'A3_GET':'GET_/admin/context/@CID@',
+
 }
 
 baseurl = "http://127.0.0.1:8082"

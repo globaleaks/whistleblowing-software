@@ -22,16 +22,10 @@ def shooter_list_dump():
 
     with file("shooter.include", 'w+') as f:
 
-        for k,v in typestree.iteritems():
-            print k,"\t",v
-
-        for k,v in doctree.iteritems():
-            print k,"\t",v
-
         for k,v in URTA_map.iteritems():
-            print k,"\t",v
+            for method, desc in doctree.get(k).iteritems():
+                f.write("'%s_%s':'%s_%s',\n" % ( v[0], method.upper(), method.upper(), k ) )
 
-        f.write('xxx')
 
 
 def pop_URTA(descriptionstring):
