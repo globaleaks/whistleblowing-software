@@ -37,8 +37,8 @@ class Submission(TXModel):
     creation_time = DateTime()
     expiration_time = DateTime()
 
-    real_receipt = Unicode()
-    receivers_gus_list = Pickle()
+    receipt = Unicode()
+    receivers = Pickle()
 
     # XXX remove Folder, use File
     folder_gus = Unicode()
@@ -67,8 +67,8 @@ class Submission(TXModel):
         submission.context_gus = context_gus
         submission.context = associated_c
 
-        submission.receivers_gus_list = associated_c.get_receivers('public')
-        print "I receiver in questa submission sono:", submission.receivers_gus_list
+        submission.receivers = associated_c.get_receivers('public')
+        print "I receiver in questa submission sono:", submission.receivers
 
         # TODO submission.context.update_stats()
 
@@ -148,7 +148,7 @@ class Submission(TXModel):
         store.close()
 
     @transact
-    def select_receiver(self, submission_gus, receivers_gus_list):
+    def select_receiver(self, submission_gus, receivers):
 
         store = self.getStore('select_receiver')
 
@@ -161,8 +161,8 @@ class Submission(TXModel):
             store.close()
             raise SubmissionGusNotFound
 
-        # TODO checks that all the receiver declared in receivers_gus_list exists
-
+        # TODO checks that all the receiver declared in receivers EXISTS!!
+        requested_s.receivers = receivers
 
         store.commit()
         store.close()
@@ -217,7 +217,7 @@ class Submission(TXModel):
             store.close()
             raise SubmissionGusNotFound
 
-        requested_s.real_receipt = self._receipt_evaluation(proposed_receipt)
+        requested_s.receipt = self._receipt_evaluation(proposed_receipt)
 
         store.commit()
         store.close()
@@ -250,7 +250,7 @@ class Submission(TXModel):
         # here is created the table with receiver selected (an information stored only in the submission)
         # and the threshold escalation. Is not possible have a both threshold and receiver
         # selection in this moment (other complications can derived from use them both)
-        for single_r in requested_s.receivers_gus_list:
+        for single_r in requested_s.receivers:
 
             receiver_gus = single_r.get('receiver_gus')
             selected_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
@@ -282,13 +282,15 @@ class Submission(TXModel):
         whistleblower_tip.internaltip_id = internal_tip.id
         # whistleblower_tip.internaltip = internal_tip
 
-        if not requested_s.real_receipt:
+        if not requested_s.receipt:
             used_receipt = requested_s._receipt_evaluation()
         else:
-            used_receipt = requested_s.real_receipt
+            used_receipt = requested_s.receipt
+
+        statusDict = requested_s._description_dict()
 
         whistleblower_tip.receipt = used_receipt
-        # whistleblower_tip.authoptions would be filled here
+        # TODO whistleblower_tip.authoptions would be filled here
 
         store.add(whistleblower_tip)
         log.debug("Created tip with address %s" % whistleblower_tip.receipt)
@@ -299,14 +301,14 @@ class Submission(TXModel):
         store.commit()
         store.close()
 
-        return used_receipt
+        return statusDict
 
     @transact
     def submission_delete(self, submission_gus):
 
         log.debug("[D] ",__file__, __name__, "Submission delete by user request", submission_gus)
 
-        store = self.getStore('receipt_proposal')
+        store = self.getStore('submission_delete')
 
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
@@ -361,9 +363,9 @@ class Submission(TXModel):
             'context_gus' : self.context_gus,
             'creation_time' : gltime.prettyDateTime(self.creation_time),
             'expiration_time' : gltime.prettyDateTime(self.expiration_time),
-            'receiver_gus_list' : self.receivers_gus_list,
+            'receivers' : self.receivers,
             'file_gus_list' : self.folder_gus,
-            'real_receipt' : self.real_receipt
+            'receipt' : self.receipt
         }
 
         return descriptionDict
