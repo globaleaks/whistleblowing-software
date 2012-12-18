@@ -31,7 +31,7 @@
             </select>
 
             <button class="btn btn-success"
-              ng-disabled="configForm.$invalid || isUnchanged(context)"
+              ng-disabled="isUnchanged(context)"
               ng-click="update(context)">Save</button>
 
             <button class="btn btn-danger"

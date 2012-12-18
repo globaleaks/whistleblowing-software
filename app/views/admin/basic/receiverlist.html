@@ -57,7 +57,7 @@
             </select>
 
             <button class="btn btn-success"
-              ng-disabled="configForm.$invalid || isUnchanged(receiver)"
+              ng-disabled="isUnchanged(receiver)"
               ng-click="update(receiver)">Save</button>
 
             <button class="btn btn-danger"
