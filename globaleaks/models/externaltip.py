@@ -281,10 +281,8 @@ class ReceiverTip(TXModel):
         store = self.getStore('create_receiver_tips')
 
         selected_it = store.find(InternalTip, InternalTip.id == id).one()
-        print selected_it.receivers_map
         for i, mapped in enumerate(selected_it.receivers_map):
 
-            print "XXX xxx", mapped, id, tier
             if not mapped['receiver_level'] == tier:
                 continue
 
@@ -294,8 +292,6 @@ class ReceiverTip(TXModel):
 
             # is initialized a Tip that need to be notified
             receiver_tip.initialize(mapped, selected_it, receiver_subject)
-
-            print "XXX xxx", self._description_dict()
 
             receiver_subject.update_timings()
 

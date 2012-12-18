@@ -11,6 +11,8 @@ from cyclone.web import asynchronous
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip
+from globaleaks.models.receiver import Receiver
+from globaleaks.models.internaltip import InternalTip
 from globaleaks.utils import log
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
@@ -202,7 +204,7 @@ class TipCommentCollection(BaseHandler):
                 tip_description = yield requested_t.whistleblower_get_single(tip_token)
 
             comment_iface = Comment()
-            comment_list = yield comment_iface.get_comment_related(tip_description['tip_info']['internaltip_id'])
+            comment_list = yield comment_iface.get_comment_related(tip_description['internaltip_id'])
 
             self.set_status(200)
             self.write({'comments' : comment_list})
@@ -284,5 +286,40 @@ class TipReceiversCollection(BaseHandler):
         Response: actorsReceiverList
         Errors: InvalidTipAuthToken
         """
+
+        try:
+            if is_receiver_token(tip_token):
+
+                print "Receiver: I'm a receiver with %s" % tip_token
+                requested_t = ReceiverTip()
+
+                tip_description = yield requested_t.admin_get_single(tip_token)
+
+            else:
+
+                print "Receiver: I'm a whistleblower with %s" % tip_token
+                requested_t = WhistleblowerTip()
+
+                tip_description = yield requested_t.admin_get_single(tip_token)
+
+            itip_iface = InternalTip()
+
+            inforet = yield itip_iface.get_receivers_map(tip_description['internaltip_id'])
+
+            self.write({'receivers' : inforet})
+            self.set_status(200)
+
+        except TipGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+
+        except TipReceiptNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
 
 

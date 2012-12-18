@@ -69,7 +69,7 @@ class Submission(TXModel):
 
         submission.receivers = associated_c.get_receivers('public')
         submission.receivers = associated_c.receivers
-        print "I receiver in questa submission sono:", submission.receivers, "x", associated_c.receivers, "QUESTO DEVE ANDAREEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE"
+        # XXX this was important and actually IS bugged -- review that /me vecna
 
         # TODO submission.context.update_stats()
 
@@ -257,8 +257,6 @@ class Submission(TXModel):
                 receiver_gus = single_r.get('receiver_gus')
             else:
                 receiver_gus = single_r
-
-            print "I hope seriously this is an unicode:", receiver_gus
 
             selected_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
             internal_tip.associate_receiver(selected_r)
