@@ -31,7 +31,8 @@ describe("Node Admin API functionality", function(){
       file_max_download: 42,
       tip_max_access: 42,
       selectable_receiver: true,
-      tip_timetolive: 42
+      tip_timetolive: 42,
+      receivers: []
   };
 
   var invalidContextNoName = {
@@ -191,7 +192,7 @@ describe("Node Admin API functionality", function(){
     request()
     .put('/admin/context/' + dummyContextID)
     .send(invalidContextNoName)
-    .expect(406)
+    .expect(404)
     .expect('{"error_message": "Invalid Input Format '+
             '[Import failed near the Storm]", "error_code": 10}', done);
 
