@@ -199,12 +199,14 @@ class ReceiverTip(TXModel):
         store.commit()
 
         tip_details = requested_t.internaltip._description_dict()
-        tip_details.pop('id')
 
-        receivers_info = requested_t.internaltip._receivers_description()
-        tip_info = requested_t._description_dict()
+        # Those elements are overrided by others API
+        #tip_details.pop('id')
+        #receivers_info = requested_t.internaltip._receivers_description()
+        #tip_info = requested_t._description_dict()
+        #ret_dict = { 'tip_details' : tip_details, 'tip_info' : tip_info, 'receivers_info' : receivers_info }
 
-        ret_dict = { 'tip_details' : tip_details, 'tip_info' : tip_info, 'receivers_info' : receivers_info }
+        ret_dict = { 'tip_details' : tip_details }
 
         store.close()
 
@@ -364,11 +366,11 @@ class WhistleblowerTip(TXModel):
         wb_tip_dict = requested_t.internaltip._description_dict()
         wb_tip_dict.pop('id')
 
-        comments = requested_t.internaltip.get_comment_public()
-
         complete_tip_dict = wb_tip_dict
-        complete_tip_dict.update({'receivers' : requested_t.internaltip._receivers_description() })
-        complete_tip_dict.update({'comments' : comments})
+
+        # now supply by other API
+        #complete_tip_dict.update({'receivers' : requested_t.internaltip._receivers_description() })
+        #complete_tip_dict.update({'comments' : comments})
 
         store.close()
         return complete_tip_dict
@@ -581,7 +583,6 @@ class Comment(TXModel):
 
         store.commit()
         store.close()
-
 
     @transact
     def get_comment_related(self, internltip_id):
