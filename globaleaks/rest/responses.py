@@ -116,7 +116,7 @@ class receiverTipList(GLTypes):
 class actorsTipDesc(GLTypes):
 
     specification =  {
-        'fields' : [ formFieldsDict ],
+        'fields' : dict,
         'pertinence_counter' : int,
         'escalation_threshold' : int,
         'creation_date' : timeType,

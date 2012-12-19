@@ -64,6 +64,7 @@ class APSNotification(GLJob):
                                                  'username':'globaleaksnode1@gmail.com', 'password':'Antani1234', 'ssl': True },
                              'receiver_fields' :  { 'mail_addr' : single_tip['notification_fields'] }
                            }
+                print settings
             else: # single_tip['notification_selected'] == 'irc':
                 settings = { 'admin_fields' :  { 'server' :  'irc.oftc.net', 'channel' : '#globaleaks',
                                                  'node_user':'GlobaLx' },

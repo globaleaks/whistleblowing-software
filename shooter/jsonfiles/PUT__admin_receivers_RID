@@ -1,7 +1,7 @@
-name=Bradly Hussein Obama
+name=Bradly Barak Hussein Assange
 description=a journalist of Truth Corp and freelancer of www.unknow.net
-tags:=[ "ninja", "facilitator", "journalist" ]
-know_languages:=[ "IT", "FR" ]
+tags:=[ "great", "good", "journalist" ]
+languages:=[{"code":"it","name":"Italiano"},{"code":"en","name":"English"}]
 receiver_level:=2
 can_delete_submission:=true
 can_postpone_expiration:=true
