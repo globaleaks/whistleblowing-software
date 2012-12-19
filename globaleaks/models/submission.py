@@ -140,6 +140,8 @@ class Submission(TXModel):
             store.close()
             raise SubmissionGusNotFound
 
+        # Fields are specified in adminContextDesc with 'fields'
+        #
         s.fields = fields
 
         store.commit()
