@@ -15,7 +15,7 @@ class wbSubmissionDesc(GLTypes):
 
     specification = {
         'submission_gus': submissionGUS,
-        'fields' : [ formFieldsDict ],
+        'fields' : dict,
         'context_gus' : contextGUS,
         'creation_time' : timeType,
         'expiration_time' : timeType,

@@ -188,17 +188,21 @@ class tipGUS(SpecialType):
     regexp = r"(t_[a-zA-Z]{50,50})"
 
 class fileDict(GLTypes):
-    specification = {"name": unicode,
-                "description": unicode,
-                "size": int,
-                "content_type": unicode,
-                "date": dateType,
-                "metadata_cleaned": bool,
-                "completed": bool
-                }
+
+    specification = {
+            "name": unicode,
+            "description": unicode,
+            "size": int,
+            "content_type": unicode,
+            "date": dateType,
+            "metadata_cleaned": bool,
+            "completed": bool
+    }
 
 class receiverDescriptionDict(GLTypes):
-    specification = {"gus": receiverGUS,
+
+    specification = {
+            "gus": receiverGUS,
             "can_delete_submission": bool,
             "can_postpone_expiration": bool,
             "can_configure_notification": bool,
@@ -215,7 +219,8 @@ class receiverDescriptionDict(GLTypes):
             "last_update_date": timeType,
             # update the name
             "languages_supported": [unicode],
-            }
+    }
+
 class nodePropertiesDict(GLTypes):
     """
     Gradually this options has been shrinked because:
@@ -231,10 +236,12 @@ class adminStatisticsDict(GLTypes):
     of information collected about the latest X-hours of the node
     and so far
     """
-    specification = {"hours_interval": int,
+    specification = {
+            "hours_interval": int,
             "download_number": int,
             "receiver_accesses": int,
-            "submission_received": int}
+            "submission_received": int
+    }
 
 class publicStatisticsDict(GLTypes):
     """
@@ -244,9 +251,11 @@ class publicStatisticsDict(GLTypes):
     Need to be defined, depends what's is considered to be
     harmless for node life, and what's can be easily collected
     """
-    specification = {"active_contexts": int,
+    specification = {
+            "active_contexts": int,
             "active_receivers": int,
-            "uptime_days": int}
+            "uptime_days": int
+    }
 
 
 class formFieldsDict(GLTypes):
@@ -255,7 +264,8 @@ class formFieldsDict(GLTypes):
     and would be the set of keyword supported by the
     client (text, textarea, checkbox, GPS coordinate)
     """
-    specification = {"presentation_order": "int",
+    specification = {
+            "presentation_order": "int",
             "label": unicode,
             "name": unicode,
             "required": bool,
@@ -265,6 +275,7 @@ class formFieldsDict(GLTypes):
 
 
 class moduleDataDict(GLTypes):
+
     specification = {
             "profile_gus": profileGUS,
             "active": bool,
@@ -289,26 +300,33 @@ class contextDescriptionDict(GLTypes):
 
     language_supported: it's the collection of Language from 'receivers'
     """
-    specification = {"context_gus": contextGUS,
+    specification = {
+            "context_gus": contextGUS,
             "name": unicode,
             "description": unicode,
             "creation_date": timeType,
             "update_date": timeType,
-            "fields": [formFieldsDict()],
+            "fields": [ formFieldsDict ],
             "selectable_receiver": bool,
             "receivers": [receiverDescriptionDict],
             "escalation_threshold": int,
-            "languages_supported": [unicode]}
+            "languages_supported": list
+    }
 
 class commentDescriptionDict(GLTypes):
-    specification = {"writtentext": unicode,
+
+    specification = {
+            "writtentext": unicode,
             "commenttype": commentENUM,
             "author": unicode,
-            "date": timeType}
+            "date": timeType
+    }
 
 
 class tipSubIndex(GLTypes):
-    specification = {"tip_gus": tipGUS,
+
+    specification = {
+            "tip_gus": tipGUS,
             "notification_adopted": unicode,
             "delivery_adopted": unicode,
             "download_limit": int,
@@ -319,7 +337,8 @@ class tipSubIndex(GLTypes):
             "last_update_date": timeType,
             "comment_number": int,
             "files_number": int,
-            "overall_pertinence": int}
+            "overall_pertinence": int
+    }
 
 class tipIndexDict(GLTypes):
     """
@@ -327,8 +346,10 @@ class tipIndexDict(GLTypes):
     Remind: this object is the LIST OF ACTIVE TIP, does not
     cover the content.
     """
-    specification = {"context_gus": contextGUS,
-            "tiplist": [tipSubIndex]}
+    specification = {
+            "context_gus": contextGUS,
+            "tiplist": [tipSubIndex]
+    }
 
 class tipDetailsDict(GLTypes):
     """
@@ -336,15 +357,14 @@ class tipDetailsDict(GLTypes):
     of the Tip
     """
 
-    """
-    What's follow are the details Tip dependent
-    """
-    specification = {"tip": tipSubIndex,
+    specification = {
+            "tip": tipSubIndex,
             "fields": formFieldsDict,
             "files": [fileGUS],
             "comments": commentDescriptionDict,
             "context": contextDescriptionDict,
-            "receivers": receiverDescriptionDict}
+            "receivers": receiverDescriptionDict
+    }
 
 
 class localizationDict(GLTypes):
@@ -365,14 +385,14 @@ class localizationDict(GLTypes):
 class submissionStatus(GLTypes):
 
     specification = {
-                "fields": [ formFieldsDict ],
-                "context_selected": contextGUS,
-                "submission_gus" : submissionGUS,
-                "proposed_receipt": unicode,
-                "files_description": unicode,
-                "receiver_selected": [ receiverGUS ],
-                "files_selected" : [ fileGUS ],
-                "complete" : bool
+            "fields": [ formFieldsDict ],
+            "context_selected": contextGUS,
+            "submission_gus" : submissionGUS,
+            "proposed_receipt": unicode,
+            "files_description": unicode,
+            "receiver_selected": [ receiverGUS ],
+            "files_selected" : [ fileGUS ],
+            "complete" : bool
     }
 
 

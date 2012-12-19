@@ -239,7 +239,7 @@ class TipCommentCollection(BaseHandler):
 
                 tip_description = yield requested_t.admin_get_single(tip_token)
                 comment_stored = yield comment_iface.add_comment(tip_description['internaltip_id'],
-                    request['comment'], u"receiver", tip_description['receiver_name'])
+                    request['content'], u"receiver", tip_description['receiver_gus'])
 
             else:
                 print "Comment: I'm a whistleblower with %s" % tip_token
@@ -247,7 +247,7 @@ class TipCommentCollection(BaseHandler):
 
                 tip_description = yield requested_t.admin_get_single(tip_token)
                 comment_stored = yield comment_iface.add_comment(tip_description['internaltip_id'],
-                    request['comment'], u"whistleblower")
+                    request['content'], u"whistleblower")
 
             # TODO: internaltip <> last_usage_time_update()
             self.set_status(200)
@@ -288,14 +288,12 @@ class TipReceiversCollection(BaseHandler):
 
                 print "Receiver: I'm a receiver with %s" % tip_token
                 requested_t = ReceiverTip()
-
                 tip_description = yield requested_t.admin_get_single(tip_token)
 
             else:
 
                 print "Receiver: I'm a whistleblower with %s" % tip_token
                 requested_t = WhistleblowerTip()
-
                 tip_description = yield requested_t.admin_get_single(tip_token)
 
             itip_iface = InternalTip()

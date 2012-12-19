@@ -1,4 +1,4 @@
 submission_gus=@SID@
 context_gus=@CID@
-fields:=[{"label":"THIS VALUE NEED TO BE IGNORED AND NEVER SAVED","name":"THIS NAME IST NOT MINE","value":"Hi, I'm happy about this tip", "type":"text"}]
+fields:={"name":"This is a value","road":"shit stuff crappy","element":"random data again"}
 receipt=focaccia
