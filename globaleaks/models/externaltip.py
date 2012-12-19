@@ -10,7 +10,7 @@
 from storm.twisted.transact import transact
 from storm.exceptions import NotOneError
 from storm.locals import Int, Pickle, Date, Unicode, RawStr, Bool, DateTime
-from storm.locals import Reference, ReferenceSet
+from storm.locals import Reference
 
 from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
@@ -434,6 +434,9 @@ class WhistleblowerTip(TXModel):
         pass
 
 
+# Folder need to be removed
+# Folder need to be removed
+# Folder need to be removed
 class Folder(TXModel):
     """
     This represents a file set: a collection of files, description, time
@@ -503,11 +506,15 @@ class File(TXModel):
     metadata_cleaned = Bool()
     uploaded_date = Date()
 
-    folder_gus = Unicode()
-    folder = Reference(folder_gus, Folder.folder_gus)
-
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
+
+    def admin_get_all(self):
+        pass
+
+    def get_files_by_itip(self, internaltip_id):
+        pass
+
 
 
 class Comment(TXModel):

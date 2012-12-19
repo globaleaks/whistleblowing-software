@@ -25,8 +25,10 @@ def is_receiver_token(tip_token):
     """
 
     if len(tip_token) == 52 and tip_token[0] == 't' and tip_token[1] == '_':
+        print "processing tip_token as Receiver", tip_token
         return True
     else:
+        print "processing tip_token as WhistleBlower", tip_token
         return False
 
 class TipInstance(BaseHandler):
@@ -62,11 +64,9 @@ class TipInstance(BaseHandler):
 
         try:
             if is_receiver_token(tip_token):
-                print "I'm a receiver with %s" % tip_token
                 requested_t = ReceiverTip()
                 tip_description = yield requested_t.receiver_get_single(tip_token)
             else:
-                print "I'm a whistleblower with %s" % tip_token
                 requested_t = WhistleblowerTip()
                 tip_description = yield requested_t.whistleblower_get_single(tip_token)
 
@@ -191,11 +191,9 @@ class TipCommentCollection(BaseHandler):
         try:
 
             if is_receiver_token(tip_token):
-                print "Comment: I'm a receiver with %s" % tip_token
                 requested_t = ReceiverTip()
                 tip_description = yield requested_t.receiver_get_single(tip_token)
             else:
-                print "Comment: I'm a whistleblower with %s" % tip_token
                 requested_t = WhistleblowerTip()
                 tip_description = yield requested_t.whistleblower_get_single(tip_token)
 
@@ -233,7 +231,6 @@ class TipCommentCollection(BaseHandler):
 
             if is_receiver_token(tip_token):
 
-                print "Comment: I'm a receiver with %s" % tip_token
                 requested_t = ReceiverTip()
 
                 tip_description = yield requested_t.admin_get_single(tip_token)
@@ -241,7 +238,6 @@ class TipCommentCollection(BaseHandler):
                     request['content'], u"receiver", tip_description['receiver_gus'])
 
             else:
-                print "Comment: I'm a whistleblower with %s" % tip_token
                 requested_t = WhistleblowerTip()
 
                 tip_description = yield requested_t.admin_get_single(tip_token)
@@ -285,13 +281,11 @@ class TipReceiversCollection(BaseHandler):
         try:
             if is_receiver_token(tip_token):
 
-                print "Receiver: I'm a receiver with %s" % tip_token
                 requested_t = ReceiverTip()
                 tip_description = yield requested_t.admin_get_single(tip_token)
 
             else:
 
-                print "Receiver: I'm a whistleblower with %s" % tip_token
                 requested_t = WhistleblowerTip()
                 tip_description = yield requested_t.admin_get_single(tip_token)
 

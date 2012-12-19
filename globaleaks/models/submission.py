@@ -12,10 +12,10 @@ from storm.exceptions import NotOneError
 
 from globaleaks.utils import idops, gltime, random
 from globaleaks.models.base import TXModel
-from globaleaks.models.externaltip import File, Folder, WhistleblowerTip
+from globaleaks.models.externaltip import File, WhistleblowerTip
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.context import Context
-from globaleaks.rest.errors import ContextGusNotFound, SubmissionFailFields, SubmissionGusNotFound
+from globaleaks.rest.errors import ContextGusNotFound, SubmissionFailFields, SubmissionGusNotFound, ReceiverGusNotFound
 from globaleaks.models.receiver import Receiver
 
 from globaleaks.utils import log
@@ -40,16 +40,14 @@ class Submission(TXModel):
     receipt = Unicode()
     receivers = Pickle()
 
-    # XXX remove Folder, use File
-    folder_gus = Unicode()
-    folder = Reference(folder_gus, Folder.folder_gus)
+    files = Pickle()
 
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
 
     @transact
     def new(self, context_gus):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "new in %s", context_gus)
+
         store = self.getStore('new submission')
 
         try:
@@ -67,9 +65,12 @@ class Submission(TXModel):
         submission.context_gus = context_gus
         submission.context = associated_c
 
-        submission.receivers = associated_c.get_receivers('public')
+        # XXX this was important and actually IS bugged -- review that /me vecna
+        # submission.receivers = associated_c.get_receivers('public')
         submission.receivers = associated_c.receivers
         # XXX this was important and actually IS bugged -- review that /me vecna
+
+        submission.files = {}
 
         # TODO submission.context.update_stats()
 
@@ -86,45 +87,33 @@ class Submission(TXModel):
 
         return submissionDesc
 
-    # XXX ---
-    # need to be refactored with delivery schedule ops
-    # XXX ---
     @transact
-    def add_file(self, submission_gus, file_name=None):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "add_file", "submission_gus", submission_gus , "file_name", file_name )
-        store = self.getStore('add_file')
-        submission = store.find(Submission, Submission.submission_gus==submission_gus).one()
+    def add_file(self, submission_gus, file_name):
 
-        if not submission:
-            store.rollback()
+        store = self.getStore('add_file')
+
+        try:
+            submission_r = store.find(Submission, Submission.submission_gus==submission_gus).one()
+        except NotOneError:
+            store.close()
+            raise SubmissionGusNotFound
+        if not submission_r:
             store.close()
             raise SubmissionGusNotFound
 
-        """
-        this part of code was in new(), now having a Folder is not mandatory in a submission,
-        Folder need a Storm obj + skeleton providing InputFilter and Delivery supports.
-
-        folder = Folder()
-        folder.folder_gus = idops.random_folder_gus()
-        store.add(folder)
-        submission.folder = folder
-        """
-
-
-        new_file_gus = idops.random_file_gus()
-        log.debug("Generated this file id %s" % new_file_gus)
         new_file = File()
+        new_file.file_gus = ret_file_gus = unicode(idops.random_file_gus())
+        new_file.name = file_name
 
-        new_file.folder_gus = submission.folder_gus
-        new_file.file_gus = unicode(new_file_gus)
+        submission_r.files.update({ new_file.file_gus : file_name })
 
-        log.debug("Added file %s to %s" % (submission_gus, file_name))
+        log.debug("Added file %s in submission %s with name %s" % (ret_file_gus, submission_gus, file_name))
 
         store.add(new_file)
         store.commit()
         store.close()
 
-        return new_file_gus
+        return ret_file_gus
 
     @transact
     def update_fields(self, submission_gus, fields):
@@ -141,7 +130,11 @@ class Submission(TXModel):
             raise SubmissionGusNotFound
 
         # Fields are specified in adminContextDesc with 'fields'
-        #
+        # and need to be checked using the contexts.fields key
+        # only the requested key are searched in the fields.
+        # all the other keys are ignored.
+        # all the keys need to be validated based on the type
+
         s.fields = fields
 
         store.commit()
@@ -176,7 +169,6 @@ class Submission(TXModel):
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
-            # its not possible: is a primary key
             store.close()
             raise SubmissionGusNotFound
         if requested_s is None:
@@ -184,9 +176,6 @@ class Submission(TXModel):
             raise SubmissionGusNotFound
 
         statusDict = requested_s._description_dict()
-
-        # strip internal/incomplete/reserved information
-        statusDict.pop('folder_gus')
 
         store.close()
         return statusDict
@@ -225,9 +214,8 @@ class Submission(TXModel):
     @transact
     def complete_submission(self, submission_gus):
         """
-        Need to be refactored in Tip the Folder thing
+        need a best-safe receipt feat
         """
-        log.debug("[D] ",__file__, __name__, "Submission complete_submission", submission_gus)
 
         store = self.getStore('complete_submission')
 
@@ -240,7 +228,8 @@ class Submission(TXModel):
             store.close()
             raise SubmissionGusNotFound
 
-        log.debug("Creating internal tip in", requested_s.context_gus, requested_s.submission_gus)
+        log.debug("Creating internal tip in", requested_s.context_gus,
+            "from", requested_s.submission_gus, "with", requested_s.files)
 
         if not requested_s.fields:
             raise SubmissionFailFields
@@ -262,29 +251,20 @@ class Submission(TXModel):
             else:
                 receiver_gus = single_r
 
-            selected_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            try:
+                selected_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+            except NotOneError:
+                store.close()
+                raise ReceiverGusNotFound
+            if not selected_r:
+                store.close()
+                raise ReceiverGusNotFound
+
             internal_tip.associate_receiver(selected_r)
 
         store.add(internal_tip)
 
         log.debug("Created internal tip %s" % internal_tip.context_gus)
-
-        # this is wrong, we need to check if some file has been added TODO
-        # temporary fail in this check, folder would be associated in internaltip, but
-        # marked coherently with the asynchronous delivery logic
-        if requested_s.folder and 1 == 0:
-            log.debug("Creating submission folder table %s" % requested_s.folder_gus)
-            folder = requested_s.folder
-            folder.internaltip = internal_tip
-
-            store.add(folder) 
-            store.commit()
-
-            log.debug("Submission folder created without error")
-
-            # XXX, and I don't get why folder_gus is returned by new():
-            # because file uploader # use submission_gus as reference, do not need folder_gus too.
-            # because if someone want restore an upload, use the file_gus instead of folder_gus
 
         log.debug("Creating tip for whistleblower")
         whistleblower_tip = WhistleblowerTip()
@@ -301,11 +281,9 @@ class Submission(TXModel):
         # TODO whistleblower_tip.authoptions would be filled here
 
         store.add(whistleblower_tip)
-        log.debug("Created tip with address %s" % whistleblower_tip.receipt)
+        log.debug("Created tip with address %s, Internal Tip and Submission removed" % whistleblower_tip.receipt)
 
-        log.debug("created_InternalTip", internal_tip.id," and WhistleBlowerTip, removed submission")
-
-        store.remove(requested_s)
+        # store.remove(requested_s)
         store.commit()
         store.close()
 
@@ -337,8 +315,6 @@ class Submission(TXModel):
         """
         @return a receiverDescriptionDict
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Submission", "admin_get_single", submission_gus)
-
         store = self.getStore('submission - admin_get_single')
 
         # I didn't understand why, but NotOneError is not raised even if the search return None
@@ -358,9 +334,7 @@ class Submission(TXModel):
 
     @transact
     def admin_get_all(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Submission", "admin_get_all")
         pass
-
 
     # called by a transact method, return
     def _description_dict(self):
@@ -372,7 +346,7 @@ class Submission(TXModel):
             'creation_time' : gltime.prettyDateTime(self.creation_time),
             'expiration_time' : gltime.prettyDateTime(self.expiration_time),
             'receivers' : self.receivers,
-            'file_gus_list' : self.folder_gus,
+            'files' : self.files if self.files else {},
             'receipt' : self.receipt
         }
 

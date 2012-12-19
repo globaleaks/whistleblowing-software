@@ -154,7 +154,7 @@ class Node(TXModel):
         onlyNode.email = u"email@dumnmy.net"
         onlyNode.private_stats_update_time = 30 # minutes
         onlyNode.public_stats_update_time = 120 # minutes
-        onlyNode.languages = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" },  {"code" : "vv", "name" : u"ζ Vecnish"} ]
+        onlyNode.languages = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" }]
 
         store.add(onlyNode)
         store.commit()

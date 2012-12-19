@@ -14,7 +14,7 @@ class GLPluginManager:
 
     def __init__(self):
         from globaleaks.plugins.notification.mail_plugin import MailNotification
-        from globaleaks.plugins.notification.irc_plugin import IRCNotification
+        # from globaleaks.plugins.notification.irc_plugin import IRCNotification
         from globaleaks.plugins.notification.file_plugin import FILENotification
 
         # only here the plugin object is instanced

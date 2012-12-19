@@ -1,8 +1,9 @@
 
-from globaleaks.utils import log, gltime
+from globaleaks.utils import log
 from globaleaks.plugins.base import GLPlugin
 import smtplib
 import string
+
 
 class MailNotification(GLPlugin):
 
@@ -18,32 +19,46 @@ class MailNotification(GLPlugin):
 
     def validate_admin_opt(self, pushed_af):
 
-        print "debug while Aligning with the API", pushed_af
-
-        """
         if self._get_SMTP(pushed_af['server'], pushed_af['port'], pushed_af['ssl'],
                 pushed_af['username'], pushed_af['password']):
             return True
         else:
             return False
-        """
-        return True
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
         return True
 
     def _append_email(self):
+        """
+        TODO use http://docs.python.org/2/library/email
+        """
         pass
-        # TODO use http://docs.python.org/2/library/email
-        #body = string.join(("From: GLBackend postino <%s>" % username,
-        #                    "To: Estimeed Receiver <%s>" % receiver_addr,
-        #                    "Subject: %s" % subject, text), "\r\n")
 
+    def _create_title(self, notification_struct):
 
-    def _create_email(self, body, source, dest, subject):
-        # TODO use http://docs.python.org/2/library/email
-        print body, source, dest, subject
+        if notification_struct['type'] == u'comment':
+            return "New comment from GLBNode"
+        if notification_struct['type'] == u'tip':
+            return "New tip from GLBNode"
+
+        Exception("Unsupported notification_struct usage")
+
+    def _create_email(self, notification_struct, source, dest, subject):
+        """
+        TODO use http://docs.python.org/2/library/email
+        """
+        body = '\nEsteemed users,\n'
+
+        if notification_struct['type'] == u'comment':
+            body += "In %s You've received a new comment in one of your tip\n" % notification_struct['creation_time']
+            body += "The comment has been produced by %s\n" % notification_struct['source']
+        if notification_struct['type'] == u'tip':
+            body += "In %s as been created a new Tip for you\n" % notification_struct['creation_time']
+            body += "You can access using the unique key: %s\n" % notification_struct['tip_gus']
+
+        body += "\n\nBest regards,\nThe email notification plugin"
+
         return string.join(("From: GLBackend postino <%s>" % source,
                             "To: Estimeed Receiver <%s>" % dest,
                             "Subject: %s" % subject, body), "\r\n")
@@ -61,38 +76,43 @@ class MailNotification(GLPlugin):
             log.debug("Error, Connection error to %s:%d" % (server, port) )
             return None
         except smtplib.SMTPAuthenticationError:
-            log.debug("Error, Invalid Login/Password provided for server %s (%s)" % (server, username) )
+            log.debug("Error, Invalid Login/Password provided for server %s (%s %s)" % (server, username, password) )
             return None
 
         return socket
 
-    # NYI, would use _append_email and continuosly checking the time delta
+    # NYI, would use _append_email and continously checking the time delta
     #      admin fields need the digest time delta specified inside.
+
     def digest_check(self, settings, stored_data, new_data):
         pass
 
-    def do_notify(self, settings, stored_data):
+    def do_notify(self, settings, notification_struct):
 
         af = settings['admin_fields']
         rf = settings['receiver_fields']
 
-        body = self._create_email( ("at %s happen %s" % (stored_data[0], stored_data[1]) ),
-            af['username'], rf['mail_addr'], 'New notification')
-
-        smtpsock = self._get_SMTP(af['server'], af['port'], af['ssl'],
-                af['username'], af['password'])
+        title = self._create_title(notification_struct)
+        body = self._create_email(notification_struct,  af['username'], rf['mail_addr'], title)
 
         try:
+            smtpsock = self._get_SMTP(af['server'], af['port'], af['ssl'],
+                af['username'], af['password'])
+
+            if not smtpsock:
+                log.err("[E] error in sending the email to %s (username: %s)" % (rf['mail_addr'], af['username']))
+                return False
+
             smtpsock.sendmail(af['username'], [ rf['mail_addr'] ], body)
             smtpsock.quit()
 
             log.debug("Success in email %s " % rf['mail_addr'])
-            retval = True
+            return True
 
         except smtplib.SMTPRecipientsRefused, smtplib.SMTPSenderRefused:
 
             # remind, other error can be handled http://docs.python.org/2/library/smtplib.html
             log.err("[E] error in sending the email to %s (username: %s)" % (rf['mail_addr'], af['username']))
-            retval = False
+            return False
 
-        return retval
+

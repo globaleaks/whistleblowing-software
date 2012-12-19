@@ -12,17 +12,18 @@ import json, os, time
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import RequestHandler, HTTPError, asynchronous
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.rest.errors import SubmissionGusNotFound
 from globaleaks.utils import log
-from globaleaks import models, config
+from globaleaks import config
+from globaleaks.models.submission import Submission
 
 class FileInstance(BaseHandler):
     """
     U4
-    need a complete redesign with async Tip/Submission
+
+    This is the Storm interface to supports JQueryFileUploader stream
     """
 
-    log.debug("[D] %s %s " % (__file__, __name__), "Class FileCrud", "RequestHandler", RequestHandler)
-    filenamePrefix = "f_"
     # Set to None for no size restrictions
     maxFileSize = 500 * 1000 * 1000 # MB
 
@@ -115,39 +116,55 @@ class FileInstance(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def post(self, submission_id):
+    def post(self, submission_gus):
         """
+        Parameter: submission_gus
         Request: Unknown
         Response: Unknown
-        Errors: Unknown
+        Errors: SubmissionGusNotFound
 
         POST in fileHandlers need to be refactored-engineered
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "post", "submission_id", submission_id)
+
+        # XXX "I see dead people"
         method_hack = self.get_arguments('_method')
         if method_hack and method_hack == 'DELETE':
             self.delete()
 
-        results = []
+        try:
 
-        # XXX will this ever be bigger than 1?
-        file_array, files = self.request.files.popitem()
-        for file in files:
-            start_time = time.time()
+            results = []
 
-            submission = models.submission.Submission()
-            file_id = yield submission.add_file(submission_id)
-            log.debug("Created file with file id %s" % file_id)
-            result = self.process_file(file, submission_id, file_id)
-            result['elapsed_time'] = time.time() - start_time
-            results.append(result)
+            # XXX will this ever be bigger than 1?
+            file_array, files = self.request.files.popitem()
+            for file in files:
+                start_time = time.time()
 
+                print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", file
 
-        response = json.dumps(results, separators=(',',':'))
+                submission_iface = Submission()
+                file_gus = yield submission_iface.add_file(submission_gus, file)
 
-        if 'application/json' in self.request.headers.get('Accept'):
-            self.set_header('Content-Type', 'application/json')
-        self.write(response)
+                log.debug("Created file with file_gus %s" % file_gus)
+
+                result = self.process_file(file, submission_gus, file_gus)
+                result['elapsed_time'] = time.time() - start_time
+                results.append(result)
+
+                # TODO yield on File.something()
+
+            response = json.dumps(results, separators=(',',':'))
+
+            if 'application/json' in self.request.headers.get('Accept'):
+                self.set_header('Content-Type', 'application/json')
+
+            self.write(response)
+
+        except SubmissionGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
+
         self.finish()
 
     @asynchronous
@@ -160,6 +177,5 @@ class FileInstance(BaseHandler):
 
         DELETE in fileHandlers need to be refactored-engineered
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "delete")
-        pass
+        Exception("Not Yet Implemented file delete")
 

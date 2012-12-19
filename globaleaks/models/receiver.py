@@ -312,8 +312,10 @@ class Receiver(TXModel):
 
         #self.notification_selected = source_rd['notification_selected']
         if source_rd['notification_selected'] or source_rd['notification_selected'] != "email":
-            self.name += "(use email ;)"
-        self.notification_fields = "email"
+            self.notification_fields = "email"
+        else:
+            print "** Receiver registered with unusual notification system"
+            self.notification_fields = "email"
 
         self.notification_fields = source_rd['notification_fields']
         self.delivery_selected =  source_rd['delivery_selected']

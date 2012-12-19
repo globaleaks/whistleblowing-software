@@ -54,14 +54,11 @@ class InternalTip(TXModel):
 
     receivers_map = Pickle()
 
+    files = Pickle()
+
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
 
-    """
-    folders = ReferenceSet(id, Folder.internaltip_id)
-        # remind: I've removed file reference from InternalTip
-        # because do not exists file leaved alone
-    """
 
     # called by a transact: submission.complete_submission
     def initialize(self, submission):
@@ -79,6 +76,11 @@ class InternalTip(TXModel):
         self.escalation_threshold = submission.context.escalation_threshold
         self.access_limit = submission.context.tip_max_access
         self.download_limit = submission.context.file_max_download
+
+        # remind: files has not yet been referenced to InternalTip
+        self.files = submission.files
+        print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", self.files, "BBBBBBBBBBBBBBBBBBBBBBBB", submission.files
+        # need operations in File.internaltip_id File.internaltip
 
         self.expiration_date = submission.expiration_time
         self.fields = submission.fields
@@ -319,6 +321,7 @@ class InternalTip(TXModel):
             'mark' : self.mark,
             'pertinence' : self.pertinence_counter,
             'escalation_threshold' : self.escalation_threshold,
+            'files' : self.files if self.files else {},
             'receiver_map' : self.receivers_map # it's already a dict
         }
         return description_dict
