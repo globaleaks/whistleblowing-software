@@ -15,6 +15,16 @@ from globaleaks.plugins.base import GLPluginManager
 
 __all__ = ['APSNotification']
 
+
+# TEMP -- AARRGHH
+settings = { 'admin_fields' : { 'server' :  'box549.bluehost.com', 'port' : 25, # 465,
+                                'username':'sendaccount939@globaleaks.org', 'password':'sendaccount939', 'ssl': False # True
+                        }, 'receiver_fields':  { 'mail_addr' : None }
+    }
+# TEMP -- AARRGHH
+
+notification_format = { 'tip_gus' : None, 'creation_time' : None, 'source' : None, 'type' : None, 'receiver' : None}
+
 class APSNotification(GLJob):
 
     @inlineCallbacks
@@ -47,33 +57,25 @@ class APSNotification(GLJob):
         # TODO digest check missing (but It's better refactor scheduler in the same time)
         not_notified_tips = yield receivertip_iface.get_tips(marker=u'not notified')
 
-        for single_tip in not_notified_tips:
+        for single_tip in  not_notified_tips:
 
             # XXX This key is guarantee (except if the plugin has not been removed)
             # Actually can't be removed a plugin!
-            plugin_code = notification_plugins[single_tip['notification_selected']]
 
-            # temporary way fo get admin settings, it's an XXX
+            #plugin_code = notification_plugins[single_tip['notification_selected']]
+            # remind, now is "none" if not configured in a receiver
+            plugin_code = notification_plugins['email']
 
-            information = [ single_tip['creation_time'], "New Tip: %s" % single_tip['tip_gus'] ]
+            # Specification TODO for plugin communication:
+            notification_format['tip_gus'] = single_tip['tip_gus']
+            notification_format['creation_time'] = single_tip['creation_time']
+            notification_format['type'] = u'tip'
+            notification_format['source'] = u"GLNodeName"
+            notification_format['receiver'] = u"your Name, Receiver!"
 
-            # XXX XXX XXX
-            # XXX XXX XXX
-            if single_tip['notification_selected'] == 'email':
-                settings = { 'admin_fields' :  { 'server' :  'smtp.gmail.com', 'port' : 587,
-                                                 'username':'globaleaksnode1@gmail.com', 'password':'Antani1234', 'ssl': True },
-                             'receiver_fields' :  { 'mail_addr' : single_tip['notification_fields'] }
-                           }
-                print settings
-            else: # single_tip['notification_selected'] == 'irc':
-                settings = { 'admin_fields' :  { 'server' :  'irc.oftc.net', 'channel' : '#globaleaks',
-                                                 'node_user':'GlobaLx' },
-                              'receiver_fields' : { 'receiver_user' : 'vecna'}
-                           }
-            # XXX XXX XXX
-            # XXX XXX XXX
+            settings['receiver_fields'].update({'mail_addr' : single_tip['notification_fields']})
 
-            if plugin_code.do_notify(settings, information):
+            if plugin_code.do_notify(settings, notification_format):
                 yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
             else:
                 yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
@@ -87,18 +89,32 @@ class APSNotification(GLJob):
 
         for comment in not_notified_comments:
 
-            source_name = comment['author'] if comment['author'] else comment['source']
+            # notification_format = comment['author'] if comment['author'] else comment['source']
+            # Remind - at the moment the nome is no more given, but author_gus is used instead.
+            # Need to be reused for this utility ? TODO
+
             receivers_list = yield internaltip_iface.get_notification_list(comment['internaltip_id'])
             # receiver_list is composed by [ notification_selected, notification_fields ]
 
             for receiver_info in receivers_list:
 
-                plugin_code = notification_plugins[receiver_info[0]]
+                settings['receiver_fields'].update({'mail_addr' : receiver_info[1]})
+
+                # plugin_code = notification_plugins[receiver_info[0]]
+                # is None receiver_info[0] :( TODO
+
+                plugin_code = notification_plugins['email']
+
+                notification_format['creation_time'] = comment['creation_time']
+                notification_format['source'] = comment['source'] # comment['author']
+                notification_format['type'] = u'comment'
+                notification_format['source'] = u"GLNodeName"
+                notification_format['receiver'] = u"your Name, Receiver!"
 
                 # TODO digest check
-                information = [ comment['creation_time'], "New comment from: %s" % source_name ]
+
                 # new scheduler logic will fix also the lacking of comments notification status
-                plugin_code.do_notify(receiver_info[1], information)
+                plugin_code.do_notify(settings, notification_format)
 
             # this is not yet related to every receiver, because there are not yet a tracking
             # struct about the notifications statuses.

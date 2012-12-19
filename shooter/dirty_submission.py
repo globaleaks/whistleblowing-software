@@ -20,8 +20,5 @@ echo "submission token: $submission_gus"
 receipt=`$SHOOTER U3 PUT cid $context_gus sid $submission_gus print-receipt`
 echo "receipt $receipt"
 
-echo "forcing Tip schedule ops..."
-$SHOOTER AB GET oid tip 
-
 beforecount=`$SHOOTER AA GET oid itip print-elements`
 echo "Internaltip numbers $beforecount"
