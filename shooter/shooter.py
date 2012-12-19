@@ -27,13 +27,12 @@ URTA = {
     'U7_GET':'GET_/receivers',
 
 
-    'T1_PUT':'PUT_/tip/@TID@',
-    'T1_DELETE':'DELETE_/tip/@TID@',
-    'T1_GET':'GET_/tip/@TID@',
-    'T2_POST':'POST_/tip/@TID@/comments',
-    'T2_GET':'GET_/tip/@TID@/comments',
-    'T3_GET':'GET_/tip/@TID@/receivers',
-    'T4_GET':'GET_/receiver/@TID@/tip',
+    'T1_PUT':'PUT_/tip/@TIP@',
+    'T1_DELETE':'DELETE_/tip/@TIP@',
+    'T1_GET':'GET_/tip/@TIP@',
+    'T2_POST':'POST_/tip/@TIP@/comments',
+    'T2_GET':'GET_/tip/@TIP@/comments',
+    'T3_GET':'GET_/tip/@TIP@/receivers',
 
 
     'A5_PUT':'PUT_/admin/receiver/@RID@',

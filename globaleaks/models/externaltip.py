@@ -16,7 +16,7 @@ from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.internaltip import InternalTip
-from globaleaks.rest.errors import TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
+from globaleaks.rest.errors import TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed, ReceiverGusNotFound
 
 __all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip' ]
 
@@ -48,8 +48,8 @@ class ReceiverTip(TXModel):
     receiver_gus = Unicode()
     receiver = Reference(receiver_gus, Receiver.receiver_gus)
 
-    # is not a transact operation, is self filling,
-    # called by InternalTip.create_receiver_tips
+    # is not a transact operation, is self filling, called by
+    # create_receiver_tips
     def initialize(self, mapped, selected_it, receiver_subject):
 
         log.debug("ReceverTip initialize, with", mapped)
@@ -63,7 +63,8 @@ class ReceiverTip(TXModel):
         self.expressed_pertinence = 0
         self.authoptions = {}
 
-        self.receiver_gus = mapped['receiver_gus']
+        # self.receiver_gus = mapped['receiver_gus'] -- fixed during the hackathon with the line below
+        self.receiver_gus = receiver_subject.receiver_gus
         self.receiver = receiver_subject
 
         self.internaltip_id = selected_it.id
@@ -201,16 +202,15 @@ class ReceiverTip(TXModel):
         tip_details = requested_t.internaltip._description_dict()
 
         # Those elements are overrided by others API
-        #tip_details.pop('id')
         #receivers_info = requested_t.internaltip._receivers_description()
         #tip_info = requested_t._description_dict()
         #ret_dict = { 'tip_details' : tip_details, 'tip_info' : tip_info, 'receivers_info' : receivers_info }
 
-        ret_dict = { 'tip_details' : tip_details }
-
+        # need to return tip_gus too
+        tip_details.update({ 'id' : requested_t.tip_gus })
         store.close()
 
-        return ret_dict
+        return tip_details
 
     @transact
     def receiver_get_index(self, tip_gus):
@@ -270,7 +270,8 @@ class ReceiverTip(TXModel):
 
     # This method is separated by initialize routine, because the tip creation
     # event can be exported/overriden/implemented by a plugin in a certain future.
-    # like notification or delivery, it has a dedicated event in the scheduler
+    # like notification or delivery, it has a dedicated event in the scheduler, and
+    # is called by TipSched
     @transact
     def create_receiver_tips(self, id, tier):
         """
@@ -281,19 +282,24 @@ class ReceiverTip(TXModel):
         store = self.getStore('create_receiver_tips')
 
         selected_it = store.find(InternalTip, InternalTip.id == id).one()
+
         for i, mapped in enumerate(selected_it.receivers_map):
 
             if not mapped['receiver_level'] == tier:
                 continue
 
-            receiver_subject = store.find(Receiver, Receiver.receiver_gus == selected_it.receivers_map[i]['receiver_gus']).one()
+            try:
+                receiver_subject = store.find(Receiver, Receiver.receiver_gus == selected_it.receivers_map[i]['receiver_gus']).one()
+            except NotOneError:
+                print "Fatal incredible absolute error!! handled."
+                continue
 
             receiver_tip =  ReceiverTip()
 
             # is initialized a Tip that need to be notified
             receiver_tip.initialize(mapped, selected_it, receiver_subject)
 
-            receiver_subject.update_timings()
+            # TODO receiver_subject.update_timings()
 
             selected_it.receivers_map[i]['tip_gus'] = receiver_tip.tip_gus
             store.add(receiver_tip)
@@ -314,7 +320,7 @@ class ReceiverTip(TXModel):
             'access_counter' : self.access_counter,
             'expressed_pertinence': self.expressed_pertinence,
             'receiver_gus' : self.receiver_gus,
-            'receiver_name' : "Hardcoded receiver Name", # self.receiver.name,
+            'receiver_name' : self.receiver.name,
             'authoptions' : self.authoptions
         }
         return descriptionDict
@@ -360,13 +366,15 @@ class WhistleblowerTip(TXModel):
             raise TipReceiptNotFound
 
         wb_tip_dict = requested_t.internaltip._description_dict()
-        wb_tip_dict.pop('id')
 
         complete_tip_dict = wb_tip_dict
 
         # now supply by other API
         #complete_tip_dict.update({'receivers' : requested_t.internaltip._receivers_description() })
         #complete_tip_dict.update({'comments' : comments})
+
+        # need to add receipt in the dict, ad identifier of the resource
+        complete_tip_dict.update({ 'id' : requested_t.receipt })
 
         store.close()
         return complete_tip_dict
@@ -398,11 +406,10 @@ class WhistleblowerTip(TXModel):
             requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
         except NotOneError, e:
             store.close()
-            log.err("[E] -- Collision fatal error, receipt is not unique [%s]" % receipt)
-            raise TipGusNotFound
+            raise TipReceiptNotFound
         if not requested_t:
             store.close()
-            raise TipGusNotFound
+            raise TipReceiptNotFound
 
         retDict = requested_t._description_dict()
         store.close()
@@ -422,7 +429,7 @@ class WhistleblowerTip(TXModel):
     @transact
     def delete_access(self):
         """
-        a WhistleBlower can delete is own access.
+        a WhistleBlower can delete is own access, removing Whistleblower tip and invalidating the receipt
         """
         pass
 
@@ -518,12 +525,12 @@ class Comment(TXModel):
     creation_time = DateTime()
     source = Unicode()
     content = Unicode()
-    author = Unicode()
+    author_gus = Unicode()
     notification_mark = Unicode()
 
 
     @transact
-    def add_comment(self, itip_id, comment, source, name=None):
+    def add_comment(self, itip_id, comment, source, author_gus=None):
         """
         @param itip_id: InternalTip.id of reference, need to be addressed
         @param comment: the unicode text expected to be recorded
@@ -532,7 +539,7 @@ class Comment(TXModel):
         @return: None
         """
         log.debug("[D] %s %s " % (__file__, __name__), "InternalTip class", "add_comment",
-            "itip_id", itip_id, "source", source, "name", name)
+            "itip_id", itip_id, "source", source, "author_gus", author_gus)
 
         if not source in [ u'receiver', u'whistleblower', u'system' ]:
             raise Exception("Invalid developer brain status", source)
@@ -547,7 +554,7 @@ class Comment(TXModel):
         newcomment.creation_time = gltime.utcTimeNow()
         newcomment.source = source
         newcomment.content = comment
-        newcomment.author = name
+        newcomment.author_gus = author_gus
         newcomment.notification_mark = u'not notified'
         newcomment.internaltip_id = itip_id
         store.add(newcomment)
@@ -639,7 +646,7 @@ class Comment(TXModel):
             'comment_id' : self.id,
             'source' : self.source,
             'content' : self.content,
-            'author' : self.author,
+            'author_gus' : self.author_gus,
             'notification_mark': self.notification_mark,
             'internaltip_id' : self.internaltip_id,
             'creation_time' : gltime.prettyDateTime(self.creation_time)

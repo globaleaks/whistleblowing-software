@@ -72,6 +72,7 @@ class InternalTip(TXModel):
         self.last_activity = gltime.utcDateNow()
         self.creation_date = gltime.utcDateNow()
         self.context = submission.context
+        self.context_gus = submission.context_gus
 
         # those four can be referenced thru self.context.
         self.context_gus = submission.context.context_gus
@@ -307,10 +308,9 @@ class InternalTip(TXModel):
     def _description_dict(self):
 
         description_dict = {
-            'id' : self.id,
             'internaltip_id' : self.id, # running in debug!
-            'context_name' : "hardcoded", # self.context.name,
-            'context_gus': "useless", # self.context_gus,
+            'context_name' : self.context.name,
+            'context_gus': self.context_gus,
             'creation_date' : gltime.prettyDateTime(self.creation_date),
             'expiration_date' : gltime.prettyDateTime(self.creation_date),
             'fields' : self.fields,
