@@ -25,10 +25,7 @@ angular.module('resourceServices', ['ngResource']).
           if (r.receiver_gus === receiverID) return true
           else return false
         });
-        console.log("Got this receiver");
-        console.log(receiver);
         fn(receiver[0]);
-        //return receiver[0];
       });
     };
 

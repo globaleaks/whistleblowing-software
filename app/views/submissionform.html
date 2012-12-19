@@ -17,11 +17,7 @@
             </a>
           </label>
           <div ng-switch on="field.type">
-          <input ng-switch-default type="{{field.type}}"
-          ng-model="fields.value"
-          ng-required="field.required"
-          value="{{field.value}}"
-          placeholder="{{field.placeholder}}">
+
           <input ng-switch-when="checkbox" type="checkbox"
           ng-model="field.value"
           value="{{field.value}}"
@@ -37,20 +33,24 @@
           <textarea ng-switch-when="textarea"
             ng-model="field.value"
             placeholder="{{field.placeholder}}">{{field.value}}</textarea>
+
           <select ng-switch-when="select"
             ng-model="field.value" >
             <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
           </select>
+
           <select ng-switch-when="multiple"
             ng-model="field.value" multiple>
             <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
           </select>
+
           <fieldset ng-switch-when="radio">
             <label ng-repeat="option in field.options">
               <input type="radio" ng-model="field.value" value="{{option.value}}">
               {{option.name}}
             </label>
           </fieldset>
+
           <fieldset ng-switch-when="checkboxes">
             <label ng-repeat="option in field.options">
               <input type="checkbox"
@@ -59,6 +59,7 @@
               {{option.name}}
             </label>
           </fieldset>
+
           </div ng-switch>
         </div>
       </div ng-switch>
