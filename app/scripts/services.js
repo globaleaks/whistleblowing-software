@@ -13,40 +13,75 @@ angular.module('resourceServices', ['ngResource']).
           {method: 'PUT'}
     });
 }).
-  factory('Tip', function($resource) {
-    return $resource('/tip/:tip_id/',
-          {tip_id: '@tip_id'}, {
-      });
-}).
-  factory('TipReceivers', ['$resource', 'localization',
-          function($resource, localization) {
-    var receiversresource = $resource('/tip/:tip_id/receivers',
-      {tip_id: '@tip_id'}, {});
+  factory('Tip', ['$resource', 'localization', 'Receivers',
+          function($resource, localization, Receivers) {
+    var receiversResource = $resource('/tip/:tip_id/receivers', {tip_id: '@tip_id'}, {}),
+      tipResource = $resource('/tip/:tip_id', {tip_id: '@tip_id'}, {}),
+      commentsResource = $resource('/tip/:tip_id/comments', {tip_id: '@tip_id'}, {});
 
-    return function(tipID, fn) {
-      var receivers = [];
-      receiversResource.query(tipID, function(receiverResources){
-        for (var i in receiverResources) {
-          var receiver = {},
-            receiver_id = receiverResources[i].receiver_gus;
-
-          receiver = _.filter(localization.receivers, function(r){
-            if (r.receiver_gus === receiver_id) return true
-            else return false
-          });
-          receivers.push(receiver[0]);
-        };
-        // XXX perhaps make this return a lazyly instanced item.
-        // look at $resource code for inspiration.
-        fn(receivers);
+    var receiverWithID = function(receiverID, fn) {
+      Receivers.query(function(receiversList) {
+        receiver = _.filter(receiversList, function(r){
+          if (r.receiver_gus === receiverID) return true
+          else return false
+        });
+        console.log("Got this receiver");
+        console.log(receiver);
+        fn(receiver[0]);
+        //return receiver[0];
       });
     };
+
+    return function(tipID, fn) {
+      this.receivers = [];
+      this.comments = [];
+      this.tip = {};
+      receiversResource.query(tipID, function(receiversCollection){
+
+        _.each(receiversCollection, function(receiver){
+          receiverWithID(receiver.receiver_gus, function(receiver){
+            this.receivers.push(receiver);
+          });
+        });
+
+        tipResource.get(tipID, function(result){
+          this.tip = result;
+          this.tip.receivers = receivers;
+
+          commentsResource.query(tipID, function(commentsCollection){
+
+            _.each(commentsCollection, function(comment){
+              if (comment.author_gus) {
+                receiverWithID(comment.author_gus, function(author){
+                  comment.author = author;
+                });
+              }
+              this.comments.push(comment);
+            });
+
+            this.tip.comments = this.comments;
+            this.tip.comments.newComment = function(content) {
+              var c = new commentsResource(tipID);
+              c.content = content;
+              c.$save(function(newComment) {
+                if (newComment.author_gus) {
+                  receiverWithID(newComment.author_gus, function(author){
+                    c.author = author;
+                  });
+                }
+                this.tip.comments.push(newComment);
+              });
+            };
+
+            // XXX perhaps make this return a lazyly instanced item.
+            // look at $resource code for inspiration.
+            fn(this.tip);
+          });
+        });
+      });
+
+    };
 }]).
-  factory('TipComments', function($resource) {
-    return $resource('/tip/:tip_id/comments',
-      {tip_id: '@tip_id'}, {
-    });
-}).
   factory('Contexts', function($resource) {
     return $resource('/contexts');
 }).
@@ -131,6 +166,8 @@ angular.module('localeServices', ['resourceServices']).
     };
 
     // XXX refactor using proper caching factory
+    // This may also create issues when this request has not been completed and
+    // we try to access the localization.reciever variable
     if(!localization.current_context) {
       Contexts.query(function(contexts) {
           localization.contexts = contexts;
