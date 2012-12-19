@@ -310,7 +310,11 @@ class Receiver(TXModel):
         self.tags = source_rd['tags']
         self.know_languages = source_rd['languages']
 
-        self.notification_selected = source_rd['notification_selected']
+        #self.notification_selected = source_rd['notification_selected']
+        if source_rd['notification_selected'] or source_rd['notification_selected'] != "email":
+            self.name += "(use email ;)"
+        self.notification_fields = "email"
+
         self.notification_fields = source_rd['notification_fields']
         self.delivery_selected =  source_rd['delivery_selected']
         self.delivery_fields =  source_rd['delivery_fields']

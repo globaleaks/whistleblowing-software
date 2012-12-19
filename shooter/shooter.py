@@ -172,6 +172,14 @@ def fix_varline(inputline):
             linesplit = inputline.split(var)
             return (linesplit[0] + user_parm + linesplit[1])
 
+    # special directive @RANDOM@
+    special = '@RANDOM@'
+    if inputline.find(special) > 0:
+
+        linesplit = inputline.split(special)
+        import random
+        return (linesplit[0] + str(random.randint(1,100000)) + linesplit[1])
+
     return inputline
 
 # simple utility used in the spelunking_int_*
