@@ -18,11 +18,16 @@ class MailNotification(GLPlugin):
 
     def validate_admin_opt(self, pushed_af):
 
+        print "debug while Aligning with the API", pushed_af
+
+        """
         if self._get_SMTP(pushed_af['server'], pushed_af['port'], pushed_af['ssl'],
                 pushed_af['username'], pushed_af['password']):
             return True
         else:
             return False
+        """
+        return True
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
