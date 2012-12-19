@@ -48,6 +48,9 @@ class MailNotification(GLPlugin):
         """
         TODO use http://docs.python.org/2/library/email
         """
+
+
+
         body = '\nEsteemed users,\n'
 
         if notification_struct['type'] == u'comment':
@@ -55,7 +58,34 @@ class MailNotification(GLPlugin):
             body += "The comment has been produced by %s\n" % notification_struct['source']
         if notification_struct['type'] == u'tip':
             body += "In %s as been created a new Tip for you\n" % notification_struct['creation_time']
-            body += "You can access using the unique key: %s\n" % notification_struct['tip_gus']
+            body += "You can access using the unique link http://dev.globaleaks.org:8082/#/status/%s\n" % notification_struct['tip_gus']
+            body += "\n"\
+            "This is an E-Mail message to notify you that someone has selected you as a valuable recipient of "\
+            "WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created "\
+            "by the GlobaLeaks Node [http://dev.globaleaks.org].\nThis tip-off has been sent to you by "\
+            "an anonymous whistleblower. She/He would like it for you to"\
+            "pay special attention to the information and material contained therein. Please consider"\
+            "that whistleblowers often expose themselves to high personal risks in order to protect the public good. Therefore "\
+            "the material that they provide with this tip-off should be considered of high importance.\n\n"\
+            "Please do not forward or share this e-mail: each tip-off has a limited number of downloads and access before being "\
+            "destroyed forever, nobody (even the node administrator) can recover and expired or dead tip-off.\n\n\n"
+
+            body += "\n"\
+            "--------------------------------------------------\n"\
+            "GENERAL INFO\n"\
+            "--------------------------------------------------\n"\
+            "1. What is Globaleaks?\n"\
+            "GlobaLeaks is the first Open Source Whistleblowing Framework. It empowers anyone to easily setup and "\
+            "maintain their own Whistleblowing platform. It is also a collection of what are the best practices for "\
+            "people receiveiving and submitting material. GlobaLeaks works in all environments: media, activism, corporations, public agencies.\n\n"\
+            "2. Is GlobaLeaks sending me this Mail?\n"\
+            "No, this mail has been sent to you by the Node called [http://dev.globaleaks.org]. They are running the GlobaLeaks Platform, but\n"\
+            "are not directly tied to the GlobaLeaks organization. GlobaLeaks (http://www.globaleaks.org) will never be directly "\
+            "affiliated with any real world WhistleBlowing sites, GlobaLeaks will only provide software and technical support.\n"\
+            "3. Why am I receiving this?\n"\
+            "You're receiving this communication because an anonymous whistleblower has chosen you as a trustworthy contact"\
+            "for releasing confidential and/or important information that could be of utmost importance.\n\n"\
+            "For any other inquire please refer to %(sitename)s to the GlobaLeaks website at http://globaleaks.org\n\n"
 
         body += "\n\nBest regards,\nThe email notification plugin"
 

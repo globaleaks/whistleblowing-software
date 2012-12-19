@@ -140,10 +140,8 @@ class FileInstance(BaseHandler):
             for file in files:
                 start_time = time.time()
 
-                print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX", file
-
                 submission_iface = Submission()
-                file_gus = yield submission_iface.add_file(submission_gus, file)
+                file_gus = yield submission_iface.add_file(submission_gus, file['filename'])
 
                 log.debug("Created file with file_gus %s" % file_gus)
 
