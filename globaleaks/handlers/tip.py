@@ -70,6 +70,8 @@ class TipInstance(BaseHandler):
                 requested_t = WhistleblowerTip()
                 tip_description = yield requested_t.whistleblower_get_single(tip_token)
 
+            tip_description.pop('receiver_map')
+            # need to be provided by input filtering
             self.set_status(200)
             self.write(json.dumps(tip_description))
 
@@ -239,7 +241,6 @@ class TipCommentCollection(BaseHandler):
                     request['comment'], u"receiver", tip_description['receiver_name'])
 
             else:
-
                 print "Comment: I'm a whistleblower with %s" % tip_token
                 requested_t = WhistleblowerTip()
 

@@ -271,7 +271,7 @@ class ProfileInstance(BaseHandler):
 
 class TipsCollection(BaseHandler):
     """
-    T4
+    R4
     This interface return the summary list of the Tips available for the authenticated Receiver
     GET /tips/<receiver_token_auth/tip
     """
