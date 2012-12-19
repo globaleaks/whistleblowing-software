@@ -6,20 +6,14 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
   $scope.localization = localization;
   $scope.receivers_selected = localization.receivers_selected;
 
+  $scope.uploadedFiles = [];
+
   $scope.accept_disclaimer = false;
   $scope.steps = [
     '1 Receiver selection',
     '2 Fill out your submission',
     '3 Choose receipt'
   ];
-
-  // XXX here we are actually violating the principle for which the
-  // controller should not be stateful. This can possibly be fixed by
-  // refactoring how the API works, or by making the logic for creation of
-  // the submission into a service.
-  // We use the scope variable uploaded_files to keep track of the files
-  // that are uploaded.
-  $scope.uploaded_files = [];
 
   $scope.receivers_selected = {};
   $scope.current_context_receivers = {};

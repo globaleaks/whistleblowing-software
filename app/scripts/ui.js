@@ -9,28 +9,26 @@
 angular.module('submissionUI', []).
   // XXX this needs some major refactoring.
   directive('fileUpload', function(){
+
     // The purpose of this directive is to register the jquery-fileupload
     // plugin
-    return function(scope, element, attrs) {
-      $(element).fileupload({
-        progress: function (e, data) {
-          var progress = parseInt(data.loaded / data.total * 100, 10);
-          $(element).find('.progress .bar').css(
-                'width', progress + '%'
-          );
-        },
 
-        progressall: function (e, data) {
-          var progress = parseInt(data.loaded / data.total * 100, 10);
-          $(element).find('.progress .bar').css(
-                'width', progress + '%'
-          );
-        },
+    return {
 
-        add: function (e, data) {
+      templateUrl: 'views/widgets/fileupload.html',
+
+      scope: {
+        // This tells to create a two way data binding with what is passed
+        // inside of the element attributes (ex. file-upload="someModel")
+        submission_gus: '=href',
+        uploadedFiles: '=src'
+      },
+
+      link: function(scope, element, attrs) {
+        function add(e, data) {
           for (var file in data.files) {
             var file_info,
-              file_id = scope.uploaded_files.length + file;
+              file_id = scope.uploadedFiles.length + file;
 
             file_info = {'name': data.files[file].name,
               'filesize': data.files[file].size,
@@ -39,27 +37,29 @@ angular.module('submissionUI', []).
               'last_modified_date': data.files[file].lastModifiedDate,
               'file_id': file_id
             };
-
-            scope.$apply(function() {
-              scope.uploaded_files.push(file_info);
-            });
-
           }
           data.submit();
-        },
+        };
 
-        done: function (e, data) {
-          var result = data.result,
+        function progressMeter(e, data) {
+          var progress_percent = parseInt(data.loaded / data.total * 100, 10);
+          console.log(e);
+          $(element[0]).find('.progress .bar').css('width', progress_percent + '%');
+        };
+
+        function done(e, data) {
+          var file_info = data.result[0],
             textStatus = data.textStatus,
             item_id;
-          // XXX do sanitization and validation here
-          // XXX this is a hack to keep track of what things are finished.
-          // fix this by having a lookup table of the in progress submissions
-          // and their element id.
-          item_id = result[0].name.replace(/\./g, "");
-          $("#"+item_id+" .bar").css('width', "100%");
-        }
-      });
+
+          scope.uploadedFiles.push(file_info);
+          scope.$digest();
+
+        };
+
+        $(element[0]).fileupload({progress: progressMeter,
+          progressall: progressMeter, add: add, done: done});
+      }
     }
 }).
   directive('latenzaBox', ['$timeout', function($timeout){
