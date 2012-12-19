@@ -79,7 +79,6 @@ class InternalTip(TXModel):
 
         # remind: files has not yet been referenced to InternalTip
         self.files = submission.files
-        print "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA", self.files, "BBBBBBBBBBBBBBBBBBBBBBBB", submission.files
         # need operations in File.internaltip_id File.internaltip
 
         self.expiration_date = submission.expiration_time
