@@ -1,98 +1,220 @@
+import os
+
 from twisted.internet import defer
-from twisted.trial import unittest
+from twisted.trial.unittest import TestCase
 
 from storm.twisted.testing import FakeThreadPool
 from storm.twisted.transact import transact, Transactor
 
-from storm.locals import *
+from storm.locals import Int, Unicode
 from storm.databases.sqlite import SQLite
 from storm.uri import URI
 
-from globaleaks.models.base import TXModel
+import transaction
+from storm.zope.zstorm import ZStorm
 
 createQuery = "CREATE TABLE test"\
-              "(id INTEGER PRIMARY KEY, test INTEGER)"
+              "(id INTEGER PRIMARY KEY, colInt INTEGER, colUnicode VARCHAR)"
 
-class TestModels(unittest.TestCase):
-    created = False
 
+class DummyModel(object):
+    __storm_table__ = 'test'
+
+    id = Int(primary=True)
+    colInt = Int()
+    colUnicode = Unicode()
+
+    zstorm = None
+
+    def getStore(self):
+        return self.zstorm.get('testDB')
+
+    @transact
+    def save(self):
+        store = self.getStore()
+        store.add(self)
+        store.commit()
+        store.close()
+
+
+    @transact
+    def find(self):
+        store = self.getStore()
+        res = store.find(DummyModel,
+            DummyModel.colInt == 42).one()
+        store.close()
+        return res
+
+class BaseZStormTestCase(TestCase):
     def setUp(self):
-        unittest.TestCase.setUp(self)
+        self.zstorm = ZStorm()
 
-        #database = SQLite(URI('sqlite:'))
+        self.threadpool = FakeThreadPool()
+        self.transactor = Transactor(self.threadpool)
 
-        threadpool = FakeThreadPool()
-        self.transactor = Transactor(threadpool)
+        # XXX use storm.tests.mocker
+        # See storm.tests.twisted.transaction for an example of it's usage
+        #
+        # self.transaction = self.mocker.mock()
+        # self.transactor = Transactor(self.threadpool, self.transaction)
+        self.transactor = Transactor(self.threadpool)
 
-        database = create_database("sqlite:///test.db")
-        c_store = Store(database)
-        try:
-            c_store.execute(createQuery)
-            c_store.commit()
-        except:
-            pass
+        store = self.zstorm.create('testDB', 'sqlite:///test.db')
+        store.execute(createQuery)
+        store.commit()
 
-        class DummyModel(TXModel):
-            transactor = self.transactor
-            stores = []
+    def tearDown(self):
+        # Reset the utility to cleanup the StoreSynchronizer's from the
+        # transaction.
+        self.zstorm._reset()
+        # Free the transaction to avoid having errors that cross
+        # test cases.
+        transaction.manager.free(transaction.get())
+        # Remove the test database file
+        os.remove('test.db')
 
-            __storm_table__ = 'test'
+    def getStore(self):
+        return self.zstorm.get('testDB')
 
-            id = Int(primary=True)
-            test = Int()
+class TestTransactions(BaseZStormTestCase):
 
-            def getStore(self):
-                store = Store(database)
-                return store
+    @transact
+    def test_addDummyModelWithTransactionMethod(self):
+        store = self.getStore()
+        d = DummyModel()
+        store.add(d)
 
-            @transact
-            def save(self):
-                store = self.getStore()
-                store.add(self)
-                store.commit()
-                store.close()
+    @transact
+    def test_addDummyModelAndFindIt(self):
+        def addDummyModelTransaction():
+            store = self.getStore()
+            d = DummyModel()
+            d.colInt = 42
+            store.add(d)
 
-            @transact
-            def find(self):
-                store = self.getStore()
-                res = store.find(DummyModel, DummyModel.test == 42).one()
-                store.close()
-                return res
+        def findDummyModel():
+            store = self.getStore()
+            return store.find(DummyModel,
+                DummyModel.colInt == 42).one()
 
-            @transact
-            def find_more(self):
-                output = []
-                store = Store(database)
-                res = store.find(DummyModel, DummyModel.test > 2)
-                for x in res:
-                    output.append(x.test)
-                store.commit()
-                store.close()
-                return output
+        addDummyModelTransaction()
+        dummyModel = findDummyModel()
+        self.assertEqual(dummyModel.colInt, 42)
 
-        self.DM = DummyModel
+    @transact
+    def test_addWrongModelRaises(self):
+        def addDummyModelWithWrongValueTransaction():
+            store = self.getStore()
+            d = DummyModel()
+            d.colInt = u'invalidValue'
+            store.add(d)
 
-    @defer.inlineCallbacks
-    def test_txmodel(self):
-        dm = self.DM()
-        dm.test = 42
-        yield dm.save()
+        self.assertRaises(TypeError, addDummyModelWithWrongValueTransaction)
 
-        result = yield dm.find()
-        #self.assertEqual(result.test, 42)
+    @transact
+    def test_findUnicodeInsteadOfIntRaises(self):
+        def addDummyModel():
+            store = self.getStore()
+            d = DummyModel()
+            d.colInt = 42
+            store.add(d)
 
-    @defer.inlineCallbacks
-    def test_find_more(self):
+        def findWrongValueDummyModel():
+            store = self.getStore()
+            return store.find(DummyModel,
+                DummyModel.colInt == u'invalidValue').one()
 
-        for x in range(10):
-            dm = self.DM()
-            dm.test = x
-            yield dm.save()
+        addDummyModel()
+        self.assertRaises(TypeError, findWrongValueDummyModel)
 
-        result = yield dm.find_more()
+    @transact
+    def test_findStrInsteadOfUnicodeRaises(self):
+        def addDummyModel():
+            store = self.getStore()
+            d = DummyModel()
+            d.colUnicode = u'spam'
+            store.add(d)
 
-        i = 3
-        for r in result:
-            self.assertEqual(r, i)
-            i += 1
+        def findWrongValueDummyModel():
+            store = self.getStore()
+            return store.find(DummyModel,
+                DummyModel.colUnicode == str('invalid')).one()
 
+        addDummyModel()
+        self.assertRaises(TypeError, findWrongValueDummyModel)
+
+    @transact
+    def test_findUnicode(self):
+        def addDummyModel():
+            store = self.getStore()
+            d = DummyModel()
+            d.colUnicode = u'spam'
+            store.add(d)
+
+        def findDummyModel():
+            store = self.getStore()
+            return store.find(DummyModel,
+                DummyModel.colUnicode == unicode('spam')).one()
+
+        addDummyModel()
+        dummyModel = findDummyModel()
+        self.assertEqual(dummyModel.colUnicode, u'spam')
+
+    def test_multipleTransactions(self):
+        def addDummyModel():
+            store = self.getStore()
+            d = DummyModel()
+            d.colUnicode = u'spam'
+            store.add(d)
+
+        d1 = self.transactor.run(addDummyModel)
+        d2 = self.transactor.run(addDummyModel)
+        d3 = self.transactor.run(addDummyModel)
+        d4 = self.transactor.run(addDummyModel)
+
+        dl = defer.DeferredList([d1, d2, d3, d4])
+
+        @dl.addCallback
+        def finished(result):
+            self.assertEqual(result[0], (True, None))
+            self.assertEqual(result[1], (True, None))
+            self.assertEqual(result[2], (True, None))
+            self.assertEqual(result[3], (True, None))
+
+        return dl
+
+    def test_multipleTransactionsOneFailing(self):
+        def addDummyModel():
+            store = self.getStore()
+            d = DummyModel()
+            d.colUnicode = u'spam'
+            store.add(d)
+
+        def findWrongValueDummyModel():
+            store = self.getStore()
+            return store.find(DummyModel,
+                DummyModel.colUnicode == str('invalid')).one()
+
+        d1 = self.transactor.run(addDummyModel)
+
+        d2 = self.transactor.run(findWrongValueDummyModel)
+        @d2.addErrback
+        def err(error):
+            self.assertFailure(d2, TypeError)
+            return error
+
+        d3 = self.transactor.run(addDummyModel)
+        d4 = self.transactor.run(addDummyModel)
+
+        dl = defer.DeferredList([d1,d2, d3, d4])
+
+        @dl.addCallback
+        def finished(result):
+            self.assertEqual(result[0], (True, None))
+
+            self.assertEqual(result[1][0], False)
+
+            self.assertEqual(result[2], (True, None))
+            self.assertEqual(result[3], (True, None))
+
+        return dl
