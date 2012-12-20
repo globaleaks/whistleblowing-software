@@ -21,7 +21,6 @@ from . import node
 from . import context
 from . import options
 
-
 from storm.tracer import debug
 import sys
 # TODO: from config file enable the debug of Storm and JSON I/O of Cyclone

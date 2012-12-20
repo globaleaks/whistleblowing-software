@@ -17,6 +17,8 @@ from storm.variables import DecimalVariable, EnumVariable
 from storm.variables import FloatVariable, IntVariable, RawStrVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
+from globaleaks import config
+
 def variableToSQLite(var_type):
     """
     We take as input a storm.variable and we output the SQLite string it
@@ -106,7 +108,7 @@ def createTable(model, transactor, database):
         from globaleaks.db import transactor
     if not database:
         from globaleaks.db import database
-    store = Store(database)
+    store = config.main.store.get('main_store')
     create_query = generateCreateQuery(model)
 
     try:
@@ -115,10 +117,6 @@ def createTable(model, transactor, database):
     # seem to be OperationalError raised, but not a specific error exists.
     except StormError, e:
         print "Failed to create table!", e
-        store.close()
-
-    store.commit()
-    store.close()
 
 @inlineCallbacks
 def runCreateTable(model, transactor=None, database=None):

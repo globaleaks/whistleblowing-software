@@ -33,16 +33,12 @@ class DummyModel(object):
     def save(self):
         store = self.getStore()
         store.add(self)
-        store.commit()
-        store.close()
-
 
     @transact
     def find(self):
         store = self.getStore()
         res = store.find(DummyModel,
             DummyModel.colInt == 42).one()
-        store.close()
         return res
 
 class BaseZStormTestCase(TestCase):

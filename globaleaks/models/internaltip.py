@@ -144,10 +144,8 @@ class InternalTip(TXModel):
         try:
             requested_t = store.find(InternalTip, InternalTip.id == id).one()
         except NotOneError, e:
-            store.close()
             raise Exception("Programmer Error: use ReceiverTip.exists")
         if not requested_t:
-            store.close()
             raise Exception("Programmer Error: use ReceiverTip.exists")
 
         receiver_gus = map_search(requested_t.receivers_map, tip_gus, None)
@@ -163,7 +161,6 @@ class InternalTip(TXModel):
             if found_tip_gus:
                 ret_gus_list.append(found_tip_gus)
 
-        store.close()
         return ret_gus_list
 
     @transact
@@ -182,7 +179,6 @@ class InternalTip(TXModel):
             if single_receiver['tip_gus'] != None:
                 retVal.append([ single_receiver['notification_selected'], single_receiver['notification_fields'] ])
 
-        store.close()
         return retVal
 
     # perhaps get_newly_generated and get_newly_escalated can be melted, and in task queue
@@ -199,7 +195,6 @@ class InternalTip(TXModel):
         for single_itip in new_itips:
             retVal.append(single_itip.id)
 
-        store.close()
         return retVal
 
     @transact
@@ -217,7 +212,6 @@ class InternalTip(TXModel):
         for single_itip in escalated_itips:
             retVal.append(single_itip.id)
 
-        store.close()
         return retVal
 
     @transact
@@ -233,9 +227,6 @@ class InternalTip(TXModel):
         log.debug("flip mark in InternalTip %d, from [%s] to [%s]" % (requested_t.id, requested_t.mark, newmark))
         requested_t.mark = newmark
 
-        store.commit()
-        store.close()
-
 
     @transact
     def admin_get_all(self):
@@ -249,7 +240,6 @@ class InternalTip(TXModel):
         for itip in all_itips:
             retVal.append(itip._description_dict() )
 
-        store.close()
         return retVal
 
     # not a transact, because called by the ReceiverTip.pertinence_vote
@@ -293,7 +283,6 @@ class InternalTip(TXModel):
 
         retVal = refitip.receivers_map
 
-        store.close()
         return retVal
 
     @transact

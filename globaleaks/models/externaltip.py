@@ -96,8 +96,6 @@ class ReceiverTip(TXModel):
                 'creation_time' : single_tip.internaltip.creation_date
             })
 
-        store.close()
-
         return retVal
 
     @transact
@@ -111,14 +109,11 @@ class ReceiverTip(TXModel):
         try:
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
-            store.close()
             raise TipGusNotFound
         if not requested_t:
-            store.close()
             raise TipGusNotFound
 
         retDict = requested_t.receiver._description_dict()
-        store.close()
         return retDict
 
 
@@ -136,9 +131,6 @@ class ReceiverTip(TXModel):
         requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         requested_t.notification_mark = newmark
 
-        store.commit()
-        store.close()
-
     @transact
     def admin_get_all(self):
         """
@@ -153,7 +145,6 @@ class ReceiverTip(TXModel):
         for single_rt in all_rt:
             retVal.append(single_rt._description_dict())
 
-        store.close()
         return retVal
 
     @transact
@@ -165,15 +156,11 @@ class ReceiverTip(TXModel):
         try:
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
-            store.close()
             raise TipGusNotFound
         if not requested_t:
-            store.close()
             raise TipGusNotFound
 
         retDict = requested_t._description_dict()
-        store.close()
-
         return retDict
 
     @transact
@@ -190,15 +177,11 @@ class ReceiverTip(TXModel):
         try:
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
-            store.close()
             raise TipGusNotFound
         if not requested_t:
-            store.close()
             raise TipGusNotFound
 
         requested_t.last_activity = gltime.utcPrettyDateNow()
-        store.commit()
-
         tip_details = requested_t.internaltip._description_dict()
 
         # Those elements are overrided by others API
@@ -208,7 +191,6 @@ class ReceiverTip(TXModel):
 
         # need to return tip_gus too
         tip_details.update({ 'id' : requested_t.tip_gus })
-        store.close()
 
         return tip_details
 
@@ -232,14 +214,11 @@ class ReceiverTip(TXModel):
         try:
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError, e:
-            store.close()
             raise TipGusNotFound
         if not requested_t:
-            store.close()
             raise TipGusNotFound
 
         if requested_t.expressed_pertinence:
-            store.close()
             raise TipPertinenceExpressed
 
         # expressed_pertinence has those meanings:
@@ -250,9 +229,6 @@ class ReceiverTip(TXModel):
 
         requested_t.internaltip.pertinence_update(vote)
         requested_t.last_activity = gltime.utcPrettyDateNow()
-
-        store.commit()
-        store.close()
 
     @transact
     def total_delete(self, tip_gus):
@@ -304,9 +280,6 @@ class ReceiverTip(TXModel):
             selected_it.receivers_map[i]['tip_gus'] = receiver_tip.tip_gus
             store.add(receiver_tip)
 
-        # commit InternalTip.receivers_map[only requested tier]['tip_gus'] & ReceiverTip(s)
-        store.commit()
-        store.close()
 
     # called by a transact operation, dump the ReceiverTip
     def _description_dict(self):
@@ -359,10 +332,8 @@ class WhistleblowerTip(TXModel):
         try:
             requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
         except NotOneError, e:
-            store.close()
             raise TipReceiptNotFound
         if not requested_t:
-            store.close()
             raise TipReceiptNotFound
 
         wb_tip_dict = requested_t.internaltip._description_dict()
@@ -376,7 +347,6 @@ class WhistleblowerTip(TXModel):
         # need to add receipt in the dict, ad identifier of the resource
         complete_tip_dict.update({ 'id' : requested_t.receipt })
 
-        store.close()
         return complete_tip_dict
 
     @transact
@@ -393,7 +363,6 @@ class WhistleblowerTip(TXModel):
         for single_wt in all_wt:
             retVal.append(single_wt._description_dict())
 
-        store.close()
         return retVal
 
     @transact
@@ -405,14 +374,11 @@ class WhistleblowerTip(TXModel):
         try:
             requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
         except NotOneError, e:
-            store.close()
             raise TipReceiptNotFound
         if not requested_t:
-            store.close()
             raise TipReceiptNotFound
 
         retDict = requested_t._description_dict()
-        store.close()
 
         return retDict
 
@@ -561,9 +527,6 @@ class Comment(TXModel):
 
         retVal = newcomment._description_dict()
 
-        store.commit()
-        store.close()
-
         return retVal
 
 
@@ -584,9 +547,6 @@ class Comment(TXModel):
         requested_c = store.find(Comment, Comment.id  == comment_id).one()
         requested_c.notification_mark = newmark
 
-        store.commit()
-        store.close()
-
     @transact
     def get_comment_related(self, internltip_id):
         """
@@ -602,7 +562,6 @@ class Comment(TXModel):
         for single_comment in comment_list:
             retDict.append(single_comment._description_dict())
 
-        store.close()
         return retDict
 
     @transact
@@ -621,7 +580,6 @@ class Comment(TXModel):
         for single_comment in marked_comments:
             retVal.append(single_comment._description_dict())
 
-        store.close()
         return retVal
 
     @transact
@@ -637,7 +595,6 @@ class Comment(TXModel):
         for single_c in comments:
             retVal.append(single_c._description_dict())
 
-        store.close()
         return retVal
 
     def _description_dict(self):
