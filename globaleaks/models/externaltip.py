@@ -515,6 +515,36 @@ class File(TXModel):
     def get_files_by_itip(self, internaltip_id):
         pass
 
+    @transact
+    def admin_get_single(self, file_gus):
+
+        store = self.getStore('file - admin_get_single')
+
+        try:
+            filelookedat = store.find(File, File.file_gus ==file_gus).one()
+        except NotOneError:
+            store.close()
+            raise TipGusNotFound # TODO right error
+        if not filelookedat:
+            store.close()
+            raise TipGusNotFound # TODO right error
+
+        desc = filelookedat._description_dict()
+
+        store.close()
+        return desc
+
+    def _description_dict(self):
+
+        descriptionDict = {
+            'size' : self.size,
+            'file_gus' : self.file_gus,
+            'content_type' : self.content_type,
+            'name' : self.name
+        }
+        return descriptionDict
+
+
 
 
 class Comment(TXModel):

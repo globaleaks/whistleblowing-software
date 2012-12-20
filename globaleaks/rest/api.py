@@ -114,6 +114,9 @@ spec = [
     #  AB
     (r'/admin/tasks/' + not_defined_regexp, admin.TaskInstance),
 
+    ## file download TEMP
+    (r'/download/(.*)',  files.Download),  # StaticFileHandler, {'path': config.advanced.submissions_dir } ),
+
     ## Main Web app ##
     # * /
     (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path, 'default_filename': "index.html" } )
