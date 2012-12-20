@@ -88,7 +88,7 @@ class Submission(TXModel):
         return submissionDesc
 
     @transact
-    def add_file(self, submission_gus, file_name):
+    def add_file(self, submission_gus, file_name, content_type, file_size):
 
         store = self.getStore('add_file')
 
@@ -104,6 +104,8 @@ class Submission(TXModel):
         new_file = File()
         new_file.file_gus = ret_file_gus = unicode(idops.random_file_gus())
         new_file.name = file_name
+        new_file.content_type = content_type
+        new_file.size = file_size
 
         submission_r.files.update({ new_file.file_gus : file_name })
 

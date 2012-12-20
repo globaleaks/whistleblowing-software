@@ -16,6 +16,9 @@ from globaleaks.rest.errors import SubmissionGusNotFound
 from globaleaks.utils import log
 from globaleaks import config
 from globaleaks.models.submission import Submission
+from globaleaks.models.externaltip import File
+
+__all__ = ['Download', 'FileInstance']
 
 class FileInstance(BaseHandler):
     """
@@ -60,7 +63,8 @@ class FileInstance(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "process_file", "file",type(file), "submission_id", submission_id, "file_id", file_id)
 
         result = {}
-        result['name'] = file_id
+        result['file_gus'] = file_id
+        result['name'] = file['filename']
         result['type'] = file['content_type']
         result['size'] = len(file['body'])
 
@@ -83,13 +87,18 @@ class FileInstance(BaseHandler):
             log.debug("%s does not exist. Creating it." % config.advanced.submissions_dir)
             os.mkdir(config.advanced.submissions_dir)
 
+        # ignored this line!
         this_submission_dir = os.path.join(config.advanced.submissions_dir, submission_id)
+        # ignored this line!
+
+        this_submission_dir = config.advanced.submissions_dir
 
         if not os.path.isdir(this_submission_dir):
             log.debug("%s does not exist. Creating it." % this_submission_dir)
             os.mkdir(this_submission_dir)
 
         location = os.path.join(this_submission_dir, file_id)
+
         return location
 
     def options(self):
@@ -141,7 +150,7 @@ class FileInstance(BaseHandler):
                 start_time = time.time()
 
                 submission_iface = Submission()
-                file_gus = yield submission_iface.add_file(submission_gus, file['filename'])
+                file_gus = yield submission_iface.add_file(submission_gus, file['filename'], file['content_type'], len(file['body']) )
 
                 log.debug("Created file with file_gus %s" % file_gus)
 
@@ -156,6 +165,7 @@ class FileInstance(BaseHandler):
             if 'application/json' in self.request.headers.get('Accept'):
                 self.set_header('Content-Type', 'application/json')
 
+            self.set_status(200)
             self.write(response)
 
         except SubmissionGusNotFound, e:
@@ -176,4 +186,29 @@ class FileInstance(BaseHandler):
         DELETE in fileHandlers need to be refactored-engineered
         """
         Exception("Not Yet Implemented file delete")
+
+
+class Download(BaseHandler):
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, file_gus):
+
+        filelocation = os.path.join(config.advanced.submissions_dir, file_gus)
+
+        file_iface = File()
+
+        requestedfileinfo = yield file_iface.admin_get_single(file_gus)
+
+
+        print "Download of", requestedfileinfo
+
+        self.render(filelocation, missing=[], info={
+            "name": requestedfileinfo['name'],
+            "file": "%s, type=%s, size=%s" % \
+                    (str(requestedfileinfo['name']), str(requestedfileinfo['content_type']), str(requestedfileinfo['size']))
+            }
+        )
+
+
 
