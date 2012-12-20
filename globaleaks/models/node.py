@@ -57,10 +57,8 @@ class Node(TXModel):
         try:
             node_data = store.find(Node, 1 == Node.id).one()
         except NotOneError:
-            store.close()
             raise NodeNotFound
         if node_data is None:
-            store.close()
             raise NodeNotFound
 
         node_data.description = input_block['description']
@@ -73,8 +71,6 @@ class Node(TXModel):
         node_data.languages = input_block['languages']
 
         log.msg("Updated node main configuration")
-        store.commit()
-        store.close()
 
     @transact
     def get_public_info(self):
@@ -84,10 +80,8 @@ class Node(TXModel):
         try:
             node_data = store.find(Node, 1 == Node.id).one()
         except NotOneError:
-            store.close()
             raise NodeNotFound
         if node_data is None:
-            store.close()
             raise NodeNotFound
 
         # I'd prefer wrap get_admin_info and then .pop() the
@@ -102,7 +96,6 @@ class Node(TXModel):
                       'languages' : node_data.languages
                     }
 
-        store.close()
         return retTmpDict
 
     @transact
@@ -113,10 +106,8 @@ class Node(TXModel):
         try:
             node_data = store.find(Node, 1 == Node.id).one()
         except NotOneError:
-            store.close()
             raise NodeNotFound
         if node_data is None:
-            store.close()
             raise NodeNotFound
 
         # this unmaintainable crap need to be removed in the future,
@@ -132,7 +123,6 @@ class Node(TXModel):
                         'languages' : node_data.languages
             }
 
-        store.close()
         return retAdminDict
 
     @transact
@@ -157,8 +147,6 @@ class Node(TXModel):
         onlyNode.languages = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" }]
 
         store.add(onlyNode)
-        store.commit()
-        store.close()
 
     @transact
     def only_one(self):
@@ -170,7 +158,6 @@ class Node(TXModel):
 
         store = self.getStore('only_one')
         nodenum = store.find(Node).count()
-        store.close()
 
         if 1 == nodenum:
             return True

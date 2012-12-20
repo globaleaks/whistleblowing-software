@@ -11,6 +11,9 @@
 import os
 from cyclone.util import ObjectDict as OD
 
+import transaction
+from storm.zope.zstorm import ZStorm
+
 class ConfigError(Exception):
     pass
 
@@ -52,7 +55,11 @@ main.glclient_path = get_glclient_path()
 if advanced.debug:
     print "Serving GLClient from %s" % main.glclient_path
 
+# This is the zstorm store used for transactions
 main.database_uri = 'sqlite:'+get_db_file()
+
+main.store = ZStorm()
+main.store.set_default_uri('main_store', main.database_uri)
 
 advanced.db_thread_pool_size = 10
 advanced.scheduler_thread_pool_size = 10
