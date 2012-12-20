@@ -66,8 +66,6 @@ class Receiver(TXModel):
     def count(self):
         store = self.getStore('receiver count')
         receiver_count = store.find(Receiver).count()
-        store.commit()
-        store.close()
         return receiver_count
 
     @transact
@@ -88,19 +86,15 @@ class Receiver(TXModel):
         try:
             baptized_receiver._import_dict(receiver_dict)
         except KeyError:
-            store.close()
             raise InvalidInputFormat("Error near the Storm")
 
         baptized_receiver.receiver_gus = idops.random_receiver_gus()
-        baptized_receiver.contexts = []
 
         baptized_receiver.creation_date = gltime.utcDateNow()
         baptized_receiver.update_date = gltime.utcDateNow()
         # last_access is not initialized
 
         store.add(baptized_receiver)
-        store.commit()
-        store.close()
 
         return baptized_receiver.receiver_gus
 
@@ -117,24 +111,18 @@ class Receiver(TXModel):
 
         # I didn't understand why, but NotOneError is not raised even if the search return None
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+            requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
         except NotOneError:
-            store.close()
             raise ReceiverGusNotFound
         if requested_r is None:
-            store.close()
             raise ReceiverGusNotFound
 
         try:
             requested_r._import_dict(receiver_dict)
         except KeyError:
-            store.close()
             raise InvalidInputFormat("Error near the Storm")
 
         requested_r.update_date = gltime.utcDateNow()
-
-        store.commit()
-        store.close()
 
     @transact
     def self_update(self, receiver_gus, receiver_dict):
@@ -155,15 +143,12 @@ class Receiver(TXModel):
         try:
             requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
-            store.close()
             raise ReceiverGusNotFound
         if requested_r is None:
-            store.close()
             raise ReceiverGusNotFound
 
         retReceiver = requested_r._description_dict()
 
-        store.close()
         return retReceiver
 
 
@@ -178,7 +163,6 @@ class Receiver(TXModel):
         for rcvr in all_r:
             retVal.append(rcvr._description_dict())
 
-        store.close()
         return retVal
 
 
@@ -212,10 +196,7 @@ class Receiver(TXModel):
                     r.contexts.remove(str(context_gus))
 
         log.debug("    ****   full_receiver_align in all receivers after %s has been set with %s: %d mods" %
-                  ( context_gus, receiver_selected, debug_counter ) )
-
-        store.commit()
-        store.close()
+                  ( context_gus, str(receiver_selected), debug_counter ) )
 
     @transact
     def receiver_align(self, receiver_gus, context_selected):
@@ -228,10 +209,8 @@ class Receiver(TXModel):
         try:
             requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
-            store.close()
             raise ReceiverGusNotFound
         if requested_r is None:
-            store.close()
             raise ReceiverGusNotFound
 
         requested_r.contexts = []
@@ -240,9 +219,6 @@ class Receiver(TXModel):
 
         log.debug("    ++++   receiver_align in receiver %s with contexts %s" %
                   ( receiver_gus, str(context_selected) ) )
-
-        store.commit()
-        store.close()
 
     @transact
     def receiver_delete(self, receiver_gus):
@@ -254,16 +230,12 @@ class Receiver(TXModel):
         try:
             requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
-            store.close()
             raise ReceiverGusNotFound
         if requested_r is None:
-            store.close()
             raise ReceiverGusNotFound
 
         # log.info()
         store.remove(requested_r)
-        store.commit()
-        store.close()
 
     # being a method called by another @transact, do not require @transact
     # too, because otherwise the order is screwed
@@ -292,8 +264,6 @@ class Receiver(TXModel):
                 r.contexts.remove(str(context_gus))
                 unassigned_count += 1
 
-        store.commit()
-        store.close()
         return unassigned_count
 
     # called by a trasnact, update last mod on self, called when a new Tip is present

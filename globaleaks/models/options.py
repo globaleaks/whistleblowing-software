@@ -63,7 +63,6 @@ class PluginProfiles(TXModel):
         store = self.getStore('newprofile')
 
         if store.find(PluginProfiles, PluginProfiles.profile_name == profname).count() >= 1:
-            store.close()
             raise ProfileNameConflict
 
         newone = PluginProfiles()
@@ -82,9 +81,6 @@ class PluginProfiles(TXModel):
 
         store.add(newone)
 
-        store.commit()
-        store.close()
-
     @transact
     def update_profile(self, profile_gus, settings=None, profname=None, desc=None):
 
@@ -93,16 +89,13 @@ class PluginProfiles(TXModel):
         store = self.getStore('update_fields')
 
         if store.find(PluginProfiles, PluginProfiles.profile_name == profname).count() >= 1:
-            store.close()
             raise ProfileNameConflict
 
         try:
             looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
         except NotOneError:
-            store.close()
             raise ProfileGusNotFound
         if not looked_p:
-            store.close()
             raise ProfileGusNotFound
 
         if settings:
@@ -113,9 +106,6 @@ class PluginProfiles(TXModel):
 
         if desc:
             looked_p.external_description = desc
-
-        store.commit()
-        store.close()
 
 
     @transact
@@ -133,7 +123,6 @@ class PluginProfiles(TXModel):
         for single_p in selected_plugins:
             retVal.append(single_p)
 
-        store.close()
         return retVal
 
 
@@ -146,14 +135,11 @@ class PluginProfiles(TXModel):
         try:
             looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
         except NotOneError:
-            store.close()
             raise ProfileGusNotFound
         if not looked_p:
-            store.close()
             raise ProfileGusNotFound
 
         retVal = looked_p._description_dict()
-        store.close()
         return retVal
 
 
@@ -210,8 +196,6 @@ class ReceiverConfs(TXModel):
         newone.active = active
 
         store.add(newone)
-        store.commit()
-        store.close()
 
     @transact
     def updateconf(self, conf_id, settings, active):
@@ -231,17 +215,12 @@ class ReceiverConfs(TXModel):
         try:
             looked_c = store.find(ReceiverConfs, ReceiverConfs.id == conf_id).one()
         except NotOneError:
-            store.close()
             raise ReceiverConfInvalid
         if not looked_c:
-            store.close()
             raise ReceiverConfInvalid
 
         looked_c.receiver_fields = settings
         looked_c.active = active
-
-        store.commit()
-        store.close()
 
     @transact
     def admin_get_all(self):
@@ -255,7 +234,6 @@ class ReceiverConfs(TXModel):
         for single_c in configurations:
             retVal.append(single_c._description_dict())
 
-        store.close()
         return retVal
 
     @transact
@@ -270,7 +248,6 @@ class ReceiverConfs(TXModel):
         for single_c in related_confs:
             retVal.append(single_c._description_dict())
 
-        store.close()
         return retVal
 
     def _description_dict(self):

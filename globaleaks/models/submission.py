@@ -55,10 +55,8 @@ class Submission(TXModel):
         try:
             associated_c = store.find(Context, Context.context_gus == context_gus).one()
         except NotOneError:
-            store.close()
             raise ContextGusNotFound
         if associated_c is None:
-            store.close()
             raise ContextGusNotFound
 
         submission = Submission()
@@ -77,12 +75,9 @@ class Submission(TXModel):
         submission.expiration_time = gltime.utcFutureDate(seconds=1, minutes=1, hours=1)
 
         store.add(submission)
-        store.commit()
 
         submissionDesc = submission._description_dict()
         log.debug("[D] submission created", submission._description_dict())
-
-        store.close()
 
         return submissionDesc
 
@@ -96,8 +91,6 @@ class Submission(TXModel):
         submission = store.find(Submission, Submission.submission_gus==submission_gus).one()
 
         if not submission:
-            store.rollback()
-            store.close()
             raise SubmissionGusNotFound
 
         """
@@ -110,7 +103,6 @@ class Submission(TXModel):
         submission.folder = folder
         """
 
-
         new_file_gus = idops.random_file_gus()
         log.debug("Generated this file id %s" % new_file_gus)
         new_file = File()
@@ -121,8 +113,6 @@ class Submission(TXModel):
         log.debug("Added file %s to %s" % (submission_gus, file_name))
 
         store.add(new_file)
-        store.commit()
-        store.close()
 
         return new_file_gus
 
@@ -134,18 +124,13 @@ class Submission(TXModel):
         try:
             s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
-            store.close()
             raise SubmissionGusNotFound
         if not s:
-            store.close()
             raise SubmissionGusNotFound
 
         # Fields are specified in adminContextDesc with 'fields'
         #
         s.fields = fields
-
-        store.commit()
-        store.close()
 
     @transact
     def select_receiver(self, submission_gus, receivers):
@@ -155,17 +140,12 @@ class Submission(TXModel):
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
-            store.close()
             raise SubmissionGusNotFound
         if requested_s is None:
-            store.close()
             raise SubmissionGusNotFound
 
         # TODO checks that all the receiver declared in receivers EXISTS!!
         requested_s.receivers = receivers
-
-        store.commit()
-        store.close()
 
     @transact
     def status(self, submission_gus):
@@ -177,10 +157,8 @@ class Submission(TXModel):
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
             # its not possible: is a primary key
-            store.close()
             raise SubmissionGusNotFound
         if requested_s is None:
-            store.close()
             raise SubmissionGusNotFound
 
         statusDict = requested_s._description_dict()
@@ -188,7 +166,6 @@ class Submission(TXModel):
         # strip internal/incomplete/reserved information
         statusDict.pop('folder_gus')
 
-        store.close()
         return statusDict
 
     # not a transact, need to check self.context and evaluate receipt strength
@@ -211,16 +188,11 @@ class Submission(TXModel):
             # so ... at the moment this issue is not solved.
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
-            store.close()
             raise SubmissionGusNotFound
         if requested_s is None:
-            store.close()
             raise SubmissionGusNotFound
 
         requested_s.receipt = unicode(self._receipt_evaluation(proposed_receipt))
-
-        store.commit()
-        store.close()
 
     @transact
     def complete_submission(self, submission_gus):
@@ -234,10 +206,8 @@ class Submission(TXModel):
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
-            store.close()
             raise SubmissionGusNotFound
         if requested_s is None:
-            store.close()
             raise SubmissionGusNotFound
 
         log.debug("Creating internal tip in", requested_s.context_gus, requested_s.submission_gus)
@@ -278,7 +248,6 @@ class Submission(TXModel):
             folder.internaltip = internal_tip
 
             store.add(folder) 
-            store.commit()
 
             log.debug("Submission folder created without error")
 
@@ -306,8 +275,6 @@ class Submission(TXModel):
         log.debug("created_InternalTip", internal_tip.id," and WhistleBlowerTip, removed submission")
 
         store.remove(requested_s)
-        store.commit()
-        store.close()
 
         return statusDict
 
@@ -321,16 +288,11 @@ class Submission(TXModel):
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
-            store.close()
             raise SubmissionGusNotFound
         if requested_s is None:
-            store.close()
             raise SubmissionGusNotFound
 
         store.remove(requested_s)
-        store.commit()
-        store.close()
-
 
     @transact
     def admin_get_single(self, submission_gus):
@@ -345,15 +307,12 @@ class Submission(TXModel):
         try:
             requested_s = store.find(Submission, Submission.submission_gus == submission_gus).one()
         except NotOneError:
-            store.close()
             raise SubmissionGusNotFound
         if requested_s is None:
-            store.close()
             raise SubmissionGusNotFound
 
         retSubmission = requested_s._description_dict()
 
-        store.close()
         return retSubmission
 
     @transact
