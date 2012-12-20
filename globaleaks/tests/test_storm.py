@@ -124,6 +124,24 @@ class TestTransactions(BaseZStormTestCase):
         self.assertRaises(TypeError, findWrongValueDummyModel)
 
     @transact
+    def test_findNothing(self):
+        def findDummyModel():
+            store = self.getStore()
+            return store.find(DummyModel,
+                DummyModel.colInt == 31337).one()
+
+        self.assertEqual(findDummyModel(), None)
+
+    @transact
+    def test_raiseInATransaction(self):
+        def findDummyModel():
+            store = self.getStore()
+            return store.find(DummyModel,
+                DummyModel.colInt == 31337).one()
+
+        self.assertEqual(findDummyModel(), None)
+
+    @transact
     def test_findStrInsteadOfUnicodeRaises(self):
         def addDummyModel():
             store = self.getStore()
