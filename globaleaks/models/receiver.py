@@ -147,7 +147,7 @@ class Receiver(TXModel):
         if requested_r is None:
             raise ReceiverGusNotFound
 
-        retReceiver = requested_r._description_dict()
+        retReceiver = dict(requested_r._description_dict())
 
         return retReceiver
 
