@@ -8,6 +8,7 @@
 from storm.locals import Store
 from storm.twisted.transact import transact
 
+from globaleaks import config
 from globaleaks.db import transactor, database
 from globaleaks.utils import log
 
@@ -25,11 +26,6 @@ class TXModel(object):
     When you decorate object methods with @transact be sure to also set the
     transactor attribute to that of a working transactor.
 
-    It is very important that all exceptions that happen when a the store is
-    open are trapped and the store is rolled back and closed. If this is not
-    done we will start having database locking issues and we will start to
-    enter a valley of pain.
-
     An example of what is the right way to do it (taken from
     models/submission.py):
         store = self.getStore()
@@ -37,15 +33,7 @@ class TXModel(object):
         s = store.find(Submission,
                     Submission.submission_id==submission_id).one()
         [...]
-        if not s:
-            store.rollback()
-            store.close()
-            raise SubmissionNotFoundError
-
         ... Do other stuff with s ...
-
-    SubmnissionNotFoundError is defined in globlaeaks.rest.errors and
-    subclass a generic Exception.
     """
     log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel")
 
@@ -57,11 +45,7 @@ class TXModel(object):
     sequencial_dbop = 0
 
     def getStore(self, operation_desc=''):
-
-        TXModel.sequencial_dbop += 1
-
-        log.debug("[IO] %d getStore: [%s] " % (TXModel.sequencial_dbop, operation_desc) )
-        return Store(self.database)
+        return config.main.store.get('main_store')
 
     @transact
     def save(self, operation_desc='TXModel.save'):
@@ -73,8 +57,6 @@ class TXModel(object):
         store = self.getStore(operation_desc)
         store.add(self)
         log.debug('[IO] %d save' % TXModel.sequencial_dbop)
-        store.commit()
-        store.close()
 
     # remind, I've try to make a wrapper around the store.close()
     # in order to help debug. no, can't work:
