@@ -198,6 +198,7 @@ class TipCommentCollection(BaseHandler):
                 tip_description = yield requested_t.whistleblower_get_single(tip_token)
 
             comment_iface = Comment()
+            print tip_description
             comment_list = yield comment_iface.get_comment_related(tip_description['internaltip_id'])
 
             self.set_status(200)

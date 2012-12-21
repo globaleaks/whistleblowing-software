@@ -82,15 +82,10 @@ class Context(TXModel):
         try:
             cntx._import_dict(context_dict)
         except KeyError:
-            store.rollback()
-            store.close()
             raise InvalidInputFormat("Import failed near the Storm")
 
         store.add(cntx)
         log.msg("Created context %s at the %s" % (cntx.name, cntx.creation_date) )
-        store.commit()
-        store.close()
-
         # return context_dict
         return cntx.context_gus
 
@@ -109,26 +104,20 @@ class Context(TXModel):
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
-            store.close()
             raise ContextGusNotFound
+
         if requested_c is None:
-            store.close()
             raise ContextGusNotFound
 
         try:
             requested_c._import_dict(context_dict)
         except KeyError:
-            store.rollback()
-            store.close()
             raise InvalidInputFormat("Import failed near the Storm")
 
         requested_c.update_date = gltime.utcDateNow()
 
-        store.commit()
         log.msg("Updated context %s in %s, created in %s" %
                 (requested_c.name, requested_c.update_date, requested_c.creation_date) )
-
-        store.close()
 
     @transact
     def delete_context(self, context_gus):
@@ -159,15 +148,11 @@ class Context(TXModel):
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
-            store.close()
             raise ContextGusNotFound
         if requested_c is None:
-            store.close()
             raise ContextGusNotFound
 
         store.remove(requested_c)
-        store.commit()
-        store.close()
 
         log.msg("Deleted context %s, created in %s used by %d receivers" %
                 (requested_c.name, requested_c.creation_date, unlinked_receivers) )
@@ -184,15 +169,12 @@ class Context(TXModel):
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
-            store.close()
             raise ContextGusNotFound
         if requested_c is None:
-            store.close()
             raise ContextGusNotFound
 
         ret_context_dict = requested_c._description_dict()
 
-        store.close()
         return ret_context_dict
 
     @transact
@@ -210,7 +192,6 @@ class Context(TXModel):
         for requested_c in result:
             ret_contexts_dicts.append( requested_c._description_dict() )
 
-        store.close()
         return ret_contexts_dicts
 
     @transact
@@ -224,10 +205,8 @@ class Context(TXModel):
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
-            store.close()
             raise ContextGusNotFound
         if requested_c is None:
-            store.close()
             raise ContextGusNotFound
 
         ret_context_dict = requested_c._description_dict()
@@ -237,7 +216,6 @@ class Context(TXModel):
         ret_context_dict.pop('file_max_download')
         ret_context_dict.pop('escalation_threshold')
 
-        store.close()
         return ret_context_dict
 
     @transact
@@ -261,7 +239,6 @@ class Context(TXModel):
 
             ret_contexts_dicts.append(description_dict)
 
-        store.close()
         return ret_contexts_dicts
 
     @transact
@@ -271,7 +248,6 @@ class Context(TXModel):
         """
         store = self.getStore('context count')
         contextnum = store.find(Context).count()
-        store.close()
         return contextnum
 
     # called always by transact method, from models
@@ -295,7 +271,6 @@ class Context(TXModel):
         except NotOneError:
             retval = False
 
-        store.close()
         return retval
 
     @transact
@@ -318,9 +293,6 @@ class Context(TXModel):
 
         requested_c.languages_supported = language_list
         requested_c.update_date = gltime.utcDateNow()
-
-        store.commit()
-        store.close()
 
     # this is called internally by a @transact functions
     def get_receivers(self, info_type, context_gus=None):
@@ -384,7 +356,6 @@ class Context(TXModel):
         # GoodBye. I'm a really DIRTY HACK.
         # :)
 
-        store.close()
         return receiver_list
 
 
@@ -420,9 +391,6 @@ class Context(TXModel):
         log.debug("    %%%%   full_context_align in all contexts after %s has been set with %s: %d mods" %
                   ( receiver_gus, str(context_selected), debug_counter ) )
 
-        store.commit()
-        store.close()
-
 
     @transact
     def context_align(self, context_gus, receiver_selected):
@@ -435,10 +403,8 @@ class Context(TXModel):
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
-            store.close()
             raise ContextGusNotFound
         if requested_c is None:
-            store.close()
             raise ContextGusNotFound
 
         requested_c.receivers = []
@@ -447,9 +413,6 @@ class Context(TXModel):
 
         log.debug("    ++++   context_align in receiver %s with receivers %s" %
                   ( context_gus, str(receiver_selected) ) )
-
-        store.commit()
-        store.close()
 
     # This is not a transact method, is used internally by this class to assembly
     # response dict. This method return all the information of a context, the

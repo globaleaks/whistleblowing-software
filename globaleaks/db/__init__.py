@@ -12,7 +12,8 @@ from globaleaks.utils import log
 @inlineCallbacks
 def createTables():
     """
-    @return: None, create the right table at the first start, and initialized the node
+    @return: None, create the right table at the first start, and initialized
+    the node.
     """
     from globaleaks import models
     from globaleaks.db import tables
