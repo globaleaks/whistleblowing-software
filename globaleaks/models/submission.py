@@ -28,7 +28,7 @@ class Submission(TXModel):
     This represents a temporary submission. Submissions should be stored here
     until they are transformed into a Tip.
     """
-    log.debug("[D] %s %s " % (__file__, __name__), "Class Submission")
+
     __storm_table__ = 'submission'
 
     submission_gus = Unicode(primary=True)
@@ -48,7 +48,7 @@ class Submission(TXModel):
     @transact
     def new(self, context_gus):
 
-        store = self.getStore('new submission')
+        store = self.getStore()
 
         try:
             associated_c = store.find(Context, Context.context_gus == context_gus).one()
@@ -85,7 +85,7 @@ class Submission(TXModel):
     @transact
     def add_file(self, submission_gus, file_name, content_type, file_size):
 
-        store = self.getStore('add_file')
+        store = self.getStore()
 
         try:
             submission_r = store.find(Submission, Submission.submission_gus==submission_gus).one()
@@ -112,9 +112,8 @@ class Submission(TXModel):
 
     @transact
     def update_fields(self, submission_gus, fields):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "update_fields", "submission_gus", submission_gus, "fields", fields )
 
-        store = self.getStore('update_fields')
+        store = self.getStore()
         try:
             s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError, e:
@@ -133,7 +132,7 @@ class Submission(TXModel):
     @transact
     def select_receiver(self, submission_gus, receivers):
 
-        store = self.getStore('select_receiver')
+        store = self.getStore()
 
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
@@ -147,9 +146,8 @@ class Submission(TXModel):
 
     @transact
     def status(self, submission_gus):
-        log.debug("[D] %s %s " % (__file__, __name__), "Submission", "status", "submission_gus", submission_gus )
 
-        store = self.getStore('status')
+        store = self.getStore()
 
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
@@ -222,6 +220,7 @@ class Submission(TXModel):
 
             # this is an hack that need to be fixed short as possible.
             # receiver_map is an outdated concept
+            # XXX TODO XXX TODO
             if type(single_r) == type({}):
                 receiver_gus = single_r.get('receiver_gus')
             else:
@@ -259,15 +258,13 @@ class Submission(TXModel):
         store.add(whistleblower_tip)
         log.debug("Created tip with address %s, Internal Tip and Submission removed" % whistleblower_tip.receipt)
 
-
         return statusDict
+
 
     @transact
     def submission_delete(self, submission_gus):
 
-        log.debug("[D] ",__file__, __name__, "Submission delete by user request", submission_gus)
-
-        store = self.getStore('submission_delete')
+        store = self.getStore()
 
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
@@ -279,11 +276,9 @@ class Submission(TXModel):
         store.remove(requested_s)
 
     @transact
-    def admin_get_single(self, submission_gus):
-        """
-        @return a receiverDescriptionDict
-        """
-        store = self.getStore('submission - admin_get_single')
+    def get_single(self, submission_gus):
+
+        store = self.getStore()
 
         # I didn't understand why, but NotOneError is not raised even if the search return None
         try:
@@ -298,8 +293,18 @@ class Submission(TXModel):
         return retSubmission
 
     @transact
-    def admin_get_all(self):
-        pass
+    def get_all(self):
+
+        store = self.getStore()
+
+        # I didn't understand why, but NotOneError is not raised even if the search return None
+        present_s = store.find(Submission)
+
+        subList = []
+        for s in present_s:
+            subList.append(s._description_dict())
+
+        return subList
 
     # called by a transact method, return
     def _description_dict(self):
@@ -315,4 +320,4 @@ class Submission(TXModel):
             'receipt' : self.receipt
         }
 
-        return descriptionDict
+        return dict(descriptionDict)
