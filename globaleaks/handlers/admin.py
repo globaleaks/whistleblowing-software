@@ -186,10 +186,9 @@ class ContextInstance(BaseHandler):
             context_iface = context.Context()
             yield context_iface.update(context_gus, request)
 
-            if request['receivers']:
-                receiver_iface = receiver.Receiver()
-                yield context_iface.context_align(context_gus, request['receivers'])
-                yield receiver_iface.full_receiver_align(context_gus, request['receivers'])
+            receiver_iface = receiver.Receiver()
+            yield context_iface.context_align(context_gus, request['receivers'])
+            yield receiver_iface.full_receiver_align(context_gus, request['receivers'])
 
             context_description = yield context_iface.admin_get_single(context_gus)
 
