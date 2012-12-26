@@ -8,7 +8,6 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from storm.locals import Store
 from storm.properties import PropertyColumn
 from storm.exceptions import StormError
 

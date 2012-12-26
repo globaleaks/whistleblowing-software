@@ -8,6 +8,7 @@ __all__ = ['createTables', 'database', 'transactor']
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import database, transactor
 from globaleaks.utils import log
+from globaleaks.db import tables
 
 @inlineCallbacks
 def createTables():
@@ -15,25 +16,23 @@ def createTables():
     @return: None, create the right table at the first start, and initialized
     the node.
     """
-    from globaleaks import models
-    from globaleaks.db import tables
+    from globaleaks.models.context import Context
+    from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment, File
+    from globaleaks.models.internaltip import InternalTip
+    from globaleaks.models.receiver import Receiver
+    from globaleaks.models.options import PluginProfiles, ReceiverConfs
+    from globaleaks.models.submission import Submission
+    from globaleaks.models.node import Node
 
-    for m in [models.node, models.context, models.receiver, models.submission,
-              models.externaltip, models.internaltip, models.admin ]:
-        for model_name in m.__all__:
-            try:
-                model = getattr(m, model_name)
-            except Exception, e:
-                log.err("Error in db initting")
-                log.err(e)
-            try:
-                log.debug("Creating %s" % model)
-                yield tables.runCreateTable(model, transactor, database)
-            except Exception, e:
-                log.debug(str(e))
+    for model in [ Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip, Submission,
+               Comment, File, PluginProfiles, ReceiverConfs ]:
+        try:
+            log.debug("Creating %s" % model)
+            yield tables.runCreateTable(model, transactor, database)
+        except Exception, e:
+            log.debug(str(e))
 
-
-    nod = models.node.Node()
+    nod = Node()
     is_only_one = yield nod.only_one()
 
     if False == is_only_one:

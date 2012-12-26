@@ -14,6 +14,11 @@ from cyclone.util import ObjectDict as OD
 import transaction
 from storm.zope.zstorm import ZStorm
 
+from storm.tracer import debug
+import sys
+#Storm DB dump:
+debug(True, sys.stdout)
+
 class ConfigError(Exception):
     pass
 
