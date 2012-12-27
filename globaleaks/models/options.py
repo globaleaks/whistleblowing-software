@@ -145,13 +145,13 @@ class PluginProfiles(TXModel):
 
     def _description_dict(self):
 
-        retVal = { 'profile_gus' : self.profile_gus,
-                   'plugin_type': self.plugin_type,
-                   'plugin_name' : self.plugin_name,
+        retVal = { 'profile_gus' : unicode(self.profile_gus),
+                   'plugin_type': unicode(self.plugin_type),
+                   'plugin_name' : unicode(self.plugin_name),
                    'creation_time' : None,
-                   'profile_name' : self.profile_name,
-                   'external_description' : self.external_description,
-                   'admin_fields' : self.admin_fields }
+                   'profile_name' : unicode(self.profile_name),
+                   'external_description' : unicode(self.external_description),
+                   'admin_fields' : dict(self.admin_fields) }
 
         return retVal
 
@@ -253,10 +253,10 @@ class ReceiverConfs(TXModel):
     def _description_dict(self):
 
         retVal = {
-            'receiver_gus' : self.receiver_gus,
-            'active' : self.active,
-            'config_id' : self.id,
-            'receiver_fields' : self.receiver_fields,
-            'profile_gus' : self.profile_gus
+            'receiver_gus' : unicode(self.receiver_gus),
+            'active' : bool(self.active),
+            'config_id' : unicode(self.id),
+            'receiver_fields' : list(self.receiver_fields),
+            'profile_gus' : unicode(self.profile_gus)
         }
         return retVal

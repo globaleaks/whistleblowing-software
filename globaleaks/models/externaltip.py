@@ -90,10 +90,10 @@ class ReceiverTip(TXModel):
         retVal = []
         for single_tip in marked_tips:
             retVal.append({
-                'notification_fields' : single_tip.receiver.notification_fields,
-                'notification_selected' : single_tip.receiver.notification_selected,
-                'tip_gus' : single_tip.tip_gus,
-                'creation_time' : single_tip.internaltip.creation_date
+                'notification_fields' : dict(single_tip.receiver.notification_fields),
+                'notification_selected' : unicode(single_tip.receiver.notification_selected),
+                'tip_gus' : unicode(single_tip.tip_gus),
+                'creation_time' : unicode(single_tip.internaltip.creation_date)
             })
 
         return retVal
@@ -285,16 +285,16 @@ class ReceiverTip(TXModel):
     def _description_dict(self):
 
         descriptionDict = {
-            'internaltip_id' : self.internaltip_id,
-            'tip_gus' : self.tip_gus,
-            'notification_mark' : self.notification_mark,
-            'notification_date' : gltime.prettyDateTime(self.notification_date),
-            'last_access' : gltime.prettyDateTime(self.last_access),
-            'access_counter' : self.access_counter,
-            'expressed_pertinence': self.expressed_pertinence,
-            'receiver_gus' : self.receiver_gus,
-            'receiver_name' : self.receiver.name,
-            'authoptions' : self.authoptions
+            'internaltip_id' : unicode(self.internaltip_id),
+            'tip_gus' : unicode(self.tip_gus),
+            'notification_mark' : bool(self.notification_mark),
+            'notification_date' : unicode(gltime.prettyDateTime(self.notification_date)),
+            'last_access' : unicode(gltime.prettyDateTime(self.last_access)),
+            'access_counter' : unicode(self.access_counter),
+            'expressed_pertinence': unicode(self.expressed_pertinence),
+            'receiver_gus' : unicode(self.receiver_gus),
+            'receiver_name' : unicode(self.receiver.name),
+            'authoptions' : dict(self.authoptions)
         }
         return descriptionDict
 
@@ -637,13 +637,13 @@ class Comment(TXModel):
     def _description_dict(self):
 
         descriptionDict = {
-            'comment_id' : self.id,
-            'source' : self.source,
-            'content' : self.content,
-            'author_gus' : self.author_gus,
-            'notification_mark': self.notification_mark,
-            'internaltip_id' : self.internaltip_id,
-            'creation_time' : gltime.prettyDateTime(self.creation_time)
+            'comment_id' : unicode(self.id),
+            'source' : unicode(self.source),
+            'content' : unicode(self.content),
+            'author_gus' : unicode(self.author_gus),
+            'notification_mark': bool(self.notification_mark),
+            'internaltip_id' : unicode(self.internaltip_id),
+            'creation_time' : unicode(gltime.prettyDateTime(self.creation_time))
         }
         return descriptionDict
 
