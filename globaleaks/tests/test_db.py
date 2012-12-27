@@ -20,7 +20,9 @@ from storm.twisted.testing import FakeThreadPool, FakeTransactor
 from storm.databases.sqlite import SQLite
 from storm.uri import URI
 
-from globaleaks import models
+from globaleaks.models import submission, receiver, admin
+from globaleaks.models import internaltip, externaltip
+
 from globaleaks.db.tables import runCreateTable
 
 from globaleaks.messages.dummy import requests
@@ -48,23 +50,24 @@ class BaseDBTest(unittest.TestCase):
             model = self.baseModel
         try:
             yield runCreateTable(model, self.transactor, self.database)
-        except:
-            pass
+        except Exception, e:
+            print "Failed to create table"
+            print e
 
 class TablesTest(BaseDBTest):
     def disable_test_base(self):
         # XXX disabled because of WIP on database
         good_query = "CREATE TABLE submission (creation_time VARCHAR, fields BLOB, folder_gus INTEGER, id INTEGER, receivers BLOB, submission_gus VARCHAR, PRIMARY KEY (id))"
-        self.assertEqual(tables.generateCreateQuery(models.submission.Submission),
+        self.assertEqual(tables.generateCreateQuery(submission.Submission),
                 good_query)
 
     @inlineCallbacks
     def test_create(self):
-        yield self.create_table(models.submission.Submission)
+        yield self.create_table(submission.Submission)
 
 class TestSubmission(BaseDBTest):
 
-    baseModel = models.submission.Submission
+    baseModel = submission.Submission
     submission_gus = u'r_testsubmissionid'
 
     @inlineCallbacks
@@ -108,8 +111,8 @@ class TestSubmission(BaseDBTest):
         test_submission = self.mock_model()
         my_gus = self.submission_gus+'fina'
 
-        yield self.create_table(models.tip.InternalTip)
-        yield self.create_table(models.tip.Tip)
+        yield self.create_table(externaltip.ReceiverTip)
+        yield self.create_table(externaltip.WhistleblowerTip)
 
         yield self.create_dummy_submission(my_gus)
         try:
@@ -118,13 +121,13 @@ class TestSubmission(BaseDBTest):
             print e
 
 class TestReceivers(BaseDBTest):
-    baseModel = models.receiver.Receiver
+    baseModel = receiver.Receiver
 
     @inlineCallbacks
     def create_tables(self):
-        yield self.create_table(models.receiver.Receiver)
-        yield self.create_table(models.admin.ReceiverContext)
-        yield self.create_table(models.admin.Context)
+        yield self.create_table(receiver.Receiver)
+        yield self.create_table(admin.ReceiverContext)
+        yield self.create_table(admin.Context)
 
     @inlineCallbacks
     def test_create_tables(self):
@@ -148,7 +151,7 @@ class TestReceivers(BaseDBTest):
 
         context_gus = u'c_thisisatestcontext'
         test_receiver = self.mock_model()
-        test_context = self.mock_model(models.admin.Context)
+        test_context = self.mock_model(admin.Context)
         test_context.name = u'test context'
         test_context.context_gus = context_gus
 
