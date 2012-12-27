@@ -305,14 +305,14 @@ class Submission(TXModel):
     def _description_dict(self):
 
         descriptionDict = {
-            'submission_gus': self.submission_gus,
-            'fields' : self.fields,
-            'context_gus' : self.context_gus,
-            'creation_time' : gltime.prettyDateTime(self.creation_time),
-            'expiration_time' : gltime.prettyDateTime(self.expiration_time),
-            'receivers' : self.receivers,
-            'files' : self.files if self.files else {},
-            'receipt' : self.receipt
+            'submission_gus': unicode(self.submission_gus),
+            'fields' : dict(self.fields),
+            'context_gus' : unicode(self.context_gus),
+            'creation_time' : unicode(gltime.prettyDateTime(self.creation_time)),
+            'expiration_time' : unicode(gltime.prettyDateTime(self.expiration_time)),
+            'receivers' : list(self.receivers),
+            'files' : dict(self.files) if self.files else {},
+            'receipt' : unicode(self.receipt)
         }
 
         return descriptionDict

@@ -420,17 +420,17 @@ class Context(TXModel):
     def _description_dict(self):
 
         description_dict = {
-            "context_gus": self.context_gus,
-            "name": self.name,
-            "description": self.description,
-            "selectable_receiver": self.selectable_receiver,
-            "languages": self.languages_supported if self.languages_supported else [],
-            'tip_max_access' : self.tip_max_access,
-            'tip_timetolive' : self.tip_timetolive,
-            'file_max_download' : self.file_max_download,
-            'escalation_threshold' : self.escalation_threshold,
-            'fields': self.fields,
-            'receivers' : self.receivers if self.receivers else []
+            "context_gus" : unicode(self.context_gus),
+            "name" : unicode(self.name),
+            "description" : unicode(self.description),
+            "selectable_receiver" : unicode(self.selectable_receiver),
+            "languages" : list(self.languages_supported) if self.languages_supported else [],
+            'tip_max_access' : int(self.tip_max_access),
+            'tip_timetolive' : int(self.tip_timetolive),
+            'file_max_download' : int(self.file_max_download),
+            'escalation_threshold' : int(self.escalation_threshold),
+            'fields': list(self.fields),
+            'receivers' : list(self.receivers) if self.receivers else []
 
         }
         # receivers is added
