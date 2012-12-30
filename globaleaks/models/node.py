@@ -113,14 +113,14 @@ class Node(TXModel):
         # this unmaintainable crap need to be removed in the future,
         # and the dict/output generation shall not be scattered
         # around here.
-        retAdminDict= { 'name' : node_data.name,
-                        'description' : node_data.description,
-                        'hidden_service' : node_data.hidden_service,
-                        'public_site' : node_data.public_site,
-                        'public_stats_update_time' : node_data.public_stats_update_time,
-                        'private_stats_update_time' : node_data.private_stats_update_time,
-                        'email' : node_data.email,
-                        'languages' : node_data.languages
+        retAdminDict= { 'name' : unicode(node_data.name),
+                        'description' : unicode(node_data.description),
+                        'hidden_service' : unicode(node_data.hidden_service),
+                        'public_site' : unicode(node_data.public_site),
+                        'public_stats_update_time' : unicode(node_data.public_stats_update_time),
+                        'private_stats_update_time' : unicode(node_data.private_stats_update_time),
+                        'email' : unicode(node_data.email),
+                        'languages' : unicode(node_data.languages)
             }
 
         return retAdminDict

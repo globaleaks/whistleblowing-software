@@ -89,12 +89,16 @@ class TipInstance(BaseHandler):
     def put(self, tip_token, *uriargs):
         """
         Request: actorsTipOpsDesc
-        Response: actorsTipDesc
+        Response: None
         Errors: InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation
 
         This interface modify some tip status value. pertinence, personal delete are handled here.
         Total delete operation is handled in this class, by the DELETE HTTP method.
         Those operations (may) trigger a 'system comment' inside of the Tip comment list.
+
+        This interface return None, because may execute a delete operation. The client
+        know which kind of operation has been requested. If a pertinence vote, would
+        perform a refresh on get() API, if a delete, would bring the user in other places.
         """
 
         try:

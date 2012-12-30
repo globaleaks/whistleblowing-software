@@ -245,17 +245,17 @@ class InternalTip(TXModel):
     def _description_dict(self):
 
         description_dict = {
-            'internaltip_id' : self.id,
-            'context_name' : self.context.name,
-            'context_gus': self.context_gus,
-            'creation_date' : gltime.prettyDateTime(self.creation_date),
-            'expiration_date' : gltime.prettyDateTime(self.creation_date),
+            'internaltip_id' : unicode(self.id),
+            'context_name' : unicode(self.context.name),
+            'context_gus': unicode(self.context_gus),
+            'creation_date' : unicode(gltime.prettyDateTime(self.creation_date)),
+            'expiration_date' : unicode(gltime.prettyDateTime(self.creation_date)),
             'fields' : dict(self.fields),
-            'download_limit' : self.download_limit,
-            'access_limit' : self.access_limit,
-            'mark' : self.mark,
-            'pertinence' : self.pertinence_counter,
-            'escalation_threshold' : self.escalation_threshold,
+            'download_limit' : int(self.download_limit),
+            'access_limit' : int(self.access_limit),
+            'mark' : unicode(self.mark),
+            'pertinence' : unicode(self.pertinence_counter),
+            'escalation_threshold' : unicode(self.escalation_threshold),
             'files' : dict(self.files) if self.files else {},
             'receiver_map' : list(self.receivers) if self.receivers else []
         }

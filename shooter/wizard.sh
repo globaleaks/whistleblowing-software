@@ -1,18 +1,12 @@
 #!/bin/sh
 
-SHOOTER="python shooter.py"
+SHOOTER="./shooter.py"
 
-one=`$SHOOTER A2 POST print-context_gus`
-if [ $? != 0 ]; then echo "\tError context creation " && exit; fi
+one=`$SHOOTER A2 POST raw \"\" print-context_gus`
+if [ $? != 0 ]; then echo "\tError context (base) creation: $one " && exit; fi
 
-two=`$SHOOTER A2 POST print-context_gus`
-if [ $? != 0 ]; then echo "\tError context creation " && exit; fi
-
-three=`$SHOOTER A2 POST print-context_gus`
-if [ $? != 0 ]; then echo "\tError context creation " && exit; fi
-
-four=`$SHOOTER A2 POST print-context_gus`
-if [ $? != 0 ]; then echo "\tError context creation " && exit; fi
+two=`$SHOOTER A2 POST raw \"\" print-context_gus variation 1`
+if [ $? != 0 ]; then echo "\tError context (1) creation: $two" && exit; fi
 
 rcvr1=`$SHOOTER A4 POST print-receiver_gus raw \"$one\",\"$two\"`
 if [ $? != 0 ]; then echo "\tError receiver1 creation " && exit; fi
@@ -29,6 +23,6 @@ if [ $? != 0 ]; then echo "\tError receiver4 creation " && exit; fi
 rcvr5=`$SHOOTER A4 POST print-receiver_gus raw \"$one\",\"$two\" variation 4`
 if [ $? != 0 ]; then echo "\tError receiver5 creation " && exit; fi
 
-echo "created four contexts: $one $two $three $four"
+echo "created two contexts: $one $two"
 echo "created five receiver in context 1 and 2: $rcvr1 $rcvr2 $rcvr3 $rcvr4 $rcvr5"
 
