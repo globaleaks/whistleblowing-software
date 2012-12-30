@@ -10,13 +10,21 @@ from twisted.internet.defer import inlineCallbacks
 import json
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import node, context, receiver, options
+from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment, File
+from globaleaks.models.options import PluginProfiles, ReceiverConfs
+from globaleaks.models.internaltip import InternalTip
+from globaleaks.models.receiver import Receiver
+from globaleaks.models.context import Context
+from globaleaks.models.node import Node
+from globaleaks.models.submission import Submission
+
 from globaleaks.utils import log
 from globaleaks.plugins.base import GLPluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
     NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
+
 
 class NodeInstance(BaseHandler):
     """
@@ -36,20 +44,18 @@ class NodeInstance(BaseHandler):
         Errors: NodeNotFound
         """
 
-        #not yet implemented: admin_stats (stats need to be moved in contexts)
-        #node_properties: should not be separate array
-        #url_schema: no more needed ?
-        #stats_delta couple.
+        try:
+            node_info = Node()
+            node_description_dicts = yield node_info.get_admin_info()
 
+            self.set_status(200)
+            self.write(node_description_dicts)
 
-        context_iface = context.Context()
-        context_description_dicts = yield context_iface.admin_get_all()
+        except NodeNotFound, e:
 
-        node_info = node.Node()
-        node_description_dicts = yield node_info.get_admin_info()
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
-        self.set_status(200)
-        self.write(node_description_dicts)
         self.finish()
 
     @asynchronous
@@ -63,20 +69,22 @@ class NodeInstance(BaseHandler):
         Changes the node public node configuration settings
         """
 
-        request = json.loads(self.request.body)
+        try:
+            request = validateMessage(self.request.body, requests.adminContextDesc)
 
-        if not request:
-            # holy fucking sick atheist god
-            # no validation at the moment.
-            self.write(__file__)
-            self.write('error message to be managed using the appropriate format')
-            self.finish()
+            node_info = Node()
+            yield node_info.configure_node(request)
+            node_description_dicts = yield node_info.get_admin_info()
 
-        node_info = node.Node()
-        yield node_info.configure_node(request)
+            self.set_status(201) # Created
+            self.write(node_description_dicts)
 
-        # return value as GET
-        yield self.get()
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
 
 
 class ContextsCollection(BaseHandler):
@@ -94,7 +102,7 @@ class ContextsCollection(BaseHandler):
         Errors: None
         """
 
-        context_iface = context.Context()
+        context_iface = Context()
         all_contexts = yield context_iface.admin_get_all()
 
         self.set_status(200)
@@ -115,11 +123,11 @@ class ContextsCollection(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.adminContextDesc)
 
-            context_iface = context.Context()
+            context_iface = Context()
             new_context_gus = yield context_iface.new(request)
 
             if request['receivers']:
-                receiver_iface = receiver.Receiver()
+                receiver_iface = Receiver()
                 yield context_iface.context_align(new_context_gus, request['receivers'])
                 yield receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
 
@@ -158,7 +166,7 @@ class ContextInstance(BaseHandler):
 
         try:
             # TODO REMIND XXX - context_gus validation - InvalidInputFormat
-            context_iface = context.Context()
+            context_iface = Context()
             context_description = yield context_iface.admin_get_single(context_gus)
 
             self.set_status(200)
@@ -183,10 +191,10 @@ class ContextInstance(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.adminContextDesc)
 
-            context_iface = context.Context()
+            context_iface = Context()
             yield context_iface.update(context_gus, request)
 
-            receiver_iface = receiver.Receiver()
+            receiver_iface = Receiver()
             yield context_iface.context_align(context_gus, request['receivers'])
             yield receiver_iface.full_receiver_align(context_gus, request['receivers'])
 
@@ -221,19 +229,47 @@ class ContextInstance(BaseHandler):
         Errors: InvalidInputFormat, ContextGusNotFound
         """
 
-        context_iface = context.Context()
+        context_iface = Context()
+        receivertip_iface = ReceiverTip()
+        internaltip_iface = InternalTip()
+        whistlebtip_iface = WhistleblowerTip()
+        comment_iface = Comment()
+        file_iface = File()
 
-        # XXX just a litle consideration: if a context has some tip, jobs, whatever
+        # XXX just a little consideration: if a context has some tip, jobs, whatever
         # in queue, maybe the client ask a sort of "are you really sure ?"
         # this operation is not related to this REST DELETE, but perhaps in the
         # administrative view of the contexts, also the presence|absence|description
         # of the queued operations, would be useful.
 
-        # This DELETE operation, its fucking permanent, and kills all the Tip related
-        # to the context. (not the receivers: they can be possesed also by other context,
-        # but the tarGET context is DELETEd also in the receiver reference)
+        # This DELETE operation, its permanent, and kills all the Tip related
+        # to the context. (not the receivers: they can be possessed also by other context,
+        # but the target context is deleted also in the receiver reference)
 
         try:
+            tips_related_blocks = yield receivertip_iface.get_tips_by_context(context_gus)
+
+            for tip_block in tips_related_blocks:
+
+                itip_desc = tip_block.get('internaltip')
+
+                # WhistleBlower tip is always one, but the search query is based on
+                # the WB tip related to InternalTip, not based on the unique key of
+                # WB tip. then is handled like a list.
+
+                wtip_desc = tip_block.get('whistleblowertip')
+                for single_wtip in wtip_desc:
+                    yield whistlebtip_iface.delete_access(single_wtip['receipt'])
+
+                yield receivertip_iface.massive_delete(itip_desc['internaltip_id'])
+                yield comment_iface.delete_comment_by_itip(itip_desc['internaltip_id'])
+                yield file_iface.delete_file_by_itip(itip_desc['internaltip_id'])
+
+                # and finally, delete the InternalTip
+                yield internaltip_iface.tip_delete(itip_desc['internaltip_id'])
+
+            # when the tip are deleted, context is deleted
+            # TODO check if receivers are aligned
             yield context_iface.delete_context(context_gus)
             self.set_status(200)
 
@@ -262,7 +298,7 @@ class ReceiversCollection(BaseHandler):
         Admin operation: return all the receiver present in the Node
         """
 
-        receiver_iface = receiver.Receiver()
+        receiver_iface = Receiver()
         all_receivers = yield receiver_iface.admin_get_all()
 
         self.set_status(200)
@@ -285,12 +321,12 @@ class ReceiversCollection(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.adminReceiverDesc)
 
-            receiver_iface = receiver.Receiver()
+            receiver_iface = Receiver()
 
             new_receiver_gus = yield receiver_iface.new(request)
 
             if request['contexts']:
-                context_iface = context.Context()
+                context_iface = Context()
                 yield receiver_iface.receiver_align(new_receiver_gus, request['contexts'])
                 yield context_iface.full_context_align(new_receiver_gus, request['contexts'])
 
@@ -336,7 +372,7 @@ class ReceiverInstance(BaseHandler):
 
         try:
             # TODO parameter validation - InvalidInputFormat
-            receiver_iface = receiver.Receiver()
+            receiver_iface = Receiver()
 
             receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
 
@@ -366,12 +402,12 @@ class ReceiverInstance(BaseHandler):
             # TODO parameter validation - InvalidInputFormat
             request = validateMessage(self.request.body, requests.adminReceiverDesc)
 
-            receiver_iface = receiver.Receiver()
+            receiver_iface = Receiver()
 
             yield receiver_iface.admin_update(receiver_gus, request)
 
             if request['contexts']:
-                context_iface = context.Context()
+                context_iface = Context()
                 yield receiver_iface.receiver_align(receiver_gus, request['contexts'])
                 yield context_iface.full_context_align(receiver_gus, request['contexts'])
 
@@ -408,7 +444,7 @@ class ReceiverInstance(BaseHandler):
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
 
-        receiver_iface = receiver.Receiver()
+        receiver_iface = Receiver()
 
         try:
             # TODO parameter validation - InvalidInputFormat
@@ -498,7 +534,7 @@ class ProfileCollection(BaseHandler):
 
             if plugin_code.validate_admin_opt(request['admin_fields']) and request['profile_name']:
 
-                plugin_iface = options.PluginProfiles()
+                plugin_iface = PluginProfiles()
 
                 try:
                     new_profile = yield plugin_iface.newprofile(request['plugin_type'], request['plugin_name'],
@@ -540,7 +576,7 @@ class ProfileInstance(BaseHandler):
         Errors: ProfileGusNotFound
         """
 
-        plugin_iface = options.PluginProfiles()
+        plugin_iface = PluginProfiles()
 
         try:
             profile_description = yield plugin_iface.admin_get_single(profile_gus)
@@ -595,7 +631,7 @@ class ProfileInstance(BaseHandler):
                                 'error_code' : 123 })
                 else:
 
-                    plugin_iface = options.PluginProfiles()
+                    plugin_iface = PluginProfiles()
 
                     try:
                         yield plugin_iface.update_profile(profile_gus, settings=new_settings, desc=new_desc, profname=new_name)
@@ -663,12 +699,9 @@ class EntryCollection(BaseHandler):
 
         /admin/overview GET should return up to all the tables of GLBackend
         """
-        from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment
-        from globaleaks.models.options import PluginProfiles, ReceiverConfs
-        from globaleaks.models.internaltip import InternalTip
-        from globaleaks.models.receiver import Receiver
 
-        expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'comment', 'profiles', 'rcfg', 'all' ]
+        expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'comment',
+                     'profiles', 'rcfg', 'submission', 'context', 'all' ]
 
         if what == 'receivers' or what == 'all':
             receiver_iface = Receiver()
@@ -677,22 +710,22 @@ class EntryCollection(BaseHandler):
 
         if what == 'itip' or what == 'all':
             itip_iface = InternalTip()
-            itip_list = yield itip_iface.admin_get_all()
+            itip_list = yield itip_iface.get_all()
             self.write({ 'elements' : len(itip_list), 'internaltips' : itip_list })
 
         if what == 'rtip' or what == 'all':
             rtip_iface = ReceiverTip()
-            rtip_list = yield rtip_iface.admin_get_all()
+            rtip_list = yield rtip_iface.get_all()
             self.write({ 'elements' : len(rtip_list), 'receivers_tips' : rtip_list })
 
         if what == 'wtip' or what == 'all':
             wtip_iface = WhistleblowerTip()
-            wtip_list = yield wtip_iface.admin_get_all()
+            wtip_list = yield wtip_iface.get_all()
             self.write({ 'elements' : len(wtip_list), 'whistleblower_tips' : wtip_list })
 
         if what == 'comment' or what == 'all':
             comment_iface = Comment()
-            comment_list = yield comment_iface.admin_get_all()
+            comment_list = yield comment_iface.get_all()
             self.write({ 'elements' : len(comment_list), 'comments' : comment_list })
 
         if what == 'profiles' or what == 'all':
@@ -704,6 +737,16 @@ class EntryCollection(BaseHandler):
             rconf_iface = ReceiverConfs()
             rconf_list = yield rconf_iface.admin_get_all()
             self.write({ 'elements' : len(rconf_list), 'settings' : rconf_list })
+
+        if what == 'submission' or what == 'all':
+            submission_iface = Submission()
+            submission_list = yield submission_iface.get_all()
+            self.write({ 'elements' : len(submission_list), 'settings' : submission_list })
+
+        if what == 'context' or what == 'all':
+            context_iface = Context()
+            context_list = yield context_iface.admin_get_all()
+            self.write({ 'elements' : len(context_list), 'settings' : context_list })
 
 
         if not what in expected:

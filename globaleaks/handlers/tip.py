@@ -60,18 +60,15 @@ class TipInstance(BaseHandler):
         the format, help in addressing which kind of Tip need to be handled.
         """
 
-        # file_iface = File()
-
         try:
             if is_receiver_token(tip_token):
                 requested_t = ReceiverTip()
-                tip_description = yield requested_t.receiver_get_single(tip_token)
+                tip_description = yield requested_t.get_single(tip_token)
             else:
                 requested_t = WhistleblowerTip()
-                tip_description = yield requested_t.whistleblower_get_single(tip_token)
+                tip_description = yield requested_t.get_single(tip_token)
 
-            tip_description.pop('receiver_map')
-            # need to be provided by input filtering
+            # TODO output filtering: actorsTipDesc
             self.set_status(200)
             self.write(json.dumps(tip_description))
 
@@ -135,11 +132,6 @@ class TipInstance(BaseHandler):
             self.set_status(e.http_status)
             self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
-        else:
-            # this need a dedicated entry in error dict
-            self.set_status(410)
-            self.write({'error_message' : 'receiver Tip not used', 'error_code' : 123})
-
         self.finish()
 
 
@@ -168,6 +160,7 @@ class TipInstance(BaseHandler):
             self.set_status(e.http_status)
             self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
+        self.finish()
 
 
 class TipCommentCollection(BaseHandler):
@@ -192,13 +185,12 @@ class TipCommentCollection(BaseHandler):
 
             if is_receiver_token(tip_token):
                 requested_t = ReceiverTip()
-                tip_description = yield requested_t.receiver_get_single(tip_token)
+                tip_description = yield requested_t.get_single(tip_token)
             else:
                 requested_t = WhistleblowerTip()
-                tip_description = yield requested_t.whistleblower_get_single(tip_token)
+                tip_description = yield requested_t.get_single(tip_token)
 
             comment_iface = Comment()
-            print tip_description
             comment_list = yield comment_iface.get_comment_related(tip_description['internaltip_id'])
 
             self.set_status(200)
@@ -234,14 +226,14 @@ class TipCommentCollection(BaseHandler):
 
                 requested_t = ReceiverTip()
 
-                tip_description = yield requested_t.admin_get_single(tip_token)
+                tip_description = yield requested_t.get_single(tip_token)
                 comment_stored = yield comment_iface.add_comment(tip_description['internaltip_id'],
                     request['content'], u"receiver", tip_description['receiver_gus'])
 
             else:
                 requested_t = WhistleblowerTip()
 
-                tip_description = yield requested_t.admin_get_single(tip_token)
+                tip_description = yield requested_t.get_single(tip_token)
                 comment_stored = yield comment_iface.add_comment(tip_description['internaltip_id'],
                     request['content'], u"whistleblower")
 
@@ -283,16 +275,16 @@ class TipReceiversCollection(BaseHandler):
             if is_receiver_token(tip_token):
 
                 requested_t = ReceiverTip()
-                tip_description = yield requested_t.admin_get_single(tip_token)
+                tip_description = yield requested_t.get_single(tip_token)
 
             else:
 
                 requested_t = WhistleblowerTip()
-                tip_description = yield requested_t.admin_get_single(tip_token)
+                tip_description = yield requested_t.get_single(tip_token)
 
             itip_iface = InternalTip()
 
-            inforet = yield itip_iface.get_receivers_map(tip_description['internaltip_id'])
+            inforet = yield itip_iface.get_receivers_by_itip(tip_description['internaltip_id'])
 
             self.write(json.dumps(inforet))
             self.set_status(200)

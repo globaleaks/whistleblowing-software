@@ -156,7 +156,6 @@ class SubmissionFailFields(GLException):
         GLException.error_code = 22
         GLException.http_status = 412 # Precondition Failed
 
-
 class InvalidTipAuthToken(GLException):
     """
     Authentication is failed, for Receiver or Whistleblower, because do not rely
@@ -168,17 +167,15 @@ class InvalidTipAuthToken(GLException):
         GLException.error_code = 23
         GLException.http_status = 401 # Unauthorized
 
-
 class PluginNameNotFound(GLException):
     """
-    Authentication is failed, for Receiver or Whistleblower, because do not rely
-    only in the secret Token (Tip Gus knowledge or receipt).
+    Plugin Name do not exists between the available plugins
     """
 
     def __init__(self):
-        GLException.error_message = "Authentication in Tip failed"
-        GLException.error_code = 23
-        GLException.http_status = 401 # Unauthorized
+        GLException.error_message = "Plugin Name not found"
+        GLException.error_code = 24
+        GLException.http_status = 404 # Unauthorized
 
 class ForbiddenOperation(GLException):
     """
@@ -186,8 +183,18 @@ class ForbiddenOperation(GLException):
     """
 
     def __init__(self):
-        GLException.error_code = "Operation Forbidden"
-        GLException.error_code = 24
+        GLException.error_message = "Operation Forbidden"
+        GLException.error_code = 25
         GLException.http_status = 401 # Unauthorized
+
+class FileGusNotFound(GLException):
+    """
+    The requested file Gus do not exist in the database
+    """
+
+    def __init__(self):
+        GLException.error_message = "Not found a File with the specified GUS identifier"
+        GLException.error_code = 26
+        GLException.http_status = 404 # Not Found
 
 

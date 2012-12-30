@@ -75,26 +75,29 @@ class APSNotification(GLJob):
 
             settings['receiver_fields'].update({'mail_addr' : single_tip['notification_fields']})
 
-            if plugin_code.do_notify(settings, notification_format):
+            if False:
+            # if plugin_code.do_notify(settings, notification_format):
                 yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
             else:
                 yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
 
 
         # Comment Notification procedure
-        internaltip_iface = InternalTip()
         comment_iface = Comment()
+        internaltip_iface = InternalTip()
 
         not_notified_comments = yield comment_iface.get_comment_by_mark(marker=u'not notified')
 
+        # A lot to be review
+        """
         for comment in not_notified_comments:
 
             # notification_format = comment['author'] if comment['author'] else comment['source']
             # Remind - at the moment the nome is no more given, but author_gus is used instead.
             # Need to be reused for this utility ? TODO
 
-            receivers_list = yield internaltip_iface.get_notification_list(comment['internaltip_id'])
-            # receiver_list is composed by [ notification_selected, notification_fields ]
+            receivers_list = yield internaltip_iface.get_receivers_by_itip(comment['internaltip_id'])
+            # receivers_list contain all the Receiver description related to InternalTip.id
 
             for receiver_info in receivers_list:
 
@@ -114,10 +117,11 @@ class APSNotification(GLJob):
                 # TODO digest check
 
                 # new scheduler logic will fix also the lacking of comments notification status
-                plugin_code.do_notify(settings, notification_format)
+                # plugin_code.do_notify(settings, notification_format)
 
             # this is not yet related to every receiver, because there are not yet a tracking
             # struct about the notifications statuses.
             yield comment_iface.flip_mark(comment['comment_id'], u'notified')
             # This would be refactored with with the task manager + a comment for every receiver
+        """
 

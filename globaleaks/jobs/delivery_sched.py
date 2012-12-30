@@ -9,7 +9,7 @@
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.externaltip import Folder
+from globaleaks.models.externaltip import File, ReceiverTip
 from datetime import datetime
 
 __all__ = ['APSDelivery']
