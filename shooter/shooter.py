@@ -57,13 +57,13 @@ URTA = {
     'A4_GET':'GET_/admin/receiver',
     'A6_GET':'GET_/admin/plugin',
     'A9_GET':'GET_/admin/statistics/',
-    'AA_GET':'GET_/admin/overview/@OID@',
+    'AA_GET':'GET_/admin/overview/@DUMP@',
     'A3_PUT':'PUT_/admin/context/@CID@',
     'A3_DELETE':'DELETE_/admin/context/@CID@',
     'A3_GET':'GET_/admin/context/@CID@',
 
-    'AB_DELETE':'DELETE_/admin/tasks/@OID@',
-    'AB_GET':'GET_/admin/tasks/@OID@'
+    'AB_DELETE':'DELETE_/admin/tasks/@TASK@',
+    'AB_GET':'GET_/admin/tasks/@TASK@'
 }
 
 baseurl = "http://127.0.0.1:8082"
@@ -155,14 +155,15 @@ def fix_varline(inputline):
             '@SID@': 'sid', # Session GUS
             '@RID@': 'rid', # Receiver GUS
             '@RAW@': 'raw', # RAW JSON string
-            '@OID@': 'oid', # task scheduled type, or table shortnames
+            '@TASK@': 'task', # task scheduled type, or table shortnames
+            '@DUMP@': 'dump', # task scheduled type, or table shortnames
             '@PID' : 'pid', # Profile GUS (plugin)
             '@CN@' : 'cn'   # Configuration Number (numeric ID)
                 }.iteritems():
 
         if inputline.find(var) > 0:
 
-            # is expected in command line: tip,rid,cid,sid,oid or raw
+            # is expected in command line: tip,rid,cid,sid,dump,task or raw
             user_parm = getOpt(argopt)
 
             if user_parm is None:
@@ -273,7 +274,7 @@ if __name__ == '__main__':
 
     if len(sys.argv) < 2:
         print sys.argv[0], "[portion of REST]|URTA code", "<method>",
-        "<sid>|<cid>|<tip>|<rid>|<raw>|<oid>|<pid>|<cn>"
+        "<sid>|<cid>|<tip>|<rid>|<raw>|<task>|<dump>|<pid>|<cn>"
         quit(1)
 
     if sys.argv[1] == 'help':
@@ -281,8 +282,8 @@ if __name__ == '__main__':
             (urta, method) = key.split("_")
             (dirt, path) = value.split("_")
             print "%s\t%s\t%s" % (urta, method, path)
-        print "A5 oid = [receivers|itip|rtip|wtip|all]"
-        print "A6 oid = [statistics|welcome|tip|delivery|notification|cleaning|digest]"
+        print "AA dump = [receivers|itip|rtip|wtip|context|submission|file|all]"
+        print "AB task = [statistics|welcome|tip|delivery|notification|cleaning|digest]"
         quit(0)
 
     for uarg in sys.argv:

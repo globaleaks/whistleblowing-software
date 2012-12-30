@@ -3,10 +3,10 @@
 SHOOTER="python shooter.py"
 
 # disable scheduled operations
-$SHOOTER AB DELETE oid alljobs
+$SHOOTER AB DELETE task alljobs
 
 # get all the receiver tips
-tip_list=`$SHOOTER AA GET oid rtip print-tip_gus | grep -v None`
+tip_list=`$SHOOTER AA GET dump rtip print-tip_gus | grep -v None`
 if [ $? != 0 ]; then echo "\tError in AA GET (Receiver Tip GUS)" && exit; fi
 echo -n "Receiver comments: "
 for tip in $tip_list; do
@@ -16,7 +16,7 @@ for tip in $tip_list; do
 done
 echo " done."
 
-receipt_list=`$SHOOTER AA GET oid wtip print-receipt`
+receipt_list=`$SHOOTER AA GET dump wtip print-receipt`
 if [ $? != 0 ]; then echo "\tError in A5 GET (WhistleBlower Receipts)" && exit; fi
 echo -n "WhistleBlower comments: "
 for wb_receipt in $receipt_list; do
@@ -31,4 +31,4 @@ $SHOOTER T2 GET tip $tip verbose
 if [ $? != 0 ]; then echo "\tError in T1 GET (tip)" && exit; fi
 
 echo "forcing comments notification"
-$SHOOTER AB GET oid notification
+$SHOOTER AB GET task notification

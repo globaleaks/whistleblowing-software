@@ -147,7 +147,7 @@ class Receiver(TXModel):
         if requested_r is None:
             raise ReceiverGusNotFound
 
-        retReceiver = requested_r._description_dict()
+        retReceiver = dict(requested_r._description_dict())
 
         return retReceiver
 
@@ -303,24 +303,24 @@ class Receiver(TXModel):
     def _description_dict(self):
 
         descriptionDict = {
-            'receiver_gus' : self.receiver_gus,
-            'name' : self.name,
-            'description' : self.description,
-            'tags' : self.tags if self.tags else [],
-            'languages' : self.know_languages if self.know_languages else [],
-            'notification_selected' : self.notification_selected,
-            'notification_fields' : self.notification_fields,
-            'delivery_selected' :  self.delivery_selected,
-            'delivery_fields' :  self.delivery_fields,
-            'creation_date' : gltime.prettyDateTime(self.creation_date),
-            'update_date' : gltime.prettyDateTime(self.update_date),
-            'last_access' : gltime.prettyDateTime(self.last_access),
-            'contexts' : self.contexts if self.contexts else [],
-            'receiver_level' : self.receiver_level,
-            'can_delete_submission' : self.can_delete_submission,
-            'can_postpone_expiration' : self.can_postpone_expiration,
-            'can_configure_delivery' : self.can_configure_delivery,
-            'can_configure_notification' : self.can_configure_notification
+            'receiver_gus' : unicode(self.receiver_gus),
+            'name' : unicode(self.name),
+            'description' : unicode(self.description),
+            'tags' : list(self.tags) if self.tags else [],
+            'languages' : list(self.know_languages) if self.know_languages else [],
+            'notification_selected' : unicode(self.notification_selected),
+            'notification_fields' : list(self.notification_fields) if self.notification_fields else {},
+            'delivery_selected' : unicode(self.delivery_selected),
+            'delivery_fields' : dict(self.delivery_fields) if self.delivery_fields else {},
+            'creation_date' : unicode(gltime.prettyDateTime(self.creation_date)),
+            'update_date' : unicode(gltime.prettyDateTime(self.update_date)),
+            'last_access' : unicode(gltime.prettyDateTime(self.last_access)),
+            'contexts' : list(self.contexts) if self.contexts else [],
+            'receiver_level' : int(self.receiver_level),
+            'can_delete_submission' : bool(self.can_delete_submission),
+            'can_postpone_expiration' : bool(self.can_postpone_expiration),
+            'can_configure_delivery' : bool(self.can_configure_delivery),
+            'can_configure_notification' : bool(self.can_configure_notification)
         }
         return descriptionDict
 
