@@ -63,10 +63,11 @@ class Submission(TXModel):
         submission.context_gus = context_gus
         submission.context = associated_c
 
-        # XXX this was important and actually IS bugged -- review that /me vecna
-        # submission.receivers = associated_c.get_receivers('public')
-        submission.receivers = associated_c.receivers
-        # XXX this was important and actually IS bugged -- review that /me vecna
+        # receivers is a list of receiver_gus
+        if associated_c.selectable_receiver:
+            submission.receivers = []
+        else:
+            submission.receivers = associated_c.receivers
 
         submission.files = {}
 
@@ -121,12 +122,13 @@ class Submission(TXModel):
         if not s:
             raise SubmissionGusNotFound
 
+        # TODO
         # Fields are specified in adminContextDesc with 'fields'
         # and need to be checked using the contexts.fields key
         # only the requested key are searched in the fields.
         # all the other keys are ignored.
         # all the keys need to be validated based on the type
-
+        # TODO
         s.fields = fields
 
     @transact
@@ -135,14 +137,23 @@ class Submission(TXModel):
         store = self.getStore()
 
         try:
-            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+            requested_s = store.find(Submission, Submission.submission_gus == submission_gus).one()
         except NotOneError:
             raise SubmissionGusNotFound
         if requested_s is None:
             raise SubmissionGusNotFound
 
-        # TODO checks that all the receiver declared in receivers EXISTS!!
-        requested_s.receivers = receivers
+        if requested_s.context.selectable_receiver:
+            # TODO checks that all the receiver declared in receivers EXISTS!!
+            # (or raise ReceiverGusNotFound)
+            requested_s.receivers = receivers
+        else:
+            print "Receiver selection choosen in a Context that do not supports this option"
+            print requested_s.receivers, "=", requested_s.context.receivers
+
+        # If the setting is not acceptable,
+        # the request is silently ignored, and the receiver corpus returned
+        # by the API is the same unchanged.
 
     @transact
     def status(self, submission_gus):
@@ -152,7 +163,6 @@ class Submission(TXModel):
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
         except NotOneError:
-            # its not possible: is a primary key
             raise SubmissionGusNotFound
         if requested_s is None:
             raise SubmissionGusNotFound
@@ -171,6 +181,7 @@ class Submission(TXModel):
         temp_stuff = "%s_%s" % (receipt_proposal, random.random_string(5, 'A-Z,0-9') )
         return temp_stuff
 
+
     @transact
     def receipt_proposal(self, submission_gus, proposed_receipt):
 
@@ -187,13 +198,14 @@ class Submission(TXModel):
 
         requested_s.receipt = unicode(self._receipt_evaluation(proposed_receipt))
 
+
     @transact
     def complete_submission(self, submission_gus):
         """
         need a best-safe receipt feat
         """
 
-        store = self.getStore('complete_submission')
+        store = self.getStore()
 
         try:
             requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
@@ -202,6 +214,7 @@ class Submission(TXModel):
         if requested_s is None:
             raise SubmissionGusNotFound
 
+        # XXX log
         log.debug("Creating internal tip in", requested_s.context_gus,
             "from", requested_s.submission_gus, "with", requested_s.files)
 
@@ -213,35 +226,21 @@ class Submission(TXModel):
         # Initialize all the Storm fields inherit by Submission and Context
         internal_tip.initialize(requested_s)
 
-        # here is created the table with receiver selected (an information stored only in the submission)
-        # and the threshold escalation. Is not possible have a both threshold and receiver
-        # selection in this moment (other complications can derived from use them both)
+        # The list of receiver (receiver_gus) has been already evaluated by submission
+        # initialization or update_receivers function. need just to be copied in
+        # InternalTip.
         for single_r in requested_s.receivers:
+            # TODO XXX Applicative log
+            print "++ I'm putting in internaltip ", single_r, "from", requested_s.receivers, "to:", internal_tip.receivers
+            internal_tip.receivers.append(single_r)
 
-            # this is an hack that need to be fixed short as possible.
-            # receiver_map is an outdated concept
-            # XXX TODO XXX TODO
-            if type(single_r) == type({}):
-                receiver_gus = single_r.get('receiver_gus')
-            else:
-                receiver_gus = single_r
 
-            try:
-                selected_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
-            except NotOneError:
-                store.close()
-                raise ReceiverGusNotFound
-            if not selected_r:
-                store.close()
-                raise ReceiverGusNotFound
+        # The list of file need to be processed, and the completed files, need to
+        # be put in the processing queue and restore the reference in File
+        for single_f in requested_s.files:
+            # TODO
+            print "TODO XXX, need to be processed", single_f
 
-            internal_tip.associate_receiver(selected_r)
-
-        store.add(internal_tip)
-
-        log.debug("Created internal tip %s" % internal_tip.context_gus)
-
-        log.debug("Creating tip for whistleblower")
         whistleblower_tip = WhistleblowerTip()
         whistleblower_tip.internaltip_id = internal_tip.id
         whistleblower_tip.internaltip = internal_tip
@@ -251,11 +250,14 @@ class Submission(TXModel):
 
         statusDict = requested_s._description_dict()
 
-        # remind: receipt is the UNICODE PRIMARY KEY of WhistleblowerTip
+        # receipt is the UNICODE PRIMARY KEY of WhistleblowerTip
         whistleblower_tip.receipt = unicode(requested_s.receipt)
         # TODO whistleblower_tip.authoptions would be filled here
 
+        store.add(internal_tip)
         store.add(whistleblower_tip)
+        # store.remove(requested_s)
+
         log.debug("Created tip with address %s, Internal Tip and Submission removed" % whistleblower_tip.receipt)
 
         return statusDict
@@ -275,12 +277,12 @@ class Submission(TXModel):
 
         store.remove(requested_s)
 
+
     @transact
     def get_single(self, submission_gus):
 
         store = self.getStore()
 
-        # I didn't understand why, but NotOneError is not raised even if the search return None
         try:
             requested_s = store.find(Submission, Submission.submission_gus == submission_gus).one()
         except NotOneError:
@@ -291,6 +293,7 @@ class Submission(TXModel):
         retSubmission = requested_s._description_dict()
 
         return retSubmission
+
 
     @transact
     def get_all(self):
@@ -306,17 +309,18 @@ class Submission(TXModel):
 
         return subList
 
+
     # called by a transact method, return
     def _description_dict(self):
 
         descriptionDict = {
             'submission_gus': self.submission_gus,
-            'fields' : self.fields,
+            'fields' : dict(self.fields) if self.fields else {},
             'context_gus' : self.context_gus,
             'creation_time' : gltime.prettyDateTime(self.creation_time),
             'expiration_time' : gltime.prettyDateTime(self.expiration_time),
-            'receivers' : self.receivers,
-            'files' : self.files if self.files else {},
+            'receivers' : list(self.receivers) if self.receivers else [],
+            'files' : dict(self.files) if self.files else {},
             'receipt' : self.receipt
         }
 

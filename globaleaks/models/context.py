@@ -81,8 +81,8 @@ class Context(TXModel):
 
         try:
             cntx._import_dict(context_dict)
-        except KeyError:
-            raise InvalidInputFormat("Import failed near the Storm")
+        except KeyError, e:
+            raise InvalidInputFormat("Context Import failed (missing %s)" % e)
 
         store.add(cntx)
         log.msg("Created context %s at the %s" % (cntx.name, cntx.creation_date) )
@@ -111,8 +111,8 @@ class Context(TXModel):
 
         try:
             requested_c._import_dict(context_dict)
-        except KeyError:
-            raise InvalidInputFormat("Import failed near the Storm")
+        except KeyError, e:
+            raise InvalidInputFormat("Context Import failed (missing %s)" % e)
 
         requested_c.update_date = gltime.utcDateNow()
 
@@ -138,7 +138,11 @@ class Context(TXModel):
         # this is not a yield because getStore is not yet called!
         unlinked_receivers = receiver_iface.unlink_context(context_gus)
 
-        # TODO - delete all the tips associated with the context
+        # Other guarantee operations are:
+        #
+        # delete all the tips associated with the context, comments and files.
+        # This is called by the handler, before invoke delete_context
+
         # TODO - delete all the jobs associated with the context
         # TODO - delete all the stats associated with the context
         # TODO - align all the receivers present in self.receivers

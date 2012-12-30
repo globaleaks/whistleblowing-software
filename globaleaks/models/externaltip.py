@@ -3,7 +3,7 @@
 #   models/externaltip
 #   ******************
 #
-# implementatin of Storm DB side of ReceiverTip and WhistleblowerTip
+# implementation of Storm DB side of ReceiverTip and WhistleblowerTip
 # and File and Comment tables, all those tables has relationship with
 # InternalTip
 
@@ -16,7 +16,8 @@ from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.internaltip import InternalTip
-from globaleaks.rest.errors import TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed, ReceiverGusNotFound
+from globaleaks.rest.errors import TipGusNotFound, TipReceiptNotFound,\
+    TipPertinenceExpressed, ReceiverGusNotFound, FileGusNotFound
 
 __all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip' ]
 
@@ -50,9 +51,10 @@ class ReceiverTip(TXModel):
 
     # is not a transact operation, is self filling, called by
     # create_receiver_tips
-    def initialize(self, mapped, selected_it, receiver_subject):
+    def initialize(self, selected_it, receiver_subject):
 
-        log.debug("ReceverTip initialize, with", mapped)
+        # XXX TODO log verbose
+
         self.tip_gus = idops.random_tip_gus()
 
         self.notification_mark = u'not notified'
@@ -78,11 +80,11 @@ class ReceiverTip(TXModel):
         @param status: unicode!
         @return:
         """
-        store = self.getStore('get_tips')
+        store = self.getStore()
 
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
         if not marker in notification_markers:
-            raise Exception("Invalid developer brain dictionary", marker)
+            raise NotImplemented
 
         # XXX ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
         marked_tips = store.find(ReceiverTip, ReceiverTip.notification_mark == marker)
@@ -98,25 +100,6 @@ class ReceiverTip(TXModel):
 
         return retVal
 
-    @transact
-    def get_receiver_by_tip(self, tip_gus):
-        """
-        @param tip_gus: a valid tip gus
-        @return: Receiver description based on the associated tip_gus
-        """
-        store = self.getStore('get_receiver_by_tip')
-
-        try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
-        except NotOneError, e:
-            raise TipGusNotFound
-        if not requested_t:
-            raise TipGusNotFound
-
-        retDict = requested_t.receiver._description_dict()
-        return retDict
-
-
     # XXX this would be moved in the new 'task queue'
     @transact
     def flip_mark(self, tip_gus, newmark):
@@ -124,20 +107,19 @@ class ReceiverTip(TXModel):
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
 
         if not newmark in notification_markers:
-            raise Exception("Invalid developer brain dictionary", newmark)
+            raise NotImplemented
 
-        store = self.getStore('flip mark')
+        store = self.getStore()
 
         requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         requested_t.notification_mark = newmark
 
     @transact
-    def admin_get_all(self):
+    def get_all(self):
         """
         this is called only by /admin/overview API
         """
-
-        store = self.getStore('receivertip - admin_get_all')
+        store = self.getStore()
 
         all_rt = store.find(ReceiverTip)
 
@@ -147,58 +129,40 @@ class ReceiverTip(TXModel):
 
         return retVal
 
-    @transact
-    def admin_get_single(self, tip_gus):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "admin_get_single", tip_gus)
+    # Removed - unused, right ?
+    # def receivertip_get_single(self, tip_gus):
 
-        store = self.getStore('admin_get_single')
+    @transact
+    def get_single(self, tip_gus):
+        """
+        This is the method called when a receiver is accessing to Tip. It return
+        InternalTip details and update the last_access date.
+        """
+        store = self.getStore()
 
         try:
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
-        except NotOneError, e:
+        except NotOneError:
             raise TipGusNotFound
         if not requested_t:
             raise TipGusNotFound
 
-        retDict = requested_t._description_dict()
-        return retDict
+        # Access counter is incremented before the data extraction,
+        # last_access is incremented after (because the receiver want know
+        # if someone has accesses in his place)
+        requested_t.access_counter += 1
 
-    @transact
-    def receiver_get_single(self, tip_gus):
-        """
-        This is the method called when a receiver is accessing to Tip. sometimes, the
-        Receiver is listening: http://www.youtube.com/watch?v=MokNvbiRqCM but this do not
-        interact with globaleaks, so, keep sharing! ;)
-        """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "receiver_get_single", tip_gus)
-
-        store = self.getStore('receiver_get_single')
-
-        try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
-        except NotOneError, e:
-            raise TipGusNotFound
-        if not requested_t:
-            raise TipGusNotFound
-
-        requested_t.last_activity = gltime.utcPrettyDateNow()
+        # The single tip dump is composed by InternalTip + ReceiverTip details
         tip_details = requested_t.internaltip._description_dict()
+        tip_details.update(requested_t._description_dict())
 
-        # Those elements are overrided by others API
-        #receivers_info = requested_t.internaltip._receivers_description()
-        #tip_info = requested_t._description_dict()
-        #ret_dict = { 'tip_details' : tip_details, 'tip_info' : tip_info, 'receivers_info' : receivers_info }
+        requested_t.last_access = gltime.utcTimeNow()
 
-        # need to return tip_gus too
+        # need to be added the receipt in the message dictionary
+        # ad the identifier of the resource is in fact the auth key
         tip_details.update({ 'id' : requested_t.tip_gus })
 
-        return tip_details
-
-    @transact
-    def receiver_get_index(self, tip_gus):
-        """
-        Return a small portion of the Tip, just the element useful to create tipIndexDict
-        """
+        return dict(tip_details)
 
     @transact
     def pertinence_vote(self, tip_gus, vote):
@@ -207,13 +171,12 @@ class ReceiverTip(TXModel):
         mark the expressed vote and call the internaltip to register the fact.
         @vote would be True or False, default is "I'm not expressed"
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverTip", "pertinence_vote", tip_gus)
 
-        store = self.getStore('pertinence_vote')
+        store = self.getStore()
 
         try:
             requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
-        except NotOneError, e:
+        except NotOneError:
             raise TipGusNotFound
         if not requested_t:
             raise TipGusNotFound
@@ -228,21 +191,221 @@ class ReceiverTip(TXModel):
         requested_t.expressed_pertinence = 2 if vote else 1
 
         requested_t.internaltip.pertinence_update(vote)
-        requested_t.last_activity = gltime.utcPrettyDateNow()
+        requested_t.last_access = gltime.utcTimeNow()
+
 
     @transact
-    def total_delete(self, tip_gus):
+    def get_sibiligs_by_tip(self, tip_gus):
         """
-        checks if Receiver has the right of this operation, and forward to InternalTip.tip_total_delete()
+        @param tip_gus: a valid tip_gus
+        @return: a list composed with:
+            [ [ sibilings_ReceiverTip ], this_ReceiverTip, InternalTip ]
+        this function is needed to perform "total delete" feature, return the
+        list of all the ReceiverTip descending from the same InternalTip.
+
+        This method is called by internal routine, not by Receiver
         """
-        raise Exception("total_delete do not implement ATM")
+
+        store = self.getStore()
+
+        try:
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        except NotOneError:
+            raise TipGusNotFound
+        if not requested_t:
+            raise TipGusNotFound
+
+        sibilings = store.find(ReceiverTip, ReceiverTip.internaltip_id == requested_t.internaltip_id)
+
+        sibilings_description = []
+        for s in sibilings:
+
+            if s.tip_gus == requested_t.tip_gus:
+                continue
+
+            single_description = s._description_dict()
+            sibilings_description.append(single_description)
+
+
+        requested_description = requested_t._description_dict()
+        internal_description = requested_t.internaltip._description_dict()
+
+        retList = [ sibilings_description, requested_description, internal_description ]
+        return retList
+
+
+    @transact
+    def get_receivers_by_tip(self, tip_gus):
+        """
+        @param tip_gus: a valid tip gus
+        @return: a list composed with:
+            [ [ other_Receivers ], this_Receiver, [ mapped_receivers_in_itip]  ]
+        The third field can be ignored.
+
+        The structured contain a complete receivers description, all the Receiver
+        description working on the same InternalTip.
+        """
+        store = self.getStore()
+
+        try:
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        except NotOneError:
+            raise TipGusNotFound
+        if not requested_t:
+            raise TipGusNotFound
+
+        sibilings_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == requested_t.internaltip_id)
+
+        other_receivers = []
+        for s in sibilings_tips:
+
+            if s.tip_gus == requested_t.tip_gus:
+                continue
+
+            receiver_desc = s.receiver._description_dict()
+            other_receivers.append(receiver_desc)
+
+        requester_receiver = requested_t.receiver._description_dict()
+        internaltip_receivers =  requested_t.internaltip.receivers
+
+        retList = [ other_receivers, requester_receiver, internaltip_receivers ]
+        return retList
+
+
+    @transact
+    def get_tips_by_tip(self, tip_gus):
+        """
+        @param tip_gus: a valid tip gus
+        @return: a list composed with:  [ [ other_Tips_of_the_same_Receiver ], requested RecvTip ]
+        containing a complete ReceiverTip description.
+        """
+        store = self.getStore()
+
+        try:
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        except NotOneError:
+            raise TipGusNotFound
+        if not requested_t:
+            raise TipGusNotFound
+
+        other_tips = store.find(ReceiverTip, ReceiverTip.receiver_gus == requested_t.receiver_gus)
+
+        tips = []
+        for t in other_tips:
+
+            if t.tip_gus == tip_gus:
+                continue
+
+            tips.append(t._description_dict())
+
+
+        requested_tip = requested_t._description_dict()
+
+        retList = [ tips, requested_tip ]
+        return retList
+
+
+    @transact
+    def get_tips_by_context(self, context_gus):
+        """
+        This function works as observer of all the Tips related to a specific Context,
+        This method need to stay in externaltip.py, but for the Storm dependencies
+        I've to choose just one Class in which put this function.
+
+        @param context_gus:
+        @return: a dict with the keys:
+            'internaltip' : InternalTip,
+            'receivertip' : [ ReceiverTips]
+            'whistleblowertip' : [ WhistleBlowerTip ]
+            'comments' : [ Comment ]
+            'files' : [ Files ]
+
+        Remind: this operation can be avoided if DELETE ON CASCADE would be
+        stable and packed into Storm, but I've see works in this topic half month ago,
+        now is the 28 Dec 2012, AKA Year 0 month 0 day 7 AMF (after the MayaFailure )
+        """
+
+        retList = []
+
+        store = self.getStore()
+        itip_related = store.find(InternalTip, InternalTip.context_gus == context_gus)
+
+        for itip in itip_related:
+
+            receiverD = []
+            wbtD = []
+            fileD = []
+            commentD = []
+
+            itipD = itip._description_dict()
+
+            rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == itip.id )
+            for r in rtips:
+                receiverD.append(r._description_dict())
+
+            wtips = store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == itip.id )
+            for w in wtips:
+                wbtD.append(w._description_dict())
+
+            comments = store.find(Comment, Comment.internaltip_id == itip.id )
+            for c in comments:
+                commentD.append(c._description_dict())
+
+            files = store.find(File, File.internaltip_id == itip.id )
+            for f in files:
+                fileD.append(f._description_dict())
+
+            internaltip_related =  {
+                "internaltip" : itipD,
+                "receivertip" : receiverD,
+                "whistleblowertip" : wbtD,
+                "comments" : commentD,
+                "files" : fileD
+            }
+
+            # TODO Applicative log
+            print "Cascade remove of: itip", itipD['internaltip_id'],\
+                "rtip", len(receiverD), "comments", len(commentD), "files", len(fileD)
+            retList.append(internaltip_related)
+
+        return retList
 
     @transact
     def personal_delete(self, tip_gus):
         """
-        remove the Receiver Tip access, then forward to InternalTip.receiver_remove()
+        remove the Receiver Tip access.
+        Happen when a Receiver choose to remove himself from a single Tip analysis,
+            more massive form of Tip remove, are handled by the 'massive_delete' below
+        Is called by handler, handler checks and align eventually references
         """
-        raise Exception("personal_delete do not implemented ATM")
+
+        store = self.getStore()
+
+        try:
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        except NotOneError:
+            raise TipGusNotFound
+        if not requested_t:
+            raise TipGusNotFound
+
+        store.remove(requested_t)
+
+    @transact
+    def massive_delete(self, internaltip_id):
+        """
+        remove the Receiver Tip access.
+        Happen when a when a Context is deleted
+            when an InternalTip is deleted
+            when an InternalTip is expired
+        Is called by handler, handler checks and align eventually references
+        """
+
+        store = self.getStore()
+        # Sadly the matching query can't be used in store.remove()
+        related_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == internaltip_id)
+        for single_tip in related_tips:
+            store.remove(single_tip)
+
 
     # This method is separated by initialize routine, because the tip creation
     # event can be exported/overriden/implemented by a plugin in a certain future.
@@ -251,37 +414,40 @@ class ReceiverTip(TXModel):
     @transact
     def create_receiver_tips(self, id, tier):
         """
-        act on self. create the ReceiverTip based on self.receivers_map
+        act on self. create the ReceiverTip based on InternalTip.receivers
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "ReceiverTip create_receiver_tips", id, "on tier", tier)
-
-        store = self.getStore('create_receiver_tips')
+        store = self.getStore()
 
         selected_it = store.find(InternalTip, InternalTip.id == id).one()
 
-        for i, mapped in enumerate(selected_it.receivers_map):
-
-            if not mapped['receiver_level'] == tier:
-                continue
+        for choosen_r in selected_it.receivers:
 
             try:
-                receiver_subject = store.find(Receiver, Receiver.receiver_gus == selected_it.receivers_map[i]['receiver_gus']).one()
+                receiver_subject = store.find(Receiver, Receiver.receiver_gus == unicode(choosen_r)).one()
             except NotOneError:
-                print "Fatal incredible absolute error!! handled."
+                # This would happen only if a receiver has been removed between the
+                # submission creation and the tip creation.
+                # TODO administrator system error
+                continue
+            if receiver_subject is None:
+                # TODO administrator system error
                 continue
 
-            receiver_tip =  ReceiverTip()
+            if not receiver_subject.receiver_level == tier:
+                continue
 
-            # is initialized a Tip that need to be notified
-            receiver_tip.initialize(mapped, selected_it, receiver_subject)
+            new_receiver_tip =  ReceiverTip()
+
+            # is initialized a Tip, that need to be notified
+            new_receiver_tip.initialize(selected_it, receiver_subject)
 
             # TODO receiver_subject.update_timings()
 
-            selected_it.receivers_map[i]['tip_gus'] = receiver_tip.tip_gus
-            store.add(receiver_tip)
+            store.add(new_receiver_tip)
 
 
-    # called by a transact operation, dump the ReceiverTip
+    # called by a transact operation,dump the ReceiverTip (without the Tip details,
+    # they stay in InternalTip)
     def _description_dict(self):
 
         descriptionDict = {
@@ -289,14 +455,14 @@ class ReceiverTip(TXModel):
             'tip_gus' : self.tip_gus,
             'notification_mark' : self.notification_mark,
             'notification_date' : gltime.prettyDateTime(self.notification_date),
-            'last_access' : gltime.prettyDateTime(self.last_access),
+            'last_access' : gltime.prettyDateTime(self.last_access) if self.last_access else 'Never',
             'access_counter' : self.access_counter,
             'expressed_pertinence': self.expressed_pertinence,
             'receiver_gus' : self.receiver_gus,
             'receiver_name' : self.receiver.name,
             'authoptions' : self.authoptions
         }
-        return descriptionDict
+        return dict(descriptionDict)
 
 
 class WhistleblowerTip(TXModel):
@@ -320,42 +486,42 @@ class WhistleblowerTip(TXModel):
         # and a signature schema can be used. other options would be available,
         # they are not yet specified.
 
+    last_access = DateTime()
+
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
 
     @transact
-    def whistleblower_get_single(self, receipt):
+    def get_single(self, receipt):
 
-        store = self.getStore('wb_tips - whistleblower_get_single ')
+        store = self.getStore()
 
         try:
             requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
-        except NotOneError, e:
+        except NotOneError:
             raise TipReceiptNotFound
         if not requested_t:
             raise TipReceiptNotFound
 
         wb_tip_dict = requested_t.internaltip._description_dict()
+        requested_t.last_access = gltime.utcTimeNow()
 
         complete_tip_dict = wb_tip_dict
 
-        # now supply by other API
-        #complete_tip_dict.update({'receivers' : requested_t.internaltip._receivers_description() })
-        #complete_tip_dict.update({'comments' : comments})
-
-        # need to add receipt in the dict, ad identifier of the resource
+        # need to be added the receipt in the message dictionary
+        # ad the identifier of the resource is in fact the auth key
         complete_tip_dict.update({ 'id' : requested_t.receipt })
 
         return complete_tip_dict
 
     @transact
-    def admin_get_all(self):
+    def get_all(self):
         """
         This is called by API /admin/overview only
         """
 
-        store = self.getStore('wb_tips - admin_get_all')
+        store = self.getStore()
 
         all_wt = store.find(WhistleblowerTip)
 
@@ -366,87 +532,32 @@ class WhistleblowerTip(TXModel):
         return retVal
 
     @transact
-    def admin_get_single(self, receipt):
-        log.debug("[D] %s %s " % (__file__, __name__), "Class WhistleBlowerTip", "admin_get_single", receipt)
-
-        store = self.getStore('admin_get_single')
+    def delete_access(self, receipt):
+        """
+        a WhistleBlower can delete is own access, removing Whistleblower tip and invalidating the receipt
+        """
+        # XXX Log + system comment need to be called by handler, not by model
+        store = self.getStore()
 
         try:
             requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
-        except NotOneError, e:
+        except NotOneError:
             raise TipReceiptNotFound
         if not requested_t:
             raise TipReceiptNotFound
 
-        retDict = requested_t._description_dict()
-
-        return retDict
+        store.remove(requested_t)
 
     # called by a transact operation, dump the WhistleBlower Tip
     def _description_dict(self):
 
         descriptionDict = {
+            'last_access' :  gltime.prettyDateTime(self.last_access),
             'internaltip_id' : self.internaltip_id,
             'authoption' : self.authoptions,
             'receipt' : self.receipt
         }
-        return descriptionDict
-
-    @transact
-    def delete_access(self):
-        """
-        a WhistleBlower can delete is own access, removing Whistleblower tip and invalidating the receipt
-        """
-        pass
-
-
-# Folder need to be removed
-# Folder need to be removed
-# Folder need to be removed
-class Folder(TXModel):
-    """
-    This represents a file set: a collection of files, description, time
-    Every receiver has a different Folder, and if more folder exists, the
-    number of folder is (R * Folder_N).
-    This is the unique way we had to ensure end to end encryption WB-receiver,
-    and if uncrypted situation, simply the Files referenced here are also
-    referenced in the other Folders.
-    """
-    __storm_table__ = 'folders'
-
-    folder_gus = Unicode(primary=True)
-
-    name = Unicode()
-    description = Unicode()
-    shared = Bool()
-    # track if this folder is shared or single
-
-    property_applied = Pickle()
-    # actually there are not property, but here would be marked if symmetric
-    # asymmetric encryption has been used.
-
-    upload_time = Date()
-
-    internaltip_id = Int()
-    internaltip = Reference(internaltip_id, InternalTip.id)
-
-
-    def file_dicts(self):
-        file_dicts = []
-        log.debug("Processing %s" % self.files)
-        for f in self.files:
-            log.debug("Generating file dict")
-            print "In here y0 %s" % f
-            file_dict = {'name': f.name,
-                    'description': f.description,
-                    'size': f.size,
-                    'content_type': f.content_type,
-                    'date': f.uploaded_date,
-                    'metadata_cleaned': f.metadata_cleaned,
-                    'completed': f.completed}
-            log.debug("Done %s" % file_dict)
-            file_dicts.append(file_dict)
-        return file_dicts
+        return dict(descriptionDict)
 
 
 class File(TXModel):
@@ -475,25 +586,64 @@ class File(TXModel):
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
+    @transact
     def admin_get_all(self):
-        pass
 
-    def get_files_by_itip(self, internaltip_id):
-        pass
+        store = self.getStore()
+
+        files = store.find(File)
+
+        all_files = []
+
+        for single_file in files:
+            all_files.append(single_file._description_dict())
+
+        return all_files
+
 
     @transact
-    def admin_get_single(self, file_gus):
+    def get_files_by_itip(self, internaltip_id):
 
-        store = self.getStore('file - admin_get_single')
+        store = self.getStore()
+
+        referenced_f = store.find(File, File.internaltip_id == internaltip_id)
+
+        referenced_files = []
+
+        for single_file in referenced_f:
+            referenced_files.append(single_file._description_dict())
+
+        return referenced_files
+
+
+    @transact
+    def delete_file_by_itip(self, internaltip_id):
+
+        store = self.getStore()
+
+        referenced_f = store.find(File, File.internaltip_id == internaltip_id)
+
+        counter_test = 0
+        for single_f in referenced_f:
+            counter_test += 1
+            store.remove(single_f)
+
+        return counter_test
+
+
+    @transact
+    def get_single(self, file_gus):
+
+        store = self.getStore()
 
         try:
             filelookedat = store.find(File, File.file_gus ==file_gus).one()
         except NotOneError:
             store.close()
-            raise TipGusNotFound # TODO right error
+            raise FileGusNotFound
         if not filelookedat:
             store.close()
-            raise TipGusNotFound # TODO right error
+            raise FileGusNotFound
 
         desc = filelookedat._description_dict()
 
@@ -506,11 +656,14 @@ class File(TXModel):
             'size' : self.size,
             'file_gus' : self.file_gus,
             'content_type' : self.content_type,
-            'name' : self.name
+            'name' : self.name,
+            'description' : self.description,
+            'uploaded_date': gltime.prettyDateTime(self.uploaded_date),
+            'completed' : self.completed,
+            'metadata_cleaned' : self.metadata_cleaned
+
         }
-        return descriptionDict
-
-
+        return dict(descriptionDict)
 
 
 class Comment(TXModel):
@@ -545,9 +698,9 @@ class Comment(TXModel):
             "itip_id", itip_id, "source", source, "author_gus", author_gus)
 
         if not source in [ u'receiver', u'whistleblower', u'system' ]:
-            raise Exception("Invalid developer brain status", source)
+            raise NotImplemented
 
-        store = self.getStore('add_comment')
+        store = self.getStore()
 
         # this approach is a little different from the other classes in ExternalTip
         # they use a new Object() in the caller method, and then Object.initialize
@@ -579,7 +732,7 @@ class Comment(TXModel):
         if not newmark in notification_markers:
             raise Exception("Invalid developer brain dictionary", newmark)
 
-        store = self.getStore('flip mark')
+        store = self.getStore()
 
         requested_c = store.find(Comment, Comment.id  == comment_id).one()
         requested_c.notification_mark = newmark
@@ -591,7 +744,7 @@ class Comment(TXModel):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Comment class", "get_comment_related", internltip_id)
 
-        store = self.getStore('get_comment_related')
+        store = self.getStore()
 
         comment_list = store.find(Comment, Comment.internaltip_id == internltip_id)
 
@@ -601,11 +754,27 @@ class Comment(TXModel):
 
         return retDict
 
+
+    @transact
+    def delete_comment_by_itip(self, internaltip_id):
+
+        store = self.getStore()
+
+        comments_selected = store.find(Comment, Comment.internaltip_id ==  internaltip_id)
+
+        counter_test = 0
+        for single_c in comments_selected:
+            counter_test += 1
+            store.remove(single_c)
+
+        return counter_test
+
+
     @transact
     # XXX part of the schedule object refactor in TODO
     def get_comment_by_mark(self, marker):
 
-        store = self.getStore('get_comment_by_mark')
+        store = self.getStore()
 
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
         if not marker in notification_markers:
@@ -619,12 +788,13 @@ class Comment(TXModel):
 
         return retVal
 
+
     @transact
-    def admin_get_all(self):
+    def get_all(self):
         """
         This is called by API /admin/overview only
         """
-        store = self.getStore('comment - admin_get_all')
+        store = self.getStore()
 
         comments = store.find(Comment)
 
@@ -665,3 +835,4 @@ class PublicStats(TXModel):
     active_submissions = Int()
     node_activities = Int()
     uptime = Int()
+

@@ -41,24 +41,21 @@ class SubmissionCreate(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
 
-            submission = Submission()
+            submission_iface = Submission()
             context_iface = Context()
 
-            context_info = context_iface.public_get_single(request['context_gus'])
+            context_info = yield context_iface.public_get_single(request['context_gus'])
             # use requested context, for defaults and so on
 
-            status = yield submission.new(request['context_gus'])
+            status = yield submission_iface.new(request['context_gus'])
             submission_gus = status['submission_gus']
-
-            # submission.receivers = context_iface.
 
             if request.has_key('fields'):
                 log.debug("Fields present in creation: %s" % request['fields'])
-                yield submission.update_fields(submission_gus, request['fields'])
+                yield submission_iface.update_fields(submission_gus, request['fields'])
 
-            # TODO check if context supports receiver_selection
             if request.has_key('receivers'):
-                yield submission.select_receiver(submission_gus, request['receivers'])
+                yield submission_iface.select_receiver(submission_gus, request['receivers'])
 
             self.set_status(201) # Created
             # TODO - output processing
