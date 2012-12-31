@@ -198,14 +198,17 @@ class ReceiverTip(TXModel):
     def get_sibiligs_by_tip(self, tip_gus):
         """
         @param tip_gus: a valid tip_gus
-        @return: a list composed with:
-            [ [ sibilings_ReceiverTip ], this_ReceiverTip, InternalTip ]
+        @return: a dict composed with:
+            {
+                'sibilings': [ sibilings_ReceiverTip ],
+                'requested': this_ReceiverTip,
+                'internaltip': InternalTip
+            }
         this function is needed to perform "total delete" feature, return the
         list of all the ReceiverTip descending from the same InternalTip.
 
         This method is called by internal routine, not by Receiver
         """
-
         store = self.getStore()
 
         try:
@@ -226,12 +229,15 @@ class ReceiverTip(TXModel):
             single_description = s._description_dict()
             sibilings_description.append(single_description)
 
-
         requested_description = requested_t._description_dict()
         internal_description = requested_t.internaltip._description_dict()
 
-        retList = [ sibilings_description, requested_description, internal_description ]
-        return retList
+        retDict = {
+                'sibilings': sibilings_description,
+                'requested': requested_description,
+                'internaltip' : internal_description
+                }
+        return retDict
 
 
     @transact
@@ -239,8 +245,12 @@ class ReceiverTip(TXModel):
         """
         @param tip_gus: a valid tip gus
         @return: a list composed with:
-            [ [ other_Receivers ], this_Receiver, [ mapped_receivers_in_itip]  ]
-        The third field can be ignored.
+            {
+                'others' : [ other_Receivers ],
+                'actor': this_Receiver,
+                'mapped' [ mapped_receivers_in_itip]
+            }
+        The 'mapped' value can be ignored.
 
         The structured contain a complete receivers description, all the Receiver
         description working on the same InternalTip.
@@ -266,17 +276,24 @@ class ReceiverTip(TXModel):
             other_receivers.append(receiver_desc)
 
         requester_receiver = requested_t.receiver._description_dict()
-        internaltip_receivers =  requested_t.internaltip.receivers
+        internaltip_receivers =  list(requested_t.internaltip.receivers)
 
-        retList = [ other_receivers, requester_receiver, internaltip_receivers ]
-        return retList
+        retDict = { 'others': other_receivers,
+                    'actor' : requester_receiver,
+                    'mapped' : internaltip_receivers
+                  }
+        return retDict
 
 
     @transact
     def get_tips_by_tip(self, tip_gus):
         """
         @param tip_gus: a valid tip gus
-        @return: a list composed with:  [ [ other_Tips_of_the_same_Receiver ], requested RecvTip ]
+        @return: a dict composed by:
+            {
+            'othertips': other_Tips_of_the_same_Receiver
+            'request' : requested RecveiverTip
+            }
         containing a complete ReceiverTip description.
         """
         store = self.getStore()
@@ -298,11 +315,27 @@ class ReceiverTip(TXModel):
 
             tips.append(t._description_dict())
 
-
         requested_tip = requested_t._description_dict()
 
-        retList = [ tips, requested_tip ]
-        return retList
+        retDict = { 'othertips' : tips, 'request' : requested_tip }
+        return retDict
+
+    @transact
+    def get_tips_by_receiver(self, receiver_gus):
+        """
+        @param receiver_gus: A receiver_gus
+        @return: a list of ReceiverTip dict associated with receiver_gus
+        """
+
+        store = self.getStore()
+
+        related_t = store.find(ReceiverTip, ReceiverTip.receiver_gus == receiver_gus)
+
+        related_list = []
+        for t in related_t:
+            related_list.append(t._description_dict())
+
+        return related_list
 
 
     @transact
@@ -547,6 +580,17 @@ class WhistleblowerTip(TXModel):
             raise TipReceiptNotFound
 
         store.remove(requested_t)
+
+    @transact
+    def delete_access_by_itip(self, internaltip_id):
+        """
+        Called by cascade delete from DELETE admin/context, or by Tip (total_delete)
+        """
+
+        store = self.getStore()
+        selected = store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == internaltip_id)
+        store.remove(selected)
+
 
     # called by a transact operation, dump the WhistleBlower Tip
     def _description_dict(self):

@@ -65,9 +65,7 @@ class Context(TXModel):
                 is called and define as contextDescriptionDict
         @return: context_gus, the universally unique identifier of the context
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Context new", context_dict)
-
-        store = self.getStore('context new')
+        store = self.getStore()
 
         cntx = Context()
 
@@ -98,8 +96,7 @@ class Context(TXModel):
             by handlers
         @return: None or Exception on error
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Context update of", context_gus)
-        store = self.getStore('context update')
+        store = self.getStore()
 
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
@@ -132,12 +129,6 @@ class Context(TXModel):
         if not self.exists(context_gus):
             raise ContextGusNotFound
 
-        # delete all the reference to the context in the receivers
-        receiver_iface = Receiver()
-
-        # this is not a yield because getStore is not yet called!
-        unlinked_receivers = receiver_iface.unlink_context(context_gus)
-
         # Other guarantee operations are:
         #
         # delete all the tips associated with the context, comments and files.
@@ -147,7 +138,12 @@ class Context(TXModel):
         # TODO - delete all the stats associated with the context
         # TODO - align all the receivers present in self.receivers
 
-        store = self.getStore('context delete')
+        receiver_iface = Receiver()
+
+        # this is not a yield because getStore is not yet called!
+        unlinked_receivers = receiver_iface.unlink_context(context_gus)
+
+        store = self.getStore()
 
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
@@ -163,12 +159,12 @@ class Context(TXModel):
 
 
     @transact
-    def admin_get_single(self, context_gus):
+    def get_single(self, context_gus):
         """
         @param context_gus: UUID of the contexts
         @return: the contextDescriptionDict requested, or an exception if do not exists
         """
-        store = self.getStore('context admin_get_single')
+        store = self.getStore()
 
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
@@ -182,13 +178,11 @@ class Context(TXModel):
         return ret_context_dict
 
     @transact
-    def admin_get_all(self):
+    def get_all(self):
         """
         @return: an array containing all contextDescriptionDict
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Context admin_get_all")
-
-        store = self.getStore('context admin_get_all')
+        store = self.getStore()
 
         result = store.find(Context)
 
@@ -199,58 +193,11 @@ class Context(TXModel):
         return ret_contexts_dicts
 
     @transact
-    def public_get_single(self, context_gus):
-        """
-        @param context_gus: requested context
-        @return: context dict, stripped of the 'reserved' info
-        """
-        store = self.getStore('context public_get_single')
-
-        try:
-            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
-        except NotOneError:
-            raise ContextGusNotFound
-        if requested_c is None:
-            raise ContextGusNotFound
-
-        ret_context_dict = requested_c._description_dict()
-        # remove the keys private in the public diplay of node informations
-        ret_context_dict.pop('tip_max_access')
-        ret_context_dict.pop('tip_timetolive')
-        ret_context_dict.pop('file_max_download')
-        ret_context_dict.pop('escalation_threshold')
-
-        return ret_context_dict
-
-    @transact
-    def public_get_all(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "Context public_get_all")
-
-        store = self.getStore('context public_get_all')
-
-        ret_contexts_dicts = []
-        result = store.find(Context)
-        # also "None" is fine: simply is returned an empty array
-
-        for requested_c in result:
-
-            description_dict = requested_c._description_dict()
-            # remove the keys private in the public diplay of node informations
-            description_dict.pop('tip_max_access')
-            description_dict.pop('tip_timetolive')
-            description_dict.pop('file_max_download')
-            description_dict.pop('escalation_threshold')
-
-            ret_contexts_dicts.append(description_dict)
-
-        return ret_contexts_dicts
-
-    @transact
     def count(self):
         """
         @return: the number of contexts. Not used at the moment
         """
-        store = self.getStore('context count')
+        store = self.getStore()
         contextnum = store.find(Context).count()
         return contextnum
 
@@ -260,9 +207,8 @@ class Context(TXModel):
         @param context_gus: check if the requested context exists or not
         @return: True if exist, False if not, do not raise exception.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Context exists ?", context_gus)
 
-        store = self.getStore('context exist')
+        store = self.getStore()
 
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
@@ -280,8 +226,6 @@ class Context(TXModel):
     @transact
     def update_languages(self, context_gus):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "update_languages ", context_gus)
-
         language_list = []
 
         # for each receiver check every languages supported, if not
@@ -291,76 +235,12 @@ class Context(TXModel):
                 if not language in language_list:
                     language_list.append(language)
 
-        store = self.getStore('context update_languages')
+        store = self.getStore()
         requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         log.debug("[L] before language update, context", context_gus, "was", requested_c.languages_supported, "and after got", language_list)
 
         requested_c.languages_supported = language_list
         requested_c.update_date = gltime.utcDateNow()
-
-    # this is called internally by a @transact functions
-    def get_receivers(self, info_type, context_gus=None):
-        """
-        @param context_gus: target context to be searched between receivers, if not specified,
-            the receivers returned are searched in 'self'
-        @info_type: its a string with three possible values:
-           'public': get the information represented to the WB and in public
-           'internal': a series of data used by internal calls
-           'admin': complete dump of the information, wrap Receiver._description_dict
-        @return: a list, 0 to MANY receiverDict tuned for the caller requirements
-        """
-        from globaleaks.models.receiver import Receiver
-
-        typology = [ 'public', 'internal', 'admin' ]
-
-        if not info_type in typology:
-            log.debug("[Fatal]", info_type, "not found in", typology)
-            raise NotImplementedError
-
-        store = self.getStore('context get_receivers')
-
-        # I've made some experiment with https://storm.canonical.com/Manual#IN (in vain)
-        # the goal is search which context_gus is present in the Receiver.contexts
-        # and then work in the selected Receiver.
-
-
-        if context_gus:
-            workinobj = store.find(Context, Context.context_gus == unicode(context_gus)).one()
-        else:
-            workinobj = self
-
-        # Hi. I'm a really DIRTY HACK.
-        # :)
-        # Hi. I'm a really DIRTY HACK.
-        # :)
-
-        receiver_list = workinobj.receivers
-        #store.close()
-        #return receiver_list
-
-        all_r = store.find(Receiver)
-        for r in all_r:
-
-            partial_info = {}
-
-            if info_type == typology[0]: # public
-                partial_info.update({'receiver_gus' : r.receiver_gus })
-                partial_info.update({'name': r.name })
-                partial_info.update({'description': r.description })
-            if info_type == typology[1]: # internal
-                partial_info.update({'receiver_gus' : r.receiver_gus })
-                partial_info.update({'know_languages' : r.know_languages })
-            if info_type == typology[2]: # admin
-                partial_info = r._description_dict()
-
-            receiver_list.append(partial_info)
-
-        # GoodBye. I'm a really DIRTY HACK.
-        # :)
-        # GoodBye. I'm a really DIRTY HACK.
-        # :)
-
-        return receiver_list
 
 
     @transact
@@ -369,7 +249,7 @@ class Context(TXModel):
         Called by Receiver handlers (PUT|POST), roll in all the context and delete|add|skip
         with the presence of receiver_gus
         """
-        store = self.getStore('full_context_align')
+        store = self.getStore()
 
         context_selected = []
         for c in un_context_selected:
@@ -402,7 +282,7 @@ class Context(TXModel):
         Called by Context handler, (PUT|POST), just take the context and update the
         associated receivers
         """
-        store = self.getStore('context_align')
+        store = self.getStore()
 
         try:
             requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
@@ -433,13 +313,10 @@ class Context(TXModel):
             'tip_timetolive' : int(self.tip_timetolive),
             'file_max_download' : int(self.file_max_download),
             'escalation_threshold' : int(self.escalation_threshold),
-            'fields': list(self.fields),
+            'fields': list(self.fields) if self.fields else [],
             'receivers' : list(self.receivers) if self.receivers else []
-
         }
-        # receivers is added
-
-        return description_dict
+        return dict(description_dict)
 
     # this method import the remote received dict.
     # would be expanded with defaults value (if configured) and with checks about
