@@ -7,7 +7,7 @@
 
 from storm.exceptions import NotOneError
 from storm.twisted.transact import transact
-from storm.locals import Int, Pickle, Date, Unicode, Bool
+from storm.locals import Int, Pickle, DateTime, Unicode, Bool
 
 from globaleaks.models.context import Context
 from globaleaks.models.base import TXModel
@@ -15,8 +15,6 @@ from globaleaks.utils import log, idops, gltime
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound, InvalidInputFormat
 
 __all__ = ['Receiver']
-
-# The association between Receiver and Context is performed in models/admin.py ContextReceivers table
 
 class Receiver(TXModel):
     """
@@ -27,14 +25,15 @@ class Receiver(TXModel):
 
     receiver_gus = Unicode(primary=True)
 
-    creation_date = Date()
-    update_date = Date()
-    last_access = Date()
+    creation_date = DateTime()
+    update_date = DateTime()
 
     # Those four variable can be changed by the Receiver
     name = Unicode()
     description = Unicode()
-    # Tags and know_languages reflect in the Context
+
+    # Tags and know_languages reflect in the Context, based on the
+    # sum of the Receivers assigned.
     tags = Pickle()
     know_languages = Pickle()
 
@@ -64,7 +63,7 @@ class Receiver(TXModel):
 
     @transact
     def count(self):
-        store = self.getStore('receiver count')
+        store = self.getStore()
         receiver_count = store.find(Receiver).count()
         return receiver_count
 
@@ -79,20 +78,19 @@ class Receiver(TXModel):
         transparency baptism: here you get your GlobaLeaks Unique String, sir!
         """
 
-        store = self.getStore('receiver new')
+        store = self.getStore()
 
         baptized_receiver = Receiver()
 
         try:
             baptized_receiver._import_dict(receiver_dict)
-        except KeyError:
-            raise InvalidInputFormat("Error near the Storm")
+        except KeyError, e:
+            raise InvalidInputFormat("initialization failed (missing %s)" % e)
 
         baptized_receiver.receiver_gus = idops.random_receiver_gus()
 
-        baptized_receiver.creation_date = gltime.utcDateNow()
-        baptized_receiver.update_date = gltime.utcDateNow()
-        # last_access is not initialized
+        baptized_receiver.creation_date = gltime.utcTimeNow()
+        baptized_receiver.update_date = gltime.utcTimeNow()
 
         store.add(baptized_receiver)
 
@@ -107,7 +105,7 @@ class Receiver(TXModel):
         the dict need to be already validated
         """
 
-        store = self.getStore('receiver admin_update')
+        store = self.getStore()
 
         # I didn't understand why, but NotOneError is not raised even if the search return None
         try:
@@ -119,27 +117,46 @@ class Receiver(TXModel):
 
         try:
             requested_r._import_dict(receiver_dict)
-        except KeyError:
-            raise InvalidInputFormat("Error near the Storm")
+        except KeyError, e:
+            raise InvalidInputFormat("admin update failed (missing %s)" % e)
 
-        requested_r.update_date = gltime.utcDateNow()
+        requested_r.update_date = gltime.utcTimeNow()
 
     @transact
     def self_update(self, receiver_gus, receiver_dict):
         """
         This is the method called by a receiver for change/set their preference
         """
-        pass
+
+        try:
+            self.name = receiver_dict['name']
+            self.description = receiver_dict['description']
+            self.tags = receiver_dict['tags']
+            self.know_languages = receiver_dict['languages']
+
+
+            if self.can_configure_notification:
+                self.notification_fields = receiver_dict['notification_selected']
+                self.notification_fields = receiver_dict['notification_fields']
+
+            if self.can_configure_delivery:
+                self.delivery_selected =  receiver_dict['delivery_selected']
+                self.delivery_fields =  receiver_dict['delivery_fields']
+
+            self.update_date = gltime.utcTimeNow()
+
+        except KeyError, e:
+            raise InvalidInputFormat("self update failed (missing %s)" % e)
+
+
 
     @transact
-    def admin_get_single(self, receiver_gus):
+    def get_single(self, receiver_gus):
         """
-        @return a receiverDescriptionDict
+        @return the dictionary describing the requested receiver, or an exception if do not exists.
         """
+        store = self.getStore()
 
-        store = self.getStore('receiver - admin_get_single')
-
-        # I didn't understand why, but NotOneError is not raised even if the search return None
         try:
             requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
@@ -153,9 +170,11 @@ class Receiver(TXModel):
 
 
     @transact
-    def admin_get_all(self):
-
-        store = self.getStore('receiver - admin_get_all')
+    def get_all(self):
+        """
+        @return: a list of all the receiver in the node.
+        """
+        store = self.getStore()
 
         all_r = store.find(Receiver)
 
@@ -167,12 +186,35 @@ class Receiver(TXModel):
 
 
     @transact
+    def get_receivers_by_context(self, context_gus):
+        """
+        @param context_gus: an unchecked context_gus string
+        @return: a list of receivers description dict, with only the
+            receivers assigned to the requested context_gus.
+            Invalid context_gus would return 0 receiver assigned.
+        """
+        store = self.getStore()
+
+        all_r = store.find(Receiver)
+
+        retVal = []
+        for rcvr in all_r:
+            if str(context_gus) in rcvr.context:
+                retVal.append(rcvr._description_dict())
+
+        if len(retVal) == 0:
+            log.debug("[W] No receiver assigned to the context %s" % context_gus)
+
+        return retVal
+
+
+    @transact
     def full_receiver_align(self, context_gus, un_receiver_selected):
         """
         Called by Context handlers (PUT|POST), roll in all the receiver and delete|add|skip
         with the presence of context_gus
         """
-        store = self.getStore('full_receiver_align')
+        store = self.getStore()
 
         receiver_selected = []
         for r in un_receiver_selected:
@@ -198,13 +240,14 @@ class Receiver(TXModel):
         log.debug("    ****   full_receiver_align in all receivers after %s has been set with %s: %d mods" %
                   ( context_gus, str(receiver_selected), debug_counter ) )
 
+
     @transact
     def receiver_align(self, receiver_gus, context_selected):
         """
         Called by Receiver handler, (PUT|POST), just take the receiver and update the
         associated contexts
         """
-        store = self.getStore('receiver_align')
+        store = self.getStore()
 
         try:
             requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
@@ -220,12 +263,14 @@ class Receiver(TXModel):
         log.debug("    ++++   receiver_align in receiver %s with contexts %s" %
                   ( receiver_gus, str(context_selected) ) )
 
+
     @transact
     def receiver_delete(self, receiver_gus):
         """
-        Delete a receiver, or raise an exception if do not exist
+        Delete a receiver, or raise an exception if do not exist. The hanlder calling
+        this method would have provided to remove the ReceiverTip (if exits, and if needed)
         """
-        store = self.getStore('receiver delete')
+        store = self.getStore()
 
         try:
             requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
@@ -234,8 +279,9 @@ class Receiver(TXModel):
         if requested_r is None:
             raise ReceiverGusNotFound
 
-        # log.info()
+        # TODO XXX Applicative log
         store.remove(requested_r)
+
 
     # being a method called by another @transact, do not require @transact
     # too, because otherwise the order is screwed
@@ -247,7 +293,7 @@ class Receiver(TXModel):
         reference pointing on it, need to be unassigned
         ----- by hypothesis, here we can delete the receiver without a context
         """
-        store = self.getStore('receiver unlink_context')
+        store = self.getStore()
 
         # same consideration of Context.get_receivers: probably there are a more
         # efficient selection query, for search a context_gus in a list
@@ -266,10 +312,6 @@ class Receiver(TXModel):
 
         return unassigned_count
 
-    # called by a trasnact, update last mod on self, called when a new Tip is present
-    def update_timings(self):
-        pass
-
     # this method import the remote received dict.
     # would be expanded with defaults value (if configured) and with checks about
     # expected fields. is called by new() and admin_update() (and self_update() not yet!)
@@ -280,13 +322,12 @@ class Receiver(TXModel):
         self.tags = source_rd['tags']
         self.know_languages = source_rd['languages']
 
-        #self.notification_selected = source_rd['notification_selected']
-        if source_rd['notification_selected'] or source_rd['notification_selected'] != "email":
-            self.notification_fields = "email"
-        else:
-            print "** Receiver registered with unusual notification system"
-            self.notification_fields = "email"
+        # This need to be verified in the calling function, between the valid
+        # notification modules available.
+        if source_rd['notification_selected'] != "email":
+            raise NotImplemented
 
+        self.notification_selected =  source_rd['notification_selected']
         self.notification_fields = source_rd['notification_fields']
         self.delivery_selected =  source_rd['delivery_selected']
         self.delivery_fields =  source_rd['delivery_fields']
@@ -314,7 +355,6 @@ class Receiver(TXModel):
             'delivery_fields' : dict(self.delivery_fields) if self.delivery_fields else {},
             'creation_date' : unicode(gltime.prettyDateTime(self.creation_date)),
             'update_date' : unicode(gltime.prettyDateTime(self.update_date)),
-            'last_access' : unicode(gltime.prettyDateTime(self.last_access)),
             'contexts' : list(self.contexts) if self.contexts else [],
             'receiver_level' : int(self.receiver_level),
             'can_delete_submission' : bool(self.can_delete_submission),

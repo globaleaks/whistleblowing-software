@@ -1,7 +1,26 @@
+"""
+Output struct that we need generated:
+
+{
+    'API' : "/node" # API contain the API path, with regexp inside, if happen
+    'shortname': A1|U1|T1 # short name usable from command line tool
+    'GET': true|false
+    'POST: true|false # a boolean aiming if a method is supported or not, this trigger the
+    next four entry:
+    'GET_request': messageType # if a method is supported, the message tipe
+    'GET_response': messageType # as before
+    'GET_error': [ errors ] # possible output errors
+    'GET_docstring': documentation about GET role for the API
+}
+
+Every entry is put in a list.
+"""
+
 from globaleaks.rest.api import spec
 from globaleaks.rest import requests, responses, errors, base
 import inspect
 import string
+
 
 
 doctree = {}

@@ -145,7 +145,7 @@ class TipInstance(BaseHandler):
         """
         Request: None
         Response: None
-        Errors: ForbiddenOperation
+        Errors: ForbiddenOperation, TipGusNotFound
 
         When an uber-receiver decide to "total delete" a Tip, is handled by this call.
         """
@@ -154,12 +154,22 @@ class TipInstance(BaseHandler):
             if not is_receiver_token(tip_token):
                 raise ForbiddenOperation
 
-            requested_t = ReceiverTip()
+            receivertip_iface = ReceiverTip()
+
+            sibilings_tips = yield receivertip_iface.get_sibiligs_by_tip(tip_token)
+
+
+
             yield requested_t.total_delete(tip_token)
 
             self.set_status(200)
 
         except ForbiddenOperation, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+
+        except TipGusNotFound:
 
             self.set_status(e.http_status)
             self.write({'error_message' : e.error_message, 'error_code' : e.error_code})

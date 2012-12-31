@@ -253,14 +253,7 @@ class ContextInstance(BaseHandler):
 
                 itip_desc = tip_block.get('internaltip')
 
-                # WhistleBlower tip is always one, but the search query is based on
-                # the WB tip related to InternalTip, not based on the unique key of
-                # WB tip. then is handled like a list.
-
-                wtip_desc = tip_block.get('whistleblowertip')
-                for single_wtip in wtip_desc:
-                    yield whistlebtip_iface.delete_access(single_wtip['receipt'])
-
+                yield whistlebtip_iface.delete_access_by_itip(itip_desc['internaltip'])
                 yield receivertip_iface.massive_delete(itip_desc['internaltip_id'])
                 yield comment_iface.delete_comment_by_itip(itip_desc['internaltip_id'])
                 yield file_iface.delete_file_by_itip(itip_desc['internaltip_id'])
@@ -299,7 +292,7 @@ class ReceiversCollection(BaseHandler):
         """
 
         receiver_iface = Receiver()
-        all_receivers = yield receiver_iface.admin_get_all()
+        all_receivers = yield receiver_iface.get_all()
 
         self.set_status(200)
         # TODO output filter would include JSON inside of the method
@@ -330,7 +323,7 @@ class ReceiversCollection(BaseHandler):
                 yield receiver_iface.receiver_align(new_receiver_gus, request['contexts'])
                 yield context_iface.full_context_align(new_receiver_gus, request['contexts'])
 
-            new_receiver_desc = yield receiver_iface.admin_get_single(new_receiver_gus)
+            new_receiver_desc = yield receiver_iface.get_single(new_receiver_gus)
 
             self.set_status(201) # Created
             self.write(new_receiver_desc)
@@ -374,7 +367,7 @@ class ReceiverInstance(BaseHandler):
             # TODO parameter validation - InvalidInputFormat
             receiver_iface = Receiver()
 
-            receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
+            receiver_description = yield receiver_iface.get_single(receiver_gus)
 
             self.set_status(200)
             self.write(receiver_description)
@@ -411,7 +404,7 @@ class ReceiverInstance(BaseHandler):
                 yield receiver_iface.receiver_align(receiver_gus, request['contexts'])
                 yield context_iface.full_context_align(receiver_gus, request['contexts'])
 
-            receiver_description = yield receiver_iface.admin_get_single(receiver_gus)
+            receiver_description = yield receiver_iface.get_single(receiver_gus)
 
             self.set_status(200)
             self.write(receiver_description)
@@ -445,9 +438,17 @@ class ReceiverInstance(BaseHandler):
         """
 
         receiver_iface = Receiver()
+        receivertip_iface = ReceiverTip()
 
         try:
-            # TODO parameter validation - InvalidInputFormat
+            # TODO parameter receiver_gus validation - InvalidInputFormat
+
+            related_tips = yield receivertip_iface.get_tips_by_receiver(receiver_gus)
+
+            for tip in related_tips:
+                print "removing tip %s before removing receiver %s (comment not removed)" % (tip['tip_gus'], receiver_gus)
+                yield receivertip_iface.personal_delete(tip['tip_gus'])
+
             yield receiver_iface.receiver_delete(receiver_gus)
             self.set_status(200)
 
