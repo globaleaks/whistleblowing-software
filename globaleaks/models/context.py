@@ -55,8 +55,6 @@ class Context(TXModel):
     inputfilter_chain = Pickle()
     # to be implemented in REST / dict
 
-    # public stats reference
-    # private stats reference
 
     @transact
     def new(self, context_dict):
@@ -81,11 +79,15 @@ class Context(TXModel):
             cntx._import_dict(context_dict)
         except KeyError, e:
             raise InvalidInputFormat("Context Import failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("Context Import failed (wrong %s)" % e)
 
         store.add(cntx)
         log.msg("Created context %s at the %s" % (cntx.name, cntx.creation_date) )
+
         # return context_dict
         return cntx.context_gus
+
 
     @transact
     def update(self, context_gus, context_dict):
@@ -110,11 +112,14 @@ class Context(TXModel):
             requested_c._import_dict(context_dict)
         except KeyError, e:
             raise InvalidInputFormat("Context Import failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("Context Import failed (wrong %s)" % e)
 
         requested_c.update_date = gltime.utcDateNow()
 
         log.msg("Updated context %s in %s, created in %s" %
                 (requested_c.name, requested_c.update_date, requested_c.creation_date) )
+
 
     @transact
     def delete_context(self, context_gus):
@@ -173,9 +178,8 @@ class Context(TXModel):
         if requested_c is None:
             raise ContextGusNotFound
 
-        ret_context_dict = requested_c._description_dict()
+        return requested_c._description_dict()
 
-        return ret_context_dict
 
     @transact
     def get_all(self):
@@ -192,6 +196,26 @@ class Context(TXModel):
 
         return ret_contexts_dicts
 
+
+    @transact
+    def get_contexts_by_receiver(self, receiver_gus):
+        """
+        @param receiver_gus: list of context associated with receiver_gus,
+            may return an empty list if receiver_gus do not exist.
+        @return:
+        """
+        store = self.getStore()
+
+        result = store.find(Context)
+
+        ret_contexts_dicts = []
+        for requested_c in result:
+            if str(receiver_gus) in requested_c.receivers:
+                ret_contexts_dicts.append( requested_c._description_dict() )
+
+        return ret_contexts_dicts
+
+
     @transact
     def count(self):
         """
@@ -200,6 +224,7 @@ class Context(TXModel):
         store = self.getStore()
         contextnum = store.find(Context).count()
         return contextnum
+
 
     # called always by transact method, from models
     def exists(self, context_gus):
@@ -223,11 +248,14 @@ class Context(TXModel):
 
         return retval
 
+
+    # TODO:
+    # operation like that and tags, need to be moved in logic in the handler,
+    # and in the model just keep the DB storing, timing update, etc
     @transact
     def update_languages(self, context_gus):
-
+        """
         language_list = []
-
         # for each receiver check every languages supported, if not
         # present in the context declared language, append on it
         for rcvr in self.get_receivers('internal', context_gus):
@@ -241,6 +269,8 @@ class Context(TXModel):
 
         requested_c.languages_supported = language_list
         requested_c.update_date = gltime.utcDateNow()
+        """
+        raise NotImplemented
 
 
     @transact
@@ -297,6 +327,32 @@ class Context(TXModel):
 
         log.debug("    ++++   context_align in receiver %s with receivers %s" %
                   ( context_gus, str(receiver_selected) ) )
+
+
+    @transact
+    def align_receiver_delete(self, context_gus_list, receiver_gus):
+
+        store = self.getStore()
+
+        aligned_counter = 0
+        for context_gus in context_gus_list:
+
+            try:
+                requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
+            except NotOneError:
+                raise ContextGusNotFound
+            if requested_c is None:
+                raise ContextGusNotFound
+
+            if str(receiver_gus) in requested_c.receivers:
+                requested_c.receivers.remove(receiver_gus)
+                aligned_counter += 1
+            else:
+                raise AssertionError # Just as debug check
+
+        # TODO XXX App log about aligned_counter
+        return aligned_counter
+
 
     # This is not a transact method, is used internally by this class to assembly
     # response dict. This method return all the information of a context, the
