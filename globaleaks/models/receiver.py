@@ -9,10 +9,9 @@ from storm.exceptions import NotOneError
 from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, DateTime, Unicode, Bool
 
-from globaleaks.models.context import Context
 from globaleaks.models.base import TXModel
 from globaleaks.utils import log, idops, gltime
-from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound, InvalidInputFormat
+from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat
 
 __all__ = ['Receiver']
 
@@ -86,6 +85,8 @@ class Receiver(TXModel):
             baptized_receiver._import_dict(receiver_dict)
         except KeyError, e:
             raise InvalidInputFormat("initialization failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("initialization failed (wrong %s)" % e)
 
         baptized_receiver.receiver_gus = idops.random_receiver_gus()
 
@@ -119,6 +120,8 @@ class Receiver(TXModel):
             requested_r._import_dict(receiver_dict)
         except KeyError, e:
             raise InvalidInputFormat("admin update failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("admin update failed (wrong %s)" % e)
 
         requested_r.update_date = gltime.utcTimeNow()
 
@@ -147,6 +150,8 @@ class Receiver(TXModel):
 
         except KeyError, e:
             raise InvalidInputFormat("self update failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("self update failed (wrong %s)" % e)
 
 
 
@@ -164,9 +169,7 @@ class Receiver(TXModel):
         if requested_r is None:
             raise ReceiverGusNotFound
 
-        retReceiver = dict(requested_r._description_dict())
-
-        return retReceiver
+        return requested_r._description_dict()
 
 
     @transact
@@ -230,12 +233,14 @@ class Receiver(TXModel):
                 if r.receiver_gus in receiver_selected:
                     debug_counter += 1
                     r.contexts.append(str(context_gus))
+                    r.update_date = gltime.utcTimeNow()
 
             # if is present in context.receiver and is not selected: remove
             if r.contexts and context_gus in r.contexts:
                 if not r.receiver_gus in receiver_selected:
                     debug_counter += 1
                     r.contexts.remove(str(context_gus))
+                    r.update_date = gltime.utcTimeNow()
 
         log.debug("    ****   full_receiver_align in all receivers after %s has been set with %s: %d mods" %
                   ( context_gus, str(receiver_selected), debug_counter ) )
@@ -259,6 +264,7 @@ class Receiver(TXModel):
         requested_r.contexts = []
         for c in context_selected:
             requested_r.contexts.append(str(c))
+            requested_r.update_date = gltime.utcTimeNow()
 
         log.debug("    ++++   receiver_align in receiver %s with contexts %s" %
                   ( receiver_gus, str(context_selected) ) )
@@ -283,34 +289,36 @@ class Receiver(TXModel):
         store.remove(requested_r)
 
 
-    # being a method called by another @transact, do not require @transact
-    # too, because otherwise the order is screwed
-    def unlink_context(self, context_gus):
+    @transact
+    def align_context_delete(self, receivers_gus_list, context_gus):
         """
-        @param context_gus: context to be found and unassigned if present
-        @return: number of receiver unassigned in the operation.
-        This method is called when a context is deleted: all the receiver
-        reference pointing on it, need to be unassigned
-        ----- by hypothesis, here we can delete the receiver without a context
+        @param receivers_gus_list: a list of receiver_gus target of the ops
+        @param context_gus: context being removed
+        @return: None
         """
         store = self.getStore()
 
-        # same consideration of Context.get_receivers: probably there are a more
-        # efficient selection query, for search a context_gus in a list
-        results = store.find(Receiver)
+        aligned_counter = 0
 
-        unassigned_count = 0
+        for receiver_gus in receivers_gus_list:
 
-        for r in results:
+            try:
+                requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+            except NotOneError:
+                raise ReceiverGusNotFound
+            if requested_r is None:
+                raise ReceiverGusNotFound
 
-            if not r.contexts:
-                continue
+            if str(context_gus) in requested_r.contexts:
+                requested_r.contexts.remove(str(context_gus))
+                requested_r.update_date = gltime.utcTimeNow()
+                aligned_counter += 1
+            else:
+                raise AssertionError # Just for debug
 
-            if str(context_gus) in r.contexts:
-                r.contexts.remove(str(context_gus))
-                unassigned_count += 1
+        # TODO XXX Applicative log about aligned_counter
+        return aligned_counter
 
-        return unassigned_count
 
     # this method import the remote received dict.
     # would be expanded with defaults value (if configured) and with checks about
@@ -362,7 +370,7 @@ class Receiver(TXModel):
             'can_configure_delivery' : bool(self.can_configure_delivery),
             'can_configure_notification' : bool(self.can_configure_notification)
         }
-        return descriptionDict
+        return dict(descriptionDict)
 
 
 # Receivers are NEVER slippery: http://i.imgur.com/saLqb.jpg
