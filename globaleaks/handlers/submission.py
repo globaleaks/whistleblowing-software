@@ -44,7 +44,7 @@ class SubmissionCreate(BaseHandler):
             submission_iface = Submission()
             context_iface = Context()
 
-            context_info = yield context_iface.public_get_single(request['context_gus'])
+            context_info = yield context_iface.get_single(request['context_gus'])
             # use requested context, for defaults and so on
 
             status = yield submission_iface.new(request['context_gus'])
@@ -159,7 +159,6 @@ class SubmissionInstance(BaseHandler):
             self.write(status)
 
         except ContextGusNotFound, e:
-            # XXX ITS wrong, if a submission start with a context, you can't change them.
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
