@@ -102,7 +102,7 @@ class InternalTip(TXModel):
         """
         store = self.getStore()
 
-        selected_it = store.find(InternalTip, InternalTip.id == id).one()
+        selected_it = store.find(InternalTip, InternalTip.id == int(id)).one()
 
         if escalation:
             selected_it.escalation_threshold = escalation
@@ -156,7 +156,7 @@ class InternalTip(TXModel):
         """
         store = self.getStore()
 
-        requested_t = store.find(InternalTip, InternalTip.id == subject_id).one()
+        requested_t = store.find(InternalTip, InternalTip.id == int(subject_id)).one()
 
         # XXX log message
         log.debug("flip mark in InternalTip %d, from [%s] to [%s]" % (requested_t.id, requested_t.mark, newmark))
@@ -202,7 +202,7 @@ class InternalTip(TXModel):
         """
 
         store = self.getStore()
-        selected = store.find(InternalTip, InternalTip.id == internaltip_id).one()
+        selected = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
         store.remove(selected)
 
 
@@ -220,7 +220,7 @@ class InternalTip(TXModel):
 
         store = self.getStore()
 
-        rcvr_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == internaltip_id)
+        rcvr_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == int(internaltip_id))
 
         receivers_desc = []
         for tip in rcvr_tips:

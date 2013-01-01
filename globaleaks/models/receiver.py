@@ -110,7 +110,7 @@ class Receiver(TXModel):
 
         # I didn't understand why, but NotOneError is not raised even if the search return None
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == receiver_gus).one()
+            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             raise ReceiverGusNotFound
         if requested_r is None:
@@ -202,7 +202,7 @@ class Receiver(TXModel):
 
         retVal = []
         for rcvr in all_r:
-            if str(context_gus) in rcvr.context:
+            if str(context_gus) in rcvr.contexts:
                 retVal.append(rcvr._description_dict())
 
         if len(retVal) == 0:
@@ -229,14 +229,14 @@ class Receiver(TXModel):
         for r in presents_receiver:
 
             # if is not present in receiver.contexts and is requested: add
-            if r.contexts and not context_gus in r.contexts:
+            if not context_gus in r.contexts:
                 if r.receiver_gus in receiver_selected:
                     debug_counter += 1
                     r.contexts.append(str(context_gus))
                     r.update_date = gltime.utcTimeNow()
 
             # if is present in context.receiver and is not selected: remove
-            if r.contexts and context_gus in r.contexts:
+            if context_gus in r.contexts:
                 if not r.receiver_gus in receiver_selected:
                     debug_counter += 1
                     r.contexts.remove(str(context_gus))
@@ -252,6 +252,9 @@ class Receiver(TXModel):
         Called by Receiver handler, (PUT|POST), just take the receiver and update the
         associated contexts
         """
+        from globaleaks.models.context import Context
+        from globaleaks.rest.errors import ContextGusNotFound
+
         store = self.getStore()
 
         try:
@@ -263,6 +266,14 @@ class Receiver(TXModel):
 
         requested_r.contexts = []
         for c in context_selected:
+
+            try:
+                selected = store.find(Context, Context.context_gus == unicode(c)).one()
+            except NotOneError:
+                raise ContextGusNotFound
+            if selected is None:
+                raise ContextGusNotFound
+
             requested_r.contexts.append(str(c))
             requested_r.update_date = gltime.utcTimeNow()
 
@@ -290,7 +301,7 @@ class Receiver(TXModel):
 
 
     @transact
-    def align_context_delete(self, receivers_gus_list, context_gus):
+    def align_context_delete(self, receivers_gus_list, removed_context_gus):
         """
         @param receivers_gus_list: a list of receiver_gus target of the ops
         @param context_gus: context being removed
@@ -309,8 +320,8 @@ class Receiver(TXModel):
             if requested_r is None:
                 raise ReceiverGusNotFound
 
-            if str(context_gus) in requested_r.contexts:
-                requested_r.contexts.remove(str(context_gus))
+            if str(removed_context_gus) in requested_r.contexts:
+                requested_r.contexts.remove(str(removed_context_gus))
                 requested_r.update_date = gltime.utcTimeNow()
                 aligned_counter += 1
             else:
@@ -332,7 +343,7 @@ class Receiver(TXModel):
 
         # This need to be verified in the calling function, between the valid
         # notification modules available.
-        if source_rd['notification_selected'] != "email":
+        if source_rd['notification_selected'] != "email" and source_rd['notification_selected'] != "file":
             raise NotImplemented
 
         self.notification_selected =  source_rd['notification_selected']
