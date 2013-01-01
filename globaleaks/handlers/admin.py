@@ -103,7 +103,7 @@ class ContextsCollection(BaseHandler):
         """
 
         context_iface = Context()
-        all_contexts = yield context_iface.admin_get_all()
+        all_contexts = yield context_iface.get_all()
 
         self.set_status(200)
         # TODO output filter would include JSON inside of the method
@@ -131,7 +131,7 @@ class ContextsCollection(BaseHandler):
                 yield context_iface.context_align(new_context_gus, request['receivers'])
                 yield receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
 
-            context_description = yield context_iface.admin_get_single(new_context_gus)
+            context_description = yield context_iface.get_single(new_context_gus)
 
             self.set_status(201) # Created
             self.write(context_description)
@@ -142,6 +142,11 @@ class ContextsCollection(BaseHandler):
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -167,7 +172,7 @@ class ContextInstance(BaseHandler):
         try:
             # TODO REMIND XXX - context_gus validation - InvalidInputFormat
             context_iface = Context()
-            context_description = yield context_iface.admin_get_single(context_gus)
+            context_description = yield context_iface.get_single(context_gus)
 
             self.set_status(200)
             self.write(context_description)
@@ -198,7 +203,7 @@ class ContextInstance(BaseHandler):
             yield context_iface.context_align(context_gus, request['receivers'])
             yield receiver_iface.full_receiver_align(context_gus, request['receivers'])
 
-            context_description = yield context_iface.admin_get_single(context_gus)
+            context_description = yield context_iface.get_single(context_gus)
 
             self.set_status(200)
             self.write(context_description)
@@ -234,35 +239,48 @@ class ContextInstance(BaseHandler):
         internaltip_iface = InternalTip()
         whistlebtip_iface = WhistleblowerTip()
         comment_iface = Comment()
+        receiver_iface = Receiver()
         file_iface = File()
 
-        # XXX just a little consideration: if a context has some tip, jobs, whatever
-        # in queue, maybe the client ask a sort of "are you really sure ?"
-        # this operation is not related to this REST DELETE, but perhaps in the
-        # administrative view of the contexts, also the presence|absence|description
-        # of the queued operations, would be useful.
-
-        # This DELETE operation, its permanent, and kills all the Tip related
-        # to the context. (not the receivers: they can be possessed also by other context,
-        # but the target context is deleted also in the receiver reference)
+        # This DELETE operation, its permanent, and remove all the reference
+        # a Context has within the system (in example: remove associated Tip,
+        # remove
 
         try:
+
+            context_desc = yield context_iface.get_single(context_gus)
+
             tips_related_blocks = yield receivertip_iface.get_tips_by_context(context_gus)
+
+            print "Tip that need to be deleted, associated with the context",\
+                context_gus, ":", len(tips_related_blocks)
 
             for tip_block in tips_related_blocks:
 
-                itip_desc = tip_block.get('internaltip')
+                internaltip_id = tip_block.get('internaltip')['internaltip_id']
 
-                yield whistlebtip_iface.delete_access_by_itip(itip_desc['internaltip'])
-                yield receivertip_iface.massive_delete(itip_desc['internaltip_id'])
-                yield comment_iface.delete_comment_by_itip(itip_desc['internaltip_id'])
-                yield file_iface.delete_file_by_itip(itip_desc['internaltip_id'])
+                yield whistlebtip_iface.delete_access_by_itip(internaltip_id)
+                yield receivertip_iface.massive_delete(internaltip_id)
+                yield comment_iface.delete_comment_by_itip(internaltip_id)
+                yield file_iface.delete_file_by_itip(internaltip_id)
 
                 # and finally, delete the InternalTip
-                yield internaltip_iface.tip_delete(itip_desc['internaltip_id'])
+                yield internaltip_iface.tip_delete(internaltip_id)
 
-            # when the tip are deleted, context is deleted
-            # TODO check if receivers are aligned
+
+            # (Just consistency check)
+            receivers_associated = yield receiver_iface.get_receivers_by_context(context_gus)
+            print "receiver associated by context POV:", len(receivers_associated),\
+                "receiver associated by context DB-field:", len(context_desc['receivers'])
+            print receivers_associated, context_desc['receivers']
+
+            # Align all the receiver associated to the context, that the context cease to exist
+            yield receiver_iface.align_context_delete(context_desc['receivers'], context_gus)
+
+            # TODO delete stats associated with context ?
+            # TODO delete profile associated with the context
+
+            # Finally, delete the context
             yield context_iface.delete_context(context_gus)
             self.set_status(200)
 
@@ -334,6 +352,11 @@ class ReceiversCollection(BaseHandler):
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
@@ -439,16 +462,32 @@ class ReceiverInstance(BaseHandler):
 
         receiver_iface = Receiver()
         receivertip_iface = ReceiverTip()
+        context_iface = Context()
 
         try:
             # TODO parameter receiver_gus validation - InvalidInputFormat
+            receiver_desc = yield receiver_iface.get_single(receiver_gus)
 
+            # Remove Tip possessed by the receiver
             related_tips = yield receivertip_iface.get_tips_by_receiver(receiver_gus)
-
             for tip in related_tips:
-                print "removing tip %s before removing receiver %s (comment not removed)" % (tip['tip_gus'], receiver_gus)
                 yield receivertip_iface.personal_delete(tip['tip_gus'])
+            # Remind: the comment are kept, and the name is not referenced but stored
+            # in the comment entry.
 
+
+            # Consistency checks between receiver and context tracking:
+            contexts_associated = yield context_iface.get_contexts_by_receiver(receiver_gus)
+
+            print "context associated by receiver POV:", len(contexts_associated),\
+                "context associated by receiver-DB field:", len(receiver_desc['contexts'])
+            print contexts_associated, receiver_desc['contexts']
+
+            yield context_iface.align_receiver_delete(receiver_desc['contexts'], receiver_gus)
+
+            # TODO delete ReceiverConfs settings related.
+
+            # Finally delete the receiver
             yield receiver_iface.receiver_delete(receiver_gus)
             self.set_status(200)
 
@@ -706,7 +745,7 @@ class EntryCollection(BaseHandler):
 
         if what == 'receivers' or what == 'all':
             receiver_iface = Receiver()
-            receiver_list = yield receiver_iface.admin_get_all()
+            receiver_list = yield receiver_iface.get_all()
             self.write({ 'elements' : len(receiver_list), 'receivers' : receiver_list})
 
         if what == 'itip' or what == 'all':
@@ -746,7 +785,7 @@ class EntryCollection(BaseHandler):
 
         if what == 'context' or what == 'all':
             context_iface = Context()
-            context_list = yield context_iface.admin_get_all()
+            context_list = yield context_iface.get_all()
             self.write({ 'elements' : len(context_list), 'settings' : context_list })
 
 
