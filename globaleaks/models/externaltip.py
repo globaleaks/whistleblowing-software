@@ -212,7 +212,7 @@ class ReceiverTip(TXModel):
         store = self.getStore()
 
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
@@ -258,7 +258,7 @@ class ReceiverTip(TXModel):
         store = self.getStore()
 
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
@@ -299,7 +299,7 @@ class ReceiverTip(TXModel):
         store = self.getStore()
 
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
@@ -329,7 +329,7 @@ class ReceiverTip(TXModel):
 
         store = self.getStore()
 
-        related_t = store.find(ReceiverTip, ReceiverTip.receiver_gus == receiver_gus)
+        related_t = store.find(ReceiverTip, ReceiverTip.receiver_gus == unicode(receiver_gus))
 
         related_list = []
         for t in related_t:
@@ -361,7 +361,7 @@ class ReceiverTip(TXModel):
         retList = []
 
         store = self.getStore()
-        itip_related = store.find(InternalTip, InternalTip.context_gus == context_gus)
+        itip_related = store.find(InternalTip, InternalTip.context_gus == unicode(context_gus))
 
         for itip in itip_related:
 
@@ -415,7 +415,7 @@ class ReceiverTip(TXModel):
         store = self.getStore()
 
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
@@ -435,7 +435,7 @@ class ReceiverTip(TXModel):
 
         store = self.getStore()
         # Sadly the matching query can't be used in store.remove()
-        related_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == internaltip_id)
+        related_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == int(internaltip_id))
         for single_tip in related_tips:
             store.remove(single_tip)
 
@@ -445,13 +445,13 @@ class ReceiverTip(TXModel):
     # like notification or delivery, it has a dedicated event in the scheduler, and
     # is called by TipSched
     @transact
-    def create_receiver_tips(self, id, tier):
+    def create_receiver_tips(self, internaltip_id, tier):
         """
         act on self. create the ReceiverTip based on InternalTip.receivers
         """
         store = self.getStore()
 
-        selected_it = store.find(InternalTip, InternalTip.id == id).one()
+        selected_it = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
 
         for choosen_r in selected_it.receivers:
 
@@ -531,7 +531,7 @@ class WhistleblowerTip(TXModel):
         store = self.getStore()
 
         try:
-            requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
+            requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
         except NotOneError:
             raise TipReceiptNotFound
         if not requested_t:
@@ -573,7 +573,7 @@ class WhistleblowerTip(TXModel):
         store = self.getStore()
 
         try:
-            requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == receipt).one()
+            requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
         except NotOneError:
             raise TipReceiptNotFound
         if not requested_t:
@@ -588,8 +588,9 @@ class WhistleblowerTip(TXModel):
         """
 
         store = self.getStore()
-        selected = store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == internaltip_id)
-        store.remove(selected)
+        selected = store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == int(internaltip_id))
+        for single_tip in selected:
+            store.remove(single_tip)
 
 
     # called by a transact operation, dump the WhistleBlower Tip
@@ -650,7 +651,7 @@ class File(TXModel):
 
         store = self.getStore()
 
-        referenced_f = store.find(File, File.internaltip_id == internaltip_id)
+        referenced_f = store.find(File, File.internaltip_id == int(internaltip_id))
 
         referenced_files = []
 
@@ -665,7 +666,7 @@ class File(TXModel):
 
         store = self.getStore()
 
-        referenced_f = store.find(File, File.internaltip_id == internaltip_id)
+        referenced_f = store.find(File, File.internaltip_id == int(internaltip_id))
 
         counter_test = 0
         for single_f in referenced_f:
@@ -790,7 +791,7 @@ class Comment(TXModel):
 
         store = self.getStore()
 
-        comment_list = store.find(Comment, Comment.internaltip_id == internltip_id)
+        comment_list = store.find(Comment, Comment.internaltip_id == int(internltip_id))
 
         retDict = []
         for single_comment in comment_list:
@@ -804,7 +805,7 @@ class Comment(TXModel):
 
         store = self.getStore()
 
-        comments_selected = store.find(Comment, Comment.internaltip_id ==  internaltip_id)
+        comments_selected = store.find(Comment, Comment.internaltip_id ==  int(internaltip_id))
 
         counter_test = 0
         for single_c in comments_selected:
@@ -859,7 +860,7 @@ class Comment(TXModel):
             'internaltip_id' : unicode(self.internaltip_id),
             'creation_time' : unicode(gltime.prettyDateTime(self.creation_time))
         }
-        return descriptionDict
+        return dict(descriptionDict)
 
 
 

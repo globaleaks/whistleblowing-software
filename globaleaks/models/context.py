@@ -9,10 +9,11 @@ from storm.exceptions import NotOneError
 from storm.twisted.transact import transact
 
 from storm.locals import Int, Pickle
-from storm.locals import Unicode, Bool, Date
+from storm.locals import Unicode, Bool, DateTime
 from storm.locals import Reference
 
 from globaleaks.utils import gltime, idops, log
+from globaleaks.models.node import Node
 from globaleaks.models.base import TXModel
 from globaleaks.rest.errors import ContextGusNotFound, InvalidInputFormat
 
@@ -20,7 +21,6 @@ __all__ = [ 'Context' ]
 
 
 class Context(TXModel):
-    from globaleaks.models.node import Node
 
     __storm_table__ = 'contexts'
 
@@ -38,9 +38,9 @@ class Context(TXModel):
     selectable_receiver = Bool()
     escalation_threshold = Int()
 
-    creation_date = Date()
-    update_date = Date()
-    last_activity = Date()
+    creation_date = DateTime()
+    update_date = DateTime()
+    last_activity = DateTime()
 
     tip_max_access = Int()
     tip_timetolive = Int()
@@ -70,9 +70,9 @@ class Context(TXModel):
         cntx.context_gus = idops.random_context_gus()
         cntx.node_id = 1
 
-        cntx.creation_date = gltime.utcDateNow()
-        cntx.update_date = gltime.utcDateNow()
-        cntx.last_activity = gltime.utcDateNow()
+        cntx.creation_date = gltime.utcTimeNow()
+        cntx.update_date = gltime.utcTimeNow()
+        cntx.last_activity = gltime.utcTimeNow()
         cntx.receivers = []
 
         try:
@@ -115,7 +115,7 @@ class Context(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("Context Import failed (wrong %s)" % e)
 
-        requested_c.update_date = gltime.utcDateNow()
+        requested_c.update_date = gltime.utcTimeNow()
 
         log.msg("Updated context %s in %s, created in %s" %
                 (requested_c.name, requested_c.update_date, requested_c.creation_date) )
@@ -127,26 +127,14 @@ class Context(TXModel):
         @param context_gus: the universal unique identifier of the context
         @return: None if is deleted correctly, or raise an exception if something is wrong.
         """
-        from globaleaks.models.receiver import Receiver
-        log.debug("[D] %s %s " % (__file__, __name__), "Context delete of", context_gus)
 
-        # first, perform existence checks, this would avoid continuous try/except here
-        if not self.exists(context_gus):
-            raise ContextGusNotFound
-
-        # Other guarantee operations are:
+        # Handler Guarantee there operations *before*:
         #
         # delete all the tips associated with the context, comments and files.
-        # This is called by the handler, before invoke delete_context
 
-        # TODO - delete all the jobs associated with the context
+        # remove context from the receiver having association with it
+
         # TODO - delete all the stats associated with the context
-        # TODO - align all the receivers present in self.receivers
-
-        receiver_iface = Receiver()
-
-        # this is not a yield because getStore is not yet called!
-        unlinked_receivers = receiver_iface.unlink_context(context_gus)
 
         store = self.getStore()
 
@@ -158,9 +146,7 @@ class Context(TXModel):
             raise ContextGusNotFound
 
         store.remove(requested_c)
-
-        log.msg("Deleted context %s, created in %s used by %d receivers" %
-                (requested_c.name, requested_c.creation_date, unlinked_receivers) )
+        # TODO XXX Applicative log
 
 
     @transact
@@ -291,13 +277,13 @@ class Context(TXModel):
         for c in presents_context:
 
             # if is not present in context.receivers and is requested: add
-            if c.receivers and not receiver_gus in c.receivers:
+            if not receiver_gus in c.receivers:
                 if c.context_gus in context_selected:
                     debug_counter += 1
                     c.receivers.append(str(receiver_gus))
 
             # if is present in receiver.contexts and is not selected: remove
-            if c.receivers and (receiver_gus in c.receivers):
+            if receiver_gus in c.receivers:
                 if not c.context_gus in context_selected:
                     debug_counter += 1
                     c.receivers.remove(str(receiver_gus))
@@ -310,8 +296,12 @@ class Context(TXModel):
     def context_align(self, context_gus, receiver_selected):
         """
         Called by Context handler, (PUT|POST), just take the context and update the
-        associated receivers
+        associated receivers, checks the receiver existence, and return an
+        exception if do not exist.
         """
+        from globaleaks.models.receiver import Receiver
+        from globaleaks.rest.errors import ReceiverGusNotFound
+
         store = self.getStore()
 
         try:
@@ -323,14 +313,23 @@ class Context(TXModel):
 
         requested_c.receivers = []
         for r in receiver_selected:
+
+            try:
+                selected = store.find(Receiver, Receiver.receiver_gus == unicode(r) ).one()
+            except NotOneError:
+                raise ReceiverGusNotFound
+            if selected is None:
+                raise ReceiverGusNotFound
+
             requested_c.receivers.append(str(r))
+            requested_c.update_date = gltime.utcTimeNow()
 
         log.debug("    ++++   context_align in receiver %s with receivers %s" %
                   ( context_gus, str(receiver_selected) ) )
 
 
     @transact
-    def align_receiver_delete(self, context_gus_list, receiver_gus):
+    def align_receiver_delete(self, context_gus_list, removed_receiver_gus):
 
         store = self.getStore()
 
@@ -344,8 +343,8 @@ class Context(TXModel):
             if requested_c is None:
                 raise ContextGusNotFound
 
-            if str(receiver_gus) in requested_c.receivers:
-                requested_c.receivers.remove(receiver_gus)
+            if str(removed_receiver_gus) in requested_c.receivers:
+                requested_c.receivers.remove(str(removed_receiver_gus))
                 aligned_counter += 1
             else:
                 raise AssertionError # Just as debug check
