@@ -471,11 +471,8 @@ class ReceiverTip(TXModel):
 
             new_receiver_tip =  ReceiverTip()
 
-            # is initialized a Tip, that need to be notified
+            # this initialize the Tip, (with a "not notified" status)
             new_receiver_tip.initialize(selected_it, receiver_subject)
-
-            # TODO receiver_subject.update_timings()
-
             store.add(new_receiver_tip)
 
 

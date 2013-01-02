@@ -88,18 +88,12 @@ class ContextsCollection(BaseHandler):
         Errors: None
         """
 
-        try:
-            context_view = Context()
-            public_context_view = yield context_view.admin_get_all()
+        context_view = Context()
+        public_context_view = yield context_view.get_all()
 
-            self.set_status(200)
-            self.write(json.dumps(public_context_view))
-            # TODO output filter + json
-
-        except KeyError: # TODO there are some error that can be returned ?
-
-            self.set_status(444)
-            self.write({'error_message': 'do not exist but TODO', 'error_code' : 12345})
+        self.set_status(200)
+        self.write(json.dumps(public_context_view))
+        # TODO, output filter need to strip all the reserved information
 
         self.finish()
 
@@ -120,21 +114,13 @@ class ReceiversCollection(BaseHandler):
         Errors: None
         """
 
-        try:
-            receiver_view = Receiver()
-            public_receiver_view = yield receiver_view.admin_get_all()
+        receiver_view = Receiver()
+        public_receiver_view = yield receiver_view.get_all()
 
-            self.set_status(200)
-            self.write(json.dumps(public_receiver_view))
-            # TODO output filter + json
-
-        except KeyError: # TODO there are some error that can be returned ?
-
-            self.set_status(444)
-            self.write({'error_message': 'do not exist but TODO', 'error_code' : 12345})
+        self.set_status(200)
+        self.write(json.dumps(public_receiver_view))
+        # TODO, output filter need to strip all the reserved information
 
         self.finish()
-
-
 
 
