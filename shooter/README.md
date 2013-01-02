@@ -15,6 +15,16 @@ and need to be installed in your system (or in your pyenv) with:
 
     pip install --upgrade https://github.com/jkbr/httpie/tarball/master
 
+## Easy testing
+
+    rm -rf _gldata
+    bin/startglobaleaks
+
+    cd shooter
+    ./admincycle
+
+Admin cycle perform twenty operations performable by a Node Administrator, and store
+intermediary status with assertion in /tmp directory. 
 
 ### Usage
 
@@ -41,8 +51,8 @@ they need to be specified with an appropriate keyword:
     tip (and follow a Tip unique string)
     rid (and follow a Receiver unique string)
     sid (and follow a Submission unique string)
-    oid (statistics|welcome|tip|delivery|notification|cleaning|digest)
-        (itip|wtip|rtip|receivers|comment|profiles|rcfg|all)
+    task (statistics|welcome|tip|delivery|notification|cleaning|digest)
+    dump (itip|wtip|rtip|receivers|comment|profiles|rcfg|all|count|context)
     pid (Profile unique string)
     cn (configuration number)
 
@@ -60,53 +70,7 @@ shooter.py U3 GET sid s\_VeLvSDfpKsxUdGLHEDDKWFBIAnTrMbbuqSPuEYylJpkxSozTmd
 
 ## API list and shortname
 
-     '/node': 'GET' , #U1
-
-     '/submission': 'GET', #U2
-
-     '/submission/@SID@/status': 'GET', #U3
-     '/submission/@SID@/status': 'POST', #U3
-
-     '/submission/@SID@/finalize': 'POST', #U4
-
-     '/tip/@TIP@': 'GET', #T1
-     '/tip/@TIP@' : 'POST', #T1
-     '/tip/@TIP@/comment': 'POST', #T2
-
-     '/tip/@TIP@/finalize': 'POST', #T4
-
-     '/tip/@TIP@/download': 'GET',  #T5
-
-     '/receiver/@TIP@': 'GET', #R1
-     '/receiver/@TIP@': 'PUT', #R1
-
-     '/receiver/@TIP@/management/@PID@': 'GET', #R2
-     '/receiver/@TIP@/management/@PID@': 'POST', #R2
-     '/receiver/@TIP@/management/@PID@': 'PUT', #R2
-     '/receiver/@TIP@/management/@PID@': 'DELETE', #R2
-
-     '/admin/node':'GET', #A1
-     '/admin/node':'POST', #A1
-
-     '/admin/contexts/@CID@': 'GET', #A2
-     '/admin/contexts/@CID@': 'POST', #A2
-     '/admin/contexts/@CID@': 'PUT', #A2
-     '/admin/contexts/@CID@': 'DELETE', #A2
-
-     '/admin/receivers/@RID@': 'GET', #A3
-     '/admin/receivers/@RID@': 'POST', #A3
-     '/admin/receivers/@RID@': 'DELETE', #A3
-     '/admin/receivers/@RID@': 'PUT', #A3
-
-     '/admin/plugins/@PID@/': 'GET', #A4
-     '/admin/plugins/@PID@/': 'POST' #A4
-     '/admin/plugins/@PID@/': 'PUT' #A4
-     '/admin/plugins/@PID@/': 'DELETE' #A4
-
-     '/admin/overview/@OID@': 'GET' #A5
-
-     '/admin/tasks/@OID@': 'GET' #A6
-     '/admin/tasks/@OID@': 'GET' #A6
+Under refactor with generate\_doct review.
 
 ### printing options
 
@@ -121,21 +85,18 @@ interface informations about the selected context, using A2 (/admin/contexts)
 
     $ python shooter.py U1 GET print-name
     uncofigured name
-    $ python shooter.py A1 GET print-context\_gus
+    $ python shooter.py A2 GET print-context\_gus
     c\_zBCyBUsQNAIsyqEJEsrT
-    $ python shooter.py A2 GET cid c\_zBCyBUsQNAIsyqEJEsrT print-receiver\_gus
-    r\_WUYXasvtYfXygtcODcSY
-    $ python shooter.py A3 GET rid r\_WUYXasvtYfXygtcODcSY print-notification\_fields
-    vecna@globaleaks.org
 
 using 
 
     $ python shooter.py help
 
-print the URTA table and relationship with the path.
+print the short-name (A1, R1, etc) table and relationship with the path.
 
 ### JSON files
 
+TODO, or TO BE removed for an easier configuration file.
 
 ## Scripts
 
@@ -154,4 +115,9 @@ like: t\_DjAXRhikjKsovldfqXDswsfkPNTCopKTdenkPiRaYZCDrkUuQd as argument)
 
     admincycle.sh
 
-emulate the lifecycle of an administrator, performing CURD in context and recevers
+emulate the lifecycle of an administrator, performing CURD in context and recevers,
+assignment and sumbmission.
+
+    escalate.sh
+
+Test pertinence vote, in order to make a Tip escalate

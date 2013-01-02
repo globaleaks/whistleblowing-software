@@ -1,4 +1,5 @@
 submission_gus=@SID@
 context_gus=@CID@
+receivers:=[@RAW@]
 fields:={"name":"This is a value","road":"shit stuff crappy","element":"random data again"}
 receipt=focaccia

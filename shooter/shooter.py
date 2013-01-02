@@ -57,13 +57,13 @@ URTA = {
     'A4_GET':'GET_/admin/receiver',
     'A6_GET':'GET_/admin/plugin',
     'A9_GET':'GET_/admin/statistics/',
-    'AA_GET':'GET_/admin/overview/@DUMP@',
     'A3_PUT':'PUT_/admin/context/@CID@',
     'A3_DELETE':'DELETE_/admin/context/@CID@',
     'A3_GET':'GET_/admin/context/@CID@',
 
-    'AB_DELETE':'DELETE_/admin/tasks/@TASK@',
-    'AB_GET':'GET_/admin/tasks/@TASK@'
+    'D1_GET':'GET_/debug/overview/@DUMP@',
+    'D2_DELETE':'DELETE_/debug/tasks/@TASK@',
+    'D2_GET':'GET_/debug/tasks/@TASK@'
 }
 
 baseurl = "http://127.0.0.1:8082"
@@ -171,7 +171,11 @@ def fix_varline(inputline):
                 quit(1)
 
             linesplit = inputline.split(var)
-            return (linesplit[0] + user_parm + linesplit[1])
+
+            if user_parm == "None":
+                return (linesplit[0] + linesplit[1])
+            else:
+                return (linesplit[0] + user_parm + linesplit[1])
 
     # special directive @RANDOM@
     special = '@RANDOM@'

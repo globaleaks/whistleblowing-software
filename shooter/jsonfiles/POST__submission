@@ -1,3 +1,2 @@
 context_gus=@CID@
-real_receipt=focaccia
-fields:={"name":"This is the name hahaha","elements":"hullo","otherelement":"blahblah","info":"ciao","details":"foca"}
+fields:={"name":"This is the first put","elements":"element information blah","otherelement":"blahblah","info":"ciao","details":"foca"}
