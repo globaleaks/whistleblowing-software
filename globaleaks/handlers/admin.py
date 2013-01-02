@@ -126,10 +126,11 @@ class ContextsCollection(BaseHandler):
             context_iface = Context()
             new_context_gus = yield context_iface.new(request)
 
-            if request['receivers']:
-                receiver_iface = Receiver()
-                yield context_iface.context_align(new_context_gus, request['receivers'])
-                yield receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
+            # 'receivers' it's a relationship between two tables, and is managed 
+            # with a separate method of new()
+            receiver_iface = Receiver()
+            yield context_iface.context_align(new_context_gus, request['receivers'])
+            yield receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
 
             context_description = yield context_iface.get_single(new_context_gus)
 
@@ -151,13 +152,18 @@ class ContextsCollection(BaseHandler):
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
+        except KeyError, e: # Until validateMessage is not restored, it's needed.
+
+            self.set_status(511)
+            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
+
         self.finish()
 
 
 class ContextInstance(BaseHandler):
     """
     A3
-    classic CRUD in the single Context resource. It
+    classic CRUD in the single Context resource.
     """
 
     @asynchronous
@@ -199,6 +205,8 @@ class ContextInstance(BaseHandler):
             context_iface = Context()
             yield context_iface.update(context_gus, request)
 
+            # 'receivers' it's a relationship between two tables, and is managed 
+            # with a separate method of new()
             receiver_iface = Receiver()
             yield context_iface.context_align(context_gus, request['receivers'])
             yield receiver_iface.full_receiver_align(context_gus, request['receivers'])
@@ -222,6 +230,11 @@ class ContextInstance(BaseHandler):
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except KeyError, e: # Until validateMessage is not restored, it's needed.
+
+            self.set_status(511)
+            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
 
         self.finish()
 
@@ -272,7 +285,6 @@ class ContextInstance(BaseHandler):
             receivers_associated = yield receiver_iface.get_receivers_by_context(context_gus)
             print "receiver associated by context POV:", len(receivers_associated),\
                 "receiver associated by context DB-field:", len(context_desc['receivers'])
-            print receivers_associated, context_desc['receivers']
 
             # Align all the receiver associated to the context, that the context cease to exist
             yield receiver_iface.align_context_delete(context_desc['receivers'], context_gus)
@@ -336,10 +348,11 @@ class ReceiversCollection(BaseHandler):
 
             new_receiver_gus = yield receiver_iface.new(request)
 
-            if request['contexts']:
-                context_iface = Context()
-                yield receiver_iface.receiver_align(new_receiver_gus, request['contexts'])
-                yield context_iface.full_context_align(new_receiver_gus, request['contexts'])
+            # 'contexts' it's a relationship between two tables, and is managed 
+            # with a separate method of new()
+            context_iface = Context()
+            yield receiver_iface.receiver_align(new_receiver_gus, request['contexts'])
+            yield context_iface.full_context_align(new_receiver_gus, request['contexts'])
 
             new_receiver_desc = yield receiver_iface.get_single(new_receiver_gus)
 
@@ -360,6 +373,11 @@ class ReceiversCollection(BaseHandler):
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except KeyError, e: # Until validateMessage is not restored, it's needed.
+
+            self.set_status(511)
+            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
 
         self.finish()
 
@@ -422,10 +440,11 @@ class ReceiverInstance(BaseHandler):
 
             yield receiver_iface.admin_update(receiver_gus, request)
 
-            if request['contexts']:
-                context_iface = Context()
-                yield receiver_iface.receiver_align(receiver_gus, request['contexts'])
-                yield context_iface.full_context_align(receiver_gus, request['contexts'])
+            # 'contexts' it's a relationship between two tables, and is managed 
+            # with a separate method of new()
+            context_iface = Context()
+            yield receiver_iface.receiver_align(receiver_gus, request['contexts'])
+            yield context_iface.full_context_align(receiver_gus, request['contexts'])
 
             receiver_description = yield receiver_iface.get_single(receiver_gus)
 
@@ -446,6 +465,11 @@ class ReceiverInstance(BaseHandler):
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except KeyError, e: # Until validateMessage is not restored, it's needed.
+
+            self.set_status(511)
+            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
 
         self.finish()
 
@@ -481,7 +505,6 @@ class ReceiverInstance(BaseHandler):
 
             print "context associated by receiver POV:", len(contexts_associated),\
                 "context associated by receiver-DB field:", len(receiver_desc['contexts'])
-            print contexts_associated, receiver_desc['contexts']
 
             yield context_iface.align_receiver_delete(receiver_desc['contexts'], receiver_gus)
 
@@ -700,12 +723,6 @@ class ProfileInstance(BaseHandler):
         Errors: ProfileGusNotFound, InvalidInputFormat
         """
 
-# _______________________________________
-# BEFORE NEED TO BE REFACTORED WITH THE NEW API
-# _______________________________________
-# BEFORE NEED TO BE REFACTORED WITH THE NEW API
-# _______________________________________
-
 class StatisticsCollection(BaseHandler):
     """
     A9
@@ -722,143 +739,9 @@ class StatisticsCollection(BaseHandler):
         """
         pass
 
+# _______________________________________
+# BEFORE NEED TO BE REFACTORED WITH THE NEW API
+# _______________________________________
+# BEFORE NEED TO BE REFACTORED WITH THE NEW API
+# _______________________________________
 
-class EntryCollection(BaseHandler):
-    """
-    AA
-    Interface for dumps elements in the tables, used in debug and detailed analysis.
-    """
-
-    @asynchronous
-    @inlineCallbacks
-    def get(self, what, *uriargs):
-        """
-        Parameters: None
-        Response: Unknown
-        Errors: None
-
-        /admin/overview GET should return up to all the tables of GLBackend
-        """
-
-        expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'comment',
-                     'profiles', 'rcfg', 'submission', 'context', 'all' ]
-
-        if what == 'receivers' or what == 'all':
-            receiver_iface = Receiver()
-            receiver_list = yield receiver_iface.get_all()
-            self.write({ 'elements' : len(receiver_list), 'receivers' : receiver_list})
-
-        if what == 'itip' or what == 'all':
-            itip_iface = InternalTip()
-            itip_list = yield itip_iface.get_all()
-            self.write({ 'elements' : len(itip_list), 'internaltips' : itip_list })
-
-        if what == 'rtip' or what == 'all':
-            rtip_iface = ReceiverTip()
-            rtip_list = yield rtip_iface.get_all()
-            self.write({ 'elements' : len(rtip_list), 'receivers_tips' : rtip_list })
-
-        if what == 'wtip' or what == 'all':
-            wtip_iface = WhistleblowerTip()
-            wtip_list = yield wtip_iface.get_all()
-            self.write({ 'elements' : len(wtip_list), 'whistleblower_tips' : wtip_list })
-
-        if what == 'comment' or what == 'all':
-            comment_iface = Comment()
-            comment_list = yield comment_iface.get_all()
-            self.write({ 'elements' : len(comment_list), 'comments' : comment_list })
-
-        if what == 'profiles' or what == 'all':
-            profile_iface = PluginProfiles()
-            profile_list = yield profile_iface.admin_get_all()
-            self.write({ 'elements' : len(profile_list), 'profiles' : profile_list })
-
-        if what == 'rcfg' or what == 'all':
-            rconf_iface = ReceiverConfs()
-            rconf_list = yield rconf_iface.admin_get_all()
-            self.write({ 'elements' : len(rconf_list), 'settings' : rconf_list })
-
-        if what == 'submission' or what == 'all':
-            submission_iface = Submission()
-            submission_list = yield submission_iface.get_all()
-            self.write({ 'elements' : len(submission_list), 'settings' : submission_list })
-
-        if what == 'context' or what == 'all':
-            context_iface = Context()
-            context_list = yield context_iface.get_all()
-            self.write({ 'elements' : len(context_list), 'settings' : context_list })
-
-
-        if not what in expected:
-            self.set_status(405)
-        else:
-            self.set_status(200)
-
-        self.finish()
-
-
-class TaskInstance(BaseHandler):
-    """
-    AB
-    controls task and scheduled
-    """
-
-    @asynchronous
-    @inlineCallbacks
-    def get(self, what, *uriargs):
-        """
-        Parameters: None
-        Response: Unknown
-        Errors: None
-
-        /admin/tasks/ GET, force the execution of an otherwise scheduled event
-        """
-        from globaleaks.jobs.notification_sched import APSNotification
-        from globaleaks.jobs.tip_sched import APSTip
-        from globaleaks.jobs.delivery_sched import APSDelivery
-        from globaleaks.jobs.welcome_sched import APSWelcome
-        from globaleaks.jobs.cleaning_sched import APSCleaning
-        from globaleaks.jobs.statistics_sched import APSStatistics
-        from globaleaks.jobs.digest_sched import APSDigest
-
-        expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'digest' ]
-
-        if what == 'statistics':
-            yield APSNotification().operation()
-        if what == 'welcome':
-            yield APSWelcome().operation()
-        if what == 'tip':
-            yield APSTip().operation()
-        if what == 'delivery':
-            yield APSDelivery().operation()
-        if what == 'notification':
-            yield APSNotification().operation()
-        if what == 'cleaning':
-            yield APSCleaning().operation()
-        if what == 'digest':
-            yield APSDigest().operation()
-
-        if not what in expected:
-            self.set_status(405)
-        else:
-            self.set_status(200)
-
-        self.finish()
-
-
-    @asynchronous
-    @inlineCallbacks
-    def delete(self, what, *uriargs):
-        """
-        Request: None
-        Response: None
-        Errors: None
-
-        simply STOP the scheduler. Jobs operation whould be performed only via GET /admin/tasks/
-        """
-        from globaleaks.runner import GLAsynchronous
-
-        yield GLAsynchronous.shutdown(shutdown_threadpool=False)
-
-        self.set_status(200)
-        self.finish()

@@ -10,7 +10,7 @@
 from cyclone.web import StaticFileHandler
 
 from globaleaks import config
-from globaleaks.handlers import node, submission, tip, admin, receiver, files
+from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug
 from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, profileGUS, submissionGUS
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
@@ -107,12 +107,11 @@ spec = [
     #  A9
     (r'/admin/statistics/', admin.StatisticsCollection),
 
-    #  -------------- ADMIN DEBUG ONLY -------------------
-    #  AA
-    (r'/admin/overview/' + not_defined_regexp, admin.EntryCollection),
+    #  D1
+    (r'/debug/overview/' + not_defined_regexp, debug.EntryCollection),
 
-    #  AB
-    (r'/admin/tasks/' + not_defined_regexp, admin.TaskInstance),
+    #  D2
+    (r'/debug/tasks/' + not_defined_regexp, debug.TaskInstance),
 
     ## file download TEMP
     (r'/download/(.*)',  files.Download),  # StaticFileHandler, {'path': config.advanced.submissions_dir } ),

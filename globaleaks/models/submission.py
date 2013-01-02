@@ -1,4 +1,4 @@
-# -*- coding: UTF-8
+# -*- coding: UTF-8)
 #
 #   models/submission
 #   *****************
@@ -51,7 +51,7 @@ class Submission(TXModel):
         store = self.getStore()
 
         try:
-            associated_c = store.find(Context, Context.context_gus == context_gus).one()
+            associated_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             raise ContextGusNotFound
         if associated_c is None:
@@ -89,7 +89,7 @@ class Submission(TXModel):
         store = self.getStore()
 
         try:
-            submission_r = store.find(Submission, Submission.submission_gus==submission_gus).one()
+            submission_r = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError:
             store.close()
             raise SubmissionGusNotFound
@@ -116,7 +116,7 @@ class Submission(TXModel):
 
         store = self.getStore()
         try:
-            s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+            s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError, e:
             raise SubmissionGusNotFound
         if not s:
@@ -137,7 +137,7 @@ class Submission(TXModel):
         store = self.getStore()
 
         try:
-            requested_s = store.find(Submission, Submission.submission_gus == submission_gus).one()
+            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError:
             raise SubmissionGusNotFound
         if requested_s is None:
@@ -161,7 +161,7 @@ class Submission(TXModel):
         store = self.getStore()
 
         try:
-            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError:
             raise SubmissionGusNotFound
         if requested_s is None:
@@ -190,7 +190,7 @@ class Submission(TXModel):
         try:
             # XXX need to be checked the presence of a collision, but this bring to insecurity
             # so ... at the moment this issue is not solved.
-            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError:
             raise SubmissionGusNotFound
         if requested_s is None:
@@ -208,7 +208,7 @@ class Submission(TXModel):
         store = self.getStore()
 
         try:
-            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError:
             raise SubmissionGusNotFound
         if requested_s is None:
@@ -269,7 +269,7 @@ class Submission(TXModel):
         store = self.getStore()
 
         try:
-            requested_s = store.find(Submission, Submission.submission_gus==submission_gus).one()
+            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError:
             raise SubmissionGusNotFound
         if requested_s is None:
@@ -284,7 +284,7 @@ class Submission(TXModel):
         store = self.getStore()
 
         try:
-            requested_s = store.find(Submission, Submission.submission_gus == submission_gus).one()
+            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError:
             raise SubmissionGusNotFound
         if requested_s is None:
