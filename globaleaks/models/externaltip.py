@@ -736,25 +736,35 @@ class Comment(TXModel):
         @param name: the Comment author name to be show and recorded, can be absent if source is enough
         @return: None
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "InternalTip class", "add_comment",
-            "itip_id", itip_id, "source", source, "author_gus", author_gus)
 
         if not source in [ u'receiver', u'whistleblower', u'system' ]:
             raise NotImplemented
 
         store = self.getStore()
 
+        try:
+            itip = store.find(InternalTip, InternalTip.id == int(itip_id)).one()
+        except NotOneError:
+            # This can't actually happen
+            raise Exception
+        if itip is None:
+            # This can't actually happen
+            raise Exception
+
         # this approach is a little different from the other classes in ExternalTip
         # they use a new Object() in the caller method, and then Object.initialize
         # to fill with data.
-        # XXX this would be refactored when TaskQueue would be engineered
         newcomment = Comment()
+
         newcomment.creation_time = gltime.utcTimeNow()
         newcomment.source = source
         newcomment.content = comment
         newcomment.author_gus = author_gus
+        newcomment.internaltip = itip
+        newcomment.internaltip_id = int(itip_id)
         newcomment.notification_mark = u'not notified'
-        newcomment.internaltip_id = itip_id
+        # XXX TODO need to be reeingineered, one notification for receiver
+
         store.add(newcomment)
 
         retVal = newcomment._description_dict()
@@ -767,12 +777,11 @@ class Comment(TXModel):
     @transact
     def flip_mark(self, comment_id, newmark):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Comment class", "flip_mark ", comment_id, newmark)
 
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
 
         if not newmark in notification_markers:
-            raise Exception("Invalid developer brain dictionary", newmark)
+            raise NotImplemented
 
         store = self.getStore()
 
@@ -784,7 +793,6 @@ class Comment(TXModel):
         """
         return all the comment child of the same InternalTip.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Comment class", "get_comment_related", internltip_id)
 
         store = self.getStore()
 
@@ -854,7 +862,7 @@ class Comment(TXModel):
             'content' : unicode(self.content),
             'author_gus' : unicode(self.author_gus),
             'notification_mark': bool(self.notification_mark),
-            'internaltip_id' : unicode(self.internaltip_id),
+            'internaltip_id' : int(self.internaltip_id),
             'creation_time' : unicode(gltime.prettyDateTime(self.creation_time))
         }
         return dict(descriptionDict)
