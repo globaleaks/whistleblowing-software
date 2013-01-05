@@ -148,6 +148,8 @@ class adminPluginDesc(GLTypes):
         'plugin_type': unicode,
         'plugin_name' : unicode,
         'description' : unicode,
+        'admin_fields' : [ formFieldsDict ],
+        'receiver_fields' : [ formFieldsDict ]
         }
 
 

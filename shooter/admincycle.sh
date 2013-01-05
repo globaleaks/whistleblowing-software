@@ -107,7 +107,7 @@ dt "18" "T2 POST tip $receipt variation wb" "Commenting WhistleBlower Tip"
 
 # Read all the comments
 echo "[+] Checks comments presence (has to be 3):"
-$SHOOTER D1 dump comment print-comment_elements
+$SHOOTER D1 GET dump comment print-comment_elements
 
 # admin delete Receiver1 from the node
 dt "19" "A5 DELETE rid $receiver_one" "Deleting Receiver1 from the Node" "three comments, one receiver tip, and context_two with only receiver_two"

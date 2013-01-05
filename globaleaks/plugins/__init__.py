@@ -1,1 +1,1 @@
-__all__ = ['GLPluginManager', 'GLPlugin' ]
+__all__ = [ 'manager', 'base' ]
