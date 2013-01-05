@@ -1,39 +1,8 @@
-"""
-Output struct that we need generated:
-
-{
-    'API' : "/node" # API contain the API path, with regexp inside, if happen
-    'shortname': A1|U1|T1 # short name usable from command line tool
-    'GET': true|false
-    'POST: true|false # a boolean aiming if a method is supported or not, this trigger the
-    next four entry:
-    'GET_request': messageType # if a method is supported, the message tipe
-    'GET_response': messageType # as before
-    'GET_error': [ errors ] # possible output errors
-    'GET_docstring': documentation about GET role for the API
-}
-
-Every entry is put in a list.
-"""
-
-from globaleaks.rest.api import spec
 from globaleaks.rest import requests, responses, errors, base
 import inspect
 import string
 
-
-
-doctree = {}
-URTA_map = {}
-
-# doctree is the dict containing the API spec
-#   the keys of this dict are the API PATH + URTA code
-#   the item of the API path is another dict
-#       the keys of this dict are the methods supported
-#       the item of this key is an array with the collected info from the docstring
-
-typestree = {}
-# typestree is the dict containing the data types description and content
+doctree = []
 
 def shooter_list_dump():
 
@@ -63,38 +32,90 @@ def pop_URTA(descriptionstring):
         return False
 
 def fill_doctree():
+    """
+    This function read all the code and extract the docstring,
+    is collected with this format:
+
+    Output struct that we want generated:
+
+    {
+        'API' : "/node" # API contain the API path, with regexp inside, if happen
+        'shortname': A1|U1|T1 # short name usable from command line tool
+        'class_doc': Class docstring (a sort of brief)
+        'GET': true|false
+        'POST: true|false # a boolean aiming if a method is supported or not, this trigger the
+        next four entry:
+        'GET_request': messageType # if a method is supported, the message type
+        'GET_response': messageType # as before
+        'GET_error': [ errors ] # possible output errors
+        'GET_param' : parameters
+        'GET_docstring': documentation about GET role for the API
+    }
+
+    Every entry is put in a list.
+    @return: a list with the previously explained format.
+    """
+    from globaleaks.rest.api import spec
+
+    doctree = []
 
     for resource in spec:
+
+        doc_entry = {}
 
         # static file handler, not managed here:
         if resource[0] == "/(.*)":
             continue
 
-        handler = resource[1]
+        doc_entry.update({'API' : resource[0]}) # the API /path/with/regexp
+        handler_class = resource[1]
 
-        if handler.__doc__ is None:
+        if handler_class.__doc__ is None:
             print "Missing class docstring in Handler class:", resource[0]
             quit()
 
-        classdoc = cleanup_docstring(handler.__doc__)
+        raw_class_doc =  cleanup_docstring(handler_class.__doc__)
 
-        URTA_combo = pop_URTA(classdoc)
+        URTA_combo = pop_URTA(raw_class_doc)
+        # URTA_combo is an array of ( shortname, description )
+
         if not URTA_combo:
-            print "missing URTA code and description in class: %s (%s)" % (resource[0], resource[1])
+            print "missing URTA code and description in: %s, class: %s" % (resource[0], resource[1])
             quit()
 
-        # URTA_combo is an array of ( URTA, description )
-        URTA_map.update({ resource[0] : URTA_combo })
-        doctree.update({ resource[0]: {} })
+        doc_entry.update({'shortname' : URTA_combo[0]})
+        doc_entry.update({'class_doc' : URTA_combo[1]})
 
-        handler_child = {}
-        for method in ['get', 'post', 'put', 'delete']:
-            m = getattr(handler, method)
+        for method in ['GET', 'POST', 'PUT', 'DELETE']:
+
+            m = getattr(handler_class, method.lower())
+
             if m.__doc__:
-                docstring = cleanup_docstring(m.__doc__)
-                handler_child.update({method : docstring})
 
-        doctree.update({ resource[0] : handler_child })
+                doc_entry.update({method: True})
+
+                raw_docstring = cleanup_docstring(m.__doc__)
+
+                matrix = [
+                    [ "response", 'Response:'],
+                    [ "error", 'Errors:' ],
+                    [ "request", 'Request:'],
+                    [ "param", 'Parameter:']
+                ]
+
+                for line in raw_docstring.split("\n"):
+
+                    for x in matrix:
+                        if line.find(x[1]) != -1:
+                            docvalues = (line.split(x[1]))[1]
+                            doc_entry.update({"%s_%s" % ( method, x[0]) : docvalues })
+
+                doc_entry.update({"%s_docstring" % method : "\n\n".join(raw_docstring.split("\n\n")[1:])})
+
+        doctree.append(doc_entry)
+
+    import json
+    print(json.dumps(doctree, indent=4))
 
     return doctree
 
@@ -107,61 +128,22 @@ def cleanup_docstring(docstring):
 def get_elementNames(partial_line):
     return partial_line.replace(" ", '').split(",")
 
-def travel_over_tree(wikidoc, URTAindex=None):
+def travel_over_tree(wikidoc, URTAindex, intro):
 
-    for key, value in doctree.iteritems():
+    wikidoc.add_h1(intro)
 
-        if URTAindex and URTA_map.get(key)[0][0] != URTAindex[0]:
+    for doc_entry in doctree:
+
+        if doc_entry['shortcode'] != URTAindex[0]:
             continue
 
-        wikidoc.add_h2(key)
+        wikidoc.add_h2(doc_entry['API'])
+        wikidoc.collected += "\n" + doc_entry['class_doc']
 
-        for method, text in value.iteritems():
+        
+        if doc_entry.has_key('GET') and doc_entry['GET']:
 
-            lines = text.split("\n")
-            wikidoc.add_h3("%s %s" % (method.upper(), key), text)
 
-            matrix = [
-                  [ wikidoc.add_response, 'Response:', False],
-                  [ wikidoc.add_error, 'Errors:', False ],
-                  [ wikidoc.add_request, 'Request:', False],
-                  [ wikidoc.add_param, 'Parameter:', False ]
-                ]
-
-            # for each line, check one of the keyword above, and
-            # use the appropriate method in wikidoc.
-            for line in lines:
-
-                parsed_correctly = False
-                for ndx, entry in enumerate(matrix):
-
-                    x_i = line.find(entry[1])
-                    if x_i != -1:
-                        index = x_i + len(entry[1]) + 1
-
-                        parsed_correctly = True
-
-                        elements = get_elementNames(line[index:])
-
-                        for element in elements:
-                            doctree_update = entry[0](element)
-
-                            if doctree_update:
-                                matrix[ndx][2] = True
-                            else:
-                                print "From ", key, "(", method.upper(), ")"
-
-                if not parsed_correctly:
-                    wikidoc.add_line(line)
-
-            if method.upper() == 'GET':
-                if not matrix[0][2] or not matrix[1][2]:
-                    print "Error: lacking of requirements"
-                    quit()
-            else:
-                if not matrix[0][2] or not matrix[1][2] or not matrix[2][2]:
-                    print "Error: lacking of requirements"
-                    quit()
 
 
 def create_spec(rec, spec):
@@ -335,10 +317,11 @@ if __name__ == '__main__':
     wikidoc = reStructuredText()
     fill_doctree()
 
-    travel_over_tree(wikidoc, 'U')
-    travel_over_tree(wikidoc, 'R')
-    travel_over_tree(wikidoc, 'T')
-    travel_over_tree(wikidoc, 'A')
+    travel_over_tree(wikidoc, 'U', "Unauthenticated API")
+    travel_over_tree(wikidoc, 'R', "Receiver API")
+    travel_over_tree(wikidoc, 'T', "Tip API")
+    travel_over_tree(wikidoc, 'A', "Administrative API")
+    travel_over_tree(wikidoc, 'D', "Debug API")
 
     newstring = "This is an autogenerated file based on **docs/generate_docs.py**.\n"+\
                 "The script looks in the docstrings inside of the Handlers Class"+\
@@ -350,10 +333,6 @@ if __name__ == '__main__':
 
     with file("APIdocGenerated.reST", 'w+') as f:
         f.write(wikidoc.collected)
-
-    #`travel_over_tree had filled typestree dictionary!
-    for k,v in typestree.iteritems():
-        print k,"\t",v
 
     # dump API list in shooter.py format
     shooter_list_dump()
