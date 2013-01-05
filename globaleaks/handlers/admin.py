@@ -19,7 +19,7 @@ from globaleaks.models.node import Node
 from globaleaks.models.submission import Submission
 
 from globaleaks.utils import log
-from globaleaks.plugins.base import GLPluginManager
+from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
     NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict
 from globaleaks.rest.base import validateMessage
@@ -522,12 +522,6 @@ class ReceiverInstance(BaseHandler):
         self.finish()
 
 
-# _______________________________________
-# BELOW TO BE REFACTORED WITH THE NEW API
-# _______________________________________
-# BELOW TO BE REFACTORED WITH THE NEW API
-# _______________________________________
-
 class PluginCollection(BaseHandler):
     """
     A6
@@ -542,8 +536,19 @@ class PluginCollection(BaseHandler):
         Parameters: None
         Response: adminPluginList
         Errors: None
+
+        This handler is one of the few that do not operate versus the database model, but in
+        the filesystem. Checks the plugin presents in the appropriate directory and return
+        a list with name and properties.
         """
-        pass
+
+        plugin_descriptive_list = PluginManager.get_all()
+        # TODO output validation - adminPluginList
+
+        self.set_status(200)
+        self.write(json.dumps(plugin_descriptive_list))
+        self.finish()
+
 
 
 class ProfileCollection(BaseHandler):
@@ -562,7 +567,8 @@ class ProfileCollection(BaseHandler):
         Response: adminProfileList
         Errors: PluginNameNotFound
         """
-        pass
+
+
 
     @asynchronous
     @inlineCallbacks

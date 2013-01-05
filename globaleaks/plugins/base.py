@@ -2,61 +2,9 @@
 # 
 #   plugin/base
 #   ***********
-# Two helper classes used to define and handle plugins
+# The base classes used to define the plugins
 
-__all__ = ['GLPluginManager', 'GLPlugin']
-
-class GLPluginManager:
-    """
-    This plugin manager is temporary, perhaps https://code.google.com/p/pyplugin/
-    or http://pypi.python.org/pypi/Plugins/0.5a1dev
-    """
-
-    def __init__(self):
-        from globaleaks.plugins.notification.mail_plugin import MailNotification
-        # from globaleaks.plugins.notification.irc_plugin import IRCNotification
-        from globaleaks.plugins.notification.file_plugin import FILENotification
-
-        # only here the plugin object is instanced
-        self.notification_dict = {
-            'email': MailNotification(),
-            # 'irc': IRCNotification(),
-            'file': FILENotification()
-        }
-        self.delivery_dict = {}
-        self.inputfilter_dict = {}
-
-    def get_types(self, ptype):
-        """
-        Return the list of plugin per types
-        """
-        if ptype == 'notification':
-            return self.notification_dict
-        if ptype == 'delivery':
-            return self.delivery_dict
-        if ptype == 'inputfilter':
-            return self.inputfilter_dict
-
-        Exception("invalid request type in GLPluginManager")
-
-    def get_plugin(self, pname, ptype):
-        """
-        Return the plugin object
-        """
-        plugin_registered = self.get_types(ptype)
-        return plugin_registered.get(pname)
-
-    def plugin_exists(self, pname, ptype):
-        """
-        return a bool, if plugin type contains a plugin with the requested name
-        """
-        plugin_registered = self.get_types(ptype)
-
-        if plugin_registered.has_key(pname):
-            return True
-        else:
-            return False
-
+__all__ = [ 'Notification', 'Delivery', 'FileProcess' ]
 
 class GLPlugin:
     """
@@ -76,8 +24,8 @@ class GLPlugin:
 
     plugin_name = None
     plugin_type = None
+    plugin_description = None
     admin_fields = {}
-    receiver_fields = {}
 
     def validate_admin_opt(self, admin_fields):
         """
@@ -87,16 +35,13 @@ class GLPlugin:
         """
         Exception("Your plugin misses implementation of 'validate_admin_opt'")
 
-    def validate_receiver_opt(self, admin_fields, receiver_fields):
-        """
-        @param receiver_fields: the received Receiver fields, before being
-            saved in the database between Receiver Confs, is checked here
-        @param admin_fields: referenced profile settings
-        @return: bool
-        """
-        Exception("Your plugin misses implementation of 'validate_receiver_opt'")
+    def initialize(self, admin_fields):
+        Exception("Your plugin misses implementation of 'initialize'")
+
 
 class Notification(GLPlugin):
+
+    receiver_fields = {}
 
     def digest_check(self, settings, stored_data, new_data):
         """
@@ -106,6 +51,15 @@ class Notification(GLPlugin):
         @return: [ 'notification_marker', [ new stored data ] ]
         """
         Exception("Your plugin misses implementation of 'digest_check'")
+
+    def validate_receiver_opt(self, admin_fields, receiver_fields):
+        """
+        @param receiver_fields: the received Receiver fields, before being
+            saved in the database between Receiver Confs, is checked here
+        @param admin_fields: referenced profile settings
+        @return: bool
+        """
+        Exception("Your plugin misses implementation of 'validate_receiver_opt'")
 
     def do_notify(self, settings, stored_data):
         """
@@ -118,6 +72,30 @@ class Notification(GLPlugin):
 
 class Delivery(GLPlugin):
 
-    def do_delivery(self):
+    receiver_fields = {}
+
+    def validate_receiver_opt(self, admin_fields, receiver_fields):
+        """
+        @param receiver_fields: the received Receiver fields, before being
+            saved in the database between Receiver Confs, is checked here
+        @param admin_fields: referenced profile settings
+        @return: bool
+        """
+        Exception("Your plugin misses implementation of 'validate_receiver_opt'")
+
+    def preparation_required(self, fileinfo, admin_fields):
+        Exception("Your plugin misses implementation of 'preparation_required'")
+
+    def do_delivery(self, settings, data_reference):
         Exception("Your plugin misses implementation of 'do_delivery'")
 
+
+class FileProcess(GLPlugin):
+
+    def do_fileprocess(self, filepath, admin_fields):
+        """
+        @param filepath:
+        @param admin_fields:
+        @return:
+        """
+        Exception("Your plugin messes implementation of do_fileprocess")

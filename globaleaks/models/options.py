@@ -18,10 +18,12 @@ from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.context import Context
-from globaleaks.rest.errors import ProfileGusNotFound, ProfileNameConflict
+from globaleaks.rest.errors import ProfileGusNotFound, ProfileNameConflict, ReceiverConfNotFound, InvalidInputFormat
+from globaleaks.plugins.manager import PluginManager
 
 __all__ = [ 'PluginProfiles', 'ReceiverConfs' ]
 
+valid_profile_types = [ u'notification', u'delivery', u'fileprocess' ]
 
 class PluginProfiles(TXModel):
     """
@@ -32,64 +34,86 @@ class PluginProfiles(TXModel):
     """
     __storm_table__ = 'pluginprofiles'
 
-    # those fields are assigned at creation time and can't be changed:
-    profile_gus = Unicode(primary=True)
+    # These fields are assigned at creation time and can't be changed:
     plugin_type = Unicode()
     plugin_name = Unicode()
-    required_fields = Pickle()
+    plugin_description = Unicode()
+
+    profile_gus = Unicode(primary=True)
+
+    # admin_fields contain a copy of the Plugins requested fields and type
+    admin_fields = Pickle()
+    # admin_settings contain a key-value dictionary with the compiled information
+    admin_settings = Pickle()
+
+    # That's are not _settings, just a copy of the receiver_fields, that would be
+    # printed between the resource information, or eventually be modified in
+    # description by Administrator (feature not implemented nor requested)
+    receiver_fields = Pickle()
+
     creation_time = DateTime()
 
-    # those fields MAY be changed when profile has been created
-    external_description = Unicode()
-    profile_name = Unicode()
-    admin_fields = Pickle()
+    profile_description = Unicode()
 
-    # contexts_assigned = Pickle()
-    # TODO - at the moment, just the context reference their Profiles and not vice-versa
+    # It's checked to be unique, just to avoid Receiver mistake
+    profile_name = Unicode()
+
+    context_gus = Unicode()
+    context = Reference(context_gus, Context.context_gus)
+
 
     @transact
-    def newprofile(self, plugtype, plugname, profname, plugreq, desc=None, settings=None):
-        """
-        @param plugtype:  notification|delivery|inputfilter, already checked by the caller
-        @param plugname:  plugin name, already checked the existence using GLPluginManager
-        @param profname:  a profile name, used to recognize a unique profile in a list
-        @param plugreq: the plugins required fields for admin and receiver.
-        @param desc: a descriptive string that would be presented to the receiver
-        @param settings:  the admin side configuration fields for the plugin.
-        @return:
-        """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class PluginConf", "newprofile", ptype, pname)
+    def new(self, profile_dict):
 
-        store = self.getStore('newprofile')
-
-        if store.find(PluginProfiles, PluginProfiles.profile_name == profname).count() >= 1:
-            raise ProfileNameConflict
-
+        store = self.getStore()
         newone = PluginProfiles()
+
+        try:
+
+            # below, before _import_dict, are checked profile_type, and plugin_name
+            # both of them can't be updated, are chosen at creation time,
+
+            if unicode(profile_dict['profile_type']) in valid_profile_types:
+                newone.profile_type = unicode(profile_dict['profile_type'])
+            else:
+                raise InvalidInputFormat("profile_type not recognized")
+
+            if PluginManager.plugin_exists(str(profile_dict['plugin_name'])):
+                newone.plugin_name = unicode(profile_dict['plugin_name'])
+            else:
+                raise InvalidInputFormat("plugin_name not recognized between available plugins")
+
+            newone._import_dict(profile_dict)
+
+            # the name can be updated, but need to be checked to be UNIQUE
+            if store.find(PluginProfiles, PluginProfiles.profile_name == newone.profile_name).count() >= 1:
+                raise ProfileNameConflict
+
+        except KeyError, e:
+            raise InvalidInputFormat("Profile creation failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("Profile creation failed (wrong %s)" % e)
+
         newone.profile_gus = idops.random_plugin_gus()
-        newone.profile_name = profname
         newone.creation_time = gltime.utcTimeNow()
-        newone.plugin_type = plugtype
-        newone.plugin_name = plugname
-        newone.required_fields = plugreq
 
-        if settings:
-            newone.admin_fields = settings
+        plugin_info = PluginManager.get_plugin(newone.plugin_name)
 
-        if desc:
-            newone.external_description = desc
+        newone.plugin_description = plugin_info['plugin_description']
+
+        # Admin-only plugins are listed here, and they have not receiver_fields
+        if newone.plugin_type in [ u'fileprocess' ]:
+            newone.receiver_fields = []
+        else:
+            newone.receiver_fields = plugin_info['receiver_fields']
 
         store.add(newone)
 
+
     @transact
-    def update_profile(self, profile_gus, settings=None, profname=None, desc=None):
+    def update(self, profile_gus, profile_dict):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "PluginConf update_fields", profile_gus)
-
-        store = self.getStore('update_fields')
-
-        if store.find(PluginProfiles, PluginProfiles.profile_name == profname).count() >= 1:
-            raise ProfileNameConflict
+        store = self.getStore()
 
         try:
             looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
@@ -98,26 +122,25 @@ class PluginProfiles(TXModel):
         if not looked_p:
             raise ProfileGusNotFound
 
-        if settings:
-            looked_p.admin_fields = settings
+        try:
+            looked_p._import_dict(profile_dict)
 
-        if profname:
-            looked_p.profile_name = profname
+            # the name can be updated, but need to be checked to be UNIQUE
+            if store.find(PluginProfiles, PluginProfiles.profile_name == looked_p.profile_name).count() >= 1:
+                raise ProfileNameConflict
 
-        if desc:
-            looked_p.external_description = desc
+        except KeyError, e:
+            raise InvalidInputFormat("Profile update failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("Profile update failed (wrong %s)" % e)
 
 
     @transact
-    def admin_get_all(self, by_type=None):
+    def get_all(self):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "PluginConf admin_get_all", by_type)
-        store = self.getStore('admin_get_all')
+        store = self.getStore()
 
-        if by_type:
-            selected_plugins = store.find(PluginProfiles, PluginProfiles.plugin_type == by_type)
-        else:
-            selected_plugins = store.find(PluginProfiles)
+        selected_plugins = store.find(PluginProfiles)
 
         retVal = []
         for single_p in selected_plugins:
@@ -127,10 +150,9 @@ class PluginProfiles(TXModel):
 
 
     @transact
-    def admin_get_single(self, profile_gus):
+    def get_single(self, profile_gus):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "PluginConf admin_get_single", profile_gus)
-        store = self.getStore('admin_get_single')
+        store = self.getStore()
 
         try:
             looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
@@ -143,17 +165,33 @@ class PluginProfiles(TXModel):
         return retVal
 
 
+    def _import_dict(self, received_dict):
+
+        # TODO perform fields validation like in submission
+        self.admin_settings = received_dict['admin_settings']
+
+        self.profile_name = received_dict['profile_name']
+        self.profile_description = received_dict['profile_description']
+        self.context_gus = received_dict['context_gus']
+
+
     def _description_dict(self):
 
-        retVal = { 'profile_gus' : unicode(self.profile_gus),
-                   'plugin_type': unicode(self.plugin_type),
-                   'plugin_name' : unicode(self.plugin_name),
-                   'creation_time' : None,
-                   'profile_name' : unicode(self.profile_name),
-                   'external_description' : unicode(self.external_description),
-                   'admin_fields' : dict(self.admin_fields) }
+        retVal = {
+            'plugin_name' : unicode(self.plugin_name),
+            'plugin_type': unicode(self.plugin_type),
+            'plugin_description' : unicode(self.plugin_description),
+            'context_gus' : unicode(self.context_gus),
+            'profile_gus' : unicode(self.profile_gus),
+            'profile_name' : unicode(self.profile_name),
+            'profile_description' : unicode(self.profile_description),
+            'creation_time' : unicode(gltime.prettyDateTime(self.creation_time)),
+            'admin_fields' : list(self.admin_fields),
+            'admin_settings' : dict(self.admin_settings),
+            'receiver_fields' : list(self.receiver_fields)
+        }
 
-        return retVal
+        return dict(retVal)
 
 
 
@@ -187,7 +225,7 @@ class ReceiverConfs(TXModel):
 
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverConfs", "newconf")
 
-        store = self.getStore('newconf')
+        store = self.getStore()
 
         newone = ReceiverConfs()
         newone.receiver_gus = receiver_gus
@@ -210,7 +248,7 @@ class ReceiverConfs(TXModel):
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverConfs", "updateconf", conf_id)
 
-        store = self.getStore('updateconf')
+        store = self.getStore()
 
         try:
             looked_c = store.find(ReceiverConfs, ReceiverConfs.id == conf_id).one()
@@ -226,7 +264,7 @@ class ReceiverConfs(TXModel):
     def admin_get_all(self):
 
         log.debug("[D] %s %s " % (__file__, __name__), "ReceiverConfs admin_get_all")
-        store = self.getStore('admin_get_all')
+        store = self.getStore()
 
         configurations = store.find(ReceiverConfs)
 
@@ -240,7 +278,7 @@ class ReceiverConfs(TXModel):
     def receiver_get_all(self, receiver_gus):
 
         log.debug("[D] %s %s " % (__file__, __name__), "ReceiverConfs receiver_get_all", receiver_gus)
-        store = self.getStore('receiver_get_all')
+        store = self.getStore()
 
         related_confs = store.find(ReceiverConfs, ReceiverConfs.receiver_gus == receiver_gus)
 

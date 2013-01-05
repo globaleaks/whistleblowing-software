@@ -1,11 +1,10 @@
 
 from globaleaks.utils import log
-from globaleaks.plugins.base import GLPlugin
+from globaleaks.plugins.base import Notification
 import smtplib
 import string
 
-
-class MailNotification(GLPlugin):
+class MailNotification(Notification):
 
     def __init__(self):
         self.plugin_name = 'email'
@@ -27,6 +26,9 @@ class MailNotification(GLPlugin):
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
+        return True
+
+    def initialize(self, admin_fields):
         return True
 
     def _append_email(self):

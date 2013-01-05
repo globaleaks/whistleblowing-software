@@ -142,11 +142,15 @@ class adminReceiverDesc(GLTypes):
 class adminProfileDesc(GLTypes):
 
     specification = {
-        'plugin_type': unicode, # profileENUM
+        'plugin_type': unicode,
         'plugin_name' : unicode,
+        'plugin_description' : unicode,
         'profile_gus' : profileGUS,
+        'context_gus' : contextGUS,
         'creation_time' : timeType,
         'profile_name' : unicode,
         'profile_description' : unicode,
-        'admin_fields' : [ formFieldsDict ]
+        'admin_fields' : [ formFieldsDict ],
+        'admin_settings' : dict,
+        'receiver_fields' : [ formFieldsDict ]
     }
