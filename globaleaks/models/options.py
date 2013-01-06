@@ -23,7 +23,7 @@ from globaleaks.plugins.manager import PluginManager
 
 __all__ = [ 'PluginProfiles', 'ReceiverConfs' ]
 
-valid_profile_types = [ u'notification', u'delivery', u'fileprocess' ]
+valid_plugin_types = [ u'notification', u'delivery', u'fileprocess' ]
 
 class PluginProfiles(TXModel):
     """
@@ -64,6 +64,10 @@ class PluginProfiles(TXModel):
 
     @transact
     def new(self, profile_dict):
+        """
+        @profile_dict need to contain the keys: 'plugin_type', 'plugin_name',
+            'admin_settings',
+        """
 
         store = self.getStore()
         newone = PluginProfiles()
@@ -73,14 +77,10 @@ class PluginProfiles(TXModel):
             # below, before _import_dict, are checked profile_type, and plugin_name
             # both of them can't be updated, are chosen at creation time,
 
-            if unicode(profile_dict['profile_type']) in valid_profile_types:
-                newone.profile_type = unicode(profile_dict['profile_type'])
-            else:
+            if not unicode(profile_dict['plugin_type']) in valid_plugin_types:
                 raise InvalidInputFormat("profile_type not recognized")
 
-            if PluginManager.plugin_exists(str(profile_dict['plugin_name'])):
-                newone.plugin_name = unicode(profile_dict['plugin_name'])
-            else:
+            if not PluginManager.plugin_exists(str(profile_dict['plugin_name'])):
                 raise InvalidInputFormat("plugin_name not recognized between available plugins")
 
             newone._import_dict(profile_dict)
@@ -89,25 +89,31 @@ class PluginProfiles(TXModel):
             if store.find(PluginProfiles, PluginProfiles.profile_name == newone.profile_name).count() >= 1:
                 raise ProfileNameConflict
 
+            plugin_info = PluginManager.get_plugin(newone.plugin_name)
+            # initialize the three plugin_* fields, inherit by Plugin code
+            newone.plugin_name = unicode(plugin_info['plugin_name'])
+            newone.plugin_type = unicode(plugin_info['plugin_type'])
+            newone.plugin_description = unicode(plugin_info['plugin_description'])
+
+            # Admin-only plugins are listed here, and they have not receiver_fields
+            if newone.plugin_type in [ u'fileprocess' ]:
+                newone.receiver_fields = []
+            else:
+                newone.receiver_fields = plugin_info['receiver_fields']
+
         except KeyError, e:
             raise InvalidInputFormat("Profile creation failed (missing %s)" % e)
+
         except TypeError, e:
             raise InvalidInputFormat("Profile creation failed (wrong %s)" % e)
 
         newone.profile_gus = idops.random_plugin_gus()
         newone.creation_time = gltime.utcTimeNow()
 
-        plugin_info = PluginManager.get_plugin(newone.plugin_name)
-
-        newone.plugin_description = plugin_info['plugin_description']
-
-        # Admin-only plugins are listed here, and they have not receiver_fields
-        if newone.plugin_type in [ u'fileprocess' ]:
-            newone.receiver_fields = []
-        else:
-            newone.receiver_fields = plugin_info['receiver_fields']
-
         store.add(newone)
+
+        # build return value for the handler
+        return newone._description_dict()
 
 
     @transact
@@ -134,6 +140,22 @@ class PluginProfiles(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("Profile update failed (wrong %s)" % e)
 
+        # build return value for the handler
+        return looked_p._description_dict()
+
+    @transact
+    def delete_profile(self, profile_gus):
+
+        store = self.getStore()
+
+        try:
+            looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
+        except NotOneError:
+            raise ProfileGusNotFound
+        if not looked_p:
+            raise ProfileGusNotFound
+
+        store.remove(looked_p)
 
     @transact
     def get_all(self):

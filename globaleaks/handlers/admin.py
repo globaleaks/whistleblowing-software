@@ -550,7 +550,6 @@ class PluginCollection(BaseHandler):
         self.finish()
 
 
-
 class ProfileCollection(BaseHandler):
     """
     A7
@@ -561,94 +560,18 @@ class ProfileCollection(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, plugin_name, *uriargs):
-        """
-        Parameters: None
-        Response: adminProfileList
-        Errors: PluginNameNotFound
-        """
-
-
-
-    @asynchronous
-    @inlineCallbacks
-    def post(self, plugin_name, *uriargs):
-        """
-        Request: adminProfileDesc
-        Response: adminProfileDesc
-        Errors: ProfileGusNotFound, InvalidInputFormat, ProfileNameConflict, PluginNameNotFound
-        """
-
-        request = json.loads(self.request.body)
-
-        # this is not the right approach, the validation would be implemented
-        # correctly in short time, when can be reviewed the generation of doc and
-        # validation of input/output
-        if not request:
-            self.write({'error_message': 'Missing request!', 'error_code' : 123})
-            self.set_status(400)
-            self.finish()
-            # this behaviour cause an error from Cyclone
-
-        plugin_manager = GLPluginManager()
-
-        if not plugin_manager.plugin_exists(request['plugin_type'], request['plugin_name']):
-
-            self.set_status(406)
-            self.write({'error_message': 'Invalid plugin (type/name) requested', 'error_code' : 123 })
-
-        else:
-            # reach the GLPlugin class implementation
-            plugin_code = plugin_manager.get_plugin(request['plugin_type'], request['plugin_name'])
-
-            if plugin_code.validate_admin_opt(request['admin_fields']) and request['profile_name']:
-
-                plugin_iface = PluginProfiles()
-
-                try:
-                    new_profile = yield plugin_iface.newprofile(request['plugin_type'], request['plugin_name'],
-                        request['profile_name'],
-                        { 'admin' : plugin_code.admin_fields, 'receiver' : plugin_code.admin_fields},
-                        request['description'],  request['profile_settings'] )
-
-                    self.set_status(200)
-                    self.write({'profile_gus': new_profile})
-
-                except ProfileNameConflict, e:
-
-                    self.set_status(e.http_status)
-                    self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-            else:
-                self.set_status(406)
-                self.write({'error_message':
-                                'Invalid request format in Profile creation (profile name, fields content)',
-                            'error_code' : 123 })
-
-        self.finish()
-
-
-
-class ProfileInstance(BaseHandler):
-    """
-    A8
-    This class enable and configure the profiles, a profile is a plugin configuration,
-    and the same plugin may have multiple
-    """
-
-    @asynchronous
-    @inlineCallbacks
-    def get(self, plugin_name, profile_gus, *uriargs):
+    def get(self, profile_gus, *uriargs):
         """
         Parameters: profile_gus
-        Response: adminProfileDesc
+        Response: adminProfileList
         Errors: ProfileGusNotFound
         """
 
-        plugin_iface = PluginProfiles()
-
         try:
-            profile_description = yield plugin_iface.admin_get_single(profile_gus)
+            # TODO parameter validation - InvalidInputFormat
+            profile_iface = PluginProfiles()
+
+            profile_description = yield profile_iface.get_single(profile_gus)
 
             self.set_status(200)
             self.write(profile_description)
@@ -660,62 +583,108 @@ class ProfileInstance(BaseHandler):
 
         self.finish()
 
+
     @asynchronous
     @inlineCallbacks
-    def put(self, plugin_name, profile_gus, *uriargs):
+    def post(self, *uriargs):
         """
+        Request: adminProfileDesc
+        Response: adminProfileDesc
+        Errors: InvalidInputFormat, ProfileNameConflict
+        """
+
+        try:
+            # TODO input mesage validation, or InvalidInputFormat
+            request = validateMessage(self.request.body, requests.adminProfileDesc)
+
+            profile_iface = PluginProfiles()
+
+            profile_description = yield profile_iface.new(request)
+
+            self.set_status(200)
+            self.write(profile_description)
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ProfileNameConflict, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+class ProfileInstance(BaseHandler):
+    """
+    A8
+    This class enable and configure the profiles, a profile is a plugin configuration,
+    and the same plugin may have multiple profiles. This interface operate in a single
+    requestd valid Profile (identified by a profile_gus)
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, profile_gus, *uriargs):
+        """
+        Parameters: profile_gus
+        Response: adminProfileDesc
+        Errors: ProfileGusNotFound
+        """
+
+        plugin_iface = PluginProfiles()
+
+        try:
+            profile_description = yield plugin_iface.get_single(profile_gus)
+
+            self.set_status(200)
+            self.write(profile_description)
+
+        except ProfileGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+    @asynchronous
+    @inlineCallbacks
+    def put(self, profile_gus, *uriargs):
+        """
+        Parameters: profile_gus
         Request: adminProfileDesc
         Response: adminProfileDesc
         Errors: ProfileGusNotFound, InvalidInputFormat, ProfileNameConflict
         """
 
-        request = json.loads(self.request.body)
+        try:
+            # TODO input mesage validation + parameter validation
+            request = validateMessage(self.request.body, requests.adminProfileDesc)
 
-        if not request:
-            self.write({'error_message': 'Missing request', 'error_code' : 123})
-            self.set_status(400)
+            profile_iface = PluginProfiles()
 
-        else:
+            profile_description = yield profile_iface.update(profile_gus, request)
 
-            plugin_manager = GLPluginManager()
+            self.set_status(200)
+            self.write(profile_description)
 
-            if not plugin_manager.plugin_exists(request['plugin_type'], request['plugin_name']):
+        except ProfileGusNotFound, e:
 
-                self.set_status(406)
-                self.write({'error_message': 'Invalid plugin (type/name) requested', 'error_code' : 123 })
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
-            else:
+        except InvalidInputFormat, e:
 
-                # reach the GLPlugin class implementation
-                plugin_code = plugin_manager.get_plugin(request['plugin_type'], request['plugin_name'])
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
-                new_settings = request['admin_fields'] if request['admin_fields'] else None
-                new_name = request['profile_name'] if request['profile_name']  else None
-                new_desc = request['description'] if request['description'] else None
+        except ProfileNameConflict, e:
 
-                if not plugin_code.validate_admin_opt(new_settings):
-                    self.set_status(406)
-                    self.write({'error_message':
-                                    'Invalid request format in Profile creation (fields content)',
-                                'error_code' : 123 })
-                else:
-
-                    plugin_iface = PluginProfiles()
-
-                    try:
-                        yield plugin_iface.update_profile(profile_gus, settings=new_settings, desc=new_desc, profname=new_name)
-
-                        self.set_status(200)
-
-                    except ProfileNameConflict, e:
-
-                        self.set_status(e.http_status)
-                        self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-                    except ProfileGusNotFound, e:
-
-                        self.set_status(e.http_status)
-                        self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -728,6 +697,29 @@ class ProfileInstance(BaseHandler):
         Response: None
         Errors: ProfileGusNotFound, InvalidInputFormat
         """
+
+        try:
+            # TODO parameter validation
+            profile_iface = PluginProfiles()
+
+            # TODO get context_gus, put a message in admin+context that a profile
+            # has been removed and need to be replaced
+
+            yield profile_iface.delete_profile(profile_gus)
+            self.set_status(200)
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ProfileGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
 
 class StatisticsCollection(BaseHandler):
     """
@@ -744,10 +736,4 @@ class StatisticsCollection(BaseHandler):
         Errors: None
         """
         pass
-
-# _______________________________________
-# BEFORE NEED TO BE REFACTORED WITH THE NEW API
-# _______________________________________
-# BEFORE NEED TO BE REFACTORED WITH THE NEW API
-# _______________________________________
 

@@ -28,13 +28,11 @@ class GLPluginManager(object):
 
     def is_valid_plugin(self, instanced_plugin, requirements):
 
-        print instanced_plugin.plugin_type, "and", requirements.get('type')
         if instanced_plugin.plugin_type != requirements.get('type'):
             # XXX App log
             return False
 
         for required_m in requirements.get('methods'):
-            print required_m
             if getattr(instanced_plugin, required_m) is None:
                 # XXX App log
                 return False
