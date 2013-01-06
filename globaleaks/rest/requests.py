@@ -145,11 +145,11 @@ class adminProfileDesc(GLTypes):
         'plugin_type': unicode,
         'plugin_name' : unicode,
         'plugin_description' : unicode,
-        'profile_gus' : profileGUS,
         'context_gus' : contextGUS,
-        'creation_time' : timeType,
+        'profile_gus' : profileGUS,
         'profile_name' : unicode,
         'profile_description' : unicode,
+        'creation_time' : timeType,
         'admin_fields' : [ formFieldsDict ],
         'admin_settings' : dict,
         'receiver_fields' : [ formFieldsDict ]

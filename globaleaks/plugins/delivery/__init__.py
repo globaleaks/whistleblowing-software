@@ -1,1 +1,1 @@
-__all__ = ['local', 'scp']
+__all__ = ['scp', 'local']

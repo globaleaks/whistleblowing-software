@@ -4,15 +4,14 @@ from globaleaks.plugins.base import FileProcess
 class TypeValidation(FileProcess):
 
     def __init__(self):
-        self.plugin_name = 'type_validation'
-        self.plugin_type = 'delivery'
-        self.plugin_description = "Validate file type"
+        self.plugin_name = u'File type validation'
+        self.plugin_type = u'fileprocess'
+        self.plugin_description = "Validate a submitted file inquiring the file type"
 
         # this is not the right fields description, because would contain also
         # the 'order' of representation, the 'description' and the 'required' boolean flag
-        self.admin_fields = {'TypeList' : 'text' }
+        self.admin_fields = {'Accepted types' : 'text' }
         self.receiver_fields = None
-
 
     def validate_admin_opt(self, admin_fields):
         return True
