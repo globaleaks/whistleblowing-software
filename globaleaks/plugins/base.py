@@ -22,11 +22,6 @@ class GLPlugin:
     defined on the inherit classes below
     """
 
-    plugin_name = None
-    plugin_type = None
-    plugin_description = None
-    admin_fields = {}
-
     def validate_admin_opt(self, admin_fields):
         """
         @param admin_fields: the received admin fields, before being saved
@@ -40,8 +35,6 @@ class GLPlugin:
 
 
 class Notification(GLPlugin):
-
-    receiver_fields = {}
 
     def digest_check(self, settings, stored_data, new_data):
         """
@@ -71,8 +64,6 @@ class Notification(GLPlugin):
 
 
 class Delivery(GLPlugin):
-
-    receiver_fields = {}
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
         """

@@ -7,64 +7,131 @@
 
 __all__ = [ 'PluginManager' ]
 
+from globaleaks.rest.errors import InvalidPluginFormat
+
 class GLPluginManager(object):
 
-    def __init__(self):
+    notification_requirement = {
+        'type' : u'notification',
+        'methods' : [ 'do_notify', 'digest_check' ]
+    }
 
+    delivery_requirement = {
+        'type' : u'delivery',
+        'methods' : [ 'do_delivery', 'preparation_required' ]
+    }
+
+    fileprocess_requirement = {
+        'type' : u'fileprocess',
+        'methods' : [ 'do_fileprocess' ]
+    }
+
+    def is_valid_plugin(self, instanced_plugin, requirements):
+
+        print instanced_plugin.plugin_type, "and", requirements.get('type')
+        if instanced_plugin.plugin_type != requirements.get('type'):
+            # XXX App log
+            return False
+
+        for required_m in requirements.get('methods'):
+            print required_m
+            if getattr(instanced_plugin, required_m) is None:
+                # XXX App log
+                return False
+
+        return True
+
+
+
+    def __init__(self):
+        """
+        Possibile extension: just move registration and validation of the
+        Plugins outside the __init__, but use a dedicated call
+        """
+
+
+        # from globaleaks.plugins.notification.irc_plugin import IRCNotification
         from globaleaks.plugins.notification.mail_plugin import MailNotification
         from globaleaks.plugins.notification.file_plugin import FileNotification
-        # from globaleaks.plugins.notification.irc_plugin import IRCNotification
-
-        from globaleaks.plugins.fileprocess.type_validation import TypeValidation
-        from globaleaks.plugins.fileprocess.virustotal import Virustotal
-
-        from globaleaks.plugins.delivery.scp import SCPDelivery
-        from globaleaks.plugins.delivery.local import LocalDelivery
-
-        # _ti stay for temporary instance, just useful to instance the
-        # self.*_list with the information returned in the REST operation.
         email_ti = MailNotification()
         file_ti = FileNotification()
+
         self.notification_list = [
                 { 'plugin_name' : unicode(email_ti.plugin_name),
                   'plugin_description' : unicode(email_ti.plugin_description),
                   'admin_fields' : unicode(email_ti.admin_fields),
-                  'receiver_fields' : unicode(email_ti.receiver_fields)
+                  'receiver_fields' : unicode(email_ti.receiver_fields),
+                  'plugin_type' : u'notification',
+                  'code' : MailNotification
                 },
                 { 'plugin_name' : unicode(file_ti.plugin_name),
                   'plugin_description' : unicode(file_ti.plugin_description),
                   'admin_fields' : unicode(file_ti.admin_fields),
-                  'receiver_fields' : unicode(file_ti.receiver_fields)
+                  'receiver_fields' : unicode(file_ti.receiver_fields),
+                  'plugin_type' : u'notification',
+                  'code' : FileNotification
                 }
         ]
+        if not self.is_valid_plugin(email_ti, self.notification_requirement ):
+            raise InvalidPluginFormat
 
+        if not self.is_valid_plugin(file_ti, self.notification_requirement ):
+            raise InvalidPluginFormat
+
+
+        from globaleaks.plugins.delivery.scp import SCPDelivery
+        from globaleaks.plugins.delivery.local import LocalDelivery
         scp_ti = SCPDelivery()
         local_ti = LocalDelivery()
+
         self.delivery_list = [
                 { 'plugin_name' : unicode(scp_ti.plugin_name),
                   'plugin_description' : unicode(scp_ti.plugin_description),
                   'admin_fields' : unicode(scp_ti.admin_fields),
-                  'receiver_fields' : unicode(scp_ti.receiver_fields)
+                  'receiver_fields' : unicode(scp_ti.receiver_fields),
+                  'plugin_type' : u'delivery',
+                  'code' : SCPDelivery
                 },
                 { 'plugin_name' : unicode(local_ti.plugin_name),
                   'plugin_description' : unicode(local_ti.plugin_description),
                   'admin_fields' : unicode(local_ti.admin_fields),
-                  'receiver_fields' : unicode(local_ti.receiver_fields)
+                  'receiver_fields' : unicode(local_ti.receiver_fields),
+                  'plugin_type' : u'delivery',
+                  'code' : LocalDelivery
                 }
         ]
+        if not self.is_valid_plugin(scp_ti, self.delivery_requirement ):
+            raise InvalidPluginFormat
 
+        if not self.is_valid_plugin(local_ti, self.delivery_requirement):
+            raise InvalidPluginFormat
+
+
+        from globaleaks.plugins.fileprocess.type_validation import TypeValidation
+        from globaleaks.plugins.fileprocess.virustotal import Virustotal
         content_ti = TypeValidation()
         virust_ti = Virustotal()
+
         self.fileprocess_list = [
                 { 'plugin_name' : unicode(content_ti.plugin_name),
                   'plugin_description' : unicode(content_ti.plugin_description),
                   'admin_fields' : unicode(content_ti.admin_fields),
+                  'plugin_type' : u'fileprocess',
+                  'code' : TypeValidation
                 },
                 { 'plugin_name' : unicode(virust_ti.plugin_name),
                   'plugin_description' : unicode(virust_ti.plugin_description),
                   'admin_fields' : unicode(virust_ti.admin_fields),
+                  'plugin_type' : u'fileprocess',
+                  'code' : Virustotal
                 }
         ]
+        if not self.is_valid_plugin(content_ti, self.fileprocess_requirement):
+            raise InvalidPluginFormat
+
+        if not self.is_valid_plugin(virust_ti, self.fileprocess_requirement):
+            raise InvalidPluginFormat
+
 
     def _look_plugin_in(self, plugin_name, type_list):
 
@@ -78,17 +145,17 @@ class GLPluginManager(object):
         """
         Return the plugin object
         """
-        if plugin_type == 'notificaton' or plugin_type == None:
+        if unicode(plugin_type) == u'notificaton' or plugin_type == None:
             p = self._look_plugin_in(plugin_name, self.notification_list)
             if p is not None:
                 return p
 
-        if plugin_type == 'delivery' or plugin_type == None:
+        if unicode(plugin_type) == u'delivery' or plugin_type == None:
             p = self._look_plugin_in(plugin_name, self.delivery_list)
             if p is not None:
                 return p
 
-        if plugin_type == 'fileprocess' or plugin_type == None:
+        if unicode(plugin_type) == u'fileprocess' or plugin_type == None:
             p = self._look_plugin_in(plugin_name, self.fileprocess_list)
             if p is not None:
                 return p
@@ -101,19 +168,42 @@ class GLPluginManager(object):
         """
         return True if self.get_plugin(plugin_name, plugin_type) else False
 
+    def instance_plugin(self, plugin_name, plugin_type=None):
+
+        desc = self.get_plugin(plugin_name, plugin_type)
+
+        if not desc:
+            return None
+
+        # Instance the class stored in 'code' and return an object
+        return desc.get('code')()
+
     def get_all(self):
+        """
+        @return: perform serialization of Plugins available, like happen
+            in the models() with get_all. Align the same fields in the
+            plugins, and remove the 'code' key.
+        """
 
         retList = []
 
-        retList += self.notification_list
-        retList += self.delivery_list
+        for notifip_entry in self.notification_list:
+
+            entry_copy = notifip_entry
+            del entry_copy['code']
+            retList.append(entry_copy)
+
+        for delivp_entry in self.delivery_list:
+
+            entry_copy = delivp_entry
+            del entry_copy['code']
+            retList.append(entry_copy)
 
         for filep_entry in self.fileprocess_list:
 
             incomplete_entry = filep_entry
             incomplete_entry['receiver_fields'] = []
-
-            # now is complete for fit adminPluginList expected fields
+            del incomplete_entry['code']
             retList.append(incomplete_entry)
 
         return retList

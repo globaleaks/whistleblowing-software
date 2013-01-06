@@ -1,1 +1,1 @@
-__all__ = [ 'ContentType', 'Virustotal' ]
+__all__ = ['type_validation', 'virustotal']

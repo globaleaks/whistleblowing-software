@@ -7,9 +7,9 @@ import string
 class MailNotification(Notification):
 
     def __init__(self):
-        self.plugin_name = 'email'
-        self.plugin_type = 'notification'
-        self.plugin_description = "Mail notification, with encryption options"
+        self.plugin_name = u'Mail'
+        self.plugin_type = u'notification'
+        self.plugin_description = u"Mail notification, with encryption supports"
 
         # this is not the right fields description, because would contain also
         # the 'order' of representation, the 'description' and the 'required' boolean flag

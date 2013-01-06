@@ -197,4 +197,14 @@ class FileGusNotFound(GLException):
         GLException.error_code = 26
         GLException.http_status = 404 # Not Found
 
+class InvalidPluginFormat(GLException):
+    """
+    This is the error returned when is tried to load a Plugin invalid.
+    At the moment, and for the 0.2 release, the plugins would not be loaded
+    runtime.
+    """
 
+    def __init__(self):
+        GLException.error_message = "Invalid Plugin Format"
+        GLException.error_code = 27
+        GLException.http_status = 500 # Server Error

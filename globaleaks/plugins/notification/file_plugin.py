@@ -4,14 +4,14 @@ from globaleaks.plugins.base import Notification
 class FileNotification(Notification):
 
     def __init__(self):
-        self.plugin_name = 'file'
-        self.plugin_type = 'notification'
-        self.plugin_description = "Just a notification Mail notification, with encryption options"
+        self.plugin_name = u'file'
+        self.plugin_type = u'notification'
+        self.plugin_description = u"Dummy notification system, copy the received file in a directory"
 
         # this is not the right fields description, because would contain also
         # the 'order' of representation, the 'description' and the 'required' boolean flag
         self.admin_fields = {'directory' : 'text' }
-        self.receiver_fields = {'filename' : 'text'}
+        self.receiver_fields = {'filename prefix' : 'text'}
 
     def initialize(self, admin_fields):
         return True

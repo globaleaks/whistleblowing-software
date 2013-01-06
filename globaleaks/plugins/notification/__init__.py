@@ -1,1 +1,1 @@
-__all__ = [ 'MailNotification', 'FileNotification' ]
+__all__ = ['mail_plugin', 'file_plugin' ]
