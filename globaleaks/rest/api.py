@@ -99,10 +99,10 @@ spec = [
     (r'/admin/plugin', admin.PluginCollection),
 
     #  A7
-    (r'/admin/plugin/' + not_defined_regexp + r'/profile', admin.ProfileCollection),
+    (r'/admin/profile', admin.ProfileCollection),
 
     #  A8
-    (r'/admin/plugin/' + not_defined_regexp + r'/profile/' + profileGUS.regexp, admin.ProfileInstance),
+    (r'/admin/profile/' + profileGUS.regexp, admin.ProfileInstance),
 
     #  A9
     (r'/admin/statistics/', admin.StatisticsCollection),
