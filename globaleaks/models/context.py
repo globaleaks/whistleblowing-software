@@ -85,7 +85,6 @@ class Context(TXModel):
         store.add(cntx)
         log.msg("Created context %s at the %s" % (cntx.name, cntx.creation_date) )
 
-        # return context_dict
         return cntx._description_dict()
 
 
