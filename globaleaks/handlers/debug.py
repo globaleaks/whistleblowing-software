@@ -7,7 +7,6 @@
 
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
-import json
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment, File
@@ -16,11 +15,7 @@ from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.context import Context
 from globaleaks.models.submission import Submission
-
-from globaleaks.utils import log
 from globaleaks.plugins.manager import PluginManager
-from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
-    NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict
 
 
 class EntryCollection(BaseHandler):
@@ -41,7 +36,7 @@ class EntryCollection(BaseHandler):
         """
 
         expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'comment',
-                     'profiles', 'rcfg', 'submission', 'contexts', 'plugins', 'all', 'count' ]
+                     'profiles', 'rcfg', 'file', 'submission', 'contexts', 'plugins', 'all', 'count' ]
 
         outputDict = {}
 
@@ -125,6 +120,14 @@ class EntryCollection(BaseHandler):
             else:
                 outputDict.update({ 'submission_elements' : len(submission_list)})
 
+        if what == 'file' or what == 'all' or what == 'count':
+            file_iface = File()
+            file_list = yield file_iface.get_all()
+
+            if what != 'count':
+                outputDict.update({ 'file_elements' : len(file_list), 'files' : file_list })
+            else:
+                outputDict.update({ 'file_elements' : len(file_list)})
 
         if what == 'contexts' or what == 'all' or what == 'count':
             context_iface = Context()

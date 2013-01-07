@@ -44,16 +44,16 @@ for context_gus in $context_list; do
 
     cnt=$(($cnt+1))
 
-    dt "4x" "U2 POST cid $context_gus print-submission_gus" "opening a new submission"
+    dt "\t4x" "U2 POST cid $context_gus print-submission_gus" "opening a new submission"
     submission_gus=$ret
 
     check=$(($cnt%2))
 
-    if [ -z $check ]; then
-        dt "5+" "U3 PUT cid $context_gus sid $submission_gus print-receipt" "completing submission and getting receipt"
+    if [ $check -eq 0 ]; then
+        dt "\t5+" "U3 PUT cid $context_gus sid $submission_gus raw \"\" print-receipt" "completing submission and getting receipt"
         receipt=$ret
     else
-        dt "5-" "U3 DELETE sid $submission_gus" "deleting submission"
+        dt "\t5-" "U3 DELETE sid $submission_gus" "deleting submission"
     fi
 
 done

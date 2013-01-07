@@ -8,7 +8,6 @@
 
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
-from globaleaks.models.admin import AdminStats
 from datetime import datetime
 
 __all__ = ['APSStatistics' ]

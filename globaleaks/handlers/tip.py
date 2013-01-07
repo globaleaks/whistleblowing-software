@@ -107,12 +107,19 @@ class TipInstance(BaseHandler):
             if not is_receiver_token(tip_token):
                 raise ForbiddenOperation
 
-            requested_t = ReceiverTip()
+            receivertip_iface = ReceiverTip()
 
             if request['personal_delete']:
-                yield requested_t.personal_delete(tip_token)
-            if request['is_pertinent']:
-                yield requested_t.pertinence_vote(tip_token, request['is_pertinent'])
+                yield receivertip_iface.personal_delete(tip_token)
+
+            elif request['is_pertinent']:
+                # elif is used to avoid the message with both delete+pertinence.
+                # This operation is based in ReceiverTip and is returned
+                # the sum of the vote expressed. This value is updated in InternalTip
+                (itip_id, vote_sum) = yield receivertip_iface.pertinence_vote(tip_token, request['is_pertinent'])
+
+                internaltip_iface = InternalTip()
+                yield internaltip_iface.update_pertinence(itip_id, vote_sum)
 
             self.set_status(200)
 
