@@ -28,7 +28,7 @@ class GLPluginManager(object):
 
     def is_valid_plugin(self, instanced_plugin, requirements):
 
-        if instanced_plugin.plugin_type != requirements.get('type'):
+        if instanced_plugin.plugin_type != requirements['type']:
             # XXX App log
             return False
 
@@ -57,15 +57,15 @@ class GLPluginManager(object):
         self.notification_list = [
                 { 'plugin_name' : unicode(email_ti.plugin_name),
                   'plugin_description' : unicode(email_ti.plugin_description),
-                  'admin_fields' : unicode(email_ti.admin_fields),
-                  'receiver_fields' : unicode(email_ti.receiver_fields),
+                  'admin_fields' : dict(email_ti.admin_fields),
+                  'receiver_fields' : dict(email_ti.receiver_fields),
                   'plugin_type' : u'notification',
                   'code' : MailNotification
                 },
                 { 'plugin_name' : unicode(file_ti.plugin_name),
                   'plugin_description' : unicode(file_ti.plugin_description),
-                  'admin_fields' : unicode(file_ti.admin_fields),
-                  'receiver_fields' : unicode(file_ti.receiver_fields),
+                  'admin_fields' : dict(file_ti.admin_fields),
+                  'receiver_fields' : dict(file_ti.receiver_fields),
                   'plugin_type' : u'notification',
                   'code' : FileNotification
                 }
@@ -85,15 +85,15 @@ class GLPluginManager(object):
         self.delivery_list = [
                 { 'plugin_name' : unicode(scp_ti.plugin_name),
                   'plugin_description' : unicode(scp_ti.plugin_description),
-                  'admin_fields' : unicode(scp_ti.admin_fields),
-                  'receiver_fields' : unicode(scp_ti.receiver_fields),
+                  'admin_fields' : dict(scp_ti.admin_fields),
+                  'receiver_fields' : dict(scp_ti.receiver_fields),
                   'plugin_type' : u'delivery',
                   'code' : SCPDelivery
                 },
                 { 'plugin_name' : unicode(local_ti.plugin_name),
                   'plugin_description' : unicode(local_ti.plugin_description),
-                  'admin_fields' : unicode(local_ti.admin_fields),
-                  'receiver_fields' : unicode(local_ti.receiver_fields),
+                  'admin_fields' : dict(local_ti.admin_fields),
+                  'receiver_fields' : dict(local_ti.receiver_fields),
                   'plugin_type' : u'delivery',
                   'code' : LocalDelivery
                 }
@@ -113,13 +113,13 @@ class GLPluginManager(object):
         self.fileprocess_list = [
                 { 'plugin_name' : unicode(content_ti.plugin_name),
                   'plugin_description' : unicode(content_ti.plugin_description),
-                  'admin_fields' : unicode(content_ti.admin_fields),
+                  'admin_fields' : dict(content_ti.admin_fields),
                   'plugin_type' : u'fileprocess',
                   'code' : TypeValidation
                 },
                 { 'plugin_name' : unicode(virust_ti.plugin_name),
                   'plugin_description' : unicode(virust_ti.plugin_description),
-                  'admin_fields' : unicode(virust_ti.admin_fields),
+                  'admin_fields' : dict(virust_ti.admin_fields),
                   'plugin_type' : u'fileprocess',
                   'code' : Virustotal
                 }
@@ -133,9 +133,9 @@ class GLPluginManager(object):
 
     def _look_plugin_in(self, plugin_name, type_list):
 
-        for pluging_desciptor in type_list:
-            if pluging_desciptor.get('name') == plugin_name:
-                return pluging_desciptor
+        for pluging_descriptor in type_list:
+            if pluging_descriptor['plugin_name'] == plugin_name:
+                return pluging_descriptor
 
         return None
 
@@ -144,17 +144,17 @@ class GLPluginManager(object):
         Return the plugin object
         """
         if unicode(plugin_type) == u'notificaton' or plugin_type == None:
-            p = self._look_plugin_in(plugin_name, self.notification_list)
+            p = self._look_plugin_in(unicode(plugin_name), self.notification_list)
             if p is not None:
                 return p
 
         if unicode(plugin_type) == u'delivery' or plugin_type == None:
-            p = self._look_plugin_in(plugin_name, self.delivery_list)
+            p = self._look_plugin_in(unicode(plugin_name), self.delivery_list)
             if p is not None:
                 return p
 
         if unicode(plugin_type) == u'fileprocess' or plugin_type == None:
-            p = self._look_plugin_in(plugin_name, self.fileprocess_list)
+            p = self._look_plugin_in(unicode(plugin_name), self.fileprocess_list)
             if p is not None:
                 return p
 
@@ -174,7 +174,7 @@ class GLPluginManager(object):
             return None
 
         # Instance the class stored in 'code' and return an object
-        return desc.get('code')()
+        return desc['code']()
 
     def get_all(self):
         """
@@ -187,19 +187,19 @@ class GLPluginManager(object):
 
         for notifip_entry in self.notification_list:
 
-            entry_copy = notifip_entry
+            entry_copy = dict(notifip_entry)
             del entry_copy['code']
             retList.append(entry_copy)
 
         for delivp_entry in self.delivery_list:
 
-            entry_copy = delivp_entry
+            entry_copy = dict(delivp_entry)
             del entry_copy['code']
             retList.append(entry_copy)
 
         for filep_entry in self.fileprocess_list:
 
-            incomplete_entry = filep_entry
+            incomplete_entry = dict(filep_entry)
             incomplete_entry['receiver_fields'] = []
             del incomplete_entry['code']
             retList.append(incomplete_entry)
