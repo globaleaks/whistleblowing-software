@@ -5,31 +5,64 @@ SHOOTER="./shooter.py"
 #
 # This script wrap the shooter.py script. do not include any of the globaleaks files
 
+# dt "identificative number" "portion of command line" "description" "assertion description"
+dt() {
+    dumpfile="/tmp/dumptest_$1"
+    echo > $dumpfile
 
-# disable scheduled operations
-$SHOOTER AB DELETE task alljobs
+    echo -n "$1) $3 ..."
+    ret=`$SHOOTER $2`
+    if [ $? != 0 ]; then 
+        echo "\tError [$2]" 
+        echo "Error [$2]\n\n$ret" >> $dumpfile
+        echo "saved error in $dumpfile"
+        exit
+    fi
+    echo " done."
 
-context_list=`$SHOOTER AA GET dump context print-context_gus`
-if [ $? != 0 ]; then echo "\tError in AA GET" && exit; fi
+    echo "$3" >> $dumpfile
+    echo "$2" >> $dumpfile
+    if [ ! -z "$4" ]; then
+        echo $4 >> $dumpfile
+    fi
+    echo "\n\n" >> $dumpfile
 
-beforecount=`$SHOOTER AA GET dump itip print-elements`
-if [ $? != 0 ]; then echo "\tError in AA GET" && exit; fi
-echo "Internaltip numbers $beforecount"
+    $SHOOTER D1 GET dump count verbose >> $dumpfile
+}
 
+dt "1" "D2 DELETE task alljobs" "Disabling all the scheduled jobs"
+
+dt "2" "D1 GET dump contexts print-context_gus" "dumping context_gus available"
+context_list=$ret
+
+dt "3" "D1 GET dump itip print-internaltips_elements" "dumping number of internaltips, before the tests"
+beforecount=$ret
+
+
+cnt=0
 for context_gus in $context_list; do
-    submission_gus=`$SHOOTER U2 POST cid $context_gus print-submission_gus`
-    if [ $? != 0 ]; then echo "\tError in U2 POST" && exit; fi
-    echo "context $context_gus, submission token: $submission_gus"
 
-    receipt=`$SHOOTER U3 PUT cid $context_gus sid $submission_gus print-receipt`
-    if [ $? != 0 ]; then echo "\tError in U3 PUT" && exit; fi
-    echo "context $context_gus, receipt $receipt"
+    cnt=$(($cnt+1))
+
+    dt "4x" "U2 POST cid $context_gus print-submission_gus" "opening a new submission"
+    submission_gus=$ret
+
+    check=$(($cnt%2))
+
+    if [ -z $check ]; then
+        dt "5+" "U3 PUT cid $context_gus sid $submission_gus print-receipt" "completing submission and getting receipt"
+        receipt=$ret
+    else
+        dt "5-" "U3 DELETE sid $submission_gus" "deleting submission"
+    fi
+
 done
 
-# Force tip schedule creation
-`./shooter.py AB GET task tip`
-if [ $? != 0 ]; then echo "\tError in AB GET" && exit; fi
 
-beforecount=`$SHOOTER AA GET dump itip print-elements`
-if [ $? != 0 ]; then echo "\tError in AA GET" && exit; fi
-echo "Internaltip numbers $beforecount"
+# Force tip schedule creation
+dt "6" "D2 GET task tip" "Forcing tip creation asyncronous operation"
+
+dt "3" "D1 GET dump itip print-internaltips_elements" "dumping number of internaltips, after tests"
+aftercount=$ret
+
+echo "[*] before: $beforecount after: $aftercount"
