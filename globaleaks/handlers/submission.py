@@ -191,7 +191,7 @@ class SubmissionInstance(BaseHandler):
     def delete(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus
-        Request: wbSubmissionDesc
+        Request: 
         Response: None
         Errors: SubmissionGusNotFound, InvalidInputFormat
 
@@ -199,10 +199,11 @@ class SubmissionInstance(BaseHandler):
         """
 
         try:
-            request = validateMessage(self.request.body, requests.wbSubmissionDesc)
+            # TODO perform validation of submission_gus format
             submission = Submission()
+            yield submission.submission_delete(submission_gus)
 
-            submission.submission_delete(request.submission_gus)
+            self.set_status(200)
 
         except SubmissionGusNotFound, e:
 
