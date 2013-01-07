@@ -124,7 +124,8 @@ class ContextsCollection(BaseHandler):
             request = validateMessage(self.request.body, requests.adminContextDesc)
 
             context_iface = Context()
-            new_context_gus = yield context_iface.new(request)
+            context_description_dict = yield context_iface.new(request)
+            new_context_gus = context_description_dict['context_gus']
 
             # 'receivers' it's a relationship between two tables, and is managed 
             # with a separate method of new()
