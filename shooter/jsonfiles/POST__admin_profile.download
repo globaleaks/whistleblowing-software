@@ -1,0 +1,6 @@
+plugin_type=delivery
+plugin_name=Zip download
+context_gus=@CID@
+profile_name=Download files via Tip interface
+profile_description=Download would be performed via GLB node using the /files API. There are a maximum counter and the capability to download a certain amount of files in .zip format
+admin_settings:={}

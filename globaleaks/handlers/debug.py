@@ -18,7 +18,7 @@ from globaleaks.models.context import Context
 from globaleaks.models.submission import Submission
 
 from globaleaks.utils import log
-from globaleaks.plugins.base import GLPluginManager
+from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
     NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict
 
@@ -41,7 +41,7 @@ class EntryCollection(BaseHandler):
         """
 
         expected = [ 'itip', 'wtip', 'rtip', 'receivers', 'comment',
-                     'profiles', 'rcfg', 'submission', 'contexts', 'all', 'count' ]
+                     'profiles', 'rcfg', 'submission', 'contexts', 'plugins', 'all', 'count' ]
 
         outputDict = {}
 
@@ -92,12 +92,20 @@ class EntryCollection(BaseHandler):
 
         if what == 'profiles' or what == 'all' or what == 'count':
             profile_iface = PluginProfiles()
-            profile_list = yield profile_iface.admin_get_all()
+            profile_list = yield profile_iface.get_all()
 
             if what != 'count':
                 outputDict.update({ 'profiles_elements' : len(profile_list), 'profiles' : profile_list })
             else:
                 outputDict.update({ 'profiles_elements' : len(profile_list)})
+
+        if what == 'plugins' or what == 'all' or what == 'count':
+            plugin_list = yield PluginManager.get_all()
+
+            if what != 'count':
+                outputDict.update({ 'plugins_elements' : len(plugin_list), 'plugins' : plugin_list })
+            else:
+                outputDict.update({ 'plugins_elements' : len(plugin_list) })
 
         if what == 'rcfg' or what == 'all' or what == 'count':
             rconf_iface = ReceiverConfs()

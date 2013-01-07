@@ -15,7 +15,6 @@ from globaleaks.models import receiver
 from globaleaks.models import options
 from globaleaks.models import internaltip
 from globaleaks.models import externaltip
-from globaleaks.plugins.base import GLPluginManager
 from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
     ProfileGusNotFound, ReceiverConfNotFound, InvalidTipAuthToken, TipGusNotFound
 

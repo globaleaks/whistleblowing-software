@@ -1,0 +1,6 @@
+plugin_type=notification
+plugin_name=Mail
+context_gus=@CID@
+profile_name=Mail supports for `@RANDOM@ sad users`
+profile_description=Warning, it's an update, we have not SSL, warning!!1!
+admin_settings:={"server":"box549.bluehost.com","port":25,"username":"sendaccount939@globaleaks.org","password":"sendaccount939","ssl":false}

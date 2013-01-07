@@ -3,7 +3,7 @@ from globaleaks.plugins.base import Delivery
 class LocalDelivery(Delivery):
 
     def __init__(self):
-        self.plugin_name = u'Local download'
+        self.plugin_name = u'Zip download'
         self.plugin_type = u'delivery'
         self.plugin_description = u"Download submitted file from the tip interface, supports of .zip and password encryption"
 

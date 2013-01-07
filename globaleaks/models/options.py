@@ -78,9 +78,9 @@ class PluginProfiles(TXModel):
             # both of them can't be updated, are chosen at creation time,
 
             if not unicode(profile_dict['plugin_type']) in valid_plugin_types:
-                raise InvalidInputFormat("profile_type not recognized")
+                raise InvalidInputFormat("plugin_type not recognized")
 
-            if not PluginManager.plugin_exists(str(profile_dict['plugin_name'])):
+            if not PluginManager.plugin_exists(profile_dict['plugin_name']):
                 raise InvalidInputFormat("plugin_name not recognized between available plugins")
 
             newone._import_dict(profile_dict)
@@ -89,11 +89,13 @@ class PluginProfiles(TXModel):
             if store.find(PluginProfiles, PluginProfiles.profile_name == newone.profile_name).count() >= 1:
                 raise ProfileNameConflict
 
-            plugin_info = PluginManager.get_plugin(newone.plugin_name)
+            plugin_info = PluginManager.get_plugin(profile_dict['plugin_name'])
+
             # initialize the three plugin_* fields, inherit by Plugin code
             newone.plugin_name = unicode(plugin_info['plugin_name'])
             newone.plugin_type = unicode(plugin_info['plugin_type'])
             newone.plugin_description = unicode(plugin_info['plugin_description'])
+            newone.admin_fields = dict(plugin_info['admin_fields'])
 
             # Admin-only plugins are listed here, and they have not receiver_fields
             if newone.plugin_type in [ u'fileprocess' ]:
@@ -166,7 +168,7 @@ class PluginProfiles(TXModel):
 
         retVal = []
         for single_p in selected_plugins:
-            retVal.append(single_p)
+            retVal.append(single_p._description_dict())
 
         return retVal
 
@@ -190,7 +192,7 @@ class PluginProfiles(TXModel):
     def _import_dict(self, received_dict):
 
         # TODO perform fields validation like in submission
-        self.admin_settings = received_dict['admin_settings']
+        self.admin_settings = dict(received_dict['admin_settings'])
 
         self.profile_name = received_dict['profile_name']
         self.profile_description = received_dict['profile_description']
@@ -208,9 +210,9 @@ class PluginProfiles(TXModel):
             'profile_name' : unicode(self.profile_name),
             'profile_description' : unicode(self.profile_description),
             'creation_time' : unicode(gltime.prettyDateTime(self.creation_time)),
-            'admin_fields' : list(self.admin_fields),
+            'admin_fields' : dict(self.admin_fields),
             'admin_settings' : dict(self.admin_settings),
-            'receiver_fields' : list(self.receiver_fields)
+            'receiver_fields' : dict(self.receiver_fields)
         }
 
         return dict(retVal)

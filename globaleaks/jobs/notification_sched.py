@@ -11,7 +11,6 @@ from globaleaks.models.externaltip import ReceiverTip, Comment
 from globaleaks.models.internaltip import InternalTip
 from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.plugins.base import GLPluginManager
 
 __all__ = ['APSNotification']
 

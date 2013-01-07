@@ -542,7 +542,7 @@ class PluginCollection(BaseHandler):
         a list with name and properties.
         """
 
-        plugin_descriptive_list = PluginManager.get_all()
+        plugin_descriptive_list = yield PluginManager.get_all()
         # TODO output validation - adminPluginList
 
         self.set_status(200)
@@ -560,27 +560,19 @@ class ProfileCollection(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, profile_gus, *uriargs):
+    def get(self, *uriargs):
         """
         Parameters: profile_gus
         Response: adminProfileList
         Errors: ProfileGusNotFound
         """
 
-        try:
-            # TODO parameter validation - InvalidInputFormat
-            profile_iface = PluginProfiles()
+        profile_iface = PluginProfiles()
+        profiles_list = yield profile_iface.get_all()
 
-            profile_description = yield profile_iface.get_single(profile_gus)
-
-            self.set_status(200)
-            self.write(profile_description)
-
-        except ProfileGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
+        self.set_status(200)
+        # TODO outputSanitization + json
+        self.write(json.dumps(profiles_list))
         self.finish()
 
 
