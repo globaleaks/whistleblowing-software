@@ -1,27 +1,43 @@
 #!/bin/sh
 
-SHOOTER="python shooter.py"
+SHOOTER="./shooter.py"
 
-force_jobs() {
-    $SHOOTER AB GET task delivery 
-    if [ $? != 0 ]; then echo "\tError in AB (force delivery job)" && exit; fi
-    $SHOOTER AB GET task notification
-    if [ $? != 0 ]; then echo "\tError in AB (force notification job)" && exit; fi
+# dt "identificative number" "portion of command line" "description" "assertion description"
+dt() {
+    dumpfile="/tmp/dumptest_$1"
+    echo > $dumpfile
+
+    echo -n "$1) $3 ..."
+    ret=`$SHOOTER $2`
+    if [ $? != 0 ]; then 
+        echo "\tError [$2]" 
+        echo "Error [$2]\n\n$ret" >> $dumpfile
+        echo "saved error in $dumpfile"
+        exit
+    fi
+    echo " done."
+
+    echo "$3" >> $dumpfile
+    echo "$2" >> $dumpfile
+    if [ ! -z "$4" ]; then
+        echo $4 >> $dumpfile
+    fi
+    echo "\n\n" >> $dumpfile
+
+    $SHOOTER D1 GET dump count verbose >> $dumpfile
 }
 
-# disable scheduled operations
-$SHOOTER AB DELETE task alljobs
 
-# force_jobs
-# now we need to be the receiver with the tip, and vote pertinence.
+dt "1" "D2 DELETE task alljobs" "Disabling all the scheduled jobs"
+dt "2" "D1 GET dump rtip print-tip_gus" "dumping tip_gus available"
+tip_gus_list=$ret
 
-tip_gus_list=`$SHOOTER AA GET dump rtip print-tip_gus`
-if [ $? != 0 ]; then echo "\tError in AA GET (list of rtip)" && exit; fi
 for tip_gus in $tip_gus_list; do
-    $SHOOTER T1 PUT tip $tip_gus variation vote
-    if [ $? != 0 ]; then echo "\tError in T1 PUT (expressing pertinence vote)" && exit; fi
-    echo -n "."
+    dt "\t3+" "T1 PUT tip $tip_gus variation vote" "expressing positive vote"
 done
 
-# force_jobs
-echo "\nwant to see InternalTip ? $SHOOTER AA GET dump itip verbose"
+dt "4" "D2 GET task tip" "Forcing tip creation asyncronous operation"
+
+# TODO forcing notification & delivery
+# $SHOOTER D2 GET task delivery 
+# $SHOOTER D2 GET task notification
