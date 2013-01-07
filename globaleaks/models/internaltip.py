@@ -114,38 +114,35 @@ class InternalTip(TXModel):
             selected_it.download_limit = downloadlimit
 
 
-    # perhaps get_newly_generated and get_newly_escalated can be melted, and in task queue
     @transact
-    def get_newly_generated(self):
+    def get_itips_by_maker(self, marker, escalated):
         """
-        @return: all the internaltips with mark == u'new', in a list of id
+        @escalated: a bool, checked only when marker is u'first'.
+        @return: all the internaltips matching with the requested
+            marked, between this list of option:
+        # marker_avail = [ u'new', u'first', u'second' ]
         """
+
         store = self.getStore()
 
-        new_itips = store.find(InternalTip, InternalTip.mark == u'new')
+        # marker_avail = [ u'new', u'first', u'second' ]
+        if marker == u'new':
+            req_it = store.find(InternalTip, InternalTip.mark == u'new')
+        elif marker == u'first' and escalated:
+            req_it = store.find(InternalTip, (InternalTip.mark == u'first' and InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
+        elif marker == u'first' and not escalated:
+            req_it = store.find(InternalTip, InternalTip.mark == u'first')
+        elif marker == u'second':
+            req_it = store.find(InternalTip, InternalTip.mark == u'second')
+        else:
+            raise NotImplemented
 
         retVal = []
-        for single_itip in new_itips:
-            retVal.append(single_itip.id)
+        for single_itip in req_it:
+            retVal.append(single_itip._description_dict())
 
         return retVal
 
-    @transact
-    def get_newly_escalated(self):
-        """
-        @return: all the internaltips with
-            pertinence_counter >= escalation_threshold and mark == u'first',
-            in a list of id
-        """
-        store = self.getStore()
-
-        escalated_itips = store.find(InternalTip, (InternalTip.mark == u'first' and InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
-
-        retVal = []
-        for single_itip in escalated_itips:
-            retVal.append(single_itip.id)
-
-        return retVal
 
     @transact
     def flip_mark(self, subject_id, newmark):
@@ -156,7 +153,12 @@ class InternalTip(TXModel):
         """
         store = self.getStore()
 
-        requested_t = store.find(InternalTip, InternalTip.id == int(subject_id)).one()
+        try:
+            requested_t = store.find(InternalTip, InternalTip.id == subject_id).one()
+        except NotOneError:
+            raise Exception("Not found InternalTip %d" % subject_id)
+        if requested_t is None:
+            raise Exception("Not found InternalTip %d" % subject_id)
 
         # XXX log message
         log.debug("flip mark in InternalTip %d, from [%s] to [%s]" % (requested_t.id, requested_t.mark, newmark))
@@ -165,30 +167,24 @@ class InternalTip(TXModel):
         requested_t.mark = newmark
 
 
-    # not a transact, because called by the ReceiverTip.pertinence_vote
-    def pertinence_update(self, vote):
+    @transact
+    def update_pertinence(self, internaltip_id, overall_vote):
         """
-        @vote: a boolean that express if the Tip is pertinent or not
-        @return: the pertinence counter
+        In the case a receiver remove himself from a tip, its vote
+        cease to be valid. In the case a new tier of receiver join,
+        their vote need to be considered. The logic of this function has
+        been changed, because the only safe way to have an updated
+        vote, is getting the value from the handlers (returned by ReceiverTip
+        analysis)
+        @param internaltip_id: valid itip_id related to the Tip analized
+        @return: None
         """
+        store = self.getStore()
 
-        if vote:
-            self.pertinence_counter += 1
-        else:
-            self.pertinence_counter -= 1
+        requested_t = store.find(InternalTip, InternalTip.id == internaltip_id).one()
 
-        self.last_activity = gltime.utcDateNow()
-        return self.pertinence_counter
-
-
-    # not transact, called by ReceiverTip.personal_delete
-    def receiver_align(self):
-        """
-        When a ReceiverTip is removed, the map is updated
-        @return: None, a receiver has choose to remove self from the Tip,
-        notify with a system message the others
-        """
-        pass
+        requested_t.pertinence_counter = overall_vote
+        requested_t.last_activity = gltime.utcDateNow()
 
 
     @transact
@@ -202,7 +198,7 @@ class InternalTip(TXModel):
         """
 
         store = self.getStore()
-        selected = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+        selected = store.find(InternalTip, InternalTip.id == internaltip_id).one()
         store.remove(selected)
 
 
@@ -220,7 +216,7 @@ class InternalTip(TXModel):
 
         store = self.getStore()
 
-        rcvr_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == int(internaltip_id))
+        rcvr_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == internaltip_id)
 
         receivers_desc = []
         for tip in rcvr_tips:

@@ -73,33 +73,6 @@ class ReceiverTip(TXModel):
         self.internaltip = selected_it
 
 
-    # XXX This would be moved in the new 'task queue', it's a get_tips_by_marker
-    @transact
-    def get_tips(self, marker=None):
-        """
-        @param status: unicode!
-        @return:
-        """
-        store = self.getStore()
-
-        notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
-        if not marker in notification_markers:
-            raise NotImplemented
-
-        # XXX ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
-        marked_tips = store.find(ReceiverTip, ReceiverTip.notification_mark == marker)
-
-        retVal = []
-        for single_tip in marked_tips:
-            retVal.append({
-                'notification_fields' : dict(single_tip.receiver.notification_fields),
-                'notification_selected' : unicode(single_tip.receiver.notification_selected),
-                'tip_gus' : unicode(single_tip.tip_gus),
-                'creation_time' : unicode(single_tip.internaltip.creation_date)
-            })
-
-        return retVal
-
     # XXX this would be moved in the new 'task queue'
     @transact
     def flip_mark(self, tip_gus, newmark):
@@ -164,12 +137,15 @@ class ReceiverTip(TXModel):
 
         return dict(tip_details)
 
+
     @transact
     def pertinence_vote(self, tip_gus, vote):
         """
         check if the receiver has already voted. if YES: raise an exception, if NOT
         mark the expressed vote and call the internaltip to register the fact.
-        @vote would be True or False, default is "I'm not expressed"
+        @vote would be True or False, default is "I'm not expressed".
+
+        return the actual vote expressed by all the receivers, to the same iTip.
         """
 
         store = self.getStore()
@@ -184,14 +160,24 @@ class ReceiverTip(TXModel):
         if requested_t.expressed_pertinence:
             raise TipPertinenceExpressed
 
-        # expressed_pertinence has those meanings:
+        # expressed_pertinence has these meanings:
         # 0 = unassigned
         # 1 = negative vote
         # 2 = positive vote
         requested_t.expressed_pertinence = 2 if vote else 1
-
-        requested_t.internaltip.pertinence_update(vote)
         requested_t.last_access = gltime.utcTimeNow()
+
+        expressed_t = store.find(ReceiverTip, (ReceiverTip.internaltip_id == requested_t.internaltip_id and ReceiverTip.expressed_pertinence != 0))
+
+        vote_sum = 0
+        for et in expressed_t:
+            if et.expressed_pertinence == 1:
+                vote_sum -= 1
+            else:
+                vote_sum += 1
+
+        itip_id_copy = requested_t.internaltip_id
+        return (itip_id_copy, vote_sum)
 
 
     @transact
@@ -320,6 +306,7 @@ class ReceiverTip(TXModel):
         retDict = { 'othertips' : tips, 'request' : requested_tip }
         return retDict
 
+
     @transact
     def get_tips_by_receiver(self, receiver_gus):
         """
@@ -336,6 +323,27 @@ class ReceiverTip(TXModel):
             related_list.append(t._description_dict())
 
         return related_list
+
+
+    @transact
+    def get_tips_by_notification_mark(self, marker):
+        """
+        @param marker: one valid marker
+        @return: a list of [ ReceiverTip ]
+        """
+        notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
+        store = self.getStore()
+
+        if unicode(marker) not in notification_markers:
+            raise NotImplemented
+
+        marked_t = store.find(ReceiverTip, ReceiverTip.notification_mark == unicode(marker))
+
+        list_by_mark = []
+        for t in marked_t:
+            list_by_mark.append(t._description_dict())
+
+        return list_by_mark
 
 
     @transact
@@ -453,6 +461,7 @@ class ReceiverTip(TXModel):
 
         selected_it = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
 
+        created_counter = 0
         for choosen_r in selected_it.receivers:
 
             try:
@@ -474,6 +483,9 @@ class ReceiverTip(TXModel):
             # this initialize the Tip, (with a "not notified" status)
             new_receiver_tip.initialize(selected_it, receiver_subject)
             store.add(new_receiver_tip)
+            created_counter += 1
+
+        return created_counter
 
 
     # called by a transact operation,dump the ReceiverTip (without the Tip details,
@@ -543,7 +555,7 @@ class WhistleblowerTip(TXModel):
         # ad the identifier of the resource is in fact the auth key
         complete_tip_dict.update({ 'id' : requested_t.receipt })
 
-        return complete_tip_dict
+        return dict(complete_tip_dict)
 
     @transact
     def get_all(self):
@@ -594,10 +606,10 @@ class WhistleblowerTip(TXModel):
     def _description_dict(self):
 
         descriptionDict = {
-            'last_access' :  gltime.prettyDateTime(self.last_access),
-            'internaltip_id' : self.internaltip_id,
-            'authoption' : self.authoptions,
-            'receipt' : self.receipt
+            'last_access' :  unicode(gltime.prettyDateTime(self.last_access)),
+            'internaltip_id' : int(self.internaltip_id),
+            'authoption' : dict(self.authoptions) if self.authoptions else {},
+            'receipt' : unicode(self.receipt)
         }
         return dict(descriptionDict)
 
@@ -611,14 +623,19 @@ class File(TXModel):
     file_gus = Unicode(primary=True)
 
     name = Unicode()
+
     content = RawStr()
+    shasum = RawStr()
 
     completed = Bool()
 
-    shasum = RawStr()
-
     description = Unicode()
     content_type = Unicode()
+    mark = Unicode()
+        # 'not processed': 'ready' 'blocked'
+        # 'delivered' 'unable to be delivered', 'stored'
+        # TODO with Task table would be possibile handle
+        # the different behaviour for every receiver, ATM not!
 
     size = Int()
 
@@ -628,19 +645,38 @@ class File(TXModel):
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
+
     @transact
-    def admin_get_all(self):
+    def new(self):
+        pass
+
+    @transact
+    def get_file_by_maker(self, marker):
+        """
+        @return: all the files matching with the requested
+            marked, between this list of option:
+        marker_avail = [ u'not processed', u'ready', u'blocked'  ]
+
+        'delivered' and 'stored' depends from the single Receiver
+        TODO handle that with the schedule queue
+        """
 
         store = self.getStore()
 
-        files = store.find(File)
+        if marker == u'not processed':
+            req_fi = store.find(File, File.mark == u'new')
+        elif marker == u'ready':
+            req_fi = store.find(File, File.mark == u'ready')
+        elif marker == u'blocked':
+            req_fi = store.find(File, File.mark == u'blocked')
+        else:
+            raise NotImplemented
 
-        all_files = []
+        retVal = []
+        for single_file in req_fi:
+            retVal.append(single_file._description_dict())
 
-        for single_file in files:
-            all_files.append(single_file._description_dict())
-
-        return all_files
+        return retVal
 
 
     @transact
@@ -674,6 +710,21 @@ class File(TXModel):
 
 
     @transact
+    def get_all(self):
+
+        store = self.getStore()
+
+        files = store.find(File)
+
+        all_files = []
+
+        for single_file in files:
+            all_files.append(single_file._description_dict())
+
+        return all_files
+
+
+    @transact
     def get_single(self, file_gus):
 
         store = self.getStore()
@@ -687,13 +738,11 @@ class File(TXModel):
             store.close()
             raise FileGusNotFound
 
-        desc = filelookedat._description_dict()
-
-        store.close()
-        return desc
+        return filelookedat._description_dict()
 
     def _description_dict(self):
 
+        # Note: the content is not serialized
         descriptionDict = {
             'size' : self.size,
             'file_gus' : self.file_gus,
@@ -725,7 +774,6 @@ class Comment(TXModel):
     content = Unicode()
     author_gus = Unicode()
     notification_mark = Unicode()
-
 
     @transact
     def add_comment(self, itip_id, comment, source, author_gus=None):
@@ -762,18 +810,16 @@ class Comment(TXModel):
         newcomment.author_gus = author_gus
         newcomment.internaltip = itip
         newcomment.internaltip_id = int(itip_id)
-        newcomment.notification_mark = u'not notified'
-        # XXX TODO need to be reeingineered, one notification for receiver
 
+        # TODO |need to be reeingineered, only with the queue task
+        # TODO |manager can be digest and track the single notification.
+        # TODO |
+        newcomment.notification_mark = u'not notified'
         store.add(newcomment)
 
-        retVal = newcomment._description_dict()
-
-        return retVal
+        return newcomment._description_dict()
 
 
-    # this is obvious, after the alpha release, all the mark/status info for the scheduler would be moved in
-    # a dedicated class
     @transact
     def flip_mark(self, comment_id, newmark):
 
@@ -787,22 +833,6 @@ class Comment(TXModel):
 
         requested_c = store.find(Comment, Comment.id  == comment_id).one()
         requested_c.notification_mark = newmark
-
-    @transact
-    def get_comment_related(self, internltip_id):
-        """
-        return all the comment child of the same InternalTip.
-        """
-
-        store = self.getStore()
-
-        comment_list = store.find(Comment, Comment.internaltip_id == int(internltip_id))
-
-        retDict = []
-        for single_comment in comment_list:
-            retDict.append(single_comment._description_dict())
-
-        return retDict
 
 
     @transact
@@ -828,7 +858,7 @@ class Comment(TXModel):
 
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
         if not marker in notification_markers:
-            raise Exception("Invalid developer brain dictionary", marker)
+            raise NotImplemented
 
         marked_comments = store.find(Comment, Comment.notification_mark == marker)
 
@@ -869,20 +899,4 @@ class Comment(TXModel):
 
 
 
-class PublicStats(TXModel):
-    """
-    * Follow the same logic of admin.AdminStats,
-    * need to be organized along with the information that we want to shared to the WBs:
-       *  active_submission represent the amount of submission active in the moment
-       *  node activities is a sum of admin + receiver operation
-    * that's all time dependent information
-       * remind: maybe also non-time dependent information would exists, if a node want to publish also their own analyzed submission, (but this would require another db table)
-    """
-    __storm_table__ = 'publicstats'
-
-    id = Int(primary=True)
-
-    active_submissions = Int()
-    node_activities = Int()
-    uptime = Int()
 

@@ -36,26 +36,35 @@ class APSTip(GLJob):
         internaltip_iface = InternalTip()
         receivertip_iface = ReceiverTip()
 
-        internal_id_list = yield internaltip_iface.get_newly_generated()
+        internal_tip_list = yield internaltip_iface.get_itips_by_maker(u'new', False)
 
-        if len(internal_id_list):
-            log.debug("TipSched: found %d new Tip: %s" % (len(internal_id_list), str(internal_id_list)))
+        if len(internal_tip_list):
+            log.debug("TipSched: found %d new Tip" % len(internal_tip_list) )
 
-        for id in internal_id_list:
-            yield receivertip_iface.create_receiver_tips(id, 1)
-            yield internaltip_iface.flip_mark(id, u'first')
+        for itip in internal_tip_list:
+            itip_id = int(itip['internaltip_id'])
+
+            receivertip_created = yield receivertip_iface.create_receiver_tips(itip_id, 1)
+            yield internaltip_iface.flip_mark(itip_id, u'first')
+
+            log.debug("TipSched: created %d ReceiverTip for the iTip %d" % (receivertip_created, itip_id))
+
 
         # loops over the InternalTip and checks the escalation threshold
         # It may require the creation of second-step Tips
-        escalated_id_list = yield internaltip_iface.get_newly_escalated()
+        escalated_itip_list = yield internaltip_iface.get_itips_by_maker(u'first', True)
 
-        if len(escalated_id_list):
-            log.debug("TipSched: %d Tip are escalated: %s" % (len(escalated_id_list), str(escalated_id_list)))
+        if len(escalated_itip_list):
+            log.debug("TipSched: %d Tip are escalated" % len(escalated_itip_list) )
 
-            # This event would be notified as system Comment
-            comment_iface = Comment()
+        # This event would be notified as system Comment
+        comment_iface = Comment()
 
-            for id in escalated_id_list:
-                # yield comment_iface.add_comment(id, u"Escalation threshold has been reached", u'system')
-                yield receivertip_iface.create_receiver_tips(id, 2)
-                yield internaltip_iface.flip_mark(id, u'second')
+        for itip in escalated_itip_list:
+            itip_id = int(itip['internaltip_id'])
+
+            yield comment_iface.add_comment(itip_id, u"Escalation threshold has been reached", u'system')
+            receivertip_created = yield receivertip_iface.create_receiver_tips(itip_id, 2)
+            yield internaltip_iface.flip_mark(itip_id, u'second')
+
+            log.debug("TipSched: escalated %d ReceiverTip for the iTip %d" % (receivertip_created, itip_id))
