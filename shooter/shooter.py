@@ -38,8 +38,6 @@ URTA = {
     'A5_PUT':'PUT_/admin/receiver/@RID@',
     'A5_DELETE':'DELETE_/admin/receiver/@RID@',
     'A5_GET':'GET_/admin/receiver/@RID@',
-    'A7_POST':'POST_/admin/plugin/email/profile',
-    'A7_GET':'GET_/admin/plugin/email/profile',
     'U3_PUT':'PUT_/submission/@SID@',
     'U3_DELETE':'DELETE_/submission/@SID@',
     'U3_GET':'GET_/submission/@SID@',
@@ -48,14 +46,16 @@ URTA = {
     'U4_POST':'POST_/submission/@SID@/file',
     'U4_DELETE':'DELETE_/submission/@SID@/file',
     'U4_GET':'GET_/submission/@SID@/file',
-    'A8_PUT':'PUT_/admin/plugin/email/profile/@PID@',
-    'A8_DELETE':'DELETE_/admin/plugin/email/profile/@PID@',
-    'A8_GET':'GET_/admin/plugin/(\w+)/profile/@PID@',
     'A1_POST':'POST_/admin/node',
     'A1_GET':'GET_/admin/node',
     'A4_POST':'POST_/admin/receiver',
     'A4_GET':'GET_/admin/receiver',
     'A6_GET':'GET_/admin/plugin',
+    'A7_POST':'POST_/admin/profile',
+    'A7_GET':'GET_/admin/profile',
+    'A8_GET':'GET_/admin/profile/@PID@',
+    'A8_PUT':'PUT_/admin/profile/@PID@',
+    'A8_DELETE':'DELETE_/admin/profile/@PID@',
     'A9_GET':'GET_/admin/statistics/',
     'A3_PUT':'PUT_/admin/context/@CID@',
     'A3_DELETE':'DELETE_/admin/context/@CID@',
@@ -87,7 +87,7 @@ def do_httpie(method, url, request_list):
     tstderr = sys.stderr
     defurl = baseurl + url
 
-    command_array = ["http", method, defurl ]
+    command_array = ["http", "--check-status", method, defurl ]
 
     if request_list is not None:
         for request_element in request_list:
@@ -99,8 +99,8 @@ def do_httpie(method, url, request_list):
     try:
         subprocess.check_call(command_array, stderr=tstderr, stdout=tstdout)
     except subprocess.CalledProcessError:
-        print "invalid execution of httpie!"
-        print "check the file", errfname
+        print "invalid execution of httpie!, command line:", sys.argv
+        print "error file:", errfname
         quit(1)
     except OSError:
         print "You need HTTPie installed. Check 'Requirement' section in README.md"
@@ -157,7 +157,7 @@ def fix_varline(inputline):
             '@RAW@': 'raw', # RAW JSON string
             '@TASK@': 'task', # task scheduled type, or table shortnames
             '@DUMP@': 'dump', # task scheduled type, or table shortnames
-            '@PID' : 'pid', # Profile GUS (plugin)
+            '@PID@' : 'pid', # Profile GUS (plugin)
             '@CN@' : 'cn'   # Configuration Number (numeric ID)
                 }.iteritems():
 
@@ -182,12 +182,10 @@ def fix_varline(inputline):
     if inputline.find(special) > 0:
 
         linesplit = inputline.split(special)
-        import random
         return (linesplit[0] + str(random.randint(1,100000)) + linesplit[1])
 
     return inputline
 
-# simple utility used in the spelunking_int_*
 def getMethIf(argv_index):
     if len(sys.argv) > argv_index:
         if sys.argv[argv_index].upper() in ['GET', 'POST', 'DELETE', 'PUT' ]:
@@ -275,6 +273,9 @@ def outputOptionsApply(theDict):
 
 
 if __name__ == '__main__':
+
+    import random
+    random.seed(os.getpid())
 
     if len(sys.argv) < 2:
         print sys.argv[0], "[portion of REST]|URTA code", "<method>",
