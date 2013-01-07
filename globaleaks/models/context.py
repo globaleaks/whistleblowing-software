@@ -86,7 +86,7 @@ class Context(TXModel):
         log.msg("Created context %s at the %s" % (cntx.name, cntx.creation_date) )
 
         # return context_dict
-        return cntx.context_gus
+        return cntx._description_dict()
 
 
     @transact
@@ -120,6 +120,7 @@ class Context(TXModel):
         log.msg("Updated context %s in %s, created in %s" %
                 (requested_c.name, requested_c.update_date, requested_c.creation_date) )
 
+        return requested_c._description_dict()
 
     @transact
     def delete_context(self, context_gus):
