@@ -117,11 +117,10 @@ def createTable(model, transactor, database):
     except StormError, e:
         print "Failed to create table!", e
 
-@inlineCallbacks
 def runCreateTable(model, transactor=None, database=None):
     """
     Runs the table creation query wrapped in a transaction.
     Transactions run in a separate thread.
     """
-    yield transactor.run(createTable, model, transactor, database)
+    return transactor.run(createTable, model, transactor, database)
 
