@@ -6,7 +6,7 @@
 __all__ = ['createTables', 'database', 'transactor']
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks import database, transactor
+from globaleaks import transactor
 from globaleaks.utils import log
 from globaleaks.db import tables
 

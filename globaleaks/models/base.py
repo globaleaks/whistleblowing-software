@@ -9,7 +9,7 @@ from storm.locals import Store
 from storm.twisted.transact import transact
 
 from globaleaks import config
-from globaleaks.db import transactor, database
+from globaleaks.db import transactor
 from globaleaks.utils import log
 
 __all__ = ['TXModel' ]
@@ -39,7 +39,6 @@ class TXModel(object):
 
     createQuery = ""
     transactor = transactor
-    database = database
 
     # class variable keeping track in incremental mode to DB I/O access
     sequencial_dbop = 0
