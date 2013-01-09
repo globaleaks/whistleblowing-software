@@ -96,31 +96,33 @@ def generateCreateQuery(model):
     query += varsToParametersSQLite(variables, primary_keys)
     return query
 
-def createTable(model, transactor, database):
+def createTable(model, transactor=None, store=None):
     """
     Create the table for the specified model.
     It will default to using globaleaks.db transactor and database if none is
     specified.
     Specification of a transactor and database is useful in unittesting.
     """
-    if not transactor:
-        from globaleaks.db import transactor
-    if not database:
-        from globaleaks.db import database
-    store = config.main.store.get('main_store')
+    obj = model()
+
+    if transactor:
+        obj.transactor = transactor
+    if store:
+	obj.store = store
     create_query = generateCreateQuery(model)
 
     try:
-        store.execute(create_query)
+        obj.getStore().execute(create_query)
+        
     # XXX trap the specific error that is raised when the table exists
     # seem to be OperationalError raised, but not a specific error exists.
     except StormError, e:
         print "Failed to create table!", e
 
-def runCreateTable(model, transactor=None, database=None):
+def runCreateTable(model, transactor, store=None):
     """
     Runs the table creation query wrapped in a transaction.
     Transactions run in a separate thread.
     """
-    return transactor.run(createTable, model, transactor, database)
+    return transactor.run(createTable, model, transactor, store)
 

@@ -10,6 +10,7 @@
 
 import os
 from cyclone.util import ObjectDict as OD
+from cyclone.util import ObjectDict as OD
 
 import transaction
 from storm.zope.zstorm import ZStorm
@@ -50,8 +51,24 @@ def get_db_file():
     db_file = os.path.join(db_dir, 'glbackend.db')
     return db_file
 
-main = OD()
-advanced = OD()
+class Singleton(type):
+    def __init__(cls, name, bases, dict):
+        super(Singleton, cls).__init__(name, bases, dict)
+        cls.instance = None
+
+    def __call__(cls,*args,**kw):
+        if cls.instance is None:
+            cls.instance = super(Singleton, cls).__call__(*args, **kw)
+        return cls.instance
+
+class Main(OD):
+    __metaclass__ = Singleton
+
+class Advanced(OD):
+    __metaclass__ = Singleton
+
+main = Main()
+advanced = Advanced()
 
 advanced.debug = True
 

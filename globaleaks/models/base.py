@@ -39,12 +39,13 @@ class TXModel(object):
 
     createQuery = ""
     transactor = transactor
+    store = config.main.store
 
     # class variable keeping track in incremental mode to DB I/O access
     sequencial_dbop = 0
 
     def getStore(self, operation_desc=''):
-        return config.main.store.get('main_store')
+        return self.store.get('main_store')
 
     @transact
     def save(self, operation_desc='TXModel.save'):

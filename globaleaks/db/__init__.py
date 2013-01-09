@@ -28,7 +28,7 @@ def createTables():
                Comment, File, PluginProfiles, ReceiverConfs ]:
         try:
             log.debug("Creating %s" % model)
-            yield tables.runCreateTable(model, transactor, database)
+            yield tables.runCreateTable(model, transactor)
         except Exception, e:
             log.debug(str(e))
 
