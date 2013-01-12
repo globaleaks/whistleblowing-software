@@ -167,6 +167,26 @@ class InternalTip(TXModel):
         requested_t.mark = newmark
 
 
+    # REMIND: at the moment is not yet called by the various hooks
+    @transact
+    def update_last_activity(self, internaltip_id):
+        """
+        update_last_activity is called when an operation happen in some elements
+        related to the internaltip (file upload, new comment, receiver escalation,
+        new pertinence, receivertip deleted by receiver)
+        """
+        store = self.getStore()
+
+        try:
+            requested_t = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+        except NotOneError:
+            raise Exception("Not found InternalTip %d" % internaltip_id)
+        if requested_t is None:
+            raise Exception("Not found InternalTip %d" % internaltip_id)
+
+        requested_t.last_activity = gltime.utcDateNow()
+
+
     @transact
     def update_pertinence(self, internaltip_id, overall_vote):
         """
@@ -245,6 +265,7 @@ class InternalTip(TXModel):
             'context_name' : unicode(self.context.name),
             'context_gus': unicode(self.context_gus),
             'creation_date' : unicode(gltime.prettyDateTime(self.creation_date)),
+            'last_activity' : unicode(gltime.prettyDateTime(self.creation_date)),
             'expiration_date' : unicode(gltime.prettyDateTime(self.creation_date)),
             'fields' : dict(self.fields),
             'download_limit' : int(self.download_limit),
