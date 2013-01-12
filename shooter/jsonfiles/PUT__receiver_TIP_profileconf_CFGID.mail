@@ -1,0 +1,6 @@
+active:=true
+config_id=@CFGID@
+receiver_settings:={"mail_address":"@RAW@"}
+creator_receiver="this information is ignored by the GLB"
+context_gus=@CID@
+profile_gus=@PID@

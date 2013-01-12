@@ -1,0 +1,5 @@
+active:=true
+receiver_settings:={"mail_address":"@RAW@"}
+creator_receiver=This information is ignored by the GLB, it's set by models
+context_gus=@CID@
+profile_gus=@PID@
