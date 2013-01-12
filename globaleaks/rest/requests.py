@@ -24,16 +24,6 @@ class wbSubmissionDesc(GLTypes):
         'receipt' : unicode,
     }
 
-class receiverProfileDesc(GLTypes):
-
-    specification = {
-        'receiver_gus' : receiverGUS,
-        'active' : bool,
-        'config_id' : int,
-        'receiver_fields' : unicode,
-        'profile_gus' : profileGUS
-    }
-
 class receiverReceiverDesc(GLTypes):
 
     specification =  {
@@ -138,7 +128,6 @@ class adminReceiverDesc(GLTypes):
         'can_configure_notification' : bool
     }
 
-
 class adminProfileDesc(GLTypes):
 
     specification = {
@@ -154,3 +143,17 @@ class adminProfileDesc(GLTypes):
         'admin_settings' : dict,
         'receiver_fields' : [ formFieldsDict ]
     }
+
+class receiverConfDesc(GLTypes):
+
+    specification = {
+        'active' : bool,
+        'config_id' : int,
+        'receiver_settings' : dict,
+        'creator_receiver' : receiverGUS, # Can't be changed via update
+        'context_gus' : contextGUS,       # Can't be changed via update
+        'profile_gus' : profileGUS,       # Can't be changed via update
+        'creation_date': timeType,
+        'last_update': timeType
+    }
+

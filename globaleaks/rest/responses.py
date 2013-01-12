@@ -7,20 +7,20 @@
 #   and are used to make output validation, sanitization, and operations
 
 
-from globaleaks.rest.base import GLTypes, formFieldsDict, timeType
+from globaleaks.rest.base import GLTypes, formFieldsDict, timeType, receiverGUS, contextGUS, profileGUS
 
 # All the REST interface SHARE the same structures between response and request
 # and the generate_docs.py script check in responses.py and requests.py
 # To avoid code duplication, here follow the classes duplicated.
 # responses.py copy from requests.py:
 
-from globaleaks.rest.requests import receiverProfileDesc
 from globaleaks.rest.requests import receiverReceiverDesc
 from globaleaks.rest.requests import receiverTipDesc
 from globaleaks.rest.requests import actorsCommentDesc
 from globaleaks.rest.requests import adminContextDesc
 from globaleaks.rest.requests import adminReceiverDesc
 from globaleaks.rest.requests import adminProfileDesc
+from globaleaks.rest.requests import receiverConfDesc
 
 
 # -------------------------------------------------------
@@ -105,10 +105,6 @@ class adminStatsList(GLTypes):
 
     specification = [ adminStatsDesc ]
 
-class receiverProfileList(GLTypes):
-
-    specification = [ receiverProfileDesc ]
-
 class receiverTipList(GLTypes):
 
     specification = [ receiverTipDesc ]
@@ -142,16 +138,34 @@ class adminContextList(GLTypes):
 
     specification =  [ adminContextDesc ]
 
+class receiverProfileDesc(GLTypes):
+
+    specification = {
+        'receiver_gus' : receiverGUS,
+        'context_gus' : contextGUS,
+        'receiver_fields' : [ formFieldsDict ],
+        'profile_gus' : profileGUS,
+        'plugin_name' : unicode,
+        'profile_description': unicode
+    }
+
+class receiverProfileList(GLTypes):
+
+    specification = [ receiverProfileDesc ]
+
+class receiverConfList(GLTypes):
+
+    specification = [ receiverConfDesc ]
+
 class adminPluginDesc(GLTypes):
 
     specification = {
-        'plugin_type': unicode,
         'plugin_name' : unicode,
-        'description' : unicode,
+        'plugin_type' : unicode,
+        'plugin_description' : unicode,
         'admin_fields' : [ formFieldsDict ],
         'receiver_fields' : [ formFieldsDict ]
-        }
-
+    }
 
 class adminPluginList(GLTypes):
 
