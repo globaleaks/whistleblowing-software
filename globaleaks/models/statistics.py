@@ -7,8 +7,7 @@
 # has its own flow of stats
 
 
-from storm.locals import Int, Unicode, DateTime
-from storm.locals import Reference
+from storm.locals import AutoReload, Int, Unicode, DateTime, Reference
 from globaleaks.models.base import TXModel
 from globaleaks.utils import log
 from globaleaks.models.context import Context
@@ -31,7 +30,7 @@ class Stats(TXModel):
 
     __storm_table__ = 'statistics'
 
-    id = Int(primary=True)
+    id = Int(primary=True, default=AutoReload)
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
 
@@ -41,7 +40,7 @@ class Stats(TXModel):
     whistleblower_access = Int()
 
     download_forbidden = Int()
-        # count of the download tried but deny for be expired
+    # count of the download tried but denied (due to expiration)
 
     access_forbidden = Int()
     removed_submission = Int()
