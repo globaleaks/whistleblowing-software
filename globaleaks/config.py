@@ -10,7 +10,6 @@
 
 import os
 from cyclone.util import ObjectDict as OD
-from cyclone.util import ObjectDict as OD
 
 import transaction
 from storm.zope.zstorm import ZStorm
@@ -19,6 +18,8 @@ from storm.tracer import debug
 import sys
 #Storm DB dump:
 debug(True, sys.stdout)
+
+from globaleaks.utils.singleton import Singleton
 
 class ConfigError(Exception):
     pass
@@ -43,50 +44,47 @@ def get_glclient_path():
 
     return path
 
-def get_db_file():
+def get_db_file(filename=None):
     root = get_root_path()
     db_dir = os.path.join(root, '_gldata')
     if not os.path.isdir(db_dir):
         os.mkdir(db_dir)
-    db_file = os.path.join(db_dir, 'glbackend.db')
+    db_file = os.path.join(db_dir, filename)
     return db_file
 
-class Singleton(type):
-    def __init__(cls, name, bases, dict):
-        super(Singleton, cls).__init__(name, bases, dict)
-        cls.instance = None
-
-    def __call__(cls,*args,**kw):
-        if cls.instance is None:
-            cls.instance = super(Singleton, cls).__call__(*args, **kw)
-        return cls.instance
-
-class Main(OD):
+class Config(object):
     __metaclass__ = Singleton
 
-class Advanced(OD):
-    __metaclass__ = Singleton
+    def __init__(self, database_file=None):
+        if not self.instance:
+            print "Initializing Config with saved arguments"
+        else:
+            print "Reconfiguring Config instance"
 
-main = Main()
-advanced = Advanced()
+        self.main = OD()
+        self.advanced = OD()
 
-advanced.debug = True
+        self.advanced.debug = True
 
-main.glclient_path = get_glclient_path()
+        self.main.glclient_path = get_glclient_path()
 
-if advanced.debug:
-    print "Serving GLClient from %s" % main.glclient_path
+        if self.advanced.debug:
+            print "Serving GLClient from %s" % self.main.glclient_path
 
-# This is the zstorm store used for transactions
-main.database_uri = 'sqlite:'+get_db_file()
+        # This is the zstorm store used for transactions
+        if database_file:
+            self.main.database_uri = 'sqlite:'+database_file
+        else:
+            self.main.database_uri = 'sqlite:'+get_db_file('glbackend.db')
 
-main.store = ZStorm()
-main.store.set_default_uri('main_store', main.database_uri)
+        self.main.zstorm = ZStorm()
+        self.main.zstorm.set_default_uri('main_store', self.main.database_uri)
 
-advanced.db_thread_pool_size = 10
-advanced.scheduler_thread_pool_size = 10
+        self.advanced.db_thread_pool_size = 10
+        self.advanced.scheduler_thread_pool_size = 10
 
-advanced.data_dir = os.path.join(get_root_path(), '_gldata')
-advanced.submissions_dir = os.path.join(advanced.data_dir, 'submissions')
-advanced.delivery_dir = os.path.join(advanced.data_dir, 'delivery')
+        self.advanced.data_dir = os.path.join(get_root_path(), '_gldata')
+        self.advanced.submissions_dir = os.path.join(self.advanced.data_dir, 'submissions')
+        self.advanced.delivery_dir = os.path.join(self.advanced.data_dir, 'delivery')
 
+config = Config()

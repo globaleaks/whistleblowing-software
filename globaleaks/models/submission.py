@@ -185,7 +185,7 @@ class Submission(TXModel):
     @transact
     def receipt_proposal(self, submission_gus, proposed_receipt):
 
-        store = self.getStore('receipt_proposal')
+        store = self.getStore()
 
         try:
             # XXX need to be checked the presence of a collision, but this bring to insecurity
