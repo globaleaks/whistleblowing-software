@@ -11,8 +11,8 @@
 
 from storm.twisted.transact import transact
 from storm.exceptions import NotOneError
-from storm.locals import Int, Pickle, Unicode, Bool, DateTime
-from storm.locals import Reference
+from storm.store import AutoReload
+from storm.locals import Int, Pickle, Unicode, Bool, DateTime, Reference
 
 from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
@@ -34,12 +34,12 @@ class PluginProfiles(TXModel):
     """
     __storm_table__ = 'pluginprofiles'
 
+    profile_gus = Unicode(primary=True)
+
     # These fields are assigned at creation time and can't be changed:
     plugin_type = Unicode()
     plugin_name = Unicode()
     plugin_description = Unicode()
-
-    profile_gus = Unicode(primary=True)
 
     # admin_fields contain a copy of the Plugins requested fields and type
     admin_fields = Pickle()
@@ -227,7 +227,7 @@ class ReceiverConfs(TXModel):
     """
 
     __storm_table__ = 'receiverconfs'
-    id = Int(primary=True)
+    id = Int(primary=True, default=AutoReload)
 
     receiver_gus = Unicode()
     receiver = Reference(receiver_gus, Receiver.receiver_gus)
