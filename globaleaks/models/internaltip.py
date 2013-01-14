@@ -33,7 +33,7 @@ class InternalTip(TXModel):
 
     __storm_table__ = 'internaltips'
 
-    id = Int(primary=True)
+    id = Int(primary=True, default=AutoReload)
 
     fields = Pickle()
     pertinence_counter = Int()

@@ -39,7 +39,6 @@ def initializeNode():
 
     onlyNode = Node()
 
-    onlyNode.id = 1
     onlyNode.name = u"Please, set me: name/title"
     onlyNode.description = u"Please, set me: description"
     onlyNode.hidden_service = u"Please, set me: hidden service"

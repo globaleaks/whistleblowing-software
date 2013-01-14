@@ -31,7 +31,7 @@ class Node(TXModel):
 
     __storm_table__ = 'systemsettings'
 
-    id = Int(primary=True)
+    id = Int(primary=True, default=AutoReload)
 
     description = Unicode()
     name = Unicode()
