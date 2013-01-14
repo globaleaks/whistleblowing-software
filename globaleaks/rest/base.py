@@ -160,17 +160,17 @@ class timeType(SpecialType):
     pass
 
 class fileGUS(SpecialType):
-    regexp = r"(f_[a-zA-Z]{20,20})"
+    regexp = r"(f_(\w){20,20})"
 
 # XXX not true anymore, need to be update the specification and the glossary
 class receiptGUS(SpecialType):
     regexp = r"(\d{10,10})"
 
 class submissionGUS(SpecialType):
-    regexp = r"(s_[a-zA-Z]{50,50})"
+    regexp = r"(s_(\w){50,50})"
 
 class receiverGUS(SpecialType):
-    regexp = r"(r_[a-zA-Z]{20,20})"
+    regexp = r"(r_(\w){20,20})"
 
 class profileGUS(SpecialType):
     regexp = r"(p_\d{10,10})"
@@ -179,13 +179,13 @@ class moduleENUM(SpecialType):
     regexp = "(notification|delivery|inputfilter)"
 
 class contextGUS(SpecialType):
-    regexp = r"(c_[a-zA-Z]{20,20})"
+    regexp = r"(c_(\w){20,20})"
 
 class commentENUM(SpecialType):
     regexp = r"(receiver|system|whistleblower)"
 
 class tipGUS(SpecialType):
-    regexp = r"(t_[a-zA-Z]{50,50})"
+    regexp = r"(t_(\w){50,50})"
 
 class fileDict(GLTypes):
 

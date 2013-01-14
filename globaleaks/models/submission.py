@@ -58,7 +58,7 @@ class Submission(TXModel):
             raise ContextGusNotFound
 
         submission = Submission()
-        submission.submission_gus = idops.random_submission_gus(False)
+        submission.submission_gus = idops.random_submission_gus()
 
         submission.context_gus = context_gus
         submission.context = associated_c
@@ -235,9 +235,9 @@ class Submission(TXModel):
         # The list of receiver (receiver_gus) has been already evaluated by submission
         # initialization or update_receivers function. need just to be copied in
         # InternalTip.
+        print "++ complete_submission(): I'm putting in internaltip receivers: ", requested_s.receivers, "to:", internal_tip.receivers
         for single_r in requested_s.receivers:
             # TODO XXX Applicative log
-            print "++ I'm putting in internaltip ", single_r, "from", requested_s.receivers, "to:", internal_tip.receivers
             internal_tip.receivers.append(single_r)
 
 

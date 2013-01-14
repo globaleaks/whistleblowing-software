@@ -237,7 +237,7 @@ class TipCommentCollection(BaseHandler):
                 tip_description = yield requested_t.get_single(tip_token)
 
             comment_iface = Comment()
-            comment_list = yield comment_iface.get_comment_related(tip_description['internaltip_id'])
+            comment_list = yield comment_iface.get_comment_by_itip(tip_description['internaltip_id'])
 
             self.set_status(200)
             self.write(json.dumps(comment_list))
