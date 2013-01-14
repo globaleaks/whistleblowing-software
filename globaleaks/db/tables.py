@@ -16,7 +16,8 @@ from storm.variables import DecimalVariable, EnumVariable
 from storm.variables import FloatVariable, IntVariable, RawStrVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
-from globaleaks import config
+from globaleaks import main
+from globaleaks.config import config
 
 def variableToSQLite(var_type):
     """
@@ -96,33 +97,35 @@ def generateCreateQuery(model):
     query += varsToParametersSQLite(variables, primary_keys)
     return query
 
-def createTable(model, transactor=None, store=None):
+def createTable(model):
     """
     Create the table for the specified model.
     It will default to using globaleaks.db transactor and database if none is
     specified.
     Specification of a transactor and database is useful in unittesting.
     """
-    obj = model()
 
-    if transactor:
-        obj.transactor = transactor
-    if store:
-	obj.store = store
     create_query = generateCreateQuery(model)
 
     try:
-        obj.getStore().execute(create_query)
+        config.main.zstorm.get('main_store').execute(create_query)
         
     # XXX trap the specific error that is raised when the table exists
     # seem to be OperationalError raised, but not a specific error exists.
     except StormError, e:
         print "Failed to create table!", e
+        
+def count(model):
+    """
+    @rtype : int
+    @return: the count number of stored items 
+    """
 
-def runCreateTable(model, transactor, store=None):
+    return config.main.zstorm.get('main_store').find(model).count()
+
+def runCreateTable(model):
     """
     Runs the table creation query wrapped in a transaction.
     Transactions run in a separate thread.
     """
-    return transactor.run(createTable, model, transactor, store)
-
+    return main.transactor.run(createTable, model)
