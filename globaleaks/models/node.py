@@ -10,8 +10,8 @@ from storm.exceptions import NotOneError
 
 from storm.twisted.transact import transact
 
-from storm.locals import Int, Pickle
-from storm.locals import Unicode, DateTime
+from storm.store import AutoReload
+from storm.locals import Int, Pickle, Unicode, DateTime
 
 from globaleaks.models.base import TXModel
 from globaleaks.utils import log
@@ -31,7 +31,7 @@ class Node(TXModel):
 
     __storm_table__ = 'systemsettings'
 
-    id = Int(primary=True)
+    id = Int(primary=True, default=AutoReload)
 
     description = Unicode()
     name = Unicode()

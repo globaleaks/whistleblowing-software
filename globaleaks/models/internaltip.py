@@ -11,8 +11,8 @@
 from storm.twisted.transact import transact
 
 from storm.exceptions import NotOneError
-from storm.locals import Int, Pickle, Unicode, DateTime
-from storm.locals import Reference
+from storm.store import AutoReload
+from storm.locals import Int, Pickle, Unicode, DateTime, Reference
 
 from globaleaks.utils import log, gltime
 from globaleaks.models.base import TXModel
@@ -33,7 +33,7 @@ class InternalTip(TXModel):
 
     __storm_table__ = 'internaltips'
 
-    id = Int(primary=True)
+    id = Int(primary=True, default=AutoReload)
 
     fields = Pickle()
     pertinence_counter = Int()
