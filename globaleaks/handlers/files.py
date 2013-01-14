@@ -14,7 +14,7 @@ from cyclone.web import RequestHandler, HTTPError, asynchronous
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.errors import SubmissionGusNotFound
 from globaleaks.utils import log
-from globaleaks import config
+from globaleaks.config import config
 from globaleaks.models.submission import Submission
 from globaleaks.models.externaltip import File
 
