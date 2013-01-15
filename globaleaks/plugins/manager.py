@@ -143,17 +143,17 @@ class GLPluginManager(object):
         """
         Return the plugin object
         """
-        if unicode(plugin_type) == u'notificaton' or plugin_type == None:
+        if plugin_type == None or unicode(plugin_type) == u'notificaton':
             p = self._look_plugin_in(unicode(plugin_name), self.notification_list)
             if p is not None:
                 return p
 
-        if unicode(plugin_type) == u'delivery' or plugin_type == None:
+        if plugin_type == None or unicode(plugin_type) == u'delivery':
             p = self._look_plugin_in(unicode(plugin_name), self.delivery_list)
             if p is not None:
                 return p
 
-        if unicode(plugin_type) == u'fileprocess' or plugin_type == None:
+        if plugin_type == None or unicode(plugin_type) == u'fileprocess':
             p = self._look_plugin_in(unicode(plugin_name), self.fileprocess_list)
             if p is not None:
                 return p
