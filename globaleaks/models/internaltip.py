@@ -129,7 +129,7 @@ class InternalTip(TXModel):
         if marker == u'new':
             req_it = store.find(InternalTip, InternalTip.mark == u'new')
         elif marker == u'first' and escalated:
-            req_it = store.find(InternalTip, (InternalTip.mark == u'first' and InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
+            req_it = store.find(InternalTip, (InternalTip.mark == u'first', InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
         elif marker == u'first' and not escalated:
             req_it = store.find(InternalTip, InternalTip.mark == u'first')
         elif marker == u'second':
@@ -244,6 +244,12 @@ class InternalTip(TXModel):
 
         return receivers_desc
 
+    @transact
+    def get_single(self, internaltip_id):
+
+        store = self.getStore()
+        selected = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+        return selected._description_dict()
 
     @transact
     def get_all(self):
