@@ -1,0 +1,4 @@
+active:=true
+receiver_settings:={"filename":"@RAW@"}
+context_gus=@CID@
+profile_gus=@PID@
