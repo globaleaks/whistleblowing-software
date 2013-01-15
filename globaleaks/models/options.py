@@ -252,6 +252,7 @@ class ReceiverConfs(TXModel):
 
     profile_gus = Unicode()
     profile = Reference(profile_gus, PluginProfiles.profile_gus)
+    plugin_type = Unicode()
 
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
@@ -261,6 +262,7 @@ class ReceiverConfs(TXModel):
 
     creation_time = DateTime()
     last_update = DateTime()
+
 
     @transact
     def new(self, creator_receiver, init_request):
@@ -309,12 +311,26 @@ class ReceiverConfs(TXModel):
         if newcfg.creator_receiver not in newcfg.context.receivers:
             raise InvalidInputFormat("Receiver and Context do not fit")
 
+        # TODO check in a strongest way if newcfg.receiver_setting fit with newcfg.profile.receiver_fields
+        key_expectation_fail = None
+        for expected_k in newcfg.profile.receiver_fields.iterkeys():
+            if not newcfg.receiver_settings.has_key(expected_k):
+                key_expectation_fail = expected_k
+                break
+
+        if key_expectation_fail:
+            raise InvalidInputFormat("Expected field %s" % key_expectation_fail)
+        # End of temporary check: why I'm not put the raise exception inside
+        # of the for+if ? because otherwise Storm results locked in the future operations :(
+
+        newcfg.plugin_type = newcfg.profile.plugin_type
         newcfg.creation_time = gltime.utcTimeNow()
         newcfg.last_update = gltime.utcTimeNow()
 
         store.add(newcfg)
 
         return newcfg._description_dict()
+
 
     @transact
     def update(self, conf_id, receiver_authorized, received_dict):
@@ -345,16 +361,98 @@ class ReceiverConfs(TXModel):
         looked_cfg.last_update = gltime.utcTimeNow()
         return looked_cfg._description_dict()
 
+
+    @transact
+    def get_active_conf(self, receiver_gus, context_gus, requested_type):
+
+        store = self.getStore()
+
+        try:
+            wanted = store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus),
+                ReceiverConfs.context_gus == unicode(context_gus),
+                ReceiverConfs.plugin_type == unicode(requested_type),
+                ReceiverConfs.active == True).one()
+
+            if not wanted:
+                return None
+
+            return wanted._description_dict()
+
+        except NotOneError:
+            Exception("Something is gone really bad: please debug")
+
+
+    @transact
+    def deactivate_all_but(self, keep_id, context_gus, receiver_gus, plugin_type):
+        """
+        @param keep_id: the ReceiverConfs.id that has to be kept as 'active'
+        @param context_gus: part of the combo
+        @param receiver_gus: part of the combo
+        @param plugin_type: part of the combo
+        @return: None or exception
+        """
+        store = self.getStore()
+
+        active = store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus),
+            ReceiverConfs.context_gus == unicode(context_gus),
+            ReceiverConfs.active == True,
+            ReceiverConfs.plugin_type == unicode(plugin_type))
+
+        deactivate_count = 0
+        for cfg in active:
+            if cfg.id == keep_id:
+                continue
+
+            deactivate_count += 1
+            cfg.active = False
+
+        # just lazy debug
+        print "deactivated", deactivate_count, "configuration associated with", context_gus, receiver_gus, plugin_type
+
+
+    @transact
+    def delete(self, conf_id, receiver_gus):
+        """
+        @param conf_id: configuration id that need to be deleted
+        @param receiver_gus: receiver authenticated
+        @return: None or Exception
+        """
+        store = self.getStore()
+
+        requested = store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
+        if requested == None:
+            raise ReceiverConfNotFound
+
+        if requested.creator_receiver != unicode(receiver_gus):
+            raise InvalidInputFormat("Requested configuration is not in the Receiver possession")
+
+        store.remove(requested)
+        # App log
+        # TODO, if requested was the active configuration, write a remind via system message for the user
+
+
     @transact
     def deactivate_by_context(self, context_gus):
+        """
+        @param context_gus: a context_gus removed
+        @return: the number of deactivated receiver confs
+        """
         pass
 
     @transact
     def remove_by_receiver(self, receiver_gus):
+        """
+        @param receiver_gus: the receiver deleted
+        @return: the number of the ReceiverConf delete, previously associated with the receiver
+        """
         pass
 
     @transact
     def remove_by_profile(self, profile_gus):
+        """
+        @param profile_gus: a profile that has to be deleted
+        @return: the number of receiver configuration related
+        """
         pass
 
     @transact
@@ -404,27 +502,6 @@ class ReceiverConfs(TXModel):
         return retVal
 
 
-    @transact
-    def get_confs_by_plugin(self, plugin_name):
-        """
-        It's used by administrative interface, permit to check various users configuration
-        related to a specific plugin
-
-        @param plugin_name:
-        @return:
-        """
-
-        store = self.getStore()
-
-        plugin_confs = store.find(ReceiverConfs, ReceiverConfs.profile.plugin_name == unicode(plugin_name))
-
-        retVal = []
-        for single_c in plugin_confs:
-            retVal.append(single_c._description_dict())
-
-        return retVal
-
-
     def _import_dict(self, received_dict):
 
         # TODO validate the dict with profile.receiver_fields
@@ -441,6 +518,7 @@ class ReceiverConfs(TXModel):
             'receiver_gus' : unicode(self.creator_receiver),
             'context_gus' : unicode(self.context_gus),
             'profile_gus' : unicode(self.profile_gus),
+            'plugin_type' : unicode(self.plugin_type),
             'creation_time' : unicode(gltime.prettyDateTime(self.creation_time)),
             'last_update' : unicode(gltime.prettyDateTime(self.last_update)),
         }

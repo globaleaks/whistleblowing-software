@@ -234,6 +234,11 @@ class ConfCollection(BaseHandler):
             receivercfg_iface = ReceiverConfs()
             config_desc = yield receivercfg_iface.new(user['receiver_gus'], request)
 
+            if config_desc['active']:
+                # keeping active only the last configuration requested
+                yield receivercfg_iface.deactivate_all_but(config_desc['config_id'], config_desc['context_gus'],
+                    user['receiver_gus'], config_desc['plugin_type'])
+
             self.write(config_desc)
             self.set_status(201) # Created
 
@@ -373,8 +378,13 @@ class ConfInstance(BaseHandler):
             receivercfg_iface = ReceiverConfs()
             config_update = yield receivercfg_iface.update(conf_id, user['receiver_gus'], request)
 
+            if config_update['active']:
+                # keeping active only the last configuration requested
+                yield receivercfg_iface.deactivate_all_but(config_update['config_id'], config_update['context_gus'],
+                    user['receiver_gus'], config_update['plugin_type'])
+
             self.write(config_update)
-            self.set_status(200) # Created
+            self.set_status(200) # OK
 
         except InvalidTipAuthToken, e:
 
@@ -409,17 +419,45 @@ class ConfInstance(BaseHandler):
         self.finish()
 
 
-
     @asynchronous
     @inlineCallbacks
-    def delete(self, receiver_token_auth, plugin_gus, *uriargs):
+    def delete(self, receiver_token_auth, conf_id, *uriargs):
         """
         Parameters: receiver_token_auth, receiver_configuration_id
         Request: receiverProfileDesc
         Response: None
         Errors: InvalidInputFormat, ProfileGusNotFound
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class AdminPlugin -- NOT YET IMPLEMENTED -- ", "DELETE")
+
+        receivertip_iface = ReceiverTip()
+
+        try:
+            # TODO validate parameters or raise InvalidInputFormat
+
+            receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)
+            user = receivers_map['actor']
+
+            receivercfg_iface = ReceiverConfs()
+            yield receivercfg_iface.delete(conf_id, user['receiver_gus'])
+
+            self.set_status(200) # OK
+
+        except TipGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverConfNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
 
 
 class TipsCollection(BaseHandler):
@@ -431,11 +469,34 @@ class TipsCollection(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, receiver_token_auth, *uriargs):
+    def get(self, tip_auth_token, *uriargs):
         """
-        Parameters: None
+        Parameters: tip_auth_token
         Response: receiverTipList
         Errors: InvalidTipAuthToken
         """
-        pass
+
+        receivertip_iface = ReceiverTip()
+
+        try:
+            # TODO validate parameter tip format or raise InvalidInputFormat
+
+            tips = yield receivertip_iface.get_tips_by_tip(tip_auth_token)
+            # this function return a dict with: { 'othertips': [$rtip], 'request' : $rtip }
+
+            tips['othertips'].append(tips['request'])
+
+            self.write(tips['othergroup'])
+
+            self.set_status(200) # OK
+
+        except TipGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+
 
