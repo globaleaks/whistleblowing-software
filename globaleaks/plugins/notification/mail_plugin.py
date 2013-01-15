@@ -37,30 +37,30 @@ class MailNotification(Notification):
         """
         pass
 
-    def _create_title(self, notification_struct):
+    def _create_title(self, data_type, data):
 
-        if notification_struct['type'] == u'comment':
+        if data_type == u'comment':
             return "New comment from GLBNode"
-        if notification_struct['type'] == u'tip':
+        if data_type == u'tip':
             return "New tip from GLBNode"
 
         Exception("Unsupported notification_struct usage")
 
-    def _create_email(self, notification_struct, source, dest, subject):
+    def _create_email(self, data_type, data, source, dest, subject):
         """
         TODO use http://docs.python.org/2/library/email
         """
 
-
-
         body = '\nEsteemed users,\n'
 
-        if notification_struct['type'] == u'comment':
-            body += "In %s You've received a new comment in one of your tip\n" % notification_struct['creation_time']
-            body += "The comment has been produced by %s\n" % notification_struct['source']
-        if notification_struct['type'] == u'tip':
-            body += "In %s as been created a new Tip for you\n" % notification_struct['creation_time']
-            body += "You can access using the unique link http://dev.globaleaks.org:8082/#/status/%s\n" % notification_struct['tip_gus']
+        if data_type == u'comment':
+            body += "In %s You've received a new comment in one of your tip\n" % data['creation_time']
+            body += "The comment has been produced by %s\n" % data['source']
+            body += "and, by the way, the content is:\n%s\n" % data['content']
+
+        if data_type == u'tip':
+            body += "In %s as been created a new Tip for you\n" % data['notification_date']
+            body += "You can access using the unique link http://dev.globaleaks.org:8082/#/status/%s\n" % data['tip_gus']
             body += "\n"\
             "This is an E-Mail message to notify you that someone has selected you as a valuable recipient of "\
             "WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created "\
@@ -115,36 +115,35 @@ class MailNotification(Notification):
 
     # NYI, would use _append_email and continously checking the time delta
     #      admin fields need the digest time delta specified inside.
-
     def digest_check(self, settings, stored_data, new_data):
         pass
 
-    def do_notify(self, settings, notification_struct):
+    def do_notify(self, settings, data_type, data):
 
-        af = settings['admin_fields']
-        rf = settings['receiver_fields']
+        af = settings['admin_settings']
+        rf = settings['receiver_settings']
 
-        title = self._create_title(notification_struct)
-        body = self._create_email(notification_struct,  af['username'], rf['mail_addr'], title)
+        title = self._create_title(data_type, data)
+        body = self._create_email(data_type, data, af['username'], rf['mail_address'], title)
 
         try:
             smtpsock = self._get_SMTP(af['server'], af['port'], af['ssl'],
                 af['username'], af['password'])
 
             if not smtpsock:
-                log.err("[E] error in sending the email to %s (username: %s)" % (rf['mail_addr'], af['username']))
+                log.err("[E] error in sending the email to %s (username: %s)" % (rf['mail_address'], af['username']))
                 return False
 
-            smtpsock.sendmail(af['username'], [ rf['mail_addr'] ], body)
+            smtpsock.sendmail(af['username'], [ rf['mail_address'] ], body)
             smtpsock.quit()
 
-            log.debug("Success in email %s " % rf['mail_addr'])
+            log.debug("Success in email %s " % rf['mail_address'])
             return True
 
         except smtplib.SMTPRecipientsRefused, smtplib.SMTPSenderRefused:
 
             # remind, other error can be handled http://docs.python.org/2/library/smtplib.html
-            log.err("[E] error in sending the email to %s (username: %s)" % (rf['mail_addr'], af['username']))
+            log.err("[E] error in sending the email to %s (username: %s)" % (rf['mail_address'], af['username']))
             return False
 
 
