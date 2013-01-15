@@ -1,0 +1,6 @@
+plugin_type=notification
+plugin_name=File
+context_gus=@CID@
+profile_name=File dump, useful just for test
+profile_description=This description is from POST__admin_profile.file
+admin_settings:={"directory":"/tmp"}

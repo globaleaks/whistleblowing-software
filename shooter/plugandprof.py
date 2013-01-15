@@ -81,18 +81,21 @@ dt "ivivvd" "D2 GET task tip" "Forcing tip creation asyncronous operation"
 
 dt "L" "D1 GET dump rtip print-tip_gus" "acquiring created tip_gus"
 tip_gus_list=$ret
-echo $tip_gus_list
 
 # create notification profile 1
 dt "8" "A7 POST cid $context_one variation mail print-profile_gus" "create profile mail for c1"
 profile_mail_1=$ret
 
+# create notification profile 2
+dt "8bis" "A7 POST cid $context_one variation file print-profile_gus" "create profile file for c1"
+profile_file_1=$ret
+
 # enable local download 1
-dt "8" "A7 POST cid $context_one variation mail print-profile_gus" "create profile download for c1"
+dt "8" "A7 POST cid $context_one variation download print-profile_gus" "create profile download for c1"
 profile_download_1=$ret
 
 # enable contect file processing 1
-dt "9" "A7 POST cid $context_one variation mail print-profile_gus" "create profile contet for c1"
+dt "9" "A7 POST cid $context_two variation content print-profile_gus" "create profile content for c1"
 profile_content_1=$ret
 
 # 'R2_GET':'GET_/receiver/@TIP@/profile',
@@ -101,9 +104,6 @@ profile_content_1=$ret
 # 'R4_GET':'GET_/receiver/@TIP@/profileconf/@CFGID@',
 # 'R4_PUT':'PUT_/receiver/@TIP@/profileconf/@CFGID@',
 # 'R4_DELETE':'DELETE_/receiver/@TIP@/profileconf/@CFGID@'
-
-# this loop use the Tip auth, for configure in both the tip owner (receiver1 and 2)
-# a mail settings, associated to the context_one.
 
 # A tip associated to context_two, VALIDATE the receiver also if is operating on context_one
 # related settings. Tip, in this very case, work just as authentication method for the
@@ -114,17 +114,23 @@ for tip_gus in $tip_gus_list; do
     dt "A_13" "R2 GET tip $tip_gus verbose" "list the available profiles"
     dt "A_14" "R3 GET tip $tip_gus verbose" "list the present receiver conf"
 
-    dt "A_15" "R3 POST tip $tip_gus cid $context_one pid $profile_mail_1 raw vecna@delirandom.net variation mail print-config_id" "create a new receiver conf (mail)"
-    config_id_mail=$ret
-    dt "A_16" "R4 PUT tip $tip_gus cfgid $config_id_mail cid $context_one pid $profile_mail_1 variation mail raw vecna@globaleaks.org" "update the mail conf"
+    # dt "A_15" "R3 POST tip $tip_gus cid $context_one pid $profile_mail_1 raw vecna@delirandom.net variation mail print-config_id" "create a new receiver conf (mail)"
+    dt "A_15" "R3 POST tip $tip_gus cid $context_one pid $profile_file_1 raw fname.out variation file print-config_id" "create a new receiver conf (file)"
+    config_id_notif=$ret
+
+    # dt "A_16" "R4 PUT tip $tip_gus cfgid $config_id_notif cid $context_one pid $profile_mail_1 variation mail raw vecna@globaleaks.org" "update the mail conf"
+    # file has not an update test, just a create/POST
 
     dt "A_17" "R3 POST tip $tip_gus cid $context_one pid $profile_download_1 variation download raw ciaokeyciao print-config_id" "create a new receiver conf (download)"
-    config_id_download=$ret
-    dt "A_18" "R4 PUT tip $tip_gus cfgid $config_id_download cid $context_one pid $profile_download_1 variation download raw oiaoiaoia" "update the download conf"
+    config_id_deliv=$ret
+    dt "A_18" "R4 PUT tip $tip_gus cfgid $config_id_deliv cid $context_one pid $profile_download_1 variation download raw oiaoiaoia" "update the download conf"
 
     # Force tip schedule notification
     dt "A_19" "D2 GET task notification" "Forcing tip notificaion asyncronous operation"
-    dt "A_20" "R4 DELETE tip $tip_gus cfgid $config_id verbose" "delete the conf"
+
+    # and test delete of the configuration
+    # dt "A_20" "R4 DELETE tip $tip_gus cfgid $config_id_notif verbose" "delete the conf"
+    # dt "A_21" "R4 DELETE tip $tip_gus cfgid $config_id_deliv verbose" "delete the conf"
 
     echo "Completed operation authorized with tip $tip_gus\n"
 done
