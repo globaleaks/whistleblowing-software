@@ -38,7 +38,11 @@ class Notification(GLPlugin):
 
     def digest_check(self, settings, stored_data, new_data):
         """
-        @param settings: a list containing [ {admin_settings_dict}, {receiver_settings_dict} ]
+        @param settings: a dict containing
+            {
+                'admin_settings' : {admin_settings_dict},
+                'receiver_settings' : {receiver_settings_dict}
+            }
         @param stored_data: [ 'creation_time', 'information string' ], [...]
         @param new_data: [ 'creation_time', 'information string' ]
         @return: [ 'notification_marker', [ new stored data ] ]
@@ -54,10 +58,16 @@ class Notification(GLPlugin):
         """
         Exception("Your plugin misses implementation of 'validate_receiver_opt'")
 
-    def do_notify(self, settings, stored_data):
+    data_list = [ u'tip', u'comment' ]
+    def do_notify(self, settings, data_type, stored_data):
         """
-        @param settings: a list containing [ {admin_settings_dict}, {receiver_settings_dict} ]
-        @param stored_data: the blob returned by digest_check
+        @param settings: a dict containing
+            {
+                'admin_settings' : {admin_settings_dict},
+                'receiver_settings' : {receiver_settings_dict}
+            }
+        @param data_type: one of [ 'tip', 'comment' ]
+        @param stored_data: the serialized object
         @return:
         """
         Exception("Your plugin misses implementation of 'do_notify'")
