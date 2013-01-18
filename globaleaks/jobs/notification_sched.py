@@ -9,20 +9,13 @@ from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
 from globaleaks.models.externaltip import ReceiverTip, Comment
 from globaleaks.models.internaltip import InternalTip
+from globaleaks.models.options import PluginProfiles, ReceiverConfs
 from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
+from globaleaks.plugins.manager import PluginManager
 
 __all__ = ['APSNotification']
 
-
-# TEMP -- AARRGHH
-settings = { 'admin_fields' : { 'server' :  'box549.bluehost.com', 'port' : 25, # 465,
-                                'username':'sendaccount939@globaleaks.org', 'password':'sendaccount939', 'ssl': False # True
-                        }, 'receiver_fields':  { 'mail_addr' : None }
-    }
-# TEMP -- AARRGHH
-
-notification_format = { 'tip_gus' : None, 'creation_time' : None, 'source' : None, 'type' : None, 'receiver' : None}
 
 class APSNotification(GLJob):
 
@@ -46,81 +39,91 @@ class APSNotification(GLJob):
         login/password, network errors) would be marked as:
         'unable to be notified', and a retry logic is in TODO
         """
+        plugin_type = u'notification'
+
         log.debug("[D]", self.__class__, 'operation', datetime.today().ctime())
 
-        notification_plugins = GLPluginManager().get_types('notification')
-
         receivertip_iface = ReceiverTip()
+        receivercfg_iface = ReceiverConfs()
+        profile_iface = PluginProfiles()
 
-        # TODO +check delivery mark - would be moved in task queue
-        # TODO digest check missing (but It's better refactor scheduler in the same time)
-        not_notified_tips = yield receivertip_iface.get_tips(marker=u'not notified')
+        # TODO digest check missing it's required refactor the scheduler using a dedicated Storm table
+        not_notified_tips = yield receivertip_iface.get_tips_by_notification_mark(u'not notified')
 
-        for single_tip in  not_notified_tips:
+        for single_tip in not_notified_tips:
 
-            # XXX This key is guarantee (except if the plugin has not been removed)
-            # Actually can't be removed a plugin!
+            # from a single tip, we need to extract the receiver, and then, having
+            # context + receiver, find out which configuration setting has active
 
-            #plugin_code = notification_plugins[single_tip['notification_selected']]
-            # remind, now is "none" if not configured in a receiver
-            plugin_code = notification_plugins['email']
+            receivers_map = yield receivertip_iface.get_receivers_by_tip(single_tip['tip_gus'])
 
-            # Specification TODO for plugin communication:
-            notification_format['tip_gus'] = single_tip['tip_gus']
-            notification_format['creation_time'] = single_tip['creation_time']
-            notification_format['type'] = u'tip'
-            notification_format['source'] = u"GLNodeName"
-            notification_format['receiver'] = u"your Name, Receiver!"
+            receiver_info = receivers_map['actor']
 
-            settings['receiver_fields'].update({'mail_addr' : single_tip['notification_fields']})
+            receiver_conf = yield receivercfg_iface.get_active_conf(receiver_info['receiver_gus'],
+                single_tip['context_gus'], plugin_type)
 
-            if False:
-            # if plugin_code.do_notify(settings, notification_format):
+            if receiver_conf is None:
+                print "Receiver", receiver_info['receiver_gus'], \
+                    "has not an active notification settings in context", single_tip['context_gus'], "for", plugin_type
+
+                # TODO applicative log, database tracking of queue
+                continue
+
+            # Ok, we had a valid an appropriate receiver configuration for the notification task
+            related_profile = yield profile_iface.get_single(receiver_conf['profile_gus'])
+
+            settings_dict = { 'admin_settings' : related_profile['admin_settings'],
+                              'receiver_settings' : receiver_conf['receiver_settings']}
+
+            plugin = PluginManager.instance_plugin(related_profile['plugin_name'])
+
+            updated_tip = yield receivertip_iface.update_notification_date(single_tip['tip_gus'])
+            return_code = plugin.do_notify(settings_dict, u'tip', updated_tip)
+
+            if return_code:
                 yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
             else:
                 yield receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
 
 
-        # Comment Notification procedure
+        # Comment Notification here it's just an incomplete version, that never would supports
+        # digest or retry, until Task manager queue is implemented
+
         comment_iface = Comment()
         internaltip_iface = InternalTip()
 
         not_notified_comments = yield comment_iface.get_comment_by_mark(marker=u'not notified')
 
-        # A lot to be review
-        """
         for comment in not_notified_comments:
 
-            # notification_format = comment['author'] if comment['author'] else comment['source']
-            # Remind - at the moment the nome is no more given, but author_gus is used instead.
-            # Need to be reused for this utility ? TODO
-
             receivers_list = yield internaltip_iface.get_receivers_by_itip(comment['internaltip_id'])
-            # receivers_list contain all the Receiver description related to InternalTip.id
+
+            # needed to obtain context!
+            itip_info = yield internaltip_iface.get_single(comment['internaltip_id'])
 
             for receiver_info in receivers_list:
 
-                settings['receiver_fields'].update({'mail_addr' : receiver_info[1]})
+                receiver_conf = yield receivercfg_iface.get_active_conf(receiver_info['receiver_gus'],
+                    itip_info['context_gus'], plugin_type)
 
-                # plugin_code = notification_plugins[receiver_info[0]]
-                # is None receiver_info[0] :( TODO
+                if receiver_conf is None:
+                    # TODO applicative log, database tracking of queue
+                    continue
 
-                plugin_code = notification_plugins['email']
+                # Ok, we had a valid an appropriate receiver configuration for the notification task
+                related_profile = yield profile_iface.get_single(receiver_conf['profile_gus'])
 
-                notification_format['creation_time'] = comment['creation_time']
-                notification_format['source'] = comment['source'] # comment['author']
-                notification_format['type'] = u'comment'
-                notification_format['source'] = u"GLNodeName"
-                notification_format['receiver'] = u"your Name, Receiver!"
+                settings_dict = { 'admin_settings' : related_profile['admin_settings'],
+                                  'receiver_settings' : receiver_conf['receiver_settings']}
 
-                # TODO digest check
+                plugin = PluginManager.instance_plugin(related_profile['plugin_name'])
 
-                # new scheduler logic will fix also the lacking of comments notification status
-                # plugin_code.do_notify(settings, notification_format)
+                return_code = plugin.do_notify(settings_dict, u'comment', comment)
 
-            # this is not yet related to every receiver, because there are not yet a tracking
-            # struct about the notifications statuses.
+                if return_code:
+                    print "Notification of comment successful for user", receiver_conf['receiver_gus']
+                else:
+                    print "Notification of comment failed for user", receiver_conf['receiver_gus']
+
+            # remind: comment are not guarantee until Task manager is not developed
             yield comment_iface.flip_mark(comment['comment_id'], u'notified')
-            # This would be refactored with with the task manager + a comment for every receiver
-        """
-

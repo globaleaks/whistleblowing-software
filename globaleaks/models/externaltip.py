@@ -53,8 +53,6 @@ class ReceiverTip(TXModel):
     # create_receiver_tips
     def initialize(self, selected_it, receiver_subject):
 
-        # XXX TODO log verbose
-
         self.tip_gus = idops.random_tip_gus()
 
         self.notification_mark = u'not notified'
@@ -65,13 +63,22 @@ class ReceiverTip(TXModel):
         self.expressed_pertinence = 0
         self.authoptions = {}
 
-        # self.receiver_gus = mapped['receiver_gus'] -- fixed during the hackathon with the line below
         self.receiver_gus = receiver_subject.receiver_gus
         self.receiver = receiver_subject
 
         self.internaltip_id = selected_it.id
         self.internaltip = selected_it
 
+
+    @transact
+    def update_notification_date(self, tip_gus):
+
+        store = self.getStore()
+
+        requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        requested_t.notification_date = gltime.utcTimeNow()
+
+        return requested_t._description_dict()
 
     # XXX this would be moved in the new 'task queue'
     @transact
@@ -167,7 +174,7 @@ class ReceiverTip(TXModel):
         requested_t.expressed_pertinence = 2 if vote else 1
         requested_t.last_access = gltime.utcTimeNow()
 
-        expressed_t = store.find(ReceiverTip, (ReceiverTip.internaltip_id == requested_t.internaltip_id and ReceiverTip.expressed_pertinence != 0))
+        expressed_t = store.find(ReceiverTip, (ReceiverTip.internaltip_id == requested_t.internaltip_id, ReceiverTip.expressed_pertinence != 0))
 
         vote_sum = 0
         for et in expressed_t:
@@ -341,7 +348,10 @@ class ReceiverTip(TXModel):
 
         list_by_mark = []
         for t in marked_t:
-            list_by_mark.append(t._description_dict())
+            common_rtip_desc = t._description_dict()
+            common_rtip_desc.update({'context_gus':t.internaltip.context_gus})
+            list_by_mark.append(common_rtip_desc)
+            # every dict returned from this method, explicit the context, instead get them from itip
 
         return list_by_mark
 
@@ -823,7 +833,6 @@ class Comment(TXModel):
     @transact
     def flip_mark(self, comment_id, newmark):
 
-
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
 
         if not newmark in notification_markers:
@@ -831,7 +840,7 @@ class Comment(TXModel):
 
         store = self.getStore()
 
-        requested_c = store.find(Comment, Comment.id  == comment_id).one()
+        requested_c = store.find(Comment, Comment.id  == int(comment_id)).one()
         requested_c.notification_mark = newmark
 
 
@@ -849,9 +858,20 @@ class Comment(TXModel):
 
         return counter_test
 
+    @transact
+    def get_comment_by_itip(self, internaltip_id):
+
+        store = self.getStore()
+
+        comments_selected = store.find(Comment, Comment.internaltip_id ==  int(internaltip_id))
+
+        retList = []
+        for single_c in comments_selected:
+            retList.append(single_c._description_dict())
+
+        return retList
 
     @transact
-    # XXX part of the schedule object refactor in TODO
     def get_comment_by_mark(self, marker):
 
         store = self.getStore()

@@ -26,7 +26,6 @@ URTA = {
     'U6_GET':'GET_/contexts',
     'U7_GET':'GET_/receivers',
 
-
     'T1_PUT':'PUT_/tip/@TIP@',
     'T1_DELETE':'DELETE_/tip/@TIP@',
     'T1_GET':'GET_/tip/@TIP@',
@@ -34,36 +33,36 @@ URTA = {
     'T2_GET':'GET_/tip/@TIP@/comments',
     'T3_GET':'GET_/tip/@TIP@/receivers',
 
-
+    'A1_GET':'GET_/admin/node',
+    'A1_POST':'POST_/admin/node',
+    'A2_GET':'GET_/admin/context',
+    'A2_POST':'POST_/admin/context',
+    'A3_GET':'GET_/admin/context/@CID@',
+    'A3_PUT':'PUT_/admin/context/@CID@',
+    'A3_DELETE':'DELETE_/admin/context/@CID@',
+    'A4_GET':'GET_/admin/receiver',
+    'A4_POST':'POST_/admin/receiver',
+    'A5_GET':'GET_/admin/receiver/@RID@',
     'A5_PUT':'PUT_/admin/receiver/@RID@',
     'A5_DELETE':'DELETE_/admin/receiver/@RID@',
-    'A5_GET':'GET_/admin/receiver/@RID@',
-    'U3_PUT':'PUT_/submission/@SID@',
-    'U3_DELETE':'DELETE_/submission/@SID@',
-    'U3_GET':'GET_/submission/@SID@',
-    'A2_POST':'POST_/admin/context',
-    'A2_GET':'GET_/admin/context',
-    'U4_POST':'POST_/submission/@SID@/file',
-    'U4_DELETE':'DELETE_/submission/@SID@/file',
-    'U4_GET':'GET_/submission/@SID@/file',
-    'A1_POST':'POST_/admin/node',
-    'A1_GET':'GET_/admin/node',
-    'A4_POST':'POST_/admin/receiver',
-    'A4_GET':'GET_/admin/receiver',
     'A6_GET':'GET_/admin/plugin',
-    'A7_POST':'POST_/admin/profile',
     'A7_GET':'GET_/admin/profile',
+    'A7_POST':'POST_/admin/profile',
     'A8_GET':'GET_/admin/profile/@PID@',
     'A8_PUT':'PUT_/admin/profile/@PID@',
     'A8_DELETE':'DELETE_/admin/profile/@PID@',
     'A9_GET':'GET_/admin/statistics/',
-    'A3_PUT':'PUT_/admin/context/@CID@',
-    'A3_DELETE':'DELETE_/admin/context/@CID@',
-    'A3_GET':'GET_/admin/context/@CID@',
 
     'D1_GET':'GET_/debug/overview/@DUMP@',
     'D2_DELETE':'DELETE_/debug/tasks/@TASK@',
-    'D2_GET':'GET_/debug/tasks/@TASK@'
+    'D2_GET':'GET_/debug/tasks/@TASK@',
+
+    'R2_GET':'GET_/receiver/@TIP@/profile',
+    'R3_GET':'GET_/receiver/@TIP@/profileconf',
+    'R3_POST':'POST_/receiver/@TIP@/profileconf',
+    'R4_GET':'GET_/receiver/@TIP@/profileconf/@CFGID@',
+    'R4_PUT':'PUT_/receiver/@TIP@/profileconf/@CFGID@',
+    'R4_DELETE':'DELETE_/receiver/@TIP@/profileconf/@CFGID@'
 }
 
 baseurl = "http://127.0.0.1:8082"
@@ -149,19 +148,21 @@ def getOpt(seekd):
 
 def fix_varline(inputline):
 
+    returnline = inputline
     for var,argopt in { 
             '@TIP@': 'tip', # Tip GUS
             '@CID@': 'cid', # Context GUS
             '@SID@': 'sid', # Session GUS
             '@RID@': 'rid', # Receiver GUS
             '@RAW@': 'raw', # RAW JSON string
+            '@CFGID@': 'cfgid', # Receiver Config ID
             '@TASK@': 'task', # task scheduled type, or table shortnames
             '@DUMP@': 'dump', # task scheduled type, or table shortnames
             '@PID@' : 'pid', # Profile GUS (plugin)
             '@CN@' : 'cn'   # Configuration Number (numeric ID)
                 }.iteritems():
 
-        if inputline.find(var) > 0:
+        if returnline.find(var) > 0:
 
             # is expected in command line: tip,rid,cid,sid,dump,task or raw
             user_parm = getOpt(argopt)
@@ -170,21 +171,21 @@ def fix_varline(inputline):
                 print "processed line has a variable(", inputline, "), you need to specify", argopt
                 quit(1)
 
-            linesplit = inputline.split(var)
+            linesplit = returnline.split(var)
 
             if user_parm == "None":
-                return (linesplit[0] + linesplit[1])
+                returnline = (linesplit[0] + linesplit[1])
             else:
-                return (linesplit[0] + user_parm + linesplit[1])
+                returnline = (linesplit[0] + user_parm + linesplit[1])
 
     # special directive @RANDOM@
     special = '@RANDOM@'
-    if inputline.find(special) > 0:
+    if returnline.find(special) > 0:
 
-        linesplit = inputline.split(special)
+        linesplit = returnline.split(special)
         return (linesplit[0] + str(random.randint(1,100000)) + linesplit[1])
 
-    return inputline
+    return returnline
 
 def getMethIf(argv_index):
     if len(sys.argv) > argv_index:
@@ -279,7 +280,7 @@ if __name__ == '__main__':
 
     if len(sys.argv) < 2:
         print sys.argv[0], "[portion of REST]|URTA code", "<method>",
-        "<sid>|<cid>|<tip>|<rid>|<raw>|<task>|<dump>|<pid>|<cn>"
+        "<sid>|<cid>|<tip>|<rid>|<raw>|<task>|<dump>|<pid>|<cn>|<cfgid>"
         quit(1)
 
     if sys.argv[1] == 'help':
@@ -287,8 +288,8 @@ if __name__ == '__main__':
             (urta, method) = key.split("_")
             (dirt, path) = value.split("_")
             print "%s\t%s\t%s" % (urta, method, path)
-        print "AA dump = [receivers|itip|rtip|wtip|context|submission|file|all]"
-        print "AB task = [statistics|welcome|tip|delivery|notification|cleaning|digest]"
+        print "D1 dump = [receivers|itip|rtip|wtip|context|submission|file|all]"
+        print "D2 task = [statistics|welcome|tip|delivery|notification|cleaning|digest]"
         quit(0)
 
     for uarg in sys.argv:

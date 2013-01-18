@@ -66,3 +66,6 @@ dt "3" "D1 GET dump itip print-internaltips_elements" "dumping number of interna
 aftercount=$ret
 
 echo "[*] before: $beforecount after: $aftercount"
+
+dt "4" "D1 GET dump all print-tip_gus print-receipt" "taking some variables"
+echo $ret

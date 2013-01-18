@@ -22,19 +22,30 @@ from Crypto.Random import random
 import string
 
 
-def random_submission_gus(testingmode=False):
+TESTING = True
+
+global_debug_counter = 0
+
+def random_submission_gus():
     """
     this need to be not guessable because this secret auth the WB
     during the submission procedure.
     """
     length = 50
 
-    if testingmode:
-        return u's_'+(''.join(random.choice('A') for x in range(length)))
+    if TESTING:
+        global global_debug_counter
+        global_debug_counter += 1
+        string_value = str(global_debug_counter)
+
+        # return u's_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
+        XXX = u's_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
+        print "XXX", XXX, len(XXX)
+        return XXX
     else:
         return u's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def random_receipt_gus(testingmode=False):
+def random_receipt_gus():
     """
     need to be NOT guessable
     internal settings may change the kind of the output provided (in example,
@@ -42,15 +53,18 @@ def random_receipt_gus(testingmode=False):
     the authentication of receiver maybe extended in security freature
     """
     length = 10
-
-    if testingmode:
-        return u'1234567890'
-    else:
-        return u''.join(random.choice('0123456789') for x in range(length))
+    return u''.join(random.choice('0123456789') for x in range(length))
 
 def random_plugin_gus():
     length = 10
-    return u'p_'+(''.join(random.choice('0123456789') for x in range(length)))
+
+    if TESTING:
+        global global_debug_counter
+        global_debug_counter += 1
+        string_value = str(global_debug_counter)
+        return u'p_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
+    else:
+        return u'p_'+(''.join(random.choice('0123456789') for x in range(length)))
 
 def random_context_gus():
     """
@@ -59,15 +73,15 @@ def random_context_gus():
     short, just for do not create a loooong URL
     """
     length = 20
-    return u'c_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def random_folder_gus():
-    """
-    need to be random
-    XXX this has been changed to starting d_ for directory.
-    """
-    length = 20
-    return u'd_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    if TESTING:
+        global global_debug_counter
+        global_debug_counter += 1
+        string_value = str(global_debug_counter)
+        return u'c_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
+    else:
+        return u'c_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+
 
 def random_file_gus():
     """
@@ -75,7 +89,15 @@ def random_file_gus():
     XXX file is now starting with f_ and is supposed to be random
     """
     length = 30
-    return u'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+
+    if TESTING:
+        global global_debug_counter
+        global_debug_counter += 1
+        string_value = str(global_debug_counter)
+        return u'f_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
+    else:
+        return u'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+
 
 def random_receiver_gus():
     """
@@ -84,11 +106,25 @@ def random_receiver_gus():
     anyway we made it not guessable, just to avoid enumeration.
     """
     length = 20
-    return u'r_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+
+    if TESTING:
+        global global_debug_counter
+        global_debug_counter += 1
+        string_value = str(global_debug_counter)
+        return u'r_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
+    else:
+        return u'r_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def random_tip_gus():
     """
     need to be NOT guessable
     """
     length = 50
-    return u't_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+
+    if TESTING:
+        global global_debug_counter
+        global_debug_counter += 1
+        string_value = str(global_debug_counter)
+        return u't_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
+    else:
+        return u't_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))

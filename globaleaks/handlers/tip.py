@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip
+from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip, File
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests, base
@@ -163,11 +163,36 @@ class TipInstance(BaseHandler):
 
             receivertip_iface = ReceiverTip()
 
+            receivers_map = yield receivertip_iface.get_receivers_by_tip(tip_token)
+
+            if not receivers_map['actor']['can_delete_submission']:
+                raise ForbiddenOperation
+
+            # sibilings_tips has the keys: 'sibilings': [$] 'requested': $
             sibilings_tips = yield receivertip_iface.get_sibiligs_by_tip(tip_token)
 
+            # delete all the related tip
+            for sibiltip in sibilings_tips['sibilings']:
+                yield receivertip_iface.personal_delete(sibiltip['tip_gus'])
 
+            # and the tip of the called
+            yield receivertip_iface.personal_delete(sibilings_tips['requested']['tip_gus'])
 
-            yield requested_t.total_delete(tip_token)
+            # extract the internaltip_id, we need for the next operations
+            itip_id = sibilings_tips['requested']['internaltip_id']
+
+            file_iface = File()
+            # remove all the files: XXX think if delivery method need to be inquired
+            files_list = yield file_iface.get_files_by_itip(itip_id)
+            print "TODO remove file_list", files_list
+
+            comment_iface = Comment()
+            # remove all the comments based on a specific itip_id
+            comments_list = yield comment_iface.delete_comment_by_itip(itip_id)
+
+            internaltip_iface = InternalTip()
+            # finally, delete the internaltip
+            internaltip_iface.tip_delete(sibilings_tips['requested']['internaltip_id'])
 
             self.set_status(200)
 
@@ -176,7 +201,7 @@ class TipInstance(BaseHandler):
             self.set_status(e.http_status)
             self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
-        except TipGusNotFound:
+        except TipGusNotFound, e:
 
             self.set_status(e.http_status)
             self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
@@ -212,7 +237,7 @@ class TipCommentCollection(BaseHandler):
                 tip_description = yield requested_t.get_single(tip_token)
 
             comment_iface = Comment()
-            comment_list = yield comment_iface.get_comment_related(tip_description['internaltip_id'])
+            comment_list = yield comment_iface.get_comment_by_itip(tip_description['internaltip_id'])
 
             self.set_status(200)
             self.write(json.dumps(comment_list))
@@ -258,7 +283,6 @@ class TipCommentCollection(BaseHandler):
                 comment_stored = yield comment_iface.add_comment(tip_description['internaltip_id'],
                     request['content'], u"whistleblower")
 
-            # TODO: internaltip <> last_usage_time_update()
             self.set_status(200)
             self.write(json.dumps(comment_stored))
 

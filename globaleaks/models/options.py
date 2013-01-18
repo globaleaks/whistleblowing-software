@@ -18,7 +18,8 @@ from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.context import Context
-from globaleaks.rest.errors import ProfileGusNotFound, ProfileNameConflict, ReceiverConfNotFound, InvalidInputFormat
+from globaleaks.rest.errors import ProfileGusNotFound, ProfileNameConflict, ReceiverConfNotFound,\
+    InvalidInputFormat, ReceiverGusNotFound, ContextGusNotFound
 from globaleaks.plugins.manager import PluginManager
 
 __all__ = [ 'PluginProfiles', 'ReceiverConfs' ]
@@ -189,6 +190,24 @@ class PluginProfiles(TXModel):
         return retVal
 
 
+    @transact
+    def get_profiles_by_contexts(self, contexts):
+        """
+        From a contexts list return a list of profiles referenced
+        """
+        store = self.getStore()
+
+        retList = []
+
+        for cntx_gus in contexts:
+            profiles = store.find(PluginProfiles, PluginProfiles.context_gus == unicode(cntx_gus))
+
+            for p in profiles:
+                retList.append(p._description_dict())
+
+        return retList
+
+
     def _import_dict(self, received_dict):
 
         # TODO perform fields validation like in submission
@@ -229,65 +248,216 @@ class ReceiverConfs(TXModel):
     __storm_table__ = 'receiverconfs'
     id = Int(primary=True, default=AutoReload)
 
-    receiver_gus = Unicode()
-    receiver = Reference(receiver_gus, Receiver.receiver_gus)
+    creator_receiver = Unicode()
 
-    receiver_fields = Pickle()
     profile_gus = Unicode()
     profile = Reference(profile_gus, PluginProfiles.profile_gus)
+    plugin_type = Unicode()
+
+    context_gus = Unicode()
+    context = Reference(context_gus, Context.context_gus)
+
     active = Bool()
+    receiver_settings = Pickle()
+
+    creation_time = DateTime()
+    last_update = DateTime()
+
 
     @transact
-    def newconf(self, receiver_gus, profile_gus, settings, active):
-        """
-        @param receiver_gus: receiver unique identifier, already authenticated by the caller
-        @param profile_gus: every ReceiverConfs Reference a PluginProfile
-        @param settings: the receiver options
-        @param active: True or False
-        @return: None
-        """
-
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverConfs", "newconf")
+    def new(self, creator_receiver, init_request):
 
         store = self.getStore()
 
-        newone = ReceiverConfs()
-        newone.receiver_gus = receiver_gus
-        newone.receiver_fields = settings
-        newone.profile_gus = profile_gus
-        newone.active = active
+        newcfg = ReceiverConfs()
 
-        store.add(newone)
+        try:
+            newcfg._import_dict(init_request)
+        except KeyError, e:
+            raise InvalidInputFormat("initialization failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("initialization failed (wrong %s)" % e)
+
+        # align reference - receiver is a trusted information, because handler has detect them
+        try:
+            c_receiver = store.find(Receiver, Receiver.receiver_gus == creator_receiver).one()
+
+        except NotOneError:
+            raise ReceiverGusNotFound
+        if c_receiver is None:
+            raise ReceiverGusNotFound
+
+        newcfg.creator_receiver = c_receiver.receiver_gus
+
+        try:
+            newcfg.profile_gus = unicode(init_request['profile_gus'])
+            newcfg.profile = store.find(PluginProfiles, PluginProfiles.profile_gus == unicode(init_request['profile_gus'])).one()
+        except NotOneError:
+            raise ProfileGusNotFound
+        if newcfg.profile is None:
+            raise ProfileGusNotFound
+
+        try:
+            newcfg.context_gus = unicode(init_request['context_gus'])
+            newcfg.context = store.find(Context, Context.context_gus == unicode(init_request['context_gus'])).one()
+        except NotOneError:
+            raise ContextGusNotFound
+        if newcfg.context is None:
+            raise ContextGusNotFound
+
+        if newcfg.context_gus != newcfg.profile.context_gus:
+            raise InvalidInputFormat("Context and Profile do not fit")
+
+        if newcfg.creator_receiver not in newcfg.context.receivers:
+            raise InvalidInputFormat("Receiver and Context do not fit")
+
+        # TODO check in a strongest way if newcfg.receiver_setting fit with newcfg.profile.receiver_fields
+        key_expectation_fail = None
+        for expected_k in newcfg.profile.receiver_fields.iterkeys():
+            if not newcfg.receiver_settings.has_key(expected_k):
+                key_expectation_fail = expected_k
+                break
+
+        if key_expectation_fail:
+            raise InvalidInputFormat("Expected field %s" % key_expectation_fail)
+        # End of temporary check: why I'm not put the raise exception inside
+        # of the for+if ? because otherwise Storm results locked in the future operations :(
+
+        newcfg.plugin_type = newcfg.profile.plugin_type
+        newcfg.creation_time = gltime.utcTimeNow()
+        newcfg.last_update = gltime.utcTimeNow()
+
+        store.add(newcfg)
+
+        return newcfg._description_dict()
+
 
     @transact
-    def updateconf(self, conf_id, settings, active):
-        """
-        @param conf_id:
-            receiver_secret, receiver_gus and conf_id are required to authenticate and address
-            correctly the configuration. without those three elements, it not permitted
-            change a Receiver plugin configuration.
-        @param settings: the receiver_fields
-        @param active:
-        @return:
-        """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class ReceiverConfs", "updateconf", conf_id)
+    def update(self, conf_id, receiver_authorized, received_dict):
 
         store = self.getStore()
 
         try:
-            looked_c = store.find(ReceiverConfs, ReceiverConfs.id == conf_id).one()
+            looked_cfg = store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
         except NotOneError:
-            raise ReceiverConfInvalid
-        if not looked_c:
-            raise ReceiverConfInvalid
+            raise ReceiverConfNotFound
+        if not looked_cfg:
+            raise ReceiverConfNotFound
 
-        looked_c.receiver_fields = settings
-        looked_c.active = active
+        try:
+            looked_cfg._import_dict(received_dict)
+        except KeyError, e:
+            raise InvalidInputFormat("configuration update failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("configuration update failed (wrong %s)" % e)
+
+        # profile, context and receiver can't be changed by an update.
+        # context_gus and profile_gus are ignored in the dict, but the receiver is detected
+        # by the Tip auth token, than need to be verified before complete the update
+
+        if unicode(receiver_authorized) != looked_cfg.creator_receiver:
+            raise InvalidInputFormat("Invalid config_id requested")
+
+        looked_cfg.last_update = gltime.utcTimeNow()
+        return looked_cfg._description_dict()
+
 
     @transact
-    def admin_get_all(self):
+    def get_active_conf(self, receiver_gus, context_gus, requested_type):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "ReceiverConfs admin_get_all")
+        store = self.getStore()
+
+        try:
+            wanted = store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus),
+                ReceiverConfs.context_gus == unicode(context_gus),
+                ReceiverConfs.plugin_type == unicode(requested_type),
+                ReceiverConfs.active == True).one()
+
+            if not wanted:
+                return None
+
+            return wanted._description_dict()
+
+        except NotOneError:
+            Exception("Something is gone really bad: please debug")
+
+
+    @transact
+    def deactivate_all_but(self, keep_id, context_gus, receiver_gus, plugin_type):
+        """
+        @param keep_id: the ReceiverConfs.id that has to be kept as 'active'
+        @param context_gus: part of the combo
+        @param receiver_gus: part of the combo
+        @param plugin_type: part of the combo
+        @return: None or exception
+        """
+        store = self.getStore()
+
+        active = store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus),
+            ReceiverConfs.context_gus == unicode(context_gus),
+            ReceiverConfs.active == True,
+            ReceiverConfs.plugin_type == unicode(plugin_type))
+
+        deactivate_count = 0
+        for cfg in active:
+            if cfg.id == keep_id:
+                continue
+
+            deactivate_count += 1
+            cfg.active = False
+
+        # just lazy debug
+        print "deactivated", deactivate_count, "configuration associated with", context_gus, receiver_gus, plugin_type
+
+
+    @transact
+    def delete(self, conf_id, receiver_gus):
+        """
+        @param conf_id: configuration id that need to be deleted
+        @param receiver_gus: receiver authenticated
+        @return: None or Exception
+        """
+        store = self.getStore()
+
+        requested = store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
+        if requested == None:
+            raise ReceiverConfNotFound
+
+        if requested.creator_receiver != unicode(receiver_gus):
+            raise InvalidInputFormat("Requested configuration is not in the Receiver possession")
+
+        store.remove(requested)
+        # App log
+        # TODO, if requested was the active configuration, write a remind via system message for the user
+
+
+    @transact
+    def deactivate_by_context(self, context_gus):
+        """
+        @param context_gus: a context_gus removed
+        @return: the number of deactivated receiver confs
+        """
+        pass
+
+    @transact
+    def remove_by_receiver(self, receiver_gus):
+        """
+        @param receiver_gus: the receiver deleted
+        @return: the number of the ReceiverConf delete, previously associated with the receiver
+        """
+        pass
+
+    @transact
+    def remove_by_profile(self, profile_gus):
+        """
+        @param profile_gus: a profile that has to be deleted
+        @return: the number of receiver configuration related
+        """
+        pass
+
+    @transact
+    def get_all(self):
+
         store = self.getStore()
 
         configurations = store.find(ReceiverConfs)
@@ -298,13 +468,32 @@ class ReceiverConfs(TXModel):
 
         return retVal
 
-    @transact
-    def receiver_get_all(self, receiver_gus):
 
-        log.debug("[D] %s %s " % (__file__, __name__), "ReceiverConfs receiver_get_all", receiver_gus)
+    @transact
+    def get_single(self, conf_id):
+
         store = self.getStore()
 
-        related_confs = store.find(ReceiverConfs, ReceiverConfs.receiver_gus == receiver_gus)
+        try:
+            requested_cfg = store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
+        except NotOneError:
+            raise ReceiverConfNotFound
+        if requested_cfg is None:
+            raise ReceiverConfNotFound
+
+        return requested_cfg._description_dict()
+
+
+    @transact
+    def get_confs_by_receiver(self, receiver_gus):
+        """
+        @param receiver_gus: a single receiver_gus
+        @return:
+        """
+
+        store = self.getStore()
+
+        related_confs = store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus))
 
         retVal = []
         for single_c in related_confs:
@@ -312,13 +501,26 @@ class ReceiverConfs(TXModel):
 
         return retVal
 
+
+    def _import_dict(self, received_dict):
+
+        # TODO validate the dict with profile.receiver_fields
+        self.receiver_settings = received_dict['receiver_settings']
+        self.active = received_dict['active']
+
+
     def _description_dict(self):
 
         retVal = {
-            'receiver_gus' : unicode(self.receiver_gus),
             'active' : bool(self.active),
-            'config_id' : unicode(self.id),
-            'receiver_fields' : list(self.receiver_fields),
-            'profile_gus' : unicode(self.profile_gus)
+            'config_id' : int(self.id),
+            'receiver_settings' : dict(self.receiver_settings),
+            'receiver_gus' : unicode(self.creator_receiver),
+            'context_gus' : unicode(self.context_gus),
+            'profile_gus' : unicode(self.profile_gus),
+            'plugin_type' : unicode(self.plugin_type),
+            'creation_time' : unicode(gltime.prettyDateTime(self.creation_time)),
+            'last_update' : unicode(gltime.prettyDateTime(self.last_update)),
         }
-        return retVal
+
+        return dict(retVal)

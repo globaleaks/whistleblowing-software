@@ -104,7 +104,7 @@ class EntryCollection(BaseHandler):
 
         if what == 'rcfg' or what == 'all' or what == 'count':
             rconf_iface = ReceiverConfs()
-            rconf_list = yield rconf_iface.admin_get_all()
+            rconf_list = yield rconf_iface.get_all()
 
             if what != 'count':
                 outputDict.update({ 'rcfg_elements' : len(rconf_list), 'settings' : rconf_list })
