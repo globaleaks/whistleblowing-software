@@ -3,7 +3,7 @@
 # In here we shall keep track of all variables and objects that should be
 # instantiated only once and be common to pieces of GLBackend code.
 
-__all__ = ['db_threadpool', 'scheduler_threadpool', 'transactor']
+__all__ = ['main']
 
 from storm.twisted.transact import Transactor
 from twisted.python.threadpool import ThreadPool
