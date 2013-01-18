@@ -27,7 +27,7 @@ def createTables():
     for model in [ Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
                     Submission, Comment, File, PluginProfiles, ReceiverConfs ]:
 
-        tables.createTable(model)
+        yield tables.createTable(model)
 
 def initializeNode():
     """

@@ -17,7 +17,7 @@ from storm.zope.zstorm import ZStorm
 from storm.tracer import debug
 import sys
 #Storm DB dump:
-debug(False, sys.stdout)
+debug(True, sys.stdout)
 
 from globaleaks.utils.singleton import Singleton
 
