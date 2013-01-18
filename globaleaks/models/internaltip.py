@@ -129,7 +129,7 @@ class InternalTip(TXModel):
         if marker == u'new':
             req_it = store.find(InternalTip, InternalTip.mark == u'new')
         elif marker == u'first' and escalated:
-            req_it = store.find(InternalTip, (InternalTip.mark == u'first' and InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
+            req_it = store.find(InternalTip, (InternalTip.mark == u'first', InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
         elif marker == u'first' and not escalated:
             req_it = store.find(InternalTip, InternalTip.mark == u'first')
         elif marker == u'second':
@@ -154,7 +154,7 @@ class InternalTip(TXModel):
         store = self.getStore()
 
         try:
-            requested_t = store.find(InternalTip, InternalTip.id == subject_id).one()
+            requested_t = store.find(InternalTip, InternalTip.id == int(subject_id)).one()
         except NotOneError:
             raise Exception("Not found InternalTip %d" % subject_id)
         if requested_t is None:
@@ -165,6 +165,26 @@ class InternalTip(TXModel):
 
         requested_t.last_activity = gltime.utcDateNow()
         requested_t.mark = newmark
+
+
+    # REMIND: at the moment is not yet called by the various hooks
+    @transact
+    def update_last_activity(self, internaltip_id):
+        """
+        update_last_activity is called when an operation happen in some elements
+        related to the internaltip (file upload, new comment, receiver escalation,
+        new pertinence, receivertip deleted by receiver)
+        """
+        store = self.getStore()
+
+        try:
+            requested_t = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+        except NotOneError:
+            raise Exception("Not found InternalTip %d" % internaltip_id)
+        if requested_t is None:
+            raise Exception("Not found InternalTip %d" % internaltip_id)
+
+        requested_t.last_activity = gltime.utcDateNow()
 
 
     @transact
@@ -181,7 +201,7 @@ class InternalTip(TXModel):
         """
         store = self.getStore()
 
-        requested_t = store.find(InternalTip, InternalTip.id == internaltip_id).one()
+        requested_t = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
 
         requested_t.pertinence_counter = overall_vote
         requested_t.last_activity = gltime.utcDateNow()
@@ -198,7 +218,7 @@ class InternalTip(TXModel):
         """
 
         store = self.getStore()
-        selected = store.find(InternalTip, InternalTip.id == internaltip_id).one()
+        selected = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
         store.remove(selected)
 
 
@@ -216,7 +236,7 @@ class InternalTip(TXModel):
 
         store = self.getStore()
 
-        rcvr_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == internaltip_id)
+        rcvr_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == int(internaltip_id))
 
         receivers_desc = []
         for tip in rcvr_tips:
@@ -224,6 +244,12 @@ class InternalTip(TXModel):
 
         return receivers_desc
 
+    @transact
+    def get_single(self, internaltip_id):
+
+        store = self.getStore()
+        selected = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+        return selected._description_dict()
 
     @transact
     def get_all(self):
@@ -245,6 +271,7 @@ class InternalTip(TXModel):
             'context_name' : unicode(self.context.name),
             'context_gus': unicode(self.context_gus),
             'creation_date' : unicode(gltime.prettyDateTime(self.creation_date)),
+            'last_activity' : unicode(gltime.prettyDateTime(self.creation_date)),
             'expiration_date' : unicode(gltime.prettyDateTime(self.creation_date)),
             'fields' : dict(self.fields),
             'download_limit' : int(self.download_limit),

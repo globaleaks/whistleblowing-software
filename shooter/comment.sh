@@ -1,34 +1,48 @@
 #!/bin/sh
 
-SHOOTER="python shooter.py"
+SHOOTER="./shooter.py"
 
-# disable scheduled operations
-$SHOOTER AB DELETE task alljobs
+# dt "identificative number" "portion of command line" "description" "assertion description"
+dt() {
+    dumpfile="/tmp/dumptest_$1"
+    echo > $dumpfile
 
-# get all the receiver tips
-tip_list=`$SHOOTER AA GET dump rtip print-tip_gus | grep -v None`
-if [ $? != 0 ]; then echo "\tError in AA GET (Receiver Tip GUS)" && exit; fi
+    echo -n "$1) $3 ..."
+    ret=`$SHOOTER $2`
+    if [ $? != 0 ]; then 
+        echo "\tError [$2]" 
+        echo "Error [$2]\n\n$ret" >> $dumpfile
+        echo "saved error in $dumpfile"
+        exit
+    fi
+    echo " done."
+
+    echo "$3" >> $dumpfile
+    echo "$2" >> $dumpfile
+    if [ ! -z "$4" ]; then
+        echo $4 >> $dumpfile
+    fi
+    echo "\n\n" >> $dumpfile
+
+    $SHOOTER D1 GET dump count verbose >> $dumpfile
+}
+
+dt "0" "D2 DELETE task alljobs" "Disabling all the scheduled jobs"
+
+dt "1" "D1 GET dump rtip print-tip_gus" "dumping receiver tips, after tests"
+tip_list=$ret
+
 echo -n "Receiver comments: "
 for tip in $tip_list; do
-    $SHOOTER T2 POST tip $tip
-    if [ $? != 0 ]; then echo "\tError in T2 POST (Receiver Comment)" && exit; fi
-    echo -n "."
+    dt "2x" "T2 POST tip $tip" "posting comment in tip $tip"
 done
-echo " done."
 
-receipt_list=`$SHOOTER AA GET dump wtip print-receipt`
-if [ $? != 0 ]; then echo "\tError in A5 GET (WhistleBlower Receipts)" && exit; fi
+dt "3" "D1 GET dump wtip print-receipt" "dumping whistleblower tips"
+receipt_list=$ret
+
 echo -n "WhistleBlower comments: "
 for wb_receipt in $receipt_list; do
-    $SHOOTER T2 POST tip $wb_receipt variation wb
-    if [ $? != 0 ]; then echo "\tError in T2 POST (WhistleBlower Comment)" && exit; fi
-    echo -n "."
+    dt "4x" "T2 POST tip $wb_receipt variation wb" "posting comment as receiver with $wb_receipt"
 done
-echo " done."
 
-# get the latest tip as visible check
-$SHOOTER T2 GET tip $tip verbose
-if [ $? != 0 ]; then echo "\tError in T1 GET (tip)" && exit; fi
-
-echo "forcing comments notification"
-$SHOOTER AB GET task notification
+dt "5" "D2 GET task notification" "forcing comments notification"

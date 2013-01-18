@@ -15,6 +15,7 @@ from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, profileGUS, su
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'
+only_int_regexp = r'(\d+)'
 receiver_token_auth = r'(\w+)' # This would cover regexp.tip_gus | regexp.welcome_token_gus
 wb_receipt = r'(\w+)'
 
@@ -74,9 +75,12 @@ spec = [
     (r'/receiver/' + receiver_token_auth + '/profile', receiver.ProfilesCollection),
 
     #  R3
-    (r'/receiver/' + receiver_token_auth + '/profile/' + profileGUS.regexp, receiver.ProfileInstance),
+    (r'/receiver/' + receiver_token_auth + '/profileconf', receiver.ConfCollection),
 
-    #  R4
+    #  R4 - not_defined_regexp its just an Int value
+    (r'/receiver/' + receiver_token_auth + '/profileconf/' + only_int_regexp, receiver.ConfInstance),
+
+    #  R5
     (r'/receiver/' + receiver_token_auth + '/tip', receiver.TipsCollection),
 
     ## Admin Handlers ##

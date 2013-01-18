@@ -58,11 +58,12 @@ class Submission(TXModel):
             raise ContextGusNotFound
 
         submission = Submission()
-        submission.submission_gus = idops.random_submission_gus(False)
+        submission.submission_gus = idops.random_submission_gus()
 
         submission.context_gus = context_gus
         submission.context = associated_c
 
+        # TODO move that in handler, an use update_receivers
         # receivers is a list of receiver_gus
         if associated_c.selectable_receiver:
             submission.receivers = []
@@ -81,8 +82,11 @@ class Submission(TXModel):
         submissionDesc = submission._description_dict()
         log.debug("[D] submission created", submission._description_dict())
 
+        # return a more complex data, with context and submission,
+        # TODO implement update and new with the new recurring pattern
         return submissionDesc
 
+    # TODO move this element in file
     @transact
     def add_file(self, submission_gus, file_name, content_type, file_size):
 
@@ -143,6 +147,8 @@ class Submission(TXModel):
         if requested_s is None:
             raise SubmissionGusNotFound
 
+        # TODO this check need to be done in handler, perhaps with other 'requirements'
+        # check
         if requested_s.context.selectable_receiver:
             # TODO checks that all the receiver declared in receivers EXISTS!!
             # (or raise ReceiverGusNotFound)
@@ -229,9 +235,9 @@ class Submission(TXModel):
         # The list of receiver (receiver_gus) has been already evaluated by submission
         # initialization or update_receivers function. need just to be copied in
         # InternalTip.
+        print "++ complete_submission(): I'm putting in internaltip receivers: ", requested_s.receivers, "to:", internal_tip.receivers
         for single_r in requested_s.receivers:
             # TODO XXX Applicative log
-            print "++ I'm putting in internaltip ", single_r, "from", requested_s.receivers, "to:", internal_tip.receivers
             internal_tip.receivers.append(single_r)
 
 
@@ -256,7 +262,7 @@ class Submission(TXModel):
 
         store.add(internal_tip)
         store.add(whistleblower_tip)
-        # store.remove(requested_s)
+        store.remove(requested_s)
 
         log.debug("Created tip with address %s, Internal Tip and Submission removed" % whistleblower_tip.receipt)
 

@@ -2,5 +2,5 @@ plugin_type=notification
 plugin_name=Mail
 context_gus=@CID@
 profile_name=Mail supports for `@RANDOM@ users`
-profile_description=This description is created with the profile
+profile_description=This description is created with the profile, [email/notification]
 admin_settings:={"server":"box549.bluehost.com","port":25,"username":"sendaccount939@globaleaks.org","password":"sendaccount939","ssl":false}
