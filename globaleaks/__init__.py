@@ -26,5 +26,6 @@ class Main(object):
         self.scheduler_threadpool.start()
 
         self.transactor = Transactor(self.db_threadpool)
+        self.transactor.retries = 0
 
 main = Main()
