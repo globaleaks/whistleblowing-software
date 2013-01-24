@@ -36,13 +36,6 @@ class Receiver(TXModel):
     tags = Pickle()
     know_languages = Pickle()
 
-    # Those four would be removed and used ReceiverConfs.receiver_gus
-    # reference, fields, profile, etc
-    notification_selected = Unicode()
-    delivery_selected = Unicode()
-    notification_fields = Pickle()
-    delivery_fields = Pickle()
-
     # Admin choosen options
     can_delete_submission = Bool()
     can_postpone_expiration = Bool()
@@ -79,27 +72,25 @@ class Receiver(TXModel):
 
         store = self.getStore()
 
-        baptized_receiver = Receiver()
-
         try:
-            baptized_receiver._import_dict(receiver_dict)
+            self._import_dict(receiver_dict)
         except KeyError, e:
             raise InvalidInputFormat("initialization failed (missing %s)" % e)
         except TypeError, e:
             raise InvalidInputFormat("initialization failed (wrong %s)" % e)
 
-        baptized_receiver.receiver_gus = idops.random_receiver_gus()
+        self.receiver_gus = idops.random_receiver_gus()
 
-        baptized_receiver.creation_date = gltime.utcTimeNow()
-        baptized_receiver.update_date = gltime.utcTimeNow()
+        self.creation_date = gltime.utcTimeNow()
+        self.update_date = gltime.utcTimeNow()
 
-        store.add(baptized_receiver)
+        store.add(self)
 
-        return baptized_receiver.receiver_gus
+        return self._description_dict()
 
 
     @transact
-    def admin_update(self, receiver_gus, receiver_dict):
+    def update(self, receiver_gus, receiver_dict):
         """
         This is the method called by the admin for change receiver preferences.
         may edit more elements than the next method (self_update)
@@ -108,7 +99,6 @@ class Receiver(TXModel):
 
         store = self.getStore()
 
-        # I didn't understand why, but NotOneError is not raised even if the search return None
         try:
             requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
@@ -124,35 +114,36 @@ class Receiver(TXModel):
             raise InvalidInputFormat("admin update failed (wrong %s)" % e)
 
         requested_r.update_date = gltime.utcTimeNow()
+        return requested_r._description_dict()
+
 
     @transact
     def self_update(self, receiver_gus, receiver_dict):
         """
         This is the method called by a receiver for change/set their preference
         """
+        store = self.getStore()
 
         try:
-            self.name = receiver_dict['name']
-            self.description = receiver_dict['description']
-            self.tags = receiver_dict['tags']
-            self.know_languages = receiver_dict['languages']
+            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+        except NotOneError:
+            raise ReceiverGusNotFound
+        if requested_r is None:
+            raise ReceiverGusNotFound
 
-
-            if self.can_configure_notification:
-                self.notification_fields = receiver_dict['notification_selected']
-                self.notification_fields = receiver_dict['notification_fields']
-
-            if self.can_configure_delivery:
-                self.delivery_selected =  receiver_dict['delivery_selected']
-                self.delivery_fields =  receiver_dict['delivery_fields']
-
-            self.update_date = gltime.utcTimeNow()
+        try:
+            requested_r.name = receiver_dict['name']
+            requested_r.description = receiver_dict['description']
+            requested_r.tags = receiver_dict['tags']
+            requested_r.know_languages = receiver_dict['languages']
+            requested_r.update_date = gltime.utcTimeNow()
 
         except KeyError, e:
             raise InvalidInputFormat("self update failed (missing %s)" % e)
         except TypeError, e:
             raise InvalidInputFormat("self update failed (wrong %s)" % e)
 
+        return requested_r._description_dict()
 
 
     @transact
@@ -332,8 +323,7 @@ class Receiver(TXModel):
 
 
     # this method import the remote received dict.
-    # would be expanded with defaults value (if configured) and with checks about
-    # expected fields. is called by new() and admin_update() (and self_update() not yet!)
+    # is called by new() and admin_update()
     def _import_dict(self, source_rd):
 
         self.name = source_rd['name']
@@ -343,13 +333,6 @@ class Receiver(TXModel):
 
         # This need to be verified in the calling function, between the valid
         # notification modules available.
-        if source_rd['notification_selected'] != "email" and source_rd['notification_selected'] != "file":
-            raise NotImplemented
-
-        self.notification_selected =  source_rd['notification_selected']
-        self.notification_fields = source_rd['notification_fields']
-        self.delivery_selected =  source_rd['delivery_selected']
-        self.delivery_fields =  source_rd['delivery_fields']
 
         self.can_delete_submission = source_rd['can_delete_submission']
         self.can_postpone_expiration = source_rd['can_postpone_expiration']
@@ -368,10 +351,6 @@ class Receiver(TXModel):
             'description' : unicode(self.description),
             'tags' : list(self.tags) if self.tags else [],
             'languages' : list(self.know_languages) if self.know_languages else [],
-            'notification_selected' : unicode(self.notification_selected),
-            'notification_fields' : list(self.notification_fields) if self.notification_fields else {},
-            'delivery_selected' : unicode(self.delivery_selected),
-            'delivery_fields' : dict(self.delivery_fields) if self.delivery_fields else {},
             'creation_date' : unicode(gltime.prettyDateTime(self.creation_date)),
             'update_date' : unicode(gltime.prettyDateTime(self.update_date)),
             'contexts' : list(self.contexts) if self.contexts else [],
