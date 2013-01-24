@@ -65,27 +65,25 @@ class Context(TXModel):
         """
         store = self.getStore()
 
-        cntx = Context()
+        self.context_gus = idops.random_context_gus()
+        self.node_id = 1
 
-        cntx.context_gus = idops.random_context_gus()
-        cntx.node_id = 1
-
-        cntx.creation_date = gltime.utcTimeNow()
-        cntx.update_date = gltime.utcTimeNow()
-        cntx.last_activity = gltime.utcTimeNow()
-        cntx.receivers = []
+        self.creation_date = gltime.utcTimeNow()
+        self.update_date = gltime.utcTimeNow()
+        self.last_activity = gltime.utcTimeNow()
+        self.receivers = []
 
         try:
-            cntx._import_dict(context_dict)
+            self._import_dict(context_dict)
         except KeyError, e:
             raise InvalidInputFormat("Context Import failed (missing %s)" % e)
         except TypeError, e:
             raise InvalidInputFormat("Context Import failed (wrong %s)" % e)
 
-        store.add(cntx)
-        log.msg("Created context %s at the %s" % (cntx.name, cntx.creation_date) )
+        store.add(self)
+        log.msg("Created context %s at the %s" % (self.name, self.creation_date) )
 
-        return cntx._description_dict()
+        return self._description_dict()
 
 
     @transact
@@ -110,9 +108,9 @@ class Context(TXModel):
         try:
             requested_c._import_dict(context_dict)
         except KeyError, e:
-            raise InvalidInputFormat("Context Import failed (missing %s)" % e)
+            raise InvalidInputFormat("Context update failed (missing %s)" % e)
         except TypeError, e:
-            raise InvalidInputFormat("Context Import failed (wrong %s)" % e)
+            raise InvalidInputFormat("Context update failed (wrong %s)" % e)
 
         requested_c.update_date = gltime.utcTimeNow()
 
