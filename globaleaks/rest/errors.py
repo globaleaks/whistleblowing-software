@@ -208,3 +208,13 @@ class InvalidPluginFormat(GLException):
         GLException.error_message = "Invalid Plugin Format"
         GLException.error_code = 27
         GLException.http_status = 500 # Server Error
+
+class SubmissionConcluded(GLException):
+    """
+    The submisssion accessed haa been already completed
+    """
+
+    def __init__(self):
+        GLException.error_message = "The submission tried to be update has been already finalized"
+        GLException.error_code = 28
+        GLException.http_status = 409 # Conflict
