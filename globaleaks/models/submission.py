@@ -5,18 +5,17 @@
 #
 # Storm DB table and ORM of the submisson temporary table
 
-
 from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, DateTime, Unicode, Reference
 from storm.exceptions import NotOneError
 
 from globaleaks.utils import idops, gltime, random
 from globaleaks.models.base import TXModel
-from globaleaks.models.externaltip import File, WhistleblowerTip
-from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.context import Context
-from globaleaks.rest.errors import ContextGusNotFound, SubmissionFailFields, SubmissionGusNotFound, ReceiverGusNotFound
+from globaleaks.models.externaltip import File
 from globaleaks.models.receiver import Receiver
+from globaleaks.models.context import Context
+from globaleaks.rest.errors import ContextGusNotFound, SubmissionFailFields, SubmissionGusNotFound, \
+    ReceiverGusNotFound, InvalidInputFormat, SubmissionConcluded, FileGusNotFound
 
 from globaleaks.utils import log
 
@@ -29,96 +28,102 @@ class Submission(TXModel):
     until they are transformed into a Tip.
     """
 
-    __storm_table__ = 'submission'
+    __storm_table__ = 'submissions'
 
     submission_gus = Unicode(primary=True)
 
-    fields = Pickle()
+    wb_fields = Pickle()
     creation_time = DateTime()
     expiration_time = DateTime()
 
-    receipt = Unicode()
+    mark = Unicode()
     receivers = Pickle()
-
     files = Pickle()
 
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
 
+    _marker = [ u'incomplete', u'finalized' ]
+
+
     @transact
-    def new(self, context_gus):
+    def new(self, received_dict):
 
         store = self.getStore()
 
+        self.files = []
+        self.receivers = []
+        self.mark = self._marker[0] # 'incomplete'
+
+        self.creation_time = gltime.utcDateNow()
+        # TODO with gltimes completed, just gltime.utcTimeNow(associated_c.submission_expire)
+        self.expiration_time = gltime.utcFutureDate(seconds=1, minutes=1, hours=1)
+
         try:
-            associated_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
+            self._import_dict(received_dict)
+        except KeyError, e:
+            raise InvalidInputFormat("Submission initialization failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("Submission initialization failed (wrong %s)" % e)
+
+        try:
+            associated_c = store.find(Context, Context.context_gus == unicode(self.context_gus)).one()
         except NotOneError:
             raise ContextGusNotFound
         if associated_c is None:
             raise ContextGusNotFound
 
-        submission = Submission()
-        submission.submission_gus = idops.random_submission_gus()
+        self.context = associated_c
 
-        submission.context_gus = context_gus
-        submission.context = associated_c
-
-        # TODO move that in handler, an use update_receivers
-        # receivers is a list of receiver_gus
-        if associated_c.selectable_receiver:
-            submission.receivers = []
-        else:
-            submission.receivers = associated_c.receivers
-
-        submission.files = {}
-
-        # TODO submission.context.update_stats()
-
-        submission.creation_time = gltime.utcDateNow()
-        submission.expiration_time = gltime.utcFutureDate(seconds=1, minutes=1, hours=1)
-
-        store.add(submission)
-
-        submissionDesc = submission._description_dict()
-        log.debug("[D] submission created", submission._description_dict())
-
-        # return a more complex data, with context and submission,
-        # TODO implement update and new with the new recurring pattern
-        return submissionDesc
-
-    # TODO move this element in file
-    @transact
-    def add_file(self, submission_gus, file_name, content_type, file_size):
-
-        store = self.getStore()
-
+        """
         try:
-            submission_r = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
-        except NotOneError:
-            store.close()
-            raise SubmissionGusNotFound
-        if not submission_r:
-            store.close()
-            raise SubmissionGusNotFound
+            if not self._wb_fields_verify():
+                raise SubmissionFailFields
+        except ValueError, e:
+            print "[---] Unable to verify field: %s" % e
+            raise SubmissionFailFields
+        """
+        # XXX remind talk with Arturo about this. I don't want invalid field also in not completed submission
+        # but client want open a submission before having sent them
 
-        new_file = File()
-        new_file.file_gus = ret_file_gus = unicode(idops.random_file_gus())
-        new_file.name = file_name
-        new_file.content_type = content_type
-        new_file.size = file_size
+        # TODO those file/receiver checks can be reduced in one function after the refactor #46
 
-        submission_r.files.update({ new_file.file_gus : file_name })
+        for single_r in self.receivers:
+            try:
+                selected_r = store.find(Receiver, Receiver.receiver_gus == unicode(single_r)).one()
+            except NotOneError:
+                raise ReceiverGusNotFound
+            if selected_r is None:
+                raise ReceiverGusNotFound
+            if not self.context_gus in selected_r.contexts:
+                print "[***] Invalid Receiver relationship:", s.context_gus, selected_r.contexts
+                raise ReceiverGusNotFound
 
-        log.debug("Added file %s in submission %s with name %s" % (ret_file_gus, submission_gus, file_name))
+        for single_f in self.files:
+            try:
+                selected_f = store.find(File, File.file_gus == unicode(single_f)).one()
+            except NotOneError:
+                raise FileGusNotFound
+            if selected_f is None:
+                raise FileGusNotFound
 
-        store.add(new_file)
+        self.submission_gus = idops.random_submission_gus()
 
-        return ret_file_gus
+        if received_dict.has_key('finalize') and received_dict['finalize']:
+            print "INFO, Finalized in new", self.submission_gus
+            self.mark = self._marker[1] # 'finalized'
+        else:
+            print "INFO, NOT finalized in new", self.submission_gus
+
+        store.add(self)
+        return self._description_dict()
+
 
     @transact
-    def update_fields(self, submission_gus, fields):
+    def update(self, submission_gus, received_dict):
 
         store = self.getStore()
+
         try:
             s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError, e:
@@ -126,147 +131,94 @@ class Submission(TXModel):
         if not s:
             raise SubmissionGusNotFound
 
-        # TODO
-        # Fields are specified in adminContextDesc with 'fields'
-        # and need to be checked using the contexts.fields key
-        # only the requested key are searched in the fields.
-        # all the other keys are ignored.
-        # all the keys need to be validated based on the type
-        # TODO
-        s.fields = fields
-
-    @transact
-    def select_receiver(self, submission_gus, receivers):
-
-        store = self.getStore()
+        if s.mark == self._marker[1]:
+            # the session is finalized, you can't PUT
+            raise SubmissionConcluded
 
         try:
-            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
-        except NotOneError:
-            raise SubmissionGusNotFound
-        if requested_s is None:
-            raise SubmissionGusNotFound
-
-        # TODO this check need to be done in handler, perhaps with other 'requirements'
-        # check
-        if requested_s.context.selectable_receiver:
-            # TODO checks that all the receiver declared in receivers EXISTS!!
-            # (or raise ReceiverGusNotFound)
-            requested_s.receivers = receivers
-        else:
-            print "Receiver selection choosen in a Context that do not supports this option"
-            print requested_s.receivers, "=", requested_s.context.receivers
-
-        # If the setting is not acceptable,
-        # the request is silently ignored, and the receiver corpus returned
-        # by the API is the same unchanged.
-
-    @transact
-    def status(self, submission_gus):
-
-        store = self.getStore()
+            s._import_dict(received_dict)
+        except KeyError, e:
+            raise InvalidInputFormat("Submission update failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("Submission update failed (wrong %s)" % e)
 
         try:
-            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
-        except NotOneError:
-            raise SubmissionGusNotFound
-        if requested_s is None:
-            raise SubmissionGusNotFound
-
-        statusDict = requested_s._description_dict()
-
-        return statusDict
-
-    # not a transact, need to check self.context and evaluate receipt strength
-    # would be solved in security by: https://github.com/globaleaks/GLBackend/issues/33
-    def _receipt_evaluation(self, receipt_proposal=None):
-
-        if not receipt_proposal:
-            return random.random_string(10, 'A-Z,0,9')
-
-        temp_stuff = "%s_%s" % (receipt_proposal, random.random_string(5, 'A-Z,0-9') )
-        return temp_stuff
-
-
-    @transact
-    def receipt_proposal(self, submission_gus, proposed_receipt):
-
-        store = self.getStore('receipt_proposal')
-
-        try:
-            # XXX need to be checked the presence of a collision, but this bring to insecurity
-            # so ... at the moment this issue is not solved.
-            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
-        except NotOneError:
-            raise SubmissionGusNotFound
-        if requested_s is None:
-            raise SubmissionGusNotFound
-
-        requested_s.receipt = unicode(self._receipt_evaluation(proposed_receipt))
-
-
-    @transact
-    def complete_submission(self, submission_gus):
-        """
-        need a best-safe receipt feat
-        """
-
-        store = self.getStore()
-
-        try:
-            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
-        except NotOneError:
-            raise SubmissionGusNotFound
-        if requested_s is None:
-            raise SubmissionGusNotFound
-
-        # XXX log
-        log.debug("Creating internal tip in", requested_s.context_gus,
-            "from", requested_s.submission_gus, "with", requested_s.files)
-
-        if not requested_s.fields:
+            if not s._wb_fields_verify():
+                raise SubmissionFailFields
+        except ValueError, e:
+            # XXX this would be a log or an error for the client ?
+            print "[---] Unable to verify field: %s" % e
             raise SubmissionFailFields
 
-        internal_tip = InternalTip()
+        # TODO those file/receiver checks can be reduced in one function after the refactor #46
 
-        # Initialize all the Storm fields inherit by Submission and Context
-        internal_tip.initialize(requested_s)
+        for single_r in s.receivers:
+            try:
+                selected_r = store.find(Receiver, Receiver.receiver_gus == unicode(single_r)).one()
+            except NotOneError:
+                raise ReceiverGusNotFound
+            if selected_r is None:
+                raise ReceiverGusNotFound
+            if not s.context_gus in selected_r.contexts:
+                # XXX this would be a log or an error for the client ?
+                print "[***] Invalid Receiver relationship:", s.context_gus, selected_r.contexts
+                raise ReceiverGusNotFound
 
-        # The list of receiver (receiver_gus) has been already evaluated by submission
-        # initialization or update_receivers function. need just to be copied in
-        # InternalTip.
-        print "++ complete_submission(): I'm putting in internaltip receivers: ", requested_s.receivers, "to:", internal_tip.receivers
-        for single_r in requested_s.receivers:
-            # TODO XXX Applicative log
-            internal_tip.receivers.append(single_r)
+        for single_f in s.files:
+            try:
+                selected_f = store.find(File, File.file_gus == unicode(single_f)).one()
+            except NotOneError:
+                raise FileGusNotFound
+            if selected_f is None:
+                raise FileGusNotFound
+
+        if received_dict['finalize']:
+            s.mark = self._marker[1] # 'finalized'
+
+        return s._description_dict()
 
 
-        # The list of file need to be processed, and the completed files, need to
-        # be put in the processing queue and restore the reference in File
-        for single_f in requested_s.files:
-            # TODO
-            print "TODO XXX, need to be processed", single_f
+    # not a transact, called by new/update
+    def _wb_fields_verify(self):
+        """
+        @return: False is verifications fail.
+            Perform two kind of verification: if the required fields
+            are present, and if
+        """
+        for entry in self.context.fields:
+            if entry['required']:
+                if not self.wb_fields.has_key(entry['name']):
+                    # XXX this would be a log or an error for the client ?
+                    print "[---] missing field '%s': Required" % entry['name']
+                    return False
 
-        whistleblower_tip = WhistleblowerTip()
-        whistleblower_tip.internaltip_id = internal_tip.id
-        whistleblower_tip.internaltip = internal_tip
+        for k, v in self.wb_fields.iteritems():
+            key_exists = False
 
-        if not requested_s.receipt:
-            requested_s.receipt = requested_s._receipt_evaluation()
+            for entry in self.context.fields:
+                if k == entry['name']:
+                    key_exists = True
+                    break
 
-        statusDict = requested_s._description_dict()
+            if not key_exists:
+                # XXX this would be a log or an error for the client ?
+                print "[---] Submitted field '%s' not expected in context" % k
+                return False
 
-        # receipt is the UNICODE PRIMARY KEY of WhistleblowerTip
-        whistleblower_tip.receipt = unicode(requested_s.receipt)
-        # TODO whistleblower_tip.authoptions would be filled here
+        return True
 
-        store.add(internal_tip)
-        store.add(whistleblower_tip)
-        store.remove(requested_s)
 
-        log.debug("Created tip with address %s, Internal Tip and Submission removed" % whistleblower_tip.receipt)
+    # not a transact, called by new/update
+    def _import_dict(self, received_dict):
 
-        return statusDict
+        # context can't be changed in update
+        if self.context_gus and unicode(received_dict['context_gus']) != self.context_gus:
+            raise InvalidInputFormat("Context change is not permitted")
+
+        self.context_gus = received_dict['context_gus']
+        self.receivers = received_dict['receivers']
+        self.wb_fields = received_dict['wb_fields']
+        self.files = received_dict['files']
 
 
     @transact
@@ -280,6 +232,10 @@ class Submission(TXModel):
             raise SubmissionGusNotFound
         if requested_s is None:
             raise SubmissionGusNotFound
+
+        if requested_s.mark == self._marker[1]:
+            # the session is finalized, you can't DELETE
+            raise SubmissionConcluded
 
         store.remove(requested_s)
 
@@ -296,10 +252,7 @@ class Submission(TXModel):
         if requested_s is None:
             raise SubmissionGusNotFound
 
-        retSubmission = requested_s._description_dict()
-
-        return retSubmission
-
+        return requested_s._description_dict()
 
     @transact
     def get_all(self):
@@ -321,13 +274,13 @@ class Submission(TXModel):
 
         descriptionDict = {
             'submission_gus': unicode(self.submission_gus),
-            'fields' : dict(self.fields) if self.fields else {},
+            'wb_fields' : dict(self.wb_fields) if self.wb_fields else {},
             'context_gus' : unicode(self.context_gus),
             'creation_time' : unicode(gltime.prettyDateTime(self.creation_time)),
             'expiration_time' : unicode(gltime.prettyDateTime(self.expiration_time)),
             'receivers' : list(self.receivers) if self.receivers else [],
             'files' : dict(self.files) if self.files else {},
-            'receipt' : unicode(self.receipt)
+            'finalize' : True if self.mark == self._marker[1] else False
         }
 
         return dict(descriptionDict)
