@@ -1,5 +1,6 @@
 submission_gus=@SID@
 context_gus=@CID@
 receivers:=[@RAW@]
-fields:={"name":"This is a value","road":"shit stuff crappy","element":"random data again"}
-receipt=focaccia
+wb_fields:={"city":"new Milan","Sun":"new warm","dict2":"new happy","dict3":"new blah blah happy bla"}
+finalize:=true
+files:=[]

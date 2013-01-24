@@ -1,2 +1,5 @@
 context_gus=@CID@
-fields:={"name":"This is the first put","elements":"element information blah","otherelement":"blahblah","info":"ciao","details":"foca"}
+wb_fields:={"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah blah"}
+receivers:=[]
+files:=[]
+finalize:=false
