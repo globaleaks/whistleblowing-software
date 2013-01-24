@@ -20,8 +20,9 @@ class wbSubmissionDesc(GLTypes):
         'creation_time' : timeType,
         'expiration_time' : timeType,
         'receivers' : [ receiverGUS ],
-        'file_gus_list' : [ fileGUS ],
+        'files' : [ fileGUS ],
         'receipt' : unicode,
+        'finalize' : bool
     }
 
 class receiverReceiverDesc(GLTypes):
@@ -65,7 +66,9 @@ class actorsCommentDesc(GLTypes):
         'source' : unicode,
         'content' : unicode,
         'author' : unicode,
-        'notification_status': unicode, # To be specified
+        'notification_status': unicode,
+        # XXX the notification_status would never be an information available without the new
+        # task manager, perhaps would be removed in the API v1 ?
         'creation_time' : timeType
     }
 

@@ -9,12 +9,15 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 from globaleaks.models.submission import Submission
 from globaleaks.models.context import Context
+from globaleaks.models.internaltip import InternalTip
+from globaleaks.models.externaltip import WhistleblowerTip
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests, responses
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
-    ContextGusNotFound, SubmissionFailFields
+    ContextGusNotFound, SubmissionFailFields, SubmissionConcluded, ReceiverGusNotFound
+
 
 class SubmissionCreate(BaseHandler):
     """
@@ -38,28 +41,46 @@ class SubmissionCreate(BaseHandler):
         expire after the time set by Admin (Context dependent setting)
         """
 
+        context_iface = Context()
         try:
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
 
+            # XXX DUMMY PATCH CLIENT USAGE -- open tiket in GLClient
+            print "Before", request
+            if not request.has_key('wb_fields'):
+                request.update({'wb_fields' : ''})
+            if not request.has_key('receivers'):
+                request.update({'receivers' : []})
+            if not request.has_key('files'):
+                request.update({'files' : []})
+            if not request.has_key('finalize'):
+                request.update({'finalize' : False })
+            print "After ", request
+            # XXX DUMMY PATCH CLIENT USAGE -- open tiket in GLClient
+
+            context_desc = yield context_iface.get_single(request['context_gus'])
+
             submission_iface = Submission()
-            context_iface = Context()
+            submission_desc = yield submission_iface.new(request)
 
-            context_info = yield context_iface.get_single(request['context_gus'])
-            # use requested context, for defaults and so on
+            if not context_desc['selectable_receiver']:
+                submission_iface.receivers = context_iface.receivers
 
-            status = yield submission_iface.new(request['context_gus'])
-            submission_gus = status['submission_gus']
+            if submission_desc['finalize']:
 
-            if request.has_key('fields'):
-                log.debug("Fields present in creation: %s" % request['fields'])
-                yield submission_iface.update_fields(submission_gus, request['fields'])
+                internaltip_iface = InternalTip()
+                wb_iface = WhistleblowerTip()
 
-            if request.has_key('receivers'):
-                yield submission_iface.select_receiver(submission_gus, request['receivers'])
+                internaltip_desc = yield internaltip_iface.new(submission_desc)
+                wbtip_desc = yield wb_iface.new(internaltip_desc)
+
+                submission_desc.update({'receipt' : wbtip_desc['receipt']})
+            else:
+                submission_desc.update({'receipt' : ''})
 
             self.set_status(201) # Created
             # TODO - output processing
-            self.write(status)
+            self.write(submission_desc)
 
         except ContextGusNotFound, e:
 
@@ -76,10 +97,10 @@ class SubmissionCreate(BaseHandler):
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
-        except AssertionError:
+        except ReceiverGusNotFound, e:
 
-            self.set_status(415)
-            self.write({'error_message': "KeyError", 'error_code' : 12345})
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -104,11 +125,10 @@ class SubmissionInstance(BaseHandler):
         submission = Submission()
 
         try:
-
-            requested_sg = self.get_argument('submission_gus')
             # TODO perform validation of single GLtype
 
-            status = yield submission.status(requested_sg)
+            status = yield submission.get_single(submission_gus)
+
             self.set_status(200)
             self.write(status)
 
@@ -124,7 +144,6 @@ class SubmissionInstance(BaseHandler):
 
         self.finish()
 
-
     @asynchronous
     @inlineCallbacks
     def put(self, submission_gus, *uriargs):
@@ -132,31 +151,38 @@ class SubmissionInstance(BaseHandler):
         Parameter: submission_gus
         Request: wbSubmissionDesc
         Response: wbSubmissionDesc
-        Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields, SubmissionGusNotFound
+        Errors: ContextGusNotFound, InvalidInputFormat, SubmissionFailFields, SubmissionGusNotFound, SubmissionConcluded
 
-        PUT finalize and complete the Submission
+        PUT update the submission and finalize if requested.
         """
 
+        context_iface = Context()
         try:
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
-            submission = Submission()
 
-            if request.has_key('fields'):
-                log.debug("Updating fields with %s" % request['fields'])
-                yield submission.update_fields(submission_gus, request['fields'])
+            context_desc = yield context_iface.get_single(request['context_gus'])
 
-            if request.has_key('receivers'):
-                log.debug("processing receiver selected: %s" % request['receivers'])
-                yield submission.select_receiver(submission_gus, request['receivers'])
+            submission_iface = Submission()
+            submission_desc = yield submission_iface.update(submission_gus, request)
 
-            if request.has_key('receipt'):
-                yield submission.receipt_proposal(submission_gus, request['receipt'])
+            if not context_desc['selectable_receiver']:
+                submission_iface.receivers = context_iface.receivers
 
-            status = yield submission.complete_submission(submission_gus)
+            if submission_desc['finalize']:
+
+                internaltip_iface = InternalTip()
+                wb_iface = WhistleblowerTip()
+
+                internaltip_desc = yield internaltip_iface.new(submission_desc)
+                wbtip_desc = yield wb_iface.new(internaltip_desc)
+
+                submission_desc.update({'receipt' : wbtip_desc['receipt']})
+            else:
+                submission_desc.update({'receipt' : ''})
 
             self.set_status(202) # Updated
             # TODO - output processing
-            self.write(status)
+            self.write(submission_desc)
 
         except ContextGusNotFound, e:
 
@@ -178,10 +204,15 @@ class SubmissionInstance(BaseHandler):
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
-        except KeyError:
+        except SubmissionConcluded, e:
 
-            self.set_status(410)
-            self.write({'error_message': "Error not handled", 'error_code' : 12345})
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -193,15 +224,18 @@ class SubmissionInstance(BaseHandler):
         Parameter: submission_gus
         Request: 
         Response: None
-        Errors: SubmissionGusNotFound, InvalidInputFormat
+        Errors: SubmissionGusNotFound, InvalidInputFormat, SubmissionConcluded
 
         A whistleblower is deleting a Submission because has understand that won't really be an hero. :P
         """
 
+        submission_iface = Submission()
         try:
             # TODO perform validation of submission_gus format
-            submission = Submission()
-            yield submission.submission_delete(submission_gus)
+
+            yield submission_iface.submission_delete(submission_gus)
+
+            # TODO Delete file associated with submission
 
             self.set_status(200)
 
@@ -211,6 +245,11 @@ class SubmissionInstance(BaseHandler):
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except SubmissionConcluded, e:
 
             self.set_status(e.http_status)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
