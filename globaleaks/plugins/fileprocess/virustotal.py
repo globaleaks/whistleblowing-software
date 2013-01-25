@@ -1,3 +1,9 @@
+"""
+Remind:
+http://pypi.python.org/pypi/virustotal/1.0.2
+https://code.google.com/p/virustotalapi/
+"""
+
 from globaleaks.utils import log, gltime
 from globaleaks.plugins.base import FileProcess
 

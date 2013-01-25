@@ -52,7 +52,7 @@ def startAsynchronous():
     startglobaleaks.runApp, then is called by the OS-depenedent runner below
     """
     from globaleaks.jobs import notification_sched, statistics_sched, tip_sched, \
-        delivery_sched, cleaning_sched, welcome_sched, digest_sched
+        delivery_sched, cleaning_sched, welcome_sched, fileprocess_sched
 
     # When the application boot, maybe because has been after a restart, then
     # with the method *.force_execution, we reschedule the execution of all the
@@ -70,9 +70,6 @@ def startAsynchronous():
     TipSched.force_execution(GLAsynchronous, seconds=20)
     GLAsynchronous.add_interval_job(TipSched.operation, minutes=1)
 
-    # TODO - InputFilter processing, before considering a Folder safe, need
-    #        to be scheduler and then would be 'data available' for delivery
-
     DeliverSched = delivery_sched.APSDelivery()
     DeliverSched.force_execution(GLAsynchronous, seconds=25)
     GLAsynchronous.add_interval_job(DeliverSched.operation, minutes=2)
@@ -86,10 +83,9 @@ def startAsynchronous():
     GLAsynchronous.add_interval_job(CleanSched.operation, hours=6)
     # TODO not hours=6 but CleanSched.get_contexts_policies()
 
-    DigestSched = digest_sched.APSDigest()
-    GLAsynchronous.add_interval_job(DigestSched.operation, minutes=10)
-    # TODO not minutes=10 but DigestSched.get_context_policies()
-    # TODO digest is a system-library-like
+    FileProcessSched = fileprocess_sched.APSFileProcess()
+    GLAsynchronous.add_interval_job(FileProcessSched.operation, minutes=1)
+    # TODO not minutes=10 but .get_context_policies()
 
     # start the scheduler
     GLAsynchronous.start()

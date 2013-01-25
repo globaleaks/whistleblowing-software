@@ -170,9 +170,9 @@ class TaskInstance(BaseHandler):
         from globaleaks.jobs.welcome_sched import APSWelcome
         from globaleaks.jobs.cleaning_sched import APSCleaning
         from globaleaks.jobs.statistics_sched import APSStatistics
-        from globaleaks.jobs.digest_sched import APSDigest
+        from globaleaks.jobs.fileprocess_sched import APSFileProcess
 
-        expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'digest' ]
+        expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'fileprocess' ]
 
         if what == 'statistics':
             yield APSNotification().operation()
@@ -186,8 +186,8 @@ class TaskInstance(BaseHandler):
             yield APSNotification().operation()
         if what == 'cleaning':
             yield APSCleaning().operation()
-        if what == 'digest':
-            yield APSDigest().operation()
+        if what == 'fileprocess':
+            yield APSFileProcess().operation()
 
         if not what in expected:
             self.set_status(405)

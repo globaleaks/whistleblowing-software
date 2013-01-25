@@ -9,15 +9,16 @@
 
 from storm.twisted.transact import transact
 from storm.exceptions import NotOneError
-from storm.locals import Int, Pickle, Date, Unicode, RawStr, Bool, DateTime
-from storm.locals import Reference
+from storm.locals import Int, Pickle, Unicode, RawStr, Bool, DateTime, Reference
+from storm.store import AutoReload
 
 from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.internaltip import InternalTip
+from globaleaks.models.context import Context
 from globaleaks.rest.errors import TipGusNotFound, TipReceiptNotFound,\
-    TipPertinenceExpressed, ReceiverGusNotFound, FileGusNotFound
+    TipPertinenceExpressed, FileGusNotFound, InvalidInputFormat
 
 __all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip' ]
 
@@ -42,33 +43,47 @@ class ReceiverTip(TXModel):
 
     expressed_pertinence = Int()
 
-    notification_date = DateTime()
-    notification_mark = Unicode()
-        # TODO ENUM 'not notified' 'notified' 'unable to notify' 'notification ignore'
-
     receiver_gus = Unicode()
     receiver = Reference(receiver_gus, Receiver.receiver_gus)
 
-    # is not a transact operation, is self filling, called by
-    # create_receiver_tips
-    def initialize(self, selected_it, receiver_subject):
+    notification_date = DateTime()
+    notification_mark = Unicode()
 
-        self.tip_gus = idops.random_tip_gus()
+    _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
-        self.notification_mark = u'not notified'
-        self.notification_date = None
+    @transact
+    def new(self, itip_dict, receiver_dict):
 
-        self.last_access = None
-        self.access_counter= 0
-        self.expressed_pertinence = 0
-        self.authoptions = {}
+        store = self.getStore()
 
-        self.receiver_gus = receiver_subject.receiver_gus
-        self.receiver = receiver_subject
+        try:
+            self.receiver_gus = receiver_dict['receiver_gus']
+            self.receiver = store.find(Receiver, Receiver.receiver_gus == unicode(self.receiver_gus) ).one()
 
-        self.internaltip_id = selected_it.id
-        self.internaltip = selected_it
+            self.internaltip_id = itip_dict['internaltip_id']
+            self.internaltip = store.find(InternalTip, InternalTip.id == int(self.internaltip_id)).one()
 
+            self.last_access = None
+            self.access_counter = 0
+            self.expressed_pertinence = 0
+
+            self.notification_mark = self._marker[0] # 'not notified'
+            self.notification_date = None
+            self.tip_gus = idops.random_tip_gus()
+
+        except KeyError, e:
+            # The world will badly end, if this happen in non-tes
+            raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad key %s", e)
+        except TypeError, e:
+            # The world will badly end, if this happen in non-tes
+            raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad type %s", e)
+
+        # XXX App log
+        store.add(self)
+
+    # update
+    # _import_dict
+    # not used in ReceiverTip
 
     @transact
     def update_notification_date(self, tip_gus):
@@ -138,9 +153,9 @@ class ReceiverTip(TXModel):
 
         requested_t.last_access = gltime.utcTimeNow()
 
-        # need to be added the receipt in the message dictionary
-        # ad the identifier of the resource is in fact the auth key
+        # every time the name 'id' is misused, a kitten die :(
         tip_details.update({ 'id' : requested_t.tip_gus })
+        # XXX verifiy why need to be echoed back
 
         return dict(tip_details)
 
@@ -458,46 +473,6 @@ class ReceiverTip(TXModel):
             store.remove(single_tip)
 
 
-    # This method is separated by initialize routine, because the tip creation
-    # event can be exported/overriden/implemented by a plugin in a certain future.
-    # like notification or delivery, it has a dedicated event in the scheduler, and
-    # is called by TipSched
-    @transact
-    def create_receiver_tips(self, internaltip_id, tier):
-        """
-        act on self. create the ReceiverTip based on InternalTip.receivers
-        """
-        store = self.getStore()
-
-        selected_it = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
-
-        created_counter = 0
-        for choosen_r in selected_it.receivers:
-
-            try:
-                receiver_subject = store.find(Receiver, Receiver.receiver_gus == unicode(choosen_r)).one()
-            except NotOneError:
-                # This would happen only if a receiver has been removed between the
-                # submission creation and the tip creation.
-                # TODO administrator system error
-                continue
-            if receiver_subject is None:
-                # TODO administrator system error
-                continue
-
-            if not receiver_subject.receiver_level == tier:
-                continue
-
-            new_receiver_tip =  ReceiverTip()
-
-            # this initialize the Tip, (with a "not notified" status)
-            new_receiver_tip.initialize(selected_it, receiver_subject)
-            store.add(new_receiver_tip)
-            created_counter += 1
-
-        return created_counter
-
-
     # called by a transact operation,dump the ReceiverTip (without the Tip details,
     # they stay in InternalTip)
     def _description_dict(self):
@@ -512,37 +487,51 @@ class ReceiverTip(TXModel):
             'expressed_pertinence': unicode(self.expressed_pertinence),
             'receiver_gus' : unicode(self.receiver_gus),
             'receiver_name' : unicode(self.receiver.name),
-            'authoptions' : dict(self.authoptions)
         }
         return dict(descriptionDict)
 
 
 class WhistleblowerTip(TXModel):
     """
-    WhisteleblowerTip is intended, at the moment, to provide a whistleblower access to the Tip.
-    differently from the ReceiverTips, has a secret and/or authentication checks, has
-    different capabilities, like: cannot not download, cannot express pertinence, and
-    other operation permitted to the WB shall be configured by the Admin.
+    WhisteleblowerTip is intended, to provide a whistleblower access to the Tip.
+    Has ome differencies from the ReceiverTips: has a secret authentication checks, has
+    different capabilities, like: cannot not download, cannot express pertinence.
     """
+
     __storm_table__ = 'whistleblowertips'
 
     receipt = Unicode(primary=True)
-        # receipt can be proposed by whistleblower, the globaleaks node *always* perform a
-        # little modification on that (because NEED to be unique), before returining 
-        # back. having a tip_gus was no more useful in whistleblower tip, has start to 
-        # sound as a limit.
-
-    authoptions = Pickle()
-        # this would be choosen by the WB when submission is finalized, in example,
-        # WB should decide to comeback only using the same client (= the same private key)
-        # and a signature schema can be used. other options would be available,
-        # they are not yet specified.
 
     last_access = DateTime()
+    access_counter = Int()
 
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
+    @transact
+    def new(self, internaltip_desc):
+
+        store = self.getStore()
+
+        try:
+            self.internaltip_id = int(internaltip_desc['internaltip_id'])
+        except TypeError:
+            raise InvalidInputFormat("Unable to initialized WhistleBlower Tip with iTip (wrong field)")
+        except KeyError:
+            raise InvalidInputFormat("Unable to initialized WhistleBlower Tip with iTip (missing field)")
+
+        self.internaltip = store.find(InternalTip, InternalTip.id == int(self.internaltip_id)).one()
+
+        self.last_access = 0
+        self.access_counter = 0
+
+        self.receipt = unicode(idops.random_receipt())
+
+        store.add(self)
+
+        return self._description_dict()
+
+    # Also this Model has not an update interface.
 
     @transact
     def get_single(self, receipt):
@@ -556,23 +545,26 @@ class WhistleblowerTip(TXModel):
         if not requested_t:
             raise TipReceiptNotFound
 
-        wb_tip_dict = requested_t.internaltip._description_dict()
+        requested_t.access_counter += 1
+
+        # The single tip dump is composed by InternalTip + WBTip details
+        tip_details = requested_t.internaltip._description_dict()
+        tip_details.update(requested_t._description_dict())
+
         requested_t.last_access = gltime.utcTimeNow()
 
-        complete_tip_dict = wb_tip_dict
+        # every time the name 'id' is misused, a kitten die :(
+        tip_details.update({ 'id' : requested_t.receipt })
+        # XXX verifiy why need to be echoed back
 
-        # need to be added the receipt in the message dictionary
-        # ad the identifier of the resource is in fact the auth key
-        complete_tip_dict.update({ 'id' : requested_t.receipt })
+        return dict(tip_details)
 
-        return dict(complete_tip_dict)
 
     @transact
     def get_all(self):
         """
         This is called by API /admin/overview only
         """
-
         store = self.getStore()
 
         all_wt = store.find(WhistleblowerTip)
@@ -582,6 +574,7 @@ class WhistleblowerTip(TXModel):
             retVal.append(single_wt._description_dict())
 
         return retVal
+
 
     @transact
     def delete_access(self, receipt):
@@ -605,9 +598,15 @@ class WhistleblowerTip(TXModel):
         """
         Called by cascade delete from DELETE admin/context, or by Tip (total_delete)
         """
-
         store = self.getStore()
-        selected = store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == int(internaltip_id))
+
+        try:
+            selected = store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == int(internaltip_id))
+        except NotOneError:
+            raise Exception("internaltip_id do not exists: %d", internaltip_id)
+        if not selected:
+            raise Exception("internaltip_id do not exists: %d", internaltip_id)
+
         for single_tip in selected:
             store.remove(single_tip)
 
@@ -616,9 +615,9 @@ class WhistleblowerTip(TXModel):
     def _description_dict(self):
 
         descriptionDict = {
-            'last_access' :  unicode(gltime.prettyDateTime(self.last_access)),
+            'last_access' :  unicode(gltime.prettyDateTime(self.last_access)) if not self.last_access else u'Never',
+            'access_counter' : int(self.access_counter),
             'internaltip_id' : int(self.internaltip_id),
-            'authoption' : dict(self.authoptions) if self.authoptions else {},
             'receipt' : unicode(self.receipt)
         }
         return dict(descriptionDict)
@@ -635,33 +634,124 @@ class File(TXModel):
     name = Unicode()
 
     content = RawStr()
-    shasum = RawStr()
+    shasum = RawStr() # XXX ?
 
-    completed = Bool()
+    completed = Bool() # XXX remove ?
 
     description = Unicode()
     content_type = Unicode()
     mark = Unicode()
-        # 'not processed': 'ready' 'blocked'
-        # 'delivered' 'unable to be delivered', 'stored'
-        # TODO with Task table would be possibile handle
-        # the different behaviour for every receiver, ATM not!
 
     size = Int()
 
     metadata_cleaned = Bool()
-    uploaded_date = Date()
+    uploaded_date = DateTime()
 
+    context_gus = Unicode()
+    context = Reference(context_gus, Context.context_gus)
+
+    # ----------------------------------------
+    # Remind, only one of those reference is indexed in a time.
+    #
+    # If Submission: the file need to be processed
+    # If InternalTip: the file need to be stored or served
+    # If ReceiverTIp: the file is personally encrypted or different for every receiver
+    #
+    receivertip_gus = Unicode()
     internaltip_id = Int()
-    internaltip = Reference(internaltip_id, InternalTip.id)
+    submission_gus = Unicode()
+    #
+    # TODO make special validator supporting the "None" value
+    # ----------------------------------------
+
+    _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
+
+    @transact
+    def new(self, received_dict):
+
+        store = self.getStore()
+
+        try:
+            self._import_dict(received_dict)
+
+            # these three fields are accepted only in new()
+            self.content_type = unicode(received_dict['content_type'])
+            self.size = int(received_dict['file_size'])
+            self.context_gus = unicode(received_dict['context_gus'])
+            self.submission_gus = unicode(received_dict['submission_gus'])
+
+        except KeyError, e:
+            raise InvalidInputFormat("File import failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("File import failed (wrong %s)" % e)
+
+        try:
+            self.context = store.find(Context, Context.context_gus == self.context_gus).one()
+
+        except NotOneError:
+            # This can never happen
+            raise Exception("Internal Impossible Error")
+
+        self.mark = self._marker[0] # not processed
+        self.completed = False
+        self.uploaded_date = gltime.utcTimeNow()
+
+        self.file_gus = unicode(idops.random_file_gus())
+
+        # When the file is 'not processed', this value stay to 0
+        self.internaltip_id = 0
+
+        store.add(self)
+        return self._description_dict()
+
+
+    # update in short modify only filename and description, at the moment API is missing
+    # Remind open ticket with GLClient
+    @transact
+    def update(self, file_gus, received_dict):
+
+        store = self.getStore()
+
+        try:
+            referenced_f = store.find(File, File.file_gus == unicode(file_gus)).one()
+        except NotOneError:
+            raise FileGusNotFound
+        if not referenced_f:
+            raise FileGusNotFound
+
+        try:
+            referenced_f._import_dict(received_dict)
+        except KeyError, e:
+            raise InvalidInputFormat("File update failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("File update failed (wrong %s)" % e)
+
+        return referenced_f._description_dict()
 
 
     @transact
-    def new(self):
-        pass
+    def _import_dict(self, received_dict):
+
+        self.name = unicode(received_dict['filename'])
+        self.description = unicode(received_dict['description'])
 
     @transact
-    def get_file_by_maker(self, marker):
+    def flip_mark(self, file_gus, newmark):
+
+        if not newmark in self._marker:
+            raise NotImplemented
+
+        store = self.getStore()
+
+        requested_f = store.find(File, File.file_gus == unicode(file_gus)).one()
+
+        if not requested_f:
+            raise FileGusNotFound
+
+        requested_f.mark = newmark
+
+    @transact
+    def get_file_by_marker(self, marker):
         """
         @return: all the files matching with the requested
             marked, between this list of option:
@@ -673,14 +763,10 @@ class File(TXModel):
 
         store = self.getStore()
 
-        if marker == u'not processed':
-            req_fi = store.find(File, File.mark == u'new')
-        elif marker == u'ready':
-            req_fi = store.find(File, File.mark == u'ready')
-        elif marker == u'blocked':
-            req_fi = store.find(File, File.mark == u'blocked')
-        else:
-            raise NotImplemented
+        if not marker in self._marker:
+            Exception("Implementation error")
+
+        req_fi = store.find(File, File.mark == marker)
 
         retVal = []
         for single_file in req_fi:
@@ -723,15 +809,25 @@ class File(TXModel):
     def get_all(self):
 
         store = self.getStore()
-
         files = store.find(File)
 
         all_files = []
-
         for single_file in files:
             all_files.append(single_file._description_dict())
 
         return all_files
+
+    @transact
+    def get_all_by_submission(self, submission_gus):
+
+        store = self.getStore()
+        selected_f = store.find(File, File.submission_gus == unicode(submission_gus))
+
+        submission_files = []
+        for single_file in selected_f:
+            submission_files.append(single_file._description_dict())
+
+        return submission_files
 
 
     @transact
@@ -740,12 +836,10 @@ class File(TXModel):
         store = self.getStore()
 
         try:
-            filelookedat = store.find(File, File.file_gus ==file_gus).one()
+            filelookedat = store.find(File, File.file_gus == unicode(file_gus)).one()
         except NotOneError:
-            store.close()
             raise FileGusNotFound
         if not filelookedat:
-            store.close()
             raise FileGusNotFound
 
         return filelookedat._description_dict()
@@ -757,11 +851,15 @@ class File(TXModel):
             'size' : self.size,
             'file_gus' : self.file_gus,
             'content_type' : self.content_type,
-            'name' : self.name,
+            'file_name' : self.name,
             'description' : self.description,
             'uploaded_date': gltime.prettyDateTime(self.uploaded_date),
             'completed' : self.completed,
-            'metadata_cleaned' : self.metadata_cleaned
+            'metadata_cleaned' : self.metadata_cleaned,
+            'context_gus' : self.context_gus,
+            'submission_gus' :  self.submission_gus if self.submission_gus else False,
+            'internaltip_id' : self.internaltip_id if self.internaltip_id else False,
+            'receivertip_gus' :  self.receivertip_gus if self.receivertip_gus else False
 
         }
         return dict(descriptionDict)
@@ -774,7 +872,7 @@ class Comment(TXModel):
     """
     __storm_table__ = 'comments'
 
-    id = Int(primary=True)
+    id = Int(primary=True, default=AutoReload)
 
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
@@ -791,7 +889,7 @@ class Comment(TXModel):
         @param itip_id: InternalTip.id of reference, need to be addressed
         @param comment: the unicode text expected to be recorded
         @param source: the source kind of the comment (receiver, wb, system)
-        @param name: the Comment author name to be show and recorded, can be absent if source is enough
+        @param name: the Comment wb_r name to be show and recorded, can be absent if source is enough
         @return: None
         """
 

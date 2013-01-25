@@ -87,6 +87,7 @@ class Submission(TXModel):
         # but client want open a submission before having sent them
 
         # TODO those file/receiver checks can be reduced in one function after the refactor #46
+        # Instead keeping them duped between update and new
 
         for single_r in self.receivers:
             try:
@@ -96,7 +97,7 @@ class Submission(TXModel):
             if selected_r is None:
                 raise ReceiverGusNotFound
             if not self.context_gus in selected_r.contexts:
-                print "[***] Invalid Receiver relationship:", s.context_gus, selected_r.contexts
+                print "[***] Invalid Receiver relationship:", self.context_gus, selected_r.contexts
                 raise ReceiverGusNotFound
 
         for single_f in self.files:
@@ -142,6 +143,7 @@ class Submission(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("Submission update failed (wrong %s)" % e)
 
+        """
         try:
             if not s._wb_fields_verify():
                 raise SubmissionFailFields
@@ -149,8 +151,10 @@ class Submission(TXModel):
             # XXX this would be a log or an error for the client ?
             print "[---] Unable to verify field: %s" % e
             raise SubmissionFailFields
+        """
 
         # TODO those file/receiver checks can be reduced in one function after the refactor #46
+        # Instead keeping them duped between update and new
 
         for single_r in s.receivers:
             try:

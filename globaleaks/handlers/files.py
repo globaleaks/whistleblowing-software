@@ -10,13 +10,13 @@ from __future__ import with_statement
 
 import json, os, time
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import RequestHandler, HTTPError, asynchronous
+from cyclone.web import HTTPError, asynchronous
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.rest.errors import SubmissionGusNotFound
 from globaleaks.utils import log
 from globaleaks import config
-from globaleaks.models.submission import Submission
 from globaleaks.models.externaltip import File
+from globaleaks.models.submission import Submission
+from globaleaks.rest.errors import SubmissionGusNotFound, SubmissionConcluded, InvalidInputFormat
 
 __all__ = ['Download', 'FileInstance']
 
@@ -31,7 +31,6 @@ class FileInstance(BaseHandler):
     maxFileSize = 500 * 1000 * 1000 # MB
 
     def acceptedFileType(self, type):
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "acceptedFileType", "type", type)
         regexp = None
         if regexp and regexp.match(type):
             return True
@@ -43,7 +42,6 @@ class FileInstance(BaseHandler):
         Takes as input a file object and raises an exception if the file does
         not conform to the criteria.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "validate", "file", file)
         if self.maxFileSize and file['size'] < self.maxFileSize:
             raise HTTPError(406, "File too big")
 
@@ -55,92 +53,85 @@ class FileInstance(BaseHandler):
         XXX This is currently blocking. MUST be refactored to not be blocking
         otherwise we loose...
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "savefile", "data", type(data), "filelocation", filelocation)
         with open(filelocation, 'a+') as f:
             f.write(data)
 
-    def process_file(self, file, submission_id, file_id):
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "process_file", "file",type(file), "submission_id", submission_id, "file_id", file_id)
+    def process_file(self, file, submission_gus, file_gus):
 
         result = {}
-        result['file_gus'] = file_id
+        result['file_gus'] = file_gus
         result['name'] = file['filename']
         result['type'] = file['content_type']
         result['size'] = len(file['body'])
 
-        file_location = self.getFileLocation(submission_id, file_id)
-        filetoken = submission_id
+        # XXX verify this token what's is it
+        result['token'] = submission_gus
 
-        result['token'] = filetoken
+        file_location = self.getFileLocation(file_gus)
 
         log.debug("Saving file to %s" % file_location)
         self.saveFile(file['body'], file_location)
         return result
 
-    def getFileLocation(self, submission_id, file_id):
+    def getFileLocation(self, file_gus):
         """
         Ovewrite me with your own function to generate the location of where
         the file should be stored.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "getFileLocation", "submission_id", submission_id, "file_id", file_id)
         if not os.path.isdir(config.advanced.submissions_dir):
             log.debug("%s does not exist. Creating it." % config.advanced.submissions_dir)
             os.mkdir(config.advanced.submissions_dir)
 
-        # ignored this line!
-        this_submission_dir = os.path.join(config.advanced.submissions_dir, submission_id)
-        # ignored this line!
+        the_submission_dir = config.advanced.submissions_dir
 
-        this_submission_dir = config.advanced.submissions_dir
+        # this happen only at the first execution
+        if not os.path.isdir(the_submission_dir):
+            os.mkdir(the_submission_dir)
 
-        if not os.path.isdir(this_submission_dir):
-            log.debug("%s does not exist. Creating it." % this_submission_dir)
-            os.mkdir(this_submission_dir)
-
-        location = os.path.join(this_submission_dir, file_id)
+        location = os.path.join(the_submission_dir, file_gus)
 
         return location
 
-    def options(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "options")
-        pass
-
-    def head(self):
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "head")
-        pass
-
     @asynchronous
     @inlineCallbacks
-    def get(self, *arg, **kw):
+    def get(self, submission_gus, *args):
         """
-        Parameters: Unknown
+        Parameters: submission_gus
         Request: None
         Response: Unknown
         Errors: Unknown
 
-        GET in fileHandlers need to be refactored-engineered
+        GET return list of files uploaded in this submission
+        Doubt: Is this API needed ? because in JQueryFileUploader do not exists
+            but in our GL-API-Style design could. At the moment the client
+            do not plan to use them.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "FilesHandler", "get")
-        pass
+        file_iface = File()
+
+        filelist = yield file_iface.get_all_by_submission(submission_gus)
+
+        self.write(json.dumps(filelist))
+        self.set_status(200)
 
     @asynchronous
     @inlineCallbacks
-    def post(self, submission_gus):
+    def post(self, submission_gus, *args):
         """
         Parameter: submission_gus
         Request: Unknown
         Response: Unknown
-        Errors: SubmissionGusNotFound
+        Errors: SubmissionGusNotFound, SubmissionConcluded
 
         POST in fileHandlers need to be refactored-engineered
         """
 
-        # XXX "I see dead people"
-        method_hack = self.get_arguments('_method')
-        if method_hack and method_hack == 'DELETE':
-            self.delete()
-
+        submission_iface = Submission()
         try:
+
+            submission_desc = yield submission_iface.get_single(submission_gus)
+
+            if submission_desc['finalize']:
+                raise SubmissionConcluded
 
             results = []
 
@@ -149,16 +140,25 @@ class FileInstance(BaseHandler):
             for file in files:
                 start_time = time.time()
 
-                submission_iface = Submission()
-                file_gus = yield submission_iface.add_file(submission_gus, file['filename'], file['content_type'], len(file['body']) )
+                file_request = { 'filename' : file.get('filename'),
+                                 'content_type' : file.get('content_type'),
+                                 'file_size' : len(file['body']),
+                                 'submission_gus' : submission_gus,
+                                 'context_gus' : submission_desc['context_gus'],
+                                 'description' : ''
+                        }
 
-                log.debug("Created file with file_gus %s" % file_gus)
+                print "file_request", file_request, "\n"
 
-                result = self.process_file(file, submission_gus, file_gus)
+                file_iface = File()
+                file_desc = yield file_iface.new(file_request)
+
+                log.debug("Created file from %s with file_gus %s" % (file_request['filename'], file_desc['file_gus'] ))
+
+                result = self.process_file(file, submission_gus, file_desc['file_gus'])
                 result['elapsed_time'] = time.time() - start_time
                 results.append(result)
 
-                # TODO yield on File.something()
 
             response = json.dumps(results, separators=(',',':'))
 
@@ -168,6 +168,11 @@ class FileInstance(BaseHandler):
             self.set_status(200)
             self.write(response)
 
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
+
         except SubmissionGusNotFound, e:
 
             self.set_status(e.http_status)
@@ -175,9 +180,10 @@ class FileInstance(BaseHandler):
 
         self.finish()
 
+
     @asynchronous
     @inlineCallbacks
-    def delete(self):
+    def delete(self, submission_gus, *args):
         """
         Request: Unknown
         Response: Unknown
@@ -185,10 +191,15 @@ class FileInstance(BaseHandler):
 
         DELETE in fileHandlers need to be refactored-engineered
         """
+        print self.request
+        print submission_gus
         Exception("Not Yet Implemented file delete")
 
 
 class Download(BaseHandler):
+    """
+    Not yet implemented download
+    """
 
     @asynchronous
     @inlineCallbacks
@@ -198,7 +209,7 @@ class Download(BaseHandler):
 
         file_iface = File()
 
-        requestedfileinfo = yield file_iface.admin_get_single(file_gus)
+        requestedfileinfo = yield file_iface.get_single(file_gus)
 
 
         print "Download of", requestedfileinfo
