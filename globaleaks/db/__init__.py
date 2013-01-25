@@ -2,13 +2,21 @@
 #   GLBackend Database
 #   ******************
 
-
-__all__ = ['createTables', 'database', 'transactor']
+__all__ = ['createTables']
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks import database, transactor
-from globaleaks.utils import log
+from globaleaks import main
+from globaleaks.config import config
 from globaleaks.db import tables
+from globaleaks.utils import log
+
+from globaleaks.models.context import Context
+from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment, File
+from globaleaks.models.internaltip import InternalTip
+from globaleaks.models.receiver import Receiver
+from globaleaks.models.options import PluginProfiles, ReceiverConfs
+from globaleaks.models.submission import Submission
+from globaleaks.models.node import Node
 
 @inlineCallbacks
 def createTables():
@@ -16,27 +24,28 @@ def createTables():
     @return: None, create the right table at the first start, and initialized
     the node.
     """
-    from globaleaks.models.context import Context
-    from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment, File
-    from globaleaks.models.internaltip import InternalTip
-    from globaleaks.models.receiver import Receiver
-    from globaleaks.models.options import PluginProfiles, ReceiverConfs
-    from globaleaks.models.submission import Submission
-    from globaleaks.models.node import Node
+    for model in [ Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
+                    Submission, Comment, File, PluginProfiles, ReceiverConfs ]:
 
-    for model in [ Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip, Submission,
-               Comment, File, PluginProfiles, ReceiverConfs ]:
-        try:
-            log.debug("Creating %s" % model)
-            yield tables.runCreateTable(model, transactor, database)
-        except Exception, e:
-            log.debug(str(e))
+        tables.createTable(model)
 
-    nod = Node()
-    is_only_one = yield nod.only_one()
+def initializeNode():
+    """
+    @return: True | False
+    This function is called only one time in a node life, and initialize
+    the table. the configure_node run edit of this row (id = 1)
+    """
+    store = config.main.zstorm.get('main_store')
 
-    if False == is_only_one:
-        yield nod.initialize_node()
-        # no more verbose debugging
-        # initvals = yield nod.get_admin_info()
-        # print "Node initialized with", initvals
+    onlyNode = Node()
+
+    onlyNode.name = u"Please, set me: name/title"
+    onlyNode.description = u"Please, set me: description"
+    onlyNode.hidden_service = u"Please, set me: hidden service"
+    onlyNode.public_site = u"Please, set me: public site"
+    onlyNode.email = u"email@dumnmy.net"
+    onlyNode.private_stats_update_time = 30 # minutes
+    onlyNode.public_stats_update_time = 120 # minutes
+    onlyNode.languages = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" }]
+
+    store.add(onlyNode)
