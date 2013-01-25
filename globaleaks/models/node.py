@@ -10,8 +10,8 @@ from storm.exceptions import NotOneError
 
 from storm.twisted.transact import transact
 
-from storm.locals import Int, Pickle
-from storm.locals import Unicode, DateTime
+from storm.store import AutoReload
+from storm.locals import Int, Pickle, Unicode, DateTime
 
 from globaleaks.models.base import TXModel
 from globaleaks.utils import log
@@ -40,8 +40,12 @@ class Node(TXModel):
     email = Unicode()
     languages = Pickle()
     creation_time = DateTime()
-    public_stats_update_time = Int()
-    private_stats_update_time = Int()
+
+    # Here is set the time frame for the stats publicly exported by the node.
+    # Expressed in hours
+    stats_update_time = Int()
+    # The frequency of stats COLLECTION, is defined in context, and the admin
+    # see Context separated stats.
 
     @transact
     def configure(self, input_dict):
@@ -66,9 +70,10 @@ class Node(TXModel):
         log.msg("Updated node main configuration")
 
     @transact
-    def get_public_info(self):
+    def get(self):
 
         store = self.getStore()
+
         try:
             node_data = store.find(Node, 1 == Node.id).one()
         except NotOneError:
@@ -76,38 +81,12 @@ class Node(TXModel):
         if node_data is None:
             raise NodeNotFound
 
-        # I'd prefer wrap get_admin_info and then .pop() the
-        # private variables, but wrap a defered cause you can't return,
-        # so would be nice but I don't have clear if workarounds costs too much
-        retTmpDict= { 'name' : node_data.name,
-                      'description' : node_data.description,
-                      'hidden_service' : node_data.hidden_service,
-                      'public_site' : node_data.public_site,
-                      'public_stats_update_time' : node_data.public_stats_update_time,
-                      'email' : node_data.email,
-                      'languages' : node_data.languages
-                    }
-
-        return retTmpDict
-
-    @transact
-    def get_admin_info(self):
-
-        check_single_entry();
-
-        store = self.getStore()
-
-        # this unmaintainable crap need to be removed in the future,
-        # and the dict/output generation shall not be scattered
-        # around here.
-        retAdminDict= { 'name' : unicode(node_data.name),
-                        'description' : unicode(node_data.description),
-                        'hidden_service' : unicode(node_data.hidden_service),
-                        'public_site' : unicode(node_data.public_site),
-                        'public_stats_update_time' : unicode(node_data.public_stats_update_time),
-                        'private_stats_update_time' : unicode(node_data.private_stats_update_time),
-                        'email' : unicode(node_data.email),
-                        'languages' : unicode(node_data.languages)
+        retDict= { 'name' : unicode(node_data.name),
+                   'description' : unicode(node_data.description),
+                   'hidden_service' : unicode(node_data.hidden_service),
+                   'public_site' : unicode(node_data.public_site),
+                   'stats_update_time' : int(node_data.stats_update_time),
+                   'email' : unicode(node_data.email),
+                   'languages' : unicode(node_data.languages)
             }
-
-        return retAdminDict
+        return retDict

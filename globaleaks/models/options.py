@@ -11,8 +11,8 @@
 
 from storm.twisted.transact import transact
 from storm.exceptions import NotOneError
-from storm.locals import Int, Pickle, Unicode, Bool, DateTime
-from storm.locals import Reference
+from storm.store import AutoReload
+from storm.locals import Int, Pickle, Unicode, Bool, DateTime, Reference
 
 from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
