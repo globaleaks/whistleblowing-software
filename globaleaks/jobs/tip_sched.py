@@ -31,23 +31,39 @@ class APSTip(GLJob):
         had their Tip only when the escalation_threshold has reached 
         the requested value.
         """
-        log.debug("[D]", self.__class__, 'operation', datetime.today().ctime())
 
         internaltip_iface = InternalTip()
         receivertip_iface = ReceiverTip()
 
         internal_tip_list = yield internaltip_iface.get_itips_by_maker(u'new', False)
 
+        # TODO for each itip
+            # TODO get file status
+
+
         if len(internal_tip_list):
             log.debug("TipSched: found %d new Tip" % len(internal_tip_list) )
 
-        for itip in internal_tip_list:
-            itip_id = int(itip['internaltip_id'])
+        for internaltip_desc in internal_tip_list:
 
-            receivertip_created = yield receivertip_iface.create_receiver_tips(itip_id, 1)
-            yield internaltip_iface.flip_mark(itip_id, u'first')
+            for receiver_gus in internaltip_desc['receivers']:
 
-            log.debug("TipSched: created %d ReceiverTip for the iTip %d" % (receivertip_created, itip_id))
+                receiver_desc = yield receivertip_iface.get_single(receiver_gus)
+
+                # check if the Receiver Tier is the first
+                if int(receiver_desc['receiver_level']) != 1:
+                    continue
+
+                receivertip_desc = yield receivertip_iface.new(internaltip_desc, receiver_desc)
+                print "Created rTip", receiver_desc['tip_gus'], "for", receiver_desc['receiver_name']
+
+            try:
+                # switch the InternalTip.mark for the tier supplied
+                yield internaltip_iface.flip_mark(internaltip_desc['internaltip_id'], u'first')
+            except:
+                # ErrorTheWorldWillEndSoon("Goodbye and thanks for all the fish")
+                print "Internal error"
+                raise
 
 
         # loops over the InternalTip and checks the escalation threshold

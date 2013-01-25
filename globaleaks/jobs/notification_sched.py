@@ -1,6 +1,7 @@
 # -*- coding: UTF-8
-#   backend
-#   *******
+#
+#   notification_sched
+#   ******************
 #
 # Notification implementation, documented along the others asynchronousd
 # operatios, in Architecture and in jobs/README.md

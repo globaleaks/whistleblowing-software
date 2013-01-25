@@ -1,5 +1,6 @@
 from globaleaks.utils import log, gltime
 from globaleaks.plugins.base import FileProcess
+from magic import Magic
 
 class TypeValidation(FileProcess):
 
@@ -17,6 +18,12 @@ class TypeValidation(FileProcess):
         return True
 
     def do_fileprocess(self, filepath, admin_fields):
-        return False
+
+        magic_file_check =  Magic()
+
+        print "Type Validation plugin: checking %s", filepath
+        print "and is...", magic_file_check.id_filename(filepath)
+
+        return True # Accept
 
 
