@@ -10,8 +10,8 @@
 
 from storm.twisted.transact import transact
 
-from storm.exceptions import NotOneError
 from storm.locals import Int, Pickle, Unicode, DateTime, Reference
+from storm.exceptions import NotOneError
 from storm.store import AutoReload
 
 from globaleaks.utils import log, gltime

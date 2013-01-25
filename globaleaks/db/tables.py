@@ -100,15 +100,13 @@ def generateCreateQuery(model):
 def createTable(model):
     """
     Create the table for the specified model.
-    It will default to using globaleaks.db transactor and database if none is
-    specified.
-    Specification of a transactor and database is useful in unittesting.
     """
 
     create_query = generateCreateQuery(model)
 
     try:
         config.main.zstorm.get('main_store').execute(create_query)
+        config.main.zstorm.get('main_store').commit()
         
     # XXX trap the specific error that is raised when the table exists
     # seem to be OperationalError raised, but not a specific error exists.
