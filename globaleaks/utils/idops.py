@@ -22,6 +22,30 @@ from Crypto.Random import random
 import string
 
 
+#
+# This function generate the old-fashion RandomReceipt of 10 digits.
+# This helper library (using the safe Crypto Random) can help us in
+# supply Node Admin requirements:
+#
+# https://bitbucket.org/leapfrogdevelopment/rstr/
+# rstr is a helper module for easily generating random strings of various types.
+# It could be useful for fuzz testing, generating dummy data, or other applications.
+#
+# *xeger is the useful function*
+#
+def random_receipt():
+    """
+    need to be NOT guessable
+    internal settings may change the kind of the output provided (in example,
+        maybe longer, or composed by words)
+    the authentication of receiver maybe extended in security feature
+    """
+    length = 10
+    return u''.join(random.choice('0123456789') for x in range(length))
+
+
+
+
 TESTING = True
 
 global_debug_counter = 0
@@ -37,23 +61,10 @@ def random_submission_gus():
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
-
-        # return u's_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
-        XXX = u's_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
-        print "XXX", XXX, len(XXX)
-        return XXX
+        return u's_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
     else:
         return u's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
-def random_receipt_gus():
-    """
-    need to be NOT guessable
-    internal settings may change the kind of the output provided (in example,
-        maybe longer, or composed by words)
-    the authentication of receiver maybe extended in security freature
-    """
-    length = 10
-    return u''.join(random.choice('0123456789') for x in range(length))
 
 def random_plugin_gus():
     length = 10
