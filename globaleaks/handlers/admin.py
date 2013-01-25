@@ -347,7 +347,8 @@ class ReceiversCollection(BaseHandler):
 
             receiver_iface = Receiver()
 
-            new_receiver_gus = yield receiver_iface.new(request)
+            new_receiver = yield receiver_iface.new(request)
+            new_receiver_gus = new_receiver['receiver_gus']
 
             # 'contexts' it's a relationship between two tables, and is managed 
             # with a separate method of new()
@@ -439,7 +440,7 @@ class ReceiverInstance(BaseHandler):
 
             receiver_iface = Receiver()
 
-            yield receiver_iface.admin_update(receiver_gus, request)
+            yield receiver_iface.update(receiver_gus, request)
 
             # 'contexts' it's a relationship between two tables, and is managed 
             # with a separate method of new()
@@ -486,13 +487,12 @@ class ReceiverInstance(BaseHandler):
         """
 
         receiver_iface = Receiver()
-        receivertip_iface = ReceiverTip()
-        context_iface = Context()
 
         try:
             # TODO parameter receiver_gus validation - InvalidInputFormat
             receiver_desc = yield receiver_iface.get_single(receiver_gus)
 
+            receivertip_iface = ReceiverTip()
             # Remove Tip possessed by the receiver
             related_tips = yield receivertip_iface.get_tips_by_receiver(receiver_gus)
             for tip in related_tips:
@@ -500,16 +500,20 @@ class ReceiverInstance(BaseHandler):
             # Remind: the comment are kept, and the name is not referenced but stored
             # in the comment entry.
 
+            context_iface = Context()
 
-            # Consistency checks between receiver and context tracking:
+            # TODO make an app log
             contexts_associated = yield context_iface.get_contexts_by_receiver(receiver_gus)
-
             print "context associated by receiver POV:", len(contexts_associated),\
                 "context associated by receiver-DB field:", len(receiver_desc['contexts'])
 
             yield context_iface.align_receiver_delete(receiver_desc['contexts'], receiver_gus)
 
-            # TODO delete ReceiverConfs settings related.
+            receiverconf_iface = ReceiverConfs()
+            # Delete all the receiver configuration associated TODO - App log an number of RCFGs
+            receivercfg_list = yield receiverconf_iface.get_confs_by_receiver(receiver_gus)
+            for rcfg in receivercfg_list:
+                yield receiverconf_iface.delete(rcfg['config_id'], receiver_gus)
 
             # Finally delete the receiver
             yield receiver_iface.receiver_delete(receiver_gus)
