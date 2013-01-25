@@ -11,12 +11,13 @@
 from storm.twisted.transact import transact
 
 from storm.exceptions import NotOneError
-from storm.locals import Int, Pickle, Unicode, DateTime
-from storm.locals import Reference
+from storm.locals import Int, Pickle, Unicode, DateTime, Reference
+from storm.store import AutoReload
 
 from globaleaks.utils import log, gltime
 from globaleaks.models.base import TXModel
 from globaleaks.models.context import Context
+from globaleaks.rest.errors import InvalidInputFormat
 
 __all__ = [ 'InternalTip' ]
 
@@ -33,7 +34,7 @@ class InternalTip(TXModel):
 
     __storm_table__ = 'internaltips'
 
-    id = Int(primary=True)
+    id = Int(primary=True, default=AutoReload)
 
     fields = Pickle()
     pertinence_counter = Int()
@@ -48,7 +49,6 @@ class InternalTip(TXModel):
     download_limit = Int()
 
     mark = Unicode()
-        # TODO ENUM: new, first, second
 
     receivers = Pickle()
 
@@ -57,43 +57,64 @@ class InternalTip(TXModel):
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
 
-    # called by a transact: submission.complete_submission
-    def initialize(self, submission):
+    _marker = [ u'new', u'first', u'second' ]
+
+    @transact
+    def new(self, submission_dict):
         """
-        initialized an internalTip having the context
+        initialize an internalTip form a recently finalized Submission
         @return: none
         """
+        store = self.getStore()
+
         self.last_activity = gltime.utcDateNow()
         self.creation_date = gltime.utcDateNow()
 
-        self.context = submission.context
-        self.context_gus = submission.context_gus
+        # _import_dict do not exists because InternalTip has not update()
+        try:
+            self.fields = submission_dict['wb_fields']
+            self.files = submission_dict['files']
+            self.context_gus = submission_dict['context_gus']
 
-        # those four can be referenced thru self.context.
-        self.escalation_threshold = submission.context.escalation_threshold
-        self.access_limit = submission.context.tip_max_access
-        self.download_limit = submission.context.file_max_download
+            self.receivers = submission_dict['receivers']
+            # the receivers arrive from the handler *correctly* checked with
+            # context settings, and eventually modified by handler.
 
-        # TODO XXX review CHECK
-        # remind: files has not yet been referenced to InternalTip
-        self.files = submission.files
-        # need operations in File.internaltip_id File.internaltip
-        # TODO XXX review CHECK
+        except KeyError, e:
+            raise InvalidInputFormat("InternalTip initialization failed (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("InternalTip initialization failed (wrong %s)" % e)
 
-        self.expiration_date = submission.expiration_time
-        self.fields = submission.fields
+        # Align the References
+        self.context = store.find(Context, Context.context_gus == self.context_gus).one()
+
+        # these value are copied from self.context, and are the only of internaltip
+        # that can be changed (by the admin them using update_inner_values() )
+        self.escalation_threshold = self.context.escalation_threshold
+        self.access_limit = self.context.tip_max_access
+        self.download_limit = self.context.file_max_download
+
+        self.expiration_date = gltime.utcFutureDate(hours=(self.context.tip_timetolive * 24))
+        # self.expiration_date = gltime.utcFutureDate(self.context.tip_timetolive)
+        # TODO issue #36: https://github.com/globaleaks/GLBackend/issues/36
+
+        # Initialization values
         self.pertinence_counter = 0
         self.mark = u'new'
 
-        # receivers list it's copied in submission.complete_submission
-        # because can, optionally, having someone added/removed by
-        # context rules or so on. Just, it's an operation that is much
-        # better keep separated from agnostic submission->tip copy.
-        self.receivers = []
+        store.add(self)
+        return self._description_dict()
+
+
+    # And "update" ? NO! no one can update an InternalTip - NEVER!!1!
+    # http://i61.photobucket.com/albums/h63/freecodesource/funny/pictures/funny_signs_6.jpg
+
 
     @transact
     def change_inner_value(self, id, escalation=None, accesslimit=None, downloadlimit=None):
         """
+        This function is called by admin, whenever want update a value in the
+
         @param id: Target InternalTip
         @param escalation: new level of escalation threshold
         @param accesslimit: new amount of access limit
@@ -117,15 +138,13 @@ class InternalTip(TXModel):
     @transact
     def get_itips_by_maker(self, marker, escalated):
         """
-        @escalated: a bool, checked only when marker is u'first'.
+        @escalated: a bool, checked only when marker is u'first', verify if the internaltip
+            pertinence value has reach the context expected threshold
         @return: all the internaltips matching with the requested
             marked, between this list of option:
-        # marker_avail = [ u'new', u'first', u'second' ]
         """
-
         store = self.getStore()
 
-        # marker_avail = [ u'new', u'first', u'second' ]
         if marker == u'new':
             req_it = store.find(InternalTip, InternalTip.mark == u'new')
         elif marker == u'first' and escalated:
@@ -152,6 +171,9 @@ class InternalTip(TXModel):
         @return: None
         """
         store = self.getStore()
+
+        if newmark not in self._marker:
+            raise NotImplemented
 
         try:
             requested_t = store.find(InternalTip, InternalTip.id == int(subject_id)).one()
@@ -244,12 +266,14 @@ class InternalTip(TXModel):
 
         return receivers_desc
 
+
     @transact
     def get_single(self, internaltip_id):
 
         store = self.getStore()
         selected = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
         return selected._description_dict()
+
 
     @transact
     def get_all(self):
