@@ -13,7 +13,8 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import HTTPError, asynchronous
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils import log
-from globaleaks import config
+from globaleaks.config import config
+from globaleaks.models.submission import Submission
 from globaleaks.models.externaltip import File
 from globaleaks.models.submission import Submission
 from globaleaks.rest.errors import SubmissionGusNotFound, SubmissionConcluded, InvalidInputFormat

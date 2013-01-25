@@ -9,7 +9,7 @@
 
 from cyclone.web import StaticFileHandler
 
-from globaleaks import config
+from globaleaks.config import config
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug
 from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, profileGUS, submissionGUS
 

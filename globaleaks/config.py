@@ -19,6 +19,8 @@ import sys
 #Storm DB dump:
 debug(False, sys.stdout)
 
+from globaleaks.utils.singleton import Singleton
+
 class ConfigError(Exception):
     pass
 
@@ -42,34 +44,47 @@ def get_glclient_path():
 
     return path
 
-def get_db_file():
+def get_db_file(filename=None):
     root = get_root_path()
     db_dir = os.path.join(root, '_gldata')
     if not os.path.isdir(db_dir):
         os.mkdir(db_dir)
-    db_file = os.path.join(db_dir, 'glbackend.db')
+    db_file = os.path.join(db_dir, filename)
     return db_file
 
-main = OD()
-advanced = OD()
+class Config(object):
+    __metaclass__ = Singleton
 
-advanced.debug = True
+    def __init__(self, database_file=None):
+        if not self.instance:
+            print "Initializing Config with saved arguments"
+        else:
+            print "Reconfiguring Config instance"
 
-main.glclient_path = get_glclient_path()
+        self.main = OD()
+        self.advanced = OD()
 
-if advanced.debug:
-    print "Serving GLClient from %s" % main.glclient_path
+        self.advanced.debug = True
 
-# This is the zstorm store used for transactions
-main.database_uri = 'sqlite:'+get_db_file()
+        self.main.glclient_path = get_glclient_path()
 
-main.store = ZStorm()
-main.store.set_default_uri('main_store', main.database_uri)
+        if self.advanced.debug:
+            print "Serving GLClient from %s" % self.main.glclient_path
 
-advanced.db_thread_pool_size = 10
-advanced.scheduler_thread_pool_size = 10
+        # This is the zstorm store used for transactions
+        if database_file:
+            self.main.database_uri = 'sqlite:'+database_file
+        else:
+            self.main.database_uri = 'sqlite:'+get_db_file('glbackend.db')
 
-advanced.data_dir = os.path.join(get_root_path(), '_gldata')
-advanced.submissions_dir = os.path.join(advanced.data_dir, 'submissions')
-advanced.delivery_dir = os.path.join(advanced.data_dir, 'delivery')
+        self.main.zstorm = ZStorm()
+        self.main.zstorm.set_default_uri('main_store', self.main.database_uri)
 
+        self.advanced.db_thread_pool_size = 10
+        self.advanced.scheduler_thread_pool_size = 10
+
+        self.advanced.data_dir = os.path.join(get_root_path(), '_gldata')
+        self.advanced.submissions_dir = os.path.join(self.advanced.data_dir, 'submissions')
+        self.advanced.delivery_dir = os.path.join(self.advanced.data_dir, 'delivery')
+
+config = Config()

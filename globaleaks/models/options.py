@@ -35,12 +35,12 @@ class PluginProfiles(TXModel):
     """
     __storm_table__ = 'pluginprofiles'
 
+    profile_gus = Unicode(primary=True)
+
     # These fields are assigned at creation time and can't be changed:
     plugin_type = Unicode()
     plugin_name = Unicode()
     plugin_description = Unicode()
-
-    profile_gus = Unicode(primary=True)
 
     # admin_fields contain a copy of the Plugins requested fields and type
     admin_fields = Pickle()
@@ -246,7 +246,7 @@ class ReceiverConfs(TXModel):
     """
 
     __storm_table__ = 'receiverconfs'
-    id = Int(primary=True)
+    id = Int(primary=True, default=AutoReload)
 
     creator_receiver = Unicode()
 
