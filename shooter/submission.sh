@@ -35,9 +35,17 @@ dt "1" "D2 DELETE task alljobs" "Disabling all the scheduled jobs"
 dt "2" "D1 GET dump contexts print-context_gus" "dumping context_gus available"
 context_list=$ret
 
+dt "2" "D1 GET dump receivers print-receiver_gus" "dumping receivers_gus available"
+receivers_list=$ret
+
+receiver_option=""
+for r in $receivers_list; do
+    receiver_option=`echo "\"$r\",$receiver_option"`
+done
+r_ready=`echo $receiver_option | sed -es/,$//`
+
 dt "3" "D1 GET dump itip print-internaltips_elements" "dumping number of internaltips, before the tests"
 beforecount=$ret
-
 
 cnt=0
 for context_gus in $context_list; do
@@ -50,7 +58,7 @@ for context_gus in $context_list; do
     check=$(($cnt%2))
 
     if [ $check -eq 0 ]; then
-        dt "\t5+" "U3 PUT cid $context_gus sid $submission_gus raw \"\" print-receipt" "completing submission and getting receipt"
+        dt "\t5+" "U3 PUT cid $context_gus sid $submission_gus raw $r_ready print-receipt" "completing submission and getting receipt"
         receipt=$ret
     else
         dt "\t5-" "U3 DELETE sid $submission_gus" "deleting submission"

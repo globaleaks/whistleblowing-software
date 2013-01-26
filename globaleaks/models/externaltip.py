@@ -57,10 +57,10 @@ class ReceiverTip(TXModel):
         store = self.getStore()
 
         try:
-            self.receiver_gus = receiver_dict['receiver_gus']
+            self.receiver_gus = unicode(receiver_dict['receiver_gus'])
             self.receiver = store.find(Receiver, Receiver.receiver_gus == unicode(self.receiver_gus) ).one()
 
-            self.internaltip_id = itip_dict['internaltip_id']
+            self.internaltip_id = int(itip_dict['internaltip_id'])
             self.internaltip = store.find(InternalTip, InternalTip.id == int(self.internaltip_id)).one()
 
             self.last_access = None
@@ -73,17 +73,20 @@ class ReceiverTip(TXModel):
 
         except KeyError, e:
             # The world will badly end, if this happen in non-tes
-            raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad key %s", e)
+            raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad key %s" % e)
         except TypeError, e:
             # The world will badly end, if this happen in non-tes
-            raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad type %s", e)
+            raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad type %s" % e)
 
         # XXX App log
         store.add(self)
+        return self._description_dict()
 
+    # -------------------
+    # ReceiverTip has not:
     # update
     # _import_dict
-    # not used in ReceiverTip
+    # -------------------
 
     @transact
     def update_notification_date(self, tip_gus):
@@ -95,7 +98,6 @@ class ReceiverTip(TXModel):
 
         return requested_t._description_dict()
 
-    # XXX this would be moved in the new 'task queue'
     @transact
     def flip_mark(self, tip_gus, newmark):
 
@@ -123,9 +125,6 @@ class ReceiverTip(TXModel):
             retVal.append(single_rt._description_dict())
 
         return retVal
-
-    # Removed - unused, right ?
-    # def receivertip_get_single(self, tip_gus):
 
     @transact
     def get_single(self, tip_gus):

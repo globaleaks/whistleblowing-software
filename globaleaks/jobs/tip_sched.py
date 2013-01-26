@@ -11,6 +11,8 @@ from datetime import datetime
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.externaltip import ReceiverTip, Comment
+from globaleaks.models.receiver import Receiver
+from globaleaks.rest.errors import InvalidInputFormat
 
 __all__ = ['APSTip']
 
@@ -34,6 +36,7 @@ class APSTip(GLJob):
 
         internaltip_iface = InternalTip()
         receivertip_iface = ReceiverTip()
+        receiver_iface = Receiver()
 
         internal_tip_list = yield internaltip_iface.get_itips_by_maker(u'new', False)
 
@@ -48,39 +51,41 @@ class APSTip(GLJob):
 
             for receiver_gus in internaltip_desc['receivers']:
 
-                receiver_desc = yield receivertip_iface.get_single(receiver_gus)
+                receiver_desc = yield receiver_iface.get_single(receiver_gus)
 
                 # check if the Receiver Tier is the first
                 if int(receiver_desc['receiver_level']) != 1:
                     continue
 
                 receivertip_desc = yield receivertip_iface.new(internaltip_desc, receiver_desc)
-                print "Created rTip", receiver_desc['tip_gus'], "for", receiver_desc['receiver_name']
+                print "Created rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name']
 
             try:
                 # switch the InternalTip.mark for the tier supplied
-                yield internaltip_iface.flip_mark(internaltip_desc['internaltip_id'], u'first')
+                yield internaltip_iface.flip_mark(internaltip_desc['internaltip_id'], internaltip_iface._marker[1])
             except:
                 # ErrorTheWorldWillEndSoon("Goodbye and thanks for all the fish")
                 print "Internal error"
                 raise
 
 
+        # Escalation is not working at the moment, may be well engineered the function
+        # before, permitting various layer of receivers.
+        #
         # loops over the InternalTip and checks the escalation threshold
         # It may require the creation of second-step Tips
-        escalated_itip_list = yield internaltip_iface.get_itips_by_maker(u'first', True)
+        escalated_itip_list = yield internaltip_iface.get_itips_by_maker(internaltip_iface._marker[1], True)
 
         if len(escalated_itip_list):
             log.debug("TipSched: %d Tip are escalated" % len(escalated_itip_list) )
 
-        # This event would be notified as system Comment
+        # This event has to be notified as system Comment
         comment_iface = Comment()
 
         for itip in escalated_itip_list:
             itip_id = int(itip['internaltip_id'])
 
             yield comment_iface.add_comment(itip_id, u"Escalation threshold has been reached", u'system')
-            receivertip_created = yield receivertip_iface.create_receiver_tips(itip_id, 2)
-            yield internaltip_iface.flip_mark(itip_id, u'second')
-
+            # XXX missing part new
+            yield internaltip_iface.flip_mark(itip_id, internaltip_iface._marker[2])
             log.debug("TipSched: escalated %d ReceiverTip for the iTip %d" % (receivertip_created, itip_id))
