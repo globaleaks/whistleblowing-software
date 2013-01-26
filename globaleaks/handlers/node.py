@@ -36,7 +36,7 @@ class InfoCollection(BaseHandler):
 
         try:
             nodeinfo = Node()
-            node_description_dicts = yield nodeinfo.get_public_info()
+            node_description_dicts = yield nodeinfo.get()
 
             self.write(node_description_dicts)
 

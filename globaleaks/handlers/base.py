@@ -50,7 +50,7 @@ class BaseHandler(RequestHandler):
         method may not be used.
         """
 
-        # print "Just got %s" % self.request.body
+        print "Just got %s" % self.request.body
 
         if self.request.method.lower() == 'post':
             try:

@@ -100,7 +100,7 @@ class InternalTip(TXModel):
 
         # Initialization values
         self.pertinence_counter = 0
-        self.mark = u'new'
+        self.mark = self._marker[0] # new
 
         store.add(self)
         return self._description_dict()
@@ -145,14 +145,14 @@ class InternalTip(TXModel):
         """
         store = self.getStore()
 
-        if marker == u'new':
-            req_it = store.find(InternalTip, InternalTip.mark == u'new')
-        elif marker == u'first' and escalated:
-            req_it = store.find(InternalTip, (InternalTip.mark == u'first', InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
-        elif marker == u'first' and not escalated:
-            req_it = store.find(InternalTip, InternalTip.mark == u'first')
-        elif marker == u'second':
-            req_it = store.find(InternalTip, InternalTip.mark == u'second')
+        if marker == self._marker[0]:
+            req_it = store.find(InternalTip, InternalTip.mark == self._marker[0])
+        elif marker == self._marker[1] and escalated: 
+            req_it = store.find(InternalTip, (InternalTip.mark == self._marker[1], InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
+        elif marker == self._marker[1] and not escalated:
+            req_it = store.find(InternalTip, InternalTip.mark == self._marker[1])
+        elif marker == self._marker[2]:
+            req_it = store.find(InternalTip, InternalTip.mark == self._marker[2])
         else:
             raise NotImplemented
 
@@ -304,7 +304,7 @@ class InternalTip(TXModel):
             'pertinence' : unicode(self.pertinence_counter),
             'escalation_threshold' : unicode(self.escalation_threshold),
             'files' : dict(self.files) if self.files else {},
-            'receiver_map' : list(self.receivers) if self.receivers else []
+            'receivers' : list(self.receivers) if self.receivers else []
         }
         return dict(description_dict)
 

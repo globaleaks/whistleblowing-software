@@ -46,7 +46,7 @@ class NodeInstance(BaseHandler):
 
         try:
             node_info = Node()
-            node_description_dicts = yield node_info.get_admin_info()
+            node_description_dicts = yield node_info.get()
 
             self.set_status(200)
             self.write(node_description_dicts)
@@ -74,7 +74,7 @@ class NodeInstance(BaseHandler):
 
             node_info = Node()
             yield node_info.configure_node(request)
-            node_description_dicts = yield node_info.get_admin_info()
+            node_description_dicts = yield node_info.get()
 
             self.set_status(201) # Created
             self.write(node_description_dicts)

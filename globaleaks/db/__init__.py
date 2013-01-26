@@ -27,13 +27,13 @@ def createTables():
     for model in [ Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
                     Submission, Comment, File, PluginProfiles, ReceiverConfs ]:
 
-        tables.createTable(model)
+        yield tables.createTable(model)
 
 def initializeNode():
     """
-    @return: True | False
     This function is called only one time in a node life, and initialize
     the table. the configure_node run edit of this row (id = 1)
+    This is not a @transact but is a white fly for this reason.
     """
     store = config.main.zstorm.get('main_store')
 
@@ -44,8 +44,7 @@ def initializeNode():
     onlyNode.hidden_service = u"Please, set me: hidden service"
     onlyNode.public_site = u"Please, set me: public site"
     onlyNode.email = u"email@dumnmy.net"
-    onlyNode.private_stats_update_time = 30 # minutes
-    onlyNode.public_stats_update_time = 120 # minutes
+    onlyNode.stats_update_time = 2 # hours
     onlyNode.languages = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" }]
 
     store.add(onlyNode)
