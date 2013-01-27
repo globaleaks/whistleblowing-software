@@ -7,6 +7,8 @@
 
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
+from storm.twisted.transact import transact
+
 import json
 
 from globaleaks.handlers.base import BaseHandler
@@ -16,7 +18,6 @@ from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.context import Context
 from globaleaks.models.node import Node
-from globaleaks.models.submission import Submission
 
 from globaleaks.utils import log
 from globaleaks.plugins.manager import PluginManager
@@ -86,6 +87,56 @@ class NodeInstance(BaseHandler):
 
         self.finish()
 
+###### below start the test ########
+
+from storm.locals import Storm
+class TestStormWrapper():
+    """
+    Initially I've put get_context_list (replacement of ContextsCollection.get)
+    and create_new_context (replacement of ContextsCollection.post) inside the
+    BaseHandler classes. The hanlder would call those methods with:
+        yield self.get_context_list()
+
+    But, the error returned was:
+    INFO:twisted:[Failure instance: Traceback: <type 'exceptions.AttributeError'>: 'ContextsCollection' object has no attribute 'transactor'
+
+    ... only a Storm class can be with @transact
+    """
+
+    from globaleaks import main
+
+    transactor = main.transactor
+
+    def openStore(self):
+        from globaleaks.config import config
+        return config.main.zstorm.get('main_store')
+
+    @transact
+    def get_context_list(self):
+
+        context_iface = Context(self.openStore())
+        all_contexts = context_iface.get_all()
+
+        return (all_contexts, 200)
+
+    @transact
+    def create_new_context(self, request):
+
+        context_iface = Context(self.openStore())
+        context_description_dict = context_iface.new(request)
+        new_context_gus = context_description_dict['context_gus']
+
+        # 'receivers' it's a relationship between two tables, and is managed
+        # with a separate method of new()
+        receiver_iface = Receiver(self.openStore())
+        context_iface.context_align(new_context_gus, request['receivers'])
+        receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
+
+        context_description = context_iface.get_single(new_context_gus)
+
+        return (context_description, 201) # Created
+
+
 
 class ContextsCollection(BaseHandler):
     """
@@ -102,12 +153,20 @@ class ContextsCollection(BaseHandler):
         Errors: None
         """
 
-        context_iface = Context()
-        all_contexts = yield context_iface.get_all()
+        try:
+            TSW = TestStormWrapper()
+            (output, http_code) = yield TSW.get_context_list()
 
-        self.set_status(200)
-        # TODO output filter would include JSON inside of the method
-        self.write(json.dumps(all_contexts))
+            # validateMessage() output!!
+
+            self.write(json.dumps(output))
+            self.set_status(http_code)
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
         self.finish()
 
 
@@ -122,21 +181,13 @@ class ContextsCollection(BaseHandler):
 
         try:
             request = validateMessage(self.request.body, requests.adminContextDesc)
+            TSW = TestStormWrapper()
 
-            context_iface = Context()
-            context_description_dict = yield context_iface.new(request)
-            new_context_gus = context_description_dict['context_gus']
+            (output, http_code) = yield TSW.create_new_context(request)
 
-            # 'receivers' it's a relationship between two tables, and is managed 
-            # with a separate method of new()
-            receiver_iface = Receiver()
-            yield context_iface.context_align(new_context_gus, request['receivers'])
-            yield receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
-
-            context_description = yield context_iface.get_single(new_context_gus)
-
-            self.set_status(201) # Created
-            self.write(context_description)
+            # validateMessage() output!!
+            self.write(output)
+            self.set_status(http_code)
 
         except InvalidInputFormat, e:
 
@@ -160,6 +211,8 @@ class ContextsCollection(BaseHandler):
 
         self.finish()
 
+###### below finish the test ########
+
 
 class ContextInstance(BaseHandler):
     """
@@ -177,7 +230,7 @@ class ContextInstance(BaseHandler):
         """
 
         try:
-            # TODO REMIND XXX - context_gus validation - InvalidInputFormat
+            # validateParameter
             context_iface = Context()
             context_description = yield context_iface.get_single(context_gus)
 

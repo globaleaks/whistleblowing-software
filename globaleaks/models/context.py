@@ -6,7 +6,7 @@
 # Implementation of the Storm DB side of context table and ORM
 
 from storm.exceptions import NotOneError
-from storm.twisted.transact import transact
+
 
 from storm.locals import Int, Pickle
 from storm.locals import Unicode, Bool, DateTime
@@ -55,15 +55,15 @@ class Context(TXModel):
     inputfilter_chain = Pickle()
     # to be implemented in REST / dict
 
+    def __init__(self, theStore):
+        self.store = theStore
 
-    @transact
     def new(self, context_dict):
         """
         @param context_dict: a dictionary containing the expected field of a context,
                 is called and define as contextDescriptionDict
         @return: context_gus, the universally unique identifier of the context
         """
-        store = self.getStore()
 
         self.context_gus = idops.random_context_gus()
         self.node_id = 1
@@ -80,13 +80,13 @@ class Context(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("Context Import failed (wrong %s)" % e)
 
-        store.add(self)
+        self.store.add(self)
         log.msg("Created context %s at the %s" % (self.name, self.creation_date) )
 
         return self._description_dict()
 
 
-    @transact
+
     def update(self, context_gus, context_dict):
         """
         @param context_gus: the universal unique identifier
@@ -95,10 +95,9 @@ class Context(TXModel):
             by handlers
         @return: None or Exception on error
         """
-        store = self.getStore()
 
         try:
-            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
+            requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             raise ContextGusNotFound
 
@@ -119,7 +118,7 @@ class Context(TXModel):
 
         return requested_c._description_dict()
 
-    @transact
+
     def delete_context(self, context_gus):
         """
         @param context_gus: the universal unique identifier of the context
@@ -134,29 +133,27 @@ class Context(TXModel):
 
         # TODO - delete all the stats associated with the context
 
-        store = self.getStore()
 
         try:
-            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
+            requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             raise ContextGusNotFound
         if requested_c is None:
             raise ContextGusNotFound
 
-        store.remove(requested_c)
+        self.store.remove(requested_c)
         # TODO XXX Applicative log
 
 
-    @transact
+
     def get_single(self, context_gus):
         """
         @param context_gus: UUID of the contexts
         @return: the contextDescriptionDict requested, or an exception if do not exists
         """
-        store = self.getStore()
 
         try:
-            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
+            requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             raise ContextGusNotFound
         if requested_c is None:
@@ -165,14 +162,13 @@ class Context(TXModel):
         return requested_c._description_dict()
 
 
-    @transact
+
     def get_all(self):
         """
         @return: an array containing all contextDescriptionDict
         """
-        store = self.getStore()
 
-        result = store.find(Context)
+        result = self.store.find(Context)
 
         ret_contexts_dicts = []
         for requested_c in result:
@@ -181,16 +177,15 @@ class Context(TXModel):
         return ret_contexts_dicts
 
 
-    @transact
+
     def get_contexts_by_receiver(self, receiver_gus):
         """
         @param receiver_gus: list of context associated with receiver_gus,
             may return an empty list if receiver_gus do not exist.
         @return:
         """
-        store = self.getStore()
 
-        result = store.find(Context)
+        result = self.store.find(Context)
 
         ret_contexts_dicts = []
         for requested_c in result:
@@ -200,13 +195,12 @@ class Context(TXModel):
         return ret_contexts_dicts
 
 
-    @transact
+
     def count(self):
         """
         @return: the number of contexts. Not used at the moment
         """
-        store = self.getStore()
-        contextnum = store.find(Context).count()
+        contextnum = self.store.find(Context).count()
         return contextnum
 
 
@@ -217,10 +211,9 @@ class Context(TXModel):
         @return: True if exist, False if not, do not raise exception.
         """
 
-        store = self.getStore()
 
         try:
-            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
+            requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
 
             if requested_c is None:
                 retval = False
@@ -236,7 +229,7 @@ class Context(TXModel):
     # TODO:
     # operation like that and tags, need to be moved in logic in the handler,
     # and in the model just keep the DB storing, timing update, etc
-    @transact
+
     def update_languages(self, context_gus):
         """
         language_list = []
@@ -247,8 +240,7 @@ class Context(TXModel):
                 if not language in language_list:
                     language_list.append(language)
 
-        store = self.getStore()
-        requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
+        requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
         log.debug("[L] before language update, context", context_gus, "was", requested_c.languages_supported, "and after got", language_list)
 
         requested_c.languages_supported = language_list
@@ -257,19 +249,18 @@ class Context(TXModel):
         raise NotImplemented
 
 
-    @transact
+
     def full_context_align(self, receiver_gus, un_context_selected):
         """
         Called by Receiver handlers (PUT|POST), roll in all the context and delete|add|skip
         with the presence of receiver_gus
         """
-        store = self.getStore()
 
         context_selected = []
         for c in un_context_selected:
             context_selected.append(str(c))
 
-        presents_context =  store.find(Context)
+        presents_context =  self.store.find(Context)
 
         debug_counter = 0
         for c in presents_context:
@@ -290,7 +281,7 @@ class Context(TXModel):
                   ( receiver_gus, str(context_selected), debug_counter ) )
 
 
-    @transact
+
     def context_align(self, context_gus, receiver_selected):
         """
         Called by Context handler, (PUT|POST), just take the context and update the
@@ -300,10 +291,9 @@ class Context(TXModel):
         from globaleaks.models.receiver import Receiver
         from globaleaks.rest.errors import ReceiverGusNotFound
 
-        store = self.getStore()
 
         try:
-            requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
+            requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
         except NotOneError:
             raise ContextGusNotFound
         if requested_c is None:
@@ -313,7 +303,7 @@ class Context(TXModel):
         for r in receiver_selected:
 
             try:
-                selected = store.find(Receiver, Receiver.receiver_gus == unicode(r) ).one()
+                selected = self.store.find(Receiver, Receiver.receiver_gus == unicode(r) ).one()
             except NotOneError:
                 raise ReceiverGusNotFound
             if selected is None:
@@ -326,16 +316,15 @@ class Context(TXModel):
                   ( context_gus, str(receiver_selected) ) )
 
 
-    @transact
+
     def align_receiver_delete(self, context_gus_list, removed_receiver_gus):
 
-        store = self.getStore()
 
         aligned_counter = 0
         for context_gus in context_gus_list:
 
             try:
-                requested_c = store.find(Context, Context.context_gus == unicode(context_gus)).one()
+                requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
             except NotOneError:
                 raise ContextGusNotFound
             if requested_c is None:

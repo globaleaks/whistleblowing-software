@@ -6,7 +6,6 @@
 # Storm DB implementation of the receiver table and ORM
 
 from storm.exceptions import NotOneError
-from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, DateTime, Unicode, Bool
 
 from globaleaks.models.base import TXModel
@@ -53,13 +52,15 @@ class Receiver(TXModel):
     # list of context_gus which receiver is associated
     contexts = Pickle()
 
-    @transact
+    def __init__(self, theStore):
+        self.store = theStore
+
+
     def count(self):
-        store = self.getStore()
-        receiver_count = store.find(Receiver).count()
+        receiver_count = self.store.find(Receiver).count()
         return receiver_count
 
-    @transact
+
     def new(self, receiver_dict):
         """
         @receiver_dict: here is supposed to be already sanitized
@@ -70,7 +71,6 @@ class Receiver(TXModel):
         transparency baptism: here you get your GlobaLeaks Unique String, sir!
         """
 
-        store = self.getStore()
 
         try:
             self._import_dict(receiver_dict)
@@ -84,12 +84,12 @@ class Receiver(TXModel):
         self.creation_date = gltime.utcTimeNow()
         self.update_date = gltime.utcTimeNow()
 
-        store.add(self)
+        self.store.add(self)
 
         return self._description_dict()
 
 
-    @transact
+
     def update(self, receiver_gus, receiver_dict):
         """
         This is the method called by the admin for change receiver preferences.
@@ -97,10 +97,9 @@ class Receiver(TXModel):
         the dict need to be already validated
         """
 
-        store = self.getStore()
 
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+            requested_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             raise ReceiverGusNotFound
         if requested_r is None:
@@ -117,15 +116,14 @@ class Receiver(TXModel):
         return requested_r._description_dict()
 
 
-    @transact
+
     def self_update(self, receiver_gus, receiver_dict):
         """
         This is the method called by a receiver for change/set their preference
         """
-        store = self.getStore()
 
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+            requested_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             raise ReceiverGusNotFound
         if requested_r is None:
@@ -146,15 +144,14 @@ class Receiver(TXModel):
         return requested_r._description_dict()
 
 
-    @transact
+
     def get_single(self, receiver_gus):
         """
         @return the dictionary describing the requested receiver, or an exception if do not exists.
         """
-        store = self.getStore()
 
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+            requested_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             raise ReceiverGusNotFound
         if requested_r is None:
@@ -163,14 +160,13 @@ class Receiver(TXModel):
         return requested_r._description_dict()
 
 
-    @transact
+
     def get_all(self):
         """
         @return: a list of all the receiver in the node.
         """
-        store = self.getStore()
 
-        all_r = store.find(Receiver)
+        all_r = self.store.find(Receiver)
 
         retVal = []
         for rcvr in all_r:
@@ -179,7 +175,7 @@ class Receiver(TXModel):
         return retVal
 
 
-    @transact
+
     def get_receivers_by_context(self, context_gus):
         """
         @param context_gus: an unchecked context_gus string
@@ -187,9 +183,8 @@ class Receiver(TXModel):
             receivers assigned to the requested context_gus.
             Invalid context_gus would return 0 receiver assigned.
         """
-        store = self.getStore()
 
-        all_r = store.find(Receiver)
+        all_r = self.store.find(Receiver)
 
         retVal = []
         for rcvr in all_r:
@@ -202,19 +197,18 @@ class Receiver(TXModel):
         return retVal
 
 
-    @transact
+
     def full_receiver_align(self, context_gus, un_receiver_selected):
         """
         Called by Context handlers (PUT|POST), roll in all the receiver and delete|add|skip
         with the presence of context_gus
         """
-        store = self.getStore()
 
         receiver_selected = []
         for r in un_receiver_selected:
             receiver_selected.append(str(r))
 
-        presents_receiver = store.find(Receiver)
+        presents_receiver = self.store.find(Receiver)
 
         debug_counter = 0
         for r in presents_receiver:
@@ -237,7 +231,7 @@ class Receiver(TXModel):
                   ( context_gus, str(receiver_selected), debug_counter ) )
 
 
-    @transact
+
     def receiver_align(self, receiver_gus, context_selected):
         """
         Called by Receiver handler, (PUT|POST), just take the receiver and update the
@@ -246,10 +240,9 @@ class Receiver(TXModel):
         from globaleaks.models.context import Context
         from globaleaks.rest.errors import ContextGusNotFound
 
-        store = self.getStore()
 
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+            requested_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             raise ReceiverGusNotFound
         if requested_r is None:
@@ -259,7 +252,7 @@ class Receiver(TXModel):
         for c in context_selected:
 
             try:
-                selected = store.find(Context, Context.context_gus == unicode(c)).one()
+                selected = self.store.find(Context, Context.context_gus == unicode(c)).one()
             except NotOneError:
                 raise ContextGusNotFound
             if selected is None:
@@ -272,40 +265,38 @@ class Receiver(TXModel):
                   ( receiver_gus, str(context_selected) ) )
 
 
-    @transact
+
     def receiver_delete(self, receiver_gus):
         """
         Delete a receiver, or raise an exception if do not exist. The hanlder calling
         this method would have provided to remove the ReceiverTip (if exits, and if needed)
         """
-        store = self.getStore()
 
         try:
-            requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+            requested_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:
             raise ReceiverGusNotFound
         if requested_r is None:
             raise ReceiverGusNotFound
 
         # TODO XXX Applicative log
-        store.remove(requested_r)
+        self.store.remove(requested_r)
 
 
-    @transact
+
     def align_context_delete(self, receivers_gus_list, removed_context_gus):
         """
         @param receivers_gus_list: a list of receiver_gus target of the ops
         @param context_gus: context being removed
         @return: None
         """
-        store = self.getStore()
 
         aligned_counter = 0
 
         for receiver_gus in receivers_gus_list:
 
             try:
-                requested_r = store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
+                requested_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
             except NotOneError:
                 raise ReceiverGusNotFound
             if requested_r is None:
@@ -341,7 +332,7 @@ class Receiver(TXModel):
 
         self.receiver_level = source_rd['receiver_level']
 
-    # this is non @transact method used when is required to dump the objects
+    # this is non  method used when is required to dump the objects
     # in a dict. The returned values should be removed using .pop(),
     def _description_dict(self):
 
