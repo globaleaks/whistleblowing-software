@@ -5,8 +5,9 @@
   "dependencies": {},
   "devDependencies": {
     "jquery": "*",
-    "mocha":     "*",
+    "mocha": "*",
     "chai": "*",
-    "supertest": "*"
+    "supertest": "*",
+    "should": "*"
   }
 }
