@@ -1,7 +1,12 @@
 {
-  "author": "",
-  "name": "",
-  "version": "0.0.0",
+  "author": "Random GlobaLeaks Developers",
+  "name": "GLClient",
+  "version": "0.0.1",
   "dependencies": {},
-  "devDependencies": {}
+  "devDependencies": {
+    "jquery": "*",
+    "mocha":     "*",
+    "chai": "*",
+    "superagent": "*"
+  }
 }
