@@ -7,6 +7,6 @@
     "jquery": "*",
     "mocha":     "*",
     "chai": "*",
-    "superagent": "*"
+    "supertest": "*"
   }
 }
