@@ -12,12 +12,7 @@ from storm.twisted.transact import transact
 import json
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment, File
-from globaleaks.models.options import PluginProfiles, ReceiverConfs
-from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.receiver import Receiver
-from globaleaks.models.context import Context
-from globaleaks.models.node import Node
+from globaleaks.transactors.crudoperations import CrudOperations
 
 from globaleaks.utils import log
 from globaleaks.plugins.manager import PluginManager
@@ -87,56 +82,6 @@ class NodeInstance(BaseHandler):
 
         self.finish()
 
-###### below start the test ########
-
-from storm.locals import Storm
-class TestStormWrapper():
-    """
-    Initially I've put get_context_list (replacement of ContextsCollection.get)
-    and create_new_context (replacement of ContextsCollection.post) inside the
-    BaseHandler classes. The hanlder would call those methods with:
-        yield self.get_context_list()
-
-    But, the error returned was:
-    INFO:twisted:[Failure instance: Traceback: <type 'exceptions.AttributeError'>: 'ContextsCollection' object has no attribute 'transactor'
-
-    ... only a Storm class can be with @transact
-    """
-
-    from globaleaks import main
-
-    transactor = main.transactor
-
-    def openStore(self):
-        from globaleaks.config import config
-        return config.main.zstorm.get('main_store')
-
-    @transact
-    def get_context_list(self):
-
-        context_iface = Context(self.openStore())
-        all_contexts = context_iface.get_all()
-
-        return (all_contexts, 200)
-
-    @transact
-    def create_new_context(self, request):
-
-        context_iface = Context(self.openStore())
-        context_description_dict = context_iface.new(request)
-        new_context_gus = context_description_dict['context_gus']
-
-        # 'receivers' it's a relationship between two tables, and is managed
-        # with a separate method of new()
-        receiver_iface = Receiver(self.openStore())
-        context_iface.context_align(new_context_gus, request['receivers'])
-        receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
-
-        context_description = context_iface.get_single(new_context_gus)
-
-        return (context_description, 201) # Created
-
-
 
 class ContextsCollection(BaseHandler):
     """
@@ -154,8 +99,7 @@ class ContextsCollection(BaseHandler):
         """
 
         try:
-            TSW = TestStormWrapper()
-            (output, http_code) = yield TSW.get_context_list()
+            (output, http_code) = yield CrudOperations().get_context_list()
 
             # validateMessage() output!!
 
@@ -181,9 +125,8 @@ class ContextsCollection(BaseHandler):
 
         try:
             request = validateMessage(self.request.body, requests.adminContextDesc)
-            TSW = TestStormWrapper()
 
-            (output, http_code) = yield TSW.create_new_context(request)
+            (output, http_code) = yield CrudOperations().create_context(request)
 
             # validateMessage() output!!
             self.write(output)
@@ -211,8 +154,6 @@ class ContextsCollection(BaseHandler):
 
         self.finish()
 
-###### below finish the test ########
-
 
 class ContextInstance(BaseHandler):
     """
@@ -230,12 +171,13 @@ class ContextInstance(BaseHandler):
         """
 
         try:
-            # validateParameter
-            context_iface = Context()
-            context_description = yield context_iface.get_single(context_gus)
+            # validateParameter(context_gus, requests.contextGUS)
 
-            self.set_status(200)
-            self.write(context_description)
+            (output, http_code) = yield CrudOperations().get_context(context_gus)
+
+            # validateMessage() output!!
+            self.write(output)
+            self.set_status(http_code)
 
         except ContextGusNotFound, e:
 
@@ -254,21 +196,15 @@ class ContextInstance(BaseHandler):
         """
 
         try:
+            # validateParameter(context_gus, requests.contextGUS)
             request = validateMessage(self.request.body, requests.adminContextDesc)
 
-            context_iface = Context()
-            yield context_iface.update(context_gus, request)
+            (output, http_code) = yield CrudOperations().update_context(context_gus, request)
 
-            # 'receivers' it's a relationship between two tables, and is managed 
-            # with a separate method of new()
-            receiver_iface = Receiver()
-            yield context_iface.context_align(context_gus, request['receivers'])
-            yield receiver_iface.full_receiver_align(context_gus, request['receivers'])
+            # validateMessage() output!!
+            self.write(output)
+            self.set_status(http_code)
 
-            context_description = yield context_iface.get_single(context_gus)
-
-            self.set_status(200)
-            self.write(context_description)
 
         except InvalidInputFormat, e:
 
@@ -301,54 +237,13 @@ class ContextInstance(BaseHandler):
         Errors: InvalidInputFormat, ContextGusNotFound
         """
 
-        context_iface = Context()
-        receivertip_iface = ReceiverTip()
-        internaltip_iface = InternalTip()
-        whistlebtip_iface = WhistleblowerTip()
-        comment_iface = Comment()
-        receiver_iface = Receiver()
-        file_iface = File()
-
-        # This DELETE operation, its permanent, and remove all the reference
-        # a Context has within the system (in example: remove associated Tip,
-        # remove
-
         try:
+            # validateParameter(context_gus, requests.contextGUS)
+            (output, http_code) = yield CrudOperations().delete_context(context_gus)
 
-            context_desc = yield context_iface.get_single(context_gus)
-
-            tips_related_blocks = yield receivertip_iface.get_tips_by_context(context_gus)
-
-            print "Tip that need to be deleted, associated with the context",\
-                context_gus, ":", len(tips_related_blocks)
-
-            for tip_block in tips_related_blocks:
-
-                internaltip_id = tip_block.get('internaltip')['internaltip_id']
-
-                yield whistlebtip_iface.delete_access_by_itip(internaltip_id)
-                yield receivertip_iface.massive_delete(internaltip_id)
-                yield comment_iface.delete_comment_by_itip(internaltip_id)
-                yield file_iface.delete_file_by_itip(internaltip_id)
-
-                # and finally, delete the InternalTip
-                yield internaltip_iface.tip_delete(internaltip_id)
-
-
-            # (Just consistency check)
-            receivers_associated = yield receiver_iface.get_receivers_by_context(context_gus)
-            print "receiver associated by context POV:", len(receivers_associated),\
-                "receiver associated by context DB-field:", len(context_desc['receivers'])
-
-            # Align all the receiver associated to the context, that the context cease to exist
-            yield receiver_iface.align_context_delete(context_desc['receivers'], context_gus)
-
-            # TODO delete stats associated with context ?
-            # TODO delete profile associated with the context
-
-            # Finally, delete the context
-            yield context_iface.delete_context(context_gus)
-            self.set_status(200)
+            # validateMessage() output!!
+            self.write(output)
+            self.set_status(http_code)
 
         except ContextGusNotFound, e:
 
@@ -375,12 +270,12 @@ class ReceiversCollection(BaseHandler):
         Admin operation: return all the receiver present in the Node
         """
 
-        receiver_iface = Receiver()
-        all_receivers = yield receiver_iface.get_all()
+        (output, http_code) = yield CrudOperations().get_receiver_list()
+        # validateMessage() output!!
 
-        self.set_status(200)
-        # TODO output filter would include JSON inside of the method
-        self.write(json.dumps(all_receivers))
+        self.write(json.dumps(output))
+        self.set_status(http_code)
+
         self.finish()
 
 
@@ -398,21 +293,11 @@ class ReceiversCollection(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.adminReceiverDesc)
 
-            receiver_iface = Receiver()
+            (output, http_code) = yield CrudOperations().create_receiver(request)
 
-            new_receiver = yield receiver_iface.new(request)
-            new_receiver_gus = new_receiver['receiver_gus']
-
-            # 'contexts' it's a relationship between two tables, and is managed 
-            # with a separate method of new()
-            context_iface = Context()
-            yield receiver_iface.receiver_align(new_receiver_gus, request['contexts'])
-            yield context_iface.full_context_align(new_receiver_gus, request['contexts'])
-
-            new_receiver_desc = yield receiver_iface.get_single(new_receiver_gus)
-
-            self.set_status(201) # Created
-            self.write(new_receiver_desc)
+            # validateMessage() output!!
+            self.write(output)
+            self.set_status(http_code)
 
         except InvalidInputFormat, e:
 
@@ -460,13 +345,13 @@ class ReceiverInstance(BaseHandler):
         """
 
         try:
-            # TODO parameter validation - InvalidInputFormat
-            receiver_iface = Receiver()
+            # validateParameter(receiver_gus, requests.receiverGUS)
 
-            receiver_description = yield receiver_iface.get_single(receiver_gus)
+            (output, http_code) = yield CrudOperations().get_receiver(receiver_gus)
 
-            self.set_status(200)
-            self.write(receiver_description)
+            # validateMessage() output!!
+            self.write(output)
+            self.set_status(http_code)
 
         except ReceiverGusNotFound, e:
 
@@ -488,23 +373,14 @@ class ReceiverInstance(BaseHandler):
         """
 
         try:
-            # TODO parameter validation - InvalidInputFormat
+            # validateParameter(receiver_gus, requests.receiverGUS)
             request = validateMessage(self.request.body, requests.adminReceiverDesc)
 
-            receiver_iface = Receiver()
+            (output, http_code) = yield CrudOperations().update_receiver(receiver_gus, request)
 
-            yield receiver_iface.update(receiver_gus, request)
-
-            # 'contexts' it's a relationship between two tables, and is managed 
-            # with a separate method of new()
-            context_iface = Context()
-            yield receiver_iface.receiver_align(receiver_gus, request['contexts'])
-            yield context_iface.full_context_align(receiver_gus, request['contexts'])
-
-            receiver_description = yield receiver_iface.get_single(receiver_gus)
-
-            self.set_status(200)
-            self.write(receiver_description)
+            # validateMessage() output!!
+            self.write(output)
+            self.set_status(http_code)
 
         except InvalidInputFormat, e:
 
@@ -539,38 +415,13 @@ class ReceiverInstance(BaseHandler):
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
 
-        receiver_iface = Receiver()
-
         try:
-            # TODO parameter receiver_gus validation - InvalidInputFormat
-            receiver_desc = yield receiver_iface.get_single(receiver_gus)
+            # validateParameter(receiver_gus, requests.receiverGUS)
+            (output, http_code) = yield CrudOperations().delete_receiver(receiver_gus)
 
-            receivertip_iface = ReceiverTip()
-            # Remove Tip possessed by the receiver
-            related_tips = yield receivertip_iface.get_tips_by_receiver(receiver_gus)
-            for tip in related_tips:
-                yield receivertip_iface.personal_delete(tip['tip_gus'])
-            # Remind: the comment are kept, and the name is not referenced but stored
-            # in the comment entry.
-
-            context_iface = Context()
-
-            # TODO make an app log
-            contexts_associated = yield context_iface.get_contexts_by_receiver(receiver_gus)
-            print "context associated by receiver POV:", len(contexts_associated),\
-                "context associated by receiver-DB field:", len(receiver_desc['contexts'])
-
-            yield context_iface.align_receiver_delete(receiver_desc['contexts'], receiver_gus)
-
-            receiverconf_iface = ReceiverConfs()
-            # Delete all the receiver configuration associated TODO - App log an number of RCFGs
-            receivercfg_list = yield receiverconf_iface.get_confs_by_receiver(receiver_gus)
-            for rcfg in receivercfg_list:
-                yield receiverconf_iface.delete(rcfg['config_id'], receiver_gus)
-
-            # Finally delete the receiver
-            yield receiver_iface.receiver_delete(receiver_gus)
-            self.set_status(200)
+            # validateMessage() output!!
+            self.write(output)
+            self.set_status(http_code)
 
         except ReceiverGusNotFound, e:
 
