@@ -1,4 +1,3 @@
-from twisted.internet.defer import returnValue
 
 class MacroOperation():
 
@@ -10,6 +9,9 @@ class MacroOperation():
 
         from globaleaks.config import config
         return config.main.zstorm.get('main_store')
+
+    # TODO think to add "returnInfo" and collect logs
+    # after, the handler, would call the other store thread
 
     def returnData(self, data):
 
@@ -29,7 +31,7 @@ class MacroOperation():
         returnDict = { 'data' : self._data,
                        'code' : self._http }
 
-        returnValue(dict(returnDict))
+        return dict(returnDict)
 
 
 class LogOperation():

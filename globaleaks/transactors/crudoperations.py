@@ -45,7 +45,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(context_description)
         self.returnCode(201)
-        self.returnValues()
+        return self.returnValues()
 
 
     @transact
@@ -56,7 +56,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(context_description)
         self.returnCode(200)
-        self.returnValues()
+        return self.returnValues()
 
     @transact
     def update_context(self, context_gus, request):
@@ -76,7 +76,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(context_description)
         self.returnCode(200)
-        self.returnValues()
+        return self.returnValues()
 
     @transact
     def delete_context(self, context_gus):
@@ -138,7 +138,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(context_desc)
         self.returnCode(200)
-        self.returnValues()
+        return self.returnValues()
 
     @transact
     def get_receiver_list(self):
@@ -170,7 +170,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(new_receiver_desc)
         self.returnCode(201)
-        self.returnValues()
+        return self.returnValues()
 
     @transact
     def get_receiver(self, receiver_gus):
@@ -180,7 +180,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(receiver_description)
         self.returnCode(200)
-        self.returnValues()
+        return self.returnValues()
 
     @transact
     def update_receiver(self, receiver_gus, request):
@@ -201,7 +201,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(receiver_description)
         self.returnCode(200)
-        self.returnValues()
+        return self.returnValues()
 
     @transact
     def delete_receiver(self, receiver_gus):
@@ -222,7 +222,7 @@ class CrudOperations(MacroOperation):
         context_iface = Context(store)
 
         # Just an alignment check that need to be removed
-        contexts_associated = yield context_iface.get_contexts_by_receiver(receiver_gus)
+        contexts_associated = context_iface.get_contexts_by_receiver(receiver_gus)
         print "context associated by receiver POV:", len(contexts_associated),\
         "context associated by receiver-DB field:", len(receiver_desc['contexts'])
 
@@ -238,6 +238,26 @@ class CrudOperations(MacroOperation):
 
         self.returnData(receiver_desc)
         self.returnCode(200)
+        return self.returnValues()
+
+    @transact
+    def get_profile_list(self):
+
+        profile_iface = PluginProfiles(self.getStore())
+        all_profiles = profile_iface.get_all()
+
+        self.returnData(all_profiles)
+        self.returnCode(200)
         self.returnValues()
 
+    @transact
+    def create_profile(self, request):
+
+        profile_iface = PluginProfiles(self.getStore())
+
+        profile_description = profile_iface.new(request)
+
+        self.returnData(profile_description)
+        self.returnCode(201)
+        self.returnValues()
 
