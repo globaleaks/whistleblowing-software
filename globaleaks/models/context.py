@@ -58,6 +58,7 @@ class Context(TXModel):
     def __init__(self, theStore):
         self.store = theStore
 
+
     def new(self, context_dict):
         """
         @param context_dict: a dictionary containing the expected field of a context,
@@ -84,7 +85,6 @@ class Context(TXModel):
         log.msg("Created context %s at the %s" % (self.name, self.creation_date) )
 
         return self._description_dict()
-
 
 
     def update(self, context_gus, context_dict):
@@ -145,7 +145,6 @@ class Context(TXModel):
         # TODO XXX Applicative log
 
 
-
     def get_single(self, context_gus):
         """
         @param context_gus: UUID of the contexts
@@ -162,7 +161,6 @@ class Context(TXModel):
         return requested_c._description_dict()
 
 
-
     def get_all(self):
         """
         @return: an array containing all contextDescriptionDict
@@ -175,7 +173,6 @@ class Context(TXModel):
             ret_contexts_dicts.append( requested_c._description_dict() )
 
         return ret_contexts_dicts
-
 
 
     def get_contexts_by_receiver(self, receiver_gus):
@@ -193,7 +190,6 @@ class Context(TXModel):
                 ret_contexts_dicts.append( requested_c._description_dict() )
 
         return ret_contexts_dicts
-
 
 
     def count(self):
@@ -226,10 +222,7 @@ class Context(TXModel):
         return retval
 
 
-    # TODO:
-    # operation like that and tags, need to be moved in logic in the handler,
-    # and in the model just keep the DB storing, timing update, etc
-
+    # TODO -- need to be called after receiver creation/update/delete
     def update_languages(self, context_gus):
         """
         language_list = []
@@ -247,7 +240,6 @@ class Context(TXModel):
         requested_c.update_date = gltime.utcDateNow()
         """
         raise NotImplemented
-
 
 
     def full_context_align(self, receiver_gus, un_context_selected):
@@ -279,7 +271,6 @@ class Context(TXModel):
 
         log.debug("    %%%%   full_context_align in all contexts after %s has been set with %s: %d mods" %
                   ( receiver_gus, str(context_selected), debug_counter ) )
-
 
 
     def context_align(self, context_gus, receiver_selected):
@@ -316,7 +307,6 @@ class Context(TXModel):
                   ( context_gus, str(receiver_selected) ) )
 
 
-
     def align_receiver_delete(self, context_gus_list, removed_receiver_gus):
 
 
@@ -346,24 +336,23 @@ class Context(TXModel):
     def _description_dict(self):
 
         description_dict = {
-            "context_gus" : unicode(self.context_gus),
-            "name" : unicode(self.name),
-            "description" : unicode(self.description),
-            "selectable_receiver" : unicode(self.selectable_receiver),
-            "languages" : list(self.languages_supported) if self.languages_supported else [],
-            'tip_max_access' : int(self.tip_max_access),
-            'tip_timetolive' : int(self.tip_timetolive),
-            'file_max_download' : int(self.file_max_download),
-            'escalation_threshold' : int(self.escalation_threshold),
-            'fields': list(self.fields) if self.fields else [],
-            'receivers' : list(self.receivers) if self.receivers else []
+            "context_gus" : (self.context_gus),
+            "name" : (self.name),
+            "description" : (self.description),
+            "selectable_receiver" : (self.selectable_receiver),
+            "languages" : (self.languages_supported) if self.languages_supported else [],
+            'tip_max_access' : (self.tip_max_access),
+            'tip_timetolive' : (self.tip_timetolive),
+            'file_max_download' : (self.file_max_download),
+            'escalation_threshold' : (self.escalation_threshold),
+            'fields': (self.fields) if self.fields else [],
+            'receivers' : (self.receivers) if self.receivers else []
         }
-        return dict(description_dict)
+        return description_dict
 
     # this method import the remote received dict.
     # would be expanded with defaults value (if configured) and with checks about
     # expected fields. is called by new() and update()
-
     def _import_dict(self, context_dict):
 
         self.name = context_dict['name']

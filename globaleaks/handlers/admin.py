@@ -99,12 +99,12 @@ class ContextsCollection(BaseHandler):
         """
 
         try:
-            (output, http_code) = yield CrudOperations().get_context_list()
+            answer = yield CrudOperations().get_context_list()
 
             # validateMessage() output!!
 
-            self.write(json.dumps(output))
-            self.set_status(http_code)
+            self.write(json.dumps(answer['data']))
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
@@ -125,12 +125,13 @@ class ContextsCollection(BaseHandler):
 
         try:
             request = validateMessage(self.request.body, requests.adminContextDesc)
+            answer = yield CrudOperations().create_context(request)
 
-            (output, http_code) = yield CrudOperations().create_context(request)
+            print "receiver answer:", answer
 
             # validateMessage() output!!
-            self.write(output)
-            self.set_status(http_code)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
@@ -172,12 +173,11 @@ class ContextInstance(BaseHandler):
 
         try:
             # validateParameter(context_gus, requests.contextGUS)
-
-            (output, http_code) = yield CrudOperations().get_context(context_gus)
+            answer = yield CrudOperations().get_context(context_gus)
 
             # validateMessage() output!!
-            self.write(output)
-            self.set_status(http_code)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except ContextGusNotFound, e:
 
@@ -199,12 +199,11 @@ class ContextInstance(BaseHandler):
             # validateParameter(context_gus, requests.contextGUS)
             request = validateMessage(self.request.body, requests.adminContextDesc)
 
-            (output, http_code) = yield CrudOperations().update_context(context_gus, request)
+            answer = yield CrudOperations().update_context(context_gus, request)
 
             # validateMessage() output!!
-            self.write(output)
-            self.set_status(http_code)
-
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
@@ -239,11 +238,11 @@ class ContextInstance(BaseHandler):
 
         try:
             # validateParameter(context_gus, requests.contextGUS)
-            (output, http_code) = yield CrudOperations().delete_context(context_gus)
+            answer = yield CrudOperations().delete_context(context_gus)
 
             # validateMessage() output!!
-            self.write(output)
-            self.set_status(http_code)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except ContextGusNotFound, e:
 
@@ -270,11 +269,11 @@ class ReceiversCollection(BaseHandler):
         Admin operation: return all the receiver present in the Node
         """
 
-        (output, http_code) = yield CrudOperations().get_receiver_list()
+        answer = yield CrudOperations().get_receiver_list()
         # validateMessage() output!!
 
-        self.write(json.dumps(output))
-        self.set_status(http_code)
+        self.write(json.dumps(answer['data']))
+        self.set_status(answer['code'])
 
         self.finish()
 
@@ -293,11 +292,11 @@ class ReceiversCollection(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.adminReceiverDesc)
 
-            (output, http_code) = yield CrudOperations().create_receiver(request)
+            answer = yield CrudOperations().create_receiver(request)
 
             # validateMessage() output!!
-            self.write(output)
-            self.set_status(http_code)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
@@ -346,12 +345,11 @@ class ReceiverInstance(BaseHandler):
 
         try:
             # validateParameter(receiver_gus, requests.receiverGUS)
-
-            (output, http_code) = yield CrudOperations().get_receiver(receiver_gus)
+            answer = yield CrudOperations().get_receiver(receiver_gus)
 
             # validateMessage() output!!
-            self.write(output)
-            self.set_status(http_code)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except ReceiverGusNotFound, e:
 
@@ -376,11 +374,11 @@ class ReceiverInstance(BaseHandler):
             # validateParameter(receiver_gus, requests.receiverGUS)
             request = validateMessage(self.request.body, requests.adminReceiverDesc)
 
-            (output, http_code) = yield CrudOperations().update_receiver(receiver_gus, request)
+            answer = yield CrudOperations().update_receiver(receiver_gus, request)
 
             # validateMessage() output!!
-            self.write(output)
-            self.set_status(http_code)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
@@ -417,11 +415,11 @@ class ReceiverInstance(BaseHandler):
 
         try:
             # validateParameter(receiver_gus, requests.receiverGUS)
-            (output, http_code) = yield CrudOperations().delete_receiver(receiver_gus)
+            answer = yield CrudOperations().delete_receiver(receiver_gus)
 
             # validateMessage() output!!
-            self.write(output)
-            self.set_status(http_code)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except ReceiverGusNotFound, e:
 
@@ -446,12 +444,13 @@ class PluginCollection(BaseHandler):
         Response: adminPluginList
         Errors: None
 
-        This handler is one of the few that do not operate versus the database model, but in
-        the filesystem. Checks the plugin presents in the appropriate directory and return
-        a list with name and properties.
+        This handler is one of the few that do not operate versus the database model, and
+        then do not use CrudOperation, but works in the filesystem.
+        Checks the plugin presents in the appropriate directory and return a list with
+        name and properties.
         """
 
-        plugin_descriptive_list = yield PluginManager.get_all()
+        plugin_descriptive_list = PluginManager.get_all()
         # TODO output validation - adminPluginList
 
         self.set_status(200)
@@ -476,12 +475,12 @@ class ProfileCollection(BaseHandler):
         Errors: ProfileGusNotFound
         """
 
-        profile_iface = PluginProfiles()
-        profiles_list = yield profile_iface.get_all()
+        answer = yield CrudOperations().get_profile_list()
+        # validateMessage() output!!
 
-        self.set_status(200)
-        # TODO outputSanitization + json
-        self.write(json.dumps(profiles_list))
+        self.write(json.dumps(answer['data']))
+        # TODO output validation - adminProfileList
+        self.set_status(answer['code'])
         self.finish()
 
 
@@ -498,12 +497,11 @@ class ProfileCollection(BaseHandler):
             # TODO input mesage validation, or InvalidInputFormat
             request = validateMessage(self.request.body, requests.adminProfileDesc)
 
-            profile_iface = PluginProfiles()
+            answer = yield CrudOperations().create_profile(request)
 
-            profile_description = yield profile_iface.new(request)
-
-            self.set_status(200)
-            self.write(profile_description)
+            # validateMessage() output!!
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 

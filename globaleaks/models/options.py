@@ -62,16 +62,14 @@ class PluginProfiles(TXModel):
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
 
+    def __init__(self, theStore):
+        self.store = theStore
 
-    @transact
     def new(self, profile_dict):
         """
         @profile_dict need to contain the keys: 'plugin_type', 'plugin_name',
             'admin_settings',
         """
-
-        store = self.getStore()
-        newone = PluginProfiles()
 
         try:
 
@@ -84,25 +82,25 @@ class PluginProfiles(TXModel):
             if not PluginManager.plugin_exists(profile_dict['plugin_name']):
                 raise InvalidInputFormat("plugin_name not recognized between available plugins")
 
-            newone._import_dict(profile_dict)
+            self._import_dict(profile_dict)
 
             # the name can be updated, but need to be checked to be UNIQUE
-            if store.find(PluginProfiles, PluginProfiles.profile_name == newone.profile_name).count() >= 1:
+            if self.store.find(PluginProfiles, PluginProfiles.profile_name == self.profile_name).count() >= 1:
                 raise ProfileNameConflict
 
             plugin_info = PluginManager.get_plugin(profile_dict['plugin_name'])
 
             # initialize the three plugin_* fields, inherit by Plugin code
-            newone.plugin_name = unicode(plugin_info['plugin_name'])
-            newone.plugin_type = unicode(plugin_info['plugin_type'])
-            newone.plugin_description = unicode(plugin_info['plugin_description'])
-            newone.admin_fields = dict(plugin_info['admin_fields'])
+            self.plugin_name = unicode(plugin_info['plugin_name'])
+            self.plugin_type = unicode(plugin_info['plugin_type'])
+            self.plugin_description = unicode(plugin_info['plugin_description'])
+            self.admin_fields = dict(plugin_info['admin_fields'])
 
             # Admin-only plugins are listed here, and they have not receiver_fields
-            if newone.plugin_type in [ u'fileprocess' ]:
-                newone.receiver_fields = []
+            if self.plugin_type in [ u'fileprocess' ]:
+                self.receiver_fields = []
             else:
-                newone.receiver_fields = plugin_info['receiver_fields']
+                self.receiver_fields = plugin_info['receiver_fields']
 
         except KeyError, e:
             raise InvalidInputFormat("Profile creation failed (missing %s)" % e)
@@ -110,22 +108,19 @@ class PluginProfiles(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("Profile creation failed (wrong %s)" % e)
 
-        newone.profile_gus = idops.random_plugin_gus()
-        newone.creation_time = gltime.utcTimeNow()
+        self.profile_gus = idops.random_plugin_gus()
+        self.creation_time = gltime.utcTimeNow()
 
-        store.add(newone)
+        self.store.add(self)
 
         # build return value for the handler
-        return newone._description_dict()
+        return self._description_dict()
 
 
-    @transact
     def update(self, profile_gus, profile_dict):
 
-        store = self.getStore()
-
         try:
-            looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
+            looked_p = self.store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
         except NotOneError:
             raise ProfileGusNotFound
         if not looked_p:
@@ -135,7 +130,7 @@ class PluginProfiles(TXModel):
             looked_p._import_dict(profile_dict)
 
             # the name can be updated, but need to be checked to be UNIQUE
-            if store.find(PluginProfiles, PluginProfiles.profile_name == looked_p.profile_name).count() >= 1:
+            if self.store.find(PluginProfiles, PluginProfiles.profile_name == looked_p.profile_name).count() >= 1:
                 raise ProfileNameConflict
 
         except KeyError, e:
@@ -146,26 +141,22 @@ class PluginProfiles(TXModel):
         # build return value for the handler
         return looked_p._description_dict()
 
-    @transact
+
     def delete_profile(self, profile_gus):
 
-        store = self.getStore()
-
         try:
-            looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
+            looked_p = self.store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
         except NotOneError:
             raise ProfileGusNotFound
         if not looked_p:
             raise ProfileGusNotFound
 
-        store.remove(looked_p)
+        self.store.remove(looked_p)
 
-    @transact
+
     def get_all(self):
 
-        store = self.getStore()
-
-        selected_plugins = store.find(PluginProfiles)
+        selected_plugins = self.store.find(PluginProfiles)
 
         retVal = []
         for single_p in selected_plugins:
@@ -174,13 +165,10 @@ class PluginProfiles(TXModel):
         return retVal
 
 
-    @transact
     def get_single(self, profile_gus):
 
-        store = self.getStore()
-
         try:
-            looked_p = store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
+            looked_p = self.store.find(PluginProfiles, PluginProfiles.profile_gus == profile_gus).one()
         except NotOneError:
             raise ProfileGusNotFound
         if not looked_p:
@@ -190,17 +178,15 @@ class PluginProfiles(TXModel):
         return retVal
 
 
-    @transact
     def get_profiles_by_contexts(self, contexts):
         """
         From a contexts list return a list of profiles referenced
         """
-        store = self.getStore()
 
         retList = []
 
         for cntx_gus in contexts:
-            profiles = store.find(PluginProfiles, PluginProfiles.context_gus == unicode(cntx_gus))
+            profiles = self.store.find(PluginProfiles, PluginProfiles.context_gus == unicode(cntx_gus))
 
             for p in profiles:
                 retList.append(p._description_dict())
@@ -237,7 +223,6 @@ class PluginProfiles(TXModel):
         return dict(retVal)
 
 
-
 class ReceiverConfs(TXModel):
     """
     ReceiverConfs table, collect the various receivers configuration. A receiver may have multiple
@@ -263,16 +248,13 @@ class ReceiverConfs(TXModel):
     creation_time = DateTime()
     last_update = DateTime()
 
+    def __init__(self, theStore):
+        self.store = theStore
 
-    @transact
     def new(self, creator_receiver, init_request):
 
-        store = self.getStore()
-
-        newcfg = ReceiverConfs()
-
         try:
-            newcfg._import_dict(init_request)
+            self._import_dict(init_request)
         except KeyError, e:
             raise InvalidInputFormat("initialization failed (missing %s)" % e)
         except TypeError, e:
@@ -280,41 +262,41 @@ class ReceiverConfs(TXModel):
 
         # align reference - receiver is a trusted information, because handler has detect them
         try:
-            c_receiver = store.find(Receiver, Receiver.receiver_gus == creator_receiver).one()
+            c_receiver = self.store.find(Receiver, Receiver.receiver_gus == creator_receiver).one()
 
         except NotOneError:
             raise ReceiverGusNotFound
         if c_receiver is None:
             raise ReceiverGusNotFound
 
-        newcfg.creator_receiver = c_receiver.receiver_gus
+        self.creator_receiver = c_receiver.receiver_gus
 
         try:
-            newcfg.profile_gus = unicode(init_request['profile_gus'])
-            newcfg.profile = store.find(PluginProfiles, PluginProfiles.profile_gus == unicode(init_request['profile_gus'])).one()
+            self.profile_gus = unicode(init_request['profile_gus'])
+            self.profile = self.store.find(PluginProfiles, PluginProfiles.profile_gus == unicode(init_request['profile_gus'])).one()
         except NotOneError:
             raise ProfileGusNotFound
-        if newcfg.profile is None:
+        if self.profile is None:
             raise ProfileGusNotFound
 
         try:
-            newcfg.context_gus = unicode(init_request['context_gus'])
-            newcfg.context = store.find(Context, Context.context_gus == unicode(init_request['context_gus'])).one()
+            self.context_gus = unicode(init_request['context_gus'])
+            self.context = self.store.find(Context, Context.context_gus == unicode(init_request['context_gus'])).one()
         except NotOneError:
             raise ContextGusNotFound
-        if newcfg.context is None:
+        if self.context is None:
             raise ContextGusNotFound
 
-        if newcfg.context_gus != newcfg.profile.context_gus:
+        if self.context_gus != self.profile.context_gus:
             raise InvalidInputFormat("Context and Profile do not fit")
 
-        if newcfg.creator_receiver not in newcfg.context.receivers:
+        if self.creator_receiver not in self.context.receivers:
             raise InvalidInputFormat("Receiver and Context do not fit")
 
         # TODO check in a strongest way if newcfg.receiver_setting fit with newcfg.profile.receiver_fields
         key_expectation_fail = None
-        for expected_k in newcfg.profile.receiver_fields.iterkeys():
-            if not newcfg.receiver_settings.has_key(expected_k):
+        for expected_k in self.profile.receiver_fields.iterkeys():
+            if not self.receiver_settings.has_key(expected_k):
                 key_expectation_fail = expected_k
                 break
 
@@ -323,22 +305,19 @@ class ReceiverConfs(TXModel):
         # End of temporary check: why I'm not put the raise exception inside
         # of the for+if ? because otherwise Storm results locked in the future operations :(
 
-        newcfg.plugin_type = newcfg.profile.plugin_type
-        newcfg.creation_time = gltime.utcTimeNow()
-        newcfg.last_update = gltime.utcTimeNow()
+        self.plugin_type = self.profile.plugin_type
+        self.creation_time = gltime.utcTimeNow()
+        self.last_update = gltime.utcTimeNow()
 
-        store.add(newcfg)
+        self.store.add(self)
 
-        return newcfg._description_dict()
+        return self._description_dict()
 
 
-    @transact
     def update(self, conf_id, receiver_authorized, received_dict):
 
-        store = self.getStore()
-
         try:
-            looked_cfg = store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
+            looked_cfg = self.store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
         except NotOneError:
             raise ReceiverConfNotFound
         if not looked_cfg:
@@ -362,13 +341,10 @@ class ReceiverConfs(TXModel):
         return looked_cfg._description_dict()
 
 
-    @transact
     def get_active_conf(self, receiver_gus, context_gus, requested_type):
 
-        store = self.getStore()
-
         try:
-            wanted = store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus),
+            wanted = self.store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus),
                 ReceiverConfs.context_gus == unicode(context_gus),
                 ReceiverConfs.plugin_type == unicode(requested_type),
                 ReceiverConfs.active == True).one()
@@ -382,7 +358,6 @@ class ReceiverConfs(TXModel):
             Exception("Something is gone really bad: please debug")
 
 
-    @transact
     def deactivate_all_but(self, keep_id, context_gus, receiver_gus, plugin_type):
         """
         @param keep_id: the ReceiverConfs.id that has to be kept as 'active'
@@ -391,9 +366,8 @@ class ReceiverConfs(TXModel):
         @param plugin_type: part of the combo
         @return: None or exception
         """
-        store = self.getStore()
 
-        active = store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus),
+        active = self.store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus),
             ReceiverConfs.context_gus == unicode(context_gus),
             ReceiverConfs.active == True,
             ReceiverConfs.plugin_type == unicode(plugin_type))
@@ -410,28 +384,25 @@ class ReceiverConfs(TXModel):
         print "deactivated", deactivate_count, "configuration associated with", context_gus, receiver_gus, plugin_type
 
 
-    @transact
     def delete(self, conf_id, receiver_gus):
         """
         @param conf_id: configuration id that need to be deleted
         @param receiver_gus: receiver authenticated
         @return: None or Exception
         """
-        store = self.getStore()
 
-        requested = store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
+        requested = self.store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
         if requested == None:
             raise ReceiverConfNotFound
 
         if requested.creator_receiver != unicode(receiver_gus):
             raise InvalidInputFormat("Requested configuration is not in the Receiver possession")
 
-        store.remove(requested)
+        self.store.remove(requested)
         # App log
         # TODO, if requested was the active configuration, write a remind via system message for the user
 
 
-    @transact
     def deactivate_by_context(self, context_gus):
         """
         @param context_gus: a context_gus removed
@@ -439,7 +410,7 @@ class ReceiverConfs(TXModel):
         """
         pass
 
-    @transact
+
     def remove_by_receiver(self, receiver_gus):
         """
         @param receiver_gus: the receiver deleted
@@ -447,7 +418,7 @@ class ReceiverConfs(TXModel):
         """
         pass
 
-    @transact
+
     def remove_by_profile(self, profile_gus):
         """
         @param profile_gus: a profile that has to be deleted
@@ -455,12 +426,10 @@ class ReceiverConfs(TXModel):
         """
         pass
 
-    @transact
+
     def get_all(self):
 
-        store = self.getStore()
-
-        configurations = store.find(ReceiverConfs)
+        configurations = self.store.find(ReceiverConfs)
 
         retVal = []
         for single_c in configurations:
@@ -469,13 +438,10 @@ class ReceiverConfs(TXModel):
         return retVal
 
 
-    @transact
     def get_single(self, conf_id):
 
-        store = self.getStore()
-
         try:
-            requested_cfg = store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
+            requested_cfg = self.store.find(ReceiverConfs, ReceiverConfs.id == int(conf_id)).one()
         except NotOneError:
             raise ReceiverConfNotFound
         if requested_cfg is None:
@@ -484,16 +450,13 @@ class ReceiverConfs(TXModel):
         return requested_cfg._description_dict()
 
 
-    @transact
     def get_confs_by_receiver(self, receiver_gus):
         """
         @param receiver_gus: a single receiver_gus
         @return:
         """
 
-        store = self.getStore()
-
-        related_confs = store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus))
+        related_confs = self.store.find(ReceiverConfs, ReceiverConfs.creator_receiver == unicode(receiver_gus))
 
         retVal = []
         for single_c in related_confs:
