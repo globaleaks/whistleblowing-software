@@ -7,18 +7,14 @@
 # can be accessed with different privileges (admin and unprivileged).
 
 from storm.exceptions import NotOneError
-
-from storm.twisted.transact import transact
-
 from storm.store import AutoReload
 from storm.locals import Int, Pickle, Unicode, DateTime
 
 from globaleaks.models.base import TXModel
 from globaleaks.utils import log
-from globaleaks.rest.errors import NodeNotFound
+from globaleaks.rest.errors import NodeNotFound, InvalidInputFormat
 
 __all__ = [ 'Node' ]
-
 
 class Node(TXModel):
     """
@@ -28,7 +24,6 @@ class Node(TXModel):
 
     This table represent the System-wide settings
     """
-
     __storm_table__ = 'systemsettings'
 
     id = Int(primary=True, default=AutoReload)
@@ -44,49 +39,81 @@ class Node(TXModel):
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
     stats_update_time = Int()
-    # The frequency of stats COLLECTION, is defined in context, and the admin
-    # see Context separated stats.
 
-    @transact
-    def configure(self, input_dict):
+    def __init__(self, theStore):
+        self.store = theStore
+
+    def new(self, input_dict):
+
+        node_list = self.store.find(Node)
+
+        if node_list.count() != 0:
+            raise NotImplementedError("Node already created!")
+
+        try:
+            self._import_dict(input_dict)
+        except KeyError, e:
+            raise InvalidInputFormat("Node initialization fail (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("Node initialization fail (wrong %s)" % e)
+
+        # new is not called by a @transact thread... then we need commit
+        self.store.add(self)
+        self.store.commit()
+
+        return self._description_dict()
+
+    def update(self, input_dict):
         """
         @param input_dict: input dictionary
         @return: None
         """
 
-        store = self.getStore()
         try:
-            node_data = store.find(Node, 1 == Node.id).one()
+            node_data = self.store.find(Node, 1 == Node.id).one()
         except NotOneError:
             raise NodeNotFound
         if node_data is None:
             raise NodeNotFound
 
-        cls_info = get_cls_info(Node)
-        for name in cls_info.attributes.iterkeys():
-            if name in input_dict:
-                setattr(node_data, name, input_dict[name])
+        try:
+            node_data._import_dict(input_dict)
+        except KeyError, e:
+            raise InvalidInputFormat("Node update fail (missing %s)" % e)
+        except TypeError, e:
+            raise InvalidInputFormat("Node update fail (wrong %s)" % e)
 
         log.msg("Updated node main configuration")
 
-    @transact
-    def get(self):
+        return node_data._description_dict()
 
-        store = self.getStore()
+    def get_single(self):
 
-        try:
-            node_data = store.find(Node, 1 == Node.id).one()
-        except NotOneError:
-            raise NodeNotFound
-        if node_data is None:
-            raise NodeNotFound
+        node_list = self.store.find(Node)
 
-        retDict= { 'name' : unicode(node_data.name),
-                   'description' : unicode(node_data.description),
-                   'hidden_service' : unicode(node_data.hidden_service),
-                   'public_site' : unicode(node_data.public_site),
-                   'stats_update_time' : int(node_data.stats_update_time),
-                   'email' : unicode(node_data.email),
-                   'languages' : unicode(node_data.languages)
+        if node_list.count() != 1:
+            raise NotImplementedError("Unexpected condition: More than one Node configured")
+
+        return node_list[0]._description_dict()
+
+    def _import_dict(self, input_dict):
+
+        self.description = input_dict['description']
+        self.name = input_dict['name']
+        self.public_site = input_dict['public_site']
+        self.hidden_service = input_dict['hidden_service']
+        self.email = input_dict['email']
+        self.languages = input_dict['languages']
+        self.stats_update_time = int(input_dict['stats_update_time'])
+
+    def _description_dict(self):
+
+        retDict= { 'name' : unicode(self.name),
+                   'description' : unicode(self.description),
+                   'hidden_service' : unicode(self.hidden_service),
+                   'public_site' : unicode(self.public_site),
+                   'stats_update_time' : int(self.stats_update_time),
+                   'email' : unicode(self.email),
+                   'languages' : unicode(self.languages)
             }
         return retDict

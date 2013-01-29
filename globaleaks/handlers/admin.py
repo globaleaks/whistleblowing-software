@@ -7,8 +7,6 @@
 
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
-from storm.twisted.transact import transact
-
 import json
 
 from globaleaks.handlers.base import BaseHandler
@@ -41,11 +39,11 @@ class NodeInstance(BaseHandler):
         """
 
         try:
-            node_info = Node()
-            node_description_dicts = yield node_info.get()
+            answer = yield CrudOperations().get_node()
+            # validateMessage() output!!
 
-            self.set_status(200)
-            self.write(node_description_dicts)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except NodeNotFound, e:
 
@@ -66,14 +64,13 @@ class NodeInstance(BaseHandler):
         """
 
         try:
-            request = validateMessage(self.request.body, requests.adminContextDesc)
+            request = validateMessage(self.request.body, requests.adminNodeDesc)
 
-            node_info = Node()
-            yield node_info.configure_node(request)
-            node_description_dicts = yield node_info.get()
+            answer = yield CrudOperations().update_node(request)
+            # validateMessage() output!!
 
-            self.set_status(201) # Created
-            self.write(node_description_dicts)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
@@ -126,8 +123,6 @@ class ContextsCollection(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.adminContextDesc)
             answer = yield CrudOperations().create_context(request)
-
-            print "receiver answer:", answer
 
             # validateMessage() output!!
             self.write(answer['data'])
@@ -533,13 +528,13 @@ class ProfileInstance(BaseHandler):
         Errors: ProfileGusNotFound
         """
 
-        plugin_iface = PluginProfiles()
-
         try:
-            profile_description = yield plugin_iface.get_single(profile_gus)
+            # validateParameter(profile_gus, requests.profileGUS)
+            answer = yield CrudOperations().get_profile(profile_gus)
 
-            self.set_status(200)
-            self.write(profile_description)
+            # validateMessage() output!!
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except ProfileGusNotFound, e:
 
@@ -560,15 +555,14 @@ class ProfileInstance(BaseHandler):
         """
 
         try:
-            # TODO input mesage validation + parameter validation
+            # validateParameter(profile_gus, requests.profileGUS)
             request = validateMessage(self.request.body, requests.adminProfileDesc)
 
-            profile_iface = PluginProfiles()
+            answer = yield CrudOperations().update_profile(profile_gus, request)
 
-            profile_description = yield profile_iface.update(profile_gus, request)
-
-            self.set_status(200)
-            self.write(profile_description)
+            # validateMessage() output!!
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except ProfileGusNotFound, e:
 
@@ -596,16 +590,13 @@ class ProfileInstance(BaseHandler):
         Response: None
         Errors: ProfileGusNotFound, InvalidInputFormat
         """
-
         try:
-            # TODO parameter validation
-            profile_iface = PluginProfiles()
+            # validateParameter(profile_gus, requests.profileGUS)
+            answer = yield CrudOperations().delete_profile(profile_gus)
 
-            # TODO get context_gus, put a message in admin+context that a profile
-            # has been removed and need to be replaced
-
-            yield profile_iface.delete_profile(profile_gus)
-            self.set_status(200)
+            # validateMessage() output!!
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 

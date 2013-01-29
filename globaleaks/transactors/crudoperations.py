@@ -1,5 +1,6 @@
 from globaleaks.transactors.base import MacroOperation
 
+from globaleaks.models.node import Node
 from globaleaks.models.context import Context
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import File, ReceiverTip, WhistleblowerTip, Comment
@@ -14,6 +15,28 @@ class CrudOperations(MacroOperation):
     README.md describe pattern and reasons
     """
 
+    # Below CrudOperations for Admin API
+
+    @transact
+    def get_node(self):
+
+        node_iface = Node(self.getStore())
+        node_description_dict = node_iface.get_single()
+
+        self.returnData(node_description_dict)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def update_node(self, request):
+
+        node_iface = Node(self.getStore())
+        node_description_dict = node_iface.update(request)
+
+        self.returnData(node_description_dict)
+        self.returnCode(201)
+        return self.prepareRetVals()
+
     @transact
     def get_context_list(self):
 
@@ -22,7 +45,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(all_contexts)
         self.returnCode(200)
-        self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def create_context(self, request):
@@ -45,7 +68,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(context_description)
         self.returnCode(201)
-        return self.returnValues()
+        return self.prepareRetVals()
 
 
     @transact
@@ -56,7 +79,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(context_description)
         self.returnCode(200)
-        return self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def update_context(self, context_gus, request):
@@ -76,7 +99,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(context_description)
         self.returnCode(200)
-        return self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def delete_context(self, context_gus):
@@ -138,7 +161,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(context_desc)
         self.returnCode(200)
-        return self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def get_receiver_list(self):
@@ -148,7 +171,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(all_receivers)
         self.returnCode(200)
-        self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def create_receiver(self, request):
@@ -170,7 +193,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(new_receiver_desc)
         self.returnCode(201)
-        return self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def get_receiver(self, receiver_gus):
@@ -180,7 +203,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(receiver_description)
         self.returnCode(200)
-        return self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def update_receiver(self, receiver_gus, request):
@@ -201,7 +224,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(receiver_description)
         self.returnCode(200)
-        return self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def delete_receiver(self, receiver_gus):
@@ -238,7 +261,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(receiver_desc)
         self.returnCode(200)
-        return self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def get_profile_list(self):
@@ -248,7 +271,7 @@ class CrudOperations(MacroOperation):
 
         self.returnData(all_profiles)
         self.returnCode(200)
-        self.returnValues()
+        return self.prepareRetVals()
 
     @transact
     def create_profile(self, request):
@@ -259,5 +282,44 @@ class CrudOperations(MacroOperation):
 
         self.returnData(profile_description)
         self.returnCode(201)
-        self.returnValues()
+        return self.prepareRetVals()
+
+    @transact
+    def get_profile(self, profile_gus):
+
+        profile_iface = PluginProfiles(self.getStore())
+
+        profile_description = profile_iface.get_single(profile_gus)
+
+        self.returnData(profile_description)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def update_profile(self, profile_gus, request):
+
+        profile_iface = PluginProfiles(self.getStore())
+
+        profile_description = profile_iface.update(profile_gus, request)
+
+        self.returnData(profile_description)
+        self.returnCode(201)
+        return self.prepareRetVals()
+
+    @transact
+    def delete_profile(self, profile_gus):
+
+        profile_iface = PluginProfiles(self.getStore())
+
+        profile_description = profile_iface.get_single(profile_gus)
+        profile_iface.delete_profile(profile_gus)
+
+        self.returnData(profile_description)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    # Completed CrudOperations for the Admin API
+    # Below CrudOperations for Receiver API
+
+
 

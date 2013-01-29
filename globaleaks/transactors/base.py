@@ -14,6 +14,11 @@ class MacroOperation():
     # after, the handler, would call the other store thread
 
     def returnData(self, data):
+        """
+        Storm require copy of the return value, or the
+        then the transact thread is closed, the stack
+        would http://www.youtube.com/watch?v=C7JZ4F3zJdY fart.
+        """
 
         if type(data) == type([]):
             self._data = list(data)
@@ -26,7 +31,7 @@ class MacroOperation():
 
         self._http = http_code
 
-    def returnValues(self):
+    def prepareRetVals(self):
 
         returnDict = { 'data' : self._data,
                        'code' : self._http }

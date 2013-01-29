@@ -2,10 +2,8 @@
 #   GLBackend Database
 #   ******************
 
-__all__ = ['createTables']
-
 from twisted.internet.defer import inlineCallbacks
-from globaleaks import main
+from storm.twisted.transact import transact
 from globaleaks.config import config
 from globaleaks.db import tables
 from globaleaks.utils import log
@@ -18,6 +16,8 @@ from globaleaks.models.options import PluginProfiles, ReceiverConfs
 from globaleaks.models.submission import Submission
 from globaleaks.models.node import Node
 
+__all__ = ['createTables']
+
 @inlineCallbacks
 def createTables():
     """
@@ -29,22 +29,26 @@ def createTables():
 
         yield tables.createTable(model)
 
+    initializeNode()
+
 def initializeNode():
     """
     This function is called only one time in a node life, and initialize
     the table. the configure_node run edit of this row (id = 1)
     This is not a @transact but is a white fly for this reason.
     """
+    from globaleaks.models.node import Node
+
     store = config.main.zstorm.get('main_store')
 
-    onlyNode = Node()
+    onlyNode = {}
 
-    onlyNode.name = u"Please, set me: name/title"
-    onlyNode.description = u"Please, set me: description"
-    onlyNode.hidden_service = u"Please, set me: hidden service"
-    onlyNode.public_site = u"Please, set me: public site"
-    onlyNode.email = u"email@dumnmy.net"
-    onlyNode.stats_update_time = 2 # hours
-    onlyNode.languages = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" }]
+    onlyNode['name'] = u"Please, set me: name/title"
+    onlyNode['description'] = u"Please, set me: description"
+    onlyNode['hidden_service'] = u"Please, set me: hidden service"
+    onlyNode['public_site'] = u"Please, set me: public site"
+    onlyNode['email'] = u"email@dumnmy.net"
+    onlyNode['stats_update_time'] = 2 # hours
+    onlyNode['languages'] = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" }]
 
-    store.add(onlyNode)
+    node_created = Node(store).new(onlyNode)
