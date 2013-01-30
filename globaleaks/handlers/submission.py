@@ -7,12 +7,9 @@
 
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
-from globaleaks.models.submission import Submission
-from globaleaks.models.context import Context
-from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.externaltip import WhistleblowerTip
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest import requests, responses
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
@@ -41,46 +38,14 @@ class SubmissionCreate(BaseHandler):
         expire after the time set by Admin (Context dependent setting)
         """
 
-        context_iface = Context()
         try:
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
 
-            # XXX DUMMY PATCH CLIENT USAGE -- open tiket in GLClient
-            print "Before", request
-            if not request.has_key('wb_fields'):
-                request.update({'wb_fields' : ''})
-            if not request.has_key('receivers'):
-                request.update({'receivers' : []})
-            if not request.has_key('files'):
-                request.update({'files' : []})
-            if not request.has_key('finalize'):
-                request.update({'finalize' : False })
-            print "After ", request
-            # XXX DUMMY PATCH CLIENT USAGE -- open tiket in GLClient
+            answer = yield CrudOperations().new_submission(request)
 
-            context_desc = yield context_iface.get_single(request['context_gus'])
-
-            submission_iface = Submission()
-            submission_desc = yield submission_iface.new(request)
-
-            if not context_desc['selectable_receiver']:
-                submission_iface.receivers = context_iface.receivers
-
-            if submission_desc['finalize']:
-
-                internaltip_iface = InternalTip()
-                wb_iface = WhistleblowerTip()
-
-                internaltip_desc = yield internaltip_iface.new(submission_desc)
-                wbtip_desc = yield wb_iface.new(internaltip_desc)
-
-                submission_desc.update({'receipt' : wbtip_desc['receipt']})
-            else:
-                submission_desc.update({'receipt' : ''})
-
-            self.set_status(201) # Created
             # TODO - output processing
-            self.write(submission_desc)
+            self.set_status(answer['code'])
+            self.write(answer['data'])
 
         except ContextGusNotFound, e:
 
@@ -122,15 +87,14 @@ class SubmissionInstance(BaseHandler):
 
         Get the status of the current submission.
         """
-        submission = Submission()
 
         try:
-            # TODO perform validation of single GLtype
+            # validateParameter(submission_gus, requests.submissionGUS)
+            answer = yield CrudOperations().get_submission(submission_gus)
 
-            status = yield submission.get_single(submission_gus)
-
-            self.set_status(200)
-            self.write(status)
+            # TODO - output processing
+            self.set_status(answer['code'])
+            self.write(answer['data'])
 
         except SubmissionGusNotFound, e:
 
@@ -156,33 +120,15 @@ class SubmissionInstance(BaseHandler):
         PUT update the submission and finalize if requested.
         """
 
-        context_iface = Context()
         try:
+            # validateParameter(submission_gus, requests.submissionGUS)
             request = validateMessage(self.request.body, requests.wbSubmissionDesc)
 
-            context_desc = yield context_iface.get_single(request['context_gus'])
+            answer = yield CrudOperations().update_submission(submission_gus, request)
 
-            submission_iface = Submission()
-            submission_desc = yield submission_iface.update(submission_gus, request)
-
-            if not context_desc['selectable_receiver']:
-                submission_iface.receivers = context_iface.receivers
-
-            if submission_desc['finalize']:
-
-                internaltip_iface = InternalTip()
-                wb_iface = WhistleblowerTip()
-
-                internaltip_desc = yield internaltip_iface.new(submission_desc)
-                wbtip_desc = yield wb_iface.new(internaltip_desc)
-
-                submission_desc.update({'receipt' : wbtip_desc['receipt']})
-            else:
-                submission_desc.update({'receipt' : ''})
-
-            self.set_status(202) # Updated
             # TODO - output processing
-            self.write(submission_desc)
+            self.set_status(answer['code'])
+            self.write(answer['data'])
 
         except ContextGusNotFound, e:
 
@@ -229,15 +175,12 @@ class SubmissionInstance(BaseHandler):
         A whistleblower is deleting a Submission because has understand that won't really be an hero. :P
         """
 
-        submission_iface = Submission()
         try:
-            # TODO perform validation of submission_gus format
+            # validateParameter(submission_gus, requests.submissionGUS)
 
-            yield submission_iface.submission_delete(submission_gus)
+            answer = yield CrudOperations().delete_submission(submission_gus)
 
-            # TODO Delete file associated with submission
-
-            self.set_status(200)
+            self.set_status(answer['code'])
 
         except SubmissionGusNotFound, e:
 

@@ -46,10 +46,7 @@ class Submission(TXModel):
     _marker = [ u'incomplete', u'finalized' ]
 
 
-    @transact
     def new(self, received_dict):
-
-        store = self.getStore()
 
         self.files = []
         self.receivers = []
@@ -67,7 +64,7 @@ class Submission(TXModel):
             raise InvalidInputFormat("Submission initialization failed (wrong %s)" % e)
 
         try:
-            associated_c = store.find(Context, Context.context_gus == unicode(self.context_gus)).one()
+            associated_c = self.store.find(Context, Context.context_gus == unicode(self.context_gus)).one()
         except NotOneError:
             raise ContextGusNotFound
         if associated_c is None:
@@ -91,7 +88,7 @@ class Submission(TXModel):
 
         for single_r in self.receivers:
             try:
-                selected_r = store.find(Receiver, Receiver.receiver_gus == unicode(single_r)).one()
+                selected_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(single_r)).one()
             except NotOneError:
                 raise ReceiverGusNotFound
             if selected_r is None:
@@ -102,7 +99,7 @@ class Submission(TXModel):
 
         for single_f in self.files:
             try:
-                selected_f = store.find(File, File.file_gus == unicode(single_f)).one()
+                selected_f = self.store.find(File, File.file_gus == unicode(single_f)).one()
             except NotOneError:
                 raise FileGusNotFound
             if selected_f is None:
@@ -116,17 +113,14 @@ class Submission(TXModel):
         else:
             print "INFO, NOT finalized in new", self.submission_gus
 
-        store.add(self)
+        self.store.add(self)
         return self._description_dict()
 
 
-    @transact
     def update(self, submission_gus, received_dict):
 
-        store = self.getStore()
-
         try:
-            s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
+            s = self.store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError, e:
             raise SubmissionGusNotFound
         if not s:
@@ -158,7 +152,7 @@ class Submission(TXModel):
 
         for single_r in s.receivers:
             try:
-                selected_r = store.find(Receiver, Receiver.receiver_gus == unicode(single_r)).one()
+                selected_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(single_r)).one()
             except NotOneError:
                 raise ReceiverGusNotFound
             if selected_r is None:
@@ -170,7 +164,7 @@ class Submission(TXModel):
 
         for single_f in s.files:
             try:
-                selected_f = store.find(File, File.file_gus == unicode(single_f)).one()
+                selected_f = self.store.find(File, File.file_gus == unicode(single_f)).one()
             except NotOneError:
                 raise FileGusNotFound
             if selected_f is None:
@@ -225,13 +219,10 @@ class Submission(TXModel):
         self.files = received_dict['files']
 
 
-    @transact
     def submission_delete(self, submission_gus):
 
-        store = self.getStore()
-
         try:
-            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
+            requested_s = self.store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError:
             raise SubmissionGusNotFound
         if requested_s is None:
@@ -241,16 +232,13 @@ class Submission(TXModel):
             # the session is finalized, you can't DELETE
             raise SubmissionConcluded
 
-        store.remove(requested_s)
+        self.store.remove(requested_s)
 
 
-    @transact
     def get_single(self, submission_gus):
 
-        store = self.getStore()
-
         try:
-            requested_s = store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
+            requested_s = self.store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
         except NotOneError:
             raise SubmissionGusNotFound
         if requested_s is None:
@@ -258,13 +246,11 @@ class Submission(TXModel):
 
         return requested_s._description_dict()
 
-    @transact
+
     def get_all(self):
 
-        store = self.getStore()
-
         # I didn't understand why, but NotOneError is not raised even if the search return None
-        present_s = store.find(Submission)
+        present_s = self.store.find(Submission)
 
         subList = []
         for s in present_s:

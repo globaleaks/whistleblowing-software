@@ -40,9 +40,6 @@ class Node(TXModel):
     # Expressed in hours
     stats_update_time = Int()
 
-    def __init__(self, theStore):
-        self.store = theStore
-
     def new(self, input_dict):
 
         node_list = self.store.find(Node)
