@@ -51,17 +51,15 @@ class ReceiverTip(TXModel):
 
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
-    @transact
-    def new(self, itip_dict, receiver_dict):
 
-        store = self.getStore()
+    def new(self, itip_dict, receiver_dict):
 
         try:
             self.receiver_gus = unicode(receiver_dict['receiver_gus'])
-            self.receiver = store.find(Receiver, Receiver.receiver_gus == unicode(self.receiver_gus) ).one()
+            self.receiver = self.store.find(Receiver, Receiver.receiver_gus == unicode(self.receiver_gus) ).one()
 
             self.internaltip_id = int(itip_dict['internaltip_id'])
-            self.internaltip = store.find(InternalTip, InternalTip.id == int(self.internaltip_id)).one()
+            self.internaltip = self.store.find(InternalTip, InternalTip.id == int(self.internaltip_id)).one()
 
             self.last_access = None
             self.access_counter = 0
@@ -79,7 +77,7 @@ class ReceiverTip(TXModel):
             raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad type %s" % e)
 
         # XXX App log
-        store.add(self)
+        self.store.add(self)
         return self._description_dict()
 
     # -------------------
@@ -88,17 +86,14 @@ class ReceiverTip(TXModel):
     # _import_dict
     # -------------------
 
-    @transact
     def update_notification_date(self, tip_gus):
 
-        store = self.getStore()
-
-        requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        requested_t = self.store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         requested_t.notification_date = gltime.utcTimeNow()
 
         return requested_t._description_dict()
 
-    @transact
+
     def flip_mark(self, tip_gus, newmark):
 
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
@@ -106,19 +101,15 @@ class ReceiverTip(TXModel):
         if not newmark in notification_markers:
             raise NotImplemented
 
-        store = self.getStore()
-
-        requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+        requested_t = self.store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         requested_t.notification_mark = newmark
 
-    @transact
+
     def get_all(self):
         """
         this is called only by /admin/overview API
         """
-        store = self.getStore()
-
-        all_rt = store.find(ReceiverTip)
+        all_rt = self.store.find(ReceiverTip)
 
         retVal = []
         for single_rt in all_rt:
@@ -126,16 +117,14 @@ class ReceiverTip(TXModel):
 
         return retVal
 
-    @transact
+
     def get_single(self, tip_gus):
         """
         This is the method called when a receiver is accessing to Tip. It return
         InternalTip details and update the last_access date.
         """
-        store = self.getStore()
-
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+            requested_t = self.store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
@@ -159,7 +148,7 @@ class ReceiverTip(TXModel):
         return dict(tip_details)
 
 
-    @transact
+
     def pertinence_vote(self, tip_gus, vote):
         """
         check if the receiver has already voted. if YES: raise an exception, if NOT
@@ -169,10 +158,8 @@ class ReceiverTip(TXModel):
         return the actual vote expressed by all the receivers, to the same iTip.
         """
 
-        store = self.getStore()
-
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
+            requested_t = self.store.find(ReceiverTip, ReceiverTip.tip_gus == tip_gus).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
@@ -188,7 +175,7 @@ class ReceiverTip(TXModel):
         requested_t.expressed_pertinence = 2 if vote else 1
         requested_t.last_access = gltime.utcTimeNow()
 
-        expressed_t = store.find(ReceiverTip, (ReceiverTip.internaltip_id == requested_t.internaltip_id, ReceiverTip.expressed_pertinence != 0))
+        expressed_t = self.store.find(ReceiverTip, (ReceiverTip.internaltip_id == requested_t.internaltip_id, ReceiverTip.expressed_pertinence != 0))
 
         vote_sum = 0
         for et in expressed_t:
@@ -201,7 +188,7 @@ class ReceiverTip(TXModel):
         return (itip_id_copy, vote_sum)
 
 
-    @transact
+
     def get_sibiligs_by_tip(self, tip_gus):
         """
         @param tip_gus: a valid tip_gus
@@ -216,16 +203,14 @@ class ReceiverTip(TXModel):
 
         This method is called by internal routine, not by Receiver
         """
-        store = self.getStore()
-
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
+            requested_t = self.store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
             raise TipGusNotFound
 
-        sibilings = store.find(ReceiverTip, ReceiverTip.internaltip_id == requested_t.internaltip_id)
+        sibilings = self.store.find(ReceiverTip, ReceiverTip.internaltip_id == requested_t.internaltip_id)
 
         sibilings_description = []
         for s in sibilings:
@@ -247,7 +232,7 @@ class ReceiverTip(TXModel):
         return retDict
 
 
-    @transact
+
     def get_receivers_by_tip(self, tip_gus):
         """
         @param tip_gus: a valid tip gus
@@ -262,16 +247,14 @@ class ReceiverTip(TXModel):
         The structured contain a complete receivers description, all the Receiver
         description working on the same InternalTip.
         """
-        store = self.getStore()
-
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
+            requested_t = self.store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
             raise TipGusNotFound
 
-        sibilings_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == requested_t.internaltip_id)
+        sibilings_tips = self.store.find(ReceiverTip, ReceiverTip.internaltip_id == requested_t.internaltip_id)
 
         other_receivers = []
         for s in sibilings_tips:
@@ -292,7 +275,7 @@ class ReceiverTip(TXModel):
         return retDict
 
 
-    @transact
+
     def get_tips_by_tip(self, tip_gus):
         """
         @param tip_gus: a valid tip gus
@@ -303,16 +286,14 @@ class ReceiverTip(TXModel):
             }
         containing a complete ReceiverTip description.
         """
-        store = self.getStore()
-
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
+            requested_t = self.store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
             raise TipGusNotFound
 
-        other_tips = store.find(ReceiverTip, ReceiverTip.receiver_gus == requested_t.receiver_gus)
+        other_tips = self.store.find(ReceiverTip, ReceiverTip.receiver_gus == requested_t.receiver_gus)
 
         tips = []
         for t in other_tips:
@@ -328,16 +309,14 @@ class ReceiverTip(TXModel):
         return retDict
 
 
-    @transact
+
     def get_tips_by_receiver(self, receiver_gus):
         """
         @param receiver_gus: A receiver_gus
         @return: a list of ReceiverTip dict associated with receiver_gus
         """
 
-        store = self.getStore()
-
-        related_t = store.find(ReceiverTip, ReceiverTip.receiver_gus == unicode(receiver_gus))
+        related_t = self.store.find(ReceiverTip, ReceiverTip.receiver_gus == unicode(receiver_gus))
 
         related_list = []
         for t in related_t:
@@ -346,19 +325,18 @@ class ReceiverTip(TXModel):
         return related_list
 
 
-    @transact
+
     def get_tips_by_notification_mark(self, marker):
         """
         @param marker: one valid marker
         @return: a list of [ ReceiverTip ]
         """
         notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
-        store = self.getStore()
 
         if unicode(marker) not in notification_markers:
             raise NotImplemented
 
-        marked_t = store.find(ReceiverTip, ReceiverTip.notification_mark == unicode(marker))
+        marked_t = self.store.find(ReceiverTip, ReceiverTip.notification_mark == unicode(marker))
 
         list_by_mark = []
         for t in marked_t:
@@ -370,7 +348,7 @@ class ReceiverTip(TXModel):
         return list_by_mark
 
 
-    @transact
+
     def get_tips_by_context(self, context_gus):
         """
         This function works as observer of all the Tips related to a specific Context,
@@ -392,8 +370,7 @@ class ReceiverTip(TXModel):
 
         retList = []
 
-        store = self.getStore()
-        itip_related = store.find(InternalTip, InternalTip.context_gus == unicode(context_gus))
+        itip_related = self.store.find(InternalTip, InternalTip.context_gus == unicode(context_gus))
 
         for itip in itip_related:
 
@@ -404,19 +381,19 @@ class ReceiverTip(TXModel):
 
             itipD = itip._description_dict()
 
-            rtips = store.find(ReceiverTip, ReceiverTip.internaltip_id == itip.id )
+            rtips = self.store.find(ReceiverTip, ReceiverTip.internaltip_id == itip.id )
             for r in rtips:
                 receiverD.append(r._description_dict())
 
-            wtips = store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == itip.id )
+            wtips = self.store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == itip.id )
             for w in wtips:
                 wbtD.append(w._description_dict())
 
-            comments = store.find(Comment, Comment.internaltip_id == itip.id )
+            comments = self.store.find(Comment, Comment.internaltip_id == itip.id )
             for c in comments:
                 commentD.append(c._description_dict())
 
-            files = store.find(File, File.internaltip_id == itip.id )
+            files = self.store.find(File, File.internaltip_id == itip.id )
             for f in files:
                 fileD.append(f._description_dict())
 
@@ -435,7 +412,7 @@ class ReceiverTip(TXModel):
 
         return retList
 
-    @transact
+
     def personal_delete(self, tip_gus):
         """
         remove the Receiver Tip access.
@@ -444,18 +421,16 @@ class ReceiverTip(TXModel):
         Is called by handler, handler checks and align eventually references
         """
 
-        store = self.getStore()
-
         try:
-            requested_t = store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
+            requested_t = self.store.find(ReceiverTip, ReceiverTip.tip_gus == unicode(tip_gus)).one()
         except NotOneError:
             raise TipGusNotFound
         if not requested_t:
             raise TipGusNotFound
 
-        store.remove(requested_t)
+        self.store.remove(requested_t)
 
-    @transact
+
     def massive_delete(self, internaltip_id):
         """
         remove the Receiver Tip access.
@@ -465,11 +440,10 @@ class ReceiverTip(TXModel):
         Is called by handler, handler checks and align eventually references
         """
 
-        store = self.getStore()
-        # Sadly the matching query can't be used in store.remove()
-        related_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == int(internaltip_id))
+        # Sadly the matching query can't be used in self.store.remove()
+        related_tips = self.store.find(ReceiverTip, ReceiverTip.internaltip_id == int(internaltip_id))
         for single_tip in related_tips:
-            store.remove(single_tip)
+            self.store.remove(single_tip)
 
 
     # called by a transact operation,dump the ReceiverTip (without the Tip details,
@@ -507,10 +481,8 @@ class WhistleblowerTip(TXModel):
     internaltip_id = Int()
     internaltip = Reference(internaltip_id, InternalTip.id)
 
-    @transact
-    def new(self, internaltip_desc):
 
-        store = self.getStore()
+    def new(self, internaltip_desc):
 
         try:
             self.internaltip_id = int(internaltip_desc['internaltip_id'])
@@ -519,26 +491,24 @@ class WhistleblowerTip(TXModel):
         except KeyError:
             raise InvalidInputFormat("Unable to initialized WhistleBlower Tip with iTip (missing field)")
 
-        self.internaltip = store.find(InternalTip, InternalTip.id == int(self.internaltip_id)).one()
+        self.internaltip = self.store.find(InternalTip, InternalTip.id == int(self.internaltip_id)).one()
 
         self.last_access = 0
         self.access_counter = 0
 
         self.receipt = unicode(idops.random_receipt())
 
-        store.add(self)
+        self.store.add(self)
 
         return self._description_dict()
 
     # Also this Model has not an update interface.
 
-    @transact
+
     def get_single(self, receipt):
 
-        store = self.getStore()
-
         try:
-            requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
+            requested_t = self.store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
         except NotOneError:
             raise TipReceiptNotFound
         if not requested_t:
@@ -559,14 +529,13 @@ class WhistleblowerTip(TXModel):
         return dict(tip_details)
 
 
-    @transact
+
     def get_all(self):
         """
         This is called by API /admin/overview only
         """
-        store = self.getStore()
 
-        all_wt = store.find(WhistleblowerTip)
+        all_wt = self.store.find(WhistleblowerTip)
 
         retVal = []
         for single_wt in all_wt:
@@ -575,39 +544,37 @@ class WhistleblowerTip(TXModel):
         return retVal
 
 
-    @transact
+
     def delete_access(self, receipt):
         """
         a WhistleBlower can delete is own access, removing Whistleblower tip and invalidating the receipt
         """
         # XXX Log + system comment need to be called by handler, not by model
-        store = self.getStore()
 
         try:
-            requested_t = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
+            requested_t = self.store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
         except NotOneError:
             raise TipReceiptNotFound
         if not requested_t:
             raise TipReceiptNotFound
 
-        store.remove(requested_t)
+        self.store.remove(requested_t)
 
-    @transact
+
     def delete_access_by_itip(self, internaltip_id):
         """
         Called by cascade delete from DELETE admin/context, or by Tip (total_delete)
         """
-        store = self.getStore()
 
         try:
-            selected = store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == int(internaltip_id))
+            selected = self.store.find(WhistleblowerTip, WhistleblowerTip.internaltip_id == int(internaltip_id))
         except NotOneError:
             raise Exception("internaltip_id do not exists: %d", internaltip_id)
         if not selected:
             raise Exception("internaltip_id do not exists: %d", internaltip_id)
 
         for single_tip in selected:
-            store.remove(single_tip)
+            self.store.remove(single_tip)
 
 
     # called by a transact operation, dump the WhistleBlower Tip
@@ -665,10 +632,8 @@ class File(TXModel):
 
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
 
-    @transact
-    def new(self, received_dict):
 
-        store = self.getStore()
+    def new(self, received_dict):
 
         try:
             self._import_dict(received_dict)
@@ -685,7 +650,7 @@ class File(TXModel):
             raise InvalidInputFormat("File import failed (wrong %s)" % e)
 
         try:
-            self.context = store.find(Context, Context.context_gus == self.context_gus).one()
+            self.context = self.store.find(Context, Context.context_gus == self.context_gus).one()
 
         except NotOneError:
             # This can never happen
@@ -700,19 +665,17 @@ class File(TXModel):
         # When the file is 'not processed', this value stay to 0
         self.internaltip_id = 0
 
-        store.add(self)
+        self.store.add(self)
         return self._description_dict()
 
 
     # update in short modify only filename and description, at the moment API is missing
     # Remind open ticket with GLClient
-    @transact
+
     def update(self, file_gus, received_dict):
 
-        store = self.getStore()
-
         try:
-            referenced_f = store.find(File, File.file_gus == unicode(file_gus)).one()
+            referenced_f = self.store.find(File, File.file_gus == unicode(file_gus)).one()
         except NotOneError:
             raise FileGusNotFound
         if not referenced_f:
@@ -728,28 +691,26 @@ class File(TXModel):
         return referenced_f._description_dict()
 
 
-    @transact
+
     def _import_dict(self, received_dict):
 
         self.name = unicode(received_dict['filename'])
         self.description = unicode(received_dict['description'])
 
-    @transact
+
     def flip_mark(self, file_gus, newmark):
 
         if not newmark in self._marker:
             raise NotImplemented
 
-        store = self.getStore()
-
-        requested_f = store.find(File, File.file_gus == unicode(file_gus)).one()
+        requested_f = self.store.find(File, File.file_gus == unicode(file_gus)).one()
 
         if not requested_f:
             raise FileGusNotFound
 
         requested_f.mark = newmark
 
-    @transact
+
     def get_file_by_marker(self, marker):
         """
         @return: all the files matching with the requested
@@ -760,12 +721,10 @@ class File(TXModel):
         TODO handle that with the schedule queue
         """
 
-        store = self.getStore()
-
         if not marker in self._marker:
             Exception("Implementation error")
 
-        req_fi = store.find(File, File.mark == marker)
+        req_fi = self.store.find(File, File.mark == marker)
 
         retVal = []
         for single_file in req_fi:
@@ -774,12 +733,10 @@ class File(TXModel):
         return retVal
 
 
-    @transact
+
     def get_files_by_itip(self, internaltip_id):
 
-        store = self.getStore()
-
-        referenced_f = store.find(File, File.internaltip_id == int(internaltip_id))
+        referenced_f = self.store.find(File, File.internaltip_id == int(internaltip_id))
 
         referenced_files = []
 
@@ -789,26 +746,21 @@ class File(TXModel):
         return referenced_files
 
 
-    @transact
     def delete_file_by_itip(self, internaltip_id):
 
-        store = self.getStore()
-
-        referenced_f = store.find(File, File.internaltip_id == int(internaltip_id))
+        referenced_f = self.store.find(File, File.internaltip_id == int(internaltip_id))
 
         counter_test = 0
         for single_f in referenced_f:
             counter_test += 1
-            store.remove(single_f)
+            self.store.remove(single_f)
 
         return counter_test
 
 
-    @transact
     def get_all(self):
 
-        store = self.getStore()
-        files = store.find(File)
+        files = self.store.find(File)
 
         all_files = []
         for single_file in files:
@@ -816,11 +768,10 @@ class File(TXModel):
 
         return all_files
 
-    @transact
+
     def get_all_by_submission(self, submission_gus):
 
-        store = self.getStore()
-        selected_f = store.find(File, File.submission_gus == unicode(submission_gus))
+        selected_f = self.store.find(File, File.submission_gus == unicode(submission_gus))
 
         submission_files = []
         for single_file in selected_f:
@@ -829,13 +780,10 @@ class File(TXModel):
         return submission_files
 
 
-    @transact
     def get_single(self, file_gus):
 
-        store = self.getStore()
-
         try:
-            filelookedat = store.find(File, File.file_gus == unicode(file_gus)).one()
+            filelookedat = self.store.find(File, File.file_gus == unicode(file_gus)).one()
         except NotOneError:
             raise FileGusNotFound
         if not filelookedat:
@@ -866,7 +814,6 @@ class File(TXModel):
 
 class Comment(TXModel):
     """
-    This table handle the, 311 americano, remind.
     This table handle the comment collection, has an InternalTip referenced
     """
     __storm_table__ = 'comments'
@@ -882,8 +829,9 @@ class Comment(TXModel):
     author_gus = Unicode()
     notification_mark = Unicode()
 
-    @transact
-    def add_comment(self, itip_id, comment, source, author_gus=None):
+    _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
+
+    def new(self, itip_id, comment, source, author_gus=None):
         """
         @param itip_id: InternalTip.id of reference, need to be addressed
         @param comment: the unicode text expected to be recorded
@@ -895,10 +843,8 @@ class Comment(TXModel):
         if not source in [ u'receiver', u'whistleblower', u'system' ]:
             raise NotImplemented
 
-        store = self.getStore()
-
         try:
-            itip = store.find(InternalTip, InternalTip.id == int(itip_id)).one()
+            itip = self.store.find(InternalTip, InternalTip.id == int(itip_id)).one()
         except NotOneError:
             # This can't actually happen
             raise Exception
@@ -909,58 +855,50 @@ class Comment(TXModel):
         # this approach is a little different from the other classes in ExternalTip
         # they use a new Object() in the caller method, and then Object.initialize
         # to fill with data.
-        newcomment = Comment()
 
-        newcomment.creation_time = gltime.utcTimeNow()
-        newcomment.source = source
-        newcomment.content = comment
-        newcomment.author_gus = author_gus
-        newcomment.internaltip = itip
-        newcomment.internaltip_id = int(itip_id)
+        try:
+            self.creation_time = gltime.utcTimeNow()
+            self.source = source
+            self.content = comment
+            self.author_gus = author_gus
+            self.internaltip = itip
+            self.internaltip_id = int(itip_id)
+        except TypeError, e:
+            raise InvalidInputFormat("Unable to create comment: (wrong %s)" % e )
 
-        # TODO |need to be reeingineered, only with the queue task
-        # TODO |manager can be digest and track the single notification.
-        # TODO |
-        newcomment.notification_mark = u'not notified'
-        store.add(newcomment)
+        # Remind, notification is not reliable until Task Queue do not born
+        self.notification_mark = self._marker[0]
+        self.store.add(self)
 
-        return newcomment._description_dict()
+        return self._description_dict()
+
+    # Comment has not _import_dict and update, because a comment can't be updated at the moment.
 
 
-    @transact
     def flip_mark(self, comment_id, newmark):
 
-        notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
-
-        if not newmark in notification_markers:
+        if not newmark in self._marker:
             raise NotImplemented
 
-        store = self.getStore()
-
-        requested_c = store.find(Comment, Comment.id  == int(comment_id)).one()
+        requested_c = self.store.find(Comment, Comment.id  == int(comment_id)).one()
         requested_c.notification_mark = newmark
 
 
-    @transact
     def delete_comment_by_itip(self, internaltip_id):
 
-        store = self.getStore()
-
-        comments_selected = store.find(Comment, Comment.internaltip_id ==  int(internaltip_id))
+        comments_selected = self.store.find(Comment, Comment.internaltip_id ==  int(internaltip_id))
 
         counter_test = 0
         for single_c in comments_selected:
             counter_test += 1
-            store.remove(single_c)
+            self.store.remove(single_c)
 
         return counter_test
 
-    @transact
+
     def get_comment_by_itip(self, internaltip_id):
 
-        store = self.getStore()
-
-        comments_selected = store.find(Comment, Comment.internaltip_id ==  int(internaltip_id))
+        comments_selected = self.store.find(Comment, Comment.internaltip_id ==  int(internaltip_id))
 
         retList = []
         for single_c in comments_selected:
@@ -968,16 +906,13 @@ class Comment(TXModel):
 
         return retList
 
-    @transact
+
     def get_comment_by_mark(self, marker):
 
-        store = self.getStore()
-
-        notification_markers = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
-        if not marker in notification_markers:
+        if not marker in self._marker:
             raise NotImplemented
 
-        marked_comments = store.find(Comment, Comment.notification_mark == marker)
+        marked_comments = self.store.find(Comment, Comment.notification_mark == marker)
 
         retVal = []
         for single_comment in marked_comments:
@@ -986,14 +921,11 @@ class Comment(TXModel):
         return retVal
 
 
-    @transact
     def get_all(self):
         """
         This is called by API /admin/overview only
         """
-        store = self.getStore()
-
-        comments = store.find(Comment)
+        comments = self.store.find(Comment)
 
         retVal = []
         for single_c in comments:
