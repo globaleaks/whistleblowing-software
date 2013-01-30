@@ -500,3 +500,192 @@ class CrudOperations(MacroOperation):
         self.returnData(tips)
         self.returnCode(200)
         return self.prepareRetVals()
+
+    # Completed CrudOperations for the Receiver API
+    # Below CrudOperations for Tip API
+
+    @transact
+    def get_tip_by_receiver(self, tip_gus):
+
+        requested_t = ReceiverTip(self.getStore())
+        tip_description = requested_t.get_single(tip_gus)
+
+        self.returnData(tip_description)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def get_tip_by_wb(self, receipt):
+
+        requested_t = WhistleblowerTip(self.getStore())
+        tip_description = requested_t.get_single(receipt)
+
+        self.returnData(tip_description)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def update_tip_by_receiver(self, tip_gus, request):
+
+        store = self.getStore()
+
+        receivertip_iface = ReceiverTip(store)
+
+        if request['personal_delete']:
+            receivertip_iface.personal_delete(tip_gus)
+
+        elif request['is_pertinent']:
+            # elif is used to avoid the message with both delete+pertinence.
+            # This operation is based in ReceiverTip and is returned
+            # the sum of the vote expressed. This value is updated in InternalTip
+            (itip_id, vote_sum) = receivertip_iface.pertinence_vote(tip_gus, request['is_pertinent'])
+
+            internaltip_iface = InternalTip(store)
+            internaltip_iface.update_pertinence(itip_id, vote_sum)
+
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def delete_tip(self, tip_gus):
+
+        store = self.getStore()
+
+        receivertip_iface = ReceiverTip(store)
+
+        receivers_map = receivertip_iface.get_receivers_by_tip(tip_gus)
+
+        if not receivers_map['actor']['can_delete_submission']:
+            raise ForbiddenOperation
+
+        # sibilings_tips has the keys: 'sibilings': [$] 'requested': $
+        sibilings_tips = receivertip_iface.get_sibiligs_by_tip(tip_gus)
+
+        # delete all the related tip
+        for sibiltip in sibilings_tips['sibilings']:
+            receivertip_iface.personal_delete(sibiltip['tip_gus'])
+
+        # and the tip of the called
+        receivertip_iface.personal_delete(sibilings_tips['requested']['tip_gus'])
+
+        # extract the internaltip_id, we need for the next operations
+        itip_id = sibilings_tips['requested']['internaltip_id']
+
+        # remove all the files: XXX think if delivery method need to be inquired
+        file_iface = File(store)
+        files_list = file_iface.get_files_by_itip(itip_id)
+
+        # remove all the comments based on a specific itip_id
+        comment_iface = Comment(store)
+        comments_list = comment_iface.delete_comment_by_itip(itip_id)
+
+        internaltip_iface = InternalTip(store)
+        # finally, delete the internaltip
+        internaltip_iface.tip_delete(sibilings_tips['requested']['internaltip_id'])
+
+        # XXX Notify Tip removal to the receivers ?
+        # XXX ask to the deleter a comment about the action, notifiy this comment ?
+
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def get_comment_list_by_receiver(self, tip_gus):
+
+        store = self.getStore()
+
+        requested_t = ReceiverTip(store)
+        tip_description = requested_t.get_single(tip_gus)
+
+        comment_iface = Comment(store)
+        comment_list = comment_iface.get_comment_by_itip(tip_description['internaltip_id'])
+
+        self.returnData(comment_list)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def get_comment_list_by_wb(self, receipt):
+
+        store = self.getStore()
+
+        requested_t = WhistleblowerTip(store)
+        tip_description = requested_t.get_single(receipt)
+
+        comment_iface = Comment(store)
+        comment_list = comment_iface.get_comment_by_itip(tip_description['internaltip_id'])
+
+        self.returnData(comment_list)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def new_comment_by_receiver(self, tip_gus, request):
+
+        store = self.getStore()
+
+        requested_t = ReceiverTip(store)
+        tip_description = requested_t.get_single(tip_gus)
+
+        comment_iface = Comment(store)
+
+        comment_stored = comment_iface.new(tip_description['internaltip_id'],
+            request['content'], u"receiver", tip_description['receiver_gus'])
+        # XXX here can be put the name of the Receiver
+
+        self.returnData(comment_stored)
+        self.returnCode(201)
+        return self.prepareRetVals()
+
+    @transact
+    def new_comment_by_wb(self, receipt, request):
+
+        store = self.getStore()
+
+        requested_t = WhistleblowerTip(store)
+        tip_description = requested_t.get_single(receipt)
+
+        comment_iface = Comment(store)
+
+        comment_stored = comment_iface.new(tip_description['internaltip_id'],
+            request['content'], u"whistleblower")
+
+        self.returnData(comment_stored)
+        self.returnCode(201)
+        return self.prepareRetVals()
+
+
+    @transact
+    def get_receiver_list_by_receiver(self, tip_gus):
+
+        store = self.getStore()
+
+        requested_t = ReceiverTip(store)
+        tip_description = requested_t.get_single(tip_gus)
+
+        itip_iface = InternalTip(store)
+        inforet = itip_iface.get_receivers_by_itip(tip_description['internaltip_id'])
+
+        self.returnData(inforet)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def get_receiver_list_by_wb(self, receipt):
+
+        store = self.getStore()
+
+        requested_t = WhistleblowerTip(store)
+        tip_description = requested_t.get_single(receipt)
+
+        itip_iface = InternalTip(store)
+        inforet = itip_iface.get_receivers_by_itip(tip_description['internaltip_id'])
+
+        self.returnData(inforet)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    # Completed CrudOperations for the Tip API
+    # Below CrudOperations for Submission API
+
+

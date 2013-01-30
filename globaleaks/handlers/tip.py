@@ -10,11 +10,11 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models.externaltip import Comment, ReceiverTip, WhistleblowerTip, File
-from globaleaks.models.internaltip import InternalTip
+from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest.base import validateMessage
-from globaleaks.rest import requests, base
-from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
+from globaleaks.rest import requests
+from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
+    TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
 import json
 
 # XXX need to be updated along the receipt hashing and format
@@ -61,16 +61,14 @@ class TipInstance(BaseHandler):
         """
 
         try:
-            if is_receiver_token(tip_token):
-                requested_t = ReceiverTip()
-                tip_description = yield requested_t.get_single(tip_token)
-            else:
-                requested_t = WhistleblowerTip()
-                tip_description = yield requested_t.get_single(tip_token)
 
-            # TODO output filtering: actorsTipDesc
-            self.set_status(200)
-            self.write(json.dumps(tip_description))
+            if is_receiver_token(tip_token):
+                answer = yield CrudOperations().get_tip_by_receiver(tip_token)
+            else:
+                answer = yield CrudOperations().get_tip_by_wb(tip_token)
+
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
@@ -102,26 +100,14 @@ class TipInstance(BaseHandler):
         """
 
         try:
-            request = validateMessage(self.request.body, requests.actorsTipOpsDesc)
-
+            # Until whistleblowers has not right to perform Tip operations...
             if not is_receiver_token(tip_token):
                 raise ForbiddenOperation
 
-            receivertip_iface = ReceiverTip()
+            request = validateMessage(self.request.body, requests.actorsTipOpsDesc)
+            answer = yield CrudOperations().update_tip_by_receiver(tip_token, request)
 
-            if request['personal_delete']:
-                yield receivertip_iface.personal_delete(tip_token)
-
-            elif request['is_pertinent']:
-                # elif is used to avoid the message with both delete+pertinence.
-                # This operation is based in ReceiverTip and is returned
-                # the sum of the vote expressed. This value is updated in InternalTip
-                (itip_id, vote_sum) = yield receivertip_iface.pertinence_vote(tip_token, request['is_pertinent'])
-
-                internaltip_iface = InternalTip()
-                yield internaltip_iface.update_pertinence(itip_id, vote_sum)
-
-            self.set_status(200)
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
@@ -158,43 +144,13 @@ class TipInstance(BaseHandler):
         """
         try:
 
+            # This until WB can't Total delete the Tip!
             if not is_receiver_token(tip_token):
                 raise ForbiddenOperation
 
-            receivertip_iface = ReceiverTip()
+            answer = yield CrudOperations().delete_tip(tip_token)
 
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(tip_token)
-
-            if not receivers_map['actor']['can_delete_submission']:
-                raise ForbiddenOperation
-
-            # sibilings_tips has the keys: 'sibilings': [$] 'requested': $
-            sibilings_tips = yield receivertip_iface.get_sibiligs_by_tip(tip_token)
-
-            # delete all the related tip
-            for sibiltip in sibilings_tips['sibilings']:
-                yield receivertip_iface.personal_delete(sibiltip['tip_gus'])
-
-            # and the tip of the called
-            yield receivertip_iface.personal_delete(sibilings_tips['requested']['tip_gus'])
-
-            # extract the internaltip_id, we need for the next operations
-            itip_id = sibilings_tips['requested']['internaltip_id']
-
-            file_iface = File()
-            # remove all the files: XXX think if delivery method need to be inquired
-            files_list = yield file_iface.get_files_by_itip(itip_id)
-            print "TODO remove file_list", files_list
-
-            comment_iface = Comment()
-            # remove all the comments based on a specific itip_id
-            comments_list = yield comment_iface.delete_comment_by_itip(itip_id)
-
-            internaltip_iface = InternalTip()
-            # finally, delete the internaltip
-            internaltip_iface.tip_delete(sibilings_tips['requested']['internaltip_id'])
-
-            self.set_status(200)
+            self.set_status(answer['code'])
 
         except ForbiddenOperation, e:
 
@@ -230,17 +186,12 @@ class TipCommentCollection(BaseHandler):
         try:
 
             if is_receiver_token(tip_token):
-                requested_t = ReceiverTip()
-                tip_description = yield requested_t.get_single(tip_token)
+                answer = yield CrudOperations().get_comment_list_by_receiver(tip_token)
             else:
-                requested_t = WhistleblowerTip()
-                tip_description = yield requested_t.get_single(tip_token)
+                answer = yield CrudOperations().get_comment_list_by_wb(tip_token)
 
-            comment_iface = Comment()
-            comment_list = yield comment_iface.get_comment_by_itip(tip_description['internaltip_id'])
-
-            self.set_status(200)
-            self.write(json.dumps(comment_list))
+            self.set_status(answer['code'])
+            self.write(json.dumps(answer['data']))
 
         except TipGusNotFound, e:
 
@@ -263,28 +214,16 @@ class TipCommentCollection(BaseHandler):
         Errors: InvalidTipAuthToken, InvalidInputFormat, TipGusNotFound, TipReceiptNotFound
         """
 
-        comment_iface = Comment()
-
         try:
             request = validateMessage(self.request.body, requests.actorsCommentDesc)
 
             if is_receiver_token(tip_token):
-
-                requested_t = ReceiverTip()
-
-                tip_description = yield requested_t.get_single(tip_token)
-                comment_stored = yield comment_iface.add_comment(tip_description['internaltip_id'],
-                    request['content'], u"receiver", tip_description['receiver_gus'])
-
+                answer = yield CrudOperations().new_comment_by_receiver(tip_token, request)
             else:
-                requested_t = WhistleblowerTip()
+                answer = yield CrudOperations().new_comment_by_wb(tip_token, request)
 
-                tip_description = yield requested_t.get_single(tip_token)
-                comment_stored = yield comment_iface.add_comment(tip_description['internaltip_id'],
-                    request['content'], u"whistleblower")
-
-            self.set_status(200)
-            self.write(json.dumps(comment_stored))
+            self.write(json.dumps(answer['data']))
+            self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
@@ -297,7 +236,6 @@ class TipCommentCollection(BaseHandler):
             self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
-
 
 
 class TipReceiversCollection(BaseHandler):
@@ -318,21 +256,12 @@ class TipReceiversCollection(BaseHandler):
 
         try:
             if is_receiver_token(tip_token):
-
-                requested_t = ReceiverTip()
-                tip_description = yield requested_t.get_single(tip_token)
-
+                answer = yield CrudOperations().get_receiver_list_by_receiver(tip_token)
             else:
+                answer = yield CrudOperations().get_receiver_list_by_wb(tip_token)
 
-                requested_t = WhistleblowerTip()
-                tip_description = yield requested_t.get_single(tip_token)
-
-            itip_iface = InternalTip()
-
-            inforet = yield itip_iface.get_receivers_by_itip(tip_description['internaltip_id'])
-
-            self.write(json.dumps(inforet))
-            self.set_status(200)
+            self.write(json.dumps(answer['data']))
+            self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
