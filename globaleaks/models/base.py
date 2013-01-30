@@ -56,9 +56,8 @@ class TXModel(Storm):
     # 'database is locked' should happen also when a transact function has a typo
     # inside, and silently would simply stay freezed, keeping DB locked.
 
-    # Need to be removed getStore: do not removed just to permit code execution
-    def getStore(self, operation_desc=''):
-        return config.main.zstorm.get('main_store')
+    def __init__(self, theStore):
+        self.store = theStore
 
 # Triva, this file implement the 0.2 version of GlobaLeaks, then:
 # Enter the Ginger - http://www.youtube.com/watch?v=uUD9NBSJvqo

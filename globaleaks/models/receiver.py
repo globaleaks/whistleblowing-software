@@ -52,14 +52,6 @@ class Receiver(TXModel):
     # list of context_gus which receiver is associated
     contexts = Pickle()
 
-    def __init__(self, theStore):
-        self.store = theStore
-
-
-    def count(self):
-        receiver_count = self.store.find(Receiver).count()
-        return receiver_count
-
 
     def new(self, receiver_dict):
         """
@@ -70,7 +62,6 @@ class Receiver(TXModel):
         One that want review the whistles blowed documents. It's a sort of
         transparency baptism: here you get your GlobaLeaks Unique String, sir!
         """
-
 
         try:
             self._import_dict(receiver_dict)
@@ -87,7 +78,6 @@ class Receiver(TXModel):
         self.store.add(self)
 
         return self._description_dict()
-
 
 
     def update(self, receiver_gus, receiver_dict):
@@ -115,6 +105,10 @@ class Receiver(TXModel):
         requested_r.update_date = gltime.utcTimeNow()
         return requested_r._description_dict()
 
+
+    def count(self):
+        receiver_count = self.store.find(Receiver).count()
+        return receiver_count
 
 
     def self_update(self, receiver_gus, receiver_dict):
@@ -144,7 +138,6 @@ class Receiver(TXModel):
         return requested_r._description_dict()
 
 
-
     def get_single(self, receiver_gus):
         """
         @return the dictionary describing the requested receiver, or an exception if do not exists.
@@ -160,7 +153,6 @@ class Receiver(TXModel):
         return requested_r._description_dict()
 
 
-
     def get_all(self):
         """
         @return: a list of all the receiver in the node.
@@ -173,7 +165,6 @@ class Receiver(TXModel):
             retVal.append(rcvr._description_dict())
 
         return retVal
-
 
 
     def get_receivers_by_context(self, context_gus):
@@ -195,7 +186,6 @@ class Receiver(TXModel):
             log.debug("[W] No receiver assigned to the context %s" % context_gus)
 
         return retVal
-
 
 
     def full_receiver_align(self, context_gus, un_receiver_selected):
@@ -231,7 +221,6 @@ class Receiver(TXModel):
                   ( context_gus, str(receiver_selected), debug_counter ) )
 
 
-
     def receiver_align(self, receiver_gus, context_selected):
         """
         Called by Receiver handler, (PUT|POST), just take the receiver and update the
@@ -265,7 +254,6 @@ class Receiver(TXModel):
                   ( receiver_gus, str(context_selected) ) )
 
 
-
     def receiver_delete(self, receiver_gus):
         """
         Delete a receiver, or raise an exception if do not exist. The hanlder calling
@@ -281,7 +269,6 @@ class Receiver(TXModel):
 
         # TODO XXX Applicative log
         self.store.remove(requested_r)
-
 
 
     def align_context_delete(self, receivers_gus_list, removed_context_gus):
@@ -353,6 +340,4 @@ class Receiver(TXModel):
         }
         return dict(descriptionDict)
 
-
 # Receivers are NEVER slippery: http://i.imgur.com/saLqb.jpg
-
