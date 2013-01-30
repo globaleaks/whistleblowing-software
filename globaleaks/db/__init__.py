@@ -29,18 +29,8 @@ def createTables():
 
         yield tables.createTable(model)
 
-    initializeNode()
-
-def initializeNode():
-    """
-    This function is called only one time in a node life, and initialize
-    the table. the configure_node run edit of this row (id = 1)
-    This is not a @transact but is a white fly for this reason.
-    """
-    from globaleaks.models.node import Node
-
+    # Initialize the node
     store = config.main.zstorm.get('main_store')
-
     onlyNode = {}
 
     onlyNode['name'] = u"Please, set me: name/title"
@@ -52,3 +42,9 @@ def initializeNode():
     onlyNode['languages'] = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" }]
 
     node_created = Node(store).new(onlyNode)
+
+    # new is the only Models function executed without @transact, call .add, but
+    # the called has to .commit and .close, operations commonly performed by decorator
+    store.commit()
+    store.close()
+

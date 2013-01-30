@@ -44,7 +44,8 @@ class ReceiverInstance(BaseHandler):
         """
 
         try:
-            # TODO receiver_token_auth sanity and security check
+            # TODO authenticate Receiver using cookie or token_auth
+
             receivertip_iface = ReceiverTip()
 
             receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)

@@ -57,10 +57,7 @@ class Node(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("Node initialization fail (wrong %s)" % e)
 
-        # new is not called by a @transact thread... then we need commit
         self.store.add(self)
-        self.store.commit()
-
         return self._description_dict()
 
     def update(self, input_dict):
@@ -92,7 +89,7 @@ class Node(TXModel):
         node_list = self.store.find(Node)
 
         if node_list.count() != 1:
-            raise NotImplementedError("Unexpected condition: More than one Node configured")
+            raise NotImplementedError("Unexpected condition: More than one Node configured (%d)" % node_list.count())
 
         return node_list[0]._description_dict()
 

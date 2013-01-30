@@ -1,6 +1,0 @@
-name=new globaleaks node
-description=this is a new globaleaks node, we fight evil
-hidden_service=yaddayaddayaddayadda.onion
-public_site=http://wiki.globaleaks.org
-public_stats_delta=240
-private_stats_delta:=5
