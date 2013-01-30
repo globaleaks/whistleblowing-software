@@ -46,18 +46,7 @@ class Context(TXModel):
     tip_timetolive = Int()
     file_max_download = Int()
 
-    # list of receiver_gus
     receivers = Pickle()
-
-    # to be implemented in REST / dict
-    notification_profiles = Pickle()
-    delivery_profiles = Pickle()
-    inputfilter_chain = Pickle()
-    # to be implemented in REST / dict
-
-    def __init__(self, theStore):
-        self.store = theStore
-
 
     def new(self, context_dict):
         """
@@ -132,7 +121,6 @@ class Context(TXModel):
         # remove context from the receiver having association with it
 
         # TODO - delete all the stats associated with the context
-
 
         try:
             requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
