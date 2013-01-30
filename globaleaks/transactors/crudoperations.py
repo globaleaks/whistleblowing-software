@@ -8,6 +8,8 @@ from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.submission import Submission
 from globaleaks.models.options import PluginProfiles, ReceiverConfs
 
+from globaleaks.rest.errors import ForbiddenOperation
+
 from storm.twisted.transact import transact
 
 class CrudOperations(MacroOperation):
@@ -321,5 +323,180 @@ class CrudOperations(MacroOperation):
     # Completed CrudOperations for the Admin API
     # Below CrudOperations for Receiver API
 
+    @transact
+    def get_receiver_by_receiver(self, valid_tip):
 
+        receivertip_iface = ReceiverTip(self.getStore())
 
+        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
+        # receivers_map is a dict with these keys: 'others' : [$], 'actor': $, 'mapped' [ ]
+
+        self.returnData(receivers_map['actor'])
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def update_receiver_by_receiver(self, valid_tip, request):
+
+        store = self.getStore()
+        receivertip_iface = ReceiverTip(store)
+
+        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
+        # receivers_map is a dict with these keys: 'others' : [$], 'actor': $, 'mapped' [ ]
+
+        self_receiver_gus = receivers_map['actor']['receiver_gus']
+
+        receiver_iface = Receiver(store)
+        receiver_desc = receiver_iface.self_update(self_receiver_gus, request)
+
+        # context_iface = Context(store)
+        # context_iface.update_languages(receiver_desc['contexts'])
+        # TODO implement this function
+
+        self.returnData(receiver_desc)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def get_profiles_by_receiver(self, valid_tip):
+
+        store = self.getStore()
+        receivertip_iface = ReceiverTip(store)
+        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
+        # receivers_map is a dict with these keys: 'others' : [$], 'actor': $, 'mapped' [ ]
+
+        receiver_associated_contexts = receivers_map['actor']['contexts']
+
+        profile_iface = PluginProfiles(store)
+        profiles_list = profile_iface.get_profiles_by_contexts(receiver_associated_contexts)
+
+        self.returnData(profiles_list)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def get_receiversetting_list(self, valid_tip):
+
+        store = self.getStore()
+
+        receivertip_iface = ReceiverTip(store)
+        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
+
+        user = receivers_map['actor']
+
+        receivercfg_iface = ReceiverConfs(store)
+        confs_created = receivercfg_iface.get_confs_by_receiver(user['receiver_gus'])
+
+        self.returnData(confs_created)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def new_receiversetting(self, valid_tip, request):
+
+        store = self.getStore()
+
+        receivertip_iface = ReceiverTip(store)
+
+        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
+        user = receivers_map['actor']
+
+        profile_iface = PluginProfiles(store)
+        profile_desc = profile_iface.get_single(request['profile_gus'])
+
+        if profile_desc['plugin_type'] == u'notification' and user['can_configure_notification']:
+            pass
+        elif profile_desc['plugin_type'] == u'delivery' and user['can_configure_delivery']:
+            pass
+        else:
+            raise ForbiddenOperation
+
+        receivercfg_iface = ReceiverConfs(store)
+        config_desc = receivercfg_iface.new(user['receiver_gus'], request)
+
+        if config_desc['active']:
+            # keeping active only the last configuration requested
+            receivercfg_iface.deactivate_all_but(config_desc['config_id'], config_desc['context_gus'],
+                user['receiver_gus'], config_desc['plugin_type'])
+
+        self.returnData(config_desc)
+        self.returnCode(201)
+        return self.prepareRetVals()
+
+    @transact
+    def get_receiversetting(self, valid_tip, conf_id):
+
+        store = self.getStore()
+
+        # This check verify if auth is correct
+        receivertip_iface = ReceiverTip(store)
+        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
+
+        # This one in fact return the Receiver Setting requested
+        receivercfg_iface = ReceiverConfs(store)
+        conf_requested = receivercfg_iface.get_single(conf_id)
+
+        self.returnData(conf_requested)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def update_receiversetting(self, valid_tip, conf_id, request):
+
+        store = self.getStore()
+
+        receivertip_iface = ReceiverTip(store)
+        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
+        user = receivers_map['actor']
+
+        profile_iface = PluginProfiles(store)
+        profile_desc = profile_iface.get_single(request['profile_gus'])
+
+        if profile_desc['plugin_type'] == u'notification' and user['can_configure_notification']:
+            pass
+        elif profile_desc['plugin_type'] == u'delivery' and user['can_configure_delivery']:
+            pass
+        else:
+            raise ForbiddenOperation
+
+        receivercfg_iface = ReceiverConfs(store)
+        config_update = receivercfg_iface.update(conf_id, user['receiver_gus'], request)
+
+        if config_update['active']:
+            # keeping active only the last configuration requested
+            receivercfg_iface.deactivate_all_but(config_update['config_id'], config_update['context_gus'],
+                user['receiver_gus'], config_update['plugin_type'])
+
+        self.returnData(config_update)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def delete_receiversetting(self, valid_tip, conf_id):
+
+        store = self.getStore()
+
+        receivertip_iface = ReceiverTip(store)
+        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
+        user = receivers_map['actor']
+
+        receivercfg_iface = ReceiverConfs(store)
+        receivercfg_iface.delete(conf_id, user['receiver_gus'])
+
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def get_tip_list(self, valid_tip):
+
+        store = self.getStore()
+        receivertip_iface = ReceiverTip(store)
+
+        tips = receivertip_iface.get_tips_by_tip(valid_tip)
+        # this function return a dict with: { 'othertips': [$rtip], 'request' : $rtip }
+
+        tips['othertips'].append(tips['request'])
+
+        self.returnData(tips)
+        self.returnCode(200)
+        return self.prepareRetVals()

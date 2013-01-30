@@ -11,10 +11,7 @@ from globaleaks.handlers.base import BaseHandler
 from twisted.internet.defer import inlineCallbacks
 import json
 
-from globaleaks.models.receiver import Receiver
-from globaleaks.models.options import ReceiverConfs, PluginProfiles
-from globaleaks.models.context import Context
-from globaleaks.models.externaltip import ReceiverTip
+from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
@@ -44,16 +41,13 @@ class ReceiverInstance(BaseHandler):
         """
 
         try:
-            # TODO authenticate Receiver using cookie or token_auth
+            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
+            # Receiver identified, actually we're using a valid_tip:
 
-            receivertip_iface = ReceiverTip()
+            answer = yield CrudOperations().get_receiver_by_receiver(receiver_token_auth)
 
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)
-            # receivers_map is a dict with these keys: 'others' : [$], 'actor': $, 'mapped' [ ]
-
-            # TODO output filtering to receiver recipient
-            self.write(receivers_map['actor'])
-            self.set_status(200)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except TipGusNotFound, e: # InvalidTipAuthToken
 
@@ -73,24 +67,16 @@ class ReceiverInstance(BaseHandler):
         Errors: ReceiverGusNotFound, InvalidInputFormat, InvalidTipAuthToken, TipGusNotFound
         """
 
-        receivertip_iface = ReceiverTip()
-
         try:
             request = validateMessage(self.request.body, requests.receiverReceiverDesc)
 
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)
-            # receivers_map is a dict with these keys: 'others' : [$], 'actor': $, 'mapped' [ ]
+            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
+            # Receiver identified, actually we're using a valid_tip:
 
-            self_receiver_gus = receivers_map['actor']['receiver_gus']
+            answer = yield CrudOperations().update_receiver_by_receiver(receiver_token_auth, request)
 
-            receiver_iface = Receiver()
-            receiver_desc = yield receiver_iface.self_update(self_receiver_gus, request)
-
-            # context_iface = Context()
-            # yield context_iface.update_languages() -- TODO review in update languages and tags
-
-            self.write(receiver_desc)
-            self.set_status(200)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
@@ -136,21 +122,13 @@ class ProfilesCollection(BaseHandler):
         """
 
         try:
-            # TODO receiver_token_auth sanity and security check
+            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
+            # Receiver identified, actually we're using a valid_tip:
 
-            receivertip_iface = ReceiverTip()
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)
-            # receivers_map is a dict with these keys: 'others' : [$], 'actor': $, 'mapped' [ ]
+            answer = yield CrudOperations().get_profiles_by_receiver(receiver_token_auth)
 
-            receiver_associated_contexts = receivers_map['actor']['contexts']
-
-            profile_iface = PluginProfiles()
-            profiles_list = yield profile_iface.get_profiles_by_contexts(receiver_associated_contexts)
-
-            # TODO output filtering to receiver recipient
-            # self.write(json.dumps(profiles_list))
-            self.write({'a' : profiles_list})
-            self.set_status(200)
+            self.write(json.dumps(answer['data']))
+            self.set_status(answer['code'])
 
         except TipGusNotFound, e: # InvalidTipAuthToken
 
@@ -179,18 +157,14 @@ class ConfCollection(BaseHandler):
         Errors: TipGusNotFound, InvalidTipAuthToken
         """
 
-        receivertip_iface = ReceiverTip()
-
         try:
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)
+            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
+            # Receiver identified, actually we're using a valid_tip:
 
-            user = receivers_map['actor']
+            answer = yield CrudOperations().get_receiver_by_receiver(receiver_token_auth)
 
-            receivercfg_iface = ReceiverConfs()
-            confs_created = yield receivercfg_iface.get_confs_by_receiver(user['receiver_gus'])
-
-            self.write(json.dumps(confs_created))
-            self.set_status(200)
+            self.write(json.dumps(answer['data']))
+            self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
@@ -212,36 +186,16 @@ class ConfCollection(BaseHandler):
         Create a new configuration for a plugin
         """
 
-        receivertip_iface = ReceiverTip()
-
         try:
-            request = validateMessage(self.request.body, requests.receiverReceiverDesc)
+            request = validateMessage(self.request.body, requests.receiverConfDesc)
 
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)
-            user = receivers_map['actor']
+            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
+            # Receiver identified, actually we're using a valid_tip:
 
-            # ++ sanity checks that can't be make by validateMessage or by model:
-            profile_iface = PluginProfiles()
-            profile_desc = yield profile_iface.get_single(request['profile_gus'])
+            answer = yield CrudOperations().new_receiversetting(receiver_token_auth, request)
 
-            if profile_desc['plugin_type'] == u'notification' and user['can_configure_notification']:
-                pass
-            elif profile_desc['plugin_type'] == u'delivery' and user['can_configure_delivery']:
-                pass
-            else:
-                raise ForbiddenOperation
-            # -- end of the sanity checks
-
-            receivercfg_iface = ReceiverConfs()
-            config_desc = yield receivercfg_iface.new(user['receiver_gus'], request)
-
-            if config_desc['active']:
-                # keeping active only the last configuration requested
-                yield receivercfg_iface.deactivate_all_but(config_desc['config_id'], config_desc['context_gus'],
-                    user['receiver_gus'], config_desc['plugin_type'])
-
-            self.write(config_desc)
-            self.set_status(201) # Created
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidTipAuthToken, e:
 
@@ -271,7 +225,6 @@ class ConfCollection(BaseHandler):
         self.finish()
 
 
-
 class ConfInstance(BaseHandler):
     """
     R4
@@ -291,28 +244,21 @@ class ConfInstance(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, receiver_token_auth, rconf_id, *uriargs):
+    def get(self, receiver_token_auth, conf_id, *uriargs):
         """
         Parameters: receiver_token_auth, receiver_configuration_id
         Response: receiverConfDesc
         Errors: InvalidInputFormat, ProfileGusNotFound, TipGusNotFound, InvalidTipAuthToken
         """
 
-        receivertip_iface = ReceiverTip()
-
         try:
-            # TODO receiver_token_auth and rconf_id validation
+            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
+            # Receiver identified, actually we're using a valid_tip:
 
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)
+            answer = yield CrudOperations().get_receiversetting(receiver_token_auth, conf_id)
 
-            user = receivers_map['actor']
-
-            receivercfg_iface = ReceiverConfs()
-            conf_requested = yield receivercfg_iface.get_single(rconf_id)
-
-            self.write(conf_requested)
-            # TODO output filtering, creating a receiverConfDesc
-            self.set_status(200)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
@@ -356,36 +302,17 @@ class ConfInstance(BaseHandler):
         deactivate the others related to the same context.
         """
 
-        receivertip_iface = ReceiverTip()
 
         try:
             request = validateMessage(self.request.body, requests.receiverReceiverDesc)
 
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)
-            user = receivers_map['actor']
+            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
+            # Receiver identified, actually we're using a valid_tip:
 
-            # ++ sanity checks that can't be make by validateMessage or by model:
-            profile_iface = PluginProfiles()
-            profile_desc = yield profile_iface.get_single(request['profile_gus'])
+            answer = yield CrudOperations().update_receiversetting(receiver_token_auth, conf_id, request)
 
-            if profile_desc['plugin_type'] == u'notification' and user['can_configure_notification']:
-                pass
-            elif profile_desc['plugin_type'] == u'delivery' and user['can_configure_delivery']:
-                pass
-            else:
-                raise ForbiddenOperation
-            # -- end of the sanity checks
-
-            receivercfg_iface = ReceiverConfs()
-            config_update = yield receivercfg_iface.update(conf_id, user['receiver_gus'], request)
-
-            if config_update['active']:
-                # keeping active only the last configuration requested
-                yield receivercfg_iface.deactivate_all_but(config_update['config_id'], config_update['context_gus'],
-                    user['receiver_gus'], config_update['plugin_type'])
-
-            self.write(config_update)
-            self.set_status(200) # OK
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except InvalidTipAuthToken, e:
 
@@ -430,18 +357,13 @@ class ConfInstance(BaseHandler):
         Errors: InvalidInputFormat, ProfileGusNotFound
         """
 
-        receivertip_iface = ReceiverTip()
-
         try:
-            # TODO validate parameters or raise InvalidInputFormat
+            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
+            # Receiver identified, actually we're using a valid_tip:
 
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(receiver_token_auth)
-            user = receivers_map['actor']
+            answer = yield CrudOperations().delete_receiversetting(receiver_token_auth, conf_id)
 
-            receivercfg_iface = ReceiverConfs()
-            yield receivercfg_iface.delete(conf_id, user['receiver_gus'])
-
-            self.set_status(200) # OK
+            self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
@@ -477,19 +399,14 @@ class TipsCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        receivertip_iface = ReceiverTip()
-
         try:
+            # validateParameter(tip_auth_token, requests.tipGUS)
             # TODO validate parameter tip format or raise InvalidInputFormat
 
-            tips = yield receivertip_iface.get_tips_by_tip(tip_auth_token)
-            # this function return a dict with: { 'othertips': [$rtip], 'request' : $rtip }
+            answer = yield CrudOperations().get_tip_list(tip_auth_token)
 
-            tips['othertips'].append(tips['request'])
-
-            self.write(tips['othergroup'])
-
-            self.set_status(200) # OK
+            self.set_status(answer['code'])
+            self.write(json.dumps(answer['data']))
 
         except TipGusNotFound, e:
 
