@@ -688,4 +688,93 @@ class CrudOperations(MacroOperation):
     # Completed CrudOperations for the Tip API
     # Below CrudOperations for Submission API
 
+    @transact
+    def new_submission(self, request):
+
+        store = self.getStore()
+
+        context_iface = Context(store)
+        context_desc = context_iface.get_single(request['context_gus'])
+
+        submission_iface = Submission(store)
+        submission_desc = submission_iface.new(request)
+
+        if not context_desc['selectable_receiver']:
+            submission_iface.receivers = context_iface.receivers
+
+        if submission_desc['finalize']:
+
+            internaltip_iface = InternalTip(store)
+            wb_iface = WhistleblowerTip(store)
+
+            internaltip_desc = internaltip_iface.new(submission_desc)
+            wbtip_desc = wb_iface.new(internaltip_desc)
+
+            submission_desc.update({'receipt' : wbtip_desc['receipt']})
+        else:
+            submission_desc.update({'receipt' : ''})
+
+        self.returnData(submission_desc)
+        self.returnCode(201) # Created
+        return self.prepareRetVals()
+
+    @transact
+    def get_submission(self, submission_gus):
+
+        store = self.getStore()
+
+        submission_iface = Submission(store)
+
+        submission_desc = submission_iface.get_single(submission_iface)
+
+        self.returnData(submission_desc)
+        self.returnCode(201) # Created
+        return self.prepareRetVals()
+
+    @transact
+    def update_submission(self, submission_gus, request):
+
+        store = self.getStore()
+
+        context_iface = Context(store)
+
+        context_desc = context_iface.get_single(request['context_gus'])
+
+        submission_iface = Submission(store)
+        submission_desc = submission_iface.update(submission_gus, request)
+
+        if not context_desc['selectable_receiver']:
+            submission_iface.receivers = context_iface.receivers
+
+        if submission_desc['finalize']:
+
+            internaltip_iface = InternalTip(store)
+            wb_iface = WhistleblowerTip(store)
+
+            internaltip_desc = internaltip_iface.new(submission_desc)
+            wbtip_desc = wb_iface.new(internaltip_desc)
+
+            submission_desc.update({'receipt' : wbtip_desc['receipt']})
+        else:
+            submission_desc.update({'receipt' : ''})
+
+        self.returnData(submission_desc)
+        self.returnCode(202) # Updated
+        return self.prepareRetVals()
+
+    @transact
+    def delete_submission(self, submission_gus):
+
+        store = self.getStore()
+
+        submission_iface = Submission(store)
+        submission_iface.submission_delete(submission_gus)
+
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    # Completed CrudOperations for the Submission API
+    # Below CrudOperations for Files API
+
+
 

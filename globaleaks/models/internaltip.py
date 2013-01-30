@@ -59,13 +59,12 @@ class InternalTip(TXModel):
 
     _marker = [ u'new', u'first', u'second' ]
 
-    @transact
+
     def new(self, submission_dict):
         """
         initialize an internalTip form a recently finalized Submission
         @return: none
         """
-        store = self.getStore()
 
         self.last_activity = gltime.utcDateNow()
         self.creation_date = gltime.utcDateNow()
@@ -86,7 +85,7 @@ class InternalTip(TXModel):
             raise InvalidInputFormat("InternalTip initialization failed (wrong %s)" % e)
 
         # Align the References
-        self.context = store.find(Context, Context.context_gus == self.context_gus).one()
+        self.context = self.store.find(Context, Context.context_gus == self.context_gus).one()
 
         # these value are copied from self.context, and are the only of internaltip
         # that can be changed (by the admin them using update_inner_values() )
@@ -102,7 +101,7 @@ class InternalTip(TXModel):
         self.pertinence_counter = 0
         self.mark = self._marker[0] # new
 
-        store.add(self)
+        self.store.add(self)
         return self._description_dict()
 
 
@@ -110,7 +109,6 @@ class InternalTip(TXModel):
     # http://i61.photobucket.com/albums/h63/freecodesource/funny/pictures/funny_signs_6.jpg
 
 
-    @transact
     def change_inner_value(self, id, escalation=None, accesslimit=None, downloadlimit=None):
         """
         This function is called by admin, whenever want update a value in the
@@ -121,9 +119,8 @@ class InternalTip(TXModel):
         @param downloadlimit: now amount of download limit
         @return: None
         """
-        store = self.getStore()
 
-        selected_it = store.find(InternalTip, InternalTip.id == int(id)).one()
+        selected_it = self.store.find(InternalTip, InternalTip.id == int(id)).one()
 
         if escalation:
             selected_it.escalation_threshold = escalation
@@ -135,7 +132,6 @@ class InternalTip(TXModel):
             selected_it.download_limit = downloadlimit
 
 
-    @transact
     def get_itips_by_maker(self, marker, escalated):
         """
         @escalated: a bool, checked only when marker is u'first', verify if the internaltip
@@ -143,16 +139,15 @@ class InternalTip(TXModel):
         @return: all the internaltips matching with the requested
             marked, between this list of option:
         """
-        store = self.getStore()
 
         if marker == self._marker[0]:
-            req_it = store.find(InternalTip, InternalTip.mark == self._marker[0])
+            req_it = self.store.find(InternalTip, InternalTip.mark == self._marker[0])
         elif marker == self._marker[1] and escalated: 
-            req_it = store.find(InternalTip, (InternalTip.mark == self._marker[1], InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
+            req_it = self.store.find(InternalTip, (InternalTip.mark == self._marker[1], InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
         elif marker == self._marker[1] and not escalated:
-            req_it = store.find(InternalTip, InternalTip.mark == self._marker[1])
+            req_it = self.store.find(InternalTip, InternalTip.mark == self._marker[1])
         elif marker == self._marker[2]:
-            req_it = store.find(InternalTip, InternalTip.mark == self._marker[2])
+            req_it = self.store.find(InternalTip, InternalTip.mark == self._marker[2])
         else:
             raise NotImplemented
 
@@ -163,20 +158,18 @@ class InternalTip(TXModel):
         return retVal
 
 
-    @transact
     def flip_mark(self, subject_id, newmark):
         """
         @param newmark: u'first' or u'second', at the start is u'new'
         @subject_id: InternalTip.id to be changed, this mark represent the progress of the iTip
         @return: None
         """
-        store = self.getStore()
 
         if newmark not in self._marker:
             raise NotImplemented
 
         try:
-            requested_t = store.find(InternalTip, InternalTip.id == int(subject_id)).one()
+            requested_t = self.store.find(InternalTip, InternalTip.id == int(subject_id)).one()
         except NotOneError:
             raise Exception("Not found InternalTip %d" % subject_id)
         if requested_t is None:
@@ -188,19 +181,17 @@ class InternalTip(TXModel):
         requested_t.last_activity = gltime.utcDateNow()
         requested_t.mark = newmark
 
-
     # REMIND: at the moment is not yet called by the various hooks
-    @transact
+
     def update_last_activity(self, internaltip_id):
         """
         update_last_activity is called when an operation happen in some elements
         related to the internaltip (file upload, new comment, receiver escalation,
         new pertinence, receivertip deleted by receiver)
         """
-        store = self.getStore()
 
         try:
-            requested_t = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+            requested_t = self.store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
         except NotOneError:
             raise Exception("Not found InternalTip %d" % internaltip_id)
         if requested_t is None:
@@ -209,7 +200,6 @@ class InternalTip(TXModel):
         requested_t.last_activity = gltime.utcDateNow()
 
 
-    @transact
     def update_pertinence(self, internaltip_id, overall_vote):
         """
         In the case a receiver remove himself from a tip, its vote
@@ -221,15 +211,13 @@ class InternalTip(TXModel):
         @param internaltip_id: valid itip_id related to the Tip analized
         @return: None
         """
-        store = self.getStore()
 
-        requested_t = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+        requested_t = self.store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
 
         requested_t.pertinence_counter = overall_vote
         requested_t.last_activity = gltime.utcDateNow()
 
 
-    @transact
     def tip_delete(self, internaltip_id):
         """
         function called when a receiver choose to remove a submission
@@ -239,12 +227,10 @@ class InternalTip(TXModel):
         * The called handle and manage eventually reference to be deleted. *
         """
 
-        store = self.getStore()
-        selected = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
-        store.remove(selected)
+        selected = self.store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+        self.store.remove(selected)
 
 
-    @transact
     def get_receivers_by_itip(self, internaltip_id):
         """
         @param internaltip_id:
@@ -256,9 +242,7 @@ class InternalTip(TXModel):
         """
         from globaleaks.models.externaltip import ReceiverTip
 
-        store = self.getStore()
-
-        rcvr_tips = store.find(ReceiverTip, ReceiverTip.internaltip_id == int(internaltip_id))
+        rcvr_tips = self.store.find(ReceiverTip, ReceiverTip.internaltip_id == int(internaltip_id))
 
         receivers_desc = []
         for tip in rcvr_tips:
@@ -267,19 +251,15 @@ class InternalTip(TXModel):
         return receivers_desc
 
 
-    @transact
     def get_single(self, internaltip_id):
 
-        store = self.getStore()
-        selected = store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+        selected = self.store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
         return selected._description_dict()
 
 
-    @transact
     def get_all(self):
 
-        store = self.getStore()
-        all_itips = store.find(InternalTip)
+        all_itips = self.store.find(InternalTip)
 
         retVal = []
         for itip in all_itips:
