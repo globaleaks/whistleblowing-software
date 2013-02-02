@@ -19,6 +19,7 @@ from globaleaks.models.submission import Submission
 from globaleaks.models.options import PluginProfiles, ReceiverConfs
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.config import config
+from globaleaks.rest.errors import ReceiverGusNotFound
 import os
 
 from storm.twisted.transact import transact
@@ -188,7 +189,6 @@ class AsyncOperations(MacroOperation):
         store = self.getStore()
 
         internaltip_iface = InternalTip(store)
-        receivertip_iface = ReceiverTip(store)
         receiver_iface = Receiver(store)
 
         internal_tip_list = internaltip_iface.get_itips_by_maker(u'new', False)
@@ -203,22 +203,22 @@ class AsyncOperations(MacroOperation):
 
             for receiver_gus in internaltip_desc['receivers']:
 
-                receiver_desc = receiver_iface.get_single(receiver_gus)
+                try:
+                    receiver_desc = receiver_iface.get_single(receiver_gus)
+                except ReceiverGusNotFound:
+                    # Log error, a receiver has been removed before get the Tip
+                    continue
 
                 # check if the Receiver Tier is the first
                 if int(receiver_desc['receiver_level']) != 1:
                     continue
 
-                receivertip_desc = receivertip_iface.new(internaltip_desc, receiver_desc)
-                print "Created rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name']
+                receivertip_obj = ReceiverTip(store)
+                receivertip_desc = receivertip_obj.new(internaltip_desc, receiver_desc)
+                print "Created rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name'], \
+                    "in", internaltip_desc['context_gus']
 
-            try:
-                # switch the InternalTip.mark for the tier supplied
-                internaltip_iface.flip_mark(internaltip_desc['internaltip_id'], internaltip_iface._marker[1])
-            except:
-                # ErrorTheWorldWillEndSoon("Goodbye and thanks for all the fish")
-                print "Internal error"
-                raise
+            internaltip_iface.flip_mark(internaltip_desc['internaltip_id'], internaltip_iface._marker[1])
 
         # Escalation is not working at the moment, may be well engineered the function
         # before, permitting various layer of receivers.
@@ -240,15 +240,20 @@ class AsyncOperations(MacroOperation):
 
             for receiver_gus in internaltip_desc['receivers']:
 
-                receiver_desc = receiver_iface.get_single(receiver_gus)
+                try:
+                    receiver_desc = receiver_iface.get_single(receiver_gus)
+                except ReceiverGusNotFound:
+                    # Log error, a receiver has been removed before get the Tip
+                    continue
 
                 # check if the Receiver Tier is the second
                 if int(receiver_desc['receiver_level']) != 2:
                     continue
 
-                receivertip_desc = receivertip_iface.new(internaltip_desc, receiver_desc)
-                print "Created 2nd tir rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name']
+                receivertip_obj = ReceiverTip(store)
+                receivertip_desc = receivertip_obj.new(internaltip_desc, receiver_desc)
+                print "Created 2nd tir rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name'], \
+                    "in", internaltip_desc['context_gus']
 
-                # TODO InternalError exception
-                internaltip_iface.flip_mark(itip_id, internaltip_iface._marker[2])
+            internaltip_iface.flip_mark(itip_id, internaltip_iface._marker[2])
 

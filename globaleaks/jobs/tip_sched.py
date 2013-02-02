@@ -31,4 +31,12 @@ class APSTip(GLJob):
         the requested value.
         """
 
-        results = yield AsyncOperations().tip_creation()
+        try:
+            results = yield AsyncOperations().tip_creation()
+
+        except InvalidInputFormat, e:
+
+            # Log Internal Error
+            print "Internal error: ", e
+
+        # log results

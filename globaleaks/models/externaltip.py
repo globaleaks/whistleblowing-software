@@ -70,14 +70,13 @@ class ReceiverTip(TXModel):
             self.tip_gus = idops.random_tip_gus()
 
         except KeyError, e:
-            # The world will badly end, if this happen in non-tes
             raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad key %s" % e)
         except TypeError, e:
-            # The world will badly end, if this happen in non-tes
             raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad type %s" % e)
 
         # XXX App log
         self.store.add(self)
+        print "yay, addedd", self._description_dict()
         return self._description_dict()
 
     # -------------------
@@ -148,7 +147,6 @@ class ReceiverTip(TXModel):
         return dict(tip_details)
 
 
-
     def pertinence_vote(self, tip_gus, vote):
         """
         check if the receiver has already voted. if YES: raise an exception, if NOT
@@ -186,7 +184,6 @@ class ReceiverTip(TXModel):
 
         itip_id_copy = requested_t.internaltip_id
         return (itip_id_copy, vote_sum)
-
 
 
     def get_sibiligs_by_tip(self, tip_gus):
@@ -232,7 +229,6 @@ class ReceiverTip(TXModel):
         return retDict
 
 
-
     def get_receivers_by_tip(self, tip_gus):
         """
         @param tip_gus: a valid tip gus
@@ -275,7 +271,6 @@ class ReceiverTip(TXModel):
         return retDict
 
 
-
     def get_tips_by_tip(self, tip_gus):
         """
         @param tip_gus: a valid tip gus
@@ -309,7 +304,6 @@ class ReceiverTip(TXModel):
         return retDict
 
 
-
     def get_tips_by_receiver(self, receiver_gus):
         """
         @param receiver_gus: A receiver_gus
@@ -323,7 +317,6 @@ class ReceiverTip(TXModel):
             related_list.append(t._description_dict())
 
         return related_list
-
 
 
     def get_tips_by_notification_mark(self, marker):
@@ -346,7 +339,6 @@ class ReceiverTip(TXModel):
             # every dict returned from this method, explicit the context, instead get them from itip
 
         return list_by_mark
-
 
 
     def get_tips_by_context(self, context_gus):

@@ -33,8 +33,10 @@ class MacroOperation():
 
     def prepareRetVals(self):
 
-        returnDict = { 'data' : self._data,
-                       'code' : self._http }
+        returnDict = { 'code' : self._http }
+
+        if hasattr(self, '_data' ):
+            returnDict.update({ 'data' : self._data })
 
         return dict(returnDict)
 
