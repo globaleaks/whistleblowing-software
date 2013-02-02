@@ -22,13 +22,6 @@ class APSStatistics(GLJob):
         are collected in the last row of PublicStats and AdminStats,
         this operation create a new row.
         """
-        log.debug("[D]", self.__class__, 'operation', datetime.today().ctime())
-
+        pass
         # just take AdminStats, initialize a new row
         # just take PublicStats, initialize a new row
-
-    def get_node_delta(self):
-        """
-        @return: the amount of seconds configured in Node table
-        """
-        return 300

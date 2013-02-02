@@ -8,8 +8,7 @@
 
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
-from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.externaltip import File, ReceiverTip
+from globaleaks.transactors.asyncoperations import AsyncOperations
 from datetime import datetime
 
 __all__ = ['APSDelivery']
@@ -33,4 +32,5 @@ class APSDelivery(GLJob):
         act on the single Folder.
         TODO when file uploader / folder models is correctly managed.
         """
-        log.debug("[D]", self.__class__, 'operation', datetime.today().ctime())
+
+        results = yield AsyncOperations().delivery()

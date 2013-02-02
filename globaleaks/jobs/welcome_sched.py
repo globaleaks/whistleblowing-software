@@ -9,7 +9,7 @@
 
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
-from globaleaks.models.receiver import Receiver
+from globaleaks.transactors.asyncoperations import AsyncOperations
 from datetime import date
 
 __all__ = ['APSWelcome']
@@ -36,11 +36,4 @@ class APSWelcome(GLJob):
         """
         log.debug("[D]", self.__class__, 'operation', date.today().ctime())
 
-        receiver_iface = Receiver()
-
-        # noobceivers = yield receiver_iface.lookup(status=u'not welcomed')
-        # noobceivers = receiver_iface.lookup(status=u'not welcomed')
-        noobceivers = []
-
-        for noob in noobceivers:
-            print "need to be welcomed", noob
+        response = yield AsyncOperations().receiver_welcome()
