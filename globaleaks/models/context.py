@@ -13,7 +13,6 @@ from storm.locals import Unicode, Bool, DateTime
 from storm.locals import Reference
 
 from globaleaks.utils import gltime, idops, log
-from globaleaks.models.node import Node
 from globaleaks.models.base import TXModel
 from globaleaks.rest.errors import ContextGusNotFound, InvalidInputFormat
 
@@ -25,9 +24,6 @@ class Context(TXModel):
     __storm_table__ = 'contexts'
 
     context_gus = Unicode(primary=True)
-
-    node_id = Int()
-    node = Reference(node_id, Node.id)
 
     name = Unicode()
     description = Unicode()
@@ -56,7 +52,6 @@ class Context(TXModel):
         """
 
         self.context_gus = idops.random_context_gus()
-        self.node_id = 1
 
         self.creation_date = gltime.utcTimeNow()
         self.update_date = gltime.utcTimeNow()
@@ -114,13 +109,9 @@ class Context(TXModel):
         @return: None if is deleted correctly, or raise an exception if something is wrong.
         """
 
-        # Handler Guarantee there operations *before*:
-        #
-        # delete all the tips associated with the context, comments and files.
-
-        # remove context from the receiver having association with it
-
-        # TODO - delete all the stats associated with the context
+        # Handler Guarantee these operations *before*:
+        # . delete all the tips associated with the context, comments and files.
+        # . remove context from the receiver having association with it
 
         try:
             requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
@@ -130,7 +121,6 @@ class Context(TXModel):
             raise ContextGusNotFound
 
         self.store.remove(requested_c)
-        # TODO XXX Applicative log
 
 
     def get_single(self, context_gus):
@@ -178,36 +168,6 @@ class Context(TXModel):
                 ret_contexts_dicts.append( requested_c._description_dict() )
 
         return ret_contexts_dicts
-
-
-    def count(self):
-        """
-        @return: the number of contexts. Not used at the moment
-        """
-        contextnum = self.store.find(Context).count()
-        return contextnum
-
-
-    # called always by transact method, from models
-    def exists(self, context_gus):
-        """
-        @param context_gus: check if the requested context exists or not
-        @return: True if exist, False if not, do not raise exception.
-        """
-
-
-        try:
-            requested_c = self.store.find(Context, Context.context_gus == unicode(context_gus)).one()
-
-            if requested_c is None:
-                retval = False
-            else:
-                retval = True
-
-        except NotOneError:
-            retval = False
-
-        return retval
 
 
     # TODO -- need to be called after receiver creation/update/delete

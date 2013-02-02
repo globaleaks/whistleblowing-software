@@ -237,7 +237,7 @@ class CrudOperations(MacroOperation):
         receiver_iface = Receiver(store)
         receiver_desc = receiver_iface.get_single(receiver_gus)
 
-        receivertip_iface = ReceiverTip()
+        receivertip_iface = ReceiverTip(store)
         # Remove Tip possessed by the receiver
         related_tips = receivertip_iface.get_tips_by_receiver(receiver_gus)
         for tip in related_tips:

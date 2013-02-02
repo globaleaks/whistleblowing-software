@@ -162,6 +162,8 @@ class Submission(TXModel):
             Perform two kind of verification: if the required fields
             are present, and if
         """
+        return True # XXX
+
         for entry in self.context.fields:
             if entry['required']:
                 if not self.wb_fields.has_key(entry['name']):
