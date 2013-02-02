@@ -55,6 +55,8 @@ class ReceiverTip(TXModel):
     def new(self, itip_dict, receiver_dict):
 
         try:
+            self.tip_gus = idops.random_tip_gus()
+
             self.receiver_gus = unicode(receiver_dict['receiver_gus'])
             self.receiver = self.store.find(Receiver, Receiver.receiver_gus == unicode(self.receiver_gus) ).one()
 
@@ -67,7 +69,6 @@ class ReceiverTip(TXModel):
 
             self.notification_mark = self._marker[0] # 'not notified'
             self.notification_date = None
-            self.tip_gus = idops.random_tip_gus()
 
         except KeyError, e:
             raise InvalidInputFormat("Invalid messaged in Receiver Tip creation: bad key %s" % e)
@@ -76,7 +77,6 @@ class ReceiverTip(TXModel):
 
         # XXX App log
         self.store.add(self)
-        print "yay, addedd", self._description_dict()
         return self._description_dict()
 
     # -------------------
@@ -483,19 +483,17 @@ class WhistleblowerTip(TXModel):
         except KeyError:
             raise InvalidInputFormat("Unable to initialized WhistleBlower Tip with iTip (missing field)")
 
-        self.internaltip = self.store.find(InternalTip, InternalTip.id == int(self.internaltip_id)).one()
-
+        self.receipt = unicode(idops.random_receipt())
         self.last_access = 0
         self.access_counter = 0
 
-        self.receipt = unicode(idops.random_receipt())
+        self.internaltip = self.store.find(InternalTip, InternalTip.id == int(self.internaltip_id)).one()
 
         self.store.add(self)
 
         return self._description_dict()
 
     # Also this Model has not an update interface.
-
 
     def get_single(self, receipt):
 
@@ -521,7 +519,6 @@ class WhistleblowerTip(TXModel):
         return dict(tip_details)
 
 
-
     def get_all(self):
         """
         This is called by API /admin/overview only
@@ -534,7 +531,6 @@ class WhistleblowerTip(TXModel):
             retVal.append(single_wt._description_dict())
 
         return retVal
-
 
 
     def delete_access(self, receipt):
@@ -641,6 +637,8 @@ class File(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("File import failed (wrong %s)" % e)
 
+        self.file_gus = unicode(idops.random_file_gus())
+
         try:
             self.context = self.store.find(Context, Context.context_gus == self.context_gus).one()
 
@@ -648,12 +646,10 @@ class File(TXModel):
             # This can never happen
             raise Exception("Internal Impossible Error")
 
-        self.mark = self._marker[0] # not processed
         self.completed = False
         self.uploaded_date = gltime.utcTimeNow()
 
-        self.file_gus = unicode(idops.random_file_gus())
-
+        self.mark = self._marker[0] # not processed
         # When the file is 'not processed', this value stay to 0
         self.internaltip_id = 0
 
@@ -681,7 +677,6 @@ class File(TXModel):
             raise InvalidInputFormat("File update failed (wrong %s)" % e)
 
         return referenced_f._description_dict()
-
 
 
     def _import_dict(self, received_dict):
@@ -723,7 +718,6 @@ class File(TXModel):
             retVal.append(single_file._description_dict())
 
         return retVal
-
 
 
     def get_files_by_itip(self, internaltip_id):

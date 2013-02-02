@@ -193,13 +193,13 @@ class AsyncOperations(MacroOperation):
 
         internal_tip_list = internaltip_iface.get_itips_by_maker(u'new', False)
 
-        # TODO for each itip
-        # TODO get file status
-
         if len(internal_tip_list):
             print "TipSched: found %d new Tip" % len(internal_tip_list)
 
         for internaltip_desc in internal_tip_list:
+
+            # TODO for each itip
+            # TODO get file status, or 'continue'
 
             for receiver_gus in internaltip_desc['receivers']:
 

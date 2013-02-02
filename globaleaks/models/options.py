@@ -82,6 +82,9 @@ class PluginProfiles(TXModel):
 
             self._import_dict(profile_dict)
 
+            self.profile_gus = idops.random_plugin_gus()
+            self.creation_time = gltime.utcTimeNow()
+
             # the name can be updated, but need to be checked to be UNIQUE
             if self.store.find(PluginProfiles, PluginProfiles.profile_name == self.profile_name).count() >= 1:
                 raise ProfileNameConflict
@@ -105,9 +108,6 @@ class PluginProfiles(TXModel):
 
         except TypeError, e:
             raise InvalidInputFormat("Profile creation failed (wrong %s)" % e)
-
-        self.profile_gus = idops.random_plugin_gus()
-        self.creation_time = gltime.utcTimeNow()
 
         self.store.add(self)
 
@@ -246,8 +246,6 @@ class ReceiverConfs(TXModel):
     creation_time = DateTime()
     last_update = DateTime()
 
-    def __init__(self, theStore):
-        self.store = theStore
 
     def new(self, creator_receiver, init_request):
 
