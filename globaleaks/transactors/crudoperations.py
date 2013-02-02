@@ -7,8 +7,9 @@ from globaleaks.models.externaltip import File, ReceiverTip, WhistleblowerTip, C
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.submission import Submission
 from globaleaks.models.options import PluginProfiles, ReceiverConfs
+from globaleaks.plugins.manager import PluginManager
 
-from globaleaks.rest.errors import ForbiddenOperation
+from globaleaks.rest.errors import ForbiddenOperation, InvalidInputFormat
 
 from storm.twisted.transact import transact
 
@@ -774,7 +775,51 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     # Completed CrudOperations for the Submission API
-    # Below CrudOperations for Files API
+    # Below CrudOperations for Debug API
+
+    @transact
+    def dump_models(self, expected):
+
+
+        expected_dict = { 'itip' : InternalTip,
+                          'wtip' : WhistleblowerTip,
+                          'rtip' : ReceiverTip,
+                          'receivers' : Receiver,
+                          'comment' : Comment,
+                          'profiles' : PluginProfiles,
+                          'rcfg' : ReceiverConfs,
+                          'file' : File,
+                          'submission' : Submission,
+                          'contexts' : Context }
+
+        outputDict = {}
+        self.returnCode(200)
+
+        store = self.getStore()
+
+        if expected in ['count', 'all']:
+
+            for key, object in expected_dict.iteritems():
+                info_list = object(store).get_all()
+
+                if expected == 'all':
+                    outputDict.update({key : info_list})
+
+                outputDict.update({("%s_elements" % key) : len(info_list) })
+
+            self.returnData(outputDict)
+            return self.prepareRetVals()
+
+        if expected_dict.has_key(expected):
+
+            info_list = expected_dict[expected](store).get_all()
+            outputDict.update({expected : info_list, ("%s_elements" % expected) : len(info_list) })
+
+            self.returnData(outputDict)
+            return self.prepareRetVals()
+
+        raise InvalidInputFormat("Not acceptable '%s'" % expected)
+
 
 
 

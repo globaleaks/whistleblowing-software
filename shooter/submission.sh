@@ -44,7 +44,7 @@ for r in $receivers_list; do
 done
 r_ready=`echo $receiver_option | sed -es/,$//`
 
-dt "3" "D1 GET dump itip print-internaltips_elements" "dumping number of internaltips, before the tests"
+dt "3" "D1 GET dump itip print-itip_elements" "dumping number of internaltips, before the tests"
 beforecount=$ret
 
 cnt=0
@@ -54,15 +54,10 @@ for context_gus in $context_list; do
 
     dt "\t4x" "U2 POST cid $context_gus print-submission_gus" "opening a new submission"
     submission_gus=$ret
+    dt "\t5+" "U3 PUT cid $context_gus sid $submission_gus raw $r_ready print-receipt" "completing submission and getting receipt"
+    receipt=$ret
+    echo "completed submission receipt $receipt for context $context_gus"
 
-    check=$(($cnt%2))
-
-    if [ $check -eq 0 ]; then
-        dt "\t5+" "U3 PUT cid $context_gus sid $submission_gus raw $r_ready print-receipt" "completing submission and getting receipt"
-        receipt=$ret
-    else
-        dt "\t5-" "U3 DELETE sid $submission_gus" "deleting submission"
-    fi
 
 done
 
@@ -70,10 +65,7 @@ done
 # Force tip schedule creation
 dt "6" "D2 GET task tip" "Forcing tip creation asyncronous operation"
 
-dt "3" "D1 GET dump itip print-internaltips_elements" "dumping number of internaltips, after tests"
+dt "3" "D1 GET dump itip print-itip_elements" "dumping number of internaltips, after tests"
 aftercount=$ret
 
 echo "[*] before: $beforecount after: $aftercount"
-
-dt "4" "D1 GET dump all print-tip_gus print-receipt" "taking some variables"
-echo $ret
