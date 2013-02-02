@@ -5,7 +5,6 @@
 #
 # Storm DB table and ORM of the submisson temporary table
 
-from storm.twisted.transact import transact
 from storm.locals import Int, Pickle, DateTime, Unicode, Reference
 from storm.exceptions import NotOneError
 
@@ -32,11 +31,11 @@ class Submission(TXModel):
 
     submission_gus = Unicode(primary=True)
 
-    wb_fields = Pickle()
     creation_time = DateTime()
     expiration_time = DateTime()
-
     mark = Unicode()
+
+    wb_fields = Pickle()
     receivers = Pickle()
     files = Pickle()
 
@@ -56,15 +55,19 @@ class Submission(TXModel):
         # TODO with gltimes completed, just gltime.utcTimeNow(associated_c.submission_expire)
         self.expiration_time = gltime.utcFutureDate(seconds=1, minutes=1, hours=1)
 
+        self.submission_gus = idops.random_submission_gus()
+
         try:
             self._import_dict(received_dict)
+            self.context_gus = unicode(received_dict['context_gus'])
+
         except KeyError, e:
             raise InvalidInputFormat("Submission initialization failed (missing %s)" % e)
         except TypeError, e:
             raise InvalidInputFormat("Submission initialization failed (wrong %s)" % e)
 
         try:
-            associated_c = self.store.find(Context, Context.context_gus == unicode(self.context_gus)).one()
+            associated_c = self.store.find(Context, Context.context_gus == self.context_gus).one()
         except NotOneError:
             raise ContextGusNotFound
         if associated_c is None:
@@ -72,46 +75,19 @@ class Submission(TXModel):
 
         self.context = associated_c
 
-        """
-        try:
-            if not self._wb_fields_verify():
-                raise SubmissionFailFields
-        except ValueError, e:
-            print "[---] Unable to verify field: %s" % e
-            raise SubmissionFailFields
-        """
-        # XXX remind talk with Arturo about this. I don't want invalid field also in not completed submission
-        # but client want open a submission before having sent them
-
-        # TODO those file/receiver checks can be reduced in one function after the refactor #46
-        # Instead keeping them duped between update and new
-
-        for single_r in self.receivers:
-            try:
-                selected_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(single_r)).one()
-            except NotOneError:
-                raise ReceiverGusNotFound
-            if selected_r is None:
-                raise ReceiverGusNotFound
-            if not self.context_gus in selected_r.contexts:
-                print "[***] Invalid Receiver relationship:", self.context_gus, selected_r.contexts
-                raise ReceiverGusNotFound
-
-        for single_f in self.files:
-            try:
-                selected_f = self.store.find(File, File.file_gus == unicode(single_f)).one()
-            except NotOneError:
-                raise FileGusNotFound
-            if selected_f is None:
-                raise FileGusNotFound
-
-        self.submission_gus = idops.random_submission_gus()
+        self._receivers_check()
+        self._files_check()
 
         if received_dict.has_key('finalize') and received_dict['finalize']:
-            print "INFO, Finalized in new", self.submission_gus
+
+            try:
+                if not self._wb_fields_verify():
+                    raise SubmissionFailFields
+            except ValueError, e:
+                print "[---] Unable to verify field: %s" % e
+                raise SubmissionFailFields
+
             self.mark = self._marker[1] # 'finalized'
-        else:
-            print "INFO, NOT finalized in new", self.submission_gus
 
         self.store.add(self)
         return self._description_dict()
@@ -121,6 +97,7 @@ class Submission(TXModel):
 
         try:
             s = self.store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
+            s.store = self.store
         except NotOneError, e:
             raise SubmissionGusNotFound
         if not s:
@@ -137,32 +114,40 @@ class Submission(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("Submission update failed (wrong %s)" % e)
 
-        """
-        try:
-            if not s._wb_fields_verify():
+        s._receivers_check()
+        s._files_check()
+
+        if received_dict['finalize']:
+
+            try:
+                if not s._wb_fields_verify():
+                    raise SubmissionFailFields
+            except ValueError, e:
+                print "[---] Unable to verify field: %s" % e
                 raise SubmissionFailFields
-        except ValueError, e:
-            # XXX this would be a log or an error for the client ?
-            print "[---] Unable to verify field: %s" % e
-            raise SubmissionFailFields
-        """
 
-        # TODO those file/receiver checks can be reduced in one function after the refactor #46
-        # Instead keeping them duped between update and new
+            s.mark = self._marker[1] # 'finalized'
 
-        for single_r in s.receivers:
+        return s._description_dict()
+
+
+    def _receivers_check(self):
+
+        for single_r in self.receivers:
             try:
                 selected_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(single_r)).one()
             except NotOneError:
                 raise ReceiverGusNotFound
             if selected_r is None:
                 raise ReceiverGusNotFound
-            if not s.context_gus in selected_r.contexts:
-                # XXX this would be a log or an error for the client ?
-                print "[***] Invalid Receiver relationship:", s.context_gus, selected_r.contexts
+            if not self.context_gus in selected_r.contexts:
+                print "[***] Invalid Receiver relationship:", self.context_gus, selected_r.contexts
                 raise ReceiverGusNotFound
 
-        for single_f in s.files:
+
+    def _files_check(self):
+
+        for single_f in self.files:
             try:
                 selected_f = self.store.find(File, File.file_gus == unicode(single_f)).one()
             except NotOneError:
@@ -170,13 +155,7 @@ class Submission(TXModel):
             if selected_f is None:
                 raise FileGusNotFound
 
-        if received_dict['finalize']:
-            s.mark = self._marker[1] # 'finalized'
 
-        return s._description_dict()
-
-
-    # not a transact, called by new/update
     def _wb_fields_verify(self):
         """
         @return: False is verifications fail.
@@ -206,20 +185,14 @@ class Submission(TXModel):
         return True
 
 
-    # not a transact, called by new/update
     def _import_dict(self, received_dict):
 
-        # context can't be changed in update
-        if self.context_gus and unicode(received_dict['context_gus']) != self.context_gus:
-            raise InvalidInputFormat("Context change is not permitted")
-
-        self.context_gus = received_dict['context_gus']
-        self.receivers = received_dict['receivers']
         self.wb_fields = received_dict['wb_fields']
+        self.receivers = received_dict['receivers']
         self.files = received_dict['files']
 
 
-    def submission_delete(self, submission_gus):
+    def submission_delete(self, submission_gus, wb_request):
 
         try:
             requested_s = self.store.find(Submission, Submission.submission_gus == unicode(submission_gus)).one()
@@ -228,7 +201,7 @@ class Submission(TXModel):
         if requested_s is None:
             raise SubmissionGusNotFound
 
-        if requested_s.mark == self._marker[1]:
+        if requested_s.mark == self._marker[1] and wb_request:
             # the session is finalized, you can't DELETE
             raise SubmissionConcluded
 
@@ -259,7 +232,6 @@ class Submission(TXModel):
         return subList
 
 
-    # called by a transact method, return
     def _description_dict(self):
 
         descriptionDict = {

@@ -51,7 +51,7 @@ dt "5" "U2 POST cid $context_one print-submission_gus" "Opening a submission to 
 submission_gus=$ret
 
 # update the submission with the receiver selection (ignored, in this context
-# configuration, the receiver are selected by default and can't be changed by
+# configuration, the receivers are selected by default and can't be changed by
 # whistleblower will). Finalize the submission.
 dt "6" "U3 PUT cid $context_one raw None sid $submission_gus print-receipt" "Submission completed"
 
