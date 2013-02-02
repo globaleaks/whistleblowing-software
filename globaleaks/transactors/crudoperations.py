@@ -157,7 +157,7 @@ class CrudOperations(MacroOperation):
         submission_iface = Submission(store)
         submission_list = submission_iface.get_all()
         for single_sub in submission_list:
-            submission_iface.submission_delete(single_sub['submission_gus'])
+            submission_iface.submission_delete(single_sub['submission_gus'], wb_request=False)
 
         # Finally, delete the context
         context_iface.delete_context(context_gus)
@@ -694,22 +694,18 @@ class CrudOperations(MacroOperation):
 
         store = self.getStore()
 
-        context_iface = Context(store)
-        context_desc = context_iface.get_single(request['context_gus'])
-
-        submission_iface = Submission(store)
-        submission_desc = submission_iface.new(request)
+        context_desc = Context(store).get_single(request['context_gus'])
 
         if not context_desc['selectable_receiver']:
-            submission_iface.receivers = context_iface.receivers
+            request.update({'receivers' : context_desc['receivers'] })
+
+        submission_desc = Submission(store).new(request)
 
         if submission_desc['finalize']:
 
-            internaltip_iface = InternalTip(store)
-            wb_iface = WhistleblowerTip(store)
+            internaltip_desc =  InternalTip(store).new(submission_desc)
 
-            internaltip_desc = internaltip_iface.new(submission_desc)
-            wbtip_desc = wb_iface.new(internaltip_desc)
+            wbtip_desc = WhistleblowerTip(store).new(internaltip_desc)
 
             submission_desc.update({'receipt' : wbtip_desc['receipt']})
         else:
@@ -724,9 +720,7 @@ class CrudOperations(MacroOperation):
 
         store = self.getStore()
 
-        submission_iface = Submission(store)
-
-        submission_desc = submission_iface.get_single(submission_iface)
+        submission_desc = Submission(store).get_single(submission_gus)
 
         self.returnData(submission_desc)
         self.returnCode(201) # Created
@@ -737,23 +731,18 @@ class CrudOperations(MacroOperation):
 
         store = self.getStore()
 
-        context_iface = Context(store)
-
-        context_desc = context_iface.get_single(request['context_gus'])
-
-        submission_iface = Submission(store)
-        submission_desc = submission_iface.update(submission_gus, request)
+        context_desc = Context(store).get_single(request['context_gus'])
 
         if not context_desc['selectable_receiver']:
-            submission_iface.receivers = context_iface.receivers
+            request.update({'receivers' : context_desc['receivers'] })
+
+        submission_desc = Submission(store).update(submission_gus, request)
 
         if submission_desc['finalize']:
 
-            internaltip_iface = InternalTip(store)
-            wb_iface = WhistleblowerTip(store)
+            internaltip_desc =  InternalTip(store).new(submission_desc)
 
-            internaltip_desc = internaltip_iface.new(submission_desc)
-            wbtip_desc = wb_iface.new(internaltip_desc)
+            wbtip_desc = WhistleblowerTip(store).new(internaltip_desc)
 
             submission_desc.update({'receipt' : wbtip_desc['receipt']})
         else:
@@ -767,9 +756,7 @@ class CrudOperations(MacroOperation):
     def delete_submission(self, submission_gus):
 
         store = self.getStore()
-
-        submission_iface = Submission(store)
-        submission_iface.submission_delete(submission_gus)
+        Submission(store).submission_delete(submission_gus, wb_request=True)
 
         self.returnCode(200)
         return self.prepareRetVals()
@@ -779,7 +766,6 @@ class CrudOperations(MacroOperation):
 
     @transact
     def dump_models(self, expected):
-
 
         expected_dict = { 'itip' : InternalTip,
                           'wtip' : WhistleblowerTip,
