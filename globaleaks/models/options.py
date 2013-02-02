@@ -62,8 +62,6 @@ class PluginProfiles(TXModel):
     context_gus = Unicode()
     context = Reference(context_gus, Context.context_gus)
 
-    def __init__(self, theStore):
-        self.store = theStore
 
     def new(self, profile_dict):
         """
