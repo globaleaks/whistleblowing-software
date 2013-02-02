@@ -4,7 +4,7 @@
 
 /*
  
-Thi test evaluates the following requirements for A4
+Thi test evaluates the following requirements for A4 (/admin/receiver)
 
     GET/PUT/DELETE if non existent 'receiver_gus' is provided FAIL (404)
     GET/PUT/DELETE if existent 'receiver_gus' is provided SUCCESS (200)
@@ -92,6 +92,23 @@ var getSomeReceiverID = function(fn) {
 
 */
 
+var args = [
+           "name",
+           "description",
+           "tags",
+           "languages",
+           "contexts",
+           "receiver_level",
+           "notification_selected",
+           "notification_fields",
+           "delivery_selected",
+           "delivery_fields",
+           "can_delete_submission",
+           "can_postpone_expiration",
+           "can_configure_delivery",
+           "can_configure_notification"
+           ];
+
 var dummyReceiver = {
     name: 'dummyReceiver',
     description: 'dummyReceiverDescription',
@@ -120,344 +137,35 @@ describe("Node Admin API Receiver functionality", function(){
     .send(test)
     .expect(201, done);
 
-  });
+  })
 
-  it("POST if 'name' attribute lacks inside the provided Receiver FAIL (406)", function(done){
+  args.forEach(function (arg) {
+      it("POST if '" + arg + "' attribute lacks inside the provided Receiver FAIL (406)", function(done){
 
-    var test = clone(dummyReceiver);
-    delete test['name'];
+        var test = clone(dummyReceiver);
+        delete test[arg];
 
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
+        request()
+        .post('/admin/receiver')
+        .send(test)
+        .expect(406, done);
 
-  });
+      });
+  })
 
-  it("POST if 'description' attribute lacks inside the provided Receiver FAIL (406)", function(done){
+  args.forEach(function (arg) {
+      it("POST if invalid '" + arg + "' attribute inside the provided Receiver FAIL (406)", function(done){
 
-    var test = clone(dummyReceiver);
-    delete test['description'];
+        var test = clone(dummyReceiver);
+        test[arg] = invalidField();
 
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
+        request()
+        .post('/admin/receiver')
+        .send(test)
+        .expect(406, done);
 
-  });
-
-  it("POST if 'tags' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['tags'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'languages' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['languages'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-  
-  it("POST if 'contexts' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['contexts'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'receiver_level' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['receiver_level'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'notification_selected' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['notification_selected'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'notification_fields' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['notification_fields'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'delivery_selected' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['delivery_selected'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'delivery_fields' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['delivery_fields'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'can_delete_submission' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['can_delete_submission'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'can_postpone_expiration' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['can_postpone_expiration'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'can_configure_delivery' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['can_configure_delivery'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if 'can_configure_notification' attribute lacks inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    delete test['can_configure_notification'];
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-
-  it("POST if invalid 'name' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['name'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'description' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['description'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'tags' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['tags'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'languages' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['languages'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-  
-  it("POST if invalid 'contexts' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['contexts'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'receiver_level' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['receiver_level'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'notification_selected' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['notification_selected'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'notification_fields' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['notification_fields'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'delivery_selected' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['delivery_selected'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'delivery_fields' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['delivery_fields'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'can_delete_submission' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['can_delete_submission'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'can_postpone_expiration' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['can_postpone_expiration'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'can_configure_delivery' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['can_configure_delivery'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
-
-  it("POST if invalid 'can_configure_notification' attribute inside the provided Receiver FAIL (406)", function(done){
-
-    var test = clone(dummyReceiver);
-    test['can_configure_notification'] = invalidField();
-
-    request()
-    .post('/admin/receiver')
-    .send(test)
-    .expect(406, done);
-
-  });
+      });
+  })
 
   it("PUT if additional attribute inside the provided Receiver FAIL (406)", function(done){
 
