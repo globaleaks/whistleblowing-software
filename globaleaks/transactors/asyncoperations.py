@@ -12,8 +12,6 @@ Marker shifting map:
 """
 
 from globaleaks.transactors.base import MacroOperation
-
-from globaleaks.models.node import Node
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import File, ReceiverTip, Comment
 from globaleaks.models.internaltip import InternalTip
@@ -37,18 +35,18 @@ class AsyncOperations(MacroOperation):
         receivercfg_iface = ReceiverConfs(store)
         profile_iface = PluginProfiles(store)
 
-        not_notified_tips = yield receivertip_iface.get_tips_by_notification_mark(u'not notified')
+        not_notified_tips = receivertip_iface.get_tips_by_notification_mark(u'not notified')
 
         for single_tip in not_notified_tips:
 
         # from a single tip, we need to extract the receiver, and then, having
         # context + receiver, find out which configuration setting has active
 
-            receivers_map = yield receivertip_iface.get_receivers_by_tip(single_tip['tip_gus'])
+            receivers_map = receivertip_iface.get_receivers_by_tip(single_tip['tip_gus'])
 
             receiver_info = receivers_map['actor']
 
-            receiver_conf = yield receivercfg_iface.get_active_conf(receiver_info['receiver_gus'],
+            receiver_conf = receivercfg_iface.get_active_conf(receiver_info['receiver_gus'],
                single_tip['context_gus'], plugin_type)
 
             if receiver_conf is None:
@@ -84,18 +82,18 @@ class AsyncOperations(MacroOperation):
         receivercfg_iface = ReceiverConfs(store)
         profile_iface = PluginProfiles(store)
 
-        not_notified_comments = yield comment_iface.get_comment_by_mark(marker=u'not notified')
+        not_notified_comments = comment_iface.get_comment_by_mark(marker=u'not notified')
 
         for comment in not_notified_comments:
 
-            receivers_list = yield internaltip_iface.get_receivers_by_itip(comment['internaltip_id'])
+            receivers_list = internaltip_iface.get_receivers_by_itip(comment['internaltip_id'])
 
             # needed to obtain context!
-            itip_info = yield internaltip_iface.get_single(comment['internaltip_id'])
+            itip_info = internaltip_iface.get_single(comment['internaltip_id'])
 
             for receiver_info in receivers_list:
 
-                receiver_conf = yield receivercfg_iface.get_active_conf(receiver_info['receiver_gus'],
+                receiver_conf = receivercfg_iface.get_active_conf(receiver_info['receiver_gus'],
                     itip_info['context_gus'], plugin_type)
 
                 if receiver_conf is None:
@@ -103,7 +101,7 @@ class AsyncOperations(MacroOperation):
                     continue
 
                 # Ok, we had a valid an appropriate receiver configuration for the notification task
-                related_profile = yield profile_iface.get_single(receiver_conf['profile_gus'])
+                related_profile = profile_iface.get_single(receiver_conf['profile_gus'])
 
                 settings_dict = { 'admin_settings' : related_profile['admin_settings'],
                                   'receiver_settings' : receiver_conf['receiver_settings']}
@@ -118,7 +116,7 @@ class AsyncOperations(MacroOperation):
                     print "Notification of comment failed for user", receiver_conf['receiver_gus']
 
             # remind: comment are not guarantee until Task manager is not developed
-            yield comment_iface.flip_mark(comment['comment_id'], u'notified')
+            comment_iface.flip_mark(comment['comment_id'], u'notified')
 
     @transact
     def fileprocess(self):
@@ -183,3 +181,74 @@ class AsyncOperations(MacroOperation):
     @transact
     def check_update(self):
         pass
+
+    @transact
+    def tip_creation(self):
+
+        store = self.getStore()
+
+        internaltip_iface = InternalTip(store)
+        receivertip_iface = ReceiverTip(store)
+        receiver_iface = Receiver(store)
+
+        internal_tip_list = internaltip_iface.get_itips_by_maker(u'new', False)
+
+        # TODO for each itip
+        # TODO get file status
+
+        if len(internal_tip_list):
+            print "TipSched: found %d new Tip" % len(internal_tip_list)
+
+        for internaltip_desc in internal_tip_list:
+
+            for receiver_gus in internaltip_desc['receivers']:
+
+                receiver_desc = receiver_iface.get_single(receiver_gus)
+
+                # check if the Receiver Tier is the first
+                if int(receiver_desc['receiver_level']) != 1:
+                    continue
+
+                receivertip_desc = receivertip_iface.new(internaltip_desc, receiver_desc)
+                print "Created rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name']
+
+            try:
+                # switch the InternalTip.mark for the tier supplied
+                internaltip_iface.flip_mark(internaltip_desc['internaltip_id'], internaltip_iface._marker[1])
+            except:
+                # ErrorTheWorldWillEndSoon("Goodbye and thanks for all the fish")
+                print "Internal error"
+                raise
+
+        # Escalation is not working at the moment, may be well engineered the function
+        # before, permitting various layer of receivers.
+        #
+        # loops over the InternalTip and checks the escalation threshold
+        # It may require the creation of second-step Tips
+        escalated_itip_list = internaltip_iface.get_itips_by_maker(internaltip_iface._marker[1], True)
+
+        if len(escalated_itip_list):
+            print "TipSched: %d Tip are escalated" % len(escalated_itip_list)
+
+        # This event has to be notified as system Comment
+        comment_iface = Comment(store)
+
+        for itip in escalated_itip_list:
+            itip_id = int(itip['internaltip_id'])
+
+            comment_iface.new(itip_id, u"Escalation threshold has been reached", u'system')
+
+            for receiver_gus in internaltip_desc['receivers']:
+
+                receiver_desc = receiver_iface.get_single(receiver_gus)
+
+                # check if the Receiver Tier is the second
+                if int(receiver_desc['receiver_level']) != 2:
+                    continue
+
+                receivertip_desc = receivertip_iface.new(internaltip_desc, receiver_desc)
+                print "Created 2nd tir rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name']
+
+                # TODO InternalError exception
+                internaltip_iface.flip_mark(itip_id, internaltip_iface._marker[2])
+
