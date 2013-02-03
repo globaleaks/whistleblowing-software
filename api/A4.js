@@ -9,31 +9,31 @@ Thi test evaluates the following requirements for A4 (/admin/receiver)
     GET/PUT/DELETE should fail if non existent 'receiver_gus' is provided (404)
     GET/PUT/DELETE should succeed if existent 'receiver_gus' is provided (200)
     POST/PUT should succeed if 'correct receiver is provided (200)
-    POST/PUT should fail if 'name attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'description' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'tags' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'languages' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'context' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'receiver_level' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'delivery_selected' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'delivery_fields' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'can_delete_submission' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'can_postpone_expiration' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'can_configure_delivery' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if 'can_configure_notification' attribute lacks inside the provided receiver (406)
-    POST/PUT should fail if invalid 'name attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'description' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'tags' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'languages' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'context' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'receiver_level' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'delivery_selected' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'delivery_fields' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'can_delete_submission' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'can_postpone_expiration' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'can_configure_delivery' attribute inside the provided receiver (406)
-    POST/PUT should fail if invalid 'can_configure_notification' attribute inside the provided receiver (406)
-    POST/PUT should fail if unexpected attribute inside the provided receiver (406)
+    POST/PUT should fail if 'name attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'description' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'tags' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'languages' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'context' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'receiver_level' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'delivery_selected' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'delivery_fields' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'can_delete_submission' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'can_postpone_expiration' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'can_configure_delivery' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if 'can_configure_notification' attribute is missing inside the provided receiver (406)
+    POST/PUT should fail if invalid 'name attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'description' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'tags' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'languages' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'context' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'receiver_level' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'delivery_selected' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'delivery_fields' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'can_delete_submission' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'can_postpone_expiration' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'can_configure_delivery' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if invalid 'can_configure_notification' attribute is present inside the provided receiver (406)
+    POST/PUT should fail if unexpected attribute is present inside the provided receiver (406)
 
 */
 
@@ -128,7 +128,7 @@ var dummyReceiver = {
 
 describe("Node Admin API Receiver functionality", function(){
 
-  it("POST should succeed if a correct receiver is provided (200)", function(done){
+  it("should succeed if a correct receiver is provided (POST, 200)", function(done){
 
     var test = clone(dummyReceiver);
 
@@ -139,7 +139,7 @@ describe("Node Admin API Receiver functionality", function(){
 
   })
 
-  it("POST should fail if an attribute lacks inside the provided Receiver (406)", function(done){
+  it("should fail if an attribute is missing inside the provided receiver (POST, 406)", function(done){
       args.forEach(function (arg) {
 
         var test = clone(dummyReceiver);
@@ -153,7 +153,7 @@ describe("Node Admin API Receiver functionality", function(){
       });
   })
 
-  it("POST should fail if an invalid attribute inside the provided Receiver (406)", function(done){
+  it("should fail if an invalid attribute is present inside the provided receiver (POST, 406)", function(done){
       args.forEach(function (arg) {
 
         var test = clone(dummyReceiver);
@@ -167,7 +167,7 @@ describe("Node Admin API Receiver functionality", function(){
       });
   })
 
-  it("PUT should fail if an additional attribute inside the provided Receiver (406)", function(done){
+  it("should fail if an additional attribute is present inside the provided Receiver (PUT, 406)", function(done){
 
     var test = clone(dummyReceiver);
     test['antani'] = "antani";
@@ -183,7 +183,7 @@ describe("Node Admin API Receiver functionality", function(){
 
   });
 
-  it("GET should succeed if an existent receiver_gus is provided (200)", function(done){
+  it("should succeed if an existent receiver_gus is provided (GET, 200)", function(done){
 
     var test = clone(dummyReceiver);
 
@@ -205,7 +205,7 @@ describe("Node Admin API Receiver functionality", function(){
   
   });
 
-  it("GET should fail if not existent receiver_gus is provided (404)", function(done){
+  it("should fail if not existent receiver_gus is provided (GET, 404)", function(done){
 
     request()
     .get('/admin/receiver/r_01010101010101010101')
@@ -214,7 +214,7 @@ describe("Node Admin API Receiver functionality", function(){
 
   });
   
-  it("DELETE should succeed if an existent receiver_gus is provided (200)", function(done){
+  it("should succeed if an existent receiver_gus is provided (DELETE, 200)", function(done){
 
     getSomeReceiverID(function(ReceiverID){
 
@@ -236,7 +236,7 @@ describe("Node Admin API Receiver functionality", function(){
     });
   });
   
-  it("DELETE should fail if a not existent receiver_gus is provided (404)", function(done){
+  it("should fail if a not existent receiver_gus is provided (DELETE, 404)", function(done){
 
     request()
     .del('/admin/receiver/r_01010101010101010101')
