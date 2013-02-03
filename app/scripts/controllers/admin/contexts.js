@@ -13,7 +13,7 @@ GLClient.controller('AdminContextsCtrl',
     context.languages = [];
     context.receivers = [];
 
-    context.escalation_threshold =  42;
+    context.escalation_threshold = null;
     context.file_max_download = 42;
     context.tip_max_access = 42;
     context.selectable_receiver = true;
