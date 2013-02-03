@@ -42,7 +42,7 @@ receipt_list=$ret
 
 echo -n "WhistleBlower comments: "
 for wb_receipt in $receipt_list; do
-    dt "4x" "T2 POST tip $wb_receipt variation wb" "posting comment as receiver with $wb_receipt"
+    dt "4x" "T2 POST tip $wb_receipt variation wb" "posting comment as whistleblower with $wb_receipt"
 done
 
 dt "5" "D2 GET task notification" "forcing comments notification"
