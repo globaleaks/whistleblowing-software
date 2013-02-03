@@ -796,6 +796,15 @@ class CrudOperations(MacroOperation):
             self.returnData(outputDict)
             return self.prepareRetVals()
 
+        # XXX plugins is not dumped with all or count!
+        if expected == 'plugins':
+
+            info_list = PluginManager.get_all()
+            outputDict.update({expected : info_list, ("%s_elements" % expected) : len(info_list) })
+
+            self.returnData(outputDict)
+            return self.prepareRetVals()
+
         if expected_dict.has_key(expected):
 
             info_list = expected_dict[expected](store).get_all()
