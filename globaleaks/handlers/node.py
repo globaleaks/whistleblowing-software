@@ -9,9 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from cyclone.web import asynchronous
-from globaleaks.models.node import Node
-from globaleaks.models.context import Context
-from globaleaks.models.receiver import Receiver
+from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest.errors import NodeNotFound
 import json
 
@@ -32,13 +30,12 @@ class InfoCollection(BaseHandler):
         Errors: NodeNotFound
         """
 
-        log.debug("[D] %s %s " % (__file__, __name__), "Class Node", "get", uriargs)
-
         try:
-            nodeinfo = Node()
-            node_description_dicts = yield nodeinfo.get()
+            answer = yield CrudOperations().get_node()
+            # output filtering TODO need to strip reserved infos
 
-            self.write(node_description_dicts)
+            self.write(answer['data'])
+            self.set_status(answer['code'])
 
         except NodeNotFound, e:
 
@@ -68,7 +65,7 @@ class StatsCollection(BaseHandler):
 
         This interface return the collected statistics for the public audience.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class StatsAvailable", "get", uriargs)
+        log.debug("[D] %s %s " % (__file__, __name__), "TO BE IMPLEMENTED", "get", uriargs)
         pass
 
 class ContextsCollection(BaseHandler):
@@ -88,12 +85,11 @@ class ContextsCollection(BaseHandler):
         Errors: None
         """
 
-        context_view = Context()
-        public_context_view = yield context_view.get_all()
+        answer = yield CrudOperations().get_context_list()
 
-        self.set_status(200)
-        self.write(json.dumps(public_context_view))
-        # TODO, output filter need to strip all the reserved information
+        # output filtering TODO need to strip reserved infos
+        self.write(json.dumps(answer['data']))
+        self.set_status(answer['code'])
 
         self.finish()
 
@@ -114,12 +110,11 @@ class ReceiversCollection(BaseHandler):
         Errors: None
         """
 
-        receiver_view = Receiver()
-        public_receiver_view = yield receiver_view.get_all()
+        answer = yield CrudOperations().get_receiver_list()
 
-        self.set_status(200)
-        self.write(json.dumps(public_receiver_view))
-        # TODO, output filter need to strip all the reserved information
+        # output filtering TODO need to strip reserved infos
+        self.write(json.dumps(answer['data']))
+        self.set_status(answer['code'])
 
         self.finish()
 
