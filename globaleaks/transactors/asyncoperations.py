@@ -233,12 +233,12 @@ class AsyncOperations(MacroOperation):
         # This event has to be notified as system Comment
         comment_iface = Comment(store)
 
-        for itip in escalated_itip_list:
-            itip_id = int(itip['internaltip_id'])
+        for eitip in escalated_itip_list:
+            eitip_id = int(eitip['internaltip_id'])
 
-            comment_iface.new(itip_id, u"Escalation threshold has been reached", u'system')
+            comment_iface.new(eitip_id, u"Escalation threshold has been reached", u'system')
 
-            for receiver_gus in internaltip_desc['receivers']:
+            for receiver_gus in eitip['receivers']:
 
                 try:
                     receiver_desc = receiver_iface.get_single(receiver_gus)
@@ -251,9 +251,9 @@ class AsyncOperations(MacroOperation):
                     continue
 
                 receivertip_obj = ReceiverTip(store)
-                receivertip_desc = receivertip_obj.new(internaltip_desc, receiver_desc)
+                receivertip_desc = receivertip_obj.new(eitip, receiver_desc)
                 print "Created 2nd tir rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name'], \
-                    "in", internaltip_desc['context_gus']
+                    "in", eitip['context_gus']
 
-            internaltip_iface.flip_mark(itip_id, internaltip_iface._marker[2])
+            internaltip_iface.flip_mark(eitip_id, internaltip_iface._marker[2])
 
