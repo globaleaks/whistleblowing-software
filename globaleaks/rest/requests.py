@@ -38,10 +38,6 @@ class receiverReceiverDesc(GLTypes):
         'last_access' : timeType,
         'contexts' : [ contextGUS ],
         'receiver_level' : int,
-        'notification_selected' : unicode,
-        'notification_fields' : unicode,
-        'delivery_selected' : unicode,
-        'delivery_fields' : unicode,
         'can_delete_submission' : bool,
         'can_postpone_expiration' : bool,
         'can_configure_delivery' : bool,
@@ -66,9 +62,6 @@ class actorsCommentDesc(GLTypes):
         'source' : unicode,
         'content' : unicode,
         'author' : unicode,
-        'notification_status': unicode,
-        # XXX the notification_status would never be an information available without the new
-        # task manager, perhaps would be removed in the API v1 ?
         'creation_time' : timeType
     }
 
@@ -153,9 +146,9 @@ class receiverConfDesc(GLTypes):
         'active' : bool,
         'config_id' : int,
         'receiver_settings' : dict,
-        'creator_receiver' : receiverGUS, # Can't be changed via update
-        'context_gus' : contextGUS,       # Can't be changed via update
-        'profile_gus' : profileGUS,       # Can't be changed via update
+        'creator_receiver' : receiverGUS,
+        'context_gus' : contextGUS,
+        'profile_gus' : profileGUS,
         'creation_date': timeType,
         'last_update': timeType
     }

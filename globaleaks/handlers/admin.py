@@ -445,7 +445,7 @@ class PluginCollection(BaseHandler):
         name and properties.
         """
 
-        plugin_descriptive_list = PluginManager.get_all()
+        plugin_descriptive_list = yield PluginManager.get_all()
         # TODO output validation - adminPluginList
 
         self.set_status(200)
