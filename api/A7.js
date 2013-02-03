@@ -7,30 +7,30 @@
 Thi test evaluates the following requirements for A2 (/admin/context)
 
     GET/PUT/DELETE should fail if non existent 'context_gus' is provided (404)
-    GET/PUT/DELETE should succeed if existent 'context_gus' is provided (200)
-    POST/PUT should succeed if 'correct context is provided (200)
-    POST/PUT if 'name attribute lacks inside the provided context (406)
-    POST/PUT if 'description' attribute lacks inside the provided context (406)
-    POST/PUT if 'selectable_receiver' attribute lacks inside the provided context (406)
-    POST/PUT if 'languages_supported' attribute lacks inside the provided context (406)
-    POST/PUT if 'tip_max_access' attribute lacks inside the provided context (406)
-    POST/PUT if 'time_tolive' attribute lacks inside the provided context (406)
-    POST/PUT if 'file_max_download' attribute lacks inside the provided context (406)
-    POST/PUT if 'escalation_threshold' attribute lacks inside the provided context (406)
-    POST/PUT if 'receivers' attribute lacks inside the provided context (406)
-    POST/PUT if 'fields' attribute lacks inside the provided context (406)
-    POST/PUT if invalid 'name' attribute inside the provided context (406)
-    POST/PUT if invalid 'description' attribute inside the provided context (406)
-    POST/PUT if invalid 'selectable_receiver' attribute inside the provided context (406)
-    POST/PUT if invalid 'languages_supported' attribute inside the provided context (406)
-    POST/PUT if invalid 'tip_max_access' attribute inside the provided context (406)
-    POST/PUT if invalid 'time_tolive' attribute inside the provided context (406)
-    POST/PUT if invalid 'file_max_download' attribute inside the provided context (406)
-    POST/PUT if invalid 'escalation_threshold' attribute inside the provided context (406)
-    POST/PUT if invalid 'receivers' attribute inside the provided context (406)
-    POST/PUT if invalid 'fields' attribute inside the provided context (406)
-    POST/PUT if unexpected attribute inside the provided context (406)
-    POST/PUT if both 'selectable_receiver' and 'escalation_threshold' are present (406)
+    GET/PUT/DELETE should succeed should fail if existent 'context_gus' is provided (200)
+    POST/PUT should succeed should fail if 'correct context is provided (200)
+    POST/PUT should fail if 'name attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'description' attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'selectable_receiver' attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'languages_supported' attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'tip_max_access' attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'time_tolive' attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'file_max_download' attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'escalation_threshold' attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'receivers' attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'fields' attribute lacks inside the provided context (406)
+    POST/PUT should fail if invalid 'name' attribute inside the provided context (406)
+    POST/PUT should fail if invalid 'description' attribute inside the provided context (406)
+    POST/PUT should fail if invalid 'selectable_receiver' attribute inside the provided context (406)
+    POST/PUT should fail if invalid 'languages_supported' attribute inside the provided context (406)
+    POST/PUT should fail if invalid 'tip_max_access' attribute inside the provided context (406)
+    POST/PUT should fail if invalid 'time_tolive' attribute inside the provided context (406)
+    POST/PUT should fail if invalid 'file_max_download' attribute inside the provided context (406)
+    POST/PUT should fail if invalid 'escalation_threshold' attribute inside the provided context (406)
+    POST/PUT should fail if invalid 'receivers' attribute inside the provided context (406)
+    POST/PUT should fail if invalid 'fields' attribute inside the provided context (406)
+    POST/PUT should fail if unexpected attribute inside the provided context (406)
+    POST/PUT should fail if both 'selectable_receiver' and 'escalation_threshold' are present (406)
 
 */
 
@@ -110,7 +110,7 @@ var dummyContext = {
 
 describe("Node Admin API Context functionality", function(){
 
-  it("POST should succeed if correct context is provided (200)", function(done){
+  it("POST should succeed if a correct context is provided (200)", function(done){
 
     var test = clone(dummyContext);
 
@@ -123,9 +123,7 @@ describe("Node Admin API Context functionality", function(){
 
 
   it("POST should fail if an attribute lacks inside the provided Context (406)", function(done){
-
       args.forEach(function (arg) {
-
         var test = clone(dummyContext);
         delete test[arg];
 
@@ -138,8 +136,8 @@ describe("Node Admin API Context functionality", function(){
   })
 
   it("POST should fail if an invalid attribute inside the provided Context (406)", function(done){
-
       args.forEach(function (arg) {
+
         var test = clone(dummyContext);
         test[arg] = invalidField();
 
@@ -186,7 +184,7 @@ describe("Node Admin API Context functionality", function(){
   
   });
 
-  it("GET should succeed if an existent context_gus is provided (200)", function(done){
+  it("GET should fail if an existent context_gus is provided (200)", function(done){
 
     var test = clone(dummyContext);
 
