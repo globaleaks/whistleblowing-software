@@ -167,7 +167,7 @@ describe("Node Admin API Context functionality", function(){
 
   });
 
-  it("PUT if both 'selectable_receiver' and 'escalation_threshold' are present FAIL (409)", function(done){
+  it("PUT if both 'selectable_receiver' and 'escalation_threshold' are present FAIL (406)", function(done){
 
     var test = clone(dummyContext);
     
@@ -179,7 +179,7 @@ describe("Node Admin API Context functionality", function(){
       request()
       .put('/admin/context/'+contextID)
       .send(test)
-      .expect(409, done);
+      .expect(406, done);
 
     });
   
