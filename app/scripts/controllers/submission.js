@@ -46,11 +46,16 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
 
   var createSubmission = function() {
     $scope.submission = new Submission({context_gus:
-        $scope.localization.current_context.context_gus});
+          $scope.localization.current_context.context_gus,
+          wb_fields: {},
+          files: [],
+          finalize: false,
+          receivers: []
+    });
 
     $scope.submission.$save(function(submissionID){
       // XXX the backend should return this.
-      $scope.submission.fields = {};
+      $scope.submission.wb_fields = {};
       setReceiversForCurrentContext(submissionID);
     });
 
@@ -70,20 +75,20 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'localization', 'Node',
 
     // Set the submission field values
     _.each(localization.current_context.fields, function(field, k) {
-      $scope.submission.fields[field.name] = field.value;
+      $scope.submission.wb_fields[field.name] = field.value;
     });
 
     // Set the currently selected receivers
     $scope.submission.receivers = [];
-      _.each($scope.receivers_selected, function(selected, receiver_gus){
-        if (selected) {
-          $scope.submission.receivers.push(receiver_gus);
-        }
-      });
+    _.each($scope.receivers_selected, function(selected, receiver_gus){
+      if (selected) {
+        $scope.submission.receivers.push(receiver_gus);
+      }
+    });
+    $scope.submission.finalize = true;
 
     $scope.submission.$submit(function(result){
       if (result) {
-        console.log(result);
         $scope.submission_complete = true;
       }
 
