@@ -1,4 +1,26 @@
-angular.module('resourceServices', ['ngResource']).
+var resourceServices = angular.module('resourceServices', ['ngResource']).
+  factory('globaleaksInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
+    /* This interceptor is responsible for keeping track of the HTTP requests
+     * that are sent and their result (error or not error) */
+    return function(promise) {
+      return promise.then(function(response) {
+        return response;
+      }, function(response) {
+        /* When the response has failed write the rootScope errors array the
+        * error message. */
+        var error = {};
+        error.message = response.data.error_message;
+        error.code = response.data.error_code;
+        error.url = response.config.url;
+
+        if (!$rootScope.errors) {
+          $rootScope.errors = [];
+        }
+        $rootScope.errors.push(error);
+        return $q.reject(response);
+      });
+    }
+}]).
   factory('Node', function($resource) {
     return $resource('/node');
 }).
@@ -91,13 +113,13 @@ angular.module('resourceServices', ['ngResource']).
           {method: 'PUT'}
       });
 }).
-  factory('AdminContexts', function($resource) {
+  factory('AdminContexts', ['$resource', function($resource) {
     return $resource('/admin/context/:context_id',
       {context_id: '@context_gus'},
       {update:
           {method: 'PUT'}
       });
-}).
+}]).
   factory('AdminNotification', function($resource) {
     return $resource('/admin/context/:context_id',
       {context_id: '@context_gus'},
@@ -177,5 +199,9 @@ angular.module('localeServices', ['resourceServices']).
       });
     };
     return localization;
+});
+
+resourceServices.config(function($httpProvider) {
+  $httpProvider.responseInterceptors.push('globaleaksInterceptor');
 });
 

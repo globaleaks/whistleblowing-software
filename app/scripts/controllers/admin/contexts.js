@@ -24,17 +24,23 @@ GLClient.controller('AdminContextsCtrl',
     });
   };
 
+  // XXX this is *very* hackish.
   $scope.editFields = function(fields) {
-    // XXX this is *very* hackish. See #15 for a bug.
     $rootScope.fieldEditor = true;
     $rootScope.fieldsToEdit = fields;
+  };
+
+  $rootScope.closeEditor = function() {
+    $rootScope.fieldEditor = false;
   };
 
   $scope.delete_context = function(context) {
     var idx = _.indexOf($scope.adminContexts, context);
 
-    context.$delete();
-    $scope.adminContexts.splice(idx, 1);
+    context.$delete(function(){
+      $scope.adminContexts.splice(idx, 1);
+    });
+
   }
 
 }]);
