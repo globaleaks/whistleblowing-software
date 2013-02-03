@@ -65,6 +65,9 @@ class Context(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("Context Import failed (wrong %s)" % e)
 
+        if self.selectable_receiver and self.escalation_threshold:
+            raise InvalidInputFormat("selectable_receiver and escalation_threshold are mutually exclusive")
+
         self.store.add(self)
         log.msg("Created context %s at the %s" % (self.name, self.creation_date) )
 
@@ -94,6 +97,9 @@ class Context(TXModel):
             raise InvalidInputFormat("Context update failed (missing %s)" % e)
         except TypeError, e:
             raise InvalidInputFormat("Context update failed (wrong %s)" % e)
+
+        if requested_c.selectable_receiver and requested_c.escalation_threshold:
+            raise InvalidInputFormat("selectable_receiver and escalation_threshold are mutually exclusive")
 
         requested_c.update_date = gltime.utcTimeNow()
 
@@ -311,8 +317,3 @@ class Context(TXModel):
         self.tip_max_access = context_dict['tip_max_access']
         self.tip_timetolive = context_dict['tip_timetolive']
         self.file_max_download = context_dict['file_max_download']
-
-        if self.selectable_receiver and self.escalation_threshold:
-            log.msg("[!] Selectable receiver feature and escalation threshold can't work both: threshold ignored")
-            self.escalation_threshold = 0
-
