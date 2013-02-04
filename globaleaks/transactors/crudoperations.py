@@ -679,11 +679,17 @@ class CrudOperations(MacroOperation):
         requested_t = WhistleblowerTip(store)
         tip_description = requested_t.get_single(receipt)
 
+        receiver_iface = Receiver(store)
+
         itip_iface = InternalTip(store)
         # inforet = itip_iface.get_receivers_by_itip(tip_description['internaltip_id'])
         # the wb, instead get the list of active receiver, is getting the list of receiver
         # configured in the context:
-        inforet = itip_iface.get_single(tip_description['internaltip_id'])['receivers']
+        receivers_selected = itip_iface.get_single(tip_description['internaltip_id'])['receivers']
+
+        inforet = []
+        for receiver_gus in receivers_selected:
+            inforet.append(receiver_iface.get_single(receiver_gus))
 
         self.returnData(inforet)
         self.returnCode(200)
