@@ -93,7 +93,7 @@ class Config(object):
         self.main.zstorm = ZStorm()
         self.main.zstorm.set_default_uri('main_store', self.main.database_uri)
 
-        self.advanced.db_thread_pool_size = 10
+        self.advanced.db_thread_pool_size = 1
         self.advanced.scheduler_thread_pool_size = 10
 
         self.advanced.data_dir = os.path.join(get_root_path(), '_gldata')

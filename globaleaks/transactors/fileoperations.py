@@ -1,13 +1,12 @@
-
 from globaleaks.transactors.base import MacroOperation
-
 from globaleaks.models.externaltip import File
 from globaleaks.models.submission import Submission
 from globaleaks.rest.errors import SubmissionConcluded
 from globaleaks.config import config
+from twisted.internet import fdesc
 
 from storm.twisted.transact import transact
-import time, json, os
+import time, os
 
 class FileOperations(MacroOperation):
     """
@@ -48,11 +47,12 @@ class FileOperations(MacroOperation):
 
         filelocation = os.path.join(the_submission_dir, file_gus)
 
-        print "Saving file to %s" % filelocation
-        # TODO This is currently blocking. MUST be refactored to not be blocking
-        # otherwise we loose...
-        with open(filelocation, 'a+') as f:
-            f.write(file['body'])
+        print "Saving file \"%s\" of %d byte [%s] type, to %s" % \
+              (result['name'], result['size'], result['type'], filelocation )
+
+        with open(filelocation, 'w+') as fd:
+            fdesc.setNonBlocking(fd.fileno())
+            fdesc.writeToFD(fd.fileno(), file['body'])
 
         return result
 
