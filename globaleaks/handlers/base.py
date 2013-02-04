@@ -11,6 +11,7 @@
 from globaleaks.rest.base import validateMessage
 from cyclone.web import RequestHandler, HTTPError
 from globaleaks.utils import log
+from globaleaks.config import config
 
 class BaseHandler(RequestHandler):
     """
@@ -50,7 +51,8 @@ class BaseHandler(RequestHandler):
         method may not be used.
         """
 
-        # print "Just got %s" % self.request.body
+        if config.debug.verbose:
+            print "Just got %s" % self.request.body
 
         if self.request.method.lower() == 'post':
             try:

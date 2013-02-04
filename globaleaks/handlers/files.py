@@ -77,20 +77,15 @@ class FileInstance(BaseHandler):
         Request: Unknown
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
-
-        POST in fileHandlers need to be refactored-engineered
         """
 
         try:
-            print "fileMessageValidation need to be implemented", self.request
-            # TODO ^^^^^^^^^^^^^^^^^^^^^
-
             answer = yield FileOperations().new_files(submission_gus, self.request)
 
             if 'application/json' in self.request.headers.get('Accept'):
                 self.set_header('Content-Type', 'application/json')
 
-            self.write(answer['data'])
+            self.write(json.dumps(answer['data'], separators=(',',':')))
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:

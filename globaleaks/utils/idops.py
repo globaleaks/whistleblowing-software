@@ -18,6 +18,7 @@
 # select some gus with a number only, or a shorter list.
 
 from Crypto.Random import random
+from globaleaks.config import config
 import string
 
 
@@ -42,9 +43,6 @@ def random_receipt():
     return u''.join(random.choice('0123456789') for x in range(length))
 
 
-def is_testing():
-    from globaleaks.config import config
-    return config.main.testing
 
 global_debug_counter = 0
 
@@ -55,7 +53,7 @@ def random_submission_gus():
     """
     length = 50
 
-    if is_testing():
+    if config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -67,7 +65,7 @@ def random_submission_gus():
 def random_plugin_gus():
     length = 10
 
-    if is_testing():
+    if config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -83,7 +81,7 @@ def random_context_gus():
     """
     length = 20
 
-    if is_testing():
+    if config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -99,7 +97,7 @@ def random_file_gus():
     """
     length = 30
 
-    if is_testing():
+    if config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -116,7 +114,7 @@ def random_receiver_gus():
     """
     length = 20
 
-    if is_testing():
+    if config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -130,7 +128,7 @@ def random_tip_gus():
     """
     length = 50
 
-    if is_testing():
+    if config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
