@@ -27,7 +27,10 @@ def createTables():
     for model in [ Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
                     Submission, Comment, File, PluginProfiles, ReceiverConfs ]:
 
-        yield tables.createTable(model)
+        createdTable = yield tables.createTable(model)
+
+    if not createdTable:
+        return
 
     # Initialize the node
     store = config.main.zstorm.get('main_store')

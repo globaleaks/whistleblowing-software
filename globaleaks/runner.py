@@ -60,7 +60,8 @@ def startAsynchronous():
 
     StatsSched = statistics_sched.APSStatistics()
     StatsSched.force_execution(GLAsynchronous, seconds=10)
-    GLAsynchronous.add_interval_job(StatsSched.operation, StatsSched.get_node_delta() )
+    GLAsynchronous.add_interval_job(StatsSched.operation, 10 )
+    # GLAsynchronous.add_interval_job(StatsSched.operation, StatsSched.get_node_delta() )
 
     WelcomSched = welcome_sched.APSWelcome()
     WelcomSched.force_execution(GLAsynchronous, seconds=15)

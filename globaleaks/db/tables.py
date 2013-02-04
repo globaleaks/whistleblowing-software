@@ -107,6 +107,8 @@ def createTable(model):
     try:
         config.main.zstorm.get('main_store').execute(create_query)
         config.main.zstorm.get('main_store').commit()
+
+        return True
         
     # XXX trap the specific error that is raised when the table exists
     # seem to be OperationalError raised, but not a specific error exists.
