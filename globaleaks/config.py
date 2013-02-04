@@ -8,19 +8,10 @@
 # nothing in the common concern af a GlobaLeaks Node Admin
 
 
-import os
+import os, sys, transaction
 from cyclone.util import ObjectDict as OD
-
-import transaction
 from storm.zope.zstorm import ZStorm
-
 from storm.tracer import debug
-import sys
-#Storm DB dump:
-debug(False, sys.stdout)
-
-from globaleaks.utils.singleton import Singleton
-
 from globaleaks.utils.singleton import Singleton
 
 class ConfigError(Exception):
@@ -64,8 +55,19 @@ class Config(object):
             print "Reconfiguring Config instance"
 
         self.main = OD()
-        self.advanced = OD()
 
+        # 'testing' and 'db' trigger some debug options'
+        cmdline_opt = sys.argv
+        if 'testing' in cmdline_opt:
+            self.main.testing = True
+        else:
+            self.main.testing = False
+        if 'db' in cmdline_opt:
+            debug(True, sys.stdout)
+        else:
+            debug(False, sys.stdout)
+
+        self.advanced = OD()
         self.advanced.debug = True
 
         self.main.glclient_path = get_glclient_path()
