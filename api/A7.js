@@ -9,16 +9,16 @@ Thi test evaluates the following requirements for A2 (/admin/context)
     GET/PUT/DELETE should fail if non existent 'context_gus' is provided (404)
     GET/PUT/DELETE should succeed should fail if existent 'context_gus' is provided (200)
     POST/PUT should succeed should fail if 'correct context is provided (200)
-    POST/PUT should fail if 'name attribute lacks inside the provided context (406)
-    POST/PUT should fail if 'description' attribute lacks inside the provided context (406)
-    POST/PUT should fail if 'selectable_receiver' attribute lacks inside the provided context (406)
-    POST/PUT should fail if 'languages_supported' attribute lacks inside the provided context (406)
-    POST/PUT should fail if 'tip_max_access' attribute lacks inside the provided context (406)
-    POST/PUT should fail if 'time_tolive' attribute lacks inside the provided context (406)
-    POST/PUT should fail if 'file_max_download' attribute lacks inside the provided context (406)
-    POST/PUT should fail if 'escalation_threshold' attribute lacks inside the provided context (406)
-    POST/PUT should fail if 'receivers' attribute lacks inside the provided context (406)
-    POST/PUT should fail if 'fields' attribute lacks inside the provided context (406)
+    POST/PUT should fail if 'name attribute is missing inside the provided context (406)
+    POST/PUT should fail if 'description' attribute is missing inside the provided context (406)
+    POST/PUT should fail if 'selectable_receiver' attribute is missing inside the provided context (406)
+    POST/PUT should fail if 'languages_supported' attribute is missing inside the provided context (406)
+    POST/PUT should fail if 'tip_max_access' attribute is missing inside the provided context (406)
+    POST/PUT should fail if 'time_tolive' attribute is missing inside the provided context (406)
+    POST/PUT should fail if 'file_max_download' attribute is missing inside the provided context (406)
+    POST/PUT should fail if 'escalation_threshold' attribute is missing inside the provided context (406)
+    POST/PUT should fail if 'receivers' attribute is missing inside the provided context (406)
+    POST/PUT should fail if 'fields' attribute is missing inside the provided context (406)
     POST/PUT should fail if invalid 'name' attribute inside the provided context (406)
     POST/PUT should fail if invalid 'description' attribute inside the provided context (406)
     POST/PUT should fail if invalid 'selectable_receiver' attribute inside the provided context (406)
@@ -110,7 +110,7 @@ var dummyContext = {
 
 describe("Node Admin API Context functionality", function(){
 
-  it("POST should succeed if a correct context is provided (200)", function(done){
+  it("should succeed if a correct context is provided (POST, 200)", function(done){
 
     var test = clone(dummyContext);
 
@@ -122,7 +122,7 @@ describe("Node Admin API Context functionality", function(){
   });
 
 
-  it("POST should fail if an attribute lacks inside the provided Context (406)", function(done){
+  it("should fail if an attribute is missing inside the provided Context (POST, 406)", function(done){
       args.forEach(function (arg) {
         var test = clone(dummyContext);
         delete test[arg];
@@ -135,7 +135,7 @@ describe("Node Admin API Context functionality", function(){
       });
   })
 
-  it("POST should fail if an invalid attribute inside the provided Context (406)", function(done){
+  it("should fail if an invalid attribute inside the provided Context (POST, 406)", function(done){
       args.forEach(function (arg) {
 
         var test = clone(dummyContext);
@@ -150,7 +150,7 @@ describe("Node Admin API Context functionality", function(){
   })
 
 
-  it("PUT should fail if an additional attribute inside the provided context (406)", function(done){
+  it("should fail if an additional attribute inside the provided context (POST,406)", function(done){
 
     var test = clone(dummyContext);
     test['antani'] = "antani";
@@ -166,7 +166,7 @@ describe("Node Admin API Context functionality", function(){
 
   });
 
-  it("PUT should fail if both 'selectable_receiver' and 'escalation_threshold' are present (406)", function(done){
+  it("should fail if both 'selectable_receiver' and 'escalation_threshold' are present (PUT, 406)", function(done){
 
     var test = clone(dummyContext);
     
@@ -184,7 +184,7 @@ describe("Node Admin API Context functionality", function(){
   
   });
 
-  it("GET should fail if an existent context_gus is provided (200)", function(done){
+  it("should fail if an existent context_gus is provided (GET, 200)", function(done){
 
     var test = clone(dummyContext);
 
@@ -206,7 +206,7 @@ describe("Node Admin API Context functionality", function(){
   
   });
 
-  it("GET should fail if a not existent context_gus is provided (404)", function(done){
+  it("should fail if a not existent context_gus is provided (GET, 404)", function(done){
 
     request()
     .get('/admin/context/c_01010101010101010101')
@@ -215,7 +215,7 @@ describe("Node Admin API Context functionality", function(){
 
   });
   
-  it("DELETE should succeed if an existent context_gus is provided (200)", function(done){
+  it("should succeed if an existent context_gus is provided (GET, 200)", function(done){
 
     getSomeContextID(function(contextID){
 
@@ -237,7 +237,7 @@ describe("Node Admin API Context functionality", function(){
     });
   });
   
-  it("DELETE should fail if a not existent context_gus is provided (404)", function(done){
+  it("should fail if a not existent context_gus is provided (DELETE, 404)", function(done){
 
     request()
     .del('/admin/context/c_01010101010101010101')
