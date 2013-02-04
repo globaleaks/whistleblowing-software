@@ -54,22 +54,31 @@ class Config(object):
         else:
             print "Reconfiguring Config instance"
 
-        self.main = OD()
+        self.debug = OD()
 
-        # 'testing' and 'db' trigger some debug options'
+        # 'testing' is present, GUS are incremental
         cmdline_opt = sys.argv
         if 'testing' in cmdline_opt:
-            self.main.testing = True
+            self.debug.testing = True
         else:
-            self.main.testing = False
+            self.debug.testing = False
+
+        # 'db' is present, Storm debug enabed
         if 'db' in cmdline_opt:
             debug(True, sys.stdout)
         else:
             debug(False, sys.stdout)
 
+        # 'verbose' is present, show JSON receiver messages
+        if 'verbose' in cmdline_opt:
+            self.debug.verbose = True
+        else:
+            self.debug.verbose = False
+
         self.advanced = OD()
         self.advanced.debug = True
 
+        self.main = OD()
         self.main.glclient_path = get_glclient_path()
 
         if self.advanced.debug:

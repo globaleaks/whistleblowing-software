@@ -61,17 +61,17 @@ class FileOperations(MacroOperation):
 
         store = self.getStore()
 
-        submission_iface = Submission(store)
-
-        submission_desc = submission_iface.get_single(submission_gus)
+        submission_desc = Submission(store).get_single(submission_gus)
 
         if submission_desc['finalize']:
             raise SubmissionConcluded
 
-        results = []
+        result_list = []
 
         file_array, files = request.files.popitem()
+
         for single_file in files:
+
             start_time = time.time()
 
             file_request = { 'filename' : single_file.get('filename'),
@@ -82,8 +82,6 @@ class FileOperations(MacroOperation):
                              'description' : ''
             }
 
-            print "file_request", file_request, "\n"
-
             file_iface = File(store)
             file_desc = file_iface.new(file_request)
 
@@ -91,11 +89,9 @@ class FileOperations(MacroOperation):
 
             result = self._dump_file(single_file, submission_gus, file_desc['file_gus'])
             result['elapsed_time'] = time.time() - start_time
-            results.append(result)
+            result_list.append(result)
 
-        response = json.dumps(results, separators=(',',':'))
-
-        self.returnData(response)
+        self.returnData(result_list)
         self.returnCode(200)
         return self.prepareRetVals()
 
