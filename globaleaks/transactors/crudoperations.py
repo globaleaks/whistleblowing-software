@@ -680,7 +680,10 @@ class CrudOperations(MacroOperation):
         tip_description = requested_t.get_single(receipt)
 
         itip_iface = InternalTip(store)
-        inforet = itip_iface.get_receivers_by_itip(tip_description['internaltip_id'])
+        # inforet = itip_iface.get_receivers_by_itip(tip_description['internaltip_id'])
+        # the wb, instead get the list of active receiver, is getting the list of receiver
+        # configured in the context:
+        inforet = itip_iface.get_single(tip_description['internaltip_id'])['receivers']
 
         self.returnData(inforet)
         self.returnCode(200)
