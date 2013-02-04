@@ -89,6 +89,7 @@
 .errorConsole {
   width: 200px;
   position: fixed;
+  z-index: 99999;
   top: 20px;
   left: 20px;
 }
