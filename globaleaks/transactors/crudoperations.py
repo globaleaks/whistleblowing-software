@@ -325,48 +325,37 @@ class CrudOperations(MacroOperation):
     # Below CrudOperations for Receiver API
 
     @transact
-    def get_receiver_by_receiver(self, valid_tip):
-
-        receivertip_iface = ReceiverTip(self.getStore())
-
-        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
-        # receivers_map is a dict with these keys: 'others' : [$], 'actor': $, 'mapped' [ ]
-
-        self.returnData(receivers_map['actor'])
-        self.returnCode(200)
-        return self.prepareRetVals()
-
-    @transact
-    def update_receiver_by_receiver(self, valid_tip, request):
+    def get_receiver_by_receiver(self, receiver_desc):
 
         store = self.getStore()
-        receivertip_iface = ReceiverTip(store)
+        receiver_gus = receiver_desc['receiver_gus']
 
-        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
-        # receivers_map is a dict with these keys: 'others' : [$], 'actor': $, 'mapped' [ ]
-
-        self_receiver_gus = receivers_map['actor']['receiver_gus']
-
-        receiver_iface = Receiver(store)
-        receiver_desc = receiver_iface.self_update(self_receiver_gus, request)
-
-        # context_iface = Context(store)
-        # context_iface.update_languages(receiver_desc['contexts'])
-        # TODO implement this function
+        receiver_desc = Receiver(store).get_single(receiver_gus)
 
         self.returnData(receiver_desc)
         self.returnCode(200)
         return self.prepareRetVals()
 
     @transact
-    def get_profiles_by_receiver(self, valid_tip):
+    def update_receiver_by_receiver(self, receiver_desc, request):
 
         store = self.getStore()
-        receivertip_iface = ReceiverTip(store)
-        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
-        # receivers_map is a dict with these keys: 'others' : [$], 'actor': $, 'mapped' [ ]
+        receiver_gus = receiver_desc['receiver_gus']
 
-        receiver_associated_contexts = receivers_map['actor']['contexts']
+        updated_receiver_desc = Receiver(store).self_update(receiver_gus, request)
+
+        # context_iface = Context(store)
+        # context_iface.update_languages(updated_receiver_desc['contexts'])
+        # TODO implement this function
+
+        self.returnData(updated_receiver_desc)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def get_profiles_by_receiver(self, receiver_associated_contexts):
+
+        store = self.getStore()
 
         profile_iface = PluginProfiles(store)
         profiles_list = profile_iface.get_profiles_by_contexts(receiver_associated_contexts)
@@ -376,113 +365,95 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_receiversetting_list(self, valid_tip):
+    def get_receiversetting_list(self, receiver_gus):
 
         store = self.getStore()
 
-        receivertip_iface = ReceiverTip(store)
-        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
-
-        user = receivers_map['actor']
-
         receivercfg_iface = ReceiverConfs(store)
-        confs_created = receivercfg_iface.get_confs_by_receiver(user['receiver_gus'])
+        confs_created = receivercfg_iface.get_confs_by_receiver(receiver_gus)
 
         self.returnData(confs_created)
         self.returnCode(200)
         return self.prepareRetVals()
 
     @transact
-    def new_receiversetting(self, valid_tip, request):
+    def new_receiversetting(self, receiver_gus, request, receiver_desc=None):
 
         store = self.getStore()
 
-        receivertip_iface = ReceiverTip(store)
+        profile_desc = PluginProfiles(store).get_single(request['profile_gus'])
 
-        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
-        user = receivers_map['actor']
-
-        profile_iface = PluginProfiles(store)
-        profile_desc = profile_iface.get_single(request['profile_gus'])
-
-        if profile_desc['plugin_type'] == u'notification' and user['can_configure_notification']:
+        # Admin do not pass receiver_desc, and then is not checked capability
+        if not receiver_desc:
             pass
-        elif profile_desc['plugin_type'] == u'delivery' and user['can_configure_delivery']:
+        elif  profile_desc['plugin_type'] == u'notification' and receiver_desc['can_configure_notification']:
+            pass
+        elif profile_desc['plugin_type'] == u'delivery' and receiver_desc['can_configure_delivery']:
             pass
         else:
             raise ForbiddenOperation
 
         receivercfg_iface = ReceiverConfs(store)
-        config_desc = receivercfg_iface.new(user['receiver_gus'], request)
+        config_desc = receivercfg_iface.new(receiver_gus, request)
 
         if config_desc['active']:
             # keeping active only the last configuration requested
             receivercfg_iface.deactivate_all_but(config_desc['config_id'], config_desc['context_gus'],
-                user['receiver_gus'], config_desc['plugin_type'])
+                receiver_gus, config_desc['plugin_type'])
 
         self.returnData(config_desc)
         self.returnCode(201)
         return self.prepareRetVals()
 
     @transact
-    def get_receiversetting(self, valid_tip, conf_id):
+    def get_receiversetting(self, receiver_gus, conf_id):
 
         store = self.getStore()
 
-        # This check verify if auth is correct
-        receivertip_iface = ReceiverTip(store)
-        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
+        conf_requested =  ReceiverConfs(store).get_single(conf_id)
 
-        # This one in fact return the Receiver Setting requested
-        receivercfg_iface = ReceiverConfs(store)
-        conf_requested = receivercfg_iface.get_single(conf_id)
+        if conf_requested['receiver_gus'] != receiver_gus:
+            raise ForbiddenOperation
 
         self.returnData(conf_requested)
         self.returnCode(200)
         return self.prepareRetVals()
 
     @transact
-    def update_receiversetting(self, valid_tip, conf_id, request):
+    def update_receiversetting(self, receiver_gus, conf_id, request, receiver_desc=None):
 
         store = self.getStore()
 
-        receivertip_iface = ReceiverTip(store)
-        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
-        user = receivers_map['actor']
+        profile_desc = PluginProfiles(store).get_single(request['profile_gus'])
 
-        profile_iface = PluginProfiles(store)
-        profile_desc = profile_iface.get_single(request['profile_gus'])
-
-        if profile_desc['plugin_type'] == u'notification' and user['can_configure_notification']:
+        # Admin do not pass receiver_desc, and then is not checked capability
+        if not receiver_desc:
             pass
-        elif profile_desc['plugin_type'] == u'delivery' and user['can_configure_delivery']:
+        elif  profile_desc['plugin_type'] == u'notification' and receiver_desc['can_configure_notification']:
+            pass
+        elif profile_desc['plugin_type'] == u'delivery' and receiver_desc['can_configure_delivery']:
             pass
         else:
             raise ForbiddenOperation
 
         receivercfg_iface = ReceiverConfs(store)
-        config_update = receivercfg_iface.update(conf_id, user['receiver_gus'], request)
+        config_update = receivercfg_iface.update(conf_id, receiver_gus, request)
 
         if config_update['active']:
             # keeping active only the last configuration requested
             receivercfg_iface.deactivate_all_but(config_update['config_id'], config_update['context_gus'],
-                user['receiver_gus'], config_update['plugin_type'])
+                receiver_gus, config_update['plugin_type'])
 
         self.returnData(config_update)
         self.returnCode(200)
         return self.prepareRetVals()
 
     @transact
-    def delete_receiversetting(self, valid_tip, conf_id):
+    def delete_receiversetting(self, receiver_gus, conf_id):
 
         store = self.getStore()
 
-        receivertip_iface = ReceiverTip(store)
-        receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
-        user = receivers_map['actor']
-
-        receivercfg_iface = ReceiverConfs(store)
-        receivercfg_iface.delete(conf_id, user['receiver_gus'])
+        ReceiverConfs(store).delete(conf_id, receiver_gus)
 
         self.returnCode(200)
         return self.prepareRetVals()

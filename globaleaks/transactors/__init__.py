@@ -1,1 +1,1 @@
-__all__ = [ 'base', 'crudoperations', 'asyncoperations' ]
+__all__ = [ 'base', 'crudoperations', 'asyncoperations', 'authoperations' ]
