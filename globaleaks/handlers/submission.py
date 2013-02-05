@@ -45,27 +45,27 @@ class SubmissionCreate(BaseHandler):
 
             # TODO - output processing
             self.set_status(answer['code'])
-            self.write(answer['data'])
+            self.json_write(answer['data'])
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionFailFields, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -94,17 +94,17 @@ class SubmissionInstance(BaseHandler):
 
             # TODO - output processing
             self.set_status(answer['code'])
-            self.write(answer['data'])
+            self.json_write(answer['data'])
 
         except SubmissionGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -128,37 +128,37 @@ class SubmissionInstance(BaseHandler):
 
             # TODO - output processing
             self.set_status(answer['code'])
-            self.write(answer['data'])
+            self.json_write(answer['data'])
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionFailFields, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionConcluded, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -185,17 +185,17 @@ class SubmissionInstance(BaseHandler):
         except SubmissionGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionConcluded, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 

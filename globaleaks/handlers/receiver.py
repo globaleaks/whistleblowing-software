@@ -9,9 +9,9 @@ from cyclone.web import asynchronous
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from twisted.internet.defer import inlineCallbacks
-import json
 
 from globaleaks.transactors.crudoperations import CrudOperations
+from globaleaks.transactors.authoperations import AuthOperations
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
@@ -41,18 +41,17 @@ class ReceiverInstance(BaseHandler):
         """
 
         try:
-            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
-            # Receiver identified, actually we're using a valid_tip:
+            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().get_receiver_by_receiver(receiver_token_auth)
+            answer = yield CrudOperations().get_receiver_by_receiver(auth_user['receiver_gus'])
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e: # InvalidTipAuthToken
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -70,33 +69,32 @@ class ReceiverInstance(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.receiverReceiverDesc)
 
-            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
-            # Receiver identified, actually we're using a valid_tip:
+            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().update_receiver_by_receiver(receiver_token_auth, request)
+            answer = yield CrudOperations().update_receiver_by_receiver(auth_user['receiver_gus'], request)
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidTipAuthToken, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -122,18 +120,17 @@ class ProfilesCollection(BaseHandler):
         """
 
         try:
-            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
-            # Receiver identified, actually we're using a valid_tip:
+            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().get_profiles_by_receiver(receiver_token_auth)
+            answer = yield CrudOperations().get_profiles_by_receiver(auth_user['contexts'])
 
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e: # InvalidTipAuthToken
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -145,7 +142,7 @@ class ConfCollection(BaseHandler):
     Return the collection of the current Profile Configuration of a Receiver, supports
     the creation of a new Configuration, based on an available Profile for the receiver.
 
-    acts on /receivers/<receiver_token_auth/profileconf
+    acts on /receivers/<receiver_token_auth>/profileconf
     """
 
     @asynchronous
@@ -158,18 +155,17 @@ class ConfCollection(BaseHandler):
         """
 
         try:
-            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
-            # Receiver identified, actually we're using a valid_tip:
+            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().get_receiver_by_receiver(receiver_token_auth)
+            answer = yield CrudOperations().get_receiversetting_list(auth_user['receiver_gus'])
 
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -189,38 +185,37 @@ class ConfCollection(BaseHandler):
         try:
             request = validateMessage(self.request.body, requests.receiverConfDesc)
 
-            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
-            # Receiver identified, actually we're using a valid_tip:
+            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().new_receiversetting(receiver_token_auth, request)
+            answer = yield CrudOperations().new_receiversetting(auth_user['receiver_gus'], request, auth_user)
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidTipAuthToken, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -252,38 +247,32 @@ class ConfInstance(BaseHandler):
         """
 
         try:
-            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
-            # Receiver identified, actually we're using a valid_tip:
+            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().get_receiversetting(receiver_token_auth, conf_id)
+            answer = yield CrudOperations().get_receiversetting(auth_user['receiver_gus'], conf_id)
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverConfNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidTipAuthToken, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ProfileGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -302,47 +291,46 @@ class ConfInstance(BaseHandler):
         deactivate the others related to the same context.
         """
 
-
         try:
             request = validateMessage(self.request.body, requests.receiverReceiverDesc)
 
-            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
-            # Receiver identified, actually we're using a valid_tip:
+            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().update_receiversetting(receiver_token_auth, conf_id, request)
+            answer = yield CrudOperations().update_receiversetting(auth_user['receiver_gus'],
+                conf_id, request, auth_user)
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidTipAuthToken, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ProfileGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -358,27 +346,26 @@ class ConfInstance(BaseHandler):
         """
 
         try:
-            # TODO authenticate Receiver using cookie or a Tip, and derive a sort of
-            # Receiver identified, actually we're using a valid_tip:
+            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().delete_receiversetting(receiver_token_auth, conf_id)
+            answer = yield CrudOperations().delete_receiversetting(auth_user['receiver_gus'], conf_id)
 
             self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverConfNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -402,16 +389,18 @@ class TipsCollection(BaseHandler):
         try:
             # validateParameter(tip_auth_token, requests.tipGUS)
             # TODO validate parameter tip format or raise InvalidInputFormat
+            # auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
+            # TODO need to be update in Auth and an update in get_tip_list
 
             answer = yield CrudOperations().get_tip_list(tip_auth_token)
 
             self.set_status(answer['code'])
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 

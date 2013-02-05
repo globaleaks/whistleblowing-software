@@ -51,7 +51,12 @@ URTA = {
     'A8_GET':'GET_/admin/profile/@PID@',
     'A8_PUT':'PUT_/admin/profile/@PID@',
     'A8_DELETE':'DELETE_/admin/profile/@PID@',
-    'A9_GET':'GET_/admin/statistics/',
+    'A9_GET':'GET_/admin/receiversetting/@RID@',
+    'A9_POST':'POST_/admin/receiversetting/@RID@',
+    'AA_GET':'GET_/admin/receiversetting/@CFGID@/receiver/@RID@',
+    'AA_PUT':'PUT_/admin/receiversetting/@CFGID@/receiver/@RID@',
+    'AA_DELETE':'DELETE_/admin/receiversetting/@CFGID@/receiver/@RID@',
+    'AB_GET':'GET_/admin/statistics/',
 
     'D1_GET':'GET_/debug/overview/@DUMP@',
     'D2_DELETE':'DELETE_/debug/tasks/@TASK@',

@@ -87,7 +87,6 @@ class Receiver(TXModel):
         the dict need to be already validated
         """
 
-
         try:
             requested_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(receiver_gus)).one()
         except NotOneError:

@@ -77,7 +77,7 @@ spec = [
     #  R3
     (r'/receiver/' + receiver_token_auth + '/profileconf', receiver.ConfCollection),
 
-    #  R4 - not_defined_regexp its just an Int value
+    #  R4
     (r'/receiver/' + receiver_token_auth + '/profileconf/' + only_int_regexp, receiver.ConfInstance),
 
     #  R5
@@ -109,6 +109,12 @@ spec = [
     (r'/admin/profile/' + profileGUS.regexp, admin.ProfileInstance),
 
     #  A9
+    (r'/admin/receiversetting/' + receiverGUS.regexp, admin.SettingsCollection),
+
+    #  AA
+    (r'/admin/receiversetting/' + only_int_regexp + "/receiver/" + receiverGUS.regexp, admin.SettingsInstance),
+
+    #  AB
     (r'/admin/statistics/', admin.StatisticsCollection),
 
     #  D1

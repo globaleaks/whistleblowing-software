@@ -7,7 +7,6 @@
 
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
-import json
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.transactors.crudoperations import CrudOperations
@@ -15,7 +14,7 @@ from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.utils import log
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
-    NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict
+    NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict, ReceiverConfNotFound
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
 
@@ -42,13 +41,13 @@ class NodeInstance(BaseHandler):
             answer = yield CrudOperations().get_node()
             # validateMessage() output!!
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except NodeNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -69,13 +68,13 @@ class NodeInstance(BaseHandler):
             answer = yield CrudOperations().update_node(request)
             # validateMessage() output!!
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -100,13 +99,13 @@ class ContextsCollection(BaseHandler):
 
             # validateMessage() output!!
 
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -125,28 +124,28 @@ class ContextsCollection(BaseHandler):
             answer = yield CrudOperations().create_context(request)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except KeyError, e: # Until validateMessage is not restored, it's needed.
 
             self.set_status(511)
-            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
+            self.json_write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
 
         self.finish()
 
@@ -171,13 +170,13 @@ class ContextInstance(BaseHandler):
             answer = yield CrudOperations().get_context(context_gus)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -197,28 +196,28 @@ class ContextInstance(BaseHandler):
             answer = yield CrudOperations().update_context(context_gus, request)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except KeyError, e: # Until validateMessage is not restored, it's needed.
 
             self.set_status(511)
-            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
+            self.json_write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
 
         self.finish()
 
@@ -236,13 +235,13 @@ class ContextInstance(BaseHandler):
             answer = yield CrudOperations().delete_context(context_gus)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -267,7 +266,7 @@ class ReceiversCollection(BaseHandler):
         answer = yield CrudOperations().get_receiver_list()
         # validateMessage() output!!
 
-        self.write(json.dumps(answer['data']))
+        self.json_write(answer['data'])
         self.set_status(answer['code'])
 
         self.finish()
@@ -290,28 +289,28 @@ class ReceiversCollection(BaseHandler):
             answer = yield CrudOperations().create_receiver(request)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except KeyError, e: # Until validateMessage is not restored, it's needed.
 
             self.set_status(511)
-            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
+            self.json_write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
 
         self.finish()
 
@@ -343,13 +342,13 @@ class ReceiverInstance(BaseHandler):
             answer = yield CrudOperations().get_receiver(receiver_gus)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -372,28 +371,28 @@ class ReceiverInstance(BaseHandler):
             answer = yield CrudOperations().update_receiver(receiver_gus, request)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except KeyError, e: # Until validateMessage is not restored, it's needed.
 
             self.set_status(511)
-            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
+            self.json_write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
 
         self.finish()
 
@@ -413,13 +412,13 @@ class ReceiverInstance(BaseHandler):
             answer = yield CrudOperations().delete_receiver(receiver_gus)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -449,7 +448,7 @@ class PluginCollection(BaseHandler):
         # TODO output validation - adminPluginList
 
         self.set_status(200)
-        self.write(json.dumps(plugin_descriptive_list))
+        self.json_write(plugin_descriptive_list)
         self.finish()
 
 
@@ -473,7 +472,7 @@ class ProfileCollection(BaseHandler):
         answer = yield CrudOperations().get_profile_list()
         # validateMessage() output!!
 
-        self.write(json.dumps(answer['data']))
+        self.json_write(answer['data'])
         # TODO output validation - adminProfileList
         self.set_status(answer['code'])
         self.finish()
@@ -495,18 +494,18 @@ class ProfileCollection(BaseHandler):
             answer = yield CrudOperations().create_profile(request)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ProfileNameConflict, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -533,13 +532,13 @@ class ProfileInstance(BaseHandler):
             answer = yield CrudOperations().get_profile(profile_gus)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except ProfileGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -561,23 +560,23 @@ class ProfileInstance(BaseHandler):
             answer = yield CrudOperations().update_profile(profile_gus, request)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except ProfileGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ProfileNameConflict, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -595,25 +594,200 @@ class ProfileInstance(BaseHandler):
             answer = yield CrudOperations().delete_profile(profile_gus)
 
             # validateMessage() output!!
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ProfileGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+class SettingsCollection(BaseHandler):
+    """
+    A9
+    List of receiver configuration for admin management, based on a single receiver.
+    Permit creation of a new receiver configuration, having a Receiver and a Profile ready.
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus
+        Response: receiverConfList
+        Errors: ReceiverGusNotFound
+        """
+
+        try:
+            answer = yield CrudOperations().get_receiversetting_list(receiver_gus)
+
+            self.json_write(answer['data'])
+            self.set_status(answer['code'])
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+    @asynchronous
+    @inlineCallbacks
+    def post(self, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus
+        Request: receiverConfDesc
+        Response: receiverConfDesc
+        Errors: ContextGusNotFound, ReceiverGusNotFound, InvalidInputFormat
+
+        Create a new configuration for a plugin
+        """
+
+        try:
+            request = validateMessage(self.request.body, requests.receiverConfDesc)
+            # TODO validateParameter
+
+            answer = yield CrudOperations().new_receiversetting(receiver_gus, request)
+
+            self.json_write(answer['data'])
+            self.set_status(answer['code'])
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ContextGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+class SettingsInstance(BaseHandler):
+    """
+    AA
+    Admin interface management for CRUD over ReceiverSettings
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, conf_id, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus, receiver_configuration_id
+        Response: receiverConfDesc
+        Errors: InvalidInputFormat, ReceiverConfNotFound, ReceiverGusNotFound
+        """
+
+        try:
+            answer = yield CrudOperations().get_receiversetting(receiver_gus, conf_id)
+
+            self.json_write(answer['data'])
+            self.set_status(answer['code'])
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverConfNotFound, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+    @asynchronous
+    @inlineCallbacks
+    def put(self, conf_id, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus, receiver_configuration_id
+        Response: receiverConfDesc
+        Errors: InvalidInputFormat, ReceiverConfNotFound, ReceiverGusNotFound
+        """
+
+        try:
+            request = validateMessage(self.request.body, requests.receiverReceiverDesc)
+
+            answer = yield CrudOperations().update_receiversetting(receiver_gus, conf_id, request)
+
+            self.json_write(answer['data'])
+            self.set_status(answer['code'])
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ContextGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ProfileGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+    @asynchronous
+    @inlineCallbacks
+    def delete(self, conf_id, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus, receiver_configuration_id
+        Response: receiverConfDesc
+        Errors: InvalidInputFormat, ReceiverConfNotFound, ReceiverGusNotFound
+        """
+
+        try:
+            # TODO validate parameters
+            answer = yield CrudOperations().delete_receiversetting(receiver_gus, conf_id)
+
+            self.set_status(answer['code'])
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverConfNotFound, e:
+
+            self.set_status(e.http_status)
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
 
 class StatisticsCollection(BaseHandler):
     """
-    A9
+    AB
     Return all administrative statistics of the node.
     """
 

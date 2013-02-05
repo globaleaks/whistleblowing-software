@@ -11,7 +11,6 @@ from globaleaks.handlers.base import BaseHandler
 from cyclone.web import asynchronous
 from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest.errors import NodeNotFound
-import json
 
 class InfoCollection(BaseHandler):
     """
@@ -34,13 +33,13 @@ class InfoCollection(BaseHandler):
             answer = yield CrudOperations().get_node()
             # output filtering TODO need to strip reserved infos
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except NodeNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -88,7 +87,7 @@ class ContextsCollection(BaseHandler):
         answer = yield CrudOperations().get_context_list()
 
         # output filtering TODO need to strip reserved infos
-        self.write(json.dumps(answer['data']))
+        self.json_write(answer['data'])
         self.set_status(answer['code'])
 
         self.finish()
@@ -113,7 +112,7 @@ class ReceiversCollection(BaseHandler):
         answer = yield CrudOperations().get_receiver_list()
 
         # output filtering TODO need to strip reserved infos
-        self.write(json.dumps(answer['data']))
+        self.json_write(answer['data'])
         self.set_status(answer['code'])
 
         self.finish()

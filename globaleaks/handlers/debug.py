@@ -33,12 +33,12 @@ class EntryCollection(BaseHandler):
             answer = yield CrudOperations().dump_models(what)
 
             self.set_status(answer['code'])
-            self.write(answer['data'])
+            self.json_write(answer['data'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -62,17 +62,14 @@ class TaskInstance(BaseHandler):
         from globaleaks.jobs.notification_sched import APSNotification
         from globaleaks.jobs.tip_sched import APSTip
         from globaleaks.jobs.delivery_sched import APSDelivery
-        from globaleaks.jobs.welcome_sched import APSWelcome
         from globaleaks.jobs.cleaning_sched import APSCleaning
         from globaleaks.jobs.statistics_sched import APSStatistics
         from globaleaks.jobs.fileprocess_sched import APSFileProcess
 
-        expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'fileprocess' ]
+        expected = [ 'statistics', 'tip', 'delivery', 'notification', 'cleaning', 'fileprocess' ]
 
         if what == 'statistics':
             yield APSStatistics().operation()
-        if what == 'welcome':
-            yield APSWelcome().operation()
         if what == 'tip':
             yield APSTip().operation()
         if what == 'delivery':
