@@ -8,7 +8,7 @@ Thi test evaluates the following requirements for A4 (/admin/receiver)
 
     GET/PUT/DELETE should fail if non existent 'receiver_gus' is provided (404)
     GET/PUT/DELETE should succeed if existent 'receiver_gus' is provided (200)
-    POST/PUT should succeed if 'correct receiver is provided (200)
+    POST/PUT should succeed if 'valid receiver is provided (200)
     POST/PUT should fail if 'name attribute is missing inside the provided receiver (406)
     POST/PUT should fail if 'description' attribute is missing inside the provided receiver (406)
     POST/PUT should fail if 'tags' attribute is missing inside the provided receiver (406)
@@ -144,7 +144,7 @@ var dummyReceiverUpdate = {
 
 describe("Node Admin API Receiver functionality", function(){
 
-  it("should succeed if a correct receiver is provided (POST, 200)", function(done){
+  it("should succeed if a valid receiver is provided (POST, 200)", function(done){
 
     var test = clone(dummyReceiver);
 
@@ -156,7 +156,7 @@ describe("Node Admin API Receiver functionality", function(){
   })
 
   args.forEach(function (arg) {
-    it("should fail if the '" + arg + "'' attribute is missing inside the provided receiver (POST, 406)", function(done){
+    it("should fail if the '" + arg + "' attribute is missing inside the provided receiver (POST, 406)", function(done){
 
       var test = clone(dummyReceiver);
       delete test[arg];
@@ -164,7 +164,7 @@ describe("Node Admin API Receiver functionality", function(){
       request()
       .post('/admin/receiver')
       .send(test)
-      .expect(406, done);
+      .expect(406, done)
 
     });
   })
@@ -178,7 +178,7 @@ describe("Node Admin API Receiver functionality", function(){
       request()
       .post('/admin/receiver')
       .send(test)
-      .expect(406, done);
+      .expect(405, done)
 
     });
   })
@@ -193,7 +193,7 @@ describe("Node Admin API Receiver functionality", function(){
       request()
       .put('/admin/receiver/'+ReceiverID)
       .send(test)
-      .expect(406, done);
+      .expect(406, done)
 
     });
 
@@ -206,6 +206,7 @@ describe("Node Admin API Receiver functionality", function(){
       request()
       .get('/admin/receiver/'+ReceiverID)
       .send()
+      .expect(200)
       .end(function(err, res){
         if (err) return done(err);
         var response = JSON.parse(res.text);
@@ -224,14 +225,17 @@ describe("Node Admin API Receiver functionality", function(){
     request()
     .get('/admin/receiver/r_01010101010101010101')
     .send()
-    .expect(404, done)
-
+    .expect(404)
+    .end(function(err, res) {
+      if (err) return done(err);
+      done();
+    });
   });
 
   args.forEach(function (arg) {
 
     it("should fail if an invalid update for the attribute '" + arg + "' is provided (PUT, 406)", function(done){
-
+      
       var test = clone(dummyReceiver);
       test[arg] = invalidField();
 
@@ -240,14 +244,16 @@ describe("Node Admin API Receiver functionality", function(){
         request()
         .put('/admin/receiver/'+receiverID)
         .send(test)
-        .expect(406, done);
-
+        .expect(406)
+        .end(function(err, res) {
+          if (err) return done(err);
+          done();
+        });
       });
   
     });
 
   });
-
   
   it("should succeed if an existent receiver_gus is provided (DELETE, 200)", function(done){
 
@@ -255,11 +261,14 @@ describe("Node Admin API Receiver functionality", function(){
 
     request()
     .del('/admin/receiver/'+ReceiverID)
+    .set('Content-Length', 0)
     .expect(200)
     .end(function(err, res) {
+      if (err) return done(err);
       request()
       .get('/admin/receiver/'+ReceiverID)
       .send()
+      .expect(404)
       .end(function(err, res){
         if (err) return done(err);
         var response = JSON.parse(res.text);
@@ -284,8 +293,7 @@ describe("Node Admin API Receiver functionality", function(){
         .put('/admin/receiver/'+receiverID)
         .send(test)
         .expect(200, done)
-
-      });
+      });        
   
     });
 
@@ -296,10 +304,11 @@ describe("Node Admin API Receiver functionality", function(){
         request()
         .get('/admin/receiver/'+receiverID)
         .send()
+        .expect(200)
         .end(function(err, res){
-          if (err) throw err;
+          if (err) return done(err);
+          
           var response = JSON.parse(res.text);
-          response.should.have.property('name');
           response.should.have.property(arg);
           response[arg].should.eql(dummyReceiverUpdate[arg]);
           done()
@@ -310,13 +319,42 @@ describe("Node Admin API Receiver functionality", function(){
     });
 
   });
+
+  it("should fail if a not existent receiver_gus is provided (GET, 404)", function(done){
+
+    request()
+    .get('/admin/receiver/c_01010101010101010101')
+    .send()
+    .expect(404, done)
+  });
+  
+  it("should succeed if an existent receiver_gus is provided (DELETE, 200)", function(done){
+
+    getSomeReceiverID(function(receiverID){
+
+    request()
+    .del('/admin/receiver/'+receiverID)
+    .set('Content-Length', 0)
+    .expect(200)
+    .end(function(err, res) {
+      if (err) return done(err);
+      request()
+      .get('/admin/receiver/'+receiverID)
+      .send()
+      .expect(404, done)
+    })
+
+    });
+  });
+
   
   it("should fail if a not existent receiver_gus is provided (DELETE, 404)", function(done){
 
     request()
     .del('/admin/receiver/r_01010101010101010101')
+    .set('Content-Length', 0)
     .expect(404, done)
-  
+
   });
 
 });

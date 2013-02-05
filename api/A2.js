@@ -4,11 +4,11 @@
 
 /*
  
-Thi test evaluates the following requirements for A2 (/admin/context)
+This test evaluates the following requirements for A2 (/admin/context)
 
     GET/PUT/DELETE should fail if non existent 'context_gus' is provided (404)
     GET/PUT/DELETE should succeed if existent 'context_gus' is provided (200)
-    POST/PUT should succeed if 'correct context is provided (200)
+    POST/PUT should succeed if 'valid context is provided (200)
     POST/PUT if 'name attribute is missing inside the provided context (406)
     POST/PUT if 'description' attribute is missing inside the provided context (406)
     POST/PUT if 'selectable_receiver' attribute is missing inside the provided context (406)
@@ -74,7 +74,7 @@ var getSomeContextID = function(fn) {
       'escalation_threshold' : int,
       'receivers' : [ receiverGUS ],
       'fields': [ formFieldsDict ]
-  }
+  });
 
   notes: 'selectable_receiver' and 'escalation_threshold' are mutually exclusives.
 
@@ -105,7 +105,7 @@ var dummyContext = {
     escalation_threshold : 42,
     receivers: [],
     fields: []
-};
+}
 
 var dummyContextUpdate = {
     name: 'update',
@@ -118,11 +118,11 @@ var dummyContextUpdate = {
     escalation_threshold : 24,
     receivers: [],
     fields: []
-};
+}
 
 describe("Node Admin API Context functionality", function(){
 
-  it("should succeed if correct context is provided (POST, 200)", function(done){
+  it("should succeed if valid context is provided (POST, 200)", function(done){
 
     var test = clone(dummyContext);
 
@@ -143,7 +143,7 @@ describe("Node Admin API Context functionality", function(){
       request()
       .post('/admin/context')
       .send(test)
-      .expect(406, done);
+      .expect(406, done)
 
     });
 
@@ -159,7 +159,7 @@ describe("Node Admin API Context functionality", function(){
       request()
       .post('/admin/context')
       .send(test)
-      .expect(406, done);
+      .expect(406, done)
 
     });
 
@@ -176,7 +176,7 @@ describe("Node Admin API Context functionality", function(){
       request()
       .put('/admin/context/'+contextID)
       .send(test)
-      .expect(406, done);
+      .expect(406, done)
 
     });
 
@@ -194,7 +194,7 @@ describe("Node Admin API Context functionality", function(){
       request()
       .put('/admin/context/'+contextID)
       .send(test)
-      .expect(406, done);
+      .expect(406, done)
 
     });
   
@@ -207,8 +207,9 @@ describe("Node Admin API Context functionality", function(){
       request()
       .get('/admin/context/'+contextID)
       .send()
+      .expect(200)
       .end(function(err, res){
-        if (err) throw err;
+        if (err) return done(err);
         var response = JSON.parse(res.text);
         response.should.have.property('name');
         done();
@@ -230,7 +231,7 @@ describe("Node Admin API Context functionality", function(){
         request()
         .put('/admin/context/'+contextID)
         .send(test)
-        .expect(406, done);
+        .expect(406, done)
 
       });
   
@@ -251,7 +252,6 @@ describe("Node Admin API Context functionality", function(){
         .put('/admin/context/'+contextID)
         .send(test)
         .expect(200, done)
-
       });
   
     });
@@ -264,7 +264,7 @@ describe("Node Admin API Context functionality", function(){
         .get('/admin/context/'+contextID)
         .send()
         .end(function(err, res){
-          if (err) throw err;
+          if (err) return done(err);
           var response = JSON.parse(res.text);
           response.should.have.property('name');
           response.should.have.property(arg);
@@ -284,7 +284,6 @@ describe("Node Admin API Context functionality", function(){
     .get('/admin/context/c_01010101010101010101')
     .send()
     .expect(404, done)
-
   });
   
   it("should succeed if an existent context_gus is provided (DELETE, 200)", function(done){
@@ -293,17 +292,14 @@ describe("Node Admin API Context functionality", function(){
 
     request()
     .del('/admin/context/'+contextID)
+    .set('Content-Length', 0)
     .expect(200)
     .end(function(err, res) {
+      if (err) return done(err);
       request()
       .get('/admin/context/'+contextID)
       .send()
-      .end(function(err, res){
-        if (err) throw err; 
-        var response = JSON.parse(res.text);
-        response.should.have.property('name');
-        done();
-      });
+      .expect(404, done)
     })
 
     });
@@ -313,7 +309,9 @@ describe("Node Admin API Context functionality", function(){
 
     request()
     .del('/admin/context/c_01010101010101010101')
+    .set('Content-Length', 0)
     .expect(404, done)
+
   
   });
 
