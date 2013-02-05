@@ -71,6 +71,14 @@ class BaseHandler(RequestHandler):
             validMessage = self.requestTypes[self.request.method]
             validateMessage(self.request.body, validMessage)
 
+    def write_error(self, error, **kw):
+        if hasattr(error, 'http_status'):
+            self.set_status(error.http_status)
+            self.write({'error_message': error.error_message,
+                'error_code' : error.error_code})
+        else:
+            RequestHandler.write_error(self, error, **kw)
+
     def write(self, chunk):
         """
         This is a monkey patch to RequestHandler to allow us to serialize also
