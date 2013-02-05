@@ -229,6 +229,7 @@ class ReceiverTip(TXModel):
         return retDict
 
 
+    # maybe not more used, after the auth change. verify if is needed
     def get_receivers_by_tip(self, tip_gus):
         """
         @param tip_gus: a valid tip gus

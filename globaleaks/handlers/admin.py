@@ -15,7 +15,7 @@ from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.utils import log
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
-    NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict
+    NodeNotFound, InvalidInputFormat, ProfileGusNotFound, ProfileNameConflict, ReceiverConfNotFound
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
 
@@ -611,9 +611,184 @@ class ProfileInstance(BaseHandler):
         self.finish()
 
 
-class StatisticsCollection(BaseHandler):
+class SettingsCollection(BaseHandler):
     """
     A9
+    List of receiver configuration for admin management, based on a single receiver.
+    Permit creation of a new receiver configuration, having a Receiver and a Profile ready.
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus
+        Response: receiverConfList
+        Errors: ReceiverGusNotFound
+        """
+
+        try:
+            answer = yield CrudOperations().get_receiversetting_list(receiver_gus)
+
+            self.write(json.dumps(answer['data']))
+            self.set_status(answer['code'])
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+    @asynchronous
+    @inlineCallbacks
+    def post(self, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus
+        Request: receiverConfDesc
+        Response: receiverConfDesc
+        Errors: ContextGusNotFound, ReceiverGusNotFound, InvalidInputFormat
+
+        Create a new configuration for a plugin
+        """
+
+        try:
+            request = validateMessage(self.request.body, requests.receiverConfDesc)
+            # TODO validateParameter
+
+            answer = yield CrudOperations().new_receiversetting(receiver_gus, request)
+
+            self.write(answer['data'])
+            self.set_status(answer['code'])
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ContextGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+class SettingsInstance(BaseHandler):
+    """
+    AA
+    Admin interface management for CRUD over ReceiverSettings
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, conf_id, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus, receiver_configuration_id
+        Response: receiverConfDesc
+        Errors: InvalidInputFormat, ReceiverConfNotFound, ReceiverGusNotFound
+        """
+
+        try:
+            answer = yield CrudOperations().get_receiversetting(receiver_gus, conf_id)
+
+            self.write(answer['data'])
+            self.set_status(answer['code'])
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverConfNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+    @asynchronous
+    @inlineCallbacks
+    def put(self, conf_id, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus, receiver_configuration_id
+        Response: receiverConfDesc
+        Errors: InvalidInputFormat, ReceiverConfNotFound, ReceiverGusNotFound
+        """
+
+        try:
+            request = validateMessage(self.request.body, requests.receiverReceiverDesc)
+
+            answer = yield CrudOperations().update_receiversetting(receiver_gus, conf_id, request)
+
+            self.write(answer['data'])
+            self.set_status(answer['code'])
+
+        except ReceiverGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ContextGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ProfileGusNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+    @asynchronous
+    @inlineCallbacks
+    def delete(self, conf_id, receiver_gus, *uriargs):
+        """
+        Parameters: receiver_gus, receiver_configuration_id
+        Response: receiverConfDesc
+        Errors: InvalidInputFormat, ReceiverConfNotFound, ReceiverGusNotFound
+        """
+
+        try:
+            # TODO validate parameters
+            answer = yield CrudOperations().delete_receiversetting(receiver_gus, conf_id)
+
+            self.set_status(answer['code'])
+
+        except InvalidInputFormat, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        except ReceiverConfNotFound, e:
+
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+
+        self.finish()
+
+
+class StatisticsCollection(BaseHandler):
+    """
+    AB
     Return all administrative statistics of the node.
     """
 
