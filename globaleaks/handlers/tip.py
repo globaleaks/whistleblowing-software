@@ -15,7 +15,6 @@ from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
     TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
-import json
 
 # XXX need to be updated along the receipt hashing and format
 def is_receiver_token(tip_token):
@@ -67,18 +66,18 @@ class TipInstance(BaseHandler):
             else:
                 answer = yield CrudOperations().get_tip_by_wb(tip_token)
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         except TipReceiptNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -112,22 +111,22 @@ class TipInstance(BaseHandler):
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         except ForbiddenOperation, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         except TipPertinenceExpressed, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -155,12 +154,12 @@ class TipInstance(BaseHandler):
         except ForbiddenOperation, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -191,17 +190,17 @@ class TipCommentCollection(BaseHandler):
                 answer = yield CrudOperations().get_comment_list_by_wb(tip_token)
 
             self.set_status(answer['code'])
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         except TipReceiptNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -222,18 +221,18 @@ class TipCommentCollection(BaseHandler):
             else:
                 answer = yield CrudOperations().new_comment_by_wb(tip_token, request)
 
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         except TipReceiptNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -260,18 +259,18 @@ class TipReceiversCollection(BaseHandler):
             else:
                 answer = yield CrudOperations().get_receiver_list_by_wb(tip_token)
 
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         except TipReceiptNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message' : e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message' : e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 

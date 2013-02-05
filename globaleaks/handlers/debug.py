@@ -33,12 +33,12 @@ class EntryCollection(BaseHandler):
             answer = yield CrudOperations().dump_models(what)
 
             self.set_status(answer['code'])
-            self.write(answer['data'])
+            self.json_write(answer['data'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 

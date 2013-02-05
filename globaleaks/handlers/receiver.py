@@ -9,7 +9,6 @@ from cyclone.web import asynchronous
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from twisted.internet.defer import inlineCallbacks
-import json
 
 from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.transactors.authoperations import AuthOperations
@@ -46,13 +45,13 @@ class ReceiverInstance(BaseHandler):
 
             answer = yield CrudOperations().get_receiver_by_receiver(auth_user['receiver_gus'])
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e: # InvalidTipAuthToken
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -74,28 +73,28 @@ class ReceiverInstance(BaseHandler):
 
             answer = yield CrudOperations().update_receiver_by_receiver(auth_user['receiver_gus'], request)
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidTipAuthToken, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -125,13 +124,13 @@ class ProfilesCollection(BaseHandler):
 
             answer = yield CrudOperations().get_profiles_by_receiver(auth_user['contexts'])
 
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e: # InvalidTipAuthToken
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -160,13 +159,13 @@ class ConfCollection(BaseHandler):
 
             answer = yield CrudOperations().get_receiversetting_list(auth_user['receiver_gus'])
 
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -190,33 +189,33 @@ class ConfCollection(BaseHandler):
 
             answer = yield CrudOperations().new_receiversetting(auth_user['receiver_gus'], request, auth_user)
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidTipAuthToken, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -252,28 +251,28 @@ class ConfInstance(BaseHandler):
 
             answer = yield CrudOperations().get_receiversetting(auth_user['receiver_gus'], conf_id)
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverConfNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidTipAuthToken, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -300,38 +299,38 @@ class ConfInstance(BaseHandler):
             answer = yield CrudOperations().update_receiversetting(auth_user['receiver_gus'],
                 conf_id, request, auth_user)
 
-            self.write(answer['data'])
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidTipAuthToken, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ContextGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ProfileGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -356,17 +355,17 @@ class ConfInstance(BaseHandler):
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverConfNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -396,12 +395,12 @@ class TipsCollection(BaseHandler):
             answer = yield CrudOperations().get_tip_list(tip_auth_token)
 
             self.set_status(answer['code'])
-            self.write(json.dumps(answer['data']))
+            self.json_write(answer['data'])
 
         except TipGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
