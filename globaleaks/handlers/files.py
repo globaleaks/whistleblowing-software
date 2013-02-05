@@ -8,7 +8,7 @@
 
 from __future__ import with_statement
 
-import json, os
+import os
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import HTTPError, asynchronous
 from globaleaks.handlers.base import BaseHandler
@@ -66,7 +66,7 @@ class FileInstance(BaseHandler):
 
         answer = yield FileOperations().get_files(submission_gus)
 
-        self.write(json.dumps(answer['data']))
+        self.json_write(answer['data'])
         self.set_status(200)
 
     @asynchronous
@@ -82,21 +82,18 @@ class FileInstance(BaseHandler):
         try:
             answer = yield FileOperations().new_files(submission_gus, self.request)
 
-            if 'application/json' in self.request.headers.get('Accept'):
-                self.set_header('Content-Type', 'application/json')
-
-            self.write(json.dumps(answer['data'], separators=(',',':')))
+            self.json_write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_message})
 
         except SubmissionGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
+            self.json_write({'error_message': e.error_message, 'error_code' : e.error_message})
 
         self.finish()
 
