@@ -34,12 +34,6 @@ notification, delivery, statistics, would be used also in models, in modules and
  in the Cyclone flow. Tip operation instead would be time consuming, and require to be managed
  in asynchronous way, to manage features.
 
-    welcome_sched.py
-        class APSWelcome
-
- **welcome** send a welcome message to the new receiver, with an authenticative token that
- permit early configuration.
-
     cleaning_sched.py
         class APSCleaning
 

@@ -15,36 +15,9 @@ from cyclone.web import RequestHandler, HTTPError
 from cyclone import escape
 from globaleaks.utils import log
 from globaleaks.config import config
+import json
 
 class BaseHandler(RequestHandler):
-    """
-    BaseHandler is responsible for the verification and sanitization of
-    requests based on what is defined in the API specification (api.py).
-
-    I will take care of instantiating models classes that will generate for me
-    output to be sent to GLClient.
-
-    Keep in mind the following gotchas:
-
-    When you decorate a handler with @inlineCallbacks or are returning a
-    deferred be sure to decorate it also with @asynchronous (order does not
-    matter).
-
-    Operations on objects should go inside of models, because in here it is not
-    possible to instantiate a Store object without blocking.
-
-    Messages can be validated with rest.validateMessage. This will output
-    the validated message.
-
-    An example usage:
-        request = globaleaks.rest.validateMessage(
-                            self.request.body,
-                            globaleaks.rest.requests.$MessageName
-                        )
-
-    Request is now a dict that I can interact with.
-
-    """
 
     requestTypes = {}
     def prepare(self):
@@ -90,4 +63,5 @@ class BaseHandler(RequestHandler):
             self.set_header("Content-Type", "application/json")
         else:
             RequestHandler.write(self, chunk)
+
 

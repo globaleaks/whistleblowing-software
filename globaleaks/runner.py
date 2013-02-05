@@ -52,7 +52,7 @@ def startAsynchronous():
     startglobaleaks.runApp, then is called by the OS-depenedent runner below
     """
     from globaleaks.jobs import notification_sched, statistics_sched, tip_sched, \
-        delivery_sched, cleaning_sched, welcome_sched, fileprocess_sched
+        delivery_sched, cleaning_sched, fileprocess_sched
 
     # When the application boot, maybe because has been after a restart, then
     # with the method *.force_execution, we reschedule the execution of all the
@@ -62,10 +62,6 @@ def startAsynchronous():
     StatsSched.force_execution(GLAsynchronous, seconds=10)
     GLAsynchronous.add_interval_job(StatsSched.operation, 10 )
     # GLAsynchronous.add_interval_job(StatsSched.operation, StatsSched.get_node_delta() )
-
-    WelcomSched = welcome_sched.APSWelcome()
-    WelcomSched.force_execution(GLAsynchronous, seconds=15)
-    GLAsynchronous.add_interval_job(WelcomSched.operation, minutes=5)
 
     TipSched = tip_sched.APSTip()
     TipSched.force_execution(GLAsynchronous, seconds=20)

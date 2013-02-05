@@ -1,0 +1,4 @@
+active:=true
+receiver_settings:={"mail_address":"@RAW@"}
+context_gus=@CID@
+profile_gus=@PID@
