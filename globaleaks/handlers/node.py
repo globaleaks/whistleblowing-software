@@ -33,13 +33,13 @@ class InfoCollection(BaseHandler):
             answer = yield CrudOperations().get_node()
             # output filtering TODO need to strip reserved infos
 
-            self.json_write(answer['data'])
+            self.write(answer['data'])
             self.set_status(answer['code'])
 
         except NodeNotFound, e:
 
             self.set_status(e.http_status)
-            self.json_write({'error_message': e.error_message, 'error_code' : e.error_code})
+            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
 
@@ -87,7 +87,7 @@ class ContextsCollection(BaseHandler):
         answer = yield CrudOperations().get_context_list()
 
         # output filtering TODO need to strip reserved infos
-        self.json_write(answer['data'])
+        self.write(answer['data'])
         self.set_status(answer['code'])
 
         self.finish()
@@ -112,7 +112,7 @@ class ReceiversCollection(BaseHandler):
         answer = yield CrudOperations().get_receiver_list()
 
         # output filtering TODO need to strip reserved infos
-        self.json_write(answer['data'])
+        self.write(answer['data'])
         self.set_status(answer['code'])
 
         self.finish()
