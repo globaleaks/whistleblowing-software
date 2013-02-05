@@ -62,17 +62,14 @@ class TaskInstance(BaseHandler):
         from globaleaks.jobs.notification_sched import APSNotification
         from globaleaks.jobs.tip_sched import APSTip
         from globaleaks.jobs.delivery_sched import APSDelivery
-        from globaleaks.jobs.welcome_sched import APSWelcome
         from globaleaks.jobs.cleaning_sched import APSCleaning
         from globaleaks.jobs.statistics_sched import APSStatistics
         from globaleaks.jobs.fileprocess_sched import APSFileProcess
 
-        expected = [ 'statistics', 'welcome', 'tip', 'delivery', 'notification', 'cleaning', 'fileprocess' ]
+        expected = [ 'statistics', 'tip', 'delivery', 'notification', 'cleaning', 'fileprocess' ]
 
         if what == 'statistics':
             yield APSStatistics().operation()
-        if what == 'welcome':
-            yield APSWelcome().operation()
         if what == 'tip':
             yield APSTip().operation()
         if what == 'delivery':
