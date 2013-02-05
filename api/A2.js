@@ -57,7 +57,6 @@ var getSomeContextID = function(fn) {
   .get('/admin/context')
   .end(function(err, res){
     var response = JSON.parse(res.text);
-    /* console.log(response); */
     fn(response[0].context_gus)
   });
 }
@@ -108,6 +107,19 @@ var dummyContext = {
     fields: []
 };
 
+var dummyContextUpdate = {
+    name: 'update',
+    description: 'update',
+    selectable_receiver: false,
+    languages_supported: ['de', 'pl'],
+    tip_max_access: 24,
+    tip_timetolive: 24,
+    file_max_download: 24,
+    escalation_threshold : 24,
+    receivers: [],
+    fields: []
+};
+
 describe("Node Admin API Context functionality", function(){
 
   it("should succeed if correct context is provided (POST, 200)", function(done){
@@ -121,34 +133,36 @@ describe("Node Admin API Context functionality", function(){
 
   });
 
+  args.forEach(function (arg) {
 
-  it("should fail if an attribute is missing inside the provided Context (POST, 406)", function(done){
+    it("should fail if the '" + arg + "' attribute is missing inside the provided context (POST, 406)", function(done){
 
-      args.forEach(function (arg) {
+      var test = clone(dummyContext);
+      delete test[arg];
 
-        var test = clone(dummyContext);
-        delete test[arg];
+      request()
+      .post('/admin/context')
+      .send(test)
+      .expect(406, done);
 
-        request()
-        .post('/admin/context')
-        .send(test)
-        .expect(406, done);
+    });
 
-      });
   })
 
-  it("should fail if an invalid attribute inside the provided Context (POST, 406)", function(done){
+  args.forEach(function (arg) {
 
-      args.forEach(function (arg) {
-        var test = clone(dummyContext);
-        test[arg] = invalidField();
+    it("should fail if an invalid '" + arg + "' attribute is present inside the provided context (POST, 406)", function(done){
 
-        request()
-        .post('/admin/context')
-        .send(test)
-        .expect(406, done);
+      var test = clone(dummyContext);
+      test[arg] = invalidField();
 
-      });
+      request()
+      .post('/admin/context')
+      .send(test)
+      .expect(406, done);
+
+    });
+
   })
 
 
@@ -188,24 +202,80 @@ describe("Node Admin API Context functionality", function(){
 
   it("should succeed if an existent context_gus is provided (GET, 200)", function(done){
 
-    var test = clone(dummyContext);
-
     getSomeContextID(function(contextID){
 
       request()
       .get('/admin/context/'+contextID)
       .send()
       .end(function(err, res){
-        if (err) return done(err);
+        if (err) throw err;
         var response = JSON.parse(res.text);
-
         response.should.have.property('name');
-
         done();
       });
 
     });
   
+  });
+
+  args.forEach(function (arg) {
+
+    it("should succeed if an invalid update for the attribute '" + arg + "' is provided (PUT, 200)", function(done){
+
+      var test = clone(dummyContext);
+      test[arg] = invalidField();
+
+      getSomeContextID(function(contextID){
+
+        request()
+        .put('/admin/context/'+contextID)
+        .send(test)
+        .expect(406, done);
+
+      });
+  
+    });
+
+  });
+
+  args.forEach(function (arg) {
+
+    it("should succeed if a valid update for the attribute '" + arg + "' is provided (PUT, 200)", function(done){
+
+      var test = clone(dummyContext);
+      test[arg] = dummyContextUpdate[arg];
+
+      getSomeContextID(function(contextID){
+
+        request()
+        .put('/admin/context/'+contextID)
+        .send(test)
+        .expect(200, done)
+
+      });
+  
+    });
+
+    it("should fail if previous valid update for the attribute '" + arg + "' is not committed (GET, 200)", function(done){
+
+      getSomeContextID(function(contextID){
+
+        request()
+        .get('/admin/context/'+contextID)
+        .send()
+        .end(function(err, res){
+          if (err) throw err;
+          var response = JSON.parse(res.text);
+          response.should.have.property('name');
+          response.should.have.property(arg);
+          response[arg].should.eql(dummyContextUpdate[arg]);
+          done()
+        });
+
+      });
+  
+    });
+
   });
 
   it("should fail if a not existent context_gus is provided (GET, 404)", function(done){
@@ -229,7 +299,7 @@ describe("Node Admin API Context functionality", function(){
       .get('/admin/context/'+contextID)
       .send()
       .end(function(err, res){
-        if (err) return done(err);
+        if (err) throw err; 
         var response = JSON.parse(res.text);
         response.should.have.property('name');
         done();

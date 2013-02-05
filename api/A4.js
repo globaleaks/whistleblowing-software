@@ -60,7 +60,6 @@ var getSomeReceiverID = function(fn) {
   .get('/admin/receiver')
   .end(function(err, res){
     var response = JSON.parse(res.text);
-    /* console.log(response); */
     fn(response[0].receiver_gus)
   });
 }
@@ -126,6 +125,23 @@ var dummyReceiver = {
     can_configure_notification: true
 };
 
+var dummyReceiverUpdate = {
+    name: 'update',
+    description: 'update',
+    tags: ["456", "564", "645"],
+    languages: [{"code": "de", "name": "German"}, {"code": "pl", "name": "Polish"}],
+    contexts: [],
+    receiver_level: 2,
+    notification_selected: "update",
+    notification_fields: "update",
+    delivery_selected: "update",
+    delivery_fields: true,
+    can_delete_submission: false,
+    can_postpone_expiration: false,
+    can_configure_delivery: false,
+    can_configure_notification: false
+};
+
 describe("Node Admin API Receiver functionality", function(){
 
   it("should succeed if a correct receiver is provided (POST, 200)", function(done){
@@ -139,35 +155,35 @@ describe("Node Admin API Receiver functionality", function(){
 
   })
 
-  it("should fail if an attribute is missing inside the provided receiver (POST, 406)", function(done){
-      args.forEach(function (arg) {
+  args.forEach(function (arg) {
+    it("should fail if the '" + arg + "'' attribute is missing inside the provided receiver (POST, 406)", function(done){
 
-        var test = clone(dummyReceiver);
-        delete test[arg];
+      var test = clone(dummyReceiver);
+      delete test[arg];
 
-        request()
-        .post('/admin/receiver')
-        .send(test)
-        .expect(406, done);
+      request()
+      .post('/admin/receiver')
+      .send(test)
+      .expect(406, done);
 
-      });
+    });
   })
 
-  it("should fail if an invalid attribute is present inside the provided receiver (POST, 406)", function(done){
-      args.forEach(function (arg) {
+  args.forEach(function (arg) {
+    it("should fail if an invalid " + arg + " attribute is present inside the provided receiver (POST, 406)", function(done){
 
-        var test = clone(dummyReceiver);
-        test[arg] = invalidField();
+      var test = clone(dummyReceiver);
+      test[arg] = invalidField();
 
-        request()
-        .post('/admin/receiver')
-        .send(test)
-        .expect(406, done);
+      request()
+      .post('/admin/receiver')
+      .send(test)
+      .expect(406, done);
 
-      });
+    });
   })
 
-  it("should fail if an additional attribute is present inside the provided Receiver (PUT, 406)", function(done){
+  it("should fail if an additional attribute is present inside the provided receiver (PUT, 406)", function(done){
 
     var test = clone(dummyReceiver);
     test['antani'] = "antani";
@@ -184,8 +200,6 @@ describe("Node Admin API Receiver functionality", function(){
   });
 
   it("should succeed if an existent receiver_gus is provided (GET, 200)", function(done){
-
-    var test = clone(dummyReceiver);
 
     getSomeReceiverID(function(ReceiverID){
 
@@ -213,6 +227,27 @@ describe("Node Admin API Receiver functionality", function(){
     .expect(404, done)
 
   });
+
+  args.forEach(function (arg) {
+
+    it("should fail if an invalid update for the attribute '" + arg + "' is provided (PUT, 406)", function(done){
+
+      var test = clone(dummyReceiver);
+      test[arg] = invalidField();
+
+      getSomeReceiverID(function(receiverID){
+
+        request()
+        .put('/admin/receiver/'+receiverID)
+        .send(test)
+        .expect(406, done);
+
+      });
+  
+    });
+
+  });
+
   
   it("should succeed if an existent receiver_gus is provided (DELETE, 200)", function(done){
 
@@ -234,6 +269,46 @@ describe("Node Admin API Receiver functionality", function(){
     })
 
     });
+  });
+
+  args.forEach(function (arg) {
+
+    it("should succeed if a valid update for the attribute '" + arg + "' is provided (PUT, 200)", function(done){
+
+      var test = clone(dummyReceiver);
+      test[arg] = dummyReceiverUpdate[arg];
+
+      getSomeReceiverID(function(receiverID){
+
+        request()
+        .put('/admin/receiver/'+receiverID)
+        .send(test)
+        .expect(200, done)
+
+      });
+  
+    });
+
+    it("should fail if previous valid update for the attribute '" + arg + "' is not committed (GET, 200)", function(done){
+
+      getSomeReceiverID(function(receiverID){
+
+        request()
+        .get('/admin/receiver/'+receiverID)
+        .send()
+        .end(function(err, res){
+          if (err) throw err;
+          var response = JSON.parse(res.text);
+          response.should.have.property('name');
+          response.should.have.property(arg);
+          response[arg].should.eql(dummyReceiverUpdate[arg]);
+          done()
+        });
+
+      });
+  
+    });
+
   });
   
   it("should fail if a not existent receiver_gus is provided (DELETE, 404)", function(done){
