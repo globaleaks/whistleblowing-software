@@ -272,14 +272,13 @@ GLClientDev.run(function($httpBackend) {
 
 
       var data = JSON.parse(data),
-          response;
+        response;
 
       if (!data['submission_gus']) {
         response = create_submission(data);
-      } else if (!data['submission_receipt']) {
-        console.log("did not get a proposed receipt");
+      } else if (!data['receipt']) {
         response = data;
-        response['submission_receipt'] = 'somerandomstring';
+        response['receipt'] = 'somerandomstring';
       } else {
         console.log("got a proposed receipt");
         response = data;
