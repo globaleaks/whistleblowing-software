@@ -374,27 +374,63 @@ GLClientDev.run(function($httpBackend) {
   $httpBackend.whenGET(/\/tip\/(.*)/).
     respond(function(method, url, data){
     var tip_resource = {
-    "access_counter": 2,
-    "access_limit": 42,
-    "context_gus": "c_IZLJpOxNSXeuMQnuLZCm",
-    "context_name": "An Example Context",
-    "creation_date": "Wed Feb  6 10:35:42 2013",
-    "download_limit": 42,
-    "escalation_threshold": "None",
-    "expiration_date": "Wed Feb  6 10:35:42 2013",
-    "fields": {},
-    "files": {},
-    "id": "3043786039",
-    "internaltip_id": 1,
-    "last_access": "Never",
-    "last_activity": "Wed Feb  6 10:35:42 2013",
-    "mark": "new",
-    "pertinence": "0",
-    "receipt": "3043786039",
-    "receivers": [
-        "r_bJgDoEilpvJxydvrzOoa",
-        "r_scIBPjjSnUUcINIaflTl"
-    ]};
+      "access_counter": 2,
+      "access_limit": 42,
+      "context_gus": "c_IZLJpOxNSXeuMQnuLZCm",
+      "context_name": "An Example Context",
+      "creation_date": "Wed Feb  6 10:35:42 2013",
+      "download_limit": 42,
+      "escalation_threshold": "None",
+      "expiration_date": "Wed Feb  6 10:35:42 2013",
+      "fields": {
+          "somename": "some value"
+      },
+      "folders": [
+        {
+        "name": "Widgets",
+        "upload_date": "Wed Feb  6 10:35:42 2013",
+        "files": [{
+          "filename": "foo.avi",
+          "hash": "xxxxxxxxxxxxxxxx",
+          "upload_date": "Wed Feb  6 10:35:42 2013",
+          "download": "/file/xxxxxxxxxxxxxxxxx"
+          },
+          {
+            "filename": "foo2.avi",
+            "hash": "xxxxxxxxxxxxxxxx",
+            "download": "/file/xxxxxxxxxxxxxxxxx",
+            "upload_date": "Wed Feb  6 10:35:42 2013"
+          }]
+        },
+        {
+        "name": "Widgets 2",
+        "upload_date": "Wed Feb  7 10:35:42 2013",
+        "files": [{
+          "filename": "foobar.avi",
+          "hash": "xxxxxxxxxxxxxxxx",
+          "upload_date": "Wed Feb  7 10:35:42 2013",
+          "download": "/file/xxxxxxxxxxxxxxxxx"
+          },
+          {
+            "filename": "foobar2.avi",
+            "hash": "xxxxxxxxxxxxxxxx",
+            "download": "/file/xxxxxxxxxxxxxxxxx",
+            "upload_date": "Wed Feb  7 10:35:42 2013"
+          }]
+        }
+      ],
+      "id": "3043786039",
+      "internaltip_id": 1,
+      "last_access": "Never",
+      "last_activity": "Wed Feb  6 10:35:42 2013",
+      "mark": "new",
+      "pertinence": "0",
+      "receipt": "3043786039",
+      "receivers": [
+          "r_bJgDoEilpvJxydvrzOoa",
+          "r_scIBPjjSnUUcINIaflTl"
+      ]
+    };
 
     return [200, tip_resource];
   });
