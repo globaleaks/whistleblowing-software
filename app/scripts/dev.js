@@ -304,6 +304,68 @@ GLClientDev.run(function($httpBackend) {
   /** Tip Handlers **/
   /******************/
 
+
+  $httpBackend.whenGET(/\/tip\/(.*)\/receivers/).
+    respond(function(method, url, data){
+    var tip_receivers_resource = [{
+        "can_configure_delivery": true,
+        "can_configure_notification": true,
+        "can_delete_submission": true,
+        "can_postpone_expiration": true,
+        "contexts": [
+            "c_IZLJpOxNSXeuMQnuLZCm"
+        ],
+        "creation_date": "Wed Feb  6 09:18:59 2013",
+        "description": "An Example Receiver",
+        "languages": [
+            "en",
+            "it"
+        ],
+        "name": "An Example Receiver",
+        "receiver_gus": "r_bJgDoEilpvJxydvrzOoa",
+        "receiver_level": 1,
+        "tags": [],
+        "update_date": "Wed Feb  6 09:19:21 2013"
+    },
+    {
+        "can_configure_delivery": true,
+        "can_configure_notification": true,
+        "can_delete_submission": true,
+        "can_postpone_expiration": true,
+        "contexts": [
+            "c_IZLJpOxNSXeuMQnuLZCm"
+        ],
+        "creation_date": "Wed Feb  6 09:19:25 2013",
+        "description": "An Example Receiver 2",
+        "languages": [
+            "en",
+            "it"
+        ],
+        "name": "An Example Receiver 2",
+        "receiver_gus": "r_scIBPjjSnUUcINIaflTl",
+        "receiver_level": 1,
+        "tags": [],
+        "update_date": "Wed Feb  6 09:35:23 2013"
+    }];
+
+    return [200, tip_receivers_resource];
+  });
+
+  $httpBackend.whenGET(/\/tip\/(.*)\/comments/).
+    respond(function(method, url, data){
+    var tip_comments_resource = [{
+      "author_gus": "None",
+      "comment_id": "1",
+      "content": "asdasdsda",
+      "creation_time": "Wed Feb  6 09:39:30 2013",
+      "internaltip_id": 1,
+      "notification_mark": true,
+      "source": "whistleblower"
+    }];
+
+    return [200, tip_comments_resource];
+  });
+
   // /tip/<tip_GUS>/ T1
   // XXX this is not implemented for the moment.
   // We need to invert the order of the parameters to make it uniform with the rest of the API.
@@ -311,47 +373,32 @@ GLClientDev.run(function($httpBackend) {
 
   $httpBackend.whenGET(/\/tip\/(.*)/).
     respond(function(method, url, data){
-    var tip_description_dict = {
-      'id' : '12345',
-      // Why do we have the name also?
-      'context_gus' : ['Antani Name', 'c_testingit' ],
-      'creation_date' : '1353312789',
-      'expiration_date' : '1353314789',
-      'fields' : [{'label': 'Item 2',
-        'name': 'item2',
-        'required': true,
-        'type': 'text',
-        'value': 'Item 2 value',
-        'hint': 'this is the hint for the form'
-      }],
-      'download_limit' : 100,
-      'access_limit' : 20,
-      'mark' : 0,
-      'pertinence' : 10,
-      'escalation_treshold' : 10,
-      'receiver_map' : [{
-        'receiver_gus': 'r_antanisblinda',
-        'receiver_level': 1,
-        // XXX what is the purpose of this?
-        'tip_gus': 't_helloworld',
-        'notification_selected': 'email',
-        // XXX what is this?
-        'notification_fields': 'XXXX'
-      },
-      {'receiver_gus': 'r_antanisblinda',
-        'receiver_level': 1,
-        // XXX what is the purpose of this?
-        'tip_gus': 't_helloworld',
-        'notification_selected': 'email',
-        // XXX what is this?
-        'notification_fields': 'XXXX'
-      }]
-    }, comments = [];
-    console.log(method);
-    console.log(url);
-    console.log(data);
-    return [200, tip_description_dict];
+    var tip_resource = {
+    "access_counter": 2,
+    "access_limit": 42,
+    "context_gus": "c_IZLJpOxNSXeuMQnuLZCm",
+    "context_name": "An Example Context",
+    "creation_date": "Wed Feb  6 10:35:42 2013",
+    "download_limit": 42,
+    "escalation_threshold": "None",
+    "expiration_date": "Wed Feb  6 10:35:42 2013",
+    "fields": {},
+    "files": {},
+    "id": "3043786039",
+    "internaltip_id": 1,
+    "last_access": "Never",
+    "last_activity": "Wed Feb  6 10:35:42 2013",
+    "mark": "new",
+    "pertinence": "0",
+    "receipt": "3043786039",
+    "receivers": [
+        "r_bJgDoEilpvJxydvrzOoa",
+        "r_scIBPjjSnUUcINIaflTl"
+    ]};
+
+    return [200, tip_resource];
   });
+
 
   // * /tips/<tip_GUS> T2
   $httpBackend.whenPOST(/\/tips\/(.*)/).
