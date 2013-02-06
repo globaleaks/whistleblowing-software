@@ -53,82 +53,89 @@ GLClientDev.run(function($httpBackend) {
   }];
 
   var receivers = [{
-     "gus": 'r_antanisblinda1',
-     "can_delete_submission": true,
-     "can_postpone_expiration": true,
-     "can_configure_notification": true,
-     "can_configure_delivery": true,
-     "can_trigger_escalation": false,
-     "receiver_level": 1,
-     "name": "Beppe Scamozza",
-     "description": "A local activist",
-     "tags": "activism,local",
-
-     "creation_date": 123467898765,
-     "last_update_date": 12345678922,
-     "languages": ['en', 'it'],
-    },
-    {
-       "gus": 'r_antanisblinda2',
-       "can_delete_submission": false,
-       "can_postpone_expiration": false,
-       "can_configure_notification": false,
-       "can_configure_delivery": false,
-       "can_trigger_escalation": false,
-       "receiver_level": 1,
-       "name": "Pasquale Achille",
-       "description": "A famous journalist",
-       "tags": "journalism",
-
-       "creation_date": 123567890,
-       "last_update_date": 123345678,
-       "languages": ['en', 'it']
-    }];
+    "can_configure_delivery": true,
+    "can_configure_notification": true,
+    "can_delete_submission": true,
+    "can_postpone_expiration": true,
+    "contexts": [
+      "c_IZLJpOxNSXeuMQnuLZCm"
+    ],
+    "creation_date": "Wed Feb  6 09:18:59 2013",
+    "description": "An Example Receiver",
+    "languages": [
+      "en",
+      "it"
+    ],
+    "name": "An Example Receiver",
+    "receiver_gus": "r_bJgDoEilpvJxydvrzOoa",
+    "receiver_level": 1,
+    "tags": [],
+    "update_date": "Wed Feb  6 09:19:21 2013"
+  },
+  {
+    "can_configure_delivery": true,
+    "can_configure_notification": true,
+    "can_delete_submission": true,
+    "can_postpone_expiration": true,
+    "contexts": [
+      "c_IZLJpOxNSXeuMQnuLZCm"
+    ],
+    "creation_date": "Wed Feb  6 09:19:25 2013",
+    "description": "An Example Receiver 2",
+    "languages": [
+      "en",
+      "it"
+    ],
+    "name": "An Example Receiver 2",
+    "receiver_gus": "r_scIBPjjSnUUcINIaflTl",
+    "receiver_level": 1,
+    "tags": [],
+    "update_date": "Wed Feb  6 09:19:32 2013"
+  }];
 
   var contexts = [{
-        'gus': "1",
-        'name':
-          {'en': 'Context Name 1',
-            'it': 'Nome Contesto 1'
-          },
-        'description': {'en': 'Context description 1',
-          'it': 'Descrizione contesto 1'
-        },
-        'creation_date': 1353060996,
-        'update_date': 1353060996,
-        'fields': form_fields[0],
-        'receivers': receivers
-      },
-      {
-        'gus': "2",
-        'name':
-          {'en': 'Context Name 2',
-            'it': 'Nome Contesto 2'
-          },
-        'description': {'en': 'Context description 2',
-          'it': 'Descrizione contesto 2'
-        },
-        'creation_date': 1353060996,
-        'update_date': 1353060996,
-        'fields': form_fields[1],
-        'receivers': receivers
+    "context_gus": "c_IZLJpOxNSXeuMQnuLZCm",
+    "description": "This is the an example context description",
+    "escalation_threshold": null,
+    "fields": form_fields[0],
+    "file_max_download": 42,
+    "languages": [],
+    "name": "An Example Context",
+    "receivers": [
+      "r_bJgDoEilpvJxydvrzOoa"
+    ],
+    "selectable_receiver": true,
+    "tip_max_access": 42,
+    "tip_timetolive": 42
+  },
+  {
+    "context_gus": "c_IZLJpOxNSXeuMQnuLZC2",
+    "description": "This is the an example context description 2",
+    "escalation_threshold": null,
+    "fields": form_fields[0],
+    "file_max_download": 42,
+    "languages": [],
+    "name": "An Example Context 2",
+    "receivers": [
+      "r_bJgDoEilpvJxydvrzOoa"
+    ],
+    "selectable_receiver": true,
+    "tip_max_access": 42,
+    "tip_timetolive": 42
   }];
 
   var node_info = {
-    'name': {'en': 'Some Node Name',
-      'it': 'Il nome del nodo'},
-
-    'statistics': {'active_contexts': 2,
-      'active_receivers': 2,
-      'uptime_days': 10
-    },
-    'contexts': contexts,
-    'node_properties': {'anonymous_submission_only': true},
-    'public_site': 'http://example.com/',
-    'hidden_service': 'httpo://example.onion',
-    'languages': [{'code': 'en', 'name': 'English'}, {'name': 'Italiano',
-       'code': 'it'}]
-  };
+      "description": "Please, set me: description",
+      "email": "email@dumnmy.net",
+      "hidden_service": "Please, set me: hidden service",
+      "languages": [
+        {'code': 'it', 'name': 'Italiano'},
+        {'code': 'en', 'name': 'English'}
+      ],
+      "name": "Please, set me: name/title",
+      "public_site": "Please, set me: public site",
+      "stats_update_time": 2
+    };
 
   var comment_description_dict = {
       'comment_id' : 1,
@@ -190,6 +197,12 @@ GLClientDev.run(function($httpBackend) {
   // * /node U1
   // returns the node information
   $httpBackend.whenGET('/node').respond(node_info);
+
+  // * /contexts
+  $httpBackend.whenGET('/contexts').respond(contexts);
+
+  // * /receivers
+  $httpBackend.whenGET('/receivers').respond(receivers);
 
   /*************************/
   /** Submission Handlers **/
