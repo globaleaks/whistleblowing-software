@@ -1,8 +1,15 @@
-var resourceServices = angular.module('resourceServices', ['ngResource']).
+angular.module('resourceServices', ['ngResource']).
   factory('globaleaksInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return function(promise) {
+      if (!$rootScope.pendingRequests) {
+        $rootScope.pendingRequests = [];
+      };
+
+      console.log("Response!!!!!!!!!!!");
+      $rootScope.pendingRequests.push(promise);
+
       return promise.then(function(response) {
         return response;
       }, function(response) {
@@ -141,9 +148,11 @@ var resourceServices = angular.module('resourceServices', ['ngResource']).
           {method: 'PUT'}
       });
 }).
-  factory('AdminModules', function($resource) {
-    return $resource('/admin/module/:module_type',
-      {module_type: '@module_type'});
+  factory('AdminNotification', function($resource) {
+    return $resource('/admin/notification', {});
+}).
+  config(function($httpProvider) {
+    $httpProvider.responseInterceptors.push('globaleaksInterceptor');
 });
 
 
@@ -199,9 +208,5 @@ angular.module('localeServices', ['resourceServices']).
       });
     };
     return localization;
-});
-
-resourceServices.config(function($httpProvider) {
-  $httpProvider.responseInterceptors.push('globaleaksInterceptor');
 });
 

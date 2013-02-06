@@ -4,7 +4,7 @@
 >
 </div>
 
-<div class="container config-page">
+<div class="container config-page" ng-controller="AdminAdvancedCtrl">
 
   <div class="row">
     <!-- Begin Nav Bar -->
@@ -22,6 +22,30 @@
 
       <form name="nodeConfigForm" class="config-form">
         <!-- Node -->
+        <div class="row">
+          <div class="span9">
+            <h2>Node Settings</h2>
+            <label>Hidden Service</label>
+            <input type="text"
+              ng-model="adminNode.hidden_service" required>
+
+            <label>Public Site</label>
+            <input type="text"
+              ng-model="adminNode.public_site" required>
+
+            <label>Public Stats update time</label>
+            <input type="text"
+              ng-model="adminNode.public_stats_update_time" required>
+
+            <label>Private Stats update time</label>
+            <input type="text"
+              ng-model="adminNode.public_stats_update_time" required>
+
+            <label>Auth options</label>
+            <input type="text"
+              ng-model="adminNode.public_stats_update_time" required>
+          </div>
+        </div>
         <div ng-include="'views/admin/advanced/node.html'">
         </div>
 
@@ -31,24 +55,56 @@
 
       </form>
 
-      <form name="deliveryNotificationForm" class="config-form">
         <!-- Delivery -->
-        <div ng-include="'views/admin/advanced/delivery.html'">
+        <div class="row">
+          <div class="span9 adminDelivery">
+            <h2>Delivery Settings</h2>
+          </div>
         </div>
+
         <button class="btn btn-success"
           ng-disabled="deliveryNotificationForm.$invalid || isUnchanged(adminDelivery)"
           ng-click="update(adminDelivery)">Save</button>
 
         <!-- Notification -->
-        <div ng-include="'views/admin/advanced/notification.html'">
+        <div class="row">
+          <div class="span9">
+          <h2>Notification Settings</h2>
+
+          <form name="notificationForm" class="config-form">
+
+            <select id="select" ng-multiple="checked">
+              <option value="email">Email</option>
+            </select>
+
+            <div>
+
+              <label>SMTP server address</label>
+              <input type="text"
+                ng-model="adminNotification.email.smtp_address" required>
+
+              <label>SMTP server port</label>
+              <input type="text"
+                ng-model="adminNotification.email.smtp_port" required>
+
+              <label>Username</label>
+              <input type="text"
+                ng-model="adminNotification.email.smtp_username" required>
+
+              <label>Password</label>
+              <input type="password"
+                ng-model="adminNotification.email.smtp_password" required>
+
+            </div>
+          </form>
+
+          </div>
         </div>
 
+        <!-- end Notification -->
         <button class="btn btn-success"
-          ng-disabled="deliveryNotificationForm.$invalid || isUnchanged(adminNotification)"
-          ng-click="update(adminNotification)">Save</button>
-
-
-      </form>
+          ng-disabled="notificationForm.$invalid || notificationForm.$pristine"
+          ng-click="saveNotificationSettings(notificationForm)">Save</button>
 
     </div>
   </div>

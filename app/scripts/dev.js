@@ -138,21 +138,21 @@ GLClientDev.run(function($httpBackend) {
     };
 
   var comment_description_dict = {
-      'comment_id' : 1,
-      'source' : 'receiver', //receiver, wb, system
-      'content' : 'Lorem Ipsum',
-      'author' : 'Beppe',
-      'notification_mark': 'not notified', // u'not notified',
-            // u'notified', u'unable to notify', u'notification ignored'
+    'comment_id' : 1,
+    'source' : 'receiver', //receiver, wb, system
+    'content' : 'Lorem Ipsum',
+    'author' : 'Beppe',
+    'notification_mark': 'not notified', // u'not notified',
+          // u'notified', u'unable to notify', u'notification ignored'
 
-      // XXX is this returned by GLB?
-      'internaltip_id' : 'foobar',
-      // XXX we may want to change this to seconds since epoch in UTC
-      // this involves just doing a grep -rn "prettyDateTime" globaleaks/
-      // and replacing it with "utcTimeNow"
-      // We probably want to change "utcTimeNow" to return an int instead of a
-      // float.
-      'creation_time' : 1355236662
+    // XXX is this returned by GLB?
+    'internaltip_id' : 'foobar',
+    // XXX we may want to change this to seconds since epoch in UTC
+    // this involves just doing a grep -rn "prettyDateTime" globaleaks/
+    // and replacing it with "utcTimeNow"
+    // We probably want to change "utcTimeNow" to return an int instead of a
+    // float.
+    'creation_time' : 1355236662
   };
 
   var create_submission = function(data) {
@@ -494,12 +494,8 @@ GLClientDev.run(function($httpBackend) {
     var response = {
       'admin_email': 'admin@example.com',
       'keywords': 'keyword1, keyword2, keyword3',
-      'description': {'en': 'Node Description English',
-            'it': 'Descrizione nodo italiano'
-        },
-      'name': {'en': 'Node name english',
-        'it': 'Nome nodo italiano'
-        },
+      'description': "The description of the node",
+      'name': "The name of the node",
       'supported_languages': {'en': 'English',
         'it': 'Italiano', 'sr': 'Serbian'},
       'enabled_languages': {'en': true, 'sr': false, 'it': true},
@@ -533,63 +529,138 @@ GLClientDev.run(function($httpBackend) {
   // * /admin/context A3
   $httpBackend.whenGET('/admin/context').
     respond(function(method, url, data){
-    var response = {};
-    return [200, response];
+      var context_resource = [{
+          "context_gus": "c_IZLJpOxNSXeuMQnuLZCm",
+          "description": "This is the an example context description",
+          "escalation_threshold": null,
+          "fields": [
+              {
+                  "hint": "This is the hint for the label",
+                  "label": "Some Label",
+                  "name": "somename",
+                  "type": "text"
+              }
+          ],
+          "file_max_download": 42,
+          "languages": [],
+          "name": "An Example Context",
+          "receivers": [
+              "r_bJgDoEilpvJxydvrzOoa",
+              "r_scIBPjjSnUUcINIaflTl"
+          ],
+          "selectable_receiver": true,
+          "tip_max_access": 42,
+          "tip_timetolive": 42
+      }];
+
+      return [200, context_resource];
   });
 
-  $httpBackend.whenPOST('/admin/context').
+  $httpBackend.whenPOST('/\/admin\/context(.*)/').
     respond(function(method, url, data){
-    var response = {};
-    return [200, response];
+      console.log(method);
+      console.log(url);
+      console.log(data);
+
+      var response = {};
+      return [200, response];
   });
+
+  $httpBackend.whenPUT('/\/admin\/context(.*)/').
+    respond(function(method, url, data){
+      console.log(method);
+      console.log(url);
+      console.log(data);
+
+      var response = {};
+      return [200, response];
+  });
+
 
   // * /admin/receivers A4
-  $httpBackend.whenGET('/admin/receivers').
+  $httpBackend.whenGET('/admin/receiver').
     respond(function(method, url, data){
-    function receiver(){
-      return {
-      'gus': 'r_receivergus1',
-      'can_delete_submission': true,
-      'can_postpone_expiration': true,
-      'can_configure_notification': true,
-      'can_configure_delivery': true,
-      'can_trigger_escalation': true,
-      'level': 1,
-      'name': 'Beppe',
-      'description': 'This is an activist',
-      'tags': 'activism, something',
-      'creation_date': '1353312789',
-      'last_update_time': '1353312789',
-      'languages': ['en', 'it'],
-      'notification_address': 'beppe@example.com'
-      }
-    };
-
-    var response = [];
-    for (var i = 0;i <= 10;i++) {
-      var r_copy = new receiver;
-      r_copy.name += i;
-      r_copy.notification_address += i;
-      r_copy.gus += i;
-      response.push(r_copy);
-    }
-    return [200, response];
+      var receiver_resource = [{
+        "can_configure_delivery": true,
+        "can_configure_notification": true,
+        "can_delete_submission": true,
+        "can_postpone_expiration": true,
+        "contexts": [
+          "c_IZLJpOxNSXeuMQnuLZCm"
+        ],
+        "creation_date": "Wed Feb  6 09:18:59 2013",
+        "description": "An Example Receiver",
+        "languages": [
+          "en",
+          "it"
+        ],
+        "name": "An Example Receiver",
+        "receiver_gus": "r_bJgDoEilpvJxydvrzOoa",
+        "receiver_level": 1,
+        "tags": [],
+        "update_date": "Wed Feb  6 09:19:21 2013"
+      },
+      {
+        "can_configure_delivery": true,
+        "can_configure_notification": true,
+        "can_delete_submission": true,
+        "can_postpone_expiration": true,
+        "contexts": [
+          "c_IZLJpOxNSXeuMQnuLZCm"
+        ],
+        "creation_date": "Wed Feb  6 09:19:25 2013",
+        "description": "An Example Receiver 2",
+        "languages": [
+          "en",
+          "it"
+        ],
+        "name": "An Example Receiver 2",
+        "receiver_gus": "r_scIBPjjSnUUcINIaflTl",
+        "receiver_level": 1,
+        "tags": [],
+        "update_date": "Wed Feb  6 09:35:23 2013"
+      }];
+      return [200, receiver_resource];
   });
 
-  $httpBackend.whenPOST('/admin/receivers').respond(function(method, url, data){
-    console.log("POST /admin/receivers");
-    console.log(method);
-    console.log(url);
-    console.log(data);
-    return [200, data];
+  $httpBackend.whenPOST('/admin/receiver').
+    respond(function(method, url, data){
+      console.log("POST /admin/receiver");
+      console.log(method);
+      console.log(url);
+      console.log(data);
+      return [200, data];
+  });
+
+  // * /admin/notification
+  $httpBackend.whenGET('/admin/notification').
+    respond(function(method, url, data){
+      console.log("GET /admin/notification");
+      var response = {
+        'email': {
+          'smtp_address': '',
+          'smtp_port': 443,
+          'smtp_username': '',
+          'smtp_password': ''
+        }
+      };
+      return [200, response];
+  });
+
+  // * /admin/notification
+  $httpBackend.whenPOST('/admin/notification').
+    respond(function(method, url, data){
+      console.log("POST /admin/notification");
+      console.log(data);
+      return [200, data];
   });
 
   // * /admin/plugins A6
   $httpBackend.whenGET('/admin/plugins').
     respond(function(method, url, data){
-    console.log("GET /admin/plugins");
-    var response = {};
-    return [200, response];
+      console.log("GET /admin/plugins");
+      var response = {};
+      return [200, response];
   });
 
   $httpBackend.whenPOST('/admin/plugins').
