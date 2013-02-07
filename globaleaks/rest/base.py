@@ -195,68 +195,7 @@ class fileDict(GLTypes):
             "size": int,
             "content_type": unicode,
             "date": dateType,
-            "metadata_cleaned": bool,
-            "completed": bool
     }
-
-class receiverDescriptionDict(GLTypes):
-
-    specification = {
-            "gus": receiverGUS,
-            "can_delete_submission": bool,
-            "can_postpone_expiration": bool,
-            "can_configure_notification": bool,
-            "can_configure_delivery": bool,
-            # -----------------------------------------
-            "can_trigger_escalation": bool,
-            "receiver_level": int,
-            # remind: both of them need to be specified
-            "name": unicode,
-            "description": unicode,
-            "tags": unicode,
-            # verify - is it specified ?
-            "creation_date": timeType,
-            "last_update_date": timeType,
-            # update the name
-            "languages_supported": [unicode],
-    }
-
-class nodePropertiesDict(GLTypes):
-    """
-    Gradually this options has been shrinked because:
-        1) threat model need to be completed
-        2) some of them has been moved in the Contexts
-        3) CBP are aimed in leakdirectory integration
-    """
-    specification = {"anonymous_submission_only": bool}
-
-class adminStatisticsDict(GLTypes):
-    """
-    This containers need to be defined, IMHO would be an aggregate
-    of information collected about the latest X-hours of the node
-    and so far
-    """
-    specification = {
-            "hours_interval": int,
-            "download_number": int,
-            "receiver_accesses": int,
-            "submission_received": int
-    }
-
-class publicStatisticsDict(GLTypes):
-    """
-    The following container is used for the public statistic,
-    collected by site that perform uptime and/or measurement,
-    or readed by users.
-    Need to be defined, depends what's is considered to be
-    harmless for node life, and what's can be easily collected
-    """
-    specification = {
-            "active_contexts": int,
-            "active_receivers": int,
-            "uptime_days": int
-    }
-
 
 class formFieldsDict(GLTypes):
     """
@@ -265,135 +204,12 @@ class formFieldsDict(GLTypes):
     client (text, textarea, checkbox, GPS coordinate)
     """
     specification = {
-            "presentation_order": "int",
+            "presentation_order": int,
             "label": unicode,
             "name": unicode,
             "required": bool,
             "hint": unicode,
             "value": unicode,
-            "type": unicode}
-
-
-class moduleDataDict(GLTypes):
-
-    specification = {
-            "profile_gus": profileGUS,
-            "active": bool,
-            "module_type": unicode,
-            "name": unicode,
-            "module_description": unicode,
-            "service_message": unicode,
-            "admin_fields": [formFieldsDict],
-            "receiver_options": [formFieldsDict]
+            "type": unicode
     }
-
-
-class contextDescriptionDict(GLTypes):
-    """
-    fields: one or more, but almost one field is needed
-
-    selectable_receiver:
-        update, the previous flag before was documented as
-        node-wise configuration, now is context-wise
-
-    receivers: properties in Receiver element
-
-    language_supported: it's the collection of Language from 'receivers'
-    """
-    specification = {
-            "context_gus": contextGUS,
-            "name": unicode,
-            "description": unicode,
-            "creation_date": timeType,
-            "update_date": timeType,
-            "fields": [ formFieldsDict ],
-            "selectable_receiver": bool,
-            "receivers": [receiverDescriptionDict],
-            "escalation_threshold": int,
-            "languages_supported": list
-    }
-
-class commentDescriptionDict(GLTypes):
-
-    specification = {
-            "writtentext": unicode,
-            "commenttype": commentENUM,
-            "author": unicode,
-            "date": timeType
-    }
-
-
-class tipSubIndex(GLTypes):
-
-    specification = {
-            "tip_gus": tipGUS,
-            "notification_adopted": unicode,
-            "delivery_adopted": unicode,
-            "download_limit": int,
-            "access_limit": int,
-            "access_performed": int,
-            "expiration_date": timeType,
-            "creation_date": timeType,
-            "last_update_date": timeType,
-            "comment_number": int,
-            "files_number": int,
-            "overall_pertinence": int
-    }
-
-class tipIndexDict(GLTypes):
-    """
-    Remind, this Tip access is different for every receiver,
-    Remind: this object is the LIST OF ACTIVE TIP, does not
-    cover the content.
-    """
-    specification = {
-            "context_gus": contextGUS,
-            "tiplist": [tipSubIndex]
-    }
-
-class tipDetailsDict(GLTypes):
-    """
-    This element contain mostly of the descriptive information
-    of the Tip
-    """
-
-    specification = {
-            "tip": tipSubIndex,
-            "fields": formFieldsDict,
-            "files": [fileGUS],
-            "comments": commentDescriptionDict,
-            "context": contextDescriptionDict,
-            "receivers": receiverDescriptionDict
-    }
-
-
-class localizationDict(GLTypes):
-    """
-    This object would be implemented when localization would be solved
-    as issue: https://github.com/globaleaks/GLBackend/issues/18
-    """
-    specification = {}
-
-
-# https://github.com/globaleaks/GLClient/blob/master/app/scripts/dev.js#
-# + filesGUS list: need to be added
-# + complete boolean: because receipt can be proposed/received also before the
-#   Submission has been finished.
-# - folder_name and _description has been removed, because the scheduled and
-#   InputFilter operation are performed on the single file.
-# file are handled separately and XXX Architecture need to be updated about it.
-class submissionStatus(GLTypes):
-
-    specification = {
-            "fields": [ formFieldsDict ],
-            "context_selected": contextGUS,
-            "submission_gus" : submissionGUS,
-            "proposed_receipt": unicode,
-            "files_description": unicode,
-            "receiver_selected": [ receiverGUS ],
-            "files_selected" : [ fileGUS ],
-            "complete" : bool
-    }
-
-
 

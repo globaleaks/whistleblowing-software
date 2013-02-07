@@ -4,14 +4,9 @@
 #
 # Interface for generate random string using a safe random number generator.
 
-
-try:
-    from Crypto.Random import random
-except:
-    print "Error!! You are using an insecure random number generator."
-    print "Please install Pycrypto"
-    print "This error is accepted only until the development is not completed"
-    import random
+from Crypto.Random import random
+from Crypto.Hash import SHA256
+from twisted.internet import fdesc
 
 def random_string(length, type):
     """
@@ -37,3 +32,24 @@ def random_string(length, type):
     res = ''.join(random.choice(choice_set)
                   for x in range(0, length))
     return res
+
+
+def get_file_checksum(filepath):
+
+    sha = SHA256.new()
+
+    chunk_size = 8192
+
+    with open(filepath, 'rb') as fd:
+
+        fdesc.setNonBlocking(fd.fileno())
+        while True:
+            chunk = fd.read(chunk_size)
+            if len(chunk) == 0:
+                break
+            sha.update(chunk)
+
+    return sha.hexdigest()
+
+
+

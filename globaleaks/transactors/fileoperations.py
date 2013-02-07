@@ -50,6 +50,10 @@ class FileOperations(MacroOperation):
         print "Saving file \"%s\" of %d byte [%s] type, to %s" % \
               (result['name'], result['size'], result['type'], filelocation )
 
+        # *The file is complete*
+        # because Cyclone cache them before pass to the handler.
+        # This mean that need to be limited client and Cyclone side,
+        # and we here can't track about incomplete file.
         with open(filelocation, 'w+') as fd:
             fdesc.setNonBlocking(fd.fileno())
             fdesc.writeToFD(fd.fileno(), file['body'])

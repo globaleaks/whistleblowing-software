@@ -24,7 +24,7 @@ class Node(TXModel):
 
     This table represent the System-wide settings
     """
-    __storm_table__ = 'systemsettings'
+    __storm_table__ = 'node'
 
     id = Int(primary=True, default=AutoReload)
 
