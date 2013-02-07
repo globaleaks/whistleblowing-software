@@ -8,7 +8,10 @@ Marker shifting map:
     InternalTip    [ u'new', u'first', u'second' ]
     Submission     [ u'incomplete', u'finalized' ]
 
-
+    ReceiverTip:    shift made by tip_notification()
+    File:           shift made by fileprocess()
+    InternalTip:    shift made by tip_creation()
+    Submission:     shift made by CrudOperation.(new|update)_submission
 """
 
 from globaleaks.transactors.base import MacroOperation
@@ -20,6 +23,7 @@ from globaleaks.models.options import PluginProfiles, ReceiverConfs
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.config import config
 from globaleaks.rest.errors import ReceiverGusNotFound
+from globaleaks.utils.random import get_file_checksum
 import os
 
 from storm.twisted.transact import transact
@@ -119,57 +123,88 @@ class AsyncOperations(MacroOperation):
             # remind: comment are not guarantee until Task manager is not developed
             comment_iface.flip_mark(comment['comment_id'], u'notified')
 
-    @transact
-    def fileprocess(self):
+
+    def do_fileprocess_validation(self, store, context_gus, filepath ):
 
         plugin_type = u'fileprocess'
+
+        profile_iface = PluginProfiles(store)
+        profile_associated = profile_iface.get_profiles_by_contexts([ context_gus ] )
+
+        plugin_found = False
+        validate_file = False
+
+        for p_cfg in profile_associated:
+
+            # Plugin FileProcess
+            if p_cfg['plugin_type'] != plugin_type:
+                continue
+
+            plugin_found = True
+            print "processing", filepath, "using the profile", p_cfg['profile_gus'], "configured for", p_cfg['plugin_name']
+
+            plugin = PluginManager.instance_plugin(p_cfg['plugin_name'])
+            validate_file = plugin.do_fileprocess(filepath, p_cfg['admin_settings'])
+
+        if not plugin_found:
+            # FileProcess profile has been not configured, file accepted by default
+            validate_file = True
+
+        return validate_file
+
+
+    @transact
+    def fileprocess(self):
 
         store = self.getStore()
 
         file_iface = File(store)
-        profile_iface = PluginProfiles(store)
 
         not_processed_file = file_iface.get_file_by_marker(file_iface._marker[0])
 
+        associated_itip = {}
+        new_files = {}
+
         for single_file in not_processed_file:
 
-            profile_associated = profile_iface.get_profiles_by_contexts([ single_file['context_gus'] ] )
+            itid = single_file['internaltip_id']
 
-            for p_cfg in profile_associated:
+            # if InternalTip.id is 0, mean that Submission is not finalized!
+            # the file remain marked as 'not processed'.
+            if not itid:
+                continue
 
-                if p_cfg['plugin_type'] != plugin_type:
-                    continue
+            # collect for logs/info/flow
+            associated_itip.update({ itid : InternalTip(store).get_single(itid) })
+            # this file log do not contain hash nor path: it's fine anyway
+            new_files.update({ single_file['file_gus'] : single_file })
 
-                print "processing", single_file['file_name'], "using the profile", p_cfg['profile_gus'], "configured for", p_cfg['plugin_name']
-                plugin = PluginManager.instance_plugin(p_cfg['plugin_name'])
+            try:
+                tempfpath = os.path.join(config.advanced.submissions_dir, single_file['file_gus'])
+                # XXX Access check + stats + length integrity
+            except AttributeError:
+                # XXX high level danger Log
+                continue
 
-                try:
-                    tempfpath = os.path.join(config.advanced.submissions_dir, single_file['file_gus'])
-                except AttributeError:
-                    # XXX hi level danger Log - no directory present to perform file analysis
-                    continue
+            validate_file = self.do_fileprocess_validation(store,single_file['context_gus'], tempfpath)
 
-                return_code = plugin.do_fileprocess(tempfpath, p_cfg['admin_settings'])
+            # compute hash, SHA256 in non blocking mode (from utils/random.py)
+            filehash = get_file_checksum(tempfpath)
 
-                # Todo Log/stats in both cases
-                if return_code:
-                    file_iface.flip_mark(single_file['file_gus'], file_iface._marker[1]) # ready
-                else:
-                    file_iface.flip_mark(single_file['file_gus'], file_iface._marker[2]) # blocked
+            print "Processed: '%s', sha2", \
+                filehash, "validator response:", validate_file & ( single_file['file_name'])
+
+            if validate_file:
+                file_iface.flip_mark(single_file['file_gus'], file_iface._marker[1], filehash) # ready
+            else:
+                file_iface.flip_mark(single_file['file_gus'], file_iface._marker[2], filehash) # blocked
+
+        return (associated_itip, new_files)
 
     @transact
     def delivery(self):
+        print "delivery do nothing ATM"
         pass
-
-    @transact
-    def receiver_welcome(self):
-
-        store = self.getStore()
-
-        # receiver_iface = Receiver(store)
-        # noobceivers = receiver_iface.get_receiver_by_marker(receiver_iface._marker[0) # 'not welcomed'
-        # for noob in noobceivers:
-        #    print "need to be welcomed", noob
 
     @transact
     def statistics(self):
@@ -230,13 +265,11 @@ class AsyncOperations(MacroOperation):
         if len(escalated_itip_list):
             print "TipSched: %d Tip are escalated" % len(escalated_itip_list)
 
-        # This event has to be notified as system Comment
-        comment_iface = Comment(store)
-
         for eitip in escalated_itip_list:
             eitip_id = int(eitip['internaltip_id'])
 
-            comment_iface.new(eitip_id, u"Escalation threshold has been reached", u'system')
+            # This event has to be notified as system Comment
+            Comment(store).new(eitip_id, u"Escalation threshold has been reached", u'system')
 
             for receiver_gus in eitip['receivers']:
 

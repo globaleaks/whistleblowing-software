@@ -8,8 +8,6 @@
 # that reference InternalTip
 # InternalTip reference classes Context
 
-from storm.twisted.transact import transact
-
 from storm.locals import Int, Pickle, Unicode, DateTime, Reference
 from storm.exceptions import NotOneError
 from storm.store import AutoReload
@@ -28,8 +26,8 @@ class InternalTip(TXModel):
 
     It has a not associated map for keep track of Receivers, Tips, Folders,
     Comments and WhistleblowerTip.
-    All of those element has a Storm Reference with the InternalTip.id, not
-    vice-versa
+    All of those element has a Storm Reference with the InternalTip.id,
+    never vice-versa
     """
 
     __storm_table__ = 'internaltips'
@@ -104,10 +102,8 @@ class InternalTip(TXModel):
         self.store.add(self)
         return self._description_dict()
 
-
     # And "update" ? NO! no one can update an InternalTip - NEVER!!1!
     # http://i61.photobucket.com/albums/h63/freecodesource/funny/pictures/funny_signs_6.jpg
-
 
     def change_inner_value(self, id, escalation=None, accesslimit=None, downloadlimit=None):
         """
@@ -254,6 +250,10 @@ class InternalTip(TXModel):
     def get_single(self, internaltip_id):
 
         selected = self.store.find(InternalTip, InternalTip.id == int(internaltip_id)).one()
+
+        if not selected:
+            raise NotImplementedError("Internal error with itip '%s'" % internaltip_id)
+
         return selected._description_dict()
 
 
