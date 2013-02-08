@@ -26,29 +26,6 @@ class FileInstance(BaseHandler):
     This is the Storm interface to supports JQueryFileUploader stream
     """
 
-    # Set to None for no size restrictions
-    maxFileSize = 500 * 1000 * 1000 # MB
-
-    def acceptedFileType(self, type):
-        regexp = None
-        if regexp and regexp.match(type):
-            return True
-        else:
-            return False
-
-    def validate(self, file):
-        """
-        Takes as input a file object and raises an exception if the file does
-        not conform to the criteria.
-        """
-        if self.maxFileSize and file['size'] < self.maxFileSize:
-            raise HTTPError(406, "File too big")
-
-        if not self.acceptedFileType(file['type']):
-            raise HTTPError(406, "File of unsupported type")
-
-
-
     @asynchronous
     @inlineCallbacks
     def get(self, submission_gus, *args):
@@ -85,15 +62,8 @@ class FileInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
-
-        except SubmissionGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
+        except (InvalidInputFormat, SubmissionGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -135,9 +105,7 @@ class Download(BaseHandler):
 
             self.write(fileContent['content'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
+        except (InvalidInputFormat) as error:
+            self.write_error(error)
 
         self.finish()

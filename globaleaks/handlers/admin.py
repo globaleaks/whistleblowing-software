@@ -44,10 +44,8 @@ class NodeInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except NodeNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (NodeNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -71,10 +69,8 @@ class NodeInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (InvalidInputFormat) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -102,10 +98,8 @@ class ContextsCollection(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (InvalidInputFormat) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -127,25 +121,8 @@ class ContextsCollection(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ContextGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except KeyError, e: # Until validateMessage is not restored, it's needed.
-
-            self.set_status(511)
-            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
+        except (InvalidInputFormat, ContextGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -173,10 +150,8 @@ class ContextInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except ContextGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (ContextGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -199,25 +174,8 @@ class ContextInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ContextGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except KeyError, e: # Until validateMessage is not restored, it's needed.
-
-            self.set_status(511)
-            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
+        except (InvalidInputFormat, ContextGusNotFound, ReceiverGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -238,10 +196,8 @@ class ContextInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except ContextGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (ContextGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -292,25 +248,8 @@ class ReceiversCollection(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ContextGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except KeyError, e: # Until validateMessage is not restored, it's needed.
-
-            self.set_status(511)
-            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
+        except (InvalidInputFormat,  ContextGusNotFound, ReceiverGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -345,10 +284,8 @@ class ReceiverInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (ReceiverGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -374,25 +311,8 @@ class ReceiverInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ContextGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except KeyError, e: # Until validateMessage is not restored, it's needed.
-
-            self.set_status(511)
-            self.write({'error_message': "temporary error: %s" % e, 'error_code' : 123})
+        except (InvalidInputFormat, ReceiverGusNotFound, ContextGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -415,10 +335,8 @@ class ReceiverInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (ReceiverGusNotFound, InvalidInputFormat) as error:
+            self.write_error(error)
 
         self.finish()
 
