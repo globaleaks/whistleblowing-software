@@ -8,8 +8,12 @@
 #
 # TODO - test the prepare/POST wrapper, because has never been tested
 
+import types
+
 from globaleaks.rest.base import validateMessage
 from cyclone.web import RequestHandler, HTTPError
+from cyclone import escape
+from globaleaks.utils import log
 from globaleaks.config import config
 import json
 
@@ -40,13 +44,24 @@ class BaseHandler(RequestHandler):
             validMessage = self.requestTypes[self.request.method]
             validateMessage(self.request.body, validMessage)
 
-    def json_write(self, output):
-        """
-        Cyclone do not serialize in json correctly the list, only the dict.
-        Then with this function we're able to serialize every content
-        """
+    def write_error(self, error, **kw):
+        if hasattr(error, 'http_status'):
+            self.set_status(error.http_status)
+            self.write({'error_message': error.error_message,
+                'error_code' : error.error_code})
+        else:
+            RequestHandler.write_error(self, error, **kw)
 
-        self.set_header('Content-Type', 'application/json')
+    def write(self, chunk):
+        """
+        This is a monkey patch to RequestHandler to allow us to serialize also
+        json list objects.
+        """
+        if isinstance(chunk, types.ListType):
+            chunk = escape.json_encode(chunk)
+            RequestHandler.write(self, chunk)
+            self.set_header("Content-Type", "application/json")
+        else:
+            RequestHandler.write(self, chunk)
 
-        json_data = json.dumps(output)
-        self.write(json_data)
+
