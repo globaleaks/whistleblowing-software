@@ -7,10 +7,10 @@
 # and File and Comment tables, all those tables has relationship with
 # InternalTip
 
-from storm.twisted.transact import transact
 from storm.exceptions import NotOneError
-from storm.locals import Int, Pickle, Unicode, RawStr, Bool, DateTime, Reference
+from storm.locals import Int, Pickle, Unicode, RawStr, DateTime, Reference
 from storm.store import AutoReload
+from twisted.internet import fdesc
 
 from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
@@ -270,6 +270,17 @@ class ReceiverTip(TXModel):
                     'mapped' : internaltip_receivers
                   }
         return retDict
+
+
+    def get_tips_by_itip(self, itip_id):
+
+        requested_t = self.store.find(ReceiverTip, ReceiverTip.internaltip_id == int(itip_id))
+
+        retList = []
+        for tip in requested_t:
+            retList.append(tip._description_dict())
+
+        return retList
 
 
     def get_tips_by_tip(self, tip_gus):
@@ -589,17 +600,12 @@ class File(TXModel):
     name = Unicode()
 
     content = RawStr()
-    shasum = RawStr() # XXX ?
-
-    completed = Bool() # XXX remove ?
+    sha2sum = Unicode()
 
     description = Unicode()
     content_type = Unicode()
     mark = Unicode()
-
     size = Int()
-
-    metadata_cleaned = Bool()
     uploaded_date = DateTime()
 
     context_gus = Unicode()
@@ -608,37 +614,40 @@ class File(TXModel):
     # ----------------------------------------
     # Remind, only one of those reference is indexed in a time.
     #
+    submission_gus = Unicode()
+    internaltip_id = Int()
+    #
     # If Submission: the file need to be processed
     # If InternalTip: the file need to be stored or served
-    # If ReceiverTIp: the file is personally encrypted or different for every receiver
-    #
-    receivertip_gus = Unicode()
-    internaltip_id = Int()
-    submission_gus = Unicode()
-    #
-    # TODO make special validator supporting the "None" value
-    # ----------------------------------------
 
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
-
 
     def new(self, received_dict):
 
         try:
+            self.file_gus = unicode(idops.random_file_gus())
+
             self._import_dict(received_dict)
 
-            # these three fields are accepted only in new()
+            # these fields are accepted only in new()
             self.content_type = unicode(received_dict['content_type'])
             self.size = int(received_dict['file_size'])
             self.context_gus = unicode(received_dict['context_gus'])
-            self.submission_gus = unicode(received_dict['submission_gus'])
+
+            # catch a file uploaded in a Tip of in a Submission
+            if received_dict['submission_gus']:
+                self.submission_gus = unicode(received_dict['submission_gus'])
+                self.internaltip_id = 0
+            elif received_dict['internaltip_id']:
+                self.internaltip_id = int(received_dict['internaltip_id'])
+                self.submission_gus = None
+            else:
+                raise NotImplementedError("Missing Submission/InternalTip value")
 
         except KeyError, e:
             raise InvalidInputFormat("File import failed (missing %s)" % e)
         except TypeError, e:
             raise InvalidInputFormat("File import failed (wrong %s)" % e)
-
-        self.file_gus = unicode(idops.random_file_gus())
 
         try:
             self.context = self.store.find(Context, Context.context_gus == self.context_gus).one()
@@ -647,12 +656,9 @@ class File(TXModel):
             # This can never happen
             raise Exception("Internal Impossible Error")
 
-        self.completed = False
         self.uploaded_date = gltime.utcTimeNow()
 
         self.mark = self._marker[0] # not processed
-        # When the file is 'not processed', this value stay to 0
-        self.internaltip_id = 0
 
         self.store.add(self)
         return self._description_dict()
@@ -680,13 +686,33 @@ class File(TXModel):
         return referenced_f._description_dict()
 
 
+    def switch_reference(self, submission_dict, internaltip_dict):
+        """
+        @param submission_dict:
+        @param internaltip_dict:
+
+        When a submission became promoted as InternalTip, verify that all
+        the files has been concluded (or mark them as broken), switch the
+        ownsership from a submission_gus to an internaltip_id
+        """
+
+        sf = self.store.find(File, File.submission_gus == submission_dict['submission_gus'])
+
+        for fil in sf:
+
+            fil.submission_gus = None
+            itid = internaltip_dict['internaltip_id']
+            print "switch file %s reference from submission to Tip (%d byte) %d itid " % \
+                  ( unicode(fil.name), int(fil.size), int(itid))
+            fil.internaltip_id = int(itid)
+
+
     def _import_dict(self, received_dict):
 
         self.name = unicode(received_dict['filename'])
         self.description = unicode(received_dict['description'])
 
-
-    def flip_mark(self, file_gus, newmark):
+    def flip_mark(self, file_gus, newmark, sha2sum=None):
 
         if not newmark in self._marker:
             raise NotImplemented
@@ -696,8 +722,32 @@ class File(TXModel):
         if not requested_f:
             raise FileGusNotFound
 
+        print "Shifting file mark from %s to %s sha %s" % (requested_f.mark, newmark, sha2sum)
         requested_f.mark = newmark
 
+        if sha2sum:
+            requested_f.sha2sum = unicode(sha2sum)
+
+    def add_content_from_fs(self, file_gus, filepath):
+
+        requested_f = self.store.find(File, File.file_gus == unicode(file_gus)).one()
+
+        chunk_size = 8192
+
+        with open(filepath, 'rb') as fd:
+
+            bytecount = 0
+            requested_f.content = ''
+
+            fdesc.setNonBlocking(fd.fileno())
+            while True:
+                chunk = fd.read(chunk_size)
+                if len(chunk) == 0:
+                    break
+                bytecount += len(chunk)
+                requested_f.content += chunk
+
+        print "Moved content from", filepath, "to the database", file_gus, "byte", bytecount
 
     def get_file_by_marker(self, marker):
         """
@@ -766,6 +816,23 @@ class File(TXModel):
 
         return submission_files
 
+    def get_content(self, file_gus):
+
+        print file_gus
+        try:
+            filelookedat = self.store.find(File, File.file_gus == unicode(file_gus)).one()
+        except NotOneError:
+            raise FileGusNotFound
+        if not filelookedat:
+            raise FileGusNotFound
+
+        ret={ 'content' : filelookedat.content,
+              'sha2sum' : filelookedat.sha2sum,
+              'size' : filelookedat.size,
+              'content_type' : filelookedat.content_type,
+              'file_name' : filelookedat.name }
+        return ret
+
 
     def get_single(self, file_gus):
 
@@ -788,12 +855,11 @@ class File(TXModel):
             'file_name' : self.name,
             'description' : self.description,
             'uploaded_date': gltime.prettyDateTime(self.uploaded_date),
-            'completed' : self.completed,
-            'metadata_cleaned' : self.metadata_cleaned,
+            'mark' : unicode(self.mark),
+            'sha2sum' : unicode(self.sha2sum),
             'context_gus' : self.context_gus,
             'submission_gus' :  self.submission_gus if self.submission_gus else False,
             'internaltip_id' : self.internaltip_id if self.internaltip_id else False,
-            'receivertip_gus' :  self.receivertip_gus if self.receivertip_gus else False
 
         }
         return dict(descriptionDict)
@@ -861,7 +927,6 @@ class Comment(TXModel):
 
     # Comment has not _import_dict and update, because a comment can't be updated at the moment.
 
-
     def flip_mark(self, comment_id, newmark):
 
         if not newmark in self._marker:
@@ -906,7 +971,6 @@ class Comment(TXModel):
             retVal.append(single_comment._description_dict())
 
         return retVal
-
 
     def get_all(self):
         """

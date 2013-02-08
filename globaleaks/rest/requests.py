@@ -9,7 +9,6 @@
 
 from globaleaks.rest.base import submissionGUS, GLTypes, formFieldsDict, contextGUS,\
     timeType, receiverGUS, fileGUS, profileGUS, tipGUS
-from globaleaks.rest import base
 
 class wbSubmissionDesc(GLTypes):
 

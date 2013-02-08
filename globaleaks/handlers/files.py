@@ -114,29 +114,30 @@ class FileInstance(BaseHandler):
 
 
 class Download(BaseHandler):
-    """
-    Not yet implemented download
-    """
 
     @asynchronous
     @inlineCallbacks
-    def get(self, file_gus):
+    def get(self, file_gus, *uriargs):
 
-        filelocation = os.path.join(config.advanced.submissions_dir, file_gus)
+        try:
+            # tip_gus needed to authorized the download
 
-        file_iface = File()
+            answer = yield FileOperations().download_file(file_gus)
 
-        requestedfileinfo = yield file_iface.get_single(file_gus)
+            fileContent = answer['data']
+            # keys:  'content'  'sha2sum'  'size' : 'content_type' 'file_name'
 
+            self.set_status(answer['code'])
 
-        print "Download of", requestedfileinfo
+            self.set_header('Content-Type', fileContent['content_type'])
+            self.set_header('Content-Length', fileContent['size'])
+            self.set_header('Etag', '"%s"' % fileContent['sha2sum'])
 
-        self.render(filelocation, missing=[], info={
-            "name": requestedfileinfo['name'],
-            "file": "%s, type=%s, size=%s" % \
-                    (str(requestedfileinfo['name']), str(requestedfileinfo['content_type']), str(requestedfileinfo['size']))
-            }
-        )
+            self.write(fileContent['content'])
 
+        except InvalidInputFormat, e:
 
+            self.set_status(e.http_status)
+            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
 
+        self.finish()

@@ -60,26 +60,20 @@ class TaskInstance(BaseHandler):
         /admin/tasks/ GET, force the execution of an otherwise scheduled event
         """
         from globaleaks.jobs.notification_sched import APSNotification
-        from globaleaks.jobs.tip_sched import APSTip
         from globaleaks.jobs.delivery_sched import APSDelivery
         from globaleaks.jobs.cleaning_sched import APSCleaning
         from globaleaks.jobs.statistics_sched import APSStatistics
-        from globaleaks.jobs.fileprocess_sched import APSFileProcess
 
-        expected = [ 'statistics', 'tip', 'delivery', 'notification', 'cleaning', 'fileprocess' ]
+        expected = [ 'statistics', 'delivery', 'notification', 'cleaning' ]
 
         if what == 'statistics':
             yield APSStatistics().operation()
-        if what == 'tip':
-            yield APSTip().operation()
         if what == 'delivery':
             yield APSDelivery().operation()
         if what == 'notification':
             yield APSNotification().operation()
         if what == 'cleaning':
             yield APSCleaning().operation()
-        if what == 'fileprocess':
-            yield APSFileProcess().operation()
 
         if not what in expected:
             self.set_status(405)
@@ -97,7 +91,7 @@ class TaskInstance(BaseHandler):
         Response: None
         Errors: None
 
-        simply STOP the scheduler. Jobs operation whould be performed only via GET /admin/tasks/
+        simply STOP the scheduler. Jobs operation would be performed only via GET /admin/tasks/
         """
         from globaleaks.runner import GLAsynchronous
 
