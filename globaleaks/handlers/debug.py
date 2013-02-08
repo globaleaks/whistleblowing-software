@@ -35,10 +35,8 @@ class EntryCollection(BaseHandler):
             self.set_status(answer['code'])
             self.write(answer['data'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (InvalidInputFormat) as error:
+            self.write_error(error)
 
         self.finish()
 

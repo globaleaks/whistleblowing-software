@@ -48,10 +48,8 @@ class ReceiverInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except TipGusNotFound, e: # InvalidTipAuthToken
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (TipGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -76,25 +74,8 @@ class ReceiverInstance(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except InvalidInputFormat, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except InvalidTipAuthToken, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except TipGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (InvalidInputFormat, ReceiverGusNotFound, InvalidTipAuthToken, TipGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -127,10 +108,8 @@ class ProfilesCollection(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except TipGusNotFound, e: # InvalidTipAuthToken
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (TipGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
@@ -397,10 +376,8 @@ class TipsCollection(BaseHandler):
             self.set_status(answer['code'])
             self.write(answer['data'])
 
-        except TipGusNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (TipGusNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 

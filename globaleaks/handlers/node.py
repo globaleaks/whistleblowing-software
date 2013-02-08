@@ -36,10 +36,8 @@ class InfoCollection(BaseHandler):
             self.write(answer['data'])
             self.set_status(answer['code'])
 
-        except NodeNotFound, e:
-
-            self.set_status(e.http_status)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
+        except (NodeNotFound) as error:
+            self.write_error(error)
 
         self.finish()
 
