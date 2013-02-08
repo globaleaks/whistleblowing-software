@@ -66,7 +66,7 @@ class FileInstance(BaseHandler):
 
         answer = yield FileOperations().get_files(submission_gus)
 
-        self.json_write(answer['data'])
+        self.write(answer['data'])
         self.set_status(200)
 
     @asynchronous
@@ -82,18 +82,18 @@ class FileInstance(BaseHandler):
         try:
             answer = yield FileOperations().new_files(submission_gus, self.request)
 
-            self.json_write(answer['data'])
+            self.write(answer['data'])
             self.set_status(answer['code'])
 
         except InvalidInputFormat, e:
 
             self.set_status(e.http_status)
-            self.json_write({'error_message': e.error_message, 'error_code' : e.error_message})
+            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
 
         except SubmissionGusNotFound, e:
 
             self.set_status(e.http_status)
-            self.json_write({'error_message': e.error_message, 'error_code' : e.error_message})
+            self.write({'error_message': e.error_message, 'error_code' : e.error_message})
 
         self.finish()
 
