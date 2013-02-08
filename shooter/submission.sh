@@ -63,7 +63,7 @@ done
 
 
 # Force tip schedule creation
-dt "6" "D2 GET task tip" "Forcing tip creation asyncronous operation"
+dt "6" "D2 GET task delivery" "Forcing delivery asyncronous operation"
 
 dt "3" "D1 GET dump itip print-itip_elements" "dumping number of internaltips, after tests"
 aftercount=$ret

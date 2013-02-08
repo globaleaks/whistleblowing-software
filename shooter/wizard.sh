@@ -5,7 +5,8 @@ SHOOTER="./shooter.py"
 one=`$SHOOTER A2 POST raw None print-context_gus`
 if [ $? != 0 ]; then echo "\tError context (base) creation: $one " && exit; fi
 
-two=`$SHOOTER A2 POST raw None print-context_gus variation 1`
+#two=`$SHOOTER A2 POST raw None print-context_gus variation 1`
+two=`$SHOOTER A2 POST raw None print-context_gus`
 if [ $? != 0 ]; then echo "\tError context (1) creation: $two" && exit; fi
 
 echo "created two contexts: $one $two"

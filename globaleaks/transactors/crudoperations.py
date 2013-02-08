@@ -687,6 +687,8 @@ class CrudOperations(MacroOperation):
 
             wbtip_desc = WhistleblowerTip(store).new(internaltip_desc)
 
+            File(store).switch_reference(submission_desc, internaltip_desc)
+
             submission_desc.update({'receipt' : wbtip_desc['receipt']})
         else:
             submission_desc.update({'receipt' : ''})
@@ -723,6 +725,8 @@ class CrudOperations(MacroOperation):
             internaltip_desc =  InternalTip(store).new(submission_desc)
 
             wbtip_desc = WhistleblowerTip(store).new(internaltip_desc)
+
+            File(store).switch_reference(submission_desc, internaltip_desc)
 
             submission_desc.update({'receipt' : wbtip_desc['receipt']})
         else:
