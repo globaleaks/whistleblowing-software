@@ -65,7 +65,10 @@ spec = [
     (r'/tip/' + tip_access_token + r'/receivers', tip.TipReceiversCollection),
 
     #  T4 = only the whistlebower can access to this interface, then the regexp match properly
-    (r'/tip/' + wb_receipt + '/file', files.FileInstance),
+    (r'/tip/' + wb_receipt + '/upload', files.FileInstance),
+
+    #  T5 TODO - mode under /tip authenticated URL
+    (r'/download/' + not_defined_regexp, files.Download),
 
     ## Receiver Handlers ##
     #  R1
@@ -122,9 +125,6 @@ spec = [
 
     #  D2
     (r'/debug/tasks/' + not_defined_regexp, debug.TaskInstance),
-
-    ## file download TEMP
-    (r'/download/(.*)',  files.Download),  # StaticFileHandler, {'path': config.advanced.submissions_dir } ),
 
     ## Main Web app ##
     # * /

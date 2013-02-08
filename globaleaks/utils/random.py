@@ -51,5 +51,7 @@ def get_file_checksum(filepath):
 
     return sha.hexdigest()
 
+def get_string_checksum(rawstring):
 
+    return SHA256.new().update(rawstring)
 
