@@ -45,5 +45,3 @@ class APSNotification(GLJob):
 
         # Comment Notification here it's just an incomplete version, that never would supports
         # digest or retry, until Task manager queue is implemented
-
-

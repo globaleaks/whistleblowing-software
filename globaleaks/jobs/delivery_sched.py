@@ -27,20 +27,21 @@ class APSDelivery(GLJob):
         apply the delivery method configured.
 
         """
-        print "fileproces now"
-
         try:
+            # ==> Tip and Submission files upload
+            # ==> only Submission hanlded now
             (itip_info, new_files) = yield AsyncOperations().fileprocess()
 
-            print "received tip", itip_info
-            print "received file", new_files
+            # Tip creation, because in this moment, don't care about the delivery
+            # process, a local version of ReceiverTip would exists
 
-            # answer contain the list of internaltip processed
+            # ==> Submission && Escalation
+            results = yield AsyncOperations().tip_creation()
 
-            print "delivery now"
+            # ==> Files && Files update
             results = yield AsyncOperations().delivery()
 
-        except Exception, e:
+        except AttributeError, e:
             # TODO fatal log
-            print "Unhandled exception in FileProcess and Delivery (%s)" % e
+            print "Unexpected exception in FileProcess, Tip Creation or Delivery (%s)" % e
 

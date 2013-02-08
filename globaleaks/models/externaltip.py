@@ -7,10 +7,10 @@
 # and File and Comment tables, all those tables has relationship with
 # InternalTip
 
-from storm.twisted.transact import transact
 from storm.exceptions import NotOneError
-from storm.locals import Int, Pickle, Unicode, RawStr, Bool, DateTime, Reference
+from storm.locals import Int, Pickle, Unicode, RawStr, DateTime, Reference
 from storm.store import AutoReload
+from twisted.internet import fdesc
 
 from globaleaks.utils import idops, log, gltime
 from globaleaks.models.base import TXModel
@@ -270,6 +270,17 @@ class ReceiverTip(TXModel):
                     'mapped' : internaltip_receivers
                   }
         return retDict
+
+
+    def get_tips_by_itip(self, itip_id):
+
+        requested_t = self.store.find(ReceiverTip, ReceiverTip.internaltip_id == int(itip_id))
+
+        retList = []
+        for tip in requested_t:
+            retList.append(tip._description_dict())
+
+        return retList
 
 
     def get_tips_by_tip(self, tip_gus):
@@ -717,6 +728,26 @@ class File(TXModel):
         if sha2sum:
             requested_f.sha2sum = unicode(sha2sum)
 
+    def add_content_from_fs(self, file_gus, filepath):
+
+        requested_f = self.store.find(File, File.file_gus == unicode(file_gus)).one()
+
+        chunk_size = 8192
+
+        with open(filepath, 'rb') as fd:
+
+            bytecount = 0
+            requested_f.content = ''
+
+            fdesc.setNonBlocking(fd.fileno())
+            while True:
+                chunk = fd.read(chunk_size)
+                if len(chunk) == 0:
+                    break
+                bytecount += len(chunk)
+                requested_f.content += chunk
+
+        print "Moved content from", filepath, "to the database", file_gus, "byte", bytecount
 
     def get_file_by_marker(self, marker):
         """
@@ -784,6 +815,23 @@ class File(TXModel):
             submission_files.append(single_file._description_dict())
 
         return submission_files
+
+    def get_content(self, file_gus):
+
+        print file_gus
+        try:
+            filelookedat = self.store.find(File, File.file_gus == unicode(file_gus)).one()
+        except NotOneError:
+            raise FileGusNotFound
+        if not filelookedat:
+            raise FileGusNotFound
+
+        ret={ 'content' : filelookedat.content,
+              'sha2sum' : filelookedat.sha2sum,
+              'size' : filelookedat.size,
+              'content_type' : filelookedat.content_type,
+              'file_name' : filelookedat.name }
+        return ret
 
 
     def get_single(self, file_gus):
@@ -923,7 +971,6 @@ class Comment(TXModel):
             retVal.append(single_comment._description_dict())
 
         return retVal
-
 
     def get_all(self):
         """

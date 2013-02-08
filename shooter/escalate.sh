@@ -36,8 +36,6 @@ for tip_gus in $tip_gus_list; do
     dt "\t3+" "T1 PUT tip $tip_gus variation vote" "expressing positive vote"
 done
 
-dt "4" "D2 GET task tip" "Forcing tip creation asyncronous operation"
+dt "4" "D2 GET task delivery" "Forcing delivery asyncronous operation"
+dt "5" "D2 GET task notification" "Forcing notification asyncronous operation"
 
-# TODO forcing notification & delivery
-# $SHOOTER D2 GET task delivery 
-# $SHOOTER D2 GET task notification

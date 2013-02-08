@@ -51,7 +51,7 @@ def startAsynchronous():
     This method would be likely put in GLBaseRunner.postApplication, but is not executed by
     startglobaleaks.runApp, then is called by the OS-depenedent runner below
     """
-    from globaleaks.jobs import notification_sched, statistics_sched, tip_sched, \
+    from globaleaks.jobs import notification_sched, statistics_sched, \
         delivery_sched, cleaning_sched
 
     # When the application boot, maybe because has been after a restart, then
@@ -59,24 +59,20 @@ def startAsynchronous():
     # operations -- TODO, maybe refactored along the scheduler review in TODO
 
     StatsSched = statistics_sched.APSStatistics()
-    StatsSched.force_execution(GLAsynchronous, seconds=7)
+    StatsSched.force_execution(GLAsynchronous, seconds=8)
     GLAsynchronous.add_interval_job(StatsSched.operation, 10 )
     # GLAsynchronous.add_interval_job(StatsSched.operation, StatsSched.get_node_delta() )
 
-    TipSched = tip_sched.APSTip()
-    TipSched.force_execution(GLAsynchronous, seconds=5)
-    GLAsynchronous.add_interval_job(TipSched.operation, minutes=1)
-
     DeliverSched = delivery_sched.APSDelivery()
-    DeliverSched.force_execution(GLAsynchronous, seconds=2)
+    DeliverSched.force_execution(GLAsynchronous, seconds=1)
     GLAsynchronous.add_interval_job(DeliverSched.operation, minutes=2)
 
     NotifSched = notification_sched.APSNotification()
-    NotifSched.force_execution(GLAsynchronous, seconds=3)
+    NotifSched.force_execution(GLAsynchronous, seconds=5)
     GLAsynchronous.add_interval_job(NotifSched.operation, minutes=3)
 
     CleanSched = cleaning_sched.APSCleaning()
-    CleanSched.force_execution(GLAsynchronous, seconds=6)
+    CleanSched.force_execution(GLAsynchronous, seconds=13)
     GLAsynchronous.add_interval_job(CleanSched.operation, hours=6)
     # TODO not hours=6 but CleanSched.get_contexts_policies()
 

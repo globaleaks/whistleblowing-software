@@ -24,7 +24,7 @@ from globaleaks.plugins.manager import PluginManager
 from globaleaks.config import config
 from globaleaks.rest.errors import ReceiverGusNotFound
 from globaleaks.utils.random import get_file_checksum
-import os
+import os, zipfile
 
 from storm.twisted.transact import transact
 
@@ -191,8 +191,7 @@ class AsyncOperations(MacroOperation):
             # compute hash, SHA256 in non blocking mode (from utils/random.py)
             filehash = get_file_checksum(tempfpath)
 
-            print "Processed: '%s', sha2", \
-                filehash, "validator response:", validate_file & ( single_file['file_name'])
+            print "Processed:", single_file['file_name'], filehash, "validator response:", validate_file
 
             if validate_file:
                 file_iface.flip_mark(single_file['file_gus'], file_iface._marker[1], filehash) # ready
@@ -201,10 +200,65 @@ class AsyncOperations(MacroOperation):
 
         return (associated_itip, new_files)
 
+
     @transact
     def delivery(self):
-        print "delivery do nothing ATM"
-        pass
+        """
+        Goal of delivery is checks if some delivery is configured for a context/receiver combo,
+        and if is, just delivery the file in the requested way.
+        If not, store in the DB and permit downloading.
+        """
+
+        plugin_type = u'delivery'
+        store = self.getStore()
+
+        file_iface = File(store)
+        receivertip_iface = ReceiverTip(store)
+        receivercfg_iface = ReceiverConfs(store)
+        profile_iface = PluginProfiles(store)
+
+        ready_files = file_iface.get_file_by_marker(file_iface._marker[1]) # ready
+
+        for single_file in ready_files:
+
+            # from every file, we need to find the ReceiverTip with the same InternalTip.id
+            # This permit to found effectively the receiver that need the file available
+
+            print "Delivery management for", single_file['file_name']
+
+            #rtip_list = receivertip_iface.get_tips_by_itip(single_file['internaltip_id'])
+
+            #for rtip in rtip_list:
+
+                # --------------------------------------------------------------------
+                # This code is not yet executed until GPG delivery plugin is not ready
+
+                # Ok, we had a valid an appropriate receiver configuration for the delivery task
+                #related_profile = profile_iface.get_single(receiver_conf['profile_gus'])
+
+                #settings_dict = { 'admin_settings' : related_profile['admin_settings'],
+                #                  'receiver_settings' : receiver_conf['receiver_settings']}
+
+                #plugin = PluginManager.instance_plugin(related_profile['plugin_name'])
+
+                # TODO Update delivery information
+
+                #return_code = plugin.do_delivery(settings_dict, single_file)
+
+            tempfpath = os.path.join(config.advanced.submissions_dir, single_file['file_gus'])
+            file_iface.add_content_from_fs(single_file['file_gus'], tempfpath)
+            file_iface.flip_mark(single_file['file_gus'], file_iface._marker[3]) # stored
+            # TODO os.unlink(tempfpath)
+
+
+    # not yet used
+    def _create_zip(self, sourcepath):
+
+        zf = zipfile.ZipFile('/tmp/temp.zip', mode='w')
+        try:
+            zf.write(sourcepath)
+        finally:
+            zf.close()
 
     @transact
     def statistics(self):
@@ -232,9 +286,6 @@ class AsyncOperations(MacroOperation):
             print "TipSched: found %d new Tip" % len(internal_tip_list)
 
         for internaltip_desc in internal_tip_list:
-
-            # TODO for each itip
-            # TODO get file status, or 'continue'
 
             for receiver_gus in internaltip_desc['receivers']:
 

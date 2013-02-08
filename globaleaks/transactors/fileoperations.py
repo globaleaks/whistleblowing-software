@@ -33,6 +33,7 @@ class FileOperations(MacroOperation):
         result['size'] = len(file['body'])
 
         # XXX verify this token what's is it
+        # TODO, remind the also ReceiverTip can upload file, not just Submission
         result['token'] = submission_gus
 
         if not os.path.isdir(config.advanced.submissions_dir):
@@ -96,6 +97,17 @@ class FileOperations(MacroOperation):
             result_list.append(result)
 
         self.returnData(result_list)
+        self.returnCode(200)
+        return self.prepareRetVals()
+
+    @transact
+    def download_file(self, file_gus):
+
+        store = self.getStore()
+
+        fileDict = File(store).get_content(file_gus)
+
+        self.returnData(fileDict)
         self.returnCode(200)
         return self.prepareRetVals()
 
