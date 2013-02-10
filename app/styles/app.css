@@ -86,7 +86,7 @@
   margin-bottom: 40px;
 }
 
-.errorConsole {
+.messageConsole {
   width: 200px;
   position: fixed;
   z-index: 99999;

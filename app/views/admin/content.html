@@ -17,27 +17,38 @@
     <div class="span9">
 
       <form name="contentForm" novalidate>
-
-        <div ng-include="'views/admin/content/title.html'">
+        <div class="row">
+          <div class="span9">
+            <h2>General</h2>
+            <label>Node name</label>
+            <input type="text"
+              ng-model="admin.node.name"
+              value="{{admin.node.name}}">
+          </div>
         </div>
 
         <!-- Description -->
-        <div ng-include="'views/admin/content/description.html'">
+        <div class="row">
+          <div class="span9">
+            <label>Description</label>
+            <textarea ng-model="admin.node.description">{{admin.node.description}}</textarea>
+          </div>
         </div>
 
-        <!-- Keywords and email -->
-        <!-- <div ng-include="'views/admin/content/keywords.html'"> -->
-        <!-- </div> -->
-
-        <div ng-include="'views/admin/content/email.html'">
+        <div class="row">
+          <div class="span9">
+            <label>Email</label>
+            <input type="text"
+              value="{{admin.node.email}}">
+          </div>
         </div>
 
         <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
         <!-- </div> -->
 
         <button class="btn btn-success"
-          ng-disabled="contentForm.$invalid || isUnchanged(adminNode)"
-          ng-click="update(adminNode)">Save</button>
+          ng-disabled="contentForm.$invalid || contentForm.$pristine"
+          ng-click="update(admin.node)">Save</button>
 
       </form>
     </div>

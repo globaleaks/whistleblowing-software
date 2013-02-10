@@ -1,6 +1,6 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$http', '$location', 'Admin',
-function($scope, $http, $location, Admin) {
+    ['$rootScope', '$scope', '$http', '$location', 'Admin',
+function($rootScope, $scope, $http, $location, Admin) {
 
   // XXX this should actually be defined per controller
   // otherwise every time you open a new page the button appears enabled

@@ -4,7 +4,7 @@
 >
 </div>
 
-<div class="container config-page" ng-controller="AdminAdvancedCtrl">
+<div class="container config-page">
 
   <div class="row">
     <!-- Begin Nav Bar -->
@@ -27,42 +27,28 @@
             <h2>Node Settings</h2>
             <label>Hidden Service</label>
             <input type="text"
-              ng-model="adminNode.hidden_service" required>
+              ng-model="admin.node.hidden_service" required>
 
             <label>Public Site</label>
             <input type="text"
-              ng-model="adminNode.public_site" required>
+              ng-model="admin.node.public_site" required>
+
+            <label>Password</label>
+            <input type="password"
+              ng-model="admin.node.password" required>
 
             <label>Public Stats update time</label>
             <input type="text"
-              ng-model="adminNode.public_stats_update_time" required>
+              ng-model="admin.node.stats_update_time" required>
 
-            <label>Private Stats update time</label>
-            <input type="text"
-              ng-model="adminNode.public_stats_update_time" required>
-
-            <label>Auth options</label>
-            <input type="text"
-              ng-model="adminNode.public_stats_update_time" required>
           </div>
         </div>
 
         <button class="btn btn-success"
-          ng-disabled="nodeConfigForm.$invalid || isUnchanged(adminNode)"
-          ng-click="update(adminNode)">Save</button>
+          ng-disabled="nodeConfigForm.$invalid || nodeConfigForm.$pristine"
+          ng-click="update(admin.node)">Save</button>
 
       </form>
-
-        <!-- Delivery -->
-        <div class="row">
-          <div class="span9 adminDelivery">
-            <h2>Delivery Settings</h2>
-          </div>
-        </div>
-
-        <button class="btn btn-success"
-          ng-disabled="deliveryNotificationForm.$invalid || isUnchanged(adminDelivery)"
-          ng-click="update(adminDelivery)">Save</button>
 
         <!-- Notification -->
         <div class="row">
@@ -79,19 +65,23 @@
 
               <label>SMTP server address</label>
               <input type="text"
-                ng-model="adminNotification.email.smtp_address" required>
+                ng-model="admin.node.notification_settings.server" required>
 
               <label>SMTP server port</label>
               <input type="text"
-                ng-model="adminNotification.email.smtp_port" required>
+                ng-model="admin.node.notification_settings.port" required>
 
               <label>Username</label>
               <input type="text"
-                ng-model="adminNotification.email.smtp_username" required>
+                ng-model="admin.node.notification_settings.username" required>
 
               <label>Password</label>
               <input type="password"
-                ng-model="adminNotification.email.smtp_password" required>
+                ng-model="admin.node.notification_settings.password" required>
+
+              <label>SSL</label>
+              <input type="checkbox"
+                ng-model="admin.node.notification_settings.ssl">
 
             </div>
           </form>
@@ -102,7 +92,7 @@
         <!-- end Notification -->
         <button class="btn btn-success"
           ng-disabled="notificationForm.$invalid || notificationForm.$pristine"
-          ng-click="saveNotificationSettings(notificationForm)">Save</button>
+          ng-click="update(admin.node)">Save</button>
 
     </div>
   </div>

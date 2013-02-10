@@ -253,11 +253,11 @@ angular.module('resourceServices', ['ngResource']).
           {update:
               {method: 'PUT'}
         }),
-        adminNotificationResource = $resource('/admin/context/:context_id',
-          {context_id: '@context_gus'},
-          {update:
-              {method: 'PUT'}
-        });
+        adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}});
+
+      adminContextsResource.prototype.toString = function() { return "Admin Context"; }
+      adminReceiversResource.prototype.toString = function() { return "Admin Receiver"; }
+      adminNodeResource.prototype.toString = function() { return "Admin Node"; }
 
       self.context = adminContextsResource;
       self.contexts = adminContextsResource.query();
@@ -316,18 +316,10 @@ angular.module('resourceServices', ['ngResource']).
         });
       };
 
-      self.addContext = function() {
+      self.node = adminNodeResource.get();
 
-      };
     };
     return new Admin;
-}).
-  factory('AdminNotification', function($resource) {
-    return $resource('/admin/context/:context_id',
-      {context_id: '@context_gus'},
-      {update:
-          {method: 'PUT'}
-      });
 }).
   config(function($httpProvider) {
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
