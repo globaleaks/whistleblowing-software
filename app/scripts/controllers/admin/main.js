@@ -28,12 +28,6 @@ function($scope, $http, $location, AdminNode, AdminContexts,
     '3 Review your settings'
   ];
 
-  $scope.saveall = function() {
-    $scope.adminNode.$save();
-    //$scope.adminReceivers.$save();
-    $scope.adminContexts.$save();
-  };
-
   $scope.update = function(model) {
     $scope.master = angular.copy(model);
     model.$update();

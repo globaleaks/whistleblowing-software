@@ -294,6 +294,18 @@ background-color: whiteSmoke;
 .receipt h2 {
     font-family: "Sansation Bold", sans-serif;
 }
+/** Configuration Pages **/
+
+.configRow {
+  margin-top: 5px;
+  margin-bottom: 10px;
+  border-spacing: 2px;
+  border-color: grey;
+}
+
+.odd {
+  background-color: #DDD;
+}
 
 /*** Debug header ***/
 
