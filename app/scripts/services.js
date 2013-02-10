@@ -7,7 +7,6 @@ angular.module('resourceServices', ['ngResource']).
         $rootScope.pendingRequests = [];
       };
 
-      console.log("Response!!!!!!!!!!!");
       $rootScope.pendingRequests.push(promise);
 
       return promise.then(function(response) {
@@ -53,6 +52,14 @@ angular.module('resourceServices', ['ngResource']).
     };
 
     return function(fn) {
+      /**
+       * This factory returns a Submission object that will call the fn
+       * callback once all the information necessary for creating a submission
+       * has been collected.
+       *
+       * This means getting the node information, the list of receivers and the
+       * list of contexts.
+       */
       var self = this,
         forEach = angular.forEach;
 
@@ -62,6 +69,8 @@ angular.module('resourceServices', ['ngResource']).
       self.selected_language = null;
       self.current_context_receivers = [];
       self.receivers_selected = {};
+      self.completed = false;
+      self.receipt = null;
 
       var setReceiversForCurrentContext = function() {
         // Make sure all the receivers are selected by default
@@ -82,50 +91,70 @@ angular.module('resourceServices', ['ngResource']).
           Receivers.query(function(receivers){
             self.receivers = receivers;
             setReceiversForCurrentContext();
+            self.current_context = self.contexts[0];
             fn(self);
           });
         });
       });
 
+      /**
+       * @name Submission.create
+       * @description
+       * Create a new submission based on the currently selected context.
+       *
+       * */
       self.create = function() {
-        var new_submission = new submissionResource({
+        self.current_submission = new submissionResource({
           context_gus: self.current_context.context_gus,
           wb_fields: {}, files: [], finalize: false, receivers: []
         });
 
-        new_submission.$save(function(submissionID){
+        self.current_submission.$save(function(submissionID){
           // XXX the backend should return this.
-          new_submission.wb_fields = {};
+          self.current_submission.wb_fields = {};
           setReceiversForCurrentContext();
         });
 
       };
 
+      /**
+       * @name Submission.submit
+       * @description
+       * Submit the currently configured submission.
+       * This involves setting the receivers of the submission object to those
+       * currently selected and setting up the submission fields entered by the
+       * whistleblower.
+       */
       self.submit = function() {
-        if (!$scope.reivers_selected) {
+        if (!self.receivers_selected) {
           console.log("Error: No receivers selected!");
           return;
-        }
+        };
+
+        if (!self.current_submission) {
+          console.log("Error: No current submission!");
+        };
 
         // Set the submission field values
-        _.each($scope.submission.current_context.fields, function(field, k) {
-          $scope.submission.wb_fields[field.name] = field.value;
+        _.each(self.current_context.fields, function(field, k) {
+          self.current_submission.wb_fields[field.name] = field.value;
         });
 
         // Set the currently selected receivers
-        $scope.submission.receivers = [];
-        _.each($scope.receivers_selected, function(selected, receiver_gus){
+        self.receivers = [];
+        _.each(self.receivers_selected, function(selected, receiver_gus){
           if (selected) {
-            $scope.submission.receivers.push(receiver_gus);
+            self.current_submission.receivers_selected.push(receiver_gus);
           }
         });
-        $scope.submission.finalize = true;
+        self.finalize = true;
 
-        $scope.submission.$submit(function(result){
+        self.current_submission.$submit(function(result){
+          // The submission has completed
           if (result) {
-            $scope.submission_complete = true;
-          }
-
+            self.receipt = self.current_submission.receipt;
+            self.completed = true;
+          };
         });
 
       };
@@ -133,8 +162,8 @@ angular.module('resourceServices', ['ngResource']).
     };
 
 }]).
-  factory('Tip', ['$resource', 'localization', 'Receivers',
-          function($resource, localization, Receivers) {
+  factory('Tip', ['$resource', 'Receivers',
+          function($resource, Receivers) {
     var receiversResource = $resource('/tip/:tip_id/receivers', {tip_id: '@tip_id'}, {}),
       tipResource = $resource('/tip/:tip_id', {tip_id: '@tip_id'}, {}),
       commentsResource = $resource('/tip/:tip_id/comments', {tip_id: '@tip_id'}, {});
@@ -244,11 +273,5 @@ angular.module('resourceServices', ['ngResource']).
 }).
   config(function($httpProvider) {
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
-});
-
-
-angular.module('localeServices', ['resourceServices']).
-  factory('localization', function(Node, Contexts, Receivers){
-    var localization = {};
 });
 

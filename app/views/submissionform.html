@@ -1,7 +1,7 @@
 <form name="submissionFormFields" ng-controller="FormBuilderCtrl">
   <fieldset>
     <legend>Details</legend>
-    <div ng-repeat="field in localization.current_context.fields">
+    <div ng-repeat="field in submission.current_context.fields">
       <div ng-switch on="field.type">
         <div ng-switch-default
           class="input {{field.type}}"

@@ -91,24 +91,12 @@
       <!-- /2 -->
 
       <!-- Third Step -->
-      <div ng-switch-when="3 Choose receipt">
+      <div ng-switch-when="3 Final Step">
 
         <div class="row">
 
           <div class="span12">
             <form name="lastStep">
-              <p class="lead">Choose a receipt and be aware of the risks
-              involved in blowing the whistle</p>
-              <label class="text">
-                Receipt
-                <a href=""
-                  data-content="This will be the submission receipt through which you will be able to access your submission"
-                  data-trigger="hover" bs-popover="Receipt">
-                  <i class="icon-question-sign"></i>
-                </a>
-              </label>
-              <input type="text"
-                ng-model="submission.receipt">
               <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
               tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
@@ -168,7 +156,7 @@
 <!-- This will be visualized once the subission is created -->
 <div
   class="submission-receipt modal"
-  ng-show="submission_complete">
+  ng-show="submission.completed">
   <div class="modal-header">
     <h3>Submission Created!</h3>
   </div>
