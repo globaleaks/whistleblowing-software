@@ -79,9 +79,11 @@
               <input type="password"
                 ng-model="admin.node.notification_settings.password" required>
 
-              <label>SSL</label>
-              <input type="checkbox"
-                ng-model="admin.node.notification_settings.ssl">
+              <label>Transport Security</label>
+              <select ng-model="admin.node.notification_settings.security">
+                <option value='tls'>TLS</option>
+                <option value='ssl'>SSL</option>
+              </select>
 
             </div>
           </form>
