@@ -101,3 +101,27 @@ class Config(object):
         self.advanced.delivery_dir = os.path.join(self.advanced.data_dir, 'delivery')
 
 config = Config()
+
+from storm.twisted.transact import Transactor
+from twisted.python.threadpool import ThreadPool
+
+from globaleaks.config import config as cfg
+
+from globaleaks.utils.singleton import Singleton
+
+class Main(object):
+    __metaclass__ = Singleton
+
+    def __init__(self):
+        log.msg("[D] %s %s " % (__file__, __name__), "Starting db_threadpool")
+        self.db_threadpool = ThreadPool(0, cfg.advanced.db_thread_pool_size)
+        self.db_threadpool.start()
+
+        log.msg("[D] %s %s " % (__file__, __name__), "Starting scheduler_threadpool")
+        self.scheduler_threadpool = ThreadPool(0, cfg.advanced.scheduler_thread_pool_size)
+        self.scheduler_threadpool.start()
+
+        self.transactor = Transactor(self.db_threadpool)
+        self.transactor.retries = 0
+
+main = Main()

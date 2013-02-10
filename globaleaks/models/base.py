@@ -2,14 +2,14 @@
 #
 #   models/base
 #   *******
-# 
+#
 # TXModel class is the superclass of all the Storm operation in models/*.py
 
 import transaction
 from storm.locals import Store, Storm
 from storm.twisted.transact import transact
 
-from globaleaks import main
+from globaleaks.config import main
 from globaleaks.config import config
 from globaleaks.utils import log
 

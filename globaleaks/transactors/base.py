@@ -1,4 +1,4 @@
-from globaleaks import main
+from globaleaks.config import main
 from globaleaks.config import config
 
 
