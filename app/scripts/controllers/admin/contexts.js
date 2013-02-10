@@ -1,27 +1,8 @@
 GLClient.controller('AdminContextsCtrl',
-    ['$scope', '$rootScope', 'AdminContexts',
-    function($scope, $rootScope, AdminContexts) {
+    ['$scope', '$rootScope', 'Admin',
+    function($scope, $rootScope, Admin) {
 
-  $scope.new_context = function() {
-    var context = new AdminContexts;
-
-    context.name = $scope.new_context_name;
-    context.description = '';
-
-    context.fields = [];
-    context.languages = [];
-    context.receivers = [];
-
-    context.escalation_threshold = null;
-    context.file_max_download = 42;
-    context.tip_max_access = 42;
-    context.selectable_receiver = true;
-    context.tip_timetolive = 42;
-
-    context.$save(function(created_context){
-      $scope.adminContexts.push(created_context);
-    });
-  };
+  $scope.new_context = Admin.create_context;
 
   // XXX this is *very* hackish.
   $scope.editFields = function(fields) {
@@ -33,11 +14,11 @@ GLClient.controller('AdminContextsCtrl',
     $rootScope.fieldEditor = false;
   };
 
-  $scope.delete_context = function(context) {
-    var idx = _.indexOf($scope.adminContexts, context);
+  $scope.delete = function(context) {
+    var idx = _.indexOf($scope.admin.contexts, context);
 
     context.$delete(function(){
-      $scope.adminContexts.splice(idx, 1);
+      $scope.admin.contexts.splice(idx, 1);
     });
 
   };

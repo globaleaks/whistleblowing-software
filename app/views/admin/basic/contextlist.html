@@ -1,54 +1,78 @@
-<div class="row" ng-controller="AdminContextsCtrl">
-  <div class="span9 adminContexts">
-    <h2>Contexts</h2>
-    <table class="table table-striped">
-      <thead>
-        <tr>
-          <th>Details</th>
-          <th>Receivers</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr ng-repeat="context in adminContexts">
-          <td>
+<div ng-controller="AdminReceiversCtrl">
+  <div class="row">
+    <div class="span9">
+      <h2>Contexts</h2>
+    </div>
+  </div>
+  <div class="row">
+    <div class="span4">
+      <h4>Details</h4>
+    </div>
+    <div class="span4">
+      <h4>Receivers</h4>
+    </div>
+  </div>
+
+  <div class="row" ng-repeat="context in admin.contexts">
+    <div class="span9 configRow" ng-class-even="'odd'">
+      <form name="contextForm">
+
+        <div class="row">
+
+          <div class="span4">
             <label>Name</label>
             <input type="text"
                 required
                 ng-model="context.name"
                 value="{{context.name}}">
-            <label>Description</label>
-            <textarea
-                required
-                ng-model="context.description">{{context.description}}</textarea>
-          </td>
-          <td>
-            <select multiple ui-select2 style="width: 200px"
-              ng-model="context.receivers">
-              <option
-                ng-repeat="receiver in adminReceivers"
-                value="{{receiver.receiver_gus}}">{{receiver.name}}</option>
+
+          </div>
+
+          <div class="span4">
+            <select multiple ui-select2 style="width: 250px"
+                ng-model="context.receivers">
+                <option
+                  ng-repeat="receiver in admin.receivers"
+                  value="{{receiver.receiver_gus}}">{{receiver.name}}</option>
             </select>
+          </div>
+
+        </div>
+
+        <div class="row">
+
+          <div class="span4">
+          <label>Description</label>
+          <textarea
+              required
+              ng-model="context.description">{{context.description}}</textarea>
+          </div>
+
+          <div class="span4">
 
             <button class="btn"
               ng-click="editFields(context.fields)">Edit fields</button>
 
             <button class="btn btn-success"
-              ng-disabled="isUnchanged(context)"
+              ng-disabled="contextForm.$pristine || contextForm.$invalid"
               ng-click="update(context)">Save</button>
 
             <button class="btn btn-danger"
-              ng-click="delete_context(context)">Delete</button>
+              ng-click="delete(context)">Delete</button>
 
-          </td>
-        </tr>
-        <tr>
-          <td><input type="text"
-            ng-model="new_context_name"></td>
-          <td><button class="btn"
-              ng-click="new_context()">Add</button></td>
-        </tr>
-      </tbody>
-    </table>
+          </div>
+
+        </div>
+
+      </form>
+    </div>
   </div>
-</div>
 
+  <div class="row">
+    <div class="span4">
+      <input type="text" ng-model="new_context_name">
+      <button class="btn" ng-click="admin.create_context(new_context_name)">Add</button>
+    </div>
+  </div>
+
+</div>
