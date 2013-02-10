@@ -26,6 +26,9 @@ URTA = {
     'U6_GET':'GET_/contexts',
     'U7_GET':'GET_/receivers',
 
+    'U8_POST':'POST_/login',
+    'U8_DELETE':'DELETE_/login',
+
     'T1_PUT':'PUT_/tip/@TIP@',
     'T1_DELETE':'DELETE_/tip/@TIP@',
     'T1_GET':'GET_/tip/@TIP@',
