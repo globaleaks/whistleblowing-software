@@ -7,10 +7,10 @@
 # Initialize the table if missing (executed only at the first start)
 
 from twisted.internet.defer import inlineCallbacks
+from twisted.python import log
 
 from storm.properties import PropertyColumn
 from storm.exceptions import StormError
-
 from storm.variables import BoolVariable, DateTimeVariable, DateVariable
 from storm.variables import DecimalVariable, EnumVariable
 from storm.variables import FloatVariable, IntVariable, RawStrVariable
@@ -109,7 +109,7 @@ def createTable(model):
     # XXX trap the specific error that is raised when the table exists
     # seem to be OperationalError raised, but not a specific error exists.
     except StormError, e:
-        print "Failed to create table!", e
+        log.err("Failed to create table!", e)
 
 def runCreateTable(model):
     """

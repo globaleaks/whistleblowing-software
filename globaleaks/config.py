@@ -8,10 +8,14 @@
 # nothing in the common concern af a GlobaLeaks Node Admin
 
 
-import os, sys, transaction
+import os, sys
+
+import transaction
+from twisted.python import log
 from cyclone.util import ObjectDict as OD
 from storm.zope.zstorm import ZStorm
 from storm.tracer import debug
+
 from globaleaks.utils.singleton import Singleton
 
 class ConfigError(Exception):
@@ -77,7 +81,7 @@ class Config(object):
         self.sessions = dict()
 
         if self.advanced.debug:
-            print "Serving GLClient from %s" % self.main.glclient_path
+            log.msg("Serving GLClient from %s" % self.main.glclient_path)
 
         # This is the zstorm store used for transactions
         if database_file:
