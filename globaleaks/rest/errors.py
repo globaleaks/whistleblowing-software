@@ -19,8 +19,8 @@ class InvalidInputFormat(GLException):
     The expected format described in the REST specification is not
     respected by the data body in the HTTP request.
     """
-    self.error_code = 10
-    self.http_status = 406 # Not Acceptable
+    error_code = 10
+    http_status = 406 # Not Acceptable
 
     def __init__(self, wrong_source):
         self.error_message = "Invalid Input Format [%s]" % wrong_source
@@ -127,11 +127,9 @@ class SubmissionFailFields(GLException):
     error is raised. The Client has to enforce as possible the Input Format, when this
     Client output validation fail, this error may happen.
     """
-
-    def __init__(self):
-        GLException.error_message = "Submission do not validate the input fields"
-        GLException.error_code = 22
-        GLException.http_status = 412 # Precondition Failed
+    error_message = "Submission do not validate the input fields"
+    error_code = 22
+    http_status = 412 # Precondition Failed
 
 class InvalidTipAuthToken(GLException):
     """

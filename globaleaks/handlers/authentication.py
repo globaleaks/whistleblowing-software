@@ -1,16 +1,17 @@
 from functools import wraps
+import json
 import time
 
-from twisted.internet.defer improt inlineCallbacks
-from storm.twisted.transtact import transact
-from cyclone.utils import OD
+from twisted.internet.defer import inlineCallbacks
+from storm.twisted.transact import transact
+from cyclone.util import ObjectDict as OD
 
 from globaleaks.models.node import Node
 from globaleaks.models.receiver import Receiver
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
 from globaleaks.config import config
-from globaleaks.utils import random_string
+from globaleaks.utils.random import random_string
 
 def authenticated(usertype):
     """
@@ -36,7 +37,7 @@ def authenticated(usertype):
     return userfilter
 
 
-class Authentication(BaseHandler):
+class AuthenticationHandler(BaseHandler):
     """
     Login page for administrator
     Extra attributes:
@@ -61,29 +62,32 @@ class Authentication(BaseHandler):
 
     @transact
     def login_wb(self, receipt):
-        store = config.main.zstorm.get('main_store')
-        node_desc = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
+        store = self.get_store()
+        node_desc = store.find(WhistleblowerTip,
+                               WhistleblowerTip.receipt == unicode(receipt)).one()
         return unicode(node_desc.receipt)
 
     @transact
     def login_receiver(self, username, password):
-        store = config.main.zstorm.get('main_store')
+        store = self.get_store()
         fstreceiver = store.find(Receiver).first()
         return unicode(fstreceiver.receiver_gus)
 
     @transact
     def login_admin(self, password):
-        store = config.main.zstorm.get('main_store')
+        store = self.get_store()
         node = store.find(Node).one()
         return node.password == password
 
     @inlineCallbacks
-    def post(self, page):
+    def post(self):
         # XXX: input validation
-        request = json_decode(self.request.body)
-        for field in 'username', 'password', 'role':
-             if field not in request:
-                 raise errors.InvalidInputFormat(repr(field))
+        try:
+            request = json.loads(self.request.body)
+            if not all((field in request) for field in  ('username', 'password', 'role')):
+                 raise ValueError
+        except ValueError :
+                 raise errors.InvalidInputFormat('malformed json')
 
         username = request['username']
         password = request['password']
@@ -103,9 +107,9 @@ class Authentication(BaseHandler):
         if not auth:
             raise errors.InvalidAuthRequest
         else:
-            return self.finish(json.dumps(dict(
-               session=self.generate_session(auth, role),
-            )))
+            self.finish(json.dumps({
+               'session': self.generate_session(auth, role),
+            }))
 
     def delete(self):
         """
