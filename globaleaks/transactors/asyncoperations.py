@@ -20,7 +20,7 @@ from globaleaks.models.externaltip import File, ReceiverTip, Comment
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.node import Node
 from globaleaks.plugins.manager import PluginManager
-from globaleaks.config import config
+from globaleaks.settings import config
 from globaleaks.rest.errors import ReceiverGusNotFound
 from globaleaks.utils.random import get_file_checksum
 import os, zipfile

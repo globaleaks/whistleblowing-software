@@ -18,7 +18,7 @@
 # select some gus with a number only, or a shorter list.
 
 from Crypto.Random import random
-from globaleaks.config import config
+from globaleaks.settings import config
 import string
 
 

@@ -9,8 +9,8 @@ import transaction
 from storm.locals import Store, Storm
 from storm.twisted.transact import transact
 
-from globaleaks.config import main
-from globaleaks.config import config
+from globaleaks.settings import main
+from globaleaks.settings import config
 from globaleaks.utils import log
 
 __all__ = ['TXModel' ]

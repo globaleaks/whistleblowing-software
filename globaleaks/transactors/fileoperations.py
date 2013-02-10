@@ -2,7 +2,7 @@ from globaleaks.transactors.base import MacroOperation
 from globaleaks.models.externaltip import File
 from globaleaks.models.submission import Submission
 from globaleaks.rest.errors import SubmissionConcluded
-from globaleaks.config import config
+from globaleaks.settings import config
 from twisted.internet import fdesc
 
 from storm.twisted.transact import transact
