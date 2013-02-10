@@ -1,10 +1,9 @@
-GLClient.controller('AdminContextsCtrl', 
-    ['$scope', '$rootScope', 'localization', 'AdminContexts',
-    function($scope, $rootScope, localization, AdminContexts) {
+GLClient.controller('AdminContextsCtrl',
+    ['$scope', '$rootScope', 'AdminContexts',
+    function($scope, $rootScope, AdminContexts) {
 
   $scope.new_context = function() {
     var context = new AdminContexts;
-    //context.name[localization.selected_language] = $scope.new_context_name;
 
     context.name = $scope.new_context_name;
     context.description = '';
@@ -41,6 +40,6 @@ GLClient.controller('AdminContextsCtrl',
       $scope.adminContexts.splice(idx, 1);
     });
 
-  }
+  };
 
 }]);

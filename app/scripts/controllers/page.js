@@ -1,7 +1,6 @@
 'use strict';
 
-GLClient.controller('PageCtrl', ['$scope', 'localization', 
-    function($scope, localization) {
-  $scope.localization = localization;
+GLClient.controller('PageCtrl', ['$scope',
+    function($scope) {
 
 }]);

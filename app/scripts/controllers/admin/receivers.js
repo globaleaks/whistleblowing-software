@@ -1,6 +1,5 @@
-GLClient.controller('AdminReceiversCtrl', ['$scope', 'localization',
-                    'AdminReceivers',
-function($scope, localization, AdminReceivers) {
+GLClient.controller('AdminReceiversCtrl', ['$scope', 'AdminReceivers',
+function($scope, AdminReceivers) {
 
   $scope.new_receiver = function() {
     var receiver = new AdminReceivers;

@@ -1,6 +1,6 @@
 GLClient.controller('AdminAdvancedCtrl',
-    ['$scope', 'localization', 'AdminNotification',
-  function($scope, localization, AdminNotification) {
+    ['$scope', 'AdminNotification',
+  function($scope, AdminNotification) {
     $scope.delivery_method = '';
     $scope.adminNotification = AdminNotification.get();
     $scope.adminDelivery = {};

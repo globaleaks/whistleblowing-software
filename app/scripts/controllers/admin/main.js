@@ -1,7 +1,7 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$http', '$location', 'localization', 'AdminNode',
+    ['$scope', '$http', '$location', 'AdminNode',
     'AdminContexts', 'AdminReceivers',
-function($scope, $http, $location, localization, AdminNode, AdminContexts,
+function($scope, $http, $location, AdminNode, AdminContexts,
          AdminReceivers) {
 
   // XXX this should actually be defined per controller
@@ -14,9 +14,6 @@ function($scope, $http, $location, localization, AdminNode, AdminContexts,
   var current_menu = $location.path().split('/').slice(-1);
   $scope.active = {};
   $scope.active[current_menu] = "active";
-
-  $scope.localization = localization;
-  $scope.node_info = localization.node_info;
 
   $scope.adminNode = AdminNode.get();
 
