@@ -240,6 +240,88 @@ angular.module('resourceServices', ['ngResource']).
           {method: 'PUT'}
       });
 }).
+  factory('Admin', function($resource) {
+    function Admin(){
+      var self = this,
+        adminContextsResource = $resource('/admin/context/:context_id',
+          {context_id: '@context_gus'},
+          {update:
+            {method: 'PUT'}
+        }),
+        adminReceiversResource = $resource('/admin/receiver/:receiver_id',
+          {receiver_id: '@receiver_gus'},
+          {update:
+              {method: 'PUT'}
+        }),
+        adminNotificationResource = $resource('/admin/context/:context_id',
+          {context_id: '@context_gus'},
+          {update:
+              {method: 'PUT'}
+        });
+
+      self.context = adminContextsResource;
+      self.contexts = adminContextsResource.query();
+
+      self.create_context = function(context_name) {
+        var context = new adminContextsResource;
+
+        context.name = context_name;
+        context.description = '';
+
+        context.fields = [];
+        context.languages = [];
+        context.receivers = [];
+
+        context.escalation_threshold = null;
+        context.file_max_download = 42;
+        context.tip_max_access = 42;
+        context.selectable_receiver = true;
+        context.tip_timetolive = 42;
+
+        context.$save(function(new_context){
+          self.contexts.push(new_context);
+        });
+
+      };
+
+      self.receiver = adminReceiversResource;
+      self.receivers = adminReceiversResource.query();
+
+      self.create_receiver = function(receiver_name) {
+        var receiver = new adminReceiversResource;
+
+        receiver.name = receiver_name;
+
+        receiver.description = '';
+        receiver.password = null;
+
+        receiver.notification_selected = 'email';
+        receiver.notification_fields = {'mail_address': ''};
+
+        receiver.languages = [];
+
+        // Under here go default settings
+        receiver.can_postpone_expiration = true;
+        receiver.can_configure_notification = true;
+        receiver.can_configure_delivery = true;
+        receiver.can_delete_submission = true;
+
+        receiver.receiver_level = 1;
+
+        receiver.tags = [];
+        receiver.contexts =  [];
+
+        receiver.$save(function(created_receiver){
+          self.receivers.push(created_receiver);
+        });
+      };
+
+      self.addContext = function() {
+
+      };
+    };
+    return new Admin;
+}).
   factory('AdminContexts', ['$resource', function($resource) {
     return $resource('/admin/context/:context_id',
       {context_id: '@context_gus'},
@@ -267,9 +349,6 @@ angular.module('resourceServices', ['ngResource']).
       {update:
           {method: 'PUT'}
       });
-}).
-  factory('AdminNotification', function($resource) {
-    return $resource('/admin/notification', {});
 }).
   config(function($httpProvider) {
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
