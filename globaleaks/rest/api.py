@@ -10,7 +10,7 @@
 from cyclone.web import StaticFileHandler
 
 from globaleaks.config import config
-from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug
+from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug, authentication
 from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
@@ -53,6 +53,9 @@ spec = [
 
     #  U7
     (r'/receivers' , node.ReceiversCollection),
+
+    #  U8
+    (r'/login', authentication.AuthenticationHandler),
 
     ## Tip Handlers ##
     #  T1
@@ -98,9 +101,6 @@ spec = [
 
     #  AB
     (r'/admin/statistics/', admin.StatisticsCollection),
-
-    # WTF
-    (r'/login', authentication.AuthHandler),
 
     #  D1
     (r'/debug/overview/' + not_defined_regexp, debug.EntryCollection),
