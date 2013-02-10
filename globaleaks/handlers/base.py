@@ -20,6 +20,7 @@ import json
 
 class BaseHandler(RequestHandler):
     transactor = main.transactor
+    store = 'main_store'
 
     requestTypes = {}
     def prepare(self):
@@ -71,5 +72,5 @@ class BaseHandler(RequestHandler):
         """
         Return the current store object.
         """
-        return config.main.zstorm.get('main_store')
+        return config.main.zstorm.get(self.store)
 
