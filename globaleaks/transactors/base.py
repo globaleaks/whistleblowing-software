@@ -1,5 +1,5 @@
-from globaleaks.config import main
-from globaleaks.config import config
+from globaleaks.settings import main
+from globaleaks.settings import config
 
 
 class MacroOperation():

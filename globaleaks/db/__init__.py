@@ -4,7 +4,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 from storm.twisted.transact import transact
-from globaleaks.config import config
+from globaleaks.settings import config
 from globaleaks.db import tables
 from globaleaks.utils import log
 

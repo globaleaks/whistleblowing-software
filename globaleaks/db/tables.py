@@ -16,8 +16,8 @@ from storm.variables import DecimalVariable, EnumVariable
 from storm.variables import FloatVariable, IntVariable, RawStrVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
-from globaleaks.config import main
-from globaleaks.config import config
+from globaleaks.settings import main
+from globaleaks.settings import config
 
 def variableToSQLite(var_type):
     """

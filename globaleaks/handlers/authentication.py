@@ -12,7 +12,7 @@ from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.errors import InvalidAuthRequest, InvalidInputFormat, NotAuthenticated
-from globaleaks.config import config
+from globaleaks.settings import config
 from globaleaks.utils.random import random_string
 
 def authenticated(usertype):

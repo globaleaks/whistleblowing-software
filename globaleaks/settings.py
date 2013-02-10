@@ -105,7 +105,7 @@ config = Config()
 from storm.twisted.transact import Transactor
 from twisted.python.threadpool import ThreadPool
 
-from globaleaks.config import config as cfg
+from globaleaks.settings import config as cfg
 
 from globaleaks.utils.singleton import Singleton
 

@@ -14,7 +14,7 @@ from globaleaks.rest.base import validateMessage
 from cyclone.web import RequestHandler, HTTPError
 from cyclone import escape
 from globaleaks.utils import log
-from globaleaks.config import config, main
+from globaleaks.settings import config, main
 import json
 
 class BaseHandler(RequestHandler):

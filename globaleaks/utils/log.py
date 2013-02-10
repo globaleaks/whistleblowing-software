@@ -12,7 +12,7 @@ from twisted.python import log as txlog
 from twisted.python.logfile import DailyLogFile
 
 from globaleaks.utils import gltime
-from globaleaks.config import config
+from globaleaks.settings import config
 
 # XXX make this a config option
 log_file = "/tmp/glbackend.log"
