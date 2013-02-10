@@ -79,7 +79,12 @@ class Receiver(TXModel):
 
         # TODO validate the notification fields
 
-        # TODO verify the username is unique or return error!
+        # XXX This is just a commodity: calling random_receipt to obtain an username
+        # composed with TEN RANDOM DIGITS. In the stable way, random_receipt would
+        # follow a regular expression, and random username would avoid collisions
+        self.username = idops.random_receipt()
+        # -----------------------------------------------------------------------
+
         self.receiver_gus = idops.random_receiver_gus()
 
         self.creation_date = gltime.utcTimeNow()
@@ -112,7 +117,6 @@ class Receiver(TXModel):
             raise InvalidInputFormat("admin update failed (wrong %s)" % e)
 
         # TODO validate the notification fields
-        # TODO verify the username is unique or return error!
         requested_r.update_date = gltime.utcTimeNow()
         return requested_r._description_dict()
 
@@ -325,7 +329,6 @@ class Receiver(TXModel):
         self.tags = source_rd['tags']
         self.know_languages = source_rd['languages']
 
-        self.username = source_rd['username']
         self.password = source_rd['password']
         self.notification_fields = source_rd['notification_fields']
         # This need to be verified in the calling function, between the valid

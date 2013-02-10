@@ -7,7 +7,6 @@ can_delete_submission:=true
 can_postpone_expiration:=true
 can_configure_delivery:=true
 can_configure_notification:=true
-username=aman01
 password=latte
 notification_fields:={"mail_address":"vecna@globaleaks.org"}
 contexts:=[@RAW@]
