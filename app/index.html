@@ -45,17 +45,22 @@
           </ul>
         </div>
 
-        <div class="messageConsole" ng-show="errors || successes">
-          <div ng-repeat="error in errors"
-            class="alert alert-error errorMessage">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <p><strong>{{error.url}}</strong> {{error.code}}: {{error.message}}</p>
+        <div class="messageConsole">
+
+          <div ng-repeat="error in errors">
+            <div class="alert alert-error errorMessage">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <p><strong>{{error.url}}</strong> {{error.code}}: {{error.message}}</p>
+            </div>
           </div>
-          <div ng-repeat="success in successes"
-            class="alert alert-success successMessage">
-            <button type="button" class="close" data-dismiss="alert">×</button>
-            <p><strong>Success!</strong> {{success.message}}</p>
+
+          <div ng-repeat="success in successes">
+            <div class="alert alert-success successMessage">
+              <button type="button" class="close" data-dismiss="alert">×</button>
+              <p><strong>Success!</strong> {{success.message}}</p>
+            </div>
           </div>
+
         </div>
 
         <!-- In here is the main GLClient application content -->
