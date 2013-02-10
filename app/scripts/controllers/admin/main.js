@@ -1,8 +1,6 @@
 GLClient.controller('AdminCtrl',
-    ['$scope', '$http', '$location', 'AdminNode',
-    'AdminContexts', 'AdminReceivers',
-function($scope, $http, $location, AdminNode, AdminContexts,
-         AdminReceivers) {
+    ['$scope', '$http', '$location', 'Admin',
+function($scope, $http, $location, Admin) {
 
   // XXX this should actually be defined per controller
   // otherwise every time you open a new page the button appears enabled
@@ -15,10 +13,7 @@ function($scope, $http, $location, AdminNode, AdminContexts,
   $scope.active = {};
   $scope.active[current_menu] = "active";
 
-  $scope.adminNode = AdminNode.get();
-
-  $scope.adminReceivers = AdminReceivers.query();
-  $scope.adminContexts = AdminContexts.query();
+  $scope.admin = Admin;
 
   // XXX find a more elegant solution
   // This is required for the step by step wizard.
