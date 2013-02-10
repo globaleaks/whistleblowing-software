@@ -15,9 +15,11 @@ from cyclone.web import RequestHandler, HTTPError
 from cyclone import escape
 from globaleaks.utils import log
 from globaleaks.config import config
+from globaleaks import main
 import json
 
 class BaseHandler(RequestHandler):
+    transactor = main.transactor
 
     requestTypes = {}
     def prepare(self):
@@ -64,4 +66,10 @@ class BaseHandler(RequestHandler):
         else:
             RequestHandler.write(self, chunk)
 
+
+    def get_store(self):
+        """
+        Return the current store object.
+        """
+        return config.main.zstorm.get('main_store')
 
