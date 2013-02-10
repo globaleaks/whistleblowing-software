@@ -147,7 +147,7 @@ angular.module('resourceServices', ['ngResource']).
             self.current_submission.receivers.push(receiver_gus);
           }
         });
-        self.finalize = true;
+        self.current_submission.finalize = true;
 
         self.current_submission.$submit(function(result){
           // The submission has completed
