@@ -8,22 +8,38 @@ class TestAuthentication(helpers.TestHandler):
     _handler = authentication.AuthenticationHandler
 
     def test_invalid_wb_login(self):
-        req = {
+        # missing role keyword
+        handler = self.request({
            'username': '',
            'password': '',
-        }
-        # missing role keyword
-        handler = self.request(req)
-        d = handler.post()
-        self.assertFailure(d, errors.InvalidInputFormat)
+        })
+        malformed = handler.post()
+        self.assertFailure(malformed, errors.InvalidInputFormat)
 
-        return d
+        return malformed
 
     def test_invalid_admin_login(self):
-        pass
+        # missing role keyword
+        handler = self.request({
+           'username': '',
+           'password': '',
+        })
+        malformed = handler.post()
+        self.assertFailure(malformed, errors.InvalidInputFormat)
 
+        malformed
     def test_invalid_receiver_login(self):
-        pass
+        # wrong username/password
+        handler = self.request({
+           'username': 'foobar',
+           'password': 'spamcheese',
+           'role': 'receiver'
+        })
+        failed = handler.post()
+        self.assertFailure(failed, errors.InvalidAuthRequest)
+
+        return failed
+
 
     def test_valid_wb_login(self):
         pass

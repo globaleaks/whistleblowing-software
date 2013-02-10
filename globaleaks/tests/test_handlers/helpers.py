@@ -34,7 +34,7 @@ class TestHandler(unittest.TestCase):
 
         @classmethod
         def get_mock_store(cls):
-            return  ztorm.get('test_store')
+            return  zstorm.get('test_store')
 
         #override handle's get_store and transactor
         BaseHandler.get_store = get_mock_store
