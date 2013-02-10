@@ -183,7 +183,7 @@ GLClientDev.run(function($httpBackend) {
     response = {
       'submission_gus': 's_antanisblinda',
       'fields': context_fields,
-      'receivers_selected': context_receivers,
+      'receivers': context_receivers,
       'context_gus': context_gus,
       'folder_name': '',
       'folder_description': ''
@@ -254,7 +254,7 @@ GLClientDev.run(function($httpBackend) {
       //   'context_gus': context_gus,
       //   'submission_gus': 's_antanisblinda',
       //   'fields': context_fields,
-      //   'receivers_selected': context_receivers,
+      //   'receivers': context_receivers,
       //   'folder_name': '',
       //   'folder_description': ''
       // }
@@ -265,7 +265,7 @@ GLClientDev.run(function($httpBackend) {
       //   'context_gus': context_gus,
       //   'submission_gus': 's_antanisblinda',
       //   'fields': context_fields,
-      //   'receivers_selected': context_receivers,
+      //   'receivers': context_receivers,
       //   'folder_name': '',
       //   'folder_description': ''
       // }
@@ -353,7 +353,7 @@ GLClientDev.run(function($httpBackend) {
         "can_delete_submission": true,
         "can_postpone_expiration": true,
         "contexts": [
-            "c_IZLJpOxNSXeuMQnuLZCl"
+            "c_IZLJpOxNSXeuMQnuLZCm"
         ],
         "creation_date": "Wed Feb  6 09:19:25 2013",
         "description": "An Example Receiver 2",

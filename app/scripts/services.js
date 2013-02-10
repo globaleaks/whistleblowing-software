@@ -144,7 +144,7 @@ angular.module('resourceServices', ['ngResource']).
         self.receivers = [];
         _.each(self.receivers_selected, function(selected, receiver_gus){
           if (selected) {
-            self.current_submission.receivers_selected.push(receiver_gus);
+            self.current_submission.receivers.push(receiver_gus);
           }
         });
         self.finalize = true;

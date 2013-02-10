@@ -3,13 +3,11 @@ GLClient.controller('SubmissionCtrl', ['$scope', 'Node',
       Node, Submission, Receivers) {
   Submission(function(submission){
     $scope.submission = submission;
-    $scope.current_context = submission.current_context;
 
+    $scope.current_context = submission.current_context;
     $scope.receivers_selected = submission.receivers_selected;
 
     $scope.submit = $scope.submission.submit;
-
-    $scope.receivers_selected = $scope.submission.receivers_selected;
     $scope.current_context_receivers = $scope.submission.current_context_receivers;
 
   });
