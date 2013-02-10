@@ -346,6 +346,26 @@ GLClientDev.run(function($httpBackend) {
         "receiver_level": 1,
         "tags": [],
         "update_date": "Wed Feb  6 09:35:23 2013"
+    },
+    {
+        "can_configure_delivery": true,
+        "can_configure_notification": true,
+        "can_delete_submission": true,
+        "can_postpone_expiration": true,
+        "contexts": [
+            "c_IZLJpOxNSXeuMQnuLZCl"
+        ],
+        "creation_date": "Wed Feb  6 09:19:25 2013",
+        "description": "An Example Receiver 2",
+        "languages": [
+            "en",
+            "it"
+        ],
+        "name": "An Example Receiver 3",
+        "receiver_gus": "r_scIBPjjSnUUcINIaflTl",
+        "receiver_level": 1,
+        "tags": [],
+        "update_date": "Wed Feb  6 09:35:23 2013"
     }];
 
     return [200, tip_receivers_resource];
