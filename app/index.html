@@ -45,11 +45,16 @@
           </ul>
         </div>
 
-        <div class="errorConsole" ng-show="errors">
+        <div class="messageConsole" ng-show="errors || successes">
           <div ng-repeat="error in errors"
             class="alert alert-error errorMessage">
             <button type="button" class="close" data-dismiss="alert">×</button>
             <p><strong>{{error.url}}</strong> {{error.code}}: {{error.message}}</p>
+          </div>
+          <div ng-repeat="success in successes"
+            class="alert alert-success successMessage">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <p><strong>Success!</strong> {{success.message}}</p>
           </div>
         </div>
 

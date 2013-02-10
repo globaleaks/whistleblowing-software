@@ -24,12 +24,14 @@ function($scope, $http, $location, Admin) {
   ];
 
   $scope.update = function(model) {
-    $scope.master = angular.copy(model);
-    model.$update();
-  };
-
-  $scope.isUnchanged = function(model) {
-    return angular.equals(model, $scope.master);
+    var success = {};
+    success.message = "Updated " + model;
+    model.$update(function(){
+      if (!$rootScope.successes) {
+        $rootScope.successes = [];
+      };
+      $rootScope.successes.push(success);
+    });
   };
 
 }]);
