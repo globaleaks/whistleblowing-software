@@ -19,7 +19,6 @@ class TestAuthentication(helpers.TestHandler):
 
         return d
 
-
     def test_invalid_admin_login(self):
         pass
 
