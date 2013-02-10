@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-#   config 
+#   config
 #   ******
 #
 # Configuration file do not contain GlobaLeaks Node information, like in the 0.1
@@ -80,6 +80,8 @@ class Config(object):
 
         self.main = OD()
         self.main.glclient_path = get_glclient_path()
+
+        self.sessions = dict()
 
         if self.advanced.debug:
             print "Serving GLClient from %s" % self.main.glclient_path
