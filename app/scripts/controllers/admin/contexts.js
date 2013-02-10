@@ -2,8 +2,6 @@ GLClient.controller('AdminContextsCtrl',
     ['$scope', '$rootScope', 'Admin',
     function($scope, $rootScope, Admin) {
 
-  $scope.new_context = Admin.create_context;
-
   // XXX this is *very* hackish.
   $scope.editFields = function(fields) {
     $rootScope.fieldEditor = true;
