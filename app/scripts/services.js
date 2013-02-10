@@ -322,30 +322,9 @@ angular.module('resourceServices', ['ngResource']).
     };
     return new Admin;
 }).
-  factory('AdminContexts', ['$resource', function($resource) {
-    return $resource('/admin/context/:context_id',
-      {context_id: '@context_gus'},
-      {update:
-          {method: 'PUT'}
-      });
-}]).
   factory('AdminNotification', function($resource) {
     return $resource('/admin/context/:context_id',
       {context_id: '@context_gus'},
-      {update:
-          {method: 'PUT'}
-      });
-}).
-  factory('AdminDelivery', function($resource) {
-    return $resource('/admin/context/:context_id',
-      {context_id: '@context_gus'},
-      {update:
-          {method: 'PUT'}
-      });
-}).
-  factory('AdminReceivers', function($resource) {
-    return $resource('/admin/receiver/:receiver_id',
-      {receiver_id: '@receiver_gus'},
       {update:
           {method: 'PUT'}
       });
