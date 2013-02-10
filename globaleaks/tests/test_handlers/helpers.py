@@ -36,8 +36,14 @@ class TestHandler(unittest.TestCase):
         def get_mock_store(cls):
             return  zstorm.get('test_store')
 
+        self.mock_transport = ''
+        @classmethod
+        def mock_write(self, chunk):
+            self.mock_transport += chunk
+
         #override handle's get_store and transactor
         BaseHandler.get_store = get_mock_store
+        BaseHandler.write = mock_write
         BaseHandler.transactor = transactor
 
     def tearDown(self):
@@ -61,10 +67,11 @@ class TestHandler(unittest.TestCase):
             raise ValueErorr('jbody and body in conflict')
 
         application = Application([])
-        self.tr = proto_helpers.StringTransport()
+
+        tr = proto_helpers.StringTransport()
         connection = httpserver.HTTPConnection()
         connection.factory = application
-        connection.makeConnection(self.tr)
+        connection.makeConnection(tr)
 
         request = httpserver.HTTPRequest(uri='mock',
                                          method=method,
