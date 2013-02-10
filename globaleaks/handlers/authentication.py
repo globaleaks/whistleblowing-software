@@ -8,8 +8,9 @@ from cyclone.util import ObjectDict as OD
 
 from globaleaks.models.node import Node
 from globaleaks.models.receiver import Receiver
+from globaleaks.models.externaltip import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.rest import errors
+from globaleaks.rest.errors import InvalidAuthRequest, InvalidInputFormat, NotAuthenticated
 from globaleaks.config import config
 from globaleaks.utils.random import random_string
 
@@ -25,15 +26,15 @@ def authenticated(usertype):
 
     def wrapper(cls, *args, **kwargs):
         if not cls.current_user:
-           raise errors.NotAuthenticated
+           raise NotAuthenticated
         elif authenticated.role != cls.current_user.role:
             # XXX: eventually change this
-            raise errors.NotAuthenticated
+            raise NotAuthenticated
         else:
             config.sessions[cls.session_id].timestamp = time.time()
             return authenticated.method(cls, *args, **kwargs)
 
-    authenticated.role = role
+    authenticated.role = usertype
     return userfilter
 
 
@@ -52,8 +53,11 @@ class AuthenticationHandler(BaseHandler):
         """
         return config.sessions[self.session_id].id
 
-    def generate_session(self, identifier):
+    def generate_session(self, identifier, role):
        self.session_id = random_string(16, 'a-z,A-Z,0-9')
+
+       # This is the format to preserve sessions in memory
+       # Key = session_id, values "last access" "id" "role"
        config.sessions[self.session_id] = OD(
                timestamp=time.time(),
                id=identifier,
@@ -81,13 +85,16 @@ class AuthenticationHandler(BaseHandler):
 
     @inlineCallbacks
     def post(self):
-        # XXX: input validation
+
         try:
             request = json.loads(self.request.body)
+
+            # TODO modify with the validateMessage
             if not all((field in request) for field in  ('username', 'password', 'role')):
                  raise ValueError
+
         except ValueError :
-                 raise errors.InvalidInputFormat('malformed json')
+                 raise InvalidInputFormat('malformed json')
 
         username = request['username']
         password = request['password']
@@ -105,7 +112,7 @@ class AuthenticationHandler(BaseHandler):
             raise InvalidInputFormat(role)
 
         if not auth:
-            raise errors.InvalidAuthRequest
+            raise InvalidAuthRequest
         else:
             self.finish(json.dumps({
                'session': self.generate_session(auth, role),
@@ -117,6 +124,6 @@ class AuthenticationHandler(BaseHandler):
         """
         if self.current_user:
             del self.current_user
-            del config.sessions[session_id]
+            del config.sessions[self.session_id]
 
         self.finish()
