@@ -12,14 +12,13 @@ import os, sys
 
 import transaction
 from twisted.python import log
+from twisted.python.threadpool import ThreadPool
 from cyclone.util import ObjectDict as OD
 from storm.zope.zstorm import ZStorm
 from storm.tracer import debug
-
+from storm.twisted.transact import Transactor
 from globaleaks.utils.singleton import Singleton
-
-class ConfigError(Exception):
-    pass
+from globaleaks.utils.singleton import Singleton
 
 def get_root_path():
     this_directory = os.path.dirname(__file__)
@@ -37,7 +36,7 @@ def get_glclient_path():
     glclient_path = os.path.join(get_install_path(), 'GLClient', 'app')
     path = os.path.abspath(glclient_path)
     if not os.path.isdir(path):
-        raise ConfigError("GLClient not found at the %s path" % glclient_path)
+        raise IOError("GLClient not found at the %s path" % glclient_path)
 
     return path
 
@@ -102,23 +101,17 @@ class Config(object):
 
 config = Config()
 
-from storm.twisted.transact import Transactor
-from twisted.python.threadpool import ThreadPool
-
-from globaleaks.settings import config as cfg
-
-from globaleaks.utils.singleton import Singleton
 
 class Main(object):
     __metaclass__ = Singleton
 
     def __init__(self):
         log.msg("[D] %s %s " % (__file__, __name__), "Starting db_threadpool")
-        self.db_threadpool = ThreadPool(0, cfg.advanced.db_thread_pool_size)
+        self.db_threadpool = ThreadPool(0, config.advanced.db_thread_pool_size)
         self.db_threadpool.start()
 
         log.msg("[D] %s %s " % (__file__, __name__), "Starting scheduler_threadpool")
-        self.scheduler_threadpool = ThreadPool(0, cfg.advanced.scheduler_thread_pool_size)
+        self.scheduler_threadpool = ThreadPool(0, config.advanced.scheduler_thread_pool_size)
         self.scheduler_threadpool.start()
 
         self.transactor = Transactor(self.db_threadpool)
