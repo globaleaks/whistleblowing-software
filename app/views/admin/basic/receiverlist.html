@@ -13,78 +13,80 @@
     </div>
   </div>
 
-  <div class="row configRow" ng-repeat="receiver in adminReceivers" 
-    ng-class-even="'odd'">
-    <form name="receiverForm" class="config-form">
-      <div class="span4">
-        <label>Name</label>
-        <input type="text"
-        ng-model="receiver.name" value="{{receiver.name}}" required>
-        </input>
+  <div class="row" ng-repeat="receiver in admin.receivers">
+    <div class="span9 configRow" ng-class-even="'odd'">
+      <form name="receiverForm" class="config-form">
+        <div class="span4">
+          <label>Name</label>
+          <input type="text"
+          ng-model="receiver.name" value="{{receiver.name}}" required>
+          </input>
 
-        <label>Email Address</label>
-        <input type="email"
-        ng-model="receiver.notification_fields.mail_address" required>
-        </input>
+          <label>Email Address</label>
+          <input type="email"
+          ng-model="receiver.notification_fields.mail_address" required>
+          </input>
 
-        <label>Password</label>
-        <input type="password"
-        ng-model="receiver.password">
-        </input>
+          <label>Password</label>
+          <input type="password"
+          ng-model="receiver.password">
+          </input>
 
-        <label>Username</label>
-        <strong>{{receiver.username}}</strong>
-      </div>
-      <div class="span4">
-        <label>Can Postpone Expiration</label>
-        <input type="checkbox"
-        ng-model="receiver.can_postpone_expiration">
-        </input>
+          <label>Username</label>
+          <strong>{{receiver.username}}</strong>
+        </div>
 
-        <label>Can Configure Notification</label>
-        <input type="checkbox"
-        ng-model="receiver.can_configure_notification">
-        </input>
+        <div class="span4">
+          <label>Can Postpone Expiration</label>
+          <input type="checkbox"
+          ng-model="receiver.can_postpone_expiration">
+          </input>
 
-        <label>Can Configure Delivery</label>
-        <input type="checkbox"
-        ng-model="receiver.can_configure_delivery">
-        </input>
+          <label>Can Configure Notification</label>
+          <input type="checkbox"
+          ng-model="receiver.can_configure_notification">
+          </input>
 
-        <label>Can Delete Submission</label>
-        <input type="checkbox"
-        ng-model="receiver.can_delete_submission">
-        </input>
+          <label>Can Configure Delivery</label>
+          <input type="checkbox"
+          ng-model="receiver.can_configure_delivery">
+          </input>
 
-        <label>Contexts</label>
-        <p>{{receiver.contexts}}</p>
+          <label>Can Delete Submission</label>
+          <input type="checkbox"
+          ng-model="receiver.can_delete_submission">
+          </input>
 
-        <!-- <label>Languages</label> -->
-        <!-- <select multiple -->
-        <!--   ng-model="receiver.languages" -->
-        <!--   ui-select2 -->
-        <!--   style="width: 200px"> -->
-        <!--   <option -->
-        <!--     ng-repeat="(langCode, langName) in localization.languages" -->
-        <!--     value="{{langCode}}">{{langName}}</option> -->
-        <!-- </select> -->
+          <label>Contexts</label>
+          <p>{{receiver.contexts}}</p>
 
-        <button class="btn btn-success"
-          ng-disabled="receiverForm.$pristine || receiverForm.$invalid"
-          ng-click="update(receiver)">Save</button>
+          <!-- <label>Languages</label> -->
+          <!-- <select multiple -->
+          <!--   ng-model="receiver.languages" -->
+          <!--   ui-select2 -->
+          <!--   style="width: 200px"> -->
+          <!--   <option -->
+          <!--     ng-repeat="(langCode, langName) in localization.languages" -->
+          <!--     value="{{langCode}}">{{langName}}</option> -->
+          <!-- </select> -->
 
-        <button class="btn btn-danger"
-          ng-click="delete_receiver(receiver)">Delete</button>
+          <button class="btn btn-success"
+            ng-disabled="receiverForm.$pristine || receiverForm.$invalid"
+            ng-click="update(receiver)">Save</button>
 
-      </div>
-    </form>
+          <button class="btn btn-danger"
+            ng-click="delete(receiver)">Delete</button>
+
+        </div>
+      </form>
+    </div>
   </div>
   <div class="row">
-    <div class="span4">
+    <div class="configRow span9">
       <input type="text"
         ng-model="new_receiver_name">
       <button class="btn"
-        ng-click="new_receiver()">Add</button>
+        ng-click="admin.create_receiver(new_receiver_name)">Add</button>
     </div>
   </div>
 </div>
