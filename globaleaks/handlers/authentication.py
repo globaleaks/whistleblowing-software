@@ -1,6 +1,7 @@
 from functools import wraps
 import json
 import time
+from storm.exceptions import NotOneError
 
 from twisted.internet.defer import inlineCallbacks
 from storm.twisted.transact import transact
@@ -54,33 +55,58 @@ class AuthenticationHandler(BaseHandler):
         return config.sessions[self.session_id].id
 
     def generate_session(self, identifier, role):
-       self.session_id = random_string(16, 'a-z,A-Z,0-9')
 
-       # This is the format to preserve sessions in memory
-       # Key = session_id, values "last access" "id" "role"
-       config.sessions[self.session_id] = OD(
+        self.session_id = random_string(26, 'a-z,A-Z,0-9')
+
+        # This is the format to preserve sessions in memory
+        # Key = session_id, values "last access" "id" "role"
+
+        new_session = OD(
                timestamp=time.time(),
                id=identifier,
                role=role,
         )
+        config.sessions[self.session_id] = new_session
+
+        print "+++", new_session, "key", self.session_id
+        return self.session_id
 
     @transact
     def login_wb(self, receipt):
         store = self.get_store()
-        node_desc = store.find(WhistleblowerTip,
-                               WhistleblowerTip.receipt == unicode(receipt)).one()
-        return unicode(node_desc.receipt)
+
+        print "*** looking for receipt/password", receipt
+        try:
+            wb = store.find(WhistleblowerTip,
+                                   WhistleblowerTip.receipt == unicode(receipt)).one()
+        except NotOneError:
+            raise InvalidAuthRequest
+
+        if not wb:
+            raise InvalidAuthRequest
+
+        return unicode(wb.receipt)
 
     @transact
     def login_receiver(self, username, password):
         store = self.get_store()
-        fstreceiver = store.find(Receiver).first()
+
+        print "*** looking for receiver", unicode, "with password", password
+        try:
+            fstreceiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
+        except NotOneError:
+            raise InvalidAuthRequest
+
+        if not fstreceiver:
+            raise InvalidAuthRequest
+
         return unicode(fstreceiver.receiver_gus)
 
     @transact
     def login_admin(self, password):
         store = self.get_store()
         node = store.find(Node).one()
+        print "*** Admin password received:", password, "expected password", node.password
         return node.password == password
 
     @inlineCallbacks
@@ -93,30 +119,38 @@ class AuthenticationHandler(BaseHandler):
             if not all((field in request) for field in  ('username', 'password', 'role')):
                  raise ValueError
 
-        except ValueError :
-                 raise InvalidInputFormat('malformed json')
+            username = request['username']
+            password = request['password']
+            role = request['role']
 
-        username = request['username']
-        password = request['password']
-        role = request['role']
+            if role == 'admin':
+                # username is ignored
+                auth = yield self.login_admin(password)
+            elif role == 'wb':
+                # username is ignored
+                auth = yield self.login_wb(password)
+            elif role == 'receiver':
+                auth = yield self.login_receiver(username, password)
+            else:
+                raise InvalidInputFormat(role)
 
-        if role == 'admin':
-            # username is ignored
-            auth = yield self.login_admin(password)
-        elif role == 'wb':
-            # username is ignored
-            auth = yield self.login_wb(password)
-        elif role == 'receiver':
-            auth = yield self.login_receiver(username, password)
-        else:
-            raise InvalidInputFormat(role)
+            if not auth:
+                raise InvalidAuthRequest
 
-        if not auth:
-            raise InvalidAuthRequest
-        else:
-            self.finish(json.dumps({
-               'session': self.generate_session(auth, role),
-            }))
+            answer = dict({'session_id': self.generate_session(auth, role)})
+            self.write(answer)
+            self.set_status(200)
+
+        except (InvalidInputFormat, InvalidAuthRequest) as error:
+
+            self.write_error(error)
+
+        except ValueError, e:
+
+            # It's another InvalidInputFormat:
+            self.write_error(InvalidInputFormat(e))
+
+        self.finish()
 
     def delete(self):
         """
