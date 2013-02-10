@@ -33,15 +33,106 @@ angular.module('resourceServices', ['ngResource']).
 }).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', function($resource) {
-    // This is a factory function responsible for creating functions related
-    // to the creation of submissions
-    return $resource('/submission/:submission_id/',
+  factory('Submission', ['$resource', 'Node', 'Contexts', 'Receivers',
+          function($resource, Node, Contexts, Receivers) {
+
+    var submissionResource = $resource('/submission/:submission_id/',
         {submission_id: '@submission_gus'},
         {submit:
           {method: 'PUT'}
     });
-}).
+
+    var isReceiverInContext = function(receiver, context) {
+
+      if (receiver.contexts.indexOf(context.context_gus)) {
+        return true;
+      } else {
+        return false
+      };
+
+    };
+
+    return function(fn) {
+      var self = this,
+        forEach = angular.forEach;
+
+      self.contexts = [];
+      self.receivers = [];
+      self.current_context = {};
+      self.selected_language = null;
+      self.current_context_receivers = [];
+      self.receivers_selected = {};
+
+      var setReceiversForCurrentContext = function() {
+        // Make sure all the receivers are selected by default
+        forEach(self.receivers, function(receiver, idx) {
+          // Check if receiver belongs to the currently selected context
+          if (isReceiverInContext(receiver, self.current_context)) {
+            self.current_context_receivers[idx] = receiver;
+            self.receivers_selected[receiver.receiver_gus] = true;
+          }
+        });
+      };
+
+      Node.get(function(node_info) {
+        self.selected_language = node_info.languages[0].code;
+
+        Contexts.query(function(contexts){
+          self.contexts = contexts;
+          Receivers.query(function(receivers){
+            self.receivers = receivers;
+            setReceiversForCurrentContext();
+            fn(self);
+          });
+        });
+      });
+
+      self.create = function() {
+        var new_submission = new submissionResource({
+          context_gus: self.current_context.context_gus,
+          wb_fields: {}, files: [], finalize: false, receivers: []
+        });
+
+        new_submission.$save(function(submissionID){
+          // XXX the backend should return this.
+          new_submission.wb_fields = {};
+          setReceiversForCurrentContext();
+        });
+
+      };
+
+      self.submit = function() {
+        if (!$scope.reivers_selected) {
+          console.log("Error: No receivers selected!");
+          return;
+        }
+
+        // Set the submission field values
+        _.each($scope.submission.current_context.fields, function(field, k) {
+          $scope.submission.wb_fields[field.name] = field.value;
+        });
+
+        // Set the currently selected receivers
+        $scope.submission.receivers = [];
+        _.each($scope.receivers_selected, function(selected, receiver_gus){
+          if (selected) {
+            $scope.submission.receivers.push(receiver_gus);
+          }
+        });
+        $scope.submission.finalize = true;
+
+        $scope.submission.$submit(function(result){
+          if (result) {
+            $scope.submission_complete = true;
+          }
+
+        });
+
+      };
+
+    };
+
+}]).
   factory('Tip', ['$resource', 'localization', 'Receivers',
           function($resource, localization, Receivers) {
     var receiversResource = $resource('/tip/:tip_id/receivers', {tip_id: '@tip_id'}, {}),
@@ -159,54 +250,5 @@ angular.module('resourceServices', ['ngResource']).
 angular.module('localeServices', ['resourceServices']).
   factory('localization', function(Node, Contexts, Receivers){
     var localization = {};
-
-    if (!localization.node_info) {
-      // We set this to the parent scope that that we don't have to make this
-      // request again later.
-      Node.get(function(node_info) {
-        // Here are functions that are specific to language localization. They
-        // are somwhat hackish and I am sure there is a javascript ninja way of
-        // doing them.
-        // XXX refactor these into something more 1337
-
-        localization.node_info = node_info;
-        localization.selected_language = localization.node_info.languages[0].code;
-
-        localization.get_node_name = function() {
-          //return localization.node_info.name[localization.selected_language];
-          return localization.node_info.name;
-        }
-
-        // Here we add to every context a special function that allows us to
-        // retrieve the value of the name and description of the context
-        // geolocalized.
-        //
-        // for (var i in localization.node_info.contexts) {
-        //   localization.node_info.contexts[i].get_context_name = function() {
-        //     return this.name[localization.selected_language];
-        //   }
-        //   localization.node_info.contexts[i].get_context_description = function() {
-        //     return this.description[localization.selected_language];
-        //   }
-        // }
-
-      });
-    };
-
-    // XXX refactor using proper caching factory
-    // This may also create issues when this request has not been completed and
-    // we try to access the localization.reciever variable
-    if(!localization.current_context) {
-      Contexts.query(function(contexts) {
-          localization.contexts = contexts;
-
-          Receivers.query(function(receivers) {
-            localization.receivers = receivers;
-            localization.current_context_receivers = [];
-            localization.current_context = localization.contexts[0];
-          });
-      });
-    };
-    return localization;
 });
 

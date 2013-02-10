@@ -9,8 +9,8 @@
         <h1>New Submission</h1>
         <p>I want to report on
         <select
-          ng-model="localization.current_context"
-          ng-options="context as context.name for context in localization.contexts">
+          ng-model="submission.current_context"
+          ng-options="context as context.name for context in submission.contexts">
         </select>
       </div>
     </div>
@@ -35,7 +35,7 @@
       <div ng-switch-when="1 Receiver selection"
         class="receiverCards">
         <p class="lead">Choose the receivers that will be sure to transform your submission into action!</p>
-        <div ng-repeat="receiver in localization.receivers">
+        <div ng-repeat="receiver in submission.receivers">
 
           <div class="receiverCard span5"
             ng-class="{selected: receivers_selected[receiver.receiver_gus]}"
@@ -75,7 +75,7 @@
 
         <p class="lead">Enter the information that is relevant to your
         submission and upload the files you need to upload</p>
-        <p>{{localization.current_context.description}}</p>
+        <p>{{submission.current_context.description}}</p>
 
         <div class="row">
 
