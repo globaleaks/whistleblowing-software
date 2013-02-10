@@ -360,6 +360,7 @@ class Receiver(TXModel):
             'can_configure_delivery' : bool(self.can_configure_delivery),
             'can_configure_notification' : bool(self.can_configure_notification),
             'username' : unicode(self.username),
+            'password' : unicode(self.password),
             'notification_fields' : dict(self.notification_fields)
         }
         return dict(descriptionDict)
