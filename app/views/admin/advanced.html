@@ -46,8 +46,6 @@
               ng-model="adminNode.public_stats_update_time" required>
           </div>
         </div>
-        <div ng-include="'views/admin/advanced/node.html'">
-        </div>
 
         <button class="btn btn-success"
           ng-disabled="nodeConfigForm.$invalid || isUnchanged(adminNode)"
