@@ -30,6 +30,13 @@ class Receiver(TXModel):
     name = Unicode()
     description = Unicode()
 
+    # Authentication variables
+    username = Unicode()
+    password = Unicode()
+
+    # notification_variable
+    notification_fields = Pickle()
+
     # Tags and know_languages reflect in the Context, based on the
     # sum of the Receivers assigned.
     tags = Pickle()
@@ -70,6 +77,9 @@ class Receiver(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("initialization failed (wrong %s)" % e)
 
+        # TODO validate the notification fields
+
+        # TODO verify the username is unique or return error!
         self.receiver_gus = idops.random_receiver_gus()
 
         self.creation_date = gltime.utcTimeNow()
@@ -101,6 +111,8 @@ class Receiver(TXModel):
         except TypeError, e:
             raise InvalidInputFormat("admin update failed (wrong %s)" % e)
 
+        # TODO validate the notification fields
+        # TODO verify the username is unique or return error!
         requested_r.update_date = gltime.utcTimeNow()
         return requested_r._description_dict()
 
@@ -127,12 +139,17 @@ class Receiver(TXModel):
             requested_r.description = receiver_dict['description']
             requested_r.tags = receiver_dict['tags']
             requested_r.know_languages = receiver_dict['languages']
+            requested_r.password = receiver_dict['password']
+            requested_r.notification_fields = receiver_dict['notification_fields']
+
             requested_r.update_date = gltime.utcTimeNow()
 
         except KeyError, e:
             raise InvalidInputFormat("self update failed (missing %s)" % e)
         except TypeError, e:
             raise InvalidInputFormat("self update failed (wrong %s)" % e)
+
+        # TODO validate the notification fields
 
         return requested_r._description_dict()
 
@@ -308,6 +325,9 @@ class Receiver(TXModel):
         self.tags = source_rd['tags']
         self.know_languages = source_rd['languages']
 
+        self.username = source_rd['username']
+        self.password = source_rd['password']
+        self.notification_fields = source_rd['notification_fields']
         # This need to be verified in the calling function, between the valid
         # notification modules available.
 
@@ -335,7 +355,9 @@ class Receiver(TXModel):
             'can_delete_submission' : bool(self.can_delete_submission),
             'can_postpone_expiration' : bool(self.can_postpone_expiration),
             'can_configure_delivery' : bool(self.can_configure_delivery),
-            'can_configure_notification' : bool(self.can_configure_notification)
+            'can_configure_notification' : bool(self.can_configure_notification),
+            'username' : unicode(self.username),
+            'notification_fields' : dict(self.notification_fields)
         }
         return dict(descriptionDict)
 

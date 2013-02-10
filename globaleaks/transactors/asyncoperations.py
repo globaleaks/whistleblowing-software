@@ -18,8 +18,7 @@ from globaleaks.transactors.base import MacroOperation
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import File, ReceiverTip, Comment
 from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.submission import Submission
-from globaleaks.models.options import PluginProfiles, ReceiverConfs
+from globaleaks.models.node import Node
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.config import config
 from globaleaks.rest.errors import ReceiverGusNotFound
@@ -37,10 +36,14 @@ class AsyncOperations(MacroOperation):
         store = self.getStore()
 
         receivertip_iface = ReceiverTip(store)
-        receivercfg_iface = ReceiverConfs(store)
-        profile_iface = PluginProfiles(store)
 
         not_notified_tips = receivertip_iface.get_tips_by_notification_mark(u'not notified')
+
+        node_desc = Node(store).get_single()
+        if node_desc['notification_settings'] is None:
+            print "This node has not notification configured: postponed notification of ",\
+                len(not_notified_tips), "tips"
+            return
 
         for single_tip in not_notified_tips:
 
@@ -51,22 +54,13 @@ class AsyncOperations(MacroOperation):
 
             receiver_info = receivers_map['actor']
 
-            receiver_conf = receivercfg_iface.get_active_conf(receiver_info['receiver_gus'],
-               single_tip['context_gus'], plugin_type)
+            # Obtain Notification from Node and from Receveir.notification_fields
 
-            if receiver_conf is None:
-               print "Receiver", receiver_info['receiver_gus'],\
-               "has not an active notification settings in context", single_tip['context_gus'], "for", plugin_type
-                # TODO separate key in answer
-               continue
+            settings_dict = { 'admin_settings' : node_desc['notification_settings'],
+                             'receiver_settings' : receiver_info['notification_fields']}
 
-            # Ok, we had a valid an appropriate receiver configuration for the notification task
-            related_profile = profile_iface.get_single(receiver_conf['profile_gus'])
-
-            settings_dict = { 'admin_settings' : related_profile['admin_settings'],
-                             'receiver_settings' : receiver_conf['receiver_settings']}
-
-            plugin = PluginManager.instance_plugin(related_profile['plugin_name'])
+            # hardcoded mail plugin just
+            plugin = PluginManager.instance_plugin(u'Mail')
 
             updated_tip = receivertip_iface.update_notification_date(single_tip['tip_gus'])
             return_code = plugin.do_notify(settings_dict, u'tip', updated_tip)
@@ -84,10 +78,14 @@ class AsyncOperations(MacroOperation):
 
         comment_iface = Comment(store)
         internaltip_iface = InternalTip(store)
-        receivercfg_iface = ReceiverConfs(store)
-        profile_iface = PluginProfiles(store)
 
         not_notified_comments = comment_iface.get_comment_by_mark(marker=u'not notified')
+
+        node_desc = Node(store).get_single()
+        if node_desc['notification_settings'] is None:
+            print "This node has not notification configured: postponed notification of",\
+                len(not_notified_comments),"comments"
+            return
 
         for comment in not_notified_comments:
 
@@ -98,27 +96,18 @@ class AsyncOperations(MacroOperation):
 
             for receiver_info in receivers_list:
 
-                receiver_conf = receivercfg_iface.get_active_conf(receiver_info['receiver_gus'],
-                    itip_info['context_gus'], plugin_type)
+                node_desc = Node(store).get_single()
+                settings_dict = { 'admin_settings' : node_desc['notification_settings'],
+                                  'receiver_settings' : receiver_info['notification_fields']}
 
-                if receiver_conf is None:
-                    # TODO applicative log, database tracking of queue
-                    continue
-
-                # Ok, we had a valid an appropriate receiver configuration for the notification task
-                related_profile = profile_iface.get_single(receiver_conf['profile_gus'])
-
-                settings_dict = { 'admin_settings' : related_profile['admin_settings'],
-                                  'receiver_settings' : receiver_conf['receiver_settings']}
-
-                plugin = PluginManager.instance_plugin(related_profile['plugin_name'])
+                plugin = PluginManager.instance_plugin(u'Mail')
 
                 return_code = plugin.do_notify(settings_dict, u'comment', comment)
 
                 if return_code:
-                    print "Notification of comment successful for user", receiver_conf['receiver_gus']
+                    print "Notification of comment successful for user", receiver_info['receiver_gus']
                 else:
-                    print "Notification of comment failed for user", receiver_conf['receiver_gus']
+                    print "Notification of comment failed for user", receiver_info['receiver_gus']
 
             # remind: comment are not guarantee until Task manager is not developed
             comment_iface.flip_mark(comment['comment_id'], u'notified')
@@ -128,8 +117,9 @@ class AsyncOperations(MacroOperation):
 
         plugin_type = u'fileprocess'
 
-        profile_iface = PluginProfiles(store)
-        profile_associated = profile_iface.get_profiles_by_contexts([ context_gus ] )
+        #profile_iface = PluginProfiles(store)
+        #profile_associated = profile_iface.get_profiles_by_contexts([ context_gus ] )
+        profile_associated = []
 
         plugin_found = False
         validate_file = False
@@ -214,8 +204,6 @@ class AsyncOperations(MacroOperation):
 
         file_iface = File(store)
         receivertip_iface = ReceiverTip(store)
-        receivercfg_iface = ReceiverConfs(store)
-        profile_iface = PluginProfiles(store)
 
         ready_files = file_iface.get_file_by_marker(file_iface._marker[1]) # ready
 
@@ -226,24 +214,7 @@ class AsyncOperations(MacroOperation):
 
             print "Delivery management for", single_file['file_name']
 
-            #rtip_list = receivertip_iface.get_tips_by_itip(single_file['internaltip_id'])
-
-            #for rtip in rtip_list:
-
-                # --------------------------------------------------------------------
-                # This code is not yet executed until GPG delivery plugin is not ready
-
-                # Ok, we had a valid an appropriate receiver configuration for the delivery task
-                #related_profile = profile_iface.get_single(receiver_conf['profile_gus'])
-
-                #settings_dict = { 'admin_settings' : related_profile['admin_settings'],
-                #                  'receiver_settings' : receiver_conf['receiver_settings']}
-
-                #plugin = PluginManager.instance_plugin(related_profile['plugin_name'])
-
-                # TODO Update delivery information
-
-                #return_code = plugin.do_delivery(settings_dict, single_file)
+            # Manage special delivery if configured
 
             tempfpath = os.path.join(config.advanced.submissions_dir, single_file['file_gus'])
             file_iface.add_content_from_fs(single_file['file_gus'], tempfpath)

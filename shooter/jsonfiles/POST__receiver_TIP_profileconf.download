@@ -1,5 +1,0 @@
-active:=true
-receiver_settings:={"enable_encryption":"true","password":"@RAW@"}
-creator_receiver=This information is ignored by the GLB, because come from handlers+models
-context_gus=@CID@
-profile_gus=@PID@

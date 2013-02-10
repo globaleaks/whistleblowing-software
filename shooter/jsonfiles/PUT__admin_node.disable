@@ -4,6 +4,6 @@ hidden_service=yaddayaddayaddayadd1.onion
 public_site=http://storytelling.ir
 stats_update_time:=12
 password=ciaociao
-notification_settings:={"server":"box549.bluehost.com","port":25,"username":"sendaccount939@globaleaks.org","password":"sendaccount939","ssl":false}
+notification_settings:={}
 email=webmaster@storytelling.ir
 languages:=[]

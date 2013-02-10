@@ -39,6 +39,9 @@ dt "1" "D2 DELETE task alljobs" "Disabling all the scheduled jobs"
 dt "2" "A2 POST raw None print-context_gus" "Creating Context 1"
 context_one=$ret
 
+# Create notification settings for the node 
+dt "3" "A1 PUT" "Updated Node"
+
 # Create first receiver.
 dt "3" "A4 POST print-receiver_gus raw None" "Creating Receiver 1"
 receiver_one=$ret

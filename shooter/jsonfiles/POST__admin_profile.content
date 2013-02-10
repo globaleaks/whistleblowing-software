@@ -1,6 +1,0 @@
-plugin_type=fileprocess
-plugin_name=File type validation
-context_gus=@CID@
-profile_name=Deny some @RANDOM@ files
-profile_description=Perform analysis and do not accept .exe and video files submitted
-admin_settings:={"drop":"exe,mpeg"}

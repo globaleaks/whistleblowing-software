@@ -32,6 +32,9 @@ class receiverReceiverDesc(GLTypes):
         'description' : unicode,
         'tags': list,
         'languages' : list,
+        'username' : unicode,
+        'password' : unicode,
+        'notification_fields' : dict,
         'creation_date' : timeType,
         'update_date' : timeType,
         'last_access' : timeType,
@@ -81,6 +84,8 @@ class adminNodeDesc(GLTypes):
         'public_stats_update_time' : int,
         'private_stats_update_time' : int,
         'email' : unicode,
+        'password' : unicode,
+        'notification_settings' : dict,
         'languages' : list
     }
 
@@ -104,6 +109,9 @@ class adminReceiverDesc(GLTypes):
 
     specification =  {
         'receiver_gus' : receiverGUS,
+        'username' : unicode,
+        'password' : unicode,
+        'notification_fields' : dict,
         'name' : unicode,
         'description' : unicode,
         'tags': list,
@@ -113,42 +121,9 @@ class adminReceiverDesc(GLTypes):
         'last_access' : timeType,
         'contexts' : [ contextGUS ],
         'receiver_level' : int,
-        'notification_selected' : unicode,
-        'notification_fields' : unicode,
-        'delivery_selected' : unicode,
-        'delivery_fields' : unicode,
         'can_delete_submission' : bool,
         'can_postpone_expiration' : bool,
         'can_configure_delivery' : bool,
         'can_configure_notification' : bool
-    }
-
-class adminProfileDesc(GLTypes):
-
-    specification = {
-        'plugin_type': unicode,
-        'plugin_name' : unicode,
-        'plugin_description' : unicode,
-        'context_gus' : contextGUS,
-        'profile_gus' : profileGUS,
-        'profile_name' : unicode,
-        'profile_description' : unicode,
-        'creation_time' : timeType,
-        'admin_fields' : [ formFieldsDict ],
-        'admin_settings' : dict,
-        'receiver_fields' : [ formFieldsDict ]
-    }
-
-class receiverConfDesc(GLTypes):
-
-    specification = {
-        'active' : bool,
-        'config_id' : int,
-        'receiver_settings' : dict,
-        'creator_receiver' : receiverGUS,
-        'context_gus' : contextGUS,
-        'profile_gus' : profileGUS,
-        'creation_date': timeType,
-        'last_update': timeType
     }
 

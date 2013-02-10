@@ -65,7 +65,10 @@ done
 # Force tip schedule creation
 dt "6" "D2 GET task delivery" "Forcing delivery asyncronous operation"
 
-dt "3" "D1 GET dump itip print-itip_elements" "dumping number of internaltips, after tests"
+# Force notification
+dt "6" "D2 GET task notification" "Forcing notification asyncronous operation"
+
+dt "7" "D1 GET dump itip print-itip_elements" "dumping number of internaltips, after tests"
 aftercount=$ret
 
 echo "[*] before: $beforecount after: $aftercount"

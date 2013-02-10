@@ -33,6 +33,9 @@ URTA = {
     'T2_GET':'GET_/tip/@TIP@/comments',
     'T3_GET':'GET_/tip/@TIP@/receivers',
 
+    'R1_GET':'GET_/receiver/@TIP@',
+    'R1_PUT':'PUT_/receiver/@TIP@',
+
     'A1_GET':'GET_/admin/node',
     'A1_PUT':'PUT_/admin/node',
     'A2_GET':'GET_/admin/context',
@@ -46,28 +49,11 @@ URTA = {
     'A5_PUT':'PUT_/admin/receiver/@RID@',
     'A5_DELETE':'DELETE_/admin/receiver/@RID@',
     'A6_GET':'GET_/admin/plugin',
-    'A7_GET':'GET_/admin/profile',
-    'A7_POST':'POST_/admin/profile',
-    'A8_GET':'GET_/admin/profile/@PID@',
-    'A8_PUT':'PUT_/admin/profile/@PID@',
-    'A8_DELETE':'DELETE_/admin/profile/@PID@',
-    'A9_GET':'GET_/admin/receiversetting/@RID@',
-    'A9_POST':'POST_/admin/receiversetting/@RID@',
-    'AA_GET':'GET_/admin/receiversetting/@CFGID@/receiver/@RID@',
-    'AA_PUT':'PUT_/admin/receiversetting/@CFGID@/receiver/@RID@',
-    'AA_DELETE':'DELETE_/admin/receiversetting/@CFGID@/receiver/@RID@',
     'AB_GET':'GET_/admin/statistics/',
 
     'D1_GET':'GET_/debug/overview/@DUMP@',
     'D2_DELETE':'DELETE_/debug/tasks/@TASK@',
-    'D2_GET':'GET_/debug/tasks/@TASK@',
-
-    'R2_GET':'GET_/receiver/@TIP@/profile',
-    'R3_GET':'GET_/receiver/@TIP@/profileconf',
-    'R3_POST':'POST_/receiver/@TIP@/profileconf',
-    'R4_GET':'GET_/receiver/@TIP@/profileconf/@CFGID@',
-    'R4_PUT':'PUT_/receiver/@TIP@/profileconf/@CFGID@',
-    'R4_DELETE':'DELETE_/receiver/@TIP@/profileconf/@CFGID@'
+    'D2_GET':'GET_/debug/tasks/@TASK@'
 }
 
 baseurl = "http://127.0.0.1:8082"
@@ -160,10 +146,8 @@ def fix_varline(inputline):
             '@SID@': 'sid', # Session GUS
             '@RID@': 'rid', # Receiver GUS
             '@RAW@': 'raw', # RAW JSON string
-            '@CFGID@': 'cfgid', # Receiver Config ID
             '@TASK@': 'task', # task scheduled type, or table shortnames
             '@DUMP@': 'dump', # task scheduled type, or table shortnames
-            '@PID@' : 'pid', # Profile GUS (plugin)
             '@CN@' : 'cn'   # Configuration Number (numeric ID)
                 }.iteritems():
 
