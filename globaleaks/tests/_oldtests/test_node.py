@@ -14,14 +14,12 @@ from globaleaks.models.node import Node
 
 class NodeTest(unittest.TestCase):
     def setUp(self):
-        unittest.TestCase.setUp(self)
-
         self.threadpool = FakeThreadPool()
         self.transactor = Transactor(self.threadpool)
         main.transactor = self.transactor
 
         config.__init__(get_db_file('test.db'))
-        
+
         # this call is to create the db file: test.db
         # the file is than removed in teardown using os.remove()
         config.main.zstorm.get('main_store')
@@ -37,7 +35,7 @@ class NodeTest(unittest.TestCase):
         @defer.inlineCallbacks
         def run_test():
             yield tables.runCreateTable(Node)
-            
+
         return run_test()
 
     def test_02_test_empy_table(self):
