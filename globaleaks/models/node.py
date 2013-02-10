@@ -35,6 +35,8 @@ class Node(TXModel):
     email = Unicode()
     languages = Pickle()
     creation_time = DateTime()
+    notification_settings = Pickle()
+    password = Unicode()
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -72,6 +74,11 @@ class Node(TXModel):
 
         try:
             node_data._import_dict(input_dict)
+
+            # those elements are present only in update
+            node_data.notification_settings = input_dict['notification_settings']
+            node_data.password = input_dict['password']
+
         except KeyError, e:
             raise InvalidInputFormat("Node update fail (missing %s)" % e)
         except TypeError, e:
@@ -108,6 +115,8 @@ class Node(TXModel):
                    'public_site' : unicode(self.public_site),
                    'stats_update_time' : int(self.stats_update_time),
                    'email' : unicode(self.email),
+                   'notification_settings' : dict(self.notification_settings) if self.notification_settings else None,
+                   'password' : unicode(self.password),
                    'languages' : unicode(self.languages)
             }
         return retDict

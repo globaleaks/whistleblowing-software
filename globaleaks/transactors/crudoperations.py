@@ -6,7 +6,6 @@ from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import File, ReceiverTip, WhistleblowerTip, Comment
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.submission import Submission
-from globaleaks.models.options import PluginProfiles, ReceiverConfs
 from globaleaks.plugins.manager import PluginManager
 
 from globaleaks.rest.errors import ForbiddenOperation, InvalidInputFormat
@@ -147,12 +146,6 @@ class CrudOperations(MacroOperation):
         # Align all the receiver associated to the context, that the context cease to exist
         receiver_iface.align_context_delete(context_desc['receivers'], context_gus)
 
-        # Get the profile list related to context_gus and delete all of them
-        profile_iface = PluginProfiles(store)
-        profile_list = profile_iface.get_profiles_by_contexts([ context_gus ])
-        for prof in profile_list:
-            profile_iface.delete_profile(prof['profile_gus'])
-
         # Get the submission list under the context, and delete all of them
         submission_iface = Submission(store)
         submission_list = submission_iface.get_all()
@@ -254,70 +247,10 @@ class CrudOperations(MacroOperation):
 
         context_iface.align_receiver_delete(receiver_desc['contexts'], receiver_gus)
 
-        receiverconf_iface = ReceiverConfs(store)
-        receivercfg_list = receiverconf_iface.get_confs_by_receiver(receiver_gus)
-        for rcfg in receivercfg_list:
-            receiverconf_iface.delete(rcfg['config_id'], receiver_gus)
-
         # Finally delete the receiver
         receiver_iface.receiver_delete(receiver_gus)
 
         self.returnData(receiver_desc)
-        self.returnCode(200)
-        return self.prepareRetVals()
-
-    @transact
-    def get_profile_list(self):
-
-        profile_iface = PluginProfiles(self.getStore())
-        all_profiles = profile_iface.get_all()
-
-        self.returnData(all_profiles)
-        self.returnCode(200)
-        return self.prepareRetVals()
-
-    @transact
-    def create_profile(self, request):
-
-        profile_iface = PluginProfiles(self.getStore())
-
-        profile_description = profile_iface.new(request)
-
-        self.returnData(profile_description)
-        self.returnCode(201)
-        return self.prepareRetVals()
-
-    @transact
-    def get_profile(self, profile_gus):
-
-        profile_iface = PluginProfiles(self.getStore())
-
-        profile_description = profile_iface.get_single(profile_gus)
-
-        self.returnData(profile_description)
-        self.returnCode(200)
-        return self.prepareRetVals()
-
-    @transact
-    def update_profile(self, profile_gus, request):
-
-        profile_iface = PluginProfiles(self.getStore())
-
-        profile_description = profile_iface.update(profile_gus, request)
-
-        self.returnData(profile_description)
-        self.returnCode(201)
-        return self.prepareRetVals()
-
-    @transact
-    def delete_profile(self, profile_gus):
-
-        profile_iface = PluginProfiles(self.getStore())
-
-        profile_description = profile_iface.get_single(profile_gus)
-        profile_iface.delete_profile(profile_gus)
-
-        self.returnData(profile_description)
         self.returnCode(200)
         return self.prepareRetVals()
 
@@ -361,100 +294,6 @@ class CrudOperations(MacroOperation):
         profiles_list = profile_iface.get_profiles_by_contexts(receiver_associated_contexts)
 
         self.returnData(profiles_list)
-        self.returnCode(200)
-        return self.prepareRetVals()
-
-    @transact
-    def get_receiversetting_list(self, receiver_gus):
-
-        store = self.getStore()
-
-        receivercfg_iface = ReceiverConfs(store)
-        confs_created = receivercfg_iface.get_confs_by_receiver(receiver_gus)
-
-        self.returnData(confs_created)
-        self.returnCode(200)
-        return self.prepareRetVals()
-
-    @transact
-    def new_receiversetting(self, receiver_gus, request, receiver_desc=None):
-
-        store = self.getStore()
-
-        profile_desc = PluginProfiles(store).get_single(request['profile_gus'])
-
-        # Admin do not pass receiver_desc, and then is not checked capability
-        if not receiver_desc:
-            pass
-        elif  profile_desc['plugin_type'] == u'notification' and receiver_desc['can_configure_notification']:
-            pass
-        elif profile_desc['plugin_type'] == u'delivery' and receiver_desc['can_configure_delivery']:
-            pass
-        else:
-            raise ForbiddenOperation
-
-        receivercfg_iface = ReceiverConfs(store)
-        config_desc = receivercfg_iface.new(receiver_gus, request)
-
-        if config_desc['active']:
-            # keeping active only the last configuration requested
-            receivercfg_iface.deactivate_all_but(config_desc['config_id'], config_desc['context_gus'],
-                receiver_gus, config_desc['plugin_type'])
-
-        self.returnData(config_desc)
-        self.returnCode(201)
-        return self.prepareRetVals()
-
-    @transact
-    def get_receiversetting(self, receiver_gus, conf_id):
-
-        store = self.getStore()
-
-        conf_requested =  ReceiverConfs(store).get_single(conf_id)
-
-        if conf_requested['receiver_gus'] != receiver_gus:
-            raise ForbiddenOperation
-
-        self.returnData(conf_requested)
-        self.returnCode(200)
-        return self.prepareRetVals()
-
-    @transact
-    def update_receiversetting(self, receiver_gus, conf_id, request, receiver_desc=None):
-
-        store = self.getStore()
-
-        profile_desc = PluginProfiles(store).get_single(request['profile_gus'])
-
-        # Admin do not pass receiver_desc, and then is not checked capability
-        if not receiver_desc:
-            pass
-        elif  profile_desc['plugin_type'] == u'notification' and receiver_desc['can_configure_notification']:
-            pass
-        elif profile_desc['plugin_type'] == u'delivery' and receiver_desc['can_configure_delivery']:
-            pass
-        else:
-            raise ForbiddenOperation
-
-        receivercfg_iface = ReceiverConfs(store)
-        config_update = receivercfg_iface.update(conf_id, receiver_gus, request)
-
-        if config_update['active']:
-            # keeping active only the last configuration requested
-            receivercfg_iface.deactivate_all_but(config_update['config_id'], config_update['context_gus'],
-                receiver_gus, config_update['plugin_type'])
-
-        self.returnData(config_update)
-        self.returnCode(200)
-        return self.prepareRetVals()
-
-    @transact
-    def delete_receiversetting(self, receiver_gus, conf_id):
-
-        store = self.getStore()
-
-        ReceiverConfs(store).delete(conf_id, receiver_gus)
-
         self.returnCode(200)
         return self.prepareRetVals()
 
@@ -756,8 +595,6 @@ class CrudOperations(MacroOperation):
                           'rtip' : ReceiverTip,
                           'receivers' : Receiver,
                           'comment' : Comment,
-                          'profiles' : PluginProfiles,
-                          'rcfg' : ReceiverConfs,
                           'file' : File,
                           'submission' : Submission,
                           'contexts' : Context }

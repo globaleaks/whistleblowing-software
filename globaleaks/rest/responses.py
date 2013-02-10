@@ -19,8 +19,6 @@ from globaleaks.rest.requests import receiverTipDesc
 from globaleaks.rest.requests import actorsCommentDesc
 from globaleaks.rest.requests import adminContextDesc
 from globaleaks.rest.requests import adminReceiverDesc
-from globaleaks.rest.requests import adminProfileDesc
-from globaleaks.rest.requests import receiverConfDesc
 
 
 # -------------------------------------------------------
@@ -138,25 +136,6 @@ class adminContextList(GLTypes):
 
     specification =  [ adminContextDesc ]
 
-class receiverProfileDesc(GLTypes):
-
-    specification = {
-        'receiver_gus' : receiverGUS,
-        'context_gus' : contextGUS,
-        'receiver_fields' : [ formFieldsDict ],
-        'profile_gus' : profileGUS,
-        'plugin_name' : unicode,
-        'profile_description': unicode
-    }
-
-class receiverProfileList(GLTypes):
-
-    specification = [ receiverProfileDesc ]
-
-class receiverConfList(GLTypes):
-
-    specification = [ receiverConfDesc ]
-
 class adminPluginDesc(GLTypes):
 
     specification = {
@@ -170,9 +149,3 @@ class adminPluginDesc(GLTypes):
 class adminPluginList(GLTypes):
 
     specification = [ adminPluginDesc ]
-
-class adminProfileList(GLTypes):
-
-    specification = [ adminProfileDesc ]
-
-

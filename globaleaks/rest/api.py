@@ -11,7 +11,7 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks.config import config
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug
-from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, profileGUS, submissionGUS
+from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'
@@ -74,15 +74,6 @@ spec = [
     #  R1
     (r'/receiver/' + receiver_token_auth + '/settings', receiver.ReceiverInstance),
 
-    #  R2
-    (r'/receiver/' + receiver_token_auth + '/profile', receiver.ProfilesCollection),
-
-    #  R3
-    (r'/receiver/' + receiver_token_auth + '/profileconf', receiver.ConfCollection),
-
-    #  R4
-    (r'/receiver/' + receiver_token_auth + '/profileconf/' + only_int_regexp, receiver.ConfInstance),
-
     #  R5
     (r'/receiver/' + receiver_token_auth + '/tip', receiver.TipsCollection),
 
@@ -104,18 +95,6 @@ spec = [
 
     #  A6
     (r'/admin/plugin', admin.PluginCollection),
-
-    #  A7
-    (r'/admin/profile', admin.ProfileCollection),
-
-    #  A8
-    (r'/admin/profile/' + profileGUS.regexp, admin.ProfileInstance),
-
-    #  A9
-    (r'/admin/receiversetting/' + receiverGUS.regexp, admin.SettingsCollection),
-
-    #  AA
-    (r'/admin/receiversetting/' + only_int_regexp + "/receiver/" + receiverGUS.regexp, admin.SettingsInstance),
 
     #  AB
     (r'/admin/statistics/', admin.StatisticsCollection),

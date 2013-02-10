@@ -12,7 +12,6 @@ from globaleaks.models.context import Context
 from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment, File
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.receiver import Receiver
-from globaleaks.models.options import PluginProfiles, ReceiverConfs
 from globaleaks.models.submission import Submission
 from globaleaks.models.node import Node
 
@@ -25,7 +24,7 @@ def createTables():
     the node.
     """
     for model in [ Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
-                    Submission, Comment, File, PluginProfiles, ReceiverConfs ]:
+                    Submission, Comment, File ]:
 
         createdTable = yield tables.createTable(model)
 
