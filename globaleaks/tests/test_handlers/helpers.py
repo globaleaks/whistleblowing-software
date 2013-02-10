@@ -13,8 +13,13 @@ from cyclone.web import Application
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
-from globaleaks.config import config
+from globaleaks import config
+from globaleaks import db
 
+
+_TEST_STORE = 'test_store'
+def fillData():
+    db.createTables()
 
 class TestHandler(unittest.TestCase):
     """
@@ -26,25 +31,21 @@ class TestHandler(unittest.TestCase):
         """
         override default handlers' get_store with a mock store used for testing/
         """
-        database_uri = 'sqlite:///test.db'
-        zstorm = ZStorm()
-        zstorm.set_default_uri('test_store', database_uri)
         threadpool = FakeThreadPool()
         transactor = Transactor(threadpool)
+        database_uri = 'test.db'
 
+        self.mock_transport = []
         @classmethod
-        def get_mock_store(cls):
-            return  zstorm.get('test_store')
+        def mock_write(cls, chunk):
+            self.mock_transport.append(chunk)
 
-        self.mock_transport = ''
-        @classmethod
-        def mock_write(self, chunk):
-            self.mock_transport += chunk
+        # override handle's get_store and transactor
+        self._handler.write = mock_write
+        self._handler.transactor = transactor
+        config.config = config.Config(database_uri, _TEST_STORE)
+        fillData()
 
-        #override handle's get_store and transactor
-        BaseHandler.get_store = get_mock_store
-        BaseHandler.write = mock_write
-        BaseHandler.transactor = transactor
 
     def tearDown(self):
         """

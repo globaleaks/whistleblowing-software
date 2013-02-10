@@ -46,14 +46,7 @@ def get_db_file(filename=None):
     return db_file
 
 class Config(object):
-    __metaclass__ = Singleton
-
-    def __init__(self, database_file=None):
-        if not self.instance:
-            print "Initializing Config with saved arguments"
-        else:
-            print "Reconfiguring Config instance"
-
+    def __init__(self, database_file=None, store='main_store'):
         self.debug = OD()
 
         # 'testing' is present, GUS are incremental
@@ -93,7 +86,8 @@ class Config(object):
             self.main.database_uri = 'sqlite:'+get_db_file('glbackend.db')
 
         self.main.zstorm = ZStorm()
-        self.main.zstorm.set_default_uri('main_store', self.main.database_uri)
+        self.main.zstorm.set_default_uri(store, self.main.database_uri)
+        self.store = store
 
         self.advanced.db_thread_pool_size = 1
         self.advanced.scheduler_thread_pool_size = 10

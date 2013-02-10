@@ -23,16 +23,15 @@ def createTables():
     @return: None, create the right table at the first start, and initialized
     the node.
     """
-    for model in [ Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
-                    Submission, Comment, File ]:
-
+    for model in [Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
+                  Submission, Comment, File]:
         createdTable = yield tables.createTable(model)
 
     if not createdTable:
         return
 
     # Initialize the node
-    store = config.main.zstorm.get('main_store')
+    store = config.main.zstorm.get(config.store)
     onlyNode = {}
 
     onlyNode['name'] = u"Please, set me: name/title"
@@ -41,7 +40,8 @@ def createTables():
     onlyNode['public_site'] = u"Please, set me: public site"
     onlyNode['email'] = u"email@dumnmy.net"
     onlyNode['stats_update_time'] = 2 # hours
-    onlyNode['languages'] = [ { "code" : "it" , "name": "Italiano"}, { "code" : "en" , "name" : "English" }]
+    onlyNode['languages'] = [{ "code" : "it" , "name": "Italiano"},
+                             { "code" : "en" , "name" : "English" }]
 
     node_created = Node(store).new(onlyNode)
 

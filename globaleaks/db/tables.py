@@ -2,7 +2,7 @@
 #
 #   tables
 #   ******
-# 
+#
 # Collect from the classes in models the structure of the DB tables, then
 # Initialize the table if missing (executed only at the first start)
 
@@ -101,27 +101,15 @@ def createTable(model):
     """
     Create the table for the specified model.
     """
-
     create_query = generateCreateQuery(model)
-
     try:
-        config.main.zstorm.get('main_store').execute(create_query)
-        config.main.zstorm.get('main_store').commit()
-
+        config.main.zstorm.get(config.store).execute(create_query)
+        config.main.zstorm.get(config.store).commit()
         return True
-        
     # XXX trap the specific error that is raised when the table exists
     # seem to be OperationalError raised, but not a specific error exists.
     except StormError, e:
         print "Failed to create table!", e
-        
-def count(model):
-    """
-    @rtype : int
-    @return: the count number of stored items 
-    """
-
-    return config.main.zstorm.get('main_store').find(model).count()
 
 def runCreateTable(model):
     """
