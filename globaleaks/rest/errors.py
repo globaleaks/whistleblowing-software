@@ -9,7 +9,6 @@
 
 
 class GLException(Exception):
-
     error_message = "GLTypesError not set"
     error_code = 0
     http_status = 500 # generic Server error
@@ -20,11 +19,11 @@ class InvalidInputFormat(GLException):
     The expected format described in the REST specification is not
     respected by the data body in the HTTP request.
     """
+    self.error_code = 10
+    self.http_status = 406 # Not Acceptable
 
     def __init__(self, wrong_source):
-        GLException.error_message = "Invalid Input Format [%s]" % wrong_source
-        GLException.error_code = 10
-        GLException.http_status = 406 # Not Acceptable
+        self.error_message = "Invalid Input Format [%s]" % wrong_source
 
 
 class StatsNotCollectedError(GLException):
@@ -32,53 +31,43 @@ class StatsNotCollectedError(GLException):
     Statistics can be disabled by administrator, both for
     public and admin statistics.
     """
-
-    def __init__(self):
-        GLException.error_message = "Statistics Disabled"
-        GLException.error_code = 11
-        GLException.http_status = 500 # Internal Server Error
+    error_message = "Statistics Disabled"
+    error_code = 11
+    http_status = 500 # Internal Server Error
 
 
 class ContextGusNotFound(GLException):
     """
     The context_gus used do not exist in the database.
     """
-
-    def __init__(self):
-        GLException.error_message = "Not found a Context with the specified GUS identifier"
-        GLException.error_code = 12
-        GLException.http_status = 404 # Not Found
+    error_message = "Not found a Context with the specified GUS identifier"
+    error_code = 12
+    http_status = 404 # Not Found
 
 class TipGusNotFound(GLException):
     """
     The Tip GUS requested do not exists in the database.
     """
-
-    def __init__(self):
-        GLException.error_message = "Not found a Tip with the specified GUS identifier"
-        GLException.error_code = 13
-        GLException.http_status = 404 # Not Found
+    error_message = "Not found a Tip with the specified GUS identifier"
+    error_code = 13
+    http_status = 404 # Not Found
 
 class TipReceiptNotFound(GLException):
     """
     The WhisleBlower receipt is not related to any of the whistleblower tips
     """
-
-    def __init__(self):
-        GLException.error_message = "Not found a Receiver with the specified GUS identifier"
-        GLException.error_code = 14
-        GLException.http_status = 404 # Not Found
+    error_message = "Not found a Receiver with the specified GUS identifier"
+    error_code = 14
+    http_status = 404 # Not Found
 
 class TipPertinenceExpressed(GLException):
     """
     Pertinence in the Tip has been already expressed by the receiver, and only one
     vote per receiver is possible
     """
-
-    def __init__(self):
-        GLException.error_message = "Pertinence evaluation has been already expressed"
-        GLException.error_code = 15
-        GLException.http_status = 409 # Conflict
+    error_message = "Pertinence evaluation has been already expressed"
+    error_code = 15
+    http_status = 409 # Conflict
 
 class NodeNotFound(GLException):
     """
@@ -86,63 +75,51 @@ class NodeNotFound(GLException):
     because it's created by default and do not exists a function able to
     remove the Node at all.
     """
-
-    def __init__(self):
-        GLException.error_message = "Node not found"
-        GLException.error_code = 16
-        GLException.http_code = 506 # Variant also negotiated
+    error_message = "Node not found"
+    error_code = 16
+    http_code = 506 # Variant also negotiated
 
 class ProfileGusNotFound(GLException):
     """
     The Profile GUS requested do not exists in the database.
     """
-
-    def __init__(self):
-        GLException.error_message = "Not found a Plugin Profile with the specified GUS identifier"
-        GLException.error_code = 17
-        GLException.http_status = 404 # Not Found
+    error_message = "Not found a Plugin Profile with the specified GUS identifier"
+    error_code = 17
+    http_status = 404 # Not Found
 
 class ProfileNameConflict(GLException):
     """
     The name of a plugin profile need to be unique, if is proposed an already existen name
     is returned a Conflict error.
     """
-
-    def __init__(self):
-        GLException.error_message = "The proposed name is already in use by another Plugin Profile"
-        GLException.error_code = 18
-        GLException.http_status = 409 # Conflict
+    error_message = "The proposed name is already in use by another Plugin Profile"
+    error_code = 18
+    http_status = 409 # Conflict
 
 class ReceiverConfNotFound(GLException):
     """
     The receiver configuration ID do not exist in the database associated to the Receiver
     """
-
-    def __init__(self):
-        GLException.error_message = "Not found a ReceiverConf with the specified ID"
-        GLException.error_code = 19
-        GLException.http_status = 404 # Not Found
+    error_message = "Not found a ReceiverConf with the specified ID"
+    error_code = 19
+    http_status = 404 # Not Found
 
 
 class ReceiverGusNotFound(GLException):
     """
     The Receiver GUS requested do not exists in the database.
     """
-
-    def __init__(self):
-        GLException.error_message = "Not found a Receiver with the specified GUS identifier"
-        GLException.error_code = 20
-        GLException.http_status = 404 # Not Found
+    error_message = "Not found a Receiver with the specified GUS identifier"
+    error_code = 20
+    http_status = 404 # Not Found
 
 class SubmissionGusNotFound(GLException):
     """
     The Submission GUS requested do not exists in the database.
     """
-
-    def __init__(self):
-        GLException.error_message = "Not found a Submission with the specified GUS identifier"
-        GLException.error_code = 21
-        GLException.http_status = 404 # Not Found
+    error_message = "Not found a Submission with the specified GUS identifier"
+    error_code = 21
+    http_status = 404 # Not Found
 
 class SubmissionFailFields(GLException):
     """
@@ -161,41 +138,33 @@ class InvalidTipAuthToken(GLException):
     Authentication is failed, for Receiver or Whistleblower, because do not rely
     only in the secret Token (Tip Gus knowledge or receipt).
     """
-
-    def __init__(self):
-        GLException.error_message = "Authentication in Tip failed"
-        GLException.error_code = 23
-        GLException.http_status = 401 # Unauthorized
+    error_message = "Authentication in Tip failed"
+    error_code = 23
+    http_status = 401 # Unauthorized
 
 class PluginNameNotFound(GLException):
     """
     Plugin Name do not exists between the available plugins
     """
-
-    def __init__(self):
-        GLException.error_message = "Plugin Name not found"
-        GLException.error_code = 24
-        GLException.http_status = 404 # Unauthorized
+    error_message = "Plugin Name not found"
+    error_code = 24
+    http_status = 404 # Unauthorized
 
 class ForbiddenOperation(GLException):
     """
     Receiver or Whistleblower has tried one operation not permitted by their privileges
     """
-
-    def __init__(self):
-        GLException.error_message = "Operation Forbidden"
-        GLException.error_code = 25
-        GLException.http_status = 401 # Unauthorized
+    error_message = "Operation Forbidden"
+    error_code = 25
+    http_status = 401 # Unauthorized
 
 class FileGusNotFound(GLException):
     """
     The requested file Gus do not exist in the database
     """
-
-    def __init__(self):
-        GLException.error_message = "Not found a File with the specified GUS identifier"
-        GLException.error_code = 26
-        GLException.http_status = 404 # Not Found
+    error_message = "Not found a File with the specified GUS identifier"
+    error_code = 26
+    http_status = 404 # Not Found
 
 class InvalidPluginFormat(GLException):
     """
@@ -203,18 +172,30 @@ class InvalidPluginFormat(GLException):
     At the moment, and for the 0.2 release, the plugins would not be loaded
     runtime.
     """
-
-    def __init__(self):
-        GLException.error_message = "Invalid Plugin Format"
-        GLException.error_code = 27
-        GLException.http_status = 500 # Server Error
+    error_message = "Invalid Plugin Format"
+    error_code = 27
+    http_status = 500 # Server Error
 
 class SubmissionConcluded(GLException):
     """
     The submisssion accessed haa been already completed
     """
+    error_message = "The submission tried to be update has been already finalized"
+    error_code = 28
+    http_status = 409 # Conflict
 
-    def __init__(self):
-        GLException.error_message = "The submission tried to be update has been already finalized"
-        GLException.error_code = 28
-        GLException.http_status = 409 # Conflict
+class InvalidAuthRequest(GLException):
+    """
+    An invalid request was presented
+    """
+    error_message = "Authentication Failed"
+    error_code = 29
+    http_status = 401 # Unauthorized
+
+class NotAuthenticated(GLException):
+    """
+    The user attempted to access a not-authorized request.
+    """
+    error_message = "Not Authenticated"
+    error_code = 29
+    http_status = 401

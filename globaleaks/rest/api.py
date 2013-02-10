@@ -1,7 +1,7 @@
 # -*- coding: UTF-8
 #   api
 #   ***
-# 
+#
 #   Contains all the logic for handling tip related operations.
 #   This contains the specification of the API.
 #   Read this if you want to have an overall view of what API calls are handled
@@ -119,6 +119,9 @@ spec = [
 
     #  AB
     (r'/admin/statistics/', admin.StatisticsCollection),
+
+    # WTF
+    (r'/login', authentication.AuthHandler),
 
     #  D1
     (r'/debug/overview/' + not_defined_regexp, debug.EntryCollection),
