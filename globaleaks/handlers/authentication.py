@@ -12,7 +12,7 @@ from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.errors import InvalidAuthRequest, InvalidInputFormat, NotAuthenticated
-from globaleaks.settings import config
+from globaleaks import settings
 from globaleaks.utils.random import random_string
 
 def authenticated(usertype):
@@ -32,7 +32,7 @@ def authenticated(usertype):
             # XXX: eventually change this
             raise NotAuthenticated
         else:
-            config.sessions[cls.session_id].timestamp = time.time()
+            settings.config.sessions[cls.session_id].timestamp = time.time()
             return authenticated.method(cls, *args, **kwargs)
 
     authenticated.role = usertype
@@ -52,7 +52,7 @@ class AuthenticationHandler(BaseHandler):
         """
         Overrides cyclone's get_current_user method for self.current_user property.
         """
-        return config.sessions[self.session_id].id
+        return settings.config.sessions[self.session_id].id
 
     def generate_session(self, identifier, role):
 
@@ -64,12 +64,12 @@ class AuthenticationHandler(BaseHandler):
                id=identifier,
                role=role,
         )
-        config.sessions[self.session_id] = new_session
+        settings.config.sessions[self.session_id] = new_session
         return self.session_id
 
     @transact
     def login_wb(self, receipt):
-        store = self.get_store()
+        store = settings.get_store()
         try:
             wb = store.find(WhistleblowerTip,
                             WhistleblowerTip.receipt == unicode(receipt)).one()
@@ -80,7 +80,7 @@ class AuthenticationHandler(BaseHandler):
 
     @transact
     def login_receiver(self, username, password):
-        store = self.get_store()
+        store = settings.get_store()
         try:
             fstreceiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
         except NotOneError:
@@ -92,7 +92,7 @@ class AuthenticationHandler(BaseHandler):
 
     @transact
     def login_admin(self, password):
-        store = self.get_store()
+        store = settings.get_store()
         node = store.find(Node).one()
         return node.password == password
 
@@ -132,6 +132,6 @@ class AuthenticationHandler(BaseHandler):
         """
         if self.current_user:
             del self.current_user
-            del config.sessions[self.session_id]
+            del settings.config.sessions[self.session_id]
 
         self.finish()

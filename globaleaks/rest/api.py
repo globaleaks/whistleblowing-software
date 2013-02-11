@@ -9,7 +9,7 @@
 
 from cyclone.web import StaticFileHandler
 
-from globaleaks.settings import config
+from globaleaks import settings
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug, authentication
 from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS
 
@@ -110,6 +110,6 @@ spec = [
 
     ## Main Web app ##
     # * /
-    (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path, 'default_filename': "index.html" } )
+    (r'/(.*)', StaticFileHandler, {'path': settings.config.main.glclient_path, 'default_filename': "index.html" } )
 ]
 

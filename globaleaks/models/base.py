@@ -9,8 +9,7 @@ import transaction
 from storm.locals import Store, Storm
 from storm.twisted.transact import transact
 
-from globaleaks.settings import main
-from globaleaks.settings import config
+from globaleaks import settings
 from globaleaks.utils import log
 
 __all__ = ['TXModel' ]
@@ -38,7 +37,7 @@ class TXModel(Storm):
     """
     log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel")
 
-    transactor = main.transactor
+    transactor = settings.main.transactor
 
     createQuery = ""
 

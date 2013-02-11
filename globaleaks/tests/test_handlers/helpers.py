@@ -16,8 +16,11 @@ from globaleaks.rest import errors
 from globaleaks import settings
 from globaleaks import db
 
+database_uri = 'sqlite:///test.db'
+settings.db_file = database_uri
+settings.store = 'test_store'
+settings.config = settings.Config()
 
-_TEST_STORE = 'test_store'
 def fillData():
     db.createTables()
 
@@ -33,7 +36,6 @@ class TestHandler(unittest.TestCase):
         """
         threadpool = FakeThreadPool()
         transactor = Transactor(threadpool)
-        database_uri = 'test.db'
 
         self.mock_transport = []
         @classmethod
@@ -43,7 +45,6 @@ class TestHandler(unittest.TestCase):
         # override handle's get_store and transactor
         self._handler.write = mock_write
         self._handler.transactor = transactor
-        settings.config = settings.Config(database_uri, _TEST_STORE)
         fillData()
 
 
