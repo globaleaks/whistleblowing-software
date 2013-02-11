@@ -36,8 +36,9 @@ URTA = {
     'T2_GET':'GET_/tip/@TIP@/comments',
     'T3_GET':'GET_/tip/@TIP@/receivers',
 
-    'R1_GET':'GET_/receiver/@TIP@',
-    'R1_PUT':'PUT_/receiver/@TIP@',
+    'R1_GET':'GET_/receiver/@TIP@/settings',
+    'R1_PUT':'PUT_/receiver/@TIP@/settings',
+    'R5_GET':'GET_/receiver/@TIP@/tip',
 
     'A1_GET':'GET_/admin/node',
     'A1_PUT':'PUT_/admin/node',
