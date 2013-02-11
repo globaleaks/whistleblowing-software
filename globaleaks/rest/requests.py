@@ -8,7 +8,7 @@
 # handler to verify if the request is correct.
 
 from globaleaks.rest.base import submissionGUS, GLTypes, formFieldsDict, contextGUS,\
-    timeType, receiverGUS, fileGUS, profileGUS, tipGUS
+    timeType, receiverGUS, fileGUS, tipGUS
 
 class wbSubmissionDesc(GLTypes):
 
