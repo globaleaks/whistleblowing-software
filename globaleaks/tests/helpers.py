@@ -2,8 +2,9 @@ import json
 
 from twisted.trial import unittest
 from twisted.test import proto_helpers
+from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
-from storm.twisted.transact import Transactor
+from storm.twisted.transact import Transactor, transact
 from storm.zope.zstorm import ZStorm
 from cyclone.util import ObjectDict as OD
 from cyclone import httpserver
@@ -13,6 +14,8 @@ from cyclone.web import Application
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
+from globaleaks import models
+from globaleaks.utils import idops, gltime
 from globaleaks import settings
 from globaleaks import db
 
@@ -21,21 +24,19 @@ settings.db_file = database_uri
 settings.store = 'test_store'
 settings.config = settings.Config()
 
-def fillData():
-    db.createTables()
-
 class TestHandler(unittest.TestCase):
     """
     :attr _handler: handler class to be tested
     """
     _handler = None
 
+    @inlineCallbacks
     def setUp(self):
         """
         override default handlers' get_store with a mock store used for testing/
         """
         threadpool = FakeThreadPool()
-        transactor = Transactor(threadpool)
+        self.transactor = Transactor(threadpool)
 
         self.mock_transport = []
         @classmethod
@@ -44,9 +45,10 @@ class TestHandler(unittest.TestCase):
 
         # override handle's get_store and transactor
         self._handler.write = mock_write
-        self._handler.transactor = transactor
-        fillData()
+        self._handler.transactor = self.transactor
 
+        yield db.createTables(self.transactor)
+        yield self.fill_data()
 
     def tearDown(self):
         """
@@ -82,3 +84,56 @@ class TestHandler(unittest.TestCase):
                                          remote_ip=remote_ip,
                                          connection=connection)
         return self._handler(application, request)
+
+#         store = settings.get_store()
+#         model = model()
+#         for key, value in stuff.iteritems()
+#             setattr(model, key, value)
+#         store.add(model)
+
+    @transact
+    def fill_data(self):
+        store = settings.get_store()
+
+        def fill_model(model, stuff, pkey=None ):
+            m = model(store).new(stuff)
+            # XXX; hack, do a generic model.id for all models.
+            if pkey: return m[pkey]
+
+        rcv_gus = fill_model(models.receiver.Receiver, {
+            'password': u'john',
+            'name': u'john smith',
+            'description': u'the first receiver',
+            'tags': [],
+            'languages': [u'en'],
+            'notification_fields': {'mail_address': u'maker@ggay.it'},
+            'can_delete_submission': True,
+            'can_postpone_expiration': True,
+            'can_configure_delivery': True,
+            'can_configure_notification': True,
+            'receiver_level': 1,
+        }, 'receiver_gus')
+        ctx_gus = fill_model(models.context.Context, {
+            'name': u'created by shooter',
+            'description': u'This is the update',
+            'fields':[{"hint": u"autovelox", "label": "city", "name": "city", "presentation_order": 1, "required": True, "type": "text", "value": "Yadda I'm default with apostrophe" },
+                      {"hint": u"name of the sun", "label": "Sun", "name": "Sun", "presentation_order": 2, "required": True, "type": "checkbox", "value": "I'm the sun, I've not name" },
+                      {"hint": u"put the number ", "label": "penality details", "name": "dict2", "presentation_order": 3, "required": True, "type": "text", "value": "666 the default value" },
+                      {"hint": u"details:", "label": "how do you know that ?", "name": "dict3", "presentation_order": 4, "required":
+                          False, "type": "textarea", "value": "buh ?" },
+            ],
+            'selectable_receiver': False,
+            'tip_max_access': 10,
+            'tip_timetolive': 2,
+            'file_max_download' :1,
+            'escalation_threshold': 1,
+            'receivers': [rcv_gus],
+        }, 'context_gus')
+        fill_model(models.submission.Submission, {
+            'context_gus': ctx_gus,
+            'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
+            'receivers': [],
+            'files': [],
+            'finalize': True,
+        })
+
