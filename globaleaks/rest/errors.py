@@ -195,5 +195,5 @@ class NotAuthenticated(GLException):
     The user attempted to access a not-authorized request.
     """
     error_message = "Not Authenticated"
-    error_code = 29
-    http_status = 401
+    error_code = 30
+    http_status = 412 # Precondition Failed
