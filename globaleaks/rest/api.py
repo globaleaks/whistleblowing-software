@@ -42,10 +42,10 @@ spec = [
     (r'/submission', submission.SubmissionCreate),
 
     #  U3
-    (r'/submission/' + submissionGUS.regexp, submission.SubmissionInstance),
+    (r'/submission/' + submissionGUS, submission.SubmissionInstance),
 
     #  U4
-    (r'/submission/' + submissionGUS.regexp + '/file', files.FileInstance),
+    (r'/submission/' + submissionGUS+ '/file', files.FileInstance),
 
     #  U5
     (r'/statistics', node.StatsCollection),
@@ -90,13 +90,13 @@ spec = [
     (r'/admin/context', admin.ContextsCollection),
 
     #  A3
-    (r'/admin/context/' + contextGUS.regexp, admin.ContextInstance),
+    (r'/admin/context/' + contextGUS, admin.ContextInstance),
 
     #  A4
     (r'/admin/receiver', admin.ReceiversCollection),
 
     #  A5
-    (r'/admin/receiver/' + receiverGUS.regexp, admin.ReceiverInstance),
+    (r'/admin/receiver/' + receiverGUS, admin.ReceiverInstance),
 
     #  A6
     (r'/admin/plugin', admin.PluginCollection),

@@ -142,7 +142,7 @@ class Receiver(TXModel):
             requested_r.name = receiver_dict['name']
             requested_r.description = receiver_dict['description']
             requested_r.tags = receiver_dict['tags']
-            requested_r.know_languages = receiver_dict['languages']
+            requested_r.know_languages = list(receiver_dict['languages'])
             requested_r.password = receiver_dict['password']
             requested_r.notification_fields = receiver_dict['notification_fields']
 
@@ -361,7 +361,7 @@ class Receiver(TXModel):
             'can_configure_notification' : bool(self.can_configure_notification),
             'username' : unicode(self.username),
             'password' : unicode(self.password),
-            'notification_fields' : dict(self.notification_fields)
+            'notification_fields' : self.notification_fields
         }
         return dict(descriptionDict)
 
