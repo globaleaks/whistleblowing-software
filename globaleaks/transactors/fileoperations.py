@@ -34,7 +34,7 @@ class FileOperations(MacroOperation):
                          'file_size' : len(client_file_desc['body']),
                          'submission_gus' : access_gus,
                          'context_gus' : context_gus,
-                         'description' : ''
+                         'description' : '',
         }
 
         file_iface = File(store)
@@ -102,13 +102,18 @@ class FileOperations(MacroOperation):
 
 
     @transact
-    def download_file(self, file_gus):
+    def get_file_access(self, tip_gus, file_gus):
 
         store = self.getStore()
 
-        fileDict = File(store).get_content(file_gus)
+        receivers_related = ReceiverTip(store).get_receivers_by_tip(tip_gus)
 
-        self.returnData(fileDict)
+        receiver_desc = receivers_related['actor']
+        print "The receiver related is ", receiver_desc
+
+        file_desc = File(store).get_single(file_gus)
+
+        self.returnData(file_desc)
         self.returnCode(200)
         return self.prepareRetVals()
 

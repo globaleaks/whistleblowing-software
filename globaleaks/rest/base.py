@@ -160,7 +160,7 @@ class timeType(SpecialType):
     pass
 
 class fileGUS(SpecialType):
-    regexp = r"(f_(\w){20,20})"
+    regexp = r"(f_(\w){30,30})"
 
 # XXX not true anymore, need to be update the specification and the glossary
 class receiptGUS(SpecialType):

@@ -7,15 +7,13 @@
 # classes executed when an HTTP client contact /files/* URI
 
 from __future__ import with_statement
-
-import os
+from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import HTTPError, asynchronous
-from globaleaks.handlers.base import BaseHandler
-from globaleaks.utils import log
+from cyclone.web import asynchronous, os
 from globaleaks.config import config
+from globaleaks.handlers.base import BaseHandler
 from globaleaks.transactors.fileoperations import FileOperations
-from globaleaks.rest.errors import SubmissionGusNotFound, InvalidInputFormat
+from globaleaks.rest.errors import SubmissionGusNotFound, InvalidInputFormat, TipGusNotFound, FileGusNotFound
 
 __all__ = ['Download', 'FileInstance']
 
@@ -134,29 +132,42 @@ class Download(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, tip_gus, file_gus, *uriargs):
+    def get(self, tip_gus, CYCLON_DIRT, file_gus, *uriargs):
 
         try:
-            # tip_gus needed to authorized the download
-            print tip_gus, file_gus
+            # TODO tests tip_gus and file_gus format
 
-            answer = yield FileOperations().download_file(file_gus)
+            answer = yield FileOperations().get_file_access(tip_gus, file_gus)
 
             # verify if receiver can, in fact, download the file, otherwise
             # raise DownloadLimitExceeded
 
-            fileContent = answer['data']
+            file_desc = answer['data']
             # keys:  'content'  'sha2sum'  'size' : 'content_type' 'file_name'
+
+            print "returned shit", file_desc
 
             self.set_status(answer['code'])
 
-            self.set_header('Content-Type', fileContent['content_type'])
-            self.set_header('Content-Length', fileContent['size'])
-            self.set_header('Etag', '"%s"' % fileContent['sha2sum'])
+            self.set_header('Content-Type', file_desc['content_type'])
+            self.set_header('Content-Length', file_desc['size'])
+            self.set_header('Etag', '"%s"' % file_desc['sha2sum'])
 
-            self.write(fileContent['content'])
+            filelocation = os.path.join(config.advanced.submissions_dir, file_desc['file_gus'])
 
-        except (InvalidInputFormat) as error:
+            chunk_size = 8192
+            filedata = ''
+            with open(filelocation, "rb") as requestf:
+                fdesc.setNonBlocking(requestf.fileno())
+                while True:
+                    chunk = requestf.read(chunk_size)
+                    filedata += chunk
+                    if len(chunk) == 0:
+                        break
+
+            self.write(filedata)
+
+        except (InvalidInputFormat, TipGusNotFound, FileGusNotFound) as error:
             self.write_error(error)
 
         self.finish()
