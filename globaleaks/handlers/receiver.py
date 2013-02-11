@@ -15,7 +15,7 @@ from globaleaks.transactors.authoperations import AuthOperations
 from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
-    ProfileGusNotFound, ReceiverConfNotFound, InvalidTipAuthToken, TipGusNotFound, ForbiddenOperation, ContextGusNotFound
+    InvalidTipAuthToken, TipGusNotFound, ForbiddenOperation, ContextGusNotFound
 
 
 class ReceiverInstance(BaseHandler):
@@ -26,6 +26,7 @@ class ReceiverInstance(BaseHandler):
         Receiver.name
         Receiver.tags
         Receiver.description
+        Receiver.password
 
     and permit the overall view of all the Tips related to the receiver
     GET and PUT /receiver/(auth_secret_token)/management
@@ -43,7 +44,9 @@ class ReceiverInstance(BaseHandler):
         try:
             auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().get_receiver_by_receiver(auth_user['receiver_gus'])
+            receiver_gus = auth_user['data']['receiver_gus']
+
+            answer = yield CrudOperations().get_receiver_by_receiver(receiver_gus)
 
             self.write(answer['data'])
             self.set_status(answer['code'])
@@ -69,7 +72,9 @@ class ReceiverInstance(BaseHandler):
 
             auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            answer = yield CrudOperations().update_receiver_by_receiver(auth_user['receiver_gus'], request)
+            receiver_gus = auth_user['data']['receiver_gus']
+
+            answer = yield CrudOperations().update_receiver_by_receiver(receiver_gus, request)
 
             self.write(answer['data'])
             self.set_status(answer['code'])

@@ -258,10 +258,9 @@ class CrudOperations(MacroOperation):
     # Below CrudOperations for Receiver API
 
     @transact
-    def get_receiver_by_receiver(self, receiver_desc):
+    def get_receiver_by_receiver(self, receiver_gus):
 
         store = self.getStore()
-        receiver_gus = receiver_desc['receiver_gus']
 
         receiver_desc = Receiver(store).get_single(receiver_gus)
 
@@ -270,10 +269,9 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def update_receiver_by_receiver(self, receiver_desc, request):
+    def update_receiver_by_receiver(self, receiver_gus, request):
 
         store = self.getStore()
-        receiver_gus = receiver_desc['receiver_gus']
 
         updated_receiver_desc = Receiver(store).self_update(receiver_gus, request)
 
@@ -282,18 +280,6 @@ class CrudOperations(MacroOperation):
         # TODO implement this function
 
         self.returnData(updated_receiver_desc)
-        self.returnCode(200)
-        return self.prepareRetVals()
-
-    @transact
-    def get_profiles_by_receiver(self, receiver_associated_contexts):
-
-        store = self.getStore()
-
-        profile_iface = PluginProfiles(store)
-        profiles_list = profile_iface.get_profiles_by_contexts(receiver_associated_contexts)
-
-        self.returnData(profiles_list)
         self.returnCode(200)
         return self.prepareRetVals()
 
