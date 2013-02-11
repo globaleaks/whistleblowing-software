@@ -9,7 +9,7 @@
 
 from cyclone.web import StaticFileHandler
 
-from globaleaks.config import config
+from globaleaks import settings
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug, authentication
 from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS
 
@@ -40,10 +40,10 @@ spec = [
     (r'/submission', submission.SubmissionCreate),
 
     #  U3
-    (r'/submission/' + submissionGUS.regexp, submission.SubmissionInstance),
+    (r'/submission/' + submissionGUS, submission.SubmissionInstance),
 
     #  U4
-    (r'/submission/' + submissionGUS.regexp + '/file', files.FileInstance),
+    (r'/submission/' + submissionGUS+ '/file', files.FileInstance),
 
     #  U5
     (r'/statistics', node.StatsCollection),
@@ -88,13 +88,13 @@ spec = [
     (r'/admin/context', admin.ContextsCollection),
 
     #  A3
-    (r'/admin/context/' + contextGUS.regexp, admin.ContextInstance),
+    (r'/admin/context/' + contextGUS, admin.ContextInstance),
 
     #  A4
     (r'/admin/receiver', admin.ReceiversCollection),
 
     #  A5
-    (r'/admin/receiver/' + receiverGUS.regexp, admin.ReceiverInstance),
+    (r'/admin/receiver/' + receiverGUS, admin.ReceiverInstance),
 
     #  A6
     (r'/admin/plugin', admin.PluginCollection),
@@ -110,6 +110,6 @@ spec = [
 
     ## Main Web app ##
     # * /
-    (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path, 'default_filename': "index.html" } )
+    (r'/(.*)', StaticFileHandler, {'path': settings.config.main.glclient_path, 'default_filename': "index.html" } )
 ]
 

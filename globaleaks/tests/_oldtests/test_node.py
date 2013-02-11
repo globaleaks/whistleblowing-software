@@ -8,7 +8,7 @@ from storm.info import get_cls_info
 from twisted.internet import defer
 
 from globaleaks import main
-from globaleaks.config import config, get_db_file
+from globaleaks.settings import config, get_db_file
 from globaleaks.db import tables, initializeNode
 from globaleaks.models.node import Node
 

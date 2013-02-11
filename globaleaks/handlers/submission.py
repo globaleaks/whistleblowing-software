@@ -11,7 +11,6 @@ from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest import requests, responses
-from globaleaks.rest.base import validateMessage
 from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
     ContextGusNotFound, SubmissionFailFields, SubmissionConcluded, ReceiverGusNotFound
 
@@ -39,7 +38,7 @@ class SubmissionCreate(BaseHandler):
         """
 
         try:
-            request = validateMessage(self.request.body, requests.wbSubmissionDesc)
+            request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
             answer = yield CrudOperations().new_submission(request)
 
@@ -122,7 +121,7 @@ class SubmissionInstance(BaseHandler):
 
         try:
             # validateParameter(submission_gus, requests.submissionGUS)
-            request = validateMessage(self.request.body, requests.wbSubmissionDesc)
+            request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
             answer = yield CrudOperations().update_submission(submission_gus, request)
 
@@ -168,7 +167,7 @@ class SubmissionInstance(BaseHandler):
     def delete(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus
-        Request: 
+        Request:
         Response: None
         Errors: SubmissionGusNotFound, InvalidInputFormat, SubmissionConcluded
 

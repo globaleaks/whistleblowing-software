@@ -13,8 +13,16 @@ from cyclone.web import Application
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
-from globaleaks.config import config
+from globaleaks import settings
+from globaleaks import db
 
+database_uri = 'sqlite:///test.db'
+settings.db_file = database_uri
+settings.store = 'test_store'
+settings.config = settings.Config()
+
+def fillData():
+    db.createTables()
 
 class TestHandler(unittest.TestCase):
     """
@@ -26,19 +34,19 @@ class TestHandler(unittest.TestCase):
         """
         override default handlers' get_store with a mock store used for testing/
         """
-        database_uri = 'sqlite:///test.db'
-        zstorm = ZStorm()
-        zstorm.set_default_uri('test_store', database_uri)
         threadpool = FakeThreadPool()
         transactor = Transactor(threadpool)
 
+        self.mock_transport = []
         @classmethod
-        def get_mock_store(cls):
-            return  zstorm.get('test_store')
+        def mock_write(cls, chunk):
+            self.mock_transport.append(chunk)
 
-        #override handle's get_store and transactor
-        BaseHandler.get_store = get_mock_store
-        BaseHandler.transactor = transactor
+        # override handle's get_store and transactor
+        self._handler.write = mock_write
+        self._handler.transactor = transactor
+        fillData()
+
 
     def tearDown(self):
         """
@@ -61,10 +69,11 @@ class TestHandler(unittest.TestCase):
             raise ValueErorr('jbody and body in conflict')
 
         application = Application([])
-        self.tr = proto_helpers.StringTransport()
+
+        tr = proto_helpers.StringTransport()
         connection = httpserver.HTTPConnection()
         connection.factory = application
-        connection.makeConnection(self.tr)
+        connection.makeConnection(tr)
 
         request = httpserver.HTTPRequest(uri='mock',
                                          method=method,

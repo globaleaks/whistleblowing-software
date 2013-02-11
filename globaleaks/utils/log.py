@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 #
 # Log observer, need to be extended to report
-# application error in an appropriate DB table, and 
+# application error in an appropriate DB table, and
 # need to be enable by the config options
 
 import sys
@@ -12,7 +12,7 @@ from twisted.python import log as txlog
 from twisted.python.logfile import DailyLogFile
 
 from globaleaks.utils import gltime
-from globaleaks.config import config
+from globaleaks import settings
 
 # XXX make this a config option
 log_file = "/tmp/glbackend.log"
@@ -31,7 +31,7 @@ class LoggerFactory(object):
                                                         gltime.utcPrettyDateNow()))
         logging.basicConfig()
         python_logging = txlog.PythonLoggingObserver()
-        if config.advanced.debug:
+        if settings.config.advanced.debug:
             python_logging.logger.setLevel(logging.DEBUG)
         else:
             python_logging.logger.setLevel(logging.INFO)

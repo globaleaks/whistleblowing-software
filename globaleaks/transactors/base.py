@@ -1,15 +1,10 @@
-from globaleaks import main
-from globaleaks.config import config
-
+from globaleaks import settings
 
 class MacroOperation():
-    transactor = main.transactor
+    transactor = settings.main.transactor
 
     def getStore(self):
-        return config.main.zstorm.get('main_store')
-
-    # TODO think to add "returnInfo" and collect logs
-    # after, the handler, would call the other store thread
+        return settings.config.main.zstorm.get('main_store')
 
     def returnData(self, data):
         """
