@@ -35,17 +35,16 @@ class TestHandler(unittest.TestCase):
         transactor = Transactor(threadpool)
         database_uri = 'test.db'
 
-        self.mock_transport = []
+        self.messages = []
         @classmethod
-        def mock_write(cls, chunk):
-            self.mock_transport.append(chunk)
+        def mock_write(self, message):
+            self.messages += message
 
         # override handle's get_store and transactor
         self._handler.write = mock_write
         self._handler.transactor = transactor
         config.config = config.Config(database_uri, _TEST_STORE)
         fillData()
-
 
     def tearDown(self):
         """
