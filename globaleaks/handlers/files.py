@@ -113,21 +113,6 @@ class FileInstance(BaseHandler):
         self.finish()
 
 
-    @asynchronous
-    @inlineCallbacks
-    def delete(self, submission_gus, *args):
-        """
-        Request: Unknown
-        Response: Unknown
-        Errors: Unknown
-
-        DELETE in fileHandlers need to be refactored-engineered
-        """
-        print self.request
-        print submission_gus
-        Exception("Not Yet Implemented file delete")
-
-
 class Download(BaseHandler):
 
     @asynchronous
@@ -144,8 +129,6 @@ class Download(BaseHandler):
 
             file_desc = answer['data']
             # keys:  'content'  'sha2sum'  'size' : 'content_type' 'file_name'
-
-            print "returned shit", file_desc
 
             self.set_status(answer['code'])
 

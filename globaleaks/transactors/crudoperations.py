@@ -72,7 +72,6 @@ class CrudOperations(MacroOperation):
         self.returnCode(201)
         return self.prepareRetVals()
 
-
     @transact
     def get_context(self, context_gus):
 

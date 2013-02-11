@@ -59,9 +59,6 @@ spec = [
 
     ## Tip Handlers ##
 
-    #  T5 = only Receiver, download the files
-    (r'/tip/' + tipGUS.regexp + '/download/' + fileGUS.regexp, files.Download),
-
     #  T1
     (r'/tip/' + tip_access_token, tip.TipInstance),
 
@@ -73,6 +70,9 @@ spec = [
 
     #  T4 = only the whistlebower can access to this interface, then the regexp match properly
     (r'/tip/' + wb_receipt + '/upload', files.FileInstance),
+
+    #  T5 = only Receiver, download the files
+    (r'/tip/' + tipGUS.regexp + '/download/' + fileGUS.regexp, files.Download),
 
     ## Receiver Handlers ##
     #  R1
