@@ -27,7 +27,8 @@ class TestAuthentication(helpers.TestHandler):
         malformed = handler.post()
         self.assertFailure(malformed, errors.InvalidInputFormat)
 
-        malformed
+        return malformed
+
     def test_invalid_receiver_login(self):
         # wrong username/password
         handler = self.request({
