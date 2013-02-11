@@ -8,49 +8,37 @@
 # nothing in the common concern af a GlobaLeaks Node Admin
 
 
-import os, sys
+import os
+import os.path
+import sys
 
 import transaction
 from twisted.python import log
+from twisted.python.threadpool import ThreadPool
 from cyclone.util import ObjectDict as OD
 from storm.zope.zstorm import ZStorm
 from storm.tracer import debug
-
+from storm.twisted.transact import Transactor
+from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.singleton import Singleton
 
-class ConfigError(Exception):
-    pass
 
-def get_root_path():
-    this_directory = os.path.dirname(__file__)
-    root = os.path.join(this_directory, '..')
-    root = os.path.abspath(root)
-    return root
+root_path = os.path.join(os.path.dirname(__file__), '..')
+install_path = os.path.abspath(os.path.join(root_path, '..'))
+glclient_path = os.path.join(install_path, 'GLClient', 'app')
+gldata_path = os.path.join(root_path, '_gldata')
+db_file = 'sqlite:' + os.path.join(gldata_path, 'glbackend.db')
+store = 'main_store'
 
-def get_install_path():
-    return os.path.abspath(os.path.join(get_root_path(), '..'))
+if not os.path.exists(gldata_path):
+        os.mkdir(gldata_path)
 
-def get_glclient_path():
-    path = '/tmp'
+assert all(os.path.exists(path) for path in
+           (root_path, install_path, glclient_path, gldata_path))
 
-    # XXX move all these variables to a config file
-    glclient_path = os.path.join(get_install_path(), 'GLClient', 'app')
-    path = os.path.abspath(glclient_path)
-    if not os.path.isdir(path):
-        raise ConfigError("GLClient not found at the %s path" % glclient_path)
-
-    return path
-
-def get_db_file(filename=None):
-    root = get_root_path()
-    db_dir = os.path.join(root, '_gldata')
-    if not os.path.isdir(db_dir):
-        os.mkdir(db_dir)
-    db_file = os.path.join(db_dir, filename)
-    return db_file
 
 class Config(object):
-    def __init__(self, database_file=None, store='main_store'):
+    def __init__(self):
         self.debug = OD()
 
         # 'testing' is present, GUS are incremental
@@ -76,7 +64,7 @@ class Config(object):
         self.advanced.debug = True
 
         self.main = OD()
-        self.main.glclient_path = get_glclient_path()
+        self.main.glclient_path = glclient_path
 
         self.sessions = dict()
 
@@ -84,20 +72,41 @@ class Config(object):
             log.msg("Serving GLClient from %s" % self.main.glclient_path)
 
         # This is the zstorm store used for transactions
-        if database_file:
-            self.main.database_uri = 'sqlite:'+database_file
-        else:
-            self.main.database_uri = 'sqlite:'+get_db_file('glbackend.db')
+        self.main.database_uri = db_file
 
         self.main.zstorm = ZStorm()
-        self.main.zstorm.set_default_uri(store, self.main.database_uri)
-        self.store = store
+        self.main.zstorm.set_default_uri(store, db_file)
 
         self.advanced.db_thread_pool_size = 1
         self.advanced.scheduler_thread_pool_size = 10
 
-        self.advanced.data_dir = os.path.join(get_root_path(), '_gldata')
+        self.advanced.data_dir = gldata_path
         self.advanced.submissions_dir = os.path.join(self.advanced.data_dir, 'submissions')
         self.advanced.delivery_dir = os.path.join(self.advanced.data_dir, 'delivery')
 
+    @property
+    def store(self): return store
+
 config = Config()
+
+def get_store():
+    zstorm = ZStorm()
+    zstorm.set_default_uri(store, db_file)
+    return zstorm.get(store)
+
+class Main(object):
+    __metaclass__ = Singleton
+
+    def __init__(self):
+        log.msg("[D] %s %s " % (__file__, __name__), "Starting db_threadpool")
+        self.db_threadpool = ThreadPool(0, config.advanced.db_thread_pool_size)
+        self.db_threadpool.start()
+
+        log.msg("[D] %s %s " % (__file__, __name__), "Starting scheduler_threadpool")
+        self.scheduler_threadpool = ThreadPool(0, config.advanced.scheduler_thread_pool_size)
+        self.scheduler_threadpool.start()
+
+        self.transactor = Transactor(self.db_threadpool)
+        self.transactor.retries = 0
+
+main = Main()

@@ -3,14 +3,14 @@
 #   *****
 #
 # follow the various random ID generation, being a string,
-# they taken the name of GUS (GlobaLeaks Unique String) 
+# they taken the name of GUS (GlobaLeaks Unique String)
 # and the ID is used only for the incremental integer identifier
 #
 # The regular expression matching those formats, are implemented
 # in globaleaks/rest/base.py
 #
-# All the GUS string had byte in 
-# the start, identify in visual way what's is the roles of the GUS, 
+# All the GUS string had byte in
+# the start, identify in visual way what's is the roles of the GUS,
 # like "s_" is a submnission_gus, "t_" a tip_gus
 #
 # TODO
@@ -18,7 +18,7 @@
 # select some gus with a number only, or a shorter list.
 
 from Crypto.Random import random
-from globaleaks.config import config
+from globaleaks import settings
 import string
 
 
@@ -53,7 +53,7 @@ def random_submission_gus():
     """
     length = 50
 
-    if config.debug.testing:
+    if settings.config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -65,7 +65,7 @@ def random_submission_gus():
 def random_plugin_gus():
     length = 10
 
-    if config.debug.testing:
+    if settings.config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -81,7 +81,7 @@ def random_context_gus():
     """
     length = 20
 
-    if config.debug.testing:
+    if settings.config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -97,7 +97,7 @@ def random_file_gus():
     """
     length = 30
 
-    if config.debug.testing:
+    if settings.config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -114,7 +114,7 @@ def random_receiver_gus():
     """
     length = 20
 
-    if config.debug.testing:
+    if settings.config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)
@@ -128,7 +128,7 @@ def random_tip_gus():
     """
     length = 50
 
-    if config.debug.testing:
+    if settings.config.debug.testing:
         global global_debug_counter
         global_debug_counter += 1
         string_value = str(global_debug_counter)

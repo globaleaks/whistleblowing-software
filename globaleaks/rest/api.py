@@ -7,9 +7,11 @@
 #   Read this if you want to have an overall view of what API calls are handled
 #   by what.
 
+import os
+
 from cyclone.web import StaticFileHandler
 
-from globaleaks.config import config
+from globaleaks import settings
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug, authentication
 from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS
 
@@ -108,8 +110,18 @@ spec = [
     #  D2
     (r'/debug/tasks/' + not_defined_regexp, debug.TaskInstance),
 
-    ## Main Web app ##
-    # * /
-    (r'/(.*)', StaticFileHandler, {'path': config.main.glclient_path, 'default_filename': "index.html" } )
 ]
+
+## Enable end to end testing directory ##
+# * /test
+if settings.config.debug.testing:
+    spec.append(
+        (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(settings.config.main.glclient_path, '..', 'test')})
+    )
+
+## Main Web app ##
+# * /
+spec.append(
+    (r'/(.*)', StaticFileHandler, {'path': settings.config.main.glclient_path, 'default_filename': "index.html" } )
+)
 

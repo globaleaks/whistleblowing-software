@@ -16,8 +16,7 @@ from storm.variables import DecimalVariable, EnumVariable
 from storm.variables import FloatVariable, IntVariable, RawStrVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
-from globaleaks import main
-from globaleaks.config import config
+from globaleaks import settings
 
 def variableToSQLite(var_type):
     """
@@ -102,18 +101,20 @@ def createTable(model):
     Create the table for the specified model.
     """
     create_query = generateCreateQuery(model)
+    store = settings.get_store()
     try:
-        config.main.zstorm.get(config.store).execute(create_query)
-        config.main.zstorm.get(config.store).commit()
+        store.execute(create_query)
+        store.commit()
+    except StormError as e:
+        log.msg(e)
+    else:
         return True
-    # XXX trap the specific error that is raised when the table exists
-    # seem to be OperationalError raised, but not a specific error exists.
-    except StormError, e:
-        log.err("Failed to create table!", e)
+    finally:
+        store.close()
 
 def runCreateTable(model):
     """
     Runs the table creation query wrapped in a transaction.
     Transactions run in a separate thread.
     """
-    return main.transactor.run(createTable, model)
+    return settings.config.main.transactor.run(createTable, model)

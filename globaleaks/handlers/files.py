@@ -2,7 +2,7 @@
 #
 #  files
 #  *****
-# 
+#
 # Backend supports for jQuery File Uploader, and implementation of the
 # classes executed when an HTTP client contact /files/* URI
 
@@ -13,7 +13,7 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import HTTPError, asynchronous
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils import log
-from globaleaks.config import config
+from globaleaks import settings
 from globaleaks.transactors.fileoperations import FileOperations
 from globaleaks.rest.errors import SubmissionGusNotFound, InvalidInputFormat
 
