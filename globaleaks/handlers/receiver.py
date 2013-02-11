@@ -12,7 +12,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.transactors.authoperations import AuthOperations
-from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
     ProfileGusNotFound, ReceiverConfNotFound, InvalidTipAuthToken, TipGusNotFound, ForbiddenOperation, ContextGusNotFound
@@ -65,7 +64,7 @@ class ReceiverInstance(BaseHandler):
         """
 
         try:
-            request = validateMessage(self.request.body, requests.receiverReceiverDesc)
+            request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 
             auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
