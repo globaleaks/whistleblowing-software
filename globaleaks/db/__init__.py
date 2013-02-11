@@ -2,7 +2,7 @@
 #   GLBackend Database
 #   ******************
 
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, DeferredList
 from storm.twisted.transact import transact
 from globaleaks import settings
 from globaleaks.db import tables
@@ -18,18 +18,27 @@ from globaleaks.models.node import Node
 __all__ = ['createTables']
 
 def initialize_node():
-    # Initialize the node
-    onlyNode = {
-        'name':  u"Please, set me: name/title",
-        'description':  u"Please, set me: description",
-        'hidden_service':  u"Please, set me: hidden service",
-        'public_site':  u"Please, set me: public site",
-        'email':  u"email@dumnmy.net",
-        'stats_update_time':  2, # hours,
-        'languages':  [{ "code" : "it" , "name": "Italiano"},
-                       { "code" : "en" , "name" : "English" }],
-    }
-    node_created = Node(store).new(onlyNode)
+    store = settings.get_store()
+
+    nodes = store.find(Node)
+    print list(nodes)
+    if len(list(nodes)) == 0:
+        log.debug('Initializing node with new config')
+        # Initialize the node
+        onlyNode = {
+            'name':  u"Please, set me: name/title",
+            'description':  u"Please, set me: description",
+            'hidden_service':  u"Please, set me: hidden service",
+            'public_site':  u"Please, set me: public site",
+            'email':  u"email@dumnmy.net",
+            'stats_update_time':  2, # hours,
+            'languages':  [{ "code" : "it" , "name": "Italiano"},
+                           { "code" : "en" , "name" : "English" }],
+        }
+        node_created = Node(store).new(onlyNode)
+        store.commit()
+
+    store.close()
 
 def create_tables_transaction():
     """
@@ -52,11 +61,16 @@ def create_tables_transaction():
     finally:
         store.close()
 
+@inlineCallbacks
 def createTables(transactor=None):
     """
     Override transactor for testing.
     """
     if not transactor:
         transactor = settings.config.main.transactor
-    return transactor.run(create_tables_transaction)
+    try:
+        yield transactor.run(create_tables_transaction)
+    except Exception, e:
+        log.msg(e)
+    yield transactor.run(initialize_node)
 
