@@ -1,5 +1,30 @@
-angular.module('resourceServices', ['ngResource']).
-  factory('globaleaksInterceptor', ['$q', '$rootScope', function($q, $rootScope) {
+angular.module('resourceServices.authentication', [])
+  .factory('Authentication', ['$http', '$location', '$routeParams', '$rootScope',
+    function($http, $location, $routeParams, $rootScope){
+      function Session(){
+        var self = this;
+
+        self.id = null;
+
+        self.login = function(username, password, role) {
+          $http.post('/login', {'username': username,
+                       'password': password,
+                     'role': role})
+            .success(function(response){
+              self.id = response.session_id;
+              localStorage['session_id'] = response.session_id;
+              if (role != 'wb') {
+                $location.path($routeParams['src']);
+              }
+          });
+        };
+      };
+      return new Session;
+}]);
+
+angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
+  factory('globaleaksInterceptor', ['$q', '$rootScope', '$location',
+  function($q, $rootScope, $location) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return function(promise) {
@@ -14,10 +39,16 @@ angular.module('resourceServices', ['ngResource']).
       }, function(response) {
         /* When the response has failed write the rootScope errors array the
         * error message. */
-        var error = {};
+        var error = {},
+          source_path = $location.path();
+
         error.message = response.data.error_message;
         error.code = response.data.error_code;
         error.url = response.config.url;
+
+        if (error.code == 30) {
+          $location.path('/login?src='+source_path);
+        };
 
         if (!$rootScope.errors) {
           $rootScope.errors = [];
@@ -322,6 +353,15 @@ angular.module('resourceServices', ['ngResource']).
     return new Admin;
 }).
   config(function($httpProvider) {
+    var $rootScope = angular.injector(['ng']).get('$rootScope'),
+      globaleaksRequestInterceptor = function(data, headers) {
+        if (localStorage['session_id']) {
+          headers = angular.extend(headers(),{'X-Session': localStorage['session_id']});
+        };
+        return data;
+      };
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
+    $httpProvider.defaults.transformRequest.push(globaleaksRequestInterceptor);
+
 });
 
