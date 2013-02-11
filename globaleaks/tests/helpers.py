@@ -24,6 +24,8 @@ settings.db_file = database_uri
 settings.store = 'test_store'
 settings.config = settings.Config()
 
+import storm
+
 class TestHandler(unittest.TestCase):
     """
     :attr _handler: handler class to be tested
@@ -47,7 +49,11 @@ class TestHandler(unittest.TestCase):
         self._handler.write = mock_write
         self._handler.transactor = self.transactor
 
-        yield db.createTables(self.transactor)
+        try:
+            yield db.createTables(self.transactor)
+        except:
+            pass
+
         yield self.fill_data()
 
     def tearDown(self):
@@ -95,12 +101,7 @@ class TestHandler(unittest.TestCase):
     def fill_data(self):
         store = settings.get_store()
 
-        def fill_model(model, stuff, pkey=None ):
-            m = model(store).new(stuff)
-            # XXX; hack, do a generic model.id for all models.
-            if pkey: return m[pkey]
-
-        rcv_gus = fill_model(models.receiver.Receiver, {
+        receiver = models.receiver.Receiver(store).new({
             'password': u'john',
             'name': u'john smith',
             'description': u'the first receiver',
@@ -112,8 +113,9 @@ class TestHandler(unittest.TestCase):
             'can_configure_delivery': True,
             'can_configure_notification': True,
             'receiver_level': 1,
-        }, 'receiver_gus')
-        ctx_gus = fill_model(models.context.Context, {
+        })
+
+        context = models.context.Context(store).new({
             'name': u'created by shooter',
             'description': u'This is the update',
             'fields':[{"hint": u"autovelox", "label": "city", "name": "city", "presentation_order": 1, "required": True, "type": "text", "value": "Yadda I'm default with apostrophe" },
@@ -127,13 +129,24 @@ class TestHandler(unittest.TestCase):
             'tip_timetolive': 2,
             'file_max_download' :1,
             'escalation_threshold': 1,
-            'receivers': [rcv_gus],
-        }, 'context_gus')
-        fill_model(models.submission.Submission, {
-            'context_gus': ctx_gus,
+            'receivers': receiver['receiver_gus'],
+        })
+
+        submission = models.submission.Submission(store).new({
+            'context_gus': context['context_gus'],
             'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
             'receivers': [],
             'files': [],
             'finalize': True,
         })
+
+        node = models.node.Node(store).new({
+            'context_gus': context['context_gus'],
+            'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
+            'receivers': [],
+            'files': [],
+            'finalize': True,
+        })
+
+       store.close()
 
