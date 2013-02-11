@@ -6,9 +6,10 @@
 # exposed API.
 
 from twisted.internet.defer import inlineCallbacks
+from cyclone.web import asynchronous
+
 from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
-from cyclone.web import asynchronous
 from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest.errors import NodeNotFound
 
@@ -81,9 +82,7 @@ class ContextsCollection(BaseHandler):
         Response: publicContextList
         Errors: None
         """
-
         answer = yield CrudOperations().get_context_list()
-
         # output filtering TODO need to strip reserved infos
         self.write(answer['data'])
         self.set_status(answer['code'])

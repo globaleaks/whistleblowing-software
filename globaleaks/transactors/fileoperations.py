@@ -1,12 +1,15 @@
+import time, os
+
+from twisted.python import log
+from storm.twisted.transact import transact
+
 from globaleaks.transactors.base import MacroOperation
 from globaleaks.models.externaltip import File
 from globaleaks.models.submission import Submission
 from globaleaks.rest.errors import SubmissionConcluded
-from globaleaks.config import config
+from globaleaks import settings
 from twisted.internet import fdesc
 
-from storm.twisted.transact import transact
-import time, os
 
 class FileOperations(MacroOperation):
     """
@@ -36,11 +39,12 @@ class FileOperations(MacroOperation):
         # TODO, remind the also ReceiverTip can upload file, not just Submission
         result['token'] = submission_gus
 
-        if not os.path.isdir(config.advanced.submissions_dir):
-            print "%s does not exist. Creating it." % config.advanced.submissions_dir
-            os.mkdir(config.advanced.submissions_dir)
+        if not os.path.isdir(settings.config.advanced.submissions_dir):
+            log.msg("%s does not exist. Creating it." %
+                    config.advanced.submissions_dir)
+            os.mkdir(settings.config.advanced.submissions_dir)
 
-        the_submission_dir = config.advanced.submissions_dir
+        the_submission_dir = settings.config.advanced.submissions_dir
 
         # this happen only at the first execution
         if not os.path.isdir(the_submission_dir):
@@ -48,8 +52,8 @@ class FileOperations(MacroOperation):
 
         filelocation = os.path.join(the_submission_dir, file_gus)
 
-        print "Saving file \"%s\" of %d byte [%s] type, to %s" % \
-              (result['name'], result['size'], result['type'], filelocation )
+        log.msg("Saving file \"%s\" of %d byte [%s] type, to %s" %
+              (result['name'], result['size'], result['type'], filelocation))
 
         # *The file is complete*
         # because Cyclone cache them before pass to the handler.

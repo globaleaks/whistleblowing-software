@@ -2,22 +2,21 @@
 #
 #   tables
 #   ******
-# 
+#
 # Collect from the classes in models the structure of the DB tables, then
 # Initialize the table if missing (executed only at the first start)
 
 from twisted.internet.defer import inlineCallbacks
+from twisted.python import log
 
 from storm.properties import PropertyColumn
 from storm.exceptions import StormError
-
 from storm.variables import BoolVariable, DateTimeVariable, DateVariable
 from storm.variables import DecimalVariable, EnumVariable
 from storm.variables import FloatVariable, IntVariable, RawStrVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
-from globaleaks import main
-from globaleaks.config import config
+from globaleaks import settings
 
 def variableToSQLite(var_type):
     """
@@ -101,31 +100,21 @@ def createTable(model):
     """
     Create the table for the specified model.
     """
-
     create_query = generateCreateQuery(model)
-
+    store = settings.get_store()
     try:
-        config.main.zstorm.get('main_store').execute(create_query)
-        config.main.zstorm.get('main_store').commit()
-
+        store.execute(create_query)
+        store.commit()
+    except StormError as e:
+        log.msg(e)
+    else:
         return True
-        
-    # XXX trap the specific error that is raised when the table exists
-    # seem to be OperationalError raised, but not a specific error exists.
-    except StormError, e:
-        print "Failed to create table!", e
-        
-def count(model):
-    """
-    @rtype : int
-    @return: the count number of stored items 
-    """
-
-    return config.main.zstorm.get('main_store').find(model).count()
+    finally:
+        store.close()
 
 def runCreateTable(model):
     """
     Runs the table creation query wrapped in a transaction.
     Transactions run in a separate thread.
     """
-    return main.transactor.run(createTable, model)
+    return settings.config.main.transactor.run(createTable, model)

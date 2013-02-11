@@ -93,7 +93,7 @@ def do_httpie(method, url, request_list):
     try:
         subprocess.check_call(command_array, stderr=tstderr, stdout=tstdout)
     except subprocess.CalledProcessError:
-        print "invalid execution of httpie!, command line:", sys.argv
+        print "invalid execution of httpie!, command line:", repr(' '.join(sys.argv))
         print "error file:", errfname
         quit(1)
     except OSError:
@@ -144,7 +144,7 @@ def getOpt(seekd):
 def fix_varline(inputline):
 
     returnline = inputline
-    for var,argopt in { 
+    for var,argopt in {
             '@TIP@': 'tip', # Tip GUS
             '@CID@': 'cid', # Context GUS
             '@SID@': 'sid', # Session GUS
@@ -243,7 +243,7 @@ def outputOptionsApply(theDict):
     retval = False
 
     if type(theDict) != type({}):
-        return retval 
+        return retval
 
     for uarg in sys.argv:
         if uarg.startswith('print-'):
