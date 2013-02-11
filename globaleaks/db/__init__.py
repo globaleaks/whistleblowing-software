@@ -5,7 +5,6 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.twisted.transact import transact
 from globaleaks import settings
-from globaleaks import settings
 from globaleaks.db import tables
 from globaleaks.utils import log
 
@@ -18,36 +17,46 @@ from globaleaks.models.node import Node
 
 __all__ = ['createTables']
 
-@inlineCallbacks
-def createTables():
+def initialize_node():
+    # Initialize the node
+    onlyNode = {
+        'name':  u"Please, set me: name/title",
+        'description':  u"Please, set me: description",
+        'hidden_service':  u"Please, set me: hidden service",
+        'public_site':  u"Please, set me: public site",
+        'email':  u"email@dumnmy.net",
+        'stats_update_time':  2, # hours,
+        'languages':  [{ "code" : "it" , "name": "Italiano"},
+                       { "code" : "en" , "name" : "English" }],
+    }
+    node_created = Node(store).new(onlyNode)
+
+def create_tables_transaction():
     """
     @return: None, create the right table at the first start, and initialized
     the node.
     """
+    store = settings.get_store()
+
     for model in [Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
                   Submission, Comment, File]:
-        createdTable = yield tables.createTable(model)
-
-    if not createdTable:
-        return
-
-    # Initialize the node
-    store = settings.get_store()
-    onlyNode = {}
-
-    onlyNode['name'] = u"Please, set me: name/title"
-    onlyNode['description'] = u"Please, set me: description"
-    onlyNode['hidden_service'] = u"Please, set me: hidden service"
-    onlyNode['public_site'] = u"Please, set me: public site"
-    onlyNode['email'] = u"email@dumnmy.net"
-    onlyNode['stats_update_time'] = 2 # hours
-    onlyNode['languages'] = [{ "code" : "it" , "name": "Italiano"},
-                             { "code" : "en" , "name" : "English" }]
-
-    node_created = Node(store).new(onlyNode)
+        create_query = tables.generateCreateQuery(model)
+        store.execute(create_query)
 
     # new is the only Models function executed without @transact, call .add, but
     # the called has to .commit and .close, operations commonly performed by decorator
-    store.commit()
-    store.close()
+    try:
+        store.commit()
+    except StormError as e:
+        log.msg(e)
+    finally:
+        store.close()
+
+def createTables(transactor=None):
+    """
+    Override transactor for testing.
+    """
+    if not transactor:
+        transactor = settings.config.main.transactor
+    return transactor.run(create_tables_transaction)
 
