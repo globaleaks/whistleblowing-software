@@ -1,6 +1,6 @@
 'use strict';
 
-var GLClient = angular.module('GLClient', ['ui', 'resourceServices', 
+var GLClient = angular.module('GLClient', ['resourceServices',
     'submissionUI', 'GLClientFilters']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -58,6 +58,11 @@ var GLClient = angular.module('GLClient', ['ui', 'resourceServices',
         controller: 'AdminCtrl',
       }).
 
+
+      when('/login', {
+        templateUrl: 'views/login.html',
+        controller: 'LoginCtrl',
+      }).
 
       otherwise({
         redirectTo: '/'
