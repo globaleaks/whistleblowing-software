@@ -599,7 +599,7 @@ class File(TXModel):
 
     name = Unicode()
 
-    content = RawStr()
+    path = Unicode()
     sha2sum = Unicode()
 
     description = Unicode()
@@ -818,7 +818,6 @@ class File(TXModel):
 
     def get_content(self, file_gus):
 
-        print file_gus
         try:
             filelookedat = self.store.find(File, File.file_gus == unicode(file_gus)).one()
         except NotOneError:
@@ -826,7 +825,7 @@ class File(TXModel):
         if not filelookedat:
             raise FileGusNotFound
 
-        ret={ 'content' : filelookedat.content,
+        ret={ 'path' : filelookedat.path,
               'sha2sum' : filelookedat.sha2sum,
               'size' : filelookedat.size,
               'content_type' : filelookedat.content_type,
@@ -852,7 +851,7 @@ class File(TXModel):
             'size' : self.size,
             'file_gus' : self.file_gus,
             'content_type' : self.content_type,
-            'file_name' : self.name,
+            'name' : self.name,
             'description' : self.description,
             'uploaded_date': gltime.prettyDateTime(self.uploaded_date),
             'mark' : unicode(self.mark),
