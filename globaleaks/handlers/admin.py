@@ -26,8 +26,6 @@ class NodeInstance(BaseHandler):
 
     This would be likely see as the starting point of the administration chain:
     """
-
-    @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -35,19 +33,11 @@ class NodeInstance(BaseHandler):
         Response: adminNodeDesc
         Errors: NodeNotFound
         """
+        answer = yield CrudOperations().get_node()
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
-        try:
-            answer = yield CrudOperations().get_node()
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (NodeNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
-
-    @asynchronous
     @inlineCallbacks
     def put(self, *uriargs):
         """
@@ -58,18 +48,10 @@ class NodeInstance(BaseHandler):
         Changes the node public node configuration settings
         """
 
-        try:
-            request = self.validate_message(self.request.body, requests.adminNodeDesc)
-
-            answer = yield CrudOperations().update_node(request)
-
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (InvalidInputFormat) as error:
-            self.write_error(error)
-
-        self.finish()
+        request = self.validate_message(self.request.body, requests.adminNodeDesc)
+        answer = yield CrudOperations().update_node(request)
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
 
 class ContextsCollection(BaseHandler):
@@ -77,7 +59,6 @@ class ContextsCollection(BaseHandler):
     A2
     Return a list of all the available contexts, in elements
     """
-
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -85,14 +66,11 @@ class ContextsCollection(BaseHandler):
         Response: adminContextList
         Errors: None
         """
-
         answer = yield CrudOperations().get_context_list()
 
+        self.write(answer['data'])
         self.set_status(answer['code'])
-        self.finish(answer['data'])
 
-
-    @asynchronous
     @inlineCallbacks
     def post(self, *uriargs):
         """
@@ -100,18 +78,11 @@ class ContextsCollection(BaseHandler):
         Response: adminContextDesc
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
+        request = self.validate_message(self.request.body, requests.adminContextDesc)
+        answer = yield CrudOperations().create_context(request)
 
-        try:
-            request = self.validate_message(self.request.body, requests.adminContextDesc)
-            answer = yield CrudOperations().create_context(request)
-
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (InvalidInputFormat, ContextGusNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
 
 class ContextInstance(BaseHandler):
@@ -120,7 +91,6 @@ class ContextInstance(BaseHandler):
     classic CRUD in the single Context resource.
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, context_gus, *uriargs):
         """
@@ -128,20 +98,12 @@ class ContextInstance(BaseHandler):
         Response: adminContextDesc
         Errors: ContextGusNotFound, InvalidInputFormat
         """
+        # validateParameter(context_gus, requests.contextGUS)
+        answer = yield CrudOperations().get_context(context_gus)
 
-        try:
-            # validateParameter(context_gus, requests.contextGUS)
-            answer = yield CrudOperations().get_context(context_gus)
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (ContextGusNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
-
-    @asynchronous
     @inlineCallbacks
     def put(self, context_gus, *uriargs):
         """
@@ -149,22 +111,14 @@ class ContextInstance(BaseHandler):
         Response: adminContextDesc
         Errors: InvalidInputFormat, ContextGusNotFound, ReceiverGusNotFound
         """
+        # validateParameter(context_gus, requests.contextGUS)
+        request = self.validate_message(self.request.body, requests.adminContextDesc)
 
-        try:
-            # validateParameter(context_gus, requests.contextGUS)
-            request = self.validate_message(self.request.body, requests.adminContextDesc)
+        answer = yield CrudOperations().update_context(context_gus, request)
 
-            answer = yield CrudOperations().update_context(context_gus, request)
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (InvalidInputFormat, ContextGusNotFound, ReceiverGusNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
-
-    @asynchronous
     @inlineCallbacks
     def delete(self, context_gus, *uriargs):
         """
@@ -172,18 +126,11 @@ class ContextInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, ContextGusNotFound
         """
+        # validateParameter(context_gus, requests.contextGUS)
+        answer = yield CrudOperations().delete_context(context_gus)
 
-        try:
-            # validateParameter(context_gus, requests.contextGUS)
-            answer = yield CrudOperations().delete_context(context_gus)
-
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (ContextGusNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
 
 class ReceiversCollection(BaseHandler):
@@ -192,7 +139,6 @@ class ReceiversCollection(BaseHandler):
     List all available receivers present in the node.
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -208,10 +154,6 @@ class ReceiversCollection(BaseHandler):
         self.write(answer['data'])
         self.set_status(answer['code'])
 
-        self.finish()
-
-
-    @asynchronous
     @inlineCallbacks
     def post(self, *uriargs):
         """
@@ -221,19 +163,12 @@ class ReceiversCollection(BaseHandler):
 
         Create a new receiver
         """
+        request = self.validate_message(self.request.body, requests.adminReceiverDesc)
 
-        try:
-            request = self.validate_message(self.request.body, requests.adminReceiverDesc)
+        answer = yield CrudOperations().create_receiver(request)
 
-            answer = yield CrudOperations().create_receiver(request)
-
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (InvalidInputFormat,  ContextGusNotFound, ReceiverGusNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
 
 class ReceiverInstance(BaseHandler):
@@ -256,7 +191,6 @@ class ReceiverInstance(BaseHandler):
 
         Get an existent Receiver instance.
         """
-
         try:
             # validateParameter(receiver_gus, requests.receiverGUS)
             answer = yield CrudOperations().get_receiver(receiver_gus)
@@ -276,17 +210,12 @@ class ReceiverInstance(BaseHandler):
 
         Update information about a Receiver, return the instance updated.
         """
-        try:
-            # validateParameter(receiver_gus, requests.receiverGUS)
-            request = self.validate_message(self.request.body, requests.adminReceiverDesc)
-
-            answer = yield CrudOperations().update_receiver(receiver_gus, request)
-
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (InvalidInputFormat, ReceiverGusNotFound, ContextGusNotFound) as error:
-            self.write_error(error)
+        # validateParameter(receiver_gus, requests.receiverGUS)
+        request = self.validate_message(self.request.body, requests.adminReceiverDesc)
+        answer = yield CrudOperations().update_receiver(receiver_gus, request)
+        # validateMessage() output!!
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
 
     @inlineCallbacks
@@ -315,7 +244,6 @@ class PluginCollection(BaseHandler):
     univoque name) available on the system.
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -334,7 +262,6 @@ class PluginCollection(BaseHandler):
 
         self.set_status(200)
         self.write(plugin_descriptive_list)
-        self.finish()
 
 
 class StatisticsCollection(BaseHandler):
