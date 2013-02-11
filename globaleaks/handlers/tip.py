@@ -176,7 +176,7 @@ class TipCommentCollection(BaseHandler):
         """
 
         try:
-            request = validateMessage(self.request.body, requests.actorsCommentDesc)
+            request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
             if is_receiver_token(tip_token):
                 answer = yield CrudOperations().new_comment_by_receiver(tip_token, request)

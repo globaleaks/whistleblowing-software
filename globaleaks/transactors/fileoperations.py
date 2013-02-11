@@ -4,7 +4,8 @@ from twisted.python import log
 from storm.twisted.transact import transact
 
 from globaleaks.transactors.base import MacroOperation
-from globaleaks.models.externaltip import File
+from globaleaks.models.externaltip import File, ReceiverTip
+from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.submission import Submission
 from globaleaks.rest.errors import SubmissionConcluded
 from globaleaks import settings
@@ -27,21 +28,29 @@ class FileOperations(MacroOperation):
         self.returnCode(200)
         return self.prepareRetVals()
 
-    def _dump_file(self, file, submission_gus, file_gus):
 
-        result = {}
-        result['file_gus'] = file_gus
-        result['name'] = file['filename']
-        result['type'] = file['content_type']
-        result['size'] = len(file['body'])
+    def dump_single_file(self, store, client_file_desc, access_gus, context_gus):
 
-        # XXX verify this token what's is it
-        # TODO, remind the also ReceiverTip can upload file, not just Submission
-        result['token'] = submission_gus
+        # compose file request as the dict expected in File._import_dict
+        file_request = { 'filename' : client_file_desc.get('filename'),
+                         'content_type' : client_file_desc.get('content_type'),
+                         'file_size' : len(client_file_desc['body']),
+                         'submission_gus' : access_gus,
+                         'context_gus' : context_gus,
+                         'description' : ''
+        }
+
+        file_iface = File(store)
+        file_desc = file_iface.new(file_request)
+
+        print "Created file from %s with file_gus %s" % (file_request['filename'], file_desc['file_gus'])
+
+        # result = self._dump_file(client_file_desc, access_gus, file_desc['file_gus'])
+        # def _dump_file(self, file, submission_gus, file_gus):
 
         if not os.path.isdir(settings.config.advanced.submissions_dir):
             log.msg("%s does not exist. Creating it." %
-                    config.advanced.submissions_dir)
+                    settings.config.advanced.submissions_dir)
             os.mkdir(settings.config.advanced.submissions_dir)
 
         the_submission_dir = settings.config.advanced.submissions_dir
@@ -50,10 +59,10 @@ class FileOperations(MacroOperation):
         if not os.path.isdir(the_submission_dir):
             os.mkdir(the_submission_dir)
 
-        filelocation = os.path.join(the_submission_dir, file_gus)
+        filelocation = os.path.join(the_submission_dir, file_desc['file_gus'])
 
-        log.msg("Saving file \"%s\" of %d byte [%s] type, to %s" %
-              (result['name'], result['size'], result['type'], filelocation))
+        print "Saving file \"%s\" of %d byte [%s] type, to %s" %\
+              (file_desc['name'], file_desc['size'], file_desc['content_type'], filelocation )
 
         # *The file is complete*
         # because Cyclone cache them before pass to the handler.
@@ -61,19 +70,23 @@ class FileOperations(MacroOperation):
         # and we here can't track about incomplete file.
         with open(filelocation, 'w+') as fd:
             fdesc.setNonBlocking(fd.fileno())
-            fdesc.writeToFD(fd.fileno(), file['body'])
+            fdesc.writeToFD(fd.fileno(), client_file_desc['body'])
 
-        return result
+        return file_desc
 
     @transact
-    def new_files(self, submission_gus, request):
+    def new_files(self, access_gus, request, is_tip):
 
         store = self.getStore()
 
-        submission_desc = Submission(store).get_single(submission_gus)
-
-        if submission_desc['finalize']:
-            raise SubmissionConcluded
+        if is_tip:
+            itip_desc = ReceiverTip(store).get_single(access_gus)
+            context_gus = itip_desc['context_gus']
+        else:
+            submission_desc = Submission(store).get_single(access_gus)
+            if submission_desc['finalize']:
+                raise SubmissionConcluded
+            context_gus = submission_desc['context_gus']
 
         result_list = []
 
@@ -83,26 +96,14 @@ class FileOperations(MacroOperation):
 
             start_time = time.time()
 
-            file_request = { 'filename' : single_file.get('filename'),
-                             'content_type' : single_file.get('content_type'),
-                             'file_size' : len(single_file['body']),
-                             'submission_gus' : submission_gus,
-                             'context_gus' : submission_desc['context_gus'],
-                             'description' : ''
-            }
-
-            file_iface = File(store)
-            file_desc = file_iface.new(file_request)
-
-            print "Created file from %s with file_gus %s" % (file_request['filename'], file_desc['file_gus'])
-
-            result = self._dump_file(single_file, submission_gus, file_desc['file_gus'])
+            result = self.dump_single_file(store, single_file, access_gus, context_gus)
             result['elapsed_time'] = time.time() - start_time
             result_list.append(result)
 
         self.returnData(result_list)
         self.returnCode(200)
         return self.prepareRetVals()
+
 
     @transact
     def download_file(self, file_gus):

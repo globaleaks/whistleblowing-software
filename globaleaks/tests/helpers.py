@@ -79,15 +79,15 @@ class TestHandler(unittest.TestCase):
             'languages':  [{ "code" : "it" , "name": "Italiano"},
                            { "code" : "en" , "name" : "English" }],
             'notification_settings': {},
-            'password': 'spam'
     }
 
     @transact
     def fill_data(self):
         store = settings.get_store()
-
         try:
             receiver = models.receiver.Receiver(store).new(self.dummyReceiver)
+            self.dummyReceiver['username'] = receiver['username']
+            store.commit()
 
             self.dummyContext['receivers'] = receiver['receiver_gus']
             context = models.context.Context(store).new(self.dummyContext)
@@ -97,7 +97,14 @@ class TestHandler(unittest.TestCase):
             submission = models.submission.Submission(store).new(self.dummySubmission)
 
             self.dummyNode['context_gus'] = context['context_gus']
-            node = models.node.Node(store).new(self.dummyNode)
+            models.node.Node(store).new(self.dummyNode)
+
+            node = store.find(models.node.Node).one()
+            node.password = u'spam'
+            store.commit()
+
+            internal_tip = models.internaltip.InternalTip(store).new(self.dummySubmission)
+            self.dummyWhistleblowerTip = models.externaltip.WhistleblowerTip(store).new(internal_tip)
             store.commit()
 
         except Exception, error:
@@ -114,10 +121,13 @@ class TestHandler(unittest.TestCase):
         threadpool = FakeThreadPool()
         self.transactor = Transactor(threadpool)
 
-        self.mock_transport = []
+        self.responses = []
         @classmethod
-        def mock_write(cls, chunk):
-            self.mock_transport.append(chunk)
+        def mock_write(cls, response):
+            # !!!
+            # Here we are making the assumption that every time write() get's
+            # called it contains *all* of the response message.
+            self.responses.append(response)
 
         # override handle's get_store and transactor
         self._handler.write = mock_write
@@ -134,7 +144,6 @@ class TestHandler(unittest.TestCase):
         """
         Clear the actual transport.
         """
-        self.tr = None
         os.unlink('test.db')
 
     def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
