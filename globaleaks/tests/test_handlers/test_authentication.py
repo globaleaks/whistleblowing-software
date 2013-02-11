@@ -40,10 +40,6 @@ class TestAuthentication(helpers.TestHandler):
 
         return failed
 
-
-    def test_valid_wb_login(self):
-        pass
-
     def test_valid_admin_login(self):
         pass
 
