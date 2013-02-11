@@ -28,7 +28,7 @@ install_path = os.path.abspath(os.path.join(root_path, '..'))
 glclient_path = os.path.join(install_path, 'GLClient', 'app')
 gldata_path = os.path.join(root_path, '_gldata')
 db_file = 'sqlite:' + os.path.join(gldata_path, 'glbackend.db')
-store = 'main_store'
+store_name = 'main_store'
 
 if not os.path.exists(gldata_path):
         os.mkdir(gldata_path)
@@ -36,6 +36,10 @@ if not os.path.exists(gldata_path):
 assert all(os.path.exists(path) for path in
            (root_path, install_path, glclient_path, gldata_path))
 
+def get_store():
+    zstorm = ZStorm()
+    zstorm.set_default_uri(store_name, db_file)
+    return zstorm.get(store_name)
 
 class Config(object):
     def __init__(self):
@@ -75,7 +79,7 @@ class Config(object):
         self.main.database_uri = db_file
 
         self.main.zstorm = ZStorm()
-        self.main.zstorm.set_default_uri(store, db_file)
+        self.main.zstorm.set_default_uri(store_name, db_file)
 
         self.advanced.db_thread_pool_size = 1
         self.advanced.scheduler_thread_pool_size = 10
@@ -84,29 +88,19 @@ class Config(object):
         self.advanced.submissions_dir = os.path.join(self.advanced.data_dir, 'submissions')
         self.advanced.delivery_dir = os.path.join(self.advanced.data_dir, 'delivery')
 
+        log.msg("[D] %s %s " % (__file__, __name__), "Starting db_threadpool")
+        self.main.db_threadpool = ThreadPool(0, self.advanced.db_thread_pool_size)
+        self.main.db_threadpool.start()
+
+        log.msg("[D] %s %s " % (__file__, __name__), "Starting scheduler_threadpool")
+        self.main.scheduler_threadpool = ThreadPool(0, self.advanced.scheduler_thread_pool_size)
+        self.main.scheduler_threadpool.start()
+
+        self.main.transactor = Transactor(self.main.db_threadpool)
+        self.main.transactor.retries = 0
+
     @property
-    def store(self): return store
+    def store(self): return get_store()
 
 config = Config()
 
-def get_store():
-    zstorm = ZStorm()
-    zstorm.set_default_uri(store, db_file)
-    return zstorm.get(store)
-
-class Main(object):
-    __metaclass__ = Singleton
-
-    def __init__(self):
-        log.msg("[D] %s %s " % (__file__, __name__), "Starting db_threadpool")
-        self.db_threadpool = ThreadPool(0, config.advanced.db_thread_pool_size)
-        self.db_threadpool.start()
-
-        log.msg("[D] %s %s " % (__file__, __name__), "Starting scheduler_threadpool")
-        self.scheduler_threadpool = ThreadPool(0, config.advanced.scheduler_thread_pool_size)
-        self.scheduler_threadpool.start()
-
-        self.transactor = Transactor(self.db_threadpool)
-        self.transactor.retries = 0
-
-main = Main()

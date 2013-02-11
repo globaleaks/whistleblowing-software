@@ -96,25 +96,3 @@ def generateCreateQuery(model):
     query += varsToParametersSQLite(variables, primary_keys)
     return query
 
-def createTable(model):
-    """
-    Create the table for the specified model.
-    """
-    create_query = generateCreateQuery(model)
-    store = settings.get_store()
-    try:
-        store.execute(create_query)
-        store.commit()
-    except StormError as e:
-        log.msg(e)
-    else:
-        return True
-    finally:
-        store.close()
-
-def runCreateTable(model):
-    """
-    Runs the table creation query wrapped in a transaction.
-    Transactions run in a separate thread.
-    """
-    return settings.config.main.transactor.run(createTable, model)

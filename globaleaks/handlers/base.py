@@ -21,7 +21,7 @@ from globaleaks import settings
 from globaleaks.rest import errors
 
 class BaseHandler(RequestHandler):
-    transactor = settings.main.transactor
+    transactor = settings.config.main.transactor
 
     @property
     def store(self):
