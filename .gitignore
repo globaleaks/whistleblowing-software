@@ -8,7 +8,8 @@ _gldata
 *.log
 *_trial_temp*
 .idea/*
-bin/twistd.pid
+twistd.pid
 glenv/
 sqlite-jdbc-3.7.2.jar
 xerial-sqlite-license.txt
+
