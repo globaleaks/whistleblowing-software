@@ -1,3 +1,4 @@
+from twisted.internet import defer
 from globaleaks.tests import helpers
 
 from globaleaks.handlers import authentication
