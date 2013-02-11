@@ -13,7 +13,7 @@ from twisted.internet import reactor
 from twisted.application.service import Application
 from twisted.application import internet
 from cyclone import web
-from globaleaks.settings import main
+from globaleaks.settings import config
 from globaleaks.rest import api
 
 application = Application('GLBackend')
@@ -24,6 +24,6 @@ GLBackendAPI = internet.TCPServer(8082, GLBackendAPIFactory)
 GLBackendAPI.setServiceParent(application)
 
 # define exit behaviour
-reactor.addSystemEventTrigger('after', 'shutdown', main.db_threadpool.stop)
-reactor.addSystemEventTrigger('after', 'shutdown', main.scheduler_threadpool.stop)
+reactor.addSystemEventTrigger('after', 'shutdown', config.main.db_threadpool.stop)
+reactor.addSystemEventTrigger('after', 'shutdown', config.main.scheduler_threadpool.stop)
 

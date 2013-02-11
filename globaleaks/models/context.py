@@ -2,7 +2,7 @@
 #
 #   models/context
 #   **************
-# 
+#
 # Implementation of the Storm DB side of context table and ORM
 
 from storm.exceptions import NotOneError
