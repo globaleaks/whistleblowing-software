@@ -308,12 +308,12 @@ class CrudOperations(MacroOperation):
         requested_t = ReceiverTip(store)
         tip_description = requested_t.get_single(tip_gus)
 
-        # Get also the file list, along with the download path
-        file_list = File(store).get_files_by_itip(tip_description['internaltip_id'])
+        # Get also the file list, along with the download path ('href' : 'tip_gus + file_gus')
+        file_list = File(store).get_files_by_receiver_tip(tip_gus, tip_description['internaltip_id'])
         tip_description.update({'folders' : [
                             { "name": "hardcoded_block",
                               "uploaded_date" : "Wed Feb  6 10:35:42 2013",
-                              "files": [ file_list ]
+                              "files": file_list
                             }
                     ]})
 
@@ -331,7 +331,12 @@ class CrudOperations(MacroOperation):
 
         # Get also the file list, along with the download path
         file_list = File(store).get_files_by_itip(tip_description['internaltip_id'])
-        tip_description.update({'folders' : file_list})
+        tip_description.update({'folders' : [
+            { "name": "hardcoded_block",
+              "uploaded_date" : "Wed Feb  6 10:35:42 2013",
+              "files": file_list
+            }
+        ]})
 
         self.returnData(tip_description)
         self.returnCode(200)

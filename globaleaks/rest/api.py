@@ -11,7 +11,7 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks.config import config
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug, authentication
-from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS
+from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS, fileGUS
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'
@@ -58,6 +58,10 @@ spec = [
     (r'/login', authentication.AuthenticationHandler),
 
     ## Tip Handlers ##
+
+    #  T5 = only Receiver, download the files
+    (r'/tip/' + tipGUS.regexp + '/download/' + fileGUS.regexp, files.Download),
+
     #  T1
     (r'/tip/' + tip_access_token, tip.TipInstance),
 
@@ -69,9 +73,6 @@ spec = [
 
     #  T4 = only the whistlebower can access to this interface, then the regexp match properly
     (r'/tip/' + wb_receipt + '/upload', files.FileInstance),
-
-    #  T5 TODO - mode under /tip authenticated URL
-    (r'/download/' + not_defined_regexp, files.Download),
 
     ## Receiver Handlers ##
     #  R1

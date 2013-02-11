@@ -598,8 +598,6 @@ class File(TXModel):
     file_gus = Unicode(primary=True)
 
     name = Unicode()
-
-    path = Unicode()
     sha2sum = Unicode()
 
     description = Unicode()
@@ -728,27 +726,6 @@ class File(TXModel):
         if sha2sum:
             requested_f.sha2sum = unicode(sha2sum)
 
-    def add_content_from_fs(self, file_gus, filepath):
-
-        requested_f = self.store.find(File, File.file_gus == unicode(file_gus)).one()
-
-        chunk_size = 8192
-
-        with open(filepath, 'rb') as fd:
-
-            bytecount = 0
-            requested_f.content = ''
-
-            fdesc.setNonBlocking(fd.fileno())
-            while True:
-                chunk = fd.read(chunk_size)
-                if len(chunk) == 0:
-                    break
-                bytecount += len(chunk)
-                requested_f.content += chunk
-
-        print "Moved content from", filepath, "to the database", file_gus, "byte", bytecount
-
     def get_file_by_marker(self, marker):
         """
         @return: all the files matching with the requested
@@ -769,6 +746,19 @@ class File(TXModel):
             retVal.append(single_file._description_dict())
 
         return retVal
+
+    def get_files_by_receiver_tip(self, tip_gus, internaltip_id):
+
+        referenced_f = self.store.find(File, File.internaltip_id == int(internaltip_id))
+
+        referenced_files = []
+
+        for single_file in referenced_f:
+            single_file_desc = single_file._description_dict()
+            single_file_desc.update({'href':'/tip/%s/download/%s' % (tip_gus, single_file_desc['file_gus']) })
+            referenced_files.append(single_file_desc)
+
+        return referenced_files
 
 
     def get_files_by_itip(self, internaltip_id):
@@ -816,22 +806,6 @@ class File(TXModel):
 
         return submission_files
 
-    def get_content(self, file_gus):
-
-        try:
-            filelookedat = self.store.find(File, File.file_gus == unicode(file_gus)).one()
-        except NotOneError:
-            raise FileGusNotFound
-        if not filelookedat:
-            raise FileGusNotFound
-
-        ret={ 'path' : filelookedat.path,
-              'sha2sum' : filelookedat.sha2sum,
-              'size' : filelookedat.size,
-              'content_type' : filelookedat.content_type,
-              'file_name' : filelookedat.name }
-        return ret
-
 
     def get_single(self, file_gus):
 
@@ -859,7 +833,6 @@ class File(TXModel):
             'context_gus' : self.context_gus,
             'submission_gus' :  self.submission_gus if self.submission_gus else False,
             'internaltip_id' : self.internaltip_id if self.internaltip_id else False,
-
         }
         return dict(descriptionDict)
 
