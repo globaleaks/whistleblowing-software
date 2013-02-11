@@ -2,7 +2,7 @@
 #
 #   models/receiver
 #   ***************
-# 
+#
 # Storm DB implementation of the receiver table and ORM
 
 from storm.exceptions import NotOneError
@@ -75,6 +75,7 @@ class Receiver(TXModel):
         except KeyError, e:
             raise InvalidInputFormat("initialization failed (missing %s)" % e)
         except TypeError, e:
+            print e, repr(e)
             raise InvalidInputFormat("initialization failed (wrong %s)" % e)
 
         # TODO validate the notification fields
