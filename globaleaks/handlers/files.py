@@ -19,6 +19,51 @@ from globaleaks.rest.errors import SubmissionGusNotFound, InvalidInputFormat
 
 __all__ = ['Download', 'FileInstance']
 
+# This is different from FileInstance, just because there are a different authentication requirements
+class FileAdd(BaseHandler):
+    """
+    T4
+    WhistleBlower interface for upload a new file
+    """
+
+    @asynchronous
+    @inlineCallbacks
+    def get(self, tip_gus, *args):
+        """
+        Parameters: tip_gus
+        Request: None
+        Response: Unknown
+        Errors: Unknown
+        """
+
+        # is this ever used by JQFU ?
+        answer = yield FileOperations().get_files(tip_gus)
+
+        self.write(answer['data'])
+        self.set_status(200)
+
+
+    @asynchronous
+    @inlineCallbacks
+    def post(self, tip_gus, *args):
+        """
+        Parameter: submission_gus
+        Request: Unknown
+        Response: Unknown
+        Errors: SubmissionGusNotFound, SubmissionConcluded
+        """
+
+        try:
+            answer = yield FileOperations().new_files(tip_gus, self.request, is_tip=True)
+
+            self.write(answer['data'])
+            self.set_status(answer['code'])
+
+        except (InvalidInputFormat, SubmissionGusNotFound) as error:
+            self.write_error(error)
+
+
+
 class FileInstance(BaseHandler):
     """
     U4
@@ -41,10 +86,12 @@ class FileInstance(BaseHandler):
             do not plan to use them.
         """
 
+        # is this ever used by JQFU ?
         answer = yield FileOperations().get_files(submission_gus)
 
         self.write(answer['data'])
         self.set_status(200)
+
 
     @asynchronous
     @inlineCallbacks
@@ -57,7 +104,7 @@ class FileInstance(BaseHandler):
         """
 
         try:
-            answer = yield FileOperations().new_files(submission_gus, self.request)
+            answer = yield FileOperations().new_files(submission_gus, self.request, is_tip=False)
 
             self.write(answer['data'])
             self.set_status(answer['code'])
@@ -87,12 +134,16 @@ class Download(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, file_gus, *uriargs):
+    def get(self, tip_gus, file_gus, *uriargs):
 
         try:
             # tip_gus needed to authorized the download
+            print tip_gus, file_gus
 
             answer = yield FileOperations().download_file(file_gus)
+
+            # verify if receiver can, in fact, download the file, otherwise
+            # raise DownloadLimitExceeded
 
             fileContent = answer['data']
             # keys:  'content'  'sha2sum'  'size' : 'content_type' 'file_name'
