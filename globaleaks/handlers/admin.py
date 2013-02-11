@@ -78,7 +78,6 @@ class ContextsCollection(BaseHandler):
     Return a list of all the available contexts, in elements
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -87,17 +86,10 @@ class ContextsCollection(BaseHandler):
         Errors: None
         """
 
-        try:
-            answer = yield CrudOperations().get_context_list()
+        answer = yield CrudOperations().get_context_list()
 
-
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (InvalidInputFormat) as error:
-            self.write_error(error)
-
-        self.finish()
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
 
     @asynchronous
