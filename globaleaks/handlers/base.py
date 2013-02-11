@@ -91,8 +91,16 @@ class BaseHandler(RequestHandler):
         #            message_template.iteritems()):
         #     print jmessage, message_template
         #     raise errors.InvalidInputFormat('wrong content')
+
+        # XXX the schema followed is passed by the user, in the future we need
+        # that specification is used as reference schema. In develop this has raised
+        # bugs/issue/incompatibility
+
         if not all(self.validate_type(value, message_template[key]) for key, value in
                    jmessage.iteritems()):
+            # print "+ Template", sorted(message_template.keys())
+            # print "- Received", sorted(jmessage.iteritems())
+            # print "** diff", set(message_template.keys()) - set(jmessage.keys())
             raise errors.InvalidInputFormat('wrong content')
 
         return True
@@ -101,10 +109,22 @@ class BaseHandler(RequestHandler):
         try:
             jmessage = json.loads(message)
         except ValueError:
-            raise InvalidInputFormat
+            raise errors.InvalidInputFormat("Invalid JSON message")
+
+        # Disabled Input Validation - until specification is not complete
+        return jmessage
 
         if self.validate_jmessage(jmessage, message_template):
             return jmessage
+
+
+    def output_stripping(self, message, message_template):
+        """
+        @param message: the serialized dict received
+        @param message_template: the answers definition
+        @return: a dict or a list without the unwanted keys
+        """
+        pass
 
 
     requestTypes = {}
