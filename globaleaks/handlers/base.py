@@ -14,12 +14,15 @@ from globaleaks.rest.base import validateMessage
 from cyclone.web import RequestHandler, HTTPError
 from cyclone import escape
 from globaleaks.utils import log
-from globaleaks.settings import config, main
+from globaleaks import settings
 import json
 
 class BaseHandler(RequestHandler):
-    transactor = main.transactor
-    store = 'main_store'
+    transactor = settings.main.transactor
+
+    @property
+    def store(self):
+        return settings.store
 
     requestTypes = {}
     def prepare(self):
@@ -29,7 +32,7 @@ class BaseHandler(RequestHandler):
         method may not be used.
         """
 
-        if config.debug.verbose:
+        if settings.config.debug.verbose:
             print "Just got %s" % self.request.body
 
         if self.request.method.lower() == 'post':
@@ -71,5 +74,5 @@ class BaseHandler(RequestHandler):
         """
         Return the current store object.
         """
-        return config.main.zstorm.get(self.store)
+        return settings.config.main.zstorm.get(self.store)
 

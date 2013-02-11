@@ -4,7 +4,8 @@
 
 from twisted.internet.defer import inlineCallbacks
 from storm.twisted.transact import transact
-from globaleaks.settings import config
+from globaleaks import settings
+from globaleaks import settings
 from globaleaks.db import tables
 from globaleaks.utils import log
 
@@ -31,7 +32,7 @@ def createTables():
         return
 
     # Initialize the node
-    store = config.main.zstorm.get(config.store)
+    store = settings.get_store()
     onlyNode = {}
 
     onlyNode['name'] = u"Please, set me: name/title"
