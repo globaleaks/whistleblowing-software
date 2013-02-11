@@ -12,9 +12,9 @@ class MacroOperation():
         then the transact thread is closed, the stack
         would http://www.youtube.com/watch?v=C7JZ4F3zJdY fart.
         """
-        if type(data) == type([]):
+        if isinstance(data, list):
             self._data = list(data)
-        elif type(data) == type({}):
+        elif isinstance(data, dict):
             self._data = dict(data)
         else:
             raise NotImplementedError
