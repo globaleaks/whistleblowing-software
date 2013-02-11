@@ -1,4 +1,4 @@
-from globaleaks.tests.test_handlers import helpers
+from globaleaks.tests import helpers
 
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
