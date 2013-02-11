@@ -14,18 +14,21 @@ Marker shifting map:
     Submission:     shift made by CrudOperation.(new|update)_submission
 """
 
+import os, zipfile
+
+from storm.twisted.transact import transact
+from twisted.python import log
+
 from globaleaks.transactors.base import MacroOperation
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import File, ReceiverTip, Comment
 from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.node import Node
 from globaleaks.plugins.manager import PluginManager
-from globaleaks.config import config
+from globaleaks import settings
 from globaleaks.rest.errors import ReceiverGusNotFound
 from globaleaks.utils.random import get_file_checksum
-import os, zipfile
 
-from storm.twisted.transact import transact
 
 class AsyncOperations(MacroOperation):
 
@@ -272,8 +275,8 @@ class AsyncOperations(MacroOperation):
 
                 receivertip_obj = ReceiverTip(store)
                 receivertip_desc = receivertip_obj.new(internaltip_desc, receiver_desc)
-                print "Created rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name'], \
-                    "in", internaltip_desc['context_gus']
+                log.msg("Created rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name'], \
+                        "in", internaltip_desc['context_gus'])
 
             internaltip_iface.flip_mark(internaltip_desc['internaltip_id'], internaltip_iface._marker[1])
 

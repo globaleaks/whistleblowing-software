@@ -1,8 +1,9 @@
 from globaleaks.transactors.base import MacroOperation
+from storm.twisted.transact import transact
 
 from globaleaks.models.receiver import Receiver
 from globaleaks.rest.errors import ForbiddenOperation, InvalidInputFormat
-from storm.twisted.transact import transact
+from globaleaks import settings
 
 class AuthOperations(MacroOperation):
 

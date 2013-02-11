@@ -13,11 +13,14 @@ from cyclone.web import Application
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
-from globaleaks import config
+from globaleaks import settings
 from globaleaks import db
 
+database_uri = 'sqlite:///test.db'
+settings.db_file = database_uri
+settings.store = 'test_store'
+settings.config = settings.Config()
 
-_TEST_STORE = 'test_store'
 def fillData():
     db.createTables()
 
@@ -33,7 +36,6 @@ class TestHandler(unittest.TestCase):
         """
         threadpool = FakeThreadPool()
         transactor = Transactor(threadpool)
-        database_uri = 'test.db'
 
         self.messages = []
         @classmethod
@@ -43,7 +45,6 @@ class TestHandler(unittest.TestCase):
         # override handle's get_store and transactor
         self._handler.write = mock_write
         self._handler.transactor = transactor
-        config.config = config.Config(database_uri, _TEST_STORE)
         fillData()
 
     def tearDown(self):
