@@ -40,11 +40,6 @@ class FileOperations(MacroOperation):
         file_iface = File(store)
         file_desc = file_iface.new(file_request)
 
-        print "Created file from %s with file_gus %s" % (file_request['filename'], file_desc['file_gus'])
-
-        # result = self._dump_file(client_file_desc, access_gus, file_desc['file_gus'])
-        # def _dump_file(self, file, submission_gus, file_gus):
-
         if not os.path.isdir(config.advanced.submissions_dir):
             print "%s does not exist. Creating it." % config.advanced.submissions_dir
             os.mkdir(config.advanced.submissions_dir)
@@ -109,7 +104,8 @@ class FileOperations(MacroOperation):
         receivers_related = ReceiverTip(store).get_receivers_by_tip(tip_gus)
 
         receiver_desc = receivers_related['actor']
-        print "The receiver related is ", receiver_desc
+
+        # TODO implement checks and counting for the Receiver+File combo max download
 
         file_desc = File(store).get_single(file_gus)
 
