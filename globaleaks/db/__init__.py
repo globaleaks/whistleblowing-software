@@ -21,7 +21,6 @@ def initialize_node():
     store = settings.get_store()
 
     nodes = store.find(Node)
-    print list(nodes)
     if len(list(nodes)) == 0:
         log.debug('Initializing node with new config')
         # Initialize the node
@@ -34,6 +33,8 @@ def initialize_node():
             'stats_update_time':  2, # hours,
             'languages':  [{ "code" : "it" , "name": "Italiano"},
                            { "code" : "en" , "name" : "English" }],
+            'notification_settings': {},
+            'password': ''
         }
         node_created = Node(store).new(onlyNode)
         store.commit()
@@ -62,7 +63,7 @@ def create_tables_transaction():
         store.close()
 
 @inlineCallbacks
-def createTables(transactor=None):
+def createTables(transactor=None, create_node=True):
     """
     Override transactor for testing.
     """
@@ -72,5 +73,7 @@ def createTables(transactor=None):
         yield transactor.run(create_tables_transaction)
     except Exception, e:
         log.msg(e)
-    yield transactor.run(initialize_node)
+
+    if create_node:
+        yield transactor.run(initialize_node)
 
