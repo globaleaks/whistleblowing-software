@@ -76,6 +76,9 @@ class AuthenticationHandler(BaseHandler):
         except NotOneError:
             raise InvalidAuthRequest
 
+        if not wb:
+            raise InvalidAuthRequest
+
         return unicode(wb.receipt)
 
     @transact
