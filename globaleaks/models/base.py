@@ -37,7 +37,7 @@ class TXModel(Storm):
     """
     log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel")
 
-    transactor = settings.main.transactor
+    transactor = settings.config.main.transactor
 
     createQuery = ""
 
