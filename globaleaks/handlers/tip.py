@@ -11,7 +11,6 @@ from cyclone.web import asynchronous
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.transactors.crudoperations import CrudOperations
-from globaleaks.rest.base import validateMessage
 from globaleaks.rest import requests
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
     TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
@@ -96,7 +95,7 @@ class TipInstance(BaseHandler):
             if not is_receiver_token(tip_token):
                 raise ForbiddenOperation
 
-            request = validateMessage(self.request.body, requests.actorsTipOpsDesc)
+            request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
             answer = yield CrudOperations().update_tip_by_receiver(tip_token, request)
 
             self.set_status(answer['code'])
