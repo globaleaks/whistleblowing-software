@@ -12,7 +12,7 @@ angular.module('resourceServices.authentication', [])
                      'role': role})
             .success(function(response){
               self.id = response.session_id;
-              localStorage['session_id'] = response.session_id;
+              sessionStorage['session_id'] = response.session_id;
               if (role != 'wb') {
                 $location.path($routeParams['src']);
               }
@@ -355,8 +355,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   config(function($httpProvider) {
     var $rootScope = angular.injector(['ng']).get('$rootScope'),
       globaleaksRequestInterceptor = function(data, headers) {
-        if (localStorage['session_id']) {
-          headers = angular.extend(headers(),{'X-Session': localStorage['session_id']});
+        if (sessionStorage['session_id']) {
+          headers = angular.extend(headers(),{'X-Session': sessionStorage['session_id']});
         };
         return data;
       };
