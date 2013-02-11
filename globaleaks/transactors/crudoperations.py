@@ -304,8 +304,18 @@ class CrudOperations(MacroOperation):
     @transact
     def get_tip_by_receiver(self, tip_gus):
 
-        requested_t = ReceiverTip(self.getStore())
+        store = self.getStore()
+        requested_t = ReceiverTip(store)
         tip_description = requested_t.get_single(tip_gus)
+
+        # Get also the file list, along with the download path
+        file_list = File(store).get_files_by_itip(tip_description['internaltip_id'])
+        tip_description.update({'folders' : [
+                            { "name": "hardcoded_block",
+                              "uploaded_date" : "Wed Feb  6 10:35:42 2013",
+                              "files": [ file_list ]
+                            }
+                    ]})
 
         self.returnData(tip_description)
         self.returnCode(200)
@@ -314,8 +324,14 @@ class CrudOperations(MacroOperation):
     @transact
     def get_tip_by_wb(self, receipt):
 
-        requested_t = WhistleblowerTip(self.getStore())
+        store = self.getStore()
+
+        requested_t = WhistleblowerTip(store)
         tip_description = requested_t.get_single(receipt)
+
+        # Get also the file list, along with the download path
+        file_list = File(store).get_files_by_itip(tip_description['internaltip_id'])
+        tip_description.update({'folders' : file_list})
 
         self.returnData(tip_description)
         self.returnCode(200)
