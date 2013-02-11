@@ -50,7 +50,7 @@ class FileOperations(MacroOperation):
 
         if not os.path.isdir(settings.config.advanced.submissions_dir):
             log.msg("%s does not exist. Creating it." %
-                    config.advanced.submissions_dir)
+                    settings.config.advanced.submissions_dir)
             os.mkdir(settings.config.advanced.submissions_dir)
 
         the_submission_dir = settings.config.advanced.submissions_dir
