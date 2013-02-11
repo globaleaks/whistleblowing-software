@@ -1,7 +1,7 @@
 from globaleaks import settings
 
 class MacroOperation():
-    transactor = settings.main.transactor
+    transactor = settings.config.main.transactor
 
     def getStore(self):
         return settings.config.main.zstorm.get('main_store')
