@@ -37,16 +37,13 @@ class FileOperations(MacroOperation):
                          'file_size' : len(client_file_desc['body']),
                          'submission_gus' : access_gus,
                          'context_gus' : context_gus,
-                         'description' : ''
+                         'description' : '',
         }
 
         file_iface = File(self.store)
         file_desc = file_iface.new(file_request)
 
         print "Created file from %s with file_gus %s" % (file_request['filename'], file_desc['file_gus'])
-
-        # result = self._dump_file(client_file_desc, access_gus, file_desc['file_gus'])
-        # def _dump_file(self, file, submission_gus, file_gus):
 
         if not os.path.isdir(settings.config.advanced.submissions_dir):
             log.msg("%s does not exist. Creating it." %
@@ -103,10 +100,17 @@ class FileOperations(MacroOperation):
 
 
     @transact
-    def download_file(self, file_gus):
-        fileDict = File(self.store).get_content(file_gus)
+    def get_file_access(self, tip_gus, file_gus):
 
-        self.returnData(fileDict)
+        receivers_related = ReceiverTip(self.store).get_receivers_by_tip(tip_gus)
+
+        receiver_desc = receivers_related['actor']
+
+        # TODO implement checks and counting for the Receiver+File combo max download
+
+        file_desc = File(self.store).get_single(file_gus)
+
+        self.returnData(file_desc)
         self.returnCode(200)
         return self.prepareRetVals()
 

@@ -1,8 +1,11 @@
+import os
+
 from twisted.trial import unittest
 from twisted.internet.defer import inlineCallbacks
 from storm import exceptions
 
 from globaleaks.settings import transact, get_store
+from globaleaks import settings
 from globaleaks.models.context import Context
 from globaleaks.models.receiver import Receiver
 from globaleaks.tests import helpers
@@ -13,10 +16,10 @@ class TestTransaction(unittest.TestCase):
     @inlineCallbacks
     def setUp(self):
         self.id = None
-        try:
-           yield transact.run(createTables(create_node=False))
-        except:
-           pass
+        yield createTables(create_node=False)
+
+    def tearDown(self):
+        os.unlink(settings.db_file[len('sqlite:///'):])
 
     def test_transaction_with_exception(self):
         return self.assertFailure(self._transaction_with_exception(), Exception)

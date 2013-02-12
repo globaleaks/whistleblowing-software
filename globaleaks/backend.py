@@ -24,5 +24,4 @@ GLBackendAPI = internet.TCPServer(8082, GLBackendAPIFactory)
 GLBackendAPI.setServiceParent(application)
 
 # define exit behaviour
-reactor.addSystemEventTrigger('after', 'shutdown', config.main.scheduler_threadpool.stop)
 

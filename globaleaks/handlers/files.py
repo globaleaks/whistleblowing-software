@@ -7,15 +7,14 @@
 # classes executed when an HTTP client contact /files/* URI
 
 from __future__ import with_statement
-
-import os
+from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import HTTPError, asynchronous
+from cyclone.web import HTTPError, asynchronous, os
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils import log
 from globaleaks import settings
 from globaleaks.transactors.fileoperations import FileOperations
-from globaleaks.rest.errors import SubmissionGusNotFound, InvalidInputFormat
+from globaleaks.rest.errors import SubmissionGusNotFound, InvalidInputFormat, TipGusNotFound, FileGusNotFound
 
 __all__ = ['Download', 'FileInstance']
 
@@ -63,7 +62,6 @@ class FileAdd(BaseHandler):
 class FileInstance(BaseHandler):
     """
     U4
-
     This is the Storm interface to supports JQueryFileUploader stream
     """
 
@@ -107,31 +105,16 @@ class FileInstance(BaseHandler):
         self.finish()
 
 
-    @asynchronous
-    @inlineCallbacks
-    def delete(self, submission_gus, *args):
-        """
-        Request: Unknown
-        Response: Unknown
-        Errors: Unknown
-
-        DELETE in fileHandlers need to be refactored-engineered
-        """
-        print self.request
-        print submission_gus
-        Exception("Not Yet Implemented file delete")
-
-
 class Download(BaseHandler):
 
     @asynchronous
     @inlineCallbacks
-    def get(self, tip_gus, file_gus, *uriargs):
+    def get(self, tip_gus, CYCLON_DIRT, file_gus, *uriargs):
 
         # tip_gus needed to authorized the download
         print tip_gus, file_gus
 
-        answer = yield FileOperations().download_file(file_gus)
+        answer = yield FileOperations().get_file_access(tip_gus, file_gus)
 
         # verify if receiver can, in fact, download the file, otherwise
         # raise DownloadLimitExceeded
@@ -145,7 +128,17 @@ class Download(BaseHandler):
         self.set_header('Content-Length', fileContent['size'])
         self.set_header('Etag', '"%s"' % fileContent['sha2sum'])
 
-        self.write(fileContent['content'])
+        filelocation = os.path.join(settings.config.advanced.submissions_dir, file_gus)
 
+        chunk_size = 8192
+        filedata = ''
+        with open(filelocation, "rb") as requestf:
+            fdesc.setNonBlocking(requestf.fileno())
+            while True:
+                chunk = requestf.read(chunk_size)
+                filedata += chunk
+                if len(chunk) == 0:
+                    break
 
+        self.write(filedata)
         self.finish()
