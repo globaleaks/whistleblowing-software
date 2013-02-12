@@ -29,7 +29,7 @@ class FileOperations(MacroOperation):
         return self.prepareRetVals()
 
 
-    def dump_single_file(self, store, client_file_desc, access_gus, context_gus):
+    def dump_single_file(self, client_file_desc, access_gus, context_gus):
 
         # compose file request as the dict expected in File._import_dict
         file_request = { 'filename' : client_file_desc.get('filename'),
@@ -40,7 +40,7 @@ class FileOperations(MacroOperation):
                          'description' : ''
         }
 
-        file_iface = File(store)
+        file_iface = File(self.store)
         file_desc = file_iface.new(file_request)
 
         print "Created file from %s with file_gus %s" % (file_request['filename'], file_desc['file_gus'])
@@ -93,7 +93,7 @@ class FileOperations(MacroOperation):
 
             start_time = time.time()
 
-            result = self.dump_single_file(store, single_file, access_gus, context_gus)
+            result = self.dump_single_file(single_file, access_gus, context_gus)
             result['elapsed_time'] = time.time() - start_time
             result_list.append(result)
 
