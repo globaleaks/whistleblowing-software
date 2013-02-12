@@ -163,7 +163,7 @@ class AsyncOperations(MacroOperation):
             new_files.update({ single_file['file_gus'] : single_file })
 
             try:
-                tempfpath = os.path.join(config.advanced.submissions_dir, single_file['file_gus'])
+                tempfpath = os.path.join(settings.config.advanced.submissions_dir, single_file['file_gus'])
                 # XXX Access check + stats + length integrity
             except AttributeError:
                 # XXX high level danger Log
