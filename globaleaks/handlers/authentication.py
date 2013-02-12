@@ -25,12 +25,12 @@ def authenticated(role):
     def wrapper(method):
         def call_method(cls, *args, **kwargs):
             if not cls.current_user:
-               raise NotAuthenticated
+                raise NotAuthenticated
             elif role != cls.current_user.role:
                 # XXX: eventually change this
                 raise NotAuthenticated
             else:
-                settings.config.sessions[cls.session_id].timestamp = time.time()
+                settings.config.sessions[cls.current_user.id].timestamp = time.time()
             return method(cls, *args, **kwargs)
         return call_method
     return wrapper
@@ -50,13 +50,13 @@ class AuthenticationHandler(BaseHandler):
         """
         return settings.config.sessions[self.session_id]
 
-    def generate_session(self, identifier, role):
+    def generate_session(self, role):
         self.session_id = random_string(26, 'a-z,A-Z,0-9')
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
         new_session = OD(
                timestamp=time.time(),
-               id=identifier,
+               id=self.session_id,
                role=role,
         )
         settings.config.sessions[self.session_id] = new_session
@@ -119,7 +119,7 @@ class AuthenticationHandler(BaseHandler):
         if not auth:
             raise InvalidAuthRequest
 
-        self.write({'session_id': self.generate_session(auth, role)})
+        self.write({'session_id': self.generate_session(role)})
 
     def delete(self):
         """
