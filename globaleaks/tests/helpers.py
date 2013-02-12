@@ -20,7 +20,8 @@ from globaleaks.utils import idops, gltime
 from globaleaks import settings
 from globaleaks import db
 
-settings.db_file = 'sqlite:///test.db'
+_TEST_DB = 'test.db'
+settings.db_file = 'sqlite:///' + _TEST_DB
 settings.store = 'test_store'
 settings.config = settings.Config()
 
@@ -70,17 +71,18 @@ class TestHandler(unittest.TestCase):
         # override handle's get_store and transactor
         self._handler.write = mock_write
 
-        yield db.createTables(create_node=False)
+        try:
+            yield transact.run(db.createTables(create_node=False))
+        except:
+            pass
+
         yield self.fill_data()
 
     def tearDown(self):
         """
         Clear the actual transport.
         """
-        try:
-            os.unlink(settings.db_file[len('sqlite:///'):])
-        except:
-            pass
+        os.unlink(_TEST_DB)
 
     def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
         """

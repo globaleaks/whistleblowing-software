@@ -32,43 +32,6 @@ from globaleaks.utils.random import get_file_checksum
 
 class AsyncOperations(MacroOperation):
 
-    @transact
-    def tip_notification(self):
-        plugin_type = u'notification'
-        receivertip_iface = ReceiverTip(self.store)
-
-        not_notified_tips = receivertip_iface.get_tips_by_notification_mark(u'not notified')
-
-        node_desc = Node(self.store).get_single()
-        if node_desc['notification_settings'] is None:
-            print "This node has not notification configured: postponed notification of ",\
-                len(not_notified_tips), "tips"
-            return
-
-        for single_tip in not_notified_tips:
-
-        # from a single tip, we need to extract the receiver, and then, having
-        # context + receiver, find out which configuration setting has active
-
-            receivers_map = receivertip_iface.get_receivers_by_tip(single_tip['tip_gus'])
-
-            receiver_info = receivers_map['actor']
-
-            # Obtain Notification from Node and from Receveir.notification_fields
-
-            settings_dict = { 'admin_settings' : node_desc['notification_settings'],
-                             'receiver_settings' : receiver_info['notification_fields']}
-
-            # hardcoded mail plugin just
-            plugin = PluginManager.instance_plugin(u'Mail')
-
-            updated_tip = receivertip_iface.update_notification_date(single_tip['tip_gus'])
-            return_code = plugin.do_notify(settings_dict, u'tip', updated_tip)
-
-            if return_code:
-               receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
-            else:
-               receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
 
     @transact
     def comment_notification(self):
@@ -239,30 +202,27 @@ class AsyncOperations(MacroOperation):
     def tip_creation(self):
         internaltip_iface = InternalTip(self.store)
         receiver_iface = Receiver(self.store)
-
         internal_tip_list = internaltip_iface.get_itips_by_maker(u'new', False)
 
         if len(internal_tip_list):
-            print "TipSched: found %d new Tip" % len(internal_tip_list)
+            log.msg('TipSched: found %d new Tip' % len(internal_tip_list))
 
         for internaltip_desc in internal_tip_list:
-
             for receiver_gus in internaltip_desc['receivers']:
-
                 try:
                     receiver_desc = receiver_iface.get_single(receiver_gus)
                 except ReceiverGusNotFound:
                     # Log error, a receiver has been removed before get the Tip
                     continue
-
                 # check if the Receiver Tier is the first
                 if int(receiver_desc['receiver_level']) != 1:
                     continue
-
                 receivertip_obj = ReceiverTip(self.store)
                 receivertip_desc = receivertip_obj.new(internaltip_desc, receiver_desc)
-                log.msg("Created rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name'], \
-                        "in", internaltip_desc['context_gus'])
+                log.msg("Created rTip %s for %s in %s" %
+                        (receivertip_desc['tip_gus'],
+                         receiver_desc['name'],
+                         internaltip_desc['context_gus']))
 
             internaltip_iface.flip_mark(internaltip_desc['internaltip_id'], internaltip_iface._marker[1])
 
@@ -271,7 +231,8 @@ class AsyncOperations(MacroOperation):
         #
         # loops over the InternalTip and checks the escalation threshold
         # It may require the creation of second-step Tips
-        escalated_itip_list = internaltip_iface.get_itips_by_maker(internaltip_iface._marker[1], True)
+        escalated_itip_list = internaltip_iface.get_itips_by_maker(internaltip_iface._marker[1],
+                                                                   True)
 
         if len(escalated_itip_list):
             print "TipSched: %d Tip are escalated" % len(escalated_itip_list)
@@ -301,3 +262,32 @@ class AsyncOperations(MacroOperation):
 
             internaltip_iface.flip_mark(eitip_id, internaltip_iface._marker[2])
 
+    @transact
+    def tip_notification(self):
+        plugin_type = u'notification'
+        receivertip_iface = ReceiverTip(self.store)
+        not_notified_tips = receivertip_iface.get_tips_by_notification_mark(u'not notified')
+        node_desc = Node(self.store).get_single()
+        if node_desc['notification_settings'] is None:
+            log.msg('This node has not notification configured:'
+                    'postponed notification of %d tips' %
+                    len(not_notified_tips))
+            return
+
+        for single_tip in not_notified_tips:
+        # from a single tip, we need to extract the receiver, and then, having
+        # context + receiver, find out which configuration setting has active
+            receivers_map = receivertip_iface.get_receivers_by_tip(single_tip['tip_gus'])
+            receiver_info = receivers_map['actor']
+            # Obtain Notification from Node and from Receveir.notification_fields
+            settings_dict = { 'admin_settings' : node_desc['notification_settings'],
+                             'receiver_settings' : receiver_info['notification_fields']}
+            # hardcoded mail plugin just
+            plugin = PluginManager.instance_plugin(u'Mail')
+            updated_tip = receivertip_iface.update_notification_date(single_tip['tip_gus'])
+            return_code = plugin.do_notify(settings_dict, u'tip', updated_tip)
+            print return_code
+            if return_code:
+               receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
+            else:
+               receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
