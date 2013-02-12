@@ -13,7 +13,6 @@ from cyclone.web import Application
 
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers import authentication
 from globaleaks.rest import errors
 from globaleaks import models
 from globaleaks.utils import idops, gltime
