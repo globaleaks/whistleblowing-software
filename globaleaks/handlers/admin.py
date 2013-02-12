@@ -9,6 +9,7 @@ from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import authenticated
 from globaleaks.transactors.crudoperations import CrudOperations
 
 from globaleaks.utils import log
