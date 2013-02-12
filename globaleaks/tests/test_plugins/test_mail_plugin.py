@@ -1,8 +1,8 @@
 from twisted.trial import unittest
 from twisted.internet.defer import inlineCallbacks
 from twisted.python import log
-import sys
-log.startLogging(sys.stdout)
+#import sys
+#log.startLogging(sys.stdout)
 
 from globaleaks import db
 from globaleaks.settings import transact
