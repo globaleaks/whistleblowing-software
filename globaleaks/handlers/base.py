@@ -21,19 +21,6 @@ from globaleaks import settings
 from globaleaks.rest import errors
 
 class BaseHandler(RequestHandler):
-    transactor = settings.config.main.transactor
-
-    @property
-    def store(self):
-        return settings.store
-
-    def get_store(self):
-        """
-        Return the current store object.
-        """
-        return settings.get_store()
-
-
     # validate_type = isinstance    # eventually later
     def validate_python_type(self, value, python_type):
         """

@@ -21,8 +21,8 @@ class TestAuthentication(helpers.TestHandler):
     @inlineCallbacks
     def test_successful_receiver_login(self):
         handler = self.request({
-           'username': self.dummyReceiver['username'],
-           'password': self.dummyReceiver['password'],
+           'username': helpers.dummyReceiver['username'],
+           'password': helpers.dummyReceiver['password'],
            'role': 'receiver'
         })
         success = yield handler.post()

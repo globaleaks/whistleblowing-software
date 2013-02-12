@@ -1,6 +1,6 @@
 from globaleaks.transactors.base import MacroOperation
-from storm.twisted.transact import transact
 
+from globaleaks.settings import transact
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import ReceiverTip
 from globaleaks.rest.errors import ForbiddenOperation, InvalidInputFormat
@@ -10,10 +10,7 @@ class AuthOperations(MacroOperation):
 
     @transact
     def authenticate_receiver(self, valid_tip):
-
-        store = self.getStore()
-
-        receivertip_iface = ReceiverTip(store)
+        receivertip_iface = ReceiverTip(self.store)
 
         receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
         user = receivers_map['actor']

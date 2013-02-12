@@ -21,7 +21,6 @@ class InfoCollection(BaseHandler):
     Contains System-wide properties.
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -29,18 +28,11 @@ class InfoCollection(BaseHandler):
         Response: publicNodeDesc
         Errors: NodeNotFound
         """
+        answer = yield CrudOperations().get_node()
+        # output filtering TODO need to strip reserved infos
 
-        try:
-            answer = yield CrudOperations().get_node()
-            # output filtering TODO need to strip reserved infos
-
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (NodeNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
 # U2 Submission create
 # U3 Submission update/status/delete
@@ -53,7 +45,6 @@ class StatsCollection(BaseHandler):
     Contexts settings
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -73,8 +64,6 @@ class ContextsCollection(BaseHandler):
     and would be memorized in a third party indexer service. This is way some dates
     are returned within.
     """
-
-    @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -87,8 +76,6 @@ class ContextsCollection(BaseHandler):
         self.write(answer['data'])
         self.set_status(answer['code'])
 
-        self.finish()
-
 
 class ReceiversCollection(BaseHandler):
     """
@@ -97,7 +84,6 @@ class ReceiversCollection(BaseHandler):
     to one or more context, and is present in the "first tier" if a multi level review is configured.
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -111,7 +97,4 @@ class ReceiversCollection(BaseHandler):
         # output filtering TODO need to strip reserved infos
         self.write(answer['data'])
         self.set_status(answer['code'])
-
-        self.finish()
-
 

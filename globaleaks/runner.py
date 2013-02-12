@@ -30,7 +30,6 @@ class GLBaseRunner(app.ApplicationRunner):
         interesting to do in here.
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunner", "preApplication")
-        pass
 
     def postApplication(self):
         """
@@ -40,7 +39,6 @@ class GLBaseRunner(app.ApplicationRunner):
         operations to be done after it's shutdown.
         """
         log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunner", "postApplication")
-        pass
 
 
 def startAsynchronous():
