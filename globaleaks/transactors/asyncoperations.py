@@ -266,9 +266,8 @@ class AsyncOperations(MacroOperation):
             # hardcoded mail plugin just
             plugin = PluginManager.instance_plugin(u'Mail')
             updated_tip = receivertip_iface.update_notification_date(single_tip['tip_gus'])
-            return_code = plugin.do_notify(settings_dict, u'tip', updated_tip)
-            print return_code
-            if return_code:
-               receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
-            else:
-               receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
+            d = plugin.do_notify(settings_dict, u'tip', updated_tip)
+
+            d.addCallback(receivertip_iface.flip_mark, single_tip['tip_gus'], u'notified')
+            d.addErrback(receivertip_iface.flip_mark, single_tip['tip_gus'], u'unable to notify')
+            return d
