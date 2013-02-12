@@ -126,6 +126,9 @@ class AuthenticationHandler(BaseHandler):
         Logout the user.
         """
         if self.current_user:
-            del settings.config.sessions[self.session_id]
+            try:
+                del settings.config.sessions[self.current_user.id]
+            except KeyError:
+                raise NotAuthenticated
 
         self.finish()

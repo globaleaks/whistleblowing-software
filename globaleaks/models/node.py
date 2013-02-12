@@ -106,6 +106,7 @@ class Node(TXModel):
         self.email = input_dict['email']
         self.languages = input_dict['languages']
         self.stats_update_time = int(input_dict['stats_update_time'])
+        self.password = input_dict['password']
 
     def _description_dict(self):
 
