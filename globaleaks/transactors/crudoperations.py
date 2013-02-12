@@ -466,13 +466,9 @@ class CrudOperations(MacroOperation):
         submission_desc = Submission(self.store).new(request)
 
         if submission_desc['finalize']:
-
             internaltip_desc =  InternalTip(self.store).new(submission_desc)
-
             wbtip_desc = WhistleblowerTip(self.store).new(internaltip_desc)
-
             File(self.store).switch_reference(submission_desc, internaltip_desc)
-
             submission_desc.update({'receipt' : wbtip_desc['receipt']})
         else:
             submission_desc.update({'receipt' : ''})
