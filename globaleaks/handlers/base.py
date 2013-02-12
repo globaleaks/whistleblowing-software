@@ -81,12 +81,15 @@ class BaseHandler(RequestHandler):
 
         message_type: the GLType class it should match.
         """
+        valid_jmessage = {}
+        for key in message_template.keys():
+            if key not in jmessage:
+                raise errors.InvalidInputFormat('wrong schema')
+            else:
+                valid_jmessage[key] = jmessage[key]
 
-        if not set(jmessage.keys()) == set(message_template.keys()):
-            print "InputValidation: Schema broken"
-            print "-->", sorted(jmessage.keys())
-            print "== ", sorted(message_template.keys())
-            raise errors.InvalidInputFormat('wrong schema')
+        jmessage = valid_jmessage
+        del valid_jmessage
 
         if not all(self.validate_type(jmessage[key], value) for key, value in
                     message_template.iteritems()):
