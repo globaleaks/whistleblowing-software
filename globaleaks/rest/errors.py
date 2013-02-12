@@ -190,6 +190,8 @@ class InvalidAuthRequest(GLException):
     reason = "Authentication Failed"
     error_code = 29
     status_code = 401 # Unauthorized
+    def __init__(self):
+        pass
 
 class NotAuthenticated(GLException):
     """
