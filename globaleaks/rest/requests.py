@@ -11,7 +11,6 @@ from globaleaks.rest.base import submissionGUS, formFieldsDict, contextGUS,\
     timeType, receiverGUS, fileGUS, tipGUS
 
 wbSubmissionDesc = {
-    'submission_gus': submissionGUS,
     'fields' : dict,
     'context_gus' : contextGUS,
     'creation_time' : timeType,
@@ -23,7 +22,6 @@ wbSubmissionDesc = {
 }
 
 receiverReceiverDesc =  {
-    'receiver_gus' : receiverGUS,
     'name' : unicode,
     'description' : unicode,
     'tags': list,
@@ -43,7 +41,6 @@ receiverReceiverDesc =  {
 }
 
 receiverTipDesc = {
-    'tip_gus' : tipGUS,
     'notification_status' : unicode,
     'notification_date' : timeType,
     'last_access' : timeType,
@@ -78,7 +75,6 @@ adminNodeDesc = {
 }
 
 adminContextDesc = {
-    'context_gus': contextGUS,
     'name': unicode,
     'description': unicode,
     'selectable_receiver': bool,
@@ -92,7 +88,6 @@ adminContextDesc = {
 }
 
 adminReceiverDesc =  {
-    'receiver_gus' : receiverGUS,
     'username' : unicode,
     'password' : unicode,
     'notification_fields' : dict,
