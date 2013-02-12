@@ -117,6 +117,6 @@ class Node(TXModel):
                    'email' : unicode(self.email),
                    'notification_settings' : dict(self.notification_settings) if self.notification_settings else None,
                    'password' : unicode(self.password),
-                   'languages' : unicode(self.languages)
+                   'languages' : list(self.languages)
             }
         return retDict
