@@ -29,16 +29,10 @@ class EntryCollection(BaseHandler):
         /dump/overview GET should return up to all the tables of GLBackend
         """
 
-        try:
-            answer = yield CrudOperations().dump_models(what)
+        answer = yield CrudOperations().dump_models(what)
 
-            self.set_status(answer['code'])
-            self.write(answer['data'])
-
-        except (InvalidInputFormat) as error:
-            self.write_error(error)
-
-        self.finish()
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
 
 class TaskInstance(BaseHandler):

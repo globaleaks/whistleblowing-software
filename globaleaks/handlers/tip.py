@@ -46,7 +46,6 @@ class TipInstance(BaseHandler):
     tip_token is either a receiver_tip_gus or a whistleblower auth token
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, tip_token, *uriargs):
         """
@@ -58,22 +57,14 @@ class TipInstance(BaseHandler):
         the format, help in addressing which kind of Tip need to be handled.
         """
 
-        try:
+        if is_receiver_token(tip_token):
+            answer = yield CrudOperations().get_tip_by_receiver(tip_token)
+        else:
+            answer = yield CrudOperations().get_tip_by_wb(tip_token)
 
-            if is_receiver_token(tip_token):
-                answer = yield CrudOperations().get_tip_by_receiver(tip_token)
-            else:
-                answer = yield CrudOperations().get_tip_by_wb(tip_token)
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (TipGusNotFound, TipReceiptNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
-
-    @asynchronous
     @inlineCallbacks
     def put(self, tip_token, *uriargs):
         """
@@ -90,23 +81,16 @@ class TipInstance(BaseHandler):
         perform a refresh on get() API, if a delete, would bring the user in other places.
         """
 
-        try:
-            # Until whistleblowers has not right to perform Tip operations...
-            if not is_receiver_token(tip_token):
-                raise ForbiddenOperation
+        # Until whistleblowers has not right to perform Tip operations...
+        if not is_receiver_token(tip_token):
+            raise ForbiddenOperation
 
-            request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
-            answer = yield CrudOperations().update_tip_by_receiver(tip_token, request)
+        request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
+        answer = yield CrudOperations().update_tip_by_receiver(tip_token, request)
 
-            self.set_status(answer['code'])
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
-        except (InvalidInputFormat, ForbiddenOperation, TipGusNotFound, TipPertinenceExpressed) as error:
-            self.write_error(error)
-
-        self.finish()
-
-
-    @asynchronous
     @inlineCallbacks
     def delete(self, tip_token, *uriargs):
         """
@@ -116,22 +100,14 @@ class TipInstance(BaseHandler):
 
         When an uber-receiver decide to "total delete" a Tip, is handled by this call.
         """
-        try:
+        # This until WB can't Total delete the Tip!
+        if not is_receiver_token(tip_token):
+            raise ForbiddenOperation
 
-            # This until WB can't Total delete the Tip!
-            if not is_receiver_token(tip_token):
-                raise ForbiddenOperation
+        answer = yield CrudOperations().delete_tip(tip_token)
 
-            answer = yield CrudOperations().delete_tip(tip_token)
-
-            self.set_status(answer['code'])
-
-        except (ForbiddenOperation, TipGusNotFound) as error:
-            self.write_error(error)
-
+        self.set_status(answer['code'])
         self.finish()
-
-
 
 class TipCommentCollection(BaseHandler):
     """
@@ -142,7 +118,6 @@ class TipCommentCollection(BaseHandler):
     permitted.
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, tip_token, *uriargs):
         """
@@ -151,22 +126,14 @@ class TipCommentCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        try:
+        if is_receiver_token(tip_token):
+            answer = yield CrudOperations().get_comment_list_by_receiver(tip_token)
+        else:
+            answer = yield CrudOperations().get_comment_list_by_wb(tip_token)
 
-            if is_receiver_token(tip_token):
-                answer = yield CrudOperations().get_comment_list_by_receiver(tip_token)
-            else:
-                answer = yield CrudOperations().get_comment_list_by_wb(tip_token)
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
-            self.set_status(answer['code'])
-            self.write(answer['data'])
-
-        except (TipGusNotFound, TipReceiptNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
-
-    @asynchronous
     @inlineCallbacks
     def post(self, tip_token, *uriargs):
         """
@@ -175,22 +142,15 @@ class TipCommentCollection(BaseHandler):
         Errors: InvalidTipAuthToken, InvalidInputFormat, TipGusNotFound, TipReceiptNotFound
         """
 
-        try:
-            request = self.validate_message(self.request.body, requests.actorsCommentDesc)
+        request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
-            if is_receiver_token(tip_token):
-                answer = yield CrudOperations().new_comment_by_receiver(tip_token, request)
-            else:
-                answer = yield CrudOperations().new_comment_by_wb(tip_token, request)
+        if is_receiver_token(tip_token):
+            answer = yield CrudOperations().new_comment_by_receiver(tip_token, request)
+        else:
+            answer = yield CrudOperations().new_comment_by_wb(tip_token, request)
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (TipGusNotFound, TipReceiptNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
-
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
 class TipReceiversCollection(BaseHandler):
     """
@@ -199,7 +159,6 @@ class TipReceiversCollection(BaseHandler):
     GET /tip/<auth_tip_token>/receivers
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, tip_token, *uriargs):
         """
@@ -208,18 +167,11 @@ class TipReceiversCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        try:
-            if is_receiver_token(tip_token):
-                answer = yield CrudOperations().get_receiver_list_by_receiver(tip_token)
-            else:
-                answer = yield CrudOperations().get_receiver_list_by_wb(tip_token)
+        if is_receiver_token(tip_token):
+            answer = yield CrudOperations().get_receiver_list_by_receiver(tip_token)
+        else:
+            answer = yield CrudOperations().get_receiver_list_by_wb(tip_token)
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (TipGusNotFound, TipReceiptNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
-
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
