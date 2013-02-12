@@ -17,30 +17,6 @@ from globaleaks.rest.errors import NodeNotFound, InvalidInputFormat
 __all__ = [ 'Node' ]
 
 class Node(TXModel):
-    """
-    This table has only one instance, has the "id", but would not exists a second element
-    of this table. This table acts, more or less, like the configuration file of the previous
-    GlobaLeaks release (and some of the GL 0.1 details are specified in Context)
-
-    This table represent the System-wide settings
-    """
-    __storm_table__ = 'node'
-
-    id = Int(primary=True, default=AutoReload)
-
-    description = Unicode()
-    name = Unicode()
-    public_site = Unicode()
-    hidden_service = Unicode()
-    email = Unicode()
-    languages = Pickle()
-    creation_time = DateTime()
-    notification_settings = Pickle()
-    password = Unicode()
-
-    # Here is set the time frame for the stats publicly exported by the node.
-    # Expressed in hours
-    stats_update_time = Int()
 
     def new(self, input_dict):
 
