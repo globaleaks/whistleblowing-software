@@ -8,8 +8,8 @@ angular.module('resourceServices.authentication', [])
 
         self.login = function(username, password, role) {
           $http.post('/login', {'username': username,
-                       'password': password,
-                     'role': role})
+                                'password': password,
+                                'role': role})
             .success(function(response){
               self.id = response.session_id;
               sessionStorage['session_id'] = response.session_id;
@@ -47,7 +47,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         error.url = response.config.url;
 
         if (error.code == 30) {
-          $location.path('/login?src='+source_path);
+          $location.path('/login');
+          $location.search('src='+source_path);
         };
 
         if (!$rootScope.errors) {
@@ -326,7 +327,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         receiver.description = '';
         receiver.password = null;
 
-        receiver.notification_selected = 'email';
         receiver.notification_fields = {'mail_address': ''};
 
         receiver.languages = [];
