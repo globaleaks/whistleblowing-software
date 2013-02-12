@@ -30,15 +30,21 @@ class TestEmail(helpers.TestHandler):
 
     @transact
     def _setup_database(self):
+
         self.ctx = Context(self.store).new(helpers.dummyContext)
         self.rcv = Receiver(self.store).new(helpers.dummyReceiver)
-        self.rcv['contexts'].append(self.ctx['context_gus'])
-        self.ctx['receivers'].append(self.rcv['receiver_gus'])
-        self.ctx['selectable_receiver'] = False
 
+        self.rcv['contexts'].append(self.ctx['context_gus'])
         self.rcv['notification_fields']['mail_address'] = 'maker@globaleaks.org'
-        Receiver(self.store).update(self.rcv['receiver_gus'], self.rcv)
-        Context(self.store).update(self.ctx['context_gus'], self.ctx)
+        self.rcv['receiver_level'] = 1
+        self.newrcv = Receiver(self.store).update(self.rcv['receiver_gus'], self.rcv)
+
+        # Assign Receiver to the Context
+        Receiver(self.store).receiver_align(self.rcv['receiver_gus'], [ self.ctx['context_gus'] ] )
+        Context(self.store).full_context_align(self.rcv['receiver_gus'], [ self.ctx['context_gus']] )
+
+        receiver_desc = Receiver(self.store).get_single(self.rcv['receiver_gus'])
+        context_desc = Context(self.store).get_single(self.ctx['context_gus'])
 
         node = self.store.find(Node).one()
         node.notification_settings = {
