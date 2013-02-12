@@ -35,7 +35,7 @@ def initialize_node():
             'languages':  [{ "code" : "it" , "name": "Italiano"},
                            { "code" : "en" , "name" : "English" }],
             'notification_settings': {},
-            'password': ''
+            'password': u'globaleaks'
         }
         node_created = Node(store).new(onlyNode)
         store.commit()
