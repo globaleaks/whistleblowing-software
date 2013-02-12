@@ -282,7 +282,7 @@ class CrudOperations(MacroOperation):
         tip_description = requested_t.get_single(tip_gus)
 
         # Get also the file list, along with the download path
-        file_list = File(store).get_files_by_itip(tip_description['internaltip_id'])
+        file_list = File(self.store).get_files_by_itip(tip_description['internaltip_id'])
         tip_description.update({'folders' : [
                             { "name": "hardcoded_block",
                               "uploaded_date" : "Wed Feb  6 10:35:42 2013",
@@ -300,7 +300,7 @@ class CrudOperations(MacroOperation):
         tip_description = requested_t.get_single(receipt)
 
         # Get also the file list, along with the download path
-        file_list = File(store).get_files_by_itip(tip_description['internaltip_id'])
+        file_list = File(self.store).get_files_by_itip(tip_description['internaltip_id'])
         tip_description.update({'folders' : file_list})
 
         self.returnData(tip_description)
