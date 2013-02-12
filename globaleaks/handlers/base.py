@@ -34,21 +34,19 @@ class BaseHandler(RequestHandler):
         return settings.get_store()
 
 
-    # validate_type = isinstance    # eventually later
     def validate_python_type(self, value, python_type):
         """
         Return True if the python class instantiates the python_type given.
         """
         return any((isinstance(value, python_type),
-                    not value,
+                    value is None,
         ))
 
     def validate_GLtype(self, value, gl_type):
         """
         Return True if the python class matches the given regexp.
         """
-        print gl_type
-        return bool(re.match(value, gl_type))
+        return bool(re.match(gl_type, value))
 
 
     def validate_type(self, value, type):
@@ -57,7 +55,10 @@ class BaseHandler(RequestHandler):
             return self.validate_python_type(value, type)
         # value as "{foo:bar}"
         elif isinstance(type, collections.Mapping):
-            self.validate_jmessage(value, type)
+            return self.validate_jmessage(value, type)
+        # regexp
+        elif isinstance(type, str):
+            return self.validate_GLtype(value, type)
         # value as "[ type ]"
         elif isinstance(type, collections.Iterable):
             # empty list is ok
@@ -65,9 +66,8 @@ class BaseHandler(RequestHandler):
                 return True
             else:
                 return all(self.validate_type(x, type[0]) for x in value)
-        # regexp
         else:
-            self.validate_GLtype(value, type)
+            raise AssertionError
 
     def validate_jmessage(self, jmessage, message_template):
         """
@@ -82,25 +82,16 @@ class BaseHandler(RequestHandler):
         message_type: the GLType class it should match.
         """
 
-        # fuck funky differences between client and server
-        # if not jmessage.keys() == message_template.keys():
-        #     print sorted(jmessage.keys()), sorted(message_template.keys())
-        #     raise errors.InvalidInputFormat('wrong schema')
+        if not jmessage.keys() == message_template.keys():
+            log.err("Missing: %s" % (set(jmessage.keys()) - set(message_template.keys())) )
+            raise errors.InvalidInputFormat('wrong schema')
 
-        # if not all(self.validate_type(jmessage[key], value) for key, value in
-        #            message_template.iteritems()):
-        #     print jmessage, message_template
-        #     raise errors.InvalidInputFormat('wrong content')
-
-        # XXX the schema followed is passed by the user, in the future we need
-        # that specification is used as reference schema. In develop this has raised
-        # bugs/issue/incompatibility
+        if not all(self.validate_type(jmessage[key], value) for key, value in
+                    message_template.iteritems()):
+            raise errors.InvalidInputFormat('wrong content')
 
         if not all(self.validate_type(value, message_template[key]) for key, value in
                    jmessage.iteritems()):
-            # print "+ Template", sorted(message_template.keys())
-            # print "- Received", sorted(jmessage.iteritems())
-            # print "** diff", set(message_template.keys()) - set(jmessage.keys())
             raise errors.InvalidInputFormat('wrong content')
 
         return True
@@ -110,9 +101,6 @@ class BaseHandler(RequestHandler):
             jmessage = json.loads(message)
         except ValueError:
             raise errors.InvalidInputFormat("Invalid JSON message")
-
-        # Disabled Input Validation - until specification is not complete
-        return jmessage
 
         if self.validate_jmessage(jmessage, message_template):
             return jmessage
