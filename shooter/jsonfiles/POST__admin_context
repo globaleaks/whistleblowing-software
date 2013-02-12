@@ -6,6 +6,5 @@ tip_max_access:=10
 tip_timetolive:=2
 file_max_download:=1
 escalation_threshold:=1
-context_gus=c_RdbHGFexDxvgVXPFnLrB
 languages:=[]
 receivers:=[@RAW@]
