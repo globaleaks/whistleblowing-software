@@ -100,7 +100,7 @@ class TestHandler(unittest.TestCase):
         if jbody and not body:
             body = json.dumps(jbody)
         elif body and jbody:
-            raise ValueErorr('jbody and body in conflict')
+            raise ValueError('jbody and body in conflict')
 
         application = Application([])
 

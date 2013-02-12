@@ -11,13 +11,12 @@ from datetime import datetime
 from globaleaks.rest.errors import InvalidInputFormat
 
 ## Follow the base messages
-fileGUS = r"(f_(\w){20,20})"
+fileGUS = r"(f_(\w){30,30})"
 # XXX not true anymore, need to be update the specification and the glossary
 receiptGUS = r"(\d{10,10})"
 submissionGUS = r"(s_(\w){50,50})"
 receiverGUS = r"(r_(\w){20,20})"
 contextGUS = r"(c_(\w){20,20})"
-commentENUM = r"(receiver|system|whistleblower)"
 tipGUS = r"(t_(\w){50,50})"
 # TODO: define this stuff
 dateType = r'(.*)'
