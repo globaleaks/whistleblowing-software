@@ -21,7 +21,6 @@ class SubmissionCreate(BaseHandler):
     returning a submission_gus, usable in update operation.
     """
 
-    @asynchronous
     @inlineCallbacks
     def post(self, *uriargs):
         """
@@ -36,36 +35,13 @@ class SubmissionCreate(BaseHandler):
         expire after the time set by Admin (Context dependent setting)
         """
 
-        try:
-            request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+        request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-            answer = yield CrudOperations().new_submission(request)
+        answer = yield CrudOperations().new_submission(request)
 
-            # TODO - output processing
-            self.set_status(answer['code'])
-            self.write(answer['data'])
-
-        except ContextGusNotFound, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except InvalidInputFormat, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except SubmissionFailFields, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        self.finish()
+        # TODO - output processing
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
 
 class SubmissionInstance(BaseHandler):

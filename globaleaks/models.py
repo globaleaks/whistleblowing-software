@@ -18,8 +18,9 @@ class Model(Storm):
     Base class for working the database
     """
     id = Unicode(primary=True, default_factory=uuid)
+    # Note on creation last_update and last_access may be out of sync by some
+    # seconds.
     creation_date = DateTime(default_factory=now)
-    last_update = DateTime(default_factory=now)
 
     def __new__(cls, *args, **kw):
         cls.__storm_table__ = cls.__name__.lower()
@@ -43,13 +44,11 @@ class Context(Model):
     selectable_receiver = Bool()
     escalation_threshold = Int()
 
-    creation_date = DateTime()
-    update_date = DateTime()
-    last_activity = DateTime()
-
     tip_max_access = Int()
     tip_timetolive = Int()
     file_max_download = Int()
+
+    last_update = DateTime()
 
     # receivers = ReferenceSet("Context.id", "Receiver.context_id")
 
@@ -113,6 +112,8 @@ class ReceiverTip(Model):
     notification_date = DateTime()
     notification_mark = Unicode()
 
+    last_access = DateTime(default_factory=now)
+
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
     # receiver_files = ReferenceSet(ReceiverTip.id, ReceiverFile.receiver_tip_id)
@@ -136,6 +137,8 @@ class ReceiverFile(Model):
     file_path = RawStr()
     downloads = Int()
  
+    last_access = DateTime()
+
     internal_file_id = Unicode()
     internal_file = Reference(internal_file_id, "InternalFile.id")
 
@@ -224,6 +227,9 @@ class Receiver(Model):
 
     # tips = ReferenceSet("Receiver.id", "ReceiverTip.receiver_id")
     context_id = Unicode()
+
+    last_update = DateTime()
+    last_access = DateTime(default_factory=now)
     # contexts = ReferenceSet("Context.id", 
     #                         "ReceiverContext.context_id",
     #                         "ReceiverContext.receiver_id",

@@ -11,6 +11,7 @@ from globaleaks.settings import transact
 
 from globaleaks.models import Context, ReceiverTip, WhistleblowerTip
 from globaleaks.models import Comment, InternalTip, Receiver
+from globaleaks.models import ReceiverFile, Folder, InternalFile
 
 __all__ = ['createTables']
 
@@ -44,8 +45,8 @@ def create_tables_transaction():
     the node.
     """
     store = settings.get_store()
-    for model in [Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
-                  Submission, Comment, File]:
+    for model in [Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
+            Receiver, InternalFile, Folder]:
         create_query = tables.generateCreateQuery(model)
         store.execute(create_query)
     # new is the only Models function executed without @transact, call .add, but
@@ -66,7 +67,6 @@ def createTables(create_node=True):
     try:
         yield transact.run(create_tables_transaction)
     except Exception, e:
-        print e
         log.msg(e)
 
     if create_node:
