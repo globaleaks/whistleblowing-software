@@ -31,9 +31,8 @@ from globaleaks.utils.random import get_file_checksum
 
 
 class AsyncOperations(MacroOperation):
-
     @transact
-    def tip_notification(self):
+    def tip_notification(self, store):
 
         plugin_type = u'notification'
         store = self.getStore()
@@ -74,14 +73,14 @@ class AsyncOperations(MacroOperation):
                receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
 
     @transact
-    def comment_notification(self):
+    def comment_notification(self, store):
         plugin_type = u'notification'
-        comment_iface = Comment(self.store)
-        internaltip_iface = InternalTip(self.store)
+        comment_iface = Comment(store)
+        internaltip_iface = InternalTip(store)
 
         not_notified_comments = comment_iface.get_comment_by_mark(marker=u'not notified')
 
-        node_desc = Node(self.store).get_single()
+        node_desc = Node(store).get_single()
         if node_desc['notification_settings'] is None:
             print "This node has not notification configured: postponed notification of",\
                 len(not_notified_comments),"comments"
@@ -96,7 +95,7 @@ class AsyncOperations(MacroOperation):
 
             for receiver_info in receivers_list:
 
-                node_desc = Node(self.store).get_single()
+                node_desc = Node(store).get_single()
                 settings_dict = { 'admin_settings' : node_desc['notification_settings'],
                                   'receiver_settings' : receiver_info['notification_fields']}
 
@@ -143,8 +142,8 @@ class AsyncOperations(MacroOperation):
 
 
     @transact
-    def fileprocess(self):
-        file_iface = File(self.store)
+    def fileprocess(self, store):
+        file_iface = File(store)
 
         not_processed_file = file_iface.get_file_by_marker(file_iface._marker[0])
 
@@ -161,7 +160,7 @@ class AsyncOperations(MacroOperation):
                 continue
 
             # collect for logs/info/flow
-            associated_itip.update({ itid : InternalTip(self.store).get_single(itid) })
+            associated_itip.update({ itid : InternalTip(store).get_single(itid) })
             # this file log do not contain hash nor path: it's fine anyway
             new_files.update({ single_file['file_gus'] : single_file })
 
@@ -172,7 +171,7 @@ class AsyncOperations(MacroOperation):
                 # XXX high level danger Log
                 continue
 
-            validate_file = self.do_fileprocess_validation(self.store,single_file['context_gus'], tempfpath)
+            validate_file = self.do_fileprocess_validation(store,single_file['context_gus'], tempfpath)
 
             # compute hash, SHA256 in non blocking mode (from utils/random.py)
             filehash = get_file_checksum(tempfpath)
@@ -188,7 +187,7 @@ class AsyncOperations(MacroOperation):
 
 
     @transact
-    def delivery(self):
+    def delivery(self, store):
         """
         Goal of delivery is checks if some delivery is configured for a context/receiver combo,
         and if is, just delivery the file in the requested way.
@@ -201,8 +200,8 @@ class AsyncOperations(MacroOperation):
 
         plugin_type = u'delivery'
 
-        file_iface = File(self.store)
-        receivertip_iface = ReceiverTip(self.store)
+        file_iface = File(store)
+        receivertip_iface = ReceiverTip(store)
 
         ready_files = file_iface.get_file_by_marker(file_iface._marker[1]) # ready
 
@@ -231,21 +230,21 @@ class AsyncOperations(MacroOperation):
             zf.close()
 
     @transact
-    def statistics(self):
+    def statistics(self, store):
         pass
 
     @transact
-    def cleaning(self):
+    def cleaning(self, store):
         pass
 
     @transact
-    def check_update(self):
+    def check_update(self, store):
         pass
 
     @transact
-    def tip_creation(self):
-        internaltip_iface = InternalTip(self.store)
-        receiver_iface = Receiver(self.store)
+    def tip_creation(self, store):
+        internaltip_iface = InternalTip(store)
+        receiver_iface = Receiver(store)
         internal_tip_list = internaltip_iface.get_itips_by_maker(u'new', False)
 
         if len(internal_tip_list):
@@ -261,7 +260,7 @@ class AsyncOperations(MacroOperation):
                 # check if the Receiver Tier is the first
                 if int(receiver_desc['receiver_level']) != 1:
                     continue
-                receivertip_obj = ReceiverTip(self.store)
+                receivertip_obj = ReceiverTip(store)
                 receivertip_desc = receivertip_obj.new(internaltip_desc, receiver_desc)
                 log.msg("Created rTip %s for %s in %s" %
                         (receivertip_desc['tip_gus'],
@@ -285,7 +284,7 @@ class AsyncOperations(MacroOperation):
             eitip_id = int(eitip['internaltip_id'])
 
             # This event has to be notified as system Comment
-            Comment(self.store).new(eitip_id, u"Escalation threshold has been reached", u'system')
+            Comment(store).new(eitip_id, u"Escalation threshold has been reached", u'system')
 
             for receiver_gus in eitip['receivers']:
 
@@ -299,7 +298,7 @@ class AsyncOperations(MacroOperation):
                 if int(receiver_desc['receiver_level']) != 2:
                     continue
 
-                receivertip_obj = ReceiverTip(self.store)
+                receivertip_obj = ReceiverTip(store)
                 receivertip_desc = receivertip_obj.new(eitip, receiver_desc)
                 print "Created 2nd tir rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name'], \
                     "in", eitip['context_gus']
@@ -307,11 +306,11 @@ class AsyncOperations(MacroOperation):
             internaltip_iface.flip_mark(eitip_id, internaltip_iface._marker[2])
 
     @transact
-    def tip_notification(self):
+    def tip_notification(self, store):
         plugin_type = u'notification'
-        receivertip_iface = ReceiverTip(self.store)
+        receivertip_iface = ReceiverTip(store)
         not_notified_tips = receivertip_iface.get_tips_by_notification_mark(u'not notified')
-        node_desc = Node(self.store).get_single()
+        node_desc = Node(store).get_single()
         if node_desc['notification_settings'] is None:
             log.msg('This node has not notification configured:'
                     'postponed notification of %d tips' %

@@ -63,9 +63,9 @@ class AuthenticationHandler(BaseHandler):
         return self.session_id
 
     @transact
-    def login_wb(self, receipt):
+    def login_wb(self, store, receipt):
         try:
-            wb = self.store.find(WhistleblowerTip,
+            wb = store.find(WhistleblowerTip,
                             WhistleblowerTip.receipt == unicode(receipt)).one()
         except NotOneError:
             raise InvalidAuthRequest
@@ -76,9 +76,9 @@ class AuthenticationHandler(BaseHandler):
         return unicode(wb.receipt)
 
     @transact
-    def login_receiver(self, username, password):
+    def login_receiver(self, store, username, password):
         try:
-            fstreceiver = self.store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
+            fstreceiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
         except NotOneError:
             raise InvalidAuthRequest
         if not fstreceiver:
@@ -87,8 +87,8 @@ class AuthenticationHandler(BaseHandler):
         return unicode(fstreceiver.receiver_gus)
 
     @transact
-    def login_admin(self, password):
-        node = self.store.find(Node).one()
+    def login_admin(self, store, password):
+        node = store.find(Node).one()
         return node.password == password
 
     @inlineCallbacks
