@@ -70,18 +70,17 @@ class TestHandler(unittest.TestCase):
         # override handle's get_store and transactor
         self._handler.write = mock_write
 
-        try:
-            yield transact.run(db.createTables(create_node=False))
-        except:
-            pass
-
+        yield db.createTables(create_node=False)
         yield self.fill_data()
 
     def tearDown(self):
         """
         Clear the actual transport.
         """
-        os.unlink(settings.db_file[len('sqlite:///'):])
+        try:
+            os.unlink(settings.db_file[len('sqlite:///'):])
+        except:
+            pass
 
     def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
         """
