@@ -116,12 +116,12 @@ spec = [
 # * /test
 if settings.config.debug.testing:
     spec.append(
-        (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(settings.config.main.glclient_path, '..', 'test')})
+        (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(settings.glclient_path, '..', 'test')})
     )
 
 ## Main Web app ##
 # * /
 spec.append(
-    (r'/(.*)', StaticFileHandler, {'path': settings.config.main.glclient_path, 'default_filename': "index.html" } )
+    (r'/(.*)', StaticFileHandler, {'path': settings.glclient_path, 'default_filename': "index.html" } )
 )
 
