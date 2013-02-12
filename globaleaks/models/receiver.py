@@ -15,51 +15,6 @@ from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat
 __all__ = ['Receiver']
 
 class Receiver(TXModel):
-    """
-    Receiver description model, some Receiver dependent information are
-    also in globaleaks.models.plugin ReceiverConfs table
-    """
-    __storm_table__ = 'receivers'
-
-    receiver_gus = Unicode(primary=True)
-
-    creation_date = DateTime()
-    update_date = DateTime()
-
-    # Those four variable can be changed by the Receiver
-    name = Unicode()
-    description = Unicode()
-
-    # Authentication variables
-    username = Unicode()
-    password = Unicode()
-
-    # notification_variable
-    notification_fields = Pickle()
-
-    # Tags and know_languages reflect in the Context, based on the
-    # sum of the Receivers assigned.
-    tags = Pickle()
-    know_languages = Pickle()
-
-    # Admin choosen options
-    can_delete_submission = Bool()
-    can_postpone_expiration = Bool()
-    can_configure_delivery = Bool()
-    can_configure_notification = Bool()
-    admin_description = Unicode() # XXX: update API, scripts and outputs
-
-    # receiver_tier = 1 or 2. Mean being part of the first or second level
-    # of receivers body. if threshold is configured in the context. default 1
-    receiver_level = Int()
-
-    # this for keeping the same feature of GL 0.1
-    secret = Unicode()
-
-    # list of context_gus which receiver is associated
-    contexts = Pickle()
-
-
     def new(self, receiver_dict):
         """
         @receiver_dict: here is supposed to be already sanitized

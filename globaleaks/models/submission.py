@@ -22,28 +22,6 @@ __all__ = ['Submission']
 
 
 class Submission(TXModel):
-    """
-    This represents a temporary submission. Submissions should be stored here
-    until they are transformed into a Tip.
-    """
-
-    __storm_table__ = 'submissions'
-
-    submission_gus = Unicode(primary=True)
-
-    creation_time = DateTime()
-    expiration_time = DateTime()
-    mark = Unicode()
-
-    wb_fields = Pickle()
-    receivers = Pickle()
-    files = Pickle()
-
-    context_gus = Unicode()
-    context = Reference(context_gus, Context.context_gus)
-
-    _marker = [ u'incomplete', u'finalized' ]
-
 
     def new(self, received_dict):
 

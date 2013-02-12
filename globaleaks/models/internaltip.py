@@ -20,43 +20,6 @@ from globaleaks.rest.errors import InvalidInputFormat
 __all__ = [ 'InternalTip' ]
 
 class InternalTip(TXModel):
-    """
-    This is the internal representation of a Tip that has been submitted to the
-    GlobaLeaks node.
-
-    It has a not associated map for keep track of Receivers, Tips, Folders,
-    Comments and WhistleblowerTip.
-    All of those element has a Storm Reference with the InternalTip.id,
-    never vice-versa
-    """
-
-    __storm_table__ = 'internaltips'
-
-    id = Int(primary=True, default=AutoReload)
-
-    fields = Pickle()
-    pertinence_counter = Int()
-    creation_date = DateTime()
-    expiration_date = DateTime()
-    last_activity = DateTime()
-
-    # the LIMITS are stored in InternalTip because and admin may
-    # need change them. These values are copied by Context
-    escalation_threshold = Int()
-    access_limit = Int()
-    download_limit = Int()
-
-    mark = Unicode()
-
-    receivers = Pickle()
-
-    files = Pickle()
-
-    context_gus = Unicode()
-    context = Reference(context_gus, Context.context_gus)
-
-    _marker = [ u'new', u'first', u'second' ]
-
 
     def new(self, submission_dict):
         """

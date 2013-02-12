@@ -23,35 +23,6 @@ from globaleaks.rest.errors import TipGusNotFound, TipReceiptNotFound,\
 __all__ = [ 'Folder', 'File', 'Comment', 'ReceiverTip', 'PublicStats', 'WhistleblowerTip' ]
 
 class ReceiverTip(TXModel):
-    """
-    This is the table keeping track of ALL the receivers activities and
-    date in a Tip, Tip core data are stored in StoredTip. The data here
-    provide accountability of Receiver accesses, operations, options.
-    """
-    __storm_table__ = 'receivertips'
-
-    # remind: the previous name of this variable was 'address'
-    tip_gus = Unicode(primary=True)
-
-    authoptions = Pickle()
-
-    internaltip_id = Int()
-    internaltip = Reference(internaltip_id, InternalTip.id)
-
-    access_counter = Int()
-    last_access = DateTime()
-
-    expressed_pertinence = Int()
-
-    receiver_gus = Unicode()
-    receiver = Reference(receiver_gus, Receiver.receiver_gus)
-
-    notification_date = DateTime()
-    notification_mark = Unicode()
-
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
-
-
     def new(self, itip_dict, receiver_dict):
 
         try:
@@ -469,22 +440,6 @@ class ReceiverTip(TXModel):
 
 
 class WhistleblowerTip(TXModel):
-    """
-    WhisteleblowerTip is intended, to provide a whistleblower access to the Tip.
-    Has ome differencies from the ReceiverTips: has a secret authentication checks, has
-    different capabilities, like: cannot not download, cannot express pertinence.
-    """
-
-    __storm_table__ = 'whistleblowertips'
-
-    receipt = Unicode(primary=True)
-
-    last_access = DateTime()
-    access_counter = Int()
-
-    internaltip_id = Int()
-    internaltip = Reference(internaltip_id, InternalTip.id)
-
 
     def new(self, internaltip_desc):
 
@@ -590,35 +545,6 @@ class WhistleblowerTip(TXModel):
 
 
 class File(TXModel):
-    """
-    The file are *stored* here, along with their properties
-    """
-    __storm_table__ = 'files'
-
-    file_gus = Unicode(primary=True)
-
-    name = Unicode()
-    sha2sum = Unicode()
-
-    description = Unicode()
-    content_type = Unicode()
-    mark = Unicode()
-    size = Int()
-    uploaded_date = DateTime()
-
-    context_gus = Unicode()
-    context = Reference(context_gus, Context.context_gus)
-
-    # ----------------------------------------
-    # Remind, only one of those reference is indexed in a time.
-    #
-    submission_gus = Unicode()
-    internaltip_id = Int()
-    #
-    # If Submission: the file need to be processed
-    # If InternalTip: the file need to be stored or served
-
-    _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
 
     def new(self, received_dict):
 
@@ -838,24 +764,6 @@ class File(TXModel):
 
 
 class Comment(TXModel):
-    """
-    This table handle the comment collection, has an InternalTip referenced
-    """
-    __storm_table__ = 'comments'
-
-    id = Int(primary=True, default=AutoReload)
-
-    internaltip_id = Int()
-    internaltip = Reference(internaltip_id, InternalTip.id)
-
-    creation_time = DateTime()
-    source = Unicode()
-    content = Unicode()
-    author_gus = Unicode()
-    notification_mark = Unicode()
-
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
-
     def new(self, itip_id, comment, source, author_gus=None):
         """
         @param itip_id: InternalTip.id of reference, need to be addressed
