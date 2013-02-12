@@ -161,3 +161,11 @@ class BaseHandler(RequestHandler):
             self.set_header("Content-Type", "application/json")
         else:
             RequestHandler.write(self, chunk)
+
+    def get_current_user(self):
+        session_id = self.request.headers.get('X-Session')
+        if not session_id:
+            return None
+        else:
+            return settings.config.sessions[session_id]
+
