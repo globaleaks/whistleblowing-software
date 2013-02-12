@@ -200,3 +200,5 @@ class NotAuthenticated(GLException):
     reason = "Not Authenticated"
     error_code = 30
     status_code = 412 # Precondition Failed
+    def __init__(self):
+        pass
