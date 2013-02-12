@@ -34,24 +34,24 @@ class TestHandler(unittest.TestCase):
     _handler = None
 
     @transact
-    def fill_data(self):
-        receiver = models.receiver.Receiver(self.store).new(dummyReceiver)
+    def fill_data(self, store):
+        receiver = models.receiver.Receiver(store).new(dummyReceiver)
         dummyReceiver['username'] = receiver['username']
 
         dummyContext['receivers'] = receiver['receiver_gus']
-        context = models.context.Context(self.store).new(dummyContext)
+        context = models.context.Context(store).new(dummyContext)
 
         dummySubmission['context_gus'] = context['context_gus']
-        submission = models.submission.Submission(self.store).new(dummySubmission)
+        submission = models.submission.Submission(store).new(dummySubmission)
 
         dummyNode['context_gus'] = context['context_gus']
-        models.node.Node(self.store).new(dummyNode)
+        models.node.Node(store).new(dummyNode)
 
-        node = self.store.find(models.node.Node).one()
+        node = store.find(models.node.Node).one()
         node.password = u'spam'
 
-        internal_tip = models.internaltip.InternalTip(self.store).new(dummySubmission)
-        self.dummyWhistleblowerTip = models.externaltip.WhistleblowerTip(self.store).new(internal_tip)
+        internal_tip = models.internaltip.InternalTip(store).new(dummySubmission)
+        self.dummyWhistleblowerTip = models.externaltip.WhistleblowerTip(store).new(internal_tip)
 
 
 

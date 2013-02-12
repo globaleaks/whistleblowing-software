@@ -48,26 +48,26 @@ class TestTransaction(unittest.TestCase):
 
 
     @transact
-    def _transaction_with_exception(self):
+    def _transaction_with_exception(self, store):
         raise Exception
 
     #def transaction_with_exception_while_writing(self):
     @transact
-    def _transaction_ok(self):
-        self.store
+    def _transaction_ok(self, store):
+        store
         return
 
     @transact
-    def _transaction_with_commit_close(self):
-        self.store.commit()
-        self.store.close()
+    def _transaction_with_commit_close(self, store):
+        store.commit()
+        store.close()
 
     @transact
-    def _transact_with_stuff(self):
-       self.id = Receiver(self.store).new(helpers.dummyReceiver)['receiver_gus']
+    def _transact_with_stuff(self, store):
+       self.id = Receiver(store).new(helpers.dummyReceiver)['receiver_gus']
 
 
     @transact
-    def _transact_with_stuff_failing(self):
-        self.id = Context(self.store).new(helpers.dummyContext)['context_gus']
+    def _transact_with_stuff_failing(self, store):
+        self.id = Context(store).new(helpers.dummyContext)['context_gus']
         raise exceptions.DisconnectionError

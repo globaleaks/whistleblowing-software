@@ -29,24 +29,24 @@ class TestEmail(helpers.TestHandler):
         yield AsyncOperations().tip_notification()
 
     @transact
-    def _setup_database(self):
+    def _setup_database(self, store):
 
-        self.ctx = Context(self.store).new(helpers.dummyContext)
-        self.rcv = Receiver(self.store).new(helpers.dummyReceiver)
+        self.ctx = Context(store).new(helpers.dummyContext)
+        self.rcv = Receiver(store).new(helpers.dummyReceiver)
 
         self.rcv['contexts'].append(self.ctx['context_gus'])
         self.rcv['notification_fields']['mail_address'] = 'maker@globaleaks.org'
         self.rcv['receiver_level'] = 1
-        self.newrcv = Receiver(self.store).update(self.rcv['receiver_gus'], self.rcv)
+        self.newrcv = Receiver(store).update(self.rcv['receiver_gus'], self.rcv)
 
         # Assign Receiver to the Context
-        Receiver(self.store).receiver_align(self.rcv['receiver_gus'], [ self.ctx['context_gus'] ] )
-        Context(self.store).full_context_align(self.rcv['receiver_gus'], [ self.ctx['context_gus']] )
+        Receiver(store).receiver_align(self.rcv['receiver_gus'], [ self.ctx['context_gus'] ] )
+        Context(store).full_context_align(self.rcv['receiver_gus'], [ self.ctx['context_gus']] )
 
-        receiver_desc = Receiver(self.store).get_single(self.rcv['receiver_gus'])
-        context_desc = Context(self.store).get_single(self.ctx['context_gus'])
+        receiver_desc = Receiver(store).get_single(self.rcv['receiver_gus'])
+        context_desc = Context(store).get_single(self.ctx['context_gus'])
 
-        node = self.store.find(Node).one()
+        node = store.find(Node).one()
         node.notification_settings = {
                 "server": "box549.bluehost.com",
                 "port":25,
