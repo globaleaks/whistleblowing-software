@@ -31,7 +31,6 @@ class ReceiverInstance(BaseHandler):
     GET and PUT /receiver/(auth_secret_token)/management
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, receiver_token_auth, *uriargs):
         """
@@ -40,23 +39,16 @@ class ReceiverInstance(BaseHandler):
         Errors: TipGusNotFound, InvalidInputFormat, InvalidTipAuthToken
         """
 
-        try:
-            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
+        auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            receiver_gus = auth_user['data']['receiver_gus']
+        receiver_gus = auth_user['data']['receiver_gus']
 
-            answer = yield CrudOperations().get_receiver_by_receiver(receiver_gus)
+        answer = yield CrudOperations().get_receiver_by_receiver(receiver_gus)
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (TipGusNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
 
-    @asynchronous
     @inlineCallbacks
     def put(self, receiver_token_auth, *uriargs):
         """
@@ -66,22 +58,16 @@ class ReceiverInstance(BaseHandler):
         Errors: ReceiverGusNotFound, InvalidInputFormat, InvalidTipAuthToken, TipGusNotFound
         """
 
-        try:
-            request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
+        request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 
-            auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
+        auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
 
-            receiver_gus = auth_user['data']['receiver_gus']
+        receiver_gus = auth_user['data']['receiver_gus']
 
-            answer = yield CrudOperations().update_receiver_by_receiver(receiver_gus, request)
+        answer = yield CrudOperations().update_receiver_by_receiver(receiver_gus, request)
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (InvalidInputFormat, ReceiverGusNotFound, InvalidTipAuthToken, TipGusNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
 
 class TipsCollection(BaseHandler):
@@ -91,7 +77,6 @@ class TipsCollection(BaseHandler):
     GET /tips/<receiver_token_auth/tip
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, tip_auth_token, *uriargs):
         """
@@ -100,21 +85,15 @@ class TipsCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        try:
-            # validateParameter(tip_auth_token, requests.tipGUS)
-            # TODO validate parameter tip format or raise InvalidInputFormat
-            # auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
-            # TODO need to be update in Auth and an update in get_tip_list
+        # validateParameter(tip_auth_token, requests.tipGUS)
+        # TODO validate parameter tip format or raise InvalidInputFormat
+        # auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
+        # TODO need to be update in Auth and an update in get_tip_list
 
-            answer = yield CrudOperations().get_tip_list(tip_auth_token)
+        answer = yield CrudOperations().get_tip_list(tip_auth_token)
 
-            self.set_status(answer['code'])
-            self.write(answer['data'])
-
-        except (TipGusNotFound) as error:
-            self.write_error(error)
-
-        self.finish()
+        self.set_status(answer['code'])
+        self.finish(answer['data'])
 
 
 

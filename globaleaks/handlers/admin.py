@@ -68,8 +68,8 @@ class ContextsCollection(BaseHandler):
         """
         answer = yield CrudOperations().get_context_list()
 
-        self.write(answer['data'])
         self.set_status(answer['code'])
+        self.finish(answer['data'])
 
     @inlineCallbacks
     def post(self, *uriargs):
@@ -81,8 +81,8 @@ class ContextsCollection(BaseHandler):
         request = self.validate_message(self.request.body, requests.adminContextDesc)
         answer = yield CrudOperations().create_context(request)
 
-        self.write(answer['data'])
         self.set_status(answer['code'])
+        self.finish(answer['data'])
 
 
 class ContextInstance(BaseHandler):
@@ -163,7 +163,8 @@ class ReceiversCollection(BaseHandler):
 
         Create a new receiver
         """
-        request = self.validate_message(self.request.body, requests.adminReceiverDesc)
+        request = self.validate_message(self.request.body,
+                requests.adminReceiverDesc)
 
         answer = yield CrudOperations().create_receiver(request)
 
@@ -191,15 +192,12 @@ class ReceiverInstance(BaseHandler):
 
         Get an existent Receiver instance.
         """
-        try:
-            # validateParameter(receiver_gus, requests.receiverGUS)
-            answer = yield CrudOperations().get_receiver(receiver_gus)
+        # validateParameter(receiver_gus, requests.receiverGUS)
+        answer = yield CrudOperations().get_receiver(receiver_gus)
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
-        except (ReceiverGusNotFound) as error:
-            self.write_error(error)
 
     @inlineCallbacks
     def put(self, receiver_gus, *uriargs):
@@ -226,16 +224,11 @@ class ReceiverInstance(BaseHandler):
         Response: None
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
-        try:
-            # validateParameter(receiver_gus, requests.receiverGUS)
-            answer = yield CrudOperations().delete_receiver(receiver_gus)
+        # validateParameter(receiver_gus, requests.receiverGUS)
+        answer = yield CrudOperations().delete_receiver(receiver_gus)
 
-            self.write(answer['data'])
-            self.set_status(answer['code'])
-
-        except (ReceiverGusNotFound, InvalidInputFormat) as error:
-            self.write_error(error)
-
+        self.write(answer['data'])
+        self.set_status(answer['code'])
 
 class PluginCollection(BaseHandler):
     """
