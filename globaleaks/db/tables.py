@@ -78,7 +78,8 @@ def generateCreateQuery(model):
     """
     This takes as input a Storm model and outputs the creation query for it.
     """
-    query = "CREATE TABLE "+ model.__storm_table__ + " "
+    m = model({})
+    query = "CREATE TABLE "+ m.__storm_table__ + " "
 
     variables = []
     primary_keys = []
