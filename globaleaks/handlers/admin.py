@@ -141,6 +141,7 @@ class ReceiversCollection(BaseHandler):
     """
 
     @inlineCallbacks
+    @authenticated('admin')
     def get(self, *uriargs):
         """
         Parameters: None
@@ -149,13 +150,13 @@ class ReceiversCollection(BaseHandler):
 
         Admin operation: return all the receiver present in the Node
         """
-
         answer = yield CrudOperations().get_receiver_list()
 
         self.write(answer['data'])
         self.set_status(answer['code'])
 
     @inlineCallbacks
+    @authenticated('admin')
     def post(self, *uriargs):
         """
         Request: adminReceiverDesc
