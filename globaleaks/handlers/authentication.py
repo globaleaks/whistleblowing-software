@@ -15,29 +15,25 @@ from globaleaks.rest.errors import InvalidAuthRequest, InvalidInputFormat, NotAu
 from globaleaks import settings
 from globaleaks.utils.random import random_string
 
-def authenticated(usertype):
+def authenticated(role):
     """
     Decorator for authenticated sessions.
     If the user (could be admin/receiver/wb) is not authenticated, return
     a http 401 error.
     Otherwise, update the current session and then fire :param:`method`.
     """
-    def userfilter(method):
-        authenticated.method = method
-
-    def wrapper(cls, *args, **kwargs):
-        if not cls.current_user:
-           raise NotAuthenticated
-        elif authenticated.role != cls.current_user.role:
-            # XXX: eventually change this
-            raise NotAuthenticated
-        else:
-            settings.config.sessions[cls.session_id].timestamp = time.time()
-            return authenticated.method(cls, *args, **kwargs)
-
-    authenticated.role = usertype
-    return userfilter
-
+    def wrapper(method):
+        def call_method(cls, *args, **kwargs):
+            if not cls.current_user:
+               raise NotAuthenticated
+            elif role != cls.current_user.role:
+                # XXX: eventually change this
+                raise NotAuthenticated
+            else:
+                settings.config.sessions[cls.session_id].timestamp = time.time()
+            return method(cls, *args, **kwargs)
+        return call_method
+    return wrapper
 
 class AuthenticationHandler(BaseHandler):
     """
@@ -52,10 +48,9 @@ class AuthenticationHandler(BaseHandler):
         """
         Overrides cyclone's get_current_user method for self.current_user property.
         """
-        return settings.config.sessions[self.session_id].id
+        return settings.config.sessions[self.session_id]
 
     def generate_session(self, identifier, role):
-
         self.session_id = random_string(26, 'a-z,A-Z,0-9')
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
@@ -131,7 +126,6 @@ class AuthenticationHandler(BaseHandler):
         Logout the user.
         """
         if self.current_user:
-            del self.current_user
             del settings.config.sessions[self.session_id]
 
         self.finish()
