@@ -27,7 +27,6 @@ class NodeTest(unittest.TestCase):
     def tearDown(self):
         # Free the transaction to avoid having errors that cross
         # test cases.
-        transaction.manager.free(transaction.get())
         # Remove the test database file
         os.remove(get_db_file('test.db'))
 
