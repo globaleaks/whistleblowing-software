@@ -1,4 +1,3 @@
-submission_gus=@SID@
 context_gus=@CID@
 receivers:=[@RAW@]
 wb_fields:={"city":"new Milan","Sun":"new warm","dict2":"new happy","dict3":"new blah blah happy bla"}

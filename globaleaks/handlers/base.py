@@ -40,20 +40,32 @@ class BaseHandler(RequestHandler):
     def validate_type(self, value, type):
         # if it's callable, than assumes is a primitive class
         if callable(type):
-            return self.validate_python_type(value, type)
+            retval = self.validate_python_type(value, type)
+            if not retval:
+                log.err("-- Invalid python_type, in [%s] expected %s" % (str(value), type))
+            return retval
         # value as "{foo:bar}"
         elif isinstance(type, collections.Mapping):
-            return self.validate_jmessage(value, type)
+            retval = self.validate_jmessage(value, type)
+            if not retval:
+                log.err("-- Invalid JSON/dict [%s] expected %s" % (str(value), str(type)))
+            return retval
         # regexp
         elif isinstance(type, str):
-            return self.validate_GLtype(value, type)
+            retval = self.validate_GLtype(value, type)
+            if not retval:
+                log.err("-- Failed Match in regexp [%s] against %s" % (str(value), str(type) ))
+            return retval
         # value as "[ type ]"
         elif isinstance(type, collections.Iterable):
             # empty list is ok
             if len(value) == 0:
                 return True
             else:
-                return all(self.validate_type(x, type[0]) for x in value)
+                retval = all(self.validate_type(x, type[0]) for x in value)
+                if not retval:
+                    log.err("-- List validation failed [%s] of %s" % (str(value), str(type)))
+                return retval
         else:
             raise AssertionError
 
@@ -70,8 +82,10 @@ class BaseHandler(RequestHandler):
         message_type: the GLType class it should match.
         """
 
-        if not jmessage.keys() == message_template.keys():
-            log.err("Missing: %s" % (set(jmessage.keys()) - set(message_template.keys())) )
+        if not set(jmessage.keys()) == set(message_template.keys()):
+            print "InputValidation: Schema broken"
+            print "-->", sorted(jmessage.keys())
+            print "== ", sorted(message_template.keys())
             raise errors.InvalidInputFormat('wrong schema')
 
         if not all(self.validate_type(jmessage[key], value) for key, value in
