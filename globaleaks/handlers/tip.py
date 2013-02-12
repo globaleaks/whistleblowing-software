@@ -89,7 +89,11 @@ class TipInstance(BaseHandler):
         answer = yield CrudOperations().update_tip_by_receiver(tip_token, request)
 
         self.set_status(answer['code'])
-        self.finish(answer['data'])
+
+        if answer.has_key('data'):
+            self.finish(answer['data'])
+        else:
+            self.finish()
 
     @inlineCallbacks
     def delete(self, tip_token, *uriargs):

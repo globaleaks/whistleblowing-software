@@ -138,7 +138,7 @@ class InternalTip(TXModel):
 
         if marker == self._marker[0]:
             req_it = self.store.find(InternalTip, InternalTip.mark == self._marker[0])
-        elif marker == self._marker[1] and escalated: 
+        elif marker == self._marker[1] and escalated:
             req_it = self.store.find(InternalTip, (InternalTip.mark == self._marker[1], InternalTip.pertinence_counter >= InternalTip.escalation_threshold ))
         elif marker == self._marker[1] and not escalated:
             req_it = self.store.find(InternalTip, InternalTip.mark == self._marker[1])

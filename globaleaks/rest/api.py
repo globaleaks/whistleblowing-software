@@ -13,7 +13,7 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks import settings
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug, authentication
-from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS
+from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS, fileGUS
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'
@@ -60,6 +60,7 @@ spec = [
     (r'/login', authentication.AuthenticationHandler),
 
     ## Tip Handlers ##
+
     #  T1
     (r'/tip/' + tip_access_token, tip.TipInstance),
 
@@ -72,8 +73,8 @@ spec = [
     #  T4 = only the whistlebower can access to this interface, then the regexp match properly
     (r'/tip/' + wb_receipt + '/upload', files.FileInstance),
 
-    #  T5 TODO - mode under /tip authenticated URL
-    (r'/download/' + not_defined_regexp, files.Download),
+    #  T5 = only Receiver, download the files
+    (r'/tip/' + tipGUS + '/download/' + fileGUS, files.Download),
 
     ## Receiver Handlers ##
     #  R1
@@ -116,12 +117,12 @@ spec = [
 # * /test
 if settings.config.debug.testing:
     spec.append(
-        (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(settings.config.main.glclient_path, '..', 'test')})
+        (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(settings.glclient_path, '..', 'test')})
     )
 
 ## Main Web app ##
 # * /
 spec.append(
-    (r'/(.*)', StaticFileHandler, {'path': settings.config.main.glclient_path, 'default_filename': "index.html" } )
+    (r'/(.*)', StaticFileHandler, {'path': settings.glclient_path, 'default_filename': "index.html" } )
 )
 

@@ -4,7 +4,6 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
 
-
 class TestAuthentication(helpers.TestHandler):
     _handler = authentication.AuthenticationHandler
 
