@@ -158,7 +158,7 @@ class TestHandler(unittest.TestCase):
         if jbody and not body:
             body = json.dumps(jbody)
         elif body and jbody:
-            raise ValueErorr('jbody and body in conflict')
+            raise ValueError('jbody and body in conflict')
 
         application = Application([])
 
@@ -181,3 +181,55 @@ class TestHandler(unittest.TestCase):
 #             setattr(model, key, value)
 #         store.add(model)
 
+    @transact
+    def fill_data(self):
+        store = settings.get_store()
+
+        receiver = models.receiver.Receiver(store).new({
+            'password': u'john',
+            'name': u'john smith',
+            'description': u'the first receiver',
+            'tags': [],
+            'languages': [u'en'],
+            'notification_fields': {'mail_address': u'maker@ggay.it'},
+            'can_delete_submission': True,
+            'can_postpone_expiration': True,
+            'can_configure_delivery': True,
+            'can_configure_notification': True,
+            'receiver_level': 1,
+        })
+
+        context = models.context.Context(store).new({
+            'name': u'created by shooter',
+            'description': u'This is the update',
+            'fields':[{"hint": u"autovelox", "label": "city", "name": "city", "presentation_order": 1, "required": True, "type": "text", "value": "Yadda I'm default with apostrophe" },
+                      {"hint": u"name of the sun", "label": "Sun", "name": "Sun", "presentation_order": 2, "required": True, "type": "checkbox", "value": "I'm the sun, I've not name" },
+                      {"hint": u"put the number ", "label": "penality details", "name": "dict2", "presentation_order": 3, "required": True, "type": "text", "value": "666 the default value" },
+                      {"hint": u"details:", "label": "how do you know that ?", "name": "dict3", "presentation_order": 4, "required":
+                          False, "type": "textarea", "value": "buh ?" },
+            ],
+            'selectable_receiver': False,
+            'tip_max_access': 10,
+            'tip_timetolive': 2,
+            'file_max_download' :1,
+            'escalation_threshold': 1,
+            'receivers': receiver['receiver_gus'],
+        })
+
+        submission = models.submission.Submission(store).new({
+            'context_gus': context['context_gus'],
+            'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
+            'receivers': [],
+            'files': [],
+            'finalize': True,
+        })
+
+        node = models.node.Node(store).new({
+            'context_gus': context['context_gus'],
+            'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
+            'receivers': [],
+            'files': [],
+            'finalize': True,
+        })
+
+        store.close()
