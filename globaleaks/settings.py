@@ -15,10 +15,13 @@ import sys
 import transaction
 from twisted.python import log
 from twisted.python.threadpool import ThreadPool
+from twisted.internet import reactor
+from storm.twisted.transact import Transactor
+from storm import exceptions
+from twisted.internet.threads import deferToThreadPool
 from cyclone.util import ObjectDict as OD
 from storm.zope.zstorm import ZStorm
 from storm.tracer import debug
-from storm.twisted.transact import Transactor
 from globaleaks.utils.singleton import Singleton
 from globaleaks.utils.singleton import Singleton
 
@@ -40,6 +43,44 @@ def get_store():
     zstorm = ZStorm()
     zstorm.set_default_uri(store_name, db_file)
     return zstorm.get(store_name)
+
+
+class transact(object):
+    """
+    Class decorator for managing transactions.
+    Because storm sucks.
+    """
+    tp = ThreadPool(0, 1)
+
+    def __init__(self, method):
+        self.method = method
+
+    def __get__(self, instance, owner):
+        self.instance = instance
+        return self
+
+    def __call__(self,  *args, **kwargs):
+        return self.run(self._wrap, self.method, *args, **kwargs)
+
+    @staticmethod
+    def run(function, *args, **kwargs):
+        return deferToThreadPool(reactor, transact.tp, function, *args, **kwargs)
+
+    def _wrap(self, function, *args, **kwargs):
+        self.instance.store = self.store = get_store()
+        try:
+            result = function(self.instance, *args, **kwargs)
+        except (exceptions.IntegrityError, exceptions.DisconnectionError) as e:
+            log.msg(e)
+            transaction.abort()
+            result = None
+        else:
+            self.store.commit()
+        finally:
+            self.store.close()
+
+        return result
+
 
 class Config(object):
     def __init__(self):
@@ -89,18 +130,11 @@ class Config(object):
         self.advanced.delivery_dir = os.path.join(self.advanced.data_dir, 'delivery')
 
         log.msg("[D] %s %s " % (__file__, __name__), "Starting db_threadpool")
-        self.main.db_threadpool = ThreadPool(0, self.advanced.db_thread_pool_size)
-        self.main.db_threadpool.start()
-
         log.msg("[D] %s %s " % (__file__, __name__), "Starting scheduler_threadpool")
         self.main.scheduler_threadpool = ThreadPool(0, self.advanced.scheduler_thread_pool_size)
         self.main.scheduler_threadpool.start()
 
-        self.main.transactor = Transactor(self.main.db_threadpool)
-        self.main.transactor.retries = 0
-
-    @property
-    def store(self): return get_store()
-
 config = Config()
 
+transact.tp.start()
+reactor.addSystemEventTrigger('after', 'shutdown', transact.tp.stop)

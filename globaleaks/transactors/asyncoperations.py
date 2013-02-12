@@ -16,9 +16,9 @@ Marker shifting map:
 
 import os, zipfile
 
-from storm.twisted.transact import transact
 from twisted.python import log
 
+from globaleaks.settings import transact
 from globaleaks.transactors.base import MacroOperation
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import File, ReceiverTip, Comment
@@ -34,15 +34,12 @@ class AsyncOperations(MacroOperation):
 
     @transact
     def tip_notification(self):
-
         plugin_type = u'notification'
-        store = self.getStore()
-
-        receivertip_iface = ReceiverTip(store)
+        receivertip_iface = ReceiverTip(self.store)
 
         not_notified_tips = receivertip_iface.get_tips_by_notification_mark(u'not notified')
 
-        node_desc = Node(store).get_single()
+        node_desc = Node(self.store).get_single()
         if node_desc['notification_settings'] is None:
             print "This node has not notification configured: postponed notification of ",\
                 len(not_notified_tips), "tips"
@@ -75,16 +72,13 @@ class AsyncOperations(MacroOperation):
 
     @transact
     def comment_notification(self):
-
         plugin_type = u'notification'
-        store = self.getStore()
-
-        comment_iface = Comment(store)
-        internaltip_iface = InternalTip(store)
+        comment_iface = Comment(self.store)
+        internaltip_iface = InternalTip(self.store)
 
         not_notified_comments = comment_iface.get_comment_by_mark(marker=u'not notified')
 
-        node_desc = Node(store).get_single()
+        node_desc = Node(self.store).get_single()
         if node_desc['notification_settings'] is None:
             print "This node has not notification configured: postponed notification of",\
                 len(not_notified_comments),"comments"
@@ -99,7 +93,7 @@ class AsyncOperations(MacroOperation):
 
             for receiver_info in receivers_list:
 
-                node_desc = Node(store).get_single()
+                node_desc = Node(self.store).get_single()
                 settings_dict = { 'admin_settings' : node_desc['notification_settings'],
                                   'receiver_settings' : receiver_info['notification_fields']}
 
@@ -117,7 +111,6 @@ class AsyncOperations(MacroOperation):
 
 
     def do_fileprocess_validation(self, store, context_gus, filepath ):
-
         plugin_type = u'fileprocess'
 
         #profile_iface = PluginProfiles(store)
@@ -148,10 +141,7 @@ class AsyncOperations(MacroOperation):
 
     @transact
     def fileprocess(self):
-
-        store = self.getStore()
-
-        file_iface = File(store)
+        file_iface = File(self.store)
 
         not_processed_file = file_iface.get_file_by_marker(file_iface._marker[0])
 
@@ -168,7 +158,7 @@ class AsyncOperations(MacroOperation):
                 continue
 
             # collect for logs/info/flow
-            associated_itip.update({ itid : InternalTip(store).get_single(itid) })
+            associated_itip.update({ itid : InternalTip(self.store).get_single(itid) })
             # this file log do not contain hash nor path: it's fine anyway
             new_files.update({ single_file['file_gus'] : single_file })
 
@@ -179,7 +169,7 @@ class AsyncOperations(MacroOperation):
                 # XXX high level danger Log
                 continue
 
-            validate_file = self.do_fileprocess_validation(store,single_file['context_gus'], tempfpath)
+            validate_file = self.do_fileprocess_validation(self.store,single_file['context_gus'], tempfpath)
 
             # compute hash, SHA256 in non blocking mode (from utils/random.py)
             filehash = get_file_checksum(tempfpath)
@@ -203,10 +193,9 @@ class AsyncOperations(MacroOperation):
         """
 
         plugin_type = u'delivery'
-        store = self.getStore()
 
-        file_iface = File(store)
-        receivertip_iface = ReceiverTip(store)
+        file_iface = File(self.store)
+        receivertip_iface = ReceiverTip(self.store)
 
         ready_files = file_iface.get_file_by_marker(file_iface._marker[1]) # ready
 
@@ -248,11 +237,8 @@ class AsyncOperations(MacroOperation):
 
     @transact
     def tip_creation(self):
-
-        store = self.getStore()
-
-        internaltip_iface = InternalTip(store)
-        receiver_iface = Receiver(store)
+        internaltip_iface = InternalTip(self.store)
+        receiver_iface = Receiver(self.store)
 
         internal_tip_list = internaltip_iface.get_itips_by_maker(u'new', False)
 
@@ -273,7 +259,7 @@ class AsyncOperations(MacroOperation):
                 if int(receiver_desc['receiver_level']) != 1:
                     continue
 
-                receivertip_obj = ReceiverTip(store)
+                receivertip_obj = ReceiverTip(self.store)
                 receivertip_desc = receivertip_obj.new(internaltip_desc, receiver_desc)
                 log.msg("Created rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name'], \
                         "in", internaltip_desc['context_gus'])
@@ -294,7 +280,7 @@ class AsyncOperations(MacroOperation):
             eitip_id = int(eitip['internaltip_id'])
 
             # This event has to be notified as system Comment
-            Comment(store).new(eitip_id, u"Escalation threshold has been reached", u'system')
+            Comment(self.store).new(eitip_id, u"Escalation threshold has been reached", u'system')
 
             for receiver_gus in eitip['receivers']:
 
@@ -308,7 +294,7 @@ class AsyncOperations(MacroOperation):
                 if int(receiver_desc['receiver_level']) != 2:
                     continue
 
-                receivertip_obj = ReceiverTip(store)
+                receivertip_obj = ReceiverTip(self.store)
                 receivertip_desc = receivertip_obj.new(eitip, receiver_desc)
                 print "Created 2nd tir rTip", receivertip_desc['tip_gus'], "for", receiver_desc['name'], \
                     "in", eitip['context_gus']

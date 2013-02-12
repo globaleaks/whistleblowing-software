@@ -5,13 +5,13 @@ from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
-from storm.twisted.transact import Transactor, transact
 from storm.zope.zstorm import ZStorm
 from cyclone.util import ObjectDict as OD
 from cyclone import httpserver
 from cyclone.web import Application
 
 
+from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
@@ -33,94 +33,37 @@ class TestHandler(unittest.TestCase):
     """
     _handler = None
 
-    dummyReceiver = {
-        'password': u'john',
-        'name': u'john smith',
-        'description': u'the first receiver',
-        'tags': [],
-        'languages': [u'en'],
-        'notification_fields': {'mail_address': u'maker@ggay.it'},
-        'can_delete_submission': True,
-        'can_postpone_expiration': True,
-        'can_configure_delivery': True,
-        'can_configure_notification': True,
-        'receiver_level': 1,
-    }
-    dummyContext = {
-        'name': u'created by shooter',
-        'description': u'This is the update',
-        'fields':[{"hint": u"autovelox", "label": "city", "name": "city", "presentation_order": 1, "required": True, "type": "text", "value": "Yadda I'm default with apostrophe" },
-                  {"hint": u"name of the sun", "label": "Sun", "name": "Sun", "presentation_order": 2, "required": True, "type": "checkbox", "value": "I'm the sun, I've not name" },
-                  {"hint": u"put the number ", "label": "penality details", "name": "dict2", "presentation_order": 3, "required": True, "type": "text", "value": "666 the default value" },
-                  {"hint": u"details:", "label": "how do you know that ?", "name": "dict3", "presentation_order": 4, "required":
-                      False, "type": "textarea", "value": "buh ?" },
-        ],
-        'selectable_receiver': False,
-        'tip_max_access': 10,
-        'tip_timetolive': 2,
-        'file_max_download' :1,
-        'escalation_threshold': 1,
-        'receivers': []
-    }
-    dummySubmission = {
-        'context_gus': '',
-        'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
-        'receivers': [],
-        'files': [],
-        'finalize': True,
-    }
-    dummyNode = {
-            'name':  u"Please, set me: name/title",
-            'description':  u"Please, set me: description",
-            'hidden_service':  u"Please, set me: hidden service",
-            'public_site':  u"Please, set me: public site",
-            'email':  u"email@dumnmy.net",
-            'stats_update_time':  2, # hours,
-            'languages':  [{ "code" : "it" , "name": "Italiano"},
-                           { "code" : "en" , "name" : "English" }],
-            'notification_settings': {},
-    }
-
     @transact
     def fill_data(self):
-        store = settings.get_store()
-        try:
-            receiver = models.receiver.Receiver(store).new(self.dummyReceiver)
-            self.dummyReceiver['username'] = receiver['username']
-            store.commit()
+        receiver = models.receiver.Receiver(self.store).new(dummyReceiver)
+        dummyReceiver['username'] = receiver['username']
+        self.store.commit()
 
-            self.dummyContext['receivers'] = receiver['receiver_gus']
-            context = models.context.Context(store).new(self.dummyContext)
-            store.commit()
+        dummyContext['receivers'] = receiver['receiver_gus']
+        context = models.context.Context(self.store).new(dummyContext)
+        self.store.commit()
 
-            self.dummySubmission['context_gus'] = context['context_gus']
-            submission = models.submission.Submission(store).new(self.dummySubmission)
+        dummySubmission['context_gus'] = context['context_gus']
+        submission = models.submission.Submission(self.store).new(dummySubmission)
 
-            self.dummyNode['context_gus'] = context['context_gus']
-            models.node.Node(store).new(self.dummyNode)
+        dummyNode['context_gus'] = context['context_gus']
+        models.node.Node(self.store).new(dummyNode)
 
-            node = store.find(models.node.Node).one()
-            node.password = u'spam'
-            store.commit()
+        node = self.store.find(models.node.Node).one()
+        node.password = u'spam'
+        self.store.commit()
 
-            internal_tip = models.internaltip.InternalTip(store).new(self.dummySubmission)
-            self.dummyWhistleblowerTip = models.externaltip.WhistleblowerTip(store).new(internal_tip)
-            store.commit()
+        internal_tip = models.internaltip.InternalTip(self.store).new(dummySubmission)
+        self.dummyWhistleblowerTip = models.externaltip.WhistleblowerTip(self.store).new(internal_tip)
+        self.store.commit()
 
-        except Exception, error:
-            raise error
 
-        finally:
-            store.close()
 
     @inlineCallbacks
     def setUp(self):
         """
         override default handlers' get_store with a mock store used for testing/
         """
-        threadpool = FakeThreadPool()
-        self.transactor = Transactor(threadpool)
-
         self.responses = []
         @classmethod
         def mock_write(cls, response):
@@ -131,10 +74,9 @@ class TestHandler(unittest.TestCase):
 
         # override handle's get_store and transactor
         self._handler.write = mock_write
-        self._handler.transactor = self.transactor
 
         try:
-            yield db.createTables(self.transactor, create_node=False)
+            yield transact.run(db.createTables(create_node=False))
         except:
             pass
 
@@ -181,3 +123,51 @@ class TestHandler(unittest.TestCase):
 #             setattr(model, key, value)
 #         store.add(model)
 
+
+dummyReceiver = {
+    'password': u'john',
+    'name': u'john smith',
+    'description': u'the first receiver',
+    'tags': [],
+    'languages': [u'en'],
+    'notification_fields': {'mail_address': u'maker@ggay.it'},
+    'can_delete_submission': True,
+    'can_postpone_expiration': True,
+    'can_configure_delivery': True,
+    'can_configure_notification': True,
+    'receiver_level': 1,
+}
+dummyContext = {
+    'name': u'created by shooter',
+    'description': u'This is the update',
+    'fields':[{"hint": u"autovelox", "label": "city", "name": "city", "presentation_order": 1, "required": True, "type": "text", "value": "Yadda I'm default with apostrophe" },
+              {"hint": u"name of the sun", "label": "Sun", "name": "Sun", "presentation_order": 2, "required": True, "type": "checkbox", "value": "I'm the sun, I've not name" },
+              {"hint": u"put the number ", "label": "penality details", "name": "dict2", "presentation_order": 3, "required": True, "type": "text", "value": "666 the default value" },
+              {"hint": u"details:", "label": "how do you know that ?", "name": "dict3", "presentation_order": 4, "required":
+                  False, "type": "textarea", "value": "buh ?" },
+    ],
+    'selectable_receiver': False,
+    'tip_max_access': 10,
+    'tip_timetolive': 2,
+    'file_max_download' :1,
+    'escalation_threshold': 1,
+    'receivers': []
+}
+dummySubmission = {
+    'context_gus': '',
+    'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
+    'receivers': [],
+    'files': [],
+    'finalize': True,
+}
+dummyNode = {
+        'name':  u"Please, set me: name/title",
+        'description':  u"Please, set me: description",
+        'hidden_service':  u"Please, set me: hidden service",
+        'public_site':  u"Please, set me: public site",
+        'email':  u"email@dumnmy.net",
+        'stats_update_time':  2, # hours,
+        'languages':  [{ "code" : "it" , "name": "Italiano"},
+                       { "code" : "en" , "name" : "English" }],
+        'notification_settings': {},
+}

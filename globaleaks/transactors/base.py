@@ -1,11 +1,6 @@
 from globaleaks import settings
 
 class MacroOperation():
-    transactor = settings.config.main.transactor
-
-    def getStore(self):
-        return settings.config.main.zstorm.get('main_store')
-
     def returnData(self, data):
         """
         Storm require copy of the return value, or the
@@ -29,7 +24,3 @@ class MacroOperation():
             returnDict.update({ 'data' : self._data })
 
         return dict(returnDict)
-
-
-class LogOperation():
-    pass

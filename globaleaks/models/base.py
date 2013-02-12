@@ -37,8 +37,6 @@ class TXModel(Storm):
     """
     log.debug("[D] %s %s " % (__file__, __name__), "Class TXModel")
 
-    transactor = settings.config.main.transactor
-
     createQuery = ""
 
     # class variable keeping track in incremental mode to DB I/O access

@@ -1,12 +1,13 @@
 # -*- coding: UTF-8
 #   GLBackend Database
 #   ******************
+import transaction
 
 from twisted.internet.defer import inlineCallbacks, DeferredList
-from storm.twisted.transact import transact
 from globaleaks import settings
 from globaleaks.db import tables
 from globaleaks.utils import log
+from globaleaks.settings import transact
 
 from globaleaks.models.context import Context
 from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment, File
@@ -47,33 +48,31 @@ def create_tables_transaction():
     the node.
     """
     store = settings.get_store()
-
     for model in [Node, Context, Receiver, InternalTip, ReceiverTip, WhistleblowerTip,
                   Submission, Comment, File]:
         create_query = tables.generateCreateQuery(model)
         store.execute(create_query)
-
     # new is the only Models function executed without @transact, call .add, but
     # the called has to .commit and .close, operations commonly performed by decorator
     try:
         store.commit()
     except StormError as e:
         log.msg(e)
+        transaction.abort()
     finally:
         store.close()
 
 @inlineCallbacks
-def createTables(transactor=None, create_node=True):
+def createTables(create_node=True):
     """
     Override transactor for testing.
     """
-    if not transactor:
-        transactor = settings.config.main.transactor
     try:
-        yield transactor.run(create_tables_transaction)
+        yield transact.run(create_tables_transaction)
     except Exception, e:
+        print e
         log.msg(e)
 
     if create_node:
-        yield transactor.run(initialize_node)
+        yield transact.run(initialize_node)
 

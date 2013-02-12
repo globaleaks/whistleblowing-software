@@ -1,7 +1,6 @@
 import time, os
 
 from twisted.python import log
-from storm.twisted.transact import transact
 
 from globaleaks.transactors.base import MacroOperation
 from globaleaks.models.externaltip import File, ReceiverTip
@@ -9,6 +8,7 @@ from globaleaks.models.internaltip import InternalTip
 from globaleaks.models.submission import Submission
 from globaleaks.rest.errors import SubmissionConcluded
 from globaleaks import settings
+from globaleaks.settings import transact
 from twisted.internet import fdesc
 
 
@@ -20,7 +20,7 @@ class FileOperations(MacroOperation):
     @transact
     def get_files(self, submission_gus):
 
-        file_iface = File(self.getStore())
+        file_iface = File(self.store)
 
         filelist = file_iface.get_all_by_submission(submission_gus)
 
@@ -76,14 +76,11 @@ class FileOperations(MacroOperation):
 
     @transact
     def new_files(self, access_gus, request, is_tip):
-
-        store = self.getStore()
-
         if is_tip:
-            itip_desc = ReceiverTip(store).get_single(access_gus)
+            itip_desc = ReceiverTip(self.store).get_single(access_gus)
             context_gus = itip_desc['context_gus']
         else:
-            submission_desc = Submission(store).get_single(access_gus)
+            submission_desc = Submission(self.store).get_single(access_gus)
             if submission_desc['finalize']:
                 raise SubmissionConcluded
             context_gus = submission_desc['context_gus']
@@ -107,10 +104,7 @@ class FileOperations(MacroOperation):
 
     @transact
     def download_file(self, file_gus):
-
-        store = self.getStore()
-
-        fileDict = File(store).get_content(file_gus)
+        fileDict = File(self.store).get_content(file_gus)
 
         self.returnData(fileDict)
         self.returnCode(200)

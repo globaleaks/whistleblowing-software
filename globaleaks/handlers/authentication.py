@@ -4,10 +4,10 @@ import time
 from storm.exceptions import NotOneError
 
 from twisted.internet.defer import inlineCallbacks
-from storm.twisted.transact import transact
 from cyclone.util import ObjectDict as OD
 
 from globaleaks.models.node import Node
+from globaleaks.settings import transact
 from globaleaks.models.receiver import Receiver
 from globaleaks.models.externaltip import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
@@ -69,9 +69,8 @@ class AuthenticationHandler(BaseHandler):
 
     @transact
     def login_wb(self, receipt):
-        store = settings.get_store()
         try:
-            wb = store.find(WhistleblowerTip,
+            wb = self.store.find(WhistleblowerTip,
                             WhistleblowerTip.receipt == unicode(receipt)).one()
         except NotOneError:
             raise InvalidAuthRequest
@@ -83,9 +82,8 @@ class AuthenticationHandler(BaseHandler):
 
     @transact
     def login_receiver(self, username, password):
-        store = settings.get_store()
         try:
-            fstreceiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
+            fstreceiver = self.store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
         except NotOneError:
             raise InvalidAuthRequest
         if not fstreceiver:
@@ -95,8 +93,7 @@ class AuthenticationHandler(BaseHandler):
 
     @transact
     def login_admin(self, password):
-        store = settings.get_store()
-        node = store.find(Node).one()
+        node = self.store.find(Node).one()
         return node.password == password
 
     @inlineCallbacks
