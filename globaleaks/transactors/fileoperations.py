@@ -18,9 +18,9 @@ class FileOperations(MacroOperation):
     """
 
     @transact
-    def get_files(self, submission_gus):
+    def get_files(self, store, submission_gus):
 
-        file_iface = File(self.store)
+        file_iface = File(store)
 
         filelist = file_iface.get_all_by_submission(submission_gus)
 
@@ -40,7 +40,7 @@ class FileOperations(MacroOperation):
                          'description' : '',
         }
 
-        file_iface = File(self.store)
+        file_iface = File(store)
         file_desc = file_iface.new(file_request)
 
         print "Created file from %s with file_gus %s" % (file_request['filename'], file_desc['file_gus'])
@@ -72,12 +72,12 @@ class FileOperations(MacroOperation):
         return file_desc
 
     @transact
-    def new_files(self, access_gus, request, is_tip):
+    def new_files(self, store, access_gus, request, is_tip):
         if is_tip:
-            itip_desc = ReceiverTip(self.store).get_single(access_gus)
+            itip_desc = ReceiverTip(store).get_single(access_gus)
             context_gus = itip_desc['context_gus']
         else:
-            submission_desc = Submission(self.store).get_single(access_gus)
+            submission_desc = Submission(store).get_single(access_gus)
             if submission_desc['finalize']:
                 raise SubmissionConcluded
             context_gus = submission_desc['context_gus']
@@ -100,15 +100,15 @@ class FileOperations(MacroOperation):
 
 
     @transact
-    def get_file_access(self, tip_gus, file_gus):
+    def get_file_access(self, store, tip_gus, file_gus):
 
-        receivers_related = ReceiverTip(self.store).get_receivers_by_tip(tip_gus)
+        receivers_related = ReceiverTip(store).get_receivers_by_tip(tip_gus)
 
         receiver_desc = receivers_related['actor']
 
         # TODO implement checks and counting for the Receiver+File combo max download
 
-        file_desc = File(self.store).get_single(file_gus)
+        file_desc = File(store).get_single(file_gus)
 
         self.returnData(file_desc)
         self.returnCode(200)

@@ -20,8 +20,8 @@ class CrudOperations(MacroOperation):
     # Below CrudOperations for Admin API
 
     @transact
-    def get_node(self):
-        node_iface = Node(self.store)
+    def get_node(self, store):
+        node_iface = Node(store)
         node_description_dict = node_iface.get_single()
 
         self.returnData(node_description_dict)
@@ -29,8 +29,8 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def update_node(self, request):
-        node_iface = Node(self.store)
+    def update_node(self, store, request):
+        node_iface = Node(store)
         node_description_dict = node_iface.update(request)
 
         self.returnData(node_description_dict)
@@ -38,8 +38,8 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_context_list(self):
-        context_iface = Context(self.store)
+    def get_context_list(self, store):
+        context_iface = Context(store)
         all_contexts = context_iface.get_all()
 
         self.returnData(all_contexts)
@@ -47,16 +47,16 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def create_context(self, request):
+    def create_context(self, store, request):
 
-        context_iface = Context(self.store)
+        context_iface = Context(store)
 
         context_description_dict = context_iface.new(request)
         new_context_gus = context_description_dict['context_gus']
 
         # 'receivers' it's a relationship between two tables, and is managed
         # with a separate method of new()
-        receiver_iface = Receiver(self.store)
+        receiver_iface = Receiver(store)
 
         context_iface.context_align(new_context_gus, request['receivers'])
         receiver_iface.full_receiver_align(new_context_gus, request['receivers'])
@@ -68,9 +68,9 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_context(self, context_gus):
+    def get_context(self, store, context_gus):
 
-        context_iface = Context(self.store)
+        context_iface = Context(store)
         context_description = context_iface.get_single(context_gus)
 
         self.returnData(context_description)
@@ -78,15 +78,15 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def update_context(self, context_gus, request):
+    def update_context(self, store, context_gus, request):
 
 
-        context_iface = Context(self.store)
+        context_iface = Context(store)
         context_iface.update(context_gus, request)
 
         # 'receivers' it's a relationship between two tables, and is managed
         # with a separate method of update()
-        receiver_iface = Receiver(self.store)
+        receiver_iface = Receiver(store)
         context_iface.context_align(context_gus, request['receivers'])
         receiver_iface.full_receiver_align(context_gus, request['receivers'])
 
@@ -97,23 +97,23 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def delete_context(self, context_gus):
+    def delete_context(self, store, context_gus):
         """
         This DELETE operation, its permanent, and remove all the reference
         a Context has within the system (Tip, File, submission...)
         """
         # Get context description, just to verify that context_gus is valid
-        context_iface = Context(self.store)
+        context_iface = Context(store)
         context_desc = context_iface.get_single(context_gus)
 
         # Collect tip by context and iter on the list
-        receivertip_iface = ReceiverTip(self.store)
+        receivertip_iface = ReceiverTip(store)
         tips_related_blocks = receivertip_iface.get_tips_by_context(context_gus)
 
-        internaltip_iface = InternalTip(self.store)
-        whistlebtip_iface = WhistleblowerTip(self.store)
-        file_iface = File(self.store)
-        comment_iface = Comment(self.store)
+        internaltip_iface = InternalTip(store)
+        whistlebtip_iface = WhistleblowerTip(store)
+        file_iface = File(store)
+        comment_iface = Comment(store)
 
         # For every InternalTip, delete comment, wTip, rTip and Files
         for tip_block in tips_related_blocks:
@@ -129,7 +129,7 @@ class CrudOperations(MacroOperation):
             internaltip_iface.tip_delete(internaltip_id)
 
         # (Just a consistency check - need to be removed)
-        receiver_iface = Receiver(self.store)
+        receiver_iface = Receiver(store)
         receivers_associated = receiver_iface.get_receivers_by_context(context_gus)
         print "receiver associated by context POV:", len(receivers_associated),\
         "receiver associated by context DB-field:", len(context_desc['receivers'])
@@ -138,7 +138,7 @@ class CrudOperations(MacroOperation):
         receiver_iface.align_context_delete(context_desc['receivers'], context_gus)
 
         # Get the submission list under the context, and delete all of them
-        submission_iface = Submission(self.store)
+        submission_iface = Submission(store)
         submission_list = submission_iface.get_all()
         for single_sub in submission_list:
             submission_iface.submission_delete(single_sub['submission_gus'], wb_request=False)
@@ -151,9 +151,9 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_receiver_list(self):
+    def get_receiver_list(self, store):
 
-        receiver_iface = Receiver(self.store)
+        receiver_iface = Receiver(store)
         all_receivers = receiver_iface.get_all()
 
         self.returnData(all_receivers)
@@ -161,15 +161,15 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def create_receiver(self, request):
-        receiver_iface = Receiver(self.store)
+    def create_receiver(self, store, request):
+        receiver_iface = Receiver(store)
 
         new_receiver = receiver_iface.new(request)
         new_receiver_gus = new_receiver['receiver_gus']
 
         # 'contexts' it's a relationship between two tables, and is managed
         # with a separate method of new()
-        context_iface = Context(self.store)
+        context_iface = Context(store)
         receiver_iface.receiver_align(new_receiver_gus, request['contexts'])
         context_iface.full_context_align(new_receiver_gus, request['contexts'])
 
@@ -180,8 +180,8 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_receiver(self, receiver_gus):
-        receiver_iface = Receiver(self.store)
+    def get_receiver(self, store, receiver_gus):
+        receiver_iface = Receiver(store)
         receiver_description = receiver_iface.get_single(receiver_gus)
 
         self.returnData(receiver_description)
@@ -189,14 +189,14 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def update_receiver(self, receiver_gus, request):
-        receiver_iface = Receiver(self.store)
+    def update_receiver(self, store, receiver_gus, request):
+        receiver_iface = Receiver(store)
         receiver_iface.update(receiver_gus, request)
 
         # 'contexts' it's a relationship between two tables, and is managed
         # with a separate method of update()
 
-        context_iface = Context(self.store)
+        context_iface = Context(store)
         receiver_iface.receiver_align(receiver_gus, request['contexts'])
         context_iface.full_context_align(receiver_gus, request['contexts'])
 
@@ -207,11 +207,11 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def delete_receiver(self, receiver_gus):
-        receiver_iface = Receiver(self.store)
+    def delete_receiver(self, store, receiver_gus):
+        receiver_iface = Receiver(store)
         receiver_desc = receiver_iface.get_single(receiver_gus)
 
-        receivertip_iface = ReceiverTip(self.store)
+        receivertip_iface = ReceiverTip(store)
         # Remove Tip possessed by the receiver
         related_tips = receivertip_iface.get_tips_by_receiver(receiver_gus)
         for tip in related_tips:
@@ -219,7 +219,7 @@ class CrudOperations(MacroOperation):
             # Remind: the comment are kept, and the name do not use a reference
             # but is stored in the comment entry.
 
-        context_iface = Context(self.store)
+        context_iface = Context(store)
 
         # Just an alignment check that need to be removed
         contexts_associated = context_iface.get_contexts_by_receiver(receiver_gus)
@@ -239,16 +239,16 @@ class CrudOperations(MacroOperation):
     # Below CrudOperations for Receiver API
 
     @transact
-    def get_receiver_by_receiver(self, receiver_gus):
-        receiver_desc = Receiver(self.store).get_single(receiver_gus)
+    def get_receiver_by_receiver(self, store, receiver_gus):
+        receiver_desc = Receiver(store).get_single(receiver_gus)
 
         self.returnData(receiver_desc)
         self.returnCode(200)
         return self.prepareRetVals()
 
     @transact
-    def update_receiver_by_receiver(self, receiver_gus, request):
-        updated_receiver_desc = Receiver(self.store).self_update(receiver_gus, request)
+    def update_receiver_by_receiver(self, store, receiver_gus, request):
+        updated_receiver_desc = Receiver(store).self_update(receiver_gus, request)
 
         # context_iface = Context(store)
         # context_iface.update_languages(updated_receiver_desc['contexts'])
@@ -259,8 +259,8 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_tip_list(self, valid_tip):
-        receivertip_iface = ReceiverTip(self.store)
+    def get_tip_list(self, store, valid_tip):
+        receivertip_iface = ReceiverTip(store)
 
         tips = receivertip_iface.get_tips_by_tip(valid_tip)
         # this function return a dict with: { 'othertips': [$rtip], 'request' : $rtip }
@@ -275,13 +275,13 @@ class CrudOperations(MacroOperation):
     # Below CrudOperations for Tip API
 
     @transact
-    def get_tip_by_receiver(self, tip_gus):
+    def get_tip_by_receiver(self, store, tip_gus):
 
-        requested_t = ReceiverTip(self.store)
+        requested_t = ReceiverTip(store)
         tip_description = requested_t.get_single(tip_gus)
 
         # Get also the file list, along with the download path ('href' : 'tip_gus + file_gus')
-        file_list = File(self.store).get_files_by_receiver_tip(tip_gus, tip_description['internaltip_id'])
+        file_list = File(store).get_files_by_receiver_tip(tip_gus, tip_description['internaltip_id'])
         tip_description.update({'folders' : [
                             { "name": "hardcoded_block",
                               "uploaded_date" : "Wed Feb  6 10:35:42 2013",
@@ -294,12 +294,12 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_tip_by_wb(self, receipt):
-        requested_t = WhistleblowerTip(self.store)
+    def get_tip_by_wb(self, store, receipt):
+        requested_t = WhistleblowerTip(store)
         tip_description = requested_t.get_single(receipt)
 
         # Get also the file list, along with the download path
-        file_list = File(self.store).get_files_by_itip(tip_description['internaltip_id'])
+        file_list = File(store).get_files_by_itip(tip_description['internaltip_id'])
         tip_description.update({'folders' : [
             { "name": "hardcoded_block",
               "uploaded_date" : "Wed Feb  6 10:35:42 2013",
@@ -312,8 +312,8 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def update_tip_by_receiver(self, tip_gus, request):
-        receivertip_iface = ReceiverTip(self.store)
+    def update_tip_by_receiver(self, store, tip_gus, request):
+        receivertip_iface = ReceiverTip(store)
 
         if request['personal_delete']:
             receivertip_iface.personal_delete(tip_gus)
@@ -324,15 +324,15 @@ class CrudOperations(MacroOperation):
             # the sum of the vote expressed. This value is updated in InternalTip
             (itip_id, vote_sum) = receivertip_iface.pertinence_vote(tip_gus, request['is_pertinent'])
 
-            internaltip_iface = InternalTip(self.store)
+            internaltip_iface = InternalTip(store)
             internaltip_iface.update_pertinence(itip_id, vote_sum)
 
         self.returnCode(200)
         return self.prepareRetVals()
 
     @transact
-    def delete_tip(self, tip_gus):
-        receivertip_iface = ReceiverTip(self.store)
+    def delete_tip(self, store, tip_gus):
+        receivertip_iface = ReceiverTip(store)
 
         receivers_map = receivertip_iface.get_receivers_by_tip(tip_gus)
 
@@ -353,14 +353,14 @@ class CrudOperations(MacroOperation):
         itip_id = sibilings_tips['requested']['internaltip_id']
 
         # remove all the files: XXX think if delivery method need to be inquired
-        file_iface = File(self.store)
+        file_iface = File(store)
         files_list = file_iface.get_files_by_itip(itip_id)
 
         # remove all the comments based on a specific itip_id
-        comment_iface = Comment(self.store)
+        comment_iface = Comment(store)
         comments_list = comment_iface.delete_comment_by_itip(itip_id)
 
-        internaltip_iface = InternalTip(self.store)
+        internaltip_iface = InternalTip(store)
         # finally, delete the internaltip
         internaltip_iface.tip_delete(sibilings_tips['requested']['internaltip_id'])
 
@@ -371,11 +371,11 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_comment_list_by_receiver(self, tip_gus):
-        requested_t = ReceiverTip(self.store)
+    def get_comment_list_by_receiver(self, store, tip_gus):
+        requested_t = ReceiverTip(store)
         tip_description = requested_t.get_single(tip_gus)
 
-        comment_iface = Comment(self.store)
+        comment_iface = Comment(store)
         comment_list = comment_iface.get_comment_by_itip(tip_description['internaltip_id'])
 
         self.returnData(comment_list)
@@ -383,11 +383,11 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_comment_list_by_wb(self, receipt):
-        requested_t = WhistleblowerTip(self.store)
+    def get_comment_list_by_wb(self, store, receipt):
+        requested_t = WhistleblowerTip(store)
         tip_description = requested_t.get_single(receipt)
 
-        comment_iface = Comment(self.store)
+        comment_iface = Comment(store)
         comment_list = comment_iface.get_comment_by_itip(tip_description['internaltip_id'])
 
         self.returnData(comment_list)
@@ -395,11 +395,11 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def new_comment_by_receiver(self, tip_gus, request):
-        requested_t = ReceiverTip(self.store)
+    def new_comment_by_receiver(self, store, tip_gus, request):
+        requested_t = ReceiverTip(store)
         tip_description = requested_t.get_single(tip_gus)
 
-        comment_iface = Comment(self.store)
+        comment_iface = Comment(store)
 
         comment_stored = comment_iface.new(tip_description['internaltip_id'],
             request['content'], u"receiver", tip_description['receiver_gus'])
@@ -410,11 +410,11 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def new_comment_by_wb(self, receipt, request):
-        requested_t = WhistleblowerTip(self.store)
+    def new_comment_by_wb(self, store, receipt, request):
+        requested_t = WhistleblowerTip(store)
         tip_description = requested_t.get_single(receipt)
 
-        comment_iface = Comment(self.store)
+        comment_iface = Comment(store)
 
         comment_stored = comment_iface.new(tip_description['internaltip_id'],
             request['content'], u"whistleblower")
@@ -425,11 +425,11 @@ class CrudOperations(MacroOperation):
 
 
     @transact
-    def get_receiver_list_by_receiver(self, tip_gus):
-        requested_t = ReceiverTip(self.store)
+    def get_receiver_list_by_receiver(self, store, tip_gus):
+        requested_t = ReceiverTip(store)
         tip_description = requested_t.get_single(tip_gus)
 
-        itip_iface = InternalTip(self.store)
+        itip_iface = InternalTip(store)
         inforet = itip_iface.get_receivers_by_itip(tip_description['internaltip_id'])
 
         self.returnData(inforet)
@@ -437,13 +437,13 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_receiver_list_by_wb(self, receipt):
-        requested_t = WhistleblowerTip(self.store)
+    def get_receiver_list_by_wb(self, store, receipt):
+        requested_t = WhistleblowerTip(store)
         tip_description = requested_t.get_single(receipt)
 
-        receiver_iface = Receiver(self.store)
+        receiver_iface = Receiver(store)
 
-        itip_iface = InternalTip(self.store)
+        itip_iface = InternalTip(store)
         # inforet = itip_iface.get_receivers_by_itip(tip_description['internaltip_id'])
         # the wb, instead get the list of active receiver, is getting the list of receiver
         # configured in the context:
@@ -461,18 +461,18 @@ class CrudOperations(MacroOperation):
     # Below CrudOperations for Submission API
 
     @transact
-    def new_submission(self, request):
-        context_desc = Context(self.store).get_single(request['context_gus'])
+    def new_submission(self, store, request):
+        context_desc = Context(store).get_single(request['context_gus'])
 
         if not context_desc['selectable_receiver']:
             request.update({'receivers' : context_desc['receivers'] })
 
-        submission_desc = Submission(self.store).new(request)
+        submission_desc = Submission(store).new(request)
 
         if submission_desc['finalize']:
-            internaltip_desc =  InternalTip(self.store).new(submission_desc)
-            wbtip_desc = WhistleblowerTip(self.store).new(internaltip_desc)
-            File(self.store).switch_reference(submission_desc, internaltip_desc)
+            internaltip_desc =  InternalTip(store).new(submission_desc)
+            wbtip_desc = WhistleblowerTip(store).new(internaltip_desc)
+            File(store).switch_reference(submission_desc, internaltip_desc)
             submission_desc.update({'receipt' : wbtip_desc['receipt']})
         else:
             submission_desc.update({'receipt' : ''})
@@ -482,29 +482,29 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def get_submission(self, submission_gus):
-        submission_desc = Submission(self.store).get_single(submission_gus)
+    def get_submission(self, store, submission_gus):
+        submission_desc = Submission(store).get_single(submission_gus)
 
         self.returnData(submission_desc)
         self.returnCode(201) # Created
         return self.prepareRetVals()
 
     @transact
-    def update_submission(self, submission_gus, request):
-        context_desc = Context(self.store).get_single(request['context_gus'])
+    def update_submission(self, store, submission_gus, request):
+        context_desc = Context(store).get_single(request['context_gus'])
 
         if not context_desc['selectable_receiver']:
             request.update({'receivers' : context_desc['receivers'] })
 
-        submission_desc = Submission(self.store).update(submission_gus, request)
+        submission_desc = Submission(store).update(submission_gus, request)
 
         if submission_desc['finalize']:
 
-            internaltip_desc =  InternalTip(self.store).new(submission_desc)
+            internaltip_desc =  InternalTip(store).new(submission_desc)
 
-            wbtip_desc = WhistleblowerTip(self.store).new(internaltip_desc)
+            wbtip_desc = WhistleblowerTip(store).new(internaltip_desc)
 
-            File(self.store).switch_reference(submission_desc, internaltip_desc)
+            File(store).switch_reference(submission_desc, internaltip_desc)
 
             submission_desc.update({'receipt' : wbtip_desc['receipt']})
         else:
@@ -515,8 +515,8 @@ class CrudOperations(MacroOperation):
         return self.prepareRetVals()
 
     @transact
-    def delete_submission(self, submission_gus):
-        Submission(self.store).submission_delete(submission_gus, wb_request=True)
+    def delete_submission(self, store, submission_gus):
+        Submission(store).submission_delete(submission_gus, wb_request=True)
 
         self.returnCode(200)
         return self.prepareRetVals()
@@ -525,7 +525,7 @@ class CrudOperations(MacroOperation):
     # Below CrudOperations for Debug API
 
     @transact
-    def dump_models(self, expected):
+    def dump_models(self, store, expected):
 
         expected_dict = { 'itip' : InternalTip,
                           'wtip' : WhistleblowerTip,
@@ -542,7 +542,7 @@ class CrudOperations(MacroOperation):
         if expected in ['count', 'all']:
 
             for key, object in expected_dict.iteritems():
-                info_list = object(self.store).get_all()
+                info_list = object(store).get_all()
 
                 if expected == 'all':
                     outputDict.update({key : info_list})
@@ -563,7 +563,7 @@ class CrudOperations(MacroOperation):
 
         if expected_dict.has_key(expected):
 
-            info_list = expected_dict[expected](self.store).get_all()
+            info_list = expected_dict[expected](store).get_all()
             outputDict.update({expected : info_list, ("%s_elements" % expected) : len(info_list) })
 
             self.returnData(outputDict)
