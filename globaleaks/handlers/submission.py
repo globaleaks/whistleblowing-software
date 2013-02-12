@@ -7,10 +7,9 @@
 
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
-from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.transactors.crudoperations import CrudOperations
-from globaleaks.rest import requests, responses
+from globaleaks.rest import requests
 from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
     ContextGusNotFound, SubmissionFailFields, SubmissionConcluded, ReceiverGusNotFound
 

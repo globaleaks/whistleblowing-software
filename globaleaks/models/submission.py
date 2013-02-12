@@ -5,10 +5,10 @@
 #
 # Storm DB table and ORM of the submisson temporary table
 
-from storm.locals import Int, Pickle, DateTime, Unicode, Reference
+from storm.locals import Pickle, DateTime, Unicode, Reference
 from storm.exceptions import NotOneError
 
-from globaleaks.utils import idops, gltime, random
+from globaleaks.utils import idops, gltime
 from globaleaks.models.base import TXModel
 from globaleaks.models.externaltip import File
 from globaleaks.models.receiver import Receiver
