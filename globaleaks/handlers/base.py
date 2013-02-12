@@ -167,5 +167,9 @@ class BaseHandler(RequestHandler):
         if not session_id:
             return None
         else:
-            return settings.config.sessions[session_id]
+            try:
+                session = settings.config.sessions[session_id]
+            except KeyError:
+                return None
+            return session
 
