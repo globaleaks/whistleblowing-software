@@ -30,13 +30,11 @@ class DummyModel(object):
         return self.zstorm.get('testDB')
 
     @transact
-    def save(self):
-        store = self.getStore()
+    def save(self, store):
         store.add(self)
 
     @transact
-    def find(self):
-        store = self.getStore()
+    def find(self, store):
         res = store.find(DummyModel,
             DummyModel.colInt == 42).one()
         return res
@@ -75,8 +73,7 @@ class BaseZStormTestCase(TestCase):
 class TestTransactions(BaseZStormTestCase):
 
     @transact
-    def test_addDummyModelWithTransactionMethod(self):
-        store = self.getStore()
+    def test_addDummyModelWithTransactionMethod(self, store):
         d = DummyModel()
         store.add(d)
 

@@ -9,8 +9,8 @@ from globaleaks import settings
 class AuthOperations(MacroOperation):
 
     @transact
-    def authenticate_receiver(self, valid_tip):
-        receivertip_iface = ReceiverTip(self.store)
+    def authenticate_receiver(self, store, valid_tip):
+        receivertip_iface = ReceiverTip(store)
 
         receivers_map = receivertip_iface.get_receivers_by_tip(valid_tip)
         user = receivers_map['actor']

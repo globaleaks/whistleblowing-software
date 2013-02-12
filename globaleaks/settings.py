@@ -71,9 +71,9 @@ class transact(object):
         return deferToThreadPool(reactor, transact.tp, function, *args, **kwargs)
 
     def _wrap(self, function, *args, **kwargs):
-        self.instance.store = self.store = get_store()
+        self.store = get_store()
         try:
-            result = function(self.instance, *args, **kwargs)
+            result = function(self.instance, self.store, *args, **kwargs)
         except (exceptions.IntegrityError, exceptions.DisconnectionError) as e:
             log.msg(e)
             transaction.abort()
