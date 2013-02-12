@@ -22,14 +22,18 @@ class TestValidate(unittest.TestCase):
     _handler = base.BaseHandler
 
     def test_validate_jmessage_valid(self):
-        dummy_message = {'spam': 'ham', 'firstd': {3:4}, 'fields': "CIAOCIAO", 'nest':[{1:2, 3:4}]  }
-        dummy_message_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict] }
+        dummy_message = {'spam': 'ham', 'firstd': {3:4}, 'fields': "CIAOCIAO", 'nest':[{1:2, 3:4}]}
+        dummy_message_template = {'spam': str, 'firstd': dict, 'fields': '\w+', 'nest': [dict]}
 
         handler = MockHandler()
-        self.assertTrue( handler.validate_jmessage(dummy_message, dummy_message_template) )
+        self.assertTrue(handler.validate_jmessage(dummy_message, dummy_message_template))
+
+        dummy_message = {'key': [{'code': 'it', 'name': 'Italiano'}, {'code': 'en', 'name': 'English'}]}
+        dummy_message_template = {'key': list}
+        self.assertTrue(handler.validate_jmessage(dummy_message, dummy_message_template))
 
     def test_validate_jmessage_invalid(self):
-        dummy_message = {'spam': 'ham', 'fields': "CIAOCIAO" , 'nest':{1: 3, 4: 5} }
+        dummy_message = {'spam': 'ham', 'fields': "CIAOCIAO" , 'nest':{1: 3, 4: 5}}
         dummy_message_template = {'spam': str, 'fields': '\d+', 'nest' : int}
 
         handler = MockHandler()
