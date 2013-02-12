@@ -1,6 +1,39 @@
-from strom.locals import ReferenceSet
+from random import randint
+from storm.locals import ReferenceSet
+from storm.locals import *
 
-class Context(TXModel):
+from globaleaks.settings import config
+
+from time import time
+# xxx. we should use python tz.
+from datetime import datetime
+now = datetime.utcnow
+
+def uuid():
+    import uuid
+    return unicode(uuid.uuid4())
+
+class Model(Storm):
+    """
+    Base class for working the database
+    """
+    id = Unicode(primary=True, default_factory=uuid)
+    creation_date = DateTime(default_factory=now)
+    last_update = DateTime(default_factory=now)
+
+    def __new__(cls, *args, **kw):
+        cls.__storm_table__ = cls.__name__.lower()
+        # maybe check here for attrs validation, and eventually return None
+
+        return Storm.__new__(cls, *args, **kw)
+
+    def __init__(self, attrs={}):
+        for key, value in attrs.iteritems():
+            if isinstance(value, str):
+                value = unicode(value)
+            setattr(self, key, value)
+
+class Context(Model):
     name = Unicode()
     description = Unicode()
     fields = Pickle()
@@ -18,9 +51,9 @@ class Context(TXModel):
     tip_timetolive = Int()
     file_max_download = Int()
 
-    receivers = ReferenceSet(Context.id, Receiver.context_id)
+    # receivers = ReferenceSet("Context.id", "Receiver.context_id")
 
-class InternalTip(TXModel):
+class InternalTip(Model):
     """
     This is the internal representation of a Tip that has been submitted to the
     GlobaLeaks node.
@@ -49,18 +82,18 @@ class InternalTip(TXModel):
     files = Pickle()
 
     context_gus = Unicode()
-    context = Reference(context_gus, Context.context_gus)
-
-    folders = ReferenceSet(InternalTip.id, Folder.internaltip_id)
+    context = Reference(context_gus, "Context.context_gus")
 
     whistleblower_tip_id = Unicode()
-    whistleblower_tip = Reference(whistleblower_tip_id, WhistleblowerTip.id)
+    whistleblower_tip = Reference(whistleblower_tip_id, "WhistleblowerTip.id")
 
-    comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
+    # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
+    # folders = ReferenceSet("InternalTip.id", "Folder.internaltip_id")
 
     _marker = [ u'new', u'first', u'second' ]
 
-class ReceiverTip(TXModel):
+
+class ReceiverTip(Model):
     """
     This is the table keeping track of ALL the receivers activities and
     date in a Tip, Tip core data are stored in StoredTip. The data here
@@ -75,16 +108,17 @@ class ReceiverTip(TXModel):
     expressed_pertinence = Int()
 
     receiver_id = Unicode()
-    receiver = Reference(receiver_id, Receiver.id)
+    receiver = Reference(receiver_id, "Receiver.id")
 
     notification_date = DateTime()
     notification_mark = Unicode()
 
-    receiver_files = ReferenceSet(ReceiverTip.id, ReceiverFile.receiver_tip_id)
-
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
-class WhistleblowerTip(TXModel):
+    # receiver_files = ReferenceSet(ReceiverTip.id, ReceiverFile.receiver_tip_id)
+
+
+class WhistleblowerTip(Model):
     """
     WhisteleblowerTip is intended, to provide a whistleblower access to the Tip.
     Has ome differencies from the ReceiverTips: has a secret authentication checks, has
@@ -96,13 +130,22 @@ class WhistleblowerTip(TXModel):
     access_counter = Int()
 
     internaltip_id = Unicode()
-    internaltip = Reference(internaltip_id, InternalTip.id)
+    internaltip = Reference(internaltip_id, "InternalTip.id")
 
-class Folder(TXModel):
+class ReceiverFile(Model):
+    file_path = RawStr()
+    downloads = Int()
+ 
+    internal_file_id = Unicode()
+    internal_file = Reference(internal_file_id, "InternalFile.id")
+
+    receiver_tip_id = Unicode()
+
+class Folder(Model):
     internaltip_id = Unicode()
-    files = ReferenceSet(Folder.id, ReceiverFile.folder_id)
+    # files = ReferenceSet("Folder.id", "InternalFile.folder_id")
 
-class InternalFile(TXModel):
+class InternalFile(Model):
     """
     The file are *stored* here, along with their properties
     """
@@ -118,16 +161,7 @@ class InternalFile(TXModel):
 
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
 
-class ReceiverFile(TXModel):
-    file_path = RawStr()
-    downloads = Int()
- 
-    internal_file_id = Unicode()
-    internal_file = Reference(internal_file, InternalFile.id)
-
-    receiver_tip_id = Unicode()
-
-class Comment(TXModel):
+class Comment(Model):
     """
     This table handle the comment collection, has an InternalTip referenced
     """
@@ -140,7 +174,7 @@ class Comment(TXModel):
 
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
 
-class Node(TXModel):
+class Node(Model):
     """
     This table has only one instance, has the "id", but would not exists a second element
     of this table. This table acts, more or less, like the configuration file of the previous
@@ -162,7 +196,7 @@ class Node(TXModel):
     # Expressed in hours
     stats_update_time = Int()
 
-class Receiver(TXModel):
+class Receiver(Model):
     """
     Receiver description model, some Receiver dependent information are
     also in globaleaks.models.plugin ReceiverConfs table
@@ -188,14 +222,29 @@ class Receiver(TXModel):
     # of receivers body. if threshold is configured in the context. default 1
     receiver_level = Int()
 
-    contexts = ReferenceSet(Context.id, 
-                            ReceiverContext.context_id,
-                            ReceiverContext.receiver_id,
-                            Receiver.id)
+    # tips = ReferenceSet("Receiver.id", "ReceiverTip.receiver_id")
+    context_id = Unicode()
+    # contexts = ReferenceSet("Context.id", 
+    #                         "ReceiverContext.context_id",
+    #                         "ReceiverContext.receiver_id",
+    #                         "Receiver.id")
 
-    tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
-
-class ReceiverContext(TXModel):
+class ReceiverContext(Model):
     context_id = Unicode()
     receiver_id = Unicode()
 
+
+Context.receivers = ReferenceSet(Context.id, Receiver.context_id)
+
+InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
+InternalTip.folders = ReferenceSet(InternalTip.id, Folder.internaltip_id)
+
+ReceiverTip.receiver_files = ReferenceSet(ReceiverTip.id, ReceiverFile.receiver_tip_id)
+
+Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
+Receiver.contexts = ReferenceSet(Context.id, 
+                        ReceiverContext.context_id,
+                        ReceiverContext.receiver_id,
+                        Receiver.id)
+
+Folder.files = ReferenceSet(Folder.id, InternalFile.folder_id)

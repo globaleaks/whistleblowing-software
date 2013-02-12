@@ -9,12 +9,8 @@ from globaleaks.db import tables
 from globaleaks.utils import log
 from globaleaks.settings import transact
 
-from globaleaks.models.context import Context
-from globaleaks.models.externaltip import ReceiverTip, WhistleblowerTip, Comment, File
-from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.receiver import Receiver
-from globaleaks.models.submission import Submission
-from globaleaks.models.node import Node
+from globaleaks.models import Context, ReceiverTip, WhistleblowerTip
+from globaleaks.models import Comment, InternalTip, Receiver
 
 __all__ = ['createTables']
 
