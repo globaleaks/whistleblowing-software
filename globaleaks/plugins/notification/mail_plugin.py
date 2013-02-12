@@ -1,7 +1,14 @@
+import string
+
+from cyclone import mail
+from twisted.internet.defer import Deferred
+from twisted.mail.smtp import ESMTPSenderFactory
+from twisted.internet import reactor
+from twisted.internet.endpoints import TCP4ClientEndpoint
+
 from globaleaks.utils import log
 from globaleaks.plugins.base import Notification
-import smtplib
-import string
+
 
 class MailNotification(Notification):
 
@@ -16,12 +23,8 @@ class MailNotification(Notification):
         self.receiver_fields = {'mail_address' : 'text'}
 
     def validate_admin_opt(self, pushed_af):
-
-        if self._get_SMTP(pushed_af['server'], pushed_af['port'], pushed_af['ssl'],
-                pushed_af['username'], pushed_af['password']):
-            return True
-        else:
-            return False
+        # send a mock email
+        return True
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
@@ -37,7 +40,6 @@ class MailNotification(Notification):
         pass
 
     def _create_title(self, data_type, data):
-
         if data_type == u'comment':
             return "New comment from GLBNode"
         if data_type == u'tip':
@@ -94,55 +96,52 @@ class MailNotification(Notification):
                             "To: Estimeed Receiver <%s>" % dest,
                             "Subject: %s" % subject, body), "\r\n")
 
-    def _get_SMTP(self, server, port, tls, username, password):
-
-        try:
-            socket = smtplib.SMTP("%s:%d" % (server, port))
-            if tls:
-                socket.starttls()
-            socket.login(username, password)
-
-        except smtplib.SMTPConnectError:
-            # XXX log.plugin need to be defined and used from GLPlugin inherit
-            log.debug("Error, Connection error to %s:%d" % (server, port) )
-            return None
-        except smtplib.SMTPAuthenticationError:
-            log.debug("Error, Invalid Login/Password provided for server %s (%s %s)" % (server, username, password) )
-            return None
-
-        return socket
-
     # NYI, would use _append_email and continously checking the time delta
     #      admin fields need the digest time delta specified inside.
     def digest_check(self, settings, stored_data, new_data):
         pass
 
     def do_notify(self, settings, data_type, data):
-
         af = settings['admin_settings']
         rf = settings['receiver_settings']
 
         title = self._create_title(data_type, data)
         body = self._create_email(data_type, data, af['username'], rf['mail_address'], title)
 
-        try:
-            smtpsock = self._get_SMTP(af['server'], af['port'], af['ssl'],
-                af['username'], af['password'])
+        host = af['server']
+        port = af['port']
+        u = af['username']
+        p = af['password']
+        tls = af['ssl']
+        if tls:
+            contextFactory = ClientContextFactory()
+            contextFactory.method = SSLv3_METHOD
+        else:
+            contextFactory = None
+        message = mail.Message(from_addr=af['username'],
+                               to_addrs=[rf['mail_address']],
+                               subject=title,
+                               message=body,
+        )
+        result = Deferred()
+        def drugs(result):
+            success, smtpcode = result
+            if success != 1:
+                pass
+                # retry later?
+            # could check the smtp code
+            return d.callback(None)
 
-            if not smtpsock:
-                log.err("[E] error in sending the email to %s (username: %s)" % (rf['mail_address'], af['username']))
-                return False
+        result.addBoth(drugs)
+        factory = ESMTPSenderFactory(u, p,
+                                     message.from_addr,
+                                     message.to_addrs,
+                                     message.render(),
+                                     result,
+                                     contextFactory=contextFactory,
+                                     requireAuthentication=(u and p),
+                                     requireTransportSecurity=tls)
 
-            smtpsock.sendmail(af['username'], [ rf['mail_address'] ], body)
-            smtpsock.quit()
-
-            log.debug("Success in email %s " % rf['mail_address'])
-            return True
-
-        except smtplib.SMTPRecipientsRefused, smtplib.SMTPSenderRefused:
-
-            # remind, other error can be handled http://docs.python.org/2/library/smtplib.html
-            log.err("[E] error in sending the email to %s (username: %s)" % (rf['mail_address'], af['username']))
-            return False
-
-
+        ep = TCP4ClientEndpoint(reactor, host, port)
+        ep.connect(factory)
+        return d
