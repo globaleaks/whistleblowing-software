@@ -6,8 +6,8 @@ from storm import exceptions
 
 from globaleaks.settings import transact, get_store
 from globaleaks import settings
-from globaleaks.models.context import Context
-from globaleaks.models.receiver import Receiver
+from globaleaks.models import Context
+from globaleaks.models import Receiver
 from globaleaks.tests import helpers
 from globaleaks.db import createTables
 
@@ -32,20 +32,26 @@ class TestTransaction(unittest.TestCase):
 
     @inlineCallbacks
     def test_transact_with_stuff(self):
-        yield self._transact_with_stuff()
+        receiver_id = yield self._transact_with_stuff()
         # now check data actually written
         store = get_store()
-        self.assertEqual(store.find(Receiver, Receiver.receiver_gus == self.id).count(),
+        self.assertEqual(store.find(Receiver, Receiver.id == receiver_id).count(),
                          1)
 
 
     @inlineCallbacks
     def test_transact_with_stuff_failing(self):
-        yield self._transact_with_stuff_failing()
+        context_id = yield self._transact_with_stuff_failing()
         store = get_store()
-        self.assertEqual(list(store.find(Context, Context.context_gus == self.id)),
+        self.assertEqual(list(store.find(Context, Context.id == context_id)),
                          [])
 
+    @inlineCallbacks
+    def test_transact_decorate_function(self):
+        @transact
+        def transaction(store):
+            self.assertTrue(getattr(store, 'find'))
+        yield transaction()
 
     @transact
     def _transaction_with_exception(self, store):
@@ -54,7 +60,7 @@ class TestTransaction(unittest.TestCase):
     #def transaction_with_exception_while_writing(self):
     @transact
     def _transaction_ok(self, store):
-        store
+        self.assertTrue(getattr(store, 'find'))
         return
 
     @transact
@@ -64,10 +70,15 @@ class TestTransaction(unittest.TestCase):
 
     @transact
     def _transact_with_stuff(self, store):
-       self.id = Receiver(store).new(helpers.dummyReceiver)['receiver_gus']
+        receiver = Receiver()
 
+        store.add(receiver)
+        return receiver.id
 
     @transact
     def _transact_with_stuff_failing(self, store):
-        self.id = Context(store).new(helpers.dummyContext)['context_gus']
+        context = Context()
+
+        store.add(context)
         raise exceptions.DisconnectionError
+

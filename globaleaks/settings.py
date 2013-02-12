@@ -58,6 +58,7 @@ class transact(object):
 
     def __init__(self, method):
         self.method = method
+        self.instance = None
 
     def __get__(self, instance, owner):
         self.instance = instance
@@ -73,11 +74,17 @@ class transact(object):
     def _wrap(self, function, *args, **kwargs):
         self.store = get_store()
         try:
-            result = function(self.instance, self.store, *args, **kwargs)
+            if self.instance:
+                result = function(self.instance, self.store, *args, **kwargs)
+            else:
+                result = function(self.store, *args, **kwargs)
         except (exceptions.IntegrityError, exceptions.DisconnectionError) as e:
             log.msg(e)
             transaction.abort()
             result = None
+        except Exception, e:
+            transaction.abort()
+            raise e
         else:
             self.store.commit()
         finally:
