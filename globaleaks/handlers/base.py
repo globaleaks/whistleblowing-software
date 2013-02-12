@@ -124,13 +124,14 @@ class BaseHandler(RequestHandler):
             except HTTPError:
                 pass
 
-    def write_error(self, error, **kw):
-        if hasattr(error, 'http_status'):
-            self.set_status(error.http_status)
-            self.write({'error_message': error.error_message,
-                'error_code' : error.error_code})
+    def write_error(self, status_code, **kw):
+        exception = kw.get('exception')
+        if exception and hasattr(exception, 'error_code'):
+            self.set_status(status_code)
+            self.finish({'error_message': exception.reason,
+                'error_code' : exception.error_code})
         else:
-            RequestHandler.write_error(self, error, **kw)
+            RequestHandler.write_error(self, status_code, **kw)
 
     def write(self, chunk):
         """

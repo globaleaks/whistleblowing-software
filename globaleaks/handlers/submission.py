@@ -48,22 +48,22 @@ class SubmissionCreate(BaseHandler):
 
         except ContextGusNotFound, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionFailFields, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
@@ -97,12 +97,12 @@ class SubmissionInstance(BaseHandler):
 
         except SubmissionGusNotFound, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
@@ -131,32 +131,32 @@ class SubmissionInstance(BaseHandler):
 
         except ContextGusNotFound, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionFailFields, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionGusNotFound, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionConcluded, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except ReceiverGusNotFound, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
@@ -183,17 +183,17 @@ class SubmissionInstance(BaseHandler):
 
         except SubmissionGusNotFound, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except InvalidInputFormat, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         except SubmissionConcluded, e:
 
-            self.set_status(e.http_status)
+            self.set_status(e.status_code)
             self.write({'error_message': e.error_message, 'error_code' : e.error_code})
 
         self.finish()
