@@ -33,6 +33,10 @@ gldata_path = os.path.join(root_path, '_gldata')
 db_file = 'sqlite:' + os.path.join(gldata_path, 'glbackend.db')
 store_name = 'main_store'
 
+db_thread_pool_size = 1
+scheduler_thread_pool_size = 10
+
+
 if not os.path.exists(gldata_path):
         os.mkdir(gldata_path)
 
@@ -50,7 +54,7 @@ class transact(object):
     Class decorator for managing transactions.
     Because storm sucks.
     """
-    tp = ThreadPool(0, 1)
+    tp = ThreadPool(0, scheduler_thread_pool_size)
 
     def __init__(self, method):
         self.method = method
@@ -119,11 +123,6 @@ class Config(object):
         # This is the zstorm store used for transactions
         self.main.database_uri = db_file
 
-        self.main.zstorm = ZStorm()
-        self.main.zstorm.set_default_uri(store_name, db_file)
-
-        self.advanced.db_thread_pool_size = 1
-        self.advanced.scheduler_thread_pool_size = 10
 
         self.advanced.data_dir = gldata_path
         self.advanced.submissions_dir = os.path.join(self.advanced.data_dir, 'submissions')
@@ -131,10 +130,13 @@ class Config(object):
 
         log.msg("[D] %s %s " % (__file__, __name__), "Starting db_threadpool")
         log.msg("[D] %s %s " % (__file__, __name__), "Starting scheduler_threadpool")
-        self.main.scheduler_threadpool = ThreadPool(0, self.advanced.scheduler_thread_pool_size)
-        self.main.scheduler_threadpool.start()
+
+
+transact.tp.start()
+scheduler_threadpool = ThreadPool(0, scheduler_thread_pool_size)
+scheduler_threadpool.start()
+reactor.addSystemEventTrigger('after', 'shutdown', transact.tp.stop)
+reactor.addSystemEventTrigger('after', 'shutdown', scheduler_threadpool.stop)
 
 config = Config()
 
-transact.tp.start()
-reactor.addSystemEventTrigger('after', 'shutdown', transact.tp.stop)

@@ -20,8 +20,7 @@ from globaleaks.utils import idops, gltime
 from globaleaks import settings
 from globaleaks import db
 
-database_uri = 'sqlite:///test.db'
-settings.db_file = database_uri
+settings.db_file = 'sqlite:///test.db'
 settings.store = 'test_store'
 settings.config = settings.Config()
 
@@ -37,11 +36,9 @@ class TestHandler(unittest.TestCase):
     def fill_data(self):
         receiver = models.receiver.Receiver(self.store).new(dummyReceiver)
         dummyReceiver['username'] = receiver['username']
-        self.store.commit()
 
         dummyContext['receivers'] = receiver['receiver_gus']
         context = models.context.Context(self.store).new(dummyContext)
-        self.store.commit()
 
         dummySubmission['context_gus'] = context['context_gus']
         submission = models.submission.Submission(self.store).new(dummySubmission)
@@ -51,11 +48,9 @@ class TestHandler(unittest.TestCase):
 
         node = self.store.find(models.node.Node).one()
         node.password = u'spam'
-        self.store.commit()
 
         internal_tip = models.internaltip.InternalTip(self.store).new(dummySubmission)
         self.dummyWhistleblowerTip = models.externaltip.WhistleblowerTip(self.store).new(internal_tip)
-        self.store.commit()
 
 
 
@@ -86,7 +81,7 @@ class TestHandler(unittest.TestCase):
         """
         Clear the actual transport.
         """
-        os.unlink('test.db')
+        os.unlink(settings.db_file[len('sqlite:///'):])
 
     def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
         """
