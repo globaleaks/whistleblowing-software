@@ -4,23 +4,19 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
-from globaleaks import models
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks.plugins.manager import PluginManager
-from globaleaks.rest import errors
-from globaleaks.rest import requests
-from globaleaks.models import now
-
-
+from globaleaks.rest import errors, requests
+from globaleaks.models import now, Receiver, Context, Node
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
+from globaleaks.utils import gltime
 
 
-@transact
-def admin_serialize_node(store):
-    node = store.find(models.Node).one()
+def admin_serialize_node(node):
+
     return {
       'name': unicode(node.name),
       'description': unicode(node.description),
@@ -33,6 +29,7 @@ def admin_serialize_node(store):
     }
 
 def admin_serialize_context(context):
+
     context_dict = {
         "context_gus": context.id,
         "name": context.name,
@@ -44,7 +41,6 @@ def admin_serialize_context(context):
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
         "fields": context.fields if context.fields else [],
-        # This is to be set in the transaction
         "receivers": []
     }
     for receiver in context.receivers:
@@ -53,7 +49,8 @@ def admin_serialize_context(context):
     return context_dict
 
 def admin_serialize_receiver(receiver):
-    response = {
+
+    receiver_dict = {
         "receiver_gus": unicode(receiver.receiver_gus),
         "name": unicode(receiver.name),
         "description": unicode(receiver.description),
@@ -61,7 +58,6 @@ def admin_serialize_receiver(receiver):
         "languages": list(receiver.know_languages) if receiver.know_languages else [],
         "creation_date": unicode(gltime.prettyDateTime(receiver.creation_date)),
         "update_date": unicode(gltime.prettyDateTime(receiver.update_date)),
-        "contexts": list(receiver.contexts) if receiver.contexts else [],
         "receiver_level": int(receiver.receiver_level),
         "can_delete_submission": bool(receiver.can_delete_submission),
         "can_postpone_expiration": bool(receiver.can_postpone_expiration),
@@ -69,27 +65,44 @@ def admin_serialize_receiver(receiver):
         "can_configure_notification": bool(receiver.can_configure_notification),
         "username": unicode(receiver.username),
         "password": unicode(receiver.password),
-        "notification_fields": dict(receiver.notification_fields)
+        "notification_fields": dict(receiver.notification_fields),
+        "contexts": []
     }
-    return response
+
+    for context in receiver.contexts:
+        receiver_dict['contexts'].append(context.id)
+
+    return receiver_dict
+
 
 @transact
 def update_node(store, node_gus, request):
     """
     Update the node, setting the last update time on it.
 
+    Password:
+        If old_password and password are present, password update is performed
+
     Returns:
         the last update time of the node as a :class:`datetime.datetime`
         instance
     """
     node = store.find(Node, Node.id == unicode(node_gus)).one()
-    last_update = node.last_update
+
+    if request['old_password'] and request['password']:
+        if node.password == request['old_password']:
+            node.password = request['password']
+
+    del request['old_password']
+    del request['password']
 
     for key, value in request.items():
         setattr(node, key, value)
-    node.last_update = now()
 
-    return last_update
+    node_desc = admin_serialize_node(node)
+    node_desc.last_update = now()
+    return node_desc
+
 
 @transact
 def get_context_list(store):
@@ -123,8 +136,7 @@ def create_context(store, request):
         receivers = request['receivers']
         del request['receivers']
 
-    receiver_list = []
-    context = models.Context(request)
+    context = Context(request)
     store.add(context)
 
     for receiver_id in receivers:
@@ -164,15 +176,13 @@ def update_context(store, context_gus, request):
             (dict) the request to use to set the attributes of the Context
 
     Returns:
-        last_update:
-            (object) the last update time of the context.
+            (dict) the serialized object updated
     """
     context = store.find(Context, Context.id == unicode(context_gus)).one()
 
     if not context:
         raise errors.ContextGusNotFound
 
-    last_update = context.last_update
     receivers = request.get('receivers')
     if receivers:
         del request['receivers']
@@ -186,9 +196,10 @@ def update_context(store, context_gus, request):
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
         context.receivers.add(receiver)
-    context.last_update = now()
 
-    return last_update
+    context_desc = admin_serialize_context(context)
+    context.last_update = now()
+    return context_desc
 
 @transact
 def delete_context(store, context_gus):
@@ -205,7 +216,6 @@ def delete_context(store, context_gus):
         raise errors.ContextGusNotFound
 
     store.delete(context)
-    return last_update
 
 @transact
 def get_receiver_list(store):
@@ -228,16 +238,20 @@ def create_receiver(store, request):
     Returns:
         (dict) the configured receiver
     """
+
+    contexts = request.get('contexts')
+    del request['contexts']
+
     receiver = Receiver(request)
     store.add(receiver)
 
-    for context in receiver.contexts:
+    for context in contexts:
         context.receivers.add(receiver)
 
     return admin_serialize_receiver(receiver)
 
 @transact
-def get_receiver(store, receiver_gus):
+def get_receiver(store, id):
     """
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
     not exist.
@@ -245,7 +259,7 @@ def get_receiver(store, receiver_gus):
         (dict) the receiver
 
     """
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_gus)).one()
+    receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
     if not receiver:
         raise errors.ReceiverGusNotFound
@@ -253,18 +267,17 @@ def get_receiver(store, receiver_gus):
     return admin_serialize_receiver(receiver)
 
 @transact
-def update_receiver(store, receiver_gus, request):
+def update_receiver(store, id, request):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
     not exist.
     """
-    receiver = store.find(Receiver, Receiver.id == receiver_gus)
+    receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    last_update = receiver.last_update
     contexts = request.get('contexts')
     if contexts:
         del request['contexts']
@@ -279,8 +292,25 @@ def update_receiver(store, receiver_gus, request):
         context = store.find(Context, Context.id == context_id).one()
         receiver.contexts.add(context)
 
-    context.last_update = now()
-    return last_update
+    receiver_desc = admin_serialize_context(receiver)
+    receiver.last_update = now()
+    return receiver_desc
+
+@transact
+def delete_receiver(store, id):
+
+    context = store.find(Context, Context.id == unicode(id)).one()
+
+    if not context:
+        raise errors.ContextGusNotFound
+
+    store.delete(context)
+
+
+# ---------------------------------
+# Below starts the Cyclone handlers
+# ---------------------------------
+
 
 class NodeInstance(BaseHandler):
     """
@@ -297,7 +327,9 @@ class NodeInstance(BaseHandler):
         Response: adminNodeDesc
         Errors: NodeNotFound
         """
-        return admin_serialize_node().addCallback(self.finish)
+        node_desciption = yield get_node()
+        self.set_status(200)
+        self.finish(node_desciption)
 
     @inlineCallbacks
     def put(self, *uriargs):
@@ -310,10 +342,9 @@ class NodeInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.adminNodeDesc)
 
-        last_update = yield update_node(request)
         response = yield get_node()
-        response['last_update'] = last_update
 
+        self.set_status(202) # Updated
         self.finish(response)
 
 class ContextsCollection(BaseHandler):
@@ -345,7 +376,7 @@ class ContextsCollection(BaseHandler):
         request = self.validate_message(self.request.body, requests.adminContextDesc)
         response = yield create_context(request)
 
-        self.set_status(200)
+        self.set_status(201) # Created
         self.finish(response)
 
 class ContextInstance(BaseHandler):
@@ -375,11 +406,9 @@ class ContextInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.adminContextDesc)
 
-        last_update = yield update_context(context_gus, request)
         response = yield get_context(context_gus)
-        response['last_update'] = last_update
 
-        self.set_status(200)
+        self.set_status(202) # Updated
         self.finish(response)
 
     @inlineCallbacks
@@ -428,7 +457,7 @@ class ReceiversCollection(BaseHandler):
 
         response = yield create_receiver(request)
 
-        self.set_status(200)
+        self.set_status(201) # Created
         self.finish(response)
 
 class ReceiverInstance(BaseHandler):
@@ -451,7 +480,6 @@ class ReceiverInstance(BaseHandler):
 
         Get an existent Receiver instance.
         """
-        # validateParameter(receiver_gus, requests.receiverGUS)
         response = yield get_receiver(receiver_gus)
 
         self.set_status(200)
@@ -468,10 +496,9 @@ class ReceiverInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.adminReceiverDesc)
 
-        last_update = yield update_receiver(receiver_gus, request)
-        response = get_receiver(receiver_gus)
+        response = yield update_receiver(receiver_gus, request)
 
-        self.set_status(200)
+        self.set_status(201)
         self.finish(response)
 
     @inlineCallbacks
@@ -507,8 +534,8 @@ class PluginCollection(BaseHandler):
         name and properties.
         """
 
+        # This is not a transact, it's right
         plugin_descriptive_list = yield PluginManager.get_all()
-        # TODO output validation - adminPluginList
 
         self.set_status(200)
         self.write(plugin_descriptive_list)

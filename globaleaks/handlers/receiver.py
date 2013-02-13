@@ -19,16 +19,11 @@ from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver):
 
-    unrolled_contexts = []
-    for context in receiver.contexts:
-        unrolled_contexts.append(context.id)
-
     description = {
         "can_configure_delivery": receiver.can_configure_delivery,
         "can_configure_notification": receiver.can_configure_notification,
         "can_delete_submission": receiver.can_delete_submission,
         "can_postpone_expiration": receiver.can_postpone_expiration,
-        "contexts": unrolled_contexts,
         "creation_date" : "XXX",
         "last_update" : "XXX",
         "description": receiver.description,
@@ -37,9 +32,14 @@ def receiver_serialize_receiver(receiver):
         "id": receiver.id,
         # TODO REVIEW CLIENT CLONE XXX
         "receiver_gus": receiver.id,
+        # XXX END TODO REMIND XXX
         "receiver_level": receiver.receiver_level,
         "username": receiver.username,
+        "contexts": [],
     }
+
+    for context in receiver.contexts:
+        description['contexts'].append(context.id)
 
 @transact
 def get_receiver_settings(store, username):
@@ -111,6 +111,11 @@ class ReceiverInstance(BaseHandler):
         self.finish(receiver_status)
 
 
+@transact
+def get_receiver_tip_list(store, username):
+
+
+
 class TipsCollection(BaseHandler):
     """
     R5
@@ -125,22 +130,8 @@ class TipsCollection(BaseHandler):
         Response: receiverTipList
         Errors: InvalidTipAuthToken
         """
-        # TODO align API and test after - now tip_id is ignored
 
-        request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
+        answer = yield get_tip_list(self.current_user['username'])
 
-        # tips_list = yield # TODO XXX
-
-        # validateParameter(tip_auth_token, requests.tipGUS)
-        # TODO validate parameter tip format or raise InvalidInputFormat
-        # auth_user = yield AuthOperations().authenticate_receiver(receiver_token_auth)
-        # TODO need to be update in Auth and an update in get_tip_list
-
-        answer = yield CrudOperations().get_tip_list(tip_auth_token)
-
-        self.set_status(answer['code'])
-        self.finish(answer['data'])
-
-
-
-
+        self.set_status(200)
+        self.finish(answer)
