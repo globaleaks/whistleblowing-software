@@ -122,8 +122,8 @@ class ReceiverTip(Model):
     internaltip_id = Unicode()
     internaltip = Reference(internaltip_id, "InternalTip.id")
 
+    last_access = DateTime(default_factory=now)
     access_counter = Int()
-    last_access = DateTime()
 
     expressed_pertinence = Int()
 
@@ -133,7 +133,6 @@ class ReceiverTip(Model):
     notification_date = DateTime()
     notification_mark = Unicode()
 
-    last_access = DateTime(default_factory=now)
 
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
