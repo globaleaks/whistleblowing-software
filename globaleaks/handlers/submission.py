@@ -82,7 +82,7 @@ def import_fields(store, submission, fields, expected_fields):
             if not fields.has_key(entry['name']):
                 raise SubmissionFailFields("Missing field '%s': Required" % entry['name'])
 
-    submission.files = []
+    submission.fields = {}
     for key, value in fields.iteritems():
         key_exists = False
 
@@ -218,9 +218,10 @@ class SubmissionCreate(BaseHandler):
 
         status = yield create_submission(request)
 
-        if status['mark'] == InternalTip._marker[0]:
+        if request['finalize']:
             receipt = yield create_whistleblower_tip(status)
             status.update({'receipt': receipt})
+            yield finalize_submission(status['id'])
         else:
             status.update({'receipt' : ''})
 
