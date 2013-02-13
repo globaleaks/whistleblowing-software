@@ -10,7 +10,7 @@ from globaleaks.utils import log
 from globaleaks.settings import transact
 
 from globaleaks.models import Context, ReceiverTip, WhistleblowerTip
-from globaleaks.models import Comment, InternalTip, Receiver
+from globaleaks.models import Comment, InternalTip, Receiver, Node
 from globaleaks.models import ReceiverFile, Folder, InternalFile
 
 __all__ = ['createTables']
@@ -45,7 +45,7 @@ def create_tables_transaction():
     the node.
     """
     store = settings.get_store()
-    for model in [Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
+    for model in [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
             Receiver, InternalFile, Folder]:
         create_query = tables.generateCreateQuery(model)
         store.execute(create_query)

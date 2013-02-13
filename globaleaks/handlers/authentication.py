@@ -6,10 +6,10 @@ from storm.exceptions import NotOneError
 from twisted.internet.defer import inlineCallbacks
 from cyclone.util import ObjectDict as OD
 
-from globaleaks.models.node import Node
+from globaleaks.models import Node
 from globaleaks.settings import transact
-from globaleaks.models.receiver import Receiver
-from globaleaks.models.externaltip import WhistleblowerTip
+from globaleaks.models import Receiver
+from globaleaks.models import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.errors import InvalidAuthRequest, InvalidInputFormat, NotAuthenticated
 from globaleaks import settings
