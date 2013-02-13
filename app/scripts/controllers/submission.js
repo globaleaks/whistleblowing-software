@@ -12,6 +12,12 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
 
   });
 
+  $scope.view_tip = function(receipt) {
+    WhistleblowerTip(receipt, function(tip_id){
+      $location.path('/status/' + tip_id);
+    });
+  };
+
   $scope.uploadedFiles = [];
 
   $scope.accept_disclaimer = false;

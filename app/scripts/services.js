@@ -7,7 +7,7 @@ angular.module('resourceServices.authentication', [])
         self.id = null;
 
         self.login = function(username, password, role) {
-          $http.post('/login', {'username': username,
+          return $http.post('/login', {'username': username,
                                 'password': password,
                                 'role': role})
             .success(function(response){
@@ -258,6 +258,45 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         });
       });
 
+    };
+}]).
+  factory('WhistleblowerTip', ['$resource', 'Tip', 'Authentication', function($resource, Tip, Authentication){
+    var randomString = function(chars, length) {
+      // Generates a random string. Note: this is not cryptographically secure.
+      var ret = '';
+      for(i=0;i<length;i++) {
+        ret += chars[Math.floor(Math.random()*chars.length)]
+      };
+      return ret
+    };
+
+    var generateRandomTipID = function() {
+      // This will generate a random Tip ID that is a UUID4
+      var CHARS = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5',
+        '6', '7', '8', '9'],
+        tip_id = '';
+
+      tip_id += randomString(CHARS, 8);
+      tip_id += '-';
+      tip_id += randomString(CHARS, 4);
+      tip_id += '-';
+      tip_id += randomString(CHARS, 4);
+      tip_id += '-';
+      tip_id += randomString(CHARS, 4);
+      tip_id += '-';
+      tip_id += randomString(CHARS, 12);
+      console.log(tip_id);
+
+      return tip_id;
+    };
+
+    return function(receipt, fn) {
+      var self = this,
+        tip_id = generateRandomTipID();
+      Authentication.login('', receipt, 'wb')
+      .then(function() {
+        fn(tip_id);
+      });
     };
 }]).
   factory('Contexts', function($resource) {
