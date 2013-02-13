@@ -18,6 +18,9 @@ submissionGUS = r"(s_(\w){50,50})"
 receiverGUS = r"(r_(\w){20,20})"
 contextGUS = r"(c_(\w){20,20})"
 tipGUS = r"(t_(\w){50,50})"
+
+uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+
 # TODO: define this stuff
 dateType = r'(.*)'
 timeType = r'(.*)'

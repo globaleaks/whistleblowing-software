@@ -13,7 +13,7 @@ from cyclone.web import StaticFileHandler
 
 from globaleaks import settings
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, debug, authentication
-from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS, fileGUS
+from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS, fileGUS, uuid_regexp
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'
@@ -91,13 +91,13 @@ spec = [
     (r'/admin/context', admin.ContextsCollection),
 
     #  A3
-    (r'/admin/context/' + contextGUS, admin.ContextInstance),
+    (r'/admin/context/' + uuid_regexp, admin.ContextInstance),
 
     #  A4
     (r'/admin/receiver', admin.ReceiversCollection),
 
-    #  A5
-    (r'/admin/receiver/' + receiverGUS, admin.ReceiverInstance),
+    #  A5 receiverGUS
+    (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
 
     #  A6
     (r'/admin/plugin', admin.PluginCollection),
@@ -115,10 +115,10 @@ spec = [
 
 ## Enable end to end testing directory ##
 # * /test
-if settings.config.debug.testing:
-    spec.append(
-        (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(settings.glclient_path, '..', 'test')})
-    )
+#if settings.config.debug.testing:
+spec.append(
+    (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(settings.glclient_path, '..', 'test')})
+)
 
 ## Main Web app ##
 # * /

@@ -248,6 +248,8 @@ class Receiver(Model):
 
     last_update = DateTime()
     last_access = DateTime(default_factory=now)
+
+    languages = Pickle()
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
     #                         "ReceiverContext.receiver_id",
@@ -277,4 +279,5 @@ Receiver.contexts = ReferenceSet(
 Folder.files = ReferenceSet(Folder.id, InternalFile.folder_id)
 
 models = [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
-          Receiver, InternalFile, Folder]
+          Receiver, ReceiverContext, InternalFile, Folder]
+
