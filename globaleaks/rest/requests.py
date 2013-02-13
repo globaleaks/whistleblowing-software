@@ -8,7 +8,7 @@
 # handler to verify if the request is correct.
 
 from globaleaks.rest.base import submissionGUS, formFieldsDict, contextGUS,\
-    timeType, receiverGUS, fileGUS, tipGUS
+    timeType, receiverGUS, fileGUS, tipGUS, uuid_regexp
 
 wbSubmissionDesc = {
     'wb_fields' : dict,
@@ -44,6 +44,7 @@ adminNodeDesc = {
     'stats_update_time' : int,
     'email' : unicode,
     'password' : unicode,
+    'old_password' : unicode,
     'notification_settings' : dict,
     'languages' : list
 }
@@ -57,7 +58,7 @@ adminContextDesc = {
     'tip_timetolive' : int,
     'file_max_download' : int,
     'escalation_threshold' : int,
-    'receivers' : [ receiverGUS ],
+    'receivers' : [ uuid_regexp ],
     'fields': [ formFieldsDict ],
 }
 
@@ -66,7 +67,6 @@ adminReceiverDesc =  {
     'notification_fields' : dict,
     'name' : unicode,
     'description' : unicode,
-    'tags': list,
     'languages' : list,
     'contexts' : [ contextGUS ],
     'receiver_level' : int,
