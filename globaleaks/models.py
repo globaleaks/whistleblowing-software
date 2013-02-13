@@ -263,7 +263,9 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-class ReceiverContext(Model):
+class ReceiverContext(object):
+    __storm_table__ = 'receiver_context'
+    __storm_primary__ = 'context_id', 'receiver_id'
     context_id = Unicode()
     receiver_id = Unicode()
 
