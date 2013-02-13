@@ -12,7 +12,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
 from globaleaks.utils import gltime
 from globaleaks.settings import transact
-from globaleaks.models import update_model, now
+from globaleaks.models import now
 from globaleaks.models import WhistleblowerTip, ReceiverTip, InternalFile, ReceiverFile, Folder, InternalTip, Receiver
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
     TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
@@ -93,7 +93,7 @@ def get_folders_receiver(store, tip_id):
 
         for receiverfile in rtip.receiver_files:
             internalfile = receiverfile.internal_file
-            single_folder['files'].append(folder receiver_serialize_file(internalfile, receiverfile, tip_id))
+            single_folder['files'].append(receiver_serialize_file(internalfile, receiverfile, tip_id))
 
         folders_desc.append(single_folder)
 
