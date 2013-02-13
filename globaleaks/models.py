@@ -249,7 +249,7 @@ class Receiver(Model):
     receiver_level = Int()
 
     # tips = ReferenceSet("Receiver.id", "ReceiverTip.receiver_id")
-    context_id = Unicode()
+    #context_id = Unicode()
 
     last_update = DateTime()
     last_access = DateTime(default_factory=now)
@@ -267,7 +267,12 @@ class ReceiverContext(object):
     receiver_id = Unicode()
 
 
-Context.receivers = ReferenceSet(Context.id, Receiver.context_id)
+#Context.receivers = ReferenceSet(Context.id, ReceiverContext.context_id)
+Context.receivers = ReferenceSet(
+                                 Context.id,
+                                 ReceiverContext.receiver_id,
+                                 ReceiverContext.context_id,
+                                 Receiver.id)
 
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.folders = ReferenceSet(InternalTip.id, Folder.internaltip_id)
@@ -276,14 +281,16 @@ InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.id)
 ReceiverTip.receiver_files = ReferenceSet(
                         ReceiverTip.id,
                         ReceiverFile.receiver_tip_id)
+
 Receiver.tips = ReferenceSet(
                         Receiver.id,
                         ReceiverTip.receiver_id)
+
 Receiver.contexts = ReferenceSet(
-                        Context.id,
+                        Receiver.id,
                         ReceiverContext.context_id,
                         ReceiverContext.receiver_id,
-                        Receiver.id)
+                        Context.id)
 
 Folder.files = ReferenceSet(Folder.id, InternalFile.folder_id)
 
