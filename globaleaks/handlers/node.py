@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 
-from globaleaks.utils import log
+from globaleaks.utils import log, gltime
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks import models
@@ -22,9 +22,47 @@ def anon_serialize_node(store):
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
-      'notification_settings': dict(node.notification_settings) or None,
-}
+      'notification_settings': dict(node.notification_settings or {}),
+      'languages': list(node.languages or []),
+    }
 
+def serialize_context(context):
+    context_dict = {
+        "context_gus": unicode(context.id),
+        "description": unicode(context.description),
+        "escalation_threshold": None,
+        "fields": list(context.fields or []),
+        "file_max_download": int(context.file_max_download),
+        "languages": list(context.languages),
+        "name": unicode(context.name),
+        "receivers": [],
+        "selectable_receiver": bool(context.selectable_receiver),
+        "tip_max_access": int(context.tip_max_access),
+        "tip_timetolive": int(context.tip_timetolive)
+    }
+    for receiver in context.receivers:
+        context_dict['receivers'].append(unicode(receiver.id))
+    return context_dict
+
+def serialize_receiver(receiver):
+    receiver_dict = {
+        "can_configure_delivery": unicode(receiver.can_configure_delivery),
+        "can_configure_notification": receiver.can_configure_notification,
+        "can_delete_submission": receiver.can_delete_submission,
+        "can_postpone_expiration": receiver.can_postpone_expiration,
+        "contexts": [],
+        "creation_date": gltime.prettyDateTime(receiver.creation_date),
+        "update_date": gltime.prettyDateTime(receiver.last_update),
+        "description": receiver.description,
+        "languages": list(receiver.languages),
+        "name": unicode(receiver.name),
+        "receiver_gus": unicode(receiver.id),
+        "receiver_level": int(receiver.receiver_level),
+        "tags": [],
+    }
+    for context in receiver.contexts:
+        receiver_dict['contexts'].append(unicode(context.id))
+    return receiver_dict
 
 class InfoCollection(BaseHandler):
     """
@@ -33,14 +71,16 @@ class InfoCollection(BaseHandler):
     parameters (contexts description, fields, public receiver list).
     Contains System-wide properties.
     """
-
+    
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
         Response: publicNodeDesc
         Errors: NodeNotFound
         """
-        return anon_serialize_node()
+        response = yield anon_serialize_node()
+        self.finish(response)
 
 # U2 Submission create
 # U3 Submission update/status/delete
@@ -74,16 +114,21 @@ class ContextsCollection(BaseHandler):
     """
     @transact
     def get_context_list(self, store):
-        return [x.dict() for x in store.find(models.Context)]
+        context_list = []
+        contexts = store.find(models.Context)
+        for context in contexts:
+            context_list.append(serialize_context(context))
+        return context_list
 
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
         Response: publicContextList
         Errors: None
         """
-        return self.get_context_list().addCallback(self.finish)
-
+        response = yield self.get_context_list()
+        self.finish(response)
 
 class ReceiversCollection(BaseHandler):
     """
@@ -94,8 +139,12 @@ class ReceiversCollection(BaseHandler):
 
     @transact
     def get_receiver_list(self, store):
-        return [x.dict() for x in Receiver(store).get_all()]
-
+        receiver_list = []
+        receivers = store.find(models.Receiver)
+        for receiver in receivers:
+            receiver_list.append(serialize_receiver(receiver))
+        return receiver_list
+    
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -103,4 +152,6 @@ class ReceiversCollection(BaseHandler):
         Response: publicReceiverList
         Errors: None
         """
-        self.get_receiver_list().addCallback(self.finish)
+        response = yield self.get_receiver_list()
+        self.finish(response)
+

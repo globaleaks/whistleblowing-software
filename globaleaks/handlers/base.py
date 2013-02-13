@@ -127,10 +127,6 @@ class BaseHandler(RequestHandler):
         handle the POST fallback, in environment where PUT and DELETE
         method may not be used.
         """
-
-        if settings.config.debug.verbose:
-            print "Just got %s" % self.request.body
-
         if self.request.method.lower() == 'post':
             try:
                 wrappedMethod = self.get_argument('method')[0]
@@ -168,7 +164,7 @@ class BaseHandler(RequestHandler):
             return None
         else:
             try:
-                session = settings.config.sessions[session_id]
+                session = settings.sessions[session_id]
             except KeyError:
                 return None
             return session

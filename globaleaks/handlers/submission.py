@@ -19,10 +19,10 @@ from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
 def wb_serialize_internaltip(internaltip):
     response = {
         'id' : unicode(internaltip.id),
-        'context_gus': unicode(internaltip.context_gus),
-        'creation_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
-        'expiration_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
-        'fields' : dict(internaltip.fields),
+        'context_gus': unicode(internaltip.context_id),
+        #'creation_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
+        #'expiration_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
+        'fields' : dict(internaltip.fields or {}),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
         'mark' : unicode(internaltip.mark),
@@ -35,32 +35,29 @@ def wb_serialize_internaltip(internaltip):
 
 @transact
 def create_whistleblower_tip(store, submission):
-
     wbtip = WhistleblowerTip(submission)
-
-    # TODO follow the reverse regexp function
-    wbtip.password = idops.get_random_receipt()
-
+    wbtip.receipt = idops.random_receipt()
     store.add(wbtip)
-
-    return wbtip.password
+    return wbtip.receipt
 
 
 def import_receivers(store, submission, receivers, context):
-
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
-            submission.receivers.add(receiver)
+            # XXX convert to reference set
+            #submission.receivers.add(receiver)
+            submission.receivers.append(receiver.id)
         return
 
     # If not, import WB requests
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+        # XXX convert to reference set
+        #submission.receivers.add(receiver)
         if not receiver:
             raise ReceiverGusNotFound
-        submission.receivers.add(receiver)
-
+        submission.receivers.append(receiver.id)
 
 def import_files(store, submission, files):
 
@@ -102,14 +99,22 @@ def import_fields(store, submission, fields, expected_fields):
 
 @transact
 def create_submission(store, request):
-
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
 
     if not context:
         raise ContextGusNotFound
+    
+    # These are set from the internal tip
+    request['escalation_threshold'] = context.escalation_threshold
+    request['access_limit'] = context.tip_max_access
+    request['download_limit'] = context.file_max_download
+    request['expiration_date'] = gltime.utcFutureDate(hours=(context.tip_timetolive * 24))
+    request['pertinence_counter'] = 0
+    request['mark'] = 'new'
+    request['context_id'] = context.id
 
     submission = InternalTip(request)
-
+   
     receivers = request.get('receivers')
     del request['receivers']
     import_receivers(store, submission, receivers, context)
@@ -123,25 +128,28 @@ def create_submission(store, request):
     import_fields(store, submission, fields, context.fields)
 
     store.add(submission)
-    return wb_serialize_internaltip(submission)
-
+    submission_dict = wb_serialize_internaltip(submission)
+    submission_dict['submission_gus'] = unicode(submission.id)
+    return submission_dict
 
 @transact
 def update_submission(store, id, request):
-
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
     if not submission:
         raise SubmissionGusNotFound
 
-    if submission['mark'] == u'finalized':
+    if submission.mark == u'finalize':
         raise SubmissionConcluded
-
+   
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
+   
+    if not context:
+        raise ContextGusNotFound()
 
     # Can't be changed context in the middle of a Submission
-    if submission.context != context:
-        raise ContextGusNotFound
+    if submission.context_id != context.id:
+        raise ContextGusNotFound()
 
     receivers = request.get('receivers')
     del request['receivers']
@@ -180,6 +188,10 @@ def delete_submission(store, id):
 
     store.delete(submission)
 
+@transact
+def finalize_submission(store, id):
+    submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
+    submission.mark = u'finalize'
 
 class SubmissionCreate(BaseHandler):
     """
@@ -254,9 +266,10 @@ class SubmissionInstance(BaseHandler):
 
         status = yield update_submission(submission_gus, request)
 
-        if status['mark'] == InternalTip._marker[0]:
+        if request['finalize']:
             receipt = yield create_whistleblower_tip(status)
             status.update({'receipt': receipt})
+            yield finalize_submission(status['id'])
         else:
             status.update({'receipt' : ''})
 
