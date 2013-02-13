@@ -51,7 +51,7 @@ class AuthenticationHandler(BaseHandler):
         return settings.sessions[self.session_id]
 
     def generate_session(self, role):
-        self.session_id = random_string(26, 'a-z,A-Z,0-9')
+        self.session_id = random_string(42, 'a-z,A-Z,0-9')
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
         new_session = OD(
