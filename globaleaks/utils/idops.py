@@ -42,36 +42,18 @@ def random_receipt():
     length = 10
     return u''.join(random.choice('0123456789') for x in range(length))
 
-
-
-global_debug_counter = 0
-
 def random_submission_gus():
     """
     this need to be not guessable because this secret auth the WB
     during the submission procedure.
     """
     length = 50
-
-    if settings.config.debug.testing:
-        global global_debug_counter
-        global_debug_counter += 1
-        string_value = str(global_debug_counter)
-        return u's_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
-    else:
-        return u's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    return u's_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 
 def random_plugin_gus():
     length = 10
-
-    if settings.config.debug.testing:
-        global global_debug_counter
-        global_debug_counter += 1
-        string_value = str(global_debug_counter)
-        return u'p_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
-    else:
-        return u'p_'+(''.join(random.choice('0123456789') for x in range(length)))
+    return u'p_'+(''.join(random.choice('0123456789') for x in range(length)))
 
 def random_context_gus():
     """
@@ -80,14 +62,7 @@ def random_context_gus():
     short, just for do not create a loooong URL
     """
     length = 20
-
-    if settings.config.debug.testing:
-        global global_debug_counter
-        global_debug_counter += 1
-        string_value = str(global_debug_counter)
-        return u'c_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
-    else:
-        return u'c_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    return u'c_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 
 def random_file_gus():
@@ -96,14 +71,7 @@ def random_file_gus():
     XXX file is now starting with f_ and is supposed to be random
     """
     length = 30
-
-    if settings.config.debug.testing:
-        global global_debug_counter
-        global_debug_counter += 1
-        string_value = str(global_debug_counter)
-        return u'f_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
-    else:
-        return u'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    return u'f_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 
 def random_receiver_gus():
@@ -113,25 +81,11 @@ def random_receiver_gus():
     anyway we made it not guessable, just to avoid enumeration.
     """
     length = 20
-
-    if settings.config.debug.testing:
-        global global_debug_counter
-        global_debug_counter += 1
-        string_value = str(global_debug_counter)
-        return u'r_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
-    else:
-        return u'r_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    return u'r_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
 
 def random_tip_gus():
     """
     need to be NOT guessable
     """
     length = 50
-
-    if settings.config.debug.testing:
-        global global_debug_counter
-        global_debug_counter += 1
-        string_value = str(global_debug_counter)
-        return u't_'+(''.join(random.choice('0') for x in range(length - len(string_value))))+string_value
-    else:
-        return u't_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
+    return u't_'+(''.join(random.choice(string.ascii_letters) for x in range(length)))
