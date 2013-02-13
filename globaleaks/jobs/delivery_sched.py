@@ -11,19 +11,14 @@
 # kind of file has been submitted.
 
 from globaleaks.jobs.base import GLJob
-from globaleaks.transactors.asyncoperations import AsyncOperations
-from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile
+from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile, Receiver
 from globaleaks.settings import transact
 from twisted.internet.defer import inlineCallbacks
 
 __all__ = ['APSDelivery']
 
 
-
 class APSDelivery(GLJob):
-
-    def flip_mark(self, target, source_m, dest_m):
-        pass
 
     def internalfile_is_correct(self, internalfile):
         """
@@ -32,7 +27,6 @@ class APSDelivery(GLJob):
         encryption) need to be sets here.
         """
         pass
-
 
     @transact
     def fileprocess(self, store):
@@ -45,14 +39,22 @@ class APSDelivery(GLJob):
         # files need to be processed
         # TODO
 
-    def create_receivertip(self, store, receiver, internaltip):
+    def create_receivertip(self, store, receiver_id, internaltip, tier):
 
-        print "Creating ReceiverTip for", receiver.id, "for itip", internaltip.id
+        receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+
+        print "Creating ReceiverTip for:", receiver.name, "id", receiver.id, "tier", receiver.receiver_level,\
+            "for itip", internaltip.id, "Round for tier", tier, "RECEIVER TIP:", receiver.id, "username",\
+            receiver.username, "password", receiver.password, "POPE YOU RESIGN HAAHAHAHH!!!!"
+
+        if receiver.receiver_level != tier:
+            return
+
         initialization = {
             'internaltip_id' : internaltip.id,
             'access_counter' : 0,
             'expressed_pertinence' : 0,
-            'receiver_id' : receiver.id,
+            'receiver_id' : receiver_id,
             'notification_mark' : ReceiverTip._marker[0],
         }
 
@@ -68,24 +70,22 @@ class APSDelivery(GLJob):
         finalized = store.find(InternalTip, InternalTip.mark == InternalTip._marker[1])
 
         for internaltip in finalized:
-            for receiver in internaltip.receivers:
-                if receiver.receiver_level == 1:
-                    self.create_receivertip(store, receiver, internaltip)
-                    # TODO interalfile_is_correct
+            for receiver_id in internaltip.receivers:
+                self.create_receivertip(store, receiver_id, internaltip, 1)
+                # TODO interalfile_is_correct
 
-            self.flip_mark(internaltip, InternalTip.mark[0], InternalTip.mark[1])
+            # internaltip.mark = internaltip._marker[1]
 
         promoted = store.find(InternalTip,
                             ( InternalTip.mark == InternalTip._marker[2],
                               InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )
 
         for internaltip in promoted:
-            for receiver in internaltip.receivers:
-                if receiver.receiver_level == 2:
-                    self.create_receivertip(store, receiver, internaltip)
-                    # TODO interalfile_is_correct
+            for receiver_id in internaltip.receivers:
+                self.create_receivertip(store, receiver_id, internaltip, 2)
+                # TODO interalfile_is_correct
 
-            self.flip_mark(internaltip, InternalTip.mark[1], InternalTip.mark[2])
+            # internaltip.mark = internaltip._marker[2]
 
 
     @inlineCallbacks
