@@ -5,16 +5,18 @@
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
 from datetime import datetime
+from globaleaks.models import Node, Context
+from globaleaks.settings import transact
+
 now = datetime.utcnow
 
-from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks.transactors.crudoperations import CrudOperations
 
-from globaleaks.utils import log
+
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
     NodeNotFound, InvalidInputFormat
@@ -149,9 +151,9 @@ def update_context(store, context_gus, request):
     context = store.find(Context, Context.id == unicode(context_gus)).one()
 
     last_update = context.last_update
+
     receivers = request.get('receivers')
-    if receivers:
-        del request['receivers']
+    del request['receivers']
 
     for key, value in request.items():
         setattr(context, key, value)
@@ -160,8 +162,13 @@ def update_context(store, context_gus, request):
         context.remove(receiver)
 
     for receiver_id in receivers:
+
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        if not receiver:
+            raise ReceiverGusNotFound
+
         context.receivers.add(receiver)
+
     context.last_update = now()
 
     return last_update

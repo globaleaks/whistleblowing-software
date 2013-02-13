@@ -89,7 +89,7 @@ class InternalTip(Model):
     # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
     # folders = ReferenceSet("InternalTip.id", "Folder.internaltip_id")
 
-    _marker = [ u'new', u'first', u'second' ]
+    _marker = [ u'incomplete', u'new', u'first', u'second' ]
 
 
 class ReceiverTip(Model):

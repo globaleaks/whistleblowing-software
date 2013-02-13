@@ -7,11 +7,178 @@
 
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
+from globaleaks.settings import transact
+from globaleaks.models import WhistleblowerTip, Receiver, Context, InternalTip, InternalFile
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest import requests
+from globaleaks.utils import idops, gltime
 from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
-    ContextGusNotFound, SubmissionFailFields, SubmissionConcluded, ReceiverGusNotFound
+    ContextGusNotFound, SubmissionFailFields, SubmissionConcluded, ReceiverGusNotFound, FileGusNotFound
+
+
+def wb_serialize_internaltip(internaltip):
+    response = {
+        'id' : unicode(internaltip.id),
+        'context_gus': unicode(internaltip.context_gus),
+        'creation_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
+        'expiration_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
+        'fields' : dict(internaltip.fields),
+        'download_limit' : int(internaltip.download_limit),
+        'access_limit' : int(internaltip.access_limit),
+        'mark' : unicode(internaltip.mark),
+        'pertinence' : unicode(internaltip.pertinence_counter),
+        'escalation_threshold' : unicode(internaltip.escalation_threshold),
+        'files' : dict(internaltip.files) if internaltip.files else {},
+        'receivers' : list(internaltip.receivers) if internaltip.receivers else [],
+    }
+    return response
+
+@transact
+def create_whistleblower_tip(store, submission):
+
+    wbtip = WhistleblowerTip(submission)
+
+    # TODO follow the reverse regexp function
+    wbtip.password = idops.get_random_receipt()
+
+    store.add(wbtip)
+
+    return wbtip.password
+
+
+def import_receivers(store, submission, receivers, context):
+
+    # As first we check if Context has some policies
+    if not context.selectable_receiver:
+        for receiver in context.receivers:
+            submission.receivers.add(receiver)
+        return
+
+    # If not, import WB requests
+    for receiver_id in receivers:
+        receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+        if not receiver:
+            raise ReceiverGusNotFound
+        submission.receivers.add(receiver)
+
+
+def import_files(store, submission, files):
+
+    for file_id in files:
+        file = store.find(InternalFile, InternalFile,id == unicode(file_id)).one()
+        if not file:
+            raise FileGusNotFound
+
+        submission.files.add(file)
+
+def import_fields(store, submission, fields, expected_fields):
+    """
+    @param submission: the Storm object
+    @param fields: the received fields
+    @param expected_fields: the Context defined fields
+    @return: update the object of raise an Exception if a required field
+        is missing, or if received field do not match the expected shape
+    """
+
+    for entry in expected_fields:
+        if entry['required']:
+            if not fields.has_key(entry['name']):
+                raise SubmissionFailFields("Missing field '%s': Required" % entry['name'])
+
+    submission.files = []
+    for key, value in fields.iteritems():
+        key_exists = False
+
+        for entry in expected_fields:
+            if key == entry['name']:
+                key_exists = True
+                break
+
+        if not key_exists:
+            raise SubmissionFailFields("Submitted field '%s' not expected in context" % k)
+
+        submission.fields.update({key: value})
+
+
+@transact
+def create_submission(store, request):
+
+    context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
+
+    if not context:
+        raise ContextGusNotFound
+
+    submission = InternalTip(request)
+
+    receivers = request.get('receivers')
+    del request['receivers']
+    import_receivers(store, submission, receivers, context)
+
+    files = request.get('files')
+    del request['files']
+    import_files(store, submission, files)
+
+    fields = request.get('wb_fields')
+    del request['wb_fields']
+    import_fields(store, submission, fields, context.fields)
+
+    store.add(submission)
+    return wb_serialize_internaltip(submission)
+
+
+@transact
+def update_submission(store, id, request):
+
+    submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
+
+    if not submission:
+        raise SubmissionGusNotFound
+
+    if submission['mark'] == u'finalized':
+        raise SubmissionConcluded
+
+    context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
+
+    # Can't be changed context in the middle of a Submission
+    if submission.context != context:
+        raise ContextGusNotFound
+
+    receivers = request.get('receivers')
+    del request['receivers']
+    import_receivers(store, submission, receivers, context)
+
+    files = request.get('files')
+    del request['files']
+    import_files(store, submission, files)
+
+    fields = request.get('wb_fields')
+    del request['wb_fields']
+    import_fields(store, submission, fields, context.fields)
+
+    # TODO update_model
+    return wb_serialize_internaltip(submission)
+
+@transact
+def get_submission(store, id):
+
+    submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
+    if not submission:
+        raise SubmissionGusNotFound
+
+    return wb_serialize_internaltip(submission)
+
+@transact\
+def delete_submission(store, id):
+
+    submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
+
+    if not submission:
+        raise SubmissionGusNotFound
+
+    if submission.mark != submission._marked[0]:
+        raise SubmissionConcluded
+
+    store.delete(submission)
 
 
 class SubmissionCreate(BaseHandler):
@@ -37,11 +204,16 @@ class SubmissionCreate(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-        answer = yield CrudOperations().new_submission(request)
+        status = yield create_submission(request)
 
-        # TODO - output processing
-        self.set_status(answer['code'])
-        self.finish(answer['data'])
+        if status['mark'] == InternalTip._marker[0]:
+            receipt = yield create_whistleblower_tip(status)
+            status.update({'receipt': receipt})
+        else:
+            status.update({'receipt' : ''})
+
+        self.set_status(201) # Created
+        self.finish(status)
 
 
 class SubmissionInstance(BaseHandler):
@@ -61,26 +233,10 @@ class SubmissionInstance(BaseHandler):
 
         Get the status of the current submission.
         """
+        submission = yield get_submission(submission_gus)
 
-        try:
-            # validateParameter(submission_gus, requests.submissionGUS)
-            answer = yield CrudOperations().get_submission(submission_gus)
-
-            # TODO - output processing
-            self.set_status(answer['code'])
-            self.write(answer['data'])
-
-        except SubmissionGusNotFound, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except InvalidInputFormat, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        self.finish()
+        self.set_status(200)
+        self.finish(submission)
 
     @asynchronous
     @inlineCallbacks
@@ -94,47 +250,18 @@ class SubmissionInstance(BaseHandler):
         PUT update the submission and finalize if requested.
         """
 
-        try:
-            # validateParameter(submission_gus, requests.submissionGUS)
-            request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+        request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-            answer = yield CrudOperations().update_submission(submission_gus, request)
+        status = yield update_submission(submission_gus, request)
 
-            # TODO - output processing
-            self.set_status(answer['code'])
-            self.write(answer['data'])
+        if status['mark'] == InternalTip._marker[0]:
+            receipt = yield create_whistleblower_tip(status)
+            status.update({'receipt': receipt})
+        else:
+            status.update({'receipt' : ''})
 
-        except ContextGusNotFound, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except SubmissionFailFields, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except InvalidInputFormat, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except SubmissionGusNotFound, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except SubmissionConcluded, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except ReceiverGusNotFound, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        self.finish()
+        self.set_status(202) # Updated
+        self.finish(status)
 
 
     @asynchronous
@@ -144,33 +271,14 @@ class SubmissionInstance(BaseHandler):
         Parameter: submission_gus
         Request:
         Response: None
-        Errors: SubmissionGusNotFound, InvalidInputFormat, SubmissionConcluded
+        Errors: SubmissionGusNotFound, SubmissionConcluded
 
         A whistleblower is deleting a Submission because has understand that won't really be an hero. :P
         """
 
-        try:
-            # validateParameter(submission_gus, requests.submissionGUS)
+        yield delete_submission(submission_gus)
 
-            answer = yield CrudOperations().delete_submission(submission_gus)
-
-            self.set_status(answer['code'])
-
-        except SubmissionGusNotFound, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except InvalidInputFormat, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
-        except SubmissionConcluded, e:
-
-            self.set_status(e.status_code)
-            self.write({'error_message': e.error_message, 'error_code' : e.error_code})
-
+        self.set_status(200) # Accepted
         self.finish()
 
 
