@@ -17,9 +17,7 @@ from globaleaks import settings
 # XXX make this a config option
 log_file = "/tmp/glbackend.log"
 
-log_folder = os.path.join('/', *log_file.split('/')[:-1])
-log_filename = log_file.split('/')[-1]
-daily_logfile = DailyLogFile(log_filename, log_folder)
+daily_logfile = DailyLogFile(settings.log_filename, settings.log_folder)
 
 class LoggerFactory(object):
     def __init__(self, options):
@@ -31,13 +29,8 @@ class LoggerFactory(object):
                                                         gltime.utcPrettyDateNow()))
         logging.basicConfig()
         python_logging = txlog.PythonLoggingObserver()
-        if settings.config.advanced.debug:
-            python_logging.logger.setLevel(logging.DEBUG)
-        else:
-            python_logging.logger.setLevel(logging.INFO)
-
+        python_logging.logger.setLevel(settings.log_level)
         txlog.startLoggingWithObserver(python_logging.emit)
-
         txlog.addObserver(txlog.FileLogObserver(daily_logfile).emit)
 
     def stop(self):

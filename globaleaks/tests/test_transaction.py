@@ -4,7 +4,7 @@ from twisted.trial import unittest
 from twisted.internet.defer import inlineCallbacks
 from storm import exceptions
 
-from globaleaks.settings import transact, get_store
+from globaleaks.settings import transact
 from globaleaks import settings
 from globaleaks.models import Context
 from globaleaks.models import Receiver
@@ -34,7 +34,7 @@ class TestTransaction(unittest.TestCase):
     def test_transact_with_stuff(self):
         receiver_id = yield self._transact_with_stuff()
         # now check data actually written
-        store = get_store()
+        store = transact.get_store()
         self.assertEqual(store.find(Receiver, Receiver.id == receiver_id).count(),
                          1)
 
@@ -42,7 +42,7 @@ class TestTransaction(unittest.TestCase):
     @inlineCallbacks
     def test_transact_with_stuff_failing(self):
         context_id = yield self._transact_with_stuff_failing()
-        store = get_store()
+        store = transact.get_store()
         self.assertEqual(list(store.find(Context, Context.id == context_id)),
                          [])
 

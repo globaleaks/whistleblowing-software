@@ -3,7 +3,6 @@ from random import randint
 from storm.locals import ReferenceSet
 from storm.locals import *
 
-from globaleaks.settings import config
 
 from time import time
 # xxx. we should use python tz.
