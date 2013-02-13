@@ -9,7 +9,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest import errors, requests
-from globaleaks.models import now, Receiver, Context, Node
+from globaleaks.models import now, Receiver, Context, Node, update_model
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 from globaleaks.utils import gltime
@@ -76,7 +76,13 @@ def admin_serialize_receiver(receiver):
 
 
 @transact
-def update_node(store, node_gus, request):
+def get_node(store):
+
+    node = store.find(Node).one()
+    return admin_serialize_node(node)
+
+@transact
+def update_node(store, request):
     """
     Update the node, setting the last update time on it.
 
@@ -87,7 +93,7 @@ def update_node(store, node_gus, request):
         the last update time of the node as a :class:`datetime.datetime`
         instance
     """
-    node = store.find(Node, Node.id == unicode(node_gus)).one()
+    node = store.find(Node).one()
 
     if request['old_password'] and request['password']:
         if node.password == request['old_password']:
@@ -96,8 +102,7 @@ def update_node(store, node_gus, request):
     del request['old_password']
     del request['password']
 
-    for key, value in request.items():
-        setattr(node, key, value)
+    update_model(node, request)
 
     node_desc = admin_serialize_node(node)
     node_desc.last_update = now()
@@ -184,11 +189,9 @@ def update_context(store, context_gus, request):
         raise errors.ContextGusNotFound
 
     receivers = request.get('receivers')
-    if receivers:
-        del request['receivers']
+    del request['receivers']
 
-    for key, value in request.items():
-        setattr(context, key, value)
+    update_model(context, request)
 
     for receiver in context.receivers:
         context.remove(receiver)
@@ -279,11 +282,9 @@ def update_receiver(store, id, request):
         raise errors.ReceiverGusNotFound
 
     contexts = request.get('contexts')
-    if contexts:
-        del request['contexts']
+    del request['contexts']
 
-    for key, value in request.items():
-        setattr(receiver, key, value)
+    update_model(receiver, request)
 
     for context in receiver.contexts:
         context.remove(receiver)
@@ -342,7 +343,7 @@ class NodeInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.adminNodeDesc)
 
-        response = yield get_node()
+        response = yield update_node(request)
 
         self.set_status(202) # Updated
         self.finish(response)
