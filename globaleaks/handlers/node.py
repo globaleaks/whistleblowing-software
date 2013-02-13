@@ -11,7 +11,6 @@ from cyclone.web import asynchronous
 from globaleaks.utils import log
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.rest.errors import NodeNotFound
 from globaleaks import models
 
 @transact
@@ -75,7 +74,7 @@ class ContextsCollection(BaseHandler):
     """
     @transact
     def get_context_list(self, store):
-        return [x.dict() for x in Context(store).get_all()]
+        return [x.dict() for x in store.find(models.Context)]
 
     def get(self, *uriargs):
         """
