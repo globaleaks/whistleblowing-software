@@ -11,6 +11,7 @@ from globaleaks import settings
 from globaleaks.settings import transact
 from twisted.internet import fdesc
 
+SUBMISSION_DIR = os.path.join(settings.gldata_path, 'submission')
 
 class FileOperations(MacroOperation):
     """
@@ -45,18 +46,17 @@ class FileOperations(MacroOperation):
 
         print "Created file from %s with file_gus %s" % (file_request['filename'], file_desc['file_gus'])
 
-        if not os.path.isdir(settings.config.advanced.submissions_dir):
+        if not os.path.isdir(SUBMISSION_DIR):
             log.msg("%s does not exist. Creating it." %
-                    settings.config.advanced.submissions_dir)
-            os.mkdir(settings.config.advanced.submissions_dir)
+                    SUBMISSION_DIR)
+            os.mkdir(SUBMISSION_DIR)
 
-        the_submission_dir = settings.config.advanced.submissions_dir
 
         # this happen only at the first execution
-        if not os.path.isdir(the_submission_dir):
-            os.mkdir(the_submission_dir)
+        if not os.path.isdir(submission_dir):
+            os.mkdir(submission_dir)
 
-        filelocation = os.path.join(the_submission_dir, file_desc['file_gus'])
+        filelocation = os.path.join(submission_dir, file_desc['file_gus'])
 
         print "Saving file \"%s\" of %d byte [%s] type, to %s" %\
               (file_desc['name'], file_desc['size'], file_desc['content_type'], filelocation )

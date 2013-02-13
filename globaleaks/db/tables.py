@@ -78,8 +78,8 @@ def generateCreateQuery(model):
     """
     This takes as input a Storm model and outputs the creation query for it.
     """
-    m = model({})
-    query = "CREATE TABLE "+ m.__storm_table__ + " "
+    m = model()
+    query = "CREATE TABLE " + m.__storm_table__ + " "
 
     variables = []
     primary_keys = []
@@ -93,6 +93,10 @@ def generateCreateQuery(model):
             variables.append((name, var_type))
             if a.primary:
                 primary_keys.append(name)
+
+    if not primary_keys:
+        for var in variables:
+            primary_keys.append(var[0])
 
     query += varsToParametersSQLite(variables, primary_keys)
     return query

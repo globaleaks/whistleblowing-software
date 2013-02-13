@@ -11,6 +11,7 @@
 import os
 import os.path
 import sys
+import traceback
 
 import transaction
 from twisted.python import log
@@ -32,10 +33,14 @@ glclient_path = os.path.join(install_path, 'GLClient', 'app')
 gldata_path = os.path.join(root_path, '_gldata')
 db_file = 'sqlite:' + os.path.join(gldata_path, 'glbackend.db')
 store_name = 'main_store'
-
+# threads sizes
 db_thread_pool_size = 1
 scheduler_thread_pool_size = 10
-
+# loggings
+import logging
+log_filename = 'glbackend.log'
+log_folder = '/tmp/'
+log_level = logging.DEBUG
 
 if not os.path.exists(gldata_path):
         os.mkdir(gldata_path)
@@ -43,10 +48,6 @@ if not os.path.exists(gldata_path):
 assert all(os.path.exists(path) for path in
            (root_path, install_path, glclient_path, gldata_path))
 
-def get_store():
-    zstorm = ZStorm()
-    zstorm.set_default_uri(store_name, db_file)
-    return zstorm.get(store_name)
 
 
 class transact(object):
@@ -71,8 +72,14 @@ class transact(object):
     def run(function, *args, **kwargs):
         return deferToThreadPool(reactor, transact.tp, function, *args, **kwargs)
 
+    @staticmethod
+    def get_store():
+        zstorm = ZStorm()
+        zstorm.set_default_uri(store_name, db_file)
+        return zstorm.get(store_name)
+
     def _wrap(self, function, *args, **kwargs):
-        self.store = get_store()
+        self.store = self.get_store()
         try:
             if self.instance:
                 result = function(self.instance, self.store, *args, **kwargs)
@@ -82,10 +89,12 @@ class transact(object):
             log.msg(e)
             transaction.abort()
             result = None
-        except Exception, e:
+        except Exception:
             transaction.abort()
-            print function
-            raise e
+            type, value, tb = sys.exc_info()
+            traceback.print_tb(tb, 10)
+            # propagate the exception
+            raise value
         else:
             self.store.commit()
         finally:
@@ -94,57 +103,17 @@ class transact(object):
         return result
 
 
-class Config(object):
-    def __init__(self):
-        self.debug = OD()
+if 'db' in sys.argv:
+    debug(True, sys.stdout)
+else:
+    debug(False, sys.stdout)
 
-        # 'testing' is present, GUS are incremental
-        cmdline_opt = sys.argv
-        if 'testing' in cmdline_opt:
-            self.debug.testing = True
-        else:
-            self.debug.testing = False
-
-        # 'db' is present, Storm debug enabed
-        if 'db' in cmdline_opt:
-            debug(True, sys.stdout)
-        else:
-            debug(False, sys.stdout)
-
-        # 'verbose' is present, show JSON receiver messages
-        if 'verbose' in cmdline_opt:
-            self.debug.verbose = True
-        else:
-            self.debug.verbose = False
-
-        self.advanced = OD()
-        self.advanced.debug = True
-
-        self.main = OD()
-        self.main.glclient_path = glclient_path
-
-        self.sessions = dict()
-
-        if self.advanced.debug:
-            log.msg("Serving GLClient from %s" % self.main.glclient_path)
-
-        # This is the zstorm store used for transactions
-        self.main.database_uri = db_file
-
-
-        self.advanced.data_dir = gldata_path
-        self.advanced.submissions_dir = os.path.join(self.advanced.data_dir, 'submissions')
-        self.advanced.delivery_dir = os.path.join(self.advanced.data_dir, 'delivery')
-
-        log.msg("[D] %s %s " % (__file__, __name__), "Starting db_threadpool")
-        log.msg("[D] %s %s " % (__file__, __name__), "Starting scheduler_threadpool")
-
+# xxx. move this on another place
+sessions = dict()
 
 transact.tp.start()
 scheduler_threadpool = ThreadPool(0, scheduler_thread_pool_size)
 scheduler_threadpool.start()
 reactor.addSystemEventTrigger('after', 'shutdown', transact.tp.stop)
 reactor.addSystemEventTrigger('after', 'shutdown', scheduler_threadpool.stop)
-
-config = Config()
 

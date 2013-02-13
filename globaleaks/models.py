@@ -3,7 +3,6 @@ from random import randint
 from storm.locals import ReferenceSet
 from storm.locals import *
 
-from globaleaks.settings import config
 
 from time import time
 # xxx. we should use python tz.
@@ -58,7 +57,7 @@ class Context(Model):
     description = Unicode()
     fields = Pickle()
 
-    languages_supported = Pickle()
+    languages = Pickle()
 
     selectable_receiver = Bool()
     escalation_threshold = Int()
@@ -95,7 +94,8 @@ class InternalTip(Model):
     download_limit = Int()
 
     mark = Unicode()
-
+    
+    # XXX convert to reference set
     receivers = Pickle()
 
     files = Pickle()
@@ -110,7 +110,7 @@ class InternalTip(Model):
     # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
     # folders = ReferenceSet("InternalTip.id", "Folder.internaltip_id")
 
-    _marker = [ u'tip', u'finalized', u'first', u'second' ]
+    _marker = [ u'tip', u'finalize', u'first', u'second' ]
 
 
 class ReceiverTip(Model):
@@ -260,7 +260,9 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-class ReceiverContext(Model):
+class ReceiverContext(object):
+    __storm_table__ = 'receiver_context'
+    __storm_primary__ = 'context_id', 'receiver_id'
     context_id = Unicode()
     receiver_id = Unicode()
 

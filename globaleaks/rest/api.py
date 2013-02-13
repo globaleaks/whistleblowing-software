@@ -42,10 +42,10 @@ spec = [
     (r'/submission', submission.SubmissionCreate),
 
     #  U3
-    (r'/submission/' + submissionGUS, submission.SubmissionInstance),
+    (r'/submission/' + uuid_regexp, submission.SubmissionInstance),
 
     #  U4
-    (r'/submission/' + submissionGUS+ '/file', files.FileInstance),
+    (r'/submission/' + uuid_regexp + '/file', files.FileInstance),
 
     #  U5
     (r'/statistics', node.StatsCollection),

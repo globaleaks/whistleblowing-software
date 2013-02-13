@@ -6,7 +6,7 @@ Marker shifting map:
     ReceiverTip    [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
     File           [ u'not processed', u'ready', u'blocked', u'stored' ]
     InternalTip    [ u'new', u'first', u'second' ]
-    Submission     [ u'incomplete', u'finalized' ]
+    Submission     [ u'incomplete', u'finalize' ]
 
     ReceiverTip:    shift made by tip_notification()
     File:           shift made by fileprocess()
