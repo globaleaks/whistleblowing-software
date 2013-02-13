@@ -141,7 +141,7 @@ else:
                 print "Visit http://127.0.0.1:8082/index.html to interact with me"
 
             d = createTables()
-            d.addBoth(runApp)
+            d.addCallback(runApp)
 
             self.startReactor(None, self.oldstdout, self.oldstderr)
             self.removePID(self.config['pidfile'])

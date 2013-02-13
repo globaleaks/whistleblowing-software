@@ -84,6 +84,7 @@ class transact(object):
             result = None
         except Exception, e:
             transaction.abort()
+            print function
             raise e
         else:
             self.store.commit()

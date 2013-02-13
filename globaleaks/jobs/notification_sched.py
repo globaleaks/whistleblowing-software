@@ -14,7 +14,6 @@ __all__ = ['APSNotification']
 
 class APSNotification(GLJob):
 
-    @inlineCallbacks
     def operation(self):
         """
         Goal of this event is to check all the:
@@ -34,14 +33,17 @@ class APSNotification(GLJob):
         login/password, network errors) would be marked as:
         'unable to be notified', and a retry logic is in TODO
         """
+        return
+        # XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
 
-        results = yield AsyncOperations().tip_notification()
+        d = AsyncOperations().tip_notification()
 
         # TODO results log and stats
 
-        results = yield AsyncOperations().comment_notification()
+        d.addCallback(lambda x: AsyncOperations().comment_notification)
 
         # TODO results log and stats
 
         # Comment Notification here it's just an incomplete version, that never would supports
         # digest or retry, until Task manager queue is implemented
+        return d
