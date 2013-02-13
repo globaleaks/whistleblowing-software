@@ -71,11 +71,11 @@ class TestHandler(unittest.TestCase):
         self._handler.write = mock_write
 
         try:
-            yield transact.run(db.createTables(create_node=False))
+            yield db.createTables(create_node=False)
         except:
             pass
 
-        yield self.fill_data()
+        #yield self.fill_data()
 
     def tearDown(self):
         """
