@@ -9,9 +9,23 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 
 from globaleaks.utils import log
+from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest.errors import NodeNotFound
+from globaleaks import models
+
+@transact
+def anon_serialize_node(store):
+    node = store.find(models.Node).one()
+    return {
+      'name': unicode(node.name),
+      'description': unicode(node.description),
+      'hidden_service': unicode(node.hidden_service),
+      'public_site': unicode(node.public_site),
+      'email': unicode(node.email),
+      'notification_settings': dict(node.notification_settings) or None,
+}
+
 
 class InfoCollection(BaseHandler):
     """
@@ -21,18 +35,13 @@ class InfoCollection(BaseHandler):
     Contains System-wide properties.
     """
 
-    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
         Response: publicNodeDesc
         Errors: NodeNotFound
         """
-        answer = yield CrudOperations().get_node()
-        # output filtering TODO need to strip reserved infos
-
-        self.write(answer['data'])
-        self.set_status(answer['code'])
+        return anon_serialize_node()
 
 # U2 Submission create
 # U3 Submission update/status/delete
@@ -45,7 +54,6 @@ class StatsCollection(BaseHandler):
     Contexts settings
     """
 
-    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -57,6 +65,7 @@ class StatsCollection(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "TO BE IMPLEMENTED", "get", uriargs)
         pass
 
+
 class ContextsCollection(BaseHandler):
     """
     U6
@@ -64,17 +73,17 @@ class ContextsCollection(BaseHandler):
     and would be memorized in a third party indexer service. This is way some dates
     are returned within.
     """
-    @inlineCallbacks
+    @transact
+    def get_context_list(self, store):
+        return [x.dict() for x in Context(store).get_all()]
+
     def get(self, *uriargs):
         """
         Parameters: None
         Response: publicContextList
         Errors: None
         """
-        answer = yield CrudOperations().get_context_list()
-        # output filtering TODO need to strip reserved infos
-        self.write(answer['data'])
-        self.set_status(answer['code'])
+        return self.get_context_list().addCallback(self.finish)
 
 
 class ReceiversCollection(BaseHandler):
@@ -84,6 +93,10 @@ class ReceiversCollection(BaseHandler):
     to one or more context, and is present in the "first tier" if a multi level review is configured.
     """
 
+    @transact
+    def get_receiver_list(self, store):
+        return [x.dict() for x in Receiver(store).get_all()]
+
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -91,10 +104,4 @@ class ReceiversCollection(BaseHandler):
         Response: publicReceiverList
         Errors: None
         """
-
-        answer = yield CrudOperations().get_receiver_list()
-
-        # output filtering TODO need to strip reserved infos
-        self.write(answer['data'])
-        self.set_status(answer['code'])
-
+        self.get_receiver_list().addCallback(self.finish)

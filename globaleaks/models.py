@@ -34,6 +34,20 @@ class Model(Storm):
                 value = unicode(value)
             setattr(self, key, value)
 
+    def dict(self, filter=None):
+        """
+        return a dictionary serialization of the current model.
+        if no filter is provided, returns every single attribute.
+        """
+        if not filter:
+            filter = [x for x in vars(Model) if isinstance(x, types.MethodType)]
+
+        return dict((key, getattr(self, key)) for key in filter)
+
+
+
+
+
 class Context(Model):
     name = Unicode()
     description = Unicode()
@@ -51,6 +65,7 @@ class Context(Model):
     last_update = DateTime()
 
     # receivers = ReferenceSet("Context.id", "Receiver.context_id")
+
 
 class InternalTip(Model):
     """
@@ -136,7 +151,7 @@ class WhistleblowerTip(Model):
 class ReceiverFile(Model):
     file_path = RawStr()
     downloads = Int()
- 
+
     last_access = DateTime()
 
     internal_file_id = Unicode()
@@ -230,7 +245,7 @@ class Receiver(Model):
 
     last_update = DateTime()
     last_access = DateTime(default_factory=now)
-    # contexts = ReferenceSet("Context.id", 
+    # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
@@ -244,13 +259,19 @@ Context.receivers = ReferenceSet(Context.id, Receiver.context_id)
 
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.folders = ReferenceSet(InternalTip.id, Folder.internaltip_id)
-
-ReceiverTip.receiver_files = ReferenceSet(ReceiverTip.id, ReceiverFile.receiver_tip_id)
-
-Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
-Receiver.contexts = ReferenceSet(Context.id, 
+ReceiverTip.receiver_files = ReferenceSet(
+                        ReceiverTip.id,
+                        ReceiverFile.receiver_tip_id)
+Receiver.tips = ReferenceSet(
+                        Receiver.id,
+                        ReceiverTip.receiver_id)
+Receiver.contexts = ReferenceSet(
+                        Context.id,
                         ReceiverContext.context_id,
                         ReceiverContext.receiver_id,
                         Receiver.id)
 
 Folder.files = ReferenceSet(Folder.id, InternalFile.folder_id)
+
+models = [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
+          Receiver, InternalFile, Folder]
