@@ -10,7 +10,6 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.rest import requests
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
     TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
