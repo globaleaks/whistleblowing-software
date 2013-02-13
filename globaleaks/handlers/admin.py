@@ -10,7 +10,7 @@ from globaleaks.handlers.authentication import authenticated
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest import errors, requests
 from globaleaks.rest import requests
-from globaleaks.models import now, Receiver, Context
+from globaleaks.models import now, Receiver, Context, Node, update_model
 
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
@@ -18,17 +18,17 @@ from globaleaks.utils import gltime
 
 
 def admin_serialize_node(node):
-
-    return {
+    response = {
       'name': unicode(node.name),
       'description': unicode(node.description),
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'stats_update_time': int(node.stats_update_time),
       'email': unicode(node.email),
-      'notification_settings': dict(node.notification_settings) or None,
-      'languages': list(node.languages)
+      'notification_settings': dict(node.notification_settings) if node.notification_settings else None,
+      'languages': list(node.languages) if node.languages else None
     }
+    return response
 
 def admin_serialize_context(context):
 
@@ -51,15 +51,13 @@ def admin_serialize_context(context):
     return context_dict
 
 def admin_serialize_receiver(receiver):
-
+    import copy
     receiver_dict = {
-        "receiver_gus": unicode(receiver.receiver_gus),
+        "receiver_gus": unicode(receiver.id),
         "name": unicode(receiver.name),
         "description": unicode(receiver.description),
-        "tags": list(receiver.tags) if receiver.tags else [],
-        "languages": list(receiver.know_languages) if receiver.know_languages else [],
-        "creation_date": unicode(gltime.prettyDateTime(receiver.creation_date)),
-        "update_date": unicode(gltime.prettyDateTime(receiver.update_date)),
+        "languages": copy.deepcopy(receiver.languages) if receiver.languages else [],
+        "update_date": unicode(gltime.prettyDateTime(receiver.last_update)),
         "receiver_level": int(receiver.receiver_level),
         "can_delete_submission": bool(receiver.can_delete_submission),
         "can_postpone_expiration": bool(receiver.can_postpone_expiration),
@@ -67,7 +65,7 @@ def admin_serialize_receiver(receiver):
         "can_configure_notification": bool(receiver.can_configure_notification),
         "username": unicode(receiver.username),
         "password": unicode(receiver.password),
-        "notification_fields": dict(receiver.notification_fields),
+        "notification_fields": dict(receiver.notification_fields or {}),
         "contexts": []
     }
 
@@ -79,7 +77,6 @@ def admin_serialize_receiver(receiver):
 
 @transact
 def get_node(store):
-
     node = store.find(Node).one()
     return admin_serialize_node(node)
 
@@ -107,7 +104,6 @@ def update_node(store, request):
     update_model(node, request)
 
     node_desc = admin_serialize_node(node)
-    node_desc.last_update = now()
     return node_desc
 
 
@@ -196,7 +192,7 @@ def update_context(store, context_gus, request):
     update_model(context, request)
 
     for receiver in context.receivers:
-        context.remove(receiver)
+        context.receivers.remove(receiver)
 
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
@@ -245,6 +241,7 @@ def create_receiver(store, request):
     """
     contexts = request.get('contexts')
     del request['contexts']
+
     receiver = Receiver(request)
     store.add(receiver)
 
@@ -296,7 +293,7 @@ def update_receiver(store, id, request):
         context = store.find(Context, Context.id == context_id).one()
         receiver.contexts.add(context)
 
-    receiver_desc = admin_serialize_context(receiver)
+    receiver_desc = admin_serialize_receiver(receiver)
     receiver.last_update = now()
     return receiver_desc
 
@@ -324,16 +321,16 @@ class NodeInstance(BaseHandler):
 
     /node
     """
-    @asynchronous
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
         Response: adminNodeDesc
         Errors: NodeNotFound
         """
-        node_desciption = yield get_node()
+        node_description = yield get_node()
         self.set_status(200)
-        self.finish(node_desciption)
+        self.finish(node_description)
 
     @inlineCallbacks
     def put(self, *uriargs):
@@ -410,7 +407,7 @@ class ContextInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.adminContextDesc)
 
-        response = yield get_context(context_gus)
+        response = yield update_context(context_gus, request)
 
         self.set_status(202) # Updated
         self.finish(response)
