@@ -1,15 +1,15 @@
 # -*- coding: UTF-8
 #
-#   debug 
+#   debug
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
 
 from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.transactors.crudoperations import CrudOperations
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.errors import InvalidInputFormat
+from globaleaks.settings import transact
 
 
 class EntryCollection(BaseHandler):
@@ -18,8 +18,49 @@ class EntryCollection(BaseHandler):
     Interface for dumps elements in the tables, used in debug and detailed analysis.
     """
 
-    @asynchronous
-    @inlineCallbacks
+    @transact
+    def dump_models(self, store, expected):
+        expected_dict = { 'itip' : InternalTip,
+                          'wtip' : WhistleblowerTip,
+                          'rtip' : ReceiverTip,
+                          'receivers' : Receiver,
+                          'comment' : Comment,
+                          'file' : File,
+                          'submission' : Submission,
+                          'contexts' : Context }
+        outputDict = {}
+# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX
+        return outputDict
+        if expected in ['count', 'all']:
+            for key, object in expected_dict.iteritems():
+                info_list = object().get_all()
+                if expected == 'all':
+                    outputDict[key] = info_list
+
+                outputDict["%s_elements" % key] = len(info_list)
+
+            self.returnData(outputDict)
+            return self.prepareRetVals()
+
+        # XXX plugins is not dumped with all or count!
+        if expected == 'plugins':
+
+            info_list = PluginManager.get_all()
+            outputDict.update({expected : info_list, ("%s_elements" % expected) : len(info_list) })
+
+            self.returnData(outputDict)
+            return self.prepareRetVals()
+
+        if expected_dict.has_key(expected):
+
+            info_list = expected_dict[expected](store).get_all()
+            outputDict.update({expected : info_list, ("%s_elements" % expected) : len(info_list) })
+
+            self.returnData(outputDict)
+            return self.prepareRetVals()
+
+        raise InvalidInputFormat("Not acceptable '%s'" % expected)
+
     def get(self, what, *uriargs):
         """
         Parameters: None
@@ -29,10 +70,7 @@ class EntryCollection(BaseHandler):
         /dump/overview GET should return up to all the tables of GLBackend
         """
 
-        answer = yield CrudOperations().dump_models(what)
-
-        self.set_status(answer['code'])
-        self.finish(answer['data'])
+        return self.dump_models(what)
 
 
 class TaskInstance(BaseHandler):
@@ -41,7 +79,6 @@ class TaskInstance(BaseHandler):
     controls task and scheduled
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, what, *uriargs):
         """
@@ -71,8 +108,6 @@ class TaskInstance(BaseHandler):
             self.set_status(405)
         else:
             self.set_status(200)
-
-        self.finish()
 
 
     @asynchronous
