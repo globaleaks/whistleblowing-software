@@ -12,8 +12,8 @@ from globaleaks.rest.base import submissionGUS, formFieldsDict, contextGUS,\
 
 wbSubmissionDesc = {
     'wb_fields' : dict,
-    'context_gus' : contextGUS,
-    'receivers' : [ receiverGUS ],
+    'context_gus' : uuid_regexp,
+    'receivers' : [ uuid_regexp ],
     'files' : [ fileGUS ],
     'finalize' : bool
 }
@@ -68,7 +68,7 @@ adminReceiverDesc =  {
     'name' : unicode,
     'description' : unicode,
     'languages' : list,
-    'contexts' : [ contextGUS ],
+    'contexts' : [ uuid_regexp ],
     'receiver_level' : int,
     'can_delete_submission' : bool,
     'can_postpone_expiration' : bool,

@@ -95,7 +95,8 @@ class InternalTip(Model):
     download_limit = Int()
 
     mark = Unicode()
-
+    
+    # XXX convert to reference set
     receivers = Pickle()
 
     files = Pickle()
@@ -110,7 +111,7 @@ class InternalTip(Model):
     # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
     # folders = ReferenceSet("InternalTip.id", "Folder.internaltip_id")
 
-    _marker = [ u'tip', u'finalized', u'first', u'second' ]
+    _marker = [ u'tip', u'finalize', u'first', u'second' ]
 
 
 class ReceiverTip(Model):

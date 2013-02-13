@@ -14,6 +14,8 @@ class GLException(HTTPError):
     log_message = "GLException"
     error_code = 0
     status_code = 500 # generic Server error
+    def __init__(self):
+        pass
 
 class InvalidInputFormat(GLException):
     """
@@ -35,7 +37,6 @@ class StatsNotCollectedError(GLException):
     reason = "Statistics Disabled"
     error_code = 11
     status_code = 500 # Internal Server Error
-
 
 class ContextGusNotFound(GLException):
     """
@@ -190,8 +191,6 @@ class InvalidAuthRequest(GLException):
     reason = "Authentication Failed"
     error_code = 29
     status_code = 401 # Unauthorized
-    def __init__(self):
-        pass
 
 class NotAuthenticated(GLException):
     """
@@ -200,5 +199,3 @@ class NotAuthenticated(GLException):
     reason = "Not Authenticated"
     error_code = 30
     status_code = 412 # Precondition Failed
-    def __init__(self):
-        pass
