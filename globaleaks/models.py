@@ -1,3 +1,4 @@
+import types
 from random import randint
 from storm.locals import ReferenceSet
 from storm.locals import *
@@ -13,9 +14,6 @@ def uuid():
     import uuid
     return unicode(uuid.uuid4())
 
-def update_model(obj, update_dict):
-    for key, value in update_dict.iteritems():
-         setattr(obj, key, value)
 
 class Model(Storm):
     """
@@ -50,6 +48,10 @@ class Model(Storm):
             filter = [x for x in vars(Model) if isinstance(x, types.MethodType)]
 
         return dict((key, getattr(self, key)) for key in filter)
+
+#    @classmethod
+#    def get_all(cls, store):
+#        return store.find(cls)
 
 class Context(Model):
     name = Unicode()

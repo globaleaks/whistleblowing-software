@@ -9,7 +9,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest import errors, requests
-from globaleaks.models import now, Receiver, Context, Node, update_model
+from globaleaks.models import *
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 from globaleaks.utils import gltime
@@ -77,7 +77,6 @@ def admin_serialize_receiver(receiver):
 
 @transact
 def get_node(store):
-
     node = store.find(Node).one()
     return admin_serialize_node(node)
 
@@ -191,7 +190,7 @@ def update_context(store, context_gus, request):
     receivers = request.get('receivers')
     del request['receivers']
 
-    update_model(context, request)
+    context.update(request)
 
     for receiver in context.receivers:
         context.remove(receiver)
