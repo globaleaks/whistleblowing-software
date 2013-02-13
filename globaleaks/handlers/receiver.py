@@ -10,8 +10,6 @@ from globaleaks.utils import log
 from globaleaks.handlers.base import BaseHandler
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.transactors.crudoperations import CrudOperations
-from globaleaks.transactors.authoperations import AuthOperations
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
     InvalidTipAuthToken, TipGusNotFound, ForbiddenOperation, ContextGusNotFound
