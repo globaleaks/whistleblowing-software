@@ -167,7 +167,7 @@ def get_submission(store, id):
 
     return wb_serialize_internaltip(submission)
 
-@transact\
+@transact
 def delete_submission(store, id):
 
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
