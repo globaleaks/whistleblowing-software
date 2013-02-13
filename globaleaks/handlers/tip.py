@@ -13,7 +13,8 @@ from globaleaks.rest import requests
 from globaleaks.utils import gltime
 from globaleaks.settings import transact
 from globaleaks.models import now
-from globaleaks.models import WhistleblowerTip, ReceiverTip, InternalFile, ReceiverFile, Folder, InternalTip, Receiver
+from globaleaks.models import WhistleblowerTip, ReceiverTip, InternalFile, ReceiverFile, Folder,\
+    InternalTip, Receiver, Comment
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
     TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
 
@@ -301,6 +302,66 @@ def actor_serialize_comment(comment):
     }
     return comment_desc
 
+
+def get_comment_list(internaltip):
+    """
+    @param internaltip:
+    This function is used by both Receiver and WB.
+    """
+    # TODO may supports parameters to handle comments range
+
+    comment_list = []
+    for comment in internaltip.comments:
+        comment_list.append(actor_serialize_comment(comment))
+
+    return comment_list
+
+@transact
+def get_comment_list_wb(receipt, id):
+
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
+
+    if not wbtip:
+        raise TipReceiptNotFound
+
+    return get_comment_list(wbtip.internaltip)
+
+@transact
+def get_comment_list_receiver(username, id):
+
+    rtip = strong_receiver_validate(username, id)
+    return get_comment_list(rtip.internaltip)
+
+@transact
+def create_comment_wb(store, receipt, request):
+
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
+
+    if not wbtip:
+        raise TipReceiptNotFound
+
+    request['internaltip_id'] = wbtip.internaltip.id
+    request['author'] = u'whistleblower'
+
+    comment = Comment(request)
+    store.add(comment)
+
+    return actor_serialize_comment(comment)
+
+@transact
+def create_comment_receiver(store, username, id, request):
+
+    rtip = strong_receiver_validate(username, id)
+
+    request['internaltip_id'] = rtip.internaltip.id
+    request['author'] = rtip.receiver.name
+
+    comment = Comment(request)
+    store.add(comment)
+
+    return actor_serialize_comment()
+
+
 class TipCommentCollection(TipBaseHandler):
     """
     T2
@@ -319,9 +380,9 @@ class TipCommentCollection(TipBaseHandler):
         """
 
         if self.is_whistleblower():
-            comment_list = yield get_comment_list_by_wb(self.current_user['receipt'], tip_id)
+            comment_list = yield get_comment_list_wb(self.current_user['password'], tip_id)
         else:
-            comment_list = yield get_comment_list_by_receiver(self.current_user['username'], tip_id)
+            comment_list = yield get_comment_list_receiver(self.current_user['username'], tip_id)
 
         self.set_status(200)
         self.finish(comment_list)
@@ -336,13 +397,50 @@ class TipCommentCollection(TipBaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
-        if is_receiver_token(tip_id):
-            answer = yield CrudOperations().new_comment_by_receiver(tip_id, request)
+        if self.is_whistleblower():
+            answer = yield create_comment_wb(self.current_user['password'], request)
         else:
-            answer = yield CrudOperations().new_comment_by_wb(tip_id, request)
+            answer = yield create_comment_receiver(self.current_user['username'], tip_id, request)
 
-        self.set_status(answer['code'])
-        self.finish(answer['data'])
+        self.set_status(201) # Created
+        self.finish(answer)
+
+
+def public_serialize_receiver(receiver):
+
+    pub_receiver_desc = {
+        'name' : unicode(receiver.name),
+        'description' : unicode(receiver.description),
+    }
+
+def get_receiver_itip(internaltip):
+    """
+    Having the InernalTip, after the right authorization, just loop for all
+    the receiver associated.
+    """
+
+    pub_receiver_list = []
+    for receiver in internaltip.receivers:
+        pub_receiver_list.append(public_serialize_receiver(receiver))
+
+    return pub_receiver_list
+
+@transact
+def get_receiver_wb(store, receipt, id):
+
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
+
+    if not wbtip:
+        raise TipReceiptNotFound
+
+    return public_serialize_receiver(wbtip.internaltip.id)
+
+@transact
+def get_receiver_receiver(store, username, id):
+
+    rtip = strong_receiver_validate(username, id)
+    return public_serialize_receiver(rtip.internaltip.id)
+
 
 class TipReceiversCollection(BaseHandler):
     """

@@ -199,10 +199,7 @@ class Comment(Model):
 
     author = Unicode()
     message = Unicode()
-
-    notification_mark = Unicode()
-
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignored' ]
+    # Notification do not track anymore of notification_status
 
 class Node(Model):
     """
