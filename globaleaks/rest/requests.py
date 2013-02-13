@@ -76,3 +76,10 @@ adminReceiverDesc =  {
     'can_configure_notification' : bool,
 }
 
+receiverReceiverDesc = {
+    'password' : unicode,
+    'prev_password': unicode,
+    'notification_fields' : dict,
+    'name' : unicode,
+    'description' : unicode,
+}

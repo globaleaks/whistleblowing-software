@@ -16,7 +16,6 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks.transactors.crudoperations import CrudOperations
 
-
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
     NodeNotFound, InvalidInputFormat
