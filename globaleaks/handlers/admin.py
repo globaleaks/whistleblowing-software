@@ -5,15 +5,17 @@
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
 from datetime import datetime
+from globaleaks.models import Node, Context
+from globaleaks.settings import transact
+
 now = datetime.utcnow
 
-from cyclone.web import asynchronous
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 
-from globaleaks.utils import log
+
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
     NodeNotFound, InvalidInputFormat
