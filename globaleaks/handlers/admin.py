@@ -286,7 +286,7 @@ def update_receiver(store, id, request):
     receiver.update(request)
 
     for context in receiver.contexts:
-        context.remove(receiver)
+        store.remove(context)
 
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
