@@ -95,7 +95,8 @@ def generateCreateQuery(model):
                 primary_keys.append(name)
 
     if not primary_keys:
-        primary_keys = variables
+        for var in variables:
+            primary_keys.append(var[0])
 
     query += varsToParametersSQLite(variables, primary_keys)
     return query
