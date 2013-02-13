@@ -170,7 +170,7 @@ class ReceiverFile(Model):
 class Folder(Model):
 
     internaltip_id = Unicode()
-    internaltip = Receiver(internaltip_id, "InternalTip.id")
+    internaltip = Reference(internaltip_id, "InternalTip.id")
 
     description = Unicode()
     # files = ReferenceSet("Folder.id", "InternalFile.folder_id")

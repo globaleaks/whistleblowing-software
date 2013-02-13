@@ -10,7 +10,7 @@ from globaleaks.handlers.authentication import authenticated
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest import errors, requests
 from globaleaks.rest import requests
-from globaleaks.models import now, Receiver, Context, Node, update_model
+from globaleaks.models import now, Receiver, Context, Node
 
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
@@ -100,8 +100,8 @@ def update_node(store, request):
 
     del request['old_password']
     del request['password']
-
-    update_model(node, request)
+    
+    node.update(request)
 
     node_desc = admin_serialize_node(node)
     return node_desc
@@ -188,8 +188,8 @@ def update_context(store, context_gus, request):
 
     receivers = request.get('receivers')
     del request['receivers']
-
-    update_model(context, request)
+    
+    context.update(request)
 
     for receiver in context.receivers:
         context.receivers.remove(receiver)
@@ -283,8 +283,8 @@ def update_receiver(store, id, request):
 
     contexts = request.get('contexts')
     del request['contexts']
-
-    update_model(receiver, request)
+    
+    receiver.update(request)
 
     for context in receiver.contexts:
         context.remove(receiver)
