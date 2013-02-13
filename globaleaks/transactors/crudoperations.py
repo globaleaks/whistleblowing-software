@@ -1,14 +1,7 @@
 from globaleaks.transactors.base import MacroOperation
-
-from globaleaks.models.node import Node
-from globaleaks.models.context import Context
-from globaleaks.models.receiver import Receiver
-from globaleaks.models.externaltip import File, ReceiverTip, WhistleblowerTip, Comment
-from globaleaks.models.internaltip import InternalTip
-from globaleaks.models.submission import Submission
+from globaleaks import models
 from globaleaks.plugins.manager import PluginManager
-
-from globaleaks.rest.errors import ForbiddenOperation, InvalidInputFormat
+from globaleaks.rest import errors
 from globaleaks.settings import transact
 
 
@@ -337,7 +330,7 @@ class CrudOperations(MacroOperation):
         receivers_map = receivertip_iface.get_receivers_by_tip(tip_gus)
 
         if not receivers_map['actor']['can_delete_submission']:
-            raise ForbiddenOperation
+            raise errors.ForbiddenOperation
 
         # sibilings_tips has the keys: 'sibilings': [$] 'requested': $
         sibilings_tips = receivertip_iface.get_sibiligs_by_tip(tip_gus)
@@ -569,4 +562,4 @@ class CrudOperations(MacroOperation):
             self.returnData(outputDict)
             return self.prepareRetVals()
 
-        raise InvalidInputFormat("Not acceptable '%s'" % expected)
+        raise errors.InvalidInputFormat("Not acceptable '%s'" % expected)

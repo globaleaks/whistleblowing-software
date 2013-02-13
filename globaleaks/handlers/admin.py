@@ -4,38 +4,33 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
-from datetime import datetime
-from globaleaks.models import Node, Context
+from globaleaks import models
 from globaleaks.settings import transact
-
-now = datetime.utcnow
-
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
-
 from globaleaks.plugins.manager import PluginManager
-from globaleaks.rest.errors import ContextGusNotFound, ReceiverGusNotFound,\
-    NodeNotFound, InvalidInputFormat
+from globaleaks.rest import errors
 from globaleaks.rest import requests
+from globaleaks.models import now
 
-from globaleaks.models import Node
 
-from globaleaks.settings import transact
+from twisted.internet.defer import inlineCallbacks
+from cyclone.web import asynchronous
 
-def admin_serialize_node(node):
-    node_dict = {'name': unicode(node.name),
+
+@transact
+def admin_serialize_node(store):
+    node = store.find(models.Node).one()
+    return {
+      'name': unicode(node.name),
       'description': unicode(node.description),
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'stats_update_time': int(node.stats_update_time),
       'email': unicode(node.email),
-      'notification_settings': dict(node.notification_settings) if node.notification_settings else None,
-      'password': unicode(node.password),
+      'notification_settings': dict(node.notification_settings) or None,
       'languages': list(node.languages)
     }
-    return node_dict
 
 def admin_serialize_context(context):
     context_dict = {
@@ -77,15 +72,6 @@ def admin_serialize_receiver(receiver):
         "notification_fields": dict(receiver.notification_fields)
     }
     return response
-
-@transact
-def get_node(store):
-    """
-    Returns:
-        (dict) the currently configured node.
-    """
-    node = store.find(Node).one()
-    return admin_serialize_node(node)
 
 @transact
 def update_node(store, node_gus, request):
@@ -138,13 +124,13 @@ def create_context(store, request):
         del request['receivers']
 
     receiver_list = []
-    context = Context(request)
+    context = models.Context(request)
     store.add(context)
 
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
         if not receiver:
-            raise ReceiverGusNotFound
+            raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
     return admin_serialize_context(context)
@@ -158,7 +144,7 @@ def get_context(store, context_gus):
     context = store.find(Context, Context.id == unicode(context_gus)).one()
 
     if not context:
-        raise ContextGusNotFound
+        raise errors.ContextGusNotFound
 
     return admin_serialize_context(context)
 
@@ -184,7 +170,7 @@ def update_context(store, context_gus, request):
     context = store.find(Context, Context.id == unicode(context_gus)).one()
 
     if not context:
-        raise ContextGusNotFound
+        raise errors.ContextGusNotFound
 
     last_update = context.last_update
     receivers = request.get('receivers')
@@ -216,7 +202,7 @@ def delete_context(store, context_gus):
     context = store.find(Context, Context.id == unicode(context_gus)).one()
 
     if not context:
-        raise ContextGusNotFound
+        raise errors.ContextGusNotFound
 
     store.delete(context)
     return last_update
@@ -262,7 +248,7 @@ def get_receiver(store, receiver_gus):
     receiver = store.find(Receiver, Receiver.id == unicode(receiver_gus)).one()
 
     if not receiver:
-        raise ReceiverGusNotFound
+        raise errors.ReceiverGusNotFound
 
     return admin_serialize_receiver(receiver)
 
@@ -276,7 +262,7 @@ def update_receiver(store, receiver_gus, request):
     receiver = store.find(Receiver, Receiver.id == receiver_gus)
 
     if not receiver:
-        raise ReceiverGusNotFound
+        raise errors.ReceiverGusNotFound
 
     last_update = receiver.last_update
     contexts = request.get('contexts')
@@ -304,15 +290,14 @@ class NodeInstance(BaseHandler):
 
     /node
     """
-    @inlineCallbacks
+    @asynchronous
     def get(self, *uriargs):
         """
         Parameters: None
         Response: adminNodeDesc
         Errors: NodeNotFound
         """
-        response = yield get_node()
-        self.finish(response)
+        return admin_serialize_node().addCallback(self.finish)
 
     @inlineCallbacks
     def put(self, *uriargs):
@@ -358,7 +343,6 @@ class ContextsCollection(BaseHandler):
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
         request = self.validate_message(self.request.body, requests.adminContextDesc)
-
         response = yield create_context(request)
 
         self.set_status(200)

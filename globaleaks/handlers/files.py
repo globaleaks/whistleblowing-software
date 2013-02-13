@@ -13,7 +13,6 @@ from cyclone.web import HTTPError, asynchronous, os
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils import log
 from globaleaks import settings
-from globaleaks.transactors.fileoperations import FileOperations
 from globaleaks.rest.errors import SubmissionGusNotFound, InvalidInputFormat, TipGusNotFound, FileGusNotFound
 
 __all__ = ['Download', 'FileInstance']

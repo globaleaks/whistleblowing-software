@@ -11,6 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.settings import transact
+
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
     InvalidTipAuthToken, TipGusNotFound, ForbiddenOperation, ContextGusNotFound
