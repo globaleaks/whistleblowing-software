@@ -114,12 +114,7 @@ def get_context_list(store):
         (dict) the current context list serialized.
     """
     contexts = store.find(Context)
-    context_list = []
-
-    for context in contexts:
-        context_list.append(admin_serialize_context(context))
-
-    return context_list
+    return [admin_serialize_context(context) for context in contexts]
 
 @transact
 def create_context(store, request):
@@ -356,16 +351,15 @@ class ContextsCollection(BaseHandler):
     /admin/context
     """
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: adminContextList
         Errors: None
         """
-        response = yield get_context_list()
+        contexts = yield get_context_list()
+        self.finish(contexts)
 
-        self.set_status(200)
-        self.finish(response)
 
     @inlineCallbacks
     def post(self, *uriargs):
