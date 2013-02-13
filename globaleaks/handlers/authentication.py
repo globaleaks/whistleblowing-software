@@ -30,7 +30,7 @@ def authenticated(role):
                 # XXX: eventually change this
                 raise NotAuthenticated
             else:
-                settings.config.sessions[cls.current_user.id].timestamp = time.time()
+                settings.sessions[cls.current_user.id].timestamp = time.time()
             return method(cls, *args, **kwargs)
         return call_method
     return wrapper
@@ -48,7 +48,7 @@ class AuthenticationHandler(BaseHandler):
         """
         Overrides cyclone's get_current_user method for self.current_user property.
         """
-        return settings.config.sessions[self.session_id]
+        return settings.sessions[self.session_id]
 
     def generate_session(self, role):
         self.session_id = random_string(26, 'a-z,A-Z,0-9')
@@ -59,7 +59,7 @@ class AuthenticationHandler(BaseHandler):
                id=self.session_id,
                role=role,
         )
-        settings.config.sessions[self.session_id] = new_session
+        settings.sessions[self.session_id] = new_session
         return self.session_id
 
     @transact
@@ -127,7 +127,7 @@ class AuthenticationHandler(BaseHandler):
         """
         if self.current_user:
             try:
-                del settings.config.sessions[self.current_user.id]
+                del settings.sessions[self.current_user.id]
             except KeyError:
                 raise NotAuthenticated
 
