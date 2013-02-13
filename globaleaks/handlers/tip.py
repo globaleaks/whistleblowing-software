@@ -442,7 +442,7 @@ def get_receiver_receiver(store, username, id):
     return public_serialize_receiver(rtip.internaltip.id)
 
 
-class TipReceiversCollection(BaseHandler):
+class TipReceiversCollection(TipBaseHandler):
     """
     T3
     This interface return the list of the Receiver active in a Tip.
@@ -457,11 +457,11 @@ class TipReceiversCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        if is_receiver_token(tip_id):
-            answer = yield CrudOperations().get_receiver_list_by_receiver(tip_id)
+        if self.is_whistleblower():
+            answer = yield get_receiver_wb(self.current_user['password'], tip_id)
         else:
-            answer = yield CrudOperations().get_receiver_list_by_wb(tip_id)
+            answer = yield get_receiver_receiver(self.current_user['username'], tip_id)
 
-        self.set_status(answer['code'])
-        self.finish(answer['data'])
+        self.set_status(200)
+        self.finish(answer)
 
