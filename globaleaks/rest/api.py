@@ -105,9 +105,6 @@ spec = [
     #  AB
     (r'/admin/statistics/', admin.StatisticsCollection),
 
-    #  D1
-    (r'/debug/overview/' + not_defined_regexp, debug.EntryCollection),
-
     #  D2
     (r'/debug/tasks/' + not_defined_regexp, debug.TaskInstance),
 
