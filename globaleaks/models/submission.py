@@ -109,59 +109,6 @@ class Submission(TXModel):
         return s._description_dict()
 
 
-    def _receivers_check(self):
-
-        for single_r in self.receivers:
-            try:
-                selected_r = self.store.find(Receiver, Receiver.receiver_gus == unicode(single_r)).one()
-            except NotOneError:
-                raise ReceiverGusNotFound
-            if selected_r is None:
-                raise ReceiverGusNotFound
-            if not self.context_gus in selected_r.contexts:
-                print "[***] Invalid Receiver relationship:", self.context_gus, selected_r.contexts
-                raise ReceiverGusNotFound
-
-
-    def _files_check(self):
-
-        for single_f in self.files:
-            try:
-                selected_f = self.store.find(File, File.file_gus == unicode(single_f)).one()
-            except NotOneError:
-                raise FileGusNotFound
-            if selected_f is None:
-                raise FileGusNotFound
-
-
-    def _wb_fields_verify(self):
-        """
-        @return: False is verifications fail.
-            Perform two kind of verification: if the required fields
-            are present, and if
-        """
-
-        for entry in self.context.fields:
-            if entry['required']:
-                if not self.wb_fields.has_key(entry['name']):
-                    # XXX this would be a log or an error for the client ?
-                    print "[---] missing field '%s': Required" % entry['name']
-                    return False
-
-        for k, v in self.wb_fields.iteritems():
-            key_exists = False
-
-            for entry in self.context.fields:
-                if k == entry['name']:
-                    key_exists = True
-                    break
-
-            if not key_exists:
-                # XXX this would be a log or an error for the client ?
-                print "[---] Submitted field '%s' not expected in context" % k
-                return False
-
-        return True
 
 
     def _import_dict(self, received_dict):
