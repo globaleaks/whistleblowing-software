@@ -182,62 +182,6 @@ class AsyncOperations(MacroOperation):
 
 
     @transact
-    def delivery(self, store):
-        """
-        Goal of delivery is checks if some delivery is configured for a context/receiver combo,
-        and if is, just delivery the file in the requested way.
-        If not, store in the DB and permit downloading.
-        """
-        return
-
-        # **** Delivery disabled now ****
-        # **** Delivery disabled now ****
-
-        plugin_type = u'delivery'
-# XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXx
-        return
-        file_iface = File(store)
-        receivertip_iface = ReceiverTip(store)
-
-        ready_files = file_iface.get_file_by_marker(file_iface._marker[1]) # ready
-
-        for single_file in ready_files:
-            pass
-
-            # from every file, we need to find the ReceiverTip with the same InternalTip.id
-            # This permit to found effectively the receiver that need the file available
-
-            # print "Delivery management for", single_file['name']
-
-            # Manage special delivery if configured
-
-            # The files are no more stored in the DB, just in the FS
-            # file_iface.flip_mark(single_file['file_gus'], file_iface._marker[3]) # stored
-            # TODO os.unlink(tempfpath)
-
-
-    # not yet used
-    def _create_zip(self, sourcepath):
-
-        zf = zipfile.ZipFile('/tmp/temp.zip', mode='w')
-        try:
-            zf.write(sourcepath)
-        finally:
-            zf.close()
-
-    @transact
-    def statistics(self, store):
-        pass
-
-    @transact
-    def cleaning(self, store):
-        pass
-
-    @transact
-    def check_update(self, store):
-        pass
-
-    @transact
     def tip_creation(self, store):
         internaltip_iface = InternalTip()
         receiver_iface = Receiver()
