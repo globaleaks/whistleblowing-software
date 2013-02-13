@@ -2,6 +2,9 @@ GLClient.controller('FormBuilderCtrl',
     ['$scope', '$rootScope', function ($scope, $rootScope) {
 
   $scope.newField = {};
+  $scope.newField.required = false;
+  // XXX implement the presentation order of the submission fields
+  $scope.newField.presentation_order = 0;
 
   $scope.editing = false;
   $scope.tokenize = function(slug1, slug2) {

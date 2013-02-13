@@ -347,7 +347,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         });
       };
 
-      self.node = adminNodeResource.get();
+      self.node = adminNodeResource.get(function(){
+        self.node.password = '';
+        self.node.old_password = '';
+      });
 
     };
     return new Admin;
