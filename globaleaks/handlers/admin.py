@@ -9,7 +9,9 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest import errors, requests
-from globaleaks.models import now, Receiver, Context, Node, update_model
+from globaleaks.rest import requests
+from globaleaks.models import now, Receiver, Context
+
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 from globaleaks.utils import gltime
@@ -241,14 +243,15 @@ def create_receiver(store, request):
     Returns:
         (dict) the configured receiver
     """
-
     contexts = request.get('contexts')
     del request['contexts']
-
     receiver = Receiver(request)
     store.add(receiver)
 
-    for context in contexts:
+    for context_id in contexts:
+        context = store.find(Context, Context.id == context_id).one()
+        if not context:
+            raise ContextGusNotFound
         context.receivers.add(receiver)
 
     return admin_serialize_receiver(receiver)

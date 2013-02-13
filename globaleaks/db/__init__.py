@@ -1,9 +1,10 @@
 # -*- coding: UTF-8
 #   GLBackend Database
 #   ******************
+import os
 import transaction
 
-from twisted.internet.defer import inlineCallbacks, DeferredList
+from twisted.internet.defer import inlineCallbacks, DeferredList, succeed
 from globaleaks import settings
 from globaleaks.db import tables
 from globaleaks.utils import log
@@ -47,7 +48,17 @@ def createTables(create_node=True):
     """
     Override transactor for testing.
     """
-    return create_tables_transaction(
-           ).addCallback(initialize_node
-           ).addErrback(log.err)
+    if os.path.exists(settings.db_file.replace('sqlite:', '')):
+        print "Node already configured"
+        # Here we instance every model so that __storm_table__ gets set via
+        # __new__
+        for model in models.models:
+            model()
+        return succeed(None)
+
+    d = create_tables_transaction()
+    if create_node:
+        d.addCallback(initialize_node)
+    d.addErrback(log.err)
+    return d
 
