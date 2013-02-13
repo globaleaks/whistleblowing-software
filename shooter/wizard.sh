@@ -2,6 +2,9 @@
 
 SHOOTER="./shooter.py"
 
+# the node
+$SHOOTER A1 PUT
+
 one=`$SHOOTER A2 POST raw None print-context_gus`
 if [ $? != 0 ]; then echo "\tError context (base) creation: $one " && exit; fi
 

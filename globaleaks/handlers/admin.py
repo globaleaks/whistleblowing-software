@@ -9,11 +9,9 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest import errors, requests
-from globaleaks.rest import requests
 from globaleaks.models import now, Receiver, Context, Node
 
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import asynchronous
 from globaleaks.utils import gltime
 
 
@@ -216,7 +214,7 @@ def delete_context(store, context_gus):
     if not context:
         raise errors.ContextGusNotFound
 
-    store.delete(context)
+    store.remove(context)
 
 @transact
 def get_receiver_list(store):
@@ -300,12 +298,12 @@ def update_receiver(store, id, request):
 @transact
 def delete_receiver(store, id):
 
-    context = store.find(Context, Context.id == unicode(id)).one()
+    receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
-    if not context:
-        raise errors.ContextGusNotFound
+    if not receiver:
+        raise errors.ReceiverGusNotFound
 
-    store.delete(context)
+    store.remove(receiver)
 
 
 # ---------------------------------

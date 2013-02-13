@@ -2,4 +2,4 @@ context_gus=@CID@
 wb_fields:={"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah blah"}
 receivers:=[]
 files:=[]
-finalize:=false
+finalize:=true

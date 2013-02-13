@@ -3,6 +3,7 @@ description=this is a new globaleaks node, we fight evil
 hidden_service=yaddayaddayaddayadd1.onion
 public_site=http://storytelling.ir
 stats_update_time:=12
+old_password=
 password=ciaociao
 notification_settings:={"server":"box549.bluehost.com","port":25,"username":"sendaccount939@globaleaks.org","password":"sendaccount939","ssl":false}
 email=webmaster@storytelling.ir

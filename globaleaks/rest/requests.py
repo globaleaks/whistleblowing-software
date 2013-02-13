@@ -46,14 +46,13 @@ adminNodeDesc = {
     'password' : unicode,
     'old_password' : unicode,
     'notification_settings' : dict,
-    'languages' : list
+    'languages': list,
 }
 
 adminContextDesc = {
     'name': unicode,
     'description': unicode,
     'selectable_receiver': bool,
-    'languages': list,
     'tip_max_access' : int,
     'tip_timetolive' : int,
     'file_max_download' : int,
@@ -67,7 +66,6 @@ adminReceiverDesc =  {
     'notification_fields' : dict,
     'name' : unicode,
     'description' : unicode,
-    'languages' : list,
     'contexts' : [ uuid_regexp ],
     'receiver_level' : int,
     'can_delete_submission' : bool,
