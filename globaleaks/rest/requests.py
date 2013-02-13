@@ -18,13 +18,13 @@ wbSubmissionDesc = {
     'finalize' : bool
 }
 
-receiverReceiverDesc =  {
+receiverReceiverDesc = {
     'name' : unicode,
-    'description' : unicode,
-    'tags': list,
-    'languages' : list,
     'password' : unicode,
+    'prev_password': unicode,
+    'usernme' : unicode,
     'notification_fields' : dict,
+    'description' : unicode,
 }
 
 actorsCommentDesc = {
@@ -74,10 +74,3 @@ adminReceiverDesc =  {
     'can_configure_notification' : bool,
 }
 
-receiverReceiverDesc = {
-    'password' : unicode,
-    'prev_password': unicode,
-    'notification_fields' : dict,
-    'name' : unicode,
-    'description' : unicode,
-}

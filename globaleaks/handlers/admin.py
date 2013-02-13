@@ -13,6 +13,7 @@ from globaleaks.models import now, Receiver, Context, Node
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import gltime
+from globaleaks.utils.random import random_string
 
 
 def admin_serialize_node(node):
@@ -112,7 +113,12 @@ def get_context_list(store):
         (dict) the current context list serialized.
     """
     contexts = store.find(Context)
-    return [admin_serialize_context(context) for context in contexts]
+    context_list = []
+
+    for context in contexts:
+        context_list.append(admin_serialize_context(context))
+
+    return context_list
 
 @transact
 def create_context(store, request):
@@ -241,7 +247,7 @@ def create_receiver(store, request):
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
         if not context:
-            raise ContextGusNotFound
+            raise errors.ContextGusNotFound
         context.receivers.add(receiver)
 
     return admin_serialize_receiver(receiver)
@@ -349,15 +355,16 @@ class ContextsCollection(BaseHandler):
     /admin/context
     """
     @inlineCallbacks
-    def get(self):
+    def get(self, *uriargs):
         """
         Parameters: None
         Response: adminContextList
         Errors: None
         """
-        contexts = yield get_context_list()
-        self.finish(contexts)
+        response = yield get_context_list()
 
+        self.set_status(200)
+        self.finish(response)
 
     @inlineCallbacks
     def post(self, *uriargs):
