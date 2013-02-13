@@ -5,7 +5,7 @@
 # Implement the classes handling the requests performed to /receiver/* URI PATH
 # Used by receivers in the GlobaLeaks Node.
 
-from globaleaks.utils import log
+from globaleaks.utils import log, gltime
 from globaleaks.handlers.base import BaseHandler
 from twisted.internet.defer import inlineCallbacks
 
@@ -111,9 +111,30 @@ class ReceiverInstance(BaseHandler):
         self.finish(receiver_status)
 
 
+def serialize_tip_summary(rtip):
+
+    return {
+        'access_counter': rtip.access_counter,
+        'expressed_pertinence': rtip.expressed_pertinence,
+        'creation_date' : unicode(gltime.prettyDateTime(rtip.creation_date)),
+        'last_acesss' : unicode(gltime.prettyDateTime(rtip.last_access)),
+        'id' : rtip.id
+    }
+
+
 @transact
 def get_receiver_tip_list(store, username):
 
+    actor = store.find(Receiver, Receiver.username == unicode(username)).one()
+
+    tiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == actor.id)
+
+    tip_summary_list = []
+
+    for tip in tiplist:
+        tip_summary_list.append(serialize_tip_summary(tip))
+
+    return tip_summary_list
 
 
 class TipsCollection(BaseHandler):
@@ -131,7 +152,7 @@ class TipsCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        answer = yield get_tip_list(self.current_user['username'])
+        answer = yield get_receiver_tip_list(self.current_user['username'])
 
         self.set_status(200)
         self.finish(answer)
