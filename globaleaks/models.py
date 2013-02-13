@@ -108,7 +108,7 @@ class InternalTip(Model):
     # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
     # folders = ReferenceSet("InternalTip.id", "Folder.internaltip_id")
 
-    _marker = [ u'incomplete', u'new', u'first', u'second' ]
+    _marker = [ u'tip', u'finalized', u'first', u'second' ]
 
 
 class ReceiverTip(Model):
@@ -153,6 +153,7 @@ class WhistleblowerTip(Model):
     internaltip = Reference(internaltip_id, "InternalTip.id")
 
 class ReceiverFile(Model):
+
     file_path = RawStr()
     downloads = Int()
 
@@ -162,9 +163,14 @@ class ReceiverFile(Model):
     internal_file = Reference(internal_file_id, "InternalFile.id")
 
     receiver_tip_id = Unicode()
+    receiver_tip = Reference(receiver_tip_id, "ReceiverTip.id")
 
 class Folder(Model):
+
     internaltip_id = Unicode()
+    internaltip = Receiver(internaltip_id, "InternalTip.id")
+
+    description = Unicode()
     # files = ReferenceSet("Folder.id", "InternalFile.folder_id")
 
 class InternalFile(Model):
@@ -174,12 +180,12 @@ class InternalFile(Model):
     name = Unicode()
     sha2sum = Unicode()
 
-    description = Unicode()
     content_type = Unicode()
     mark = Unicode()
     size = Int()
 
     folder_id = Unicode()
+    folder = Reference(folder_id, "Folder.id")
 
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
 
