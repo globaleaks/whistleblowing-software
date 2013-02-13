@@ -33,6 +33,9 @@ class Model(Storm):
         return Storm.__new__(cls, *args, **kw)
 
     def __init__(self, attrs={}):
+        self.update(attrs)
+
+    def update(self, attrs={}):
         for key, value in attrs.iteritems():
             if isinstance(value, str):
                 value = unicode(value)
@@ -47,10 +50,6 @@ class Model(Storm):
             filter = [x for x in vars(Model) if isinstance(x, types.MethodType)]
 
         return dict((key, getattr(self, key)) for key in filter)
-
-
-
-
 
 class Context(Model):
     name = Unicode()
