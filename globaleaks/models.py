@@ -13,6 +13,10 @@ def uuid():
     import uuid
     return unicode(uuid.uuid4())
 
+def update_model(obj, update_dict):
+    for key, value in update_dict.iteritems():
+         setattr(obj, key, value)
+
 class Model(Storm):
     """
     Base class for working the database
