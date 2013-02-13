@@ -93,7 +93,7 @@ def get_folders_receiver(store, tip_id):
 
         for receiverfile in rtip.receiver_files:
             internalfile = receiverfile.internal_file
-            single_folder['files'].append(folder receiver_serialize_file(internalfile, receiverfile, tip_id))
+            single_folder['files'].append(receiver_serialize_file(internalfile, receiverfile, tip_id))
 
         folders_desc.append(single_folder)
 
