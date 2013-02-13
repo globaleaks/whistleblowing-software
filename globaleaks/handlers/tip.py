@@ -12,7 +12,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
 from globaleaks.utils import gltime
 from globaleaks.settings import transact
-from globaleaks.models import update_model, now
+from globaleaks.models import now
 from globaleaks.models import WhistleblowerTip, ReceiverTip, InternalFile, ReceiverFile, Folder, InternalTip, Receiver
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
     TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
@@ -99,6 +99,23 @@ def get_folders_receiver(store, tip_id):
 
     return folders_desc
 
+def strong_receiver_validate(username, id):
+    """
+    Utility: TODO description
+    """
+
+    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(id)).one()
+
+    if not rtip:
+        raise TipGusNotFound
+
+    receiver = store.find(Receiver, Receiver.username == unicode(username)).one()
+
+    if receiver.id != rtip.receiver.id:
+        # This in attack!!
+        raise TipGusNotFound
+
+
 @transact
 def get_internaltip_wb(store, receipt):
 
@@ -117,16 +134,7 @@ def get_internaltip_wb(store, receipt):
 @transact
 def get_internaltip_receiver(store, id, username):
 
-    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(id)).one()
-
-    if not rtip:
-        raise TipGusNotFound
-
-    receiver = store.find(Receiver, Receiver.username == unicode(username)).one()
-
-    if receiver.id != rtip.receiver.id:
-        # This in attack!!
-        raise TipGusNotFound
+    rtip = strong_receiver_validate(username, id)
 
     tip_desc = actor_serialize_internal_tip(rtip.internaltip)
     tip_desc['access_counter'] = int(rtip.access_counter)
@@ -137,6 +145,51 @@ def get_internaltip_receiver(store, id, username):
     return tip_desc
 
 
+@transact
+def delete_receiver_tip(store, username, id):
+
+    rtip = strong_receiver_validate(username, id)
+    store.delete(rtip)
+
+@transact
+def delete_internal_tip(store, username, id):
+
+    rtip = strong_receiver_validate(username, id)
+    store.delete(rtip.internaltip)
+
+
+@transact
+def manage_pertinence(store, username, id, vote):
+    """
+    Assign in ReceiverTip the expressed vote (checks if already present)
+    Roll over all the rTips with a vote
+    re-count the Overall Pertinence
+    Assign the Overall Pertinence to the InternalTip
+    """
+
+    rtip = strong_receiver_validate(username, id)
+
+    # expressed_pertinence has these meanings:
+    # 0 = unassigned
+    # 1 = negative vote
+    # 2 = positive vote
+
+    if not rtip.expressed_pertinence:
+        raise TipPertinenceExpressed
+
+    rtip.expressed_pertinence = 2 if vote else 1
+
+    vote_sum = 0
+    for rtip in rtip.internaltip.receivertips:
+        if rtip.expressed_pertinence == 1:
+            vote_sum -= 1
+        else:
+            vote_sum += 1
+
+    rtip.internaltip.pertinence_counter = vote_sum
+
+
+
 class TipBaseHandler(BaseHandler):
 
     def is_whistleblower(self):
@@ -145,7 +198,6 @@ class TipBaseHandler(BaseHandler):
             return True
         else:
             return False
-
 
 class TipInstance(TipBaseHandler):
     """
@@ -201,20 +253,20 @@ class TipInstance(TipBaseHandler):
         perform a refresh on get() API, if a delete, would bring the user in other places.
         """
 
-
-        # Until whistleblowers has not right to perform Tip operations...
-        if not is_receiver_token(tip_id):
+        # TODO move this operation within the auth decorator
+        if self.is_whistleblower():
             raise ForbiddenOperation
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
-        answer = yield CrudOperations().update_tip_by_receiver(tip_id, request)
 
-        self.set_status(answer['code'])
+        if request['personal_delete']:
+            yield delete_receiver_tip(self.current_user['username'], tip_id)
 
-        if answer.has_key('data'):
-            self.finish(answer['data'])
-        else:
-            self.finish()
+        elif request['is_pertinent']:
+            yield manage_pertinence(self.current_user['username'], tip_id, request['is_pertinent'])
+
+        self.set_status(202) # Updated
+        self.finish()
 
     @inlineCallbacks
     def delete(self, tip_id, *uriargs):
@@ -225,16 +277,31 @@ class TipInstance(TipBaseHandler):
 
         When an uber-receiver decide to "total delete" a Tip, is handled by this call.
         """
-        # This until WB can't Total delete the Tip!
-        if not is_receiver_token(tip_id):
+
+        # TODO move this operation within the auth decorator
+        if self.is_whistleblower():
             raise ForbiddenOperation
 
-        answer = yield CrudOperations().delete_tip(tip_id)
+        yield delete_internal_tip(self.current_user['username'], tip_id)
 
-        self.set_status(answer['code'])
+        self.set_status(200) # Success
         self.finish()
 
-class TipCommentCollection(BaseHandler):
+
+
+def actor_serialize_comment(comment):
+
+    comment_desc = {
+        'comment_id' : unicode(comment.id),
+        'source' : unicode(comment.source),
+        'content' : unicode(comment.content),
+        'author_id' : unicode(comment.author_gus),
+        'internaltip_id' : int(comment.internaltip_id),
+        'creation_time' : unicode(gltime.prettyDateTime(comment.creation_time))
+    }
+    return comment_desc
+
+class TipCommentCollection(TipBaseHandler):
     """
     T2
     Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
@@ -251,13 +318,13 @@ class TipCommentCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        if is_receiver_token(tip_id):
-            answer = yield CrudOperations().get_comment_list_by_receiver(tip_id)
+        if self.is_whistleblower():
+            comment_list = yield get_comment_list_by_wb(self.current_user['receipt'], tip_id)
         else:
-            answer = yield CrudOperations().get_comment_list_by_wb(tip_id)
+            comment_list = yield get_comment_list_by_receiver(self.current_user['username'], tip_id)
 
-        self.set_status(answer['code'])
-        self.finish(answer['data'])
+        self.set_status(200)
+        self.finish(comment_list)
 
     @inlineCallbacks
     def post(self, tip_id, *uriargs):

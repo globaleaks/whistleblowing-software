@@ -100,12 +100,13 @@ class InternalTip(Model):
 
     files = Pickle()
 
-    context_gus = Unicode()
-    context = Reference(context_gus, "Context.context_gus")
+    context_id = Unicode()
+    context = Reference(context_id, "Context.id")
 
     whistleblower_tip_id = Unicode()
     whistleblower_tip = Reference(whistleblower_tip_id, "WhistleblowerTip.id")
 
+    # receivertips = ReferenceSet("InternalTip.id", ReceiverTip.internaltip_id)
     # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
     # folders = ReferenceSet("InternalTip.id", "Folder.internaltip_id")
 
@@ -119,7 +120,7 @@ class ReceiverTip(Model):
     provide accountability of Receiver accesses, operations, options.
     """
     internaltip_id = Unicode()
-    internaltip = Reference(internaltip_id, InternalTip.id)
+    internaltip = Reference(internaltip_id, "InternalTip.id")
 
     access_counter = Int()
     last_access = DateTime()
@@ -270,6 +271,8 @@ Context.receivers = ReferenceSet(Context.id, Receiver.context_id)
 
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.folders = ReferenceSet(InternalTip.id, Folder.internaltip_id)
+InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.id)
+
 ReceiverTip.receiver_files = ReferenceSet(
                         ReceiverTip.id,
                         ReceiverFile.receiver_tip_id)
@@ -286,3 +289,4 @@ Folder.files = ReferenceSet(Folder.id, InternalFile.folder_id)
 
 models = [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
           Receiver, InternalFile, Folder]
+
