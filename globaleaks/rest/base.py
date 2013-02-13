@@ -39,7 +39,6 @@ formFieldsDict = {
             "name": unicode,
             "required": bool,
             "hint": unicode,
-            "value": unicode,
             "type": unicode
 }
 

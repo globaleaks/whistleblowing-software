@@ -58,7 +58,7 @@ class Context(Model):
     description = Unicode()
     fields = Pickle()
 
-    languages_supported = Pickle()
+    languages = Pickle()
 
     selectable_receiver = Bool()
     escalation_threshold = Int()

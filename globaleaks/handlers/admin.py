@@ -37,7 +37,7 @@ def admin_serialize_context(context):
         "name": context.name,
         "description": context.description,
         "selectable_receiver": context.selectable_receiver,
-        "languages": context.languages_supported if context.languages_supported else [],
+        "languages": context.languages if context.languages else [],
         "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
         "file_max_download": context.file_max_download,
