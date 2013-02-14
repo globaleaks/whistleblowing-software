@@ -9,11 +9,12 @@
 #
 # Call also the FileProcess working point, in order to verify which
 # kind of file has been submitted.
+from twisted.internet.defer import inlineCallbacks
+from twisted.python import log
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile, Receiver
 from globaleaks.settings import transact
-from twisted.internet.defer import inlineCallbacks
 
 __all__ = ['APSDelivery']
 
@@ -40,12 +41,9 @@ class APSDelivery(GLJob):
         # TODO
 
     def create_receivertip(self, store, receiver_id, internaltip, tier):
-
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
 
-        print "Creating ReceiverTip for:", receiver.name, "id", receiver.id, "tier", receiver.receiver_level,\
-            "for itip", internaltip.id, "Round for tier", tier, "RECEIVER TIP:", receiver.id, "username",\
-            receiver.username, "password", receiver.password, "POPE YOU RESIGN HAAHAHAHH!!!!"
+        log.msg('Creating ReceiverTip for: %s' % repr(receiver))
 
         if receiver.receiver_level != tier:
             return

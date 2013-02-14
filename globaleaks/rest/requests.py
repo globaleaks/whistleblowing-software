@@ -73,4 +73,3 @@ adminReceiverDesc =  {
     'can_configure_delivery' : bool,
     'can_configure_notification' : bool,
 }
-

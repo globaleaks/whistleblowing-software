@@ -13,7 +13,7 @@ from globaleaks.rest import requests
 from globaleaks.utils import gltime
 from globaleaks.settings import transact
 from globaleaks.models import now
-from globaleaks.models import WhistleblowerTip, ReceiverTip, InternalFile, ReceiverFile, Folder,\
+from globaleaks.models import WhistleblowerTip, ReceiverTip, InternalFile, ReceiverFile,\
     InternalTip, Receiver, Comment
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
     TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
@@ -56,19 +56,16 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     return rfile_dict
 
 
-def actor_serialize_folder(folder):
+def wb_serialize_file(internalfile):
 
-    folder_dict = {
-        'description' : unicode(folder.description),
-        'files' : []
-        # TODO creation date
+    wb_file_desc = {
+        'name' : unicode(internalfile.name),
+        'sha2sum' : unicode(internalfile.sha2sum),
+        'content_type' : unicode(internalfile.content_type),
+        'size': int(internalfile.size),
     }
+    return wb_file_desc
 
-    for internalfile in folder.files:
-        folder_dict['files'].append(unicode(internalfile.name))
-        # ??? type/date are useful for the WB ?
-
-    return folder_dict
 
 @transact
 def get_folders_wb(store, receipt):
@@ -76,8 +73,8 @@ def get_folders_wb(store, receipt):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
 
     folders_desc = []
-    for folder in wbtip.internaltip.folders:
-        folders_desc.append(actor_serialize_folder(folder))
+    for internalfile in wbtip.internaltip.internalfiles:
+        folders_desc.append(wb_serialize_file(internalfile))
 
     return folders_desc
 
@@ -86,21 +83,14 @@ def get_folders_receiver(store, tip_id):
 
     rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(id)).one()
 
-    folders_desc = []
-    for folder in rtip.internaltip.folders:
+    files_list = []
+    for receiverfile in rtip.receiver_files:
+        internalfile = receiverfile.internal_file
+        files_list.append(receiver_serialize_file(internalfile, receiverfile, tip_id))
 
-        single_folder = actor_serialize_folder(folder)
-        single_folder['files'] = []
+    return files_list
 
-        for receiverfile in rtip.receiver_files:
-            internalfile = receiverfile.internal_file
-            single_folder['files'].append(receiver_serialize_file(internalfile, receiverfile, tip_id))
-
-        folders_desc.append(single_folder)
-
-    return folders_desc
-
-def strong_receiver_validate(username, id):
+def strong_receiver_validate(store, username, id):
     """
     Utility: TODO description
     """
@@ -135,7 +125,7 @@ def get_internaltip_wb(store, receipt):
 @transact
 def get_internaltip_receiver(store, id, username):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
 
     tip_desc = actor_serialize_internal_tip(rtip.internaltip)
     tip_desc['access_counter'] = int(rtip.access_counter)
@@ -149,13 +139,13 @@ def get_internaltip_receiver(store, id, username):
 @transact
 def delete_receiver_tip(store, username, id):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
     store.delete(rtip)
 
 @transact
 def delete_internal_tip(store, username, id):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
     store.delete(rtip.internaltip)
 
 
@@ -168,7 +158,7 @@ def manage_pertinence(store, username, id, vote):
     Assign the Overall Pertinence to the InternalTip
     """
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
 
     # expressed_pertinence has these meanings:
     # 0 = unassigned
@@ -327,9 +317,9 @@ def get_comment_list_wb(receipt, id):
     return get_comment_list(wbtip.internaltip)
 
 @transact
-def get_comment_list_receiver(username, id):
+def get_comment_list_receiver(store, username, id):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
     return get_comment_list(rtip.internaltip)
 
 @transact
@@ -351,7 +341,7 @@ def create_comment_wb(store, receipt, request):
 @transact
 def create_comment_receiver(store, username, id, request):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
 
     request['internaltip_id'] = rtip.internaltip.id
     request['author'] = rtip.receiver.name
@@ -438,7 +428,7 @@ def get_receiver_wb(store, receipt, id):
 @transact
 def get_receiver_receiver(store, username, id):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
     return public_serialize_receiver(rtip.internaltip.id)
 
 
