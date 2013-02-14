@@ -29,7 +29,7 @@ def receiver_serialize_receiver(receiver):
         "last_update" : "XXX",
         "description": receiver.description,
         "name": receiver.name,
-        "notification_fields": dict(receiver.notification_fields),
+        "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "id": receiver.id,
         # TODO REVIEW CLIENT CLONE XXX
         "receiver_gus": receiver.id,
@@ -129,7 +129,7 @@ def get_receiver_tip_list(store, username):
     actor = store.find(Receiver, Receiver.username == unicode(username)).one()
 
     tiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == actor.id)
-
+    
     tip_summary_list = []
 
     for tip in tiplist:
