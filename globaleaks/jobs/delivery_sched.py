@@ -80,10 +80,11 @@ def create_receivertip(store, receiver_id, internaltip, tier):
     """
 
     receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-
+    
     log.msg('Creating ReceiverTip for: %s' % repr(receiver))
 
     if receiver.receiver_level != tier:
+        log.msg('Receiver not of the right tier %s' % receiver_id)
         return
 
     receivertip = ReceiverTip()
@@ -102,24 +103,23 @@ def tip_creation(store):
     first tier of Receiver, and shift the marker in 'first' aka di,ostron.zo
     """
     finalized = store.find(InternalTip, InternalTip.mark == InternalTip._marker[1])
-
+    
     for internaltip in finalized:
         for receiver_id in internaltip.receivers:
             create_receivertip(store, receiver_id, internaltip, 1)
             # TODO interalfile_is_correct
 
-        internaltip.mark = internaltip._marker[1]
+        internaltip.mark = internaltip._marker[2]
 
     promoted = store.find(InternalTip,
                         ( InternalTip.mark == InternalTip._marker[2],
                           InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )
-
     for internaltip in promoted:
         for receiver_id in internaltip.receivers:
             create_receivertip(store, receiver_id, internaltip, 2)
             # TODO interalfile_is_correct
 
-        internaltip.mark = internaltip._marker[2]
+        internaltip.mark = internaltip._marker[3]
 
 
 class APSDelivery(GLJob):
