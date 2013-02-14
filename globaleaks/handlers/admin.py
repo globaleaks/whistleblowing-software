@@ -29,13 +29,11 @@ def admin_serialize_node(node):
     return response
 
 def admin_serialize_context(context):
-
     context_dict = {
         "context_gus": context.id,
         "name": context.name,
         "description": context.description,
         "selectable_receiver": context.selectable_receiver,
-        "languages": context.languages if context.languages else [],
         "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
         "file_max_download": context.file_max_download,

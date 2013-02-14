@@ -52,6 +52,8 @@ CREATE TABLE internaltip (
     mark VARCHAR NOT NULL,
     pertinence_counter INTEGER NOT NULL,
     receivers BLOB NOT NULL,
+--    whistleblower_tip_id VARCHAR,
+--    FOREIGN KEY(whistleblower_tip_id) REFERENCES whistleblower(id),
     PRIMARY KEY (id)
 );
 
@@ -78,7 +80,7 @@ CREATE TABLE receiver (
     creation_date VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
     id VARCHAR NOT NULL,
-    last_access VARCHAR NOT NULL,
+    last_access VARCHAR,
     last_update VARCHAR,
     name VARCHAR NOT NULL,
     notification_fields BLOB NOT NULL,
@@ -102,7 +104,7 @@ CREATE TABLE receivertip (
     expressed_pertinence INTEGER NOT NULL,
     id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
-    last_access VARCHAR NOT NULL,
+    last_access VARCHAR,
     notification_date VARCHAR NOT NULL,
     notification_mark VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
@@ -116,7 +118,7 @@ CREATE TABLE whistleblowertip (
     creation_date VARCHAR NOT NULL,
     id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
-    last_access VARCHAR NOT NULL,
+    last_access VARCHAR,
     receipt VARCHAR NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
