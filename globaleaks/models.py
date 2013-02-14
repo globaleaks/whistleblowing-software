@@ -23,7 +23,7 @@ class Model(Storm):
     # seconds.
     creation_date = DateTime(default_factory=now)
 
-    def __new__(cls, *args, **kw):
+    def __new__(cls, *args, **kw)
         cls.__storm_table__ = cls.__name__.lower()
         # maybe check here for attrs validation, and eventually return None
 
@@ -54,9 +54,6 @@ class Model(Storm):
 
         return dict((key, getattr(self, key)) for key in filter)
 
-#    @classmethod
-#    def get_all(cls, store):
-#        return store.find(cls)
 
 class Context(Model):
     name = Unicode()
@@ -99,7 +96,6 @@ class InternalTip(Model):
 
     mark = Unicode()
 
-    # XXX convert to reference set
     receivers = Pickle()
 
     files = Pickle()
@@ -136,7 +132,6 @@ class ReceiverTip(Model):
 
     notification_date = DateTime()
     notification_mark = Unicode()
-
 
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
@@ -194,7 +189,10 @@ class Comment(Model):
 
     author = Unicode()
     message = Unicode()
-    # Notification do not track anymore of notification_status
+
+    type = Unicode()
+    _types = [ u'receiver', u'whistleblower', u'system' ]
+
 
 class Node(Model):
     """
