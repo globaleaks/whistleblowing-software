@@ -40,6 +40,18 @@ CREATE TABLE internalfile (
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
 
+CREATE TABLE receiverfile (
+    file_path VARCHAR,
+    downloads INTEGER NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    id VARCHAR NOT NULL,
+    PRIMARY KEY (id),
+    internalfile_id VARCHAR NOT NULL,
+    FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
+    receiver_id VARCHAR NOT NULL,
+    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+);
+
 CREATE TABLE internaltip (
     access_limit INTEGER NOT NULL,
     context_id VARCHAR NOT NULL,
