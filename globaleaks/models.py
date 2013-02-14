@@ -108,8 +108,9 @@ class InternalTip(Model):
 
     # receivertips = ReferenceSet("InternalTip.id", ReceiverTip.internaltip_id)
     # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
+    # internalfiles = ReferenceSet("InternalTip.id", "InternalFiles.id")
 
-    _marker = [ u'tip', u'finalize', u'first', u'second' ]
+    _marker = [ u'submission', u'finalize', u'first', u'second' ]
 
 
 class ReceiverTip(Model):
@@ -177,6 +178,8 @@ class InternalFile(Model):
     mark = Unicode()
     size = Int()
 
+    internaltip_id = Unicode()
+    internaltip = Reference(internaltip_id, "InternalTip.id")
 
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
 
@@ -273,6 +276,7 @@ Receiver.contexts = ReferenceSet(
 
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.id)
+InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.id)
 
 ReceiverTip.receiver_files = ReferenceSet(
                         ReceiverTip.id,
