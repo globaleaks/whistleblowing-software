@@ -32,17 +32,25 @@ class Model(Storm):
     def __init__(self, attrs={}):
         self.update(attrs)
 
-    def update(self, attrs={}):
-        for key, value in attrs.iteritems():
-            if isinstance(value, str):
-                value = unicode(value)
-            setattr(self, key, value)
-
     def __repr___(self):
         attrs = ['%s=%s' % (attr, getattr(self, attr))
                  for attr in vars(Model)
                  if isinstance(x, types.MethodType)]
         return '<%s model with values %s>' % (self.__name__, ', '.join(attrs))
+
+    def __setattr__(self, name, value):
+        # harder better faster stronger
+        if isinstance(value, str):
+            value = unicode(value)
+
+        return Storm.__setattr__(self, name, value)
+
+
+    def update(self, attrs={}):
+        for key, value in attrs.iteritems():
+            if isinstance(value, str):
+                value = unicode(value)
+            setattr(self, key, value)
 
     def dict(self, filter=None):
         """
