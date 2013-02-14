@@ -5,7 +5,8 @@
 # Implement the classes handling the requests performed to /receiver/* URI PATH
 # Used by receivers in the GlobaLeaks Node.
 
-from globaleaks.utils import log, gltime
+from globaleaks.utils import log
+from globaleaks import utils
 from globaleaks.handlers.base import BaseHandler
 from twisted.internet.defer import inlineCallbacks
 

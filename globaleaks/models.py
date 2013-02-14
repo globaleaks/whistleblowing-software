@@ -172,11 +172,10 @@ class ReceiverFile(Model):
 
 
 class InternalFile(Model):
-    """
-    The file are *stored* here, along with their properties
-    """
+
     name = Unicode()
     sha2sum = Unicode()
+    file_path = Unicode()
 
     content_type = Unicode()
     mark = Unicode()

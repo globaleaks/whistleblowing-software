@@ -1,6 +1,6 @@
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.models import Context, Receiver, Folder, InternalFile
+from globaleaks.models import *
 from globaleaks.db import tables
 from globaleaks.settings import transact
 from globaleaks.tests import helpers

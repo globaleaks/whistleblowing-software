@@ -37,9 +37,10 @@ store_name = 'main_store'
 db_thread_pool_size = 1
 # loggings
 import logging
-log_filename = 'glbackend.log'
-log_folder = '/tmp/'
-log_level = logging.DEBUG
+## set to false to disable file logging
+logfile = '/tmp/glbackend.log'
+loglevel = logging.DEBUG
+
 
 if not os.path.exists(gldata_path):
         os.mkdir(gldata_path)

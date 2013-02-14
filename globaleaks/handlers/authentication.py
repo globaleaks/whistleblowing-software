@@ -13,7 +13,7 @@ from globaleaks.models import WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest.errors import InvalidAuthRequest, InvalidInputFormat, NotAuthenticated
 from globaleaks import settings
-from globaleaks.utils.random import random_string
+from globaleaks.utils import random_string
 
 def authenticated(role):
     """

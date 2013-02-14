@@ -24,7 +24,7 @@ from globaleaks.models import *
 from globaleaks.plugins.manager import PluginManager
 from globaleaks import settings
 from globaleaks.rest.errors import ReceiverGusNotFound
-from globaleaks.utils.random import get_file_checksum
+from globaleaks.utils import get_file_checksum
 
 
 class AsyncOperations(MacroOperation):
@@ -168,7 +168,6 @@ class AsyncOperations(MacroOperation):
 
             validate_file = self.do_fileprocess_validation(store,single_file['context_gus'], tempfpath)
 
-            # compute hash, SHA256 in non blocking mode (from utils/random.py)
             filehash = get_file_checksum(tempfpath)
 
             print "Processed:", single_file['name'], filehash, "validator response:", validate_file
