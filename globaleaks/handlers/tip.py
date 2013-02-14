@@ -70,16 +70,15 @@ def wb_serialize_file(internalfile):
 def get_folders_wb(store, id):
 
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(id)).one()
-    
+
     file_list = []
     for internalfile in wbtip.internaltip.internalfiles:
         file_list.append(wb_serialize_file(internalfile))
 
-    return file_list 
+    return file_list
 
 @transact
 def get_folders_receiver(store, tip_id):
-
     rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(id)).one()
 
     files_list = []
@@ -109,10 +108,10 @@ def strong_receiver_validate(store, username, id):
 @transact
 def get_internaltip_wb(store, id):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(id)).one()
-    
+
     if not wbtip:
         raise TipReceiptNotFound
-    
+
     tip_desc = actor_serialize_internal_tip(wbtip.internaltip)
     tip_desc['access_counter'] = int(wbtip.access_counter)
     # tip_desc['last_access'] TODO
@@ -382,7 +381,7 @@ class TipCommentCollection(TipBaseHandler):
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
-    
+
         if self.is_whistleblower():
             answer = yield create_comment_wb(self.current_user['password'], request)
         else:
