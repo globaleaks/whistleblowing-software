@@ -32,11 +32,29 @@ CREATE TABLE internalfile (
     internaltip_id VARCHAR ,
     mark VARCHAR ,
     name VARCHAR ,
+    file_path VARCHAR ,
     sha2sum VARCHAR ,
     size INTEGER ,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
+
+CREATE TABLE receiverfile (
+    id VARCHAR ,
+    file_path VARCHAR ,
+    downloads INTEGER ,
+
+    creation_date VARCHAR NOT NULL,
+    last_access VARCHAR,
+
+    receiver_tip_id VARCHAR,
+    internaltip_id VARCHAR,
+
+    PRIMARY KEY (id),
+    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
+    FOREIGN KEY(receiver_tip_id) REFERENCES receivertip(id) ON DELETE CASCADE
+);
+
 
 CREATE TABLE internaltip (
     access_limit INTEGER NOT NULL,
