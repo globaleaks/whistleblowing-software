@@ -282,7 +282,7 @@ def update_receiver(store, id, request):
 
     contexts = request.get('contexts')
     del request['contexts']
-    
+
     receiver.update(request)
 
     for context in receiver.contexts:
@@ -290,6 +290,8 @@ def update_receiver(store, id, request):
 
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
+        if not context:
+            raise errors.ContextGusNotFound
         receiver.contexts.add(context)
 
     receiver_desc = admin_serialize_receiver(receiver)

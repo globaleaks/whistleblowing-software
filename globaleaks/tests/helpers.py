@@ -35,11 +35,13 @@ class TestHandler(unittest.TestCase):
 
     @inlineCallbacks
     def fill_data(self):
-        receiver_dict = yield create_receiver(self.dummyReceiver)
+        self.dummyReceiver = yield create_receiver(self.dummyReceiver)
 
-        self.dummyContext['receivers'] = [receiver_dict['receiver_gus']]
+        self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
         context_dict = yield create_context(self.dummyContext)
-        self.dummyContext['receivers'] = [receiver_dict['receiver_gus']]
+
+        self.dummyReceiver['contexts'] = [context_dict['context_gus']]
+        self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
         self.dummyContext['context_gus'] = context_dict['context_gus']
 
         self.dummySubmission['context_gus'] = context_dict['context_gus']

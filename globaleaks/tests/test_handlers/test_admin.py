@@ -1,6 +1,12 @@
+import time
+import unittest
+from cyclone.util import ObjectDict as OD
+
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
+from globaleaks.rest import errors
 
+from globaleaks import settings
 from globaleaks.handlers import admin
 
 class TestNodeInstance(helpers.TestHandler):
@@ -50,34 +56,69 @@ class TestContextInstance(helpers.TestHandler):
         yield handler.put(self.dummyContext['context_gus'])
         self.assertEqual(self.responses[0], self.dummyContext)
 
-# class TestReceiversCollection(helpers.TestHandler):
-#     _handler = admin.ReceiversCollection
-#     def test_get(self):
-#         handler = self.request()
-#         return handler.get()
-# 
-#     def test_post(self):
-#         handler = self.request()
-#         return handler.post()
-# 
-# class TestReceiverInstance(helpers.TestHandler):
-#     _handler = admin.ReceiverInstance
-#     def test_get(self):
-#         handler = self.request()
-#         return handler.get()
-# 
-#     def test_put(self):
-#         handler = self.request()
-#         return handler.put()
-# 
-#     def test_delete(self):
-#         handler = self.request()
-#         return handler.delete()
-# 
-# class TestPluginCollection(helpers.TestHandler):
-#     _handler = admin.PluginCollection
-#     pass
-# 
-# class TestStatisticsCollection(helpers.TestHandler):
-#     _handler = admin.StatisticsCollection
-#     pass
+class TestReceiversCollection(helpers.TestHandler):
+    _handler = admin.ReceiversCollection
+
+    def login(self):
+        admin_session = OD(timestamp=time.time(), id='spam', role='admin')
+        settings.sessions[admin_session.id] = admin_session
+        return admin_session.id
+   
+    @inlineCallbacks
+    def test_get(self):
+        handler = self.request()
+        handler.request.headers['X-Session'] = self.login()
+        yield handler.get()
+        self.assertEqual(self.responses[0], [self.dummyReceiver])
+
+    @inlineCallbacks
+    def test_post(self):
+        self.dummyReceiver['name'] = 'beppe'
+        handler = self.request(self.dummyReceiver)
+        handler.request.headers['X-Session'] = self.login()
+        yield handler.post()
+
+        # We delete this because it's randomly generated
+        del self.responses[0]['receiver_gus']
+        del self.dummyReceiver['receiver_gus']
+        self.assertEqual(self.responses[0], self.dummyReceiver)
+
+class TestReceiverInstance(helpers.TestHandler):
+    _handler = admin.ReceiverInstance
+
+    @inlineCallbacks
+    def test_get(self):
+        handler = self.request()
+        yield handler.get(self.dummyReceiver['receiver_gus'])
+        self.assertEqual(self.responses[0], self.dummyReceiver)
+
+    @unittest.skip("because the error is currently not trappable")
+    @inlineCallbacks
+    def test_put(self):
+        self.dummyReceiver['context_gus'] = u'invalid'
+        handler = self.request(self.dummyReceiver)
+        yield handler.put(self.dummyReceiver['receiver_gus'])
+   
+    @unittest.skip("because the error is currently not trappable")
+    @inlineCallbacks
+    def test_put_invalid_context_gus(self):
+        self.dummyReceiver['name'] = u'spamham'
+        self.dummyReceiver['context_gus'] = u'invalid'
+        handler = self.request(self.dummyReceiver)
+        yield handler.put(self.dummyReceiver['receiver_gus']) 
+        self.assertEqual(self.responses[0], self.dummyReceiver)
+
+    @unittest.skip("because not implemented")
+    @inlineCallbacks
+    def test_delete(self):
+        self.skip()
+        handler = self.request(self.dummyReceiver)
+        yield handler.delete()
+
+class TestPluginCollection(helpers.TestHandler):
+    _handler = admin.PluginCollection
+    pass
+
+class TestStatisticsCollection(helpers.TestHandler):
+    _handler = admin.StatisticsCollection
+    pass
