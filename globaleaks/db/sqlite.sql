@@ -123,7 +123,7 @@ CREATE TABLE receivertip (
     id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
-    notification_date VARCHAR NOT NULL,
+    notification_date VARCHAR,
     notification_mark VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
     PRIMARY KEY (id),
