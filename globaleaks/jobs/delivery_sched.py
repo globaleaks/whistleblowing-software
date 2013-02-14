@@ -148,7 +148,6 @@ class APSDelivery(GLJob):
         filesdict = yield file_preprocess()
         # return a dict { "file_uuid" : "file_path" }
 
-        print filesdict
         try:
             # perform FS base processing, outside the transactions
             processdict = file_process(filesdict)
