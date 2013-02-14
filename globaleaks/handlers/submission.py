@@ -37,7 +37,7 @@ def wb_serialize_internaltip(internaltip):
 @transact
 def create_whistleblower_tip(store, submission):
     wbtip = WhistleblowerTip(submission)
-    wbtip.receipt = utils.utils_string(10, unicode)
+    wbtip.receipt = utils.random_string(10, unicode)
     store.add(wbtip)
     return wbtip.receipt
 
