@@ -278,7 +278,7 @@ InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.id)
 InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.id)
 InternalTip.context = Reference(InternalTip.context_id, Context.id)
 
-ReceiverFile.internal_file = Reference(ReceiverFile.internalfile_id, InternalFile.id)
+ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
 ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
 
 WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
@@ -294,5 +294,5 @@ Receiver.tips = ReferenceSet(
 
 
 models = [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
-          Receiver, ReceiverContext, InternalFile]
+          Receiver, ReceiverContext, InternalFile, ReceiverFile]
 
