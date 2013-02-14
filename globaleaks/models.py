@@ -63,8 +63,6 @@ class Context(Model):
     description = Unicode()
     fields = Pickle()
 
-    languages = Pickle()
-
     selectable_receiver = Bool()
     escalation_threshold = Int()
 
@@ -253,7 +251,6 @@ class Receiver(Model):
     last_update = DateTime()
     last_access = DateTime(default_factory=now)
 
-    languages = Pickle()
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
     #                         "ReceiverContext.receiver_id",
