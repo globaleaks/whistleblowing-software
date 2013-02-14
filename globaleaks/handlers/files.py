@@ -72,7 +72,7 @@ def dump_files_fs(files):
     """
     files_saved = {}
     for single_file in files:
-        saved_name = random.random_string(26, 'A-Z,a-z,0-9')
+        saved_name = unicode(utils.random_string(26, 'A-Z,a-z,0-9'))
         filelocation = os.path.join(SUBMISSION_DIR, saved_name)
 
         with open(filelocation, 'w+') as fd:
