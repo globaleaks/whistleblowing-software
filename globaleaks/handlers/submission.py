@@ -44,7 +44,6 @@ def create_whistleblower_tip(store, submission):
     store.add(wbtip)
     return wbtip.receipt
 
-
 def import_receivers(store, submission, receivers, context):
     # As first we check if Context has some policies
     if not context.selectable_receiver:

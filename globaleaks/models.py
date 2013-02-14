@@ -54,9 +54,6 @@ class Model(Storm):
 
         return dict((key, getattr(self, key)) for key in filter)
 
-#    @classmethod
-#    def get_all(cls, store):
-#        return store.find(cls)
 
 class Context(Model):
     name = Unicode()
@@ -99,13 +96,11 @@ class InternalTip(Model):
 
     mark = Unicode()
 
-    # XXX convert to reference set
     receivers = Pickle()
 
     files = Pickle()
 
     context_id = Unicode()
-    context = Reference(context_id, "Context.id")
 
     # whistleblower_tip_id = Unicode()
     # whistleblower_tip = Reference(whistleblower_tip_id, "WhistleblowerTip.id")
@@ -124,7 +119,6 @@ class ReceiverTip(Model):
     provide accountability of Receiver accesses, operations, options.
     """
     internaltip_id = Unicode()
-    internaltip = Reference(internaltip_id, "InternalTip.id")
 
     last_access = DateTime(default_factory=now)
     access_counter = Int()
@@ -132,11 +126,10 @@ class ReceiverTip(Model):
     expressed_pertinence = Int()
 
     receiver_id = Unicode()
-    receiver = Reference(receiver_id, "Receiver.id")
 
     notification_date = DateTime()
-    notification_mark = Unicode()
 
+    mark = Unicode()
 
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
@@ -155,7 +148,6 @@ class WhistleblowerTip(Model):
     access_counter = Int()
 
     internaltip_id = Unicode()
-    internaltip = Reference(internaltip_id, "InternalTip.id")
 
 class ReceiverFile(Model):
 
@@ -165,10 +157,7 @@ class ReceiverFile(Model):
     last_access = DateTime()
 
     internal_file_id = Unicode()
-    internal_file = Reference(internal_file_id, "InternalFile.id")
-
     receiver_tip_id = Unicode()
-    receiver_tip = Reference(receiver_tip_id, "ReceiverTip.id")
 
 
 class InternalFile(Model):
@@ -182,7 +171,6 @@ class InternalFile(Model):
     size = Int()
 
     internaltip_id = Unicode()
-    internaltip = Reference(internaltip_id, "InternalTip.id")
 
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
 
@@ -194,7 +182,10 @@ class Comment(Model):
 
     author = Unicode()
     message = Unicode()
-    # Notification do not track anymore of notification_status
+
+    type = Unicode()
+    _types = [ u'receiver', u'whistleblower', u'system' ]
+
 
 class Node(Model):
     """
@@ -278,7 +269,17 @@ Receiver.contexts = ReferenceSet(
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.id)
 InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.id)
+InternalTip.context = Reference(InternalTip.context_id, Context.id)
 
+ReceiverFile.internal_file = Reference(ReceiverFile.internal_file_id, InternalFile.id)
+ReceiverFile.receiver_tip = Reference(ReceiverFile.receiver_tip_id, ReceiverTip.id)
+
+WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
+
+InternalFile.internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
+
+ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
+ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 ReceiverTip.receiver_files = ReferenceSet(
                         ReceiverTip.id,
                         ReceiverFile.receiver_tip_id)

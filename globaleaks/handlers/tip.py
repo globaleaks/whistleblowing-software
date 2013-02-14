@@ -67,19 +67,18 @@ def wb_serialize_file(internalfile):
 
 
 @transact
-def get_folders_wb(store, receipt):
+def get_folders_wb(store, id):
 
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(id)).one()
 
-    folders_desc = []
+    file_list = []
     for internalfile in wbtip.internaltip.internalfiles:
-        folders_desc.append(wb_serialize_file(internalfile))
+        file_list.append(wb_serialize_file(internalfile))
 
-    return folders_desc
+    return file_list
 
 @transact
 def get_folders_receiver(store, tip_id):
-
     rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(id)).one()
 
     files_list = []
@@ -107,9 +106,8 @@ def strong_receiver_validate(store, username, id):
 
 
 @transact
-def get_internaltip_wb(store, receipt):
-
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
+def get_internaltip_wb(store, id):
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(id)).one()
 
     if not wbtip:
         raise TipReceiptNotFound
@@ -216,10 +214,9 @@ class TipInstance(TipBaseHandler):
         tip_id can be: a tip_gus for a receiver, or a WhistleBlower receipt, understand
         the format, help in addressing which kind of Tip need to be handled.
         """
-
         if self.is_whistleblower():
-            (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['password'])
-            answer['folder'] = yield get_folders_wb(self.current_user['password'], internaltip_id)
+            (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['user_id'])
+            answer['folder'] = yield get_folders_wb(self.current_user['user_id'])
         else:
             answer = yield get_internaltip_receiver(tip_id, self.current_user['username'])
             answer['folder'] = yield get_folders_receiver(self.current_user['username'], tip_id)
@@ -249,11 +246,11 @@ class TipInstance(TipBaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
 
-        if request['personal_delete']:
-            yield delete_receiver_tip(self.current_user['username'], tip_id)
+        if request['global_delete']:
+            yield delete_internal_tip(self.current_user['username'], tip_id)
 
         elif request['is_pertinent']:
-            yield manage_pertinence(self.current_user['username'], tip_id, request['is_pertinent'])
+            yield manage_pertinence(self.current_user['user_id'], tip_id, request['is_pertinent'])
 
         self.set_status(202) # Updated
         self.finish()
@@ -272,7 +269,7 @@ class TipInstance(TipBaseHandler):
         if self.is_whistleblower():
             raise ForbiddenOperation
 
-        yield delete_internal_tip(self.current_user['username'], tip_id)
+        yield delete_receiver_tip(self.current_user['user_id'], tip_id)
 
         self.set_status(200) # Success
         self.finish()
@@ -282,11 +279,10 @@ class TipInstance(TipBaseHandler):
 def actor_serialize_comment(comment):
 
     comment_desc = {
-        'comment_id' : unicode(comment.id),
-        'source' : unicode(comment.source),
-        'content' : unicode(comment.content),
-        'author_id' : unicode(comment.author_gus),
-        'internaltip_id' : int(comment.internaltip_id),
+        'id' : unicode(comment.id),
+        'type' : unicode(comment.type),
+        'content' : unicode(comment.message),
+        'author_id' : unicode(comment.author),
         'creation_time' : unicode(utils.prettyDateTime(comment.creation_time))
     }
     return comment_desc
@@ -306,7 +302,7 @@ def get_comment_list(internaltip):
     return comment_list
 
 @transact
-def get_comment_list_wb(receipt, id):
+def get_comment_list_wb(store, receipt, id):
 
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
 
@@ -329,10 +325,10 @@ def create_comment_wb(store, receipt, request):
     if not wbtip:
         raise TipReceiptNotFound
 
-    request['internaltip_id'] = wbtip.internaltip.id
-    request['author'] = u'whistleblower'
-
     comment = Comment(request)
+    comment.internaltip_id = wbtip.internaltip.id
+    comment.author = u'whistleblower' # The printed line
+    comment.type = Comment._types[1] # WB
     store.add(comment)
 
     return actor_serialize_comment(comment)
@@ -342,13 +338,13 @@ def create_comment_receiver(store, username, id, request):
 
     rtip = strong_receiver_validate(store, username, id)
 
-    request['internaltip_id'] = rtip.internaltip.id
-    request['author'] = rtip.receiver.name
-
     comment = Comment(request)
+    comment.internaltip_id = rtip.internaltip.id
+    comment.author = rtip.receiver.name # The printed line
+    comment.type = Comment._types[0] # Receiver
     store.add(comment)
 
-    return actor_serialize_comment()
+    return actor_serialize_comment(comment)
 
 
 class TipCommentCollection(TipBaseHandler):
@@ -447,7 +443,7 @@ class TipReceiversCollection(TipBaseHandler):
         """
 
         if self.is_whistleblower():
-            answer = yield get_receiver_wb(self.current_user['password'], tip_id)
+            answer = yield get_receiver_wb(self.current_user['user_id'], tip_id)
         else:
             answer = yield get_receiver_receiver(self.current_user['username'], tip_id)
 

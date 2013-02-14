@@ -39,7 +39,7 @@ def admin_serialize_context(context):
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
         "fields": context.fields if context.fields else [],
-        "receivers": []
+        "receivers": [],
     }
     for receiver in context.receivers:
         context_dict['receivers'].append(receiver.id)
@@ -52,7 +52,6 @@ def admin_serialize_receiver(receiver):
         "receiver_gus": unicode(receiver.id),
         "name": unicode(receiver.name),
         "description": unicode(receiver.description),
-        "languages": copy.deepcopy(receiver.languages) if receiver.languages else [],
         "update_date": unicode(utils.prettyDateTime(receiver.last_update)),
         "receiver_level": int(receiver.receiver_level),
         "can_delete_submission": bool(receiver.can_delete_submission),
@@ -241,7 +240,7 @@ def create_receiver(store, request):
     receiver = Receiver(request)
     receiver.username = unicode(utils.random_string(4, str))
     store.add(receiver)
-
+    
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
         if not context:
