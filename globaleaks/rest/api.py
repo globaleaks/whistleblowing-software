@@ -62,19 +62,19 @@ spec = [
     ## Tip Handlers ##
 
     #  T1
-    (r'/tip/' + tip_access_token, tip.TipInstance),
+    (r'/tip/' + uuid_regexp, tip.TipInstance),
 
     #  T2
-    (r'/tip/' + tip_access_token + r'/comments', tip.TipCommentCollection),
+    (r'/tip/' + uuid_regexp + r'/comments', tip.TipCommentCollection),
 
     #  T3
-    (r'/tip/' + tip_access_token + r'/receivers', tip.TipReceiversCollection),
+    (r'/tip/' + uuid_regexp + r'/receivers', tip.TipReceiversCollection),
 
     #  T4 = only the whistlebower can access to this interface, then the regexp match properly
-    (r'/tip/' + wb_receipt + '/upload', files.FileInstance),
+    (r'/tip/' + uuid_regexp + '/upload', files.FileInstance),
 
     #  T5 = only Receiver, download the files
-    (r'/tip/' + tipGUS + '/download/' + fileGUS, files.Download),
+    (r'/tip/' + uuid_regexp + '/download/' + fileGUS, files.Download),
 
     ## Receiver Handlers ##
     #  R1

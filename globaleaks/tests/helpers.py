@@ -10,9 +10,11 @@ from cyclone.util import ObjectDict as OD
 from cyclone import httpserver
 from cyclone.web import Application
 
+from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.admin import create_context, create_receiver, update_node
+from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 
 from globaleaks.settings import transact
-from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors
 from globaleaks import models
 from globaleaks.utils import idops, gltime
@@ -22,7 +24,6 @@ from globaleaks import db
 _TEST_DB = 'test.db'
 settings.db_file = 'sqlite:///' + _TEST_DB
 settings.store = 'test_store'
-settings.config = settings.Config()
 
 import storm
 
@@ -32,33 +33,102 @@ class TestHandler(unittest.TestCase):
     """
     _handler = None
 
-    @transact
-    def fill_data(self, store):
-        receiver = models.receiver.Receiver(store).new(dummyReceiver)
-        dummyReceiver['username'] = receiver['username']
+    @inlineCallbacks
+    def fill_data(self):
+        receiver_dict = yield create_receiver(self.dummyReceiver)
 
-        dummyContext['receivers'] = receiver['receiver_gus']
-        context = models.context.Context(store).new(dummyContext)
+        self.dummyContext['receivers'] = [receiver_dict['receiver_gus']]
+        context_dict = yield create_context(self.dummyContext)
+        self.dummyContext['receivers'] = [receiver_dict['receiver_gus']]
+        self.dummyContext['context_gus'] = context_dict['context_gus']
 
-        dummySubmission['context_gus'] = context['context_gus']
-        submission = models.submission.Submission(store).new(dummySubmission)
+        self.dummySubmission['context_gus'] = context_dict['context_gus']
+        yield create_submission(self.dummySubmission)
 
-        dummyNode['context_gus'] = context['context_gus']
-        models.node.Node(store).new(dummyNode)
-
-        node = store.find(models.node.Node).one()
-        node.password = u'spam'
-
-        internal_tip = models.internaltip.InternalTip(store).new(dummySubmission)
-        self.dummyWhistleblowerTip = models.externaltip.WhistleblowerTip(store).new(internal_tip)
-
-
+        yield update_node(self.dummyNode)
+        self.dummyNode['password'] = u'spam'
+        self.dummyNode['old_password'] = None
 
     @inlineCallbacks
     def setUp(self):
         """
         override default handlers' get_store with a mock store used for testing/
         """
+
+        self.dummyReceiver = {
+            'password': u'john',
+            'name': u'john smith',
+            'description': u'the first receiver',
+            'tags': [],
+            'languages': [u'en'],
+            'notification_fields': {'mail_address': u'maker@ggay.it'},
+            'can_delete_submission': True,
+            'can_postpone_expiration': True,
+            'can_configure_delivery': True,
+            'can_configure_notification': True,
+            'receiver_level': 1,
+            'contexts': []
+        }
+        self.dummyContext = {
+            'name': u'created by shooter',
+            'description': u'This is the update',
+            'fields': [{u'hint': u'autovelox',
+                        u'label': u'city',
+                        u'name': u'city',
+                        u'presentation_order': 1,
+                        u'required': True,
+                        u'type': u'text',
+                        u'value': u"Yadda I'm default with apostrophe"},
+                       {u'hint': u'name of the sun',
+                        u'label': u'Sun',
+                        u'name': u'Sun',
+                        u'presentation_order': 2,
+                        u'required': True,
+                        u'type': u'checkbox',
+                        u'value': u"I'm the sun, I've not name"},
+                       {u'hint': u'put the number ',
+                        u'label': u'penality details',
+                        u'name': u'dict2',
+                        u'presentation_order': 3,
+                        u'required': True,
+                        u'type': u'text',
+                        u'value': u'666 the default value'},
+                       {u'hint': u'details:',
+                        u'label': u'how do you know that ?',
+                        u'name': u'dict3',
+                        u'presentation_order': 4,
+                        u'required': False,
+                        u'type': u'textarea',
+                        u'value': u'buh ?'}],
+            'selectable_receiver': False,
+            'tip_max_access': 10,
+            'tip_timetolive': 2,
+            'file_max_download' :1,
+            'escalation_threshold': 1,
+            'receivers': [],
+            'languages': []
+        }
+        self.dummySubmission = {
+            'context_gus': '',
+            'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
+            'receivers': [],
+            'files': [],
+            'finalize': True,
+        }
+        self.dummyNode = {
+                'name':  u"Please, set me: name/title",
+                'description':  u"Please, set me: description",
+                'hidden_service':  u"Please, set me: hidden service",
+                'public_site':  u"Please, set me: public site",
+                'email':  u"email@dumnmy.net",
+                'stats_update_time':  2, # hours,
+                'languages':  [{ "code" : "it" , "name": "Italiano"},
+                               { "code" : "en" , "name" : "English" }],
+                'notification_settings': {},
+                'password': u'spam',
+                'old_password': None,
+        }
+
         self.responses = []
         @classmethod
         def mock_write(cls, response):
@@ -67,15 +137,16 @@ class TestHandler(unittest.TestCase):
             # called it contains *all* of the response message.
             self.responses.append(response)
 
-        # override handle's get_store and transactor
         self._handler.write = mock_write
+        # we make the assumption that we will always use call finish on write.
+        self._handler.finish = mock_write
 
         try:
-            yield db.createTables(create_node=False)
+            yield db.createTables(create_node=True)
         except:
             pass
 
-        #yield self.fill_data()
+        yield self.fill_data()
 
     def tearDown(self):
         """
@@ -119,50 +190,4 @@ class TestHandler(unittest.TestCase):
 #         store.add(model)
 
 
-dummyReceiver = {
-    'password': u'john',
-    'name': u'john smith',
-    'description': u'the first receiver',
-    'tags': [],
-    'languages': [u'en'],
-    'notification_fields': {'mail_address': u'maker@ggay.it'},
-    'can_delete_submission': True,
-    'can_postpone_expiration': True,
-    'can_configure_delivery': True,
-    'can_configure_notification': True,
-    'receiver_level': 1,
-}
-dummyContext = {
-    'name': u'created by shooter',
-    'description': u'This is the update',
-    'fields':[{"hint": u"autovelox", "label": "city", "name": "city", "presentation_order": 1, "required": True, "type": "text", "value": "Yadda I'm default with apostrophe" },
-              {"hint": u"name of the sun", "label": "Sun", "name": "Sun", "presentation_order": 2, "required": True, "type": "checkbox", "value": "I'm the sun, I've not name" },
-              {"hint": u"put the number ", "label": "penality details", "name": "dict2", "presentation_order": 3, "required": True, "type": "text", "value": "666 the default value" },
-              {"hint": u"details:", "label": "how do you know that ?", "name": "dict3", "presentation_order": 4, "required":
-                  False, "type": "textarea", "value": "buh ?" },
-    ],
-    'selectable_receiver': False,
-    'tip_max_access': 10,
-    'tip_timetolive': 2,
-    'file_max_download' :1,
-    'escalation_threshold': 1,
-    'receivers': []
-}
-dummySubmission = {
-    'context_gus': '',
-    'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
-    'receivers': [],
-    'files': [],
-    'finalize': True,
-}
-dummyNode = {
-        'name':  u"Please, set me: name/title",
-        'description':  u"Please, set me: description",
-        'hidden_service':  u"Please, set me: hidden service",
-        'public_site':  u"Please, set me: public site",
-        'email':  u"email@dumnmy.net",
-        'stats_update_time':  2, # hours,
-        'languages':  [{ "code" : "it" , "name": "Italiano"},
-                       { "code" : "en" , "name" : "English" }],
-        'notification_settings': {},
-}
+
