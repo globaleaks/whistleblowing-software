@@ -67,15 +67,15 @@ def wb_serialize_file(internalfile):
 
 
 @transact
-def get_folders_wb(store, receipt):
+def get_folders_wb(store, id):
 
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
-
-    folders_desc = []
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(id)).one()
+    
+    file_list = []
     for internalfile in wbtip.internaltip.internalfiles:
-        folders_desc.append(wb_serialize_file(internalfile))
+        file_list.append(wb_serialize_file(internalfile))
 
-    return folders_desc
+    return file_list 
 
 @transact
 def get_folders_receiver(store, tip_id):
@@ -107,13 +107,12 @@ def strong_receiver_validate(store, username, id):
 
 
 @transact
-def get_internaltip_wb(store, receipt):
-
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
-
+def get_internaltip_wb(store, id):
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(id)).one()
+    
     if not wbtip:
         raise TipReceiptNotFound
-
+    
     tip_desc = actor_serialize_internal_tip(wbtip.internaltip)
     tip_desc['access_counter'] = int(wbtip.access_counter)
     # tip_desc['last_access'] TODO
@@ -216,10 +215,9 @@ class TipInstance(TipBaseHandler):
         tip_id can be: a tip_gus for a receiver, or a WhistleBlower receipt, understand
         the format, help in addressing which kind of Tip need to be handled.
         """
-
         if self.is_whistleblower():
-            (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['password'])
-            answer['folder'] = yield get_folders_wb(self.current_user['password'], internaltip_id)
+            (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['user_id'])
+            answer['folder'] = yield get_folders_wb(self.current_user['user_id'])
         else:
             answer = yield get_internaltip_receiver(tip_id, self.current_user['username'])
             answer['folder'] = yield get_folders_receiver(self.current_user['username'], tip_id)
@@ -249,11 +247,11 @@ class TipInstance(TipBaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
 
-        if request['personal_delete']:
-            yield delete_receiver_tip(self.current_user['username'], tip_id)
+        if request['global_delete']:
+            yield delete_internal_tip(self.current_user['username'], tip_id)
 
         elif request['is_pertinent']:
-            yield manage_pertinence(self.current_user['username'], tip_id, request['is_pertinent'])
+            yield manage_pertinence(self.current_user['user_id'], tip_id, request['is_pertinent'])
 
         self.set_status(202) # Updated
         self.finish()
@@ -272,7 +270,7 @@ class TipInstance(TipBaseHandler):
         if self.is_whistleblower():
             raise ForbiddenOperation
 
-        yield delete_internal_tip(self.current_user['username'], tip_id)
+        yield delete_receiver_tip(self.current_user['user_id'], tip_id)
 
         self.set_status(200) # Success
         self.finish()
@@ -287,7 +285,7 @@ def actor_serialize_comment(comment):
         'content' : unicode(comment.content),
         'author_id' : unicode(comment.author_gus),
         'internaltip_id' : int(comment.internaltip_id),
-        'creation_time' : unicode(utils.prettyDateTime(comment.creation_time))
+        'creation_time' : unicode(utils.prettyDateTime(comment.creation_date))
     }
     return comment_desc
 
@@ -385,7 +383,7 @@ class TipCommentCollection(TipBaseHandler):
         """
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
-
+    
         if self.is_whistleblower():
             answer = yield create_comment_wb(self.current_user['password'], request)
         else:
@@ -447,7 +445,7 @@ class TipReceiversCollection(TipBaseHandler):
         """
 
         if self.is_whistleblower():
-            answer = yield get_receiver_wb(self.current_user['password'], tip_id)
+            answer = yield get_receiver_wb(self.current_user['user_id'], tip_id)
         else:
             answer = yield get_receiver_receiver(self.current_user['username'], tip_id)
 
