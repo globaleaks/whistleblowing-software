@@ -51,7 +51,7 @@ class AuthenticationHandler(BaseHandler):
 
             user_id: will be in the case of the receiver the receiver.id in the
                 case of an admin it will be set to 'admin', in the case of the
-                'wb' it will be the WhistleblowerTip id.
+                'wb' it will be the whistleblower id.
         """
         self.session_id = random_string(42, 'a-z,A-Z,0-9')
         # This is the format to preserve sessions in memory
@@ -68,15 +68,15 @@ class AuthenticationHandler(BaseHandler):
     @transact
     def login_wb(self, store, receipt):
         try:
-            wb = store.find(WhistleblowerTip,
+            wb_tip = store.find(WhistleblowerTip,
                             WhistleblowerTip.receipt == unicode(receipt)).one()
         except NotOneError:
             raise InvalidAuthRequest
 
-        if not wb:
+        if not wb_tip:
             raise InvalidAuthRequest
 
-        return unicode(wb.id)
+        return unicode(wb_tip.id)
 
     @transact
     def login_receiver(self, store, username, password):
@@ -139,3 +139,4 @@ class AuthenticationHandler(BaseHandler):
 
         self.set_status(200)
         self.finish()
+

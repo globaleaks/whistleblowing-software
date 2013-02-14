@@ -11,6 +11,8 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
 from globaleaks import utils
+from globaleaks.utils import log, prettyDateTime
+
 from globaleaks.settings import transact
 from globaleaks.models import now
 from globaleaks.models import *
@@ -292,14 +294,14 @@ def get_comment_list(internaltip):
     return comment_list
 
 @transact
-def get_comment_list_wb(store, receipt, id):
+def get_comment_list_wb(store, wb_tip_id):
 
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
+    wb_tip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
 
-    if not wbtip:
+    if not wb_tip:
         raise TipReceiptNotFound
 
-    return get_comment_list(wbtip.internaltip)
+    return get_comment_list(wb_tip.internaltip)
 
 @transact
 def get_comment_list_receiver(store, username, id):
@@ -355,7 +357,7 @@ class TipCommentCollection(BaseHandler):
         """
 
         if self.is_whistleblower:
-            comment_list = yield get_comment_list_wb(self.current_user['password'], tip_id)
+            comment_list = yield get_comment_list_wb(self.current_user['user_id'], tip_id)
         else:
             comment_list = yield get_comment_list_receiver(self.current_user['username'], tip_id)
 
@@ -381,12 +383,22 @@ class TipCommentCollection(BaseHandler):
         self.finish(answer)
 
 
-def public_serialize_receiver(receiver):
-
-    pub_receiver_desc = {
-        'name' : unicode(receiver.name),
-        'description' : unicode(receiver.description),
+def serialize_receiver(receiver):
+    receiver_dict = {
+        "can_configure_delivery": receiver.can_configure_delivery,
+        "can_configure_notification": receiver.can_configure_notification,
+        "can_delete_submission": receiver.can_delete_submission,
+        "can_postpone_expiration": receiver.can_postpone_expiration,
+        "name": unicode(receiver.name),
+        "description": unicode(receiver.description),
+        "receiver_gus": unicode(receiver.id),
+        "receiver_level": int(receiver.receiver_level),
+        "contexts": [],
     }
+    for context in receiver.contexts:
+        receiver_dict['contexts'].append(unicode(context.id))
+
+    return receiver_dict
 
 def get_receiver_itip(internaltip):
     """
@@ -401,17 +413,20 @@ def get_receiver_itip(internaltip):
     return pub_receiver_list
 
 @transact
-def get_receiver_wb(store, receipt, id):
-
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
-
+def get_receiver_list_wb(store, tip_id):
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
     if not wbtip:
         raise TipReceiptNotFound
+    
+    receiver_list = []
+    for receiver_id in wbtip.internaltip.receivers:
+        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        receiver_list.append(serialize_receiver(receiver))
 
-    return public_serialize_receiver(wbtip.internaltip.id)
+    return receiver_list
 
 @transact
-def get_receiver_receiver(store, username, id):
+def get_receiver_list_receiver(store, username, id):
 
     rtip = strong_receiver_validate(store, username, id)
     return public_serialize_receiver(rtip.internaltip.id)
@@ -431,11 +446,10 @@ class TipReceiversCollection(BaseHandler):
         Response: actorsReceiverList
         Errors: InvalidTipAuthToken
         """
-
         if self.is_whistleblower:
-            answer = yield get_receiver_wb(self.current_user['user_id'], tip_id)
+            answer = yield get_receiver_list_wb(self.current_user['user_id'])
         elif self.is_receiver:
-            answer = yield get_receiver_receiver(self.current_user['username'], tip_id)
+            answer = yield get_receiver_list_receiver(self.current_user['username'], tip_id)
         else:
             raise errors.NotAuthenticated
 
