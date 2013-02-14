@@ -268,14 +268,13 @@ class TipInstance(BaseHandler):
 
 
 
-def actor_serialize_comment(comment):
-
+def serialize_comment(comment):
     comment_desc = {
         'id' : unicode(comment.id),
         'type' : unicode(comment.type),
         'content' : unicode(comment.message),
         'author_id' : unicode(comment.author),
-        'creation_time' : unicode(utils.prettyDateTime(comment.creation_time))
+        'creation_time' : unicode(prettyDateTime(comment.creation_time))
     }
     return comment_desc
 
@@ -289,15 +288,14 @@ def get_comment_list(internaltip):
 
     comment_list = []
     for comment in internaltip.comments:
-        comment_list.append(actor_serialize_comment(comment))
+        comment_list.append(serialize_comment(comment))
 
     return comment_list
 
 @transact
 def get_comment_list_wb(store, wb_tip_id):
-
-    wb_tip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
-
+    wb_tip = store.find(WhistleblowerTip,
+                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
     if not wb_tip:
         raise TipReceiptNotFound
 
@@ -305,13 +303,11 @@ def get_comment_list_wb(store, wb_tip_id):
 
 @transact
 def get_comment_list_receiver(store, username, id):
-
     rtip = strong_receiver_validate(store, username, id)
     return get_comment_list(rtip.internaltip)
 
 @transact
 def create_comment_wb(store, receipt, request):
-
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
 
     if not wbtip:
@@ -357,7 +353,7 @@ class TipCommentCollection(BaseHandler):
         """
 
         if self.is_whistleblower:
-            comment_list = yield get_comment_list_wb(self.current_user['user_id'], tip_id)
+            comment_list = yield get_comment_list_wb(self.current_user['user_id'])
         else:
             comment_list = yield get_comment_list_receiver(self.current_user['username'], tip_id)
 
@@ -413,13 +409,13 @@ def get_receiver_itip(internaltip):
     return pub_receiver_list
 
 @transact
-def get_receiver_list_wb(store, tip_id):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
-    if not wbtip:
+def get_receiver_list_wb(store, wb_tip_id):
+    wb_tip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
+    if not wb_tip:
         raise TipReceiptNotFound
     
     receiver_list = []
-    for receiver_id in wbtip.internaltip.receivers:
+    for receiver_id in wb_tip.internaltip.receivers:
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
         receiver_list.append(serialize_receiver(receiver))
 
