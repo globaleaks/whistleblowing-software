@@ -32,7 +32,7 @@ actorsCommentDesc = {
 }
 
 actorsTipOpsDesc = {
-    'personal_delete' : bool,
+    'total_delete' : bool,
     'is_pertinent': bool
 }
 

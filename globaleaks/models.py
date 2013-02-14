@@ -105,7 +105,7 @@ class InternalTip(Model):
     files = Pickle()
 
     context_id = Unicode()
-    context = Reference(context_id, "Context.id")
+    context = Reference(context_id, Context.id)
 
     # whistleblower_tip_id = Unicode()
     # whistleblower_tip = Reference(whistleblower_tip_id, "WhistleblowerTip.id")
