@@ -16,12 +16,12 @@ class Publisher(twlog.LogPublisher):
         return self.msg(*arg,**kw)
 
     def debug(self, *arg, **kw):
-        kw['logLevel'] = logging.ERROR
+        kw['logLevel'] = logging.DEBUG
         return self.msg(*arg, **kw)
 
     def err(self, *arg, **kw):
         kw['logLevel'] = logging.ERROR
-        return self.err(*arg, **kw)
+        return twlog.err(*arg, **kw)
 
     def startLogging(self):
         if settings.logfile:
