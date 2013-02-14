@@ -18,7 +18,6 @@ from globaleaks.transactors.asyncoperations import AsyncOperations
 
 class APSNotification(GLJob):
     @transact
-    @inlineCallbacks
     def tip_notification(self, store):
         plugin_type = u'notification'
         not_notified_tips = store.find(models.ReceiverTip,
@@ -34,11 +33,11 @@ class APSNotification(GLJob):
         plugin = PluginManager.instance_plugin(u'Mail')
         yield plugin.initialize(store, node.notification_settings)
         for rtip in not_notified_tips:
-            d = yield plugin.do_notify(Event(type=u'tip', trigger='diocane'),
-                                       af=node.notification_settings,
-                                       rf=rtip.receiver.notification_fields,
-                                       tip_id=rtip.id,
-                                       notification_date=rtip.notification_date,
+            d = plugin.do_notify(Event(type=u'tip', trigger='diocane'),
+                                 af=node.notification_settings,
+                                 rf=rtip.receiver.notification_fields,
+                                 tip_id=rtip.id,
+                                 notification_date=rtip.notification_date,
             )
             @d.addCallBack
             def success(result):
