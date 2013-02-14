@@ -23,14 +23,6 @@ from globaleaks.handlers.files import SUBMISSION_DIR
 __all__ = ['APSDelivery']
 
 
-def internalfile_is_correct(internalfile):
-    """
-    Every InternalFile need to have a ReceiverFile associated,
-    and if required a dedicated treatemenet (eg, per-receiver
-    encryption) need to be sets here.
-    """
-    pass
-
 @transact
 def file_preprocess(store):
     """
@@ -65,13 +57,27 @@ def receiver_file_align(store, filesdict, processdict):
     This function is called when the single InternalFile has been processed,
     they became aligned respect the Delivery specification of the node.
     """
+
     for internalfile_id in filesdict.iterkeys():
+
         ifile = store.find(InternalFile, InternalFile.id == unicode(internalfile_id)).one()
-        ifile.sha2sum = processdict.get(internalfile_id)
+        ifile.sha2sum = unicode(processdict.get(internalfile_id))
 
         # for each receiver intended to access to this file:
         for receiver_id in ifile.internaltip.receivers:
-            return
+            log.msg("ReceiverFile creation for receiver_id %s, file %s" % (receiver_id, ifile.name) )
+            receiverfile = ReceiverFile()
+            receiverfile.receiver_id = receiver_id
+            receiverfile.downloads = 0
+            receiverfile.internalfile_id = internalfile_id
+
+            # Is the same until end-to-end crypto is not supported
+            receiverfile.file_path = ifile.file_path
+            store.add(receiverfile)
+
+        log.msg("Processed InternalFile %s and update with checksum %s" % (ifile.name, ifile.sha2sum))
+
+        ifile.mark = InternalFile._marker[1] # Ready (TODO review the marker)
 
 
 def create_receivertip(store, receiver_id, internaltip, tier):
@@ -114,6 +120,7 @@ def tip_creation(store):
     promoted = store.find(InternalTip,
                         ( InternalTip.mark == InternalTip._marker[2],
                           InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )
+
     for internaltip in promoted:
         for receiver_id in internaltip.receivers:
             create_receivertip(store, receiver_id, internaltip, 2)

@@ -165,7 +165,7 @@ class BaseHandler(RequestHandler):
             return None
         else:
             try:
-                session = settings.sessions[session_id]
+                session = settings.sessions.get(session_id)
             except KeyError:
                 return None
             return session

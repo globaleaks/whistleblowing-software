@@ -44,12 +44,6 @@ class AuthenticationHandler(BaseHandler):
     """
     session_id = None
 
-    def get_current_user(self, session):
-        """
-        Overrides cyclone's get_current_user method for self.current_user property.
-        """
-        return settings.sessions[self.session_id]
-
     def generate_session(self, role, user_id):
         """
         Args:

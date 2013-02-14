@@ -130,9 +130,11 @@ class SubmissionFailFields(GLException):
     error is raised. The Client has to enforce as possible the Input Format, when this
     Client output validation fail, this error may happen.
     """
-    reason = "Submission do not validate the input fields"
     error_code = 22
     status_code = 412 # Precondition Failed
+
+    def __init__(self, wrong_fields):
+        self.reason = "Submission do not validate the input fields [%s]" % wrong_fields
 
 class InvalidTipAuthToken(GLException):
     """

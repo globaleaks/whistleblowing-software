@@ -39,28 +39,32 @@ def create_whistleblower_tip(store, submission):
     wbtip = WhistleblowerTip(submission)
     wbtip.receipt = unicode(utils.random_string(10, 'a-z,A-Z,0-9'))
     wbtip.access_counter = 0
-##### validate
+##### validate --- what ?
     wbtip.internaltip_id = submission['id']
     store.add(wbtip)
     return wbtip.receipt
 
+
 def import_receivers(store, submission, receivers, context):
+
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
             # XXX convert to reference set
             #submission.receivers.add(receiver)
             submission.receivers.append(receiver.id)
-        return
 
-    # If not, import WB requests
-    for receiver_id in receivers:
-        receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-        # XXX convert to reference set
-        #submission.receivers.add(receiver)
-        if not receiver:
-            raise ReceiverGusNotFound
-        submission.receivers.append(receiver.id)
+    else:
+
+        # import WB requests
+        for receiver_id in receivers:
+            receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+            # XXX convert to reference set
+            #submission.receivers.add(receiver)
+            if not receiver:
+                raise ReceiverGusNotFound
+            submission.receivers.append(receiver.id)
+
 
 def import_files(store, submission, files):
 
@@ -199,6 +203,13 @@ def finalize_submission(store, id):
     """
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
     submission.mark = InternalTip._marker[1]
+
+    # checks that in fact Receivers has been selected or are present.
+    if len(submission.receivers) == 0:
+       raise SubmissionFailFields("Receiver not available: Submission not acceptable")
+
+    print "DEBUG: submission finalized with receivers:", submission.receivers
+
 
 class SubmissionCreate(BaseHandler):
     """
