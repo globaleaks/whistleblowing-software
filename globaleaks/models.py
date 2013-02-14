@@ -151,12 +151,12 @@ class WhistleblowerTip(Model):
 
 class ReceiverFile(Model):
 
-    file_path = RawStr()
+    file_path = Unicode()
     downloads = Int()
 
     last_access = DateTime()
 
-    internal_file_id = Unicode()
+    internalfile_id = Unicode()
     receiver_id = Unicode()
 
 class InternalFile(Model):
@@ -270,7 +270,7 @@ InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.id)
 InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.id)
 InternalTip.context = Reference(InternalTip.context_id, Context.id)
 
-ReceiverFile.internal_file = Reference(ReceiverFile.internal_file_id, InternalFile.id)
+ReceiverFile.internal_file = Reference(ReceiverFile.internalfile_id, InternalFile.id)
 ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
 
 WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
