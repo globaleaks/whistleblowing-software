@@ -1,11 +1,11 @@
 PRAGMA foreign_keys = ON;
 
 CREATE TABLE comment (
-    author VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    id VARCHAR NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
-    message VARCHAR NOT NULL,
+    author VARCHAR ,
+    creation_date VARCHAR ,
+    id VARCHAR ,
+    internaltip_id VARCHAR ,
+    message VARCHAR ,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
@@ -26,14 +26,14 @@ CREATE TABLE context (
 );
 
 CREATE TABLE internalfile (
-    content_type VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    id VARCHAR NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
-    mark VARCHAR NOT NULL,
-    name VARCHAR NOT NULL,
-    sha2sum VARCHAR NOT NULL,
-    size INTEGER NOT NULL,
+    content_type VARCHAR ,
+    creation_date VARCHAR ,
+    id VARCHAR ,
+    internaltip_id VARCHAR ,
+    mark VARCHAR ,
+    name VARCHAR ,
+    sha2sum VARCHAR ,
+    size INTEGER ,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
@@ -90,35 +90,35 @@ CREATE TABLE receiver (
 );
 
 CREATE TABLE receiver_context (
-    context_id VARCHAR NOT NULL,
-    receiver_id VARCHAR NOT NULL,
+    context_id VARCHAR ,
+    receiver_id VARCHAR ,
     PRIMARY KEY (context_id, receiver_id),
     FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
 );
 
 CREATE TABLE receivertip (
-    access_counter INTEGER NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    expressed_pertinence INTEGER NOT NULL,
-    id VARCHAR NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
-    last_access VARCHAR NOT NULL,
-    notification_date VARCHAR NOT NULL,
-    notification_mark VARCHAR NOT NULL,
-    receiver_id VARCHAR NOT NULL,
+    access_counter INTEGER ,
+    creation_date VARCHAR ,
+    expressed_pertinence INTEGER ,
+    id VARCHAR ,
+    internaltip_id VARCHAR ,
+    last_access VARCHAR ,
+    notification_date VARCHAR ,
+    notification_mark VARCHAR ,
+    receiver_id VARCHAR ,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
 );
 
 CREATE TABLE whistleblowertip (
-    access_counter INTEGER NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    id VARCHAR NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
-    last_access VARCHAR NOT NULL,
-    receipt VARCHAR NOT NULL,
+    access_counter INTEGER ,
+    creation_date VARCHAR ,
+    id VARCHAR ,
+    internaltip_id VARCHAR ,
+    last_access VARCHAR ,
+    receipt VARCHAR ,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
