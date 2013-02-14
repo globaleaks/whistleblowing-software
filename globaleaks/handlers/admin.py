@@ -60,7 +60,7 @@ def admin_serialize_receiver(receiver):
         "can_configure_notification": bool(receiver.can_configure_notification),
         "username": unicode(receiver.username),
         "password": unicode(receiver.password),
-        "notification_fields": dict(receiver.notification_fields or {}),
+        "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "contexts": []
     }
 
@@ -236,9 +236,12 @@ def create_receiver(store, request):
     """
     contexts = request.get('contexts')
     del request['contexts']
+    
+    if 'mail_address' not in request['notification_fields']:
+        raise errors.NoEmailSpecified
 
     receiver = Receiver(request)
-    receiver.username = unicode(utils.random_string(4, str))
+    receiver.username = request['notification_fields']['mail_address']
     store.add(receiver)
     
     for context_id in contexts:

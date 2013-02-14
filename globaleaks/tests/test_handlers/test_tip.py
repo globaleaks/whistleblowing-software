@@ -40,7 +40,6 @@ class TestTipInstance(helpers.TestHandler):
         self.assertFailure(d, errors.ForbiddenOperation)
         return d
     
-    @unittest.skip("because not working atm")
     @inlineCallbacks
     def test_delete_receiver_tip(self):
         tip_id = self.dummySubmission['context_gus']

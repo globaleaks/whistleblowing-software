@@ -46,6 +46,7 @@ class ContextGusNotFound(GLException):
     error_code = 12
     status_code = 404 # Not Found
 
+
 class TipGusNotFound(GLException):
     """
     The Tip GUS requested do not exists in the database.
@@ -208,4 +209,8 @@ class InternalServerError(GLException):
     error_code = 31
     status_code = 505
 
+class NoEmailSpecified(GLException):
+    reason = "No email was specified"
+    error_code = 32
+    status_code = 406
 
