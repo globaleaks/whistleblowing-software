@@ -137,4 +137,5 @@ class AuthenticationHandler(BaseHandler):
             except KeyError:
                 raise NotAuthenticated
 
+        self.set_status(200)
         self.finish()

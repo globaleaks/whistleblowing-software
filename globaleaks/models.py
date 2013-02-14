@@ -32,17 +32,25 @@ class Model(Storm):
     def __init__(self, attrs={}):
         self.update(attrs)
 
-    def update(self, attrs={}):
-        for key, value in attrs.iteritems():
-            if isinstance(value, str):
-                value = unicode(value)
-            setattr(self, key, value)
-
     def __repr___(self):
         attrs = ['%s=%s' % (attr, getattr(self, attr))
                  for attr in vars(Model)
                  if isinstance(x, types.MethodType)]
         return '<%s model with values %s>' % (self.__name__, ', '.join(attrs))
+
+    def __setattr__(self, name, value):
+        # harder better faster stronger
+        if isinstance(value, str):
+            value = unicode(value)
+
+        return Storm.__setattr__(self, name, value)
+
+
+    def update(self, attrs={}):
+        for key, value in attrs.iteritems():
+            if isinstance(value, str):
+                value = unicode(value)
+            setattr(self, key, value)
 
     def dict(self, filter=None):
         """
@@ -157,8 +165,7 @@ class ReceiverFile(Model):
     last_access = DateTime()
 
     internal_file_id = Unicode()
-    receiver_tip_id = Unicode()
-
+    receiver_id = Unicode()
 
 class InternalFile(Model):
 
@@ -272,7 +279,7 @@ InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.id)
 InternalTip.context = Reference(InternalTip.context_id, Context.id)
 
 ReceiverFile.internal_file = Reference(ReceiverFile.internal_file_id, InternalFile.id)
-ReceiverFile.receiver_tip = Reference(ReceiverFile.receiver_tip_id, ReceiverTip.id)
+ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
 
 WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
 
@@ -280,9 +287,6 @@ InternalFile.internaltip = Reference(InternalFile.internaltip_id, InternalTip.id
 
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
 ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
-ReceiverTip.receiver_files = ReferenceSet(
-                        ReceiverTip.id,
-                        ReceiverFile.receiver_tip_id)
 
 Receiver.tips = ReferenceSet(
                         Receiver.id,
