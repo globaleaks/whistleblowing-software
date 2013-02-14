@@ -23,8 +23,6 @@ from twisted.internet.threads import deferToThreadPool
 from cyclone.util import ObjectDict as OD
 from storm.zope.zstorm import ZStorm
 from storm.tracer import debug
-from globaleaks.utils.singleton import Singleton
-from globaleaks.utils.singleton import Singleton
 
 
 root_path = os.path.join(os.path.dirname(__file__), '..')
@@ -32,6 +30,8 @@ install_path = os.path.abspath(os.path.join(root_path, '..'))
 glclient_path = os.path.join(install_path, 'GLClient', 'app')
 gldata_path = os.path.join(root_path, '_gldata')
 db_file = 'sqlite:' + os.path.join(gldata_path, 'glbackend.db')
+create_db_file = os.path.join(root_path, 'globaleaks', 'db', 'sqlite.sql')
+
 store_name = 'main_store'
 # threads sizes
 db_thread_pool_size = 1

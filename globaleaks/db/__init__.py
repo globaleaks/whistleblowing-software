@@ -31,18 +31,26 @@ def initialize_node(store, result):
         }
         store.add(models.Node(onlyNode))
 
+def initModels():
+    for model in models.models:
+        model()
+    return succeed(None)
+
 @transact
 def create_tables_transaction(store):
     """
     @return: None, create the right table at the first start, and initialized
     the node.
     """
-    for model in models.models :
-        create_query = tables.generateCreateQuery(model)
-        store.execute(create_query)
+    with open(settings.create_db_file) as f:
+        create_queries = ''.join(f.readlines()).split(';')
+        for create_query in create_queries:
+            print "Running"
+            print create_query+';'
+            store.execute(create_query+';')
+    initModels()
     # new is the only Models function executed without @transact, call .add, but
     # the called has to .commit and .close, operations commonly performed by decorator
-
 
 def createTables(create_node=True):
     """
