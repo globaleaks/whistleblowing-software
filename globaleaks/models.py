@@ -107,8 +107,8 @@ class InternalTip(Model):
     context_id = Unicode()
     context = Reference(context_id, "Context.id")
 
-    whistleblower_tip_id = Unicode()
-    whistleblower_tip = Reference(whistleblower_tip_id, "WhistleblowerTip.id")
+    # whistleblower_tip_id = Unicode()
+    # whistleblower_tip = Reference(whistleblower_tip_id, "WhistleblowerTip.id")
 
     # receivertips = ReferenceSet("InternalTip.id", ReceiverTip.internaltip_id)
     # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
