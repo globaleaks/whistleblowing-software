@@ -52,7 +52,6 @@ CREATE TABLE internaltip (
     mark VARCHAR NOT NULL,
     pertinence_counter INTEGER NOT NULL,
     receivers BLOB NOT NULL,
-    whistleblower_tip_id VARCHAR,
     PRIMARY KEY (id)
 );
 
