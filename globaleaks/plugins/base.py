@@ -1,10 +1,13 @@
 # -*- coding: UTF-8
-# 
+#
 #   plugin/base
 #   ***********
 # The base classes used to define the plugins
 
-__all__ = [ 'Notification', 'Delivery', 'FileProcess' ]
+from collections import namedtuple
+
+Event = namedtuple('Event', ['type', 'trigger'])
+
 
 class GLPlugin:
     """
@@ -59,7 +62,7 @@ class Notification(GLPlugin):
         Exception("Your plugin misses implementation of 'validate_receiver_opt'")
 
     data_list = [ u'tip', u'comment' ]
-    def do_notify(self, settings, data_type, stored_data):
+    def do_notify(self, event, **kw):
         """
         @param settings: a dict containing
             {
@@ -70,7 +73,7 @@ class Notification(GLPlugin):
         @param stored_data: the serialized object
         @return:
         """
-        Exception("Your plugin misses implementation of 'do_notify'")
+        raise NotImplementedError('Your plugin misses implementation of "do_notify"')
 
 
 class Delivery(GLPlugin):

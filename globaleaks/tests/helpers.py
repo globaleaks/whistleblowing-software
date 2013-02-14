@@ -1,3 +1,8 @@
+from storm.twisted.testing import FakeThreadPool
+from globaleaks import settings
+settings.transact.tp = FakeThreadPool()
+settings.scheduler_threadpool = FakeThreadPool()
+
 import os
 import json
 
