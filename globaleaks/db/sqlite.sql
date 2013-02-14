@@ -5,6 +5,7 @@ CREATE TABLE comment (
     creation_date VARCHAR NOT NULL,
     id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
+    type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower', 'system')),
     message VARCHAR NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
@@ -27,12 +28,13 @@ CREATE TABLE context (
 
 CREATE TABLE internalfile (
     content_type VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
+    creation_date VARCHAR,
+    file_path VARCHAR,
     id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
-    mark VARCHAR NOT NULL,
+    mark VARCHAR NOT NULL CHECK (mark IN ('not processed', 'ready', 'blocked', 'stored')),
     name VARCHAR NOT NULL,
-    sha2sum VARCHAR NOT NULL,
+    sha2sum VARCHAR,
     size INTEGER NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
@@ -49,11 +51,9 @@ CREATE TABLE internaltip (
     files BLOB NOT NULL,
     id VARCHAR NOT NULL,
     last_activity VARCHAR,
-    mark VARCHAR NOT NULL,
+    mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first', 'second')),
     pertinence_counter INTEGER NOT NULL,
     receivers BLOB NOT NULL,
---    whistleblower_tip_id VARCHAR,
---    FOREIGN KEY(whistleblower_tip_id) REFERENCES whistleblower(id),
     PRIMARY KEY (id)
 );
 
@@ -106,7 +106,7 @@ CREATE TABLE receivertip (
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
     notification_date VARCHAR,
-    notification_mark VARCHAR NOT NULL,
+    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'notification ignore')),
     receiver_id VARCHAR NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,

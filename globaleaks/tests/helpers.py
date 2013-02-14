@@ -40,7 +40,7 @@ class TestHandler(unittest.TestCase):
     @inlineCallbacks
     def fill_data(self):
         self.dummyReceiver = yield create_receiver(self.dummyReceiver)
-
+        
         self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
         context_dict = yield create_context(self.dummyContext)
 
@@ -49,11 +49,15 @@ class TestHandler(unittest.TestCase):
         self.dummyContext['context_gus'] = context_dict['context_gus']
 
         self.dummySubmission['context_gus'] = context_dict['context_gus']
-        yield create_submission(self.dummySubmission)
+        self.dummySubmission = yield create_submission(self.dummySubmission)
 
         yield update_node(self.dummyNode)
         self.dummyNode['password'] = u'spam'
         self.dummyNode['old_password'] = None
+
+        self.dummySubmission['context_gus'] = context_dict['context_gus']
+        self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
+
 
     @inlineCallbacks
     def setUp(self):
@@ -122,7 +126,6 @@ class TestHandler(unittest.TestCase):
             'name': u'john smith',
             'description': u'the first receiver',
             'tags': [],
-            'languages': [u'en'],
             'notification_fields': {'mail_address': u'maker@ggay.it'},
             'can_delete_submission': True,
             'can_postpone_expiration': True,
@@ -168,7 +171,6 @@ class TestHandler(unittest.TestCase):
             'file_max_download' :1,
             'escalation_threshold': 1,
             'receivers': [],
-            'languages': []
         }
         self.dummySubmission = {
             'context_gus': '',
