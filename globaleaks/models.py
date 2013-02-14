@@ -159,7 +159,6 @@ class ReceiverFile(Model):
     internal_file_id = Unicode()
     receiver_id = Unicode()
 
-
 class InternalFile(Model):
 
     name = Unicode()
@@ -280,9 +279,6 @@ InternalFile.internaltip = Reference(InternalFile.internaltip_id, InternalTip.id
 
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
 ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
-ReceiverTip.receiver_files = ReferenceSet(
-                        ReceiverTip.id,
-                        ReceiverFile.receiver_tip_id)
 
 Receiver.tips = ReferenceSet(
                         Receiver.id,
