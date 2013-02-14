@@ -13,7 +13,7 @@ from globaleaks.rest import requests
 from globaleaks.utils import gltime
 from globaleaks.settings import transact
 from globaleaks.models import now
-from globaleaks.models import WhistleblowerTip, ReceiverTip, InternalFile, ReceiverFile, Folder,\
+from globaleaks.models import WhistleblowerTip, ReceiverTip, InternalFile, ReceiverFile,\
     InternalTip, Receiver, Comment
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
     TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
@@ -100,7 +100,7 @@ def get_folders_receiver(store, tip_id):
 
     return folders_desc
 
-def strong_receiver_validate(username, id):
+def strong_receiver_validate(store, username, id):
     """
     Utility: TODO description
     """
@@ -135,7 +135,7 @@ def get_internaltip_wb(store, receipt):
 @transact
 def get_internaltip_receiver(store, id, username):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
 
     tip_desc = actor_serialize_internal_tip(rtip.internaltip)
     tip_desc['access_counter'] = int(rtip.access_counter)
@@ -149,13 +149,13 @@ def get_internaltip_receiver(store, id, username):
 @transact
 def delete_receiver_tip(store, username, id):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
     store.delete(rtip)
 
 @transact
 def delete_internal_tip(store, username, id):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
     store.delete(rtip.internaltip)
 
 
@@ -168,7 +168,7 @@ def manage_pertinence(store, username, id, vote):
     Assign the Overall Pertinence to the InternalTip
     """
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
 
     # expressed_pertinence has these meanings:
     # 0 = unassigned
@@ -327,9 +327,9 @@ def get_comment_list_wb(receipt, id):
     return get_comment_list(wbtip.internaltip)
 
 @transact
-def get_comment_list_receiver(username, id):
+def get_comment_list_receiver(store, username, id):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
     return get_comment_list(rtip.internaltip)
 
 @transact
@@ -351,7 +351,7 @@ def create_comment_wb(store, receipt, request):
 @transact
 def create_comment_receiver(store, username, id, request):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
 
     request['internaltip_id'] = rtip.internaltip.id
     request['author'] = rtip.receiver.name
@@ -438,7 +438,7 @@ def get_receiver_wb(store, receipt, id):
 @transact
 def get_receiver_receiver(store, username, id):
 
-    rtip = strong_receiver_validate(username, id)
+    rtip = strong_receiver_validate(store, username, id)
     return public_serialize_receiver(rtip.internaltip.id)
 
 
