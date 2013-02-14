@@ -12,13 +12,16 @@ from globaleaks import settings
 
 class Publisher(twlog.LogPublisher):
     def info(self, *arg, **kw):
-        return self.msg(*arg, logLevel=logging.INFO, **kw)
+        kw['logLevel'] = logging.INFO
+        return self.msg(*arg,**kw)
 
     def debug(self, *arg, **kw):
-        return self.msg(*arg, logLevel=logging.DEBUG, **kw)
+        kw['logLevel'] = logging.ERROR
+        return self.msg(*arg, **kw)
 
     def err(self, *arg, **kw):
-        return self.err(*arg, logLevel=logging.ERROR, **kw)
+        kw['logLevel'] = logging.ERROR
+        return self.err(*arg, **kw)
 
     def startLogging(self):
         if settings.logfile:

@@ -48,9 +48,7 @@ def register_files_db(store, files, relationship, internaltip_id):
 
     files_list = []
     for single_file in files:
-
         original_fname = single_file['filename']
-
         file_request = { 'name' : original_fname,
                          'content_type' : single_file.get('content_type'),
                          'mark' : unicode(models.InternalFile._marker[0]),
@@ -74,9 +72,7 @@ def dump_files_fs(files):
     """
     files_saved = {}
     for single_file in files:
-
         saved_name = random.random_string(26, 'A-Z,a-z,0-9')
-
         filelocation = os.path.join(SUBMISSION_DIR, saved_name)
 
         with open(filelocation, 'w+') as fd:

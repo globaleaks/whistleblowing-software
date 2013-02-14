@@ -241,6 +241,7 @@ def create_receiver(store, request):
     del request['contexts']
 
     receiver = Receiver(request)
+    receiver.username = unicode(utils.random_string(4, str))
     store.add(receiver)
 
     for context_id in contexts:

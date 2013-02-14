@@ -11,13 +11,13 @@ CREATE TABLE comment (
 );
 
 CREATE TABLE context (
-    creation_date, VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
-    escalation_threshold INTEGER NOT NULL,
+    escalation_threshold INTEGER,
     fields BLOB NOT NULL,
     file_max_download INTEGER NOT NULL,
     id VARCHAR NOT NULL,
-    last_update VARCHAR NOT NULL,
+    last_update VARCHAR,
     name VARCHAR NOT NULL,
     selectable_receiver INTEGER NOT NULL,
     tip_max_access INTEGER NOT NULL,
@@ -43,23 +43,21 @@ CREATE TABLE internaltip (
     context_id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     download_limit INTEGER NOT NULL,
-    escalation_threshold INTEGER NOT NULL,
+    escalation_threshold INTEGER,
     expiration_date VARCHAR NOT NULL,
     fields BLOB NOT NULL,
     files BLOB NOT NULL,
     id VARCHAR NOT NULL,
-    last_activity VARCHAR NOT NULL,
+    last_activity VARCHAR,
     mark VARCHAR NOT NULL,
     pertinence_counter INTEGER NOT NULL,
     receivers BLOB NOT NULL,
-    whistleblower_tip_id VARCHAR NOT NULL, 
-    FOREIGN KEY(whistleblower_tip_id) REFERENCES whistleblower(id),
+    whistleblower_tip_id VARCHAR,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE node (
     creation_date VARCHAR NOT NULL,
-    creation_time VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
@@ -82,10 +80,10 @@ CREATE TABLE receiver (
     description VARCHAR NOT NULL,
     id VARCHAR NOT NULL,
     last_access VARCHAR NOT NULL,
-    last_update VARCHAR NOT NULL,
+    last_update VARCHAR,
     name VARCHAR NOT NULL,
     notification_fields BLOB NOT NULL,
-    password VARCHAR NOT NULL,
+    password VARCHAR,
     receiver_level INTEGER NOT NULL,
     username VARCHAR NOT NULL,
     PRIMARY KEY (id)

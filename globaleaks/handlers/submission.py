@@ -8,7 +8,8 @@
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 from globaleaks.settings import transact
-from globaleaks.models import WhistleblowerTip, Receiver, Context, InternalTip, InternalFile
+from globaleaks.models import *
+from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
 from globaleaks import utils
@@ -114,6 +115,7 @@ def create_submission(store, request):
     request['context_id'] = context.id
 
     submission = InternalTip(request)
+    submission.creation_date = models.now()
 
     receivers = request.get('receivers')
     del request['receivers']
