@@ -6,7 +6,7 @@ CREATE TABLE comment (
     id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower', 'system')),
-    message VARCHAR NOT NULL,
+    content VARCHAR NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );

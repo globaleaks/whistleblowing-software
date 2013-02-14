@@ -188,7 +188,7 @@ class Comment(Model):
     internaltip_id = Unicode()
 
     author = Unicode()
-    message = Unicode()
+    content = Unicode()
 
     type = Unicode()
     _types = [ u'receiver', u'whistleblower', u'system' ]
