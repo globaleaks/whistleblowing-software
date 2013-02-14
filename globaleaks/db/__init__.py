@@ -27,7 +27,8 @@ def initialize_node(store, result):
             'languages':  [{ "code" : "it" , "name": "Italiano"},
                            { "code" : "en" , "name" : "English" }],
             'notification_settings': {},
-            'password': u'globaleaks'
+            'password': u'globaleaks',
+            'creation_date': models.now(),
         }
         store.add(models.Node(onlyNode))
 
@@ -45,8 +46,6 @@ def create_tables_transaction(store):
     with open(settings.create_db_file) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
-            print "Running"
-            print create_query+';'
             store.execute(create_query+';')
     initModels()
     # new is the only Models function executed without @transact, call .add, but
@@ -67,6 +66,5 @@ def createTables(create_node=True):
     d = create_tables_transaction()
     if create_node:
         d.addCallback(initialize_node)
-    d.addErrback(log.err)
     return d
 

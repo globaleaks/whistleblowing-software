@@ -21,6 +21,7 @@ from storm.twisted.transact import Transactor
 from storm import exceptions
 from twisted.internet.threads import deferToThreadPool
 from cyclone.util import ObjectDict as OD
+from cyclone.web import HTTPError
 from storm.zope.zstorm import ZStorm
 from storm.tracer import debug
 
@@ -89,6 +90,9 @@ class transact(object):
             log.msg(e)
             transaction.abort()
             result = None
+        except HTTPError as e:
+            transaction.abort()
+            raise e
         except Exception:
             transaction.abort()
             type, value, tb = sys.exc_info()

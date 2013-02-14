@@ -210,7 +210,6 @@ class Node(Model):
     hidden_service = Unicode()
     email = Unicode()
     languages = Pickle()
-    creation_time = DateTime()
     notification_settings = Pickle()
     password = Unicode()
 
