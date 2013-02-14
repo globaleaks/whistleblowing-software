@@ -14,6 +14,11 @@ from globaleaks.plugins.base import Notification
 
 class MailNotification(Notification):
 
+    _title = {
+            'comment':  'New comment from GLBNode',
+            'tip': 'New tip from GLBNode',
+    }
+
     def __init__(self):
         self.plugin_name = u'Mail'
         self.plugin_type = u'notification'
@@ -26,7 +31,7 @@ class MailNotification(Notification):
 
     def validate_admin_opt(self, pushed_af):
         fields = ['server', 'port', 'username', 'password']
-        if all(pushed_af[field] for field in fields):
+        if all(field in pushed_af for field in fields):
             return True
         else:
             log.info('invalid mail settings for admin')
@@ -36,25 +41,15 @@ class MailNotification(Notification):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
         return True
 
-    @transact
     def initialize(self, store, admin_fields):
         node = store.find(models.Node).one()
         self.body = node.notification_settings['email_template']
-        return True
 
     def _append_email(self):
         """
         TODO use http://docs.python.org/2/library/email
         """
         pass
-
-    def _create_title(self, data_type, data):
-        if data_type == u'comment':
-            return "New comment from GLBNode"
-        if data_type == u'tip':
-            return "New tip from GLBNode"
-
-        raise Exception("Unsupported notification_struct usage")
 
     def _create_email(self, data_type, data, source, dest, subject):
         """
@@ -80,19 +75,20 @@ class MailNotification(Notification):
     def digest_check(self, settings, stored_data, new_data):
         pass
 
-    def do_notify(self, event, af, rf):
+    def do_notify(self, event, af, rf, tip_id, notification_date):
         # validation
-        self.validate_admin_opt(af)
+        if not self.validate_admin_opt(af):
+            return False
 
         # email fields
-        title = self._create_title(data_type, data)
-        body = self.body % (data['notification_date'], data['tip_gus'])
+        title = self._title[event.type]
+        body = self.body
         host = af['server']
-        port = af['port']
+        port = int(af['port'])
         u = af['username']
         p = af['password']
-        tls = af['ssl']
-        to_addrs = [rf['email_address']]
+        tls = af.get('ssl')
+        to_addrs = [rf['mail_address']]
         if tls:
             contextFactory = ClientContextFactory()
             contextFactory.method = SSLv3_METHOD
@@ -114,7 +110,6 @@ class MailNotification(Notification):
                 pass
                 # retry later?
             # could check the smtp code
-            return d.callback(None)
 
         result.addBoth(drugs)
         factory = ESMTPSenderFactory(u, p,
@@ -128,4 +123,4 @@ class MailNotification(Notification):
 
         ep = TCP4ClientEndpoint(reactor, host, port)
         ep.connect(factory)
-        return d
+        return result

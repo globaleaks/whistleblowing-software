@@ -50,7 +50,15 @@ class AuthenticationHandler(BaseHandler):
         """
         return settings.sessions[self.session_id]
 
-    def generate_session(self, role):
+    def generate_session(self, role, user_id):
+        """
+        Args:
+            role: can be either 'admin', 'wb' or 'receiver'
+
+            user_id: will be in the case of the receiver the receiver.id in the
+                case of an admin it will be set to 'admin', in the case of the
+                'wb' it will be the WhistleblowerTip id.
+        """
         self.session_id = random_string(42, 'a-z,A-Z,0-9')
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
@@ -58,6 +66,7 @@ class AuthenticationHandler(BaseHandler):
                timestamp=time.time(),
                id=self.session_id,
                role=role,
+               user_id=user_id
         )
         settings.sessions[self.session_id] = new_session
         return self.session_id
@@ -73,23 +82,26 @@ class AuthenticationHandler(BaseHandler):
         if not wb:
             raise InvalidAuthRequest
 
-        return unicode(wb.receipt)
+        return unicode(wb.id)
 
     @transact
     def login_receiver(self, store, username, password):
         try:
-            fstreceiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
+            receiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
         except NotOneError:
             raise InvalidAuthRequest
-        if not fstreceiver:
+        if not receiver:
             raise InvalidAuthRequest
 
-        return unicode(fstreceiver.receiver_gus)
+        return unicode(receiver.id)
 
     @transact
     def login_admin(self, store, password):
         node = store.find(Node).one()
-        return node.password == password
+        if node.password == password:
+            return 'admin'
+        else:
+            return False
 
     @inlineCallbacks
     def post(self):
@@ -107,19 +119,19 @@ class AuthenticationHandler(BaseHandler):
 
         if role == 'admin':
             # username is ignored
-            auth = yield self.login_admin(password)
+            user_id = yield self.login_admin(password)
         elif role == 'wb':
             # username is ignored
-            auth = yield self.login_wb(password)
+            user_id = yield self.login_wb(password)
         elif role == 'receiver':
-            auth = yield self.login_receiver(username, password)
+            user_id = yield self.login_receiver(username, password)
         else:
             raise InvalidInputFormat(role)
 
-        if not auth:
+        if not user_id:
             raise InvalidAuthRequest
 
-        self.write({'session_id': self.generate_session(role)})
+        self.write({'session_id': self.generate_session(role, user_id)})
 
     def delete(self):
         """
