@@ -128,7 +128,7 @@ class AuthenticationHandler(BaseHandler):
         else:
             raise InvalidInputFormat(role)
 
-        if not auth:
+        if not user_id:
             raise InvalidAuthRequest
 
         self.write({'session_id': self.generate_session(role, user_id)})
