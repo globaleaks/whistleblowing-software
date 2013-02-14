@@ -14,8 +14,8 @@ from globaleaks import utils
 from globaleaks.settings import transact
 from globaleaks.models import now
 from globaleaks.models import *
-from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
-    TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
+from globaleaks.rest import errors
+from globaleaks.rest.errors import  *
 
 
 def actor_serialize_internal_tip(internaltip):
@@ -177,17 +177,7 @@ def manage_pertinence(store, username, id, vote):
     rtip.internaltip.pertinence_counter = vote_sum
 
 
-
-class TipBaseHandler(BaseHandler):
-
-    def is_whistleblower(self):
-
-        if self.current_user['role'] == 'wb':
-            return True
-        else:
-            return False
-
-class TipInstance(TipBaseHandler):
+class TipInstance(BaseHandler):
     """
     T1
     This interface expose the Tip.
@@ -214,7 +204,7 @@ class TipInstance(TipBaseHandler):
         tip_id can be: a tip_gus for a receiver, or a WhistleBlower receipt, understand
         the format, help in addressing which kind of Tip need to be handled.
         """
-        if self.is_whistleblower():
+        if self.is_whistleblower:
             (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['user_id'])
             answer['folder'] = yield get_folders_wb(self.current_user['user_id'])
         else:
@@ -241,7 +231,7 @@ class TipInstance(TipBaseHandler):
         """
 
         # TODO move this operation within the auth decorator
-        if self.is_whistleblower():
+        if self.is_whistleblower:
             raise ForbiddenOperation
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
@@ -266,7 +256,7 @@ class TipInstance(TipBaseHandler):
         """
 
         # TODO move this operation within the auth decorator
-        if self.is_whistleblower():
+        if self.is_whistleblower:
             raise ForbiddenOperation
 
         yield delete_receiver_tip(self.current_user['user_id'], tip_id)
@@ -347,7 +337,7 @@ def create_comment_receiver(store, username, id, request):
     return actor_serialize_comment(comment)
 
 
-class TipCommentCollection(TipBaseHandler):
+class TipCommentCollection(BaseHandler):
     """
     T2
     Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
@@ -364,7 +354,7 @@ class TipCommentCollection(TipBaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        if self.is_whistleblower():
+        if self.is_whistleblower:
             comment_list = yield get_comment_list_wb(self.current_user['password'], tip_id)
         else:
             comment_list = yield get_comment_list_receiver(self.current_user['username'], tip_id)
@@ -382,7 +372,7 @@ class TipCommentCollection(TipBaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
-        if self.is_whistleblower():
+        if self.is_whistleblower:
             answer = yield create_comment_wb(self.current_user['password'], request)
         else:
             answer = yield create_comment_receiver(self.current_user['username'], tip_id, request)
@@ -427,7 +417,7 @@ def get_receiver_receiver(store, username, id):
     return public_serialize_receiver(rtip.internaltip.id)
 
 
-class TipReceiversCollection(TipBaseHandler):
+class TipReceiversCollection(BaseHandler):
     """
     T3
     This interface return the list of the Receiver active in a Tip.
@@ -435,17 +425,19 @@ class TipReceiversCollection(TipBaseHandler):
     """
 
     @inlineCallbacks
-    def get(self, tip_id, *uriargs):
+    def get(self, tip_id):
         """
         Parameters: None
         Response: actorsReceiverList
         Errors: InvalidTipAuthToken
         """
 
-        if self.is_whistleblower():
+        if self.is_whistleblower:
             answer = yield get_receiver_wb(self.current_user['user_id'], tip_id)
-        else:
+        elif self.is_receiver:
             answer = yield get_receiver_receiver(self.current_user['username'], tip_id)
+        else:
+            raise errors.NotAuthenticated
 
         self.set_status(200)
         self.finish(answer)
