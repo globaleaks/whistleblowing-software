@@ -239,7 +239,6 @@ class SubmissionInstance(BaseHandler):
     Relay in the client-server update and exchange of the submissionStatus message.
     """
 
-    @asynchronous
     @inlineCallbacks
     def get(self, submission_gus, *uriargs):
         """
@@ -254,7 +253,6 @@ class SubmissionInstance(BaseHandler):
         self.set_status(200)
         self.finish(submission)
 
-    @asynchronous
     @inlineCallbacks
     def put(self, submission_gus, *uriargs):
         """
@@ -281,7 +279,6 @@ class SubmissionInstance(BaseHandler):
         self.finish(status)
 
 
-    @asynchronous
     @inlineCallbacks
     def delete(self, submission_gus, *uriargs):
         """

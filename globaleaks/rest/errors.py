@@ -199,3 +199,13 @@ class NotAuthenticated(GLException):
     reason = "Not Authenticated"
     error_code = 30
     status_code = 412 # Precondition Failed
+
+class InternalServerError(GLException):
+    """
+    Error in interaction with the OS
+    """
+    reason = "Internal Server Error"
+    error_code = 31
+    status_code = 505
+
+
