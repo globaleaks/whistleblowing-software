@@ -7,6 +7,7 @@ from twisted.internet import reactor
 from twisted.internet.endpoints import TCP4ClientEndpoint
 
 from globaleaks.utils import log
+from globaleaks import models
 from globaleaks.settings import transact
 from globaleaks.plugins.base import Notification
 
@@ -24,10 +25,11 @@ class MailNotification(Notification):
         self.receiver_fields = {'mail_address' : 'text'}
 
     def validate_admin_opt(self, pushed_af):
-        if self._get_SMTP(pushed_af['server'], pushed_af['port'], pushed_af['ssl'],
-                pushed_af['username'], pushed_af['password']):
+        fields = ['server', 'port', 'username', 'password']
+        if all(pushed_af[field] for field in fields):
             return True
         else:
+            log.info('invalid mail settings for admin')
             return False
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
@@ -36,9 +38,9 @@ class MailNotification(Notification):
 
     @transact
     def initialize(self, store, admin_fields):
-        node = store.find(Node).one()
-        self.body = node.notificationemail_template
-        return true
+        node = store.find(models.Node).one()
+        self.body = node.notification_settings['email_template']
+        return True
 
     def _append_email(self):
         """
@@ -67,9 +69,7 @@ class MailNotification(Notification):
             body += "and, by the way, the content is:\n%s\n" % data['content']
 
         if data_type == u'tip':
-            body = node.fuffa%  % data['notification_date']% data['tip_gus']
-
-
+            log.err('porco dio')
 
         return string.join(("From: GLBackend postino <%s>" % source,
                             "To: Estimeed Receiver <%s>" % dest,
@@ -80,31 +80,36 @@ class MailNotification(Notification):
     def digest_check(self, settings, stored_data, new_data):
         pass
 
-    def do_notify(self, settings, data_type, data):
-        af = settings['admin_settings']
-        rf = settings['receiver_settings']
+    def do_notify(self, event, af, rf):
+        # validation
+        self.validate_admin_opt(af)
 
+        # email fields
         title = self._create_title(data_type, data)
-        body = self._create_email(data_type, data, af['username'], rf['mail_address'], title)
-
+        body = self.body % (data['notification_date'], data['tip_gus'])
         host = af['server']
         port = af['port']
         u = af['username']
         p = af['password']
         tls = af['ssl']
+        to_addrs = [rf['email_address']]
         if tls:
             contextFactory = ClientContextFactory()
             contextFactory.method = SSLv3_METHOD
         else:
             contextFactory = None
-        message = mail.Message(from_addr=af['username'],
-                               to_addrs=[rf['mail_address']],
+        message = mail.Message(from_addr=u,
+                               to_addrs=to_addrs,
                                subject=title,
                                message=body,
         )
+
+        # send email
+        log.debug('about to send an email..')
         result = Deferred()
         def drugs(result):
             success, smtpcode = result
+            log.debug('mail sent to ')
             if success != 1:
                 pass
                 # retry later?
