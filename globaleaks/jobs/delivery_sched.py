@@ -46,10 +46,14 @@ def file_preprocess(store):
     return filesdict
 
 def file_process(filesdict):
+
     processdict = {}
+
     for file_id, file_path in filesdict.iteritems():
+
         log.msg("Approaching checksum of file %s with path %s" % (file_id, file_path))
         file_location = os.path.join(SUBMISSION_DIR, file_path)
+
         checksum = get_file_checksum(file_location)
         processdict.update({file_id : checksum})
 

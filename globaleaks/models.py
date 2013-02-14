@@ -157,8 +157,8 @@ class ReceiverFile(Model):
     last_access = DateTime()
 
     internal_file_id = Unicode()
+    receiver_id = Unicode()
     receiver_tip_id = Unicode()
-
 
 class InternalFile(Model):
 
@@ -272,7 +272,7 @@ InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.id)
 InternalTip.context = Reference(InternalTip.context_id, Context.id)
 
 ReceiverFile.internal_file = Reference(ReceiverFile.internal_file_id, InternalFile.id)
-ReceiverFile.receiver_tip = Reference(ReceiverFile.receiver_tip_id, ReceiverTip.id)
+ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
 
 WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
 
