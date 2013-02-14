@@ -44,6 +44,7 @@ CREATE TABLE receiverfile (
     file_path VARCHAR,
     downloads INTEGER NOT NULL,
     creation_date VARCHAR NOT NULL,
+    last_access VARCHAR,
     id VARCHAR NOT NULL,
     internalfile_id VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,

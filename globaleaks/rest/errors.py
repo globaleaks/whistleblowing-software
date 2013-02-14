@@ -216,3 +216,8 @@ class NoEmailSpecified(GLException):
     error_code = 32
     status_code = 406
 
+class DownloadLimitExceeded(GLException):
+    reason = "You've reached the maximum amount of download for this file"
+    error_code = 33
+    status_code = 503 # Servie Unavailable
+
