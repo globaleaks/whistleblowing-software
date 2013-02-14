@@ -190,8 +190,11 @@ def delete_submission(store, id):
 
 @transact
 def finalize_submission(store, id):
+    """
+    Shift marker status since 0 (submission) to 1 (finalized)
+    """
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
-    submission.mark = u'finalize'
+    submission.mark = InternalTip._marker[1]
 
 class SubmissionCreate(BaseHandler):
     """

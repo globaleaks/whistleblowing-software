@@ -51,7 +51,6 @@ class FileOperations(MacroOperation):
                     SUBMISSION_DIR)
             os.mkdir(SUBMISSION_DIR)
 
-
         # this happen only at the first execution
         if not os.path.isdir(submission_dir):
             os.mkdir(submission_dir)

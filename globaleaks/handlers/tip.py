@@ -56,19 +56,16 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     return rfile_dict
 
 
-def actor_serialize_folder(folder):
+def wb_serialize_file(internalfile):
 
-    folder_dict = {
-        'description' : unicode(folder.description),
-        'files' : []
-        # TODO creation date
+    wb_file_desc = {
+        'name' : unicode(internalfile.name),
+        'sha2sum' : unicode(internalfile.sha2sum),
+        'content_type' : unicode(internalfile.content_type),
+        'size': int(internalfile.size),
     }
+    return wb_file_desc
 
-    for internalfile in folder.files:
-        folder_dict['files'].append(unicode(internalfile.name))
-        # ??? type/date are useful for the WB ?
-
-    return folder_dict
 
 @transact
 def get_folders_wb(store, receipt):
@@ -76,8 +73,8 @@ def get_folders_wb(store, receipt):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
 
     folders_desc = []
-    for folder in wbtip.internaltip.folders:
-        folders_desc.append(actor_serialize_folder(folder))
+    for internalfile in wbtip.internaltip.internalfiles:
+        folders_desc.append(wb_serialize_file(internalfile))
 
     return folders_desc
 
@@ -86,19 +83,12 @@ def get_folders_receiver(store, tip_id):
 
     rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(id)).one()
 
-    folders_desc = []
-    for folder in rtip.internaltip.folders:
+    files_list = []
+    for receiverfile in rtip.receiver_files:
+        internalfile = receiverfile.internal_file
+        files_list.append(receiver_serialize_file(internalfile, receiverfile, tip_id))
 
-        single_folder = actor_serialize_folder(folder)
-        single_folder['files'] = []
-
-        for receiverfile in rtip.receiver_files:
-            internalfile = receiverfile.internal_file
-            single_folder['files'].append(receiver_serialize_file(internalfile, receiverfile, tip_id))
-
-        folders_desc.append(single_folder)
-
-    return folders_desc
+    return files_list
 
 def strong_receiver_validate(store, username, id):
     """
