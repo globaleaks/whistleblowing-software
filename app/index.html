@@ -63,6 +63,13 @@
 
         </div>
 
+        <div class="toolTip" ng-controller="toolTipCtrl">
+          <div class="logout alert" ng-hide="!session_id">
+            <label>Currently logged in</label>
+            <button class="btn btn-danger" ng-click="logout()">logout</button>
+          </div>
+        </div>
+
         <!-- In here is the main GLClient application content -->
         <div class="page-content" ng-view></div>
 
@@ -128,6 +135,7 @@
         <script src="scripts/controllers/formbuilder.js"></script>
 
         <script src="scripts/controllers/login.js"></script>
+        <script src="scripts/controllers/tooltip.js"></script>
 
         <!-- this is to be removed in production -->
         <!-- <script src="scripts/dev.js"></script> -->

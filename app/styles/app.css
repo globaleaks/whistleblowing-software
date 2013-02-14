@@ -312,6 +312,14 @@ background-color: whiteSmoke;
   background-color: #f9f9f9;
 }
 
+.toolTip {
+  width: 200px;
+  position: fixed;
+  z-index: 99999;
+  top: 20px;
+  right: 20px;
+}
+
 /*** Debug header ***/
 
 

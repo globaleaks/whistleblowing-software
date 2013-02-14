@@ -4,19 +4,27 @@ angular.module('resourceServices.authentication', [])
       function Session(){
         var self = this;
 
-        self.id = null;
-
         self.login = function(username, password, role) {
           return $http.post('/login', {'username': username,
                                 'password': password,
                                 'role': role})
             .success(function(response){
               self.id = response.session_id;
+              self.username = username;
               sessionStorage['session_id'] = response.session_id;
+              $rootScope.session_id = self.id;
               if (role != 'wb') {
                 $location.path($routeParams['src']);
               }
           });
+        };
+
+        self.logout = function() {
+            sessionStorage.removeItem('session_id');
+            return $http.delete('/login')
+              .success(function(response){
+                self.id = null;
+            });
         };
       };
       return new Session;
