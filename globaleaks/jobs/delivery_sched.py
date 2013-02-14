@@ -46,7 +46,6 @@ def file_preprocess(store):
     return filesdict
 
 def file_process(filesdict):
-
     processdict = {}
 
     for file_id, file_path in filesdict.iteritems():
