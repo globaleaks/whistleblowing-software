@@ -165,8 +165,15 @@ class BaseHandler(RequestHandler):
             return None
         else:
             try:
-                session = settings.sessions[session_id]
+                session = settings.sessions.get(session_id)
             except KeyError:
                 return None
             return session
 
+    @property
+    def is_whistleblower(self):
+        return self.current_user and self.current_user['role'] == 'wb'
+
+    @property
+    def is_receiver(self):
+        return self.current_user and self.current_user['role'] == 'receiver'
