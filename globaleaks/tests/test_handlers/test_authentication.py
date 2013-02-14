@@ -1,17 +1,33 @@
+import time
+from cyclone.util import ObjectDict as OD
+
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
-
+from globaleaks import settings
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
 
 class TestAuthentication(helpers.TestHandler):
     _handler = authentication.AuthenticationHandler
 
+    def login(self, role='admin', user_id=None):
+        if not user_id:
+            if role == 'admin':
+                user_id = 'admin';
+            elif role == 'wb':
+                user_id = self.dummySubmission['submission_gus']
+            elif role == 'receiver':
+                user_id = self.dummyReceiver['receiver_gus']
+        session = OD(timestamp=time.time(),id='spam',
+                role=role, user_id=user_id)
+        settings.sessions[session.id] = session
+        return session.id
+
     @inlineCallbacks
     def test_successful_admin_login(self):
         handler = self.request({
            'username': 'admin',
-           'password': 'spam',
+           'password': 'globaleaks',
            'role': 'admin'
         })
         success = yield handler.post()
@@ -20,8 +36,8 @@ class TestAuthentication(helpers.TestHandler):
     @inlineCallbacks
     def test_successful_receiver_login(self):
         handler = self.request({
-           'username': helpers.dummyReceiver['username'],
-           'password': helpers.dummyReceiver['password'],
+           'username': self.dummyReceiver['username'],
+           'password': self.dummyReceiver['password'],
            'role': 'receiver'
         })
         success = yield handler.post()
@@ -29,13 +45,38 @@ class TestAuthentication(helpers.TestHandler):
 
     @inlineCallbacks
     def test_successful_whistleblower_login(self):
-        req = {'username': '',
-           'password': self.dummyWhistleblowerTip['receipt'],
+        handler = self.request({
+           'username': '',
+           'password': self.dummyWBTip,
            'role': 'wb'
-        }
-        handler = self.request(req)
+        })
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
+
+    @inlineCallbacks
+    def test_successful_admin_logout(self):
+        handler = self.request()
+        handler.request.headers['X-Session'] = self.login('admin')
+
+        success = yield handler.delete()
+        self.assertTrue(handler.current_user is None)
+
+    @inlineCallbacks
+    def test_successful_receiver_logout(self):
+        handler = self.request()
+        handler.request.headers['X-Session'] = self.login('receiver')
+
+        success = yield handler.delete()
+        self.assertTrue(handler.current_user is None)
+
+    @inlineCallbacks
+    def test_successful_whistleblower_logout(self):
+        handler = self.request()
+        handler.request.headers['X-Session'] = self.login('wb')
+
+        success = yield handler.delete()
+        self.assertTrue(handler.current_user is None)
+
 
     def test_invalid_admin_login_wrong_password(self):
         handler = self.request({
@@ -49,9 +90,9 @@ class TestAuthentication(helpers.TestHandler):
 
     def test_invalid_receiver_login_wrong_password(self):
         handler = self.request({
-           'username': 'some_receiver_name',
-           'password': 'YYYYYYYY',
-           'role': 'admin'
+           'username': 'receiver',
+           'password': 'INVALIDPASSWORD',
+           'role': 'receiver'
         })
         d = handler.post()
         self.assertFailure(d, errors.InvalidAuthRequest)
@@ -60,7 +101,7 @@ class TestAuthentication(helpers.TestHandler):
     def test_invalid_whistleblower_login_wrong_receipt(self):
         handler = self.request({
            'username': '',
-           'password': 'YYYYYYYY',
+           'password': 'INVALIDPASSWORD',
            'role': 'wb'
         })
         d = handler.post()
