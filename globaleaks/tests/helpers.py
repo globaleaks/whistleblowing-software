@@ -157,11 +157,12 @@ class TestHandler(TestGL):
         self.setUp_dummy()
         self.responses = []
         @classmethod
-        def mock_write(cls, response):
+        def mock_write(cls, response=None):
             # !!!
             # Here we are making the assumption that every time write() get's
             # called it contains *all* of the response message.
-            self.responses.append(response)
+            if response:
+                self.responses.append(response)
 
         self._handler.write = mock_write
         # we make the assumption that we will always use call finish on write.
