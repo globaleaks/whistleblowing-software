@@ -63,8 +63,6 @@ class Context(Model):
     description = Unicode()
     fields = Pickle()
 
-    languages = Pickle()
-
     selectable_receiver = Bool()
     escalation_threshold = Int()
 
@@ -174,11 +172,10 @@ class ReceiverFile(Model):
 
 
 class InternalFile(Model):
-    """
-    The file are *stored* here, along with their properties
-    """
+
     name = Unicode()
     sha2sum = Unicode()
+    file_path = Unicode()
 
     content_type = Unicode()
     mark = Unicode()
@@ -253,7 +250,6 @@ class Receiver(Model):
     last_update = DateTime()
     last_access = DateTime(default_factory=now)
 
-    languages = Pickle()
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
     #                         "ReceiverContext.receiver_id",

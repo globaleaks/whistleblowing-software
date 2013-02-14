@@ -16,6 +16,7 @@ class GLPluginManager(object):
         'methods' : [ 'do_notify', 'digest_check' ]
     }
 
+    """
     delivery_requirement = {
         'type' : u'delivery',
         'methods' : [ 'do_delivery', 'preparation_required' ]
@@ -25,6 +26,7 @@ class GLPluginManager(object):
         'type' : u'fileprocess',
         'methods' : [ 'do_fileprocess' ]
     }
+    """
 
     def is_valid_plugin(self, instanced_plugin, requirements):
 
@@ -48,11 +50,8 @@ class GLPluginManager(object):
         """
 
 
-        # from globaleaks.plugins.notification.irc_plugin import IRCNotification
         from globaleaks.plugins.notification.mail_plugin import MailNotification
-        from globaleaks.plugins.notification.file_plugin import FileNotification
         email_ti = MailNotification()
-        file_ti = FileNotification()
 
         self.notification_list = [
                 { 'plugin_name' : unicode(email_ti.plugin_name),
@@ -61,73 +60,9 @@ class GLPluginManager(object):
                   'receiver_fields' : dict(email_ti.receiver_fields),
                   'plugin_type' : u'notification',
                   'code' : MailNotification
-                },
-                { 'plugin_name' : unicode(file_ti.plugin_name),
-                  'plugin_description' : unicode(file_ti.plugin_description),
-                  'admin_fields' : dict(file_ti.admin_fields),
-                  'receiver_fields' : dict(file_ti.receiver_fields),
-                  'plugin_type' : u'notification',
-                  'code' : FileNotification
                 }
         ]
         if not self.is_valid_plugin(email_ti, self.notification_requirement ):
-            raise InvalidPluginFormat
-
-        if not self.is_valid_plugin(file_ti, self.notification_requirement ):
-            raise InvalidPluginFormat
-
-
-        from globaleaks.plugins.delivery.scp import SCPDelivery
-        from globaleaks.plugins.delivery.local import LocalDelivery
-        scp_ti = SCPDelivery()
-        local_ti = LocalDelivery()
-
-        self.delivery_list = [
-                { 'plugin_name' : unicode(scp_ti.plugin_name),
-                  'plugin_description' : unicode(scp_ti.plugin_description),
-                  'admin_fields' : dict(scp_ti.admin_fields),
-                  'receiver_fields' : dict(scp_ti.receiver_fields),
-                  'plugin_type' : u'delivery',
-                  'code' : SCPDelivery
-                },
-                { 'plugin_name' : unicode(local_ti.plugin_name),
-                  'plugin_description' : unicode(local_ti.plugin_description),
-                  'admin_fields' : dict(local_ti.admin_fields),
-                  'receiver_fields' : dict(local_ti.receiver_fields),
-                  'plugin_type' : u'delivery',
-                  'code' : LocalDelivery
-                }
-        ]
-        if not self.is_valid_plugin(scp_ti, self.delivery_requirement ):
-            raise InvalidPluginFormat
-
-        if not self.is_valid_plugin(local_ti, self.delivery_requirement):
-            raise InvalidPluginFormat
-
-
-        from globaleaks.plugins.fileprocess.type_validation import TypeValidation
-        from globaleaks.plugins.fileprocess.virustotal import Virustotal
-        content_ti = TypeValidation()
-        virust_ti = Virustotal()
-
-        self.fileprocess_list = [
-                { 'plugin_name' : unicode(content_ti.plugin_name),
-                  'plugin_description' : unicode(content_ti.plugin_description),
-                  'admin_fields' : dict(content_ti.admin_fields),
-                  'plugin_type' : u'fileprocess',
-                  'code' : TypeValidation
-                },
-                { 'plugin_name' : unicode(virust_ti.plugin_name),
-                  'plugin_description' : unicode(virust_ti.plugin_description),
-                  'admin_fields' : dict(virust_ti.admin_fields),
-                  'plugin_type' : u'fileprocess',
-                  'code' : Virustotal
-                }
-        ]
-        if not self.is_valid_plugin(content_ti, self.fileprocess_requirement):
-            raise InvalidPluginFormat
-
-        if not self.is_valid_plugin(virust_ti, self.fileprocess_requirement):
             raise InvalidPluginFormat
 
 
