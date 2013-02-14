@@ -76,7 +76,7 @@ class InternalTip(Model):
     This is the internal representation of a Tip that has been submitted to the
     GlobaLeaks node.
 
-    It has a not associated map for keep track of Receivers, Tips, Folders,
+    It has a not associated map for keep track of Receivers, Tips,
     Comments and WhistleblowerTip.
     All of those element has a Storm Reference with the InternalTip.id,
     never vice-versa
@@ -94,7 +94,7 @@ class InternalTip(Model):
     download_limit = Int()
 
     mark = Unicode()
-    
+
     # XXX convert to reference set
     receivers = Pickle()
 
@@ -108,7 +108,6 @@ class InternalTip(Model):
 
     # receivertips = ReferenceSet("InternalTip.id", ReceiverTip.internaltip_id)
     # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
-    # folders = ReferenceSet("InternalTip.id", "Folder.internaltip_id")
 
     _marker = [ u'tip', u'finalize', u'first', u'second' ]
 
@@ -166,13 +165,6 @@ class ReceiverFile(Model):
     receiver_tip_id = Unicode()
     receiver_tip = Reference(receiver_tip_id, "ReceiverTip.id")
 
-class Folder(Model):
-
-    internaltip_id = Unicode()
-    internaltip = Reference(internaltip_id, "InternalTip.id")
-
-    description = Unicode()
-    # files = ReferenceSet("Folder.id", "InternalFile.folder_id")
 
 class InternalFile(Model):
     """
@@ -185,8 +177,6 @@ class InternalFile(Model):
     mark = Unicode()
     size = Int()
 
-    folder_id = Unicode()
-    folder = Reference(folder_id, "Folder.id")
 
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
 
@@ -267,15 +257,21 @@ class ReceiverContext(object):
     receiver_id = Unicode()
 
 
-#Context.receivers = ReferenceSet(Context.id, ReceiverContext.context_id)
+# many to many context-receiver
 Context.receivers = ReferenceSet(
                                  Context.id,
                                  ReceiverContext.receiver_id,
                                  ReceiverContext.context_id,
                                  Receiver.id)
 
+Receiver.contexts = ReferenceSet(
+                        Receiver.id,
+                        ReceiverContext.context_id,
+                        ReceiverContext.receiver_id,
+                        Context.id)
+
+
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
-InternalTip.folders = ReferenceSet(InternalTip.id, Folder.internaltip_id)
 InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.id)
 
 ReceiverTip.receiver_files = ReferenceSet(
@@ -286,14 +282,7 @@ Receiver.tips = ReferenceSet(
                         Receiver.id,
                         ReceiverTip.receiver_id)
 
-Receiver.contexts = ReferenceSet(
-                        Receiver.id,
-                        ReceiverContext.context_id,
-                        ReceiverContext.receiver_id,
-                        Context.id)
-
-Folder.files = ReferenceSet(Folder.id, InternalFile.folder_id)
 
 models = [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
-          Receiver, ReceiverContext, InternalFile, Folder]
+          Receiver, ReceiverContext, InternalFile]
 
