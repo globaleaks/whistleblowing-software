@@ -38,6 +38,12 @@ class Model(Storm):
                 value = unicode(value)
             setattr(self, key, value)
 
+    def __repr___(self):
+        attrs = ['%s=%s' % (attr, getattr(self, attr))
+                 for attr in vars(Model)
+                 if isinstance(x, types.MethodType)]
+        return '<%s model with values %s>' % (self.__name__, ', '.join(attrs))
+
     def dict(self, filter=None):
         """
         return a dictionary serialization of the current model.
@@ -108,8 +114,9 @@ class InternalTip(Model):
 
     # receivertips = ReferenceSet("InternalTip.id", ReceiverTip.internaltip_id)
     # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
+    # internalfiles = ReferenceSet("InternalTip.id", "InternalFiles.id")
 
-    _marker = [ u'tip', u'finalize', u'first', u'second' ]
+    _marker = [ u'submission', u'finalize', u'first', u'second' ]
 
 
 class ReceiverTip(Model):
@@ -177,6 +184,8 @@ class InternalFile(Model):
     mark = Unicode()
     size = Int()
 
+    internaltip_id = Unicode()
+    internaltip = Reference(internaltip_id, "InternalTip.id")
 
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
 
@@ -273,6 +282,7 @@ Receiver.contexts = ReferenceSet(
 
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.id)
+InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.id)
 
 ReceiverTip.receiver_files = ReferenceSet(
                         ReceiverTip.id,

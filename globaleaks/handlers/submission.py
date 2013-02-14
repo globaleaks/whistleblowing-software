@@ -110,7 +110,7 @@ def create_submission(store, request):
     request['download_limit'] = context.file_max_download
     request['expiration_date'] = gltime.utcFutureDate(hours=(context.tip_timetolive * 24))
     request['pertinence_counter'] = 0
-    request['mark'] = 'new'
+    request['mark'] = InternalTip._marker[0]
     request['context_id'] = context.id
 
     submission = InternalTip(request)
@@ -139,7 +139,7 @@ def update_submission(store, id, request):
     if not submission:
         raise SubmissionGusNotFound
 
-    if submission.mark == u'finalize':
+    if submission.mark != InternalTip._marker[0]:
         raise SubmissionConcluded
    
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
@@ -190,8 +190,11 @@ def delete_submission(store, id):
 
 @transact
 def finalize_submission(store, id):
+    """
+    Shift marker status since 0 (submission) to 1 (finalized)
+    """
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
-    submission.mark = u'finalize'
+    submission.mark = InternalTip._marker[1]
 
 class SubmissionCreate(BaseHandler):
     """

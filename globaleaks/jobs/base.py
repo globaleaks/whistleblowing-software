@@ -15,7 +15,6 @@ class GLJob:
         @aps: Advanced Python Scheduler object
         seconds: number of seconds to await before operation start
         """
-
         if not seconds:
             self.operation()
         else:

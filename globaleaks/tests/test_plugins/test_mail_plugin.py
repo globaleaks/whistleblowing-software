@@ -6,16 +6,15 @@ from twisted.python import log
 
 from globaleaks import db
 from globaleaks.settings import transact
-from globaleaks.models.receiver import Receiver
-from globaleaks.models.node import Node
 from globaleaks.tests import helpers
+from globaleaks.models import *
 from globaleaks.transactors.asyncoperations import AsyncOperations
-from globaleaks.models.context import Context
 from globaleaks.transactors.crudoperations import CrudOperations
 
 class TestEmail(helpers.TestHandler):
     @inlineCallbacks
     def setUp(self):
+        self.setUp_dummy()
         yield db.createTables(create_node=True)
         yield self._setup_database()
         self.recipe = yield CrudOperations().new_submission({
@@ -31,8 +30,8 @@ class TestEmail(helpers.TestHandler):
     @transact
     def _setup_database(self, store):
 
-        self.ctx = Context(store).new(helpers.dummyContext)
-        self.rcv = Receiver(store).new(helpers.dummyReceiver)
+        self.ctx = Context(self.dummyContext)
+        self.rcv = Receiver(self.dummyReceiver)
 
         self.rcv['contexts'].append(self.ctx['context_gus'])
         self.rcv['notification_fields']['mail_address'] = 'maker@globaleaks.org'
