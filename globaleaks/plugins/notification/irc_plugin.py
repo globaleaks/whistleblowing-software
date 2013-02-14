@@ -1,4 +1,4 @@
-from globaleaks.utils import log, gltime
+from globaleaks.utils import log
 from globaleaks.plugins.base import GLPlugin
 from ircutils import client
 

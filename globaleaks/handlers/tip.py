@@ -10,11 +10,10 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
-from globaleaks.utils import gltime
+from globaleaks import utils
 from globaleaks.settings import transact
 from globaleaks.models import now
-from globaleaks.models import WhistleblowerTip, ReceiverTip, InternalFile, ReceiverFile,\
-    InternalTip, Receiver, Comment
+from globaleaks.models import *
 from globaleaks.rest.errors import InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation, \
     TipGusNotFound, TipReceiptNotFound, TipPertinenceExpressed
 
@@ -23,9 +22,9 @@ def actor_serialize_internal_tip(internaltip):
 
     itip_dict = {
         'context_id': unicode(internaltip.context.id),
-        'creation_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
-        'last_activity' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
-        'expiration_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
+        'creation_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
+        'last_activity' : unicode(utils.prettyDateTime(internaltip.creation_date)),
+        'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
         'mark' : unicode(internaltip.mark),
@@ -49,7 +48,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
         'name' : unicode(internalfile.name),
         'sha2sum' : unicode(receiverfile.sha2sum),
         'content_type' : unicode(internalfile.content_type),
-        'creation_date' : unicode(gltime.prettyDateTime(internalfile.creation_date)),
+        'creation_date' : unicode(utils.prettyDateTime(internalfile.creation_date)),
         'size': int(internalfile.size),
         'downloads': unicode(receiverfile.downloads)
     }
@@ -288,7 +287,7 @@ def actor_serialize_comment(comment):
         'content' : unicode(comment.content),
         'author_id' : unicode(comment.author_gus),
         'internaltip_id' : int(comment.internaltip_id),
-        'creation_time' : unicode(gltime.prettyDateTime(comment.creation_time))
+        'creation_time' : unicode(utils.prettyDateTime(comment.creation_time))
     }
     return comment_desc
 

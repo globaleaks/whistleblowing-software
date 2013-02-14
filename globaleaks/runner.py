@@ -3,7 +3,6 @@
 # Here is implemented the preApplication and postApplication method
 # along the Asynchronous event schedule
 
-from twisted.python import log
 from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 from apscheduler.scheduler import Scheduler
@@ -15,6 +14,7 @@ from globaleaks.utils import log
 __all__ = ['GLAsynchronous']
 
 GLAsynchronous = Scheduler()
+log.startLogging()
 
 class GLBaseRunner(app.ApplicationRunner):
     """
@@ -148,5 +148,4 @@ else:
 
     GLBaseRunner = GLBaseRunnerUnix
 
-GLBaseRunner.loggerFactory = log.LoggerFactory
 

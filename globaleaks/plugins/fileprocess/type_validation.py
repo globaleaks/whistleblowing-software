@@ -1,4 +1,3 @@
-from globaleaks.utils import log, gltime
 from globaleaks.plugins.base import FileProcess
 from magic import Magic
 

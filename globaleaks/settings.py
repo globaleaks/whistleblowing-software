@@ -23,8 +23,6 @@ from twisted.internet.threads import deferToThreadPool
 from cyclone.util import ObjectDict as OD
 from storm.zope.zstorm import ZStorm
 from storm.tracer import debug
-from globaleaks.utils.singleton import Singleton
-from globaleaks.utils.singleton import Singleton
 
 
 root_path = os.path.join(os.path.dirname(__file__), '..')
@@ -37,9 +35,10 @@ store_name = 'main_store'
 db_thread_pool_size = 1
 # loggings
 import logging
-log_filename = 'glbackend.log'
-log_folder = '/tmp/'
-log_level = logging.DEBUG
+## set to false to disable file logging
+logfile = '/tmp/glbackend.log'
+loglevel = logging.DEBUG
+
 
 if not os.path.exists(gldata_path):
         os.mkdir(gldata_path)

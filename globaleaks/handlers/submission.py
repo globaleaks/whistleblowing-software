@@ -11,7 +11,7 @@ from globaleaks.settings import transact
 from globaleaks.models import WhistleblowerTip, Receiver, Context, InternalTip, InternalFile
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
-from globaleaks.utils import idops, gltime
+from globaleaks import utils
 from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
     ContextGusNotFound, SubmissionFailFields, SubmissionConcluded, ReceiverGusNotFound, FileGusNotFound
 
@@ -20,8 +20,8 @@ def wb_serialize_internaltip(internaltip):
     response = {
         'id' : unicode(internaltip.id),
         'context_gus': unicode(internaltip.context_id),
-        #'creation_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
-        #'expiration_date' : unicode(gltime.prettyDateTime(internaltip.creation_date)),
+        #'creation_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
+        #'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
         'fields' : dict(internaltip.fields or {}),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
@@ -36,7 +36,7 @@ def wb_serialize_internaltip(internaltip):
 @transact
 def create_whistleblower_tip(store, submission):
     wbtip = WhistleblowerTip(submission)
-    wbtip.receipt = idops.random_receipt()
+    wbtip.receipt = utils.utils_string(10, unicode)
     store.add(wbtip)
     return wbtip.receipt
 
@@ -103,18 +103,18 @@ def create_submission(store, request):
 
     if not context:
         raise ContextGusNotFound
-    
+
     # These are set from the internal tip
     request['escalation_threshold'] = context.escalation_threshold
     request['access_limit'] = context.tip_max_access
     request['download_limit'] = context.file_max_download
-    request['expiration_date'] = gltime.utcFutureDate(hours=(context.tip_timetolive * 24))
+    request['expiration_date'] = utils.utcFutureDate(hours=(context.tip_timetolive * 24))
     request['pertinence_counter'] = 0
     request['mark'] = InternalTip._marker[0]
     request['context_id'] = context.id
 
     submission = InternalTip(request)
-   
+
     receivers = request.get('receivers')
     del request['receivers']
     import_receivers(store, submission, receivers, context)
@@ -141,9 +141,9 @@ def update_submission(store, id, request):
 
     if submission.mark != InternalTip._marker[0]:
         raise SubmissionConcluded
-   
+
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
-   
+
     if not context:
         raise ContextGusNotFound()
 

@@ -5,6 +5,20 @@
 import os
 import sys
 import random
+import sys
+
+from twisted.python import log, usage
+from twisted.internet import reactor
+from twisted.application import app
+
+# Avoid the export PYTHONPATH insanity
+this_directory = os.path.dirname(__file__)
+root = os.path.abspath(os.path.join(this_directory, '..'))
+sys.path.insert(0, root)
+
+from globaleaks import runner
+from globaleaks.backend import application
+
 
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
@@ -68,21 +82,9 @@ print colorize('Welcome', 'CYAN'), colorize('to', 'YELLOW'), 'Globa'+colorize('L
 print ("Please handle with extreme care."
        "Actually, you should not even be running this thing. WTF are you doing?")
 
-# Avoid the export PYTHONPATH insanity
-this_directory = os.path.dirname(__file__)
-root = os.path.abspath(os.path.join(this_directory, '..'))
-sys.path.insert(0, root)
 
 backend_script = os.path.join(root, 'globaleaks', 'backend.py')
 
-from twisted.python import log, usage
-from twisted.internet import reactor
-from twisted.application import app
-
-from globaleaks import runner
-from globaleaks.backend import application
-
-import sys
 sys.argv[1:] = ['-ny', backend_script]
 
 def runApp(config):
