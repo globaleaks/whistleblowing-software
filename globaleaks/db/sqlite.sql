@@ -69,6 +69,7 @@ CREATE TABLE node (
     password VARCHAR NOT NULL,
     public_site VARCHAR NOT NULL,
     stats_update_time INTEGER NOT NULL,
+    notificationmail_template VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -105,7 +106,7 @@ CREATE TABLE receivertip (
     id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
-    notification_date VARCHAR NOT NULL,
+    notification_date VARCHAR,
     notification_mark VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
     PRIMARY KEY (id),
@@ -123,4 +124,5 @@ CREATE TABLE whistleblowertip (
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
+
 
