@@ -8,7 +8,8 @@
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import asynchronous
 
-from globaleaks.utils import log, gltime
+from globaleaks.utils import log
+from globaleaks import utils
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks import models
@@ -51,8 +52,8 @@ def serialize_receiver(receiver):
         "can_delete_submission": receiver.can_delete_submission,
         "can_postpone_expiration": receiver.can_postpone_expiration,
         "contexts": [],
-        "creation_date": gltime.prettyDateTime(receiver.creation_date),
-        "update_date": gltime.prettyDateTime(receiver.last_update),
+        "creation_date": utils.prettyDateTime(receiver.creation_date),
+        "update_date": utils.prettyDateTime(receiver.last_update),
         "description": receiver.description,
         "languages": list(receiver.languages),
         "name": unicode(receiver.name),
@@ -71,7 +72,7 @@ class InfoCollection(BaseHandler):
     parameters (contexts description, fields, public receiver list).
     Contains System-wide properties.
     """
-    
+
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -144,7 +145,7 @@ class ReceiversCollection(BaseHandler):
         for receiver in receivers:
             receiver_list.append(serialize_receiver(receiver))
         return receiver_list
-    
+
     @inlineCallbacks
     def get(self, *uriargs):
         """

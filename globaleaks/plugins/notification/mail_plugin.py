@@ -1,4 +1,3 @@
-
 from globaleaks.utils import log
 from globaleaks.plugins.base import Notification
 import smtplib
