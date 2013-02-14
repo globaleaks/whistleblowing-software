@@ -14,7 +14,7 @@ from globaleaks import models
 @transact
 def initialize_node(store, result, onlyNode):
     nodes = store.find(models.Node)
-    assert len(list(nodes)) == 0
+    # assert len(list(nodes)) == 0
     store.add(models.Node(onlyNode))
 
 def initModels():

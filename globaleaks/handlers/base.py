@@ -170,3 +170,10 @@ class BaseHandler(RequestHandler):
                 return None
             return session
 
+    @property
+    def is_whistleblower(self):
+        return self.current_user and self.current_user['role'] == 'wb'
+
+    @property
+    def is_receiver(self):
+        return self.current_user and self.current_user['role'] == 'receiver'
