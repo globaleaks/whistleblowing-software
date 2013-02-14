@@ -12,24 +12,8 @@ from globaleaks.settings import transact
 from globaleaks import models
 
 @transact
-def initialize_node(store, result):
+def initialize_node(store, onlyNode, result):
     nodes = store.find(models.Node)
-    if len(list(nodes)) == 0:
-        log.debug('Initializing node with new config')
-        # Initialize the node
-        onlyNode = {
-            'name':  u"Please, set me: name/title",
-            'description':  u"Please, set me: description",
-            'hidden_service':  u"Please, set me: hidden service",
-            'public_site':  u"Please, set me: public site",
-            'email':  u"email@dumnmy.net",
-            'stats_update_time':  2, # hours,
-            'languages':  [{ "code" : "it" , "name": "Italiano"},
-                           { "code" : "en" , "name" : "English" }],
-            'notification_settings': {},
-            'password': u'globaleaks',
-            'creation_date': models.now(),
-        }
         store.add(models.Node(onlyNode))
 
 def initModels():
@@ -65,6 +49,27 @@ def createTables(create_node=True):
 
     d = create_tables_transaction()
     if create_node:
-        d.addCallback(initialize_node)
+        # load notification template
+        with f as open(settings.root_path, 'globaleaks', 'db',
+                           'emailnotification_template'):
+            emailnotification_template = f.read()
+        if len(list(nodes)) == 0:
+            log.debug('Initializing node with new config')
+            # Initialize the node
+            onlyNode = {
+                'name':  u"Please, set me: name/title",
+                'description':  u"Please, set me: description",
+                'hidden_service':  u"Please, set me: hidden service",
+                'public_site':  u"Please, set me: public site",
+                'email':  u"email@dumnmy.net",
+                'stats_update_time':  2, # hours,
+                'languages':  [{ "code" : "it" , "name": "Italiano"},
+                               { "code" : "en" , "name" : "English" }],
+                'notification_settings': {},
+                'password': u'globaleaks',
+                'creation_date': models.now(),
+                'notificationmail_template': notificationmail_template,
+            }
+        d.addCallback(initialize_node, onlyNode)
     return d
 
