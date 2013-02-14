@@ -18,7 +18,3 @@ https://github.com/globaleaks/GLBackend/wiki/Plugins
     def digest_check(self, settings, stored_data, new_data)
     def do_notify(self, settings, stored_data)
 
-### Delivery 
-
-### InputFilter 
-

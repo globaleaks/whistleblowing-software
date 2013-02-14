@@ -1,1 +1,1 @@
-__all__ = ['mail_plugin', 'file_plugin' ]
+__all__ = ['mail_plugin' ]

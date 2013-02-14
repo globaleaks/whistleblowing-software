@@ -17,7 +17,7 @@ from globaleaks.handlers.submission import create_submission, create_whistleblow
 from globaleaks.settings import transact
 from globaleaks.rest import errors
 from globaleaks import models
-from globaleaks.utils import idops, gltime
+from globaleaks.utils import gltime
 from globaleaks import settings
 from globaleaks import db
 
