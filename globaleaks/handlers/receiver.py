@@ -117,8 +117,8 @@ def serialize_tip_summary(rtip):
     return {
         'access_counter': rtip.access_counter,
         'expressed_pertinence': rtip.expressed_pertinence,
-        'creation_date' : unicode(gltime.prettyDateTime(rtip.creation_date)),
-        'last_acesss' : unicode(gltime.prettyDateTime(rtip.last_access)),
+        'creation_date' : unicode(utils.prettyDateTime(rtip.creation_date)),
+        'last_acesss' : unicode(utils.prettyDateTime(rtip.last_access)),
         'id' : rtip.id
     }
 
