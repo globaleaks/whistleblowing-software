@@ -155,7 +155,7 @@ class WhistleblowerTip(Model):
     access_counter = Int()
 
     internaltip_id = Unicode()
-    internaltip = Reference(internaltip_id, "InternalTip.id")
+    internaltip = Reference(internaltip_id, InternalTip.id)
 
 class ReceiverFile(Model):
 
