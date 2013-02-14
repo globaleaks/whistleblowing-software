@@ -1,12 +1,11 @@
 name=A man with a chair
 description=a fellow of Truth Corp for a 'greater good'
-tags:=[ "greater", "good", "XXX", "umpylumpy" ]
-languages:=[{"code":"it","name":"Italiano"},{"code":"en","name":"English"}]
+password=latte
+username=Userscemo @RANDOM@
 receiver_level:=1
 can_delete_submission:=true
 can_postpone_expiration:=true
 can_configure_delivery:=true
 can_configure_notification:=true
-password=latte
 notification_fields:={"mail_address":"vecna@globaleaks.org"}
 contexts:=[@RAW@]
