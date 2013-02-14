@@ -1,65 +1,74 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-#
-# :authors: Arturo Filastò
-# :licence: see LICENSE
+
 
 import os
 import sys
-red="\033[1;31m"
-ARGD=0
+import random
 
-c1="\033[47m\033[34m"
-c2="\033[0m"
-c3="\033[47m\033[30m"
-w=" "
+###
+# eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
+###
+def colorize(txt, col):
+    """
 
+    Colorized output.
 
-print c1+"MMMMMMMMM.$$$$$$$$$$$$$$$Z.DNNNNNNNNNNNNNNN .NNNNNNNNNNNNNNNZ.NNNNNNNNNNNNNNNN M"+c2
-print c1+"MMMMMMMM Z$ZZZZZZZZZZZZZ$..NNNNNNNNNNNNNNN7.NNNNNNNNNNNNNNNN.NNNNNNNNNNNNNNNNM.M"+c2
-print c1+"MMMMMMM.,Z$ZZZZZZZZZZZZZ=.NNNNNNNNNNNNNNNM.NNNNNNNNNNNNNNNN.DNNNNNNNNNNNNNNNNM.M"+c2
-print c1+"MMMMMM+.ZZZZZZZZZZZZZZZZ.MNNNNNNNNNNNNNNM.NNNNNNNNNNNNNNNN ,NNNNNNNNNNNNNNNNNM.M"+c2
-print c1+"MMMMMN.$ZZZZZZZZZZZZZZ$.NNNNNNNNNNNNNNNN.:NNNNNNNNNNNNNNM=.NNNNNNNNNNNNNNNNNNM.M"+c2
-print c1+"MMMMM.Z$ZZZZZ$ZZZZZZZ$.ZNNNNNNNNNNNNNNN..NNNNNNNNNNNNNNN$.NNNNNNNNNNNNNNNNNNNM.M"+c2
-print c1+"MMMM.IZZZZZ~.+ZZZZZZ$..MNNNNM..NNNNNNN8.NNNNNN..NNNNNNNN.MNNNNN..MNNNNNNNNNNNM.M"+c2
-print c1+"MMM..ZZZZZZZZZZZZZZ$I.NNNNNNNNNNNNNNNN.NNNNNNNNNNNNNNNM.8NNNNNNNNNNNNNNNNNNNNM.M"+c2
-print c1+"MMO.ZZZZZZZZZZZZZZZZ.MNNNNNNNNNNNNNNN.DNNNNNNNNNNNNNNN.=NNNNNNNNNNNNNNNNNNNNNM M"+c2
-print c1+"MM.ZZZZZZZZZZZZZZZZ.NNNNNNNNNNNNNNNN.~NNNNNNNNNNNNNNN~.NNNNNNNNNNNNNNNNNNNNNNM.M"+c2
-print c1+"M.$$$$Z$ZZZZZZZZZ$.,NNNNNNNNNNNNNNN= NNNNNNNNNNNNNNN8.NNNNNNNNNNNNNNNNNNNNNNNM M"+c2
-print c1+"   .. Z$ZZZZZZZZZ......,NNNNNNNNNN$......NNNNNNNNNNM......NNNNNNNNNNNNNNNNNNNM M"+c2
-print c1+"MMMMM ZZZZZZZZZZZZZZZ$..NNNNNNNNNNNNNNN: +NNNNNNNNNNNNNN8.:MNNNNNNNNNNNNNNNNNM M"+c2
-print c1+"MMMM.?ZZZZZZZZZZZ$$=.?   :.MNNNNNNNN8.~. .$.INNNNNNNNN.,   ..:MNNNNNNNNNNNNNNM M"+c2
-print c1+"MMMM.$Z$ZZZZZZZZZZZ       ..NNNNNNNN  . .   .MNNNNNNN.        ?NNNNNNNNNNNNNNM M"+c2
-print c1+"MMM . .Z$ZZZZZZ$Z7.        .NNNNNNM.         MNNNNNN.         ?NNNNNNNNNNNNNNM M"+c2
-print c1+"MMM . ..ZZZZZZZZ$      .   .M:NNNN.         .N7?NNN:          ?N:MNNNNNNNNNNNM M"+c2
-print c1+"MM:.. ..7ZZZZZZZ$             .MNN.         ..  MNN:    .     =. =NNNNNNNNNNNM M"+c2
-print c1+"MM... ..$ZZZZZZZ$             7NNN.   . .     ..NNN:            .NNNNNNNNNNNNM M"+c2
-print c1+"M8.::~ZZZZZZZZZZ$           ..MNNN.           .NNNN:            ONNNNNNNNNNNNM M"+c2
-print c1+"M.$ZZZZZZZZZZZZZ$ . .     . .NNNNN.   . .     .NNNN:            NNNNNNNNNNNNNM M"+c2
-print c1+"M.ZZZZZZZZZZZZZZ$ . .       .NNNNN.         ..NNNNN:          .NNNNNNNNNNNNNNM M"+c2
-print c1+16*" "+"_____ _       _"+49*" "+c2
-#print c2+c3+15*" "+" _"+c2+c1+"                 _"+" "*60+c2
+    Plataform dependent: Linux
 
-print c1+15*" "+"/ ____| |     | |         "+c2+c3+"| |"+c2+c1+15*" "+"| |"+18*" "+c2
+    """
+
+    color_dict = {
+            'GREY':   0, 'RED':   1, 'GREEN':   2,
+            'YELLOW': 3, 'BLUE':  4, 'MAGENTA': 5,
+            'CYAN':   6, 'WHITE': 7, 'BLACK':   8
+            }
+    return '\033[1;3%dm%s\033[0m' %(color_dict[col], txt)
 
 
-print c1+14*" "+"| |  __| | ___ | |__   __ _"+c2+c3+"| |"+c2+c1+"      ___  __ _| | _____            "+c2
+print colorize("""
+MMMMMMMMM.$$$$$$$$$$$$$$$Z.DNNNNNNNNNNNNNNN .NNNNNNNNNNNNNNNZ.NNNNNNNNNNNNNNNN M
+MMMMMMMM Z$ZZZZZZZZZZZZZ$..NNNNNNNNNNNNNNN7.NNNNNNNNNNNNNNNN.NNNNNNNNNNNNNNNNM.M
+MMMMMMM.,Z$ZZZZZZZZZZZZZ=.NNNNNNNNNNNNNNNM.NNNNNNNNNNNNNNNN.DNNNNNNNNNNNNNNNNM.M
+MMMMMM+.ZZZZZZZZZZZZZZZZ.MNNNNNNNNNNNNNNM.NNNNNNNNNNNNNNNN ,NNNNNNNNNNNNNNNNNM.M
+MMMMMN.$ZZZZZZZZZZZZZZ$.NNNNNNNNNNNNNNNN.:NNNNNNNNNNNNNNM=.NNNNNNNNNNNNNNNNNNM.M
+MMMMM.Z$ZZZZZ$ZZZZZZZ$.ZNNNNNNNNNNNNNNN..NNNNNNNNNNNNNNN$.NNNNNNNNNNNNNNNNNNNM.M
+MMMM.IZZZZZ~.+ZZZZZZ$..MNNNNM..NNNNNNN8.NNNNNN..NNNNNNNN.MNNNNN..MNNNNNNNNNNNM.M
+MMM..ZZZZZZZZZZZZZZ$I.NNNNNNNNNNNNNNNN.NNNNNNNNNNNNNNNM.8NNNNNNNNNNNNNNNNNNNNM.M
+MMO.ZZZZZZZZZZZZZZZZ.MNNNNNNNNNNNNNNN.DNNNNNNNNNNNNNNN.=NNNNNNNNNNNNNNNNNNNNNM M
+MM.ZZZZZZZZZZZZZZZZ.NNNNNNNNNNNNNNNN.~NNNNNNNNNNNNNNN~.NNNNNNNNNNNNNNNNNNNNNNM.M
+M.$$$$Z$ZZZZZZZZZ$.,NNNNNNNNNNNNNNN= NNNNNNNNNNNNNNN8.NNNNNNNNNNNNNNNNNNNNNNNM M
+   .. Z$ZZZZZZZZZ......,NNNNNNNNNN$......NNNNNNNNNNM......NNNNNNNNNNNNNNNNNNNM M
+MMMMM ZZZZZZZZZZZZZZZ$..NNNNNNNNNNNNNNN: +NNNNNNNNNNNNNN8.:MNNNNNNNNNNNNNNNNNM M
+MMMM.?ZZZZZZZZZZZ$$=.?   :.MNNNNNNNN8.~. .$.INNNNNNNNN.,   ..:MNNNNNNNNNNNNNNM M
+MMMM.$Z$ZZZZZZZZZZZ       ..NNNNNNNN  . .   .MNNNNNNN.        ?NNNNNNNNNNNNNNM M
+MMM . .Z$ZZZZZZ$Z7.        .NNNNNNM.         MNNNNNN.         ?NNNNNNNNNNNNNNM M
+MMM . ..ZZZZZZZZ$      .   .M:NNNN.         .N7?NNN:          ?N:MNNNNNNNNNNNM M
+MM:.. ..7ZZZZZZZ$             .MNN.         ..  MNN:    .     =. =NNNNNNNNNNNM M
+MM... ..$ZZZZZZZ$             7NNN.   . .     ..NNN:            .NNNNNNNNNNNNM M
+M8.::~ZZZZZZZZZZ$           ..MNNN.           .NNNN:            ONNNNNNNNNNNNM M
+M.$ZZZZZZZZZZZZZ$ . .     . .NNNNN.   . .     .NNNN:            NNNNNNNNNNNNNM M
+M.ZZZZZZZZZZZZZZ$ . .       .NNNNN.         ..NNNNN:          .NNNNNNNNNNNNNNM M
+""", random.choice(('RED', 'GREEN', 'BLUE', 'YELLOW', 'CYAN')))
 
-print c1+14*" "+"| | |_ | |/ _ \| '_ \ / _\`"+c2+c3+"| |"+c2+c1+"     / _ \/ _\`| |/ / __|           "+c2
 
-print c1+14*" "+"| |__| | | (_) | |_) | (_| "+c2+c3+"| |____"+c2+c1+"|  __/ (_| |   <\__ \           "+c2
+header = [
+    [15*" "+"/ ____| |     | |         ", "| |", 15*" "+"| |"+18*" "],
+    [14*" "+"| |  __| | ___ | |__   __ _", "| |", "      ___  __ _| | _____            "],
+    [14*" "+"| | |_ | |/ _ \| '_ \ / _\`", "| |", "     / _ \/ _\`| |/ / __|           "],
+    [14*" "+"| |__| | | (_) | |_) | (_| ", "| |____", "|  __/ (_| |   <\__ \           "],
+    [15*" "+"\_____|_|\___/|_.__/ \__,_", "|______|", "\___|\__,_|_|\_\___/           "],
+]
 
-print c1+15*" "+"\_____|_|\___/|_.__/ \__,_"+c2+c3+"|______|"+c2+c1+"\___|\__,_|_|\_\___/           "+c2
+for txt1, l, txt2 in header:
+    print colorize(txt1, 'RED') + colorize(l, 'MAGENTA') + colorize(txt2, 'RED')
 
-print c1+"                                                                                "+c2
-
-print "\033[34mWelcome\033[0m \033[1;33mto\033[0m "\
-      "Globa\033[0m\033[47m\033[30mL\033[0m\033[47m\033[34meaks\033[0m\033[0m 0.2"
-print "Please handle with extreme care."\
-      "Actually, you should not even be running this thing. WTF are you doing?"
+print '\n'
+print colorize('Welcome', 'CYAN'), colorize('to', 'YELLOW'), 'Globa'+colorize('Leaks', 'RED')
+print ("Please handle with extreme care."
+       "Actually, you should not even be running this thing. WTF are you doing?")
 
 # Avoid the export PYTHONPATH insanity
-sys.path[:] = map(os.path.abspath, sys.path)
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
