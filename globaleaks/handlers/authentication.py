@@ -69,13 +69,13 @@ class AuthenticationHandler(BaseHandler):
     def login_wb(self, store, receipt):
         try:
             wb_tip = store.find(WhistleblowerTip,
-                            WhistleblowerTip.receipt == unicode(receipt)).one()
+                                WhistleblowerTip.receipt == unicode(receipt)).one()
         except NotOneError:
             raise InvalidAuthRequest
 
         if not wb_tip:
             raise InvalidAuthRequest
-
+        
         return unicode(wb_tip.id)
 
     @transact
