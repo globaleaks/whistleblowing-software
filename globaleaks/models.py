@@ -23,7 +23,7 @@ class Model(Storm):
     # seconds.
     creation_date = DateTime(default_factory=now)
 
-    def __new__(cls, *args, **kw)
+    def __new__(cls, *args, **kw):
         cls.__storm_table__ = cls.__name__.lower()
         # maybe check here for attrs validation, and eventually return None
 
@@ -101,7 +101,7 @@ class InternalTip(Model):
     files = Pickle()
 
     context_id = Unicode()
-    context = Reference(context_id, Context.id)
+    context = Reference(context_id, "Context.id")
 
     # whistleblower_tip_id = Unicode()
     # whistleblower_tip = Reference(whistleblower_tip_id, "WhistleblowerTip.id")
@@ -131,7 +131,8 @@ class ReceiverTip(Model):
     receiver = Reference(receiver_id, "Receiver.id")
 
     notification_date = DateTime()
-    notification_mark = Unicode()
+
+    mark = Unicode()
 
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
