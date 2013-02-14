@@ -7,21 +7,27 @@
 # classes executed when an HTTP client contact /files/* URI
 
 from __future__ import with_statement
+import time
+import copy
+
 from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.settings import transact
 from cyclone.web import os
+
+from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import authenticated
 from globaleaks.utils import log, gltime
 from globaleaks import settings
 from globaleaks.rest import errors
 from globaleaks import models
-import time
 
 __all__ = ['Download', 'FileInstance']
 
 
 SUBMISSION_DIR = os.path.join(settings.gldata_path, 'submission')
+if not os.path.isdir(SUBMISSION_DIR):
+    os.mkdir(SUBMISSION_DIR)
 
 
 def serialize_file(internalfile):
@@ -36,6 +42,8 @@ def serialize_file(internalfile):
     return file_desc
 
 
+
+@transact
 def dump_single_file(store, client_file_desc, internaltip_id):
 
     # compose file request as the dict expected in File._import_dict
@@ -50,22 +58,8 @@ def dump_single_file(store, client_file_desc, internaltip_id):
     new_file = models.InternalFile(file_request)
     store.add(new_file)
 
-    print "Created file from %s with file_gus %s" % (new_file.name, new_file.id)
-
-    if not os.path.isdir(SUBMISSION_DIR):
-        log.msg("%s does not exist. Creating it." %
-                SUBMISSION_DIR)
-        os.mkdir(SUBMISSION_DIR)
-
     filelocation = os.path.join(SUBMISSION_DIR, new_file.id)
 
-    print 'Saving file "%s" of %s byte [%s] type, in %s' %\
-          (new_file.name, new_file.size, new_file.content_type, filelocation )
-
-    # *The file is complete*
-    # because Cyclone cache them before pass to the handler.
-    # This mean that need to be limited client and Cyclone side,
-    # and we here can't track about incomplete file.
     with open(filelocation, 'w+') as fd:
         fdesc.setNonBlocking(fd.fileno())
         fdesc.writeToFD(fd.fileno(), client_file_desc['body'])
@@ -74,50 +68,29 @@ def dump_single_file(store, client_file_desc, internaltip_id):
 
 
 @transact
-def create_tip_file(store, receipt, filerequest):
+def get_tip_by_receipe(store, receipt):
     """
     Tip need to be Whistleblower authenticated
     """
-
     wbtip = store.find(models.WhistleblowerTip,
                        models.WhistleblowerTip.receipt == unicode(receipt)).one()
-
     if not wbtip:
         raise errors.ReceiptGusNotFound
+    else:
+        return wbtip.id
 
-    result_list = []
-
-    file_array, files = filerequest.files.popitem()
-    for single_file in files:
-
-        start_time = time.time()
-        result = dump_single_file(store, single_file, wbtip.internaltip.id)
-        result['elapsed_time'] = time.time() - start_time
-
-        result_list.append(result)
 
 @transact
-def create_submission_file(store, id, filerequest):
-
+def get_tip_by_internaltip(store, id):
     itip = store.find(models.InternalTip,
                       models.InternalTip.id == unicode(id)).one()
-
     if not itip:
         raise errors.SubmissionGusNotFound
-
-    if itip.mark != models.InternalTip._marker[0]:
+    elif itip.mark != models.InternalTip._marker[0]:
         raise errors.SubmissionConcluded
+    else:
+        return wbtip.internaltip.id
 
-    result_list = []
-
-    file_array, files = filerequest.files.popitem()
-    for single_file in files:
-
-        start_time = time.time()
-        result = dump_single_file(store, single_file, itip.id)
-        result['elapsed_time'] = time.time() - start_time
-
-        result_list.append(result)
 
 
 # This is different from FileInstance, just because there are a different authentication requirements
@@ -126,8 +99,8 @@ class FileAdd(BaseHandler):
     T4
     WhistleBlower interface for upload a new file
     """
-
     @inlineCallbacks
+    @authenticated('wb')
     def post(self, tip_id, *args):
         """
         Parameter: submission_gus
@@ -135,14 +108,19 @@ class FileAdd(BaseHandler):
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
         """
+        itipid = yield get_tip_by_internaltip(tip_id)
+        result_list = []
 
-        if self.current_user['role'] != 'wb':
-            raise errors.InvalidAuthRequest
+        file_array, files = self.request.files.popitem()
+        for single_file in files:
+            start_time = time.time()
+            result = yield dump_single_file(single_file, itipid)
+            result['elapsed_time'] = time.time() - start_time
+            result_list.append(result)
 
-        answer = yield create_tip_file(self.current_user['password'], self.request)
         self.set_status(201) # Created
 
-        self.finish(answer)
+        self.write(result_list)
 
 
 class FileInstance(BaseHandler):
@@ -159,11 +137,17 @@ class FileInstance(BaseHandler):
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
         """
+        result_list = []
 
-        answer = yield create_submission_file(submission_id, self.request)
+        file_array, files = self.request.files.popitem()
+        for single_file in files:
+            start_time = time.time()
+            result = yield dump_single_file(single_file, submission_id)
+            result['elapsed_time'] = time.time() - start_time
+            result_list.append(result)
+
         self.set_status(201) # Created
-
-        self.finish(answer)
+        self.write(result_list)
 
 
 class Download(BaseHandler):

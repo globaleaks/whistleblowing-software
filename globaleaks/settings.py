@@ -93,6 +93,7 @@ class transact(object):
             transaction.abort()
             type, value, tb = sys.exc_info()
             traceback.print_tb(tb, 10)
+            self.store.close()
             # propagate the exception
             raise value
         else:

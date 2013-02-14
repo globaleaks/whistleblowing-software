@@ -54,7 +54,63 @@ class TestHandler(unittest.TestCase):
         """
         override default handlers' get_store with a mock store used for testing/
         """
+        self.setUp_dummy()
+        self.responses = []
+        @classmethod
+        def mock_write(cls, response):
+            # !!!
+            # Here we are making the assumption that every time write() get's
+            # called it contains *all* of the response message.
+            self.responses.append(response)
 
+        self._handler.write = mock_write
+        # we make the assumption that we will always use call finish on write.
+        self._handler.finish = mock_write
+
+        try:
+            yield db.createTables(create_node=True)
+        except:
+            pass
+
+        yield self.fill_data()
+
+    def tearDown(self):
+        """
+        Clear the actual transport.
+        """
+        os.unlink(_TEST_DB)
+
+    def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
+        """
+        :param method: HTTP method, e.g. "GET" or "POST"
+        :param uri: URL to fetch
+        :param headers: (dict or :class:`cyclone.httputil.HTTPHeaders` instance) HTTP headers to pass on the request
+        :param body:
+        :param jbody:
+        :param remote_ip:
+        """
+        if jbody and not body:
+            body = json.dumps(jbody)
+        elif body and jbody:
+            raise ValueError('jbody and body in conflict')
+
+        application = Application([])
+
+        tr = proto_helpers.StringTransport()
+        connection = httpserver.HTTPConnection()
+        connection.factory = application
+        connection.makeConnection(tr)
+
+        request = httpserver.HTTPRequest(uri='mock',
+                                         method=method,
+                                         headers=headers,
+                                         body=body,
+                                         remote_ip=remote_ip,
+                                         connection=connection)
+        return self._handler(application, request)
+
+
+    def setUp_dummy(self):
         self.dummyReceiver = {
             'password': u'john',
             'name': u'john smith',
@@ -128,60 +184,6 @@ class TestHandler(unittest.TestCase):
                 'password': u'spam',
                 'old_password': None,
         }
-
-        self.responses = []
-        @classmethod
-        def mock_write(cls, response):
-            # !!!
-            # Here we are making the assumption that every time write() get's
-            # called it contains *all* of the response message.
-            self.responses.append(response)
-
-        self._handler.write = mock_write
-        # we make the assumption that we will always use call finish on write.
-        self._handler.finish = mock_write
-
-        try:
-            yield db.createTables(create_node=True)
-        except:
-            pass
-
-        yield self.fill_data()
-
-    def tearDown(self):
-        """
-        Clear the actual transport.
-        """
-        os.unlink(_TEST_DB)
-
-    def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
-        """
-        :param method: HTTP method, e.g. "GET" or "POST"
-        :param uri: URL to fetch
-        :param headers: (dict or :class:`cyclone.httputil.HTTPHeaders` instance) HTTP headers to pass on the request
-        :param body:
-        :param jbody:
-        :param remote_ip:
-        """
-        if jbody and not body:
-            body = json.dumps(jbody)
-        elif body and jbody:
-            raise ValueError('jbody and body in conflict')
-
-        application = Application([])
-
-        tr = proto_helpers.StringTransport()
-        connection = httpserver.HTTPConnection()
-        connection.factory = application
-        connection.makeConnection(tr)
-
-        request = httpserver.HTTPRequest(uri='mock',
-                                         method=method,
-                                         headers=headers,
-                                         body=body,
-                                         remote_ip=remote_ip,
-                                         connection=connection)
-        return self._handler(application, request)
 
 #         store = settings.get_store()
 #         model = model()

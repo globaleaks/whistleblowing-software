@@ -38,6 +38,12 @@ class Model(Storm):
                 value = unicode(value)
             setattr(self, key, value)
 
+    def __repr___(self):
+        attrs = ['%s=%s' % (attr, getattr(self, attr))
+                 for attr in vars(Model)
+                 if isinstance(x, types.MethodType)]
+        return '<%s model with values %s>' % (self.__name__, ', '.join(attrs))
+
     def dict(self, filter=None):
         """
         return a dictionary serialization of the current model.
