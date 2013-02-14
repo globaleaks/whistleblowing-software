@@ -105,7 +105,7 @@ CREATE TABLE receivertip (
     id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
-    notification_date VARCHAR NOT NULL,
+    notification_date VARCHAR,
     mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'notification ignore')),
     receiver_id VARCHAR NOT NULL,
     PRIMARY KEY (id),
@@ -123,4 +123,5 @@ CREATE TABLE whistleblowertip (
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
+
 

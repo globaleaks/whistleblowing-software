@@ -1,8 +1,5 @@
 from twisted.trial import unittest
 from twisted.internet.defer import inlineCallbacks
-from twisted.python import log
-#import sys
-#log.startLogging(sys.stdout)
 
 from globaleaks import db
 from globaleaks.settings import transact
@@ -10,6 +7,7 @@ from globaleaks.tests import helpers
 from globaleaks.models import *
 from globaleaks.transactors.asyncoperations import AsyncOperations
 from globaleaks.transactors.crudoperations import CrudOperations
+
 
 class TestEmail(helpers.TestHandler):
     @inlineCallbacks
@@ -25,7 +23,7 @@ class TestEmail(helpers.TestHandler):
                 'finalize': True,
         })
         yield AsyncOperations().tip_creation()
-        yield AsyncOperations().tip_notification()
+
 
     @transact
     def _setup_database(self, store):
@@ -51,13 +49,19 @@ class TestEmail(helpers.TestHandler):
                 "port":25,
                 "username":"sendaccount939@globaleaks.org",
                 "password":"sendaccount939",
-                "ssl":False
+                "ssl": False
         }
 
 
     def test_sendmail(self):
-        print self.recipe
+        def success(*result):
+            print 'message sent', result
 
+        def failure(result):
+            print 'failure', result
+
+        d = AsyncOperations().tip_notification()
+        return d
 
 
 

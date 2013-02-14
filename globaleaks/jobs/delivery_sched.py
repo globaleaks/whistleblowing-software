@@ -46,7 +46,6 @@ def file_preprocess(store):
     return filesdict
 
 def file_process(filesdict):
-
     processdict = {}
     for file_id, file_path in filesdict.iteritems():
         log.msg("Approaching checksum of file %s with path %s" % (file_id, file_path))
@@ -89,7 +88,7 @@ def create_receivertip(store, receiver_id, internaltip, tier):
     receivertip.access_counter = 0
     receivertip.expressed_pertinence = 0
     receivertip.receiver_id = receiver_id
-    receivertip.notification_mark = ReceiverTip._marker[0]
+    receivertip.mark = ReceiverTip._marker[0]
 
     store.add(receivertip)
 
