@@ -24,8 +24,8 @@ def admin_serialize_node(node):
       'public_site': unicode(node.public_site),
       'stats_update_time': int(node.stats_update_time),
       'email': unicode(node.email),
-      'notification_settings': dict(node.notification_settings) if node.notification_settings else None,
-      'languages': list(node.languages) if node.languages else None
+      'notification_settings': dict(node.notification_settings) if node.notification_settings else {},
+      'languages': list(node.languages) if node.languages else []
     }
     return response
 
@@ -99,7 +99,7 @@ def update_node(store, request):
 
     del request['old_password']
     del request['password']
-    
+
     node.update(request)
 
     node_desc = admin_serialize_node(node)
@@ -187,7 +187,7 @@ def update_context(store, context_gus, request):
 
     receivers = request.get('receivers')
     del request['receivers']
-    
+
     context.update(request)
 
     for receiver in context.receivers:
@@ -340,7 +340,8 @@ class NodeInstance(BaseHandler):
 
         Changes the node public node configuration settings.
         """
-        request = self.validate_message(self.request.body, requests.adminNodeDesc)
+        request = self.validate_message(self.request.body,
+                requests.adminNodeDesc)
 
         response = yield update_node(request)
 
