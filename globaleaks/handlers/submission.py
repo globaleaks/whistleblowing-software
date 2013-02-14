@@ -11,7 +11,7 @@ from globaleaks.settings import transact
 from globaleaks.models import WhistleblowerTip, Receiver, Context, InternalTip, InternalFile
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import requests
-from globaleaks.utils import idops, gltime
+from globaleaks.utils import gltime, random
 from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
     ContextGusNotFound, SubmissionFailFields, SubmissionConcluded, ReceiverGusNotFound, FileGusNotFound
 
@@ -36,7 +36,7 @@ def wb_serialize_internaltip(internaltip):
 @transact
 def create_whistleblower_tip(store, submission):
     wbtip = WhistleblowerTip(submission)
-    wbtip.receipt = idops.random_receipt()
+    wbtip.receipt = unicode(random.random_string(10, '0-9'))
     store.add(wbtip)
     return wbtip.receipt
 
