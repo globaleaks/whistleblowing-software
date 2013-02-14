@@ -12,8 +12,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.models import now, Receiver, Context, Node
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.utils import gltime
-from globaleaks.utils.random import random_string
+from globaleaks import utils
 
 
 def admin_serialize_node(node):
@@ -56,7 +55,7 @@ def admin_serialize_receiver(receiver):
         "name": unicode(receiver.name),
         "description": unicode(receiver.description),
         "languages": copy.deepcopy(receiver.languages) if receiver.languages else [],
-        "update_date": unicode(gltime.prettyDateTime(receiver.last_update)),
+        "update_date": unicode(utils.prettyDateTime(receiver.last_update)),
         "receiver_level": int(receiver.receiver_level),
         "can_delete_submission": bool(receiver.can_delete_submission),
         "can_postpone_expiration": bool(receiver.can_postpone_expiration),

@@ -1,4 +1,4 @@
-from globaleaks.utils import log, gltime
+from globaleaks.utils import log
 from globaleaks.plugins.base import Notification
 
 class FileNotification(Notification):
@@ -32,10 +32,5 @@ class FileNotification(Notification):
 
         filepath = "%s/%s" % (af['directory'], rf['filename'])
         print "file/do_notifiy is opening: ", filepath
-
-        # This is not good in twisted, but it's just a debug plugin
-        with file(str(filepath), 'a+') as flog:
-            flog.write("%s\n" % str(data_type))
-            flog.write("%s\n\n\n" % str(data))
 
         return True
