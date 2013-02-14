@@ -55,7 +55,7 @@ def register_files_db(store, files, relationship, internaltip_id):
                          'size' : len(single_file['body']),
                          'internaltip_id' : unicode(internaltip_id),
                          'sha2sum' : '',
-                         'path': relationship[original_fname]
+                         'file_path': relationship[original_fname]
                        }
 
         new_file = models.InternalFile(file_request)
@@ -72,7 +72,7 @@ def dump_files_fs(files):
     """
     files_saved = {}
     for single_file in files:
-        saved_name = unicode(utils.random_string(26, 'A-Z,a-z,0-9'))
+        saved_name = utils.random_string(26, 'A-Z,a-z,0-9')
         filelocation = os.path.join(SUBMISSION_DIR, saved_name)
 
         with open(filelocation, 'w+') as fd:
@@ -151,8 +151,6 @@ class FileAdd(BaseHandler):
 
         self.set_status(201) # Created
         self.write(result_list)
-
-
 
 
 class FileInstance(BaseHandler):

@@ -30,30 +30,23 @@ from globaleaks.utils import get_file_checksum
 class AsyncOperations(MacroOperation):
     @transact
     def tip_notification(self, store):
-
         plugin_type = u'notification'
         not_notified_tips = ReceiverTip().get_tips_by_notification_mark(u'not notified')
-
         node_desc = Node(store).get_single()
+
+        log.debug('tip_notification fired!')
+
         if node_desc['notification_settings'] is None:
-            print "This node has not notification configured: postponed notification of",\
-                len(not_notified_tips), "tips"
             return
 
         for single_tip in not_notified_tips:
-
         # from a single tip, we need to extract the receiver, and then, having
         # context + receiver, find out which configuration setting has active
-
             receivers_map = receivertip_iface.get_receivers_by_tip(single_tip['tip_gus'])
-
             receiver_info = receivers_map['actor']
-
             # Obtain Notification from Node and from Receveir.notification_fields
-
             settings_dict = { 'admin_settings' : node_desc['notification_settings'],
                              'receiver_settings' : receiver_info['notification_fields']}
-
             # hardcoded mail plugin just
             plugin = PluginManager.instance_plugin(u'Mail')
 
@@ -266,9 +259,8 @@ class AsyncOperations(MacroOperation):
             # hardcoded mail plugin just
             plugin = PluginManager.instance_plugin(u'Mail')
             updated_tip = receivertip_iface.update_notification_date(single_tip['tip_gus'])
-            return_code = plugin.do_notify(settings_dict, u'tip', updated_tip)
-            print return_code
-            if return_code:
-               receivertip_iface.flip_mark(single_tip['tip_gus'], u'notified')
-            else:
-               receivertip_iface.flip_mark(single_tip['tip_gus'], u'unable to notify')
+            d = plugin.do_notify(settings_dict, u'tip', updated_tip)
+
+            d.addCallback(receivertip_iface.flip_mark, single_tip['tip_gus'], u'notified')
+            d.addErrback(receivertip_iface.flip_mark, single_tip['tip_gus'], u'unable to notify')
+            return d
