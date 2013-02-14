@@ -23,7 +23,7 @@ class Model(Storm):
     # seconds.
     creation_date = DateTime(default_factory=now)
 
-    def __new__(cls, *args, **kw):
+    def __new__(cls, *args, **kw)
         cls.__storm_table__ = cls.__name__.lower()
         # maybe check here for attrs validation, and eventually return None
 
@@ -190,8 +190,8 @@ class Comment(Model):
     author = Unicode()
     message = Unicode()
 
-    mark = Unicode()
-    _marker = [ u'receiver', u'whistleblower', u'system' ]
+    type = Unicode()
+    _types = [ u'receiver', u'whistleblower', u'system' ]
 
 
 class Node(Model):

@@ -282,11 +282,10 @@ class TipInstance(TipBaseHandler):
 def actor_serialize_comment(comment):
 
     comment_desc = {
-        'comment_id' : unicode(comment.id),
-        'source' : unicode(comment.source),
-        'content' : unicode(comment.content),
-        'author_id' : unicode(comment.author_gus),
-        'internaltip_id' : int(comment.internaltip_id),
+        'id' : unicode(comment.id),
+        'type' : unicode(comment.type),
+        'content' : unicode(comment.message),
+        'author_id' : unicode(comment.author),
         'creation_time' : unicode(utils.prettyDateTime(comment.creation_time))
     }
     return comment_desc
@@ -306,7 +305,7 @@ def get_comment_list(internaltip):
     return comment_list
 
 @transact
-def get_comment_list_wb(receipt, id):
+def get_comment_list_wb(store, receipt, id):
 
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.receipt == unicode(receipt)).one()
 
@@ -329,10 +328,10 @@ def create_comment_wb(store, receipt, request):
     if not wbtip:
         raise TipReceiptNotFound
 
-    request['internaltip_id'] = wbtip.internaltip.id
-    request['author'] = u'whistleblower'
-
     comment = Comment(request)
+    comment.internaltip_id = wbtip.internaltip.id
+    comment.author = u'whistleblower' # The printed line
+    comment.type = Comment._types[1] # WB
     store.add(comment)
 
     return actor_serialize_comment(comment)
@@ -342,13 +341,13 @@ def create_comment_receiver(store, username, id, request):
 
     rtip = strong_receiver_validate(store, username, id)
 
-    request['internaltip_id'] = rtip.internaltip.id
-    request['author'] = rtip.receiver.name
-
     comment = Comment(request)
+    comment.internaltip_id = rtip.internaltip.id
+    comment.author = rtip.receiver.name # The printed line
+    comment.type = Comment._types[0] # Receiver
     store.add(comment)
 
-    return actor_serialize_comment()
+    return actor_serialize_comment(comment)
 
 
 class TipCommentCollection(TipBaseHandler):
