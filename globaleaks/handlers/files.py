@@ -196,30 +196,72 @@ class FileInstance(BaseHandler):
         self.write(result_list)
 
 
+
+def serialize_receiver_file(receiverfile, internalfile):
+
+    file_desc = {
+        'size' : internalfile.size,
+        'content_type' : internalfile.content_type,
+        'name' : internalfile.name,
+        'creation_date': utils.prettyDateTime(internalfile.creation_date),
+        'downloads' : receiverfile.downloads,
+        'path' : internalfile.file_path if internalfile.file_path else receiverfile.file_path,
+        'sha2sum' : internalfile.sha2sum,
+    }
+    return file_desc
+
+@transact
+def download_file(store, tip_id, file_id, auth_receiver=False):
+    """
+    Auth temporarly disabled, just Tip_id and File_id required
+    """
+
+    all_receivertip = store.find(models.ReceiverTip)
+    for rtip in all_receivertip:
+        print "Receivertip", rtip.id, "receiver associatied", rtip.receiver.name
+    # import pdb; pdb.set_trace()
+    all_file = store.find(models.ReceiverFile)
+    for rfile in all_file:
+        print "ReceiverFile", rfile.id, "name", rfile.internalfile.name, "receiver", rfile.receiver.name
+
+    # -----------------------------------------------
+
+    receivertip = store.find(models.ReceiverTip, models.ReceiverTip.id == unicode(tip_id)).one()
+    if not receivertip:
+        raise errors.TipGusNotFound
+
+    file = store.find(models.ReceiverFile, models.ReceiverFile.id == unicode(file_id)).one()
+    if not file:
+        raise errors.FileGusNotFound
+
+    print "Download of ", file.internalfile.name, "downloads:", file.downloads, "with limit of ", file.internalfile.internaltip.download_limit
+
+    if file.downloads == file.internalfile.internaltip.download_limit:
+        raise errors.DownloadLimitExceeded
+
+    file.downloads += 1
+
+    return serialize_receiver_file(file, file.internalfile)
+
+
 class Download(BaseHandler):
 
-    """
     @inlineCallbacks
-    def get(self, tip_gus, CYCLON_DIRT, file_gus, *uriargs):
+    def get(self, tip_gus, file_gus, *uriargs):
 
         # tip_gus needed to authorized the download
-        print tip_gus, file_gus
+        print "Access to: tip_id", tip_gus, "file_id", file_gus
 
-        answer = yield FileOperations().get_file_access(tip_gus, file_gus)
+        file_details = yield download_file(tip_gus, file_gus)
+        # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
 
-        # verify if receiver can, in fact, download the file, otherwise
-        # raise DownloadLimitExceeded
+        self.set_status(200)
 
-        fileContent = answer['data']
-        # keys:  'content'  'sha2sum'  'size' : 'content_type' 'file_name'
+        self.set_header('Content-Type', file_details['content_type'])
+        self.set_header('Content-Length', file_details['size'])
+        self.set_header('Etag', '"%s"' % file_details['sha2sum'])
 
-        self.set_status(answer['code'])
-
-        self.set_header('Content-Type', fileContent['content_type'])
-        self.set_header('Content-Length', fileContent['size'])
-        self.set_header('Etag', '"%s"' % fileContent['sha2sum'])
-
-        filelocation = os.path.join(settings.config.advanced.submissions_dir, file_gus)
+        filelocation = os.path.join(SUBMISSION_DIR, file_details['path'])
 
         chunk_size = 8192
         filedata = ''
@@ -233,4 +275,3 @@ class Download(BaseHandler):
 
         self.write(filedata)
         self.finish()
-    """
