@@ -1,3 +1,6 @@
+import time
+from cyclone.util import ObjectDict as OD
+
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 
@@ -7,15 +10,35 @@ from globaleaks.rest import errors
 class TestAuthentication(helpers.TestHandler):
     _handler = authentication.AuthenticationHandler
 
+    def login(self, role='admin', user_id=None):
+        if not user_id:
+            if role == 'admin':
+                user_id = 'admin';
+            elif role == 'wb':
+                user_id = self.dummySubmission['submission_gus']
+            elif role == 'receiver':
+                user_id = self.dummyReceiver['id']
+        session = OD(timestamp=time.time(),id='spam',
+                role=role, user_id=user_id)
+        settings.sessions[session.id] = session
+        return session.id
+
     @inlineCallbacks
     def test_successful_admin_login(self):
         handler = self.request({
            'username': 'admin',
-           'password': 'spam',
+           'password': 'globaleaks',
            'role': 'admin'
         })
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
+
+    @inlineCallbacks
+    def test_successful_admin_logout(self):
+
+        handler = self.request()
+        success = yield handler.delete()
+        self.assertFalse('session_id' in self.responses[0])
 
     @inlineCallbacks
     def test_successful_receiver_login(self):
