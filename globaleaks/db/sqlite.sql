@@ -69,7 +69,6 @@ CREATE TABLE node (
     password VARCHAR NOT NULL,
     public_site VARCHAR NOT NULL,
     stats_update_time INTEGER NOT NULL,
-    notificationmail_template VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
 
