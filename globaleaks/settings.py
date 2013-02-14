@@ -35,7 +35,6 @@ db_file = 'sqlite:' + os.path.join(gldata_path, 'glbackend.db')
 store_name = 'main_store'
 # threads sizes
 db_thread_pool_size = 1
-scheduler_thread_pool_size = 10
 # loggings
 import logging
 log_filename = 'glbackend.log'
@@ -55,7 +54,6 @@ class transact(object):
     Class decorator for managing transactions.
     Because storm sucks.
     """
-    tp = ThreadPool(0, scheduler_thread_pool_size)
 
     def __init__(self, method):
         self.method = method
@@ -113,8 +111,4 @@ else:
 sessions = dict()
 
 transact.tp.start()
-scheduler_threadpool = ThreadPool(0, scheduler_thread_pool_size)
-scheduler_threadpool.start()
-reactor.addSystemEventTrigger('after', 'shutdown', transact.tp.stop)
-reactor.addSystemEventTrigger('after', 'shutdown', scheduler_threadpool.stop)
 
