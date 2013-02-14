@@ -28,7 +28,6 @@ def initialize_node(store, result):
                            { "code" : "en" , "name" : "English" }],
             'notification_settings': {},
             'password': u'globaleaks',
-            'creation_date': models.now(),
         }
         store.add(models.Node(onlyNode))
 
