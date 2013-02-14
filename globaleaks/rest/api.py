@@ -18,7 +18,7 @@ from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS,
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 not_defined_regexp = r'(\w+)'
 only_int_regexp = r'(\d+)'
-receiver_token_auth = r'(\w+)' # This would cover regexp.tip_gus | regexp.welcome_token_gus
+receiver_token_auth = uuid_regexp
 wb_receipt = r'(\w+)'
 
 # Here is mapped a path and the associated class to be invoked,
