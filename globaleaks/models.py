@@ -158,7 +158,7 @@ class ReceiverFile(Model):
 
     internal_file_id = Unicode()
     receiver_id = Unicode()
-    receiver_tip_id = Unicode()
+
 
 class InternalFile(Model):
 
