@@ -17,7 +17,7 @@ from cyclone.web import os
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
-from globaleaks.utils import log, gltime
+from globaleaks.utils import log, gltime, random
 from globaleaks import settings
 from globaleaks.rest import errors
 from globaleaks import models
@@ -37,34 +37,54 @@ def serialize_file(internalfile):
         'content_type' : internalfile.content_type,
         'name' : internalfile.name,
         'creation_date': gltime.prettyDateTime(internalfile.creation_date),
+        'id' : internalfile.id,
     }
 
     return file_desc
 
-
-
 @transact
-def dump_single_file(store, client_file_desc, internaltip_id):
+def register_files_db(store, files, relationship, internaltip_id):
 
-    # compose file request as the dict expected in File._import_dict
-    file_request = { 'name' : client_file_desc.get('filename'),
-                     'content_type' : client_file_desc.get('content_type'),
-                     'mark' : models.InternalFile._marker[0],
-                     'size' : len(client_file_desc['body']),
-                     'internaltip_id' : internaltip_id,
-                     'sha2sum' : ''
-                   }
+    files_list = []
+    for single_file in files:
 
-    new_file = models.InternalFile(file_request)
-    store.add(new_file)
+        original_fname = single_file['filename']
 
-    filelocation = os.path.join(SUBMISSION_DIR, new_file.id)
+        file_request = { 'name' : original_fname,
+                         'content_type' : single_file.get('content_type'),
+                         'mark' : unicode(models.InternalFile._marker[0]),
+                         'size' : len(single_file['body']),
+                         'internaltip_id' : unicode(internaltip_id),
+                         'sha2sum' : '',
+                         'path': relationship[original_fname]
+                       }
 
-    with open(filelocation, 'w+') as fd:
-        fdesc.setNonBlocking(fd.fileno())
-        fdesc.writeToFD(fd.fileno(), client_file_desc['body'])
+        new_file = models.InternalFile(file_request)
+        store.add(new_file)
+        files_list.append(serialize_file(new_file))
 
-    return serialize_file(new_file)
+    return files_list
+
+def dump_files_fs(files):
+    """
+    @param files: files uploaded in Cyclone upload
+    @return: a relationship dict linking the filename with the random
+        filename saved in the disk
+    """
+    files_saved = {}
+    for single_file in files:
+
+        saved_name = random.random_string(26, 'A-Z,a-z,0-9')
+
+        filelocation = os.path.join(SUBMISSION_DIR, saved_name)
+
+        with open(filelocation, 'w+') as fd:
+            fdesc.setNonBlocking(fd.fileno())
+            fdesc.writeToFD(fd.fileno(), single_file['body'])
+
+        files_saved.update({single_file['filename']: saved_name })
+
+    return files_saved
 
 
 @transact
@@ -79,7 +99,6 @@ def get_tip_by_receipe(store, receipt):
     else:
         return wbtip.id
 
-
 @transact
 def get_tip_by_internaltip(store, id):
     itip = store.find(models.InternalTip,
@@ -89,7 +108,7 @@ def get_tip_by_internaltip(store, id):
     elif itip.mark != models.InternalTip._marker[0]:
         raise errors.SubmissionConcluded
     else:
-        return wbtip.internaltip.id
+        return itip.id
 
 
 
@@ -108,19 +127,35 @@ class FileAdd(BaseHandler):
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
         """
-        itipid = yield get_tip_by_internaltip(tip_id)
         result_list = []
 
+        itip_id = yield get_tip_by_internaltip(self.current_user['password'])
+
+        # measure the operation of all the files (via browser can be selected
+        # more than 1), because all files are delivered in the same time.
+        start_time = time.time()
+
         file_array, files = self.request.files.popitem()
-        for single_file in files:
-            start_time = time.time()
-            result = yield dump_single_file(single_file, itipid)
-            result['elapsed_time'] = time.time() - start_time
-            result_list.append(result)
+
+        # First iterloop, dumps the files in the filesystem,
+        # and exception raised here would prevent the InternalFile recordings
+        try:
+            relationship = dump_files_fs(files)
+        except OSError, e:
+            # TODO danger error log: unable to save in FS
+            raise errors.InternalServerError
+
+        # Second iterloop, create the objects in the database
+        file_list = yield register_files_db(files, relationship, itip_id)
+
+        for file_desc in file_list:
+            file_desc['elapsed_time'] = time.time() - start_time
+            result_list.append(file_desc)
 
         self.set_status(201) # Created
-
         self.write(result_list)
+
+
 
 
 class FileInstance(BaseHandler):
@@ -139,12 +174,28 @@ class FileInstance(BaseHandler):
         """
         result_list = []
 
+        itip_id = yield get_tip_by_internaltip(submission_id)
+
+        # measure the operation of all the files (via browser can be selected
+        # more than 1), because all files are delivered in the same time.
+        start_time = time.time()
+
         file_array, files = self.request.files.popitem()
-        for single_file in files:
-            start_time = time.time()
-            result = yield dump_single_file(single_file, submission_id)
-            result['elapsed_time'] = time.time() - start_time
-            result_list.append(result)
+
+        # First iterloop, dumps the files in the filesystem,
+        # and exception raised here would prevent the InternalFile recordings
+        try:
+            relationship = dump_files_fs(files)
+        except OSError, e:
+            # TODO danger error log: unable to save in FS
+            raise errors.InternalServerError
+
+        # Second iterloop, create the objects in the database
+        file_list = yield register_files_db(files, relationship, itip_id)
+
+        for file_desc in file_list:
+            file_desc['elapsed_time'] = time.time() - start_time
+            result_list.append(file_desc)
 
         self.set_status(201) # Created
         self.write(result_list)

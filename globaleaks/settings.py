@@ -35,7 +35,7 @@ db_file = 'sqlite:' + os.path.join(gldata_path, 'glbackend.db')
 store_name = 'main_store'
 # threads sizes
 db_thread_pool_size = 1
-scheduler_thread_pool_size = 10
+scheduler_thread_pool_size = 1
 # loggings
 import logging
 log_filename = 'glbackend.log'
