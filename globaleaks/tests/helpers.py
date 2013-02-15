@@ -6,6 +6,7 @@ settings.scheduler_threadpool = FakeThreadPool()
 import os
 import sys
 import json
+import time
 
 from twisted.python import log
 from twisted.trial import unittest
@@ -30,16 +31,16 @@ from globaleaks import db
 _TEST_DB = 'test.db'
 settings.db_file = 'sqlite:///' + _TEST_DB
 settings.store = 'test_store'
+settings.notification_plugins = []
 
 import storm
 
 #log.startLogging(sys.stdout)
 class TestGL(unittest.TestCase):
-
     @inlineCallbacks
     def fill_data(self):
         self.dummyReceiver = yield create_receiver(self.dummyReceiver)
-        
+
         self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
         context_dict = yield create_context(self.dummyContext)
 
@@ -130,7 +131,7 @@ class TestGL(unittest.TestCase):
                 'password': u'spam',
                 'old_password': None,
         }
-    
+
     @inlineCallbacks
     def initalize_db(self):
 
@@ -167,6 +168,9 @@ class TestHandler(TestGL):
         self._handler.write = mock_write
         # we make the assumption that we will always use call finish on write.
         self._handler.finish = mock_write
+        
+        # we need to reset settings.session to keep each test indipendent
+        settings.sessions = dict()
 
         yield self.initalize_db()
 
@@ -175,6 +179,19 @@ class TestHandler(TestGL):
         Clear the actual transport.
         """
         os.unlink(_TEST_DB)
+
+    def login(self, role='admin', user_id=None):
+        if not user_id:
+            if role == 'admin':
+                user_id = 'admin'
+            elif role == 'wb':
+                user_id = self.dummySubmission['submission_gus']
+            elif role == 'receiver':
+                user_id = self.dummyReceiver['receiver_gus']
+        session = OD(timestamp=time.time(),id=user_id,
+                role=role, user_id=user_id)
+        settings.sessions[session.id] = session
+        return session.id
 
     def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
         """
