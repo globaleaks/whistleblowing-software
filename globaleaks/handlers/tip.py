@@ -50,6 +50,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
         'size': int(internalfile.size),
         'downloads': unicode(receiverfile.downloads)
     }
+    print "****", rfile_dict
     return rfile_dict
 
 
@@ -77,8 +78,11 @@ def get_files_wb(store, tip_id):
 def get_files_receiver(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
+    receiver_files = store.find(ReceiverFile,
+        (ReceiverFile.internaltip_id == rtip.internaltip_id, ReceiverFile.receiver_id == rtip.receiver_id) )
+
     files_list = []
-    for receiverfile in rtip.receiver_files:
+    for receiverfile in receiver_files:
         internalfile = receiverfile.internalfile
         files_list.append(receiver_serialize_file(internalfile, receiverfile, tip_id))
 
@@ -99,6 +103,8 @@ def strong_receiver_validate(store, user_id, tip_id):
     if receiver.id != rtip.receiver.id:
         # This in attack!!
         raise TipGusNotFound
+
+    return rtip
 
 
 @transact
@@ -200,7 +206,7 @@ class TipInstance(BaseHandler):
             (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['user_id'])
             answer['files'] = yield get_files_wb(self.current_user['user_id'])
         else:
-            answer = yield get_internaltip_receiver(tip_id, self.current_user['user_id'])
+            answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id)
             answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
         self.set_status(200)
@@ -321,7 +327,7 @@ def create_comment_receiver(store, user_id, tip_id, request):
     store.add(comment)
     rtip.internaltip.comments.add(comment)
 
-    return actor_serialize_comment(comment)
+    return serialize_comment(comment)
 
 
 class TipCommentCollection(BaseHandler):
@@ -410,7 +416,24 @@ def get_receiver_list_wb(store, wb_tip_id):
 @transact
 def get_receiver_list_receiver(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
-    return public_serialize_receiver(rtip.internaltip.id)
+
+    receiver_list = []
+    # internaltip = store.find(InternalTip, InternalTip.id == rtip.internaltip_id).one()
+    # XXX Find a way to properly use Refenrece betweeen rtip.internaltips
+
+    for receiver_id in rtip.internaltip.receivers:
+        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        receiver_tip = store.find(ReceiverTip,
+            (ReceiverTip.receiver_id == unicode(receiver_id),
+             ReceiverTip.internaltip_id == rtip.internaltip.id)).one()
+
+        access_counter = 0
+        if receiver_tip:
+            access_counter = receiver_tip.access_counter
+
+        receiver_list.append(serialize_receiver(receiver, access_counter))
+    return receiver_list
+
 
 
 class TipReceiversCollection(BaseHandler):
