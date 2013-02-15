@@ -72,8 +72,9 @@ class MailNotification(Notification):
 
     def do_notify(self, event):
         # validation
-        if not self.validate_admin_opt(af):
-            return False
+        if not self.validate_admin_opt(event.af):
+             log.info('invalid configuration for admin email!')
+        #    return False
 
         # email fields
         title = self._title[event.type]

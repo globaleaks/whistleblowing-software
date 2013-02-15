@@ -57,6 +57,7 @@ def receiver_file_align(store, filesdict, processdict):
     This function is called when the single InternalFile has been processed,
     they became aligned respect the Delivery specification of the node.
     """
+    receiverfile_list = []
 
     for internalfile_id in filesdict.iterkeys():
 
@@ -76,9 +77,13 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile.file_path = ifile.file_path
             store.add(receiverfile)
 
+            receiverfile_list.append(receiverfile.id)
+
         log.msg("Processed InternalFile %s and update with checksum %s" % (ifile.name, ifile.sha2sum))
 
         ifile.mark = InternalFile._marker[1] # Ready (TODO review the marker)
+
+    return receiverfile_list
 
 
 def create_receivertip(store, receiver, internaltip, tier):
@@ -102,6 +107,8 @@ def create_receivertip(store, receiver, internaltip, tier):
 
     log.msg('-- Created! copy paste [/#/status/%s]' % receivertip.id)
 
+    return receivertip.id
+
 
 @transact
 def tip_creation(store):
@@ -109,11 +116,13 @@ def tip_creation(store):
     look for all the finalized InternalTip, create ReceiverTip for the
     first tier of Receiver, and shift the marker in 'first' aka di,ostron.zo
     """
+    created_tips = []
+
     finalized = store.find(InternalTip, InternalTip.mark == InternalTip._marker[1])
 
     for internaltip in finalized:
         for receiver in internaltip.receivers:
-            create_receivertip(store, receiver, internaltip, 1)
+            created_tips.append(create_receivertip(store, receiver, internaltip, 1))
             # TODO interalfile_is_correct
 
         internaltip.mark = internaltip._marker[2]
@@ -124,11 +133,12 @@ def tip_creation(store):
 
     for internaltip in promoted:
         for receiver in internaltip.receivers:
-            create_receivertip(store, receiver, internaltip, 2)
+            created_tips.append(create_receivertip(store, receiver, internaltip, 2))
             # TODO interalfile_is_correct
 
         internaltip.mark = internaltip._marker[3]
 
+    return created_tips
 
 class APSDelivery(GLJob):
 
