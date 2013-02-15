@@ -30,6 +30,7 @@ from globaleaks import db
 _TEST_DB = 'test.db'
 settings.db_file = 'sqlite:///' + _TEST_DB
 settings.store = 'test_store'
+settings.notification_plugins = []
 
 import storm
 
@@ -39,7 +40,7 @@ class TestGL(unittest.TestCase):
     @inlineCallbacks
     def fill_data(self):
         self.dummyReceiver = yield create_receiver(self.dummyReceiver)
-        
+
         self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
         context_dict = yield create_context(self.dummyContext)
 
@@ -130,7 +131,7 @@ class TestGL(unittest.TestCase):
                 'password': u'spam',
                 'old_password': None,
         }
-    
+
     @inlineCallbacks
     def initalize_db(self):
 

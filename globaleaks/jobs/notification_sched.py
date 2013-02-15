@@ -9,12 +9,16 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.plugins.base import Event
-from globaleaks.plugins.manager import PluginManager
 from globaleaks import models
 from globaleaks.settings import transact
 from globaleaks.utils import log
-from globaleaks.transactors.asyncoperations import AsyncOperations
+from globaleaks.plugins import notification
 
+
+from collections import namedtuple
+
+Event = namedtuple('Event',
+                   ['type', 'trigger', 'af', 'rf', 'tip_id'])
 
 class APSNotification(GLJob):
     @transact
@@ -30,21 +34,25 @@ class APSNotification(GLJob):
         if not node.notification_settings:
             return
 
-        plugin = PluginManager.instance_plugin(u'Mail')
-        yield plugin.initialize(store, node.notification_settings)
-        for rtip in not_notified_tips:
-            d = plugin.do_notify(Event(type=u'tip', trigger='diocane'),
-                                 af=node.notification_settings,
-                                 rf=rtip.receiver.notification_fields,
-                                 tip_id=rtip.id,
-                                 notification_date=rtip.notification_date,
-            )
-            @d.addCallBack
-            def success(result):
-                rtip.mark = models.ReceiverTip._marker[1]
-            @d.errBack
-            def error(result):
-               rtip.mark = models.ReceiverTip._marker[2]
+        event = Event(type=u'tip', trigger='diocane', af=node.notification_settings,
+                      rf=None, tip_id=None),
+
+        for cplugin in settings.notification_plugins:
+            plugin = getattr(notification, cplugin)(node.notification_settings)
+            for rtip in not_notified_tips:
+                event.rf = rtip.receiver.notification_fields
+                event.tip_id = rtip.id
+                notify = yield plugin.do_notify(event)
+
+                @notify.addCallback
+                def success(self, result):
+                    log.debug('notificication sucess')
+                    rtip.mark = models.ReceiverTip._marker[1]
+                @notify.addErrback
+                def error(self, result):
+                   log.debug('notificication failure')
+                   rtip.mark = models.ReceiverTip._marker[2]
+
 
     def operation(self):
         """
@@ -66,13 +74,7 @@ class APSNotification(GLJob):
         'unable to be notified', and a retry logic is in TODO
         """
         return self.tip_notification()
-
         # TODO results log and stats
-
-        #d.addCallback(lambda x: AsyncOperations().comment_notification)
-
         # TODO results log and stats
-
         # Comment Notification here it's just an incomplete version, that never would supports
         # digest or retry, until Task manager queue is implemented
-        return d

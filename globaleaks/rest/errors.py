@@ -169,15 +169,6 @@ class FileGusNotFound(GLException):
     error_code = 26
     status_code = 404 # Not Found
 
-class InvalidPluginFormat(GLException):
-    """
-    This is the error returned when is tried to load a Plugin invalid.
-    At the moment, and for the 0.2 release, the plugins would not be loaded
-    runtime.
-    """
-    reason = "Invalid Plugin Format"
-    error_code = 27
-    status_code = 500 # Server Error
 
 class SubmissionConcluded(GLException):
     """
