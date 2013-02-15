@@ -36,6 +36,38 @@ def authenticated(*roles):
         return call_method
     return wrapper
 
+@transact
+def login_wb(store, receipt):
+    try:
+        wb_tip = store.find(WhistleblowerTip,
+                            WhistleblowerTip.receipt == unicode(receipt)).one()
+    except NotOneError:
+        raise InvalidAuthRequest
+
+    if not wb_tip:
+        raise InvalidAuthRequest
+    
+    return unicode(wb_tip.id)
+
+@transact
+def login_receiver(store, username, password):
+    try:
+        receiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
+    except NotOneError:
+        raise InvalidAuthRequest
+    if not receiver:
+        raise InvalidAuthRequest
+
+    return unicode(receiver.id)
+
+@transact
+def login_admin(store, password):
+    node = store.find(Node).one()
+    if node.password == password:
+        return 'admin'
+    else:
+        return False
+
 class AuthenticationHandler(BaseHandler):
     """
     Login page for administrator
@@ -66,38 +98,6 @@ class AuthenticationHandler(BaseHandler):
         settings.sessions[self.session_id] = new_session
         return self.session_id
 
-    @transact
-    def login_wb(self, store, receipt):
-        try:
-            wb_tip = store.find(WhistleblowerTip,
-                                WhistleblowerTip.receipt == unicode(receipt)).one()
-        except NotOneError:
-            raise InvalidAuthRequest
-
-        if not wb_tip:
-            raise InvalidAuthRequest
-        
-        return unicode(wb_tip.id)
-
-    @transact
-    def login_receiver(self, store, username, password):
-        try:
-            receiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
-        except NotOneError:
-            raise InvalidAuthRequest
-        if not receiver:
-            raise InvalidAuthRequest
-
-        return unicode(receiver.id)
-
-    @transact
-    def login_admin(self, store, password):
-        node = store.find(Node).one()
-        if node.password == password:
-            return 'admin'
-        else:
-            return False
-
     @inlineCallbacks
     def post(self):
         try:
@@ -114,12 +114,12 @@ class AuthenticationHandler(BaseHandler):
 
         if role == 'admin':
             # username is ignored
-            user_id = yield self.login_admin(password)
+            user_id = yield login_admin(password)
         elif role == 'wb':
             # username is ignored
-            user_id = yield self.login_wb(password)
+            user_id = yield login_wb(password)
         elif role == 'receiver':
-            user_id = yield self.login_receiver(username, password)
+            user_id = yield login_receiver(username, password)
         else:
             raise InvalidInputFormat(role)
 

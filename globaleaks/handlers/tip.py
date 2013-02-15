@@ -80,7 +80,7 @@ def get_files_receiver(store, user_id, tip_id):
 
     receiver_files = store.find(ReceiverFile,
         (ReceiverFile.internaltip_id == rtip.internaltip_id, ReceiverFile.receiver_id == rtip.receiver_id) )
-
+    
     files_list = []
     for receiverfile in receiver_files:
         internalfile = receiverfile.internalfile

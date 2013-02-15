@@ -111,11 +111,19 @@ def import_fields(store, submission, fields, expected_fields, strict_validation=
 
         submission.fields.update({key: value})
 
+def force_schedule():
+    # force mail sending, is called force_execution to be sure that Scheduler
+    # run the Notification process, and not our callback+user event.
+    # after two second create the Receiver tip, after five loop over the emails
+    DeliverySched = APSDelivery()
+    DeliverySched.force_execution(GLAsynchronous, seconds=2)
+    NotifSched = APSNotification()
+    NotifSched.force_execution(GLAsynchronous, seconds=5)
 
 @transact
 def create_submission(store, request):
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
-
+    
     if not context:
         raise ContextGusNotFound
 
@@ -137,29 +145,25 @@ def create_submission(store, request):
 
     submission = InternalTip(request)
     submission.creation_date = models.now()
-
+ 
     import_receivers(store, submission, receivers, context)
     import_files(store, submission, files)
-    import_fields(store, submission, fields, context.fields, strict_validation=request['finalize'])
+    finalize = request['finalize']
+    import_fields(store, submission, fields, context.fields, strict_validation=finalize)
 
     store.add(submission)
     submission_dict = wb_serialize_internaltip(submission)
     submission_dict['submission_gus'] = unicode(submission.id)
-
-    # force mail sending, is called force_execution to be sure that Scheduler
-    # run the Notification process, and not our callback+user event.
-    # after two second create the Receiver tip, after five loop over the emails
-    DeliverySched = APSDelivery()
-    DeliverySched.force_execution(GLAsynchronous, seconds=2)
-    NotifSched = APSNotification()
-    NotifSched.force_execution(GLAsynchronous, seconds=5)
-
+    
+    if finalize:
+        force_schedule()
+    
     return submission_dict
 
 @transact
 def update_submission(store, id, request):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
-
+    
     if not submission:
         raise SubmissionGusNotFound
 
@@ -183,8 +187,12 @@ def update_submission(store, id, request):
 
     import_receivers(store, submission, receivers, context)
     import_files(store, submission, files)
-    import_fields(store, submission, fields, context.fields, strict_validation=request['finalize'])
-
+    finalize = request['finalize']
+    import_fields(store, submission, fields, context.fields, strict_validation=finalize)
+     
+    if finalize:
+        force_schedule()
+     
     # TODO update_model
     return wb_serialize_internaltip(submission)
 
