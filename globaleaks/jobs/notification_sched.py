@@ -22,7 +22,6 @@ class APSNotification(GLJob):
     @transact
     def tip_notification(self, store):
         plugin_type = u'notification'
-        print 'dicoane;'
         not_notified_tips = store.find(models.ReceiverTip,
                                        models.ReceiverTip.mark == models.ReceiverTip._marker[0]
         )
