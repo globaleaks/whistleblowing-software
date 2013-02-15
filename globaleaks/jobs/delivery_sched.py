@@ -64,10 +64,10 @@ def receiver_file_align(store, filesdict, processdict):
         ifile.sha2sum = unicode(processdict.get(internalfile_id))
 
         # for each receiver intended to access to this file:
-        for receiver_id in ifile.internaltip.receivers:
-            log.msg("ReceiverFile creation for receiver_id %s, file %s" % (receiver_id, ifile.name) )
+        for receiver in ifile.internaltip.receivers:
+            log.msg("ReceiverFile creation for receiver_id %s, file %s" % (receiver.id, ifile.name) )
             receiverfile = ReceiverFile()
-            receiverfile.receiver_id = receiver_id
+            receiverfile.receiver_id = receiver.id
             receiverfile.downloads = 0
             receiverfile.internalfile_id = internalfile_id
             receiverfile.internaltip_id = ifile.internaltip.id
