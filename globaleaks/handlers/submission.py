@@ -51,18 +51,16 @@ def import_receivers(store, submission, receivers, context):
         for receiver in context.receivers:
             # XXX convert to reference set
             #submission.receivers.add(receiver)
-            submission.receivers.append(receiver.id)
+            submission.receivers.add(receiver)
 
     else:
 
         # import WB requests
         for receiver_id in receivers:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-            # XXX convert to reference set
-            #submission.receivers.add(receiver)
             if not receiver:
                 raise ReceiverGusNotFound
-            submission.receivers.append(receiver.id)
+            submission.receivers.add(receiver)
 
 
 def import_files(store, submission, files):
@@ -121,19 +119,18 @@ def create_submission(store, request):
     request['mark'] = InternalTip._marker[0]
     request['context_id'] = context.id
 
+    receivers = request.get('receivers', [])
+    del request['receivers']
+    files = request.get('files', [])
+    del request['files']
+    fields = request.get('wb_fields', [])
+    del request['wb_fields']
+
     submission = InternalTip(request)
     submission.creation_date = models.now()
 
-    receivers = request.get('receivers')
-    del request['receivers']
     import_receivers(store, submission, receivers, context)
-
-    files = request.get('files')
-    del request['files']
     import_files(store, submission, files)
-
-    fields = request.get('wb_fields')
-    del request['wb_fields']
     import_fields(store, submission, fields, context.fields, strict_validation=request['finalize'])
 
     store.add(submission)

@@ -11,6 +11,9 @@ from globaleaks.jobs import delivery_sched
 from globaleaks.jobs.notification_sched import APSNotification
 
 settings.plugins = ['MailNotification']
+from twisted.python import log
+import sys
+log.startLogging(sys.stdout)
 
 class TestEmail(helpers.TestHandler):
     @inlineCallbacks
@@ -38,7 +41,6 @@ class TestEmail(helpers.TestHandler):
         store.add(self.rcv)
         store.commit()
 
-        self.rcv.contexts.add(self.ctx)
         self.rcv.notification_fields['mail_address'] = '@globaleaks.org'
         self.rcv.receiver_level = 1
 
@@ -61,6 +63,7 @@ class TestEmail(helpers.TestHandler):
             print 'failure', result
 
         d = APSNotification().tip_notification()
+        d.addBoth(success, failure)
         return d
 
 

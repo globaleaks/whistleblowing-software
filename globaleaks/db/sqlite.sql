@@ -63,12 +63,13 @@ CREATE TABLE internaltip (
     escalation_threshold INTEGER,
     expiration_date VARCHAR NOT NULL,
     fields BLOB NOT NULL,
-    files BLOB NOT NULL,
+    files BLOB,
     id VARCHAR NOT NULL,
     last_activity VARCHAR,
     mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first', 'second')),
     pertinence_counter INTEGER NOT NULL,
-    receivers BLOB NOT NULL,
+    receivers VARCHAR,
+    FOREIGN KEY(receivers) REFERENCES receiver(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
