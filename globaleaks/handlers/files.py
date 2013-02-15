@@ -262,6 +262,7 @@ class Download(BaseHandler):
         self.set_header('Content-Type', file_details['content_type'])
         self.set_header('Content-Length', file_details['size'])
         self.set_header('Etag', '"%s"' % file_details['sha2sum'])
+        self.set_header('Content-Disposition','attachment; filename=\"%s\"' % file_details['name'])
 
         filelocation = os.path.join(SUBMISSION_DIR, file_details['path'])
 
