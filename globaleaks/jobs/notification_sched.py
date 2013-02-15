@@ -13,46 +13,52 @@ from globaleaks import models
 from globaleaks.settings import transact
 from globaleaks.utils import log
 from globaleaks.plugins import notification
+from globaleaks import settings
+
+
 from collections import namedtuple
 
 Event = namedtuple('Event',
                    ['type', 'trigger', 'af', 'rf', 'tip_id'])
 
 class APSNotification(GLJob):
+
     @transact
-    def tip_notification(self, store):
-        plugin_type = u'notification'
-        print 'dicoane;'
+    def _get_notification_data(self, store):
         not_notified_tips = store.find(models.ReceiverTip,
                                        models.ReceiverTip.mark == models.ReceiverTip._marker[0]
         )
+        ret = dict((x.id, x.receiver.notification_fields) for x in not_notified_tips)
         node = store.find(models.Node).one()
+        ret['node'] = node.notification_settings
+        return ret
 
+    @inlineCallbacks
+    def tip_notification(self):
         log.debug('tip_notification fired!')
 
-        if not node.notification_settings:
+        notification_data = yield self._get_notification_data()
+        notification_settings = notification_data.pop('node')
+
+        if not notification_settings:
             return
 
-        notification_settings = self._get_notification_settings()
-
-        event = Event(type=u'tip', trigger='diocane', af=notification_settings,
-                      rf=None, tip_id=None)
-
         for cplugin in settings.notification_plugins:
-            plugin = getattr(notification, cplugin)(event.af)
-            for rtip in not_notified_tips:
-                event.rf = rtip.receiver.notification_fields
-                event.tip_id = rtip.id
+            plugin = getattr(notification, cplugin)(notification_settings)
+            for rtip in notification_data:
+                event = Event(type=u'tip', trigger='diocane', af=notification_settings,
+                              rf=notification_data[rtip],
+                              tip_id=rtip)
                 notify = yield plugin.do_notify(event)
 
-                @notify.addCallback
-                def success(self, result):
-                    log.debug('notificication sucess')
-                    rtip.mark = models.ReceiverTip._marker[1]
-                @notify.addErrback
-                def error(self, result):
-                   log.debug('notificication failure')
-                   rtip.mark = models.ReceiverTip._marker[2]
+#                 @notify.addCallback
+#                 def success(self, result):
+#                     log.debug('notificication sucess')
+#                     rtip.mark = models.ReceiverTip._marker[1]
+#                 @notify.addErrback
+#                 def error(self, result):
+#                    log.debug('notificication failure')
+#                    rtip.mark = models.ReceiverTip._marker[2]
 
 
     def operation(self):
