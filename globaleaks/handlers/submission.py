@@ -75,19 +75,23 @@ def import_files(store, submission, files):
 
         submission.files.add(file)
 
-def import_fields(store, submission, fields, expected_fields):
+def import_fields(store, submission, fields, expected_fields, strict_validation=False):
     """
     @param submission: the Storm object
     @param fields: the received fields
     @param expected_fields: the Context defined fields
     @return: update the object of raise an Exception if a required field
         is missing, or if received field do not match the expected shape
+
+    strict_validation = required the presence of 'required' fields. Is not enforced
+    if Submission would not be finalized yet.
     """
 
-    for entry in expected_fields:
-        if entry['required']:
-            if not fields.has_key(entry['name']):
-                raise SubmissionFailFields("Missing field '%s': Required" % entry['name'])
+    if strict_validation:
+        for entry in expected_fields:
+            if entry['required']:
+                if not fields.has_key(entry['name']):
+                    raise SubmissionFailFields("Missing field '%s': Required" % entry['name'])
 
     submission.fields = {}
     for key, value in fields.iteritems():
@@ -133,7 +137,7 @@ def create_submission(store, request):
 
     fields = request.get('wb_fields')
     del request['wb_fields']
-    import_fields(store, submission, fields, context.fields)
+    import_fields(store, submission, fields, context.fields, strict_validation=request['finalize'])
 
     store.add(submission)
     submission_dict = wb_serialize_internaltip(submission)
@@ -169,7 +173,7 @@ def update_submission(store, id, request):
 
     fields = request.get('wb_fields')
     del request['wb_fields']
-    import_fields(store, submission, fields, context.fields)
+    import_fields(store, submission, fields, context.fields, strict_validation=request['finalize'])
 
     # TODO update_model
     return wb_serialize_internaltip(submission)

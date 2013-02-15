@@ -63,7 +63,7 @@ def startAsynchronous():
 
     DeliverSched = delivery_sched.APSDelivery()
     DeliverSched.force_execution(GLAsynchronous, seconds=1)
-    GLAsynchronous.add_interval_job(DeliverSched.operation, minutes=2)
+    GLAsynchronous.add_interval_job(DeliverSched.operation, seconds=7)
 
     NotifSched = notification_sched.APSNotification()
     NotifSched.force_execution(GLAsynchronous, seconds=5)
