@@ -134,6 +134,7 @@ class AuthenticationHandler(BaseHandler):
         """
         if self.current_user:
             try:
+                print settings.sessions[self.current_user.id]
                 del settings.sessions[self.current_user.id]
             except KeyError:
                 raise NotAuthenticated
