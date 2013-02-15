@@ -28,8 +28,7 @@ class APSNotification(GLJob):
         not_notified_tips = store.find(models.ReceiverTip,
                                        models.ReceiverTip.mark == models.ReceiverTip._marker[0]
         )
-        ret = dict((x.id, x.notification_settings) for x in not_notified_tips)
-        print ret
+        ret = dict((x.id, x.receiver.notification_fields) for x in not_notified_tips)
         node = store.find(models.Node).one()
         ret['node'] = node.notification_settings
         return ret
@@ -44,15 +43,12 @@ class APSNotification(GLJob):
         if not notification_settings:
             return
 
-        event = Event(type=u'tip', trigger='diocane', af=notification_settings,
-                      rf=None, tip_id=None)
         for cplugin in settings.notification_plugins:
-            plugin = getattr(notification, cplugin)(event.af)
-            print 'diocane'
+            plugin = getattr(notification, cplugin)(notification_settings)
             for rtip in notification_data:
-                print 'porcodio'
-                event.rf = notification_data[rtip]
-                event.tip_id = rtip
+                event = Event(type=u'tip', trigger='diocane', af=notification_settings,
+                              rf=notification_data[rtip],
+                              tip_id=rtip)
                 notify = yield plugin.do_notify(event)
 
 #                 @notify.addCallback
