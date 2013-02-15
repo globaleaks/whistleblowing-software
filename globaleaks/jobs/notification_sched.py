@@ -13,8 +13,6 @@ from globaleaks.plugins.manager import PluginManager
 from globaleaks import models
 from globaleaks.settings import transact
 from globaleaks.utils import log
-from globaleaks.transactors.asyncoperations import AsyncOperations
-
 
 class APSNotification(GLJob):
     @transact
