@@ -55,16 +55,13 @@ def import_receivers(store, submission, receiver_id_list, context):
     if not context.selectable_receiver:
         for receiver in context.receivers:
             submission.receivers.add(receiver)
-
     else:
-
         # import WB requests
         for receiver_id in receiver_id_list:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
             if not receiver:
                 raise ReceiverGusNotFound
             submission.receivers.add(receiver)
-
 
 def import_files(store, submission, files):
     for file_id in files:

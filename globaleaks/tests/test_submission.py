@@ -61,10 +61,16 @@ class TestSubmission(helpers.TestGL):
         receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
 
         receiver_files = []
-        for file_id in receiverfile_list:
-            tip_id = receiver_tips[0]
-            receiver_file = yield files.get_receiver_file(tip_id, file_id)
-            receiver_files.append(receiver_file)
+        
+        receiver_files = yield tip.get_files_receiver(status['receivers'][0], receiver_tips[0])
         self.assertEqual(len(receiver_files), 2)
+
+# 
+#         for file_id in receiverfile_list:
+#             tip_id = receiver_tips[0]
+#             receiver_file = yield files.download_file(tip_id, file_id)
+#             receiver_files.append(receiver_file)
+
+
 
 
