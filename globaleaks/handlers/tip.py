@@ -21,7 +21,6 @@ from globaleaks.rest.errors import  *
 
 
 def actor_serialize_internal_tip(internaltip):
-
     itip_dict = {
         'context_id': unicode(internaltip.context.id),
         'creation_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
@@ -33,9 +32,7 @@ def actor_serialize_internal_tip(internaltip):
         'pertinence' : unicode(internaltip.pertinence_counter),
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
         'fields' : dict(internaltip.fields),
-        'folders' : []
     }
-
     return itip_dict
 
 def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
@@ -44,7 +41,6 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     and the Receiver-dependent, and for the client sake receivertip_id is
     required to create the download link
     """
-
     rfile_dict = {
         'href' : unicode("/tip/" + receivertip_id + "/download/" + receiverfile.id),
         'name' : unicode(internalfile.name),
@@ -58,7 +54,6 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
 
 
 def wb_serialize_file(internalfile):
-
     wb_file_desc = {
         'name' : unicode(internalfile.name),
         'sha2sum' : unicode(internalfile.sha2sum),
@@ -69,8 +64,7 @@ def wb_serialize_file(internalfile):
 
 
 @transact
-def get_folders_wb(store, tip_id):
-
+def get_files_wb(store, tip_id):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
     file_list = []
@@ -80,8 +74,8 @@ def get_folders_wb(store, tip_id):
     return file_list
 
 @transact
-def get_folders_receiver(store, user_id, tip_id):
-    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id)).one()
+def get_files_receiver(store, user_id, tip_id):
+    rtip = strong_receiver_validate(store, user_id, tip_id)
 
     files_list = []
     for receiverfile in rtip.receiver_files:
@@ -204,10 +198,10 @@ class TipInstance(BaseHandler):
         """
         if self.is_whistleblower:
             (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['user_id'])
-            answer['folder'] = yield get_folders_wb(self.current_user['user_id'])
+            answer['files'] = yield get_files_wb(self.current_user['user_id'])
         else:
             answer = yield get_internaltip_receiver(tip_id, self.current_user['user_id'])
-            answer['folder'] = yield get_folders_receiver(self.current_user['user_id'], tip_id)
+            answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
         self.set_status(200)
         self.finish(answer)
@@ -312,6 +306,7 @@ def create_comment_wb(store, wb_tip_id, request):
     comment.author = u'whistleblower' # The printed line
     comment.type = Comment._types[1] # WB
     store.add(comment)
+    wbtip.internaltip.comments.add(comment)
 
     return serialize_comment(comment)
 
@@ -324,6 +319,7 @@ def create_comment_receiver(store, user_id, tip_id, request):
     comment.author = rtip.receiver.name # The printed line
     comment.type = Comment._types[0] # Receiver
     store.add(comment)
+    rtip.internaltip.comments.add(comment)
 
     return actor_serialize_comment(comment)
 
@@ -372,7 +368,7 @@ class TipCommentCollection(BaseHandler):
         self.finish(answer)
 
 
-def serialize_receiver(receiver):
+def serialize_receiver(receiver, access_counter):
     receiver_dict = {
         "can_configure_delivery": receiver.can_configure_delivery,
         "can_configure_notification": receiver.can_configure_notification,
@@ -383,23 +379,12 @@ def serialize_receiver(receiver):
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "contexts": [],
+        "access_counter": access_counter
     }
     for context in receiver.contexts:
         receiver_dict['contexts'].append(unicode(context.id))
 
     return receiver_dict
-
-def get_receiver_itip(internaltip):
-    """
-    Having the InernalTip, after the right authorization, just loop for all
-    the receiver associated.
-    """
-
-    pub_receiver_list = []
-    for receiver in internaltip.receivers:
-        pub_receiver_list.append(public_serialize_receiver(receiver))
-
-    return pub_receiver_list
 
 @transact
 def get_receiver_list_wb(store, wb_tip_id):
@@ -410,7 +395,15 @@ def get_receiver_list_wb(store, wb_tip_id):
     receiver_list = []
     for receiver_id in wb_tip.internaltip.receivers:
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
-        receiver_list.append(serialize_receiver(receiver))
+        receiver_tip = store.find(ReceiverTip, 
+            (ReceiverTip.receiver_id == unicode(receiver_id),
+             ReceiverTip.internaltip_id == wb_tip.internaltip.id)).one()
+
+        access_counter = 0
+        if receiver_tip:
+            access_counter = receiver_tip.access_counter
+
+        receiver_list.append(serialize_receiver(receiver, access_counter))
 
     return receiver_list
 
