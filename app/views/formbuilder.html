@@ -36,11 +36,12 @@ The following code is based off of http://jsfiddle.net/ProLoser/bp3Qu/light/
           <option value="header">Heading</option>
         </select>
       </div>
+
+      <label for="newField-placeholder">Hint:</label>
+      <input type="text" id="newField-placeholder" ng-model="newField.hint">
+
       <div ng-switch on="typeSwitch(newField.type)">
-      <div ng-switch-default class="input">
-        <label for="newField-placeholder">Hint:</label>
-        <input type="text" id="newField-placeholder" ng-model="newField.hint">
-      </div>
+      <div ng-switch-default></div>
       <fieldset ng-switch-when="multiple">
         <legend><a ng-click="addOption()">Add Option</a></legend>
         <div class="newOption" ng-repeat="option in newField.options">
@@ -64,15 +65,14 @@ The following code is based off of http://jsfiddle.net/ProLoser/bp3Qu/light/
   </div>
 
   <div class="span2">
-    <dl ng-repeat="field in fieldsToEdit">
-      <dt>Label</dt>
-      <dd>{{field.label}}</dd>
-
-      <dt>Name</dt>
-      <dd>{{field.name}}</dd>
-
-      <dt>type</dt>
-      <dd>{{field.type}}</dd>
-    </dl>
+    <h4>Configured submission fields</h4>
+    <div ng-repeat="field in fieldsToEdit" class="dl-horizontal">
+      <ul class="unstyled">
+        <li><strong>Label</strong> {{field.label}}</li>
+        <li><strong>Name</strong> {{field.name}}</li>
+        <li><strong>Type</strong> {{field.type}}</li>
+        <li><strong>Hint</strong> {{field.hint}}</li>
+      </ul>
+    </div>
   </div>
 </div>
