@@ -283,7 +283,7 @@ InternalTip.receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
 ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
 ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
-ReceiverFile.internaltip_id = Reference(ReceiverFile.internaltip_id, InternalTip.id)
+ReceiverFile.internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
 
 WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
 

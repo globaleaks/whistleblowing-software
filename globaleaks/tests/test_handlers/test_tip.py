@@ -6,20 +6,11 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
 
-from globaleaks import settings
 from globaleaks.handlers import tip
 
 class TestTipInstance(helpers.TestHandler):
     _handler = tip.TipInstance
 
-    def login(self, role='wb', user_id=None):
-        if not user_id:
-            user_id = self.dummySubmission['submission_gus']
-        wb_session = OD(timestamp=time.time(),id='spam',
-                role=role, user_id=user_id)
-        settings.sessions[wb_session.id] = wb_session
-        return wb_session.id
- 
     @inlineCallbacks
     def test_get_whistleblower_tip(self):
         tip_id = self.dummySubmission['context_gus']
