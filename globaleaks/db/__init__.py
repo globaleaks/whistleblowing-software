@@ -6,7 +6,6 @@ import os.path
 
 from twisted.internet.defer import inlineCallbacks, DeferredList, succeed
 from globaleaks import settings
-from globaleaks.db import tables
 from globaleaks.utils import log
 from globaleaks.settings import transact
 from globaleaks import models
