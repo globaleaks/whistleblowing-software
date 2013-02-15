@@ -83,7 +83,6 @@ def get_files_receiver(store, user_id, tip_id):
 
     files_list = []
     for receiverfile in receiver_files:
-        print "XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
         internalfile = receiverfile.internalfile
         files_list.append(receiver_serialize_file(internalfile, receiverfile, tip_id))
 
