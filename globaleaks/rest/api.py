@@ -16,8 +16,6 @@ from globaleaks.handlers import node, submission, tip, admin, receiver, files, d
 from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS, uuid_regexp
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
-not_defined_regexp = r'(\w+)'
-only_int_regexp = r'(\d+)'
 file_uuid = uuid_regexp
 receiver_token_auth = uuid_regexp
 wb_receipt = r'(\w+)'
@@ -99,15 +97,6 @@ spec = [
 
     #  A5 receiverGUS
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
-
-    #  A6
-    (r'/admin/plugin', admin.PluginCollection),
-
-    #  AB
-    (r'/admin/statistics/', admin.StatisticsCollection),
-
-    #  D2
-    (r'/debug/tasks/' + not_defined_regexp, debug.TaskInstance),
 
 ]
 
