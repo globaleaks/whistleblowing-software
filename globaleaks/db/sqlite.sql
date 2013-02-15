@@ -48,9 +48,11 @@ CREATE TABLE receiverfile (
     id VARCHAR NOT NULL,
     internalfile_id VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
+    internaltip_id VARCHAR NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,
-    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
 
 CREATE TABLE internaltip (
