@@ -25,7 +25,8 @@ def wb_serialize_internaltip(internaltip):
         'context_gus': unicode(internaltip.context_id),
         #'creation_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
         #'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
-        'fields' : dict(internaltip.fields or {}),
+        'wb_fields' : dict(internaltip.fields or {}),
+        'fields' : dict(internaltip.fields or {}),      # ??!? sta a Capì
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
         'mark' : unicode(internaltip.mark),
@@ -85,12 +86,18 @@ def import_fields(store, submission, fields, expected_fields, strict_validation=
     if Submission would not be finalized yet.
     """
     if strict_validation:
+        if not fields:
+            raise SubmissionFailFields("Missing submission!")
+
         for entry in expected_fields:
             if entry['required']:
                 if not fields.has_key(entry['name']):
                     raise SubmissionFailFields("Missing field '%s': Required" % entry['name'])
 
     submission.fields = {}
+    if not fields:
+        return
+
     for key, value in fields.iteritems():
         key_exists = False
 
