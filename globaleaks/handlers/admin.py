@@ -241,6 +241,7 @@ def create_receiver(store, request):
 
     receiver = Receiver(request)
     receiver.username = request['notification_fields']['mail_address']
+
     store.add(receiver)
 
     for context_id in contexts:
@@ -322,6 +323,7 @@ class NodeInstance(BaseHandler):
     /node
     """
     @inlineCallbacks
+    @authenticated('admin')
     def get(self, *uriargs):
         """
         Parameters: None
@@ -333,6 +335,7 @@ class NodeInstance(BaseHandler):
         self.finish(node_description)
 
     @inlineCallbacks
+    @authenticated('admin')
     def put(self, *uriargs):
         """
         Request: adminNodeDesc
@@ -357,6 +360,7 @@ class ContextsCollection(BaseHandler):
     /admin/context
     """
     @inlineCallbacks
+    @authenticated('admin')
     def get(self, *uriargs):
         """
         Parameters: None
@@ -369,6 +373,7 @@ class ContextsCollection(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @authenticated('admin')
     def post(self, *uriargs):
         """
         Request: adminContextDesc
@@ -388,6 +393,7 @@ class ContextInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @authenticated('admin')
     def get(self, context_gus, *uriargs):
         """
         Parameters: context_gus
@@ -399,6 +405,7 @@ class ContextInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @authenticated('admin')
     def put(self, context_gus, *uriargs):
         """
         Request: adminContextDesc
@@ -414,6 +421,7 @@ class ContextInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @authenticated('admin')
     def delete(self, context_gus, *uriargs):
         """
         Request: adminContextDesc
@@ -474,6 +482,7 @@ class ReceiverInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @authenticated('admin')
     def get(self, receiver_gus, *uriargs):
         """
         Parameters: receiver_gus
@@ -488,6 +497,7 @@ class ReceiverInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @authenticated('admin')
     def put(self, receiver_gus, *uriargs):
         """
         Request: adminReceiverDesc
@@ -504,6 +514,7 @@ class ReceiverInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @authenticated('admin')
     def delete(self, receiver_gus, *uriargs):
         """
         Parameter: receiver_gus
@@ -516,44 +527,7 @@ class ReceiverInstance(BaseHandler):
         self.set_status(200)
         self.finish()
 
-class PluginCollection(BaseHandler):
-    """
-    A6
-    Return the list of all pluging (python file containing a self contained name, with an
-    univoque name) available on the system.
-    """
 
-    @inlineCallbacks
-    def get(self, *uriargs):
-        """
-        Parameters: None
-        Response: adminPluginList
-        Errors: None
-
-        This handler is one of the few that do not operate versus the database model, and
-        then do not use CrudOperation, but works in the filesystem.
-        Checks the plugin presents in the appropriate directory and return a list with
-        name and properties.
-        """
-
-        # This is not a transact, it's right
-        plugin_descriptive_list = settings.notification_plugins
-        self.set_status(200)
-        self.write(plugin_descriptive_list)
-
-
-class StatisticsCollection(BaseHandler):
-    """
-    AB
-    Return all administrative statistics of the node.
-    """
-
-    @inlineCallbacks
-    def get(self, *uriargs):
-        """
-        Parameters: None
-        Response: adminStatsList
-        Errors: None
-        """
-        pass
+# Removed from the Admin API
+# plugin_descriptive_list = yield PluginManager.get_all()
 

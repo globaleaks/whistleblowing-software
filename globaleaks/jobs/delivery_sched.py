@@ -70,6 +70,7 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile.receiver_id = receiver_id
             receiverfile.downloads = 0
             receiverfile.internalfile_id = internalfile_id
+            receiverfile.internaltip_id = ifile.internaltip.id
 
             # Is the same until end-to-end crypto is not supported
             receiverfile.file_path = ifile.file_path
@@ -98,10 +99,10 @@ def create_receivertip(store, receiver_id, internaltip, tier):
     receivertip.expressed_pertinence = 0
     receivertip.receiver_id = receiver_id
     receivertip.mark = ReceiverTip._marker[0]
+    store.add(receivertip)
 
     internaltip.receivertips.add(receivertip)
 
-    store.add(receivertip)
 
 @transact
 def tip_creation(store):
