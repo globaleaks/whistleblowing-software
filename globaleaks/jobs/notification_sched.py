@@ -48,7 +48,9 @@ class APSNotification(GLJob):
                       rf=None, tip_id=None)
         for cplugin in settings.notification_plugins:
             plugin = getattr(notification, cplugin)(event.af)
+            print 'diocane'
             for rtip in notification_data:
+                print 'porcodio'
                 event.rf = notification_data[rtip]
                 event.tip_id = rtip
                 notify = yield plugin.do_notify(event)

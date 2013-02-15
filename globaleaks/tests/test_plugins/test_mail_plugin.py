@@ -64,7 +64,3 @@ class TestEmail(helpers.TestHandler):
 
         d = APSNotification().tip_notification()
         return d
-
-
-
-

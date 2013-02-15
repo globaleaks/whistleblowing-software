@@ -12,6 +12,8 @@ from globaleaks.models import *
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.jobs.notification_sched import APSNotification
+from globaleaks.jobs.delivery_sched import APSDelivery
+from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
 from globaleaks import utils
 from globaleaks.rest.errors import *
@@ -30,8 +32,11 @@ def wb_serialize_internaltip(internaltip):
         'pertinence' : unicode(internaltip.pertinence_counter),
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
         'files' : dict(internaltip.files) if internaltip.files else {},
-        'receivers' : list(internaltip.receivers) if internaltip.receivers else [],
+        'receivers' : []
     }
+    for receiver in internaltip.receivers:
+        response['receivers'].append(receiver.id)
+
     return response
 
 @transact
@@ -39,24 +44,21 @@ def create_whistleblower_tip(store, submission):
     wbtip = WhistleblowerTip(submission)
     wbtip.receipt = unicode(utils.random_string(10, 'a-z,A-Z,0-9'))
     wbtip.access_counter = 0
-##### validate --- what ?
     wbtip.internaltip_id = submission['id']
     store.add(wbtip)
     return wbtip.receipt
 
 
-def import_receivers(store, submission, receivers, context):
+def import_receivers(store, submission, receiver_id_list, context):
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
-            # XXX convert to reference set
-            #submission.receivers.add(receiver)
             submission.receivers.add(receiver)
 
     else:
 
         # import WB requests
-        for receiver_id in receivers:
+        for receiver_id in receiver_id_list:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
             if not receiver:
                 raise ReceiverGusNotFound
@@ -137,9 +139,14 @@ def create_submission(store, request):
     submission_dict = wb_serialize_internaltip(submission)
     submission_dict['submission_gus'] = unicode(submission.id)
 
-### XXX: force mail sending
-    APSNotification().tip_notification()
-###
+    # force mail sending, is called force_execution to be sure that Scheduler
+    # run the Notification process, and not our callback+user event.
+    # after two second create the Receiver tip, after five loop over the emails
+    DeliverySched = APSDelivery()
+    DeliverySched.force_execution(GLAsynchronous, seconds=2)
+    NotifSched = APSNotification()
+    NotifSched.force_execution(GLAsynchronous, seconds=5)
+
     return submission_dict
 
 @transact
@@ -160,16 +167,15 @@ def update_submission(store, id, request):
     if submission.context_id != context.id:
         raise ContextGusNotFound()
 
-    receivers = request.get('receivers')
+    receivers = request.get('receivers', [])
     del request['receivers']
-    import_receivers(store, submission, receivers, context)
-
-    files = request.get('files')
+    files = request.get('files', [])
     del request['files']
-    import_files(store, submission, files)
-
-    fields = request.get('wb_fields')
+    fields = request.get('wb_fields', [])
     del request['wb_fields']
+
+    import_receivers(store, submission, receivers, context)
+    import_files(store, submission, files)
     import_fields(store, submission, fields, context.fields, strict_validation=request['finalize'])
 
     # TODO update_model
@@ -203,13 +209,13 @@ def finalize_submission(store, id):
     Shift marker status since 0 (submission) to 1 (finalized)
     """
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
-    submission.mark = InternalTip._marker[1]
 
     # checks that in fact Receivers has been selected or are present.
-    if len(submission.receivers) == 0:
-       raise SubmissionFailFields("Receiver not available: Submission not acceptable")
+    if submission.receivers.count() == 0:
+        raise SubmissionFailFields("Receiver not available: Submission not acceptable")
 
-    print "DEBUG: submission finalized with receivers:", submission.receivers
+    submission.mark = InternalTip._marker[1]
+
 
 
 class SubmissionCreate(BaseHandler):
