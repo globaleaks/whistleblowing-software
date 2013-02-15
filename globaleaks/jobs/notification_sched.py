@@ -24,6 +24,7 @@ class APSNotification(GLJob):
     @transact
     def tip_notification(self, store):
         plugin_type = u'notification'
+        print 'dicoane;'
         not_notified_tips = store.find(models.ReceiverTip,
                                        models.ReceiverTip.mark == models.ReceiverTip._marker[0]
         )
@@ -34,11 +35,13 @@ class APSNotification(GLJob):
         if not node.notification_settings:
             return
 
-        event = Event(type=u'tip', trigger='diocane', af=node.notification_settings,
-                      rf=None, tip_id=None),
+        notification_settings = self._get_notification_settings()
+
+        event = Event(type=u'tip', trigger='diocane', af=notification_settings,
+                      rf=None, tip_id=None)
 
         for cplugin in settings.notification_plugins:
-            plugin = getattr(notification, cplugin)(node.notification_settings)
+            plugin = getattr(notification, cplugin)(event.af)
             for rtip in not_notified_tips:
                 event.rf = rtip.receiver.notification_fields
                 event.tip_id = rtip.id

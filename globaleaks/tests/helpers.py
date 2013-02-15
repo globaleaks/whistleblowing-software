@@ -36,7 +36,6 @@ import storm
 
 #log.startLogging(sys.stdout)
 class TestGL(unittest.TestCase):
-
     @inlineCallbacks
     def fill_data(self):
         self.dummyReceiver = yield create_receiver(self.dummyReceiver)
