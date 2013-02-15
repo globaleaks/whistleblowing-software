@@ -242,6 +242,7 @@ def create_receiver(store, request):
 
     receiver = Receiver(request)
     receiver.username = request['notification_fields']['mail_address']
+
     store.add(receiver)
     
     for context_id in contexts:
