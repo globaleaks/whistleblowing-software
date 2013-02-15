@@ -18,16 +18,14 @@ class MailNotification(Notification):
             'comment':  'New comment from GLBNode',
             'tip': 'New tip from GLBNode',
     }
+    plugin_name = u'Mail'
+    plugin_type = u'notification'
+    plugin_description = u"Mail notification, with encryption supports"
+    admin_fields = {'server' : 'text', 'port': 'int', 'password' : 'text', 'username':'text', 'ssl' : 'bool' }
+    receiver_fields = {'mail_address' : 'text'}
 
-    def __init__(self):
-        self.plugin_name = u'Mail'
-        self.plugin_type = u'notification'
-        self.plugin_description = u"Mail notification, with encryption supports"
-
-        # this is not the right fields description, because would contain also
-        # the 'order' of representation, the 'description' and the 'required' boolean flag
-        self.admin_fields = {'server' : 'text', 'port': 'int', 'password' : 'text', 'username':'text', 'ssl' : 'bool' }
-        self.receiver_fields = {'mail_address' : 'text'}
+    def __init__(self, notification_settings):
+        self.body = notification_settings['email_template']
 
     def validate_admin_opt(self, pushed_af):
         fields = ['server', 'port', 'username', 'password']
@@ -41,9 +39,6 @@ class MailNotification(Notification):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
         return True
 
-    def initialize(self, store, admin_fields):
-        node = store.find(models.Node).one()
-        self.body = node.notification_settings['email_template']
 
     def _append_email(self):
         """
@@ -75,20 +70,20 @@ class MailNotification(Notification):
     def digest_check(self, settings, stored_data, new_data):
         pass
 
-    def do_notify(self, event, af, rf, tip_id, notification_date):
+    def do_notify(self, event):
         # validation
         if not self.validate_admin_opt(af):
             return False
 
         # email fields
         title = self._title[event.type]
-        body = self.body
-        host = af['server']
-        port = int(af['port'])
-        u = af['username']
-        p = af['password']
-        tls = af.get('ssl')
-        to_addrs = [rf['mail_address']]
+        body = self.body # % event.tip_id
+        host = event.af['server']
+        port = int(event.af['port'])
+        u = event.af['username']
+        p = event.af['password']
+        tls = event.af.get('ssl')
+        to_addrs = [event.rf['mail_address']]
         if tls:
             contextFactory = ClientContextFactory()
             contextFactory.method = SSLv3_METHOD

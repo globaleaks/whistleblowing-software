@@ -7,6 +7,7 @@
 from apscheduler.scheduler import Scheduler
 from datetime import date
 from globaleaks import utils
+from globaleaks.utils import log
 
 class GLJob:
 
@@ -21,7 +22,7 @@ class GLJob:
             # this hours=1 need to be managed with CEST/CET timezone checks
             plan_exec = utils.utcFutureDate(hours=1, seconds=seconds)
 
-            print "Stored execution of %s postpone to %s" % \
-                  (self.__class__.__name__, utils.prettyDateTime(plan_exec) )
+            log.debug("Stored execution of %s postpone to %s" %
+                  (self.__class__.__name__, utils.prettyDateTime(plan_exec) ))
 
             aps.add_date_job(self.operation, plan_exec)

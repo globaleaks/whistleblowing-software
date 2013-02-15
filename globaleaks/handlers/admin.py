@@ -7,7 +7,6 @@
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
-from globaleaks.plugins.manager import PluginManager
 from globaleaks.rest import errors, requests
 from globaleaks.models import now, Receiver, Context, Node
 
@@ -236,7 +235,7 @@ def create_receiver(store, request):
     """
     contexts = request.get('contexts')
     del request['contexts']
-    
+
     if 'mail_address' not in request['notification_fields']:
         raise errors.NoEmailSpecified
 
@@ -244,7 +243,7 @@ def create_receiver(store, request):
     receiver.username = request['notification_fields']['mail_address']
 
     store.add(receiver)
-    
+
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
         if not context:

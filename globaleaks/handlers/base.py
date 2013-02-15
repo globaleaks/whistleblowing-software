@@ -84,7 +84,7 @@ class BaseHandler(RequestHandler):
         valid_jmessage = {}
         for key in message_template.keys():
             if key not in jmessage:
-                print "key", key, "not in", jmessage
+                log.debug('key %s not in %s' % (key, jmessage))
                 raise errors.InvalidInputFormat('wrong schema')
             else:
                 valid_jmessage[key] = jmessage[key]
@@ -165,6 +165,7 @@ class BaseHandler(RequestHandler):
             return None
         else:
             try:
+                print settings.sessions
                 session = settings.sessions[session_id]
             except KeyError:
                 return None
