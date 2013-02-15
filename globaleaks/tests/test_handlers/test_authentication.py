@@ -13,7 +13,7 @@ class TestAuthentication(helpers.TestHandler):
     def login(self, role='admin', user_id=None):
         if not user_id:
             if role == 'admin':
-                user_id = 'admin';
+                user_id = 'admin'
             elif role == 'wb':
                 user_id = self.dummySubmission['submission_gus']
             elif role == 'receiver':
