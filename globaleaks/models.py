@@ -41,7 +41,6 @@ class Model(Storm):
     def __setattr__(self, name, value):
         # harder better faster stronger
         if isinstance(value, str):
-            print name
             value = unicode(value)
 
         return Storm.__setattr__(self, name, value)

@@ -165,7 +165,6 @@ class BaseHandler(RequestHandler):
             return None
         else:
             try:
-                print settings.sessions
                 session = settings.sessions[session_id]
             except KeyError:
                 return None
