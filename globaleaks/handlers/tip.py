@@ -399,10 +399,10 @@ def get_receiver_list_wb(store, wb_tip_id):
         raise TipReceiptNotFound
     
     receiver_list = []
-    for receiver_id in wb_tip.internaltip.receivers:
-        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
-        receiver_tip = store.find(ReceiverTip, 
-            (ReceiverTip.receiver_id == unicode(receiver_id),
+    for receiver in wb_tip.internaltip.receivers:
+
+        receiver_tip = store.find(ReceiverTip,
+            (ReceiverTip.receiver_id == receiver.id,
              ReceiverTip.internaltip_id == wb_tip.internaltip.id)).one()
 
         access_counter = 0
@@ -418,13 +418,10 @@ def get_receiver_list_receiver(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
     receiver_list = []
-    # internaltip = store.find(InternalTip, InternalTip.id == rtip.internaltip_id).one()
-    # XXX Find a way to properly use Refenrece betweeen rtip.internaltips
+    for receiver in rtip.internaltip.receivers:
 
-    for receiver_id in rtip.internaltip.receivers:
-        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
         receiver_tip = store.find(ReceiverTip,
-            (ReceiverTip.receiver_id == unicode(receiver_id),
+            (ReceiverTip.receiver_id == receiver.id,
              ReceiverTip.internaltip_id == rtip.internaltip.id)).one()
 
         access_counter = 0
