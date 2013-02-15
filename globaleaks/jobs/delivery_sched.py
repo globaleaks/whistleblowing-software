@@ -69,7 +69,7 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile = ReceiverFile()
             receiverfile.receiver_id = receiver.id
             receiverfile.downloads = 0
-            receiverfile.internalfile_id = internalfile_id
+            receiverfile.internalfile_id = ifile.id
             receiverfile.internaltip_id = ifile.internaltip.id
 
             # Is the same until end-to-end crypto is not supported

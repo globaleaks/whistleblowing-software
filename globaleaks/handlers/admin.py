@@ -242,6 +242,11 @@ def create_receiver(store, request):
     receiver = Receiver(request)
     receiver.username = request['notification_fields']['mail_address']
 
+    # JUST EASY LOGIN TESTS
+    # receiver.username = "FOCA"
+    # receiver.password = "FOCA"
+    # JUST EASY LOGIN TESTS
+
     store.add(receiver)
 
     for context_id in contexts:
