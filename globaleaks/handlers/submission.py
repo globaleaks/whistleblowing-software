@@ -11,10 +11,10 @@ from globaleaks.settings import transact
 from globaleaks.models import *
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.rest import requests
 from globaleaks import utils
-from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
-    ContextGusNotFound, SubmissionFailFields, SubmissionConcluded, ReceiverGusNotFound, FileGusNotFound
+from globaleaks.rest.errors import *
 
 
 def wb_serialize_internaltip(internaltip):
@@ -46,28 +46,24 @@ def create_whistleblower_tip(store, submission):
 
 
 def import_receivers(store, submission, receivers, context):
-
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
             # XXX convert to reference set
             #submission.receivers.add(receiver)
-            submission.receivers.append(receiver.id)
+            submission.receivers.add(receiver)
 
     else:
 
         # import WB requests
         for receiver_id in receivers:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-            # XXX convert to reference set
-            #submission.receivers.add(receiver)
             if not receiver:
                 raise ReceiverGusNotFound
-            submission.receivers.append(receiver.id)
+            submission.receivers.add(receiver)
 
 
 def import_files(store, submission, files):
-
     for file_id in files:
         file = store.find(InternalFile, InternalFile,id == unicode(file_id)).one()
         if not file:
@@ -86,7 +82,6 @@ def import_fields(store, submission, fields, expected_fields, strict_validation=
     strict_validation = required the presence of 'required' fields. Is not enforced
     if Submission would not be finalized yet.
     """
-
     if strict_validation:
         for entry in expected_fields:
             if entry['required']:
@@ -124,24 +119,27 @@ def create_submission(store, request):
     request['mark'] = InternalTip._marker[0]
     request['context_id'] = context.id
 
+    receivers = request.get('receivers', [])
+    del request['receivers']
+    files = request.get('files', [])
+    del request['files']
+    fields = request.get('wb_fields', [])
+    del request['wb_fields']
+
     submission = InternalTip(request)
     submission.creation_date = models.now()
 
-    receivers = request.get('receivers')
-    del request['receivers']
     import_receivers(store, submission, receivers, context)
-
-    files = request.get('files')
-    del request['files']
     import_files(store, submission, files)
-
-    fields = request.get('wb_fields')
-    del request['wb_fields']
     import_fields(store, submission, fields, context.fields, strict_validation=request['finalize'])
 
     store.add(submission)
     submission_dict = wb_serialize_internaltip(submission)
     submission_dict['submission_gus'] = unicode(submission.id)
+
+### XXX: force mail sending
+    APSNotification().tip_notification()
+###
     return submission_dict
 
 @transact
@@ -155,7 +153,6 @@ def update_submission(store, id, request):
         raise SubmissionConcluded
 
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
-
     if not context:
         raise ContextGusNotFound()
 
