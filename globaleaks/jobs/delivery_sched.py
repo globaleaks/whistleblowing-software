@@ -81,27 +81,27 @@ def receiver_file_align(store, filesdict, processdict):
         ifile.mark = InternalFile._marker[1] # Ready (TODO review the marker)
 
 
-def create_receivertip(store, receiver_id, internaltip, tier):
+def create_receivertip(store, receiver, internaltip, tier):
     """
     Create ReceiverTip for the required tier of Receiver.
     """
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+    # receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
     
-    log.msg('Creating ReceiverTip for: %s' % repr(receiver))
+    log.msg('Creating ReceiverTip for: %s (level %d in request %d)' % (receiver.name, receiver.receiver_level, tier))
 
     if receiver.receiver_level != tier:
-        log.msg('Receiver not of the right tier %s' % receiver_id)
         return
 
     receivertip = ReceiverTip()
     receivertip.internaltip_id = internaltip.id
     receivertip.access_counter = 0
     receivertip.expressed_pertinence = 0
-    receivertip.receiver_id = receiver_id
+    receivertip.receiver_id = receiver.id
     receivertip.mark = ReceiverTip._marker[0]
     store.add(receivertip)
-
     internaltip.receivertips.add(receivertip)
+
+    log.msg('-- Created! copy paste [/#/status/%s]' % receivertip.id)
 
 
 @transact
@@ -113,8 +113,8 @@ def tip_creation(store):
     finalized = store.find(InternalTip, InternalTip.mark == InternalTip._marker[1])
     
     for internaltip in finalized:
-        for receiver_id in internaltip.receivers:
-            create_receivertip(store, receiver_id, internaltip, 1)
+        for receiver in internaltip.receivers:
+            create_receivertip(store, receiver, internaltip, 1)
             # TODO interalfile_is_correct
 
         internaltip.mark = internaltip._marker[2]
@@ -124,8 +124,8 @@ def tip_creation(store):
                           InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )
 
     for internaltip in promoted:
-        for receiver_id in internaltip.receivers:
-            create_receivertip(store, receiver_id, internaltip, 2)
+        for receiver in internaltip.receivers:
+            create_receivertip(store, receiver, internaltip, 2)
             # TODO interalfile_is_correct
 
         internaltip.mark = internaltip._marker[3]
