@@ -39,6 +39,8 @@ import storm
 class TestGL(unittest.TestCase):
     @inlineCallbacks
     def fill_data(self):
+        finalize_flag = self.dummySubmission['finalize']
+
         self.dummyReceiver = yield create_receiver(self.dummyReceiver)
 
         self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
@@ -55,8 +57,10 @@ class TestGL(unittest.TestCase):
         self.dummyNode['password'] = u'spam'
         self.dummyNode['old_password'] = None
 
-        self.dummySubmission['context_gus'] = context_dict['context_gus']
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
+        self.dummySubmission['context_gus'] = context_dict['context_gus']
+
+        self.dummySubmission['finalize'] = finalize_flag
 
     def setUp_dummy(self):
         self.dummyReceiver = {

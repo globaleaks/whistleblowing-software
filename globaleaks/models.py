@@ -48,6 +48,8 @@ class Model(Storm):
 
     def update(self, attrs={}):
         for key, value in attrs.iteritems():
+            if key == 'id':
+                continue
             if isinstance(value, str):
                 value = unicode(value)
             setattr(self, key, value)
