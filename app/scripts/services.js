@@ -210,9 +210,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       commentsResource = $resource('/tip/:tip_id/comments', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
-      this.receivers = [];
-      this.comments = [];
       this.tip = {};
+      this.tip.comments = [];
+      this.tip.receivers = [];
+
       receiversResource.query(tipID, function(receiversCollection){
 
         tipResource.get(tipID, function(result){
@@ -220,26 +221,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           this.tip.receivers = receiversCollection;
 
           commentsResource.query(tipID, function(commentsCollection){
-
-            _.each(commentsCollection, function(comment){
-              if (comment.author_gus) {
-                receiverWithID(comment.author_gus, function(author){
-                  comment.author = author;
-                });
-              }
-              this.comments.push(comment);
-            });
-
-            this.tip.comments = this.comments;
+            this.tip.comments = commentsCollection;
             this.tip.comments.newComment = function(content) {
               var c = new commentsResource(tipID);
               c.content = content;
               c.$save(function(newComment) {
-                if (newComment.author_gus) {
-                  receiverWithID(newComment.author_gus, function(author){
-                    c.author = author;
-                  });
-                }
                 this.tip.comments.push(newComment);
               });
             };
@@ -319,9 +305,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         }),
         adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}});
 
-      adminContextsResource.prototype.toString = function() { return "Admin Context"; }
-      adminReceiversResource.prototype.toString = function() { return "Admin Receiver"; }
-      adminNodeResource.prototype.toString = function() { return "Admin Node"; }
+      adminContextsResource.prototype.toString = function() { return "Admin Context"; };
+      adminReceiversResource.prototype.toString = function() { return "Admin Receiver"; };
+      adminNodeResource.prototype.toString = function() { return "Admin Node"; };
 
       self.context = adminContextsResource;
       self.contexts = adminContextsResource.query();

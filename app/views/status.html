@@ -57,15 +57,15 @@
       <div ng-repeat="comment in tip.comments">
         <div ng-switch on="comment.source">
 
-          <div ng-switch-when="whistleblower" class="alert alert-success">
+          <div ng-switch-when="whistleblower" class="alert alert-info">
             <strong>Whistleblower</strong> {{comment.content}}
           </div>
 
           <div ng-switch-when="receiver" class="alert alert-success">
-            <strong>{{comment.author.name}}</strong> {{comment.content}}
+            <strong>{{comment.author}}</strong> {{comment.content}}
           </div>
 
-          <div ng-switch-when="system" class="alert alert-info">
+          <div ng-switch-when="system" class="alert alert-warning">
             <strong>System</strong> {{comment.content}}
           </div>
 
