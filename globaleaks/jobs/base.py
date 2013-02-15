@@ -7,6 +7,7 @@
 from apscheduler.scheduler import Scheduler
 from datetime import date
 from globaleaks import utils
+from globaleaks.utils import log
 
 class GLJob:
 
