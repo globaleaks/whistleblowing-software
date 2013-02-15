@@ -274,8 +274,8 @@ Receiver.contexts = ReferenceSet(
 
 
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
-InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.id)
-InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.id)
+InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
+InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
 InternalTip.context = Reference(InternalTip.context_id, Context.id)
 
 ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)

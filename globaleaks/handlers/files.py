@@ -45,6 +45,7 @@ def serialize_file(internalfile):
 
 @transact
 def register_files_db(store, files, relationship, internaltip_id):
+    internaltip = store.find(models.InternalTip, models.InternalTip.id == internaltip_id).one()
 
     files_list = []
     for single_file in files:
@@ -60,6 +61,7 @@ def register_files_db(store, files, relationship, internaltip_id):
 
         new_file = models.InternalFile(file_request)
         store.add(new_file)
+        internaltip.internalfiles.add(new_file)
         files_list.append(serialize_file(new_file))
 
     return files_list

@@ -84,7 +84,6 @@ def create_receivertip(store, receiver_id, internaltip, tier):
     """
     Create ReceiverTip for the required tier of Receiver.
     """
-
     receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
     
     log.msg('Creating ReceiverTip for: %s' % repr(receiver))
@@ -99,6 +98,8 @@ def create_receivertip(store, receiver_id, internaltip, tier):
     receivertip.expressed_pertinence = 0
     receivertip.receiver_id = receiver_id
     receivertip.mark = ReceiverTip._marker[0]
+
+    internaltip.receivertips.add(receivertip)
 
     store.add(receivertip)
 
