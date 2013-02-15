@@ -27,13 +27,15 @@
           ng-model="receiver.notification_fields.mail_address" required>
           </input>
 
+          <label>Username</label>
+          <input type="text"
+          ng-model="receiver.username">
+          </input>
+
           <label>Password</label>
           <input type="password"
           ng-model="receiver.password">
           </input>
-
-          <label>Username</label>
-          <strong>{{receiver.username}}</strong>
         </div>
 
         <div class="span4">

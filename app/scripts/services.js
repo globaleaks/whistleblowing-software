@@ -55,6 +55,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         error.url = response.config.url;
 
         if (error.code == 30) {
+          sessionStorage.removeItem('session_id');
           $location.path('/login');
           $location.search('src='+source_path);
         };
@@ -304,7 +305,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       });
 }).
   factory('Admin', function($resource) {
-    function Admin(){
+    function Admin() {
       var self = this,
         adminContextsResource = $resource('/admin/context/:context_id',
           {context_id: '@context_gus'},
