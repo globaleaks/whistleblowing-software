@@ -213,7 +213,7 @@ def serialize_receiver_file(receiverfile, internalfile):
     return file_desc
 
 @transact
-def download_file(store, tip_id, file_id, auth_receiver=False):
+def get_receiver_file(store, tip_id, file_id):
     """
     Auth temporarly disabled, just Tip_id and File_id required
     """
@@ -254,7 +254,7 @@ class Download(BaseHandler):
         # tip_gus needed to authorized the download
         print "Access to: tip_id", tip_gus, "file_id", file_gus
 
-        file_details = yield download_file(tip_gus, file_gus)
+        file_details = yield get_receiver_file(tip_gus, file_gus)
         # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
 
         self.set_status(200)
