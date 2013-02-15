@@ -71,6 +71,7 @@ class MailNotification(Notification):
         pass
 
     def do_notify(self, event):
+        print 'diocane'
         # validation
         if not self.validate_admin_opt(af):
             return False
