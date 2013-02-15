@@ -208,31 +208,15 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       tipResource = $resource('/tip/:tip_id', {tip_id: '@tip_id'}, {}),
       commentsResource = $resource('/tip/:tip_id/comments', {tip_id: '@tip_id'}, {});
 
-    var receiverWithID = function(receiverID, fn) {
-      Receivers.query(function(receiversList) {
-        receiver = _.filter(receiversList, function(r){
-          if (r.receiver_gus === receiverID) return true
-          else return false
-        });
-        fn(receiver[0]);
-      });
-    };
-
     return function(tipID, fn) {
       this.receivers = [];
       this.comments = [];
       this.tip = {};
       receiversResource.query(tipID, function(receiversCollection){
 
-        _.each(receiversCollection, function(receiver){
-          receiverWithID(receiver.receiver_gus, function(receiver){
-            this.receivers.push(receiver);
-          });
-        });
-
         tipResource.get(tipID, function(result){
           this.tip = result;
-          this.tip.receivers = receivers;
+          this.tip.receivers = receiversCollection;
 
           commentsResource.query(tipID, function(commentsCollection){
 

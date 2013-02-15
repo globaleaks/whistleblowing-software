@@ -14,13 +14,16 @@
       </dl>
     </div>
     <div class="span4">
-      <h3>Folders</h3>
-      <div class="well"
-        ng-repeat="folder in tip.folders">
-        <h4>{{folder.name}}</h4>
+      <h3>Files</h3>
+      <div class="well">
+        <h4>{{file.name}}</h4>
         <ul>
-          <li ng-repeat="file in folder.files">
-            <i class="icon-book"></i> {{file.name}}
+          <li ng-repeat="file in tip.files">
+            <span data-content="{{file.sha2sum}}"
+              bs-popover="'Sha256 sum'"
+              data-trigger="hover">
+              <i class="icon-book"></i> {{file.name}}
+            </span>
           </li>
         </ul>
       </div>
@@ -36,25 +39,14 @@
           <tr>
             <th>Name</th>
             <th>Description</th>
-            <th>Languages</th>
-            <th>Tags</th>
-            <th>Last access</th>
-            <th>Properties</th>
+            <th>Access counter</th>
           </tr>
         </thead>
         <tbody id="receiverListBody">
           <tr ng-repeat="receiver in tip.receivers">
             <td>{{receiver.name}}</td>
             <td>{{receiver.description}}</td>
-            <td>
-              <span class="label" ng-repeat="lang in receiver.languages">lang.code</span>
-            </td>
-            <td>
-              <span ng-repeat="tag in receiver.tags"
-                class="label">{{tag}}</span>
-            </td>
-            <td>{{receiver.last_access}}</td>
-            <td>{{receiver.update_date}}</td>
+            <td>{{receiver.access_counter}}</td>
           </tr>
         </tbody>
       </table>
