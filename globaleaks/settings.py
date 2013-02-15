@@ -42,6 +42,11 @@ import logging
 logfile = '/tmp/glbackend.log'
 loglevel = logging.DEBUG
 
+# plugins
+notification_plugins = [
+        'MailNotification',
+]
+
 
 if not os.path.exists(gldata_path):
         os.mkdir(gldata_path)

@@ -11,10 +11,10 @@ from globaleaks.settings import transact
 from globaleaks.models import *
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.rest import requests
 from globaleaks import utils
-from globaleaks.rest.errors import InvalidInputFormat, SubmissionGusNotFound,\
-    ContextGusNotFound, SubmissionFailFields, SubmissionConcluded, ReceiverGusNotFound, FileGusNotFound
+from globaleaks.rest.errors import *
 
 
 def wb_serialize_internaltip(internaltip):
@@ -46,7 +46,6 @@ def create_whistleblower_tip(store, submission):
 
 
 def import_receivers(store, submission, receivers, context):
-
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
@@ -67,7 +66,6 @@ def import_receivers(store, submission, receivers, context):
 
 
 def import_files(store, submission, files):
-
     for file_id in files:
         file = store.find(InternalFile, InternalFile,id == unicode(file_id)).one()
         if not file:
@@ -83,7 +81,6 @@ def import_fields(store, submission, fields, expected_fields):
     @return: update the object of raise an Exception if a required field
         is missing, or if received field do not match the expected shape
     """
-
     for entry in expected_fields:
         if entry['required']:
             if not fields.has_key(entry['name']):
@@ -138,6 +135,10 @@ def create_submission(store, request):
     store.add(submission)
     submission_dict = wb_serialize_internaltip(submission)
     submission_dict['submission_gus'] = unicode(submission.id)
+
+### XXX: force mail sending
+    APSNotification().tip_notification()
+###
     return submission_dict
 
 @transact
@@ -151,7 +152,6 @@ def update_submission(store, id, request):
         raise SubmissionConcluded
 
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
-
     if not context:
         raise ContextGusNotFound()
 
