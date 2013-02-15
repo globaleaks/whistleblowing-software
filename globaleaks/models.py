@@ -41,6 +41,7 @@ class Model(Storm):
     def __setattr__(self, name, value):
         # harder better faster stronger
         if isinstance(value, str):
+            print name
             value = unicode(value)
 
         return Storm.__setattr__(self, name, value)
@@ -104,7 +105,7 @@ class InternalTip(Model):
 
     mark = Unicode()
 
-    receivers = Pickle()
+    # receivers = ReferenceSet(Internal.id, Receiver.id)
 
     files = Pickle()
 
@@ -278,6 +279,7 @@ InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
 InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
 InternalTip.context = Reference(InternalTip.context_id, Context.id)
+InternalTip.receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
 ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
 ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)

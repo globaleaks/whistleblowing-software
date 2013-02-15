@@ -1,5 +1,5 @@
 # -*- coding: UTF-8
-# 
+#
 #   plugin/manager
 #   **************
 # This class instance a singleton Object, used to interact with the installed plugins
@@ -40,8 +40,6 @@ class GLPluginManager(object):
                 return False
 
         return True
-
-
 
     def __init__(self):
         """
@@ -144,4 +142,3 @@ class GLPluginManager(object):
 
 # This is the object expored in GLBackend, instanced only once
 PluginManager = GLPluginManager()
-

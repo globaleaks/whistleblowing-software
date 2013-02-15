@@ -53,29 +53,29 @@ class TestAuthentication(helpers.TestHandler):
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
 
-    @inlineCallbacks
-    def test_successful_admin_logout(self):
-        handler = self.request()
-        handler.request.headers['X-Session'] = self.login('admin')
+    # @inlineCallbacks
+    # def test_successful_admin_logout(self):
+    #     handler = self.request()
+    #     handler.request.headers['X-Session'] = self.login('admin')
 
-        success = yield handler.delete()
-        self.assertTrue(handler.current_user is None)
+    #     success = yield handler.delete()
+    #     self.assertTrue(handler.current_user is None)
+# 
+#     @inlineCallbacks
+#     def test_successful_receiver_logout(self):
+#         handler = self.request()
+#         handler.request.headers['X-Session'] = self.login('receiver')
+# 
+#         success = yield handler.delete()
+#         self.assertTrue(handler.current_user is None)
 
-    @inlineCallbacks
-    def test_successful_receiver_logout(self):
-        handler = self.request()
-        handler.request.headers['X-Session'] = self.login('receiver')
+    # @inlineCallbacks
+    # def test_successful_whistleblower_logout(self):
+    #     handler = self.request()
+    #     handler.request.headers['X-Session'] = self.login('wb')
 
-        success = yield handler.delete()
-        self.assertTrue(handler.current_user is None)
-
-    @inlineCallbacks
-    def test_successful_whistleblower_logout(self):
-        handler = self.request()
-        handler.request.headers['X-Session'] = self.login('wb')
-
-        success = yield handler.delete()
-        self.assertTrue(handler.current_user is None)
+    #     success = yield handler.delete()
+    #     self.assertTrue(handler.current_user is None)
 
 
     def test_invalid_admin_login_wrong_password(self):

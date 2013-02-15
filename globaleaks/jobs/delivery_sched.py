@@ -86,7 +86,6 @@ def create_receivertip(store, receiver, internaltip, tier):
     Create ReceiverTip for the required tier of Receiver.
     """
     # receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-    
     log.msg('Creating ReceiverTip for: %s (level %d in request %d)' % (receiver.name, receiver.receiver_level, tier))
 
     if receiver.receiver_level != tier:
@@ -111,7 +110,7 @@ def tip_creation(store):
     first tier of Receiver, and shift the marker in 'first' aka di,ostron.zo
     """
     finalized = store.find(InternalTip, InternalTip.mark == InternalTip._marker[1])
-    
+
     for internaltip in finalized:
         for receiver in internaltip.receivers:
             create_receivertip(store, receiver, internaltip, 1)
@@ -143,13 +142,9 @@ class APSDelivery(GLJob):
 
         # ==> Submission && Escalation
         yield tip_creation()
-
-
         # ==> Files && Files update
-
         filesdict = yield file_preprocess()
         # return a dict { "file_uuid" : "file_path" }
-
         try:
             # perform FS base processing, outside the transactions
             processdict = file_process(filesdict)
