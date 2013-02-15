@@ -15,7 +15,7 @@ from globaleaks.rest.errors import InvalidAuthRequest, InvalidInputFormat, NotAu
 from globaleaks import settings
 from globaleaks.utils import random_string
 
-def authenticated(role):
+def authenticated(*roles):
     """
     Decorator for authenticated sessions.
     If the user (could be admin/receiver/wb) is not authenticated, return
@@ -24,13 +24,14 @@ def authenticated(role):
     """
     def wrapper(method):
         def call_method(cls, *args, **kwargs):
-            if not cls.current_user:
-                raise NotAuthenticated
-            elif role != cls.current_user.role:
-                # XXX: eventually change this
-                raise NotAuthenticated
-            else:
-                settings.sessions[cls.current_user.id].timestamp = time.time()
+            for role in roles:
+                if not cls.current_user:
+                    raise NotAuthenticated
+                elif role != cls.current_user.role:
+                    # XXX: eventually change this
+                    raise NotAuthenticated
+                else:
+                    settings.sessions[cls.current_user.id].timestamp = time.time()
             return method(cls, *args, **kwargs)
         return call_method
     return wrapper
