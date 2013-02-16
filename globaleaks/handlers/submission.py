@@ -6,7 +6,6 @@
 #   by an HTTP client in /submission URI
 
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import asynchronous
 from globaleaks.settings import transact
 from globaleaks.models import *
 from globaleaks import models
@@ -15,7 +14,7 @@ from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.jobs.delivery_sched import APSDelivery
 from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
-from globaleaks import utils
+from globaleaks.utils import random_string, log, utcFutureDate
 from globaleaks.rest.errors import *
 
 
@@ -25,25 +24,27 @@ def wb_serialize_internaltip(internaltip):
         'context_gus': unicode(internaltip.context_id),
         #'creation_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
         #'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
-        'wb_fields' : dict(internaltip.fields or {}),
-        'fields' : dict(internaltip.fields or {}),      # ??!? sta a Capì
+        'wb_fields' : dict(internaltip.wb_fields or {}),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
         'mark' : unicode(internaltip.mark),
         'pertinence' : unicode(internaltip.pertinence_counter),
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
-        'files' : dict(internaltip.files) if internaltip.files else {},
+        'files' : [],
         'receivers' : []
     }
     for receiver in internaltip.receivers:
         response['receivers'].append(receiver.id)
 
+    for internalfile in internaltip.internalfiles:
+        response['files'].append(internalfile.id)
+
     return response
 
 @transact
 def create_whistleblower_tip(store, submission):
-    wbtip = WhistleblowerTip(submission)
-    wbtip.receipt = unicode(utils.random_string(10, 'a-z,A-Z,0-9'))
+    wbtip = WhistleblowerTip()
+    wbtip.receipt = unicode(random_string(10, 'a-z,A-Z,0-9'))
     wbtip.access_counter = 0
     wbtip.internaltip_id = submission['id']
     store.add(wbtip)
@@ -72,7 +73,7 @@ def import_files(store, submission, files):
         if not file:
             raise FileGusNotFound
 
-        submission.files.add(file)
+        submission.internalfiles.add(file)
 
 def import_fields(store, submission, fields, expected_fields, strict_validation=False):
     """
@@ -94,7 +95,7 @@ def import_fields(store, submission, fields, expected_fields, strict_validation=
                 if not fields.has_key(entry['name']):
                     raise SubmissionFailFields("Missing field '%s': Required" % entry['name'])
 
-    submission.fields = {}
+    submission.wb_fields = {}
     if not fields:
         return
 
@@ -107,9 +108,11 @@ def import_fields(store, submission, fields, expected_fields, strict_validation=
                 break
 
         if not key_exists:
-            raise SubmissionFailFields("Submitted field '%s' not expected in context" % k)
+            raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
 
-        submission.fields.update({key: value})
+        submission.wb_fields.update({key: value})
+
+    log.debug("Completed fields import (with key validation): %s", submission.wb_fields)
 
 def force_schedule():
     # force mail sending, is called force_execution to be sure that Scheduler
@@ -131,7 +134,7 @@ def create_submission(store, request):
     request['escalation_threshold'] = context.escalation_threshold
     request['access_limit'] = context.tip_max_access
     request['download_limit'] = context.file_max_download
-    request['expiration_date'] = utils.utcFutureDate(hours=(context.tip_timetolive * 24))
+    request['expiration_date'] = utcFutureDate(hours=(context.tip_timetolive * 24))
     request['pertinence_counter'] = 0
     request['mark'] = InternalTip._marker[0]
     request['context_id'] = context.id
@@ -148,6 +151,7 @@ def create_submission(store, request):
  
     import_receivers(store, submission, receivers, context)
     import_files(store, submission, files)
+
     finalize = request['finalize']
     import_fields(store, submission, fields, context.fields, strict_validation=finalize)
 
@@ -163,7 +167,7 @@ def create_submission(store, request):
 @transact
 def update_submission(store, id, request):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
-    
+
     if not submission:
         raise SubmissionGusNotFound
 

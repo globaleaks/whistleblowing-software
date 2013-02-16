@@ -35,7 +35,7 @@ class Model(Storm):
     def __repr___(self):
         attrs = ['%s=%s' % (attr, getattr(self, attr))
                  for attr in vars(Model)
-                 if isinstance(x, types.MethodType)]
+                 if isinstance(attr, types.MethodType)]
         return '<%s model with values %s>' % (self.__name__, ', '.join(attrs))
 
     def __setattr__(self, name, value):
@@ -44,7 +44,6 @@ class Model(Storm):
             value = unicode(value)
 
         return Storm.__setattr__(self, name, value)
-
 
     def update(self, attrs={}):
         for key, value in attrs.iteritems():
@@ -92,7 +91,7 @@ class InternalTip(Model):
     All of those element has a Storm Reference with the InternalTip.id,
     never vice-versa
     """
-    fields = Pickle()
+    wb_fields = Pickle()
     pertinence_counter = Int()
     creation_date = DateTime()
     expiration_date = DateTime()
@@ -107,8 +106,6 @@ class InternalTip(Model):
     mark = Unicode()
 
     # receivers = ReferenceSet(Internal.id, Receiver.id)
-
-    files = Pickle()
 
     context_id = Unicode()
 
@@ -276,10 +273,10 @@ Receiver.contexts = ReferenceSet(
                         Context.id)
 
 
+InternalTip.context = Reference(InternalTip.context_id, Context.id)
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
 InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
-InternalTip.context = Reference(InternalTip.context_id, Context.id)
 InternalTip.receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
 ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
