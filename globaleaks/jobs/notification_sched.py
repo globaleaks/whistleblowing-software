@@ -46,7 +46,7 @@ class APSNotification(GLJob):
         for cplugin in settings.notification_plugins:
             plugin = getattr(notification, cplugin)(notification_settings)
             for rtip in notification_data:
-                event = Event(type=u'tip', trigger='diocane', af=notification_settings,
+                event = Event(type=u'tip', trigger='tip_creation', af=notification_settings,
                               rf=notification_data[rtip],
                               tip_id=rtip)
                 notify = yield plugin.do_notify(event)

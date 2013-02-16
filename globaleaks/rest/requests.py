@@ -46,7 +46,6 @@ adminNodeDesc = {
     'password' : unicode,
     'old_password' : unicode,
     'notification_settings' : dict,
-    'languages': list,
 }
 
 adminContextDesc = {
