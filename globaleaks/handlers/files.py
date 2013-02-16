@@ -18,7 +18,6 @@ from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks import utils
-from globaleaks.utils import log
 from globaleaks import settings
 from globaleaks.rest import errors
 from globaleaks import models
