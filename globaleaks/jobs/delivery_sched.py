@@ -12,16 +12,14 @@
 import os
 
 from twisted.internet.defer import inlineCallbacks
-from twisted.python import log
 
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile, Receiver
+from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact
-from globaleaks.utils import get_file_checksum
+from globaleaks.utils import get_file_checksum, log
 from globaleaks.handlers.files import SUBMISSION_DIR
 
 __all__ = ['APSDelivery']
-
 
 @transact
 def file_preprocess(store):
@@ -42,9 +40,7 @@ def file_process(filesdict):
 
     for file_id, file_path in filesdict.iteritems():
 
-        log.msg("Approaching checksum of file %s with path %s" % (file_id, file_path))
         file_location = os.path.join(SUBMISSION_DIR, file_path)
-
         checksum = get_file_checksum(file_location)
         processdict.update({file_id : checksum})
 
@@ -105,7 +101,8 @@ def create_receivertip(store, receiver, internaltip, tier):
     store.add(receivertip)
     internaltip.receivertips.add(receivertip)
 
-    log.msg('-- Created! copy paste [/#/status/%s]' % receivertip.id)
+    log.debug('Created! copy paste [/#/status/%s] %s for %s' %\
+              (receivertip.id, receivertip.__repr__(), receiver.__repr__()) )
 
     return receivertip.id
 
