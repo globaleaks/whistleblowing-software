@@ -57,19 +57,17 @@ CREATE TABLE receiverfile (
 
 CREATE TABLE internaltip (
     access_limit INTEGER NOT NULL,
-    context_id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     download_limit INTEGER NOT NULL,
     escalation_threshold INTEGER,
     expiration_date VARCHAR NOT NULL,
-    fields BLOB NOT NULL,
-    files BLOB,
-    id VARCHAR NOT NULL,
+    wb_fields BLOB NOT NULL,
     last_activity VARCHAR,
     mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first', 'second')),
     pertinence_counter INTEGER NOT NULL,
-    receivers VARCHAR,
-    FOREIGN KEY(receivers) REFERENCES receiver(id) ON DELETE CASCADE,
+    context_id VARCHAR NOT NULL,
+    id VARCHAR NOT NULL,
+    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
