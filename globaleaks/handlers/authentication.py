@@ -45,23 +45,31 @@ def login_wb(store, receipt):
         raise errors.InvalidAuthRequest
 
 
-    log.debug("Whistleblower: OK auth for" % wb_tip.repr() )
+    log.debug("Whistleblower: OK auth using: %s" % receipt )
     return unicode(wb_tip.id)
 
 @transact
 def login_receiver(store, username, password):
-    receiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
+    try:
+        receiver = store.find(Receiver,
+            (Receiver.username == unicode(username),
+             Receiver.password == unicode(password))).one()
+
+    except NotOneError:
+        log.debug("Receiver: Fail auth")
+        raise errors.InvalidAuthRequest
 
     if not receiver:
         log.debug("Receiver: Fail auth")
         raise errors.InvalidAuthRequest
 
-    log.debug("Receiver: OK auth for %s" % receiver.repr() )
+    log.debug("Receiver: OK auth for %s/%s" % (username, password) )
     return unicode(receiver.id)
 
 @transact
 def login_admin(store, password):
     node = store.find(Node).one()
+
     if node.password == password:
         log.debug("Admin: OK auth")
         return 'admin'

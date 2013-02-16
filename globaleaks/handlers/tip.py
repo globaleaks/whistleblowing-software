@@ -31,7 +31,7 @@ def actor_serialize_internal_tip(internaltip):
         'mark' : unicode(internaltip.mark),
         'pertinence' : unicode(internaltip.pertinence_counter),
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
-        'fields' : dict(internaltip.fields),
+        'fields' : dict(internaltip.wb_fields),
     }
     return itip_dict
 
