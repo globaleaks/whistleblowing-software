@@ -42,7 +42,7 @@ class TestContextsCollection(helpers.TestHandler):
 
 class TestContextInstance(helpers.TestHandler):
     _handler = admin.ContextInstance
-    
+
     @inlineCallbacks
     def test_get(self):
         handler = self.request()
@@ -59,15 +59,10 @@ class TestContextInstance(helpers.TestHandler):
 class TestReceiversCollection(helpers.TestHandler):
     _handler = admin.ReceiversCollection
 
-    def login(self):
-        admin_session = OD(timestamp=time.time(), id='spam', role='admin')
-        settings.sessions[admin_session.id] = admin_session
-        return admin_session.id
-   
     @inlineCallbacks
     def test_get(self):
         handler = self.request()
-        handler.request.headers['X-Session'] = self.login()
+        handler.request.headers['X-Session'] = self.login('admin')
         yield handler.get()
         self.assertEqual(self.responses[0], [self.dummyReceiver])
 
@@ -75,7 +70,7 @@ class TestReceiversCollection(helpers.TestHandler):
     def test_post(self):
         self.dummyReceiver['name'] = 'beppe'
         handler = self.request(self.dummyReceiver)
-        handler.request.headers['X-Session'] = self.login()
+        handler.request.headers['X-Session'] = self.login('admin')
         yield handler.post()
 
         # We delete this because it's randomly generated
@@ -98,14 +93,14 @@ class TestReceiverInstance(helpers.TestHandler):
         self.dummyReceiver['context_gus'] = u'invalid'
         handler = self.request(self.dummyReceiver)
         yield handler.put(self.dummyReceiver['receiver_gus'])
-   
+
     @unittest.skip("because the error is currently not trappable")
     @inlineCallbacks
     def test_put_invalid_context_gus(self):
         self.dummyReceiver['name'] = u'spamham'
         self.dummyReceiver['context_gus'] = u'invalid'
         handler = self.request(self.dummyReceiver)
-        yield handler.put(self.dummyReceiver['receiver_gus']) 
+        yield handler.put(self.dummyReceiver['receiver_gus'])
         self.assertEqual(self.responses[0], self.dummyReceiver)
 
     @unittest.skip("because not implemented")
