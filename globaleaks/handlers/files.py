@@ -37,6 +37,7 @@ def serialize_file(internalfile):
         'name' : internalfile.name,
         'creation_date': prettyDateTime(internalfile.creation_date),
         'id' : internalfile.id,
+        'mark' : internalfile.mark,
     }
 
     return file_desc
@@ -48,16 +49,16 @@ def register_files_db(store, files, relationship, internaltip_id):
     files_list = []
     for single_file in files:
         original_fname = single_file['filename']
-        file_request = { 'name' : original_fname,
-                         'content_type' : single_file.get('content_type'),
-                         'mark' : unicode(models.InternalFile._marker[0]),
-                         'size' : len(single_file['body']),
-                         'internaltip_id' : unicode(internaltip_id),
-                         'sha2sum' : '',
-                         'file_path': relationship[original_fname]
-                       }
 
-        new_file = models.InternalFile(file_request)
+        new_file = models.InternalFile()
+
+        new_file.name = original_fname
+        new_file.content_type = single_file.get('content_type')
+        new_file.mark = unicode(models.InternalFile._marker[0])
+        new_file.size = len(single_file['body'])
+        new_file.internaltip_id = unicode(internaltip_id)
+        new_file.file_path = relationship[original_fname]
+
         store.add(new_file)
         internaltip.internalfiles.add(new_file)
         files_list.append(serialize_file(new_file))

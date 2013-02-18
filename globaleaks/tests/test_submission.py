@@ -5,7 +5,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
 from globaleaks.tests import helpers
-from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list
+from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list, get_context_list
 
 class TestSubmission(helpers.TestGL):
     dummyFiles = [{'body': 'spam',

@@ -87,10 +87,7 @@ CREATE TABLE node (
 );
 
 CREATE TABLE receiver (
-    can_configure_delivery INTEGER NOT NULL,
-    can_configure_notification INTEGER NOT NULL,
     can_delete_submission INTEGER NOT NULL,
-    can_postpone_expiration INTEGER NOT NULL,
     creation_date VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
     id VARCHAR NOT NULL,
