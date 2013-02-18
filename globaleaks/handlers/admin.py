@@ -129,9 +129,8 @@ def create_context(store, request):
     Returns:
         (dict) representing the configured context
     """
-    if 'receivers' in request:
-        receivers = request['receivers']
-        del request['receivers']
+    receivers = request['receivers']
+    del request['receivers']
 
     context = Context(request)
     store.add(context)
@@ -189,7 +188,9 @@ def update_context(store, context_gus, request):
         context.receivers.remove(receiver)
 
     for receiver_id in receivers:
-        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
+        if not receiver:
+            raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
     context_desc = admin_serialize_context(context)
@@ -241,12 +242,6 @@ def create_receiver(store, request):
 
     receiver = Receiver(request)
     receiver.username = request['notification_fields']['mail_address']
-
-    # JUST EASY LOGIN TESTS
-    # receiver.username = "FOCA"
-    # receiver.password = "FOCA"
-    # JUST EASY LOGIN TESTS
-
     store.add(receiver)
 
     for context_id in contexts:

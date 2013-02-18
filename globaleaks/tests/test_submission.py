@@ -1,14 +1,12 @@
-#import sys
+import unittest
 
-from twisted.python import log
 from twisted.internet.defer import inlineCallbacks
-from twisted.trial import unittest
 
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
 from globaleaks.tests import helpers
+from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list
 
-#log.startLogging(sys.stdout)
 class TestSubmission(helpers.TestGL):
     dummyFiles = [{'body': 'spam',
             'content_type': 'application/octet',
@@ -31,14 +29,9 @@ class TestSubmission(helpers.TestGL):
 
         for file_desc in file_list:
             self.assertTrue(set(['size', 'content_type', 'name', 'creation_date', 'id']) == set(file_desc.keys()))
-    
+
     @inlineCallbacks
-    def dtest_new_submission(self):
-        status = yield submission.create_submission(self.dummySubmission)
-        print status
-    
-    @inlineCallbacks
-    def test_new_submission_with_files(self):
+    def test_submission_with_files(self):
         status = yield submission.update_submission(self.dummySubmission['submission_gus'], self.dummySubmission)
         
         yield self.create_dummy_files()
@@ -52,7 +45,6 @@ class TestSubmission(helpers.TestGL):
         receiver_tips = yield delivery_sched.tip_creation()
         self.assertEqual(len(receiver_tips), 1)
         
-
         filesdict = yield delivery_sched.file_preprocess()
         processdict = delivery_sched.file_process(filesdict)
 
@@ -67,4 +59,66 @@ class TestSubmission(helpers.TestGL):
             receiver_files.append(receiver_file)
         self.assertEqual(len(receiver_files), 2)
 
+    @inlineCallbacks
+    def test_update_submission(self):
+        status = yield submission.update_submission(self.dummySubmission['submission_gus'], self.dummySubmission)
 
+        receipt = yield submission.create_whistleblower_tip(status)
+        yield submission.finalize_submission(status['id'])
+
+        import re
+        retval = re.match('(\w+){10}', receipt)
+        self.assertTrue(retval)
+
+    @inlineCallbacks
+    def test_create_submission(self):
+        status = yield submission.create_submission(self.dummySubmission)
+
+        receipt = yield submission.create_whistleblower_tip(status)
+        yield submission.finalize_submission(status['id'])
+
+        import re
+        retval = re.match('(\w+){10}', receipt)
+        self.assertTrue(retval)
+
+    # --------------------------------------------------------- #
+    def get_new_receiver_desc(self, descpattern):
+        new_r = dict(self.dummyReceiver)
+        new_r['name'] = new_r['description'] = new_r['username'] =\
+        new_r['notification_fields']['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
+        return new_r
+
+    @inlineCallbacks
+    def test_submission_with_receiver_selection(self):
+
+        yield create_receiver(self.get_new_receiver_desc("second"))
+        yield create_receiver(self.get_new_receiver_desc("third"))
+        yield create_receiver(self.get_new_receiver_desc("fourth"))
+
+        # for some reason, the first receiver is no more with the same ID
+        self.receivers = yield get_receiver_list()
+
+        self.dummyContext['receivers'] = [ self.receivers[0]['receiver_gus'],
+                                           self.receivers[1]['receiver_gus'],
+                                           self.receivers[2]['receiver_gus'],
+                                           self.receivers[3]['receiver_gus'] ]
+
+        self.dummyContext['selectable_receiver'] = True
+        self.dummyContext['escalation_threshold'] = 0
+
+        context_status = yield update_context(self.dummyContext['context_gus'], self.dummyContext)
+
+        # Create a new request with selected three of the four receivers
+        submission_request= dict(self.dummySubmission)
+        submission_request['context_gus'] = context_status['context_gus']
+        submission_request['submission_gus'] = ''
+        submission_request['finalize'] = True
+        submission_request['receivers'] = [ self.receivers[0]['receiver_gus'],
+                                            self.receivers[1]['receiver_gus'],
+                                            self.receivers[2]['receiver_gus'] ]
+
+        status = yield submission.update_submission(self.dummySubmission['submission_gus'], submission_request)
+        yield submission.finalize_submission(status['id'])
+
+        receiver_tips = yield delivery_sched.tip_creation()
+        self.assertEqual(len(receiver_tips), 3)

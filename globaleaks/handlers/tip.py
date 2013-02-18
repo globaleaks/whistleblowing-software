@@ -50,7 +50,6 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
         'size': int(internalfile.size),
         'downloads': unicode(receiverfile.downloads)
     }
-    print "****", rfile_dict
     return rfile_dict
 
 

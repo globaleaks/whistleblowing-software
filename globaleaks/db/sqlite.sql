@@ -61,7 +61,7 @@ CREATE TABLE internaltip (
     download_limit INTEGER NOT NULL,
     escalation_threshold INTEGER,
     expiration_date VARCHAR NOT NULL,
-    wb_fields BLOB NOT NULL,
+    wb_fields BLOB,
     last_activity VARCHAR,
     mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first', 'second')),
     pertinence_counter INTEGER NOT NULL,
