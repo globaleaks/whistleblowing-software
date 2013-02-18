@@ -120,7 +120,7 @@ class TestGL(unittest.TestCase):
             'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
             'receivers': [],
             'files': [],
-            'finalize': True,
+            'finalize': False,
         }
         self.dummyNode = {
                 'name':  u"Please, set me: name/title",
@@ -184,23 +184,10 @@ class TestHandler(TestGL):
         # we make the assumption that we will always use call finish on write.
         self._handler.finish = mock_write
         
-        # we need to reset settings.session to keep each test indipendent
+        # we need to reset settings.session to keep each test independent
         settings.sessions = dict()
 
         yield self.initalize_db()
-
-    def login(self, role='admin', user_id=None):
-        if not user_id:
-            if role == 'admin':
-                user_id = 'admin'
-            elif role == 'wb':
-                user_id = self.dummySubmission['submission_gus']
-            elif role == 'receiver':
-                user_id = self.dummyReceiver['receiver_gus']
-        session = OD(timestamp=time.time(),id=user_id,
-                role=role, user_id=user_id)
-        settings.sessions[session.id] = session
-        return session.id
 
     def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
         """

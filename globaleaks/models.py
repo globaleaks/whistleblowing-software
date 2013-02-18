@@ -9,9 +9,16 @@ from time import time
 from datetime import datetime
 now = datetime.utcnow
 
+global i
+i = 10000000000
+
 def uuid():
     import uuid
     return unicode(uuid.uuid4())
+    # This is just a Testing line, would be removed in the future
+    global i
+    i += 1
+    return unicode("00000000-0000-0000-0000-%s" % i)
 
 
 class Model(Storm):
@@ -109,12 +116,11 @@ class InternalTip(Model):
 
     context_id = Unicode()
 
-    # whistleblower_tip_id = Unicode()
-    # whistleblower_tip = Reference(whistleblower_tip_id, "WhistleblowerTip.id")
-
-    # receivertips = ReferenceSet("InternalTip.id", ReceiverTip.internaltip_id)
-    # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
-    # internalfiles = ReferenceSet("InternalTip.id", "InternalFiles.id")
+    #context = Reference(InternalTip.context_id, Context.id)
+    #comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
+    #receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
+    #internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
+    #receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
     _marker = [ u'submission', u'finalize', u'first', u'second' ]
 
@@ -140,8 +146,8 @@ class ReceiverTip(Model):
 
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
-    # receiver_files = ReferenceSet(ReceiverTip.id, ReceiverFile.receiver_tip_id)
-
+    #internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
+    #receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 
 class WhistleblowerTip(Model):
     """
@@ -155,6 +161,7 @@ class WhistleblowerTip(Model):
     access_counter = Int()
 
     internaltip_id = Unicode()
+    #internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
 
 class ReceiverFile(Model):
 
@@ -167,6 +174,10 @@ class ReceiverFile(Model):
     internalfile_id = Unicode()
     receiver_id = Unicode()
 
+    #internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
+    #receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
+    #internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
+
 class InternalFile(Model):
 
     name = Unicode()
@@ -178,6 +189,7 @@ class InternalFile(Model):
     size = Int()
 
     internaltip_id = Unicode()
+    #internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
 
@@ -217,10 +229,9 @@ class Node(Model):
 
 class Receiver(Model):
     """
-    Receiver description model, some Receiver dependent information are
-    also in globaleaks.models.plugin ReceiverConfs table
+    name, description, password and notification_fiels, can be changed
+    by Receiver itself
     """
-    # Those four variable can be changed by the Receiver
     name = Unicode()
     description = Unicode()
 
@@ -231,7 +242,7 @@ class Receiver(Model):
     # notification_variable
     notification_fields = Pickle()
 
-    # Admin choosen options
+    # Admin chosen options
     can_delete_submission = Bool()
     can_postpone_expiration = Bool()
     can_configure_delivery = Bool()
@@ -241,8 +252,7 @@ class Receiver(Model):
     # of receivers body. if threshold is configured in the context. default 1
     receiver_level = Int()
 
-    # tips = ReferenceSet("Receiver.id", "ReceiverTip.receiver_id")
-    #context_id = Unicode()
+    #tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
     last_update = DateTime()
     last_access = DateTime(default_factory=now)
@@ -290,9 +300,7 @@ InternalFile.internaltip = Reference(InternalFile.internaltip_id, InternalTip.id
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
 ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 
-Receiver.tips = ReferenceSet(
-                        Receiver.id,
-                        ReceiverTip.receiver_id)
+Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
 
 models = [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,

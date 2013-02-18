@@ -101,8 +101,7 @@ def create_receivertip(store, receiver, internaltip, tier):
     store.add(receivertip)
     internaltip.receivertips.add(receivertip)
 
-    log.debug('Created! copy paste [/#/status/%s] %s for %s' %\
-              (receivertip.id, receivertip.__repr__(), receiver.__repr__()) )
+    log.msg('Created! [/#/status/%s]' % receivertip.id)
 
     return receivertip.id
 
@@ -144,7 +143,6 @@ class APSDelivery(GLJob):
         """
         Goal of this function is process/validate the files, compute checksum, and
         apply the delivery method configured.
-
         """
 
         # ==> Submission && Escalation

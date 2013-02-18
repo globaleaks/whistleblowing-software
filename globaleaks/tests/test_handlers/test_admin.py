@@ -14,11 +14,13 @@ class TestNodeInstance(helpers.TestHandler):
 
     def test_get(self):
         handler = self.request({})
+        handler.request.headers['X-Session'] = 'test_admin'
         return handler.get()
 
     @inlineCallbacks
     def test_put_update_node(self):
         handler = self.request(self.dummyNode)
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.put()
         del self.dummyNode['password']
         del self.dummyNode['old_password']
@@ -29,11 +31,13 @@ class TestContextsCollection(helpers.TestHandler):
 
     def test_get(self):
         handler = self.request()
+        handler.request.headers['X-Session'] = 'test_admin'
         return handler.get()
 
     @inlineCallbacks
     def test_post(self):
         handler = self.request(self.dummyContext)
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.post()
         del self.responses[0]['context_gus']
         del self.dummyContext['context_gus']
@@ -46,6 +50,7 @@ class TestContextInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         handler = self.request()
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.get(self.dummyContext['context_gus'])
         self.assertEqual(self.responses[0], self.dummyContext)
 
@@ -53,6 +58,7 @@ class TestContextInstance(helpers.TestHandler):
     def test_put(self):
         self.dummyContext['name'] = u'spam'
         handler = self.request(self.dummyContext)
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.put(self.dummyContext['context_gus'])
         self.assertEqual(self.responses[0], self.dummyContext)
 
@@ -62,7 +68,7 @@ class TestReceiversCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         handler = self.request()
-        handler.request.headers['X-Session'] = self.login('admin')
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.get()
         self.assertEqual(self.responses[0], [self.dummyReceiver])
 
@@ -70,7 +76,7 @@ class TestReceiversCollection(helpers.TestHandler):
     def test_post(self):
         self.dummyReceiver['name'] = 'beppe'
         handler = self.request(self.dummyReceiver)
-        handler.request.headers['X-Session'] = self.login('admin')
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.post()
 
         # We delete this because it's randomly generated
@@ -84,6 +90,7 @@ class TestReceiverInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_get(self):
         handler = self.request()
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.get(self.dummyReceiver['receiver_gus'])
         self.assertEqual(self.responses[0], self.dummyReceiver)
 
@@ -92,6 +99,7 @@ class TestReceiverInstance(helpers.TestHandler):
     def test_put(self):
         self.dummyReceiver['context_gus'] = u'invalid'
         handler = self.request(self.dummyReceiver)
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.put(self.dummyReceiver['receiver_gus'])
 
     @unittest.skip("because the error is currently not trappable")
@@ -100,6 +108,7 @@ class TestReceiverInstance(helpers.TestHandler):
         self.dummyReceiver['name'] = u'spamham'
         self.dummyReceiver['context_gus'] = u'invalid'
         handler = self.request(self.dummyReceiver)
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.put(self.dummyReceiver['receiver_gus'])
         self.assertEqual(self.responses[0], self.dummyReceiver)
 
@@ -108,12 +117,5 @@ class TestReceiverInstance(helpers.TestHandler):
     def test_delete(self):
         self.skip()
         handler = self.request(self.dummyReceiver)
+        handler.request.headers['X-Session'] = 'test_admin'
         yield handler.delete()
-
-class TestPluginCollection(helpers.TestHandler):
-    _handler = admin.PluginCollection
-    pass
-
-class TestStatisticsCollection(helpers.TestHandler):
-    _handler = admin.StatisticsCollection
-    pass
