@@ -1,39 +1,24 @@
-from storm.twisted.testing import FakeThreadPool
-from globaleaks import settings
-settings.transact.tp = FakeThreadPool()
-settings.scheduler_threadpool = FakeThreadPool()
-
 import os
-import sys
 import json
-import time
 
-from twisted.python import log
+from storm.twisted.testing import FakeThreadPool
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
-from storm.twisted.testing import FakeThreadPool
-from storm.zope.zstorm import ZStorm
-from cyclone.util import ObjectDict as OD
 from cyclone import httpserver
 from cyclone.web import Application
 
-from globaleaks.handlers.base import BaseHandler
+from globaleaks import settings
 from globaleaks.handlers.admin import create_context, create_receiver, update_node
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-
-from globaleaks.settings import transact
-from globaleaks.rest import errors
-from globaleaks import models
-from globaleaks import settings
 from globaleaks import db
 
 _TEST_DB = 'test.db'
+settings.transact.tp = FakeThreadPool()
+settings.scheduler_threadpool = FakeThreadPool()
 settings.db_file = 'sqlite:///' + _TEST_DB
 settings.store = 'test_store'
 settings.notification_plugins = []
-
-import storm
 
 #log.startLogging(sys.stdout)
 class TestGL(unittest.TestCase):
@@ -68,12 +53,8 @@ class TestGL(unittest.TestCase):
             'username': u'spam',
             'name': u'john smith',
             'description': u'the first receiver',
-            'tags': [],
             'notification_fields': {'mail_address': u'maker@ggay.it'},
             'can_delete_submission': True,
-            'can_postpone_expiration': True,
-            'can_configure_delivery': True,
-            'can_configure_notification': True,
             'receiver_level': 1,
         }
         self.dummyContext = {
@@ -127,9 +108,6 @@ class TestGL(unittest.TestCase):
                 'stats_update_time':  2, # hours,
                 'languages':  [{ "code" : "it" , "name": "Italiano"},
                                { "code" : "en" , "name" : "English" }],
-                'notification_settings': {},
-                'password': u'spam',
-                'old_password': None,
         }
 
     @inlineCallbacks
