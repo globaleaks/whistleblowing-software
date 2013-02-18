@@ -51,7 +51,7 @@ def create_whistleblower_tip(store, submission):
     return wbtip.receipt
 
 
-def import_receivers(store, submission, receiver_id_list, context):
+def import_receivers(store, submission, receiver_id_list, context, required=False):
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
@@ -77,7 +77,10 @@ def import_receivers(store, submission, receiver_id_list, context):
             raise ReceiverGusNotFound
         submission.receivers.add(receiver)
 
-    log.debug("Addedd %d Receivers as requested (%s)", submission.receivers.count(), str(receiver_id_list))
+    log.debug("Added %d Receivers as requested (%s)", submission.receivers.count(), str(receiver_id_list))
+
+    if required and submission.receivers.count() == 0:
+        raise SubmissionFailFields("Receivers required to be completed")
 
 
 def import_files(store, submission, files):
@@ -92,7 +95,7 @@ def import_files(store, submission, files):
 
         submission.internalfiles.add(file)
 
-def import_fields(store, submission, fields, expected_fields, strict_validation=False):
+def import_fields(submission, fields, expected_fields, strict_validation=False):
     """
     @param submission: the Storm object
     @param fields: the received fields
@@ -135,6 +138,7 @@ def import_fields(store, submission, fields, expected_fields, strict_validation=
 
     log.debug("Completed fields import (with key validation): %s", submission.wb_fields)
 
+
 def force_schedule():
     # force mail sending, is called force_execution to be sure that Scheduler
     # run the Notification process, and not our callback+user event.
@@ -146,41 +150,41 @@ def force_schedule():
 
 
 @transact
-def create_submission(store, request):
+def create_submission(store, request, finalize):
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
     del request['context_gus']
 
     if not context:
         raise ContextGusNotFound
 
-    # These are set from the internal tip
-    request['escalation_threshold'] = context.escalation_threshold
-    request['access_limit'] = context.tip_max_access
-    request['download_limit'] = context.file_max_download
-    request['expiration_date'] = utcFutureDate(hours=(context.tip_timetolive * 24))
-    request['pertinence_counter'] = 0
-    request['mark'] = InternalTip._marker[0]
-    request['context_id'] = context.id
-
-    receivers = request.get('receivers', [])
-    del request['receivers']
-    files = request.get('files', [])
-    del request['files']
-    fields = request.get('wb_fields', [])
-    del request['wb_fields']
-
     try:
-        submission = InternalTip(request)
+        submission = InternalTip()
     except Exception, e:
         log.err("Storm/SQL Error: %s" % e)
         raise e
+
+
+    submission.escalation_threshold = context.escalation_threshold
+    submission.access_limit = context.tip_max_access
+    submission.download_limit = context.file_max_download
+    submission.expiration_date = utcFutureDate(hours=(context.tip_timetolive * 24))
+    submission.pertinence_counter = 0
+    submission.context_id = context.id
     submission.creation_date = models.now()
 
-    import_receivers(store, submission, receivers, context)
+    if finalize:
+        submission.mark = InternalTip._marker[0] # Submission
+    else:
+        submission.mark = InternalTip._marker[1] # Finalized
+
+    receivers = request.get('receivers', [])
+    import_receivers(store, submission, receivers, context, required=finalize)
+
+    files = request.get('files', [])
     import_files(store, submission, files)
 
-    finalize = request['finalize']
-    import_fields(store, submission, fields, context.fields, strict_validation=finalize)
+    fields = request.get('wb_fields', [])
+    import_fields(submission, fields, context.fields, strict_validation=finalize)
 
     try:
         store.add(submission)
@@ -189,12 +193,13 @@ def create_submission(store, request):
         raise e
 
     submission_dict = wb_serialize_internaltip(submission)
-    submission_dict['submission_gus'] = unicode(submission.id)
 
+    # API compatibility until stability is reached
+    submission_dict['submission_gus'] = unicode(submission.id)
     return submission_dict
 
 @transact
-def update_submission(store, id, request):
+def update_submission(store, id, request, finalize):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
     if not submission:
@@ -203,33 +208,32 @@ def update_submission(store, id, request):
     if submission.mark != InternalTip._marker[0]:
         raise SubmissionConcluded
 
-    #context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
-    #if not context:
-    #    raise ContextGusNotFound()
+    context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
+    if not context:
+        raise ContextGusNotFound()
 
     # Can't be changed context in the middle of a Submission
-    #if submission.context_id != context.id:
-    #    raise ContextGusNotFound()
+    if submission.context_id != context.id:
+        raise ContextGusNotFound()
 
     receivers = request.get('receivers', [])
-    del request['receivers']
+    import_receivers(store, submission, receivers, context, required=finalize)
 
     files = request.get('files', [])
-    del request['files']
-
-    fields = request.get('wb_fields', [])
-    del request['wb_fields']
-
-    import_receivers(store, submission, receivers, context)
     import_files(store, submission, files)
 
-    finalize = request['finalize']
-    import_fields(store, submission, fields, submission.context.fields, strict_validation=finalize)
+    fields = request.get('wb_fields', [])
+    import_fields(submission, fields, submission.context.fields, strict_validation=finalize)
+
+    if finalize:
+        submission.mark = InternalTip._marker[1] # Finalized
 
     submission_dict = wb_serialize_internaltip(submission)
-    submission_dict['submission_gus'] = unicode(submission.id)
 
+    # API compatibility until stability is reached
+    submission_dict['submission_gus'] = unicode(submission.id)
     return submission_dict
+
 
 @transact
 def get_submission(store, id):
@@ -252,19 +256,6 @@ def delete_submission(store, id):
         raise SubmissionConcluded
 
     store.delete(submission)
-
-@transact
-def finalize_submission(store, id):
-    """
-    Shift marker status since 0 (submission) to 1 (finalized)
-    """
-    submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
-
-    # checks that in fact Receivers has been selected or are present.
-    if submission.receivers.count() == 0:
-        log.err("Receiver not available: Submission not acceptable!!!")
-
-    submission.mark = InternalTip._marker[1]
 
 
 class SubmissionCreate(BaseHandler):
@@ -289,12 +280,17 @@ class SubmissionCreate(BaseHandler):
         """
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
-        status = yield create_submission(request)
 
         if request['finalize']:
+            finalize = True
+        else:
+            finalize = False
+
+        status = yield create_submission(request, finalize)
+
+        if finalize:
             receipt = yield create_whistleblower_tip(status)
             status.update({'receipt': receipt})
-            yield finalize_submission(status['id'])
             force_schedule()
         else:
             status.update({'receipt' : ''})
@@ -337,12 +333,16 @@ class SubmissionInstance(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
+        if request['finalize']:
+            finalize = True
+        else:
+            finalize = False
+
         status = yield update_submission(submission_gus, request)
 
-        if request['finalize']:
+        if finalize:
             receipt = yield create_whistleblower_tip(status)
             status.update({'receipt': receipt})
-            yield finalize_submission(status['id'])
             force_schedule()
         else:
             status.update({'receipt' : ''})

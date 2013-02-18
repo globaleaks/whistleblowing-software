@@ -59,6 +59,7 @@ class TestModels(helpers.TestGL):
         receiver2 = Receiver(self.dummyReceiver)
         context.receivers.add(receiver1)
         context.receivers.add(receiver2)
+        print type(context.receivers)
         store.add(context)
         return context.id
 

@@ -11,10 +11,16 @@ from globaleaks.settings import transact
 from globaleaks import models
 
 @transact
-def initialize_node(store, result, onlyNode):
-    nodes = store.find(models.Node)
-    # assert len(list(nodes)) == 0
-    store.add(models.Node(onlyNode))
+def initialize_node(store, result, onlyNode, emailtemplate):
+    node = models.Node(onlyNode)
+    # dict and reference need to be added by hand!
+    node.languages =  [{ "code" : "it" , "name": "Italiano"},
+                       { "code" : "en" , "name" : "English" }]
+    node.notification_settings = {}
+    node.notification_settings.update({'email_template' : emailtemplate })
+    node.password = unicode("globaleaks")
+    node.creation_date = models.now()
+    store.add(node)
 
 def initModels():
     for model in models.models:
@@ -58,17 +64,12 @@ def createTables(create_node=True):
             'public_site':  u"Please, set me: public site",
             'email':  u"email@dumnmy.net",
             'stats_update_time':  2, # hours,
-            'languages':  [{ "code" : "it" , "name": "Italiano"},
-                           { "code" : "en" , "name" : "English" }],
-            'notification_settings': {},
-            'password': u'globaleaks',
-            'creation_date': models.now(),
         }
         with open(emailfile) as f:
-            onlyNode['notification_settings']['email_template'] = f.read()
+            email_template = f.read()
 
         log.debug('Initializing node with new config')
         # Initialize the node
-        d.addCallback(initialize_node, onlyNode)
+        d.addCallback(initialize_node, onlyNode, email_template)
     return d
 

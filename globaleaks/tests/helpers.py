@@ -75,7 +75,6 @@ class TestGL(unittest.TestCase):
             'can_configure_delivery': True,
             'can_configure_notification': True,
             'receiver_level': 1,
-            'contexts' : [],
         }
         self.dummyContext = {
             'name': u'created by shooter',
@@ -113,13 +112,10 @@ class TestGL(unittest.TestCase):
             'tip_timetolive': 2,
             'file_max_download' :1,
             'escalation_threshold': 1,
-            'receivers' : [],
         }
         self.dummySubmission = {
             'context_gus': '',
             'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
-            'receivers': [],
-            'files': [],
             'finalize': False,
         }
         self.dummyNode = {

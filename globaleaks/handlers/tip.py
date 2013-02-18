@@ -306,7 +306,8 @@ def create_comment_wb(store, wb_tip_id, request):
     if not wbtip:
         raise TipReceiptNotFound
 
-    comment = Comment(request)
+    comment = Comment()
+    comment.content = request['content']
     comment.internaltip_id = wbtip.internaltip.id
     comment.author = u'whistleblower' # The printed line
     comment.type = Comment._types[1] # WB
@@ -319,7 +320,8 @@ def create_comment_wb(store, wb_tip_id, request):
 def create_comment_receiver(store, user_id, tip_id, request):
     rtip = strong_receiver_validate(store, user_id, tip_id)
     
-    comment = Comment(request)
+    comment = Comment()
+    comment.content = request['content']
     comment.internaltip_id = rtip.internaltip.id
     comment.author = rtip.receiver.name # The printed line
     comment.type = Comment._types[0] # Receiver
