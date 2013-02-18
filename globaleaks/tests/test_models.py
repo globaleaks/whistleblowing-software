@@ -17,6 +17,7 @@ class TestModels(helpers.TestGL):
     @transact
     def context_add(self, store):
         context = Context(self.dummyContext)
+        context.fields = self.dummyContext['fields']
         store.add(context)
         return context.id
 
@@ -36,6 +37,8 @@ class TestModels(helpers.TestGL):
     @transact
     def receiver_add(self, store):
         receiver = Receiver(self.dummyReceiver)
+        receiver.password = self.dummyReceiver['password']
+        receiver.notification_fields = self.dummyReceiver['notification_fields']
         store.add(receiver)
         return receiver.id
 
@@ -55,19 +58,31 @@ class TestModels(helpers.TestGL):
     @transact
     def create_context_with_receivers(self, store):
         context = Context(self.dummyContext)
+        context.fields = self.dummyContext['fields']
+
         receiver1 = Receiver(self.dummyReceiver)
         receiver2 = Receiver(self.dummyReceiver)
+
+        receiver1.password = receiver2.password = unicode("xxx")
+        receiver1.notification_fields = receiver2.notification_fields = {'mail_address': 'x@x.it'}
+
         context.receivers.add(receiver1)
         context.receivers.add(receiver2)
-        print type(context.receivers)
         store.add(context)
         return context.id
 
     @transact
     def create_receiver_with_contexts(self, store):
         receiver = Receiver(self.dummyReceiver)
+        receiver.password = unicode("xxx")
+        receiver.notification_fields = {'mail_address': 'y@y.it'}
+
         context1 = Context(self.dummyContext)
+        context1.fields = self.dummyContext['fields']
+
         context2 = Context(self.dummyContext)
+        context2.fields = self.dummyContext['fields']
+
         receiver.contexts.add(context1)
         receiver.contexts.add(context2)
         store.add(receiver)
