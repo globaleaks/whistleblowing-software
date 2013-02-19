@@ -1,4 +1,4 @@
-import unittest
+import json
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -21,28 +21,71 @@ class TestSubmission(helpers.TestGL):
         self.setUp_dummy()
         yield self.initalize_db()
 
+
+    # --------------------------------------------------------- #
+    @inlineCallbacks
+    def test_create_submission(self):
+        submission_desc = self.dummySubmission
+        submission_desc['finalize'] = True
+        del submission_desc['submission_gus']
+
+        status = yield submission.create_submission(submission_desc, finalize=True)
+        receipt = yield submission.create_whistleblower_tip(status)
+
+        import re
+        retval = re.match('(\w+){10}', receipt)
+        self.assertTrue(retval)
+
     @inlineCallbacks
     def create_dummy_files(self):
         relationship = files.dump_files_fs(self.dummyFiles)
-        file_list = yield files.register_files_db(self.dummyFiles,
+        self.file_list = yield files.register_files_db(self.dummyFiles,
                 relationship, self.dummySubmission['submission_gus'])
 
-        for file_desc in file_list:
-            self.assertTrue(set(['size', 'content_type', 'name', 'creation_date', 'id']) == set(file_desc.keys()))
+    @inlineCallbacks
+    def test_create_internalfiles(self):
+        yield self.create_dummy_files()
+        # fill self.file_list
+        for file_desc in self.file_list:
+            keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(file_desc.keys())
+            self.assertFalse(keydiff)
+
+    @inlineCallbacks
+    def test_access_from_receipt(self):
+        submission_desc = self.dummySubmission
+        submission_desc['finalize'] = True
+        del submission_desc['submission_gus']
+
+        status = yield submission.create_submission(submission_desc, finalize=True)
+        receipt = yield submission.create_whistleblower_tip(status)
+
+        wb_access_id = yield authentication.login_wb(receipt)
+
+        # remind: return a tuple (serzialized_itip,
+        (wb_tip, wb_tip_id) = yield tip.get_internaltip_wb(wb_access_id)
+
+        # In the WB/Receiver Tip interface, wb_fields are called fields.
+        # This can be uniformed when API would be cleaned of the _gus
+        self.assertTrue(wb_tip_id == wb_access_id)
+        self.assertTrue(wb_tip.has_key('fields'))
+        self.assertTrue(wb_tip['fields'].has_key('Sun'))
+
 
     @inlineCallbacks
     def test_submission_with_files(self):
-        status = yield submission.update_submission(self.dummySubmission['submission_gus'], self.dummySubmission)
-        
         yield self.create_dummy_files()
 
+        submission_desc = self.dummySubmission
+        submission_desc['finalize'] = True
+        del submission_desc['submission_gus']
+        status = yield submission.create_submission(submission_desc, finalize=True)
         receipt = yield submission.create_whistleblower_tip(status)
-        yield submission.finalize_submission(status['id'])
 
         wb_tip_id = yield authentication.login_wb(receipt)
         wb_tip = yield tip.get_internaltip_wb(wb_tip_id)
-        
+
         receiver_tips = yield delivery_sched.tip_creation()
+
         self.assertEqual(len(receiver_tips), 1)
         
         filesdict = yield delivery_sched.file_preprocess()
@@ -58,28 +101,6 @@ class TestSubmission(helpers.TestGL):
             receiver_file = yield files.get_receiver_file(tip_id, file_id)
             receiver_files.append(receiver_file)
         self.assertEqual(len(receiver_files), 2)
-
-    @inlineCallbacks
-    def test_update_submission(self):
-        status = yield submission.update_submission(self.dummySubmission['submission_gus'], self.dummySubmission)
-
-        receipt = yield submission.create_whistleblower_tip(status)
-        yield submission.finalize_submission(status['id'])
-
-        import re
-        retval = re.match('(\w+){10}', receipt)
-        self.assertTrue(retval)
-
-    @inlineCallbacks
-    def test_create_submission(self):
-        status = yield submission.create_submission(self.dummySubmission)
-
-        receipt = yield submission.create_whistleblower_tip(status)
-        yield submission.finalize_submission(status['id'])
-
-        import re
-        retval = re.match('(\w+){10}', receipt)
-        self.assertTrue(retval)
 
     # --------------------------------------------------------- #
     def get_new_receiver_desc(self, descpattern):
@@ -97,6 +118,7 @@ class TestSubmission(helpers.TestGL):
 
         # for some reason, the first receiver is no more with the same ID
         self.receivers = yield get_receiver_list()
+        print len(self.receivers)
 
         self.dummyContext['receivers'] = [ self.receivers[0]['receiver_gus'],
                                            self.receivers[1]['receiver_gus'],
@@ -109,7 +131,7 @@ class TestSubmission(helpers.TestGL):
         context_status = yield update_context(self.dummyContext['context_gus'], self.dummyContext)
 
         # Create a new request with selected three of the four receivers
-        submission_request= dict(self.dummySubmission)
+        submission_request= self.dummySubmission
         submission_request['context_gus'] = context_status['context_gus']
         submission_request['submission_gus'] = ''
         submission_request['finalize'] = True
@@ -117,8 +139,35 @@ class TestSubmission(helpers.TestGL):
                                             self.receivers[1]['receiver_gus'],
                                             self.receivers[2]['receiver_gus'] ]
 
-        status = yield submission.update_submission(self.dummySubmission['submission_gus'], submission_request)
-        yield submission.finalize_submission(status['id'])
-
+        print submission_request
+        status = yield submission.create_submission(submission_request, finalize=True)
+        print "XX", status
         receiver_tips = yield delivery_sched.tip_creation()
+        print "YY", receiver_tips
         self.assertEqual(len(receiver_tips), 3)
+
+    @inlineCallbacks
+    def test_update_submission(self):
+        submission_desc = self.dummySubmission
+        submission_desc['finalize'] = False
+        submission_desc['context_gus'] = self.dummyContext['context_gus']
+
+        status = yield submission.create_submission(submission_desc, finalize=False)
+
+        status['wb_fields'] = { 'city': "NY", 'Sun': "Flashy",
+                                'dict2': "ottimo direi", 'dict3': "bingo bongo"}
+
+        status['finalize'] = True
+
+        status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
+        receipt = yield submission.create_whistleblower_tip(status)
+
+        wb_access_id = yield authentication.login_wb(receipt)
+
+        # remind: return a tuple (serzialized_itip,wb_tip_id)
+        (wb_tip, wb_tip_id) = yield tip.get_internaltip_wb(wb_access_id)
+        self.assertTrue(wb_tip['fields']['dict2'] == status['wb_fields']['dict2'])
+
+
+    #@inlineCallbacks
+    #def test_unable_to_access_submission(self):
