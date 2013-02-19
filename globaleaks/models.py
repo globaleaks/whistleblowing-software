@@ -289,14 +289,14 @@ class Receiver(Model):
     bool_keys = [ 'can_delete_submission' ] # Total delete capability
 
 
+
+# Follow two classes used for Many to Many references
 class ReceiverContext(object):
     __storm_table__ = 'receiver_context'
     __storm_primary__ = 'context_id', 'receiver_id'
     context_id = Unicode()
     receiver_id = Unicode()
 
-
-# many to many context-receiver
 Context.receivers = ReferenceSet(
                                  Context.id,
                                  ReceiverContext.receiver_id,
@@ -310,11 +310,29 @@ Receiver.contexts = ReferenceSet(
                         Context.id)
 
 
+class ReceiverInternalTip(object):
+    __storm_table__ = 'receiver_internaltip'
+    __storm_primary__ ='receiver_id', 'internaltip_id'
+    receiver_id = Unicode()
+    internaltip_id = Unicode()
+
+Receiver.internaltips = ReferenceSet(
+                                Receiver.id,
+                                ReceiverInternalTip.internaltip_id,
+                                ReceiverInternalTip.receiver_id,
+                                InternalTip.id)
+
+InternalTip.receivers = ReferenceSet(
+                                InternalTip.id,
+                                ReceiverInternalTip.receiver_id,
+                                ReceiverInternalTip.internaltip_id,
+                                Receiver.id)
+
+
 InternalTip.context = Reference(InternalTip.context_id, Context.id)
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
 InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
-InternalTip.receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
 ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
 ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)

@@ -105,8 +105,16 @@ CREATE TABLE receiver_context (
     context_id VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
     PRIMARY KEY (context_id, receiver_id),
-    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
-    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+    FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+);
+
+CREATE TABLE receiver_internaltip (
+    receiver_id VARCHAR NOT NULL,
+    internaltip_id VARCHAR NOT NULL,
+    PRIMARY KEY (receiver_id, internaltip_id),
+    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
 
 CREATE TABLE receivertip (

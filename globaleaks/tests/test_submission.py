@@ -5,7 +5,11 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
 from globaleaks.tests import helpers
-from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list, get_context_list
+from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list
+from globaleaks.rest import errors
+from globaleaks.settings import transact
+from globaleaks.models import ReceiverTip
+
 
 class TestSubmission(helpers.TestGL):
     dummyFiles = [{'body': 'spam',
@@ -75,19 +79,23 @@ class TestSubmission(helpers.TestGL):
     def test_submission_with_files(self):
         yield self.create_dummy_files()
 
+        # trash the tip eventually in queue
+        inqueue_tip = yield delivery_sched.tip_creation()
+
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = True
         del submission_desc['submission_gus']
+        submission_desc['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
+
         status = yield submission.create_submission(submission_desc, finalize=True)
         receipt = yield submission.create_whistleblower_tip(status)
 
         wb_tip_id = yield authentication.login_wb(receipt)
         wb_tip = yield tip.get_internaltip_wb(wb_tip_id)
+        new_rtip = yield delivery_sched.tip_creation()
 
-        receiver_tips = yield delivery_sched.tip_creation()
+        self.assertEqual(len(new_rtip), 1)
 
-        self.assertEqual(len(receiver_tips), 1)
-        
         filesdict = yield delivery_sched.file_preprocess()
         processdict = delivery_sched.file_process(filesdict)
 
@@ -95,14 +103,17 @@ class TestSubmission(helpers.TestGL):
         
         receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
 
+        self.assertEqual(len(receiverfile_list), 2)
+
         receiver_files = []
         for file_id in receiverfile_list:
-            tip_id = receiver_tips[0]
+            tip_id = new_rtip[0]
             receiver_file = yield files.get_receiver_file(tip_id, file_id)
             receiver_files.append(receiver_file)
+
         self.assertEqual(len(receiver_files), 2)
 
-    # --------------------------------------------------------- #
+
     def get_new_receiver_desc(self, descpattern):
         new_r = dict(self.dummyReceiver)
         new_r['name'] = new_r['description'] = new_r['username'] =\
@@ -118,7 +129,8 @@ class TestSubmission(helpers.TestGL):
 
         # for some reason, the first receiver is no more with the same ID
         self.receivers = yield get_receiver_list()
-        print len(self.receivers)
+
+        self.assertEqual(len(self.receivers), 4)
 
         self.dummyContext['receivers'] = [ self.receivers[0]['receiver_gus'],
                                            self.receivers[1]['receiver_gus'],
@@ -130,44 +142,60 @@ class TestSubmission(helpers.TestGL):
 
         context_status = yield update_context(self.dummyContext['context_gus'], self.dummyContext)
 
+        # trash the tip eventually in queue
+        inqueue_tip = yield delivery_sched.tip_creation()
+
         # Create a new request with selected three of the four receivers
         submission_request= self.dummySubmission
         submission_request['context_gus'] = context_status['context_gus']
-        submission_request['submission_gus'] = ''
+        submission_request['submission_gus'] = submission_request['id'] = ''
         submission_request['finalize'] = True
         submission_request['receivers'] = [ self.receivers[0]['receiver_gus'],
                                             self.receivers[1]['receiver_gus'],
                                             self.receivers[2]['receiver_gus'] ]
 
-        print submission_request
         status = yield submission.create_submission(submission_request, finalize=True)
-        print "XX", status
         receiver_tips = yield delivery_sched.tip_creation()
-        print "YY", receiver_tips
-        self.assertEqual(len(receiver_tips), 3)
+
+        self.assertEqual(len(receiver_tips), len(submission_request['receivers']))
+
 
     @inlineCallbacks
     def test_update_submission(self):
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = False
         submission_desc['context_gus'] = self.dummyContext['context_gus']
+        submission_desc['submission_gus'] = submission_desc['id'] = submission_desc['mark'] = None
 
         status = yield submission.create_submission(submission_desc, finalize=False)
 
-        status['wb_fields'] = { 'city': "NY", 'Sun': "Flashy",
-                                'dict2': "ottimo direi", 'dict3': "bingo bongo"}
+        status['wb_fields'] = { 'city': u"NY", 'Sun': u"Flashy",
+                                'dict2': u"ottimo direi", 'dict3': u"bingo bongo"}
 
         status['finalize'] = True
 
         status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
-        receipt = yield submission.create_whistleblower_tip(status)
 
+        receipt = yield submission.create_whistleblower_tip(status)
         wb_access_id = yield authentication.login_wb(receipt)
 
         # remind: return a tuple (serzialized_itip,wb_tip_id)
         (wb_tip, wb_tip_id) = yield tip.get_internaltip_wb(wb_access_id)
         self.assertTrue(wb_tip['fields']['dict2'] == status['wb_fields']['dict2'])
 
+    @inlineCallbacks
+    def test_unable_to_access_finalized(self):
+        submission_desc = self.dummySubmission
+        submission_desc['finalize'] = True
+        submission_desc['context_gus'] = self.dummyContext['context_gus']
 
-    #@inlineCallbacks
-    #def test_unable_to_access_submission(self):
+        status = yield submission.create_submission(submission_desc, finalize=True)
+        try:
+            yield submission.update_submission(status['submission_gus'], status, finalize=True)
+        except errors.SubmissionConcluded:
+            self.assertTrue(True)
+            return
+        self.assertTrue(False)
+
+        # self.assertRaises(errors.SubmissionConcluded,
+        #   (yield submission.update_submission(status['submission_gus'], status, finalize=True)) )

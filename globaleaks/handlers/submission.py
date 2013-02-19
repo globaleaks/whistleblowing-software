@@ -21,6 +21,8 @@ from globaleaks.rest.errors import *
 def wb_serialize_internaltip(internaltip):
     response = {
         'id' : unicode(internaltip.id),
+        # compatibility! until client is not patched.
+        'submission_gus' : unicode(internaltip.id),
         'context_gus': unicode(internaltip.context_id),
         'creation_date' : unicode(prettyDateTime(internaltip.creation_date)),
         #'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
@@ -43,6 +45,9 @@ def wb_serialize_internaltip(internaltip):
 
 @transact
 def create_whistleblower_tip(store, submission):
+    # This assertion fail in unitTest
+    assert submission is not None and submission.has_key('id')
+
     wbtip = WhistleblowerTip()
     wbtip.receipt = unicode(random_string(10, 'a-z,A-Z,0-9'))
     wbtip.access_counter = 0
@@ -55,7 +60,13 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
-            submission.receivers.add(receiver)
+            check = store.find(ReceiverInternalTip, ReceiverInternalTip.receiver_id == receiver.id).one()
+            if not check:
+                submission.receivers.add(receiver)
+            else:
+                log.debug("ContextBased: %s It's already present" % receiver.id)
+
+        log.debug("Enforcing receiver #%d by Context" % context.receivers.count() )
         return
 
     # Clean the previous list of selected Receiver
@@ -81,9 +92,19 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
         if not receiver:
             log.err("Receiver requested do not exist: %s", receiver_id)
             raise ReceiverGusNotFound
-        submission.receivers.add(receiver)
 
-    log.debug("Added %d Receivers as requested (%s)", submission.receivers.count(), str(receiver_id_list))
+        check = store.find(ReceiverInternalTip, ReceiverInternalTip.receiver_id == unicode(receiver_id)).one()
+        if not check:
+            submission.receivers.add(receiver)
+        else:
+            log.debug("ReceiverBased: %s It's already present" % receiver_id)
+            # And without this check, I will get a:
+            # columns receiver_id, internaltip_id are not unique
+            # and the transact exit SILENTLY without raise an exception :(
+
+
+    log.debug("Added %d Receivers as requested (%s)" %\
+              (submission.receivers.count(), str(receiver_id_list)) )
 
     if required and submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
@@ -103,6 +124,10 @@ def import_files(store, submission, files):
 
         submission.internalfiles.add(file)
 
+    log.debug("In Submission %s associated files, amount is #%d" %\
+              (submission.id, submission.internalfiles.count() ))
+
+
 def import_fields(submission, fields, expected_fields, strict_validation=False):
     """
     @param submission: the Storm object
@@ -115,6 +140,7 @@ def import_fields(submission, fields, expected_fields, strict_validation=False):
     if Submission would not be finalized yet.
     """
     if strict_validation:
+
         if not fields:
             log.err("Missing submission in 'finalize' request")
             raise SubmissionFailFields("Missing submission!")
@@ -198,8 +224,6 @@ def create_submission(store, request, finalize):
 
     submission_dict = wb_serialize_internaltip(submission)
 
-    # API compatibility until stability is reached
-    submission_dict['submission_gus'] = unicode(submission.id)
     return submission_dict
 
 @transact
@@ -221,7 +245,9 @@ def update_submission(store, id, request, finalize):
 
     # Can't be changed context in the middle of a Submission
     if submission.context_id != context.id:
-        log.err("Context can't be changed in the middle (before %s, now %s)" % (submission.context_id, context.id))
+        log.err("Context can't be changed in the middle (before %s, now %s)" %\
+                (submission.context_id, context.id))
+
         raise ContextGusNotFound
 
     receivers = request.get('receivers', [])
@@ -237,15 +263,11 @@ def update_submission(store, id, request, finalize):
         submission.mark = InternalTip._marker[1] # Finalized
 
     submission_dict = wb_serialize_internaltip(submission)
-
-    # API compatibility until stability is reached
-    submission_dict['submission_gus'] = unicode(submission.id)
     return submission_dict
 
 
 @transact
 def get_submission(store, id):
-
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
     if not submission:
         log.err("Invalid Submission requested %s in GET" % id)
@@ -255,7 +277,6 @@ def get_submission(store, id):
 
 @transact
 def delete_submission(store, id):
-
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
     if not submission:
@@ -289,7 +310,6 @@ class SubmissionCreate(BaseHandler):
         sessionGUS is used as authentication secret for the next interaction.
         expire after the time set by Admin (Context dependent setting)
         """
-
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
         if request['finalize']:
@@ -341,7 +361,6 @@ class SubmissionInstance(BaseHandler):
 
         PUT update the submission and finalize if requested.
         """
-
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
         if request['finalize']:
