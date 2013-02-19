@@ -46,10 +46,7 @@ def serialize_context(context):
 
 def serialize_receiver(receiver):
     receiver_dict = {
-        "can_configure_delivery": unicode(receiver.can_configure_delivery),
-        "can_configure_notification": receiver.can_configure_notification,
         "can_delete_submission": receiver.can_delete_submission,
-        "can_postpone_expiration": receiver.can_postpone_expiration,
         "contexts": [],
         "creation_date": utils.prettyDateTime(receiver.creation_date),
         "update_date": utils.prettyDateTime(receiver.last_update),
@@ -57,7 +54,6 @@ def serialize_receiver(receiver):
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
-        "tags": [],
     }
     for context in receiver.contexts:
         receiver_dict['contexts'].append(unicode(context.id))
@@ -103,6 +99,14 @@ class StatsCollection(BaseHandler):
         log.debug("[D] %s %s " % (__file__, __name__), "TO BE IMPLEMENTED", "get", uriargs)
         pass
 
+@transact
+def get_public_context_list(store):
+    context_list = []
+    contexts = store.find(models.Context)
+    for context in contexts:
+        context_list.append(serialize_context(context))
+    return context_list
+
 
 class ContextsCollection(BaseHandler):
     """
@@ -111,14 +115,6 @@ class ContextsCollection(BaseHandler):
     and would be memorized in a third party indexer service. This is way some dates
     are returned within.
     """
-    @transact
-    def get_context_list(self, store):
-        context_list = []
-        contexts = store.find(models.Context)
-        for context in contexts:
-            context_list.append(serialize_context(context))
-        return context_list
-
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -126,8 +122,16 @@ class ContextsCollection(BaseHandler):
         Response: publicContextList
         Errors: None
         """
-        response = yield self.get_context_list()
+        response = yield get_public_context_list()
         self.finish(response)
+
+@transact
+def get_public_receiver_list(store):
+    receiver_list = []
+    receivers = store.find(models.Receiver)
+    for receiver in receivers:
+        receiver_list.append(serialize_receiver(receiver))
+    return receiver_list
 
 class ReceiversCollection(BaseHandler):
     """
@@ -136,14 +140,6 @@ class ReceiversCollection(BaseHandler):
     to one or more context, and is present in the "first tier" if a multi level review is configured.
     """
 
-    @transact
-    def get_receiver_list(self, store):
-        receiver_list = []
-        receivers = store.find(models.Receiver)
-        for receiver in receivers:
-            receiver_list.append(serialize_receiver(receiver))
-        return receiver_list
-
     @inlineCallbacks
     def get(self, *uriargs):
         """
@@ -151,6 +147,6 @@ class ReceiversCollection(BaseHandler):
         Response: publicReceiverList
         Errors: None
         """
-        response = yield self.get_receiver_list()
+        response = yield get_public_receiver_list()
         self.finish(response)
 

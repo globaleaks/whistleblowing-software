@@ -163,7 +163,6 @@ def create_submission(store, request, finalize):
         log.err("Storm/SQL Error: %s" % e)
         raise e
 
-
     submission.escalation_threshold = context.escalation_threshold
     submission.access_limit = context.tip_max_access
     submission.download_limit = context.file_max_download
@@ -173,9 +172,9 @@ def create_submission(store, request, finalize):
     submission.creation_date = models.now()
 
     if finalize:
-        submission.mark = InternalTip._marker[0] # Submission
-    else:
         submission.mark = InternalTip._marker[1] # Finalized
+    else:
+        submission.mark = InternalTip._marker[0] # Submission
 
     receivers = request.get('receivers', [])
     import_receivers(store, submission, receivers, context, required=finalize)
