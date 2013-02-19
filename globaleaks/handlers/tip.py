@@ -23,6 +23,8 @@ from globaleaks.rest.errors import  *
 def actor_serialize_internal_tip(internaltip):
     itip_dict = {
         'context_id': unicode(internaltip.context.id),
+        # compatibility, until client is not ready to be aligned
+        'context_gus': unicode(internaltip.context.id),
         'creation_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
         'last_activity' : unicode(utils.prettyDateTime(internaltip.creation_date)),
         'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
@@ -115,6 +117,7 @@ def get_internaltip_wb(store, tip_id):
 
     tip_desc = actor_serialize_internal_tip(wbtip.internaltip)
     tip_desc['access_counter'] = int(wbtip.access_counter)
+    tip_desc['id'] = unicode(wbtip.id)
     # tip_desc['last_access'] TODO
 
     # Return a couple of value because WB needs them separately
@@ -127,7 +130,8 @@ def get_internaltip_receiver(store, user_id, tip_id):
     tip_desc = actor_serialize_internal_tip(rtip.internaltip)
     tip_desc['access_counter'] = int(rtip.access_counter)
     tip_desc['expressed_pertinence'] = int(rtip.expressed_pertinence)
-    # tip_desc['notification_date'] =
+    tip_desc['id'] = unicode(rtip.id)
+    tip_desc['receiver_id'] = unicode(user_id)
     # tip_desc['last_access'] TODO
 
     return tip_desc
@@ -218,13 +222,14 @@ class TipInstance(BaseHandler):
         Response: None
         Errors: InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation
 
-        This interface modify some tip status value. pertinence, personal delete are handled here.
-        Total delete operation is handled in this class, by the DELETE HTTP method.
-        Those operations (may) trigger a 'system comment' inside of the Tip comment list.
+        This interface modify some tip status value. pertinence and complete removal
+        are handled here.
 
         This interface return None, because may execute a delete operation. The client
         know which kind of operation has been requested. If a pertinence vote, would
         perform a refresh on get() API, if a delete, would bring the user in other places.
+
+        When an uber-receiver decide to "total delete" a Tip, is handled by this call.
         """
 
         # TODO move this operation within the auth decorator
@@ -248,8 +253,6 @@ class TipInstance(BaseHandler):
         Request: None
         Response: None
         Errors: ForbiddenOperation, TipGusNotFound
-
-        When an uber-receiver decide to "total delete" a Tip, is handled by this call.
         """
 
         # TODO move this operation within the auth decorator
@@ -402,6 +405,7 @@ def get_receiver_list_wb(store, wb_tip_id):
     receiver_list = []
     for receiver in wb_tip.internaltip.receivers:
 
+        # TODO, internaltips.receivertips is a ReferenceSet, why is not used ?
         receiver_tip = store.find(ReceiverTip,
             (ReceiverTip.receiver_id == receiver.id,
              ReceiverTip.internaltip_id == wb_tip.internaltip.id)).one()
@@ -421,6 +425,7 @@ def get_receiver_list_receiver(store, user_id, tip_id):
     receiver_list = []
     for receiver in rtip.internaltip.receivers:
 
+        # TODO, internaltips.receivertips is a ReferenceSet, why is not used ?
         receiver_tip = store.find(ReceiverTip,
             (ReceiverTip.receiver_id == receiver.id,
              ReceiverTip.internaltip_id == rtip.internaltip.id)).one()

@@ -118,23 +118,26 @@ def tip_creation(store):
 
     for internaltip in finalized:
         for receiver in internaltip.receivers:
-            created_tips.append(create_receivertip(store, receiver, internaltip, 1))
-            # TODO interalfile_is_correct
+            rtip_id = create_receivertip(store, receiver, internaltip, 1)
+            created_tips.append(rtip_id)
 
         internaltip.mark = internaltip._marker[2]
 
+    return created_tips
+
+    """
     promoted = store.find(InternalTip,
                         ( InternalTip.mark == InternalTip._marker[2],
                           InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )
 
     for internaltip in promoted:
         for receiver in internaltip.receivers:
-            created_tips.append(create_receivertip(store, receiver, internaltip, 2))
-            # TODO interalfile_is_correct
+            rtip_id = create_receivertip(store, receiver, internaltip, 2)
+            created_tips.append(rtip_id)
 
         internaltip.mark = internaltip._marker[3]
+    """
 
-    return created_tips
 
 class APSDelivery(GLJob):
 
