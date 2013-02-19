@@ -14,7 +14,7 @@ from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.jobs.delivery_sched import APSDelivery
 from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
-from globaleaks.utils import random_string, log, utcFutureDate
+from globaleaks.utils import random_string, log, utcFutureDate, prettyDateTime
 from globaleaks.rest.errors import *
 
 
@@ -22,7 +22,7 @@ def wb_serialize_internaltip(internaltip):
     response = {
         'id' : unicode(internaltip.id),
         'context_gus': unicode(internaltip.context_id),
-        #'creation_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
+        'creation_date' : unicode(prettyDateTime(internaltip.creation_date)),
         #'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
         'wb_fields' : dict(internaltip.wb_fields or {}),
         'download_limit' : int(internaltip.download_limit),
@@ -60,26 +60,33 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
 
     # Clean the previous list of selected Receiver
     # store.remove(submission.receivers) -- DON'T WORK
-    # for prevrec in submission.receivers:
-    #    store.remove(prevrec) -- DON'T WORK
-    #    submission.receivers.remove(prevrec) -- DON'T WORK EITHER
-    # NEED TO BE DONE, DON'T KNOW HOW TO MAKE IT WORKS
+    #
+    #for prevrec in submission.receivers:
+    #    print type(prevrec)
+    #    store.remove(prevrec)
+    # or
+    #    submission.receivers.remove(prevrec)
+    #
+    # Exception:
+    #     raise NoStoreError("Can't perform operation without a store")
 
-    # import WB requests
+    # whitout contexts policies, import WB requests
     for receiver_id in receiver_id_list:
         try:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         except Exception, e:
-            log.err("Storm/SQL Error: %s" % e)
+            log.err("Storm/SQL Error: %s (import_receivers)" % e)
             raise e
 
         if not receiver:
+            log.err("Receiver requested do not exist: %s", receiver_id)
             raise ReceiverGusNotFound
         submission.receivers.add(receiver)
 
     log.debug("Added %d Receivers as requested (%s)", submission.receivers.count(), str(receiver_id_list))
 
     if required and submission.receivers.count() == 0:
+        log.err("Receivers required to be selected, not empty")
         raise SubmissionFailFields("Receivers required to be completed")
 
 
@@ -88,9 +95,10 @@ def import_files(store, submission, files):
         try:
             file = store.find(InternalFile, InternalFile,id == unicode(file_id)).one()
         except Exception, e:
-            log.err("Storm/SQL Error: %s" % e)
+            log.err("Storm/SQL Error: %s (import_files)" % e)
             raise e
         if not file:
+            log.err("Invalid File requested %s" % file_id)
             raise FileGusNotFound
 
         submission.internalfiles.add(file)
@@ -108,17 +116,19 @@ def import_fields(submission, fields, expected_fields, strict_validation=False):
     """
     if strict_validation:
         if not fields:
+            log.err("Missing submission in 'finalize' request")
             raise SubmissionFailFields("Missing submission!")
 
         for entry in expected_fields:
             if entry['required']:
                 if not fields.has_key(entry['name']):
+                    log.err("Submission has a required field (%s) missing" % entry['name'])
                     raise SubmissionFailFields("Missing field '%s': Required" % entry['name'])
 
-    submission.wb_fields = {}
     if not fields:
         return
 
+    imported_fields = {}
     for key, value in fields.iteritems():
         key_exists = False
 
@@ -128,15 +138,13 @@ def import_fields(submission, fields, expected_fields, strict_validation=False):
                 break
 
         if not key_exists:
+            log.err("Submission contain an unexpected field %s" % key)
             raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
 
-        try:
-            submission.wb_fields.update({key: value})
-        except Exception, e:
-            log.err("Storm/SQL Error: %s" % e)
-            raise e
+        imported_fields.update({key: value})
 
-    log.debug("Completed fields import (with key validation): %s", submission.wb_fields)
+    submission.wb_fields = imported_fields
+    log.debug("Completed fields import (with key validation): %s" % submission.wb_fields)
 
 
 def force_schedule():
@@ -155,13 +163,10 @@ def create_submission(store, request, finalize):
     del request['context_gus']
 
     if not context:
+        log.err("Context requested %s do not exist" % request['context_gus'])
         raise ContextGusNotFound
 
-    try:
-        submission = InternalTip()
-    except Exception, e:
-        log.err("Storm/SQL Error: %s" % e)
-        raise e
+    submission = InternalTip()
 
     submission.escalation_threshold = context.escalation_threshold
     submission.access_limit = context.tip_max_access
@@ -188,7 +193,7 @@ def create_submission(store, request, finalize):
     try:
         store.add(submission)
     except Exception, e:
-        log.err("Storm/SQL Error: %s" % e)
+        log.err("Storm/SQL Error: %s (create_submission)" % e)
         raise e
 
     submission_dict = wb_serialize_internaltip(submission)
@@ -202,18 +207,22 @@ def update_submission(store, id, request, finalize):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
     if not submission:
+        log.err("Invalid Submission requested %s in PUT" % id)
         raise SubmissionGusNotFound
 
     if submission.mark != InternalTip._marker[0]:
+        log.err("Submission %s do not permit update (status %s)" % (id, submission.mark))
         raise SubmissionConcluded
 
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
     if not context:
-        raise ContextGusNotFound()
+        log.err("Context requested %s do not exist in UPDATE" % request['context_gus'])
+        raise ContextGusNotFound
 
     # Can't be changed context in the middle of a Submission
     if submission.context_id != context.id:
-        raise ContextGusNotFound()
+        log.err("Context can't be changed in the middle (before %s, now %s)" % (submission.context_id, context.id))
+        raise ContextGusNotFound
 
     receivers = request.get('receivers', [])
     import_receivers(store, submission, receivers, context, required=finalize)
@@ -239,6 +248,7 @@ def get_submission(store, id):
 
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
     if not submission:
+        log.err("Invalid Submission requested %s in GET" % id)
         raise SubmissionGusNotFound
 
     return wb_serialize_internaltip(submission)
@@ -249,9 +259,11 @@ def delete_submission(store, id):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
     if not submission:
+        log.err("Invalid Submission requested %s in DELETE" % id)
         raise SubmissionGusNotFound
 
     if submission.mark != submission._marked[0]:
+        log.err("Submission %s already concluded (%s)" % (id, submission.mark))
         raise SubmissionConcluded
 
     store.delete(submission)

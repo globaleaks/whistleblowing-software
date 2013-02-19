@@ -9,7 +9,6 @@ from twisted.internet import fdesc
 from globaleaks import settings
 
 
-
 class Publisher(twlog.LogPublisher):
     def info(self, *arg, **kw):
         kw['logLevel'] = logging.INFO
