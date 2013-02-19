@@ -46,7 +46,6 @@ def admin_serialize_context(context):
     return context_dict
 
 def admin_serialize_receiver(receiver):
-    import copy
     receiver_dict = {
         "receiver_gus": unicode(receiver.id),
         "name": unicode(receiver.name),
@@ -54,15 +53,11 @@ def admin_serialize_receiver(receiver):
         "update_date": unicode(utils.prettyDateTime(receiver.last_update)),
         "receiver_level": int(receiver.receiver_level),
         "can_delete_submission": bool(receiver.can_delete_submission),
-        "can_postpone_expiration": bool(receiver.can_postpone_expiration),
-        "can_configure_delivery": bool(receiver.can_configure_delivery),
-        "can_configure_notification": bool(receiver.can_configure_notification),
         "username": unicode(receiver.username),
         "password": unicode(receiver.password),
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "contexts": []
     }
-
     for context in receiver.contexts:
         receiver_dict['contexts'].append(context.id)
 
@@ -92,8 +87,8 @@ def update_node(store, request):
         if node.password == request['old_password']:
             node.password = request['password']
 
-    del request['old_password']
-    del request['password']
+        del request['old_password']
+        del request['password']
 
     node.update(request)
 
@@ -129,11 +124,10 @@ def create_context(store, request):
     Returns:
         (dict) representing the configured context
     """
-    receivers = request['receivers']
-    del request['receivers']
+    receivers = request.get('receivers', [])
 
     context = Context(request)
-    store.add(context)
+    context.fields = request['fields']
 
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
@@ -141,6 +135,7 @@ def create_context(store, request):
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
+    store.add(context)
     return admin_serialize_context(context)
 
 @transact
@@ -179,10 +174,9 @@ def update_context(store, context_gus, request):
     if not context:
         raise errors.ContextGusNotFound
 
-    receivers = request.get('receivers')
-    del request['receivers']
+    receivers = request.get('receivers', [])
 
-    context.update(request)
+    context.fields = request['fields']
 
     for receiver in context.receivers:
         context.receivers.remove(receiver)
@@ -192,6 +186,8 @@ def update_context(store, context_gus, request):
         if not receiver:
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
+
+    context.update(request)
 
     context_desc = admin_serialize_context(context)
     context.last_update = now()
@@ -234,14 +230,17 @@ def create_receiver(store, request):
     Returns:
         (dict) the configured receiver
     """
-    contexts = request.get('contexts')
-    del request['contexts']
+    contexts = request.get('contexts', [])
 
     if 'mail_address' not in request['notification_fields']:
         raise errors.NoEmailSpecified
 
     receiver = Receiver(request)
+
     receiver.username = request['notification_fields']['mail_address']
+    receiver.notification_fields = request['notification_fields']
+    receiver.password = request['password']
+
     store.add(receiver)
 
     for context_id in contexts:
@@ -280,10 +279,14 @@ def update_receiver(store, id, request):
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    contexts = request.get('contexts')
-    del request['contexts']
+    if 'mail_address' not in request['notification_fields']:
+        raise errors.NoEmailSpecified
 
-    receiver.update(request)
+    receiver.username = request['notification_fields']['mail_address']
+    receiver.notification_fields = request['notification_fields']
+    receiver.password = request['password']
+
+    contexts = request.get('contexts', [])
 
     for context in receiver.contexts:
         receiver.contexts.remove(context)
@@ -293,6 +296,8 @@ def update_receiver(store, id, request):
         if not context:
             raise errors.ContextGusNotFound
         receiver.contexts.add(context)
+
+    receiver.update(request)
 
     receiver_desc = admin_serialize_receiver(receiver)
     receiver.last_update = now()

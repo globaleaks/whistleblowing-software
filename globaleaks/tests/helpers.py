@@ -28,24 +28,16 @@ class TestGL(unittest.TestCase):
 
         self.dummyReceiver = yield create_receiver(self.dummyReceiver)
 
-        self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
-        context_dict = yield create_context(self.dummyContext)
+        self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
+        self.dummyContext = yield create_context(self.dummyContext)
 
-        self.dummyReceiver['contexts'] = [context_dict['context_gus']]
-        self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
-        self.dummyContext['context_gus'] = context_dict['context_gus']
+        self.dummyContext['contexts'] = [ self.dummyContext['context_gus'] ]
 
-        self.dummySubmission['context_gus'] = context_dict['context_gus']
-        self.dummySubmission = yield create_submission(self.dummySubmission)
-
-        yield update_node(self.dummyNode)
-        self.dummyNode['password'] = u'spam'
-        self.dummyNode['old_password'] = None
+        self.dummySubmission['context_gus'] = self.dummyContext['context_gus']
+        self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
+        self.dummySubmission = yield create_submission(self.dummySubmission, finalize=True)
 
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
-        self.dummySubmission['context_gus'] = context_dict['context_gus']
-
-        self.dummySubmission['finalize'] = finalize_flag
 
     def setUp_dummy(self):
         self.dummyReceiver = {
@@ -56,6 +48,7 @@ class TestGL(unittest.TestCase):
             'notification_fields': {'mail_address': u'maker@ggay.it'},
             'can_delete_submission': True,
             'receiver_level': 1,
+            'contexts' : []
         }
         self.dummyContext = {
             'name': u'created by shooter',
@@ -93,11 +86,13 @@ class TestGL(unittest.TestCase):
             'tip_timetolive': 2,
             'file_max_download' :1,
             'escalation_threshold': 1,
+            'receivers' : []
         }
         self.dummySubmission = {
             'context_gus': '',
             'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
             'finalize': False,
+            'receivers': [],
         }
         self.dummyNode = {
                 'name':  u"Please, set me: name/title",
