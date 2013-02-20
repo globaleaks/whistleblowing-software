@@ -110,7 +110,6 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
         log.err("Receivers required to be selected, not empty")
         raise SubmissionFailFields("Receivers required to be completed")
 
-
 def import_files(store, submission, files):
     for file_id in files:
         try:

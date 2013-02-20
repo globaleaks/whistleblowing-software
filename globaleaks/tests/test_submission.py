@@ -15,11 +15,11 @@ class TestSubmission(helpers.TestGL):
     dummyFiles = [{'body': 'spam',
             'content_type': 'application/octet',
             'filename': 'spam'},
-            {'body': 'ham', 
+            {'body': 'ham',
             'content_type': 'application/octet',
             'filename': 'ham'}
     ]
-    
+
     @inlineCallbacks
     def setUp(self):
         self.setUp_dummy()
@@ -100,18 +100,23 @@ class TestSubmission(helpers.TestGL):
         processdict = delivery_sched.file_process(filesdict)
 
         self.assertEqual(len(processdict), 2)
-        
+
         receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
 
         self.assertEqual(len(receiverfile_list), 2)
 
         receiver_files = []
-        for file_id in receiverfile_list:
-            tip_id = new_rtip[0]
-            receiver_file = yield files.get_receiver_file(tip_id, file_id)
-            receiver_files.append(receiver_file)
 
+        receiver_files = yield tip.get_files_receiver(status['receivers'][0], receiver_tips[0])
         self.assertEqual(len(receiver_files), 2)
+
+#
+#         for file_id in receiverfile_list:
+#             tip_id = receiver_tips[0]
+#             receiver_file = yield files.download_file(tip_id, file_id)
+#             receiver_files.append(receiver_file)
+
+
 
 
     def get_new_receiver_desc(self, descpattern):

@@ -46,7 +46,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     rfile_dict = {
         'href' : unicode("/tip/" + receivertip_id + "/download/" + receiverfile.id),
         'name' : unicode(internalfile.name),
-        'sha2sum' : unicode(receiverfile.sha2sum),
+        'sha2sum' : unicode(internalfile.sha2sum),
         'content_type' : unicode(internalfile.content_type),
         'creation_date' : unicode(utils.prettyDateTime(internalfile.creation_date)),
         'size': int(internalfile.size),
@@ -100,7 +100,6 @@ def strong_receiver_validate(store, user_id, tip_id):
         raise TipGusNotFound
 
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
-
     if receiver.id != rtip.receiver.id:
         # This in attack!!
         raise TipGusNotFound
