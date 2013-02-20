@@ -24,8 +24,6 @@ settings.notification_plugins = []
 class TestGL(unittest.TestCase):
     @inlineCallbacks
     def fill_data(self):
-        finalize_flag = self.dummySubmission['finalize']
-
         self.dummyReceiver = yield create_receiver(self.dummyReceiver)
 
         self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
@@ -103,6 +101,9 @@ class TestGL(unittest.TestCase):
                 'stats_update_time':  2, # hours,
                 'languages':  [{ "code" : "it" , "name": "Italiano"},
                                { "code" : "en" , "name" : "English" }],
+                'password' : '',
+                'old_password' : '',
+                'notification_settings': {},
         }
 
     @inlineCallbacks

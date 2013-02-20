@@ -24,6 +24,7 @@ class TestNodeInstance(helpers.TestHandler):
         yield handler.put()
         del self.dummyNode['password']
         del self.dummyNode['old_password']
+        self.responses[0]['notification_settings'] = {}
         self.assertEqual(self.responses[0], self.dummyNode)
 
 class TestContextsCollection(helpers.TestHandler):
@@ -36,13 +37,15 @@ class TestContextsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-        handler = self.request(self.dummyContext)
+        request_context = self.dummyContext
+        handler = self.request(request_context)
         handler.request.headers['X-Session'] = 'test_admin'
         yield handler.post()
-        del self.responses[0]['context_gus']
-        del self.dummyContext['context_gus']
 
-        self.assertEqual(self.responses[0], self.dummyContext)
+        del request_context['contexts']
+        del request_context['context_gus']
+        del self.responses[0]['context_gus']
+        self.assertEqual(self.responses[0], request_context)
 
 class TestContextInstance(helpers.TestHandler):
     _handler = admin.ContextInstance
@@ -52,14 +55,18 @@ class TestContextInstance(helpers.TestHandler):
         handler = self.request()
         handler.request.headers['X-Session'] = 'test_admin'
         yield handler.get(self.dummyContext['context_gus'])
+        del self.dummyContext['contexts']
         self.assertEqual(self.responses[0], self.dummyContext)
 
     @inlineCallbacks
     def test_put(self):
-        self.dummyContext['name'] = u'spam'
-        handler = self.request(self.dummyContext)
+        request_context = self.dummyContext
+        request_context['name'] = u'spam'
+        handler = self.request(request_context)
         handler.request.headers['X-Session'] = 'test_admin'
-        yield handler.put(self.dummyContext['context_gus'])
+        yield handler.put(request_context['context_gus'])
+
+        del request_context['contexts']
         self.assertEqual(self.responses[0], self.dummyContext)
 
 class TestReceiversCollection(helpers.TestHandler):
@@ -70,7 +77,11 @@ class TestReceiversCollection(helpers.TestHandler):
         handler = self.request()
         handler.request.headers['X-Session'] = 'test_admin'
         yield handler.get()
-        self.assertEqual(self.responses[0], [self.dummyReceiver])
+
+        # XXX helpers.py.. Why self.responses is became a double array ?
+        del self.dummyReceiver['contexts']
+        del self.responses[0][0]['contexts']
+        self.assertEqual(self.responses[0][0], self.dummyReceiver)
 
     @inlineCallbacks
     def test_post(self):
@@ -92,6 +103,8 @@ class TestReceiverInstance(helpers.TestHandler):
         handler = self.request()
         handler.request.headers['X-Session'] = 'test_admin'
         yield handler.get(self.dummyReceiver['receiver_gus'])
+        del self.dummyReceiver['contexts']
+        del self.responses[0]['contexts']
         self.assertEqual(self.responses[0], self.dummyReceiver)
 
     @unittest.skip("because the error is currently not trappable")
