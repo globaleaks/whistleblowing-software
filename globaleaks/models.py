@@ -318,14 +318,14 @@ class ReceiverInternalTip(object):
 
 Receiver.internaltips = ReferenceSet(
                                 Receiver.id,
-                                ReceiverInternalTip.internaltip_id,
                                 ReceiverInternalTip.receiver_id,
+                                ReceiverInternalTip.internaltip_id,
                                 InternalTip.id)
 
 InternalTip.receivers = ReferenceSet(
                                 InternalTip.id,
-                                ReceiverInternalTip.receiver_id,
                                 ReceiverInternalTip.internaltip_id,
+                                ReceiverInternalTip.receiver_id,
                                 Receiver.id)
 
 
