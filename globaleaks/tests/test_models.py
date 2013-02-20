@@ -1,81 +1,92 @@
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.db import createTables
 from globaleaks.models import *
-from globaleaks.db import tables
 from globaleaks.settings import transact
 from globaleaks.tests import helpers
 
-class TestModels(helpers.TestHandler):
+class TestModels(helpers.TestGL):
     def setUp(self):
+        helpers.TestGL.setUp(self)
         return self._setup_database()
 
     @transact
     def _setup_database(self, store):
-        store.execute(tables.generateCreateQuery(Context))
-        store.execute(tables.generateCreateQuery(Receiver))
-        store.execute(tables.generateCreateQuery(Folder))
-        store.execute(tables.generateCreateQuery(InternalFile))
+        createTables(True)
+
+    @transact
+    def context_add(self, store):
+        context = Context(self.dummyContext)
+        context.fields = self.dummyContext['fields']
+        store.add(context)
+        return context.id
+
+    @transact
+    def context_get(self, store, context_id):
+        context = store.find(Context, Context.id == context_id).one()
+        if context is None:
+            return None
+        return context.id
+
+    @transact
+    def context_del(self, store, context_id):
+        context = store.find(Context, Context.id == context_id).one()
+        if context is not None:
+            store.remove(context)
+
+    @transact
+    def receiver_add(self, store):
+        receiver = Receiver(self.dummyReceiver)
+        receiver.password = self.dummyReceiver['password']
+        receiver.notification_fields = self.dummyReceiver['notification_fields']
+        store.add(receiver)
+        return receiver.id
+
+    @transact
+    def receiver_get(self, store, receiver_id):
+        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        if receiver is None:
+            return None
+        return receiver.id
+
+    @transact
+    def receiver_del(self, store, receiver_id):
+        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        if receiver is not None:
+            store.remove(receiver)
 
     @transact
     def create_context_with_receivers(self, store):
-        context = Context()
-        receiver1 = Receiver()
-        receiver2 = Receiver()
+        context = Context(self.dummyContext)
+        context.fields = self.dummyContext['fields']
+
+        receiver1 = Receiver(self.dummyReceiver)
+        receiver2 = Receiver(self.dummyReceiver)
+
+        receiver1.password = receiver2.password = unicode("xxx")
+        receiver1.notification_fields = receiver2.notification_fields = {'mail_address': 'x@x.it'}
+
         context.receivers.add(receiver1)
         context.receivers.add(receiver2)
         store.add(context)
         return context.id
 
     @transact
-    def create_folder_with_files(self, store):
-        file1 = InternalFile()
-        file2 = InternalFile()
-        store.add(file1)
-        store.add(file2)
+    def create_receiver_with_contexts(self, store):
+        receiver = Receiver(self.dummyReceiver)
+        receiver.password = unicode("xxx")
+        receiver.notification_fields = {'mail_address': 'y@y.it'}
 
-        folder = Folder()
-        folder.files.add(file1)
-        folder.files.add(file2)
-        store.add(folder)
-        return folder.id
+        context1 = Context(self.dummyContext)
+        context1.fields = self.dummyContext['fields']
 
-    @transact
-    def create_folder_with_invalid_reference(self, store):
-        receiver = Receiver()
+        context2 = Context(self.dummyContext)
+        context2.fields = self.dummyContext['fields']
+
+        receiver.contexts.add(context1)
+        receiver.contexts.add(context2)
         store.add(receiver)
-
-        folder = Folder()
-        # Invalid addition to folder.files
-        folder.files.add(receiver)
-        store.add(folder)
-        return folder.id
-
-    @transact
-    def create_folder_with_invalid_reference_not_in_store(self, store):
-        file1 = InternalFile()
-
-        folder = Folder()
-        folder.files.add(file1)
-        store.add(folder)
-        return folder.id
-
-    @transact
-    def create_folder_return_file(self, store):
-        file1 = InternalFile()
-        file2 = InternalFile()
-        store.add(file1)
-        store.add(file2)
-
-        folder = Folder()
-        folder.files.add(file1)
-        folder.files.add(file2)
-        store.add(folder)
-        return file1.id
-
-    @transact
-    def delete_reference(self, store, file_id):
-        internal_file = store.find(InternalFile, InternalFile.id == file_id).one()
-        store.remove(internal_file)
+        return receiver.id
 
     @transact
     def list_receivers_of_context(self, store, context_id):
@@ -86,38 +97,47 @@ class TestModels(helpers.TestHandler):
         return receivers
 
     @transact
-    def list_files_of_folder(self, store, folder_id):
-        folder = store.find(Folder, Folder.id == folder_id).one()
-        files = []
-        for file in folder.files:
-            files.append(file.id)
-        return files
+    def list_context_of_receivers(self, store, receiver_id):
+        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        contexts = []
+        for context in receiver.contexts:
+            contexts.append(context.id)
+        return contexts
 
     @inlineCallbacks
-    def test_context_receiver_reference(self):
+    def test_1_context_add_and_get(self):
+        context_id = yield self.context_add()
+        context_id = yield self.context_get(context_id)
+        self.assertIsNotNone(context_id)
+
+    @inlineCallbacks
+    def test_2_context_add_and_del(self):
+        context_id = yield self.context_add()
+        yield self.context_del(context_id)
+        context_id = yield self.context_get(context_id)
+        self.assertIsNone(context_id)
+
+    @inlineCallbacks
+    def test_3_receiver_add_and_get(self):
+        receiver_id = yield self.receiver_add()
+        receiver_id = yield self.receiver_get(receiver_id)
+        self.assertIsNotNone(receiver_id)
+
+    @inlineCallbacks
+    def test_4_receiver_add_and_del(self):
+        receiver_id = yield self.receiver_add()
+        yield self.receiver_del(receiver_id)
+        receiver_id = yield self.receiver_get(receiver_id)
+        self.assertIsNone(receiver_id)
+
+    @inlineCallbacks
+    def test_5_context_receiver_reference_1(self):
         context_id = yield self.create_context_with_receivers()
         receivers = yield self.list_receivers_of_context(context_id)
         self.assertEqual(2, len(receivers))
 
     @inlineCallbacks
-    def test_folder_receiver_reference_set(self):
-        folder_id = yield self.create_folder_with_files()
-        files = yield self.list_files_of_folder(folder_id)
-        self.assertEqual(2, len(files))
-
-    def test_folder_receiver_invalid_reference_set(self):
-        d = self.create_folder_with_invalid_reference()
-        self.assertFailure(d, KeyError)
-        return d
-
-    @inlineCallbacks
-    def test_folder_receiver_invalid_reference_set_not_in_store(self):
-        d = self.create_folder_with_invalid_reference_not_in_store()
-        return d
-
-    @inlineCallbacks
-    def test_delete_reference(self):
-        file_id = yield self.create_folder_return_file()
-        yield self.delete_reference(file_id)
-
-
+    def test_5_context_receiver_reference_2(self):
+        receiver_id = yield self.create_receiver_with_contexts()
+        contexts = yield self.list_context_of_receivers(receiver_id)
+        self.assertEqual(2, len(contexts))

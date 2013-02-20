@@ -12,7 +12,7 @@ import json
 #
 #     validate_jmessage(self, jmessage, message_template)
 
-class MockHandler(helpers.BaseHandler):
+class MockHandler(base.BaseHandler):
 
     def __init__(self):
         pass

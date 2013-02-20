@@ -6,7 +6,6 @@
 #   by an HTTP client in /submission URI
 
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import asynchronous
 from globaleaks.settings import transact
 from globaleaks.models import *
 from globaleaks import models
@@ -15,66 +14,121 @@ from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.jobs.delivery_sched import APSDelivery
 from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
-from globaleaks import utils
+from globaleaks.utils import random_string, log, utcFutureDate, prettyDateTime
 from globaleaks.rest.errors import *
 
 
 def wb_serialize_internaltip(internaltip):
     response = {
         'id' : unicode(internaltip.id),
+        # compatibility! until client is not patched.
+        'submission_gus' : unicode(internaltip.id),
         'context_gus': unicode(internaltip.context_id),
-        #'creation_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
+        'creation_date' : unicode(prettyDateTime(internaltip.creation_date)),
         #'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
-        'wb_fields' : dict(internaltip.fields or {}),
-        'fields' : dict(internaltip.fields or {}),      # ??!? sta a Capì
+        'wb_fields' : dict(internaltip.wb_fields or {}),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
         'mark' : unicode(internaltip.mark),
         'pertinence' : unicode(internaltip.pertinence_counter),
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
-        'files' : dict(internaltip.files) if internaltip.files else {},
+        'files' : [],
         'receivers' : []
     }
     for receiver in internaltip.receivers:
         response['receivers'].append(receiver.id)
 
+    for internalfile in internaltip.internalfiles:
+        response['files'].append(internalfile.id)
+
     return response
 
 @transact
 def create_whistleblower_tip(store, submission):
-    wbtip = WhistleblowerTip(submission)
-    wbtip.receipt = unicode(utils.random_string(10, 'a-z,A-Z,0-9'))
+    # This assertion fail in unitTest
+    assert submission is not None and submission.has_key('id')
+
+    wbtip = WhistleblowerTip()
+    wbtip.receipt = unicode(random_string(10, 'a-z,A-Z,0-9'))
     wbtip.access_counter = 0
     wbtip.internaltip_id = submission['id']
     store.add(wbtip)
     return wbtip.receipt
 
 
-def import_receivers(store, submission, receiver_id_list, context):
+def import_receivers(store, submission, receiver_id_list, context, required=False):
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
-            submission.receivers.add(receiver)
+            check = store.find(ReceiverInternalTip, ReceiverInternalTip.receiver_id == receiver.id).one()
+            if not check:
+                submission.receivers.add(receiver)
+            else:
+                log.debug("ContextBased: %s It's already present" % receiver.id)
 
-    else:
+        log.debug("Enforcing receiver #%d by Context" % context.receivers.count() )
+        return
 
-        # import WB requests
-        for receiver_id in receiver_id_list:
+    # Clean the previous list of selected Receiver
+    # store.remove(submission.receivers) -- DON'T WORK
+    #
+    #for prevrec in submission.receivers:
+    #    print type(prevrec)
+    #    store.remove(prevrec)
+    # or
+    #    submission.receivers.remove(prevrec)
+    #
+    # Exception:
+    #     raise NoStoreError("Can't perform operation without a store")
+
+    # whitout contexts policies, import WB requests
+    for receiver_id in receiver_id_list:
+        try:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-            if not receiver:
-                raise ReceiverGusNotFound
+        except Exception, e:
+            log.err("Storm/SQL Error: %s (import_receivers)" % e)
+            raise e
+
+        if not receiver:
+            log.err("Receiver requested do not exist: %s", receiver_id)
+            raise ReceiverGusNotFound
+
+        check = store.find(ReceiverInternalTip, ReceiverInternalTip.receiver_id == unicode(receiver_id)).one()
+        if not check:
             submission.receivers.add(receiver)
+        else:
+            log.debug("ReceiverBased: %s It's already present" % receiver_id)
+            # And without this check, I will get a:
+            # columns receiver_id, internaltip_id are not unique
+            # and the transact exit SILENTLY without raise an exception :(
+
+
+    log.debug("Added %d Receivers as requested (%s)" %\
+              (submission.receivers.count(), str(receiver_id_list)) )
+
+    if required and submission.receivers.count() == 0:
+        log.err("Receivers required to be selected, not empty")
+        raise SubmissionFailFields("Receivers required to be completed")
 
 
 def import_files(store, submission, files):
     for file_id in files:
-        file = store.find(InternalFile, InternalFile,id == unicode(file_id)).one()
+        try:
+            file = store.find(InternalFile, InternalFile,id == unicode(file_id)).one()
+        except Exception, e:
+            log.err("Storm/SQL Error: %s (import_files)" % e)
+            raise e
         if not file:
+            log.err("Invalid File requested %s" % file_id)
             raise FileGusNotFound
 
-        submission.files.add(file)
+        submission.internalfiles.add(file)
 
-def import_fields(store, submission, fields, expected_fields, strict_validation=False):
+    log.debug("In Submission %s associated files, amount is #%d" %\
+              (submission.id, submission.internalfiles.count() ))
+
+
+def import_fields(submission, fields, expected_fields, strict_validation=False):
     """
     @param submission: the Storm object
     @param fields: the received fields
@@ -86,18 +140,21 @@ def import_fields(store, submission, fields, expected_fields, strict_validation=
     if Submission would not be finalized yet.
     """
     if strict_validation:
+
         if not fields:
+            log.err("Missing submission in 'finalize' request")
             raise SubmissionFailFields("Missing submission!")
 
         for entry in expected_fields:
             if entry['required']:
                 if not fields.has_key(entry['name']):
+                    log.err("Submission has a required field (%s) missing" % entry['name'])
                     raise SubmissionFailFields("Missing field '%s': Required" % entry['name'])
 
-    submission.fields = {}
     if not fields:
         return
 
+    imported_fields = {}
     for key, value in fields.iteritems():
         key_exists = False
 
@@ -107,9 +164,14 @@ def import_fields(store, submission, fields, expected_fields, strict_validation=
                 break
 
         if not key_exists:
-            raise SubmissionFailFields("Submitted field '%s' not expected in context" % k)
+            log.err("Submission contain an unexpected field %s" % key)
+            raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
 
-        submission.fields.update({key: value})
+        imported_fields.update({key: value})
+
+    submission.wb_fields = imported_fields
+    log.debug("Completed fields import (with key validation): %s" % submission.wb_fields)
+
 
 def force_schedule():
     # force mail sending, is called force_execution to be sure that Scheduler
@@ -120,117 +182,112 @@ def force_schedule():
     NotifSched = APSNotification()
     NotifSched.force_execution(GLAsynchronous, seconds=5)
 
+
 @transact
-def create_submission(store, request):
+def create_submission(store, request, finalize):
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
-    
+    del request['context_gus']
+
     if not context:
+        log.err("Context requested %s do not exist" % request['context_gus'])
         raise ContextGusNotFound
 
-    # These are set from the internal tip
-    request['escalation_threshold'] = context.escalation_threshold
-    request['access_limit'] = context.tip_max_access
-    request['download_limit'] = context.file_max_download
-    request['expiration_date'] = utils.utcFutureDate(hours=(context.tip_timetolive * 24))
-    request['pertinence_counter'] = 0
-    request['mark'] = InternalTip._marker[0]
-    request['context_id'] = context.id
+    submission = InternalTip()
+
+    submission.escalation_threshold = context.escalation_threshold
+    submission.access_limit = context.tip_max_access
+    submission.download_limit = context.file_max_download
+    submission.expiration_date = utcFutureDate(hours=(context.tip_timetolive * 24))
+    submission.pertinence_counter = 0
+    submission.context_id = context.id
+    submission.creation_date = models.now()
+
+    if finalize:
+        submission.mark = InternalTip._marker[1] # Finalized
+    else:
+        submission.mark = InternalTip._marker[0] # Submission
 
     receivers = request.get('receivers', [])
-    del request['receivers']
+    import_receivers(store, submission, receivers, context, required=finalize)
+
     files = request.get('files', [])
-    del request['files']
-    fields = request.get('wb_fields', [])
-    del request['wb_fields']
-
-    submission = InternalTip(request)
-    submission.creation_date = models.now()
- 
-    import_receivers(store, submission, receivers, context)
     import_files(store, submission, files)
-    finalize = request['finalize']
-    import_fields(store, submission, fields, context.fields, strict_validation=finalize)
 
-    store.add(submission)
+    fields = request.get('wb_fields', [])
+    import_fields(submission, fields, context.fields, strict_validation=finalize)
+
+    try:
+        store.add(submission)
+    except Exception, e:
+        log.err("Storm/SQL Error: %s (create_submission)" % e)
+        raise e
+
     submission_dict = wb_serialize_internaltip(submission)
-    submission_dict['submission_gus'] = unicode(submission.id)
-    
-    if finalize:
-        force_schedule()
-    
+
     return submission_dict
 
 @transact
-def update_submission(store, id, request):
+def update_submission(store, id, request, finalize):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
-    
+
     if not submission:
+        log.err("Invalid Submission requested %s in PUT" % id)
         raise SubmissionGusNotFound
 
     if submission.mark != InternalTip._marker[0]:
+        log.err("Submission %s do not permit update (status %s)" % (id, submission.mark))
         raise SubmissionConcluded
 
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
     if not context:
-        raise ContextGusNotFound()
+        log.err("Context requested %s do not exist in UPDATE" % request['context_gus'])
+        raise ContextGusNotFound
 
     # Can't be changed context in the middle of a Submission
     if submission.context_id != context.id:
-        raise ContextGusNotFound()
+        log.err("Context can't be changed in the middle (before %s, now %s)" %\
+                (submission.context_id, context.id))
+
+        raise ContextGusNotFound
 
     receivers = request.get('receivers', [])
-    del request['receivers']
-    files = request.get('files', [])
-    del request['files']
-    fields = request.get('wb_fields', [])
-    del request['wb_fields']
+    import_receivers(store, submission, receivers, context, required=finalize)
 
-    import_receivers(store, submission, receivers, context)
+    files = request.get('files', [])
     import_files(store, submission, files)
-    finalize = request['finalize']
-    import_fields(store, submission, fields, context.fields, strict_validation=finalize)
-     
+
+    fields = request.get('wb_fields', [])
+    import_fields(submission, fields, submission.context.fields, strict_validation=finalize)
+
     if finalize:
-        force_schedule()
-     
-    # TODO update_model
-    return wb_serialize_internaltip(submission)
+        submission.mark = InternalTip._marker[1] # Finalized
+
+    submission_dict = wb_serialize_internaltip(submission)
+    return submission_dict
+
 
 @transact
 def get_submission(store, id):
-
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
     if not submission:
+        log.err("Invalid Submission requested %s in GET" % id)
         raise SubmissionGusNotFound
 
     return wb_serialize_internaltip(submission)
 
 @transact
 def delete_submission(store, id):
-
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
     if not submission:
+        log.err("Invalid Submission requested %s in DELETE" % id)
         raise SubmissionGusNotFound
 
     if submission.mark != submission._marked[0]:
+        log.err("Submission %s already concluded (%s)" % (id, submission.mark))
         raise SubmissionConcluded
 
     store.delete(submission)
-
-@transact
-def finalize_submission(store, id):
-    """
-    Shift marker status since 0 (submission) to 1 (finalized)
-    """
-    submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
-
-    # checks that in fact Receivers has been selected or are present.
-    if submission.receivers.count() == 0:
-        raise SubmissionFailFields("Receiver not available: Submission not acceptable")
-
-    submission.mark = InternalTip._marker[1]
-
 
 
 class SubmissionCreate(BaseHandler):
@@ -253,15 +310,19 @@ class SubmissionCreate(BaseHandler):
         sessionGUS is used as authentication secret for the next interaction.
         expire after the time set by Admin (Context dependent setting)
         """
-
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
 
-        status = yield create_submission(request)
-
         if request['finalize']:
+            finalize = True
+        else:
+            finalize = False
+
+        status = yield create_submission(request, finalize)
+
+        if finalize:
             receipt = yield create_whistleblower_tip(status)
             status.update({'receipt': receipt})
-            yield finalize_submission(status['id'])
+            force_schedule()
         else:
             status.update({'receipt' : ''})
 
@@ -300,15 +361,19 @@ class SubmissionInstance(BaseHandler):
 
         PUT update the submission and finalize if requested.
         """
-
         request = self.validate_message(self.request.body, requests.wbSubmissionDesc)
+
+        if request['finalize']:
+            finalize = True
+        else:
+            finalize = False
 
         status = yield update_submission(submission_gus, request)
 
-        if request['finalize']:
+        if finalize:
             receipt = yield create_whistleblower_tip(status)
             status.update({'receipt': receipt})
-            yield finalize_submission(status['id'])
+            force_schedule()
         else:
             status.update({'receipt' : ''})
 

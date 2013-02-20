@@ -7,22 +7,27 @@
 # These specifications may be used with rest.validateMessage() inside of the
 # handler to verify if the request is correct.
 
-from globaleaks.rest.base import submissionGUS, formFieldsDict, contextGUS,\
-    timeType, receiverGUS, fileGUS, tipGUS, uuid_regexp
+from globaleaks.rest.base import formFieldsDict, uuid_regexp
+
+authDict = {
+    'username' : unicode,
+    'password' : unicode,
+    'role' : unicode
+}
 
 wbSubmissionDesc = {
     'wb_fields' : dict,
     'context_gus' : uuid_regexp,
     'receivers' : [ uuid_regexp ],
-    'files' : [ fileGUS ],
+    'files' : [ uuid_regexp ],
     'finalize' : bool
 }
 
 receiverReceiverDesc = {
     'name' : unicode,
     'password' : unicode,
-    'prev_password': unicode,
-    'usernme' : unicode,
+    'old_password': unicode,
+    'username' : unicode,
     'notification_fields' : dict,
     'description' : unicode,
 }
@@ -69,7 +74,4 @@ adminReceiverDesc =  {
     'contexts' : [ uuid_regexp ],
     'receiver_level' : int,
     'can_delete_submission' : bool,
-    'can_postpone_expiration' : bool,
-    'can_configure_delivery' : bool,
-    'can_configure_notification' : bool,
 }

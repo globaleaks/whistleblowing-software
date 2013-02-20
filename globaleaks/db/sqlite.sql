@@ -57,19 +57,17 @@ CREATE TABLE receiverfile (
 
 CREATE TABLE internaltip (
     access_limit INTEGER NOT NULL,
-    context_id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     download_limit INTEGER NOT NULL,
     escalation_threshold INTEGER,
     expiration_date VARCHAR NOT NULL,
-    fields BLOB NOT NULL,
-    files BLOB,
-    id VARCHAR NOT NULL,
+    wb_fields BLOB,
     last_activity VARCHAR,
     mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first', 'second')),
     pertinence_counter INTEGER NOT NULL,
-    receivers VARCHAR,
-    FOREIGN KEY(receivers) REFERENCES receiver(id) ON DELETE CASCADE,
+    context_id VARCHAR NOT NULL,
+    id VARCHAR NOT NULL,
+    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
@@ -89,10 +87,7 @@ CREATE TABLE node (
 );
 
 CREATE TABLE receiver (
-    can_configure_delivery INTEGER NOT NULL,
-    can_configure_notification INTEGER NOT NULL,
     can_delete_submission INTEGER NOT NULL,
-    can_postpone_expiration INTEGER NOT NULL,
     creation_date VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
     id VARCHAR NOT NULL,
@@ -110,8 +105,16 @@ CREATE TABLE receiver_context (
     context_id VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
     PRIMARY KEY (context_id, receiver_id),
-    FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
-    FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+    FOREIGN KEY (context_id) REFERENCES context(id) ON DELETE CASCADE,
+    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE
+);
+
+CREATE TABLE receiver_internaltip (
+    receiver_id VARCHAR NOT NULL,
+    internaltip_id VARCHAR NOT NULL,
+    PRIMARY KEY (receiver_id, internaltip_id),
+    FOREIGN KEY (receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,
+    FOREIGN KEY (internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
 
 CREATE TABLE receivertip (

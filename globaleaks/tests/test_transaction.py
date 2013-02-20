@@ -6,11 +6,8 @@ from storm import exceptions
 
 from globaleaks.settings import transact
 from globaleaks import settings
-from globaleaks.models import Context
-from globaleaks.models import Receiver
-from globaleaks.tests import helpers
+from globaleaks.models import Comment
 from globaleaks.db import createTables
-
 
 class TestTransaction(unittest.TestCase):
     @inlineCallbacks
@@ -32,19 +29,17 @@ class TestTransaction(unittest.TestCase):
 
     @inlineCallbacks
     def test_transact_with_stuff(self):
-        receiver_id = yield self._transact_with_stuff()
+        comment_id = yield self._transact_with_stuff()
         # now check data actually written
         store = transact.get_store()
-        self.assertEqual(store.find(Receiver, Receiver.id == receiver_id).count(),
-                         1)
+        self.assertEqual(store.find(Comment, Comment.id == comment_id).count(), 1)
 
 
     @inlineCallbacks
     def test_transact_with_stuff_failing(self):
-        context_id = yield self._transact_with_stuff_failing()
+        comment_id = yield self._transact_with_stuff_failing()
         store = transact.get_store()
-        self.assertEqual(list(store.find(Context, Context.id == context_id)),
-                         [])
+        self.assertEqual(list(store.find(Comment, Comment.id == comment_id)), [])
 
     @inlineCallbacks
     def test_transact_decorate_function(self):
@@ -70,15 +65,17 @@ class TestTransaction(unittest.TestCase):
 
     @transact
     def _transact_with_stuff(self, store):
-        receiver = Receiver()
-
-        store.add(receiver)
-        return receiver.id
+        comment = Comment()
+        comment.author = comment.internaltip_id = comment.type = comment.content = "receiver"
+        # just something not NULL
+        store.add(comment)
+        return comment.id
 
     @transact
     def _transact_with_stuff_failing(self, store):
-        context = Context()
-
-        store.add(context)
+        comment = Comment()
+        comment.author = comment.internaltip_id = comment.type = comment.content = "receiver"
+        # just something not NULL
+        store.add(comment)
         raise exceptions.DisconnectionError
 

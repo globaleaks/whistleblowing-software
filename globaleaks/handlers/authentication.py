@@ -8,12 +8,11 @@ from cyclone.util import ObjectDict as OD
 
 from globaleaks.models import Node
 from globaleaks.settings import transact
-from globaleaks.models import Receiver
-from globaleaks.models import WhistleblowerTip
+from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.rest.errors import InvalidAuthRequest, InvalidInputFormat, NotAuthenticated
+from globaleaks.rest import errors, requests
 from globaleaks import settings
-from globaleaks.utils import random_string
+from globaleaks.utils import random_string, log
 
 def authenticated(*roles):
     """
@@ -26,10 +25,10 @@ def authenticated(*roles):
         def call_method(cls, *args, **kwargs):
             for role in roles:
                 if not cls.current_user:
-                    raise NotAuthenticated
+                    raise errors.NotAuthenticated
                 elif role != cls.current_user.role:
                     # XXX: eventually change this
-                    raise NotAuthenticated
+                    raise errors.NotAuthenticated
                 else:
                     settings.sessions[cls.current_user.id].timestamp = time.time()
             return method(cls, *args, **kwargs)
@@ -38,34 +37,44 @@ def authenticated(*roles):
 
 @transact
 def login_wb(store, receipt):
-    try:
-        wb_tip = store.find(WhistleblowerTip,
-                            WhistleblowerTip.receipt == unicode(receipt)).one()
-    except NotOneError:
-        raise InvalidAuthRequest
+    wb_tip = store.find(WhistleblowerTip,
+                        WhistleblowerTip.receipt == unicode(receipt)).one()
 
     if not wb_tip:
-        raise InvalidAuthRequest
-    
+        log.debug("Whistleblower: Fail auth")
+        raise errors.InvalidAuthRequest
+
+
+    log.debug("Whistleblower: OK auth using: %s" % receipt )
     return unicode(wb_tip.id)
 
 @transact
 def login_receiver(store, username, password):
     try:
-        receiver = store.find(Receiver, (Receiver.username == unicode(username), Receiver.password == unicode(password))).one()
-    except NotOneError:
-        raise InvalidAuthRequest
-    if not receiver:
-        raise InvalidAuthRequest
+        receiver = store.find(Receiver,
+            (Receiver.username == unicode(username),
+             Receiver.password == unicode(password))).one()
 
+    except NotOneError:
+        log.debug("Receiver: Fail auth")
+        raise errors.InvalidAuthRequest
+
+    if not receiver:
+        log.debug("Receiver: Fail auth")
+        raise errors.InvalidAuthRequest
+
+    log.debug("Receiver: OK auth for %s/%s" % (username, password) )
     return unicode(receiver.id)
 
 @transact
 def login_admin(store, password):
     node = store.find(Node).one()
+
     if node.password == password:
+        log.debug("Admin: OK auth")
         return 'admin'
     else:
+        log.debug("Admin: Fail auth")
         return False
 
 class AuthenticationHandler(BaseHandler):
@@ -98,15 +107,13 @@ class AuthenticationHandler(BaseHandler):
         settings.sessions[self.session_id] = new_session
         return self.session_id
 
+
     @inlineCallbacks
     def post(self):
-        try:
-            request = json.loads(self.request.body)
-            # TODO modify with the validateMessage
-            if not all((field in request) for field in  ('username', 'password', 'role')):
-                 raise ValueError
-        except ValueError, e:
-            raise InvalidInputFormat('invalid json')
+        """
+        This is the /login handler expecting login/password/role
+        """
+        request = self.validate_message(self.request.body, requests.authDict)
 
         username = request['username']
         password = request['password']
@@ -121,12 +128,13 @@ class AuthenticationHandler(BaseHandler):
         elif role == 'receiver':
             user_id = yield login_receiver(username, password)
         else:
-            raise InvalidInputFormat(role)
+            raise errors.InvalidInputFormat(role)
 
         if not user_id:
-            raise InvalidAuthRequest
+            raise errors.InvalidAuthRequest
 
         self.write({'session_id': self.generate_session(role, user_id)})
+
 
     def delete(self):
         """
@@ -137,7 +145,7 @@ class AuthenticationHandler(BaseHandler):
                 print settings.sessions[self.current_user.id]
                 del settings.sessions[self.current_user.id]
             except KeyError:
-                raise NotAuthenticated
+                raise errors.NotAuthenticated
 
         self.set_status(200)
         self.finish()
