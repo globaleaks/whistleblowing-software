@@ -9,9 +9,16 @@ from time import time
 from datetime import datetime
 now = datetime.utcnow
 
+global i
+i = 10000000000
+
 def uuid():
     import uuid
     return unicode(uuid.uuid4())
+    # This is just a Testing line, would be removed in the future
+    global i
+    i += 1
+    return unicode("00000000-0000-0000-0000-%s" % i)
 
 
 class Model(Storm):
@@ -30,30 +37,46 @@ class Model(Storm):
         return Storm.__new__(cls, *args, **kw)
 
     def __init__(self, attrs={}):
-        self.update(attrs)
+        if attrs:
+            self.update(attrs)
+
+    def update(self, attrs={}):
+        # May raise ValueError and AttributeError
+        if not attrs:
+            return
+
+        # Dev note: if you're looking for those fiels in a class that
+        # do not implement them, it's because the class need to be instanced
+        # without request argument.
+        cls_unicode_keys = getattr(self, "unicode_keys")
+        cls_int_keys = getattr(self, "int_keys")
+        cls_bool_keys = getattr(self, "bool_keys")
+
+        for k in cls_unicode_keys:
+            value = unicode(attrs[k])
+            setattr(self, k, value)
+
+        for k in cls_int_keys:
+            value = int(attrs[k])
+            setattr(self, k, value)
+
+        for k in cls_bool_keys:
+            value = bool(attrs[k])
+            setattr(self, k, value)
+        # dict, list and reference are handled in explicit way
 
     def __repr___(self):
         attrs = ['%s=%s' % (attr, getattr(self, attr))
                  for attr in vars(Model)
-                 if isinstance(x, types.MethodType)]
+                 if isinstance(attr, types.MethodType)]
         return '<%s model with values %s>' % (self.__name__, ', '.join(attrs))
 
     def __setattr__(self, name, value):
         # harder better faster stronger
         if isinstance(value, str):
-            print name
             value = unicode(value)
 
         return Storm.__setattr__(self, name, value)
-
-
-    def update(self, attrs={}):
-        for key, value in attrs.iteritems():
-            if key == 'id':
-                continue
-            if isinstance(value, str):
-                value = unicode(value)
-            setattr(self, key, value)
 
     def dict(self, filter=None):
         """
@@ -82,6 +105,11 @@ class Context(Model):
 
     # receivers = ReferenceSet("Context.id", "Receiver.context_id")
 
+    unicode_keys = ['name', 'description' ]
+    int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
+                 'file_max_download']
+    bool_keys = [ 'selectable_receiver' ]
+
 
 class InternalTip(Model):
     """
@@ -93,7 +121,14 @@ class InternalTip(Model):
     All of those element has a Storm Reference with the InternalTip.id,
     never vice-versa
     """
-    fields = Pickle()
+    context_id = Unicode()
+    #context = Reference(InternalTip.context_id, Context.id)
+    #comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
+    #receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
+    #internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
+    #receivers = ReferenceSet(InternalTip.id, Receiver.id)
+
+    wb_fields = Pickle()
     pertinence_counter = Int()
     creation_date = DateTime()
     expiration_date = DateTime()
@@ -107,20 +142,8 @@ class InternalTip(Model):
 
     mark = Unicode()
 
-    # receivers = ReferenceSet(Internal.id, Receiver.id)
-
-    files = Pickle()
-
-    context_id = Unicode()
-
-    # whistleblower_tip_id = Unicode()
-    # whistleblower_tip = Reference(whistleblower_tip_id, "WhistleblowerTip.id")
-
-    # receivertips = ReferenceSet("InternalTip.id", ReceiverTip.internaltip_id)
-    # comments = ReferenceSet("InternalTip.id", "Comment.internaltip_id")
-    # internalfiles = ReferenceSet("InternalTip.id", "InternalFiles.id")
-
     _marker = [ u'submission', u'finalize', u'first', u'second' ]
+    ## NO *_keys = It's created without initializing dict
 
 
 class ReceiverTip(Model):
@@ -130,22 +153,19 @@ class ReceiverTip(Model):
     provide accountability of Receiver accesses, operations, options.
     """
     internaltip_id = Unicode()
+    receiver_id = Unicode()
+    #internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
+    #receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 
     last_access = DateTime(default_factory=now)
     access_counter = Int()
-
     expressed_pertinence = Int()
-
-    receiver_id = Unicode()
-
     notification_date = DateTime()
-
     mark = Unicode()
 
     _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
 
-    # receiver_files = ReferenceSet(ReceiverTip.id, ReceiverFile.receiver_tip_id)
-
+    ## NO *_keys = It's created without initializing dict
 
 class WhistleblowerTip(Model):
     """
@@ -153,25 +173,33 @@ class WhistleblowerTip(Model):
     Has ome differencies from the ReceiverTips: has a secret authentication checks, has
     different capabilities, like: cannot not download, cannot express pertinence.
     """
+    internaltip_id = Unicode()
+    #internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
     receipt = Unicode()
-
     last_access = DateTime()
     access_counter = Int()
 
-    internaltip_id = Unicode()
+    ## NO *_keys = It's created without initializing dict
+
 
 class ReceiverFile(Model):
-
-    file_path = Unicode()
-    downloads = Int()
-
-    last_access = DateTime()
-
     internaltip_id = Unicode()
     internalfile_id = Unicode()
     receiver_id = Unicode()
+    #internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
+    #receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
+    #internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
+
+    file_path = Unicode()
+    downloads = Int()
+    last_access = DateTime()
+
+    ## NO *_keys = It's created without initializing dict
+
 
 class InternalFile(Model):
+    internaltip_id = Unicode()
+    #internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
     name = Unicode()
     sha2sum = Unicode()
@@ -181,9 +209,8 @@ class InternalFile(Model):
     mark = Unicode()
     size = Int()
 
-    internaltip_id = Unicode()
-
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
+    ## NO *_keys = It's created without initializing dict
 
 class Comment(Model):
     """
@@ -196,6 +223,7 @@ class Comment(Model):
 
     type = Unicode()
     _types = [ u'receiver', u'whistleblower', u'system' ]
+    ## NO *_keys = It's created without initializing dict
 
 
 class Node(Model):
@@ -219,12 +247,16 @@ class Node(Model):
     # Expressed in hours
     stats_update_time = Int()
 
+    unicode_keys = ['name', 'description', 'public_site', 'email', 'hidden_service' ]
+    int_keys = [ 'stats_update_time' ]
+    bool_keys = []
+
+
 class Receiver(Model):
     """
-    Receiver description model, some Receiver dependent information are
-    also in globaleaks.models.plugin ReceiverConfs table
+    name, description, password and notification_fiels, can be changed
+    by Receiver itself
     """
-    # Those four variable can be changed by the Receiver
     name = Unicode()
     description = Unicode()
 
@@ -235,18 +267,14 @@ class Receiver(Model):
     # notification_variable
     notification_fields = Pickle()
 
-    # Admin choosen options
+    # Admin chosen options
     can_delete_submission = Bool()
-    can_postpone_expiration = Bool()
-    can_configure_delivery = Bool()
-    can_configure_notification = Bool()
 
     # receiver_tier = 1 or 2. Mean being part of the first or second level
     # of receivers body. if threshold is configured in the context. default 1
     receiver_level = Int()
 
-    # tips = ReferenceSet("Receiver.id", "ReceiverTip.receiver_id")
-    #context_id = Unicode()
+    #tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
     last_update = DateTime()
     last_access = DateTime(default_factory=now)
@@ -256,14 +284,19 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
+    unicode_keys = ['name', 'description', 'username' ]
+    int_keys = [ 'receiver_level' ]
+    bool_keys = [ 'can_delete_submission' ] # Total delete capability
+
+
+
+# Follow two classes used for Many to Many references
 class ReceiverContext(object):
     __storm_table__ = 'receiver_context'
     __storm_primary__ = 'context_id', 'receiver_id'
     context_id = Unicode()
     receiver_id = Unicode()
 
-
-# many to many context-receiver
 Context.receivers = ReferenceSet(
                                  Context.id,
                                  ReceiverContext.receiver_id,
@@ -277,11 +310,29 @@ Receiver.contexts = ReferenceSet(
                         Context.id)
 
 
+class ReceiverInternalTip(object):
+    __storm_table__ = 'receiver_internaltip'
+    __storm_primary__ ='receiver_id', 'internaltip_id'
+    receiver_id = Unicode()
+    internaltip_id = Unicode()
+
+Receiver.internaltips = ReferenceSet(
+                                Receiver.id,
+                                ReceiverInternalTip.internaltip_id,
+                                ReceiverInternalTip.receiver_id,
+                                InternalTip.id)
+
+InternalTip.receivers = ReferenceSet(
+                                InternalTip.id,
+                                ReceiverInternalTip.receiver_id,
+                                ReceiverInternalTip.internaltip_id,
+                                Receiver.id)
+
+
+InternalTip.context = Reference(InternalTip.context_id, Context.id)
 InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
 InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
 InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
-InternalTip.context = Reference(InternalTip.context_id, Context.id)
-InternalTip.receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
 ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
 ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
@@ -294,9 +345,7 @@ InternalFile.internaltip = Reference(InternalFile.internaltip_id, InternalTip.id
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
 ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 
-Receiver.tips = ReferenceSet(
-                        Receiver.id,
-                        ReceiverTip.receiver_id)
+Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
 
 models = [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,

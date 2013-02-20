@@ -14,7 +14,7 @@ from globaleaks.utils import log
 __all__ = ['GLAsynchronous']
 
 GLAsynchronous = Scheduler()
-#log.startLogging()
+log.startLogging()
 
 class GLBaseRunner(app.ApplicationRunner):
     """

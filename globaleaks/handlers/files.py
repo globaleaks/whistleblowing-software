@@ -8,7 +8,6 @@
 
 from __future__ import with_statement
 import time
-import copy
 
 from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks
@@ -17,8 +16,7 @@ from cyclone.web import os
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
-from globaleaks import utils
-from globaleaks.utils import log
+from globaleaks.utils import log, prettyDateTime, random_string
 from globaleaks import settings
 from globaleaks.rest import errors
 from globaleaks import models
@@ -37,8 +35,9 @@ def serialize_file(internalfile):
         'size' : internalfile.size,
         'content_type' : internalfile.content_type,
         'name' : internalfile.name,
-        'creation_date': utils.prettyDateTime(internalfile.creation_date),
+        'creation_date': prettyDateTime(internalfile.creation_date),
         'id' : internalfile.id,
+        'mark' : internalfile.mark,
     }
 
     return file_desc
@@ -50,16 +49,16 @@ def register_files_db(store, files, relationship, internaltip_id):
     files_list = []
     for single_file in files:
         original_fname = single_file['filename']
-        file_request = { 'name' : original_fname,
-                         'content_type' : single_file.get('content_type'),
-                         'mark' : unicode(models.InternalFile._marker[0]),
-                         'size' : len(single_file['body']),
-                         'internaltip_id' : unicode(internaltip_id),
-                         'sha2sum' : '',
-                         'file_path': relationship[original_fname]
-                       }
 
-        new_file = models.InternalFile(file_request)
+        new_file = models.InternalFile()
+
+        new_file.name = original_fname
+        new_file.content_type = single_file.get('content_type')
+        new_file.mark = unicode(models.InternalFile._marker[0])
+        new_file.size = len(single_file['body'])
+        new_file.internaltip_id = unicode(internaltip_id)
+        new_file.file_path = relationship[original_fname]
+
         store.add(new_file)
         internaltip.internalfiles.add(new_file)
         files_list.append(serialize_file(new_file))
@@ -74,7 +73,7 @@ def dump_files_fs(files):
     """
     files_saved = {}
     for single_file in files:
-        saved_name = utils.random_string(26, 'A-Z,a-z,0-9')
+        saved_name = random_string(26, 'A-Z,a-z,0-9')
         filelocation = os.path.join(SUBMISSION_DIR, saved_name)
 
         with open(filelocation, 'w+') as fd:
@@ -205,7 +204,7 @@ def serialize_receiver_file(receiverfile, internalfile):
         'size' : internalfile.size,
         'content_type' : internalfile.content_type,
         'name' : internalfile.name,
-        'creation_date': utils.prettyDateTime(internalfile.creation_date),
+        'creation_date': prettyDateTime(internalfile.creation_date),
         'downloads' : receiverfile.downloads,
         'path' : internalfile.file_path if internalfile.file_path else receiverfile.file_path,
         'sha2sum' : internalfile.sha2sum,
@@ -218,16 +217,6 @@ def get_receiver_file(store, tip_id, file_id):
     Auth temporarly disabled, just Tip_id and File_id required
     """
 
-    all_receivertip = store.find(models.ReceiverTip)
-    for rtip in all_receivertip:
-        print "Receivertip", rtip.id, "receiver associatied", rtip.receiver.name
-    # import pdb; pdb.set_trace()
-    all_file = store.find(models.ReceiverFile)
-    for rfile in all_file:
-        print "ReceiverFile", rfile.id, "name", rfile.internalfile.name, "receiver", rfile.receiver.name
-
-    # -----------------------------------------------
-
     receivertip = store.find(models.ReceiverTip, models.ReceiverTip.id == unicode(tip_id)).one()
     if not receivertip:
         raise errors.TipGusNotFound
@@ -236,7 +225,9 @@ def get_receiver_file(store, tip_id, file_id):
     if not file:
         raise errors.FileGusNotFound
 
-    print "Download of ", file.internalfile.name, "downloads:", file.downloads, "with limit of ", file.internalfile.internaltip.download_limit
+    log.debug("Download of %s downloads: %d with limit of %s for %s" %
+              (file.internalfile.name, file.downloads,
+               file.internalfile.internaltip.download_limit, receivertip.receiver.name) )
 
     if file.downloads == file.internalfile.internaltip.download_limit:
         raise errors.DownloadLimitExceeded

@@ -1,66 +1,41 @@
-from storm.twisted.testing import FakeThreadPool
-from globaleaks import settings
-settings.transact.tp = FakeThreadPool()
-settings.scheduler_threadpool = FakeThreadPool()
-
 import os
-import sys
 import json
-import time
 
-from twisted.python import log
+from storm.twisted.testing import FakeThreadPool
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
-from storm.twisted.testing import FakeThreadPool
-from storm.zope.zstorm import ZStorm
-from cyclone.util import ObjectDict as OD
 from cyclone import httpserver
 from cyclone.web import Application
 
-from globaleaks.handlers.base import BaseHandler
+from globaleaks import settings
 from globaleaks.handlers.admin import create_context, create_receiver, update_node
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-
-from globaleaks.settings import transact
-from globaleaks.rest import errors
-from globaleaks import models
-from globaleaks import settings
 from globaleaks import db
 
 _TEST_DB = 'test.db'
+settings.transact.tp = FakeThreadPool()
+settings.scheduler_threadpool = FakeThreadPool()
 settings.db_file = 'sqlite:///' + _TEST_DB
 settings.store = 'test_store'
 settings.notification_plugins = []
-
-import storm
 
 #log.startLogging(sys.stdout)
 class TestGL(unittest.TestCase):
     @inlineCallbacks
     def fill_data(self):
-        finalize_flag = self.dummySubmission['finalize']
-
         self.dummyReceiver = yield create_receiver(self.dummyReceiver)
 
-        self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
-        context_dict = yield create_context(self.dummyContext)
+        self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
+        self.dummyContext = yield create_context(self.dummyContext)
 
-        self.dummyReceiver['contexts'] = [context_dict['context_gus']]
-        self.dummyContext['receivers'] = [self.dummyReceiver['receiver_gus']]
-        self.dummyContext['context_gus'] = context_dict['context_gus']
+        self.dummyContext['contexts'] = [ self.dummyContext['context_gus'] ]
 
-        self.dummySubmission['context_gus'] = context_dict['context_gus']
-        self.dummySubmission = yield create_submission(self.dummySubmission)
-
-        yield update_node(self.dummyNode)
-        self.dummyNode['password'] = u'spam'
-        self.dummyNode['old_password'] = None
+        self.dummySubmission['context_gus'] = self.dummyContext['context_gus']
+        self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
+        self.dummySubmission = yield create_submission(self.dummySubmission, finalize=True)
 
         self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
-        self.dummySubmission['context_gus'] = context_dict['context_gus']
-
-        self.dummySubmission['finalize'] = finalize_flag
 
     def setUp_dummy(self):
         self.dummyReceiver = {
@@ -68,14 +43,10 @@ class TestGL(unittest.TestCase):
             'username': u'spam',
             'name': u'john smith',
             'description': u'the first receiver',
-            'tags': [],
             'notification_fields': {'mail_address': u'maker@ggay.it'},
             'can_delete_submission': True,
-            'can_postpone_expiration': True,
-            'can_configure_delivery': True,
-            'can_configure_notification': True,
             'receiver_level': 1,
-            'contexts': []
+            'contexts' : []
         }
         self.dummyContext = {
             'name': u'created by shooter',
@@ -113,14 +84,13 @@ class TestGL(unittest.TestCase):
             'tip_timetolive': 2,
             'file_max_download' :1,
             'escalation_threshold': 1,
-            'receivers': [],
+            'receivers' : []
         }
         self.dummySubmission = {
             'context_gus': '',
             'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
+            'finalize': False,
             'receivers': [],
-            'files': [],
-            'finalize': True,
         }
         self.dummyNode = {
                 'name':  u"Please, set me: name/title",
@@ -131,9 +101,9 @@ class TestGL(unittest.TestCase):
                 'stats_update_time':  2, # hours,
                 'languages':  [{ "code" : "it" , "name": "Italiano"},
                                { "code" : "en" , "name" : "English" }],
+                'password' : '',
+                'old_password' : '',
                 'notification_settings': {},
-                'password': u'spam',
-                'old_password': None,
         }
 
     @inlineCallbacks
@@ -145,6 +115,12 @@ class TestGL(unittest.TestCase):
             pass
 
         yield self.fill_data()
+
+    def setUp(self):
+        """
+        override default handlers' get_store with a mock store used for testing/
+        """
+        self.setUp_dummy()
 
     def tearDown(self):
         """
@@ -158,12 +134,12 @@ class TestHandler(TestGL):
     """
     _handler = None
 
-
     @inlineCallbacks
     def setUp(self):
         """
         override default handlers' get_store with a mock store used for testing/
         """
+        TestGL.setUp(self)
         self.setUp_dummy()
         self.responses = []
         @classmethod
@@ -178,24 +154,10 @@ class TestHandler(TestGL):
         # we make the assumption that we will always use call finish on write.
         self._handler.finish = mock_write
         
-        # we need to reset settings.session to keep each test indipendent
+        # we need to reset settings.session to keep each test independent
         settings.sessions = dict()
 
         yield self.initalize_db()
-
-
-    def login(self, role='admin', user_id=None):
-        if not user_id:
-            if role == 'admin':
-                user_id = 'admin'
-            elif role == 'wb':
-                user_id = self.dummySubmission['submission_gus']
-            elif role == 'receiver':
-                user_id = self.dummyReceiver['receiver_gus']
-        session = OD(timestamp=time.time(),id=user_id,
-                role=role, user_id=user_id)
-        settings.sessions[session.id] = session
-        return session.id
 
     def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
         """

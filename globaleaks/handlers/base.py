@@ -85,7 +85,7 @@ class BaseHandler(RequestHandler):
         for key in message_template.keys():
             if key not in jmessage:
                 log.debug('key %s not in %s' % (key, jmessage))
-                raise errors.InvalidInputFormat('wrong schema')
+                raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
             else:
                 valid_jmessage[key] = jmessage[key]
 
@@ -94,11 +94,11 @@ class BaseHandler(RequestHandler):
 
         if not all(self.validate_type(jmessage[key], value) for key, value in
                     message_template.iteritems()):
-            raise errors.InvalidInputFormat('wrong content')
+            raise errors.InvalidInputFormat('wrong content 1')
 
         if not all(self.validate_type(value, message_template[key]) for key, value in
                    jmessage.iteritems()):
-            raise errors.InvalidInputFormat('wrong content')
+            raise errors.InvalidInputFormat('wrong content 2')
 
         return True
 
@@ -159,17 +159,29 @@ class BaseHandler(RequestHandler):
         else:
             RequestHandler.write(self, chunk)
 
+
     def get_current_user(self):
         session_id = self.request.headers.get('X-Session')
         if not session_id:
             return None
-        else:
-            try:
-                print settings.sessions
-                session = settings.sessions[session_id]
-            except KeyError:
-                return None
-            return session
+
+        # Special debug only lines, useful to unitTest handlers:
+        import time
+        from cyclone.util import ObjectDict as OD
+        if session_id == 'test_admin':
+            fake_session = OD( timestamp=time.time(),
+                id='test_admin',
+                role='admin',
+                user_id='admin')
+            settings.sessions['test_admin'] = fake_session
+            return fake_session
+        # End of Special unitTest only
+
+        try:
+            session = settings.sessions[session_id]
+        except KeyError:
+            return None
+        return session
 
     @property
     def is_whistleblower(self):

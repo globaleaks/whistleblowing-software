@@ -5,6 +5,7 @@
 #
 # Notification implementation, documented along the others asynchronous
 # operations, in Architecture and in jobs/README.md
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
@@ -29,36 +30,39 @@ class APSNotification(GLJob):
                                        models.ReceiverTip.mark == models.ReceiverTip._marker[0]
         )
         ret = dict((x.id, x.receiver.notification_fields) for x in not_notified_tips)
-        node = store.find(models.Node).one()
-        ret['node'] = node.notification_settings
         return ret
 
+    @transact
+    def _get_notification_settings(self, store):
+
+        node = store.find(models.Node).one()
+        return node.notification_settings
+
+
     @inlineCallbacks
-    def tip_notification(self):
+    def do_tip_notification(self, notification_settings):
         log.debug('tip_notification fired!')
 
         notification_data = yield self._get_notification_data()
-        notification_settings = notification_data.pop('node')
 
-        if not notification_settings:
-            return
+        #  for cplugin in settings.notification_plugins:
+        cplugin = settings.notification_plugins[0]
 
-        for cplugin in settings.notification_plugins:
-            plugin = getattr(notification, cplugin)(notification_settings)
-            for rtip in notification_data:
-                event = Event(type=u'tip', trigger='diocane', af=notification_settings,
-                              rf=notification_data[rtip],
-                              tip_id=rtip)
-                notify = yield plugin.do_notify(event)
+        plugin = getattr(notification, cplugin)(notification_settings)
+        for rtip in notification_data:
+            event = Event(type=u'tip', trigger='Tip', af=notification_settings,
+                          rf=notification_data[rtip],
+                          tip_id=rtip)
+            notify = yield plugin.do_notify(event)
 
-#                 @notify.addCallback
-#                 def success(self, result):
-#                     log.debug('notificication sucess')
-#                     rtip.mark = models.ReceiverTip._marker[1]
-#                 @notify.addErrback
-#                 def error(self, result):
-#                    log.debug('notificication failure')
-#                    rtip.mark = models.ReceiverTip._marker[2]
+            @notify.addCallback
+            def success(self, result):
+                log.debug('OK Notification for %s' % rtip.repr() )
+                rtip.mark = models.ReceiverTip._marker[1]
+            @notify.addErrback
+            def error(self, result):
+                log.debug('FAIL Notification for %s FAIL' % rtip.repr() )
+                rtip.mark = models.ReceiverTip._marker[2]
 
 
     def operation(self):
@@ -66,22 +70,20 @@ class APSNotification(GLJob):
         Goal of this event is to check all the:
             Tips
             Comment
-            Folder
+            New files
             System Event
 
-        marked as 'not notified' and perform notification.
-        Notification plugin chose if perform a communication or not,
-        Then became marked as:
-            'notification ignored', or
-            'notified'
-
-        Every notification plugin NEED have a checks to verify
-        if notification has been correctly performed. If not (eg: wrong
-        login/password, network errors) would be marked as:
-        'unable to be notified', and a retry logic is in TODO
+        Only the Models with the 'notification_status' can track which elements has been
+        notified or not.
         """
-        return self.tip_notification()
-        # TODO results log and stats
-        # TODO results log and stats
-        # Comment Notification here it's just an incomplete version, that never would supports
-        # digest or retry, until Task manager queue is implemented
+
+        # Initialize Notification setting system wide
+        notification_settings = yield self._get_notification_settings()
+
+        if not notification_settings:
+            log.err("Node has not Notification configured, notification disabled!")
+
+        self.do_tip_notification(notification_settings)
+        # self.do_file_notification(notification_settings)
+        # self.do_comment_notification(notification_settings)
+

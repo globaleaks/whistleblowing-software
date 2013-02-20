@@ -12,16 +12,14 @@
 import os
 
 from twisted.internet.defer import inlineCallbacks
-from twisted.python import log
 
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile, Receiver
+from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact
-from globaleaks.utils import get_file_checksum
+from globaleaks.utils import get_file_checksum, log
 from globaleaks.handlers.files import SUBMISSION_DIR
 
 __all__ = ['APSDelivery']
-
 
 @transact
 def file_preprocess(store):
@@ -42,9 +40,7 @@ def file_process(filesdict):
 
     for file_id, file_path in filesdict.iteritems():
 
-        log.msg("Approaching checksum of file %s with path %s" % (file_id, file_path))
         file_location = os.path.join(SUBMISSION_DIR, file_path)
-
         checksum = get_file_checksum(file_location)
         processdict.update({file_id : checksum})
 
@@ -105,7 +101,7 @@ def create_receivertip(store, receiver, internaltip, tier):
     store.add(receivertip)
     internaltip.receivertips.add(receivertip)
 
-    log.msg('-- Created! copy paste [/#/status/%s]' % receivertip.id)
+    log.msg('Created! [/#/status/%s]' % receivertip.id)
 
     return receivertip.id
 
@@ -122,23 +118,26 @@ def tip_creation(store):
 
     for internaltip in finalized:
         for receiver in internaltip.receivers:
-            created_tips.append(create_receivertip(store, receiver, internaltip, 1))
-            # TODO interalfile_is_correct
+            rtip_id = create_receivertip(store, receiver, internaltip, 1)
+            created_tips.append(rtip_id)
 
         internaltip.mark = internaltip._marker[2]
 
+    return created_tips
+
+    """
     promoted = store.find(InternalTip,
                         ( InternalTip.mark == InternalTip._marker[2],
                           InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )
 
     for internaltip in promoted:
         for receiver in internaltip.receivers:
-            created_tips.append(create_receivertip(store, receiver, internaltip, 2))
-            # TODO interalfile_is_correct
+            rtip_id = create_receivertip(store, receiver, internaltip, 2)
+            created_tips.append(rtip_id)
 
         internaltip.mark = internaltip._marker[3]
+    """
 
-    return created_tips
 
 class APSDelivery(GLJob):
 
@@ -147,7 +146,6 @@ class APSDelivery(GLJob):
         """
         Goal of this function is process/validate the files, compute checksum, and
         apply the delivery method configured.
-
         """
 
         # ==> Submission && Escalation
