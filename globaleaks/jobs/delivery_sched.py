@@ -35,6 +35,7 @@ def file_preprocess(store):
 
     return filesdict
 
+# It's not a transact because works on FS
 def file_process(filesdict):
     processdict = {}
 
@@ -99,7 +100,6 @@ def create_receivertip(store, receiver, internaltip, tier):
     receivertip.receiver_id = receiver.id
     receivertip.mark = ReceiverTip._marker[0]
     store.add(receivertip)
-    internaltip.receivertips.add(receivertip)
 
     log.msg('Created! [/#/status/%s]' % receivertip.id)
 
@@ -114,6 +114,7 @@ def tip_creation(store):
     """
     created_tips = []
 
+    store.commit()
     finalized = store.find(InternalTip, InternalTip.mark == InternalTip._marker[1])
 
     for internaltip in finalized:
