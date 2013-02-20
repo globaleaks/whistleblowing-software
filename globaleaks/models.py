@@ -14,7 +14,7 @@ i = 10000000000
 
 def uuid():
     import uuid
-    return unicode(uuid.uuid4())
+    #return unicode(uuid.uuid4())
     # This is just a Testing line, would be removed in the future
     global i
     i += 1

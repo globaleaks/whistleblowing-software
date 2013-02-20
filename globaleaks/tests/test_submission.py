@@ -82,30 +82,42 @@ class TestSubmission(helpers.TestGL):
     def test_4_submission_with_files(self):
         yield self.create_dummy_files()
 
-        # trash the tip eventually in queue
-        inqueue_tip = yield delivery_sched.tip_creation()
-
         submission_desc = self.dummySubmission
-        submission_desc['finalize'] = True
+        submission_desc['finalize'] = False
         del submission_desc['submission_gus']
         submission_desc['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
 
-        status = yield submission.create_submission(submission_desc, finalize=True)
-        receipt = yield submission.create_whistleblower_tip(status)
+        status = yield submission.create_submission(submission_desc, finalize=False)
 
-        wb_tip_id = yield authentication.login_wb(receipt)
-        wb_tip = yield tip.get_internaltip_wb(wb_tip_id)
-        new_rtip = yield delivery_sched.tip_creation()
-
-        self.assertEqual(len(new_rtip), 1)
-
+        # --- Emulate file upload before assign them to the submission
         filesdict = yield delivery_sched.file_preprocess()
-        processdict = delivery_sched.file_process(filesdict)
+        self.assertEqual(len(filesdict), 2)
 
-        self.assertEqual(len(processdict), 2)
-        
+        processdict = delivery_sched.file_process(filesdict)
+        # Checks the SHA2SUM computed
+        for random_f_id, sha2sum in processdict.iteritems():
+            if sha2sum == "0eccfe263668d171bd19b7d491c3ef5c43559e6d3acf697ef37596181c6fdf4c":
+                continue
+            if sha2sum == "4e388ab32b10dc8dbc7e28144f552830adc74787c1e2c0824032078a79f227fb":
+                continue
+            self.assertTrue(False) # Checksum expected unable to be computed
+
         receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
 
+        # --- Complete submission
+        internalfiles_id_list = []
+        for itip_id in filesdict.iterkeys():
+            internalfiles_id_list.append(itip_id)
+
+        status['files'] = internalfiles_id_list
+        status['finalize'] = True
+        status = yield submission.create_submission(status, finalize=True)
+
+        self.assertEqual(len(status['files']), 2)
+
+        new_rtip = yield delivery_sched.tip_creation()
+
+        self.assertEqual(len(processdict), 2)
         self.assertEqual(len(receiverfile_list), 2)
 
         receiver_files = []
@@ -139,28 +151,35 @@ class TestSubmission(helpers.TestGL):
                                            self.receivers[1]['receiver_gus'],
                                            self.receivers[2]['receiver_gus'],
                                            self.receivers[3]['receiver_gus'] ]
-
         self.dummyContext['selectable_receiver'] = True
         self.dummyContext['escalation_threshold'] = 0
 
         context_status = yield update_context(self.dummyContext['context_gus'], self.dummyContext)
 
-        # trash the tip eventually in queue
-        inqueue_tip = yield delivery_sched.tip_creation()
-
         # Create a new request with selected three of the four receivers
         submission_request= self.dummySubmission
-        submission_request['context_gus'] = context_status['context_gus']
+        # submission_request['context_gus'] = context_status['context_gus']
         submission_request['submission_gus'] = submission_request['id'] = ''
-        submission_request['finalize'] = True
+        submission_request['finalize'] = False
         submission_request['receivers'] = [ self.receivers[0]['receiver_gus'],
                                             self.receivers[1]['receiver_gus'],
                                             self.receivers[2]['receiver_gus'] ]
 
-        status = yield submission.create_submission(submission_request, finalize=True)
-        receiver_tips = yield delivery_sched.tip_creation()
+        status = yield submission.create_submission(submission_request, finalize=False)
+        just_empty_eventually_internaltip = yield delivery_sched.tip_creation()
 
-        self.assertEqual(len(receiver_tips), len(submission_request['receivers']))
+        # Checks, the submission need to be the same now
+        self.assertEqual(len(submission_request['receivers']), len(status['receivers']))
+
+        status['finalize'] = True
+        submission_request['context_gus'] = context_status['context_gus'] # reused
+        status['receivers'] = [ self.receivers[0]['receiver_gus'],
+                                self.receivers[3]['receiver_gus'] ]
+
+        status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
+
+        receiver_tips = yield delivery_sched.tip_creation()
+        self.assertEqual(len(receiver_tips), len(status['receivers']))
 
 
     @inlineCallbacks
@@ -186,6 +205,7 @@ class TestSubmission(helpers.TestGL):
         (wb_tip, wb_tip_id) = yield tip.get_internaltip_wb(wb_access_id)
         self.assertTrue(wb_tip['fields']['dict2'] == status['wb_fields']['dict2'])
 
+
     @inlineCallbacks
     def test_7_unable_to_access_finalized(self):
         submission_desc = self.dummySubmission
@@ -210,11 +230,14 @@ class TestSubmission(helpers.TestGL):
         node.notification_settings["server"] = "box549.bluehost.com"
         node.notification_settings["port"] = 25
         node.notification_settings["username"] ="sendaccount939@globaleaks.org"
-        node.notification_settings["password"] ="sendaccount939"
+        # node.notification_settings["password"] ="sendaccount939"
+        node.notification_settings["password"] ="wrong"
+        # XXX - I don't want a mail every check
         node.notification_settings["ssl"] = False
 
     @inlineCallbacks
-    def test_8_sendmail(self):
+    def test_8_sendmail_wrongconf(self):
+        # Currently disabled, checks password few line over here
         self.dummyReceiver['notification_fields']['mail_address'] = 'vecna@globaleaks.org'
         self.dummyReceiver['receiver_level'] = 1
         yield self.systemsetting_setup()
