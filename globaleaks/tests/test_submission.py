@@ -1,9 +1,12 @@
 import json
 
 from twisted.internet.defer import inlineCallbacks
+from globaleaks import models
 
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
+from globaleaks.jobs.delivery_sched import APSDelivery
+from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.tests import helpers
 from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
@@ -28,7 +31,7 @@ class TestSubmission(helpers.TestGL):
 
     # --------------------------------------------------------- #
     @inlineCallbacks
-    def test_create_submission(self):
+    def test_1_create_submission(self):
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = True
         del submission_desc['submission_gus']
@@ -47,7 +50,7 @@ class TestSubmission(helpers.TestGL):
                 relationship, self.dummySubmission['submission_gus'])
 
     @inlineCallbacks
-    def test_create_internalfiles(self):
+    def test_2_create_internalfiles(self):
         yield self.create_dummy_files()
         # fill self.file_list
         for file_desc in self.file_list:
@@ -55,7 +58,7 @@ class TestSubmission(helpers.TestGL):
             self.assertFalse(keydiff)
 
     @inlineCallbacks
-    def test_access_from_receipt(self):
+    def test_3_access_from_receipt(self):
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = True
         del submission_desc['submission_gus']
@@ -76,7 +79,7 @@ class TestSubmission(helpers.TestGL):
 
 
     @inlineCallbacks
-    def test_submission_with_files(self):
+    def test_4_submission_with_files(self):
         yield self.create_dummy_files()
 
         # trash the tip eventually in queue
@@ -121,7 +124,7 @@ class TestSubmission(helpers.TestGL):
         return new_r
 
     @inlineCallbacks
-    def test_submission_with_receiver_selection(self):
+    def test_5_submission_with_receiver_selection(self):
 
         yield create_receiver(self.get_new_receiver_desc("second"))
         yield create_receiver(self.get_new_receiver_desc("third"))
@@ -161,7 +164,7 @@ class TestSubmission(helpers.TestGL):
 
 
     @inlineCallbacks
-    def test_update_submission(self):
+    def test_6_update_submission(self):
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = False
         submission_desc['context_gus'] = self.dummyContext['context_gus']
@@ -184,7 +187,7 @@ class TestSubmission(helpers.TestGL):
         self.assertTrue(wb_tip['fields']['dict2'] == status['wb_fields']['dict2'])
 
     @inlineCallbacks
-    def test_unable_to_access_finalized(self):
+    def test_7_unable_to_access_finalized(self):
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = True
         submission_desc['context_gus'] = self.dummyContext['context_gus']
@@ -199,3 +202,22 @@ class TestSubmission(helpers.TestGL):
 
         # self.assertRaises(errors.SubmissionConcluded,
         #   (yield submission.update_submission(status['submission_gus'], status, finalize=True)) )
+
+
+    @transact
+    def systemsetting_setup(self, store):
+        node = store.find(models.Node).one()
+        node.notification_settings["server"] = "box549.bluehost.com"
+        node.notification_settings["port"] = 25
+        node.notification_settings["username"] ="sendaccount939@globaleaks.org"
+        node.notification_settings["password"] ="sendaccount939"
+        node.notification_settings["ssl"] = False
+
+    @inlineCallbacks
+    def test_8_sendmail(self):
+        self.dummyReceiver['notification_fields']['mail_address'] = 'vecna@globaleaks.org'
+        self.dummyReceiver['receiver_level'] = 1
+        yield self.systemsetting_setup()
+
+        delivery_sched.tip_creation()
+        APSNotification().operation()
