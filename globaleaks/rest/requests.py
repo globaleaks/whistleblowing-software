@@ -74,7 +74,4 @@ adminReceiverDesc =  {
     'contexts' : [ uuid_regexp ],
     'receiver_level' : int,
     'can_delete_submission' : bool,
-    'can_postpone_expiration' : bool,
-    'can_configure_delivery' : bool,
-    'can_configure_notification' : bool,
 }

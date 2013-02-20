@@ -85,7 +85,7 @@ class BaseHandler(RequestHandler):
         for key in message_template.keys():
             if key not in jmessage:
                 log.debug('key %s not in %s' % (key, jmessage))
-                raise errors.InvalidInputFormat('wrong schema')
+                raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
             else:
                 valid_jmessage[key] = jmessage[key]
 
@@ -94,11 +94,11 @@ class BaseHandler(RequestHandler):
 
         if not all(self.validate_type(jmessage[key], value) for key, value in
                     message_template.iteritems()):
-            raise errors.InvalidInputFormat('wrong content')
+            raise errors.InvalidInputFormat('wrong content 1')
 
         if not all(self.validate_type(value, message_template[key]) for key, value in
                    jmessage.iteritems()):
-            raise errors.InvalidInputFormat('wrong content')
+            raise errors.InvalidInputFormat('wrong content 2')
 
         return True
 
