@@ -23,7 +23,7 @@ from twisted.internet.threads import deferToThreadPool
 from cyclone.util import ObjectDict as OD
 from cyclone.web import HTTPError
 from storm.zope.zstorm import ZStorm
-from storm.tracer import debug
+from storm import tracer
 
 
 root_path = os.path.join(os.path.dirname(__file__), '..')
@@ -36,6 +36,7 @@ create_db_file = os.path.join(root_path, 'globaleaks', 'db', 'sqlite.sql')
 store_name = 'main_store'
 # threads sizes
 db_thread_pool_size = 1
+db_debug = True
 # loggings
 import logging
 ## set to false to disable file logging
@@ -62,6 +63,7 @@ class transact(object):
     Because storm sucks.
     """
     tp = ThreadPool(0, db_thread_pool_size)
+    _debug = False
 
     def __init__(self, method):
         self.method = method
@@ -73,6 +75,28 @@ class transact(object):
 
     def __call__(self,  *args, **kwargs):
         return self.run(self._wrap, self.method, *args, **kwargs)
+
+    @property
+    def debug(self):
+        """
+        Whenever you need to trace the database operation on a specific
+        function decorated with @transact, just do:
+           function.debug = True
+           or either
+           self.function.debug = True
+           or even
+           Class.function.debug = True
+        """
+        return self._debug
+
+    @debug.setter
+    def debug(self, value):
+        self._debug = value
+        tracer.debug(self._debug, sys.stdout)
+
+    @debug.deleter
+    def debug(self):
+        self.debug = False
 
     @staticmethod
     def run(function, *args, **kwargs):
@@ -112,11 +136,6 @@ class transact(object):
 
         return result
 
-
-if 'db' in sys.argv:
-    debug(True, sys.stdout)
-else:
-    debug(False, sys.stdout)
 
 # xxx. move this on another place
 sessions = dict()
