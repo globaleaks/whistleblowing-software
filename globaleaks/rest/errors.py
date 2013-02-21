@@ -82,13 +82,13 @@ class NodeNotFound(GLException):
     error_code = 16
     http_code = 506 # Variant also negotiated
 
-class ProfileGusNotFound(GLException):
+class ContextParameterConflict(GLException):
     """
-    The Profile GUS requested do not exists in the database.
+    Some parameters explicit in the context creation can't works together
     """
-    reason = "Not found a Plugin Profile with the specified GUS identifier"
+    reason = "Some parameters explicit in the context creation can't works together"
     error_code = 17
-    status_code = 404 # Not Found
+    status_code = 409 # Conflict
 
 class ProfileNameConflict(GLException):
     """

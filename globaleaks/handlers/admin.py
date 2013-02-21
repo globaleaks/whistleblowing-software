@@ -125,12 +125,28 @@ def create_context(store, request):
         (dict) representing the configured context
     """
     receivers = request.get('receivers', [])
-
+    print request
     context = Context(request)
-    context.fields = request['fields']
+
+    if not request['fields']:
+        # When a new context is create, assign some spare fields
+        context.fields = [
+            {u'hint': u"Hint, I'm required", u'label': u'headline',
+             u'name': u'headline', u'presentation_order': 1,
+             u'required': True, u'type': u'text', u'value': u'' },
+            {u'hint': u'The name of the Sun', u'label': u'Sun',
+              u'name': u'Sun', u'presentation_order': 2,
+              u'required': True, u'type': u'text',
+              u'value': u"I'm the sun, I've not name"},
+        ]
+    else:
+        context.fields = request['fields']
+
+    if context.escalation_threshold and context.selectable_receiver:
+        raise errors.ContextParameterConflict
 
     for receiver_id in receivers:
-        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
@@ -386,6 +402,7 @@ class ContextsCollection(BaseHandler):
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
         request = self.validate_message(self.request.body, requests.adminContextDesc)
+
         response = yield create_context(request)
 
         self.set_status(201) # Created
@@ -417,6 +434,7 @@ class ContextInstance(BaseHandler):
         Response: adminContextDesc
         Errors: InvalidInputFormat, ContextGusNotFound, ReceiverGusNotFound
         """
+
         request = self.validate_message(self.request.body,
                                         requests.adminContextDesc)
 
