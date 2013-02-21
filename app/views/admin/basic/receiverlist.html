@@ -6,10 +6,10 @@
   </div>
   <div class="row">
     <div class="span4">
-      <h4>Details</h4>
+      <h4>Receivers configured </h4>
     </div>
     <div class="span4">
-      <h4>Settings</h4>
+      <h4>details</h4>
     </div>
   </div>
 
@@ -22,45 +22,36 @@
           ng-model="receiver.name" value="{{receiver.name}}" required>
           </input>
 
-          <label>Email Address</label>
+          <label>Email Address (Username)</label>
           <input type="email"
           ng-model="receiver.notification_fields.mail_address" required>
           </input>
 
-          <label>Username</label>
-          <input type="text"
-          ng-model="receiver.username">
-          </input>
-
-          <label>Password</label>
+          <label bs-popover="If left empty, system set 'globaleaks'">Password</label>
+          <!-- remind: this need to be random & mailed to the inactive user -->
           <input type="password"
           ng-model="receiver.password">
           </input>
         </div>
 
         <div class="span4">
-          <label>Can Postpone Expiration</label>
-          <input type="checkbox"
-          ng-model="receiver.can_postpone_expiration">
-          </input>
-
-          <label>Can Configure Notification</label>
-          <input type="checkbox"
-          ng-model="receiver.can_configure_notification">
-          </input>
-
-          <label>Can Configure Delivery</label>
-          <input type="checkbox"
-          ng-model="receiver.can_configure_delivery">
-          </input>
 
           <label>Can Delete Submission</label>
           <input type="checkbox"
           ng-model="receiver.can_delete_submission">
           </input>
 
+          <!--
+          <label>Receiver Level</label>
+          <input type="int"
+          ng-model="receiver.receiver_level">
+          </input>
+          -->
+
+          <!--
           <label>Contexts</label>
           <p>{{receiver.contexts}}</p>
+          -->
 
           <!-- <label>Languages</label> -->
           <!-- <select multiple -->
@@ -72,9 +63,18 @@
           <!--     value="{{langCode}}">{{langName}}</option> -->
           <!-- </select> -->
 
+          <label>Context associated</label>
+          <select multiple ui-select2 style="width: 200px"
+            ng-model="receivers.contexts">
+            <option ng-repeat="context in admin.contexts"
+              value="{{contexts.contexts_gus}}">{{context.name}}
+            </option>
+          </select>
+          <br>
+
           <button class="btn btn-success"
             ng-disabled="receiverForm.$pristine || receiverForm.$invalid"
-            ng-click="update(receiver)">Save</button>
+            ng-click="update(receiver)">Update</button>
 
           <button class="btn btn-danger"
             ng-click="delete(receiver)">Delete</button>
@@ -88,8 +88,7 @@
       <input type="text"
         ng-model="new_receiver_name">
       <button class="btn"
-        ng-click="admin.create_receiver(new_receiver_name)">Add</button>
+        ng-click="admin.create_receiver(new_receiver_name)">add new Receiver</button>
     </div>
   </div>
 </div>
-

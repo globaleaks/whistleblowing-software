@@ -6,10 +6,10 @@
   </div>
   <div class="row">
     <div class="span4">
-      <h4>Details</h4>
+      <h4>Contexts list</h4>
     </div>
     <div class="span4">
-      <h4>Receivers</h4>
+      <h4>details</h4>
     </div>
   </div>
 
@@ -54,7 +54,7 @@
 
             <button class="btn btn-success"
               ng-disabled="contextForm.$pristine || contextForm.$invalid"
-              ng-click="update(context)">Save</button>
+              ng-click="update(context)">Update</button>
 
             <button class="btn btn-danger"
               ng-click="delete(context)">Delete</button>
@@ -70,7 +70,7 @@
   <div class="row">
     <div class="span4 addContext">
       <input type="text" ng-model="new_context_name">
-      <button class="btn" ng-click="admin.create_context(new_context_name)">Add</button>
+      <button class="btn" ng-click="admin.create_context(new_context_name)">Add new Context</button>
     </div>
   </div>
 

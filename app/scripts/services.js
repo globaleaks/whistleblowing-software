@@ -319,10 +319,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.description = '';
 
         context.fields = [];
-        context.languages = [];
+        // context.languages = [];
         context.receivers = [];
 
-        context.escalation_threshold = null;
+        context.escalation_threshold = 0;
         context.file_max_download = 42;
         context.tip_max_access = 42;
         context.selectable_receiver = true;
@@ -347,17 +347,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         receiver.notification_fields = {'mail_address': ''};
 
-        receiver.languages = [];
+        // receiver.languages = [];
+        // receiver.tags = [];
 
         // Under here go default settings
-        receiver.can_postpone_expiration = true;
-        receiver.can_configure_notification = true;
-        receiver.can_configure_delivery = true;
         receiver.can_delete_submission = true;
 
         receiver.receiver_level = 1;
 
-        receiver.tags = [];
         receiver.contexts =  [];
 
         receiver.$save(function(created_receiver){
