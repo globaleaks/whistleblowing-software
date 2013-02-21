@@ -380,10 +380,7 @@ class TipCommentCollection(BaseHandler):
 
 def serialize_receiver(receiver, access_counter):
     receiver_dict = {
-        "can_configure_delivery": receiver.can_configure_delivery,
-        "can_configure_notification": receiver.can_configure_notification,
         "can_delete_submission": receiver.can_delete_submission,
-        "can_postpone_expiration": receiver.can_postpone_expiration,
         "name": unicode(receiver.name),
         "description": unicode(receiver.description),
         "receiver_gus": unicode(receiver.id),

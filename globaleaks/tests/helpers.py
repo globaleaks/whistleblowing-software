@@ -40,7 +40,6 @@ class TestGL(unittest.TestCase):
     def setUp_dummy(self):
         self.dummyReceiver = {
             'password': u'john',
-            'username': u'spam',
             'name': u'john smith',
             'description': u'the first receiver',
             'notification_fields': {'mail_address': u'maker@ggay.it'},

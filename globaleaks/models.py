@@ -10,7 +10,7 @@ from datetime import datetime
 now = datetime.utcnow
 
 global i
-i = 10000000000
+i = 100000000000
 
 def uuid():
     import uuid
@@ -284,7 +284,7 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-    unicode_keys = ['name', 'description', 'username' ]
+    unicode_keys = ['name', 'description' ]
     int_keys = [ 'receiver_level' ]
     bool_keys = [ 'can_delete_submission' ] # Total delete capability
 

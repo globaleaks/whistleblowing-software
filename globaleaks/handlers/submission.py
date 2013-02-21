@@ -353,7 +353,7 @@ class SubmissionInstance(BaseHandler):
         else:
             finalize = False
 
-        status = yield update_submission(submission_gus, request)
+        status = yield update_submission(submission_gus, request, finalize)
 
         if finalize:
             receipt = yield create_whistleblower_tip(status)

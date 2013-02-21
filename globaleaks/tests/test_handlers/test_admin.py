@@ -38,13 +38,12 @@ class TestContextsCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_post(self):
         request_context = self.dummyContext
+        del request_context['contexts'] # why is here !?
         handler = self.request(request_context)
         handler.request.headers['X-Session'] = 'test_admin'
         yield handler.post()
 
-        del request_context['contexts']
-        del request_context['context_gus']
-        del self.responses[0]['context_gus']
+        request_context['context_gus'] =  self.responses[0]['context_gus']
         self.assertEqual(self.responses[0], request_context)
 
 class TestContextInstance(helpers.TestHandler):
@@ -62,11 +61,10 @@ class TestContextInstance(helpers.TestHandler):
     def test_put(self):
         request_context = self.dummyContext
         request_context['name'] = u'spam'
+        del request_context['contexts'] # I don't know what's doing here!!?
         handler = self.request(request_context)
         handler.request.headers['X-Session'] = 'test_admin'
         yield handler.put(request_context['context_gus'])
-
-        del request_context['contexts']
         self.assertEqual(self.responses[0], self.dummyContext)
 
 class TestReceiversCollection(helpers.TestHandler):
@@ -107,28 +105,43 @@ class TestReceiverInstance(helpers.TestHandler):
         del self.responses[0]['contexts']
         self.assertEqual(self.responses[0], self.dummyReceiver)
 
-    @unittest.skip("because the error is currently not trappable")
     @inlineCallbacks
     def test_put(self):
-        self.dummyReceiver['context_gus'] = u'invalid'
+        self.dummyReceiver['context_gus'] = ''
+        del self.dummyReceiver['username']
+        self.dummyReceiver['name'] = u'new name'
         handler = self.request(self.dummyReceiver)
         handler.request.headers['X-Session'] = 'test_admin'
         yield handler.put(self.dummyReceiver['receiver_gus'])
+        self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
 
-    @unittest.skip("because the error is currently not trappable")
     @inlineCallbacks
     def test_put_invalid_context_gus(self):
-        self.dummyReceiver['name'] = u'spamham'
-        self.dummyReceiver['context_gus'] = u'invalid'
+        self.dummyReceiver['name'] = u'justalazyupdate'
+        # keep the context_gus wrong but matching eventually regexp
+        import uuid
+        self.dummyReceiver['contexts'] = [ unicode(uuid.uuid4()) ]
         handler = self.request(self.dummyReceiver)
         handler.request.headers['X-Session'] = 'test_admin'
-        yield handler.put(self.dummyReceiver['receiver_gus'])
-        self.assertEqual(self.responses[0], self.dummyReceiver)
+        # I've some issue in use assertRaises with 'yield', then:
+        try:
+            yield handler.put(self.dummyReceiver['receiver_gus'])
+            self.assertTrue(False)
+        except errors.ContextGusNotFound:
+            self.assertTrue(True)
 
-    @unittest.skip("because not implemented")
     @inlineCallbacks
     def test_delete(self):
-        self.skip()
         handler = self.request(self.dummyReceiver)
         handler.request.headers['X-Session'] = 'test_admin'
-        yield handler.delete()
+        try:
+            yield handler.delete(self.dummyReceiver['receiver_gus'])
+            self.assertTrue(True)
+        except Exception, e:
+            self.assertTrue(False)
+        try:
+            yield handler.get(self.dummyReceiver['receiver_gus'])
+            self.assertTrue(False)
+        except errors.ReceiverGusNotFound:
+            self.assertTrue(True)
+
