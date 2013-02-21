@@ -38,6 +38,8 @@ class TestModels(helpers.TestGL):
     def receiver_add(self, store):
         receiver = Receiver(self.dummyReceiver)
         receiver.password = self.dummyReceiver['password']
+        receiver.username = self.dummyReceiver['notification_fields']['mail_address']
+        receiver.failed_login = 0
         receiver.notification_fields = self.dummyReceiver['notification_fields']
         store.add(receiver)
         return receiver.id
@@ -64,6 +66,8 @@ class TestModels(helpers.TestGL):
         receiver2 = Receiver(self.dummyReceiver)
 
         receiver1.password = receiver2.password = unicode("xxx")
+        receiver1.username = receiver2.username = unicode("yyy")
+        receiver1.failed_login = receiver2.failed_login = 0
         receiver1.notification_fields = receiver2.notification_fields = {'mail_address': 'x@x.it'}
 
         context.receivers.add(receiver1)
@@ -75,6 +79,8 @@ class TestModels(helpers.TestGL):
     def create_receiver_with_contexts(self, store):
         receiver = Receiver(self.dummyReceiver)
         receiver.password = unicode("xxx")
+        receiver.username = unicode("yyy")
+        receiver.failed_login = 0
         receiver.notification_fields = {'mail_address': 'y@y.it'}
 
         context1 = Context(self.dummyContext)

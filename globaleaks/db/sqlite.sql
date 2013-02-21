@@ -96,6 +96,7 @@ CREATE TABLE receiver (
     name VARCHAR NOT NULL,
     notification_fields BLOB NOT NULL,
     password VARCHAR,
+    failed_login INTEGER NOT NULL,
     receiver_level INTEGER NOT NULL,
     username VARCHAR NOT NULL,
     PRIMARY KEY (id)
