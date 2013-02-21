@@ -9,7 +9,7 @@ from cyclone import httpserver
 from cyclone.web import Application
 
 from globaleaks import settings
-from globaleaks.handlers.admin import create_context, create_receiver, update_node
+from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db
 
