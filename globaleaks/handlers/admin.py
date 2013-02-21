@@ -366,8 +366,7 @@ class NodeInstance(BaseHandler):
         Changes the node public node configuration settings.
         """
         request = self.validate_message(self.request.body,
-                requests.adminNodeDesc)
-
+                                        requests.adminNodeDesc)
         response = yield update_node(request)
 
         self.set_status(202) # Updated
