@@ -24,7 +24,8 @@ class TestNodeInstance(helpers.TestHandler):
         yield handler.put()
         del self.dummyNode['password']
         del self.dummyNode['old_password']
-        self.responses[0]['notification_settings'] = {}
+        del self.responses[0]['notification_settings']
+        del self.dummyNode['notification_settings']
         self.assertEqual(self.responses[0], self.dummyNode)
 
 class TestContextsCollection(helpers.TestHandler):

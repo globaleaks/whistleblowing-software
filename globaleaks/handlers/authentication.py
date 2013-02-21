@@ -1,5 +1,3 @@
-from functools import wraps
-import json
 import time
 from storm.exceptions import NotOneError
 
@@ -41,7 +39,7 @@ def login_wb(store, receipt):
                         WhistleblowerTip.receipt == unicode(receipt)).one()
 
     if not wb_tip:
-        log.debug("Whistleblower: Fail auth")
+        log.debug("Whistleblower: Fail auth (%s)" % receipt)
         raise errors.InvalidAuthRequest
 
 
@@ -50,21 +48,34 @@ def login_wb(store, receipt):
 
 @transact
 def login_receiver(store, username, password):
+    """
+    This login receiver need to collect also the amount of unsuccessful
+    consecutive logins, because this element may bring to password lockdown.
+    """
     try:
-        receiver = store.find(Receiver,
-            (Receiver.username == unicode(username),
-             Receiver.password == unicode(password))).one()
-
+        receiver = store.find(Receiver, (Receiver.username == unicode(username))).one()
     except NotOneError:
-        log.debug("Receiver: Fail auth")
+        log.debug("Receiver: Fail auth, userame %s do not exists", username)
+        # XXX Security paranoia: insert random delay
         raise errors.InvalidAuthRequest
 
     if not receiver:
-        log.debug("Receiver: Fail auth")
+        log.debug("Receiver: Fail auth, userame %s do not exists", username)
         raise errors.InvalidAuthRequest
 
-    log.debug("Receiver: OK auth for %s/%s" % (username, password) )
-    return unicode(receiver.id)
+    if receiver.password != password:
+        receiver.invalid_login += 1
+        log.debug("Receiver: Failed auth for %s (password %s expected %s) #%d" %\
+                  (username, receiver.password, password, receiver.invalid_login) )
+
+        # this require a forced commit because otherwise the exception would cause a rollback!
+        store.commit()
+        raise errors.InvalidAuthRequest
+    else:
+        log.debug("Receiver: Good auth for %s %s" % (username, password))
+        receiver.invalid_login = 0
+        return unicode(receiver.id)
+
 
 @transact
 def login_admin(store, password):

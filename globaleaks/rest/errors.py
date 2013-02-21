@@ -90,14 +90,13 @@ class ContextParameterConflict(GLException):
     error_code = 17
     status_code = 409 # Conflict
 
-class ProfileNameConflict(GLException):
+class AccessLimitExceeded(GLException):
     """
-    The name of a plugin profile need to be unique, if is proposed an already existen name
-    is returned a Conflict error.
+    The access counter for a Tip has reached the limit
     """
-    reason = "The proposed name is already in use by another Plugin Profile"
+    reason = "Your user has reach the maximum amount of access for this Tip"
     error_code = 18
-    status_code = 409 # Conflict
+    status_code = 503 # Servie Unavailable
 
 class ReceiverConfNotFound(GLException):
     """

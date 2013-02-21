@@ -46,7 +46,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     rfile_dict = {
         'href' : unicode("/tip/" + receivertip_id + "/download/" + receiverfile.id),
         'name' : unicode(internalfile.name),
-        'sha2sum' : unicode(receiverfile.sha2sum),
+        'sha2sum' : unicode(internalfile.sha2sum),
         'content_type' : unicode(internalfile.content_type),
         'creation_date' : unicode(utils.prettyDateTime(internalfile.creation_date)),
         'size': int(internalfile.size),
@@ -136,6 +136,19 @@ def get_internaltip_receiver(store, user_id, tip_id):
 
     return tip_desc
 
+@transact
+def increment_receiver_access_count(store, user_id, tip_id):
+    rtip = strong_receiver_validate(store, user_id, tip_id)
+
+    rtip.access_counter += 1
+    if rtip.access_counter >= rtip.internaltip.access_limit:
+        raise AccessLimitExceeded
+
+    log.debug(
+        "Tip %s access garanted to user %s access_counter %d on limit %d" %
+       (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit)
+    )
+
 
 @transact
 def delete_receiver_tip(store, user_id, tip_id):
@@ -209,6 +222,7 @@ class TipInstance(BaseHandler):
             (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['user_id'])
             answer['files'] = yield get_files_wb(self.current_user['user_id'])
         else:
+            yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
             answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id)
             answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 

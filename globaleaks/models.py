@@ -264,7 +264,7 @@ class Receiver(Model):
     username = Unicode()
     password = Unicode()
 
-    # notification_variable
+    # User notification_variable
     notification_fields = Pickle()
 
     # Admin chosen options
@@ -274,7 +274,8 @@ class Receiver(Model):
     # of receivers body. if threshold is configured in the context. default 1
     receiver_level = Int()
 
-    #tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
+    # counter
+    failed_login = Int()
 
     last_update = DateTime()
     last_access = DateTime(default_factory=now)
