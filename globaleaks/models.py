@@ -14,7 +14,7 @@ i = 10000000000
 
 def uuid():
     import uuid
-    return unicode(uuid.uuid4())
+    #return unicode(uuid.uuid4())
     # This is just a Testing line, would be removed in the future
     global i
     i += 1
@@ -318,14 +318,14 @@ class ReceiverInternalTip(object):
 
 Receiver.internaltips = ReferenceSet(
                                 Receiver.id,
-                                ReceiverInternalTip.internaltip_id,
                                 ReceiverInternalTip.receiver_id,
+                                ReceiverInternalTip.internaltip_id,
                                 InternalTip.id)
 
 InternalTip.receivers = ReferenceSet(
                                 InternalTip.id,
-                                ReceiverInternalTip.receiver_id,
                                 ReceiverInternalTip.internaltip_id,
+                                ReceiverInternalTip.receiver_id,
                                 Receiver.id)
 
 

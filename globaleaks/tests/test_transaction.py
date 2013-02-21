@@ -19,7 +19,11 @@ class TestTransaction(unittest.TestCase):
         os.unlink(settings.db_file[len('sqlite:///'):])
 
     def test_transaction_with_exception(self):
-        return self.assertFailure(self._transaction_with_exception(), Exception)
+        try:
+            yield self._transaction_with_exception()
+            self.assertTrue(False)
+        except Exception:
+            self.assertTrue(True)
 
     def test_transaction_ok(self):
         return self._transaction_ok()

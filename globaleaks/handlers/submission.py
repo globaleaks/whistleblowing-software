@@ -45,7 +45,6 @@ def wb_serialize_internaltip(internaltip):
 
 @transact
 def create_whistleblower_tip(store, submission):
-    # This assertion fail in unitTest
     assert submission is not None and submission.has_key('id')
 
     wbtip = WhistleblowerTip()
@@ -67,19 +66,13 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
                 log.debug("ContextBased: %s It's already present" % receiver.id)
 
         log.debug("Enforcing receiver #%d by Context" % context.receivers.count() )
+        # commit before return
+        store.commit()
         return
 
     # Clean the previous list of selected Receiver
-    # store.remove(submission.receivers) -- DON'T WORK
-    #
-    #for prevrec in submission.receivers:
-    #    print type(prevrec)
-    #    store.remove(prevrec)
-    # or
-    #    submission.receivers.remove(prevrec)
-    #
-    # Exception:
-    #     raise NoStoreError("Can't perform operation without a store")
+    for prevrec in submission.receivers:
+        submission.receivers.remove(prevrec)
 
     # whitout contexts policies, import WB requests
     for receiver_id in receiver_id_list:
@@ -92,16 +85,7 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
         if not receiver:
             log.err("Receiver requested do not exist: %s", receiver_id)
             raise ReceiverGusNotFound
-
-        check = store.find(ReceiverInternalTip, ReceiverInternalTip.receiver_id == unicode(receiver_id)).one()
-        if not check:
-            submission.receivers.add(receiver)
-        else:
-            log.debug("ReceiverBased: %s It's already present" % receiver_id)
-            # And without this check, I will get a:
-            # columns receiver_id, internaltip_id are not unique
-            # and the transact exit SILENTLY without raise an exception :(
-
+        submission.receivers.add(receiver)
 
     log.debug("Added %d Receivers as requested (%s)" %\
               (submission.receivers.count(), str(receiver_id_list)) )
@@ -114,15 +98,19 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
 def import_files(store, submission, files):
     for file_id in files:
         try:
-            file = store.find(InternalFile, InternalFile,id == unicode(file_id)).one()
+            ifile = store.find(InternalFile, InternalFile.id == unicode(file_id)).one()
         except Exception, e:
             log.err("Storm/SQL Error: %s (import_files)" % e)
             raise e
-        if not file:
+        if not ifile:
             log.err("Invalid File requested %s" % file_id)
             raise FileGusNotFound
 
-        submission.internalfiles.add(file)
+        # It's a reference set!
+        ifile.internaltip_id = submission.id
+
+    # commit before return
+    store.commit()
 
     log.debug("In Submission %s associated files, amount is #%d" %\
               (submission.id, submission.internalfiles.count() ))
@@ -186,7 +174,6 @@ def force_schedule():
 @transact
 def create_submission(store, request, finalize):
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
-    del request['context_gus']
 
     if not context:
         log.err("Context requested %s do not exist" % request['context_gus'])
@@ -207,6 +194,12 @@ def create_submission(store, request, finalize):
     else:
         submission.mark = InternalTip._marker[0] # Submission
 
+    try:
+        store.add(submission)
+    except Exception, e:
+        log.err("Storm/SQL Error: %s (create_submission)" % e)
+        raise e
+
     receivers = request.get('receivers', [])
     import_receivers(store, submission, receivers, context, required=finalize)
 
@@ -216,14 +209,7 @@ def create_submission(store, request, finalize):
     fields = request.get('wb_fields', [])
     import_fields(submission, fields, context.fields, strict_validation=finalize)
 
-    try:
-        store.add(submission)
-    except Exception, e:
-        log.err("Storm/SQL Error: %s (create_submission)" % e)
-        raise e
-
     submission_dict = wb_serialize_internaltip(submission)
-
     return submission_dict
 
 @transact
@@ -247,7 +233,6 @@ def update_submission(store, id, request, finalize):
     if submission.context_id != context.id:
         log.err("Context can't be changed in the middle (before %s, now %s)" %\
                 (submission.context_id, context.id))
-
         raise ContextGusNotFound
 
     receivers = request.get('receivers', [])
