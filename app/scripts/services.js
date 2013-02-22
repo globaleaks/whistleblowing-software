@@ -139,28 +139,22 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.completed = false;
       self.receipt = null;
 
-      var setReceiversForCurrentContext = function() {
-        // Make sure all the receivers are selected by default
-        forEach(self.receivers, function(receiver, idx) {
-          // Check if receiver belongs to the currently selected context
-          if (isReceiverInContext(receiver, self.current_context)) {
-            self.current_context_receivers[idx] = receiver;
-            self.receivers_selected[receiver.receiver_gus] = true;
-          }
-        });
-      };
-
       Node.get(function(node_info) {
         self.selected_language = node_info.languages[0].code;
 
         Contexts.query(function(contexts){
           self.contexts = contexts;
+          self.current_context = self.contexts[0];
           Receivers.query(function(receivers){
-            self.receivers = receivers;
-            setReceiversForCurrentContext();
-            self.current_context = self.contexts[0];
-            fn(self);
+            forEach(receivers, function(receiver){
+              // enumerate only the receivers of the current context
+              if (self.current_context.receivers.indexOf(receiver.receiver_gus) !== -1) {
+                self.receivers.push(receiver);
+                self.receivers_selected[receiver.receiver_gus] = true;
+              };
+            });
           });
+          fn(self);
         });
       });
 
@@ -179,7 +173,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.current_submission.$save(function(submissionID){
           // XXX the backend should return this.
           self.current_submission.wb_fields = {};
-          setReceiversForCurrentContext();
         });
 
       };
