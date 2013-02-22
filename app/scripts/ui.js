@@ -119,5 +119,11 @@ angular.module('submissionUI', []).
         var size = attrs.holder;
         Holder.run();
       };
+}).
+  directive('fadeout', function(){
+    return function(scope, element, attrs) {
+      element.fadeOut(3000);
+    };
 });
+
 

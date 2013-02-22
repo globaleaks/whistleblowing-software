@@ -48,14 +48,14 @@
         <div class="messageConsole">
 
           <div ng-repeat="error in errors">
-            <div class="alert alert-error errorMessage">
+            <div class="alert alert-error errorMessage" fadeout>
               <button type="button" class="close" data-dismiss="alert">×</button>
               <p><strong>{{error.url}}</strong> {{error.code}}: {{error.message}}</p>
             </div>
           </div>
 
           <div ng-repeat="success in successes">
-            <div class="alert alert-success successMessage">
+            <div class="alert alert-success successMessage" fadeout>
               <button type="button" class="close" data-dismiss="alert">×</button>
               <p><strong>Success!</strong> {{success.message}}</p>
             </div>
