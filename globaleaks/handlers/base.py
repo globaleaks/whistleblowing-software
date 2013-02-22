@@ -21,14 +21,15 @@ from globaleaks import settings
 from globaleaks.rest import errors
 
 class BaseHandler(RequestHandler):
-    # validate_type = isinstance    # eventually later
+
     def validate_python_type(self, value, python_type):
         """
         Return True if the python class instantiates the python_type given.
         """
-        return any((isinstance(value, python_type),
-                    value is None,
-        ))
+        if python_type == int:
+            return any((isinstance(value, python_type), isinstance(value, unicode), value is None))
+        else:
+            return any((isinstance(value, python_type), value is None))
 
     def validate_GLtype(self, value, gl_type):
         """
