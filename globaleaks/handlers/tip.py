@@ -135,6 +135,19 @@ def get_internaltip_receiver(store, user_id, tip_id):
 
     return tip_desc
 
+@transact
+def increment_receiver_access_count(store, user_id, tip_id):
+    rtip = strong_receiver_validate(store, user_id, tip_id)
+
+    rtip.access_counter += 1
+    if rtip.access_counter >= rtip.internaltip.access_limit:
+        raise AccessLimitExceeded
+
+    log.debug(
+        "Tip %s access garanted to user %s access_counter %d on limit %d" %
+       (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit)
+    )
+
 
 @transact
 def delete_receiver_tip(store, user_id, tip_id):
@@ -208,6 +221,7 @@ class TipInstance(BaseHandler):
             (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['user_id'])
             answer['files'] = yield get_files_wb(self.current_user['user_id'])
         else:
+            yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
             answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id)
             answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
@@ -379,10 +393,7 @@ class TipCommentCollection(BaseHandler):
 
 def serialize_receiver(receiver, access_counter):
     receiver_dict = {
-        "can_configure_delivery": receiver.can_configure_delivery,
-        "can_configure_notification": receiver.can_configure_notification,
         "can_delete_submission": receiver.can_delete_submission,
-        "can_postpone_expiration": receiver.can_postpone_expiration,
         "name": unicode(receiver.name),
         "description": unicode(receiver.description),
         "receiver_gus": unicode(receiver.id),

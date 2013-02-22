@@ -16,12 +16,12 @@ from globaleaks import utils
 
 def admin_serialize_node(node):
     response = {
-      'name': unicode(node.name),
-      'description': unicode(node.description),
-      'hidden_service': unicode(node.hidden_service),
-      'public_site': unicode(node.public_site),
-      'stats_update_time': int(node.stats_update_time),
-      'email': unicode(node.email),
+      'name': node.name,
+      'description': node.description,
+      'hidden_service': node.hidden_service,
+      'public_site': node.public_site,
+      'stats_update_time': node.stats_update_time,
+      'email': node.email,
       'notification_settings': dict(node.notification_settings) if node.notification_settings else {},
       'languages': list(node.languages) if node.languages else []
     }
@@ -47,15 +47,16 @@ def admin_serialize_context(context):
 
 def admin_serialize_receiver(receiver):
     receiver_dict = {
-        "receiver_gus": unicode(receiver.id),
-        "name": unicode(receiver.name),
-        "description": unicode(receiver.description),
-        "update_date": unicode(utils.prettyDateTime(receiver.last_update)),
-        "receiver_level": int(receiver.receiver_level),
-        "can_delete_submission": bool(receiver.can_delete_submission),
-        "username": unicode(receiver.username),
-        "password": unicode(receiver.password),
+        "receiver_gus": receiver.id,
+        "name": receiver.name,
+        "description": receiver.description,
+        "update_date": utils.prettyDateTime(receiver.last_update),
+        "receiver_level": receiver.receiver_level,
+        "can_delete_submission": receiver.can_delete_submission,
+        "username": receiver.username,
+        "password": receiver.password,
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
+        "failed_login": receiver.failed_login,
         "contexts": []
     }
     for context in receiver.contexts:
@@ -125,12 +126,27 @@ def create_context(store, request):
         (dict) representing the configured context
     """
     receivers = request.get('receivers', [])
-
     context = Context(request)
-    context.fields = request['fields']
+
+    if not request['fields']:
+        # When a new context is create, assign some spare fields
+        context.fields = [
+            {u'hint': u"Hint, I'm required", u'label': u'headline',
+             u'name': u'headline', u'presentation_order': 1,
+             u'required': True, u'type': u'text', u'value': u'' },
+            {u'hint': u'The name of the Sun', u'label': u'Sun',
+              u'name': u'Sun', u'presentation_order': 2,
+              u'required': True, u'type': u'text',
+              u'value': u"I'm the sun, I've not name"},
+        ]
+    else:
+        context.fields = request['fields']
+
+    if context.escalation_threshold and context.selectable_receiver:
+        raise errors.ContextParameterConflict
 
     for receiver_id in receivers:
-        receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+        receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
@@ -239,7 +255,14 @@ def create_receiver(store, request):
 
     receiver.username = request['notification_fields']['mail_address']
     receiver.notification_fields = request['notification_fields']
-    receiver.password = request['password']
+    receiver.failed_login = 0
+
+    # XXX generate randomdly and then mail to the user, mark receiver
+    # as 'inactive' until password is changed by activation link
+    if not request['password'] or len(request['password']) == 0:
+        receiver.password = u"globaleaks"
+    else:
+        receiver.password = request['password']
 
     store.add(receiver)
 
@@ -350,7 +373,8 @@ class NodeInstance(BaseHandler):
         Changes the node public node configuration settings.
         """
         request = self.validate_message(self.request.body,
-                                        requests.adminNodeDesc)
+                requests.adminNodeDesc)
+
         response = yield update_node(request)
 
         self.set_status(202) # Updated
@@ -385,6 +409,7 @@ class ContextsCollection(BaseHandler):
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
         request = self.validate_message(self.request.body, requests.adminContextDesc)
+
         response = yield create_context(request)
 
         self.set_status(201) # Created
@@ -416,6 +441,7 @@ class ContextInstance(BaseHandler):
         Response: adminContextDesc
         Errors: InvalidInputFormat, ContextGusNotFound, ReceiverGusNotFound
         """
+
         request = self.validate_message(self.request.body,
                                         requests.adminContextDesc)
 

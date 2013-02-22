@@ -82,22 +82,21 @@ class NodeNotFound(GLException):
     error_code = 16
     http_code = 506 # Variant also negotiated
 
-class ProfileGusNotFound(GLException):
+class ContextParameterConflict(GLException):
     """
-    The Profile GUS requested do not exists in the database.
+    Some parameters explicit in the context creation can't works together
     """
-    reason = "Not found a Plugin Profile with the specified GUS identifier"
+    reason = "Some parameters explicit in the context creation can't works together"
     error_code = 17
-    status_code = 404 # Not Found
-
-class ProfileNameConflict(GLException):
-    """
-    The name of a plugin profile need to be unique, if is proposed an already existen name
-    is returned a Conflict error.
-    """
-    reason = "The proposed name is already in use by another Plugin Profile"
-    error_code = 18
     status_code = 409 # Conflict
+
+class AccessLimitExceeded(GLException):
+    """
+    The access counter for a Tip has reached the limit
+    """
+    reason = "Your user has reach the maximum amount of access for this Tip"
+    error_code = 18
+    status_code = 503 # Servie Unavailable
 
 class ReceiverConfNotFound(GLException):
     """
