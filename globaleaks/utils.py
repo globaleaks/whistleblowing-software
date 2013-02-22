@@ -1,6 +1,18 @@
 from datetime import datetime, timedelta
 import logging
 
+import re
+import traceback
+
+from OpenSSL import SSL
+from StringIO import StringIO
+
+from twisted.internet import reactor
+from twisted.internet.defer import Deferred
+from twisted.mail.smtp import ESMTPSenderFactory
+from twisted.internet.ssl import ClientContextFactory
+
+
 from twisted.python import log as twlog
 from Crypto.Random import random
 from Crypto.Hash import SHA256
@@ -101,3 +113,76 @@ def prettyDateTime(when):
         return "Never"
     else:
         return when.ctime()
+
+def sendmail(authenticationUsername, authenticationSecret, fromAddress, toAddress, messageFile, smtpHost, smtpPort=25):
+    """
+    Sends an email using SSLv3 over SMTP
+
+    @param authenticationUsername: account username
+    @param authenticationSecret: account password
+    @param fromAddress: the from address field of the email
+    @param toAddress: the to address field of the email
+    @param messageFile: the message content
+    @param smtpHost: the smtp host
+    @param smtpPort: the smtp port
+    """
+    contextFactory = ClientContextFactory()
+    contextFactory.method = SSL.SSLv3_METHOD
+
+    resultDeferred = Deferred()
+
+    senderFactory = ESMTPSenderFactory(
+        authenticationUsername,
+        authenticationSecret,
+        fromAddress,
+        toAddress,
+        messageFile,
+        resultDeferred,
+        contextFactory=contextFactory)
+
+    reactor.connectTCP(smtpHost, smtpPort, senderFactory)
+
+    return resultDeferred
+
+
+
+def MailException(etype, value, tb):
+    """
+    Formats traceback and exception data and emails the error
+
+    @param etype: Exception class type
+    @param value: Exception string value
+    @param tb: Traceback string data
+    """
+    excType = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)", "", str(etype)).strip()
+    tmp = []
+    tmp.append("From: email@email.com\n")
+    tmp.append("To: email@email.com\n")
+    tmp.append("Subject: GLBackend Exception\n")
+    tmp.append("Content-Type: text/plain; charset=ISO-8859-1\n")
+    tmp.append("Content-Transfer-Encoding: 8bit\n\n")
+    tmp.append("%s %s" % (excType, etype.__doc__))
+    for line in traceback.extract_tb(tb):
+        tmp.append("\tFile: \"%s\"\n\t\t%s %s: %s\n" % (line[0], line[2], line[1], line[3]))
+    while 1:
+        if not tb.tb_next: break
+        tb = tb.tb_next
+    stack = []
+    f = tb.tb_frame
+    while f:
+        stack.append(f)
+        f = f.f_back
+    stack.reverse()
+    tmp.append("\nLocals by frame, innermost last:")
+    for frame in stack:
+        tmp.append("\nFrame %s in %s at line %s" % (frame.f_code.co_name, frame.f_code.co_filename, frame.f_lineno))
+        for key, val in frame.f_locals.items():
+            tmp.append("\n\t%20s = " % key)
+            try:
+                tmp.append(str(val))
+            except:
+                tmp.append("<ERROR WHILE PRINTING VALUE>")
+
+    message = StringIO(''.join(tmp))
+    
+    # sendmail(TODO argumentsss)

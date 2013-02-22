@@ -3,18 +3,22 @@
 # Here is implemented the preApplication and postApplication method
 # along the Asynchronous event schedule
 
+import sys
+
 from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 from apscheduler.scheduler import Scheduler
 
 from globaleaks.db import createTables
-from globaleaks.utils import log
+from globaleaks.utils import log, MailException
 
 # The scheduler is a global variable, because can be used to force execution
 __all__ = ['GLAsynchronous']
 
 GLAsynchronous = Scheduler()
 log.startLogging()
+
+sys.excepthook = MailException
 
 class GLBaseRunner(app.ApplicationRunner):
     """
