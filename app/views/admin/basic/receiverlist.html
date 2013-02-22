@@ -13,76 +13,67 @@
     </div>
   </div>
 
-  <div class="row" ng-repeat="receiver in admin.receivers">
+  <div class="row receiverList" ng-repeat="receiver in admin.receivers">
     <div class="span9 configRow" ng-class-even="'odd'">
-      <form name="receiverForm" class="config-form receiverConfig">
+      <form name="receiverForm" class="receiverConfig">
+
+        <div class="row">
+
+          <div class="span4">
+
+            <label>Name</label>
+            <input type="text"
+            ng-model="receiver.name" value="{{receiver.name}}" required>
+            </input>
+
+            <label>Email Address (Username)</label>
+            <input type="email"
+            ng-model="receiver.notification_fields.mail_address" required>
+            </input>
+
+          </div>
+
+          <div class="span4">
+
+            <label>Context associated</label>
+            <select multiple ui-select2 style="width: 200px"
+              ng-model="receiver.contexts">
+              <option ng-repeat="context in admin.contexts"
+                value="{{context.context_gus}}">{{context.name}}</option>
+            </select>
+
+          </div>
+
+        </div>
+
+      <div class="row">
+
         <div class="span4">
-          <label>Name</label>
-          <input type="text"
-          ng-model="receiver.name" value="{{receiver.name}}" required>
-          </input>
 
-          <label>Email Address (Username)</label>
-          <input type="email"
-          ng-model="receiver.notification_fields.mail_address" required>
-          </input>
-
-          <label bs-popover="If left empty, system set 'globaleaks'">Password</label>
+          <label bs-popover="'If left empty, the system sets globaleaks'">Password</label>
           <!-- remind: this need to be random & mailed to the inactive user -->
-          <input type="password"
-          ng-model="receiver.password">
+          <input type="password" ng-model="receiver.password">
           </input>
+
         </div>
 
         <div class="span4">
 
-          <label>Can Delete Submission</label>
-          <input type="checkbox"
-          ng-model="receiver.can_delete_submission">
-          </input>
-
-          <!--
-          <label>Receiver Level</label>
-          <input type="int"
-          ng-model="receiver.receiver_level">
-          </input>
-          -->
-
-          <!--
-          <label>Contexts</label>
-          <p>{{receiver.contexts}}</p>
-          -->
-
-          <!-- <label>Languages</label> -->
-          <!-- <select multiple -->
-          <!--   ng-model="receiver.languages" -->
-          <!--   ui-select2 -->
-          <!--   style="width: 200px"> -->
-          <!--   <option -->
-          <!--     ng-repeat="(langCode, langName) in localization.languages" -->
-          <!--     value="{{langCode}}">{{langName}}</option> -->
-          <!-- </select> -->
-
-          <label>Context associated</label>
-          <select multiple ui-select2 style="width: 200px"
-            ng-model="receivers.contexts">
-            <option ng-repeat="context in admin.contexts"
-              value="{{contexts.contexts_gus}}">{{context.name}}
-            </option>
-          </select>
-          <br>
-
-          <button class="btn btn-success"
-            ng-disabled="receiverForm.$pristine || receiverForm.$invalid"
+          <button class="btn btn-success saveReciever"
             ng-click="update(receiver)">Update</button>
 
-          <button class="btn btn-danger"
+          <button class="btn btn-danger deleteReciever"
             ng-click="delete(receiver)">Delete</button>
 
         </div>
+
+      </div>
+
+
       </form>
     </div>
   </div>
+
   <div class="row">
     <div class="configRow span9 addReceiver">
       <input type="text"

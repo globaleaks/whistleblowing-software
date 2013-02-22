@@ -48,15 +48,14 @@
           </div>
 
           <div class="span4">
-
-            <button class="btn"
+            <button class="btn editFields"
               ng-click="editFields(context.fields)">Edit fields</button>
 
-            <button class="btn btn-success"
+            <button class="btn btn-success saveContext"
               ng-disabled="contextForm.$pristine || contextForm.$invalid"
               ng-click="update(context)">Update</button>
 
-            <button class="btn btn-danger"
+            <button class="btn btn-danger deleteContext"
               ng-click="delete(context)">Delete</button>
 
           </div>
