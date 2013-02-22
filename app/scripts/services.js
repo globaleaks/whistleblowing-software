@@ -79,8 +79,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         if (error.code == 30) {
           sessionStorage.removeItem('session_id');
-          $location.path('/login');
-          $location.search('src='+source_path);
+          // Only redirect if we are not on the login page
+          if ($location.path().indexOf('/login') === -1) {
+            $location.path('/login');
+            $location.search('src='+source_path);
+          };
         };
 
         if (!$rootScope.errors) {
