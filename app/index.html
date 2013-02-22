@@ -45,30 +45,7 @@
           </ul>
         </div>
 
-        <div class="messageConsole">
-
-          <div ng-repeat="error in errors">
-            <div class="alert alert-error errorMessage" fadeout>
-              <button type="button" class="close" data-dismiss="alert">×</button>
-              <p><strong>{{error.url}}</strong> {{error.code}}: {{error.message}}</p>
-            </div>
-          </div>
-
-          <div ng-repeat="success in successes">
-            <div class="alert alert-success successMessage" fadeout>
-              <button type="button" class="close" data-dismiss="alert">×</button>
-              <p><strong>Success!</strong> {{success.message}}</p>
-            </div>
-          </div>
-
-        </div>
-
-        <div class="toolTip" ng-controller="toolTipCtrl">
-          <div class="logout alert" ng-hide="!session_id">
-              <label>Currently logged (<a href="{{auth_landing_page}}">{{role}}</a>)</label>
-            <button class="btn btn-danger" ng-click="logout()">logout</button>
-          </div>
-        </div>
+        <div ng-include="'views/toolbar.html'"></div>
 
         <!-- In here is the main GLClient application content -->
         <div class="page-content" ng-view></div>
