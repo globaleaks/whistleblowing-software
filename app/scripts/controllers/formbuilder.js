@@ -3,6 +3,7 @@ GLClient.controller('FormBuilderCtrl',
 
   $scope.newField = {};
   $scope.newField.required = false;
+  $scope.newField.type = 'text';
   // XXX implement the presentation order of the submission fields
   $scope.newField.presentation_order = 0;
 
@@ -35,6 +36,10 @@ GLClient.controller('FormBuilderCtrl',
   $scope.editField = function(field) {
     $scope.editing = $rootScope.fieldsToEdit.indexOf(field);
     $scope.newField = field;
+  };
+
+  $scope.deleteField = function(field) {
+    $rootScope.fieldsToEdit.pop(field);
   };
 
   $scope.splice = function(field, fields) {
