@@ -41,29 +41,43 @@ class TestAuthentication(helpers.TestHandler):
 
     @inlineCallbacks
     def test_successful_admin_logout(self):
-        handler = self.request()
-        login = self.login('admin')
-        handler.request.headers['X-Session'] = login
+        handler = self.request({
+            'username': 'admin',
+            'password': 'globaleaks',
+            'role': 'admin'
+        })
+        success = yield handler.post()
+        self.assertTrue('session_id' in self.responses[0])
 
         handler = self.request()
         success = yield handler.delete()
         self.assertIsNone(handler.current_user)
- 
+
     @inlineCallbacks
     def test_successful_receiver_logout(self):
-        handler = self.request()
-        handler.request.headers['X-Session'] = self.login('receiver')
+        handler = self.request({
+            'username': self.dummyReceiver['username'],
+            'password': self.dummyReceiver['password'],
+            'role': 'receiver'
+        })
+        success = yield handler.post()
+        self.assertTrue('session_id' in self.responses[0])
 
-        handler = self.request() 
+        handler = self.request()
         success = yield handler.delete()
         self.assertIsNone(handler.current_user)
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):
-        handler = self.request()
-        handler.request.headers['X-Session'] = self.login('wb')
+        handler = self.request({
+            'username': '',
+            'password': self.dummyWBTip,
+            'role': 'wb'
+        })
+        success = yield handler.post()
+        self.assertTrue('session_id' in self.responses[0])
 
-        handler = self.request() 
+        handler = self.request()
         success = yield handler.delete()
         self.assertTrue(handler.current_user is None)
 
