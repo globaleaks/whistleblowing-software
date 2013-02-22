@@ -10,11 +10,11 @@ from datetime import datetime
 now = datetime.utcnow
 
 global i
-i = 10000000000
+i = 100000000000
 
 def uuid():
     import uuid
-    return unicode(uuid.uuid4())
+    #return unicode(uuid.uuid4())
     # This is just a Testing line, would be removed in the future
     global i
     i += 1
@@ -264,7 +264,7 @@ class Receiver(Model):
     username = Unicode()
     password = Unicode()
 
-    # notification_variable
+    # User notification_variable
     notification_fields = Pickle()
 
     # Admin chosen options
@@ -274,7 +274,8 @@ class Receiver(Model):
     # of receivers body. if threshold is configured in the context. default 1
     receiver_level = Int()
 
-    #tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
+    # counter
+    failed_login = Int()
 
     last_update = DateTime()
     last_access = DateTime(default_factory=now)
@@ -284,7 +285,7 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-    unicode_keys = ['name', 'description', 'username' ]
+    unicode_keys = ['name', 'description' ]
     int_keys = [ 'receiver_level' ]
     bool_keys = [ 'can_delete_submission' ] # Total delete capability
 
@@ -318,14 +319,14 @@ class ReceiverInternalTip(object):
 
 Receiver.internaltips = ReferenceSet(
                                 Receiver.id,
-                                ReceiverInternalTip.internaltip_id,
                                 ReceiverInternalTip.receiver_id,
+                                ReceiverInternalTip.internaltip_id,
                                 InternalTip.id)
 
 InternalTip.receivers = ReferenceSet(
                                 InternalTip.id,
-                                ReceiverInternalTip.receiver_id,
                                 ReceiverInternalTip.internaltip_id,
+                                ReceiverInternalTip.receiver_id,
                                 Receiver.id)
 
 
