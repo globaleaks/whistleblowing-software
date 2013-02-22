@@ -10,12 +10,33 @@ angular.module('resourceServices.authentication', [])
                                 'role': role})
             .success(function(response){
               self.id = response.session_id;
+              self.user_id = response.user_id;
               self.username = username;
-              sessionStorage['session_id'] = response.session_id;
+              self.role = role;
+
               $rootScope.session_id = self.id;
+              $rootScope.auth_role = role;
+
+              sessionStorage['session_id'] = response.session_id;
+              sessionStorage['user_id'] = self.user_id;
+              sessionStorage['role'] = self.role;
+
               if (role != 'wb') {
                 $location.path($routeParams['src']);
               }
+              if (role == 'admin') {
+                $rootScope.auth_landing_page = "/#/admin/basic/";
+              }
+              if (role == 'receiver') {
+                $rootScope.auth_landing_page = "/#/receiver/" + self.user_id;
+              }
+              if (role == 'wb') {
+                $rootScope.auth_landing_page = "/#/status/" + self.user_id;
+              }
+
+              self.auth_landing_page = $rootScope.auth_landing_page;
+              sessionStorage['auth_landing_page'] = self.auth_landing_page;
+
           });
         };
 
@@ -24,6 +45,8 @@ angular.module('resourceServices.authentication', [])
             return $http.delete('/login')
               .success(function(response){
                 self.id = null;
+                self.username = null;
+                self.user_id = null;
             });
         };
       };
