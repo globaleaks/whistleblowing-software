@@ -55,12 +55,12 @@ def login_receiver(store, username, password):
     try:
         receiver = store.find(Receiver, (Receiver.username == unicode(username))).one()
     except NotOneError:
-        log.debug("Receiver: Fail auth, userame %s do not exists", username)
+        log.debug("Receiver: Fail auth, userame %s do not exists" % username)
         # XXX Security paranoia: insert random delay
         raise errors.InvalidAuthRequest
 
     if not receiver:
-        log.debug("Receiver: Fail auth, userame %s do not exists", username)
+        log.debug("Receiver: Fail auth, userame %s do not exists" % username)
         raise errors.InvalidAuthRequest
 
     if receiver.password != password:
@@ -144,7 +144,8 @@ class AuthenticationHandler(BaseHandler):
         if not user_id:
             raise errors.InvalidAuthRequest
 
-        self.write({'session_id': self.generate_session(role, user_id)})
+        self.write({'session_id': self.generate_session(role, user_id) ,
+                    'user_id': unicode(user_id)})
 
 
     def delete(self):
