@@ -10,6 +10,7 @@ GLClient.controller('StatusCtrl',
 
     $scope.newComment = function() {
       $scope.tip.comments.newComment($scope.newCommentContent);
+      $scope.newCommentContent = '';
     };
 
 }]);

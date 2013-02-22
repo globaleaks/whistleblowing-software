@@ -320,6 +320,11 @@ background-color: whiteSmoke;
   right: 20px;
 }
 
+.fileDetails {
+  list-style: none;
+  margin: 0 0 10px 20px;
+}
+
 /*** Debug header ***/
 
 
