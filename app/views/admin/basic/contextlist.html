@@ -53,7 +53,7 @@
 
             <button class="btn btn-success saveContext"
               ng-disabled="contextForm.$pristine || contextForm.$invalid"
-              ng-click="update(context)">Update</button>
+              ng-click="update(context)">Save</button>
 
             <button class="btn btn-danger deleteContext"
               ng-click="delete(context)">Delete</button>
@@ -68,8 +68,11 @@
 
   <div class="row">
     <div class="span4 addContext">
-      <input type="text" ng-model="new_context_name">
-      <button class="btn" ng-click="admin.create_context(new_context_name)">Add new Context</button>
+        <form name="newContext">
+            <input type="text" ng-model="new_context_name" required>
+            <button class="btn" ng-disabled="newContext.$invalid"
+                    ng-click="admin.create_context(new_context_name)">Add new Context</button>
+        </form>
     </div>
   </div>
 
