@@ -5,15 +5,30 @@
 # Implementation of the cleaning operations (delete incomplete submission,
 # delete expired tips, etc)
 
+from twisted.internet.defer import inlineCallbacks
+
+from globaleaks.settings import transact
 
 from globaleaks.utils import log
 from globaleaks.jobs.base import GLJob
+from globaleaks.models import InternalTip
 from datetime import datetime
 
 __all__ = ['APSCleaning']
 
 class APSCleaning(GLJob):
 
+    @transact
+    def get_expired_itip(self, store):
+        allitip = store.find(InternalTip)
+        return None
+
+    @transact
+    def get_expired_session(self, store):
+        unfinished = store.find(InternalTip)
+        return None
+
+    @inlineCallbacks
     def operation(self):
         """
         Goal of this function is to check all the submission not
@@ -25,12 +40,14 @@ class APSCleaning(GLJob):
         and their expiration date, if match, remove that, all the folder,
         comment and tip related.
         """
-        log.debug("[D]", self.__class__, 'operation', datetime.today().ctime())
 
-        # for each Context get expiratin time,
-        # for each context get submission_gus
-        # check and act if the time is expired
+        # for each Context get expiration time
+        expired_itip = yield self.get_expired_itip()
+        if expired_itip:
+            log.debug("Delete expired itip %s" % expired_itip )
 
-        # for each InternalTip get expiration time,
-        # check and remove
+        expired_session = yield self.get_expired_session()
+        if expired_session:
+            log.debug("Delete unfinished submission %s" % expired_session )
+
 

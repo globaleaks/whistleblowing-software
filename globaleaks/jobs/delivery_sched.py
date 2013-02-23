@@ -149,19 +149,29 @@ class APSDelivery(GLJob):
         """
 
         # ==> Submission && Escalation
-        yield tip_creation()
+        info_created_tips = yield tip_creation()
+        if info_created_tips:
+            log.debug("Delivery job: created %d tips" % len(info_created_tips))
+
         # ==> Files && Files update
         filesdict = yield file_preprocess()
         # return a dict { "file_uuid" : "file_path" }
+
         try:
             # perform FS base processing, outside the transactions
             processdict = file_process(filesdict)
             # return a dict { "file_uuid" : checksum }
         except OSError, e:
             # TODO fatal log here!
-            log.err("Fatal OS error in processing file: %s" % e)
+            log.err("Fatal OS error in processing files [%s]: %s" % (filesdict, e) )
 
-        # TODO, delivery not implemented ATM
+            # Create a dummy processdict to permit ReceiverFile init
+            processdict = dict(filesdict)
+            for file_uuid in processdict.iterkeys():
+                processdict[file_uuid] = u""
+
+
+        # TODO, delivery plugins not more implemented
         yield receiver_file_align(filesdict, processdict)
 
 

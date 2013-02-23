@@ -46,6 +46,7 @@ def login_wb(store, receipt):
     log.debug("Whistleblower: OK auth using: %s" % receipt )
     return unicode(wb_tip.id)
 
+
 @transact
 def login_receiver(store, username, password):
     """
@@ -65,7 +66,7 @@ def login_receiver(store, username, password):
 
     if receiver.password != password:
         receiver.failed_login += 1
-        log.debug("Receiver: Failed auth for %s (password %s expected %s) #%d" %\
+        log.debug("Receiver: Failed auth for %s (expected %s receivedPassword %s) #%d" %\
                   (username, receiver.password, password, receiver.failed_login) )
 
         # this require a forced commit because otherwise the exception would cause a rollback!

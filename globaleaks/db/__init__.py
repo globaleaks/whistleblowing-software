@@ -13,7 +13,7 @@ from globaleaks import models
 @transact
 def initialize_node(store, result, onlyNode, emailtemplate):
     node = models.Node(onlyNode)
-    # dict and reference need to be added by hand!
+    # Add here by hand the languages supported!
     node.languages =  [{ "code" : "it" , "name": "Italiano"},
                        { "code" : "en" , "name" : "English" }]
     node.notification_settings = {}

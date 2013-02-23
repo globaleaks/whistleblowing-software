@@ -93,6 +93,9 @@ def update_node(store, request):
 
     node.update(request)
 
+    # Notification fields need to be processed in explicit way!
+    # TODO - may need an API change and client update :(
+
     node_desc = admin_serialize_node(node)
     return node_desc
 
