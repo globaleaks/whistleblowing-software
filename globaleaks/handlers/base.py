@@ -8,15 +8,17 @@
 #
 # TODO - test the prepare/POST wrapper, because has never been tested
 
+import httplib
 import types
 import collections
 import json
 import re
+import sys
 
-from cyclone.web import RequestHandler, HTTPError
+from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired
 from cyclone import escape
 
-from globaleaks.utils import log
+from globaleaks.utils import log, MailException
 from globaleaks import settings
 from globaleaks.rest import errors
 
@@ -191,3 +193,30 @@ class BaseHandler(RequestHandler):
     @property
     def is_receiver(self):
         return self.current_user and self.current_user['role'] == 'receiver'
+
+    def _handle_request_exception(self, e):
+        try:
+            if isinstance(e.value, (HTTPError, HTTPAuthenticationRequired)):
+                e = e.value
+        except:
+            pass
+
+        if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
+            if self.settings.get("debug") is True and e.log_message:
+                format = "%d %s: " + e.log_message
+                args = [e.status_code, self._request_summary()] + list(e.args)
+                msg = lambda *args: format % args
+                log.msg(msg(*args))
+            if e.status_code not in httplib.responses:
+                log.msg("Bad HTTP status code: %d" % e.status_code)
+                return self.send_error(500, exception=e)
+            else:
+                return self.send_error(e.status_code, exception=e)
+        else:
+            if self.settings.get("debug") is True:
+                log.msg(e)
+            log.msg("Uncaught exception %s :: %r" % \
+                    (self._request_summary(), self.request))
+            type, value, tb = sys.exc_info()
+            MailException(type, value, tb)
+            return self.send_error(500, exception=e)
