@@ -77,10 +77,10 @@ spec = [
 
     ## Receiver Handlers ##
     #  R1
-    (r'/receiver/' + receiver_token_auth + '/settings', receiver.ReceiverInstance),
+    (r'/receiver/preferences', receiver.ReceiverInstance),
 
     #  R5
-    (r'/receiver/' + receiver_token_auth + '/tip', receiver.TipsCollection),
+    (r'/receiver/tips', receiver.TipsCollection),
 
     ## Admin Handlers ##
     #  A1
