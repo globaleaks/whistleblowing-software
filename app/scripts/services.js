@@ -364,31 +364,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.receiver = adminReceiversResource;
       self.receivers = adminReceiversResource.query();
 
-      self.create_receiver = function(receiver_name) {
-        var receiver = new adminReceiversResource;
-
-        receiver.name = receiver_name;
-
-        receiver.description = '';
-        receiver.password = null;
-
-        receiver.notification_fields = {'mail_address': ''};
-
-        // receiver.languages = [];
-        // receiver.tags = [];
-
-        // Under here go default settings
-        receiver.can_delete_submission = true;
-
-        receiver.receiver_level = 1;
-
-        receiver.contexts =  [];
-
-        receiver.$save(function(created_receiver){
-          self.receivers.push(created_receiver);
-        });
-      };
-
       self.node = adminNodeResource.get(function(){
         self.node.password = '';
         self.node.old_password = '';

@@ -1,9 +1,7 @@
 <div ng-include="'views/header.html'"
      onload="header_title='Receivers Configuration';
-  header_subtitle='Administration Interface'"
-        >
+     header_subtitle='Administration Interface'">
 </div>
-
 
 <div class="container config-page">
 
@@ -46,7 +44,9 @@
           </div>
         </div>
 
+        <!-- BEGIN reciever list -->
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
+
           <form name="receiverForm" class="receiverConfig">
             <div class="span9 configRow" ng-class-even="'odd'">
 
@@ -85,8 +85,8 @@
 
                 <div class="span4">
 
-                  <button class="btn btn-success saveReciever" ng-click="update(receiver)">Save</button>
-                  <button class="btn btn-danger deleteReciever" ng-click="delete(receiver)">Delete</button>
+                  <button class="btn btn-success saveReceiver" ng-click="update(receiver)">Save</button>
+                  <button class="btn btn-danger deleteReceiver" ng-click="delete(receiver)">Delete</button>
 
                 </div>
 
@@ -95,7 +95,9 @@
             </div>
           </form>
         </div>
+        <!-- End Receiver List -->
 
+        <!-- BEGIN Addition of receiver -->
         <div class="row">
           <div class="configRow span9 addReceiver">
             <h4>Add new receiver</h4>
@@ -113,39 +115,26 @@
 
                   </div>
 
-                  <div class="span4">
-
-                    <label>Context associated</label>
-                    <select multiple ui-select2 style="width: 200px" ng-model="new_receiver.contexts">
-                      <option ng-repeat="context in admin.contexts" value="{{context.context_gus}}">{{context.name}}</option>
-                    </select>
-
-                  </div>
-
                 </div>
 
                 <div class="row">
-
                   <div class="span4">
-
                     <label>Password</label>
                     <input type="password" ng-model="new_receiver.password" required>
-
                   </div>
-
-                  <div class="span4">
-
-                    <button class="btn" ng-disabled="newReceiver.$invalid" ng-click="add_receiver()">add</button>
-
-                  </div>
-
                 </div>
+              <div class="row">
+                <div class="span4">
+                  <button class="btn" ng-disabled="newReceiver.$invalid" ng-click="add_receiver()">add</button>
+                </div>
+              </div>
 
             </form>
           </div>
         </div>
+        <!-- END Addition of receiver -->
+
       </div>
-      <!-- End Receiver List -->
 
     </div>
   </div>
