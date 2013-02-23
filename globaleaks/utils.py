@@ -156,8 +156,8 @@ def MailException(etype, value, tb):
     """
     excType = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)", "", str(etype)).strip()
     tmp = []
-    tmp.append("From: email@email.com\n")
-    tmp.append("To: email@email.com\n")
+    tmp.append("From: %s\n" % ("stackexception@globaleaks.org"))
+    tmp.append("To: %s\n" % ("stackexception@lists.globaleaks.org"))
     tmp.append("Subject: GLBackend Exception\n")
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1\n")
     tmp.append("Content-Transfer-Encoding: 8bit\n\n")
@@ -184,5 +184,11 @@ def MailException(etype, value, tb):
                 tmp.append("<ERROR WHILE PRINTING VALUE>")
 
     message = StringIO(''.join(tmp))
-    
-    # sendmail(TODO argumentsss)
+
+    sendmail("stackexception@globaleaks.org",
+             "stackexception99",
+             "stackexception@globaleaks.org",
+             "stackexception@lists.globaleaks.org",
+             message,
+             "box549.bluehost.com",
+             25)
