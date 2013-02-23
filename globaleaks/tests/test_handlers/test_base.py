@@ -50,12 +50,25 @@ class TestValidate(unittest.TestCase):
 
     def test_validate_message_invalid(self):
         dummy_json = json.dumps({'spam': 'ham'})
-        dummy_message_template = {'spam': int}
+        dummy_message_template = {'spam': dict}
 
         handler = MockHandler()
 
         self.assertRaises(InvalidInputFormat,
             handler.validate_message, dummy_json, dummy_message_template)
+
+    def test_int_accepted_as_unicode(self):
+        """
+        Due the fact that angular.js convert int in u'123' unicode number, when a
+        field is declared 'int', need to be accepted also if JSON contain an unicode,
+        and is cast as int(u'123') when acquired in the Model.
+        """
+        dummy_int_json = json.dumps({'intvalue': u'123'})
+        dummy_int_template = {'intvalue': int}
+
+        handler = MockHandler()
+        self.assertEqual(json.loads(dummy_int_json), handler.validate_message(dummy_int_json, dummy_int_template))
+
 
     def test_validate_type_valid(self):
 
