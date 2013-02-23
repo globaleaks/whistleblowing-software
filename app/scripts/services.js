@@ -5,9 +5,9 @@ angular.module('resourceServices.authentication', [])
         var self = this;
 
         self.login = function(username, password, role) {
-          return $http.post('/login', {'username': username,
-                                'password': password,
-                                'role': role})
+          return $http.post('/authentication', {'username': username,
+                                                'password': password,
+                                                'role': role})
             .success(function(response){
               self.id = response.session_id;
               self.user_id = response.user_id;
@@ -42,7 +42,7 @@ angular.module('resourceServices.authentication', [])
 
         self.logout = function() {
             sessionStorage.removeItem('session_id');
-            return $http.delete('/login')
+            return $http.delete('/authentication')
               .success(function(response){
                 self.id = null;
                 self.username = null;
