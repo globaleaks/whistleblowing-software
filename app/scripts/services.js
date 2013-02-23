@@ -317,18 +317,19 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       });
 }).
   factory('Admin', function($resource) {
+
     function Admin() {
       var self = this,
         adminContextsResource = $resource('/admin/context/:context_id',
           {context_id: '@context_gus'},
           {update:
-            {method: 'PUT'}
-        }),
+          {method: 'PUT'}
+          }),
         adminReceiversResource = $resource('/admin/receiver/:receiver_id',
           {receiver_id: '@receiver_gus'},
           {update:
-              {method: 'PUT'}
-        }),
+          {method: 'PUT'}
+          }),
         adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}});
 
       adminContextsResource.prototype.toString = function() { return "Admin Context"; };

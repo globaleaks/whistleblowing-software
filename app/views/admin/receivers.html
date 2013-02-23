@@ -47,8 +47,8 @@
         </div>
 
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
-          <div class="span9 configRow" ng-class-even="'odd'">
-            <form name="receiverForm" class="receiverConfig">
+          <form name="receiverForm" class="receiverConfig">
+            <div class="span9 configRow" ng-class-even="'odd'">
 
               <div class="row">
 
@@ -92,16 +92,55 @@
 
               </div>
 
-
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
 
         <div class="row">
           <div class="configRow span9 addReceiver">
+            <h4>Add new receiver</h4>
             <form name="newReceiver">
-              <input type="text" ng-model="new_receiver_name" required>
-              <button class="btn" ng-disabled="newReceiver.$invalid" ng-click="admin.create_receiver(new_receiver_name)">add new Receiver</button>
+
+                <div class="row">
+
+                  <div class="span4">
+
+                    <label>Name</label>
+                    <input type="text" ng-model="new_receiver.name" value="{{new_receiver.name}}" required>
+
+                    <label>Email Address (Username)</label>
+                    <input type="email" ng-model="new_receiver.email" required>
+
+                  </div>
+
+                  <div class="span4">
+
+                    <label>Context associated</label>
+                    <select multiple ui-select2 style="width: 200px" ng-model="new_receiver.contexts">
+                      <option ng-repeat="context in admin.contexts" value="{{context.context_gus}}">{{context.name}}</option>
+                    </select>
+
+                  </div>
+
+                </div>
+
+                <div class="row">
+
+                  <div class="span4">
+
+                    <label>Password</label>
+                    <input type="password" ng-model="new_receiver.password" required>
+
+                  </div>
+
+                  <div class="span4">
+
+                    <button class="btn" ng-disabled="newReceiver.$invalid" ng-click="add_receiver()">add</button>
+
+                  </div>
+
+                </div>
+
             </form>
           </div>
         </div>
