@@ -9,11 +9,11 @@
 
 import os
 
-from cyclone.web import StaticFileHandler
+from cyclone.web import StaticFileHandler, RedirectHandler
 
 from globaleaks import settings
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication
-from globaleaks.rest.base import tipGUS, contextGUS, receiverGUS, submissionGUS, uuid_regexp
+from globaleaks.rest.base import uuid_regexp
 
 tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
 file_uuid = uuid_regexp
@@ -56,7 +56,7 @@ spec = [
     (r'/receivers' , node.ReceiversCollection),
 
     #  U8
-    (r'/login', authentication.AuthenticationHandler),
+    (r'/authentication', authentication.AuthenticationHandler),
 
     ## Tip Handlers ##
 
@@ -105,6 +105,11 @@ spec = [
 #if settings.config.debug.testing:
 spec.append(
     (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(settings.glclient_path, '..', 'test')})
+)
+
+## Utility redirect, utils.HandlerRedirect ##
+spec.append(
+    (r'/login', RedirectHandler, {'url': '/#/login'} )
 )
 
 ## Main Web app ##
