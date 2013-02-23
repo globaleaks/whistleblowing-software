@@ -45,10 +45,19 @@ var GLClient = angular.module('GLClient', ['ui', 'resourceServices',
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
       }).
-      when('/admin/basic', {
-        templateUrl: 'views/admin/basic.html',
+      when('/admin/contexts', {
+        templateUrl: 'views/admin/contexts.html',
         controller: 'AdminCtrl',
       }).
+      when('/admin/receivers', {
+        templateUrl: 'views/admin/receivers.html',
+        controller: 'AdminCtrl',
+      }).
+      when('/admin/mail', {
+        templateUrl: 'views/admin/mail.html',
+        controller: 'AdminCtrl',
+      }).
+
       when('/admin/advanced', {
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',

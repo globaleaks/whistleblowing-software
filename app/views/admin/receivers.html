@@ -1,0 +1,115 @@
+<div ng-include="'views/header.html'"
+     onload="header_title='Receivers Configuration';
+  header_subtitle='Administration Interface'"
+        >
+</div>
+
+
+<div class="container config-page">
+
+  <div class="row">
+    <!-- Begin Nav Bar -->
+    <!--  Note the use of "''", yeah two of them.
+            This is the ng-inlcude directive:
+            http://docs.angularjs.org/api/ng.directive:ngInclude
+      -->
+    <div class="span3 config-sidebar"
+         ng-include="'views/admin/sidebar.html'">
+    </div>
+    <!-- End Nav Bar -->
+    <div class="fade modal" ui-modal ng-model="fieldEditor" id="fieldEditor">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Submission Form Fields</h3>
+      </div>
+
+      <div class="modal-body">
+        <div ng-include="'views/formbuilder.html'"></div>
+      </div>
+      <div class="modal-footer">
+        <a ng-click="closeEditor()" class="btn">Close</a>
+      </div>
+
+    </div>
+
+    <div class="span9">
+
+      <!-- ReceiverList -->
+      <div ng-controller="AdminReceiversCtrl">
+        <div class="row">
+          <div class="span4">
+            <h4>Receivers configured </h4>
+          </div>
+          <div class="span4">
+            <h4>details</h4>
+          </div>
+        </div>
+
+        <div class="row receiverList" ng-repeat="receiver in admin.receivers">
+          <div class="span9 configRow" ng-class-even="'odd'">
+            <form name="receiverForm" class="receiverConfig">
+
+              <div class="row">
+
+                <div class="span4">
+
+                  <label>Name</label>
+                  <input type="text" ng-model="receiver.name" value="{{receiver.name}}" required>
+
+                  <label>Email Address (Username)</label>
+                  <input type="email" ng-model="receiver.notification_fields.mail_address" required>
+
+                </div>
+
+                <div class="span4">
+
+                  <label>Context associated</label>
+                  <select multiple ui-select2 style="width: 200px" ng-model="receiver.contexts">
+                    <option ng-repeat="context in admin.contexts" value="{{context.context_gus}}">{{context.name}}</option>
+                  </select>
+
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="span4">
+
+                  <label bs-popover="'If left empty, the system sets globaleaks'">Password</label>
+                  <!-- remind: this need to be random & mailed to the inactive user -->
+                  <input type="password" ng-model="receiver.password">
+
+                </div>
+
+                <div class="span4">
+
+                  <button class="btn btn-success saveReciever" ng-click="update(receiver)">Save</button>
+                  <button class="btn btn-danger deleteReciever" ng-click="delete(receiver)">Delete</button>
+
+                </div>
+
+              </div>
+
+
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="configRow span9 addReceiver">
+            <form name="newReceiver">
+              <input type="text" ng-model="new_receiver_name" required>
+              <button class="btn" ng-disabled="newReceiver.$invalid" ng-click="admin.create_receiver(new_receiver_name)">add new Receiver</button>
+            </form>
+          </div>
+        </div>
+      </div>
+      <!-- End Receiver List -->
+
+    </div>
+  </div>
+</div>
+
+

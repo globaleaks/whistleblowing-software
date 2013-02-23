@@ -27,7 +27,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
     '3 Final Step'
   ];
 
-  $scope.$watch('current_context', function(){
+  $scope.$watch('submission.current_context', function(){
     if ($scope.current_context) {
       $scope.submission.create();
     }

@@ -35,7 +35,7 @@
       <div ng-switch-when="1 Receiver selection"
         class="receiverCards">
         <p class="lead">Choose the receivers that will be sure to transform your submission into action!</p>
-        <div ng-repeat="receiver in submission.receivers">
+        <div ng-repeat="receiver in submission.current_context_receivers">
 
           <div class="receiverCard span5"
             ng-class="{selected: receivers_selected[receiver.receiver_gus]}"
@@ -47,7 +47,7 @@
                   class="receiverSelection">
             <div class="row">
               <div class="span2">
-                <img src="http://placehold.it/120x120"
+                <img data-src="holder.js/120x120" holder
                     class="img-polaroid">
               </div>
               <div class="span3">

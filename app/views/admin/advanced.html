@@ -58,52 +58,6 @@
 
       </form>
 
-        <!-- Notification -->
-        <div class="row">
-          <div class="span9">
-          <h2>Notification Settings</h2>
-
-          <form name="notificationForm" class="config-form">
-
-            <select id="select" ng-multiple="checked">
-              <option value="email">Email</option>
-            </select>
-
-            <div>
-
-              <label>SMTP server address</label>
-              <input type="text"
-                ng-model="admin.node.notification_settings.server" required>
-
-              <label>SMTP server port</label>
-              <input type="text"
-                ng-model="admin.node.notification_settings.port" required>
-
-              <label>Username</label>
-              <input type="text"
-                ng-model="admin.node.notification_settings.username" required>
-
-              <label>Password</label>
-              <input type="password"
-                ng-model="admin.node.notification_settings.password" required>
-
-              <label>Transport Security</label>
-              <select ng-model="admin.node.notification_settings.security">
-                <option value='tls'>TLS</option>
-                <option value='ssl'>SSL</option>
-              </select>
-
-            </div>
-          </form>
-
-          </div>
-        </div>
-
-        <!-- end Notification -->
-        <button class="btn btn-success"
-          ng-disabled="notificationForm.$invalid || notificationForm.$pristine"
-          ng-click="updateNode(admin.node)">Save</button>
-
     </div>
   </div>
 </div>

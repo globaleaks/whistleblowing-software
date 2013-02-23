@@ -1,0 +1,119 @@
+<div ng-include="'views/header.html'"
+  onload="header_title='Contexts Configuration';
+  header_subtitle='Administration Interface'"
+>
+</div>
+
+
+<div class="container config-page">
+
+  <div class="row">
+    <!-- Begin Nav Bar -->
+    <!--  Note the use of "''", yeah two of them.
+            This is the ng-inlcude directive:
+            http://docs.angularjs.org/api/ng.directive:ngInclude
+      -->
+    <div class="span3 config-sidebar"
+      ng-include="'views/admin/sidebar.html'">
+    </div>
+    <!-- End Nav Bar -->
+    <div class="fade modal" ui-modal ng-model="fieldEditor" id="fieldEditor">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h3>Submission Form Fields</h3>
+      </div>
+
+      <div class="modal-body">
+        <div ng-include="'views/formbuilder.html'"></div>
+      </div>
+      <div class="modal-footer">
+        <a ng-click="closeEditor()" class="btn">Close</a>
+      </div>
+
+    </div>
+
+    <div class="span9">
+
+      <!-- ContextList -->
+      <div ng-controller="AdminContextsCtrl">
+        <div class="row">
+          <div class="span4">
+            <h4>Contexts list</h4>
+          </div>
+          <div class="span4">
+            <h4>details</h4>
+          </div>
+        </div>
+
+        <div class="row" ng-repeat="context in admin.contexts">
+          <div class="span9 configRow" ng-class-even="'odd'">
+            <form name="contextForm">
+
+              <div class="row">
+
+                <div class="span4">
+                  <label>Name</label>
+                  <input type="text"
+                         required
+                         ng-model="context.name"
+                         value="{{context.name}}">
+
+                </div>
+
+                <div class="span4">
+                  <select multiple ui-select2 style="width: 200px"
+                          ng-model="context.receivers">
+                    <option
+                            ng-repeat="receiver in admin.receivers"
+                            value="{{receiver.receiver_gus}}">{{receiver.name}}</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="row">
+
+                <div class="span4">
+                  <label>Description</label>
+                  <textarea
+                          required
+                          ng-model="context.description">{{context.description}}</textarea>
+                </div>
+
+                <div class="span4">
+                  <button class="btn editFields"
+                          ng-click="editFields(context.fields)">Edit fields</button>
+
+                  <button class="btn btn-success saveContext"
+                          ng-disabled="contextForm.$pristine || contextForm.$invalid"
+                          ng-click="update(context)">Save</button>
+
+                  <button class="btn btn-danger deleteContext"
+                          ng-click="delete(context)">Delete</button>
+
+                </div>
+
+              </div>
+
+            </form>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="span4 addContext">
+            <form name="newContext">
+              <input type="text" ng-model="new_context_name" required>
+              <button class="btn" ng-disabled="newContext.$invalid"
+                      ng-click="admin.create_context(new_context_name)">Add new Context</button>
+            </form>
+          </div>
+        </div>
+
+      </div>
+      <!-- End Context List -->
+
+    </div>
+  </div>
+</div>
+
+
