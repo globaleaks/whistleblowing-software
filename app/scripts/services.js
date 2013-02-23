@@ -394,7 +394,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       });
 
     }
-    return new Admin;
+    return Admin;
+
 }).
   config(function($httpProvider) {
     var $rootScope = angular.injector(['ng']).get('$rootScope'),

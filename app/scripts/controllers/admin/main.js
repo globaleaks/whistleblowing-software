@@ -13,7 +13,7 @@ function($rootScope, $scope, $http, $location, Admin) {
   $scope.active = {};
   $scope.active[current_menu] = "active";
 
-  $scope.admin = Admin;
+  $scope.admin = new Admin();
 
   // We need to have a special function for updating the node since we need to add old_password and password attribute
   // if they are not present
