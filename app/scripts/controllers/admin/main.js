@@ -15,13 +15,15 @@ function($rootScope, $scope, $http, $location, Admin) {
 
   $scope.admin = Admin;
 
-  // XXX find a more elegant solution
-  // This is required for the step by step wizard.
-  $scope.steps = [
-    '1 Content settings',
-    '2 Notification and Delivery',
-    '3 Review your settings'
-  ];
+  // We need to have a special function for updating the node since we need to add old_password and password attribute
+  // if they are not present
+  $scope.updateNode = function(node) {
+    if (typeof(node.password) === "undefined")
+      node.password = "";
+    if (typeof(node.old_password) === "undefined")
+      node.old_password = "";
+    $scope.update(node);
+  }
 
   $scope.update = function(model) {
     var success = {};

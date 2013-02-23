@@ -21,9 +21,7 @@
           <div class="span9">
             <h2>General</h2>
             <label>Node name</label>
-            <input type="text"
-              ng-model="admin.node.name"
-              value="{{admin.node.name}}">
+            <input type="text" ng-model="admin.node.name" value="{{admin.node.name}}">
           </div>
         </div>
 
@@ -38,17 +36,15 @@
         <div class="row">
           <div class="span9">
             <label>Email</label>
-            <input type="text"
-              ng-model="admin.node.email">
+            <input type="email" ng-model="admin.node.email">
           </div>
         </div>
 
         <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
         <!-- </div> -->
 
-        <button class="btn btn-success"
-          ng-disabled="contentForm.$invalid || contentForm.$pristine"
-          ng-click="update(admin.node)">Save</button>
+        <button class="btn btn-success" ng-disabled="contentForm.$invalid || contentForm.$pristine"
+                ng-click="updateNode(admin.node)">Save</button>
 
       </form>
     </div>

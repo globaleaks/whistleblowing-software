@@ -386,7 +386,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.node.old_password = '';
       });
 
-    };
+    }
     return new Admin;
 }).
   config(function($httpProvider) {
@@ -401,4 +401,3 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     $httpProvider.defaults.transformRequest.push(globaleaksRequestInterceptor);
 
 });
-
