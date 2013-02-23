@@ -53,10 +53,6 @@ var GLClient = angular.module('GLClient', ['ui', 'resourceServices',
         templateUrl: 'views/admin/advanced.html',
         controller: 'AdminCtrl',
       }).
-      when('/admin/wizard', {
-        templateUrl: 'views/admin/wizard.html',
-        controller: 'AdminCtrl',
-      }).
 
 
       when('/login', {
