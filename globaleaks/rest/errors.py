@@ -211,3 +211,7 @@ class DownloadLimitExceeded(GLException):
     error_code = 33
     status_code = 503 # Servie Unavailable
 
+class InvalidOldPassword(GLException):
+    reason = "The specified old password is not valid"
+    error_code = 34
+    status_code = 406
