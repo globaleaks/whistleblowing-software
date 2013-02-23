@@ -9,12 +9,12 @@ function($scope) {
     receiver.name = $scope.new_receiver.name;
     receiver.password = $scope.new_receiver.password;
     receiver.notification_fields = {'mail_address': $scope.new_receiver.email};
-    receiver.contexts =  $scope.new_receiver.contexts;
 
     // receiver.languages = [];
     // receiver.tags = [];
 
     // Under here go default settings
+    receiver.contexts =  [];
     receiver.description = '';
     receiver.can_delete_submission = true;
     receiver.receiver_level = 1;
