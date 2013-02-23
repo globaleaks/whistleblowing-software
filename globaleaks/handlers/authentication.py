@@ -64,16 +64,16 @@ def login_receiver(store, username, password):
         raise errors.InvalidAuthRequest
 
     if receiver.password != password:
-        receiver.invalid_login += 1
+        receiver.failed_login += 1
         log.debug("Receiver: Failed auth for %s (password %s expected %s) #%d" %\
-                  (username, receiver.password, password, receiver.invalid_login) )
+                  (username, receiver.password, password, receiver.failed_login) )
 
         # this require a forced commit because otherwise the exception would cause a rollback!
         store.commit()
         raise errors.InvalidAuthRequest
     else:
         log.debug("Receiver: Good auth for %s %s" % (username, password))
-        receiver.invalid_login = 0
+        receiver.failed_login = 0
         return unicode(receiver.id)
 
 
