@@ -310,6 +310,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('Receivers', function($resource) {
     return $resource('/receivers');
 }).
+  factory('ReceiverPreferences', function($resource) {
+    return $resource('/receiver/preferences', {}, {'update': {method: 'PUT'}});
+}).
+  factory('ReceiverTips', function($resource) {
+    return $resource('/receiver/tips', {}, {'update': {method: 'PUT'}});
+}).
   factory('AdminNode', function($resource) {
     return $resource('/admin/node', {},
       {update:

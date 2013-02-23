@@ -27,17 +27,13 @@ var GLClient = angular.module('GLClient', ['ui', 'resourceServices',
       }).
 
 
-      when('/receiver/:token', {
-        templateUrl: 'views/receiver/main.html',
-        controller: 'ReceiverCtrl',
-      }).
-      when('/receiver/:token/preferences', {
+      when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
-        controller: 'ReceiverCtrl'
+        controller: 'ReceiverPreferencesCtrl'
       }).
-      when('/receiver/:token/list', {
-        templateUrl: 'views/receiver/list.html',
-        controller: 'ReceiverCtrl'
+      when('/receiver/tips', {
+        templateUrl: 'views/receiver/tips.html',
+        controller: 'ReceiverTipsCtrl'
       }).
 
 

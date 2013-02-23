@@ -1,65 +1,40 @@
-<div class="jumbotron subhead">
-  <div class="container">
-    <h1>Preferences</h1>
-    <p>Receiver Page</p>
-  </div>
+<div ng-include="'views/header.html'"
+     onload="header_title='Your Preferences'; header_subtitle='Receiver Interface'">
 </div>
 
 <div class="container config-page">
   <div class="row">
-    <!-- Begin Nav Bar -->
-    <div class="span3 sidebar-nav config-sidebar">
-      <ul class="nav nav-list config-sidenav">
-        <li><i class="icon-chevron-right"></i><a
-            href="#/receiver/foo/list">List of Tips</a></li>
-        <li class="active"><a href="#/receiver/foo/preferences"><i class="icon-chevron-right"></i>Preferences</a></li>
 
-      </ul>
+    <div class="span3 config-sidebar"
+         ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl">
     </div>
 
-    <form class="config-form">
-    <div class="span5">
-      <label>Name</label>
-      <input type="text" placeholder="GlobaLeaks Node">
+    <div class="span9">
+
+      <div class="row">
+        <form class="config-form">
+          <div class="span4">
+            <label>username</label>
+            <strong>{{preferences.username}}</strong>
+
+            <label>Current Password</label>
+            <input type="password" ng-model="preferences.old_password">
+
+            <label>New Password</label>
+            <input type="password" ng-model="preferences.password">
+
+          </div>
+        </form>
+      </div>
+
+      <div class="row">
+        <div class="span4">
+          <button type="submit" class="btn btn-success" ng-click="save()">Save</button>
+        </div>
+      </div>
+
     </div>
 
-    <div class="span4">
-      <p>Wayfarers tumblr next level american apparel mumblecore authentic
-      master cleanse. Vinyl bushwick labore nesciunt readymade, jean shorts
-      hoodie polaroid food truck. Dolor eiusmod +1 put a bird on it bespoke.<a
-        href="https://github.com/globaleaks/GlobaLeaks/wiki">Learn More</a></p>
-
-    </div>
   </div>
 
-  <div class="row">
-    <div class="offset3 span5">
-      <label>Email</label>
-      <input type="text" placeholder="me@example.com">
-    </div>
-    <div class="span4">
-      <p>Wayfarers tumblr next level american apparel mumblecore authentic
-      master cleanse. Vinyl bushwick labore nesciunt readymade, jean shorts
-      hoodie polaroid food truck. Dolor eiusmod +1 put a bird on it bespoke.<a
-        href="https://github.com/globaleaks/GlobaLeaks/wiki">Learn More</a></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="offset3 span5">
-      <label>PGP Key</label>
-      <textarea placeholder="--- BEGIN PGP BLOCK --"></textarea>
-    </div>
-    <div class="span4">
-      <p>Wayfarers tumblr next level american apparel mumblecore authentic
-      master cleanse. Vinyl bushwick labore nesciunt readymade, jean shorts
-      hoodie polaroid food truck. Dolor eiusmod +1 put a bird on it bespoke.<a
-        href="https://github.com/globaleaks/GlobaLeaks/wiki">Learn More</a></p>
-    </div>
-  </div>
-  <div class="row">
-    <div class="offset3 span5"><button type="submit" class="btn btn-success">Save</button></div>
-  </div>
-
-  </form>
 </div>
