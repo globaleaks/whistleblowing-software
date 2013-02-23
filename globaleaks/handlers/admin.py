@@ -188,7 +188,7 @@ def update_context(store, context_gus, request):
     context = store.find(Context, Context.id == unicode(context_gus)).one()
 
     if not context:
-        raise errors.ContextGusNotFound
+         errors.ContextGusNotFound
 
     receivers = request.get('receivers', [])
 
