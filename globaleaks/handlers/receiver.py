@@ -12,40 +12,36 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.settings import transact
+from globaleaks.handlers.authentication import authenticated
 
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
-    InvalidTipAuthToken, TipGusNotFound, ForbiddenOperation, ContextGusNotFound
+    InvalidTipAuthToken, TipGusNotFound, ForbiddenOperation, ContextGusNotFound,\
+    InvalidOldPassword
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver):
-
     description = {
-        "can_configure_delivery": receiver.can_configure_delivery,
-        "can_configure_notification": receiver.can_configure_notification,
-        "can_delete_submission": receiver.can_delete_submission,
-        "can_postpone_expiration": receiver.can_postpone_expiration,
-        "creation_date" : "XXX",
-        "last_update" : "XXX",
-        "description": receiver.description,
-        "name": receiver.name,
-        "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
-        "id": receiver.id,
-        # TODO REVIEW CLIENT CLONE XXX
         "receiver_gus": receiver.id,
-        # XXX END TODO REMIND XXX
+        "name": receiver.name,
+        "description": receiver.description,
+        "update_date": utils.prettyDateTime(receiver.last_update),
         "receiver_level": receiver.receiver_level,
+        "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
-        "contexts": [],
+        "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
+        "failed_login": receiver.failed_login,
+        "contexts": []
     }
 
     for context in receiver.contexts:
         description['contexts'].append(context.id)
 
-@transact
-def get_receiver_settings(store, username):
+    return description
 
-    receiver = store.find(Receiver, Receiver.username == unicode(username)).one()
+@transact
+def get_receiver_settings(store, user_id):
+    receiver = store.find(Receiver, Receiver.id== unicode(user_id)).one()
 
     if not receiver:
         raise ReceiverGusNotFound
@@ -53,14 +49,22 @@ def get_receiver_settings(store, username):
     return receiver_serialize_receiver(receiver)
 
 @transact
-def update_receiver_settings(store, username, request):
-
-    receiver = store.find(Receiver, Receiver.username == unicode(username)).one()
+def update_receiver_settings(store, user_id, request):
+    receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
 
     if not receiver:
         raise ReceiverGusNotFound
+    
+    new_password = request.get('password')
+    old_password = request.get('old_password')
 
-    # TODO model_update with request
+    if new_password and old_password:
+        if receiver.password == old_password:
+            receiver.password = new_password
+        else:
+            raise InvalidOldPassword
+    elif new_password:
+        raise InvalidOldPassword
 
     return receiver_serialize_receiver(receiver)
 
@@ -76,11 +80,12 @@ class ReceiverInstance(BaseHandler):
         Receiver.password
 
     and permit the overall view of all the Tips related to the receiver
-    GET and PUT /receiver/(auth_secret_token)/management
+    GET and PUT /receiver/preferences
     """
 
     @inlineCallbacks
-    def get(self, receiver_token_auth, *uriargs):
+    @authenticated('receiver')
+    def get(self):
         """
         Parameters: receiver_token_auth
         Response: receiverReceiverDesc
@@ -88,14 +93,15 @@ class ReceiverInstance(BaseHandler):
         """
         # TODO align API and test after - now tip_id is ignored
 
-        receiver_status = yield get_receiver_settings(self.current_user['username'])
+        receiver_status = yield get_receiver_settings(self.current_user['user_id'])
 
         self.set_status(200)
         self.finish(receiver_status)
 
 
     @inlineCallbacks
-    def put(self, receiver_token_auth, *uriargs):
+    @authenticated('receiver')
+    def put(self):
         """
         Parameters: receiver_token_auth
         Request: receiverReceiverDesc
@@ -106,7 +112,7 @@ class ReceiverInstance(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 
-        receiver_status = yield update_receiver_settings(self.current_user['username'], request)
+        receiver_status = yield update_receiver_settings(self.current_user['user_id'], request)
 
         self.set_status(200)
         self.finish(receiver_status)
@@ -124,12 +130,12 @@ def serialize_tip_summary(rtip):
 
 
 @transact
-def get_receiver_tip_list(store, username):
+def get_receiver_tip_list(store, user_id):
 
-    actor = store.find(Receiver, Receiver.username == unicode(username)).one()
+    receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
 
-    tiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == actor.id)
-    
+    tiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver.id)
+
     tip_summary_list = []
 
     for tip in tiplist:
@@ -146,14 +152,15 @@ class TipsCollection(BaseHandler):
     """
 
     @inlineCallbacks
-    def get(self, tip_auth_token, *uriargs):
+    @authenticated('receiver')
+    def get(self):
         """
         Parameters: tip_auth_token
         Response: receiverTipList
         Errors: InvalidTipAuthToken
         """
-
-        answer = yield get_receiver_tip_list(self.current_user['username'])
+        
+        answer = yield get_receiver_tip_list(self.current_user['user_id'])
 
         self.set_status(200)
         self.finish(answer)
