@@ -119,7 +119,6 @@ if platformType == "win32":
     GLBaseRunner = GLBaseRunnerWindows
 
 else:
-
     from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
     ServerOptions = ServerOptions
 
