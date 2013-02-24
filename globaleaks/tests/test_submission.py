@@ -27,7 +27,7 @@ class TestSubmission(helpers.TestGL):
 
     # --------------------------------------------------------- #
     @inlineCallbacks
-    def test_1_create_submission(self):
+    def test_create_submission(self):
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = True
         del submission_desc['submission_gus']
@@ -46,7 +46,7 @@ class TestSubmission(helpers.TestGL):
                 relationship, associated_submission_id)
 
     @inlineCallbacks
-    def test_2_create_internalfiles(self):
+    def test_create_internalfiles(self):
         yield self.create_dummy_files(self.dummySubmission['submission_gus'])
         # fill self.file_list
         for file_desc in self.file_list:
@@ -54,7 +54,7 @@ class TestSubmission(helpers.TestGL):
             self.assertFalse(keydiff)
 
     @inlineCallbacks
-    def test_3_access_from_receipt(self):
+    def test_access_from_receipt(self):
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = True
         del submission_desc['submission_gus']
@@ -75,7 +75,7 @@ class TestSubmission(helpers.TestGL):
 
 
     @inlineCallbacks
-    def test_4_submission_with_files(self):
+    def test_submission_with_files(self):
         justemptrydb = yield delivery_sched.tip_creation()
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = False
@@ -131,7 +131,7 @@ class TestSubmission(helpers.TestGL):
         return new_r
 
     @inlineCallbacks
-    def test_5_submission_with_receiver_selection(self):
+    def test_submission_with_receiver_selection(self):
 
         yield create_receiver(self.get_new_receiver_desc("second"))
         yield create_receiver(self.get_new_receiver_desc("third"))
@@ -178,7 +178,7 @@ class TestSubmission(helpers.TestGL):
 
 
     @inlineCallbacks
-    def test_6_update_submission(self):
+    def test_update_submission(self):
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = False
         submission_desc['context_gus'] = self.dummyContext['context_gus']
@@ -202,7 +202,7 @@ class TestSubmission(helpers.TestGL):
 
 
     @inlineCallbacks
-    def test_7_unable_to_access_finalized(self):
+    def test_unable_to_access_finalized(self):
         submission_desc = self.dummySubmission
         submission_desc['finalize'] = True
         submission_desc['context_gus'] = self.dummyContext['context_gus']
@@ -231,7 +231,7 @@ class TestSubmission(helpers.TestGL):
         node.notification_settings["ssl"] = False
 
     @inlineCallbacks
-    def test_8_sendmail_wrongconf(self):
+    def test_sendmail_wrongconf(self):
         # Currently disabled, checks password few line over here
         self.dummyReceiver['notification_fields']['mail_address'] = 'vecna@globaleaks.org'
         self.dummyReceiver['receiver_level'] = 1
