@@ -188,11 +188,4 @@ class TestHandler(TestGL):
         return self._handler(application, request)
 
 
-#         store = settings.get_store()
-#         model = model()
-#         for key, value in stuff.iteritems()
-#             setattr(model, key, value)
-#         store.add(model)
-
-
 
