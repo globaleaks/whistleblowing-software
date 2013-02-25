@@ -76,7 +76,7 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
     for prevrec in submission.receivers:
         submission.receivers.remove(prevrec)
 
-    # whitout contexts policies, import WB requests
+    # without contexts policies, import WB requests and checks consistency
     for receiver_id in receiver_id_list:
         try:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
@@ -87,6 +87,10 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
         if not receiver:
             log.err("Receiver requested do not exist: %s", receiver_id)
             raise ReceiverGusNotFound
+
+        if not context in receiver.contexts:
+            raise InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
+
         submission.receivers.add(receiver)
 
     log.debug("Added %d Receivers as requested (%s)" %\
