@@ -93,10 +93,15 @@ def update_node(store, request):
         del request['old_password']
         del request['password']
 
-    node.update(request)
+    if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
+        log.err("Invalid public page regexp in [%s]" % request['public_site'])
+        raise errors.InvalidInputFormat("Invalid public site")
 
-    # Notification fields need to be processed in explicit way!
-    # TODO - may need an API change and client update :(
+    if not utils.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
+        log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
+        raise errors.InvalidInputFormat("Invalid hidden service")
+
+    node.update(request)
 
     node_desc = admin_serialize_node(node)
     return node_desc
