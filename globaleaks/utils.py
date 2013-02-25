@@ -1,6 +1,5 @@
 from datetime import datetime, timedelta
 import logging
-
 import re
 import traceback
 
@@ -11,7 +10,6 @@ from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.mail.smtp import ESMTPSenderFactory
 from twisted.internet.ssl import ClientContextFactory
-
 
 from twisted.python import log as twlog
 from Crypto.Random import random
@@ -114,6 +112,8 @@ def prettyDateTime(when):
     else:
         return when.ctime()
 
+## Mail utilities ##
+
 def sendmail(authenticationUsername, authenticationSecret, fromAddress, toAddress, messageFile, smtpHost, smtpPort=25):
     """
     Sends an email using SSLv3 over SMTP
@@ -143,7 +143,6 @@ def sendmail(authenticationUsername, authenticationSecret, fromAddress, toAddres
     reactor.connectTCP(smtpHost, smtpPort, senderFactory)
 
     return resultDeferred
-
 
 
 def MailException(etype, value, tb):
@@ -192,3 +191,24 @@ def MailException(etype, value, tb):
              message,
              "box549.bluehost.com",
              25)
+
+def acquire_mail_address(request):
+    """
+    @param request: expect a receiver request (notification_fields key, with
+        mail_address key inside)
+    @return: False if is invalid or missing the email address, and the
+        lowercase mail address if is valid
+    """
+
+    if 'notification_fields' not in request:
+        return False
+
+    if 'mail_address' not in request['notification_fields']:
+        return False
+
+    mail_string = str(request['notification_fields']['mail_address']).lower()
+    if not re.match("^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$", mail_string):
+        log.debug("Invalid email address format [%s]" % mail_string)
+        return False
+
+    return unicode(mail_string)

@@ -15,9 +15,7 @@ from globaleaks.settings import transact
 from globaleaks.handlers.authentication import authenticated
 
 from globaleaks.rest import requests
-from globaleaks.rest.errors import ReceiverGusNotFound, InvalidInputFormat,\
-    InvalidTipAuthToken, TipGusNotFound, ForbiddenOperation, ContextGusNotFound,\
-    InvalidOldPassword
+from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified, InvalidOldPassword
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver):
@@ -29,7 +27,7 @@ def receiver_serialize_receiver(receiver):
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
-        "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
+        "notification_fields": dict(receiver.notification_fields),
         "failed_login": receiver.failed_login,
         "contexts": []
     }
@@ -65,6 +63,12 @@ def update_receiver_settings(store, user_id, request):
             raise InvalidOldPassword
     elif new_password:
         raise InvalidOldPassword
+
+    mail_address = utils.acquire_mail_address(request)
+    if not mail_address:
+        raise NoEmailSpecified
+
+    receiver.notification_fields = request['notification_fields']
 
     return receiver_serialize_receiver(receiver)
 

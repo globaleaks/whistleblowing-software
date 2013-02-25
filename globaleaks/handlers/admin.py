@@ -191,7 +191,7 @@ def update_context(store, context_gus, request):
     context = store.find(Context, Context.id == unicode(context_gus)).one()
 
     if not context:
-         errors.ContextGusNotFound
+         raise errors.ContextGusNotFound
 
     receivers = request.get('receivers', [])
 
@@ -242,6 +242,7 @@ def get_receiver_list(store):
 
     return receiver_list
 
+
 @transact
 def create_receiver(store, request):
     """
@@ -249,18 +250,18 @@ def create_receiver(store, request):
     Returns:
         (dict) the configured receiver
     """
-    contexts = request.get('contexts', [])
 
-    if 'mail_address' not in request['notification_fields']:
+    mail_address = utils.acquire_mail_address(request)
+    if not mail_address:
         raise errors.NoEmailSpecified
 
     receiver = Receiver(request)
 
-    receiver.username = request['notification_fields']['mail_address']
+    receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.failed_login = 0
 
-    # XXX generate randomdly and then mail to the user, mark receiver
+    # XXX generate randomly and then mail to the user, mark receiver
     # as 'inactive' until password is changed by activation link
     if not request['password'] or len(request['password']) == 0:
         receiver.password = u"globaleaks"
@@ -269,6 +270,7 @@ def create_receiver(store, request):
 
     store.add(receiver)
 
+    contexts = request.get('contexts', [])
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
         if not context:
@@ -293,6 +295,7 @@ def get_receiver(store, id):
 
     return admin_serialize_receiver(receiver)
 
+
 @transact
 def update_receiver(store, id, request):
     """
@@ -305,10 +308,11 @@ def update_receiver(store, id, request):
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    if 'mail_address' not in request['notification_fields']:
+    mail_address = utils.acquire_mail_address(request)
+    if not mail_address:
         raise errors.NoEmailSpecified
 
-    receiver.username = request['notification_fields']['mail_address']
+    receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.password = request['password']
 
