@@ -55,10 +55,12 @@
                 <div class="span4">
 
                   <label>Name</label>
-                  <input type="text" ng-model="receiver.name" value="{{receiver.name}}" required>
+                  <input type="text" name="name" ng-maxlength="40" ng-model="receiver.name" required>
+                  <p class="text-error" ng-show="receiverForm.name.$error.maxlength">Receiver name too long</p>
 
                   <label>Email Address (Username)</label>
-                  <input type="email" ng-model="receiver.notification_fields.mail_address" required>
+                  <input type="email" name="email" ng-model="receiver.notification_fields.mail_address" required>
+                  <p class="text-error" ng-show="receiverForm.email.$error.email">Invalid email address</p>
 
                 </div>
 
@@ -85,8 +87,12 @@
 
                 <div class="span4">
 
-                  <button class="btn btn-success saveReceiver" ng-click="update(receiver)">Save</button>
-                  <button class="btn btn-danger deleteReceiver" ng-click="delete(receiver)">Delete</button>
+                  <button class="btn btn-success saveReceiver"
+                          ng-disabled="receiverForm.$invalid"
+                          ng-click="update(receiver)">Save</button>
+
+                  <button class="btn btn-danger deleteReceiver"
+                          ng-click="delete(receiver)">Delete</button>
 
                 </div>
 
@@ -108,10 +114,12 @@
                   <div class="span4">
 
                     <label>Name</label>
-                    <input type="text" ng-model="new_receiver.name" value="{{new_receiver.name}}" required>
+                    <input type="text" name="name" ng-maxlength="40" ng-model="new_receiver.name" required>
+                    <p class="text-error" ng-show="newReceiver.name.$error.maxlength">Receiver name too long</p>
 
                     <label>Email Address (Username)</label>
-                    <input type="email" ng-model="new_receiver.email" required>
+                    <input type="email" name="email" ng-model="new_receiver.email" required>
+                    <p class="text-error" ng-show="newReceiver.email.$error.email">Invalid email address</p>
 
                   </div>
 
