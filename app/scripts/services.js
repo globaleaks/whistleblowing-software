@@ -2,7 +2,8 @@ angular.module('resourceServices.authentication', [])
   .factory('Authentication', ['$http', '$location', '$routeParams', '$rootScope',
     function($http, $location, $routeParams, $rootScope){
       function Session(){
-        var self = this;
+        var self = this,
+          auth_landing_page;
 
         self.login = function(username, password, role) {
           return $http.post('/authentication', {'username': username,
@@ -18,24 +19,25 @@ angular.module('resourceServices.authentication', [])
               $rootScope.auth_role = role;
 
               sessionStorage['session_id'] = response.session_id;
-              sessionStorage['user_id'] = self.user_id;
               sessionStorage['role'] = self.role;
 
-              if (role != 'wb') {
-                $location.path($routeParams['src']);
-              }
               if (role == 'admin') {
-                $rootScope.auth_landing_page = "/#/admin/basic/";
+                auth_landing_page = "/admin/content";
               }
               if (role == 'receiver') {
-                $rootScope.auth_landing_page = "/#/receiver/" + self.user_id;
+                auth_landing_page = "/receiver/tips";
               }
               if (role == 'wb') {
-                $rootScope.auth_landing_page = "/#/status/" + self.user_id;
+                auth_landing_page = "/status/" + self.user_id;
               }
 
-              self.auth_landing_page = $rootScope.auth_landing_page;
-              sessionStorage['auth_landing_page'] = self.auth_landing_page;
+              sessionStorage['auth_landing_page'] = "/#" + auth_landing_page;
+
+              if ($routeParams['src']) {
+                $location.path($routeParams['src']);
+              } else {
+                $location.path(auth_landing_page);
+              }
 
           });
         };
