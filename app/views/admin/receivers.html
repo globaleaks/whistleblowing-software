@@ -62,23 +62,6 @@
                   <input type="email" name="email" ng-model="receiver.notification_fields.mail_address" required>
                   <p class="text-error" ng-show="receiverForm.email.$error.email">Invalid email address</p>
 
-                </div>
-
-                <div class="span4">
-
-                  <label>Context associated</label>
-                  <select multiple ui-select2 style="width: 200px" ng-model="receiver.contexts">
-                    <option ng-repeat="context in admin.contexts" value="{{context.context_gus}}">{{context.name}}</option>
-                  </select>
-
-                </div>
-
-              </div>
-
-              <div class="row">
-
-                <div class="span4">
-
                   <label bs-popover="'If left empty, the system sets globaleaks'">Password</label>
                   <!-- remind: this need to be random & mailed to the inactive user -->
                   <input type="password" ng-model="receiver.password">
@@ -87,6 +70,21 @@
 
                 <div class="span4">
 
+                  <label>Context associated</label>
+                  <select multiple ui-select2 style="width: 200px" ng-model="receiver.contexts">
+                    <option ng-repeat="context in admin.contexts" value="{{context.context_gus}}">{{context.name}}</option>
+                  </select>
+                  <label>Description</label>
+                  <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
+
+
+                </div>
+
+              </div>
+
+              <div class="row">
+
+                <div class="offset4 span4">
                   <button class="btn btn-success saveReceiver"
                           ng-disabled="receiverForm.$invalid"
                           ng-click="update(receiver)">Save</button>
