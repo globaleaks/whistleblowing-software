@@ -32,6 +32,7 @@ glclient_path = os.path.join(install_path, 'GLClient', 'app')
 gldata_path = os.path.join(root_path, '_gldata')
 db_file = 'sqlite:' + os.path.join(gldata_path, 'glbackend.db')
 create_db_file = os.path.join(root_path, 'globaleaks', 'db', 'sqlite.sql')
+static_path = os.path.join(root_path, '_static')
 
 store_name = 'main_store'
 # threads sizes
@@ -48,12 +49,14 @@ notification_plugins = [
         'MailNotification',
 ]
 
-
 if not os.path.exists(gldata_path):
-        os.mkdir(gldata_path)
+    os.mkdir(gldata_path)
+
+if not os.path.exists(static_path):
+    os.mkdir(static_path)
 
 assert all(os.path.exists(path) for path in
-           (root_path, install_path, glclient_path, gldata_path))
+           (root_path, install_path, glclient_path, gldata_path, static_path))
 
 
 

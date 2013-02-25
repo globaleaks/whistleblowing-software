@@ -107,9 +107,14 @@ spec.append(
     (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(settings.glclient_path, '..', 'test')})
 )
 
-## Utility redirect, utils.HandlerRedirect ##
+## Utility redirect,
 spec.append(
     (r'/login', RedirectHandler, {'url': '/#/login'} )
+)
+
+## Static files services (would remain also if Client is not served by Backend)
+spec.append(
+    (r'/static/(.*)', StaticFileHandler, {'path': settings.static_path })
 )
 
 ## Main Web app ##
