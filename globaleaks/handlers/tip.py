@@ -119,8 +119,7 @@ def get_internaltip_wb(store, tip_id):
     tip_desc['id'] = unicode(wbtip.id)
     # tip_desc['last_access'] TODO
 
-    # Return a couple of value because WB needs them separately
-    return tip_desc, unicode(wbtip.id)
+    return tip_desc
 
 @transact
 def get_internaltip_receiver(store, user_id, tip_id):
@@ -140,24 +139,48 @@ def increment_receiver_access_count(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
     rtip.access_counter += 1
-    if rtip.access_counter >= rtip.internaltip.access_limit:
+    if rtip.access_counter > rtip.internaltip.access_limit:
         raise AccessLimitExceeded
 
     log.debug(
         "Tip %s access garanted to user %s access_counter %d on limit %d" %
        (rtip.id, rtip.receiver.name, rtip.access_counter, rtip.internaltip.access_limit)
     )
+    return rtip.access_counter
 
 
 @transact
 def delete_receiver_tip(store, user_id, tip_id):
+    """
+    This operation is permitted to every receiver, and trigger
+    a System comment on the Tip history.
+    """
     rtip = strong_receiver_validate(store, user_id, tip_id)
-    store.delete(rtip)
+
+    comment = Comment()
+    comment.content = "%s personally remove from this Tip" % rtip.receiver.name
+    comment.internaltip_id = rtip.internaltip.id
+    comment.author = u'System' # The printed line
+    comment.type = Comment._types[2] # System
+    store.add(comment)
+    rtip.internaltip.comments.add(comment)
+
+    store.remove(rtip)
+
+
 
 @transact
 def delete_internal_tip(store, user_id, tip_id):
+    """
+    Delete internalTip is possible only to Receiver with
+    the dedicated properties. The ON CASCADE directive in SQL
+    causes the removal of Comments, InternalFile, R|W tips
+    """
     rtip = strong_receiver_validate(store, user_id, tip_id)
-    store.delete(rtip.internaltip)
+    if rtip.receiver.can_delete_submission:
+        store.remove(rtip.internaltip)
+    else:
+        raise ForbiddenOperation
 
 
 @transact
@@ -175,19 +198,22 @@ def manage_pertinence(store, user_id, tip_id, vote):
     # 1 = negative vote
     # 2 = positive vote
 
-    if not rtip.expressed_pertinence:
+    if rtip.expressed_pertinence:
         raise TipPertinenceExpressed
 
     rtip.expressed_pertinence = 2 if vote else 1
 
     vote_sum = 0
     for rtip in rtip.internaltip.receivertips:
+        if not rtip.expressed_pertinence:
+            continue
         if rtip.expressed_pertinence == 1:
             vote_sum -= 1
         else:
             vote_sum += 1
 
     rtip.internaltip.pertinence_counter = vote_sum
+    return vote_sum
 
 
 class TipInstance(BaseHandler):
@@ -218,7 +244,7 @@ class TipInstance(BaseHandler):
         the format, help in addressing which kind of Tip need to be handled.
         """
         if self.is_whistleblower:
-            (answer, internaltip_id) = yield get_internaltip_wb(self.current_user['user_id'])
+            answer = yield get_internaltip_wb(self.current_user['user_id'])
             answer['files'] = yield get_files_wb(self.current_user['user_id'])
         else:
             yield increment_receiver_access_count(self.current_user['user_id'], tip_id)

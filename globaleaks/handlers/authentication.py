@@ -33,15 +33,20 @@ def authenticated(*roles):
         return call_method
     return wrapper
 
+
 @transact
 def login_wb(store, receipt):
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.receipt == unicode(receipt)).one()
+    try:
+        wb_tip = store.find(WhistleblowerTip,
+                            WhistleblowerTip.receipt == unicode(receipt)).one()
+    except NotOneError, e:
+        # This is one of the fatal error that never need to happen
+        log.err("Expected unique fields (receipt) is not unique with %s" % receipt)
+        raise errors.InvalidAuthRequest
 
     if not wb_tip:
         log.debug("Whistleblower: Fail auth (%s)" % receipt)
         raise errors.InvalidAuthRequest
-
 
     log.debug("Whistleblower: OK auth using: %s" % receipt )
     return unicode(wb_tip.id)
@@ -62,10 +67,12 @@ def login_receiver(store, username, password):
 
     if not receiver:
         log.debug("Receiver: Fail auth, userame %s do not exists" % username)
+        # XXX Security paranoia: insert random delay
         raise errors.InvalidAuthRequest
 
     if receiver.password != password:
         receiver.failed_login += 1
+        # XXX Security paranoia: insert random delay
         log.debug("Receiver: Failed auth for %s (expected %s receivedPassword %s) #%d" %\
                   (username, receiver.password, password, receiver.failed_login) )
 
