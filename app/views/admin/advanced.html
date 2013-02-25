@@ -26,12 +26,16 @@
           <div class="span9">
             <h2>Node Settings</h2>
             <label>Hidden Service</label>
-            <input type="text"
-              ng-model="admin.node.hidden_service" required>
+            <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
+                   ng-pattern="/^[0-9a-z]{16}\.onion$/" required>
+            <p class="text-error"
+               ng-show="nodeConfigForm.hidden_service.$error.pattern">Invalid format for hidden service (should be "thirteenchars123.onion")</p>
 
             <label>Public Site</label>
-            <input type="text"
-              ng-model="admin.node.public_site" required>
+            <input type="url" name="public_site"
+                   ng-model="admin.node.public_site" required>
+            <p class="text-error"
+               ng-show="nodeConfigForm.public_site.$error.url">Invalid format for public site (should be "https://example.com")</p>
 
             <div class="row">
               <div class="span9">
