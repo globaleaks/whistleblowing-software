@@ -168,18 +168,6 @@ class BaseHandler(RequestHandler):
         if not session_id:
             return None
 
-        # Special debug only lines, useful to unitTest handlers:
-        import time
-        from cyclone.util import ObjectDict as OD
-        if session_id == 'test_admin':
-            fake_session = OD( timestamp=time.time(),
-                id='test_admin',
-                role='admin',
-                user_id='admin')
-            settings.sessions['test_admin'] = fake_session
-            return fake_session
-        # End of Special unitTest only
-
         try:
             session = settings.sessions[session_id]
         except KeyError:
