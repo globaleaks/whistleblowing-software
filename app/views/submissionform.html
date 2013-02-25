@@ -1,4 +1,4 @@
-<form name="submissionFormFields" ng-controller="FormBuilderCtrl">
+<form name="submissionForm" novalidate>
   <fieldset>
     <legend>Details</legend>
     <div ng-repeat="field in submission.current_context.fields">
@@ -7,8 +7,6 @@
           class="input {{field.type}}"
           ng-class="field.required && 'required'">
           <label>
-            <!-- button class="edit" ng-click="editField(field)">Edit</button>
-            <button class="delete" ng-click="splice(field, fields)">Remove</button-->
             {{field.label}}
             <span class="order">{{field.order}}</span>
             <a href="" data-content="{{field.hint}}"
@@ -66,3 +64,4 @@
     </div>
   </fieldset>
 </form>
+

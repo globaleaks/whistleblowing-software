@@ -21,7 +21,8 @@ angular.module('submissionUI', []).
         // This tells to create a two way data binding with what is passed
         // inside of the element attributes (ex. file-upload="someModel")
         submission_gus: '=href',
-        uploadedFiles: '=src'
+        uploadedFiles: '=',
+        uploadingFiles: '='
       },
 
       link: function(scope, element, attrs) {
@@ -37,13 +38,15 @@ angular.module('submissionUI', []).
               'last_modified_date': data.files[file].lastModifiedDate,
               'file_id': file_id
             };
+
+            scope.uploadingFiles.push(file_info);
+            scope.$apply();
           }
           data.submit();
         };
 
         function progressMeter(e, data) {
           var progress_percent = parseInt(data.loaded / data.total * 100, 10);
-          console.log(e);
           $(element[0]).find('.progress .bar').css('width', progress_percent + '%');
         };
 
@@ -53,8 +56,8 @@ angular.module('submissionUI', []).
             item_id;
 
           scope.uploadedFiles.push(file_info);
-          scope.$digest();
-
+          scope.uploadingFiles.pop(file_info);
+          scope.$apply();
         };
 
         $(element[0]).fileupload({progress: progressMeter,
@@ -109,7 +112,6 @@ angular.module('submissionUI', []).
         scope.$watch(attrs.bsPopover, function(value){
           if (attrs.bsPopover) {
             element.popover({'title': attrs.bsPopover});
-            scope.$destroy();
           }
         });
       };

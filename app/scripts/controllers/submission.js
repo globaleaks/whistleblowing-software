@@ -19,8 +19,10 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
   };
 
   $scope.uploadedFiles = [];
+  $scope.uploadingFiles = [];
+  $scope.uploading = false;
 
-  $scope.accept_disclaimer = false;
+  $scope.disclaimer = {accepted: false};
   $scope.steps = [
     '1 Receiver selection',
     '2 Fill out your submission',
@@ -32,5 +34,14 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
       $scope.submission.create();
     }
   });
+
+  $scope.$watch('uploadingFiles', function(){
+
+    if ($scope.uploadingFiles.length === 0)
+      $scope.uploading = false;
+    else
+      $scope.uploading = true;
+
+  }, true);
 
 }]);
