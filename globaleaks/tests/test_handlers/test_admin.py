@@ -85,6 +85,11 @@ class TestReceiversCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_post(self):
         self.dummyReceiver['name'] = 'beppe'
+
+        # this is required because helpers is creating a new receiver
+        new_email = "guy@globaleaks.xxx"
+        self.dummyReceiver['notification_fields']['mail_address'] = new_email
+
         handler = self.request(self.dummyReceiver)
         handler.request.headers['X-Session'] = 'test_admin'
         yield handler.post()
@@ -92,7 +97,8 @@ class TestReceiversCollection(helpers.TestHandler):
         # We delete this because it's randomly generated
         del self.responses[0]['receiver_gus']
         del self.dummyReceiver['receiver_gus']
-        self.assertEqual(self.responses[0], self.dummyReceiver)
+
+        self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
 
     @inlineCallbacks
     def test_post_invalid_mail_addr(self):
@@ -109,6 +115,23 @@ class TestReceiversCollection(helpers.TestHandler):
         except Exception, e:
             self.assertTrue(False)
             raise e
+
+    @inlineCallbacks
+    def test_post_duplicated_username(self):
+        self.dummyReceiver['name'] = 'beppe'
+        self.dummyReceiver['notification_fields']['mail_address'] = "vecna@hellais.naif"
+        handler = self.request(self.dummyReceiver)
+        handler.request.headers['X-Session'] = 'test_admin'
+
+        try:
+            yield handler.post()
+            yield handler.post() # duplication here!
+            self.assertTrue(False)
+        except errors.InvalidInputFormat:
+            self.assertTrue(True)
+        except Exception, e:
+            self.assertTrue(False)
+
 
 class TestReceiverInstance(helpers.TestHandler):
     _handler = admin.ReceiverInstance

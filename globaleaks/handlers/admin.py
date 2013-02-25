@@ -4,6 +4,7 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
+from storm.exceptions import NotOneError
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
@@ -12,6 +13,7 @@ from globaleaks.models import now, Receiver, Context, Node
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils
+from globaleaks.utils import log
 
 
 def admin_serialize_node(node):
@@ -254,6 +256,17 @@ def create_receiver(store, request):
     mail_address = utils.acquire_mail_address(request)
     if not mail_address:
         raise errors.NoEmailSpecified
+
+    # Pretend that username is unique:
+    try:
+        clone = store.find(Receiver, Receiver.username == mail_address).one()
+    except NotOneError, e:
+        log.err("Fatal: more than one receiver present with the requested username: %s" % mail_address)
+        raise errors.InvalidInputFormat("already duplicated receiver username [%s]" % mail_address)
+
+    if clone:
+        log.err("Fatal: already present receiver with the requested username: %s" % mail_address)
+        raise errors.InvalidInputFormat("already present receiver username [%s]" % mail_address)
 
     receiver = Receiver(request)
 
