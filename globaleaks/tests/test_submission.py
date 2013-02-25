@@ -65,11 +65,10 @@ class TestSubmission(helpers.TestGL):
         wb_access_id = yield authentication.login_wb(receipt)
 
         # remind: return a tuple (serzialized_itip, wb_itip)
-        (wb_tip, wb_tip_id) = yield tip.get_internaltip_wb(wb_access_id)
+        wb_tip = yield tip.get_internaltip_wb(wb_access_id)
 
         # In the WB/Receiver Tip interface, wb_fields are called fields.
         # This can be uniformed when API would be cleaned of the _gus
-        self.assertTrue(wb_tip_id == wb_access_id)
         self.assertTrue(wb_tip.has_key('fields'))
         self.assertTrue(wb_tip['fields'].has_key('Sun'))
 
@@ -197,7 +196,7 @@ class TestSubmission(helpers.TestGL):
         wb_access_id = yield authentication.login_wb(receipt)
 
         # remind: return a tuple (serzialized_itip,wb_tip_id)
-        (wb_tip, wb_tip_id) = yield tip.get_internaltip_wb(wb_access_id)
+        wb_tip = yield tip.get_internaltip_wb(wb_access_id)
         self.assertTrue(wb_tip['fields']['dict2'] == status['wb_fields']['dict2'])
 
 
