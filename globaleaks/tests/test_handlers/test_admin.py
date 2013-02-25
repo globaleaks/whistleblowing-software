@@ -3,6 +3,7 @@ import unittest
 from cyclone.util import ObjectDict as OD
 
 from twisted.internet.defer import inlineCallbacks
+from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
 
@@ -18,13 +19,45 @@ class TestNodeInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_put_update_node(self):
+        self.dummyNode['hidden_service'] = 'abcdef1234567890.onion'
+        self.dummyNode['public_site'] = 'http://blogleaks.blogspot.com'
+
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
+
         del self.dummyNode['password']
         del self.dummyNode['old_password']
         del self.responses[0]['notification_settings']
         del self.dummyNode['notification_settings']
+
         self.assertEqual(self.responses[0], self.dummyNode)
+
+
+    @inlineCallbacks
+    def test_put_update_node_invalid_hidden(self):
+        self.dummyNode['hidden_service'] = 'www.scroogle.com'
+        self.dummyNode['public_site'] = 'http://blogleaks.blogspot.com'
+
+        handler = self.request(self.dummyNode, role='admin')
+        try:
+            yield handler.put()
+            self.assertTrue(False)
+        except InvalidInputFormat:
+            self.assertTrue(True)
+
+    @inlineCallbacks
+    def test_put_update_node_invalid_public(self):
+        self.dummyNode['hidden_service'] = 'acdef1234567890.onion'
+        self.dummyNode['public_site'] = 'blogleaks.blogspot.com'
+
+        handler = self.request(self.dummyNode, role='admin')
+        try:
+            yield handler.put()
+            self.assertTrue(False)
+        except InvalidInputFormat:
+            self.assertTrue(True)
+
+
 
 class TestContextsCollection(helpers.TestHandler):
     _handler = admin.ContextsCollection
