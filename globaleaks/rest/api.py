@@ -70,7 +70,7 @@ spec = [
     (r'/tip/' + uuid_regexp + r'/receivers', tip.TipReceiversCollection),
 
     #  T4 = only the whistlebower can access to this interface, then the regexp match properly
-    (r'/tip/' + uuid_regexp + '/upload', files.FileInstance),
+    (r'/tip/' + uuid_regexp + r'/upload', files.FileAdd),
 
     #  T5 = only Receiver, download the files
     (r'/tip/' + uuid_regexp + '/download/' + file_uuid, files.Download),
