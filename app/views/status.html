@@ -29,6 +29,12 @@
           </li>
         </ul>
       </div>
+
+      <div ng-show="whistleblower_tip_id">
+        <div  file-upload action="/tip/{{whistleblower_tip_id}}/upload"
+             uploaded-files="uploadedFiles" uploading-files="uploadingFiles"></div>
+      </div>
+
     </div>
 
   </div>

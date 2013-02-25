@@ -13,4 +13,10 @@ GLClient.controller('StatusCtrl',
       $scope.newCommentContent = '';
     };
 
+    if (sessionStorage['role'] === 'wb') {
+      $scope.whistleblower_tip_id = sessionStorage['tip_id'];
+      $scope.uploadedFiles = [];
+      $scope.uploadingFiles = [];
+    };
+
 }]);

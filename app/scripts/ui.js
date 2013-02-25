@@ -18,9 +18,10 @@ angular.module('submissionUI', []).
       templateUrl: 'views/widgets/fileupload.html',
 
       scope: {
+        // Pass the action from the action attribute
+        action: '@',
         // This tells to create a two way data binding with what is passed
         // inside of the element attributes (ex. file-upload="someModel")
-        submission_gus: '=href',
         uploadedFiles: '=',
         uploadingFiles: '='
       },

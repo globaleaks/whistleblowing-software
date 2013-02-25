@@ -29,6 +29,7 @@ angular.module('resourceServices.authentication', [])
               }
               if (role == 'wb') {
                 auth_landing_page = "/status/" + self.user_id;
+                sessionStorage['tip_id'] = self.user_id;
               }
 
               sessionStorage['auth_landing_page'] = "/#" + auth_landing_page;
@@ -54,6 +55,7 @@ angular.module('resourceServices.authentication', [])
                 sessionStorage.removeItem('session_id');
                 sessionStorage.removeItem('role');
                 sessionStorage.removeItem('auth_landing_page');
+                sessionStorage.removeItem('tip_id');
 
                 if (role === 'wb')
                   $location.path('/');
