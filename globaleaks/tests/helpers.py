@@ -1,5 +1,6 @@
 import os
 import json
+import time
 
 from storm.twisted.testing import FakeThreadPool
 from twisted.trial import unittest
@@ -7,6 +8,7 @@ from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
 from cyclone import httpserver
 from cyclone.web import Application
+from cyclone.util import ObjectDict as OD
 
 from globaleaks import settings
 from globaleaks.handlers.admin import create_context, create_receiver
@@ -19,6 +21,7 @@ settings.scheduler_threadpool = FakeThreadPool()
 settings.db_file = 'sqlite:///' + _TEST_DB
 settings.store = 'test_store'
 settings.notification_plugins = []
+settings.sessions = {}
 
 #log.startLogging(sys.stdout)
 class TestGL(unittest.TestCase):
@@ -158,14 +161,45 @@ class TestHandler(TestGL):
 
         yield self.initalize_db()
 
-    def request(self, jbody=None, headers=None, body='', remote_ip='0.0.0.0', method='MOCK'):
+    def request(self, jbody=None, role=None, user_id=None, headers=None, body='',
+            remote_ip='0.0.0.0', method='MOCK'):
+
         """
-        :param method: HTTP method, e.g. "GET" or "POST"
-        :param uri: URL to fetch
-        :param headers: (dict or :class:`cyclone.httputil.HTTPHeaders` instance) HTTP headers to pass on the request
-        :param body:
-        :param jbody:
-        :param remote_ip:
+        Function userful for performing mock requests.
+
+        Args:
+
+            jbody:
+                The body of the request as a dict (it will be automatically
+                converted to string)
+
+            body:
+                The body of the request as a string
+
+            role:
+                If we should perform authentication role can be either "admin",
+                "receiver" or "wb"
+
+            user_id:
+                If when performing authentication the session should be bound
+                to a certain user_id.
+
+            method:
+                HTTP method, e.g. "GET" or "POST"
+
+            uri:
+                URL to fetch
+
+            role:
+                the role
+
+            headers:
+                (dict or :class:`cyclone.httputil.HTTPHeaders` instance) HTTP
+                headers to pass on the request
+
+            remote_ip:
+                If a particular remote_ip should be set.
+
         """
         if jbody and not body:
             body = json.dumps(jbody)
@@ -185,7 +219,19 @@ class TestHandler(TestGL):
                                          body=body,
                                          remote_ip=remote_ip,
                                          connection=connection)
-        return self._handler(application, request)
+
+        handler = self._handler(application, request)
+        if role:
+            session_id = '4tehlulz'
+            new_session = OD(
+                   timestamp=time.time(),
+                   id=session_id,
+                   role=role,
+                   user_id=user_id
+            )
+            settings.sessions[session_id] = new_session
+            handler.request.headers['X-Session'] = session_id
+        return handler
 
 
 
