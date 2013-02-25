@@ -94,6 +94,22 @@ class TestReceiversCollection(helpers.TestHandler):
         del self.dummyReceiver['receiver_gus']
         self.assertEqual(self.responses[0], self.dummyReceiver)
 
+    @inlineCallbacks
+    def test_post_invalid_mail_addr(self):
+        self.dummyReceiver['name'] = 'beppe'
+        self.dummyReceiver['notification_fields']['mail_address'] = "[antani@xx.it"
+        handler = self.request(self.dummyReceiver)
+        handler.request.headers['X-Session'] = 'test_admin'
+
+        try:
+            yield handler.post()
+            self.assertTrue(False)
+        except errors.NoEmailSpecified:
+            self.assertTrue(True)
+        except Exception, e:
+            self.assertTrue(False)
+            raise e
+
 class TestReceiverInstance(helpers.TestHandler):
     _handler = admin.ReceiverInstance
 
