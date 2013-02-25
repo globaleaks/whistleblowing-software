@@ -43,12 +43,22 @@ angular.module('resourceServices.authentication', [])
         };
 
         self.logout = function() {
-            sessionStorage.removeItem('session_id');
+            var role = sessionStorage['role'];
+
             return $http.delete('/authentication')
               .success(function(response){
                 self.id = null;
                 self.username = null;
                 self.user_id = null;
+
+                sessionStorage.removeItem('session_id');
+                sessionStorage.removeItem('role');
+                sessionStorage.removeItem('auth_landing_page');
+
+                if (role === 'wb')
+                  $location.path('/');
+                else
+                  $location.path('/login');
             });
         };
       };
