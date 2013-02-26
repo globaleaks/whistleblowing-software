@@ -183,4 +183,26 @@ class TestTipInstance(SubmissionTest):
             log.debug("Exception %s" % str(e) )
             self.assertTrue(False, msg=str(e))
 
+    @inlineCallbacks
+    def test_5_create_huge_submission(self):
+        submission_request = dict(SubmissionTest.aSubmission)
+
+        submission_request['receivers'] = [ SubmissionTest.receiver_used['receiver_gus']  ]
+        submission_request['context_gus'] = SubmissionTest.context_used['context_gus']
+        submission_request['wb_fields']['headline'] = unicode("A" * 1000 * 1000)
+        submission_request['wb_fields']['Sun'] = unicode("B" * 1000 * 1000 )
+
+        submission_request['finalize'] = True
+
+        try:
+            r = yield submission.create_submission(submission_request, finalize=True)
+            log.debug("Success in creation: %s" % str(r))
+            self.assertTrue(True)
+        except GLException, e:
+            log.debug("GLException %s %s" % (str(e), e.reason) )
+            self.assertTrue(False)
+        except Exception, e:
+            log.debug("Exception %s" % str(e) )
+            self.assertTrue(False, msg=str(e))
+
 
