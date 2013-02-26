@@ -108,26 +108,26 @@ def get_tip_by_internaltip(store, id):
     else:
         return itip.id
 
+@transact
+def get_tip_by_wbtip(store, wb_tip_id):
+    wb_tip = store.find(models.WhistleblowerTip,
+                        models.WhistleblowerTip.id == wb_tip_id).one()
 
+    if not wb_tip:
+        raise errors.InvalidTipAuthToken
 
-# This is different from FileInstance, just because there are a different authentication requirements
-class FileAdd(BaseHandler):
-    """
-    T4
-    WhistleBlower interface for upload a new file
-    """
+    itip = store.find(models.InternalTip,
+                      models.InternalTip.id == unicode(wb_tip.internaltip_id)).one()
+    if not itip:
+        raise errors.SubmissionGusNotFound
+    else:
+        return itip.id
+
+class FileHandler(BaseHandler):
+
     @inlineCallbacks
-    @authenticated('wb')
-    def post(self, tip_id, *args):
-        """
-        Parameter: submission_gus
-        Request: Unknown
-        Response: Unknown
-        Errors: SubmissionGusNotFound, SubmissionConcluded
-        """
+    def handle_file_upload(self, itip_id):
         result_list = []
-
-        itip_id = yield get_tip_by_internaltip(self.current_user['password'])
 
         # measure the operation of all the files (via browser can be selected
         # more than 1), because all files are delivered in the same time.
@@ -153,8 +153,27 @@ class FileAdd(BaseHandler):
         self.set_status(201) # Created
         self.write(result_list)
 
+# This is different from FileInstance, just because there are a different authentication requirements
+class FileAdd(FileHandler):
+    """
+    T4
+    WhistleBlower interface for upload a new file
+    """
 
-class FileInstance(BaseHandler):
+    @inlineCallbacks
+    def post(self, wb_tip_id, *args):
+        """
+        Parameter: submission_gus
+        Request: Unknown
+        Response: Unknown
+        Errors: SubmissionGusNotFound, SubmissionConcluded
+        """
+        itip_id = yield get_tip_by_wbtip(wb_tip_id)
+
+        # Call the master class method
+        yield self.handle_file_upload(itip_id)
+
+class FileInstance(FileHandler):
     """
     U4
     This is the Storm interface to supports JQueryFileUploader stream
@@ -168,34 +187,10 @@ class FileInstance(BaseHandler):
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
         """
-        result_list = []
-
         itip_id = yield get_tip_by_internaltip(submission_id)
 
-        # measure the operation of all the files (via browser can be selected
-        # more than 1), because all files are delivered in the same time.
-        start_time = time.time()
-
-        file_array, files = self.request.files.popitem()
-
-        # First iterloop, dumps the files in the filesystem,
-        # and exception raised here would prevent the InternalFile recordings
-        try:
-            relationship = dump_files_fs(files)
-        except OSError, e:
-            # TODO danger error log: unable to save in FS
-            raise errors.InternalServerError
-
-        # Second iterloop, create the objects in the database
-        file_list = yield register_files_db(files, relationship, itip_id)
-
-        for file_desc in file_list:
-            file_desc['elapsed_time'] = time.time() - start_time
-            result_list.append(file_desc)
-
-        self.set_status(201) # Created
-        self.write(result_list)
-
+        # Call the master class method
+        yield self.handle_file_upload(itip_id)
 
 
 def serialize_receiver_file(receiverfile, internalfile):
