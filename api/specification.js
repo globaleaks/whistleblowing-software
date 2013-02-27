@@ -80,23 +80,24 @@ describe("Node Admin API functionality", function(){
   var dummyReceiver = {
     name: 'dummyName',
     description: 'dummyDescription',
-    can_postpone_expiration: true,
-    tags: ['tag1', 'tag2', 'tag3'],
+    //can_postpone_expiration: true,
+    //tags: ['tag1', 'tag2', 'tag3'],
 
     contexts: [],
-    //context_gus_list: [],
 
-    can_configure_notification: true,
-    can_configure_delivery: true,
+    //can_configure_notification: true,
+    //can_configure_delivery: true,
     can_delete_submission: true,
+    password: '',
+    old_password: '',
 
     receiver_level: 1,
-    languages: ['en', 'it'],
-    notification_selected: 'email',
-    notification_fields: 'admin@example.com',
+    //languages: ['en', 'it'],
+    //notification_selected: 'email',
+    notification_fields: {'mail_address': 'admin@example.com'},
 
-    delivery_selected: 'local',
-    delivery_fields: ''
+    //delivery_selected: 'local',
+    //delivery_fields: ''
 
   };
 
@@ -105,17 +106,17 @@ describe("Node Admin API functionality", function(){
   var dummyTipID = 'someRandomString';
 
   var dummySubmission = {
-    real_receipt: 'foobar',
+    //real_receipt: 'foobar',
     creation_time: 'globaleaks.rest.base.timeType',
-    receiver_gus_list: [dummyReceiverID],
+    receivers: [dummyReceiverID],
     // XXX perhaps this should go as a paramater
     submission_gus: 'XXX',
-    fields: [
+    wb_fields: [
       {'someFancyName': 'Some Fancy Content'}
     ],
     expiration_time: 'XXX',
     context_gus: 'XXX',
-    file_gus_list: ['']
+    // files: ['']
   };
 
   var getSomeContextID = function(fn) {
@@ -180,8 +181,9 @@ describe("Node Admin API functionality", function(){
       response.should.have.property('hidden_service');
 
       response.should.have.property('public_site');
-      response.should.have.property('public_stats_update_time');
-      response.should.have.property('private_stats_update_time');
+      response.should.have.property('stats_update_time');
+      //response.should.have.property('public_stats_update_time');
+      //response.should.have.property('private_stats_update_time');
 
       response.should.have.property('languages');
 
