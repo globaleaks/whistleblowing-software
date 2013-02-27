@@ -4,23 +4,36 @@
 from __future__ import with_statement
 import os.path
 
-from twisted.internet.defer import inlineCallbacks, DeferredList, succeed
+from twisted.internet.defer import succeed
 from globaleaks import settings
 from globaleaks.utils import log
 from globaleaks.settings import transact
 from globaleaks import models
 
 @transact
-def initialize_node(store, result, onlyNode, emailtemplate):
+def initialize_node(store, results, onlyNode, emailtemplate):
+    """
+    TODO refactor with languages the emailtemplate, develop a dedicated
+    function outside the node, and inquire fucking YHWH about the
+    callbacks existence/usage
+    """
+
     node = models.Node(onlyNode)
     # Add here by hand the languages supported!
     node.languages =  [{ "code" : "it" , "name": "Italiano"},
                        { "code" : "en" , "name" : "English" }]
-    node.notification_settings = {}
-    node.notification_settings.update({'email_template' : emailtemplate })
+
     node.password = unicode("globaleaks")
     node.creation_date = models.now()
     store.add(node)
+
+    notification = models.Notification()
+    notification.tip_template = emailtemplate
+    # It's the only NOT NULL variable with CHECK
+    notification.security = models.Notification._security_types[0]
+    store.add(notification)
+
+
 
 def initModels():
     for model in models.models:
@@ -55,21 +68,24 @@ def createTables(create_node=True):
 
     d = create_tables_transaction()
     if create_node:
-        # load notification template
-        emailfile = os.path.join(settings.root_path, 'globaleaks', 'db', 'emailnotification_template')
+
+        log.debug("Node initialization with dummy values")
+
         onlyNode = {
             'name':  u"Please, set me: name/title",
             'description':  u"Please, set me: description",
-            'hidden_service':  u"Please, set me: hidden service",
-            'public_site':  u"Please, set me: public site",
+            'hidden_service':  u"",
+            'public_site':  u"",
             'email':  u"email@dumnmy.net",
             'stats_update_time':  2, # hours,
         }
+
+        # load notification template
+        emailfile = os.path.join(settings.root_path, 'globaleaks', 'db', 'emailnotification_template')
         with open(emailfile) as f:
             email_template = f.read()
 
-        log.debug('Initializing node with new config')
-        # Initialize the node
+        # Initialize the node + notification table
         d.addCallback(initialize_node, onlyNode, email_template)
     return d
 

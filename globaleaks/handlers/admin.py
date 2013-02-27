@@ -9,7 +9,7 @@ from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks.rest import errors, requests
-from globaleaks.models import now, Receiver, Context, Node
+from globaleaks.models import now, Receiver, Context, Node, Notification
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils
@@ -24,7 +24,6 @@ def admin_serialize_node(node):
       'public_site': node.public_site,
       'stats_update_time': node.stats_update_time,
       'email': node.email,
-      'notification_settings': dict(node.notification_settings) if node.notification_settings else {},
       'languages': list(node.languages) if node.languages else []
     }
     return response
@@ -80,27 +79,39 @@ def update_node(store, request):
     Password:
         If old_password and password are present, password update is performed
 
+    notification_settings:
+        If notification settings is present, is validated and get
+
+    URLs:
+        If one url is present, is properly validated
+
     Returns:
         the last update time of the node as a :class:`datetime.datetime`
         instance
     """
     node = store.find(Node).one()
 
-    if request['old_password'] and request['password']:
+    if len(request['old_password']) and len(request['password']):
         if node.password == request['old_password']:
+            log.info("Administrator password update %s => %s" % (request['old_password'], request['password'] ))
             node.password = request['password']
+        else:
+            log.info("Password invalid! cannot be changed now")
 
         del request['old_password']
         del request['password']
 
-    if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
-        log.err("Invalid public page regexp in [%s]" % request['public_site'])
-        raise errors.InvalidInputFormat("Invalid public site")
+    if len(request['public_site']) > 1:
+        if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
+            log.err("Invalid public page regexp in [%s]" % request['public_site'])
+            raise errors.InvalidInputFormat("Invalid public site")
 
-    if not utils.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
-        log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
-        raise errors.InvalidInputFormat("Invalid hidden service")
+    if len(request['hidden_service']) > 1:
+        if not utils.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
+            log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
+            raise errors.InvalidInputFormat("Invalid hidden service")
 
+    # name, description and integer value are acquired here
     node.update(request)
 
     node_desc = admin_serialize_node(node)
@@ -581,6 +592,96 @@ class ReceiverInstance(BaseHandler):
 
         self.set_status(200)
         self.finish()
+
+
+
+# Notification section:
+
+def admin_serialize_notification(notif):
+    notification_dict = {
+        'server': notif.server if notif.server else u"",
+        'port': notif.port if notif.port else u"",
+        'username': notif.username if notif.username else u"",
+        'password': notif.password if notif.password else u"",
+        'security': notif.security if notif.security else u"",
+        'tip_template': notif.tip_template if notif.tip_template else u"",
+        'file_template': notif.file_template if notif.file_template else u"",
+        'comment_template': notif.comment_template if notif.comment_template else u"",
+        'activation_template': notif.activation_template if notif.activation_template else u"",
+    }
+    return notification_dict
+
+@transact
+def get_notification(store):
+    try:
+        notif = store.find(Notification).one()
+    except Exception, e:
+        log.err("Database error or application error: %s", str(e))
+        raise e
+
+    return admin_serialize_notification(notif)
+
+@transact
+def update_notification(store, request):
+
+    try:
+        notif = store.find(Notification).one()
+    except Exception, e:
+        log.err("Database error or application error: %s", str(e))
+        raise e
+
+    # TODO support languages here
+    # TODO expand model unicode_keys when client is aligned
+
+    notif.tip_template = request.get('tip_template', u'')
+    notif.activation_template = request.get('activation_template', u'')
+    notif.comment_template = request.get('comment_template', u'')
+    notif.file_template = request.get('file_template', u'')
+
+    notif.update(request)
+    return admin_serialize_notification(notif)
+
+
+class NotificationInstance(BaseHandler):
+    """
+    A6
+
+    Manage Notification settings (account details and template)
+    """
+
+    @inlineCallbacks
+    @authenticated('admin')
+    def get(self, *uriargs):
+        """
+        Parameters: None
+        Response: adminNotificationDesc
+        Errors: None (return empty configuration, at worst)
+        """
+        notification_desc = yield get_notification()
+        self.set_status(200)
+        self.finish(notification_desc)
+
+    @inlineCallbacks
+    @authenticated('admin')
+    def put(self, *uriargs):
+        """
+        Request: adminNotificationDesc
+        Response: adminNotificationDesc
+        Errors: InvalidInputFormat
+
+        Changes the node notification settings.
+        """
+
+        request = self.validate_message(self.request.body,
+            requests.adminNotificationDesc)
+
+        print "request", request
+
+        response = yield update_notification(request)
+
+        self.set_status(202) # Updated
+        self.finish(response)
+
 
 
 # Removed from the Admin API

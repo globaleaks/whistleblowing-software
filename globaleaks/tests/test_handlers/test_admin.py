@@ -1,14 +1,13 @@
-import time
-import unittest
-from cyclone.util import ObjectDict as OD
-
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
-
-from globaleaks import settings
 from globaleaks.handlers import admin
+from globaleaks.settings import transact
+
+# special guest:
+from globaleaks.models import Notification
 
 class TestNodeInstance(helpers.TestHandler):
     _handler = admin.NodeInstance
@@ -27,8 +26,6 @@ class TestNodeInstance(helpers.TestHandler):
 
         del self.dummyNode['password']
         del self.dummyNode['old_password']
-        del self.responses[0]['notification_settings']
-        del self.dummyNode['notification_settings']
 
         self.assertEqual(self.responses[0], self.dummyNode)
 
@@ -57,6 +54,32 @@ class TestNodeInstance(helpers.TestHandler):
         except InvalidInputFormat:
             self.assertTrue(True)
 
+
+class TestNotificationInstance(helpers.TestHandler):
+    _handler = admin.NotificationInstance
+
+    @transact
+    def mock_initialize_notification(self, store):
+        """
+        This is what is commonly performed in initialize_node
+        """
+        # load notification template
+
+        notification = Notification()
+        notification.tip_template = "my dummy template %s:w"
+        # It's the only NOT NULL variable with CHECK
+        notification.security = Notification._security_types[0]
+        store.add(notification)
+
+
+    @inlineCallbacks
+    def test_update_notification(self):
+        yield self.mock_initialize_notification
+
+        self.dummyNotification['server'] = 'stuff'
+        handler = self.request(self.dummyNotification, role='admin')
+        yield handler.put()
+        self.assertEqual(self.responses[0]['server'], 'stuff')
 
 
 class TestContextsCollection(helpers.TestHandler):

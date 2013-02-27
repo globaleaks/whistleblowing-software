@@ -111,39 +111,39 @@ class TestModels(helpers.TestGL):
         return contexts
 
     @inlineCallbacks
-    def test_1_context_add_and_get(self):
+    def test_context_add_and_get(self):
         context_id = yield self.context_add()
         context_id = yield self.context_get(context_id)
         self.assertIsNotNone(context_id)
 
     @inlineCallbacks
-    def test_2_context_add_and_del(self):
+    def test_context_add_and_del(self):
         context_id = yield self.context_add()
         yield self.context_del(context_id)
         context_id = yield self.context_get(context_id)
         self.assertIsNone(context_id)
 
     @inlineCallbacks
-    def test_3_receiver_add_and_get(self):
+    def test_receiver_add_and_get(self):
         receiver_id = yield self.receiver_add()
         receiver_id = yield self.receiver_get(receiver_id)
         self.assertIsNotNone(receiver_id)
 
     @inlineCallbacks
-    def test_4_receiver_add_and_del(self):
+    def test_receiver_add_and_del(self):
         receiver_id = yield self.receiver_add()
         yield self.receiver_del(receiver_id)
         receiver_id = yield self.receiver_get(receiver_id)
         self.assertIsNone(receiver_id)
 
     @inlineCallbacks
-    def test_5_context_receiver_reference_1(self):
+    def test_context_receiver_reference_1(self):
         context_id = yield self.create_context_with_receivers()
         receivers = yield self.list_receivers_of_context(context_id)
         self.assertEqual(2, len(receivers))
 
     @inlineCallbacks
-    def test_5_context_receiver_reference_2(self):
+    def test_context_receiver_reference_2(self):
         receiver_id = yield self.create_receiver_with_contexts()
         contexts = yield self.list_context_of_receivers(receiver_id)
         self.assertEqual(2, len(contexts))
