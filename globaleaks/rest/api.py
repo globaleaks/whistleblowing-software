@@ -95,8 +95,11 @@ spec = [
     #  A4
     (r'/admin/receiver', admin.ReceiversCollection),
 
-    #  A5 receiverGUS
+    #  A5
     (r'/admin/receiver/' + uuid_regexp, admin.ReceiverInstance),
+
+    #  A6
+    (r'/admin/notification', admin.NotificationInstance),
 
 ]
 

@@ -79,10 +79,24 @@ CREATE TABLE node (
     id VARCHAR NOT NULL,
     languages BLOB NOT NULL,
     name VARCHAR NOT NULL,
-    notification_settings BLOB NOT NULL,
     password VARCHAR NOT NULL,
     public_site VARCHAR NOT NULL,
     stats_update_time INTEGER NOT NULL,
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE notification (
+    creation_date VARCHAR NOT NULL,
+    server VARCHAR,
+    port INTEGER,
+    password VARCHAR,
+    username VARCHAR,
+    security VARCHAR NOT NULL CHECK (security IN ('TLS', 'SSL')),
+    tip_template VARCHAR,
+    file_template VARCHAR,
+    comment_template VARCHAR,
+    activation_template VARCHAR,
+    id VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
 

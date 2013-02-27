@@ -212,6 +212,7 @@ class InternalFile(Model):
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
     ## NO *_keys = It's created without initializing dict
 
+
 class Comment(Model):
     """
     This table handle the comment collection, has an InternalTip referenced
@@ -240,7 +241,6 @@ class Node(Model):
     hidden_service = Unicode()
     email = Unicode()
     languages = Pickle()
-    notification_settings = Pickle()
     password = Unicode()
 
     # Here is set the time frame for the stats publicly exported by the node.
@@ -249,6 +249,33 @@ class Node(Model):
 
     unicode_keys = ['name', 'description', 'public_site', 'email', 'hidden_service' ]
     int_keys = [ 'stats_update_time' ]
+    bool_keys = []
+
+
+class Notification(Model):
+    """
+    This table has only one instance, and contain all the notification information
+    for the node
+    templates are imported in the handler, but settings are expected all at once
+    """
+    server = Unicode()
+    port = Int()
+    username = Unicode()
+    password = Unicode()
+
+    security = Unicode()
+    _security_types = [ u'TLS', u'SSL' ]
+
+    # In the future these would be Markdown!
+    tip_template = Unicode()
+    file_template = Unicode()
+    comment_template = Unicode()
+    activation_template = Unicode()
+    # these four template would be in the unicode_key implicit
+    # expected fields, when Client/Backend are updated in their usage
+
+    unicode_keys = ['server', 'security', 'username', 'password']
+    int_keys = ['port']
     bool_keys = []
 
 
@@ -350,5 +377,5 @@ Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
 
 models = [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
-          Receiver, ReceiverContext, InternalFile, ReceiverFile]
+          Receiver, ReceiverContext, InternalFile, ReceiverFile, Notification ]
 

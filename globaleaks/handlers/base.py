@@ -24,7 +24,8 @@ from globaleaks.rest import errors
 
 class BaseHandler(RequestHandler):
 
-    def validate_python_type(self, value, python_type):
+    @staticmethod
+    def validate_python_type(value, python_type):
         """
         Return True if the python class instantiates the python_type given.
         """
@@ -33,29 +34,31 @@ class BaseHandler(RequestHandler):
         else:
             return any((isinstance(value, python_type), value is None))
 
-    def validate_GLtype(self, value, gl_type):
+    @staticmethod
+    def validate_GLtype(value, gl_type):
         """
         Return True if the python class matches the given regexp.
         """
         return bool(re.match(gl_type, value))
 
 
-    def validate_type(self, value, type):
+    @staticmethod
+    def validate_type(value, type):
         # if it's callable, than assumes is a primitive class
         if callable(type):
-            retval = self.validate_python_type(value, type)
+            retval = BaseHandler.validate_python_type(value, type)
             if not retval:
                 log.err("-- Invalid python_type, in [%s] expected %s" % (str(value), type))
             return retval
         # value as "{foo:bar}"
         elif isinstance(type, collections.Mapping):
-            retval = self.validate_jmessage(value, type)
+            retval = BaseHandler.validate_jmessage(value, type)
             if not retval:
                 log.err("-- Invalid JSON/dict [%s] expected %s" % (str(value), str(type)))
             return retval
         # regexp
         elif isinstance(type, str):
-            retval = self.validate_GLtype(value, type)
+            retval = BaseHandler.validate_GLtype(value, type)
             if not retval:
                 log.err("-- Failed Match in regexp [%s] against %s" % (str(value), str(type) ))
             return retval
@@ -65,14 +68,15 @@ class BaseHandler(RequestHandler):
             if len(value) == 0:
                 return True
             else:
-                retval = all(self.validate_type(x, type[0]) for x in value)
+                retval = all(BaseHandler.validate_type(x, type[0]) for x in value)
                 if not retval:
                     log.err("-- List validation failed [%s] of %s" % (str(value), str(type)))
                 return retval
         else:
             raise AssertionError
 
-    def validate_jmessage(self, jmessage, message_template):
+    @staticmethod
+    def validate_jmessage(jmessage, message_template):
         """
         Takes a string that represents a JSON messages and checks to see if it
         conforms to the message type it is supposed to be.
@@ -95,23 +99,24 @@ class BaseHandler(RequestHandler):
         jmessage = valid_jmessage
         del valid_jmessage
 
-        if not all(self.validate_type(jmessage[key], value) for key, value in
+        if not all(BaseHandler.validate_type(jmessage[key], value) for key, value in
                     message_template.iteritems()):
             raise errors.InvalidInputFormat('wrong content 1')
 
-        if not all(self.validate_type(value, message_template[key]) for key, value in
+        if not all(BaseHandler.validate_type(value, message_template[key]) for key, value in
                    jmessage.iteritems()):
             raise errors.InvalidInputFormat('wrong content 2')
 
         return True
 
-    def validate_message(self, message, message_template):
+    @staticmethod
+    def validate_message(message, message_template):
         try:
             jmessage = json.loads(message)
         except ValueError:
             raise errors.InvalidInputFormat("Invalid JSON message")
 
-        if self.validate_jmessage(jmessage, message_template):
+        if BaseHandler.validate_jmessage(jmessage, message_template):
             return jmessage
 
 

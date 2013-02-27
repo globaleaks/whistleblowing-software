@@ -50,7 +50,18 @@ adminNodeDesc = {
     'email' : unicode,
     'password' : unicode,
     'old_password' : unicode,
-    'notification_settings' : dict,
+}
+
+adminNotificationDesc = {
+    'server': unicode,
+    'port': int,
+    'security': unicode, # 'TLS' or 'SSL' only
+    'username': unicode,
+    'password': unicode,
+    'tip_template': unicode,
+    'comment_template': unicode,
+    'file_template': unicode,
+    'activation_template': unicode
 }
 
 adminContextDesc = {

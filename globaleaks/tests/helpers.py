@@ -95,18 +95,29 @@ class TestGL(unittest.TestCase):
             'receivers': [],
         }
         self.dummyNode = {
-                'name':  u"Please, set me: name/title",
-                'description':  u"Please, set me: description",
-                'hidden_service':  u"Please, set me: hidden service",
-                'public_site':  u"Please, set me: public site",
-                'email':  u"email@dumnmy.net",
-                'stats_update_time':  2, # hours,
-                'languages':  [{ "code" : "it" , "name": "Italiano"},
-                               { "code" : "en" , "name" : "English" }],
-                'password' : '',
-                'old_password' : '',
-                'notification_settings': {},
+             'name':  u"Please, set me: name/title",
+             'description':  u"Please, set me: description",
+             'hidden_service':  u"Please, set me: hidden service",
+             'public_site':  u"Please, set me: public site",
+             'email':  u"email@dumnmy.net",
+             'stats_update_time':  2, # hours,
+             'languages':  [{ "code" : "it" , "name": "Italiano"},
+                            { "code" : "en" , "name" : "English" }],
+             'password' : '',
+             'old_password' : '',
         }
+        self.dummyNotification = {
+            'server': u'mail.foobar.xxx',
+            'port': 12345,
+            'username': u'staceppa',
+            'password': u'antani',
+            'security': u'SSL',
+            'tip_template': u'tip message: %s',
+            'comment_template': u'comment message: %s',
+            'file_template': u'file message: %s',
+            'activation_template': u'activation message: %s',
+        }
+
 
     @inlineCallbacks
     def initalize_db(self):
@@ -128,7 +139,10 @@ class TestGL(unittest.TestCase):
         """
         Clear the actual transport.
         """
-        os.unlink(_TEST_DB)
+        try:
+            os.unlink(_TEST_DB)
+        except OSError:
+            pass
 
 class TestHandler(TestGL):
     """
@@ -141,6 +155,7 @@ class TestHandler(TestGL):
         """
         override default handlers' get_store with a mock store used for testing/
         """
+        # self.tearDown()
         TestGL.setUp(self)
         self.setUp_dummy()
         self.responses = []
