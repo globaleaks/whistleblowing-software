@@ -71,6 +71,15 @@ GLBackend
     export PYTHONPATH=`pwd`
     ./bin/startglobaleaks
 
+
+Now you may point your browser to http://127.0.0.1:8082/login and configure your node with login: admin password: globaleaks
+
+If you want to try on Mac OS X, follow the instructions to setup [virtualenv on OSX](http://jamiecurle.co.uk/blog/installing-pip-virtualenv-and-virtualenvwrapper-on-os-x/)
+
+Have fun :)
+
+
+p.s. For FUTURE STABLE RELEASE the procedure will became:
 The following procedure instead gets the submodules (GLClient and GLBackend) at one specified commit version.
 It represents the latest "stable release" (considering that the project is under development, maybe the latest
 update branches do not work well).
@@ -78,11 +87,4 @@ update branches do not work well).
     git clone https://github.com/globaleaks/GlobaLeaks
     cd GlobaLeaks
     git submodule init && git submodule update
-
-Now you may point your browser to http://127.0.0.1:8082/index.html and have a sneak peak at GL 0.2.
-
-If you want to try on Mac OS X, follow the instructions to setup [virtualenv on OSX](http://jamiecurle.co.uk/blog/installing-pip-virtualenv-and-virtualenvwrapper-on-os-x/)
-
-Have fun :)
-
 
