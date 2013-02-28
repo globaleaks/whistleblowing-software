@@ -18,15 +18,22 @@ class MailNotification(Notification):
     _title = {
             'comment':  'New comment from GLBNode',
             'tip': 'New tip from GLBNode',
+            # TODO: expand Admin Gui or extend with activation|file
     }
+
     plugin_name = u'Mail'
     plugin_type = u'notification'
     plugin_description = u"Mail notification, with encryption supports"
-    admin_fields = {'server' : 'text', 'port': 'int', 'password' : 'text', 'username':'text', 'ssl' : 'bool' }
-    receiver_fields = {'mail_address' : 'text'}
+
+    # This declaration is not more used, because hardcoded
+    # admin_fields = {'server' : 'text', 'port': 'int', 'password' : 'text', 'username':'text', 'ssl' : 'bool' }
+    # receiver_fields = {'mail_address' : 'text'}
+
+
 
     def __init__(self, notification_settings):
-        self.body = notification_settings['email_template']
+        # super.__init__()
+        pass
 
     def validate_admin_opt(self, pushed_af):
         fields = ['server', 'port', 'username', 'password']
@@ -69,20 +76,26 @@ class MailNotification(Notification):
 
         # email fields
         title = self._title[event.type]
-        print "wut ?", self.body
+
+        if event.type == u'tip':
+            self.body = event.af['tip_template']
+        else:
+            raise NotImplementedError("At the moment, only Tip expected")
+        # else, 'Comment', 'Activation', 'File' ...
+
         body = self.body # % event.tip_id
 
         host = event.af['server']
         port = int(event.af['port'])
         u = event.af['username']
         p = event.af['password']
-        tls = event.af.get['ssl']
+        security = event.af.get['security']
         to_addrs = [event.rf['mail_address']]
 
-        if tls:
+        if security == 'SSL':
             contextFactory = ssl.ClientContextFactory()
             contextFactory.method = SSL.SSLv3_METHOD
-        else:
+        else: # TODO support SSL
             contextFactory = None
 
         message = mail.Message(from_addr=u,
@@ -109,7 +122,7 @@ class MailNotification(Notification):
                                      result,
                                      contextFactory=contextFactory,
                                      requireAuthentication=(u and p),
-                                     requireTransportSecurity=tls)
+                                     requireTransportSecurity=security)
 
         ep = TCP4ClientEndpoint(reactor, host, port)
         ep.connect(factory)

@@ -23,7 +23,6 @@ def anon_serialize_node(store):
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
-      'notification_settings': dict(node.notification_settings or {}),
       'languages': list(node.languages or []),
     }
 
