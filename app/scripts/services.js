@@ -335,11 +335,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       {update:
           {method: 'PUT'}
       });
-  factory('AdminNotification', function($resource) {
-    return $resource('/admin/notification', {},
-      {update:
-          {method: 'PUT'}
-      });
 }).
   factory('Admin', function($resource) {
 
@@ -396,18 +391,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.node.old_password = '';
       });
 
-
-      self.notification = adminNotificationResource.get(function(){
-        self.username = '';
-        self.password = '';
-        self.server = '';
-        self.port = 0;
-        self.tip_template = '';
-        self.comment_template = '';
-        self.activation_template = '';
-        self.file_template = '';
-        self.security = '';
-      });
+      self.notification = adminNotificationResource.get();
     }
     return Admin;
 
