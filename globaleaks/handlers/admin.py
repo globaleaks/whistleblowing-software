@@ -675,8 +675,6 @@ class NotificationInstance(BaseHandler):
         request = self.validate_message(self.request.body,
             requests.adminNotificationDesc)
 
-        print "request", request
-
         response = yield update_notification(request)
 
         self.set_status(202) # Updated

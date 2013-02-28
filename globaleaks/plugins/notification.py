@@ -89,7 +89,7 @@ class MailNotification(Notification):
         port = int(event.af['port'])
         u = event.af['username']
         p = event.af['password']
-        security = event.af.get['security']
+        security = event.af['security']
         to_addrs = [event.rf['mail_address']]
 
         if security == 'SSL':

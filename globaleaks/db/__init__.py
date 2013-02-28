@@ -5,6 +5,8 @@ from __future__ import with_statement
 import os.path
 
 from twisted.internet.defer import succeed
+from storm.exceptions import OperationalError
+
 from globaleaks import settings
 from globaleaks.utils import log
 from globaleaks.settings import transact
@@ -49,7 +51,12 @@ def create_tables_transaction(store):
     with open(settings.create_db_file) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
-            store.execute(create_query+';')
+            try:
+                store.execute(create_query+';')
+            except OperationalError, e:
+                log.err("OperationalError in [%s]" % create_query)
+                pass
+
     initModels()
     # new is the only Models function executed without @transact, call .add, but
     # the called has to .commit and .close, operations commonly performed by decorator

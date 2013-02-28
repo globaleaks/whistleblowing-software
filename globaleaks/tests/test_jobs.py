@@ -14,7 +14,7 @@ class TestJobs(helpers.TestGL):
     @inlineCallbacks
     def setUp(self):
         self.setUp_dummy()
-        yield self.initalize_db()
+        yield self.initialize_db()
     
     @inlineCallbacks
     def test_tip_creation(self):
@@ -24,7 +24,7 @@ class TestJobs(helpers.TestGL):
 
         yield create_submission(self.dummySubmission, finalize=True)
         created_tips = yield delivery_sched.tip_creation()
-        receiver_tips = yield get_receiver_tip_list(self.dummyReceiver['username'])
+        receiver_tips = yield get_receiver_tip_list(self.dummyReceiver['receiver_gus'])
 
         expected_keys = ['access_counter', 'creation_date', 'expressed_pertinence', 'id', 'last_acesss']
         self.assertEqual(set(receiver_tips[0].keys()), set(expected_keys))
