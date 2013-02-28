@@ -44,7 +44,7 @@
                      ng-model="admin.notification.password" required>
 
               <label>Transport Security</label>
-              <select ng-model="admin.notification.security">
+              <select ng-model="admin.notification.security" required>
                 <option value='tls'>TLS</option>
                 <option value='ssl'>SSL</option>
               </select>
@@ -70,7 +70,7 @@
       <!-- end Notification -->
       <button class="btn btn-success"
               ng-disabled="notificationForm.$invalid || notificationForm.$pristine"
-              ng-click="updateNotification(notification)">Save</button>
+              ng-click="update(admin.notification)">Save</button>
 
     </div>
   </div>
