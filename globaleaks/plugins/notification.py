@@ -106,15 +106,7 @@ class MailNotification(Notification):
         # send email
         log.debug('about to send an email..')
         result = Deferred()
-        def drugs(result):
-            success, smtpcode = result
-            log.debug('mail sent to ')
-            if success != 1:
-                pass
-                # retry later?
-            # could check the smtp code
 
-        result.addBoth(drugs)
         factory = ESMTPSenderFactory(u, p,
                                      message.from_addr,
                                      message.to_addrs,
