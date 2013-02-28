@@ -274,7 +274,8 @@ class Notification(Model):
     # these four template would be in the unicode_key implicit
     # expected fields, when Client/Backend are updated in their usage
 
-    unicode_keys = ['server', 'security', 'username', 'password']
+    unicode_keys = ['server', 'username', 'password', 'tip_template',
+                    'file_template', 'comment_template', 'activation_template' ]
     int_keys = ['port']
     bool_keys = []
 

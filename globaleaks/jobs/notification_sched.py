@@ -42,14 +42,14 @@ class APSNotification(GLJob):
         notification setting need to contains bot template
         and systemsettings
         """
+        from globaleaks.handlers.admin import admin_serialize_notification
 
-        node = store.find(models.Node).one()
+        notif = store.find(models.Notification).one()
 
-        if not node.notification_settings.has_key('email_template'):
-            log.err("Missing email_template! Notification disabled")
+        if not notif.server:
             return None
 
-        return node.notification_settings
+        return admin_serialize_notification(notif)
 
 
     @inlineCallbacks
@@ -65,19 +65,15 @@ class APSNotification(GLJob):
         # it's something with obscure callback based
 
         plugin = getattr(notification, cplugin)(notification_settings)
+
         for rtip in notification_data:
-            af=notification_settings
+
+            # admin fields are the same for all the notification, atm
+
             rf=notification_data[rtip]
 
-            try:
-                host = af['server']
-                port = af['port']
-                u = af['username']
-                p = af['password']
-                tls = af['ssl']
-                address = rf['mail_address']
-            except KeyError, e:
-                log.debug("Notification settings: unable to send mail, missing %s" % e)
+            if not rf.has_key('mail_address'):
+                log.debug("Receiver %s lack of email address!" % rtip.receiver.name)
                 return
 
             event = Event(type=u'tip', trigger='Tip', af=notification_settings,
@@ -114,8 +110,10 @@ class APSNotification(GLJob):
         notification_settings = yield self._get_notification_settings()
 
         if not notification_settings:
-            log.err("Node has not Notification configured, notification disabled!")
+            log.err("Node has not Notification configured, Notification disabled!")
             return
+
+        # Else, checks tip/file/comment/activation link
 
         self.do_tip_notification(notification_settings)
 

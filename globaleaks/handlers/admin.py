@@ -79,9 +79,6 @@ def update_node(store, request):
     Password:
         If old_password and password are present, password update is performed
 
-    notification_settings:
-        If notification settings is present, is validated and get
-
     URLs:
         If one url is present, is properly validated
 
@@ -97,9 +94,8 @@ def update_node(store, request):
             node.password = request['password']
         else:
             log.info("Password invalid! cannot be changed now")
+            raise errors.InvalidOldPassword
 
-        del request['old_password']
-        del request['password']
 
     if len(request['public_site']) > 1:
         if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
@@ -162,6 +158,9 @@ def create_context(store, request):
         ]
     else:
         context.fields = request['fields']
+
+    if len(request['name']) < 1:
+        raise errors.InvalidInputFormat("Context name is missing (1 char required)")
 
     if context.escalation_threshold and context.selectable_receiver:
         raise errors.ContextParameterConflict
@@ -633,10 +632,11 @@ def update_notification(store, request):
     # TODO support languages here
     # TODO expand model unicode_keys when client is aligned
 
-    notif.tip_template = request.get('tip_template', u'')
-    notif.activation_template = request.get('activation_template', u'')
-    notif.comment_template = request.get('comment_template', u'')
-    notif.file_template = request.get('file_template', u'')
+    security = str(request.get('security', u'')).upper()
+    if security in Notification._security_types:
+        notif.security = security
+    else:
+        raise errors.InvalidInputFormat("Security selection not recognized")
 
     notif.update(request)
     return admin_serialize_notification(notif)
