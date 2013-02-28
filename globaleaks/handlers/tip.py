@@ -177,8 +177,14 @@ def delete_internal_tip(store, user_id, tip_id):
     causes the removal of Comments, InternalFile, R|W tips
     """
     rtip = strong_receiver_validate(store, user_id, tip_id)
+
     if rtip.receiver.can_delete_submission:
-        store.remove(rtip.internaltip)
+        internaltip_backup = rtip.internaltip
+
+        for receivertip in rtip.internaltip.receivertips:
+            store.remove(receivertip)
+        store.remove(internaltip_backup)
+
     else:
         raise ForbiddenOperation
 

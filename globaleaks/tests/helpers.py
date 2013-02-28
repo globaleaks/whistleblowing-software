@@ -16,6 +16,7 @@ from globaleaks.handlers.submission import create_submission, create_whistleblow
 from globaleaks import db
 
 _TEST_DB = 'test.db'
+
 settings.transact.tp = FakeThreadPool()
 settings.scheduler_threadpool = FakeThreadPool()
 settings.db_file = 'sqlite:///' + _TEST_DB
@@ -120,7 +121,7 @@ class TestGL(unittest.TestCase):
 
 
     @inlineCallbacks
-    def initalize_db(self):
+    def initialize_db(self):
 
         try:
             yield db.createTables(create_node=True)
@@ -159,6 +160,7 @@ class TestHandler(TestGL):
         TestGL.setUp(self)
         self.setUp_dummy()
         self.responses = []
+
         @classmethod
         def mock_write(cls, response=None):
             # !!!
@@ -174,7 +176,7 @@ class TestHandler(TestGL):
         # we need to reset settings.session to keep each test independent
         settings.sessions = dict()
 
-        yield self.initalize_db()
+        yield self.initialize_db()
 
     def request(self, jbody=None, role=None, user_id=None, headers=None, body='',
             remote_ip='0.0.0.0', method='MOCK'):

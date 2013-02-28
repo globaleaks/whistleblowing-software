@@ -22,7 +22,7 @@ class TestSubmission(helpers.TestGL):
     @inlineCallbacks
     def setUp(self):
         self.setUp_dummy()
-        yield self.initalize_db()
+        yield self.initialize_db()
 
 
     # --------------------------------------------------------- #

@@ -1,22 +1,11 @@
-import os
-
 from twisted.trial import unittest
 from twisted.internet.defer import inlineCallbacks
 from storm import exceptions
 
 from globaleaks.settings import transact
-from globaleaks import settings
 from globaleaks.models import Comment
-from globaleaks.db import createTables
 
 class TestTransaction(unittest.TestCase):
-    @inlineCallbacks
-    def setUp(self):
-        self.id = None
-        yield createTables(create_node=False)
-
-    def tearDown(self):
-        os.unlink(settings.db_file[len('sqlite:///'):])
 
     def test_transaction_with_exception(self):
         try:
@@ -37,7 +26,6 @@ class TestTransaction(unittest.TestCase):
         # now check data actually written
         store = transact.get_store()
         self.assertEqual(store.find(Comment, Comment.id == comment_id).count(), 1)
-
 
     @inlineCallbacks
     def test_transact_with_stuff_failing(self):

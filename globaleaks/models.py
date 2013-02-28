@@ -9,17 +9,9 @@ from time import time
 from datetime import datetime
 now = datetime.utcnow
 
-global i
-i = 100000000000
-
 def uuid():
     import uuid
-    #return unicode(uuid.uuid4())
-    # This is just a Testing line, would be removed in the future
-    global i
-    i += 1
-    return unicode("00000000-0000-0000-0000-%s" % i)
-
+    return unicode(uuid.uuid4())
 
 class Model(Storm):
     """
