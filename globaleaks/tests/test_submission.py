@@ -217,24 +217,3 @@ class TestSubmission(helpers.TestGL):
         # self.assertRaises(errors.SubmissionConcluded,
         #   (yield submission.update_submission(status['submission_gus'], status, finalize=True)) )
 
-
-    @transact
-    def systemsetting_setup(self, store):
-        node = store.find(models.Node).one()
-        node.notification_settings["server"] = "box549.bluehost.com"
-        node.notification_settings["port"] = 25
-        node.notification_settings["username"] ="sendaccount939@globaleaks.org"
-        # node.notification_settings["password"] ="sendaccount939"
-        node.notification_settings["password"] ="wrong"
-        # XXX - I don't want a mail every check
-        node.notification_settings["ssl"] = False
-
-    @inlineCallbacks
-    def test_sendmail_wrongconf(self):
-        # Currently disabled, checks password few line over here
-        self.dummyReceiver['notification_fields']['mail_address'] = 'vecna@globaleaks.org'
-        self.dummyReceiver['receiver_level'] = 1
-        yield self.systemsetting_setup()
-
-        delivery_sched.tip_creation()
-        APSNotification().operation()

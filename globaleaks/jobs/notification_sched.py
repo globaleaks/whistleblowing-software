@@ -80,7 +80,7 @@ class APSNotification(GLJob):
                           rf=notification_data[rtip],
                           tip_id=rtip)
 
-            notify = yield plugin.do_notify(event)
+            notify = plugin.do_notify(event)
 
             @notify.addCallback
             def success(self, result):
@@ -91,6 +91,10 @@ class APSNotification(GLJob):
             def error(self, result):
                 log.debug('FAIL Notification for %s FAIL' % rtip.repr() )
                 rtip.mark = models.ReceiverTip._marker[2]
+
+            yield notify
+
+        log.debug("Completed notification of %d receiver tips " % len(notification_data) )
 
 
     @inlineCallbacks
