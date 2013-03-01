@@ -351,10 +351,12 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
           {method: 'PUT'}
           }),
         adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}});
+        adminNotificationResource = $resource('/admin/notification', {}, {update: {method: 'PUT'}});
 
       adminContextsResource.prototype.toString = function() { return "Admin Context"; };
       adminReceiversResource.prototype.toString = function() { return "Admin Receiver"; };
       adminNodeResource.prototype.toString = function() { return "Admin Node"; };
+      adminNotificationResource.prototype.toString = function() { return "Admin Notification"; };
 
       self.context = adminContextsResource;
       self.contexts = adminContextsResource.query();
@@ -389,6 +391,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         self.node.old_password = '';
       });
 
+      self.notification = adminNotificationResource.get();
     }
     return Admin;
 
