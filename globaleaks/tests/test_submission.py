@@ -40,18 +40,39 @@ class TestSubmission(helpers.TestGL):
         self.assertTrue(retval)
 
     @inlineCallbacks
-    def create_dummy_files(self, associated_submission_id):
+    def emulate_files_upload(self, associated_submission_id):
         relationship = files.dump_files_fs(self.dummyFiles)
         self.file_list = yield files.register_files_db(self.dummyFiles,
                 relationship, associated_submission_id)
 
     @inlineCallbacks
     def test_create_internalfiles(self):
-        yield self.create_dummy_files(self.dummySubmission['submission_gus'])
+        yield self.emulate_files_upload(self.dummySubmission['submission_gus'])
         # fill self.file_list
         for file_desc in self.file_list:
             keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(file_desc.keys())
             self.assertFalse(keydiff)
+
+
+    @transact
+    def _force_finalize(self, store, submission_id):
+        it = store.find(models.InternalTip, models.InternalTip.id == submission_id).one()
+        it.mark = models.InternalTip._marker[1] # 'finalized'
+
+    @inlineCallbacks
+    def test_create_receiverfiles(self):
+        # test made to approach a strange behaviour...
+        yield self.emulate_files_upload(self.dummySubmission['submission_gus'])
+        yield self._force_finalize(self.dummySubmission['submission_gus'])
+
+        filesdict = yield delivery_sched.file_preprocess()
+
+        processdict = delivery_sched.file_process(filesdict)
+        # return a dict { "file_uuid" : checksum }
+
+        ret = yield delivery_sched.receiver_file_align(filesdict, processdict)
+        self.assertEqual(len(ret), 2)
+
 
     @inlineCallbacks
     def test_access_from_receipt(self):
@@ -84,7 +105,7 @@ class TestSubmission(helpers.TestGL):
         status = yield submission.create_submission(submission_desc, finalize=False)
 
         # --- Emulate file upload before assign them to the submission
-        yield self.create_dummy_files(status['submission_gus'])
+        yield self.emulate_files_upload(status['submission_gus'])
         filesdict = yield delivery_sched.file_preprocess()
         self.assertEqual(len(filesdict), 2)
 

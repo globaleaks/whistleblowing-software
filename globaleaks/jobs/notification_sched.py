@@ -24,17 +24,6 @@ Event = namedtuple('Event',
 
 class APSNotification(GLJob):
 
-    @transact
-    def _get_notification_data(self, store):
-        not_notified_tips = store.find(models.ReceiverTip,
-                                       models.ReceiverTip.mark == models.ReceiverTip._marker[0]
-        )
-
-        if not_notified_tips:
-            log.debug("Present %d Tip that need to be notified" % not_notified_tips.count())
-
-        ret = dict((x.id, x.receiver.notification_fields) for x in not_notified_tips)
-        return ret
 
     @transact
     def _get_notification_settings(self, store):
@@ -52,11 +41,9 @@ class APSNotification(GLJob):
         return admin_serialize_notification(notif)
 
 
-    @inlineCallbacks
-    def do_tip_notification(self, notification_settings):
+    @transact
+    def do_tip_notification(self, store, notification_settings):
         log.debug("Entering in Tip Notification")
-
-        notification_data = yield self._get_notification_data()
 
         # for cplugin in settings.notification_plugins:
         cplugin = settings.notification_plugins[0]
@@ -66,35 +53,38 @@ class APSNotification(GLJob):
 
         plugin = getattr(notification, cplugin)(notification_settings)
 
-        for rtip in notification_data:
+        not_notified_tips = store.find(models.ReceiverTip,
+            models.ReceiverTip.mark == models.ReceiverTip._marker[0]
+        )
+
+        for rtip in not_notified_tips:
 
             # admin fields are the same for all the notification, atm
 
-            rf=notification_data[rtip]
-
-            if not rf.has_key('mail_address'):
+            if not rtip.receiver.notification_fields.has_key('mail_address'):
                 log.debug("Receiver %s lack of email address!" % rtip.receiver.name)
+                # this is actually impossible, but a check is never bad
                 return
 
             event = Event(type=u'tip', trigger='Tip', af=notification_settings,
-                          rf=notification_data[rtip],
+                          rf=rtip.receiver.notification_fields,
                           tip_id=rtip)
 
             notify = plugin.do_notify(event)
 
             @notify.addCallback
-            def success(self, result):
-                log.debug('OK Notification for %s' % rtip.repr() )
+            def success(result):
+                log.debug('OK Notification for %s' % rtip.receiver.username )
                 rtip.mark = models.ReceiverTip._marker[1]
 
             @notify.addErrback
-            def error(self, result):
-                log.debug('FAIL Notification for %s FAIL' % rtip.repr() )
+            def error(result):
+                log.debug('FAIL Notification for %s FAIL' % rtip.receiver.username )
                 rtip.mark = models.ReceiverTip._marker[2]
 
             yield notify
 
-        log.debug("Completed notification of %d receiver tips " % len(notification_data) )
+        log.debug("Completed notification of %d receiver tips " % not_notified_tips.count() )
 
 
     @inlineCallbacks
@@ -119,7 +109,7 @@ class APSNotification(GLJob):
 
         # Else, checks tip/file/comment/activation link
 
-        self.do_tip_notification(notification_settings)
+        yield self.do_tip_notification(notification_settings)
 
         # self.do_file_notification(notification_settings)
         # self.do_comment_notification(notification_settings)

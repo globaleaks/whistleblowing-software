@@ -59,6 +59,8 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
+            # this odd checks, is required! but client do not yet use this piece of code,
+            # only unitTest does
             check = store.find(ReceiverInternalTip,
                 ( ReceiverInternalTip.receiver_id == receiver.id,
                   ReceiverInternalTip.internaltip_id == submission.id) ).one()
@@ -67,9 +69,11 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
             else:
                 log.debug("ContextBased: %s It's already present" % receiver.id)
 
-        log.debug("Enforcing receiver #%d by Context" % context.receivers.count() )
-        # commit before return
         store.commit()
+
+        reloaded_submission = store.find(InternalTip, InternalTip.id == submission.id).one()
+        log.debug("Fixed receivers corpus by Context (%d) on %s" %\
+                (reloaded_submission.receivers.count(), submission.id) )
         return
 
     # Clean the previous list of selected Receiver
@@ -92,13 +96,13 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
             raise InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
 
         submission.receivers.add(receiver)
-
-    log.debug("Added %d Receivers as requested (%s)" %\
-              (submission.receivers.count(), str(receiver_id_list)) )
+        log.debug("+receiver [%s] In tip (%s) #%d" %\
+                (receiver.name, submission.id, submission.receivers.count() ) )
 
     if required and submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
         raise SubmissionFailFields("Receivers required to be completed")
+
 
 def import_files(store, submission, files):
     for file_id in files:
@@ -117,8 +121,9 @@ def import_files(store, submission, files):
     # commit before return
     store.commit()
 
-    log.debug("In Submission %s associated files, amount is #%d" %\
-              (submission.id, submission.internalfiles.count() ))
+    reloaded_submission = store.find(InternalTip, InternalTip.id == submission.id).one()
+    log.debug("In Submission %s associated files number: %d" %\
+              (submission.id, reloaded_submission.internalfiles.count() ))
 
 
 def import_fields(submission, fields, expected_fields, strict_validation=False):
@@ -163,7 +168,6 @@ def import_fields(submission, fields, expected_fields, strict_validation=False):
         imported_fields.update({key: value})
 
     submission.wb_fields = imported_fields
-    log.debug("Completed fields import (with key validation): %s" % submission.wb_fields)
 
 
 def force_schedule():
