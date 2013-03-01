@@ -83,12 +83,12 @@ class APSNotification(GLJob):
             notify = plugin.do_notify(event)
 
             @notify.addCallback
-            def success(self, result):
+            def success(result):
                 log.debug('OK Notification for %s' % rtip.repr() )
                 rtip.mark = models.ReceiverTip._marker[1]
 
             @notify.addErrback
-            def error(self, result):
+            def error(error):
                 log.debug('FAIL Notification for %s FAIL' % rtip.repr() )
                 rtip.mark = models.ReceiverTip._marker[2]
 
