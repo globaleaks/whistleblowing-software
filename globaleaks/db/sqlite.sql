@@ -30,14 +30,14 @@ CREATE TABLE internalfile (
     content_type VARCHAR NOT NULL,
     creation_date VARCHAR,
     file_path VARCHAR,
-    id VARCHAR NOT NULL,
-    internaltip_id VARCHAR NOT NULL,
     mark VARCHAR NOT NULL CHECK (mark IN ('not processed', 'ready', 'blocked', 'stored')),
     name VARCHAR NOT NULL,
     sha2sum VARCHAR,
     size INTEGER NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
+    internaltip_id VARCHAR NOT NULL,
+    id VARCHAR NOT NULL,
+    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE receiverfile (

@@ -14,7 +14,7 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile
+from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile, ReceiverInternalTip
 from globaleaks.settings import transact
 from globaleaks.utils import get_file_checksum, log
 from globaleaks.handlers.files import SUBMISSION_DIR
@@ -26,14 +26,36 @@ def file_preprocess(store):
     """
     This function roll over the InternalFile uploaded, extract a path:id
     association. pre process works in the DB only, do not perform filesystem OPs
+    act only on files marked as 0 ('not processed') and associated to InternalTip
+    'finalized'
     """
     files = store.find(InternalFile, InternalFile.mark == InternalFile._marker[0])
 
+    # Until reference is not fixed/understand completely, this shitty check is needed.
+    # uuuuuffff :((((
+    internaltip_related = {}
+    for single_file in files:
+        internaltip_related[single_file.internaltip_id] = ''
+
+    unfinalized_itip = []
+    for itip_id in internaltip_related.keys():
+        rq = store.find(InternalTip, InternalTip.id == unicode(itip_id) ).one()
+        if rq.mark == InternalTip._marker[0]: # 'submission'
+            unfinalized_itip.append(rq.id)
+    # </uuuuuffff :(((( >
+
     filesdict = {}
     for file in files:
+
+        if file.internaltip_id in unfinalized_itip:
+            # log.debug("Want process file %s but Tip is not yet finalized" % file.name)
+            # eventually checks for large timelaps as anomaly
+            continue
+
         filesdict.update({file.id : file.file_path})
 
     return filesdict
+
 
 # It's not a transact because works on FS
 def file_process(filesdict):
@@ -61,14 +83,14 @@ def receiver_file_align(store, filesdict, processdict):
         ifile = store.find(InternalFile, InternalFile.id == unicode(internalfile_id)).one()
         ifile.sha2sum = unicode(processdict.get(internalfile_id))
 
-        # for each receiver intended to access to this file:
         for receiver in ifile.internaltip.receivers:
-            log.msg("ReceiverFile creation for receiver_id %s, file %s" % (receiver.id, ifile.name) )
+            log.msg("ReceiverFile creation for user %s, file %s" % (receiver.name, ifile.name) )
+
             receiverfile = ReceiverFile()
             receiverfile.receiver_id = receiver.id
             receiverfile.downloads = 0
             receiverfile.internalfile_id = ifile.id
-            receiverfile.internaltip_id = ifile.internaltip.id
+            receiverfile.internaltip_id = ifile.internaltip_id
             # Is the same until end-to-end crypto is not supported
             receiverfile.file_path = ifile.file_path
             store.add(receiverfile)
@@ -111,21 +133,23 @@ def tip_creation(store):
     look for all the finalized InternalTip, create ReceiverTip for the
     first tier of Receiver, and shift the marker in 'first' aka di,ostron.zo
     """
-    created_tips = []
+    created_rtip = []
 
-    store.commit()
     finalized = store.find(InternalTip, InternalTip.mark == InternalTip._marker[1])
 
     for internaltip in finalized:
+
         for receiver in internaltip.receivers:
             rtip_id = create_receivertip(store, receiver, internaltip, 1)
-            created_tips.append(rtip_id)
+
+            created_rtip.append(rtip_id)
 
         internaltip.mark = internaltip._marker[2]
 
-    return created_tips
+    return created_rtip
 
     """
+    # update below with the return_dict
     promoted = store.find(InternalTip,
                         ( InternalTip.mark == InternalTip._marker[2],
                           InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )

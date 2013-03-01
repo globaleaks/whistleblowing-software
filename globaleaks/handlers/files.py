@@ -15,7 +15,6 @@ from cyclone.web import os
 
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import authenticated
 from globaleaks.utils import log, prettyDateTime, random_string
 from globaleaks import settings
 from globaleaks.rest import errors
