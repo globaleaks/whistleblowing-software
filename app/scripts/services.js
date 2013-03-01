@@ -1,9 +1,23 @@
-angular.module('resourceServices.authentication', [])
-  .factory('Authentication', ['$http', '$location', '$routeParams', '$rootScope',
-    function($http, $location, $routeParams, $rootScope){
+angular.module('resourceServices.authentication', ['ngCookies'])
+  .factory('Authentication', ['$http', '$location', '$routeParams', '$rootScope', '$cookies',
+    function($http, $location, $routeParams, $rootScope, $cookies){
       function Session(){
         var self = this,
           auth_landing_page;
+
+        var setCookie = function(name, value) {
+          /**
+           * We set the cookie to be https only if we are accessing the
+           * globaleaks node over https.
+           * If we are not that means that we are accessing it via it's Tor
+           * Hidden Service and we don't need to set the cookie https only as
+           * all requests will always be encrypted end to end.
+           * */
+          $cookie[name] = value;
+          if(window.location.protocol === 'https:') {
+            $cookie[name] += '; secure;';
+          }
+        };
 
         self.login = function(username, password, role) {
           return $http.post('/authentication', {'username': username,
@@ -18,8 +32,8 @@ angular.module('resourceServices.authentication', [])
               $rootScope.session_id = self.id;
               $rootScope.auth_role = role;
 
-              sessionStorage['session_id'] = response.session_id;
-              sessionStorage['role'] = self.role;
+              setCookie('session_id', response.session_id);
+              setCookie('role', self.role);
 
               if (role == 'admin') {
                 auth_landing_page = "/admin/content";
@@ -29,10 +43,10 @@ angular.module('resourceServices.authentication', [])
               }
               if (role == 'wb') {
                 auth_landing_page = "/status/" + self.user_id;
-                sessionStorage['tip_id'] = self.user_id;
+                setCookie('tip_id', self.user_id);
               }
 
-              sessionStorage['auth_landing_page'] = "/#" + auth_landing_page;
+              setCookie('auth_landing_page', "/#" + auth_landing_page);
 
               if ($routeParams['src']) {
                 $location.path($routeParams['src']);
@@ -44,7 +58,7 @@ angular.module('resourceServices.authentication', [])
         };
 
         self.logout = function() {
-            var role = sessionStorage['role'];
+            var role = $cookies['role'];
 
             return $http.delete('/authentication')
               .success(function(response){
@@ -52,10 +66,10 @@ angular.module('resourceServices.authentication', [])
                 self.username = null;
                 self.user_id = null;
 
-                sessionStorage.removeItem('session_id');
-                sessionStorage.removeItem('role');
-                sessionStorage.removeItem('auth_landing_page');
-                sessionStorage.removeItem('tip_id');
+                delete $cookies['session_id'];
+                delete $cookies['role'];
+                delete $cookies['auth_landing_page'];
+                delete $cookies['tip_id'];
 
                 if (role === 'wb')
                   $location.path('/');
@@ -67,9 +81,9 @@ angular.module('resourceServices.authentication', [])
       return new Session;
 }]);
 
-angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
-  factory('globaleaksInterceptor', ['$q', '$rootScope', '$location',
-  function($q, $rootScope, $location) {
+angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices.authentication']).
+  factory('globaleaksInterceptor', ['$q', '$rootScope', '$location', '$cookies',
+  function($q, $rootScope, $location, $cookies) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return function(promise) {
@@ -92,7 +106,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         error.url = response.config.url;
 
         if (error.code == 30) {
-          sessionStorage.removeItem('session_id');
+          delete $cookies['session_id'];
           // Only redirect if we are not on the login page
           if ($location.path().indexOf('/login') === -1) {
             $location.path('/login');
@@ -399,11 +413,13 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   config(function($httpProvider) {
     var $rootScope = angular.injector(['ng']).get('$rootScope'),
       globaleaksRequestInterceptor = function(data, headers) {
-        if (sessionStorage['session_id']) {
-          headers = angular.extend(headers(),{'X-Session': sessionStorage['session_id']});
+        var $cookies = angular.injector(['ngCookies']).get('$cookies');
+
+        if ($cookies['session_id']) {
+          headers = angular.extend(headers(),{'X-Session': $cookies['session_id']});
         };
         return data;
-      };
+    };
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
     $httpProvider.defaults.transformRequest.push(globaleaksRequestInterceptor);
 

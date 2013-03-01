@@ -1,6 +1,6 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$routeParams', 'Tip',
-  function($scope, $routeParams, Tip) {
+  ['$scope', '$routeParams', 'Tip', '$cookies',
+  function($scope, $routeParams, Tip, $cookies) {
     $scope.tip_id = $routeParams.tip_id;
     var TipID = {tip_id: $scope.tip_id};
 
@@ -13,8 +13,8 @@ GLClient.controller('StatusCtrl',
       $scope.newCommentContent = '';
     };
 
-    if (sessionStorage['role'] === 'wb') {
-      $scope.whistleblower_tip_id = sessionStorage['tip_id'];
+    if ($cookies['role'] === 'wb') {
+      $scope.whistleblower_tip_id = $cookies['tip_id'];
       $scope.uploadedFiles = [];
       $scope.uploadingFiles = [];
     };
