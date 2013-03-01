@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('resourceServices.authentication', ['ngCookies'])
   .factory('Authentication', ['$http', '$location', '$routeParams', '$rootScope', '$cookies',
     function($http, $location, $routeParams, $rootScope, $cookies){
@@ -80,7 +82,6 @@ angular.module('resourceServices.authentication', ['ngCookies'])
       };
       return new Session;
 }]);
-
 angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices.authentication']).
   factory('globaleaksInterceptor', ['$q', '$rootScope', '$location', '$cookies',
   function($q, $rootScope, $location, $cookies) {
@@ -122,9 +123,9 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       });
     }
 }]).
-  factory('Node', function($resource) {
+  factory('Node', ['$resource', function($resource) {
     return $resource('/node');
-}).
+}]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
   factory('Submission', ['$resource', 'Node', 'Contexts', 'Receivers',
@@ -332,25 +333,25 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       });
     };
 }]).
-  factory('Contexts', function($resource) {
+  factory('Contexts', ['$resource', function($resource) {
     return $resource('/contexts');
-}).
-  factory('Receivers', function($resource) {
+}]).
+  factory('Receivers', ['$resource', function($resource) {
     return $resource('/receivers');
-}).
-  factory('ReceiverPreferences', function($resource) {
+}]).
+  factory('ReceiverPreferences', ['$resource', function($resource) {
     return $resource('/receiver/preferences', {}, {'update': {method: 'PUT'}});
-}).
-  factory('ReceiverTips', function($resource) {
+}]).
+  factory('ReceiverTips', ['$resource', function($resource) {
     return $resource('/receiver/tips', {}, {'update': {method: 'PUT'}});
-}).
-  factory('AdminNode', function($resource) {
+}]).
+  factory('AdminNode', ['$resource', function($resource) {
     return $resource('/admin/node', {},
       {update:
           {method: 'PUT'}
       });
-}).
-  factory('Admin', function($resource) {
+}]).
+  factory('Admin', ['$resource', function($resource) {
 
     function Admin() {
       var self = this,
@@ -409,8 +410,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
     }
     return Admin;
 
-}).
-  config(function($httpProvider) {
+}]).
+  config(['$httpProvider', function($httpProvider) {
     var $rootScope = angular.injector(['ng']).get('$rootScope'),
       globaleaksRequestInterceptor = function(data, headers) {
         var $cookies = angular.injector(['ngCookies']).get('$cookies');
@@ -422,5 +423,4 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
     };
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
     $httpProvider.defaults.transformRequest.push(globaleaksRequestInterceptor);
-
-});
+}]);

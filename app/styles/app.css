@@ -1,12 +1,3 @@
-@import url(bootstrap.css);
-@import url(angular-ui.css);
-@import url(../scripts/vendor/select2/select2.css);
-
-@import url(datatables.css);
-@import url(configpages.css);
-@import url(lflags.css);
-@import url('jquery.fileupload-ui.css');
-
 /* Base class, inspired by bootstrap jumbotron */
 
 .jumbotron {

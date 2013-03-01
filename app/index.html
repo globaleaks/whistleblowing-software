@@ -9,7 +9,16 @@
         <title></title>
         <meta name="description" content=""/>
         <meta name="viewport" content="width=device-width"/>
+
+        <!-- build:css styles.css -->
+        <link rel="stylesheet" href="styles/bootstrap.css"/>
+        <link rel="stylesheet" href="styles/angular-ui.css"/>
+        <link rel="stylesheet" href="scripts/vendor/select2/select2.css"/>
+        <link rel="stylesheet" href="styles/jquery.fileupload-ui.css"/>
+
+        <link rel="stylesheet" href="styles/lflags.css"/>
         <link rel="stylesheet" href="styles/app.css"/>
+        <!-- endbuild -->
 
     </head>
     <body ng-app="GLClient">
@@ -76,6 +85,7 @@
           </div>
         </footer>
 
+        <!-- build:js scripts.js -->
         <script src="scripts/vendor/jquery.js"></script>
         <script src="scripts/vendor/bootstrap.js"></script>
         <script src="scripts/vendor/underscore.js"></script>
@@ -93,10 +103,10 @@
         <script src="scripts/vendor/angular-mocks.js"></script>
         <script src="scripts/vendor/angular-ui.js"></script>
 
-        <!-- build:js scripts/scripts.js -->
+        <script src="scripts/templates.js"></script>
+        <script src="scripts/app.js"></script>
         <script src="scripts/services.js"></script>
 
-        <script src="scripts/app.js"></script>
         <script src="scripts/ui.js"></script>
         <script src="scripts/filters.js"></script>
 
