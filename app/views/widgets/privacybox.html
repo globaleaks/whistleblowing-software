@@ -1,18 +1,59 @@
-<div class="dropdown privacyBox container">
+<div class="privacyBox container"
+     ng-controller="PrivacyBoxCtrl">
 
-  <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-    <img holder src="holder.js/104x20">
-  </a>
+  <div class="row" ng-mouseenter="showBox()" ng-mouseleave="hideBox()">
 
-  <div class="dropdown-menu">
-    <div class="alert alert-danger">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>Danger!</strong> You have no anonymity!
+    <div class="semaphores span1" ng-class="boxes">
+
+      <div ng-switch on="privacy">
+
+        <div ng-switch-when="high" class="semaphore btn-success"></div>
+        <div ng-switch-when="unknown" class="semaphore btn-warning"></div>
+        <div ng-switch-when="low" class="semaphore btn-danger">
+          <span ng-show="!displayBox" class="label label-important">Danger!</span>
+        </div>
+
+      </div>
+
     </div>
 
-    <div class="alert alert-success">
-      <button type="button" class="close" data-dismiss="alert">&times;</button>
-      <strong>All good</strong> You are safe and secure to submit to this node.
+    <div class="informationBoxes span4">
+
+      <div class="informationBox privacyInformation" ng-show="displayBox">
+
+        <button type="button" class="close" ng-click="hideBox()">&times;</button>
+
+        <div ng-switch on="privacy">
+
+          <div ng-switch-when="high">
+
+            <span class="label label-success">Congratulations!</span>
+            <p>You are apear to be coming from the Tor Network, as such you can
+            perform a submission anonymously.</p>
+
+          </div>
+
+          <div ng-switch-when="unknown">
+
+            <span class="label label-important">Warning!</span>
+            <p>We were not able to determine if you are anonymous or not, please
+            proceed with care</p>
+
+          </div>
+
+          <div ng-switch-when="low">
+
+            <span class="label label-important">Danger!</span>
+            <p>You appear to not be comming from the Tor network, because of this
+            you are <strong>strongly</strong> advised to 
+            <a href="https://www.torproject.org/download/download">download a
+              copy of the tor browser bundle</a> before continuing.</p>
+
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </div>
 
