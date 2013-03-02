@@ -13,9 +13,9 @@ angular.module('resourceServices.authentication', ['ngCookies'])
            * Hidden Service and we don't need to set the cookie https only as
            * all requests will always be encrypted end to end.
            * */
-          $cookie[name] = value;
+          $cookies[name] = value;
           if(window.location.protocol === 'https:') {
-            $cookie[name] += '; secure;';
+            $cookies[name] += '; secure;';
           }
         };
 
