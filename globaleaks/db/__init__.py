@@ -31,10 +31,38 @@ def initialize_node(store, results, onlyNode, emailtemplate):
 
     notification = models.Notification()
     notification.tip_template = emailtemplate
-    # It's the only NOT NULL variable with CHECK
-    notification.security = models.Notification._security_types[0]
-    store.add(notification)
 
+    # defaults until software is not ready 
+    notification.server = u"box549.bluehost.com"
+    notification.port = 25
+    notification.username = u"sendaccount939@globaleaks.org"
+    notification.password = u"sendaccount939"
+
+    # It's the only NOT NULL variable with CHECK
+    notification.security = u'TLS'
+    # notification.security = models.Notification._security_types[0]
+
+    # Those fileds are set here to override the emailnotification_template, the goal is
+    # show to the Admin the various 'variables'
+
+    notification.tip_template = "Hi, in %NodeName%, in %ContextName%\n\n"\
+                                "You (%ReceiverName%) had received in %EventTime%, a Tip!\n"\
+                                "1) %TipTorURL%\n"\
+                                "2) %TipT2WURL%\n\n"\
+                                "Best."
+
+    notification.file_template = "Hi, in %NodeName%, in %ContextName%\n\n"\
+                                 "You (%ReceiverName%) had received in %EventTime%, a File!\n"\
+                                 "is %FileName% (%FileSize%, %FileType%)\n"\
+                                "Best."
+
+    notification.comment_template = "Hi, in %NodeName%, in %ContextName%\n\n"\
+                                    "You (%ReceiverName%) had received in %EventTime%, a Comment!\n"\
+                                    "And is from %CommentSource%\n"\
+                                    "Best."
+
+    notification.activation_template = "*Not Yet implemented*"
+    store.add(notification)
 
 
 def initModels():
@@ -79,7 +107,7 @@ def createTables(create_node=True):
         log.debug("Node initialization with dummy values")
 
         onlyNode = {
-            'name':  u"Please, set me: name/title",
+            'name':  u"MisingConfLeaks",
             'description':  u"Please, set me: description",
             'hidden_service':  u"",
             'public_site':  u"",
@@ -87,7 +115,7 @@ def createTables(create_node=True):
             'stats_update_time':  2, # hours,
         }
 
-        # load notification template
+        # load notification template, ignored ATM
         emailfile = os.path.join(settings.root_path, 'globaleaks', 'db', 'emailnotification_template')
         with open(emailfile) as f:
             email_template = f.read()

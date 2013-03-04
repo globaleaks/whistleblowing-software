@@ -217,6 +217,8 @@ class Comment(Model):
     type = Unicode()
     _types = [ u'receiver', u'whistleblower', u'system' ]
     ## NO *_keys = It's created without initializing dict
+    mark = Unicode()
+    _marker = [ u'not notified', u'notified' ]
 
 
 class Node(Model):

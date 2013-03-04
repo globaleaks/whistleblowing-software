@@ -168,7 +168,6 @@ def delete_receiver_tip(store, user_id, tip_id):
     store.remove(rtip)
 
 
-
 @transact
 def delete_internal_tip(store, user_id, tip_id):
     """
@@ -359,6 +358,8 @@ def create_comment_wb(store, wb_tip_id, request):
     comment.internaltip_id = wbtip.internaltip.id
     comment.author = u'whistleblower' # The printed line
     comment.type = Comment._types[1] # WB
+    comment.mark = Comment._marker[0] # Not notified
+
     store.add(comment)
     wbtip.internaltip.comments.add(comment)
 
@@ -373,6 +374,8 @@ def create_comment_receiver(store, user_id, tip_id, request):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = rtip.receiver.name # The printed line
     comment.type = Comment._types[0] # Receiver
+    comment.mark = Comment._marker[0] # Not notified
+
     store.add(comment)
     rtip.internaltip.comments.add(comment)
 
