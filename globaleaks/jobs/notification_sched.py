@@ -6,8 +6,9 @@
 # Notification implementation, documented along the others asynchronous
 # operations, in Architecture and in jobs/README.md
 
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, DeferredList
 
+from globaleaks.rest import errors
 from globaleaks.jobs.base import GLJob
 from globaleaks.plugins.base import Event
 from globaleaks import models
@@ -21,7 +22,8 @@ from collections import namedtuple
 
 Event = namedtuple('Event',
                    ['type', 'trigger', 'notification_settings',
-                    'trigger_info', 'node_info', 'receiver_info', 'context_info'])
+                    'trigger_info', 'node_info', 'receiver_info',
+                    'context_info', 'plugin'])
 
 
 def serialize_receivertip(rtip):
@@ -38,6 +40,7 @@ def serialize_receivertip(rtip):
 # requested in Comment notification template (like some Tip info)
 
 class APSNotification(GLJob):
+    notification_settings = None
 
     @transact
     def _get_notification_settings(self, store):
@@ -56,14 +59,25 @@ class APSNotification(GLJob):
 
 
     @transact
-    def do_tip_notification(self, store, notification_settings):
+    def create_tip_notification_events(self, store):
+        """
+        This transaction will return all a list of tuples containing the tips
+        for which the notification event has not been run.
+
+        Returns:
+
+            events: a list of tuples containing (tip_id, an instance of
+                :class:`globaleaks.plugins.base.Event`).
+
+        """
+        events = []
 
         # settings.notification_plugins contain a list of supported plugin
         # at the moment only 1. so [0] is used. but different context/receiver
         # may use different code-plugin:
         cplugin = settings.notification_plugins[0]
 
-        plugin = getattr(notification, cplugin)(notification_settings)
+        plugin = getattr(notification, cplugin)(self.notification_settings)
 
         not_notified_tips = store.find(models.ReceiverTip,
             models.ReceiverTip.mark == models.ReceiverTip._marker[0]
@@ -88,45 +102,71 @@ class APSNotification(GLJob):
                 return
 
             event = Event(type=u'tip', trigger='Tip',
-                            notification_settings=notification_settings,
+                            notification_settings=self.notification_settings,
                             trigger_info=tip_desc,
                             node_info=node_desc,
                             receiver_info=receiver_desc,
-                            context_info=context_desc)
+                            context_info=context_desc,
+                            plugin=plugin)
+            events.append((unicode(rtip.id), event))
 
-            # XXX BUG! All notification is marked as correctly send
-            rtip.mark = models.ReceiverTip._marker[1]
+        return events
 
-            notify = plugin.do_notify(event)
+    @transact
+    def tip_notification_succeeded(self, store, result, tip_id):
+        """
+        This is called when the tip notification has succeeded
+        """
+        rtip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
 
-            @notify.addCallback
-            def success(result):
-                log.debug("OK NOT trackable notification due to Storm/Twisted insanity")
-                # log.debug('OK Notification for %s' % rtip.receiver.username )
-                # rtip.mark = models.ReceiverTip._marker[1]
+        if not rtip:
+            raise errors.TipGusNotFound
 
-            @notify.addErrback
-            def error(result):
-                log.debug("FAIL NOT trackable notification due to Storm/Twisted insanity")
-                # log.debug('FAIL Notification for %s FAIL' % rtip.receiver.username )
-                # :( This is triggering a "fail connection is closed from Storm"
-                # but this is *needed* to keep track of notification status...!
-                # rtip.mark = models.ReceiverTip._marker[2]
+        log.debug('OK Notification of tip for %s' % rtip.receiver.username )
+        rtip.mark = models.ReceiverTip._marker[1]
 
-            # yield notify
-            # -- no more 'yield' because we're a @transact
-            # -- no more 'notify' because I don't know
+    @transact
+    def tip_notification_failed(self, store, failure, tip_id):
+        """
+        This is called when the tip notification has failed.
+        """
+        rtip = store.find(models.ReceiverTip, models.ReceiverTip.id == tip_id).one()
+
+        if not rtip:
+            raise errors.TipGusNotFound
+
+        log.debug('FAIL Notification of tip for %s FAIL' % rtip.receiver.username )
+        rtip.mark = models.ReceiverTip._marker[2]
+
+    def do_tip_notification(self, tip_events):
+        l = []
+        for tip_id, event in tip_events:
+
+            notify = event.plugin.do_notify(event)
+            notify.addCallback(self.tip_notification_succeeded, tip_id)
+            notify.addErrback(self.tip_notification_succeeded, tip_id)
+            l.append(notify)
+
+        return DeferredList(l)
 
         log.debug("Completed notification of %d receiver tips " % not_notified_tips.count() )
 
-
     @transact
-    def do_comment_notification(self, store, notification_settings):
+    def create_comment_notification_events(self, store):
+        """
+        Creates events for performing notification of newly added comments.
 
+        Returns:
+            events: a list of tuples containing ((comment_id, receiver_id), an instance of
+                :class:`globaleaks.plugins.base.Event`).
+
+
+        """
+        events = []
         comment_notified_cnt = 0
         cplugin = settings.notification_plugins[0]
 
-        plugin = getattr(notification, cplugin)(notification_settings)
+        plugin = getattr(notification, cplugin)(self.notification_settings)
 
         not_notified_comments = store.find(models.Comment,
             models.Comment.mark == models.Comment._marker[0]
@@ -137,22 +177,18 @@ class APSNotification(GLJob):
         log.debug("Comments found to be notified: %d" % not_notified_comments.count() )
         for comment in not_notified_comments:
 
-            # Storm mishitrstanding :(
-            citid = store.find(models.InternalTip, models.InternalTip.id == comment.internaltip_id).one()
-
             # for every comment, iter on the associated receiver
-            log.debug("Comments receiver: %d" % citid.receivers.count())
+            log.debug("Comments receiver: %d" % comment.internaltip.receivers.count())
 
             comment_desc = tip.serialize_comment(comment)
 
-            context_desc = admin.admin_serialize_context(citid.context)
+            context_desc = admin.admin_serialize_context(comment.internaltip.context)
             assert context_desc.has_key('name')
 
             # XXX BUG! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
-            comment.mark = models.Comment._marker[1]
 
-            for receiver in citid.receivers:
+            for receiver in comment.internaltip.receivers:
 
                 receiver_desc = admin.admin_serialize_receiver(receiver)
                 assert receiver_desc.has_key('notification_fields')
@@ -165,26 +201,44 @@ class APSNotification(GLJob):
                 comment_notified_cnt += 1
 
                 event = Event(type=u'comment', trigger='Comment',
-                    notification_settings=notification_settings,
+                    notification_settings=self.notification_settings,
                     trigger_info=comment_desc,
                     node_info=node_desc,
                     receiver_info=receiver_desc,
-                    context_info=context_desc)
+                    context_info=context_desc,
+                    plugin=plugin)
 
-                notify = plugin.do_notify(event)
+                events.append(((unicode(comment.id), unicode(receiver.id)), event))
 
-                @notify.addCallback
-                def success(result):
-                    log.debug("OK NOT trackable comment notification")
+        return events
 
-                @notify.addErrback
-                def error(result):
-                    log.debug("FAIL NOT trackable comment notification")
+    @transact
+    def comment_notification_succeeded(self, store, result, comment_id, receiver_id):
+        """
+        This is called when the comment notification has succeeded
+        """
+        log.debug("OK Notifification of comment %s for reciever %s" % (comment_id, receiver_id))
 
-        if comment_notified_cnt:
-            log.debug("Completed comment notification: %d " % comment_notified_cnt)
+    @transact
+    def comment_notification_failed(self, store, failure, comment_id, receiver_id):
+        """
+        This is called when the comment notification has failed.
+        """
+        log.debug("FAILED Notifification of comment %s for reciever %s" % (comment_id, receiver_id))
 
+    def do_comment_notification(self, comment_events):
+        l = []
+        for comment_receiver_id, event in comment_events:
+            comment_id, receiver_id = comment_receiver_id
 
+            notify = event.plugin.do_notify(event)
+            notify.addCallback(self.comment_notification_succeeded, comment_id, receiver_id)
+            notify.addErrback(self.comment_notification_failed, comment_id, receiver_id)
+            l.append(notify)
+
+        # we place all the notification events inside of a deferred list so
+        # that they can all run concurrently
+        return DeferredList(l)
 
     @inlineCallbacks
     def operation(self):
@@ -200,17 +254,21 @@ class APSNotification(GLJob):
         """
 
         # Initialize Notification setting system wide
-        notification_settings = yield self._get_notification_settings()
+        self.notification_settings = yield self._get_notification_settings()
 
-        if not notification_settings:
+        if not self.notification_settings:
             log.err("Node has not Notification configured, Notification disabled!")
             return
 
         # Else, checks tip/file/comment/activation link
         log.debug("Node notification configured: entering in notification operations")
 
-        yield self.do_tip_notification(notification_settings)
-        yield self.do_comment_notification(notification_settings)
+        tip_events = yield self.create_tip_notification_events()
+        comment_events = yield self.create_comment_notification_events()
 
-        # self.do_file_notification(notification_settings)
+        d1 = self.do_tip_notification(tip_events)
+        d2 = self.do_comment_notification(comment_events)
+        # d3 = self.do_file_notification()
+        # yield DeferredList([d1, d2, d3])
+        yield DeferredList([d1, d2])
 

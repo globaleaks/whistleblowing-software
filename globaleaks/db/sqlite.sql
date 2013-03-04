@@ -8,8 +8,8 @@ CREATE TABLE comment (
     type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower', 'system')),
     mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified')),
     content VARCHAR NOT NULL,
-    PRIMARY KEY (id),
-    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
+    FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
 );
 
 CREATE TABLE context (
