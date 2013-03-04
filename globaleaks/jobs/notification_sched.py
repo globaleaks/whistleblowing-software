@@ -18,14 +18,6 @@ from globaleaks.plugins import notification
 from globaleaks import settings
 from globaleaks.handlers import admin, tip
 
-from collections import namedtuple
-
-Event = namedtuple('Event',
-                   ['type', 'trigger', 'notification_settings',
-                    'trigger_info', 'node_info', 'receiver_info',
-                    'context_info', 'plugin'])
-
-
 def serialize_receivertip(rtip):
     rtip_dict = {
         'id': unicode(rtip.id),
