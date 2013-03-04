@@ -38,11 +38,12 @@ store_name = 'main_store'
 # threads sizes
 db_thread_pool_size = 1
 db_debug = True
+
 # loggings
 import logging
 ## set to false to disable file logging
-logfile = '/tmp/glbackend.log'
 loglevel = logging.DEBUG
+logfile = os.path.join(gldata_path, 'glbackend.log')
 
 # plugins
 notification_plugins = [
