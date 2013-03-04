@@ -38,8 +38,7 @@ class Notification(GLPlugin):
         """
         raise NotImplementedError("Your plugin misses implementation of 'validate_receiver_opt'")
 
-    data_list = [ u'tip', u'comment' ]
-    def do_notify(self, event, **kw):
+    def do_notify(self, event):
         """
         @param settings: a dict containing
             {

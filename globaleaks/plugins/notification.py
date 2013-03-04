@@ -19,7 +19,7 @@ class MailNotification(Notification):
     _title = {
             'comment': 'From %ContextName% a new comment in %EventTime%',
             'tip': 'From %ContextName% a new Tip in %EventTime%',
-            'file': 'From %ContextName% a new file appended in a tip (%EventTime%, %FileTye%)'
+            'file': 'From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)'
     }
 
     plugin_name = u'Mail'
@@ -86,7 +86,7 @@ class MailNotification(Notification):
 
             tip_template_keyword = {
                 '%TipTorURL%':
-                    'https://%s/#/status/%s' %
+                    'http://%s/#/status/%s' %
                         ( node_desc['hidden_service'],
                           event_dicts.trigger_info['id']),
                 '%TipT2WURL%':
@@ -111,7 +111,18 @@ class MailNotification(Notification):
             body = self._iterkeywords(partial, comment_template_keyword)
             return body
 
-        # TODO u'file'
+        if event_dicts.type == u'file':
+
+            file_template_keyword = {
+                '%FileName%': event_dicts.trigger_info['name'],
+                '%EventTime%': event_dicts.trigger_info['creation_date'],
+                '%FileSize%': event_dicts.trigger_info['size'],
+                '%FileType%': event_dicts.trigger_info['content_type'],
+            }
+
+            partial = self._iterkeywords(template, template_keyword)
+            body = self._iterkeywords(partial, file_template_keyword)
+            return body
 
         raise AssertionError("Only Tip and Comment at the moment supported")
 
