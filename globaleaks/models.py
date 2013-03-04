@@ -185,6 +185,9 @@ class ReceiverFile(Model):
     file_path = Unicode()
     downloads = Int()
     last_access = DateTime()
+    mark = Unicode()
+
+    _marker = [ u'not notified', u'notified' ]
 
     ## NO *_keys = It's created without initializing dict
 

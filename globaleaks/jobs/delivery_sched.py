@@ -93,8 +93,9 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile.internaltip_id = ifile.internaltip_id
             # Is the same until end-to-end crypto is not supported
             receiverfile.file_path = ifile.file_path
-            store.add(receiverfile)
+            receiverfile.mark = ReceiverFile._marker[0] # not notified
 
+            store.add(receiverfile)
             receiverfile_list.append(receiverfile.id)
 
         log.msg("Processed InternalFile %s - [%s] and updated with checksum %s" % (ifile.id, ifile.name, ifile.sha2sum))

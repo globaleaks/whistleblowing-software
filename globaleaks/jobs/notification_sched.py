@@ -28,8 +28,19 @@ def serialize_receivertip(rtip):
         }
     return rtip_dict
 
+def serialize_internalfile(ifile):
+    rfile_dict = {
+        'name': unicode(ifile.name),
+        'sha2sum': unicode(ifile.sha2sum),
+        'content_type': unicode(ifile.content_type),
+        'size': unicode(ifile.size),
+        'creation_date' : unicode(prettyDateTime(ifile.creation_date)),
+    }
+    return rfile_dict
+
 # Note: is used tip.serialize_comment until more information are not
 # requested in Comment notification template (like some Tip info)
+
 
 class APSNotification(GLJob):
     notification_settings = None
@@ -141,8 +152,6 @@ class APSNotification(GLJob):
 
         return DeferredList(l)
 
-        log.debug("Completed notification of %d receiver tips " % not_notified_tips.count() )
-
     @transact
     def create_comment_notification_events(self, store):
         """
@@ -232,6 +241,87 @@ class APSNotification(GLJob):
         # that they can all run concurrently
         return DeferredList(l)
 
+
+    @transact
+    def create_file_notification_events(self, store):
+        """
+        Creates events for performing notification of newly added files..
+
+        Returns:
+            events: a list of tuples containing ((receiverfile_id, receiver_id), an instance of
+                :class:`globaleaks.plugins.base.Event`).
+
+        """
+        events = []
+        file_notified_cnt = 0
+        cplugin = settings.notification_plugins[0]
+
+        plugin = getattr(notification, cplugin)(self.notification_settings)
+
+        not_notified_rfiles = store.find(models.ReceiverFile,
+            models.ReceiverTip.mark == models.ReceiverFile._marker[0]
+        )
+
+        node_desc = admin.admin_serialize_node(store.find(models.Node).one())
+
+        log.debug("Receiverfiles found to be notified: %d" % not_notified_rfiles.count() )
+        for rfile in not_notified_rfiles:
+
+            file_desc = serialize_internalfile(rfile.internalfile)
+
+            context_desc = admin.admin_serialize_context(rfile.internalfile.internaltip.context)
+            assert context_desc.has_key('name')
+
+            receiver_desc = admin.admin_serialize_receiver(rfile.receiver)
+            assert receiver_desc.has_key('notification_fields')
+
+            if not rfile.receiver.notification_fields.has_key('mail_address'):
+                log.debug("Receiver %s lack of email address!" % rfile.receiver.name)
+                # this is actually impossible, but a check is never bad
+                continue
+
+            file_notified_cnt += 1
+
+            event = Event(type=u'file', trigger='File',
+                notification_settings=self.notification_settings,
+                trigger_info=file_desc,
+                node_info=node_desc,
+                receiver_info=receiver_desc,
+                context_info=context_desc,
+                plugin=plugin)
+
+            events.append(((unicode(rfile.id), unicode(rfile.receiver.id)), event))
+
+        return events
+
+    @transact
+    def receiverfile_notification_succeeded(self, store, result, receiverfile_id, receiver_id):
+        """
+        This is called when the comment notification has succeeded
+        """
+        log.debug("OK Notifification of receiverfile %s for reciever %s" % (receiverfile_id, receiver_id))
+
+    @transact
+    def receiverfile_notification_failed(self, store, failure, receiverfile_id, receiver_id):
+        """
+        This is called when the comment notification has failed.
+        """
+        log.debug("FAILED Notifification of receiverfile %s for reciever %s" % (receiverfile_id, receiver_id))
+
+    def do_receiverfile_notification(self, receiverfile_events):
+        l = []
+        for receiverfile_receiver_id, event in receiverfile_events:
+            receiverfile_id, receiver_id = receiverfile_receiver_id
+
+            notify = event.plugin.do_notify(event)
+            notify.addCallback(self.receiverfile_notification_succeeded, receiverfile_id, receiver_id)
+            notify.addErrback(self.receiverfile_notification_failed, receiverfile_id, receiver_id)
+            l.append(notify)
+
+        return DeferredList(l)
+
+
+
     @inlineCallbacks
     def operation(self):
         """
@@ -257,10 +347,11 @@ class APSNotification(GLJob):
 
         tip_events = yield self.create_tip_notification_events()
         comment_events = yield self.create_comment_notification_events()
+        file_events = yield self.create_file_notification_events()
 
-        dl1 = self.do_tip_notification(tip_events)
-        dl2 = self.do_comment_notification(comment_events)
-        # d3 = self.do_file_notification()
-        # yield DeferredList([d1, d2, d3], consumeErrors=True)
-        yield DeferredList([d1, d2], consumeErrors=True)
+        d1 = self.do_tip_notification(tip_events)
+        d2 = self.do_comment_notification(comment_events)
+        d3 = self.do_receiverfile_notification(file_events)
+
+        yield DeferredList([d1, d2, d3], consumeErrors=True)
 
