@@ -91,7 +91,7 @@ class MailNotification(Notification):
                           event_dicts.trigger_info['id']),
                 '%TipT2WURL%':
                     'https://%s.tor2web.org/#/status/%s' %
-                        ( node_desc['hidden_service'][16:],
+                        ( node_desc['hidden_service'][:16],
                           event_dicts.trigger_info['id'] ),
                 '%EventTime%': event_dicts.trigger_info['creation_date'],
             }
