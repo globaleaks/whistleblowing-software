@@ -215,3 +215,9 @@ class InvalidOldPassword(GLException):
     reason = "The specified old password is not valid"
     error_code = 34
     status_code = 406
+
+class CommentNotFound(GLException):
+    reason = "The specified comment was not found"
+    error_code = 35
+    status_code = 404
+
