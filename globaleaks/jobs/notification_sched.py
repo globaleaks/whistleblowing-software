@@ -258,9 +258,9 @@ class APSNotification(GLJob):
         tip_events = yield self.create_tip_notification_events()
         comment_events = yield self.create_comment_notification_events()
 
-        d1 = self.do_tip_notification(tip_events)
-        d2 = self.do_comment_notification(comment_events)
+        dl1 = self.do_tip_notification(tip_events)
+        dl2 = self.do_comment_notification(comment_events)
         # d3 = self.do_file_notification()
-        # yield DeferredList([d1, d2, d3])
-        yield DeferredList([d1, d2])
+        # yield DeferredList([d1, d2, d3], consumeErrors=True)
+        yield DeferredList([d1, d2], consumeErrors=True)
 
