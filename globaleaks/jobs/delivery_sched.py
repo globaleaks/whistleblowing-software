@@ -97,7 +97,7 @@ def receiver_file_align(store, filesdict, processdict):
 
             receiverfile_list.append(receiverfile.id)
 
-        log.msg("Processed InternalFile %s and update with checksum %s" % (ifile.name, ifile.sha2sum))
+        log.msg("Processed InternalFile %s - [%s] and updated with checksum %s" % (ifile.id, ifile.name, ifile.sha2sum))
 
         ifile.mark = InternalFile._marker[1] # Ready (TODO review the marker)
 
