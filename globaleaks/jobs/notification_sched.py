@@ -137,22 +137,19 @@ class APSNotification(GLJob):
         log.debug("Comments found to be notified: %d" % not_notified_comments.count() )
         for comment in not_notified_comments:
 
-            # Storm mishitrstanding :(
-            citid = store.find(models.InternalTip, models.InternalTip.id == comment.internaltip_id).one()
-
             # for every comment, iter on the associated receiver
-            log.debug("Comments receiver: %d" % citid.receivers.count())
+            log.debug("Comments receiver: %d" % comment.internaltip.receivers.count())
 
             comment_desc = tip.serialize_comment(comment)
 
-            context_desc = admin.admin_serialize_context(citid.context)
+            context_desc = admin.admin_serialize_context(comment.internaltip.context)
             assert context_desc.has_key('name')
 
             # XXX BUG! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
             comment.mark = models.Comment._marker[1]
 
-            for receiver in citid.receivers:
+            for receiver in comment.internaltip.receivers:
 
                 receiver_desc = admin.admin_serialize_receiver(receiver)
                 assert receiver_desc.has_key('notification_fields')
