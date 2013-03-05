@@ -202,6 +202,8 @@ class BaseHandler(RequestHandler):
 
 
     def _handle_request_exception(self, e):
+        # exception informations must be saved here before continue.
+        type, value, tb = sys.exc_info()
         try:
             if isinstance(e.value, (HTTPError, HTTPAuthenticationRequired)):
                 e = e.value
@@ -224,6 +226,5 @@ class BaseHandler(RequestHandler):
                 log.msg(e)
             log.msg("Uncaught exception %s :: %r" % \
                     (self._request_summary(), self.request))
-            type, value, tb = sys.exc_info()
             MailException(type, value, tb)
             return self.send_error(500, exception=e)
