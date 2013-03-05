@@ -155,7 +155,7 @@ class ReceiverTip(Model):
     notification_date = DateTime()
     mark = Unicode()
 
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'notification ignore' ]
+    _marker = [ u'not notified', u'notified', u'unable to notify' ]
 
     ## NO *_keys = It's created without initializing dict
 
@@ -187,7 +187,7 @@ class ReceiverFile(Model):
     last_access = DateTime()
     mark = Unicode()
 
-    _marker = [ u'not notified', u'notified' ]
+    _marker = [ u'not notified', u'notified', u'unable to notify' ]
 
     ## NO *_keys = It's created without initializing dict
 

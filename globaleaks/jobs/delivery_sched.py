@@ -181,6 +181,8 @@ class APSDelivery(GLJob):
         # ==> Files && Files update
         filesdict = yield file_preprocess()
         # return a dict { "file_uuid" : "file_path" }
+        if filesdict:
+            log.debug("Delivery job: parsing %d new files" % len(filesdict))
 
         try:
             # perform FS base processing, outside the transactions
