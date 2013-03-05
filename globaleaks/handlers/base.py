@@ -27,12 +27,25 @@ class BaseHandler(RequestHandler):
     @staticmethod
     def validate_python_type(value, python_type):
         """
-        Return True if the python class instantiates the python_type given.
+        Return True if the python class instantiates the python_type given,
+            'int' fields are accepted also as 'unicode' but cast on base 10
+            before validate them
         """
+        if value is None:
+            return True
+
         if python_type == int:
-            return any((isinstance(value, python_type), isinstance(value, unicode), value is None))
-        else:
-            return any((isinstance(value, python_type), value is None))
+            if isinstance(value, int):
+                return True
+
+            if isinstance(value, unicode):
+                try:
+                    int(value)
+                except Exception:
+                    raise False
+
+        # else
+        return isinstance(value, python_type)
 
     @staticmethod
     def validate_GLtype(value, gl_type):
