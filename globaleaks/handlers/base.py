@@ -181,11 +181,25 @@ class BaseHandler(RequestHandler):
 
     @property
     def is_whistleblower(self):
-        return self.current_user and self.current_user['role'] == 'wb'
+        if not self.current_user or not self.current_user.has_key('role'):
+            raise errors.NotAuthenticated
+
+        if self.current_user['role'] == 'wb':
+            return True
+        else:
+            return False
+
 
     @property
     def is_receiver(self):
-        return self.current_user and self.current_user['role'] == 'receiver'
+        if not self.current_user or not self.current_user.has_key('role'):
+            raise errors.NotAuthenticated
+
+        if self.current_user['role'] == 'receiver':
+            return True
+        else:
+            return False
+
 
     def _handle_request_exception(self, e):
         try:
