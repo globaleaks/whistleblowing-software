@@ -125,7 +125,7 @@ class APSNotification(GLJob):
         if not rtip:
             raise errors.TipGusNotFound
 
-        log.debug('OK Notification of tip for %s' % rtip.receiver.username )
+        log.debug("+[Success] Notification Tip reciever %s" % rtip.receiver.username)
         rtip.mark = models.ReceiverTip._marker[1]
 
     @transact
@@ -138,7 +138,7 @@ class APSNotification(GLJob):
         if not rtip:
             raise errors.TipGusNotFound
 
-        log.debug('FAIL Notification of tip for %s FAIL' % rtip.receiver.username )
+        log.debug("-[Fail] Notification Tip reciever %s" % rtip.receiver.username)
         rtip.mark = models.ReceiverTip._marker[2]
 
     def do_tip_notification(self, tip_events):
@@ -164,7 +164,6 @@ class APSNotification(GLJob):
 
         """
         events = []
-        comment_notified_cnt = 0
         cplugin = settings.notification_plugins[0]
 
         plugin = getattr(notification, cplugin)(self.notification_settings)
@@ -188,6 +187,7 @@ class APSNotification(GLJob):
 
             # XXX BUG! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
+            comment.mark = models.Comment._marker[1]
 
             for receiver in comment.internaltip.receivers:
 
@@ -198,8 +198,6 @@ class APSNotification(GLJob):
                     log.debug("Receiver %s lack of email address!" % receiver.name)
                     # this is actually impossible, but a check is never bad
                     continue
-
-                comment_notified_cnt += 1
 
                 event = Event(type=u'comment', trigger='Comment',
                     notification_settings=self.notification_settings,
@@ -218,14 +216,20 @@ class APSNotification(GLJob):
         """
         This is called when the comment notification has succeeded
         """
-        log.debug("OK Notifification of comment %s for reciever %s" % (comment_id, receiver_id))
+        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
+        if not receiver:
+            raise errors.ReceiverGusNotFound
+        log.debug("+[Success] Notification of comment reciever %s" % receiver.username)
 
     @transact
     def comment_notification_failed(self, store, failure, comment_id, receiver_id):
         """
         This is called when the comment notification has failed.
         """
-        log.debug("FAILED Notifification of comment %s for reciever %s" % (comment_id, receiver_id))
+        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
+        if not receiver:
+            raise errors.ReceiverGusNotFound
+        log.debug("-[Fail] Notification of comment reciever %s" % receiver.username)
 
     def do_comment_notification(self, comment_events):
         l = []
@@ -253,7 +257,6 @@ class APSNotification(GLJob):
 
         """
         events = []
-        file_notified_cnt = 0
         cplugin = settings.notification_plugins[0]
 
         plugin = getattr(notification, cplugin)(self.notification_settings)
@@ -280,8 +283,6 @@ class APSNotification(GLJob):
                 # this is actually impossible, but a check is never bad
                 continue
 
-            file_notified_cnt += 1
-
             event = Event(type=u'file', trigger='File',
                 notification_settings=self.notification_settings,
                 trigger_info=file_desc,
@@ -297,16 +298,33 @@ class APSNotification(GLJob):
     @transact
     def receiverfile_notification_succeeded(self, store, result, receiverfile_id, receiver_id):
         """
-        This is called when the comment notification has succeeded
+        This is called when the Receiver File notification has succeeded
         """
-        log.debug("OK Notifification of receiverfile %s for reciever %s" % (receiverfile_id, receiver_id))
+        rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == receiverfile_id).one()
+        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
+
+        if not rfile:
+            raise errors.FileGusNotFound
+
+        log.debug("+[Success] Notification of receiverfile %s for reciever %s" % (rfile.internalfile.name, receiver.username))
+        rfile.mark = models.ReceiverFile._marker[1] # 'notified'
 
     @transact
     def receiverfile_notification_failed(self, store, failure, receiverfile_id, receiver_id):
         """
-        This is called when the comment notification has failed.
+        This is called when the Receiver File notification has failed.
         """
-        log.debug("FAILED Notifification of receiverfile %s for reciever %s" % (receiverfile_id, receiver_id))
+        rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == receiverfile_id).one()
+        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
+
+        if not rfile:
+            raise errors.FileGusNotFound
+        if not receiver:
+            raise errors.ReceiverGusNotFound
+
+        log.debug("-[Fail] Notification of receiverfile %s for reciever %s" % (rfile.internalfile.name, receiver.username))
+        rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
+
 
     def do_receiverfile_notification(self, receiverfile_events):
         l = []
