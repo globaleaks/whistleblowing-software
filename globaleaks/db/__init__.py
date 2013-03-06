@@ -31,7 +31,7 @@ def initialize_node(store, results, onlyNode, emailtemplate):
     notification = models.Notification()
     notification.tip_template = emailtemplate
 
-    # defaults until software is not ready 
+    # defaults until software is not ready
     notification.server = u"box549.bluehost.com"
     notification.port = 25
     notification.username = u"sendaccount939@globaleaks.org"
@@ -106,7 +106,7 @@ def createTables(create_node=True):
         log.debug("Node initialization with dummy values")
 
         onlyNode = {
-            'name':  u"MisingConfLeaks",
+            'name':  u"MissingConfLeaks",
             'description':  u"Please, set me: description",
             'hidden_service':  u"",
             'public_site':  u"",
