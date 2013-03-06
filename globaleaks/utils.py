@@ -16,7 +16,7 @@ from Crypto.Random import random
 from Crypto.Hash import SHA256
 from twisted.internet import fdesc
 
-from globaleaks import settings
+from globaleaks.settings import GLSetting
 
 
 class Publisher(twlog.LogPublisher):
@@ -33,12 +33,12 @@ class Publisher(twlog.LogPublisher):
         return twlog.err(*arg, **kw)
 
     def startLogging(self):
-        if settings.logfile:
-            logfile_observer = twlog.FileLogObserver(open(settings.logfile, 'w'))
+        if GLSetting.logfile:
+            logfile_observer = twlog.FileLogObserver(open(GLSetting.logfile, 'w'))
             self.addObserver(logfile_observer.emit)
 
         logpy_observer = twlog.PythonLoggingObserver('globaleaks')
-        logpy_observer.logger.setLevel(settings.loglevel)
+        logpy_observer.logger.setLevel(GLSetting.loglevel)
         self.addObserver(logpy_observer.emit)
 
 log = Publisher()

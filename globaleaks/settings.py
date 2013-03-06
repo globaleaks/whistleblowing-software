@@ -9,64 +9,103 @@
 
 
 import os
-import os.path
 import sys
 import traceback
-
+import logging
 import transaction
+
+from optparse import OptionParser
 from twisted.python import log
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
-from storm.twisted.transact import Transactor
 from storm import exceptions
 from twisted.internet.threads import deferToThreadPool
-from cyclone.util import ObjectDict as OD
 from cyclone.web import HTTPError
 from storm.zope.zstorm import ZStorm
 from storm import tracer
 
 
-root_path = os.path.join(os.path.dirname(__file__), '..')
-install_path = os.path.abspath(os.path.join(root_path, '..'))
-glclient_path = os.path.join(install_path, 'GLClient', 'app')
-gldata_path = os.path.join(root_path, '_gldata')
-db_file = 'sqlite:' + os.path.join(gldata_path, 'glbackend.db')
-create_db_file = os.path.join(root_path, 'globaleaks', 'db', 'sqlite.sql')
-static_path = os.path.join(root_path, '_static')
+verbosity_dict = {
+    'INFO' : logging.INFO,
+    'WARNING': logging.WARNING,
+    'ERROR': logging.ERROR,
+    'CRITICAL': logging.CRITICAL,
+    'DEBUG': logging.DEBUG
+}
 
-store_name = 'main_store'
-# threads sizes
-db_thread_pool_size = 1
-db_debug = True
+class GLSettingsClass:
 
-# loggings
-import logging
-## set to false to disable file logging
-loglevel = logging.DEBUG
-logfile = os.path.join(gldata_path, 'glbackend.log')
+    def __init__(self):
+        # command line parsing utils
+        self.parser = OptionParser()
+        self.cmdline_options = None
 
-# plugins
-notification_plugins = [
-        'MailNotification',
-]
+        # threads sizes
+        self.db_thread_pool_size = 1
 
-if not os.path.exists(gldata_path):
-    os.mkdir(gldata_path)
+        # files and path
+        self.store_name = 'main_store'
+        self.root_path = os.path.join(os.path.dirname(__file__), '..')
+        self.install_path = os.path.abspath(os.path.join(self.root_path, '..'))
+        self.glclient_path = os.path.join(self.install_path, 'GLClient', 'app')
+        self.gldata_path = os.path.join(self.root_path, '_gldata')
+        self.db_file = 'sqlite:' + os.path.join(self.gldata_path, 'glbackend.db')
+        self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db', 'sqlite.sql')
+        self.static_path = os.path.join(self.root_path, '_static')
+        self.logfile = os.path.join(self.gldata_path, 'glbackend.log')
 
-if not os.path.exists(static_path):
-    os.mkdir(static_path)
+        # List of plugins available in the software
+        self.notification_plugins = [
+            'MailNotification',
+            ]
 
-assert all(os.path.exists(path) for path in
-           (root_path, install_path, glclient_path, gldata_path, static_path))
+        # Debug Defaults
+        self.db_debug = True
+        self.cyclone_debug = True
+        self.loglevel = logging.DEBUG
+
+        # Session tracking, in the singleton classes
+        self.sessions = dict()
 
 
+    def load_cmdline_options(self):
+        """
+        This function is called by runner.py and operate in cmdline_options,
+        interpreted and filled in bin/startglobaleaks script.
+
+        happen in startglobaleaks before the sys.argv is modified
+        """
+        assert self.cmdline_options is not None
+
+        self.db_debug = self.cmdline_options.storm
+
+        self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
+        self.bind_port = self.cmdline_options.port
+
+
+    def consistency_check(self):
+
+        if not os.path.exists(self.gldata_path):
+            os.mkdir(self.gldata_path)
+
+        if not os.path.exists(self.static_path):
+            os.mkdir(self.static_path)
+
+        assert all( os.path.exists(path) for path in
+                   (self.root_path, self.install_path, self.glclient_path,
+                    self.gldata_path, self.static_path)
+                )
+
+
+# GLSetting is a singleton class exported once
+GLSetting = GLSettingsClass()
 
 class transact(object):
     """
     Class decorator for managing transactions.
     Because storm sucks.
     """
-    tp = ThreadPool(0, db_thread_pool_size)
+    tp = ThreadPool(0, GLSetting.db_thread_pool_size)
     _debug = False
 
     def __init__(self, method):
@@ -109,8 +148,8 @@ class transact(object):
     @staticmethod
     def get_store():
         zstorm = ZStorm()
-        zstorm.set_default_uri(store_name, db_file)
-        return zstorm.get(store_name)
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
+        return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
         self.store = self.get_store()
@@ -140,9 +179,6 @@ class transact(object):
 
         return result
 
-
-# xxx. move this on another place
-sessions = dict()
 
 transact.tp.start()
 reactor.addSystemEventTrigger('after', 'shutdown', transact.tp.stop)

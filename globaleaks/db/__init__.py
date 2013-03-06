@@ -7,9 +7,8 @@ import os.path
 from twisted.internet.defer import succeed
 from storm.exceptions import OperationalError
 
-from globaleaks import settings
 from globaleaks.utils import log
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 from globaleaks import models
 
 @transact
@@ -76,7 +75,7 @@ def create_tables_transaction(store):
     @return: None, create the right table at the first start, and initialized
     the node.
     """
-    with open(settings.create_db_file) as f:
+    with open(GLSetting.create_db_file) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
             try:
@@ -93,7 +92,7 @@ def createTables(create_node=True):
     """
     Override transactor for testing.
     """
-    if os.path.exists(settings.db_file.replace('sqlite:', '')):
+    if os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
         print "Node already configured"
         # Here we instance every model so that __storm_table__ gets set via
         # __new__
@@ -116,7 +115,7 @@ def createTables(create_node=True):
         }
 
         # load notification template, ignored ATM
-        emailfile = os.path.join(settings.root_path, 'globaleaks', 'db', 'emailnotification_template')
+        emailfile = os.path.join(GLSetting.root_path, 'globaleaks', 'db', 'emailnotification_template')
         with open(emailfile) as f:
             email_template = f.read()
 

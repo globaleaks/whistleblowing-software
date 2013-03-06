@@ -5,11 +5,10 @@ from twisted.internet.defer import inlineCallbacks
 from cyclone.util import ObjectDict as OD
 
 from globaleaks.models import Node
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks import settings
 from globaleaks.utils import random_string, log
 
 def authenticated(*roles):
@@ -28,7 +27,7 @@ def authenticated(*roles):
                     # XXX: eventually change this
                     raise errors.NotAuthenticated
                 else:
-                    settings.sessions[cls.current_user.id].timestamp = time.time()
+                    GLSetting.sessions[cls.current_user.id].timestamp = time.time()
             return method(cls, *args, **kwargs)
         return call_method
     return wrapper
@@ -123,7 +122,7 @@ class AuthenticationHandler(BaseHandler):
                role=role,
                user_id=user_id
         )
-        settings.sessions[self.session_id] = new_session
+        GLSetting.sessions[self.session_id] = new_session
         return self.session_id
 
 
@@ -162,8 +161,8 @@ class AuthenticationHandler(BaseHandler):
         """
         if self.current_user:
             try:
-                print settings.sessions[self.current_user.id]
-                del settings.sessions[self.current_user.id]
+                log.debug("Explitic logout of SID %s" % GLSetting.sessions[self.current_user.id])
+                del GLSetting.sessions[self.current_user.id]
             except KeyError:
                 raise errors.NotAuthenticated
 

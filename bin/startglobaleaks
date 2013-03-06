@@ -1,24 +1,18 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
-
 import os
 import sys
 import random
-import sys
 
-from twisted.python import log, usage
-from twisted.internet import reactor
-from twisted.application import app
+from twisted.python import usage
 
 # Avoid the export PYTHONPATH insanity
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-from globaleaks import runner
-from globaleaks.backend import application
-
+from globaleaks.settings import GLSetting
 
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
@@ -83,21 +77,42 @@ print ("Please handle with extreme care."
        "Actually, you should not even be running this thing. WTF are you doing?")
 
 
+GLSetting.parser.add_option("-s", "--storm", type="int",
+    help="level of Storm debugging, 0 is suppressed, 1 or more is present",
+    dest="storm", default=0)
+GLSetting.parser.add_option("-p", "--port", type="int",
+    help="TCP port used for listening (default 8082)",
+    dest="port", default=8082)
+GLSetting.parser.add_option("-l", "--loglevel", type="choice", choices=['INFO', 'WARNING', 'ERROR', 'CRITICAL', 'DEBUG'],
+    help="log level: INFO, WARNING, ERROR, CRITICAL, DEBUG",
+    dest="loglevel", default="CRITICAL")
+GLSetting.parser.add_option("-i", "--io", type="int",
+    help="enable JSON I/O logging (limit number of Request/Response), default disabled, 0 unlimited",
+    dest="io", default=-1)
+
+# here the options are parsed, because sys.argv array is whack below
+(GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
+
+GLSetting.load_cmdline_options()
+GLSetting.consistency_check()
+
 backend_script = os.path.join(root, 'globaleaks', 'backend.py')
 
 sys.argv[1:] = ['-ny', backend_script]
 
-def runApp(config):
-    print "Starting GlobaLeaks"
-    runner.GLBaseRunner(config).run()
-    # this is a blocking operation, until app exit
-    print "Exiting GlobaLeaks"
+def run_glbackend():
+    from globaleaks import runner
 
-config = runner.ServerOptions()
-try:
-    config.parseOptions()
-except usage.error, ue:
-    print config
-    print "%s: %s" % (sys.argv[0], ue)
-else:
-    runApp(config)
+    config = runner.ServerOptions()
+    try:
+        config.parseOptions()
+    except usage.error, ue:
+        print config
+        print "%s: %s" % (sys.argv[0], ue)
+    else:
+        print "Starting GlobaLeaks"
+        runner.GLBaseRunner(config).run()
+        # this is a blocking operation, until app exit
+        print "Exiting GlobaLeaks"
+
+run_glbackend()

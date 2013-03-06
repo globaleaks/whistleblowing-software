@@ -11,6 +11,7 @@ from apscheduler.scheduler import Scheduler
 
 from globaleaks.db import createTables
 from globaleaks.utils import log, MailException
+from globaleaks.settings import GLSetting
 
 # The scheduler is a global variable, because can be used to force execution
 __all__ = ['GLAsynchronous']
@@ -92,18 +93,15 @@ if platformType == "win32":
         """
         This runner is specific to windows.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerWindows")
         def postApplication(self):
             """
             This code is taken directly from the method postApplication of
             WindowsApplicationRunner.
             """
-            log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerWindows", "postApplication")
             def runApp(res):
                 """
                 Start the actual service Application.
                 """
-                log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunner", "preApplication", "runApp")
                 service.IService(self.application).privilegedStartService()
                 app.startApplication(self.application, not self.config['no_save'])
                 app.startApplication(internet.TimerService(0.1, lambda:None), 0)
@@ -126,22 +124,19 @@ else:
         """
         This runner is specific to Unix systems.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerUnix")
         def postApplication(self):
             """
             THis code is taken directly from UnixApplicationRunner
             """
-            log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerUnix", "postApplication")
             def runApp(res):
                 """
                 Start the actual service Application.
                 """
-                log.debug("[D] %s %s " % (__file__, __name__), "Class GLBaseRunnerUnix", "postApplication", "runApp")
                 print "Running start."
                 self.startApplication(self.application)
                 startAsynchronous()
                 print "GLBackend is now running"
-                print "Visit http://127.0.0.1:8082/index.html to interact with me"
+                print "Visit http://127.0.0.1:%d/index.html to interact with me" % GLSetting.bind_port
 
             d = createTables()
             d.addCallback(runApp)
