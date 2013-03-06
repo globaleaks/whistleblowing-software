@@ -12,10 +12,9 @@ from globaleaks.rest import errors
 from globaleaks.jobs.base import GLJob
 from globaleaks.plugins.base import Event
 from globaleaks import models
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 from globaleaks.utils import log, prettyDateTime
 from globaleaks.plugins import notification
-from globaleaks import settings
 from globaleaks.handlers import admin, tip
 
 def serialize_receivertip(rtip):
@@ -78,7 +77,7 @@ class APSNotification(GLJob):
         # settings.notification_plugins contain a list of supported plugin
         # at the moment only 1. so [0] is used. but different context/receiver
         # may use different code-plugin:
-        cplugin = settings.notification_plugins[0]
+        cplugin = GLSetting.notification_plugins[0]
 
         plugin = getattr(notification, cplugin)(self.notification_settings)
 
@@ -164,7 +163,7 @@ class APSNotification(GLJob):
 
         """
         events = []
-        cplugin = settings.notification_plugins[0]
+        cplugin = GLSetting.notification_plugins[0]
 
         plugin = getattr(notification, cplugin)(self.notification_settings)
 
@@ -257,7 +256,7 @@ class APSNotification(GLJob):
 
         """
         events = []
-        cplugin = settings.notification_plugins[0]
+        cplugin = GLSetting.notification_plugins[0]
 
         plugin = getattr(notification, cplugin)(self.notification_settings)
 

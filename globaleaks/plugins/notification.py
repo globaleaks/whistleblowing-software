@@ -1,4 +1,11 @@
-import string
+#
+# Notification
+# ************
+#
+# This is in fact Mail Notification Plugin, that supports the simplest Mail notification
+# operations.
+# When new Notification/Delivery will starts to exists, this code would come back to be
+# one of the various plugins (used by default, but still an optional adoptions)
 
 from cyclone import mail
 from twisted.internet.defer import Deferred
@@ -8,10 +15,7 @@ from twisted.internet.endpoints import TCP4ClientEndpoint
 from OpenSSL import SSL
 
 from globaleaks.utils import log
-from globaleaks import models
-from globaleaks.settings import transact
 from globaleaks.plugins.base import Notification
-
 
 
 class MailNotification(Notification):

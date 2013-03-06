@@ -13,17 +13,16 @@ from twisted.internet import fdesc
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import os
 
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.utils import log, prettyDateTime, random_string
-from globaleaks import settings
 from globaleaks.rest import errors
 from globaleaks import models
 
 __all__ = ['Download', 'FileInstance']
 
 
-SUBMISSION_DIR = os.path.join(settings.gldata_path, 'submission')
+SUBMISSION_DIR = os.path.join(GLSetting.gldata_path, 'submission')
 if not os.path.isdir(SUBMISSION_DIR):
     os.mkdir(SUBMISSION_DIR)
 

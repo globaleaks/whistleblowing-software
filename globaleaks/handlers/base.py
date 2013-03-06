@@ -19,7 +19,7 @@ from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired
 from cyclone import escape
 
 from globaleaks.utils import log, MailException
-from globaleaks import settings
+from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
 class BaseHandler(RequestHandler):
@@ -187,7 +187,7 @@ class BaseHandler(RequestHandler):
             return None
 
         try:
-            session = settings.sessions[session_id]
+            session = GLSetting.sessions[session_id]
         except KeyError:
             return None
         return session
