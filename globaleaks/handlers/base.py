@@ -40,11 +40,12 @@ class BaseHandler(RequestHandler):
 
             if isinstance(value, unicode):
                 try:
-                    int(value)
+                    ret = int(value)
+                    return True
                 except Exception:
                     raise False
 
-        # else
+        # else, not int and not None...
         return isinstance(value, python_type)
 
     @staticmethod

@@ -1,23 +1,20 @@
-import re
-
 from storm.twisted.testing import FakeThreadPool
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 
-from globaleaks.rest import errors, requests
+from globaleaks.rest import requests
 from globaleaks.rest.errors import GLException
-from globaleaks.rest.base import uuid_regexp
-from globaleaks.handlers import tip, base, admin, submission, authentication
-from globaleaks.jobs import delivery_sched
-from globaleaks import models, db, settings
+from globaleaks.handlers import base, admin, submission
+from globaleaks import db
+from globaleaks.settings import GLSetting, transact
 from globaleaks.utils import log
 
 _TEST_DB = 'submissionabuse.db'
-settings.transact.tp = FakeThreadPool()
-settings.scheduler_threadpool = FakeThreadPool()
-settings.db_file = 'sqlite:///' + _TEST_DB
-settings.store = 'test_store'
-settings.notification_plugins = []
+transact.tp = FakeThreadPool()
+GLSetting.scheduler_threadpool = FakeThreadPool()
+GLSetting.db_file = 'sqlite:///' + _TEST_DB
+GLSetting.store = 'test_store'
+GLSetting.notification_plugins = []
 
 class MockHandler(base.BaseHandler):
 

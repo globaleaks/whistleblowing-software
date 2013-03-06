@@ -3,7 +3,6 @@ from globaleaks import models
 
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
-from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.tests import helpers
 from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
@@ -44,6 +43,7 @@ class TestSubmission(helpers.TestGL):
         relationship = files.dump_files_fs(self.dummyFiles)
         self.file_list = yield files.register_files_db(self.dummyFiles,
                 relationship, associated_submission_id)
+        self.assertEqual(len(self.file_list), 2)
 
     @inlineCallbacks
     def test_create_internalfiles(self):
@@ -106,6 +106,16 @@ class TestSubmission(helpers.TestGL):
 
         # --- Emulate file upload before assign them to the submission
         yield self.emulate_files_upload(status['submission_gus'])
+
+        # delivery_sched.file_preprocess works only on finalized submission!
+        status['finalize'] = True
+        status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
+
+        # the files are related to internaltip_id, then appears aligned also if not explicit in the
+        # update_submission
+        self.assertEqual(len(status['files']), 2)
+
+        # and now check the files
         filesdict = yield delivery_sched.file_preprocess()
         self.assertEqual(len(filesdict), 2)
 
@@ -119,17 +129,6 @@ class TestSubmission(helpers.TestGL):
             if sha2sum == "4e388ab32b10dc8dbc7e28144f552830adc74787c1e2c0824032078a79f227fb":
                 continue
             self.assertTrue(False) # Checksum expected unable to be computed
-
-        # --- Complete submission
-        for internalfile_id in filesdict.iterkeys():
-            status['files'].append(internalfile_id)
-
-        status['finalize'] = False
-        status = yield submission.update_submission(status['submission_gus'], status, finalize=False)
-        status['finalize'] = True
-        status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
-
-        self.assertEqual(len(status['files']), 2)
 
         # Create receiver Tip, for the only receiver present in the context
         new_rtip = yield delivery_sched.tip_creation()

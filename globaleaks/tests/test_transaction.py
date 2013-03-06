@@ -59,6 +59,7 @@ class TestTransaction(unittest.TestCase):
     def _transact_with_stuff(self, store):
         comment = Comment()
         comment.author = comment.internaltip_id = comment.type = comment.content = "receiver"
+        comment.mark = Comment._marker[0]
         # just something not NULL
         store.add(comment)
         return comment.id
@@ -67,6 +68,7 @@ class TestTransaction(unittest.TestCase):
     def _transact_with_stuff_failing(self, store):
         comment = Comment()
         comment.author = comment.internaltip_id = comment.type = comment.content = "receiver"
+        comment.mark = Comment._marker[0]
         # just something not NULL
         store.add(comment)
         raise exceptions.DisconnectionError

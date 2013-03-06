@@ -162,6 +162,7 @@ def delete_receiver_tip(store, user_id, tip_id):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
     comment.type = Comment._types[2] # System
+    comment.mark = Comment._marker[0] # Not Notified
     store.add(comment)
     rtip.internaltip.comments.add(comment)
 
