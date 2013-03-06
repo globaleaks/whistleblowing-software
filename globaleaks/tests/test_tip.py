@@ -8,14 +8,15 @@ from globaleaks.rest import errors, requests
 from globaleaks.rest.base import uuid_regexp
 from globaleaks.handlers import tip, base, admin, submission, authentication
 from globaleaks.jobs import delivery_sched
-from globaleaks import models, db, settings
+from globaleaks import models, db
+from globaleaks.settings import GLSetting, transact
 
 _TEST_DB = 'tiponlytest.db'
-settings.transact.tp = FakeThreadPool()
-settings.scheduler_threadpool = FakeThreadPool()
-settings.db_file = 'sqlite:///' + _TEST_DB
-settings.store = 'test_store'
-settings.notification_plugins = []
+transact.tp = FakeThreadPool()
+GLSetting.scheduler_threadpool = FakeThreadPool()
+GLSetting.db_file = 'sqlite:///' + _TEST_DB
+GLSetting.store = 'test_store'
+GLSetting.notification_plugins = []
 
 class MockHandler(base.BaseHandler):
 

@@ -1,16 +1,9 @@
-from twisted.trial import unittest
-from globaleaks.rest import errors
-from globaleaks.handlers import base
-from globaleaks.rest.errors import InvalidInputFormat
-from globaleaks.tests import helpers
-
 import json
 
-# class TestBaseHandler(helpers.TestHandler):
-#
-#     _handler = base.BaseHandler
-#
-#     validate_jmessage(self, jmessage, message_template)
+from twisted.trial import unittest
+
+from globaleaks.handlers import base
+from globaleaks.rest.errors import InvalidInputFormat
 
 class MockHandler(base.BaseHandler):
 

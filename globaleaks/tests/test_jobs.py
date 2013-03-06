@@ -1,7 +1,5 @@
 from twisted.internet.defer import inlineCallbacks
-from twisted.trial import unittest
 
-from globaleaks.settings import transact
 from globaleaks.jobs import delivery_sched
 from globaleaks.tests import helpers
 

@@ -1,8 +1,5 @@
-from cyclone.util import ObjectDict as OD
-
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
-from globaleaks import settings
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
 

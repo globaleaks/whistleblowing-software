@@ -10,19 +10,19 @@ from cyclone import httpserver
 from cyclone.web import Application
 from cyclone.util import ObjectDict as OD
 
-from globaleaks import settings
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db
+from globaleaks.settings import GLSetting, transact
 
 _TEST_DB = 'test.db'
 
-settings.transact.tp = FakeThreadPool()
-settings.scheduler_threadpool = FakeThreadPool()
-settings.db_file = 'sqlite:///' + _TEST_DB
-settings.store = 'test_store'
-settings.notification_plugins = []
-settings.sessions = {}
+transact.tp = FakeThreadPool()
+GLSetting.scheduler_threadpool = FakeThreadPool()
+GLSetting.db_file = 'sqlite:///' + _TEST_DB
+GLSetting.store = 'test_store'
+GLSetting.notification_plugins = []
+GLSetting.sessions = {}
 
 #log.startLogging(sys.stdout)
 class TestGL(unittest.TestCase):
@@ -174,7 +174,7 @@ class TestHandler(TestGL):
         self._handler.finish = mock_write
         
         # we need to reset settings.session to keep each test independent
-        settings.sessions = dict()
+        GLSetting.sessions = dict()
 
         yield self.initialize_db()
 
@@ -246,7 +246,7 @@ class TestHandler(TestGL):
                    role=role,
                    user_id=user_id
             )
-            settings.sessions[session_id] = new_session
+            GLSetting.sessions[session_id] = new_session
             handler.request.headers['X-Session'] = session_id
         return handler
 
