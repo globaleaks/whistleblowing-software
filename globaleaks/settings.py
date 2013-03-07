@@ -36,6 +36,7 @@ verbosity_dict = {
 class GLSettingsClass:
 
     def __init__(self):
+
         # command line parsing utils
         self.parser = OptionParser()
         self.cmdline_options = None
@@ -66,6 +67,11 @@ class GLSettingsClass:
 
         # Session tracking, in the singleton classes
         self.sessions = dict()
+
+        # value limits in the database
+        self.name_limit = 128
+        self.description_limit = 1024
+        self.generic_limit = 2048
 
 
     def load_cmdline_options(self):
