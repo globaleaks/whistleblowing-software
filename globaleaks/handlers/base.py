@@ -9,11 +9,13 @@
 # TODO - test the prepare/POST wrapper, because has never been tested
 
 import httplib
+from twisted.internet import fdesc
 import types
 import collections
 import json
 import re
 import sys
+import os
 
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired
 from cyclone import escape
@@ -149,6 +151,8 @@ class BaseHandler(RequestHandler):
         This method is called by cyclone, and is implemented to
         handle the POST fallback, in environment where PUT and DELETE
         method may not be used.
+        Is used also to log the complete request, if the option is
+        command line specified
         """
         if self.request.method.lower() == 'post':
             try:
@@ -159,6 +163,56 @@ class BaseHandler(RequestHandler):
                     self.request.method = wrappedMethod.upper()
             except HTTPError:
                 pass
+
+        # if -1 is infinite logging of the requests
+        if GLSetting.cyclone_debug >= 0:
+
+            GLSetting.cyclone_debug_counter += 1
+
+            content = "\n" +("=" * 15) + ("Request %d=\n" % GLSetting.cyclone_debug_counter )
+            content += "headers: " + str(self.request.headers) + "\n"
+            content += "url: " + self.request.full_url() + "\n"
+            content += "body: " + self.request.body + "\n"
+
+            self.do_verbose_log(unicode(content))
+
+            # save in the request the numeric ID of the request, so the answer can be correlated
+            self.globaleaks_io_debug = GLSetting.cyclone_debug_counter
+
+            if GLSetting.cyclone_debug_counter >= GLSetting.cyclone_debug:
+                log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.cyclone_debug)
+                GLSetting.cyclone_debug = -1
+
+    def flush(self, include_footers=False):
+        """
+        This method is used internally by Cyclone,
+        Cyclone specify the function on_finish but in that time the request is already flushed,
+        so overwrite flush() was the easiest way to achieve our collection.
+
+        It's here implemented to supports the I/O logging if requested
+        with the command line options --io $number_of_request_recorded
+        """
+        if hasattr(self, 'globaleaks_io_debug'):
+            content = "\n" +("-" * 15) + ("Response %d=\n" % self.globaleaks_io_debug)
+            content += "code: " + str(self._status_code) + "\n"
+            content += "body: " + str(self._write_buffer) + "\n"
+
+            self.do_verbose_log(unicode(content))
+
+        RequestHandler.flush(self, include_footers)
+
+
+    def do_verbose_log(self, content):
+        """
+        Record in the verbose log the content as defined by Cyclone wrappers
+        """
+        filename = "%s%s" % (self.request.method.upper(), self.request.uri.replace("/", "_") )
+        logfpath = os.path.join(GLSetting.cyclone_io_path, filename)
+
+        with open(logfpath, 'a+') as fd:
+            fdesc.setNonBlocking(fd.fileno())
+            fdesc.writeToFD(fd.fileno(), content)
+
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')

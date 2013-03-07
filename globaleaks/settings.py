@@ -62,7 +62,7 @@ class GLSettingsClass:
 
         # Debug Defaults
         self.db_debug = True
-        self.cyclone_debug = True
+        self.cyclone_debug = False
         self.loglevel = logging.DEBUG
 
         # Session tracking, in the singleton classes
@@ -88,6 +88,13 @@ class GLSettingsClass:
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
         self.bind_port = self.cmdline_options.port
 
+        # If user has requested this option, initialize a counter to
+        # record the requests sequence, and setup the logs path
+        if self.cmdline_options.io >= 0:
+            self.cyclone_debug = self.cmdline_options.io
+            self.cyclone_debug_counter = 0
+            self.cyclone_io_path = os.path.join(self.gldata_path, "cyclone_debug")
+
 
     def consistency_check(self):
 
@@ -96,6 +103,10 @@ class GLSettingsClass:
 
         if not os.path.exists(self.static_path):
             os.mkdir(self.static_path)
+
+        if self.cyclone_debug >= 0:
+            if not os.path.exists(self.cyclone_io_path):
+                os.mkdir(self.cyclone_io_path)
 
         assert all( os.path.exists(path) for path in
                    (self.root_path, self.install_path, self.glclient_path,
