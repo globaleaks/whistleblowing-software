@@ -110,6 +110,24 @@ class TestModels(helpers.TestGL):
             contexts.append(context.id)
         return contexts
 
+    @transact
+    def do_invalid_receiver_0length_name(self, store):
+        self.dummyReceiver['name'] = ''
+        try:
+            Receiver(self.dummyReceiver)
+            return False
+        except TypeError:
+            return True
+
+    @transact
+    def do_invalid_description_oversize(self, store):
+        self.dummyReceiver['description'] = "A" * 5000
+        try:
+            Receiver(self.dummyReceiver)
+            return False
+        except TypeError:
+            return True
+
     @inlineCallbacks
     def test_context_add_and_get(self):
         context_id = yield self.context_add()
@@ -147,3 +165,13 @@ class TestModels(helpers.TestGL):
         receiver_id = yield self.create_receiver_with_contexts()
         contexts = yield self.list_context_of_receivers(receiver_id)
         self.assertEqual(2, len(contexts))
+
+    @inlineCallbacks
+    def test_invalid_receiver_0length_name(self):
+        boolret = yield self.do_invalid_receiver_0length_name()
+        self.assertTrue(boolret)
+
+    @inlineCallbacks
+    def test_invalid_description_oversize(self):
+        boolret = yield self.do_invalid_description_oversize()
+        self.assertTrue(boolret)

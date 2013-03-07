@@ -1,6 +1,6 @@
 import types
 from storm.locals import *
-
+from globaleaks.settings import GLSetting
 
 from time import time
 # xxx. we should use python tz.
@@ -10,6 +10,53 @@ now = datetime.utcnow
 def uuid():
     import uuid
     return unicode(uuid.uuid4())
+
+def gltextv(self, attr, value):
+    """
+    Just to avoid resources depletion by anonymous submissions,
+    a simple validation that should make the exhaustion slower.
+    """
+    try:
+        assert isinstance(value, unicode)
+    except AssertionError:
+        raise TypeError("Not an unicode as expected (%s = %s)" %
+                        (attr, value))
+
+    if attr == 'name' and (len(value) > GLSetting.name_limit or len(value) == 0):
+        raise TypeError("name length need to be > 0 and < of %d"
+                        % GLSetting.name_limit)
+    elif attr == 'description' and len(value) > GLSetting.description_limit:
+        raise TypeError("unicode description has a length limit of %d"
+                        % GLSetting.description_limit)
+    else:
+        if len(value) > GLSetting.generic_limit:
+            raise TypeError("unicode in %s overcome length limit %d"
+                            % (attr, GLSetting.generic_limit))
+
+    return value
+
+def gldictv(self, attr, value):
+    """
+    Validate dict content, every key, if unicode, have not to
+    overcome the generic lenght limit.
+    """
+    try:
+        assert isinstance(value, dict)
+    except AssertionError:
+        raise TypeError("(%s) Not a dict as expected" % attr)
+
+    if not value:
+        return value
+
+    for key, subvalue in value.iteritems():
+        if isinstance(subvalue, unicode):
+            if len(subvalue) > GLSetting.generic_limit:
+                raise TypeError("In dict %s the key %s overcome length limit of %d" %
+                    (attr, key, GLSetting.generic_limit))
+
+    return value
+
+
 
 class Model(Storm):
     """
@@ -35,9 +82,11 @@ class Model(Storm):
         if not attrs:
             return
 
-        # Dev note: if you're looking for those fiels in a class that
-        # do not implement them, it's because the class need to be instanced
-        # without request argument.
+        # Dev note: these fields describe which key are expected in the constructor.
+        # if not available, an error is raise.
+        # other elements different from bool, unicode and int, can't be processed by
+        # the generic "update" method and need to be assigned to the object,
+        # [ but before commit(), if they are NOT NULL in the SQL file ]
         cls_unicode_keys = getattr(self, "unicode_keys")
         cls_int_keys = getattr(self, "int_keys")
         cls_bool_keys = getattr(self, "bool_keys")
@@ -53,7 +102,7 @@ class Model(Storm):
         for k in cls_bool_keys:
             value = bool(attrs[k])
             setattr(self, k, value)
-        # dict, list and reference are handled in explicit way
+
 
     def __repr___(self):
         attrs = ['%s=%s' % (attr, getattr(self, attr))
@@ -78,10 +127,9 @@ class Model(Storm):
 
         return dict((key, getattr(self, key)) for key in filter)
 
-
 class Context(Model):
-    name = Unicode()
-    description = Unicode()
+    name = Unicode(validator=gltextv)
+    description = Unicode(validator=gltextv)
     fields = Pickle()
 
     selectable_receiver = Bool()
@@ -118,7 +166,7 @@ class InternalTip(Model):
     #internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
     #receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
-    wb_fields = Pickle()
+    wb_fields = Pickle(validator=gldictv)
     pertinence_counter = Int()
     creation_date = DateTime()
     expiration_date = DateTime()
@@ -194,7 +242,7 @@ class InternalFile(Model):
     internaltip_id = Unicode()
     #internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
-    name = Unicode()
+    name = Unicode(validator=gltextv)
     sha2sum = Unicode()
     file_path = Unicode()
 
@@ -213,7 +261,7 @@ class Comment(Model):
     internaltip_id = Unicode()
 
     author = Unicode()
-    content = Unicode()
+    content = Unicode(validator=gltextv)
 
     type = Unicode()
     _types = [ u'receiver', u'whistleblower', u'system' ]
@@ -230,9 +278,9 @@ class Node(Model):
 
     This table represent the System-wide settings
     """
-    description = Unicode()
-    name = Unicode()
-    public_site = Unicode()
+    description = Unicode(validator=gltextv)
+    name = Unicode(validator=gltextv)
+    public_site = Unicode(validator=gltextv)
     hidden_service = Unicode()
     email = Unicode()
     languages = Pickle()
@@ -280,8 +328,8 @@ class Receiver(Model):
     name, description, password and notification_fiels, can be changed
     by Receiver itself
     """
-    name = Unicode()
-    description = Unicode()
+    name = Unicode(validator=gltextv)
+    description = Unicode(validator=gltextv)
 
     # Authentication variables
     username = Unicode()
