@@ -62,7 +62,7 @@ class GLSettingsClass:
 
         # Debug Defaults
         self.db_debug = True
-        self.cyclone_debug = False
+        self.cyclone_debug = -1
         self.loglevel = logging.DEBUG
 
         # Session tracking, in the singleton classes
@@ -104,7 +104,7 @@ class GLSettingsClass:
         if not os.path.exists(self.static_path):
             os.mkdir(self.static_path)
 
-        if self.cyclone_debug >= 0:
+        if self.cmdline_options.io >= 0:
             if not os.path.exists(self.cyclone_io_path):
                 os.mkdir(self.cyclone_io_path)
 
