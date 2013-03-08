@@ -278,7 +278,7 @@ def delete_submission(store, id):
         raise SubmissionGusNotFound
 
     if submission.mark != submission._marked[0]:
-        log.err("Submission %s already concluded (%s)" % (id, submission.mark))
+        log.err("Submission %s already concluded (status: %s)" % (id, submission.mark))
         raise SubmissionConcluded
 
     store.delete(submission)

@@ -1,6 +1,7 @@
 import types
 from storm.locals import *
 from globaleaks.settings import GLSetting
+from globaleaks.rest import errors
 
 from time import time
 # xxx. we should use python tz.
@@ -19,18 +20,18 @@ def gltextv(self, attr, value):
     try:
         assert isinstance(value, unicode)
     except AssertionError:
-        raise TypeError("Not an unicode as expected (%s = %s)" %
+        raise errors.InvalidInputFormat("Not an unicode as expected (%s = %s)" %
                         (attr, value))
 
     if attr == 'name' and (len(value) > GLSetting.name_limit or len(value) == 0):
-        raise TypeError("name length need to be > 0 and < of %d"
+        raise errors.InvalidInputFormat("name length need to be > 0 and < of %d"
                         % GLSetting.name_limit)
     elif attr == 'description' and len(value) > GLSetting.description_limit:
-        raise TypeError("unicode description has a length limit of %d"
+        raise errors.InvalidInputFormat("unicode description has a length limit of %d"
                         % GLSetting.description_limit)
     else:
         if len(value) > GLSetting.generic_limit:
-            raise TypeError("unicode in %s overcome length limit %d"
+            raise errors.InvalidInputFormat("unicode in %s overcome length limit %d"
                             % (attr, GLSetting.generic_limit))
 
     return value
@@ -43,7 +44,7 @@ def gldictv(self, attr, value):
     try:
         assert isinstance(value, dict)
     except AssertionError:
-        raise TypeError("(%s) Not a dict as expected" % attr)
+        raise errors.InvalidInputFormat("(%s) Not a dict as expected" % attr)
 
     if not value:
         return value
@@ -51,7 +52,7 @@ def gldictv(self, attr, value):
     for key, subvalue in value.iteritems():
         if isinstance(subvalue, unicode):
             if len(subvalue) > GLSetting.generic_limit:
-                raise TypeError("In dict %s the key %s overcome length limit of %d" %
+                raise errors.InvalidInputFormat("In dict %s the key %s overcome length limit of %d" %
                     (attr, key, GLSetting.generic_limit))
 
     return value
@@ -231,10 +232,9 @@ class ReceiverFile(Model):
     file_path = Unicode()
     downloads = Int()
     last_access = DateTime()
+
     mark = Unicode()
-
     _marker = [ u'not notified', u'notified', u'unable to notify' ]
-
     ## NO *_keys = It's created without initializing dict
 
 
@@ -247,9 +247,9 @@ class InternalFile(Model):
     file_path = Unicode()
 
     content_type = Unicode()
-    mark = Unicode()
     size = Int()
 
+    mark = Unicode()
     _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
     ## NO *_keys = It's created without initializing dict
 
@@ -265,9 +265,9 @@ class Comment(Model):
 
     type = Unicode()
     _types = [ u'receiver', u'whistleblower', u'system' ]
-    ## NO *_keys = It's created without initializing dict
     mark = Unicode()
-    _marker = [ u'not notified', u'notified' ]
+    _marker = [ u'not notified', u'notified', u'unable to notify' ]
+    ## NO *_keys = It's created without initializing dict
 
 
 class Node(Model):
