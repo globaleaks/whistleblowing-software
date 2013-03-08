@@ -87,7 +87,9 @@ class APSNotification(GLJob):
 
         node_desc = admin.admin_serialize_node(store.find(models.Node).one())
 
-        log.debug("Tip found to be notified: %d" % not_notified_tips.count() )
+        if not_notified_tips.count():
+            log.debug("Tip found to be notified: %d" % not_notified_tips.count() )
+
         for rtip in not_notified_tips:
 
             context_desc = admin.admin_serialize_context(rtip.internaltip.context)
@@ -173,8 +175,15 @@ class APSNotification(GLJob):
 
         node_desc = admin.admin_serialize_node(store.find(models.Node).one())
 
-        log.debug("Comments found to be notified: %d" % not_notified_comments.count() )
+        if not_notified_comments.count():
+            log.debug("Comments found to be notified: %d" % not_notified_comments.count() )
+
         for comment in not_notified_comments:
+
+            if comment.internaltip is None or comment.internaltip.receivers is None:
+                log.err("Comment %s has internaltip or receivers broken reference" % comment.id)
+                comment.mark = models.Comment._marker[2] # unable to be notified
+                continue
 
             # for every comment, iter on the associated receiver
             log.debug("Comments receiver: %d" % comment.internaltip.receivers.count())
@@ -266,7 +275,9 @@ class APSNotification(GLJob):
 
         node_desc = admin.admin_serialize_node(store.find(models.Node).one())
 
-        log.debug("Receiverfiles found to be notified: %d" % not_notified_rfiles.count() )
+        if not_notified_rfiles.count():
+            log.debug("Receiverfiles found to be notified: %d" % not_notified_rfiles.count() )
+
         for rfile in not_notified_rfiles:
 
             file_desc = serialize_internalfile(rfile.internalfile)

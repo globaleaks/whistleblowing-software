@@ -3,7 +3,7 @@ from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 
 from globaleaks.rest import requests
-from globaleaks.rest.errors import GLException
+from globaleaks.rest.errors import GLException, InvalidInputFormat
 from globaleaks.handlers import base, admin, submission
 from globaleaks import db
 from globaleaks.settings import GLSetting, transact
@@ -181,25 +181,23 @@ class TestTipInstance(SubmissionTest):
             self.assertTrue(False, msg=str(e))
 
     @inlineCallbacks
-    def test_5_create_huge_submission(self):
+    def test_5_fail_create_huge_submission(self):
         submission_request = dict(SubmissionTest.aSubmission)
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['receiver_gus']  ]
         submission_request['context_gus'] = SubmissionTest.context_used['context_gus']
         submission_request['wb_fields']['headline'] = unicode("A" * 1000 * 1000)
-        submission_request['wb_fields']['Sun'] = unicode("B" * 1000 * 1000 )
+        submission_request['wb_fields']['Sun'] = u'dummy'
 
         submission_request['finalize'] = True
 
         try:
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Success in creation: %s" % str(r))
+            self.assertTrue(False)
+        except InvalidInputFormat:
             self.assertTrue(True)
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )
             self.assertTrue(False)
-        except Exception, e:
-            log.debug("Exception %s" % str(e) )
-            self.assertTrue(False, msg=str(e))
 
 
