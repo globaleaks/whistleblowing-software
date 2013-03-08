@@ -45,7 +45,7 @@ class BaseHandler(RequestHandler):
                     ret = int(value)
                     return True
                 except Exception:
-                    raise False
+                    return False
 
         # else, not int and not None...
         return isinstance(value, python_type)
