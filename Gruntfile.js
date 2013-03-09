@@ -137,7 +137,7 @@ module.exports = function( grunt ) {
     // Put all angular.js templates into a single file
     ngtemplates:  {
       GLClient: {
-            options: {base: 'app/views'},
+            options: {base: 'app/'},
             src: [ 'app/views/**/*.html'],
             dest: 'tmp/scripts/templates.js'
           }
@@ -190,7 +190,7 @@ module.exports = function( grunt ) {
   });
 
   grunt.registerTask('build',
-    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'manifest']);
+    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'manifest', 'cleanupWorkingDirectory']);
 
   // XXX disabled uglify
   // ['clean', 'useminPrepare', 'copy', 'ngtemplates', 'concat', 'uglify', 'usemin', 'manifest']);
