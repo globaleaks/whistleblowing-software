@@ -15,9 +15,11 @@ from cyclone.web import os
 
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.utils import log, prettyDateTime, random_string
+from globaleaks.utils import log, prettyDateTime
 from globaleaks.rest import errors
 from globaleaks import models
+from globaleaks.third_party import rstr
+
 
 __all__ = ['Download', 'FileInstance']
 
@@ -71,7 +73,8 @@ def dump_files_fs(files):
     """
     files_saved = {}
     for single_file in files:
-        saved_name = random_string(26, 'A-Z,a-z,0-9')
+        saved_name = rstr.xeger(r'[A-Z,a-z]{26}')
+
         filelocation = os.path.join(SUBMISSION_DIR, saved_name)
 
         with open(filelocation, 'w+') as fd:

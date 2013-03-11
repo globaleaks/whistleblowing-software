@@ -54,6 +54,7 @@ class GLSettingsClass:
         self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db', 'sqlite.sql')
         self.static_path = os.path.join(self.root_path, '_static')
         self.logfile = os.path.join(self.gldata_path, 'glbackend.log')
+        self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
 
         # List of plugins available in the software
         self.notification_plugins = [
