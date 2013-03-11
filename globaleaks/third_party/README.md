@@ -1,4 +1,3 @@
-
 # RSTR - xeger
 
 Is a package described here: https://bitbucket.org/leapfrogdevelopment/rstr/ developed 
@@ -15,17 +14,12 @@ Is stated in the rstr documentation that:
 This library is not suitable for password-generation or other cryptographic applications.*
 
 but GLBackend is using Crypto.Random safe generation, and then a patch has been applied. 
-**In order to help security audit, the integration procedures has been split in commits**
-
-downloaded from, in Mar 8 2013:
-
-https://bitbucket.org/leapfrogdevelopment/rstr/downloads
-https://bitbucket.org/leapfrogdevelopment/rstr/get/default.zip
-
-and committed unmodified here:
-**[TODO put commit link on github]**
-
-patch using Crypto.Random committed here:
-**[TODO put commit link on github]**
 
 
+*In order to help security audit, the integration procedures has been split in these commits*
+
+**downloaded in Mar 8 2013**: https://bitbucket.org/leapfrogdevelopment/rstr/get/default.zip
+
+**committed unmodified**: https://github.com/globaleaks/GLBackend/commit/d55007115d8a0f153148c8c3392dcaf52aa83c6c
+
+**patch using Crypto.Random**: https://github.com/globaleaks/GLBackend/commit/deed6084ccc8deadddd60ba47902712ca963c202
