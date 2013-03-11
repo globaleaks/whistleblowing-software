@@ -26,9 +26,9 @@
 #OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN
 #IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 
-import random
 import string
 import itertools
+from Crypto.Random import random
 from copy import copy
 from functools import partial
 from xeger import Xeger
