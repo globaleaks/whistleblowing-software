@@ -1,20 +1,18 @@
+import os
+
 from storm.twisted.testing import FakeThreadPool
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
+
+# Override the GLSetting with test values
+from globaleaks.settings import GLSetting, transact
+from globaleaks.tests import helpers
 
 from globaleaks.rest import requests
 from globaleaks.rest.errors import GLException, InvalidInputFormat
 from globaleaks.handlers import base, admin, submission
 from globaleaks import db
-from globaleaks.settings import GLSetting, transact
 from globaleaks.utils import log
-
-_TEST_DB = 'submissionabuse.db'
-transact.tp = FakeThreadPool()
-GLSetting.scheduler_threadpool = FakeThreadPool()
-GLSetting.db_file = 'sqlite:///' + _TEST_DB
-GLSetting.store = 'test_store'
-GLSetting.notification_plugins = []
 
 class MockHandler(base.BaseHandler):
 
@@ -199,5 +197,7 @@ class TestTipInstance(SubmissionTest):
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )
             self.assertTrue(False)
+
+        os.unlink(helpers._TEST_DB)
 
 

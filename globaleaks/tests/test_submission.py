@@ -1,12 +1,18 @@
+import os
+import shutil
+
 from twisted.internet.defer import inlineCallbacks
+
+# ovverride GLsetting
+from globaleaks.settings import GLSetting, transact
+from globaleaks.tests import helpers
+
 from globaleaks import models
 
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
-from globaleaks.tests import helpers
 from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
-from globaleaks.settings import transact
 
 
 class TestSubmission(helpers.TestGL):
@@ -22,7 +28,11 @@ class TestSubmission(helpers.TestGL):
     def setUp(self):
         self.setUp_dummy()
         yield self.initialize_db()
+        os.mkdir(GLSetting.submission_path)
 
+    def tearDown(self):
+        os.unlink(helpers._TEST_DB)
+        shutil.rmtree(GLSetting.submission_path)
 
     # --------------------------------------------------------- #
     @inlineCallbacks

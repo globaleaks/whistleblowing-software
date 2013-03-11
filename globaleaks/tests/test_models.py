@@ -1,18 +1,16 @@
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.tests import helpers
+
 from globaleaks.db import createTables
 from globaleaks.models import *
 from globaleaks.settings import transact
-from globaleaks.tests import helpers
+from globaleaks.rest import errors
 
 class TestModels(helpers.TestGL):
     def setUp(self):
-        helpers.TestGL.setUp(self)
-        return self._setup_database()
-
-    @transact
-    def _setup_database(self, store):
-        createTables(True)
+        self.setUp_dummy()
+        return createTables(True)
 
     @transact
     def context_add(self, store):
@@ -113,11 +111,7 @@ class TestModels(helpers.TestGL):
     @transact
     def do_invalid_receiver_0length_name(self, store):
         self.dummyReceiver['name'] = ''
-        try:
-            Receiver(self.dummyReceiver)
-            return False
-        except TypeError:
-            return True
+        Receiver(self.dummyReceiver)
 
     @transact
     def do_invalid_description_oversize(self, store):
@@ -166,12 +160,10 @@ class TestModels(helpers.TestGL):
         contexts = yield self.list_context_of_receivers(receiver_id)
         self.assertEqual(2, len(contexts))
 
-    @inlineCallbacks
     def test_invalid_receiver_0length_name(self):
-        boolret = yield self.do_invalid_receiver_0length_name()
-        self.assertTrue(boolret)
+        self.assertFailure(self.do_invalid_receiver_0length_name(),
+                errors.InvalidInputFormat)
 
-    @inlineCallbacks
     def test_invalid_description_oversize(self):
-        boolret = yield self.do_invalid_description_oversize()
-        self.assertTrue(boolret)
+        self.assertFailure(self.do_invalid_receiver_0length_name(),
+                errors.InvalidInputFormat)
