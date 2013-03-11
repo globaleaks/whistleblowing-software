@@ -145,5 +145,3 @@ else:
             self.removePID(self.config['pidfile'])
 
     GLBaseRunner = GLBaseRunnerUnix
-
-
