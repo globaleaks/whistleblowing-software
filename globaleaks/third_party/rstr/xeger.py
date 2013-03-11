@@ -1,6 +1,6 @@
 import re
 import string
-from random import choice, randint
+from Crypto.Random.random import choice, randint
 from itertools import chain
 
 #The * and + characters in a regular expression
