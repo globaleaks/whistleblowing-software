@@ -38,7 +38,6 @@ class MailNotification(Notification):
 
 
     def __init__(self, notification_settings):
-        # super.__init__()
         pass
 
     def validate_admin_opt(self, pushed_af):
@@ -130,7 +129,6 @@ class MailNotification(Notification):
 
         raise AssertionError("Only Tip and Comment at the moment supported")
 
-
     def do_notify(self, event):
 
         # check if exists the conf
@@ -154,40 +152,41 @@ class MailNotification(Notification):
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 
-        host = event.notification_settings['server']
-        port = int(event.notification_settings['port'])
-        u = event.notification_settings['username']
-        p = event.notification_settings['password']
-        security = event.notification_settings['security']
+        self.host = event.notification_settings['server']
+        self.port = int(event.notification_settings['port'])
+        self.username = event.notification_settings['username']
+        self.password = event.notification_settings['password']
+        self.security = event.notification_settings['security']
+        self.finished = Deferred()
 
         # to_addres maybe a list of addresses
         receiver_mail= event.receiver_info['notification_fields']['mail_address']
         to_addrs = [ receiver_mail ]
 
-        if security == 'SSL':
+        # Compose the email having the system+subject+recipient data
+        message = mail.Message(from_addr=self.username,
+                               to_addrs=to_addrs,
+                               subject=title,
+                               message=body )
+        self.send(message)
+        log.debug('Email: connecting to [%s] for deliver to %s' % (self.host, receiver_mail))
+        return self.finished
+
+    def send(self, message):
+        if self.security == 'SSL':
             contextFactory = ssl.ClientContextFactory()
             contextFactory.method = SSL.SSLv3_METHOD
         else: # TODO support SSL
             contextFactory = None
 
-        # Compose the email having the system+subject+recipient data
-        message = mail.Message(from_addr=u,
-                               to_addrs=to_addrs,
-                               subject=title,
-                               message=body )
-
-        log.debug('Email: connecting to [%s] for deliver to %s' % (host, receiver_mail))
-        result = Deferred()
-
-        factory = ESMTPSenderFactory(u, p,
+        factory = ESMTPSenderFactory(self.username, self.password,
                                      message.from_addr,
                                      message.to_addrs,
                                      message.render(),
-                                     result,
+                                     self.finished,
                                      contextFactory=contextFactory,
-                                     requireAuthentication=(u and p),
-                                     requireTransportSecurity=security)
+                                     requireAuthentication=(self.username and self.password),
+                                     requireTransportSecurity=self.security)
 
-        ep = TCP4ClientEndpoint(reactor, host, port)
+        ep = TCP4ClientEndpoint(reactor, self.host, self.port)
         ep.connect(factory)
-        return result
