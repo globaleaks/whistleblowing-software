@@ -23,12 +23,6 @@ from globaleaks.third_party import rstr
 
 __all__ = ['Download', 'FileInstance']
 
-
-SUBMISSION_DIR = os.path.join(GLSetting.gldata_path, 'submission')
-if not os.path.isdir(SUBMISSION_DIR):
-    os.mkdir(SUBMISSION_DIR)
-
-
 def serialize_file(internalfile):
 
     file_desc = {
@@ -73,9 +67,8 @@ def dump_files_fs(files):
     """
     files_saved = {}
     for single_file in files:
-        saved_name = rstr.xeger(r'[A-Z,a-z]{26}')
-
-        filelocation = os.path.join(SUBMISSION_DIR, saved_name)
+        saved_name = rstr.xeger(r'[A-Za-z]{26}')
+        filelocation = os.path.join(GLSetting.submission_path, saved_name)
 
         with open(filelocation, 'w+') as fd:
             fdesc.setNonBlocking(fd.fileno())
@@ -251,7 +244,7 @@ class Download(BaseHandler):
         self.set_header('Etag', '"%s"' % file_details['sha2sum'])
         self.set_header('Content-Disposition','attachment; filename=\"%s\"' % file_details['name'])
 
-        filelocation = os.path.join(SUBMISSION_DIR, file_details['path'])
+        filelocation = os.path.join(GLSetting.submission_path, file_details['path'])
 
         chunk_size = 8192
         filedata = ''

@@ -15,10 +15,8 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile, ReceiverInternalTip
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 from globaleaks.utils import get_file_checksum, log
-from globaleaks.handlers.files import SUBMISSION_DIR
-
 __all__ = ['APSDelivery']
 
 @transact
@@ -63,7 +61,7 @@ def file_process(filesdict):
 
     for file_id, file_path in filesdict.iteritems():
 
-        file_location = os.path.join(SUBMISSION_DIR, file_path)
+        file_location = os.path.join(GLSetting.submission_path, file_path)
         checksum = get_file_checksum(file_location)
         processdict.update({file_id : checksum})
 

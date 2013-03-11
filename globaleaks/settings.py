@@ -50,6 +50,7 @@ class GLSettingsClass:
         self.install_path = os.path.abspath(os.path.join(self.root_path, '..'))
         self.glclient_path = os.path.join(self.install_path, 'GLClient', 'app')
         self.gldata_path = os.path.join(self.root_path, '_gldata')
+        self.submission_path = os.path.join(self.gldata_path, 'submission')
         self.db_file = 'sqlite:' + os.path.join(self.gldata_path, 'glbackend.db')
         self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db', 'sqlite.sql')
         self.static_path = os.path.join(self.root_path, '_static')
@@ -98,7 +99,7 @@ class GLSettingsClass:
 
 
     def consistency_check(self):
-
+        # XXX perhaps this should go inside of runner postApplication?
         if not os.path.exists(self.gldata_path):
             os.mkdir(self.gldata_path)
 
@@ -109,9 +110,12 @@ class GLSettingsClass:
             if not os.path.exists(self.cyclone_io_path):
                 os.mkdir(self.cyclone_io_path)
 
+        if not os.path.isdir(self.submission_path):
+            os.mkdir(self.submission_path)
+
         assert all( os.path.exists(path) for path in
                    (self.root_path, self.install_path, self.glclient_path,
-                    self.gldata_path, self.static_path)
+                    self.gldata_path, self.static_path, self.submission_path)
                 )
 
 
