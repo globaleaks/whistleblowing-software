@@ -1,4 +1,4 @@
-module.exports = function( grunt ) {
+module.exports = function(grunt) {
   'use strict';
   //
   // Grunt configuration:
@@ -7,34 +7,13 @@ module.exports = function( grunt ) {
   //
   grunt.initConfig({
 
-    // Project configuration
-    // ---------------------
-
-    // specify an alternate install location for Bower
-    bower: {
-      dir: 'app/components'
-    },
-
-    // Coffee to JS compilation
-    coffee: {
-      compile: {
-        files: {
-          'app/scripts/*.js': 'app/scripts/**/*.coffee',
-          'test/spec/*.js': 'test/spec/**/*.coffee'
-        }
-      }
-    },
-
     // compile .scss/.sass to .css using Compass
     compass: {
-      tmp: {
-        // http://compass-style.org/help/tutorials/configuration-reference/#configuration-properties
-        options: {
-          css_dir: 'temp/styles',
-          sass_dir: 'app/styles',
-          images_dir: 'app/images',
-          javascripts_dir: 'temp/scripts',
-          force: true
+      dev: {
+        options: {              // Target options
+          sassDir: 'app/styles/sass',
+          cssDir: 'app/styles',
+          environment: 'development'
         }
       }
     },
@@ -46,26 +25,19 @@ module.exports = function( grunt ) {
 
     // default watch configuration
     watch: {
-      coffee: {
-        files: 'app/scripts/**/*.coffee',
-        tasks: 'coffee reload'
-      },
-      compass: {
-        files: [
-          'app/styles/**/*.{scss,sass}'
-        ],
-        tasks: 'compass reload'
-      },
-      reload: {
-        files: [
-          'app/*.html',
-          'app/styles/**/*.css',
-          'app/scripts/**/*.js',
-          'app/views/**/*.html',
-          'app/images/**/*'
-        ],
-        tasks: 'reload'
-      }
+      files: [
+        'app/*.html',
+        'app/styles/**/*.scss',
+        'app/styles/**/*.css',
+        'app/scripts/**/*.js',
+        'app/views/**/*.html',
+        'app/images/**/*'
+      ],
+      tasks: ['build', 'reload']
+    },
+
+    reload: {
+        port: 6001,
     },
 
     // default lint configuration, change this to match your setup:
@@ -81,6 +53,7 @@ module.exports = function( grunt ) {
     // specifying JSHint options and globals
     // https://github.com/cowboy/grunt/blob/master/docs/task_lint.md#specifying-jshint-options-and-globals
     jshint: {
+      all: ['Gruntfile.js', 'app/scripts/**/*.js'],
       options: {
         curly: true,
         eqeqeq: true,
@@ -156,6 +129,12 @@ module.exports = function( grunt ) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
+  grunt.loadNpmTasks('grunt-contrib-compass');
+
+  grunt.loadNpmTasks('grunt-reload');
+  grunt.loadNpmTasks('grunt-contrib-watch');
+  grunt.loadNpmTasks('grunt-contrib-jshint');
+
   /* grunt.loadNpmTasks('grunt-bower-task'); */
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
@@ -194,4 +173,6 @@ module.exports = function( grunt ) {
 
   // XXX disabled uglify
   // ['clean', 'useminPrepare', 'copy', 'ngtemplates', 'concat', 'uglify', 'usemin', 'manifest']);
+  grunt.registerTask('dev',
+    ['reload', 'watch']);
 };
