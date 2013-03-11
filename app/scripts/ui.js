@@ -128,5 +128,3 @@ angular.module('submissionUI', []).
       element.fadeOut(3000);
     };
 });
-
-

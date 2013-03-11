@@ -20,5 +20,26 @@ GLClient.controller('AdminContextsCtrl',
     });
 
   };
+}]);
+
+GLClient.controller('AdminFieldEditorCtrl',
+    ['$scope',
+    function($scope) {
+    $scope.editing = false;
+
+    $scope.typeSwitch = function(type) {
+      if (_.indexOf(['checkboxes','select','radio'], type) === -1)
+        return type;
+      return 'multiple';
+    }
+
+    $scope.addOption = function(field) {
+      if (field.options === undefined) {
+        field.options = [];
+      }
+      field.options.push({order: 0})
+    }
 
 }]);
+
+

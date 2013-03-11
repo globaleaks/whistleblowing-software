@@ -365,7 +365,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           {update:
           {method: 'PUT'}
           }),
-        adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}});
+        adminNodeResource = $resource('/admin/node', {}, {update: {method: 'PUT'}}),
         adminNotificationResource = $resource('/admin/notification', {}, {update: {method: 'PUT'}});
 
       adminContextsResource.prototype.toString = function() { return "Admin Context"; };

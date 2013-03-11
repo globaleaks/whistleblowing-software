@@ -23,54 +23,78 @@
       <!-- Notification -->
       <div class="row">
         <div class="span9">
+          <h3>SMTP Server Settings</h3>
           <form name="notificationForm" class="config-form">
 
-            <div>
+            <div class="row">
+              <div class="span9">
 
-              <label>SMTP server address</label>
-              <input type="text"
-                     ng-model="admin.notification.server" required>
+                <label>SMTP server address</label>
+                <input type="text"
+                       ng-model="admin.notification.server" required>
 
-              <label>SMTP server port</label>
-              <input type="text"
-                     ng-model="admin.notification.port" required>
+                <label>SMTP server port</label>
+                <input type="text"
+                       ng-model="admin.notification.port" required>
 
-              <label>Username</label>
-              <input type="text"
-                     ng-model="admin.notification.username" required>
+                <label>Username</label>
+                <input type="text"
+                       ng-model="admin.notification.username" required>
 
-              <label>Password</label>
-              <input type="password"
-                     ng-model="admin.notification.password" required>
+                <label>Password</label>
+                <input type="password"
+                       ng-model="admin.notification.password" required>
 
-              <label>Transport Security</label>
-              <select ng-model="admin.notification.security" required>
-                <option value='tls'>TLS</option>
-                <option value='ssl'>SSL</option>
-              </select>
+                <label>Transport Security</label>
+                <select ng-model="admin.notification.security" required>
+                  <option value='tls'>TLS</option>
+                  <option value='ssl'>SSL</option>
+                </select>
 
-              <label>Tip Email template</label>
-              <textarea ng-model="admin.notification.tip_template"></textarea>
+              </div>
 
-              <label>Comment Email template</label>
-              <textarea ng-model="admin.notification.comment_template"></textarea>
+            </div>
 
-              <label>File Email template</label>
-              <textarea ng-model="admin.notification.file_template"></textarea>
+            <div class="row">
 
-              <label>Activation Email template</label>
-              <textarea ng-model="admin.notification.activation_template"></textarea>
+              <div class="span9">
+                <button class="btn btn-success"
+                        ng-disabled="notificationForm.$invalid || notificationForm.$pristine"
+                        ng-click="update(admin.notification)">Save</button>
+              </div>
 
+            </div>
+
+            <div class="row">
+
+              <div class="span9">
+                <h3>Notification templates</h3>
+                <label>Tip Email template</label>
+                <textarea ng-model="admin.notification.tip_template"></textarea>
+
+                <label>Comment Email template</label>
+                <textarea ng-model="admin.notification.comment_template"></textarea>
+
+                <label>File Email template</label>
+                <textarea ng-model="admin.notification.file_template"></textarea>
+
+                <label>Activation Email template</label>
+                <textarea ng-model="admin.notification.activation_template"></textarea>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="span9">
+                <button class="btn btn-success"
+                        ng-disabled="notificationForm.$invalid || notificationForm.$pristine"
+                        ng-click="update(admin.notification)">Save</button>
+              </div>
             </div>
           </form>
 
         </div>
       </div>
-
-      <!-- end Notification -->
-      <button class="btn btn-success"
-              ng-disabled="notificationForm.$invalid || notificationForm.$pristine"
-              ng-click="update(admin.notification)">Save</button>
 
     </div>
   </div>
