@@ -14,8 +14,10 @@ from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.jobs.delivery_sched import APSDelivery
 from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
-from globaleaks.utils import random_string, log, utcFutureDate, prettyDateTime
+from globaleaks.utils import log, utcFutureDate, prettyDateTime
+from globaleaks.third_party import rstr
 from globaleaks.rest.errors import *
+from globaleaks.settings import GLSetting
 
 
 def wb_serialize_internaltip(internaltip):
@@ -48,7 +50,7 @@ def create_whistleblower_tip(store, submission):
     assert submission is not None and submission.has_key('id')
 
     wbtip = WhistleblowerTip()
-    wbtip.receipt = unicode(random_string(10, 'a-z,A-Z,0-9'))
+    wbtip.receipt = unicode( rstr.xeger(GLSetting.receipt_regexp) )
     wbtip.access_counter = 0
     wbtip.internaltip_id = submission['id']
     store.add(wbtip)
