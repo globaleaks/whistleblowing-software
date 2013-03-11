@@ -1,7 +1,10 @@
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.jobs import delivery_sched
+# ovverride GLsetting
+from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
+
+from globaleaks.jobs import delivery_sched
 
 from globaleaks.handlers.receiver import get_receiver_tip_list
 from globaleaks.handlers.submission import create_submission
@@ -13,7 +16,7 @@ class TestJobs(helpers.TestGL):
     def setUp(self):
         self.setUp_dummy()
         yield self.initialize_db()
-    
+
     @inlineCallbacks
     def test_tip_creation(self):
 
@@ -26,5 +29,5 @@ class TestJobs(helpers.TestGL):
 
         expected_keys = ['access_counter', 'creation_date', 'expressed_pertinence', 'id', 'last_acesss']
         self.assertEqual(set(receiver_tips[0].keys()), set(expected_keys))
-        
-        
+
+

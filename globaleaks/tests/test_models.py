@@ -1,18 +1,16 @@
 from twisted.internet.defer import inlineCallbacks
 
+from globaleaks.tests import helpers
+
 from globaleaks.db import createTables
 from globaleaks.models import *
 from globaleaks.settings import transact
-from globaleaks.tests import helpers
+from globaleaks.rest import errors
 
 class TestModels(helpers.TestGL):
     def setUp(self):
-        helpers.TestGL.setUp(self)
-        return self._setup_database()
-
-    @transact
-    def _setup_database(self, store):
-        createTables(True)
+        self.setUp_dummy()
+        return createTables(True)
 
     @transact
     def context_add(self, store):
@@ -113,11 +111,7 @@ class TestModels(helpers.TestGL):
     @transact
     def do_invalid_receiver_0length_name(self, store):
         self.dummyReceiver['name'] = ''
-        try:
-            Receiver(self.dummyReceiver)
-            return False
-        except TypeError:
-            return True
+        Receiver(self.dummyReceiver)
 
     @transact
     def do_invalid_description_oversize(self, store):
@@ -132,27 +126,27 @@ class TestModels(helpers.TestGL):
     def test_context_add_and_get(self):
         context_id = yield self.context_add()
         context_id = yield self.context_get(context_id)
-        self.assertIsNotNone(context_id)
+        self.assertTrue(context_id is not None)
 
     @inlineCallbacks
     def test_context_add_and_del(self):
         context_id = yield self.context_add()
         yield self.context_del(context_id)
         context_id = yield self.context_get(context_id)
-        self.assertIsNone(context_id)
+        self.assertTrue(context_id is None)
 
     @inlineCallbacks
     def test_receiver_add_and_get(self):
         receiver_id = yield self.receiver_add()
         receiver_id = yield self.receiver_get(receiver_id)
-        self.assertIsNotNone(receiver_id)
+        self.assertTrue(receiver_id is not None)
 
     @inlineCallbacks
     def test_receiver_add_and_del(self):
         receiver_id = yield self.receiver_add()
         yield self.receiver_del(receiver_id)
         receiver_id = yield self.receiver_get(receiver_id)
-        self.assertIsNone(receiver_id)
+        self.assertTrue(receiver_id is None)
 
     @inlineCallbacks
     def test_context_receiver_reference_1(self):
@@ -166,12 +160,10 @@ class TestModels(helpers.TestGL):
         contexts = yield self.list_context_of_receivers(receiver_id)
         self.assertEqual(2, len(contexts))
 
-    @inlineCallbacks
     def test_invalid_receiver_0length_name(self):
-        boolret = yield self.do_invalid_receiver_0length_name()
-        self.assertTrue(boolret)
+        self.assertFailure(self.do_invalid_receiver_0length_name(),
+                errors.InvalidInputFormat)
 
-    @inlineCallbacks
     def test_invalid_description_oversize(self):
-        boolret = yield self.do_invalid_description_oversize()
-        self.assertTrue(boolret)
+        self.assertFailure(self.do_invalid_receiver_0length_name(),
+                errors.InvalidInputFormat)
