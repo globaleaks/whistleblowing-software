@@ -1,11 +1,19 @@
+import os
+from glob import glob
+
 from twisted.trial import unittest
 from twisted.internet.defer import inlineCallbacks
 from storm import exceptions
 
+# ovverride GLsetting
+from globaleaks.settings import GLSetting
+from globaleaks.tests import helpers
+
+from globaleaks import db
 from globaleaks.settings import transact
 from globaleaks.models import Comment
 
-class TestTransaction(unittest.TestCase):
+class TestTransaction(helpers.TestWithDB):
 
     def test_transaction_with_exception(self):
         try:

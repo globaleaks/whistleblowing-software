@@ -48,7 +48,7 @@ class TestAuthentication(helpers.TestHandler):
 
         handler = self.request()
         success = yield handler.delete()
-        self.assertIsNone(handler.current_user)
+        self.assertTrue(handler.current_user is None)
 
     @inlineCallbacks
     def test_successful_receiver_logout(self):
@@ -62,7 +62,7 @@ class TestAuthentication(helpers.TestHandler):
 
         handler = self.request()
         success = yield handler.delete()
-        self.assertIsNone(handler.current_user)
+        self.assertTrue(handler.current_user is None)
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):

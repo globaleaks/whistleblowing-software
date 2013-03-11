@@ -2,17 +2,12 @@ import os
 import json
 import time
 
-from storm.twisted.testing import FakeThreadPool
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
-from cyclone import httpserver
-from cyclone.web import Application
-from cyclone.util import ObjectDict as OD
 
-from globaleaks.handlers.admin import create_context, create_receiver
-from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-from globaleaks import db
+from storm.twisted.testing import FakeThreadPool
+
 from globaleaks.settings import GLSetting, transact
 
 _TEST_DB = 'test.db'
@@ -20,12 +15,42 @@ _TEST_DB = 'test.db'
 transact.tp = FakeThreadPool()
 GLSetting.scheduler_threadpool = FakeThreadPool()
 GLSetting.db_file = 'sqlite:///' + _TEST_DB
+GLSetting.gldata_path
 GLSetting.store = 'test_store'
 GLSetting.notification_plugins = []
 GLSetting.sessions = {}
+GLSetting.logfile = 'gltest.log'
+GLSetting.submission_path = 'submissions'
 
-#log.startLogging(sys.stdout)
-class TestGL(unittest.TestCase):
+from cyclone import httpserver
+from cyclone.web import Application
+from cyclone.util import ObjectDict as OD
+
+from globaleaks.handlers.admin import create_context, create_receiver
+from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
+from globaleaks import db
+
+transact.debug = True
+class TestWithDB(unittest.TestCase):
+    def setUp(self):
+        return db.createTables(create_node=True)
+
+    def tearDown(self):
+        os.unlink(_TEST_DB)
+
+class TestGL(TestWithDB):
+    @inlineCallbacks
+    def initialize_db(self):
+        yield db.createTables(create_node=True)
+        yield self.fill_data()
+
+    def setUp(self):
+        """
+        override default handlers' get_store with a mock store used for testing/
+        """
+        self.setUp_dummy()
+        return self.initialize_db()
+
     @inlineCallbacks
     def fill_data(self):
         self.dummyReceiver = yield create_receiver(self.dummyReceiver)
@@ -119,32 +144,6 @@ class TestGL(unittest.TestCase):
             'activation_template': u'activation message: %s',
         }
 
-
-    @inlineCallbacks
-    def initialize_db(self):
-
-        try:
-            yield db.createTables(create_node=True)
-        except:
-            pass
-
-        yield self.fill_data()
-
-    def setUp(self):
-        """
-        override default handlers' get_store with a mock store used for testing/
-        """
-        self.setUp_dummy()
-
-    def tearDown(self):
-        """
-        Clear the actual transport.
-        """
-        try:
-            os.unlink(_TEST_DB)
-        except OSError:
-            pass
-
 class TestHandler(TestGL):
     """
     :attr _handler: handler class to be tested
@@ -156,9 +155,7 @@ class TestHandler(TestGL):
         """
         override default handlers' get_store with a mock store used for testing/
         """
-        # self.tearDown()
-        TestGL.setUp(self)
-        self.setUp_dummy()
+        yield TestGL.setUp(self)
         self.responses = []
 
         @classmethod
@@ -172,11 +169,10 @@ class TestHandler(TestGL):
         self._handler.write = mock_write
         # we make the assumption that we will always use call finish on write.
         self._handler.finish = mock_write
-        
+
         # we need to reset settings.session to keep each test independent
         GLSetting.sessions = dict()
 
-        yield self.initialize_db()
 
     def request(self, jbody=None, role=None, user_id=None, headers=None, body='',
             remote_ip='0.0.0.0', method='MOCK'):
@@ -249,6 +245,3 @@ class TestHandler(TestGL):
             GLSetting.sessions[session_id] = new_session
             handler.request.headers['X-Session'] = session_id
         return handler
-
-
-
