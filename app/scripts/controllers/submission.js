@@ -1,7 +1,8 @@
 GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
     'Submission', 'Receivers', 'WhistleblowerTip', function($scope,
       $location, Node, Submission, Receivers, WhistleblowerTip) {
-  Submission(function(submission){
+
+  new Submission(function(submission){
     $scope.submission = submission;
 
     $scope.current_context = submission.current_context;
