@@ -24,141 +24,66 @@
       <div ng-controller="AdminContextsCtrl">
         <div class="row">
           <div class="span4">
-            <h4>Contexts list</h4>
-          </div>
-          <div class="span4">
-            <h4>details</h4>
+            <h3>Contexts list</h4>
           </div>
         </div>
 
         <div class="row" ng-repeat="context in admin.contexts">
-          <div class="span9 configRow" ng-class-even="'odd'">
-            <form name="contextForm">
+          <form name="contextForm" ng-controller="AdminContextsEditorCtrl">
+            <div class="span9 configItem contextItem">
 
-              <div class="row">
-
-                <div class="span4">
-                  <label>Name</label>
-                  <input type="text"
-                         required
-                         ng-model="context.name"
-                         value="{{context.name}}">
-
-                </div>
-
-                <div class="span4">
-                  <label>Receivers</label>
-                  <select multiple ui-select2 style="width: 200px"
-                          ng-model="context.receivers">
-                    <option
-                            ng-repeat="receiver in admin.receivers"
-                            value="{{receiver.receiver_gus}}">{{receiver.name}}</option>
-                  </select>
+              <div class="row" ng-click="toggleEditing()">
+                <div class="span9 editorHeader contextEditorHeader">
+                  <span>{{context.name}}</span>
                 </div>
               </div>
 
-              <div class="row">
+              <div class="row editor contextEditor" ng-show="editing">
 
-                <div class="span4">
-                  <label>Description</label>
-                  <textarea
-                          required
-                          ng-model="context.description">{{context.description}}</textarea>
-                </div>
+                <div class="row">
 
-                <div class="span4">
-                  <div class="row">
-                    <div class="span4">
-                      <label>Fields</label>
-                      <a ng-click="addField(context)"><i class="icon-plus-sign"></i> add field</a>
-                    </div>
+                  <div class="span4">
+                    <label>Name</label>
+                    <input type="text"
+                           required
+                           ng-model="context.name"
+                           value="{{context.name}}">
+
                   </div>
 
-                  <div ng-repeat="field in context.fields" class="contextFields" ng-controller="AdminFieldEditorCtrl">
-                    <div class="field" ng-hide="editing" ng-click="editing=true">
-                      <span>{{field.label}}</span>
-                      <a href="" data-content="{{field.hint}}"
-                         data-trigger="hover" bs-popover="{{field.label}}">
-                        <i class="icon-question-sign"></i>
-                      </a>
-                      <i class="type" ng-class="{'icon-font': field.type=='text',
-                                    'icon-align-left': field.type=='textarea'}"></i>
-                    </div>
-                    <div class="editor" ng-show="editing">
-
-                      <div class="editorHeader field" ng-click="editing=false" ng-class='{invalid: newField.$invalid}'>
-                        {{field.label}} <span>click to close</span>
-                      </div>
-
-                      <div ng-form name="newField">
-                        <div class="row editorBody">
-                          <div class="span4">
-                            <a ng-click="deleteField(field)" class="delete">delete</a>
-                            <label>Label</label>
-                            <input type="text" ng-model="field.label" required>
-
-                            <label>Name</label>
-                            <input type="text" ng-model="field.name" required>
-
-                            <label>Hint</label>
-                            <input type="text" ng-model="field.hint" required>
-
-                            <label>Required
-                            <input type="checkbox" ng-model="field.required">
-                            </label>
-
-                            <label>Type</label>
-                            <select id="editFieldType" ng-model="field.type" ng-required>
-                              <option value="text">Text</option>
-                              <option value="radio">Radio Buttons</option>
-                              <option value="select">Drop Menu (Select)</option>
-                              <option value="multiple">Multi-Select</option>
-                              <option value="checkboxes">Checkboxes</option>
-                              <option value="textarea">Paragraph(s)</option>
-                              <option value="number">Number</option>
-                              <option value="url">Url</option>
-                              <option value="phone">Phone</option>
-                              <option value="email">Email</option>
-                            </select>
-
-                            <div ng-switch on="typeSwitch(field.type)">
-                              <div ng-switch-default></div>
-
-                              <div ng-switch-when="multiple">
-                                <div ng-repeat="option in field.options">
-                                  <form class="form-inline">
-                                    <label>Name</label>
-                                    <input type="text" placeholder="name" ng-model="option.name">
-                                    <label>Value</label>
-                                    <input type="text" placeholder="value" ng-model="option.value">
-                                  </form>
-                                </div>
-                                <button class="btn btn-info" ng-click="addOption(field)">
-                                  <i class="icon-plus-sign"></i> add option
-                                </button>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div ng-form>
-                    </div>
+                  <div class="span4">
+                    <label>Receivers</label>
+                    {{context.receivers}}
+                    <select multiple ui-select2 style="width: 200px"
+                            ng-model="context.receivers">
+                      <option ng-repeat="receiver in admin.receivers"
+                              value="{{receiver.receiver_gus}}">{{receiver.name}}</option>
+                    </select>
                   </div>
-
-
-
-                  <button class="btn btn-success saveContext"
-                          ng-disabled="contextForm.$pristine || contextForm.$invalid"
-                          ng-click="update(context)">Save</button>
-
-                  <button class="btn btn-danger deleteContext"
-                          ng-click="delete(context)">Delete</button>
-
                 </div>
 
+                <div class="row">
+
+                  <div class="span4">
+                    <label>Description</label>
+                    <textarea required ng-model="context.description">{{context.description}}</textarea>
+                  </div>
+
+                  <div class="span4">
+                    <div ng-include="'views/admin/fieldeditor.html'"></div>
+                    <button class="btn btn-success saveContext"
+                            ng-disabled="contextForm.$pristine || contextForm.$invalid"
+                            ng-click="update(context)">Save</button>
+
+                    <button class="btn btn-danger deleteContext"
+                            ng-click="delete(context)">Delete</button>
+
+                  </div>
+
+                </div>
               </div>
-
-            </form>
-          </div>
+            </div>
+          </form>
         </div>
 
         <div class="row">

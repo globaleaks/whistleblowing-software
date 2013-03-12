@@ -43,7 +43,6 @@
 }
 
 .field {
-
   padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
@@ -70,21 +69,25 @@
   margin-top: 10px;
 }
 
-.editorHeader {
+.fieldEditorHeader {
   height: 22px;
 }
 
-.editorHeader span {
+.fieldEditorHeader span {
   margin-right: 10px;
   font-style: italic;
   float: right;
 }
 
-.editor {
+.fieldEditorHeader.invalid {
+  background-color: #EB6C6C;
+}
+
+.fieldEditor {
   margin-bottom: 20px;
 }
 
-.editorBody {
+.fieldEditorBody {
 
   border: 1px solid rgb(204, 204, 204);
   -moz-box-shadow:    2px 5px 5px -1px #ddd;
@@ -98,27 +101,24 @@
   padding-top: 20px;
 }
 
-.editorHeader.invalid {
-  background-color: #EB6C6C;
-}
 
-.editorBody a.delete {
+.fieldEditorBody a.delete {
   float: right;
   margin-right: 68px;
   font-weight: bold;
   color: #ee5f5b;
 }
 
-.receiverEditorHeader {
+.editorHeader {
   background-color: rgb(252, 252, 252);
   border-bottom: 1px solid rgb(204, 204, 204);
 }
 
-.receiverEditorHeader:hover {
+.editorHeader:hover {
   background-color: rgb(252, 252, 248);
 }
 
-.receiverEditorHeader span {
+.editorHeader span {
   letter-spacing: -1px;
   font-size: 20px;
   line-height: 1;
@@ -128,23 +128,23 @@
   padding: 20px;
 }
 
-.receiverEditor {
+.editor {
   padding: 20px;
   margin: 0;
   background-color: rgb(240, 240, 240);
   border-bottom: 1px solid rgb(204, 204, 204);
 }
 
-.receiverEditor img {
+.editor img {
   margin-bottom: 10px;
 }
 
-.receiverEditor .profile {
+.editor .profile {
   position: relative;
   width: 140px;
 }
 
-.receiverEditor .profile .uploadfile {
+.editor .profile .uploadfile {
   position: absolute;
   top: 0px;
   padding-top: 30px;
@@ -155,11 +155,11 @@
   opacity: 0.7;
 }
 
-.receiverEditor .profile .uploadfile span {
+.editor .profile .uploadfile span {
   color: white;
 }
 
-.receiverEditor .profile .close {
+.editor .profile .close {
   position: absolute;
   top: 0px;
   right: 6px;
@@ -187,21 +187,16 @@
   opacity: 0;
 }
 
-.receiverItem {
-
+.configItem {
   border-top: 1px solid rgb(204, 204, 204);
   border-left: 1px solid rgb(204, 204, 204);
   border-right: 1px solid rgb(204, 204, 204);
   -moz-box-shadow:    2px 5px 5px -1px #ddd;
   -webkit-box-shadow: 2px 5px 5px -1px #ddd;
   box-shadow:         2px 5px 5px -1px #ddd;
-
   background-color: rgb(252, 252, 252);
-
   margin-bottom: 20px;
 }
 
 .receiverItem:hover {
 }
-
-

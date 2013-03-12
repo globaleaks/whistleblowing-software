@@ -51,4 +51,16 @@ GLClient.controller('AdminFieldEditorCtrl',
 
 }]);
 
+GLClient.controller('AdminContextsEditorCtrl', ['$scope',
+  function($scope) {
+    $scope.editing = false;
+    console.log($scope.context);
+    if ($scope.context.description === "") {
+      $scope.editing = true;
+    }
 
+    $scope.toggleEditing = function() {
+      $scope.editing = $scope.editing ^ 1;
+    }
+
+}]);

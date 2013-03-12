@@ -30,16 +30,16 @@
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
 
           <form name="receiverForm" class="receiverConfig" ng-controller="AdminReceiversEditorCtrl">
-            <div class="span9 receiverItem">
+            <div class="span9 configItem receiverItem">
               <div class="row" ng-click="toggleEditing()">
-                <div class="span9 receiverEditorHeader">
+                <div class="span9 editorHeader receiverEditorHeader">
                   <span>{{receiver.name}}</span>
                 </div>
               </div>
             <!-- /div -->
 
             <!-- div class="span9 configRow receiverEditor" -->
-              <div class="row receiverEditor" ng-show="editing">
+              <div class="row editor receiverEditor" ng-show="editing">
                 <div class="span4">
                   <div class="profile" ng-mouseenter="uploadfile=true;"
                          ng-mouseleave="uploadfile=false;">
