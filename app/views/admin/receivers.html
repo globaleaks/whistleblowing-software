@@ -22,22 +22,39 @@
       <div ng-controller="AdminReceiversCtrl">
         <div class="row">
           <div class="span4">
-            <h4>Receivers configured </h4>
-          </div>
-          <div class="span4">
-            <h4>details</h4>
+            <h3>Receiver list</h4>
           </div>
         </div>
 
         <!-- BEGIN reciever list -->
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
 
-          <form name="receiverForm" class="receiverConfig">
-            <div class="span9 configRow" ng-class-even="'odd'">
+          <form name="receiverForm" class="receiverConfig" ng-controller="AdminReceiversEditorCtrl">
+            <div class="span9 receiverItem">
+              <div class="row" ng-click="toggleEditing()">
+                <div class="span9 receiverEditorHeader">
+                  <span>{{receiver.name}}</span>
+                </div>
+              </div>
+            <!-- /div -->
 
-              <div class="row">
-
+            <!-- div class="span9 configRow receiverEditor" -->
+              <div class="row receiverEditor" ng-show="editing">
                 <div class="span4">
+                  <div class="profile" ng-mouseenter="uploadfile=true;"
+                         ng-mouseleave="uploadfile=false;">
+
+                    <div ng-show="uploadfile || fileSelected" class="uploadfile" ng-click="fileuploader">
+                      <button class="close" ng-click="closeProfile()">×</button>
+                      <div class="fileselector">
+                        <input type="file" name="profile" ui-event="{change: 'changeProfile()'}">
+                        <button class="btn">Select file</button>
+                      </div>
+                      <button class="btn" ng-disabled="!fileSelected"
+                              ng-class="{'btn-success': fileSelected}">upload</button>
+                    </div>
+                    <img data-src="holder.js/120x120" holder class="img-polaroid">
+                  </div>
 
                   <label>Name</label>
                   <input type="text" name="name" ng-maxlength="40" ng-model="receiver.name" required>
@@ -51,32 +68,27 @@
                   <!-- remind: this need to be random & mailed to the inactive user -->
                   <input type="password" ng-model="receiver.password">
 
+                  <div class="row">
+                    <div class="span4">
+                      <button class="btn btn-success saveReceiver"
+                              ng-disabled="receiverForm.$invalid"
+                              ng-click="update(receiver)">Save</button>
+
+                      <button class="btn btn-danger deleteReceiver"
+                              ng-click="delete(receiver)">Delete</button>
+
+                    </div>
+                  </div>
+
                 </div>
 
                 <div class="span4">
-
-                  <label>Context associated</label>
+                  <label>Contexts associated</label>
                   <select multiple ui-select2 style="width: 200px" ng-model="receiver.contexts">
                     <option ng-repeat="context in admin.contexts" value="{{context.context_gus}}">{{context.name}}</option>
                   </select>
                   <label>Description</label>
                   <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
-
-
-                </div>
-
-              </div>
-
-              <div class="row">
-
-                <div class="offset4 span4">
-                  <button class="btn btn-success saveReceiver"
-                          ng-disabled="receiverForm.$invalid"
-                          ng-click="update(receiver)">Save</button>
-
-                  <button class="btn btn-danger deleteReceiver"
-                          ng-click="delete(receiver)">Delete</button>
-
                 </div>
 
               </div>
@@ -88,9 +100,9 @@
 
         <!-- BEGIN Addition of receiver -->
         <div class="row">
-          <div class="configRow span9 addReceiver">
-            <h4>Add new receiver</h4>
-            <form name="newReceiver">
+          <form name="newReceiver">
+            <div class="configRow span9 addReceiver">
+              <h4>Add new receiver</h4>
 
                 <div class="row">
 

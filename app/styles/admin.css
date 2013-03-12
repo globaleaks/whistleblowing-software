@@ -1,3 +1,38 @@
+/** Configuration Pages **/
+
+.configRow {
+  padding: 8px;
+  line-height: 20px;
+  text-align: left;
+  vertical-align: top;
+  /* border-top: 1px solid #dddddd; */
+}
+
+.configRow textarea {
+  width: 250px;
+}
+
+.odd {
+  background-color: #f9f9f9;
+}
+
+.toolTip {
+  width: 200px;
+  position: fixed;
+  z-index: 99999;
+  top: 20px;
+  right: 20px;
+}
+
+.fileDetails {
+  list-style: none;
+  margin: 0 0 10px 20px;
+}
+
+.invalidReceiver {
+    background-color: red;
+}
+
 .config-page textarea {
   width: 300px;
   height: 200px;
@@ -73,3 +108,100 @@
   font-weight: bold;
   color: #ee5f5b;
 }
+
+.receiverEditorHeader {
+  background-color: rgb(252, 252, 252);
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.receiverEditorHeader:hover {
+  background-color: rgb(252, 252, 248);
+}
+
+.receiverEditorHeader span {
+  letter-spacing: -1px;
+  font-size: 20px;
+  line-height: 1;
+  font-weight: bold;
+
+  display: block;
+  padding: 20px;
+}
+
+.receiverEditor {
+  padding: 20px;
+  margin: 0;
+  background-color: rgb(240, 240, 240);
+  border-bottom: 1px solid rgb(204, 204, 204);
+}
+
+.receiverEditor img {
+  margin-bottom: 10px;
+}
+
+.receiverEditor .profile {
+  position: relative;
+  width: 140px;
+}
+
+.receiverEditor .profile .uploadfile {
+  position: absolute;
+  top: 0px;
+  padding-top: 30px;
+  width: 130px;
+  height: 100px;
+  text-align: center;
+  background-color: black;
+  opacity: 0.7;
+}
+
+.receiverEditor .profile .uploadfile span {
+  color: white;
+}
+
+.receiverEditor .profile .close {
+  position: absolute;
+  top: 0px;
+  right: 6px;
+  color: #fff;
+  text-shadow: 0 1px 0 #000;
+  opacity: 0.8;
+}
+
+.fileselector {
+  margin: 0 auto;
+  position: relative;
+  padding-bottom: 20px;
+}
+
+.fileselector button {
+  position: absolute;
+  left: 20px;
+  top: 0;
+  z-index: 1;
+}
+
+.fileselector input {
+  z-index: 2;
+  position: relative;
+  opacity: 0;
+}
+
+.receiverItem {
+
+  border-top: 1px solid rgb(204, 204, 204);
+  border-left: 1px solid rgb(204, 204, 204);
+  border-right: 1px solid rgb(204, 204, 204);
+  -moz-box-shadow:    2px 5px 5px -1px #ddd;
+  -webkit-box-shadow: 2px 5px 5px -1px #ddd;
+  box-shadow:         2px 5px 5px -1px #ddd;
+
+  background-color: rgb(252, 252, 252);
+
+  margin-bottom: 20px;
+}
+
+.receiverItem:hover {
+}
+
+

@@ -33,5 +33,25 @@ function($scope) {
     });
 
   };
+}]);
 
+GLClient.controller('AdminReceiversEditorCtrl', ['$scope',
+  function($scope) {
+    $scope.editing = false;
+
+    $scope.toggleEditing = function() {
+      $scope.editing = $scope.editing ^ 1;
+    }
+
+    // Used to keep track of weather or not the profile file has been changed
+    // or not.
+    $scope.fileSelected = false;
+    $scope.changeProfile = function() {
+      $scope.fileSelected = true;
+    }
+
+    $scope.closeProfile = function() {
+      $scope.fileSelected = false;
+      $scope.uploadfile = false;
+    }
 }]);
