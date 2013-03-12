@@ -1,4 +1,5 @@
 import os
+import re
 import shutil
 
 from twisted.internet.defer import inlineCallbacks
@@ -44,8 +45,7 @@ class TestSubmission(helpers.TestGL):
         status = yield submission.create_submission(submission_desc, finalize=True)
         receipt = yield submission.create_whistleblower_tip(status)
 
-        import re
-        retval = re.match('(\w+){10}', receipt)
+        retval = re.match(GLSetting.receipt_regexp, receipt)
         self.assertTrue(retval)
 
     @inlineCallbacks
