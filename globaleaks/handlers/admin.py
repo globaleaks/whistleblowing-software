@@ -9,7 +9,7 @@ from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated
 from globaleaks.rest import errors, requests
-from globaleaks.models import now, Receiver, Context, Node, Notification
+from globaleaks.models import Receiver, Context, Node, Notification
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils
@@ -24,6 +24,7 @@ def admin_serialize_node(node):
       'public_site': node.public_site,
       'stats_update_time': node.stats_update_time,
       'email': node.email,
+      "last_update": utils.prettyDateTime(node.last_update),
       'languages': list(node.languages) if node.languages else []
     }
     return response
@@ -33,6 +34,8 @@ def admin_serialize_context(context):
         "context_gus": context.id,
         "name": context.name,
         "description": context.description,
+        "creation_date": utils.prettyDateTime(context.creation_date),
+        "last_update": utils.prettyDateTime(context.last_update),
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
@@ -51,7 +54,8 @@ def admin_serialize_receiver(receiver):
         "receiver_gus": receiver.id,
         "name": receiver.name,
         "description": receiver.description,
-        "update_date": utils.prettyDateTime(receiver.last_update),
+        "creation_date": utils.prettyDateTime(receiver.creation_date),
+        "last_update": utils.prettyDateTime(receiver.last_update),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
@@ -111,6 +115,7 @@ def update_node(store, request):
     node.update(request)
 
     node_desc = admin_serialize_node(node)
+    node.last_update = utils.datetimeNow()
     return node_desc
 
 
@@ -226,7 +231,7 @@ def update_context(store, context_gus, request):
     context.update(request)
 
     context_desc = admin_serialize_context(context)
-    context.last_update = now()
+    context.last_update = utils.datetimeNow()
     return context_desc
 
 @transact
@@ -358,7 +363,7 @@ def update_receiver(store, id, request):
     receiver.update(request)
 
     receiver_desc = admin_serialize_receiver(receiver)
-    receiver.last_update = now()
+    receiver.last_update = utils.datetimeNow()
     return receiver_desc
 
 @transact
