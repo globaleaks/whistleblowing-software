@@ -84,6 +84,7 @@ CREATE TABLE node (
     password VARCHAR NOT NULL,
     public_site VARCHAR NOT NULL,
     stats_update_time INTEGER NOT NULL,
+    last_update VARCHAR,
     PRIMARY KEY (id)
 );
 

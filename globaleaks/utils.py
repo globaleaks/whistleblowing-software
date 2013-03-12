@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import logging
 import re
+import time
 import traceback
 
 from OpenSSL import SSL
@@ -98,19 +99,40 @@ def utcFutureDate(seconds=0, minutes=0, hours=0):
     @return: a datetime object
     """
     delta = (minutes * 60) + (hours * 3600) + seconds
-    retTime = datetime.utcnow() + timedelta(seconds=delta)
+    retTime = datetime.utcnow() - timedelta(seconds=time.timezone) + timedelta(seconds=delta)
     return retTime
+
+def datetimeNow():
+    """
+    @param: a random key used to cache a certain datetime
+    @return: a datetime object of now, coherent with the timezone
+    """
+    now = datetime.utcnow() - timedelta(seconds=time.timezone)
+    return now
+
+def is_expired(old_date, seconds=0, minutes=0, hours=0, day=0):
+    """
+    @param old_date: the datetime stored in the databased
+
+    @param seconds, minutes, hours, day
+        the expire time of the element
+
+    @return:
+        if the amount requeste by those four param has been reached
+        is returned True, else is returned False
+    """
+    check = old_date + timedelta(seconds=seconds, minutes=minutes, hours=hours, day=day)
+    now = datetime.utcnow() - timedelta(seconds=time.timezone)
+    log.debug("TEST: check %s now %s" % (check.isoformat(), now.isoformat()) )
+    return now > check
 
 
 def prettyDateTime(when):
     """
-    @param when: a datetime like the stored DateTime in Storm
-    @return: the pretty string
+    @param when: a datetime
+    @return: the date in ISO 8601
     """
-    if when is None or when == 0:
-        return "Never"
-    else:
-        return when.ctime()
+    return when.isoformat()
 
 ## Mail utilities ##
 

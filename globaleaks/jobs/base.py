@@ -19,8 +19,7 @@ class GLJob:
         if not seconds:
             self.operation()
         else:
-            # this hours=1 need to be managed with CEST/CET timezone checks
-            plan_exec = utils.utcFutureDate(hours=1, seconds=seconds)
+            plan_exec = utils.utcFutureDate(hours=0, seconds=seconds)
 
             log.debug("Stored execution of %s postpone to %s" %
                   (self.__class__.__name__, utils.prettyDateTime(plan_exec) ))
