@@ -31,6 +31,14 @@
   right: 20px;
 }
 
+.contextFields {
+  margin-top: 10px;
+}
+
+.editorHeader {
+  height: 22px;
+}
+
 .editorHeader span {
   margin-right: 10px;
   font-style: italic;
@@ -55,3 +63,13 @@
   padding-top: 20px;
 }
 
+.editorHeader.invalid {
+  background-color: #EB6C6C;
+}
+
+.editorBody a.delete {
+  float: right;
+  margin-right: 68px;
+  font-weight: bold;
+  color: #ee5f5b;
+}

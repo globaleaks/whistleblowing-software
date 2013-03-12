@@ -2,16 +2,6 @@ GLClient.controller('AdminContextsCtrl',
     ['$scope', '$rootScope', 'Admin',
     function($scope, $rootScope, Admin) {
 
-  // XXX this is *very* hackish.
-  $scope.editFields = function(fields) {
-    $rootScope.fieldEditor = true;
-    $rootScope.fieldsToEdit = fields;
-  };
-
-  $rootScope.closeEditor = function() {
-    $rootScope.fieldEditor = false;
-  };
-
   $scope.delete = function(context) {
     var idx = _.indexOf($scope.admin.contexts, context);
 
@@ -20,12 +10,26 @@ GLClient.controller('AdminContextsCtrl',
     });
 
   };
+
+  $scope.addField = function(context) {
+    if (context.fields === undefined) {
+      context.fields = [];
+    }
+    context.fields.push({presentation_order: 0,
+                        type: 'text',
+                        required: false});
+  }
+
 }]);
 
 GLClient.controller('AdminFieldEditorCtrl',
     ['$scope',
     function($scope) {
     $scope.editing = false;
+
+    if ($scope.field.name === undefined) {
+      $scope.editing = true;
+    }
 
     $scope.typeSwitch = function(type) {
       if (_.indexOf(['checkboxes','select','radio'], type) === -1)
@@ -38,6 +42,11 @@ GLClient.controller('AdminFieldEditorCtrl',
         field.options = [];
       }
       field.options.push({order: 0})
+    }
+
+    $scope.deleteField = function(field) {
+      var idx = $scope.context.fields.indexOf(field);
+      $scope.context.fields.splice(idx, 1);
     }
 
 }]);
