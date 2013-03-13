@@ -34,8 +34,21 @@
 
               <div class="row" ng-click="toggleEditing()">
                 <div class="span9 editorHeader receiverEditorHeader">
-                  <span>{{receiver.name}}</span>
+                  <div class="span4">
+                    <span>{{receiver.name}}</span>
+                  </div>
+
+                  <div class="span4 editButtons" ng-show="editing">
+                    <button class="btn btn-success saveReceiver"
+                          ng-disabled="receiverForm.$invalid"
+                          ng-click="update(receiver)">Save</button>
+
+                    <button class="btn btn-danger deleteReceiver"
+                          ng-click="delete(receiver)">Delete</button>
+                  </div>
+
                 </div>
+
               </div>
 
               <div class="row editor receiverEditor" ng-show="editing">
@@ -66,18 +79,6 @@
                   <label bs-popover="'If left empty, the system sets globaleaks'">Password</label>
                   <!-- remind: this need to be random & mailed to the inactive user -->
                   <input type="password" ng-model="receiver.password">
-
-                  <div class="row">
-                    <div class="span4">
-                      <button class="btn btn-success saveReceiver"
-                              ng-disabled="receiverForm.$invalid"
-                              ng-click="update(receiver)">Save</button>
-
-                      <button class="btn btn-danger deleteReceiver"
-                              ng-click="delete(receiver)">Delete</button>
-
-                    </div>
-                  </div>
 
                 </div>
 

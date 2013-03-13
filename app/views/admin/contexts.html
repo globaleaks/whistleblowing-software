@@ -34,7 +34,19 @@
 
               <div class="row" ng-click="toggleEditing()">
                 <div class="span9 editorHeader contextEditorHeader">
-                  <span>{{context.name}}</span>
+                  <div class="span4">
+                    <span>{{context.name}}</span>
+                  </div>
+
+                  <div class="span4 editButtons" ng-show="editing">
+                    <button class="btn btn-success saveContext"
+                            ng-disabled="contextForm.$pristine || contextForm.$invalid"
+                            ng-click="update(context)">Save</button>
+
+                    <button class="btn btn-danger deleteContext"
+                            ng-click="delete(context)">Delete</button>
+                  </div>
+
                 </div>
               </div>
 
@@ -78,16 +90,8 @@
                 </div>
 
                 <div class="row">
-                  <div class="span4">
-                    <button class="btn btn-success saveContext"
-                            ng-disabled="contextForm.$pristine || contextForm.$invalid"
-                            ng-click="update(context)">Save</button>
 
-                    <button class="btn btn-danger deleteContext"
-                            ng-click="delete(context)">Delete</button>
-                  </div>
-
-                  <div class="span4">
+                  <div class="offset4 span4">
                     <div ng-include="'views/admin/fieldeditor.html'"></div>
 
                   </div>

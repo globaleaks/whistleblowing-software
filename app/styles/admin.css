@@ -198,6 +198,10 @@
   margin-bottom: 20px;
 }
 
+.editButtons {
+  margin-top: 15px;
+}
+
 .selectionList {
   background-color: #fff;
   padding-top: 20px;
