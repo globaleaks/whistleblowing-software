@@ -31,14 +31,13 @@
 
           <form name="receiverForm" class="receiverConfig" ng-controller="AdminReceiversEditorCtrl">
             <div class="span9 configItem receiverItem">
+
               <div class="row" ng-click="toggleEditing()">
                 <div class="span9 editorHeader receiverEditorHeader">
                   <span>{{receiver.name}}</span>
                 </div>
               </div>
-            <!-- /div -->
 
-            <!-- div class="span9 configRow receiverEditor" -->
               <div class="row editor receiverEditor" ng-show="editing">
                 <div class="span4">
                   <div class="profile" ng-mouseenter="uploadfile=true;"
@@ -83,10 +82,20 @@
                 </div>
 
                 <div class="span4">
-                  <label>Contexts associated</label>
-                  <select multiple ui-select2 style="width: 200px" ng-model="receiver.contexts">
-                    <option ng-repeat="context in admin.contexts" value="{{context.context_gus}}">{{context.name}}</option>
-                  </select>
+                  <label>Contexts</label>
+                  <div class="selectionList">
+
+                    <ul>
+                      <div ng-repeat="context in admin.contexts">
+                        <li class="selectionContextItem" ng-click="toggle(context)">
+                          <div class="checkbox" ng-show="isSelected(context)"><span>&#10004;</span></div>
+                          <span>{{context.name}}</span> <p>{{context.description}}</p>
+                        </li>
+                      </div>
+                    </ul>
+
+                  </div>
+
                   <label>Description</label>
                   <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
                 </div>

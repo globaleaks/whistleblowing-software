@@ -53,14 +53,34 @@ GLClient.controller('AdminFieldEditorCtrl',
 
 GLClient.controller('AdminContextsEditorCtrl', ['$scope',
   function($scope) {
+
     $scope.editing = false;
-    console.log($scope.context);
+
     if ($scope.context.description === "") {
       $scope.editing = true;
     }
 
     $scope.toggleEditing = function() {
       $scope.editing = $scope.editing ^ 1;
+    }
+
+    $scope.isSelected = function(receiver) {
+      if ($scope.context.receivers.indexOf(receiver.receiver_gus) !== -1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    $scope.toggle = function(receiver) {
+      var idx = $scope.context.receivers.indexOf(receiver.receiver_gus);
+      $scope.contextForm.$dirty = true;
+      $scope.contextForm.$pristine = false;
+      if (idx === -1) {
+        $scope.context.receivers.push(receiver.receiver_gus);
+      } else {
+        $scope.context.receivers.splice(idx, 1);
+      }
     }
 
 }]);

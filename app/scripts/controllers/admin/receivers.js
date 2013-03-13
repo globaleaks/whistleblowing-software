@@ -54,4 +54,22 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope',
       $scope.fileSelected = false;
       $scope.uploadfile = false;
     }
+
+    $scope.isSelected = function(context) {
+      if ($scope.receiver.contexts.indexOf(context.context_gus) !== -1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    $scope.toggle = function(context) {
+      var idx = $scope.receiver.contexts.indexOf(context.context_gus)
+      if (idx === -1) {
+        $scope.receiver.contexts.push(context.context_gus);
+      } else {
+        $scope.receiver.contexts.splice(idx, 1);
+      }
+    }
+
 }]);

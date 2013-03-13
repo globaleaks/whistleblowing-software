@@ -198,5 +198,77 @@
   margin-bottom: 20px;
 }
 
-.receiverItem:hover {
+.selectionList {
+  background-color: #fff;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+
+  border: 1px solid #cccccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -moz-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border linear .2s, box-shadow linear .2s;
 }
+
+.selectionElement {
+  position: relative;
+  float: left;
+  width: 80px;
+}
+
+@media (max-width: 979px) and (min-width: 768px) {
+  .selectionElement {
+    width: 70px;
+  }
+}
+@media (min-width: 1200px) {
+  .selectionElement {
+    width: 100px;
+  }
+}
+
+.selectionElement img {
+  margin-left: 25px;
+}
+.selectionElement img:hover {
+  background-color: #ccc;
+}
+.selectionElement .selected img {
+  background-color: #51a351;
+}
+.selectionElement span {
+  display: block;
+  text-align: center;
+}
+.selectionElement .selector {
+  background-color: #ccc;
+  top: 15px;
+  left: 30px;
+  opacity: 0.5;
+  position: absolute;
+  height: 40px;
+  width: 40px;
+}
+.selectionElement .selector {
+  opacity: 1;
+  text-align: center;
+}
+.selectionDetails {
+  padding-top: 10px;
+}
+.selectionContextItem {
+  position: relative;
+  list-style: none;
+  padding-left: 10px;
+}
+.selectionContextItem:hover {
+  color: #0088cc;
+}
+.selectionContextItem .checkbox {
+  display: inline;
+  top: 0px;
+  position: absolute;
+  left: -30px;
+}
+
