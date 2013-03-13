@@ -102,6 +102,7 @@ def utcFutureDate(seconds=0, minutes=0, hours=0):
     retTime = datetime.utcnow() - timedelta(seconds=time.timezone) + timedelta(seconds=delta)
     return retTime
 
+
 def datetimeNow():
     """
     @param: a random key used to cache a certain datetime
@@ -109,6 +110,7 @@ def datetimeNow():
     """
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
     return now
+
 
 def is_expired(old_date, seconds=0, minutes=0, hours=0, day=0):
     """
@@ -121,18 +123,25 @@ def is_expired(old_date, seconds=0, minutes=0, hours=0, day=0):
         if the amount requeste by those four param has been reached
         is returned True, else is returned False
     """
-    check = old_date + timedelta(seconds=seconds, minutes=minutes, hours=hours, day=day)
+    if not old_date:
+        return False
+
+    total_hours = (day * 24) + hours
+    check = old_date + timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
-    log.debug("TEST: check %s now %s" % (check.isoformat(), now.isoformat()) )
+
     return now > check
 
 
 def prettyDateTime(when):
     """
     @param when: a datetime
-    @return: the date in ISO 8601
+    @return: the date in ISO 8601, or 'Never' if not set
     """
-    return when.isoformat()
+    if when is None:
+        return u'Never'
+    else:
+        return when.isoformat()
 
 ## Mail utilities ##
 
@@ -167,6 +176,7 @@ def sendmail(authenticationUsername, authenticationSecret, fromAddress, toAddres
     return resultDeferred
 
 
+mail_counter = 0 # useful to keep track in exception series
 def MailException(etype, value, tb):
     """
     Formats traceback and exception data and emails the error
@@ -175,11 +185,15 @@ def MailException(etype, value, tb):
     @param value: Exception string value
     @param tb: Traceback string data
     """
+    global mail_counter
+    mail_counter += 1
+
     excType = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)", "", str(etype)).strip()
     tmp = []
+
     tmp.append("From: %s\n" % ("stackexception@globaleaks.org"))
     tmp.append("To: %s\n" % ("stackexception@lists.globaleaks.org"))
-    tmp.append("Subject: GLBackend Exception\n")
+    tmp.append("Subject: GLBackend Exception [%d]\n" % mail_counter)
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1\n")
     tmp.append("Content-Transfer-Encoding: 8bit\n\n")
     tmp.append("%s %s" % (excType, etype.__doc__))
@@ -205,6 +219,8 @@ def MailException(etype, value, tb):
                 tmp.append("<ERROR WHILE PRINTING VALUE>")
 
     message = StringIO(''.join(tmp))
+
+    log.debug("Exception Mail (%d):\n%s" % (mail_counter, ''.join(tmp)) )
 
     sendmail("stackexception@globaleaks.org",
              "stackexception99",
