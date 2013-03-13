@@ -9,7 +9,8 @@ from globaleaks.settings import transact, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.utils import random_string, log
+from globaleaks.utils import log
+from globaleaks.third_party import rstr
 
 def authenticated(*roles):
     """
@@ -113,7 +114,8 @@ class AuthenticationHandler(BaseHandler):
                 case of an admin it will be set to 'admin', in the case of the
                 'wb' it will be the whistleblower id.
         """
-        self.session_id = random_string(42, 'a-z,A-Z,0-9')
+        self.session_id = rstr.xeger(r'(\w+){42}')
+
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
         new_session = OD(
