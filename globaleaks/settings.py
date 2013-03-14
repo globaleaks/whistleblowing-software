@@ -74,6 +74,10 @@ class GLSettingsClass:
         self.description_limit = 1024
         self.generic_limit = 2048
 
+        # static file rules
+        self.staticfile_regexp = r'(\w+)\.(\w+)'
+        self.staticfile_overwrite = False
+
 
     def load_cmdline_options(self):
         """

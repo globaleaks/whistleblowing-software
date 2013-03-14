@@ -209,7 +209,7 @@ class NoEmailSpecified(GLException):
 class DownloadLimitExceeded(GLException):
     reason = "You've reached the maximum amount of download for this file"
     error_code = 33
-    status_code = 503 # Servie Unavailable
+    status_code = 503 # Service Unavailable
 
 class InvalidOldPassword(GLException):
     reason = "The specified old password is not valid"
@@ -220,4 +220,11 @@ class CommentNotFound(GLException):
     reason = "The specified comment was not found"
     error_code = 35
     status_code = 404
+
+class StaticFileExist(GLException):
+    error_code = 36
+    status_code = 412 # Precondition Failed
+
+    def __init__(self, filename):
+        self.reason = "Static file [%s] is already present and overwrite is not permitted" % filename
 
