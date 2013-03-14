@@ -215,6 +215,10 @@
   -webkit-transition: border linear .2s, box-shadow linear .2s;
 }
 
+.selectionList .row {
+  margin-left: 0px;
+}
+
 .selectionElement {
   position: relative;
   float: left;
@@ -235,9 +239,7 @@
 .selectionElement img {
   margin-left: 25px;
 }
-.selectionElement img:hover {
-  background-color: #ccc;
-}
+
 .selectionElement .selected img {
   background-color: #51a351;
 }
