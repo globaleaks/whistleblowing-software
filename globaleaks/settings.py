@@ -90,6 +90,10 @@ class GLSettingsClass:
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
         self.bind_port = self.cmdline_options.port
 
+        if self.bind_port <= 1024 or self.bind_port >= 65535:
+            log.err("Invalid port number. < of 1024 is not permitted (require root) and > than 65535 can't work")
+            quit()
+
         # If user has requested this option, initialize a counter to
         # record the requests sequence, and setup the logs path
         if self.cmdline_options.io >= 0:

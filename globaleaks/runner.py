@@ -133,8 +133,18 @@ else:
                 Start the actual service Application.
                 """
                 print "Running start."
-                self.startApplication(self.application)
-                startAsynchronous()
+                try:
+                    self.startApplication(self.application)
+                except Exception, e:
+                    log.err("Network error: %s Use ^C" % e)
+                    raise e
+
+                try:
+                    startAsynchronous()
+                except Exception, e:
+                    log.err("Scheduler error: %s Use ^C" % e)
+                    raise e
+
                 print "GLBackend is now running"
                 print "Visit http://127.0.0.1:%d/index.html to interact with me" % GLSetting.bind_port
 
