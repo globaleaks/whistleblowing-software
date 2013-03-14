@@ -5,7 +5,7 @@ from storm.twisted.testing import FakeThreadPool
 from twisted.internet.defer import inlineCallbacks
 from twisted.trial import unittest
 
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
 
 from globaleaks.rest import errors, requests
@@ -123,7 +123,7 @@ class TestTipInstance(TTip):
         if not self.receipt:
             self.receipt = yield submission.create_whistleblower_tip(self.submission_desc)
 
-        self.assertTrue(re.match('(\w+){10}', self.receipt) )
+        self.assertTrue(re.match(GLSetting.receipt_regexp, self.receipt) )
 
     @inlineCallbacks
     def wb_auth_with_receipt(self):
