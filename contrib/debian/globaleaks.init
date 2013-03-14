@@ -1,0 +1,238 @@
+#! /bin/sh
+
+### BEGIN INIT INFO
+# GlobaLeaks startup script for Ubuntu and Debian Linux servers
+#
+# cp globaleaks.init /etc/init.d/globaleaks
+#
+# To automatically start at reboot
+# sudo update-rc.d globaleaks defaults
+#
+# Provides:          globaleaks
+# Required-Start:    $local_fs $remote_fs
+# Required-Stop:     $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Short-Description: globaleaks initscript
+# Description:       This file starts up the globaleaks server.
+### END INIT INFO
+
+# Author: Giovanni Pellerano <evilaliv3@globaleaks.org>
+
+# Start of Configurable Arguments
+GLDIR=/data/devel/GlobaLeaks
+LISTENINGPORT=8082
+GLBACKENDDIR=${GLDIR}/GLBackend
+GLCLIENTDIR=${GLDIR}/GLClient
+TEMPDIR=${GLDIR}/temp
+TOR_TEMPDIR=${TEMPDIR}/_tor
+GLBACKEND_DAEMON=${GLBACKENDDIR}/bin/startglobaleaks
+TOR_DAEMON=/usr/sbin/tor
+# End of Configurable Arguments
+
+PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+NAME=$(basename $(readlink -nf $0))
+
+SCRIPTNAME=${TMPDIR}/${NAME}
+TOR_PIDFILE=${TMPDIR}/tor.pid
+GLBACKEND_PIDFILE=${TMPDIR}/${NAME}.pid
+
+TORRC="HiddenServiceDir ${TOR_TEMPDIR}\nHiddenServicePort 80 127.0.0.1:${LISTENINGPORT}"
+
+for dir in ${TEMPDIR} ${TORTEMPDIR} ; do
+    mkdir -p $dir
+done
+
+if [ -e ${TOR_PIDFILE} ]; then
+    TOR_PID=`cat ${TOR_PIDFILE}`
+else
+    TOR_PID=0
+fi
+
+if [ -e ${GLBACKEND_PIDFILE} ]; then
+    GLBACKEND_PID=`cat ${GLBACKEND_PIDFILE}`
+else
+    GLBACKEND_PID=0
+fi
+
+# Load the VERBOSE setting and other rcS variables
+. /lib/init/vars.sh
+
+# Define LSB log_* functions.
+# Depend on lsb-base (>= 3.2-14) to ensure that this file is present
+# and status_of_proc is working.
+. /lib/lsb/init-functions
+
+# Let's try to figure our some sane defaults:
+if [ -r /proc/sys/fs/file-max ]; then
+        system_max=`cat /proc/sys/fs/file-max`
+        if [ "$system_max" -gt "80000" ] ; then
+                MAX_FILEDESCRIPTORS=32768
+        elif [ "$system_max" -gt "40000" ] ; then
+                MAX_FILEDESCRIPTORS=16384
+        elif [ "$system_max" -gt "10000" ] ; then
+                MAX_FILEDESCRIPTORS=8192
+        else
+                MAX_FILEDESCRIPTORS=1024
+                cat << EOF
+
+Warning: Your system has very few filedescriptors available in total.
+
+Maybe you should try raising that by adding 'fs.file-max=100000' to your
+/etc/sysctl.conf file.  Feel free to pick any number that you deem appropriate.
+Then run 'sysctl -p'.  See /proc/sys/fs/file-max for the current value, and
+file-nr in the same directory for how many of those are used at the moment.
+
+EOF
+        fi
+else
+        MAX_FILEDESCRIPTORS=8192
+fi
+
+#
+# Function that starts the daemon/service
+#
+
+do_tor_start()
+{
+    # Check to see if the Tor daemon is already running.
+    echo "Starting Tor..."
+    if [ "${TOR_PID}" -ne "0" ]; then
+      if kill -0 ${TOR_PID} 1<&- 2<&-; then
+        echo "Tor already running at pid $TOR_PID"
+        return
+      fi
+    fi
+
+    echo ${TORRC} > ${TEMPDIR}/torrc
+    nohup ${TOR_DAEMON} -f ${TEMPDIR}/torrc 1<&- 2<&- &
+    echo $! > ${TOR_PIDFILE}
+
+    echo "started."
+}
+
+do_globaleaks_start()
+{
+    # Check to see if the GLBackend daemon is already running.
+    echo "Starting Globaleaks..."
+    if [ "${GLBACKEND_PID}" -ne "0" ]; then
+      if kill -0 ${GLBACKEND_PID} 1<&- 2<&-; then
+        echo "Globaleaks already running at pid ${GLBACKEND_PID}"
+        return
+      fi
+    fi
+
+    nohup ${GLBACKEND_DAEMON} --port ${LISTENINGPORT} 1<&- 2<&- &
+    echo $! > ${GLBACKEND_PIDFILE}
+
+    echo "started."
+}
+
+#
+# Function that stops the daemon/service
+#
+do_tor_stop()
+{
+    echo "Stopping Tor..."
+    if [ "$TOR_PID" -eq "0" ] || ps -p $TOR_PID 1<&- 2<&-; then
+        echo "not running"
+    else
+        echo "stopped."
+    fi
+
+    kill -15 ${TOR_PID} 1<&- 2<&-
+    rm -f ${TOR_PID} 1<&- 2<&-
+}
+
+do_globaleaks_stop()
+{
+    echo "Stopping Globaleaks..."
+    if [ "$GLBACKEND_PID" -eq "0" ] || ps -p $GLBACKEND_PID 1<&- 2<&-; then
+        echo "not running"
+    else
+        echo "stopped."
+    fi
+
+    rm -f ${GLBACKEND_PID} 1<&- 2<&-
+    kill -15 ${GLBACKEND_PID} 1<&- 2<&-
+}
+
+do_start()
+{
+    if [ -n "$MAX_FILEDESCRIPTORS" ]; then
+        echo -n "Raising maximum number of filedescriptors (ulimit -n) to $MAX_FILEDESCRIPTORS"
+        if ulimit -n "$MAX_FILEDESCRIPTORS" ; then
+            echo "."
+        else
+            echo ": FAILED."
+        fi
+    fi
+
+    do_tor_start
+    do_globaleaks_start
+}
+
+do_stop()
+{
+    do_globaleaks_stop
+    do_tor_stop
+}
+
+#
+# Function that restarts Globaleaks
+#
+do_restart() {
+    do_stop
+    do_start
+}
+
+#
+# Function that queries the status of the daemon/service
+#
+do_status()
+{
+    return
+}
+
+case "$1" in
+  start)
+	[ "$VERBOSE" != no ] && log_daemon_msg "Starting $DESC" "$NAME"
+	do_start
+	case "$?" in
+		0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+		2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+	esac
+	;;
+  stop)
+	[ "$VERBOSE" != no ] && log_daemon_msg "Stopping $DESC" "$NAME"
+	do_stop
+	case "$?" in
+		0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
+		2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
+	esac
+	;;
+  status)
+       status_of_proc "$DAEMON" "$NAME" && exit 0 || exit $?
+       ;;
+  #reload|force-reload)
+	#
+	# If do_reload() is not implemented then leave this commented out
+	# and leave 'force-reload' as an alias for 'restart'.
+	#
+	#log_daemon_msg "Reloading $DESC" "$NAME"
+	#do_reload
+	#log_end_msg $?
+	#;;
+  restart|force-reload)
+	#
+	# If the "reload" option is implemented then remove the
+	# 'force-reload' alias
+	#
+	log_daemon_msg "Restarting $DESC" "$NAME"
+	do_restart
+	;;
+  *)
+	echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
+	exit 3
+	;;
+esac
