@@ -64,7 +64,7 @@ class SubmissionTest(unittest.TestCase):
     }
 
     aSubmission = {
-        'wb_fields': {'headline': u'an headline', 'Sun': u'a Sun'},
+        'wb_fields': {'headline': u'an headline', 'description': u'a dummy deskription'},
         'context_gus': '', 'receivers': [], 'files': [], 'finalize': False
     }
 
@@ -185,7 +185,7 @@ class TestTipInstance(SubmissionTest):
         submission_request['receivers'] = [ SubmissionTest.receiver_used['receiver_gus']  ]
         submission_request['context_gus'] = SubmissionTest.context_used['context_gus']
         submission_request['wb_fields']['headline'] = unicode("A" * 1000 * 1000)
-        submission_request['wb_fields']['Sun'] = u'dummy'
+        submission_request['wb_fields']['description'] = u'dummy'
 
         submission_request['finalize'] = True
 
