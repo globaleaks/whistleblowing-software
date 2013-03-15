@@ -26,6 +26,7 @@ class TestNodeInstance(helpers.TestHandler):
 
         del self.dummyNode['password']
         del self.dummyNode['old_password']
+        del self.responses[0]['last_update']
 
         self.assertEqual(self.responses[0], self.dummyNode)
 
@@ -97,6 +98,8 @@ class TestContextsCollection(helpers.TestHandler):
         yield handler.post()
 
         request_context['context_gus'] =  self.responses[0]['context_gus']
+        del self.responses[0]['creation_date']
+        del request_context['creation_date']
         self.assertEqual(self.responses[0], request_context)
 
 class TestContextInstance(helpers.TestHandler):

@@ -5,6 +5,7 @@
 
 import sys
 
+from twisted.internet import reactor
 from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 from apscheduler.scheduler import Scheduler
@@ -98,6 +99,10 @@ if platformType == "win32":
             This code is taken directly from the method postApplication of
             WindowsApplicationRunner.
             """
+            def initialization():
+                d = createTables()
+                d.addCallback(runApp)
+
             def runApp(res):
                 """
                 Start the actual service Application.
@@ -107,12 +112,11 @@ if platformType == "win32":
                 app.startApplication(internet.TimerService(0.1, lambda:None), 0)
                 startAsynchronous()
 
-            print "WARNING! Windows is not tested!"
-            d = createTables()
-            d.addCallback(runApp)
+            print "WARNING! Windows use has not been tested!"
 
+            reactor.callWhenRunning(initialization)
             self.startReactor(None, self.oldstdout, self.oldstderr)
-            log.msg("Server Shut Down.")
+            log.msg("Server is shutting down.")
 
     GLBaseRunner = GLBaseRunnerWindows
 
@@ -128,6 +132,10 @@ else:
             """
             THis code is taken directly from UnixApplicationRunner
             """
+            def initialization():
+                d = createTables()
+                d.addCallback(runApp)
+
             def runApp(res):
                 """
                 Start the actual service Application.
@@ -136,22 +144,23 @@ else:
                 try:
                     self.startApplication(self.application)
                 except Exception, e:
-                    log.err("Network error: %s Use ^C" % e)
+                    log.err("Network error: %s" % e)
+                    reactor.stop()
                     raise e
 
                 try:
                     startAsynchronous()
                 except Exception, e:
-                    log.err("Scheduler error: %s Use ^C" % e)
+                    log.err("Scheduler error: %s" % e)
+                    reactor.stop()
                     raise e
 
                 print "GLBackend is now running"
                 print "Visit http://127.0.0.1:%d/index.html to interact with me" % GLSetting.bind_port
 
-            d = createTables()
-            d.addCallback(runApp)
-
-            self.startReactor(None, self.oldstdout, self.oldstderr)
+            reactor.callWhenRunning(initialization)
+            self.startReactor(reactor, self.oldstdout, self.oldstderr)
+            log.msg("Server is shutting down.")
             self.removePID(self.config['pidfile'])
 
     GLBaseRunner = GLBaseRunnerUnix
