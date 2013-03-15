@@ -6,6 +6,8 @@ from globaleaks.rest import errors
 from time import time
 # xxx. we should use python tz.
 from datetime import datetime
+# xxx remove this reference and use utils.datetimeNow
+# open issue about microdiff in create/access/update ?
 now = datetime.utcnow
 
 def uuid():
@@ -285,6 +287,7 @@ class Node(Model):
     email = Unicode()
     languages = Pickle()
     password = Unicode()
+    last_update = DateTime()
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours

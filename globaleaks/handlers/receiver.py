@@ -24,6 +24,7 @@ def receiver_serialize_receiver(receiver):
         "name": receiver.name,
         "description": receiver.description,
         "update_date": utils.prettyDateTime(receiver.last_update),
+        "creation_date": utils.prettyDateTime(receiver.creation_date),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,

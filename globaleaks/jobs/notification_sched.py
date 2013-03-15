@@ -22,7 +22,7 @@ def serialize_receivertip(rtip):
         'id': unicode(rtip.id),
         'creation_date' : unicode(prettyDateTime(rtip.creation_date)),
         'last_access' : unicode(prettyDateTime(rtip.last_access)),
-        'expressed_pertinence' : unicode(prettyDateTime(rtip.expressed_pertinence)),
+        'expressed_pertinence' : unicode(rtip.expressed_pertinence),
         'access_counter' : int(rtip.access_counter),
         }
     return rtip_dict
