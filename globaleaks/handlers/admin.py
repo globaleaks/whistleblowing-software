@@ -94,7 +94,8 @@ def update_node(store, request):
 
     if len(request['old_password']) and len(request['password']):
         if node.password == request['old_password']:
-            log.info("Administrator password update %s => %s" % (request['old_password'], request['password'] ))
+            log.info("Administrator password update %s => %s" %
+                     (request['old_password'], request['password'] ))
             node.password = request['password']
         else:
             log.info("Password invalid! cannot be changed now")
@@ -153,19 +154,26 @@ def create_context(store, request):
     if not request['fields']:
         # When a new context is create, assign some spare fields
         context.fields = [
-            {u'hint': u"Hint, I'm required", u'label': u'headline',
+            {u'hint': u"Describe your tip-off with a line/title", u'label': u'headline',
              u'name': u'headline', u'presentation_order': 1,
              u'required': True, u'type': u'text', u'value': u'' },
-            {u'hint': u'The name of the Sun', u'label': u'Sun',
-              u'name': u'Sun', u'presentation_order': 2,
+            {u'hint': u'Describe the details of your tip-off', u'label': u'Description',
+              u'name': u'description', u'presentation_order': 2,
               u'required': True, u'type': u'text',
-              u'value': u"I'm the sun, I've not name"},
+              u'value': u"" },
         ]
     else:
         context.fields = request['fields']
 
     if len(request['name']) < 1:
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
+
+    # Check that do not exists a Context with the proposed new name
+    homonymous = store.find(Context, Context.name == unicode(request['name'])).count()
+    if homonymous:
+        log.err("Creation error: already present context with the specified name: %s"
+                % request['name'])
+        raise errors.ExpectedUniqueField('name', request['name'])
 
     if context.escalation_threshold and context.selectable_receiver:
         raise errors.ContextParameterConflict
@@ -215,13 +223,18 @@ def update_context(store, context_gus, request):
     if not context:
          raise errors.ContextGusNotFound
 
-    receivers = request.get('receivers', [])
-
-    context.fields = request['fields']
+    # Check that do not exists already a Context with the proposed name
+    homonymous = store.find(Context,
+        ( Context.name == unicode(request['name']), Context.id != unicode(context_gus)) ).count()
+    if homonymous:
+        log.err("Update error: already present context with the specified name: %s" %
+                request['name'])
+        raise errors.ExpectedUniqueField('name', request['name'])
 
     for receiver in context.receivers:
         context.receivers.remove(receiver)
 
+    receivers = request.get('receivers', [])
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
@@ -229,6 +242,7 @@ def update_context(store, context_gus, request):
         context.receivers.add(receiver)
 
     context.update(request)
+    context.fields = request['fields']
 
     context_desc = admin_serialize_context(context)
     context.last_update = utils.datetimeNow()
@@ -278,15 +292,10 @@ def create_receiver(store, request):
         raise errors.NoEmailSpecified
 
     # Pretend that username is unique:
-    try:
-        clone = store.find(Receiver, Receiver.username == mail_address).one()
-    except NotOneError, e:
-        log.err("Fatal: more than one receiver present with the requested username: %s" % mail_address)
-        raise errors.InvalidInputFormat("already duplicated receiver username [%s]" % mail_address)
-
-    if clone:
-        log.err("Fatal: already present receiver with the requested username: %s" % mail_address)
-        raise errors.InvalidInputFormat("already present receiver username [%s]" % mail_address)
+    homonymous = store.find(Receiver, Receiver.username == mail_address).count()
+    if homonymous:
+        log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
+        raise errors.ExpectedUniqueField('mail_address', mail_address)
 
     receiver = Receiver(request)
 
@@ -344,6 +353,12 @@ def update_receiver(store, id, request):
     mail_address = utils.acquire_mail_address(request)
     if not mail_address:
         raise errors.NoEmailSpecified
+
+    homonymous = store.find(Receiver,
+        ( Receiver.username == mail_address, Receiver.id != unicode(id)) ).count()
+    if homonymous:
+        log.err("Update error: already present receiver with the requested username: %s" % mail_address)
+        raise errors.ExpectedUniqueField('mail_address', mail_address)
 
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']

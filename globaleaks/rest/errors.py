@@ -98,13 +98,15 @@ class AccessLimitExceeded(GLException):
     error_code = 18
     status_code = 503 # Servie Unavailable
 
-class ReceiverConfNotFound(GLException):
+class ExpectedUniqueField(GLException):
     """
     The receiver configuration ID do not exist in the database associated to the Receiver
     """
-    reason = "Not found a ReceiverConf with the specified ID"
     error_code = 19
     status_code = 404 # Not Found
+
+    def __init__(self, key, existent_value):
+        self.reason = "A field expected to be unique is already present (%s:%s)" % (key, existent_value)
 
 
 class ReceiverGusNotFound(GLException):
@@ -202,21 +204,35 @@ class InternalServerError(GLException):
     status_code = 505
 
 class NoEmailSpecified(GLException):
+    """
+    Receiver has email address as requirement (username is the email address) and
+    is validated by a regular expression, if do not match, this error is triggered
+    """
     reason = "No email was specified"
     error_code = 32
     status_code = 406
 
 class DownloadLimitExceeded(GLException):
+    """
+    Receiver has reached the limit download counter configured in the Context
+    """
     reason = "You've reached the maximum amount of download for this file"
     error_code = 33
     status_code = 503 # Servie Unavailable
 
 class InvalidOldPassword(GLException):
+    """
+    Receiver or Node required the old password equal to the current password,
+    before change with a new secret.
+    """
     reason = "The specified old password is not valid"
     error_code = 34
     status_code = 406
 
 class CommentNotFound(GLException):
+    """
+    An ID expected has not been found
+    """
     reason = "The specified comment was not found"
     error_code = 35
     status_code = 404

@@ -1,9 +1,6 @@
 import re
-import os
 
-from storm.twisted.testing import FakeThreadPool
 from twisted.internet.defer import inlineCallbacks
-from twisted.trial import unittest
 
 from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
@@ -12,7 +9,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.rest.base import uuid_regexp
 from globaleaks.handlers import tip, base, admin, submission, authentication
 from globaleaks.jobs import delivery_sched
-from globaleaks import models, db
+from globaleaks import models
 
 class MockHandler(base.BaseHandler):
 
@@ -58,7 +55,7 @@ class TTip(helpers.TestWithDB):
     }
 
     tipSubmission = {
-        'wb_fields': {'headline': u'an headline', 'Sun': u'a Sun'},
+        'wb_fields': {'headline': u'an headline', 'description': u'a dirty desky'},
         'context_gus': '', 'receivers': [], 'files': [], 'finalize': True
     }
 
@@ -99,7 +96,7 @@ class TestTipInstance(TTip):
             self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
         except Exception, e:
             print e
-            import pdb; pdb.set_trace()
+            self.assertTrue(False)
 
         self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
 
