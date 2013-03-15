@@ -17,12 +17,36 @@ import re
 import sys
 import os
 
-from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired
+from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone import escape
 
 from globaleaks.utils import log, MailException
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
+
+
+def validate_host(host_key):
+    """
+    validate_host checks in the GLSetting list of valid 'Host:' values
+    and if matched, return True, else return False
+    Is used by all the Web hanlders inherit from Cyclone
+    """
+
+    # hidden service has not a :port
+    if len(host_key) == 22 and host_key[16:22] == '.onion':
+        return True
+
+    # strip eventually port
+    hostchunk = str(host_key).split(":")
+    if len(hostchunk) == 2:
+        host_key = hostchunk[0]
+
+    if host_key == "127.0.0.1":
+        return True
+
+    log.debug("Error in host requested: %s do not accepted" % host_key)
+    return False
+
 
 class BaseHandler(RequestHandler):
 
@@ -154,6 +178,9 @@ class BaseHandler(RequestHandler):
         Is used also to log the complete request, if the option is
         command line specified
         """
+        if not validate_host(self.request.host):
+            raise HTTPError(status_code=417) # Expectation Failed
+
         if self.request.method.lower() == 'post':
             try:
                 wrappedMethod = self.get_argument('method')[0]
@@ -296,3 +323,27 @@ class BaseHandler(RequestHandler):
                     (self._request_summary(), self.request))
             MailException(type, value, tb)
             return self.send_error(500, exception=e)
+
+
+
+class BaseStaticFileHandler(StaticFileHandler):
+
+    def prepare(self):
+        """
+        This method is called by cyclone,and perform 'Host:' header
+        validation using the same 'validate_host' function used by
+        BaseHandler. but BaseHandler manage the REST API,..
+        BaseStaticFileHandler manage all the statically served files.
+        """
+        if not validate_host(self.request.host):
+            raise HTTPError(status_code=417) # Expectation Failed
+
+
+class BaseRedirectHandler(RedirectHandler):
+
+    def prepare(self):
+        """
+        Same reason of StaticFileHandler
+        """
+        if not validate_host(self.request.host):
+            raise HTTPError(status_code=417) # Expectation Failed
