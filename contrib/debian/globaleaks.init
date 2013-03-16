@@ -20,34 +20,22 @@
 # Author: Giovanni Pellerano <evilaliv3@globaleaks.org>
 
 # Start of Configurable Arguments
-GLDIR=/data/devel/GlobaLeaks
 LISTENINGPORT=8082
+GLDIR=/data/globaleaks/dev
 GLBACKENDDIR=${GLDIR}/GLBackend
 GLCLIENTDIR=${GLDIR}/GLClient
-TEMPDIR=${GLDIR}/temp
-TOR_TEMPDIR=${TEMPDIR}/_tor
+GLENV=${GLDIR}/glenv/bin/activate
 GLBACKEND_DAEMON=${GLBACKENDDIR}/bin/startglobaleaks
-TOR_DAEMON=/usr/sbin/tor
+TMPDIR=${GLDIR}/temp
 # End of Configurable Arguments
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=$(basename $(readlink -nf $0))
 
-SCRIPTNAME=${TMPDIR}/${NAME}
-TOR_PIDFILE=${TMPDIR}/tor.pid
-GLBACKEND_PIDFILE=${TMPDIR}/${NAME}.pid
+SCRIPTNAME=$0
+GLBACKEND_PIDFILE=${TMPDIR}/twistd.pid
 
-TORRC="HiddenServiceDir ${TOR_TEMPDIR}\nHiddenServicePort 80 127.0.0.1:${LISTENINGPORT}"
-
-for dir in ${TEMPDIR} ${TORTEMPDIR} ; do
-    mkdir -p $dir
-done
-
-if [ -e ${TOR_PIDFILE} ]; then
-    TOR_PID=`cat ${TOR_PIDFILE}`
-else
-    TOR_PID=0
-fi
+mkdir -p ${TMPDIR}
 
 if [ -e ${GLBACKEND_PIDFILE} ]; then
     GLBACKEND_PID=`cat ${GLBACKEND_PIDFILE}`
@@ -63,53 +51,9 @@ fi
 # and status_of_proc is working.
 . /lib/lsb/init-functions
 
-# Let's try to figure our some sane defaults:
-if [ -r /proc/sys/fs/file-max ]; then
-        system_max=`cat /proc/sys/fs/file-max`
-        if [ "$system_max" -gt "80000" ] ; then
-                MAX_FILEDESCRIPTORS=32768
-        elif [ "$system_max" -gt "40000" ] ; then
-                MAX_FILEDESCRIPTORS=16384
-        elif [ "$system_max" -gt "10000" ] ; then
-                MAX_FILEDESCRIPTORS=8192
-        else
-                MAX_FILEDESCRIPTORS=1024
-                cat << EOF
-
-Warning: Your system has very few filedescriptors available in total.
-
-Maybe you should try raising that by adding 'fs.file-max=100000' to your
-/etc/sysctl.conf file.  Feel free to pick any number that you deem appropriate.
-Then run 'sysctl -p'.  See /proc/sys/fs/file-max for the current value, and
-file-nr in the same directory for how many of those are used at the moment.
-
-EOF
-        fi
-else
-        MAX_FILEDESCRIPTORS=8192
-fi
-
 #
 # Function that starts the daemon/service
 #
-
-do_tor_start()
-{
-    # Check to see if the Tor daemon is already running.
-    echo "Starting Tor..."
-    if [ "${TOR_PID}" -ne "0" ]; then
-      if kill -0 ${TOR_PID} 1<&- 2<&-; then
-        echo "Tor already running at pid $TOR_PID"
-        return
-      fi
-    fi
-
-    echo ${TORRC} > ${TEMPDIR}/torrc
-    nohup ${TOR_DAEMON} -f ${TEMPDIR}/torrc 1<&- 2<&- &
-    echo $! > ${TOR_PIDFILE}
-
-    echo "started."
-}
 
 do_globaleaks_start()
 {
@@ -122,60 +66,39 @@ do_globaleaks_start()
       fi
     fi
 
+    . ${GLENV}
+    cd ${TMPDIR}
     nohup ${GLBACKEND_DAEMON} --port ${LISTENINGPORT} 1<&- 2<&- &
-    echo $! > ${GLBACKEND_PIDFILE}
 
     echo "started."
-}
-
-#
-# Function that stops the daemon/service
-#
-do_tor_stop()
-{
-    echo "Stopping Tor..."
-    if [ "$TOR_PID" -eq "0" ] || ps -p $TOR_PID 1<&- 2<&-; then
-        echo "not running"
-    else
-        echo "stopped."
-    fi
-
-    kill -15 ${TOR_PID} 1<&- 2<&-
-    rm -f ${TOR_PID} 1<&- 2<&-
 }
 
 do_globaleaks_stop()
 {
     echo "Stopping Globaleaks..."
-    if [ "$GLBACKEND_PID" -eq "0" ] || ps -p $GLBACKEND_PID 1<&- 2<&-; then
-        echo "not running"
-    else
+
+    # this is always needed
+    rm -f ${GLBACKEND_PIDFILE} 1<&- 2<&-
+
+    if [ "${GLBACKEND_PID}" -ne "0" ]; then
+      if kill -0 ${GLBACKEND_PID} 1<&- 2<&-; then
+        kill -15 ${GLBACKEND_PID} 1<&- 2<&-
         echo "stopped."
+        return
+      fi
     fi
 
-    rm -f ${GLBACKEND_PID} 1<&- 2<&-
-    kill -15 ${GLBACKEND_PID} 1<&- 2<&-
+    echo "not running."
 }
 
 do_start()
 {
-    if [ -n "$MAX_FILEDESCRIPTORS" ]; then
-        echo -n "Raising maximum number of filedescriptors (ulimit -n) to $MAX_FILEDESCRIPTORS"
-        if ulimit -n "$MAX_FILEDESCRIPTORS" ; then
-            echo "."
-        else
-            echo ": FAILED."
-        fi
-    fi
-
-    do_tor_start
     do_globaleaks_start
 }
 
 do_stop()
 {
     do_globaleaks_stop
-    do_tor_stop
 }
 
 #
@@ -183,6 +106,9 @@ do_stop()
 #
 do_restart() {
     do_stop
+
+    GLBACKEND_PID=0
+
     do_start
 }
 
