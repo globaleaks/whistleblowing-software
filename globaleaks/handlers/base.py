@@ -41,7 +41,7 @@ def validate_host(host_key):
     if len(hostchunk) == 2:
         host_key = hostchunk[0]
 
-    if host_key == "127.0.0.1":
+    if host_key == "127.0.0.1" or host_key == "localhost":
         return True
 
     log.debug("Error in host requested: %s do not accepted" % host_key)
@@ -179,7 +179,7 @@ class BaseHandler(RequestHandler):
         command line specified
         """
         if not validate_host(self.request.host):
-            raise HTTPError(status_code=417) # Expectation Failed
+            raise errors.InvalidHostSpecified
 
         if self.request.method.lower() == 'post':
             try:
@@ -336,7 +336,7 @@ class BaseStaticFileHandler(StaticFileHandler):
         BaseStaticFileHandler manage all the statically served files.
         """
         if not validate_host(self.request.host):
-            raise HTTPError(status_code=417) # Expectation Failed
+            raise errors.InvalidHostSpecified
 
 
 class BaseRedirectHandler(RedirectHandler):
@@ -346,4 +346,5 @@ class BaseRedirectHandler(RedirectHandler):
         Same reason of StaticFileHandler
         """
         if not validate_host(self.request.host):
-            raise HTTPError(status_code=417) # Expectation Failed
+            raise errors.InvalidHostSpecified
+

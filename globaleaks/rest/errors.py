@@ -173,7 +173,7 @@ class FileGusNotFound(GLException):
 
 class SubmissionConcluded(GLException):
     """
-    The submisssion accessed haa been already completed
+    The submission accessed haa been already completed
     """
     reason = "The submission tried to be update has been already finalized"
     error_code = 28
@@ -218,7 +218,7 @@ class DownloadLimitExceeded(GLException):
     """
     reason = "You've reached the maximum amount of download for this file"
     error_code = 33
-    status_code = 503 # Servie Unavailable
+    status_code = 503 # Service Unavailable
 
 class InvalidOldPassword(GLException):
     """
@@ -231,9 +231,17 @@ class InvalidOldPassword(GLException):
 
 class CommentNotFound(GLException):
     """
-    An ID expected has not been found
+    A Comment UUID expected has not been found
     """
     reason = "The specified comment was not found"
     error_code = 35
     status_code = 404
 
+class InvalidHostSpecified(GLException):
+    """
+    The host delcared by the client 'Host:' field is not between
+    the list of the acceptable hosts
+    """
+    reason = "The specified host do not match a configured one"
+    error_code = 36
+    status_code = 417 # Expectation Fail
