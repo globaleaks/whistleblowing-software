@@ -20,6 +20,7 @@
 # Author: Giovanni Pellerano <evilaliv3@globaleaks.org>
 
 # Start of Configurable Arguments
+HOSTSLIST=127.0.0.1,localhost,dev.globaleaks.org
 LISTENINGPORT=8082
 GLDIR=/data/globaleaks/dev
 GLBACKENDDIR=${GLDIR}/GLBackend
@@ -68,7 +69,7 @@ do_globaleaks_start()
 
     . ${GLENV}
     cd ${TMPDIR}
-    nohup ${GLBACKEND_DAEMON} --port ${LISTENINGPORT} 1<&- 2<&- &
+    nohup ${GLBACKEND_DAEMON} --port ${LISTENINGPORT} --accept-host="${HOSTSLIST}" 1<&- 2<&- &
 
     echo "started."
 }
