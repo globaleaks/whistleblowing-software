@@ -75,6 +75,9 @@ class GLSettingsClass:
         self.description_limit = 1024
         self.generic_limit = 2048
 
+        # acceptable 'Host:' header in HTTP request
+        self.accepted_hosts = [ '127.0.0.1', 'localhost' ]
+
 
     def load_cmdline_options(self):
         """
@@ -91,7 +94,7 @@ class GLSettingsClass:
         self.bind_port = self.cmdline_options.port
 
         if self.bind_port <= 1024 or self.bind_port >= 65535:
-            log.err("Invalid port number. < of 1024 is not permitted (require root) and > than 65535 can't work")
+            print "Invalid port number. < of 1024 is not permitted (require root) and > than 65535 can't work"
             quit()
 
         # If user has requested this option, initialize a counter to
@@ -100,6 +103,9 @@ class GLSettingsClass:
             self.cyclone_debug = self.cmdline_options.io
             self.cyclone_debug_counter = 0
             self.cyclone_io_path = os.path.join(self.gldata_path, "cyclone_debug")
+
+        if self.cmdline_options.host_list:
+            self.accepted_hosts += str(self.cmdline_options.host_list).replace(" ", "").split(",")
 
 
     def consistency_check(self):
