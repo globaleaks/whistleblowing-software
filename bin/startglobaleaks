@@ -89,6 +89,8 @@ GLSetting.parser.add_option("-l", "--loglevel", type="choice", choices=['INFO', 
 GLSetting.parser.add_option("-i", "--io", type="int",
     help="enable JSON I/O logging (limit number of Request/Response), default disabled, 0 unlimited",
     dest="io", default=-1)
+GLSetting.parser.add_option("-a", "--accept-host", type="string", dest="host_list",
+    help="specify a list comma separated of hostname acceptable by the HTTP server")
 
 # here the options are parsed, because sys.argv array is whack below
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()

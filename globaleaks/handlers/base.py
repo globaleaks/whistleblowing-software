@@ -31,7 +31,6 @@ def validate_host(host_key):
     and if matched, return True, else return False
     Is used by all the Web hanlders inherit from Cyclone
     """
-
     # hidden service has not a :port
     if len(host_key) == 22 and host_key[16:22] == '.onion':
         return True
@@ -41,10 +40,11 @@ def validate_host(host_key):
     if len(hostchunk) == 2:
         host_key = hostchunk[0]
 
-    if host_key == "127.0.0.1" or host_key == "localhost":
+    if host_key in GLSetting.accepted_hosts:
         return True
 
-    log.debug("Error in host requested: %s do not accepted" % host_key)
+    log.debug("Error in host requested: %s do not accepted between: %s " %
+              (host_key, str(GLSetting.accepted_hosts)))
     return False
 
 
