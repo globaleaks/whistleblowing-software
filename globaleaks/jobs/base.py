@@ -11,18 +11,22 @@ from globaleaks.utils import log
 
 class GLJob:
 
-    def force_execution(self, aps=None, seconds=0):
+    def force_execution(self, aps=None, seconds=1):
         """
         @aps: Advanced Python Scheduler object
         seconds: number of seconds to await before operation start
+
+        force execution do not execute immidiatly self.operation(),
+        because we want be sure that is a thread start by APScheduler
         """
-        if not seconds:
-            self.operation()
-        else:
-            plan_exec = utils.utc_future_date(hours=0, seconds=seconds)
+        plan_exec = utils.utc_future_date(hours=0, seconds=seconds)
 
+        try:
             aps.add_date_job(self.operation, plan_exec)
-
-            log.debug("Stored execution of %s postpone to %s" %
+        except ValueError, e:
+            log.err("Failing in force schedule execution of %s planned at %s" %
                       (self.__class__.__name__, utils.pretty_date_time(plan_exec)))
+
+        log.debug("Forced execution of %s at %s" %
+                  (self.__class__.__name__, utils.pretty_date_time(plan_exec)))
 
