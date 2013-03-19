@@ -23,8 +23,8 @@ def receiver_serialize_receiver(receiver):
         "receiver_gus": receiver.id,
         "name": receiver.name,
         "description": receiver.description,
-        "update_date": utils.prettyDateTime(receiver.last_update),
-        "creation_date": utils.prettyDateTime(receiver.creation_date),
+        "update_date": utils.pretty_date_time(receiver.last_update),
+        "creation_date": utils.pretty_date_time(receiver.creation_date),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
@@ -53,7 +53,7 @@ def update_receiver_settings(store, user_id, request):
 
     if not receiver:
         raise ReceiverGusNotFound
-    
+
     new_password = request.get('password')
     old_password = request.get('old_password')
 
@@ -130,8 +130,8 @@ def serialize_tip_summary(rtip):
     return {
         'access_counter': rtip.access_counter,
         'expressed_pertinence': rtip.expressed_pertinence,
-        'creation_date' : unicode(utils.prettyDateTime(rtip.creation_date)),
-        'last_acesss' : unicode(utils.prettyDateTime(rtip.last_access)),
+        'creation_date' : unicode(utils.pretty_date_time(rtip.creation_date)),
+        'last_acesss' : unicode(utils.pretty_date_time(rtip.last_access)),
         'id' : rtip.id
     }
 
@@ -167,7 +167,7 @@ class TipsCollection(BaseHandler):
         Response: receiverTipList
         Errors: InvalidTipAuthToken
         """
-        
+
         answer = yield get_receiver_tip_list(self.current_user['user_id'])
 
         self.set_status(200)

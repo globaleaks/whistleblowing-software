@@ -13,15 +13,15 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.plugins.base import Event
 from globaleaks import models
 from globaleaks.settings import transact, GLSetting
-from globaleaks.utils import log, prettyDateTime
+from globaleaks.utils import log, pretty_date_time
 from globaleaks.plugins import notification
 from globaleaks.handlers import admin, tip
 
 def serialize_receivertip(rtip):
     rtip_dict = {
         'id': unicode(rtip.id),
-        'creation_date' : unicode(prettyDateTime(rtip.creation_date)),
-        'last_access' : unicode(prettyDateTime(rtip.last_access)),
+        'creation_date' : unicode(pretty_date_time(rtip.creation_date)),
+        'last_access' : unicode(pretty_date_time(rtip.last_access)),
         'expressed_pertinence' : unicode(rtip.expressed_pertinence),
         'access_counter' : int(rtip.access_counter),
         }
@@ -33,7 +33,7 @@ def serialize_internalfile(ifile):
         'sha2sum': unicode(ifile.sha2sum),
         'content_type': unicode(ifile.content_type),
         'size': unicode(ifile.size),
-        'creation_date' : unicode(prettyDateTime(ifile.creation_date)),
+        'creation_date' : unicode(pretty_date_time(ifile.creation_date)),
     }
     return rfile_dict
 
@@ -79,7 +79,7 @@ class APSNotification(GLJob):
         # may use different code-plugin:
         cplugin = GLSetting.notification_plugins[0]
 
-        plugin = getattr(notification, cplugin)(self.notification_settings)
+        plugin = getattr(notification, cplugin)()
 
         not_notified_tips = store.find(models.ReceiverTip,
             models.ReceiverTip.mark == models.ReceiverTip._marker[0]
@@ -167,7 +167,7 @@ class APSNotification(GLJob):
         events = []
         cplugin = GLSetting.notification_plugins[0]
 
-        plugin = getattr(notification, cplugin)(self.notification_settings)
+        plugin = getattr(notification, cplugin)()
 
         not_notified_comments = store.find(models.Comment,
             models.Comment.mark == models.Comment._marker[0]
@@ -267,7 +267,7 @@ class APSNotification(GLJob):
         events = []
         cplugin = GLSetting.notification_plugins[0]
 
-        plugin = getattr(notification, cplugin)(self.notification_settings)
+        plugin = getattr(notification, cplugin)()
 
         not_notified_rfiles = store.find(models.ReceiverFile,
             models.ReceiverTip.mark == models.ReceiverFile._marker[0]
@@ -382,4 +382,3 @@ class APSNotification(GLJob):
         d3 = self.do_receiverfile_notification(file_events)
 
         yield DeferredList([d1, d2, d3], consumeErrors=True)
-

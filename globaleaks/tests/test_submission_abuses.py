@@ -32,9 +32,9 @@ class SubmissionTest(unittest.TestCase):
     @inlineCallbacks
     def initalize_db(self):
         try:
-            yield db.createTables(create_node=True)
+            yield db.create_tables(create_node=True)
         except Exception, e:
-            print "Fatal: unable to createTables [%s]" % str(e)
+            print "Fatal: unable to create_tables [%s]" % str(e)
             raise e
 
     aContext1 = {

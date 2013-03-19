@@ -2,7 +2,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
-from globaleaks.db import createTables
+from globaleaks.db import create_tables
 from globaleaks.models import *
 from globaleaks.settings import transact
 from globaleaks.rest import errors
@@ -10,7 +10,7 @@ from globaleaks.rest import errors
 class TestModels(helpers.TestGL):
     def setUp(self):
         self.setUp_dummy()
-        return createTables(True)
+        return create_tables(True)
 
     @transact
     def context_add(self, store):
