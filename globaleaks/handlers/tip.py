@@ -12,7 +12,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check
 from globaleaks.rest import requests
 from globaleaks import utils
-from globaleaks.utils import log, prettyDateTime
+from globaleaks.utils import log, pretty_date_time
 
 from globaleaks.settings import transact
 from globaleaks.models import *
@@ -24,9 +24,9 @@ def actor_serialize_internal_tip(internaltip):
         'context_id': unicode(internaltip.context.id),
         # compatibility, until client is not ready to be aligned
         'context_gus': unicode(internaltip.context.id),
-        'creation_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
-        'last_activity' : unicode(utils.prettyDateTime(internaltip.creation_date)),
-        'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
+        'creation_date' : unicode(utils.pretty_date_time(internaltip.creation_date)),
+        'last_activity' : unicode(utils.pretty_date_time(internaltip.creation_date)),
+        'expiration_date' : unicode(utils.pretty_date_time(internaltip.creation_date)),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
         'mark' : unicode(internaltip.mark),
@@ -47,7 +47,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
         'name' : unicode(internalfile.name),
         'sha2sum' : unicode(internalfile.sha2sum),
         'content_type' : unicode(internalfile.content_type),
-        'creation_date' : unicode(utils.prettyDateTime(internalfile.creation_date)),
+        'creation_date' : unicode(utils.pretty_date_time(internalfile.creation_date)),
         'size': int(internalfile.size),
         'downloads': unicode(receiverfile.downloads)
     }
@@ -80,7 +80,7 @@ def get_files_receiver(store, user_id, tip_id):
 
     receiver_files = store.find(ReceiverFile,
         (ReceiverFile.internaltip_id == rtip.internaltip_id, ReceiverFile.receiver_id == rtip.receiver_id) )
-    
+
     files_list = []
     for receiverfile in receiver_files:
         internalfile = receiverfile.internalfile
@@ -318,7 +318,7 @@ def serialize_comment(comment):
         'source' : unicode(comment.type),
         'content' : unicode(comment.content),
         'author' : unicode(comment.author),
-        'creation_date' : unicode(prettyDateTime(comment.creation_date))
+        'creation_date' : unicode(pretty_date_time(comment.creation_date))
     }
     return comment_desc
 
@@ -371,7 +371,7 @@ def create_comment_wb(store, wb_tip_id, request):
 @transact
 def create_comment_receiver(store, user_id, tip_id, request):
     rtip = strong_receiver_validate(store, user_id, tip_id)
-    
+
     comment = Comment()
     comment.content = request['content']
     comment.internaltip_id = rtip.internaltip.id
@@ -451,7 +451,7 @@ def get_receiver_list_wb(store, wb_tip_id):
     wb_tip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
     if not wb_tip:
         raise errors.TipReceiptNotFound
-    
+
     receiver_list = []
     for receiver in wb_tip.internaltip.receivers:
 

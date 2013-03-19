@@ -12,14 +12,14 @@ from globaleaks.settings import transact, GLSetting
 from globaleaks import models
 
 @transact
-def initialize_node(store, results, onlyNode, emailtemplate):
+def initialize_node(store, results, only_node, email_template):
     """
-    TODO refactor with languages the emailtemplate, develop a dedicated
+    TODO refactor with languages the email_template, develop a dedicated
     function outside the node, and inquire fucking YHWH about the
     callbacks existence/usage
     """
 
-    node = models.Node(onlyNode)
+    node = models.Node(only_node)
     # Add here by hand the languages supported!
     node.languages =  [{ "code" : "it" , "name": "Italiano"},
                        { "code" : "en" , "name" : "English" }]
@@ -29,7 +29,7 @@ def initialize_node(store, results, onlyNode, emailtemplate):
     store.add(node)
 
     notification = models.Notification()
-    notification.tip_template = emailtemplate
+    notification.tip_template = email_template
 
     # defaults until software is not ready
     notification.server = u"box549.bluehost.com"
@@ -64,7 +64,7 @@ def initialize_node(store, results, onlyNode, emailtemplate):
     store.add(notification)
 
 
-def initModels():
+def init_models():
     for model in models.models:
         model()
     return succeed(None)
@@ -80,15 +80,14 @@ def create_tables_transaction(store):
         for create_query in create_queries:
             try:
                 store.execute(create_query+';')
-            except OperationalError, e:
+            except OperationalError:
                 log.err("OperationalError in [%s]" % create_query)
-                pass
 
-    initModels()
+    init_models()
     # new is the only Models function executed without @transact, call .add, but
     # the called has to .commit and .close, operations commonly performed by decorator
 
-def createTables(create_node=True):
+def create_tables(create_node=True):
     """
     Override transactor for testing.
     """
@@ -100,12 +99,12 @@ def createTables(create_node=True):
             model()
         return succeed(None)
 
-    d = create_tables_transaction()
+    deferred = create_tables_transaction()
     if create_node:
 
         log.debug("Node initialization with dummy values")
 
-        onlyNode = {
+        only_node = {
             'name':  u"MissingConfLeaks",
             'description':  u"Please, set me: description",
             'hidden_service':  u"",
@@ -120,6 +119,6 @@ def createTables(create_node=True):
             email_template = f.read()
 
         # Initialize the node + notification table
-        d.addCallback(initialize_node, onlyNode, email_template)
-    return d
+        deferred.addCallback(initialize_node, only_node, email_template)
+    return deferred
 

@@ -16,7 +16,7 @@ from cyclone.web import os
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check
-from globaleaks.utils import log, prettyDateTime
+from globaleaks.utils import log, pretty_date_time
 from globaleaks.rest import errors
 from globaleaks import models
 from globaleaks.third_party import rstr
@@ -30,7 +30,7 @@ def serialize_file(internalfile):
         'size' : internalfile.size,
         'content_type' : internalfile.content_type,
         'name' : internalfile.name,
-        'creation_date': prettyDateTime(internalfile.creation_date),
+        'creation_date': pretty_date_time(internalfile.creation_date),
         'id' : internalfile.id,
         'mark' : internalfile.mark,
     }
@@ -196,7 +196,7 @@ def serialize_receiver_file(receiverfile, internalfile):
         'size' : internalfile.size,
         'content_type' : internalfile.content_type,
         'name' : internalfile.name,
-        'creation_date': prettyDateTime(internalfile.creation_date),
+        'creation_date': pretty_date_time(internalfile.creation_date),
         'downloads' : receiverfile.downloads,
         'path' : internalfile.file_path if internalfile.file_path else receiverfile.file_path,
         'sha2sum' : internalfile.sha2sum,
