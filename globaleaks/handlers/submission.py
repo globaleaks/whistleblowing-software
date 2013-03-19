@@ -6,15 +6,17 @@
 #   by an HTTP client in /submission URI
 
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.settings import transact
 from globaleaks.models import *
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import transport_security_check
 from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.jobs.delivery_sched import APSDelivery
 from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
-from globaleaks.utils import log, utcFutureDate, prettyDateTime
+from globaleaks.utils import log, utc_future_date, pretty_date_time
 from globaleaks.third_party import rstr
 from globaleaks.rest.errors import *
 from globaleaks.settings import GLSetting
@@ -26,8 +28,8 @@ def wb_serialize_internaltip(internaltip):
         # compatibility! until client is not patched.
         'submission_gus' : unicode(internaltip.id),
         'context_gus': unicode(internaltip.context_id),
-        'creation_date' : unicode(prettyDateTime(internaltip.creation_date)),
-        #'expiration_date' : unicode(utils.prettyDateTime(internaltip.creation_date)),
+        'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
+        #'expiration_date' : unicode(utils.pretty_date_time(internaltip.creation_date)),
         'wb_fields' : dict(internaltip.wb_fields or {}),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
@@ -195,7 +197,7 @@ def create_submission(store, request, finalize):
     submission.escalation_threshold = context.escalation_threshold
     submission.access_limit = context.tip_max_access
     submission.download_limit = context.file_max_download
-    submission.expiration_date = utcFutureDate(hours=(context.tip_timetolive * 24))
+    submission.expiration_date = utc_future_date(hours=(context.tip_timetolive * 24))
     submission.pertinence_counter = 0
     submission.context_id = context.id
     submission.creation_date = models.now()
@@ -294,6 +296,7 @@ class SubmissionCreate(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('submission')
     def post(self, *uriargs):
         """
         Request: wbSubmissionDesc
@@ -334,6 +337,7 @@ class SubmissionInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('submission')
     def get(self, submission_gus, *uriargs):
         """
         Parameters: submission_gus
@@ -348,6 +352,7 @@ class SubmissionInstance(BaseHandler):
         self.finish(submission)
 
     @inlineCallbacks
+    @transport_security_check('submission')
     def put(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus
@@ -378,6 +383,7 @@ class SubmissionInstance(BaseHandler):
 
 
     @inlineCallbacks
+    @transport_security_check('submission')
     def delete(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus

@@ -9,10 +9,9 @@
 
 import os
 
-from cyclone.web import StaticFileHandler, RedirectHandler
-
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles
+from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.rest.base import uuid_regexp
 
 
@@ -109,22 +108,24 @@ spec = [
 # * /test
 #if settings.config.debug.testing:
 spec.append(
-    (r'/test/(.*)', StaticFileHandler, {'path': os.path.join(GLSetting.glclient_path, '..', 'test')})
+    (r'/test/(.*)', BaseStaticFileHandler, {'path': os.path.join(GLSetting.glclient_path, '..', 'test')})
 )
 
 ## Utility redirect,
 spec.append(
-    (r'/login', RedirectHandler, {'url': '/#/login'} )
+    (r'/login', BaseRedirectHandler, {'url': '/#/login'} )
 )
 
 ## Static files services (would remain also if Client is not served by Backend)
 spec.append(
-    (r'/static/(.*)', StaticFileHandler, {'path': GLSetting.static_path })
+    (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path })
 )
 
 ## Main Web app ##
 # * /
 spec.append(
-    (r'/(.*)', StaticFileHandler, {'path': GLSetting.glclient_path, 'default_filename': "index.html" } )
+    (r'/(.*)', BaseStaticFileHandler,
+        {'path': GLSetting.glclient_path, 'default_filename': "index.html" }
+    )
 )
 

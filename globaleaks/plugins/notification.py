@@ -36,9 +36,13 @@ class MailNotification(Notification):
     # But at the first presence of a different notification plugin, need to be resumed and
     # integrated in the validation messages.
 
-
-    def __init__(self, notification_settings):
-        pass
+    def __init__(self):
+        self.host = None
+        self.port = None
+        self.username = None
+        self.password = None
+        self.security = None
+        self.finished = None
 
     def validate_admin_opt(self, pushed_af):
         fields = ['server', 'port', 'username', 'password']
@@ -160,7 +164,7 @@ class MailNotification(Notification):
         self.finished = Deferred()
 
         # to_addres maybe a list of addresses
-        receiver_mail= event.receiver_info['notification_fields']['mail_address']
+        receiver_mail = event.receiver_info['notification_fields']['mail_address']
         to_addrs = [ receiver_mail ]
 
         # Compose the email having the system+subject+recipient data
@@ -174,19 +178,19 @@ class MailNotification(Notification):
 
     def send(self, message):
         if self.security == 'SSL':
-            contextFactory = ssl.ClientContextFactory()
-            contextFactory.method = SSL.SSLv3_METHOD
+            context_factory = ssl.ClientContextFactory()
+            context_factory.method = SSL.SSLv3_METHOD
         else: # TODO support SSL
-            contextFactory = None
+            context_factory = None
 
         factory = ESMTPSenderFactory(self.username, self.password,
                                      message.from_addr,
                                      message.to_addrs,
                                      message.render(),
                                      self.finished,
-                                     contextFactory=contextFactory,
+                                     contextFactory=context_factory,
                                      requireAuthentication=(self.username and self.password),
                                      requireTransportSecurity=self.security)
 
-        ep = TCP4ClientEndpoint(reactor, self.host, self.port)
-        ep.connect(factory)
+        endpoint = TCP4ClientEndpoint(reactor, self.host, self.port)
+        endpoint.connect(factory)

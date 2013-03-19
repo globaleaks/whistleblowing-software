@@ -1,3 +1,4 @@
+import random
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest.errors import InvalidInputFormat
@@ -5,6 +6,7 @@ from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.handlers import admin
 from globaleaks.settings import transact
+from globaleaks.utils import log
 
 # special guest:
 from globaleaks.models import Notification
@@ -26,9 +28,9 @@ class TestNodeInstance(helpers.TestHandler):
 
         del self.dummyNode['password']
         del self.dummyNode['old_password']
+        del self.responses[0]['last_update']
 
         self.assertEqual(self.responses[0], self.dummyNode)
-
 
     @inlineCallbacks
     def test_put_update_node_invalid_hidden(self):
@@ -41,6 +43,10 @@ class TestNodeInstance(helpers.TestHandler):
             self.assertTrue(False)
         except InvalidInputFormat:
             self.assertTrue(True)
+        except Exception, e:
+            print "Invalid exception: %s" % e
+            self.assertTrue(False)
+            raise e
 
     @inlineCallbacks
     def test_put_update_node_invalid_public(self):
@@ -53,6 +59,10 @@ class TestNodeInstance(helpers.TestHandler):
             self.assertTrue(False)
         except InvalidInputFormat:
             self.assertTrue(True)
+        except Exception, e:
+            print "Invalid exception: %s" % e
+            self.assertTrue(False)
+            raise e
 
 
 class TestNotificationInstance(helpers.TestHandler):
@@ -93,11 +103,35 @@ class TestContextsCollection(helpers.TestHandler):
     def test_post(self):
         request_context = self.dummyContext
         del request_context['contexts'] # why is here !?
+        request_context['name'] = "a random one to avoid dup %d" % random.randint(1, 1000)
+
         handler = self.request(request_context, role='admin')
         yield handler.post()
 
         request_context['context_gus'] =  self.responses[0]['context_gus']
+        del self.responses[0]['creation_date']
+        del request_context['creation_date']
         self.assertEqual(self.responses[0], request_context)
+
+    @inlineCallbacks
+    def test_invalid_duplicated_context_name(self):
+        request_context = self.dummyContext
+        del request_context['contexts']
+        request_context['name'] = u'a random name %d, but' % random.randint(1,1000)
+
+        handler = self.request(request_context, role='admin')
+
+        try:
+            yield handler.post()
+            yield handler.post()
+            self.assertTrue(False)
+        except errors.ExpectedUniqueField:
+            self.assertTrue(True)
+        except Exception, e:
+            print "Invalid exception: %s" % e
+            self.assertTrue(False)
+            raise e
+
 
 class TestContextInstance(helpers.TestHandler):
     _handler = admin.ContextInstance
@@ -112,11 +146,12 @@ class TestContextInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_put(self):
         request_context = self.dummyContext
-        request_context['name'] = u'spam'
+        request_context['description'] = u'how many readers remind of HIMEM.SYS?'
         del request_context['contexts'] # I don't know what's doing here!!?
         handler = self.request(request_context, role='admin')
         yield handler.put(request_context['context_gus'])
         self.assertEqual(self.responses[0], self.dummyContext)
+
 
 class TestReceiversCollection(helpers.TestHandler):
     _handler = admin.ReceiversCollection
@@ -160,6 +195,7 @@ class TestReceiversCollection(helpers.TestHandler):
         except errors.NoEmailSpecified:
             self.assertTrue(True)
         except Exception, e:
+            print "Invalid exception: %s" % e
             self.assertTrue(False)
             raise e
 
@@ -173,10 +209,12 @@ class TestReceiversCollection(helpers.TestHandler):
             yield handler.post()
             yield handler.post() # duplication here!
             self.assertTrue(False)
-        except errors.InvalidInputFormat:
+        except errors.ExpectedUniqueField:
             self.assertTrue(True)
         except Exception, e:
+            print "Invalid exception: %s" % e
             self.assertTrue(False)
+            raise e
 
 
 class TestReceiverInstance(helpers.TestHandler):
@@ -194,7 +232,9 @@ class TestReceiverInstance(helpers.TestHandler):
     def test_put(self):
         self.dummyReceiver['context_gus'] = ''
         del self.dummyReceiver['username']
-        self.dummyReceiver['name'] = u'new name'
+        self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
+        self.dummyReceiver['notification_fields']['mail_address'] = \
+            u'but%d@random.id' % random.randint(1, 1000)
         handler = self.request(self.dummyReceiver, role='admin')
         yield handler.put(self.dummyReceiver['receiver_gus'])
         self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
@@ -205,13 +245,20 @@ class TestReceiverInstance(helpers.TestHandler):
         # keep the context_gus wrong but matching eventually regexp
         import uuid
         self.dummyReceiver['contexts'] = [ unicode(uuid.uuid4()) ]
+        self.dummyReceiver['name'] = u'another unique name %d' % random.randint(1, 10000)
+        self.dummyReceiver['notification_fields']['mail_address'] =\
+            u'but%d@random.id' % random.randint(1, 1000)
+
         handler = self.request(self.dummyReceiver, role='admin')
-        # I've some issue in use assertRaises with 'yield', then:
         try:
             yield handler.put(self.dummyReceiver['receiver_gus'])
             self.assertTrue(False)
         except errors.ContextGusNotFound:
             self.assertTrue(True)
+        except Exception, e:
+            log.debug("Generic Exception: %s" % e)
+            self.assertTrue(False)
+            raise e
 
     @inlineCallbacks
     def test_delete(self):
@@ -220,7 +267,10 @@ class TestReceiverInstance(helpers.TestHandler):
             yield handler.delete(self.dummyReceiver['receiver_gus'])
             self.assertTrue(True)
         except Exception, e:
+            print "Invalid exception: %s" % e
             self.assertTrue(False)
+            raise e
+
         try:
             yield handler.get(self.dummyReceiver['receiver_gus'])
             self.assertTrue(False)

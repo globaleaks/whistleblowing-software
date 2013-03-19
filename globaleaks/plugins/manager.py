@@ -2,8 +2,8 @@
 #
 #   plugin/manager
 #   **************
-# This class instance a singleton Object, used to interact with the installed plugins
-# in the GLBackend node.
+# This class instance a singleton Object, used to interact with the installed
+# plugins in the GLBackend node.
 
 __all__ = [ 'PluginManager' ]
 
@@ -16,17 +16,15 @@ class GLPluginManager(object):
         'methods' : [ 'do_notify', 'digest_check' ]
     }
 
-    """
-    delivery_requirement = {
-        'type' : u'delivery',
-        'methods' : [ 'do_delivery', 'preparation_required' ]
-    }
+    #delivery_requirement = {
+    #    'type' : u'delivery',
+    #    'methods' : [ 'do_delivery', 'preparation_required' ]
+    #}
 
-    fileprocess_requirement = {
-        'type' : u'fileprocess',
-        'methods' : [ 'do_fileprocess' ]
-    }
-    """
+    #fileprocess_requirement = {
+    #    'type' : u'fileprocess',
+    #    'methods' : [ 'do_fileprocess' ]
+    #}
 
     def is_valid_plugin(self, instanced_plugin, requirements):
 
@@ -48,14 +46,12 @@ class GLPluginManager(object):
         """
 
 
-        from globaleaks.plugins.notification.mail_plugin import MailNotification
+        from globaleaks.plugins.notification import MailNotification
         email_ti = MailNotification()
 
         self.notification_list = [
                 { 'plugin_name' : unicode(email_ti.plugin_name),
                   'plugin_description' : unicode(email_ti.plugin_description),
-                  'admin_fields' : dict(email_ti.admin_fields),
-                  'receiver_fields' : dict(email_ti.receiver_fields),
                   'plugin_type' : u'notification',
                   'code' : MailNotification
                 }
@@ -77,19 +73,22 @@ class GLPluginManager(object):
         Return the plugin object
         """
         if plugin_type == None or unicode(plugin_type) == u'notificaton':
-            p = self._look_plugin_in(unicode(plugin_name), self.notification_list)
-            if p is not None:
-                return p
+            plugin = self._look_plugin_in(unicode(plugin_name),
+                                          self.notification_list)
+            if plugin is not None:
+                return plugin
 
         if plugin_type == None or unicode(plugin_type) == u'delivery':
-            p = self._look_plugin_in(unicode(plugin_name), self.delivery_list)
-            if p is not None:
-                return p
+            plugin = self._look_plugin_in(unicode(plugin_name),
+                                          self.delivery_list)
+            if plugin is not None:
+                return plugin
 
         if plugin_type == None or unicode(plugin_type) == u'fileprocess':
-            p = self._look_plugin_in(unicode(plugin_name), self.fileprocess_list)
-            if p is not None:
-                return p
+            plugin = self._look_plugin_in(unicode(plugin_name),
+                                     self.fileprocess_list)
+            if plugin is not None:
+                return plugin
 
         return None
 
@@ -103,7 +102,7 @@ class GLPluginManager(object):
 
         desc = self.get_plugin(plugin_name, plugin_type)
 
-        if not desc:
+        if desc is None:
             return None
 
         # Instance the class stored in 'code' and return an object
@@ -116,28 +115,28 @@ class GLPluginManager(object):
             plugins, and remove the 'code' key.
         """
 
-        retList = []
+        ret_list = []
 
         for notifip_entry in self.notification_list:
 
             entry_copy = dict(notifip_entry)
             del entry_copy['code']
-            retList.append(entry_copy)
+            ret_list.append(entry_copy)
 
         for delivp_entry in self.delivery_list:
 
             entry_copy = dict(delivp_entry)
             del entry_copy['code']
-            retList.append(entry_copy)
+            ret_list.append(entry_copy)
 
         for filep_entry in self.fileprocess_list:
 
             incomplete_entry = dict(filep_entry)
             incomplete_entry['receiver_fields'] = []
             del incomplete_entry['code']
-            retList.append(incomplete_entry)
+            ret_list.append(incomplete_entry)
 
-        return retList
+        return ret_list
 
 
 # This is the object expored in GLBackend, instanced only once

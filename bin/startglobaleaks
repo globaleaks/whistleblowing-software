@@ -61,6 +61,7 @@ M.ZZZZZZZZZZZZZZ$ . .       .NNNNN.         ..NNNNN:          .NNNNNNNNNNNNNNM M
 
 
 header = [
+    [15*" "+"  ____ _       _          ", " _ ", 15*" "+" _ "+18*" "],
     [15*" "+"/ ____| |     | |         ", "| |", 15*" "+"| |"+18*" "],
     [14*" "+"| |  __| | ___ | |__   __ _", "| |", "      ___  __ _| | _____            "],
     [14*" "+"| | |_ | |/ _ \| '_ \ / _\`", "| |", "     / _ \/ _\`| |/ / __|           "],
@@ -89,6 +90,10 @@ GLSetting.parser.add_option("-l", "--loglevel", type="choice", choices=['INFO', 
 GLSetting.parser.add_option("-i", "--io", type="int",
     help="enable JSON I/O logging (limit number of Request/Response), default disabled, 0 unlimited",
     dest="io", default=-1)
+GLSetting.parser.add_option("-a", "--accept-host", type="string", dest="host_list",
+    help="specify a list comma separated of hostname acceptable by the HTTP server"\
+        "(default: 127.0.0.1,localhost. If specify a new hosts, defaults are not more included in the allowed list)",
+    default="127.0.0.1,localhost")
 
 # here the options are parsed, because sys.argv array is whack below
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()

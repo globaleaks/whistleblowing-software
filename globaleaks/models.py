@@ -1,9 +1,14 @@
+# -*- coding: UTF-8
+#   config
+#   ******
+#
+# GlobaLeaks ORM Models definition
+
 import types
-from storm.locals import *
+from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, Unicode, Storm
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
-from time import time
 # xxx. we should use python tz.
 from datetime import datetime
 # xxx remove this reference and use utils.datetimeNow
@@ -11,8 +16,11 @@ from datetime import datetime
 now = datetime.utcnow
 
 def uuid():
-    import uuid
-    return unicode(uuid.uuid4())
+    """
+    Generated an UUID used in GlobaLeaks ORM models
+    """
+    import uuid as u
+    return unicode(u.uuid4())
 
 def gltextv(self, attr, value):
     """
@@ -25,16 +33,19 @@ def gltextv(self, attr, value):
         raise errors.InvalidInputFormat("Not an unicode as expected (%s = %s)" %
                         (attr, value))
 
-    if attr == 'name' and (len(value) > GLSetting.name_limit or len(value) == 0):
-        raise errors.InvalidInputFormat("name length need to be > 0 and < of %d"
-                        % GLSetting.name_limit)
+    if (attr == 'name' and
+        (len(value) > GLSetting.name_limit or len(value) == 0)):
+        raise errors.InvalidInputFormat("name length need to be > 0 and " \
+                                        "< of %d" % GLSetting.name_limit)
     elif attr == 'description' and len(value) > GLSetting.description_limit:
-        raise errors.InvalidInputFormat("unicode description has a length limit of %d"
-                        % GLSetting.description_limit)
+        raise errors.InvalidInputFormat("unicode description has a length " \
+                                        "limit of %d"
+                                        % GLSetting.description_limit)
     else:
         if len(value) > GLSetting.generic_limit:
-            raise errors.InvalidInputFormat("unicode in %s overcome length limit %d"
-                            % (attr, GLSetting.generic_limit))
+            raise errors.InvalidInputFormat("unicode in %s overcome length " \
+                                            "limit %d"
+                                            % (attr, GLSetting.generic_limit))
 
     return value
 
@@ -54,8 +65,10 @@ def gldictv(self, attr, value):
     for key, subvalue in value.iteritems():
         if isinstance(subvalue, unicode):
             if len(subvalue) > GLSetting.generic_limit:
-                raise errors.InvalidInputFormat("In dict %s the key %s overcome length limit of %d" %
-                    (attr, key, GLSetting.generic_limit))
+                raise errors.InvalidInputFormat("In dict %s the key %s" \
+                                                "overcome length limit of %d"
+                                                % (attr, key,
+                                                GLSetting.generic_limit))
 
     return value
 
@@ -70,26 +83,31 @@ class Model(Storm):
     # seconds.
     creation_date = DateTime(default_factory=now)
 
+    def __init__(self, attrs=None):
+        if attrs is not None:
+            self.update(attrs)
+
+
     def __new__(cls, *args, **kw):
         cls.__storm_table__ = cls.__name__.lower()
         # maybe check here for attrs validation, and eventually return None
 
         return Storm.__new__(cls, *args, **kw)
 
-    def __init__(self, attrs={}):
-        if attrs:
-            self.update(attrs)
-
-    def update(self, attrs={}):
+    def update(self, attrs=None):
+        """
+        Updated Models attributes based on attrs dictionary
+        """
         # May raise ValueError and AttributeError
-        if not attrs:
+        if attrs is None:
             return
 
-        # Dev note: these fields describe which key are expected in the constructor.
-        # if not available, an error is raise.
-        # other elements different from bool, unicode and int, can't be processed by
-        # the generic "update" method and need to be assigned to the object,
-        # [ but before commit(), if they are NOT NULL in the SQL file ]
+        # Dev note: these fields describe which key are expected in the
+        # constructor. if not available, an error is raise.
+        # other elements different from bool, unicode and int, can't be
+        # processed by the generic "update" method and need to be assigned
+        # to the object, [ but before commit(), if they are NOT NULL in the
+        # SQL file ]
         cls_unicode_keys = getattr(self, "unicode_keys")
         cls_int_keys = getattr(self, "int_keys")
         cls_bool_keys = getattr(self, "bool_keys")
@@ -120,17 +138,20 @@ class Model(Storm):
 
         return Storm.__setattr__(self, name, value)
 
-    def dict(self, filter=None):
+    def dict(self, dict_filter=None):
         """
         return a dictionary serialization of the current model.
         if no filter is provided, returns every single attribute.
         """
-        if not filter:
-            filter = [x for x in vars(Model) if isinstance(x, types.MethodType)]
+        if dict_filter is None:
+            dict_filter = [x for x in vars(Model) if isinstance(x, types.MethodType)]
 
         return dict((key, getattr(self, key)) for key in filter)
 
 class Context(Model):
+    """
+    This models keeps track of specific contexts settings
+    """
     name = Unicode(validator=gltextv)
     description = Unicode(validator=gltextv)
     fields = Pickle()
@@ -224,6 +245,9 @@ class WhistleblowerTip(Model):
 
 
 class ReceiverFile(Model):
+    """
+    This model keeps track of files destinated to a specific receiver
+    """
     internaltip_id = Unicode()
     internalfile_id = Unicode()
     receiver_id = Unicode()
@@ -241,6 +265,10 @@ class ReceiverFile(Model):
 
 
 class InternalFile(Model):
+    """
+    This model keeps track of files before they are packaged
+    for specific receivers
+    """
     internaltip_id = Unicode()
     #internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
@@ -293,7 +321,8 @@ class Node(Model):
     # Expressed in hours
     stats_update_time = Int()
 
-    unicode_keys = ['name', 'description', 'public_site', 'email', 'hidden_service' ]
+    unicode_keys = ['name', 'description', 'public_site',
+                    'email', 'hidden_service' ]
     int_keys = [ 'stats_update_time' ]
     bool_keys = []
 
@@ -364,9 +393,11 @@ class Receiver(Model):
     bool_keys = [ 'can_delete_submission' ] # Total delete capability
 
 
-
 # Follow two classes used for Many to Many references
 class ReceiverContext(object):
+    """
+    Class used to implement references between Receivers and Contexts
+    """
     __storm_table__ = 'receiver_context'
     __storm_primary__ = 'context_id', 'receiver_id'
     context_id = Unicode()
@@ -386,38 +417,53 @@ Receiver.contexts = ReferenceSet(
 
 
 class ReceiverInternalTip(object):
+    """
+    Class used to implement references between Receivers and IntInternalTips
+    """
     __storm_table__ = 'receiver_internaltip'
-    __storm_primary__ ='receiver_id', 'internaltip_id'
+    __storm_primary__ = 'receiver_id', 'internaltip_id'
     receiver_id = Unicode()
     internaltip_id = Unicode()
 
-Receiver.internaltips = ReferenceSet(
-                                Receiver.id,
-                                ReceiverInternalTip.receiver_id,
-                                ReceiverInternalTip.internaltip_id,
-                                InternalTip.id)
+Receiver.internaltips = ReferenceSet(Receiver.id,
+                                     ReceiverInternalTip.receiver_id,
+                                     ReceiverInternalTip.internaltip_id,
+                                     InternalTip.id)
 
-InternalTip.receivers = ReferenceSet(
-                                InternalTip.id,
-                                ReceiverInternalTip.internaltip_id,
-                                ReceiverInternalTip.receiver_id,
-                                Receiver.id)
+InternalTip.receivers = ReferenceSet(InternalTip.id,
+                                     ReceiverInternalTip.internaltip_id,
+                                     ReceiverInternalTip.receiver_id,
+                                     Receiver.id)
 
 
-InternalTip.context = Reference(InternalTip.context_id, Context.id)
-InternalTip.comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
-InternalTip.receivertips = ReferenceSet(InternalTip.id, ReceiverTip.internaltip_id)
-InternalTip.internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
+InternalTip.context = Reference(InternalTip.context_id,
+                                Context.id)
 
-ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
+InternalTip.comments = ReferenceSet(InternalTip.id,
+                                    Comment.internaltip_id)
+
+InternalTip.receivertips = ReferenceSet(InternalTip.id,
+                                        ReceiverTip.internaltip_id)
+
+InternalTip.internalfiles = ReferenceSet(InternalTip.id,
+                                         InternalFile.internaltip_id)
+
+ReceiverFile.internalfile = Reference(ReceiverFile.internalfile_id,
+                                      InternalFile.id)
+
 ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
-ReceiverFile.internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
 
-WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
+ReceiverFile.internaltip = Reference(ReceiverFile.internaltip_id,
+                                     InternalTip.id)
 
-InternalFile.internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
+WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id,
+                                         InternalTip.id)
+
+InternalFile.internaltip = Reference(InternalFile.internaltip_id,
+                                     InternalTip.id)
 
 ReceiverTip.internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
+
 ReceiverTip.receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 
 Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
