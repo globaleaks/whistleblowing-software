@@ -147,9 +147,8 @@ class APSNotification(GLJob):
         for tip_id, event in tip_events:
 
             notify = event.plugin.do_notify(event)
-            print "pipo"
-            #notify.addCallback(self.tip_notification_succeeded, tip_id)
-            #notify.addErrback(self.tip_notification_succeeded, tip_id)
+            notify.addCallback(self.tip_notification_succeeded, tip_id)
+            notify.addErrback(self.tip_notification_succeeded, tip_id)
             l.append(notify)
 
         return DeferredList(l)
