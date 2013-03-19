@@ -19,18 +19,57 @@ def authenticated(*roles):
     a http 401 error.
     Otherwise, update the current session and then fire :param:`method`.
     """
-    def wrapper(method):
-        def call_method(cls, *args, **kwargs):
+    def wrapper(method_handler):
+        def call_handler(cls, *args, **kwargs):
             for role in roles:
                 if not cls.current_user:
                     raise errors.NotAuthenticated
                 elif role != cls.current_user.role:
-                    # XXX: eventually change this
+                    log.err("Authenticated with a different required user: now %s, expected %s" %
+                            (cls.current_user.role, role) )
                     raise errors.NotAuthenticated
                 else:
                     GLSetting.sessions[cls.current_user.id].timestamp = time.time()
-            return method(cls, *args, **kwargs)
-        return call_method
+            return method_handler(cls, *args, **kwargs)
+        return call_handler
+    return wrapper
+
+
+def get_tor2web_header(request_headers):
+    """
+    @param request_headers: HTTP headers
+    @return: True or False
+    content string of X-Tor2Web header is ignored
+    """
+    key_content = request_headers.get('X-Tor2Web', None)
+    return True if key_content else False
+
+def transport_security_check(wrapped_handler_role):
+    """
+    Decorator for enforce a minimum security on the transport mode.
+    Tor and Tor2Web has two different protection level, and some operation
+    maybe forbidden if in Tor2Web, return 403 (Forbidden)
+    """
+    def wrapper(method_handler):
+        def call_handler(cls, *args, **kwargs):
+            """
+            GLSettings contain the copy of the latest admin configuration, this
+            enhance performance instead of searching in te DB at every handler
+            connection.
+            """
+            accept_tor2web = GLSetting.tor2web_permitted_ops[wrapped_handler_role]
+            are_we_tor2web = get_tor2web_header(cls.request.headers)
+
+            if are_we_tor2web:
+                log.debug("Uh! Is from T2W the request for: %s" % cls.request.uri)
+
+            if are_we_tor2web and accept_tor2web == False:
+                log.err("Receiver connection on Tor2Web for role %s: forbidden in %s" %
+                    (wrapped_handler_role, cls.request.uri) )
+                raise errors.TorNetworkRequired
+
+            return method_handler(cls, *args, **kwargs)
+        return call_handler
     return wrapper
 
 
@@ -114,7 +153,7 @@ class AuthenticationHandler(BaseHandler):
                 case of an admin it will be set to 'admin', in the case of the
                 'wb' it will be the whistleblower id.
         """
-        self.session_id = rstr.xeger(r'(\w+){42}')
+        self.session_id = rstr.xeger(r'[A-Za-z0-9]{42}')
 
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
@@ -131,7 +170,12 @@ class AuthenticationHandler(BaseHandler):
     @inlineCallbacks
     def post(self):
         """
-        This is the /login handler expecting login/password/role
+        This is the /login handler expecting login/password/role,
+        here is performed the validation of the transport stream, to avoid an user
+        login himself using Tor2Web. This behavior actually can't happen (because there
+        are not a redirect on /login if the unsafe transport is detected, but if someone
+        try to access using the unsafe channel, because is writing the URL by personal choose,
+        is forbidden and reported as warning.
         """
         request = self.validate_message(self.request.body, requests.authDict)
 
@@ -142,15 +186,27 @@ class AuthenticationHandler(BaseHandler):
         if role == 'admin':
             # username is ignored
             user_id = yield login_admin(password)
+            security_tranport_role = role
         elif role == 'wb':
             # username is ignored
             user_id = yield login_wb(password)
+            security_tranport_role = 'tip'
         elif role == 'receiver':
             user_id = yield login_receiver(username, password)
+            security_tranport_role = 'receiver'
         else:
             raise errors.InvalidInputFormat(role)
 
         if not user_id:
+            raise errors.InvalidAuthRequest
+
+        # Channel safety checks
+        are_we_tor2web = get_tor2web_header(self.request.headers)
+        accept_tor2web = GLSetting.tor2web_permitted_ops[security_tranport_role]
+        if are_we_tor2web and accept_tor2web == False:
+            log.err("Role [%s] has authentcated himself via unsafe channel (info: %s)" %
+                (role, username) )
+            # The error is the same of invalid L/P to avoid disclosure of valid credentials
             raise errors.InvalidAuthRequest
 
         self.write({'session_id': self.generate_session(role, user_id) ,

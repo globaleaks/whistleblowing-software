@@ -6,12 +6,12 @@
 # exposed API.
 
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import asynchronous
 
 from globaleaks.utils import log
 from globaleaks import utils
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import transport_security_check
 from globaleaks import models
 
 @transact
@@ -47,8 +47,8 @@ def serialize_receiver(receiver):
     receiver_dict = {
         "can_delete_submission": receiver.can_delete_submission,
         "contexts": [],
-        "creation_date": utils.prettyDateTime(receiver.creation_date),
-        "update_date": utils.prettyDateTime(receiver.last_update),
+        "creation_date": utils.pretty_date_time(receiver.creation_date),
+        "update_date": utils.pretty_date_time(receiver.last_update),
         "description": receiver.description,
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
@@ -67,6 +67,7 @@ class InfoCollection(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check("unauth")
     def get(self, *uriargs):
         """
         Parameters: None
@@ -115,6 +116,7 @@ class ContextsCollection(BaseHandler):
     are returned within.
     """
     @inlineCallbacks
+    @transport_security_check("unauth")
     def get(self, *uriargs):
         """
         Parameters: None
@@ -140,6 +142,7 @@ class ReceiversCollection(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check("unauth")
     def get(self, *uriargs):
         """
         Parameters: None

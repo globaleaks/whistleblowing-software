@@ -4,10 +4,9 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
-from storm.exceptions import NotOneError
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import authenticated
+from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification
 
@@ -24,7 +23,7 @@ def admin_serialize_node(node):
       'public_site': node.public_site,
       'stats_update_time': node.stats_update_time,
       'email': node.email,
-      "last_update": utils.prettyDateTime(node.last_update),
+      "last_update": utils.pretty_date_time(node.last_update),
       'languages': list(node.languages) if node.languages else []
     }
     return response
@@ -34,8 +33,8 @@ def admin_serialize_context(context):
         "context_gus": context.id,
         "name": context.name,
         "description": context.description,
-        "creation_date": utils.prettyDateTime(context.creation_date),
-        "last_update": utils.prettyDateTime(context.last_update),
+        "creation_date": utils.pretty_date_time(context.creation_date),
+        "last_update": utils.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
@@ -54,8 +53,8 @@ def admin_serialize_receiver(receiver):
         "receiver_gus": receiver.id,
         "name": receiver.name,
         "description": receiver.description,
-        "creation_date": utils.prettyDateTime(receiver.creation_date),
-        "last_update": utils.prettyDateTime(receiver.last_update),
+        "creation_date": utils.pretty_date_time(receiver.creation_date),
+        "last_update": utils.pretty_date_time(receiver.last_update),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
@@ -94,7 +93,8 @@ def update_node(store, request):
 
     if len(request['old_password']) and len(request['password']):
         if node.password == request['old_password']:
-            log.info("Administrator password update %s => %s" % (request['old_password'], request['password'] ))
+            log.info("Administrator password update %s => %s" %
+                     (request['old_password'], request['password'] ))
             node.password = request['password']
         else:
             log.info("Password invalid! cannot be changed now")
@@ -115,7 +115,7 @@ def update_node(store, request):
     node.update(request)
 
     node_desc = admin_serialize_node(node)
-    node.last_update = utils.datetimeNow()
+    node.last_update = utils.datetime_now()
     return node_desc
 
 
@@ -153,19 +153,26 @@ def create_context(store, request):
     if not request['fields']:
         # When a new context is create, assign some spare fields
         context.fields = [
-            {u'hint': u"Hint, I'm required", u'label': u'headline',
+            {u'hint': u"Describe your tip-off with a line/title", u'label': u'headline',
              u'name': u'headline', u'presentation_order': 1,
              u'required': True, u'type': u'text', u'value': u'' },
-            {u'hint': u'The name of the Sun', u'label': u'Sun',
-              u'name': u'Sun', u'presentation_order': 2,
+            {u'hint': u'Describe the details of your tip-off', u'label': u'Description',
+              u'name': u'description', u'presentation_order': 2,
               u'required': True, u'type': u'text',
-              u'value': u"I'm the sun, I've not name"},
+              u'value': u"" },
         ]
     else:
         context.fields = request['fields']
 
     if len(request['name']) < 1:
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
+
+    # Check that do not exists a Context with the proposed new name
+    homonymous = store.find(Context, Context.name == unicode(request['name'])).count()
+    if homonymous:
+        log.err("Creation error: already present context with the specified name: %s"
+                % request['name'])
+        raise errors.ExpectedUniqueField('name', request['name'])
 
     if context.escalation_threshold and context.selectable_receiver:
         raise errors.ContextParameterConflict
@@ -215,13 +222,18 @@ def update_context(store, context_gus, request):
     if not context:
          raise errors.ContextGusNotFound
 
-    receivers = request.get('receivers', [])
-
-    context.fields = request['fields']
+    # Check that do not exists already a Context with the proposed name
+    homonymous = store.find(Context,
+        ( Context.name == unicode(request['name']), Context.id != unicode(context_gus)) ).count()
+    if homonymous:
+        log.err("Update error: already present context with the specified name: %s" %
+                request['name'])
+        raise errors.ExpectedUniqueField('name', request['name'])
 
     for receiver in context.receivers:
         context.receivers.remove(receiver)
 
+    receivers = request.get('receivers', [])
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
@@ -229,9 +241,10 @@ def update_context(store, context_gus, request):
         context.receivers.add(receiver)
 
     context.update(request)
+    context.fields = request['fields']
 
     context_desc = admin_serialize_context(context)
-    context.last_update = utils.datetimeNow()
+    context.last_update = utils.datetime_now()
     return context_desc
 
 @transact
@@ -278,15 +291,10 @@ def create_receiver(store, request):
         raise errors.NoEmailSpecified
 
     # Pretend that username is unique:
-    try:
-        clone = store.find(Receiver, Receiver.username == mail_address).one()
-    except NotOneError, e:
-        log.err("Fatal: more than one receiver present with the requested username: %s" % mail_address)
-        raise errors.InvalidInputFormat("already duplicated receiver username [%s]" % mail_address)
-
-    if clone:
-        log.err("Fatal: already present receiver with the requested username: %s" % mail_address)
-        raise errors.InvalidInputFormat("already present receiver username [%s]" % mail_address)
+    homonymous = store.find(Receiver, Receiver.username == mail_address).count()
+    if homonymous:
+        log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
+        raise errors.ExpectedUniqueField('mail_address', mail_address)
 
     receiver = Receiver(request)
 
@@ -345,6 +353,12 @@ def update_receiver(store, id, request):
     if not mail_address:
         raise errors.NoEmailSpecified
 
+    homonymous = store.find(Receiver,
+        ( Receiver.username == mail_address, Receiver.id != unicode(id)) ).count()
+    if homonymous:
+        log.err("Update error: already present receiver with the requested username: %s" % mail_address)
+        raise errors.ExpectedUniqueField('mail_address', mail_address)
+
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.password = request['password']
@@ -363,7 +377,7 @@ def update_receiver(store, id, request):
     receiver.update(request)
 
     receiver_desc = admin_serialize_receiver(receiver)
-    receiver.last_update = utils.datetimeNow()
+    receiver.last_update = utils.datetime_now()
     return receiver_desc
 
 @transact
@@ -391,6 +405,7 @@ class NodeInstance(BaseHandler):
     /node
     """
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, *uriargs):
         """
@@ -403,6 +418,7 @@ class NodeInstance(BaseHandler):
         self.finish(node_description)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def put(self, *uriargs):
         """
@@ -428,6 +444,7 @@ class ContextsCollection(BaseHandler):
     /admin/context
     """
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, *uriargs):
         """
@@ -441,6 +458,7 @@ class ContextsCollection(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def post(self, *uriargs):
         """
@@ -462,6 +480,7 @@ class ContextInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, context_gus, *uriargs):
         """
@@ -475,6 +494,7 @@ class ContextInstance(BaseHandler):
 
     @inlineCallbacks
     @authenticated('admin')
+    @transport_security_check('admin')
     def put(self, context_gus, *uriargs):
         """
         Request: adminContextDesc
@@ -491,6 +511,7 @@ class ContextInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def delete(self, context_gus, *uriargs):
         """
@@ -508,6 +529,7 @@ class ReceiversCollection(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, *uriargs):
         """
@@ -523,6 +545,7 @@ class ReceiversCollection(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def post(self, *uriargs):
         """
@@ -552,6 +575,7 @@ class ReceiverInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, receiver_gus, *uriargs):
         """
@@ -567,6 +591,7 @@ class ReceiverInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def put(self, receiver_gus, *uriargs):
         """
@@ -584,6 +609,7 @@ class ReceiverInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def delete(self, receiver_gus, *uriargs):
         """
@@ -655,6 +681,7 @@ class NotificationInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, *uriargs):
         """
@@ -667,6 +694,7 @@ class NotificationInstance(BaseHandler):
         self.finish(notification_desc)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def put(self, *uriargs):
         """
@@ -684,7 +712,6 @@ class NotificationInstance(BaseHandler):
 
         self.set_status(202) # Updated
         self.finish(response)
-
 
 
 # Removed from the Admin API
