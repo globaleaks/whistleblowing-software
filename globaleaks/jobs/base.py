@@ -21,7 +21,8 @@ class GLJob:
         else:
             plan_exec = utils.utc_future_date(hours=0, seconds=seconds)
 
-            log.debug("Stored execution of %s postpone to %s" %
-                  (self.__class__.__name__, utils.pretty_date_time(plan_exec) ))
-
             aps.add_date_job(self.operation, plan_exec)
+
+            log.debug("Stored execution of %s postpone to %s" %
+                      (self.__class__.__name__, utils.pretty_date_time(plan_exec)))
+
