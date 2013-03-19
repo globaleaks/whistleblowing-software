@@ -4,10 +4,9 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
-from storm.exceptions import NotOneError
 from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import authenticated
+from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification
 
@@ -406,6 +405,7 @@ class NodeInstance(BaseHandler):
     /node
     """
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, *uriargs):
         """
@@ -418,6 +418,7 @@ class NodeInstance(BaseHandler):
         self.finish(node_description)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def put(self, *uriargs):
         """
@@ -443,6 +444,7 @@ class ContextsCollection(BaseHandler):
     /admin/context
     """
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, *uriargs):
         """
@@ -456,6 +458,7 @@ class ContextsCollection(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def post(self, *uriargs):
         """
@@ -477,6 +480,7 @@ class ContextInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, context_gus, *uriargs):
         """
@@ -490,6 +494,7 @@ class ContextInstance(BaseHandler):
 
     @inlineCallbacks
     @authenticated('admin')
+    @transport_security_check('admin')
     def put(self, context_gus, *uriargs):
         """
         Request: adminContextDesc
@@ -506,6 +511,7 @@ class ContextInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def delete(self, context_gus, *uriargs):
         """
@@ -523,6 +529,7 @@ class ReceiversCollection(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, *uriargs):
         """
@@ -538,6 +545,7 @@ class ReceiversCollection(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def post(self, *uriargs):
         """
@@ -567,6 +575,7 @@ class ReceiverInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, receiver_gus, *uriargs):
         """
@@ -582,6 +591,7 @@ class ReceiverInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def put(self, receiver_gus, *uriargs):
         """
@@ -599,6 +609,7 @@ class ReceiverInstance(BaseHandler):
         self.finish(response)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def delete(self, receiver_gus, *uriargs):
         """
@@ -670,6 +681,7 @@ class NotificationInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def get(self, *uriargs):
         """
@@ -682,6 +694,7 @@ class NotificationInstance(BaseHandler):
         self.finish(notification_desc)
 
     @inlineCallbacks
+    @transport_security_check('admin')
     @authenticated('admin')
     def put(self, *uriargs):
         """
@@ -699,7 +712,6 @@ class NotificationInstance(BaseHandler):
 
         self.set_status(202) # Updated
         self.finish(response)
-
 
 
 # Removed from the Admin API

@@ -9,15 +9,14 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import transport_security_check
 from globaleaks.rest import requests
 from globaleaks import utils
 from globaleaks.utils import log, prettyDateTime
 
 from globaleaks.settings import transact
-from globaleaks.models import now
 from globaleaks.models import *
 from globaleaks.rest import errors
-from globaleaks.rest.errors import  *
 
 
 def actor_serialize_internal_tip(internaltip):
@@ -97,12 +96,12 @@ def strong_receiver_validate(store, user_id, tip_id):
     rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id)).one()
 
     if not rtip:
-        raise TipGusNotFound
+        raise errors.TipGusNotFound
 
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
     if receiver.id != rtip.receiver.id:
         # This in attack!!
-        raise TipGusNotFound
+        raise errors.TipGusNotFound
 
     return rtip
 
@@ -112,7 +111,7 @@ def get_internaltip_wb(store, tip_id):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
     if not wbtip:
-        raise TipReceiptNotFound
+        raise errors.TipReceiptNotFound
 
     tip_desc = actor_serialize_internal_tip(wbtip.internaltip)
     tip_desc['access_counter'] = int(wbtip.access_counter)
@@ -140,7 +139,7 @@ def increment_receiver_access_count(store, user_id, tip_id):
 
     rtip.access_counter += 1
     if rtip.access_counter > rtip.internaltip.access_limit:
-        raise AccessLimitExceeded
+        raise errors.AccessLimitExceeded
 
     log.debug(
         "Tip %s access garanted to user %s access_counter %d on limit %d" %
@@ -186,7 +185,7 @@ def delete_internal_tip(store, user_id, tip_id):
         store.remove(internaltip_backup)
 
     else:
-        raise ForbiddenOperation
+        raise errors.ForbiddenOperation
 
 
 @transact
@@ -205,7 +204,7 @@ def manage_pertinence(store, user_id, tip_id, vote):
     # 2 = positive vote
 
     if rtip.expressed_pertinence:
-        raise TipPertinenceExpressed
+        raise errors.TipPertinenceExpressed
 
     rtip.expressed_pertinence = 2 if vote else 1
 
@@ -240,6 +239,7 @@ class TipInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('tip')
     def get(self, tip_id, *uriargs):
         """
         Parameters: None
@@ -261,6 +261,7 @@ class TipInstance(BaseHandler):
         self.finish(answer)
 
     @inlineCallbacks
+    @transport_security_check('tip')
     def put(self, tip_id, *uriargs):
         """
         Request: actorsTipOpsDesc
@@ -279,7 +280,7 @@ class TipInstance(BaseHandler):
 
         # TODO move this operation within the auth decorator
         if self.is_whistleblower:
-            raise ForbiddenOperation
+            raise errors.ForbiddenOperation
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
 
@@ -293,6 +294,7 @@ class TipInstance(BaseHandler):
         self.finish()
 
     @inlineCallbacks
+    @transport_security_check('tip')
     def delete(self, tip_id, *uriargs):
         """
         Request: None
@@ -302,7 +304,7 @@ class TipInstance(BaseHandler):
 
         # TODO move this operation within the auth decorator
         if self.is_whistleblower:
-            raise ForbiddenOperation
+            raise errors.ForbiddenOperation
 
         yield delete_receiver_tip(self.current_user['user_id'], tip_id)
 
@@ -338,7 +340,7 @@ def get_comment_list_wb(store, wb_tip_id):
     wb_tip = store.find(WhistleblowerTip,
                         WhistleblowerTip.id == unicode(wb_tip_id)).one()
     if not wb_tip:
-        raise TipReceiptNotFound
+        raise errors.TipReceiptNotFound
 
     return get_comment_list(wb_tip.internaltip)
 
@@ -352,7 +354,7 @@ def create_comment_wb(store, wb_tip_id, request):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id== unicode(wb_tip_id)).one()
 
     if not wbtip:
-        raise TipReceiptNotFound
+        raise errors.TipReceiptNotFound
 
     comment = Comment()
     comment.content = request['content']
@@ -393,6 +395,7 @@ class TipCommentCollection(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('tip')
     def get(self, tip_id, *uriargs):
         """
         Parameters: None (TODO start/end, date)
@@ -409,6 +412,7 @@ class TipCommentCollection(BaseHandler):
         self.finish(comment_list)
 
     @inlineCallbacks
+    @transport_security_check('tip')
     def post(self, tip_id, *uriargs):
         """
         Request: actorsCommentDesc
@@ -446,7 +450,7 @@ def serialize_receiver(receiver, access_counter):
 def get_receiver_list_wb(store, wb_tip_id):
     wb_tip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
     if not wb_tip:
-        raise TipReceiptNotFound
+        raise errors.TipReceiptNotFound
     
     receiver_list = []
     for receiver in wb_tip.internaltip.receivers:
@@ -493,6 +497,7 @@ class TipReceiversCollection(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('tip')
     def get(self, tip_id):
         """
         Parameters: None

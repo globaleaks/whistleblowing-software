@@ -12,7 +12,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.models import Receiver, ReceiverTip
 from globaleaks.settings import transact
-from globaleaks.handlers.authentication import authenticated
+from globaleaks.handlers.authentication import authenticated, transport_security_check
 
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified, InvalidOldPassword
@@ -89,6 +89,7 @@ class ReceiverInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('receiver')
     @authenticated('receiver')
     def get(self):
         """
@@ -105,6 +106,7 @@ class ReceiverInstance(BaseHandler):
 
 
     @inlineCallbacks
+    @transport_security_check('receiver')
     @authenticated('receiver')
     def put(self):
         """
@@ -157,6 +159,7 @@ class TipsCollection(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('receiver')
     @authenticated('receiver')
     def get(self):
         """

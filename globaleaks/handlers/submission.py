@@ -6,10 +6,12 @@
 #   by an HTTP client in /submission URI
 
 from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.settings import transact
 from globaleaks.models import *
 from globaleaks import models
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import transport_security_check
 from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.jobs.delivery_sched import APSDelivery
 from globaleaks.runner import GLAsynchronous
@@ -294,6 +296,7 @@ class SubmissionCreate(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('submission')
     def post(self, *uriargs):
         """
         Request: wbSubmissionDesc
@@ -334,6 +337,7 @@ class SubmissionInstance(BaseHandler):
     """
 
     @inlineCallbacks
+    @transport_security_check('submission')
     def get(self, submission_gus, *uriargs):
         """
         Parameters: submission_gus
@@ -348,6 +352,7 @@ class SubmissionInstance(BaseHandler):
         self.finish(submission)
 
     @inlineCallbacks
+    @transport_security_check('submission')
     def put(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus
@@ -378,6 +383,7 @@ class SubmissionInstance(BaseHandler):
 
 
     @inlineCallbacks
+    @transport_security_check('submission')
     def delete(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus
