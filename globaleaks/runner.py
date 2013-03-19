@@ -4,6 +4,7 @@
 # along the Asynchronous event schedule
 
 import sys
+from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR, EVENT_JOB_MISSED
 
 from twisted.internet import reactor
 from twisted.application import service, internet, app
@@ -63,28 +64,37 @@ def start_asynchronous():
 
     # When the application boot, maybe because has been after a restart, then
     # with the method *.force_execution, we reschedule the execution of all the
-    # operations -- TODO, maybe refactored along the scheduler review in TODO
+    # operations
 
-    stats_sched = statistics_sched.APSStatistics()
-    stats_sched.force_execution(GLAsynchronous, seconds=8)
-    GLAsynchronous.add_interval_job(stats_sched.operation, seconds=10)
-    # TODO GLAsynchronous.add_interval_job(StatsSched.operation, StatsSched.get_node_delta() )
+    # start the scheduler, before add the Schedule job
+    GLAsynchronous.start()
+
+    # This maybe expanded for debug:
+    # def event_debug_listener(event):
+    #     if event.exception:
+    #         Job failed
+    #     else:
+    #         Job success
+    #         GLAsynchronous.print_jobs()
+    # GLAsynchronous.add_listener(event_debug_listener,
+    #       EVENT_JOB_EXECUTED | EVENT_JOB_ERROR | EVENT_JOB_MISSED)
 
     deliver_sched = delivery_sched.APSDelivery()
-    deliver_sched.force_execution(GLAsynchronous, seconds=1)
-    GLAsynchronous.add_interval_job(deliver_sched.operation, seconds=7)
+    deliver_sched.force_execution(GLAsynchronous, seconds=5)
+    GLAsynchronous.add_interval_job(deliver_sched.operation, minutes=1)
 
     notify_sched = notification_sched.APSNotification()
-    notify_sched.force_execution(GLAsynchronous, seconds=5)
-    GLAsynchronous.add_interval_job(notify_sched.operation, minutes=3)
+    notify_sched.force_execution(GLAsynchronous, seconds=7)
+    GLAsynchronous.add_interval_job(notify_sched.operation, minutes=2)
 
-    clean_sched = cleaning_sched.APSCleaning()
-    clean_sched.force_execution(GLAsynchronous, seconds=13)
-    GLAsynchronous.add_interval_job(clean_sched.operation, hours=6)
-    # TODO not hours=6 but CleanSched.get_contexts_policies()
+    #clean_sched = cleaning_sched.APSCleaning()
+    #clean_sched.force_execution(GLAsynchronous, seconds=11)
+    #GLAsynchronous.add_interval_job(clean_sched.operation, hours=6)
 
-    # start the scheduler
-    GLAsynchronous.start()
+    #stats_sched = statistics_sched.APSStatistics()
+    #stats_sched.force_execution(GLAsynchronous, seconds=9)
+    #GLAsynchronous.add_interval_job(stats_sched.operation, seconds=GLSetting.statistics_interval)
+
 
 
 # System dependent runner (windows and Unix)
@@ -155,12 +165,7 @@ else:
                     reactor.stop()
                     raise exc
 
-                try:
-                    start_asynchronous()
-                except Exception as exc:
-                    log.err("Scheduler error: %s" % exc)
-                    reactor.stop()
-                    raise exc
+                start_asynchronous()
 
                 print "GLBackend is now running"
                 for host in GLSetting.accepted_hosts:
