@@ -168,7 +168,7 @@ class APSNotification(GLJob):
         events = []
         cplugin = GLSetting.notification_plugins[0]
 
-        plugin = getattr(notification, cplugin)(self.notification_settings)
+        plugin = getattr(notification, cplugin)()
 
         not_notified_comments = store.find(models.Comment,
             models.Comment.mark == models.Comment._marker[0]
