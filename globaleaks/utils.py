@@ -1,6 +1,7 @@
 from datetime import datetime, timedelta
 import logging
 import re
+import os
 import time
 import traceback
 
@@ -153,7 +154,9 @@ def sendmail(authenticationUsername, authenticationSecret, fromAddress, toAddres
 mail_counter = 0 # useful to keep track in exception series
 def MailException(etype, value, tb):
     """
-    Formats traceback and exception data and emails the error
+    Formats traceback and exception data and emails the error,
+    This would be enabled only in the testing phase and testing release,
+    not in production release.
 
     @param etype: Exception class type
     @param value: Exception string value
@@ -170,6 +173,7 @@ def MailException(etype, value, tb):
     tmp.append("Subject: GLBackend Exception [%d]\n" % mail_counter)
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1\n")
     tmp.append("Content-Transfer-Encoding: 8bit\n\n")
+    tmp.append("Source: %s" % " ".join(os.uname()))
     tmp.append("%s %s" % (excType, etype.__doc__))
     for line in traceback.extract_tb(tb):
         tmp.append("\tFile: \"%s\"\n\t\t%s %s: %s\n" % (line[0], line[2], line[1], line[3]))

@@ -76,8 +76,16 @@ class GLSettingsClass:
         self.generic_limit = 2048
 
         # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = [ '127.0.0.1', 'localhost' ]
+        self.accepted_hosts = [ ]
 
+        # transport security defaults
+        self.tor2web_permitted_ops = {
+            'admin': False,
+            'submission': False,
+            'tip': False,
+            'receiver': False,
+            'unauth': True
+        }
 
     def load_cmdline_options(self):
         """

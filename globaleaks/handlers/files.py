@@ -15,6 +15,7 @@ from cyclone.web import os
 
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import transport_security_check
 from globaleaks.utils import log, prettyDateTime
 from globaleaks.rest import errors
 from globaleaks import models
@@ -151,10 +152,11 @@ class FileHandler(BaseHandler):
 class FileAdd(FileHandler):
     """
     T4
-    WhistleBlower interface for upload a new file
+    WhistleBlower interface for upload a new file in an live Tip
     """
 
     @inlineCallbacks
+    @transport_security_check('tip')
     def post(self, wb_tip_id, *args):
         """
         Parameter: submission_gus
@@ -170,10 +172,11 @@ class FileAdd(FileHandler):
 class FileInstance(FileHandler):
     """
     U4
-    This is the Storm interface to supports JQueryFileUploader stream
+    WhistleBlower interface for upload a file during the Submission creation
     """
 
     @inlineCallbacks
+    @transport_security_check('submission')
     def post(self, submission_id, *args):
         """
         Parameter: submission_gus

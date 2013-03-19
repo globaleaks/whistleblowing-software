@@ -245,3 +245,12 @@ class InvalidHostSpecified(GLException):
     reason = "The specified host do not match a configured one"
     error_code = 36
     status_code = 417 # Expectation Fail
+
+class TorNetworkRequired(GLException):
+    """
+    A connection receiver not via Tor network is required to
+    be enforced with anonymity
+    """
+    reason = "Resource can be accessed only from a Tor client"
+    error_code = 37
+    status_code = 403 # Forbidden

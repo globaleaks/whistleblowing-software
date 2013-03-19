@@ -141,6 +141,10 @@ else:
                 Start the actual service Application.
                 """
                 print "Running start."
+                if not GLSetting.accepted_hosts:
+                    print "Missing a list of hosts usable to contact GLBackend, abort"
+                    raise AttributeError
+
                 try:
                     self.startApplication(self.application)
                 except Exception, e:
@@ -156,7 +160,8 @@ else:
                     raise e
 
                 print "GLBackend is now running"
-                print "Visit http://127.0.0.1:%d/index.html to interact with me" % GLSetting.bind_port
+                for host in GLSetting.accepted_hosts:
+                    print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
 
             reactor.callWhenRunning(initialization)
             self.startReactor(reactor, self.oldstdout, self.oldstderr)
