@@ -85,11 +85,9 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
     @param hours: get a datetime obj with now+seconds
     @return: a datetime object
     """
-    delta = (minutes * 60) + (hours * 3600) + seconds
-    ret_time = datetime.utcnow()
-    ret_time -= timedelta(seconds=time.timezone)
-    ret_time += timedelta(seconds=delta)
-    return ret_time
+    delta = seconds + (minutes * 60) + (hours * 3600)
+    delta = timedelta(seconds=delta) - timedelta(seconds=time.timezone)
+    return datetime.utcnow() + delta
 
 
 def datetime_now():

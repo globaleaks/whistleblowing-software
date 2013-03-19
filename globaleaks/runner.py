@@ -67,7 +67,7 @@ def start_asynchronous():
 
     stats_sched = statistics_sched.APSStatistics()
     stats_sched.force_execution(GLAsynchronous, seconds=8)
-    GLAsynchronous.add_interval_job(stats_sched.operation, 10 )
+    GLAsynchronous.add_interval_job(stats_sched.operation, seconds=10)
     # TODO GLAsynchronous.add_interval_job(StatsSched.operation, StatsSched.get_node_delta() )
 
     deliver_sched = delivery_sched.APSDelivery()
@@ -146,14 +146,14 @@ else:
                 print "Running start."
                 try:
                     self.startApplication(self.application)
-                except Exception, exc:
+                except Exception as exc:
                     log.err("Network error: %s" % exc)
                     reactor.stop()
                     raise exc
 
                 try:
                     start_asynchronous()
-                except Exception, exc:
+                except Exception as exc:
                     log.err("Scheduler error: %s" % exc)
                     reactor.stop()
                     raise exc
