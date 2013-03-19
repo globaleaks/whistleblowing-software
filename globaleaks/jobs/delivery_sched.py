@@ -14,7 +14,8 @@ import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import InternalFile, InternalTip, ReceiverTip, ReceiverFile, ReceiverInternalTip
+from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
+                              ReceiverFile
 from globaleaks.settings import transact, GLSetting
 from globaleaks.utils import get_file_checksum, log
 __all__ = ['APSDelivery']
@@ -29,8 +30,8 @@ def file_preprocess(store):
     """
     files = store.find(InternalFile, InternalFile.mark == InternalFile._marker[0])
 
-    # Until reference is not fixed/understand completely, this shitty check is needed.
-    # uuuuuffff :((((
+    # TODO Until reference is not fixed/understand completely, this shitty check
+    # is needed. # uuuuuffff :((((
     internaltip_related = {}
     for single_file in files:
         internaltip_related[single_file.internaltip_id] = ''
@@ -43,14 +44,13 @@ def file_preprocess(store):
     # </uuuuuffff :(((( >
 
     filesdict = {}
-    for file in files:
+    for filex in files:
 
-        if file.internaltip_id in unfinalized_itip:
-            # log.debug("Want process file %s but Tip is not yet finalized" % file.name)
+        if filex.internaltip_id in unfinalized_itip:
             # eventually checks for large timelaps as anomaly
             continue
 
-        filesdict.update({file.id : file.file_path})
+        filesdict.update({filex.id : filex.file_path})
 
     return filesdict
 
@@ -82,7 +82,8 @@ def receiver_file_align(store, filesdict, processdict):
         ifile.sha2sum = unicode(processdict.get(internalfile_id))
 
         for receiver in ifile.internaltip.receivers:
-            log.msg("ReceiverFile creation for user %s, file %s" % (receiver.name, ifile.name) )
+            log.msg("ReceiverFile creation for user %s, file %s"
+                    % (receiver.name, ifile.name) )
 
             receiverfile = ReceiverFile()
             receiverfile.receiver_id = receiver.id
@@ -96,7 +97,8 @@ def receiver_file_align(store, filesdict, processdict):
             store.add(receiverfile)
             receiverfile_list.append(receiverfile.id)
 
-        log.msg("Processed InternalFile %s - [%s] and updated with checksum %s" % (ifile.id, ifile.name, ifile.sha2sum))
+        log.msg("Processed InternalFile %s - [%s] and updated with checksum %s"
+                % (ifile.id, ifile.name, ifile.sha2sum))
 
         ifile.mark = InternalFile._marker[1] # Ready (TODO review the marker)
 
@@ -108,7 +110,8 @@ def create_receivertip(store, receiver, internaltip, tier):
     Create ReceiverTip for the required tier of Receiver.
     """
     # receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-    log.msg('Creating ReceiverTip for: %s (level %d in request %d)' % (receiver.name, receiver.receiver_level, tier))
+    log.msg('Creating ReceiverTip for: %s (level %d in request %d)'
+            % (receiver.name, receiver.receiver_level, tier))
 
     if receiver.receiver_level != tier:
         return
@@ -147,19 +150,17 @@ def tip_creation(store):
 
     return created_rtip
 
-    """
     # update below with the return_dict
-    promoted = store.find(InternalTip,
-                        ( InternalTip.mark == InternalTip._marker[2],
-                          InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )
+    #promoted = store.find(InternalTip,
+    #                    ( InternalTip.mark == InternalTip._marker[2],
+    #                      InternalTip.pertinence_counter >= InternalTip.escalation_threshold ) )
 
-    for internaltip in promoted:
-        for receiver in internaltip.receivers:
-            rtip_id = create_receivertip(store, receiver, internaltip, 2)
-            created_tips.append(rtip_id)
-
-        internaltip.mark = internaltip._marker[3]
-    """
+    #for internaltip in promoted:
+    #    for receiver in internaltip.receivers:
+    #        rtip_id = create_receivertip(store, receiver, internaltip, 2)
+    #        created_tips.append(rtip_id)
+    #
+    #    internaltip.mark = internaltip._marker[3]
 
 
 class APSDelivery(GLJob):

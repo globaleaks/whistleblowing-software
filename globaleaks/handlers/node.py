@@ -47,8 +47,8 @@ def serialize_receiver(receiver):
     receiver_dict = {
         "can_delete_submission": receiver.can_delete_submission,
         "contexts": [],
-        "creation_date": utils.prettyDateTime(receiver.creation_date),
-        "update_date": utils.prettyDateTime(receiver.last_update),
+        "creation_date": utils.pretty_date_time(receiver.creation_date),
+        "update_date": utils.pretty_date_time(receiver.last_update),
         "description": receiver.description,
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),

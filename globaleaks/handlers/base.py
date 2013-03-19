@@ -20,7 +20,7 @@ import os
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone import escape
 
-from globaleaks.utils import log, MailException
+from globaleaks.utils import log, mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
@@ -298,7 +298,7 @@ class BaseHandler(RequestHandler):
 
     def _handle_request_exception(self, e):
         # exception informations must be saved here before continue.
-        type, value, tb = sys.exc_info()
+        exc_type, exc_value, exc_tb = sys.exc_info()
         try:
             if isinstance(e.value, (HTTPError, HTTPAuthenticationRequired)):
                 e = e.value
@@ -321,7 +321,7 @@ class BaseHandler(RequestHandler):
                 log.msg(e)
             log.msg("Uncaught exception %s :: %r" % \
                     (self._request_summary(), self.request))
-            MailException(type, value, tb)
+            mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
 

@@ -33,7 +33,7 @@ from globaleaks import db
 transact.debug = True
 class TestWithDB(unittest.TestCase):
     def setUp(self):
-        return db.createTables(create_node=True)
+        return db.create_tables(create_node=True)
 
     def tearDown(self):
         os.unlink(_TEST_DB)
@@ -41,7 +41,7 @@ class TestWithDB(unittest.TestCase):
 class TestGL(TestWithDB):
     @inlineCallbacks
     def initialize_db(self):
-        yield db.createTables(create_node=True)
+        yield db.create_tables(create_node=True)
         yield self.fill_data()
 
     def setUp(self):
