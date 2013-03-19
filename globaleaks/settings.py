@@ -4,9 +4,8 @@
 #
 # Configuration file do not contain GlobaLeaks Node information, like in the 0.1
 # because all those infos are stored in the databased.
-# Config contains some system variables usable for debug, integration with APAF and
-# nothing in the common concern af a GlobaLeaks Node Admin
-
+# Config contains some system variables usable for debug, integration with APAF
+# and nothing in the common concern af a GlobaLeaks Node Admin
 
 import os
 import sys
@@ -36,7 +35,6 @@ verbosity_dict = {
 class GLSettingsClass:
 
     def __init__(self):
-
         # command line parsing utils
         self.parser = OptionParser()
         self.cmdline_options = None
@@ -44,15 +42,21 @@ class GLSettingsClass:
         # threads sizes
         self.db_thread_pool_size = 1
 
-        # files and path
+        # bind port
+        self.bind_port = 8082
+
+        # files and paths
         self.store_name = 'main_store'
         self.root_path = os.path.join(os.path.dirname(__file__), '..')
         self.install_path = os.path.abspath(os.path.join(self.root_path, '..'))
         self.glclient_path = os.path.join(self.install_path, 'GLClient', 'app')
         self.gldata_path = os.path.join(self.root_path, '_gldata')
+        self.cyclone_io_path = os.path.join(self.gldata_path, "cyclone_debug")
         self.submission_path = os.path.join(self.gldata_path, 'submission')
-        self.db_file = 'sqlite:' + os.path.join(self.gldata_path, 'glbackend.db')
-        self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db', 'sqlite.sql')
+        self.db_file = 'sqlite:' + os.path.join(self.gldata_path,
+                                                'glbackend.db')
+        self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db',
+                                           'sqlite.sql')
         self.static_path = os.path.join(self.root_path, '_static')
         self.logfile = os.path.join(self.gldata_path, 'glbackend.log')
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
@@ -65,6 +69,7 @@ class GLSettingsClass:
         # Debug Defaults
         self.db_debug = True
         self.cyclone_debug = -1
+        self.cyclone_debug_counter = 0
         self.loglevel = logging.DEBUG
 
         # Session tracking, in the singleton classes
@@ -94,22 +99,24 @@ class GLSettingsClass:
         self.bind_port = self.cmdline_options.port
 
         if self.bind_port <= 1024 or self.bind_port >= 65535:
-            print "Invalid port number. < of 1024 is not permitted (require root) and > than 65535 can't work"
+            print "Invalid port number. < of 1024 is not permitted (require" \
+                  "root) and > than 65535 can't work"
             quit()
 
         # If user has requested this option, initialize a counter to
         # record the requests sequence, and setup the logs path
         if self.cmdline_options.io >= 0:
             self.cyclone_debug = self.cmdline_options.io
-            self.cyclone_debug_counter = 0
-            self.cyclone_io_path = os.path.join(self.gldata_path, "cyclone_debug")
 
         if self.cmdline_options.host_list:
-            self.accepted_hosts += str(self.cmdline_options.host_list).replace(" ", "").split(",")
+            tmp = str(self.cmdline_options.host_list)
+            self.accepted_hosts += tmp.replace(" ", "").split(",")
 
 
     def consistency_check(self):
-        # XXX perhaps this should go inside of runner postApplication?
+        """
+        Execute some consinstencyt check on command provided Globaleaks paths
+        """
         if not os.path.exists(self.gldata_path):
             os.mkdir(self.gldata_path)
 
@@ -135,12 +142,13 @@ GLSetting = GLSettingsClass()
 class transact(object):
     """
     Class decorator for managing transactions.
-    Because storm sucks.
+    Because Storm sucks.
     """
     tp = ThreadPool(0, GLSetting.db_thread_pool_size)
     _debug = False
 
     def __init__(self, method):
+        self.store = None
         self.method = method
         self.instance = None
 
@@ -166,44 +174,61 @@ class transact(object):
 
     @debug.setter
     def debug(self, value):
+        """
+        Setter method for debug property.
+        """
         self._debug = value
         tracer.debug(self._debug, sys.stdout)
 
     @debug.deleter
     def debug(self):
+        """
+        Deleter method for debug property.
+        """
         self.debug = False
 
     @staticmethod
     def run(function, *args, **kwargs):
-        return deferToThreadPool(reactor, transact.tp, function, *args, **kwargs)
+        """
+        Defer provided function to thread
+        """
+        return deferToThreadPool(reactor, transact.tp,
+                                 function, *args, **kwargs)
 
     @staticmethod
     def get_store():
+        """
+        Returns a reference to Storm Store
+        """
         zstorm = ZStorm()
         zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
+        """
+        Wrap provided function calling it inside a thread and
+        passing the store to it.
+        """
         self.store = self.get_store()
         try:
             if self.instance:
                 result = function(self.instance, self.store, *args, **kwargs)
             else:
                 result = function(self.store, *args, **kwargs)
-        except (exceptions.IntegrityError, exceptions.DisconnectionError) as e:
-            log.msg(e)
+        except (exceptions.IntegrityError, exceptions.DisconnectionError) as ex:
+            log.msg(ex)
             transaction.abort()
             result = None
-        except HTTPError as e:
+        except HTTPError as ex:
             transaction.abort()
-            raise e
+            raise ex
         except Exception:
             transaction.abort()
-            type, value, tb = sys.exc_info()
-            traceback.print_tb(tb, 10)
+            _, exception_value, exception_tb = sys.exc_info()
+            traceback.print_tb(exception_tb, 10)
             self.store.close()
             # propagate the exception
-            raise value
+            raise exception_value
         else:
             self.store.commit()
         finally:

@@ -24,7 +24,7 @@ def admin_serialize_node(node):
       'public_site': node.public_site,
       'stats_update_time': node.stats_update_time,
       'email': node.email,
-      "last_update": utils.prettyDateTime(node.last_update),
+      "last_update": utils.pretty_date_time(node.last_update),
       'languages': list(node.languages) if node.languages else []
     }
     return response
@@ -34,8 +34,8 @@ def admin_serialize_context(context):
         "context_gus": context.id,
         "name": context.name,
         "description": context.description,
-        "creation_date": utils.prettyDateTime(context.creation_date),
-        "last_update": utils.prettyDateTime(context.last_update),
+        "creation_date": utils.pretty_date_time(context.creation_date),
+        "last_update": utils.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
@@ -54,8 +54,8 @@ def admin_serialize_receiver(receiver):
         "receiver_gus": receiver.id,
         "name": receiver.name,
         "description": receiver.description,
-        "creation_date": utils.prettyDateTime(receiver.creation_date),
-        "last_update": utils.prettyDateTime(receiver.last_update),
+        "creation_date": utils.pretty_date_time(receiver.creation_date),
+        "last_update": utils.pretty_date_time(receiver.last_update),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
@@ -116,7 +116,7 @@ def update_node(store, request):
     node.update(request)
 
     node_desc = admin_serialize_node(node)
-    node.last_update = utils.datetimeNow()
+    node.last_update = utils.datetime_now()
     return node_desc
 
 
@@ -245,7 +245,7 @@ def update_context(store, context_gus, request):
     context.fields = request['fields']
 
     context_desc = admin_serialize_context(context)
-    context.last_update = utils.datetimeNow()
+    context.last_update = utils.datetime_now()
     return context_desc
 
 @transact
@@ -378,7 +378,7 @@ def update_receiver(store, id, request):
     receiver.update(request)
 
     receiver_desc = admin_serialize_receiver(receiver)
-    receiver.last_update = utils.datetimeNow()
+    receiver.last_update = utils.datetime_now()
     return receiver_desc
 
 @transact
