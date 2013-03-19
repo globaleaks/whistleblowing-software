@@ -23,7 +23,7 @@ class GLJob:
 
         try:
             aps.add_date_job(self.operation, plan_exec)
-        except ValueError, e:
+        except ValueError as exc:
             log.err("Failing in force schedule execution of %s planned at %s" %
                       (self.__class__.__name__, utils.pretty_date_time(plan_exec)))
 
