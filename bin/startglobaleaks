@@ -14,6 +14,17 @@ sys.path.insert(0, root)
 
 from globaleaks.settings import GLSetting
 
+# Temporary help line to avoid mistakes, in April I'll remove this message
+try:
+    import PIL
+except Exception:
+    print "Since 20/03 a new library is required, and is missing in your environment"
+    print "Please execute:"
+    print '\033[1;313m%s\033[0m' % "sudo apt-get install libjpeg-dev"
+    print "and:"
+    print '\033[1;313m%s\033[0m' % "pip install -r requirements.txt"
+    quit()
+
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
 ###

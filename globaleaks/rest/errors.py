@@ -255,9 +255,11 @@ class TorNetworkRequired(GLException):
     error_code = 37
     status_code = 403 # Forbidden
 
-class StaticFileExist(GLException):
+class ReservedFileName(GLException):
+    """
+    The files uploaded in the static file directory, are also used for Receivers portrait
+    and Node Logo.
+    """
     error_code = 38
-    status_code = 412 # Precondition Failed
-
-    def __init__(self, filename):
-        self.reason = "Static file [%s] is already present and overwrite is not permitted" % filename
+    status_code = 403 # Forbidden
+    reason = "The file uploaded has a reserved name"
