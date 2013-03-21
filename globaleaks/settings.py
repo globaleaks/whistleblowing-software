@@ -83,7 +83,7 @@ class GLSettingsClass:
         # static file rules
         self.staticfile_regexp = r'(\w+)\.(\w+)'
         self.staticfile_overwrite = False
-        self.reserved_nodelogo_name = "globaleaks_logo" # .jpeg
+        self.reserved_nodelogo_name = "globaleaks_logo" # .png
 
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = [ ]

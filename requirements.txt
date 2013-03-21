@@ -6,4 +6,4 @@ cyclone
 storm
 transaction
 PyCrypto
-PIL
+Pillow
