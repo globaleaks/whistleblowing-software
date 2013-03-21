@@ -2,6 +2,14 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
     'Submission', 'Receivers', 'WhistleblowerTip', function($scope,
       $location, Node, Submission, Receivers, WhistleblowerTip) {
 
+  var checkReceiverSelected = function() {
+    $scope.receiver_selected = false;
+    // Check if there is at least one selected receiver
+    angular.forEach($scope.receivers_selected, function(receiver) {
+      $scope.receiver_selected = $scope.receiver_selected | receiver;
+    });
+  }
+
   new Submission(function(submission){
     $scope.submission = submission;
 
@@ -10,7 +18,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
 
     $scope.submit = $scope.submission.submit;
     $scope.current_context_receivers = $scope.submission.current_context_receivers;
-
+    checkReceiverSelected();
   });
 
   $scope.view_tip = function(receipt) {
@@ -30,11 +38,19 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
     '3 Final Step'
   ];
 
+  // Watch for changes in certain variables
   $scope.$watch('submission.current_context', function(){
     if ($scope.current_context) {
       $scope.submission.create();
+      checkReceiverSelected();
     }
-  });
+  }, true);
+
+  $scope.$watch('receivers_selected', function() {
+    if ($scope.receivers_selected) {
+      checkReceiverSelected();
+    }
+  }, true);
 
   $scope.$watch('uploadingFiles', function(){
 

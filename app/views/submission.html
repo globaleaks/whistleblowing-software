@@ -119,7 +119,7 @@
       <li class="next"
           ng-show="!hasNextStep()">
         <button class="btn btn-success" ng-click="submit()"
-                ng-disabled="uploading || !disclaimer.accepted">Submit</button>
+                ng-disabled="uploading || !disclaimer.accepted || !receiver_selected">Submit</button>
       </li>
 
     </ul>
@@ -127,7 +127,7 @@
     <div class="pull-right">
 
       <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()"
-              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted">Submit</button>
+              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || !receiver_selected">Submit</button>
 
     </div>
     <div class="clearfix"></div>

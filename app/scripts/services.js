@@ -298,7 +298,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
     var randomString = function(chars, length) {
       // Generates a random string. Note: this is not cryptographically secure.
       var ret = '';
-      for(i=0;i<length;i++) {
+      for(var i=0;i<length;i++) {
         ret += chars[Math.floor(Math.random()*chars.length)]
       };
       return ret
