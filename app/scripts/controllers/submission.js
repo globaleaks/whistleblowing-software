@@ -2,6 +2,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
     'Submission', 'Receivers', 'WhistleblowerTip', function($scope,
       $location, Node, Submission, Receivers, WhistleblowerTip) {
 
+  $scope.node_configured = false;
+
   var checkReceiverSelected = function() {
     $scope.receiver_selected = false;
     // Check if there is at least one selected receiver
@@ -19,6 +21,13 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
     $scope.submit = $scope.submission.submit;
     $scope.current_context_receivers = $scope.submission.current_context_receivers;
     checkReceiverSelected();
+
+    if (submission.contexts.length === 0) {
+      $scope.node_configured = false;
+    } else {
+      $scope.node_configured = true;
+    }
+
   });
 
   $scope.view_tip = function(receipt) {

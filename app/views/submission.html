@@ -1,22 +1,32 @@
 <div class="jumbotron subhead">
   <div class="container">
+
     <div class="row">
       <div class="span2">
         <img data-src="holder.js/140x140" holder class="img-rounded">
       </div>
+
       <div class="span10">
         <!-- XXX come up with a way to make this inherit from the header.html template -->
         <h1>New Submission</h1>
-        <p>I want to report on
+        <p ng-show="node_configured">I want to report on
         <select class="contexts" ng-model="submission.current_context"
                 ng-options="context as context.name for context in submission.contexts">
         </select>
+        </p>
       </div>
+
     </div>
+
   </div>
 </div>
 
-<div ng-controller="WizardCtrl" class="container">
+<div class="container" ng-show="!node_configured">
+  <h2>This node is not configured.</h2>
+  <p>You will not be able to perform a submission</p>
+</div>
+
+<div ng-controller="WizardCtrl" class="container" ng-show="node_configured">
 
   <div class="tabbable tabs-below">
 
