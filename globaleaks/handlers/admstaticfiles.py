@@ -133,23 +133,23 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
     """
     @param filedesc: a dict with 'filename', 'content_type' and 'size' keys
 
-    This function, using the Python Image Library, resize the uploaded file to 160x160
+    This function, using the Python Image Library, resize the uploaded file to 120x120
     and 40x40, generating the Receiver thumbnails. Use a reserved name of
-    $UUID_160.png and $UUID_40.png
+    $UUID_120.png and $UUID_40.png
     """
     receiver = store.find(Receiver, Receiver.id == unicode(receiver_uuid)).one()
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    img160 = Image.open(filedesc['_gl_file_path'])
-    img160.thumbnail((160, 160), Image.ANTIALIAS)
-    img160.save(os.path.join(GLSetting.static_path, "%s_160.png" % receiver_uuid), "PNG")
+    img120 = Image.open(filedesc['_gl_file_path'])
+    img120.thumbnail((120, 120), Image.ANTIALIAS)
+    img120.save(os.path.join(GLSetting.static_path, "%s_120.png" % receiver_uuid), "PNG")
 
     img40 = Image.open(filedesc['_gl_file_path'])
     img40.thumbnail((40, 40), Image.ANTIALIAS)
     img40.save(os.path.join(GLSetting.static_path, "%s_40.png" % receiver_uuid), "PNG")
 
-    log.debug("saved resized 160x160 and 40x40 PNG file: removing original file %s" % filedesc['filename'])
+    log.debug("saved resized 120x120 and 40x40 PNG file: removing original file %s" % filedesc['filename'])
     os.unlink(filedesc['_gl_file_path'])
     return receiver.name
 
