@@ -351,6 +351,25 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           {method: 'PUT'}
       });
 }]).
+  factory('cookiesEnabled', function(){
+
+  var deleteCookie = function(name) {
+    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+  }
+
+  return function() {
+    var enabled = false;
+    document.cookie = 'cookiesenabled=true;';
+    if (document.cookie == "") {
+      enabled = false;
+    } else {
+      enabled = true;
+      deleteCookie('cookiesenabled');
+    }
+    return enabled;
+  }
+
+}).
   factory('Admin', ['$resource', function($resource) {
 
     function Admin() {

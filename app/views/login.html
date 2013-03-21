@@ -4,9 +4,14 @@
 </div>
 
 <div class="container config-page">
-  <div class="row">
+  <div class="row" ng-hide="cookiesEnabled()">
     <div class="span9">
-
+      <h2>Cookies are not enabled!</h2>
+      <p>You will not be able to login.</p>
+    </div>
+  </div>
+  <div class="row" ng-show="cookiesEnabled()">
+    <div class="span9">
       <form name="loginForm" novalidate>
         <label>Username:
           <input type="text" name="username"
