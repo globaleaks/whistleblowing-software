@@ -12,6 +12,9 @@ import time
 import traceback
 
 from OpenSSL import SSL
+from twisted.internet.endpoints import TCP4ClientEndpoint
+from txsocksx.client import SOCKS5ClientEndpoint
+
 from StringIO import StringIO
 
 from twisted.internet import reactor
@@ -152,7 +155,7 @@ def sendmail(authentication_username, authentication_secret, from_address,
 
     result_deferred = Deferred()
 
-    sender_factory = ESMTPSenderFactory(
+    factory = ESMTPSenderFactory(
         authentication_username,
         authentication_secret,
         from_address,
@@ -161,7 +164,10 @@ def sendmail(authentication_username, authentication_secret, from_address,
         result_deferred,
         contextFactory=context_factory)
 
-    reactor.connectTCP(smtp_host, smtp_port, sender_factory)
+    socksProxy = TCP4ClientEndpoint(reactor, "127.0.0.1", 9050)
+    endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
+    endpoint.connect(factory)
+
 
     return result_deferred
 
