@@ -265,29 +265,31 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       commentsResource = $resource('/tip/:tip_id/comments', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
-      this.tip = {};
-      this.tip.comments = [];
-      this.tip.receivers = [];
+      var self = this;
+      self.tip = {};
+      self.tip.comments = [];
+      self.tip.receivers = [];
 
       receiversResource.query(tipID, function(receiversCollection){
 
         tipResource.get(tipID, function(result){
-          this.tip = result;
-          this.tip.receivers = receiversCollection;
+          self.tip = result;
+          console.log(result);
+          self.tip.receivers = receiversCollection;
 
           commentsResource.query(tipID, function(commentsCollection){
-            this.tip.comments = commentsCollection;
-            this.tip.comments.newComment = function(content) {
+            self.tip.comments = commentsCollection;
+            self.tip.comments.newComment = function(content) {
               var c = new commentsResource(tipID);
               c.content = content;
               c.$save(function(newComment) {
-                this.tip.comments.push(newComment);
+                self.tip.comments.push(newComment);
               });
             };
 
             // XXX perhaps make this return a lazyly instanced item.
             // look at $resource code for inspiration.
-            fn(this.tip);
+            fn(self.tip);
           });
         });
       });
