@@ -38,26 +38,7 @@ function($rootScope, $scope, $http, $location, Admin) {
 
 }]);
 
-
-GLClient.controller('AdminAdvancedCtrl',
-    ['$scope', function($scope) {
-
-  $scope.invalid_password = false;
-
-  var validatePasswordChange = function() {
-    if ($scope.admin.node.password !== '' && $scope.admin.node.old_password === '') {
-      $scope.invalid_password = true;
-    } else {
-      $scope.invalid_password = false;
-    }
-  }
-
-  $scope.$watch("admin.node.password", function(){
-    validatePasswordChange();
-  }, true);
-
-  $scope.$watch("admin.node.old_password", function(){
-    validatePasswordChange();
-  }, true);
-
+GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changePasswordWatcher',
+                    function($scope, changePasswordWatcher) {
+    changePasswordWatcher($scope, "admin.node.old_password", "admin.node.password");
 }]);

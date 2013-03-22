@@ -13,9 +13,11 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope', 'ReceiverTips',
   $scope.tips = ReceiverTips.query();
 }]);
 
-GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences',
-  function($scope, $rootScope, ReceiverPreferences) {
+GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences', 'changePasswordWatcher',
+  function($scope, $rootScope, ReceiverPreferences, changePasswordWatcher) {
     $scope.preferences = ReceiverPreferences.get();
+
+    changePasswordWatcher($scope, "preferences.old_password", "preferences.password");
 
     $scope.save = function() {
       $scope.preferences.$update(function(){
@@ -25,6 +27,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
         $rootScope.successes.push({message: 'Updated your preferences!'});
       });
     }
+
 }]);
 
 
