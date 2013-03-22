@@ -10,7 +10,7 @@
 import os
 
 from globaleaks.settings import GLSetting
-from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication
+from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, overview
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.rest.base import uuid_regexp
 
@@ -100,6 +100,11 @@ spec = [
     #  A6
     (r'/admin/notification', admin.NotificationInstance),
 
+    #  A9
+    (r'/admin/overview/tips', overview.Tips),
+
+    #  AA
+    (r'/admin/overview/users', overview.Users),
 ]
 
 ## Enable end to end testing directory ##
