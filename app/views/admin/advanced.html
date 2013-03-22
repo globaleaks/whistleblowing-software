@@ -4,7 +4,7 @@
 >
 </div>
 
-<div class="container config-page">
+<div class="container config-page" ng-controller="AdminAdvancedCtrl">
 
   <div class="row">
     <!-- Begin Nav Bar -->
@@ -42,6 +42,8 @@
                 <label>Old Password</label>
                 <input type="password"
                        ng-model="admin.node.old_password">
+                <p class="text-error"
+                  ng-show="invalid_password">Old password is required</p>
               </div>
             </div>
 
@@ -49,7 +51,7 @@
               <div class="span9">
                 <label>New Password</label>
                 <input type="password"
-                       ng-model="admin.node.password">
+                       ng-model="admin.node.password" >
               </div>
             </div>
 
@@ -57,7 +59,7 @@
         </div>
 
         <button class="btn btn-success"
-          ng-disabled="nodeConfigForm.$invalid || nodeConfigForm.$pristine"
+          ng-disabled="nodeConfigForm.$invalid || nodeConfigForm.$pristine || invalid_password"
           ng-click="updateNode(admin.node)">Save</button>
 
       </form>
