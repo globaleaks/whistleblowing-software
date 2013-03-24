@@ -7,6 +7,7 @@ from globaleaks import models
 from globaleaks.handlers import submission
 from globaleaks.jobs import delivery_sched
 from globaleaks.jobs.notification_sched import APSNotification
+from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.plugins import notification
@@ -27,6 +28,15 @@ class TestEmail(helpers.TestGL):
             'finalize': True,
             }, finalize=True)
         yield delivery_sched.tip_creation()
+
+        # This mocks out the MailNotification plugin so it does not actually
+        # require to perform a connection to send an email.
+        # XXX we probably want to create a proper mock of the ESMTPSenderFactory
+        def sendmail_mock(self, authentication_username, authentication_password, from_address,
+                          to_address, message_file, smtp_host, smtp_port, security):
+            return defer.succeed(None)
+
+        notification.MailNotification.sendmail = sendmail_mock
 
     @transact
     def _setup_database(self, store):
@@ -66,5 +76,5 @@ class TestEmail(helpers.TestGL):
         }
 
         tip_events = yield aps.create_tip_notification_events()
-        #yield aps.do_tip_notification(tip_events)
+        yield aps.do_tip_notification(tip_events)
 
