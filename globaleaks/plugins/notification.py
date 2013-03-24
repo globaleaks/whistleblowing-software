@@ -178,6 +178,6 @@ class MailNotification(Notification):
 
     def sendmail(self, authentication_username, authentication_password, from_address,
                  to_address, message_file, smtp_host, smtp_port, security):
-        return (authentication_username, authentication_password, from_address,
-                to_address, message_file, smtp_host, smtp_port, security)
+        return sendmail(authentication_username, authentication_password, from_address,
+                        to_address, message_file, smtp_host, smtp_port, security)
 
