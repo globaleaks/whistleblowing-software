@@ -158,11 +158,11 @@ def sendmail(authentication_username, authentication_password, from_address,
     context_factory = ClientContextFactory()
     context_factory.method = SSL.SSLv3_METHODcontext_factory = None
 
-    if security != "SSL":
+    if security != "SMTPS":
         requireTransportSecurity = True
     else:
         requireTransportSecurity = False
-    
+
     factory = ESMTPSenderFactory(
         authentication_username,
         authentication_password,
@@ -174,7 +174,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         requireAuthentication=(authentication_username and authentication_password),
         requireTransportSecurity=requireTransportSecurity)
 
-    if security == "SSL":
+    if security == "SMTPS":
         factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
 
     socksProxy = TCP4ClientEndpoint(reactor, "127.0.0.1", 9050)
