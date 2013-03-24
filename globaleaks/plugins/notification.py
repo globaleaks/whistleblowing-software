@@ -13,8 +13,7 @@ from twisted.mail.smtp import ESMTPSenderFactory
 from twisted.internet import reactor, ssl
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from txsocksx.client import SOCKS5ClientEndpoint
-from OpenSSL import SSL
-from globaleaks.utils import log, SOCKS5ClientEndpoint
+from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
 
 
@@ -161,7 +160,6 @@ class MailNotification(Notification):
         self.username = str(event.notification_settings['username'])
         self.password = str(event.notification_settings['password'])
         self.security = str(event.notification_settings['security'])
-        self.finished = Deferred()
 
         # to_addres maybe a list of addresses
         receiver_mail = event.receiver_info['notification_fields']['mail_address']
@@ -172,30 +170,9 @@ class MailNotification(Notification):
                                to_addrs=to_addrs,
                                subject=title,
                                message=body)
-        self.send(message)
+
+        self.finished = sendmail(self.username, self.password,
+                                 message.from_addr, message.to_addrs, message.render(),
+                                 self.host, self.port, self.security)
         log.debug('Email: connecting to [%s] for deliver to %s' % (self.host, receiver_mail))
         return self.finished
-
-    def send(self, message):
-        if self.security == 'SSL':
-            context_factory = ssl.ClientContextFactory()
-            context_factory.method = SSL.SSLv3_METHOD
-        else: # TODO support SSL
-            context_factory = None
-
-        factory = ESMTPSenderFactory(self.username, self.password,
-                                     message.from_addr,
-                                     message.to_addrs,
-                                     message.render(),
-                                     self.finished,
-                                     contextFactory=context_factory,
-                                     requireAuthentication=(self.username and self.password),
-                                     requireTransportSecurity=self.security)
-
-        #endpoint = TCP4ClientEndpoint(reactor, self.host, self.port)
-        #socksProxy = TCP4ClientEndpoint(reactor,
-        #                                event.notification_settings['sock_host'],
-        #                                event.notification_settings['sock_port'])
-        socksProxy = TCP4ClientEndpoint(reactor, "127.0.0.1", 9050)
-        endpoint = SOCKS5ClientEndpoint(str(self.host), self.port, socksProxy)
-        endpoint.connect(factory)
