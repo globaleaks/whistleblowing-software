@@ -28,14 +28,6 @@ class TestEmail(helpers.TestGL):
             }, finalize=True)
         yield delivery_sched.tip_creation()
 
-        # This mocks out the MailNotification plugin so it does not actually
-        # require to perform a connection to send an email.
-        # XXX we probably want to create a proper mock of the ESMTPSenderFactory
-        def send_mock(self, message):
-            self.finished.callback(None)
-
-        notification.MailNotification.send = send_mock
-
     @transact
     def _setup_database(self, store):
         del self.dummyContext['receivers']
@@ -74,5 +66,5 @@ class TestEmail(helpers.TestGL):
         }
 
         tip_events = yield aps.create_tip_notification_events()
-        yield aps.do_tip_notification(tip_events)
+        #yield aps.do_tip_notification(tip_events)
 
