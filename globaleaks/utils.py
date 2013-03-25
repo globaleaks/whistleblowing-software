@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
-#   config
-#   ******
+#   utils
+#   *****
 #
 # GlobaLeaks Utility Functions
 

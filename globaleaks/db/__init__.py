@@ -10,6 +10,8 @@ from storm.exceptions import OperationalError
 from globaleaks.utils import log
 from globaleaks.settings import transact, GLSetting
 from globaleaks import models
+from globaleaks.third_party import rstr
+from globaleaks.security import set_password, SALT_LENGTH
 
 @transact
 def initialize_node(store, results, only_node, email_template):
@@ -24,7 +26,10 @@ def initialize_node(store, results, only_node, email_template):
     node.languages =  [{ "code" : "it" , "name": "Italiano"},
                        { "code" : "en" , "name" : "English" }]
 
-    node.password = unicode("globaleaks")
+    # Salt for admin password is a safe random string different in every Node.
+    node.salt = rstr.xeger('[A-Za-z0-9]{%d}' % (SALT_LENGTH +1) )
+    node.password = set_password(u"globaleaks", node.salt)
+
     node.creation_date = models.now()
     store.add(node)
 

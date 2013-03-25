@@ -11,6 +11,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
 from globaleaks.utils import log
 from globaleaks.third_party import rstr
+from globaleaks import security
 
 def authenticated(*roles):
     """
@@ -101,25 +102,23 @@ def login_receiver(store, username, password):
         receiver = store.find(Receiver, (Receiver.username == unicode(username))).one()
     except NotOneError:
         log.debug("Receiver: Fail auth, userame %s do not exists" % username)
-        # XXX Security paranoia: insert random delay
+        security.insert_random_delay()
         raise errors.InvalidAuthRequest
 
     if not receiver:
         log.debug("Receiver: Fail auth, userame %s do not exists" % username)
-        # XXX Security paranoia: insert random delay
+        security.insert_random_delay()
         raise errors.InvalidAuthRequest
 
-    if receiver.password != password:
+    if not security.check_password(password, receiver.password, receiver.username):
         receiver.failed_login += 1
-        # XXX Security paranoia: insert random delay
-        log.debug("Receiver: Failed auth for %s (expected %s receivedPassword %s) #%d" %\
-                  (username, receiver.password, password, receiver.failed_login) )
+        log.debug("Receiver: Failed auth for %s #%d" % (username, receiver.failed_login) )
 
         # this require a forced commit because otherwise the exception would cause a rollback!
         store.commit()
         raise errors.InvalidAuthRequest
     else:
-        log.debug("Receiver: Good auth for %s %s" % (username, password))
+        log.debug("Receiver: Good auth for %s" % username)
         receiver.failed_login = 0
         return unicode(receiver.id)
 
@@ -128,12 +127,13 @@ def login_receiver(store, username, password):
 def login_admin(store, password):
     node = store.find(Node).one()
 
-    if node.password == password:
-        log.debug("Admin: OK auth")
-        return 'admin'
-    else:
+    if not security.check_password(password, node.password, node.salt):
         log.debug("Admin: Fail auth")
         return False
+    else:
+        log.debug("Admin: OK auth")
+        return 'admin'
+
 
 class AuthenticationHandler(BaseHandler):
     """
