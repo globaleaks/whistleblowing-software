@@ -127,4 +127,27 @@ angular.module('submissionUI', []).
     return function(scope, element, attrs) {
       element.fadeOut(3000);
     };
+}).
+  directive('expandTo', function() {
+  // Used to expand the element to the target width when you over over it. Also
+  // makes sure that all the text is selected on a single click.
+  return function(scope, element, attrs) {
+    scope.$watch(attrs.expandTo, function(width){
+      var original_width = element.css('width'),
+        target_width = width + 'px';
+
+      element.mouseenter(function() {
+        element.css('width', target_width);
+      });
+
+      element.mouseleave(function() {
+        element.css('width', original_width);
+      });
+
+      element.click(function() {
+        element.select();
+      });
+
+    })
+  };
 });

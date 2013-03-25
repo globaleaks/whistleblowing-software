@@ -19,12 +19,23 @@
         <ul class="unstyled">
           <li ng-repeat="file in tip.files">
 
-            <a href="{{file.href}}">
+            <div ng-show="whistleblower_tip_id">
               <i class="icon-book"></i> {{file.name}}
-            </a>
+            </div>
+
+            <div ng-hide="whistleblower_tip_id">
+              <a href="{{file.href}}">
+                <i class="icon-book"></i> {{file.name}}
+              </a>
+            </div>
 
             <ul class="fileDetails">
-              <li><label>SHA256</label><input type="text" value="{{file.sha2sum}}"></li>
+              <li ng-show="file.sha2sum">
+                <div class="input-prepend input-append">
+                  <span class="add-on">SHA256</span>
+                  <input class="span2" id="appendedPrependedInput" type="text" value="{{file.sha2sum}}" expand-to="500">
+                </div>
+              </li>
             </ul>
           </li>
         </ul>
