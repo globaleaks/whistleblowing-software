@@ -30,11 +30,14 @@
             </div>
 
             <ul class="fileDetails">
-              <li ng-show="file.sha2sum">
+              <li ng-show='file.sha2sum != "None"'>
                 <div class="input-prepend input-append">
                   <span class="add-on">SHA256</span>
                   <input class="span2" id="appendedPrependedInput" type="text" value="{{file.sha2sum}}" expand-to="500">
                 </div>
+              </li>
+              <li ng-show='file.sha2sum == "None"'>
+                <span class="label label-warning">Still calculating hash</span>
               </li>
             </ul>
           </li>
