@@ -16,7 +16,6 @@ from txsocksx.client import SOCKS5ClientEndpoint
 from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
 
-
 class MailNotification(Notification):
 
     _title = {
@@ -171,8 +170,14 @@ class MailNotification(Notification):
                                subject=title,
                                message=body)
 
-        self.finished = sendmail(self.username, self.password,
-                                 message.from_addr, message.to_addrs, message.render(),
-                                 self.host, self.port, self.security)
+        self.finished = self.sendmail(self.username, self.password,
+                                      message.from_addr, message.to_addrs, message.render(),
+                                      self.host, self.port, self.security)
         log.debug('Email: connecting to [%s] for deliver to %s' % (self.host, receiver_mail))
         return self.finished
+
+    def sendmail(self, authentication_username, authentication_password, from_address,
+                 to_address, message_file, smtp_host, smtp_port, security):
+        return sendmail(authentication_username, authentication_password, from_address,
+                        to_address, message_file, smtp_host, smtp_port, security)
+

@@ -156,9 +156,9 @@ def sendmail(authentication_username, authentication_password, from_address,
     result_deferred = Deferred()
 
     context_factory = ClientContextFactory()
-    context_factory.method = SSL.SSLv3_METHODcontext_factory = None
+    context_factory.method = SSL.SSLv3_METHOD
 
-    if security != "ssl":
+    if security != "SSL":
         requireTransportSecurity = True
     else:
         requireTransportSecurity = False
@@ -174,7 +174,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         requireAuthentication=(authentication_username and authentication_password),
         requireTransportSecurity=requireTransportSecurity)
 
-    if security == "ssl":
+    if security == "SSL":
         factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
 
     socksProxy = TCP4ClientEndpoint(reactor, "127.0.0.1", 9050)
