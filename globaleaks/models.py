@@ -314,6 +314,7 @@ class Node(Model):
     hidden_service = Unicode()
     email = Unicode()
     languages = Pickle()
+    salt = Unicode()
     password = Unicode()
     last_update = DateTime()
 

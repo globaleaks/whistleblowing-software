@@ -82,6 +82,7 @@ CREATE TABLE node (
     languages BLOB NOT NULL,
     name VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
+    salt VARCHAR NOT NULL,
     public_site VARCHAR NOT NULL,
     stats_update_time INTEGER NOT NULL,
     last_update VARCHAR,

@@ -11,7 +11,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks import utils
+from globaleaks import utils, security
 from globaleaks.utils import log
 
 
@@ -58,7 +58,6 @@ def admin_serialize_receiver(receiver):
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
-        "password": receiver.password,
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "failed_login": receiver.failed_login,
         "contexts": []
@@ -92,14 +91,10 @@ def update_node(store, request):
     node = store.find(Node).one()
 
     if len(request['old_password']) and len(request['password']):
-        if node.password == request['old_password']:
-            log.info("Administrator password update %s => %s" %
-                     (request['old_password'], request['password'] ))
-            node.password = request['password']
-        else:
-            log.info("Password invalid! cannot be changed now")
-            raise errors.InvalidOldPassword
-
+        node.password = security.change_password(node.password,
+                                    request['old_password'], request['password'], node.salt)
+        log.info("Administrator password update %s => %s" %
+                 (request['old_password'], request['password'] ))
 
     if len(request['public_site']) > 1:
         if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
@@ -301,13 +296,7 @@ def create_receiver(store, request):
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.failed_login = 0
-
-    # XXX generate randomly and then mail to the user, mark receiver
-    # as 'inactive' until password is changed by activation link
-    if not request['password'] or len(request['password']) == 0:
-        receiver.password = u"globaleaks"
-    else:
-        receiver.password = request['password']
+    receiver.password = security.set_password(request['password'], mail_address)
 
     store.add(receiver)
 
@@ -361,7 +350,8 @@ def update_receiver(store, id, request):
 
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
-    receiver.password = request['password']
+    # admin override password without effort :)
+    receiver.password = security.set_password(request['password'], mail_address)
 
     contexts = request.get('contexts', [])
 
