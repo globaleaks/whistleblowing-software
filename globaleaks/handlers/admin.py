@@ -306,7 +306,7 @@ def create_receiver(store, request):
 
     # A password strength checker need to be implemented in the client, but here a
     # minimal check is put
-    if not len(request['password']) > security.MINIMUM_PASSWORD_LENGTH:
+    if not len(request['password']) >= security.MINIMUM_PASSWORD_LENGTH:
         log.err("Password of almost %d byte needed " % security.MINIMUM_PASSWORD_LENGTH)
         raise errors.InvalidInputFormat("Password of almost %d byte needed " %
                                         security.MINIMUM_PASSWORD_LENGTH)
@@ -366,8 +366,10 @@ def update_receiver(store, id, request):
 
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
-    # admin override password without effort :)
-    receiver.password = security.hash_password(request['password'], mail_address)
+
+    if len(request['password']):
+        # admin override password without effort :)
+        receiver.password = security.hash_password(request['password'], mail_address)
 
     contexts = request.get('contexts', [])
 

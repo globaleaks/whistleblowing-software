@@ -230,7 +230,7 @@ class TestReceiverInstance(helpers.TestHandler):
         self.assertEqual(self.responses[0], self.dummyReceiver)
 
     @inlineCallbacks
-    def test_put(self):
+    def test_put_change_password(self):
         self.dummyReceiver['context_gus'] = ''
         del self.dummyReceiver['username']
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
@@ -241,6 +241,20 @@ class TestReceiverInstance(helpers.TestHandler):
         handler = self.request(self.dummyReceiver, role='admin')
         yield handler.put(self.dummyReceiver['receiver_gus'])
         self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
+
+    @inlineCallbacks
+    def test_put_with_password_empty(self):
+        self.dummyReceiver['context_gus'] = ''
+        del self.dummyReceiver['username']
+        self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
+        self.dummyReceiver['notification_fields']['mail_address'] =\
+        u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['password'] = u""
+
+        handler = self.request(self.dummyReceiver, role='admin')
+        yield handler.put(self.dummyReceiver['receiver_gus'])
+        self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
+
 
     @inlineCallbacks
     def test_put_invalid_context_gus(self):
