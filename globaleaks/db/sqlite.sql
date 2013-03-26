@@ -83,6 +83,7 @@ CREATE TABLE node (
     name VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
     salt VARCHAR NOT NULL,
+    receipt_salt VARCHAR NOT NULL,
     public_site VARCHAR NOT NULL,
     stats_update_time INTEGER NOT NULL,
     last_update VARCHAR,
@@ -157,7 +158,7 @@ CREATE TABLE whistleblowertip (
     id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
-    receipt VARCHAR NOT NULL,
+    receipt_hash VARCHAR NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
