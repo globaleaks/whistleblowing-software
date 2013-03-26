@@ -81,18 +81,6 @@ def dump_files_fs(files):
 
 
 @transact
-def get_tip_by_receipe(store, receipt):
-    """
-    Tip need to be Whistleblower authenticated
-    """
-    wbtip = store.find(models.WhistleblowerTip,
-                       models.WhistleblowerTip.receipt == unicode(receipt)).one()
-    if not wbtip:
-        raise errors.ReceiptGusNotFound
-    else:
-        return wbtip.id
-
-@transact
 def get_tip_by_internaltip(store, id):
     itip = store.find(models.InternalTip,
                       models.InternalTip.id == unicode(id)).one()

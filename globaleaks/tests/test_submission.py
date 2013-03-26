@@ -157,6 +157,7 @@ class TestSubmission(helpers.TestGL):
         new_r = dict(self.dummyReceiver)
         new_r['name'] = new_r['description'] = new_r['username'] =\
         new_r['notification_fields']['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
+        new_r['password'] = u'not missing!'
         return new_r
 
     @inlineCallbacks

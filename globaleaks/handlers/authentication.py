@@ -28,7 +28,8 @@ def authenticated(*roles):
                 elif role != cls.current_user.role:
                     log.err("Authenticated with a different required user: now %s, expected %s" %
                             (cls.current_user.role, role) )
-                    raise errors.NotAuthenticated
+                    raise errors.NotAuthenticated("Good login in wrong scope: you %s, expected %s" %
+                            (cls.current_user.role, role) )
                 else:
                     GLSetting.sessions[cls.current_user.id].timestamp = time.time()
             return method_handler(cls, *args, **kwargs)
@@ -77,11 +78,13 @@ def transport_security_check(wrapped_handler_role):
 @transact
 def login_wb(store, receipt):
     try:
+        node = store.find(Node).one()
+        hashed_receipt = security.hash_password(receipt, node.receipt_salt)
         wb_tip = store.find(WhistleblowerTip,
-                            WhistleblowerTip.receipt == unicode(receipt)).one()
+                            WhistleblowerTip.receipt_hash == unicode(hashed_receipt)).one()
     except NotOneError, e:
         # This is one of the fatal error that never need to happen
-        log.err("Expected unique fields (receipt) is not unique with %s" % receipt)
+        log.err("Expected unique fields (receipt) not unique when hashed %s" % receipt)
         raise errors.InvalidAuthRequest
 
     if not wb_tip:
