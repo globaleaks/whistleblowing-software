@@ -9,10 +9,6 @@
 
 from cyclone import mail
 from twisted.internet.defer import Deferred
-from twisted.mail.smtp import ESMTPSenderFactory
-from twisted.internet import reactor, ssl
-from twisted.internet.endpoints import TCP4ClientEndpoint
-from txsocksx.client import SOCKS5ClientEndpoint
 from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
 
