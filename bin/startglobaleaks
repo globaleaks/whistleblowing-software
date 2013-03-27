@@ -7,15 +7,12 @@ import random
 
 from twisted.python import usage
 
-from globaleaks.settings import GLSetting
-
-
 # Avoid the export PYTHONPATH insanity
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-
+from globaleaks.settings import GLSetting
 try:
     import scrypt
     import apscheduler
