@@ -88,7 +88,7 @@ class APSNotification(GLJob):
         node_desc = admin.admin_serialize_node(store.find(models.Node).one())
 
         if not_notified_tips.count():
-            log.debug("Tip found to be notified: %d" % not_notified_tips.count() )
+            log.debug("Receiver Tips found to be notified: %d" % not_notified_tips.count() )
 
         for rtip in not_notified_tips:
 
@@ -148,7 +148,7 @@ class APSNotification(GLJob):
 
             notify = event.plugin.do_notify(event)
             notify.addCallback(self.tip_notification_succeeded, tip_id)
-            notify.addErrback(self.tip_notification_succeeded, tip_id)
+            notify.addErrback(self.tip_notification_failed, tip_id)
             l.append(notify)
 
         return DeferredList(l)
@@ -201,6 +201,10 @@ class APSNotification(GLJob):
 
                 receiver_desc = admin.admin_serialize_receiver(receiver)
                 assert receiver_desc.has_key('notification_fields')
+
+                # if the comment author is the one to be notified
+                if comment._types == models.Comment._types[0]: # Receiver
+                    continue
 
                 if not receiver.notification_fields.has_key('mail_address'):
                     log.debug("Receiver %s lack of email address!" % receiver.name)
