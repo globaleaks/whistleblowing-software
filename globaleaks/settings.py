@@ -92,6 +92,12 @@ class GLSettingsClass:
             'unauth': True
         }
 
+        # SOCKS default
+        self.socks_host = "127.0.0.1"
+        self.socks_port = 9050
+        self.tor_socks_enable = True
+
+
     def load_cmdline_options(self):
         """
         This function is called by runner.py and operate in cmdline_options,
@@ -106,9 +112,7 @@ class GLSettingsClass:
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
         self.bind_port = self.cmdline_options.port
 
-        if self.bind_port <= 1024 or self.bind_port >= 65535:
-            print "Invalid port number. < of 1024 is not permitted (require" \
-                  "root) and > than 65535 can't work"
+        if not self.validate_port(self.bind_port):
             quit()
 
         # If user has requested this option, initialize a counter to
@@ -119,6 +123,23 @@ class GLSettingsClass:
         if self.cmdline_options.host_list:
             tmp = str(self.cmdline_options.host_list)
             self.accepted_hosts += tmp.replace(" ", "").split(",")
+
+        if self.cmdline_options.socks_host:
+            self.socks_host = self.cmdline_options.socks_host
+        if not self.cmdline_options.enable_tor_socks:
+            self.tor_socks_enable = False
+        if self.cmdline_options.socks_port:
+            self.socks_port = self.cmdline_options.socks_port
+            if not self.validate_port(self.socks_port):
+                quit()
+
+
+    def validate_port(self, inquiry_port):
+        if inquiry_port <= 1024 or inquiry_port >= 65535:
+            print "Invalid port number. < of 1024 is not permitted (require"\
+                  "root) and > than 65535 can't work"
+            return False
+        return True
 
 
     def consistency_check(self):

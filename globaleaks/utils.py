@@ -177,7 +177,7 @@ def sendmail(authentication_username, authentication_password, from_address,
     if security == "SSL":
         factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
 
-    socksProxy = TCP4ClientEndpoint(reactor, "127.0.0.1", 9050)
+    socksProxy = TCP4ClientEndpoint(reactor, GLSetting.socks_host, GLSetting.socks_port)
     endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
     endpoint.connect(factory)
 
