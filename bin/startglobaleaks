@@ -5,7 +5,6 @@ import os
 import sys
 import random
 
-from twisted.python import usage
 
 try:
     import scrypt
@@ -24,8 +23,8 @@ except:
     print "and then use ./restartclean.sh (this will clean your database)"
     quit()
 
+from twisted.python import usage
 from globaleaks.settings import GLSetting
-
 
 # Avoid the export PYTHONPATH insanity
 this_directory = os.path.dirname(__file__)
