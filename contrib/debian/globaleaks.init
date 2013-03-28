@@ -19,24 +19,49 @@
 
 # Author: Giovanni Pellerano <evilaliv3@globaleaks.org>
 
+###############################################################################
+
 # Start of Configurable Arguments
-HOSTSLIST=127.0.0.1,localhost,dev.globaleaks.org
-LISTENINGPORT=8082
+
+# USER = [username]
+#   permits to configure the runing user of the globaleaks process
+USER=www-data
+
+# HOST = [ip_address, hostname, other_hostname]
+#   permits to configure a list of hosts at which globaleaks will be reachable
+HOSTS_LIST=127.0.0.1,localhost,dev.globaleaks.org
+
+# LISTENINGPORT = [port_number]
+#   permits to configure a port at which globaleaks process will bind to
+LISTENING_PORT=8082
+
+# GL_DIR = [directory_path]
+#   must be configured with the path at which globaleaks install resides
 GLDIR=/data/globaleaks/dev
+
+# WORKING_DIR
+#   must be configured with the daemon working directory
+WORKING_DIR=${GLDIR}/working_dir
+
+# End of Configurable Arguments
+
+###############################################################################
+
 GLBACKENDDIR=${GLDIR}/GLBackend
 GLCLIENTDIR=${GLDIR}/GLClient
 GLENV=${GLDIR}/glenv/bin/activate
 GLBACKEND_DAEMON=${GLBACKENDDIR}/bin/startglobaleaks
-TMPDIR=${GLDIR}/temp
-# End of Configurable Arguments
+
+GLBACKEND_ARGS="--port ${LISTENING_PORT} --accept-host=${HOSTS_LIST} --working-path=${WORKING_DIR}"
+
+STARTCMD=". ${GLENV} \
+          && ${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=$(basename $(readlink -nf $0))
 
 SCRIPTNAME=$0
-GLBACKEND_PIDFILE=${TMPDIR}/twistd.pid
-
-mkdir -p ${TMPDIR}
+GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
 
 if [ -e ${GLBACKEND_PIDFILE} ]; then
     GLBACKEND_PID=`cat ${GLBACKEND_PIDFILE}`
@@ -52,11 +77,7 @@ fi
 # and status_of_proc is working.
 . /lib/lsb/init-functions
 
-#
-# Function that starts the daemon/service
-#
-
-do_globaleaks_start()
+do_start()
 {
     # Check to see if the GLBackend daemon is already running.
     echo "Starting Globaleaks..."
@@ -67,14 +88,12 @@ do_globaleaks_start()
       fi
     fi
 
-    . ${GLENV}
-    cd ${TMPDIR}
-    nohup ${GLBACKEND_DAEMON} --port ${LISTENINGPORT} --accept-host="${HOSTSLIST}" 1<&- 2<&- &
+    su ${USER} -c "${STARTCMD}" 1<&- 2<&- &
 
     echo "started."
 }
 
-do_globaleaks_stop()
+do_stop()
 {
     echo "Stopping Globaleaks..."
 
@@ -92,19 +111,6 @@ do_globaleaks_stop()
     echo "not running."
 }
 
-do_start()
-{
-    do_globaleaks_start
-}
-
-do_stop()
-{
-    do_globaleaks_stop
-}
-
-#
-# Function that restarts Globaleaks
-#
 do_restart() {
     do_stop
 
