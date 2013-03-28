@@ -13,20 +13,29 @@ angular.module('submissionUI', []).
 
       link: function(scope, element, attrs) {
         var selectFileButton = element.find('button.selectFile'),
-          uploadButton = element.find('button.upload');
-        console.log(attrs);
+          uploadButton = element.find('button.upload'),
+          img_receiver = element.parent().parent().find('img.baseimage')[0];
+
+        img_receiver.onload = function(){
+          var upload_file = element.parent().parent().find('.uploadfile');
+          upload_file.css('width', img_receiver.width + 10);
+          upload_file.css('height', img_receiver.width - 20);
+        };
 
         scope.$watch(attrs.src, function(){
-          console.log(attrs.src);
+          var url = attrs.src;
+
+          if (url[0] === "'")
+            url = url.replace(/'/g, "");
 
           $(uploadButton).click(function() {
-            var fileUploader = $(element).fileupload({url: attrs.src}),
+            console.log("uploading to "+url);
+            var fileUploader = $(element).fileupload({url: url}),
               filesList = element.find('input.file')[0].files;
 
             $(element).fileupload('send', {files: filesList}).
               success(function(result, textStatus, jqXHR) {
                 console.log("Successfully uploaded");
-                var img_receiver = element.parent().parent().find('img.receiver')[0],
                   original_src = img_receiver.src;
 
                 img_receiver.src = original_src+'?'+ Math.random();

@@ -38,31 +38,10 @@ function($scope) {
 GLClient.controller('AdminReceiversEditorCtrl', ['$scope',
   function($scope) {
     $scope.editing = false;
-    $scope.uploadfile = false;
 
     $scope.toggleEditing = function() {
       $scope.editing = $scope.editing ^ 1;
     }
-
-    // Used to keep track of weather or not the profile file has been changed
-    // or not.
-    $scope.fileSelected = false;
-    $scope.changeProfile = function() {
-      $scope.fileSelected = true;
-    }
-
-    $scope.closeProfile = function() {
-      $scope.fileSelected = $scope.uploadfile = false;
-    }
-
-    $scope.openUploader = function() {
-      $scope.uploadfile = true;
-    }
-
-    $scope.closeUploader = function() {
-      $scope.uploadfile = false;
-    }
-
 
     $scope.isSelected = function(context) {
       if ($scope.receiver.contexts.indexOf(context.context_gus) !== -1) {

@@ -42,3 +42,27 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changePasswordWatcher',
                     function($scope, changePasswordWatcher) {
     changePasswordWatcher($scope, "admin.node.old_password", "admin.node.password");
 }]);
+
+GLClient.controller('ImageUploadCtrl', ['$scope', function($scope){
+    $scope.uploadfile = false;
+
+    // Used to keep track of weather or not the profile file has been changed
+    // or not.
+    $scope.fileSelected = false;
+    $scope.changeProfile = function() {
+      $scope.fileSelected = true;
+    }
+
+    $scope.closeProfile = function() {
+      $scope.fileSelected = $scope.uploadfile = false;
+    }
+
+    $scope.openUploader = function() {
+      $scope.uploadfile = true;
+    }
+
+    $scope.closeUploader = function() {
+      $scope.uploadfile = false;
+    }
+
+}]);

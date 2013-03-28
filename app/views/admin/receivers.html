@@ -52,7 +52,8 @@
               </div>
 
               <div class="row editor receiverEditor" ng-show="editing">
-                <div class="span4">
+
+                <div class="span4 imageUpload" ng-controller="ImageUploadCtrl">
                   <div class="profile" ng-mouseenter="openUploader()"
                        ng-mouseleave="closeUploader()">
 
@@ -72,7 +73,7 @@
                       </div>
                     </div>
 
-                    <img src="/static/{{receiver.receiver_gus}}_120.png" class="img-polaroid receiver">
+                    <img src="/static/{{receiver.receiver_gus}}_120.png" class="img-polaroid baseimage">
 
                   </div>
 
