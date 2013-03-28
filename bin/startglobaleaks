@@ -7,15 +7,6 @@ import random
 
 from twisted.python import usage
 
-from globaleaks.settings import GLSetting
-
-
-# Avoid the export PYTHONPATH insanity
-this_directory = os.path.dirname(__file__)
-root = os.path.abspath(os.path.join(this_directory, '..'))
-sys.path.insert(0, root)
-
-
 try:
     import scrypt
     import apscheduler
@@ -32,6 +23,14 @@ except:
     print "need to answer without errors."
     print "and then use ./restartclean.sh (this will clean your database)"
     quit()
+
+from globaleaks.settings import GLSetting
+
+
+# Avoid the export PYTHONPATH insanity
+this_directory = os.path.dirname(__file__)
+root = os.path.abspath(os.path.join(this_directory, '..'))
+sys.path.insert(0, root)
 
 
 ###
