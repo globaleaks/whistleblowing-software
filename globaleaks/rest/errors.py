@@ -189,11 +189,18 @@ class InvalidAuthRequest(GLException):
 
 class NotAuthenticated(GLException):
     """
-    The user attempted to access a not-authorized request.
+    The user attempted to access a not-authorized request. The output messages
+    may contain reasons about the Authentication failure, but they are specify
+    only if users has show knowledge of good credentials.
     """
-    reason = "Not Authenticated"
     error_code = 30
     status_code = 412 # Precondition Failed
+
+    def __init__(self, details=None):
+        if not details:
+            self.reason = "Not Authenticated"
+        else:
+            self.reason = ("Not Authenticated: %s" % details)
 
 class InternalServerError(GLException):
     """

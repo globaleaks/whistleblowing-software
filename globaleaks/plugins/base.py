@@ -20,14 +20,14 @@ class GLPlugin:
         """
         raise NotImplementedError("Your plugin misses implementation of 'validate_admin_opt'")
 
-    def initialize(self, admin_fields):
-        raise NotImplementedError("Your plugin misses implementation of 'initialize'")
+    #def initialize(self, admin_fields):
+    #    raise NotImplementedError("Your plugin misses implementation of 'initialize'")
 
 
 class Notification(GLPlugin):
 
-    def digest_check(self, settings, stored_data, new_data):
-        raise NotImplementedError("Your plugin misses implementation of 'digest_check'")
+    #def digest_check(self, settings, stored_data, new_data):
+    #    raise NotImplementedError("Your plugin misses implementation of 'digest_check'")
 
     def validate_receiver_opt(self, admin_fields, receiver_fields):
         """
@@ -51,30 +51,3 @@ class Notification(GLPlugin):
         """
         raise NotImplementedError('Your plugin misses implementation of "do_notify"')
 
-
-class Delivery(GLPlugin):
-    def validate_receiver_opt(self, admin_fields, receiver_fields):
-        """
-        @param receiver_fields: the received Receiver fields, before being
-            saved in the database between Receiver Confs, is checked here
-        @param admin_fields: referenced profile settings
-        @return: bool
-        """
-        raise NotImplementedError("Your plugin misses implementation of 'validate_receiver_opt'")
-
-    def preparation_required(self, fileinfo, admin_fields):
-        raise NotImplementedError("Your plugin misses implementation of 'preparation_required'")
-
-    def do_delivery(self, settings, data_reference):
-        raise NotImplementedError("Your plugin misses implementation of 'do_delivery'")
-
-
-class FileProcess(GLPlugin):
-
-    def do_fileprocess(self, filepath, admin_fields):
-        """
-        @param filepath:
-        @param admin_fields:
-        @return:
-        """
-        raise NotImplementedError("Your plugin messes implementation of do_fileprocess")

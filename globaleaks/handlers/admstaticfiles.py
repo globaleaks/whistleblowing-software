@@ -19,6 +19,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils import log
 from globaleaks.rest import errors
 from globaleaks.rest.base import uuid_regexp
@@ -160,6 +161,8 @@ class StaticFileCollection(BaseHandler):
     """
 
     @inlineCallbacks
+    @authenticated('admin')
+    @transport_security_check('admin')
     def post(self, *args):
         """
         Upload a new files (one or more)
@@ -231,6 +234,8 @@ class StaticFileCollection(BaseHandler):
         self.finish(result_list)
 
 
+    @authenticated('admin')
+    @transport_security_check('admin')
     def get(self, *args):
         """
         Return the list of static files, with few filesystem info
@@ -247,6 +252,8 @@ class StaticFileInstance(BaseHandler):
     useful function in this case is the single deletion.
     """
 
+    @authenticated('admin')
+    @transport_security_check('admin')
     def delete(self, filename, *args):
         """
         Parameter: filename

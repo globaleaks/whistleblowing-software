@@ -29,6 +29,8 @@ class TestNodeInstance(helpers.TestHandler):
         del self.dummyNode['password']
         del self.dummyNode['old_password']
         del self.responses[0]['last_update']
+        del self.dummyNode['salt']
+        del self.dummyNode['salt_receipt']
 
         self.assertEqual(self.responses[0], self.dummyNode)
 
@@ -43,14 +45,13 @@ class TestNodeInstance(helpers.TestHandler):
             self.assertTrue(False)
         except InvalidInputFormat:
             self.assertTrue(True)
-        except Exception, e:
-            print "Invalid exception: %s" % e
-            self.assertTrue(False)
-            raise e
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            raise excep
 
     @inlineCallbacks
     def test_put_update_node_invalid_public(self):
-        self.dummyNode['hidden_service'] = 'acdef1234567890.onion'
+        self.dummyNode['hidden_service'] = 'abcdef1234567890.onion'
         self.dummyNode['public_site'] = 'blogleaks.blogspot.com'
 
         handler = self.request(self.dummyNode, role='admin')
@@ -59,10 +60,9 @@ class TestNodeInstance(helpers.TestHandler):
             self.assertTrue(False)
         except InvalidInputFormat:
             self.assertTrue(True)
-        except Exception, e:
-            print "Invalid exception: %s" % e
-            self.assertTrue(False)
-            raise e
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            raise excep
 
 
 class TestNotificationInstance(helpers.TestHandler):
@@ -123,14 +123,13 @@ class TestContextsCollection(helpers.TestHandler):
 
         try:
             yield handler.post()
-            yield handler.post()
+            yield handler.post() # duplication happen here
             self.assertTrue(False)
         except errors.ExpectedUniqueField:
             self.assertTrue(True)
-        except Exception, e:
-            print "Invalid exception: %s" % e
-            self.assertTrue(False)
-            raise e
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            raise excep
 
 
 class TestContextInstance(helpers.TestHandler):
@@ -173,6 +172,7 @@ class TestReceiversCollection(helpers.TestHandler):
         # this is required because helpers is creating a new receiver
         new_email = "guy@globaleaks.xxx"
         self.dummyReceiver['notification_fields']['mail_address'] = new_email
+        self.dummyReceiver['password'] = u'newcreatedpassword'
 
         handler = self.request(self.dummyReceiver, role='admin')
         yield handler.post()
@@ -187,6 +187,8 @@ class TestReceiversCollection(helpers.TestHandler):
     def test_post_invalid_mail_addr(self):
         self.dummyReceiver['name'] = 'beppe'
         self.dummyReceiver['notification_fields']['mail_address'] = "[antani@xx.it"
+        self.dummyReceiver['password'] = u'newcreatedpassword'
+
         handler = self.request(self.dummyReceiver, role='admin')
 
         try:
@@ -194,15 +196,15 @@ class TestReceiversCollection(helpers.TestHandler):
             self.assertTrue(False)
         except errors.NoEmailSpecified:
             self.assertTrue(True)
-        except Exception, e:
-            print "Invalid exception: %s" % e
-            self.assertTrue(False)
-            raise e
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            raise excep
 
     @inlineCallbacks
     def test_post_duplicated_username(self):
         self.dummyReceiver['name'] = 'beppe'
         self.dummyReceiver['notification_fields']['mail_address'] = "vecna@hellais.naif"
+        self.dummyReceiver['password'] = u'newcreatedpassword'
         handler = self.request(self.dummyReceiver, role='admin')
 
         try:
@@ -211,10 +213,9 @@ class TestReceiversCollection(helpers.TestHandler):
             self.assertTrue(False)
         except errors.ExpectedUniqueField:
             self.assertTrue(True)
-        except Exception, e:
-            print "Invalid exception: %s" % e
-            self.assertTrue(False)
-            raise e
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            raise excep
 
 
 class TestReceiverInstance(helpers.TestHandler):
@@ -229,15 +230,31 @@ class TestReceiverInstance(helpers.TestHandler):
         self.assertEqual(self.responses[0], self.dummyReceiver)
 
     @inlineCallbacks
-    def test_put(self):
+    def test_put_change_password(self):
         self.dummyReceiver['context_gus'] = ''
         del self.dummyReceiver['username']
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
         self.dummyReceiver['notification_fields']['mail_address'] = \
             u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['password'] = u'12345678'
+
         handler = self.request(self.dummyReceiver, role='admin')
         yield handler.put(self.dummyReceiver['receiver_gus'])
         self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
+
+    @inlineCallbacks
+    def test_put_with_password_empty(self):
+        self.dummyReceiver['context_gus'] = ''
+        del self.dummyReceiver['username']
+        self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
+        self.dummyReceiver['notification_fields']['mail_address'] =\
+        u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['password'] = u""
+
+        handler = self.request(self.dummyReceiver, role='admin')
+        yield handler.put(self.dummyReceiver['receiver_gus'])
+        self.assertEqual(self.responses[0]['name'], self.dummyReceiver['name'])
+
 
     @inlineCallbacks
     def test_put_invalid_context_gus(self):
@@ -248,6 +265,7 @@ class TestReceiverInstance(helpers.TestHandler):
         self.dummyReceiver['name'] = u'another unique name %d' % random.randint(1, 10000)
         self.dummyReceiver['notification_fields']['mail_address'] =\
             u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['password'] = u'12345678'
 
         handler = self.request(self.dummyReceiver, role='admin')
         try:
@@ -255,10 +273,9 @@ class TestReceiverInstance(helpers.TestHandler):
             self.assertTrue(False)
         except errors.ContextGusNotFound:
             self.assertTrue(True)
-        except Exception, e:
-            log.debug("Generic Exception: %s" % e)
-            self.assertTrue(False)
-            raise e
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            raise excep
 
     @inlineCallbacks
     def test_delete(self):
@@ -266,10 +283,9 @@ class TestReceiverInstance(helpers.TestHandler):
         try:
             yield handler.delete(self.dummyReceiver['receiver_gus'])
             self.assertTrue(True)
-        except Exception, e:
-            print "Invalid exception: %s" % e
-            self.assertTrue(False)
-            raise e
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            raise excep
 
         try:
             yield handler.get(self.dummyReceiver['receiver_gus'])

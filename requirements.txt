@@ -5,5 +5,7 @@ zope.interface
 cyclone
 storm
 transaction
+txsocksx>=0.0.2
 PyCrypto
 Pillow
+scrypt

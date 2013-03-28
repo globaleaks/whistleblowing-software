@@ -20,7 +20,7 @@ class TestAuthentication(helpers.TestHandler):
     def test_successful_receiver_login(self):
         handler = self.request({
            'username': self.dummyReceiver['username'],
-           'password': self.dummyReceiver['password'],
+           'password': helpers.DEFAULT_PASSWORD,
            'role': 'receiver'
         })
         success = yield handler.post()
@@ -54,7 +54,7 @@ class TestAuthentication(helpers.TestHandler):
     def test_successful_receiver_logout(self):
         handler = self.request({
             'username': self.dummyReceiver['username'],
-            'password': self.dummyReceiver['password'],
+            'password': helpers.DEFAULT_PASSWORD,
             'role': 'receiver'
         })
         success = yield handler.post()
