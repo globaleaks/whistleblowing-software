@@ -15,7 +15,8 @@ from globaleaks.settings import transact
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 
 from globaleaks.rest import requests
-from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified, InvalidOldPassword
+from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
+from globaleaks.security import change_password
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver):
@@ -57,13 +58,9 @@ def update_receiver_settings(store, user_id, request):
     new_password = request.get('password')
     old_password = request.get('old_password')
 
-    if new_password and old_password:
-        if receiver.password == old_password:
-            receiver.password = new_password
-        else:
-            raise InvalidOldPassword
-    elif new_password:
-        raise InvalidOldPassword
+    if len(new_password) and len(old_password):
+        receiver.password = change_password(receiver.password,
+                                            old_password, new_password, receiver.username)
 
     mail_address = utils.acquire_mail_address(request)
     if not mail_address:

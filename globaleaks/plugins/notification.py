@@ -9,14 +9,8 @@
 
 from cyclone import mail
 from twisted.internet.defer import Deferred
-from twisted.mail.smtp import ESMTPSenderFactory
-from twisted.internet import reactor, ssl
-from twisted.internet.endpoints import TCP4ClientEndpoint
-from OpenSSL import SSL
-
-from globaleaks.utils import log
+from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
-
 
 class MailNotification(Notification):
 
@@ -156,12 +150,11 @@ class MailNotification(Notification):
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 
-        self.host = event.notification_settings['server']
+        self.host = str(event.notification_settings['server'])
         self.port = int(event.notification_settings['port'])
-        self.username = event.notification_settings['username']
-        self.password = event.notification_settings['password']
-        self.security = event.notification_settings['security']
-        self.finished = Deferred()
+        self.username = str(event.notification_settings['username'])
+        self.password = str(event.notification_settings['password'])
+        self.security = str(event.notification_settings['security'])
 
         # to_addres maybe a list of addresses
         receiver_mail = event.receiver_info['notification_fields']['mail_address']
@@ -171,26 +164,16 @@ class MailNotification(Notification):
         message = mail.Message(from_addr=self.username,
                                to_addrs=to_addrs,
                                subject=title,
-                               message=body )
-        self.send(message)
+                               message=body)
+
+        self.finished = self.sendmail(self.username, self.password,
+                                      message.from_addr, message.to_addrs, message.render(),
+                                      self.host, self.port, self.security)
         log.debug('Email: connecting to [%s] for deliver to %s' % (self.host, receiver_mail))
         return self.finished
 
-    def send(self, message):
-        if self.security == 'SSL':
-            context_factory = ssl.ClientContextFactory()
-            context_factory.method = SSL.SSLv3_METHOD
-        else: # TODO support SSL
-            context_factory = None
+    def sendmail(self, authentication_username, authentication_password, from_address,
+                 to_address, message_file, smtp_host, smtp_port, security):
+        return sendmail(authentication_username, authentication_password, from_address,
+                        to_address, message_file, smtp_host, smtp_port, security)
 
-        factory = ESMTPSenderFactory(self.username, self.password,
-                                     message.from_addr,
-                                     message.to_addrs,
-                                     message.render(),
-                                     self.finished,
-                                     contextFactory=context_factory,
-                                     requireAuthentication=(self.username and self.password),
-                                     requireTransportSecurity=self.security)
-
-        endpoint = TCP4ClientEndpoint(reactor, self.host, self.port)
-        endpoint.connect(factory)

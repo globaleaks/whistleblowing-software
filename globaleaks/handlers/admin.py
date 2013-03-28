@@ -15,7 +15,7 @@ from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks import utils
+from globaleaks import utils, security
 from globaleaks.utils import log
 
 
@@ -62,9 +62,9 @@ def admin_serialize_receiver(receiver):
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
-        "password": receiver.password,
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "failed_login": receiver.failed_login,
+        "password": u"",
         "contexts": []
     }
     for context in receiver.contexts:
@@ -96,14 +96,10 @@ def update_node(store, request):
     node = store.find(Node).one()
 
     if len(request['old_password']) and len(request['password']):
-        if node.password == request['old_password']:
-            log.info("Administrator password update %s => %s" %
-                     (request['old_password'], request['password'] ))
-            node.password = request['password']
-        else:
-            log.info("Password invalid! cannot be changed now")
-            raise errors.InvalidOldPassword
-
+        node.password = security.change_password(node.password,
+                                    request['old_password'], request['password'], node.salt)
+        log.info("Administrator password update %s => %s" %
+                 (request['old_password'], request['password'] ))
 
     if len(request['public_site']) > 1:
         if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
@@ -169,6 +165,7 @@ def create_context(store, request):
         context.fields = request['fields']
 
     if len(request['name']) < 1:
+        log.err("Invalid request: name is an empty string")
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
 
     # Check that do not exists a Context with the proposed new name
@@ -179,11 +176,13 @@ def create_context(store, request):
         raise errors.ExpectedUniqueField('name', request['name'])
 
     if context.escalation_threshold and context.selectable_receiver:
+        log.err("Parameter conflict in context creation")
         raise errors.ContextParameterConflict
 
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
+            log.err("Creation error: unexistent context can't be associated")
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
@@ -199,6 +198,7 @@ def get_context(store, context_gus):
     context = store.find(Context, Context.id == unicode(context_gus)).one()
 
     if not context:
+        log.err("Requested invalid context")
         raise errors.ContextGusNotFound
 
     return admin_serialize_context(context)
@@ -241,6 +241,7 @@ def update_context(store, context_gus, request):
     for receiver_id in receivers:
         receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         if not receiver:
+            log.err("Update error: unexistent receiver can't be associated")
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
@@ -263,6 +264,7 @@ def delete_context(store, context_gus):
     context = store.find(Context, Context.id == unicode(context_gus)).one()
 
     if not context:
+        log.err("Invalid context requested in removal")
         raise errors.ContextGusNotFound
 
     store.remove(context)
@@ -330,12 +332,13 @@ def create_receiver(store, request):
     receiver.notification_fields = request['notification_fields']
     receiver.failed_login = 0
 
-    # XXX generate randomly and then mail to the user, mark receiver
-    # as 'inactive' until password is changed by activation link
-    if not request['password'] or len(request['password']) == 0:
-        receiver.password = u"globaleaks"
-    else:
-        receiver.password = request['password']
+    # A password strength checker need to be implemented in the client, but here a
+    # minimal check is put
+    if not len(request['password']) >= security.MINIMUM_PASSWORD_LENGTH:
+        log.err("Password of almost %d byte needed " % security.MINIMUM_PASSWORD_LENGTH)
+        raise errors.InvalidInputFormat("Password of almost %d byte needed " %
+                                        security.MINIMUM_PASSWORD_LENGTH)
+    receiver.password = security.hash_password(request['password'], mail_address)
 
     store.add(receiver)
     create_random_receiver_portrait(receiver.id)
@@ -344,6 +347,7 @@ def create_receiver(store, request):
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
         if not context:
+            log.err("Creation error: unexistent receiver can't be associated")
             raise errors.ContextGusNotFound
         context.receivers.add(receiver)
 
@@ -361,6 +365,7 @@ def get_receiver(store, id):
     receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
     if not receiver:
+        log.err("Requested invalid receiver")
         raise errors.ReceiverGusNotFound
 
     return admin_serialize_receiver(receiver)
@@ -390,7 +395,10 @@ def update_receiver(store, id, request):
 
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
-    receiver.password = request['password']
+
+    if len(request['password']):
+        # admin override password without effort :)
+        receiver.password = security.hash_password(request['password'], mail_address)
 
     contexts = request.get('contexts', [])
 
@@ -400,6 +408,7 @@ def update_receiver(store, id, request):
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
         if not context:
+            log.err("Update error: unexistent context can't be associated")
             raise errors.ContextGusNotFound
         receiver.contexts.add(context)
 
@@ -415,6 +424,7 @@ def delete_receiver(store, id):
     receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
     if not receiver:
+        log.err("Invalid receiver requested in removal")
         raise errors.ReceiverGusNotFound
 
     portrait_120 = os.path.join(GLSetting.static_path, "%s_120.png" % id)
@@ -705,6 +715,7 @@ def update_notification(store, request):
     if security in Notification._security_types:
         notif.security = security
     else:
+        log.err("Invalid request: Security option not recognized")
         raise errors.InvalidInputFormat("Security selection not recognized")
 
     notif.update(request)

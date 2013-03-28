@@ -5,6 +5,25 @@ import os
 import sys
 import random
 
+
+try:
+    import PIL
+    import scrypt
+    import apscheduler
+    import cyclone
+    import storm
+    import transaction
+    import txsocksx
+    import Crypto
+except:
+    print "You're missing some requirements in your pyenv/in your system"
+    print "\n"
+    print "follow the guidelines presented in: https://github.com/globaleaks/GlobaLeaks/wiki/Linux"
+    print "or execute: pip install -r requirements.txt"
+    print "need to answer without errors or import the required modules."
+    print "Then use ./restartclean.sh (this will clean your database)"
+    quit()
+
 from twisted.python import usage
 
 # Avoid the export PYTHONPATH insanity
@@ -13,17 +32,6 @@ root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
 from globaleaks.settings import GLSetting
-
-# Temporary help line to avoid mistakes, in April I'll remove this message
-try:
-    import PIL
-except Exception:
-    print "Since 20/03 a new library is required, and is missing in your environment"
-    print "Please execute:"
-    print '\033[1;313m%s\033[0m' % "sudo apt-get install libjpeg-dev"
-    print "and:"
-    print '\033[1;313m%s\033[0m' % "pip install -r requirements.txt"
-    quit()
 
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
@@ -85,8 +93,8 @@ for txt1, l, txt2 in header:
 
 print '\n'
 print colorize('Welcome', 'CYAN'), colorize('to', 'YELLOW'), 'Globa'+colorize('Leaks', 'RED')
-print ("Please handle with extreme care."
-       "Actually, you should not even be running this thing. WTF are you doing?")
+print ("Alpha release of GlobaLeaks 0.2."
+       "Actually, you may require our supports to makes GL works: irc.freenode.net #globaleaks can help you")
 
 
 GLSetting.parser.add_option("-s", "--storm", type="int",
@@ -105,6 +113,14 @@ GLSetting.parser.add_option("-a", "--accept-host", type="string", dest="host_lis
     help="specify a list comma separated of hostname acceptable by the HTTP server"\
         "(default: 127.0.0.1,localhost. If specify a new hosts, defaults are not more included in the allowed list)",
     default="127.0.0.1,localhost")
+GLSetting.parser.add_option("-k", "--socks-port", type="int",
+    help="Socks port to use Tor (default 9050)", dest="socks_port")
+GLSetting.parser.add_option("-o", "--socks-host", type="string",
+    help="Socks host to use Tor (default 127.0.0.1)", dest="socks_host")
+GLSetting.parser.add_option("-d", "--tor-socks", type="int",
+    help="use tor socks for notification: 1=enabled, 0=disable. (default 1)",
+    dest="enable_tor_socks", default=1)
+
 
 # here the options are parsed, because sys.argv array is whack below
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
