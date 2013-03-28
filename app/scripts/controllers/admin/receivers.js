@@ -38,6 +38,7 @@ function($scope) {
 GLClient.controller('AdminReceiversEditorCtrl', ['$scope',
   function($scope) {
     $scope.editing = false;
+    $scope.uploadfile = false;
 
     $scope.toggleEditing = function() {
       $scope.editing = $scope.editing ^ 1;
@@ -51,9 +52,17 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope',
     }
 
     $scope.closeProfile = function() {
-      $scope.fileSelected = false;
+      $scope.fileSelected = $scope.uploadfile = false;
+    }
+
+    $scope.openUploader = function() {
+      $scope.uploadfile = true;
+    }
+
+    $scope.closeUploader = function() {
       $scope.uploadfile = false;
     }
+
 
     $scope.isSelected = function(context) {
       if ($scope.receiver.contexts.indexOf(context.context_gus) !== -1) {

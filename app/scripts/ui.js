@@ -7,6 +7,44 @@
 // with it.
 // To learn more see: http://docs.angularjs.org/guide/directive
 angular.module('submissionUI', []).
+  directive('pragmaticFileUpload', function(){
+
+    return {
+
+      link: function(scope, element, attrs) {
+        var selectFileButton = element.find('button.selectFile'),
+          uploadButton = element.find('button.upload');
+        console.log(attrs);
+
+        scope.$watch(attrs.src, function(){
+          console.log(attrs.src);
+
+          $(uploadButton).click(function() {
+            var fileUploader = $(element).fileupload({url: attrs.src}),
+              filesList = element.find('input.file')[0].files;
+
+            $(element).fileupload('send', {files: filesList}).
+              success(function(result, textStatus, jqXHR) {
+                console.log("Successfully uploaded");
+                var img_receiver = element.parent().parent().find('img.receiver')[0],
+                  original_src = img_receiver.src;
+
+                img_receiver.src = original_src+'?'+ Math.random();
+                element.parent().hide();
+            }).
+              error(function(jqXHR, textStatus, error) {
+                console.log("There was a problem");
+            }).
+              complete(function(result, textStatus, jqXHR) {
+                console.log("All complete");
+            });
+
+          });
+
+        });
+      }
+    }
+}).
   // XXX this needs some major refactoring.
   directive('fileUpload', function(){
 

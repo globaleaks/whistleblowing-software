@@ -4,8 +4,6 @@ GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($sco
   var current_menu = $location.path().split('/').slice(-1);
   $scope.active = {};
   $scope.active[current_menu] = "active";
-  console.log(current_menu);
-
 }]);
 
 GLClient.controller('ReceiverTipsCtrl', ['$scope', 'ReceiverTips',

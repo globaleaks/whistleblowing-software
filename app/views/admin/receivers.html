@@ -53,19 +53,27 @@
 
               <div class="row editor receiverEditor" ng-show="editing">
                 <div class="span4">
-                  <div class="profile" ng-mouseenter="uploadfile=true;"
-                         ng-mouseleave="uploadfile=false;">
+                  <div class="profile" ng-mouseenter="openUploader()"
+                       ng-mouseleave="closeUploader()">
 
-                    <div ng-show="uploadfile || fileSelected" class="uploadfile" ng-click="fileuploader">
-                      <button class="close" ng-click="closeProfile()">×</button>
-                      <div class="fileselector">
-                        <input type="file" name="profile" ui-event="{change: 'changeProfile()'}">
-                        <button class="btn">Select file</button>
+                    <div ng-show="uploadfile || fileSelected" class="uploadfile">
+
+                      <div pragmatic-file-upload src="/admin/staticfiles?{{receiver.receiver_gus}}">
+
+                        <button class="close" ng-click="closeProfile()">×</button>
+                        <div class="fileselector">
+                          <input type="file" class="file"
+                                 name="profile" ui-event="{change: 'changeProfile()'}">
+                          <button class="btn selectFile">Select file</button>
+                        </div>
+                        <button class="btn upload" ng-disabled="!fileSelected"
+                                ng-class="{'btn-success': fileSelected}">upload</button>
+
                       </div>
-                      <button class="btn" ng-disabled="!fileSelected"
-                              ng-class="{'btn-success': fileSelected}">upload</button>
                     </div>
-                    <img data-src="holder.js/120x120" holder class="img-polaroid">
+
+                    <img src="/static/{{receiver.receiver_gus}}_120.png" class="img-polaroid receiver">
+
                   </div>
 
                   <label>Name</label>
