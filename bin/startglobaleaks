@@ -2,36 +2,88 @@
 # -*- encoding: utf-8 -*-
 
 import os
+import re
 import sys
 import random
+import pip
 
-
-try:
-    import PIL
-    import scrypt
-    import apscheduler
-    import cyclone
-    import storm
-    import transaction
-    import txsocksx
-    import Crypto
-except:
-    print "You're missing some requirements in your pyenv/in your system"
-    print "\n"
-    print "follow the guidelines presented in: https://github.com/globaleaks/GlobaLeaks/wiki/Linux"
-    print "or execute: pip install -r requirements.txt"
-    print "need to answer without errors or import the required modules."
-    print "Then use ./restartclean.sh (this will clean your database)"
-    quit()
+from pkg_resources import parse_version
 
 from twisted.python import usage
+
+# This check is performed after the pip requirements, because if someone is not in pyenv, would
+# get an error from this include:
+try:
+    from globaleaks.settings import GLSetting
+except Exception:
+    print "GlobaLeaks error: You're are not in pyenv environment\n"
+    print "Please, follow the usage guidelines explained in: https://github.com/globaleaks/GlobaLeaks/wiki/Linux"
+    quit()
 
 # Avoid the export PYTHONPATH insanity
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-from globaleaks.settings import GLSetting
+def version_number_compare(version1, version2):
+    return cmp(parse_version(version1), parse_version(version2))
+
+installed_packages = dict()
+for dist in pip.get_installed_distributions():
+    installed_packages[dist.project_name.lower()] = dist.version
+
+unmet_requirements = []
+with open("requirements.txt", "r") as rf:
+    p = re.compile('\s*(?P<package>[a-zA-Z0-9_.]+)(?P<condition>([<=>]){2}|([<>]){1})?(?P<version>\S+)?')
+    while 1:
+        requirement = rf.readline().strip()
+        if not requirement:
+            break
+        match = p.match(requirement)
+        if match:
+            package = match.group('package').lower()
+            version = match.group('version')
+            condition = match.group('condition')
+            
+            if package not in installed_packages:
+                unmet_requirements.append(requirement)
+                continue
+            
+            if condition:
+                installed_version = installed_packages[package]
+                check = version_number_compare(installed_version, version)
+                if condition == "<":
+                    if check >= 0:
+                        unmet_requirements.append(requirement)
+                        continue
+                elif condition == "<=":
+                    if check > 0:
+                        unmet_requirements.append(requirement)
+                        continue
+                elif condition == "==":
+                    if check != 0:
+                        unmet_requirements.append(requirement)
+                        continue
+                elif condition == ">=":
+                    if check < 0:
+                        unmet_requirements.append(requirement)
+                        continue
+                elif condition == ">":
+                    if check <= 0:
+                        unmet_requirements.append(requirement)
+                        continue
+
+if unmet_requirements:
+    print "Some GlobaLeaks requirements are unmet in pyenv environment\n"
+    print "Unmet requirements:"
+    for unmet_requirement in unmet_requirements:
+        print "\t" + unmet_requirement
+    print "\n"
+    print "The problem can be solved by:"
+    print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki/Linux"
+    print "2) Installing missing requirements using pip install -r requirements.txt"
+    quit()
+
 
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
