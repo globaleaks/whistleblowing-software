@@ -1,5 +1,5 @@
-GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
-    'Submission', 'Receivers', 'WhistleblowerTip', function($scope,
+GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Node',
+    'Submission', 'Receivers', 'WhistleblowerTip', function($scope, $rootScope,
       $location, Node, Submission, Receivers, WhistleblowerTip) {
 
   $scope.node_configured = false;
@@ -36,8 +36,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$location', 'Node',
     });
   };
 
-  $scope.uploadedFiles = [];
-  $scope.uploadingFiles = [];
+  $rootScope.uploadedFiles = [];
+  $rootScope.uploadingFiles = [];
   $scope.uploading = false;
 
   $scope.disclaimer = {accepted: false};

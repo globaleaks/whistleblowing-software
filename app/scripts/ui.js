@@ -55,7 +55,7 @@ angular.module('submissionUI', []).
     }
 }).
   // XXX this needs some major refactoring.
-  directive('fileUpload', function(){
+  directive('fileUpload', ['$rootScope', function($rootScope){
 
     // The purpose of this directive is to register the jquery-fileupload
     // plugin
@@ -77,7 +77,7 @@ angular.module('submissionUI', []).
         function add(e, data) {
           for (var file in data.files) {
             var file_info,
-              file_id = scope.uploadedFiles.length + file;
+              file_id = $rootScope.uploadedFiles.length + file;
 
             file_info = {'name': data.files[file].name,
               'filesize': data.files[file].size,
@@ -87,7 +87,7 @@ angular.module('submissionUI', []).
               'file_id': file_id
             };
 
-            scope.uploadingFiles.push(file_info);
+            $rootScope.uploadingFiles.push(file_info);
             scope.$apply();
           }
           data.submit();
@@ -103,8 +103,8 @@ angular.module('submissionUI', []).
             textStatus = data.textStatus,
             item_id;
 
-          scope.uploadedFiles.push(file_info);
-          scope.uploadingFiles.pop(file_info);
+          $rootScope.uploadedFiles.push(file_info);
+          $rootScope.uploadingFiles.pop(file_info);
           scope.$apply();
         };
 
@@ -112,7 +112,7 @@ angular.module('submissionUI', []).
           progressall: progressMeter, add: add, done: done});
       }
     }
-}).
+}]).
   directive('latenzaBox', ['$timeout', function($timeout){
     return function(scope, element, attrs) {
       // This directive serves for making our latenza box work.
