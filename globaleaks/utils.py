@@ -212,32 +212,10 @@ def mail_exception(etype, value, tback):
     tmp.append("Content-Transfer-Encoding: 8bit\n\n")
     tmp.append("Source: %s" % " ".join(os.uname()))
     tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
-    for line in traceback.extract_tb(tback):
-        tmp.append("\tFile: \"%s\"\n\t\t%s %s: %s\n"
-                   % (line[0], line[2], line[1], line[3]))
-    while True:
-        if not tback.tb_next:
-            break
-        tback = tback.tb_next
-    stack = []
-    f = tback.tb_frame
-    while f:
-        stack.append(f)
-        f = f.f_back
-    stack.reverse()
-    tmp.append("\nLocals by frame, innermost last:")
-    for frame in stack:
-        tmp.append("\nFrame %s in %s at line %s" % (frame.f_code.co_name,
-                                                    frame.f_code.co_filename,
-                                                    frame.f_lineno))
-        for key, val in frame.f_locals.items():
-            tmp.append("\n\t%20s = " % key)
-            try:
-                tmp.append(str(val))
-            except Exception, e:
-                tmp.append("<ERROR WHILE PRINTING VALUE> %s" % e)
+    
+    exception = traceback.format_exception(type_, value, tb)
 
-    message = StringIO(''.join(tmp))
+    message = StringIO(''.join(exception))
 
     log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, ''.join(tmp)) )
 
