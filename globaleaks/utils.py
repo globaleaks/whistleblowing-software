@@ -215,6 +215,11 @@ def mail_exception(etype, value, tback):
     for line in traceback.extract_tb(tback):
         tmp.append("\tFile: \"%s\"\n\t\t%s %s: %s\n"
                    % (line[0], line[2], line[1], line[3]))
+
+    if not tback:
+        log.debug("Missing traceback in: %s" % etype)
+        return
+
     while True:
         if not tback.tb_next:
             break
