@@ -161,14 +161,17 @@ class StaticFileCollection(BaseHandler):
     """
 
     @inlineCallbacks
-    @authenticated('admin')
     @transport_security_check('admin')
+    @authenticated('admin')
     def post(self, *args):
         """
         Upload a new files (one or more)
         """
         result_list = []
         start_time = time.time()
+
+        if not self.request.files:
+            raise errors.InvalidInputFormat("Missing POST elements")
 
         file_array, files = self.request.files.popitem()
 
@@ -195,6 +198,9 @@ class StaticFileCollection(BaseHandler):
         except OSError as excpd:
             inf_list = get_files_info(files)
             log.err("OSError while create a new static file [%s]: %s" % (str(inf_list), excpd))
+            raise errors.InternalServerError
+        except Exception as excpd:
+            log.err("Not handled exception: %s" % excpd.__repr__())
             raise errors.InternalServerError
 
         for file_desc in file_list:
@@ -234,8 +240,8 @@ class StaticFileCollection(BaseHandler):
         self.finish(result_list)
 
 
-    @authenticated('admin')
     @transport_security_check('admin')
+    @authenticated('admin')
     def get(self, *args):
         """
         Return the list of static files, with few filesystem info
@@ -252,8 +258,8 @@ class StaticFileInstance(BaseHandler):
     useful function in this case is the single deletion.
     """
 
-    @authenticated('admin')
     @transport_security_check('admin')
+    @authenticated('admin')
     def delete(self, filename, *args):
         """
         Parameter: filename
