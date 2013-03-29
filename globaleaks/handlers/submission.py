@@ -7,9 +7,9 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 from globaleaks.models import *
-from globaleaks import models
+from globaleaks import models, security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check
 from globaleaks.jobs.notification_sched import APSNotification
@@ -19,7 +19,7 @@ from globaleaks.rest import requests
 from globaleaks.utils import log, utc_future_date, pretty_date_time
 from globaleaks.third_party import rstr
 from globaleaks.rest.errors import *
-from globaleaks.settings import GLSetting
+
 
 
 def wb_serialize_internaltip(internaltip):
@@ -49,14 +49,23 @@ def wb_serialize_internaltip(internaltip):
 
 @transact
 def create_whistleblower_tip(store, submission):
+    """
+    The plaintext receipt is returned only now, and then is
+    stored hashed in the WBtip table
+    """
     assert submission is not None and submission.has_key('id')
 
     wbtip = WhistleblowerTip()
-    wbtip.receipt = unicode( rstr.xeger(GLSetting.receipt_regexp) )
+
+    return_value_receipt = unicode( rstr.xeger(GLSetting.receipt_regexp) )
+    node = store.find(Node).one()
+    wbtip.receipt_hash = security.hash_password(return_value_receipt, node.receipt_salt)
+
     wbtip.access_counter = 0
     wbtip.internaltip_id = submission['id']
     store.add(wbtip)
-    return wbtip.receipt
+
+    return return_value_receipt
 
 
 def import_receivers(store, submission, receiver_id_list, context, required=False):

@@ -54,13 +54,13 @@ class SubmissionTest(unittest.TestCase):
     aReceiver1 = {
         'name': u'first', 'description': u"I'm tha 1st",
         'notification_fields': {'mail_address': u'first@winstonsmith.org' },
-        'receiver_level': 1, 'can_delete_submission': False, 'password': u'x',
+        'receiver_level': 1, 'can_delete_submission': False, 'password': helpers.DEFAULT_PASSWORD,
     }
 
     aReceiver2 = {
         'name': u'UNUSED', 'description': u"UNUSED",
         'notification_fields': {'mail_address': u'unused@winstonsmith.org' },
-        'receiver_level': 1, 'can_delete_submission': False, 'password': u'x',
+        'receiver_level': 1, 'can_delete_submission': False, 'password': helpers.DEFAULT_PASSWORD,
     }
 
     aSubmission = {

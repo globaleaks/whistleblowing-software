@@ -11,6 +11,8 @@ from globaleaks.handlers import tip, base, admin, submission, authentication
 from globaleaks.jobs import delivery_sched
 from globaleaks import models
 
+STATIC_PASSWORD = u'bungabunga ;('
+
 class MockHandler(base.BaseHandler):
 
     def __init__(self):
@@ -44,14 +46,14 @@ class TTip(helpers.TestWithDB):
         'notification_fields': {'mail_address': u'first@winstonsmith.org' },
         'name': u'first', 'description': u"I'm tha 1st",
         'receiver_level': u'1', 'can_delete_submission': True,
-        'password': u'x'
+        'password': STATIC_PASSWORD,
     }
 
     tipReceiver2 = {
         'notification_fields': {'mail_address': u'second@winstonsmith.org' },
         'name': u'second', 'description': u"I'm tha 2nd",
         'receiver_level': u'1', 'can_delete_submission': False,
-        'password': u'x'
+        'password': STATIC_PASSWORD,
     }
 
     tipSubmission = {
@@ -167,10 +169,10 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def access_receivers_tip(self):
 
-        auth1 = yield authentication.login_receiver(self.receiver1_desc['username'], self.receiver1_desc['password'])
+        auth1 = yield authentication.login_receiver(self.receiver1_desc['username'], STATIC_PASSWORD)
         self.assertEqual(auth1, self.receiver1_desc['receiver_gus'])
 
-        auth2 = yield authentication.login_receiver(self.receiver2_desc['username'], self.receiver2_desc['password'])
+        auth2 = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
         self.assertEqual(auth2, self.receiver2_desc['receiver_gus'])
 
         self.receiver1_data = yield tip.get_internaltip_receiver(auth1, self.rtip1_id)

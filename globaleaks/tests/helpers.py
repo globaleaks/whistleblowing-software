@@ -1,6 +1,7 @@
 import os
 import json
 import time
+import uuid
 
 from twisted.trial import unittest
 from twisted.test import proto_helpers
@@ -11,11 +12,11 @@ from storm.twisted.testing import FakeThreadPool
 from globaleaks.settings import GLSetting, transact
 
 _TEST_DB = 'test.db'
+DEFAULT_PASSWORD = u'yustapassword'
 
 transact.tp = FakeThreadPool()
 GLSetting.scheduler_threadpool = FakeThreadPool()
 GLSetting.db_file = 'sqlite:///' + _TEST_DB
-GLSetting.gldata_path
 GLSetting.store = 'test_store'
 GLSetting.notification_plugins = []
 GLSetting.sessions = {}
@@ -53,28 +54,42 @@ class TestGL(TestWithDB):
 
     @inlineCallbacks
     def fill_data(self):
-        self.dummyReceiver = yield create_receiver(self.dummyReceiver)
+        try:
+            self.dummyReceiver = yield create_receiver(self.dummyReceiver)
+        except Exception as excp:
+            print "Fail fill_data/create_receiver: %s" % excp
 
-        self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
-        self.dummyContext = yield create_context(self.dummyContext)
+        try:
+            self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
+            self.dummyContext = yield create_context(self.dummyContext)
+        except Exception as excp:
+            print "Fail fill_data/create_context: %s" % excp
 
         self.dummyContext['contexts'] = [ self.dummyContext['context_gus'] ]
-
         self.dummySubmission['context_gus'] = self.dummyContext['context_gus']
         self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
-        self.dummySubmission = yield create_submission(self.dummySubmission, finalize=True)
 
-        self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
+        try:
+            self.dummySubmission = yield create_submission(self.dummySubmission, finalize=True)
+        except Exception as excp:
+            print "Fail fill_data/create_submission: %s" % excp
+
+        try:
+            self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
+        except Exception as excp:
+            print "Fail fill_data/create_whistleblower: %s" % excp
+
 
     def setUp_dummy(self):
         self.dummyReceiver = {
-            'password': u'john',
+            'receiver_gus': unicode(uuid.uuid4()),
+            'password': DEFAULT_PASSWORD,
             'name': u'john smith',
             'description': u'the first receiver',
             'notification_fields': {'mail_address': u'maker@ggay.it'},
             'can_delete_submission': True,
             'receiver_level': 1,
-            'contexts' : []
+            'contexts' : [],
         }
         self.dummyContext = {
             'name': u'created by shooter',
@@ -131,6 +146,8 @@ class TestGL(TestWithDB):
                             { "code" : "en" , "name" : "English" }],
              'password' : '',
              'old_password' : '',
+             'salt': 'xxxxxhefdiufiwnfewifweibeifwiebfibweiufwixx',
+             'salt_receipt': 'mfeiwofmeiwofmnoiwefniowefowiemfoiwefow',
         }
         self.dummyNotification = {
             'server': u'mail.foobar.xxx',
@@ -138,10 +155,10 @@ class TestGL(TestWithDB):
             'username': u'staceppa',
             'password': u'antani',
             'security': u'SSL',
-            'tip_template': u'tip message: %s',
-            'comment_template': u'comment message: %s',
-            'file_template': u'file message: %s',
-            'activation_template': u'activation message: %s',
+            'tip_template': u'tip message: %sNodeName%',
+            'comment_template': u'comment message: %sNodeName%',
+            'file_template': u'file message: %sNodeName%',
+            'activation_template': u'activation message: %sNodeName%',
         }
 
 class TestHandler(TestGL):

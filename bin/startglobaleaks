@@ -2,15 +2,78 @@
 # -*- encoding: utf-8 -*-
 
 import os
+import re
 import sys
 import random
+import pip
+
+from pkg_resources import parse_version
 
 from twisted.python import usage
 
-# Avoid the export PYTHONPATH insanity
+# avoid: source glenv/bin/activate && export PYTHONPATH=`pwd` <- this last part
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
+
+def version_number_compare(version1, version2):
+    return cmp(parse_version(version1), parse_version(version2))
+
+installed_packages = dict()
+for dist in pip.get_installed_distributions():
+    installed_packages[dist.project_name.lower()] = dist.version
+
+unmet_requirements = []
+with open(root + "/requirements.txt", "r") as rf:
+    p = re.compile('\s*(?P<package>[a-zA-Z0-9_.]+)(?P<condition>([<=>]){2}|([<>]){1})?(?P<version>\S+)?')
+    while 1:
+        requirement = rf.readline().strip()
+        if not requirement:
+            break
+        match = p.match(requirement)
+        if match:
+            package = match.group('package').lower()
+            version = match.group('version')
+            condition = match.group('condition')
+
+            if package not in installed_packages:
+                unmet_requirements.append(requirement)
+                continue
+
+            if condition:
+                installed_version = installed_packages[package]
+                check = version_number_compare(installed_version, version)
+                if condition == "<":
+                    if check >= 0:
+                        unmet_requirements.append(requirement)
+                        continue
+                elif condition == "<=":
+                    if check > 0:
+                        unmet_requirements.append(requirement)
+                        continue
+                elif condition == "==":
+                    if check != 0:
+                        unmet_requirements.append(requirement)
+                        continue
+                elif condition == ">=":
+                    if check < 0:
+                        unmet_requirements.append(requirement)
+                        continue
+                elif condition == ">":
+                    if check <= 0:
+                        unmet_requirements.append(requirement)
+                        continue
+
+if unmet_requirements:
+    print "Some GlobaLeaks requirements are unmet in pyenv environment\n"
+    print "Unmet requirements:"
+    for unmet_requirement in unmet_requirements:
+        print "\t" + unmet_requirement
+    print "\n"
+    print "The problem can be solved by:"
+    print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki/Linux"
+    print "2) Installing missing requirements using pip install -r requirements.txt"
+    quit()
 
 from globaleaks.settings import GLSetting
 
@@ -74,8 +137,8 @@ for txt1, l, txt2 in header:
 
 print '\n'
 print colorize('Welcome', 'CYAN'), colorize('to', 'YELLOW'), 'Globa'+colorize('Leaks', 'RED')
-print ("Please handle with extreme care."
-       "Actually, you should not even be running this thing. WTF are you doing?")
+print ("Alpha release of GlobaLeaks 0.2."
+       "Actually, you may require our supports to makes GL works: irc.freenode.net #globaleaks can help you")
 
 
 GLSetting.parser.add_option("-s", "--storm", type="int",
@@ -94,6 +157,14 @@ GLSetting.parser.add_option("-a", "--accept-host", type="string", dest="host_lis
     help="specify a list comma separated of hostname acceptable by the HTTP server"\
         "(default: 127.0.0.1,localhost. If specify a new hosts, defaults are not more included in the allowed list)",
     default="127.0.0.1,localhost")
+GLSetting.parser.add_option("-k", "--socks-port", type="int",
+    help="Socks port to use Tor (default 9050)", dest="socks_port")
+GLSetting.parser.add_option("-o", "--socks-host", type="string",
+    help="Socks host to use Tor (default 127.0.0.1)", dest="socks_host")
+GLSetting.parser.add_option("-d", "--tor-socks", type="int",
+    help="use tor socks for notification: 1=enabled, 0=disable. (default 1)",
+    dest="enable_tor_socks", default=1)
+
 
 # here the options are parsed, because sys.argv array is whack below
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
