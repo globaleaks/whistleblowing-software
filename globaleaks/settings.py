@@ -97,6 +97,14 @@ class GLSettingsClass:
         self.socks_port = 9050
         self.tor_socks_enable = True
 
+        # Expiry time of finalized and not finalized submission,
+        # They are copied in a context *when is created*, then
+        # changing this variable do not modify the cleaning
+        # timings of the existing contexts
+        self.tip_seconds_of_life = (3600 * 24) * 15
+        self.submission_seconds_of_life = (3600 * 24) * 1
+        # enhancement: supports "extended settings in GLCLient"
+
 
     def load_cmdline_options(self):
         """

@@ -124,7 +124,9 @@ class TestGL(TestWithDB):
                         u'value': u'buh ?'}],
             'selectable_receiver': False,
             'tip_max_access': 10,
-            'tip_timetolive': 2,
+            # _timetolive are expressed in seconds!
+            'tip_timetolive': 200,
+            'submission_timetolive': 100,
             'file_max_download' :1,
             'escalation_threshold': 1,
             'receivers' : []

@@ -40,15 +40,15 @@ class SubmissionTest(unittest.TestCase):
     aContext1 = {
         'name': u'CtxName', 'description': u'dummy context with default fields',
         'escalation_threshold': u'0', 'tip_max_access': u'2',
-        'tip_timetolive': 1, 'file_max_download': 2, 'selectable_receiver': True,
-        'receivers': [], 'fields': []
+        'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
+        'receivers': [], 'fields': [], 'submission_timetolive': 100,
     }
 
     aContext2 = {
         'name': u'UNUSED', 'description': u'UNUSED',
         'escalation_threshold': u'0', 'tip_max_access': u'2',
-        'tip_timetolive': 1, 'file_max_download': 2, 'selectable_receiver': True,
-        'receivers': [], 'fields': []
+        'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
+        'receivers': [], 'fields': [], 'submission_timetolive': 100,
     }
 
     aReceiver1 = {

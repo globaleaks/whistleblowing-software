@@ -24,6 +24,7 @@ CREATE TABLE context (
     selectable_receiver INTEGER NOT NULL,
     tip_max_access INTEGER NOT NULL,
     tip_timetolive INTEGER NOT NULL,
+    submission_timetolive INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 
