@@ -7,6 +7,7 @@ _gldata
 *.egg-info
 *.log
 *_trial_temp*
+_static
 .idea/*
 twistd.pid
 glenv/

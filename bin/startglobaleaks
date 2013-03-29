@@ -64,6 +64,7 @@ with open(root + "/requirements.txt", "r") as rf:
                         unmet_requirements.append(requirement)
                         continue
 
+
 if unmet_requirements:
     print "Some GlobaLeaks requirements are unmet in pyenv environment\n"
     print "Unmet requirements:"

@@ -10,14 +10,10 @@
 import os
 
 from globaleaks.settings import GLSetting
-from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication
+from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.rest.base import uuid_regexp
 
-tip_access_token = r'(\w+)' # XXX need to be changed with regexp.submission_gus | regexp.receipt_gus
-file_uuid = uuid_regexp
-receiver_token_auth = uuid_regexp
-wb_receipt = r'(\w+)'
 
 # Here is mapped a path and the associated class to be invoked,
 # Two kind of Classes:
@@ -72,7 +68,7 @@ spec = [
     (r'/tip/' + uuid_regexp + r'/upload', files.FileAdd),
 
     #  T5 = only Receiver, download the files
-    (r'/tip/' + uuid_regexp + '/download/' + file_uuid, files.Download),
+    (r'/tip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
 
     ## Receiver Handlers ##
     #  R1
@@ -99,6 +95,12 @@ spec = [
 
     #  A6
     (r'/admin/notification', admin.NotificationInstance),
+
+    # A7
+    (r'/admin/staticfiles', admstaticfiles.StaticFileCollection),
+
+    # A8
+    (r'/admin/staticfiles/' + GLSetting.staticfile_regexp, admstaticfiles.StaticFileInstance),
 
 ]
 
