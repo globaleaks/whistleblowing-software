@@ -136,7 +136,7 @@ class GLSettingsClass:
             if not self.validate_port(self.cmdline_options.socks_port):
                 quit()
             self.socks_port = self.cmdline_options.socks_port
-        
+
         if not self.cmdline_options.start_clean:
             self.start_clean = False
 
@@ -149,7 +149,7 @@ class GLSettingsClass:
             self.submission_path = os.path.join(self.gldata_path, 'submission')
             self.db_file = 'sqlite:' + os.path.join(self.gldata_path,
                                                     'glbackend.db')
-            self.create_db_file = os.path.join(self.working_path, 'globaleaks', 'db',
+            self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db',
                                                'sqlite.sql')
             self.static_path = os.path.join(self.working_path, '_static')
             self.logfile = os.path.join(self.gldata_path, 'glbackend.log')
@@ -182,8 +182,6 @@ class GLSettingsClass:
 
         if not os.path.isdir(self.submission_path):
             os.mkdir(self.submission_path)
-
-        print self.working_path
 
         assert all( os.path.exists(path) for path in
                    (self.working_path, self.root_path, self.glclient_path,

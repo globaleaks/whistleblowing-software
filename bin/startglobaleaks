@@ -174,11 +174,6 @@ GLSetting.parser.add_option("-c", "--start-clean", type="int",
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
 
 GLSetting.load_cmdline_options()
-GLSetting.consistency_check()
-
-backend_script = os.path.join(root, 'globaleaks', 'backend.py')
-
-sys.argv[1:] = ['-ny', backend_script]
 
 if GLSetting.start_clean:
     for root, dirs, files in os.walk(GLSetting.working_path, topdown=False):
@@ -186,6 +181,14 @@ if GLSetting.start_clean:
             os.remove(os.path.join(root, name))
         for name in dirs:
             os.rmdir(os.path.join(root, name))
+
+GLSetting.consistency_check()
+
+os.chdir(GLSetting.working_path)
+
+backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
+
+sys.argv[1:] = ['-ny', backend_script]
 
 def run_glbackend():
     from globaleaks import runner
