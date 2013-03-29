@@ -87,9 +87,9 @@ def start_asynchronous():
     notify_sched.force_execution(GLAsynchronous, seconds=7)
     GLAsynchronous.add_interval_job(notify_sched.operation, minutes=2)
 
-    #clean_sched = cleaning_sched.APSCleaning()
-    #clean_sched.force_execution(GLAsynchronous, seconds=11)
-    #GLAsynchronous.add_interval_job(clean_sched.operation, hours=6)
+    clean_sched = cleaning_sched.APSCleaning()
+    clean_sched.force_execution(GLAsynchronous, seconds=11)
+    GLAsynchronous.add_interval_job(clean_sched.operation, seconds=15)
 
     #stats_sched = statistics_sched.APSStatistics()
     #stats_sched.force_execution(GLAsynchronous, seconds=9)

@@ -160,8 +160,11 @@ class Context(Model):
     escalation_threshold = Int()
 
     tip_max_access = Int()
-    tip_timetolive = Int()
     file_max_download = Int()
+
+    # both expressed in seconds
+    tip_timetolive = Int()
+    submission_timetolive = Int()
 
     last_update = DateTime()
 
@@ -169,7 +172,7 @@ class Context(Model):
 
     unicode_keys = ['name', 'description' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
-                 'file_max_download']
+                 'file_max_download', 'submission_timetolive' ]
     bool_keys = [ 'selectable_receiver' ]
 
 

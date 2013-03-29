@@ -38,6 +38,7 @@ def admin_serialize_context(context):
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
+        "submission_timetolive": context.submission_timetolive,
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
         "fields": context.fields if context.fields else [],
