@@ -43,18 +43,6 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope',
       $scope.editing = $scope.editing ^ 1;
     }
 
-    // Used to keep track of weather or not the profile file has been changed
-    // or not.
-    $scope.fileSelected = false;
-    $scope.changeProfile = function() {
-      $scope.fileSelected = true;
-    }
-
-    $scope.closeProfile = function() {
-      $scope.fileSelected = false;
-      $scope.uploadfile = false;
-    }
-
     $scope.isSelected = function(context) {
       if ($scope.receiver.contexts.indexOf(context.context_gus) !== -1) {
         return true;

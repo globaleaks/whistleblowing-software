@@ -139,12 +139,14 @@
   margin-bottom: 10px;
 }
 
-.editor .profile {
+/** **/
+
+.imageUpload .profile {
   position: relative;
   width: 140px;
 }
 
-.editor .profile .uploadfile {
+.imageUpload .profile .uploadfile {
   position: absolute;
   top: 0px;
   padding-top: 30px;
@@ -155,11 +157,11 @@
   opacity: 0.7;
 }
 
-.editor .profile .uploadfile span {
+.imageUpload .profile .uploadfile span {
   color: white;
 }
 
-.editor .profile .close {
+.imageUpload .profile .close {
   position: absolute;
   top: 0px;
   right: 6px;
@@ -167,6 +169,8 @@
   text-shadow: 0 1px 0 #000;
   opacity: 0.8;
 }
+
+/** **/
 
 .fileselector {
   margin: 0 auto;
