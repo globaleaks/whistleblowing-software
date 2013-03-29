@@ -47,17 +47,17 @@ class GLSettingsClass:
 
         # files and paths
         self.store_name = 'main_store'
+        self.working_path = os.getcwd()
         self.root_path = os.path.join(os.path.dirname(__file__), '..')
-        self.install_path = os.path.abspath(os.path.join(self.root_path, '..'))
-        self.glclient_path = os.path.join(self.install_path, 'GLClient', 'app')
-        self.gldata_path = os.path.join(self.root_path, '_gldata')
+        self.glclient_path = os.path.join(self.root_path, '..', 'GLClient', 'app')
+        self.gldata_path = os.path.join(self.working_path, '_gldata')
         self.cyclone_io_path = os.path.join(self.gldata_path, "cyclone_debug")
         self.submission_path = os.path.join(self.gldata_path, 'submission')
         self.db_file = 'sqlite:' + os.path.join(self.gldata_path,
                                                 'glbackend.db')
         self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db',
                                            'sqlite.sql')
-        self.static_path = os.path.join(self.root_path, '_static')
+        self.static_path = os.path.join(self.working_path, '_static')
         self.logfile = os.path.join(self.gldata_path, 'glbackend.log')
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
 
@@ -81,7 +81,7 @@ class GLSettingsClass:
         self.generic_limit = 2048
 
         # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = [ ]
+        self.accepted_hosts = []
 
         # transport security defaults
         self.tor2web_permitted_ops = {
@@ -97,6 +97,8 @@ class GLSettingsClass:
         self.socks_port = 9050
         self.tor_socks_enable = True
 
+        self.start_clean = True
+
 
     def load_cmdline_options(self):
         """
@@ -110,10 +112,10 @@ class GLSettingsClass:
         self.db_debug = self.cmdline_options.storm
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
-        self.bind_port = self.cmdline_options.port
 
-        if not self.validate_port(self.bind_port):
+        if not self.validate_port(self.cmdline_options.port):
             quit()
+        self.bind_port = self.cmdline_options.port
 
         # If user has requested this option, initialize a counter to
         # record the requests sequence, and setup the logs path
@@ -126,12 +128,31 @@ class GLSettingsClass:
 
         if self.cmdline_options.socks_host:
             self.socks_host = self.cmdline_options.socks_host
+
         if not self.cmdline_options.enable_tor_socks:
             self.tor_socks_enable = False
+
         if self.cmdline_options.socks_port:
-            self.socks_port = self.cmdline_options.socks_port
-            if not self.validate_port(self.socks_port):
+            if not self.validate_port(self.cmdline_options.socks_port):
                 quit()
+            self.socks_port = self.cmdline_options.socks_port
+        
+        if not self.cmdline_options.start_clean:
+            self.start_clean = False
+
+        if self.cmdline_options.working_path:
+            self.working_path = self.cmdline_options.working_path
+            self.root_path = os.path.join(os.path.dirname(__file__), '..')
+            self.glclient_path = os.path.join(self.root_path, '..', 'GLClient', 'app')
+            self.gldata_path = os.path.join(self.working_path, '_gldata')
+            self.cyclone_io_path = os.path.join(self.gldata_path, "cyclone_debug")
+            self.submission_path = os.path.join(self.gldata_path, 'submission')
+            self.db_file = 'sqlite:' + os.path.join(self.gldata_path,
+                                                    'glbackend.db')
+            self.create_db_file = os.path.join(self.working_path, 'globaleaks', 'db',
+                                               'sqlite.sql')
+            self.static_path = os.path.join(self.working_path, '_static')
+            self.logfile = os.path.join(self.gldata_path, 'glbackend.log')
 
 
     def validate_port(self, inquiry_port):
@@ -146,6 +167,9 @@ class GLSettingsClass:
         """
         Execute some consinstencyt check on command provided Globaleaks paths
         """
+        if not os.path.exists(self.working_path):
+            os.mkdir(self.working_path)
+
         if not os.path.exists(self.gldata_path):
             os.mkdir(self.gldata_path)
 
@@ -159,8 +183,10 @@ class GLSettingsClass:
         if not os.path.isdir(self.submission_path):
             os.mkdir(self.submission_path)
 
+        print self.working_path
+
         assert all( os.path.exists(path) for path in
-                   (self.root_path, self.install_path, self.glclient_path,
+                   (self.working_path, self.root_path, self.glclient_path,
                     self.gldata_path, self.static_path, self.submission_path)
                 )
 
