@@ -182,7 +182,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
     else:
         socksProxy = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
-        
+
     d = endpoint.connect(factory)
     d.addErrback(result_deferred.errback)
 
@@ -212,10 +212,10 @@ def mail_exception(etype, value, tback):
     tmp.append("Content-Transfer-Encoding: 8bit\n\n")
     tmp.append("Source: %s" % " ".join(os.uname()))
     tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
-    
-    exception = traceback.format_exception(type_, value, tb)
 
-    message = StringIO(''.join(exception))
+    tmp.append(traceback.format_exception(type_, value, tb))
+
+    message = StringIO(''.join(tmp))
 
     log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, ''.join(tmp)) )
 
