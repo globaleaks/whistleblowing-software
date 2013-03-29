@@ -306,7 +306,7 @@ class BaseHandler(RequestHandler):
             pass
 
         if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
-            if self.settings.get("debug") is True and e.log_message:
+            if GLSetting.cyclone_debug and e.log_message:
                 format = "%d %s: " + e.log_message
                 args = [e.status_code, self._request_summary()] + list(e.args)
                 msg = lambda *args: format % args
@@ -317,11 +317,11 @@ class BaseHandler(RequestHandler):
             else:
                 return self.send_error(e.status_code, exception=e)
         else:
-            if self.settings.get("debug") is True:
+            if GLSetting.cyclone_debug:
                 log.msg(e)
             log.msg("Uncaught exception %s :: %r" % \
                     (self._request_summary(), self.request))
-            mail_exception(exc_type, exc_value, exc_tb)
+            # mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
 

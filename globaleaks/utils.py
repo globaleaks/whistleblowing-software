@@ -210,9 +210,8 @@ def mail_exception(etype, value, tback):
     tmp.append("Subject: GLBackend Exception [%d]\n" % mail_exception.mail_counter)
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1\n")
     tmp.append("Content-Transfer-Encoding: 8bit\n\n")
-    tmp.append("Source: %s" % " ".join(os.uname()))
+    tmp.append("Source: %s\n\n" % " ".join(os.uname()))
     tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
-
     tmp.append(traceback.format_exception(type_, value, tb))
 
     message = StringIO(''.join(tmp))
