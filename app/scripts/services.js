@@ -351,6 +351,12 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           {method: 'PUT'}
       });
 }]).
+  factory('ReceiverOverview', ['$resource', function($resource) {
+      return $resource('/admin/overview/receivers');
+}]).
+  factory('TipOverview', ['$resource', function($resource) {
+      return $resource('/admin/overview/tips');
+}]).
   factory('cookiesEnabled', function(){
 
   var deleteCookie = function(name) {
