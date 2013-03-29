@@ -164,7 +164,11 @@ GLSetting.parser.add_option("-o", "--socks-host", type="string",
 GLSetting.parser.add_option("-d", "--tor-socks", type="int",
     help="use tor socks for notification: 1=enabled, 0=disable. (default 1)",
     dest="enable_tor_socks", default=1)
-
+GLSetting.parser.add_option("-w", "--working-path", type="string",
+    help="define the glbackend working directory (default ./_gldata)", dest="working_path")
+GLSetting.parser.add_option("-c", "--start-clean", type="int",
+    help="start a clean globaleks install: 1=enabled, 0=disable. (default 0)",
+    dest="start_clean", default=0)
 
 # here the options are parsed, because sys.argv array is whack below
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
@@ -175,6 +179,13 @@ GLSetting.consistency_check()
 backend_script = os.path.join(root, 'globaleaks', 'backend.py')
 
 sys.argv[1:] = ['-ny', backend_script]
+
+if GLSetting.start_clean:
+    for root, dirs, files in os.walk(GLSetting.working_path, topdown=False):
+        for name in files:
+            os.remove(os.path.join(root, name))
+        for name in dirs:
+            os.rmdir(os.path.join(root, name))
 
 def run_glbackend():
     from globaleaks import runner
