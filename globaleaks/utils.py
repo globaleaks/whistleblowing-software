@@ -1,6 +1,6 @@
 # -*- coding: UTF-8
-#   config
-#   ******
+#   utils
+#   *****
 #
 # GlobaLeaks Utility Functions
 
@@ -12,12 +12,17 @@ import time
 import traceback
 
 from OpenSSL import SSL
+from twisted.internet.endpoints import TCP4ClientEndpoint
+from txsocksx.client import SOCKS5ClientEndpoint
+from txsocksx.ssl import SSLWrapClientEndpoint
+
 from StringIO import StringIO
 
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred
 from twisted.mail.smtp import ESMTPSenderFactory
 from twisted.internet.ssl import ClientContextFactory
+from twisted.protocols import tls
 
 from twisted.python import log as twlog
 from Crypto.Hash import SHA256
@@ -134,8 +139,8 @@ def pretty_date_time(when):
 
 ## Mail utilities ##
 
-def sendmail(authentication_username, authentication_secret, from_address,
-             to_address, message_file, smtp_host, smtp_port=25):
+def sendmail(authentication_username, authentication_password, from_address,
+             to_address, message_file, smtp_host, smtp_port=25, security="SSL"):
     """
     Sends an email using SSLv3 over SMTP
 
@@ -147,21 +152,39 @@ def sendmail(authentication_username, authentication_secret, from_address,
     @param smtp_host: the smtp host
     @param smtp_port: the smtp port
     """
-    context_factory = ClientContextFactory()
-    context_factory.method = SSL.SSLv3_METHOD
 
     result_deferred = Deferred()
 
-    sender_factory = ESMTPSenderFactory(
+    context_factory = ClientContextFactory()
+    context_factory.method = SSL.SSLv3_METHOD
+
+    if security != "SSL":
+        requireTransportSecurity = True
+    else:
+        requireTransportSecurity = False
+
+    factory = ESMTPSenderFactory(
         authentication_username,
-        authentication_secret,
+        authentication_password,
         from_address,
         to_address,
         message_file,
         result_deferred,
-        contextFactory=context_factory)
+        contextFactory=context_factory,
+        requireAuthentication=(authentication_username and authentication_password),
+        requireTransportSecurity=requireTransportSecurity)
 
-    reactor.connectTCP(smtp_host, smtp_port, sender_factory)
+    if security == "SSL":
+        factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
+
+    if GLSetting.tor_socks_enable:
+        socksProxy = TCP4ClientEndpoint(reactor, GLSetting.socks_host, GLSetting.socks_port)
+        endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
+    else:
+        socksProxy = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
+
+    d = endpoint.connect(factory)
+    d.addErrback(result_deferred.errback)
 
     return result_deferred
 
@@ -189,30 +212,8 @@ def mail_exception(etype, value, tback):
     tmp.append("Content-Transfer-Encoding: 8bit\n\n")
     tmp.append("Source: %s" % " ".join(os.uname()))
     tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
-    for line in traceback.extract_tb(tback):
-        tmp.append("\tFile: \"%s\"\n\t\t%s %s: %s\n"
-                   % (line[0], line[2], line[1], line[3]))
-    while True:
-        if not tback.tb_next:
-            break
-        tback = tback.tb_next
-    stack = []
-    f = tback.tb_frame
-    while f:
-        stack.append(f)
-        f = f.f_back
-    stack.reverse()
-    tmp.append("\nLocals by frame, innermost last:")
-    for frame in stack:
-        tmp.append("\nFrame %s in %s at line %s" % (frame.f_code.co_name,
-                                                    frame.f_code.co_filename,
-                                                    frame.f_lineno))
-        for key, val in frame.f_locals.items():
-            tmp.append("\n\t%20s = " % key)
-            try:
-                tmp.append(str(val))
-            except Exception, e:
-                tmp.append("<ERROR WHILE PRINTING VALUE> %s" % e)
+
+    tmp.append(traceback.format_exception(type_, value, tb))
 
     message = StringIO(''.join(tmp))
 
