@@ -265,29 +265,31 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       commentsResource = $resource('/tip/:tip_id/comments', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
-      this.tip = {};
-      this.tip.comments = [];
-      this.tip.receivers = [];
+      var self = this;
+      self.tip = {};
+      self.tip.comments = [];
+      self.tip.receivers = [];
 
       receiversResource.query(tipID, function(receiversCollection){
 
         tipResource.get(tipID, function(result){
-          this.tip = result;
-          this.tip.receivers = receiversCollection;
+          self.tip = result;
+          console.log(result);
+          self.tip.receivers = receiversCollection;
 
           commentsResource.query(tipID, function(commentsCollection){
-            this.tip.comments = commentsCollection;
-            this.tip.comments.newComment = function(content) {
+            self.tip.comments = commentsCollection;
+            self.tip.comments.newComment = function(content) {
               var c = new commentsResource(tipID);
               c.content = content;
               c.$save(function(newComment) {
-                this.tip.comments.push(newComment);
+                self.tip.comments.push(newComment);
               });
             };
 
             // XXX perhaps make this return a lazyly instanced item.
             // look at $resource code for inspiration.
-            fn(this.tip);
+            fn(self.tip);
           });
         });
       });
@@ -370,6 +372,36 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
   }
 
 }).
+  factory('changePasswordWatcher', ['$parse', function($parse) {
+    return function(scope, old_password, new_password) {
+      /** This is used to watch on the new password and old password models and
+       *  set the local scope variable invalid_password if an a new password is
+       *  set but no old password is provided.
+       *
+       *  @param {obj} scope the scope under which we should register watchers
+       *                     and insert the invalid_password field.
+       *  @param {string} old_password the old password model name.
+       *  @param {string} new_password the new password model name.
+       **/
+      scope.invalid_password = false;
+
+      var validatePasswordChange = function() {
+        if (scope.$eval(new_password) !== '' && scope.$eval(old_password) === '') {
+          scope.invalid_password = true;
+        } else {
+          scope.invalid_password = false;
+        }
+      }
+
+      scope.$watch(new_password, function(){
+        validatePasswordChange();
+      }, true);
+
+      scope.$watch(old_password, function(){
+        validatePasswordChange();
+      }, true);
+    }
+}]).
   factory('Admin', ['$resource', function($resource) {
 
     function Admin() {
