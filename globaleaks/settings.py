@@ -13,6 +13,10 @@ import traceback
 import logging
 import transaction
 
+import pwd
+import grp
+import getpass
+
 from optparse import OptionParser
 from twisted.python import log
 from twisted.python.threadpool import ThreadPool
@@ -97,9 +101,10 @@ class GLSettingsClass:
         self.socks_port = 9050
         self.tor_socks_enable = True
 
-        self.uid = 'root'
-        self.gid = 'root'
-
+        self.user = getpass.getuser()
+        self.group = getpass.getuser()
+        self.uid = os.getuid()
+        self.gid = os.getgid()
         self.start_clean = True
 
 
@@ -140,11 +145,13 @@ class GLSettingsClass:
                 quit()
             self.socks_port = self.cmdline_options.socks_port
 
-        if self.cmdline_options.uid:
-            self.uid = self.cmdline_options.uid
+        if self.cmdline_options.user:
+            self.user = self.cmdline_options.user
+            self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
 
-        if self.cmdline_options.gid:
-            self.gid = self.cmdline_options.gid
+        if self.cmdline_options.group:
+            self.group = self.cmdline_options.group
+            self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
 
         if not self.cmdline_options.start_clean:
             self.start_clean = False
