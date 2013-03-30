@@ -97,6 +97,9 @@ class GLSettingsClass:
         self.socks_port = 9050
         self.tor_socks_enable = True
 
+        self.uid = 'root'
+        self.gid = 'root'
+
         self.start_clean = True
 
 
@@ -136,6 +139,12 @@ class GLSettingsClass:
             if not self.validate_port(self.cmdline_options.socks_port):
                 quit()
             self.socks_port = self.cmdline_options.socks_port
+
+        if self.cmdline_options.uid:
+            self.uid = self.cmdline_options.uid
+
+        if self.cmdline_options.gid:
+            self.gid = self.cmdline_options.gid
 
         if not self.cmdline_options.start_clean:
             self.start_clean = False
