@@ -47,18 +47,18 @@ class GLSettingsClass:
 
         # files and paths
         self.store_name = 'main_store'
-        self.working_path = os.getcwd()
-        self.root_path = os.path.join(os.path.dirname(__file__), '..')
-        self.glclient_path = os.path.join(self.root_path, '..', 'GLClient', 'app')
-        self.gldata_path = os.path.join(self.working_path, '_gldata')
-        self.cyclone_io_path = os.path.join(self.gldata_path, "cyclone_debug")
-        self.submission_path = os.path.join(self.gldata_path, 'submission')
-        self.db_file = 'sqlite:' + os.path.join(self.gldata_path,
-                                                'glbackend.db')
-        self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db',
-                                           'sqlite.sql')
-        self.static_path = os.path.join(self.working_path, '_static')
-        self.logfile = os.path.join(self.gldata_path, 'glbackend.log')
+        self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        self.working_path = os.path.abspath(os.path.join(self.root_path, 'working_dir'))
+        self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
+        self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
+        self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
+        self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
+        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldata_path,
+                                                'glbackend.db'))
+        self.create_db_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
+                                           'sqlite.sql'))
+        self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
+        self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
 
         # List of plugins available in the software
@@ -142,18 +142,17 @@ class GLSettingsClass:
 
         if self.cmdline_options.working_path:
             self.working_path = self.cmdline_options.working_path
-            self.root_path = os.path.join(os.path.dirname(__file__), '..')
-            self.glclient_path = os.path.join(self.root_path, '..', 'GLClient', 'app')
-            self.gldata_path = os.path.join(self.working_path, '_gldata')
-            self.cyclone_io_path = os.path.join(self.gldata_path, "cyclone_debug")
-            self.submission_path = os.path.join(self.gldata_path, 'submission')
-            self.db_file = 'sqlite:' + os.path.join(self.gldata_path,
-                                                    'glbackend.db')
-            self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db',
-                                               'sqlite.sql')
-            self.static_path = os.path.join(self.working_path, '_static')
-            self.logfile = os.path.join(self.gldata_path, 'glbackend.log')
-
+            self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+            self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
+            self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
+            self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
+            self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
+            self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldata_path,
+                                                    'glbackend.db'))
+            self.create_db_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
+                                               'sqlite.sql'))
+            self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
+            self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
 
     def validate_port(self, inquiry_port):
         if inquiry_port <= 1024 or inquiry_port >= 65535:
