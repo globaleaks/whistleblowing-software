@@ -7,9 +7,6 @@ import sys
 import random
 import pip
 
-import pwd
-import grp
-
 from pkg_resources import parse_version
 
 from twisted.python import usage
@@ -176,13 +173,13 @@ GLSetting.parser.add_option("-d", "--tor-socks", type="int",
     help="use tor socks for notification: 1=enabled, 0=disable. (default 1)",
     dest="enable_tor_socks", default=1)
 
-GLSetting.parser.add_option("-u", "--uid", type="string",
-    help="the uid to run as. (default root)",
-    dest="uid", default='root')
+GLSetting.parser.add_option("-u", "--user", type="string",
+    help="the user to run as. (default current_user)",
+    dest="user")
 
-GLSetting.parser.add_option("-g", "--gid", type="string",
-    help="the gid to run as. (default root)",
-    dest="gid", default='root')
+GLSetting.parser.add_option("-g", "--group", type="string",
+    help="the group to run as. (default current_user)",
+    dest="group")
 
 GLSetting.parser.add_option("-w", "--working-path", type="string",
     help="define the glbackend working directory (default ./_gldata)", dest="working_path")
@@ -196,9 +193,6 @@ GLSetting.parser.add_option("-c", "--start-clean", type="int",
 
 GLSetting.load_cmdline_options()
 
-uid = pwd.getpwnam(GLSetting.uid).pw_uid
-gid = grp.getgrnam(GLSetting.gid).gr_gid
-
 if GLSetting.start_clean:
     if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):
         for root, dirs, files in os.walk(GLSetting.working_path, topdown=False):
@@ -207,8 +201,9 @@ if GLSetting.start_clean:
             for name in dirs:
                 os.rmdir(os.path.join(root, name))
 
-os.setgid(gid)
-os.setuid(uid)
+if os.getuid() == 0:
+    os.setgid(GLSetting.gid)
+    os.setuid(GLSetting.uid)
 
 GLSetting.consistency_check()
 
@@ -216,8 +211,8 @@ backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
 
 args = []
 args +=['-y', backend_script]
-args +=['--uid', GLSetting.uid]
-args +=['--gid', GLSetting.gid]
+args +=['--uid', GLSetting.user]
+args +=['--gid', GLSetting.group]
 args +=['--rundir', GLSetting.working_path]
 args +=['--logfile', os.path.join(GLSetting.working_path, 'twistd.log')]
 args +=['--pidfile', os.path.join(GLSetting.working_path, 'twistd.pid')]
