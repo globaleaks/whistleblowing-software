@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact
 
-from globaleaks.utils import log, pretty_date_time
+from globaleaks.utils import log, pretty_date_time, is_expired
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalTip, ReceiverTip, ReceiverFile, InternalFile, Comment
 from datetime import datetime
@@ -35,6 +35,29 @@ def get_tiptime_by_marker(store, marker):
 
     return tipinfo_list
 
+def iso2dateobj(str) :
+    try:
+        ret = datetime.strptime(str, "%Y-%m-%dT%H:%M:%S")
+    except ValueError :
+        ret = datetime.strptime(str, "%Y-%m-%dT%H:%M:%S.%f")
+        ret.replace(microsecond=0)
+    return ret
+
+@transact
+def itip_cleaning(store, id):
+    """
+    @param id: aim for an InternalTip, and delete them.
+    """
+    tit = store.find(InternalTip, InternalTip.id == id).one()
+
+    if not tit: # gtfo
+        log.err("Requested invalid InternalTip id in itip_cleaning! %s" % id)
+        return
+
+    store.remove(tit)
+    log.debug("Removed InternalTip id %s" % id)
+
+
 
 class APSCleaning(GLJob):
 
@@ -53,16 +76,15 @@ class APSCleaning(GLJob):
         """
 
         log.debug("Enterig cleaning sched")
+
         submissions = yield get_tiptime_by_marker(InternalTip._marker[0])
         for submission in submissions:
-            creation_dateobj = datetime(submission['creation_time'])
-            log.debug("submission readed date: %s" % pretty_date_time(creation_dateobj))
-            # timedelta
+            if is_expired(iso2dateobj(submission['creation_date']), seconds=submission['submission_life_seconds']):
+                itip_cleaning(submission['id'])
 
         tips = yield get_tiptime_by_marker(InternalTip._marker[1])
         for tip in tips:
-            creation_dateobj = datetime(tip['creation_time'])
-            log.debug("tip readed date: %s" % pretty_date_time(creation_dateobj))
-            # timedelta
+            if is_expired(iso2dateobj(tip['creation_date']), seconds=tip['tip_life_seconds']):
+                itip_cleaning(tip['id'])
 
 
