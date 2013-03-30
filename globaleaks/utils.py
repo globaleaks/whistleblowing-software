@@ -98,7 +98,6 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
 
 def datetime_now():
     """
-    @param: a random key used to cache a certain datetime
     @return: a datetime object of now, coherent with the timezone
     """
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
@@ -124,6 +123,7 @@ def is_expired(old_date, seconds=0, minutes=0, hours=0, day=0):
     check += timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
 
+    # print "now", now," check", check, "return:", str(now > check)
     return now > check
 
 
