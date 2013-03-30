@@ -145,28 +145,45 @@ print ("Alpha release of GlobaLeaks 0.2."
 GLSetting.parser.add_option("-s", "--storm", type="int",
     help="level of Storm debugging, 0 is suppressed, 1 or more is present",
     dest="storm", default=0)
+
 GLSetting.parser.add_option("-p", "--port", type="int",
     help="TCP port used for listening (default 8082)",
     dest="port", default=8082)
+
 GLSetting.parser.add_option("-l", "--loglevel", type="choice", choices=['INFO', 'WARNING', 'ERROR', 'CRITICAL', 'DEBUG'],
     help="log level: INFO, WARNING, ERROR, CRITICAL, DEBUG",
     dest="loglevel", default="CRITICAL")
+
 GLSetting.parser.add_option("-i", "--io", type="int",
     help="enable JSON I/O logging (limit number of Request/Response), default disabled, 0 unlimited",
     dest="io", default=-1)
+
 GLSetting.parser.add_option("-a", "--accept-host", type="string", dest="host_list",
     help="specify a list comma separated of hostname acceptable by the HTTP server"\
         "(default: 127.0.0.1,localhost. If specify a new hosts, defaults are not more included in the allowed list)",
     default="127.0.0.1,localhost")
+
 GLSetting.parser.add_option("-k", "--socks-port", type="int",
     help="Socks port to use Tor (default 9050)", dest="socks_port")
+
 GLSetting.parser.add_option("-o", "--socks-host", type="string",
     help="Socks host to use Tor (default 127.0.0.1)", dest="socks_host")
+
 GLSetting.parser.add_option("-d", "--tor-socks", type="int",
     help="use tor socks for notification: 1=enabled, 0=disable. (default 1)",
     dest="enable_tor_socks", default=1)
+
+GLSetting.parser.add_option("-u", "--uid", type="string",
+    help="the uid to run as. (default root)",
+    dest="uid", default='root')
+
+GLSetting.parser.add_option("-g", "--gid", type="string",
+    help="the gid to run as. (default root)",
+    dest="gid", default='root')
+
 GLSetting.parser.add_option("-w", "--working-path", type="string",
     help="define the glbackend working directory (default ./_gldata)", dest="working_path")
+
 GLSetting.parser.add_option("-c", "--start-clean", type="int",
     help="start a clean globaleks install: 1=enabled, 0=disable. (default 0)",
     dest="start_clean", default=0)
@@ -186,11 +203,17 @@ if GLSetting.start_clean:
 
 GLSetting.consistency_check()
 
-os.chdir(GLSetting.working_path)
-
 backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
 
-sys.argv[1:] = ['-ny', backend_script]
+args = []
+args +=['-y', backend_script]
+args +=['--uid', GLSetting.uid]
+args +=['--gid', GLSetting.gid]
+args +=['--rundir', GLSetting.working_path]
+args +=['--logfile', os.path.join(GLSetting.working_path, 'twistd.log')]
+args +=['--pidfile', os.path.join(GLSetting.working_path, 'twistd.pid')]
+
+sys.argv[1:] = args
 
 def run_glbackend():
     from globaleaks import runner
@@ -199,7 +222,6 @@ def run_glbackend():
     try:
         config.parseOptions()
     except usage.error, ue:
-        print config
         print "%s: %s" % (sys.argv[0], ue)
     else:
         print "Starting GlobaLeaks"
