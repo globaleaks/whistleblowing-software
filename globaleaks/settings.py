@@ -122,7 +122,7 @@ class GLSettingsClass:
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
 
         if not self.validate_port(self.cmdline_options.port):
-            quit()
+            quit(-1)
         self.bind_port = self.cmdline_options.port
 
         # If user has requested this option, initialize a counter to
@@ -142,7 +142,7 @@ class GLSettingsClass:
 
         if self.cmdline_options.socks_port:
             if not self.validate_port(self.cmdline_options.socks_port):
-                quit()
+                quit(-1)
             self.socks_port = self.cmdline_options.socks_port
 
         if self.cmdline_options.user:
@@ -152,6 +152,10 @@ class GLSettingsClass:
         if self.cmdline_options.group:
             self.group = self.cmdline_options.group
             self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
+
+        if self.uid == 0 or self.gid == 0:
+            print "Invalid user: cannot run as root"
+            quit(-1)
 
         if not self.cmdline_options.start_clean:
             self.start_clean = False
