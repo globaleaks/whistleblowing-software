@@ -88,7 +88,7 @@ do_start()
       fi
     fi
 
-    su ${USER} -c "${STARTCMD}" 1<&- 2<&- &
+    nohup su ${USER} -c "${STARTCMD}" 1<&- 2<&- &
 
     echo "started."
 }
