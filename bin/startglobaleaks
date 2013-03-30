@@ -7,6 +7,9 @@ import sys
 import random
 import pip
 
+import pwd
+import grp
+
 from pkg_resources import parse_version
 
 from twisted.python import usage
@@ -193,6 +196,9 @@ GLSetting.parser.add_option("-c", "--start-clean", type="int",
 
 GLSetting.load_cmdline_options()
 
+uid = pwd.getpwnam(GLSetting.uid).pw_uid
+gid = grp.getgrnam(GLSetting.gid).gr_gid
+
 if GLSetting.start_clean:
     if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):
         for root, dirs, files in os.walk(GLSetting.working_path, topdown=False):
@@ -200,6 +206,9 @@ if GLSetting.start_clean:
                 os.remove(os.path.join(root, name))
             for name in dirs:
                 os.rmdir(os.path.join(root, name))
+
+os.setgid(gid)
+os.setuid(uid)
 
 GLSetting.consistency_check()
 
