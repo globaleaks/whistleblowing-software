@@ -91,7 +91,7 @@ do_start()
     fi
 
     . ${GLENV}
-    if ${STARTCMD} 1<&- 2<&-; then
+    if ${STARTCMD}; then
         echo "started."
     else
         echo "problem when starting. aborting."
