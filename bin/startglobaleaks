@@ -75,6 +75,7 @@ if unmet_requirements:
     print "2) Installing missing requirements using pip install -r requirements.txt"
     quit()
 
+from globaleaks.utils import query_yes_no
 from globaleaks.settings import GLSetting
 
 ###
@@ -176,11 +177,12 @@ GLSetting.parser.add_option("-c", "--start-clean", type="int",
 GLSetting.load_cmdline_options()
 
 if GLSetting.start_clean:
-    for root, dirs, files in os.walk(GLSetting.working_path, topdown=False):
-        for name in files:
-            os.remove(os.path.join(root, name))
-        for name in dirs:
-            os.rmdir(os.path.join(root, name))
+    if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):
+        for root, dirs, files in os.walk(GLSetting.working_path, topdown=False):
+            for name in files:
+                os.remove(os.path.join(root, name))
+            for name in dirs:
+                os.rmdir(os.path.join(root, name))
 
 GLSetting.consistency_check()
 
