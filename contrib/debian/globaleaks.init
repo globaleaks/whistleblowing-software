@@ -23,9 +23,13 @@
 
 # Start of Configurable Arguments
 
-# USER = [username]
-#   permits to configure the runing user of the globaleaks process
+# USER = [user_name]
+#   permits to configure the USER privileges of the globaleaks process
 USER=www-data
+
+# GROUP = [group_name]
+#   permits to configure the GROUP privileges of the globaleaks process
+GROUP=www-data
 
 # HOST = [ip_address, hostname, other_hostname]
 #   permits to configure a list of hosts at which globaleaks will be reachable
@@ -52,10 +56,9 @@ GLCLIENTDIR=${GLDIR}/GLClient
 GLENV=${GLDIR}/glenv/bin/activate
 GLBACKEND_DAEMON=${GLBACKENDDIR}/bin/startglobaleaks
 
-GLBACKEND_ARGS="--port ${LISTENING_PORT} --accept-host=${HOSTS_LIST} --working-path=${WORKING_DIR}"
+GLBACKEND_ARGS="--port ${LISTENING_PORT} --accept-host=${HOSTS_LIST} --user=${USER} --group=${GROUP} --working-path=${WORKING_DIR}"
 
-STARTCMD=". ${GLENV} \
-          && ${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
+STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=$(basename $(readlink -nf $0))
@@ -80,7 +83,6 @@ fi
 do_start()
 {
     # Check to see if the GLBackend daemon is already running.
-    echo "Starting Globaleaks..."
     if [ "${GLBACKEND_PID}" -ne "0" ]; then
       if kill -0 ${GLBACKEND_PID} 1<&- 2<&-; then
         echo "Globaleaks already running at pid ${GLBACKEND_PID}"
@@ -88,9 +90,12 @@ do_start()
       fi
     fi
 
-    nohup su ${USER} -c "${STARTCMD}" 1<&- 2<&- &
-
-    echo "started."
+    . ${GLENV}
+    if ${STARTCMD} 1<&- 2<&-; then
+        echo "started."
+    else
+        echo "problem when starting. aborting."
+    fi
 }
 
 do_stop()
