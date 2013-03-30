@@ -441,7 +441,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         context.file_max_download = 42;
         context.tip_max_access = 42;
         context.selectable_receiver = true;
-        context.tip_timetolive = 42;
+        context.tip_timetolive = (3600 * 24) * 15; 
+        context.submission_timetolive = (3600 * 24) * 2;
 
         context.$save(function(new_context){
           self.contexts.push(new_context);
