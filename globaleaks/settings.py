@@ -17,7 +17,7 @@ import pwd
 import grp
 import getpass
 
-from argparse import ArgumentParser
+from optparse import OptionParser
 from twisted.python import log
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
@@ -40,11 +40,11 @@ class GLSettingsClass:
 
     def __init__(self):
         # command line parsing utils
-        self.parser = ArgumentParser()
+        self.parser = OptionParser()
         self.cmdline_options = None
 
         # daemon
-        self.nodaemon = 0
+        self.nodaemon = False
 
         # threads sizes
         self.db_thread_pool_size = 1
@@ -87,7 +87,7 @@ class GLSettingsClass:
         self.reserved_nodelogo_name = "globaleaks_logo" # .png
 
         # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = []
+        self.accepted_hosts = "127.0.0.1,localhost"
 
         # transport security defaults
         self.tor2web_permitted_ops = {
@@ -107,7 +107,7 @@ class GLSettingsClass:
         self.group = getpass.getuser()
         self.uid = os.getuid()
         self.gid = os.getgid()
-        self.start_clean = True
+        self.start_clean = False
 
         # Expiry time of finalized and not finalized submission,
         # They are copied in a context *when is created*, then
@@ -159,11 +159,10 @@ class GLSettingsClass:
             tmp = str(self.cmdline_options.host_list)
             self.accepted_hosts += tmp.replace(" ", "").split(",")
 
+        self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
+
         if self.cmdline_options.socks_host:
             self.socks_host = self.cmdline_options.socks_host
-
-        if not self.cmdline_options.enable_tor_socks:
-            self.tor_socks_enable = False
 
         if self.cmdline_options.socks_port:
             if not self.validate_port(self.cmdline_options.socks_port):
@@ -186,8 +185,7 @@ class GLSettingsClass:
             print "Invalid user: cannot run as root"
             quit(-1)
 
-        if not self.cmdline_options.start_clean:
-            self.start_clean = False
+        self.start_clean = self.cmdline_options.start_clean
 
         if self.cmdline_options.working_path:
             self.working_path = self.cmdline_options.working_path
