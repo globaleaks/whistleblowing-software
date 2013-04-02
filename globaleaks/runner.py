@@ -11,6 +11,7 @@ from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 from apscheduler.scheduler import Scheduler
 
+from globaleaks.utils import log
 from globaleaks.db import create_tables
 from globaleaks.settings import GLSetting
 
