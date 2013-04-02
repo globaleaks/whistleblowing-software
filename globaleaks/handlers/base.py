@@ -84,7 +84,6 @@ class BaseHandler(RequestHandler):
 
     @staticmethod
     def validate_type(value, type):
-        raise AssertionError
         # if it's callable, than assumes is a primitive class
         if callable(type):
             retval = BaseHandler.validate_python_type(value, type)
