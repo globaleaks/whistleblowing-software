@@ -17,7 +17,7 @@ import pwd
 import grp
 import getpass
 
-from optparse import OptionParser
+from argparse import ArgumentParser
 from twisted.python import log
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
@@ -40,7 +40,7 @@ class GLSettingsClass:
 
     def __init__(self):
         # command line parsing utils
-        self.parser = OptionParser()
+        self.parser = ArgumentParser()
         self.cmdline_options = None
 
         # daemon
@@ -118,6 +118,7 @@ class GLSettingsClass:
         # enhancement: supports "extended settings in GLCLient"
 
     def eval_paths(self):
+        self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
         self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
