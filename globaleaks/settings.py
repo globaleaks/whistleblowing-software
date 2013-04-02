@@ -235,6 +235,20 @@ class GLSettingsClass:
         if not os.path.exists(self.cyclone_io_path):
             os.mkdir(self.cyclone_io_path)
 
+        print self.working_path
+        print self.root_path
+        print self.glclient_path
+        print self.gldata_path
+        print self.static_path
+        print self.submission_path
+
+        assert os.path.exists(self.working_path)
+        assert os.path.exists(self.root_path)
+        assert os.path.exists(self.glclient_path)
+        assert os.path.exists(self.gldata_path)
+        assert os.path.exists(self.static_path)
+        assert os.path.exists(self.submission_path)
+
         assert all( os.path.exists(path) for path in
                    (self.working_path, self.root_path, self.glclient_path,
                     self.gldata_path, self.static_path, self.submission_path)
