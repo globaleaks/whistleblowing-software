@@ -3,6 +3,10 @@ import json
 import time
 import uuid
 
+from cyclone import httpserver
+from cyclone.web import Application
+from cyclone.util import ObjectDict as OD
+
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
@@ -10,26 +14,18 @@ from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks.settings import GLSetting, transact
+from globaleaks.handlers.admin import create_context, create_receiver
+from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
+from globaleaks import db
 
-_TEST_DB = 'test.db'
 DEFAULT_PASSWORD = u'yustapassword'
-
 transact.tp = FakeThreadPool()
 GLSetting.scheduler_threadpool = FakeThreadPool()
-GLSetting.store = 'test_store'
 GLSetting.notification_plugins = []
 GLSetting.sessions = {}
 GLSetting.working_path = os.path.abspath(os.path.join(GLSetting.root_path, 'testing_dir'))
 GLSetting.eval_paths()
 GLSetting.remove_directories()
-
-from cyclone import httpserver
-from cyclone.web import Application
-from cyclone.util import ObjectDict as OD
-
-from globaleaks.handlers.admin import create_context, create_receiver
-from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-from globaleaks import db
 
 transact.debug = True
 class TestWithDB(unittest.TestCase):
@@ -46,7 +42,7 @@ class TestGL(TestWithDB):
         yield TestWithDB.setUp(self)
         self.setUp_dummy()
         yield self.fill_data()
-    
+
     def setUp(self):
         return self._setUp()
 
@@ -131,7 +127,6 @@ class TestGL(TestWithDB):
             'receivers' : []
         }
         self.dummySubmission = {
-            'id': '',
             'context_gus': '',
             'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
             'finalize': False,
