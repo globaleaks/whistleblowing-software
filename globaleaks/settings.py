@@ -44,6 +44,9 @@ class GLSettingsClass:
         self.parser = OptionParser()
         self.cmdline_options = None
 
+        # daemon
+        self.nodaemon = 0
+
         # threads sizes
         self.db_thread_pool_size = 1
 
@@ -57,7 +60,7 @@ class GLSettingsClass:
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.working_path = os.path.abspath(os.path.join(self.root_path, 'working_dir'))
         self.eval_paths()
-    
+
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
 
         # list of plugins available in the software
@@ -137,6 +140,8 @@ class GLSettingsClass:
         """
         assert self.cmdline_options is not None
 
+        self.nodaemon = self.cmdline_options.nodaemon
+
         self.db_debug = self.cmdline_options.storm
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
@@ -201,7 +206,7 @@ class GLSettingsClass:
         because here stay all the files needed by the application except the python scripts
         """
         new_environment = False
-        
+
         def create_directory(path):
             # returns false if the directory is already present
             if not os.path.exists(path):

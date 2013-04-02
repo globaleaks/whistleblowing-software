@@ -144,6 +144,9 @@ print colorize('Welcome', 'CYAN'), colorize('to', 'YELLOW'), 'Globa'+colorize('L
 print ("Alpha release of GlobaLeaks 0.2."
        "Actually, you may require our supports to makes GL works: irc.freenode.net #globaleaks can help you")
 
+GLSetting.parser.add_option("-n", "--nodaemon", type="int",
+    help="don't daemonize",
+    dest="nodaemon", default=0)
 
 GLSetting.parser.add_option("-s", "--storm", type="int",
     help="level of Storm debugging, 0 is suppressed, 1 or more is present",
@@ -212,6 +215,8 @@ backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
 
 args = []
 args +=['-y', backend_script]
+if GLSetting.nodaemon:
+    args += ['-n']
 args +=['--uid', GLSetting.user]
 args +=['--gid', GLSetting.group]
 args +=['--rundir', GLSetting.working_path]
