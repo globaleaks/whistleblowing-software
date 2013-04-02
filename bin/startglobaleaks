@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 # -*- encoding: utf-8 -*-
 
+from __future__ import with_statement
+
 import os
 import re
 import sys
@@ -143,79 +145,79 @@ print colorize('Welcome', 'CYAN'), colorize('to', 'YELLOW'), 'Globa'+colorize('L
 print ("Alpha release of GlobaLeaks 0.2."
        "Actually, you may require our supports to makes GL works: irc.freenode.net #globaleaks can help you")
 
-GLSetting.parser.add_option("-n", "--nodaemon", type="int",
-    help="don't daemonize",
-    dest="nodaemon", default=0)
+GLSetting.parser.add_argument("-n", "--nodaemon", action='store_true',
+    help="don't daemonize (default: False)",
+    dest="nodaemon")
 
-GLSetting.parser.add_option("-s", "--storm", type="int",
-    help="level of Storm debugging, 0 is suppressed, 1 or more is present",
-    dest="storm", default=0)
+GLSetting.parser.add_argument("-s", "--storm", action='store_true',
+    help="enable storm debugging [default: False]",
+    dest="storm")
 
-GLSetting.parser.add_option("-p", "--port", type="int",
-    help="TCP port used for listening (default 8082)",
+GLSetting.parser.add_argument("-p", "--port", type=int,
+    help="TCP port used for listening [default: 8082]",
     dest="port", default=8082)
 
-GLSetting.parser.add_option("-l", "--loglevel", type="choice", choices=['INFO', 'WARNING', 'ERROR', 'CRITICAL', 'DEBUG'],
-    help="log level: INFO, WARNING, ERROR, CRITICAL, DEBUG",
+GLSetting.parser.add_argument("-l", "--loglevel", choices=['INFO', 'WARNING', 'ERROR', 'CRITICAL', 'DEBUG'],
+        help="set log level [default: CRITICAL]",
     dest="loglevel", default="CRITICAL")
 
-GLSetting.parser.add_option("-i", "--io", type="int",
-    help="enable JSON I/O logging (limit number of Request/Response), default disabled, 0 unlimited",
+GLSetting.parser.add_argument("-i", "--io", type=int,
+        help="enable JSON I/O logging limiting number of Request/Response (-1=disabled, 0=unlimited) [default: -1]",
     dest="io", default=-1)
 
-GLSetting.parser.add_option("-a", "--accept-host", type="string", dest="host_list",
-    help="specify a list comma separated of hostname acceptable by the HTTP server"\
-        "(default: 127.0.0.1,localhost. If specify a new hosts, defaults are not more included in the allowed list)",
-    default="127.0.0.1,localhost")
+GLSetting.parser.add_argument("-a", "--accept-host", nargs='?',
+    help="specify a list comma of separated hostnames acceptable by the HTTP server"\
+        "[default: 127.0.0.1,localhost] If some hosts are specified, defaults are not more included in the allowed list)",
+    dest="host_list", default="127.0.0.1,localhost")
 
-GLSetting.parser.add_option("-P", "--socks-port", type="int",
-    help="Socks port to use Tor (default 9050)", dest="socks_port")
+GLSetting.parser.add_argument("-P", "--socks-port", type=int,
+    help="Socks port to use for Tor [default: 9050]",
+    dest="socks_port", default=9050)
 
-GLSetting.parser.add_option("-o", "--socks-host", type="string",
-    help="Socks host to use Tor (default 127.0.0.1)", dest="socks_host")
+GLSetting.parser.add_argument("-o", "--socks-host", nargs='?',
+    help="Socks host to use for Tor [default: 127.0.0.1]",
+    dest="socks_host", default="127.0.0.1")
 
-GLSetting.parser.add_option("-d", "--tor-socks", type="int",
-    help="use tor socks for notification: 1=enabled, 0=disable. (default 1)",
+GLSetting.parser.add_argument("-d", "--tor-socks", type=int,
+    help="use tor socks for notification: (1=enabled 0=disabled) [default 1]",
     dest="enable_tor_socks", default=1)
 
-GLSetting.parser.add_option("-u", "--user", type="string",
-    help="the user to run as. (default current_user)",
+GLSetting.parser.add_argument("-u", "--user", nargs='?',
+    help="the user to run as. [default: current_user]",
     dest="user")
 
-GLSetting.parser.add_option("-g", "--group", type="string",
-    help="the group to run as. (default current_user)",
+GLSetting.parser.add_argument("-g", "--group", nargs='?',
+    help="the group to run as. [default: current_user]",
     dest="group")
 
-GLSetting.parser.add_option("-w", "--working-path", type="string",
-    help="define the glbackend working directory (default ./_gldata)", dest="working_path")
+GLSetting.parser.add_argument("-w", "--working-path", nargs='?',
+    help="define the glbackend working directory [default: ./_gldata]",
+    dest="working_path")
 
-GLSetting.parser.add_option("-c", "--start-clean", type="int",
-    help="start a clean globaleks install: 1=enabled, 0=disable. (default 0)",
+GLSetting.parser.add_argument("-c", "--start-clean", action='store_true',
+    help="start a clean globaleks install (1=enabled, 0=disable) [default: 0]",
     dest="start_clean", default=0)
 
-GLSetting.parser.add_option("-k", "--kill", type="int",
-    help="signal to send to the current twisted.pid process (if exist), default don't kill",
+GLSetting.parser.add_argument("-k", "--kill", type=int,
+    help="signal to send to the current twisted.pid process (if exists) [default: don't kill]",
     dest="kill", default=0)
 
 # here the options are parsed, because sys.argv array is whack below
-(GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
+GLSetting.cmdline_options = GLSetting.parser.parse_args()
 
 GLSetting.load_cmdline_options()
-
-pidfile_path = os.path.join(GLSetting.working_path, 'twistd.pid')
 
 if GLSetting.start_clean:
     if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):
         GLSetting.remove_directories()
 elif GLSetting.cmdline_options.kill:
     try:
-        fd = open(pidfile_path, "r")
-        target_pid = int(fd.read())
-        os.kill(target_pid, GLSetting.cmdline_options.kill)
-        fd.close()
+        with open(GLSetting.pidfile_path, "r") as fd:
+            target_pid = int(fd.read())
+            os.kill(target_pid, GLSetting.cmdline_options.kill)
     except Exception as excep:
         print "Unable kill PID found in %s: kill option ignored (%s)" %\
-              ( pidfile_path, excep.strerror )
+              ( GLSetting.pidfile_path, excep.strerror )
 
 
 GLSetting.drop_privileges()
@@ -228,10 +230,12 @@ args = []
 args +=['-y', backend_script]
 if GLSetting.nodaemon:
     args += ['-n']
-args +=['--uid', GLSetting.user]
-args +=['--gid', GLSetting.group]
+# we does not need this due to GLSetting.drop_privileges()
+# in fact we need to drop privileges before directory creation
+#args +=['--uid', GLSetting.user]
+#args +=['--gid', GLSetting.group]
 args +=['--rundir', GLSetting.working_path]
-args +=['--pidfile', pidfile_path ]
+args +=['--pidfile', GLSetting.pidfile_path]
 
 # critical and error loglevel do not collect the HTTP request collection
 if GLSetting.cmdline_options.loglevel in [ "DEBUG", "INFO", "WARNING" ]:
