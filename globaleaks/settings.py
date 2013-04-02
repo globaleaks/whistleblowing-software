@@ -9,6 +9,7 @@
 
 import os
 import sys
+import shutil
 import traceback
 import logging
 import transaction
@@ -53,16 +54,7 @@ class GLSettingsClass:
         self.store_name = 'main_store'
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.working_path = os.path.abspath(os.path.join(self.root_path, 'working_dir'))
-        self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
-        self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
-        self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
-        self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
-        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldata_path,
-                                                'glbackend.db'))
-        self.create_db_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
-                                           'sqlite.sql'))
-        self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
-        self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
+        self.eval_paths()
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
 
         # List of plugins available in the software
@@ -83,6 +75,11 @@ class GLSettingsClass:
         self.name_limit = 128
         self.description_limit = 1024
         self.generic_limit = 2048
+
+        # static file rules
+        self.staticfile_regexp = r'(\w+)\.(\w+)'
+        self.staticfile_overwrite = False
+        self.reserved_nodelogo_name = "globaleaks_logo" # .png
 
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = []
@@ -107,6 +104,26 @@ class GLSettingsClass:
         self.gid = os.getgid()
         self.start_clean = True
 
+        # Expiry time of finalized and not finalized submission,
+        # They are copied in a context *when is created*, then
+        # changing this variable do not modify the cleaning
+        # timings of the existing contexts
+        self.tip_seconds_of_life = (3600 * 24) * 15
+        self.submission_seconds_of_life = (3600 * 24) * 1
+        # enhancement: supports "extended settings in GLCLient"
+
+    def eval_paths(self):
+        self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
+        self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
+        self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
+        self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
+        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldata_path,
+                                                'glbackend.db'))
+        self.create_db_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
+                                           'sqlite.sql'))
+        self.static_source = os.path.abspath(os.path.join(self.root_path, 'static'))
+        self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
+        self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
 
     def load_cmdline_options(self):
         """
@@ -174,6 +191,7 @@ class GLSettingsClass:
             self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
             self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
 
+
     def validate_port(self, inquiry_port):
         if inquiry_port <= 1024 or inquiry_port >= 65535:
             print "Invalid port number. < of 1024 is not permitted (require"\
@@ -182,31 +200,52 @@ class GLSettingsClass:
         return True
 
 
-    def consistency_check(self):
+    def create_directories(self):
         """
-        Execute some consinstencyt check on command provided Globaleaks paths
+        Execute some consinstency check on command provided Globaleaks paths
+
+        if both working_dir is a new one, or is the first start of globaleaks, we copy
+        here the static files (default logs, and in the future pot files for localization)
+        because here stay all the files need by the application except the python scripts
         """
-        if not os.path.exists(self.working_path):
+        new_environment = False
+
+        if not os.path.isdir(self.working_path):
+            new_environment = True
             os.mkdir(self.working_path)
 
-        if not os.path.exists(self.gldata_path):
-            os.mkdir(self.gldata_path)
-
-        if not os.path.exists(self.static_path):
+        if not os.path.isdir(self.static_path):
+            new_environment = True
             os.mkdir(self.static_path)
 
-        if self.cmdline_options.io >= 0:
-            if not os.path.exists(self.cyclone_io_path):
-                os.mkdir(self.cyclone_io_path)
+        if not os.path.isdir(self.gldata_path):
+            os.mkdir(self.gldata_path)
 
         if not os.path.isdir(self.submission_path):
             os.mkdir(self.submission_path)
+
+        if new_environment:
+            for path, subpath, files in os.walk(self.static_source):
+                # REMIND: at the moment are not supported subpaths
+                for single_file in files:
+                    shutil.copyfile(
+                        os.path.join(self.static_source, single_file),
+                        os.path.join(self.static_path, single_file)
+                    )
+        if not os.path.exists(self.cyclone_io_path):
+            os.mkdir(self.cyclone_io_path)
 
         assert all( os.path.exists(path) for path in
                    (self.working_path, self.root_path, self.glclient_path,
                     self.gldata_path, self.static_path, self.submission_path)
                 )
 
+    def remove_directories(self):
+        for root, dirs, files in os.walk(self.working_path, topdown=False):
+            for name in files:
+                os.remove(os.path.join(root, name))
+            for name in dirs:
+                os.rmdir(os.path.join(root, name))
 
 # GLSetting is a singleton class exported once
 GLSetting = GLSettingsClass()
