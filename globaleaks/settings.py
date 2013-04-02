@@ -179,18 +179,7 @@ class GLSettingsClass:
 
         if self.cmdline_options.working_path:
             self.working_path = self.cmdline_options.working_path
-            self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-            self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
-            self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
-            self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
-            self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
-            self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldata_path,
-                                                    'glbackend.db'))
-            self.create_db_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
-                                               'sqlite.sql'))
-            self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
-            self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
-
+            self.eval_paths()
 
     def validate_port(self, inquiry_port):
         if inquiry_port <= 1024 or inquiry_port >= 65535:
@@ -232,23 +221,11 @@ class GLSettingsClass:
                         os.path.join(self.static_source, single_file),
                         os.path.join(self.static_path, single_file)
                     )
+
         if not os.path.exists(self.cyclone_io_path):
             os.mkdir(self.cyclone_io_path)
 
-        print self.working_path
-        print self.root_path
-        print self.glclient_path
-        print self.gldata_path
-        print self.static_path
-        print self.submission_path
-
-        assert os.path.exists(self.working_path)
-        assert os.path.exists(self.root_path)
-        assert os.path.exists(self.glclient_path)
-        assert os.path.exists(self.gldata_path)
-        assert os.path.exists(self.static_path)
-        assert os.path.exists(self.submission_path)
-
+    def check_directories(self):
         assert all( os.path.exists(path) for path in
                    (self.working_path, self.root_path, self.glclient_path,
                     self.gldata_path, self.static_path, self.submission_path)
