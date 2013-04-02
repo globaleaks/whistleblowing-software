@@ -11,17 +11,14 @@ from twisted.application import service, internet, app
 from twisted.python.runtime import platformType
 from apscheduler.scheduler import Scheduler
 
+from globaleaks.utils import log
 from globaleaks.db import create_tables
-from globaleaks.utils import log, mail_exception
 from globaleaks.settings import GLSetting
 
 # The scheduler is a global variable, because can be used to force execution
 __all__ = ['GLAsynchronous']
 
 GLAsynchronous = Scheduler()
-log.start_logging()
-
-sys.excepthook = mail_exception
 
 class GLBaseRunner(app.ApplicationRunner):
     """

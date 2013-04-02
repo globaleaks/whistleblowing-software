@@ -4,14 +4,18 @@
 #
 # Configuration file do not contain GlobaLeaks Node information, like in the 0.1
 # because all those infos are stored in the databased.
-# Config contains some system variables usable for debug, integration with APAF
-# and nothing in the common concern af a GlobaLeaks Node Admin
+# Config contains some system variables usable for debug,
 
 import os
 import sys
+import shutil
 import traceback
 import logging
 import transaction
+
+import pwd
+import grp
+import getpass
 
 from optparse import OptionParser
 from twisted.python import log
@@ -39,40 +43,37 @@ class GLSettingsClass:
         self.parser = OptionParser()
         self.cmdline_options = None
 
+        # daemon
+        self.nodaemon = 0
+
         # threads sizes
         self.db_thread_pool_size = 1
 
         # bind port
         self.bind_port = 8082
 
-        # files and paths
+        # store name
         self.store_name = 'main_store'
-        self.root_path = os.path.join(os.path.dirname(__file__), '..')
-        self.install_path = os.path.abspath(os.path.join(self.root_path, '..'))
-        self.glclient_path = os.path.join(self.install_path, 'GLClient', 'app')
-        self.gldata_path = os.path.join(self.root_path, '_gldata')
-        self.cyclone_io_path = os.path.join(self.gldata_path, "cyclone_debug")
-        self.submission_path = os.path.join(self.gldata_path, 'submission')
-        self.db_file = 'sqlite:' + os.path.join(self.gldata_path,
-                                                'glbackend.db')
-        self.create_db_file = os.path.join(self.root_path, 'globaleaks', 'db',
-                                           'sqlite.sql')
-        self.static_path = os.path.join(self.root_path, '_static')
-        self.logfile = os.path.join(self.gldata_path, 'glbackend.log')
+
+        # files and paths
+        self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        self.working_path = os.path.abspath(os.path.join(self.root_path, 'working_dir'))
+        self.eval_paths()
+
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
 
-        # List of plugins available in the software
+        # list of plugins available in the software
         self.notification_plugins = [
             'MailNotification',
             ]
 
-        # Debug Defaults
+        # debug defaults
         self.db_debug = True
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
         self.loglevel = logging.DEBUG
 
-        # Session tracking, in the singleton classes
+        # session tracking, in the singleton classes
         self.sessions = dict()
 
         # value limits in the database
@@ -86,7 +87,7 @@ class GLSettingsClass:
         self.reserved_nodelogo_name = "globaleaks_logo" # .png
 
         # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = [ ]
+        self.accepted_hosts = []
 
         # transport security defaults
         self.tor2web_permitted_ops = {
@@ -102,6 +103,12 @@ class GLSettingsClass:
         self.socks_port = 9050
         self.tor_socks_enable = True
 
+        self.user = getpass.getuser()
+        self.group = getpass.getuser()
+        self.uid = os.getuid()
+        self.gid = os.getgid()
+        self.start_clean = True
+
         # Expiry time of finalized and not finalized submission,
         # They are copied in a context *when is created*, then
         # changing this variable do not modify the cleaning
@@ -110,6 +117,18 @@ class GLSettingsClass:
         self.submission_seconds_of_life = (3600 * 24) * 1
         # enhancement: supports "extended settings in GLCLient"
 
+    def eval_paths(self):
+        self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
+        self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
+        self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
+        self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
+        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldata_path,
+            'glbackend.db'))
+        self.db_schema_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
+            'sqlite.sql'))
+        self.static_source = os.path.abspath(os.path.join(self.root_path, 'static'))
+        self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
+        self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
 
     def load_cmdline_options(self):
         """
@@ -120,13 +139,15 @@ class GLSettingsClass:
         """
         assert self.cmdline_options is not None
 
+        self.nodaemon = self.cmdline_options.nodaemon
+
         self.db_debug = self.cmdline_options.storm
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
-        self.bind_port = self.cmdline_options.port
 
-        if not self.validate_port(self.bind_port):
-            quit()
+        if not self.validate_port(self.cmdline_options.port):
+            quit(-1)
+        self.bind_port = self.cmdline_options.port
 
         # If user has requested this option, initialize a counter to
         # record the requests sequence, and setup the logs path
@@ -139,13 +160,37 @@ class GLSettingsClass:
 
         if self.cmdline_options.socks_host:
             self.socks_host = self.cmdline_options.socks_host
+
         if not self.cmdline_options.enable_tor_socks:
             self.tor_socks_enable = False
-        if self.cmdline_options.socks_port:
-            self.socks_port = self.cmdline_options.socks_port
-            if not self.validate_port(self.socks_port):
-                quit()
 
+        if self.cmdline_options.socks_port:
+            if not self.validate_port(self.cmdline_options.socks_port):
+                quit(-1)
+            self.socks_port = self.cmdline_options.socks_port
+
+        if self.cmdline_options.user:
+            self.user = self.cmdline_options.user
+            self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
+        else:
+            self.uid = os.getuid()
+
+        if self.cmdline_options.group:
+            self.group = self.cmdline_options.group
+            self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
+        else:
+            self.gid = os.getgid()
+
+        if self.uid == 0 or self.gid == 0:
+            print "Invalid user: cannot run as root"
+            quit(-1)
+
+        if not self.cmdline_options.start_clean:
+            self.start_clean = False
+
+        if self.cmdline_options.working_path:
+            self.working_path = self.cmdline_options.working_path
+            self.eval_paths()
 
     def validate_port(self, inquiry_port):
         if inquiry_port <= 1024 or inquiry_port >= 65535:
@@ -155,27 +200,64 @@ class GLSettingsClass:
         return True
 
 
-    def consistency_check(self):
+    def create_directories(self):
         """
-        Execute some consinstencyt check on command provided Globaleaks paths
+        Execute some consistency checks on command provided Globaleaks paths
+
+        if one of working_path or static path is created we copy
+        here the static files (default logs, and in the future pot files for localization)
+        because here stay all the files needed by the application except the python scripts
         """
-        if not os.path.exists(self.gldata_path):
-            os.mkdir(self.gldata_path)
+        new_environment = False
 
-        if not os.path.exists(self.static_path):
-            os.mkdir(self.static_path)
+        def create_directory(path):
+            # returns false if the directory is already present
+            if not os.path.exists(path):
+                os.mkdir(path)
+                return True
+            assert(os.path.isdir(path))
+            return False
 
-        if self.cmdline_options.io >= 0:
-            if not os.path.exists(self.cyclone_io_path):
-                os.mkdir(self.cyclone_io_path)
+        if create_directory(self.working_path):
+            new_environment = True
 
-        if not os.path.isdir(self.submission_path):
-            os.mkdir(self.submission_path)
+        if create_directory(self.static_path):
+            new_environment = True
 
+        create_directory(self.gldata_path)
+        create_directory(self.submission_path)
+        create_directory(self.cyclone_io_path)
+
+        if new_environment:
+            for path, subpath, files in os.walk(self.static_source):
+                # REMIND: at the moment are not supported subpaths
+                for single_file in files:
+                    shutil.copyfile(
+                        os.path.join(self.static_source, single_file),
+                        os.path.join(self.static_path, single_file)
+                    )
+
+    def check_directories(self):
         assert all( os.path.exists(path) for path in
-                   (self.root_path, self.install_path, self.glclient_path,
+                   (self.working_path, self.root_path, self.glclient_path,
                     self.gldata_path, self.static_path, self.submission_path)
-                )
+                  )
+
+    def remove_directories(self):
+        for root, dirs, files in os.walk(self.working_path, topdown=False):
+            for name in files:
+                os.remove(os.path.join(root, name))
+            for name in dirs:
+                os.rmdir(os.path.join(root, name))
+
+    def drop_privileges(self):
+        if os.getgid() == 0 or self.cmdline_options.group:
+            print "switching group privileges to %d" % self.gid
+            os.setgid(GLSetting.gid)
+        if os.getuid() == 0 or self.cmdline_options.user:
+            print "switching user privileges to %d" % self.uid
+            os.setuid(GLSetting.uid)
+
 
 
 # GLSetting is a singleton class exported once

@@ -3,6 +3,10 @@ import json
 import time
 import uuid
 
+from cyclone import httpserver
+from cyclone.web import Application
+from cyclone.util import ObjectDict as OD
+
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
@@ -10,47 +14,37 @@ from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks.settings import GLSetting, transact
-
-_TEST_DB = 'test.db'
-DEFAULT_PASSWORD = u'yustapassword'
-
-transact.tp = FakeThreadPool()
-GLSetting.scheduler_threadpool = FakeThreadPool()
-GLSetting.db_file = 'sqlite:///' + _TEST_DB
-GLSetting.store = 'test_store'
-GLSetting.notification_plugins = []
-GLSetting.sessions = {}
-GLSetting.logfile = 'gltest.log'
-GLSetting.submission_path = 'submissions'
-
-from cyclone import httpserver
-from cyclone.web import Application
-from cyclone.util import ObjectDict as OD
-
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db
 
+DEFAULT_PASSWORD = u'yustapassword'
+transact.tp = FakeThreadPool()
+GLSetting.scheduler_threadpool = FakeThreadPool()
+GLSetting.notification_plugins = []
+GLSetting.sessions = {}
+GLSetting.working_path = os.path.abspath(os.path.join(GLSetting.root_path, 'testing_dir'))
+GLSetting.eval_paths()
+GLSetting.remove_directories()
+
 transact.debug = True
 class TestWithDB(unittest.TestCase):
     def setUp(self):
+        GLSetting.create_directories()
         return db.create_tables(create_node=True)
 
     def tearDown(self):
-        os.unlink(_TEST_DB)
+        GLSetting.remove_directories()
 
 class TestGL(TestWithDB):
     @inlineCallbacks
-    def initialize_db(self):
-        yield db.create_tables(create_node=True)
+    def _setUp(self):
+        yield TestWithDB.setUp(self)
+        self.setUp_dummy()
         yield self.fill_data()
 
     def setUp(self):
-        """
-        override default handlers' get_store with a mock store used for testing/
-        """
-        self.setUp_dummy()
-        return self.initialize_db()
+        return self._setUp()
 
     @inlineCallbacks
     def fill_data(self):
@@ -92,6 +86,7 @@ class TestGL(TestWithDB):
             'contexts' : [],
         }
         self.dummyContext = {
+            'context_gus': unicode(uuid.uuid4()),
             'name': u'created by shooter',
             'description': u'This is the update',
             'fields': [{u'hint': u'autovelox',

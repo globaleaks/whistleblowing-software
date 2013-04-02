@@ -19,7 +19,7 @@ class MockHandler(base.BaseHandler):
     def __init__(self):
         pass
 
-class SubmissionTest(unittest.TestCase):
+class SubmissionTest(helpers.TestGL):
     """
     This unitTest want to explore various logic attacks scenario:
     like: https://github.com/globaleaks/GlobaLeaks/issues/31
@@ -29,13 +29,13 @@ class SubmissionTest(unittest.TestCase):
     receiver_used = receiver_unused = None
     submission_desc = None
 
-    @inlineCallbacks
-    def initalize_db(self):
-        try:
-            yield db.create_tables(create_node=True)
-        except Exception, e:
-            print "Fatal: unable to create_tables [%s]" % str(e)
-            raise e
+    def setUp(self):
+        # helpers.TestGL.setUp(self) is done only in the first test
+        pass
+
+    def tearDown(self):
+        # helpers.TestGL.tearDown(self) is done only in the last test
+        pass
 
     aContext1 = {
         'name': u'CtxName', 'description': u'dummy context with default fields',
@@ -73,8 +73,8 @@ class TestTipInstance(SubmissionTest):
 
     @inlineCallbacks
     def test_1_setup_submission_environment(self):
-
-        self.initalize_db()
+        helpers.TestGL.setUp(self)
+        
         basehandler = MockHandler()
 
         basehandler.validate_jmessage( SubmissionTest.aContext1, requests.adminContextDesc)
@@ -198,6 +198,6 @@ class TestTipInstance(SubmissionTest):
             log.debug("GLException %s %s" % (str(e), e.reason) )
             self.assertTrue(False)
 
-        os.unlink(helpers._TEST_DB)
+        helpers.TestGL.tearDown(self)
 
 
