@@ -50,25 +50,28 @@ class GLSettingsClass:
         # bind port
         self.bind_port = 8082
 
-        # files and paths
+        # store name
         self.store_name = 'main_store'
+
+        # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.working_path = os.path.abspath(os.path.join(self.root_path, 'working_dir'))
         self.eval_paths()
+    
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
 
-        # List of plugins available in the software
+        # list of plugins available in the software
         self.notification_plugins = [
             'MailNotification',
             ]
 
-        # Debug Defaults
+        # debug defaults
         self.db_debug = True
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
         self.loglevel = logging.DEBUG
 
-        # Session tracking, in the singleton classes
+        # session tracking, in the singleton classes
         self.sessions = dict()
 
         # value limits in the database
@@ -119,7 +122,7 @@ class GLSettingsClass:
         self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
         self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldata_path,
                                                 'glbackend.db'))
-        self.create_db_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
+        self.db_schema_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
                                            'sqlite.sql'))
         self.static_source = os.path.abspath(os.path.join(self.root_path, 'static'))
         self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
@@ -191,27 +194,29 @@ class GLSettingsClass:
 
     def create_directories(self):
         """
-        Execute some consinstency check on command provided Globaleaks paths
+        Execute some consinstency checks on command provided Globaleaks paths
 
-        if both working_dir is a new one, or is the first start of globaleaks, we copy
+        if one of working_path or static path is created we copy
         here the static files (default logs, and in the future pot files for localization)
-        because here stay all the files need by the application except the python scripts
+        because here stay all the files needed by the application except the python scripts
         """
         new_environment = False
+        
+        def create_directory(path):
+            # returns false if the directory is already present
+            if not os.path.exists(path):
+                os.mkdir(path)
+                return True
+            assert(os.path.isdir(path))
+            return False
 
-        if not os.path.isdir(self.working_path):
+        if create_directory(self.working_path) or \
+            create_directory(self.static_path):
             new_environment = True
-            os.mkdir(self.working_path)
 
-        if not os.path.isdir(self.static_path):
-            new_environment = True
-            os.mkdir(self.static_path)
-
-        if not os.path.isdir(self.gldata_path):
-            os.mkdir(self.gldata_path)
-
-        if not os.path.isdir(self.submission_path):
-            os.mkdir(self.submission_path)
+        create_directory(self.gldata_path)
+        create_directory(self.submission_path)
+        create_directory(self.cyclone_io_path)
 
         if new_environment:
             for path, subpath, files in os.walk(self.static_source):
@@ -222,14 +227,11 @@ class GLSettingsClass:
                         os.path.join(self.static_path, single_file)
                     )
 
-        if not os.path.exists(self.cyclone_io_path):
-            os.mkdir(self.cyclone_io_path)
-
     def check_directories(self):
         assert all( os.path.exists(path) for path in
                    (self.working_path, self.root_path, self.glclient_path,
                     self.gldata_path, self.static_path, self.submission_path)
-                )
+                  )
 
     def remove_directories(self):
         for root, dirs, files in os.walk(self.working_path, topdown=False):

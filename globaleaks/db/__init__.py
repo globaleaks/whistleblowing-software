@@ -82,7 +82,7 @@ def create_tables_transaction(store):
     @return: None, create the right table at the first start, and initialized
     the node.
     """
-    with open(GLSetting.create_db_file) as f:
+    with open(GLSetting.db_schema_file) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
             try:

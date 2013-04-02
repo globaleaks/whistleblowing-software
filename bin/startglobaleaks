@@ -26,7 +26,6 @@ def pip_version_check():
 
     unmet_requirements = []
     with open(root + "/requirements.txt", "r") as rf:
-        print "Checking for Globaleaks library requirements"
         p = re.compile('\s*(?P<package>[a-zA-Z0-9_.]+)(?P<condition>([<=>]){2}|([<>]){1})?(?P<version>\S+)?')
         while 1:
             requirement = rf.readline().strip()
@@ -40,15 +39,11 @@ def pip_version_check():
 
                 if package not in installed_packages:
                     unmet_requirements.append(requirement)
-                    print "package " + package + " not installed"
                     continue
-                else:
-                    print "package " + package + " installed"
 
                 if condition:
                     installed_version = installed_packages[package]
                     check = version_number_compare(installed_version, version)
-                    print package + " specific version needed: " + version + "installed: " + installed_version
                     if condition == "<":
                         if check >= 0:
                             unmet_requirements.append(requirement)
