@@ -71,7 +71,7 @@ class GLSettingsClass:
         self.db_debug = True
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
-        self.loglevel = logging.DEBUG
+        self.loglevel = "CRITICAL"
 
         # session tracking, in the singleton classes
         self.sessions = dict()
@@ -150,24 +150,17 @@ class GLSettingsClass:
             quit(-1)
         self.bind_port = self.cmdline_options.port
 
-        # If user has requested this option, initialize a counter to
-        # record the requests sequence, and setup the logs path
-        if self.cmdline_options.io >= 0:
-            self.cyclone_debug = self.cmdline_options.io
+        self.cyclone_debug = self.cmdline_options.io
 
-        if self.cmdline_options.host_list:
-            tmp = str(self.cmdline_options.host_list)
-            self.accepted_hosts += tmp.replace(" ", "").split(",")
+        self.accepted_hosts = self.cmdline_options.host_list.replace(" ", "").split(",")
 
         self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
 
-        if self.cmdline_options.socks_host:
-            self.socks_host = self.cmdline_options.socks_host
+        self.socks_host = self.cmdline_options.socks_host
 
-        if self.cmdline_options.socks_port:
-            if not self.validate_port(self.cmdline_options.socks_port):
-                quit(-1)
-            self.socks_port = self.cmdline_options.socks_port
+        if not self.validate_port(self.cmdline_options.socks_port):
+            quit(-1)
+        self.socks_port = self.cmdline_options.socks_port
 
         if self.cmdline_options.user:
             self.user = self.cmdline_options.user
@@ -187,9 +180,8 @@ class GLSettingsClass:
 
         self.start_clean = self.cmdline_options.start_clean
 
-        if self.cmdline_options.working_path:
-            self.working_path = self.cmdline_options.working_path
-            self.eval_paths()
+        self.working_path = self.cmdline_options.working_path
+        self.eval_paths()
 
     def validate_port(self, inquiry_port):
         if inquiry_port <= 1024 or inquiry_port >= 65535:
