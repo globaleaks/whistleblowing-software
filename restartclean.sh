@@ -2,4 +2,4 @@
 
 find globaleaks/ -name '*.pyc' -exec rm -f {} \;
 
-./bin/startglobaleaks --start-clean 1
+./bin/startglobaleaks --start-clean 1 $@

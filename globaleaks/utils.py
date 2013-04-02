@@ -244,7 +244,7 @@ def mail_exception(etype, value, tback):
     tmp.append("Source: %s" % " ".join(os.uname()))
     tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
 
-    tmp.append(traceback.format_exception(type_, value, tb))
+    tmp.append(traceback.format_exception(etype, value, tb))
 
     message = StringIO(''.join(tmp))
 
