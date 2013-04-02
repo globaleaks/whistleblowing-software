@@ -11,12 +11,6 @@ from globaleaks.handlers.submission import create_submission
 from globaleaks.handlers.node import get_public_context_list, get_public_receiver_list
 
 class TestJobs(helpers.TestGL):
-
-    @inlineCallbacks
-    def setUp(self):
-        self.setUp_dummy()
-        yield self.initialize_db()
-
     @inlineCallbacks
     def test_tip_creation(self):
 

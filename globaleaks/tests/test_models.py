@@ -8,10 +8,6 @@ from globaleaks.settings import transact
 from globaleaks.rest import errors
 
 class TestModels(helpers.TestGL):
-    def setUp(self):
-        self.setUp_dummy()
-        return create_tables(True)
-
     @transact
     def context_add(self, store):
         context = Context(self.dummyContext)

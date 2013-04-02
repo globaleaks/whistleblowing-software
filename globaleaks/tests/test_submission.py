@@ -1,6 +1,4 @@
-import os
 import re
-import shutil
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -24,16 +22,6 @@ class TestSubmission(helpers.TestGL):
             'content_type': 'application/octet',
             'filename': 'ham'}
     ]
-
-    @inlineCallbacks
-    def setUp(self):
-        self.setUp_dummy()
-        yield self.initialize_db()
-        os.mkdir(GLSetting.submission_path)
-
-    def tearDown(self):
-        os.unlink(helpers._TEST_DB)
-        shutil.rmtree(GLSetting.submission_path)
 
     # --------------------------------------------------------- #
     @inlineCallbacks
