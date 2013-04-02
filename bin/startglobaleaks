@@ -159,8 +159,8 @@ GLSetting.parser.add_option("-p", "--port", type="int",
 
 GLSetting.parser.add_option("-l", "--loglevel", type="choice",
     choices=['INFO', 'WARNING', 'ERROR', 'CRITICAL', 'DEBUG'],
-    help="set log level: [default: CRITICAL]",
-    dest="loglevel", default="CRITICAL")
+    help="set log level: [default: %s]" % GLSetting.loglevel,
+    dest="loglevel", default=GLSetting.loglevel)
 
 GLSetting.parser.add_option("-i", "--io", type="int",
     help="enable JSON I/O logging limiting number of Request/Response (-1=disabled, 0=unlimited) [default: %i]" % GLSetting.cyclone_debug,
@@ -235,7 +235,7 @@ if GLSetting.nodaemon:
 # in fact we need to drop privileges before directory creation
 #args +=['--uid', GLSetting.user]
 #args +=['--gid', GLSetting.group]args +=['--rundir', GLSetting.working_path]
-args +=['--pidfile', pidfile_path ]
+args +=['--pidfile', GLSetting.pidfile_path]
 
 # critical and error loglevel do not collect the HTTP request collection
 if GLSetting.cmdline_options.loglevel in [ "DEBUG", "INFO", "WARNING" ]:
