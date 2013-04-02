@@ -4,8 +4,7 @@
 #
 # Configuration file do not contain GlobaLeaks Node information, like in the 0.1
 # because all those infos are stored in the databased.
-# Config contains some system variables usable for debug, integration with APAF
-# and nothing in the common concern af a GlobaLeaks Node Admin
+# Config contains some system variables usable for debug,
 
 import os
 import sys
@@ -168,10 +167,14 @@ class GLSettingsClass:
         if self.cmdline_options.user:
             self.user = self.cmdline_options.user
             self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
+        else:
+            self.uid = os.getuid()
 
         if self.cmdline_options.group:
             self.group = self.cmdline_options.group
             self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
+        else:
+            self.gid = os.getgid()
 
         if self.uid == 0 or self.gid == 0:
             print "Invalid user: cannot run as root"
@@ -194,7 +197,7 @@ class GLSettingsClass:
 
     def create_directories(self):
         """
-        Execute some consinstency checks on command provided Globaleaks paths
+        Execute some consistency checks on command provided Globaleaks paths
 
         if one of working_path or static path is created we copy
         here the static files (default logs, and in the future pot files for localization)
@@ -239,6 +242,16 @@ class GLSettingsClass:
                 os.remove(os.path.join(root, name))
             for name in dirs:
                 os.rmdir(os.path.join(root, name))
+
+    def drop_privileges(self):
+        if os.getgid() == 0 or self.cmdline_options.group:
+            print "switching group privileges to %d" % self.gid
+            os.setgid(GLSetting.gid)
+        if os.getuid() == 0 or self.cmdline_options.user:
+            print "switching user privileges to %d" % self.uid
+            os.setuid(GLSetting.uid)
+
+
 
 # GLSetting is a singleton class exported once
 GLSetting = GLSettingsClass()
