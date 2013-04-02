@@ -218,8 +218,10 @@ class GLSettingsClass:
             assert(os.path.isdir(path))
             return False
 
-        if create_directory(self.working_path) or \
-            create_directory(self.static_path):
+        if create_directory(self.working_path):
+            new_environment = True
+
+        if create_directory(self.static_path):
             new_environment = True
 
         create_directory(self.gldata_path)
