@@ -9,9 +9,6 @@ import pip
 
 from pkg_resources import parse_version
 
-from twisted.python import usage
-
-# avoid: source glenv/bin/activate && export PYTHONPATH=`pwd` <- this last part
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
@@ -73,6 +70,7 @@ def pip_version_check():
         print "\n"
         print "The problem can be solved by:"
         print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki/Linux"
+        print "   [ and verify that you're inside the pyenv! ]"
         print "2) Installing missing requirements using pip install -r requirements.txt"
         quit()
 
@@ -80,6 +78,7 @@ pip_version_check()
 
 from globaleaks.utils import query_yes_no
 from globaleaks.settings import GLSetting
+from twisted.python import usage
 
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
@@ -169,7 +168,7 @@ GLSetting.parser.add_option("-a", "--accept-host", type="string", dest="host_lis
         "(default: 127.0.0.1,localhost. If specify a new hosts, defaults are not more included in the allowed list)",
     default="127.0.0.1,localhost")
 
-GLSetting.parser.add_option("-k", "--socks-port", type="int",
+GLSetting.parser.add_option("-P", "--socks-port", type="int",
     help="Socks port to use Tor (default 9050)", dest="socks_port")
 
 GLSetting.parser.add_option("-o", "--socks-host", type="string",
@@ -194,21 +193,33 @@ GLSetting.parser.add_option("-c", "--start-clean", type="int",
     help="start a clean globaleks install: 1=enabled, 0=disable. (default 0)",
     dest="start_clean", default=0)
 
+GLSetting.parser.add_option("-k", "--kill", type="int",
+    help="signal to send to the current twisted.pid process (if exist), default don't kill",
+    dest="kill", default=0)
+
 # here the options are parsed, because sys.argv array is whack below
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
 
 GLSetting.load_cmdline_options()
 
+pidfile_path = os.path.join(GLSetting.working_path, 'twistd.pid')
+
 if GLSetting.start_clean:
     if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):
-        GLsetting.remove_directories()
+        GLSetting.remove_directories()
+elif GLSetting.cmdline_options.kill:
+    try:
+        fd = open(pidfile_path, "r")
+        target_pid = int(fd.read())
+        os.kill(target_pid, GLSetting.cmdline_options.kill)
+        fd.close()
+    except Exception as excep:
+        print "Unable kill PID found in %s: kill option ignored (%s)" %\
+              ( pidfile_path, excep.strerror )
 
-if os.getuid() == 0:
-    os.setgid(GLSetting.gid)
-    os.setuid(GLSetting.uid)
 
+GLSetting.drop_privileges()
 GLSetting.create_directories()
-
 GLSetting.check_directories()
 
 backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
@@ -220,8 +231,11 @@ if GLSetting.nodaemon:
 args +=['--uid', GLSetting.user]
 args +=['--gid', GLSetting.group]
 args +=['--rundir', GLSetting.working_path]
-args +=['--logfile', os.path.join(GLSetting.working_path, 'twistd.log')]
-args +=['--pidfile', os.path.join(GLSetting.working_path, 'twistd.pid')]
+args +=['--pidfile', pidfile_path ]
+
+# critical and error loglevel do not collect the HTTP request collection
+if GLSetting.cmdline_options.loglevel in [ "DEBUG", "INFO", "WARNING" ]:
+    args +=['--logfile', os.path.join(GLSetting.working_path, 'twistd.log')]
 
 sys.argv[1:] = args
 
