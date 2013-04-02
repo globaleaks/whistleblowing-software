@@ -16,12 +16,12 @@ DEFAULT_PASSWORD = u'yustapassword'
 
 transact.tp = FakeThreadPool()
 GLSetting.scheduler_threadpool = FakeThreadPool()
-GLSetting.db_file = 'sqlite:///' + _TEST_DB
 GLSetting.store = 'test_store'
 GLSetting.notification_plugins = []
 GLSetting.sessions = {}
-GLSetting.logfile = 'gltest.log'
-GLSetting.submission_path = 'submissions'
+GLSetting.working_path = os.path.abspath(os.path.join(GLSetting.root_path, 'testing_dir'))
+GLSetting.eval_paths()
+GLSetting.remove_directories()
 
 from cyclone import httpserver
 from cyclone.web import Application
@@ -34,23 +34,21 @@ from globaleaks import db
 transact.debug = True
 class TestWithDB(unittest.TestCase):
     def setUp(self):
+        GLSetting.create_directories()
         return db.create_tables(create_node=True)
 
     def tearDown(self):
-        os.unlink(_TEST_DB)
+        GLSetting.remove_directories()
 
 class TestGL(TestWithDB):
     @inlineCallbacks
-    def initialize_db(self):
-        yield db.create_tables(create_node=True)
-        yield self.fill_data()
-
-    def setUp(self):
-        """
-        override default handlers' get_store with a mock store used for testing/
-        """
+    def _setUp(self):
+        yield TestWithDB.setUp(self)
         self.setUp_dummy()
-        return self.initialize_db()
+        yield self.fill_data()
+    
+    def setUp(self):
+        return self._setUp()
 
     @inlineCallbacks
     def fill_data(self):
@@ -92,6 +90,7 @@ class TestGL(TestWithDB):
             'contexts' : [],
         }
         self.dummyContext = {
+            'context_gus': unicode(uuid.uuid4()),
             'name': u'created by shooter',
             'description': u'This is the update',
             'fields': [{u'hint': u'autovelox',
@@ -124,12 +123,15 @@ class TestGL(TestWithDB):
                         u'value': u'buh ?'}],
             'selectable_receiver': False,
             'tip_max_access': 10,
-            'tip_timetolive': 2,
+            # _timetolive are expressed in seconds!
+            'tip_timetolive': 200,
+            'submission_timetolive': 100,
             'file_max_download' :1,
             'escalation_threshold': 1,
             'receivers' : []
         }
         self.dummySubmission = {
+            'id': '',
             'context_gus': '',
             'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
             'finalize': False,

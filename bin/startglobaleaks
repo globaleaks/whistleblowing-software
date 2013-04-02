@@ -203,17 +203,13 @@ GLSetting.load_cmdline_options()
 
 if GLSetting.start_clean:
     if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):
-        for root, dirs, files in os.walk(GLSetting.working_path, topdown=False):
-            for name in files:
-                os.remove(os.path.join(root, name))
-            for name in dirs:
-                os.rmdir(os.path.join(root, name))
+        GLsetting.remove_directories()
 
 if os.getuid() == 0:
     os.setgid(GLSetting.gid)
     os.setuid(GLSetting.uid)
 
-GLSetting.consistency_check()
+GLSetting.create_directories()
 
 backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
 
@@ -229,6 +225,11 @@ sys.argv[1:] = args
 
 def run_glbackend():
     from globaleaks import runner
+
+    from globaleaks.utils import log, mail_exception
+    log.start_logging()
+
+    sys.excepthook = mail_exception
 
     config = runner.ServerOptions()
     try:
