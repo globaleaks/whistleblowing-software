@@ -243,7 +243,8 @@ def mail_exception(etype, value, tback):
     tmp.append("Content-Transfer-Encoding: 8bit\n\n")
     tmp.append("Source: %s\n\n" % " ".join(os.uname()))
     tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
-    tmp.append(traceback.format_exception(type_, value, tb))
+
+    tmp.append(traceback.format_exception(etype, value, tback))
 
     message = StringIO(''.join(tmp))
 

@@ -44,7 +44,7 @@ class GLSettingsClass:
         self.cmdline_options = None
 
         # daemon
-        self.nodaemon = 0
+        self.nodaemon = False
 
         # threads sizes
         self.db_thread_pool_size = 1
@@ -71,7 +71,7 @@ class GLSettingsClass:
         self.db_debug = True
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
-        self.loglevel = logging.DEBUG
+        self.loglevel = "CRITICAL"
 
         # session tracking, in the singleton classes
         self.sessions = dict()
@@ -87,7 +87,7 @@ class GLSettingsClass:
         self.reserved_nodelogo_name = "globaleaks_logo" # .png
 
         # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = []
+        self.accepted_hosts = "127.0.0.1,localhost"
 
         # transport security defaults
         self.tor2web_permitted_ops = {
@@ -107,7 +107,7 @@ class GLSettingsClass:
         self.group = getpass.getuser()
         self.uid = os.getuid()
         self.gid = os.getgid()
-        self.start_clean = True
+        self.start_clean = False
 
         # Expiry time of finalized and not finalized submission,
         # They are copied in a context *when is created*, then
@@ -118,6 +118,7 @@ class GLSettingsClass:
         # enhancement: supports "extended settings in GLCLient"
 
     def eval_paths(self):
+        self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
         self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
@@ -149,25 +150,17 @@ class GLSettingsClass:
             quit(-1)
         self.bind_port = self.cmdline_options.port
 
-        # If user has requested this option, initialize a counter to
-        # record the requests sequence, and setup the logs path
-        if self.cmdline_options.io >= 0:
-            self.cyclone_debug = self.cmdline_options.io
+        self.cyclone_debug = self.cmdline_options.io
 
-        if self.cmdline_options.host_list:
-            tmp = str(self.cmdline_options.host_list)
-            self.accepted_hosts += tmp.replace(" ", "").split(",")
+        self.accepted_hosts = self.cmdline_options.host_list.replace(" ", "").split(",")
 
-        if self.cmdline_options.socks_host:
-            self.socks_host = self.cmdline_options.socks_host
+        self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
 
-        if not self.cmdline_options.enable_tor_socks:
-            self.tor_socks_enable = False
+        self.socks_host = self.cmdline_options.socks_host
 
-        if self.cmdline_options.socks_port:
-            if not self.validate_port(self.cmdline_options.socks_port):
-                quit(-1)
-            self.socks_port = self.cmdline_options.socks_port
+        if not self.validate_port(self.cmdline_options.socks_port):
+            quit(-1)
+        self.socks_port = self.cmdline_options.socks_port
 
         if self.cmdline_options.user:
             self.user = self.cmdline_options.user
@@ -185,12 +178,10 @@ class GLSettingsClass:
             print "Invalid user: cannot run as root"
             quit(-1)
 
-        if not self.cmdline_options.start_clean:
-            self.start_clean = False
+        self.start_clean = self.cmdline_options.start_clean
 
-        if self.cmdline_options.working_path:
-            self.working_path = self.cmdline_options.working_path
-            self.eval_paths()
+        self.working_path = self.cmdline_options.working_path
+        self.eval_paths()
 
     def validate_port(self, inquiry_port):
         if inquiry_port <= 1024 or inquiry_port >= 65535:
