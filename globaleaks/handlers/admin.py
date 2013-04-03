@@ -21,14 +21,15 @@ from globaleaks.utils import log
 
 def admin_serialize_node(node):
     response = {
-      'name': node.name,
-      'description': node.description,
-      'hidden_service': node.hidden_service,
-      'public_site': node.public_site,
-      'stats_update_time': node.stats_update_time,
-      'email': node.email,
-      "last_update": utils.pretty_date_time(node.last_update),
-      'languages': list(node.languages) if node.languages else []
+        "name": node.name,
+        "description": node.description,
+        "creation_date": utils.pretty_date_time(node.creation_date),
+        "last_update": utils.pretty_date_time(node.last_update),
+        "hidden_service": node.hidden_service,
+        "public_site": node.public_site,
+        "stats_update_time": node.stats_update_time,
+        "email": node.email,
+        "languages": list(node.languages) if node.languages else []
     }
     return response
 

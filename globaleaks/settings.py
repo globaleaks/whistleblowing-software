@@ -68,7 +68,7 @@ class GLSettingsClass:
             ]
 
         # debug defaults
-        self.db_debug = True
+        self.db_debug = False
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
         self.loglevel = "CRITICAL"

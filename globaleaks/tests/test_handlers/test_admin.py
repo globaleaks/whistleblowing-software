@@ -26,6 +26,7 @@ class TestNodeInstance(helpers.TestHandler):
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
 
+        self.dummyNode['creation_date'] = self.responses[0]['creation_date']
         self.dummyNode['last_update'] = self.responses[0]['last_update']
         del self.dummyNode['password']
         del self.dummyNode['old_password']
@@ -107,8 +108,7 @@ class TestContextsCollection(helpers.TestHandler):
         yield handler.post()
 
         self.dummyContext['context_gus'] =  self.responses[0]['context_gus']
-        del self.responses[0]['creation_date']
-        del self.dummyContext['creation_date']
+        self.dummyContext['creation_date'] = self.responses[0]['creation_date']
         self.assertEqual(self.responses[0], self.dummyContext)
 
     @inlineCallbacks
