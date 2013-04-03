@@ -122,10 +122,8 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
     @param hours: get a datetime obj with now+seconds
     @return: a datetime object
     """
-    delta = seconds + (minutes * 60) + (hours * 3600)
-    delta = timedelta(seconds=delta) - timedelta(seconds=time.timezone)
+    delta = timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
     return datetime.utcnow() + delta
-
 
 def datetime_now():
     """
@@ -133,7 +131,6 @@ def datetime_now():
     """
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
     return now
-
 
 def is_expired(old_date, seconds=0, minutes=0, hours=0, day=0):
     """

@@ -76,8 +76,7 @@ def admin_serialize_receiver(receiver):
 
 @transact
 def get_node(store):
-    node = store.find(Node).one()
-    return admin_serialize_node(node)
+    return admin_serialize_node(store.find(Node).one())
 
 @transact
 def update_node(store, request):
@@ -114,11 +113,9 @@ def update_node(store, request):
 
     # name, description and integer value are acquired here
     node.update(request)
-
-    node_desc = admin_serialize_node(node)
     node.last_update = utils.datetime_now()
-    return node_desc
 
+    return admin_serialize_node(node)
 
 @transact
 def get_context_list(store):
@@ -248,10 +245,9 @@ def update_context(store, context_gus, request):
 
     context.update(request)
     context.fields = request['fields']
-
-    context_desc = admin_serialize_context(context)
     context.last_update = utils.datetime_now()
-    return context_desc
+
+    return admin_serialize_context(context)
 
 @transact
 def delete_context(store, context_gus):
@@ -414,10 +410,9 @@ def update_receiver(store, id, request):
         receiver.contexts.add(context)
 
     receiver.update(request)
-
-    receiver_desc = admin_serialize_receiver(receiver)
     receiver.last_update = utils.datetime_now()
-    return receiver_desc
+
+    return admin_serialize_receiver(receiver)
 
 @transact
 def delete_receiver(store, id):
@@ -766,4 +761,3 @@ class NotificationInstance(BaseHandler):
 
 # Removed from the Admin API
 # plugin_descriptive_list = yield PluginManager.get_all()
-
