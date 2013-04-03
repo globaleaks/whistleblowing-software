@@ -13,7 +13,7 @@ from apscheduler.scheduler import Scheduler
 
 from globaleaks.utils import log
 from globaleaks.db import create_tables
-from globaleaks.settings import GLSetting
+from globaleaks.settings import GLSetting, transact
 
 # The scheduler is a global variable, because can be used to force execution
 __all__ = ['GLAsynchronous']
@@ -139,18 +139,18 @@ else:
         This runner is specific to Unix systems.
         """
         def postApplication(self):
-            """
-            THis code is taken directly from UnixApplicationRunner
-            """
+
             def initialization():
                 deferred = create_tables()
+
+                # check_schema_version is a @transact operation without yield!
+                check_schema_version(self.oldstdout)
                 deferred.addCallback(run_app)
 
             def run_app(res):
                 """
                 Start the actual service Application.
                 """
-                print "Running start."
                 if not GLSetting.accepted_hosts:
                     print "Missing a list of hosts usable to contact GLBackend, abort"
                     raise AttributeError
@@ -174,3 +174,41 @@ else:
             self.removePID(self.config['pidfile'])
 
     GLBaseRunner = GLBaseRunnerUnix
+
+@transact
+def check_schema_version(store, fd):
+    """
+    @return: True of che version is the same, False if the
+        sqlite.sql describe a different schema of the one found
+        in the DB.
+
+    ok ok, this is a dirty check. I'm counting the number of
+    *comma* (,) inside the SQL just to check if a new column
+    has been added. This would help if an incorrect DB version
+    is used. For sure there are other better checks, but not
+    today.
+    """
+    with open(GLSetting.db_schema_file) as f:
+        sqlfile = f.readlines()
+        comma_number = "".join(sqlfile).count(',')
+
+    q = """
+        SELECT name, type, sql
+        FROM sqlite_master
+            WHERE sql NOT NULL AND
+            type == 'table'
+        """
+    res = store.execute(q)
+    comma_compare = 0
+    for table in res:
+        if len(table) == 3:
+            comma_compare += table[2].count(',')
+
+    if comma_compare != comma_number:
+        log.err("*********************************")
+        log.err("Detected an invalid DB version.")
+        log.err("You have to specify a different working_dir, or restartclean")
+        log.err("Also, if the DB is changed, we suggest to update also the GlobaLeaks client")
+        log.err("*********************************")
+        # XXX how can we exit the app and print to stdout ?
+
