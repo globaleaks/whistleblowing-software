@@ -4,10 +4,10 @@
 #
 # Base class for implement the scheduled tasks
 
-from apscheduler.scheduler import Scheduler
-from datetime import date
 from globaleaks import utils
 from globaleaks.utils import log
+
+from datetime import datetime, timedelta
 
 class GLJob:
 
@@ -20,6 +20,7 @@ class GLJob:
         because we want be sure that is a thread start by APScheduler
         """
         plan_exec = utils.utc_future_date(hours=0, seconds=seconds)
+        plan_exec += (datetime.now() - datetime.utcnow())
 
         try:
             aps.add_date_job(self.operation, plan_exec)
