@@ -127,7 +127,7 @@ class GLSettingsClass:
             'glbackend.db'))
         self.db_schema_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
             'sqlite.sql'))
-        self.static_source = os.path.abspath(os.path.join(self.root_path, 'static'))
+        self.static_source = os.path.abspath(os.path.join(self.root_path, '_static'))
         self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
         self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
 
