@@ -106,7 +106,8 @@ GLClientDev.run(function($httpBackend) {
     ],
     "selectable_receiver": true,
     "tip_max_access": 42,
-    "tip_timetolive": 42
+    "tip_timetolive": 42,
+    "submission_timetolive": 42
   },
   {
     "context_gus": "c_IZLJpOxNSXeuMQnuLZC2",
@@ -121,7 +122,8 @@ GLClientDev.run(function($httpBackend) {
     ],
     "selectable_receiver": true,
     "tip_max_access": 42,
-    "tip_timetolive": 42
+    "tip_timetolive": 42,
+    "submission_timetolive": 42
   }];
 
   var node_info = {
@@ -570,7 +572,8 @@ GLClientDev.run(function($httpBackend) {
           ],
           "selectable_receiver": true,
           "tip_max_access": 42,
-          "tip_timetolive": 42
+          "tip_timetolive": 42,
+          "submission_timetolive": 42
       }];
 
       return [200, context_resource];
