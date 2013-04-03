@@ -209,7 +209,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         socksProxy = TCP4ClientEndpoint(reactor, GLSetting.socks_host, GLSetting.socks_port)
         endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
     else:
-        socksProxy = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
+        endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
 
     d = endpoint.connect(factory)
     d.addErrback(result_deferred.errback)
