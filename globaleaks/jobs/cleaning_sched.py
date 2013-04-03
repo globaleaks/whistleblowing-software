@@ -55,8 +55,18 @@ def itip_cleaning(store, id):
         return
 
     store.remove(tit)
-    log.debug("Removed InternalTip id %s" % id)
 
+
+@transact
+def debug_count_itips_by_marker(store):
+    info_list = []
+    for marker in InternalTip._marker:
+        single_info = {
+            marker: store.find(InternalTip, InternalTip.mark == marker).count()
+        }
+        info_list.append(single_info)
+
+    return info_list
 
 
 class APSCleaning(GLJob):
@@ -75,16 +85,16 @@ class APSCleaning(GLJob):
         comment and tip related.
         """
 
-        log.debug("Enterig cleaning sched")
-
         submissions = yield get_tiptime_by_marker(InternalTip._marker[0])
         for submission in submissions:
             if is_expired(iso2dateobj(submission['creation_date']), seconds=submission['submission_life_seconds']):
-                itip_cleaning(submission['id'])
+                log.debug("Deleting an unfinished submission (creation date: %s)" % submission['creation_date'])
+                yield itip_cleaning(submission['id'])
 
         tips = yield get_tiptime_by_marker(InternalTip._marker[1])
         for tip in tips:
             if is_expired(iso2dateobj(tip['creation_date']), seconds=tip['tip_life_seconds']):
-                itip_cleaning(tip['id'])
+                log.debug("Deleting an unfinished tip (creation date: %s)" % tip['creation_date'])
+                yield itip_cleaning(tip['id'])
 
 
