@@ -10,6 +10,7 @@ from globaleaks.handlers import tip, base, admin, submission
 from globaleaks.jobs import delivery_sched, cleaning_sched
 from globaleaks import models
 from globaleaks.utils import is_expired
+from globaleaks.settings import transact
 
 STATIC_PASSWORD = u'bungabunga ;('
 
@@ -130,9 +131,12 @@ class UnfinishedSubmissionCleaning(TestCleaning):
 
     @inlineCallbacks
     def submission_not_expired(self):
+        """
+        Submission is intended the non-finalized Tip, with a shorter life than completed Tips, and
+        not yet delivered to anyone. (marker 0)
+        """
         sub_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[0])
 
-        print sub_list
         self.assertEqual(len(sub_list), 1)
 
         self.assertFalse(
@@ -151,8 +155,8 @@ class UnfinishedSubmissionCleaning(TestCleaning):
 
         self.assertTrue(
             is_expired(
-                cleaning_sched.iso2dateobj(sub_list[0]['creation_date']),
-                sub_list[0]['submission_life_seconds'])
+                cleaning_sched.iso2dateobj(sub_desc['creation_date']),
+                sub_desc['submission_life_seconds'])
         )
 
         # and then, delete the expired submission
@@ -173,7 +177,11 @@ class FinalizedTipCleaning(TestCleaning):
 
     @inlineCallbacks
     def tip_not_expired(self):
-        tip_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[1])
+        """
+        Tip is intended InternalTip notified and delivered (marker 2, 'first' layer of deliverance)
+        and their life depends by context policies
+        """
+        tip_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[2])
 
         self.assertEqual(len(tip_list), 1)
 
@@ -182,6 +190,22 @@ class FinalizedTipCleaning(TestCleaning):
                 cleaning_sched.iso2dateobj(tip_list[0]['creation_date']),
                 tip_list[0]['tip_life_seconds'])
         )
+
+    @inlineCallbacks
+    def force_tip_expire(self):
+        tip_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[2])
+        self.assertEqual(len(tip_list), 1)
+
+        tip_desc  = tip_list[0]
+        tip_desc['tip_life_seconds'] = 0
+
+        self.assertTrue(
+            is_expired(
+                cleaning_sched.iso2dateobj(tip_desc['creation_date']),
+                tip_desc['tip_life_seconds']
+            )
+        )
+
 
     @inlineCallbacks
     def do_create_receivers_tip(self):
