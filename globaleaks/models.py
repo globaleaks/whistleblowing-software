@@ -5,15 +5,12 @@
 # GlobaLeaks ORM Models definition
 
 import types
+
 from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, Unicode, Storm
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
+from globaleaks.utils import datetime_now
 
-# xxx. we should use python tz.
-from datetime import datetime
-# xxx remove this reference and use utils.datetimeNow
-# open issue about microdiff in create/access/update ?
-now = datetime.utcnow
 
 def uuid():
     """
@@ -81,7 +78,7 @@ class Model(Storm):
     id = Unicode(primary=True, default_factory=uuid)
     # Note on creation last_update and last_access may be out of sync by some
     # seconds.
-    creation_date = DateTime(default_factory=now)
+    creation_date = DateTime(default_factory=datetime_now)
 
     def __init__(self, attrs=None):
         if attrs is not None:
@@ -160,8 +157,11 @@ class Context(Model):
     escalation_threshold = Int()
 
     tip_max_access = Int()
-    tip_timetolive = Int()
     file_max_download = Int()
+
+    # both expressed in seconds
+    tip_timetolive = Int()
+    submission_timetolive = Int()
 
     last_update = DateTime()
 
@@ -169,7 +169,7 @@ class Context(Model):
 
     unicode_keys = ['name', 'description' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
-                 'file_max_download']
+                 'file_max_download', 'submission_timetolive' ]
     bool_keys = [ 'selectable_receiver' ]
 
 
@@ -219,7 +219,7 @@ class ReceiverTip(Model):
     #internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
     #receiver = Reference(ReceiverTip.receiver_id, Receiver.id)
 
-    last_access = DateTime(default_factory=now)
+    last_access = DateTime(default_factory=datetime_now)
     access_counter = Int()
     expressed_pertinence = Int()
     notification_date = DateTime()
@@ -383,7 +383,7 @@ class Receiver(Model):
     failed_login = Int()
 
     last_update = DateTime()
-    last_access = DateTime(default_factory=now)
+    last_access = DateTime(default_factory=datetime_now)
 
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",

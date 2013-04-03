@@ -7,5 +7,6 @@ working_dir
 *.egg-info
 *.log
 *_trial_temp*
+_static
 .idea/*
 glenv/

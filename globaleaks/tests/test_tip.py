@@ -38,8 +38,8 @@ class TTip(helpers.TestWithDB):
     tipContext = {
         'name': u'CtxName', 'description': u'dummy context with default fields',
         'escalation_threshold': u'1', 'tip_max_access': u'2',
-        'tip_timetolive': 1, 'file_max_download': 2, 'selectable_receiver': False,
-        'receivers': [], 'fields': []
+        'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
+        'receivers': [], 'fields': [], 'submission_timetolive': 100,
     }
 
     tipReceiver1 = {

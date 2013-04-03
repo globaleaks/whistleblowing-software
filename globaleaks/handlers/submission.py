@@ -9,14 +9,14 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, GLSetting
 from globaleaks.models import *
-from globaleaks import models, security
+from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check
 from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.jobs.delivery_sched import APSDelivery
 from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
-from globaleaks.utils import log, utc_future_date, pretty_date_time
+from globaleaks.utils import log, utc_future_date, pretty_date_time, datetime_now
 from globaleaks.third_party import rstr
 from globaleaks.rest.errors import *
 
@@ -209,7 +209,7 @@ def create_submission(store, request, finalize):
     submission.expiration_date = utc_future_date(hours=(context.tip_timetolive * 24))
     submission.pertinence_counter = 0
     submission.context_id = context.id
-    submission.creation_date = models.now()
+    submission.creation_date = datetime_now()
 
     if finalize:
         submission.mark = InternalTip._marker[1] # Finalized

@@ -82,6 +82,7 @@ from globaleaks.utils import query_yes_no
 from globaleaks.settings import GLSetting
 from twisted.python import usage
 
+
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
 ###
