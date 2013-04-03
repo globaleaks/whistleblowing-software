@@ -6,7 +6,7 @@ from twisted.trial import unittest
 
 from globaleaks.security import get_salt, hash_password, check_password, change_password, SALT_LENGTH
 
-class TestValidate(unittest.TestCase):
+class TestPasswordManagement(unittest.TestCase):
 
     def test_pass_hash(self):
         dummy_password = r"focaccina"
