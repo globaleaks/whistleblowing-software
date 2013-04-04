@@ -12,6 +12,7 @@ import shutil
 import traceback
 import logging
 import transaction
+import socket
 
 import pwd
 import grp
@@ -162,6 +163,9 @@ class GLSettingsClass:
             quit(-1)
         self.socks_port = self.cmdline_options.socks_port
 
+        # convert socks addr in IP and perform a test connection
+        self.validate_socks()
+
         if self.cmdline_options.user:
             self.user = self.cmdline_options.user
             self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
@@ -184,11 +188,37 @@ class GLSettingsClass:
         self.eval_paths()
 
     def validate_port(self, inquiry_port):
-        if inquiry_port <= 1024 or inquiry_port >= 65535:
-            print "Invalid port number. < of 1024 is not permitted (require"\
-                  "root) and > than 65535 can't work"
+        if inquiry_port >= 65535 or inquiry_port < 0:
+            print "Invalid port number ( > than 65535 can't work! )"
             return False
         return True
+
+    def validate_socks(self):
+        """
+        Convert eventually hostname to IPv4 address format and then perform
+        a test connection at them. Need to simply perform a validation of the
+        socks and their reachability
+        """
+        try:
+            ip_safe_socks_host = socket.gethostbyname(self.socks_host)
+            self.socks_host = ip_safe_socks_host
+        except Exception as excep:
+            print "Invalid host %s: %s" % (self.socks_host, excep.strerror)
+            quit(-1)
+
+        testconn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        testconn.setblocking(0)
+        testconn.settimeout(1.5) # 1.5 seconds to reach your socks
+        try:
+            testconn.connect((self.socks_host, self.socks_port))
+        except Exception as excep:
+            if hasattr(excep, 'strerror') and len(excep.strerror) > 1:
+                err_info = excep.strerror
+            else:
+                err_info = excep.message
+            print "Unable to connect to Tor socks at %s:%d (%s)" %\
+                  (self.socks_host, self.socks_port, err_info)
+            quit(-1)
 
 
     def create_directories(self):
