@@ -1,0 +1,47 @@
+<div ng-include="'views/header.html'"
+  onload="header_title='Users Overview';
+  header_subtitle='Administration Interface'"
+>
+</div>
+
+<div class="container config-page" ng-controller="OverviewCtrl">
+
+  <div class="row">
+    <!-- Begin Nav Bar -->
+    <!--  Note the use of "''", yeah two of them.
+            This is the ng-inlcude directive:
+            http://docs.angularjs.org/api/ng.directive:ngInclude
+      -->
+    <div class="span3 config-sidebar"
+      ng-include="'views/admin/sidebar.html'">
+    </div>
+    <!-- End Nav Bar -->
+
+   <div class="span9">
+
+      <h1>Users overview</h1>
+      <div class="table-container">
+      <table class="table table-striped table-bordered dataTable" id="receiverList">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>receivertips</th>
+            <th>failed login</th>
+            <th>receiverfiles</th>
+          </tr>
+        </thead>
+        <tbody id="receiverListBody">
+          <tr ng-repeat="receiver in users">
+            <td>{{receiver.id}}</td>
+            <td>{{receiver.receivertips}}</td>
+            <td>{{receiver.failed_login}}</td>
+            <td>{{receiver.receiverfiles}}</td>
+          </tr>
+        </tbody>
+      </table>
+  </div> <!-- table-container -->
+
+</div> <!-- span9 -->
+</div> <!-- row -->
+</div> <!-- container + controller -->
+
