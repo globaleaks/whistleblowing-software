@@ -2,9 +2,12 @@
 #   GLBackend Database
 #   ******************
 from __future__ import with_statement
+import os
 import os.path
 
 from twisted.internet.defer import succeed
+
+from storm.zope.zstorm import ZStorm
 from storm.exceptions import OperationalError
 
 from globaleaks.utils import log, datetime_now
@@ -128,3 +131,53 @@ def create_tables(create_node=True):
         deferred.addCallback(initialize_node, only_node, email_template)
     return deferred
 
+
+def check_schema_version():
+    """
+    @return: True of che version is the same, False if the
+        sqlite.sql describe a different schema of the one found
+        in the DB.
+
+    ok ok, this is a dirty check. I'm counting the number of
+    *comma* (,) inside the SQL just to check if a new column
+    has been added. This would help if an incorrect DB version
+    is used. For sure there are other better checks, but not
+    today.
+    """
+    if not os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
+        return True
+
+    ret = True
+
+    with open(GLSetting.db_schema_file) as f:
+        sqlfile = f.readlines()
+        comma_number = "".join(sqlfile).count(',')
+
+    zstorm = ZStorm()
+    zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
+    store = zstorm.get(GLSetting.store_name)
+
+    q = """
+        SELECT name, type, sql
+        FROM sqlite_master
+            WHERE sql NOT NULL AND type == 'table'
+        """
+
+    res = store.execute(q)
+
+    comma_compare = 0
+    for table in res:
+        if len(table) == 3:
+            comma_compare += table[2].count(',')
+
+    if comma_compare != comma_number:
+        log.err("*********************************")
+        log.err("Detected an invalid DB version.")
+        log.err("You have to specify a different working_dir, or restartclean")
+        log.err("Also, if the DB is changed, we suggest to update also the GlobaLeaks client")
+        log.err("*********************************")
+        ret = False
+
+    store.close()
+
+    return ret

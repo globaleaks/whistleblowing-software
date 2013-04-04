@@ -12,7 +12,7 @@ from twisted.python.runtime import platformType
 from apscheduler.scheduler import Scheduler
 
 from globaleaks.utils import log
-from globaleaks.db import create_tables
+from globaleaks.db import create_tables, check_schema_version
 from globaleaks.settings import GLSetting, transact
 
 # The scheduler is a global variable, because can be used to force execution
@@ -107,25 +107,46 @@ if platformType == "win32":
         def postApplication(self):
             """
             This code is taken directly from the method postApplication of
-            WindowsApplicationRunner.
+            WindowsApplicationRunner and has not been tested
             """
             def initialization():
-                deferred = create_tables()
-                deferred.addCallback(run_app)
+                if check_schema_version():
+                    deferred = create_tables()
+                    deferred.addCallback(run_app)
+                else:
+                    reactor.stop()
 
             def run_app(res):
                 """
                 Start the actual service Application.
                 """
-                service.IService(self.application).privilegedStartService()
-                app.startApplication(self.application, not self.config['no_save'])
-                app.startApplication(internet.TimerService(0.1, lambda:None), 0)
+
+                """
+                Start the actual service Application.
+                """
+                if not GLSetting.accepted_hosts:
+                    print "Missing a list of hosts usable to contact GLBackend, abort"
+                    raise AttributeError
+
+                try:
+                    service.IService(self.application).privilegedStartService()
+                    app.startApplication(self.application, not self.config['no_save'])
+                    app.startApplication(internet.TimerService(0.1, lambda:None), 0)
+                except Exception as exc:
+                    log.err("Network error: %s" % exc)
+                    reactor.stop()
+                    raise exc
+
                 start_asynchronous()
+
+                print "GLBackend is now running"
+                for host in GLSetting.accepted_hosts:
+                    print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
 
             print "WARNING! Windows use has not been tested!"
 
             reactor.callWhenRunning(initialization)
-            self.startReactor(None, self.oldstdout, self.oldstderr)
+            self.startReactor(reactor, self.oldstdout, self.oldstderr)
             log.msg("Server is shutting down.")
 
     GLBaseRunner = GLBaseRunnerWindows
@@ -141,11 +162,12 @@ else:
         def postApplication(self):
 
             def initialization():
-                deferred = create_tables()
-
-                # check_schema_version is a @transact operation without yield!
-                check_schema_version(self.oldstdout)
-                deferred.addCallback(run_app)
+                if check_schema_version():
+                    deferred = create_tables()
+                    return deferred.addCallback(run_app)
+                else:
+                    reactor.stop()
+                    return None
 
             def run_app(res):
                 """
@@ -171,44 +193,5 @@ else:
             reactor.callWhenRunning(initialization)
             self.startReactor(reactor, self.oldstdout, self.oldstderr)
             log.msg("Server is shutting down.")
-            self.removePID(self.config['pidfile'])
 
     GLBaseRunner = GLBaseRunnerUnix
-
-@transact
-def check_schema_version(store, fd):
-    """
-    @return: True of che version is the same, False if the
-        sqlite.sql describe a different schema of the one found
-        in the DB.
-
-    ok ok, this is a dirty check. I'm counting the number of
-    *comma* (,) inside the SQL just to check if a new column
-    has been added. This would help if an incorrect DB version
-    is used. For sure there are other better checks, but not
-    today.
-    """
-    with open(GLSetting.db_schema_file) as f:
-        sqlfile = f.readlines()
-        comma_number = "".join(sqlfile).count(',')
-
-    q = """
-        SELECT name, type, sql
-        FROM sqlite_master
-            WHERE sql NOT NULL AND
-            type == 'table'
-        """
-    res = store.execute(q)
-    comma_compare = 0
-    for table in res:
-        if len(table) == 3:
-            comma_compare += table[2].count(',')
-
-    if comma_compare != comma_number:
-        log.err("*********************************")
-        log.err("Detected an invalid DB version.")
-        log.err("You have to specify a different working_dir, or restartclean")
-        log.err("Also, if the DB is changed, we suggest to update also the GlobaLeaks client")
-        log.err("*********************************")
-        # XXX how can we exit the app and print to stdout ?
-
