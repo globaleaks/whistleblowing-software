@@ -4,7 +4,11 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
-from globaleaks.settings import transact
+import os
+from PIL import Image, ImageDraw
+from random import randint
+
+from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
@@ -17,14 +21,15 @@ from globaleaks.utils import log
 
 def admin_serialize_node(node):
     response = {
-      'name': node.name,
-      'description': node.description,
-      'hidden_service': node.hidden_service,
-      'public_site': node.public_site,
-      'stats_update_time': node.stats_update_time,
-      'email': node.email,
-      "last_update": utils.pretty_date_time(node.last_update),
-      'languages': list(node.languages) if node.languages else []
+        "name": node.name,
+        "description": node.description,
+        "creation_date": utils.pretty_date_time(node.creation_date),
+        "last_update": utils.pretty_date_time(node.last_update),
+        "hidden_service": node.hidden_service,
+        "public_site": node.public_site,
+        "stats_update_time": node.stats_update_time,
+        "email": node.email,
+        "languages": list(node.languages) if node.languages else []
     }
     return response
 
@@ -38,6 +43,7 @@ def admin_serialize_context(context):
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "tip_timetolive": context.tip_timetolive,
+        "submission_timetolive": context.submission_timetolive,
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
         "fields": context.fields if context.fields else [],
@@ -71,8 +77,7 @@ def admin_serialize_receiver(receiver):
 
 @transact
 def get_node(store):
-    node = store.find(Node).one()
-    return admin_serialize_node(node)
+    return admin_serialize_node(store.find(Node).one())
 
 @transact
 def update_node(store, request):
@@ -109,11 +114,9 @@ def update_node(store, request):
 
     # name, description and integer value are acquired here
     node.update(request)
-
-    node_desc = admin_serialize_node(node)
     node.last_update = utils.datetime_now()
-    return node_desc
 
+    return admin_serialize_node(node)
 
 @transact
 def get_context_list(store):
@@ -243,10 +246,9 @@ def update_context(store, context_gus, request):
 
     context.update(request)
     context.fields = request['fields']
-
-    context_desc = admin_serialize_context(context)
     context.last_update = utils.datetime_now()
-    return context_desc
+
+    return admin_serialize_context(context)
 
 @transact
 def delete_context(store, context_gus):
@@ -265,6 +267,7 @@ def delete_context(store, context_gus):
 
     store.remove(context)
 
+
 @transact
 def get_receiver_list(store):
     """
@@ -278,6 +281,29 @@ def get_receiver_list(store):
         receiver_list.append(admin_serialize_receiver(receiver))
 
     return receiver_list
+
+
+def create_random_receiver_portrait(receiver_uuid):
+    """
+    Create a simple random gradient image, useful to recognize
+    different Receivers by eye, until they do not change a portrait
+    """
+    img = Image.new("RGB", (300,300), "#FFFFFF")
+    draw = ImageDraw.Draw(img)
+
+    r,g,b = randint(0,255), randint(0,255), randint(0,255)
+    dr = (randint(0,255) - r)/300.
+    dg = (randint(0,255) - g)/300.
+    db = (randint(0,255) - b)/300.
+    for i in range(300):
+        r,g,b = r+dr, g+dg, b+db
+        draw.line((i,0,i,300), fill=(int(r),int(g),int(b)))
+
+    img.thumbnail((120, 120), Image.ANTIALIAS)
+    img.save(os.path.join(GLSetting.static_path, "%s_120.png" % receiver_uuid),"PNG")
+    img.thumbnail((40, 40), Image.ANTIALIAS)
+    img.save(os.path.join(GLSetting.static_path, "%s_40.png" % receiver_uuid),"PNG")
+    # perhaps think that we do not want OS operations during a receiver creation operations ?
 
 
 @transact
@@ -313,6 +339,7 @@ def create_receiver(store, request):
     receiver.password = security.hash_password(request['password'], mail_address)
 
     store.add(receiver)
+    create_random_receiver_portrait(receiver.id)
 
     contexts = request.get('contexts', [])
     for context_id in contexts:
@@ -384,10 +411,9 @@ def update_receiver(store, id, request):
         receiver.contexts.add(context)
 
     receiver.update(request)
-
-    receiver_desc = admin_serialize_receiver(receiver)
     receiver.last_update = utils.datetime_now()
-    return receiver_desc
+
+    return admin_serialize_receiver(receiver)
 
 @transact
 def delete_receiver(store, id):
@@ -397,6 +423,15 @@ def delete_receiver(store, id):
     if not receiver:
         log.err("Invalid receiver requested in removal")
         raise errors.ReceiverGusNotFound
+
+    portrait_120 = os.path.join(GLSetting.static_path, "%s_120.png" % id)
+    portrait_40 = os.path.join(GLSetting.static_path, "%s_40.png" % id)
+
+    if os.path.exists(portrait_120):
+        os.unlink(portrait_120)
+
+    if os.path.exists(portrait_40):
+        os.unlink(portrait_40)
 
     store.remove(receiver)
 
@@ -727,4 +762,3 @@ class NotificationInstance(BaseHandler):
 
 # Removed from the Admin API
 # plugin_descriptive_list = yield PluginManager.get_all()
-

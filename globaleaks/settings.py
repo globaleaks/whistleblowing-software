@@ -12,6 +12,7 @@ import shutil
 import traceback
 import logging
 import transaction
+import socket
 
 import pwd
 import grp
@@ -43,6 +44,9 @@ class GLSettingsClass:
         self.parser = OptionParser()
         self.cmdline_options = None
 
+        # daemon
+        self.nodaemon = False
+
         # threads sizes
         self.db_thread_pool_size = 1
 
@@ -56,7 +60,7 @@ class GLSettingsClass:
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.working_path = os.path.abspath(os.path.join(self.root_path, 'working_dir'))
         self.eval_paths()
-    
+
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
 
         # list of plugins available in the software
@@ -65,10 +69,10 @@ class GLSettingsClass:
             ]
 
         # debug defaults
-        self.db_debug = True
+        self.db_debug = False
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
-        self.loglevel = logging.DEBUG
+        self.loglevel = "CRITICAL"
 
         # session tracking, in the singleton classes
         self.sessions = dict()
@@ -84,7 +88,7 @@ class GLSettingsClass:
         self.reserved_nodelogo_name = "globaleaks_logo" # .png
 
         # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = []
+        self.accepted_hosts = "127.0.0.1,localhost"
 
         # transport security defaults
         self.tor2web_permitted_ops = {
@@ -104,7 +108,7 @@ class GLSettingsClass:
         self.group = getpass.getuser()
         self.uid = os.getuid()
         self.gid = os.getgid()
-        self.start_clean = True
+        self.start_clean = False
 
         # Expiry time of finalized and not finalized submission,
         # They are copied in a context *when is created*, then
@@ -115,15 +119,16 @@ class GLSettingsClass:
         # enhancement: supports "extended settings in GLCLient"
 
     def eval_paths(self):
+        self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
         self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
         self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
         self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldata_path,
-                                                'glbackend.db'))
+            'glbackend.db'))
         self.db_schema_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
-                                           'sqlite.sql'))
-        self.static_source = os.path.abspath(os.path.join(self.root_path, 'static'))
+            'sqlite.sql'))
+        self.static_source = os.path.abspath(os.path.join(self.root_path, '_static'))
         self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
         self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
 
@@ -136,6 +141,8 @@ class GLSettingsClass:
         """
         assert self.cmdline_options is not None
 
+        self.nodaemon = self.cmdline_options.nodaemon
+
         self.db_debug = self.cmdline_options.storm
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
@@ -144,25 +151,20 @@ class GLSettingsClass:
             quit(-1)
         self.bind_port = self.cmdline_options.port
 
-        # If user has requested this option, initialize a counter to
-        # record the requests sequence, and setup the logs path
-        if self.cmdline_options.io >= 0:
-            self.cyclone_debug = self.cmdline_options.io
+        self.cyclone_debug = self.cmdline_options.io
 
-        if self.cmdline_options.host_list:
-            tmp = str(self.cmdline_options.host_list)
-            self.accepted_hosts += tmp.replace(" ", "").split(",")
+        self.accepted_hosts = self.cmdline_options.host_list.replace(" ", "").split(",")
 
-        if self.cmdline_options.socks_host:
-            self.socks_host = self.cmdline_options.socks_host
+        self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
 
-        if not self.cmdline_options.enable_tor_socks:
-            self.tor_socks_enable = False
+        self.socks_host = self.cmdline_options.socks_host
 
-        if self.cmdline_options.socks_port:
-            if not self.validate_port(self.cmdline_options.socks_port):
-                quit(-1)
-            self.socks_port = self.cmdline_options.socks_port
+        if not self.validate_port(self.cmdline_options.socks_port):
+            quit(-1)
+        self.socks_port = self.cmdline_options.socks_port
+
+        # convert socks addr in IP and perform a test connection
+        self.validate_socks()
 
         if self.cmdline_options.user:
             self.user = self.cmdline_options.user
@@ -180,19 +182,43 @@ class GLSettingsClass:
             print "Invalid user: cannot run as root"
             quit(-1)
 
-        if not self.cmdline_options.start_clean:
-            self.start_clean = False
+        self.start_clean = self.cmdline_options.start_clean
 
-        if self.cmdline_options.working_path:
-            self.working_path = self.cmdline_options.working_path
-            self.eval_paths()
+        self.working_path = self.cmdline_options.working_path
+        self.eval_paths()
 
     def validate_port(self, inquiry_port):
-        if inquiry_port <= 1024 or inquiry_port >= 65535:
-            print "Invalid port number. < of 1024 is not permitted (require"\
-                  "root) and > than 65535 can't work"
+        if inquiry_port >= 65535 or inquiry_port < 0:
+            print "Invalid port number ( > than 65535 can't work! )"
             return False
         return True
+
+    def validate_socks(self):
+        """
+        Convert eventually hostname to IPv4 address format and then perform
+        a test connection at them. Need to simply perform a validation of the
+        socks and their reachability
+        """
+        try:
+            ip_safe_socks_host = socket.gethostbyname(self.socks_host)
+            self.socks_host = ip_safe_socks_host
+        except Exception as excep:
+            print "Invalid host %s: %s" % (self.socks_host, excep.strerror)
+            quit(-1)
+
+        testconn = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        testconn.setblocking(0)
+        testconn.settimeout(1.5) # 1.5 seconds to reach your socks
+        try:
+            testconn.connect((self.socks_host, self.socks_port))
+        except Exception as excep:
+            if hasattr(excep, 'strerror') and len(excep.strerror) > 1:
+                err_info = excep.strerror
+            else:
+                err_info = excep.message
+            print "Unable to connect to Tor socks at %s:%d (%s)" %\
+                  (self.socks_host, self.socks_port, err_info)
+            quit(-1)
 
 
     def create_directories(self):
@@ -204,7 +230,7 @@ class GLSettingsClass:
         because here stay all the files needed by the application except the python scripts
         """
         new_environment = False
-        
+
         def create_directory(path):
             # returns false if the directory is already present
             if not os.path.exists(path):
@@ -213,8 +239,10 @@ class GLSettingsClass:
             assert(os.path.isdir(path))
             return False
 
-        if create_directory(self.working_path) or \
-            create_directory(self.static_path):
+        if create_directory(self.working_path):
+            new_environment = True
+
+        if create_directory(self.static_path):
             new_environment = True
 
         create_directory(self.gldata_path)

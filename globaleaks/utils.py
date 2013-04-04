@@ -122,19 +122,15 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
     @param hours: get a datetime obj with now+seconds
     @return: a datetime object
     """
-    delta = seconds + (minutes * 60) + (hours * 3600)
-    delta = timedelta(seconds=delta) - timedelta(seconds=time.timezone)
+    delta = timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
     return datetime.utcnow() + delta
-
 
 def datetime_now():
     """
-    @param: a random key used to cache a certain datetime
     @return: a datetime object of now, coherent with the timezone
     """
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
     return now
-
 
 def is_expired(old_date, seconds=0, minutes=0, hours=0, day=0):
     """
@@ -155,6 +151,7 @@ def is_expired(old_date, seconds=0, minutes=0, hours=0, day=0):
     check += timedelta(seconds=seconds, minutes=minutes, hours=total_hours)
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
 
+    # print "now", now," check", check, "return:", str(now > check)
     return now > check
 
 
@@ -212,7 +209,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         socksProxy = TCP4ClientEndpoint(reactor, GLSetting.socks_host, GLSetting.socks_port)
         endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
     else:
-        socksProxy = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
+        endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
 
     d = endpoint.connect(factory)
     d.addErrback(result_deferred.errback)
@@ -241,10 +238,10 @@ def mail_exception(etype, value, tback):
     tmp.append("Subject: GLBackend Exception [%d]\n" % mail_exception.mail_counter)
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1\n")
     tmp.append("Content-Transfer-Encoding: 8bit\n\n")
-    tmp.append("Source: %s" % " ".join(os.uname()))
+    tmp.append("Source: %s\n\n" % " ".join(os.uname()))
     tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
 
-    tmp.append(traceback.format_exception(type_, value, tb))
+    tmp.append(traceback.format_exception(etype, value, tback))
 
     message = StringIO(''.join(tmp))
 

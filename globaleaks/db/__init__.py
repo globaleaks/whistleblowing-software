@@ -2,16 +2,19 @@
 #   GLBackend Database
 #   ******************
 from __future__ import with_statement
+import os
 import os.path
 
 from twisted.internet.defer import succeed
+
+from storm.zope.zstorm import ZStorm
 from storm.exceptions import OperationalError
 
-from globaleaks.utils import log
+from globaleaks.utils import log, datetime_now
 from globaleaks.settings import transact, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
-from globaleaks.security import hash_password, SALT_LENGTH, get_salt
+from globaleaks.security import hash_password, get_salt
 
 @transact
 def initialize_node(store, results, only_node, email_template):
@@ -32,7 +35,7 @@ def initialize_node(store, results, only_node, email_template):
 
     node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
 
-    node.creation_date = models.now()
+    node.creation_date = datetime_now()
     store.add(node)
 
     notification = models.Notification()
@@ -48,8 +51,8 @@ def initialize_node(store, results, only_node, email_template):
     notification.security = u'TLS'
     # notification.security = models.Notification._security_types[0]
 
-    # Those fileds are set here to override the emailnotification_template, the goal is
-    # show to the Admin the various 'variables'
+    # Those fields are sets as default in order to show to the Admin the various 'variables'
+    # callable by template, with %KeyWord% format
 
     notification.tip_template = "Hi, in %NodeName%, in %ContextName%\n\n"\
                                 "You (%ReceiverName%) had received in %EventTime%, a Tip!\n"\
@@ -99,7 +102,6 @@ def create_tables(create_node=True):
     Override transactor for testing.
     """
     if os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
-        print "Node already configured"
         # Here we instance every model so that __storm_table__ gets set via
         # __new__
         for model in models.models:
@@ -129,3 +131,53 @@ def create_tables(create_node=True):
         deferred.addCallback(initialize_node, only_node, email_template)
     return deferred
 
+
+def check_schema_version():
+    """
+    @return: True of che version is the same, False if the
+        sqlite.sql describe a different schema of the one found
+        in the DB.
+
+    ok ok, this is a dirty check. I'm counting the number of
+    *comma* (,) inside the SQL just to check if a new column
+    has been added. This would help if an incorrect DB version
+    is used. For sure there are other better checks, but not
+    today.
+    """
+    if not os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
+        return True
+
+    ret = True
+
+    with open(GLSetting.db_schema_file) as f:
+        sqlfile = f.readlines()
+        comma_number = "".join(sqlfile).count(',')
+
+    zstorm = ZStorm()
+    zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
+    store = zstorm.get(GLSetting.store_name)
+
+    q = """
+        SELECT name, type, sql
+        FROM sqlite_master
+            WHERE sql NOT NULL AND type == 'table'
+        """
+
+    res = store.execute(q)
+
+    comma_compare = 0
+    for table in res:
+        if len(table) == 3:
+            comma_compare += table[2].count(',')
+
+    if comma_compare != comma_number:
+        log.err("*********************************")
+        log.err("Detected an invalid DB version.")
+        log.err("You have to specify a different working_dir, or restartclean")
+        log.err("Also, if the DB is changed, we suggest to update also the GlobaLeaks client")
+        log.err("*********************************")
+        ret = False
+
+    store.close()
+
+    return ret
