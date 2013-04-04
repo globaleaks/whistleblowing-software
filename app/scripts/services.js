@@ -354,10 +354,10 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       });
 }]).
   factory('ReceiverOverview', ['$resource', function($resource) {
-      return $resource('/admin/overview/receivers');
+    return $resource('/admin/overview/users');
 }]).
   factory('TipOverview', ['$resource', function($resource) {
-      return $resource('/admin/overview/tips');
+    return $resource('/admin/overview/tips');
 }]).
   factory('cookiesEnabled', function(){
 

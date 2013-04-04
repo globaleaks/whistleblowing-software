@@ -1,6 +1,5 @@
-GLClient.controller('OverviewCtrl', ['$scope',
-  function($scope) {
-      $scope.overview_users = ReceiverOverview.query();
-      $scope.overview_tips = TipOverview.query();
+GLClient.controller('OverviewCtrl', ['$scope', 'ReceiverOverview', 'TipOverview',
+  function($scope, ReceiverOverview, TipOverview) {
+      $scope.users = ReceiverOverview.query();
+      $scope.tips = TipOverview.query();
 }]);
-
