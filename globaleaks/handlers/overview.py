@@ -104,7 +104,7 @@ def collect_users_overview(store):
             user_description['receiverfiles'].append({
                 'internatip_id': rfile.id,
                 'downloads': rfile.downloads,
-                'last_access': utils.pretty_date_time(rfile.last_acces),
+                'last_access': utils.pretty_date_time(rfile.last_access),
                 'status': rfile.mark,
             })
 
@@ -131,8 +131,8 @@ class Tips(BaseHandler):
     """
 
     @inlineCallbacks
-    #@transport_security_check('admin')
-    #@authenticated('admin')
+    @transport_security_check('admin')
+    @authenticated('admin')
     def get(self, *uriargs):
         """
         Parameters: None
@@ -154,8 +154,8 @@ class Users(BaseHandler):
     """
 
     @inlineCallbacks
-    #@transport_security_check('admin')
-    #@authenticated('admin')
+    @transport_security_check('admin')
+    @authenticated('admin')
     def get(self, *uriargs):
         """
         Parameters: None
