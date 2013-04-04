@@ -261,3 +261,12 @@ class TorNetworkRequired(GLException):
     reason = "Resource can be accessed only from a Tor client"
     error_code = 37
     status_code = 403 # Forbidden
+
+class ReservedFileName(GLException):
+    """
+    The files uploaded in the static file directory, are also used for Receivers portrait
+    and Node Logo.
+    """
+    error_code = 38
+    status_code = 403 # Forbidden
+    reason = "The file uploaded has a reserved name"

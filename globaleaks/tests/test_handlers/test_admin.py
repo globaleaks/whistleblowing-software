@@ -26,9 +26,10 @@ class TestNodeInstance(helpers.TestHandler):
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
 
+        self.dummyNode['creation_date'] = self.responses[0]['creation_date']
+        self.dummyNode['last_update'] = self.responses[0]['last_update']
         del self.dummyNode['password']
         del self.dummyNode['old_password']
-        del self.responses[0]['last_update']
         del self.dummyNode['salt']
         del self.dummyNode['salt_receipt']
 
@@ -85,7 +86,6 @@ class TestNotificationInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_update_notification(self):
         yield self.mock_initialize_notification
-
         self.dummyNotification['server'] = 'stuff'
         handler = self.request(self.dummyNotification, role='admin')
         yield handler.put()
@@ -101,25 +101,22 @@ class TestContextsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-        request_context = self.dummyContext
-        del request_context['contexts'] # why is here !?
-        request_context['name'] = "a random one to avoid dup %d" % random.randint(1, 1000)
+        del self.dummyContext['contexts'] # why is here !?
+        self.dummyContext['name'] = "a random one to avoid dup %d" % random.randint(1, 1000)
 
-        handler = self.request(request_context, role='admin')
+        handler = self.request(self.dummyContext, role='admin')
         yield handler.post()
 
-        request_context['context_gus'] =  self.responses[0]['context_gus']
-        del self.responses[0]['creation_date']
-        del request_context['creation_date']
-        self.assertEqual(self.responses[0], request_context)
+        self.dummyContext['context_gus'] =  self.responses[0]['context_gus']
+        self.dummyContext['creation_date'] = self.responses[0]['creation_date']
+        self.assertEqual(self.responses[0], self.dummyContext)
 
     @inlineCallbacks
     def test_invalid_duplicated_context_name(self):
-        request_context = self.dummyContext
-        del request_context['contexts']
-        request_context['name'] = u'a random name %d, but' % random.randint(1,1000)
+        del self.dummyContext['contexts']
+        self.dummyContext['name'] = u'a random name %d, but' % random.randint(1,1000)
 
-        handler = self.request(request_context, role='admin')
+        handler = self.request(self.dummyContext, role='admin')
 
         try:
             yield handler.post()
@@ -144,11 +141,12 @@ class TestContextInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_put(self):
-        request_context = self.dummyContext
-        request_context['description'] = u'how many readers remind of HIMEM.SYS?'
-        del request_context['contexts'] # I don't know what's doing here!!?
-        handler = self.request(request_context, role='admin')
-        yield handler.put(request_context['context_gus'])
+        self.dummyContext['description'] = u'how many readers remind of HIMEM.SYS?'
+        del self.dummyContext['contexts'] # I don't know what's doing here!!?
+        handler = self.request(self.dummyContext, role='admin')
+        yield handler.put(self.dummyContext['context_gus'])
+        self.dummyContext['creation_date'] = self.responses[0]['creation_date']
+        self.dummyContext['last_update'] = self.responses[0]['last_update']
         self.assertEqual(self.responses[0], self.dummyContext)
 
 

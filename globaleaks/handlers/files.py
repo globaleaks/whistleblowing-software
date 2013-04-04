@@ -106,6 +106,8 @@ def get_tip_by_wbtip(store, wb_tip_id):
     else:
         return itip.id
 
+
+
 class FileHandler(BaseHandler):
 
     @inlineCallbacks
@@ -136,11 +138,12 @@ class FileHandler(BaseHandler):
         self.set_status(201) # Created
         self.write(result_list)
 
-# This is different from FileInstance, just because there are a different authentication requirements
+
+# This is different from FileInstance,just because there are a different authentication requirements
 class FileAdd(FileHandler):
     """
     T4
-    WhistleBlower interface for upload a new file in an live Tip
+    WhistleBlower interface for upload a new file in an already completed submission
     """
 
     @inlineCallbacks
@@ -160,7 +163,7 @@ class FileAdd(FileHandler):
 class FileInstance(FileHandler):
     """
     U4
-    WhistleBlower interface for upload a file during the Submission creation
+    WhistleBlower interface for upload a new file in a not yet completed submission
     """
 
     @inlineCallbacks
