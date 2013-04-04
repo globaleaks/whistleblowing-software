@@ -163,8 +163,9 @@ class GLSettingsClass:
             quit(-1)
         self.socks_port = self.cmdline_options.socks_port
 
-        # convert socks addr in IP and perform a test connection
-        self.validate_socks()
+        if self.tor_socks_enable:
+            # convert socks addr in IP and perform a test connection
+            self.validate_socks()
 
         if self.cmdline_options.user:
             self.user = self.cmdline_options.user
