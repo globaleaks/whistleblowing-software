@@ -270,9 +270,11 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       self.tip.comments = [];
       self.tip.receivers = [];
 
-      receiversResource.query(tipID, function(receiversCollection){
 
-        tipResource.get(tipID, function(result){
+      tipResource.get(tipID, function(result){
+
+        receiversResource.query(tipID, function(receiversCollection){
+
           self.tip = result;
           console.log(result);
           self.tip.receivers = receiversCollection;
