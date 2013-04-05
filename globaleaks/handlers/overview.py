@@ -25,13 +25,14 @@ def collect_tip_overview(store):
         tip_description = {
             "id": itip.id,
             "creation_date": utils.pretty_date_time(itip.creation_date),
+            "creation_lifetime": utils.pretty_diff_now(itip.creation_date),
             "expiration_date": utils.pretty_date_time(itip.expiration_date),
             "context_id": itip.context_id,
+            "context_name": itip.context.name,
             "pertinence_counter": itip.pertinence_counter,
             "status": itip.mark,
             "receivertips": [],
             "internalfiles": [],
-            "receivers": [],
             "comments": [],
         }
 
@@ -39,9 +40,11 @@ def collect_tip_overview(store):
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,
                 'notification_date': utils.pretty_date_time(rtip.notification_date),
-                'creation_date': utils.pretty_date_time(rtip.creation_date),
+                # 'creation_date': utils.pretty_date_time(rtip.creation_date),
                 'status': rtip.mark,
                 'receiver_id': rtip.receiver.id,
+                'receiver_username': rtip.receiver.username,
+                'receiver_name': rtip.receiver.name,
                 # last_access censored willingly
             })
 
@@ -53,15 +56,11 @@ def collect_tip_overview(store):
                 'content_type': ifile.content_type
             })
 
-        for rcvr in itip.receivers:
-            tip_description['receivers'].append({
-                'receiver_id': rcvr.id
-            })
 
         for comment in itip.comments:
             tip_description['comments'].append({
                 'type': comment.type,
-                'creation_date': utils.pretty_date_time(comment.creation_date),
+                'lifetime': utils.pretty_diff_now(comment.creation_date),
             })
 
         # whistleblower tip has not a reference from itip, then:
@@ -71,7 +70,7 @@ def collect_tip_overview(store):
         if wbtip is not None:
             tip_description.update({
                 'wb_access_counter': wbtip.access_counter,
-                'wb_last_access': utils.pretty_date_time(wbtip.last_access)
+                'wb_last_access': utils.pretty_diff_now(wbtip.last_access)
             })
         else:
             tip_description.update({
@@ -94,6 +93,7 @@ def collect_users_overview(store):
         # all public of private infos are stripped, because know between the Admin resources
         user_description = {
             'id': receiver.id,
+            'name': receiver.name,
             'failed_login': receiver.failed_login,
             'receiverfiles': [],
             'receivertips': [],
@@ -103,8 +103,9 @@ def collect_users_overview(store):
         for rfile in rcvr_files:
             user_description['receiverfiles'].append({
                 'internatip_id': rfile.id,
+                'file_name': rfile.internalfile.name,
                 'downloads': rfile.downloads,
-                'last_access': utils.pretty_date_time(rfile.last_access),
+                'last_access': utils.pretty_diff_now(rfile.last_access),
                 'status': rfile.mark,
             })
 
@@ -113,8 +114,8 @@ def collect_users_overview(store):
             user_description['receivertips'].append({
                 'internaltip_id': rtip.id,
                 'status': rtip.mark,
-                'last_access': utils.pretty_date_time(rtip.last_access),
-                'notification_date': utils.pretty_date_time(rtip.notification_date),
+                'last_access': utils.pretty_diff_now(rtip.last_access),
+                'notification_date': utils.pretty_diff_now(rtip.notification_date),
                 'access_counter': rtip.access_counter,
             })
 
