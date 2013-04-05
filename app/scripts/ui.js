@@ -7,16 +7,18 @@
 // with it.
 // To learn more see: http://docs.angularjs.org/guide/directive
 angular.module('submissionUI', []).
-  directive('pragmaticFileUpload', function(){
+  directive('pragmaticFileUpload', ['$cookies', function($cookies){
 
     return {
 
       link: function(scope, element, attrs) {
         var selectFileButton = element.find('button.selectFile'),
           uploadButton = element.find('button.upload'),
-          img_receiver = element.parent().parent().find('img.baseimage')[0];
+          img_receiver = element.parent().parent().find('img.baseimage')[0],
+          headers = {'X-Session': $cookies['session_id']};
 
         img_receiver.onload = function(){
+          // Resize the overlay black image to match the icon size.
           var upload_file = element.parent().parent().find('.uploadfile');
           upload_file.css('width', img_receiver.width + 10);
           upload_file.css('height', img_receiver.width - 20);
@@ -29,8 +31,9 @@ angular.module('submissionUI', []).
             url = url.replace(/'/g, "");
 
           $(uploadButton).click(function() {
-            console.log("uploading to "+url);
-            var fileUploader = $(element).fileupload({url: url}),
+            console.log("uploading to " + url);
+            var fileUploader = $(element).fileupload({url: url,
+                                                      headers: headers}),
               filesList = element.find('input.file')[0].files;
 
             $(element).fileupload('send', {files: filesList}).
@@ -53,9 +56,9 @@ angular.module('submissionUI', []).
         });
       }
     }
-}).
+}]).
   // XXX this needs some major refactoring.
-  directive('fileUpload', ['$rootScope', function($rootScope){
+  directive('fileUpload', ['$rootScope', '$cookies', function($rootScope, $cookies){
 
     // The purpose of this directive is to register the jquery-fileupload
     // plugin
@@ -74,6 +77,8 @@ angular.module('submissionUI', []).
       },
 
       link: function(scope, element, attrs) {
+        var headers = {'X-Session': $cookies['session_id']};
+
         function add(e, data) {
           for (var file in data.files) {
             var file_info,
@@ -109,7 +114,8 @@ angular.module('submissionUI', []).
         };
 
         $(element[0]).fileupload({progress: progressMeter,
-          progressall: progressMeter, add: add, done: done});
+          progressall: progressMeter, add: add, done: done,
+          headers: headers});
       }
     }
 }]).
