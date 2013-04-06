@@ -15,7 +15,7 @@ from cyclone.web import os
 
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check
+from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils import log, pretty_date_time
 from globaleaks.rest import errors
 from globaleaks import models
@@ -148,6 +148,7 @@ class FileAdd(FileHandler):
 
     @inlineCallbacks
     @transport_security_check('tip')
+    @authenticated('wb')
     def post(self, wb_tip_id, *args):
         """
         Parameter: submission_gus

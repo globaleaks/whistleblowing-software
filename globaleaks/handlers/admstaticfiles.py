@@ -121,9 +121,10 @@ def import_node_logo(filedesc):
     """
     img140 = Image.open(filedesc['_gl_file_path'])
     img140.thumbnail((140, 140), Image.ANTIALIAS)
-    img140.save(
-        os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_nodelogo_name),
-        "PNG")
+
+    logopath = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_nodelogo_name)
+    os.unlink(logopath)
+    img140.save(logopath, "PNG")
 
     log.debug("saved resized 140x140 PNG file: removing original file %s" % filedesc['filename'])
     os.unlink(filedesc['_gl_file_path'])
@@ -144,11 +145,15 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
 
     img120 = Image.open(filedesc['_gl_file_path'])
     img120.thumbnail((120, 120), Image.ANTIALIAS)
-    img120.save(os.path.join(GLSetting.static_path, "%s_120.png" % receiver_uuid), "PNG")
+    output120_path = os.path.join(GLSetting.static_path, "%s_120.png" % receiver_uuid)
+    os.unlink(output120_path)
+    img120.save(os.path.join(GLSetting.static_path, output120_path), "PNG")
 
     img40 = Image.open(filedesc['_gl_file_path'])
     img40.thumbnail((40, 40), Image.ANTIALIAS)
-    img40.save(os.path.join(GLSetting.static_path, "%s_40.png" % receiver_uuid), "PNG")
+    output40_path = os.path.join(GLSetting.static_path, "%s_40.png" % receiver_uuid)
+    os.unlink(output40_path)
+    img40.save(os.path.join(GLSetting.static_path, output40_path), "PNG")
 
     log.debug("saved resized 120x120 and 40x40 PNG file: removing original file %s" % filedesc['filename'])
     os.unlink(filedesc['_gl_file_path'])
