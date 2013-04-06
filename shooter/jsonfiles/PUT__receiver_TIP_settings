@@ -1,6 +1,0 @@
-name=This is my new name `mmaker`
-description=I'm the Senior Configuration Manager
-tags:=[ "config", "python", "mmaker.py", "unitTest", "sæadæs" ]
-languages:=[ "it", "sardo", "en" ]
-password=thisistrue!
-notification_fields:={}
