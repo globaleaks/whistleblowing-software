@@ -54,7 +54,7 @@ WORKING_DIR=${GLDIR}/working_dir
 GLBACKENDDIR=${GLDIR}/GLBackend
 GLCLIENTDIR=${GLDIR}/GLClient
 GLENV=${GLDIR}/glenv/bin/activate
-GLBACKEND_DAEMON=${GLBACKENDDIR}/bin/startglobaleaks
+GLBACKEND_DAEMON=${GLBACKENDDIR}/bin/globaleaks
 
 GLBACKEND_ARGS="--port ${LISTENING_PORT} --accept-host=${HOSTS_LIST} --user=${USER} --group=${GROUP} --working-path=${WORKING_DIR}"
 
