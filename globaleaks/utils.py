@@ -165,6 +165,24 @@ def pretty_date_time(when):
     else:
         return when.isoformat()
 
+def pretty_diff_now(past_date):
+    """
+    @param past_date: source date in the past of now()
+    @return: differences in time up to now(), pretty format
+    """
+    if not past_date:
+        return u"Never"
+
+    now = datetime.utcnow() - timedelta(seconds=time.timezone)
+    diff = now - past_date
+
+    diff = int(diff.total_seconds())
+    days, hours_carry = divmod(diff, 3600 * 24)
+    hours, minutes_carry = divmod(hours_carry, 3600)
+    minutes, seconds = divmod(minutes_carry, 60)
+
+    return '%sD+%s:%s:%s' % (days, hours, minutes, seconds)
+
 ## Mail utilities ##
 
 def sendmail(authentication_username, authentication_password, from_address,
