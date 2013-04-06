@@ -135,9 +135,9 @@ class GLSettingsClass:
     def load_cmdline_options(self):
         """
         This function is called by runner.py and operate in cmdline_options,
-        interpreted and filled in bin/startglobaleaks script.
+        interpreted and filled in bin/globaleaks script.
 
-        happen in startglobaleaks before the sys.argv is modified
+        happen in globaleaks before the sys.argv is modified
         """
         assert self.cmdline_options is not None
 
