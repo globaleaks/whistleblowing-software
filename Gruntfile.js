@@ -8,15 +8,15 @@ module.exports = function(grunt) {
   grunt.initConfig({
 
     // compile .scss/.sass to .css using Compass
-    compass: {
-      dev: {
-        options: {              // Target options
-          sassDir: 'app/styles/sass',
-          cssDir: 'app/styles',
-          environment: 'development'
-        }
-      }
-    },
+    // compass: {
+    //   dev: {
+    //     options: {              // Target options
+    //       sassDir: 'app/styles/sass',
+    //       cssDir: 'app/styles',
+    //       environment: 'development'
+    //     }
+    //   }
+    // },
 
     // generate application cache manifest
     manifest:{
@@ -129,7 +129,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
 
-  grunt.loadNpmTasks('grunt-contrib-compass');
+  // grunt.loadNpmTasks('grunt-contrib-compass');
 
   grunt.loadNpmTasks('grunt-reload');
   grunt.loadNpmTasks('grunt-contrib-watch');
