@@ -143,7 +143,7 @@ for txt1, l, txt2 in header:
 
 print '\n'
 print colorize('Welcome', 'CYAN'), colorize('to', 'YELLOW'), 'Globa'+colorize('Leaks', 'RED')
-print ("Alpha release of GlobaLeaks 0.2.\n"
+print ("Alpha release of GlobaLeaks 0.2\n"
        "Actually, you may require our supports to makes GL works: irc.freenode.net #globaleaks can help you")
 
 GLSetting.parser.add_option("-n", "--nodaemon", action='store_true',
