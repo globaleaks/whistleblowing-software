@@ -53,7 +53,7 @@ def start_asynchronous():
     https://github.com/globaleaks/GLBackend/wiki/Asynchronous-and-synchronous-operation
 
     This method would be likely put in GLBaseRunner.postApplication, but is
-    not executed by startglobaleaks.run_app, then is called by the
+    not executed by globaleaks.run_app, then is called by the
     OS-depenedent runner below
     """
     from globaleaks.jobs import notification_sched, statistics_sched, \

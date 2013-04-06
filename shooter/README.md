@@ -18,13 +18,13 @@ and need to be installed in your system (or in your pyenv) with:
 ## Easy testing
 
     rm -rf _gldata
-    bin/startglobaleaks
+    bin/globaleaks
 
     cd shooter
     ./admincycle
 
 Admin cycle perform twenty operations performable by a Node Administrator, and store
-intermediary status with assertion in /tmp directory. 
+intermediary status with assertion in /tmp directory.
 
 ### Usage
 
@@ -64,7 +64,7 @@ For this reason, exists also the keyword:
 
 some example:
 
-shooter.py A2 GET cid c\_QzytUIQsoFlbReibfwLY verbose 
+shooter.py A2 GET cid c\_QzytUIQsoFlbReibfwLY verbose
 shooter.py A3 PUT raw \"c\_nyfyUKGeVcNdLfZwfckK\",\"c\_QzytUIQsoFlbReibfwLY\" rid r\_nyfyUKGeVcNdLfZwfckK
 shooter.py U3 GET sid s\_VeLvSDfpKsxUdGLHEDDKWFBIAnTrMbbuqSPuEYylJpkxSozTmd
 
@@ -81,14 +81,14 @@ the output is only the content of the selected field.
 
 Follow an example that query in U1 (/node) for the name of the GL node, query in A1
 (/admin/node) for get the identifier of a context (called context\_gus), get in the admin
-interface informations about the selected context, using A2 (/admin/contexts) 
+interface informations about the selected context, using A2 (/admin/contexts)
 
     $ python shooter.py U1 GET print-name
     uncofigured name
     $ python shooter.py A2 GET print-context\_gus
     c\_zBCyBUsQNAIsyqEJEsrT
 
-using 
+using
 
     $ python shooter.py help
 
@@ -104,8 +104,8 @@ TODO, or TO BE removed for an easier configuration file.
 
 emulate the wizard at the startup (create the first context and the firsts receivers)
 
-    submission.sh 
-    
+    submission.sh
+
 emulate a submission, in the first context presented by '/node'
 
     comment.sh
