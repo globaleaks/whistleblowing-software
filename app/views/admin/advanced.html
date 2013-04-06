@@ -21,10 +21,24 @@
     <div class="span9">
 
       <form name="nodeConfigForm" class="config-form">
-        <!-- Node -->
+          <!-- Node -->
+
+
         <div class="row">
-          <div class="span9">
-            <h2>Node Settings</h2>
+            <div class="span9">
+
+            <h4>Internal Settings</h4>
+            <label>Old Password</label>
+            <input type="password"
+                   ng-model="admin.node.old_password">
+            <p class="text-error"
+              ng-show="invalid_password">Old password is required</p>
+
+            <label>New Password</label>
+            <input type="password"
+            ng-model="admin.node.password" >
+
+            <h4>External Settings</h4>
             <label>Hidden Service</label>
             <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
                    ng-pattern="/^[0-9a-z]{16}\.onion$/">
@@ -37,23 +51,6 @@
             <p class="text-error"
                ng-show="nodeConfigForm.public_site.$error.url">Invalid format for public site (should be "https://example.com")</p>
 
-            <div class="row">
-              <div class="span9">
-                <label>Old Password</label>
-                <input type="password"
-                       ng-model="admin.node.old_password">
-                <p class="text-error"
-                  ng-show="invalid_password">Old password is required</p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="span9">
-                <label>New Password</label>
-                <input type="password"
-                       ng-model="admin.node.password" >
-              </div>
-            </div>
 
           </div>
         </div>
