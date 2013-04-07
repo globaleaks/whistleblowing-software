@@ -280,3 +280,20 @@
   border: 3px solid #ccc;
   padding: 0 10px 0 0;
 }
+
+.selectionContextItem {
+  position: relative;
+  list-style: none;
+  padding-left: 10px;
+  margin-left: 10px;
+  padding: 3px 13px 3px 3px;
+}
+.selectionContextItem:hover {
+  color: #0088cc;
+}
+.selectionContextItem .checkbox {
+  display: inline;
+  top: 0px;
+  position: absolute;
+  left: -40px;
+}
