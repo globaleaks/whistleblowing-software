@@ -11,7 +11,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
 from globaleaks.utils import log
 from globaleaks.third_party import rstr
-from globaleaks import security
+from globaleaks import security, utils
 
 def authenticated(*roles):
     """
@@ -62,9 +62,6 @@ def transport_security_check(wrapped_handler_role):
             accept_tor2web = GLSetting.tor2web_permitted_ops[wrapped_handler_role]
             are_we_tor2web = get_tor2web_header(cls.request.headers)
 
-            if are_we_tor2web:
-                log.debug("Uh! Is from T2W the request for: %s" % cls.request.uri)
-
             if are_we_tor2web and accept_tor2web == False:
                 log.err("Receiver connection on Tor2Web for role %s: forbidden in %s" %
                     (wrapped_handler_role, cls.request.uri) )
@@ -88,10 +85,11 @@ def login_wb(store, receipt):
         raise errors.InvalidAuthRequest
 
     if not wb_tip:
-        log.debug("Whistleblower: Fail auth (%s)" % receipt)
+        log.debug("Whistleblower: Fail auth")
         raise errors.InvalidAuthRequest
 
-    log.debug("Whistleblower: OK auth using: %s" % receipt )
+    log.debug("Whistleblower: login OK")
+    wb_tip.last_access = utils.datetime_now()
     return unicode(wb_tip.id)
 
 
@@ -101,28 +99,28 @@ def login_receiver(store, username, password):
     This login receiver need to collect also the amount of unsuccessful
     consecutive logins, because this element may bring to password lockdown.
     """
-    try:
-        receiver = store.find(Receiver, (Receiver.username == unicode(username))).one()
-    except NotOneError:
-        log.debug("Receiver: Fail auth, userame %s do not exists" % username)
-        security.insert_random_delay()
-        raise errors.InvalidAuthRequest
+    receiver = store.find(Receiver, (Receiver.username == unicode(username))).one()
 
     if not receiver:
-        log.debug("Receiver: Fail auth, userame %s do not exists" % username)
+        log.debug("Receiver: Fail auth, username %s do not exists" % username)
         security.insert_random_delay()
         raise errors.InvalidAuthRequest
 
     if not security.check_password(password, receiver.password, receiver.username):
+        security.insert_random_delay()
         receiver.failed_login += 1
-        log.debug("Receiver: Failed auth for %s #%d" % (username, receiver.failed_login) )
+
+    if receiver.failed_login >= GLSetting.failed_login_alarm:
+        log.err("Warning: Receiver %s has failed %d times the password" %\
+                (username, receiver.failed_login) )
 
         # this require a forced commit because otherwise the exception would cause a rollback!
         store.commit()
         raise errors.InvalidAuthRequest
     else:
-        log.debug("Receiver: Good auth for %s" % username)
+        log.debug("Receiver: Authorized receiver %s" % username)
         receiver.failed_login = 0
+        receiver.last_access = utils.datetime_now()
         return unicode(receiver.id)
 
 
@@ -222,7 +220,6 @@ class AuthenticationHandler(BaseHandler):
         """
         if self.current_user:
             try:
-                log.debug("Explitic logout of SID %s" % GLSetting.sessions[self.current_user.id])
                 del GLSetting.sessions[self.current_user.id]
             except KeyError:
                 raise errors.NotAuthenticated
