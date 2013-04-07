@@ -116,7 +116,6 @@ def get_internaltip_wb(store, tip_id):
     tip_desc = actor_serialize_internal_tip(wbtip.internaltip)
     tip_desc['access_counter'] = int(wbtip.access_counter)
     tip_desc['id'] = unicode(wbtip.id)
-    # tip_desc['last_access'] TODO
 
     return tip_desc
 
@@ -129,7 +128,6 @@ def get_internaltip_receiver(store, user_id, tip_id):
     tip_desc['expressed_pertinence'] = int(rtip.expressed_pertinence)
     tip_desc['id'] = unicode(rtip.id)
     tip_desc['receiver_id'] = unicode(user_id)
-    # tip_desc['last_access'] TODO
 
     return tip_desc
 

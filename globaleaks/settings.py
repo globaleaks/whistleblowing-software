@@ -118,6 +118,10 @@ class GLSettingsClass:
         self.submission_seconds_of_life = (3600 * 24) * 1
         # enhancement: supports "extended settings in GLCLient"
 
+        # Number of failed login enough to generate an alarm
+        self.failed_login_alarm = 5
+
+
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
@@ -135,9 +139,9 @@ class GLSettingsClass:
     def load_cmdline_options(self):
         """
         This function is called by runner.py and operate in cmdline_options,
-        interpreted and filled in bin/globaleaks script.
+        interpreted and filled in bin/startglobaleaks script.
 
-        happen in globaleaks before the sys.argv is modified
+        happen in startglobaleaks before the sys.argv is modified
         """
         assert self.cmdline_options is not None
 
