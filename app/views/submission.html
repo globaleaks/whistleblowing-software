@@ -51,7 +51,8 @@
                ng-class-even="{receiverCardEven: true}">
 
             <input ng-model="receivers_selected[receiver.receiver_gus]"
-                   type="checkbox" value="{{receiver.receiver_gus}}" class="receiverSelection">
+                   type="checkbox" value="{{receiver.receiver_gus}}"
+                   class="receiverSelection" ng-show="submission.current_context.selectable_receiver">
             <div class="row">
               <div class="span2">
                 <img src="/static/{{receiver.receiver_gus}}_120.png" class="img-polaroid">
