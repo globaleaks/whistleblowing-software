@@ -30,24 +30,10 @@ def file_preprocess(store):
     """
     files = store.find(InternalFile, InternalFile.mark == InternalFile._marker[0])
 
-    # TODO Until reference is not fixed/understand completely, this shitty check
-    # is needed. # uuuuuffff :((((
-    internaltip_related = {}
-    for single_file in files:
-        internaltip_related[single_file.internaltip_id] = ''
-
-    unfinalized_itip = []
-    for itip_id in internaltip_related.keys():
-        rq = store.find(InternalTip, InternalTip.id == unicode(itip_id) ).one()
-        if rq.mark == InternalTip._marker[0]: # 'submission'
-            unfinalized_itip.append(rq.id)
-    # </uuuuuffff :(((( >
-
     filesdict = {}
     for filex in files:
 
-        if filex.internaltip_id in unfinalized_itip:
-            # eventually checks for large timelaps as anomaly
+        if filex.internaltip.mark == InternalTip._marker[0]:
             continue
 
         filesdict.update({filex.id : filex.file_path})

@@ -5,6 +5,8 @@
 # Implementation of the cleaning operations (delete incomplete submission,
 # delete expired tips, etc)
 
+import os
+
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact
@@ -53,6 +55,13 @@ def itip_cleaning(store, id):
     if not tit: # gtfo
         log.err("Requested invalid InternalTip id in itip_cleaning! %s" % id)
         return
+
+    for ifile in tit.internalfiles:
+        if not os.path.isfile(ifile.file_path):
+            log.err("Unable to remove not existent file, in itip %s has an internalfile %s(%d) missing on FS (%s)" %
+                id, ifile.name, ifile.size, ifile.file_path)
+        else:
+            os.unlink(ifile.file_path)
 
     store.remove(tit)
 
