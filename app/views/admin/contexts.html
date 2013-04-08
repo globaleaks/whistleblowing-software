@@ -75,9 +75,7 @@
 
                         <div class="selectionElement">
                           <div class="selectionDetails" ng-click="toggle(receiver)"
-                               ng-class="{selected: isSelected(receiver)}" ng-mouseenter="selectorActive=true;"
-                               ng-mouseleave="selectorActive=false;">
-                            <div class="selector" ng-show="selectorActive"><span>&#10004;</span></div>
+                               ng-class="{selected: isSelected(receiver)}">
                             <img src="/static/{{receiver.receiver_gus}}_40.png">
                             <span>{{receiver.name}}</span>
                           </div>

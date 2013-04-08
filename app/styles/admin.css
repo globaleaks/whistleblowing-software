@@ -264,13 +264,29 @@
   opacity: 1;
   text-align: center;
 }
+
 .selectionDetails {
-  padding-top: 10px;
+  margin-left: 10px;
+  padding: 3px 13px 3px 3px;
 }
+
+.selectionDetails.selected, 
+.selectionDetails.selected:hover {
+  border: 3px solid #5bb75b;
+  padding: 0 10px 0 0;
+}
+
+.selectionDetails:hover {
+  border: 3px solid #ccc;
+  padding: 0 10px 0 0;
+}
+
 .selectionContextItem {
   position: relative;
   list-style: none;
   padding-left: 10px;
+  margin-left: 10px;
+  padding: 3px 13px 3px 3px;
 }
 .selectionContextItem:hover {
   color: #0088cc;
@@ -279,6 +295,5 @@
   display: inline;
   top: 0px;
   position: absolute;
-  left: -30px;
+  left: -40px;
 }
-
