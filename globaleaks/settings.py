@@ -81,6 +81,7 @@ class GLSettingsClass:
         self.name_limit = 128
         self.description_limit = 1024
         self.generic_limit = 2048
+        self.max_file_size = (30 * 1024 * 1024) # 30 Mb
 
         # static file rules
         self.staticfile_regexp = r'(\w+)\.(\w+)'
@@ -127,7 +128,6 @@ class GLSettingsClass:
         self.log_file_size = 1000000
         # Number of log files to conserve.
         self.maximum_rotated_log_files = 100
-
 
 
     def eval_paths(self):

@@ -17,6 +17,7 @@ import sys
 import os
 
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
+from cyclone.httpserver import HTTPConnection
 from cyclone import escape
 
 from globaleaks.utils import log, mail_exception
@@ -28,7 +29,7 @@ def validate_host(host_key):
     """
     validate_host checks in the GLSetting list of valid 'Host:' values
     and if matched, return True, else return False
-    Is used by all the Web hanlders inherit from Cyclone
+    Is used by all the Web handlers inherit from Cyclone
     """
     # hidden service has not a :port
     if len(host_key) == 22 and host_key[16:22] == '.onion':
@@ -45,6 +46,22 @@ def validate_host(host_key):
     log.debug("Error in host requested: %s do not accepted between: %s " %
               (host_key, str(GLSetting.accepted_hosts)))
     return False
+
+
+class GLHTTPServer(HTTPConnection):
+
+    def lineReceiver(self, line):
+        HTTPConnection.lineReceived(self, line)
+
+    def rawDataReceived(self, data):
+        if self.content_length > GLSetting.max_file_size:
+            log.err("Tried upload larger than expected (%dMb)" %
+                    (self.content_length / (1024 * 1024)) )
+
+            # In HTTP Protocol errors need to be managed differently than handlers
+            raise errors.HTTPRawLimitReach
+
+        HTTPConnection.rawDataReceived(self, data)
 
 
 class BaseHandler(RequestHandler):
@@ -167,6 +184,11 @@ class BaseHandler(RequestHandler):
         """
         pass
 
+    def initialize(self):
+        pass
+
+    def on_connection_close(self, *args, **kwargs):
+        pass
 
     requestTypes = {}
     def prepare(self):
@@ -208,6 +230,7 @@ class BaseHandler(RequestHandler):
             if GLSetting.cyclone_debug_counter >= GLSetting.cyclone_debug:
                 log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.cyclone_debug)
                 GLSetting.cyclone_debug = -1
+
 
     def flush(self, include_footers=False):
         """

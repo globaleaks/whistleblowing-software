@@ -8,6 +8,7 @@
 # class variables expected in the Error handler routine
 
 from cyclone.web import HTTPError
+from globaleaks.settings import GLSetting
 
 class GLException(HTTPError):
     reason = "GLTypesError not set"
@@ -275,3 +276,12 @@ class ReservedFileName(GLException):
     error_code = 38
     status_code = 403 # Forbidden
     reason = "The file uploaded has a reserved name"
+
+class HTTPRawLimitReach(GLException):
+    """
+    Raised by GLHTTPServer, when a raw upload is bigger than acceptable
+    """
+    error_code = 39
+    status_code = 400 # Generic 400 error
+    reason = ("The upload request overcome the Md limits (%dMd)" %\
+              (GLSetting.max_file_size / 1024 * 1024) )
