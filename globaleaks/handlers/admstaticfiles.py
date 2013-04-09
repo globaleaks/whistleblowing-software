@@ -76,7 +76,10 @@ def dump_static_files(filesinupload):
         filelocation = single_file['_gl_file_path']
 
         if os.path.exists(filelocation):
-            log.debug("path %s exists and would be overwritten with %d bytes" %
+            log.err("Path %s exists and would be overwritten with %d bytes" %
+                (filelocation, len(single_file['body']) ) )
+        else:
+            log.debug("Creating %s with %d bytes" %
                 (filelocation, len(single_file['body']) ) )
 
         with open(filelocation, 'w+') as fd:

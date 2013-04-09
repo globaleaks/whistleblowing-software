@@ -33,6 +33,10 @@ def file_preprocess(store):
     filesdict = {}
     for filex in files:
 
+        if not filex.internaltip:
+            log.err("we've not InternalTip in our file %s" % filex.name)
+            continue
+
         if filex.internaltip.mark == InternalTip._marker[0]:
             continue
 
@@ -86,7 +90,8 @@ def receiver_file_align(store, filesdict, processdict):
         log.msg("Processed InternalFile %s - [%s] and updated with checksum %s"
                 % (ifile.id, ifile.name, ifile.sha2sum))
 
-        ifile.mark = InternalFile._marker[1] # Ready (TODO review the marker)
+        # can be extended processing in the future, here
+        ifile.mark = InternalFile._marker[1] # Ready
 
     return receiverfile_list
 
@@ -174,7 +179,7 @@ class APSDelivery(GLJob):
             processdict = file_process(filesdict)
             # return a dict { "file_uuid" : checksum }
         except OSError, e:
-            # TODO fatal log here!
+            # XXX beta - fatal log here!
             log.err("Fatal OS error in processing files [%s]: %s" % (filesdict, e) )
 
             # Create a dummy processdict to permit ReceiverFile init
@@ -182,8 +187,6 @@ class APSDelivery(GLJob):
             for file_uuid in processdict.iterkeys():
                 processdict[file_uuid] = u""
 
-
-        # TODO, delivery plugins not more implemented
         yield receiver_file_align(filesdict, processdict)
 
 

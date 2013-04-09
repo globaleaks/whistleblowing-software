@@ -6,7 +6,6 @@
 # Implementation of BaseHandler, the Cyclone class RequestHandler extended with our
 # needings.
 #
-# TODO - test the prepare/POST wrapper, because has never been tested
 
 import httplib
 from twisted.internet import fdesc
