@@ -9,11 +9,6 @@
       <div class="span10">
         <!-- XXX come up with a way to make this inherit from the header.html template -->
         <h1>New Submission</h1>
-        <p ng-show="node_configured">I want to report on
-        <select class="contexts" ng-model="submission.current_context"
-                ng-options="context as context.name for context in submission.contexts">
-        </select>
-        </p>
       </div>
 
     </div>
@@ -42,7 +37,14 @@
 
       <!-- First Step -->
       <div ng-switch-when="1 Receiver selection" class="receiverCards">
-        <p class="lead">Choose the receivers that will be sure to transform your submission into action!</p>
+        <p class="lead">Choose the context and receivers that will be sure to transform your submission into action!</p>
+
+        <p ng-show="node_configured">I want to report on
+        <select class="contexts" ng-model="submission.current_context"
+                ng-options="context as context.name for context in submission.contexts">
+        </select>
+        </p>
+
         <div ng-repeat="receiver in submission.current_context_receivers">
 
           <div class="receiverCard span5"
