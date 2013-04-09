@@ -360,7 +360,7 @@ cd building
 # Get a copy of virtualenv
 echo Downloading $VIRTUALENV_URL
 curl -O $VIRTUALENV_URL
-echo "$VIRTUALENV_MD5 $VIRTUALENV_PKG" > MD5SUMS
+echo "$VIRTUALENV_MD5  $VIRTUALENV_PKG" > MD5SUMS
 echo "Checking if the md5 sum is what we expect"
 md5sum --check MD5SUMS
 if [ $? -ne 0 ] ; then
