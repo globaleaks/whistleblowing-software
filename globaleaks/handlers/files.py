@@ -124,9 +124,9 @@ class FileHandler(BaseHandler):
         # and exception raised here would prevent the InternalFile recordings
         try:
             relationship = dump_files_fs(files)
-        except OSError, e:
-            # TODO danger error log: unable to save in FS
-            raise errors.InternalServerError
+        except OSError as excep:
+            log.err("Unable to save a file in filesystem: %s" % excep.strerror)
+            raise errors.InternalServerError(excep.strerror)
 
         # Second iterloop, create the objects in the database
         file_list = yield register_files_db(files, relationship, itip_id)

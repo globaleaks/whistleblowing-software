@@ -206,9 +206,14 @@ class InternalServerError(GLException):
     """
     Error in interaction with the OS
     """
-    reason = "Internal Server Error"
     error_code = 31
     status_code = 505
+
+    def __init__(self, details=None):
+        self.reason = "Internal Server Error"
+        if details:
+            self.reason += " (%s)" % details
+
 
 class NoEmailSpecified(GLException):
     """
