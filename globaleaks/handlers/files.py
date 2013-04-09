@@ -246,7 +246,8 @@ class Download(BaseHandler):
         chunk_size = 8192
         filedata = ''
         with open(filelocation, "rb") as requestf:
-            fdesc.setNonBlocking(requestf.fileno())
+            # FIXME: https://github.com/globaleaks/GlobaLeaks/issues/116
+            # fdesc.setNonBlocking(requestf.fileno())
             while True:
                 chunk = requestf.read(chunk_size)
                 filedata += chunk
