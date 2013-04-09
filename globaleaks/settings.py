@@ -121,6 +121,14 @@ class GLSettingsClass:
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
 
+        # Size in bytes of every log file. Once this size is reached the
+        # logfile is rotated.
+        # Default: 1M
+        self.log_file_size = 1000000
+        # Number of log files to conserve.
+        self.maximum_rotated_log_files = 100
+
+
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
