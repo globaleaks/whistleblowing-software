@@ -72,7 +72,9 @@ def dump_files_fs(files):
         filelocation = os.path.join(GLSetting.submission_path, saved_name)
 
         with open(filelocation, 'w+') as fd:
-            fdesc.setNonBlocking(fd.fileno())
+            # FIXME: data is now handled in blocking mode.
+            #        we need to handled it in non blocking mode probably using Deferred
+            # fdesc.setNonBlocking(fd.fileno())
             fdesc.writeToFD(fd.fileno(), single_file['body'])
 
         files_saved.update({single_file['filename']: saved_name })
