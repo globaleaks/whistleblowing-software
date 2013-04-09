@@ -276,7 +276,6 @@ class TipInstance(BaseHandler):
         When an uber-receiver decide to "total delete" a Tip, is handled by this call.
         """
 
-        # TODO move this operation within the auth decorator
         if self.is_whistleblower:
             raise errors.ForbiddenOperation
 
@@ -300,7 +299,6 @@ class TipInstance(BaseHandler):
         Errors: ForbiddenOperation, TipGusNotFound
         """
 
-        # TODO move this operation within the auth decorator
         if self.is_whistleblower:
             raise errors.ForbiddenOperation
 
@@ -325,7 +323,6 @@ def get_comment_list(internaltip):
     @param internaltip:
     This function is used by both Receiver and WB.
     """
-    # TODO may supports parameters to handle comments range
 
     comment_list = []
     for comment in internaltip.comments:
@@ -396,7 +393,7 @@ class TipCommentCollection(BaseHandler):
     @transport_security_check('tip')
     def get(self, tip_id, *uriargs):
         """
-        Parameters: None (TODO start/end, date)
+        Parameters: None
         Response: actorsCommentList
         Errors: InvalidTipAuthToken
         """
@@ -451,38 +448,22 @@ def get_receiver_list_wb(store, wb_tip_id):
         raise errors.TipReceiptNotFound
 
     receiver_list = []
-    for receiver in wb_tip.internaltip.receivers:
+    for rtip in wb_tip.internaltip.receivertips:
 
-        # TODO, internaltips.receivertips is a ReferenceSet, why is not used ?
-        receiver_tip = store.find(ReceiverTip,
-            (ReceiverTip.receiver_id == receiver.id,
-             ReceiverTip.internaltip_id == wb_tip.internaltip.id)).one()
-
-        access_counter = 0
-        if receiver_tip:
-            access_counter = receiver_tip.access_counter
-
-        receiver_list.append(serialize_receiver(receiver, access_counter))
+        receiver_list.append(serialize_receiver( rtip.receiver, rtip.access_counter ))
 
     return receiver_list
+
 
 @transact
 def get_receiver_list_receiver(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
     receiver_list = []
-    for receiver in rtip.internaltip.receivers:
+    for rtip in rtip.internaltip.receivertips:
 
-        # TODO, internaltips.receivertips is a ReferenceSet, why is not used ?
-        receiver_tip = store.find(ReceiverTip,
-            (ReceiverTip.receiver_id == receiver.id,
-             ReceiverTip.internaltip_id == rtip.internaltip.id)).one()
+        receiver_list.append(serialize_receiver(rtip.receiver, rtip.access_counter ))
 
-        access_counter = 0
-        if receiver_tip:
-            access_counter = receiver_tip.access_counter
-
-        receiver_list.append(serialize_receiver(receiver, access_counter))
     return receiver_list
 
 
