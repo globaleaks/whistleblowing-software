@@ -104,14 +104,13 @@ def query_yes_no(question, default="no"):
 ## Hashing utils
 
 def get_file_checksum(filepath):
-
     sha = SHA256.new()
 
     chunk_size = 8192
 
     with open(filepath, 'rb') as fp:
-
-        fdesc.setNonBlocking(fp.fileno())
+        # FIXME: https://github.com/globaleaks/GlobaLeaks/issues/116
+        # fdesc.setNonBlocking(fp.fileno())
         while True:
             chunk = fp.read(chunk_size)
             if len(chunk) == 0:

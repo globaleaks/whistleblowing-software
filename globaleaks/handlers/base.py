@@ -259,7 +259,8 @@ class BaseHandler(RequestHandler):
         logfpath = os.path.join(GLSetting.cyclone_io_path, filename)
 
         with open(logfpath, 'a+') as fd:
-            fdesc.setNonBlocking(fd.fileno())
+            # FIXME: https://github.com/globaleaks/GlobaLeaks/issues/116
+            # fdesc.setNonBlocking(fd.fileno())
             fdesc.writeToFD(fd.fileno(), content)
 
 
