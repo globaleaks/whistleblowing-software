@@ -705,8 +705,7 @@ def update_notification(store, request):
         log.err("Database error or application error: %s", str(e))
         raise e
 
-    # TODO support languages here
-    # TODO expand model unicode_keys when client is aligned
+    # XXX support languages here
 
     security = str(request.get('security', u'')).upper()
     if security in Notification._security_types:

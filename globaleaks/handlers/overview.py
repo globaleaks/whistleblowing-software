@@ -36,6 +36,11 @@ def collect_tip_overview(store):
             "comments": [],
         }
 
+        # strip uncompleted submission, until GLClient open new submission
+        # also if no data has been supply
+        if itip.mark == models.InternalTip._marker[0]:
+            continue
+
         for rtip in itip.receivertips:
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,
@@ -55,7 +60,6 @@ def collect_tip_overview(store):
                 'status': ifile.mark,
                 'content_type': ifile.content_type
             })
-
 
         for comment in itip.comments:
             tip_description['comments'].append({

@@ -76,7 +76,10 @@ def dump_static_files(filesinupload):
         filelocation = single_file['_gl_file_path']
 
         if os.path.exists(filelocation):
-            log.debug("path %s exists and would be overwritten with %d bytes" %
+            log.err("Path %s exists and would be overwritten with %d bytes" %
+                (filelocation, len(single_file['body']) ) )
+        else:
+            log.debug("Creating %s with %d bytes" %
                 (filelocation, len(single_file['body']) ) )
 
         with open(filelocation, 'w+') as fd:
@@ -144,8 +147,12 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    img120 = Image.open(filedesc['_gl_file_path'])
-    img120.thumbnail((120, 120), Image.ANTIALIAS)
+    try:
+        img120 = Image.open(filedesc['_gl_file_path'])
+        img120.thumbnail((120, 120), Image.ANTIALIAS)
+    except IOError as excep:
+        raise errors.InternalServerError("PIL module: %" % excep.message)
+
     output120_path = os.path.join(GLSetting.static_path, "%s_120.png" % receiver_uuid)
     if os.path.isfile(output120_path):
         os.unlink(output120_path)
@@ -206,10 +213,10 @@ class StaticFileCollection(BaseHandler):
         except OSError as excpd:
             inf_list = get_files_info(files)
             log.err("OSError while create a new static file [%s]: %s" % (str(inf_list), excpd))
-            raise errors.InternalServerError
+            raise errors.InternalServerError(excpd.strerror)
         except Exception as excpd:
             log.err("Not handled exception: %s" % excpd.__repr__())
-            raise errors.InternalServerError
+            raise errors.InternalServerError()
 
         for file_desc in file_list:
             log.debug("Admin uploaded new static file: %s" % file_desc['filename'] )
@@ -230,7 +237,7 @@ class StaticFileCollection(BaseHandler):
                 except Exception as excpd:
                     log.err("Invalid Image Library operation [%s] with Node logo %s" %
                             (selected_file['filename'], excpd) )
-                    raise errors.InternalServerError
+                    raise errors.InternalServerError()
             else:
                 try:
                     receiver_name = yield import_receiver_pic(selected_file, specified_keyword)
@@ -242,7 +249,7 @@ class StaticFileCollection(BaseHandler):
                 except Exception as excpd:
                     log.err("Invalid Image Library operation [%s] with Receiver %s portrait %s" %
                             (selected_file['filename'], specified_keyword, excpd) )
-                    raise errors.InternalServerError
+                    raise errors.InternalServerError()
 
         self.set_status(201) # Created
         self.finish(result_list)
