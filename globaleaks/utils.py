@@ -26,6 +26,7 @@ from twisted.internet.ssl import ClientContextFactory
 from twisted.protocols import tls
 
 from twisted.python import log as twlog
+from twisted.python import logfile as twlogfile
 from Crypto.Hash import SHA256
 from twisted.internet import fdesc
 
@@ -53,8 +54,14 @@ class Publisher(twlog.LogPublisher):
         If configured enables logserver
         """
         if GLSetting.logfile:
-            logfile_observer = twlog.FileLogObserver(open(GLSetting.logfile,
-                                                     'w'))
+            name = os.path.basename(GLSetting.logfile)
+            directory = os.path.dirname(GLSetting.logfile)
+
+            logfile = twlogfile.LogFile(name, directory,
+                                        rotateLength=GLSetting.log_file_size,
+                                        maxRotatedFiles=GLSetting.maximum_rotated_log_files)
+
+            logfile_observer = twlog.FileLogObserver(logfile)
             self.addObserver(logfile_observer.emit)
 
         logpy_observer = twlog.PythonLoggingObserver('globaleaks')
