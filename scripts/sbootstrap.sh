@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 
-# sbootstrap: secure bootstrap of GLBackend.
+# install.sh: secure GlobaLeaks deployment script.
 
 # Part of this code is taken from the deployment script for ooni-backend:
 # https://github.com/TheTorProject/ooni-backend/blob/master/scripts/init/prepare.sh
@@ -28,17 +28,26 @@
 # In the wild:
 # http://stackoverflow.com/questions/10366821/python-importerror-cannot-import-urandom-since-ubuntu-12-04-upgrade
 
-# Solution: Redeploy oonib after upgrading python 2.6.6 to 2.6.8
+# Solution: Re-deploy GlobaLeaks after upgrading python 2.6.6 to 2.6.8
 
-SCRIPT_ROOT=`pwd`
+SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 
 DEPLOY_PATH=/tmp/globaleaks/
 
-TARGET_GIT_REPO=GLBackend
+if [ "$#" -eq 1 ]; then
+    DEPLOY_PATH=`readlink -m $1`
+elif [ "$#" -ne 0 ]; then
+    echo "Wrong usage\n"
+    echo "To correctly deploy GlobaLeaks: ./${scriptname} [path]"
+    echo "Default path set to $DEPLOY_PATH"
+    exit
+fi
+
+TARGET_GIT_REPO=GlobaLeaks
 TARGET_GIT_URL="https://github.com/globaleaks/$TARGET_GIT_REPO.git"
 TARGET_GIT_TAG=master
 
-TARGET_PATH=$DEPLOY_PATH/$TARGET_GIT_REPO
+TARGET_PATH=$TARGET_GIT_REPO
 
 VIRTUALENV_PKG="virtualenv-1.9.1.tar.gz"
 VIRTUALENV_URL="https://pypi.python.org/packages/source/v/virtualenv/$VIRTUALENV_PKG"
@@ -332,21 +341,21 @@ Dr3+wZTovINnAKDs/Uz0hqtfArRR+aWJWp0p/sJNWg==
 -----END PGP PUBLIC KEY BLOCK-----"
 
 if [ ! -e $DEPLOY_PATH ] ; then
-  echo Creating $DEPLOY_PATH
+  echo "Creating $DEPLOY_PATH"
   mkdir -p $DEPLOY_PATH
   if [ $? -ne 0 ]; then
     echo "Error in creating $DEPLOY_PATH"
-    echo Perhaps there is a problem with permissions?
+    echo "Perhaps there is a problem with permissions?"
     exit
   fi
 fi
 cd $DEPLOY_PATH
 
-echo Downloading $TARGET_GIT_REPO $TARGET_GIT_TAG
+echo "Downloading $TARGET_GIT_REPO $TARGET_GIT_TAG"
 # does the repository already exist? If not, fetch it
 if [ ! -e $TARGET_PATH ] ; then
-  echo Fetching the $TARGET_GIT_REPO repository
-  git clone $TARGET_GIT_URL $TARGET_PATH
+  echo "Fetching the $TARGET_GIT_REPO repository"
+  git clone --recursive $TARGET_GIT_URL $TARGET_PATH
 fi
 cd $TARGET_PATH
 git fetch origin
@@ -358,32 +367,42 @@ mkdir building
 cd building
 
 # Get a copy of virtualenv
-echo Downloading $VIRTUALENV_URL
+echo "Downloading $VIRTUALENV_URL"
 curl -O $VIRTUALENV_URL
 echo "$VIRTUALENV_MD5  $VIRTUALENV_PKG" > MD5SUMS
 echo "Checking if the md5 sum is what we expect"
 md5sum --check MD5SUMS
 if [ $? -ne 0 ] ; then
-  echo Error in verifying MD5 sum!
+  echo "Error in verifying MD5 sum!"
   exit
 fi
 rm MD5SUMS
-echo Verifying PGP signature
+echo "Verifying PGP signature"
 TMP_KEYRING=`pwd`/tmpkeyring.gpg
 curl -O $VIRTUALENV_SIG_URL
 echo "$VIRTUALENV_PUB_KEY" | gpg --no-default-keyring --keyring `pwd`/tmpkeyring.gpg --import
 gpg --no-default-keyring --keyring $TMP_KEYRING --verify $VIRTUALENV_PKG.asc
 if [ $? -ne 0 ] ; then
-  echo Error in verifying signature!
+  echo "Error in verifying signature!"
   exit
 fi
 tar xvf $VIRTUALENV_PKG
 python virtualenv*/virtualenv.py --no-site-packages $DEPLOY_PATH/$TARGET_GIT_REPO/virtualenv
+if [ $? -ne 0 ] ; then
+    echo "Error while creating virtualenv!"
+    exit
+fi
+
 cd $DEPLOY_PATH/$TARGET_GIT_REPO
 rm -rf $DEPLOY_PATH/$TARGET_GIT_REPO/building/
 
-echo Activating virtualenv
+echo "Activating virtualenv"
 source $DEPLOY_PATH/$TARGET_GIT_REPO/virtualenv/bin/activate
 
-echo Installing dependencies
-pip install -r requirements.txt
+echo "Installing dependencies"
+pip install -r GLBackend/requirements.txt
+if [ $? -ne 0 ] ; then
+    echo "Error while installing pip requirements!"
+    exit
+fi
+
