@@ -68,19 +68,17 @@ def create_whistleblower_tip(store, submission):
     return return_value_receipt
 
 
+# Remind: it's a store without @transaction because called by a @ŧransact
 def import_receivers(store, submission, receiver_id_list, context, required=False):
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
-            # this odd checks, is required! but client do not yet use this piece of code,
-            # only unitTest does
+            # Add only the receiver not yet associated in Many-to-Many
             check = store.find(ReceiverInternalTip,
                 ( ReceiverInternalTip.receiver_id == receiver.id,
                   ReceiverInternalTip.internaltip_id == submission.id) ).one()
             if not check:
                 submission.receivers.add(receiver)
-            else:
-                log.debug("ContextBased: %s It's already present" % receiver.id)
 
         store.commit()
 
@@ -102,7 +100,7 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
             raise e
 
         if not receiver:
-            log.err("Receiver requested do not exist: %s", receiver_id)
+            log.err("Receiver requested do not exist: %s" % receiver_id)
             raise ReceiverGusNotFound
 
         if not context in receiver.contexts:
@@ -114,9 +112,10 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
 
     if required and submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
-        raise SubmissionFailFields("Receivers required to be completed")
+        raise SubmissionFailFields("Needed almost one Receiver selected")
 
 
+# Remind: it's a store without @transaction because called by a @ŧransact
 def import_files(store, submission, files):
     for file_id in files:
         try:
@@ -128,15 +127,10 @@ def import_files(store, submission, files):
             log.err("Invalid File requested %s" % file_id)
             raise FileGusNotFound
 
-        # It's a reference set!
         ifile.internaltip_id = submission.id
 
     # commit before return
     store.commit()
-
-    reloaded_submission = store.find(InternalTip, InternalTip.id == submission.id).one()
-    log.debug("In Submission %s associated files number: %d" %\
-              (submission.id, reloaded_submission.internalfiles.count() ))
 
 
 def import_fields(submission, fields, expected_fields, strict_validation=False):
@@ -188,9 +182,9 @@ def force_schedule():
     # run the Notification process, and not our callback+user event.
     # after two second create the Receiver tip, after five loop over the emails
     DeliverySched = APSDelivery()
-    DeliverySched.force_execution(GLAsynchronous, seconds=2)
+    DeliverySched.force_execution(GLAsynchronous, seconds=1)
     NotifSched = APSNotification()
-    NotifSched.force_execution(GLAsynchronous, seconds=5)
+    NotifSched.force_execution(GLAsynchronous, seconds=6)
 
 
 @transact
