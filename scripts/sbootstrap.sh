@@ -353,14 +353,14 @@ git fetch origin
 git checkout $TARGET_GIT_TAG
 #XXX: git-verify-tag $OONIB_GIT_TAG
 
-echo "Building and verifying virtualenv..."
+echo "Building and verifying $VIRTUALENV_PKG"
 mkdir building
 cd building
 
 # Get a copy of virtualenv
 echo Downloading $VIRTUALENV_URL
 curl -O $VIRTUALENV_URL
-echo "$VIRTUALENV_MD5 $VIRTUALENV_PKG" > MD5SUMS
+echo "$VIRTUALENV_MD5  $VIRTUALENV_PKG" > MD5SUMS
 echo "Checking if the md5 sum is what we expect"
 md5sum --check MD5SUMS
 if [ $? -ne 0 ] ; then
