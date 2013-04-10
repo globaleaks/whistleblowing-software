@@ -8,7 +8,6 @@
 #
 
 import httplib
-from twisted.internet import fdesc
 import types
 import collections
 import json
@@ -16,6 +15,7 @@ import re
 import sys
 import os
 
+from twisted.internet import fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone.httpserver import HTTPConnection
 from cyclone import escape
@@ -259,8 +259,6 @@ class BaseHandler(RequestHandler):
         logfpath = os.path.join(GLSetting.cyclone_io_path, filename)
 
         with open(logfpath, 'a+') as fd:
-            # FIXME: https://github.com/globaleaks/GlobaLeaks/issues/116
-            # fdesc.setNonBlocking(fd.fileno())
             fdesc.writeToFD(fd.fileno(), content)
 
 
