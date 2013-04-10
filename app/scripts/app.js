@@ -16,7 +16,7 @@ var GLClient = angular.module('GLClient', ['GLClient.templates', 'ui', 'resource
 
 
       when('/submission', {
-        templateUrl: 'views/submission.html',
+        templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
       }).
 
