@@ -41,6 +41,10 @@ def serialize_file(internalfile):
 def register_files_db(store, files, relationship, internaltip_id):
     internaltip = store.find(models.InternalTip, models.InternalTip.id == internaltip_id).one()
 
+    if not internaltip:
+        log.err("File submission register in a submission that's no more")
+        raise errors.TipGusNotFound
+
     files_list = []
     for single_file in files:
         original_fname = single_file['filename']
@@ -55,7 +59,7 @@ def register_files_db(store, files, relationship, internaltip_id):
         new_file.file_path = relationship[original_fname]
 
         store.add(new_file)
-        internaltip.internalfiles.add(new_file)
+        # internaltip.internalfiles.add(new_file)
         files_list.append(serialize_file(new_file))
 
     return files_list
@@ -72,12 +76,10 @@ def dump_files_fs(files):
         filelocation = os.path.join(GLSetting.submission_path, saved_name)
 
         with open(filelocation, 'w+') as fd:
-            # FIXME: data is now handled in blocking mode.
-            #        we need to handled it in non blocking mode probably using Deferred
-            # fdesc.setNonBlocking(fd.fileno())
             fdesc.writeToFD(fd.fileno(), single_file['body'])
 
         files_saved.update({single_file['filename']: saved_name })
+        log.debug("Saved on the disk file: %s" % single_file['filename'])
 
     return files_saved
 
@@ -102,7 +104,7 @@ def get_tip_by_wbtip(store, wb_tip_id):
         raise errors.InvalidTipAuthToken
 
     itip = store.find(models.InternalTip,
-                      models.InternalTip.id == unicode(wb_tip.internaltip_id)).one()
+                      models.InternalTip.id == wb_tip.internaltip_id).one()
     if not itip:
         raise errors.SubmissionGusNotFound
     else:
@@ -246,8 +248,6 @@ class Download(BaseHandler):
         chunk_size = 8192
         filedata = ''
         with open(filelocation, "rb") as requestf:
-            # FIXME: https://github.com/globaleaks/GlobaLeaks/issues/116
-            # fdesc.setNonBlocking(requestf.fileno())
             while True:
                 chunk = requestf.read(chunk_size)
                 filedata += chunk

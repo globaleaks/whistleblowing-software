@@ -15,7 +15,6 @@ import traceback
 from OpenSSL import SSL
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from txsocksx.client import SOCKS5ClientEndpoint
-from txsocksx.ssl import SSLWrapClientEndpoint
 
 from StringIO import StringIO
 
@@ -28,7 +27,6 @@ from twisted.protocols import tls
 from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
 from Crypto.Hash import SHA256
-from twisted.internet import fdesc
 
 from globaleaks.settings import GLSetting
 
@@ -109,8 +107,6 @@ def get_file_checksum(filepath):
     chunk_size = 8192
 
     with open(filepath, 'rb') as fp:
-        # FIXME: https://github.com/globaleaks/GlobaLeaks/issues/116
-        # fdesc.setNonBlocking(fp.fileno())
         while True:
             chunk = fp.read(chunk_size)
             if len(chunk) == 0:

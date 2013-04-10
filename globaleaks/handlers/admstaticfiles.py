@@ -83,8 +83,6 @@ def dump_static_files(filesinupload):
                 (filelocation, len(single_file['body']) ) )
 
         with open(filelocation, 'w+') as fd:
-            # FIXME: https://github.com/globaleaks/GlobaLeaks/issues/116
-            # fdesc.setNonBlocking(fd.fileno())
             fdesc.writeToFD(fd.fileno(), single_file['body'])
 
     return get_files_info(filesinupload)
