@@ -44,6 +44,9 @@ class GLSettingsClass:
         self.parser = OptionParser()
         self.cmdline_options = None
 
+        # version
+        self.version_string = "0.2.0"
+
         # daemon
         self.nodaemon = False
 
