@@ -1,0 +1,166 @@
+<div class="jumbotron subhead">
+  <div class="container">
+
+    <div class="row">
+      <div class="span2">
+        <img src="/static/globaleaks_logo.png" class="img-rounded">
+      </div>
+
+      <div class="span10">
+        <!-- XXX come up with a way to make this inherit from the header.html template -->
+        <h1>New Submission</h1>
+        <p ng-show="node_configured">I want to report on
+        <select class="contexts" ng-model="submission.current_context"
+                ng-options="context as context.name for context in submission.contexts">
+        </select>
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+
+<div class="container" ng-show="!node_configured">
+  <h2>This node is not configured.</h2>
+  <p>You will not be able to perform a submission</p>
+</div>
+
+<div ng-controller="WizardCtrl" class="container" ng-show="node_configured">
+
+  <div class="tabbable tabs-below">
+
+    <ul class="nav nav-tabs">
+      <li ng-repeat="step in steps"
+        ng-class="{active: $index==getCurrentStepIndex()}">
+        <a href="javascript:void(0)"
+          ng-click="goToStep($index)">{{step}}</a>
+      </li>
+    </ul>
+
+    <div ng-switch on="selection">
+
+      <!-- First Step -->
+      <div ng-switch-when="1 Receiver selection" class="receiverCards">
+        <p class="lead">Choose the receivers that will be sure to transform your submission into action!</p>
+        <div ng-repeat="receiver in submission.current_context_receivers">
+
+          <div class="receiverCard span5"
+               ng-class="{selected: receivers_selected[receiver.receiver_gus]}"
+               ng-class-odd="{receiverCardOdd: true}"
+               ng-class-even="{receiverCardEven: true}">
+
+            <input ng-model="receivers_selected[receiver.receiver_gus]"
+                   type="checkbox" value="{{receiver.receiver_gus}}"
+                   class="receiverSelection" ng-show="submission.current_context.selectable_receiver">
+            <div class="row">
+              <div class="span2">
+                <img src="/static/{{receiver.receiver_gus}}_120.png" class="img-polaroid">
+              </div>
+              <div class="span3">
+                <h3>{{receiver.name}}</h3>
+                <p>{{receiver.description}}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+      <!-- /1 -->
+
+      <!-- Second Step -->
+      <div ng-switch-when="2 Fill out your submission">
+
+        <p class="lead">Enter the information that is relevant to your
+        submission and upload the files you need to upload</p>
+        <p>{{submission.current_context.description}}</p>
+
+        <div class="row">
+
+          <div class="span6 submissionDetails" ng-include="'templates/default/views/submission/form.html'"></div>
+
+          <div file-upload action="/submission/{{submission.current_submission.submission_gus}}/file"
+               uploaded-files="uploadedFiles" uploading-files="uploadingFiles"></div>
+
+        </div>
+
+      </div>
+      <!-- /2 -->
+
+      <!-- Third Step -->
+      <div ng-switch-when="3 Final Step">
+
+        <div class="row">
+
+          <div class="span12">
+            <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+            quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+            consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+            cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat
+            non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+            <label class="checkbox">
+              <input type="checkbox" ng-model="disclaimer.accepted" value="true"> Agree
+            </label>
+
+          </div>
+
+        </div>
+
+      </div>
+      <!-- /3 -->
+
+    </div>
+    <!-- END steps -->
+    <div class="clearfix"></div>
+    <ul class="pager pull-left">
+
+      <li ng-class="{disabled: !hasPreviousStep()}"
+          class="previous">
+        <a ng-click="decrementStep()">&larr; Previous Step</a>
+      </li>
+
+      <li class="next"
+          ng-hide="!hasNextStep()">
+        <a ng-click="incrementStep()">Next Step &rarr;</a>
+      </li>
+
+      <li class="next"
+          ng-show="!hasNextStep()">
+        <button class="btn btn-success" ng-click="submit()"
+                ng-disabled="uploading || !disclaimer.accepted || !receiver_selected">Submit</button>
+      </li>
+
+    </ul>
+
+    <div class="pull-right">
+
+      <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()"
+              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || !receiver_selected">Submit</button>
+
+    </div>
+    <div class="clearfix"></div>
+  </div>
+
+</div>
+
+<!-- This will be visualized once the subission is created -->
+<div
+  class="submission-receipt modal"
+  ng-show="submission.completed">
+  <div class="modal-header">
+    <h3>Submission Created!</h3>
+  </div>
+  <div class="modal-body">
+    <h2>{{submission.receipt}}</h2>
+    <p>This number here is your receipt keep good care of it as it will
+    allow you to access your submission</p>
+  </div>
+  <div class="modal-footer">
+    <a ng-click="view_tip(submission.receipt)" class="btn btn-primary">View Tip</a>
+  </div>
+</div>
+<!-- End -->
+
