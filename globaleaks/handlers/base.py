@@ -212,7 +212,7 @@ class BaseHandler(RequestHandler):
             except HTTPError:
                 pass
 
-        # if -1 is infinite logging of the requests
+        # if 0 is infinite logging of the requests
         if GLSetting.cyclone_debug >= 0:
 
             GLSetting.cyclone_debug_counter += 1
@@ -227,7 +227,7 @@ class BaseHandler(RequestHandler):
             # save in the request the numeric ID of the request, so the answer can be correlated
             self.globaleaks_io_debug = GLSetting.cyclone_debug_counter
 
-            if GLSetting.cyclone_debug_counter >= GLSetting.cyclone_debug:
+            if GLSetting.cyclone_debug > 0 and GLSetting.cyclone_debug_counter >= GLSetting.cyclone_debug:
                 log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.cyclone_debug)
                 GLSetting.cyclone_debug = -1
 
@@ -342,7 +342,7 @@ class BaseHandler(RequestHandler):
                 log.msg(e)
             log.msg("Uncaught exception %s :: %r" % \
                     (self._request_summary(), self.request))
-            # mail_exception(exc_type, exc_value, exc_tb)
+            mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
 

@@ -75,11 +75,13 @@ def dump_files_fs(files):
         saved_name = rstr.xeger(r'[A-Za-z]{26}')
         filelocation = os.path.join(GLSetting.submission_path, saved_name)
 
+        log.debug("Start saving %d bytes from %s" %
+                  (len(single_file['body']), single_file['filename']))
+
         with open(filelocation, 'w+') as fd:
             fdesc.writeToFD(fd.fileno(), single_file['body'])
 
         files_saved.update({single_file['filename']: saved_name })
-        log.debug("Saved on the disk file: %s" % single_file['filename'])
 
     return files_saved
 
@@ -128,9 +130,9 @@ class FileHandler(BaseHandler):
         # and exception raised here would prevent the InternalFile recordings
         try:
             relationship = dump_files_fs(files)
-        except OSError as excep:
-            log.err("Unable to save a file in filesystem: %s" % excep.strerror)
-            raise errors.InternalServerError(excep.strerror)
+        except Exception as excep:
+            log.err("Unable to save a file in filesystem: %s" % "\n".join(excep))
+            raise errors.InternalServerError("Unable to accept new files")
 
         # Second iterloop, create the objects in the database
         file_list = yield register_files_db(files, relationship, itip_id)
