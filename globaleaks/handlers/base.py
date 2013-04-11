@@ -222,7 +222,7 @@ class BaseHandler(RequestHandler):
             content += "url: " + self.request.full_url() + "\n"
             content += "body: " + self.request.body + "\n"
 
-            self.do_verbose_log(unicode(content))
+            self.do_verbose_log(content)
 
             # save in the request the numeric ID of the request, so the answer can be correlated
             self.globaleaks_io_debug = GLSetting.cyclone_debug_counter
@@ -246,16 +246,19 @@ class BaseHandler(RequestHandler):
             content += "code: " + str(self._status_code) + "\n"
             content += "body: " + str(self._write_buffer) + "\n"
 
-            self.do_verbose_log(unicode(content))
+            self.do_verbose_log(content)
 
         RequestHandler.flush(self, include_footers)
 
 
     def do_verbose_log(self, content):
         """
-        Record in the verbose log the content as defined by Cyclone wrappers
+        Record in the verbose log the content as defined by Cyclone wrappers.
         """
         filename = "%s%s" % (self.request.method.upper(), self.request.uri.replace("/", "_") )
+        # this is not a security bug, no arbitrary patch can reach this point,
+        # but only the one accepted by the API definitions
+
         logfpath = os.path.join(GLSetting.cyclone_io_path, filename)
 
         with open(logfpath, 'a+') as fd:
@@ -318,8 +321,11 @@ class BaseHandler(RequestHandler):
 
 
     def _handle_request_exception(self, e):
+        log.msg("Exception to be handled: %s" % e)
+
         # exception informations must be saved here before continue.
         exc_type, exc_value, exc_tb = sys.exc_info()
+
         try:
             if isinstance(e.value, (HTTPError, HTTPAuthenticationRequired)):
                 e = e.value
@@ -338,10 +344,10 @@ class BaseHandler(RequestHandler):
             else:
                 return self.send_error(e.status_code, exception=e)
         else:
+            log.msg("Uncaught exception %s %s %s", (exc_type, exc_value, exc_tb) )
+                    # (self._request_summary(), self.request))
             if GLSetting.cyclone_debug:
                 log.msg(e)
-            log.msg("Uncaught exception %s :: %r" % \
-                    (self._request_summary(), self.request))
             mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
