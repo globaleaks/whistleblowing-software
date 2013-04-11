@@ -249,11 +249,17 @@ class GLSettingsClass:
 
         def create_directory(path):
             # returns false if the directory is already present
-            if not os.path.exists(path):
-                os.mkdir(path)
-                return True
-            assert(os.path.isdir(path))
-            return False
+            if not os.path.isdir(path):
+                try:
+                    os.mkdir(path)
+                    self.log_debug("Created directoy %s" % path)
+                    return True
+                except OSError as excep:
+                    self.log_debug("Error in creating directory: %s (%s)" % (path, excep.strerror))
+                    raise excep
+            else:
+                return False
+
 
         if create_directory(self.working_path):
             new_environment = True
@@ -263,7 +269,9 @@ class GLSettingsClass:
 
         create_directory(self.gldata_path)
         create_directory(self.submission_path)
-        create_directory(self.cyclone_io_path)
+
+        if self.cyclone_debug >= 0:
+            create_directory(self.cyclone_io_path)
 
         if new_environment:
             for path, subpath, files in os.walk(self.static_source):
@@ -294,6 +302,13 @@ class GLSettingsClass:
         if os.getuid() == 0 or self.cmdline_options.user:
             print "switching user privileges to %d" % self.uid
             os.setuid(GLSetting.uid)
+
+    def log_debug(self, message):
+        """
+        Log to stdout only if debug is set at higher levels
+        """
+        if self.loglevel == logging.DEBUG:
+            print message
 
 
 

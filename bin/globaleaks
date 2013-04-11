@@ -146,7 +146,7 @@ print colorize('Welcome', 'CYAN'), colorize('to', 'YELLOW'), 'Globa'+colorize('L
 print ("Alpha release of GlobaLeaks %s\n"
        "Actually, you may require our supports to makes GL works: irc.freenode.net #globaleaks can help you" %
         GLSetting.version_string)
-print ("And don't forget to read docs in: https://github.com/globaleaks/GlobaLeaks/wiki")
+print ("And don't forget to read docs in: https://github.com/globaleaks/GlobaLeaks/wiki\n")
 
 GLSetting.parser.add_option("-n", "--nodaemon", action='store_true',
     help="don't daemonize [default: %default]",

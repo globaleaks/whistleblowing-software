@@ -253,19 +253,21 @@ def mail_exception(etype, value, tback):
                      "", str(etype))
     tmp = []
 
-    tmp.append("From: %s\n" % ("stackexception@globaleaks.org"))
-    tmp.append("To: %s\n" % ("stackexception@lists.globaleaks.org"))
-    tmp.append("Subject: GLBackend Exception [%d]\n" % mail_exception.mail_counter)
-    tmp.append("Content-Type: text/plain; charset=ISO-8859-1\n")
-    tmp.append("Content-Transfer-Encoding: 8bit\n\n")
-    tmp.append("Source: %s\n\n" % " ".join(os.uname()))
+    tmp.append("From: %s" % ("stackexception@globaleaks.org"))
+    tmp.append("To: %s" % ("stackexception@lists.globaleaks.org"))
+    tmp.append("Subject: GLBackend Exception [%d]" % mail_exception.mail_counter)
+    tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
+    tmp.append("Content-Transfer-Encoding: 8bit\n")
+    tmp.append("Source: %s\n" % " ".join(os.uname()))
     tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
 
-    tmp.append(traceback.format_exception(etype, value, tback))
+    traceinfo_list = traceback.format_exception(etype, value, tback)
+    tmp.append('\n'.join(traceinfo_list))
 
-    message = StringIO(''.join(tmp))
+    info_string = '\n'.join(tmp)
+    message = StringIO(info_string)
 
-    log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, ''.join(tmp)) )
+    log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, info_string) )
 
     sendmail("stackexception@globaleaks.org",
              "stackexception99",
