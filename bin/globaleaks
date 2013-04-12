@@ -161,7 +161,7 @@ GLSetting.parser.add_option("-p", "--port", type="int",
     dest="port", default=GLSetting.bind_port)
 
 GLSetting.parser.add_option("-l", "--loglevel", type="choice",
-    choices=['INFO', 'WARNING', 'ERROR', 'CRITICAL', 'DEBUG'],
+    choices=['NONE', 'ERROR', 'INFO', 'DEBUG'],
     help="set log level [default: %default]",
     dest="loglevel", default=GLSetting.loglevel)
 
@@ -249,7 +249,7 @@ if GLSetting.nodaemon:
 args +=['--pidfile', GLSetting.pidfile_path]
 
 # critical and error loglevel do not collect the HTTP request collection
-if GLSetting.cmdline_options.loglevel in [ "DEBUG", "INFO", "WARNING" ]:
+if GLSetting.cmdline_options.loglevel is not "NONE":
     args +=['--logfile', os.path.join(GLSetting.working_path, 'twistd.log')]
 
 sys.argv[1:] = args
