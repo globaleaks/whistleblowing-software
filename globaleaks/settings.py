@@ -30,11 +30,11 @@ from storm import tracer
 
 
 verbosity_dict = {
+    'DEBUG': logging.DEBUG,
     'INFO' : logging.INFO,
     'WARNING': logging.WARNING,
     'ERROR': logging.ERROR,
-    'CRITICAL': logging.CRITICAL,
-    'DEBUG': logging.DEBUG
+    'CRITICAL': logging.CRITICAL
 }
 
 class GLSettingsClass:
@@ -75,7 +75,7 @@ class GLSettingsClass:
         self.db_debug = False
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
-        self.loglevel = "CRITICAL"
+        self.loglevel = "NONE"
 
         # session tracking, in the singleton classes
         self.sessions = dict()
