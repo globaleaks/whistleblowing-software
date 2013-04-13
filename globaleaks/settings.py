@@ -75,7 +75,7 @@ class GLSettingsClass:
         self.db_debug = False
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
-        self.loglevel = "NONE"
+        self.loglevel = "CRITICAL"
 
         # session tracking, in the singleton classes
         self.sessions = dict()
