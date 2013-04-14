@@ -17,7 +17,8 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile
 from globaleaks.settings import transact, GLSetting
-from globaleaks.utils import get_file_checksum, log
+from globaleaks.utils import get_file_checksum, log, pretty_date_time
+
 __all__ = ['APSDelivery']
 
 @transact
@@ -34,7 +35,16 @@ def file_preprocess(store):
     for filex in files:
 
         if not filex.internaltip:
-            log.err("we've not InternalTip in our file %s" % filex.name)
+            log.err("Itergrity failure: the file %s of %s has not an InternalTip assigned (path: %s)" %
+                    (filex.name, pretty_date_time(filex.creation_date), filex.file_path) )
+
+            store.remove(filex)
+
+            try:
+                os.unlink( os.path.join(GLSetting.submission_path, filex.file_path) )
+            except OSError as excep:
+                log.err("Unable to remove %s in integrity fixing routine: %s" %
+                    (filex.file_path, excep.strerror) )
             continue
 
         if filex.internaltip.mark == InternalTip._marker[0]:
