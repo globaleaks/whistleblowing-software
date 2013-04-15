@@ -44,5 +44,6 @@ application that communicates to the [GLBackend](https://github.com/globaleaks/G
 # Additionals informations can be found here:
 
 [GLBackend specific documentation] (https://github.com/globaleaks/GLBackend/Home)
+
 [GLClient specific documentation] (https://github.com/globaleaks/GLClient/wiki/Home)
 
