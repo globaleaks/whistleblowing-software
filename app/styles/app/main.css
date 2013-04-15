@@ -339,3 +339,11 @@ background-color: whiteSmoke;
   -moz-border-radius: 6px;
   border-radius: 6px;
 }
+
+.shasum {
+  width: 500px;
+}
+
+/*** Debug header ***/
+
+

@@ -1,6 +1,6 @@
 'use strict';
 
-var GLClient = angular.module('GLClient', ['GLClient.templates', 'ui', 'resourceServices',
+var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServices',
     'submissionUI', 'GLClientFilters']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
@@ -65,6 +65,10 @@ var GLClient = angular.module('GLClient', ['GLClient.templates', 'ui', 'resource
       }).
       when('/admin/overview/tips', {
         templateUrl: 'views/admin/tips_overview.html',
+        controller: 'OverviewCtrl',
+      }).
+      when('/admin/overview/files', {
+        templateUrl: 'views/admin/files_overview.html',
         controller: 'OverviewCtrl',
       }).
 

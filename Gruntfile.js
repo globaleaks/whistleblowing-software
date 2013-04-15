@@ -31,6 +31,7 @@ module.exports = function(grunt) {
         'app/styles/**/*.css',
         'app/scripts/**/*.js',
         'app/views/**/*.html',
+        'app/templates/**/*.html',
         'app/images/**/*'
       ],
       tasks: ['build', 'reload']
@@ -111,7 +112,7 @@ module.exports = function(grunt) {
     ngtemplates:  {
       GLClient: {
             options: {base: 'app/'},
-            src: [ 'app/views/**/*.html'],
+            src: [ 'app/views/**/*.html', 'app/templates/**/*.html'],
             dest: 'tmp/scripts/templates.js'
           }
     }
