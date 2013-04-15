@@ -82,7 +82,10 @@ def dump_files_fs(files):
                   (len(single_file['body']), single_file['filename']))
 
         with open(filelocation, 'w+') as fd:
-            fdesc.writeToFD(fd.fileno(), single_file['body'])
+            fdesc.setNonBlocking(fd.fileno())
+            if not fdesc.writeToFD(fd.fileno(), single_file['body']):
+                log.debug("Non blocking file has reported an issue")
+                raise errors.InternalServerError("buffer not available")
 
         files_saved.update({single_file['filename']: saved_name })
 
