@@ -15,7 +15,6 @@ import traceback
 from OpenSSL import SSL
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from txsocksx.client import SOCKS5ClientEndpoint
-from txsocksx.ssl import SSLWrapClientEndpoint
 
 from StringIO import StringIO
 
@@ -26,8 +25,8 @@ from twisted.internet.ssl import ClientContextFactory
 from twisted.protocols import tls
 
 from twisted.python import log as twlog
+from twisted.python import logfile as twlogfile
 from Crypto.Hash import SHA256
-from twisted.internet import fdesc
 
 from globaleaks.settings import GLSetting
 
@@ -53,8 +52,14 @@ class Publisher(twlog.LogPublisher):
         If configured enables logserver
         """
         if GLSetting.logfile:
-            logfile_observer = twlog.FileLogObserver(open(GLSetting.logfile,
-                                                     'w'))
+            name = os.path.basename(GLSetting.logfile)
+            directory = os.path.dirname(GLSetting.logfile)
+
+            logfile = twlogfile.LogFile(name, directory,
+                                        rotateLength=GLSetting.log_file_size,
+                                        maxRotatedFiles=GLSetting.maximum_rotated_log_files)
+
+            logfile_observer = twlog.FileLogObserver(logfile)
             self.addObserver(logfile_observer.emit)
 
         logpy_observer = twlog.PythonLoggingObserver('globaleaks')
@@ -97,14 +102,11 @@ def query_yes_no(question, default="no"):
 ## Hashing utils
 
 def get_file_checksum(filepath):
-
     sha = SHA256.new()
 
     chunk_size = 8192
 
     with open(filepath, 'rb') as fp:
-
-        fdesc.setNonBlocking(fp.fileno())
         while True:
             chunk = fp.read(chunk_size)
             if len(chunk) == 0:
@@ -251,19 +253,21 @@ def mail_exception(etype, value, tback):
                      "", str(etype))
     tmp = []
 
-    tmp.append("From: %s\n" % ("stackexception@globaleaks.org"))
-    tmp.append("To: %s\n" % ("stackexception@lists.globaleaks.org"))
-    tmp.append("Subject: GLBackend Exception [%d]\n" % mail_exception.mail_counter)
-    tmp.append("Content-Type: text/plain; charset=ISO-8859-1\n")
-    tmp.append("Content-Transfer-Encoding: 8bit\n\n")
-    tmp.append("Source: %s\n\n" % " ".join(os.uname()))
+    tmp.append("From: %s" % ("stackexception@globaleaks.org"))
+    tmp.append("To: %s" % ("stackexception@lists.globaleaks.org"))
+    tmp.append("Subject: GLBackend Exception [%d]" % mail_exception.mail_counter)
+    tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
+    tmp.append("Content-Transfer-Encoding: 8bit\n")
+    tmp.append("Source: %s\n" % " ".join(os.uname()))
     tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
 
-    tmp.append(traceback.format_exception(etype, value, tback))
+    traceinfo_list = traceback.format_exception(etype, value, tback)
+    tmp.append('\n'.join(traceinfo_list))
 
-    message = StringIO(''.join(tmp))
+    info_string = '\n'.join(tmp)
+    message = StringIO(info_string)
 
-    log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, ''.join(tmp)) )
+    log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, info_string) )
 
     sendmail("stackexception@globaleaks.org",
              "stackexception99",

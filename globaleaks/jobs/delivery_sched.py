@@ -17,7 +17,8 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile
 from globaleaks.settings import transact, GLSetting
-from globaleaks.utils import get_file_checksum, log
+from globaleaks.utils import get_file_checksum, log, pretty_date_time
+
 __all__ = ['APSDelivery']
 
 @transact
@@ -32,6 +33,19 @@ def file_preprocess(store):
 
     filesdict = {}
     for filex in files:
+
+        if not filex.internaltip:
+            log.err("Itergrity failure: the file %s of %s has not an InternalTip assigned (path: %s)" %
+                    (filex.name, pretty_date_time(filex.creation_date), filex.file_path) )
+
+            store.remove(filex)
+
+            try:
+                os.unlink( os.path.join(GLSetting.submission_path, filex.file_path) )
+            except OSError as excep:
+                log.err("Unable to remove %s in integrity fixing routine: %s" %
+                    (filex.file_path, excep.strerror) )
+            continue
 
         if filex.internaltip.mark == InternalTip._marker[0]:
             continue
@@ -86,7 +100,8 @@ def receiver_file_align(store, filesdict, processdict):
         log.msg("Processed InternalFile %s - [%s] and updated with checksum %s"
                 % (ifile.id, ifile.name, ifile.sha2sum))
 
-        ifile.mark = InternalFile._marker[1] # Ready (TODO review the marker)
+        # can be extended processing in the future, here
+        ifile.mark = InternalFile._marker[1] # Ready
 
     return receiverfile_list
 
@@ -174,7 +189,7 @@ class APSDelivery(GLJob):
             processdict = file_process(filesdict)
             # return a dict { "file_uuid" : checksum }
         except OSError, e:
-            # TODO fatal log here!
+            # XXX beta - fatal log here!
             log.err("Fatal OS error in processing files [%s]: %s" % (filesdict, e) )
 
             # Create a dummy processdict to permit ReceiverFile init
@@ -182,8 +197,6 @@ class APSDelivery(GLJob):
             for file_uuid in processdict.iterkeys():
                 processdict[file_uuid] = u""
 
-
-        # TODO, delivery plugins not more implemented
         yield receiver_file_align(filesdict, processdict)
 
 
