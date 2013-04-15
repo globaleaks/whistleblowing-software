@@ -1,4 +1,4 @@
-twisted==12.3.0
+twisted==13.0.0
 apscheduler==2.1.0
 zope.component==4.1.0
 zope.interface==4.0.5

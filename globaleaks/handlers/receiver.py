@@ -74,10 +74,7 @@ def update_receiver_settings(store, user_id, request):
 class ReceiverInstance(BaseHandler):
     """
     R1
-    This class permit the operations in the Receiver model options,
-        Receiver.know_languages
-        Receiver.name
-        Receiver.tags
+    This class permit to the receiver to modify some of their fields:
         Receiver.description
         Receiver.password
 
@@ -90,11 +87,10 @@ class ReceiverInstance(BaseHandler):
     @authenticated('receiver')
     def get(self):
         """
-        Parameters: receiver_token_auth
+        Parameters: None
         Response: receiverReceiverDesc
         Errors: TipGusNotFound, InvalidInputFormat, InvalidTipAuthToken
         """
-        # TODO align API and test after - now tip_id is ignored
 
         receiver_status = yield get_receiver_settings(self.current_user['user_id'])
 
@@ -107,13 +103,11 @@ class ReceiverInstance(BaseHandler):
     @authenticated('receiver')
     def put(self):
         """
-        Parameters: receiver_token_auth
+        Parameters: None
         Request: receiverReceiverDesc
         Response: receiverReceiverDesc
         Errors: ReceiverGusNotFound, InvalidInputFormat, InvalidTipAuthToken, TipGusNotFound
         """
-        # TODO align API and test after - now tip_id is ignored
-
         request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 
         receiver_status = yield update_receiver_settings(self.current_user['user_id'], request)

@@ -41,6 +41,10 @@ def serialize_file(internalfile):
 def register_files_db(store, files, relationship, internaltip_id):
     internaltip = store.find(models.InternalTip, models.InternalTip.id == internaltip_id).one()
 
+    if not internaltip:
+        log.err("File submission register in a submission that's no more")
+        raise errors.TipGusNotFound
+
     files_list = []
     for single_file in files:
         original_fname = single_file['filename']
@@ -56,7 +60,10 @@ def register_files_db(store, files, relationship, internaltip_id):
 
         store.add(new_file)
         internaltip.internalfiles.add(new_file)
+        store.commit()
+
         files_list.append(serialize_file(new_file))
+        log.debug("Added to the DB, file %s" % original_fname)
 
     return files_list
 
@@ -71,8 +78,10 @@ def dump_files_fs(files):
         saved_name = rstr.xeger(r'[A-Za-z]{26}')
         filelocation = os.path.join(GLSetting.submission_path, saved_name)
 
+        log.debug("Start saving %d bytes from file [%s]" %
+                  (len(single_file['body']), single_file['filename']))
+
         with open(filelocation, 'w+') as fd:
-            fdesc.setNonBlocking(fd.fileno())
             fdesc.writeToFD(fd.fileno(), single_file['body'])
 
         files_saved.update({single_file['filename']: saved_name })
@@ -81,9 +90,15 @@ def dump_files_fs(files):
 
 
 @transact
-def get_tip_by_internaltip(store, id):
-    itip = store.find(models.InternalTip,
-                      models.InternalTip.id == unicode(id)).one()
+def get_tip_by_submission(store, id):
+
+    try:
+        itip = store.find(models.InternalTip,
+                          models.InternalTip.id == unicode(id)).one()
+    except Exception as excep:
+        log.err("get_tip_by_submission: Error in store.find: %s" % excep)
+        raise errors.SubmissionGusNotFound
+
     if not itip:
         raise errors.SubmissionGusNotFound
     elif itip.mark != models.InternalTip._marker[0]:
@@ -93,14 +108,24 @@ def get_tip_by_internaltip(store, id):
 
 @transact
 def get_tip_by_wbtip(store, wb_tip_id):
-    wb_tip = store.find(models.WhistleblowerTip,
-                        models.WhistleblowerTip.id == wb_tip_id).one()
+
+    try:
+        wb_tip = store.find(models.WhistleblowerTip,
+                            models.WhistleblowerTip.id == wb_tip_id).one()
+    except Exception as excep:
+        log.err("get_tip_by_wtipid (1) Error in store.find: %s" % excep)
+        raise errors.SubmissionGusNotFound
 
     if not wb_tip:
         raise errors.InvalidTipAuthToken
 
-    itip = store.find(models.InternalTip,
-                      models.InternalTip.id == unicode(wb_tip.internaltip_id)).one()
+    try:
+        itip = store.find(models.InternalTip,
+                          models.InternalTip.id == wb_tip.internaltip_id).one()
+    except Exception as excep:
+        log.err("get_tip_by_wtipid (2) Error in store.find: %s" % excep)
+        raise errors.SubmissionGusNotFound
+
     if not itip:
         raise errors.SubmissionGusNotFound
     else:
@@ -118,18 +143,26 @@ class FileHandler(BaseHandler):
         # more than 1), because all files are delivered in the same time.
         start_time = time.time()
 
-        file_array, files = self.request.files.popitem()
-
-        # First iterloop, dumps the files in the filesystem,
-        # and exception raised here would prevent the InternalFile recordings
         try:
-            relationship = dump_files_fs(files)
-        except OSError, e:
-            # TODO danger error log: unable to save in FS
-            raise errors.InternalServerError
+            file_array, files = self.request.files.popitem()
+        except Exception as excep:
+            log.err("Unable to accept file uploaded: %s" % excep)
+            raise errors.InvalidInputFormat("files array malformed")
 
-        # Second iterloop, create the objects in the database
-        file_list = yield register_files_db(files, relationship, itip_id)
+        try:
+            # First iterloop, dumps the files in the filesystem,
+            # and exception raised here would prevent the InternalFile recordings
+            relationship = dump_files_fs(files)
+        except Exception as excep:
+            log.err("Unable to save a file in filesystem: %s" % "\n".join(excep))
+            raise errors.InternalServerError("Unable to accept new files")
+
+        try:
+            # Second iterloop, create the objects in the database
+            file_list = yield register_files_db(files, relationship, itip_id)
+        except Exception as excep:
+            log.err("Unable to register file in DB: %s" % "\n".join(excep))
+            raise errors.InternalServerError("Unable to accept new files")
 
         for file_desc in file_list:
             file_desc['elapsed_time'] = time.time() - start_time
@@ -176,7 +209,7 @@ class FileInstance(FileHandler):
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
         """
-        itip_id = yield get_tip_by_internaltip(submission_id)
+        itip_id = yield get_tip_by_submission(submission_id)
 
         # Call the master class method
         yield self.handle_file_upload(itip_id)
@@ -198,7 +231,7 @@ def serialize_receiver_file(receiverfile, internalfile):
 @transact
 def download_file(store, tip_id, file_id):
     """
-    Auth temporarly disabled, just Tip_id and File_id required
+    Auth temporary disabled, just Tip_id and File_id required
     """
 
     receivertip = store.find(models.ReceiverTip, models.ReceiverTip.id == unicode(tip_id)).one()
@@ -244,7 +277,6 @@ class Download(BaseHandler):
         chunk_size = 8192
         filedata = ''
         with open(filelocation, "rb") as requestf:
-            fdesc.setNonBlocking(requestf.fileno())
             while True:
                 chunk = requestf.read(chunk_size)
                 filedata += chunk

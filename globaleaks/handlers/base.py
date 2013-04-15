@@ -6,10 +6,8 @@
 # Implementation of BaseHandler, the Cyclone class RequestHandler extended with our
 # needings.
 #
-# TODO - test the prepare/POST wrapper, because has never been tested
 
 import httplib
-from twisted.internet import fdesc
 import types
 import collections
 import json
@@ -17,7 +15,9 @@ import re
 import sys
 import os
 
+from twisted.internet import fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
+from cyclone.httpserver import HTTPConnection
 from cyclone import escape
 
 from globaleaks.utils import log, mail_exception
@@ -29,7 +29,7 @@ def validate_host(host_key):
     """
     validate_host checks in the GLSetting list of valid 'Host:' values
     and if matched, return True, else return False
-    Is used by all the Web hanlders inherit from Cyclone
+    Is used by all the Web handlers inherit from Cyclone
     """
     # hidden service has not a :port
     if len(host_key) == 22 and host_key[16:22] == '.onion':
@@ -46,6 +46,22 @@ def validate_host(host_key):
     log.debug("Error in host requested: %s do not accepted between: %s " %
               (host_key, str(GLSetting.accepted_hosts)))
     return False
+
+
+class GLHTTPServer(HTTPConnection):
+
+    def lineReceiver(self, line):
+        HTTPConnection.lineReceived(self, line)
+
+    def rawDataReceived(self, data):
+        if self.content_length > GLSetting.max_file_size:
+            log.err("Tried upload larger than expected (%dMb)" %
+                    (self.content_length / (1024 * 1024)) )
+
+            # In HTTP Protocol errors need to be managed differently than handlers
+            raise errors.HTTPRawLimitReach
+
+        HTTPConnection.rawDataReceived(self, data)
 
 
 class BaseHandler(RequestHandler):
@@ -168,6 +184,11 @@ class BaseHandler(RequestHandler):
         """
         pass
 
+    def initialize(self):
+        pass
+
+    def on_connection_close(self, *args, **kwargs):
+        pass
 
     requestTypes = {}
     def prepare(self):
@@ -191,7 +212,7 @@ class BaseHandler(RequestHandler):
             except HTTPError:
                 pass
 
-        # if -1 is infinite logging of the requests
+        # if 0 is infinite logging of the requests
         if GLSetting.cyclone_debug >= 0:
 
             GLSetting.cyclone_debug_counter += 1
@@ -201,14 +222,15 @@ class BaseHandler(RequestHandler):
             content += "url: " + self.request.full_url() + "\n"
             content += "body: " + self.request.body + "\n"
 
-            self.do_verbose_log(unicode(content))
+            self.do_verbose_log(content)
 
             # save in the request the numeric ID of the request, so the answer can be correlated
             self.globaleaks_io_debug = GLSetting.cyclone_debug_counter
 
-            if GLSetting.cyclone_debug_counter >= GLSetting.cyclone_debug:
+            if GLSetting.cyclone_debug > 0 and GLSetting.cyclone_debug_counter >= GLSetting.cyclone_debug:
                 log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.cyclone_debug)
                 GLSetting.cyclone_debug = -1
+
 
     def flush(self, include_footers=False):
         """
@@ -224,20 +246,22 @@ class BaseHandler(RequestHandler):
             content += "code: " + str(self._status_code) + "\n"
             content += "body: " + str(self._write_buffer) + "\n"
 
-            self.do_verbose_log(unicode(content))
+            self.do_verbose_log(content)
 
         RequestHandler.flush(self, include_footers)
 
 
     def do_verbose_log(self, content):
         """
-        Record in the verbose log the content as defined by Cyclone wrappers
+        Record in the verbose log the content as defined by Cyclone wrappers.
         """
         filename = "%s%s" % (self.request.method.upper(), self.request.uri.replace("/", "_") )
+        # this is not a security bug, no arbitrary patch can reach this point,
+        # but only the one accepted by the API definitions
+
         logfpath = os.path.join(GLSetting.cyclone_io_path, filename)
 
         with open(logfpath, 'a+') as fd:
-            fdesc.setNonBlocking(fd.fileno())
             fdesc.writeToFD(fd.fileno(), content)
 
 
@@ -297,8 +321,11 @@ class BaseHandler(RequestHandler):
 
 
     def _handle_request_exception(self, e):
+        log.msg("Exception to be handled: %s" % e)
+
         # exception informations must be saved here before continue.
         exc_type, exc_value, exc_tb = sys.exc_info()
+
         try:
             if isinstance(e.value, (HTTPError, HTTPAuthenticationRequired)):
                 e = e.value
@@ -317,11 +344,11 @@ class BaseHandler(RequestHandler):
             else:
                 return self.send_error(e.status_code, exception=e)
         else:
+            log.msg("Uncaught exception %s %s %s", (exc_type, exc_value, exc_tb) )
+                    # (self._request_summary(), self.request))
             if GLSetting.cyclone_debug:
                 log.msg(e)
-            log.msg("Uncaught exception %s :: %r" % \
-                    (self._request_summary(), self.request))
-            # mail_exception(exc_type, exc_value, exc_tb)
+            mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
 

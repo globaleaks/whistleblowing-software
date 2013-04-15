@@ -13,11 +13,13 @@ from twisted.application import internet
 from cyclone import web
 from globaleaks.settings import GLSetting
 from globaleaks.rest import api
+from globaleaks.handlers.base import GLHTTPServer
 
 application = Application('GLBackend')
 
 # Initialize the web API event listener, handling all the synchronous operations
 GLBackendAPIFactory = web.Application(api.spec, debug=GLSetting.cyclone_debug)
+GLBackendAPIFactory.protocol = GLHTTPServer
 GLBackendAPI = internet.TCPServer(GLSetting.bind_port, GLBackendAPIFactory)
 GLBackendAPI.setServiceParent(application)
 

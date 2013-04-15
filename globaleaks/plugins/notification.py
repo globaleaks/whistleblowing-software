@@ -134,7 +134,7 @@ class MailNotification(Notification):
             log.info('invalid configuration for admin email!')
             return None
 
-        # TODO atm title is calling the same line, but maybe moved in Admin GUI
+        # XXX title maybe moved in Admin GUI and digest implemented (beta)
         if event.type == u'tip':
             body = self.format_template(
                 event.notification_settings['tip_template'], event)

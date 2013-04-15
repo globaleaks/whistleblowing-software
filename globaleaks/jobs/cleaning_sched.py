@@ -9,7 +9,7 @@ import os
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 
 from globaleaks.utils import log, pretty_date_time, is_expired
 from globaleaks.jobs.base import GLJob
@@ -59,9 +59,13 @@ def itip_cleaning(store, id):
     for ifile in tit.internalfiles:
         if not os.path.isfile(ifile.file_path):
             log.err("Unable to remove not existent file, in itip %s has an internalfile %s(%d) missing on FS (%s)" %
-                id, ifile.name, ifile.size, ifile.file_path)
+                (id, ifile.name, ifile.size, ifile.file_path) )
         else:
-            os.unlink(ifile.file_path)
+            try:
+                os.unlink( os.path.join(GLSetting.submission_path, ifile.file_path) )
+            except OSError as excep:
+                log.err("Unable to remove %s: %s" %
+                    (ifile.file_path, excep.strerror) )
 
     store.remove(tit)
 

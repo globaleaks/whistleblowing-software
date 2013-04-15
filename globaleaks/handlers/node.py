@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils import log
 from globaleaks import utils
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check
 from globaleaks import models
@@ -24,6 +24,7 @@ def anon_serialize_node(store):
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
       'languages': list(node.languages or []),
+      'version': GLSetting.version_string,
     }
 
 def serialize_context(context):

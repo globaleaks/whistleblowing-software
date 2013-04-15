@@ -30,11 +30,11 @@ from storm import tracer
 
 
 verbosity_dict = {
+    'DEBUG': logging.DEBUG,
     'INFO' : logging.INFO,
     'WARNING': logging.WARNING,
     'ERROR': logging.ERROR,
-    'CRITICAL': logging.CRITICAL,
-    'DEBUG': logging.DEBUG
+    'CRITICAL': logging.CRITICAL
 }
 
 class GLSettingsClass:
@@ -43,6 +43,9 @@ class GLSettingsClass:
         # command line parsing utils
         self.parser = OptionParser()
         self.cmdline_options = None
+
+        # version
+        self.version_string = "0.2.0"
 
         # daemon
         self.nodaemon = False
@@ -81,6 +84,7 @@ class GLSettingsClass:
         self.name_limit = 128
         self.description_limit = 1024
         self.generic_limit = 2048
+        self.max_file_size = (30 * 1024 * 1024) # 30 Mb
 
         # static file rules
         self.staticfile_regexp = r'(\w+)\.(\w+)'
@@ -120,6 +124,13 @@ class GLSettingsClass:
 
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
+
+        # Size in bytes of every log file. Once this size is reached the
+        # logfile is rotated.
+        # Default: 1M
+        self.log_file_size = 1000000
+        # Number of log files to conserve.
+        self.maximum_rotated_log_files = 100
 
 
     def eval_paths(self):
@@ -239,10 +250,18 @@ class GLSettingsClass:
         def create_directory(path):
             # returns false if the directory is already present
             if not os.path.exists(path):
-                os.mkdir(path)
-                return True
-            assert(os.path.isdir(path))
-            return False
+                try:
+                    os.mkdir(path)
+                    self.log_debug("Created directoy %s" % path)
+                    return True
+                except OSError as excep:
+                    self.log_debug("Error in creating directory: %s (%s)" % (path, excep.strerror))
+                    raise excep
+            else:
+                if not os.path.isdir(path):
+                    self.log_debug("Error creating directory: %s (path exists and is not a dir)" % path)
+                    raise Exception("Error creating directory: %s (path exists and is not a dir)" % path)
+                return False
 
         if create_directory(self.working_path):
             new_environment = True
@@ -252,7 +271,9 @@ class GLSettingsClass:
 
         create_directory(self.gldata_path)
         create_directory(self.submission_path)
-        create_directory(self.cyclone_io_path)
+
+        if self.cyclone_debug >= 0:
+            create_directory(self.cyclone_io_path)
 
         if new_environment:
             for path, subpath, files in os.walk(self.static_source):
@@ -283,6 +304,13 @@ class GLSettingsClass:
         if os.getuid() == 0 or self.cmdline_options.user:
             print "switching user privileges to %d" % self.uid
             os.setuid(GLSetting.uid)
+
+    def log_debug(self, message):
+        """
+        Log to stdout only if debug is set at higher levels
+        """
+        if self.loglevel == logging.DEBUG:
+            print message
 
 
 
