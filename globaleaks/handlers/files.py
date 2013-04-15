@@ -53,7 +53,7 @@ def register_files_db(store, files, relationship, internaltip_id):
 
         new_file.name = original_fname
         new_file.content_type = single_file.get('content_type')
-        new_file.mark = unicode(models.InternalFile._marker[0])
+        new_file.mark = models.InternalFile._marker[0]
         new_file.size = len(single_file['body'])
         new_file.internaltip_id = unicode(internaltip_id)
         new_file.file_path = relationship[original_fname]

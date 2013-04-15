@@ -82,13 +82,14 @@ def receiver_file_align(store, filesdict, processdict):
         ifile = store.find(InternalFile, InternalFile.id == unicode(internalfile_id)).one()
         ifile.sha2sum = unicode(processdict.get(internalfile_id))
 
+        receiverfilen = 0
         for receiver in ifile.internaltip.receivers:
             log.msg("ReceiverFile creation for user %s, file %s"
                     % (receiver.name, ifile.name) )
 
             receiverfile = ReceiverFile()
-            receiverfile.receiver_id = receiver.id
             receiverfile.downloads = 0
+            receiverfile.receiver_id = receiver.id
             receiverfile.internalfile_id = ifile.id
             receiverfile.internaltip_id = ifile.internaltip.id
             # Is the same until end-to-end crypto is not supported
@@ -96,10 +97,12 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile.mark = ReceiverFile._marker[0] # not notified
 
             store.add(receiverfile)
+            store.commit()
             receiverfile_list.append(receiverfile.id)
+            receiverfilen += 1
 
-        log.msg("Processed InternalFile %s - [%s] and updated with checksum %s"
-                % (ifile.id, ifile.name, ifile.sha2sum))
+        log.msg("Generated ReceiverFile (%d) from %s [%s] and updated with checksum %s"
+                % (receiverfilen, ifile.id, ifile.name, ifile.sha2sum))
 
         # can be extended processing in the future, here
         ifile.mark = InternalFile._marker[1] # Ready
