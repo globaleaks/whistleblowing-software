@@ -19,15 +19,19 @@
 
    <div class="span9">
 
-      <h1>Users overview</h1>
+       <h1>Files overview</h1>
+       <p>
+       This interface may help to spot anomalies in your Node.<br>
+       The table show the files present in the submission directory, and their
+       relationshit with the internal db.</p>
       <div class="table-container">
       <table class="table table-striped table-bordered dataTable" id="fileList">
         <thead>
           <tr>
-            <th>name</th>
-            <th>info</th>
-            <th>size</th>
-            <th>references</th>
+            <th>Name</th>
+            <th>Info</th>
+            <th>Size</th>
+            <th>References</th>
           </tr>
         </thead>
         <tbody id="fileListBody">
@@ -38,10 +42,9 @@
                <input class="span2" id="appendedPrependedInput" type="text"
                value="{{file.path}}" expand-to="500">
             </td>
-            <td>{{file.content_type}}
-            </td>
+            <td>{{file.content_type}}</td>
             <td>{{file.size}}</td>
-            <td>{{file.rfiles}}</td>
+            <td>#{{file.rfiles}}</td>
           </tr>
         </tbody>
       </table>
