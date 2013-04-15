@@ -124,7 +124,7 @@ class GLSettingsClass:
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
-        self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
+        self.glclient_path = os.path.abspath(os.path.join(self.root_path, 'glclient'))
         self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
         self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
