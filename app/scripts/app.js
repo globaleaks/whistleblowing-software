@@ -5,24 +5,24 @@ var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServic
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.
       when('/', {
-        templateUrl: 'views/home.html',
+        templateUrl: 'templates/default/views/home.html',
         controller: 'HomeCtrl'
       }).
 
       when('/about', {
-        templateUrl: 'views/about.html',
+        templateUrl: 'templates/default/views/about.html',
         controller: 'PageCtrl',
       }).
 
 
       when('/submission', {
-        templateUrl: 'views/submission.html',
+        templateUrl: 'templates/default/views/submission/main.html',
         controller: 'SubmissionCtrl',
       }).
 
 
       when('/status/:tip_id', {
-        templateUrl: 'views/status.html',
+        templateUrl: 'templates/default/views/status.html',
         controller: 'StatusCtrl',
       }).
 
