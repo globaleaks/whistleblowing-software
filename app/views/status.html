@@ -47,9 +47,6 @@
                   <p>On unix based systems this can be done by running the following command:</p>
 
                   <code>shasum -a 256 {{file.name}}</code>
-                  <p>On windows you can do so by downloading and installing
-                     the <a href="http://www.microsoft.com/en-us/download/details.aspx?id=11533">Microsoft File Checksum Integrity Verifier tool</a>.
-                  </p>
 
                   <label><code>{{file.name}}</code></label>
                   <input ng-show='file.sha2sum != "None"' class="shasum" type="text" value="{{file.sha2sum}}">
