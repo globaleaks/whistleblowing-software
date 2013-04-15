@@ -17,30 +17,49 @@
       <div class="well">
         <h4>{{file.name}}</h4>
         <ul class="unstyled">
+
           <li ng-repeat="file in tip.files">
 
-            <div ng-show="whistleblower_tip_id">
+            <div>
               <i class="icon-book"></i> {{file.name}}
             </div>
 
-            <div ng-hide="whistleblower_tip_id">
-              <a href="{{file.href}}">
-                <i class="icon-book"></i> {{file.name}}
+            <div class="fileDetails" ng-controller="FileDetailsCtrl">
+              <button class="btn btn-small"
+                      ng-click="openSecurityCheck()">
+                      <i class="icon-lock"></i> security check
+              </button>
+              <a ng-hide="whistleblower_tip_id"
+                 class="btn btn-small" href="{{file.href}}">
+                 <i class="icon-download"></i> download
               </a>
+
+              <div class="modal"
+                   ng-show="securityCheckOpen"
+                   close="closeSecurityCheck()"
+                   options="securityCheckOptions">
+                <div class="modal-header">
+                    <h4>Security Check</h4>
+                </div>
+                <div class="modal-body">
+                  <p>Use the <a href="https://en.wikipedia.org/wiki/SHA-2">sha256 hash</a> to verify the file integrity.</p>
+
+                  <p>On unix based systems this can be done by running the following command:</p>
+
+                  <code>shasum -a 256 {{file.name}}</code>
+
+                  <label><code>{{file.name}}</code></label>
+                  <input ng-show='file.sha2sum != "None"' class="shasum" type="text" value="{{file.sha2sum}}">
+                  <span ng-show='file.sha2sum == "None"' class="label label-warning">Still calculating hash</span>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-success" ng-click="closeSecurityCheck()">done</button>
+                </div>
+              </div>
             </div>
 
-            <ul class="fileDetails">
-              <li ng-show='file.sha2sum != "None"'>
-                <div class="input-prepend input-append">
-                  <span class="add-on">SHA256</span>
-                  <input class="span2" id="appendedPrependedInput" type="text" value="{{file.sha2sum}}" expand-to="500">
-                </div>
-              </li>
-              <li ng-show='file.sha2sum == "None"'>
-                <span class="label label-warning">Still calculating hash</span>
-              </li>
-            </ul>
           </li>
+
         </ul>
       </div>
 
