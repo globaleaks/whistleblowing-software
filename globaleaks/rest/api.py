@@ -107,6 +107,9 @@ spec = [
 
     #  AA
     (r'/admin/overview/users', overview.Users),
+
+    #  AB
+    (r'/admin/overview/files', overview.Files),
 ]
 
 ## Enable end to end testing directory ##
