@@ -1,6 +1,6 @@
 'use strict';
 
-var GLClient = angular.module('GLClient', ['GLClient.templates', 'ui', 'resourceServices',
+var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServices',
     'submissionUI', 'GLClientFilters']).
   config(['$routeProvider', function($routeProvider) {
     $routeProvider.

@@ -2,6 +2,7 @@ GLClient.controller('StatusCtrl',
   ['$scope', '$rootScope', '$routeParams', 'Tip', '$cookies',
   function($scope, $rootScope, $routeParams, Tip, $cookies) {
     $scope.tip_id = $routeParams.tip_id;
+
     var TipID = {tip_id: $scope.tip_id};
 
     new Tip(TipID, function(tip){
@@ -19,4 +20,21 @@ GLClient.controller('StatusCtrl',
       $rootScope.uploadingFiles = [];
     };
 
+}]);
+
+GLClient.controller('FileDetailsCtrl', ['$scope', function($scope){
+    $scope.securityCheckOpen = false;
+
+    $scope.openSecurityCheck = function() {
+      $scope.securityCheckOpen = true;
+    };
+
+    $scope.closeSecurityCheck = function() {
+      $scope.securityCheckOpen = false;
+    };
+
+    $scope.securityCheckOptions = {
+      backdropFade: true,
+      dialogFade: true
+    }
 }]);
