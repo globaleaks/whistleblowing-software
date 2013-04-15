@@ -361,6 +361,9 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
   factory('TipOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/tips');
 }]).
+  factory('FileOverview', ['$resource', function($resource) {
+    return $resource('/admin/overview/files');
+}]).
   factory('cookiesEnabled', function(){
 
   var deleteCookie = function(name) {

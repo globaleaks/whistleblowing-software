@@ -67,6 +67,10 @@ var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServic
         templateUrl: 'views/admin/tips_overview.html',
         controller: 'OverviewCtrl',
       }).
+      when('/admin/overview/files', {
+        templateUrl: 'views/admin/files_overview.html',
+        controller: 'OverviewCtrl',
+      }).
 
 
       when('/login', {
