@@ -62,12 +62,6 @@ requires = [
 "Pillow (==2.0.0)"
 ]
 
-with open('requirements.txt') as f:
-    for line in f:
-        if line.startswith("#") or line.startswith('http'):
-            continue
-        install_requires.append(line)
-
 data_files = [('glclient', [os.path.join(glclient_path, 'build', 'index.html'),
     os.path.join(glclient_path, 'build', 'styles.css'),
     os.path.join(glclient_path, 'build', 'scripts.js'),
@@ -90,7 +84,7 @@ setup(
         'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
     scripts=["bin/globaleaks"],
-    #install_requires=install_requires,
+    #install_requires=open("requirements.txt").readlines(),
     requires=requires
 )
 
