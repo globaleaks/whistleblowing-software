@@ -35,7 +35,8 @@ def file_preprocess(store):
     for filex in files:
 
         if not filex.internaltip:
-            log.err("Itergrity failure: the file %s of %s has not an InternalTip assigned (path: %s)" %
+            log.err("(file_preprocess) Integrity failure: the file %s of %s"\
+                    "has not an InternalTip assigned (path: %s)" %
                     (filex.name, pretty_date_time(filex.creation_date), filex.file_path) )
 
             store.remove(filex)
@@ -89,7 +90,7 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile.receiver_id = receiver.id
             receiverfile.downloads = 0
             receiverfile.internalfile_id = ifile.id
-            receiverfile.internaltip_id = ifile.internaltip_id
+            receiverfile.internaltip_id = ifile.internaltip.id
             # Is the same until end-to-end crypto is not supported
             receiverfile.file_path = ifile.file_path
             receiverfile.mark = ReceiverFile._marker[0] # not notified

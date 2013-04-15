@@ -98,16 +98,18 @@ class APSCleaning(GLJob):
         comment and tip related.
         """
 
-        submissions = yield get_tiptime_by_marker(InternalTip._marker[0])
+        submissions = yield get_tiptime_by_marker(InternalTip._marker[0]) # Submission
+        log.debug("(Cleaning routines) %d unfinished Submission are check if expired" % len(submissions))
         for submission in submissions:
             if is_expired(iso2dateobj(submission['creation_date']), seconds=submission['submission_life_seconds']):
-                log.debug("Deleting an unfinished submission (creation date: %s)" % submission['creation_date'])
+                log.info("Deleting an unfinalized Submission (creation date: %s)" % submission['creation_date'])
                 yield itip_cleaning(submission['id'])
 
-        tips = yield get_tiptime_by_marker(InternalTip._marker[1])
+        tips = yield get_tiptime_by_marker(InternalTip._marker[2]) # First
+        log.debug("(Cleaning routines) %d Tips stored are check if expired" % len(tips))
         for tip in tips:
             if is_expired(iso2dateobj(tip['creation_date']), seconds=tip['tip_life_seconds']):
-                log.debug("Deleting an unfinished tip (creation date: %s)" % tip['creation_date'])
+                log.info("Deleting an expired Tip (creation date: %s)" % tip['creation_date'])
                 yield itip_cleaning(tip['id'])
 
 

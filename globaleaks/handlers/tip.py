@@ -26,7 +26,7 @@ def actor_serialize_internal_tip(internaltip):
         'context_gus': unicode(internaltip.context.id),
         'creation_date' : unicode(utils.pretty_date_time(internaltip.creation_date)),
         'last_activity' : unicode(utils.pretty_date_time(internaltip.creation_date)),
-        'expiration_date' : unicode(utils.pretty_date_time(internaltip.creation_date)),
+        'expiration_date' : unicode(utils.pretty_date_time(internaltip.expiration_date)),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
         'mark' : unicode(internaltip.mark),
@@ -110,7 +110,7 @@ def strong_receiver_validate(store, user_id, tip_id):
 def get_internaltip_wb(store, tip_id):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
-    if not wbtip:
+    if not wbtip or not wbtip.internaltip:
         raise errors.TipReceiptNotFound
 
     tip_desc = actor_serialize_internal_tip(wbtip.internaltip)

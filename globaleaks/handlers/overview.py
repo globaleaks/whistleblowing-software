@@ -150,8 +150,10 @@ def collect_files_overview(store):
             'path': '',
         }
 
-        file_desc['rfiles_associated'] = store.find(models.ReceiverFile,
-                        models.ReceiverFile.internalfile_id == ifile.id).count()
+        #file_desc['rfiles_associated'] = store.find(models.ReceiverFile,
+        #                models.ReceiverFile.internalfile_id == ifile.id).count()
+        if hasattr(ifile, 'receiverfiles'):
+            log.debug("Comunque ha il receiverfiles, e il count est %d" % ifile.receiverfiles.count())
 
         absfilepath = os.path.join(submission_dir, ifile.file_path)
 

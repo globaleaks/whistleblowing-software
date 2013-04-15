@@ -286,15 +286,21 @@ class APSNotification(GLJob):
 
             file_desc = serialize_internalfile(rfile.internalfile)
 
+            if  not rfile.internalfile or \
+                not rfile.internalfile.internaltip or \
+                not rfile.internalfile.internaltip.context:
+                log.err("(file_notification) Integrity check failure (File+Tip)")
+                continue
+
             context_desc = admin.admin_serialize_context(rfile.internalfile.internaltip.context)
-            assert context_desc.has_key('name')
+            if not context_desc.has_key('name'):
+                log.err("(file_notification) Integrity check failure (Context)")
+                continue
 
             receiver_desc = admin.admin_serialize_receiver(rfile.receiver)
-            assert receiver_desc.has_key('notification_fields')
-
-            if not rfile.receiver.notification_fields.has_key('mail_address'):
+            if  not receiver_desc.has_key('notification_fields') or \
+                not rfile.receiver.notification_fields.has_key('mail_address'):
                 log.debug("Receiver %s lack of email address!" % rfile.receiver.name)
-                # this is actually impossible, but a check is never bad
                 continue
 
             event = Event(type=u'file', trigger='File',

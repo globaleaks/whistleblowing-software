@@ -59,6 +59,9 @@ def register_files_db(store, files, relationship, internaltip_id):
         new_file.file_path = relationship[original_fname]
 
         store.add(new_file)
+        store.commit()
+        # I'm forcing commits because I've got some inconsistencies
+        # in this ReferenceSets. need to be investigated if needed.
         internaltip.internalfiles.add(new_file)
         store.commit()
 

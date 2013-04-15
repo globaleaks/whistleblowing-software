@@ -163,6 +163,13 @@ def create_context(store, request):
     else:
         context.fields = request['fields']
 
+    # Until GLClient do not supports configuration of values, I would copy
+    # the default from the GLSetting
+    context.tip_timetolive = GLSetting.tip_seconds_of_life
+    context.submission_timetolive = GLSetting.submission_seconds_of_life
+    # context.file_max_download =
+    # context.tip_max_access =
+
     if len(request['name']) < 1:
         log.err("Invalid request: name is an empty string")
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
