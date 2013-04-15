@@ -264,10 +264,10 @@ class GLSettingsClass:
                     )
 
     def check_directories(self):
-        assert all( os.path.exists(path) for path in
-                   (self.working_path, self.root_path, self.glclient_path,
-                    self.gldata_path, self.static_path, self.submission_path)
-                  )
+        for path in (self.working_path, self.root_path, self.glclient_path,
+                     self.gldata_path, self.static_path, self.submission_path):
+            if not os.path.exists(path):
+                raise Exception("%s does not exists!" % path)
 
     def remove_directories(self):
         for root, dirs, files in os.walk(self.working_path, topdown=False):
