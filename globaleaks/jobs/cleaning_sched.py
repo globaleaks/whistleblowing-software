@@ -27,11 +27,16 @@ def get_tiptime_by_marker(store, marker):
     tipinfo_list = []
     for itip in itip_list:
 
+        comment_cnt = store.find(Comment, Comment.internaltip_id == itip.id).count()
+        files_cnt = store.find(InternalFile, InternalFile.internaltip_id == itip.id).count()
+
         serialized_tipinfo = {
             'id': itip.id,
             'creation_date': pretty_date_time(itip.creation_date),
             'tip_life_seconds':  itip.context.tip_timetolive,
             'submission_life_seconds':  itip.context.submission_timetolive,
+            'files': files_cnt,
+            'comments': comment_cnt,
         }
         tipinfo_list.append(serialized_tipinfo)
 
@@ -56,17 +61,53 @@ def itip_cleaning(store, id):
         log.err("Requested invalid InternalTip id in itip_cleaning! %s" % id)
         return
 
-    for ifile in tit.internalfiles:
-        if not os.path.isfile(ifile.file_path):
-            log.err("Unable to remove not existent file, in itip %s has an internalfile %s(%d) missing on FS (%s)" %
-                (id, ifile.name, ifile.size, ifile.file_path) )
-        else:
-            try:
-                os.unlink( os.path.join(GLSetting.submission_path, ifile.file_path) )
-            except OSError as excep:
-                log.err("Unable to remove %s: %s" %
-                    (ifile.file_path, excep.strerror) )
+    comments = store.find(Comment, Comment.internaltip_id == id)
+    log.debug("[-] Removing %d comments, %d files from an InternalTip and %d rtips" %
+        (tit.internalfiles.count(), comments.count(), tit.receivertips.count() ))
 
+    for ifile in tit.internalfiles:
+        abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
+        ifname = ifile.name
+
+        if not os.path.isfile(abspath):
+            log.err("Unable to remove %s not existent file, in itip %s has an internalfile %s(%d) missing on FS" %
+                (abspath, id, ifname, ifile.size) )
+            continue
+
+        try:
+            os.unlink(abspath)
+        except OSError as excep:
+            log.err("Unable to remove %s: %s" % (abspath, excep.strerror) )
+
+        log.debug("Receiver file associated to %s: %d" % (ifname, tit.internalfiles.count()) )
+
+        for rfile in tit.internalfiles:
+            try:
+                store.remove(rfile)
+            except Exception as excep:
+                # This happen only if delete on cascade is working #96
+                log.debug("Unable to remove ReceiverFile of %s: skipped" % ifname)
+                continue
+        try:
+            store.remove(ifile)
+            log.debug("Removed InternalFile %s" % ifname)
+        except Exception as excep:
+            log.debug("Unable to remove InternalFile %s: skipped" % ifname)
+            continue
+
+    for comment in comments:
+        store.remove(comment)
+
+    for rtip in tit.receivertips:
+        rname = rtip.receiver.name
+        try:
+            store.remove(rtip)
+            log.debug("removed ReceiverTip of %s" % rname)
+        except Exception as excep:
+            log.debug("Unable to remocve ReceiverTip of %s" % rname)
+            continue
+
+    # Finally remove a Tip, better if on cascade works :( #96
     store.remove(tit)
 
 
@@ -102,14 +143,16 @@ class APSCleaning(GLJob):
         log.debug("(Cleaning routines) %d unfinished Submission are check if expired" % len(submissions))
         for submission in submissions:
             if is_expired(iso2dateobj(submission['creation_date']), seconds=submission['submission_life_seconds']):
-                log.info("Deleting an unfinalized Submission (creation date: %s)" % submission['creation_date'])
+                log.info("Deleting an unfinalized Submission (creation date: %s) files %d" %
+                         (submission['creation_date'], submission['files']) )
                 yield itip_cleaning(submission['id'])
 
         tips = yield get_tiptime_by_marker(InternalTip._marker[2]) # First
         log.debug("(Cleaning routines) %d Tips stored are check if expired" % len(tips))
         for tip in tips:
             if is_expired(iso2dateobj(tip['creation_date']), seconds=tip['tip_life_seconds']):
-                log.info("Deleting an expired Tip (creation date: %s)" % tip['creation_date'])
+                log.info("Deleting an expired Tip (creation date: %s) files %d comments %d" %
+                         (tip['creation_date'], tip['files'], tip['comments']) )
                 yield itip_cleaning(tip['id'])
 
 

@@ -103,6 +103,12 @@ def strong_receiver_validate(store, user_id, tip_id):
         # This in attack!!
         raise errors.TipGusNotFound
 
+    if not rtip.internaltip:
+        # inconsistency! InternalTip removed but rtip not
+        log.debug("Inconsintency + Access deny to a receiver on an expired submission! (%s)" %
+                  receiver.name)
+        raise errors.TipGusNotFound
+
     return rtip
 
 
@@ -136,6 +142,7 @@ def increment_receiver_access_count(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
     rtip.access_counter += 1
+
     if rtip.access_counter > rtip.internaltip.access_limit:
         raise errors.AccessLimitExceeded
 

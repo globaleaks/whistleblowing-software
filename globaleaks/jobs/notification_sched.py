@@ -92,18 +92,19 @@ class APSNotification(GLJob):
 
         for rtip in not_notified_tips:
 
+            if not rtip.internaltip or not rtip.internaltip.context:
+                log.err("(tip_notification) Integrity failure: missing InternalTip|Context")
+                continue
+
             context_desc = admin.admin_serialize_context(rtip.internaltip.context)
-            assert context_desc.has_key('name')
 
             receiver_desc = admin.admin_serialize_receiver(rtip.receiver)
-            assert receiver_desc.has_key('notification_fields')
+            if  not receiver_desc.has_key('notification_fields') or\
+                not rtip.receiver.notification_fields.has_key('mail_address'):
+                log.err("Receiver %s lack of email address!" % rtip.receiver.name)
+                continue
 
             tip_desc = serialize_receivertip(rtip)
-
-            if not rtip.receiver.notification_fields.has_key('mail_address'):
-                log.debug("Receiver %s lack of email address!" % rtip.receiver.name)
-                # this is actually impossible, but a check is never bad
-                return
 
             event = Event(type=u'tip', trigger='Tip',
                             notification_settings=self.notification_settings,
@@ -128,6 +129,8 @@ class APSNotification(GLJob):
 
         log.debug("+[Success] Notification Tip reciever %s" % rtip.receiver.username)
         rtip.mark = models.ReceiverTip._marker[1]
+        # test
+        store.commit()
 
     @transact
     def tip_notification_failed(self, store, failure, tip_id):
@@ -141,6 +144,7 @@ class APSNotification(GLJob):
 
         log.debug("-[Fail] Notification Tip reciever %s" % rtip.receiver.username)
         rtip.mark = models.ReceiverTip._marker[2]
+        store.commit()
 
     def do_tip_notification(self, tip_events):
         l = []
@@ -190,8 +194,11 @@ class APSNotification(GLJob):
 
             comment_desc = tip.serialize_comment(comment)
 
+            if not comment.internaltip.context:
+                log.err("(comment_notification) Integrity check failure Context")
+                continue
+
             context_desc = admin.admin_serialize_context(comment.internaltip.context)
-            assert context_desc.has_key('name')
 
             # XXX BUG! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
@@ -200,15 +207,14 @@ class APSNotification(GLJob):
             for receiver in comment.internaltip.receivers:
 
                 receiver_desc = admin.admin_serialize_receiver(receiver)
-                assert receiver_desc.has_key('notification_fields')
+                if  not receiver_desc.has_key('notification_fields') or\
+                    not receiver.notification_fields.has_key('mail_address'):
+                    log.err("Receiver %s lack of email address!" % receiver.name)
+                    continue
 
                 # if the comment author is the one to be notified
                 if comment._types == models.Comment._types[0]: # Receiver
-                    continue
-
-                if not receiver.notification_fields.has_key('mail_address'):
-                    log.debug("Receiver %s lack of email address!" % receiver.name)
-                    # this is actually impossible, but a check is never bad
+                    log.debug("Receiver is the Author (%s): skipped" % receiver.username)
                     continue
 
                 event = Event(type=u'comment', trigger='Comment',
@@ -284,6 +290,13 @@ class APSNotification(GLJob):
 
         for rfile in not_notified_rfiles:
 
+            # BUG -- need to be solved
+            rfile.mark = models.ReceiverFile._marker[1] # It's forced as notified
+
+            if not rfile.internalfile:
+                log.err("(file_notification) Integrity check failure (InternalFile)")
+                continue
+
             file_desc = serialize_internalfile(rfile.internalfile)
 
             if  not rfile.internalfile or \
@@ -293,14 +306,11 @@ class APSNotification(GLJob):
                 continue
 
             context_desc = admin.admin_serialize_context(rfile.internalfile.internaltip.context)
-            if not context_desc.has_key('name'):
-                log.err("(file_notification) Integrity check failure (Context)")
-                continue
 
             receiver_desc = admin.admin_serialize_receiver(rfile.receiver)
             if  not receiver_desc.has_key('notification_fields') or \
                 not rfile.receiver.notification_fields.has_key('mail_address'):
-                log.debug("Receiver %s lack of email address!" % rfile.receiver.name)
+                log.err("Receiver %s lack of email address!" % rfile.receiver.name)
                 continue
 
             event = Event(type=u'file', trigger='File',
@@ -328,6 +338,7 @@ class APSNotification(GLJob):
 
         log.debug("+[Success] Notification of receiverfile %s for reciever %s" % (rfile.internalfile.name, receiver.username))
         rfile.mark = models.ReceiverFile._marker[1] # 'notified'
+        store.commit()
 
     @transact
     def receiverfile_notification_failed(self, store, failure, receiverfile_id, receiver_id):
@@ -344,6 +355,7 @@ class APSNotification(GLJob):
 
         log.debug("-[Fail] Notification of receiverfile %s for reciever %s" % (rfile.internalfile.name, receiver.username))
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
+        store.commit()
 
 
     def do_receiverfile_notification(self, receiverfile_events):
