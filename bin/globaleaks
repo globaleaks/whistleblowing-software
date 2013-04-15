@@ -74,7 +74,7 @@ def pip_version_check():
         print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki/Linux"
         print "   [ and verify that you're inside the pyenv! ]"
         print "2) Installing missing requirements using pip install -r requirements.txt"
-        quit()
+        quit(-1)
 
 pip_version_check()
 
