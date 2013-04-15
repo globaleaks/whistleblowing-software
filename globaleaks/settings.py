@@ -135,7 +135,7 @@ class GLSettingsClass:
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
-        self.glclient_path = os.path.abspath(os.path.join(self.root_path, '..', 'GLClient', 'app'))
+        self.glclient_path = os.path.abspath(os.path.join(self.root_path, 'glclient'))
         self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
         self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
@@ -249,7 +249,7 @@ class GLSettingsClass:
 
         def create_directory(path):
             # returns false if the directory is already present
-            if not os.path.isdir(path):
+            if not os.path.exists(path):
                 try:
                     os.mkdir(path)
                     self.log_debug("Created directoy %s" % path)
@@ -258,8 +258,10 @@ class GLSettingsClass:
                     self.log_debug("Error in creating directory: %s (%s)" % (path, excep.strerror))
                     raise excep
             else:
+                if not os.path.isdir(path):
+                    self.log_debug("Error creating directory: %s (path exists and is not a dir)" % path)
+                    raise Exception("Error creating directory: %s (path exists and is not a dir)" % path)
                 return False
-
 
         if create_directory(self.working_path):
             new_environment = True
@@ -283,10 +285,10 @@ class GLSettingsClass:
                     )
 
     def check_directories(self):
-        assert all( os.path.exists(path) for path in
-                   (self.working_path, self.root_path, self.glclient_path,
-                    self.gldata_path, self.static_path, self.submission_path)
-                  )
+        for path in (self.working_path, self.root_path, self.glclient_path,
+                     self.gldata_path, self.static_path, self.submission_path):
+            if not os.path.exists(path):
+                raise Exception("%s does not exists!" % path)
 
     def remove_directories(self):
         for root, dirs, files in os.walk(self.working_path, topdown=False):
