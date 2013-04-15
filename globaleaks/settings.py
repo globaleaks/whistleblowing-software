@@ -249,7 +249,7 @@ class GLSettingsClass:
 
         def create_directory(path):
             # returns false if the directory is already present
-            if not os.path.isdir(path):
+            if not os.path.exists(path):
                 try:
                     os.mkdir(path)
                     self.log_debug("Created directoy %s" % path)
@@ -258,8 +258,10 @@ class GLSettingsClass:
                     self.log_debug("Error in creating directory: %s (%s)" % (path, excep.strerror))
                     raise excep
             else:
+                if not os.path.isdir(path):
+                    self.log_debug("Error creating directory: %s (path exists and is not a dir)" % path)
+                    raise Exception("Error creating directory: %s (path exists and is not a dir)" % path)
                 return False
-
 
         if create_directory(self.working_path):
             new_environment = True
