@@ -29,24 +29,20 @@ seamless as possible, but it is not the main direction of development.
 This is a full rewrite and it collects all of the experience and knowledge
 gained in building GlobaLeaks 0.1.
 
+To learn how to setup your own GlobaLeaks, look at [Globaleaks Wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki/Home)
+
 All future development will continue in this direction. The complete [Project Plan](http://globaleaks.org/ProjectPlan.pdf).pdf describes the goal without technical details.
 
 The main components of GlobaLeaks 0.2 are
 [GLClient](https://github.com/globaleaks/GLClient.git) and
 [GLBackend](https://github.com/globaleaks/GLBackend.git).
-[APAF](https://github.com/globaleaks/APAF.git).
 
 [GLClient](https://github.com/globaleaks/GLClient.git) is a javascript web
 application that communicates to the [GLBackend](https://github.com/globaleaks/GLBackend.git), the backend component of GlobaLeaks.
 
-[APAF](https://github.com/globaleaks/APAF.git), aka Anonymous Python Application Framework,
-is a multi-platform build system framework and a library for developing Python/Twisted based
-server applications, exposed as Tor Hidden Service, easy to be installed and managed on multiple
-platforms (Windows, OS X, Debian) with a particular focus for desktop environments.
-
 
 # Additionals informations can be found here:
 
-Globaleaks generic documentation (https://github.com/globaleaks/GlobaLeaks/wiki/Home)
-GLBackend specific documentation (https://github.com/globaleaks/GLBackend.git)
-GLClient specific documentation (https://github.com/globaleaks/GLClient.git)
+[GLBackend specific documentation] (https://github.com/globaleaks/GLBackend/Home)
+[GLClient specific documentation] (https://github.com/globaleaks/GLClient/wiki/Home)
+
