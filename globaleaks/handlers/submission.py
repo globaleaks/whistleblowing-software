@@ -29,7 +29,7 @@ def wb_serialize_internaltip(internaltip):
         'submission_gus' : unicode(internaltip.id),
         'context_gus': unicode(internaltip.context_id),
         'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
-        #'expiration_date' : unicode(utils.pretty_date_time(internaltip.creation_date)),
+        'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
         'wb_fields' : dict(internaltip.wb_fields or {}),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
@@ -200,7 +200,7 @@ def create_submission(store, request, finalize):
     submission.escalation_threshold = context.escalation_threshold
     submission.access_limit = context.tip_max_access
     submission.download_limit = context.file_max_download
-    submission.expiration_date = utc_future_date(hours=(context.tip_timetolive * 24))
+    submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
     submission.pertinence_counter = 0
     submission.context_id = context.id
     submission.creation_date = datetime_now()
