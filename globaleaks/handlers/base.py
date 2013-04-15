@@ -321,8 +321,6 @@ class BaseHandler(RequestHandler):
 
 
     def _handle_request_exception(self, e):
-        log.msg("Exception to be handled: %s" % e)
-
         # exception informations must be saved here before continue.
         exc_type, exc_value, exc_tb = sys.exc_info()
 

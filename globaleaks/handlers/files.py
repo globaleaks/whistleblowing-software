@@ -53,12 +53,15 @@ def register_files_db(store, files, relationship, internaltip_id):
 
         new_file.name = original_fname
         new_file.content_type = single_file.get('content_type')
-        new_file.mark = unicode(models.InternalFile._marker[0])
+        new_file.mark = models.InternalFile._marker[0]
         new_file.size = len(single_file['body'])
         new_file.internaltip_id = unicode(internaltip_id)
         new_file.file_path = relationship[original_fname]
 
         store.add(new_file)
+        store.commit()
+        # I'm forcing commits because I've got some inconsistencies
+        # in this ReferenceSets. need to be investigated if needed.
         internaltip.internalfiles.add(new_file)
         store.commit()
 
@@ -82,7 +85,10 @@ def dump_files_fs(files):
                   (len(single_file['body']), single_file['filename']))
 
         with open(filelocation, 'w+') as fd:
-            fdesc.writeToFD(fd.fileno(), single_file['body'])
+            fdesc.setNonBlocking(fd.fileno())
+            if not fdesc.writeToFD(fd.fileno(), single_file['body']):
+                log.debug("Non blocking file has reported an issue")
+                raise errors.InternalServerError("buffer not available")
 
         files_saved.update({single_file['filename']: saved_name })
 
