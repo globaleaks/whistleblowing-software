@@ -64,7 +64,7 @@ tar czf glclient-${GLCLIENT_REVISION}.tar.gz glclient-${GLCLIENT_REVISION}/
 md5sum glclient-${GLCLIENT_REVISION}.tar.gz > $OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.tar.gz.md5.txt
 sha1sum glclient-${GLCLIENT_REVISION}.tar.gz > $OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.tar.gz.sha1.txt
 
-zip glclient-${GLCLIENT_REVISION}.zip glclient-${GLCLIENT_REVISION}/
+zip -r glclient-${GLCLIENT_REVISION}.zip glclient-${GLCLIENT_REVISION}/
 md5sum glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.zip.md5.txt
 sha1sum glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.zip.sha1.txt
 
