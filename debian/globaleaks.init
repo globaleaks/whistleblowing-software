@@ -33,7 +33,7 @@ GROUP=globaleaks
 
 # HOST = [ip_address, hostname, other_hostname]
 #   permits to configure a list of hosts at which globaleaks will be reachable
-HOSTS_LIST=127.0.0.1,localhost,dev.globaleaks.org
+HOSTS_LIST=127.0.0.1,localhost
 
 # NETWORKSANDBOX = 0/1
 #   permits to enable network sandboxing; requires iptables
