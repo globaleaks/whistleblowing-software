@@ -10,7 +10,7 @@ from distutils.core import setup
 
 glclient_path = 'glclient-3e23dde0'
 def download_glclient():
-    glclient_url = "https://globaleaks.org/builds/"+glclient_path+".zip"
+    glclient_url = "https://globaleaks.org/builds/GLClient/"+glclient_path+".zip"
     print "[+] Downloading glclient from %s" % glclient_url
 
     o = open('glclient.zip', 'w+')
@@ -21,7 +21,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "bd4595b49f3ebd0f419ed1eaf8b7cb2e16dbb651376f4730431b219a"
+    glclient_hash = "8277d457a10dd9cc6eb824b3684e01966992fd3cb4c4f7f06ebcace1"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
