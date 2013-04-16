@@ -27,7 +27,7 @@ fi
 
 if [ ! -d ${GLOBALEAKS_DIR}/GLClient ]; then
   echo "[+] Cloning GLClient in ${GLOBALEAKS_DIR}"
-  git clone $GLBACKEND_GIT_REPO ${GLOBALEAKS_DIR}/GLClient
+  git clone $GLCLIENT_GIT_REPO ${GLOBALEAKS_DIR}/GLClient
 fi
 
 echo "[+] Updating GLBackend"
