@@ -143,14 +143,6 @@ class GLSettingsClass:
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
 
-        if self.db_debug:
-            self.glclient_path = os.path.abspath(os.path.join(self.root_path,
-                'glclient'))
-
-        else:
-            self.glclient_path = os.path.abspath(os.path.join('/usr/share/globaleaks',
-                'glclient'))
-
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
@@ -219,7 +211,15 @@ class GLSettingsClass:
         self.start_clean = self.cmdline_options.start_clean
 
         self.working_path = self.cmdline_options.working_path
+
         self.eval_paths()
+        if self.cmdline_options.db_debug:
+            self.glclient_path = os.path.abspath(os.path.join(self.root_path,
+                '..', 'GLClient'))
+
+        else:
+            self.glclient_path = os.path.abspath(os.path.join('/usr/share/globaleaks',
+                'glclient'))
 
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
