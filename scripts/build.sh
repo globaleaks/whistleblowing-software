@@ -3,7 +3,6 @@ CWD=`pwd`
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
 GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
-DEBREPO_PATH='/data/deb/'
 
 if [ "$#" -ne 2 ]; then
   echo "Usage: ./${SCRIPTNAME} [repository path] [output dir] (optional) [glclient target tag or rev] [glbackend target tag]"
@@ -83,8 +82,9 @@ rm -rf debian/
 cp -rf ${GLOBALEAKS_DIR}/GLBackend/debian debian
 debuild
 cd ..
-cp globaleaks_*deb $DEBREPO_PATH
-cp globaleaks_*dsc $DEBREPO_PATH
+echo "[+] Adding to local repository"
+dput local globaleaks*changes
+mini-dinstall --batch
 cd $CWD
 
 echo "[+] All done!"
