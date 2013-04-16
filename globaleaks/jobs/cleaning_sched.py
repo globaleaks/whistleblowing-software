@@ -138,6 +138,7 @@ class APSCleaning(GLJob):
         and their expiration date, if match, remove that, all the folder,
         comment and tip related.
         """
+        self.setup_mailexception()
 
         submissions = yield get_tiptime_by_marker(InternalTip._marker[0]) # Submission
         log.debug("(Cleaning routines) %d unfinished Submission are check if expired" % len(submissions))
