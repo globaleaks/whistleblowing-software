@@ -66,6 +66,12 @@ class GLSettingsClass:
         self.error_reporting_port = 25
         self.error_reporting_destmail = "stackexception@lists.globaleaks.org"
 
+        # debug defaults
+        self.db_debug = False
+        self.cyclone_debug = -1
+        self.cyclone_debug_counter = 0
+        self.loglevel = "CRITICAL"
+
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.working_path = os.path.abspath(os.path.join(self.root_path, 'nodedata'))
@@ -77,12 +83,6 @@ class GLSettingsClass:
         self.notification_plugins = [
             'MailNotification',
             ]
-
-        # debug defaults
-        self.db_debug = False
-        self.cyclone_debug = -1
-        self.cyclone_debug_counter = 0
-        self.loglevel = "CRITICAL"
 
         # session tracking, in the singleton classes
         self.sessions = dict()
