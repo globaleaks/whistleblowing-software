@@ -59,9 +59,16 @@ class GLSettingsClass:
         # store name
         self.store_name = 'main_store'
 
+        # unhandled Python Exception are reported via mail
+        self.error_reporting_username= "stackexception@globaleaks.org"
+        self.error_reporting_password= "stackexception99"
+        self.error_reporting_server = "box549.bluehost.com"
+        self.error_reporting_port = 25
+        self.error_reporting_destmail = "stackexception@lists.globaleaks.org"
+
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-        self.working_path = os.path.abspath(os.path.join(self.root_path, 'working_dir'))
+        self.working_path = os.path.abspath(os.path.join(self.root_path, 'nodedata'))
         self.eval_paths()
 
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
@@ -136,16 +143,18 @@ class GLSettingsClass:
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, 'glclient'))
-        self.gldata_path = os.path.abspath(os.path.join(self.working_path, '_gldata'))
-        self.cyclone_io_path = os.path.abspath(os.path.join(self.gldata_path, "cyclone_debug"))
-        self.submission_path = os.path.abspath(os.path.join(self.gldata_path, 'submission'))
-        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldata_path,
-            'glbackend.db'))
+        self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
+        self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
+        self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
+        self.cyclone_io_path = os.path.abspath(os.path.join(self.log_path, "jsondump"))
+        self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
+        self.static_source = os.path.abspath(os.path.join(self.root_path, 'staticdata'))
+        self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
+
+        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
         self.db_schema_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
             'sqlite.sql'))
-        self.static_source = os.path.abspath(os.path.join(self.root_path, '_static'))
-        self.static_path = os.path.abspath(os.path.join(self.working_path, '_static'))
-        self.logfile = os.path.abspath(os.path.join(self.gldata_path, 'glbackend.log'))
+        self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
 
     def load_cmdline_options(self):
         """
@@ -267,11 +276,16 @@ class GLSettingsClass:
         if create_directory(self.working_path):
             new_environment = True
 
+        if create_directory(self.gldb_path):
+            new_environment = True
+
+        create_directory(self.glfiles_path)
+
         if create_directory(self.static_path):
             new_environment = True
 
-        create_directory(self.gldata_path)
         create_directory(self.submission_path)
+        create_directory(self.log_path)
 
         if self.cyclone_debug >= 0:
             create_directory(self.cyclone_io_path)
@@ -287,7 +301,7 @@ class GLSettingsClass:
 
     def check_directories(self):
         for path in (self.working_path, self.root_path, self.glclient_path,
-                     self.gldata_path, self.static_path, self.submission_path):
+                     self.glfiles_path, self.static_path, self.submission_path, self.log_path):
             if not os.path.exists(path):
                 raise Exception("%s does not exists!" % path)
 

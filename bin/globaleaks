@@ -190,7 +190,7 @@ if GLSetting.nodaemon:
 args +=['--pidfile', GLSetting.pidfile_path]
 
 if GLSetting.twistd_log:
-    args +=['--logfile', os.path.join(GLSetting.working_path, 'twistd.log')]
+    args +=['--logfile', os.path.join(GLSetting.log_path, 'twistd.log')]
 else:
     # logfile can't be disabled in twistd, can only be trashed the content
     args +=['--logfile', os.devnull]

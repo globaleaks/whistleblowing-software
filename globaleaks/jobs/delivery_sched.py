@@ -176,6 +176,7 @@ class APSDelivery(GLJob):
         Goal of this function is process/validate the files, compute checksum, and
         apply the delivery method configured.
         """
+        self.setup_mailexception()
 
         # ==> Submission && Escalation
         info_created_tips = yield tip_creation()
