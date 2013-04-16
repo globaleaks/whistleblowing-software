@@ -1,5 +1,6 @@
 #!/bin/sh
 CWD=`pwd`
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
 GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
@@ -95,6 +96,9 @@ echo "[+] Adding to local repository"
 dput local globaleaks*changes
 mini-dinstall --batch
 cd $CWD
+
+echo "[+] Signing Release"
+$DIR/sign-release.sh
 
 echo "[+] All done!"
 
