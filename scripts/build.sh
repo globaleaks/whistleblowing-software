@@ -4,18 +4,18 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
 GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
+GLOBALEAKS_DIR=~/
+OUTPUT_DIR=/data/website/builds/
 
-if [ "$#" -ne 2 ]; then
-  echo "Usage: ./${SCRIPTNAME} [repository path] [output dir] (optional) [glclient target tag or rev] [glbackend target tag]"
+if [ "$1" -eq '-h' ]; then
+  echo "Usage: ./${SCRIPTNAME} (optional) [glclient target tag or rev] [glbackend target tag]"
   echo "repository path: is the path to a copy of the GLClient and GLBackend git repositories"
   exit
 fi
-GLOBALEAKS_DIR=$1
-OUTPUT_DIR=$2
 
-if [ "$#" -eq 4 ]; then
-  GLCLIENT_TAG=$3
-  GLBACKEND_TAG=$4
+if [ "$#" -eq 2 ]; then
+  GLCLIENT_TAG=$1
+  GLBACKEND_TAG=$2
 fi
 
 mkdir $OUTPUT_DIR/GLClient
