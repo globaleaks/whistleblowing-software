@@ -3,6 +3,7 @@ CWD=`pwd`
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
 GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
+DEBREPO_PATH='/data/deb/'
 
 if [ "$#" -ne 2 ]; then
   echo "Usage: ./${SCRIPTNAME} [repository path] [output dir] (optional) [glclient target tag or rev] [glbackend target tag]"
@@ -41,7 +42,17 @@ if test $GLBACKEND_TAG; then
 fi
 
 echo "[+] Building GLBackend"
-python setup.py bdist sdist
+python setup.py sdist
+echo "[+] Building .deb"
+cd dist
+py2dsc globaleaks-0.2.tar.gz
+cd deb_dist/globaleaks-0.2
+rm -rf debian/
+cp -rf $CWD/GLBackend/debian debian
+debuild
+cd ..
+cp globaleaks_*deb $DEBREPO_PATH
+cp globaleaks_*dsc $DEBREPO_PATH
 cd $CWD
 
 echo "[+] Updating GLClient"
