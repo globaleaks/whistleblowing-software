@@ -1,2 +1,3 @@
 include glclient/index.html glclient/scripts.js glclient/styles.css
 include glclient/images/*
+include debian/*
