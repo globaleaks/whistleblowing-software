@@ -103,36 +103,36 @@ class GLBaseRunnerUnix(UnixApplicationRunner):
     """
     This runner is specific to Unix systems.
     """
-    def postApplication(self):
-
+    def run(self):
+        """
+        Run the application.
+        """
         def initialization():
-            if check_schema_version():
-                deferred = create_tables()
-                return deferred.addCallback(run_app)
-            else:
-                reactor.stop()
-                return None
-
-        def run_app(res):
-            """
-            Start the actual service Application.
-            """
             if not GLSetting.accepted_hosts:
                 print "Missing a list of hosts usable to contact GLBackend, abort"
                 raise AttributeError
 
-            try:
-                self.startApplication(self.application)
-            except Exception as exc:
-                log.err("Network error: %s" % exc)
-                reactor.stop()
-                raise exc
+            if check_schema_version():
+                d = create_tables()
+                @d.addCallback
+                def cb(res):
+                    start_asynchronous()
+            else:
+                raise Exception("Wrong schema version")
 
-            start_asynchronous()
+        self.preApplication()
+        self.application = self.createOrGetApplication()
 
-            print "GLBackend is now running"
-            for host in GLSetting.accepted_hosts:
-                print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
+        self.logger.start(self.application)
+
+        initialization()
+
+        print "GLBackend is now running"
+        for host in GLSetting.accepted_hosts:
+            print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
+
+        self.postApplication()
+        self.logger.stop()
 
         reactor.callWhenRunning(initialization)
         self.startReactor(reactor, self.oldstdout, self.oldstderr)
