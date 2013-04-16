@@ -159,6 +159,9 @@
   color: #999;
 }
 
+.mobileTextArea {
+  resize: both;
+}
 
 /* Footer */
 .footer {
