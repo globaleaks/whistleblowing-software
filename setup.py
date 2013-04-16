@@ -32,6 +32,7 @@ def uncompress_glclient():
     print "[+] Uncompressing GLClient..."
     zipfile = ZipFile('glclient.zip')
     zipfile.extractall()
+    os.unlink('glclient.zip')
     print "    ...done."
 
 def build_glclient():
@@ -87,8 +88,3 @@ setup(
     #install_requires=open("requirements.txt").readlines(),
     requires=requires
 )
-
-def cleanup():
-    shutil.rmtree(glclient_path)
-    os.unlink('glclient.zip')
-cleanup()
