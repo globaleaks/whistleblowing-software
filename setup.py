@@ -80,7 +80,7 @@ setup(
     package_data = {'globaleaks': ['db/sqlite.sql',
                                    'db/emailnotification_template']},
     packages=['globaleaks', 'globaleaks.db', 'globaleaks.handlers',
-        'globaleaks.jobs', 'globaleaks.messages', 'globaleaks.plugins',
+        'globaleaks.jobs', 'globaleaks.plugins',
         'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
     scripts=["bin/globaleaks"],
