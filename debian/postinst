@@ -1,7 +1,7 @@
 #!/bin/sh
 # This is the post installation script for globaleaks
 useradd globaleaks -u 1337 -s /bin/echo
-mkdir /var/globaleaks/
+mkdir -p /var/globaleaks/
 chown globaleaks:globaleaks /var/globaleaks
 echo "[+] Compiling python files"
 for path in `python -c "import sys;print '\n'.join(sys.path)"`;do
