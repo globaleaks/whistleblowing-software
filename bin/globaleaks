@@ -150,6 +150,10 @@ GLSetting.parser.add_option("-v", "--version", action='store_true',
 GLSetting.parser.add_option("-t", "--twistd_log", action='store_true',
     help="enable the twistd log file (default: disabled)", dest="twistd_log")
 
+GLSetting.parser.add_option("-z", "--hijack-db-debug", action='store_true',
+    help="only useful to the developers and the crazy types",
+    dest="db_debug")
+
 # here the options are parsed, because sys.argv array is whack below
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
 

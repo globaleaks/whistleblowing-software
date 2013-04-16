@@ -66,6 +66,12 @@ class GLSettingsClass:
         self.error_reporting_port = 25
         self.error_reporting_destmail = "stackexception@lists.globaleaks.org"
 
+        # debug defaults
+        self.db_debug = False
+        self.cyclone_debug = -1
+        self.cyclone_debug_counter = 0
+        self.loglevel = "CRITICAL"
+
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.working_path = os.path.abspath(os.path.join(self.root_path, 'nodedata'))
@@ -77,12 +83,6 @@ class GLSettingsClass:
         self.notification_plugins = [
             'MailNotification',
             ]
-
-        # debug defaults
-        self.db_debug = False
-        self.cyclone_debug = -1
-        self.cyclone_debug_counter = 0
-        self.loglevel = "CRITICAL"
 
         # session tracking, in the singleton classes
         self.sessions = dict()
@@ -142,7 +142,7 @@ class GLSettingsClass:
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
-        self.glclient_path = os.path.abspath(os.path.join('/usr/share/globaleaks', 'glclient'))
+
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
@@ -211,7 +211,15 @@ class GLSettingsClass:
         self.start_clean = self.cmdline_options.start_clean
 
         self.working_path = self.cmdline_options.working_path
+
         self.eval_paths()
+        if self.cmdline_options.db_debug:
+            self.glclient_path = os.path.abspath(os.path.join(self.root_path,
+                '..', 'GLClient'))
+
+        else:
+            self.glclient_path = os.path.abspath(os.path.join('/usr/share/globaleaks',
+                'glclient'))
 
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
