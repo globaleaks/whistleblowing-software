@@ -1,0 +1,8 @@
+#!/bin/sh
+# This is the post installation script for globaleaks
+useradd globaleaks -u 1337 -s /bin/echo
+mkdir /var/globaleaks/
+chown globaleaks:globaleaks /var/globaleaks
+
+### Bellow here things will be added by the build script
+
