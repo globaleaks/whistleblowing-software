@@ -32,7 +32,7 @@ fi
 
 echo "[+] Updating GLBackend"
 cd ${GLOBALEAKS_DIR}/GLBackend
-git pull master
+git pull origin master
 GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
 if test $GLBACKEND_TAG; then
@@ -46,7 +46,7 @@ cd $CWD
 
 echo "[+] Updating GLClient"
 cd ${GLOBALEAKS_DIR}/GLClient
-git pull master
+git pull origin master
 GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
 if test $GLCLIENT_TAG; then
