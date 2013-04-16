@@ -63,23 +63,15 @@ TORTRANSPORT=9040
 #   permits to configure a Tor DNS Port for outbound connections
 TORDNSPORT=5353
 
-# GL_DIR = [directory_path]
-#   must be configured with the path at which globaleaks install resides
-GLDIR=/data/globaleaks
-
 # WORKING_DIR
 #   must be configured with the daemon working directory
-WORKING_DIR=${GLDIR}/working_dir
+WORKING_DIR=/var/globaleaks/
 
 # End of Configurable Arguments
 
 ###############################################################################
 
-GLBACKENDDIR=${GLDIR}/GLBackend
-GLCLIENTDIR=${GLDIR}/GLClient
-GLENV=${GLDIR}/glenv/bin/activate
-GLBACKEND_DAEMON=${GLBACKENDDIR}/bin/globaleaks
-
+GLBACKEND_DAEMON=`which globaleaks`
 GLBACKEND_ARGS="--port ${LISTENING_PORT} --accept-host=${HOSTS_LIST} --user=${USER} --group=${GROUP} --working-path=${WORKING_DIR}"
 
 STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
@@ -105,8 +97,6 @@ if [ ${NETWORK_SANDBOXING} -eq 1 ] && ! which iptables >/dev/null 2>&1 ; then
     echo "Error: Globaleaks Network Sandboxing requires iptables"
     exit 1
 fi
-
-exit
 
 if [ -e ${GLBACKEND_PIDFILE} ]; then
     GLBACKEND_PID=`cat ${GLBACKEND_PIDFILE}`
