@@ -73,7 +73,7 @@ cd $CWD
 
 echo "[+] Building GLBackend"
 cd ${GLOBALEAKS_DIR}/GLBackend
-POSTINST=${GLOBALEAKS_DIR}/GLBackend/debian/globaleaks.postinst.debhelper
+POSTINST=${GLOBALEAKS_DIR}/GLBackend/debian/postinst
 echo "#!/bin/sh" > $POSTINST
 echo "pip install " >> $POSTINST
 for require in `cat ${GLOBALEAKS_DIR}/GLBackend/requirements.txt`; do
