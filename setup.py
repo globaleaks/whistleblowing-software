@@ -51,8 +51,9 @@ if not os.path.isdir('glclient'):
 glclient_path = 'glclient'
 #build_glclient()
 
-o = open('debian/globaleaks.postinst.debhelper', 'w+')
-requirements_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'requirements.txt')
+base_dir = os.path.dirname(os.path.abspath(__file__))
+o = open(os.path.join(base_dir, 'debian', 'globaleaks.postinst.debhelper'), 'w+')
+requirements_file = os.path.join(base_dir, 'requirements.txt')
 with open(requirements_file) as f:
     o.write('#!/bin/sh\n')
     o.write('pip install ')
