@@ -85,17 +85,38 @@ class MailNotification(Notification):
 
         if event_dicts.type == u'tip':
 
-            tip_template_keyword = {
-                '%TipTorURL%':
-                    'http://%s/#/status/%s' %
-                        ( node_desc['hidden_service'],
-                          event_dicts.trigger_info['id']),
-                '%TipT2WURL%':
-                    'https://%s.tor2web.org/#/status/%s' %
-                        ( node_desc['hidden_service'][:16],
-                          event_dicts.trigger_info['id'] ),
+            tip_template_keyword = {}
+
+            if len(node_desc['hidden_service']):
+                tip_template_keyword.update({
+                    '%TipTorURL%':
+                        'http://%s/#/status/%s' %
+                            ( node_desc['hidden_service'],
+                              event_dicts.trigger_info['id']),
+                    })
+            else:
+                tip_template_keyword.update({
+                    '%TipTorURL%':
+                        'ADMIN, CONFIGURE YOUR HIDDEN SERVICE (Advanced configuration)!'
+                    })
+
+            if len(node_desc['public_site']):
+                tip_template_keyword.update({
+                    '%TipT2WURL%':
+                        'https://%s/#/status/%s' %
+                            ( node_desc['public_site'][:16],
+                              event_dicts.trigger_info['id'] ),
+                    })
+            else:
+                tip_template_keyword.update({
+                    '%TipT2WURL%':
+                        'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)'
+                    })
+
+            tip_template_keyword.update({
                 '%EventTime%': event_dicts.trigger_info['creation_date'],
-            }
+            })
+
 
             partial = self._iterkeywords(template, template_keyword)
             body = self._iterkeywords(partial, tip_template_keyword)
