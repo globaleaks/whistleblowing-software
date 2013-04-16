@@ -96,102 +96,46 @@ def start_asynchronous():
 
 # System dependent runner (windows and Unix)
 
-if platformType == "win32":
+from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
+ServerOptions = ServerOptions
 
-    from twisted.scripts._twistw import ServerOptions, WindowsApplicationRunner
+class GLBaseRunnerUnix(UnixApplicationRunner):
+    """
+    This runner is specific to Unix systems.
+    """
+    def postApplication(self):
 
-    class GLBaseRunnerWindows(WindowsApplicationRunner):
-        """
-        This runner is specific to windows.
-        """
-        def postApplication(self):
+        def initialization():
+            if check_schema_version():
+                deferred = create_tables()
+                return deferred.addCallback(run_app)
+            else:
+                reactor.stop()
+                return None
+
+        def run_app(res):
             """
-            This code is taken directly from the method postApplication of
-            WindowsApplicationRunner and has not been tested
+            Start the actual service Application.
             """
-            def initialization():
-                if check_schema_version():
-                    deferred = create_tables()
-                    deferred.addCallback(run_app)
-                else:
-                    reactor.stop()
+            if not GLSetting.accepted_hosts:
+                print "Missing a list of hosts usable to contact GLBackend, abort"
+                raise AttributeError
 
-            def run_app(res):
-                """
-                Start the actual service Application.
-                """
+            try:
+                self.startApplication(self.application)
+            except Exception as exc:
+                log.err("Network error: %s" % exc)
+                reactor.stop()
+                raise exc
 
-                """
-                Start the actual service Application.
-                """
-                if not GLSetting.accepted_hosts:
-                    print "Missing a list of hosts usable to contact GLBackend, abort"
-                    raise AttributeError
+            start_asynchronous()
 
-                try:
-                    service.IService(self.application).privilegedStartService()
-                    app.startApplication(self.application, not self.config['no_save'])
-                    app.startApplication(internet.TimerService(0.1, lambda:None), 0)
-                except Exception as exc:
-                    log.err("Network error: %s" % exc)
-                    reactor.stop()
-                    raise exc
+            print "GLBackend is now running"
+            for host in GLSetting.accepted_hosts:
+                print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
 
-                start_asynchronous()
+        reactor.callWhenRunning(initialization)
+        self.startReactor(reactor, self.oldstdout, self.oldstderr)
+        log.msg("Server is shutting down.")
 
-                print "GLBackend is now running"
-                for host in GLSetting.accepted_hosts:
-                    print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
-
-            print "WARNING! Windows use has not been tested!"
-
-            reactor.callWhenRunning(initialization)
-            self.startReactor(reactor, self.oldstdout, self.oldstderr)
-            log.msg("Server is shutting down.")
-
-    GLBaseRunner = GLBaseRunnerWindows
-
-else:
-    from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
-    ServerOptions = ServerOptions
-
-    class GLBaseRunnerUnix(UnixApplicationRunner):
-        """
-        This runner is specific to Unix systems.
-        """
-        def postApplication(self):
-
-            def initialization():
-                if check_schema_version():
-                    deferred = create_tables()
-                    return deferred.addCallback(run_app)
-                else:
-                    reactor.stop()
-                    return None
-
-            def run_app(res):
-                """
-                Start the actual service Application.
-                """
-                if not GLSetting.accepted_hosts:
-                    print "Missing a list of hosts usable to contact GLBackend, abort"
-                    raise AttributeError
-
-                try:
-                    self.startApplication(self.application)
-                except Exception as exc:
-                    log.err("Network error: %s" % exc)
-                    reactor.stop()
-                    raise exc
-
-                start_asynchronous()
-
-                print "GLBackend is now running"
-                for host in GLSetting.accepted_hosts:
-                    print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
-
-            reactor.callWhenRunning(initialization)
-            self.startReactor(reactor, self.oldstdout, self.oldstderr)
-            log.msg("Server is shutting down.")
-
-    GLBaseRunner = GLBaseRunnerUnix
+GLBaseRunner = GLBaseRunnerUnix
