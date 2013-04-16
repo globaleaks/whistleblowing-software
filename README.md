@@ -23,19 +23,6 @@ and is mostly based on [twisted](twistedmatrix.com). For more informations see [
 
 See wiki page [Setting up Development Environment](https://github.com/globaleaks/GLBackend/wiki/Setting-up-development-environment)
 
-Start the software, using
-
-    bin/startglobaleks
-
-Emulate the initialization wizard using (remind, you need HTTPie to run wizard.sh)
-
-   cd shooter/
-   ./wizard.sh
-
-  * shooter.py act like a client and is update with the interface supported in GLBacked. 
-  * The script creating the first context and receivers, emulating the wizards that would be
-    implemented in GLClient.
-
 Or go in http://127.0.0.1:8082/#/ where GLBackend serve GLClient (you need GLBackend and
 [GLClient](https://github.com/globaleaks/GLClient) in the same directory)
 
@@ -43,5 +30,4 @@ Or go in http://127.0.0.1:8082/#/ where GLBackend serve GLClient (you need GLBac
 
   * [Main GlobaLeaks documentation](https://github.com/globaleaks/GlobaLeaks/wiki/Home)
   * [GLBackend specific documentation](https://github.com/globaleaks/GLBackend/wiki/Home)
-  * [APAF](https://github.com/globaleaks/APAF/wiki/Home): is the package manager developed for
-    expose GLBackend as [Tor](http://www.torproject.org) [hidden service](https://www.torproject.org/docs/tor-hidden-service.html.en).
+  * GLBackend is exposed as a [Tor](http://www.torproject.org) [hidden service](https://www.torproject.org/docs/tor-hidden-service.html.en).
