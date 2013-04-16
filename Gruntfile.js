@@ -149,7 +149,7 @@ module.exports = function(grunt) {
       if (!s.isDirectory()) {return fs.unlinkSync(dir);}
 
       fs.readdirSync(dir).forEach(function (f) {
-        rm_rf(path.join(dir, f))
+        rm_rf(path.join(dir || '', f || ''))
       });
 
       fs.rmdirSync(dir);
@@ -163,7 +163,7 @@ module.exports = function(grunt) {
     grunt.file.copy('tmp/index.html', 'build/index.html');
 
     grunt.file.recurse('tmp/images', function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join('build/images', subdir, filename));
+        grunt.file.copy(absdir, path.join('build/images', subdir || '', filename || ''));
     });
 
     rm_rf('tmp');
