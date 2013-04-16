@@ -151,6 +151,7 @@ class GLSettingsClass:
         self.static_source = os.path.abspath(os.path.join(self.root_path, 'staticdata'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
+        self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
 
         self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
@@ -294,6 +295,7 @@ class GLSettingsClass:
 
         create_directory(self.submission_path)
         create_directory(self.log_path)
+        create_directory(self.torhs_path)
 
         if self.cyclone_debug >= 0:
             create_directory(self.cyclone_io_path)
