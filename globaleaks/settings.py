@@ -150,10 +150,10 @@ class GLSettingsClass:
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
         self.static_source = os.path.abspath(os.path.join(self.root_path, 'staticdata'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
+        self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
 
         self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
-        self.db_schema_file = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db',
-            'sqlite.sql'))
+        self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
 
     def load_cmdline_options(self):

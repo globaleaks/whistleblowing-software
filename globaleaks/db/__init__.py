@@ -17,7 +17,7 @@ from globaleaks.third_party import rstr
 from globaleaks.security import hash_password, get_salt
 
 @transact
-def initialize_node(store, results, only_node, email_template):
+def initialize_node(store, results, only_node, email_templates):
     """
     TODO refactor with languages the email_template, develop a dedicated
     function outside the node, and inquire fucking YHWH about the
@@ -39,7 +39,6 @@ def initialize_node(store, results, only_node, email_template):
     store.add(node)
 
     notification = models.Notification()
-    notification.tip_template = email_template
 
     # defaults until software is not ready
     notification.server = u"box549.bluehost.com"
@@ -52,24 +51,10 @@ def initialize_node(store, results, only_node, email_template):
     # notification.security = models.Notification._security_types[0]
 
     # Those fields are sets as default in order to show to the Admin the various 'variables'
-    # callable by template, with %KeyWord% format
-
-    notification.tip_template = "Hi, in %NodeName%, in %ContextName%\n\n"\
-                                "You (%ReceiverName%) had received in %EventTime%, a Tip!\n"\
-                                "1) %TipTorURL%\n"\
-                                "2) %TipT2WURL%\n\n"\
-                                "Best."
-
-    notification.file_template = "Hi, in %NodeName%, in %ContextName%\n\n"\
-                                 "You (%ReceiverName%) had received in %EventTime%, a File!\n"\
-                                 "is %FileName% (%FileSize%, %FileType%)\n"\
-                                "Best."
-
-    notification.comment_template = "Hi, in %NodeName%, in %ContextName%\n\n"\
-                                    "You (%ReceiverName%) had received in %EventTime%, a Comment!\n"\
-                                    "And is from %CommentSource%\n"\
-                                    "Best."
-
+    # used in the template.
+    notification.tip_template = email_templates['tip']
+    notification.file_template = email_templates['file']
+    notification.comment_template = email_templates['comment']
     notification.activation_template = "*Not Yet implemented*"
     store.add(notification)
 
@@ -122,13 +107,31 @@ def create_tables(create_node=True):
             'stats_update_time':  2, # hours,
         }
 
-        # load notification template, ignored ATM
-        emailfile = os.path.join(GLSetting.root_path, 'globaleaks', 'db', 'emailnotification_template')
-        with open(emailfile) as f:
-            email_template = f.read()
+        email_templates = {}
+
+        tip_notif_templ= os.path.join(GLSetting.static_db_source, 'default_TNT.txt')
+        if os.path.isfile(tip_notif_templ):
+            with open( tip_notif_templ) as templfd:
+                email_templates['tip'] = templfd.read()
+        else:
+            email_templates['tip'] = "default Tip notification not available! %NodeName% configure this!"
+
+        comment_notif_templ= os.path.join(GLSetting.static_db_source, 'default_CNT.txt')
+        if os.path.isfile(comment_notif_templ):
+            with open( comment_notif_templ) as templfd:
+                email_templates['comment'] = templfd.read()
+        else:
+            email_templates['comment'] = "default Comment notification not available! %NodeName% configure this!"
+
+        file_notif_templ= os.path.join(GLSetting.static_db_source, 'default_FNT.txt')
+        if os.path.isfile(file_notif_templ):
+            with open(file_notif_templ) as templfd:
+                email_templates['file'] = templfd.read()
+        else:
+            email_templates['file'] = "default File notification not available! %NodeName% configure this!"
 
         # Initialize the node + notification table
-        deferred.addCallback(initialize_node, only_node, email_template)
+        deferred.addCallback(initialize_node, only_node, email_templates)
     return deferred
 
 
