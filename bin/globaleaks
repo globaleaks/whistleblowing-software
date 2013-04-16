@@ -120,7 +120,7 @@ GLSetting.parser.add_option("-P", "--socks-port", type="int",
     dest="socks_port", default=GLSetting.socks_port)
 
 GLSetting.parser.add_option("-d", "--disable-tor-socks", action='store_true',
-    help="enable Tor Socks for notifications [default: False]",
+    help="disable Tor Socks for notifications [default: Tor enabled]",
     dest="disable_tor_socks", default=(not GLSetting.tor_socks_enable))
 
 GLSetting.parser.add_option("-u", "--user", type="string",
