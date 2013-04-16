@@ -38,7 +38,11 @@ angular.module('resourceServices.authentication', ['ngCookies'])
               setCookie('role', self.role);
 
               if (role == 'admin') {
-                auth_landing_page = "/admin/content";
+                  if ( password == 'globaleaks') {
+                    auth_landing_page = "/admin/password";
+                  } else {
+                    auth_landing_page = "/admin/overview/tips";
+                  }
               }
               if (role == 'receiver') {
                 auth_landing_page = "/receiver/tips";
