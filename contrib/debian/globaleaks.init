@@ -1,4 +1,4 @@
-#! /bin/sh
+#! /bin/bash
 
 ### BEGIN INIT INFO
 # GlobaLeaks startup script for Ubuntu and Debian Linux servers
@@ -25,23 +25,47 @@
 
 # USER = [user_name]
 #   permits to configure the USER privileges of the globaleaks process
-USER=www-data
+USER=globaleaks
 
 # GROUP = [group_name]
 #   permits to configure the GROUP privileges of the globaleaks process
-GROUP=www-data
+GROUP=globaleaks
 
 # HOST = [ip_address, hostname, other_hostname]
 #   permits to configure a list of hosts at which globaleaks will be reachable
 HOSTS_LIST=127.0.0.1,localhost,dev.globaleaks.org
 
+# NETWORKSANDBOX = 0/1
+#   permits to enable network sandboxing; requires iptables
+NETWORK_SANDBOXING=1
+
+# ALLOWED_DST_IP = ( ip_address1,  ip_address2, ... )
+#   permits to configure a list of ip address used for outbound connections
+ALLOWED_SRC_IP=( "127.0.0.1" )
+
+# ALLOWED_SRC_IP = ( ip_address1,  ip_address2, ... )
+#   permits to configure a list of ip address used for inbound connections
+ALLOWED_DST_IP=( "127.0.0.1" )
+
 # LISTENINGPORT = [port_number]
 #   permits to configure a port at which globaleaks process will bind to
 LISTENING_PORT=8082
 
+# TORSOCKSPORT = [port_number]
+#   permits to configure a Tor Sock Port for outbound connections
+TORSOCKSPORT=9050
+
+# TORTRANSPORT = [port_number]
+#   permits to configure a Tor Trans Port for outbound connections
+TORTRANSPORT=9040
+
+# TORDNSPORT = [port_number]
+#   permits to configure a Tor DNS Port for outbound connections
+TORDNSPORT=5353
+
 # GL_DIR = [directory_path]
 #   must be configured with the path at which globaleaks install resides
-GLDIR=/data/globaleaks/dev
+GLDIR=/data/globaleaks
 
 # WORKING_DIR
 #   must be configured with the daemon working directory
@@ -66,6 +90,24 @@ NAME=$(basename $(readlink -nf $0))
 SCRIPTNAME=$0
 GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
 
+if [[ $EUID -ne 0 ]]; then
+   echo "Error: GlobaLeaks init script must be run as root" 1>&2
+   exit 1
+fi
+
+
+if ! id -u ${USER} >/dev/null 2>&1; then
+   echo "Error: unexistent user (${USER})"
+   exit 1
+fi
+
+if [ ${NETWORK_SANDBOXING} -eq 1 ] && ! which iptables >/dev/null 2>&1 ; then
+    echo "Error: Globaleaks Network Sandboxing requires iptables"
+    exit 1
+fi
+
+exit
+
 if [ -e ${GLBACKEND_PIDFILE} ]; then
     GLBACKEND_PID=`cat ${GLBACKEND_PIDFILE}`
 else
@@ -80,8 +122,59 @@ fi
 # and status_of_proc is working.
 . /lib/lsb/init-functions
 
+network_sandboxing_start()
+{
+    echo "Enabling GlobaLeaks Network Sandboxing..."
+
+    # INBOUND
+    for IP_DST in "${ALLOWED_DST_IP[@]}"
+    do
+        for IP_SRC in "${ALLOWED_SRC_IP[@]}"
+        do
+            iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
+        done
+        iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
+    done
+
+
+    # OUTBOUND
+    # All outbound connections from GlobaLeaks goes trough Tor
+    iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
+    iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
+    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
+    iptables -t filter -A OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT
+    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
+    iptables -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
+}
+
+network_sandboxing_stop()
+{
+    echo "Disabling GlobaLeaks Network Sandboxing..."
+
+    # INBOUND
+    for IP_DST in "${ALLOWED_DST_IP[@]}"
+    do
+        for IP_SRC in "${ALLOWED_SRC_IP[@]}"
+        do
+            iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -s ${IP_SRC} -j ACCEPT
+        done
+        iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
+    done
+
+    # OUTBOUND
+    # All outbound connections from GlobaLeaks goes trough Tor
+    iptables -t nat -D OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
+    iptables -t nat -D OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
+    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
+    iptables -t filter -D OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT
+    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
+    iptables -t filter -D OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
+}
+
 do_start()
 {
+    network_sandboxing_start
+
     # Check to see if the GLBackend daemon is already running.
     if [ "${GLBACKEND_PID}" -ne "0" ]; then
       if kill -0 ${GLBACKEND_PID} 1<&- 2<&-; then
@@ -90,7 +183,6 @@ do_start()
       fi
     fi
 
-    . ${GLENV}
     if ${STARTCMD}; then
         echo "started."
     else
@@ -109,14 +201,16 @@ do_stop()
       if kill -0 ${GLBACKEND_PID} 1<&- 2<&-; then
         kill -15 ${GLBACKEND_PID} 1<&- 2<&-
         echo "stopped."
-        return
+      else
+        echo "not running."
       fi
     fi
 
-    echo "not running."
+    network_sandboxing_stop
 }
 
-do_restart() {
+do_restart()
+{
     do_stop
 
     GLBACKEND_PID=0
