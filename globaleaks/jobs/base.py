@@ -8,7 +8,7 @@ import sys
 from datetime import datetime
 
 from globaleaks import utils
-from globaleaks.utils import log, mail_exception
+from globaleaks.utils import log
 
 class GLJob:
 
@@ -31,6 +31,3 @@ class GLJob:
 
         log.debug("Forced execution of %s at %s" %
                   (self.__class__.__name__, utils.pretty_date_time(plan_exec)))
-
-    def setup_mailexception(self):
-        sys.excepthook = mail_exception

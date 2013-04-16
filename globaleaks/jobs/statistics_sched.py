@@ -4,6 +4,8 @@
 #
 #  Statistics works collecting every N-th minutes the amount of important
 #  operations happened
+import sys
+
 from globaleaks.jobs.base import GLJob
 
 class APSStatistics(GLJob):
@@ -15,6 +17,10 @@ class APSStatistics(GLJob):
         are collected in the last row of PublicStats and AdminStats,
         this operation create a new row.
         """
-        pass
         # just take AdminStats, initialize a new row
         # just take PublicStats, initialize a new row
+        try:
+            pass
+        except:
+            sys.excepthook(*sys.exc_info())
+
