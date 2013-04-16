@@ -66,7 +66,7 @@ requires = [
 "Pillow (==2.0.0)"
 ]
 
-data_files = [('glclient', [os.path.join(glclient_path, 'index.html'),
+data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'index.html'),
     os.path.join(glclient_path, 'styles.css'),
     os.path.join(glclient_path, 'scripts.js'),
     os.path.join(glclient_path, 'images', 'flags.png'),
