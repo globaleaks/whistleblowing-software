@@ -1,0 +1,14 @@
+Source: globaleaks
+Maintainer: Random GlobaLeaks developers <info@globaleaks.org>
+Section: web
+Priority: optional
+Build-Depends: python (>= 2.6.6-3), debhelper (>= 7.4.3)
+Standards-Version: 3.9.1
+XS-Python-Version: >= 2.6
+
+Package: globaleaks
+Architecture: all
+Depends: ${misc:Depends}, ${python:Depends}, python-twisted (== 13.0.0), python-apscheduler (==2.1.0), python-cyclone (==1.1), python-storm (==0.19), python-txsocksx (==0.0.2),python-pycrypto (==2.6), python-scrypt (==0.5.5), python-pillow (==2.0.0)
+Description: GlobaLeaks is an open source project aimed to create a worldwide, anonymous, censorship-resistant, distributed whistleblowing platform.
+XB-Python-Version: ${python:Versions}
+Provides: ${python:Provides}
