@@ -51,19 +51,6 @@ if not os.path.isdir('glclient'):
 glclient_path = 'glclient'
 #build_glclient()
 
-base_dir = os.path.dirname(os.path.abspath(__file__))
-postinst_script = os.path.join(base_dir, 'debian', 'globaleaks.postinst.debhelper')
-if not os.path.exists(postinst_script):
-    o = open(postinst_script, 'w+')
-    requirements_file = os.path.join(base_dir, 'requirements.txt')
-    with open(requirements_file) as f:
-        o.write('#!/bin/sh\n')
-        o.write('pip install ')
-        for require in f:
-            o.write(require.strip() + ' ')
-        o.write('\n')
-    o.close()
-
 install_requires = []
 requires = [
 "twisted (==12.3.0)",
