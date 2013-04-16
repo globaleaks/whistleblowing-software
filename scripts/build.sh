@@ -26,7 +26,7 @@ echo "[+] Updating GLBackend"
 cd ${GLOBALEAKS_DIR}/GLBackend
 git pull
 
-GLBACKEND_REVISION=`git rev-parse HEAD`
+GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
 echo "[+] Building GLBackend"
 #python setup.py bdist sdist
 cd $CWD
@@ -35,7 +35,7 @@ echo "[+] Updating GLClient"
 cd ${GLOBALEAKS_DIR}/GLClient
 git pull
 
-GLCLIENT_REVISION=`git rev-parse HEAD`
+GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
 echo "[+] Building GLClient"
 npm install -d
 grunt build
@@ -43,12 +43,12 @@ grunt build
 echo "[+] Creating compressed archives"
 mv build glclient-${GLCLIENT_REVISION}
 tar czf glclient-${GLCLIENT_REVISION}.tar.gz glclient-${GLCLIENT_REVISION}/
-md5sum glclient-${GLCLIENT_REVISION}.tar.gz > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.tar.gz.md5
-sha1sum glclient-${GLCLIENT_REVISION}.tar.gz > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.tar.gz.sha1
+md5sum glclient-${GLCLIENT_REVISION}.tar.gz > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.tar.gz.md5.txt
+sha1sum glclient-${GLCLIENT_REVISION}.tar.gz > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.tar.gz.sha1.txt
 
 zip glclient-${GLCLIENT_REVISION}.zip glclient-${GLCLIENT_REVISION}/
-md5sum glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.md5
-sha1sum glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.sha1
+md5sum glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.md5.txt
+sha1sum glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.sha1.txt
 
 mv glclient-${GLCLIENT_REVISION}.tar.gz $OUTPUT_DIR
 mv glclient-${GLCLIENT_REVISION}.zip $OUTPUT_DIR
