@@ -125,8 +125,8 @@ class GLSettingsClass:
         # They are copied in a context *when is created*, then
         # changing this variable do not modify the cleaning
         # timings of the existing contexts
-        self.tip_seconds_of_life = 240 # (3600 * 24) * 15
-        self.submission_seconds_of_life = 120 # (3600 * 24) * 1
+        self.tip_seconds_of_life = (3600 * 24) * 15
+        self.submission_seconds_of_life = (3600 * 24) * 3
         # enhancement: supports "extended settings in GLCLient"
 
         # Number of failed login enough to generate an alarm
@@ -216,11 +216,17 @@ class GLSettingsClass:
         self.eval_paths()
         if self.cmdline_options.db_debug:
             self.glclient_path = os.path.abspath(os.path.join(self.root_path,
-                '..', 'GLClient'))
+                '..', 'GLClient', 'app'))
 
         else:
             self.glclient_path = os.path.abspath(os.path.join('/usr/share/globaleaks',
                 'glclient'))
+
+        # special evaluation of glclient directory:
+        indexfile = os.path.join(self.glclient_path, 'index.html')
+        if not os.path.isfile(indexfile):
+            print "Invalid directory of GLCLient: %s: index.html not found" % self.glclient_path
+            quit(-1)
 
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
