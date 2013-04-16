@@ -6,6 +6,8 @@
 # Notification implementation, documented along the others asynchronous
 # operations, in Architecture and in jobs/README.md
 
+import sys
+
 from twisted.internet.defer import inlineCallbacks, DeferredList
 
 from globaleaks.rest import errors
@@ -384,21 +386,22 @@ class APSNotification(GLJob):
         Only the Models with the 'notification_status' can track which elements has been
         notified or not.
         """
-        self.setup_mailexception()
+        try:
+            # Initialize Notification setting system wide
+            self.notification_settings = yield self._get_notification_settings()
 
-        # Initialize Notification setting system wide
-        self.notification_settings = yield self._get_notification_settings()
+            if not self.notification_settings:
+                log.err("Node has not Notification configured, Notification disabled!")
+                return
 
-        if not self.notification_settings:
-            log.err("Node has not Notification configured, Notification disabled!")
-            return
+            tip_events = yield self.create_tip_notification_events()
+            comment_events = yield self.create_comment_notification_events()
+            file_events = yield self.create_file_notification_events()
 
-        tip_events = yield self.create_tip_notification_events()
-        comment_events = yield self.create_comment_notification_events()
-        file_events = yield self.create_file_notification_events()
+            d1 = self.do_tip_notification(tip_events)
+            d2 = self.do_comment_notification(comment_events)
+            d3 = self.do_receiverfile_notification(file_events)
 
-        d1 = self.do_tip_notification(tip_events)
-        d2 = self.do_comment_notification(comment_events)
-        d3 = self.do_receiverfile_notification(file_events)
-
-        yield DeferredList([d1, d2, d3], consumeErrors=True)
+            yield DeferredList([d1, d2, d3], consumeErrors=True)
+        except:
+            sys.excepthook(*sys.exc_info())
