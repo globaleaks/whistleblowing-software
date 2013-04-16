@@ -147,6 +147,9 @@ GLSetting.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSetting.version_string,
     dest="version")
 
+GLSetting.parser.add_option("-t", "--twistd_log", action='store_true',
+    help="enable the twistd log file (default: disabled)", dest="twistd_log")
+
 # here the options are parsed, because sys.argv array is whack below
 (GLSetting.cmdline_options, args) = GLSetting.parser.parse_args()
 
@@ -179,15 +182,21 @@ args = []
 args +=['-y', backend_script]
 if GLSetting.nodaemon:
     args += ['-n']
+
 # we does not need this due to GLSetting.drop_privileges()
 # in fact we need to drop privileges before directory creation
 #args +=['--uid', GLSetting.user]
 #args +=['--gid', GLSetting.group]args +=['--rundir', GLSetting.working_path]
 args +=['--pidfile', GLSetting.pidfile_path]
 
-args +=['--logfile', os.path.join(GLSetting.working_path, 'twistd.log')]
+if GLSetting.twistd_log:
+    args +=['--logfile', os.path.join(GLSetting.working_path, 'twistd.log')]
+else:
+    # logfile can't be disabled in twistd, can only be trashed the content
+    args +=['--logfile', os.devnull]
 
 sys.argv[1:] = args
+
 
 def run_glbackend():
     from globaleaks import runner

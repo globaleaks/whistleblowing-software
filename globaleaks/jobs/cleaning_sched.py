@@ -67,7 +67,7 @@ def itip_cleaning(store, id):
 
     for ifile in tit.internalfiles:
         abspath = os.path.join(GLSetting.submission_path, ifile.file_path)
-        ifname = ifile.name
+        ifname = unicode(ifile.name)
 
         if not os.path.isfile(abspath):
             log.err("Unable to remove %s not existent file, in itip %s has an internalfile %s(%d) missing on FS" %
