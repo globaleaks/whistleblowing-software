@@ -28,11 +28,12 @@ def verify_glclient():
             raise Exception("%s != %s" % (h, glclient_hash))
     print "    ...success."
 
-def uncompress_glclient():
+def uncompress_glclient(glclient_path):
     print "[+] Uncompressing GLClient..."
     zipfile = ZipFile('glclient.zip')
     zipfile.extractall()
     os.unlink('glclient.zip')
+    shutil.move(glclient_path, 'glclient')
     print "    ...done."
 
 def build_glclient():
@@ -43,9 +44,11 @@ def build_glclient():
     os.chdir('..')
     print "    ...done."
 
-download_glclient()
-verify_glclient()
-uncompress_glclient()
+if not os.path.isdir('glclient'):
+    download_glclient()
+    verify_glclient()
+    uncompress_glclient(glclient_path)
+glclient_path = 'glclient'
 #build_glclient()
 
 install_requires = []
@@ -88,3 +91,4 @@ setup(
     #install_requires=open("requirements.txt").readlines(),
     requires=requires
 )
+shutil.rmtree(glclient_path)
