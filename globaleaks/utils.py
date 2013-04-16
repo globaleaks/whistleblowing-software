@@ -252,8 +252,8 @@ def mail_exception(etype, value, tback):
                      "", str(etype))
     tmp = []
 
-    tmp.append("From: %s" % ("stackexception@globaleaks.org"))
-    tmp.append("To: %s" % ("stackexception@lists.globaleaks.org"))
+    tmp.append("From: %s" % GLSetting.error_reporting_username)
+    tmp.append("To: %s" % GLSetting.error_reporting_username)
     tmp.append("Subject: GLBackend Exception [%d]" % mail_exception.mail_counter)
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
     tmp.append("Content-Transfer-Encoding: 8bit\n")
@@ -268,13 +268,13 @@ def mail_exception(etype, value, tback):
 
     log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, info_string) )
 
-    sendmail("stackexception@globaleaks.org",
-             "stackexception99",
-             "stackexception@globaleaks.org",
-             "stackexception@lists.globaleaks.org",
+    sendmail(GLSetting.error_reporting_username,
+             GLSetting.error_reporting_password,
+             GLSetting.error_reporting_username,
+             GLSetting.error_reporting_destmail,
              message,
-             "box549.bluehost.com",
-             25)
+             GLSetting.error_reporting_server,
+             GLSetting.error_reporting_port)
 
 mail_exception.mail_counter = 0
 

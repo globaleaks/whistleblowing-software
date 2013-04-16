@@ -384,6 +384,7 @@ class APSNotification(GLJob):
         Only the Models with the 'notification_status' can track which elements has been
         notified or not.
         """
+        self.setup_mailexception()
 
         # Initialize Notification setting system wide
         self.notification_settings = yield self._get_notification_settings()
