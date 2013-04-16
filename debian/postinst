@@ -1,1 +1,1 @@
-pip install apscheduler cyclone scrypt Pillow txsocksx
+pip install cyclone scrypt Pillow txsocksx
