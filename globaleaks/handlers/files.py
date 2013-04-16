@@ -47,7 +47,7 @@ def register_files_db(store, files, relationship, internaltip_id):
 
     files_list = []
     for single_file in files:
-        original_fname = single_file['filename']
+        original_fname = unicode(single_file['filename'])
 
         new_file = models.InternalFile()
 
@@ -82,7 +82,7 @@ def dump_files_fs(files):
         filelocation = os.path.join(GLSetting.submission_path, saved_name)
 
         log.debug("Start saving %d bytes from file [%s]" %
-                  (len(single_file['body']), single_file['filename']))
+                  (len(single_file['body']), unicode(single_file['filename'])))
 
         with open(filelocation, 'w+') as fd:
             fdesc.setNonBlocking(fd.fileno())
@@ -90,7 +90,7 @@ def dump_files_fs(files):
                 log.debug("Non blocking file has reported an issue")
                 raise errors.InternalServerError("buffer not available")
 
-        files_saved.update({single_file['filename']: saved_name })
+        files_saved.update({unicode(single_file['filename']): saved_name })
 
     return files_saved
 
