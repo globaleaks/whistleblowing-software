@@ -21,7 +21,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "67e519adb74b319ed65baa3a4b50e4f282a17ec47af011c08210878e"
+    glclient_hash = "addce4f5400b2a0f02c312ca4471f3033c8866b2149e35c44634bb71"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
@@ -66,12 +66,12 @@ requires = [
 "Pillow (==2.0.0)"
 ]
 
-data_files = [('glclient', [os.path.join(glclient_path, 'build', 'index.html'),
-    os.path.join(glclient_path, 'build', 'styles.css'),
-    os.path.join(glclient_path, 'build', 'scripts.js'),
-    os.path.join(glclient_path, 'build', 'images', 'flags.png'),
-    os.path.join(glclient_path, 'build', 'images', 'glyphicons-halflings.png'),
-    os.path.join(glclient_path, 'build', 'images', 'glyphicons-halflings-white.png')
+data_files = [('glclient', [os.path.join(glclient_path, 'index.html'),
+    os.path.join(glclient_path, 'styles.css'),
+    os.path.join(glclient_path, 'scripts.js'),
+    os.path.join(glclient_path, 'images', 'flags.png'),
+    os.path.join(glclient_path, 'images', 'glyphicons-halflings.png'),
+    os.path.join(glclient_path, 'images', 'glyphicons-halflings-white.png')
 ])]
 
 setup(
