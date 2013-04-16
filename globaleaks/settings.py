@@ -198,6 +198,7 @@ class GLSettingsClass:
             print "Invalid user: cannot run as root"
             quit(-1)
 
+        self.twistd_log = self.cmdline_options.twistd_log
         self.start_clean = self.cmdline_options.start_clean
 
         self.working_path = self.cmdline_options.working_path
