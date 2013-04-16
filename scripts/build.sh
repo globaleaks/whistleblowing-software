@@ -41,20 +41,6 @@ if test $GLBACKEND_TAG; then
   $GLBACKEND_REVISION=$GLBACKEND_TAG
 fi
 
-echo "[+] Building GLBackend"
-python setup.py sdist
-echo "[+] Building .deb"
-cd dist
-py2dsc globaleaks-0.2.tar.gz
-cd deb_dist/globaleaks-0.2
-rm -rf debian/
-cp -rf $CWD/GLBackend/debian debian
-debuild
-cd ..
-cp globaleaks_*deb $DEBREPO_PATH
-cp globaleaks_*dsc $DEBREPO_PATH
-cd $CWD
-
 echo "[+] Updating GLClient"
 cd ${GLOBALEAKS_DIR}/GLClient
 git pull origin master
@@ -84,6 +70,21 @@ shasum -a 224 glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/GLClient/glclient-
 mv glclient-${GLCLIENT_REVISION}.tar.gz $OUTPUT_DIR/GLClient
 mv glclient-${GLCLIENT_REVISION}.zip $OUTPUT_DIR/GLClient
 rm -rf glclient-${GLCLIENT_REVISION}
+cd $CWD
+
+echo "[+] Building GLBackend"
+cd ${GLOBALEAKS_DIR}/GLBackend
+python setup.py sdist
+echo "[+] Building .deb"
+cd dist
+py2dsc globaleaks-0.2.tar.gz
+cd deb_dist/globaleaks-0.2
+rm -rf debian/
+cp -rf ${GLOBALEAKS_DIR}/GLBackend/debian debian
+debuild
+cd ..
+cp globaleaks_*deb $DEBREPO_PATH
+cp globaleaks_*dsc $DEBREPO_PATH
 cd $CWD
 
 echo "[+] All done!"
