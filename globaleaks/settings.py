@@ -142,7 +142,15 @@ class GLSettingsClass:
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
-        self.glclient_path = os.path.abspath(os.path.join('/usr/share/globaleaks', 'glclient'))
+
+        if self.db_debug:
+            self.glclient_path = os.path.abspath(os.path.join(self.root_path,
+                'glclient'))
+
+        else:
+            self.glclient_path = os.path.abspath(os.path.join('/usr/share/globaleaks',
+                'glclient'))
+
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
