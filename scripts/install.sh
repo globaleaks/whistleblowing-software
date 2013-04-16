@@ -35,7 +35,7 @@ SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 echo "GlobaLeaks deployment started..."
 
 # Preliminary Requirements Check
-REQS=(curl git gpg md5sum python)
+REQS=(curl git gpg md5sum python gcc)
 REQS_COUNT=${#REQS[@]}
 ERR=0
 echo "Checking preliminary GlobaLeaks requirements"
