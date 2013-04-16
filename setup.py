@@ -8,7 +8,7 @@ import urllib2
 from zipfile import ZipFile
 from distutils.core import setup
 
-glclient_path = 'glclient-3e23dde0'
+glclient_path = 'glclient-86b7cc09'
 def download_glclient():
     glclient_url = "https://globaleaks.org/builds/GLClient/"+glclient_path+".zip"
     print "[+] Downloading glclient from %s" % glclient_url
