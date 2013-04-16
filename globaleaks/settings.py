@@ -74,7 +74,7 @@ class GLSettingsClass:
 
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
-        self.working_path = os.path.abspath(os.path.join(self.root_path, 'nodedata'))
+        self.working_path = '/var/globaleaks'
         self.eval_paths()
 
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
