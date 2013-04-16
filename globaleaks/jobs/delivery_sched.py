@@ -10,6 +10,7 @@
 # Call also the FileProcess working point, in order to verify which
 # kind of file has been submitted.
 import os
+import sys
 
 from twisted.internet.defer import inlineCallbacks
 
@@ -33,7 +34,6 @@ def file_preprocess(store):
 
     filesdict = {}
     for filex in files:
-
         if not filex.internaltip:
             log.err("(file_preprocess) Integrity failure: the file %s of %s"\
                     "has not an InternalTip assigned (path: %s)" %
@@ -176,32 +176,31 @@ class APSDelivery(GLJob):
         Goal of this function is process/validate the files, compute checksum, and
         apply the delivery method configured.
         """
-        self.setup_mailexception()
-
-        # ==> Submission && Escalation
-        info_created_tips = yield tip_creation()
-        if info_created_tips:
-            log.debug("Delivery job: created %d tips" % len(info_created_tips))
-
-        # ==> Files && Files update
-        filesdict = yield file_preprocess()
-        # return a dict { "file_uuid" : "file_path" }
-        if filesdict:
-            log.debug("Delivery job: parsing %d new files" % len(filesdict))
-
         try:
-            # perform FS base processing, outside the transactions
-            processdict = file_process(filesdict)
-            # return a dict { "file_uuid" : checksum }
-        except OSError, e:
-            # XXX beta - fatal log here!
-            log.err("Fatal OS error in processing files [%s]: %s" % (filesdict, e) )
+            # ==> Submission && Escalation
+            info_created_tips = yield tip_creation()
+            if info_created_tips:
+                log.debug("Delivery job: created %d tips" % len(info_created_tips))
 
-            # Create a dummy processdict to permit ReceiverFile init
-            processdict = dict(filesdict)
-            for file_uuid in processdict.iterkeys():
-                processdict[file_uuid] = u""
+            # ==> Files && Files update
+            filesdict = yield file_preprocess()
+            # return a dict { "file_uuid" : "file_path" }
+            if filesdict:
+                log.debug("Delivery job: parsing %d new files" % len(filesdict))
 
-        yield receiver_file_align(filesdict, processdict)
+            try:
+                # perform FS base processing, outside the transactions
+                processdict = file_process(filesdict)
+                # return a dict { "file_uuid" : checksum }
+            except OSError, e:
+                # XXX beta - fatal log here!
+                log.err("Fatal OS error in processing files [%s]: %s" % (filesdict, e) )
 
+                # Create a dummy processdict to permit ReceiverFile init
+                processdict = dict(filesdict)
+                for file_uuid in processdict.iterkeys():
+                    processdict[file_uuid] = u""
 
+            yield receiver_file_align(filesdict, processdict)
+        except:
+            sys.excepthook(*sys.exc_info())
