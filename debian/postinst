@@ -10,5 +10,11 @@ fi
 chown globaleaks:globaleaks /var/globaleaks
 echo "[+] Compiling python files"
 python -mcompileall `python -c "import os, globaleaks;os.path.dirname(globaleaks.__file__)"`
+
+if [ ! -d /var/globaleaks/torhs ]; then
+  mkdir -p /var/globaleaks/torhs/
+  chown debian-tor /var/globaleaks/torhs/
+fi
+
 ### Bellow here things will be added by the build script
 
