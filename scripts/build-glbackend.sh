@@ -47,8 +47,8 @@ build_glbackend()
   echo "[+] Building .deb"
 
   cd dist
-  py2dsc globaleaks-0.2.tar.gz
-  cd deb_dist/globaleaks-0.2
+  py2dsc globaleaks-*.tar.gz
+  cd deb_dist/globaleaks-*
   rm -rf debian/
   cp -rf ${GLOBALEAKS_DIR}/GLBackend/debian debian
   debuild
@@ -60,6 +60,7 @@ build_glbackend()
 
   echo "[+] Signing Release"
   $DIR/sign-release.sh
+  rm -rf ${GLOBALEAKS_DIR}/GLBackend/dist
 }
 
 build_glbackend
