@@ -177,7 +177,18 @@ def pretty_diff_now(past_date):
     hours, minutes_carry = divmod(hours_carry, 3600)
     minutes, seconds = divmod(minutes_carry, 60)
 
-    return '%sD+%s:%s:%s' % (days, hours, minutes, seconds)
+    pretty_str = ''
+    if seconds:
+        pretty_str = "1 second" if seconds == 1 else "%s seconds" % seconds
+    if minutes:
+        pretty_str = "1 minute" if minutes == 1 else "%s minutes" % minutes
+    if hours:
+        pretty_str = "1 hour" if hours == 1 else "%s hours" % hours
+    if days:
+        pretty_str = "1 day" if days == 1 else "%s days" % days
+
+    #return '%sD+%s:%s:%s' % (days, hours, minutes, seconds)
+    return pretty_str
 
 ## Mail utilities ##
 
