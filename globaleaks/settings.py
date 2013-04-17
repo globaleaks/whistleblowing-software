@@ -323,8 +323,8 @@ class GLSettingsClass:
                         os.path.join(self.static_path, single_file)
                     )
             if not almost_one_file:
-                print "Not found, or founded empty: %s" % self.static_source
-                raise Exception("Expected logo, torrc and localization static files!")
+                print "[Non fatal error] Founded empty: %s" % self.static_source
+                print "Your instance has not torrc and the default logo"
 
 
     def check_directories(self):
