@@ -321,6 +321,17 @@ class GLSettingsClass:
             if not os.path.exists(path):
                 raise Exception("%s does not exists!" % path)
 
+        # Directory with Write + Read access
+        for rdwr in (self.working_path,
+                     self.glfiles_path, self.static_path, self.submission_path, self.log_path):
+            if not os.access(rdwr, os.W_OK|os.X_OK):
+                raise Exception("write capability missing in: %s" % rdwr)
+
+        # Directory in Read access
+        for rdonly in (self.root_path, self.glclient_path):
+            if not os.access(rdonly, os.R_OK|os.X_OK):
+                raise Exception("read capability missing in: %s" % rdonly)
+
     def remove_directories(self):
         for root, dirs, files in os.walk(self.working_path, topdown=False):
             for name in files:
