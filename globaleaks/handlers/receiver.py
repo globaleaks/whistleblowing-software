@@ -117,9 +117,6 @@ class ReceiverInstance(BaseHandler):
 
 def serialize_tip_summary(rtip, file_associated):
 
-    print pretty_diff_now(rtip.last_access)
-    print pretty_diff_now(rtip.creation_date)
-
     return {
         'access_counter': rtip.access_counter,
         # XXX total sum or personal expression ?
