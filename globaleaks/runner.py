@@ -92,48 +92,42 @@ def start_asynchronous():
     #stats_sched.force_execution(GLAsynchronous, seconds=9)
     #GLAsynchronous.add_interval_job(stats_sched.operation, seconds=GLSetting.statistics_interval)
 
-
-
-# System dependent runner (windows and Unix)
-
 from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 ServerOptions = ServerOptions
+
+def globaleaks_start():
+    if not GLSetting.accepted_hosts:
+        print "Missing a list of hosts usable to contact GLBackend, abort"
+        raise AttributeError
+
+    if check_schema_version():
+        d = create_tables()
+        @d.addCallback
+        def cb(res):
+            start_asynchronous()
+
+            print "GLBackend is now running"
+            for host in GLSetting.accepted_hosts:
+                print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
+
+    else:
+        raise Exception("Wrong schema version")
+
 
 class GLBaseRunnerUnix(UnixApplicationRunner):
     """
     This runner is specific to Unix systems.
     """
-    def run(self):
+    def postApplication(self):
         """
         Run the application.
         """
-        def initialization():
-            if not GLSetting.accepted_hosts:
-                print "Missing a list of hosts usable to contact GLBackend, abort"
-                raise AttributeError
 
-            if check_schema_version():
-                d = create_tables()
-                @d.addCallback
-                def cb(res):
-                    start_asynchronous()
-            else:
-                raise Exception("Wrong schema version")
+        self.startApplication(self.application)
 
-        self.preApplication()
-        self.application = self.createOrGetApplication()
+        globaleaks_start()
 
-        self.logger.start(self.application)
-
-        initialization()
-
-        print "GLBackend is now running"
-        for host in GLSetting.accepted_hosts:
-            print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
-
-        self.postApplication()
-        self.logger.stop()
-
-        log.msg("Server is shutting down.")
+        self.startReactor(None, self.oldstdout, self.oldstderr)
+        self.removePID(self.config['pidfile'])
 
 GLBaseRunner = GLBaseRunnerUnix
