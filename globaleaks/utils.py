@@ -31,21 +31,18 @@ from Crypto.Hash import SHA256
 from globaleaks.settings import GLSetting
 
 
-class Publisher(twlog.LogPublisher):
+class Logger(object):
     """
     Customized LogPublisher
     """
-    def info(self, *arg, **kw):
-        kw['logLevel'] = logging.INFO
-        return self.msg(*arg, **kw)
+    def info(self, msg):
+        print "[-] %s"
 
     def debug(self, *arg, **kw):
-        kw['logLevel'] = logging.DEBUG
-        return self.msg(*arg, **kw)
+        print "[D] %s"
 
     def err(self, *arg, **kw):
-        kw['logLevel'] = logging.ERROR
-        return twlog.err(*arg, **kw)
+        print "[!] %s"
 
     def start_logging(self):
         """
@@ -58,15 +55,11 @@ class Publisher(twlog.LogPublisher):
             logfile = twlogfile.LogFile(name, directory,
                                         rotateLength=GLSetting.log_file_size,
                                         maxRotatedFiles=GLSetting.maximum_rotated_log_files)
+            twlog.startLogging(logfile)
+        else:
+            twlog.startLogging(sys.stdout)
 
-            logfile_observer = twlog.FileLogObserver(logfile)
-            self.addObserver(logfile_observer.emit)
-
-        logpy_observer = twlog.PythonLoggingObserver('globaleaks')
-        logpy_observer.logger.setLevel(GLSetting.loglevel)
-        self.addObserver(logpy_observer.emit)
-
-log = Publisher()
+log = Logger()
 
 def query_yes_no(question, default="no"):
     """Ask a yes/no question via raw_input() and return their answer.
@@ -262,7 +255,7 @@ def mail_exception(etype, value, tback):
     tmp.append(error_message)
 
     traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
-    tmp.append('\n'.join(traceinfo))
+    tmp.append(traceinfo)
 
     info_string = '\n'.join(tmp)
     message = StringIO(info_string)
