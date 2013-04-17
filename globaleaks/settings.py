@@ -63,7 +63,7 @@ class GLSettingsClass:
         self.error_reporting_username= "stackexception@globaleaks.org"
         self.error_reporting_password= "stackexception99"
         self.error_reporting_server = "box549.bluehost.com"
-        self.error_reporting_port = 25
+        self.error_reporting_port = 465
         self.error_reporting_destmail = "stackexception@lists.globaleaks.org"
 
         # debug defaults
