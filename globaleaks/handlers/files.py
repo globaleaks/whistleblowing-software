@@ -49,21 +49,30 @@ def register_files_db(store, files, relationship, internaltip_id):
     for single_file in files:
         original_fname = unicode(single_file['filename'])
 
-        new_file = models.InternalFile()
+        try:
+            new_file = models.InternalFile()
 
-        new_file.name = original_fname
-        new_file.content_type = single_file.get('content_type')
-        new_file.mark = models.InternalFile._marker[0]
-        new_file.size = len(single_file['body'])
-        new_file.internaltip_id = unicode(internaltip_id)
-        new_file.file_path = relationship[original_fname]
+            new_file.name = original_fname
+            new_file.content_type = single_file.get('content_type')
+            new_file.mark = models.InternalFile._marker[0]
+            new_file.size = len(single_file['body'])
+            new_file.internaltip_id = unicode(internaltip_id)
+            new_file.file_path = relationship[original_fname]
 
-        store.add(new_file)
-        store.commit()
+            store.add(new_file)
+            store.commit()
+        except Exception as excep:
+            log.err("Unable to commit new InternalFile %s: %s" % (original_fname, str(excep)))
+            raise excep
+
         # I'm forcing commits because I've got some inconsistencies
         # in this ReferenceSets. need to be investigated if needed.
-        internaltip.internalfiles.add(new_file)
-        store.commit()
+        try:
+            internaltip.internalfiles.add(new_file)
+            store.commit()
+        except Exception as excep:
+            log.err("Unable to reference InternalFile %s in InternalTip: %s" % (original_fname, str(excep)))
+            raise excep
 
         files_list.append(serialize_file(new_file))
         log.debug("Added to the DB, file %s" % original_fname)
@@ -82,7 +91,7 @@ def dump_files_fs(files):
         filelocation = os.path.join(GLSetting.submission_path, saved_name)
 
         log.debug("Start saving %d bytes from file [%s]" %
-                  (len(single_file['body']), unicode(single_file['filename'])))
+                  (len(single_file['body']), str(single_file['filename'])))
 
         with open(filelocation, 'w+') as fd:
             fdesc.setNonBlocking(fd.fileno())
@@ -160,14 +169,14 @@ class FileHandler(BaseHandler):
             # and exception raised here would prevent the InternalFile recordings
             relationship = dump_files_fs(files)
         except Exception as excep:
-            log.err("Unable to save a file in filesystem: %s" % "\n".join(excep))
+            log.err("Unable to save a file in filesystem: %s" % str(excep))
             raise errors.InternalServerError("Unable to accept new files")
 
         try:
             # Second iterloop, create the objects in the database
             file_list = yield register_files_db(files, relationship, itip_id)
         except Exception as excep:
-            log.err("Unable to register file in DB: %s" % "\n".join(excep))
+            log.err("Unable to register file in DB: %s" % str(excep))
             raise errors.InternalServerError("Unable to accept new files")
 
         for file_desc in file_list:
