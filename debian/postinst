@@ -18,7 +18,7 @@ fi
 
 PIP_PKG="pip-1.3.1.tar.gz"
 PIP_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}"
-PIP_SIG_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}.tar.gz.asc"
+PIP_SIG_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}.asc"
 PIP_PUB_KEY="
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v1.4.12 (Darwin)
@@ -315,9 +315,8 @@ wget -O /tmp/building/${PIP_PKG}.asc ${PIP_SIG_URL}
 
 echo "Verifying PGP signature"
 TMP_KEYRING=/tmp/building/tmpkeyring.gpg
-PKG_VERIFY=/tmp/building/$VIRTUALENV_PKG.asc
-curl -O $VIRTUALENV_SIG_URL
-echo "$VIRTUALENV_PUB_KEY" | gpg --no-default-keyring --keyring $TMP_KEYRING --import
+PKG_VERIFY=/tmp/building/${PIP_PKG}.asc
+echo "$PIP_PUB_KEY" | gpg --no-default-keyring --keyring $TMP_KEYRING --import
 gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY
 if [ $? -ne 0 ]; then
   echo "[+] Error in verifying signature!"
