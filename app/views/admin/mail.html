@@ -23,19 +23,11 @@
       <!-- Notification -->
       <div class="row">
         <div class="span9">
-          <h3>SMTP Server Settings</h3>
+          <h3>Email Account</h3>
           <form name="notificationForm" class="config-form">
 
             <div class="row">
-              <div class="span9">
-
-                <label>SMTP server address</label>
-                <input type="text"
-                       ng-model="admin.notification.server" required>
-
-                <label>SMTP server port</label>
-                <input type="text"
-                       ng-model="admin.notification.port" required>
+                <div class="span9">
 
                 <label>Username</label>
                 <input type="text"
@@ -44,6 +36,14 @@
                 <label>Password</label>
                 <input type="password"
                        ng-model="admin.notification.password" required>
+
+                <label>SMTP server address</label>
+                <input type="text"
+                       ng-model="admin.notification.server" required>
+
+                <label>SMTP server port</label>
+                <input type="text"
+                       ng-model="admin.notification.port" required>
 
                 <label>Transport Security</label>
                 <select ng-model="admin.notification.security" required>
