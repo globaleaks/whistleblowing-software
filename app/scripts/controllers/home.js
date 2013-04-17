@@ -1,8 +1,8 @@
 'use strict';
 
 GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication',
-                    'WhistleblowerTip', 'Contexts',
-  function ($scope, $location, Node, Authentication, WhistleblowerTip, Contexts) {
+                    'WhistleblowerTip', 'Contexts', 'Receivers',
+  function ($scope, $location, Node, Authentication, WhistleblowerTip, Contexts, Receivers) {
     $scope.receipt = '';
     $scope.configured = false;
 
@@ -10,11 +10,19 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
       $scope.node_info = node_info;
     });
 
+    Receivers.query(function(receivers){
+      if(receivers.length > 0) {
+          $scope.receiver_configured = true;
+      }
+    });
 
     Contexts.query(function(contexts){
-      if(contexts.length > 0) {
-          $scope.configured = true
-      }
+       if(contexts.length > 0) {
+          $scope.context_configured = true;
+          if($scope.receiver_configured == true) {
+              $scope.configured = true;
+          }
+       }
     });
 
     $scope.view_tip = function(receipt) {
