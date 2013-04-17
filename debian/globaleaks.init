@@ -155,7 +155,7 @@ network_sandboxing_stop()
     echo "Disabling GlobaLeaks Network Sandboxing..."
 
     iptables -L | grep ${USER} 1<&- 2<&-
-    if [ $? -ne 0 ]; then
+    if [ $? -eq 1 ]; then
         echo "already disabled."
         return
     fi
@@ -212,7 +212,6 @@ do_stop()
 
     if [ "${GLBACKEND_PID}" -eq "0" ] || [ kill -0 ${GLBACKEND_PID} 1<&- 2<&- ]; then
         echo "not running."
-        return
     else
         kill -15 ${GLBACKEND_PID} 1<&- 2<&-
         echo "stopped."
