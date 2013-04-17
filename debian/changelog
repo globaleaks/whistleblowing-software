@@ -1,5 +1,5 @@
-globaleaks (0.2-1) unstable; urgency=low
+globaleaks (0.2.0.0-1) unstable; urgency=low
 
   * First alpha release of globaleaks
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 16 Apr 2013 12:06:08 +0000
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 18 Apr 2013 00:13:49 +0002
