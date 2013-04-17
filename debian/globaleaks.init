@@ -72,7 +72,12 @@ WORKING_DIR=/var/globaleaks/
 ###############################################################################
 
 GLBACKEND_DAEMON=`which globaleaks`
-GLBACKEND_ARGS="--port ${LISTENING_PORT} --accept-host=${HOSTS_LIST} --user=${USER} --group=${GROUP} --working-path=${WORKING_DIR}"
+if [ ! ${GLBACKEND_DAEMON} ]; then
+    echo "Error: Globlaleaks is not installed"
+    exit 1
+fi
+
+GLBACKEND_ARGS="--port=${LISTENING_PORT} --accept-host=${HOSTS_LIST} --user=${USER} --group=${GROUP} --working-path=${WORKING_DIR}"
 
 STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 
@@ -94,7 +99,7 @@ if ! id -u ${USER} >/dev/null 2>&1; then
 fi
 
 if [ ${NETWORK_SANDBOXING} -eq 1 ] && ! which iptables >/dev/null 2>&1 ; then
-    echo "Error: Globaleaks Network Sandboxing requires iptables"
+    echo "Error: GlobaLeaks Network Sandboxing requires iptables"
     exit 1
 fi
 
@@ -116,6 +121,12 @@ network_sandboxing_start()
 {
     echo "Enabling GlobaLeaks Network Sandboxing..."
 
+    iptables -L | grep ${USER} 1<&- 2<&-
+    if [ $? -eq 0 ]; then
+        echo "already enabled."
+        return
+    fi
+
     # INBOUND
     for IP_DST in "${ALLOWED_DST_IP[@]}"
     do
@@ -135,11 +146,19 @@ network_sandboxing_start()
     iptables -t filter -A OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT
     iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
     iptables -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
+
+    echo "done."
 }
 
 network_sandboxing_stop()
 {
     echo "Disabling GlobaLeaks Network Sandboxing..."
+
+    iptables -L | grep ${USER} 1<&- 2<&-
+    if [ $? -ne 0 ]; then
+        echo "already disabled."
+        return
+    fi
 
     # INBOUND
     for IP_DST in "${ALLOWED_DST_IP[@]}"
@@ -159,19 +178,23 @@ network_sandboxing_stop()
     iptables -t filter -D OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT
     iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
     iptables -t filter -D OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
+
+    echo "done."
 }
 
 do_start()
 {
-    network_sandboxing_start
+    echo "Starting GlobaLeaks..."
 
     # Check to see if the GLBackend daemon is already running.
     if [ "${GLBACKEND_PID}" -ne "0" ]; then
       if kill -0 ${GLBACKEND_PID} 1<&- 2<&-; then
-        echo "Globaleaks already running at pid ${GLBACKEND_PID}"
+        echo "GlobaLeaks already running at pid ${GLBACKEND_PID}"
         return
       fi
     fi
+
+    network_sandboxing_start
 
     if ${STARTCMD}; then
         echo "started."
@@ -182,18 +205,17 @@ do_start()
 
 do_stop()
 {
-    echo "Stopping Globaleaks..."
+    echo "Stopping GlobaLeaks..."
 
     # this is always needed
     rm -f ${GLBACKEND_PIDFILE} 1<&- 2<&-
 
-    if [ "${GLBACKEND_PID}" -ne "0" ]; then
-      if kill -0 ${GLBACKEND_PID} 1<&- 2<&-; then
+    if [ "${GLBACKEND_PID}" -eq "0" ] || [ kill -0 ${GLBACKEND_PID} 1<&- 2<&- ]; then
+        echo "not running."
+        return
+    else
         kill -15 ${GLBACKEND_PID} 1<&- 2<&-
         echo "stopped."
-      else
-        echo "not running."
-      fi
     fi
 
     network_sandboxing_stop
