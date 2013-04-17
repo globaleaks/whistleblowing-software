@@ -213,6 +213,8 @@ do_start()
     else
         echo "problem when starting. aborting."
     fi
+
+    exit 0
 }
 
 do_stop()
@@ -233,6 +235,8 @@ do_stop()
 
     # this must be always done
     network_sandboxing_stop
+
+    exit 0
 }
 
 do_restart()
@@ -242,6 +246,8 @@ do_restart()
     GLBACKEND_PID=0
 
     do_start
+
+    exit 0
 }
 
 #
@@ -249,7 +255,7 @@ do_restart()
 #
 do_status()
 {
-    return
+    exit 0
 }
 
 case "$1" in
