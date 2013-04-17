@@ -342,7 +342,7 @@ class BaseHandler(RequestHandler):
             else:
                 return self.send_error(e.status_code, exception=e)
         else:
-            log.msg("Uncaught exception %s %s %s", (exc_type, exc_value, exc_tb) )
+            log.msg("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb) )
                     # (self._request_summary(), self.request))
             if GLSetting.cyclone_debug:
                 log.msg(e)

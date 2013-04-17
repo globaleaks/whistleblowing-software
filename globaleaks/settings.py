@@ -428,16 +428,16 @@ class transact(object):
             log.msg(ex)
             transaction.abort()
             result = None
-        except HTTPError as ex:
+        except HTTPError as excep:
             transaction.abort()
-            raise ex
-        except Exception:
+            raise excep
+        except Exception as excep:
             transaction.abort()
             _, exception_value, exception_tb = sys.exc_info()
             traceback.print_tb(exception_tb, 10)
             self.store.close()
             # propagate the exception
-            raise exception_value
+            raise excep
         else:
             self.store.commit()
         finally:
