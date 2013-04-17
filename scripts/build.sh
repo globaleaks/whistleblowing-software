@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 CWD=`pwd`
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
