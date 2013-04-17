@@ -38,11 +38,14 @@ class Logger(object):
     def info(self, msg):
         print "[-] %s" % str(msg)
 
+    def err(self, msg):
+        print "[!] %s" % str(msg)
+
     def debug(self, msg):
         print "[D] %s" % str(msg)
 
-    def err(self, msg):
-        print "[!] %s" % str(msg)
+    def msg(self, msg):
+        print "[D] %s" % str(msg)
 
     def start_logging(self):
         """
