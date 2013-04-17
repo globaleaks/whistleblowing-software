@@ -44,7 +44,7 @@
 
         <div class="row">
           <div class="span9">
-            <h3>General</h3>
+            <h4>General information</h4>
             <label>Node name</label>
             <input type="text" ng-model="admin.node.name" value="{{admin.node.name}}">
           </div>
@@ -65,13 +65,28 @@
           </div>
         </div>
 
+        <label>Hidden Service</label>
+        <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
+               ng-pattern="/^[0-9a-z]{16}\.onion$/">
+        <p class="text-error"
+           ng-show="contentForm.hidden_service.$error.pattern">Invalid format for hidden service (should be "thirteenchars123.onion")</p>
+
+        <label>Public Site</label>
+        <input type="url" name="public_site"
+               ng-model="admin.node.public_site">
+        <p class="text-error"
+           ng-show="contentForm.public_site.$error.url">Invalid format for public site (should be "https://example.com")</p>
+
         <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
         <!-- </div> -->
 
-        <button class="btn btn-success" ng-disabled="contentForm.$invalid || contentForm.$pristine"
-                ng-click="updateNode(admin.node)">Save</button>
+        <br>
+        <button class="btn btn-success" 
+                    ng-disabled="contentForm.$invalid || contentForm.$pristine"
+                    ng-click="updateNode(admin.node)">Save</button>
 
       </form>
     </div>
   </div>
 </div>
+
