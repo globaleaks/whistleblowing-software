@@ -2,7 +2,7 @@ Source: globaleaks
 Maintainer: Random GlobaLeaks developers <info@globaleaks.org>
 Section: web
 Priority: optional
-Build-Depends: python (>= 2.6), debhelper (>= 7.4.3)
+Build-Depends: python (>= 2.7), debhelper (>= 7.4.3)
 Standards-Version: 3.9.1
 
 Package: globaleaks
