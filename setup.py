@@ -2,12 +2,17 @@
 #-*- coding: utf-8 -*-
 
 import os
+import sys
 import shutil
 import hashlib
 import urllib2
 from zipfile import ZipFile
 from distutils.core import setup
 
+if not sys.version_info[:2] == (2, 7):
+    print "Error, GlobaLeaks is tested only with python 2.7"
+    print "https://github.com/globaleaks/GlobaLeaks/wiki/Technical-requirements"
+    raise AssertionError
 
 glclient_path = 'glclient-d03f2fbb'
 def download_glclient():
