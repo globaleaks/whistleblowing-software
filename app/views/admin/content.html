@@ -65,13 +65,13 @@
           </div>
         </div>
 
-        <label>Tor Hidden Service</label>
+        <label>Tor Hidden Service (hostname)</label>
         <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
                ng-pattern="/^[0-9a-z]{16}\.onion$/">
         <p class="text-error"
            ng-show="contentForm.hidden_service.$error.pattern">Invalid format for hidden service (should be "thirteenchars123.onion")</p>
 
-        <label>Tor2web Public Site</label>
+        <label>Tor2web Public Site (url)</label>
         <input type="url" name="public_site"
                ng-model="admin.node.public_site">
         <p class="text-error"
