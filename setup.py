@@ -8,7 +8,7 @@ import urllib2
 from zipfile import ZipFile
 from distutils.core import setup
 
-glclient_path = 'glclient-23d03133'
+glclient_path = 'glclient-40bf13a6'
 def download_glclient():
     glclient_url = "https://globaleaks.org/builds/GLClient/"+glclient_path+".zip"
     print "[+] Downloading glclient from %s" % glclient_url
@@ -21,7 +21,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "34f52471c279493fa97daa1146f1289d04f0031aabf3323dfa8d403b"
+    glclient_hash = "7c6e4c50a25ce0cde0ec5e6e294dc09f485d8d49cd8d23778ddac415"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
