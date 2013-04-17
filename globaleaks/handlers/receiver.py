@@ -5,12 +5,11 @@
 # Implement the classes handling the requests performed to /receiver/* URI PATH
 # Used by receivers in the GlobaLeaks Node.
 
-from globaleaks.utils import log
-from globaleaks import utils
+from globaleaks.utils import pretty_date_time, pretty_diff_now
 from globaleaks.handlers.base import BaseHandler
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.models import Receiver, ReceiverTip
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 
@@ -24,8 +23,8 @@ def receiver_serialize_receiver(receiver):
         "receiver_gus": receiver.id,
         "name": receiver.name,
         "description": receiver.description,
-        "update_date": utils.pretty_date_time(receiver.last_update),
-        "creation_date": utils.pretty_date_time(receiver.creation_date),
+        "update_date": pretty_date_time(receiver.last_update),
+        "creation_date": pretty_date_time(receiver.creation_date),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
@@ -116,14 +115,15 @@ class ReceiverInstance(BaseHandler):
         self.finish(receiver_status)
 
 
-def serialize_tip_summary(rtip):
+def serialize_tip_summary(rtip, file_associated):
 
     return {
         'access_counter': rtip.access_counter,
         'expressed_pertinence': rtip.expressed_pertinence,
-        'creation_date' : unicode(utils.pretty_date_time(rtip.creation_date)),
-        'last_acesss' : unicode(utils.pretty_date_time(rtip.last_access)),
-        'id' : rtip.id
+        'creation_date' : unicode(pretty_date_time(rtip.creation_date)),
+        'last_acesss' : unicode(pretty_diff_now(rtip.last_access)),
+        'id' : rtip.id,
+        'files_number': file_associated,
     }
 
 
@@ -137,7 +137,12 @@ def get_receiver_tip_list(store, user_id):
     tip_summary_list = []
 
     for tip in tiplist:
-        tip_summary_list.append(serialize_tip_summary(tip))
+
+        rfiles_n = store.find(ReceiverFile,
+                     (ReceiverFile.receiver_id == user_id,
+                      ReceiverFile.internaltip_id == tip.id)).count()
+
+        tip_summary_list.append(serialize_tip_summary(tip, rfiles_n))
 
     return tip_summary_list
 
