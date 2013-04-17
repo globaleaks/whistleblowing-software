@@ -71,43 +71,25 @@ WORKING_DIR=/var/globaleaks/
 
 ###############################################################################
 
-GLBACKEND_DAEMON=`which globaleaks`
-if [ ! ${GLBACKEND_DAEMON} ]; then
-    echo "Error: Globlaleaks is not installed"
-    exit 1
-fi
-
-GLBACKEND_ARGS="--port=${LISTENING_PORT} --accept-host=${HOSTS_LIST} --user=${USER} --group=${GROUP} --working-path=${WORKING_DIR}"
-
-STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
-
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=$(basename $(readlink -nf $0))
-
-SCRIPTNAME=$0
-GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
 
 if [[ $EUID -ne 0 ]]; then
    echo "Error: GlobaLeaks init script must be run as root" 1>&2
    exit 1
 fi
 
+SCRIPTNAME=$0
 
-if ! id -u ${USER} >/dev/null 2>&1; then
-   echo "Error: unexistent user (${USER})"
-   exit 1
-fi
-
-if [ ${NETWORK_SANDBOXING} -eq 1 ] && ! which iptables >/dev/null 2>&1 ; then
-    echo "Error: GlobaLeaks Network Sandboxing requires iptables"
-    exit 1
-fi
-
-if [ -e ${GLBACKEND_PIDFILE} ]; then
-    GLBACKEND_PID=`cat ${GLBACKEND_PIDFILE}`
-else
-    GLBACKEND_PID=0
-fi
+read_pid()
+{
+    GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
+    if [ -e ${GLBACKEND_PIDFILE} ]; then
+        GLBACKEND_PID=`cat ${GLBACKEND_PIDFILE}`
+    else
+        GLBACKEND_PID=0
+    fi
+}
 
 # Load the VERBOSE setting and other rcS variables
 . /lib/init/vars.sh
@@ -117,9 +99,19 @@ fi
 # and status_of_proc is working.
 . /lib/lsb/init-functions
 
+check_iptables()
+{
+    if [ ${NETWORK_SANDBOXING} -eq 1 ] && ! which iptables >/dev/null 2>&1 ; then
+        echo "Error: GlobaLeaks Network Sandboxing requires iptables"
+        exit 1
+    fi
+}
+
 network_sandboxing_start()
 {
     echo "Enabling GlobaLeaks Network Sandboxing..."
+
+    check_iptables
 
     iptables -L | grep ${USER} >/dev/null 2<&-
     if [ $? -eq 0 ]; then
@@ -154,6 +146,8 @@ network_sandboxing_stop()
 {
     echo "Disabling GlobaLeaks Network Sandboxing..."
 
+    check_iptables
+
     iptables -L | grep ${USER} >/dev/null 2<&-
     if [ $? -ne 0 ]; then
         echo "already disabled."
@@ -184,7 +178,23 @@ network_sandboxing_stop()
 
 do_start()
 {
+    GLBACKEND_DAEMON=`which globaleaks`
+    if [ ! ${GLBACKEND_DAEMON} ]; then
+        echo "Error: Globlaleaks is not installed"
+        exit 1
+    fi
+    GLBACKEND_ARGS="--port=${LISTENING_PORT} --accept-host=${HOSTS_LIST} --user=${USER} --group=${GROUP} --working-path=${WORKING_DIR}"
+
+    STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
+
     echo "Starting GlobaLeaks..."
+
+    read_pid
+
+    if ! id -u ${USER} >/dev/null 2>&1; then
+       echo "Error: unexistent user (${USER})"
+       exit 1
+    fi
 
     # Check to see if the GLBackend daemon is already running.
     if [ "${GLBACKEND_PID}" -ne "0" ]; then
@@ -206,6 +216,8 @@ do_start()
 do_stop()
 {
     echo "Stopping GlobaLeaks..."
+
+    read_pid
 
     # this is always needed
     rm -f ${GLBACKEND_PIDFILE} >/dev/null 2<&-
