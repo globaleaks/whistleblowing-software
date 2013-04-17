@@ -134,8 +134,6 @@ class GLBaseRunnerUnix(UnixApplicationRunner):
         self.postApplication()
         self.logger.stop()
 
-        reactor.callWhenRunning(initialization)
-        self.startReactor(reactor, self.oldstdout, self.oldstderr)
         log.msg("Server is shutting down.")
 
 GLBaseRunner = GLBaseRunnerUnix
