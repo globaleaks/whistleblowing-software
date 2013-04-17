@@ -65,17 +65,17 @@
           </div>
         </div>
 
-        <label>Hidden Service</label>
+        <label>Tor Hidden Service</label>
         <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
                ng-pattern="/^[0-9a-z]{16}\.onion$/">
         <p class="text-error"
            ng-show="contentForm.hidden_service.$error.pattern">Invalid format for hidden service (should be "thirteenchars123.onion")</p>
 
-        <label>Public Site</label>
+        <label>Tor2web Public Site</label>
         <input type="url" name="public_site"
                ng-model="admin.node.public_site">
         <p class="text-error"
-           ng-show="contentForm.public_site.$error.url">Invalid format for public site (should be "https://example.com")</p>
+           ng-show="contentForm.public_site.$error.url">Invalid format for Tor2web public site (should be "https://thirteenchars123.tor2web.org")</p>
 
         <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
         <!-- </div> -->
