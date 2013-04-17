@@ -20,16 +20,8 @@
 
           <li ng-repeat="file in tip.files">
 
-           <div ng-show="whistleblower_tip_id">
-               <i class="icon-book"></i> 
-               {{file.name}}
-            </div>
-
-           <div ng-hide="whistleblower_tip_id">
-               <a href="{{file.href}}">
-                   <i class="icon-book"></i>
-                   {{file.name}}
-               </a>
+            <div>
+              <i class="icon-book"></i> {{file.name}}
             </div>
 
             <div class="fileDetails" ng-controller="FileDetailsCtrl">
