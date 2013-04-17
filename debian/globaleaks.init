@@ -151,7 +151,7 @@ network_sandboxing_stop()
     iptables -L | grep ${USER} >/dev/null 2<&-
     if [ $? -ne 0 ]; then
         echo "already disabled."
-        return
+        exit 0
     fi
 
     # INBOUND
