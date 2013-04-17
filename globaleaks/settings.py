@@ -148,7 +148,7 @@ class GLSettingsClass:
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.log_path, "jsondump"))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
-        self.static_source = os.path.abspath(os.path.join(self.root_path, 'staticdata'))
+        self.static_source = '/usr/share/globaleaks/glbackend'
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
