@@ -258,14 +258,17 @@ def mail_exception(etype, value, tback):
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
     tmp.append("Content-Transfer-Encoding: 8bit\n")
     tmp.append("Source: %s\n" % " ".join(os.uname()))
-    tmp.append("%s %s" % (exc_type.strip(), etype.__doc__))
+    error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
+    tmp.append(error_message)
 
-    traceinfo_list = traceback.format_exception(etype, value, tback)
-    tmp.append('\n'.join(traceinfo_list))
+    traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
+    tmp.append('\n'.join(traceinfo))
 
     info_string = '\n'.join(tmp)
     message = StringIO(info_string)
 
+    log.err(error_message)
+    log.err(traceinfo)
     log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, info_string) )
 
     sendmail(GLSetting.error_reporting_username,
