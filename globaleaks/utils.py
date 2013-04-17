@@ -48,6 +48,7 @@ class Logger(object):
         """
         If configured enables logserver
         """
+        twlog.startLogging(sys.stdout)
         if GLSetting.logfile:
             name = os.path.basename(GLSetting.logfile)
             directory = os.path.dirname(GLSetting.logfile)
@@ -55,9 +56,7 @@ class Logger(object):
             logfile = twlogfile.LogFile(name, directory,
                                         rotateLength=GLSetting.log_file_size,
                                         maxRotatedFiles=GLSetting.maximum_rotated_log_files)
-            twlog.startLogging(logfile, setStdout=True)
-        else:
-            twlog.startLogging(sys.stdout)
+            twlog.addObserver(twlog.FileLogObserver(logfile).emit)
 
 log = Logger()
 
