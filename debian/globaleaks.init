@@ -206,6 +206,8 @@ do_start()
 
     network_sandboxing_start
 
+    # This is a little hack to avoid python doing os.chdir('.') and getting mad.
+    cd /tmp
     if ${STARTCMD}; then
         echo "started."
     else
