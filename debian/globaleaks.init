@@ -121,7 +121,7 @@ network_sandboxing_start()
 {
     echo "Enabling GlobaLeaks Network Sandboxing..."
 
-    iptables -L | grep ${USER} 1<&- 2<&-
+    iptables -L | grep ${USER} >/dev/null 2<&-
     if [ $? -eq 0 ]; then
         echo "already enabled."
         return
@@ -154,8 +154,8 @@ network_sandboxing_stop()
 {
     echo "Disabling GlobaLeaks Network Sandboxing..."
 
-    iptables -L | grep ${USER} 1<&- 2<&-
-    if [ $? -eq 1 ]; then
+    iptables -L | grep ${USER} >/dev/null 2<&-
+    if [ $? -ne 0 ]; then
         echo "already disabled."
         return
     fi
@@ -188,7 +188,7 @@ do_start()
 
     # Check to see if the GLBackend daemon is already running.
     if [ "${GLBACKEND_PID}" -ne "0" ]; then
-      if kill -0 ${GLBACKEND_PID} 1<&- 2<&-; then
+      if kill -0 ${GLBACKEND_PID} >/dev/null 2<&-; then
         echo "GlobaLeaks already running at pid ${GLBACKEND_PID}"
         return
       fi
@@ -208,15 +208,16 @@ do_stop()
     echo "Stopping GlobaLeaks..."
 
     # this is always needed
-    rm -f ${GLBACKEND_PIDFILE} 1<&- 2<&-
+    rm -f ${GLBACKEND_PIDFILE} >/dev/null 2<&-
 
-    if [ "${GLBACKEND_PID}" -eq "0" ] || [ kill -0 ${GLBACKEND_PID} 1<&- 2<&- ]; then
+    if [ "${GLBACKEND_PID}" -eq "0" ] || [ kill -0 ${GLBACKEND_PID} >/dev/null 2<&- ]; then
         echo "not running."
     else
-        kill -15 ${GLBACKEND_PID} 1<&- 2<&-
+        kill -15 ${GLBACKEND_PID} >/dev/null 2<&-
         echo "stopped."
     fi
 
+    # this must be always done
     network_sandboxing_stop
 }
 
