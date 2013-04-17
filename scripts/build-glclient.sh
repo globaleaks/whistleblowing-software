@@ -54,6 +54,9 @@ build_glclient()
   cd $CWD
 }
 build_glclient
-
 echo "[+] All done!"
+echo ""
+echo "GLient hash: "
+cat $OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
+
 
