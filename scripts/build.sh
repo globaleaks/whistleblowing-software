@@ -7,7 +7,7 @@ GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
 GLOBALEAKS_DIR=~/
 OUTPUT_DIR=/data/website/builds/
 
-if [ "$1" -eq '-h' ]; then
+if [ "$1" = "-h" ]; then
   echo "Usage: ./${SCRIPTNAME} -c (build also glclient) (optional) [glclient target tag or rev] [glbackend target tag]"
   echo "repository path: is the path to a copy of the GLClient and GLBackend git repositories"
   exit
@@ -108,7 +108,7 @@ build_glbackend()
   $DIR/sign-release.sh
 }
 
-if [ "$BUILDCLIENT" -eq "-c" ]; then
+if [ "$BUILDCLIENT" = "-c" ]; then
   build_glclient
 fi
 
