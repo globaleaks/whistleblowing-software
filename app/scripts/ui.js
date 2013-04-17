@@ -24,6 +24,10 @@ angular.module('submissionUI', []).
           upload_file.css('height', img_receiver.width - 20);
         };
 
+        $(element).find('input[type="file"]').change(function(){
+          scope.changeProfile();
+        });
+
         scope.$watch(attrs.src, function(){
           var url = attrs.src;
 
