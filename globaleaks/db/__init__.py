@@ -152,6 +152,10 @@ def check_schema_version():
 
     ret = True
 
+    if not os.access(GLSetting.db_schema_file, os.R_OK):
+        log.err("Unable to access %s" % GLSetting.db_schema_file)
+        raise Exception("Unable to access db schema file")
+
     with open(GLSetting.db_schema_file) as f:
         sqlfile = f.readlines()
         comma_number = "".join(sqlfile).count(',')
@@ -172,6 +176,9 @@ def check_schema_version():
     for table in res:
         if len(table) == 3:
             comma_compare += table[2].count(',')
+
+    if not comma_compare:
+        raise Exception("Database found empty!")
 
     if comma_compare != comma_number:
         log.err("*********************************")
