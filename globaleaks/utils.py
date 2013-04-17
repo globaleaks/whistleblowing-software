@@ -36,13 +36,13 @@ class Logger(object):
     Customized LogPublisher
     """
     def info(self, msg):
-        print "[-] %s"
+        print "[-] %s" % str(msg)
 
-    def debug(self, *arg, **kw):
-        print "[D] %s"
+    def debug(self, msg):
+        print "[D] %s" % str(msg)
 
-    def err(self, *arg, **kw):
-        print "[!] %s"
+    def err(self, msg):
+        print "[!] %s" % str(msg)
 
     def start_logging(self):
         """
@@ -55,7 +55,7 @@ class Logger(object):
             logfile = twlogfile.LogFile(name, directory,
                                         rotateLength=GLSetting.log_file_size,
                                         maxRotatedFiles=GLSetting.maximum_rotated_log_files)
-            twlog.startLogging(logfile)
+            twlog.startLogging(logfile, setStdout=True)
         else:
             twlog.startLogging(sys.stdout)
 
