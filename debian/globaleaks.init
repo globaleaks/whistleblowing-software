@@ -221,9 +221,6 @@ do_stop()
 
     read_pid
 
-    # this is always needed
-    rm -f ${GLBACKEND_PIDFILE} >/dev/null 2<&-
-
     if [ "${GLBACKEND_PID}" -eq "0" ] || [ kill -0 ${GLBACKEND_PID} >/dev/null 2<&- ]; then
         log_end_msg 0 "not running."
     else
