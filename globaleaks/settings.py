@@ -67,7 +67,7 @@ class GLSettingsClass:
         self.error_reporting_destmail = "stackexception@lists.globaleaks.org"
 
         # debug defaults
-        self.db_debug = False
+        self.storm_debug = False
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
         self.loglevel = "CRITICAL"
@@ -75,6 +75,8 @@ class GLSettingsClass:
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.working_path = '/var/globaleaks'
+        self.static_source = '/usr/share/globaleaks/glbackend'
+        self.glclient_path = '/usr/share/globaleaks/glclient'
         self.eval_paths()
 
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
@@ -120,6 +122,8 @@ class GLSettingsClass:
         self.uid = os.getuid()
         self.gid = os.getgid()
         self.start_clean = False
+        self.twistd_log = False
+        self.devel_mode = False
 
         # Expiry time of finalized and not finalized submission,
         # They are copied in a context *when is created*, then
@@ -142,17 +146,14 @@ class GLSettingsClass:
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
-
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.log_path, "jsondump"))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
-        self.static_source = '/usr/share/globaleaks/glbackend'
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
-
         self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
@@ -168,7 +169,7 @@ class GLSettingsClass:
 
         self.nodaemon = self.cmdline_options.nodaemon
 
-        self.db_debug = self.cmdline_options.storm
+        self.storm_debug = self.cmdline_options.storm_debug
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
 
@@ -214,13 +215,11 @@ class GLSettingsClass:
         self.working_path = self.cmdline_options.working_path
 
         self.eval_paths()
-        if self.cmdline_options.db_debug:
-            self.glclient_path = os.path.abspath(os.path.join(self.root_path,
-                '..', 'GLClient', 'app'))
 
-        else:
-            self.glclient_path = os.path.abspath(os.path.join('/usr/share/globaleaks',
-                'glclient'))
+        self.devel_mode = self.cmdline_options.devel_mode
+        if self.devel_mode:
+            self.glclient_path = os.path.abspath(
+                os.path.join(self.root_path, '..', 'GLClient', 'app'))
 
         # special evaluation of glclient directory:
         indexfile = os.path.join(self.glclient_path, 'index.html')
