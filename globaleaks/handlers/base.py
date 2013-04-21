@@ -15,6 +15,7 @@ import re
 import sys
 import os
 
+from twisted.python.failure import Failure
 from twisted.internet import fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone.httpserver import HTTPConnection
@@ -321,15 +322,15 @@ class BaseHandler(RequestHandler):
 
 
     def _handle_request_exception(self, e):
-        # exception informations must be saved here before continue.
-        exc_type, exc_value, exc_tb = sys.exc_info()
-
-        try:
-            if isinstance(e.value, (HTTPError, HTTPAuthenticationRequired)):
-                e = e.value
-        except:
-            pass
-
+        # sys.exc_info() does not always work at this stage
+        if isinstance(e, Failure):
+            exc_type = e.type
+            exc_value = e.value
+            exc_tb = e.getTracebackObject()
+            e = e.value
+        else:
+            exc_type, exc_value, exc_tb = sys.exc_info()
+ 
         if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
             if GLSetting.cyclone_debug and e.log_message:
                 format = "%d %s: " + e.log_message
@@ -343,7 +344,6 @@ class BaseHandler(RequestHandler):
                 return self.send_error(e.status_code, exception=e)
         else:
             log.msg("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb) )
-                    # (self._request_summary(), self.request))
             if GLSetting.cyclone_debug:
                 log.msg(e)
             mail_exception(exc_type, exc_value, exc_tb)
