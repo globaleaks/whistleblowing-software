@@ -214,12 +214,16 @@ class GLSettingsClass:
 
         self.working_path = self.cmdline_options.working_path
 
-        self.eval_paths()
-
+        # if devel_mode == True we do some hacks on paths and config values
         self.devel_mode = self.cmdline_options.devel_mode
         if self.devel_mode:
+            # Devel Mode Defaults
+            self.working_path = os.path.join(self.root_path, 'workingdir')
+            self.static_source = os.path.join(self.root_path, 'staticdata')
             self.glclient_path = os.path.abspath(
                 os.path.join(self.root_path, '..', 'GLClient', 'app'))
+
+        self.eval_paths()
 
         # special evaluation of glclient directory:
         indexfile = os.path.join(self.glclient_path, 'index.html')
