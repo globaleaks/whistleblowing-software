@@ -1,3 +1,4 @@
+from __future__ import unicode_literals
 import re
 
 from twisted.internet.defer import inlineCallbacks
@@ -15,12 +16,13 @@ from globaleaks.rest import errors
 
 
 class TestSubmission(helpers.TestGL):
-    dummyFiles = [{'body': 'spam',
-            'content_type': 'application/octet',
-            'filename': 'spam'},
-            {'body': 'ham',
-            'content_type': 'application/octet',
-            'filename': 'ham'}
+    dummyFiles = [
+        {'body': 'spam',
+         'content_type': 'application/octet',
+         'filename': 'spam'},
+        {'body': 'ham',
+         'content_type': 'application/octet',
+         'filename': 'ham'},
     ]
 
     # --------------------------------------------------------- #
@@ -42,6 +44,19 @@ class TestSubmission(helpers.TestGL):
         self.file_list = yield files.register_files_db(self.dummyFiles,
                 relationship, associated_submission_id)
         self.assertEqual(len(self.file_list), 2)
+
+        # unicode support
+        dfiles = []
+        dfiles.append({
+            'body': ''.join(unichr(x) for x in range(0x370, 0x3FF)),
+            'content_type': 'application/octect',
+            'filename': ''.join(unichr(x) for x in range(0x400, 0x4FF)),
+        })
+        file_list = yield files.register_files_db(
+            dfiles, relationship, associated_submission_id,
+        )
+        self.assertEqual(len(file_list), 3)
+
 
     @inlineCallbacks
     def test_create_internalfiles(self):
