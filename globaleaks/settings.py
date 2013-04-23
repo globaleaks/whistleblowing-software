@@ -158,6 +158,12 @@ class GLSettingsClass:
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
 
+    def set_devel_mode(self):
+        self.working_path = os.path.join(self.root_path, 'workingdir')
+        self.static_source = os.path.join(self.root_path, 'staticdata')
+        self.glclient_path = os.path.abspath(
+            os.path.join(self.root_path, '..', 'GLClient', 'app'))
+
     def load_cmdline_options(self):
         """
         This function is called by runner.py and operate in cmdline_options,
@@ -217,11 +223,7 @@ class GLSettingsClass:
         # if devel_mode == True we do some hacks on paths and config values
         self.devel_mode = self.cmdline_options.devel_mode
         if self.devel_mode:
-            # Devel Mode Defaults
-            self.working_path = os.path.join(self.root_path, 'workingdir')
-            self.static_source = os.path.join(self.root_path, 'staticdata')
-            self.glclient_path = os.path.abspath(
-                os.path.join(self.root_path, '..', 'GLClient', 'app'))
+            self.set_devel_mode()
 
         self.eval_paths()
 
@@ -326,7 +328,7 @@ class GLSettingsClass:
                         os.path.join(self.static_path, single_file)
                     )
             if not almost_one_file:
-                print "[Non fatal error] Founded empty: %s" % self.static_source
+                print "[Non fatal error] Found empty: %s" % self.static_source
                 print "Your instance has not torrc and the default logo"
 
 
