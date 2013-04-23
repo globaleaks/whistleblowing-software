@@ -35,19 +35,24 @@ class Logger(object):
     """
     Customized LogPublisher
     """
+    def _str(self, msg):
+        if isinstance(msg, unicode):
+            return msg.encode('utf8')
+        return str(msg)
+
     def info(self, msg):
         if GLSetting.loglevel <= logging.INFO:
-            print "[-] %s" % str(msg)
+            print "[-] %s" % self._str(msg)
 
     def err(self, msg):
-        print "[!] %s" % str(msg)
+        print "[!] %s" % self._str(msg)
 
     def debug(self, msg):
         if GLSetting.loglevel <= logging.DEBUG:
-            print "[D] %s" % str(msg)
+            print "[D] %s" % self._str(msg)
 
     def msg(self, msg):
-        print "[ ] %s" % str(msg)
+        print "[ ] %s" % self._str(msg)
 
     def start_logging(self):
         """
@@ -305,7 +310,7 @@ def acquire_mail_address(request):
     if 'mail_address' not in request['notification_fields']:
         return False
 
-    mail_string = str(request['notification_fields']['mail_address']).lower()
+    mail_string = request['notification_fields']['mail_address'].lower()
     if not re.match("^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$", mail_string):
         log.debug("Invalid email address format [%s]" % mail_string)
         return False
