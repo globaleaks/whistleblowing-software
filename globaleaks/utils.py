@@ -259,6 +259,9 @@ def mail_exception(etype, value, tback):
     @param value: Exception string value
     @param tback: Traceback string data
     """
+    if(etype == GeneratorExit):
+    	return
+
     mail_exception.mail_counter += 1
 
     exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
