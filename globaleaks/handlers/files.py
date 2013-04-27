@@ -64,7 +64,7 @@ def register_files_db(store, files, relationship, internaltip_id):
             store.commit()
             i += 1
         except Exception as excep:
-            log.err("Unable to commit new InternalFile %s: %s" % (original_fname.encode('utf8'), excep))
+            log.err("Unable to commit new InternalFile %s: %s" % (original_fname.encode('utf-8'), excep))
             raise excep
 
         # I'm forcing commits because I've got some inconsistencies
@@ -94,11 +94,11 @@ def dump_files_fs(files):
         filelocation = os.path.join(GLSetting.submission_path, saved_name)
 
         log.debug("Start saving %d bytes from file [%s]" %
-                  (len(single_file['body']), single_file['filename'].encode('utf8')))
+                  (len(single_file['body']), single_file['filename'].encode('utf-8')))
 
         with open(filelocation, 'w+') as fd:
             fdesc.setNonBlocking(fd.fileno())
-            if not fdesc.writeToFD(fd.fileno(), single_file['body'].encode('utf8')):
+            if not fdesc.writeToFD(fd.fileno(), single_file['body']):
                 log.debug("Non blocking file has reported an issue")
                 raise errors.InternalServerError("buffer not available")
 

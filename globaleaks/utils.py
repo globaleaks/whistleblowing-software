@@ -37,7 +37,7 @@ class Logger(object):
     """
     def _str(self, msg):
         if isinstance(msg, unicode):
-            return msg.encode('utf8')
+            return msg.encode('utf-8')
         return str(msg)
 
     def info(self, msg):

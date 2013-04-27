@@ -138,12 +138,12 @@ class TestSubmission(helpers.TestGL):
         # Checks the SHA2SUM computed
         for random_f_id, sha2sum in processdict.iteritems():
             sha = SHA256.new()
-            sha.update(self.dummyFiles[0]['body'].encode('utf8'))
+            sha.update(self.dummyFiles[0]['body'].encode('utf-8'))
             if sha2sum == sha.hexdigest():
                 continue
 
             sha = SHA256.new()
-            sha.update(self.dummyFiles[1]['body'].encode('utf8'))
+            sha.update(self.dummyFiles[1]['body'].encode('utf-8'))
             if sha2sum == sha.hexdigest():
                 continue
 
