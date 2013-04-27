@@ -25,7 +25,6 @@ from globaleaks.utils import log, mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
-
 def validate_host(host_key):
     """
     validate_host checks in the GLSetting list of valid 'Host:' values
@@ -66,7 +65,6 @@ class GLHTTPServer(HTTPConnection):
 
 
 class BaseHandler(RequestHandler):
-
     @staticmethod
     def validate_python_type(value, python_type):
         """
@@ -80,10 +78,10 @@ class BaseHandler(RequestHandler):
         if python_type == int:
             try:
                 int(value)
-               	return True
+                return True
             except Exception:
                 return False
-
+        
         # else, not int and not None...
         return isinstance(value, python_type)
 
