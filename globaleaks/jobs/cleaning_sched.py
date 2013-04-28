@@ -105,7 +105,7 @@ def itip_cleaning(store, id):
             store.remove(rtip)
             log.debug("removed ReceiverTip of %s" % rname)
         except Exception as excep:
-            log.debug("Unable to remocve ReceiverTip of %s" % rname)
+            log.debug("Unable to remove ReceiverTip of %s" % rname)
             continue
 
     # Finally remove a Tip, better if on cascade works :( #96
