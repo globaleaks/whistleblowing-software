@@ -1,6 +1,0 @@
-[submodule "GLBackend"]
-	path = GLBackend
-	url = git://github.com/globaleaks/GLBackend.git
-[submodule "GLClient"]
-	path = GLClient
-	url = git://github.com/globaleaks/GLClient.git
