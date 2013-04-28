@@ -103,12 +103,26 @@ class GLSettingsClass:
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
 
+        # acceptable 'Host:' header in HTTP request
+        self.accepted_hosts = "127.0.0.1,localhost"
+
         # transport security defaults
+        #self.tor2web_permitted_ops = {
+        #    'admin': False,
+        #    'submission': False,
+        #    'tip': False,
+        #    'receiver': False,
+        #    'unauth': True
+        #}
+
+        # https://github.com/globaleaks/GlobaLeaks/issues/182
+        # we need this settings to permit testing over tor2web
+        transport security defaults
         self.tor2web_permitted_ops = {
-            'admin': False,
-            'submission': False,
-            'tip': False,
-            'receiver': False,
+            'admin': True,
+            'submission': True,
+            'tip': True,
+            'receiver': True,
             'unauth': True
         }
 
