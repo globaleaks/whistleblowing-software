@@ -117,7 +117,7 @@ class GLSettingsClass:
 
         # https://github.com/globaleaks/GlobaLeaks/issues/182
         # we need this settings to permit testing over tor2web
-        transport security defaults
+        # transport security defaults
         self.tor2web_permitted_ops = {
             'admin': True,
             'submission': True,
