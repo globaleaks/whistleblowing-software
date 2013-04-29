@@ -389,7 +389,7 @@ git checkout $TARGET_GIT_TAG
 #XXX: git-verify-tag $OONIB_GIT_TAG
 
 echo "Building and verifying $VIRTUALENV_PKG"
-mkdir $TARGET_PATH/building
+mkdir -p $TARGET_PATH/building
 cd $TARGET_PATH/building
 
 echo "Downloading $VIRTUALENV_URL"
