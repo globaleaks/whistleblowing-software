@@ -30,6 +30,8 @@ GLSetting.remove_directories()
 transact.debug = True
 class TestWithDB(unittest.TestCase):
     def setUp(self):
+        GLSetting.set_devel_mode()
+        GLSetting.eval_paths()
         GLSetting.create_directories()
         return db.create_tables(create_node=True)
 
