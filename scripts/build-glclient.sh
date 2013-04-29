@@ -3,7 +3,7 @@ CWD=`pwd`
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
-GLOBALEAKS_DIR=~/
+GLOBALEAKS_DIR=/data/globaleaks
 OUTPUT_DIR=/data/website/builds/
 
 if [ "$1" = "-h" ]; then
@@ -13,7 +13,8 @@ fi
 
 GLCLIENT_TAG=$1
 
-mkdir $OUTPUT_DIR/GLClient
+mkdir -p $GLOBALEAKS_DIR
+mkdir -p $OUTPUT_DIR/GLClient
 
 if [ ! -d ${GLOBALEAKS_DIR}/GLClient ]; then
   echo "[+] Cloning GLClient in ${GLOBALEAKS_DIR}"
