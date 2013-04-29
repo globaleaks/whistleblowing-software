@@ -18,7 +18,6 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security
 from globaleaks.utils import log
 
-
 def admin_serialize_node(node):
     response = {
         "name": node.name,
@@ -49,6 +48,7 @@ def admin_serialize_context(context):
         "fields": context.fields if context.fields else [],
         "receivers": [],
     }
+    
     for receiver in context.receivers:
         context_dict['receivers'].append(receiver.id)
 
@@ -193,6 +193,7 @@ def create_context(store, request):
         context.receivers.add(receiver)
 
     store.add(context)
+
     return admin_serialize_context(context)
 
 @transact
