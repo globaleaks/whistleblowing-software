@@ -1,6 +1,6 @@
 # GlobaLeaks
 
-![GlobaLeaks](http://globaleaks.org/images/logo.png)
+![GlobaLeaks](https://globaleaks.org/images/logo.png)
 
 GlobaLeaks is a project aimed at creating a whistleblowing platform built on FLOSS.
 
@@ -15,11 +15,10 @@ component.
 This is a full rewrite and it collects all of the experience and knowledge
 gained in building [GlobaLeaks 0.1](https://github.com/globaleaks/GlobaLeaks-0.1).
 
-To learn how to setup your own GlobaLeaks, look at [Globaleaks Wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki/Home)
+To learn how to setup your own GlobaLeaks, look at [Globaleaks Wiki documentation] (https://github.com/globaleaks/GlobaLeaks/wiki)
 
 The main components of GlobaLeaks 0.2 are
-[GLClient](https://github.com/globaleaks/GLClient) and
-[GLBackend](https://github.com/globaleaks/GLBackend).
+[GLClient](https://github.com/globaleaks/GLClient) and [GLBackend](https://github.com/globaleaks/GLBackend).
 
 [GLClient](https://github.com/globaleaks/GLClient) is a javascript web
 application that communicates to the [GLBackend](https://github.com/globaleaks/GLBackend), the backend component of GlobaLeaks.
@@ -27,7 +26,7 @@ application that communicates to the [GLBackend](https://github.com/globaleaks/G
 
 # Additionals informations can be found here:
 
-[GLBackend specific documentation] (https://github.com/globaleaks/GLBackend/Home)
+[GLBackend specific documentation] (https://github.com/globaleaks/GLBackend/wiki)
 
-[GLClient specific documentation] (https://github.com/globaleaks/GLClient/wiki/Home)
+[GLClient specific documentation] (https://github.com/globaleaks/GLClient/wiki)
 
