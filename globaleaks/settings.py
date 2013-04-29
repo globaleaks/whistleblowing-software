@@ -168,7 +168,7 @@ class GLSettingsClass:
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
-        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
+        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db')) + '?foreign_keys=ON'
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
 
