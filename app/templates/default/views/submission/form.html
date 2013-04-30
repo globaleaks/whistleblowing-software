@@ -7,26 +7,26 @@
           class="input {{field.type}}"
           ng-class="field.required && 'required'">
           <label>
-            {{field.label}}
+            {{field.name}}
             <span class="order">{{field.order}}</span>
             <a href="" data-content="{{field.hint}}"
-              data-trigger="hover" bs-popover="{{field.label}}">
+              data-trigger="hover" bs-popover="{{field.name}}">
               <i class="icon-question-sign"></i>
             </a>
           </label>
           <div ng-switch on="field.type">
 
           <input ng-switch-when="checkbox" type="checkbox"
-          ng-model="field.value"
-          value="{{field.value}}"
-          id="field"
-          placeholder="{{field.placeholder}}">
+            ng-model="field.value"
+            value="{{field.value}}"
+            id="field"
+            placeholder="{{field.placeholder}}">
 
           <input ng-switch-when="text" type="text"
-          ng-model="field.value"
-          ng-required="field.required"
-          value="{{field.value}}"
-          placeholder="{{field.placeholder}}">
+            ng-model="field.value"
+            ng-required="field.required"
+            value="{{field.value}}"
+            placeholder="{{field.placeholder}}">
 
           <textarea ng-switch-when="textarea"
             ng-model="field.value"
