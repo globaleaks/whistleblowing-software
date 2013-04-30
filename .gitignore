@@ -1,9 +1,8 @@
-ENV
 *.py[co]
 *.bak
 .*.swp
 *.DS_Store
-nodedata
+workingdir
 testing_dir
 *.egg-info
 *.log
