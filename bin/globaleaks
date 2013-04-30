@@ -102,7 +102,7 @@ GLSetting.parser.add_option("-k", "--kill", type="int",
     dest="kill", default=0)
 
 GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
-    help="enable developer mode [default %default]",
+    help="enable developer mode [default %default]. This override --working-path with 'workingdir/'",
     dest="devel_mode", default=GLSetting.devel_mode)
 
 GLSetting.parser.add_option("-v", "--version", action='store_true',

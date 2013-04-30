@@ -103,9 +103,6 @@ class GLSettingsClass:
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
 
-        # acceptable 'Host:' header in HTTP request
-        self.accepted_hosts = "127.0.0.1,localhost"
-
         # transport security defaults
         #self.tor2web_permitted_ops = {
         #    'admin': False,
