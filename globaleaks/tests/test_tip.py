@@ -57,7 +57,8 @@ class TTip(helpers.TestWithDB):
     }
 
     tipSubmission = {
-        'wb_fields': {'headline': u'an headline', 'description': u'a dirty desky'},
+        'wb_fields': {u'Short title': u'https://dailyfoodporn.wordpress.com',
+                      u'Full description': u'http://www.zerocalcare.it/'},
         'context_gus': '', 'receivers': [], 'files': [], 'finalize': True
     }
 

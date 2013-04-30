@@ -29,7 +29,6 @@ fileDict = {
 
 formFieldsDict = {
             "presentation_order": int,
-            "label": unicode,
             "name": unicode,
             "required": bool,
             "hint": unicode,
