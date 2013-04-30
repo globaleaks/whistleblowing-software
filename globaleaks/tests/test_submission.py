@@ -104,7 +104,8 @@ class TestSubmission(helpers.TestGL):
         # In the WB/Receiver Tip interface, wb_fields are called fields.
         # This can be uniformed when API would be cleaned of the _gus
         self.assertTrue(wb_tip.has_key('fields'))
-        self.assertTrue(wb_tip['fields'].has_key('Sun'))
+        for single_field in self.dummyContext['fields']:
+            self.assertTrue(wb_tip['fields'].has_key(single_field['name']))
 
 
     @inlineCallbacks
@@ -225,9 +226,7 @@ class TestSubmission(helpers.TestGL):
 
         status = yield submission.create_submission(submission_desc, finalize=False)
 
-        status['wb_fields'] = { 'city': u"NY", 'Sun': u"Flashy",
-                                'dict2': u"ottimo direi", 'dict3': u"bingo bongo"}
-
+        status['wb_fields'] = self.fill_random_fields(self.dummyContext)
         status['finalize'] = True
 
         status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
@@ -235,9 +234,11 @@ class TestSubmission(helpers.TestGL):
         receipt = yield submission.create_whistleblower_tip(status)
         wb_access_id = yield authentication.login_wb(receipt)
 
-        # remind: return a tuple (serzialized_itip,wb_tip_id)
         wb_tip = yield tip.get_internaltip_wb(wb_access_id)
-        self.assertTrue(wb_tip['fields']['dict2'] == status['wb_fields']['dict2'])
+
+        self.assertTrue(wb_tip.has_key('fields'))
+        for single_field in self.dummyContext['fields']:
+            self.assertTrue(wb_tip['fields'].has_key(single_field['name']))
 
 
     @inlineCallbacks

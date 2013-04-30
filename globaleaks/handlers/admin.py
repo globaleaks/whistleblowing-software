@@ -132,6 +132,27 @@ def get_context_list(store):
 
     return context_list
 
+
+def fields_validation(fields_list):
+
+    if not len(fields_list):
+        raise errors.InvalidInputFormat("Missing fields list")
+
+    # the required keys are already validated by validate_jmessage
+    # with globaleaks/rest/base.py formFieldDict
+    # here are validated the types and the internal format
+
+    accepted_form_type = [ "text", "radio", "select", "multiple",
+                           "checkboxes",  "textarea", "number",
+                           "url", "phone", "email" ]
+
+    for field_desc in fields_list:
+        check_type = field_desc['type']
+        if not check_type in accepted_form_type:
+            raise errors.InvalidInputFormat("Wrong type '%s' in %s" %
+                                            (check_type, field_desc['name']) )
+
+
 @transact
 def create_context(store, request):
     """
@@ -150,18 +171,25 @@ def create_context(store, request):
     context = Context(request)
 
     if not request['fields']:
-        # When a new context is create, assign some spare fields
-        context.fields = [
-            {u'hint': u"Describe your tip-off with a line/title", u'label': u'headline',
-             u'name': u'headline', u'presentation_order': 1,
+        # When a new context is create, assign default fields, if not supply
+        assigned_fields = [
+            {u'hint': u"Describe your tip-off with a line/title",
+             u'name': u'Short title', u'presentation_order': 1,
              u'required': True, u'type': u'text', u'value': u'' },
-            {u'hint': u'Describe the details of your tip-off', u'label': u'Description',
-              u'name': u'description', u'presentation_order': 2,
+            {u'hint': u'Describe the details of your tip-off',
+              u'name': u'Full description', u'presentation_order': 2,
               u'required': True, u'type': u'text',
               u'value': u"" },
+            {u'hint': u"Describe the submitted files",
+             u'name': u'Files description', u'presentation_order': 3,
+             u'required': False, u'type': u'text', u'value': u'' },
         ]
     else:
-        context.fields = request['fields']
+        assigned_fields = request['fields']
+
+    # may raise InvalidInputFormat if fields format do not fit
+    fields_validation(assigned_fields)
+    context.fields = assigned_fields
 
     # Until GLClient do not supports configuration of values, I would copy
     # the default from the GLSetting
