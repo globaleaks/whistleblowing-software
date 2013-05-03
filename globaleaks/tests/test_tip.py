@@ -176,10 +176,25 @@ class TestTipInstance(TTip):
         auth2 = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
         self.assertEqual(auth2, self.receiver2_desc['receiver_gus'])
 
-        self.receiver1_data = yield tip.get_internaltip_receiver(auth1, self.rtip1_id)
+        # we does not know the association auth# sefl.rtip#_id
+        # so we need a double try catch for each check and we need to store the proper association
+        tmp1 = self.rtip1_id
+        tmp2 = self.rtip2_id
+        try:
+            self.receiver1_data = yield tip.get_internaltip_receiver(auth1, tmp1)
+        except:
+            try:
+                self.rtip1_id = tmp2
+                self.rtip2_id = tmp1
+                self.receiver1_data = yield tip.get_internaltip_receiver(auth1, tmp2)
+            except Exception as e:
+                self.assertTrue(False)
+                raise e
+        
         self.assertEqual(self.receiver1_data['fields'], self.submission_desc['wb_fields'])
 
         self.receiver2_data = yield tip.get_internaltip_receiver(auth2, self.rtip2_id)
+
         self.assertEqual(self.receiver2_data['fields'], self.submission_desc['wb_fields'])
 
     @inlineCallbacks
@@ -288,20 +303,17 @@ class TestTipInstance(TTip):
     def wb_get_receiver_list(self):
         receiver_list = yield tip.get_receiver_list_wb(self.wb_tip_id)
         self.assertEqual(len(receiver_list), 2)
-        self.assertEqual(receiver_list[0]['access_counter'], 1)
-        self.assertEqual(receiver_list[1]['access_counter'], 2)
+        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
 
     @inlineCallbacks
     def receiver_get_receiver_list(self):
         receiver_list = yield tip.get_receiver_list_receiver(self.receiver1_desc['receiver_gus'], self.rtip1_id)
         self.assertEqual(len(receiver_list), 2)
-        self.assertEqual(receiver_list[0]['access_counter'], 1)
-        self.assertEqual(receiver_list[1]['access_counter'], 2)
+        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
+
         receiver_list = yield tip.get_receiver_list_receiver(self.receiver2_desc['receiver_gus'], self.rtip2_id)
         self.assertEqual(len(receiver_list), 2)
-        self.assertEqual(receiver_list[0]['access_counter'], 1)
-        self.assertEqual(receiver_list[1]['access_counter'], 2)
-
+        self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
 
     @inlineCallbacks
     def receiver2_fail_in_delete_internal_tip(self):
