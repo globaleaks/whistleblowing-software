@@ -25,6 +25,12 @@ def anon_serialize_node(store):
       'email': unicode(node.email),
       'languages': list(node.languages or []),
       'version': GLSetting.version_string,
+      'maximum_filesize': GLSetting.max_file_size,
+      'tor2web_admin_permitted': GLSetting.tor2web_permitted_ops['admin'],
+      'tor2web_submission_permitted': GLSetting.tor2web_permitted_ops['submission'],
+      'tor2web_tip_permitted': GLSetting.tor2web_permitted_ops['tip'],
+      'tor2web_receiver_permitted': GLSetting.tor2web_permitted_ops['receiver'],
+      'tor2web_unauth_permitted': GLSetting.tor2web_permitted_ops['unauth'],
     }
 
 def serialize_context(context):

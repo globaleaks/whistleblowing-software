@@ -43,7 +43,7 @@ def hash_password(proposed_password, salt_input):
     @return:
         the scrypt hash in base64 of the password
     """
-    proposed_password = str(proposed_password)
+    proposed_password = proposed_password.encode('utf-8')
     salt = get_salt(salt_input)
 
     if not len(proposed_password):
@@ -55,8 +55,7 @@ def hash_password(proposed_password, salt_input):
 
 
 def check_password(guessed_password, base64_stored, salt_input):
-    guessed_password = str(guessed_password)
-    base64_stored = str(base64_stored)
+    guessed_password = guessed_password.encode('utf-8')
     salt = get_salt(salt_input)
 
     hashed_guessed = scrypt.hash(guessed_password, salt)
@@ -80,10 +79,6 @@ def change_password(base64_stored, old_password, new_password, salt_input):
     @return:
         the scrypt hash in base64 of the new password
     """
-    base64_stored = str(base64_stored)
-    old_password = str(old_password)
-    new_password = str(new_password)
-
     if not check_password(old_password, base64_stored, salt_input):
         log.err("old_password provided do match")
         raise errors.InvalidOldPassword

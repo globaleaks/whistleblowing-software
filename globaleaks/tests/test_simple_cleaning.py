@@ -55,7 +55,8 @@ class TTip(helpers.TestWithDB):
     }
 
     tipSubmission = {
-        'wb_fields': {'headline': u'an headline', 'description': u'a dirty desky'},
+        # This test rely on the default fields, add in create_context if is not specified
+        'wb_fields': {u'Short title': u'kochijan maki', 'Full description': u'kagebushi no jitzu'},
         'context_gus': '', 'receivers': [], 'files': [], 'finalize': False,
     }
 

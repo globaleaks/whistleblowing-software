@@ -165,7 +165,11 @@ class Context(Model):
 
     last_update = DateTime()
 
-    # receivers = ReferenceSet("Context.id", "Receiver.context_id")
+    #receivers = ReferenceSet(
+    #                         Context.id,
+    #                         ReceiverContext.context_id,
+    #                         ReceiverContext.receiver_id,
+    #                         Receiver.id)
 
     unicode_keys = ['name', 'description' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
@@ -322,6 +326,7 @@ class Node(Model):
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
     stats_update_time = Int()
+    stats_update_time = Int()
 
     unicode_keys = ['name', 'description', 'public_site',
                     'email', 'hidden_service' ]
@@ -407,16 +412,15 @@ class ReceiverContext(object):
 
 Context.receivers = ReferenceSet(
                                  Context.id,
-                                 ReceiverContext.receiver_id,
                                  ReceiverContext.context_id,
+                                 ReceiverContext.receiver_id,
                                  Receiver.id)
 
 Receiver.contexts = ReferenceSet(
                         Receiver.id,
-                        ReceiverContext.context_id,
                         ReceiverContext.receiver_id,
+                        ReceiverContext.context_id,
                         Context.id)
-
 
 class ReceiverInternalTip(object):
     """
@@ -436,7 +440,6 @@ InternalTip.receivers = ReferenceSet(InternalTip.id,
                                      ReceiverInternalTip.internaltip_id,
                                      ReceiverInternalTip.receiver_id,
                                      Receiver.id)
-
 
 InternalTip.context = Reference(InternalTip.context_id,
                                 Context.id)
