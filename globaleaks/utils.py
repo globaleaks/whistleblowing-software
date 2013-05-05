@@ -35,17 +35,24 @@ class Logger(object):
     """
     Customized LogPublisher
     """
+    def _str(self, msg):
+        if isinstance(msg, unicode):
+            return msg.encode('utf-8')
+        return str(msg)
+
     def info(self, msg):
-        print "[-] %s" % str(msg)
+        if GLSetting.loglevel <= logging.INFO:
+            print "[-] %s" % self._str(msg)
 
     def err(self, msg):
-        print "[!] %s" % str(msg)
+        print "[!] %s" % self._str(msg)
 
     def debug(self, msg):
-        print "[D] %s" % str(msg)
+        if GLSetting.loglevel <= logging.DEBUG:
+            print "[D] %s" % self._str(msg)
 
     def msg(self, msg):
-        print "[D] %s" % str(msg)
+        print "[ ] %s" % self._str(msg)
 
     def start_logging(self):
         """
@@ -252,6 +259,11 @@ def mail_exception(etype, value, tback):
     @param value: Exception string value
     @param tback: Traceback string data
     """
+    # this is an hack because inside the Generator, not a great stacktrace is produced
+    if(etype == GeneratorExit):
+        log.debug("Exception unhandled inside generator")
+        return
+
     mail_exception.mail_counter += 1
 
     exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
@@ -303,7 +315,7 @@ def acquire_mail_address(request):
     if 'mail_address' not in request['notification_fields']:
         return False
 
-    mail_string = str(request['notification_fields']['mail_address']).lower()
+    mail_string = request['notification_fields']['mail_address'].lower()
     if not re.match("^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$", mail_string):
         log.debug("Invalid email address format [%s]" % mail_string)
         return False

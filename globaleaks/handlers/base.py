@@ -15,6 +15,7 @@ import re
 import sys
 import os
 
+from twisted.python.failure import Failure
 from twisted.internet import fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
 from cyclone.httpserver import HTTPConnection
@@ -23,7 +24,6 @@ from cyclone import escape
 from globaleaks.utils import log, mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
-
 
 def validate_host(host_key):
     """
@@ -44,7 +44,7 @@ def validate_host(host_key):
         return True
 
     log.debug("Error in host requested: %s do not accepted between: %s " %
-              (host_key, str(GLSetting.accepted_hosts)))
+              (host_key, GLSetting.accepted_hosts))
     return False
 
 
@@ -65,7 +65,6 @@ class GLHTTPServer(HTTPConnection):
 
 
 class BaseHandler(RequestHandler):
-
     @staticmethod
     def validate_python_type(value, python_type):
         """
@@ -77,16 +76,12 @@ class BaseHandler(RequestHandler):
             return True
 
         if python_type == int:
-            if isinstance(value, int):
+            try:
+                int(value)
                 return True
-
-            if isinstance(value, unicode):
-                try:
-                    ret = int(value)
-                    return True
-                except Exception:
-                    return False
-
+            except Exception:
+                return False
+        
         # else, not int and not None...
         return isinstance(value, python_type)
 
@@ -104,19 +99,19 @@ class BaseHandler(RequestHandler):
         if callable(type):
             retval = BaseHandler.validate_python_type(value, type)
             if not retval:
-                log.err("-- Invalid python_type, in [%s] expected %s" % (str(value), type))
+                log.err("-- Invalid python_type, in [%s] expected %s" % (value, type))
             return retval
         # value as "{foo:bar}"
         elif isinstance(type, collections.Mapping):
             retval = BaseHandler.validate_jmessage(value, type)
             if not retval:
-                log.err("-- Invalid JSON/dict [%s] expected %s" % (str(value), str(type)))
+                log.err("-- Invalid JSON/dict [%s] expected %s" % (value, type))
             return retval
         # regexp
         elif isinstance(type, str):
             retval = BaseHandler.validate_GLtype(value, type)
             if not retval:
-                log.err("-- Failed Match in regexp [%s] against %s" % (str(value), str(type) ))
+                log.err("-- Failed Match in regexp [%s] against %s" % (value, type))
             return retval
         # value as "[ type ]"
         elif isinstance(type, collections.Iterable):
@@ -126,7 +121,7 @@ class BaseHandler(RequestHandler):
             else:
                 retval = all(BaseHandler.validate_type(x, type[0]) for x in value)
                 if not retval:
-                    log.err("-- List validation failed [%s] of %s" % (str(value), str(type)))
+                    log.err("-- List validation failed [%s] of %s" % (value, type))
                 return retval
         else:
             raise AssertionError
@@ -218,7 +213,7 @@ class BaseHandler(RequestHandler):
             GLSetting.cyclone_debug_counter += 1
 
             content = "\n" +("=" * 15) + ("Request %d=\n" % GLSetting.cyclone_debug_counter )
-            content += "headers: " + str(self.request.headers) + "\n"
+            content += "headers: " + self.request.headers + "\n"
             content += "url: " + self.request.full_url() + "\n"
             content += "body: " + self.request.body + "\n"
 
@@ -244,7 +239,7 @@ class BaseHandler(RequestHandler):
         if hasattr(self, 'globaleaks_io_debug'):
             content = "\n" +("-" * 15) + ("Response %d=\n" % self.globaleaks_io_debug)
             content += "code: " + str(self._status_code) + "\n"
-            content += "body: " + str(self._write_buffer) + "\n"
+            content += "body: " + self._write_buffer + "\n"
 
             self.do_verbose_log(content)
 
@@ -303,33 +298,25 @@ class BaseHandler(RequestHandler):
         if not self.current_user or not self.current_user.has_key('role'):
             raise errors.NotAuthenticated
 
-        if self.current_user['role'] == 'wb':
-            return True
-        else:
-            return False
-
+        return self.current_user['role'] == 'wb'
 
     @property
     def is_receiver(self):
         if not self.current_user or not self.current_user.has_key('role'):
             raise errors.NotAuthenticated
 
-        if self.current_user['role'] == 'receiver':
-            return True
-        else:
-            return False
-
+        return self.current_user['role'] == 'receiver'
 
     def _handle_request_exception(self, e):
-        # exception informations must be saved here before continue.
-        exc_type, exc_value, exc_tb = sys.exc_info()
-
-        try:
-            if isinstance(e.value, (HTTPError, HTTPAuthenticationRequired)):
-                e = e.value
-        except:
-            pass
-
+        # sys.exc_info() does not always work at this stage
+        if isinstance(e, Failure):
+            exc_type = e.type
+            exc_value = e.value
+            exc_tb = e.getTracebackObject()
+            e = e.value
+        else:
+            exc_type, exc_value, exc_tb = sys.exc_info()
+ 
         if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
             if GLSetting.cyclone_debug and e.log_message:
                 format = "%d %s: " + e.log_message
@@ -343,12 +330,10 @@ class BaseHandler(RequestHandler):
                 return self.send_error(e.status_code, exception=e)
         else:
             log.msg("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb) )
-                    # (self._request_summary(), self.request))
             if GLSetting.cyclone_debug:
                 log.msg(e)
             mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
-
 
 
 class BaseStaticFileHandler(StaticFileHandler):

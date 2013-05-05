@@ -11,9 +11,9 @@ from globaleaks.tests import helpers
 
 from globaleaks import db
 from globaleaks.settings import transact
-from globaleaks.models import Comment
+from globaleaks.models import Receiver
 
-class TestTransaction(helpers.TestWithDB):
+class TestTransaction(helpers.TestGL):
 
     def test_transaction_with_exception(self):
         try:
@@ -30,16 +30,16 @@ class TestTransaction(helpers.TestWithDB):
 
     @inlineCallbacks
     def test_transact_with_stuff(self):
-        comment_id = yield self._transact_with_stuff()
+        receiver_id = yield self._transact_with_stuff()
         # now check data actually written
         store = transact.get_store()
-        self.assertEqual(store.find(Comment, Comment.id == comment_id).count(), 1)
+        self.assertEqual(store.find(Receiver, Receiver.id == receiver_id).count(), 1)
 
     @inlineCallbacks
     def test_transact_with_stuff_failing(self):
-        comment_id = yield self._transact_with_stuff_failing()
+        receiver_id = yield self._transact_with_stuff_failing()
         store = transact.get_store()
-        self.assertEqual(list(store.find(Comment, Comment.id == comment_id)), [])
+        self.assertEqual(list(store.find(Receiver, Receiver.id == receiver_id)), [])
 
     @inlineCallbacks
     def test_transact_decorate_function(self):
@@ -65,19 +65,24 @@ class TestTransaction(helpers.TestWithDB):
 
     @transact
     def _transact_with_stuff(self, store):
-        comment = Comment()
-        comment.author = comment.internaltip_id = comment.type = comment.content = "receiver"
-        comment.mark = Comment._marker[0]
-        # just something not NULL
-        store.add(comment)
-        return comment.id
+        try:
+            receiver = Receiver(self.dummyReceiver)
+            receiver.password = self.dummyReceiver['password']
+            receiver.username = self.dummyReceiver['notification_fields']['mail_address']
+            receiver.failed_login = 0
+            receiver.notification_fields = self.dummyReceiver['notification_fields']
+            store.add(receiver)
+        except Exception as e:
+            print e
+        return receiver.id
 
     @transact
     def _transact_with_stuff_failing(self, store):
-        comment = Comment()
-        comment.author = comment.internaltip_id = comment.type = comment.content = "receiver"
-        comment.mark = Comment._marker[0]
-        # just something not NULL
-        store.add(comment)
+        receiver = Receiver(self.dummyReceiver)
+        receiver.password = self.dummyReceiver['password']
+        receiver.username = self.dummyReceiver['notification_fields']['mail_address']
+        receiver.failed_login = 0
+        receiver.notification_fields = self.dummyReceiver['notification_fields']
+        store.add(receiver)
         raise exceptions.DisconnectionError
 

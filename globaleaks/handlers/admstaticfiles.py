@@ -83,7 +83,7 @@ def dump_static_files(filesinupload):
                 (filelocation, len(single_file['body']) ) )
 
         with open(filelocation, 'w+') as fd:
-            fdesc.writeToFD(fd.fileno(), single_file['body'])
+            fdesc.writeToFD(fd.fileno(), single_file['body'].encode('utf-8'))
 
     return get_files_info(filesinupload)
 

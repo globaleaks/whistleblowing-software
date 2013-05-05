@@ -1,3 +1,5 @@
+# -*- coding: UTF-8
+
 import os
 import json
 import time
@@ -30,6 +32,8 @@ GLSetting.remove_directories()
 transact.debug = True
 class TestWithDB(unittest.TestCase):
     def setUp(self):
+        GLSetting.set_devel_mode()
+        GLSetting.eval_paths()
         GLSetting.create_directories()
         return db.create_tables(create_node=True)
 
@@ -90,32 +94,28 @@ class TestGL(TestWithDB):
             'name': u'created by shooter',
             'description': u'This is the update',
             'fields': [{u'hint': u'autovelox',
-                        u'label': u'city',
-                        u'name': u'city',
+                        u'name': u'city and space',
                         u'presentation_order': 1,
                         u'required': True,
                         u'type': u'text',
                         u'value': u"Yadda I'm default with apostrophe"},
                        {u'hint': u'name of the sun',
-                        u'label': u'Sun',
-                        u'name': u'Sun',
+                        u'name': u'ß@ł€¶ -- Spécìàlé €$£ char',
                         u'presentation_order': 2,
                         u'required': True,
-                        u'type': u'checkbox',
+                        u'type': u'checkboxes',
                         u'value': u"I'm the sun, I've not name"},
                        {u'hint': u'put the number ',
-                        u'label': u'penality details',
-                        u'name': u'dict2',
+                        u'name': u'dict2 whatEver',
                         u'presentation_order': 3,
                         u'required': True,
                         u'type': u'text',
                         u'value': u'666 the default value'},
                        {u'hint': u'details:',
-                        u'label': u'how do you know that ?',
-                        u'name': u'dict3',
+                        u'name': u'dict3 cdcd',
                         u'presentation_order': 4,
                         u'required': False,
-                        u'type': u'textarea',
+                        u'type': u'text',
                         u'value': u'buh ?'}],
             'selectable_receiver': False,
             'tip_max_access': 10,
@@ -128,7 +128,7 @@ class TestGL(TestWithDB):
         }
         self.dummySubmission = {
             'context_gus': '',
-            'wb_fields': {"city":"Milan","Sun":"warm","dict2":"happy","dict3":"blah"},
+            'wb_fields': self.fill_random_fields(self.dummyContext),
             'finalize': False,
             'receivers': [],
         }
@@ -157,6 +157,21 @@ class TestGL(TestWithDB):
             'file_template': u'file message: %sNodeName%',
             'activation_template': u'activation message: %sNodeName%',
         }
+
+    def fill_random_fields(self, context_dict):
+        """
+        The type is not jet checked/enforced/validated
+        """
+        assert len(context_dict['fields']) > 1
+
+        ret_dict = {}
+        for sf in context_dict['fields']:
+
+            assert sf.has_key(u'name')
+            ret_dict.update({ sf[u'name'] : ''.join(unichr(x) for x in range(0x400, 0x4FF))})
+
+        return ret_dict
+
 
 class TestHandler(TestGL):
     """

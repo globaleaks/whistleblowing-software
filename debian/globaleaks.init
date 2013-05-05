@@ -76,14 +76,15 @@ NAME=$(basename $(readlink -nf $0))
 
 if [[ $EUID -ne 0 ]]; then
    echo "Error: GlobaLeaks init script must be run as root" 1>&2
-   exit 1
+   exit 0
 fi
 
 SCRIPTNAME=$0
 
+GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
+
 read_pid()
 {
-    GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
     if [ -e ${GLBACKEND_PIDFILE} ]; then
         GLBACKEND_PID=`cat ${GLBACKEND_PIDFILE}`
     else
@@ -102,20 +103,20 @@ read_pid()
 check_iptables()
 {
     if [ ${NETWORK_SANDBOXING} -eq 1 ] && ! which iptables >/dev/null 2>&1 ; then
-        echo "Error: GlobaLeaks Network Sandboxing requires iptables"
+        log_action_end_msg 1 "GlobaLeaks Network Sandboxing requires iptables"
         exit 1
     fi
 }
 
 network_sandboxing_start()
 {
-    echo "Enabling GlobaLeaks Network Sandboxing..."
+    log_action_begin_msg "Enabling GlobaLeaks Network Sandboxing"
 
     check_iptables
 
     iptables -L | grep ${USER} >/dev/null 2<&-
     if [ $? -eq 0 ]; then
-        echo "already enabled."
+        log_action_end_msg 0 "already enabled."
         return
     fi
 
@@ -129,7 +130,6 @@ network_sandboxing_start()
         iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
     done
 
-
     # OUTBOUND
     # All outbound connections from GlobaLeaks goes trough Tor
     iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
@@ -139,19 +139,19 @@ network_sandboxing_start()
     iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
     iptables -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
 
-    echo "done."
+    log_action_end_msg 0
 }
 
 network_sandboxing_stop()
 {
-    echo "Disabling GlobaLeaks Network Sandboxing..."
+    log_action_begin_msg "Disabling GlobaLeaks Network Sandboxing"
 
     check_iptables
 
     iptables -L | grep ${USER} >/dev/null 2<&-
     if [ $? -ne 0 ]; then
-        echo "already disabled."
-        exit 0
+        log_action_end_msg 0 "already disabled."
+        return
     fi
 
     # INBOUND
@@ -173,34 +173,34 @@ network_sandboxing_stop()
     iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
     iptables -t filter -D OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
 
-    echo "done."
+    log_action_end_msg 0
 }
 
 do_start()
 {
+    log_daemon_msg "Starting GlobaLeaks daemon" "globaleaks"
+
     GLBACKEND_DAEMON=`which globaleaks`
     if [ ! ${GLBACKEND_DAEMON} ]; then
-        echo "Error: Globlaleaks is not installed"
+        log_end_msg 1 "Globlaleaks is not installed"
         exit 1
     fi
     GLBACKEND_ARGS="--port=${LISTENING_PORT} --accept-host=${HOSTS_LIST} --user=${USER} --group=${GROUP} --working-path=${WORKING_DIR}"
 
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 
-    echo "Starting GlobaLeaks..."
-
     read_pid
 
     if ! id -u ${USER} >/dev/null 2>&1; then
-       echo "Error: unexistent user (${USER})"
+       log_end_msg 1 "unexistent user (${USER})"
        exit 1
     fi
 
     # Check to see if the GLBackend daemon is already running.
     if [ "${GLBACKEND_PID}" -ne "0" ]; then
       if kill -0 ${GLBACKEND_PID} >/dev/null 2<&-; then
-        echo "GlobaLeaks already running at pid ${GLBACKEND_PID}"
-        return
+        log_end_msg 0 "GlobaLeaks already running at pid ${GLBACKEND_PID}"
+        exit 0
       fi
     fi
 
@@ -209,34 +209,27 @@ do_start()
     # This is a little hack to avoid python doing os.chdir('.') and getting mad.
     cd /tmp
     if ${STARTCMD}; then
-        echo "started."
+        log_end_msg 0 "started."
     else
-        echo "problem when starting. aborting."
+        log_end_msg 1 "problem when starting."
     fi
-
-    exit 0
 }
 
 do_stop()
 {
-    echo "Stopping GlobaLeaks..."
+    log_daemon_msg "Stopping GlobaLeaks daemon" "globaleaks"
 
     read_pid
 
-    # this is always needed
-    rm -f ${GLBACKEND_PIDFILE} >/dev/null 2<&-
-
     if [ "${GLBACKEND_PID}" -eq "0" ] || [ kill -0 ${GLBACKEND_PID} >/dev/null 2<&- ]; then
-        echo "not running."
+        log_end_msg 0 "not running."
     else
         kill -15 ${GLBACKEND_PID} >/dev/null 2<&-
-        echo "stopped."
+        log_end_msg 0 "stopped."
     fi
 
     # this must be always done
     network_sandboxing_stop
-
-    exit 0
 }
 
 do_restart()
@@ -246,47 +239,39 @@ do_restart()
     GLBACKEND_PID=0
 
     do_start
-
-    exit 0
 }
 
 #
 # Function that queries the status of the daemon/service
 #
-do_status()
-{
-    exit 0
-}
 
 case "$1" in
   start)
-	[ "$VERBOSE" != no ] && log_daemon_msg "Starting $DESC" "$NAME"
 	do_start
-	case "$?" in
-		0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
-		2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
-	esac
+    exit 0
 	;;
   stop)
-	[ "$VERBOSE" != no ] && log_daemon_msg "Stopping $DESC" "$NAME"
 	do_stop
-	case "$?" in
-		0|1) [ "$VERBOSE" != no ] && log_end_msg 0 ;;
-		2) [ "$VERBOSE" != no ] && log_end_msg 1 ;;
-	esac
-	;;
+    exit 0
+    ;;
   status)
-       status_of_proc "$DAEMON" "$NAME" && exit 0 || exit $?
-       ;;
-  #reload|force-reload)
-	#
-	# If do_reload() is not implemented then leave this commented out
-	# and leave 'force-reload' as an alias for 'restart'.
-	#
-	#log_daemon_msg "Reloading $DESC" "$NAME"
-	#do_reload
-	#log_end_msg $?
-	#;;
+    if test ! -r $(dirname ${GLBACKEND_PIDFILE}); then
+        log_failure_msg "cannot read PID file ${GLBACKEND_PIDFILE}"
+        exit 4
+    fi
+    pid=`cat ${GLBACKEND_PIDFILE} 2>/dev/null` || true
+    if test ! -f ${GLBACKEND_PIDFILE} -o -z "$pid"; then
+        log_failure_msg "GlobaLeaks is not running"
+        exit 3
+    fi
+    if ps "$pid" >/dev/null 2>&1; then
+        log_success_msg "GlobaLeaks is running"
+        exit 0
+    else
+        log_failure_msg "GlobaLeaks is not running"
+        exit 1
+    fi
+    ;;
   restart|force-reload)
 	#
 	# If the "reload" option is implemented then remove the
@@ -294,9 +279,10 @@ case "$1" in
 	#
 	log_daemon_msg "Restarting $DESC" "$NAME"
 	do_restart
+    exit 0
 	;;
   *)
-	echo "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
-	exit 3
+	log_action_msg "Usage: $SCRIPTNAME {start|stop|status|restart|force-reload}" >&2
+	exit 1
 	;;
 esac

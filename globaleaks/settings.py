@@ -67,7 +67,7 @@ class GLSettingsClass:
         self.error_reporting_destmail = "stackexception@lists.globaleaks.org"
 
         # debug defaults
-        self.db_debug = False
+        self.storm_debug = False
         self.cyclone_debug = -1
         self.cyclone_debug_counter = 0
         self.loglevel = "CRITICAL"
@@ -75,6 +75,8 @@ class GLSettingsClass:
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
         self.working_path = '/var/globaleaks'
+        self.static_source = '/usr/share/globaleaks/glbackend'
+        self.glclient_path = '/usr/share/globaleaks/glclient'
         self.eval_paths()
 
         self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
@@ -102,11 +104,22 @@ class GLSettingsClass:
         self.accepted_hosts = "127.0.0.1,localhost"
 
         # transport security defaults
+        #self.tor2web_permitted_ops = {
+        #    'admin': False,
+        #    'submission': False,
+        #    'tip': False,
+        #    'receiver': False,
+        #    'unauth': True
+        #}
+
+        # https://github.com/globaleaks/GlobaLeaks/issues/182
+        # we need this settings to permit testing over tor2web
+        # transport security defaults
         self.tor2web_permitted_ops = {
-            'admin': False,
-            'submission': False,
-            'tip': False,
-            'receiver': False,
+            'admin': True,
+            'submission': True,
+            'tip': True,
+            'receiver': True,
             'unauth': True
         }
 
@@ -120,6 +133,8 @@ class GLSettingsClass:
         self.uid = os.getuid()
         self.gid = os.getgid()
         self.start_clean = False
+        self.twistd_log = False
+        self.devel_mode = False
 
         # Expiry time of finalized and not finalized submission,
         # They are copied in a context *when is created*, then
@@ -142,20 +157,23 @@ class GLSettingsClass:
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
-
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.log_path, "jsondump"))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
-        self.static_source = '/usr/share/globaleaks/glbackend'
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
-
         self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
+
+    def set_devel_mode(self):
+        self.working_path = os.path.join(self.root_path, 'workingdir')
+        self.static_source = os.path.join(self.root_path, 'staticdata')
+        self.glclient_path = os.path.abspath(
+            os.path.join(self.root_path, '..', 'GLClient', 'app'))
 
     def load_cmdline_options(self):
         """
@@ -168,7 +186,7 @@ class GLSettingsClass:
 
         self.nodaemon = self.cmdline_options.nodaemon
 
-        self.db_debug = self.cmdline_options.storm
+        self.storm_debug = self.cmdline_options.storm_debug
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
 
@@ -213,14 +231,12 @@ class GLSettingsClass:
 
         self.working_path = self.cmdline_options.working_path
 
-        self.eval_paths()
-        if self.cmdline_options.db_debug:
-            self.glclient_path = os.path.abspath(os.path.join(self.root_path,
-                '..', 'GLClient', 'app'))
+        # if devel_mode == True we do some hacks on paths and config values
+        self.devel_mode = self.cmdline_options.devel_mode
+        if self.devel_mode:
+            self.set_devel_mode()
 
-        else:
-            self.glclient_path = os.path.abspath(os.path.join('/usr/share/globaleaks',
-                'glclient'))
+        self.eval_paths()
 
         # special evaluation of glclient directory:
         indexfile = os.path.join(self.glclient_path, 'index.html')
@@ -323,7 +339,7 @@ class GLSettingsClass:
                         os.path.join(self.static_path, single_file)
                     )
             if not almost_one_file:
-                print "[Non fatal error] Founded empty: %s" % self.static_source
+                print "[Non fatal error] Found empty: %s" % self.static_source
                 print "Your instance has not torrc and the default logo"
 
 
@@ -433,7 +449,7 @@ class transact(object):
         Returns a reference to Storm Store
         """
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file + '?foreign_keys=ON&journaling_mode=WAL')
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
