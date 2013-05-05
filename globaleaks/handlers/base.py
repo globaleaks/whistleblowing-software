@@ -65,6 +65,10 @@ class GLHTTPServer(HTTPConnection):
 
 
 class BaseHandler(RequestHandler):
+    def __init__(self, application, request, **kwargs):
+        RequestHandler.__init__(self, application, request, **kwargs)
+        self.set_header("X-Content-Type-Options", "nosniff")
+
     @staticmethod
     def validate_python_type(value, python_type):
         """
@@ -337,6 +341,9 @@ class BaseHandler(RequestHandler):
 
 
 class BaseStaticFileHandler(StaticFileHandler):
+    def __init__(self, application, request, **kwargs):
+        StaticFileHandler.__init__(self, application, request, **kwargs)
+        self.set_header("X-Content-Type-Options", "nosniff")
 
     def prepare(self):
         """
