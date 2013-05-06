@@ -52,7 +52,7 @@
           <fieldset ng-switch-when="checkboxes">
             <label ng-repeat="option in field.options">
               <input type="checkbox"
-              ng-model="field.value[tokenize(option.name)]"
+              ng-model="field.value[option.name]"
               value="{{option.value}}">
               {{option.name}}
             </label>
