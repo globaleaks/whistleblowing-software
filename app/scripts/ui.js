@@ -62,7 +62,8 @@ angular.module('submissionUI', []).
     }
 }]).
   // XXX this needs some major refactoring.
-  directive('fileUpload', ['$rootScope', '$cookies', function($rootScope, $cookies){
+  directive('fileUpload', ['$rootScope', '$cookies', 'Node',
+            function($rootScope, $cookies, Node){
 
     // The purpose of this directive is to register the jquery-fileupload
     // plugin
@@ -77,7 +78,8 @@ angular.module('submissionUI', []).
         // This tells to create a two way data binding with what is passed
         // inside of the element attributes (ex. file-upload="someModel")
         uploadedFiles: '=',
-        uploadingFiles: '='
+        uploadingFiles: '=',
+        maximumFilesize: '='
       },
 
       link: function(scope, element, attrs) {
@@ -86,8 +88,26 @@ angular.module('submissionUI', []).
         function add(e, data) {
           for (var file in data.files) {
             var file_info,
-              file_id = $rootScope.uploadedFiles.length + file;
+              file_id;
 
+            if (data.files[file].size >= scope.maximumFilesize) {
+              var error = {};
+
+              error.message = data.files[file].name +
+                  " is too big. (Maximum filesize: " +
+                  (scope.maximumFilesize / (1024*1024)) + " MB)";
+              error.code = 39;
+
+              if (!$rootScope.errors) {
+                $rootScope.errors = [];
+              }
+              $rootScope.errors.push(error);
+              data.files.splice(file, 1);
+              scope.$apply();
+              continue;
+            };
+
+            file_id = $rootScope.uploadedFiles.length + file;
             file_info = {'name': data.files[file].name,
               'filesize': data.files[file].size,
               'error': 'None',
@@ -99,7 +119,9 @@ angular.module('submissionUI', []).
             $rootScope.uploadingFiles.push(file_info);
             scope.$apply();
           }
-          data.submit();
+          if (data.files.length > 0) {
+            data.submit();
+          }
         };
 
         function progressMeter(e, data) {

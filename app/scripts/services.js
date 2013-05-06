@@ -167,6 +167,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       self.receivers = [];
       self.current_context = {};
       self.selected_language = null;
+      self.maximum_filesize = null;
       self.current_context_receivers = [];
       self.receivers_selected = {};
       self.completed = false;
@@ -185,6 +186,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
 
       Node.get(function(node_info) {
         self.selected_language = node_info.languages[0].code;
+        self.maximum_filesize = node_info.maximum_filesize;
 
         Contexts.query(function(contexts){
           self.contexts = contexts;
