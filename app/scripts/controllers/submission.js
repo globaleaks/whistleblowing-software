@@ -14,6 +14,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
 
   new Submission(function(submission){
     $scope.submission = submission;
+    $scope.maximumFilesize = submission.maximum_filesize;
 
     $scope.current_context = submission.current_context;
     $scope.receivers_selected = submission.receivers_selected;
