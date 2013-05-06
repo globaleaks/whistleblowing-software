@@ -1,6 +1,5 @@
 <div class="jumbotron homeSplash">
     <h1>Welcome to {{node_info.name}}</h1>
-
     <a href="#/submission" ng-hide="!configured"
         class="btn btn-primary btn-large">Blow the Whistle</a>
 
@@ -12,22 +11,26 @@
 
 <div class="container">
     <div class="homeIntro">
-        <h1>Are you a whistleblower?</h1>
-        <label>Enter your receipt<br/>
-        <input type="text" ng-model="receipt">
-        </label>
-        <a ng-click="view_tip(receipt)" class="btn btn-primary">View Tip</a>
 
-        <h1>What is this about?</h1>
-        <p class="homeIntro-byline">How you can help change the world</p>
-        <p class="text-warning">
-            <span class="text-info">Psst</span>: This is a text, you (admin/adopters) can modify
-            this content editing GLCLient in</p>
-        <pre>app/templates/default/views/home.html</pre>
-        <p class="text-warning">
-            Help us (info@globaleaks.org) in improve your experience, we need feedback about the
-            expected customization of the Client, some elements are customizable by Admin
-            interface panel, and we need to understand your needs.
-        </p>
+      <p class="lead">{{node_info.description}}</p>
+
+      <h1>Are you a whistleblower?</h1>
+      <label>Enter your receipt<br/>
+        <input type="text" ng-model="receipt">
+      </label>
+      <a ng-click="view_tip(receipt)" class="btn btn-primary">View Tip</a>
+
+      <h1>What is this about?</h1>
+      <p class="homeIntro-byline">How you can help change the world</p>
+      <p class="text-warning">
+      <span class="text-info">Psst</span>: This is a text, you (admin/adopters) can modify
+      this content editing GLCLient in</p>
+      <pre>app/templates/default/views/home.html</pre>
+      <p class="text-warning">
+      Help us (info@globaleaks.org) in improve your experience, we need feedback about the
+      expected customization of the Client, some elements are customizable by Admin
+      interface panel, and we need to understand your needs.
+      </p>
+
     </div>
 </div>
