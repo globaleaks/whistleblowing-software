@@ -13,26 +13,35 @@ from globaleaks.utils import log
 from globaleaks.third_party import rstr
 from globaleaks import security, utils
 
-def authenticated(*roles):
+def authenticated(role):
     """
     Decorator for authenticated sessions.
     If the user (could be admin/receiver/wb) is not authenticated, return
-    a http 401 error.
+    a http 412 error.
     Otherwise, update the current session and then fire :param:`method`.
     """
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
-            for role in roles:
-                if not cls.current_user:
-                    raise errors.NotAuthenticated
-                elif role != cls.current_user.role:
-                    log.err("Authenticated with a different required user: now %s, expected %s" %
-                            (cls.current_user.role, role) )
-                    raise errors.NotAuthenticated("Good login in wrong scope: you %s, expected %s" %
-                            (cls.current_user.role, role) )
-                else:
-                    GLSetting.sessions[cls.current_user.id].timestamp = time.time()
-            return method_handler(cls, *args, **kwargs)
+            """
+            If not yet auth, is redirected
+            If is logged with the right account, is accepted
+            If is logged with the wrong account, is rejected with a special message
+            """
+
+            if not cls.current_user:
+                raise errors.NotAuthenticated
+
+            if role == cls.current_user.role:
+                log.debug("Authentication OK (%s) %s" % (role, cls.current_user.id) )
+                GLSetting.sessions[cls.current_user.id].timestamp = time.time()
+                return method_handler(cls, *args, **kwargs)
+
+            # else, if role != cls.current_user.role
+            log.err("Authenticated with a different required user: now %s, expected %s" %
+                    (cls.current_user.role, role) )
+            raise errors.NotAuthenticated("Good login in wrong scope: you %s, expected %s" %
+                                          (cls.current_user.role, role) )
+
         return call_handler
     return wrapper
 
@@ -50,7 +59,7 @@ def transport_security_check(wrapped_handler_role):
     """
     Decorator for enforce a minimum security on the transport mode.
     Tor and Tor2Web has two different protection level, and some operation
-    maybe forbidden if in Tor2Web, return 403 (Forbidden)
+    maybe forbidden if in Tor2Web, return 417 (Expectation Fail)
     """
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
@@ -67,7 +76,12 @@ def transport_security_check(wrapped_handler_role):
                     (wrapped_handler_role, cls.request.uri) )
                 raise errors.TorNetworkRequired
 
+            if are_we_tor2web:
+                log.debug("Accepted Tor2Web connection for role '%s' in uri %s" %
+                    (wrapped_handler_role, cls.request.uri) )
+
             return method_handler(cls, *args, **kwargs)
+
         return call_handler
     return wrapper
 
@@ -172,11 +186,6 @@ class AuthenticationHandler(BaseHandler):
     def post(self):
         """
         This is the /login handler expecting login/password/role,
-        here is performed the validation of the transport stream, to avoid an user
-        login himself using Tor2Web. This behavior actually can't happen (because there
-        are not a redirect on /login if the unsafe transport is detected, but if someone
-        try to access using the unsafe channel, because is writing the URL by personal choose,
-        is forbidden and reported as warning.
         """
         request = self.validate_message(self.request.body, requests.authDict)
 
@@ -184,30 +193,19 @@ class AuthenticationHandler(BaseHandler):
         password = request['password']
         role = request['role']
 
+        # Then verify credential, if the channel shall be trusted
         if role == 'admin':
             # username is ignored
             user_id = yield login_admin(password)
-            security_tranport_role = role
         elif role == 'wb':
             # username is ignored
             user_id = yield login_wb(password)
-            security_tranport_role = 'tip'
         elif role == 'receiver':
             user_id = yield login_receiver(username, password)
-            security_tranport_role = 'receiver'
         else:
             raise errors.InvalidInputFormat(role)
 
         if not user_id:
-            raise errors.InvalidAuthRequest
-
-        # Channel safety checks
-        are_we_tor2web = get_tor2web_header(self.request.headers)
-        accept_tor2web = GLSetting.tor2web_permitted_ops[security_tranport_role]
-        if are_we_tor2web and accept_tor2web == False:
-            log.err("Role [%s] has authentcated himself via unsafe channel (info: %s)" %
-                (role, username) )
-            # The error is the same of invalid L/P to avoid disclosure of valid credentials
             raise errors.InvalidAuthRequest
 
         self.write({'session_id': self.generate_session(role, user_id) ,
