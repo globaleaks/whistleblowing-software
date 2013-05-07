@@ -11,7 +11,7 @@ usage: $0 options
 
         -p: port (e.g.: 8082)
 
-        -n: nodebase (e.g.: /var/globaleaks/subdomain.domain.tld)
+        -n: nodebase (e.g.: /var/subdomain.domain.tld)
 
 EOF
 }
