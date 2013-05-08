@@ -51,20 +51,17 @@ if [ -z "$nodebase"]; then
 	nodebase="/var/$domain"
 fi
 
-echo "creating http://$domain"
-echo "the internal port used would be $port"
-
-echo "creating the GlobaLeaks directory: $nodebase"
+echo "+ creating GlobaLeaks http://$domain:$port instance in directory $nodebase"
 
 if [ -d $nodebase ]; then
-	echo "you're already a $nodebase directory. debug please"
+	echo "! FAIL: directory $nodebase already present. debug please"
 	exit
 fi
 
 mkdir -p $nodebase
 
 if [ ! -d $nodebase ]; then
-	echo "Unable to create $nodebase, debug please"
+	echo "! FAIL: unable to create $nodebase, debug please"
 	exit
 fi
 
@@ -74,31 +71,28 @@ HSDIRline="HiddenServiceDir $HSDIRpath"
 HSPORTline="HiddenServicePort 80 127.0.0.1:$port"
 
 if [ "`grep "$HSDIRline" $torrc`" ]; then
-	echo "debug by hand please, in $torrc exists $HSDIRline"
+	echo "! FAIL: line $HSDIRline already present in $torrc, debug please"
 	exit
 fi
 
 if [ "`grep "$HSPORTline" $torrc`" ]; then
-        echo "debug by hand please, in $torrc exists $HSPORTline"
+        echo "! FAIL: line $HSPORTline already present in $torrc, debug please"
         exit
 fi
 
-echo "adding to $torrc the new hidden service binded at port $port"
+echo "+ a new hidden service has been added to $torrc and binded at port $port"
 
 echo $HSDIRline >> $torrc
 echo $HSPORTline >> $torrc
 
 chown globaleaks.globaleaks -R $nodebase
 
-echo "restarting tor"
-/etc/init.d/tor restart
+restartscript="$nodebase/restart-$domain.sh"
+command="globaleaks -p $port -k 9 -l DEBUG -t -d -a 127.0.0.1,$domain -w $nodebase"
 
-echo "starting globaleaks instance"
-echo "executing '$command' as user globaleaks"
-restartscript="$nodebase/restart-$domain.sh"
-command="globaleaks -p $port -k 9 --devel-mode -l DEBUG -t -d -a 127.0.0.1,$domain"
-restartscript="$nodebase/restart-$domain.sh"
 echo "su -c \"$command\" globaleaks" > $restartscript
+
 chmod +x $restartscript
 
-$restartscript
+echo "SUCCESS:it's now possible to start/restart globaleaks by issuing $restartscript"
+echo "\tto build the required GlobaLeaks Tor Hidden Service tor must be restarted also."
