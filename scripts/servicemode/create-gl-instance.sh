@@ -3,24 +3,26 @@
 usage()
 {
 cat << EOF
-usage: $0 options
+
+Usage: $0 options
 
    This script help in the creation of a new globaleaks instance.
 
-	-d: domain (e.g.: subdomain.domain.tld)
+	-d: domain (e.g.: subdomain.domain.tld)        [REQUIRED]
 
-        -p: port (e.g.: 8082)
+        -p: port (e.g.: 8082)                          [REQUIRED]
 
-        -n: nodebase (e.g.: /var/subdomain.domain.tld)
+        -n: nodebase (e.g.: /var/subdomain.domain.tld) [OPTIONAL]
 
 EOF
 }
 
-while getopts “h:d:p:n” OPTION
+while getopts “hd:p:n” OPTION
 do
      case $OPTION in
          h)
              usage
+             exit
              ;;
          d)
              domain=$OPTARG
@@ -33,17 +35,20 @@ do
              ;;
 	 ?)
 	     usage
+             exit
 	     ;;
 	esac
 done
 
 if [ -z "$domain" ]; then
-	echo "missing domain: you need to specify a -d domain"
+	echo "! MISSING ARGUMENT domain: you need to specify a -d domain"
+        usage
         exit
 fi
 
 if [ -z "$port" ]; then
-        echo "missing port: you need to specify a -p port"
+        echo "! MISSING ARGUMENT port: you need to specify a -p port"
+        usage
         exit
 fi
 
