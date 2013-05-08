@@ -328,3 +328,10 @@ PIP_DEPS=(twisted==13.0.0 apscheduler==2.1.0 zope.component==4.1.0
 for PIP_DEP in $PIP_DEPS; do
   sudo pip install $PIP_DEP
 done
+
+echo "deb http://deb.globaleaks.org/ unstable/" >> /etc/apt/sources.list
+torsocks gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008
+gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -
+torsocks apt-get update
+torsocks apt-get install globaleaks
+update-rc.d globaleaks defaults # Set globaleaks to automatically start on-boot
