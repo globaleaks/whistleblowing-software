@@ -6,7 +6,7 @@ USAGE: ./servicemode/create-gl-instance.sh options
 
    This script help in the creation of a new globaleaks instance.
 
-	-d: domain (e.g.: subdomain.domain.tld)        [REQUIRED]
+        -d: domain (e.g.: subdomain.domain.tld)        [REQUIRED]
 
         -p: port (e.g.: 8082)                          [REQUIRED]
 
