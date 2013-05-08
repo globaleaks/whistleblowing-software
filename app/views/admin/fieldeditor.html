@@ -55,9 +55,7 @@
               <div ng-repeat="option in field.options">
                 <form class="form-inline">
                   <label>Name</label>
-                  <input type="text" placeholder="name" ng-model="option.name" required>
-                  <label>Value</label>
-                  <input type="text" placeholder="value" ng-model="option.value" required>
+                  <input type="text" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" required>
                 </form>
               </div>
               <button class="btn btn-info" ng-click="addOption(field)">
