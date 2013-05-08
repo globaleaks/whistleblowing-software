@@ -28,7 +28,7 @@
           <input type="text" ng-model="field.name" required>
 
           <label>Hint</label>
-          <input type="text" ng-model="field.hint" required>
+          <input type="text" ng-model="field.hint">
 
           <label>Required
           <input type="checkbox" ng-model="field.required">
@@ -55,9 +55,9 @@
               <div ng-repeat="option in field.options">
                 <form class="form-inline">
                   <label>Name</label>
-                  <input type="text" placeholder="name" ng-model="option.name">
+                  <input type="text" placeholder="name" ng-model="option.name" required>
                   <label>Value</label>
-                  <input type="text" placeholder="value" ng-model="option.value">
+                  <input type="text" placeholder="value" ng-model="option.value" required>
                 </form>
               </div>
               <button class="btn btn-info" ng-click="addOption(field)">
