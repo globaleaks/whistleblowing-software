@@ -22,9 +22,16 @@ GLClient.controller('AdminContextsCtrl',
 
 }]);
 
-GLClient.controller('AdminFieldEditorCtrl',
-    ['$scope',
-    function($scope) {
+GLClient.controller('AdminFieldEditorCtrl', ['$scope',
+                    function($scope) {
+
+    function tokenize(input) {
+      var result = input.replace(/[^-a-zA-Z0-9,&\s]+/ig, '');
+      result = result.replace(/-/gi, "_");
+      result = result.replace(/\s/gi, "-");
+      return result;
+    }
+
     $scope.editing = false;
 
     if ($scope.field.name === undefined) {
@@ -42,6 +49,10 @@ GLClient.controller('AdminFieldEditorCtrl',
         field.options = [];
       }
       field.options.push({order: 0})
+    }
+
+    $scope.updateValue = function(option) {
+      option.value = tokenize(option.name);
     }
 
     $scope.deleteField = function(field) {
