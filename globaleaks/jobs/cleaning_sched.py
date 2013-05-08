@@ -31,11 +31,20 @@ def get_tiptime_by_marker(store, marker):
         comment_cnt = store.find(Comment, Comment.internaltip_id == itip.id).count()
         files_cnt = store.find(InternalFile, InternalFile.internaltip_id == itip.id).count()
 
+        if not itip.context:
+            log.err("A Tip related to a not existent Context! This would not happen if delete on cascade is working")
+            # And the removal is forced putting 1 second of life to the Tip.
+            tip_timetolive = 1
+            submission_timetolive = 1
+        else:
+            tip_timetolive = itip.context.tip_timetolive
+            submission_timetolive = itip.context.submission_timetolive
+
         serialized_tipinfo = {
             'id': itip.id,
             'creation_date': pretty_date_time(itip.creation_date),
-            'tip_life_seconds':  itip.context.tip_timetolive,
-            'submission_life_seconds':  itip.context.submission_timetolive,
+            'tip_life_seconds':  tip_timetolive,
+            'submission_life_seconds':  submission_timetolive,
             'files': files_cnt,
             'comments': comment_cnt,
         }
