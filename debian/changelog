@@ -1,3 +1,9 @@
+globaleaks (0.2.0.1-1) unstable; urgency=low
+
+  * Public alpha release of globaleaks
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 9 May 2013 21:45:49 +0002
+
 globaleaks (0.2.0.0-1) unstable; urgency=low
 
   * First alpha release of globaleaks
