@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 PIP_PKG="pip-1.3.1.tar.gz"
 PIP_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}"
