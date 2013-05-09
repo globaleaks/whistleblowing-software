@@ -264,9 +264,9 @@ class TorNetworkRequired(GLException):
     A connection receiver not via Tor network is required to
     be enforced with anonymity
     """
-    reason = "Resource can be accessed only from a Tor client"
+    reason = "Resource can be accessed only within Tor network"
     error_code = 37
-    status_code = 403 # Forbidden
+    status_code = 417 # Expectation Fail
 
 class ReservedFileName(GLException):
     """

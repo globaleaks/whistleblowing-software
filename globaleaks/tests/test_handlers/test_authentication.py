@@ -2,6 +2,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 from globaleaks.handlers import authentication
 from globaleaks.rest import errors
+from globaleaks.settings import GLSetting
 
 class TestAuthentication(helpers.TestHandler):
     _handler = authentication.AuthenticationHandler
@@ -13,6 +14,17 @@ class TestAuthentication(helpers.TestHandler):
            'password': 'globaleaks',
            'role': 'admin'
         })
+        success = yield handler.post()
+        self.assertTrue('session_id' in self.responses[0])
+
+    @inlineCallbacks
+    def test_accept_admin_login_in_tor2web(self):
+        handler = self.request({
+            'username': 'admin',
+            'password': 'globaleaks',
+            'role': 'admin'
+        }, headers={'X-Tor2Web': 'whatever'})
+        GLSetting.tor2web_permitted_ops['admin'] = True
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
 
@@ -126,4 +138,6 @@ class TestAuthentication(helpers.TestHandler):
         d = handler.post()
         self.assertFailure(d, errors.InvalidInputFormat)
         return d
+
+
 

@@ -280,7 +280,6 @@ class Download(BaseHandler):
     def get(self, tip_gus, file_gus, *uriargs):
 
         # tip_gus needed to authorized the download
-        print "Access to: tip_id", tip_gus, "file_id", file_gus
 
         file_details = yield download_file(tip_gus, file_gus)
         # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
