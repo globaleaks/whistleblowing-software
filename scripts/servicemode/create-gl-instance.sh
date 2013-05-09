@@ -81,14 +81,18 @@ echo "+ a new hidden service has been added to $torrc and binded at port $port"
 echo $HSDIRline >> $torrc
 echo $HSPORTline >> $torrc
 
-chown globaleaks.globaleaks -R $nodebase
-
 restartscript="$nodebase/restart.sh"
 command="globaleaks -p $port -k 9 -l DEBUG -t -d -a 127.0.0.1,$domain -w $nodebase"
 
 echo "su -c \"$command\" globaleaks" > $restartscript
 
 chmod +x $restartscript
+
+chown globaleaks.globaleaks -R $nodebase
+
+mkdir -p $HSDIRpath
+
+chown debian-tor:debian-tor -R $HSDIRpath
 
 echo "SUCCESS:it's now possible to start/restart globaleaks by issuing $restartscript"
 echo "\tto build the required GlobaLeaks Tor Hidden Service tor must be restarted also."
