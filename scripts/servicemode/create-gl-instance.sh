@@ -4,16 +4,13 @@ usage()
 {
 cat << EOF
 
-Usage: $0 options
+Usage: create-gl-instance.sh options
 
    This script help in the creation of a new globaleaks instance.
 
         -d: domain (e.g.: subdomain.domain.tld)        [REQUIRED]
 
         -p: port (e.g.: 8082)                          [REQUIRED]
-
-        -n: nodebase (e.g.: /var/subdomain.domain.tld) [OPTIONAL]
-
 EOF
 }
 
@@ -29,9 +26,6 @@ do
              ;;
          p)
              port=$OPTARG
-             ;;
-         n)
-             nodebase=$OPTARG
              ;;
 	 ?)
 	     usage
@@ -52,9 +46,7 @@ if [ -z "$port" ]; then
         exit
 fi
 
-if [ -z "$nodebase"]; then
-	nodebase="/var/$domain"
-fi
+nodebase="/var/$domain"
 
 echo "+ creating GlobaLeaks http://$domain:$port instance in directory $nodebase"
 
@@ -92,7 +84,7 @@ echo $HSPORTline >> $torrc
 
 chown globaleaks.globaleaks -R $nodebase
 
-restartscript="$nodebase/restart-$domain.sh"
+restartscript="$nodebase/restart.sh"
 command="globaleaks -p $port -k 9 -l DEBUG -t -d -a 127.0.0.1,$domain -w $nodebase"
 
 echo "su -c \"$command\" globaleaks" > $restartscript
