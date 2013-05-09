@@ -27,15 +27,15 @@ do
          p)
              port=$OPTARG
              ;;
-	 ?)
-	     usage
+     ?)
+         usage
              exit
-	     ;;
-	esac
+         ;;
+    esac
 done
 
 if [ -z "$domain" ]; then
-	echo "! MISSING ARGUMENT domain: you need to specify a -d domain"
+    echo "! MISSING ARGUMENT domain: you need to specify a -d domain"
         usage
         exit
 fi
@@ -46,35 +46,34 @@ if [ -z "$port" ]; then
         exit
 fi
 
-nodebase="/var/$domain"
-
-echo "+ creating GlobaLeaks http://$domain:$port instance in directory $nodebase"
-
-if [ -d $nodebase ]; then
-	echo "! FAIL: directory $nodebase already present. debug please"
-	exit
-fi
-
-mkdir -p $nodebase
-
-if [ ! -d $nodebase ]; then
-	echo "! FAIL: unable to create $nodebase, debug please"
-	exit
-fi
-
+nodebase="/var/globaleaks/$domain"
 torrc="/etc/tor/torrc"
 HSDIRpath="$nodebase/torhs"
 HSDIRline="HiddenServiceDir $HSDIRpath"
 HSPORTline="HiddenServicePort 80 127.0.0.1:$port"
 
+echo "+ creating GlobaLeaks http://$domain:$port instance in directory $nodebase"
+
+if [ -d $nodebase ]; then
+    echo "! FAIL: directory $nodebase already present. debug please"
+    exit
+fi
+
 if [ "`grep "$HSDIRline" $torrc`" ]; then
-	echo "! FAIL: line $HSDIRline already present in $torrc, debug please"
-	exit
+    echo "! FAIL: line $HSDIRline already present in $torrc, debug please"
+    exit
 fi
 
 if [ "`grep "$HSPORTline" $torrc`" ]; then
         echo "! FAIL: line $HSPORTline already present in $torrc, debug please"
         exit
+fi
+
+mkdir -p $nodebase
+
+if [ ! -d $nodebase ]; then
+    echo "! FAIL: unable to create $nodebase, debug please"
+    exit
 fi
 
 echo "+ a new hidden service has been added to $torrc and binded at port $port"
