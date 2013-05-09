@@ -30,7 +30,7 @@ build_glclient()
 
   if test $GLCLIENT_TAG; then
     git checkout $GLCLIENT_TAG
-    $GLCLIENT_REVISION=$GLCLIENT_TAG
+    GLCLIENT_REVISION=$GLCLIENT_TAG
   fi
 
   echo "[+] Building GLClient"
