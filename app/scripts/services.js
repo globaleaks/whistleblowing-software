@@ -1,8 +1,8 @@
 'use strict';
 
 angular.module('resourceServices.authentication', ['ngCookies'])
-  .factory('Authentication', ['$http', '$location', '$routeParams', '$rootScope', '$cookies',
-    function($http, $location, $routeParams, $rootScope, $cookies){
+  .factory('Authentication', ['$http', '$location', '$routeParams', '$rootScope',
+    function($http, $location, $routeParams, $rootScope){
       function Session(){
         var self = this,
           auth_landing_page;
@@ -15,9 +15,9 @@ angular.module('resourceServices.authentication', ['ngCookies'])
            * Hidden Service and we don't need to set the cookie https only as
            * all requests will always be encrypted end to end.
            * */
-          $cookies[name] = value;
+          $.cookie(name, value);
           if(window.location.protocol === 'https:') {
-            $cookies[name] += '; secure;';
+            $.cookie(name, value, {secure: true});
           }
         };
 
@@ -64,7 +64,7 @@ angular.module('resourceServices.authentication', ['ngCookies'])
         };
 
         self.logout = function() {
-            var role = $cookies['role'];
+            var role = $.cookie('role');
 
             return $http.delete('/authentication')
               .success(function(response){
@@ -72,10 +72,10 @@ angular.module('resourceServices.authentication', ['ngCookies'])
                 self.username = null;
                 self.user_id = null;
 
-                delete $cookies['session_id'];
-                delete $cookies['role'];
-                delete $cookies['auth_landing_page'];
-                delete $cookies['tip_id'];
+                delete $.cookie('session_id');
+                delete $.cookie('role');
+                delete $.cookie('auth_landing_page');
+                delete $.cookie('tip_id');
 
                 if (role === 'wb')
                   $location.path('/');
@@ -87,8 +87,8 @@ angular.module('resourceServices.authentication', ['ngCookies'])
       return new Session;
 }]);
 angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices.authentication']).
-  factory('globaleaksInterceptor', ['$q', '$rootScope', '$location', '$cookies',
-  function($q, $rootScope, $location, $cookies) {
+  factory('globaleaksInterceptor', ['$q', '$rootScope', '$location',
+  function($q, $rootScope, $location) {
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return function(promise) {
@@ -111,7 +111,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         error.url = response.config.url;
 
         if (error.code == 30) {
-          delete $cookies['session_id'];
+          delete $.cookie('session_id');
           // Only redirect if we are not on the login page
           if ($location.path().indexOf('/login') === -1) {
             $location.path('/login');
@@ -488,10 +488,9 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
   config(['$httpProvider', function($httpProvider) {
     var $rootScope = angular.injector(['ng']).get('$rootScope'),
       globaleaksRequestInterceptor = function(data, headers) {
-        var $cookies = angular.injector(['ngCookies']).get('$cookies');
 
-        if ($cookies['session_id']) {
-          headers = angular.extend(headers(),{'X-Session': $cookies['session_id']});
+        if ($.cookie('session_id')) {
+          headers = angular.extend(headers(),{'X-Session': $.cookie('session_id')});
         };
         return data;
     };
