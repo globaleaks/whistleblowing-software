@@ -100,6 +100,10 @@ def strong_receiver_validate(store, user_id, tip_id):
         raise errors.TipGusNotFound
 
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
+
+    if not receiver:
+        raise errors.ReceiverGusNotFound
+
     if receiver.id != rtip.receiver.id:
         # This in attack!!
         raise errors.TipGusNotFound
