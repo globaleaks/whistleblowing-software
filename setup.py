@@ -86,7 +86,7 @@ data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'i
 
 setup(
     name="globaleaks",
-    version="0.2.0.2",
+    version="0.2.0.3",
     author="Random GlobaLeaks developers",
     author_email = "info@globaleaks.org",
     url="https://globaleaks.org/",
