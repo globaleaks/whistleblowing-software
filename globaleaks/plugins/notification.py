@@ -104,7 +104,7 @@ class MailNotification(Notification):
                 tip_template_keyword.update({
                     '%TipT2WURL%':
                         'https://%s/#/status/%s' %
-                            ( node_desc['public_site'][:16],
+                            ( node_desc['public_site'],
                               event_dicts.trigger_info['id'] ),
                     })
             else:

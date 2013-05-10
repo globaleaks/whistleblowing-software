@@ -1,3 +1,9 @@
+globaleaks (0.2.0.2-1) unstable; urgency=low
+
+  * Globaleaks Alpha - herMario Edition
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 9 May 2013 23:42:42 +0002
+
 globaleaks (0.2.0.1-1) unstable; urgency=low
 
   * Public alpha release of globaleaks
