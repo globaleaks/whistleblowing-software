@@ -28,7 +28,7 @@
           <div ng-switch-when="high">
 
             <span class="label label-success">Congratulations!</span>
-            <p>It appears you are not using Tor. To better protect your anonymity, 
+            <p>It appears you are using Tor. To better protect your anonymity, 
             be sure that you are using the <a href="https://www.torproject.org/download/download">Tor Browser
             Bundle</a>. Keep in mind that using Tor Browser Bundle does not replace 
             good security practices and it cannot protect you in the event your 
@@ -48,8 +48,8 @@
           <div ng-switch-when="low">
 
             <span class="label label-important">Danger!</span>
-            <p>You appear to not be comming from the Tor network, because of this
-            you are <strong>strongly</strong> advised to 
+            <p>It appears your are not using Tor, thus you are you are 
+            <strong>strongly</strong> advised to 
             <a href="https://www.torproject.org/download/download">download a
               copy of the tor browser bundle</a> before continuing.</p>
 
