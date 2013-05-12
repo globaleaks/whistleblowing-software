@@ -1,6 +1,6 @@
 # GlobaLeaks
 
-![GlobaLeaks](https://globaleaks.org/images/logo.png)
+![GlobaLeaks](https://globaleaks.org/img/logo.png)
 
 GlobaLeaks is a project aimed at creating a whistleblowing platform built on FLOSS.
 
