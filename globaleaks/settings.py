@@ -28,6 +28,7 @@ from cyclone.web import HTTPError
 from storm.zope.zstorm import ZStorm
 from storm import tracer
 
+from globaleaks import __version__
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -45,7 +46,7 @@ class GLSettingsClass:
         self.cmdline_options = None
 
         # version
-        self.version_string = "0.2.0"
+        self.version_string = __version__
 
         # daemon
         self.nodaemon = False

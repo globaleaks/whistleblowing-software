@@ -9,6 +9,8 @@ import urllib2
 from zipfile import ZipFile
 from distutils.core import setup
 
+from globaleaks import __version__
+
 if not sys.version_info[:2] == (2, 7):
     print "Error, GlobaLeaks is tested only with python 2.7"
     print "https://github.com/globaleaks/GlobaLeaks/wiki/Technical-requirements"
@@ -86,7 +88,7 @@ data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'i
 
 setup(
     name="globaleaks",
-    version="0.2.0.3",
+    version = __version__,
     author="Random GlobaLeaks developers",
     author_email = "info@globaleaks.org",
     url="https://globaleaks.org/",
