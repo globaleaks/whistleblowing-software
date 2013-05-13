@@ -72,10 +72,10 @@ angular.module('resourceServices.authentication', ['ngCookies'])
                 self.username = null;
                 self.user_id = null;
 
-                delete $.cookie('session_id');
-                delete $.cookie('role');
-                delete $.cookie('auth_landing_page');
-                delete $.cookie('tip_id');
+                $.removeCookie('session_id');
+                $.removeCookie('role');
+                $.removeCookie('auth_landing_page');
+                $.removeCookie('tip_id');
 
                 if (role === 'wb')
                   $location.path('/');
@@ -111,7 +111,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         error.url = response.config.url;
 
         if (error.code == 30) {
-          delete $.cookie('session_id');
+          $.removeCookie('session_id');
           // Only redirect if we are not on the login page
           if ($location.path().indexOf('/login') === -1) {
             $location.path('/login');
@@ -377,10 +377,6 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
 }]).
   factory('cookiesEnabled', function(){
 
-  var deleteCookie = function(name) {
-    document.cookie = name + '=; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
-  }
-
   return function() {
     var enabled = false;
     document.cookie = 'cookiesenabled=true;';
@@ -388,7 +384,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       enabled = false;
     } else {
       enabled = true;
-      deleteCookie('cookiesenabled');
+      $.removeCookie('cookiesenabled');
     }
     return enabled;
   }
