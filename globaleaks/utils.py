@@ -253,12 +253,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
 
     d = endpoint.connect(factory)
-    def antani(err):
-        print "antani"
-        print err.err
-    d.addErrback(antani)
-    #d.addCallback(antani)
-    #d.addErrback(result_deferred.errback)
+    d.addErrback(result_deferred.errback)
 
     return result_deferred
 
