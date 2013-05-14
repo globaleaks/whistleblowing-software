@@ -2,9 +2,9 @@
 
 # User Permission Check
 if [[ $EUID -ne 0 ]]; then
-       echo "Error: GlobaLeaks install script must be runned by root"
-       exit 1
-    fi
+    echo "Error: GlobaLeaks install script must be runned by root"
+    exit 1
+fi
 
 # Preliminary Requirements Check
 REQS=(apt-get cd chmod curl echo gpg python mkdir read tar torsocks wget)
