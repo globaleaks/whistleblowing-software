@@ -325,7 +325,7 @@ Dr3+wZTovINnAKDs/Uz0hqtfArRR+aWJWp0p/sJNWg==
 =0zqq
 -----END PGP PUBLIC KEY BLOCK-----
 "
-BUILD_DIR=/tmp/building
+BUILD_DIR=/tmp/glbuilding.$RANDOM
 
 echo "Installing python-setuptools"
 DO "apt-get install python-setuptools" "0" "failed to apt-get install python-setuptools"
