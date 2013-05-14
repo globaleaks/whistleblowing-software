@@ -14,6 +14,19 @@ for ((i=0;i<REQS_COUNT;i++)); do
     fi
 done
 
+DO () {
+    $1 >/dev/null 2>&1
+    if [ $? -ne $2 ]; then
+        echo $?
+        if [ -z "$3" ]; then
+            echo "failed to $1"
+        else
+            echo $3;
+        fi
+        exit
+    fi
+}
+
 PIP_PKG="pip-1.3.1.tar.gz"
 PIP_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}"
 PIP_SIG_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}.asc"
@@ -309,34 +322,29 @@ Dr3+wZTovINnAKDs/Uz0hqtfArRR+aWJWp0p/sJNWg==
 BUILD_DIR=/tmp/building
 
 echo "Installing python-setuptools"
-apt-get install python-setuptools
+DO "apt-get install python-setuptools" "0" "failed to apt-get install python-setuptools"
+DO "mkdir -p ${BUILD_DIR}" "0"
+DO "chmod 700 ${BUILD_DIR}" "0"
+DO "cd ${BUILD_DIR}/" "0"
 
-mkdir -p ${BUILD_DIR}
-chmod 700 ${BUILD_DIR}
-cd ${BUILD_DIR}/
-
-wget -O $/${PIP_PKG} ${PIP_URL}
-wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}
+DO "wget -O ${BUILD_DIR}/${PIP_PKG} ${PIP_URL}" "0"
+DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
 
 echo "Verifying PGP signature"
 TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
 PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
 echo "$PIP_PUB_KEY" | gpg --no-default-keyring --keyring $TMP_KEYRING --import
-gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY
-if [ $? -ne 0 ]; then
-  echo "[+] Error in verifying signature!"
-  exit 1
-fi
+DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0" "Error in verifying signature!"
 
-tar xzf ${PIP_PKG}
-cd pip-*
+DO "tar xzf ${PIP_PKG}" "0"
+DO "cd pip-*" "0"
 
 echo "Installing the latest pip"
 echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
 read -r -p "Do you wish to continue? [Y/n] " response
 case $response in
     y | Y | yes | YES )
-        python setup.py install
+        DO "python setup.py install" "0"
         ;;
     *)
         exit 1
@@ -345,12 +353,12 @@ esac
 
 PIP_DEPS=`torsocks curl https://raw.github.com/globaleaks/GLBackend/master/requirements.txt`
 for PIP_DEP in $PIP_DEPS; do
-  pip install $PIP_DEP
+  DO "pip install $PIP_DEP" "0" "failed to install $PIP_DEP with pip."
 done
 
 echo "deb http://deb.globaleaks.org/ unstable/" >> /etc/apt/sources.list
-torsocks gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008
-gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -
-torsocks apt-get update
-torsocks apt-get install globaleaks
+DO "torsocks gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
+DO "gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -" "0"
+DO "torsocks apt-get update" "0"
+DO "torsocks apt-get install globaleaks" "0"
 update-rc.d globaleaks defaults # Set globaleaks to automatically start on-boot
