@@ -3,14 +3,17 @@
 if ! id -u globaleaks >/dev/null 2>&1; then
   useradd globaleaks -u 1337
 fi
+
 if [ ! -d /var/globaleaks ]; then
-  mkdir /var/globaleaks/
+  mkdir -p /var/globaleaks/
 fi
+
 chown globaleaks:globaleaks /var/globaleaks
+
 echo "[+] Compiling python files"
 python -mcompileall `python -c "import os, globaleaks;os.path.dirname(globaleaks.__file__)"`
 
 if [ ! -d /var/globaleaks/torhs ]; then
   mkdir -p /var/globaleaks/torhs/
-  chown debian-tor /var/globaleaks/torhs/
+  chown debian-tor:debian-tor /var/globaleaks/torhs/
 fi
