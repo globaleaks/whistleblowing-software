@@ -1,5 +1,19 @@
 #!/bin/bash
 
+# Preliminary Requirements Check
+REQS=(apt-get cd chmod curl echo gpg python mkdir read tar torsocks wget)
+REQS_COUNT=${#REQS[@]}
+ERR=0
+echo "Checking preliminary GlobaLeaks requirements"
+for ((i=0;i<REQS_COUNT;i++)); do
+    if which ${REQS[i]} >/dev/null; then
+        echo " + ${REQS[i]} requirements meet"
+    else
+        ERR=$[ERR+1]
+        echo " - ${REQS[i]} requirement not meet"
+    fi
+done
+
 PIP_PKG="pip-1.3.1.tar.gz"
 PIP_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}"
 PIP_SIG_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}.asc"
@@ -292,21 +306,28 @@ Dr3+wZTovINnAKDs/Uz0hqtfArRR+aWJWp0p/sJNWg==
 =0zqq
 -----END PGP PUBLIC KEY BLOCK-----
 "
-mkdir /tmp/building
-chown 700 /tmp/building
-wget -O /tmp/building/${PIP_PKG} ${PIP_URL}
-wget -O /tmp/building/${PIP_PKG}.asc ${PIP_SIG_URL}
+BUILD_DIR=/tmp/building
+
+echo "Installing python-setuptools"
+apt-get install python-setuptools
+
+mkdir -p ${BUILD_DIR}
+chmod 700 ${BUILD_DIR}
+cd ${BUILD_DIR}/
+
+wget -O $/${PIP_PKG} ${PIP_URL}
+wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}
 
 echo "Verifying PGP signature"
-TMP_KEYRING=/tmp/building/tmpkeyring.gpg
-PKG_VERIFY=/tmp/building/${PIP_PKG}.asc
+TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
+PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
 echo "$PIP_PUB_KEY" | gpg --no-default-keyring --keyring $TMP_KEYRING --import
 gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY
 if [ $? -ne 0 ]; then
   echo "[+] Error in verifying signature!"
   exit 1
 fi
-cd /tmp/building/
+
 tar xzf ${PIP_PKG}
 cd pip-*
 
@@ -314,19 +335,17 @@ echo "Installing the latest pip"
 echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
 read -r -p "Do you wish to continue? [Y/n] " response
 case $response in
-    [yY][eE][sS]|[yY])
-        sudo python setup.py install
+    y | Y | yes | YES )
+        python setup.py install
         ;;
     *)
         exit 1
         ;;
 esac
 
-PIP_DEPS=(twisted==13.0.0 apscheduler==2.1.0 zope.component==4.1.0
-          zope.interface==4.0.5 cyclone==1.1 storm==0.19 transaction==1.4.1
-          txsocksx==0.0.2 PyCrypto==2.6 scrypt==0.5.5 Pillow==2.0.0)
+PIP_DEPS=`torsocks curl https://raw.github.com/globaleaks/GLBackend/master/requirements.txt`
 for PIP_DEP in $PIP_DEPS; do
-  sudo pip install $PIP_DEP
+  pip install $PIP_DEP
 done
 
 echo "deb http://deb.globaleaks.org/ unstable/" >> /etc/apt/sources.list
