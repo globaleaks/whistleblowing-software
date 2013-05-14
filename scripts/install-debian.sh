@@ -23,7 +23,6 @@ done
 DO () {
     $1 >/dev/null 2>&1
     if [ $? -ne $2 ]; then
-        echo $?
         if [ -z "$3" ]; then
             echo "failed to $1"
         else
@@ -347,7 +346,7 @@ DO "cd pip-*" "0"
 
 echo "Installing the latest pip"
 echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
-read -r -p "Do you wish to continue? [Y/n] " response
+read -r -p "Do you wish to continue? [y/n] " response
 case $response in
     y | Y | yes | YES )
         DO "python setup.py install" "0"
@@ -357,7 +356,8 @@ case $response in
         ;;
 esac
 
-PIP_DEPS=`torsocks curl https://raw.github.com/globaleaks/GLBackend/master/requirements.txt`
+DO "torsocks wget -O ${BUILD_DIR}/requirements.txt https://raw.github.com/globaleaks/GLBackend/master/requirements.txt" "0"
+PIP_DEPS=`cat ${BUILD_DIR}/requirements.txt`
 for PIP_DEP in $PIP_DEPS; do
   DO "pip install $PIP_DEP" "0" "failed to install $PIP_DEP with pip."
 done
