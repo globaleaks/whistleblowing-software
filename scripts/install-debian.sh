@@ -367,7 +367,11 @@ for PIP_DEP in $PIP_DEPS; do
   DO "pip install $PIP_DEP" "0" "failed to install $PIP_DEP with pip."
 done
 
-echo "deb http://deb.globaleaks.org/ unstable/" >> /etc/apt/sources.list
+grep "deb http://deb.globaleaks.org/ unstable/" /etc/apt/sources.list/  >/dev/null 2>&1
+if [ ! $? ]; then
+    echo "deb http://deb.globaleaks.org/ unstable/" >> /etc/apt/sources.list
+fi
+
 DO "torsocks gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
 DO "gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -" "0"
 DO "torsocks apt-get update" "0"
