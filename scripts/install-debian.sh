@@ -326,6 +326,10 @@ Dr3+wZTovINnAKDs/Uz0hqtfArRR+aWJWp0p/sJNWg==
 "
 BUILD_DIR=/tmp/glbuilding.$RANDOM
 
+TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
+PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
+PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
+
 echo "Installing python-setuptools"
 DO "apt-get install python-setuptools" "0" "failed to apt-get install python-setuptools"
 DO "mkdir -p ${BUILD_DIR}" "0"
@@ -338,7 +342,8 @@ DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
 echo "Verifying PGP signature"
 TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
 PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
-echo "$PIP_PUB_KEY" | gpg --no-default-keyring --keyring $TMP_KEYRING --import
+echo "$PIP_PUB_KEY" > $PIP_KEY_FILE
+DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $PIP_KEY_FILE" "0"
 DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0" "Error in verifying signature!"
 
 DO "tar xzf ${PIP_PKG}" "0"
