@@ -18,7 +18,7 @@ from storm.twisted.testing import FakeThreadPool
 from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-from globaleaks import db
+from globaleaks import db, models
 
 DEFAULT_PASSWORD = u'yustapassword'
 transact.tp = FakeThreadPool()
@@ -81,10 +81,11 @@ class TestGL(TestWithDB):
     def setUp_dummy(self):
         self.dummyReceiver = {
             'receiver_gus': unicode(uuid.uuid4()),
+            'gpg_key_status': models.Receiver._gpg_types[0],
             'password': DEFAULT_PASSWORD,
             'name': u'john smith',
             'description': u'the first receiver',
-            'notification_fields': {'mail_address': u'maker@ggay.it'},
+            'notification_fields': {'mail_address': u'maker@berlin.de'},
             'can_delete_submission': True,
             'receiver_level': 1,
             'contexts' : [],
@@ -153,9 +154,9 @@ class TestGL(TestWithDB):
             'password': u'antani',
             'security': u'SSL',
             'tip_template': u'tip message: %sNodeName%',
-            'comment_template': u'comment message: %sNodeName%',
-            'file_template': u'file message: %sNodeName%',
-            'activation_template': u'activation message: %sNodeName%',
+            'comment_template': u'comment message: %NodeName%',
+            'file_template': u'file message: %NodeName%',
+            'activation_template': u'activation message: %NodeName%',
         }
 
     def fill_random_fields(self, context_dict):
