@@ -213,8 +213,6 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param smtp_port: the smtp port
     """
 
-    authentication_password = "aaa"
-
     result_deferred = Deferred()
 
     context_factory = ClientContextFactory()
