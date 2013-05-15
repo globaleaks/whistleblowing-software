@@ -67,6 +67,9 @@ def admin_serialize_receiver(receiver):
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "failed_login": receiver.failed_login,
         "password": u"",
+        "gpg_key_status": receiver.gpg_key_status,
+        "gpg_key_info": receiver.gpg_key_info,
+        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "contexts": []
     }
     for context in receiver.contexts:
@@ -365,6 +368,7 @@ def create_receiver(store, request):
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.failed_login = 0
+    receiver.gpg_key_status = Receiver._gpg_types[0] # Disabled at creation time
 
     # A password strength checker need to be implemented in the client, but here a
     # minimal check is put
