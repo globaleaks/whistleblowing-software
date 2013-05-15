@@ -33,6 +33,16 @@ build_glclient()
     GLCLIENT_REVISION=$GLCLIENT_TAG
   fi
 
+  if [ -f $OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.tar.gz ]; then
+    echo "$OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.tar.gz already present"
+    exit
+  fi
+
+  if [ -f $OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.zip ]; then
+    echo "$OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.zip already present"
+    exit
+  fi
+
   echo "[+] Building GLClient"
   npm install -d
   grunt build
