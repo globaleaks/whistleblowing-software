@@ -1,3 +1,9 @@
+globaleaks (0.2.0.5-2) unstable; urgency=low
+
+  * Globaleaks Alpha - Misc fixes
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Wed, 15 May 2013 21:02:42 +0002
+
 globaleaks (0.2.0.4-2) unstable; urgency=low
 
   * Globaleaks Alpha - Skapel
