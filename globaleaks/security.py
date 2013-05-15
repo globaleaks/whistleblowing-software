@@ -9,10 +9,14 @@ import scrypt
 import binascii
 import random
 import time
+import gnupg
+
+from datetime import timedelta
+from Crypto.Hash import SHA512
 
 from globaleaks.rest import errors
-from globaleaks.utils import log
-from Crypto.Hash import SHA512
+from globaleaks.utils import log, timelapse_represent
+from globaleaks.settings import GLSetting
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
@@ -93,3 +97,72 @@ def insert_random_delay():
     centisec = random.randint(1, 100) / 100.0
     time.sleep(centisec)
 
+
+def import_gpg_key(username, armored_key):
+    """
+    @param username: a real username of the user, here just to be a complete debug
+    @param armored_key: the armored GPG key, format not yet checked.
+    @return: key summary
+    """
+    gpgh = gnupg.GPG(gnupghome=GLSetting.gpgroot)
+    ke = gpgh.import_keys(armored_key)
+
+    # Error reported in stderr may just be warning, this is because is not raise an exception here
+    if ke.stderr:
+        log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
+                (username, (ke.stderr.replace("\n", "\n  "))[:-3]))
+
+    if hasattr(ke, 'results') and len(ke.results) == 1 and ke.results[0].has_key('fingerprint'):
+        fingerprint = ke.results[0]['fingerprint']
+
+        # looking if the key is effectively reachable
+        all_keys = gpgh.list_keys()
+
+        if len(all_keys) == 0:
+            log.err("Fatal error: unable to read from GPG keyring")
+            raise errors.InternalServerError("Unable to perform GPG keys operations")
+
+        keyinfo = u""
+        for key in all_keys:
+            if key['fingerprint'] == fingerprint:
+
+                lifespan = timedelta(seconds=int(key['date']))
+                lifespan_string = timelapse_represent(lifespan.seconds)
+
+                keyinfo += "Key length %s, with %s" % (key['length'], lifespan_string)
+
+                for uid in key['uids']:
+                    keyinfo += "\n%s" % uid
+
+                keyinfo += "\nFingerprint: %s" % fingerprint
+
+        log.debug("Receiver %s has uploaded a GPG key [%s]" % (username, fingerprint))
+
+        return (keyinfo, fingerprint)
+
+    else:
+        log.err("User error: unable to import GPG key in the keyring")
+        raise errors.GPGKeyInvalid
+
+
+def gpg_encrypt(plaindata, receiver_desc):
+    """
+    @param plaindata:
+        An arbitrary long text that would be encrypted
+
+    @param receiver_desc:
+
+        The output of
+            globaleaks.handlers.admin.admin_serialize_receiver()
+        dictionary. It contain the fingerprint of the Receiver PUBKEY
+
+    @return:
+        The unicode of the encrypted output (armored)
+
+    """
+    gpgh = gnupg.GPG(gnupghome=GLSetting.gpgroot, options="--trust-model always")
+
+    # This second argument may be a list of fingerprint, not just one
+    binary_output = gpgh.encrypt(plaindata, str(receiver_desc['gpg_key_fingerprint']) )
+
+    return str(binary_output)
