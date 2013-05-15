@@ -8,9 +8,11 @@
 # one of the various plugins (used by default, but still an optional adoptions)
 
 from cyclone import mail
-from twisted.internet.defer import Deferred
+
 from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
+from globaleaks.security import gpg_encrypt
+from globaleaks.models import Receiver
 
 class MailNotification(Notification):
 
@@ -171,6 +173,10 @@ class MailNotification(Notification):
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 
+        # If the receiver has encryption enabled, change the body encrypting
+        if event.receiver_info['gpg_key_status'] == Receiver._gpg_types[1]:
+            body = gpg_encrypt(body, event.receiver_info)
+
         self.host = str(event.notification_settings['server'])
         self.port = int(event.notification_settings['port'])
         self.username = str(event.notification_settings['username'])
@@ -187,13 +193,13 @@ class MailNotification(Notification):
                                subject=title,
                                message=body)
 
-        self.finished = self.sendmail(self.username, self.password,
+        self.finished = self.mail_flush(self.username, self.password,
                                       message.from_addr, message.to_addrs, message.render(),
                                       self.host, self.port, self.security)
         log.debug('Email: connecting to [%s] for deliver to %s' % (self.host, receiver_mail))
         return self.finished
 
-    def sendmail(self, authentication_username, authentication_password, from_address,
+    def mail_flush(self, authentication_username, authentication_password, from_address,
                  to_address, message_file, smtp_host, smtp_port, security):
         return sendmail(authentication_username, authentication_password, from_address,
                         to_address, message_file, smtp_host, smtp_port, security)
