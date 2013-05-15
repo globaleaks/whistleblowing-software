@@ -202,7 +202,7 @@ class APSNotification(GLJob):
 
             context_desc = admin.admin_serialize_context(comment.internaltip.context)
 
-            # XXX BUG! All notification is marked as correctly send,
+            # XXX Know limit! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
             comment.mark = models.Comment._marker[1]
 

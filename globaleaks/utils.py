@@ -180,7 +180,19 @@ def pretty_diff_now(past_date):
     diff = now - past_date
 
     diff = int(diff.total_seconds())
-    days, hours_carry = divmod(diff, 3600 * 24)
+
+    return timelapse_represent(diff)
+
+def timelapse_represent(seconds):
+    """
+    @param seconds:
+    @return:
+        This function is called by pretty_diff_now and by other
+        function like GPG key informations printing.
+    """
+
+    years, years_carry = divmod(seconds, 3600 * 24 * 365)
+    days, hours_carry = divmod(years_carry, 3600 * 24)
     hours, minutes_carry = divmod(hours_carry, 3600)
     minutes, seconds = divmod(minutes_carry, 60)
 
@@ -193,6 +205,8 @@ def pretty_diff_now(past_date):
         pretty_str = "1 hour" if hours == 1 else "%s hours" % hours
     if days:
         pretty_str = "1 day" if days == 1 else "%s days" % days
+    if years:
+        pretty_str = "1 year" if years == 1 else "%s years" % years
 
     #return '%sD+%s:%s:%s' % (days, hours, minutes, seconds)
     return pretty_str
