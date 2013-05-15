@@ -285,3 +285,11 @@ class HTTPRawLimitReach(GLException):
     status_code = 400 # Generic 400 error
     reason = ("The upload request overcome the Md limits (%dMd)" %\
               (GLSetting.max_file_size / 1024 * 1024) )
+
+class GPGKeyInvalid(GLException):
+    """
+    The proposed GPG key has an invalid format and can't be imported
+    """
+    error_code = 40
+    status_code = 406
+    reason = "The GPG key proposed can't be imported"

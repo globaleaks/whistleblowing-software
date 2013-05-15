@@ -30,6 +30,8 @@ receiverReceiverDesc = {
     'username' : unicode,
     'notification_fields' : dict,
     'description' : unicode,
+    'gpg_key_armor': unicode,
+    'gpg_key_disable': bool,
 }
 
 actorsCommentDesc = {

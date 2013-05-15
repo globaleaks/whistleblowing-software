@@ -3,19 +3,18 @@
 #   ********
 #
 # Implement the classes handling the requests performed to /receiver/* URI PATH
-# Used by receivers in the GlobaLeaks Node.
+# Used by receivers to update personal preferences and access to personal data
 
-from globaleaks.utils import pretty_date_time, pretty_diff_now, acquire_mail_address
-from globaleaks.handlers.base import BaseHandler
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, InternalFile
+from globaleaks.utils import pretty_date_time, pretty_diff_now, acquire_mail_address, log
+from globaleaks.handlers.base import BaseHandler
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
-from globaleaks.security import change_password
+from globaleaks.security import change_password, import_gpg_key
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver):
@@ -28,6 +27,9 @@ def receiver_serialize_receiver(receiver):
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
+        "gpg_key_info": receiver.gpg_key_info,
+        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
+        "gpg_key_status": receiver.gpg_key_status,
         "notification_fields": dict(receiver.notification_fields),
         "failed_login": receiver.failed_login,
         "contexts": []
@@ -65,7 +67,29 @@ def update_receiver_settings(store, user_id, request):
     if not mail_address:
         raise NoEmailSpecified
 
+    # At the moment, a receiver can update their email address, but not the username.
+    # but client at the moment do not support this update, and has never been tested.
     receiver.notification_fields = request['notification_fields']
+
+    # GPG management, a Receiver can perform three action:
+    # 1) Setup a GPG key from a No Gpg Key
+    # 2) Update a new GPG over an old GPG key
+    # 3) Disable the GPG key present on the system (and start to receive plain text notification)
+    new_gpg_key = request.get('gpg_key_armor', None)
+    disable_key = request.get('gpg_key_disable', False)
+
+    if disable_key:
+        if receiver.gpg_key_info:
+            log.debug("Disabling key %s for User %s" % (receiver.gpg_key_fingerprint, receiver.username))
+        else:
+            log.err("Requested disabling of key by User %s (but has not yet a key sets!)" % receiver.username)
+        receiver.gpg_key_status = Receiver._gpg_types[0] # Disabled
+
+    if new_gpg_key:
+        receiver.gpg_key_info, receiver.gpg_key_fingerprint = import_gpg_key(receiver.username, new_gpg_key)
+        receiver.gpg_key_status = Receiver._gpg_types[1] # Enabled
+
+    # End of GPG key management for receiver
 
     return receiver_serialize_receiver(receiver)
 
