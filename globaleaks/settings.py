@@ -160,6 +160,7 @@ class GLSettingsClass:
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
+        self.gpgroot = os.path.abspath(os.path.join(self.working_path, 'gnupg'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.log_path, "jsondump"))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
