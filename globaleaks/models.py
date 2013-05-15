@@ -364,7 +364,7 @@ class Notification(Model):
 
 class Receiver(Model):
     """
-    name, description, password and notification_fiels, can be changed
+    name, description, password and notification_fields, can be changed
     by Receiver itself
     """
     name = Unicode(validator=gltextv)
@@ -373,6 +373,14 @@ class Receiver(Model):
     # Authentication variables
     username = Unicode()
     password = Unicode()
+
+    # of GPG key fields
+    gpg_key_info = Unicode()
+    gpg_key_fingerprint = Unicode()
+    gpg_key_status = Unicode()
+
+    _gpg_types = [ u'Disabled', u'Enabled' ]
+    # would work fine also a Bool, but SQLITE validator is helpful here.
 
     # User notification_variable
     notification_fields = Pickle()
@@ -395,7 +403,7 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-    unicode_keys = ['name', 'description' ]
+    unicode_keys = ['name', 'description', 'gpg_key_status' ]
     int_keys = [ 'receiver_level' ]
     bool_keys = [ 'can_delete_submission' ] # Total delete capability
 
