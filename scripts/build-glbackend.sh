@@ -4,7 +4,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
 GLOBALEAKS_DIR=/data/globaleaks
-OUTPUT_DIR=/data/website/builds/
 
 if [ "$1" = "-h" ]; then
   echo "Usage: ./${SCRIPTNAME} [glbackend target tag]"
@@ -15,7 +14,6 @@ fi
 GLBACKEND_TAG=$1
 
 mkdir -p $GLOBALEAKS_DIR
-mkdir -p $OUTPUT_DIR/GLBackend
 
 if [ ! -d ${GLOBALEAKS_DIR}/GLBackend ]; then
   echo "[+] Cloning GLBackend in ${GLOBALEAKS_DIR}"
