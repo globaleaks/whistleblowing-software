@@ -7,11 +7,10 @@ import os.path
 
 from twisted.internet.defer import succeed
 
-from storm.zope.zstorm import ZStorm
 from storm.exceptions import OperationalError
 
 from globaleaks.utils import log, datetime_now
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
 from globaleaks.security import hash_password, get_salt
