@@ -1,11 +1,10 @@
-<div class="jumbotron homeSplash">
+<div ng-cloak class="jumbotron homeSplash">
     <h1>Welcome to {{node_info.name}}</h1>
     <a href="#/submission" ng-hide="!node_info.configured"
         class="btn btn-primary btn-large">Blow the Whistle</a>
 
     <div ng-hide="node_info.configured">Your node is not configured! Please, proceed via
         <a href="/#/admin/contexts">Admin interface and configure at least one context</a></div>
-
 
 </div>
 
