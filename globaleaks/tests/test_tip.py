@@ -267,7 +267,7 @@ class TestTipInstance(TTip):
 
 
     @inlineCallbacks
-    def receiver1_RW_comments(self):
+    def receiver_RW_comments(self):
         self.commentCreation['content'] = unicode("Comment N1 by R1")
         yield tip.create_comment_receiver(
                                     self.receiver1_desc['receiver_gus'],
@@ -376,7 +376,7 @@ class TestTipInstance(TTip):
         yield self.receiver2_express_negative_vote()
         yield self.receiver2_fail_double_vote()
         yield self.receiver_2_get_banned_for_too_much_access()
-        yield self.receiver1_RW_comments()
+        yield self.receiver_RW_comments()
         yield self.wb_RW_comments()
         yield self.wb_get_receiver_list()
         yield self.receiver_get_receiver_list()

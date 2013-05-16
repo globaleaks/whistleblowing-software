@@ -95,7 +95,7 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
     for receiver_id in receiver_id_list:
         try:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-        except Exception, e:
+        except Exception as e:
             log.err("Storm/SQL Error: %s (import_receivers)" % e)
             raise e
 
