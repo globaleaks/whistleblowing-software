@@ -17,6 +17,10 @@ from globaleaks import models
 @transact
 def anon_serialize_node(store):
     node = store.find(models.Node).one()
+
+    # Contexts and Receivers relationship
+    associated = store.find(models.ReceiverContext).count()
+
     return {
       'name': unicode(node.name),
       'description': unicode(node.description),
@@ -31,6 +35,7 @@ def anon_serialize_node(store):
       'tor2web_tip_permitted': GLSetting.tor2web_permitted_ops['tip'],
       'tor2web_receiver_permitted': GLSetting.tor2web_permitted_ops['receiver'],
       'tor2web_unauth_permitted': GLSetting.tor2web_permitted_ops['unauth'],
+      'configured': True if associated else False,
     }
 
 def serialize_context(context):
