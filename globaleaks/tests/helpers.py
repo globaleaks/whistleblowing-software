@@ -22,23 +22,18 @@ from globaleaks import db
 
 DEFAULT_PASSWORD = u'yustapassword'
 transact.tp = FakeThreadPool()
-GLSetting.scheduler_threadpool = FakeThreadPool()
-GLSetting.notification_plugins = []
-GLSetting.sessions = {}
-GLSetting.working_path = os.path.abspath(os.path.join(GLSetting.root_path, 'testing_dir'))
-GLSetting.eval_paths()
-GLSetting.remove_directories()
 
 transact.debug = True
 class TestWithDB(unittest.TestCase):
     def setUp(self):
         GLSetting.set_devel_mode()
+        GLSetting.scheduler_threadpool = FakeThreadPool()
+        GLSetting.sessions = {}
+        GLSetting.working_path = os.path.abspath(os.path.join(GLSetting.root_path, 'testing_dir'))
         GLSetting.eval_paths()
+        GLSetting.remove_directories()
         GLSetting.create_directories()
         return db.create_tables(create_node=True)
-
-    def tearDown(self):
-        GLSetting.remove_directories()
 
 class TestGL(TestWithDB):
     @inlineCallbacks
