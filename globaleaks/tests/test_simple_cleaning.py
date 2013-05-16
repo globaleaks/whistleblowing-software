@@ -6,7 +6,7 @@ from globaleaks.tests import helpers
 
 from globaleaks.rest import errors, requests
 from globaleaks.rest.base import uuid_regexp
-from globaleaks.handlers import tip, base, admin, submission
+from globaleaks.handlers import tip, base, admin, submission, files
 from globaleaks.jobs import delivery_sched, cleaning_sched
 from globaleaks import models
 from globaleaks.utils import is_expired
@@ -69,6 +69,19 @@ class TTip(helpers.TestWithDB):
         'content': '',
     }
 
+    dummyFiles = []
+    dummyFiles.append({
+        'body': 'aaaaaa',
+        'content_type': 'application/octect',
+        'filename': 'filename1'
+    })
+
+    dummyFiles.append({
+        'body': 'aaaaaa',
+        'content_type': 'application/octect',
+        'filename': 'filename2'
+    })
+
 
 class TestCleaning(TTip):
     _handler = tip.TipInstance
@@ -80,6 +93,33 @@ class TestCleaning(TTip):
     # Test context would just contain two receiver, one level 1 and the other level 2
 
     # They are defined in TTip. This unitTest DO NOT TEST HANDLERS but transaction functions
+
+    @transact
+    def test_cleaning(self, store):
+		self.assertEqual(store.find(models.InternalTip).count(), 0)
+		self.assertEqual(store.find(models.ReceiverTip).count(), 0)
+		self.assertEqual(store.find(models.WhistleblowerTip).count(), 0)
+		self.assertEqual(store.find(models.InternalFile).count(), 0)
+		self.assertEqual(store.find(models.ReceiverFile).count(), 0)
+		self.assertEqual(store.find(models.Comment).count(), 0)
+
+    @inlineCallbacks
+    def emulate_files_upload(self, associated_submission_id):
+        relationship = files.dump_files_fs(self.dummyFiles)
+
+        self.file_list = yield files.register_files_db(
+            self.dummyFiles, relationship, associated_submission_id,
+        )
+        self.assertEqual(len(self.file_list), 2)
+
+
+    @inlineCallbacks
+    def do_create_internalfiles(self):
+        yield self.emulate_files_upload(self.submission_desc['submission_gus'],)
+        # fill self.file_list
+        for file_desc in self.file_list:
+            keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(file_desc.keys())
+            self.assertFalse(keydiff)
 
     @inlineCallbacks
     def do_setup_tip_environment(self):
@@ -121,8 +161,8 @@ class TestCleaning(TTip):
             finalize=True)
 
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[1])
-
-
+        
+        submission.create_whistleblower_tip(self.submission_desc)
 
     # -------------------------------------------
     # Those the two class implements the sequence
@@ -169,13 +209,11 @@ class UnfinishedSubmissionCleaning(TestCleaning):
     @inlineCallbacks
     def test_submission_life_and_expire(self):
         yield self.do_setup_tip_environment()
-
         yield self.submission_not_expired()
         yield self.force_submission_expire()
 
 
 class FinalizedTipCleaning(TestCleaning):
-
     @inlineCallbacks
     def tip_not_expired(self):
         """
@@ -206,7 +244,12 @@ class FinalizedTipCleaning(TestCleaning):
                 tip_desc['tip_life_seconds']
             )
         )
+        
+        # and then, delete the expired submission
+        yield cleaning_sched.itip_cleaning(tip_desc['id'])
 
+        new_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[0])
+        self.assertEqual(len(new_list), 0)
 
     @inlineCallbacks
     def do_create_receivers_tip(self):
@@ -219,12 +262,23 @@ class FinalizedTipCleaning(TestCleaning):
         self.assertTrue(re.match(uuid_regexp, receiver_tips[0]))
         self.assertTrue(re.match(uuid_regexp, receiver_tips[1]))
 
-
     @inlineCallbacks
     def test_tip_life_and_expire(self):
-        yield self.do_setup_tip_environment()
+        yield self.do_setup_tip_environment()       
         yield self.do_finalize_submission()
         yield self.do_create_receivers_tip()
-
         yield self.tip_not_expired()
         yield self.force_tip_expire()
+        yield self.test_cleaning()
+
+    @inlineCallbacks
+    def test_tip_life_and_expire_with_files(self):
+        yield self.do_setup_tip_environment()       
+        yield self.do_create_internalfiles()
+        yield self.do_finalize_submission()
+        filesdict = yield delivery_sched.file_preprocess()
+        delivery_sched.file_process(filesdict)
+        yield self.do_create_receivers_tip()
+        yield self.tip_not_expired()
+        yield self.force_tip_expire()
+        yield self.test_cleaning()
