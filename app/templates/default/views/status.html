@@ -14,7 +14,7 @@
 
     <div class="span4">
       <h3>Files</h3>
-      <div class="well">
+      <div class="well" ng-show="tip.files">
         <h4>{{file.name}}</h4>
         <ul class="unstyled">
 
@@ -29,7 +29,7 @@
                       ng-click="openSecurityCheck()">
                       <i class="icon-lock"></i> security check
               </button>
-              <a ng-hide="whistleblower_tip_id"
+              <a ng-cloak ng-hide="whistleblower_tip_id"
                  class="btn btn-small" href="{{file.href}}">
                  <i class="icon-download"></i> download
               </a>
@@ -62,14 +62,13 @@
 
         </ul>
       </div>
+      <div class="span4" ng-hide="tip.files"><p>No file has been uploaded!</p></div>
 
-      <div ng-show="whistleblower_tip_id">
-        <div  file-upload action="/tip/{{whistleblower_tip_id}}/upload"
+      <div ng-cloak ng-show="whistleblower_tip_id">
+        <div file-upload action="/tip/{{whistleblower_tip_id}}/upload"
              uploaded-files="uploadedFiles" uploading-files="uploadingFiles"></div>
       </div>
-
     </div>
-
   </div>
 
   <div class="row">
