@@ -77,6 +77,7 @@ def receiver_file_align(store, filesdict, processdict):
     """
     receiverfile_list = []
 
+    print "bababa"
     for internalfile_id in filesdict.iterkeys():
 
         ifile = store.find(InternalFile, InternalFile.id == unicode(internalfile_id)).one()
