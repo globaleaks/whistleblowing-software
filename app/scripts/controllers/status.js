@@ -18,7 +18,10 @@ GLClient.controller('StatusCtrl',
       $rootScope.whistleblower_tip_id = $cookies['tip_id'];
       $rootScope.uploadedFiles = [];
       $rootScope.uploadingFiles = [];
+    } else {
+      $rootScope.whistleblower_tip_id = false;
     };
+
 
 }]);
 
