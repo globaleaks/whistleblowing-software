@@ -80,29 +80,31 @@ def itip_cleaning(store, id):
         ifname = unicode(ifile.name)
 
         if not os.path.isfile(abspath):
-            log.err("Unable to remove %s not existent file, in itip %s has an internalfile %s(%d) missing on FS" %
+            log.err("Unable to remove non existent internalfile %s (itip %s, internalfile %s(%d))" %
                 (abspath, id, ifname, ifile.size))
-            continue
+        else:
+            try:
+                os.unlink(abspath)
+            except OSError as excep:
+                log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
-        try:
-            os.unlink(abspath)
-        except OSError as excep:
-            log.err("Unable to remove %s: %s" % (abspath, excep.strerror) )
+        rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
+        for rfile in rfiles:
+            # The following code must be bypassed if rfile.file_path == ifile.filepath
+            if rfile.file_path == ifile.file_path:
+                continue
 
-    rfiles = store.find(ReceiverFile, ReceiverFile.internaltip_id == id)
-    for rfile in rfiles:
-        abspath = os.path.join(GLSetting.submission_path, rfile.file_path)
-        rfname = unicode(rfile.name)
-
-        if not os.path.isfile(abspath):
-            log.err("Unable to remove %s not existent file, in itip %s has an receiverfile %s(%d) missing on FS" %
-                (abspath, id, rfname, rfile.size) )
-            continue
-
-        try:
-            os.unlink(abspath)
-        except OSError as excep:
-            log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
+            abspath = os.path.join(GLSetting.submission_path, rfile.file_path)
+    
+            if not os.path.isfile(abspath):
+                log.err("Unable to remove non existent receiverfile %s (itip %s, internalfile %s(%d))" %
+                    (abspath, id, ifname, ifile.size))
+                continue
+    
+            try:
+                os.unlink(abspath)
+            except OSError as excep:
+                log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
     store.remove(tit)
 
