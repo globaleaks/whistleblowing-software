@@ -1,3 +1,9 @@
+globaleaks (0.2.0.9-2) unstable; urgency=low
+
+  * Globaleaks Alpha - File Notification fixed, Storm foreign keys support enabled.
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 17 May 2013 10:00:42 +0002
+
 globaleaks (0.2.0.8-2) unstable; urgency=low
 
   * Globaleaks Alpha - Misc fixes
