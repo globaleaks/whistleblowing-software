@@ -53,8 +53,6 @@ def set_default_uri(self, name, default_uri):
             raw_connection.execute("PRAGMA synchronous = %s" %
                                    (_self._synchronous,))
 
-        raw_connection.execute("PRAGMA journal_mode = WAL")
-
         raw_connection.execute("PRAGMA foreign_keys = ON")
 
         return raw_connection
@@ -478,7 +476,7 @@ class transact(object):
         Returns a reference to Storm Store
         """
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file + '?foreign_keys=ON&journaling_mode=WAL')
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file + '?foreign_keys=ON')
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
