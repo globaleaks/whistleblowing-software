@@ -32,7 +32,43 @@ DO () {
     fi
 }
 
-PIP_PKG="pip-1.3.1.tar.gz"
+vercomp () {
+    # Returnned values:
+    #   0: version are equals
+    #   1: $1 is bigger than $2
+    #   2: $2 is bigger than $1
+    if [[ $1 == $2 ]]
+    then
+        return 0
+    fi
+    local IFS=.
+    local i ver1=($1) ver2=($2)
+    # fill empty fields in ver1 with zeros
+    for ((i=${#ver1[@]}; i<${#ver2[@]}; i++))
+    do
+        ver1[i]=0
+    done
+    for ((i=0; i<${#ver1[@]}; i++))
+    do
+        if [[ -z ${ver2[i]} ]]
+        then
+            # fill empty fields in ver2 with zeros
+            ver2[i]=0
+        fi
+        if ((10#${ver1[i]} > 10#${ver2[i]}))
+        then
+            return 1
+        fi
+        if ((10#${ver1[i]} < 10#${ver2[i]}))
+        then
+            return 2
+        fi
+    done
+    return 0
+}
+
+PIP_VERSION=1.3.1
+PIP_PKG="pip-${PIP_VERSION}.tar.gz"
 PIP_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}"
 PIP_SIG_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}.asc"
 PIP_PUB_KEY="
@@ -331,35 +367,46 @@ PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
 PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
 
 echo "Installing python-setuptools"
-DO "apt-get install python-setuptools" "0" "failed to apt-get install python-setuptools"
+DO "apt-get install python-setuptools" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
 DO "cd ${BUILD_DIR}/" "0"
 
-DO "wget -O ${BUILD_DIR}/${PIP_PKG} ${PIP_URL}" "0"
-DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
+INSTALL_PIP=1
+if which pip >/dev/null 2>&1; then
+    INSTALLED_PIP=`pip --version | cut -d" " -f2`
+    vercomp ${INSTALLED_PIP} ${PIP_VERSION}
+    if [ $? -ne 2 ]; then
+        INSTALL_PIP=0
+    fi
+fi
 
-echo "Verifying PGP signature"
-TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
-PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
-echo "$PIP_PUB_KEY" > $PIP_KEY_FILE
-DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $PIP_KEY_FILE" "0"
-DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0" "Error in verifying signature!"
+if [ ${INSTALL_PIP} -eq 1 ] ; then
+    DO "wget -O ${BUILD_DIR}/${PIP_PKG} ${PIP_URL}" "0"
+    DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
 
-DO "tar xzf ${PIP_PKG}" "0"
-DO "cd pip-*" "0"
+    echo "Verifying PGP signature"
+    TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
+    PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
+    echo "$PIP_PUB_KEY" > $PIP_KEY_FILE
+    DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $PIP_KEY_FILE" "0"
+    DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0" "Error in verifying signature!"
 
-echo "Installing the latest pip"
-echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
-read -r -p "Do you wish to continue? [y/n] " response
-case $response in
-    y | Y | yes | YES )
-        DO "python setup.py install" "0"
-        ;;
-    *)
-        exit 1
-        ;;
-esac
+    DO "tar xzf ${PIP_PKG}" "0"
+    DO "cd pip-*" "0"
+
+    echo "Installing the latest pip"
+    echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
+    read -r -p "Do you wish to continue? [y/n] " response
+    case $response in
+        y | Y | yes | YES )
+            DO "python setup.py install" "0"
+            ;;
+        *)
+            exit 1
+            ;;
+    esac
+fi
 
 DO "torsocks wget -O ${BUILD_DIR}/requirements.txt https://raw.github.com/globaleaks/GLBackend/master/requirements.txt" "0"
 PIP_DEPS=`cat ${BUILD_DIR}/requirements.txt`
