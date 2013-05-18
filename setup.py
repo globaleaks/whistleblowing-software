@@ -7,7 +7,7 @@ import shutil
 import hashlib
 import urllib2
 from zipfile import ZipFile
-from distutils.core import setup
+from setuptools import setup
 
 from globaleaks import __version__
 
@@ -57,22 +57,10 @@ if not os.path.isdir('glclient'):
     verify_glclient()
     uncompress_glclient(glclient_path)
 glclient_path = 'glclient'
-#build_glclient()
 
-install_requires = []
-requires = [
-"twisted (==12.3.0)",
-"apscheduler (==2.1.0)",
-"zope.component (==4.1.0)",
-"zope.interface (==4.0.5)",
-"cyclone (==1.1)",
-"storm (==0.19)",
-"transaction (==1.4.1)",
-"txsocksx (==0.0.2)",
-"PyCrypto (==2.6)",
-"scrypt (==0.5.5)",
-"Pillow (==2.0.0)"
-]
+requires = []
+with open('requirements.txt') as f:
+    requires = f.read().splitlines()
 
 data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'index.html'),
     os.path.join(glclient_path, 'styles.css'),
@@ -100,7 +88,6 @@ setup(
         'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
     scripts=["bin/globaleaks"],
-    #install_requires=open("requirements.txt").readlines(),
-    requires=requires
+    install_requires=requires
 )
 shutil.rmtree(glclient_path)
