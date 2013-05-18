@@ -23,13 +23,19 @@
             <label>New Password</label>
             <input type="password" ng-model="preferences.password">
 
+            <label>Retype again your new password</label>
+            <input type="password" ng-model="preferences.check_password">
+
+            <p class="text-error" ng-show="mismatch_password">The new passwords do not match</p>
+
           </div>
         </form>
       </div>
 
       <div class="row">
         <div class="span4">
-          <button type="submit" class="btn btn-success" ng-click="save()">Save</button>
+            <button type="submit" class="btn btn-success" 
+                ng-disabled="mismatch_password"  ng-click="save()">Save</button>
         </div>
       </div>
 
