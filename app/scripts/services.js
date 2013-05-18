@@ -391,34 +391,46 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
 
 }).
   factory('changePasswordWatcher', ['$parse', function($parse) {
-    return function(scope, old_password, new_password) {
-      /** This is used to watch on the new password and old password models and
-       *  set the local scope variable invalid_password if an a new password is
-       *  set but no old password is provided.
+    return function(scope, old_password, password, check_password) {
+      /** This is used to watch the new password and check that is 
+       *  effectively the same. Sets a local variable mismatch_password.
        *
        *  @param {obj} scope the scope under which we should register watchers
-       *                     and insert the invalid_password field.
+       *                     and insert the mismatch_password field.
        *  @param {string} old_password the old password model name.
-       *  @param {string} new_password the new password model name.
+       *  @param {string} password the new password model name.
+       *  @param {string} check_password need to be equal to the new password.
        **/
-      scope.invalid_password = false;
+      scope.mismatch_password = true;
 
       var validatePasswordChange = function() {
-        if (scope.$eval(new_password) !== '' && scope.$eval(old_password) === '') {
-          scope.invalid_password = true;
-        } else {
-          scope.invalid_password = false;
+        if (scope.$eval(password) == scope.$eval(check_password) ) {
+            scope.mismatch_password = false;
+        }
+        /* by default, if is not yet written, do not print the error */
+        if (scope.$eval(password) == '' || scope.$eval(password) == undefined ) {
+            scope.mismatch_password = false;
         }
       }
 
-      scope.$watch(new_password, function(){
+      /* initializing here the variable that trigger "password mismatch"
+       * we avoid that is show as invalid since the page load */
+      scope.$watch(password, function(){
+        scope.mismatch_password = true;
         validatePasswordChange();
       }, true);
 
       scope.$watch(old_password, function(){
         validatePasswordChange();
       }, true);
+
+      scope.$watch(check_password, function(){
+        scope.mismatch_password = true;
+        validatePasswordChange();
+      }, true);
+
     }
+
 }]).
   factory('Admin', ['$resource', function($resource) {
 

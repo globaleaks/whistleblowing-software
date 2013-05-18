@@ -15,7 +15,8 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
   function($scope, $rootScope, ReceiverPreferences, changePasswordWatcher) {
     $scope.preferences = ReceiverPreferences.get();
 
-    changePasswordWatcher($scope, "preferences.old_password", "preferences.password");
+    changePasswordWatcher($scope, "preferences.old_password",
+        "preferences.password", "preferences.check_password");
 
     $scope.save = function() {
       $scope.preferences.$update(function(){

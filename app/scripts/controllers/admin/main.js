@@ -20,6 +20,8 @@ function($rootScope, $scope, $http, $location, Admin) {
   $scope.updateNode = function(node) {
     if (typeof(node.password) === "undefined")
       node.password = "";
+    if (typeof(node.check_password) === "undefined")
+      node.password = "";
     if (typeof(node.old_password) === "undefined")
       node.old_password = "";
     $scope.update(node);
@@ -40,7 +42,8 @@ function($rootScope, $scope, $http, $location, Admin) {
 
 GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changePasswordWatcher',
                     function($scope, changePasswordWatcher) {
-    changePasswordWatcher($scope, "admin.node.old_password", "admin.node.password");
+    changePasswordWatcher($scope, "admin.node.old_password",
+        "admin.node.password", "admin.node.check_password");
 }]);
 
 GLClient.controller('ImageUploadCtrl', ['$scope', function($scope){
