@@ -18,7 +18,7 @@ from txsocksx.client import SOCKS5ClientEndpoint
 
 from StringIO import StringIO
 
-from twisted.internet import reactor
+from twisted.internet import reactor, protocol, error
 from twisted.internet.defer import Deferred
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient
 from twisted.internet.ssl import ClientContextFactory
@@ -26,6 +26,7 @@ from twisted.protocols import tls
 
 from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
+from twisted.python.failure import Failure
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
@@ -234,12 +235,33 @@ def sendmail(authentication_username, authentication_password, from_address,
         requireAuthentication=(authentication_username and authentication_password),
         requireTransportSecurity=requireTransportSecurity)
 
+    def protocolConnectionLost(self, reason=protocol.connectionDone):
+        """We are no longer connected"""
+        if isinstance(reason, Failure):
+            if not isinstance(reason.value, error.ConnectionDone):
+                log.err("Failed to contact %s:%d (ConnectionLost Error %s)"
+                        % (smtp_host, smtp_port, reason.type))
+                log.err(reason)
+
+        self.setTimeout(None)
+        self.mailFile = None
+
+    def printError(reason):
+        if isinstance(reason, Failure):
+            reason = reason.type
+        log.err("Failed to contact %s:%d (Sock Error %s)"
+                % (smtp_host, smtp_port, reason))
+        log.err(reason)
+
     def sendError(self, exc):
         if exc.code and exc.resp:
-            log.err("STMP Error: %.3d %s" % (exc.code, exc.resp))
+            log.err("Failed to contact %s:%d (STMP Error: %.3d %s)"
+                    % (smtp_host, smtp_port, exc.code, exc.resp))
         SMTPClient.sendError(self, exc)
 
+    result_deferred.addErrback(printError)
     factory.protocol.sendError = sendError
+    factory.protocol.connectionLost = protocolConnectionLost
 
     if security == "SSL":
         factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
@@ -251,6 +273,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
 
     d = endpoint.connect(factory)
+    d.addErrback(printError)
     d.addErrback(result_deferred.errback)
 
     return result_deferred
