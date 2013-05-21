@@ -18,12 +18,17 @@ CREATE TABLE context (
     escalation_threshold INTEGER,
     fields BLOB NOT NULL,
     file_max_download INTEGER NOT NULL,
+    file_required INTEGER NOT NULL,
     id VARCHAR NOT NULL,
     last_update VARCHAR,
     name VARCHAR NOT NULL,
     selectable_receiver INTEGER NOT NULL,
     tip_max_access INTEGER NOT NULL,
     tip_timetolive INTEGER NOT NULL,
+    receipt_regexp VARCHAR NOT NULL,
+    receipt_description VARCHAR NOT NULL,
+    submission_introduction VARCHAR NOT NULL,
+    submission_disclaimer VARCHAR NOT NULL,
     submission_timetolive INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
@@ -88,6 +93,16 @@ CREATE TABLE node (
     public_site VARCHAR NOT NULL,
     stats_update_time INTEGER NOT NULL,
     last_update VARCHAR,
+    maximum_namesize INTEGER NOT NULL,
+    maximum_descsize INTEGER NOT NULL,
+    maximum_textsize INTEGER NOT NULL,
+    maximum_filesize INTEGER NOT NULL,
+    tor2web_admin INTEGER NOT NULL,
+    tor2web_submission INTEGER NOT NULL,
+    tor2web_tip INTEGER NOT NULL,
+    tor2web_receiver INTEGER NOT NULL,
+    tor2web_unauth INTEGER NOT NULL,
+    errors_email VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -114,6 +129,7 @@ CREATE TABLE receiver (
     last_access VARCHAR,
     last_update VARCHAR,
     name VARCHAR NOT NULL,
+    tags BLOB NOT NULL,
     notification_fields BLOB NOT NULL,
     password VARCHAR,
     failed_login INTEGER NOT NULL,
