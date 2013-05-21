@@ -25,6 +25,7 @@ from twisted.internet import reactor
 from storm import exceptions
 from twisted.internet.threads import deferToThreadPool
 from cyclone.web import HTTPError
+from cyclone.util import ObjectDict as OD
 from storm import tracer
 
 from globaleaks import __version__
@@ -64,6 +65,7 @@ def set_default_uri(self, name, default_uri):
 
 ZStorm.set_default_uri = set_default_uri
 
+
 class GLSettingsClass:
 
     def __init__(self):
@@ -91,7 +93,6 @@ class GLSettingsClass:
         self.error_reporting_password= "stackexception99"
         self.error_reporting_server = "box549.bluehost.com"
         self.error_reporting_port = 465
-        self.error_reporting_destmail = "stackexception@lists.globaleaks.org"
 
         # debug defaults
         self.storm_debug = False
@@ -106,8 +107,6 @@ class GLSettingsClass:
         self.glclient_path = '/usr/share/globaleaks/glclient'
         self.eval_paths()
 
-        self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
-
         # list of plugins available in the software
         self.notification_plugins = [
             'MailNotification',
@@ -115,12 +114,6 @@ class GLSettingsClass:
 
         # session tracking, in the singleton classes
         self.sessions = dict()
-
-        # value limits in the database
-        self.name_limit = 128
-        self.description_limit = 1024
-        self.generic_limit = 2048
-        self.max_file_size = (30 * 1024 * 1024) # 30 Mb
 
         # static file rules
         self.staticfile_regexp = r'(\w+)\.(\w+)'
@@ -130,25 +123,25 @@ class GLSettingsClass:
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
 
-        # transport security defaults
-        #self.tor2web_permitted_ops = {
-        #    'admin': False,
-        #    'submission': False,
-        #    'tip': False,
-        #    'receiver': False,
-        #    'unauth': True
-        #}
-
-        # https://github.com/globaleaks/GlobaLeaks/issues/182
-        # we need this settings to permit testing over tor2web
-        # transport security defaults
-        self.tor2web_permitted_ops = {
-            'admin': True,
-            'submission': True,
-            'tip': True,
-            'receiver': True,
-            'unauth': True
-        }
+        self.defaults = OD()
+        # Default values, used to initialize DB at the first start,
+        # or whenever the value is not supply by client.
+        # These value are then stored in the single instance
+        # (Node, Receiver or Context) and then can be updated by
+        # the admin using the Admin interface (advanced settings)
+        self.defaults.tor2web_admin = False
+        self.defaults.tor2web_submmission = False
+        self.defaults.tor2web_tip = False
+        self.defaults.tor2web_receiver = False
+        self.defaults.tor2web_unauth = True
+        self.defaults.exception_email = "stackexception@lists.globaleaks.org"
+        self.defaults.name_limit = 128
+        self.defaults.description_limit = 1024
+        self.defaults.generic_limit = 2048
+        self.defaults.max_file_size = (30 * 1024 * 1024) # 30 Mb
+        self.defaults.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
+        self.defaults.tip_seconds_of_life = (3600 * 24) * 15
+        self.defaults.submission_seconds_of_life = (3600 * 24) * 3
 
         # SOCKS default
         self.socks_host = "127.0.0.1"
@@ -163,13 +156,6 @@ class GLSettingsClass:
         self.twistd_log = False
         self.devel_mode = False
 
-        # Expiry time of finalized and not finalized submission,
-        # They are copied in a context *when is created*, then
-        # changing this variable do not modify the cleaning
-        # timings of the existing contexts
-        self.tip_seconds_of_life = (3600 * 24) * 15
-        self.submission_seconds_of_life = (3600 * 24) * 3
-        # enhancement: supports "extended settings in GLCLient"
 
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
