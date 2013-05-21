@@ -28,7 +28,18 @@ def admin_serialize_node(node):
         "public_site": node.public_site,
         "stats_update_time": node.stats_update_time,
         "email": node.email,
-        "languages": list(node.languages) if node.languages else []
+        "languages": list(node.languages) if node.languages else [],
+        # extended settings info:
+        'maximum_filesize': node.maximum_filesize,
+        'maximum_namesize': node.maximum_namesize,
+        'maximum_descsize': node.maximum_descsize,
+        'maximum_textsize': node.maximum_textsize,
+        'errors_email': node.errors_email,
+        'tor2web_admin_permitted': GLSetting.tor2web_permitted_ops['admin'],
+        'tor2web_submission_permitted': GLSetting.tor2web_permitted_ops['submission'],
+        'tor2web_tip_permitted': GLSetting.tor2web_permitted_ops['tip'],
+        'tor2web_receiver_permitted': GLSetting.tor2web_permitted_ops['receiver'],
+        'tor2web_unauth_permitted': GLSetting.tor2web_permitted_ops['unauth'],
     }
     return response
 
@@ -47,6 +58,12 @@ def admin_serialize_context(context):
         "escalation_threshold": context.escalation_threshold,
         "fields": context.fields if context.fields else [],
         "receivers": [],
+        # extended settings info:
+        "receipt_regexp": context.receipt_regexp,
+        "receipt_description": context.receipt_description,
+        "submission_introduction": context.submission_introduction,
+        "submission_disclaimer": context.submission_disclaimer,
+        "file_required": context.file_required,
     }
     
     for receiver in context.receivers:
@@ -64,6 +81,7 @@ def admin_serialize_receiver(receiver):
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
+        "tags": receiver.tags,
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "failed_login": receiver.failed_login,
         "password": u"",
@@ -705,7 +723,6 @@ class ReceiverInstance(BaseHandler):
         self.finish()
 
 
-
 # Notification section:
 
 def admin_serialize_notification(notif):
@@ -716,9 +733,13 @@ def admin_serialize_notification(notif):
         'password': notif.password if notif.password else u"",
         'security': notif.security if notif.security else u"",
         'tip_template': notif.tip_template if notif.tip_template else u"",
+        'tip_mail_title': notif.tip_mail_title if notif.tip_mail_title else u"",
         'file_template': notif.file_template if notif.file_template else u"",
+        'file_mail_title': notif.file_mail_title if notif.file_mail_title else u"",
         'comment_template': notif.comment_template if notif.comment_template else u"",
+        'comment_mail_title': notif.comment_mail_title if notif.comment_mail_title else u"",
         'activation_template': notif.activation_template if notif.activation_template else u"",
+        'activation_mail_title': notif.activation_mail_title if notif.activation_mail_title else u"",
     }
     return notification_dict
 
@@ -726,9 +747,9 @@ def admin_serialize_notification(notif):
 def get_notification(store):
     try:
         notif = store.find(Notification).one()
-    except Exception, e:
-        log.err("Database error or application error: %s", str(e))
-        raise e
+    except Exception as excep:
+        log.err("Database error when getting Notification table: %s" % str(excep))
+        raise excep
 
     return admin_serialize_notification(notif)
 

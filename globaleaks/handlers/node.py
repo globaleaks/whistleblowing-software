@@ -29,13 +29,14 @@ def anon_serialize_node(store):
       'email': unicode(node.email),
       'languages': list(node.languages or []),
       'version': GLSetting.version_string,
+      'configured': True if associated else False,
+      # extended settings info:
       'maximum_filesize': GLSetting.max_file_size,
       'tor2web_admin_permitted': GLSetting.tor2web_permitted_ops['admin'],
       'tor2web_submission_permitted': GLSetting.tor2web_permitted_ops['submission'],
       'tor2web_tip_permitted': GLSetting.tor2web_permitted_ops['tip'],
       'tor2web_receiver_permitted': GLSetting.tor2web_permitted_ops['receiver'],
       'tor2web_unauth_permitted': GLSetting.tor2web_permitted_ops['unauth'],
-      'configured': True if associated else False,
     }
 
 def serialize_context(context):
@@ -45,6 +46,7 @@ def serialize_context(context):
         "escalation_threshold": None,
         "fields": list(context.fields or []),
         "file_max_download": int(context.file_max_download),
+        "file_required": context.file_required,
         "name": unicode(context.name),
         "receivers": [],
         "selectable_receiver": bool(context.selectable_receiver),
@@ -65,6 +67,7 @@ def serialize_receiver(receiver):
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
+        "tags": dict(receiver.tags)
     }
     for context in receiver.contexts:
         receiver_dict['contexts'].append(unicode(context.id))
@@ -108,8 +111,8 @@ class StatsCollection(BaseHandler):
 
         This interface return the collected statistics for the public audience.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "TO BE IMPLEMENTED", "get", uriargs)
         pass
+
 
 @transact
 def get_public_context_list(store):
@@ -149,8 +152,7 @@ def get_public_receiver_list(store):
 class ReceiversCollection(BaseHandler):
     """
     U7
-    Return the description of all the receiver visible from the outside. A receiver is associated
-    to one or more context, and is present in the "first tier" if a multi level review is configured.
+    Return the description of all the receivers visible from the outside.
     """
 
     @inlineCallbacks
