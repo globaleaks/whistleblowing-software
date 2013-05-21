@@ -67,15 +67,15 @@
 
         <label>Tor Hidden Service (hostname)</label>
         <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
-               ng-pattern="/^[0-9a-z]{16}\.onion$/">
+               ng-pattern="/^http://[0-9a-z]{16}\.onion$/">
         <p class="text-error"
-           ng-show="contentForm.hidden_service.$error.pattern">Invalid format for hidden service (should be "thirteenchars123.onion")</p>
+           ng-show="contentForm.hidden_service.$error.pattern">Invalid format for hidden service (should be "http://thirteenchars123.onion")</p>
 
         <label>Tor2web Public Site (url)</label>
-        <input type="url" name="public_site"
-               ng-model="admin.node.public_site">
+        <input type="url" name="public_site" ng-model="admin.node.public_site"
+               ng-pattern="/^https://[0-9a-z.]*$/">
         <p class="text-error"
-           ng-show="contentForm.public_site.$error.url">Invalid format for Tor2web public site (should be "https://thirteenchars123.tor2web.org")</p>
+           ng-show="contentForm.public_site.$error.pattern">Invalid format for public site (should be "https://thirteenchars123.tor2web.org")</p>
 
         <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
         <!-- </div> -->
