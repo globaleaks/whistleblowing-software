@@ -158,12 +158,18 @@ class Context(Model):
 
     tip_max_access = Int()
     file_max_download = Int()
+    file_required = Bool()
 
     # both expressed in seconds
     tip_timetolive = Int()
     submission_timetolive = Int()
 
     last_update = DateTime()
+
+    receipt_regexp = Unicode()
+    receipt_description = Unicode()
+    submission_introduction = Unicode()
+    submission_disclaimer = Unicode()
 
     #receivers = ReferenceSet(
     #                         Context.id,
@@ -326,12 +332,26 @@ class Node(Model):
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
     stats_update_time = Int()
-    stats_update_time = Int()
+
+    # Advanced settings
+    maximum_namesize = Int()
+    maximum_descsize = Int()
+    maximum_textsize = Int()
+    maximum_filesize = Int()
+    tor2web_admin = Bool()
+    tor2web_submission = Bool()
+    tor2web_tip = Bool()
+    tor2web_receiver = Bool()
+    tor2web_unauth = Bool()
+
+    errors_email = Unicode()
 
     unicode_keys = ['name', 'description', 'public_site',
                     'email', 'hidden_service' ]
-    int_keys = [ 'stats_update_time' ]
-    bool_keys = []
+    int_keys = [ 'stats_update_time', 'maximum_namesize', 'maximum_descsize',
+                 'maximum_textsize', 'maximum_filesize' ]
+    bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
+                  'tor2web_tip', 'tor2web_unauth' ]
 
 
 class Notification(Model):
@@ -387,8 +407,15 @@ class Receiver(Model):
     # counter
     failed_login = Int()
 
+    # list of group which the Receiver is part of
+    tags = Pickle()
+
     last_update = DateTime()
     last_access = DateTime(default_factory=datetime_now)
+
+    tip_notification = Bool()
+    comment_notification = Bool()
+    file_notification = Bool()
 
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
