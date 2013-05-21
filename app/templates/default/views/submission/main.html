@@ -42,7 +42,7 @@
       <div ng-switch-when="1 Receiver selection" class="receiverCards">
         <p class="lead">Choose the context and receivers that will be sure to transform your submission into action!</p>
 
-        <p ng-show="node_configured">I want to report on
+        <p ng-show="node_info.configured">I want to report on
         <select class="contexts" ng-model="submission.current_context"
                 ng-options="context as context.name for context in submission.contexts">
         </select>
