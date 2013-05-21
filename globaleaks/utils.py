@@ -334,7 +334,7 @@ def acquire_url_address(inputstring, hidden_service=False, http=False):
 
     accepted = False
 
-    if hidden_service and re.match("^[0-9a-z]{16}\.onion$", inputstring):
+    if hidden_service and re.match("^http://[0-9a-z]{16}\.onion$", inputstring):
         accepted |= True
 
     if http and re.match("^http(s?)://(\w+)\.(.*)$", inputstring):

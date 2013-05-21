@@ -90,7 +90,7 @@ class MailNotification(Notification):
             if len(node_desc['hidden_service']):
                 tip_template_keyword.update({
                     '%TipTorURL%':
-                        'http://%s/#/status/%s' %
+                        '%s/#/status/%s' %
                             ( node_desc['hidden_service'],
                               event_dicts.trigger_info['id']),
                     })
@@ -103,7 +103,7 @@ class MailNotification(Notification):
             if len(node_desc['public_site']):
                 tip_template_keyword.update({
                     '%TipT2WURL%':
-                        'https://%s/#/status/%s' %
+                        '%s/#/status/%s' %
                             ( node_desc['public_site'],
                               event_dicts.trigger_info['id'] ),
                     })
