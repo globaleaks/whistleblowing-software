@@ -13,19 +13,29 @@
 
       <div class="row">
         <form class="config-form">
-          <div class="span4">
-            <label>username</label>
-            <strong>{{preferences.username}}</strong>
+            <div class="span4">
 
-            <label>Current Password</label>
-            <input type="password" ng-model="preferences.old_password">
+            <h4>Preferences and password management</h4>
+            <br>
 
-            <label>New Password</label>
-            <input type="password" ng-model="preferences.password">
+            <p>Your username: {{preferences.username}}</p>
 
-            <label>Retype again your new password</label>
-            <input type="password" ng-model="preferences.check_password">
+            <label><b>Current Password</b></label>
+            <input type="password"
+            ng-model="preferences.old_password">
+            <p class="text-error" ng-show="missing_old_password">Required old password confirm</p>
 
+            <label><b>New Password</b></label>
+            <input type="password"
+            ng-model="preferences.password" >
+            <p class="text-error" ng-show="unsafe_password">The password is unsafe, need to be:</p>
+            <li class="text-error" ng-hide="pwdHasLetter">Almost one letter</li>
+            <li class="text-error" ng-hide="pwdHasNumber">Almost one number</li>
+            <li class="text-error" ng-hide="pwdValidLength">Almost 8 keypress long</li>
+
+            <label><b>Retype again your new password</b></label>
+            <input type="password"
+            ng-model="preferences.check_password">
             <p class="text-error" ng-show="mismatch_password">The new passwords do not match</p>
 
           </div>
@@ -33,9 +43,12 @@
       </div>
 
       <div class="row">
-        <div class="span4">
-            <button type="submit" class="btn btn-success" 
-                ng-disabled="mismatch_password"  ng-click="save()">Save</button>
+          <div class="span4">
+
+            <button type="submit" class="btn btn-success"
+                ng-disabled="mismatch_password || unsafe_password || missing_old_password"
+                ng-click="save()">Save</button>
+
         </div>
       </div>
 
@@ -44,3 +57,5 @@
   </div>
 
 </div>
+
+

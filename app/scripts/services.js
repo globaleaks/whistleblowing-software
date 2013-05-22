@@ -402,15 +402,40 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
        *  @param {string} check_password need to be equal to the new password.
        **/
       scope.mismatch_password = true;
+      scope.missing_old_password = true;
+      scope.unsafe_password = true;
+
+      scope.pwdValidLength = false;
+      scope.pwdHasLetter = false;
+      scope.pwdHasNumber = false;
 
       var validatePasswordChange = function() {
+
         if (scope.$eval(password) == scope.$eval(check_password) ) {
             scope.mismatch_password = false;
         }
-        /* by default, if is not yet written, do not print the error */
-        if (scope.$eval(password) == '' || scope.$eval(password) == undefined ) {
+        /* when is not yet written is undefined, then do not show the error */
+        if (scope.$eval(password) == undefined ) {
             scope.mismatch_password = false;
         }
+
+        if (scope.$eval(old_password) != undefined && scope.$eval(old_password).length >= 1 ) {
+            scope.missing_old_password = false;
+        }
+
+        if (scope.mismatch_password && scope.$eval(password) != undefined) {
+
+            scope.pwdValidLength = ( scope.$eval(password)).length >= 8 ? true : false;
+            scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password) )) ? true : false;
+            scope.pwdHasNumber = ( /\d/.test(scope.$eval(password) )) ? true : false;
+
+            if (scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber) {
+              scope.unsafe_password = false;
+            } else {
+              scope.unsafe_password = true;
+            }
+        }
+
       }
 
       /* initializing here the variable that trigger "password mismatch"
@@ -505,3 +530,6 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');
     $httpProvider.defaults.transformRequest.push(globaleaksRequestInterceptor);
 }]);
+
+
+
