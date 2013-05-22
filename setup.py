@@ -16,7 +16,7 @@ if not sys.version_info[:2] == (2, 7):
     print "https://github.com/globaleaks/GlobaLeaks/wiki/Technical-requirements"
     raise AssertionError
 
-glclient_path = 'glclient-v0.2.0.11'
+glclient_path = 'glclient-v0.2.0.12'
 def download_glclient():
     glclient_url = "https://globaleaks.org/builds/GLClient/"+glclient_path+".zip"
     print "[+] Downloading glclient from %s" % glclient_url
@@ -29,7 +29,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "b5a7ffd369bc403e74c8a9b98ed829486e3f990e45f42453c368bbcf"
+    glclient_hash = "ba7776a9dc3808030d5e54da1d66cec86d24697f1cfab9b0c2f51420"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
