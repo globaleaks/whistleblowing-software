@@ -1,5 +1,4 @@
-include glclient/index.html glclient/scripts.js glclient/styles.css
-recursive-include dir images glclient/images/*
-recursive-include dir staticdata staticdata/*
-include debian/*
 include requirements.txt
+include debian/*
+graft staticdata
+graft glclient
