@@ -1,14 +1,20 @@
+globaleaks (0.2.0.12-2) unstable; urgency=low
+
+  * Globaleaks Alpha - Password strength and exception with versioning
+ 
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Web, 22 May 2013 13:00:42 +0002
+
 globaleaks (0.2.0.11-2) unstable; urgency=low
 
   * Globaleaks Alpha - Misc fixes
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 17 May 2013 10:00:42 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 21 May 2013 11:00:42 +0002
 
 globaleaks (0.2.0.10-2) unstable; urgency=low
 
   * Globaleaks Alpha - Fixed files cleaning and URL notification.
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 17 May 2013 10:00:42 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 21 May 2013 10:00:42 +0002
 
 globaleaks (0.2.0.9-2) unstable; urgency=low
 
