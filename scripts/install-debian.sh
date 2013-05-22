@@ -366,8 +366,8 @@ TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
 PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
 PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
 
-echo "Installing python-setuptools and gcc"
-DO "apt-get install python-setuptools gcc" "0"
+echo "Installing python-setuptools, gcc, python-dev"
+DO "apt-get install python-setuptools gcc python-dev" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
 DO "cd ${BUILD_DIR}/" "0"
