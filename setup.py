@@ -2,14 +2,25 @@
 #-*- coding: utf-8 -*-
 
 import os
+import re
 import sys
 import shutil
 import hashlib
 import urllib2
 from zipfile import ZipFile
-from setuptools import setup
+from distutils.core import setup
 
 from globaleaks import __version__
+
+def pip_to_requirements(s):
+    """
+    Change a PIP-style requirements.txt string into one suitable for setup.py
+    """
+
+    m = re.match('(.*)([>=]=[.0-9]*).*', s)
+    if m:
+        return '%s (%s)' % (m.group(1), m.group(2))
+    return s.strip()
 
 if not sys.version_info[:2] == (2, 7):
     print "Error, GlobaLeaks is tested only with python 2.7"
@@ -60,7 +71,7 @@ glclient_path = 'glclient'
 
 requires = []
 with open('requirements.txt') as f:
-    requires = f.read().splitlines()
+    requires = map(pip_to_requirements, f.readlines())
 
 data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'index.html'),
     os.path.join(glclient_path, 'styles.css'),
@@ -88,6 +99,6 @@ setup(
         'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
     scripts=["bin/globaleaks"],
-    install_requires = requires
+    requires = requires
 )
 shutil.rmtree(glclient_path)
