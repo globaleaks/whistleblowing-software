@@ -29,6 +29,7 @@ from twisted.python import logfile as twlogfile
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
+from globaleaks import __version__
 
 
 class Logger(object):
@@ -279,10 +280,11 @@ def mail_exception(etype, value, tback):
 
     tmp.append("From: %s" % GLSetting.error_reporting_username)
     tmp.append("To: %s" % GLSetting.error_reporting_username)
-    tmp.append("Subject: GLBackend Exception [%d]" % mail_exception.mail_counter)
+    tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
     tmp.append("Content-Transfer-Encoding: 8bit\n")
     tmp.append("Source: %s\n" % " ".join(os.uname()))
+    tmp.append("Version: %s\n" % __version__)
     error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
     tmp.append(error_message)
 
