@@ -154,6 +154,8 @@ class TestTipInstance(TTip):
         self.wb_data = yield tip.get_internaltip_wb(self.wb_tip_id)
 
         self.assertEqual(self.wb_data['fields'], self.submission_desc['wb_fields'])
+        self.assertTrue(self.wb_data['im_whistleblower'])
+        self.assertFalse(self.wb_data['im_receiver'])
 
     @inlineCallbacks
     def create_receivers_tip(self):
@@ -192,10 +194,14 @@ class TestTipInstance(TTip):
                 raise e
         
         self.assertEqual(self.receiver1_data['fields'], self.submission_desc['wb_fields'])
+        self.assertTrue(self.receiver1_data['im_receiver'])
+        self.assertFalse(self.receiver1_data['im_whistleblower'])
 
         self.receiver2_data = yield tip.get_internaltip_receiver(auth2, self.rtip2_id)
 
         self.assertEqual(self.receiver2_data['fields'], self.submission_desc['wb_fields'])
+        self.assertTrue(self.receiver2_data['im_receiver'])
+        self.assertFalse(self.receiver2_data['im_whistleblower'])
 
     @inlineCallbacks
     def strong_receiver_auth(self):
