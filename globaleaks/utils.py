@@ -340,7 +340,7 @@ def mail_exception(etype, value, tback):
              GLSetting.error_reporting_destmail,
              message,
              GLSetting.error_reporting_server,
-             GLSetting.error_reporting_port)
+             GLSetting.error_reporting_port, None)
 
 mail_exception.mail_counter = 0
 
