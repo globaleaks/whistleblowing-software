@@ -39,36 +39,62 @@ def anon_serialize_node(store):
     }
 
 def serialize_context(context):
+    """
+    @param context: a valid Storm object
+    @return: a dict describing the contexts available for submission,
+        (e.g. checks if almost one receiver is associated)
+    """
     context_dict = {
+        "receivers": []
+    }
+
+    for receiver in context.receivers:
+        context_dict['receivers'].append(unicode(receiver.id))
+
+    if not len(context_dict['receivers']):
+        return None
+
+    context_dict.update({
         "context_gus": unicode(context.id),
         "description": unicode(context.description),
         "escalation_threshold": None,
         "fields": list(context.fields or []),
         "file_max_download": int(context.file_max_download),
         "name": unicode(context.name),
-        "receivers": [],
         "selectable_receiver": bool(context.selectable_receiver),
         "tip_max_access": int(context.tip_max_access),
         "tip_timetolive": int(context.tip_timetolive)
-    }
-    for receiver in context.receivers:
-        context_dict['receivers'].append(unicode(receiver.id))
+    })
     return context_dict
 
 def serialize_receiver(receiver):
+    """
+    @param receiver: a valid Storm object
+    @return: a dict describing the receivers available in the node
+        (e.g. checks if almost one context is associated, or, in
+         node where GPG encryption is enforced, that a valid key is registered)
+    """
     receiver_dict = {
-        "can_delete_submission": receiver.can_delete_submission,
         "contexts": [],
+    }
+
+    for context in receiver.contexts:
+        receiver_dict['contexts'].append(unicode(context.id))
+
+    if not len(receiver_dict['contexts']):
+        return None
+
+    receiver_dict.update({
+        "can_delete_submission": receiver.can_delete_submission,
         "creation_date": utils.pretty_date_time(receiver.creation_date),
         "update_date": utils.pretty_date_time(receiver.last_update),
         "description": receiver.description,
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
-    }
-    for context in receiver.contexts:
-        receiver_dict['contexts'].append(unicode(context.id))
+    })
     return receiver_dict
+
 
 class InfoCollection(BaseHandler):
     """
@@ -115,8 +141,13 @@ class StatsCollection(BaseHandler):
 def get_public_context_list(store):
     context_list = []
     contexts = store.find(models.Context)
+
     for context in contexts:
-        context_list.append(serialize_context(context))
+        context_desc = serialize_context(context)
+        # context not yet ready for submission return None
+        if context_desc:
+            context_list.append(context_desc)
+
     return context_list
 
 
@@ -142,8 +173,13 @@ class ContextsCollection(BaseHandler):
 def get_public_receiver_list(store):
     receiver_list = []
     receivers = store.find(models.Receiver)
+
     for receiver in receivers:
-        receiver_list.append(serialize_receiver(receiver))
+        receiver_desc = serialize_receiver(receiver)
+        # receiver not yet ready for submission return None
+        if receiver_desc:
+            receiver_list.append(receiver_desc)
+
     return receiver_list
 
 class ReceiversCollection(BaseHandler):
