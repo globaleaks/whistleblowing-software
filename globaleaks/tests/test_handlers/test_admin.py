@@ -32,6 +32,7 @@ class TestNodeInstance(helpers.TestHandler):
         del self.dummyNode['old_password']
         del self.dummyNode['salt']
         del self.dummyNode['salt_receipt']
+        del self.responses[0]['version']
 
         self.assertEqual(self.responses[0], self.dummyNode)
 
@@ -201,7 +202,7 @@ class TestReceiversCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_post_duplicated_username(self):
         self.dummyReceiver['name'] = 'beppe'
-        self.dummyReceiver['notification_fields']['mail_address'] = "vecna@hellais.naif"
+        self.dummyReceiver['notification_fields']['mail_address'] = "evilamaker.py@vecllais.naif"
         self.dummyReceiver['password'] = u'newcreatedpassword'
         handler = self.request(self.dummyReceiver, role='admin')
 
