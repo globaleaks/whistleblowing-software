@@ -15,16 +15,23 @@ GLBACKEND_TAG=$1
 
 mkdir -p $GLOBALEAKS_DIR
 
-if [ ! -d ${GLOBALEAKS_DIR}/GLBackend ]; then
-  echo "[+] Cloning GLBackend in ${GLOBALEAKS_DIR}"
-  git clone $GLBACKEND_GIT_REPO ${GLOBALEAKS_DIR}/GLBackend
-fi
-
 build_glbackend()
 {
-  echo "[+] Updating GLBackend"
-  cd ${GLOBALEAKS_DIR}/GLBackend
-  git pull origin master
+  if [ -d ${GLOBALEAKS_DIR}/GLBackend ]; then
+    echo "Directory ${GLOBALEAKS_DIR}/GLBackend already present"
+    echo "The build process needs a clean git clone of GLBackend"
+    read -n1 -p "Are you sure you want delete ${GLOBALEAKS_DIR}/GLBackend? (y/n): "
+    echo
+    if [[ $REPLY != [yY] ]]; then
+      echo "Exiting ..."
+      exit
+    fi
+    rm -rf ${GLOBALEAKS_DIR}/GLBackend
+  fi
+
+  echo "[+] Cloning GLBackend in ${GLOBALEAKS_DIR}"
+  git clone $GLBACKEND_GIT_REPO ${GLOBALEAKS_DIR}/GLBackend
+
   GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
   if test $GLBACKEND_TAG; then
