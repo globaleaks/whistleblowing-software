@@ -7,6 +7,8 @@ GLClient.controller('StatusCtrl',
 
     new Tip(TipID, function(tip){
       $scope.tip = tip;
+      $rootScope.uploadedFiles = [];
+      $rootScope.uploadingFiles = [];
     });
 
     $scope.newComment = function() {
@@ -16,12 +18,7 @@ GLClient.controller('StatusCtrl',
 
     if ($cookies['role'] === 'wb') {
       $rootScope.whistleblower_tip_id = $cookies['tip_id'];
-      $rootScope.uploadedFiles = [];
-      $rootScope.uploadingFiles = [];
-    } else {
-      $rootScope.whistleblower_tip_id = false;
-    };
-
+    } 
 
 }]);
 
