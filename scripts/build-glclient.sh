@@ -14,16 +14,24 @@ fi
 GLCLIENT_TAG=$1
 
 mkdir -p $GLOBALEAKS_DIR
-mkdir -p $OUTPUT_DIR/GLClient
-
-if [ ! -d ${GLOBALEAKS_DIR}/GLClient ]; then
-  echo "[+] Cloning GLClient in ${GLOBALEAKS_DIR}"
-  git clone $GLCLIENT_GIT_REPO ${GLOBALEAKS_DIR}/GLClient
-fi
 
 build_glclient()
 {
-  echo "[+] Updating GLClient"
+  if [ -d ${GLOBALEAKS_DIR}/GLClient ]; then
+    echo "Directory ${GLOBALEAKS_DIR}/GLBackend already present"
+    echo "The build process needs a clean git clone of GLBackend"
+    read -n1 -p "Are you sure you want delete ${GLOBALEAKS_DIR}/GLClient? (y/n): "
+    echo
+    if [[ $REPLY != [yY] ]]; then
+      echo "Exiting ..."
+      exit
+    fi
+    rm -rf ${GLOBALEAKS_DIR}/GLClient
+  fi
+
+  echo "[+] Cloning GLBackend in ${GLOBALEAKS_DIR}"
+  git clone $GLCLIENT_GIT_REPO ${GLOBALEAKS_DIR}/GLClient
+
   cd ${GLOBALEAKS_DIR}/GLClient
   git pull origin master
   GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
