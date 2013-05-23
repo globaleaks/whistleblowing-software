@@ -201,7 +201,7 @@ def pretty_diff_now(past_date):
 ## Mail utilities ##
 
 def sendmail(authentication_username, authentication_password, from_address,
-             to_address, message_file, smtp_host, smtp_port=25, security="SSL"):
+             to_address, message_file, smtp_host, smtp_port, security, event=None):
     """
     Sends an email using SSLv3 over SMTP
 
@@ -212,6 +212,7 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param message_file: the message content
     @param smtp_host: the smtp host
     @param smtp_port: the smtp port
+    @param event: the event description, needed to keep track of failure/success
     """
 
     result_deferred = Deferred()
@@ -246,11 +247,19 @@ def sendmail(authentication_username, authentication_password, from_address,
         self.setTimeout(None)
         self.mailFile = None
 
-    def printError(reason):
+    def printError(reason, event):
         if isinstance(reason, Failure):
             reason = reason.type
-        log.err("Failed to contact %s:%d (Sock Error %s)"
-                % (smtp_host, smtp_port, reason))
+
+        # XXX is catch a wrong TCP port, but not wrong SSL protocol, here
+        if event:
+            log.err("** failed notification within event %s" % event.type)
+        # TODO Enhance with retry
+        # TODO specify a ticket - make event an Obj instead of a namedtuple
+        # TODO It's defined in plugin/base.py
+
+        log.err("Failed to contact %s:%d (Sock Error %s)" %
+                (smtp_host, smtp_port, reason))
         log.err(reason)
 
     def sendError(self, exc):
@@ -259,7 +268,11 @@ def sendmail(authentication_username, authentication_password, from_address,
                     % (smtp_host, smtp_port, exc.code, exc.resp))
         SMTPClient.sendError(self, exc)
 
-    result_deferred.addErrback(printError)
+
+    # TODO:
+    # be sure that all the possibile errors can have the 'event' argument
+    # because at the moment SSL errors are not catch by printError :(
+    result_deferred.addErrback(printError, event)
     factory.protocol.sendError = sendError
     factory.protocol.connectionLost = protocolConnectionLost
 
@@ -291,7 +304,7 @@ def mail_exception(etype, value, tback):
     """
     # this is an hack because inside the Generator, not a great stacktrace is produced
     if(etype == GeneratorExit):
-        log.debug("Exception unhandled inside generator")
+        log.err("Exception unhandled inside generator")
         return
 
     mail_exception.mail_counter += 1
@@ -347,7 +360,7 @@ def acquire_mail_address(request):
 
     mail_string = request['notification_fields']['mail_address'].lower()
     if not re.match("^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$", mail_string):
-        log.debug("Invalid email address format [%s]" % mail_string)
+        log.err("Invalid email address format [%s]" % mail_string)
         return False
 
     return unicode(mail_string)
