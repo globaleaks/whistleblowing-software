@@ -28,6 +28,7 @@ def admin_serialize_node(node):
         "public_site": node.public_site,
         "stats_update_time": node.stats_update_time,
         "email": node.email,
+        "version": GLSetting.version_string,
         "languages": list(node.languages) if node.languages else []
     }
     return response
