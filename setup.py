@@ -82,7 +82,6 @@ data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'i
     os.path.join(glclient_path, 'images', 'glyphicons-halflings.png'),
     os.path.join(glclient_path, 'images', 'glyphicons-halflings-white.png')
 ]), ('/usr/share/globaleaks/glbackend', [
-    'staticdata/torrc',
     'staticdata/globaleaks_logo.png'])]
 
 setup(
