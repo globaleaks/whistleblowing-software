@@ -69,6 +69,10 @@ def create_tables_transaction(store):
     @return: None, create the right table at the first start, and initialized
     the node.
     """
+    if not os.access(GLSetting.db_schema_file, os.R_OK):
+        log.err("Unable to access %s" % GLSetting.db_schema_file)
+        raise Exception("Unable to access db schema file")
+
     with open(GLSetting.db_schema_file) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
@@ -177,7 +181,8 @@ def check_schema_version():
             comma_compare += table[2].count(',')
 
     if not comma_compare:
-        raise Exception("Database found empty!")
+        log.err("Found an empty database; manual check needed.")
+        raise Exception("Found an empty database; manual check needed.")
 
     if comma_compare != comma_number:
         log.err("*********************************")
