@@ -3,7 +3,7 @@
     <h1>Tip Status Page</h1>
   </div>
 </div>
-<div ng-cloak class="container statusPage">
+<div ng-cloak class="container statusPage" ng-show="tip.im_whistleblower || tip.im_receiver">
   <div class="row">
     <div class="span4">
       <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
@@ -29,7 +29,7 @@
                       ng-click="openSecurityCheck()">
                       <i class="icon-lock"></i> security check
               </button>
-              <a ng-cloak ng-hide="whistleblower_tip_id"
+              <a ng-cloak ng-show="tip.im_receiver"
                  class="btn btn-small" href="{{file.href}}">
                  <i class="icon-download"></i> download
               </a>
@@ -64,7 +64,7 @@
       </div>
       <div class="span4" ng-hide="tip.files"><p>No file has been uploaded!</p></div>
 
-      <div ng-cloak ng-show="whistleblower_tip_id">
+      <div ng-cloak ng-show="tip.im_whistleblower">
         <div file-upload action="/tip/{{whistleblower_tip_id}}/upload"
              uploaded-files="uploadedFiles" uploading-files="uploadingFiles"></div>
       </div>
@@ -124,4 +124,13 @@
     </div>
 
   </div>
+</div>
+
+
+<div ng-cloak class="container statusPage" ng-show="tip.im_whistleblower && tip.im_receiver">
+  <div class="row">
+      <div class="span4">
+          Loading Tip page...
+       </div>
+   </div>
 </div>

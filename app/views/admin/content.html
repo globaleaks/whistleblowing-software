@@ -23,7 +23,7 @@
 
             <div ng-show="uploadfile || fileSelected" class="uploadfile">
 
-              <div pragmatic-file-upload src="'/admin/staticfiles?globaleaks_logo'">
+              <div pragmatic-file-upload ng-src="'/admin/staticfiles?globaleaks_logo'">
 
                 <button class="close" ng-click="closeProfile()">×</button>
                 <div class="fileselector">
@@ -37,7 +37,7 @@
               </div>
             </div>
 
-            <img src="/static/globaleaks_logo.png" class="img-polaroid baseimage">
+            <img ng-src="/static/globaleaks_logo.png" class="img-polaroid baseimage">
 
           </div>
         </div>
