@@ -133,7 +133,7 @@ class StatsCollection(BaseHandler):
 
         This interface return the collected statistics for the public audience.
         """
-        log.debug("[D] %s %s " % (__file__, __name__), "TO BE IMPLEMENTED", "get", uriargs)
+        log.debug("%s %s " % (__file__, __name__), "TO BE IMPLEMENTED", "get", uriargs)
         pass
 
 @transact
