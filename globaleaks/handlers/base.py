@@ -43,7 +43,7 @@ def validate_host(host_key):
     if host_key in GLSetting.accepted_hosts:
         return True
 
-    log.debug("Error in host requested: %s do not accepted between: %s " %
+    log.debug("Error in host requested: %s not accepted between: %s " %
               (host_key, GLSetting.accepted_hosts))
     return False
 
@@ -333,7 +333,7 @@ class BaseHandler(RequestHandler):
             else:
                 return self.send_error(e.status_code, exception=e)
         else:
-            log.msg("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb) )
+            log.err("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb) )
             if GLSetting.cyclone_debug:
                 log.msg(e)
             mail_exception(exc_type, exc_value, exc_tb)
