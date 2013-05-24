@@ -33,7 +33,7 @@ class GLBaseRunner(app.ApplicationRunner):
         We don't actually want to override this method since there is nothing
         interesting to do in here.
         """
-        log.debug("[D] %s %s " % (__file__, __name__),
+        log.debug("%s %s " % (__file__, __name__),
                   "Class GLBaseRunner", "preApplication")
 
     def postApplication(self):
@@ -43,7 +43,7 @@ class GLBaseRunner(app.ApplicationRunner):
         Here we will take care of the launching of the reactor and the
         operations to be done after it's shutdown.
         """
-        log.debug("[D] %s %s " % (__file__, __name__),
+        log.debug("%s %s " % (__file__, __name__),
                   "Class GLBaseRunner", "postApplication")
 
 

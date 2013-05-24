@@ -19,7 +19,6 @@ import grp
 import getpass
 
 from optparse import OptionParser
-from twisted.python import log
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
 from storm import exceptions
@@ -505,7 +504,6 @@ class transact(object):
             else:
                 result = function(self.store, *args, **kwargs)
         except (exceptions.IntegrityError, exceptions.DisconnectionError) as ex:
-            log.msg(ex)
             transaction.abort()
             result = None
         except HTTPError as excep:

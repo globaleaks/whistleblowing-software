@@ -44,17 +44,17 @@ class Logger(object):
 
     def info(self, msg):
         if GLSetting.loglevel <= logging.INFO:
-            print "[-] %s" % self._str(msg)
+            twlog.info("[-] %s" % self._str(msg))
 
     def err(self, msg):
-        print "[!] %s" % self._str(msg)
+        twlog.err("[!] %s" % self._str(msg))
 
     def debug(self, msg):
         if GLSetting.loglevel <= logging.DEBUG:
-            print "[D] %s" % self._str(msg)
+            twlog.debug("[D] %s" % self._str(msg))
 
     def msg(self, msg):
-        print "[ ] %s" % self._str(msg)
+        twlog.msg("[ ] %s" % self._str(msg))
 
     def start_logging(self):
         """
@@ -73,7 +73,8 @@ class Logger(object):
 log = Logger()
 
 def query_yes_no(question, default="no"):
-    """Ask a yes/no question via raw_input() and return their answer.
+    """
+    Ask a yes/no question via raw_input() and return their answer.
 
     "question" is a string that is presented to the user.
 
