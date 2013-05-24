@@ -16,6 +16,10 @@
     <!-- End Nav Bar -->
     <div class="span9">
 
+      <h3>General information</h3>
+      <p><b>You're running GlobaLeaks version {{admin.node.version}}</b></p>
+
+      <label>Current initiative logo</label>
       <form name="contentForm" novalidate>
         <div class="imageUpload" ng-controller="ImageUploadCtrl">
           <div class="profile" ng-mouseenter="openUploader()"
@@ -44,7 +48,6 @@
 
         <div class="row">
           <div class="span9">
-            <h4>General information</h4>
             <label>Node name</label>
             <input type="text" ng-model="admin.node.name" value="{{admin.node.name}}">
           </div>
