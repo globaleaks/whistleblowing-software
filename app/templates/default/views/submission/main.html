@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="span2">
-        <a href="/#/"><img src="/static/globaleaks_logo.png" class="img-rounded"></a>
+        <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
       </div>
 
       <div class="span10">
@@ -17,14 +17,18 @@
   </div>
 </div>
 
-<div ng-cloak class="container" ng-hide="node_info.configured">
+<div class="container" ng-show="!node_info.name">
+    <h2>Loading...</h2>
+</div>
+
+<div ng-cloak class="container" ng-show="!node_info.configured && node_info.name">
   <h2>This node is not configured.</h2>
   <p>You will not be able to perform a submission.<br>
   Admin please configure a Context and associated Receivers using
   <a href="/#/admin/contexts">Admin management interface</a>.</p>
 </div>
 
-<div ng-cloak ng-controller="WizardCtrl" class="container" ng-hide="!node_info.configured">
+<div ng-cloak ng-controller="WizardCtrl" class="container" ng-show="node_info.name && node_info.configured">
 
   <div class="tabbable tabs-below">
 
