@@ -1,3 +1,9 @@
+globaleaks (0.2.0.18-2) unstable; urgency=low
+
+  * Globaleaks Alpha - Misc fixes
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 24 May 2013 09:33:42 +0002
+
 globaleaks (0.2.0.17-2) unstable; urgency=low
 
   * Globaleaks Alpha - Packaging fixes
