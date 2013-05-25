@@ -50,7 +50,7 @@ adminNodeDesc = {
     'email' : unicode,
     'password' : unicode,
     'old_password' : unicode,
-    # extended settings:
+    # advanced settings:
     'maximum_namesize': int,
     'maximum_descsize': int,
     'maximum_textsize': int,
@@ -60,7 +60,7 @@ adminNodeDesc = {
     'tor2web_tip': bool,
     'tor2web_receiver': bool,
     'tor2web_unauth': bool,
-    'errors_email': unicode,
+    'exception_email': unicode,
 }
 
 adminNotificationDesc = {
@@ -89,10 +89,13 @@ adminContextDesc = {
     'escalation_threshold' : int,
     'receivers' : [ uuid_regexp ],
     'fields': [ formFieldsDict ],
+    # advanced settings:
     'receipt_regexp': unicode,
     'receipt_description': unicode,
     'submission_introduction': unicode,
     'submission_disclaimer': unicode,
+    'file_required': bool,
+    'tags' : [ unicode ]
 }
 
 adminReceiverDesc =  {
@@ -103,4 +106,9 @@ adminReceiverDesc =  {
     'contexts' : [ uuid_regexp ],
     'receiver_level' : int,
     'can_delete_submission' : bool,
+    # advanced settings:
+    'tags': [ unicode ],
+    'tip_notification': bool,
+    'file_notification': bool,
+    'comment_notification': bool,
 }
