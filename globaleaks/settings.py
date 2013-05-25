@@ -129,18 +129,35 @@ class GLSettingsClass:
         # (Node, Receiver or Context) and then can be updated by
         # the admin using the Admin interface (advanced settings)
         self.defaults.tor2web_admin = False
-        self.defaults.tor2web_submmission = False
+        self.defaults.tor2web_submission = False
         self.defaults.tor2web_tip = False
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
+        self.defaults.maximum_namesize = 128
+        self.defaults.maximum_descsize = 1024
+        self.defaults.maximum_textsize = 2048
+        self.defaults.maximum_filesize = (30 * 1024 * 1024) # 30 Mb
         self.defaults.exception_email = "stackexception@lists.globaleaks.org"
-        self.defaults.name_limit = 128
-        self.defaults.description_limit = 1024
-        self.defaults.generic_limit = 2048
-        self.defaults.max_file_size = (30 * 1024 * 1024) # 30 Mb
+        # Context dependent values:
         self.defaults.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
+
+        self.memory_copy = OD()
+        # Some operation, like check for maximum file, can't access
+        # to the DB every time. So when some Node values are updated
+        # here are copied, in order to permit a faster comparison
+        self.memory_copy.maximum_filesize = self.defaults.maximum_filesize
+        self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
+        self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
+        self.memory_copy.maximum_descsize = self.defaults.maximum_descsize
+        self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
+        self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
+        self.memory_copy.tor2web_tip = self.defaults.tor2web_tip
+        self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
+        self.memory_copy.tor2web_unauth = self.defaults.tor2web_unauth
+        self.defaults.exception_email = self.defaults.exception_email
+        # updated by globaleaks/db/__init__.import_memory_variables
 
         # SOCKS default
         self.socks_host = "127.0.0.1"
