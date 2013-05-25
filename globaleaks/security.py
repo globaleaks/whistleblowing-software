@@ -9,7 +9,7 @@ import scrypt
 import binascii
 import random
 import time
-import gnupg
+import gpgme
 
 from datetime import timedelta
 from Crypto.Hash import SHA512
