@@ -2,21 +2,32 @@
 #-*- coding: utf-8 -*-
 
 import os
+import re
 import sys
 import shutil
 import hashlib
 import urllib2
 from zipfile import ZipFile
-from setuptools import setup
+from distutils.core import setup
 
 from globaleaks import __version__
+
+def pip_to_requirements(s):
+    """
+    Change a PIP-style requirements.txt string into one suitable for setup.py
+    """
+
+    m = re.match('(.*)([>=]=[.0-9]*).*', s)
+    if m:
+        return '%s (%s)' % (m.group(1), m.group(2))
+    return s.strip()
 
 if not sys.version_info[:2] == (2, 7):
     print "Error, GlobaLeaks is tested only with python 2.7"
     print "https://github.com/globaleaks/GlobaLeaks/wiki/Technical-requirements"
     raise AssertionError
 
-glclient_path = 'glclient-v0.2.0.9'
+glclient_path = 'glclient-v0.2.0.18'
 def download_glclient():
     glclient_url = "https://globaleaks.org/builds/GLClient/"+glclient_path+".zip"
     print "[+] Downloading glclient from %s" % glclient_url
@@ -29,7 +40,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "f821d0fc41fff27066b8d5e5033cdadbf97072a526a599b7b1d44cd8"
+    glclient_hash = "a4c7169032ad68bac8d29eecdfdcc1bbcfae2b6c1bf6eb60d1859182"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
@@ -60,7 +71,7 @@ glclient_path = 'glclient'
 
 requires = []
 with open('requirements.txt') as f:
-    requires = f.read().splitlines()
+    requires = map(pip_to_requirements, f.readlines())
 
 data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'index.html'),
     os.path.join(glclient_path, 'styles.css'),
@@ -71,7 +82,6 @@ data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'i
     os.path.join(glclient_path, 'images', 'glyphicons-halflings.png'),
     os.path.join(glclient_path, 'images', 'glyphicons-halflings-white.png')
 ]), ('/usr/share/globaleaks/glbackend', [
-    'staticdata/torrc',
     'staticdata/globaleaks_logo.png'])]
 
 setup(
@@ -88,6 +98,6 @@ setup(
         'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
     scripts=["bin/globaleaks"],
-    install_requires=requires
+    requires = requires
 )
 shutil.rmtree(glclient_path)
