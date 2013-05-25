@@ -283,5 +283,5 @@ class HTTPRawLimitReach(GLException):
     """
     error_code = 39
     status_code = 400 # Generic 400 error
-    reason = ("The upload request overcome the Md limits (%dMd)" %\
-              (GLSetting.max_file_size / 1024 * 1024) )
+    reason = ("The upload request overcome the Md limits (%dMd)" %
+             (GLSetting.memory_copy.maximum_filesize / 1024 * 1024) )

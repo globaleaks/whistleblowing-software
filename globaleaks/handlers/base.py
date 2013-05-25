@@ -54,7 +54,7 @@ class GLHTTPServer(HTTPConnection):
         HTTPConnection.lineReceived(self, line)
 
     def rawDataReceived(self, data):
-        if self.content_length > GLSetting.max_file_size:
+        if self.content_length > GLSetting.memory_copy.maximum_filesize:
             log.err("Tried upload larger than expected (%dMb)" %
                     (self.content_length / (1024 * 1024)) )
 

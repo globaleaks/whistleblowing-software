@@ -97,14 +97,8 @@ def serialize_receiver(receiver):
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
-<<<<<<< HEAD
-        "tags": dict(receiver.tags)
-    }
-    for context in receiver.contexts:
-        receiver_dict['contexts'].append(unicode(context.id))
-=======
+        "tags": dict(receiver.tags),
     })
->>>>>>> master
     return receiver_dict
 
 
@@ -146,10 +140,6 @@ class StatsCollection(BaseHandler):
 
         This interface return the collected statistics for the public audience.
         """
-<<<<<<< HEAD
-=======
-        log.debug("%s %s " % (__file__, __name__), "TO BE IMPLEMENTED", "get", uriargs)
->>>>>>> master
         pass
 
 
