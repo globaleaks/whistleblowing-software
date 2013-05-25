@@ -163,10 +163,13 @@ class Context(Model):
 
     last_update = DateTime()
 
+    # advanced settings
     receipt_regexp = Unicode()
     receipt_description = Unicode()
     submission_introduction = Unicode()
     submission_disclaimer = Unicode()
+    file_required = Bool()
+    tags = Pickle()
 
     #receivers = ReferenceSet(
     #                         Context.id,
@@ -177,7 +180,7 @@ class Context(Model):
     unicode_keys = ['name', 'description' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
                  'file_max_download', 'submission_timetolive' ]
-    bool_keys = [ 'selectable_receiver' ]
+    bool_keys = [ 'selectable_receiver', 'file_required' ]
 
 
 class InternalTip(Model):
@@ -407,15 +410,15 @@ class Receiver(Model):
     # of receivers body. if threshold is configured in the context. default 1
     receiver_level = Int()
 
-    # counter
     failed_login = Int()
-
-    # list of group which the Receiver is part of
-    tags = Pickle()
 
     last_update = DateTime()
     last_access = DateTime(default_factory=datetime_now)
 
+    # Group which the Receiver is part of
+    tags = Pickle()
+
+    # personal advanced settings
     tip_notification = Bool()
     comment_notification = Bool()
     file_notification = Bool()
@@ -427,7 +430,8 @@ class Receiver(Model):
 
     unicode_keys = ['name', 'description' ]
     int_keys = [ 'receiver_level' ]
-    bool_keys = [ 'can_delete_submission' ] # Total delete capability
+    bool_keys = [ 'can_delete_submission', 'tip_notification',
+                  'comment_notification', 'file_notification' ]
 
 
 # Follow two classes used for Many to Many references

@@ -17,6 +17,7 @@ from globaleaks.models import Receiver, Context, Node, Notification
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security
 from globaleaks.utils import log
+from globaleaks.db import import_memory_variables
 
 def admin_serialize_node(node):
     response = {
@@ -34,12 +35,12 @@ def admin_serialize_node(node):
         'maximum_namesize': node.maximum_namesize,
         'maximum_descsize': node.maximum_descsize,
         'maximum_textsize': node.maximum_textsize,
-        'errors_email': node.errors_email,
-        'tor2web_admin_permitted': GLSetting.tor2web_permitted_ops['admin'],
-        'tor2web_submission_permitted': GLSetting.tor2web_permitted_ops['submission'],
-        'tor2web_tip_permitted': GLSetting.tor2web_permitted_ops['tip'],
-        'tor2web_receiver_permitted': GLSetting.tor2web_permitted_ops['receiver'],
-        'tor2web_unauth_permitted': GLSetting.tor2web_permitted_ops['unauth'],
+        'exception_email': node.exception_email,
+        'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
+        'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
+        'tor2web_tip': GLSetting.memory_copy.tor2web_tip,
+        'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
+        'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
     }
     return response
 
@@ -63,6 +64,7 @@ def admin_serialize_context(context):
         "receipt_description": context.receipt_description,
         "submission_introduction": context.submission_introduction,
         "submission_disclaimer": context.submission_disclaimer,
+        "tags": context.tags,
         "file_required": context.file_required,
     }
     
@@ -81,11 +83,14 @@ def admin_serialize_receiver(receiver):
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
-        "tags": receiver.tags,
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "failed_login": receiver.failed_login,
         "password": u"",
-        "contexts": []
+        "contexts": [],
+        "tags": receiver.tags,
+        "comment_notification": receiver.comment_notification,
+        "tip_notification": receiver.tip_notification,
+        "file_notification": receiver.file_notification,
     }
     for context in receiver.contexts:
         receiver_dict['contexts'].append(context.id)
@@ -209,12 +214,16 @@ def create_context(store, request):
     fields_validation(assigned_fields)
     context.fields = assigned_fields
 
-    # Until GLClient do not supports configuration of values, I would copy
-    # the default from the GLSetting
-    context.tip_timetolive = GLSetting.tip_seconds_of_life
-    context.submission_timetolive = GLSetting.submission_seconds_of_life
-    # context.file_max_download =
-    # context.tip_max_access =
+    # These "advanced settings" fields are set here as default, because
+    # The client at the moment send them empty.
+    context.receipt_regexp = GLSetting.defaults.receipt_regexp
+    context.receipt_description ="This sequence here is your receipt "\
+    "keep good care of it as it will allow you to access your submission"
+
+    context.submission_introduction = "Here you can submit your tip-off and the files"
+    context.submission_disclaimer = "Thank you for your contribution, your submission is complete"
+
+    context.tags = []
 
     if len(request['name']) < 1:
         log.err("Invalid request: name is an empty string")
@@ -531,6 +540,9 @@ class NodeInstance(BaseHandler):
                 requests.adminNodeDesc)
 
         response = yield update_node(request)
+
+        # align the memory variables with the new updated data
+        yield import_memory_variables()
 
         self.set_status(202) # Updated
         self.finish(response)

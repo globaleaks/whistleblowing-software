@@ -7,9 +7,8 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils import log
 from globaleaks import utils
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check
 from globaleaks import models
@@ -39,10 +38,9 @@ def anon_serialize_node(store):
       'tor2web_tip': node.tor2web_tip,
       'tor2web_receiver': node.tor2web_receiver,
       'tor2web_unauth': node.tor2web_unauth,
-      'errors_email': node.errors_email,
     }
 
-def serialize_context(context):
+def anon_serialize_context(context):
     """
     @param context: a valid Storm object
     @return: a dict describing the contexts available for submission,
@@ -68,11 +66,14 @@ def serialize_context(context):
         "name": unicode(context.name),
         "selectable_receiver": bool(context.selectable_receiver),
         "tip_max_access": int(context.tip_max_access),
-        "tip_timetolive": int(context.tip_timetolive)
+        "tip_timetolive": int(context.tip_timetolive),
+        "receipt_description": unicode(context.receipt_description),
+        "submission_introduction": unicode(context.submission_introduction),
+        "submission_disclaimer": unicode(context.submission_disclaimer),
     })
     return context_dict
 
-def serialize_receiver(receiver):
+def anon_serialize_receiver(receiver):
     """
     @param receiver: a valid Storm object
     @return: a dict describing the receivers available in the node
@@ -149,7 +150,7 @@ def get_public_context_list(store):
     contexts = store.find(models.Context)
 
     for context in contexts:
-        context_desc = serialize_context(context)
+        context_desc = anon_serialize_context(context)
         # context not yet ready for submission return None
         if context_desc:
             context_list.append(context_desc)
@@ -181,7 +182,7 @@ def get_public_receiver_list(store):
     receivers = store.find(models.Receiver)
 
     for receiver in receivers:
-        receiver_desc = serialize_receiver(receiver)
+        receiver_desc = anon_serialize_receiver(receiver)
         # receiver not yet ready for submission return None
         if receiver_desc:
             receiver_list.append(receiver_desc)
