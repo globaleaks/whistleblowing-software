@@ -19,7 +19,6 @@ import grp
 import getpass
 
 from optparse import OptionParser
-from twisted.python import log
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
 from storm import exceptions
@@ -223,17 +222,21 @@ class GLSettingsClass:
             # convert socks addr in IP and perform a test connection
             self.validate_socks()
 
-        if self.cmdline_options.user:
+        if self.cmdline_options.user and self.cmdline_options.group:
+            self.user = self.cmdline_options.user
+            self.group = self.cmdline_options.group
+            self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
+            self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
+        elif self.cmdline_options.user:
+            # user selected: get also the associated group
             self.user = self.cmdline_options.user
             self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
-        else:
-            self.uid = os.getuid()
-
-        if self.cmdline_options.group:
+            self.gid = pwd.getpwnam(self.cmdline_options.user).pw_gid
+        elif self.cmdline_options.group:
+            # group selected: keep the current user
             self.group = self.cmdline_options.group
             self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
-        else:
-            self.gid = os.getgid()
+            self.uid = os.getuid()
 
         if self.uid == 0 or self.gid == 0:
             print "Invalid user: cannot run as root"
@@ -381,12 +384,22 @@ class GLSettingsClass:
                 os.rmdir(os.path.join(root, name))
 
     def drop_privileges(self):
-        if os.getgid() == 0 or self.cmdline_options.group:
-            print "switching group privileges to %d" % self.gid
-            os.setgid(GLSetting.gid)
-        if os.getuid() == 0 or self.cmdline_options.user:
-            print "switching user privileges to %d" % self.uid
-            os.setuid(GLSetting.uid)
+
+        if os.getgid() != self.gid:
+            try:
+                print "switching group privileges since %d to %d" % (os.getgid(), self.gid)
+                os.setgid(self.gid)
+            except OSError as droperr:
+                print "unable to drop group privileges: %s" % droperr.strerror
+                quit(-1)
+
+        if os.getuid() != self.uid:
+            try:
+                print "switching user privileges since %d to %d" % (os.getuid(), self.uid)
+                os.setuid(self.uid)
+            except OSError as droperr:
+                print "unable to drop user privileges: %s" % droperr.strerror
+                quit(-1)
 
     def log_debug(self, message):
         """
@@ -477,7 +490,6 @@ class transact(object):
             else:
                 result = function(self.store, *args, **kwargs)
         except (exceptions.IntegrityError, exceptions.DisconnectionError) as ex:
-            log.msg(ex)
             transaction.abort()
             result = None
         except HTTPError as excep:

@@ -33,7 +33,7 @@ class GLBaseRunner(app.ApplicationRunner):
         We don't actually want to override this method since there is nothing
         interesting to do in here.
         """
-        log.debug("[D] %s %s " % (__file__, __name__),
+        log.debug("%s %s " % (__file__, __name__),
                   "Class GLBaseRunner", "preApplication")
 
     def postApplication(self):
@@ -43,7 +43,7 @@ class GLBaseRunner(app.ApplicationRunner):
         Here we will take care of the launching of the reactor and the
         operations to be done after it's shutdown.
         """
-        log.debug("[D] %s %s " % (__file__, __name__),
+        log.debug("%s %s " % (__file__, __name__),
                   "Class GLBaseRunner", "postApplication")
 
 
@@ -97,22 +97,22 @@ ServerOptions = ServerOptions
 
 def globaleaks_start():
     if not GLSetting.accepted_hosts:
-        print "Missing a list of hosts usable to contact GLBackend, abort"
-        raise AttributeError
+        log.err("Missing a list of hosts usable to contact GLBackend, abort")
+        return False
 
-    if check_schema_version():
-        d = create_tables()
-        @d.addCallback
-        def cb(res):
-            start_asynchronous()
+    if not check_schema_version():
+        return False
 
-            print "GLBackend is now running"
-            for host in GLSetting.accepted_hosts:
-                print "Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port)
+    d = create_tables()
+    @d.addCallback
+    def cb(res):
+        start_asynchronous()
 
-    else:
-        raise Exception("Wrong schema version")
+        log.msg("GLBackend is now running")
+        for host in GLSetting.accepted_hosts:
+            log.msg("Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port))
 
+    return True
 
 class GLBaseRunnerUnix(UnixApplicationRunner):
     """
@@ -125,9 +125,11 @@ class GLBaseRunnerUnix(UnixApplicationRunner):
 
         self.startApplication(self.application)
 
-        globaleaks_start()
+        if globaleaks_start():
+            self.startReactor(None, self.oldstdout, self.oldstderr)
+        else:
+            log.err("Cannot start GlobaLeaks; please manual check the error.")
 
-        self.startReactor(None, self.oldstdout, self.oldstderr)
         self.removePID(self.config['pidfile'])
 
 GLBaseRunner = GLBaseRunnerUnix

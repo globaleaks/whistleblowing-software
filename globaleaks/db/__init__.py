@@ -69,6 +69,10 @@ def create_tables_transaction(store):
     @return: None, create the right table at the first start, and initialized
     the node.
     """
+    if not os.access(GLSetting.db_schema_file, os.R_OK):
+        log.err("Unable to access %s" % GLSetting.db_schema_file)
+        raise Exception("Unable to access db schema file")
+
     with open(GLSetting.db_schema_file) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
@@ -146,47 +150,48 @@ def check_schema_version():
     is used. For sure there are other better checks, but not
     today.
     """
-    if not os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
-        return True
+    db_file = GLSetting.db_file.replace('sqlite:', '')
 
-    ret = True
+    if not os.path.exists(db_file):
+        return True
 
     if not os.access(GLSetting.db_schema_file, os.R_OK):
         log.err("Unable to access %s" % GLSetting.db_schema_file)
-        raise Exception("Unable to access db schema file")
+        return False
+    else:
+        ret = True
 
-    with open(GLSetting.db_schema_file) as f:
-        sqlfile = f.readlines()
-        comma_number = "".join(sqlfile).count(',')
+        with open(GLSetting.db_schema_file) as f:
+            sqlfile = f.readlines()
+            comma_number = "".join(sqlfile).count(',')
 
-    zstorm = ZStorm()
-    zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
-    store = zstorm.get(GLSetting.store_name)
+        zstorm = ZStorm()
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
+        store = zstorm.get(GLSetting.store_name)
 
-    q = """
-        SELECT name, type, sql
-        FROM sqlite_master
+        q = """
+            SELECT name, type, sql
+            FROM sqlite_master
             WHERE sql NOT NULL AND type == 'table'
-        """
+            """
 
-    res = store.execute(q)
+        res = store.execute(q)
 
-    comma_compare = 0
-    for table in res:
-        if len(table) == 3:
-            comma_compare += table[2].count(',')
+        comma_compare = 0
+        for table in res:
+            if len(table) == 3:
+                comma_compare += table[2].count(',')
 
-    if not comma_compare:
-        raise Exception("Database found empty!")
+        if not comma_compare:
+            log.err("Found an empty database (%s)" % db_file)
+            ret = False
 
-    if comma_compare != comma_number:
-        log.err("*********************************")
-        log.err("Detected an invalid DB version.")
-        log.err("You have to specify a different working_dir, or restartclean")
-        log.err("Also, if the DB is changed, we suggest to update also the GlobaLeaks client")
-        log.err("*********************************")
-        ret = False
+        elif comma_compare != comma_number:
+            log.err("Detected an invalid DB version (%s)" %  db_file)
+            log.err("You have to specify a different working_dir, or restartclean")
+            log.err("Also, if the DB is changed, we suggest to update also the GlobaLeaks client")
+            ret = False
 
-    store.close()
+        store.close()
 
     return ret

@@ -18,7 +18,7 @@ from txsocksx.client import SOCKS5ClientEndpoint
 
 from StringIO import StringIO
 
-from twisted.internet import reactor
+from twisted.internet import reactor, protocol, error
 from twisted.internet.defer import Deferred
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient
 from twisted.internet.ssl import ClientContextFactory
@@ -26,9 +26,11 @@ from twisted.protocols import tls
 
 from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
+from twisted.python.failure import Failure
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
+from globaleaks import __version__
 
 
 class Logger(object):
@@ -42,17 +44,17 @@ class Logger(object):
 
     def info(self, msg):
         if GLSetting.loglevel <= logging.INFO:
-            print "[-] %s" % self._str(msg)
+            twlog.info("[-] %s" % self._str(msg))
 
     def err(self, msg):
-        print "[!] %s" % self._str(msg)
+        twlog.err("[!] %s" % self._str(msg))
 
     def debug(self, msg):
         if GLSetting.loglevel <= logging.DEBUG:
-            print "[D] %s" % self._str(msg)
+            twlog.debug("[D] %s" % self._str(msg))
 
     def msg(self, msg):
-        print "[ ] %s" % self._str(msg)
+        twlog.msg("[ ] %s" % self._str(msg))
 
     def start_logging(self):
         """
@@ -71,7 +73,8 @@ class Logger(object):
 log = Logger()
 
 def query_yes_no(question, default="no"):
-    """Ask a yes/no question via raw_input() and return their answer.
+    """
+    Ask a yes/no question via raw_input() and return their answer.
 
     "question" is a string that is presented to the user.
 
@@ -200,7 +203,7 @@ def pretty_diff_now(past_date):
 ## Mail utilities ##
 
 def sendmail(authentication_username, authentication_password, from_address,
-             to_address, message_file, smtp_host, smtp_port=25, security="SSL"):
+             to_address, message_file, smtp_host, smtp_port, security, event=None):
     """
     Sends an email using SSLv3 over SMTP
 
@@ -211,6 +214,7 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param message_file: the message content
     @param smtp_host: the smtp host
     @param smtp_port: the smtp port
+    @param event: the event description, needed to keep track of failure/success
     """
 
     result_deferred = Deferred()
@@ -234,12 +238,45 @@ def sendmail(authentication_username, authentication_password, from_address,
         requireAuthentication=(authentication_username and authentication_password),
         requireTransportSecurity=requireTransportSecurity)
 
+    def protocolConnectionLost(self, reason=protocol.connectionDone):
+        """We are no longer connected"""
+        if isinstance(reason, Failure):
+            if not isinstance(reason.value, error.ConnectionDone):
+                log.err("Failed to contact %s:%d (ConnectionLost Error %s)"
+                        % (smtp_host, smtp_port, reason.type))
+                log.err(reason)
+
+        self.setTimeout(None)
+        self.mailFile = None
+
+    def printError(reason, event):
+        if isinstance(reason, Failure):
+            reason = reason.type
+
+        # XXX is catch a wrong TCP port, but not wrong SSL protocol, here
+        if event:
+            log.err("** failed notification within event %s" % event.type)
+        # TODO Enhance with retry
+        # TODO specify a ticket - make event an Obj instead of a namedtuple
+        # TODO It's defined in plugin/base.py
+
+        log.err("Failed to contact %s:%d (Sock Error %s)" %
+                (smtp_host, smtp_port, reason))
+        log.err(reason)
+
     def sendError(self, exc):
         if exc.code and exc.resp:
-            log.err("STMP Error: %.3d %s" % (exc.code, exc.resp))
+            log.err("Failed to contact %s:%d (STMP Error: %.3d %s)"
+                    % (smtp_host, smtp_port, exc.code, exc.resp))
         SMTPClient.sendError(self, exc)
 
+
+    # TODO:
+    # be sure that all the possibile errors can have the 'event' argument
+    # because at the moment SSL errors are not catch by printError :(
+    result_deferred.addErrback(printError, event)
     factory.protocol.sendError = sendError
+    factory.protocol.connectionLost = protocolConnectionLost
 
     if security == "SSL":
         factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
@@ -251,6 +288,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
 
     d = endpoint.connect(factory)
+    d.addErrback(printError)
     d.addErrback(result_deferred.errback)
 
     return result_deferred
@@ -268,7 +306,7 @@ def mail_exception(etype, value, tback):
     """
     # this is an hack because inside the Generator, not a great stacktrace is produced
     if(etype == GeneratorExit):
-        log.debug("Exception unhandled inside generator")
+        log.err("Exception unhandled inside generator")
         return
 
     mail_exception.mail_counter += 1
@@ -279,10 +317,11 @@ def mail_exception(etype, value, tback):
 
     tmp.append("From: %s" % GLSetting.error_reporting_username)
     tmp.append("To: %s" % GLSetting.error_reporting_username)
-    tmp.append("Subject: GLBackend Exception [%d]" % mail_exception.mail_counter)
+    tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
     tmp.append("Content-Transfer-Encoding: 8bit\n")
     tmp.append("Source: %s\n" % " ".join(os.uname()))
+    tmp.append("Version: %s\n" % __version__)
     error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
     tmp.append(error_message)
 
@@ -302,7 +341,7 @@ def mail_exception(etype, value, tback):
              GLSetting.error_reporting_destmail,
              message,
              GLSetting.error_reporting_server,
-             GLSetting.error_reporting_port)
+             GLSetting.error_reporting_port, None)
 
 mail_exception.mail_counter = 0
 
@@ -324,7 +363,7 @@ def acquire_mail_address(request):
 
     mail_string = request['notification_fields']['mail_address'].lower()
     if not re.match("^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$", mail_string):
-        log.debug("Invalid email address format [%s]" % mail_string)
+        log.err("Invalid email address format [%s]" % mail_string)
         return False
 
     return unicode(mail_string)
@@ -334,7 +373,7 @@ def acquire_url_address(inputstring, hidden_service=False, http=False):
 
     accepted = False
 
-    if hidden_service and re.match("^[0-9a-z]{16}\.onion$", inputstring):
+    if hidden_service and re.match("^http://[0-9a-z]{16}\.onion$", inputstring):
         accepted |= True
 
     if http and re.match("^http(s?)://(\w+)\.(.*)$", inputstring):
