@@ -3,17 +3,12 @@
 # Here is implemented the preApplication and postApplication method
 # along the Asynchronous event schedule
 
-import sys
-from apscheduler.events import EVENT_JOB_EXECUTED, EVENT_JOB_ERROR, EVENT_JOB_MISSED
-
-from twisted.internet import reactor
-from twisted.application import service, internet, app
-from twisted.python.runtime import platformType
+from twisted.application import app
 from apscheduler.scheduler import Scheduler
 
 from globaleaks.utils import log
-from globaleaks.db import create_tables, check_schema_version
-from globaleaks.settings import GLSetting, transact
+from globaleaks.db import create_tables, check_schema_version, import_memory_variables
+from globaleaks.settings import GLSetting
 
 # The scheduler is a global variable, because can be used to force execution
 __all__ = ['GLAsynchronous']
@@ -107,6 +102,7 @@ def globaleaks_start():
     @d.addCallback
     def cb(res):
         start_asynchronous()
+        import_memory_variables()
 
         log.msg("GLBackend is now running")
         for host in GLSetting.accepted_hosts:
