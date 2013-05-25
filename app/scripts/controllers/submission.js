@@ -5,7 +5,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
   var checkReceiverSelected = function() {
     $scope.receiver_selected = false;
     // Check if there is at least one selected receiver
-    angular.forEach($scope.receivers_selected, function(receiver) {
+    angular.forEach($scope.submission.receivers_selected, function(receiver) {
       $scope.receiver_selected = $scope.receiver_selected | receiver;
     });
   }
@@ -19,10 +19,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     $scope.maximumFilesize = submission.maximum_filesize;
 
     $scope.current_context = submission.current_context;
-    $scope.receivers_selected = submission.receivers_selected;
 
     $scope.submit = $scope.submission.submit;
-    $scope.current_context_receivers = $scope.submission.current_context_receivers;
     checkReceiverSelected();
 
   });

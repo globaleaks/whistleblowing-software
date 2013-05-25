@@ -174,6 +174,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       self.receipt = null;
 
       var setCurrentContextReceivers = function() {
+        self.receivers_selected = {};
         self.current_context_receivers = [];
         forEach(self.receivers, function(receiver){
           // enumerate only the receivers of the current context

@@ -55,11 +55,11 @@
         <div ng-repeat="receiver in submission.current_context_receivers">
 
           <div class="receiverCard span5"
-               ng-class="{selected: receivers_selected[receiver.receiver_gus]}"
+               ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}"
                ng-class-odd="{receiverCardOdd: true}"
                ng-class-even="{receiverCardEven: true}">
 
-            <input ng-model="receivers_selected[receiver.receiver_gus]"
+            <input ng-model="submission.receivers_selected[receiver.receiver_gus]"
                    type="checkbox" value="{{receiver.receiver_gus}}"
                    class="receiverSelection" ng-show="submission.current_context.selectable_receiver">
             <div class="row">
