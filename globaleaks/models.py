@@ -31,18 +31,16 @@ def gltextv(self, attr, value):
                         (attr, value))
 
     if (attr == 'name' and
-        (len(value) > GLSetting.name_limit or len(value) == 0)):
+        (len(value) > GLSetting.memory_copy.maximum_namesize or len(value) == 0)):
         raise errors.InvalidInputFormat("name length need to be > 0 and " \
-                                        "< of %d" % GLSetting.name_limit)
-    elif attr == 'description' and len(value) > GLSetting.description_limit:
+                            "< of %d" % GLSetting.memory_copy.maximum_namesize)
+    elif attr == 'description' and len(value) > GLSetting.memory_copy.maximum_descsize:
         raise errors.InvalidInputFormat("unicode description has a length " \
-                                        "limit of %d"
-                                        % GLSetting.description_limit)
+                            "limit of %d" % GLSetting.memory_copy.maximum_descsize)
     else:
-        if len(value) > GLSetting.generic_limit:
+        if len(value) > GLSetting.memory_copy.maximum_textsize:
             raise errors.InvalidInputFormat("unicode in %s overcome length " \
-                                            "limit %d"
-                                            % (attr, GLSetting.generic_limit))
+                            "limit %d" % (attr, GLSetting.memory_copy.maximum_textsize))
 
     return value
 
@@ -61,11 +59,10 @@ def gldictv(self, attr, value):
 
     for key, subvalue in value.iteritems():
         if isinstance(subvalue, unicode):
-            if len(subvalue) > GLSetting.generic_limit:
+            if len(subvalue) > GLSetting.memory_copy.maximum_textsize:
                 raise errors.InvalidInputFormat("In dict %s the key %s" \
-                                                "overcome length limit of %d"
-                                                % (attr, key,
-                                                GLSetting.generic_limit))
+                                "overcome length limit of %d" % (attr, key,
+                                GLSetting.memory_copy.maximum_textsize))
 
     return value
 
@@ -328,6 +325,7 @@ class Node(Model):
     receipt_salt = Unicode()
     password = Unicode()
     last_update = DateTime()
+    database_version = Int()
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -344,10 +342,10 @@ class Node(Model):
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
 
-    errors_email = Unicode()
+    exception_email = Unicode()
 
     unicode_keys = ['name', 'description', 'public_site',
-                    'email', 'hidden_service' ]
+                    'email', 'hidden_service', 'exception_email' ]
     int_keys = [ 'stats_update_time', 'maximum_namesize', 'maximum_descsize',
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
@@ -375,6 +373,11 @@ class Notification(Model):
     activation_template = Unicode()
     # these four template would be in the unicode_key implicit
     # expected fields, when Client/Backend are updated in their usage
+
+    tip_mail_title = Unicode()
+    file_mail_title = Unicode()
+    comment_mail_title = Unicode()
+    activation_mail_title = Unicode()
 
     unicode_keys = ['server', 'username', 'password', 'tip_template',
                     'file_template', 'comment_template', 'activation_template' ]

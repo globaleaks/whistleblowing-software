@@ -14,12 +14,6 @@ from globaleaks.plugins.base import Notification
 
 class MailNotification(Notification):
 
-    _title = {
-            'comment': 'From %ContextName% a new comment in %EventTime%',
-            'tip': 'From %ContextName% a new Tip in %EventTime%',
-            'file': 'From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)'
-    }
-
     plugin_name = u'Mail'
     plugin_type = u'notification'
     plugin_description = u"Mail notification, with encryption supports"
@@ -159,15 +153,18 @@ class MailNotification(Notification):
         if event.type == u'tip':
             body = self.format_template(
                 event.notification_settings['tip_template'], event)
-            title = self.format_template(self._title[event.type], event)
+            title = self.format_template(
+                event.notification_settings['tip_mail_title'], event)
         elif event.type == u'comment':
             body = self.format_template(
                 event.notification_settings['comment_template'], event)
-            title = self.format_template(self._title[event.type], event)
+            title = self.format_template(
+                event.notification_settings['comment_mail_title'], event)
         elif event.type == u'file':
             body = self.format_template(
                 event.notification_settings['file_template'], event)
-            title = self.format_template(self._title[event.type], event)
+            title = self.format_template(
+                event.notification_settings['file_mail_title'], event)
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 

@@ -80,6 +80,7 @@ CREATE TABLE internaltip (
 );
 
 CREATE TABLE node (
+    database_version INTEGER NOT NULL,
     creation_date VARCHAR NOT NULL,
     description VARCHAR NOT NULL,
     email VARCHAR NOT NULL,
@@ -102,7 +103,7 @@ CREATE TABLE node (
     tor2web_tip INTEGER NOT NULL,
     tor2web_receiver INTEGER NOT NULL,
     tor2web_unauth INTEGER NOT NULL,
-    errors_email VARCHAR NOT NULL,
+    exception_email VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
 
@@ -114,9 +115,13 @@ CREATE TABLE notification (
     username VARCHAR,
     security VARCHAR NOT NULL CHECK (security IN ('TLS', 'SSL')),
     tip_template VARCHAR,
+    tip_mail_title VARCHAR,
     file_template VARCHAR,
+    file_mail_title VARCHAR,
     comment_template VARCHAR,
+    comment_mail_title VARCHAR,
     activation_template VARCHAR,
+    activation_mail_title VARCHAR,
     id VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
