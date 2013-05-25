@@ -58,6 +58,12 @@
             </label>
           </fieldset>
 
+          <input ng-switch-default type="{{field.type}}"
+            ng-model="field.value"
+            ng-required="field.required"
+            value="{{field.value}}"
+            placeholder="{{field.placeholder}}"/>
+
           </div ng-switch>
         </div>
       </div ng-switch>
