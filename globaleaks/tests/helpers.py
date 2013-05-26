@@ -83,7 +83,7 @@ class TestGL(TestWithDB):
             'can_delete_submission': True,
             'receiver_level': 1,
             'contexts' : [],
-            'tags': [ 'first', 'second', 'third' ],
+            'tags': [ u'first', u'second', u'third' ],
             'tip_notification': True,
             'file_notification': True,
             'comment_notification': True,
@@ -125,10 +125,10 @@ class TestGL(TestWithDB):
             'escalation_threshold': 1,
             'receivers' : [],
             'tags': [],
-            'receipt_regexp': r'[A-Z]{4}\+[0-9]{5}',
-            'receipt_description': 'xx',
-            'submission_introduction': 'yy',
-            'submission_disclaimer': 'kk',
+            'receipt_regexp': u'[A-Z]{4}\+[0-9]{5}',
+            'receipt_description': u'xx',
+            'submission_introduction': u'yy',
+            'submission_disclaimer': u'kk',
             'file_required': False,
         }
         self.dummySubmission = {
@@ -171,10 +171,10 @@ class TestGL(TestWithDB):
             'comment_template': u'comment message: %sNodeName%',
             'file_template': u'file message: %sNodeName%',
             'activation_template': u'activation message: %sNodeName%',
-            'tip_mail_title': 'xxx',
-            'comment_mail_title': 'yyy',
-            'file_mail_title': 'kkk',
-            'activation_mail_title': 'uuu',
+            'tip_mail_title': u'xxx',
+            'comment_mail_title': u'yyy',
+            'file_mail_title': u'kkk',
+            'activation_mail_title': u'uuu',
         }
 
     def fill_random_fields(self, context_dict):

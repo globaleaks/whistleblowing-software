@@ -2,7 +2,6 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
-from globaleaks.db import create_tables
 from globaleaks.models import *
 from globaleaks.settings import transact
 from globaleaks.rest import errors
@@ -12,6 +11,9 @@ class TestModels(helpers.TestGL):
     def context_add(self, store):
         context = Context(self.dummyContext)
         context.fields = self.dummyContext['fields']
+        context.tags = self.dummyContext['tags']
+        context.submission_disclaimer = context.submission_introduction =\
+            context.receipt_regexp = context.receipt_description = u'W'
         store.add(context)
         return context.id
 
@@ -55,6 +57,10 @@ class TestModels(helpers.TestGL):
     def create_context_with_receivers(self, store):
         context = Context(self.dummyContext)
         context.fields = self.dummyContext['fields']
+        context.fields = self.dummyContext['fields']
+        context.tags = self.dummyContext['tags']
+        context.submission_disclaimer = context.submission_introduction =\
+            context.receipt_regexp = context.receipt_description = u'K'
 
         receiver1 = Receiver(self.dummyReceiver)
         receiver2 = Receiver(self.dummyReceiver)
@@ -79,9 +85,17 @@ class TestModels(helpers.TestGL):
 
         context1 = Context(self.dummyContext)
         context1.fields = self.dummyContext['fields']
+        context1.fields = self.dummyContext['fields']
+        context1.tags = self.dummyContext['tags']
+        context1.submission_disclaimer = context1.submission_introduction =\
+            context1.receipt_regexp = context1.receipt_description = u'Y'
 
         context2 = Context(self.dummyContext)
         context2.fields = self.dummyContext['fields']
+        context2.fields = self.dummyContext['fields']
+        context2.tags = self.dummyContext['tags']
+        context2.submission_disclaimer = context2.submission_introduction =\
+            context2.receipt_regexp = context2.receipt_description = u'X'
 
         receiver.contexts.add(context1)
         receiver.contexts.add(context2)
