@@ -1,24 +1,6 @@
 #!/bin/bash
 
-# User Permission Check
-if [[ $EUID -ne 0 ]]; then
-    echo "Error: GlobaLeaks install script must be runned by root"
-    exit 1
-fi
-
-# Preliminary Requirements Check
-REQS=(apt-get cd chmod curl echo gpg python mkdir read tar torsocks wget)
-REQS_COUNT=${#REQS[@]}
-ERR=0
-echo "Checking preliminary GlobaLeaks requirements"
-for ((i=0;i<REQS_COUNT;i++)); do
-    if which ${REQS[i]} >/dev/null; then
-        echo " + ${REQS[i]} requirements meet"
-    else
-        ERR=$[ERR+1]
-        echo " - ${REQS[i]} requirement not meet"
-    fi
-done
+############## Start Of Variable and Functions Declaration ###########
 
 DO () {
     $1 >/dev/null 2>&1
@@ -67,8 +49,10 @@ vercomp () {
     return 0
 }
 
-PIP_VERSION=1.3.1
-PIP_PKG="pip-${PIP_VERSION}.tar.gz"
+NEEDED_VERSION_PYTHON=2.7
+NEEDED_VERSION_PIP=1.3.1
+
+PIP_PKG="pip-${NEEDED_VERSION_PIP}.tar.gz"
 PIP_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}"
 PIP_SIG_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}.asc"
 PIP_PUB_KEY="
@@ -366,6 +350,35 @@ TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
 PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
 PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
 
+############### End Of Variable and Functions Declaration ############
+
+# User Permission Check
+if [[ $EUID -ne 0 ]]; then
+    echo "Error: GlobaLeaks install script must be runned by root"
+    #exit 1
+fi
+
+# Preliminary Requirements Check
+REQS=(apt-get cd chmod curl echo gpg python mkdir read tar torsocks wget)
+REQS_COUNT=${#REQS[@]}
+ERR=0
+echo "Checking preliminary GlobaLeaks requirements"
+for ((i=0;i<REQS_COUNT;i++)); do
+    if which ${REQS[i]} >/dev/null; then
+        echo " + ${REQS[i]} requirements meet"
+    else
+        ERR=$[ERR+1]
+        echo " - ${REQS[i]} requirement not meet"
+    fi
+done
+
+INSTALLED_PYTHON=`python --version 2>&1 | cut -d" " -f2`
+vercomp ${INSTALLED_PYTHON} ${NEEDED_VERSION_PYTHON}
+if [ $? -eq 2 ]; then
+    echo "Error: Globaleaks needs at least python version ${NEEDED_VERSION_PYTHON} (found ${INSTALLED_PYTHON})"
+    exit 1
+fi
+
 echo "Installing python-setuptools, gcc, python-dev"
 DO "apt-get install python-setuptools gcc python-dev" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
@@ -375,7 +388,7 @@ DO "cd ${BUILD_DIR}/" "0"
 INSTALL_PIP=1
 if which pip >/dev/null 2>&1; then
     INSTALLED_PIP=`pip --version | cut -d" " -f2`
-    vercomp ${INSTALLED_PIP} ${PIP_VERSION}
+    vercomp ${INSTALLED_PIP} ${NEEDED_VERSION_PIP}
     if [ $? -ne 2 ]; then
         INSTALL_PIP=0
     fi
