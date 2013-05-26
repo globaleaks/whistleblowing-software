@@ -3,14 +3,20 @@
 ############## Start Of Variable and Functions Declaration ###########
 
 DO () {
-    $1 >/dev/null 2>&1
-    if [ $? -ne $2 ]; then
-        if [ -z "$3" ]; then
-            echo "failed to $1"
-        else
-            echo $3;
-        fi
-        exit
+    if [ -z "$3" ]; then
+        CMD=$1
+    else
+        CMD=$3
+    fi
+    echo -n "Running: \"$CMD\"..."
+    STDOUT_STDERR=$($1 2>&1)
+    if [ $? -eq $2 ]; then
+        echo "SUCCESS"
+    else
+        echo "FAIL"
+        echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
+        echo "${STDOUT_STDERR}"
+        exit 1
     fi
 }
 
@@ -429,7 +435,7 @@ fi
 DO "torsocks wget -O ${BUILD_DIR}/requirements.txt https://raw.github.com/globaleaks/GLBackend/master/requirements.txt" "0"
 PIP_DEPS=`cat ${BUILD_DIR}/requirements.txt`
 for PIP_DEP in $PIP_DEPS; do
-  DO "pip install $PIP_DEP" "0" "failed to install $PIP_DEP with pip."
+  DO "pip install $PIP_DEP" "0"
 done
 
 grep "deb http://deb.globaleaks.org/ unstable/" /etc/apt/sources.list/  >/dev/null 2>&1
