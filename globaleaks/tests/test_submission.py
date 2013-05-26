@@ -21,7 +21,7 @@ class TestSubmission(helpers.TestGL):
     body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
     dummyFiles = []
     dummyFiles.append({
-        'body': body[0:GLSetting.generic_limit].encode('utf-8'),
+        'body': body[0:GLSetting.defaults.maximum_textsize].encode('utf-8'),
         'content_type': 'application/octect',
         'filename': 'aaaaaa'
     })
@@ -29,7 +29,7 @@ class TestSubmission(helpers.TestGL):
     dummyFiles.append({
         'body': 'aaaaaa',
         'content_type': 'application/octect',
-        'filename': filename[0:GLSetting.name_limit]
+        'filename': filename[0:GLSetting.defaults.maximum_namesize]
     })
 
     # --------------------------------------------------------- #
@@ -42,7 +42,7 @@ class TestSubmission(helpers.TestGL):
         status = yield submission.create_submission(submission_desc, finalize=True)
         receipt = yield submission.create_whistleblower_tip(status)
 
-        retval = re.match(GLSetting.receipt_regexp, receipt)
+        retval = re.match(GLSetting.defaults.receipt_regexp, receipt)
         self.assertTrue(retval)
 
     @inlineCallbacks

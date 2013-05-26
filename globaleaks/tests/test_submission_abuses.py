@@ -1,18 +1,15 @@
-import os
 
-from storm.twisted.testing import FakeThreadPool
 from twisted.internet.defer import inlineCallbacks
-from twisted.trial import unittest
 
 # Override the GLSetting with test values
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
 
 from globaleaks.rest import requests
 from globaleaks.rest.errors import GLException, InvalidInputFormat
 from globaleaks.handlers import base, admin, submission
-from globaleaks import db
 from globaleaks.utils import log
+from globaleaks.tests.test_tip import TTip
 
 class MockHandler(base.BaseHandler):
 
@@ -37,31 +34,20 @@ class SubmissionTest(helpers.TestGL):
         # helpers.TestGL.tearDown(self) is done only in the last test
         pass
 
-    aContext1 = {
-        'name': u'CtxName', 'description': u'dummy context with default fields',
-        'escalation_threshold': u'0', 'tip_max_access': u'2',
-        'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
-        'receivers': [], 'fields': [], 'submission_timetolive': 100,
-    }
+    aContext1 = TTip.tipContext
 
     aContext2 = {
         'name': u'UNUSED', 'description': u'UNUSED',
         'escalation_threshold': u'0', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
         'receivers': [], 'fields': [], 'submission_timetolive': 100,
+        'receipt_regexp': GLSetting.defaults.receipt_regexp,
+        'receipt_description': u"blah", 'submission_introduction': u"bleh", 'submission_disclaimer': u"bloh",
+        'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
     }
 
-    aReceiver1 = {
-        'name': u'first', 'description': u"I'm tha 1st",
-        'notification_fields': {'mail_address': u'first@winstonsmith.org' },
-        'receiver_level': 1, 'can_delete_submission': False, 'password': helpers.DEFAULT_PASSWORD,
-    }
-
-    aReceiver2 = {
-        'name': u'UNUSED', 'description': u"UNUSED",
-        'notification_fields': {'mail_address': u'unused@winstonsmith.org' },
-        'receiver_level': 1, 'can_delete_submission': False, 'password': helpers.DEFAULT_PASSWORD,
-    }
+    aReceiver1 = TTip.tipReceiver1
+    aReceiver2 = TTip.tipReceiver2
 
     aSubmission = {
         # here too, are checked the default fields
@@ -80,6 +66,10 @@ class TestTipInstance(SubmissionTest):
 
         basehandler.validate_jmessage( SubmissionTest.aContext1, requests.adminContextDesc)
         SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
+        # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
+        SubmissionTest.context_used['selectable_receiver'] = True
+        SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['context_gus'],
+            SubmissionTest.context_used)
 
         basehandler.validate_jmessage( SubmissionTest.aContext2, requests.adminContextDesc)
         SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
@@ -109,13 +99,13 @@ class TestTipInstance(SubmissionTest):
 
         try:
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Success in creation: %s" % str(r))
+            log.debug("Unexpected Success in creation: %s" % str(r))
             self.assertTrue(False)
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )
             self.assertEqual(e.error_code, 22) # SubmissionFailFields
         except Exception, e:
-            log.debug("Exception %s" % str(e) )
+            log.debug("Unexpected Exception %s" % str(e) )
             self.assertTrue(False, msg=str(e))
 
 
@@ -129,13 +119,13 @@ class TestTipInstance(SubmissionTest):
 
         try:
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Success in creation: %s" % str(r))
+            log.debug("Unexpected Success in creation: %s" % str(r))
             self.assertTrue(False)
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )
             self.assertTrue(True)
         except Exception, e:
-            log.debug("Exception %s" % str(e) )
+            log.debug("Unexpected Exception %s" % str(e) )
             self.assertTrue(False, msg=str(e))
 
 
@@ -150,13 +140,13 @@ class TestTipInstance(SubmissionTest):
 
         try:
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Success in creation: %s" % str(r))
+            log.debug("Unexpected Success in creation: %s" % str(r))
             self.assertTrue(False, msg="Created!")
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )
             self.assertTrue(True)
         except Exception, e:
-            log.debug("Exception %s" % str(e) )
+            log.debug("Unexpected Exception %s" % str(e) )
             self.assertTrue(False, msg=str(e))
 
 

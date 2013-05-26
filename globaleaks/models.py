@@ -31,18 +31,16 @@ def gltextv(self, attr, value):
                         (attr, value))
 
     if (attr == 'name' and
-        (len(value) > GLSetting.name_limit or len(value) == 0)):
+        (len(value) > GLSetting.memory_copy.maximum_namesize or len(value) == 0)):
         raise errors.InvalidInputFormat("name length need to be > 0 and " \
-                                        "< of %d" % GLSetting.name_limit)
-    elif attr == 'description' and len(value) > GLSetting.description_limit:
+                            "< of %d" % GLSetting.memory_copy.maximum_namesize)
+    elif attr == 'description' and len(value) > GLSetting.memory_copy.maximum_descsize:
         raise errors.InvalidInputFormat("unicode description has a length " \
-                                        "limit of %d"
-                                        % GLSetting.description_limit)
+                            "limit of %d" % GLSetting.memory_copy.maximum_descsize)
     else:
-        if len(value) > GLSetting.generic_limit:
+        if len(value) > GLSetting.memory_copy.maximum_textsize:
             raise errors.InvalidInputFormat("unicode in %s overcome length " \
-                                            "limit %d"
-                                            % (attr, GLSetting.generic_limit))
+                            "limit %d" % (attr, GLSetting.memory_copy.maximum_textsize))
 
     return value
 
@@ -61,11 +59,10 @@ def gldictv(self, attr, value):
 
     for key, subvalue in value.iteritems():
         if isinstance(subvalue, unicode):
-            if len(subvalue) > GLSetting.generic_limit:
+            if len(subvalue) > GLSetting.memory_copy.maximum_textsize:
                 raise errors.InvalidInputFormat("In dict %s the key %s" \
-                                                "overcome length limit of %d"
-                                                % (attr, key,
-                                                GLSetting.generic_limit))
+                                "overcome length limit of %d" % (attr, key,
+                                GLSetting.memory_copy.maximum_textsize))
 
     return value
 
@@ -158,12 +155,21 @@ class Context(Model):
 
     tip_max_access = Int()
     file_max_download = Int()
+    file_required = Bool()
 
     # both expressed in seconds
     tip_timetolive = Int()
     submission_timetolive = Int()
 
     last_update = DateTime()
+
+    # advanced settings
+    receipt_regexp = Unicode()
+    receipt_description = Unicode()
+    submission_introduction = Unicode()
+    submission_disclaimer = Unicode()
+    file_required = Bool()
+    tags = Pickle()
 
     #receivers = ReferenceSet(
     #                         Context.id,
@@ -174,7 +180,7 @@ class Context(Model):
     unicode_keys = ['name', 'description' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
                  'file_max_download', 'submission_timetolive' ]
-    bool_keys = [ 'selectable_receiver' ]
+    bool_keys = [ 'selectable_receiver', 'file_required' ]
 
 
 class InternalTip(Model):
@@ -322,16 +328,31 @@ class Node(Model):
     receipt_salt = Unicode()
     password = Unicode()
     last_update = DateTime()
+    database_version = Int()
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
     stats_update_time = Int()
-    stats_update_time = Int()
+
+    # Advanced settings
+    maximum_namesize = Int()
+    maximum_descsize = Int()
+    maximum_textsize = Int()
+    maximum_filesize = Int()
+    tor2web_admin = Bool()
+    tor2web_submission = Bool()
+    tor2web_tip = Bool()
+    tor2web_receiver = Bool()
+    tor2web_unauth = Bool()
+
+    exception_email = Unicode()
 
     unicode_keys = ['name', 'description', 'public_site',
-                    'email', 'hidden_service' ]
-    int_keys = [ 'stats_update_time' ]
-    bool_keys = []
+                    'email', 'hidden_service', 'exception_email' ]
+    int_keys = [ 'stats_update_time', 'maximum_namesize', 'maximum_descsize',
+                 'maximum_textsize', 'maximum_filesize' ]
+    bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
+                  'tor2web_tip', 'tor2web_unauth' ]
 
 
 class Notification(Model):
@@ -355,6 +376,11 @@ class Notification(Model):
     activation_template = Unicode()
     # these four template would be in the unicode_key implicit
     # expected fields, when Client/Backend are updated in their usage
+
+    tip_mail_title = Unicode()
+    file_mail_title = Unicode()
+    comment_mail_title = Unicode()
+    activation_mail_title = Unicode()
 
     unicode_keys = ['server', 'username', 'password', 'tip_template',
                     'file_template', 'comment_template', 'activation_template' ]
@@ -384,11 +410,18 @@ class Receiver(Model):
     # of receivers body. if threshold is configured in the context. default 1
     receiver_level = Int()
 
-    # counter
     failed_login = Int()
 
     last_update = DateTime()
     last_access = DateTime(default_factory=datetime_now)
+
+    # Group which the Receiver is part of
+    tags = Pickle()
+
+    # personal advanced settings
+    tip_notification = Bool()
+    comment_notification = Bool()
+    file_notification = Bool()
 
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
@@ -397,7 +430,8 @@ class Receiver(Model):
 
     unicode_keys = ['name', 'description' ]
     int_keys = [ 'receiver_level' ]
-    bool_keys = [ 'can_delete_submission' ] # Total delete capability
+    bool_keys = [ 'can_delete_submission', 'tip_notification',
+                  'comment_notification', 'file_notification' ]
 
 
 # Follow two classes used for Many to Many references

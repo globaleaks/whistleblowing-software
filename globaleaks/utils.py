@@ -44,14 +44,16 @@ class Logger(object):
 
     def info(self, msg):
         if GLSetting.loglevel <= logging.INFO:
-            twlog.info("[-] %s" % self._str(msg))
+            #twlog.info("[-] %s" % self._str(msg))
+            print "[-] %s" % self._str(msg)
 
     def err(self, msg):
         twlog.err("[!] %s" % self._str(msg))
 
     def debug(self, msg):
         if GLSetting.loglevel <= logging.DEBUG:
-            twlog.debug("[D] %s" % self._str(msg))
+            #twlog.debug("[D] %s" % self._str(msg))
+            print "[D] %s" % self._str(msg)
 
     def msg(self, msg):
         twlog.msg("[ ] %s" % self._str(msg))
@@ -338,7 +340,7 @@ def mail_exception(etype, value, tback):
     sendmail(GLSetting.error_reporting_username,
              GLSetting.error_reporting_password,
              GLSetting.error_reporting_username,
-             GLSetting.error_reporting_destmail,
+             GLSetting.memory_copy.exception_email,
              message,
              GLSetting.error_reporting_server,
              GLSetting.error_reporting_port, None)
