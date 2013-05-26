@@ -54,7 +54,7 @@ class GLHTTPServer(HTTPConnection):
         HTTPConnection.lineReceived(self, line)
 
     def rawDataReceived(self, data):
-        if self.content_length > GLSetting.max_file_size:
+        if self.content_length > GLSetting.memory_copy.maximum_filesize:
             log.err("Tried upload larger than expected (%dMb)" %
                     (self.content_length / (1024 * 1024)) )
 
@@ -146,7 +146,7 @@ class BaseHandler(RequestHandler):
         valid_jmessage = {}
         for key in message_template.keys():
             if key not in jmessage:
-                log.debug('key %s not in %s' % (key, jmessage))
+                log.err('key %s not in %s' % (key, jmessage))
                 raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
             else:
                 valid_jmessage[key] = jmessage[key]
@@ -200,16 +200,6 @@ class BaseHandler(RequestHandler):
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
-
-        if self.request.method.lower() == 'post':
-            try:
-                wrappedMethod = self.get_argument('method')[0]
-                print "[^] Forwarding", wrappedMethod, "from POST"
-                if wrappedMethod.lower() == 'delete' or \
-                        wrappedMethod.lower() == 'put':
-                    self.request.method = wrappedMethod.upper()
-            except HTTPError:
-                pass
 
         # if 0 is infinite logging of the requests
         if GLSetting.cyclone_debug >= 0:

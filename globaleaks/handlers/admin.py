@@ -17,6 +17,7 @@ from globaleaks.models import Receiver, Context, Node, Notification
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security
 from globaleaks.utils import log
+from globaleaks.db import import_memory_variables
 
 def admin_serialize_node(node):
     response = {
@@ -29,7 +30,18 @@ def admin_serialize_node(node):
         "stats_update_time": node.stats_update_time,
         "email": node.email,
         "version": GLSetting.version_string,
-        "languages": list(node.languages) if node.languages else []
+        "languages": list(node.languages) if node.languages else [],
+        # extended settings info:
+        'maximum_filesize': node.maximum_filesize,
+        'maximum_namesize': node.maximum_namesize,
+        'maximum_descsize': node.maximum_descsize,
+        'maximum_textsize': node.maximum_textsize,
+        'exception_email': node.exception_email,
+        'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
+        'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
+        'tor2web_tip': GLSetting.memory_copy.tor2web_tip,
+        'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
+        'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
     }
     return response
 
@@ -48,6 +60,13 @@ def admin_serialize_context(context):
         "escalation_threshold": context.escalation_threshold,
         "fields": context.fields if context.fields else [],
         "receivers": [],
+        # extended settings info:
+        "receipt_regexp": context.receipt_regexp,
+        "receipt_description": context.receipt_description,
+        "submission_introduction": context.submission_introduction,
+        "submission_disclaimer": context.submission_disclaimer,
+        "tags": context.tags,
+        "file_required": context.file_required,
     }
     
     for receiver in context.receivers:
@@ -68,7 +87,11 @@ def admin_serialize_receiver(receiver):
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "failed_login": receiver.failed_login,
         "password": u"",
-        "contexts": []
+        "contexts": [],
+        "tags": receiver.tags,
+        "comment_notification": receiver.comment_notification,
+        "tip_notification": receiver.tip_notification,
+        "file_notification": receiver.file_notification,
     }
     for context in receiver.contexts:
         receiver_dict['contexts'].append(context.id)
@@ -192,12 +215,16 @@ def create_context(store, request):
     fields_validation(assigned_fields)
     context.fields = assigned_fields
 
-    # Until GLClient do not supports configuration of values, I would copy
-    # the default from the GLSetting
-    context.tip_timetolive = GLSetting.tip_seconds_of_life
-    context.submission_timetolive = GLSetting.submission_seconds_of_life
-    # context.file_max_download =
-    # context.tip_max_access =
+    # These "advanced settings" fields are set here as default, because
+    # The client at the moment send them empty.
+    context.receipt_regexp = GLSetting.defaults.receipt_regexp
+    context.receipt_description ="This sequence here is your receipt "\
+    "keep good care of it as it will allow you to access your submission"
+
+    context.submission_introduction = "Here you can submit your tip-off and the files"
+    context.submission_disclaimer = "Thank you for your contribution, your submission is complete"
+
+    context.tags = request['tags']
 
     if len(request['name']) < 1:
         log.err("Invalid request: name is an empty string")
@@ -283,6 +310,7 @@ def update_context(store, context_gus, request):
 
     context.update(request)
     context.fields = request['fields']
+    context.tags = request['tags']
     context.last_update = utils.datetime_now()
 
     return admin_serialize_context(context)
@@ -350,7 +378,6 @@ def create_receiver(store, request):
     Returns:
         (dict) the configured receiver
     """
-
     mail_address = utils.acquire_mail_address(request)
     if not mail_address:
         raise errors.NoEmailSpecified
@@ -366,6 +393,7 @@ def create_receiver(store, request):
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.failed_login = 0
+    receiver.tags = request['tags']
 
     # A password strength checker need to be implemented in the client, but here a
     # minimal check is put
@@ -430,6 +458,7 @@ def update_receiver(store, id, request):
 
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
+    receiver.tags = request['tags']
 
     if len(request['password']):
         # admin override password without effort :)
@@ -514,6 +543,9 @@ class NodeInstance(BaseHandler):
                 requests.adminNodeDesc)
 
         response = yield update_node(request)
+
+        # align the memory variables with the new updated data
+        yield import_memory_variables()
 
         self.set_status(202) # Updated
         self.finish(response)
@@ -706,7 +738,6 @@ class ReceiverInstance(BaseHandler):
         self.finish()
 
 
-
 # Notification section:
 
 def admin_serialize_notification(notif):
@@ -717,9 +748,13 @@ def admin_serialize_notification(notif):
         'password': notif.password if notif.password else u"",
         'security': notif.security if notif.security else u"",
         'tip_template': notif.tip_template if notif.tip_template else u"",
+        'tip_mail_title': notif.tip_mail_title if notif.tip_mail_title else u"",
         'file_template': notif.file_template if notif.file_template else u"",
+        'file_mail_title': notif.file_mail_title if notif.file_mail_title else u"",
         'comment_template': notif.comment_template if notif.comment_template else u"",
+        'comment_mail_title': notif.comment_mail_title if notif.comment_mail_title else u"",
         'activation_template': notif.activation_template if notif.activation_template else u"",
+        'activation_mail_title': notif.activation_mail_title if notif.activation_mail_title else u"",
     }
     return notification_dict
 
@@ -727,9 +762,9 @@ def admin_serialize_notification(notif):
 def get_notification(store):
     try:
         notif = store.find(Notification).one()
-    except Exception, e:
-        log.err("Database error or application error: %s", str(e))
-        raise e
+    except Exception as excep:
+        log.err("Database error when getting Notification table: %s" % str(excep))
+        raise excep
 
     return admin_serialize_notification(notif)
 

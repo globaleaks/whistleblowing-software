@@ -40,20 +40,25 @@ class TTip(helpers.TestWithDB):
         'escalation_threshold': u'1', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'fields': [], 'submission_timetolive': 100,
+        'receipt_regexp': GLSetting.defaults.receipt_regexp,
+        'receipt_description': u"blah", 'submission_introduction': u"bleh", 'submission_disclaimer': u"bloh",
+        'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
     }
 
     tipReceiver1 = {
         'notification_fields': {'mail_address': u'first@winstonsmith.org' },
         'name': u'first', 'description': u"I'm tha 1st",
         'receiver_level': u'1', 'can_delete_submission': True,
-        'password': STATIC_PASSWORD,
+        'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
+        'comment_notification': True, 'tip_notification': False,
     }
 
     tipReceiver2 = {
         'notification_fields': {'mail_address': u'second@winstonsmith.org' },
         'name': u'second', 'description': u"I'm tha 2nd",
         'receiver_level': u'1', 'can_delete_submission': False,
-        'password': STATIC_PASSWORD,
+        'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
+        'comment_notification': True, 'tip_notification': False,
     }
 
     tipSubmission = {
@@ -98,7 +103,6 @@ class TestTipInstance(TTip):
         try:
             self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
         except Exception, e:
-            print e
             self.assertTrue(False)
 
         self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
@@ -123,7 +127,7 @@ class TestTipInstance(TTip):
         if not self.receipt:
             self.receipt = yield submission.create_whistleblower_tip(self.submission_desc)
 
-        self.assertTrue(re.match(GLSetting.receipt_regexp, self.receipt) )
+        self.assertTrue(re.match(GLSetting.defaults.receipt_regexp, self.receipt) )
 
     @inlineCallbacks
     def wb_auth_with_receipt(self):
@@ -263,7 +267,6 @@ class TestTipInstance(TTip):
         try:
             counter = yield tip.increment_receiver_access_count(
                 self.receiver2_desc['receiver_gus'], self.rtip2_id)
-            print counter
             self.assertTrue(False)
         except errors.AccessLimitExceeded:
             self.assertTrue(True)
