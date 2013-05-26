@@ -359,7 +359,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Preliminary Requirements Check
-REQS=(apt-get cd chmod curl echo gpg python mkdir read tar torsocks wget)
+REQS=(apt-get chmod curl echo gpg python mkdir tar torsocks wget)
 REQS_COUNT=${#REQS[@]}
 ERR=0
 echo "Checking preliminary GlobaLeaks requirements"
@@ -371,6 +371,11 @@ for ((i=0;i<REQS_COUNT;i++)); do
         echo " - ${REQS[i]} requirement not meet"
     fi
 done
+
+if [ $ERR -ne 0 ]; then
+    echo "Error: Found ${ERR} unmet requirements"
+    exit 1
+fi
 
 INSTALLED_PYTHON=`python --version 2>&1 | cut -d" " -f2`
 vercomp ${INSTALLED_PYTHON} ${NEEDED_VERSION_PYTHON}
