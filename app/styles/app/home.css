@@ -1,5 +1,6 @@
 /* Home Splash screen jumbotron */
 /* Language selector */
+
 .homeSplash .lang {
   font-size: 20px;
   height: 40px;
@@ -18,6 +19,7 @@
   line-height: 1.25;
   margin-bottom: 30px;
 }
+
 /* Blow the Whistle button */
 .homeSplash .btn {
   padding: 14px 24px;
@@ -74,3 +76,20 @@
 }
 
 
+@media (max-width: 480px) {
+  .homeIntro p {
+    font-size: 13px;
+  }
+
+  .homeIntro h1 {
+    font-size: 30px;
+  }
+
+
+  .homeSplash h1 {
+    font-size: 30px;
+  }
+
+
+
+}
