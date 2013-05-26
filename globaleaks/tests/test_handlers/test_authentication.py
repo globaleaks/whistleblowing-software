@@ -24,7 +24,7 @@ class TestAuthentication(helpers.TestHandler):
             'password': 'globaleaks',
             'role': 'admin'
         }, headers={'X-Tor2Web': 'whatever'})
-        GLSetting.tor2web_permitted_ops['admin'] = True
+        GLSetting.memory_copy.tor2web_admin = True
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
 

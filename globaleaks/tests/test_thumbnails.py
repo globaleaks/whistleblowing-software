@@ -94,7 +94,8 @@ class TestThumbnails(helpers.TestWithDB):
             'notification_fields': {'mail_address': u'first@winstonsmith.org' },
             'name': u'first', 'description': u"I'm tha 1st",
             'receiver_level': u'1', 'can_delete_submission': True,
-            'password': "DUMMYPAZZWORZ",
+            'password': "DUMMYPAZZWORZ", 'tags': [], 'file_notification': False,
+            'comment_notification': True, 'tip_notification': False,
         }
         receiver_desc = yield create_receiver(dummyReceiver)
 

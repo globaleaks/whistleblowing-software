@@ -7,7 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact
 from globaleaks.models import *
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
@@ -19,7 +19,6 @@ from globaleaks.rest import requests
 from globaleaks.utils import log, utc_future_date, pretty_date_time, datetime_now
 from globaleaks.third_party import rstr
 from globaleaks.rest.errors import *
-
 
 
 def wb_serialize_internaltip(internaltip):
@@ -57,7 +56,9 @@ def create_whistleblower_tip(store, submission):
 
     wbtip = WhistleblowerTip()
 
-    return_value_receipt = unicode( rstr.xeger(GLSetting.receipt_regexp) )
+    context = store.find(Context, Context.id == submission['context_gus']).one()
+
+    return_value_receipt = unicode( rstr.xeger(context.receipt_regexp) )
     node = store.find(Node).one()
     wbtip.receipt_hash = security.hash_password(return_value_receipt, node.receipt_salt)
 

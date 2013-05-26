@@ -72,6 +72,7 @@ class TestEmail(helpers.TestGL):
             "file_template": "file file",
             "activation_template": "activation activation",
             "comment_template": "comment comment",
+            "tip_"
             "security": 'TLS',
         }
 

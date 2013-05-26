@@ -79,10 +79,14 @@ class TestGL(TestWithDB):
             'password': DEFAULT_PASSWORD,
             'name': u'john smith',
             'description': u'the first receiver',
-            'notification_fields': {'mail_address': u'maker@ggay.it'},
+            'notification_fields': {'mail_address': u'maker@iz.cool.yeah'},
             'can_delete_submission': True,
             'receiver_level': 1,
             'contexts' : [],
+            'tags': [ 'first', 'second', 'third' ],
+            'tip_notification': True,
+            'file_notification': True,
+            'comment_notification': True,
         }
         self.dummyContext = {
             'context_gus': unicode(uuid.uuid4()),
@@ -119,7 +123,13 @@ class TestGL(TestWithDB):
             'submission_timetolive': 100,
             'file_max_download' :1,
             'escalation_threshold': 1,
-            'receivers' : []
+            'receivers' : [],
+            'tags': [],
+            'receipt_regexp': r'[A-Z]{4}\+[0-9]{5}',
+            'receipt_description': 'xx',
+            'submission_introduction': 'yy',
+            'submission_disclaimer': 'kk',
+            'file_required': False,
         }
         self.dummySubmission = {
             'context_gus': '',
@@ -140,6 +150,16 @@ class TestGL(TestWithDB):
              'old_password' : '',
              'salt': 'xxxxxhefdiufiwnfewifweibeifwiebfibweiufwixx',
              'salt_receipt': 'mfeiwofmeiwofmnoiwefniowefowiemfoiwefow',
+             'maximum_descsize' : GLSetting.defaults.maximum_descsize,
+             'maximum_filesize' : GLSetting.defaults.maximum_filesize,
+             'maximum_namesize' : GLSetting.defaults.maximum_namesize,
+             'maximum_textsize' : GLSetting.defaults.maximum_textsize,
+             'tor2web_admin' : GLSetting.defaults.tor2web_admin,
+             'tor2web_submission' : GLSetting.defaults.tor2web_submission,
+             'tor2web_tip' : GLSetting.defaults.tor2web_tip,
+             'tor2web_receiver' : GLSetting.defaults.tor2web_receiver,
+             'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
+             'exception_email' : GLSetting.defaults.exception_email,
         }
         self.dummyNotification = {
             'server': u'mail.foobar.xxx',
@@ -151,6 +171,10 @@ class TestGL(TestWithDB):
             'comment_template': u'comment message: %sNodeName%',
             'file_template': u'file message: %sNodeName%',
             'activation_template': u'activation message: %sNodeName%',
+            'tip_mail_title': 'xxx',
+            'comment_mail_title': 'yyy',
+            'file_mail_title': 'kkk',
+            'activation_mail_title': 'uuu',
         }
 
     def fill_random_fields(self, context_dict):

@@ -30,7 +30,7 @@ CREATE TABLE context (
     submission_introduction VARCHAR NOT NULL,
     submission_disclaimer VARCHAR NOT NULL,
     submission_timetolive INTEGER NOT NULL,
-    tags BLOB NOT NULL,
+    tags BLOB,
     PRIMARY KEY (id)
 );
 
@@ -135,7 +135,7 @@ CREATE TABLE receiver (
     last_access VARCHAR,
     last_update VARCHAR,
     name VARCHAR NOT NULL,
-    tags BLOB NOT NULL,
+    tags BLOB,
     comment_notification INTEGER NOT NULL,
     file_notification INTEGER NOT NULL,
     tip_notification INTEGER NOT NULL,
