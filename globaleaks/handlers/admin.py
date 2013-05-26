@@ -30,6 +30,7 @@ def admin_serialize_node(node):
         "stats_update_time": node.stats_update_time,
         "email": node.email,
         "languages": list(node.languages) if node.languages else [],
+        "version": GLSetting.version_string,
         # extended settings info:
         'maximum_filesize': node.maximum_filesize,
         'maximum_namesize': node.maximum_namesize,
@@ -223,7 +224,7 @@ def create_context(store, request):
     context.submission_introduction = "Here you can submit your tip-off and the files"
     context.submission_disclaimer = "Thank you for your contribution, your submission is complete"
 
-    context.tags = []
+    context.tags = request['tags']
 
     if len(request['name']) < 1:
         log.err("Invalid request: name is an empty string")
@@ -309,6 +310,7 @@ def update_context(store, context_gus, request):
 
     context.update(request)
     context.fields = request['fields']
+    context.tags = request['tags']
     context.last_update = utils.datetime_now()
 
     return admin_serialize_context(context)
@@ -376,7 +378,6 @@ def create_receiver(store, request):
     Returns:
         (dict) the configured receiver
     """
-
     mail_address = utils.acquire_mail_address(request)
     if not mail_address:
         raise errors.NoEmailSpecified
@@ -392,6 +393,7 @@ def create_receiver(store, request):
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.failed_login = 0
+    receiver.tags = request['tags']
 
     # A password strength checker need to be implemented in the client, but here a
     # minimal check is put
@@ -456,6 +458,7 @@ def update_receiver(store, id, request):
 
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
+    receiver.tags = request['tags']
 
     if len(request['password']):
         # admin override password without effort :)

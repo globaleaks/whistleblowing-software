@@ -4,13 +4,14 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
-from globaleaks.rest import errors, requests
+from globaleaks.rest import requests
 from globaleaks.rest.base import uuid_regexp
 from globaleaks.handlers import tip, base, admin, submission, files
 from globaleaks.jobs import delivery_sched, cleaning_sched
 from globaleaks import models
 from globaleaks.utils import is_expired
 from globaleaks.settings import transact
+from globaleaks.tests.test_tip import TTip
 
 STATIC_PASSWORD = u'bungabunga ;('
 
@@ -33,41 +34,12 @@ class TTip(helpers.TestWithDB):
 
     # https://www.youtube.com/watch?v=ja46oa2ZML8 couple of cups, and tests!:
 
-    tipContext = {
-        'name': u'CtxName', 'description': u'dummy context with default fields',
-        'escalation_threshold': u'1', 'tip_max_access': u'2',
-        'tip_timetolive': 300, 'file_max_download': 2, 'selectable_receiver': False,
-        'receivers': [], 'fields': [], 'submission_timetolive': 10,
-    }
-
-    tipReceiver1 = {
-        'notification_fields': {'mail_address': u'first@winstonsmith.org' },
-        'name': u'first', 'description': u"I'm tha 1st",
-        'receiver_level': u'1', 'can_delete_submission': True,
-        'password': STATIC_PASSWORD,
-    }
-
-    tipReceiver2 = {
-        'notification_fields': {'mail_address': u'second@winstonsmith.org' },
-        'name': u'second', 'description': u"I'm tha 2nd",
-        'receiver_level': u'1', 'can_delete_submission': False,
-        'password': STATIC_PASSWORD,
-    }
-
-    tipSubmission = {
-        # This test rely on the default fields, add in create_context if is not specified
-        'wb_fields': {u'Short title': u'kochijan maki', 'Full description': u'kagebushi no jitzu'},
-        'context_gus': '', 'receivers': [], 'files': [], 'finalize': False,
-    }
-
-    tipOptions = {
-        'total_delete': False,
-        'is_pertinent': False,
-    }
-
-    commentCreation = {
-        'content': '',
-    }
+    tipContext = TTip.tipContext
+    tipReceiver1 = TTip.tipReceiver1
+    tipReceiver2 = TTip.tipReceiver2
+    tipSubmission = TTip.tipSubmission
+    tipOptions = TTip.tipOptions
+    commentCreation = TTip.commentCreation
 
     dummyFiles = []
     dummyFiles.append({
@@ -96,12 +68,12 @@ class TestCleaning(TTip):
 
     @transact
     def test_cleaning(self, store):
-		self.assertEqual(store.find(models.InternalTip).count(), 0)
-		self.assertEqual(store.find(models.ReceiverTip).count(), 0)
-		self.assertEqual(store.find(models.WhistleblowerTip).count(), 0)
-		self.assertEqual(store.find(models.InternalFile).count(), 0)
-		self.assertEqual(store.find(models.ReceiverFile).count(), 0)
-		self.assertEqual(store.find(models.Comment).count(), 0)
+        self.assertEqual(store.find(models.InternalTip).count(), 0)
+        self.assertEqual(store.find(models.ReceiverTip).count(), 0)
+        self.assertEqual(store.find(models.WhistleblowerTip).count(), 0)
+        self.assertEqual(store.find(models.InternalFile).count(), 0)
+        self.assertEqual(store.find(models.ReceiverFile).count(), 0)
+        self.assertEqual(store.find(models.Comment).count(), 0)
 
     @inlineCallbacks
     def emulate_files_upload(self, associated_submission_id):

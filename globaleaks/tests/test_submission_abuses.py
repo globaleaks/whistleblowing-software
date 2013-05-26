@@ -1,18 +1,15 @@
-import os
 
-from storm.twisted.testing import FakeThreadPool
 from twisted.internet.defer import inlineCallbacks
-from twisted.trial import unittest
 
 # Override the GLSetting with test values
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
 
 from globaleaks.rest import requests
 from globaleaks.rest.errors import GLException, InvalidInputFormat
 from globaleaks.handlers import base, admin, submission
-from globaleaks import db
 from globaleaks.utils import log
+from globaleaks.tests.test_tip import TTip
 
 class MockHandler(base.BaseHandler):
 
@@ -37,31 +34,20 @@ class SubmissionTest(helpers.TestGL):
         # helpers.TestGL.tearDown(self) is done only in the last test
         pass
 
-    aContext1 = {
-        'name': u'CtxName', 'description': u'dummy context with default fields',
-        'escalation_threshold': u'0', 'tip_max_access': u'2',
-        'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
-        'receivers': [], 'fields': [], 'submission_timetolive': 100,
-    }
+    aContext1 = TTip.tipContext
 
     aContext2 = {
         'name': u'UNUSED', 'description': u'UNUSED',
         'escalation_threshold': u'0', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
         'receivers': [], 'fields': [], 'submission_timetolive': 100,
+        'receipt_regexp': GLSetting.defaults.receipt_regexp,
+        'receipt_description': u"blah", 'submission_introduction': u"bleh", 'submission_disclaimer': u"bloh",
+        'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
     }
 
-    aReceiver1 = {
-        'name': u'first', 'description': u"I'm tha 1st",
-        'notification_fields': {'mail_address': u'first@winstonsmith.org' },
-        'receiver_level': 1, 'can_delete_submission': False, 'password': helpers.DEFAULT_PASSWORD,
-    }
-
-    aReceiver2 = {
-        'name': u'UNUSED', 'description': u"UNUSED",
-        'notification_fields': {'mail_address': u'unused@winstonsmith.org' },
-        'receiver_level': 1, 'can_delete_submission': False, 'password': helpers.DEFAULT_PASSWORD,
-    }
+    aReceiver1 = TTip.tipReceiver1
+    aReceiver2 = TTip.tipReceiver2
 
     aSubmission = {
         # here too, are checked the default fields

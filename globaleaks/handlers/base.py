@@ -146,7 +146,7 @@ class BaseHandler(RequestHandler):
         valid_jmessage = {}
         for key in message_template.keys():
             if key not in jmessage:
-                log.debug('key %s not in %s' % (key, jmessage))
+                log.err('key %s not in %s' % (key, jmessage))
                 raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
             else:
                 valid_jmessage[key] = jmessage[key]
@@ -200,16 +200,6 @@ class BaseHandler(RequestHandler):
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
-
-        if self.request.method.lower() == 'post':
-            try:
-                wrappedMethod = self.get_argument('method')[0]
-                print "[^] Forwarding", wrappedMethod, "from POST"
-                if wrappedMethod.lower() == 'delete' or \
-                        wrappedMethod.lower() == 'put':
-                    self.request.method = wrappedMethod.upper()
-            except HTTPError:
-                pass
 
         # if 0 is infinite logging of the requests
         if GLSetting.cyclone_debug >= 0:

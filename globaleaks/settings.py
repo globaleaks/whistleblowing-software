@@ -137,9 +137,9 @@ class GLSettingsClass:
         self.defaults.maximum_descsize = 1024
         self.defaults.maximum_textsize = 2048
         self.defaults.maximum_filesize = (30 * 1024 * 1024) # 30 Mb
-        self.defaults.exception_email = "stackexception@lists.globaleaks.org"
+        self.defaults.exception_email = u"stackexception@lists.globaleaks.org"
         # Context dependent values:
-        self.defaults.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
+        self.defaults.receipt_regexp = u'[A-Z]{4}\+[0-9]{5}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
 
