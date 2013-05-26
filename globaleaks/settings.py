@@ -156,7 +156,7 @@ class GLSettingsClass:
         self.memory_copy.tor2web_tip = self.defaults.tor2web_tip
         self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
         self.memory_copy.tor2web_unauth = self.defaults.tor2web_unauth
-        self.defaults.exception_email = self.defaults.exception_email
+        self.memory_copy.exception_email = self.defaults.exception_email
         # updated by globaleaks/db/__init__.import_memory_variables
 
         # SOCKS default

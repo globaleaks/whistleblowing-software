@@ -451,7 +451,8 @@ def serialize_receiver(receiver, access_counter):
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "contexts": [],
-        "access_counter": access_counter
+        "tags": receiver.tags,
+        "access_counter": access_counter,
     }
     for context in receiver.contexts:
         receiver_dict['contexts'].append(unicode(context.id))

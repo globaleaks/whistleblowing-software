@@ -98,10 +98,8 @@ class TestTipInstance(SubmissionTest):
         submission_request['finalize'] = True
 
         try:
-            print submission_request
             r = yield submission.create_submission(submission_request, finalize=True)
             log.debug("Unexpected Success in creation: %s" % str(r))
-            print r
             self.assertTrue(False)
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )

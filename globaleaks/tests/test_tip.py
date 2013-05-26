@@ -103,7 +103,6 @@ class TestTipInstance(TTip):
         try:
             self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
         except Exception, e:
-            print e
             self.assertTrue(False)
 
         self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
@@ -268,7 +267,6 @@ class TestTipInstance(TTip):
         try:
             counter = yield tip.increment_receiver_access_count(
                 self.receiver2_desc['receiver_gus'], self.rtip2_id)
-            print counter
             self.assertTrue(False)
         except errors.AccessLimitExceeded:
             self.assertTrue(True)
