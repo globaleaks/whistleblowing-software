@@ -66,6 +66,10 @@ class TestTipInstance(SubmissionTest):
 
         basehandler.validate_jmessage( SubmissionTest.aContext1, requests.adminContextDesc)
         SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
+        # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
+        SubmissionTest.context_used['selectable_receiver'] = True
+        SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['context_gus'],
+            SubmissionTest.context_used)
 
         basehandler.validate_jmessage( SubmissionTest.aContext2, requests.adminContextDesc)
         SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
@@ -94,14 +98,16 @@ class TestTipInstance(SubmissionTest):
         submission_request['finalize'] = True
 
         try:
+            print submission_request
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Success in creation: %s" % str(r))
+            log.debug("Unexpected Success in creation: %s" % str(r))
+            print r
             self.assertTrue(False)
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )
             self.assertEqual(e.error_code, 22) # SubmissionFailFields
         except Exception, e:
-            log.debug("Exception %s" % str(e) )
+            log.debug("Unexpected Exception %s" % str(e) )
             self.assertTrue(False, msg=str(e))
 
 
@@ -115,13 +121,13 @@ class TestTipInstance(SubmissionTest):
 
         try:
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Success in creation: %s" % str(r))
+            log.debug("Unexpected Success in creation: %s" % str(r))
             self.assertTrue(False)
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )
             self.assertTrue(True)
         except Exception, e:
-            log.debug("Exception %s" % str(e) )
+            log.debug("Unexpected Exception %s" % str(e) )
             self.assertTrue(False, msg=str(e))
 
 
@@ -136,13 +142,13 @@ class TestTipInstance(SubmissionTest):
 
         try:
             r = yield submission.create_submission(submission_request, finalize=True)
-            log.debug("Success in creation: %s" % str(r))
+            log.debug("Unexpected Success in creation: %s" % str(r))
             self.assertTrue(False, msg="Created!")
         except GLException, e:
             log.debug("GLException %s %s" % (str(e), e.reason) )
             self.assertTrue(True)
         except Exception, e:
-            log.debug("Exception %s" % str(e) )
+            log.debug("Unexpected Exception %s" % str(e) )
             self.assertTrue(False, msg=str(e))
 
 
