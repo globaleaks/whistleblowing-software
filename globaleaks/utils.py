@@ -340,7 +340,7 @@ def mail_exception(etype, value, tback):
     sendmail(GLSetting.error_reporting_username,
              GLSetting.error_reporting_password,
              GLSetting.error_reporting_username,
-             GLSetting.error_reporting_destmail,
+             GLSetting.memory_copy.exception_email,
              message,
              GLSetting.error_reporting_server,
              GLSetting.error_reporting_port, None)

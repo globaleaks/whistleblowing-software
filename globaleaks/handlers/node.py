@@ -98,7 +98,7 @@ def anon_serialize_receiver(receiver):
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
-        "tags": dict(receiver.tags),
+        "tags": receiver.tags,
     })
     return receiver_dict
 
