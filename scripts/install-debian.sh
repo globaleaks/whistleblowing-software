@@ -361,7 +361,7 @@ PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
 # User Permission Check
 if [[ $EUID -ne 0 ]]; then
     echo "Error: GlobaLeaks install script must be runned by root"
-    #exit 1
+    exit 1
 fi
 
 # Preliminary Requirements Check
