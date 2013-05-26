@@ -212,14 +212,14 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           wb_fields: {}, files: [], finalize: false, receivers: []
         });
 
+        setCurrentContextReceivers();
+
         self.current_submission.$save(function(submissionID){
           _.each(self.current_context.fields, function(field, k) {
             if (field.type === "checkboxes") {
               self.current_context.fields[k].value = {};
             }
           });
-          // XXX the backend should return this.
-          setCurrentContextReceivers();
           self.current_submission.wb_fields = {};
         });
 
