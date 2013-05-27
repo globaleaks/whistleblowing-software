@@ -438,10 +438,7 @@ for PIP_DEP in $PIP_DEPS; do
   DO "pip install $PIP_DEP" "0"
 done
 
-grep "deb http://deb.globaleaks.org/ unstable/" /etc/apt/sources.list/  >/dev/null 2>&1
-if [ ! $? ]; then
-    echo "deb http://deb.globaleaks.org/ unstable/" >> /etc/apt/sources.list
-fi
+add-apt-repository 'deb http://deb.globaleaks.org/ unstable/'
 
 DO "torsocks gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
 DO "gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -" "0"
