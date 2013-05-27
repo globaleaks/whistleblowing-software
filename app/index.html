@@ -41,23 +41,16 @@
             <script src="scripts/vendor/json3.min.js"></script>
         <![endif]-->
 
-        <div class="pending-requests modal fade hide"
-             latenza-box ng-controller="LatenzaCtrl">
-          <div class="modal-header">
-            <button type="button" class="close"
-                    data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Loading...</h3>
-          </div>
-          <div class="modal-body">
-            <h2>Did you know?</h2>
-            <p>The term whistle-blower comes from the whistle a referee uses to
-            indicate an illegal or foul play. US civic activist Ralph
-            Nader coined the phrase in the early 1970s to avoid the negative
-            connotations found in other words such as "informers" and
-            "snitches"</p>
+        <div class="pending-requests"
+             latenza-box ng-controller="LatenzaCtrl"
+             ng-show="showRequestBox">
+          <div class="message">
+            <h3>Please wait...</h3>
           </div>
           <ul>
-            <li ng-repeat="request in pending_requests">{{request.name}}</li>
+            <li ng-repeat="request in pendingRequests">
+              {{request}}
+            </li>
           </ul>
         </div>
 
