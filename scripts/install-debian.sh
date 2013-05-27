@@ -11,7 +11,7 @@ DO () {
     else
         CMD=$3
     fi
-    echo -n "Running: \"$CMD\"..."
+    echo -n "Running: \"$CMD\"... "
     bash -c "$1" &>${BUILD_LOG}
     if [ $? -eq $2 ]; then
         echo "SUCCESS"
