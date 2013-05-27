@@ -414,7 +414,7 @@ if [ ${INSTALL_PIP} -eq 1 ] ; then
     PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
     echo "$PIP_PUB_KEY" > $PIP_KEY_FILE
     DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $PIP_KEY_FILE" "0"
-    DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0" "Error in verifying signature!"
+    DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0"
 
     DO "tar xzf ${PIP_PKG}" "0"
     DO "cd pip-*" "0"
