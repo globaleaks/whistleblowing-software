@@ -2,6 +2,9 @@
 
 ############## Start Of Variable and Functions Declaration ###########
 
+BUILD_DIR=/tmp/glbuilding.$RANDOM
+BUILD_LOG=${BUILD_LOG}.log
+
 DO () {
     if [ -z "$3" ]; then
         CMD=$1
@@ -9,13 +12,13 @@ DO () {
         CMD=$3
     fi
     echo -n "Running: \"$CMD\"..."
-    STDOUT_STDERR=$($1 2>&1)
+    $1 &>> ${BUILD_LOG}
     if [ $? -eq $2 ]; then
         echo "SUCCESS"
     else
         echo "FAIL"
         echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
-        echo "${STDOUT_STDERR}"
+        cat ${BUILD_LOG}
         exit 1
     fi
 }
@@ -350,8 +353,6 @@ Dr3+wZTovINnAKDs/Uz0hqtfArRR+aWJWp0p/sJNWg==
 =0zqq
 -----END PGP PUBLIC KEY BLOCK-----
 "
-BUILD_DIR=/tmp/glbuilding.$RANDOM
-
 TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
 PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
 PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
