@@ -12,7 +12,7 @@ DO () {
         CMD=$3
     fi
     echo -n "Running: \"$CMD\"..."
-    $1 &>> ${BUILD_LOG}
+    $1 &> ${BUILD_LOG}
     if [ $? -eq $2 ]; then
         echo "SUCCESS"
     else
