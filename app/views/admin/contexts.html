@@ -95,7 +95,68 @@
                   </div>
 
                 </div>
+
+                  <p class="informationBox">Advanced settings</p>
+                  <div class="offset4 span4">
+
+                      <div class="row">
+
+                          <label>Tip day life</label>
+                          <input type="int"
+                                 required
+                                 ng-model="context.tip_timetolive"
+                                 value="{{context.tip_timetolive}}">
+
+                          <label>Submisson hours life</label>
+                          <input type="int"
+                                 required
+                                 ng-model="context.submission_timetolive"
+                                 value="{{context.submission_timetolive}}">
+                      </div>
+
+                      <div class="row">
+                          <label>File Required</label>
+                          <input type="checkbox"
+                                 required
+                                 ng-model="context.file_required"
+                                 ng-true-value="true"
+                                 ng-false-value="false">
+
+                          <label>Receipt regexp</label>
+                          <input type="text"
+                                 required
+                                 ng-model="context.receipt_regexp"
+                                 value="{{context.receipt_regexp}}">
+                      </div>
+
+                      <div class="row">
+                          <label>Receipt description</label>
+                          <textarea required
+                                    ng-model="context.receipt_description">{{context.recepit_description}}</textarea>
+
+                          <label>Submission Introduction</label>
+                          <textarea required
+                                    ng-model="context.submission_introduction">{{context.submission_introduction}}</textarea>
+
+                      </div>
+
+                      <div class="row">
+
+                          <label>Submission Disclaimer</label>
+                          <textarea required
+                                    ng-model="context.submission_disclaimer">{{context.submission_disclaimer}}</textarea>
+
+                          <label>Tags - Fix - Fix</label>
+                          <input type="text"
+                                 required
+                                 ng-model="context.tags"
+                                 value="{{context.tags}}">
+                          <label>Description</label>
+                      </div>
+                  </div>
               </div>
+
+            </div>
             </div>
           </form>
         </div>
