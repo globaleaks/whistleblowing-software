@@ -19,7 +19,9 @@ profile usr.bin.globaleaks {
     /etc/python2.7/** r,
     /etc/mime.types r,
 
-    /usr/lib/python2.7/dist-packages/globaleaks/** rwlk,
+    deny /usr/lib/python2.7/dist-packages/globaleaks/** rwlk,
+    deny /bin/dash rx,
+
     /var/globaleaks/** rwk,
     owner /tmp/** rwkl,
     owner /var/tmp/** rwkl,
