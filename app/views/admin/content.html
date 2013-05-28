@@ -84,23 +84,20 @@
             <!-- </div> -->
 
         <label>
-        <input type="checkbox" name="tor2web_admin" ng-model="admin.node.tor2web_admin"
-        ng-switch-when="checkbox" />
-        Permit Administative operation via Tor2Web</label>
+        <input type="checkbox" name="tor2web_admin" ng-model="admin.node.tor2web_admin"/>
+          Permit Administative operation via Tor2Web</label>
 
         <label>
-        <input type="checkbox" name="tor2web_receiver" ng-model="admin.node.tor2web_receiver"
-        ng-switch-when="checkbox" />
-        Permit Receiver preferences via Tor2Web</label>
+        <input type="checkbox" name="tor2web_receiver" ng-model="admin.node.tor2web_receiver"/>
+          Permit Receiver preferences via Tor2Web
+        </label>
 
         <label>
-        <input type="checkbox" name="tor2web_tip" ng-model="admin.node.tor2web_tip"
-        ng-switch-when="checkbox" />
-        Permit Tip access (Wb and Receiver) ops via Tor2Web</label>
+          <input type="checkbox" name="tor2web_tip" ng-model="admin.node.tor2web_tip"/>
+          Permit Tip access (Wb and Receiver) ops via Tor2Web</label>
 
         <label>
-        <input type="checkbox" name="tor2web_unauth" ng-model="admin.node.tor2web_unauth"
-        ng-switch-when="checkbox" />
+        <input type="checkbox" name="tor2web_unauth" ng-model="admin.node.tor2web_unauth"/>
         Permit unauthenticated access (just info on node settings, goals, context) via
         Tor2Web</label>
 
@@ -108,6 +105,7 @@
         <input type="checkbox" value="admin.node.tor2web_submission" 
         name="tor2web_submission" ng-model="admin.node.tor2web_submission" />
         Permit Submission via Tor2Web</label>
+
 
         <br>
         <button class="btn btn-success" 

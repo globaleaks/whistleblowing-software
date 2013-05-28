@@ -85,6 +85,12 @@
         <p>{{submission.current_context.description}}</p>
 
         <div class="row">
+            <pre>
+            Uploading: {{uploading}}
+            UploadingFiles: {{uploadingFiles}}
+            Accept: {{disclaimer.accepted}}
+            Recv: {{receiver_selected}}
+            </pre>
 
           <div class="span6 submissionDetails" ng-include="'templates/default/views/submission/form.html'"></div>
 
