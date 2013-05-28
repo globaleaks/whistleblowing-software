@@ -1,5 +1,4 @@
 #!/bin/bash
-CWD=`pwd`
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
@@ -53,15 +52,7 @@ build_glbackend()
   rm -rf debian/
   cp -rf ${GLOBALEAKS_DIR}/GLBackend/debian debian
   debuild
-  cd ..
-  echo "[+] Adding to local repository"
-  dput local globaleaks*changes
-  mini-dinstall --batch
-  cd $CWD
-
-  echo "[+] Signing Release"
-  $DIR/sign-release.sh
-  rm -rf ${GLOBALEAKS_DIR}/GLBackend/dist
+  
 }
 
 build_glbackend
