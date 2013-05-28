@@ -47,10 +47,36 @@
 
             <button type="submit" class="btn btn-success"
                 ng-disabled="mismatch_password || unsafe_password || missing_old_password"
-                ng-click="save()">Save</button>
+                ng-click="save()">Change password</button>
 
         </div>
       </div>
+
+        <div class="row">
+            <form class="config-form">
+                <div class="span4">
+
+                    <h4>Notification settings</h4>
+
+                    <label>
+                    <input type="checkbox" ng-model="preferences.tip_notification" ng-value="preferences.tip_notification" />
+                        new Tip trigger an email notification
+                        </label>
+
+                    <label>
+                    <input type="checkbox" ng-model="preferences.comment_notification" ng-value="preferences.comment_notification" />
+                        new Comment on a Tip, trigger an email notification
+                        </label>
+
+                    <label>
+                    <input type="checkbox" ng-model="preferences.file_notification" ng-value="preferences.file_notification" />
+                        new File uploaded on a Tip, trigger an email notification
+                        </label>
+
+                    <button type="submit" class="btn btn-success" ng-click="update()">Update preferences</button>
+                </div>
+            </form>
+        </div>
 
     </div>
 
