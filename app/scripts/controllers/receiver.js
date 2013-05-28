@@ -30,7 +30,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
     $scope.update = function() {
         $scope.preferences.password = '';
         $scope.preferences.old_password = '';
-        ReceiverPreferences.put({message: 'Updated your preferences!'});
+        $scope.preferences.update();
     }
 
 }]);
