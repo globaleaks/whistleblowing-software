@@ -81,7 +81,32 @@
            ng-show="contentForm.public_site.$error.pattern">Invalid format for public site (should be "https://thirteenchars123.tor2web.org")</p>
 
         <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
-        <!-- </div> -->
+            <!-- </div> -->
+        <p>
+        <input type="checkbox" name="tor2web_admin" ng-model="admin.node.tor2web_admin"
+        ng-switch-when="checkbox" />
+        Permit Administative operation via Tor2Web</p>
+
+        <p>
+        <input type="checkbox" name="tor2web_receiver" ng-model="admin.node.tor2web_receiver"
+        ng-switch-when="checkbox" />
+        Permit Receiver preferences via Tor2Web</p>
+
+        <p>
+        <input type="checkbox" name="tor2web_tip" ng-model="admin.node.tor2web_tip" 
+        ng-switch-when="checkbox" />
+        Permit Tip access (Wb and Receiver) ops via Tor2Web</p>
+
+        <p>
+        <input type="checkbox" name="tor2web_unauth" ng-model="admin.node.tor2web_unauth" 
+        ng-switch-when="checkbox" />
+        Permit unauthenticated access (just info on node settings, goals, context) via
+        Tor2Web</p>
+
+        <p>
+        <input type="checkbox" value="admin.node.tor2web_submission" 
+        name="tor2web_submission" ng-model="admin.node.tor2web_submission" />
+        Permit Submission via Tor2Web</p>
 
         <br>
         <button class="btn btn-success" 
