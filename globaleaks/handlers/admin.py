@@ -136,7 +136,7 @@ def update_node(store, request):
             log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
             raise errors.InvalidInputFormat("Invalid hidden service")
 
-    # name, description and integer value are acquired here
+    # name, description tor2web boolean value are acquired here
     node.update(request)
     node.last_update = utils.datetime_now()
 
@@ -542,13 +542,15 @@ class NodeInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                 requests.adminNodeDesc)
 
-        response = yield update_node(request)
+        yield update_node(request)
 
         # align the memory variables with the new updated data
         yield import_memory_variables()
 
+        node_description = yield get_node()
+
         self.set_status(202) # Updated
-        self.finish(response)
+        self.finish(node_description)
 
 class ContextsCollection(BaseHandler):
     """
