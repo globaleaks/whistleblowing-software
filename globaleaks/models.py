@@ -115,7 +115,13 @@ class Model(Storm):
             setattr(self, k, value)
 
         for k in cls_bool_keys:
-            value = bool(attrs[k])
+            if attrs[k] == 'true':
+                value = True
+            elif attrs[k] == 'false':
+                value = False
+            else:
+                value = bool(attrs[k])
+
             setattr(self, k, value)
 
 
@@ -177,7 +183,8 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
-    unicode_keys = ['name', 'description' ]
+    unicode_keys = ['name', 'description', 'receipt_description',
+                    'submission_introduction', 'submission_disclaimer' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
                  'file_max_download', 'submission_timetolive' ]
     bool_keys = [ 'selectable_receiver', 'file_required' ]

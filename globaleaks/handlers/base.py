@@ -75,6 +75,8 @@ class BaseHandler(RequestHandler):
         Return True if the python class instantiates the python_type given,
             'int' fields are accepted also as 'unicode' but cast on base 10
             before validate them
+            'bool' fields are accepted also as 'true' 'false' because this
+            happen on angular.js
         """
         if value is None:
             return True
@@ -85,8 +87,11 @@ class BaseHandler(RequestHandler):
                 return True
             except Exception:
                 return False
-        
-        # else, not int and not None...
+
+        if python_type == bool:
+            if value == 'true' or value == 'false':
+                return True
+
         return isinstance(value, python_type)
 
     @staticmethod
