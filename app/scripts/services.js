@@ -402,26 +402,23 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
        *  @param {string} password the new password model name.
        *  @param {string} check_password need to be equal to the new password.
        **/
-      scope.mismatch_password = true;
-      scope.missing_old_password = true;
-      scope.unsafe_password = true;
+      scope.mismatch_password = false;
+      scope.missing_old_password = false;
+      scope.unsafe_password = false;
 
-      scope.pwdValidLength = false;
-      scope.pwdHasLetter = false;
-      scope.pwdHasNumber = false;
+      scope.pwdValidLength = true;
+      scope.pwdHasLetter = true;
+      scope.pwdHasNumber = true;
 
       var validatePasswordChange = function() {
 
         if (scope.$eval(password) == scope.$eval(check_password) ) {
             scope.mismatch_password = false;
         }
+
         /* when is not yet written is undefined, then do not show the error */
         if (scope.$eval(password) == undefined ) {
             scope.mismatch_password = false;
-        }
-
-        if (scope.$eval(old_password) != undefined && scope.$eval(old_password).length >= 1 ) {
-            scope.missing_old_password = false;
         }
 
         if (scope.mismatch_password && scope.$eval(password) != undefined) {
@@ -435,24 +432,28 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
             } else {
               scope.unsafe_password = true;
             }
+            scope.missing_old_password = true;
         }
 
+        if (scope.$eval(old_password) != undefined && (scope.$eval(old_password)).length > 1 )  {
+            scope.missing_old_password = false;
+        }
       }
 
       /* initializing here the variable that trigger "password mismatch"
        * we avoid that is show as invalid since the page load */
       scope.$watch(password, function(){
-        scope.mismatch_password = true;
-        validatePasswordChange();
+          scope.mismatch_password = true;
+          validatePasswordChange();
       }, true);
 
       scope.$watch(old_password, function(){
-        validatePasswordChange();
+          validatePasswordChange();
       }, true);
 
       scope.$watch(check_password, function(){
-        scope.mismatch_password = true;
-        validatePasswordChange();
+          scope.mismatch_password = true;
+          validatePasswordChange();
       }, true);
 
     }
