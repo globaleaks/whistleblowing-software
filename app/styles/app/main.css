@@ -355,9 +355,17 @@ background-color: whiteSmoke;
   width: 400px;
   margin-left:-200px;
   left:50%;
+}
+
+.pending-requests .message {
   background: white;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   border-radius: 10px;
-  padding: 50px;
+  padding: 20px;
+  border: 1px solid #ddd;
+}
+
+.spinner {
+  padding-bottom: 100px;
 }

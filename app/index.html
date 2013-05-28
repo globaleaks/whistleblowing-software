@@ -42,14 +42,13 @@
         <![endif]-->
 
         <div class="pending-requests" ng-show="showRequestBox">
+          <div class="spinner" spinner></div>
+
           <div class="message">
-            <h3>Please wait...</h3>
-            <p>Anonymity is important, but it's kind of slow :(</p>
+            <h1>Please wait...</h1>
+            <p class="lead">Anonymity is important, but it's kind of slow :(</p>
+            <i class="icon-star" ng-repeat="request in pendingRequests"></i>
           </div>
-          <div class="progress progress-striped progress-success active">
-            <div class="bar" style="width: 0%;"></div>
-          </div>
-          <i class="icon-certificate" ng-repeat="request in pendingRequests"></i>
         </div>
 
         <div ng-include="'views/widgets/privacybox.html'"></div>
@@ -113,6 +112,7 @@
         <script src="scripts/vendor/angular-mocks.js"></script>
         <script src="scripts/vendor/angular-ui.js"></script>
         <script src="scripts/vendor/ui-bootstrap-tpls-0.2.0.js"></script>
+        <script src="scripts/vendor/spin.js"></script>
 
         <script src="scripts/services.js"></script>
         <script src="scripts/templates.js"></script>
