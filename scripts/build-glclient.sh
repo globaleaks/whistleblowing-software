@@ -1,5 +1,4 @@
 #!/bin/bash
-CWD=`pwd`
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
@@ -70,7 +69,6 @@ build_glclient()
   mv glclient-${GLCLIENT_REVISION}.tar.gz $OUTPUT_DIR/GLClient
   mv glclient-${GLCLIENT_REVISION}.zip $OUTPUT_DIR/GLClient
   rm -rf glclient-${GLCLIENT_REVISION}
-  cd $CWD
 }
 build_glclient
 echo "[+] All done!"
