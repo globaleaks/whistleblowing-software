@@ -382,3 +382,14 @@ def acquire_url_address(inputstring, hidden_service=False, http=False):
         accepted |= True
 
     return accepted
+
+
+def acquire_bool(boolvalue):
+    if isinstance(boolvalue, bool):
+        return boolvalue
+    if boolvalue == 'true':
+        return True
+    if boolvalue == 'false':
+        return False
+    raise AssertionError("BaseHandler validator is not working")
+
