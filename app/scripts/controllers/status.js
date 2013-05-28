@@ -18,7 +18,7 @@ GLClient.controller('StatusCtrl',
 
     if ($cookies['role'] === 'wb') {
       $rootScope.whistleblower_tip_id = $cookies['tip_id'];
-    } 
+    }
 
 }]);
 
