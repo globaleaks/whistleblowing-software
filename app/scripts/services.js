@@ -94,6 +94,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return function(promise) {
+      var progress_bar = $(".pending-requests .bar");
+
       if (!$rootScope.pendingRequests)
         $rootScope.pendingRequests = [];
 
@@ -102,6 +104,10 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           $rootScope.showRequestBox = false;
         } else {
           $rootScope.showRequestBox = true;
+
+          progress_bar.css({width: "0%"});
+          progress_bar.animate({width: "100%"},
+                               {duration: 3000, easing: 'linear'});
         }
       }, true);
 

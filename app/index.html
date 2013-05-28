@@ -41,17 +41,15 @@
             <script src="scripts/vendor/json3.min.js"></script>
         <![endif]-->
 
-        <div class="pending-requests"
-             latenza-box ng-controller="LatenzaCtrl"
-             ng-show="showRequestBox">
+        <div class="pending-requests" ng-show="showRequestBox">
           <div class="message">
             <h3>Please wait...</h3>
+            <p>Anonymity is important, but it's kind of slow :(</p>
           </div>
-          <ul>
-            <li ng-repeat="request in pendingRequests">
-              {{request}}
-            </li>
-          </ul>
+          <div class="progress progress-striped progress-success active">
+            <div class="bar" style="width: 0%;"></div>
+          </div>
+          <i class="icon-certificate" ng-repeat="request in pendingRequests"></i>
         </div>
 
         <div ng-include="'views/widgets/privacybox.html'"></div>
@@ -124,7 +122,6 @@
         <script src="scripts/filters.js"></script>
 
         <script src="scripts/controllers/wizard.js"></script>
-        <script src="scripts/controllers/latenza.js"></script>
         <script src="scripts/controllers/privacybox.js"></script>
         <script src="scripts/controllers/home.js"></script>
 
