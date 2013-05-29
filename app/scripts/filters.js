@@ -19,4 +19,9 @@ angular.module('GLClientFilters', []).
         return input;
       }
     }
+}).
+  filter('translate', function() {
+    return function(input) {
+      return input;
+    }
 });
