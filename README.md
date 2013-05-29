@@ -15,6 +15,5 @@ GlobaLeaks Node.
 It is implemented based on Twisted (using cyclone) and uses Storm as a
 database.
 
-**Warning** This version of software is under development and is not
-reccommended to be used by anybody.
+**Warning** This version of software is under development and should be used with care.
 

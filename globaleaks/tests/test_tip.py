@@ -40,20 +40,25 @@ class TTip(helpers.TestWithDB):
         'escalation_threshold': u'1', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'fields': [], 'submission_timetolive': 100,
+        'receipt_regexp': GLSetting.defaults.receipt_regexp,
+        'receipt_description': u"blah", 'submission_introduction': u"bleh", 'submission_disclaimer': u"bloh",
+        'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
     }
 
     tipReceiver1 = {
         'notification_fields': {'mail_address': u'first@winstonsmith.org' },
         'name': u'first', 'description': u"I'm tha 1st",
         'receiver_level': u'1', 'can_delete_submission': True,
-        'password': STATIC_PASSWORD,
+        'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
+        'comment_notification': True, 'tip_notification': False,
     }
 
     tipReceiver2 = {
         'notification_fields': {'mail_address': u'second@winstonsmith.org' },
         'name': u'second', 'description': u"I'm tha 2nd",
         'receiver_level': u'1', 'can_delete_submission': False,
-        'password': STATIC_PASSWORD,
+        'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
+        'comment_notification': True, 'tip_notification': False,
     }
 
     tipSubmission = {
@@ -98,7 +103,6 @@ class TestTipInstance(TTip):
         try:
             self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
         except Exception, e:
-            print e
             self.assertTrue(False)
 
         self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
@@ -123,7 +127,7 @@ class TestTipInstance(TTip):
         if not self.receipt:
             self.receipt = yield submission.create_whistleblower_tip(self.submission_desc)
 
-        self.assertTrue(re.match(GLSetting.receipt_regexp, self.receipt) )
+        self.assertTrue(re.match(GLSetting.defaults.receipt_regexp, self.receipt) )
 
     @inlineCallbacks
     def wb_auth_with_receipt(self):
@@ -154,6 +158,8 @@ class TestTipInstance(TTip):
         self.wb_data = yield tip.get_internaltip_wb(self.wb_tip_id)
 
         self.assertEqual(self.wb_data['fields'], self.submission_desc['wb_fields'])
+        self.assertTrue(self.wb_data['im_whistleblower'])
+        self.assertFalse(self.wb_data['im_receiver'])
 
     @inlineCallbacks
     def create_receivers_tip(self):
@@ -192,10 +198,14 @@ class TestTipInstance(TTip):
                 raise e
         
         self.assertEqual(self.receiver1_data['fields'], self.submission_desc['wb_fields'])
+        self.assertTrue(self.receiver1_data['im_receiver'])
+        self.assertFalse(self.receiver1_data['im_whistleblower'])
 
         self.receiver2_data = yield tip.get_internaltip_receiver(auth2, self.rtip2_id)
 
         self.assertEqual(self.receiver2_data['fields'], self.submission_desc['wb_fields'])
+        self.assertTrue(self.receiver2_data['im_receiver'])
+        self.assertFalse(self.receiver2_data['im_whistleblower'])
 
     @inlineCallbacks
     def strong_receiver_auth(self):
@@ -257,7 +267,6 @@ class TestTipInstance(TTip):
         try:
             counter = yield tip.increment_receiver_access_count(
                 self.receiver2_desc['receiver_gus'], self.rtip2_id)
-            print counter
             self.assertTrue(False)
         except errors.AccessLimitExceeded:
             self.assertTrue(True)
@@ -267,7 +276,7 @@ class TestTipInstance(TTip):
 
 
     @inlineCallbacks
-    def receiver1_RW_comments(self):
+    def receiver_RW_comments(self):
         self.commentCreation['content'] = unicode("Comment N1 by R1")
         yield tip.create_comment_receiver(
                                     self.receiver1_desc['receiver_gus'],
@@ -376,7 +385,7 @@ class TestTipInstance(TTip):
         yield self.receiver2_express_negative_vote()
         yield self.receiver2_fail_double_vote()
         yield self.receiver_2_get_banned_for_too_much_access()
-        yield self.receiver1_RW_comments()
+        yield self.receiver_RW_comments()
         yield self.wb_RW_comments()
         yield self.wb_get_receiver_list()
         yield self.receiver_get_receiver_list()

@@ -33,7 +33,7 @@ class TestEmail(helpers.TestGL):
         # require to perform a connection to send an email.
         # XXX we probably want to create a proper mock of the ESMTPSenderFactory
         def sendmail_mock(self, authentication_username, authentication_password, from_address,
-                          to_address, message_file, smtp_host, smtp_port, security):
+                          to_address, message_file, smtp_host, smtp_port, security, event):
             return defer.succeed(None)
 
         notification.MailNotification.sendmail = sendmail_mock
@@ -68,11 +68,14 @@ class TestEmail(helpers.TestGL):
             "port": 25,
             "username": "sendaccount939@globaleaks.org",
             "password": "sendaccount939",
-            "tip_template": "tip tip",
-            "file_template": "file file",
-            "activation_template": "activation activation",
-            "comment_template": "comment comment",
-            "security": 'TLS',
+            "tip_template": u"tip tip",
+            "file_template": u"file file",
+            "activation_template": u"activation activation",
+            "comment_template": u"comment comment",
+            "tip_mail_title": u'title tip',
+            "comment_mail_title": u'title comment',
+            "file_mail_title": u'title file',
+            "security": u'TLS',
         }
 
         tip_events = yield aps.create_tip_notification_events()

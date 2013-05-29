@@ -21,7 +21,7 @@ class TestSubmission(helpers.TestGL):
     body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
     dummyFiles = []
     dummyFiles.append({
-        'body': body[0:GLSetting.generic_limit].encode('utf-8'),
+        'body': body[0:GLSetting.defaults.maximum_textsize].encode('utf-8'),
         'content_type': 'application/octect',
         'filename': 'aaaaaa'
     })
@@ -29,7 +29,7 @@ class TestSubmission(helpers.TestGL):
     dummyFiles.append({
         'body': 'aaaaaa',
         'content_type': 'application/octect',
-        'filename': filename[0:GLSetting.name_limit]
+        'filename': filename[0:GLSetting.defaults.maximum_namesize]
     })
 
     # --------------------------------------------------------- #
@@ -42,21 +42,17 @@ class TestSubmission(helpers.TestGL):
         status = yield submission.create_submission(submission_desc, finalize=True)
         receipt = yield submission.create_whistleblower_tip(status)
 
-        retval = re.match(GLSetting.receipt_regexp, receipt)
+        retval = re.match(GLSetting.defaults.receipt_regexp, receipt)
         self.assertTrue(retval)
 
     @inlineCallbacks
     def emulate_files_upload(self, associated_submission_id):
         relationship = files.dump_files_fs(self.dummyFiles)
-        self.file_list = yield files.register_files_db(self.dummyFiles,
-                relationship, associated_submission_id)
-        self.assertEqual(len(self.file_list), 2)
 
-        file_list = yield files.register_files_db(
+        self.file_list = yield files.register_files_db(
             self.dummyFiles, relationship, associated_submission_id,
         )
-        self.assertEqual(len(file_list), 2)
-
+        self.assertEqual(len(self.file_list), 2)
 
     @inlineCallbacks
     def test_create_internalfiles(self):
@@ -65,7 +61,6 @@ class TestSubmission(helpers.TestGL):
         for file_desc in self.file_list:
             keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(file_desc.keys())
             self.assertFalse(keydiff)
-
 
     @transact
     def _force_finalize(self, store, submission_id):
@@ -84,7 +79,7 @@ class TestSubmission(helpers.TestGL):
         # return a dict { "file_uuid" : checksum }
 
         ret = yield delivery_sched.receiver_file_align(filesdict, processdict)
-        self.assertEqual(len(ret), 4)
+        self.assertEqual(len(ret), 2)
 
 
     @inlineCallbacks
@@ -127,14 +122,14 @@ class TestSubmission(helpers.TestGL):
 
         # the files are related to internaltip_id, then appears aligned also if not explicit in the
         # update_submission
-        self.assertEqual(len(status['files']), 4)
+        self.assertEqual(len(status['files']), 2)
 
         # and now check the files
         filesdict = yield delivery_sched.file_preprocess()
-        self.assertEqual(len(filesdict), 4)
+        self.assertEqual(len(filesdict), 2)
 
         processdict = delivery_sched.file_process(filesdict)
-        self.assertEqual(len(processdict), 4)
+        self.assertEqual(len(processdict), 2)
 
         # Checks the SHA2SUM computed
         for random_f_id, sha2sum in processdict.iteritems():
@@ -156,12 +151,11 @@ class TestSubmission(helpers.TestGL):
 
         # generate two receiverfile (one receiver, two file), when submission is completed
         receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
-        self.assertEqual(len(receiverfile_list), 4)
+        self.assertEqual(len(receiverfile_list), 2)
 
         # it's used : get_files_receiver(receiver_id, tip_id)
         receiver_files = yield tip.get_files_receiver(status['receivers'][0], new_rtip[0])
-        self.assertEqual(len(receiver_files), 4)
-
+        self.assertEqual(len(receiver_files), 2)
 
     def get_new_receiver_desc(self, descpattern):
         new_r = dict(self.dummyReceiver)

@@ -43,7 +43,7 @@ def validate_host(host_key):
     if host_key in GLSetting.accepted_hosts:
         return True
 
-    log.debug("Error in host requested: %s do not accepted between: %s " %
+    log.debug("Error in host requested: %s not accepted between: %s " %
               (host_key, GLSetting.accepted_hosts))
     return False
 
@@ -54,7 +54,7 @@ class GLHTTPServer(HTTPConnection):
         HTTPConnection.lineReceived(self, line)
 
     def rawDataReceived(self, data):
-        if self.content_length > GLSetting.max_file_size:
+        if self.content_length > GLSetting.memory_copy.maximum_filesize:
             log.err("Tried upload larger than expected (%dMb)" %
                     (self.content_length / (1024 * 1024)) )
 
@@ -75,6 +75,8 @@ class BaseHandler(RequestHandler):
         Return True if the python class instantiates the python_type given,
             'int' fields are accepted also as 'unicode' but cast on base 10
             before validate them
+            'bool' fields are accepted also as 'true' 'false' because this
+            happen on angular.js
         """
         if value is None:
             return True
@@ -85,8 +87,11 @@ class BaseHandler(RequestHandler):
                 return True
             except Exception:
                 return False
-        
-        # else, not int and not None...
+
+        if python_type == bool:
+            if value == 'true' or value == 'false':
+                return True
+
         return isinstance(value, python_type)
 
     @staticmethod
@@ -146,7 +151,7 @@ class BaseHandler(RequestHandler):
         valid_jmessage = {}
         for key in message_template.keys():
             if key not in jmessage:
-                log.debug('key %s not in %s' % (key, jmessage))
+                log.err('key %s not in %s' % (key, jmessage))
                 raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
             else:
                 valid_jmessage[key] = jmessage[key]
@@ -200,16 +205,6 @@ class BaseHandler(RequestHandler):
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
-
-        if self.request.method.lower() == 'post':
-            try:
-                wrappedMethod = self.get_argument('method')[0]
-                print "[^] Forwarding", wrappedMethod, "from POST"
-                if wrappedMethod.lower() == 'delete' or \
-                        wrappedMethod.lower() == 'put':
-                    self.request.method = wrappedMethod.upper()
-            except HTTPError:
-                pass
 
         # if 0 is infinite logging of the requests
         if GLSetting.cyclone_debug >= 0:
@@ -333,7 +328,7 @@ class BaseHandler(RequestHandler):
             else:
                 return self.send_error(e.status_code, exception=e)
         else:
-            log.msg("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb) )
+            log.err("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb) )
             if GLSetting.cyclone_debug:
                 log.msg(e)
             mail_exception(exc_type, exc_value, exc_tb)

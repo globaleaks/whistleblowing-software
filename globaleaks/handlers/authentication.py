@@ -61,6 +61,8 @@ def transport_security_check(wrapped_handler_role):
     Tor and Tor2Web has two different protection level, and some operation
     maybe forbidden if in Tor2Web, return 417 (Expectation Fail)
     """
+    tor2web_roles = ['tip', 'submission', 'receiver', 'admin', 'unauth']
+
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
             """
@@ -68,7 +70,18 @@ def transport_security_check(wrapped_handler_role):
             enhance performance instead of searching in te DB at every handler
             connection.
             """
-            accept_tor2web = GLSetting.tor2web_permitted_ops[wrapped_handler_role]
+            assert wrapped_handler_role in tor2web_roles
+            if wrapped_handler_role == 'tip':
+                accept_tor2web = GLSetting.memory_copy.tor2web_tip
+            elif wrapped_handler_role == 'submission':
+                accept_tor2web = GLSetting.memory_copy.tor2web_submission
+            elif wrapped_handler_role == 'receiver':
+                accept_tor2web = GLSetting.memory_copy.tor2web_receiver
+            elif wrapped_handler_role == 'admin':
+                accept_tor2web = GLSetting.memory_copy.tor2web_admin
+            else:
+                accept_tor2web = GLSetting.memory_copy.tor2web_unauth
+
             are_we_tor2web = get_tor2web_header(cls.request.headers)
 
             if are_we_tor2web and accept_tor2web == False:
