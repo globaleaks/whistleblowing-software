@@ -24,7 +24,7 @@
       <div ng-controller="AdminContextsCtrl">
         <div class="row">
           <div class="span4">
-            <h3>Contexts list</h4>
+            <h3>Contexts list</h3>
           </div>
         </div>
 
@@ -65,7 +65,6 @@
 
                   </div>
 
-
                   <div class="span4">
                     <label>Receivers</label>
                     <div class="selectionList">
@@ -96,69 +95,65 @@
 
                 </div>
 
-                  <p class="informationBox">Advanced settings</p>
-                  <div class="offset4 span4">
+                  <button ng-click="advanced_edit = advanced_edit + 1" ng-init="advanced_edit=0">Advanced settings</button>
 
-                      <div class="row">
+                      <div class="row" ng-show="advanced_edit">
+                          <div class="span4">
+                              <label>Submission Disclaimer</label>
+                              <textarea required
+                                        ng-model="context.submission_disclaimer">{{context.submission_disclaimer}}
+                              </textarea>
+                          </div>
 
-                          <label>Tip day life</label>
-                          <input type="int"
-                                 required
-                                 ng-model="context.tip_timetolive"
-                                 value="{{context.tip_timetolive}}">
+                          <div class="span4">
+                              <label>Submisson hours life</label>
+                              <input type="number"
+                                     required
+                                     ng-model="context.submission_timetolive"
+                                     value="{{context.submission_timetolive}}">
 
-                          <label>Submisson hours life</label>
-                          <input type="int"
-                                 required
-                                 ng-model="context.submission_timetolive"
-                                 value="{{context.submission_timetolive}}">
+                              <label>Tip day life</label>
+                              <input type="number"
+                                     required
+                                     ng-model="context.tip_timetolive"
+                                     value="{{context.tip_timetolive}}">
+                              <label>
+                                  <input type="checkbox"
+                                         value="context.file_required"
+                                         ng-model="context.file_required" />
+                                  File Required
+                              </label>
+                              <label>Receipt regexp</label>
+                              <input type="text"
+                                     required
+                                     ng-model="context.receipt_regexp"
+                                     value="{{context.receipt_regexp}}">
+
+                              <label>Tags</label>
+                              <input type="text"
+                                     required
+                                     ng-model="context.tags"
+                                     value="{{context.tags}}">
+                          </div>
                       </div>
 
-                      <div class="row">
-                          <label>File Required</label>
-                          <input type="checkbox"
-                                 required
-                                 ng-model="context.file_required"
-                                 ng-true-value="true"
-                                 ng-false-value="false">
+                      <div class="row" ng-show="advanced_editing">
+                          <div class="span4">
+                              <label>Receipt description</label>
+                              <textarea required
+                                        ng-model="context.receipt_description">{{context.recepit_description}}
+                              </textarea>
 
-                          <label>Receipt regexp</label>
-                          <input type="text"
-                                 required
-                                 ng-model="context.receipt_regexp"
-                                 value="{{context.receipt_regexp}}">
-                      </div>
-
-                      <div class="row">
-                          <label>Receipt description</label>
-                          <textarea required
-                                    ng-model="context.receipt_description">{{context.recepit_description}}</textarea>
-
-                          <label>Submission Introduction</label>
-                          <textarea required
-                                    ng-model="context.submission_introduction">{{context.submission_introduction}}</textarea>
-
-                      </div>
-
-                      <div class="row">
-
-                          <label>Submission Disclaimer</label>
-                          <textarea required
-                                    ng-model="context.submission_disclaimer">{{context.submission_disclaimer}}</textarea>
-
-                          <label>Tags - Fix - Fix</label>
-                          <input type="text"
-                                 required
-                                 ng-model="context.tags"
-                                 value="{{context.tags}}">
-                          <label>Description</label>
+                          </div>
+                          <div class="span4">
+                              <label>Submission Introduction</label>
+                              <textarea required
+                                        ng-model="context.submission_introduction">{{context.submission_introduction}}
+                              </textarea>
+                          </div>
                       </div>
                   </div>
               </div>
-
-            </div>
-            </div>
-          </form>
         </div>
 
         <div class="row">
