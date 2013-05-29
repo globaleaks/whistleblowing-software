@@ -85,12 +85,6 @@
         <p>{{submission.current_context.description}}</p>
 
         <div class="row">
-            <pre>
-            Uploading: {{uploading}}
-            UploadingFiles: {{uploadingFiles}}
-            Accept: {{disclaimer.accepted}}
-            Recv: {{receiver_selected}}
-            </pre>
 
           <div class="span6 submissionDetails" ng-include="'templates/default/views/submission/form.html'"></div>
 
@@ -148,7 +142,6 @@
           class="previous">
         <a ng-click="decrementStep()">&larr; Previous Step</a>
       </li>
-
       <li class="next"
           ng-hide="!hasNextStep()">
         <a ng-click="incrementStep()">Next Step &rarr;</a>
@@ -157,7 +150,7 @@
       <li class="next"
           ng-show="!hasNextStep()">
         <button class="btn btn-success" ng-click="submit()"
-                ng-disabled="uploading || !disclaimer.accepted || !receiver_selected">Submit</button>
+                ng-disabled="uploading || !disclaimer.accepted ">Submit</button>
       </li>
 
     </ul>
@@ -165,7 +158,7 @@
     <div class="pull-right">
 
       <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()"
-              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || !receiver_selected">Submit</button>
+              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted ">Submit</button>
 
     </div>
     <div class="clearfix"></div>
