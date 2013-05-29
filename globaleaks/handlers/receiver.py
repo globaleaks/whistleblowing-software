@@ -30,6 +30,10 @@ def receiver_serialize_receiver(receiver):
         "gpg_key_info": receiver.gpg_key_info,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "gpg_key_status": receiver.gpg_key_status,
+        "tags": receiver.tags,
+        "tip_notification" : receiver.tip_notification,
+        "file_notification" : receiver.file_notification,
+        "comment_notification" : receiver.comment_notification,
         "notification_fields": dict(receiver.notification_fields),
         "failed_login": receiver.failed_login,
         "contexts": []
