@@ -4,13 +4,14 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 
-from globaleaks.rest import errors, requests
+from globaleaks.rest import requests
 from globaleaks.rest.base import uuid_regexp
-from globaleaks.handlers import tip, base, admin, submission
+from globaleaks.handlers import tip, base, admin, submission, files
 from globaleaks.jobs import delivery_sched, cleaning_sched
 from globaleaks import models
 from globaleaks.utils import is_expired
 from globaleaks.settings import transact
+from globaleaks.tests.test_tip import TTip
 
 STATIC_PASSWORD = u'bungabunga ;('
 
@@ -33,41 +34,25 @@ class TTip(helpers.TestWithDB):
 
     # https://www.youtube.com/watch?v=ja46oa2ZML8 couple of cups, and tests!:
 
-    tipContext = {
-        'name': u'CtxName', 'description': u'dummy context with default fields',
-        'escalation_threshold': u'1', 'tip_max_access': u'2',
-        'tip_timetolive': 300, 'file_max_download': 2, 'selectable_receiver': False,
-        'receivers': [], 'fields': [], 'submission_timetolive': 10,
-    }
+    tipContext = TTip.tipContext
+    tipReceiver1 = TTip.tipReceiver1
+    tipReceiver2 = TTip.tipReceiver2
+    tipSubmission = TTip.tipSubmission
+    tipOptions = TTip.tipOptions
+    commentCreation = TTip.commentCreation
 
-    tipReceiver1 = {
-        'notification_fields': {'mail_address': u'first@winstonsmith.org' },
-        'name': u'first', 'description': u"I'm tha 1st",
-        'receiver_level': u'1', 'can_delete_submission': True,
-        'password': STATIC_PASSWORD,
-    }
+    dummyFiles = []
+    dummyFiles.append({
+        'body': 'aaaaaa',
+        'content_type': 'application/octect',
+        'filename': 'filename1'
+    })
 
-    tipReceiver2 = {
-        'notification_fields': {'mail_address': u'second@winstonsmith.org' },
-        'name': u'second', 'description': u"I'm tha 2nd",
-        'receiver_level': u'1', 'can_delete_submission': False,
-        'password': STATIC_PASSWORD,
-    }
-
-    tipSubmission = {
-        # This test rely on the default fields, add in create_context if is not specified
-        'wb_fields': {u'Short title': u'kochijan maki', 'Full description': u'kagebushi no jitzu'},
-        'context_gus': '', 'receivers': [], 'files': [], 'finalize': False,
-    }
-
-    tipOptions = {
-        'total_delete': False,
-        'is_pertinent': False,
-    }
-
-    commentCreation = {
-        'content': '',
-    }
+    dummyFiles.append({
+        'body': 'aaaaaa',
+        'content_type': 'application/octect',
+        'filename': 'filename2'
+    })
 
 
 class TestCleaning(TTip):
@@ -80,6 +65,33 @@ class TestCleaning(TTip):
     # Test context would just contain two receiver, one level 1 and the other level 2
 
     # They are defined in TTip. This unitTest DO NOT TEST HANDLERS but transaction functions
+
+    @transact
+    def test_cleaning(self, store):
+        self.assertEqual(store.find(models.InternalTip).count(), 0)
+        self.assertEqual(store.find(models.ReceiverTip).count(), 0)
+        self.assertEqual(store.find(models.WhistleblowerTip).count(), 0)
+        self.assertEqual(store.find(models.InternalFile).count(), 0)
+        self.assertEqual(store.find(models.ReceiverFile).count(), 0)
+        self.assertEqual(store.find(models.Comment).count(), 0)
+
+    @inlineCallbacks
+    def emulate_files_upload(self, associated_submission_id):
+        relationship = files.dump_files_fs(self.dummyFiles)
+
+        self.file_list = yield files.register_files_db(
+            self.dummyFiles, relationship, associated_submission_id,
+        )
+        self.assertEqual(len(self.file_list), 2)
+
+
+    @inlineCallbacks
+    def do_create_internalfiles(self):
+        yield self.emulate_files_upload(self.submission_desc['submission_gus'],)
+        # fill self.file_list
+        for file_desc in self.file_list:
+            keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(file_desc.keys())
+            self.assertFalse(keydiff)
 
     @inlineCallbacks
     def do_setup_tip_environment(self):
@@ -121,8 +133,8 @@ class TestCleaning(TTip):
             finalize=True)
 
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[1])
-
-
+        
+        submission.create_whistleblower_tip(self.submission_desc)
 
     # -------------------------------------------
     # Those the two class implements the sequence
@@ -169,13 +181,11 @@ class UnfinishedSubmissionCleaning(TestCleaning):
     @inlineCallbacks
     def test_submission_life_and_expire(self):
         yield self.do_setup_tip_environment()
-
         yield self.submission_not_expired()
         yield self.force_submission_expire()
 
 
 class FinalizedTipCleaning(TestCleaning):
-
     @inlineCallbacks
     def tip_not_expired(self):
         """
@@ -206,7 +216,12 @@ class FinalizedTipCleaning(TestCleaning):
                 tip_desc['tip_life_seconds']
             )
         )
+        
+        # and then, delete the expired submission
+        yield cleaning_sched.itip_cleaning(tip_desc['id'])
 
+        new_list = yield cleaning_sched.get_tiptime_by_marker(models.InternalTip._marker[0])
+        self.assertEqual(len(new_list), 0)
 
     @inlineCallbacks
     def do_create_receivers_tip(self):
@@ -219,12 +234,24 @@ class FinalizedTipCleaning(TestCleaning):
         self.assertTrue(re.match(uuid_regexp, receiver_tips[0]))
         self.assertTrue(re.match(uuid_regexp, receiver_tips[1]))
 
-
     @inlineCallbacks
     def test_tip_life_and_expire(self):
-        yield self.do_setup_tip_environment()
+        yield self.do_setup_tip_environment()       
         yield self.do_finalize_submission()
         yield self.do_create_receivers_tip()
-
         yield self.tip_not_expired()
         yield self.force_tip_expire()
+        yield self.test_cleaning()
+
+    @inlineCallbacks
+    def test_tip_life_and_expire_with_files(self):
+        yield self.do_setup_tip_environment()       
+        yield self.do_create_internalfiles()
+        yield self.do_finalize_submission()
+        filesdict = yield delivery_sched.file_preprocess()
+        processdict = yield delivery_sched.file_process(filesdict)
+        receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
+        yield self.do_create_receivers_tip()
+        yield self.tip_not_expired()
+        yield self.force_tip_expire()
+        yield self.test_cleaning()

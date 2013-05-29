@@ -7,11 +7,10 @@ import os.path
 
 from twisted.internet.defer import succeed
 
-from storm.zope.zstorm import ZStorm
 from storm.exceptions import OperationalError
 
 from globaleaks.utils import log, datetime_now
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
 from globaleaks.security import hash_password, get_salt
@@ -23,8 +22,11 @@ def initialize_node(store, results, only_node, email_templates):
     function outside the node, and inquire fucking YHWH about the
     callbacks existence/usage
     """
-
     node = models.Node(only_node)
+
+    # This is hardcoded here, at the moment
+    node.database_version = 1
+
     # Add here by hand the languages supported!
     node.languages =  [{ "code" : "it" , "name": "Italiano"},
                        { "code" : "en" , "name" : "English" }]
@@ -40,22 +42,25 @@ def initialize_node(store, results, only_node, email_templates):
 
     notification = models.Notification()
 
-    # defaults until software is not ready
+    # our defaults for free, because we're like Gandhi of the mail accounts.
     notification.server = u"box549.bluehost.com"
     notification.port = 25
     notification.username = u"sendaccount939@globaleaks.org"
     notification.password = u"sendaccount939"
-
-    # It's the only NOT NULL variable with CHECK
-    notification.security = u'TLS'
-    # notification.security = models.Notification._security_types[0]
+    notification.security = models.Notification._security_types[0] # TLS
 
     # Those fields are sets as default in order to show to the Admin the various 'variables'
     # used in the template.
     notification.tip_template = email_templates['tip']
+    notification.tip_mail_title = "From %ContextName% a new Tip in %EventTime%"
     notification.file_template = email_templates['file']
+    notification.file_mail_title = "From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)"
     notification.comment_template = email_templates['comment']
+    notification.comment_mail_title = "From %ContextName% a new comment in %EventTime%"
+
     notification.activation_template = "*Not Yet implemented*"
+    notification.activation_mail_title = "TODO"
+
     store.add(notification)
 
 
@@ -70,6 +75,10 @@ def create_tables_transaction(store):
     @return: None, create the right table at the first start, and initialized
     the node.
     """
+    if not os.access(GLSetting.db_schema_file, os.R_OK):
+        log.err("Unable to access %s" % GLSetting.db_schema_file)
+        raise Exception("Unable to access db schema file")
+
     with open(GLSetting.db_schema_file) as f:
         create_queries = ''.join(f.readlines()).split(';')
         for create_query in create_queries:
@@ -105,6 +114,17 @@ def create_tables(create_node=True):
             'public_site':  u"",
             'email':  u"email@dumnmy.net",
             'stats_update_time':  2, # hours,
+            # advanced settings
+            'maximum_descsize' : GLSetting.defaults.maximum_descsize,
+            'maximum_filesize' : GLSetting.defaults.maximum_filesize,
+            'maximum_namesize' : GLSetting.defaults.maximum_namesize,
+            'maximum_textsize' : GLSetting.defaults.maximum_textsize,
+            'tor2web_admin' : GLSetting.defaults.tor2web_admin,
+            'tor2web_submission' : GLSetting.defaults.tor2web_submission,
+            'tor2web_tip' : GLSetting.defaults.tor2web_tip,
+            'tor2web_receiver' : GLSetting.defaults.tor2web_receiver,
+            'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
+            'exception_email' : GLSetting.defaults.exception_email,
         }
 
         email_templates = {}
@@ -147,47 +167,71 @@ def check_schema_version():
     is used. For sure there are other better checks, but not
     today.
     """
-    if not os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
-        return True
+    db_file = GLSetting.db_file.replace('sqlite:', '')
 
-    ret = True
+    if not os.path.exists(db_file):
+        return True
 
     if not os.access(GLSetting.db_schema_file, os.R_OK):
         log.err("Unable to access %s" % GLSetting.db_schema_file)
-        raise Exception("Unable to access db schema file")
+        return False
+    else:
+        ret = True
 
-    with open(GLSetting.db_schema_file) as f:
-        sqlfile = f.readlines()
-        comma_number = "".join(sqlfile).count(',')
+        with open(GLSetting.db_schema_file) as f:
+            sqlfile = f.readlines()
+            comma_number = "".join(sqlfile).count(',')
 
-    zstorm = ZStorm()
-    zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
-    store = zstorm.get(GLSetting.store_name)
+        zstorm = ZStorm()
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
+        store = zstorm.get(GLSetting.store_name)
 
-    q = """
-        SELECT name, type, sql
-        FROM sqlite_master
+        q = """
+            SELECT name, type, sql
+            FROM sqlite_master
             WHERE sql NOT NULL AND type == 'table'
-        """
+            """
 
-    res = store.execute(q)
+        res = store.execute(q)
 
-    comma_compare = 0
-    for table in res:
-        if len(table) == 3:
-            comma_compare += table[2].count(',')
+        comma_compare = 0
+        for table in res:
+            if len(table) == 3:
+                comma_compare += table[2].count(',')
 
-    if not comma_compare:
-        raise Exception("Database found empty!")
+        if not comma_compare:
+            log.err("Found an empty database (%s)" % db_file)
+            ret = False
 
-    if comma_compare != comma_number:
-        log.err("*********************************")
-        log.err("Detected an invalid DB version.")
-        log.err("You have to specify a different working_dir, or restartclean")
-        log.err("Also, if the DB is changed, we suggest to update also the GlobaLeaks client")
-        log.err("*********************************")
-        ret = False
+        elif comma_compare != comma_number:
+            log.err("Detected an invalid DB version (%s)" %  db_file)
+            log.err("You have to specify a different workingdir (-w) or to upgrade the DB")
+            ret = False
 
-    store.close()
+        store.close()
 
     return ret
+
+
+@transact
+def import_memory_variables(store):
+    """
+    to get fast checks, import (same) of the Node variable in  GLSetting,
+    this function is called every time that Node is updated.
+    """
+    node = store.find(models.Node).one()
+
+    GLSetting.memory_copy.maximum_filesize = node.maximum_filesize
+    GLSetting.memory_copy.maximum_namesize = node.maximum_namesize
+    GLSetting.memory_copy.maximum_descsize = node.maximum_descsize
+    GLSetting.memory_copy.maximum_textsize = node.maximum_textsize
+
+    GLSetting.memory_copy.tor2web_admin = node.tor2web_admin
+    GLSetting.memory_copy.tor2web_submission = node.tor2web_submission
+    GLSetting.memory_copy.tor2web_tip = node.tor2web_tip
+    GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
+    GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
+
+    GLSetting.memory_copy.exception_email = node.exception_email
+
+

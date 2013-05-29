@@ -83,7 +83,7 @@ def dump_static_files(filesinupload):
                 (filelocation, len(single_file['body']) ) )
 
         with open(filelocation, 'w+') as fd:
-            fdesc.writeToFD(fd.fileno(), single_file['body'].encode('utf-8'))
+            fdesc.writeToFD(fd.fileno(), single_file['body'])
 
     return get_files_info(filesinupload)
 
@@ -150,7 +150,8 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
         img120 = Image.open(filedesc['_gl_file_path'])
         img120.thumbnail((120, 120), Image.ANTIALIAS)
     except IOError as excep:
-        raise errors.InternalServerError("PIL module: %" % excep.message)
+        log.err("Unable to resize image: %s" % excep.message)
+        raise errors.InternalServerError("PIL module: %s" % excep.message)
 
     output120_path = os.path.join(GLSetting.static_path, "%s_120.png" % receiver_uuid)
     if os.path.isfile(output120_path):

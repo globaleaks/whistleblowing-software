@@ -80,44 +80,32 @@ def itip_cleaning(store, id):
         ifname = unicode(ifile.name)
 
         if not os.path.isfile(abspath):
-            log.err("Unable to remove %s not existent file, in itip %s has an internalfile %s(%d) missing on FS" %
-                (abspath, id, ifname, ifile.size) )
-            continue
-
-        try:
-            os.unlink(abspath)
-        except OSError as excep:
-            log.err("Unable to remove %s: %s" % (abspath, excep.strerror) )
-
-        log.debug("Receiver file associated to %s: %d" % (ifname, tit.internalfiles.count()) )
-
-        for rfile in tit.internalfiles:
+            log.err("Unable to remove non existent internalfile %s (itip %s, internalfile %s(%d))" %
+                (abspath, id, ifname, ifile.size))
+        else:
             try:
-                store.remove(rfile)
-            except Exception as excep:
-                # This happen only if delete on cascade is working #96
-                log.debug("Unable to remove ReceiverFile of %s: skipped" % ifname)
+                os.unlink(abspath)
+            except OSError as excep:
+                log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
+
+        rfiles = store.find(ReceiverFile, ReceiverFile.internalfile_id == ifile.id)
+        for rfile in rfiles:
+            # The following code must be bypassed if rfile.file_path == ifile.filepath
+            if rfile.file_path == ifile.file_path:
                 continue
-        try:
-            store.remove(ifile)
-            log.debug("Removed InternalFile %s" % ifname)
-        except Exception as excep:
-            log.debug("Unable to remove InternalFile %s: skipped" % ifname)
-            continue
 
-    for comment in comments:
-        store.remove(comment)
+            abspath = os.path.join(GLSetting.submission_path, rfile.file_path)
+    
+            if not os.path.isfile(abspath):
+                log.err("Unable to remove non existent receiverfile %s (itip %s, internalfile %s(%d))" %
+                    (abspath, id, ifname, ifile.size))
+                continue
+    
+            try:
+                os.unlink(abspath)
+            except OSError as excep:
+                log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
-    for rtip in tit.receivertips:
-        rname = rtip.receiver.name
-        try:
-            store.remove(rtip)
-            log.debug("removed ReceiverTip of %s" % rname)
-        except Exception as excep:
-            log.debug("Unable to remove ReceiverTip of %s" % rname)
-            continue
-
-    # Finally remove a Tip, better if on cascade works :( #96
     store.remove(tit)
 
 
@@ -134,8 +122,6 @@ def debug_count_itips_by_marker(store):
 
 
 class APSCleaning(GLJob):
-
-
     @inlineCallbacks
     def operation(self):
         """

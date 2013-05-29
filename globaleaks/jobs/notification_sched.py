@@ -129,10 +129,8 @@ class APSNotification(GLJob):
         if not rtip:
             raise errors.TipGusNotFound
 
-        log.debug("+[Success] Notification Tip reciever %s" % rtip.receiver.username)
-        rtip.mark = models.ReceiverTip._marker[1]
-        # test
-        store.commit()
+        log.debug("Email: +[Success] Notification Tip receiver %s" % rtip.receiver.username)
+        rtip.mark = models.ReceiverTip._marker[1] # 'notified'
 
     @transact
     def tip_notification_failed(self, store, failure, tip_id):
@@ -144,9 +142,8 @@ class APSNotification(GLJob):
         if not rtip:
             raise errors.TipGusNotFound
 
-        log.debug("-[Fail] Notification Tip reciever %s" % rtip.receiver.username)
-        rtip.mark = models.ReceiverTip._marker[2]
-        store.commit()
+        log.debug("Email: -[Fail] Notification Tip receiver %s" % rtip.receiver.username)
+        rtip.mark = models.ReceiverTip._marker[2] # 'unable to notify'
 
     def do_tip_notification(self, tip_events):
         l = []
@@ -188,7 +185,7 @@ class APSNotification(GLJob):
 
             if comment.internaltip is None or comment.internaltip.receivers is None:
                 log.err("Comment %s has internaltip or receivers broken reference" % comment.id)
-                comment.mark = models.Comment._marker[2] # unable to be notified
+                comment.mark = models.Comment._marker[2] # 'unable to notify'
                 continue
 
             # for every comment, iter on the associated receiver
@@ -204,7 +201,7 @@ class APSNotification(GLJob):
 
             # XXX Know limit! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
-            comment.mark = models.Comment._marker[1]
+            comment.mark = models.Comment._marker[1] # 'notified'
 
             for receiver in comment.internaltip.receivers:
 
@@ -239,7 +236,7 @@ class APSNotification(GLJob):
         receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
         if not receiver:
             raise errors.ReceiverGusNotFound
-        log.debug("+[Success] Notification of comment reciever %s" % receiver.username)
+        log.debug("Email: +[Success] Notification of comment receiver %s" % receiver.username)
 
     @transact
     def comment_notification_failed(self, store, failure, comment_id, receiver_id):
@@ -249,7 +246,7 @@ class APSNotification(GLJob):
         receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
         if not receiver:
             raise errors.ReceiverGusNotFound
-        log.debug("-[Fail] Notification of comment reciever %s" % receiver.username)
+        log.debug("Email: -[Fail] Notification of comment receiver %s" % receiver.username)
 
     def do_comment_notification(self, comment_events):
         l = []
@@ -282,7 +279,7 @@ class APSNotification(GLJob):
         plugin = getattr(notification, cplugin)()
 
         not_notified_rfiles = store.find(models.ReceiverFile,
-            models.ReceiverTip.mark == models.ReceiverFile._marker[0]
+            models.ReceiverFile.mark == models.ReceiverFile._marker[0]
         )
 
         node_desc = admin.admin_serialize_node(store.find(models.Node).one())
@@ -291,9 +288,6 @@ class APSNotification(GLJob):
             log.debug("Receiverfiles found to be notified: %d" % not_notified_rfiles.count() )
 
         for rfile in not_notified_rfiles:
-
-            # BUG -- need to be solved
-            rfile.mark = models.ReceiverFile._marker[1] # It's forced as notified
 
             if not rfile.internalfile:
                 log.err("(file_notification) Integrity check failure (InternalFile)")
@@ -338,9 +332,8 @@ class APSNotification(GLJob):
         if not rfile:
             raise errors.FileGusNotFound
 
-        log.debug("+[Success] Notification of receiverfile %s for reciever %s" % (rfile.internalfile.name, receiver.username))
+        log.debug("Email: +[Success] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, receiver.username))
         rfile.mark = models.ReceiverFile._marker[1] # 'notified'
-        store.commit()
 
     @transact
     def receiverfile_notification_failed(self, store, failure, receiverfile_id, receiver_id):
@@ -355,10 +348,8 @@ class APSNotification(GLJob):
         if not receiver:
             raise errors.ReceiverGusNotFound
 
-        log.debug("-[Fail] Notification of receiverfile %s for reciever %s" % (rfile.internalfile.name, receiver.username))
+        log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, receiver.username))
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
-        store.commit()
-
 
     def do_receiverfile_notification(self, receiverfile_events):
         l = []
@@ -371,8 +362,6 @@ class APSNotification(GLJob):
             l.append(notify)
 
         return DeferredList(l)
-
-
 
     @inlineCallbacks
     def operation(self):

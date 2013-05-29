@@ -101,7 +101,7 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile_list.append(receiverfile.id)
             receiverfilen += 1
 
-        log.msg("Generated ReceiverFile (%d) from %s [%s] and updated with checksum %s"
+        log.debug("Generated ReceiverFile (%d) from %s [%s] and updated with checksum %s"
                 % (receiverfilen, ifile.id, ifile.name, ifile.sha2sum))
 
         # can be extended processing in the future, here
@@ -115,7 +115,7 @@ def create_receivertip(store, receiver, internaltip, tier):
     Create ReceiverTip for the required tier of Receiver.
     """
     # receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-    log.msg('Creating ReceiverTip for: %s (level %d in request %d)'
+    log.debug('Creating ReceiverTip for: %s (level %d in request %d)'
             % (receiver.name, receiver.receiver_level, tier))
 
     if receiver.receiver_level != tier:
@@ -129,7 +129,7 @@ def create_receivertip(store, receiver, internaltip, tier):
     receivertip.mark = ReceiverTip._marker[0]
     store.add(receivertip)
 
-    log.msg('Created! [/#/status/%s]' % receivertip.id)
+    log.debug('Created! [/#/status/%s]' % receivertip.id)
 
     return receivertip.id
 
@@ -185,22 +185,16 @@ class APSDelivery(GLJob):
             # ==> Files && Files update
             filesdict = yield file_preprocess()
             # return a dict { "file_uuid" : "file_path" }
+
             if filesdict:
                 log.debug("Delivery job: parsing %d new files" % len(filesdict))
 
-            try:
-                # perform FS base processing, outside the transactions
+                # compute checksum, processing the file on the disk ( outside the transactions)
                 processdict = file_process(filesdict)
                 # return a dict { "file_uuid" : checksum }
-            except OSError, e:
-                # XXX beta - fatal log here!
-                log.err("Fatal OS error in processing files [%s]: %s" % (filesdict, e) )
 
-                # Create a dummy processdict to permit ReceiverFile init
-                processdict = dict(filesdict)
-                for file_uuid in processdict.iterkeys():
-                    processdict[file_uuid] = u""
+                yield receiver_file_align(filesdict, processdict)
 
-            yield receiver_file_align(filesdict, processdict)
-        except:
+        except Exception as excep:
+            log.err("Exception in asyncronous delivery job: %s" % excep )
             sys.excepthook(*sys.exc_info())

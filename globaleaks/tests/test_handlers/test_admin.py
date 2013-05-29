@@ -20,7 +20,7 @@ class TestNodeInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_put_update_node(self):
-        self.dummyNode['hidden_service'] = 'abcdef1234567890.onion'
+        self.dummyNode['hidden_service'] = 'http://abcdef1234567890.onion'
         self.dummyNode['public_site'] = 'http://blogleaks.blogspot.com'
 
         handler = self.request(self.dummyNode, role='admin')
@@ -32,12 +32,13 @@ class TestNodeInstance(helpers.TestHandler):
         del self.dummyNode['old_password']
         del self.dummyNode['salt']
         del self.dummyNode['salt_receipt']
+        del self.responses[0]['version']
 
         self.assertEqual(self.responses[0], self.dummyNode)
 
     @inlineCallbacks
     def test_put_update_node_invalid_hidden(self):
-        self.dummyNode['hidden_service'] = 'www.scroogle.com'
+        self.dummyNode['hidden_service'] = 'http://www.scroogle.com'
         self.dummyNode['public_site'] = 'http://blogleaks.blogspot.com'
 
         handler = self.request(self.dummyNode, role='admin')
@@ -52,7 +53,7 @@ class TestNodeInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_put_update_node_invalid_public(self):
-        self.dummyNode['hidden_service'] = 'abcdef1234567890.onion'
+        self.dummyNode['hidden_service'] = 'http://abcdef1234567890.onion'
         self.dummyNode['public_site'] = 'blogleaks.blogspot.com'
 
         handler = self.request(self.dummyNode, role='admin')
@@ -201,7 +202,7 @@ class TestReceiversCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_post_duplicated_username(self):
         self.dummyReceiver['name'] = 'beppe'
-        self.dummyReceiver['notification_fields']['mail_address'] = "vecna@hellais.naif"
+        self.dummyReceiver['notification_fields']['mail_address'] = "evilamaker.py@vecllais.naif"
         self.dummyReceiver['password'] = u'newcreatedpassword'
         handler = self.request(self.dummyReceiver, role='admin')
 

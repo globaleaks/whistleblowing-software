@@ -22,23 +22,18 @@ from globaleaks import db, models
 
 DEFAULT_PASSWORD = u'yustapassword'
 transact.tp = FakeThreadPool()
-GLSetting.scheduler_threadpool = FakeThreadPool()
-GLSetting.notification_plugins = []
-GLSetting.sessions = {}
-GLSetting.working_path = os.path.abspath(os.path.join(GLSetting.root_path, 'testing_dir'))
-GLSetting.eval_paths()
-GLSetting.remove_directories()
 
 transact.debug = True
 class TestWithDB(unittest.TestCase):
     def setUp(self):
         GLSetting.set_devel_mode()
+        GLSetting.scheduler_threadpool = FakeThreadPool()
+        GLSetting.sessions = {}
+        GLSetting.working_path = os.path.abspath(os.path.join(GLSetting.root_path, 'testing_dir'))
         GLSetting.eval_paths()
+        GLSetting.remove_directories()
         GLSetting.create_directories()
         return db.create_tables(create_node=True)
-
-    def tearDown(self):
-        GLSetting.remove_directories()
 
 class TestGL(TestWithDB):
     @inlineCallbacks
@@ -85,10 +80,14 @@ class TestGL(TestWithDB):
             'password': DEFAULT_PASSWORD,
             'name': u'john smith',
             'description': u'the first receiver',
-            'notification_fields': {'mail_address': u'maker@berlin.de'},
+            'notification_fields': {'mail_address': u'maker@iz.cool.yeah'},
             'can_delete_submission': True,
             'receiver_level': 1,
             'contexts' : [],
+            'tags': [ u'first', u'second', u'third' ],
+            'tip_notification': True,
+            'file_notification': True,
+            'comment_notification': True,
         }
         self.dummyContext = {
             'context_gus': unicode(uuid.uuid4()),
@@ -125,7 +124,13 @@ class TestGL(TestWithDB):
             'submission_timetolive': 100,
             'file_max_download' :1,
             'escalation_threshold': 1,
-            'receivers' : []
+            'receivers' : [],
+            'tags': [],
+            'receipt_regexp': u'[A-Z]{4}\+[0-9]{5}',
+            'receipt_description': u'xx',
+            'submission_introduction': u'yy',
+            'submission_disclaimer': u'kk',
+            'file_required': False,
         }
         self.dummySubmission = {
             'context_gus': '',
@@ -146,6 +151,16 @@ class TestGL(TestWithDB):
              'old_password' : '',
              'salt': 'xxxxxhefdiufiwnfewifweibeifwiebfibweiufwixx',
              'salt_receipt': 'mfeiwofmeiwofmnoiwefniowefowiemfoiwefow',
+             'maximum_descsize' : GLSetting.defaults.maximum_descsize,
+             'maximum_filesize' : GLSetting.defaults.maximum_filesize,
+             'maximum_namesize' : GLSetting.defaults.maximum_namesize,
+             'maximum_textsize' : GLSetting.defaults.maximum_textsize,
+             'tor2web_admin' : GLSetting.defaults.tor2web_admin,
+             'tor2web_submission' : GLSetting.defaults.tor2web_submission,
+             'tor2web_tip' : GLSetting.defaults.tor2web_tip,
+             'tor2web_receiver' : GLSetting.defaults.tor2web_receiver,
+             'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
+             'exception_email' : GLSetting.defaults.exception_email,
         }
         self.dummyNotification = {
             'server': u'mail.foobar.xxx',
@@ -154,9 +169,13 @@ class TestGL(TestWithDB):
             'password': u'antani',
             'security': u'SSL',
             'tip_template': u'tip message: %sNodeName%',
-            'comment_template': u'comment message: %NodeName%',
-            'file_template': u'file message: %NodeName%',
-            'activation_template': u'activation message: %NodeName%',
+            'comment_template': u'comment message: %sNodeName%',
+            'file_template': u'file message: %sNodeName%',
+            'activation_template': u'activation message: %sNodeName%',
+            'tip_mail_title': u'xxx',
+            'comment_mail_title': u'yyy',
+            'file_mail_title': u'kkk',
+            'activation_mail_title': u'uuu',
         }
 
     def fill_random_fields(self, context_dict):

@@ -16,12 +16,6 @@ from globaleaks.models import Receiver
 
 class MailNotification(Notification):
 
-    _title = {
-            'comment': 'From %ContextName% a new comment in %EventTime%',
-            'tip': 'From %ContextName% a new Tip in %EventTime%',
-            'file': 'From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)'
-    }
-
     plugin_name = u'Mail'
     plugin_type = u'notification'
     plugin_description = u"Mail notification, with encryption supports"
@@ -92,7 +86,7 @@ class MailNotification(Notification):
             if len(node_desc['hidden_service']):
                 tip_template_keyword.update({
                     '%TipTorURL%':
-                        'http://%s/#/status/%s' %
+                        '%s/#/status/%s' %
                             ( node_desc['hidden_service'],
                               event_dicts.trigger_info['id']),
                     })
@@ -105,8 +99,8 @@ class MailNotification(Notification):
             if len(node_desc['public_site']):
                 tip_template_keyword.update({
                     '%TipT2WURL%':
-                        'https://%s/#/status/%s' %
-                            ( node_desc['public_site'][:16],
+                        '%s/#/status/%s' %
+                            ( node_desc['public_site'],
                               event_dicts.trigger_info['id'] ),
                     })
             else:
@@ -161,15 +155,18 @@ class MailNotification(Notification):
         if event.type == u'tip':
             body = self.format_template(
                 event.notification_settings['tip_template'], event)
-            title = self.format_template(self._title[event.type], event)
+            title = self.format_template(
+                event.notification_settings['tip_mail_title'], event)
         elif event.type == u'comment':
             body = self.format_template(
                 event.notification_settings['comment_template'], event)
-            title = self.format_template(self._title[event.type], event)
+            title = self.format_template(
+                event.notification_settings['comment_mail_title'], event)
         elif event.type == u'file':
             body = self.format_template(
                 event.notification_settings['file_template'], event)
-            title = self.format_template(self._title[event.type], event)
+            title = self.format_template(
+                event.notification_settings['file_mail_title'], event)
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 
@@ -195,12 +192,13 @@ class MailNotification(Notification):
 
         self.finished = self.mail_flush(self.username, self.password,
                                       message.from_addr, message.to_addrs, message.render(),
-                                      self.host, self.port, self.security)
-        log.debug('Email: connecting to [%s] for deliver to %s' % (self.host, receiver_mail))
+                                      self.host, self.port, self.security, event)
+        log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
+                  (self.host, self.port, receiver_mail, self.security))
         return self.finished
 
     def mail_flush(self, authentication_username, authentication_password, from_address,
-                 to_address, message_file, smtp_host, smtp_port, security):
+                 to_address, message_file, smtp_host, smtp_port, security, event):
         return sendmail(authentication_username, authentication_password, from_address,
-                        to_address, message_file, smtp_host, smtp_port, security)
+                        to_address, message_file, smtp_host, smtp_port, security, event)
 

@@ -19,15 +19,15 @@ import grp
 import getpass
 
 from optparse import OptionParser
-from twisted.python import log
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
 from storm import exceptions
 from twisted.internet.threads import deferToThreadPool
 from cyclone.web import HTTPError
-from storm.zope.zstorm import ZStorm
+from cyclone.util import ObjectDict as OD
 from storm import tracer
 
+from globaleaks import __version__
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -37,6 +37,34 @@ verbosity_dict = {
     'CRITICAL': logging.CRITICAL
 }
 
+from storm.zope.zstorm import ZStorm
+from storm.databases.sqlite import sqlite
+
+def set_default_uri(self, name, default_uri):
+    """Set C{default_uri} as the default URI for stores called C{name}."""
+
+    def raw_connect():
+        _self = self._default_databases[name]
+
+        # See the story at the end to understand why we set isolation_level.
+        raw_connection = sqlite.connect(_self._filename, timeout=_self._timeout,
+                                        isolation_level=None)
+        if _self._synchronous is not None:
+            raw_connection.execute("PRAGMA synchronous = %s" %
+                                   (_self._synchronous,))
+
+        raw_connection.execute("PRAGMA foreign_keys = ON")
+
+        return raw_connection
+
+    self._default_databases[name] = self._get_database(default_uri)
+    self._default_uris[name] = default_uri
+
+    self._default_databases[name].raw_connect = raw_connect
+
+ZStorm.set_default_uri = set_default_uri
+
+
 class GLSettingsClass:
 
     def __init__(self):
@@ -45,7 +73,7 @@ class GLSettingsClass:
         self.cmdline_options = None
 
         # version
-        self.version_string = "0.2.0"
+        self.version_string = __version__
 
         # daemon
         self.nodaemon = False
@@ -64,7 +92,6 @@ class GLSettingsClass:
         self.error_reporting_password= "stackexception99"
         self.error_reporting_server = "box549.bluehost.com"
         self.error_reporting_port = 465
-        self.error_reporting_destmail = "stackexception@lists.globaleaks.org"
 
         # debug defaults
         self.storm_debug = False
@@ -79,8 +106,6 @@ class GLSettingsClass:
         self.glclient_path = '/usr/share/globaleaks/glclient'
         self.eval_paths()
 
-        self.receipt_regexp = r'[A-Z]{4}\+[0-9]{5}'
-
         # list of plugins available in the software
         self.notification_plugins = [
             'MailNotification',
@@ -88,12 +113,6 @@ class GLSettingsClass:
 
         # session tracking, in the singleton classes
         self.sessions = dict()
-
-        # value limits in the database
-        self.name_limit = 128
-        self.description_limit = 1024
-        self.generic_limit = 2048
-        self.max_file_size = (30 * 1024 * 1024) # 30 Mb
 
         # static file rules
         self.staticfile_regexp = r'(\w+)\.(\w+)'
@@ -103,25 +122,42 @@ class GLSettingsClass:
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
 
-        # transport security defaults
-        #self.tor2web_permitted_ops = {
-        #    'admin': False,
-        #    'submission': False,
-        #    'tip': False,
-        #    'receiver': False,
-        #    'unauth': True
-        #}
+        self.defaults = OD()
+        # Default values, used to initialize DB at the first start,
+        # or whenever the value is not supply by client.
+        # These value are then stored in the single instance
+        # (Node, Receiver or Context) and then can be updated by
+        # the admin using the Admin interface (advanced settings)
+        self.defaults.tor2web_admin = False
+        self.defaults.tor2web_submission = False
+        self.defaults.tor2web_tip = False
+        self.defaults.tor2web_receiver = False
+        self.defaults.tor2web_unauth = True
+        self.defaults.maximum_namesize = 128
+        self.defaults.maximum_descsize = 1024
+        self.defaults.maximum_textsize = 2048
+        self.defaults.maximum_filesize = (30 * 1024 * 1024) # 30 Mb
+        self.defaults.exception_email = u"stackexception@lists.globaleaks.org"
+        # Context dependent values:
+        self.defaults.receipt_regexp = u'[0-9]{10}'
+        self.defaults.tip_seconds_of_life = (3600 * 24) * 15
+        self.defaults.submission_seconds_of_life = (3600 * 24) * 3
 
-        # https://github.com/globaleaks/GlobaLeaks/issues/182
-        # we need this settings to permit testing over tor2web
-        # transport security defaults
-        self.tor2web_permitted_ops = {
-            'admin': True,
-            'submission': True,
-            'tip': True,
-            'receiver': True,
-            'unauth': True
-        }
+        self.memory_copy = OD()
+        # Some operation, like check for maximum file, can't access
+        # to the DB every time. So when some Node values are updated
+        # here are copied, in order to permit a faster comparison
+        self.memory_copy.maximum_filesize = self.defaults.maximum_filesize
+        self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
+        self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
+        self.memory_copy.maximum_descsize = self.defaults.maximum_descsize
+        self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
+        self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
+        self.memory_copy.tor2web_tip = self.defaults.tor2web_tip
+        self.memory_copy.tor2web_receiver = self.defaults.tor2web_receiver
+        self.memory_copy.tor2web_unauth = self.defaults.tor2web_unauth
+        self.memory_copy.exception_email = self.defaults.exception_email
+        # updated by globaleaks/db/__init__.import_memory_variables
 
         # SOCKS default
         self.socks_host = "127.0.0.1"
@@ -136,13 +172,6 @@ class GLSettingsClass:
         self.twistd_log = False
         self.devel_mode = False
 
-        # Expiry time of finalized and not finalized submission,
-        # They are copied in a context *when is created*, then
-        # changing this variable do not modify the cleaning
-        # timings of the existing contexts
-        self.tip_seconds_of_life = (3600 * 24) * 15
-        self.submission_seconds_of_life = (3600 * 24) * 3
-        # enhancement: supports "extended settings in GLCLient"
 
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
@@ -211,17 +240,21 @@ class GLSettingsClass:
             # convert socks addr in IP and perform a test connection
             self.validate_socks()
 
-        if self.cmdline_options.user:
+        if self.cmdline_options.user and self.cmdline_options.group:
+            self.user = self.cmdline_options.user
+            self.group = self.cmdline_options.group
+            self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
+            self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
+        elif self.cmdline_options.user:
+            # user selected: get also the associated group
             self.user = self.cmdline_options.user
             self.uid = pwd.getpwnam(self.cmdline_options.user).pw_uid
-        else:
-            self.uid = os.getuid()
-
-        if self.cmdline_options.group:
+            self.gid = pwd.getpwnam(self.cmdline_options.user).pw_gid
+        elif self.cmdline_options.group:
+            # group selected: keep the current user
             self.group = self.cmdline_options.group
             self.gid = grp.getgrnam(self.cmdline_options.group).gr_gid
-        else:
-            self.gid = os.getgid()
+            self.uid = os.getuid()
 
         if self.uid == 0 or self.gid == 0:
             print "Invalid user: cannot run as root"
@@ -369,12 +402,22 @@ class GLSettingsClass:
                 os.rmdir(os.path.join(root, name))
 
     def drop_privileges(self):
-        if os.getgid() == 0 or self.cmdline_options.group:
-            print "switching group privileges to %d" % self.gid
-            os.setgid(GLSetting.gid)
-        if os.getuid() == 0 or self.cmdline_options.user:
-            print "switching user privileges to %d" % self.uid
-            os.setuid(GLSetting.uid)
+
+        if os.getgid() != self.gid:
+            try:
+                print "switching group privileges since %d to %d" % (os.getgid(), self.gid)
+                os.setgid(self.gid)
+            except OSError as droperr:
+                print "unable to drop group privileges: %s" % droperr.strerror
+                quit(-1)
+
+        if os.getuid() != self.uid:
+            try:
+                print "switching user privileges since %d to %d" % (os.getuid(), self.uid)
+                os.setuid(self.uid)
+            except OSError as droperr:
+                print "unable to drop user privileges: %s" % droperr.strerror
+                quit(-1)
 
     def log_debug(self, message):
         """
@@ -450,7 +493,7 @@ class transact(object):
         Returns a reference to Storm Store
         """
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file + '?foreign_keys=ON&journaling_mode=WAL')
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file + '?foreign_keys=ON')
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
@@ -465,7 +508,6 @@ class transact(object):
             else:
                 result = function(self.store, *args, **kwargs)
         except (exceptions.IntegrityError, exceptions.DisconnectionError) as ex:
-            log.msg(ex)
             transaction.abort()
             result = None
         except HTTPError as excep:

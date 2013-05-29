@@ -100,6 +100,10 @@ def strong_receiver_validate(store, user_id, tip_id):
         raise errors.TipGusNotFound
 
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
+
+    if not receiver:
+        raise errors.ReceiverGusNotFound
+
     if receiver.id != rtip.receiver.id:
         # This in attack!!
         raise errors.TipGusNotFound
@@ -123,6 +127,8 @@ def get_internaltip_wb(store, tip_id):
     tip_desc = actor_serialize_internal_tip(wbtip.internaltip)
     tip_desc['access_counter'] = int(wbtip.access_counter)
     tip_desc['id'] = unicode(wbtip.id)
+    tip_desc['im_whistleblower'] = True
+    tip_desc['im_receiver'] = False
 
     return tip_desc
 
@@ -135,6 +141,8 @@ def get_internaltip_receiver(store, user_id, tip_id):
     tip_desc['expressed_pertinence'] = int(rtip.expressed_pertinence)
     tip_desc['id'] = unicode(rtip.id)
     tip_desc['receiver_id'] = unicode(user_id)
+    tip_desc['im_whistleblower'] = False
+    tip_desc['im_receiver'] = True
 
     return tip_desc
 
@@ -443,7 +451,8 @@ def serialize_receiver(receiver, access_counter):
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "contexts": [],
-        "access_counter": access_counter
+        "tags": receiver.tags,
+        "access_counter": access_counter,
     }
     for context in receiver.contexts:
         receiver_dict['contexts'].append(unicode(context.id))
