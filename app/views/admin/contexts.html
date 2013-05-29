@@ -24,7 +24,7 @@
       <div ng-controller="AdminContextsCtrl">
         <div class="row">
           <div class="span4">
-            <h3>Contexts list</h4>
+            <h3>{{ "Contexts list" | translate }}</h4>
           </div>
         </div>
 
@@ -41,10 +41,10 @@
                   <div class="span4 editButtons" ng-show="editing">
                     <button class="btn btn-success saveContext"
                             ng-disabled="contextForm.$pristine || contextForm.$invalid"
-                            ng-click="update(context)">Save</button>
+                            ng-click="update(context)">{{ "Save" | translate }}</button>
 
                     <button class="btn btn-danger deleteContext"
-                            ng-click="delete(context)">Delete</button>
+                            ng-click="delete(context)">{{ "Delete" | translate }}</button>
                   </div>
 
                 </div>
@@ -55,19 +55,19 @@
                 <div class="row">
 
                   <div class="span4">
-                    <label>Name</label>
+                    <label>{{ "Name" | translate }}</label>
                     <input type="text"
                            required
                            ng-model="context.name"
                            value="{{context.name}}">
-                    <label>Description</label>
+                    <label>{{ "Description" | translate }}</label>
                     <textarea required ng-model="context.description">{{context.description}}</textarea>
 
                   </div>
 
 
                   <div class="span4">
-                    <label>Receivers</label>
+                    <label>{{ "Receivers" | translate }}</label>
                     <div class="selectionList">
 
                       <div ng-repeat="receiver in admin.receivers"
@@ -102,7 +102,7 @@
 
         <div class="row">
           <div class="span9 configRow addContext">
-            <h4>Add new context</h4>
+            <h4>{{ "Add new context" | translate }}</h4>
             <form name="newContext">
               <div class="row">
                 <div class="span4">
@@ -112,7 +112,7 @@
               <div class="row">
                 <div class="span4">
                   <button class="btn" ng-disabled="newContext.$invalid"
-                          ng-click="admin.create_context(new_context_name)">add</button>
+                          ng-click="admin.create_context(new_context_name)">{{ "add" | translate }}</button>
                 </div>
               </div>
             </form>

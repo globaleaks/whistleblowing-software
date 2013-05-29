@@ -15,28 +15,28 @@
         <form class="config-form">
             <div class="span4">
 
-            <h4>Preferences and password management</h4>
+            <h4>{{ "Preferences and password management" | translate }}</h4>
             <br>
 
-            <p>Your username: {{preferences.username}}</p>
+            <p>{{ "Your username" | translate }}: {{preferences.username}}</p>
 
-            <label><b>Current Password</b></label>
+            <label><b>{{ "Current Password" | translate }}</b></label>
             <input type="password"
             ng-model="preferences.old_password">
-            <p class="text-error" ng-show="missing_old_password">Required old password confirm</p>
+            <p class="text-error" ng-show="missing_old_password">{{ "Required old password confirm" | translate }}</p>
 
-            <label><b>New Password</b></label>
+            <label><b>{{ "New Password" | translate }}</b></label>
             <input type="password"
             ng-model="preferences.password" >
-            <p class="text-error" ng-show="unsafe_password">The password is unsafe, need to be:</p>
-            <li class="text-error" ng-hide="pwdHasLetter">Almost one letter</li>
-            <li class="text-error" ng-hide="pwdHasNumber">Almost one number</li>
-            <li class="text-error" ng-hide="pwdValidLength">Almost 8 keypress long</li>
+            <p class="text-error" ng-show="unsafe_password">{{ "Your password is unsafe, it should have" | translate }}:</p>
+            <li class="text-error" ng-hide="pwdHasLetter">{{ "At least one letter" | translate }}</li>
+            <li class="text-error" ng-hide="pwdHasNumber">{{ "At least one number" | translate }}</li>
+            <li class="text-error" ng-hide="pwdValidLength">{{ "At least 8 keypress long" | translate }}</li>
 
-            <label><b>Retype again your new password</b></label>
+            <label><b>{{ "Retype again your new password" | translate }}</b></label>
             <input type="password"
             ng-model="preferences.check_password">
-            <p class="text-error" ng-show="mismatch_password">The new passwords do not match</p>
+            <p class="text-error" ng-show="mismatch_password">{{ "The two passwords do not match" | translate }}</p>
 
           </div>
         </form>

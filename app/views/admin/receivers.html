@@ -22,7 +22,7 @@
       <div ng-controller="AdminReceiversCtrl">
         <div class="row">
           <div class="span4">
-            <h3>Receiver list</h4>
+            <h3>{{ "Receiver list" | translate }}</h4>
           </div>
         </div>
 
@@ -41,10 +41,10 @@
                   <div class="span4 editButtons" ng-show="editing">
                     <button class="btn btn-success saveReceiver"
                           ng-disabled="receiverForm.$invalid"
-                          ng-click="update(receiver)">Save</button>
+                          ng-click="update(receiver)">{{ "Save" | translate }}</button>
 
                     <button class="btn btn-danger deleteReceiver"
-                          ng-click="delete(receiver)">Delete</button>
+                          ng-click="delete(receiver)">{{ "Delete" | translate }}</button>
                   </div>
 
                 </div>
@@ -65,32 +65,32 @@
                         <div class="fileselector">
                           <input type="file" class="file"
                                  name="profile">
-                          <button class="btn selectFile">Select file</button>
+                          <button class="btn selectFile">{{ "Select file" | translate }}</button>
                         </div>
                         <button class="btn upload" ng-disabled="!fileSelected"
-                                ng-class="{'btn-success': fileSelected}">upload</button>
+                                ng-class="{'btn-success': fileSelected}">{{ "upload" | translate }}</button>
 
                       </div>
                     </div>
                     <img ng-src="/static/{{receiver.receiver_gus}}_120.png" class="img-polaroid baseimage">
                   </div>
 
-                  <label>Name</label>
+                  <label>{{ "Name" | translate }}</label>
                   <input type="text" name="name" ng-maxlength="40" ng-model="receiver.name" required>
-                  <p class="text-error" ng-show="receiverForm.name.$error.maxlength">Receiver name too long</p>
+                  <p class="text-error" ng-show="receiverForm.name.$error.maxlength">{{ "Receiver name too long" | translate }}</p>
 
-                  <label>Email Address (Username)</label>
+                  <label>{{ "Email Address (Username)" | translate }}"</label>
                   <input type="email" name="email" ng-model="receiver.notification_fields.mail_address" required>
-                  <p class="text-error" ng-show="receiverForm.email.$error.email">Invalid email address</p>
+                  <p class="text-error" ng-show="receiverForm.email.$error.email">{{ "Invalid email address" | translate }}</p>
 
-                  <label bs-popover="'If left empty, the system sets globaleaks'">Password</label>
+                  <label bs-popover="'If left empty, the system sets globaleaks'">{{ "Password" | translate }}</label>
                   <!-- remind: this need to be random & mailed to the inactive user -->
                   <input type="password" ng-model="receiver.password">
 
                 </div>
 
                 <div class="span4">
-                  <label>Contexts</label>
+                  <label>{{ "Contexts" | translate }}</label>
                   <div class="selectionList">
 
                     <ul>
@@ -104,7 +104,7 @@
 
                   </div>
 
-                  <label>Description</label>
+                  <label>{{ "Description" | translate }}</label>
                   <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
                 </div>
 
@@ -119,19 +119,19 @@
         <div class="row">
           <form name="newReceiver">
             <div class="configRow span9 addReceiver">
-              <h4>Add new receiver</h4>
+              <h4>{{ "Add new receiver" | translate }}</h4>
 
                 <div class="row">
 
                   <div class="span4">
 
-                    <label>Name</label>
+                    <label>{{ "Name" | translate }}</label>
                     <input type="text" name="name" ng-maxlength="40" ng-model="new_receiver.name" required>
-                    <p class="text-error" ng-show="newReceiver.name.$error.maxlength">Receiver name too long</p>
-
-                    <label>Email Address (Username)</label>
+                    <p class="text-error" ng-show="newReceiver.name.$error.maxlength">{{ "Receiver name too long" | translate }}</p>
+                    <!-- XXX fix this so that it works on right to left languages. -->
+                    <label>{{ "Email Address" | translate }} ({{ "Username" | translate }})</label>
                     <input type="email" name="email" ng-model="new_receiver.email" required>
-                    <p class="text-error" ng-show="newReceiver.email.$error.email">Invalid email address</p>
+                    <p class="text-error" ng-show="newReceiver.email.$error.email">{{ "Invalid email address" | translate }}</p>
 
                   </div>
 
@@ -139,14 +139,14 @@
 
                 <div class="row">
                   <div class="span4">
-                    <label>Password</label>
+                    <label>{{ "Password" | translate }}</label>
                     <input type="password" ng-model="new_receiver.password" required>
                   </div>
                 </div>
 
               <div class="row">
                 <div class="span4">
-                  <button class="btn" ng-disabled="newReceiver.$invalid" ng-click="add_receiver()">add</button>
+                  <button class="btn" ng-disabled="newReceiver.$invalid" ng-click="add_receiver()">{{ "add" | translate }}</button>
                 </div>
               </div>
 
