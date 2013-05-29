@@ -9,10 +9,10 @@ import scrypt
 import binascii
 import random
 import time
-import gpgme
 
 from datetime import timedelta
 from Crypto.Hash import SHA512
+from gnupg import GPG
 
 from globaleaks.rest import errors
 from globaleaks.utils import log, timelapse_represent
@@ -104,7 +104,7 @@ def import_gpg_key(username, armored_key):
     @param armored_key: the armored GPG key, format not yet checked.
     @return: key summary
     """
-    gpgh = gnupg.GPG(gnupghome=GLSetting.gpgroot)
+    gpgh = GPG(gnupghome=GLSetting.gpgroot)
     ke = gpgh.import_keys(armored_key)
 
     # Error reported in stderr may just be warning, this is because is not raise an exception here
@@ -160,7 +160,7 @@ def gpg_encrypt(plaindata, receiver_desc):
         The unicode of the encrypted output (armored)
 
     """
-    gpgh = gnupg.GPG(gnupghome=GLSetting.gpgroot, options="--trust-model always")
+    gpgh = GPG(gnupghome=GLSetting.gpgroot, options="--trust-model always")
 
     # This second argument may be a list of fingerprint, not just one
     binary_output = gpgh.encrypt(plaindata, str(receiver_desc['gpg_key_fingerprint']) )
