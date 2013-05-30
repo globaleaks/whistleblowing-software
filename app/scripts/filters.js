@@ -22,6 +22,7 @@ angular.module('GLClientFilters', []).
 }).
   filter('translate', function() {
     return function(input) {
-      return input;
+      var hash = md5(input);
+      return translations[hash]['en'];
     }
 });
