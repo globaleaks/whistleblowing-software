@@ -366,7 +366,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Preliminary Requirements Check
-REQS=(apt-get chmod curl echo gpg python mkdir tar torsocks wget)
+REQS=(apt-get chmod echo gpg python mkdir tar torsocks wget)
 REQS_COUNT=${#REQS[@]}
 ERR=0
 echo "Checking preliminary GlobaLeaks requirements"
