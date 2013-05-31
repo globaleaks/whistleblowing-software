@@ -417,7 +417,7 @@ if [ ${INSTALL_PIP} -eq 1 ] ; then
     DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $PIP_KEY_FILE" "0"
     DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0"
 
-    DO "tar xzf ${PIP_PKG}" "0"
+    DO "tar xzf ${BUILD_DIR}/${PIP_PKG}" "0"
     DO "cd pip-*" "0"
 
     echo "Installing the latest pip"
