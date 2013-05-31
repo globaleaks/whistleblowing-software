@@ -5,6 +5,8 @@ GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
 GLOBALEAKS_DIR=/data/globaleaks
 OUTPUT_DIR=$GLOBALEAKS_DIR/GLBackend/glbackend_build
 
+set -e
+
 usage()
 {
 cat << EOF
@@ -48,6 +50,7 @@ mkdir -p $GLOBALEAKS_DIR $OUTPUT_DIR
 
 build_glbackend()
 {
+  touch a/a/a/a
   if [ -d ${GLOBALEAKS_DIR}/GLBackend ]; then
     echo "Directory ${GLOBALEAKS_DIR}/GLBackend already present"
     echo "The build process needs a clean git clone of GLBackend"
