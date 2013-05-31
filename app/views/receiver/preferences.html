@@ -47,36 +47,74 @@
 
             <button type="submit" class="btn btn-success"
                 ng-disabled="mismatch_password || unsafe_password || missing_old_password"
-                ng-click="save()">Change password</button>
+                ng-click="pass_save()">Change password</button>
 
         </div>
       </div>
 
+      <form class="config-form">
         <div class="row">
-            <form class="config-form">
                 <div class="span4">
 
                     <h4>Notification settings</h4>
 
                     <label>
-                    <input type="checkbox" ng-model="preferences.tip_notification" ng-value="preferences.tip_notification" />
+                    <input type="checkbox" ng-model="preferences.tip_notification"
+                           ng-value="preferences.tip_notification" />
                         new Tip trigger an email notification
                         </label>
 
                     <label>
-                    <input type="checkbox" ng-model="preferences.comment_notification" ng-value="preferences.comment_notification" />
+                    <input type="checkbox" ng-model="preferences.comment_notification"
+                           ng-value="preferences.comment_notification" />
                         new Comment on a Tip, trigger an email notification
                         </label>
 
                     <label>
-                    <input type="checkbox" ng-model="preferences.file_notification" ng-value="preferences.file_notification" />
+                    <input type="checkbox" ng-model="preferences.file_notification"
+                           ng-value="preferences.file_notification" />
                         new File uploaded on a Tip, trigger an email notification
                         </label>
 
-                    <button type="submit" class="btn btn-success" ng-click="update()">Update preferences</button>
                 </div>
-            </form>
         </div>
+
+        <div class="row">
+            <div class="span8">
+                <h4>GPG key management</h4>
+
+                <div ng-show="preferences.gpg_key_fingerprint"
+                     ng-init="preferences.gpg_key_remove = false">
+                    Your <b>Active Key</b> fingerprint is: {{preferences.gpg_key_fingerprint}}
+                </div>
+
+                <div
+                     ng-show="expose_gpg_key">
+                     <pre>{{preferences.gpg_key_info}}</pre>
+                </div>
+
+                <button class="btn btn-info"
+                        ng-show="preferences.gpg_key_fingerprint"
+                        ng-click="expose_gpg_key = !expose_gpg_key"
+                        ng-init="expose_gpg_key=false">
+                    GPG key details
+                </button>
+
+                <button type="submit" class="btn btn-success" ng-click="pref_save()" >
+                    Update your Settings
+                </button>
+
+                <label>Update or configure your GPG Key:</label>
+                <textarea ng-model="preferences.gpg_key_armor"></textarea>
+
+                <label ng-show="preferences.gpg_key_fingerprint">
+                    <input type="checkbox" ng-model="preferences.gpg_key_remove" />
+                    Remove your GPG key.
+                </label>
+
+            </div>
+        </div>
+      </form>
 
     </div>
 
