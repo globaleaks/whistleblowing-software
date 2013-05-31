@@ -366,7 +366,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 # Preliminary Requirements Check
-REQS=(apt-get chmod echo gpg python mkdir tar torsocks wget)
+REQS=(apt-get chmod echo gpg python mkdir tar wget)
 REQS_COUNT=${#REQS[@]}
 ERR=0
 echo "Checking preliminary GlobaLeaks requirements"
@@ -433,7 +433,7 @@ if [ ${INSTALL_PIP} -eq 1 ] ; then
     esac
 fi
 
-DO "torsocks wget -O ${BUILD_DIR}/requirements.txt https://raw.github.com/globaleaks/GLBackend/master/requirements.txt" "0"
+DO "wget -O ${BUILD_DIR}/requirements.txt https://raw.github.com/globaleaks/GLBackend/master/requirements.txt" "0"
 PIP_DEPS=`cat ${BUILD_DIR}/requirements.txt`
 for PIP_DEP in $PIP_DEPS; do
   DO "pip install $PIP_DEP" "0"
@@ -441,8 +441,8 @@ done
 
 add-apt-repository 'deb http://deb.globaleaks.org/ unstable/'
 
-DO "torsocks gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
+DO "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
 DO "gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -" "0"
-DO "torsocks apt-get update" "0"
-DO "torsocks apt-get install globaleaks" "0"
+DO "apt-get update" "0"
+DO "apt-get install globaleaks" "0"
 update-rc.d globaleaks defaults # Set globaleaks to automatically start on-boot
