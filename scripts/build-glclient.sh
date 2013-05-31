@@ -100,7 +100,10 @@ build_glclient()
   sha1sum glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.sha1.txt
   shasum -a 224 glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
 
-  echo "[+] Temporary build of glclient is now saved in ${OUTPUT_DIR}"
+
+  echo "[+] Copying GLClient package to /data/website/builds/"
+  cp ${OUTPUT_DIR}/* /data/website/builds/
+
 
   rm -rf glclient-${GLCLIENT_REVISION}
 }
