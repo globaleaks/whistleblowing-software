@@ -143,6 +143,7 @@ CREATE TABLE receiver (
     gpg_key_status VARCHAR NOT NULL CHECK (gpg_key_status IN ('Disabled', 'Enabled')),
     gpg_key_info VARCHAR,
     gpg_key_fingerprint VARCHAR,
+    gpg_key_armor VARCHAR,
     password VARCHAR,
     failed_login INTEGER NOT NULL,
     receiver_level INTEGER NOT NULL,

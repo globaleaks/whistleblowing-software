@@ -411,6 +411,7 @@ class Receiver(Model):
     gpg_key_info = Unicode()
     gpg_key_fingerprint = Unicode()
     gpg_key_status = Unicode()
+    gpg_key_armor = Unicode()
 
     _gpg_types = [ u'Disabled', u'Enabled' ]
     # would work fine also a Bool, but SQLITE validator is helpful here.
@@ -443,7 +444,7 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-    unicode_keys = ['name', 'description', 'gpg_key_status' ]
+    unicode_keys = ['name', 'description' ]
     int_keys = [ 'receiver_level' ]
     bool_keys = [ 'can_delete_submission', 'tip_notification',
                   'comment_notification', 'file_notification' ]

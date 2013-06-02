@@ -13,8 +13,8 @@ from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests
-from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
-from globaleaks.security import change_password, import_gpg_key
+from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified, GPGKeyInvalid
+from globaleaks.security import change_password, import_gpg_key, gpg_clean
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver):
@@ -29,7 +29,7 @@ def receiver_serialize_receiver(receiver):
         "username": receiver.username,
         "gpg_key_info": receiver.gpg_key_info,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
-        "gpg_key_status": receiver.gpg_key_status,
+        "gpg_key_remove": True if receiver.gpg_key_status == Receiver._gpg_types[0] else False,
         "tags": receiver.tags,
         "tip_notification" : receiver.tip_notification,
         "file_notification" : receiver.file_notification,
@@ -64,6 +64,7 @@ def update_receiver_settings(store, user_id, request):
     old_password = request.get('old_password')
 
     if len(new_password) and len(old_password):
+        # may raise exception change_password itself
         receiver.password = change_password(receiver.password,
                                             old_password, new_password, receiver.username)
 
@@ -80,19 +81,35 @@ def update_receiver_settings(store, user_id, request):
     # 2) Update a new GPG over an old GPG key
     # 3) Disable the GPG key present on the system (and start to receive plain text notification)
     new_gpg_key = request.get('gpg_key_armor', None)
-    disable_key = request.get('gpg_key_disable', False)
+    remove_key = request.get('gpg_key_remove', False)
 
-    if disable_key:
-        if receiver.gpg_key_info:
-            log.debug("Disabling key %s for User %s" % (receiver.gpg_key_fingerprint, receiver.username))
-        else:
-            log.err("Requested disabling of key by User %s (but has not yet a key sets!)" % receiver.username)
+    if remove_key:
+        log.debug("User %s request to remove GPG key (%s)" %
+                  (receiver.username, receiver.gpg_key_fingerprint))
+
+        # In all the cases below, the key is marked disabled as request
         receiver.gpg_key_status = Receiver._gpg_types[0] # Disabled
+        receiver.gpg_key_info = receiver.gpg_key_armor = receiver.gpg_key_fingerprint = None
 
     if new_gpg_key:
-        receiver.gpg_key_info, receiver.gpg_key_fingerprint = import_gpg_key(receiver.username, new_gpg_key)
-        receiver.gpg_key_status = Receiver._gpg_types[1] # Enabled
 
+        log.debug("Importing a new GPG key for user %s" % receiver.username)
+
+        key_info, key_fingerprint = import_gpg_key(receiver.username, new_gpg_key)
+
+        # This step just import the key and check if it's correct. but GLB do not rely
+        # on gnupg official fingerprint.
+
+        if not key_info or not key_fingerprint:
+            raise GPGKeyInvalid
+        log.debug("Importing process: %s" % receiver.gpg_key_info)
+
+        receiver.gpg_key_info = key_info
+        receiver.gpg_key_fingerprint = key_fingerprint
+        receiver.gpg_key_status = Receiver._gpg_types[1] # Enabled
+        receiver.gpg_key_armor = new_gpg_key
+
+        gpg_clean()
     # End of GPG key management for receiver
 
     return receiver_serialize_receiver(receiver)

@@ -309,6 +309,9 @@ class APSNotification(GLJob):
                 log.err("Receiver %s lack of email address!" % rfile.receiver.name)
                 continue
 
+            #if receiver_desc['file_notification'] is False:
+            #    rfile.mark = models.ReceiverFile._marker[2]
+
             event = Event(type=u'file', trigger='File',
                 notification_settings=self.notification_settings,
                 trigger_info=file_desc,
