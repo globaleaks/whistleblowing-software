@@ -104,7 +104,13 @@ def import_gpg_key(username, armored_key):
     @param armored_key: the armored GPG key, format not yet checked.
     @return: key summary
     """
-    gpgh = GPG(gnupghome=GLSetting.gpgroot)
+
+    try:
+        gpgh = GPG(gnupghome=GLSetting.gpgroot, options="--trust-model always")
+    except Exception as excep:
+        log.err("Unable to instance GPG object: %s" % str(excep))
+        raise excep
+
     ke = gpgh.import_keys(armored_key)
 
     # Error reported in stderr may just be warning, this is because is not raise an exception here
@@ -132,12 +138,9 @@ def import_gpg_key(username, armored_key):
                 keyinfo += "Key length %s, with %s" % (key['length'], lifespan_string)
 
                 for uid in key['uids']:
-                    keyinfo += "\n%s" % uid
+                    keyinfo += "\n\t%s" % uid
 
-                keyinfo += "\nFingerprint: %s" % fingerprint
-
-        log.debug("Receiver %s has uploaded a GPG key [%s]" % (username, fingerprint))
-
+        log.debug("Receiver %s has a new GPG key: %s" % (username, fingerprint))
         return (keyinfo, fingerprint)
 
     else:
@@ -160,9 +163,38 @@ def gpg_encrypt(plaindata, receiver_desc):
         The unicode of the encrypted output (armored)
 
     """
-    gpgh = GPG(gnupghome=GLSetting.gpgroot, options="--trust-model always")
+    try:
+        gpgh = GPG(gnupghome=GLSetting.gpgroot, options="--trust-model always")
+    except Exception as excep:
+        log.err("Unable to instance GPG object: %s" % str(excep))
+        raise excep
+
+    ke = gpgh.import_keys(receiver_desc['gpg_key_armor'])
+    # here need to be trapped the 'expired' or 'revoked' attribute
+
+    if hasattr(ke, 'results') and len(ke.results) == 1 and ke.results[0].has_key('fingerprint'):
+        fingerprint = ke.results[0]['fingerprint']
+        if not fingerprint == receiver_desc['gpg_key_fingerprint']:
+            log.err("Something is weird. I don't know if someone has played with the DB. I give up")
+            raise errors.GPGKeyInvalid
 
     # This second argument may be a list of fingerprint, not just one
-    binary_output = gpgh.encrypt(plaindata, str(receiver_desc['gpg_key_fingerprint']) )
+    encrypt_obj = gpgh.encrypt(plaindata, str(receiver_desc['gpg_key_fingerprint']) )
 
-    return str(binary_output)
+    if encrypt_obj.ok:
+        log.debug("Encrypting for %s (%s) %d byte of plain data (%d cipher output)" %
+                  (receiver_desc['username'], receiver_desc['gpg_key_fingerprint'],
+                   len(plaindata), len(str(encrypt_obj))) )
+
+        return str(encrypt_obj)
+
+    # else, is not .ok
+    log.err("Falure in encrypting %d bytes for %s (%s)" % (len(plaindata),
+        receiver_desc['username'], receiver_desc['gpg_key_fingerprint']) )
+    log.err(encrypt_obj.stderr)
+    raise errors.GPGKeyInvalid
+
+
+
+def gpg_clean():
+    pass

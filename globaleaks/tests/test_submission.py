@@ -3,7 +3,7 @@ import re
 
 from twisted.internet.defer import inlineCallbacks
 
-# ovverride GLsetting
+# override GLSetting
 from globaleaks.settings import GLSetting, transact
 from globaleaks.tests import helpers
 

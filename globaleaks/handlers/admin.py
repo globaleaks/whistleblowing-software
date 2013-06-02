@@ -87,11 +87,12 @@ def admin_serialize_receiver(receiver):
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
         "failed_login": receiver.failed_login,
         "password": u"",
-        "gpg_key_status": receiver.gpg_key_status,
-        "gpg_key_info": receiver.gpg_key_info,
-        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "contexts": [],
         "tags": receiver.tags,
+        "gpg_key_info": receiver.gpg_key_info,
+        "gpg_key_armor": receiver.gpg_key_armor,
+        "gpg_key_remove": True if receiver.gpg_key_status == Receiver._gpg_types[1] else False,
+        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "comment_notification": receiver.comment_notification,
         "tip_notification": receiver.tip_notification,
         "file_notification": receiver.file_notification,
@@ -126,8 +127,6 @@ def update_node(store, request):
     if len(request['old_password']) and len(request['password']):
         node.password = security.change_password(node.password,
                                     request['old_password'], request['password'], node.salt)
-        log.info("Administrator password update %s => %s" %
-                 (request['old_password'], request['password'] ))
 
     if len(request['public_site']) > 1:
         if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
@@ -396,8 +395,10 @@ def create_receiver(store, request):
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.failed_login = 0
-    receiver.gpg_key_status = Receiver._gpg_types[0] # Disabled at creation time
     receiver.tags = request['tags']
+    receiver.gpg_key_status = Receiver._gpg_types[0]
+
+    log.debug("Creating receiver %s" % (receiver.username))
 
     # A password strength checker need to be implemented in the client, but here a
     # minimal check is put
@@ -414,7 +415,7 @@ def create_receiver(store, request):
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
         if not context:
-            log.err("Creation error: unexistent receiver can't be associated")
+            log.err("Creation error: invalid Context can't be associated")
             raise errors.ContextGusNotFound
         context.receivers.add(receiver)
 
@@ -836,6 +837,3 @@ class NotificationInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(response)
 
-
-# Removed from the Admin API
-# plugin_descriptive_list = yield PluginManager.get_all()

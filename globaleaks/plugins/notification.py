@@ -11,8 +11,7 @@ from cyclone import mail
 
 from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
-from globaleaks.security import gpg_encrypt
-from globaleaks.models import Receiver
+from globaleaks.security import gpg_encrypt, gpg_clean
 
 class MailNotification(Notification):
 
@@ -170,9 +169,13 @@ class MailNotification(Notification):
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 
-        # If the receiver has encryption enabled, change the body encrypting
-        if event.receiver_info['gpg_key_status'] == Receiver._gpg_types[1]:
-            body = gpg_encrypt(body, event.receiver_info)
+        # If the receiver has encryption enabled, encrypt the mail body
+        if event.receiver_info['gpg_key_fingerprint'] is not None:
+            try:
+                gpg_encrypt(body, event.receiver_info)
+            except Exception as excep:
+                log.err("Unable to instance GPG interface object! (notification+encryption)")
+                return None
 
         self.host = str(event.notification_settings['server'])
         self.port = int(event.notification_settings['port'])

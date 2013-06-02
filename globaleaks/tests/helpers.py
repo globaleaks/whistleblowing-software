@@ -36,6 +36,7 @@ class TestWithDB(unittest.TestCase):
         return db.create_tables(create_node=True)
 
 class TestGL(TestWithDB):
+
     @inlineCallbacks
     def _setUp(self):
         yield TestWithDB.setUp(self)
@@ -76,7 +77,9 @@ class TestGL(TestWithDB):
     def setUp_dummy(self):
         self.dummyReceiver = {
             'receiver_gus': unicode(uuid.uuid4()),
-            'gpg_key_status': models.Receiver._gpg_types[0],
+            'gpg_key_remove': False,
+            'gpg_key_fingerprint' : None,
+            'gpg_key_info' : None,
             'password': DEFAULT_PASSWORD,
             'name': u'john smith',
             'description': u'the first receiver',
