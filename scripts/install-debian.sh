@@ -3,7 +3,7 @@
 ############## Start Of Variable and Functions Declaration ###########
 
 BUILD_DIR=/tmp/glbuilding.$RANDOM
-BUILD_LOG=${BUILD_LOG}.log
+BUILD_LOG=${BUILD_DIR}.log
 
 DO () {
     if [ -z "$3" ]; then
@@ -12,7 +12,7 @@ DO () {
         CMD=$3
     fi
     echo -n "Running: \"$CMD\"... "
-    bash -c "$1" &>${BUILD_LOG}
+    $1 &>${BUILD_LOG}
     if [ $? -eq $2 ]; then
         echo "SUCCESS"
     else
