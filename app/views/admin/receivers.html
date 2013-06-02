@@ -22,7 +22,7 @@
       <div ng-controller="AdminReceiversCtrl">
         <div class="row">
           <div class="span4">
-            <h3>Receiver list</h4>
+            <h3>Receiver list</h3>
           </div>
         </div>
 
@@ -101,11 +101,23 @@
                         </li>
                       </div>
                     </ul>
-
                   </div>
 
                   <label>Description</label>
                   <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
+
+                </div>
+
+                <button class="btn btn-info"
+                        ng-click="advanced_edit = !advanced_edit"
+                        ng-init="advanced_edit=false">
+                   Advanced settings (GPG key management)
+                </button>
+
+                <div class="row" ng-show="advanced_edit">
+                    <div class="span4">
+                        <textarea ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
+                    </div>
                 </div>
 
               </div>
