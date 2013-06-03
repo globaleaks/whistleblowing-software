@@ -51,6 +51,8 @@ class TTip(helpers.TestWithDB):
         'receiver_level': u'1', 'can_delete_submission': True,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
+        'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
+        'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
     }
 
     tipReceiver2 = {
@@ -59,6 +61,8 @@ class TTip(helpers.TestWithDB):
         'receiver_level': u'1', 'can_delete_submission': False,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
+        'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
+        'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
     }
 
     tipSubmission = {

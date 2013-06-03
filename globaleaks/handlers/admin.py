@@ -18,6 +18,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security
 from globaleaks.utils import log
 from globaleaks.db import import_memory_variables
+from globaleaks.security import gpg_options_manage
 
 def admin_serialize_node(node):
     response = {
@@ -91,8 +92,11 @@ def admin_serialize_receiver(receiver):
         "tags": receiver.tags,
         "gpg_key_info": receiver.gpg_key_info,
         "gpg_key_armor": receiver.gpg_key_armor,
-        "gpg_key_remove": True if receiver.gpg_key_status == Receiver._gpg_types[1] else False,
+        "gpg_key_remove": False,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
+        "gpg_key_status": receiver.gpg_key_status,
+        "gpg_enable_notification": False, # TODO DB + Models
+        "gpg_enable_files": False, # TODO DB + Models
         "comment_notification": receiver.comment_notification,
         "tip_notification": receiver.tip_notification,
         "file_notification": receiver.file_notification,
@@ -396,7 +400,9 @@ def create_receiver(store, request):
     receiver.notification_fields = request['notification_fields']
     receiver.failed_login = 0
     receiver.tags = request['tags']
-    receiver.gpg_key_status = Receiver._gpg_types[0]
+
+    # The various options related in manage GPG keys are used here.
+    gpg_options_manage(receiver, request)
 
     log.debug("Creating receiver %s" % (receiver.username))
 
@@ -464,6 +470,9 @@ def update_receiver(store, id, request):
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.tags = request['tags']
+
+    # The various options related in manage GPG keys are used here.
+    gpg_options_manage(receiver, request)
 
     if len(request['password']):
         # admin override password without effort :)

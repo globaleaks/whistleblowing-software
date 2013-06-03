@@ -35,6 +35,7 @@ class TestModels(helpers.TestGL):
         receiver = Receiver(self.dummyReceiver)
         receiver.password = self.dummyReceiver['password']
         receiver.username = self.dummyReceiver['notification_fields']['mail_address']
+        receiver.gpg_key_status = Receiver._gpg_types[0]
         receiver.failed_login = 0
         receiver.notification_fields = self.dummyReceiver['notification_fields']
         store.add(receiver)
@@ -65,9 +66,12 @@ class TestModels(helpers.TestGL):
         receiver1 = Receiver(self.dummyReceiver)
         receiver2 = Receiver(self.dummyReceiver)
 
-        receiver1.password = receiver2.password = unicode("xxx")
-        receiver1.username = receiver2.username = unicode("yyy")
+        # Avoid receivers with the same username!
+        receiver1.password = receiver2.username = unicode("xxx")
+        receiver1.username = receiver2.password = unicode("yyy")
+
         receiver1.failed_login = receiver2.failed_login = 0
+        receiver1.gpg_key_status = receiver2.gpg_key_status = Receiver._gpg_types[0]
         receiver1.notification_fields = receiver2.notification_fields = {'mail_address': 'x@x.it'}
 
         context.receivers.add(receiver1)
@@ -80,18 +84,19 @@ class TestModels(helpers.TestGL):
         receiver = Receiver(self.dummyReceiver)
         receiver.password = unicode("xxx")
         receiver.username = unicode("yyy")
+        receiver.gpg_key_status = Receiver._gpg_types[0]
         receiver.failed_login = 0
         receiver.notification_fields = {'mail_address': 'y@y.it'}
 
         context1 = Context(self.dummyContext)
-        context1.fields = self.dummyContext['fields']
+        context1.name = "Valar Morghulis"
         context1.fields = self.dummyContext['fields']
         context1.tags = self.dummyContext['tags']
         context1.submission_disclaimer = context1.submission_introduction =\
             context1.receipt_regexp = context1.receipt_description = u'Y'
 
         context2 = Context(self.dummyContext)
-        context2.fields = self.dummyContext['fields']
+        context2.name = "Valar Dohaeris"
         context2.fields = self.dummyContext['fields']
         context2.tags = self.dummyContext['tags']
         context2.submission_disclaimer = context2.submission_introduction =\

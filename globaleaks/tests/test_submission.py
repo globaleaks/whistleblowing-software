@@ -248,7 +248,3 @@ class TestSubmission(helpers.TestGL):
             self.assertTrue(True)
             return
         self.assertTrue(False)
-
-        # self.assertRaises(errors.SubmissionConcluded,
-        #   (yield submission.update_submission(status['submission_gus'], status, finalize=True)) )
-

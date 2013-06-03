@@ -17,6 +17,7 @@ from gnupg import GPG
 from globaleaks.rest import errors
 from globaleaks.utils import log, timelapse_represent
 from globaleaks.settings import GLSetting
+from globaleaks.models import Receiver
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
@@ -198,3 +199,63 @@ def gpg_encrypt(plaindata, receiver_desc):
 
 def gpg_clean():
     pass
+
+
+# This is called in a @transact!
+def gpg_options_manage(receiver, request):
+    """
+    @param receiver: the Storm object
+    @param request: the Dict receiver by the Internets
+    @return: None
+
+    This function is called in create_recever and update_receiver
+    and is used to manage the GPG options forced by the administrator
+
+    This is needed also because no one of these fields are
+    *enforced* by unicode_keys or bool_kets in models.Receiver
+
+    TODO describe well logic review
+
+    GPG management, here are check'd these actions:
+    1) Proposed a new GPG key, is imported to check validity, and
+       stored in Storm DB if not error raise
+    2) Update the available GPG key
+    3) Update the settings of encryption usage (only if key is present)
+    4) Removal of the present key
+
+    Further improvement: update the keys using keyserver
+    """
+
+    new_gpg_key = request.get('gpg_key_armor', None)
+    remove_key = request.get('gpg_key_remove', False)
+
+    receiver.gpg_key_status = Receiver._gpg_types[0]
+
+    if remove_key:
+        log.debug("User %s request to remove GPG key (%s)" %
+                  (receiver.username, receiver.gpg_key_fingerprint))
+
+        # In all the cases below, the key is marked disabled as request
+        receiver.gpg_key_status = Receiver._gpg_types[0] # Disabled
+        receiver.gpg_key_info = receiver.gpg_key_armor = receiver.gpg_key_fingerprint = None
+
+    if new_gpg_key:
+
+        log.debug("Importing a new GPG key for user %s" % receiver.username)
+
+        key_info, key_fingerprint = import_gpg_key(receiver.username, new_gpg_key)
+
+        # This step just import the key and check if it's correct. but GLB do not rely
+        # on gnupg official fingerprint.
+
+        if not key_info or not key_fingerprint:
+            raise errors.GPGKeyInvalid
+        log.debug("Importing process: %s" % receiver.gpg_key_info)
+
+        receiver.gpg_key_info = key_info
+        receiver.gpg_key_fingerprint = key_fingerprint
+        receiver.gpg_key_status = Receiver._gpg_types[1] # Enabled
+        receiver.gpg_key_armor = new_gpg_key
+
+        gpg_clean()
+        # End of GPG key management for receiver

@@ -37,9 +37,11 @@ class TestReceiverSetKey(helpers.TestHandler):
         'gpg_key_fingerprint': '341F1A8CE2B4F4F4174D7C21B842093DC6765430' }
 
     receiver_only_update = {
-        # here key corruption happen:
-        'gpg_key_armor': None,
-        'gpg_key_remove': False,
+        'gpg_key_armor': None, 'gpg_key_remove': False,
+        "gpg_key_info": None, "gpg_key_fingerprint": None,
+        "gpg_key_status": None, # It's ignored what a Client send here
+        "gpg_enable_notification": False,  "gpg_enable_files": False,
+
         'name' : "irrelevant",
         'password' : "",
         'old_password': "",
