@@ -1,6 +1,6 @@
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
-from globaleaks.handlers import authentication
+from globaleaks.handlers import authentication, admin
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 
@@ -139,5 +139,27 @@ class TestAuthentication(helpers.TestHandler):
         self.assertFailure(d, errors.InvalidInputFormat)
         return d
 
+    @inlineCallbacks
+    def test_failed_login_counter(self):
+        handler = self.request({
+            'username': self.dummyReceiver['username'],
+            'password': 'INVALIDPASSWORD',
+            'role': 'receiver'
+        })
+
+        failed_login = 8
+        for i in xrange(0, failed_login):
+            try:
+                failure = yield handler.post()
+                print type(failure)
+            except errors.InvalidAuthRequest:
+                continue
+            except Exception as excep:
+                print excep, "Has been raised wrongly"
+                self.assertTrue(False)
+
+        receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
+        self.assertTrue(receiver_status.has_key('failed_login'))
+        self.assertEqual(receiver_status['failed_login'], failed_login)
 
 
