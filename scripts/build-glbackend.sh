@@ -14,9 +14,9 @@ usage: ./${SCRIPTNAME} options
 
 OPTIONS:
    -h      Show this message
-   -v      To build a tagged release"
-   -n      To build a non signed package"
-   -y      To assume yes to all queries"
+   -v      To build a tagged release
+   -n      To build a non signed package
+   -y      To assume yes to all queries
 
 EOF
 }
@@ -50,7 +50,6 @@ mkdir -p $GLOBALEAKS_DIR $OUTPUT_DIR
 
 build_glbackend()
 {
-  touch a/a/a/a
   if [ -d ${GLOBALEAKS_DIR}/GLBackend ]; then
     echo "Directory ${GLOBALEAKS_DIR}/GLBackend already present"
     echo "The build process needs a clean git clone of GLBackend"
