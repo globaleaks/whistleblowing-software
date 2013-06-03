@@ -126,29 +126,34 @@ def login_receiver(store, username, password):
     This login receiver need to collect also the amount of unsuccessful
     consecutive logins, because this element may bring to password lockdown.
     """
+    accept_credential = False
+
     receiver = store.find(Receiver, (Receiver.username == unicode(username))).one()
 
     if not receiver:
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
         security.insert_random_delay()
-        raise errors.InvalidAuthRequest
+        return None
 
     if not security.check_password(password, receiver.password, receiver.username):
         security.insert_random_delay()
         receiver.failed_login += 1
+    else:
+        accept_credential = True
+        log.debug("Receiver: Authorized receiver %s" % username)
+        receiver.failed_login = 0
+        receiver.last_access = utils.datetime_now()
 
     if receiver.failed_login >= GLSetting.failed_login_alarm:
         log.err("Warning: Receiver %s has failed %d times the password" %\
                 (username, receiver.failed_login) )
+        # TODO we've to trigger lockout
+        # https://github.com/globaleaks/GlobaLeaks/issues/48
 
-        # this require a forced commit because otherwise the exception would cause a rollback!
-        store.commit()
-        raise errors.InvalidAuthRequest
-    else:
-        log.debug("Receiver: Authorized receiver %s" % username)
-        receiver.failed_login = 0
-        receiver.last_access = utils.datetime_now()
+    if accept_credential:
         return unicode(receiver.id)
+    else:
+        return None
 
 
 @transact
