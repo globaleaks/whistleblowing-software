@@ -60,9 +60,8 @@ build_glclient()
 
   echo "[+] Cloning GLClient in ${GLOBALEAKS_DIR}"
   git clone $GLCLIENT_GIT_REPO ${GLOBALEAKS_DIR}/GLClient
-
   cd ${GLOBALEAKS_DIR}/GLClient
-  git pull origin master
+  
   GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
   if test $TAG; then

@@ -67,6 +67,7 @@ build_glbackend()
 
   echo "[+] Cloning GLBackend in ${GLOBALEAKS_DIR}"
   git clone $GLBACKEND_GIT_REPO ${GLOBALEAKS_DIR}/GLBackend
+  cd ${GLOBALEAKS_DIR}/GLBackend
 
   GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
