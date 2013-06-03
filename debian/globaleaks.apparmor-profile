@@ -13,7 +13,9 @@ profile usr.bin.globaleaks {
     /usr/bin/ r,
     /usr/bin/globaleaks r,
 
+    /usr/share/globaleaks/** r,
     /usr/share/pyshared/** r,
+    /usr/include/python2.7/** r,
     /usr/lib/python2.7/** mr,
     /usr/local/lib/python2.7/** mr,
     /etc/python2.7/** r,
