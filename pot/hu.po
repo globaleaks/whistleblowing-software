@@ -1,285 +1,287 @@
 # Copyright (C) 2013 WordPress
 # This file is distributed under the same license as the WordPress package.
 # Translators:
+# lemarietta <marietta@boun.cr>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
 "Report-Msgid-Bugs-To: http://github.com/globaleaks/GlobaLeaks\n"
-"PO-Revision-Date: 2013-05-29 17:59+0000\n"
-"Last-Translator: hermes <info@logioshermes.org>\n"
+"PO-Revision-Date: 2013-06-01 21:52+0000\n"
+"Last-Translator: lemarietta <marietta@boun.cr>\n"
+"Language-Team: Hungarian (Hungary) (http://www.transifex.com/projects/p/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: en\n"
+"Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: example.py:11
 msgid "add option"
-msgstr "add option"
+msgstr "opció hozzáadása"
 
 #: example.py:11
 msgid ""
 "We were not able to determine if you are anonymous or not, please proceed "
 "with care"
-msgstr "We were not able to determine if you are anonymous or not, please proceed with care"
+msgstr "Nem tudtuk kideríteni, hogy anonim-e a hozzáférése, kérjük, hogy legyen körültekintő a továbbiakban"
 
 #: example.py:11
 msgid "Admin interface and configure at least one context"
-msgstr "Admin interface and configure at least one context"
+msgstr "Admin felület és beállítások legalább egy kontextus alapján"
 
 #: example.py:11
 msgid "You will not be able to perform a submission."
-msgstr "You will not be able to perform a submission."
+msgstr "Nem fog tudni dokumentumot feltölteni."
 
 #: example.py:11
 msgid "Comments"
-msgstr "Comments"
+msgstr "Megjegyzések"
 
 #: example.py:11
 msgid ""
 "that is specifically designed to protect the identity of the reporter and of"
 " the ones running the platform."
-msgstr "that is specifically designed to protect the identity of the reporter and of the ones running the platform."
+msgstr "amely kifejezetten az újságíró és az üzemeltetők személyazonosságának védelmét szolgálja."
 
 #: example.py:11
 msgid "add field"
-msgstr "add field"
+msgstr "mező hozzáadása"
 
 #: example.py:11
 msgid "Tips"
-msgstr "Tips"
+msgstr "Fülesek"
 
 #: example.py:11
 msgid "Users Overview"
-msgstr "Users Overview"
+msgstr "Felhasználói vélemények"
 
 #: example.py:11
 msgid "Login page"
-msgstr "Login page"
+msgstr "Bejelentkezés"
 
 #: example.py:11
 msgid "Files"
-msgstr "Files"
+msgstr "Fájlok"
 
 #: example.py:11
 msgid "Views"
-msgstr "Views"
+msgstr "Nézettség"
 
 #: example.py:11
 msgid "Success!"
-msgstr "Success!"
+msgstr "Sikerült!"
 
 #: example.py:11
 msgid "Welcome to"
-msgstr "Welcome to"
+msgstr "Üdvözöljük a "
 
 #: example.py:11
 msgid "to verify the file integrity"
-msgstr "to verify the file integrity"
+msgstr "a fájl integritásának ellenőrzéséhez"
 
 #: example.py:11
 msgid "Add Comment"
-msgstr "Add Comment"
+msgstr "Hozzászólás írása"
 
 #: example.py:11
 msgid "The requested tip does not exist or has expired."
-msgstr "The requested tip does not exist or has expired."
+msgstr "A lekérdezett füles nem létezik, vagy lejárt."
 
 #: example.py:11
 msgid "Previous Step"
-msgstr "Previous Step"
+msgstr "Vissza"
 
 #: example.py:11
 msgid "The two passwords do not match"
-msgstr "The two passwords do not match"
+msgstr "Nem egyeznek a beírt jelszavak"
 
 #: example.py:11
 msgid "This interface may help you spot anomalies in your Node."
-msgstr "This interface may help you spot anomalies in your Node."
+msgstr "Ez a felület segít Önnek a csomópont anomáliák kiszűrésében."
 
 #: example.py:11
 msgid "At least one letter"
-msgstr "At least one letter"
+msgstr "Legaláb egy betűt"
 
 #: example.py:11
 msgid "Contexts Configuration"
-msgstr "Contexts Configuration"
+msgstr "Kontextus konfigurálása"
 
 #: example.py:11
 msgid ""
 "Invalid format for hidden service (should be http://thirteenchars123.onion)"
-msgstr "Invalid format for hidden service (should be http://thirteenchars123.onion)"
+msgstr "Nem támogatott formátum a rejtett szolgáltatáshoz. (Ennek kell lennie: http://thirteenchars123.onion)"
 
 #: example.py:11
 msgid "Users overview"
-msgstr "Users overview"
+msgstr "Felhasználók listája"
 
 #: example.py:11
 msgid "It appears your are not using Tor, thus you are strongly advised to "
-msgstr "It appears your are not using Tor, thus you are strongly advised to "
+msgstr "Úgy tűnik, hogy nem csatlakozott a Torhoz, mindenképpen javasoljuk, hogy tegye meg"
 
 #: example.py:11
 msgid "Checkboxes"
-msgstr "Checkboxes"
+msgstr "Ellenőrző lista"
 
 #: example.py:11
 msgid ""
 "To ensure your anonymity be sure that you are visiting this site using the"
-msgstr "To ensure your anonymity be sure that you are visiting this site using the"
+msgstr "Anonimitásának biztosításához győződjön meg arról, hogy az oldalt a következővel kereste fel"
 
 #: example.py:11
 msgid "Use the"
-msgstr "Use the"
+msgstr "Használja a/az"
 
 #: example.py:11
 msgid "You will not be able to login."
-msgstr "You will not be able to login."
+msgstr "Nem fog tudni bejelentkezni."
 
 #: example.py:11
 msgid "Malformed source"
-msgstr "Malformed source"
+msgstr "Hibás forrás"
 
 #: example.py:11
 msgid "Add new context"
-msgstr "Add new context"
+msgstr "Új kontextus hozzáadása"
 
 #: example.py:11
 msgid "Tor2web Public Site (url)"
-msgstr "Tor2web Public Site (url)"
+msgstr "Tor2web nyilvános oldal linkje"
 
 #: example.py:11
 msgid "You're running GlobaLeaks version "
-msgstr "You're running GlobaLeaks version "
+msgstr "Ön a Globaleaks következő verzióját használja:"
 
 #: example.py:11
 msgid ""
 "You can customize this section by editing "
 "GLClient/app/templates/default/views/submission/main.html"
-msgstr "You can customize this section by editing GLClient/app/templates/default/views/submission/main.html"
+msgstr "Ezt a részt a GLClient/app/templates/default/views/submission/main.html szerkesztésével változtathatja meg"
 
 #: example.py:11
 msgid "How you can transform information into action!"
-msgstr "How you can transform information into action!"
+msgstr "Hogyan lehet az információból tetteket csinálni?!?"
 
 #: example.py:11
 msgid "Warning!"
-msgstr "Warning!"
+msgstr "Figyelem!"
 
 #: example.py:11
 msgid "Files Overview"
-msgstr "Files Overview"
+msgstr "Fájlok listája"
 
 #: example.py:11
 msgid "This node is not configured."
-msgstr "This node is not configured."
+msgstr "Ezt a csomópontot nem konfigurálták."
 
 #: example.py:11
 msgid "Receivers Configuration"
-msgstr "Receivers Configuration"
+msgstr "Fogadó létrehozása"
 
 #: example.py:11
 msgid "SMTP server port"
-msgstr "SMTP server port"
+msgstr "SMTP szerver port"
 
 #: example.py:11
 msgid "Preferences"
-msgstr "Preferences"
+msgstr "Beállítások"
 
 #: example.py:11
 msgid "Add new receiver"
-msgstr "Add new receiver"
+msgstr "Új fogadó hozzáadása"
 
 #: example.py:11
 msgid "Mail Configuration"
-msgstr "Mail Configuration"
+msgstr "E-mail beállítások"
 
 #: example.py:11
 msgid "security check"
-msgstr "security check"
+msgstr "biztonsági ellenőrzés"
 
 #: example.py:11
 msgid "System"
-msgstr "System"
+msgstr "Rendszer"
 
 #: example.py:11
 msgid "upload"
-msgstr "upload"
+msgstr "feltöltés"
 
 #: example.py:11
 msgid "Drop Menu (Select)"
-msgstr "Drop Menu (Select)"
+msgstr "Legördülő menü (Válasszon)"
 
 #: example.py:11
 msgid "download"
-msgstr "download"
+msgstr "letöltés"
 
 #: example.py:11
 msgid "Save"
-msgstr "Save"
+msgstr "Mentés"
 
 #: example.py:11
 msgid "Node name"
-msgstr "Node name"
+msgstr "Csomópont neve"
 
 #: example.py:11
 msgid "Email"
-msgstr "Email"
+msgstr "E-mail"
 
 #: example.py:11
 msgid "Name"
-msgstr "Name"
+msgstr "Név"
 
 #: example.py:11
 msgid "Username"
-msgstr "Username"
+msgstr "Felhasználónév"
 
 #: example.py:11
 msgid "Current Password"
-msgstr "Current Password"
+msgstr "Jelenlegi jelszó"
 
 #: example.py:11
 msgid "Receivers"
-msgstr "Receivers"
+msgstr "Fogadók"
 
 #: example.py:11
 msgid "Receiver list"
-msgstr "Receiver list"
+msgstr "Fogadók listája"
 
 #: example.py:11
 msgid "Access counter"
-msgstr "Access counter"
+msgstr "Hozzáférés számláló"
 
 #: example.py:11
 msgid "Tor Hidden Service (hostname)"
-msgstr "Tor Hidden Service (hostname)"
+msgstr "Tor rejtett szolgáltatás (szolgáltató neve)"
 
 #: example.py:11
 msgid ""
 "Through this platform you will be able to report on wrongdoing. This "
 "platform is running the"
-msgstr "Through this platform you will be able to report on wrongdoing. This platform is running the"
+msgstr "Ezen a platformon keresztül küldhet jelentéseket a visszaélésekről. Ez platform a következő rendszert használja:"
 
 #: example.py:11
 msgid "Url"
-msgstr "Url"
+msgstr "Link url"
 
 #: example.py:11
 msgid "This is the"
-msgstr "This is the"
+msgstr "Ez a "
 
 #: example.py:11
 msgid "We are supported also by your donations. Visit our"
-msgstr "We are supported also by your donations. Visit our"
+msgstr "Szolgáltatásunk fenntartásához hozzájárulnak az Ön adományai is. Látogasson el az oldalunkra:"
 
 #: example.py:11
 msgid ""
 "Invalid format for public site (should be "
 "https://thirteenchars123.tor2web.org)"
-msgstr "Invalid format for public site (should be https://thirteenchars123.tor2web.org)"
+msgstr "Nem támogatott formátum a nyilvános oldalhoz. (Ennek kellene lennie: https://thirteenchars123.tor2web.org)"
 
 #: example.py:11
 msgid "Info"
-msgstr "Info"
+msgstr "Információk"
 
 #: example.py:11
 msgid "sha256 hash"
@@ -287,445 +289,445 @@ msgstr "sha256 hash"
 
 #: example.py:11
 msgid "Tips Overview"
-msgstr "Tips Overview"
+msgstr "Fülesek leírása"
 
 #: example.py:11
 msgid ""
 "This interface shows the activity of the users of your node. This may be "
 "helpful in detecting anomalies and supporting the Receivers for of your "
 "node."
-msgstr "This interface shows the activity of the users of your node. This may be helpful in detecting anomalies and supporting the Receivers for of your node."
+msgstr "Ez a felület a csomópont felhasználóinak aktivitását mutatja. Ez segíthet az anomáliák felderítésében, és a csomópont fogadóinak támogatásában."
 
 #: example.py:11
 msgid "Age"
-msgstr "Age"
+msgstr "Életkor"
 
 #: example.py:11
 msgid ""
 "On unix based systems this can be done by running the following command"
-msgstr "On unix based systems this can be done by running the following command"
+msgstr "Az unix alapú rendszereknél ezt a következő parancs futtatásával teheti meg:"
 
 #: example.py:11
 msgid "Tip Email template"
-msgstr "Tip Email template"
+msgstr "Füles e-mail sablon"
 
 #: example.py:11
 msgid "logout"
-msgstr "logout"
+msgstr "kilépés"
 
 #: example.py:11
 msgid "Files overview"
-msgstr "Files overview"
+msgstr "Fájlok listája"
 
 #: example.py:11
 msgid "Delete"
-msgstr "Delete"
+msgstr "Törlés"
 
 #: example.py:11
 msgid "At least one number"
-msgstr "At least one number"
+msgstr "Legalább egy szám legyen"
 
 #: example.py:11
 msgid "Paragraph(s)"
-msgstr "Paragraph(s)"
+msgstr "Bekezdés(ek)"
 
 #: example.py:11
 msgid "SMTP server address"
-msgstr "SMTP server address"
+msgstr "SMTP szerver címe"
 
 #: example.py:11
 msgid "Your node is not configured! Please, proceed via"
-msgstr "Your node is not configured! Please, proceed via"
+msgstr "Nem állított be csomópontot! Kérjük, haladjon tovább a következővel:"
 
 #: example.py:11
 msgid "Blow the Whistle"
-msgstr "Blow the Whistle"
+msgstr "Leadom a fülest!"
 
 #: example.py:11
 msgid ""
 "This number here is your receipt keep good care of it as it will allow you "
 "to access your submission"
-msgstr "This number here is your receipt keep good care of it as it will allow you to access your submission"
+msgstr "Ez a szám az Ön azonosítója, őrizze meg, mert csak ezzel tudja elérni a feltöltött dokumentumokat."
 
 #: example.py:11
 msgid "donation page"
-msgstr "donation page"
+msgstr "adomány oldal"
 
 #: example.py:11
 msgid "Size"
-msgstr "Size"
+msgstr "Méret"
 
 #: example.py:11
 msgid "Activation Email template"
-msgstr "Activation Email template"
+msgstr "E-mail sablon az aktiváláshoz"
 
 #: example.py:11
 msgid "Email Address (Username)"
-msgstr "Email Address (Username)"
+msgstr "E-mail cím (felhasználónév)"
 
 #: example.py:11
 msgid "manual for practical security best practices."
-msgstr "manual for practical security best practices."
+msgstr "biztonsági tanácsok kézikönyve"
 
 #: example.py:11
 msgid "View Tip"
-msgstr "View Tip"
+msgstr "Füles megtekintése"
 
 #: example.py:11
 msgid "Required old password confirm"
-msgstr "Required old password confirm"
+msgstr "Régi jelszó megerősítése"
 
 #: example.py:11
 msgid "done"
-msgstr "done"
+msgstr "kész"
 
 #: example.py:11
 msgid "Your username"
-msgstr "Your username"
+msgstr "Felhasználónév"
 
 #: example.py:11
 msgid "Congratulations!"
-msgstr "Congratulations!"
+msgstr "Gratulálunk!"
 
 #: example.py:11
 msgid ""
 "This interface may help you understand how the Node is used by the "
 "whistleblower. We present you with the submissions present on the node and a"
 " few statistics on the kind of usage (activity, files, comments)."
-msgstr "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions present on the node and a few statistics on the kind of usage (activity, files, comments)."
+msgstr "Ez a felület segít Önnek abban, hogy megértse, hogyan használja a csomópontot a szivárogtató. Megmutatjuk önnek, mit töltöttek fel a csomóponton keresztül és a felhasználói statisztikákat (aktivitás, fájlok, hozzászólások)."
 
 #: example.py:11
 msgid ""
 "Choose the context and receivers that will be sure to transform your "
 "submission into action!"
-msgstr "Choose the context and receivers that will be sure to transform your submission into action!"
+msgstr "Válassza ki a kontextust és a fogadókat, akik a beküldött dokumentumokat tettekké alakítják!"
 
 #: example.py:11
 msgid "Contexts"
-msgstr "Contexts"
+msgstr "Kontextus"
 
 #: example.py:11
 msgid ""
 "Keep in mind that using Tor Browser Bundle does not replace good security "
 "practices and it cannot protect you in the event your computer has been "
 "compromised. You are strongly advised to read the"
-msgstr "Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the"
+msgstr "A Tor böngésző nem helyettesíti a megfelelő biztonsági előírások alkalmazását, és nem tudja Önt megóvni, ha a számítógépe már kompromittálódott. Fontos, hogy olvassa el a következőt:"
 
 #: example.py:11
 msgid "New Password"
-msgstr "New Password"
+msgstr "Új jelszó"
 
 #: example.py:11
 msgid "Admin management interface"
-msgstr "Admin management interface"
+msgstr "Admin felület"
 
 #: example.py:11
 msgid "Whistleblower"
-msgstr "Whistleblower"
+msgstr "Szivárogtató"
 
 #: example.py:11
 msgid "Hint"
-msgstr "Hint"
+msgstr "Tipp"
 
 #: example.py:11
 msgid "add"
-msgstr "add"
+msgstr "hozzáadás"
 
 #: example.py:11
 msgid "download a copy of the tor browser bundle"
-msgstr "download a copy of the tor browser bundle"
+msgstr "tor böngésző letöltése"
 
 #: example.py:11
 msgid "Phone"
-msgstr "Phone"
+msgstr "Telefonszám"
 
 #: example.py:11
 msgid "click to close"
-msgstr "click to close"
+msgstr "a bezáráshoz kattinston ide"
 
 #: example.py:11
 msgid "This software is developed by the non-profit organization"
-msgstr "This software is developed by the non-profit organization"
+msgstr "Ezt a szoftvert az alábbi civil szervezet fejlesztette:"
 
 #: example.py:11
 msgid "Save changes"
-msgstr "Save changes"
+msgstr "Változtatások mentése"
 
 #: example.py:11
 msgid "Content Settin"
-msgstr "Content Settin"
+msgstr "Tartalom beállítása"
 
 #: example.py:11
 msgid "Comment Email template"
-msgstr "Comment Email template"
+msgstr "Hozzászólás e-mail sablon"
 
 #: example.py:11
 msgid "Radio Buttons"
-msgstr "Radio Buttons"
+msgstr "Rádiógombok"
 
 #: example.py:11
 msgid "Danger!"
-msgstr "Danger!"
+msgstr "Veszély!"
 
 #: example.py:11
 msgid "Tip Status Page"
-msgstr "Tip Status Page"
+msgstr "Füles oldala"
 
 #: example.py:11
 msgid "Receiver List"
-msgstr "Receiver List"
+msgstr "Fogadók listája"
 
 #: example.py:11
 msgid "Loading Tip page..."
-msgstr "Loading Tip page..."
+msgstr "Füles oldalának betöltése..."
 
 #: example.py:11
 msgid "Email Address"
-msgstr "Email Address"
+msgstr "E-mail cím"
 
 #: example.py:11
 msgid "Required"
-msgstr "Required"
+msgstr "Kötelező"
 
 #: example.py:11
 msgid ""
 "It appears you are using Tor. To better protect your anonymity, be sure that"
 " you are using the"
-msgstr "It appears you are using Tor. To better protect your anonymity, be sure that you are using the"
+msgstr "Úgy tűnik, hogy csatlakozott a Torhoz. Névtelenségének megőrzéséhez ellenőrizze, hogy a következőt használja-e:"
 
 #: example.py:11
 msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Innen futtathat általános hibaelhárító műveleteket a GLClient emulációjával."
 
 #: example.py:11
 msgid "Select file"
-msgstr "Select file"
+msgstr "Fájl kiválasztása"
 
 #: example.py:11
 msgid "Preferences and password management"
-msgstr "Preferences and password management"
+msgstr "Beállítások és jelszó megváltoztatása"
 
 #: example.py:11
 msgid "Agree"
-msgstr "Agree"
+msgstr "Megértettem"
 
 #: example.py:11
 msgid "GlobaLeaks software"
-msgstr "GlobaLeaks software"
+msgstr "GlobaLeaks szoftver"
 
 #: example.py:11
 msgid "Submission Created!"
-msgstr "Submission Created!"
+msgstr "Feltöltés kész!"
 
 #: example.py:11
 msgid "Text"
-msgstr "Text"
+msgstr "Szöveg"
 
 #: example.py:11
 msgid "Receiver name too long"
-msgstr "Receiver name too long"
+msgstr "Fogadó neve túl hosszú"
 
 #: example.py:11
 msgid "Number"
-msgstr "Number"
+msgstr "Szám"
 
 #: example.py:11
 msgid "To further enhance your security, please follow these instructions:"
-msgstr "To further enhance your security, please follow these instructions:"
+msgstr "Biztonságának megerősítéséhez, kérjük, kövesse az alábbi instrukciókat:"
 
 #: example.py:11
 msgid "to help us further support the development of GlobaLeaks."
-msgstr "to help us further support the development of GlobaLeaks."
+msgstr "a GlobaLeaks fejlesztésének támogatásához."
 
 #: example.py:11
 msgid "References"
-msgstr "References"
+msgstr "Hivatkozások"
 
 #: example.py:11
 msgid "Are you a receiver?"
-msgstr "Are you a receiver?"
+msgstr "Ön fogadja a dokumentumokat?"
 
 #: example.py:11
 msgid "Loading..."
-msgstr "Loading..."
+msgstr "Töltés..."
 
 #: example.py:11
 msgid "delete"
-msgstr "delete"
+msgstr "törlés"
 
 #: example.py:11
 msgid "Next Step"
-msgstr "Next Step"
+msgstr "Következő"
 
 #: example.py:11
 msgid "At least 8 keypress long"
-msgstr "At least 8 keypress long"
+msgstr "Legalább 8 leütés hosszú"
 
 #: example.py:11
 msgid "Admin password"
-msgstr "Admin password"
+msgstr "Admin jelszó"
 
 #: example.py:11
 msgid "Currently logged in "
-msgstr "Currently logged in "
+msgstr "Jelenleg bejelentkezve mint"
 
 #: example.py:11
 msgid "Multi-Select"
-msgstr "Multi-Select"
+msgstr "Több kiválasztása egyszerre"
 
 #: example.py:11
 msgid ""
 "The table below shows the files present in the submission directory, and "
 "their relationship with the internal database."
-msgstr "The table below shows the files present in the submission directory, and their relationship with the internal database."
+msgstr "Az alábbi táblázat a beküldött dokumentumok mappáit mutatja meg, és azt, hol van a helyük a belső adatbázisban."
 
 #: example.py:11
 msgid "Admin please configure a Context and associated Receivers using"
-msgstr "Admin please configure a Context and associated Receivers using"
+msgstr "Admin, kérjük, állítsa be a Kontextust és a felvett Fogadókat ezzel:"
 
 #: example.py:11
 msgid "Submit"
-msgstr "Submit"
+msgstr "Küldés"
 
 #: example.py:11
 msgid "General information"
-msgstr "General information"
+msgstr "Általános információk"
 
 #: example.py:11
 msgid "Tip ID"
-msgstr "Tip ID"
+msgstr "Füles azonosítója"
 
 #: example.py:11
 msgid ""
 "In the event that you would like to remain anonymous, do not submit any "
 "personal information. (e.g. your name or relationship to the offender. Do "
 "not submit any information that can be traced back to you.)"
-msgstr "In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)"
+msgstr "Ha meg szeretné őrizni névtelenségét, ne küldjön el semmilyen személyes információt! (Pl. a nevét vagy azt, hogy milyen kapcsolatban áll a bűnelkövetővel. Ne küldjön el semmi olyan információt, amely alapján visszakereshető lenne a kiléte!)"
 
 #: example.py:11
 msgid "Current initiative logo"
-msgstr "Current initiative logo"
+msgstr "Jelenlegi kezdeményezés logója"
 
 #: example.py:11
 msgid "Description"
-msgstr "Description"
+msgstr "Leírás"
 
 #: example.py:11
 msgid "Notification templates"
-msgstr "Notification templates"
+msgstr "Értesítő sablonok"
 
 #: example.py:11
 msgid "Type"
-msgstr "Type"
+msgstr "Típus"
 
 #: example.py:11
 msgid "No file has been uploaded!"
-msgstr "No file has been uploaded!"
+msgstr "Nem töltött fel fájlt!"
 
 #: example.py:11
 msgid "File Email template"
-msgstr "File Email template"
+msgstr "Fájl e-mail sablonja"
 
 #: example.py:11
 msgid "Tip Overview"
-msgstr "Tip Overview"
+msgstr "Füles leírása"
 
 #: example.py:11
 msgid "before continuing."
-msgstr "before continuing."
+msgstr "mielőtt folytatja."
 
 #: example.py:11
 msgid "Password management"
-msgstr "Password management"
+msgstr "Jelszó megváltoztatása"
 
 #: example.py:11
 msgid "I want to report on"
-msgstr "I want to report on"
+msgstr "Szeretnék dokumentumot küldeni ide:"
 
 #: example.py:11
 msgid "Password"
-msgstr "Password"
+msgstr "Jelszó"
 
 #: example.py:11
 msgid "Last Access"
-msgstr "Last Access"
+msgstr "Legutóbbi belépés"
 
 #: example.py:11
 msgid "Welcome back captain!"
-msgstr "Welcome back captain!"
+msgstr "Isten hozta újra itt, Kapitány!"
 
 #: example.py:11
 msgid "Transport Security"
-msgstr "Transport Security"
+msgstr "Átvitel biztonsága"
 
 #: example.py:11
 msgid "Contexts list"
-msgstr "Contexts list"
+msgstr "Kontextusok listája"
 
 #: example.py:11
 msgid "Security Check"
-msgstr "Security Check"
+msgstr "Biztonsági ellenőrzés"
 
 #: example.py:11
 msgid "Fields"
-msgstr "Fields"
+msgstr "Mezők"
 
 #: example.py:11
 msgid "New Submission"
-msgstr "New Submission"
+msgstr "Új feltöltés"
 
 #: example.py:11
 msgid ""
 "Please do not submit your report on a PC provided by your employer. "
 "Particularly an intranet connection may jeopardize your anonymity."
-msgstr "Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity."
+msgstr "Ne küldjön semmit a munkáltatója által biztosított számítógépről, különösen ne használjon erre intranet hálózatot, mert azon keresztül nem biztosítható a névtelensége!"
 
 #: example.py:11
 msgid "Add files..."
-msgstr "Add files..."
+msgstr "Fájlok hozzáadása..."
 
 #: example.py:11
 msgid "Still calculating hash"
-msgstr "Still calculating hash"
+msgstr "Még mindig a hash-t számláljuk"
 
 #: example.py:11
 msgid "Invalid email address"
-msgstr "Invalid email address"
+msgstr "Hibás e-mail cím"
 
 #: example.py:11
 msgid "Login"
-msgstr "Login"
+msgstr "Bejelentkezés"
 
 #: example.py:11
 msgid "Enter your receipt"
-msgstr "Enter your receipt"
+msgstr "Azonosító beírása"
 
 #: example.py:11
 msgid "Are you a whistleblower?"
-msgstr "Are you a whistleblower?"
+msgstr "Szivárogtatni szeretne?"
 
 #: example.py:11
 msgid ""
 "Enter the information that is relevant to your submission and possibly "
 "upload the relevant accompanying files"
-msgstr "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files"
+msgstr "Adja meg a beküldéshez fontosnak tartott információkat, és lehetőleg töltsön fel ehhez kapcsolódó fájlokat."
 
 #: example.py:11
 msgid "What is this about?"
-msgstr "What is this about?"
+msgstr "Miről van itt szó?"
 
 #: example.py:11
 msgid "Cookies are not enabled!"
-msgstr "Cookies are not enabled!"
+msgstr "Nem lehet sütiket használni!"
 
 #: example.py:11
 msgid "Retype again your new password"
-msgstr "Retype again your new password"
+msgstr "Új jelszó megerősítése"
 
 #: example.py:11
 msgid "Your password is unsafe, it should have"
-msgstr "Your password is unsafe, it should have"
+msgstr "A megadott jelszó nem biztonságos, a következőket kell tartalmaznia:"
 
 #: example.py:11
 msgid "By checking the box below you agree to these terms and conditions."
-msgstr "By checking the box below you agree to these terms and conditions."
+msgstr "Az alábbi doboz kipipálásával beleegyezik a felhasználási feltételekbe."

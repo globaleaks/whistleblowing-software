@@ -169,8 +169,46 @@ module.exports = function(grunt) {
     rm_rf('tmp');
   });
 
+  grunt.registerTask('makeTranslations', function() {
+    var Gettext = require("node-gettext"),
+      fs = require('fs'),
+      crypto = require('crypto'),
+      gt = new Gettext(),
+      strings,
+      translations = {},
+      fileContents = fs.readFileSync("pot/en.po"),
+      supported_languages = {'en': 'English', 'de': 'German',
+                             'el': 'Greek', 'hu': 'Hungarian',
+                             'it': 'Italian', 'nl': 'Dutch',
+                             'pl': 'Polish'};
+
+    translations['supported_languages'] = supported_languages;
+
+    gt.addTextdomain("en", fileContents);
+    strings = gt.listKeys("en", "");
+
+    strings.forEach(function(string){
+      var md5sum = crypto.createHash('md5'),
+        digest;
+      md5sum.update(string);
+      digest = md5sum.digest('hex');
+      translations[digest] = {};
+
+      for (var lang_code in supported_languages) {
+        gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
+        translations[digest][lang_code] = gt.dgettext(lang_code, string);
+      };
+    });
+
+    fs.writeFile("app/scripts/translations.js", "var translations = " + JSON.stringify(translations) + ";",
+                 function(err) {
+      if (err) console.log(err);
+      else console.log("Translsations file was written!");
+    });
+  });
+
   grunt.registerTask('build',
-    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean', 'makeTranslations', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'manifest', 'cleanupWorkingDirectory']);
 
   // XXX disabled uglify
   // ['clean', 'useminPrepare', 'copy', 'ngtemplates', 'concat', 'uglify', 'usemin', 'manifest']);
