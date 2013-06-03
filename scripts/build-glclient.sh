@@ -12,8 +12,8 @@ usage: ./${SCRIPTNAME} options
 
 OPTIONS:
    -h      Show this message
-   -v      To build a tagged release"
-   -y      To assume yes to all queries"
+   -v      To build a tagged release
+   -y      To assume yes to all queries
 
 EOF
 }
