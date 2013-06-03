@@ -32,6 +32,8 @@ receiverReceiverDesc = {
     'description' : unicode,
     'gpg_key_armor': unicode,
     'gpg_key_remove': bool,
+    "gpg_enable_notification": bool,
+    "gpg_enable_files": bool,
 }
 
 actorsCommentDesc = {
@@ -113,4 +115,8 @@ adminReceiverDesc =  {
     'gpg_key_remove': bool,
     'gpg_key_fingerprint': unicode,
     'gpg_key_info': unicode,
+    "gpg_key_armor": unicode,
+    "gpg_key_status": unicode,
+    "gpg_enable_notification": bool,
+    "gpg_enable_files": bool,
 }

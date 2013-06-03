@@ -80,6 +80,10 @@ class TestGL(TestWithDB):
             'gpg_key_remove': False,
             'gpg_key_fingerprint' : None,
             'gpg_key_info' : None,
+            'gpg_key_status': models.Receiver._gpg_types[0], # Disabled
+            'gpg_key_armor': None,
+            "gpg_enable_notification": False,
+            "gpg_enable_files": False,
             'password': DEFAULT_PASSWORD,
             'name': u'john smith',
             'description': u'the first receiver',
