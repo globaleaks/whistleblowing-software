@@ -5,6 +5,36 @@
 BUILD_DIR=/tmp/glbuilding.$RANDOM
 BUILD_LOG=${BUILD_DIR}.log
 
+usage()
+{
+cat << EOF
+usage: ./${SCRIPTNAME} options
+
+OPTIONS:
+   -h      Show this message
+   -y      To assume yes to all queries
+
+EOF
+}
+
+ASSUME_YES=0
+while getopts “hv:ny” OPTION
+do
+  case $OPTION in
+    h)
+      usage
+      exit 1
+      ;;
+    y)
+      ASSUME_YES=1
+      ;;
+    ?)
+      usage
+      exit
+      ;;
+    esac
+done
+
 DO () {
     if [ -z "$3" ]; then
         CMD=$1
@@ -421,16 +451,18 @@ if [ ${INSTALL_PIP} -eq 1 ] ; then
     DO "cd pip-*" "0"
 
     echo "Installing the latest pip"
-    echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
-    read -r -p "Do you wish to continue? [y/n] " response
-    case $response in
-        y | Y | yes | YES )
-            DO "python setup.py install" "0"
-            ;;
-        *)
-            exit 1
-            ;;
-    esac
+    if [ ${ASSUME_YES} -eq 0 ]; then
+        echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
+        read -r -p "Do you wish to continue? [y/n] " response
+        case $response in
+            y | Y | yes | YES )
+                DO "python setup.py install" "0"
+                ;;
+            *)
+                exit 1
+                ;;
+        esac
+    fi
 fi
 
 DO "wget -O ${BUILD_DIR}/requirements.txt https://raw.github.com/globaleaks/GLBackend/master/requirements.txt" "0"
