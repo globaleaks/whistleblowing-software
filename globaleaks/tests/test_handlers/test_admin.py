@@ -21,7 +21,7 @@ class TestNodeInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_put_update_node(self):
         self.dummyNode['hidden_service'] = 'http://abcdef1234567890.onion'
-        self.dummyNode['public_site'] = 'http://blogleaks.blogspot.com'
+        self.dummyNode['public_site'] = 'https://blogleaks.blogspot.com'
 
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
