@@ -1,28 +1,30 @@
 'use strict';
 
 var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServices',
-    'submissionUI', 'GLClientFilters']).
+    'submissionUI', 'GLClientFilters', 'GLClient.themes']).
   config(['$routeProvider', function($routeProvider) {
+    var Templates = angular.injector(['GLClient.themes']).get('Templates');
+
     $routeProvider.
       when('/', {
-        templateUrl: 'templates/default/views/home.html',
+        templateUrl: Templates.home,
         controller: 'HomeCtrl'
       }).
 
       when('/about', {
-        templateUrl: 'templates/default/views/about.html',
+        templateUrl: Templates.about,
         controller: 'PageCtrl',
       }).
 
 
       when('/submission', {
-        templateUrl: 'templates/default/views/submission/main.html',
+        templateUrl: Templates.submission.main,
         controller: 'SubmissionCtrl',
       }).
 
 
       when('/status/:tip_id', {
-        templateUrl: 'templates/default/views/status.html',
+        templateUrl: Templates.status,
         controller: 'StatusCtrl',
       }).
 
