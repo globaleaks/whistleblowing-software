@@ -18,7 +18,7 @@ from storm.twisted.testing import FakeThreadPool
 from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-from globaleaks import db, models
+from globaleaks import db, utils
 
 DEFAULT_PASSWORD = u'yustapassword'
 transact.tp = FakeThreadPool()
@@ -178,6 +178,7 @@ class TestHandler(TestGL):
         if role:
             session_id = '4tehlulz'
             new_session = OD(
+                   borndate=utils.datetime_now(),
                    timestamp=time.time(),
                    id=session_id,
                    role=role,
