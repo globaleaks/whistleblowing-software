@@ -25,7 +25,7 @@ EOF
 SIGN=1
 LOCAL_GLCLIENT=0
 ASSUME_YES=0
-while getopts “hv:ny” OPTION
+while getopts “hv:nly” OPTION
 do
   case $OPTION in
     h)
