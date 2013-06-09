@@ -16,12 +16,14 @@ OPTIONS:
    -h      Show this message
    -v      To build a tagged release
    -n      To build a non signed package
+   -l      To build a release using a local gclclient build
    -y      To assume yes to all queries
 
 EOF
 }
 
 SIGN=1
+LOCAL_GLCLIENT=0
 ASSUME_YES=0
 while getopts “hv:ny” OPTION
 do
@@ -35,6 +37,9 @@ do
       ;;
     n)
       SIGN=0
+      ;;
+    l)
+      LOCAL_GLCLIENT=1
       ;;
     y)
       ASSUME_YES=1
@@ -68,6 +73,10 @@ build_glbackend()
   echo "[+] Cloning GLBackend in ${GLOBALEAKS_DIR}"
   git clone $GLBACKEND_GIT_REPO ${GLOBALEAKS_DIR}/GLBackend
   cd ${GLOBALEAKS_DIR}/GLBackend
+
+  if [ ${LOCAL_GLCLIENT} -eq 1 ]; then
+    unzip ${GLOBALEAKS_DIR}/GLClient/glclient_build/*.zip -d ${GLOBALEAKS_DIR}/GLBackend
+  fi
 
   GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
