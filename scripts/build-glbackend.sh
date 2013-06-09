@@ -76,6 +76,7 @@ build_glbackend()
 
   if [ ${LOCAL_GLCLIENT} -eq 1 ]; then
     unzip ${GLOBALEAKS_DIR}/GLClient/glclient_build/*.zip -d ${GLOBALEAKS_DIR}/GLBackend
+    mv ${GLOBALEAKS_DIR}/GLBackend/glclient-* ${GLOBALEAKS_DIR}/GLBackend/glclient
   fi
 
   GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
