@@ -183,6 +183,9 @@ class GLSettingsClass:
         # Number of log files to conserve.
         self.maximum_rotated_log_files = 100
 
+        # Database version tracking
+        self.db_version = 1
+
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
@@ -195,9 +198,12 @@ class GLSettingsClass:
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
-        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
+        # self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
+        # db_file it's not more generated here, because DB version migration create a filename with:
+        #  sqlite:/path/glbackend-%d.db % DB_version
+
 
     def set_devel_mode(self):
         self.working_path = os.path.join(self.root_path, 'workingdir')

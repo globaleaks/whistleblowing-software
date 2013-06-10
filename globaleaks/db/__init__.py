@@ -3,10 +3,8 @@
 #   ******************
 from __future__ import with_statement
 import os
-import os.path
 
 from twisted.internet.defer import succeed
-
 from storm.exceptions import OperationalError
 
 from globaleaks.utils import log, datetime_now
@@ -14,6 +12,7 @@ from globaleaks.settings import transact, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
 from globaleaks.security import hash_password, get_salt
+
 
 @transact
 def initialize_node(store, results, only_node, email_templates):
@@ -95,6 +94,9 @@ def create_tables(create_node=True):
     """
     Override transactor for testing.
     """
+
+    # db file is set after the update execution, than is not present in
+    # GLSetting and your IDE may spot them as missing key
     if os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
         # Here we instance every model so that __storm_table__ gets set via
         # __new__
@@ -152,6 +154,7 @@ def create_tables(create_node=True):
 
         # Initialize the node + notification table
         deferred.addCallback(initialize_node, only_node, email_templates)
+
     return deferred
 
 
