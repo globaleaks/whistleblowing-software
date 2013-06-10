@@ -41,12 +41,12 @@ DO () {
     else
         CMD=$3
     fi
-    echo -n "Running: \"$CMD\"... "
+    log_action_begin "Running: \"$CMD\"... "
     $1 &>${BUILD_LOG}
     if [ $? -eq $2 ]; then
-        echo "SUCCESS"
+        log_action_end "0" "SUCCESS"
     else
-        echo "FAIL"
+        log_action_end "1" "FAIL"
         echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
         cat ${BUILD_LOG}
         exit 1
@@ -392,6 +392,11 @@ PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
 # User Permission Check
 if [[ $EUID -ne 0 ]]; then
     echo "Error: GlobaLeaks install script must be runned by root"
+    exit 1
+fi
+
+if [[ lsb_release -c | grep precise -ne 0 ]]; then
+    echo "Error: Currently install script offers only Ubuntu 12.04 support"
     exit 1
 fi
 
