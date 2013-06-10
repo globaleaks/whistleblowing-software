@@ -22,15 +22,24 @@
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 NAME=$(basename $(readlink -nf $0))
 
-if [[ $EUID -ne 0 ]]; then
-   echo "Error: GlobaLeaks init script must be run as root" 1>&2
-   exit 0
-fi
-
 SCRIPTNAME=$0
 
 if test -e /etc/default/globaleaks ; then
-  . /etc/default/globaleaks
+    . /etc/default/globaleaks
+else
+    echo "Error: missing globaleaks default file"
+    exit 0
+fi
+
+. /lib/init/vars.sh
+
+. /lib/lsb/init-functions
+
+test $DEBIAN_SCRIPT_DEBUG && set -v -x
+
+if [[ $EUID -ne 0 ]]; then
+   echo "Error: GlobaLeaks init script must be run as root" 1>&2
+   exit 0
 fi
 
 GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
@@ -43,14 +52,6 @@ read_pid()
         GLBACKEND_PID=0
     fi
 }
-
-# Load the VERBOSE setting and other rcS variables
-. /lib/init/vars.sh
-
-# Define LSB log_* functions.
-# Depend on lsb-base (>= 3.2-14) to ensure that this file is present
-# and status_of_proc is working.
-. /lib/lsb/init-functions
 
 check_iptables()
 {
