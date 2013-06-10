@@ -83,6 +83,24 @@ SCRIPTNAME=$0
 
 GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
 
+DO () {
+    if [ -z "$3" ]; then
+        CMD=$1
+    else
+        CMD=$3
+    fi
+    log_action_begin_msg "Running: \"$CMD\"... "
+    $1 &>${BUILD_LOG}
+    if [ $? -eq $2 ]; then
+        log_action_end_msg 0 "SUCCESS"
+    else
+        log_action_end_msg 1 "FAIL"
+        echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
+        cat ${BUILD_LOG}
+        exit 1
+    fi
+}
+
 read_pid()
 {
     if [ -e ${GLBACKEND_PIDFILE} ]; then
@@ -125,19 +143,19 @@ network_sandboxing_start()
     do
         for IP_SRC in "${ALLOWED_SRC_IP[@]}"
         do
-            iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
+            DO "iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT" "0"
         done
-        iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
+        DO "iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP" "0"
     done
 
     # OUTBOUND
     # All outbound connections from GlobaLeaks goes trough Tor
-    iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
-    iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
-    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
-    iptables -t filter -A OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT
-    iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
-    iptables -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
+    DO "iptables -t nat -A OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}" "0"
+    DO "iptables -t nat -A OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}" "0"
+    DO "iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT" "0"
+    DO "iptables -t filter -A OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT" "0"
+    DO "iptables -t filter -A OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT" "0"
+    DO "iptables -t filter -A OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP" "0"
 
     log_action_end_msg 0
 }
@@ -159,19 +177,19 @@ network_sandboxing_stop()
     do
         for IP_SRC in "${ALLOWED_SRC_IP[@]}"
         do
-            iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -s ${IP_SRC} -j ACCEPT
+            DO "iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -s ${IP_SRC} -j ACCEPT" "0"
         done
-        iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
+        DO "iptables -D INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP" "0"
     done
 
     # OUTBOUND
     # All outbound connections from GlobaLeaks goes trough Tor
-    iptables -t nat -D OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}
-    iptables -t nat -D OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}
-    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT
-    iptables -t filter -D OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT
-    iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT
-    iptables -t filter -D OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP
+    DO "iptables -t nat -D OUTPUT ! -o lo -p tcp -m owner --uid-owner ${USER} -m tcp -j REDIRECT --to-ports ${TORTRANSPORT}" "0"
+    DO "iptables -t nat -D OUTPUT ! -o lo -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j REDIRECT --to-ports ${TORDNSPORT}" "0"
+    DO "iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp --dport ${TORTRANSPORT} -j ACCEPT"
+    DO "iptables -t filter -D OUTPUT -p udp -m owner --uid-owner ${USER} -m udp --dport 53 -j ACCEPT" "0"
+    DO "iptables -t filter -D OUTPUT -p tcp -m owner --uid-owner ${USER} -m tcp -d 127.0.0.1 --dport ${TORSOCKSPORT} -j ACCEPT" "0"
+    DO "iptables -t filter -D OUTPUT ! -o lo -m owner --uid-owner ${USER} -j DROP" "0"
 
     log_action_end_msg 0
 }
