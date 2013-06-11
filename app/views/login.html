@@ -6,8 +6,8 @@
 <div class="container config-page">
   <div class="row" ng-hide="cookiesEnabled()">
     <div class="span9">
-      <h2>Cookies are not enabled!</h2>
-      <p>You will not be able to login.</p>
+      <h2>{{ "Cookies are not enabled!" | translate }}</h2>
+      <p>{{ "You will not be able to login." | translate }}</p>
     </div>
   </div>
   <div class="row" ng-show="cookiesEnabled()">
@@ -25,7 +25,7 @@
 
         <button class="btn btn-success"
           ng-disable="loginForm.$invalid"
-          ng-click="login(loginUsername, loginPassword, loginRole)">Login</button>
+          ng-click="login(loginUsername, loginPassword, loginRole)">{{ "Login" | translate }}</button>
 
       </form>
     </div>

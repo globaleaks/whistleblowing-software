@@ -28,7 +28,7 @@
         <!-- endbuild -->
 
     </head>
-    <body ng-app="GLClient">
+    <body ng-app="GLClient" ng-controller="MainCtrl">
     <!-- This is the mocked app for development -->
     <!-- <body ng-app="GLClientDev"> -->
 
@@ -41,24 +41,14 @@
             <script src="scripts/vendor/json3.min.js"></script>
         <![endif]-->
 
-        <div class="pending-requests modal fade hide"
-             latenza-box ng-controller="LatenzaCtrl">
-          <div class="modal-header">
-            <button type="button" class="close"
-                    data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h3>Loading...</h3>
+        <div class="pending-requests" ng-show="showRequestBox">
+          <div class="spinner" spinner></div>
+
+          <div class="message">
+            <h1>Please wait...</h1>
+            <p class="lead">Anonymity is important, but it's kind of slow :(</p>
+            <i class="icon-star" ng-repeat="request in pendingRequests"></i>
           </div>
-          <div class="modal-body">
-            <h2>Did you know?</h2>
-            <p>The term whistle-blower comes from the whistle a referee uses to
-            indicate an illegal or foul play. US civic activist Ralph
-            Nader coined the phrase in the early 1970s to avoid the negative
-            connotations found in other words such as "informers" and
-            "snitches"</p>
-          </div>
-          <ul>
-            <li ng-repeat="request in pending_requests">{{request.name}}</li>
-          </ul>
         </div>
 
         <div ng-include="'views/widgets/privacybox.html'"></div>
@@ -122,6 +112,10 @@
         <script src="scripts/vendor/angular-mocks.js"></script>
         <script src="scripts/vendor/angular-ui.js"></script>
         <script src="scripts/vendor/ui-bootstrap-tpls-0.2.0.js"></script>
+        <script src="scripts/vendor/spin.js"></script>
+        <script src="scripts/vendor/md5.js"></script>
+
+        <script src="scripts/translations.js"></script>
 
         <script src="scripts/services.js"></script>
         <script src="scripts/templates.js"></script>
@@ -130,8 +124,8 @@
         <script src="scripts/ui.js"></script>
         <script src="scripts/filters.js"></script>
 
+        <script src="scripts/controllers/main.js"></script>
         <script src="scripts/controllers/wizard.js"></script>
-        <script src="scripts/controllers/latenza.js"></script>
         <script src="scripts/controllers/privacybox.js"></script>
         <script src="scripts/controllers/home.js"></script>
 

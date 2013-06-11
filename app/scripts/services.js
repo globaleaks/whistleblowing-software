@@ -89,16 +89,26 @@ angular.module('resourceServices.authentication', ['ngCookies'])
 angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices.authentication']).
   factory('globaleaksInterceptor', ['$q', '$rootScope', '$location',
   function($q, $rootScope, $location) {
+    $rootScope.showRequestBox = false;
+
     /* This interceptor is responsible for keeping track of the HTTP requests
      * that are sent and their result (error or not error) */
     return function(promise) {
-      if (!$rootScope.pendingRequests) {
+      if (!$rootScope.pendingRequests)
         $rootScope.pendingRequests = [];
-      };
+
+      $rootScope.$watch('pendingRequests', function(){
+        if ($rootScope.pendingRequests.length === 0) {
+          $rootScope.showRequestBox = false;
+        } else {
+          $rootScope.showRequestBox = true;
+        }
+      }, true);
 
       $rootScope.pendingRequests.push(promise);
 
       return promise.then(function(response) {
+        $rootScope.pendingRequests.pop(promise);
         return response;
       }, function(response) {
         /* When the response has failed write the rootScope errors array the
@@ -123,6 +133,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           $rootScope.errors = [];
         }
         $rootScope.errors.push(error);
+
+        $rootScope.pendingRequests.pop(promise);
         return $q.reject(response);
       });
     }
@@ -195,8 +207,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           Receivers.query(function(receivers){
             self.receivers = receivers;
             setCurrentContextReceivers();
+            fn(self);
           });
-          fn(self);
         });
       });
 
@@ -539,5 +551,18 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
     $httpProvider.defaults.transformRequest.push(globaleaksRequestInterceptor);
 }]);
 
+angular.module('GLClient.themes', [])
+  .factory('Templates', function() {
+      var selected_theme = 'default';
 
-
+      return {
+        'home': 'templates/' + selected_theme + '/views/home.html',
+        'about': 'templates/' + selected_theme + '/views/about.html',
+        'status': 'templates/' + selected_theme + '/views/status.html',
+        'submission': {
+          'form': 'templates/' + selected_theme + '/views/submission/form.html',
+          'main': 'templates/' + selected_theme + '/views/submission/main.html'
+        }
+      };
+    }
+);

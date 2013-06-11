@@ -16,10 +16,12 @@
     <!-- End Nav Bar -->
     <div class="span9">
 
-      <h3>General information</h3>
-      <p><b>You're running GlobaLeaks version {{admin.node.version}}</b></p>
+      <h3>
+        {{ "General information" | translate }}
+      </h3>
+      <p><b>{{ "You're running GlobaLeaks version " | translate }} {{admin.node.version}}</b></p>
 
-      <label>Current initiative logo</label>
+      <label>{{ "Current initiative logo" | translate }}</label>
       <form name="contentForm" novalidate>
         <div class="imageUpload" ng-controller="ImageUploadCtrl">
           <div class="profile" ng-mouseenter="openUploader()"
@@ -48,7 +50,7 @@
 
         <div class="row">
           <div class="span9">
-            <label>Node name</label>
+            <label>{{ "Node name" | translate }}</label>
             <input type="text" ng-model="admin.node.name" value="{{admin.node.name}}">
           </div>
         </div>
@@ -56,29 +58,29 @@
         <!-- Description -->
         <div class="row">
           <div class="span9">
-            <label>Description</label>
+            <label>{{ "Description" | translate }}</label>
             <textarea ng-model="admin.node.description">{{admin.node.description}}</textarea>
           </div>
         </div>
 
         <div class="row">
           <div class="span9">
-            <label>Email</label>
+            <label>{{ "Email" | translate }}</label>
             <input type="email" ng-model="admin.node.email">
           </div>
         </div>
 
-        <label>Tor Hidden Service (hostname)</label>
+        <label>{{ "Tor Hidden Service (hostname)" | translate }}</label>
         <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
                ng-pattern="/^http://[0-9a-z]{16}\.onion$/">
         <p class="text-error"
-           ng-show="contentForm.hidden_service.$error.pattern">Invalid format for hidden service (should be "http://thirteenchars123.onion")</p>
+        ng-show="contentForm.hidden_service.$error.pattern">{{ "Invalid format for hidden service (should be http://thirteenchars123.onion)" | translate }}</p>
 
-        <label>Tor2web Public Site (url)</label>
+        <label>{{ "Tor2web Public Site (url)" | translate }}</label>
         <input type="url" name="public_site" ng-model="admin.node.public_site"
-               ng-pattern="/^https://[0-9a-z.]*$/">
+               ng-pattern="/^https://[0-9a-z.:]*$/">
         <p class="text-error"
-           ng-show="contentForm.public_site.$error.pattern">Invalid format for public site (should be "https://thirteenchars123.tor2web.org")</p>
+        ng-show="contentForm.public_site.$error.pattern">{{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}</p>
 
         <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
             <!-- </div> -->
@@ -110,7 +112,7 @@
         <br>
         <button class="btn btn-success" 
                     ng-disabled="contentForm.$invalid || contentForm.$pristine"
-                    ng-click="updateNode(admin.node)">Save</button>
+                    ng-click="updateNode(admin.node)">{{ "Save" | translate }}</button>
 
       </form>
     </div>

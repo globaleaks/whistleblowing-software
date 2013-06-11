@@ -1,0 +1,735 @@
+# Copyright (C) 2013 WordPress
+# This file is distributed under the same license as the WordPress package.
+# Translators:
+# uovobw <uovobw@gmail.com>, 2013
+# hermes <info@logioshermes.org>, 2013
+# okno <mail@pawelzorzan.eu>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"Report-Msgid-Bugs-To: http://github.com/globaleaks/GlobaLeaks\n"
+"PO-Revision-Date: 2013-06-01 08:27+0000\n"
+"Last-Translator: hermes <info@logioshermes.org>\n"
+"Language-Team: Italian (http://www.transifex.com/projects/p/globaleaks/language/it/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: it\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: example.py:11
+msgid "add option"
+msgstr "Aggiungi opzione"
+
+#: example.py:11
+msgid ""
+"We were not able to determine if you are anonymous or not, please proceed "
+"with care"
+msgstr "Non siamo stati in grado di determinare se sei anonimo o meno, per favore fai attenzione"
+
+#: example.py:11
+msgid "Admin interface and configure at least one context"
+msgstr "Dal pannello di amministazione configura almeno un contesto"
+
+#: example.py:11
+msgid "You will not be able to perform a submission."
+msgstr "Non sarai in grado di inviare il tuo contributo"
+
+#: example.py:11
+msgid "Comments"
+msgstr "Commenti"
+
+#: example.py:11
+msgid ""
+"that is specifically designed to protect the identity of the reporter and of"
+" the ones running the platform."
+msgstr "progettato specificatamente per proteggere l'identità del reporter e di coloro che gestiscono il sistema"
+
+#: example.py:11
+msgid "add field"
+msgstr "aggiungi campo"
+
+#: example.py:11
+msgid "Tips"
+msgstr "suggerimenti"
+
+#: example.py:11
+msgid "Users Overview"
+msgstr "Panoramica utenti"
+
+#: example.py:11
+msgid "Login page"
+msgstr "Pagina di login"
+
+#: example.py:11
+msgid "Files"
+msgstr "Files"
+
+#: example.py:11
+msgid "Views"
+msgstr "Viste"
+
+#: example.py:11
+msgid "Success!"
+msgstr "Successo"
+
+#: example.py:11
+msgid "Welcome to"
+msgstr "Benvenuto"
+
+#: example.py:11
+msgid "to verify the file integrity"
+msgstr "per verificare l'integrita' del file"
+
+#: example.py:11
+msgid "Add Comment"
+msgstr "Aggiungi commento"
+
+#: example.py:11
+msgid "The requested tip does not exist or has expired."
+msgstr "L'informazione richiesta non esiste o e' scaduta"
+
+#: example.py:11
+msgid "Previous Step"
+msgstr "Passo precedente"
+
+#: example.py:11
+msgid "The two passwords do not match"
+msgstr "Le due password non corrispondono"
+
+#: example.py:11
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "Questa interfaccia potrebbe aiutarti a individuare anomalie nel tuo Nodo"
+
+#: example.py:11
+msgid "At least one letter"
+msgstr "Almeno una lettera"
+
+#: example.py:11
+msgid "Contexts Configuration"
+msgstr "Configurazione Contesti"
+
+#: example.py:11
+msgid ""
+"Invalid format for hidden service (should be http://thirteenchars123.onion)"
+msgstr "Formato dell'hidden service non valido (dovrebbe essere http://trediciLettere123.onion)"
+
+#: example.py:11
+msgid "Users overview"
+msgstr "Panoramica utenti"
+
+#: example.py:11
+msgid "It appears your are not using Tor, thus you are strongly advised to "
+msgstr "Sembrerebbe che tu non stia usando Tor, di conseguenza ti raccomandiamo fortemente di"
+
+#: example.py:11
+msgid "Checkboxes"
+msgstr "Lista spuntata"
+
+#: example.py:11
+msgid ""
+"To ensure your anonymity be sure that you are visiting this site using the"
+msgstr "Per aumentare il tuo anonimato assicurati di star visitando il sito usando"
+
+#: example.py:11
+msgid "Use the"
+msgstr "Usa il"
+
+#: example.py:11
+msgid "You will not be able to login."
+msgstr "Non sarai in grado di fare login"
+
+#: example.py:11
+msgid "Malformed source"
+msgstr "Origine malformata"
+
+#: example.py:11
+msgid "Add new context"
+msgstr "Aggiungi nuovo contesto"
+
+#: example.py:11
+msgid "Tor2web Public Site (url)"
+msgstr "Sito pubblico Tor2web (url)"
+
+#: example.py:11
+msgid "You're running GlobaLeaks version "
+msgstr "Stai utilizzando GlobaLeaks versione"
+
+#: example.py:11
+msgid ""
+"You can customize this section by editing "
+"GLClient/app/templates/default/views/submission/main.html"
+msgstr "Puoi personalizzare questa sezione editando il file "
+
+#: example.py:11
+msgid "How you can transform information into action!"
+msgstr "Come puoi trasformare una informazione in una azione"
+
+#: example.py:11
+msgid "Warning!"
+msgstr "Attenzione"
+
+#: example.py:11
+msgid "Files Overview"
+msgstr "Panoramica dei file"
+
+#: example.py:11
+msgid "This node is not configured."
+msgstr "Questo nodo non e' configurato"
+
+#: example.py:11
+msgid "Receivers Configuration"
+msgstr "Configurazione dei Riceventi"
+
+#: example.py:11
+msgid "SMTP server port"
+msgstr "Porta del server SMTP"
+
+#: example.py:11
+msgid "Preferences"
+msgstr "Preferenze"
+
+#: example.py:11
+msgid "Add new receiver"
+msgstr "Aggiungi nuovo Ricevente"
+
+#: example.py:11
+msgid "Mail Configuration"
+msgstr "Configurazione Mail"
+
+#: example.py:11
+msgid "security check"
+msgstr "Controllo di sicurezza"
+
+#: example.py:11
+msgid "System"
+msgstr "Sistema"
+
+#: example.py:11
+msgid "upload"
+msgstr "Upload"
+
+#: example.py:11
+msgid "Drop Menu (Select)"
+msgstr "Menu' a tendina (selezione)"
+
+#: example.py:11
+msgid "download"
+msgstr "Download"
+
+#: example.py:11
+msgid "Save"
+msgstr "Salva"
+
+#: example.py:11
+msgid "Node name"
+msgstr "Nome del nodo"
+
+#: example.py:11
+msgid "Email"
+msgstr "Email"
+
+#: example.py:11
+msgid "Name"
+msgstr "Nome"
+
+#: example.py:11
+msgid "Username"
+msgstr "Username"
+
+#: example.py:11
+msgid "Current Password"
+msgstr "Password attuale"
+
+#: example.py:11
+msgid "Receivers"
+msgstr "Ricevente"
+
+#: example.py:11
+msgid "Receiver list"
+msgstr "Lista dei riceventi"
+
+#: example.py:11
+msgid "Access counter"
+msgstr "Contatore di accessi"
+
+#: example.py:11
+msgid "Tor Hidden Service (hostname)"
+msgstr "Tor Hidden Service (hostname)"
+
+#: example.py:11
+msgid ""
+"Through this platform you will be able to report on wrongdoing. This "
+"platform is running the"
+msgstr "Tramite questa piattaforma sarai in grado di far rapporto su comportamenti scorretti. Questa piattaforma sta eseguendo il"
+
+#: example.py:11
+msgid "Url"
+msgstr "Url"
+
+#: example.py:11
+msgid "This is the"
+msgstr "Questo è il"
+
+#: example.py:11
+msgid "We are supported also by your donations. Visit our"
+msgstr "Puoi aiutarci anche tramite le tue donazioni. Visita il nostro"
+
+#: example.py:11
+msgid ""
+"Invalid format for public site (should be "
+"https://thirteenchars123.tor2web.org)"
+msgstr "Formato del sito pubblico non valido (dovrebbe essere https://trediciCaratteri123.tor2web.org)"
+
+#: example.py:11
+msgid "Info"
+msgstr "Informazioni"
+
+#: example.py:11
+msgid "sha256 hash"
+msgstr "Hash sha256"
+
+#: example.py:11
+msgid "Tips Overview"
+msgstr "Panoramica dei suggerimenti"
+
+#: example.py:11
+msgid ""
+"This interface shows the activity of the users of your node. This may be "
+"helpful in detecting anomalies and supporting the Receivers for of your "
+"node."
+msgstr "Questa interfaccia mostra l'attivita' degli utenti del tuo nodo. Questo potrebbe essere utile nel rilevare anomalie e nel supportare i Riceventi del tuo nodo"
+
+#: example.py:11
+msgid "Age"
+msgstr "Eta'"
+
+#: example.py:11
+msgid ""
+"On unix based systems this can be done by running the following command"
+msgstr "Su sistemi basati su unix questo puo' essere ottenuto lanciando il seguente comando"
+
+#: example.py:11
+msgid "Tip Email template"
+msgstr "Modello dell'email di suggerimento"
+
+#: example.py:11
+msgid "logout"
+msgstr "Logout"
+
+#: example.py:11
+msgid "Files overview"
+msgstr "Panoramica dei files"
+
+#: example.py:11
+msgid "Delete"
+msgstr "Cancella"
+
+#: example.py:11
+msgid "At least one number"
+msgstr "Almeno un numero"
+
+#: example.py:11
+msgid "Paragraph(s)"
+msgstr "Paragrafo(i)"
+
+#: example.py:11
+msgid "SMTP server address"
+msgstr "Indirizzo del server SMTP"
+
+#: example.py:11
+msgid "Your node is not configured! Please, proceed via"
+msgstr "Il tuo nodo non e' configurato! Per favore procedia a"
+
+#: example.py:11
+msgid "Blow the Whistle"
+msgstr "Segnala malapratica"
+
+#: example.py:11
+msgid ""
+"This number here is your receipt keep good care of it as it will allow you "
+"to access your submission"
+msgstr "Ti raccomandiamo di conservare con cura questo numero di ricevuta in quanto ti permettera' di accedere ai dati che hai inviato"
+
+#: example.py:11
+msgid "donation page"
+msgstr "Pagina delle donazioni"
+
+#: example.py:11
+msgid "Size"
+msgstr "Dimensione"
+
+#: example.py:11
+msgid "Activation Email template"
+msgstr "Modello della mail di attivazione"
+
+#: example.py:11
+msgid "Email Address (Username)"
+msgstr "Indirizzo Email (nome utente)"
+
+#: example.py:11
+msgid "manual for practical security best practices."
+msgstr "manuale per le buone norme pratiche riguardo la sicurezza"
+
+#: example.py:11
+msgid "View Tip"
+msgstr "Mostra suggerimento"
+
+#: example.py:11
+msgid "Required old password confirm"
+msgstr "Richiesta conferma della vecchia password"
+
+#: example.py:11
+msgid "done"
+msgstr "Fatto"
+
+#: example.py:11
+msgid "Your username"
+msgstr "Il tuo nome utente"
+
+#: example.py:11
+msgid "Congratulations!"
+msgstr "Congratulazioni!"
+
+#: example.py:11
+msgid ""
+"This interface may help you understand how the Node is used by the "
+"whistleblower. We present you with the submissions present on the node and a"
+" few statistics on the kind of usage (activity, files, comments)."
+msgstr "Questa interfaccia potrebbe aiutarti a capire in che modo il Nodo viene usato dai fornitori di informazioni. Ti verra' fornito un elenco delle informazioni inviate al nodo e un po di statistiche sul tipo di utilizzo (attivita', file, commenti)."
+
+#: example.py:11
+msgid ""
+"Choose the context and receivers that will be sure to transform your "
+"submission into action!"
+msgstr "Scegli il contesto e i riceventi si faranno carico di trasformare la tua informazione in una azione!"
+
+#: example.py:11
+msgid "Contexts"
+msgstr "Contesti"
+
+#: example.py:11
+msgid ""
+"Keep in mind that using Tor Browser Bundle does not replace good security "
+"practices and it cannot protect you in the event your computer has been "
+"compromised. You are strongly advised to read the"
+msgstr "Ricorda sempre che usare il Tor Browser Bundle non basta e non si sostituisce alle buone norme di sicurezza, per esempio non puo' proteggerti se il tuo computer e' stato compromesso. Ti raccomandiamo di leggere il"
+
+#: example.py:11
+msgid "New Password"
+msgstr "Nuova Password"
+
+#: example.py:11
+msgid "Admin management interface"
+msgstr "Interfaccia amministrazione"
+
+#: example.py:11
+msgid "Whistleblower"
+msgstr ""
+
+#: example.py:11
+msgid "Hint"
+msgstr "Suggerimento"
+
+#: example.py:11
+msgid "add"
+msgstr "Aggiungi"
+
+#: example.py:11
+msgid "download a copy of the tor browser bundle"
+msgstr "Scarica una copia del Tor Browser Bundle"
+
+#: example.py:11
+msgid "Phone"
+msgstr "Telefono"
+
+#: example.py:11
+msgid "click to close"
+msgstr "Clickka per chiudere"
+
+#: example.py:11
+msgid "This software is developed by the non-profit organization"
+msgstr "Questo software e' sviluppato da una organizzazione no-profit"
+
+#: example.py:11
+msgid "Save changes"
+msgstr "Salva"
+
+#: example.py:11
+msgid "Content Settin"
+msgstr "Configurazioni del contenuto"
+
+#: example.py:11
+msgid "Comment Email template"
+msgstr "Modello email di commento"
+
+#: example.py:11
+msgid "Radio Buttons"
+msgstr "Bottoni a selezione multipla"
+
+#: example.py:11
+msgid "Danger!"
+msgstr "Pericolo!"
+
+#: example.py:11
+msgid "Tip Status Page"
+msgstr "Pagina di status del suggerimento"
+
+#: example.py:11
+msgid "Receiver List"
+msgstr "Lista riceventi"
+
+#: example.py:11
+msgid "Loading Tip page..."
+msgstr "Pagina del suggerimento in caricamento..."
+
+#: example.py:11
+msgid "Email Address"
+msgstr "Indirizzo Email"
+
+#: example.py:11
+msgid "Required"
+msgstr "Richiesto"
+
+#: example.py:11
+msgid ""
+"It appears you are using Tor. To better protect your anonymity, be sure that"
+" you are using the"
+msgstr "Sembra che tu stia usando Tor. Per meglio proteggere il tuo anonimato, assicurati di star usando"
+
+#: example.py:11
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Da qui puoi lanciare i comandi di debug che emulano le funzioni di un GLClient"
+
+#: example.py:11
+msgid "Select file"
+msgstr "Seleziona file"
+
+#: example.py:11
+msgid "Preferences and password management"
+msgstr "Gestione password e sicurezza"
+
+#: example.py:11
+msgid "Agree"
+msgstr "Accetto"
+
+#: example.py:11
+msgid "GlobaLeaks software"
+msgstr "GlobaLeaks software"
+
+#: example.py:11
+msgid "Submission Created!"
+msgstr "Dati inviati!"
+
+#: example.py:11
+msgid "Text"
+msgstr "Testo"
+
+#: example.py:11
+msgid "Receiver name too long"
+msgstr "Nome del ricevente troppo lungo"
+
+#: example.py:11
+msgid "Number"
+msgstr "Numero"
+
+#: example.py:11
+msgid "To further enhance your security, please follow these instructions:"
+msgstr "Per migliorare ulteriormente la tua sicurezza, segui queste istruzioni"
+
+#: example.py:11
+msgid "to help us further support the development of GlobaLeaks."
+msgstr "per aiutarci a continuare a sviluppare GlobaLeaks"
+
+#: example.py:11
+msgid "References"
+msgstr "Referenze"
+
+#: example.py:11
+msgid "Are you a receiver?"
+msgstr "Sei un ricevente?"
+
+#: example.py:11
+msgid "Loading..."
+msgstr "Caricamento..."
+
+#: example.py:11
+msgid "delete"
+msgstr "Cancella"
+
+#: example.py:11
+msgid "Next Step"
+msgstr "Passo successivo"
+
+#: example.py:11
+msgid "At least 8 keypress long"
+msgstr "almeno 8 caratteri"
+
+#: example.py:11
+msgid "Admin password"
+msgstr "Password amministratore"
+
+#: example.py:11
+msgid "Currently logged in "
+msgstr "Connesso"
+
+#: example.py:11
+msgid "Multi-Select"
+msgstr "Selezione multipla"
+
+#: example.py:11
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "La tabella qui sotto mostra i file presenti nella directory delle informazioni e le loro relazioni all'interno del database"
+
+#: example.py:11
+msgid "Admin please configure a Context and associated Receivers using"
+msgstr "Amministratore per favore configura un contesto e i riceventi associati usando"
+
+#: example.py:11
+msgid "Submit"
+msgstr "Invia"
+
+#: example.py:11
+msgid "General information"
+msgstr "Informazioni generali"
+
+#: example.py:11
+msgid "Tip ID"
+msgstr "ID del suggerimento"
+
+#: example.py:11
+msgid ""
+"In the event that you would like to remain anonymous, do not submit any "
+"personal information. (e.g. your name or relationship to the offender. Do "
+"not submit any information that can be traced back to you.)"
+msgstr "Nel caso in cui volessi rimanere anonimo, non inviare nessun tipo di dati personali. (per esempio, il tuo nome o il tuo rapporto nei confronti del cattivo. Non inviare alcuna informazione che potrebbe essere utilizzata per tracciarti)"
+
+#: example.py:11
+msgid "Current initiative logo"
+msgstr "Logo corrente dell'iniziativa"
+
+#: example.py:11
+msgid "Description"
+msgstr "Descrizione"
+
+#: example.py:11
+msgid "Notification templates"
+msgstr "Modelli di notifica"
+
+#: example.py:11
+msgid "Type"
+msgstr "Tipo"
+
+#: example.py:11
+msgid "No file has been uploaded!"
+msgstr "Non e' stato inviato nessun file!"
+
+#: example.py:11
+msgid "File Email template"
+msgstr "Modello email di File"
+
+#: example.py:11
+msgid "Tip Overview"
+msgstr "Panoramica suggerimenti"
+
+#: example.py:11
+msgid "before continuing."
+msgstr "Prima di continuare"
+
+#: example.py:11
+msgid "Password management"
+msgstr "Gestione password"
+
+#: example.py:11
+msgid "I want to report on"
+msgstr "Vorrei riportare malapratica riguardo"
+
+#: example.py:11
+msgid "Password"
+msgstr "Password"
+
+#: example.py:11
+msgid "Last Access"
+msgstr "Ultimo accesso"
+
+#: example.py:11
+msgid "Welcome back captain!"
+msgstr "Bentornato a bordo, capitano!"
+
+#: example.py:11
+msgid "Transport Security"
+msgstr "Sicurezza a livello trasporto"
+
+#: example.py:11
+msgid "Contexts list"
+msgstr "Lista dei contesti"
+
+#: example.py:11
+msgid "Security Check"
+msgstr "Controllo di sicurezza"
+
+#: example.py:11
+msgid "Fields"
+msgstr "Campi"
+
+#: example.py:11
+msgid "New Submission"
+msgstr "Nuovo invio dati"
+
+#: example.py:11
+msgid ""
+"Please do not submit your report on a PC provided by your employer. "
+"Particularly an intranet connection may jeopardize your anonymity."
+msgstr "Per favore non inviare alcun dato da un PC fornitoti dal tuo datore di lavoro. Una connessione in una rete locale potrebbe mettere a repentaglio il tuo anonimato"
+
+#: example.py:11
+msgid "Add files..."
+msgstr "Aggiungi files..."
+
+#: example.py:11
+msgid "Still calculating hash"
+msgstr "Sto calcolando l'hash"
+
+#: example.py:11
+msgid "Invalid email address"
+msgstr "Indirizzo email non valido"
+
+#: example.py:11
+msgid "Login"
+msgstr "Login"
+
+#: example.py:11
+msgid "Enter your receipt"
+msgstr "Inserisci la tua Ricevuta"
+
+#: example.py:11
+msgid "Are you a whistleblower?"
+msgstr "Vuoi segnalare attività illecite o fraudolente?"
+
+#: example.py:11
+msgid ""
+"Enter the information that is relevant to your submission and possibly "
+"upload the relevant accompanying files"
+msgstr "Inserisci le informazioni che sono rilevanti al tuo invio dati e se necessario invia anche i file ad essere collegate"
+
+#: example.py:11
+msgid "What is this about?"
+msgstr "Cosa e' questo?"
+
+#: example.py:11
+msgid "Cookies are not enabled!"
+msgstr "I cookies non sono abilitati"
+
+#: example.py:11
+msgid "Retype again your new password"
+msgstr "Conferma la tua nuova password"
+
+#: example.py:11
+msgid "Your password is unsafe, it should have"
+msgstr "La tua password non e' sicura, dovrebbe avere"
+
+#: example.py:11
+msgid "By checking the box below you agree to these terms and conditions."
+msgstr "Selezionando la spunta qui sotto accetti i termini e le condizioni"
