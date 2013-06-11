@@ -86,7 +86,7 @@ class Model(Storm):
         cls.__storm_table__ = cls.__name__.lower()
         # maybe check here for attrs validation, and eventually return None
 
-        return Storm.__new__(cls, *args, **kw)
+        return Storm.__new__(cls, *args)
 
     def update(self, attrs=None):
         """
@@ -152,6 +152,8 @@ class Context(Model):
     """
     This models keeps track of specific contexts settings
     """
+    __storm_table__ = 'context'
+
     name = Unicode(validator=gltextv)
     description = Unicode(validator=gltextv)
     fields = Pickle()
@@ -200,6 +202,8 @@ class InternalTip(Model):
     All of those element has a Storm Reference with the InternalTip.id,
     never vice-versa
     """
+    __storm_table__ = 'internaltip'
+
     context_id = Unicode()
     #context = Reference(InternalTip.context_id, Context.id)
     #comments = ReferenceSet(InternalTip.id, Comment.internaltip_id)
@@ -231,6 +235,8 @@ class ReceiverTip(Model):
     date in a Tip, Tip core data are stored in StoredTip. The data here
     provide accountability of Receiver accesses, operations, options.
     """
+    __storm_table__ = 'receivertip'
+
     internaltip_id = Unicode()
     receiver_id = Unicode()
     #internaltip = Reference(ReceiverTip.internaltip_id, InternalTip.id)
@@ -252,6 +258,8 @@ class WhistleblowerTip(Model):
     Has ome differencies from the ReceiverTips: has a secret authentication checks, has
     different capabilities, like: cannot not download, cannot express pertinence.
     """
+    __storm_table__ = 'whistleblowertip'
+
     internaltip_id = Unicode()
     #internaltip = Reference(WhistleblowerTip.internaltip_id, InternalTip.id)
     receipt_hash = Unicode()
@@ -265,6 +273,8 @@ class ReceiverFile(Model):
     """
     This model keeps track of files destinated to a specific receiver
     """
+    __storm_table__ = 'receiverfile'
+
     internaltip_id = Unicode()
     internalfile_id = Unicode()
     receiver_id = Unicode()
@@ -286,6 +296,8 @@ class InternalFile(Model):
     This model keeps track of files before they are packaged
     for specific receivers
     """
+    __storm_table__ = 'internalfile'
+
     internaltip_id = Unicode()
     #internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
@@ -305,6 +317,8 @@ class Comment(Model):
     """
     This table handle the comment collection, has an InternalTip referenced
     """
+    __storm_table__ = 'comment'
+
     internaltip_id = Unicode()
 
     author = Unicode()
@@ -325,6 +339,8 @@ class Node(Model):
 
     This table represent the System-wide settings
     """
+    __storm_table__ = 'node'
+
     description = Unicode(validator=gltextv)
     name = Unicode(validator=gltextv)
     public_site = Unicode(validator=gltextv)
@@ -368,6 +384,8 @@ class Notification(Model):
     for the node
     templates are imported in the handler, but settings are expected all at once
     """
+    __storm_table__ = 'notification'
+
     server = Unicode()
     port = Int()
     username = Unicode()
@@ -400,6 +418,8 @@ class Receiver(Model):
     name, description, password and notification_fields, can be changed
     by Receiver itself
     """
+    __storm_table__ = 'receiver'
+
     name = Unicode(validator=gltextv)
     description = Unicode(validator=gltextv)
 

@@ -499,7 +499,7 @@ class transact(object):
         Returns a reference to Storm Store
         """
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file + '?foreign_keys=ON')
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.file_versioned_db + '?foreign_keys=ON')
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):
