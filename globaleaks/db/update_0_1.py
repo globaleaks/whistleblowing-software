@@ -1,20 +1,16 @@
 # -*- encoding: utf-8 -*-
 
-from storm.locals import Bool, Pickle, Unicode, Int, DateTime, Storm
+from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
-from globaleaks.db.updater import TableReplacer
+from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model, Receiver
 
 class Receiver_version_0(Model):
     """
-    Copyed from:
+    Fields source from:
     https://github.com/globaleaks/GLBackend/blob/f9d5aa21b8472cc48f3fb3691c67f0d9b871db86/globaleaks/models.py
     """
-
-    def __new__(cls, *args, **kw):
-        cls.__storm_tables__ = 'receiver'
-
-        return Storm.__new__(cls, args, kw)
+    __storm_table__ = 'receiver'
 
     name = Unicode()
     description = Unicode()
@@ -35,6 +31,7 @@ class Receiver_version_0(Model):
 class Replacer01(TableReplacer):
 
     def migrate_Receiver(self):
+
         print "Receivers migration assistant, extension with GPG capabilities: #%d" %\
               self.store_old.find(Receiver_version_0).count()
 

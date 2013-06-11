@@ -201,13 +201,25 @@ sys.argv[1:] = args
 def find_current_db_version(dirpath, filearray):
     """
     """
+    glbackend_file_present = 0
+    for single_file in filearray:
+        if single_file[:len('glbackend')] == 'glbackend':
+            glbackend_file_present += 1
+
+    if glbackend_file_present == 0:
+        print "glbackend database file not found in %s" % dirpath
+        raise StandardError
+    elif glbackend_file_present > 1:
+        print "glbackend database file found more than 1! keep only the latest in %s" % dirpath
+        raise AssertionError
+
     for single_file in filearray:
         abspath = os.path.join(dirpath, single_file)
 
         if abspath[-3:] == '.db':
 
-            nameindex = abspath.find('glbackend')
-            extensindex = abspath.find('.db')
+            nameindex = abspath.rfind('glbackend')
+            extensindex = abspath.rfind('.db')
 
             if nameindex + len('glbackend') == extensindex:
                 detected_version = 0
@@ -216,8 +228,6 @@ def find_current_db_version(dirpath, filearray):
                     abspath[nameindex+len('glbackend-'):extensindex])
 
             return detected_version, abspath
-
-    raise StandardError
 
 
 def check_db_files(db_dir_path):
@@ -229,16 +239,21 @@ def check_db_files(db_dir_path):
 
         try:
             starting_ver, abspath = find_current_db_version(path, files)
+
+            if starting_ver < GLSetting.db_version:
+                print "Performing update of Database from version %d to version %d" %\
+                      (starting_ver, GLSetting.db_version)
+                updater_manager.perform_version_update(starting_ver, GLSetting.db_version, abspath)
+                print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
+            else:
+                print "Database version detected: %d" % GLSetting.db_version
+
+        except AssertionError:
+            print "More than one database file has been found in %s" % path
+            quit()
         except StandardError:
             continue
 
-        if starting_ver < GLSetting.db_version:
-            print "Performing update of Database from version %d to version %d" %\
-                  (starting_ver, GLSetting.db_version)
-            updater_manager.perform_version_update(starting_ver, GLSetting.db_version, abspath)
-            return
-
-    print "Database version fit: do not required an update"
 
 
 def run_glbackend():
