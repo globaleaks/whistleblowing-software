@@ -145,47 +145,6 @@ angular.module('submissionUI', []).
       }
     }
 }]).
-  directive('latenzaBox', ['$timeout', function($timeout){
-    return function(scope, element, attrs) {
-      // This directive serves for making our latenza box work.
-      //
-      // Basically you are able to set the loading variable in
-      // global scope to either true or false. When it is set
-      // to true the loading box will be displayed and a
-      // message containing some trivia on whistleblowing will
-      // be displayed.
-      //
-      // Basically you must just do as follows:
-      // $scope.loading = true (if loading is in progress)
-      // $scope.loading = false (if loading has completed)
-      //
-      // XXX in future there may acutally be a cleaner way of
-      // doing this.
-
-      $timeout(function(){
-        // XXX this is a hack to avoid calling the watch while
-        // there is an apply in progress. Basically $timeout will
-        // execute what is contained in the function when
-        // everything that needs to happen in a digest cycle has
-        // happened. This was the solution that people interested
-        // in doing things like this have reached. See:
-        // http://stackoverflow.com/questions/11135864/scope-watch-is-not-updating-value-fetched-from-resource-on-custom-directive
-        // http://jsfiddle.net/jtowell/j8hnr/
-        // https://github.com/angular/angular.js/issues/1250
-        scope.$watch('loading', function() {
-            if (scope.loading === true) {
-              element.modal('show');
-            } else if (scope.loading === false){
-              element.modal('hide');
-            } else {
-              element.modal('show');
-            }
-          }, true);
-      });
-
-    }
-
-}]).
   directive('bsPopover', function(){
       return function(scope, element, attrs) {
         // We watch to see when the bsPopover attribute is sets
@@ -195,6 +154,28 @@ angular.module('submissionUI', []).
           }
         });
       };
+}).
+  directive('spinner', function(){
+    return function(scope, element, attrs) {
+      var opts = {
+        lines: 17, // The number of lines to draw
+        length: 31, // The length of each line
+        width: 13, // The line thickness
+        radius: 50, // The radius of the inner circle
+        corners: 1, // Corner roundness (0..1)
+        rotate: 0, // The rotation offset
+        direction: 1, // 1: clockwise, -1: counterclockwise
+        color: '#000', // #rgb or #rrggbb
+        speed: 1, // Rounds per second
+        trail: 38, // Afterglow percentage
+        shadow: false, // Whether to render a shadow
+        hwaccel: false, // Whether to use hardware acceleration
+        className: 'spinner', // The CSS class to assign to the spinner
+        zIndex: 2e9, // The z-index (defaults to 2000000000)
+        top: 'auto', // Top position relative to parent in px
+        left: 'auto' // Left position relative to parent in px
+      }, spinner = new Spinner(opts).spin(element[0]);
+  };
 }).
   directive('holder', function(){
       return function(scope, element, attrs) {

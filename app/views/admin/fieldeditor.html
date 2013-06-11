@@ -1,7 +1,7 @@
 <div class="row">
   <div class="span4">
-    <label>Fields</label>
-    <a ng-click="addField(context)"><i class="icon-plus-sign"></i> add field</a>
+    <label>{{ "Fields" | translate }}</label>
+    <a ng-click="addField(context)"><i class="icon-plus-sign"></i> {{ "add field" | translate }}</a>
   </div>
 </div>
 <div ng-repeat="field in context.fields" class="contextFields" ng-controller="AdminFieldEditorCtrl">
@@ -17,35 +17,35 @@
   <div class="fieldEditor" ng-show="editing">
 
     <div class="fieldEditorHeader field" ng-click="editing=false" ng-class='{invalid: newField.$invalid}'>
-      {{field.name}} <span>click to close</span>
+      {{field.name}} <span>{{ "click to close" | translate }}</span>
     </div>
 
     <div ng-form name="newField">
       <div class="row fieldEditorBody">
         <div class="span4">
-          <a ng-click="deleteField(field)" class="delete">delete</a>
-          <label>Name</label>
+          <a ng-click="deleteField(field)" class="delete">{{ "delete" | translate }}</a>
+          <label>{{ "Name" | translate }}</label>
           <input type="text" ng-model="field.name" required>
 
-          <label>Hint</label>
+          <label>{{ "Hint" | translate }}</label>
           <input type="text" ng-model="field.hint" required>
 
-          <label>Required
+          <label>{{ "Required" | translate }}
           <input type="checkbox" ng-model="field.required">
           </label>
 
-          <label>Type</label>
+          <label>{{ "Type" | translate }}</label>
           <select id="editFieldType" ng-model="field.type" ng-required>
-            <option value="text">Text</option>
-            <option value="radio">Radio Buttons</option>
-            <option value="select">Drop Menu (Select)</option>
-            <option value="multiple">Multi-Select</option>
-            <option value="checkboxes">Checkboxes</option>
-            <option value="textarea">Paragraph(s)</option>
-            <option value="number">Number</option>
-            <option value="url">Url</option>
-            <option value="phone">Phone</option>
-            <option value="email">Email</option>
+            <option value="text">{{ "Text" | translate }}</option>
+            <option value="radio">{{ "Radio Buttons" | translate }}</option>
+            <option value="select">{{ "Drop Menu (Select)" | translate }}</option>
+            <option value="multiple">{{ "Multi-Select" | translate }}</option>
+            <option value="checkboxes">{{ "Checkboxes" | translate }}</option>
+            <option value="textarea">{{ "Paragraph(s)" | translate }}</option>
+            <option value="number">{{ "Number" | translate }}</option>
+            <option value="url">{{ "Url" | translate }}</option>
+            <option value="phone">{{ "Phone" | translate }}</option>
+            <option value="email">{{ "Email" | translate }}</option>
           </select>
 
           <div ng-switch on="typeSwitch(field.type)">
@@ -54,12 +54,12 @@
             <div ng-switch-when="multiple">
               <div ng-repeat="option in field.options">
                 <form class="form-inline">
-                  <label>Name</label>
+                  <label>{{ "Name" | translate }}</label>
                   <input type="text" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" required>
                 </form>
               </div>
               <button class="btn btn-info" ng-click="addOption(field)">
-                <i class="icon-plus-sign"></i> add option
+                <i class="icon-plus-sign"></i> {{ "add option" | translate }}
               </button>
             </div>
           </div>

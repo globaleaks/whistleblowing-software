@@ -1,14 +1,14 @@
 <div class="jumbotron homeSplash" ng-show="node_info.name">
-    <h1>Welcome to {{node_info.name}}</h1>
+    <h1>{{ "Welcome to" | translate }} {{node_info.name}}</h1>
     <a href="#/submission" ng-hide="!node_info.configured"
-        class="btn btn-primary btn-large">Blow the Whistle</a>
+        class="btn btn-primary btn-large">{{ "Blow the Whistle" | translate }}</a>
 
-    <div ng-hide="node_info.configured">Your node is not configured! Please, proceed via
-        <a href="/#/admin/contexts">Admin interface and configure at least one context</a>
+    <div ng-hide="node_info.configured">{{ "Your node is not configured! Please, proceed via" | translate }}
+        <a href="/#/admin/contexts">{{ "Admin interface and configure at least one context" | translate }}</a>
     </div>
 </div>
 <div class="jumbotron homeSplash" ng-show="!node_info.name">
-    <h1>Loading...</h1>
+    <h1>{{ "Loading..." | translate }}</h1>
 </div>
 
 <div class="container" ng-show="node_info.description">
@@ -16,28 +16,25 @@
 
     <p class="lead">{{node_info.description}}</p>
 
-    <h1>Are you a whistleblower?</h1>
-    <label>Enter your receipt<br/>
+    <h1>{{ "Are you a whistleblower?" | translate }}</h1>
+    <label>{{ "Enter your receipt" | translate }}<br/>
       <input type="text" ng-model="receipt">
     </label>
     <a ng-click="view_tip(receipt)" class="btn btn-primary">View Tip</a>
 
-    <h1>Are you a receiver?</h1>
-    <p>This is the <a href="#/login">Login page</a>.</p>
+    <h1>{{ "Are you a receiver?" | translate }}</h1>
+    <p>{{ "This is the" | translate }} <a href="#/login">{{ "Login page" | translate }}</a>.</p>
 
-    <h1>What is this about?</h1>
-    <p class="homeIntro-byline">How you can transform information into action!</p>
+    <h1>{{ "What is this about?" | translate }}</h1>
+    <p class="homeIntro-byline">{{ "How you can transform information into action!" | translate }}</p>
+    <p>{{ "Through this platform you will be able to report on wrongdoing. This platform is running the" | translate }} <a href="https://globaleaks.org/">{{ "GlobaLeaks software" | translate }}</a>
+    , {{ "that is specifically designed to protect the identity of the reporter and of the ones running the platform." | translate }}</p>
     <p>
-    Through this platform you will be able to report on wrongdoing. This
-    platform is running the <a href="https://globaleaks.org/">GlobaLeaks</a>
-    software, that is specifically designed to protect the identity of the
-    reporter and of the ones running the platform.</p>
-    <p>
-    This software is developed by the non-profit organization
+    {{ "This software is developed by the non-profit organization" | translate }}
     <a href="http://www.logioshermes.org/">Hermes Center for Transparency and Digital Human Rights</a>.
-    We are supported also by your donations. Visit our <a
-      href="http://logioshermes.org/home/about-mission/support-us/">donation page</a>
-    to help us further support the development of GlobaLeaks.
+    {{ "We are supported also by your donations. Visit our" | translate }} <a
+      href="http://logioshermes.org/home/about-mission/support-us/">{{ "donation page" | translate }}</a>
+    {{ "to help us further support the development of GlobaLeaks." | translate }}
     </p>
 
   </div>

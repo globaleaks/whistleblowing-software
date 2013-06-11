@@ -10,7 +10,7 @@
   <div ng-repeat="success in successes">
     <div class="alert alert-success successMessage" fadeout>
       <button type="button" class="close" data-dismiss="alert">×</button>
-      <p><strong>Success!</strong> {{success.message}}</p>
+      <p><strong>{{ "Success!" | translate }}</strong> {{success.message}}</p>
     </div>
   </div>
 
@@ -18,8 +18,13 @@
 
 <div class="toolTip" ng-controller="toolTipCtrl">
   <div class="logout alert" ng-hide="!session_id">
-      <label>Currently logged (<a href="{{auth_landing_page}}">{{role}}</a>)</label>
-    <button class="btn btn-danger" ng-click="logout()">logout</button>
+      <label>{{ "Currently logged in " | translate }} (<a href="{{auth_landing_page}}">{{role}}</a>)</label>
+      <button class="btn btn-danger" ng-click="logout()">{{ "logout" | translate }}</button>
+  </div>
+  <div class="languagePick">
+    <select ng-model="language"
+            ng-options="lang_code as lang_name for (lang_code, lang_name) in supported_languages">
+    </select>
   </div>
 </div>
 

@@ -1,0 +1,733 @@
+# Copyright (C) 2013 WordPress
+# This file is distributed under the same license as the WordPress package.
+# Translators:
+# miekevanheesewijk <mieke@netdem.nl>, 2013
+msgid ""
+msgstr ""
+"Project-Id-Version: GlobaLeaks\n"
+"Report-Msgid-Bugs-To: http://github.com/globaleaks/GlobaLeaks\n"
+"PO-Revision-Date: 2013-06-02 15:14+0000\n"
+"Last-Translator: miekevanheesewijk <mieke@netdem.nl>\n"
+"Language-Team: Dutch (http://www.transifex.com/projects/p/globaleaks/language/nl/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: nl\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: example.py:11
+msgid "add option"
+msgstr "Voeg een optie toe"
+
+#: example.py:11
+msgid ""
+"We were not able to determine if you are anonymous or not, please proceed "
+"with care"
+msgstr "We kunnen niet nagaan of u geanonimiseerd bent, vervolg voorzichtig"
+
+#: example.py:11
+msgid "Admin interface and configure at least one context"
+msgstr ""
+
+#: example.py:11
+msgid "You will not be able to perform a submission."
+msgstr "U kunt niets toevoegen"
+
+#: example.py:11
+msgid "Comments"
+msgstr "Commentaar"
+
+#: example.py:11
+msgid ""
+"that is specifically designed to protect the identity of the reporter and of"
+" the ones running the platform."
+msgstr "Dit is speciaal ontworpen om de identiteit van de informatie aandrager te beschermen en de identiteit van de platformbeheerder"
+
+#: example.py:11
+msgid "add field"
+msgstr "Voeg een veld toe"
+
+#: example.py:11
+msgid "Tips"
+msgstr "Tips"
+
+#: example.py:11
+msgid "Users Overview"
+msgstr "Overzicht gebruikers"
+
+#: example.py:11
+msgid "Login page"
+msgstr "Login pagina"
+
+#: example.py:11
+msgid "Files"
+msgstr "Documenten"
+
+#: example.py:11
+msgid "Views"
+msgstr "Aantal keer bekeken"
+
+#: example.py:11
+msgid "Success!"
+msgstr "Succes!"
+
+#: example.py:11
+msgid "Welcome to"
+msgstr "Welkom bij"
+
+#: example.py:11
+msgid "to verify the file integrity"
+msgstr "om de betrouwbaarheid van het bestand te verifiëren"
+
+#: example.py:11
+msgid "Add Comment"
+msgstr "Voeg een commentaar toe"
+
+#: example.py:11
+msgid "The requested tip does not exist or has expired."
+msgstr "De gevraagde tip bestaat niet meer of is verlopen"
+
+#: example.py:11
+msgid "Previous Step"
+msgstr "Voorgaande stap"
+
+#: example.py:11
+msgid "The two passwords do not match"
+msgstr "De twee wachtwoorden komen niet overeen"
+
+#: example.py:11
+msgid "This interface may help you spot anomalies in your Node."
+msgstr ""
+
+#: example.py:11
+msgid "At least one letter"
+msgstr "Tenminste 1 letter"
+
+#: example.py:11
+msgid "Contexts Configuration"
+msgstr "Instellen Categorieën "
+
+#: example.py:11
+msgid ""
+"Invalid format for hidden service (should be http://thirteenchars123.onion)"
+msgstr "Ongeldig formaat voor verborgen service (moeten http://thirteenchars123.onion zijn)"
+
+#: example.py:11
+msgid "Users overview"
+msgstr "Overzicht gebruikers"
+
+#: example.py:11
+msgid "It appears your are not using Tor, thus you are strongly advised to "
+msgstr "U gebruikt geen Tor, u wordt dringend geadviseerd dit wel te doen"
+
+#: example.py:11
+msgid "Checkboxes"
+msgstr "Checkboxes"
+
+#: example.py:11
+msgid ""
+"To ensure your anonymity be sure that you are visiting this site using the"
+msgstr "Om ervoor te zorgen uw anonimiteit gegarandeerd kan worden, bezoekt u deze website met "
+
+#: example.py:11
+msgid "Use the"
+msgstr "Gebruik de"
+
+#: example.py:11
+msgid "You will not be able to login."
+msgstr "U kunt niet inloggen"
+
+#: example.py:11
+msgid "Malformed source"
+msgstr "Incorrect bestand"
+
+#: example.py:11
+msgid "Add new context"
+msgstr "Voeg een nieuwe categoerie toe"
+
+#: example.py:11
+msgid "Tor2web Public Site (url)"
+msgstr "Tor2web Publieke Site (url)"
+
+#: example.py:11
+msgid "You're running GlobaLeaks version "
+msgstr "U gebruikt nu GlobaLeaks versie"
+
+#: example.py:11
+msgid ""
+"You can customize this section by editing "
+"GLClient/app/templates/default/views/submission/main.html"
+msgstr "U kunt deze sectie aanpassen door GLClient/app/templates/default/views/submission/main.html te bewerken"
+
+#: example.py:11
+msgid "How you can transform information into action!"
+msgstr "Hoe u informatie om kan zetten in actie!"
+
+#: example.py:11
+msgid "Warning!"
+msgstr "Waarschuwing!"
+
+#: example.py:11
+msgid "Files Overview"
+msgstr "Bestandsoverzicht"
+
+#: example.py:11
+msgid "This node is not configured."
+msgstr "Deze node is niet geconfigureerd"
+
+#: example.py:11
+msgid "Receivers Configuration"
+msgstr "Configuratie ontvangers van bestanden"
+
+#: example.py:11
+msgid "SMTP server port"
+msgstr "SMTP server port"
+
+#: example.py:11
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+#: example.py:11
+msgid "Add new receiver"
+msgstr "Voeg een nieuwe ontvanger toe"
+
+#: example.py:11
+msgid "Mail Configuration"
+msgstr "Email configuratie"
+
+#: example.py:11
+msgid "security check"
+msgstr "Veligheidscheck"
+
+#: example.py:11
+msgid "System"
+msgstr "Systeem"
+
+#: example.py:11
+msgid "upload"
+msgstr "upload"
+
+#: example.py:11
+msgid "Drop Menu (Select)"
+msgstr "Dropmenu (Selecteer)"
+
+#: example.py:11
+msgid "download"
+msgstr "download"
+
+#: example.py:11
+msgid "Save"
+msgstr "Bewaar"
+
+#: example.py:11
+msgid "Node name"
+msgstr "Naam node"
+
+#: example.py:11
+msgid "Email"
+msgstr "Email"
+
+#: example.py:11
+msgid "Name"
+msgstr "Naam"
+
+#: example.py:11
+msgid "Username"
+msgstr "Genruikersnaam"
+
+#: example.py:11
+msgid "Current Password"
+msgstr "Huidig wachtwoord"
+
+#: example.py:11
+msgid "Receivers"
+msgstr "Ontvangers"
+
+#: example.py:11
+msgid "Receiver list"
+msgstr "Lijst ontvangers"
+
+#: example.py:11
+msgid "Access counter"
+msgstr "Aantal bezoekers"
+
+#: example.py:11
+msgid "Tor Hidden Service (hostname)"
+msgstr "Tor Hidden Service (hostnaam)"
+
+#: example.py:11
+msgid ""
+"Through this platform you will be able to report on wrongdoing. This "
+"platform is running the"
+msgstr "Via dit platform bent u in staat om misstanden te rapporteren. Dit platform draait het"
+
+#: example.py:11
+msgid "Url"
+msgstr "Url"
+
+#: example.py:11
+msgid "This is the"
+msgstr "Dit is de"
+
+#: example.py:11
+msgid "We are supported also by your donations. Visit our"
+msgstr "Wij zijn ook afhankelijk van uw donaties. Bezoek onze"
+
+#: example.py:11
+msgid ""
+"Invalid format for public site (should be "
+"https://thirteenchars123.tor2web.org)"
+msgstr "Ongeldig formaat voor publieke website (zou https://thirteenchars123.tor2web.org moeten zijn)"
+
+#: example.py:11
+msgid "Info"
+msgstr "Informatie"
+
+#: example.py:11
+msgid "sha256 hash"
+msgstr "sha256 hash"
+
+#: example.py:11
+msgid "Tips Overview"
+msgstr "Overzicht tips"
+
+#: example.py:11
+msgid ""
+"This interface shows the activity of the users of your node. This may be "
+"helpful in detecting anomalies and supporting the Receivers for of your "
+"node."
+msgstr "Deze interface toont de activiteit van de gebruikers van uw node. Dit kan nuttig zijn bij het opsporen van afwijkingen en het ondersteunen van de ontvangers voor uw node."
+
+#: example.py:11
+msgid "Age"
+msgstr "Leeftijd"
+
+#: example.py:11
+msgid ""
+"On unix based systems this can be done by running the following command"
+msgstr "Voor op unix gebaseerde systemen kunt u de volgende opdracht gebruiken"
+
+#: example.py:11
+msgid "Tip Email template"
+msgstr "Tip E-mail template"
+
+#: example.py:11
+msgid "logout"
+msgstr "Log uit"
+
+#: example.py:11
+msgid "Files overview"
+msgstr "Overzicht bestanden"
+
+#: example.py:11
+msgid "Delete"
+msgstr "Verwijder"
+
+#: example.py:11
+msgid "At least one number"
+msgstr "Tenminste een cijfer"
+
+#: example.py:11
+msgid "Paragraph(s)"
+msgstr "Paragraf(en)"
+
+#: example.py:11
+msgid "SMTP server address"
+msgstr "SMTP server adres"
+
+#: example.py:11
+msgid "Your node is not configured! Please, proceed via"
+msgstr "Uw node is niet geconfigureerd! Ga verder via"
+
+#: example.py:11
+msgid "Blow the Whistle"
+msgstr "Blow the Whistle"
+
+#: example.py:11
+msgid ""
+"This number here is your receipt keep good care of it as it will allow you "
+"to access your submission"
+msgstr "Dit nummer is hier uw ontvangstbewijs. Bewaar het met zorg, zodat u altijd toegang heeft tot de door u geuploade bestanden"
+
+#: example.py:11
+msgid "donation page"
+msgstr "Pagina donateurs"
+
+#: example.py:11
+msgid "Size"
+msgstr "Grootte"
+
+#: example.py:11
+msgid "Activation Email template"
+msgstr ""
+
+#: example.py:11
+msgid "Email Address (Username)"
+msgstr "Emailadres (Gebruikersnaam)"
+
+#: example.py:11
+msgid "manual for practical security best practices."
+msgstr "praktische handleiding voor veiligheid met best practices"
+
+#: example.py:11
+msgid "View Tip"
+msgstr "Kijkers tip"
+
+#: example.py:11
+msgid "Required old password confirm"
+msgstr "Verplicht het oude wachtwoord te bevestigen"
+
+#: example.py:11
+msgid "done"
+msgstr "klaar"
+
+#: example.py:11
+msgid "Your username"
+msgstr "Uw gebruikersnaam"
+
+#: example.py:11
+msgid "Congratulations!"
+msgstr "Gefeliciteerd!"
+
+#: example.py:11
+msgid ""
+"This interface may help you understand how the Node is used by the "
+"whistleblower. We present you with the submissions present on the node and a"
+" few statistics on the kind of usage (activity, files, comments)."
+msgstr ""
+
+#: example.py:11
+msgid ""
+"Choose the context and receivers that will be sure to transform your "
+"submission into action!"
+msgstr ""
+
+#: example.py:11
+msgid "Contexts"
+msgstr "Categorieën"
+
+#: example.py:11
+msgid ""
+"Keep in mind that using Tor Browser Bundle does not replace good security "
+"practices and it cannot protect you in the event your computer has been "
+"compromised. You are strongly advised to read the"
+msgstr ""
+
+#: example.py:11
+msgid "New Password"
+msgstr "Nieuw wachtwoord"
+
+#: example.py:11
+msgid "Admin management interface"
+msgstr ""
+
+#: example.py:11
+msgid "Whistleblower"
+msgstr "Klokkenluider"
+
+#: example.py:11
+msgid "Hint"
+msgstr "Hint"
+
+#: example.py:11
+msgid "add"
+msgstr "voeg toe"
+
+#: example.py:11
+msgid "download a copy of the tor browser bundle"
+msgstr "Download een kopie van de Tor Browser"
+
+#: example.py:11
+msgid "Phone"
+msgstr "Telefoon"
+
+#: example.py:11
+msgid "click to close"
+msgstr "klik om te sluiten"
+
+#: example.py:11
+msgid "This software is developed by the non-profit organization"
+msgstr "Deze software is ontwikkeld door een non-profit organisatie"
+
+#: example.py:11
+msgid "Save changes"
+msgstr "Bewaar wijzigingen"
+
+#: example.py:11
+msgid "Content Settin"
+msgstr "Inhouds instellingen"
+
+#: example.py:11
+msgid "Comment Email template"
+msgstr ""
+
+#: example.py:11
+msgid "Radio Buttons"
+msgstr "Radio Buttons"
+
+#: example.py:11
+msgid "Danger!"
+msgstr "Pas op!"
+
+#: example.py:11
+msgid "Tip Status Page"
+msgstr "Statusoverzicht tips"
+
+#: example.py:11
+msgid "Receiver List"
+msgstr "Lijst ontvangers"
+
+#: example.py:11
+msgid "Loading Tip page..."
+msgstr "Lasen Tips pagina"
+
+#: example.py:11
+msgid "Email Address"
+msgstr "Email Adres"
+
+#: example.py:11
+msgid "Required"
+msgstr "Vereist"
+
+#: example.py:11
+msgid ""
+"It appears you are using Tor. To better protect your anonymity, be sure that"
+" you are using the"
+msgstr "U maakt gebruik van Tor. Om uw anonimiteit beter te beschermen, gebruikt u dan ook"
+
+#: example.py:11
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr ""
+
+#: example.py:11
+msgid "Select file"
+msgstr "Selecteer een bestand"
+
+#: example.py:11
+msgid "Preferences and password management"
+msgstr "Voorkeuren en wachtwoord beheer"
+
+#: example.py:11
+msgid "Agree"
+msgstr "Akkoord"
+
+#: example.py:11
+msgid "GlobaLeaks software"
+msgstr "GlobaLeaks software"
+
+#: example.py:11
+msgid "Submission Created!"
+msgstr ""
+
+#: example.py:11
+msgid "Text"
+msgstr "Tekst"
+
+#: example.py:11
+msgid "Receiver name too long"
+msgstr "Naam ontvanger te lang"
+
+#: example.py:11
+msgid "Number"
+msgstr "Nummer"
+
+#: example.py:11
+msgid "To further enhance your security, please follow these instructions:"
+msgstr "Om uw veiligheid verder te verbeteren, volg de volgende instructies:"
+
+#: example.py:11
+msgid "to help us further support the development of GlobaLeaks."
+msgstr "om ons te helpen bij de verdere ontwikkeling van GlobaLeaks."
+
+#: example.py:11
+msgid "References"
+msgstr "Referenties"
+
+#: example.py:11
+msgid "Are you a receiver?"
+msgstr "Bent u een ontvanger?"
+
+#: example.py:11
+msgid "Loading..."
+msgstr "Laden..."
+
+#: example.py:11
+msgid "delete"
+msgstr "verwijder"
+
+#: example.py:11
+msgid "Next Step"
+msgstr "Volgende stap"
+
+#: example.py:11
+msgid "At least 8 keypress long"
+msgstr "Tenminste 8 karakters"
+
+#: example.py:11
+msgid "Admin password"
+msgstr "Administratie wachtwoord"
+
+#: example.py:11
+msgid "Currently logged in "
+msgstr "Nu ingelogged"
+
+#: example.py:11
+msgid "Multi-Select"
+msgstr "Multi-Select"
+
+#: example.py:11
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr ""
+
+#: example.py:11
+msgid "Admin please configure a Context and associated Receivers using"
+msgstr ""
+
+#: example.py:11
+msgid "Submit"
+msgstr ""
+
+#: example.py:11
+msgid "General information"
+msgstr "Algemene informatie"
+
+#: example.py:11
+msgid "Tip ID"
+msgstr "Tip ID"
+
+#: example.py:11
+msgid ""
+"In the event that you would like to remain anonymous, do not submit any "
+"personal information. (e.g. your name or relationship to the offender. Do "
+"not submit any information that can be traced back to you.)"
+msgstr ""
+
+#: example.py:11
+msgid "Current initiative logo"
+msgstr "Logo huidig initiatief"
+
+#: example.py:11
+msgid "Description"
+msgstr "Omschrijving"
+
+#: example.py:11
+msgid "Notification templates"
+msgstr ""
+
+#: example.py:11
+msgid "Type"
+msgstr "Type"
+
+#: example.py:11
+msgid "No file has been uploaded!"
+msgstr "Er is geen bestand geupload!"
+
+#: example.py:11
+msgid "File Email template"
+msgstr ""
+
+#: example.py:11
+msgid "Tip Overview"
+msgstr "Overzicht tips"
+
+#: example.py:11
+msgid "before continuing."
+msgstr "voordat u verder gaat"
+
+#: example.py:11
+msgid "Password management"
+msgstr "Wachtwoord beheer"
+
+#: example.py:11
+msgid "I want to report on"
+msgstr "Ik wil rapporteren over"
+
+#: example.py:11
+msgid "Password"
+msgstr "Wachtwoord"
+
+#: example.py:11
+msgid "Last Access"
+msgstr "Laatste toegang"
+
+#: example.py:11
+msgid "Welcome back captain!"
+msgstr "Welkom terug!"
+
+#: example.py:11
+msgid "Transport Security"
+msgstr ""
+
+#: example.py:11
+msgid "Contexts list"
+msgstr "Lijst met categorieën"
+
+#: example.py:11
+msgid "Security Check"
+msgstr "Veiligheidscheck"
+
+#: example.py:11
+msgid "Fields"
+msgstr "Velden"
+
+#: example.py:11
+msgid "New Submission"
+msgstr "Nieuwe inzending"
+
+#: example.py:11
+msgid ""
+"Please do not submit your report on a PC provided by your employer. "
+"Particularly an intranet connection may jeopardize your anonymity."
+msgstr ""
+
+#: example.py:11
+msgid "Add files..."
+msgstr "Voeg bestanden toe"
+
+#: example.py:11
+msgid "Still calculating hash"
+msgstr ""
+
+#: example.py:11
+msgid "Invalid email address"
+msgstr "Incorrect email adres"
+
+#: example.py:11
+msgid "Login"
+msgstr "Log in"
+
+#: example.py:11
+msgid "Enter your receipt"
+msgstr "Vul het nummer van uw ontvangstbewijs in"
+
+#: example.py:11
+msgid "Are you a whistleblower?"
+msgstr "Bent u een klokkenluider?"
+
+#: example.py:11
+msgid ""
+"Enter the information that is relevant to your submission and possibly "
+"upload the relevant accompanying files"
+msgstr ""
+
+#: example.py:11
+msgid "What is this about?"
+msgstr "Waar gaat dit over?"
+
+#: example.py:11
+msgid "Cookies are not enabled!"
+msgstr "Cookies zijn niet ingeschakeld!"
+
+#: example.py:11
+msgid "Retype again your new password"
+msgstr "Typ uw wachtwoord opnieuw"
+
+#: example.py:11
+msgid "Your password is unsafe, it should have"
+msgstr "Uw wachtwoord is niet veilig, gebruik"
+
+#: example.py:11
+msgid "By checking the box below you agree to these terms and conditions."
+msgstr ""
