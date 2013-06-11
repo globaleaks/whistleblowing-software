@@ -3,9 +3,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . ${DIR}/common_inc.sh
 
 echo "[+] Setupping Packaging environment"
-mkdir -p ${BUILD_DIR}
-cd ${BUILD_DIR}
-git clone https://github.com/globaleaks/GlobaLeaks.git
 apt-get install mini-dinstall dput
 
 echo "
@@ -38,6 +35,6 @@ npm install -g grunt-cli
 echo "[+] Setupping GLBackend build environment"
 apt-get install python-dev build-essential python-virtualenv python-pip -y
 wget -O requirements.txt "https://raw.github.com/globaleaks/GLBackend/master/requirements.txt"
-pip install -r GLBackend/requirements.txt
+pip install -r requirements.txt
 
-${BUILD_DIR}/GlobaLeaks/scripts/build-testing-package.sh
+${DIR}/build-testing-package.sh
