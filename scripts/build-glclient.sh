@@ -1,5 +1,6 @@
 #!/bin/bash
-. common_inc.sh
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+. ${DIR}/common_inc.sh
 
 usage()
 {
@@ -33,7 +34,7 @@ done
 
 build_glclient()
 {
- cd ${ROOT_DIR}
+ cd ${BUILD_DIR}
  BUILD_USES_EXISTENT_DIR=0
  if [ -d ${GLCLIENT_DIR} ]; then
     echo "Directory ${GLCLIENT_DIR} already present"

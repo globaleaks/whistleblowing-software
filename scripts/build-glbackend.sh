@@ -38,7 +38,7 @@ done
 
 build_glbackend()
 {
-  cd ${ROOT_DIR}
+  cd ${BUILD_DIR}
   BUILD_USES_EXISTENT_DIR=0
   if [ -d ${GLBACKEND_DIR} ]; then
     echo "Directory ${GLBACKEND_DIR} already present"
