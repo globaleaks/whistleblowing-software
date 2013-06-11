@@ -73,6 +73,8 @@ build_glclient()
     else
       GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
     fi
+  else
+    GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
   fi
 
   if [ -f ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz ]; then
