@@ -4,3 +4,4 @@
 # instantiated only once and be common to pieces of GLBackend code.
 
 __version__ = '0.2.0.19'
+DATABASE_VERSION = 1

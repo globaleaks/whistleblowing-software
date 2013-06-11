@@ -95,7 +95,7 @@ def create_tables(create_node=True):
     Override transactor for testing.
     """
 
-    # db file is set after the update execution, than is not present in
+    # GLSetting.db_file is set after the update execution, than is not present in
     # GLSetting and your IDE may spot them as missing key
     if os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
         # Here we instance every model so that __storm_table__ gets set via

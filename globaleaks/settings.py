@@ -27,7 +27,7 @@ from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 from storm import tracer
 
-from globaleaks import __version__
+from globaleaks import __version__, DATABASE_VERSION
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -184,7 +184,7 @@ class GLSettingsClass:
         self.maximum_rotated_log_files = 100
 
         # Database version tracking
-        self.db_version = 1
+        self.db_version = DATABASE_VERSION
 
 
     def eval_paths(self):
@@ -200,9 +200,9 @@ class GLSettingsClass:
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
-        # self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
-        # db_file it's not more generated here, because DB version migration create a filename with:
-        #  sqlite:/path/glbackend-%d.db % DB_version
+        self.file_versioned_db = 'sqlite:' + \
+                                 os.path.abspath(os.path.join(self.gldb_path,
+                                     'glbackend-%d.db' % DATABASE_VERSION))
 
 
     def set_devel_mode(self):

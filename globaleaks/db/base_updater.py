@@ -1,11 +1,9 @@
 # -*- encoding: utf-8 -*-
 
-import time
-
 from globaleaks import models
+from storm.exceptions import OperationalError
 from storm.locals import *
 from globaleaks.settings import GLSetting
-from globaleaks.db import create_tables
 
 
 class TableReplacer:
@@ -15,27 +13,53 @@ class TableReplacer:
 
     def __init__(self, old_db_file, new_db_file):
 
-        old_database = create_database("sqlite:%s" % old_db_file)
-        self.store_old = Store(old_database)
+        print "Opening old version DB: %s" % old_db_file
+        self.old_db_file = old_db_file
+        self.new_db_file = new_db_file
+        self.open_old()
 
         GLSetting.db_file = new_db_file
-        create_tables(create_node=True)
-        time.sleep(0.5)
+
+        # create_tables(create_node=True)
         # store its close the deferred of create_table exits
 
         new_database = create_database("sqlite:%s" % new_db_file)
         self.store_new = Store(new_database)
 
+        from storm.tracer import debug
+        import sys
+        debug(True, sys.stdout)
+
+        with open(GLSetting.db_schema_file) as f:
+            create_queries = ''.join(f.readlines()).split(';')
+            for create_query in create_queries:
+                try:
+                    self.store_new.execute(create_query+';')
+                except OperationalError as excep:
+                    print "OperationalError in [%s]" % create_query
+                    raise excep
+
+        self.store_new.commit()
+
+    def open_old(self):
+        old_database = create_database("sqlite:%s" % self.old_db_file)
+        self.store_old = Store(old_database)
+
+    def close_old(self):
+        self.store_old.commit()
+        self.store_old.close()
+
     def initialize(self):
-        pass
+        print "Initialized method, not overriden"
 
     def epilogue(self):
-        pass
+        print "Epilogue method, not overriden"
 
     def migrate_Context(self):
         print "default Context migration assistant: #%d" % \
               self.store_old.find(models.Context).count()
 
+        self.close_old();self.open_old()
         old_contexts = self.store_old.find(models.Context)
 
         for oc in old_contexts:
@@ -68,7 +92,7 @@ class TableReplacer:
             new_obj.tags = oc.tags
 
             self.store_new.add(new_obj)
-
+        self.store_new.commit()
 
     def migrate_Node(self):
         print "default Node migration assistant"
@@ -108,6 +132,7 @@ class TableReplacer:
         new_obj.tor2web_unauth = on.tor2web_unauth
 
         self.store_new.add(new_obj)
+        self.store_new.commit()
 
     def migrate_ReceiverTip(self):
         print "default ReceiverTip migration assistant: #%d" %\
@@ -130,6 +155,7 @@ class TableReplacer:
             new_obj.notification_date = ort.notification_date
 
             self.store_new.add(new_obj)
+        self.store_new.commit()
 
     def migrate_WhistleblowerTip(self):
         print "default WhistleblowerTip migration assistant: #%d" %\
@@ -152,7 +178,7 @@ class TableReplacer:
             new_obj.receipt_hash = owbt.receipt_hash
 
             self.store_new.add(new_obj)
-
+        self.store_new.commit()
 
     def migrate_Comment(self):
         print "default Comments migration assistant: #%d" %\
@@ -173,6 +199,7 @@ class TableReplacer:
             new_obj.type = oc.type
 
             self.store_new.add(new_obj)
+        self.store_new.commit()
 
     def migrate_InternalTip(self):
         print "default InternalTips migration assistant: #%d" %\
@@ -198,6 +225,7 @@ class TableReplacer:
             new_obj.pertinence_counter = oit.pertinence_counter
 
             self.store_new.add(new_obj)
+        self.store_new.commit()
 
     def migrate_Receiver(self):
         print "default Receivers migration assistant: #%d" %\
@@ -237,6 +265,7 @@ class TableReplacer:
             new_obj.tags = orcvr.tags
 
             self.store_new.add(new_obj)
+        self.store_new.commit()
 
     def migrate_InternalFile(self):
         print "default InternalFiles migration assistant: #%d" %\
@@ -260,6 +289,7 @@ class TableReplacer:
             new_obj.size = oi.size
 
             self.store_old.add(new_obj)
+        self.store_new.commit()
 
     def migrate_ReceiverFile(self):
         print "default ReceiverFile migration assistant: #%d" %\
@@ -284,6 +314,7 @@ class TableReplacer:
             new_obj.mark = orf.mark
 
             self.store_new.add(new_obj)
+        self.store_new.commit()
 
     def migrate_Notification(self):
         print "default Notificationb migration assistant"
@@ -309,14 +340,15 @@ class TableReplacer:
         new_obj.tip_template = on.tip_template
 
         self.store_new.add(new_obj)
+        self.store_new.commit()
 
     def migrate_ReceiverContext(self):
-        print "Migrate ReceiverContext reference tables: #%d" %\
-            self.store_old.find(models.ReceiverContext)
+        print "SKIP - Migrate ReceiverContext reference tables: #%d" %\
+            self.store_old.find(models.ReceiverContext).count()
         pass
 
     def migrate_ReceiverInternalTip(self):
-        print "Migrate ReceiverInternalTip reference tables: #%d" %\
-              self.store_old.find(models.ReceiverInternalTip)
+        print "SKIP - Migrate ReceiverInternalTip reference tables: #%d" %\
+              self.store_old.find(models.ReceiverInternalTip).count()
         pass
 
