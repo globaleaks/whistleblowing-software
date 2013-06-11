@@ -47,6 +47,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             getattr(updater_code, migrate_function)()
 
         updater_code.epilogue()
+        updater_code.close()
 
         starting_ver += 1
 

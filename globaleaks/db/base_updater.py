@@ -13,15 +13,14 @@ class TableReplacer:
 
     def __init__(self, old_db_file, new_db_file):
 
-        print "Opening old version DB: %s" % old_db_file
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
-        self.open_old()
+
+        print "Opening old version DB: %s" % old_db_file
+        old_database = create_database("sqlite:%s" % self.old_db_file)
+        self.store_old = Store(old_database)
 
         GLSetting.db_file = new_db_file
-
-        # create_tables(create_node=True)
-        # store its close the deferred of create_table exits
 
         new_database = create_database("sqlite:%s" % new_db_file)
         self.store_new = Store(new_database)
@@ -41,25 +40,20 @@ class TableReplacer:
 
         self.store_new.commit()
 
-    def open_old(self):
-        old_database = create_database("sqlite:%s" % self.old_db_file)
-        self.store_old = Store(old_database)
-
-    def close_old(self):
-        self.store_old.commit()
+    def close(self):
         self.store_old.close()
+        self.store_new.close()
 
     def initialize(self):
-        print "Initialized method, not overriden"
+        print "Initialized method, not implemented"
 
     def epilogue(self):
-        print "Epilogue method, not overriden"
+        print "Epilogue method, not implemented"
 
     def migrate_Context(self):
         print "default Context migration assistant: #%d" % \
               self.store_old.find(models.Context).count()
 
-        self.close_old();self.open_old()
         old_contexts = self.store_old.find(models.Context)
 
         for oc in old_contexts:
@@ -214,6 +208,8 @@ class TableReplacer:
             new_obj.id = oit.id
             new_obj.context_id = oit.context_id
 
+            new_obj.wb_fields = oit.wb_fields
+
             new_obj.expiration_date = oit.expiration_date
             new_obj.creation_date = oit.creation_date
             new_obj.last_activity = oit.last_activity
@@ -343,12 +339,28 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_ReceiverContext(self):
-        print "SKIP - Migrate ReceiverContext reference tables: #%d" %\
+        print "Migrate ReceiverContext reference tables: #%d" %\
             self.store_old.find(models.ReceiverContext).count()
-        pass
+
+        rc_relship = self.store_old.find(models.ReceiverContext)
+
+        for rc in rc_relship:
+            new_obj = models.ReceiverContext()
+            new_obj.context_id = rc.context_id
+            new_obj.receiver_id = rc.receiver_id
+            self.store_new.add(new_obj)
+        self.store_new.commit()
 
     def migrate_ReceiverInternalTip(self):
-        print "SKIP - Migrate ReceiverInternalTip reference tables: #%d" %\
+        print "Migrate ReceiverInternalTip reference tables: #%d" %\
               self.store_old.find(models.ReceiverInternalTip).count()
-        pass
+
+        ri_relship = self.store_old.find(models.ReceiverInternalTip)
+
+        for ri in ri_relship:
+            new_obj = models.ReceiverInternalTip()
+            new_obj.internaltip_id = ri.internaltip_id
+            new_obj.receiver_id = ri.receiver_id
+            self.store_new.add(new_obj)
+        self.store_new.commit()
 

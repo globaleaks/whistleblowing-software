@@ -94,10 +94,7 @@ def create_tables(create_node=True):
     """
     Override transactor for testing.
     """
-
-    # GLSetting.db_file is set after the update execution, than is not present in
-    # GLSetting and your IDE may spot them as missing key
-    if os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
+    if os.path.exists(GLSetting.file_versioned_db.replace('sqlite:', '')):
         # Here we instance every model so that __storm_table__ gets set via
         # __new__
         for model in models.models:
@@ -170,7 +167,7 @@ def check_schema_version():
     is used. For sure there are other better checks, but not
     today.
     """
-    db_file = GLSetting.db_file.replace('sqlite:', '')
+    db_file = GLSetting.file_versioned_db.replace('sqlite:', '')
 
     if not os.path.exists(db_file):
         return True
@@ -186,7 +183,7 @@ def check_schema_version():
             comma_number = "".join(sqlfile).count(',')
 
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.file_versioned_db)
         store = zstorm.get(GLSetting.store_name)
 
         q = """
