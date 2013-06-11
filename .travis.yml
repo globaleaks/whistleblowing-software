@@ -4,7 +4,7 @@ python:
 install: pip install -r requirements.txt
 script:
   - trial globaleaks
-  - apt-get install git -y
-  - mkdir -p /data/globaleaks
+  - sudo -i bash -c 'apt-get install git -y'
+  - sudo -i bash -c 'mkdir -p /data/globaleaks'
   - git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
   - /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh
