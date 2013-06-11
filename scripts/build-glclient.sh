@@ -1,9 +1,5 @@
 #!/bin/bash
-DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
-GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
-GLOBALEAKS_DIR=/data/globaleaks
-OUTPUT_DIR=$GLOBALEAKS_DIR/GLClient/glclient_build
+. common_inc.sh
 
 usage()
 {
@@ -18,8 +14,7 @@ OPTIONS:
 EOF
 }
 
-ASSUME_YES=0
-while getopts “hv:y” OPTION
+while getopts “hv:” OPTION
 do
   case $OPTION in
     h)
@@ -29,9 +24,6 @@ do
     v)
       TAG=$OPTARG
       ;;
-    y)
-      ASSUME_YES=1
-      ;;
     ?)
       usage
       exit
@@ -39,43 +31,44 @@ do
     esac
 done
 
-mkdir -p $GLOBALEAKS_DIR $OUTPUT_DIR
-
 build_glclient()
 {
-  if [ -d ${GLOBALEAKS_DIR}/GLClient ]; then
-    echo "Directory ${GLOBALEAKS_DIR}/GLClient already present"
+ cd ${ROOT_DIR}
+ BUILD_USES_EXISTENT_DIR=0
+ if [ -d ${GLCLIENT_DIR} ]; then
+    echo "Directory ${GLCLIENT_DIR} already present"
     echo "The build process needs a clean git clone of GLClient"
-    if [ ${ASSUME_YES} -eq 0 ]; then
-      read -n1 -p "Are you sure you want delete ${GLOBALEAKS_DIR}/GLClient? (y/n): "
-      echo
-      if [[ $REPLY != [yY] ]]; then
-        echo "Exiting ..."
-        exit
-      fi
+    echo "If not deleted the build script will use the existent dir"
+    read -n1 -p "Do you want to delete ${GLCLIENT_DIR}? (y/n): "
+    echo
+    if [[ $REPLY == [yY] ]]; then
+      echo "Removing directory ${GLCLIENT_DIR}"
+      rm -rf ${GLCLIENT_DIR}
+    else
+      BUILD_USES_EXISTENT_DIR=1
+      cd ${GLCLIENT_DIR}
     fi
-    echo "Removing directory ${GLOBALEAKS_DIR}"
-    rm -rf ${GLOBALEAKS_DIR}/GLClient
   fi
-
-  echo "[+] Cloning GLClient in ${GLOBALEAKS_DIR}"
-  git clone $GLCLIENT_GIT_REPO ${GLOBALEAKS_DIR}/GLClient
-  cd ${GLOBALEAKS_DIR}/GLClient
   
-  GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
-
-  if test $TAG; then
-    git checkout $TAG
-    GLCLIENT_REVISION=$TAG
+  if [ ${BUILD_USES_EXISTENT_DIR} -eq 0 ]; then
+    echo "[+] Cloning GLClient in ${GLCLIENT_DIR}"
+    git clone $GLCLIENT_GIT_REPO ${GLCLIENT_DIR}
+    cd ${GLCLIENT_DIR}
+    if test $TAG; then
+      git checkout $TAG
+      GLCLIENT_REVISION=$TAG
+    else
+      GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
+    fi
   fi
 
-  if [ -f $OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.tar.gz ]; then
-    echo "$OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.tar.gz already present"
+  if [ -f ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz ]; then
+    echo "${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz already present"
     exit
   fi
 
-  if [ -f $OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.zip ]; then
-    echo "$OUTPUT_DIR/GLClient/glclient-${GLCLIENT_REVISION}.zip already present"
+  if [ -f ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip ]; then
+    echo "${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip already present"
     exit
   fi
 
@@ -83,33 +76,25 @@ build_glclient()
   npm install -d
   grunt build
 
-  mkdir -p $OUTPUT_DIR
+  rm -rf ${GLC_BUILD}
+  mkdir -p ${GLC_BUILD}
 
   echo "[+] Creating compressed archives"
   mv build glclient-${GLCLIENT_REVISION}
   tar czf glclient-${GLCLIENT_REVISION}.tar.gz glclient-${GLCLIENT_REVISION}/
-  cp glclient-${GLCLIENT_REVISION}.tar.gz $OUTPUT_DIR
-  md5sum glclient-${GLCLIENT_REVISION}.tar.gz > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.tar.gz.md5.txt
-  sha1sum glclient-${GLCLIENT_REVISION}.tar.gz > $OUTPUT_DIRglclient-${GLCLIENT_REVISION}.tar.gz.sha1.txt
-  shasum -a 224 glclient-${GLCLIENT_REVISION}.tar.gz > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.tar.gz.sha224.txt
+  cp glclient-${GLCLIENT_REVISION}.tar.gz ${GLC_BUILD}
+  md5sum glclient-${GLCLIENT_REVISION}.tar.gz > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz.md5.txt
+  sha1sum glclient-${GLCLIENT_REVISION}.tar.gz > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz.sha1.txt
+  shasum -a 224 glclient-${GLCLIENT_REVISION}.tar.gz > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz.sha224.txt
 
   zip -r glclient-${GLCLIENT_REVISION}.zip glclient-${GLCLIENT_REVISION}/
-  cp glclient-${GLCLIENT_REVISION}.zip $OUTPUT_DIR
-  md5sum glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.md5.txt
-  sha1sum glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.sha1.txt
-  shasum -a 224 glclient-${GLCLIENT_REVISION}.zip > $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
-
-
-  echo "[+] Copying GLClient package to /data/website/builds/"
-  cp ${OUTPUT_DIR}/* /data/website/builds/
-
-
-  rm -rf glclient-${GLCLIENT_REVISION}
+  cp glclient-${GLCLIENT_REVISION}.zip ${GLC_BUILD}
+  md5sum glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.md5.txt
+  sha1sum glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha1.txt
+  shasum -a 224 glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
 }
 build_glclient
 echo "[+] All done!"
 echo ""
 echo "GLient hash: "
-cat $OUTPUT_DIR/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
-
-
+cat ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
