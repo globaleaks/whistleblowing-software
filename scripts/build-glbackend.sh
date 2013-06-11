@@ -60,6 +60,9 @@ build_glbackend()
       echo "[+] Copying existent ${GLBACKEND_DIR} in ${GLCBACKEND_TMP}"
       cp ${GLBACKEND_DIR} ${GLBACKEND_TMP} -r
     fi
+  else
+    echo "[+] Cloning GLBackend in ${GLBACKEND_TMP}"
+    git clone $GLBACKEND_GIT_REPO ${GLBACKEND_TMP}
   fi
 
   cd ${GLBACKEND_TMP}

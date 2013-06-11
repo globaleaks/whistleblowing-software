@@ -56,6 +56,9 @@ build_glclient()
       echo "[+] Copying existent ${GLCLIENT_DIR} in ${GLCLIENT_TMP}"
       cp ${GLCLIENT_DIR} ${GLCLIENT_TMP} -r
     fi
+  else
+    echo "[+] Cloning GLClient in ${GLCLIENT_TMP}"
+    git clone $GLCLIENT_GIT_REPO ${GLCLIENT_TMP}
   fi
 
   cd ${GLCLIENT_TMP}
