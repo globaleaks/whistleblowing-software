@@ -36,8 +36,8 @@ build_glclient()
 {
   cd ${BUILD_DIR}
   if [ -d ${GLCLIENT_TMP} ]; then
-    echo "Directory ${GLBACKEND_TMP} already present and need to be removed"
-    read -n1 -p "Do you want to delete ${GLClient_TMP}? (y/n): "
+    echo "Directory ${GLCLIENT_TMP} already present and need to be removed"
+    read -n1 -p "Do you want to delete ${GLCLIENT_TMP}? (y/n): "
     echo
     if [[ $REPLY != [yY] ]]; then
       echo "Cannot proceed"
@@ -45,34 +45,24 @@ build_glclient()
     fi
     rm -rf ${GLCLIENT_TMP} 
   fi
-  BUILD_USES_EXISTENT_DIR=0
   if [ -d ${GLCLIENT_DIR} ]; then
-    echo "Directory ${GLCLIENT_DIR} already present"
-    echo "The build process needs a clean git clone of GLClient"
-    echo "If not deleted the build script will use the existent dir"
-    read -n1 -p "Do you want to delete ${GLCLIENT_DIR}? (y/n): "
+    echo "Directory ${GLCLIENT_DIR} already present. "
+    read -n1 -p "Do you want to use the existent ${GLCLIENT_DIR}? (y/n): "
     echo
-    if [[ $REPLY == [yY] ]]; then
-      echo "Removing directory ${GLCLIENT_DIR}"
-      rm -rf ${GLCLIENT_DIR}
+    if [[ $REPLY != [yY] ]]; then
+      echo "[+] Cloning GLClient in ${GLCLIENT_TMP}"
+      git clone $GLCLIENT_GIT_REPO ${GLCLIENT_TMP}
     else
-      BUILD_USES_EXISTENT_DIR=1
+      echo "[+] Copying existent ${GLCLIENT_DIR} in ${GLCLIENT_TMP}"
       cp ${GLCLIENT_DIR} ${GLCLIENT_TMP} -r
-      cd ${GLCLIENT_TMP}
     fi
   fi
+
+  cd ${GLCLIENT_TMP}
   
-  if [ ${BUILD_USES_EXISTENT_DIR} -eq 0 ]; then
-    echo "[+] Cloning GLClient in ${GLCLIENT_DIR}"
-    git clone $GLCLIENT_GIT_REPO ${GLCLIENT_DIR}
-    cp ${GLCLIENT_DIR} ${GLCLIENT_TMP} -r
-    cd ${GLCLIENT_TMP}
-    if test $TAG; then
-      git checkout $TAG
-      GLCLIENT_REVISION=$TAG
-    else
-      GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
-    fi
+  if test $TAG; then
+    git checkout $TAG
+    GLCLIENT_REVISION=$TAG
   else
     GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
   fi
