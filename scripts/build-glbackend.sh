@@ -49,35 +49,26 @@ build_glbackend()
     fi
     rm -rf ${GLBACKEND_TMP}
   fi
-  BUILD_USES_EXISTENT_DIR=0
   if [ -d ${GLBACKEND_DIR} ]; then
-    echo "Directory ${GLBACKEND_DIR} already present"
-    echo "The build process needs a clean git clone of GLBackend"
-    echo "If not deleted the build script will use the existent dir"
-    read -n1 -p "Do you want to delete ${GLBACKEND_DIR}? (y/n): "
+    echo "Directory ${GLBACKEND_TMP} already present and need to be removed"
+    read -n1 -p "Do you want to delete ${GLBACKEND_TMP}? (y/n): "
     echo
-    if [[ $REPLY == [yY] ]]; then
-      echo "Removing directory ${GLBACKEND_DIR}"
-      rm -rf ${GLBACKEND_DIR}
+    if [[ $REPLY != [yY] ]]; then
+      echo "[+] Cloning GLBackend in ${GLBACKEND_TMP}"
+      git clone $GLBACKEND_GIT_REPO ${GLBACKEND_TMP}
     else
-      BUILD_USES_EXISTENT_DIR=1
+      echo "[+] Copying existent ${GLBACKEND_DIR} in ${GLCBACKEND_TMP}"
       cp ${GLBACKEND_DIR} ${GLBACKEND_TMP} -r
-      cd ${GLBACKEND_TMP}
     fi
   fi
 
-  if [ ${BUILD_USES_EXISTENT_DIR} -eq 0 ]; then
-    echo "[+] Cloning GLBackend in ${GLBACKEND_DIR}"
-    git clone $GLBACKEND_GIT_REPO ${GLBACKEND_DIR}
-    cp ${GLBACKEND_DIR} ${GLBACKEND_TMP} -r
-    cd ${GLBACKEND_TMP}
+  cd ${GLBACKEND_TMP}
 
-    if test $GLBACKEND_TAG; then
-      git checkout $GLBACKEND_TAG
-      GLBACKEND_REVISION=$GLBACKEND_TAG
-    else
-      GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
-    fi
+  if test $GLBACKEND_TAG; then
+    git checkout $GLBACKEND_TAG
+    GLBACKEND_REVISION=$GLBACKEND_TAG
+  else
+    GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
   fi
 
   unzip ${GLC_BUILD}/*.zip -d ${GLBACKEND_TMP}
