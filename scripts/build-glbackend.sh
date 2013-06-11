@@ -71,6 +71,8 @@ build_glbackend()
     GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
   fi
 
+  pip install -r requirements.txt
+
   unzip ${GLC_BUILD}/*.zip -d ${GLBACKEND_TMP}
   mv ${GLBACKEND_TMP}/glclient* ${GLBACKEND_TMP}/glclient
 
