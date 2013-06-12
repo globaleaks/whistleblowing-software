@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/bin/bash -x
 
 ### BEGIN INIT INFO
 # GlobaLeaks startup script for Ubuntu and Debian Linux servers
