@@ -240,7 +240,7 @@ do_stop()
         log_end_msg 0 "stopped."
     fi
 
-    if [ ${NETWORK_SANDBOXING} -eq 1 ]
+    if [ ${NETWORK_SANDBOXING} -eq 1 ]; then
         network_sandboxing_stop
     fi
 }
