@@ -7,4 +7,4 @@ script:
   - sudo -i bash -c 'apt-get install git -y'
   - sudo -i bash -c 'mkdir -p /data/globaleaks'
   - sudo -i bash -c 'git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks'
-  - sudo -i bash -c '/data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh'
+  - /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh
