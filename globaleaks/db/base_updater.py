@@ -25,10 +25,6 @@ class TableReplacer:
         new_database = create_database("sqlite:%s" % new_db_file)
         self.store_new = Store(new_database)
 
-        from storm.tracer import debug
-        import sys
-        debug(True, sys.stdout)
-
         with open(GLSetting.db_schema_file) as f:
             create_queries = ''.join(f.readlines()).split(';')
             for create_query in create_queries:
