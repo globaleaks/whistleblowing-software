@@ -43,7 +43,7 @@ DO () {
     fi
     log_action_begin "Running: \"$CMD\"... "
     $1 &>${BUILD_LOG}
-    if [ $? -eq $2 ]; then
+    if [ "$?" -eq "$2" ]; then
         log_action_end "0" "SUCCESS"
     else
         log_action_end "1" "FAIL"
@@ -395,7 +395,8 @@ if [[ $EUID -ne 0 ]]; then
     exit 1
 fi
 
-if [[ lsb_release -c | grep precise -ne 0 ]]; then
+lsb_release -c | grep precise >/dev/null 2>&-
+if [ "$?" -ne "0" ]; then
     echo "Error: Currently install script offers only Ubuntu 12.04 support"
     exit 1
 fi
@@ -421,7 +422,7 @@ fi
 
 INSTALLED_PYTHON=`python --version 2>&1 | cut -d" " -f2`
 vercomp ${INSTALLED_PYTHON} ${NEEDED_VERSION_PYTHON}
-if [ $? -eq 2 ]; then
+if [ "$?" -eq "2" ]; then
     echo "Error: Globaleaks needs at least python version ${NEEDED_VERSION_PYTHON} (found ${INSTALLED_PYTHON})"
     exit 1
 fi
@@ -441,7 +442,7 @@ if which pip >/dev/null 2>&1; then
     fi
 fi
 
-if [ ${INSTALL_PIP} -eq 1 ] ; then
+if [ "${INSTALL_PIP}" -eq "1" ] ; then
     DO "wget -O ${BUILD_DIR}/${PIP_PKG} ${PIP_URL}" "0"
     DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
 
@@ -456,7 +457,7 @@ if [ ${INSTALL_PIP} -eq 1 ] ; then
     DO "cd pip-*" "0"
 
     echo "Installing the latest pip"
-    if [ ${ASSUME_YES} -eq 0 ]; then
+    if [ "${ASSUME_YES}" -eq "0" ]; then
         echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
         read -r -p "Do you wish to continue? [y/n] " response
         case $response in
