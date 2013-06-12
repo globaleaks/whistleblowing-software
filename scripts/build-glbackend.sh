@@ -50,8 +50,8 @@ build_glbackend()
     rm -rf ${GLBACKEND_TMP}
   fi
   if [ -d ${GLBACKEND_DIR} ]; then
-    echo "Directory ${GLBACKEND_TMP} already present and need to be removed"
-    read -n1 -p "Do you want to delete ${GLBACKEND_TMP}? (y/n): "
+    echo "Directory ${GLBACKEND_DIR} already present. "
+    read -n1 -p "Do you want to use the existent ${GLBACKEND_DIR}? (y/n): "
     echo
     if [[ $REPLY != [yY] ]]; then
       echo "[+] Cloning GLBackend in ${GLBACKEND_TMP}"
