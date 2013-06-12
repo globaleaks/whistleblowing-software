@@ -437,7 +437,7 @@ INSTALL_PIP=1
 if which pip >/dev/null 2>&1; then
     INSTALLED_PIP=`pip --version | cut -d" " -f2`
     vercomp ${INSTALLED_PIP} ${NEEDED_VERSION_PIP}
-    if [ $? -ne 2 ]; then
+    if [ "$?" -ne "2" ]; then
         INSTALL_PIP=0
     fi
 fi
@@ -478,8 +478,8 @@ for PIP_DEP in $PIP_DEPS; do
 done
 
 if [ -d /data/globaleaks/deb ]; then
-    DO "cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz"
-    DO "echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list"
+    DO "cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz" "0"
+    DO "echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list" "0"
 else
     # on Travis-CI we make testing using a local repository
     DO "add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/'" "0"
