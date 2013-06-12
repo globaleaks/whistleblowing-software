@@ -32,4 +32,4 @@ script:
   - sudo -i bash -c 'echo "HiddenServiceDir /var/globaleaks/torhs/" >> /etc/tor/torrc'
   - sudo -i bash -c 'echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc'
   - sudo -i bash -c '/etc/init.d/tor restart'
-  - sudo -i bash -c '/etc/init.d/globaleaks start'
+  - sudo -i bash -c '/etc/init.d/globaleaks restart'
