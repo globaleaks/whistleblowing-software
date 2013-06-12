@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 ### BEGIN INIT INFO
 # GlobaLeaks startup script for Ubuntu and Debian Linux servers
@@ -45,7 +45,7 @@ fi
 GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
 
 if [ "${TRAVIS}" == "true" ]; then
-    NETWORK_SANBOXING=0
+    NETWORK_SANDBOXING=0
 fi
 
 read_pid()
