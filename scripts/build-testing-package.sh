@@ -9,7 +9,7 @@ sudo apt-get install nodejs -y
 sudo npm install -g grunt-cli
 
 echo "[+] Setupping GLBackend build environment"
-sudo apt-get install python-dev build-essential python-virtualenv python-pip python-stdeb -y
+sudo apt-get install python-dev build-essential python-virtualenv python-pip python-stdeb devscripts -y
 
 read -n1 -p "System read: do you want build package now ? (as root), (y/n): "
 echo
