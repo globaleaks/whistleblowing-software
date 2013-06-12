@@ -32,7 +32,21 @@ def authenticated(role):
                 raise errors.NotAuthenticated
 
             if role == cls.current_user.role:
-                log.debug("Authentication OK (%s) %s" % (role, cls.current_user.id) )
+
+                session_info = GLSetting.sessions[cls.current_user.id]
+
+                if utils.is_expired(session_info.borndate,
+                    seconds=GLSetting.defaults.lifetimes[cls.current_user.role]):
+
+                    copy_role = cls.current_user.role
+                    copy_lifetime = GLSetting.defaults.lifetimes[cls.current_user.role]
+                    del GLSetting.sessions[cls.current_user.id]
+
+                    log.debug("Authentication Expired (%s) %s" % (copy_role, copy_lifetime))
+                    raise errors.SessionExpired(copy_lifetime, copy_role)
+
+                log.debug("Authentication OK (%s)" % role )
+                # timestamp it's no more used in fact, but I'll keep for stats in testing env
                 GLSetting.sessions[cls.current_user.id].timestamp = time.time()
                 return method_handler(cls, *args, **kwargs)
 
@@ -191,6 +205,7 @@ class AuthenticationHandler(BaseHandler):
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
         new_session = OD(
+               borndate=utils.datetime_now(),
                timestamp=time.time(),
                id=self.session_id,
                role=role,

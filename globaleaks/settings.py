@@ -159,6 +159,13 @@ class GLSettingsClass:
         self.memory_copy.exception_email = self.defaults.exception_email
         # updated by globaleaks/db/__init__.import_memory_variables
 
+        # a dict to keep track of the lifetime of the session. at the moment
+        # not exported in the UI.
+        self.defaults.lifetimes = {}
+        self.defaults.lifetimes['admin'] = 300
+        self.defaults.lifetimes['receiver'] = 600
+        self.defaults.lifetimes['wb'] = 36000
+
         # SOCKS default
         self.socks_host = "127.0.0.1"
         self.socks_port = 9050

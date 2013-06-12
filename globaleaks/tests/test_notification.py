@@ -21,7 +21,7 @@ class TestEmail(helpers.TestGL):
         yield helpers.TestGL.setUp(self)
 
         self.recipe = yield submission.create_submission({
-            'wb_fields': self.fill_random_fields(self.dummyContext),
+            'wb_fields': helpers.MockDict().fill_random_fields(self.dummyContext),
             'context_gus': self.dummyContext['context_gus'],
             'receivers': [self.dummyReceiver['receiver_gus']],
             'files': [],
