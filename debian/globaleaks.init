@@ -64,9 +64,15 @@ check_iptables()
         exit 1
     fi
 
-    iptables -nvL >/dev/null 2>&1
+    iptables -nvL -t nat >/dev/null 2>&1
     if [ $? -ne 0 ]; then
-        log_action_end_msg 1 "missing iptables support"
+        log_action_end_msg 1 "missing iptables nat support"
+        exit 1
+    fi
+
+    iptables -nvL -t filter >/dev/null 2>&1
+    if [ $? -ne 0 ]; then
+        log_action_end_msg 1 "missing iptables filter support"
         exit 1
     fi
 }
