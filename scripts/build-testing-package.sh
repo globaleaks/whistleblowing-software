@@ -11,10 +11,5 @@ sudo npm install -g grunt-cli
 echo "[+] Setupping GLBackend build environment"
 sudo apt-get install python-dev build-essential python-virtualenv python-pip python-stdeb devscripts -y
 
-read -n1 -p "System read: do you want build package now ? (as root), (y/n): "
-echo
-if [[ $REPLY == [yY] ]]; then
-    ${DIR}/build-glclient.sh
-    ${DIR}/build-glbackend.sh -n
-    exit
-fi
+${DIR}/build-glclient.sh
+${DIR}/build-glbackend.sh -n

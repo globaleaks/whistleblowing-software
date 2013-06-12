@@ -4,6 +4,11 @@ set -e
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 SCRIPTNAME="$(basename "$(test -L "$0" && readlink "$0" || echo "$0")")"
 
+if [[ $EUID -eq 0 ]]; then
+  echo "Error: ${SCRIPTNAME} must not be excecuted by root"
+  exit 1
+fi
+
 GLBACKEND_GIT_REPO="https://github.com/globaleaks/GLBackend.git"
 GLCLIENT_GIT_REPO="https://github.com/globaleaks/GLClient.git"
 
