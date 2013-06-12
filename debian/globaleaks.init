@@ -100,9 +100,13 @@ read_pid()
 # and status_of_proc is working.
 . /lib/lsb/init-functions
 
+if [ "$TRAVIS" == "true" ]; then
+    NETWORK_SANBOXING=0
+fi
+
 check_iptables()
 {
-    if [ ${NETWORK_SANDBOXING} -eq 1 ] && ! which iptables >/dev/null 2>&1 ; then
+    if ! which iptables >/dev/null 2>&1 ; then
         log_action_end_msg 1 "GlobaLeaks Network Sandboxing requires iptables"
         exit 1
     fi
@@ -210,7 +214,9 @@ do_start()
       fi
     fi
 
-    network_sandboxing_start
+    if [ ${NETWORK_SANDBOXING} -eq 1 ]; then
+        network_sandboxing_start
+    fi
 
     # This is a little hack to avoid python doing os.chdir('.') and getting mad.
     cd /tmp
@@ -234,8 +240,9 @@ do_stop()
         log_end_msg 0 "stopped."
     fi
 
-    # this must be always done
-    network_sandboxing_stop
+    if [ ${NETWORK_SANDBOXING} -eq 1 ]
+        network_sandboxing_stop
+    fi
 }
 
 do_restart()
