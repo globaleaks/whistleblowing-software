@@ -4,10 +4,11 @@ from twisted.trial import unittest
 
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
-from globaleaks.security import import_gpg_key, gpg_encrypt, gpg_clean
-from globaleaks.handlers import receiver, admin
+from globaleaks.security import gpg_encrypt
+from globaleaks.handlers import receiver
 from globaleaks.settings import GLSetting
 from globaleaks.utils import timelapse_represent
+from globaleaks.tests.helpers import MockDict
 
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
@@ -96,9 +97,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         mock_event = Event(type=u'tip', trigger='Tip',
                     notification_settings= dummy_template,
                     trigger_info={'creation_date': '2013-05-13T17:49:26.105485', 'id': 'useless' },
-                    node_info={'name': 'dummy name',
-                               'hidden_service': 'useless',
-                               'public_site': 'useless' },
+                    node_info=MockDict().dummyNode,
                     receiver_info=self.receiver_desc,
                     context_info={'name': 'all our bases belong to you' },
                     plugin=MailNotification()  )
