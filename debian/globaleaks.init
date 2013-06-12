@@ -63,6 +63,12 @@ check_iptables()
         log_action_end_msg 1 "GlobaLeaks Network Sandboxing requires iptables"
         exit 1
     fi
+
+    iptables -nvL >/dev/null 2>&1
+    if [ $? -eq 0 ]; then
+        log_action_end_msg 1 "missing iptables support"
+        exit 1
+    fi
 }
 
 network_sandboxing_start()
@@ -71,13 +77,7 @@ network_sandboxing_start()
 
     check_iptables
 
-    iptables -nvL 2<&-
-    if [ $? -eq 0 ]; then
-        log_action_end_msg 1 "missing iptables support"
-        return
-    fi
-
-    iptables -L | grep ${USER} >/dev/null 2<&-
+    iptables -L | grep ${USER} >/dev/null 2>&1
     if [ $? -eq 0 ]; then
         log_action_end_msg 0 "already enabled."
         return
@@ -111,7 +111,7 @@ network_sandboxing_stop()
 
     check_iptables
 
-    iptables -L | grep ${USER} >/dev/null 2<&-
+    iptables -L | grep ${USER} >/dev/null 2>&1
     if [ $? -ne 0 ]; then
         log_action_end_msg 0 "already disabled."
         return
