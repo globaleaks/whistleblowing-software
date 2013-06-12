@@ -478,11 +478,10 @@ for PIP_DEP in $PIP_DEPS; do
 done
 
 if [ -d /data/globaleaks/deb ]; then
-    DO "cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz" "0"
-    DO "echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list" "0"
+    cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
+    echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list
 else
     # on Travis-CI we make testing using a local repository
-    DO "add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/'" "0"
     DO "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
     DO "gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -" "0"
 fi
