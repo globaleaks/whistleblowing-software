@@ -293,3 +293,13 @@ class GPGKeyInvalid(GLException):
     error_code = 40
     status_code = 406
     reason = "The GPG key proposed can't be imported"
+
+class SessionExpired(GLException):
+    """
+    Raised by GLHTTPServer, when a raw upload is bigger than acceptable
+    """
+    error_code = 41
+    status_code = 400 # Generic 400 error
+
+    def __init__(self, lifetime, role):
+        self.reason = "The time for your role (%s) is %s" % (role, lifetime)

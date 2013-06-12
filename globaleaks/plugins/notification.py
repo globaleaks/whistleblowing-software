@@ -95,7 +95,10 @@ class MailNotification(Notification):
                         'ADMIN, CONFIGURE YOUR HIDDEN SERVICE (Advanced configuration)!'
                     })
 
-            if len(node_desc['public_site']):
+            if not node_desc['tor2web_tip']:
+                # https://github.com/globaleaks/GlobaLeaks/issues/268
+                pass
+            elif len(node_desc['public_site']):
                 tip_template_keyword.update({
                     '%TipT2WURL%':
                         '%s/#/status/%s' %
