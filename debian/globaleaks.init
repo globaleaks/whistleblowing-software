@@ -44,7 +44,6 @@ fi
 
 GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
 
-echo $TRAVIS
 if [ "${TRAVIS}" == "true" ]; then
     NETWORK_SANBOXING=0
 fi
