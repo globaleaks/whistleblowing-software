@@ -9,7 +9,7 @@ sudo apt-get install nodejs -y
 sudo npm install -g grunt-cli
 
 echo "[+] Setupping GLBackend build environment"
-sudo apt-get install python-dev build-essential python-virtualenv python-pip python-stdeb -y
+sudo apt-get install python-dev build-essential python-virtualenv python-pip python-stdeb devscripts -y
 
 ${DIR}/build-glclient.sh
 ${DIR}/build-glbackend.sh -n
