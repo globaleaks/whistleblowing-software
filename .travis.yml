@@ -6,5 +6,6 @@ script:
   - trial globaleaks
   - sudo -i bash -c 'apt-get install git -y'
   - sudo -i bash -c 'mkdir -p /data/globaleaks'
+  - sudo -i bash -c 'chown travis:travis /data/globaleaks'
   - sudo -i bash -c 'git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks'
   - /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh
