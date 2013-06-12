@@ -41,12 +41,12 @@ DO () {
     else
         CMD=$3
     fi
-    log_action_begin "Running: \"$CMD\"... "
+    echo -n "Running: \"$CMD\"... "
     $1 &>${BUILD_LOG}
     if [ "$?" -eq "$2" ]; then
-        log_action_end "0" "SUCCESS"
+        echo "SUCCESS"
     else
-        log_action_end "1" "FAIL"
+        echo "FAIL"
         echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
         cat ${BUILD_LOG}
         exit 1
