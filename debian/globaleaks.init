@@ -65,7 +65,7 @@ check_iptables()
     fi
 
     iptables -nvL >/dev/null 2>&1
-    if [ $? -eq 0 ]; then
+    if [ $? -ne 0 ]; then
         log_action_end_msg 1 "missing iptables support"
         exit 1
     fi
