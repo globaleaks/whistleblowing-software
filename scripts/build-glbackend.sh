@@ -50,7 +50,7 @@ build_glbackend()
     rm -rf ${GLBACKEND_TMP}
   fi
   if [ -d ${GLBACKEND_DIR} ]; then
-      echo "Directory ${GLBACKEND_DIR} already present. Can be used as package source"
+    echo "Directory ${GLBACKEND_DIR} already present. Can be used as package source"
     read -n1 -p "Do you want to use the existing repository from ${GLBACKEND_DIR} (y/n): "
     echo
     if [[ $REPLY != [yY] ]]; then
