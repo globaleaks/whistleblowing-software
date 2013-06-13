@@ -18,4 +18,6 @@ if [ ! -d /var/globaleaks/torhs ]; then
   chown debian-tor:debian-tor /var/globaleaks/torhs/
 fi
 
-ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
+if [ ! -f /etc/apparmor.d/usr.sbin.tor ]; then
+  ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
+fi
