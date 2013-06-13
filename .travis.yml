@@ -7,8 +7,8 @@ script:
   - sudo -i bash -x -c 'apt-get install git -y'
   - sudo -i bash -x -c 'mkdir -p /data/globaleaks'
   - sudo -i bash -x -c 'chown travis:travis /data/globaleaks'
-  - sudo -i bash -x -c 'git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks'
-  - /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh
+  - git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
+  - /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh -c${TRAVIS_BRANCH} -b${TRAVIS_BRANCH}
   - sudo -i bash -x -c 'add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -s -c) main"'
   - sudo -i bash -x -c 'gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89'
   - sudo -i bash -x -c 'gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -'
