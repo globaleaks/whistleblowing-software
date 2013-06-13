@@ -133,10 +133,11 @@ def import_gpg_key(username, armored_key):
         for key in all_keys:
             if key['fingerprint'] == fingerprint:
 
-                lifespan = timedelta(seconds=int(key['date']))
-                lifespan_string = timelapse_represent(lifespan.seconds)
+                # lifespan = timedelta(seconds=int(key['date']))
+                # lifespan_string = timelapse_represent(lifespan.seconds)
+                # keyinfo += "Key length %s, with %s" % (key['length'], lifespan_string)
 
-                keyinfo += "Key length %s, with %s" % (key['length'], lifespan_string)
+                keyinfo += "Key length %s" % key['length']
 
                 for uid in key['uids']:
                     keyinfo += "\n\t%s" % uid

@@ -76,9 +76,10 @@ def update_receiver_settings(store, user_id, request):
     if not mail_address:
         raise NoEmailSpecified
 
-    # At the moment, a receiver can update their email address, but not the username.
-    # but client at the moment do not support this update, and has never been tested.
-    receiver.notification_fields = request['notification_fields']
+    # receiver.notification_fields is not update until GLClient supports them
+    receiver.tip_notification = request['tip_notification']
+    receiver.comment_notification = request['comment_notification']
+    receiver.file_notification = request['file_notification']
 
     gpg_options_manage(receiver, request)
 
