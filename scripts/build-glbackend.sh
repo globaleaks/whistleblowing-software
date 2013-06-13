@@ -59,6 +59,7 @@ build_glbackend()
     else
       echo "[+] Copying existent ${GLBACKEND_DIR} in ${GLBACKEND_TMP}"
       cp ${GLBACKEND_DIR} ${GLBACKEND_TMP} -r
+      USING_EXISTENT_DIR=1
     fi
   else
     echo "[+] Cloning GLBackend in ${GLBACKEND_TMP}"
@@ -67,11 +68,10 @@ build_glbackend()
 
   cd ${GLBACKEND_TMP}
 
-  if test $GLBACKEND_TAG; then
-    git checkout $GLBACKEND_TAG
-    GLBACKEND_REVISION=$GLBACKEND_TAG
-  else
-    GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
+  if test ${USING_EXISTENT_DIR}; then
+    if test $TAG; then
+      git checkout $TAG
+    fi
   fi
 
   pip install -r requirements.txt

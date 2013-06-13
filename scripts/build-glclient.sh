@@ -45,6 +45,7 @@ auto_env_setup()
   if [ -d ${GLCLIENT_DIR} ]; then
     echo "[+] detected source repository in ${GLCLIENT_DIR}"
     cp ${GLCLIENT_DIR} ${GLCLIENT_TMP} -r
+    USING_EXISTENT_DIR=1
   else
     echo "[+] Cloning GLClient in ${GLCLIENT_TMP}"
     git clone $GLCLIENT_GIT_REPO ${GLCLIENT_TMP}
@@ -74,6 +75,7 @@ interactive_env_setup()
     else
       echo "[+] Copying existent ${GLCLIENT_DIR} in ${GLCLIENT_TMP}"
       cp ${GLCLIENT_DIR} ${GLCLIENT_TMP} -r
+      USING_EXISTENT_DIR=1
     fi
   else
     echo "[+] Cloning GLClient in ${GLCLIENT_TMP}"
@@ -84,12 +86,14 @@ interactive_env_setup()
 build_glclient()
 {
   cd ${GLCLIENT_TMP}
-  
-  if test $TAG; then
-    git checkout $TAG
-    GLCLIENT_REVISION=$TAG
-  else
-    GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
+
+  GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
+
+  if ! test ${USING_EXISTENT_DIR}; then
+    if test $TAG; then
+      git checkout $TAG
+      GLCLIENT_REVISION=$TAG
+    fi
   fi
 
   if [ -f ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz ]; then
