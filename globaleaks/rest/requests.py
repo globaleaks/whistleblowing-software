@@ -34,6 +34,9 @@ receiverReceiverDesc = {
     'gpg_key_remove': bool,
     "gpg_enable_notification": bool,
     "gpg_enable_files": bool,
+    "comment_notification": bool,
+    "file_notification": bool,
+    "tip_notification": bool,
 }
 
 actorsCommentDesc = {
