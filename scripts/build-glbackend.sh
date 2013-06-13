@@ -11,12 +11,13 @@ OPTIONS:
    -h      Show this message
    -v      To build a tagged release
    -n      To build a non signed package
+   -y      Assume 'yes' to all questions
 
 EOF
 }
 
 SIGN=1
-while getopts “hv:n” OPTION
+while getopts “yhv:n” OPTION
 do
   case $OPTION in
     h)
@@ -29,6 +30,9 @@ do
     n)
       SIGN=0
       ;;
+    y)
+      AUTOYES=1
+      ;;
     ?)
       usage
       exit
@@ -36,7 +40,23 @@ do
     esac
 done
 
-build_glbackend()
+auto_setup_env()
+{
+  cd ${BUILD_DIR}
+  if [ -d ${GLBACKEND_TMP} ]; then
+    echo "[+] Removing ${GLBACKEND_TMP}"
+    rm -rf ${GLBACKEND_TMP}
+  fi
+  if [ -d ${GLBACKEND_DIR} ]; then
+    echo "[+] Copying existent ${GLBACKEND_DIR} in ${GLBACKEND_TMP}"
+    cp ${GLBACKEND_DIR} ${GLBACKEND_TMP} -r
+  else
+    echo "[+] Cloning GLBackend in ${GLBACKEND_TMP}"
+    git clone $GLBACKEND_GIT_REPO ${GLBACKEND_TMP}
+  fi
+}
+
+interactive_setup_env()
 {
   cd ${BUILD_DIR}
   if [ -d ${GLBACKEND_TMP} ]; then
@@ -64,7 +84,10 @@ build_glbackend()
     echo "[+] Cloning GLBackend in ${GLBACKEND_TMP}"
     git clone $GLBACKEND_GIT_REPO ${GLBACKEND_TMP}
   fi
+}
 
+build_glbackend()
+{
   cd ${GLBACKEND_TMP}
 
   if test $GLBACKEND_TAG; then
@@ -101,6 +124,11 @@ build_glbackend()
   mv ${GLBACKEND_TMP}/dist ${GLB_BUILD}
 }
 
+if [ $AUTOYES ]; then
+  auto_setup_env
+else
+  interactive_setup_env
+fi
 build_glbackend
 
 echo "[+] All done!"
