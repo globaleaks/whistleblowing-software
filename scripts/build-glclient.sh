@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -x
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . ${DIR}/common_inc.sh
 
@@ -15,7 +15,7 @@ OPTIONS:
 EOF
 }
 
-while getopts “hv:” OPTION
+while getopts “yhv:” OPTION
 do
   case $OPTION in
     h)
@@ -25,6 +25,9 @@ do
     v)
       TAG=$OPTARG
       ;;
+    y)
+      AUTOYES=1
+      ;;
     ?)
       usage
       exit
@@ -32,7 +35,23 @@ do
     esac
 done
 
-build_glclient()
+auto_env_setup()
+{
+  cd ${BUILD_DIR}
+  if [ -d ${GLCLIENT_TMP} ]; then
+    echo "[+] detected and removing ${GLCLIENT_TMP}"
+    rm -rf ${GLCLIENT_TMP} 
+  fi
+  if [ -d ${GLCLIENT_DIR} ]; then
+    echo "[+] detected source repository in ${GLCLIENT_DIR}"
+    cp ${GLCLIENT_DIR} ${GLCLIENT_TMP} -r
+  else
+    echo "[+] Cloning GLClient in ${GLCLIENT_TMP}"
+    git clone $GLCLIENT_GIT_REPO ${GLCLIENT_TMP}
+  fi
+}
+
+interactive_env_setup()
 {
   cd ${BUILD_DIR}
   if [ -d ${GLCLIENT_TMP} ]; then
@@ -60,7 +79,10 @@ build_glclient()
     echo "[+] Cloning GLClient in ${GLCLIENT_TMP}"
     git clone $GLCLIENT_GIT_REPO ${GLCLIENT_TMP}
   fi
+}
 
+build_glclient()
+{
   cd ${GLCLIENT_TMP}
   
   if test $TAG; then
@@ -98,7 +120,14 @@ build_glclient()
   sha1sum ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha1.txt
   shasum -a 224 ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
 }
+
+if [ $AUTOYES ]; then
+  auto_env_setup
+else
+  interactive_env_setup
+fi
 build_glclient
+
 echo "[+] All done!"
 echo ""
 echo "GLClient build is now present in ${GLC_BUILD}"
