@@ -54,7 +54,7 @@ else
 fi
 
 if test $TAGB; then
-  ${DIR}/build-glbackend.sh -v $TAGB
+  ${DIR}/build-glbackend.sh -v $TAGB -n
 else
-  ${DIR}/build-glbackend.sh 
+  ${DIR}/build-glbackend.sh -n
 fi
