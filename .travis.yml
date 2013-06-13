@@ -1,7 +1,6 @@
 language: python
 python:
   - "2.7"
-install: pip install -r requirements.txt
 script:
   - trial globaleaks
   - sudo -i bash -x -c 'apt-get install git -y'
@@ -29,3 +28,5 @@ script:
   - sudo -i bash -x -c 'echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc'
   - sudo -i bash -x -c '/etc/init.d/tor restart'
   - sudo TRAVIS=true -i bash -x -c '/etc/init.d/globaleaks restart'
+  - curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
+
