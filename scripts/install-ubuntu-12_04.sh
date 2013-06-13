@@ -433,6 +433,15 @@ DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
 DO "cd ${BUILD_DIR}/" "0"
 
+INSTALL_PIP=1
+if which pip >/dev/null 2>&1; then
+    INSTALLED_PIP=`pip --version | cut -d" " -f2`
+    vercomp ${INSTALLED_PIP} ${NEEDED_VERSION_PIP}
+    if [ "$?" -ne "2" ]; then
+        INSTALL_PIP=0
+    fi
+fi
+
 if [ "${INSTALL_PIP}" -eq "1" ] ; then
     DO "wget -O ${BUILD_DIR}/${PIP_PKG} ${PIP_URL}" "0"
     DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
