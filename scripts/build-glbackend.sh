@@ -91,9 +91,9 @@ build_glbackend()
 {
   cd ${GLBACKEND_TMP}
 
-  if test ${USING_EXISTENT_DIR}; then
+  if ! test ${USING_EXISTENT_DIR}; then
     if test $TAG; then
-      git checkout $TAG
+      git checkout $TAG || git checkout HEAD
     fi
   fi
 
