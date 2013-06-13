@@ -3,7 +3,7 @@ python:
   - "2.7"
 script:
   - sudo -i bash -x -c 'git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GLBackend'
-  - sudo -i bash -x -c '/data/globaleaks/GLBackend/ && trial globaleaks'
+  - sudo -i bash -x -c 'cd /data/globaleaks/GLBackend/ && trial globaleaks'
   - sudo -i bash -x -c 'apt-get install git -y'
   - sudo -i bash -x -c 'mkdir -p /data/globaleaks'
   - sudo -i bash -x -c 'chown travis:travis /data/globaleaks'
