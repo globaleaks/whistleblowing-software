@@ -19,7 +19,6 @@ script:
   - sudo -i bash -x -c 'curl https://raw.github.com/globaleaks/GlobaLeaks/master/scripts/install-ubuntu-12_04.sh > install-ubuntu-12_04.sh'
   - sudo -i bash -x -c 'chmod +x install-ubuntu-12_04.sh'
   - sudo TRAVIS=true -i bash -x -c './install-ubuntu-12_04.sh'
-  - sudo TRAVIS=true apt-get install globaleaks -y --force-yes
   - sudo -i bash -x -c 'echo "VirtualAddrNetwork 10.23.47.0/10" >> /etc/tor/torrc'
   - sudo -i bash -x -c 'echo "AutomapHostsOnResolve 1" >> /etc/tor/torrc'
   - sudo -i bash -x -c 'echo "TransPort 9040" >> /etc/tor/torrc'
