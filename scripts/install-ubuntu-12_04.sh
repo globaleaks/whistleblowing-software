@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 
 ############## Start Of Variable and Functions Declaration ###########
 
@@ -477,7 +477,7 @@ for PIP_DEP in $PIP_DEPS; do
   DO "pip install $PIP_DEP" "0"
 done
 
-if [ ! -d /data/globaleaks/deb ]; then
+if [ -d /data/globaleaks/deb ]; then
   cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
   echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list
   DO "apt-get update -y" "0"
