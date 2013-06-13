@@ -285,3 +285,13 @@ class HTTPRawLimitReach(GLException):
     status_code = 400 # Generic 400 error
     reason = ("The upload request overcome the Md limits (%dMd)" %
              (GLSetting.memory_copy.maximum_filesize / 1024 * 1024) )
+
+class SessionExpired(GLException):
+    """
+    Raised by GLHTTPServer, when a raw upload is bigger than acceptable
+    """
+    error_code = 40
+    status_code = 400 # Generic 400 error
+
+    def __init__(self, lifetime, role):
+        self.reason = "The time for your role (%s) is %s" % (role, lifetime)
