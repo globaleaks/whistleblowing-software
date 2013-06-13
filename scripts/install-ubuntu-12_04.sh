@@ -143,9 +143,6 @@ P/C52ALX08WJ34OtmJMZ1SihV+3+EWhA+tU=
 -----END PGP PUBLIC KEY BLOCK-----
 "
 
-echo "${GLOBALEAKS_PUB_KEY}" > ${GLOBALEAKS_KEY_FILE}
-DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $GLOBALEAKS_KEY_FILE" "0"
-
 NEEDED_VERSION_PYTHON=2.7
 NEEDED_VERSION_PIP=1.3.1
 
@@ -487,6 +484,9 @@ DO "apt-get install python-setuptools python-software-properties gcc python-dev 
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
 DO "cd ${BUILD_DIR}/" "0"
+
+echo "${GLOBALEAKS_PUB_KEY}" > ${GLOBALEAKS_KEY_FILE}
+DO "gpg --no-default-keyring --keyring ${TMP_KEYRING} --import ${GLOBALEAKS_KEY_FILE}" "0"
 
 INSTALL_PIP=1
 if which pip >/dev/null 2>&1; then
