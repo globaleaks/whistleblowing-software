@@ -2,6 +2,40 @@
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . ${DIR}/common_inc.sh
 
+usage()
+{
+cat << EOF
+usage: ./${SCRIPTNAME} options
+
+OPTIONS:
+   -h    Show this message
+   -c   To build a specific client version
+   -b   To build a specific backend version
+
+EOF
+}
+
+SIGN=1
+while getopts “hc:b:” OPTION
+do
+  case $OPTION in
+    h)
+      usage
+      exit 1
+      ;;
+    c)
+      TAGC=$OPTARG
+      ;;
+    b)
+      TAGB=$OPTARG
+      ;;
+    ?)
+      usage
+      exit
+      ;;
+    esac
+done
+
 echo "[+] Setupping GLClient and GLBackend build environments"
 
 if [ ! -f ${DIR}/.environment_setupped ]; then
@@ -13,5 +47,14 @@ if [ ! -f ${DIR}/.environment_setupped ]; then
     touch ${DIR}/.environment_setupped
 fi
 
-${DIR}/build-glclient.sh
-${DIR}/build-glbackend.sh -n
+if test $TAGC; then
+  ${DIR}/build-glclient.sh -v $TAGC
+else
+  ${DIR}/build-glclient.sh
+fi
+
+if test $TAGB; then
+  ${DIR}/build-glbackend.sh -v $TAGB
+else
+  ${DIR}/build-glbackend.sh 
+fi
