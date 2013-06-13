@@ -38,6 +38,12 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
 
     $scope.pref_save = function() {
 
+      $scope.preferences.file_notification = $scope.copy_file_notification;
+      $scope.preferences.comment_notification = $scope.copy_comment_notification;
+      $scope.preferences.tip_notification = $scope.copy_tip_notification;
+      $scope.preferences.gpg_key_remove = $scope.copy_gpg_key_remove;
+
+
       $scope.preferences.password = '';
       $scope.preferences.old_password = '';
 
