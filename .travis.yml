@@ -1,6 +1,9 @@
 language: python
 python:
   - "2.7"
+install:
+  - wget https://raw.github.com/globaleaks/GLBackend/master/requirements.txt
+  - pip install -r requirements.txt
 script:
   - sudo -i bash -x -c 'apt-get install git -y'
   - sudo -i bash -x -c 'mkdir -p /data/globaleaks'
