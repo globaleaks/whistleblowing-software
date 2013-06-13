@@ -18,7 +18,7 @@ from storm.twisted.testing import FakeThreadPool
 from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-from globaleaks import db
+from globaleaks import db, utils
 
 DEFAULT_PASSWORD = u'yustapassword'
 transact.tp = FakeThreadPool()
@@ -36,6 +36,7 @@ class TestWithDB(unittest.TestCase):
         return db.create_tables(create_node=True)
 
 class TestGL(TestWithDB):
+
     @inlineCallbacks
     def _setUp(self):
         yield TestWithDB.setUp(self)
@@ -44,6 +45,17 @@ class TestGL(TestWithDB):
 
     def setUp(self):
         return self._setUp()
+
+    def setUp_dummy(self):
+
+        dummyStuff = MockDict()
+
+        self.dummyContext = dummyStuff.dummyContext
+        self.dummySubmission = dummyStuff.dummySubmission
+        self.dummyNotification = dummyStuff.dummyNotification
+        self.dummyReceiver = dummyStuff.dummyReceiver
+        self.dummyNode = dummyStuff.dummyNode
+
 
     @inlineCallbacks
     def fill_data(self):
@@ -71,125 +83,6 @@ class TestGL(TestWithDB):
             self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
         except Exception as excp:
             print "Fail fill_data/create_whistleblower: %s" % excp
-
-
-    def setUp_dummy(self):
-        self.dummyReceiver = {
-            'receiver_gus': unicode(uuid.uuid4()),
-            'password': DEFAULT_PASSWORD,
-            'name': u'john smith',
-            'description': u'the first receiver',
-            'notification_fields': {'mail_address': u'maker@iz.cool.yeah'},
-            'can_delete_submission': True,
-            'receiver_level': 1,
-            'contexts' : [],
-            'tags': [ u'first', u'second', u'third' ],
-            'tip_notification': True,
-            'file_notification': True,
-            'comment_notification': True,
-        }
-        self.dummyContext = {
-            'context_gus': unicode(uuid.uuid4()),
-            'name': u'created by shooter',
-            'description': u'This is the update',
-            'fields': [{u'hint': u'autovelox',
-                        u'name': u'city and space',
-                        u'presentation_order': 1,
-                        u'required': True,
-                        u'type': u'text',
-                        u'value': u"Yadda I'm default with apostrophe"},
-                       {u'hint': u'name of the sun',
-                        u'name': u'ß@ł€¶ -- Spécìàlé €$£ char',
-                        u'presentation_order': 2,
-                        u'required': True,
-                        u'type': u'checkboxes',
-                        u'value': u"I'm the sun, I've not name"},
-                       {u'hint': u'put the number ',
-                        u'name': u'dict2 whatEver',
-                        u'presentation_order': 3,
-                        u'required': True,
-                        u'type': u'text',
-                        u'value': u'666 the default value'},
-                       {u'hint': u'details:',
-                        u'name': u'dict3 cdcd',
-                        u'presentation_order': 4,
-                        u'required': False,
-                        u'type': u'text',
-                        u'value': u'buh ?'}],
-            'selectable_receiver': False,
-            'tip_max_access': 10,
-            # _timetolive are expressed in seconds!
-            'tip_timetolive': 200,
-            'submission_timetolive': 100,
-            'file_max_download' :1,
-            'escalation_threshold': 1,
-            'receivers' : [],
-            'tags': [],
-            'receipt_regexp': u'[A-Z]{4}\+[0-9]{5}',
-            'receipt_description': u'xx',
-            'submission_introduction': u'yy',
-            'submission_disclaimer': u'kk',
-            'file_required': False,
-        }
-        self.dummySubmission = {
-            'context_gus': '',
-            'wb_fields': self.fill_random_fields(self.dummyContext),
-            'finalize': False,
-            'receivers': [],
-        }
-        self.dummyNode = {
-             'name':  u"Please, set me: name/title",
-             'description':  u"Please, set me: description",
-             'hidden_service':  u"Please, set me: hidden service",
-             'public_site':  u"Please, set me: public site",
-             'email':  u"email@dumnmy.net",
-             'stats_update_time':  2, # hours,
-             'languages':  [{ "code" : "it" , "name": "Italiano"},
-                            { "code" : "en" , "name" : "English" }],
-             'password' : '',
-             'old_password' : '',
-             'salt': 'xxxxxhefdiufiwnfewifweibeifwiebfibweiufwixx',
-             'salt_receipt': 'mfeiwofmeiwofmnoiwefniowefowiemfoiwefow',
-             'maximum_descsize' : GLSetting.defaults.maximum_descsize,
-             'maximum_filesize' : GLSetting.defaults.maximum_filesize,
-             'maximum_namesize' : GLSetting.defaults.maximum_namesize,
-             'maximum_textsize' : GLSetting.defaults.maximum_textsize,
-             'tor2web_admin' : GLSetting.defaults.tor2web_admin,
-             'tor2web_submission' : GLSetting.defaults.tor2web_submission,
-             'tor2web_tip' : GLSetting.defaults.tor2web_tip,
-             'tor2web_receiver' : GLSetting.defaults.tor2web_receiver,
-             'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
-             'exception_email' : GLSetting.defaults.exception_email,
-        }
-        self.dummyNotification = {
-            'server': u'mail.foobar.xxx',
-            'port': 12345,
-            'username': u'staceppa',
-            'password': u'antani',
-            'security': u'SSL',
-            'tip_template': u'tip message: %sNodeName%',
-            'comment_template': u'comment message: %sNodeName%',
-            'file_template': u'file message: %sNodeName%',
-            'activation_template': u'activation message: %sNodeName%',
-            'tip_mail_title': u'xxx',
-            'comment_mail_title': u'yyy',
-            'file_mail_title': u'kkk',
-            'activation_mail_title': u'uuu',
-        }
-
-    def fill_random_fields(self, context_dict):
-        """
-        The type is not jet checked/enforced/validated
-        """
-        assert len(context_dict['fields']) > 1
-
-        ret_dict = {}
-        for sf in context_dict['fields']:
-
-            assert sf.has_key(u'name')
-            ret_dict.update({ sf[u'name'] : ''.join(unichr(x) for x in range(0x400, 0x4FF))})
-
-        return ret_dict
 
 
 class TestHandler(TestGL):
@@ -285,6 +178,7 @@ class TestHandler(TestGL):
         if role:
             session_id = '4tehlulz'
             new_session = OD(
+                   borndate=utils.datetime_now(),
                    timestamp=time.time(),
                    id=session_id,
                    role=role,
@@ -293,3 +187,132 @@ class TestHandler(TestGL):
             GLSetting.sessions[session_id] = new_session
             handler.request.headers['X-Session'] = session_id
         return handler
+
+
+class MockDict():
+    """
+    This class just create all the shit we need for emulate a GLNode
+    """
+
+    def __init__(self):
+
+        self.dummyReceiver = {
+            'receiver_gus': unicode(uuid.uuid4()),
+            'password': DEFAULT_PASSWORD,
+            'name': u'Ned Stark',
+            'description': u'King MockDummy Receiver',
+            'notification_fields': {'mail_address': u'maker@iz.cool.yeah'},
+            'can_delete_submission': True,
+            'receiver_level': 1,
+            'contexts' : [],
+            'tags': [ u'first', u'second', u'third' ],
+            'tip_notification': True,
+            'file_notification': True,
+            'comment_notification': True,
+        }
+
+        self.dummyContext = {
+            'context_gus': unicode(uuid.uuid4()),
+            'name': u'created by shooter',
+            'description': u'This is the update',
+            'fields': [{u'hint': u'autovelox',
+                        u'name': u'city and space',
+                        u'presentation_order': 1,
+                        u'required': True,
+                        u'type': u'text',
+                        u'value': u"Yadda I'm default with apostrophe"},
+                       {u'hint': u'name of the sun',
+                        u'name': u'ß@ł€¶ -- Spécìàlé €$£ char',
+                        u'presentation_order': 2,
+                        u'required': True,
+                        u'type': u'checkboxes',
+                        u'value': u"I'm the sun, I've not name"},
+                       {u'hint': u'put the number ',
+                        u'name': u'dict2 whatEver',
+                        u'presentation_order': 3,
+                        u'required': True,
+                        u'type': u'text',
+                        u'value': u'666 the default value'},
+                       {u'hint': u'details:',
+                        u'name': u'dict3 cdcd',
+                        u'presentation_order': 4,
+                        u'required': False,
+                        u'type': u'text',
+                        u'value': u'buh ?'}],
+            'selectable_receiver': False,
+            'tip_max_access': 10,
+            # _timetolive are expressed in seconds!
+            'tip_timetolive': 200,
+            'submission_timetolive': 100,
+            'file_max_download' :1,
+            'escalation_threshold': 1,
+            'receivers' : [],
+            'tags': [],
+            'receipt_regexp': u'[A-Z]{4}\+[0-9]{5}',
+            'receipt_description': u'xx',
+            'submission_introduction': u'yy',
+            'submission_disclaimer': u'kk',
+            'file_required': False,
+        }
+
+        self.dummySubmission = {
+            'context_gus': '',
+            'wb_fields': self.fill_random_fields(self.dummyContext),
+            'finalize': False,
+            'receivers': [],
+        }
+
+        self.dummyNode = {
+            'name':  u"Please, set me: name/title",
+            'description':  u"Please, set me: description",
+            'hidden_service':  u"http://1234567890123456.onion",
+            'public_site':  u"https://globaleaks.org",
+            'email':  u"email@dumnmy.net",
+            'stats_update_time':  2, # hours,
+            'languages':  [{ "code" : "it" , "name": "Italiano"},
+                           { "code" : "en" , "name" : "English" }],
+            'password' : '',
+            'old_password' : '',
+            'salt': 'OMG!, the Rains of Castamere ;( ;(',
+            'salt_receipt': '<<the Lannisters send their regards>>',
+            'maximum_descsize' : GLSetting.defaults.maximum_descsize,
+            'maximum_filesize' : GLSetting.defaults.maximum_filesize,
+            'maximum_namesize' : GLSetting.defaults.maximum_namesize,
+            'maximum_textsize' : GLSetting.defaults.maximum_textsize,
+            'tor2web_admin' : True,
+            'tor2web_submission' : True,
+            'tor2web_tip' : True,
+            'tor2web_receiver' : True,
+            'tor2web_unauth' : True,
+            'exception_email' : GLSetting.defaults.exception_email,
+        }
+
+        self.dummyNotification = {
+            'server': u'mail.foobar.xxx',
+            'port': 12345,
+            'username': u'staceppa',
+            'password': u'antani',
+            'security': u'SSL',
+            'tip_template': u'tip message: %sNodeName%',
+            'comment_template': u'comment message: %sNodeName%',
+            'file_template': u'file message: %sNodeName%',
+            'activation_template': u'activation message: %sNodeName%',
+            'tip_mail_title': u'xxx',
+            'comment_mail_title': u'yyy',
+            'file_mail_title': u'kkk',
+            'activation_mail_title': u'uuu',
+        }
+
+    def fill_random_fields(self, context_dict):
+        """
+        The type is not jet checked/enforced/validated
+        """
+        assert len(context_dict['fields']) > 1
+
+        ret_dict = {}
+        for sf in context_dict['fields']:
+
+            assert sf.has_key(u'name')
+            ret_dict.update({ sf[u'name'] : ''.join(unichr(x) for x in range(0x400, 0x4FF))})
+
+        return ret_dict

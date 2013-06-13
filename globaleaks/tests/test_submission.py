@@ -220,7 +220,7 @@ class TestSubmission(helpers.TestGL):
 
         status = yield submission.create_submission(submission_desc, finalize=False)
 
-        status['wb_fields'] = self.fill_random_fields(self.dummyContext)
+        status['wb_fields'] = helpers.MockDict().fill_random_fields(self.dummyContext)
         status['finalize'] = True
 
         status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
