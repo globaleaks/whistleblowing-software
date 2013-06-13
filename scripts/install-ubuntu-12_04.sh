@@ -41,12 +41,12 @@ DO () {
     else
         CMD=$3
     fi
-    log_action_begin "Running: \"$CMD\"... "
+    echo -n "Running: \"$CMD\"... "
     $1 &>${BUILD_LOG}
-    if [ $? -eq $2 ]; then
-        log_action_end "0" "SUCCESS"
+    if [ "$?" -eq "$2" ]; then
+        echo "SUCCESS"
     else
-        log_action_end "1" "FAIL"
+        echo "FAIL"
         echo "COMBINED STDOUT/STDERR OUTPUT OF FAILED COMMAND:"
         cat ${BUILD_LOG}
         exit 1
@@ -390,12 +390,13 @@ PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
 ############### End Of Variable and Functions Declaration ############
 
 # User Permission Check
-if [[ $EUID -ne 0 ]]; then
+if [[ "$EUID" -ne "0" ]]; then
     echo "Error: GlobaLeaks install script must be runned by root"
     exit 1
 fi
 
-if [[ lsb_release -c | grep precise -ne 0 ]]; then
+lsb_release -c | grep precise >/dev/null 2>&-
+if [ "$?" -ne "0" ]; then
     echo "Error: Currently install script offers only Ubuntu 12.04 support"
     exit 1
 fi
@@ -421,7 +422,7 @@ fi
 
 INSTALLED_PYTHON=`python --version 2>&1 | cut -d" " -f2`
 vercomp ${INSTALLED_PYTHON} ${NEEDED_VERSION_PYTHON}
-if [ $? -eq 2 ]; then
+if [ "$?" -eq "2" ]; then
     echo "Error: Globaleaks needs at least python version ${NEEDED_VERSION_PYTHON} (found ${INSTALLED_PYTHON})"
     exit 1
 fi
@@ -436,12 +437,12 @@ INSTALL_PIP=1
 if which pip >/dev/null 2>&1; then
     INSTALLED_PIP=`pip --version | cut -d" " -f2`
     vercomp ${INSTALLED_PIP} ${NEEDED_VERSION_PIP}
-    if [ $? -ne 2 ]; then
+    if [ "$?" -ne "2" ]; then
         INSTALL_PIP=0
     fi
 fi
 
-if [ ${INSTALL_PIP} -eq 1 ] ; then
+if [ "${INSTALL_PIP}" -eq "1" ] ; then
     DO "wget -O ${BUILD_DIR}/${PIP_PKG} ${PIP_URL}" "0"
     DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
 
@@ -456,7 +457,7 @@ if [ ${INSTALL_PIP} -eq 1 ] ; then
     DO "cd pip-*" "0"
 
     echo "Installing the latest pip"
-    if [ ${ASSUME_YES} -eq 0 ]; then
+    if [ "${ASSUME_YES}" -eq "0" ]; then
         echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
         read -r -p "Do you wish to continue? [y/n] " response
         case $response in
@@ -476,10 +477,17 @@ for PIP_DEP in $PIP_DEPS; do
   DO "pip install $PIP_DEP" "0"
 done
 
-add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/'
+if [ -d /data/globaleaks/deb ]; then
+  cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
+  echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list
+  DO "apt-get update -y" "0"
+  DO "apt-get install globaleaks -y --force-yes" "0"
+else
+  add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/' 
+  DO "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
+  DO "gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -" "0"
+  DO "apt-get update -y" "0"
+  DO "apt-get install globaleaks -y" "0"
+fi
 
-DO "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
-DO "gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -" "0"
-DO "apt-get update -y" "0"
-DO "apt-get install globaleaks -y" "0"
 update-rc.d globaleaks defaults # Set globaleaks to automatically start on-boot
