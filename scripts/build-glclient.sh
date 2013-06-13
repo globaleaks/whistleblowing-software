@@ -87,14 +87,13 @@ build_glclient()
 {
   cd ${GLCLIENT_TMP}
 
-  GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
-
   if ! test ${USING_EXISTENT_DIR}; then
     if test $TAG; then
-      git checkout $TAG
-      GLCLIENT_REVISION=$TAG
+      git checkout $TAG || git checkout HEAD
     fi
   fi
+
+  GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
   if [ -f ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz ]; then
     echo "${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz already present"
