@@ -5,8 +5,9 @@
 BUILD_DIR=/tmp/glbuilding.$RANDOM
 BUILD_LOG=${BUILD_DIR}.log
 TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
-PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
+GLOBALEAKS_KEY_FILE=${BUILD_DIR}/gl-pub-key.gpg
 PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
+PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
 
 usage()
 {
@@ -142,7 +143,7 @@ P/C52ALX08WJ34OtmJMZ1SihV+3+EWhA+tU=
 -----END PGP PUBLIC KEY BLOCK-----
 "
 
-echo "$GLOBALEAKS_PUB_KEY" > $GLOBALEAKS_KEY_FILE
+echo "${GLOBALEAKS_PUB_KEY}" > ${GLOBALEAKS_KEY_FILE}
 DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $GLOBALEAKS_KEY_FILE" "0"
 
 NEEDED_VERSION_PYTHON=2.7
@@ -501,9 +502,7 @@ if [ "${INSTALL_PIP}" -eq "1" ] ; then
     DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
 
     echo "Verifying PGP signature"
-    TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
-    PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
-    echo "$PIP_PUB_KEY" > $PIP_KEY_FILE
+    echo "${PIP_PUB_KEY}" > ${PIP_KEY_FILE}
     DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $PIP_KEY_FILE" "0"
     DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0"
 
