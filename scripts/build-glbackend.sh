@@ -50,14 +50,14 @@ build_glbackend()
     rm -rf ${GLBACKEND_TMP}
   fi
   if [ -d ${GLBACKEND_DIR} ]; then
-    echo "Directory ${GLBACKEND_DIR} already present. "
-    read -n1 -p "Do you want to use the existent ${GLBACKEND_DIR}? (y/n): "
+    echo "Directory ${GLBACKEND_DIR} already present. Can be used as package source"
+    read -n1 -p "Do you want to use the existing repository from ${GLBACKEND_DIR} (y/n): "
     echo
     if [[ $REPLY != [yY] ]]; then
       echo "[+] Cloning GLBackend in ${GLBACKEND_TMP}"
       git clone $GLBACKEND_GIT_REPO ${GLBACKEND_TMP}
     else
-      echo "[+] Copying existent ${GLBACKEND_DIR} in ${GLCBACKEND_TMP}"
+      echo "[+] Copying existent ${GLBACKEND_DIR} in ${GLBACKEND_TMP}"
       cp ${GLBACKEND_DIR} ${GLBACKEND_TMP} -r
     fi
   else
