@@ -481,12 +481,13 @@ if [ -d /data/globaleaks/deb ]; then
   cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
   echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list
   DO "apt-get update -y" "0"
-  #DO "apt-get install globaleaks -y --force-yes" "0"
+  DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew" "0"
 else
   add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/' 
   DO "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
   DO "gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -" "0"
   DO "apt-get update -y" "0"
   DO "apt-get install globaleaks -y" "0"
-  update-rc.d globaleaks defaults # Set globaleaks to automatically start on-boot
 fi
+
+update-rc.d globaleaks defaults # Set globaleaks to automatically start on-boot
