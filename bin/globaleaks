@@ -249,8 +249,8 @@ def check_db_files(db_dir_path):
                 print "Database version detected: %d" % GLSetting.db_version
 
         except AssertionError:
-            print "More than one database file has been found in %s" % path
-            quit()
+            print "Error: More than one database file has been found in %s" % path
+            quit(-1)
         except StandardError:
             continue
 
