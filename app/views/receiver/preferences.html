@@ -59,20 +59,23 @@
                     <h4>Notification settings</h4>
 
                     <label>
-                    <input type="checkbox" ng-model="preferences.tip_notification"
-                           ng-value="preferences.tip_notification" />
+                    <input type="checkbox"
+                           ng-init="copy_tip_notification = preferences.tip_notification"
+                           ng-click="copy_tip_notification = !copy_tip_notification" />
                         new Tip trigger an email notification
                         </label>
 
                     <label>
-                    <input type="checkbox" ng-model="preferences.comment_notification"
-                           ng-value="preferences.comment_notification" />
+                    <input type="checkbox"
+                           ng-init="copy_comment_notification = preferences.comment_notification"
+                           ng-click="copy_comment_notification = !copy_comment_notification" />
                         new Comment on a Tip, trigger an email notification
                         </label>
 
                     <label>
-                    <input type="checkbox" ng-model="preferences.file_notification"
-                           ng-value="preferences.file_notification" />
+                    <input type="checkbox"
+                           ng-init="copy_file_notification = preferences.file_notification"
+                           ng-click="copy_file_notification = !copy_file_notification" />
                         new File uploaded on a Tip, trigger an email notification
                         </label>
 
@@ -120,6 +123,7 @@
                         ng-init="gpg_marketing=false">
                     You've not encryption enabled!
                 </button>
+
                 <div
                     ng-show="gpg_marketing">
                     <p><a href="https://gnupg.org">GnuPG</a>can be configured in order to deliver
@@ -129,18 +133,21 @@
                     </p>
                 </div>
 
-                <label>Update or configure your GPG Key:</label>
-                <textarea ng-model="preferences.gpg_key_armor"></textarea>
+                <div>
+                    <label>Update or configure your GPG Key:</label>
+                    <textarea ng-model="preferences.gpg_key_armor"></textarea>
 
-                <label ng-show="preferences.gpg_key_fingerprint">
-                    <input type="checkbox" ng-model="preferences.gpg_key_remove" />
-                    Remove your GPG key.
-                </label>
-
-                <br>
-                <button type="submit" class="btn btn-success" ng-click="pref_save()" >
-                    Update notification and encryption settings
-                </button>
+                    <label ng-show="preferences.gpg_key_fingerprint">
+                        <input type="checkbox"
+                               ng-init="copy_gpg_key_remove = preferences.gpg_key_remove"
+                               ng-click="copy_gpg_key_remove = !copy_gpg_key_remove" />
+                        Remove your GPG key.
+                    </label>
+                    <br>
+                    <button type="submit" class="btn btn-success" ng-click="pref_save()" >
+                        Update notification and encryption settings
+                    </button>
+                </div>
 
             </div>
         </div>
