@@ -60,6 +60,10 @@ def set_default_headers(self):
     # to reduce possibility for XSS attacks.
     self.set_header("X-Content-Type-Options", "nosniff")
 
+    # to mitigate information leakage on Browser/Proxy Cache
+    self.set_header("Cache-control", "no-cache, no-store")
+    self.set_header("Pragma", "no-cache")
+    self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
 
 class GLHTTPServer(HTTPConnection):
     def lineReceiver(self, line):
