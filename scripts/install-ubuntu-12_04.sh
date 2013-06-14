@@ -498,30 +498,30 @@ if which pip >/dev/null 2>&1; then
 fi
 
 if [ "${INSTALL_PIP}" -eq "1" ] ; then
-    DO "wget -O ${BUILD_DIR}/${PIP_PKG} ${PIP_URL}" "0"
-    DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
+  DO "wget -O ${BUILD_DIR}/${PIP_PKG} ${PIP_URL}" "0"
+  DO "wget -O ${BUILD_DIR}/${PIP_PKG}.asc ${PIP_SIG_URL}" "0"
 
-    echo "Verifying PGP signature"
-    echo "${PIP_PUB_KEY}" > ${PIP_KEY_FILE}
-    DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $PIP_KEY_FILE" "0"
-    DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0"
+  echo "Verifying PGP signature"
+  echo "${PIP_PUB_KEY}" > ${PIP_KEY_FILE}
+  DO "gpg --no-default-keyring --keyring $TMP_KEYRING --import $PIP_KEY_FILE" "0"
+  DO "gpg --no-default-keyring --keyring $TMP_KEYRING --verify $PKG_VERIFY" "0"
 
-    DO "tar xzf ${BUILD_DIR}/${PIP_PKG}" "0"
-    DO "cd pip-*" "0"
+  DO "tar xzf ${BUILD_DIR}/${PIP_PKG}" "0"
+  DO "cd pip-*" "0"
 
-    echo "Installing the latest pip"
-    if [ "${ASSUME_YES}" -eq "0" ]; then
-        echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
-        read -r -p "Do you wish to continue? [y/n] " response
-        case $response in
-            y | Y | yes | YES )
-                DO "python setup.py install" "0"
-                ;;
-            *)
-                exit 1
-                ;;
-        esac
+  echo "Installing the latest pip"
+  if [ "${ASSUME_YES}" -eq "0" ]; then
+    echo "WARNING this will overwrite the pip that you currently have installed and all python dependencies will be installed via pip."
+    ANSWER=''
+    until [[ $ANSWER = [yn] ]]; do
+      read -r -p "Do you wish to continue? [y/n]" ANSWER
+      echo
+    done
+    if [[ $ANSWER != 'y' ]]; then
+      echo "Cannot proceed"
+      exit
     fi
+  DO "python setup.py install" "0"
 fi
 
 DO "wget -O ${BUILD_DIR}/requirements.txt https://raw.github.com/globaleaks/GLBackend/master/requirements.txt" "0"
