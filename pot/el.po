@@ -1,733 +1,701 @@
 # Copyright (C) 2013 WordPress
 # This file is distributed under the same license as the WordPress package.
-# Translators:
-# Wasilis Mandratzis <m.wasilis@yahoo.de>, 2013
 msgid ""
 msgstr ""
-"Project-Id-Version: GlobaLeaks\n"
+"Project-Id-Version: GLClient 0.2\n"
 "Report-Msgid-Bugs-To: http://github.com/globaleaks/GlobaLeaks\n"
-"PO-Revision-Date: 2013-05-30 23:11+0000\n"
-"Last-Translator: Wasilis Mandratzis <m.wasilis@yahoo.de>\n"
-"Language-Team: Greek (http://www.transifex.com/projects/p/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: el\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: example.py:11
 msgid "add option"
-msgstr "προσθήκη επιλογής"
+msgstr ""
 
 #: example.py:11
-msgid ""
-"We were not able to determine if you are anonymous or not, please proceed "
-"with care"
-msgstr "Δεν ήταν σε θέση να καθορίσει εάν είστε ανώνυμοι ή όχι, παρακαλούμε να προχωρήσετε με προσοχή"
+msgid "We were not able to determine if you are anonymous or not, please proceed with care"
+msgstr ""
 
 #: example.py:11
 msgid "Admin interface and configure at least one context"
-msgstr "Διαχειριστής interface και ρυθμίση τουλάχιστον ένoς πλαίσιου"
+msgstr ""
 
 #: example.py:11
 msgid "You will not be able to perform a submission."
-msgstr "Δεν θα είστε σε θέση να εκτελέσετε την υποβολή της πρότασης."
+msgstr ""
 
 #: example.py:11
 msgid "Comments"
-msgstr "Σχόλια"
+msgstr ""
 
 #: example.py:11
-msgid ""
-"that is specifically designed to protect the identity of the reporter and of"
-" the ones running the platform."
-msgstr "που έχει σχεδιαστεί ειδικά για να προστατεύει την ταυτότητα του εισηγητή της έκθεσης και από αυτά που τρέχουν στην πλατφόρμα."
+msgid "that is specifically designed to protect the identity of the reporter and of the ones running the platform."
+msgstr ""
 
 #: example.py:11
 msgid "add field"
-msgstr "προσθηκη τομεα"
+msgstr ""
 
 #: example.py:11
 msgid "Tips"
-msgstr "Συμβουλές"
+msgstr ""
 
 #: example.py:11
-msgid "Users Overview"
-msgstr "Επισκοπηση χρηστων"
-
-#: example.py:11
-msgid "Login page"
-msgstr "Σελιδα εισοδου"
-
-#: example.py:11
-msgid "Files"
-msgstr "Αρχεια"
-
-#: example.py:11
-msgid "Views"
-msgstr "Εμφανισεις"
-
-#: example.py:11
-msgid "Success!"
-msgstr "Επιτυχια!"
-
-#: example.py:11
-msgid "Welcome to"
-msgstr "Καλώς ήρθατε στο"
-
-#: example.py:11
-msgid "to verify the file integrity"
-msgstr "να επαληθεύσει την ακεραιότητα του αρχείου"
-
-#: example.py:11
-msgid "Add Comment"
-msgstr "Προσθήκη σχολίου"
-
-#: example.py:11
-msgid "The requested tip does not exist or has expired."
-msgstr "Η ζητούμενη συμβουλή δεν υπάρχει ή έχει λήξει."
-
-#: example.py:11
-msgid "Previous Step"
-msgstr "προηγούμενο βήμα"
-
-#: example.py:11
-msgid "The two passwords do not match"
-msgstr "Οι δύο κωδικοί δεν ταιριάζουν"
-
-#: example.py:11
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "Αυτή η διεπαφή μπορεί να σας βοηθήσει να εντοπίσετε ανωμαλίες στον κόμβο σας."
-
-#: example.py:11
-msgid "At least one letter"
-msgstr "Τουλάχιστον ένα γράμμα"
-
-#: example.py:11
-msgid "Contexts Configuration"
-msgstr "Διαμορφωση πλαισιων"
-
-#: example.py:11
-msgid ""
-"Invalid format for hidden service (should be http://thirteenchars123.onion)"
-msgstr "Μη έγκυρη μορφή για κρυφη υπηρεσία (πρέπει να ειναι http://thirteenchars123.onion)"
-
-#: example.py:11
-msgid "Users overview"
-msgstr "Επισκοπηση χρηστων"
-
-#: example.py:11
-msgid "It appears your are not using Tor, thus you are strongly advised to "
-msgstr "Φαίνεται σας πως δεν χρησιμοποιειτε το Tor, επομένως σας συνιστούμε να"
-
-#: example.py:11
-msgid "Checkboxes"
-msgstr "Πλαίσια ελέγχου"
-
-#: example.py:11
-msgid ""
-"To ensure your anonymity be sure that you are visiting this site using the"
-msgstr "Για να εξασφαλιστεί η ανωνυμία σας και να είστε σίγουροι οτι επισκεφθεικατε αυτη την σελιδα χρησιμοποιηστε το"
-
-#: example.py:11
-msgid "Use the"
-msgstr "Χρησιμοποιήστε το"
-
-#: example.py:11
-msgid "You will not be able to login."
-msgstr "Δεν θα είστε σε θέση να συνδεθείτε."
-
-#: example.py:11
-msgid "Malformed source"
-msgstr "Ακατάλληλη πηγή"
-
-#: example.py:11
-msgid "Add new context"
-msgstr "Προσθήκη νέου πλαισίου"
-
-#: example.py:11
-msgid "Tor2web Public Site (url)"
-msgstr "Tor2web Δημοσια σελιδα (url)"
-
-#: example.py:11
-msgid "You're running GlobaLeaks version "
-msgstr "Εκτελείτε την GlobaLeaks έκδοση"
-
-#: example.py:11
-msgid ""
-"You can customize this section by editing "
-"GLClient/app/templates/default/views/submission/main.html"
-msgstr "Μπορείτε να προσαρμόσετε αυτό το τμήμα από την επεξεργασία GLClient / app / templates / default / απόψεις / υποβολής / main.html"
-
-#: example.py:11
-msgid "How you can transform information into action!"
-msgstr "Πώς μπορείτε να μετατρέψετε τις πληροφορίες σε δράση!"
-
-#: example.py:11
-msgid "Warning!"
-msgstr "Προσοχή!"
-
-#: example.py:11
-msgid "Files Overview"
-msgstr "Επισκοπηση αρχειων"
-
-#: example.py:11
-msgid "This node is not configured."
-msgstr "Αυτός ο κόμβος δεν έχει ρυθμιστεί."
-
-#: example.py:11
-msgid "Receivers Configuration"
-msgstr "Διαμορφωση δεκτων"
-
-#: example.py:11
-msgid "SMTP server port"
-msgstr "SMTP υποδοχη διακομιστη"
-
-#: example.py:11
-msgid "Preferences"
-msgstr "Προτιμήσεις"
-
-#: example.py:11
-msgid "Add new receiver"
-msgstr "Προσθήκη νέου δέκτη"
-
-#: example.py:11
-msgid "Mail Configuration"
-msgstr "Διαμόρφωση Mail"
-
-#: example.py:11
-msgid "security check"
-msgstr "Ελεγχος ασφάλειας"
-
-#: example.py:11
-msgid "System"
-msgstr "Σύστημα"
-
-#: example.py:11
-msgid "upload"
-msgstr "Μεταφόρτωση"
-
-#: example.py:11
-msgid "Drop Menu (Select)"
-msgstr "Μενού Drop (Επιλογή)"
-
-#: example.py:11
-msgid "download"
-msgstr "λήψη"
-
-#: example.py:11
-msgid "Save"
-msgstr "Αποθήκευση"
-
-#: example.py:11
-msgid "Node name"
-msgstr "Ονομα κόμβου"
-
-#: example.py:11
-msgid "Email"
-msgstr "Email"
-
-#: example.py:11
-msgid "Name"
-msgstr "Ονομα"
-
-#: example.py:11
-msgid "Username"
-msgstr "Όνομα Χρήστη"
-
-#: example.py:11
-msgid "Current Password"
-msgstr "Τρέχον Κωδικός"
-
-#: example.py:11
-msgid "Receivers"
-msgstr "Δέκτες"
-
-#: example.py:11
-msgid "Receiver list"
-msgstr "Λίστα δέκτων"
-
-#: example.py:11
-msgid "Access counter"
-msgstr "Πρόσβαση στον μετρητή"
-
-#: example.py:11
-msgid "Tor Hidden Service (hostname)"
-msgstr "Tor Υπηρεσια αποκρυψης (hostname)"
-
-#: example.py:11
-msgid ""
-"Through this platform you will be able to report on wrongdoing. This "
-"platform is running the"
-msgstr "Μέσω αυτής της πλατφόρμας θα είστε σε θέση να υποβάλετε έκθεσεις σχετικά με ατασθαλίες. Η πλατφόρμα αυτή τρέχει το"
-
-#: example.py:11
-msgid "Url"
-msgstr "Διεύθυνση"
+msgid "Through this platform you will be able to report on wrongdoing. This platform is running the"
+msgstr ""
 
 #: example.py:11
 msgid "This is the"
-msgstr "Αυτό είναι το"
+msgstr ""
 
 #: example.py:11
-msgid "We are supported also by your donations. Visit our"
-msgstr "Είμαστε υποστηρίζομαστε και από τις δωρεές σας. Επισκεφθείτε μας"
+msgid "Files"
+msgstr ""
 
 #: example.py:11
-msgid ""
-"Invalid format for public site (should be "
-"https://thirteenchars123.tor2web.org)"
-msgstr "Μη έγκυρη μορφή για δημόσια ιστοσελίδα (θα πρέπει να είναι https://thirteenchars123.tor2web.org)"
+msgid "Views"
+msgstr ""
 
 #: example.py:11
-msgid "Info"
-msgstr "Πληροφορία"
+msgid "Success!"
+msgstr ""
 
 #: example.py:11
-msgid "sha256 hash"
-msgstr "sha256 hash"
+msgid "Welcome to"
+msgstr ""
 
 #: example.py:11
-msgid "Tips Overview"
-msgstr "Επισκοπηση συμβουλων"
+msgid "to verify the file integrity"
+msgstr ""
 
 #: example.py:11
-msgid ""
-"This interface shows the activity of the users of your node. This may be "
-"helpful in detecting anomalies and supporting the Receivers for of your "
-"node."
-msgstr "Αυτή η διεπαφή δείχνει τη δραστηριότητα των χρηστών του κόμβου σας. Αυτό μπορεί να είναι χρήσιμο για ανίχνευση ανωμαλιών και υποστήριξη των παραλήπτων του κόμβου σας."
+msgid "Add Comment"
+msgstr ""
 
 #: example.py:11
-msgid "Age"
-msgstr "Ηλικία"
-
-#: example.py:11
-msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "Σε Unix συστήματα αυτό μπορεί να γίνει εκτελώντας την ακόλουθη εντολή"
-
-#: example.py:11
-msgid "Tip Email template"
-msgstr "Συμβουλή πρότυπο Email"
-
-#: example.py:11
-msgid "logout"
-msgstr "αποσύνδεση"
-
-#: example.py:11
-msgid "Files overview"
-msgstr "Επισκοπηση αρχειων"
-
-#: example.py:11
-msgid "Delete"
-msgstr "Διαγραφή"
-
-#: example.py:11
-msgid "At least one number"
-msgstr "Τουλάχιστον έναν αριθμό"
-
-#: example.py:11
-msgid "Paragraph(s)"
-msgstr "Παράγραφος(-ες)"
-
-#: example.py:11
-msgid "SMTP server address"
-msgstr "Διεύθυνση του διακομιστή SMTP"
-
-#: example.py:11
-msgid "Your node is not configured! Please, proceed via"
-msgstr "Ο κόμβος σας δεν έχει ρυθμιστεί! Παρακαλώ, να προχωρήσετε μέσω"
-
-#: example.py:11
-msgid "Blow the Whistle"
-msgstr "Blow the Whistle"
-
-#: example.py:11
-msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
-msgstr "Αυτός εδώ ο αριθμός είναι απόδειξη οτι θα σας κρατήσει καλή προσοχή από αυτό, δεδομένου ότι θα σας επιτρέψει να αποκτήσετε πρόσβαση της υποβολής σας"
-
-#: example.py:11
-msgid "donation page"
-msgstr "Σελίδα δωρεων"
-
-#: example.py:11
-msgid "Size"
-msgstr "Μέγεθος"
-
-#: example.py:11
-msgid "Activation Email template"
-msgstr "Ενεργοποίηση του πρότυπου Email"
-
-#: example.py:11
-msgid "Email Address (Username)"
-msgstr "Διεύθυνση Email (Ονομα χρηστη)"
-
-#: example.py:11
-msgid "manual for practical security best practices."
-msgstr "οδηγίες για τις πρακτικές ασφαλείας."
-
-#: example.py:11
-msgid "View Tip"
-msgstr "Εμφάνιση συμβουλής"
-
-#: example.py:11
-msgid "Required old password confirm"
-msgstr "Υποχρεωτικη επιβεβαιωση παλιου κωδικου"
-
-#: example.py:11
-msgid "done"
-msgstr "τελος"
-
-#: example.py:11
-msgid "Your username"
-msgstr "Το Όνομα Χρήστη σας"
-
-#: example.py:11
-msgid "Congratulations!"
-msgstr "Συγχαρητήρια!"
-
-#: example.py:11
-msgid ""
-"This interface may help you understand how the Node is used by the "
-"whistleblower. We present you with the submissions present on the node and a"
-" few statistics on the kind of usage (activity, files, comments)."
-msgstr "Αυτή η διεπαφή μπορεί να σας βοηθήσει να καταλάβετε πώς ο κόμβος χρησιμοποιείται από τον πληροφοριοδότη. Σας παρουσιάζουμε τους ισχυρισμούς παρουσιάσης στον κόμβο και μερικά στατιστικά στοιχεία σχετικά με το είδος της χρήσης (δραστηριότητα, τα αρχεία, τα σχόλια)."
-
-#: example.py:11
-msgid ""
-"Choose the context and receivers that will be sure to transform your "
-"submission into action!"
-msgstr "Επιλέξτε το πλαίσιο και τους δέικτες που θα είστε σίγουρος για να μετατραπει την υποβολή σας σε δράση!"
-
-#: example.py:11
-msgid "Contexts"
-msgstr "Πλαίσια"
-
-#: example.py:11
-msgid ""
-"Keep in mind that using Tor Browser Bundle does not replace good security "
-"practices and it cannot protect you in the event your computer has been "
-"compromised. You are strongly advised to read the"
-msgstr "Λάβετε υπόψη ότι η χρήση του Tor Bundle Browser δεν αντικαθιστά τις ορθές πρακτικές ασφάλειας και δεν μπορεί να σας προστατεύσει σε περίπτωση που ο υπολογιστής σας έχει παραβιαστεί. Σας συνιστούμε να διαβάσετε το"
-
-#: example.py:11
-msgid "New Password"
-msgstr "Νεος Κωδικός"
-
-#: example.py:11
-msgid "Admin management interface"
-msgstr "Διαχειριστής περιβάλλοντος διαχείρισης"
-
-#: example.py:11
-msgid "Whistleblower"
-msgstr "Whistleblower"
-
-#: example.py:11
-msgid "Hint"
-msgstr "Υπαινιγμός"
+msgid "The requested tip does not exist or has expired."
+msgstr ""
 
 #: example.py:11
 msgid "add"
-msgstr "προσθηκη"
+msgstr ""
 
 #: example.py:11
-msgid "download a copy of the tor browser bundle"
-msgstr "κατεβαστε ενα αντιγραφο του tor browser bundle"
+msgid "The two passwords do not match"
+msgstr ""
 
 #: example.py:11
-msgid "Phone"
-msgstr "Τηλεφωνο"
+msgid "security check"
+msgstr ""
 
 #: example.py:11
-msgid "click to close"
-msgstr "κάντε κλικ για να κλείσει"
+msgid "This interface may help you spot anomalies in your Node."
+msgstr ""
 
 #: example.py:11
-msgid "This software is developed by the non-profit organization"
-msgstr "Αυτό το λογισμικό έχει αναπτυχθεί από μια κερδοσκοπική οργάνωση"
+msgid "At least one letter"
+msgstr ""
 
 #: example.py:11
-msgid "Save changes"
-msgstr "Αποθήκευση αλλαγών"
+msgid "Contexts Configuration"
+msgstr ""
 
 #: example.py:11
-msgid "Content Settin"
-msgstr "Περιεχόμενο Settin"
-
-#: example.py:11
-msgid "Comment Email template"
-msgstr "Σχόλιο πρότυπου Email"
-
-#: example.py:11
-msgid "Radio Buttons"
-msgstr "Ραδιοπλήκτρα"
-
-#: example.py:11
-msgid "Danger!"
-msgstr "Κίνδυνος!"
-
-#: example.py:11
-msgid "Tip Status Page"
-msgstr "Συμβουλή σελίδας κατάστασης"
-
-#: example.py:11
-msgid "Receiver List"
-msgstr "Λίστα δέκτων"
-
-#: example.py:11
-msgid "Loading Tip page..."
-msgstr "Φόρτωσης της σελίδας συμβουλων..."
-
-#: example.py:11
-msgid "Email Address"
-msgstr "Διεύθυνση Email "
-
-#: example.py:11
-msgid "Required"
-msgstr "Απαιτείται"
-
-#: example.py:11
-msgid ""
-"It appears you are using Tor. To better protect your anonymity, be sure that"
-" you are using the"
-msgstr "Φαίνεται ότι χρησιμοποιείτε το Tor. Για καλύτερη προστασία της ανωνυμίας σας, να είστε σίγουροι ότι χρησιμοποιείτε το"
-
-#: example.py:11
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "Από εδώ μπορείτε να εκτελέσετε κοινές εργασίες debug και GLClient λειτουργίες"
-
-#: example.py:11
-msgid "Select file"
-msgstr "Επιλογή αρχείου"
-
-#: example.py:11
-msgid "Preferences and password management"
-msgstr "Προτιμήσεις και διαχείριση κωδικού πρόσβασης"
+msgid "Comment Email Subject"
+msgstr ""
 
 #: example.py:11
 msgid "Agree"
-msgstr "Αποδοχη"
+msgstr ""
 
 #: example.py:11
-msgid "GlobaLeaks software"
-msgstr "GlobaLeaks λογισμικό"
+msgid "How you can transform information into action!"
+msgstr ""
 
 #: example.py:11
-msgid "Submission Created!"
-msgstr "Δημιουργήθηκε υποβολή!"
+msgid "Invalid format for hidden service (should be http://thirteenchars123.onion)"
+msgstr ""
 
 #: example.py:11
-msgid "Text"
-msgstr "Κείμενο"
+msgid "Users overview"
+msgstr ""
 
 #: example.py:11
-msgid "Receiver name too long"
-msgstr "Το ονομα του δέκτη ειναι πολύ μεγάλο"
+msgid "Hint"
+msgstr ""
 
 #: example.py:11
-msgid "Number"
-msgstr "Αριθμός"
+msgid "Checkboxes"
+msgstr ""
 
 #: example.py:11
-msgid "To further enhance your security, please follow these instructions:"
-msgstr "Για την περαιτέρω ενίσχυση της ασφάλειας σας, ακολουθήστε τις παρακάτω οδηγίες:"
+msgid "To ensure your anonymity be sure that you are visiting this site using the"
+msgstr ""
 
 #: example.py:11
-msgid "to help us further support the development of GlobaLeaks."
-msgstr "για να μας βοηθήσετε στην ανάπτυξη του GlobaLeaks."
+msgid "Use the"
+msgstr ""
 
 #: example.py:11
-msgid "References"
-msgstr "Αναφορές"
+msgid "You will not be able to login."
+msgstr ""
 
 #: example.py:11
-msgid "Are you a receiver?"
-msgstr "Είσαι ένας δέκτης;"
+msgid "Paragraph(s)"
+msgstr ""
 
 #: example.py:11
-msgid "Loading..."
-msgstr "Φόρτωση..."
+msgid "Add new context"
+msgstr ""
 
 #: example.py:11
-msgid "delete"
-msgstr "Διαγραφή"
+msgid "Tor2web Public Site (url)"
+msgstr ""
 
 #: example.py:11
-msgid "Next Step"
-msgstr "Επόμενο βήμα"
+msgid "You're running GlobaLeaks version "
+msgstr ""
 
 #: example.py:11
-msgid "At least 8 keypress long"
-msgstr "Τουλάχιστον 8 πάτηματα μακρια"
+msgid "You can customize this section by editing GLClient/app/templates/default/views/submission/main.html"
+msgstr ""
 
 #: example.py:11
-msgid "Admin password"
-msgstr "Κωδικός πρόσβασης διαχειριστή"
+msgid "Your username"
+msgstr ""
 
 #: example.py:11
-msgid "Currently logged in "
-msgstr "Αυτή τη στιγμή είστε συνδεδεμένοι "
+msgid "Warning!"
+msgstr ""
 
 #: example.py:11
-msgid "Multi-Select"
-msgstr "Πολλαπλοι επιλογή"
+msgid "Files Overview"
+msgstr ""
 
 #: example.py:11
-msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "Ο παρακάτω πίνακας δείχνει τα αρχεία που υπάρχουν στον κατάλογο υποβολής, και η σχέση τους με την εσωτερική βάση δεδομένων."
+msgid "This node is not configured."
+msgstr ""
 
 #: example.py:11
-msgid "Admin please configure a Context and associated Receivers using"
-msgstr "Διαχειριστής μπορείτε να ρυθμίσετε ένα πλαίσιο και των συναφών Δέκτες χρησιμοποιώντας"
+msgid "Receivers Configuration"
+msgstr ""
 
 #: example.py:11
-msgid "Submit"
-msgstr "Υποβολή"
+msgid "SMTP server port"
+msgstr ""
 
 #: example.py:11
-msgid "General information"
-msgstr "Γενικές πληροφορίες"
+msgid "Preferences"
+msgstr ""
+
+#: example.py:11
+msgid "Add new receiver"
+msgstr ""
 
 #: example.py:11
 msgid "Tip ID"
-msgstr "Συμβουλή ID"
+msgstr ""
 
 #: example.py:11
-msgid ""
-"In the event that you would like to remain anonymous, do not submit any "
-"personal information. (e.g. your name or relationship to the offender. Do "
-"not submit any information that can be traced back to you.)"
-msgstr "Σε περίπτωση που θα θέλατε να διατηρήσετε την ανωνυμία σας, μην υποβάλλετε τα προσωπικά σας στοιχεία. (π.χ. το όνομά σας ή σχέση με τον δράστη. Μην υποβάλετε όλες τις πληροφορίες που μπορούν να αναχθούν σε σας.)"
+msgid "System"
+msgstr ""
 
 #: example.py:11
-msgid "Current initiative logo"
-msgstr "Σημερινό λογότυπο της πρωτοβουλίας"
+msgid "upload"
+msgstr ""
 
 #: example.py:11
-msgid "Description"
-msgstr "Περιγραφή"
-
-#: example.py:11
-msgid "Notification templates"
-msgstr "Πρότυπα ειδοποίησης"
-
-#: example.py:11
-msgid "Type"
-msgstr "Τυπος"
-
-#: example.py:11
-msgid "No file has been uploaded!"
-msgstr "Κανένα αρχείο δεν έχει επαναφορτωθεί!"
-
-#: example.py:11
-msgid "File Email template"
-msgstr "Αρχείο πρότυπου Email"
-
-#: example.py:11
-msgid "Tip Overview"
-msgstr "Επισκοπηση συμβουλης"
-
-#: example.py:11
-msgid "before continuing."
-msgstr "πριν συνεχίσετε."
-
-#: example.py:11
-msgid "Password management"
-msgstr "Διαχείριση κωδικού πρόσβασης"
-
-#: example.py:11
-msgid "I want to report on"
-msgstr "Θέλω να αναφέρω την"
-
-#: example.py:11
-msgid "Password"
-msgstr "Κωδικός"
-
-#: example.py:11
-msgid "Last Access"
-msgstr "Τελευταία πρόσβαση"
-
-#: example.py:11
-msgid "Welcome back captain!"
-msgstr "Καλώς ήρθατε πίσω καπετάνιε!"
-
-#: example.py:11
-msgid "Transport Security"
-msgstr "Ασφάλεια Μεταφορών"
-
-#: example.py:11
-msgid "Contexts list"
-msgstr "Λιστα πλαισιων"
-
-#: example.py:11
-msgid "Security Check"
-msgstr "Ελεγχος ασφάλειας"
-
-#: example.py:11
-msgid "Fields"
-msgstr "Πεδία"
-
-#: example.py:11
-msgid "New Submission"
-msgstr "Νέα υποβολή"
-
-#: example.py:11
-msgid ""
-"Please do not submit your report on a PC provided by your employer. "
-"Particularly an intranet connection may jeopardize your anonymity."
-msgstr "Σας παρακαλούμε να μην υποβάλετε την έκθεσή σας σε έναν υπολογιστή που παρέχεται από τον εργοδότη σας. Ιδιαίτερα μια σύνδεση intranet μπορεί να θέσει σε κίνδυνο την ανωνυμία σας."
-
-#: example.py:11
-msgid "Add files..."
-msgstr "Προσθήκη αρχείων..."
+msgid "Drop Menu (Select)"
+msgstr ""
 
 #: example.py:11
 msgid "Still calculating hash"
-msgstr "Υπολογισμός κατακερματισμού"
+msgstr ""
 
 #: example.py:11
-msgid "Invalid email address"
-msgstr "Άκυρη διεύθυνση email"
+msgid "download"
+msgstr ""
 
 #: example.py:11
-msgid "Login"
-msgstr "Σύνδεση"
+msgid "Save"
+msgstr ""
 
 #: example.py:11
-msgid "Enter your receipt"
-msgstr "Εισάγετε την απόδειξή σας"
+msgid "Type"
+msgstr ""
 
 #: example.py:11
-msgid "Are you a whistleblower?"
-msgstr "Είσαι ένας πληροφοριοδότης;"
+msgid "Email"
+msgstr ""
 
 #: example.py:11
-msgid ""
-"Enter the information that is relevant to your submission and possibly "
-"upload the relevant accompanying files"
-msgstr "Εισάγετε τις πληροφορίες που είναι σχετικές με την υποβολή σας και, ενδεχομένως, να πρεπει να ανεβάσετε τα σχετικά συνοδευτικά αρχεία"
+msgid "Name"
+msgstr ""
 
 #: example.py:11
-msgid "What is this about?"
-msgstr "Τι είναι αυτό;"
+msgid "Username"
+msgstr ""
 
 #: example.py:11
-msgid "Cookies are not enabled!"
-msgstr "Τα cookies δεν είναι ενεργοποιημένα!"
+msgid "Current Password"
+msgstr ""
+
+#: example.py:11
+msgid "Receivers"
+msgstr ""
+
+#: example.py:11
+msgid "Receiver list"
+msgstr ""
+
+#: example.py:11
+msgid "Access counter"
+msgstr ""
+
+#: example.py:11
+msgid "Tor Hidden Service (hostname)"
+msgstr ""
+
+#: example.py:11
+msgid "Users Overview"
+msgstr ""
+
+#: example.py:11
+msgid "Url"
+msgstr ""
+
+#: example.py:11
+msgid "Login page"
+msgstr ""
+
+#: example.py:11
+msgid "We are supported also by your donations. Visit our"
+msgstr ""
+
+#: example.py:11
+msgid "Invalid format for public site (should be https://thirteenchars123.tor2web.org)"
+msgstr ""
+
+#: example.py:11
+msgid "Info"
+msgstr ""
+
+#: example.py:11
+msgid "Mail Configuration"
+msgstr ""
+
+#: example.py:11
+msgid "Tips Overview"
+msgstr ""
+
+#: example.py:11
+msgid "This interface shows the activity of the users of your node. This may be helpful in detecting anomalies and supporting the Receivers for of your node."
+msgstr ""
+
+#: example.py:11
+msgid "Age"
+msgstr ""
+
+#: example.py:11
+msgid "On unix based systems this can be done by running the following command"
+msgstr ""
+
+#: example.py:11
+msgid "Tip Email template"
+msgstr ""
+
+#: example.py:11
+msgid "logout"
+msgstr ""
+
+#: example.py:11
+msgid "Files overview"
+msgstr ""
+
+#: example.py:11
+msgid "Delete"
+msgstr ""
+
+#: example.py:11
+msgid "Loading..."
+msgstr ""
+
+#: example.py:11
+msgid "SMTP server address"
+msgstr ""
+
+#: example.py:11
+msgid "Your node is not configured! Please, proceed via"
+msgstr ""
+
+#: example.py:11
+msgid "Password management"
+msgstr ""
+
+#: example.py:11
+msgid "This number here is your receipt keep good care of it as it will allow you to access your submission"
+msgstr ""
+
+#: example.py:11
+msgid "donation page"
+msgstr ""
+
+#: example.py:11
+msgid "Size"
+msgstr ""
+
+#: example.py:11
+msgid "Email Address (Username)"
+msgstr ""
+
+#: example.py:11
+msgid "manual for practical security best practices."
+msgstr ""
+
+#: example.py:11
+msgid "View Tip"
+msgstr ""
+
+#: example.py:11
+msgid "Required old password confirm"
+msgstr ""
+
+#: example.py:11
+msgid "done"
+msgstr ""
+
+#: example.py:11
+msgid "download a copy of the tor browser bundle"
+msgstr ""
+
+#: example.py:11
+msgid "Congratulations!"
+msgstr ""
+
+#: example.py:11
+msgid "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions present on the node and a few statistics on the kind of usage (activity, files, comments)."
+msgstr ""
+
+#: example.py:11
+msgid "sha256 hash"
+msgstr ""
+
+#: example.py:11
+msgid "delete"
+msgstr ""
+
+#: example.py:11
+msgid "Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the"
+msgstr ""
+
+#: example.py:11
+msgid "Phone"
+msgstr ""
+
+#: example.py:11
+msgid "Admin management interface"
+msgstr ""
+
+#: example.py:11
+msgid "Whistleblower"
+msgstr ""
 
 #: example.py:11
 msgid "Retype again your new password"
-msgstr "Πληκτρολογήστε ξανά τον νέο κωδικό πρόσβασης"
+msgstr ""
 
 #: example.py:11
-msgid "Your password is unsafe, it should have"
-msgstr "Ο κωδικός πρόσβασής σας δεν είναι ασφαλής, θα πρέπει να έχει"
+msgid "Previous Step"
+msgstr ""
+
+#: example.py:11
+msgid "Tip Email Subject"
+msgstr ""
+
+#: example.py:11
+msgid "New Password"
+msgstr ""
+
+#: example.py:11
+msgid "This software is developed by the non-profit organization"
+msgstr ""
+
+#: example.py:11
+msgid "Save changes"
+msgstr ""
+
+#: example.py:11
+msgid "Content Settin"
+msgstr ""
+
+#: example.py:11
+msgid "Comment Email template"
+msgstr ""
+
+#: example.py:11
+msgid "Radio Buttons"
+msgstr ""
+
+#: example.py:11
+msgid "Danger!"
+msgstr ""
+
+#: example.py:11
+msgid "File Email template"
+msgstr ""
+
+#: example.py:11
+msgid "Receiver List"
+msgstr ""
+
+#: example.py:11
+msgid "Loading Tip page..."
+msgstr ""
+
+#: example.py:11
+msgid "Email Address"
+msgstr ""
+
+#: example.py:11
+msgid "Required"
+msgstr ""
+
+#: example.py:11
+msgid "It appears you are using Tor. To better protect your anonymity, be sure that you are using the"
+msgstr ""
+
+#: example.py:11
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr ""
+
+#: example.py:11
+msgid "Select file"
+msgstr ""
+
+#: example.py:11
+msgid "Preferences and password management"
+msgstr ""
+
+#: example.py:11
+msgid "File Email Subject"
+msgstr ""
+
+#: example.py:11
+msgid "click to close"
+msgstr ""
+
+#: example.py:11
+msgid "GlobaLeaks software"
+msgstr ""
+
+#: example.py:11
+msgid "Submission Created!"
+msgstr ""
+
+#: example.py:11
+msgid "Text"
+msgstr ""
+
+#: example.py:11
+msgid "Receiver name too long"
+msgstr ""
+
+#: example.py:11
+msgid "Number"
+msgstr ""
+
+#: example.py:11
+msgid "To further enhance your security, please follow these instructions:"
+msgstr ""
+
+#: example.py:11
+msgid "to help us further support the development of GlobaLeaks."
+msgstr ""
+
+#: example.py:11
+msgid "References"
+msgstr ""
+
+#: example.py:11
+msgid "Are you a receiver?"
+msgstr ""
+
+#: example.py:11
+msgid "At least one number"
+msgstr ""
+
+#: example.py:11
+msgid "Activation Email template"
+msgstr ""
+
+#: example.py:11
+msgid "Next Step"
+msgstr ""
+
+#: example.py:11
+msgid "At least 8 keypress long"
+msgstr ""
+
+#: example.py:11
+msgid "Admin password"
+msgstr ""
+
+#: example.py:11
+msgid "Currently logged in "
+msgstr ""
+
+#: example.py:11
+msgid "Are you a whistleblower?"
+msgstr ""
+
+#: example.py:11
+msgid "The table below shows the files present in the submission directory, and their relationship with the internal database."
+msgstr ""
+
+#: example.py:11
+msgid "Admin please configure a Context and associated Receivers using"
+msgstr ""
+
+#: example.py:11
+msgid "Submit"
+msgstr ""
+
+#: example.py:11
+msgid "General information"
+msgstr ""
+
+#: example.py:11
+msgid "In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)"
+msgstr ""
+
+#: example.py:11
+msgid "Current initiative logo"
+msgstr ""
+
+#: example.py:11
+msgid "Description"
+msgstr ""
+
+#: example.py:11
+msgid "Notification templates"
+msgstr ""
+
+#: example.py:11
+msgid "Node name"
+msgstr ""
+
+#: example.py:11
+msgid "No file has been uploaded!"
+msgstr ""
+
+#: example.py:11
+msgid "Tip Status Page"
+msgstr ""
+
+#: example.py:11
+msgid "Tip Overview"
+msgstr ""
+
+#: example.py:11
+msgid "Blow the Whistle"
+msgstr ""
+
+#: example.py:11
+msgid "Security Check"
+msgstr ""
+
+#: example.py:11
+msgid "I want to report on"
+msgstr ""
+
+#: example.py:11
+msgid "Password"
+msgstr ""
+
+#: example.py:11
+msgid "Last Access"
+msgstr ""
+
+#: example.py:11
+msgid "Welcome back captain!"
+msgstr ""
+
+#: example.py:11
+msgid "Transport Security"
+msgstr ""
+
+#: example.py:11
+msgid "Contexts list"
+msgstr ""
 
 #: example.py:11
 msgid "By checking the box below you agree to these terms and conditions."
-msgstr "Ελέγχοντας το πλαίσιο κάτω από σας συμφωνείτε με αυτούς τους όρους και τις προϋποθέσεις."
+msgstr ""
+
+#: example.py:11
+msgid "Contexts"
+msgstr ""
+
+#: example.py:11
+msgid "Fields"
+msgstr ""
+
+#: example.py:11
+msgid "New Submission"
+msgstr ""
+
+#: example.py:11
+msgid "Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity."
+msgstr ""
+
+#: example.py:11
+msgid "Add files..."
+msgstr ""
+
+#: example.py:11
+msgid "before continuing."
+msgstr ""
+
+#: example.py:11
+msgid "Invalid email address"
+msgstr ""
+
+#: example.py:11
+msgid "Login"
+msgstr ""
+
+#: example.py:11
+msgid "Enter your receipt"
+msgstr ""
+
+#: example.py:11
+msgid "Multi-Select"
+msgstr ""
+
+#: example.py:11
+msgid "Choose the context and receivers that will be sure to transform your submission into action!"
+msgstr ""
+
+#: example.py:11
+msgid "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files"
+msgstr ""
+
+#: example.py:11
+msgid "What is this about?"
+msgstr ""
+
+#: example.py:11
+msgid "Cookies are not enabled!"
+msgstr ""
+
+#: example.py:11
+msgid "It appears your are not using Tor, thus you are strongly advised to "
+msgstr ""
+
+#: example.py:11
+msgid "Your password is unsafe, it should have"
+msgstr ""
+
+#: example.py:11
+msgid "Malformed source"
+msgstr ""
