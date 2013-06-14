@@ -213,22 +213,20 @@ def gpg_options_manage(receiver, request):
     and is used to manage the GPG options forced by the administrator
 
     This is needed also because no one of these fields are
-    *enforced* by unicode_keys or bool_kets in models.Receiver
-
-    TODO describe well logic review
+    *enforced* by unicode_keys or bool_keys in models.Receiver
 
     GPG management, here are check'd these actions:
     1) Proposed a new GPG key, is imported to check validity, and
        stored in Storm DB if not error raise
-    2) Update the available GPG key
-    3) Update the settings of encryption usage (only if key is present)
-    4) Removal of the present key
+    2) Removal of the present key
 
     Further improvement: update the keys using keyserver
     """
 
     new_gpg_key = request.get('gpg_key_armor', None)
     remove_key = request.get('gpg_key_remove', False)
+    encrypt_notification = request.get('gpg_enable_notification', False)
+    encrypt_file = request.get('gpg_enable_notification', False)
 
     receiver.gpg_key_status = Receiver._gpg_types[0]
 
@@ -246,12 +244,11 @@ def gpg_options_manage(receiver, request):
 
         key_info, key_fingerprint = import_gpg_key(receiver.username, new_gpg_key)
 
-        # This step just import the key and check if it's correct. but GLB do not rely
-        # on gnupg official fingerprint.
-
         if not key_info or not key_fingerprint:
+            log.err("GPG Key import failure")
             raise errors.GPGKeyInvalid
-        log.debug("Importing process: %s" % receiver.gpg_key_info)
+
+        log.debug("GPG Key import success: %s" % receiver.gpg_key_info)
 
         receiver.gpg_key_info = key_info
         receiver.gpg_key_fingerprint = key_fingerprint
@@ -260,3 +257,17 @@ def gpg_options_manage(receiver, request):
 
         gpg_clean()
         # End of GPG key management for receiver
+
+    if encrypt_file or encrypt_notification:
+        if receiver.gpg_key_status == Receiver._gpg_types[1]:
+            receiver.gpg_enable_files = encrypt_file
+            receiver.gpg_enable_notification = encrypt_notification
+            log.debug("Receiver %s sets GPG usage: notification %s, file %s" %
+                (receiver.username,
+                 "YES" if encrypt_notification else "NO",
+                 "YES" if encrypt_file else "NO")
+            )
+        else:
+            log.err("Gpg unset, but %s has put True in notif/file encryption ?" % receiver.username)
+            # Just a silent error logging.
+

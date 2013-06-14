@@ -144,6 +144,8 @@ CREATE TABLE receiver (
     gpg_key_info VARCHAR,
     gpg_key_fingerprint VARCHAR,
     gpg_key_armor VARCHAR,
+    gpg_enable_notification INTEGER,
+    gpg_enable_files INTEGER,
     password VARCHAR,
     failed_login INTEGER NOT NULL,
     receiver_level INTEGER NOT NULL,
