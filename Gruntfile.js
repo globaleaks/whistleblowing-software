@@ -200,11 +200,13 @@ module.exports = function(grunt) {
       };
     });
 
+    /*
     fs.writeFile("app/scripts/translations.js", "var translations = " + JSON.stringify(translations) + ";",
                  function(err) {
       if (err) console.log(err);
       else console.log("Translsations file was written!");
     });
+    */
   });
 
   grunt.registerTask('build',
