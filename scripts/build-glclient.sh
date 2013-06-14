@@ -57,9 +57,12 @@ interactive_env_setup()
   cd ${BUILD_DIR}
   if [ -d ${GLCLIENT_TMP} ]; then
     echo "Directory ${GLCLIENT_TMP} already present and need to be removed"
-    read -n1 -p "Do you want to delete ${GLCLIENT_TMP}? (y/n): "
-    echo
-    if [[ $REPLY != [yY] ]]; then
+    ANSWER=''
+    until [[ $ANSWER = [yn] ]]; do
+      read -n1 -p "Do you want to delete ${GLCLIENT_TMP}? (y/n): " ANSWER
+      echo
+    done
+    if [[ $ANSWER != 'y' ]]; then
       echo "Cannot proceed"
       exit
     fi
@@ -67,9 +70,12 @@ interactive_env_setup()
   fi
   if [ -d ${GLCLIENT_DIR} ]; then
     echo "Directory ${GLCLIENT_DIR} already present. "
-    read -n1 -p "Do you want to use the existent ${GLCLIENT_DIR}? (y/n): "
-    echo
-    if [[ $REPLY != [yY] ]]; then
+    ANSWER=''
+    until [[ $ANSWER = [yn] ]]; do
+      read -n1 -p "Do you want to use the existent ${GLCLIENT_DIR}? (y/n): " ANSWER
+      echo
+    done
+    if [[ $ANSWER != 'y' ]]; then
       echo "[+] Cloning GLClient in ${GLCLIENT_TMP}"
       git clone $GLCLIENT_GIT_REPO ${GLCLIENT_TMP}
     else
