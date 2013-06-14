@@ -521,6 +521,7 @@ if [ "${INSTALL_PIP}" -eq "1" ] ; then
       echo "Cannot proceed"
       exit
     fi
+  fi
   DO "python setup.py install" "0"
 fi
 
