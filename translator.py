@@ -83,5 +83,5 @@ def read_po_files():
         f.write(serialized)
         f.write(";\n")
 
-#create_po_files()
+create_po_files()
 read_po_files()

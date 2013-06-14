@@ -17,7 +17,7 @@ msgid "We were not able to determine if you are anonymous or not, please proceed
 msgstr ""
 
 #: example.py:11
-msgid "Admin interface and configure at least one context"
+msgid "new Tip trigger an email notification"
 msgstr ""
 
 #: example.py:11
@@ -30,6 +30,10 @@ msgstr ""
 
 #: example.py:11
 msgid "that is specifically designed to protect the identity of the reporter and of the ones running the platform."
+msgstr ""
+
+#: example.py:11
+msgid "new File uploaded on a Tip, trigger an email notification"
 msgstr ""
 
 #: example.py:11
@@ -50,6 +54,14 @@ msgstr ""
 
 #: example.py:11
 msgid "Files"
+msgstr ""
+
+#: example.py:11
+msgid "The fingerprint is:"
+msgstr ""
+
+#: example.py:11
+msgid "Admin interface and configure at least one context"
 msgstr ""
 
 #: example.py:11
@@ -86,6 +98,10 @@ msgstr ""
 
 #: example.py:11
 msgid "security check"
+msgstr ""
+
+#: example.py:11
+msgid "Encrypt email notifications"
 msgstr ""
 
 #: example.py:11
@@ -157,7 +173,7 @@ msgid "You're running GlobaLeaks version "
 msgstr ""
 
 #: example.py:11
-msgid "You can customize this section by editing GLClient/app/templates/default/views/submission/main.html"
+msgid "Submit a gpg key"
 msgstr ""
 
 #: example.py:11
@@ -166,6 +182,10 @@ msgstr ""
 
 #: example.py:11
 msgid "Warning!"
+msgstr ""
+
+#: example.py:11
+msgid "new Comment on a Tip, trigger an email notification"
 msgstr ""
 
 #: example.py:11
@@ -178,6 +198,10 @@ msgstr ""
 
 #: example.py:11
 msgid "Receivers Configuration"
+msgstr ""
+
+#: example.py:11
+msgid "Encrypt files reserved for you"
 msgstr ""
 
 #: example.py:11
@@ -237,6 +261,10 @@ msgid "Username"
 msgstr ""
 
 #: example.py:11
+msgid "You can customize this section by editing GLClient/app/templates/default/views/submission/main.html"
+msgstr ""
+
+#: example.py:11
 msgid "Current Password"
 msgstr ""
 
@@ -261,7 +289,7 @@ msgid "Users Overview"
 msgstr ""
 
 #: example.py:11
-msgid "Url"
+msgid "Contexts"
 msgstr ""
 
 #: example.py:11
@@ -373,6 +401,10 @@ msgid "Congratulations!"
 msgstr ""
 
 #: example.py:11
+msgid "Change password"
+msgstr ""
+
+#: example.py:11
 msgid "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions present on the node and a few statistics on the kind of usage (activity, files, comments)."
 msgstr ""
 
@@ -414,6 +446,10 @@ msgstr ""
 
 #: example.py:11
 msgid "New Password"
+msgstr ""
+
+#: example.py:11
+msgid "What is this about?"
 msgstr ""
 
 #: example.py:11
@@ -481,6 +517,14 @@ msgid "File Email Subject"
 msgstr ""
 
 #: example.py:11
+msgid "Are you a whistleblower?"
+msgstr ""
+
+#: example.py:11
+msgid "Remove your GPG key"
+msgstr ""
+
+#: example.py:11
 msgid "click to close"
 msgstr ""
 
@@ -533,6 +577,10 @@ msgid "Next Step"
 msgstr ""
 
 #: example.py:11
+msgid " can be configured in order to deliver encrypted email and store encrypted files.  You've to copy paste the ascii version of your personal key, and then would be possibile update your encryption settings. Talk to your admin if you've doubts."
+msgstr ""
+
+#: example.py:11
 msgid "At least 8 keypress long"
 msgstr ""
 
@@ -545,7 +593,7 @@ msgid "Currently logged in "
 msgstr ""
 
 #: example.py:11
-msgid "Are you a whistleblower?"
+msgid "Copy/Paste here the PGP Key Armor:"
 msgstr ""
 
 #: example.py:11
@@ -562,6 +610,10 @@ msgstr ""
 
 #: example.py:11
 msgid "General information"
+msgstr ""
+
+#: example.py:11
+msgid "Update notification and encryption settings"
 msgstr ""
 
 #: example.py:11
@@ -633,11 +685,15 @@ msgid "By checking the box below you agree to these terms and conditions."
 msgstr ""
 
 #: example.py:11
-msgid "Contexts"
+msgid "Url"
 msgstr ""
 
 #: example.py:11
 msgid "Fields"
+msgstr ""
+
+#: example.py:11
+msgid "You've not encryption enabled!"
 msgstr ""
 
 #: example.py:11
@@ -665,7 +721,15 @@ msgid "Login"
 msgstr ""
 
 #: example.py:11
+msgid "You have an active Key"
+msgstr ""
+
+#: example.py:11
 msgid "Enter your receipt"
+msgstr ""
+
+#: example.py:11
+msgid "Notification settings"
 msgstr ""
 
 #: example.py:11
@@ -681,7 +745,7 @@ msgid "Enter the information that is relevant to your submission and possibly up
 msgstr ""
 
 #: example.py:11
-msgid "What is this about?"
+msgid "see GPG key details"
 msgstr ""
 
 #: example.py:11

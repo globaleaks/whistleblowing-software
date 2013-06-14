@@ -32,8 +32,11 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
 
         /* this permit to show them empty and avoid that REST would echoback
          the key, and the key is imported again... */
-        $scope.preferences.gpg_key_armor = $scope.pasted_gpg_key_armor;
-
+        if ($scope.pasted_gpg_key_armor == undefined) {
+            $scope.preferences.gpg_key_armor = '';
+        } else {
+            $scope.preferences.gpg_key_armor = $scope.pasted_gpg_key_armor;
+        }
     }
 
     $scope.pass_save = function() {
