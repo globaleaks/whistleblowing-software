@@ -47,7 +47,9 @@
 
             <button type="submit" class="btn btn-success"
                 ng-disabled="mismatch_password || unsafe_password || missing_old_password"
-                ng-click="pass_save()">Change password</button>
+                ng-click="pass_save()">
+                {{ Change password | translate }}
+            </button>
 
         </div>
       </div>
@@ -56,27 +58,29 @@
         <div class="row">
                 <div class="span4">
 
-                    <h4>Notification settings</h4>
+                    <h4>
+                        {{ Notification settings | translate }}
+                    </h4>
 
                     <label>
                     <input type="checkbox"
                            ng-init="copy_tip_notification = preferences.tip_notification"
                            ng-click="copy_tip_notification = !copy_tip_notification" />
-                        new Tip trigger an email notification
+                        {{ new Tip trigger an email notification | translate }}
                         </label>
 
                     <label>
                     <input type="checkbox"
                            ng-init="copy_comment_notification = preferences.comment_notification"
                            ng-click="copy_comment_notification = !copy_comment_notification" />
-                        new Comment on a Tip, trigger an email notification
+                        {{ new Comment on a Tip, trigger an email notification | translate }}
                         </label>
 
                     <label>
                     <input type="checkbox"
                            ng-init="copy_file_notification = preferences.file_notification"
                            ng-click="copy_file_notification = !copy_file_notification" />
-                        new File uploaded on a Tip, trigger an email notification
+                        {{ new File uploaded on a Tip, trigger an email notification | translate }}
                         </label>
 
                 </div>
@@ -90,17 +94,19 @@
                 <div ng-show="preferences.gpg_key_fingerprint"
                      ng-init="preferences.gpg_key_remove = false">
                     <p>
-                        You have an<b>Active Key</b><br>
-                        The fingerprint is: <b>{{preferences.gpg_key_fingerprint}}</b>
+                        {{ You have an active Key | translate }}
+                        <br>
+                        {{ The fingerprint is: | translate }}
+                        <b>{{preferences.gpg_key_fingerprint}}</b>
                     </p>
 
                     <label ng-show="preferences.gpg_key_fingerprint">
                         <input type="checkbox" ng-model="preferences.gpg_enable_notification" />
-                        Encrypt email notifications.
+                        {{ Encrypt email notifications. | translate }}
                     </label>
                     <label ng-show="preferences.gpg_key_fingerprint">
                         <input type="checkbox" ng-model="preferences.gpg_enable_files" />
-                        Encrypt files reserved for you.
+                        {{ Encrypt files reserved for you. | translate }}
                     </label>
                 </div>
 
@@ -108,7 +114,7 @@
                         ng-show="preferences.gpg_key_fingerprint"
                         ng-click="expose_gpg_key = !expose_gpg_key"
                         ng-init="expose_gpg_key=false">
-                    see GPG key details
+                    {{ see GPG key details | translate }}
                 </button>
 
                 <div ng-show="expose_gpg_key"
@@ -120,26 +126,29 @@
                         ng-hide="preferences.gpg_key_fingerprint"
                         ng-click="gpg_marketing = !gpg_marketing"
                         ng-init="gpg_marketing=false">
-                    You've not encryption enabled!
+                    {{ You've not encryption enabled! | translate }}
                 </button>
 
                 <div class="clearfix" ng-show="gpg_marketing">
-                    <p><a href="https://gnupg.org">GnuPG</a> can be configured in order to deliver
-                        encrypted email and store encrypted files.
+                    <p><a href="https://gnupg.org">GnuPG</a>
+                        {{ can be configured in order to deliver encrypted email and store encrypted files.
                         You've to copy paste the ascii version of your personal key, and then would be
-                        possibile update your encryption settings. Talk to your admin if you've doubts.
+                        possibile update your encryption settings. Talk to your admin if you've doubts. | translate }}
                     </p>
                 </div>
 
                 <div class="clearfix">
                     <a href="#"
                        ng-init="send_key=false"
-                       ng-click="send_key=!send_key">Submit a gpg key
+                       ng-click="send_key=!send_key">
+                        {{ Submit a gpg key | translate }}
                     </a>
                 </div>
 
                 <div ng-show="send_key">
-                    <p>Copy paste here the PGP Key Armor:</p>
+                    <p>
+                        {{ Copy paste here the PGP Key Armor: | translate }}
+                    </p>
                     <textarea ng-model="pasted_gpg_key_armor"></textarea>
                 </div>
 
@@ -147,12 +156,12 @@
                     <input type="checkbox"
                            ng-init="copy_gpg_key_remove = preferences.gpg_key_remove"
                            ng-click="copy_gpg_key_remove = !copy_gpg_key_remove" />
-                    Remove your GPG key.
+                    {{ Remove your GPG key | translate }}
                 </label>
 
                 <div>
                     <button type="submit" class="btn btn-success" ng-click="pref_save()" >
-                        Update notification and encryption settings
+                        {{Update notification and encryption settings | translate }}
                     </button>
                 </div>
 
