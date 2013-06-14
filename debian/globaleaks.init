@@ -182,7 +182,7 @@ do_start()
             && test -x /usr/sbin/aa-exec \
             && test -e /etc/apparmor.d/usr.bin.globaleaks \
             && /usr/sbin/aa-status --enabled \
-            && STARTCMD="/usr/sbin/aa-exec --profile=usr.bin.globaleaks -- $STARTCMD"
+            && STARTCMD="/usr/sbin/aa-exec --profile=usr.bin.globaleaks -- $STARTCMD" \
             && echo "Enabling GlobaLeaks Apparmor Sandboxing"
     fi
 
