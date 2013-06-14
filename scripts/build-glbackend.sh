@@ -61,9 +61,12 @@ interactive_setup_env()
   cd ${BUILD_DIR}
   if [ -d ${GLBACKEND_TMP} ]; then
     echo "Directory ${GLBACKEND_TMP} already present and need to be removed"
-    read -n1 -p "Do you want to delete ${GLBACKEND_TMP}? (y/n): "
-    echo
-    if [[ $REPLY != [yY] ]]; then
+    ANSWER=''
+    until [[ $ANSWER = [yn] ]]; do
+      read -n1 -p "Do you want to delete ${GLBACKEND_TMP}? (y/n): " ANSWER
+      echo
+    done
+    if [[ $ANSWER != 'y' ]]; then
       echo "Cannot proceed"
       exit
     fi
@@ -71,9 +74,12 @@ interactive_setup_env()
   fi
   if [ -d ${GLBACKEND_DIR} ]; then
     echo "Directory ${GLBACKEND_DIR} already present. Can be used as package source"
-    read -n1 -p "Do you want to use the existing repository from ${GLBACKEND_DIR} (y/n): "
-    echo
-    if [[ $REPLY != [yY] ]]; then
+    ANSWER=''
+    until [[ $ANSWER = [yn] ]]; do
+      read -n1 -p "Do you want to use the existing repository from ${GLBACKEND_DIR} (y/n): " ANSWER
+      echo
+    done
+    if [[ $ANSWER != 'y' ]]; then
       echo "[+] Cloning GLBackend in ${GLBACKEND_TMP}"
       git clone $GLBACKEND_GIT_REPO ${GLBACKEND_TMP}
     else
