@@ -65,6 +65,9 @@ def set_default_headers(self):
     self.set_header("Pragma", "no-cache")
     self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
 
+    # to mitigate clickjaking attacks on iframes
+    self.set_header("X-Frame-Options", "deny")
+
 class GLHTTPServer(HTTPConnection):
     def lineReceiver(self, line):
         HTTPConnection.lineReceived(self, line)
