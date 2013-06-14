@@ -47,9 +47,21 @@ def validate_host(host_key):
               (host_key, GLSetting.accepted_hosts))
     return False
 
+def set_default_headers(self):
+    # In this function are written some security enforcements
+    # related to WebServer versioning and XSS attacks.
+    # The function must be called by all request HANDLER defined using:
+    # def set_default_header(self):
+    #     set_default_header(self)
+
+    # to avoid version attacks
+    self.set_header("Server", "globaleaks")
+      
+    # to reduce possibility for XSS attacks.
+    self.set_header("X-Content-Type-Options", "nosniff")
+
 
 class GLHTTPServer(HTTPConnection):
-
     def lineReceiver(self, line):
         HTTPConnection.lineReceived(self, line)
 
@@ -65,9 +77,8 @@ class GLHTTPServer(HTTPConnection):
 
 
 class BaseHandler(RequestHandler):
-    def __init__(self, application, request, **kwargs):
-        RequestHandler.__init__(self, application, request, **kwargs)
-        self.set_header("X-Content-Type-Options", "nosniff")
+    def set_default_headers(self):
+        set_default_headers(self)
 
     @staticmethod
     def validate_python_type(value, python_type):
@@ -258,7 +269,6 @@ class BaseHandler(RequestHandler):
         with open(logfpath, 'a+') as fd:
             fdesc.writeToFD(fd.fileno(), content)
 
-
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
         if exception and hasattr(exception, 'error_code'):
@@ -336,9 +346,8 @@ class BaseHandler(RequestHandler):
 
 
 class BaseStaticFileHandler(StaticFileHandler):
-    def __init__(self, application, request, **kwargs):
-        StaticFileHandler.__init__(self, application, request, **kwargs)
-        self.set_header("X-Content-Type-Options", "nosniff")
+    def set_default_headers(self):
+        set_default_headers(self)
 
     def prepare(self):
         """
@@ -352,6 +361,8 @@ class BaseStaticFileHandler(StaticFileHandler):
 
 
 class BaseRedirectHandler(RedirectHandler):
+    def set_default_headers(self):
+        set_default_headers(self)
 
     def prepare(self):
         """
