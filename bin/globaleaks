@@ -11,6 +11,7 @@ this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
+from globaleaks import DATABASE_VERSION
 from globaleaks.utils import query_yes_no
 from globaleaks.settings import GLSetting
 from twisted.python import usage
@@ -97,9 +98,10 @@ GLSetting.parser.add_option("-k", "--kill", type="int",
     help="signal to send to the current twisted.pid process (if exists), [default: don't kill]",
     dest="kill", default=0)
 
-GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
-    help="enable developer mode [default %default]. This override --working-path with 'workingdir/'",
-    dest="devel_mode", default=GLSetting.devel_mode)
+GLSetting.parser.add_option("-z", "--glc", type='string',
+    help="developer mode: Specify GLClient path. [default Disabled]."\
+            "(This override --working-path with 'workingdir/')",
+    dest="devel_mode")
 
 GLSetting.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSetting.version_string,
@@ -110,6 +112,7 @@ GLSetting.parser.add_option("-v", "--version", action='store_true',
 
 if GLSetting.cmdline_options.version:
     print "GlobaLeaks Version:", GLSetting.version_string
+    print "GlobaLeaks DB version:", DATABASE_VERSION
     quit()
 
 GLSetting.load_cmdline_options()

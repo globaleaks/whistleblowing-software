@@ -212,11 +212,18 @@ class GLSettingsClass:
                                      'glbackend-%d.db' % DATABASE_VERSION))
 
 
-    def set_devel_mode(self):
+    def set_devel_mode(self, glcp=None):
+        self.devel_mode = True
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
-        self.glclient_path = os.path.abspath(
-            os.path.join(self.root_path, '..', 'GLClient', 'app'))
+        if not glcp:
+            self.glclient_path = os.path.abspath(os.path.join(
+                self.root_path, "..", "GLClient", "app"))
+            # this happen on unitTest execution, I'm skipping the print below
+        else:
+            self.glclient_path = os.path.abspath(os.path.join(self.root_path, glcp))
+            print "Development mode: serving GLClient from %s" % self.glclient_path
+
 
     def load_cmdline_options(self):
         """
@@ -278,10 +285,10 @@ class GLSettingsClass:
 
         self.working_path = self.cmdline_options.working_path
 
-        # if devel_mode == True we do some hacks on paths and config values
-        self.devel_mode = self.cmdline_options.devel_mode
-        if self.devel_mode:
-            self.set_devel_mode()
+        # if devel_mode == '$a string' we do some hacks on paths and config values,
+        # and use this string as GLClient execution path
+        if self.cmdline_options.devel_mode and len(self.cmdline_options.devel_mode) > 1:
+            self.set_devel_mode(self.cmdline_options.devel_mode)
 
         self.eval_paths()
 
