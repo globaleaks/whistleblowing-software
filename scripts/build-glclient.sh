@@ -119,7 +119,7 @@ build_glclient()
 
   echo "[+] Building GLClient"
   npm install -d
-  grunt build --force
+  grunt build
 
   mkdir -p ${GLC_BUILD}
 
