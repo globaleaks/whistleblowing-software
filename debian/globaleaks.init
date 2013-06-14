@@ -183,7 +183,7 @@ do_start()
             && test -e /etc/apparmor.d/usr.bin.globaleaks \
             && /usr/sbin/aa-status --enabled \
             && STARTCMD="/usr/sbin/aa-exec --profile=usr.bin.globaleaks -- $STARTCMD"
-            && echo "Enabling Globaleaks Apparmor Sandboxing"
+            && echo "Enabling GlobaLeaks Apparmor Sandboxing"
     fi
 
     # This is a little hack to avoid python doing os.chdir('.') and getting mad.
