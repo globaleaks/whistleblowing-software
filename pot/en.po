@@ -729,3 +729,13 @@ msgstr "Your password is unsafe, it should have"
 #: example.py:11
 msgid "By checking the box below you agree to these terms and conditions."
 msgstr "By checking the box below you agree to these terms and conditions."
+
+# added by hand below
+msgid "Comment Email Subject"
+msgstr "Comment Email Subject"
+
+msgid "File Email Subject"
+msgstr "File Email Subject"
+
+msgid "Tip Email Subject"
+msgstr "Tip Email Subject"

@@ -112,7 +112,7 @@ msgstr "Configurazione Contesti"
 #: example.py:11
 msgid ""
 "Invalid format for hidden service (should be http://thirteenchars123.onion)"
-msgstr "Formato dell'hidden service non valido (dovrebbe essere http://trediciLettere123.onion)"
+msgstr "Formato dell'hidden service non valido (dovrebbe essere http://trediciLettere12.onion)"
 
 #: example.py:11
 msgid "Users overview"
@@ -153,7 +153,7 @@ msgstr "Sito pubblico Tor2web (url)"
 
 #: example.py:11
 msgid "You're running GlobaLeaks version "
-msgstr "Stai utilizzando GlobaLeaks versione"
+msgstr "Stai utilizzando la versione di GlobaLeaks"
 
 #: example.py:11
 msgid ""
