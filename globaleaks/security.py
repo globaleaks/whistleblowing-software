@@ -229,6 +229,8 @@ def gpg_options_manage(receiver, request):
     encrypt_file = request.get('gpg_enable_notification', False)
 
     receiver.gpg_key_status = Receiver._gpg_types[0]
+    receiver.gpg_enable_notificiation = False
+    receiver.gpg_enable_files = False
 
     if remove_key:
         log.debug("User %s request to remove GPG key (%s)" %

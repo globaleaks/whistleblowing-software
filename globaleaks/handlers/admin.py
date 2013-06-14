@@ -95,8 +95,8 @@ def admin_serialize_receiver(receiver):
         "gpg_key_remove": False,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "gpg_key_status": receiver.gpg_key_status,
-        "gpg_enable_notification": False, # TODO DB + Models
-        "gpg_enable_files": False, # TODO DB + Models
+        "gpg_enable_notification": receiver.gpg_enable_notification,
+        "gpg_enable_files": receiver.gpg_enable_files,
         "comment_notification": receiver.comment_notification,
         "tip_notification": receiver.tip_notification,
         "file_notification": receiver.file_notification,
