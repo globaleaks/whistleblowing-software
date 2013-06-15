@@ -2,6 +2,7 @@
 
 ############## Start Of Variable and Functions Declaration ###########
 
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BUILD_DIR=/tmp/glbuilding.$RANDOM
 BUILD_LOG=${BUILD_DIR}.log
 TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
@@ -525,10 +526,16 @@ if [ "${INSTALL_PIP}" -eq "1" ] ; then
   DO "python setup.py install" "0"
 fi
 
-DO "wget -O ${BUILD_DIR}/requirements.txt https://raw.github.com/globaleaks/GLBackend/master/requirements.txt" "0"
-PIP_DEPS=`cat ${BUILD_DIR}/requirements.txt`
-for PIP_DEP in $PIP_DEPS; do
-  DO "pip install $PIP_DEP" "0"
+
+if [ -f ${DIR}/../../GLBackend_tmp/requirements.txt ]; then
+  PIP_DEPS=`cat ${DIR}/../../GLBackend_tmp/requirements.txt`
+else
+  DO "wget -O ${BUILD_DIR}/requirements.txt https://raw.github.com/globaleaks/GLBackend/master/requirements.txt" "0"
+  PIP_DEPS=`cat ${BUILD_DIR}/requirements.txt`
+fi
+
+for PIP_DEP in ${PIP_DEPS}; do
+  DO "pip install ${PIP_DEP}" "0"
 done
 
 if [ -d /data/globaleaks/deb ]; then
