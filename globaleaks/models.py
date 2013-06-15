@@ -408,7 +408,9 @@ class Notification(Model):
     activation_mail_title = Unicode()
 
     unicode_keys = ['server', 'username', 'password', 'tip_template',
-                    'file_template', 'comment_template', 'activation_template' ]
+                    'file_template', 'comment_template', 'activation_template',
+                    'tip_mail_title', 'comment_mail_title', 'file_mail_title',
+                    'activation_mail_title' ]
     int_keys = ['port']
     bool_keys = []
 
