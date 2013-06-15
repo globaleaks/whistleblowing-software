@@ -121,16 +121,14 @@ build_glclient()
   npm install -d
   grunt build
 
-  #pwd
   mkdir -p ${GLC_BUILD}
-  #mkdir build/scripts
-  #cp ${GLCLIENT_DIR}/app/scripts/translations.js build/scripts/
-  #cat build/index.html | head -81 >> build/hack_index.html
-  #echo '<script src="scripts/translations.js"></script>' >> build/hack_index.html
-  #tail -4 build/index.html >> build/hack_index.html
-  #mv build/index.html build/generated_index.html
-  #mv build/hack_index.html build/index.html
-  #ls -l build/
+  mkdir build/scripts
+  cp ${GLCLIENT_DIR}/app/scripts/translations.js build/scripts/
+  cat build/index.html | head -81 >> build/hack_index.html
+  echo '<script src="scripts/translations.js"></script>' >> build/hack_index.html
+  tail -4 build/index.html >> build/hack_index.html
+  mv build/index.html build/generated_index.html
+  mv build/hack_index.html build/index.html
 
   echo "[+] Creating compressed archives"
   mv build glclient-${GLCLIENT_REVISION}
