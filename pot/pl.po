@@ -25,6 +25,10 @@ msgid "You will not be able to perform a submission."
 msgstr ""
 
 #: example.py:11
+msgid "Permit Submission via Tor2Web"
+msgstr ""
+
+#: example.py:11
 msgid "Comments"
 msgstr ""
 
@@ -34,6 +38,10 @@ msgstr ""
 
 #: example.py:11
 msgid "new File uploaded on a Tip, trigger an email notification"
+msgstr ""
+
+#: example.py:11
+msgid "Permit Tip status page access via Tor2Web"
 msgstr ""
 
 #: example.py:11
@@ -153,6 +161,10 @@ msgid "Use the"
 msgstr ""
 
 #: example.py:11
+msgid "Login page"
+msgstr ""
+
+#: example.py:11
 msgid "You will not be able to login."
 msgstr ""
 
@@ -166,10 +178,6 @@ msgstr ""
 
 #: example.py:11
 msgid "Tor2web Public Site (url)"
-msgstr ""
-
-#: example.py:11
-msgid "You're running GlobaLeaks version "
 msgstr ""
 
 #: example.py:11
@@ -209,7 +217,7 @@ msgid "SMTP server port"
 msgstr ""
 
 #: example.py:11
-msgid "Preferences"
+msgid "Permit Administative login via Tor2Web"
 msgstr ""
 
 #: example.py:11
@@ -289,11 +297,11 @@ msgid "Users Overview"
 msgstr ""
 
 #: example.py:11
-msgid "Contexts"
+msgid "Url"
 msgstr ""
 
 #: example.py:11
-msgid "Login page"
+msgid "Permit Public resources access via Tor2Web"
 msgstr ""
 
 #: example.py:11
@@ -397,7 +405,7 @@ msgid "download a copy of the tor browser bundle"
 msgstr ""
 
 #: example.py:11
-msgid "Congratulations!"
+msgid "Permit Receiver preferences management via Tor2Web"
 msgstr ""
 
 #: example.py:11
@@ -406,6 +414,10 @@ msgstr ""
 
 #: example.py:11
 msgid "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions present on the node and a few statistics on the kind of usage (activity, files, comments)."
+msgstr ""
+
+#: example.py:11
+msgid "Preferences"
 msgstr ""
 
 #: example.py:11
@@ -649,6 +661,14 @@ msgid "Tip Overview"
 msgstr ""
 
 #: example.py:11
+msgid "You're running GlobaLeaks version"
+msgstr ""
+
+#: example.py:11
+msgid "Congratulations!"
+msgstr ""
+
+#: example.py:11
 msgid "Blow the Whistle"
 msgstr ""
 
@@ -685,7 +705,7 @@ msgid "By checking the box below you agree to these terms and conditions."
 msgstr ""
 
 #: example.py:11
-msgid "Url"
+msgid "Contexts"
 msgstr ""
 
 #: example.py:11

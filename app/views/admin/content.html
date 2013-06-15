@@ -19,7 +19,7 @@
       <h3>
         {{ "General information" | translate }}
       </h3>
-      <p><b>{{ "You're running GlobaLeaks version " | translate }} {{admin.node.version}}</b></p>
+      <p><b>{{ "You're running GlobaLeaks version" | translate }} {{admin.node.version}}</b></p>
 
       <label>{{ "Current initiative logo" | translate }}</label>
       <form name="contentForm" novalidate>
@@ -86,32 +86,59 @@
             <!-- </div> -->
 
         <label>
-        <input type="checkbox" name="tor2web_admin" ng-model="admin.node.tor2web_admin"/>
-          Permit Administative operation via Tor2Web</label>
-
-        <label>
-        <input type="checkbox" name="tor2web_receiver" ng-model="admin.node.tor2web_receiver"/>
-          Permit Receiver preferences via Tor2Web
+            <input type="checkbox" ng-show="admin.node.tor2web_admin" checked
+                   ng-init="copy_tor2web_admin = true"
+                   ng-click="copy_tor2web_admin=!copy_tor2web_admin" />
+            <input type="checkbox" ng-hide="admin.node.tor2web_admin"
+                   ng-init="copy_tor2web_admin = false"
+                   ng-click="copy_tor2web_admin=!copy_tor2web_admin" />
+            {{ "Permit Administative login via Tor2Web" | translate }}
         </label>
 
         <label>
-          <input type="checkbox" name="tor2web_tip" ng-model="admin.node.tor2web_tip"/>
-          Permit Tip access (Wb and Receiver) ops via Tor2Web</label>
+            <input type="checkbox" ng-show="admin.node.tor2web_receiver" checked
+                   ng-init="copy_tor2web_receiver = true"
+                   ng-click="copy_tor2web_receiver=!copy_tor2web_receiver" />
+            <input type="checkbox" ng-hide="admin.node.tor2web_receiver"
+                   ng-init="copy_tor2web_receiver = false"
+                   ng-click="copy_tor2web_receiver=!copy_tor2web_receiver" />
+            {{ "Permit Receiver preferences management via Tor2Web" | translate }}
+        </label>
 
         <label>
-        <input type="checkbox" name="tor2web_unauth" ng-model="admin.node.tor2web_unauth"/>
-        Permit unauthenticated access (just info on node settings, goals, context) via
-        Tor2Web</label>
+            <input type="checkbox" ng-show="admin.node.tor2web_tip" checked
+                   ng-init="copy_tor2web_tip = true"
+                   ng-click="copy_tor2web_tip=!copy_tor2web_tip" />
+            <input type="checkbox" ng-hide="admin.node.tor2web_tip"
+                   ng-init="copy_tor2web_tip = false"
+                   ng-click="copy_tor2web_tip=!copy_tor2web_tip" />
+            {{ "Permit Tip status page access via Tor2Web" | translate }}
+        </label>
+
 
         <label>
-        <input type="checkbox" value="admin.node.tor2web_submission" 
-        name="tor2web_submission" ng-model="admin.node.tor2web_submission" />
-        Permit Submission via Tor2Web</label>
+            <input type="checkbox" ng-show="admin.node.tor2web_unauth" checked
+                   ng-init="copy_tor2web_unauth = true"
+                   ng-click="copy_tor2web_unauth = ! copy_tor2web_unauth" />
+            <input type="checkbox" ng-hide="admin.node.tor2web_unauth"
+                   ng-init="copy_tor2web_unauth = false"
+                   ng-click="copy_tor2web_unauth = ! copy_tor2web_unauth" />
+            {{ "Permit Public resources access via Tor2Web" | translate }}
+        </label>
 
+        <label>
+            <input type="checkbox" ng-show="admin.node.tor2web_submission" checked
+                   ng-init="copy_tor2web_submission = true"
+                   ng-click="copy_tor2web_submission=!copy_tor2web_submission" />
+            <input type="checkbox" ng-hide="admin.node.tor2web_submission"
+                   ng-init="copy_tor2web_submission = false"
+                   ng-click="copy_tor2web_submission=!copy_tor2web_submission" />
+            {{ "Permit Submission via Tor2Web" | translate }}
+        </label>
 
         <br>
         <button class="btn btn-success" 
-                    ng-disabled="contentForm.$invalid || contentForm.$pristine"
+                    ng-disabled="contentForm.$invalid "
                     ng-click="updateNode(admin.node)">{{ "Save" | translate }}</button>
 
       </form>
