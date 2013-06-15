@@ -98,7 +98,7 @@ build_glbackend()
   cd ${GLBACKEND_TMP}
 
   if test ${USING_EXISTENT_DIR}; then
-      echo "Using GLBackend existent directory and respective HEAD"
+    echo "Using GLBackend existent directory and respective HEAD"
   else
     if test $TAG; then
       echo "Using a clean cloned GLBackend directory"
