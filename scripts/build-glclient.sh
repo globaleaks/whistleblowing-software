@@ -123,7 +123,7 @@ build_glclient()
 
   mkdir -p ${GLC_BUILD}
   mkdir build/scripts
-  cp ${GLCLIENT_DIR}/app/scripts/translations.js build/scripts/
+  cp app/scripts/translations.js build/scripts/
   cat build/index.html | head -81 >> build/hack_index.html
   echo '<script src="scripts/translations.js"></script>' >> build/hack_index.html
   tail -4 build/index.html >> build/hack_index.html
