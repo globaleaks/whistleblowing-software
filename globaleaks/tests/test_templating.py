@@ -182,4 +182,4 @@ class notifTemplateTest(TestWithDB):
 
         self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
-        self.assertNotSubstring(self.createdNode['public_site'], gentext)
+        self.assertNotSubstring("%TipT2WURL%", gentext)
