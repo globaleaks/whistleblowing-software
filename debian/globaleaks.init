@@ -160,12 +160,6 @@ do_start()
 
     read_pid
 
-    test -x /usr/sbin/aa-status \
-        && test -x /usr/sbin/aa-exec \
-        && test -e /etc/apparmor.d/usr.bin.globaleaks \
-        && /usr/sbin/aa-status --enabled \
-        && STARTCMD="/usr/sbin/aa-exec --profile=usr.bin.globaleaks -- $STARTCMD"
-
     if ! id -u ${USER} >/dev/null 2>&1; then
        log_end_msg 1 "unexistent user (${USER})"
        exit 1
@@ -181,6 +175,15 @@ do_start()
 
     if [ "${NETWORK_SANDBOXING}" -eq "1" ]; then
         network_sandboxing_start
+    fi
+
+    if [ "${APPARMOR_SANDBOXING}" -eq "1" ]; then
+        test -x /usr/sbin/aa-status \
+            && test -x /usr/sbin/aa-exec \
+            && test -e /etc/apparmor.d/usr.bin.globaleaks \
+            && /usr/sbin/aa-status --enabled \
+            && STARTCMD="/usr/sbin/aa-exec --profile=usr.bin.globaleaks -- $STARTCMD" \
+            && echo "Enabling GlobaLeaks Apparmor Sandboxing"
     fi
 
     # This is a little hack to avoid python doing os.chdir('.') and getting mad.

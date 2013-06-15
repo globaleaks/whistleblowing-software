@@ -63,7 +63,7 @@ def build_glclient():
     os.chdir('..')
     print "    ...done."
 
-if not os.path.isdir('glclient'):
+if not os.path.isdir(os.path.abspath(os.path.join(os.path.dirname(__file__), 'glclient'))):
     download_glclient()
     verify_glclient()
     uncompress_glclient(glclient_path)
