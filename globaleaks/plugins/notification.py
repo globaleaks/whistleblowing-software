@@ -13,6 +13,7 @@ from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
 from globaleaks.security import gpg_encrypt
 from globaleaks.models import Receiver
+from globaleaks.settings import GLSetting
 
 class MailNotification(Notification):
 
@@ -96,9 +97,10 @@ class MailNotification(Notification):
                         'ADMIN, CONFIGURE YOUR HIDDEN SERVICE (Advanced configuration)!'
                     })
 
-            if not node_desc['tor2web_tip']:
-                # https://github.com/globaleaks/GlobaLeaks/issues/268
-                pass
+            if not GLSetting.memory_copy.tor2web_tip:
+                tip_template_keyword.update({
+                    '%TipT2WURL%': "Ask to your admin about Tor"})
+                    # https://github.com/globaleaks/GlobaLeaks/issues/268
             elif len(node_desc['public_site']):
                 tip_template_keyword.update({
                     '%TipT2WURL%':
