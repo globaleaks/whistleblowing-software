@@ -97,11 +97,19 @@ build_glbackend()
 {
   cd ${GLBACKEND_TMP}
 
-  if ! test ${USING_EXISTENT_DIR}; then
+  if test ${USING_EXISTENT_DIR}; then
+      echo "Using GLBackend existent directory and respective HEAD"
+  else
     if test $TAG; then
+      echo "Using a clean cloned GLBackend directory"
+      echo "Checking out $TAG (if existent, using master HEAD instead)"
       git checkout $TAG || git checkout HEAD
     fi
   fi
+
+  GLBACKEND_REVISION=`git rev-parse HEAD | cut -c 1-8`
+
+  echo "Revision used: ${GLBACKEND_REVISION}"
 
   pip install -r requirements.txt
 
