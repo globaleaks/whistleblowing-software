@@ -126,6 +126,7 @@ build_glclient()
   cp app/scripts/translations.js build/scripts/
   cat build/index.html | head -81 >> build/hack_index.html
   echo '<script src="scripts/translations.js"></script>' >> build/hack_index.html
+  echo -e '\t<script src="scripts/translations.js"></script>' >> build/hack_index.html
   tail -3 build/index.html >> build/hack_index.html
   mv build/index.html build/generated_index.html
   mv build/hack_index.html build/index.html
