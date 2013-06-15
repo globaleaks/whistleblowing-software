@@ -63,13 +63,15 @@ def build_glclient():
     os.chdir('..')
     print "    ...done."
 
-if not os.path.isdir('glclient'):
+if not os.path.isdir(os.path.abspath(os.path.join(os.path.dirname(__file__), 'glclient'))):
     download_glclient()
     verify_glclient()
     uncompress_glclient(glclient_path)
 glclient_path = 'glclient'
 
-python_deps = [i.strip() for i in open("requirements.txt").readlines()]
+requires = []
+with open('requirements.txt') as f:
+    requires = map(pip_to_requirements, f.readlines())
 
 data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'index.html'),
     os.path.join(glclient_path, 'styles.css'),
@@ -96,6 +98,6 @@ setup(
         'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
     scripts=["bin/globaleaks"],
-    install_requires = python_deps
+    requires = requires
 )
 shutil.rmtree(glclient_path)
