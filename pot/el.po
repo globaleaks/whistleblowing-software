@@ -41,11 +41,11 @@ msgid "new File uploaded on a Tip, trigger an email notification"
 msgstr ""
 
 #: example.py:11
-msgid "Permit Tip status page access via Tor2Web"
+msgid "add field"
 msgstr ""
 
 #: example.py:11
-msgid "add field"
+msgid "Edit Tor2Web accessibility table - [click again to close and don't edit options] "
 msgstr ""
 
 #: example.py:11
@@ -54,6 +54,10 @@ msgstr ""
 
 #: example.py:11
 msgid "Through this platform you will be able to report on wrongdoing. This platform is running the"
+msgstr ""
+
+#: example.py:11
+msgid "You can customize this section by editing GLClient/app/templates/default/views/submission/main.html"
 msgstr ""
 
 #: example.py:11
@@ -181,7 +185,7 @@ msgid "Tor2web Public Site (url)"
 msgstr ""
 
 #: example.py:11
-msgid "Submit a gpg key"
+msgid "Edit Tor2Web accessibility table "
 msgstr ""
 
 #: example.py:11
@@ -201,7 +205,7 @@ msgid "Files Overview"
 msgstr ""
 
 #: example.py:11
-msgid "This node is not configured."
+msgid "done"
 msgstr ""
 
 #: example.py:11
@@ -214,6 +218,10 @@ msgstr ""
 
 #: example.py:11
 msgid "SMTP server port"
+msgstr ""
+
+#: example.py:11
+msgid "now Enabled:"
 msgstr ""
 
 #: example.py:11
@@ -245,7 +253,7 @@ msgid "Still calculating hash"
 msgstr ""
 
 #: example.py:11
-msgid "download"
+msgid "Whistleblowers can perform submission with their anonymity at risks, via Tor2Web."
 msgstr ""
 
 #: example.py:11
@@ -269,7 +277,7 @@ msgid "Username"
 msgstr ""
 
 #: example.py:11
-msgid "You can customize this section by editing GLClient/app/templates/default/views/submission/main.html"
+msgid "Submit a gpg key"
 msgstr ""
 
 #: example.py:11
@@ -309,6 +317,10 @@ msgid "We are supported also by your donations. Visit our"
 msgstr ""
 
 #: example.py:11
+msgid "Public GlobaLeaks resource can access via Tor2Web. No dangers on it."
+msgstr ""
+
+#: example.py:11
 msgid "Invalid format for public site (should be https://thirteenchars123.tor2web.org)"
 msgstr ""
 
@@ -342,6 +354,10 @@ msgstr ""
 
 #: example.py:11
 msgid "logout"
+msgstr ""
+
+#: example.py:11
+msgid "This node is not configured."
 msgstr ""
 
 #: example.py:11
@@ -381,6 +397,10 @@ msgid "Size"
 msgstr ""
 
 #: example.py:11
+msgid "Admin can access via Tor2Web. It's safe only if you're using a dedicated Tor2Web server."
+msgstr ""
+
+#: example.py:11
 msgid "Email Address (Username)"
 msgstr ""
 
@@ -397,7 +417,7 @@ msgid "Required old password confirm"
 msgstr ""
 
 #: example.py:11
-msgid "done"
+msgid "Permit Tip access, file download and upload via Tor2Web"
 msgstr ""
 
 #: example.py:11
@@ -410,6 +430,10 @@ msgstr ""
 
 #: example.py:11
 msgid "Change password"
+msgstr ""
+
+#: example.py:11
+msgid "Update node"
 msgstr ""
 
 #: example.py:11
@@ -473,6 +497,10 @@ msgid "Save changes"
 msgstr ""
 
 #: example.py:11
+msgid "Note: Need to be clicked two times, to disable an access"
+msgstr ""
+
+#: example.py:11
 msgid "Content Settin"
 msgstr ""
 
@@ -525,6 +553,10 @@ msgid "Preferences and password management"
 msgstr ""
 
 #: example.py:11
+msgid "Update node and Tor2Web options"
+msgstr ""
+
+#: example.py:11
 msgid "File Email Subject"
 msgstr ""
 
@@ -570,6 +602,10 @@ msgstr ""
 
 #: example.py:11
 msgid "References"
+msgstr ""
+
+#: example.py:11
+msgid "download"
 msgstr ""
 
 #: example.py:11
@@ -729,6 +765,10 @@ msgid "Add files..."
 msgstr ""
 
 #: example.py:11
+msgid "Receivers can access via Tor2Web. It's dangerous, and we suggest some training with Tor and Enigmail."
+msgstr ""
+
+#: example.py:11
 msgid "before continuing."
 msgstr ""
 
@@ -762,6 +802,10 @@ msgstr ""
 
 #: example.py:11
 msgid "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files"
+msgstr ""
+
+#: example.py:11
+msgid "Tip can access via Tor2Web, by whistleblowers and receiver."
 msgstr ""
 
 #: example.py:11

@@ -19,11 +19,7 @@ function($rootScope, $scope, $http, $location, Admin) {
   // if they are not present
   $scope.updateNode = function(node) {
 
-    $scope.admin.node.tor2web_tip = $scope.copy_tor2web_tip;
-    $scope.admin.node.tor2web_admin = $scope.copy_tor2web_admin;
-    $scope.admin.node.tor2web_unauth = $scope.copy_tor2web_unauth;
-    $scope.admin.node.tor2web_receiver = $scope.copy_tor2web_receiver;
-    $scope.admin.node.tor2web_submission = $scope.copy_tor2web_submission;
+    console.log(node);
 
     if (typeof(node.password) === "undefined")
       node.password = "";
