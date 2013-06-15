@@ -100,4 +100,3 @@ setup(
     scripts=["bin/globaleaks"],
     requires = requires
 )
-shutil.rmtree(glclient_path)
