@@ -83,63 +83,88 @@
         ng-show="contentForm.public_site.$error.pattern">{{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}</p>
 
         <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
-            <!-- </div> -->
-
-        <label>
-            <input type="checkbox" ng-show="admin.node.tor2web_admin" checked
-                   ng-init="copy_tor2web_admin = true"
-                   ng-click="copy_tor2web_admin=!copy_tor2web_admin" />
-            <input type="checkbox" ng-hide="admin.node.tor2web_admin"
-                   ng-init="copy_tor2web_admin = false"
-                   ng-click="copy_tor2web_admin=!copy_tor2web_admin" />
-            {{ "Permit Administative login via Tor2Web" | translate }}
-        </label>
-
-        <label>
-            <input type="checkbox" ng-show="admin.node.tor2web_receiver" checked
-                   ng-init="copy_tor2web_receiver = true"
-                   ng-click="copy_tor2web_receiver=!copy_tor2web_receiver" />
-            <input type="checkbox" ng-hide="admin.node.tor2web_receiver"
-                   ng-init="copy_tor2web_receiver = false"
-                   ng-click="copy_tor2web_receiver=!copy_tor2web_receiver" />
-            {{ "Permit Receiver preferences management via Tor2Web" | translate }}
-        </label>
-
-        <label>
-            <input type="checkbox" ng-show="admin.node.tor2web_tip" checked
-                   ng-init="copy_tor2web_tip = true"
-                   ng-click="copy_tor2web_tip=!copy_tor2web_tip" />
-            <input type="checkbox" ng-hide="admin.node.tor2web_tip"
-                   ng-init="copy_tor2web_tip = false"
-                   ng-click="copy_tor2web_tip=!copy_tor2web_tip" />
-            {{ "Permit Tip status page access via Tor2Web" | translate }}
-        </label>
-
-
-        <label>
-            <input type="checkbox" ng-show="admin.node.tor2web_unauth" checked
-                   ng-init="copy_tor2web_unauth = true"
-                   ng-click="copy_tor2web_unauth = ! copy_tor2web_unauth" />
-            <input type="checkbox" ng-hide="admin.node.tor2web_unauth"
-                   ng-init="copy_tor2web_unauth = false"
-                   ng-click="copy_tor2web_unauth = ! copy_tor2web_unauth" />
-            {{ "Permit Public resources access via Tor2Web" | translate }}
-        </label>
-
-        <label>
-            <input type="checkbox" ng-show="admin.node.tor2web_submission" checked
-                   ng-init="copy_tor2web_submission = true"
-                   ng-click="copy_tor2web_submission=!copy_tor2web_submission" />
-            <input type="checkbox" ng-hide="admin.node.tor2web_submission"
-                   ng-init="copy_tor2web_submission = false"
-                   ng-click="copy_tor2web_submission=!copy_tor2web_submission" />
-            {{ "Permit Submission via Tor2Web" | translate }}
-        </label>
 
         <br>
-        <button class="btn btn-success" 
-                    ng-disabled="contentForm.$invalid "
-                    ng-click="updateNode(admin.node)">{{ "Save" | translate }}</button>
+        <a ng-click="tor2web_editing = !tor2web_editing" ng-init="tor2web_editing = false" ng-show="!tor2web_editing">
+            {{ "Edit Tor2Web accessibility table " | translate }}
+        </a>
+        <a ng-click="tor2web_editing = !tor2web_editing" ng-show="tor2web_editing">
+            {{ "Edit Tor2Web accessibility table - [click again to close and don't edit options] " | translate }}
+        </a>
+
+        <div ng-show="tor2web_editing">
+            <div class="table-bordered">
+              <label>
+                  <input type="checkbox" ng-model="admin.node.tor2web_admin"
+                         ng-true-value="true" ng-false-value="false" />
+                  {{ "Permit Administative login via Tor2Web" | translate }}
+              </label>
+              <label ng-show="admin.node.tor2web_admin" >
+                  <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                  {{ "Admin can access via Tor2Web. It's safe only if you're using a dedicated Tor2Web server." | translate }}
+              </label>
+            </div>
+
+            <div class="table-bordered" >
+              <label>
+                  <input type="checkbox" ng-model="admin.node.tor2web_receiver"
+                         ng-true-value="true" ng-false-value="false" />
+                  {{ "Permit Receiver preferences management via Tor2Web" | translate }}
+              </label>
+              <label ng-show="admin.node.tor2web_receiver" >
+                  <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                  {{ "Receivers can access via Tor2Web. It's dangerous, and we suggest some training with Tor and Enigmail." | translate }}
+              </label>
+            </div>
+
+            <div class="table-bordered" >
+              <label>
+                  <input type="checkbox" ng-model="admin.node.tor2web_tip"
+                         ng-true-value="true" ng-false-value="false" />
+                  {{ "Permit Tip access, file download and upload via Tor2Web" | translate }}
+              </label>
+              <label ng-show="admin.node.tor2web_tip" >
+                  <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                  {{ "Tip can access via Tor2Web, by whistleblowers and receiver." | translate }}
+              </label>
+            </div>
+
+            <div class="table-bordered" >
+              <label>
+                  <input type="checkbox" ng-model="admin.node.tor2web_unauth"
+                         ng-true-value="true" ng-false-value="false" />
+                  {{ "Permit Public resources access via Tor2Web" | translate }}
+              </label>
+              <label ng-show="admin.node.tor2web_unauth" >
+                  <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                  {{ "Public GlobaLeaks resource can access via Tor2Web. No dangers on it." | translate }}
+              </label>
+            </div>
+
+            <div class="table-bordered" >
+              <label>
+                  <input type="checkbox" ng-model="admin.node.tor2web_submission"
+                         ng-true-value="true" ng-false-value="false" />
+                  {{ "Permit Submission via Tor2Web" | translate }}
+              </label>
+              <label ng-show="admin.node.tor2web_submission" >
+                  <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                  {{ "Whistleblowers can perform submission with their anonymity at risks, via Tor2Web." | translate }}
+              </label>
+            </div>
+
+            <div class="media-object">
+                <i>{{ "Note: Need to be clicked two times, to disable an access" | translate }}</i>
+            </div>
+        </div>
+
+        <br>
+        <button class="btn btn-success" ng-hide="tor2web_editing"
+                ng-disabled="contentForm.$invalid "
+                ng-click="updateNode(admin.node)">{{ "Update node" | translate }}</button>
+        <button class="btn btn-success" ng-show="tor2web_editing"
+                ng-disabled="contentForm.$invalid "
+                ng-click="updateNode(admin.node)">{{ "Update node and Tor2Web options" | translate }}</button>
 
       </form>
     </div>
