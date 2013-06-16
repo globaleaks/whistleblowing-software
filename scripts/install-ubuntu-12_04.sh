@@ -41,6 +41,11 @@ do
 done
 
 DO () {
+    if [ -z "$2" ]; then
+        RET=0
+    else
+        RET=$2
+    fi
     if [ -z "$3" ]; then
         CMD=$1
     else
@@ -481,7 +486,7 @@ if [ "$?" -eq "2" ]; then
 fi
 
 echo "Installing python-setuptools, python-software-properties, gcc, python-dev"
-DO "apt-get update -y"
+DO "apt-get update -y" "0"
 DO "apt-get install python-setuptools python-software-properties gcc python-dev -y" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
