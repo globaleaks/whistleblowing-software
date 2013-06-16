@@ -5,7 +5,7 @@ install:
   - pip install twisted==13.0.0 # needed to use trial on a repo thatdoes not have requirements.txt
 script:
   - sudo -i bash -x -c 'apt-get update -y'
-  - sudo -i bash -x -c 'apt-get install git -y'
+  - sudo -i bash -x -c 'apt-get install curl git python-software-properties -y'
   - sudo -i bash -x -c 'mkdir -p /data/globaleaks'
   - sudo -i bash -x -c 'chown travis:travis /data/globaleaks'
   - git clone https://github.com/globaleaks/GLBackend /data/globaleaks/GLBackend_trial
@@ -17,7 +17,7 @@ script:
   - sudo -i bash -x -c 'gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89'
   - sudo -i bash -x -c 'gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -'
   - sudo -i bash -x -c 'apt-get update'
-  - sudo -i bash -x -c 'apt-get install tor tor-geoipdb torsocks curl -y'
+  - sudo -i bash -x -c 'apt-get install tor tor-geoipdb -y'
   - sudo -i bash -x -c 'mkdir -p /data/globaleaks/deb/'
   - sudo -i bash -x -c 'cp /data/globaleaks/GLBackend_tmp/glbackend_build/deb_dist/globaleaks*deb /data/globaleaks/deb/'
   - sudo -i bash -x -c 'chmod +x /data/globaleaks/GlobaLeaks/scripts/install-ubuntu-12_04.sh'
