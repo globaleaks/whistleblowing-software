@@ -481,6 +481,7 @@ if [ "$?" -eq "2" ]; then
 fi
 
 echo "Installing python-setuptools, python-software-properties, gcc, python-dev"
+DO "apt-get update -y"
 DO "apt-get install python-setuptools python-software-properties gcc python-dev -y" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
