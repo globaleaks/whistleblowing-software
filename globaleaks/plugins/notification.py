@@ -10,12 +10,9 @@
 from cyclone import mail
 from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
-<<<<<<< HEAD
-=======
 from globaleaks.security import gpg_encrypt
 from globaleaks.models import Receiver
 from globaleaks.settings import GLSetting
->>>>>>> 26e8772... fixed a unitTest and spotted a bug
 
 class MailNotification(Notification):
 
