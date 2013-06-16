@@ -6,9 +6,6 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BUILD_DIR=/tmp/glbuilding.$RANDOM
 BUILD_LOG=${BUILD_DIR}.log
 TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
-GLOBALEAKS_KEY_FILE=${BUILD_DIR}/gl-pub-key.gpg
-PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
-PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
 
 usage()
 {
@@ -98,6 +95,7 @@ vercomp () {
     return 0
 }
 
+GLOBALEAKS_KEY_FILE=${BUILD_DIR}/gl-pub-key.gpg
 GLOBALEAKS_PUB_KEY="
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: SKS 1.1.3+
@@ -153,8 +151,10 @@ NEEDED_VERSION_PYTHON=2.7
 NEEDED_VERSION_PIP=1.3.1
 
 PIP_PKG="pip-${NEEDED_VERSION_PIP}.tar.gz"
+PKG_VERIFY=${BUILD_DIR}/${PIP_PKG}.asc
 PIP_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}"
 PIP_SIG_URL="https://pypi.python.org/packages/source/p/pip/${PIP_PKG}.asc"
+PIP_KEY_FILE=${BUILD_DIR}/pip-pub-key.gpg
 PIP_PUB_KEY="
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v1.4.12 (Darwin)
