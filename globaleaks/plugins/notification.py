@@ -10,7 +10,6 @@
 from cyclone import mail
 from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
-from globaleaks.security import gpg_encrypt
 from globaleaks.models import Receiver
 from globaleaks.settings import GLSetting
 
