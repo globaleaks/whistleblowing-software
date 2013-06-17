@@ -46,7 +46,7 @@ def initialize_node(store, results, only_node, email_templates):
     notification.port = 587
     # port 587/SMTP-TLS or 465/SMTPS a scelta
     notification.username = u"sendaccount@lists.globaleaks.org"
-    notification.password = u"sendaccount939"
+    notification.password = u"sendaccount99"
     notification.security = models.Notification._security_types[0] # TLS
 
     # Those fields are sets as default in order to show to the Admin the various 'variables'

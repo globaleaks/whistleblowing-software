@@ -64,10 +64,10 @@ class TestEmail(helpers.TestGL):
 
         aps = APSNotification()
         aps.notification_settings = {
-            "server": "box549.bluehost.com",
-            "port": 25,
-            "username": "sendaccount939@globaleaks.org",
-            "password": "sendaccount939",
+            "server": "mail.headstrong.de",
+            "port": 587,
+            "username": "sendaccount@lists.globaleaks.org",
+            "password": "sendaccount99",
             "tip_template": u"tip tip",
             "file_template": u"file file",
             "activation_template": u"activation activation",
