@@ -2,5 +2,5 @@
 # For more details, please see /etc/apparmor.d/local/README.
 
 /var/globaleaks/torhs/ w,
-/var/globaleaks/torhs/** rwc,
+/var/globaleaks/torhs/** rwk,
 
