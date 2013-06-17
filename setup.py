@@ -79,7 +79,7 @@ data_files = [
     os.path.join(glclient_path, 'styles.css'),
     os.path.join(glclient_path, 'scripts.js'),
     ]),
-    ('/usr/share/globaleaks/glclient', [
+    ('/usr/share/globaleaks/glclient/scripts', [
     os.path.join(glclient_path, 'scripts', 'translations.js'),
     ]),
     ('/usr/share/globaleaks/glclient/images', [
