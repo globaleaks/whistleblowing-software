@@ -63,26 +63,30 @@ def build_glclient():
     os.chdir('..')
     print "    ...done."
 
+def get_requires():
+    with open('requirements.txt') as f:
+        requires = map(pip_to_requirements, f.readlines())
+        return requires
+
+
 if not os.path.isdir(os.path.abspath(os.path.join(os.path.dirname(__file__), 'glclient'))):
     download_glclient()
     verify_glclient()
     uncompress_glclient(glclient_path)
 glclient_path = 'glclient'
 
-requires = []
-with open('requirements.txt') as f:
-    requires = map(pip_to_requirements, f.readlines())
-
-data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'index.html'),
-    os.path.join(glclient_path, 'styles.css'),
-    os.path.join(glclient_path, 'scripts.js'),
+data_files = [('/usr/share/globaleaks/glclient',
+               [os.path.join(glclient_path, 'index.html'),
+                os.path.join(glclient_path, 'styles.css'),
+                os.path.join(glclient_path, 'scripts.js'),
 ]),
-    ('/usr/share/globaleaks/glclient/images', [
-    os.path.join(glclient_path, 'images', 'flags.png'),
-    os.path.join(glclient_path, 'images', 'glyphicons-halflings.png'),
-    os.path.join(glclient_path, 'images', 'glyphicons-halflings-white.png')
-]), ('/usr/share/globaleaks/glbackend', [
-    'staticdata/globaleaks_logo.png'])]
+              ('/usr/share/globaleaks/glclient/images', [
+                os.path.join(glclient_path, 'images', 'flags.png'),
+                os.path.join(glclient_path, 'images', 'glyphicons-halflings.png'),
+                os.path.join(glclient_path, 'images', 'glyphicons-halflings-white.png')
+]),
+              ('/usr/share/globaleaks/glbackend',
+               [ 'staticdata/globaleaks_logo.png'])]
 
 setup(
     name="globaleaks",
@@ -98,5 +102,5 @@ setup(
         'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
     scripts=["bin/globaleaks"],
-    requires = requires
+    requires = get_requires(),
 )
