@@ -229,12 +229,17 @@ class BaseHandler(RequestHandler):
 
             GLSetting.cyclone_debug_counter += 1
 
-            content = "\n" +("=" * 15) + ("Request %d=\n" % GLSetting.cyclone_debug_counter )
-            content += "headers: " + self.request.headers + "\n"
-            content += "url: " + self.request.full_url() + "\n"
-            content += "body: " + self.request.body + "\n"
+            try:
+                content = "\n" +("=" * 15) + ("Request %d=\n" % GLSetting.cyclone_debug_counter )
+                content += "url: " + self.request.full_url() + "\n"
+                content += "headers: " + self.request.headers + "\n"
+                content += "body: " + str(self.request.body) + "\n"
 
-            self.do_verbose_log(content)
+                self.do_verbose_log(content)
+
+            except Exception as excep:
+                log.err("JSON logging fail (prepare): %s" % excep.message)
+                return
 
             # save in the request the numeric ID of the request, so the answer can be correlated
             self.globaleaks_io_debug = GLSetting.cyclone_debug_counter
@@ -254,11 +259,16 @@ class BaseHandler(RequestHandler):
         with the command line options --io $number_of_request_recorded
         """
         if hasattr(self, 'globaleaks_io_debug'):
-            content = "\n" +("-" * 15) + ("Response %d=\n" % self.globaleaks_io_debug)
-            content += "code: " + str(self._status_code) + "\n"
-            content += "body: " + self._write_buffer + "\n"
+            try:
+                content = "\n" +("-" * 15) + ("Response %d=\n" % self.globaleaks_io_debug)
+                content += "url: " + str(self.request.full_url() + "\n")
+                content += "code: " + str(self._status_code) + "\n"
+                content += "body: " + str(self._write_buffer) + "\n"
 
-            self.do_verbose_log(content)
+                self.do_verbose_log(content)
+            except Exception as excep:
+                log.err("JSON logging fail (flush): %s" % excep.message)
+                return
 
         RequestHandler.flush(self, include_footers)
 
@@ -267,14 +277,23 @@ class BaseHandler(RequestHandler):
         """
         Record in the verbose log the content as defined by Cyclone wrappers.
         """
+        print "XXXX"
+        print self.request.method.upper()
+        print self.request.uri
+        print self.request.uri.replace("/", "_")
+        print "XXXX"
         filename = "%s%s" % (self.request.method.upper(), self.request.uri.replace("/", "_") )
         # this is not a security bug, no arbitrary patch can reach this point,
         # but only the one accepted by the API definitions
 
         logfpath = os.path.join(GLSetting.cyclone_io_path, filename)
 
-        with open(logfpath, 'a+') as fd:
-            fdesc.writeToFD(fd.fileno(), content)
+        print "FINALE", logfpath, filename
+        try:
+            with open(logfpath, 'a+') as fd:
+                fdesc.writeToFD(fd.fileno(), content)
+        except Exception as excep:
+            log.err("Unable to open %s: %s" % (logfpath, excep.message))
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')

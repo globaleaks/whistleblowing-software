@@ -374,6 +374,7 @@ class GLSettingsClass:
         create_directory(self.torhs_path)
 
         if self.cyclone_debug >= 0:
+            print "creating ", self.cyclone_io_path, self.cyclone_debug, self.cyclone_debug_counter
             create_directory(self.cyclone_io_path)
 
         # detect new_environment also if the logo is missing
