@@ -73,16 +73,22 @@ requires = []
 with open('requirements.txt') as f:
     requires = map(pip_to_requirements, f.readlines())
 
-data_files = [('/usr/share/globaleaks/glclient', [os.path.join(glclient_path, 'index.html'),
+data_files = [
+    ('/usr/share/globaleaks/glclient', [
+    os.path.join(glclient_path, 'index.html'),
     os.path.join(glclient_path, 'styles.css'),
     os.path.join(glclient_path, 'scripts.js'),
-]),
+    ]),
+    ('/usr/share/globaleaks/glclient', [
+    os.path.join(glclient_path, 'scripts', 'translations.js'),
+    ]),
     ('/usr/share/globaleaks/glclient/images', [
     os.path.join(glclient_path, 'images', 'flags.png'),
     os.path.join(glclient_path, 'images', 'glyphicons-halflings.png'),
     os.path.join(glclient_path, 'images', 'glyphicons-halflings-white.png')
-]), ('/usr/share/globaleaks/glbackend', [
-    'staticdata/globaleaks_logo.png'])]
+    ]),
+    ('/usr/share/globaleaks/glbackend',  ['staticdata/globaleaks_logo.png'])
+]
 
 setup(
     name="globaleaks",
