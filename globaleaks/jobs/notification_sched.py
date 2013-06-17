@@ -150,6 +150,11 @@ class APSNotification(GLJob):
         for tip_id, event in tip_events:
 
             notify = event.plugin.do_notify(event)
+
+            if not notify:
+                log.err("Event %s has nothing to notify ?" % str(event))
+                continue
+
             notify.addCallback(self.tip_notification_succeeded, tip_id)
             notify.addErrback(self.tip_notification_failed, tip_id)
             l.append(notify)
@@ -199,7 +204,7 @@ class APSNotification(GLJob):
 
             context_desc = admin.admin_serialize_context(comment.internaltip.context)
 
-            # XXX Know limit! All notification is marked as correctly send,
+            # XXX BUG! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
             comment.mark = models.Comment._marker[1] # 'notified'
 
@@ -254,6 +259,11 @@ class APSNotification(GLJob):
             comment_id, receiver_id = comment_receiver_id
 
             notify = event.plugin.do_notify(event)
+
+            if not notify:
+                log.err("Event %s has nothing to notify ?" % str(event))
+                continue
+
             notify.addCallback(self.comment_notification_succeeded, comment_id, receiver_id)
             notify.addErrback(self.comment_notification_failed, comment_id, receiver_id)
             l.append(notify)
@@ -309,9 +319,6 @@ class APSNotification(GLJob):
                 log.err("Receiver %s lack of email address!" % rfile.receiver.name)
                 continue
 
-            #if receiver_desc['file_notification'] is False:
-            #    rfile.mark = models.ReceiverFile._marker[2]
-
             event = Event(type=u'file', trigger='File',
                 notification_settings=self.notification_settings,
                 trigger_info=file_desc,
@@ -360,6 +367,11 @@ class APSNotification(GLJob):
             receiverfile_id, receiver_id = receiverfile_receiver_id
 
             notify = event.plugin.do_notify(event)
+
+            if not notify:
+                log.err("Event %s has nothing to notify ?" % str(event))
+                continue
+
             notify.addCallback(self.receiverfile_notification_succeeded, receiverfile_id, receiver_id)
             notify.addErrback(self.receiverfile_notification_failed, receiverfile_id, receiver_id)
             l.append(notify)
