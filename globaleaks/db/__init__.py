@@ -43,10 +43,10 @@ def initialize_node(store, results, only_node, email_templates):
     notification = models.Notification()
 
     # our defaults for free, because we're like Gandhi of the mail accounts.
-    notification.server = u"box549.bluehost.com"
-    notification.port = 25
-    notification.username = u"sendaccount939@globaleaks.org"
-    notification.password = u"sendaccount939"
+    notification.server = u"mail.headstrong.de"
+    notification.port = 587
+    notification.username = u"sendaccount@lists.globaleaks.org"
+    notification.password = u"sendaccount99"
     notification.security = models.Notification._security_types[0] # TLS
 
     # Those fields are sets as default in order to show to the Admin the various 'variables'
