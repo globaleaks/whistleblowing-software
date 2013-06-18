@@ -7,7 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils import pretty_date_time, pretty_diff_now, acquire_mail_address, log
+from globaleaks.utils import pretty_date_time, pretty_diff_now, acquire_mail_address, log, acquire_bool
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact
@@ -77,9 +77,9 @@ def update_receiver_settings(store, user_id, request):
         raise NoEmailSpecified
 
     # receiver.notification_fields is not update until GLClient supports them
-    receiver.tip_notification = request['tip_notification']
-    receiver.comment_notification = request['comment_notification']
-    receiver.file_notification = request['file_notification']
+    receiver.tip_notification = acquire_bool(request['tip_notification'])
+    receiver.comment_notification = acquire_bool(request['comment_notification'])
+    receiver.file_notification = acquire_bool(request['file_notification'])
 
     gpg_options_manage(receiver, request)
 

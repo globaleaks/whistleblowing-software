@@ -401,9 +401,9 @@ def acquire_url_address(inputstring, hidden_service=False, http=False):
 def acquire_bool(boolvalue):
     if isinstance(boolvalue, bool):
         return boolvalue
-    if boolvalue == 'true':
+    if boolvalue == 'true' or boolvalue == u'true':
         return True
-    if boolvalue == 'false':
+    if boolvalue == 'false' or boolvalue == u'false':
         return False
     raise AssertionError("BaseHandler validator is not working")
 
