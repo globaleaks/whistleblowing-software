@@ -103,7 +103,7 @@ GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
     dest="devel_mode", default=GLSetting.devel_mode)
 
 GLSetting.parser.add_option("-C", "--glc-path", type='string',
-    help="specify GLClient path [default: %default]."\
+    help="specify GLClient path [default: %default] "\
             "(must be used together with --devel-mode)",
     dest="glc_path", default=GLSetting.glc_path)
 
