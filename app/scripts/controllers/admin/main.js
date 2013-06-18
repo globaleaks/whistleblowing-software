@@ -19,8 +19,6 @@ function($rootScope, $scope, $http, $location, Admin) {
   // if they are not present
   $scope.updateNode = function(node) {
 
-    console.log(node);
-
     if (typeof(node.password) === "undefined")
       node.password = "";
     if (typeof(node.check_password) === "undefined")
