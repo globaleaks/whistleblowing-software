@@ -178,6 +178,7 @@ class GLSettingsClass:
         self.start_clean = False
         self.twistd_log = False
         self.devel_mode = False
+        self.glc_path = None
 
 
         # Number of failed login enough to generate an alarm
@@ -210,7 +211,6 @@ class GLSettingsClass:
         self.file_versioned_db = 'sqlite:' + \
                                  os.path.abspath(os.path.join(self.gldb_path,
                                      'glbackend-%d.db' % DATABASE_VERSION))
-
 
     def set_devel_mode(self, glcp=None):
         self.devel_mode = True
@@ -285,10 +285,8 @@ class GLSettingsClass:
 
         self.working_path = self.cmdline_options.working_path
 
-        # if devel_mode == '$a string' we do some hacks on paths and config values,
-        # and use this string as GLClient execution path
-        if self.cmdline_options.devel_mode and len(self.cmdline_options.devel_mode) > 1:
-            self.set_devel_mode(self.cmdline_options.devel_mode)
+        if self.cmdline_options.devel_mode:
+            self.set_devel_mode(self.cmdline_options.glc_path)
 
         self.eval_paths()
 
