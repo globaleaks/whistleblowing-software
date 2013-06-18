@@ -1,8 +1,8 @@
 globalekas (0.2.0.20-2) unstable; urgency=high
 
-  * GlobaLeaks Alpha - Security fixes, Database migration,
+  * GlobaLeaks Alpha - Security fixes, Database migration
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, Jun 17 16:54:05 CEST 2013
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 17 Jun 2013 16:54:05 +0002
 
 globaleaks (0.2.0.19-2) unstable; urgency=low
 
