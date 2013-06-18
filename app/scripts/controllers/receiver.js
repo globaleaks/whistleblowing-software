@@ -18,30 +18,11 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
     changePasswordWatcher($scope, "preferences.old_password",
         "preferences.password", "preferences.check_password");
 
-    /* checkbox has needed an hack like that. was required an extenive test */
-    $scope.preferences.file_notification = false;
-    $scope.preferences.comment_notification = false;
-    $scope.preferences.tip_notification = false;
-    $scope.preferences.gpg_key_remove = false;
-
-    function copy() {
-        $scope.preferences.file_notification = $scope.copy_file_notification;
-        $scope.preferences.comment_notification = $scope.copy_comment_notification;
-        $scope.preferences.tip_notification = $scope.copy_tip_notification;
-        $scope.preferences.gpg_key_remove = $scope.copy_gpg_key_remove;
-
-        /* this permit to show them empty and avoid that REST would echoback
-         the key, and the key is imported again... */
-        if ($scope.pasted_gpg_key_armor == undefined) {
-            $scope.preferences.gpg_key_armor = '';
-        } else {
-            $scope.preferences.gpg_key_armor = $scope.pasted_gpg_key_armor;
-        }
-    }
-
     $scope.pass_save = function() {
 
-      copy();
+      /* default until GPG UI don't come back */
+      $scope.preferences.gpg_key_armor = '';
+      $scope.preferences.gpg_key_armor = '';
 
       if ($scope.preferences.gpg_key_remove == undefined) {
         $scope.preferences.gpg_key_remove = false;
@@ -61,10 +42,12 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
 
     $scope.pref_save = function() {
 
-      copy();
-
       $scope.preferences.password = '';
       $scope.preferences.old_password = '';
+
+      /* default until GPG UI don't come back */
+      $scope.preferences.gpg_key_armor = '';
+      $scope.preferences.gpg_key_armor = '';
 
       if ($scope.preferences.gpg_key_armor != undefined &&
           $scope.preferences.gpg_key_armor != '') {

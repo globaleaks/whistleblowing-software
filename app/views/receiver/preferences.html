@@ -56,42 +56,63 @@
 
       <form class="config-form">
         <div class="row">
-                <div class="span4">
+            <div class="span4">
 
-                    <h4>
-                        {{ "Notification settings" | translate }}
-                    </h4>
+                <h4>
+                    {{ "Notification settings" | translate }}
+                </h4>
 
+                <div class="table-bordered" >
                     <label>
-                    <input type="checkbox"
-                           ng-init="copy_tip_notification = preferences.tip_notification"
-                           ng-click="copy_tip_notification = !copy_tip_notification" />
-                        {{ "new Tip trigger an email notification" | translate }}
-                        </label>
-
-                    <label>
-                    <input type="checkbox"
-                           ng-init="copy_comment_notification = preferences.comment_notification"
-                           ng-click="copy_comment_notification = !copy_comment_notification" />
-                        {{ "new Comment on a Tip, trigger an email notification" | translate }}
-                        </label>
-
-                    <label>
-                    <input type="checkbox"
-                           ng-init="copy_file_notification = preferences.file_notification"
-                           ng-click="copy_file_notification = !copy_file_notification" />
-                        {{ "new File uploaded on a Tip, trigger an email notification" | translate }}
-                        </label>
-
+                        <input type="checkbox" ng-model="preferences.tip_notification"
+                               ng-true-value="true" ng-false-value="false" />
+                        {{ "Enable Tip notification" | translate }}
+                    </label>
+                    <label ng-show="preferences.tip_notification" >
+                        <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                        {{ "Every new Tip for you, will trigger an email with the link." | translate }}
+                    </label>
                 </div>
+
+                <div class="table-bordered" >
+                    <label>
+                        <input type="checkbox" ng-model="preferences.comment_notification"
+                               ng-true-value="true" ng-false-value="false" />
+                        {{ "Enable Comment notification" | translate }}
+                    </label>
+                    <label ng-show="preferences.comment_notification" >
+                        <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                        {{ "Every comment, written by whistleblower or receivers, trigger an email." | translate }}
+                    </label>
+                </div>
+
+                <div class="table-bordered" >
+                    <label>
+                        <input type="checkbox" ng-model="preferences.file_notification"
+                               ng-true-value="true" ng-false-value="false" />
+                        {{ "Enable File notification" | translate }}
+                    </label>
+                    <label ng-show="preferences.file_notification" >
+                        <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                        {{ "Every file available for download, its notified bvia mail, with related info." | translate }}
+                    </label>
+                </div>
+
+                <div class="media-object">
+                    <i>{{ "Note: Need to be clicked two times, to disable an access." | translate }}</i>
+                </div>
+
+                <div>
+                    <button type="submit" class="btn btn-success" ng-click="pref_save()" >
+                        {{ "Update notification settings" | translate }}
+                    </button>
+                </div>
+
+            </div>
         </div>
-
       </form>
-
     </div>
-
   </div>
-
 </div>
 
 

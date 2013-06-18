@@ -17,7 +17,7 @@ msgid "We were not able to determine if you are anonymous or not, please proceed
 msgstr ""
 
 #: example.py:11
-msgid "new Tip trigger an email notification"
+msgid "Admin interface and configure at least one context"
 msgstr ""
 
 #: example.py:11
@@ -34,10 +34,6 @@ msgstr ""
 
 #: example.py:11
 msgid "that is specifically designed to protect the identity of the reporter and of the ones running the platform."
-msgstr ""
-
-#: example.py:11
-msgid "new File uploaded on a Tip, trigger an email notification"
 msgstr ""
 
 #: example.py:11
@@ -66,14 +62,6 @@ msgstr ""
 
 #: example.py:11
 msgid "Files"
-msgstr ""
-
-#: example.py:11
-msgid "The fingerprint is:"
-msgstr ""
-
-#: example.py:11
-msgid "Admin interface and configure at least one context"
 msgstr ""
 
 #: example.py:11
@@ -113,10 +101,6 @@ msgid "security check"
 msgstr ""
 
 #: example.py:11
-msgid "Encrypt email notifications"
-msgstr ""
-
-#: example.py:11
 msgid "This interface may help you spot anomalies in your Node."
 msgstr ""
 
@@ -138,6 +122,10 @@ msgstr ""
 
 #: example.py:11
 msgid "How you can transform information into action!"
+msgstr ""
+
+#: example.py:11
+msgid "Enable Tip notification"
 msgstr ""
 
 #: example.py:11
@@ -197,10 +185,6 @@ msgid "Warning!"
 msgstr ""
 
 #: example.py:11
-msgid "new Comment on a Tip, trigger an email notification"
-msgstr ""
-
-#: example.py:11
 msgid "Files Overview"
 msgstr ""
 
@@ -210,10 +194,6 @@ msgstr ""
 
 #: example.py:11
 msgid "Receivers Configuration"
-msgstr ""
-
-#: example.py:11
-msgid "Encrypt files reserved for you"
 msgstr ""
 
 #: example.py:11
@@ -277,7 +257,7 @@ msgid "Username"
 msgstr ""
 
 #: example.py:11
-msgid "Submit a gpg key"
+msgid "to help us further support the development of GlobaLeaks."
 msgstr ""
 
 #: example.py:11
@@ -305,7 +285,7 @@ msgid "Users Overview"
 msgstr ""
 
 #: example.py:11
-msgid "Url"
+msgid "Contexts"
 msgstr ""
 
 #: example.py:11
@@ -325,6 +305,10 @@ msgid "Invalid format for public site (should be https://thirteenchars123.tor2we
 msgstr ""
 
 #: example.py:11
+msgid "Note: Need to be clicked two times, to disable an access."
+msgstr ""
+
+#: example.py:11
 msgid "Info"
 msgstr ""
 
@@ -334,6 +318,10 @@ msgstr ""
 
 #: example.py:11
 msgid "Tips Overview"
+msgstr ""
+
+#: example.py:11
+msgid "Enable File notification"
 msgstr ""
 
 #: example.py:11
@@ -398,6 +386,10 @@ msgstr ""
 
 #: example.py:11
 msgid "Admin can access via Tor2Web. It's safe only if you're using a dedicated Tor2Web server."
+msgstr ""
+
+#: example.py:11
+msgid "Update notification settings"
 msgstr ""
 
 #: example.py:11
@@ -485,10 +477,6 @@ msgid "New Password"
 msgstr ""
 
 #: example.py:11
-msgid "What is this about?"
-msgstr ""
-
-#: example.py:11
 msgid "This software is developed by the non-profit organization"
 msgstr ""
 
@@ -561,14 +549,6 @@ msgid "File Email Subject"
 msgstr ""
 
 #: example.py:11
-msgid "Are you a whistleblower?"
-msgstr ""
-
-#: example.py:11
-msgid "Remove your GPG key"
-msgstr ""
-
-#: example.py:11
 msgid "click to close"
 msgstr ""
 
@@ -597,15 +577,11 @@ msgid "To further enhance your security, please follow these instructions:"
 msgstr ""
 
 #: example.py:11
-msgid "to help us further support the development of GlobaLeaks."
+msgid "Every comment, written by whistleblower or receivers, trigger an email."
 msgstr ""
 
 #: example.py:11
 msgid "References"
-msgstr ""
-
-#: example.py:11
-msgid "download"
 msgstr ""
 
 #: example.py:11
@@ -625,10 +601,6 @@ msgid "Next Step"
 msgstr ""
 
 #: example.py:11
-msgid " can be configured in order to deliver encrypted email and store encrypted files.  You've to copy paste the ascii version of your personal key, and then would be possibile update your encryption settings. Talk to your admin if you've doubts."
-msgstr ""
-
-#: example.py:11
 msgid "At least 8 keypress long"
 msgstr ""
 
@@ -641,7 +613,7 @@ msgid "Currently logged in "
 msgstr ""
 
 #: example.py:11
-msgid "Copy/Paste here the PGP Key Armor:"
+msgid "Are you a whistleblower?"
 msgstr ""
 
 #: example.py:11
@@ -661,11 +633,15 @@ msgid "General information"
 msgstr ""
 
 #: example.py:11
-msgid "Update notification and encryption settings"
+msgid "download"
 msgstr ""
 
 #: example.py:11
 msgid "In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)"
+msgstr ""
+
+#: example.py:11
+msgid "Enable Comment notification"
 msgstr ""
 
 #: example.py:11
@@ -741,15 +717,11 @@ msgid "By checking the box below you agree to these terms and conditions."
 msgstr ""
 
 #: example.py:11
-msgid "Contexts"
+msgid "Url"
 msgstr ""
 
 #: example.py:11
 msgid "Fields"
-msgstr ""
-
-#: example.py:11
-msgid "You've not encryption enabled!"
 msgstr ""
 
 #: example.py:11
@@ -781,11 +753,15 @@ msgid "Login"
 msgstr ""
 
 #: example.py:11
-msgid "You have an active Key"
+msgid "Every new Tip for you, will trigger an email with the link."
 msgstr ""
 
 #: example.py:11
 msgid "Enter your receipt"
+msgstr ""
+
+#: example.py:11
+msgid "Every file available for download, its notified bvia mail, with related info."
 msgstr ""
 
 #: example.py:11
@@ -809,7 +785,7 @@ msgid "Tip can access via Tor2Web, by whistleblowers and receiver."
 msgstr ""
 
 #: example.py:11
-msgid "see GPG key details"
+msgid "What is this about?"
 msgstr ""
 
 #: example.py:11
