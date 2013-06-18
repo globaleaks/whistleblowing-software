@@ -47,12 +47,12 @@ def validate_host(host_key):
               (host_key, GLSetting.accepted_hosts))
     return False
 
-def set_default_headers(self):
+def add_globaleaks_headers(self):
     # In this function are written some security enforcements
     # related to WebServer versioning and XSS attacks.
     # The function must be called by all request HANDLER defined using:
     # def set_default_header(self):
-    #     set_default_header(self)
+    #     add_globaleaks_headers(self)
 
     # to avoid version attacks
     self.set_header("Server", "globaleaks")
@@ -85,7 +85,7 @@ class GLHTTPServer(HTTPConnection):
 
 class BaseHandler(RequestHandler):
     def set_default_headers(self):
-        set_default_headers(self)
+        add_globaleaks_headers(self)
 
     @staticmethod
     def validate_python_type(value, python_type):
@@ -107,7 +107,7 @@ class BaseHandler(RequestHandler):
                 return False
 
         if python_type == bool:
-            if value == 'true' or value == 'false':
+            if value == u'true' or value == u'false':
                 return True
 
         return isinstance(value, python_type)
@@ -373,7 +373,7 @@ class BaseHandler(RequestHandler):
 
 class BaseStaticFileHandler(StaticFileHandler):
     def set_default_headers(self):
-        set_default_headers(self)
+        add_globaleaks_headers(self)
 
     def prepare(self):
         """
@@ -388,7 +388,7 @@ class BaseStaticFileHandler(StaticFileHandler):
 
 class BaseRedirectHandler(RedirectHandler):
     def set_default_headers(self):
-        set_default_headers(self)
+        add_globaleaks_headers(self)
 
     def prepare(self):
         """
