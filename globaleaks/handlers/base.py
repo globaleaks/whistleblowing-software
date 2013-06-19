@@ -232,8 +232,10 @@ class BaseHandler(RequestHandler):
             try:
                 content = "\n" +("=" * 15) + ("Request %d=\n" % GLSetting.cyclone_debug_counter )
                 content += "url: " + self.request.full_url() + "\n"
-                content += "headers: " + self.request.headers + "\n"
-                content += "body: " + str(self.request.body) + "\n"
+                content += "headers:\n"
+                for k, v in sorted(self.request.headers.get_all()):
+                    content += "%s: %s\n" % (k, v)
+                content += "\nbody: " + str(self.request.body) + "\n"
 
                 self.do_verbose_log(content)
 
@@ -277,18 +279,12 @@ class BaseHandler(RequestHandler):
         """
         Record in the verbose log the content as defined by Cyclone wrappers.
         """
-        print "XXXX"
-        print self.request.method.upper()
-        print self.request.uri
-        print self.request.uri.replace("/", "_")
-        print "XXXX"
         filename = "%s%s" % (self.request.method.upper(), self.request.uri.replace("/", "_") )
         # this is not a security bug, no arbitrary patch can reach this point,
         # but only the one accepted by the API definitions
 
         logfpath = os.path.join(GLSetting.cyclone_io_path, filename)
 
-        print "FINALE", logfpath, filename
         try:
             with open(logfpath, 'a+') as fd:
                 fdesc.writeToFD(fd.fileno(), content)
