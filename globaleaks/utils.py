@@ -216,6 +216,22 @@ def timelapse_represent(seconds):
     #return '%sD+%s:%s:%s' % (days, hours, minutes, seconds)
     return pretty_str
 
+def seconds_convert(value, conversion_factor, min=0, max=0):
+    """
+    @param value:
+    @param conversion_factor:
+    """
+    seconds = value * conversion_factor
+
+    if (seconds / conversion_factor) != value:
+        raise Exception("Invalid operation triggered")
+    if min and (seconds < min * conversion_factor):
+        raise Exception("%d < %d" % (seconds, min * conversion_factor))
+    if max and (seconds > max * conversion_factor):
+        raise Exception("%d > %d" % (seconds, max * conversion_factor))
+
+    return seconds
+
 ## Mail utilities ##
 
 def sendmail(authentication_username, authentication_password, from_address,
