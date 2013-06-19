@@ -55,8 +55,9 @@ def admin_serialize_context(context):
         "last_update": utils.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
-        "tip_timetolive": context.tip_timetolive,
-        "submission_timetolive": context.submission_timetolive,
+        # tip expressed in day, submission in hours
+        "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
+        "submission_timetolive": context.submission_timetolive / (60 * 60),
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
         "fields": context.fields if context.fields else [],
@@ -66,7 +67,7 @@ def admin_serialize_context(context):
         "receipt_description": context.receipt_description,
         "submission_introduction": context.submission_introduction,
         "submission_disclaimer": context.submission_disclaimer,
-        "tags": context.tags,
+        "tags": context.tags if context.tags else u"",
         "file_required": context.file_required,
     }
     
@@ -254,8 +255,21 @@ def create_context(store, request):
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
-    store.add(context)
+    # tip_timetolive and submission_timetolive need to be converted in seconds
+    try:
+        context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Tip: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Submission", excep.message)
 
+    try:
+        context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Submission: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Tip", excep.message)
+    # and of timing fixes
+
+    store.add(context)
     return admin_serialize_context(context)
 
 @transact
@@ -315,8 +329,23 @@ def update_context(store, context_gus, request):
         context.receivers.add(receiver)
 
     context.update(request)
+
+    # tip_timetolive and submission_timetolive need to be converted in seconds
+    try:
+        context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Tip: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Submission", excep.message)
+
+    try:
+        context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Submission: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Tip", excep.message)
+    # and of timing fixes
+
     context.fields = request['fields']
-    context.tags = request['tags']
+    context.tags = None # request['tags']
     context.last_update = utils.datetime_now()
 
     return admin_serialize_context(context)

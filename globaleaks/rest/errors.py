@@ -18,6 +18,12 @@ class GLException(HTTPError):
     def __init__(self):
         pass
 
+    def __repr__(self):
+        return "%s: <<%s>> (%d) HTTP:%d" % (
+            self.__class__.__name__, self.reason,
+            self.error_code, self.status_code
+        )
+
 class InvalidInputFormat(GLException):
     """
     The expected format described in the REST specification is not
@@ -303,3 +309,14 @@ class SessionExpired(GLException):
 
     def __init__(self, lifetime, role):
         self.reason = "The time for your role (%s) is %s" % (role, lifetime)
+
+class TimeToLiveInvalid(GLException):
+    """
+    tip_timetolive and submission_timetolive maybe proposed of weird values,
+    here is catch
+    """
+    error_code =  42
+    status_code = 406
+
+    def __init__(self, errorstr, kind):
+        self.reason = "Invalid timerange supply for %s: %s" % (kind, errorstr)
