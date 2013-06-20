@@ -147,12 +147,12 @@ module.exports = function(grunt) {
   grunt.registerTask('cleanupWorkingDirectory', function() {
     var images_src = 'tmp/images/**';
 
-    function rm_rf(dir) {
+    var rm_rf = function(dir) {
       var s = fs.statSync(dir);
 
       if (!s.isDirectory()) {return fs.unlinkSync(dir);}
 
-      fs.readdirSync(dir).forEach(function (f) {
+      fs.readdirSync(dir).forEach(function(f) {
         rm_rf(path.join(dir || '', f || ''))
       });
 
