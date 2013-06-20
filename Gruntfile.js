@@ -145,7 +145,7 @@ module.exports = function(grunt) {
   /* grunt.loadNpmTasks('grunt-bower-task'); */
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
-    var images_src = 'tmp/images/**',
+    var images_src = 'tmp/images/**';
 
     function rm_rf(dir) {
       var s = fs.statSync(dir);
@@ -177,7 +177,6 @@ module.exports = function(grunt) {
     var gt = new Gettext(),
       strings,
       translations = {},
-      fileContents = fs.readFileSync("pot/en.po"),
       translationStringRegexp = /{{\s+"(.+?)"\s+\|\s+translate\s+}}/gi,
       translationStringCount = 0;
 
