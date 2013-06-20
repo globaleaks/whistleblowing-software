@@ -119,6 +119,7 @@ module.exports = function(grunt) {
 
   });
 
+
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -136,14 +137,17 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
+  var path = require('path'),
+    fs = require('fs'),
+    Gettext = require("node-gettext"),
+    crypto = require('crypto');
+
   /* grunt.loadNpmTasks('grunt-bower-task'); */
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
-    var path = require('path'),
-      fs = require('fs'),
-      images_src = 'tmp/images/**';
+    var images_src = 'tmp/images/**',
 
-    var rm_rf = function(dir) {
+    function rm_rf(dir) {
       var s = fs.statSync(dir);
 
       if (!s.isDirectory()) {return fs.unlinkSync(dir);}
@@ -169,11 +173,44 @@ module.exports = function(grunt) {
     rm_rf('tmp');
   });
 
+  grunt.registerTask('updateTranslationsSource', function() {
+    var gt = new Gettext(),
+      strings,
+      translations = {},
+      fileContents = fs.readFileSync("pot/en.po"),
+      translationStringRegexp = /{{\s+"(.+?)"\s+\|\s+translate\s+}}/gi,
+      translationStringCount = 0;
+
+    gt.addTextdomain("en");
+
+    function extractPotFromFilepath(filepath) {
+      var filecontent = grunt.file.read(filepath),
+        result;
+
+      while ( (result = translationStringRegexp.exec(filecontent)) ) {
+        gt.setTranslation("en", "", result[1]);
+        translationStringCount += 1;
+      }
+    };
+
+    grunt.file.recurse('app/templates/', function(absdir, rootdir, subdir, filename) {
+        var filepath = path.join('app/templates/', subdir || '', filename || '');
+        extractPotFromFilepath(filepath);
+    });
+
+    grunt.file.recurse('app/views/', function(absdir, rootdir, subdir, filename) {
+        var filepath = path.join('app/views/', subdir || '', filename || '');
+        extractPotFromFilepath(filepath);
+    });
+
+    fs.writeFileSync("pot/en.po", gt.compilePO("en"));
+
+    console.log("Written " + translationStringCount + " string to pot/en.po.");
+
+  });
+
   grunt.registerTask('makeTranslations', function() {
-    var Gettext = require("node-gettext"),
-      fs = require('fs'),
-      crypto = require('crypto'),
-      gt = new Gettext(),
+    var gt = new Gettext(),
       strings,
       translations = {},
       fileContents = fs.readFileSync("pot/en.po"),
@@ -207,6 +244,10 @@ module.exports = function(grunt) {
     });
   });
 
+  // Run this task to update translation related files
+  grunt.registerTask('updateTranslations', ['updateTranslationsSource', 'makeTranslations']);
+
+  // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
     ['clean', 'makeTranslations', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'manifest', 'cleanupWorkingDirectory']);
 
