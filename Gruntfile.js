@@ -216,7 +216,8 @@ module.exports = function(grunt) {
       supported_languages = {'en': 'English', 'de': 'German',
                              'el': 'Greek', 'hu': 'Hungarian',
                              'it': 'Italian', 'nl': 'Dutch',
-                             'pl': 'Polish'};
+                             'pl': 'Polish'},
+      output = "";
 
     translations['supported_languages'] = supported_languages;
 
@@ -236,11 +237,14 @@ module.exports = function(grunt) {
       };
     });
 
-    fs.writeFile("app/scripts/translations.js", "var translations = " + JSON.stringify(translations) + ";",
-                 function(err) {
-      if (err) console.log(err);
-      else console.log("Translsations file was written!");
-    });
+    output += "angular.module('GLClient.translations', []).factory('Translations', function() { return ";
+    output += JSON.stringify(translations);
+    output += "});\n";
+
+    fs.writeFileSync("app/scripts/translations.js", output);
+
+    console.log("Translations file was written!");
+
   });
 
   // Run this task to update translation related files
@@ -248,7 +252,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean', 'makeTranslations', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'usemin', 'manifest', 'cleanupWorkingDirectory']);
 
   // XXX disabled uglify
   // ['clean', 'useminPrepare', 'copy', 'ngtemplates', 'concat', 'uglify', 'usemin', 'manifest']);
