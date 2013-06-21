@@ -98,26 +98,28 @@
                   <button class="btn btn-info"
                           ng-click="advanced_edit = !advanced_edit"
                           ng-init="advanced_edit=false">
-                      Advanced settings
+                      {{ "Advanced settings" | translate }}
                   </button>
 
                   <div class="row" ng-show="advanced_edit">
 
                       <div class="span4">
-                          <label>Submission Disclaimer</label>
+                          <label>{{ "Submission Disclaimer" | translate }}</label>
                           <textarea required
                                     ng-model="context.submission_disclaimer">{{context.submission_disclaimer}}
                           </textarea>
                       </div>
 
                       <div class="span4">
-                          <label>Submisson hours life</label>
+                          <br>
+                          <br>
+                          <label>{{ "Submisson hours life" | translate }}</label>
                           <input type="number"
                                  required
                                  ng-model="context.submission_timetolive"
                                  value="{{context.submission_timetolive}}">
 
-                          <label>Tip day life</label>
+                          <label>{{ "Tip day life" | translate }}</label>
                           <input type="number"
                                  required
                                  ng-model="context.tip_timetolive"
@@ -126,30 +128,33 @@
                               <input type="checkbox"
                                      value="context.file_required"
                                      ng-model="context.file_required" />
-                              File Required
+                              {{ "File Required" | translate }}
                           </label>
-                          <label>Receipt regexp</label>
+                          <label>{{ "Receipt regexp" | translate }}</label>
                           <input type="text"
                                  required
                                  ng-model="context.receipt_regexp"
                                  value="{{context.receipt_regexp}}">
-
+                          <!--
                           <label>Tags</label>
                           <input type="text"
                                  required
                                  ng-model="context.tags"
                                  value="{{context.tags}}">
+                          -->
+                          <br>
+                          <br>
                       </div>
 
                       <div class="span4">
-                          <label>Receipt description</label>
+                          <label>{{ "Receipt description" | translate }}</label>
                           <textarea required
                                     ng-model="context.receipt_description">{{context.recepit_description}}
                           </textarea>
                       </div>
 
                       <div class="span4">
-                          <label>Submission Introduction</label>
+                          <label>{{ "Submission Introduction" | translate }}</label>
                           <textarea required
                                     ng-model="context.submission_introduction">{{context.submission_introduction}}
                           </textarea>
