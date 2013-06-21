@@ -138,6 +138,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   var path = require('path'),
+    superagent = require('superagent'),
     fs = require('fs'),
     Gettext = require("node-gettext"),
     crypto = require('crypto');
@@ -173,11 +174,77 @@ module.exports = function(grunt) {
     rm_rf('tmp');
   });
 
+  function readTransifexrc(){
+    var transifexrc = fs.realpathSync(process.env.HOME + '/.transifexrc'),
+      err = fs.stat(transifexrc),
+      usernameRegexp = /username = (.*)/,
+      passwordRegexp = /password = (.*)/,
+      content, login = {};
+
+    if (err) {
+      console.log(transifexrc + " does not exist");
+      console.log("It should contain");
+      console.log("username = <your username>");
+      console.log("password = <your password>");
+      throw 'No transifexrc file';
+    }
+
+    content = grunt.file.read(transifexrc);
+    login.username = usernameRegexp.exec(content)[1];
+    login.password = passwordRegexp.exec(content)[1];
+    return login;
+  }
+
+  var agent = superagent.agent(),
+    login,
+    baseurl = 'http://www.transifex.com/api/2/project/globaleaks',
+    sourceFile = 'pot/en.po';
+
+  login = readTransifexrc();
+
+  function fetchTxSource(cb){
+    var url = baseurl + '/resource/glclient-02-enpo/content';
+    agent.get(url)
+      .auth(login.username, login.password)
+      .end(function(err, res){
+        var content = JSON.parse(res.text)['content'];
+        fs.writeFileSync(sourceFile, content);
+        console.log("Written source to " + sourceFile + ".");
+        cb();
+    });
+  }
+
+  function updateTxSource(cb){
+    var url = baseurl + '/resource/glclient-02-enpo/content/',
+      content = grunt.file.read(sourceFile)
+
+    agent.put(url)
+      .auth(login.username, login.password)
+      .set('Content-Type', 'application/json')
+      .send({'content': content})
+      .end(function(err, res){
+        console.log(res.text);
+        cb();
+    });
+  }
+
+  grunt.registerTask('pushTx', function(){
+    var done = this.async();
+
+    updateTxSource(done);
+  });
+
+  grunt.registerTask('pullTx', function(){
+    var done = this.async();
+
+    fetchTxSource(done);
+  });
+
   grunt.registerTask('updateTranslationsSource', function() {
     var gt = new Gettext(),
       strings,
       translations = {},
-      translationStringRegexp = /{{\s+"(.+?)"\s+\|\s+translate\s+}}/gi,
+      translationStringRegexp = /\{\{\s+"(.+?)"\s+\|\s+translate\s+\}\}/gi,
       translationStringCount = 0;
 
     gt.addTextdomain("en");
@@ -187,7 +254,7 @@ module.exports = function(grunt) {
         result;
 
       while ( (result = translationStringRegexp.exec(filecontent)) ) {
-        gt.setTranslation("en", "", result[1]);
+        gt.setTranslation("en", "", result[1], result[1]);
         translationStringCount += 1;
       }
     };
