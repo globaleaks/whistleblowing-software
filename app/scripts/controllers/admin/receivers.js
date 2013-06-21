@@ -22,6 +22,13 @@ function($scope) {
     receiver.tip_notification = true;
     receiver.file_notification = true;
     receiver.comment_notification = false;
+    receiver.gpg_key_info = '';
+    receiver.gpg_key_fingerprint = '';
+    receiver.gpg_key_remove = false;
+    receiver.gpg_key_armor = '';
+    receiver.gpg_key_status = 'ignored';
+    receiver.gpg_enable_notification = false;
+    receiver.gpg_enable_files = false;
     receiver.$save(function(added_receiver){
       $scope.admin.receivers.push(added_receiver);
       $scope.new_receiver = {};
