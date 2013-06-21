@@ -18,11 +18,50 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
     changePasswordWatcher($scope, "preferences.old_password",
         "preferences.password", "preferences.check_password");
 
-    $scope.save = function() {
+    $scope.pass_save = function() {
+
+      /* default until GPG UI don't come back */
+      $scope.preferences.gpg_key_armor = '';
+      $scope.preferences.gpg_key_armor = '';
+
+      if ($scope.preferences.gpg_key_remove == undefined) {
+        $scope.preferences.gpg_key_remove = false;
+      }
+      if ($scope.preferences.gpg_key_armor == undefined) {
+        $scope.preferences.gpg_key_armor = '';
+      }
+
       $scope.preferences.$update(function(){
+
         if (!$rootScope.successes) {
           $rootScope.successes = [];
-        };
+        }
+        $rootScope.successes.push({message: 'Updated your password!'});
+      });
+    }
+
+    $scope.pref_save = function() {
+
+      $scope.preferences.password = '';
+      $scope.preferences.old_password = '';
+
+      /* default until GPG UI don't come back */
+      $scope.preferences.gpg_key_armor = '';
+      $scope.preferences.gpg_key_armor = '';
+
+      if ($scope.preferences.gpg_key_armor != undefined &&
+          $scope.preferences.gpg_key_armor != '') {
+        $scope.preferences.gpg_key_remove = false;
+      }
+      if ($scope.preferences.gpg_key_remove == true) {
+        $scope.preferences.gpg_key_armor = '';
+      }
+
+      $scope.preferences.$update(function(){
+
+        if (!$rootScope.successes) {
+          $rootScope.successes = [];
+        }
         $rootScope.successes.push({message: 'Updated your preferences!'});
       });
     }

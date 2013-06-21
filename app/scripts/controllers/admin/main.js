@@ -18,6 +18,7 @@ function($rootScope, $scope, $http, $location, Admin) {
   // We need to have a special function for updating the node since we need to add old_password and password attribute
   // if they are not present
   $scope.updateNode = function(node) {
+
     if (typeof(node.password) === "undefined")
       node.password = "";
     if (typeof(node.check_password) === "undefined")
