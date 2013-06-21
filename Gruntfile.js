@@ -138,6 +138,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-jshint');
 
   var path = require('path'),
+    superagent = require('superagent'),
     fs = require('fs'),
     Gettext = require("node-gettext"),
     crypto = require('crypto');
@@ -173,11 +174,139 @@ module.exports = function(grunt) {
     rm_rf('tmp');
   });
 
+  function readTransifexrc(){
+    var transifexrc = fs.realpathSync(process.env.HOME + '/.transifexrc'),
+      err = fs.stat(transifexrc),
+      usernameRegexp = /username = (.*)/,
+      passwordRegexp = /password = (.*)/,
+      content, login = {};
+
+    if (err) {
+      console.log(transifexrc + " does not exist");
+      console.log("It should contain");
+      console.log("username = <your username>");
+      console.log("password = <your password>");
+      throw 'No transifexrc file';
+    }
+
+    content = grunt.file.read(transifexrc);
+    login.username = usernameRegexp.exec(content)[1];
+    login.password = passwordRegexp.exec(content)[1];
+    return login;
+  }
+
+  var agent = superagent.agent(),
+    login,
+    baseurl = 'http://www.transifex.com/api/2/project/globaleaks',
+    sourceFile = 'pot/en.po';
+
+  login = readTransifexrc();
+
+  function fetchTxSource(cb){
+    var url = baseurl + '/resource/glclient-02-enpo/content';
+    agent.get(url)
+      .auth(login.username, login.password)
+      .end(function(err, res){
+        var content = JSON.parse(res.text)['content'];
+        fs.writeFileSync(sourceFile, content);
+        console.log("Written source to " + sourceFile + ".");
+        cb();
+    });
+  }
+
+  function updateTxSource(cb){
+    var url = baseurl + '/resource/glclient-02-enpo/content/',
+      content = grunt.file.read(sourceFile)
+
+    agent.put(url)
+      .auth(login.username, login.password)
+      .set('Content-Type', 'application/json')
+      .send({'content': content})
+      .end(function(err, res){
+        console.log(res.text);
+        cb();
+    });
+  }
+
+  function listLanguages(cb){
+    var url = baseurl + '/resource/glclient-02-enpo/?details';
+
+    agent.get(url)
+      .auth(login.username, login.password)
+      .end(function(err, res){
+        var result = JSON.parse(res.text);
+        cb(result);
+    });
+
+  }
+
+  function fetchTxTranslationsForLanguage(langCode, cb) {
+    var resourceUrl = baseurl + '/resource/glclient-02-enpo/';
+
+    agent.get(resourceUrl + 'stats/' + langCode + '/')
+      .auth(login.username, login.password)
+      .end(function(err, res){
+        var content = JSON.parse(res.text);
+
+        if (content.translated_entities > content.untranslated_entities) {
+          agent.get(resourceUrl + 'translation/' + langCode + '/')
+            .auth(login.username, login.password)
+            .end(function(err, res){
+            var content = JSON.parse(res.text)['content'];
+            cb(content);
+          });
+        } else {
+          cb();
+        }
+      });
+  }
+
+  function fetchTxTranslations(cb){
+    var fetched_languages = 0,
+      total_languages, supported_languages = {};
+
+    listLanguages(function(result){
+      total_languages = result.available_languages.length;
+      result.available_languages.forEach(function(language){
+        var content = grunt.file.read(sourceFile);
+
+        fetchTxTranslationsForLanguage(language.code, function(content){
+          if (content) {
+            var potFile = "pot/" + language.code + ".po";
+
+            console.log("Found translation for " + language.code);
+            fs.writeFileSync(potFile, content);
+            console.log("Written translation for " + language.name + " to " + potFile);
+            supported_languages[language.code] = language.name;
+          }
+          fetched_languages += 1;
+
+          if (total_languages == fetched_languages)
+            cb(supported_languages);
+        });
+
+      });
+    });
+  }
+
+  grunt.registerTask('pushTx', function(){
+    var done = this.async();
+
+    updateTxSource(done);
+  });
+
+  grunt.registerTask('pullTx', function(){
+    var done = this.async();
+
+    fetchTxTranslations(done);
+  });
+
   grunt.registerTask('updateTranslationsSource', function() {
-    var gt = new Gettext(),
+    var done = this.async(),
+      gt = new Gettext(),
       strings,
       translations = {},
-      translationStringRegexp = /{{\s+"(.+?)"\s+\|\s+translate\s+}}/gi,
+      translationStringRegexp = /\{\{\s+"(.+?)"\s+\|\s+translate\s+\}\}/gi,
       translationStringCount = 0;
 
     gt.addTextdomain("en");
@@ -187,7 +316,7 @@ module.exports = function(grunt) {
         result;
 
       while ( (result = translationStringRegexp.exec(filecontent)) ) {
-        gt.setTranslation("en", "", result[1]);
+        gt.setTranslation("en", "", result[1], result[1]);
         translationStringCount += 1;
       }
     };
@@ -206,44 +335,47 @@ module.exports = function(grunt) {
 
     console.log("Written " + translationStringCount + " string to pot/en.po.");
 
+    updateTxSource(done);
+
   });
 
   grunt.registerTask('makeTranslations', function() {
-    var gt = new Gettext(),
+
+    var done = this.async(),
+      gt = new Gettext(),
       strings,
       translations = {},
       fileContents = fs.readFileSync("pot/en.po"),
-      supported_languages = {'en': 'English', 'de': 'German',
-                             'el': 'Greek', 'hu': 'Hungarian',
-                             'it': 'Italian', 'nl': 'Dutch',
-                             'pl': 'Polish'},
       output = "";
 
-    translations['supported_languages'] = supported_languages;
+    fetchTxTranslations(function(supported_languages){
 
-    gt.addTextdomain("en", fileContents);
-    strings = gt.listKeys("en", "");
+      gt.addTextdomain("en", fileContents);
+      strings = gt.listKeys("en", "");
+      translations['supported_languages'] = supported_languages;
 
-    strings.forEach(function(string){
-      var md5sum = crypto.createHash('md5'),
-        digest;
-      md5sum.update(string);
-      digest = md5sum.digest('hex');
-      translations[digest] = {};
+      strings.forEach(function(string){
+        var md5sum = crypto.createHash('md5'),
+          digest;
+        md5sum.update(string);
+        digest = md5sum.digest('hex');
+        translations[digest] = {};
 
-      for (var lang_code in supported_languages) {
-        gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
-        translations[digest][lang_code] = gt.dgettext(lang_code, string);
-      };
-    });
+        for (var lang_code in supported_languages) {
+          gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
+          translations[digest][lang_code] = gt.dgettext(lang_code, string);
+        };
+      });
 
-    output += "angular.module('GLClient.translations', []).factory('Translations', function() { return ";
-    output += JSON.stringify(translations);
-    output += "});\n";
+      output += "angular.module('GLClient.translations', []).factory('Translations', function() { return ";
+      output += JSON.stringify(translations);
+      output += "});\n";
 
-    fs.writeFileSync("app/scripts/translations.js", output);
+      fs.writeFileSync("app/scripts/translations.js", output);
 
-    console.log("Translations file was written!");
+      console.log("Translations file was written!");
+
+      });
 
   });
 
