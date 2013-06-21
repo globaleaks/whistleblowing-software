@@ -302,7 +302,8 @@ module.exports = function(grunt) {
   });
 
   grunt.registerTask('updateTranslationsSource', function() {
-    var gt = new Gettext(),
+    var done = this.async(),
+      gt = new Gettext(),
       strings,
       translations = {},
       translationStringRegexp = /\{\{\s+"(.+?)"\s+\|\s+translate\s+\}\}/gi,
@@ -333,6 +334,8 @@ module.exports = function(grunt) {
     fs.writeFileSync("pot/en.po", gt.compilePO("en"));
 
     console.log("Written " + translationStringCount + " string to pot/en.po.");
+
+    updateTxSource(done);
 
   });
 
