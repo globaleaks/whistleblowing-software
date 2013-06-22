@@ -196,14 +196,13 @@ module.exports = function(grunt) {
   }
 
   var agent = superagent.agent(),
-    login,
     baseurl = 'http://www.transifex.com/api/2/project/globaleaks',
     sourceFile = 'pot/en.po';
 
-  login = readTransifexrc();
-
   function fetchTxSource(cb){
-    var url = baseurl + '/resource/glclient-02-enpo/content';
+    var url = baseurl + '/resource/glclient-02-enpo/content',
+      login = readTransifexrc();
+
     agent.get(url)
       .auth(login.username, login.password)
       .end(function(err, res){
@@ -216,7 +215,8 @@ module.exports = function(grunt) {
 
   function updateTxSource(cb){
     var url = baseurl + '/resource/glclient-02-enpo/content/',
-      content = grunt.file.read(sourceFile)
+      content = grunt.file.read(sourceFile),
+      login = readTransifexrc();
 
     agent.put(url)
       .auth(login.username, login.password)
@@ -229,7 +229,8 @@ module.exports = function(grunt) {
   }
 
   function listLanguages(cb){
-    var url = baseurl + '/resource/glclient-02-enpo/?details';
+    var url = baseurl + '/resource/glclient-02-enpo/?details',
+      login = readTransifexrc();
 
     agent.get(url)
       .auth(login.username, login.password)
@@ -241,7 +242,8 @@ module.exports = function(grunt) {
   }
 
   function fetchTxTranslationsForLanguage(langCode, cb) {
-    var resourceUrl = baseurl + '/resource/glclient-02-enpo/';
+    var resourceUrl = baseurl + '/resource/glclient-02-enpo/',
+      login = readTransifexrc();
 
     agent.get(resourceUrl + 'stats/' + langCode + '/')
       .auth(login.username, login.password)
