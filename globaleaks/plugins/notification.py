@@ -8,8 +8,10 @@
 # one of the various plugins (used by default, but still an optional adoptions)
 
 from cyclone import mail
+
 from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
+from globaleaks.security import gpg_encrypt
 from globaleaks.models import Receiver
 from globaleaks.settings import GLSetting
 
@@ -173,6 +175,15 @@ class MailNotification(Notification):
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 
+        # If the receiver has encryption enabled (for notification), encrypt the mail body
+        if event.receiver_info['gpg_key_status'] == Receiver._gpg_types[1] and \
+           event.receiver_info['gpg_enable_notification']:
+            try:
+                gpg_encrypt(body, event.receiver_info)
+            except Exception as excep:
+                log.err("Unable to instance GPG interface object! (notification+encryption)")
+                return None
+
         self.host = str(event.notification_settings['server'])
         self.port = int(event.notification_settings['port'])
         self.username = str(event.notification_settings['username'])
@@ -189,14 +200,14 @@ class MailNotification(Notification):
                                subject=title,
                                message=body)
 
-        self.finished = self.sendmail(self.username, self.password,
+        self.finished = self.mail_flush(self.username, self.password,
                                       message.from_addr, message.to_addrs, message.render(),
                                       self.host, self.port, self.security, event)
         log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
                   (self.host, self.port, receiver_mail, self.security))
         return self.finished
 
-    def sendmail(self, authentication_username, authentication_password, from_address,
+    def mail_flush(self, authentication_username, authentication_password, from_address,
                  to_address, message_file, smtp_host, smtp_port, security, event):
         return sendmail(authentication_username, authentication_password, from_address,
                         to_address, message_file, smtp_host, smtp_port, security, event)

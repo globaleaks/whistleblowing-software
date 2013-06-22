@@ -102,11 +102,11 @@ class TestTipInstance(SubmissionTest):
             log.debug("Unexpected Success in creation: %s" % str(r))
             self.assertTrue(False)
         except GLException, e:
-            log.debug("GLException %s %s" % (str(e), e.reason) )
+            log.debug("GLException %s %s" % (str(e), e.message) )
             self.assertEqual(e.error_code, 22) # SubmissionFailFields
         except Exception, e:
-            log.debug("Unexpected Exception %s" % str(e) )
-            self.assertTrue(False, msg=str(e))
+            log.debug("Unexpected Exception %s" % str(e.message) )
+            self.assertTrue(False, msg=str(e.message))
 
 
     @inlineCallbacks

@@ -4,17 +4,14 @@
 from __future__ import with_statement
 
 import os
-import re
 import sys
 import random
-import pip
-
-from pkg_resources import parse_version
 
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
+from globaleaks import DATABASE_VERSION
 from globaleaks.utils import query_yes_no
 from globaleaks.settings import GLSetting
 from twisted.python import usage
@@ -98,12 +95,17 @@ GLSetting.parser.add_option("-c", "--start-clean", action='store_true',
     dest="start_clean", default=GLSetting.start_clean)
 
 GLSetting.parser.add_option("-k", "--kill", type="int",
-    help="signal to send to the current twisted.pid process (if exists), [default: don't kill]",
+    help="signal to send to the current twisted.pid process (if exists) [default: don't kill]",
     dest="kill", default=0)
 
 GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
-    help="enable developer mode [default %default]. This override --working-path with 'workingdir/'",
+    help="override --working-path with 'workingdir/' [default: %default]",
     dest="devel_mode", default=GLSetting.devel_mode)
+
+GLSetting.parser.add_option("-C", "--glc-path", type='string',
+    help="specify GLClient path [default: %default] "\
+            "(must be used together with --devel-mode)",
+    dest="glc_path", default=GLSetting.glc_path)
 
 GLSetting.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSetting.version_string,
@@ -114,6 +116,7 @@ GLSetting.parser.add_option("-v", "--version", action='store_true',
 
 if GLSetting.cmdline_options.version:
     print "GlobaLeaks Version:", GLSetting.version_string
+    print "GlobaLeaks DB version:", DATABASE_VERSION
     quit()
 
 GLSetting.load_cmdline_options()
@@ -202,6 +205,64 @@ else:
 sys.argv[1:] = args
 
 
+def find_current_db_version(dirpath, filearray):
+    """
+    """
+    glbackend_file_present = 0
+    for single_file in filearray:
+        if single_file[:len('glbackend')] == 'glbackend':
+            glbackend_file_present += 1
+
+    if glbackend_file_present == 0:
+        print "glbackend database file not found in %s" % dirpath
+        raise StandardError
+    elif glbackend_file_present > 1:
+        print "glbackend database file found more than 1! keep only the latest in %s" % dirpath
+        raise AssertionError
+
+    for single_file in filearray:
+        abspath = os.path.join(dirpath, single_file)
+
+        if abspath[-3:] == '.db':
+
+            nameindex = abspath.rfind('glbackend')
+            extensindex = abspath.rfind('.db')
+
+            if nameindex + len('glbackend') == extensindex:
+                detected_version = 0
+            else:
+                detected_version = int(
+                    abspath[nameindex+len('glbackend-'):extensindex])
+
+            return detected_version, abspath
+
+
+def check_db_files(db_dir_path):
+    """
+    """
+    from globaleaks.db import updater_manager
+
+    for (path, dirs, files) in os.walk(db_dir_path):
+
+        try:
+            starting_ver, abspath = find_current_db_version(path, files)
+
+            if starting_ver < GLSetting.db_version:
+                print "Performing update of Database from version %d to version %d" %\
+                      (starting_ver, GLSetting.db_version)
+                updater_manager.perform_version_update(starting_ver, GLSetting.db_version, abspath)
+                print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
+            else:
+                print "Database version detected: %d" % GLSetting.db_version
+
+        except AssertionError:
+            print "Error: More than one database file has been found in %s" % path
+            quit(-1)
+        except StandardError:
+            continue
+
+
+
 def run_glbackend():
     from globaleaks import runner
 
@@ -221,4 +282,13 @@ def run_glbackend():
         # this is a blocking operation, until app exit
         print "Exiting GlobaLeaks"
 
+
+
+# Check DB version and eventually convert them,
+# this step is made before the twisted start
+check_db_files(GLSetting.gldb_path)
+
+
+# "And now his watch begins"
 run_glbackend()
+# "And now his watch is ended"
