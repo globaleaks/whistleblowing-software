@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-20 22:21+0000\n"
+"PO-Revision-Date: 2013-06-21 23:56+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,86 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "New Submission"
+msgstr "Nuovo invio dati"
+
+msgid ""
+"You can customize this section by editing "
+"GLClient/app/templates/default/views/submission/main.html"
+msgstr "Puoi personalizzare questa sezione editando il file "
+
+msgid "Loading..."
+msgstr "Caricamento..."
+
+msgid "This node is not configured."
+msgstr "Questo nodo non e' configurato"
+
+msgid "You will not be able to perform a submission."
+msgstr "Non sarai in grado di inviare il tuo contributo"
+
+msgid "Admin please configure a Context and associated Receivers using"
+msgstr "Amministratore per favore configura un contesto e i riceventi associati usando"
+
+msgid "Admin management interface"
+msgstr "Interfaccia amministrazione"
+
+msgid ""
+"Choose the context and receivers that will be sure to transform your "
+"submission into action!"
+msgstr "Scegli il contesto e i riceventi si faranno carico di trasformare la tua informazione in una azione!"
+
+msgid "I want to report on"
+msgstr "Vorrei riportare malapratica riguardo"
+
+msgid ""
+"Enter the information that is relevant to your submission and possibly "
+"upload the relevant accompanying files"
+msgstr "Inserisci le informazioni che sono rilevanti al tuo invio dati e se necessario invia anche i file ad essere collegate"
+
+msgid ""
+"To ensure your anonymity be sure that you are visiting this site using the"
+msgstr "Per aumentare il tuo anonimato assicurati di star visitando il sito usando"
+
+msgid "To further enhance your security, please follow these instructions:"
+msgstr "Per migliorare ulteriormente la tua sicurezza, segui queste istruzioni"
+
+msgid ""
+"In the event that you would like to remain anonymous, do not submit any "
+"personal information. (e.g. your name or relationship to the offender. Do "
+"not submit any information that can be traced back to you.)"
+msgstr "Nel caso in cui volessi rimanere anonimo, non inviare nessun tipo di dati personali. (per esempio, il tuo nome o il tuo rapporto nei confronti del cattivo. Non inviare alcuna informazione che potrebbe essere utilizzata per tracciarti)"
+
+msgid ""
+"Please do not submit your report on a PC provided by your employer. "
+"Particularly an intranet connection may jeopardize your anonymity."
+msgstr "Per favore non inviare alcun dato da un PC fornitoti dal tuo datore di lavoro. Una connessione in una rete locale potrebbe mettere a repentaglio il tuo anonimato"
+
+msgid "By checking the box below you agree to these terms and conditions."
+msgstr "Selezionando la spunta qui sotto accetti i termini e le condizioni"
+
+msgid "Agree"
+msgstr "Accetto"
+
+msgid "Previous Step"
+msgstr "Passo precedente"
+
+msgid "Next Step"
+msgstr "Passo successivo"
+
+msgid "Submit"
+msgstr "Invia"
+
+msgid "Submission Created!"
+msgstr "Dati inviati!"
+
+msgid ""
+"This number here is your receipt keep good care of it as it will allow you "
+"to access your submission"
+msgstr "Ti raccomandiamo di conservare con cura questo numero di ricevuta in quanto ti permettera' di accedere ai dati che hai inviato"
+
+msgid "View Tip"
+msgstr "Mostra suggerimento"
 
 msgid "Welcome to"
 msgstr ""
@@ -26,9 +106,6 @@ msgstr "Il tuo nodo non e' configurato! Per favore procedia a"
 
 msgid "Admin interface and configure at least one context"
 msgstr "Dal pannello di amministazione configura almeno un contesto"
-
-msgid "Loading..."
-msgstr "Caricamento..."
 
 msgid "Are you a whistleblower?"
 msgstr "Vuoi segnalare attività illecite o fraudolente?"
@@ -146,131 +223,6 @@ msgstr "L'informazione richiesta non esiste o e' scaduta"
 msgid "Loading Tip page..."
 msgstr "Pagina del suggerimento in caricamento..."
 
-msgid "New Submission"
-msgstr "Nuovo invio dati"
-
-msgid ""
-"You can customize this section by editing "
-"GLClient/app/templates/default/views/submission/main.html"
-msgstr "Puoi personalizzare questa sezione editando il file "
-
-msgid "This node is not configured."
-msgstr "Questo nodo non e' configurato"
-
-msgid "You will not be able to perform a submission."
-msgstr "Non sarai in grado di inviare il tuo contributo"
-
-msgid "Admin please configure a Context and associated Receivers using"
-msgstr "Amministratore per favore configura un contesto e i riceventi associati usando"
-
-msgid "Admin management interface"
-msgstr "Interfaccia amministrazione"
-
-msgid ""
-"Choose the context and receivers that will be sure to transform your "
-"submission into action!"
-msgstr "Scegli il contesto e i riceventi si faranno carico di trasformare la tua informazione in una azione!"
-
-msgid "I want to report on"
-msgstr "Vorrei riportare malapratica riguardo"
-
-msgid ""
-"Enter the information that is relevant to your submission and possibly "
-"upload the relevant accompanying files"
-msgstr "Inserisci le informazioni che sono rilevanti al tuo invio dati e se necessario invia anche i file ad essere collegate"
-
-msgid ""
-"To ensure your anonymity be sure that you are visiting this site using the"
-msgstr "Per aumentare il tuo anonimato assicurati di star visitando il sito usando"
-
-msgid "To further enhance your security, please follow these instructions:"
-msgstr "Per migliorare ulteriormente la tua sicurezza, segui queste istruzioni"
-
-msgid ""
-"In the event that you would like to remain anonymous, do not submit any "
-"personal information. (e.g. your name or relationship to the offender. Do "
-"not submit any information that can be traced back to you.)"
-msgstr "Nel caso in cui volessi rimanere anonimo, non inviare nessun tipo di dati personali. (per esempio, il tuo nome o il tuo rapporto nei confronti del cattivo. Non inviare alcuna informazione che potrebbe essere utilizzata per tracciarti)"
-
-msgid ""
-"Please do not submit your report on a PC provided by your employer. "
-"Particularly an intranet connection may jeopardize your anonymity."
-msgstr "Per favore non inviare alcun dato da un PC fornitoti dal tuo datore di lavoro. Una connessione in una rete locale potrebbe mettere a repentaglio il tuo anonimato"
-
-msgid "By checking the box below you agree to these terms and conditions."
-msgstr "Selezionando la spunta qui sotto accetti i termini e le condizioni"
-
-msgid "Agree"
-msgstr "Accetto"
-
-msgid "Previous Step"
-msgstr "Passo precedente"
-
-msgid "Next Step"
-msgstr "Passo successivo"
-
-msgid "Submit"
-msgstr "Invia"
-
-msgid "Submission Created!"
-msgstr "Dati inviati!"
-
-msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
-msgstr "Ti raccomandiamo di conservare con cura questo numero di ricevuta in quanto ti permettera' di accedere ai dati che hai inviato"
-
-msgid "View Tip"
-msgstr "Mostra suggerimento"
-
-msgid "General information"
-msgstr "Informazioni generali"
-
-msgid "You're running GlobaLeaks version "
-msgstr "Stai utilizzando GlobaLeaks versione"
-
-msgid "Current initiative logo"
-msgstr "Logo corrente dell'iniziativa"
-
-msgid "Node name"
-msgstr "Nome del nodo"
-
-msgid "Email"
-msgstr "Email"
-
-msgid "Tor Hidden Service (hostname)"
-msgstr "Tor Hidden Service (hostname)"
-
-msgid ""
-"Invalid format for hidden service (should be http://thirteenchars123.onion)"
-msgstr "Formato dell'hidden service non valido (dovrebbe essere http://trediciLettere123.onion)"
-
-msgid "Tor2web Public Site (url)"
-msgstr "Sito pubblico Tor2web (url)"
-
-msgid ""
-"Invalid format for public site (should be "
-"https://thirteenchars123.tor2web.org)"
-msgstr "Formato del sito pubblico non valido (dovrebbe essere https://trediciCaratteri123.tor2web.org)"
-
-msgid "Save"
-msgstr "Salva"
-
-msgid "Contexts list"
-msgstr "Lista dei contesti"
-
-msgid "Delete"
-msgstr "Cancella"
-
-msgid "Receivers"
-msgstr "Ricevente"
-
-msgid "Add new context"
-msgstr "Aggiungi nuovo contesto"
-
-msgid "add"
-msgstr "Aggiungi"
-
 msgid "Fields"
 msgstr "Campi"
 
@@ -319,6 +271,9 @@ msgstr "Url"
 msgid "Phone"
 msgstr "Telefono"
 
+msgid "Email"
+msgstr "Email"
+
 msgid "add option"
 msgstr "Aggiungi opzione"
 
@@ -341,36 +296,6 @@ msgstr "Dimensione"
 
 msgid "References"
 msgstr "Referenze"
-
-msgid "Username"
-msgstr "Username"
-
-msgid "Password"
-msgstr "Password"
-
-msgid "SMTP server address"
-msgstr "Indirizzo del server SMTP"
-
-msgid "SMTP server port"
-msgstr "Porta del server SMTP"
-
-msgid "Transport Security"
-msgstr "Sicurezza a livello trasporto"
-
-msgid "Notification templates"
-msgstr "Modelli di notifica"
-
-msgid "Tip Email template"
-msgstr "Modello dell'email di suggerimento"
-
-msgid "Comment Email template"
-msgstr "Modello email di commento"
-
-msgid "File Email template"
-msgstr "Modello email di File"
-
-msgid "Activation Email template"
-msgstr "Modello della mail di attivazione"
 
 msgid "Password management"
 msgstr "Gestione password"
@@ -402,32 +327,169 @@ msgstr "Conferma la tua nuova password"
 msgid "The two passwords do not match"
 msgstr "Le due password non corrispondono"
 
-msgid "Receiver list"
-msgstr "Lista dei riceventi"
+msgid "Save"
+msgstr "Salva"
 
-msgid "Select file"
-msgstr "Seleziona file"
+msgid "General information"
+msgstr "Informazioni generali"
 
-msgid "upload"
-msgstr "Upload"
+msgid "You're running GlobaLeaks version"
+msgstr ""
 
-msgid "Receiver name too long"
-msgstr "Nome del ricevente troppo lungo"
+msgid "Current initiative logo"
+msgstr "Logo corrente dell'iniziativa"
 
-msgid "Email Address (Username)"
-msgstr "Indirizzo Email (nome utente)"
+msgid "Node name"
+msgstr "Nome del nodo"
 
-msgid "Invalid email address"
-msgstr "Indirizzo email non valido"
+msgid "Tor Hidden Service (hostname)"
+msgstr "Tor Hidden Service (hostname)"
 
-msgid "Contexts"
-msgstr "Contesti"
+msgid ""
+"Invalid format for hidden service (should be http://thirteenchars123.onion)"
+msgstr "Formato dell'hidden service non valido (dovrebbe essere http://trediciLettere123.onion)"
 
-msgid "Add new receiver"
-msgstr "Aggiungi nuovo Ricevente"
+msgid "Tor2web Public Site (url)"
+msgstr "Sito pubblico Tor2web (url)"
 
-msgid "Email Address"
-msgstr "Indirizzo Email"
+msgid ""
+"Invalid format for public site (should be "
+"https://thirteenchars123.tor2web.org)"
+msgstr "Formato del sito pubblico non valido (dovrebbe essere https://trediciCaratteri123.tor2web.org)"
+
+msgid "Edit Tor2Web accessibility table "
+msgstr ""
+
+msgid ""
+"Edit Tor2Web accessibility table - [click again to close and don't edit "
+"options] "
+msgstr ""
+
+msgid "Permit Administative login via Tor2Web"
+msgstr ""
+
+msgid "now Enabled:"
+msgstr ""
+
+msgid ""
+"Admin can access via Tor2Web. It's safe only if you're using a dedicated "
+"Tor2Web server."
+msgstr ""
+
+msgid "Permit Receiver preferences management via Tor2Web"
+msgstr ""
+
+msgid ""
+"Receivers can access via Tor2Web. It's dangerous, and we suggest some "
+"training with Tor and Enigmail."
+msgstr ""
+
+msgid "Permit Tip access, file download and upload via Tor2Web"
+msgstr ""
+
+msgid "Tip can access via Tor2Web, by whistleblowers and receiver."
+msgstr ""
+
+msgid "Permit Public resources access via Tor2Web"
+msgstr ""
+
+msgid "Public GlobaLeaks resource can access via Tor2Web. No dangers on it."
+msgstr ""
+
+msgid "Permit Submission via Tor2Web"
+msgstr ""
+
+msgid ""
+"Whistleblowers can perform submission with their anonymity at risks, via "
+"Tor2Web."
+msgstr ""
+
+msgid "Note: Need to be clicked two times, to disable an access"
+msgstr ""
+
+msgid "Update node"
+msgstr ""
+
+msgid "Update node and Tor2Web options"
+msgstr ""
+
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "SMTP server address"
+msgstr "Indirizzo del server SMTP"
+
+msgid "SMTP server port"
+msgstr "Porta del server SMTP"
+
+msgid "Transport Security"
+msgstr "Sicurezza a livello trasporto"
+
+msgid "Notification templates"
+msgstr "Modelli di notifica"
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr "Modello dell'email di suggerimento"
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "Modello email di commento"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr "Modello email di File"
+
+msgid "Activation Email template"
+msgstr "Modello della mail di attivazione"
+
+msgid "Contexts list"
+msgstr "Lista dei contesti"
+
+msgid "Delete"
+msgstr "Cancella"
+
+msgid "Receivers"
+msgstr "Ricevente"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Aggiungi nuovo contesto"
+
+msgid "add"
+msgstr "Aggiungi"
 
 msgid "Content Settin"
 msgstr "Configurazioni del contenuto"
@@ -471,26 +533,32 @@ msgid ""
 "node."
 msgstr "Questa interfaccia mostra l'attivita' degli utenti del tuo nodo. Questo potrebbe essere utile nel rilevare anomalie e nel supportare i Riceventi del tuo nodo"
 
-msgid "Welcome back captain!"
-msgstr "Bentornato a bordo, capitano!"
+msgid "Receiver list"
+msgstr "Lista dei riceventi"
 
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "Da qui puoi lanciare i comandi di debug che emulano le funzioni di un GLClient"
+msgid "Select file"
+msgstr "Seleziona file"
 
-msgid "Cookies are not enabled!"
-msgstr "I cookies non sono abilitati"
+msgid "upload"
+msgstr "Upload"
 
-msgid "You will not be able to login."
-msgstr "Non sarai in grado di fare login"
+msgid "Receiver name too long"
+msgstr "Nome del ricevente troppo lungo"
 
-msgid "Login"
-msgstr "Login"
+msgid "Email Address (Username)"
+msgstr "Indirizzo Email (nome utente)"
 
-msgid "Preferences and password management"
-msgstr "Gestione password e sicurezza"
+msgid "Invalid email address"
+msgstr "Indirizzo email non valido"
 
-msgid "Your username"
-msgstr "Il tuo nome utente"
+msgid "Contexts"
+msgstr "Contesti"
+
+msgid "Add new receiver"
+msgstr "Aggiungi nuovo Ricevente"
+
+msgid "Email Address"
+msgstr "Indirizzo Email"
 
 msgid "Tips"
 msgstr "suggerimenti"
@@ -510,14 +578,44 @@ msgstr "Viste"
 msgid "Last Access"
 msgstr "Ultimo accesso"
 
-msgid "Success!"
-msgstr "Successo"
+msgid "Preferences and password management"
+msgstr "Gestione password e sicurezza"
 
-msgid "Currently logged in "
-msgstr "Connesso"
+msgid "Your username"
+msgstr "Il tuo nome utente"
 
-msgid "logout"
-msgstr "Esci"
+msgid "Change password"
+msgstr ""
+
+msgid "Notification settings"
+msgstr ""
+
+msgid "Enable Tip notification"
+msgstr ""
+
+msgid "Every new Tip for you, will trigger an email with the link."
+msgstr ""
+
+msgid "Enable Comment notification"
+msgstr ""
+
+msgid ""
+"Every comment, written by whistleblower or receivers, trigger an email."
+msgstr ""
+
+msgid "Enable File notification"
+msgstr ""
+
+msgid ""
+"Every file available for download, its notified bvia mail, with related "
+"info."
+msgstr ""
+
+msgid "Note: Need to be clicked two times, to disable an access."
+msgstr ""
+
+msgid "Update notification settings"
+msgstr ""
 
 msgid "Save changes"
 msgstr "Salva"
@@ -561,3 +659,27 @@ msgstr "Scarica una copia del Tor Browser Bundle"
 
 msgid "before continuing."
 msgstr "Prima di continuare"
+
+msgid "Welcome back captain!"
+msgstr "Bentornato a bordo, capitano!"
+
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Da qui puoi lanciare i comandi di debug che emulano le funzioni di un GLClient"
+
+msgid "Cookies are not enabled!"
+msgstr "I cookies non sono abilitati"
+
+msgid "You will not be able to login."
+msgstr "Non sarai in grado di fare login"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Success!"
+msgstr "Successo"
+
+msgid "Currently logged in "
+msgstr "Connesso"
+
+msgid "logout"
+msgstr "Esci"
