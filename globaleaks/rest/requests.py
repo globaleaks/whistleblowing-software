@@ -30,6 +30,13 @@ receiverReceiverDesc = {
     'username' : unicode,
     'notification_fields' : dict,
     'description' : unicode,
+    'gpg_key_armor': unicode,
+    'gpg_key_remove': bool,
+    "gpg_enable_notification": bool,
+    "gpg_enable_files": bool,
+    "comment_notification": bool,
+    "file_notification": bool,
+    "tip_notification": bool,
 }
 
 actorsCommentDesc = {
@@ -50,7 +57,6 @@ adminNodeDesc = {
     'email' : unicode,
     'password' : unicode,
     'old_password' : unicode,
-    # advanced settings:
     'maximum_namesize': int,
     'maximum_descsize': int,
     'maximum_textsize': int,
@@ -89,7 +95,6 @@ adminContextDesc = {
     'escalation_threshold' : int,
     'receivers' : [ uuid_regexp ],
     'fields': [ formFieldsDict ],
-    # advanced settings:
     'receipt_regexp': unicode,
     'receipt_description': unicode,
     'submission_introduction': unicode,
@@ -106,9 +111,15 @@ adminReceiverDesc =  {
     'contexts' : [ uuid_regexp ],
     'receiver_level' : int,
     'can_delete_submission' : bool,
-    # advanced settings:
     'tags': [ unicode ],
     'tip_notification': bool,
     'file_notification': bool,
     'comment_notification': bool,
+    'gpg_key_remove': bool,
+    'gpg_key_fingerprint': unicode,
+    'gpg_key_info': unicode,
+    "gpg_key_armor": unicode,
+    "gpg_key_status": unicode,
+    "gpg_enable_notification": bool,
+    "gpg_enable_files": bool,
 }

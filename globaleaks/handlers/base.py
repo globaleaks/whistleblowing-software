@@ -47,12 +47,12 @@ def validate_host(host_key):
               (host_key, GLSetting.accepted_hosts))
     return False
 
-def set_default_headers(self):
+def add_globaleaks_headers(self):
     # In this function are written some security enforcements
     # related to WebServer versioning and XSS attacks.
     # The function must be called by all request HANDLER defined using:
     # def set_default_header(self):
-    #     set_default_header(self)
+    #     add_globaleaks_headers(self)
 
     # to avoid version attacks
     self.set_header("Server", "globaleaks")
@@ -85,7 +85,7 @@ class GLHTTPServer(HTTPConnection):
 
 class BaseHandler(RequestHandler):
     def set_default_headers(self):
-        set_default_headers(self)
+        add_globaleaks_headers(self)
 
     @staticmethod
     def validate_python_type(value, python_type):
@@ -107,7 +107,7 @@ class BaseHandler(RequestHandler):
                 return False
 
         if python_type == bool:
-            if value == 'true' or value == 'false':
+            if value == u'true' or value == u'false':
                 return True
 
         return isinstance(value, python_type)
@@ -229,12 +229,19 @@ class BaseHandler(RequestHandler):
 
             GLSetting.cyclone_debug_counter += 1
 
-            content = "\n" +("=" * 15) + ("Request %d=\n" % GLSetting.cyclone_debug_counter )
-            content += "headers: " + self.request.headers + "\n"
-            content += "url: " + self.request.full_url() + "\n"
-            content += "body: " + self.request.body + "\n"
+            try:
+                content = "\n" +("=" * 15) + ("Request %d=\n" % GLSetting.cyclone_debug_counter )
+                content += "url: " + self.request.full_url() + "\n"
+                content += "headers:\n"
+                for k, v in sorted(self.request.headers.get_all()):
+                    content += "%s: %s\n" % (k, v)
+                content += "\nbody: " + str(self.request.body) + "\n"
 
-            self.do_verbose_log(content)
+                self.do_verbose_log(content)
+
+            except Exception as excep:
+                log.err("JSON logging fail (prepare): %s" % excep.message)
+                return
 
             # save in the request the numeric ID of the request, so the answer can be correlated
             self.globaleaks_io_debug = GLSetting.cyclone_debug_counter
@@ -254,11 +261,16 @@ class BaseHandler(RequestHandler):
         with the command line options --io $number_of_request_recorded
         """
         if hasattr(self, 'globaleaks_io_debug'):
-            content = "\n" +("-" * 15) + ("Response %d=\n" % self.globaleaks_io_debug)
-            content += "code: " + str(self._status_code) + "\n"
-            content += "body: " + self._write_buffer + "\n"
+            try:
+                content = "\n" +("-" * 15) + ("Response %d=\n" % self.globaleaks_io_debug)
+                content += "url: " + str(self.request.full_url() + "\n")
+                content += "code: " + str(self._status_code) + "\n"
+                content += "body: " + str(self._write_buffer) + "\n"
 
-            self.do_verbose_log(content)
+                self.do_verbose_log(content)
+            except Exception as excep:
+                log.err("JSON logging fail (flush): %s" % excep.message)
+                return
 
         RequestHandler.flush(self, include_footers)
 
@@ -273,8 +285,11 @@ class BaseHandler(RequestHandler):
 
         logfpath = os.path.join(GLSetting.cyclone_io_path, filename)
 
-        with open(logfpath, 'a+') as fd:
-            fdesc.writeToFD(fd.fileno(), content)
+        try:
+            with open(logfpath, 'a+') as fd:
+                fdesc.writeToFD(fd.fileno(), content)
+        except Exception as excep:
+            log.err("Unable to open %s: %s" % (logfpath, excep.message))
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
@@ -354,7 +369,7 @@ class BaseHandler(RequestHandler):
 
 class BaseStaticFileHandler(StaticFileHandler):
     def set_default_headers(self):
-        set_default_headers(self)
+        add_globaleaks_headers(self)
 
     def prepare(self):
         """
@@ -369,7 +384,7 @@ class BaseStaticFileHandler(StaticFileHandler):
 
 class BaseRedirectHandler(RedirectHandler):
     def set_default_headers(self):
-        set_default_headers(self)
+        add_globaleaks_headers(self)
 
     def prepare(self):
         """

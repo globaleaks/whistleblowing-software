@@ -3,10 +3,8 @@
 #   ******************
 from __future__ import with_statement
 import os
-import os.path
 
 from twisted.internet.defer import succeed
-
 from storm.exceptions import OperationalError
 
 from globaleaks.utils import log, datetime_now
@@ -14,6 +12,7 @@ from globaleaks.settings import transact, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
 from globaleaks.security import hash_password, get_salt
+
 
 @transact
 def initialize_node(store, results, only_node, email_templates):
@@ -45,6 +44,7 @@ def initialize_node(store, results, only_node, email_templates):
     # our defaults for free, because we're like Gandhi of the mail accounts.
     notification.server = u"mail.headstrong.de"
     notification.port = 587
+    # port 587/SMTP-TLS or 465/SMTPS a scelta
     notification.username = u"sendaccount@lists.globaleaks.org"
     notification.password = u"sendaccount99"
     notification.security = models.Notification._security_types[0] # TLS
@@ -95,7 +95,7 @@ def create_tables(create_node=True):
     """
     Override transactor for testing.
     """
-    if os.path.exists(GLSetting.db_file.replace('sqlite:', '')):
+    if os.path.exists(GLSetting.file_versioned_db.replace('sqlite:', '')):
         # Here we instance every model so that __storm_table__ gets set via
         # __new__
         for model in models.models:
@@ -152,6 +152,7 @@ def create_tables(create_node=True):
 
         # Initialize the node + notification table
         deferred.addCallback(initialize_node, only_node, email_templates)
+
     return deferred
 
 
@@ -167,7 +168,7 @@ def check_schema_version():
     is used. For sure there are other better checks, but not
     today.
     """
-    db_file = GLSetting.db_file.replace('sqlite:', '')
+    db_file = GLSetting.file_versioned_db.replace('sqlite:', '')
 
     if not os.path.exists(db_file):
         return True
@@ -183,7 +184,7 @@ def check_schema_version():
             comma_number = "".join(sqlfile).count(',')
 
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file)
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.file_versioned_db)
         store = zstorm.get(GLSetting.store_name)
 
         q = """

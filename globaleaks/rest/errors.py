@@ -18,6 +18,12 @@ class GLException(HTTPError):
     def __init__(self):
         pass
 
+    def __repr__(self):
+        return "%s: <<%s>> (%d) HTTP:%d" % (
+            self.__class__.__name__, self.reason,
+            self.error_code, self.status_code
+        )
+
 class InvalidInputFormat(GLException):
     """
     The expected format described in the REST specification is not
@@ -284,14 +290,33 @@ class HTTPRawLimitReach(GLException):
     error_code = 39
     status_code = 400 # Generic 400 error
     reason = ("The upload request overcome the Md limits (%dMd)" %
-             (GLSetting.memory_copy.maximum_filesize / 1024 * 1024) )
+          (GLSetting.memory_copy.maximum_filesize / 1024 * 1024) )
+
+class GPGKeyInvalid(GLException):
+    """
+    The proposed GPG key has an invalid format and can't be imported
+    """
+    error_code = 40
+    status_code = 406
+    reason = "The GPG key proposed can't be imported"
 
 class SessionExpired(GLException):
     """
     Raised by GLHTTPServer, when a raw upload is bigger than acceptable
     """
-    error_code = 40
+    error_code = 41
     status_code = 400 # Generic 400 error
 
     def __init__(self, lifetime, role):
         self.reason = "The time for your role (%s) is %s" % (role, lifetime)
+
+class TimeToLiveInvalid(GLException):
+    """
+    tip_timetolive and submission_timetolive maybe proposed of weird values,
+    here is catch
+    """
+    error_code =  42
+    status_code = 406
+
+    def __init__(self, errorstr, kind):
+        self.reason = "Invalid timerange supply for %s: %s" % (kind, errorstr)

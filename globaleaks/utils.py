@@ -185,7 +185,19 @@ def pretty_diff_now(past_date):
     diff = now - past_date
 
     diff = int(diff.total_seconds())
-    days, hours_carry = divmod(diff, 3600 * 24)
+
+    return timelapse_represent(diff)
+
+def timelapse_represent(seconds):
+    """
+    @param seconds:
+    @return:
+        This function is called by pretty_diff_now and by other
+        function like GPG key informations printing.
+    """
+
+    years, years_carry = divmod(seconds, 3600 * 24 * 365)
+    days, hours_carry = divmod(years_carry, 3600 * 24)
     hours, minutes_carry = divmod(hours_carry, 3600)
     minutes, seconds = divmod(minutes_carry, 60)
 
@@ -198,9 +210,27 @@ def pretty_diff_now(past_date):
         pretty_str = "1 hour" if hours == 1 else "%s hours" % hours
     if days:
         pretty_str = "1 day" if days == 1 else "%s days" % days
+    if years:
+        pretty_str = "1 year" if years == 1 else "%s years" % years
 
     #return '%sD+%s:%s:%s' % (days, hours, minutes, seconds)
     return pretty_str
+
+def seconds_convert(value, conversion_factor, min=0, max=0):
+    """
+    @param value:
+    @param conversion_factor:
+    """
+    seconds = value * conversion_factor
+
+    if (seconds / conversion_factor) != value:
+        raise Exception("Invalid operation triggered")
+    if min and (seconds < min * conversion_factor):
+        raise Exception("%d < %d" % (seconds, min * conversion_factor))
+    if max and (seconds > max * conversion_factor):
+        raise Exception("%d > %d" % (seconds, max * conversion_factor))
+
+    return seconds
 
 ## Mail utilities ##
 
@@ -387,9 +417,9 @@ def acquire_url_address(inputstring, hidden_service=False, http=False):
 def acquire_bool(boolvalue):
     if isinstance(boolvalue, bool):
         return boolvalue
-    if boolvalue == 'true':
+    if boolvalue == 'true' or boolvalue == u'true':
         return True
-    if boolvalue == 'false':
+    if boolvalue == 'false' or boolvalue == u'false':
         return False
     raise AssertionError("BaseHandler validator is not working")
 
