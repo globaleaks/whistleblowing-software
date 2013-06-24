@@ -1,3 +1,9 @@
+globaleaks (0.2.0.21-2) unstable; urgency=high
+
+  * GlobaLeaks Alpha - Various bugfix, UI enhancement, advanced settings
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 24 Jun 2013 18:54:05 +0002
+
 globaleaks (0.2.0.20-2) unstable; urgency=high
 
   * GlobaLeaks Alpha - Security fixes, Database migration
