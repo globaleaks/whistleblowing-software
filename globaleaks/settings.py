@@ -122,6 +122,11 @@ class GLSettingsClass:
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
 
+        # default timings for scheduled jobs
+        self.cleaning_hours_delta = 5 # runner.py function expect hours
+        self.notification_minutes_delta = 2 # runner.py function expect minutes
+        self.delivery_seconds_delta = 30 # runner.py function expect seconds
+
         self.defaults = OD()
         # Default values, used to initialize DB at the first start,
         # or whenever the value is not supply by client.
