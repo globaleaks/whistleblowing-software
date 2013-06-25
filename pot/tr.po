@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-25 17:31+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -159,14 +159,20 @@ msgstr "İpucu Durum Sayfası"
 msgid "Files"
 msgstr "Dosyalar"
 
-msgid "security check"
-msgstr "güvenlik kontrolu"
+msgid "show only files not yet downloaded"
+msgstr ""
+
+msgid "show all the files"
+msgstr ""
 
 msgid "download"
-msgstr "karşıdan yükle"
+msgstr ""
 
-msgid "Security Check"
-msgstr "Güvenlik Kontrol"
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr ""
 
 msgid "Use the"
 msgstr "Kullan:"
@@ -178,14 +184,9 @@ msgid "to verify the file integrity"
 msgstr "dosya bütünlüğünü doğrulamak için"
 
 msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "Unix bazlı sistemlerde bunu şu komutayla yapabilirsiniz: "
-
-msgid "Still calculating hash"
-msgstr "Özet hâla hesaplanıyor..."
-
-msgid "done"
-msgstr "bitti"
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr ""
 
 msgid "No file has been uploaded!"
 msgstr "Dosya(lar) karşıya yüklenmedi!"
@@ -330,6 +331,84 @@ msgstr "Bu iki şifre eşleşmiyor"
 msgid "Save"
 msgstr "Kaydet"
 
+msgid "Username"
+msgstr "Kullanıcı adı"
+
+msgid "Password"
+msgstr "Şifre"
+
+msgid "SMTP server address"
+msgstr "SMTP sunucu adresi"
+
+msgid "SMTP server port"
+msgstr "SMTP sunucu portu"
+
+msgid "Transport Security"
+msgstr "Güvenlik Nakli"
+
+msgid "Notification templates"
+msgstr "Bildirim temaları"
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr "Uç E-posta şablonu"
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "Yorum E-maili arayüzü"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr "Dosya e-posta şablonu"
+
+msgid "Activation Email template"
+msgstr "Etkinleştirme E-postası şablonu"
+
+msgid "Contexts list"
+msgstr "İçerik listesi"
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Receivers"
+msgstr "Alıcılar"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Yeni içerik ekle"
+
+msgid "add"
+msgstr "ekle"
+
 msgid "General information"
 msgstr "Genel bilgi"
 
@@ -412,84 +491,6 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
-
-msgid "Username"
-msgstr "Kullanıcı adı"
-
-msgid "Password"
-msgstr "Şifre"
-
-msgid "SMTP server address"
-msgstr "SMTP sunucu adresi"
-
-msgid "SMTP server port"
-msgstr "SMTP sunucu portu"
-
-msgid "Transport Security"
-msgstr "Güvenlik Nakli"
-
-msgid "Notification templates"
-msgstr "Bildirim temaları"
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr "Uç E-posta şablonu"
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "Yorum E-maili arayüzü"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr "Dosya e-posta şablonu"
-
-msgid "Activation Email template"
-msgstr "Etkinleştirme E-postası şablonu"
-
-msgid "Contexts list"
-msgstr "İçerik listesi"
-
-msgid "Delete"
-msgstr "Sil"
-
-msgid "Receivers"
-msgstr "Alıcılar"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Yeni içerik ekle"
-
-msgid "add"
-msgstr "ekle"
 
 msgid "Content Settin"
 msgstr "İçerik Ayarları"

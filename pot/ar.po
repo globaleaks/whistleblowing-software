@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-25 17:31+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -157,14 +157,20 @@ msgstr "صفحة التلميحات"
 msgid "Files"
 msgstr "الملفّات"
 
-msgid "security check"
-msgstr "فحص الأمن"
+msgid "show only files not yet downloaded"
+msgstr ""
+
+msgid "show all the files"
+msgstr ""
 
 msgid "download"
-msgstr "تنزيل"
+msgstr ""
 
-msgid "Security Check"
-msgstr "فحص الأمن"
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr ""
 
 msgid "Use the"
 msgstr "استعمل\\ي"
@@ -176,13 +182,8 @@ msgid "to verify the file integrity"
 msgstr "َالتأكّد على سلامة الملفّ"
 
 msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr ""
-
-msgid "Still calculating hash"
-msgstr "جارية محاسبة التجزة\\الهاش"
-
-msgid "done"
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
 msgstr ""
 
 msgid "No file has been uploaded!"
@@ -328,6 +329,84 @@ msgstr "لا تتطابق كلمتا السرّ"
 msgid "Save"
 msgstr "حفظ"
 
+msgid "Username"
+msgstr "معرّف"
+
+msgid "Password"
+msgstr "كلمة السرّ"
+
+msgid "SMTP server address"
+msgstr "عنوان الخادم SMTP"
+
+msgid "SMTP server port"
+msgstr "منفذ الخادم SMTP"
+
+msgid "Transport Security"
+msgstr ""
+
+msgid "Notification templates"
+msgstr ""
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr ""
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "نموذج لرسالة التعليق الإلكترونية"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr "نموذج رسالة الملفّ"
+
+msgid "Activation Email template"
+msgstr ""
+
+msgid "Contexts list"
+msgstr ""
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Receivers"
+msgstr "المرسل إليهم"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "أضف سياقاً جديداً"
+
+msgid "add"
+msgstr "أضف"
+
 msgid "General information"
 msgstr "معلومات عامّة"
 
@@ -410,84 +489,6 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
-
-msgid "Username"
-msgstr "معرّف"
-
-msgid "Password"
-msgstr "كلمة السرّ"
-
-msgid "SMTP server address"
-msgstr "عنوان الخادم SMTP"
-
-msgid "SMTP server port"
-msgstr "منفذ الخادم SMTP"
-
-msgid "Transport Security"
-msgstr ""
-
-msgid "Notification templates"
-msgstr ""
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr ""
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "نموذج لرسالة التعليق الإلكترونية"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr "نموذج رسالة الملفّ"
-
-msgid "Activation Email template"
-msgstr ""
-
-msgid "Contexts list"
-msgstr ""
-
-msgid "Delete"
-msgstr "حذف"
-
-msgid "Receivers"
-msgstr "المرسل إليهم"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "أضف سياقاً جديداً"
-
-msgid "add"
-msgstr "أضف"
 
 msgid "Content Settin"
 msgstr "زر الخيار"
