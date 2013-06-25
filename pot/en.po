@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-25 17:31+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -155,14 +155,20 @@ msgstr "Tip Status Page"
 msgid "Files"
 msgstr "Files"
 
-msgid "security check"
-msgstr "security check"
+msgid "show only files not yet downloaded"
+msgstr "show only files not yet downloaded"
+
+msgid "show all the files"
+msgstr "show all the files"
 
 msgid "download"
 msgstr "download"
 
-msgid "Security Check"
-msgstr "Security Check"
+msgid "show sha256 checksum"
+msgstr "show sha256 checksum"
+
+msgid "(click again to hide)"
+msgstr "(click again to hide)"
 
 msgid "Use the"
 msgstr "Use the"
@@ -174,14 +180,9 @@ msgid "to verify the file integrity"
 msgstr "to verify the file integrity"
 
 msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "On unix based systems this can be done by running the following command"
-
-msgid "Still calculating hash"
-msgstr "Still calculating hash"
-
-msgid "done"
-msgstr "done"
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr "On unix based systems this can be done by running the following command in the directory of the files"
 
 msgid "No file has been uploaded!"
 msgstr "No file has been uploaded!"
@@ -326,6 +327,84 @@ msgstr "The two passwords do not match"
 msgid "Save"
 msgstr "Save"
 
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "SMTP server address"
+msgstr "SMTP server address"
+
+msgid "SMTP server port"
+msgstr "SMTP server port"
+
+msgid "Transport Security"
+msgstr "Transport Security"
+
+msgid "Notification templates"
+msgstr "Notification templates"
+
+msgid "Tip Email Subject"
+msgstr "Tip Email Subject"
+
+msgid "Tip Email template"
+msgstr "Tip Email template"
+
+msgid "Comment Email Subject"
+msgstr "Comment Email Subject"
+
+msgid "Comment Email template"
+msgstr "Comment Email template"
+
+msgid "File Email Subject"
+msgstr "File Email Subject"
+
+msgid "File Email template"
+msgstr "File Email template"
+
+msgid "Activation Email template"
+msgstr "Activation Email template"
+
+msgid "Contexts list"
+msgstr "Contexts list"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Receivers"
+msgstr "Receivers"
+
+msgid "Advanced settings"
+msgstr "Advanced settings"
+
+msgid "Submission Disclaimer"
+msgstr "Submission Disclaimer"
+
+msgid "Submisson hours life"
+msgstr "Submisson hours life"
+
+msgid "Tip day life"
+msgstr "Tip day life"
+
+msgid "File Required"
+msgstr "File Required"
+
+msgid "Receipt regexp"
+msgstr "Receipt regexp"
+
+msgid "Receipt description"
+msgstr "Receipt description"
+
+msgid "Submission Introduction"
+msgstr "Submission Introduction"
+
+msgid "Add new context"
+msgstr "Add new context"
+
+msgid "add"
+msgstr "add"
+
 msgid "General information"
 msgstr "General information"
 
@@ -408,84 +487,6 @@ msgstr "Update node"
 
 msgid "Update node and Tor2Web options"
 msgstr "Update node and Tor2Web options"
-
-msgid "Username"
-msgstr "Username"
-
-msgid "Password"
-msgstr "Password"
-
-msgid "SMTP server address"
-msgstr "SMTP server address"
-
-msgid "SMTP server port"
-msgstr "SMTP server port"
-
-msgid "Transport Security"
-msgstr "Transport Security"
-
-msgid "Notification templates"
-msgstr "Notification templates"
-
-msgid "Tip Email Subject"
-msgstr "Tip Email Subject"
-
-msgid "Tip Email template"
-msgstr "Tip Email template"
-
-msgid "Comment Email Subject"
-msgstr "Comment Email Subject"
-
-msgid "Comment Email template"
-msgstr "Comment Email template"
-
-msgid "File Email Subject"
-msgstr "File Email Subject"
-
-msgid "File Email template"
-msgstr "File Email template"
-
-msgid "Activation Email template"
-msgstr "Activation Email template"
-
-msgid "Contexts list"
-msgstr "Contexts list"
-
-msgid "Delete"
-msgstr "Delete"
-
-msgid "Receivers"
-msgstr "Receivers"
-
-msgid "Advanced settings"
-msgstr "Advanced settings"
-
-msgid "Submission Disclaimer"
-msgstr "Submission Disclaimer"
-
-msgid "Submisson hours life"
-msgstr "Submisson hours life"
-
-msgid "Tip day life"
-msgstr "Tip day life"
-
-msgid "File Required"
-msgstr "File Required"
-
-msgid "Receipt regexp"
-msgstr "Receipt regexp"
-
-msgid "Receipt description"
-msgstr "Receipt description"
-
-msgid "Submission Introduction"
-msgstr "Submission Introduction"
-
-msgid "Add new context"
-msgstr "Add new context"
-
-msgid "add"
-msgstr "add"
 
 msgid "Content Settin"
 msgstr "Content Settin"

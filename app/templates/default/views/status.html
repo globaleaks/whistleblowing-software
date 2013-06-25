@@ -17,51 +17,54 @@
       <div class="well" ng-show="tip.files">
         <h4>{{file.name}}</h4>
         <ul class="unstyled">
-
+          <a class="input-small" ng-click="show_new_files = !show_new_files" ng-init="show_new_files = false" ng-show="!show_new_files && tip.im_receiver">
+            {{ "show only files not yet downloaded" | translate }}
+          </a>
+          <a class="input-small" ng-click="show_new_files = !show_new_files" ng-show="show_new_files && tip.im_receiver">
+            {{ "show all the files" | translate }}
+          </a>
           <li ng-repeat="file in tip.files">
-
-            <div>
+            <div ng-show="file.downloads == 0 && show_new_files">
+              <a ng-cloak ng-show="tip.im_receiver"
+                 class="btn btn-small" href="{{file.href}}">
+                 <i class="icon-download"></i> {{ "download" | translate }} ({{file.downloads}}/{{tip.download_limit}})
+              </a>
+              <i class="icon-book"></i> {{file.name}}
+            </div>
+            <div ng-show="!show_new_files">
+              <a ng-cloak ng-show="tip.im_receiver"
+                 class="btn btn-small" href="{{file.href}}">
+                 <i class="icon-download"></i> {{ "download" | translate }} ({{file.downloads}}/{{tip.download_limit}})
+              </a>
               <i class="icon-book"></i> {{file.name}}
             </div>
 
-            <div class="fileDetails" ng-controller="FileDetailsCtrl">
-              <button class="btn btn-small"
-                      ng-click="openSecurityCheck()">
-                      <i class="icon-lock"></i> {{ "security check" | translate }}
-              </button>
-              <a ng-cloak ng-show="tip.im_receiver"
-                 class="btn btn-small" href="{{file.href}}">
-                 <i class="icon-download"></i> {{ "download" | translate }}
-              </a>
-
-              <div class="modal"
-                   ng-show="securityCheckOpen"
-                   close="closeSecurityCheck()"
-                   options="securityCheckOptions">
-                <div class="modal-header">
-                    <h4>{{ "Security Check" | translate }}</h4>
-                </div>
-                <div class="modal-body">
-                  <p>{{ "Use the" | translate }} <a href="https://en.wikipedia.org/wiki/SHA-2">{{ "sha256 hash" | translate }}</a> {{ "to verify the file integrity" | translate }}.</p>
-
-                  <p>{{ "On unix based systems this can be done by running the following command" | translate }}:</p>
-
-                  <code>shasum -a 256 {{file.name}}</code>
-
-                  <label><code>{{file.name}}</code></label>
-                  <input ng-show='file.sha2sum != "None"' class="shasum" type="text" value="{{file.sha2sum}}">
-                  <span ng-show='file.sha2sum == "None"' class="label label-warning">{{ "Still calculating hash" | translate }}</span>
-                </div>
-                <div class="modal-footer">
-                    <button class="btn btn-success" ng-click="closeSecurityCheck()">{{ "done" | translate }}</button>
-                </div>
-              </div>
-            </div>
-
           </li>
-
+          <a class="input-small" ng-click="security_checksum = !security_checksum" ng-init="security_checksum = false" ng-show="!security_checksum">
+            {{ "show sha256 checksum" | translate }}
+          </a>
+          <a class="input-small" ng-click="security_checksum = !security_checksum" ng-show="security_checksum">
+            {{ "show sha256 checksum" | translate }}
+            <i>
+              {{ "(click again to hide)" | translate }}
+            </i>
+          </a>
         </ul>
       </div>
+      <div class="well" ng-show="security_checksum">
+        <p>
+          {{ "Use the" | translate }} <a href="https://en.wikipedia.org/wiki/SHA-2">{{ "sha256 hash" | translate }}</a> {{ "to verify the file integrity" | translate }}.
+          <br>
+          {{ "On unix based systems this can be done by running the following command in the directory of the files" | translate }}:
+        </p>
+        <b>$ shasum -a 256 *</b>
+        <div ng-repeat="file in tip.files">
+          <code>
+            {{file.name}}   {{file.sha2sum}}
+          </code>
+        </div>
+      </div>
+
       <div class="span4" ng-hide="tip.files"><p>{{ "No file has been uploaded!" | translate }}</p></div>
 
       <div ng-cloak ng-show="tip.im_whistleblower">

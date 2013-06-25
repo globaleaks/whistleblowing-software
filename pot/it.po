@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-25 17:31+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -159,14 +159,20 @@ msgstr "Pagina di status del suggerimento"
 msgid "Files"
 msgstr "Files"
 
-msgid "security check"
-msgstr "Controllo di sicurezza"
+msgid "show only files not yet downloaded"
+msgstr ""
+
+msgid "show all the files"
+msgstr ""
 
 msgid "download"
-msgstr "Download"
+msgstr ""
 
-msgid "Security Check"
-msgstr "Controllo di sicurezza"
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr ""
 
 msgid "Use the"
 msgstr "Usa il"
@@ -178,14 +184,9 @@ msgid "to verify the file integrity"
 msgstr "per verificare l'integrita' del file"
 
 msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "Su sistemi basati su unix questo puo' essere ottenuto lanciando il seguente comando"
-
-msgid "Still calculating hash"
-msgstr "Sto calcolando l'hash"
-
-msgid "done"
-msgstr "Fatto"
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr ""
 
 msgid "No file has been uploaded!"
 msgstr "Non e' stato inviato nessun file!"
@@ -330,6 +331,84 @@ msgstr "Le due password non corrispondono"
 msgid "Save"
 msgstr "Salva"
 
+msgid "Username"
+msgstr "Username"
+
+msgid "Password"
+msgstr "Password"
+
+msgid "SMTP server address"
+msgstr "Indirizzo del server SMTP"
+
+msgid "SMTP server port"
+msgstr "Porta del server SMTP"
+
+msgid "Transport Security"
+msgstr "Sicurezza a livello trasporto"
+
+msgid "Notification templates"
+msgstr "Modelli di notifica"
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr "Modello dell'email di suggerimento"
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "Modello email di commento"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr "Modello email di File"
+
+msgid "Activation Email template"
+msgstr "Modello della mail di attivazione"
+
+msgid "Contexts list"
+msgstr "Lista dei contesti"
+
+msgid "Delete"
+msgstr "Cancella"
+
+msgid "Receivers"
+msgstr "Ricevente"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Aggiungi nuovo contesto"
+
+msgid "add"
+msgstr "Aggiungi"
+
 msgid "General information"
 msgstr "Informazioni generali"
 
@@ -412,84 +491,6 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
-
-msgid "Username"
-msgstr "Username"
-
-msgid "Password"
-msgstr "Password"
-
-msgid "SMTP server address"
-msgstr "Indirizzo del server SMTP"
-
-msgid "SMTP server port"
-msgstr "Porta del server SMTP"
-
-msgid "Transport Security"
-msgstr "Sicurezza a livello trasporto"
-
-msgid "Notification templates"
-msgstr "Modelli di notifica"
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr "Modello dell'email di suggerimento"
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "Modello email di commento"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr "Modello email di File"
-
-msgid "Activation Email template"
-msgstr "Modello della mail di attivazione"
-
-msgid "Contexts list"
-msgstr "Lista dei contesti"
-
-msgid "Delete"
-msgstr "Cancella"
-
-msgid "Receivers"
-msgstr "Ricevente"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Aggiungi nuovo contesto"
-
-msgid "add"
-msgstr "Aggiungi"
 
 msgid "Content Settin"
 msgstr "Configurazioni del contenuto"

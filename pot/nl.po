@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-25 17:31+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -158,14 +158,20 @@ msgstr "Statusoverzicht tips"
 msgid "Files"
 msgstr "Documenten"
 
-msgid "security check"
-msgstr "Veligheidscheck"
+msgid "show only files not yet downloaded"
+msgstr ""
+
+msgid "show all the files"
+msgstr ""
 
 msgid "download"
-msgstr "download"
+msgstr ""
 
-msgid "Security Check"
-msgstr "Veiligheidscheck"
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr ""
 
 msgid "Use the"
 msgstr "Gebruik de"
@@ -177,14 +183,9 @@ msgid "to verify the file integrity"
 msgstr "om de betrouwbaarheid van het bestand te verifiëren"
 
 msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "Voor op unix gebaseerde systemen kunt u de volgende opdracht gebruiken"
-
-msgid "Still calculating hash"
-msgstr "Hash aan het berekenen"
-
-msgid "done"
-msgstr "klaar"
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr ""
 
 msgid "No file has been uploaded!"
 msgstr "Er is geen bestand geupload!"
@@ -329,6 +330,84 @@ msgstr "De twee wachtwoorden komen niet overeen"
 msgid "Save"
 msgstr "Bewaar"
 
+msgid "Username"
+msgstr "Genruikersnaam"
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid "SMTP server address"
+msgstr "SMTP server adres"
+
+msgid "SMTP server port"
+msgstr "SMTP server port"
+
+msgid "Transport Security"
+msgstr "Transport Security"
+
+msgid "Notification templates"
+msgstr "Bericht templates"
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr "Tip E-mail template"
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "Reactie e-mail template"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr "Bestand e-mail template"
+
+msgid "Activation Email template"
+msgstr "Activeer e-mail template"
+
+msgid "Contexts list"
+msgstr "Lijst met categorieën"
+
+msgid "Delete"
+msgstr "Verwijder"
+
+msgid "Receivers"
+msgstr "Ontvangers"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Voeg een nieuwe categoerie toe"
+
+msgid "add"
+msgstr "voeg toe"
+
 msgid "General information"
 msgstr "Algemene informatie"
 
@@ -411,84 +490,6 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
-
-msgid "Username"
-msgstr "Genruikersnaam"
-
-msgid "Password"
-msgstr "Wachtwoord"
-
-msgid "SMTP server address"
-msgstr "SMTP server adres"
-
-msgid "SMTP server port"
-msgstr "SMTP server port"
-
-msgid "Transport Security"
-msgstr "Transport Security"
-
-msgid "Notification templates"
-msgstr "Bericht templates"
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr "Tip E-mail template"
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "Reactie e-mail template"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr "Bestand e-mail template"
-
-msgid "Activation Email template"
-msgstr "Activeer e-mail template"
-
-msgid "Contexts list"
-msgstr "Lijst met categorieën"
-
-msgid "Delete"
-msgstr "Verwijder"
-
-msgid "Receivers"
-msgstr "Ontvangers"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Voeg een nieuwe categoerie toe"
-
-msgid "add"
-msgstr "voeg toe"
 
 msgid "Content Settin"
 msgstr "Inhouds instellingen"

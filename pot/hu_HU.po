@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-25 17:31+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/projects/p/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -157,14 +157,20 @@ msgstr "Füles oldala"
 msgid "Files"
 msgstr "Fájlok"
 
-msgid "security check"
-msgstr "biztonsági ellenőrzés"
+msgid "show only files not yet downloaded"
+msgstr ""
+
+msgid "show all the files"
+msgstr ""
 
 msgid "download"
-msgstr "letöltés"
+msgstr ""
 
-msgid "Security Check"
-msgstr "Biztonsági ellenőrzés"
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr ""
 
 msgid "Use the"
 msgstr "Használja a/az"
@@ -176,14 +182,9 @@ msgid "to verify the file integrity"
 msgstr "a fájl integritásának ellenőrzéséhez"
 
 msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "Az unix alapú rendszereknél ezt a következő parancs futtatásával teheti meg:"
-
-msgid "Still calculating hash"
-msgstr "Még mindig a hash-t számláljuk"
-
-msgid "done"
-msgstr "kész"
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr ""
 
 msgid "No file has been uploaded!"
 msgstr "Nem töltött fel fájlt!"
@@ -328,6 +329,84 @@ msgstr "Nem egyeznek a beírt jelszavak"
 msgid "Save"
 msgstr "Mentés"
 
+msgid "Username"
+msgstr "Felhasználónév"
+
+msgid "Password"
+msgstr "Jelszó"
+
+msgid "SMTP server address"
+msgstr "SMTP szerver címe"
+
+msgid "SMTP server port"
+msgstr "SMTP szerver port"
+
+msgid "Transport Security"
+msgstr "Átvitel biztonsága"
+
+msgid "Notification templates"
+msgstr "Értesítő sablonok"
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr "Füles e-mail sablon"
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "Hozzászólás e-mail sablon"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr "Fájl e-mail sablonja"
+
+msgid "Activation Email template"
+msgstr "E-mail sablon az aktiváláshoz"
+
+msgid "Contexts list"
+msgstr "Kontextusok listája"
+
+msgid "Delete"
+msgstr "Törlés"
+
+msgid "Receivers"
+msgstr "Fogadók"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Új kontextus hozzáadása"
+
+msgid "add"
+msgstr "hozzáadás"
+
 msgid "General information"
 msgstr "Általános információk"
 
@@ -410,84 +489,6 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
-
-msgid "Username"
-msgstr "Felhasználónév"
-
-msgid "Password"
-msgstr "Jelszó"
-
-msgid "SMTP server address"
-msgstr "SMTP szerver címe"
-
-msgid "SMTP server port"
-msgstr "SMTP szerver port"
-
-msgid "Transport Security"
-msgstr "Átvitel biztonsága"
-
-msgid "Notification templates"
-msgstr "Értesítő sablonok"
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr "Füles e-mail sablon"
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "Hozzászólás e-mail sablon"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr "Fájl e-mail sablonja"
-
-msgid "Activation Email template"
-msgstr "E-mail sablon az aktiváláshoz"
-
-msgid "Contexts list"
-msgstr "Kontextusok listája"
-
-msgid "Delete"
-msgstr "Törlés"
-
-msgid "Receivers"
-msgstr "Fogadók"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Új kontextus hozzáadása"
-
-msgid "add"
-msgstr "hozzáadás"
 
 msgid "Content Settin"
 msgstr "Tartalom beállítása"

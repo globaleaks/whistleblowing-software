@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-25 17:31+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -157,14 +157,20 @@ msgstr "Strona Pozycja Rada"
 msgid "Files"
 msgstr "Plik"
 
-msgid "security check"
-msgstr "kontrola bezpieczeństwa"
+msgid "show only files not yet downloaded"
+msgstr ""
+
+msgid "show all the files"
+msgstr ""
 
 msgid "download"
-msgstr "pobierz"
+msgstr ""
 
-msgid "Security Check"
-msgstr "Kontrola Bezpieczeństwa"
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr ""
 
 msgid "Use the"
 msgstr "Używaj"
@@ -176,14 +182,9 @@ msgid "to verify the file integrity"
 msgstr "do weryfikacji integralności plików"
 
 msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "W systemach Unix można to zrobić, uruchamiając następujące polecenie"
-
-msgid "Still calculating hash"
-msgstr "Jestem wciąż obliczania hash"
-
-msgid "done"
-msgstr "Zrobione"
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr ""
 
 msgid "No file has been uploaded!"
 msgstr "No plik został wgrany!"
@@ -328,6 +329,84 @@ msgstr "Te dwa hasła nie są takie same"
 msgid "Save"
 msgstr "Oszczędzać"
 
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
+msgid "Password"
+msgstr "Hasło"
+
+msgid "SMTP server address"
+msgstr "Adres serwera SMTP"
+
+msgid "SMTP server port"
+msgstr "Port serwera SMTP"
+
+msgid "Transport Security"
+msgstr "Bezpieczeństwo transportu"
+
+msgid "Notification templates"
+msgstr ""
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr "Rada szablon Email"
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "Komentarz szablon Wyślij"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr ""
+
+msgid "Activation Email template"
+msgstr "Aktywacja Email szablon"
+
+msgid "Contexts list"
+msgstr "List Konteksty"
+
+msgid "Delete"
+msgstr "Usunąć"
+
+msgid "Receivers"
+msgstr "Odbiorniki"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Dodaj nowy kontekst"
+
+msgid "add"
+msgstr "Dodaj"
+
 msgid "General information"
 msgstr "Informacje ogólne"
 
@@ -410,84 +489,6 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
-
-msgid "Username"
-msgstr "Nazwa użytkownika"
-
-msgid "Password"
-msgstr "Hasło"
-
-msgid "SMTP server address"
-msgstr "Adres serwera SMTP"
-
-msgid "SMTP server port"
-msgstr "Port serwera SMTP"
-
-msgid "Transport Security"
-msgstr "Bezpieczeństwo transportu"
-
-msgid "Notification templates"
-msgstr ""
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr "Rada szablon Email"
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "Komentarz szablon Wyślij"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr ""
-
-msgid "Activation Email template"
-msgstr "Aktywacja Email szablon"
-
-msgid "Contexts list"
-msgstr "List Konteksty"
-
-msgid "Delete"
-msgstr "Usunąć"
-
-msgid "Receivers"
-msgstr "Odbiorniki"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Dodaj nowy kontekst"
-
-msgid "add"
-msgstr "Dodaj"
 
 msgid "Content Settin"
 msgstr "Zawartość Ustawień"

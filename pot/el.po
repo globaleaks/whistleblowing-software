@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-25 17:31+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -158,14 +158,20 @@ msgstr "Συμβουλή σελίδας κατάστασης"
 msgid "Files"
 msgstr "Αρχεια"
 
-msgid "security check"
-msgstr "Ελεγχος ασφάλειας"
+msgid "show only files not yet downloaded"
+msgstr ""
+
+msgid "show all the files"
+msgstr ""
 
 msgid "download"
-msgstr "λήψη"
+msgstr ""
 
-msgid "Security Check"
-msgstr "Ελεγχος ασφάλειας"
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr ""
 
 msgid "Use the"
 msgstr "Χρησιμοποιήστε το"
@@ -177,14 +183,9 @@ msgid "to verify the file integrity"
 msgstr "να επαληθεύσει την ακεραιότητα του αρχείου"
 
 msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "Σε Unix συστήματα αυτό μπορεί να γίνει εκτελώντας την ακόλουθη εντολή"
-
-msgid "Still calculating hash"
-msgstr "Υπολογισμός κατακερματισμού"
-
-msgid "done"
-msgstr "τελος"
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr ""
 
 msgid "No file has been uploaded!"
 msgstr "Κανένα αρχείο δεν έχει επαναφορτωθεί!"
@@ -329,6 +330,84 @@ msgstr "Οι δύο κωδικοί δεν ταιριάζουν"
 msgid "Save"
 msgstr "Αποθήκευση"
 
+msgid "Username"
+msgstr "Όνομα Χρήστη"
+
+msgid "Password"
+msgstr "Κωδικός"
+
+msgid "SMTP server address"
+msgstr "Διεύθυνση του διακομιστή SMTP"
+
+msgid "SMTP server port"
+msgstr "SMTP υποδοχη διακομιστη"
+
+msgid "Transport Security"
+msgstr "Ασφάλεια Μεταφορών"
+
+msgid "Notification templates"
+msgstr "Πρότυπα ειδοποίησης"
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr "Συμβουλή πρότυπο Email"
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "Σχόλιο πρότυπου Email"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr "Αρχείο πρότυπου Email"
+
+msgid "Activation Email template"
+msgstr "Ενεργοποίηση του πρότυπου Email"
+
+msgid "Contexts list"
+msgstr "Λιστα πλαισιων"
+
+msgid "Delete"
+msgstr "Διαγραφή"
+
+msgid "Receivers"
+msgstr "Δέκτες"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Προσθήκη νέου πλαισίου"
+
+msgid "add"
+msgstr "προσθηκη"
+
 msgid "General information"
 msgstr "Γενικές πληροφορίες"
 
@@ -411,84 +490,6 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
-
-msgid "Username"
-msgstr "Όνομα Χρήστη"
-
-msgid "Password"
-msgstr "Κωδικός"
-
-msgid "SMTP server address"
-msgstr "Διεύθυνση του διακομιστή SMTP"
-
-msgid "SMTP server port"
-msgstr "SMTP υποδοχη διακομιστη"
-
-msgid "Transport Security"
-msgstr "Ασφάλεια Μεταφορών"
-
-msgid "Notification templates"
-msgstr "Πρότυπα ειδοποίησης"
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr "Συμβουλή πρότυπο Email"
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "Σχόλιο πρότυπου Email"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr "Αρχείο πρότυπου Email"
-
-msgid "Activation Email template"
-msgstr "Ενεργοποίηση του πρότυπου Email"
-
-msgid "Contexts list"
-msgstr "Λιστα πλαισιων"
-
-msgid "Delete"
-msgstr "Διαγραφή"
-
-msgid "Receivers"
-msgstr "Δέκτες"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Προσθήκη νέου πλαισίου"
-
-msgid "add"
-msgstr "προσθηκη"
 
 msgid "Content Settin"
 msgstr "Περιεχόμενο Settin"
