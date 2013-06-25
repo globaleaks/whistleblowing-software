@@ -232,6 +232,14 @@ def seconds_convert(value, conversion_factor, min=0, max=0):
 
     return seconds
 
+def iso2dateobj(str) :
+    try:
+        ret = datetime.strptime(str, "%Y-%m-%dT%H:%M:%S")
+    except ValueError :
+        ret = datetime.strptime(str, "%Y-%m-%dT%H:%M:%S.%f")
+        ret.replace(microsecond=0)
+    return ret
+
 ## Mail utilities ##
 
 def sendmail(authentication_username, authentication_password, from_address,
