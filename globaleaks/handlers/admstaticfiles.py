@@ -14,7 +14,6 @@ import re
 
 from twisted.internet import fdesc
 from cyclone.web import os
-from PIL import Image
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import GLSetting, transact
@@ -118,19 +117,32 @@ def import_node_logo(filedesc):
     """
     @param filedesc: a dict with 'filename', 'content_type' and 'size' keys
 
-    This function, using the Python Image Library, resize the uploaded file to 140x140
-    and rename them with a reserved name "globaleaks_logo.png"
+    This function, just move the received file to globaleaks_logo.png
+    At the moment do not check content-type validity nor perform resize.
+
+    This change has been introduced for the tickets:
+    https://github.com/globaleaks/GlobaLeaks/issues/246
+    https://github.com/globaleaks/GlobaLeaks/issues/146
+    https://github.com/globaleaks/GlobaLeaks/issues/247
+
+    TODO, introduce a check that verify file is an Image ?
+    https://github.com/globaleaks/GlobaLeaks/issues/298
+    still we need a library to assign the right content-type
+
     """
-    img140 = Image.open(filedesc['_gl_file_path'])
-    img140.thumbnail((140, 140), Image.ANTIALIAS)
-
     logopath = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_nodelogo_name)
-    if os.path.isfile(logopath):
-        os.unlink(logopath)
-    img140.save(logopath, "PNG")
 
-    log.debug("saved resized 140x140 PNG file: removing original file %s" % filedesc['filename'])
-    os.unlink(filedesc['_gl_file_path'])
+    try:
+        if os.path.isfile(logopath):
+            os.unlink(logopath)
+
+        os.rename(filedesc['_gl_file_path'], logopath)
+    except Exception as excep:
+        log.err("OS Error in moving received file to be node logo! %s" % excep.message)
+        raise excep
+
+    log.debug("Moved received file %s [%d bytes] with path: %s " %
+              (filedesc['filename'], filedesc['size'], logopath) )
 
 
 @transact
@@ -138,35 +150,33 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
     """
     @param filedesc: a dict with 'filename', 'content_type' and 'size' keys
 
-    This function, using the Python Image Library, resize the uploaded file to 120x120
-    and 40x40, generating the Receiver thumbnails. Use a reserved name of
-    $UUID_120.png and $UUID_40.png
+    This function, just move the received file to $UUID.png
+    At the moment do not check content-type validity nor perform resize.
+
+    This change has been introduced for the tickets:
+    https://github.com/globaleaks/GlobaLeaks/issues/246
+    https://github.com/globaleaks/GlobaLeaks/issues/146
+    https://github.com/globaleaks/GlobaLeaks/issues/247
+
     """
     receiver = store.find(Receiver, Receiver.id == unicode(receiver_uuid)).one()
     if not receiver:
         raise errors.ReceiverGusNotFound
 
+    receiver_pic = os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
+
     try:
-        img120 = Image.open(filedesc['_gl_file_path'])
-        img120.thumbnail((120, 120), Image.ANTIALIAS)
-    except IOError as excep:
-        log.err("Unable to resize image: %s" % excep.message)
-        raise errors.InternalServerError("PIL module: %s" % excep.message)
+        if os.path.isfile(receiver_pic):
+            os.unlink(receiver_pic)
 
-    output120_path = os.path.join(GLSetting.static_path, "%s_120.png" % receiver_uuid)
-    if os.path.isfile(output120_path):
-        os.unlink(output120_path)
-    img120.save(os.path.join(GLSetting.static_path, output120_path), "PNG")
+        os.rename(filedesc['_gl_file_path'], receiver_pic)
+    except Exception as excep:
+        log.err("OS Error in moving received file to be receiver portrait! %s" % excep.message)
+        raise excep
 
-    img40 = Image.open(filedesc['_gl_file_path'])
-    img40.thumbnail((40, 40), Image.ANTIALIAS)
-    output40_path = os.path.join(GLSetting.static_path, "%s_40.png" % receiver_uuid)
-    if os.path.isfile(output40_path):
-        os.unlink(output40_path)
-    img40.save(os.path.join(GLSetting.static_path, output40_path), "PNG")
+    log.debug("Moved received file %s [%d bytes] for user %s with path: %s " %
+              (filedesc['filename'], filedesc['size'], receiver.username, receiver_pic) )
 
-    log.debug("saved resized 120x120 and 40x40 PNG file: removing original file %s" % filedesc['filename'])
-    os.unlink(filedesc['_gl_file_path'])
     return receiver.name
 
 
