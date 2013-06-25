@@ -42,10 +42,11 @@ def authenticated(role):
                     copy_lifetime = GLSetting.defaults.lifetimes[cls.current_user.role]
                     del GLSetting.sessions[cls.current_user.id]
 
-                    log.debug("Authentication Expired (%s) %s" % (copy_role, copy_lifetime))
+                    log.debug("Authentication Expired (%s) %s on %s" % 
+                            (copy_role, copy_lifetime, method_handler))
                     raise errors.SessionExpired(copy_lifetime, copy_role)
 
-                log.debug("Authentication OK (%s)" % role )
+                log.debug("Authentication OK (%s) on %s" % (role, method_handler) )
                 # timestamp it's no more used in fact, but I'll keep for stats in testing env
                 GLSetting.sessions[cls.current_user.id].timestamp = time.time()
                 return method_handler(cls, *args, **kwargs)
@@ -123,13 +124,13 @@ def login_wb(store, receipt):
     except NotOneError, e:
         # This is one of the fatal error that never need to happen
         log.err("Expected unique fields (receipt) not unique when hashed %s" % receipt)
-        raise errors.InvalidAuthRequest
+        return False
 
     if not wb_tip:
-        log.debug("Whistleblower: Fail auth")
-        raise errors.InvalidAuthRequest
+        log.debug("Whistleblower: Invalid receipt")
+        return False
 
-    log.debug("Whistleblower: login OK")
+    log.debug("Whistleblower: Valid receipt")
     wb_tip.last_access = utils.datetime_now()
     return unicode(wb_tip.id)
 
@@ -147,7 +148,7 @@ def login_receiver(store, username, password):
     if not receiver:
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
         security.insert_random_delay()
-        return None
+        return False
 
     if not security.check_password(password, receiver.password, receiver.username):
         security.insert_random_delay()
@@ -167,7 +168,7 @@ def login_receiver(store, username, password):
     if accept_credential:
         return unicode(receiver.id)
     else:
-        return None
+        return False
 
 
 @transact
@@ -175,10 +176,10 @@ def login_admin(store, password):
     node = store.find(Node).one()
 
     if not security.check_password(password, node.password, node.salt):
-        log.debug("Admin: Fail auth")
+        log.debug("Admin login: Invalid password")
         return False
     else:
-        log.debug("Admin: OK auth")
+        log.debug("Admin login: Valid password")
         return 'admin'
 
 
