@@ -4,8 +4,7 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
-import os
-from PIL import Image, ImageDraw
+import os, shutil
 from random import randint
 
 from globaleaks.settings import transact, GLSetting
@@ -385,25 +384,18 @@ def get_receiver_list(store):
 
 def create_random_receiver_portrait(receiver_uuid):
     """
-    Create a simple random gradient image, useful to recognize
-    different Receivers by eye, until they do not change a portrait
+    By default take a picture and put in the receiver face,
+    we've choose Vittorio Arrigoni portrait, as reference for all the
+    nameless journalists around the world, that want spread the truth.
     """
-    img = Image.new("RGB", (300,300), "#FFFFFF")
-    draw = ImageDraw.Draw(img)
-
-    r,g,b = randint(0,255), randint(0,255), randint(0,255)
-    dr = (randint(0,255) - r)/300.
-    dg = (randint(0,255) - g)/300.
-    db = (randint(0,255) - b)/300.
-    for i in range(300):
-        r,g,b = r+dr, g+dg, b+db
-        draw.line((i,0,i,300), fill=(int(r),int(g),int(b)))
-
-    img.thumbnail((120, 120), Image.ANTIALIAS)
-    img.save(os.path.join(GLSetting.static_path, "%s_120.png" % receiver_uuid),"PNG")
-    img.thumbnail((40, 40), Image.ANTIALIAS)
-    img.save(os.path.join(GLSetting.static_path, "%s_40.png" % receiver_uuid),"PNG")
-    # perhaps think that we do not want OS operations during a receiver creation operations ?
+    try:
+        shutil.copy(
+            os.path.join(GLSetting.static_source, "vittorio_arrigoni_tribute.jpeg"),
+            os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
+        )
+    except Exception as excep:
+        log.err("Unable to copy default receiver portrait in a new receiver! %s" % excep.message)
+        raise excep
 
 
 @transact
@@ -455,6 +447,7 @@ def create_receiver(store, request):
         context.receivers.add(receiver)
 
     return admin_serialize_receiver(receiver)
+
 
 @transact
 def get_receiver(store, id):

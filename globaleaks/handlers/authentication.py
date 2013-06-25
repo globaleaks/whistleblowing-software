@@ -42,11 +42,10 @@ def authenticated(role):
                     copy_lifetime = GLSetting.defaults.lifetimes[cls.current_user.role]
                     del GLSetting.sessions[cls.current_user.id]
 
-                    log.debug("Authentication Expired (%s) %s on %s" % 
-                            (copy_role, copy_lifetime, method_handler))
+                    log.debug("Authentication Expired (%s) %s seconds" % (copy_role, copy_lifetime))
                     raise errors.SessionExpired(copy_lifetime, copy_role)
 
-                log.debug("Authentication OK (%s) on %s" % (role, method_handler) )
+                log.debug("Authentication OK (%s)" % role )
                 # timestamp it's no more used in fact, but I'll keep for stats in testing env
                 GLSetting.sessions[cls.current_user.id].timestamp = time.time()
                 return method_handler(cls, *args, **kwargs)
