@@ -88,8 +88,7 @@
           <div class="span6 submissionDetails" ng-include="Templates.submission.form"></div>
 
           <div file-upload action="/submission/{{submission.current_submission.submission_gus}}/file"
-               uploaded-files="uploadedFiles" uploading-files="uploadingFiles"
-               maximum-filesize="maximumFilesize"></div>
+               file-uploader="fileUploader" maximum-filesize="maximumFilesize"></div>
 
         </div>
 

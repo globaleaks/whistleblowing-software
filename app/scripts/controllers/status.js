@@ -7,8 +7,9 @@ GLClient.controller('StatusCtrl',
 
     new Tip(TipID, function(tip){
       $scope.tip = tip;
-      $rootScope.uploadedFiles = [];
-      $rootScope.uploadingFiles = [];
+      $rootScope.fileUploader = {};
+      $rootScope.fileUploader.uploadedFiles = [];
+      $rootScope.fileUploader.uploadingFiles = [];
     });
 
     $scope.newComment = function() {
