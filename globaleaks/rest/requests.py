@@ -37,6 +37,8 @@ receiverReceiverDesc = {
     "comment_notification": bool,
     "file_notification": bool,
     "tip_notification": bool,
+    # remind:
+    # notification language, and a default need to be provided
 }
 
 actorsCommentDesc = {
@@ -57,6 +59,8 @@ adminNodeDesc = {
     'email' : unicode,
     'password' : unicode,
     'old_password' : unicode,
+    'languages_enabled': [ unicode ],
+    'languages_supported': list, # ignored
     'maximum_namesize': int,
     'maximum_descsize': int,
     'maximum_textsize': int,
@@ -75,6 +79,7 @@ adminNotificationDesc = {
     'security': unicode, # 'TLS' or 'SSL' only
     'username': unicode,
     'password': unicode,
+    # all these would become dict
     'tip_template': unicode,
     'tip_mail_title': unicode,
     'comment_template': unicode,

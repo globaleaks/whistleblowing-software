@@ -12,6 +12,7 @@ from globaleaks.settings import transact, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
 from globaleaks.security import hash_password, get_salt
+from globaleaks import DATABASE_VERSION, LANGUAGES_SUPPORTED
 
 
 @transact
@@ -23,12 +24,13 @@ def initialize_node(store, results, only_node, email_templates):
     """
     node = models.Node(only_node)
 
-    # This is hardcoded here, at the moment
-    node.database_version = 1
+    # Increment this value every time sqlite.sql change, and develop
+    # a migration script.
+    node.database_version = DATABASE_VERSION
 
-    # Add here by hand the languages supported!
-    node.languages =  [{ "code" : "it" , "name": "Italiano"},
-                       { "code" : "en" , "name" : "English" }]
+    node.languages_supported = LANGUAGES_SUPPORTED
+    # by default, only english is the surely present language
+    node.languages_enabled = [ 'en' ]
 
     # Salt for admin password is a safe random string different in every Node.
     node.salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))

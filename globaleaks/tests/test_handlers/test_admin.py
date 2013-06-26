@@ -6,7 +6,7 @@ from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.handlers import admin
 from globaleaks.settings import transact
-from globaleaks.utils import log
+from globaleaks import __version__
 
 # special guest:
 from globaleaks.models import Notification
@@ -14,9 +14,12 @@ from globaleaks.models import Notification
 class TestNodeInstance(helpers.TestHandler):
     _handler = admin.NodeInstance
 
+    @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        return handler.get()
+        yield handler.get()
+
+        self.assertTrue(self.responses[0]['version'], __version__)
 
     @inlineCallbacks
     def test_put_update_node(self):
@@ -26,15 +29,36 @@ class TestNodeInstance(helpers.TestHandler):
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
 
-        self.dummyNode['creation_date'] = self.responses[0]['creation_date']
-        self.dummyNode['last_update'] = self.responses[0]['last_update']
+        # These values are not returned
         del self.dummyNode['password']
         del self.dummyNode['old_password']
         del self.dummyNode['salt']
         del self.dummyNode['salt_receipt']
+
+        self.assertTrue(self.responses[0]['version'], __version__)
         del self.responses[0]['version']
 
+        # these values can't be set by GLC
+        self.dummyNode['languages_supported'] = self.responses[0]['languages_supported']
+        self.dummyNode['creation_date'] = self.responses[0]['creation_date']
+        self.dummyNode['last_update'] = self.responses[0]['last_update']
+
         self.assertEqual(self.responses[0], self.dummyNode)
+
+    @inlineCallbacks
+    def test_put_update_node_invalid_lang(self):
+        self.dummyNode['languages_enabled'] = ["en", "shit" ]
+
+        handler = self.request(self.dummyNode, role='admin')
+        try:
+            yield handler.put()
+            self.assertTrue(False)
+        except InvalidInputFormat as excep:
+            self.assertSubstring("Invalid lang code: shit", excep.reason)
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            self.assertFalse(True)
+
 
     @inlineCallbacks
     def test_put_update_node_invalid_hidden(self):
@@ -82,7 +106,6 @@ class TestNotificationInstance(helpers.TestHandler):
         # It's the only NOT NULL variable with CHECK
         notification.security = Notification._security_types[0]
         store.add(notification)
-
 
     @inlineCallbacks
     def test_update_notification(self):

@@ -32,8 +32,8 @@ class Replacer01(TableReplacer):
 
     def migrate_Receiver(self):
 
-        print "Receivers migration assistant, extension with GPG capabilities: #%d" %\
-              self.store_old.find(Receiver_version_0).count()
+        print "%s Receivers migration assistant, extension with GPG capabilities: #%d" % (
+              self.std_fancy, self.store_old.find(Receiver_version_0).count() )
 
         old_receivers = self.store_old.find(Receiver_version_0)
 
