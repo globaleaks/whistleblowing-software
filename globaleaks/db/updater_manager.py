@@ -15,9 +15,11 @@ def perform_version_update(starting_ver, ending_ver, start_path):
     assert starting_ver < ending_ver
 
     from globaleaks.db.update_0_1 import Replacer01
+    from globaleaks.db.update_1_2 import Replacer12
 
-    releases_supported= {
+    releases_supported = {
         "01" : Replacer01,
+        "12" : Replacer12
     }
 
     aimed_version = 0
@@ -34,22 +36,33 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             backup_file = os.path.abspath(os.path.join(
                 GLSetting.gldb_path, 'old_glbackend-%d.db' % starting_ver))
 
-        aimed_version = starting_ver + 1
-        new_db_file = os.path.abspath(os.path.join(GLSetting.gldb_path, 'glbackend-%d.db' % aimed_version))
-        print "Updating DB from version %d to version %d" % (starting_ver, aimed_version)
-        update_key = "%d%d" % (starting_ver, aimed_version)
+        new_db_file = os.path.abspath(os.path.join(GLSetting.gldb_path, 'glbackend-%d.db' % (starting_ver +1)))
+        print "  Updating DB from version %d to version %d" % (starting_ver, starting_ver +1)
 
+        update_key = "%d%d" % (starting_ver, starting_ver + 1)
         if not releases_supported.has_key(update_key):
             raise NotImplementedError
 
-        updater_code = releases_supported[update_key](old_db_file, new_db_file)
+        try:
+            updater_code = releases_supported[update_key](old_db_file, new_db_file, starting_ver)
+        except Exception as excep:
+            print excep.message
+            raise excep
 
-        updater_code.initialize()
+        try:
+            updater_code.initialize()
+        except Exception as excep:
+            print excep.message
+            raise excep
 
         for model_name in orm_classes_list:
             migrate_function = 'migrate_%s' % model_name.__name__
-            print "version %s - single method: is calling %s" % (update_key, migrate_function)
-            getattr(updater_code, migrate_function)()
+            function_pointer = getattr(updater_code, migrate_function)
+            try:
+                function_pointer()
+            except Exception as excep:
+                print excep.message
+                raise excep
 
         updater_code.epilogue()
         updater_code.close()
@@ -57,18 +70,13 @@ def perform_version_update(starting_ver, ending_ver, start_path):
         starting_ver += 1
 
         if os.path.isfile(backup_file):
-            print "previous backup file found: %s (removed)"
             try:
                 os.unlink(backup_file)
             except Exception as excep:
-                print "Error in unlink: %s" % excep.message
+                print "Error in unlink and old version backup files: %s" % excep.message
                 raise excep
 
-        backup_file = os.path.abspath(os.path.join(
-            GLSetting.gldb_path, 'old_glbackend-%d.db' % starting_ver))
         os.rename(old_db_file, backup_file)
 
-    print "Latest db version used in: %s" % aimed_version
-    print "Goal: %s" % GLSetting.file_versioned_db
 
 

@@ -11,12 +11,16 @@ class TableReplacer:
     This is the base class used by every Updater
     """
 
-    def __init__(self, old_db_file, new_db_file):
+    def __init__(self, old_db_file, new_db_file, start_ver):
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
+        self.start_ver = start_ver
 
-        print "Opening old version DB: %s" % old_db_file
+        self.std_fancy = " + "
+        self.debug_info = "   [%d => %d ]" %  (start_ver, start_ver + 1)
+
+        print "%s Opening old version DB: %s" % (self.debug_info, old_db_file)
         old_database = create_database("sqlite:%s" % self.old_db_file)
         self.store_old = Store(old_database)
 
@@ -28,10 +32,15 @@ class TableReplacer:
         with open(GLSetting.db_schema_file) as f:
             create_queries = ''.join(f.readlines()).split(';')
             for create_query in create_queries:
+
+                intermediate_sql = self.get_right_sql_version(create_query)
+                if intermediate_sql:
+                    create_query = intermediate_sql
+
                 try:
                     self.store_new.execute(create_query+';')
                 except OperationalError as excep:
-                    print "OperationalError in [%s]" % create_query
+                    print "%s OperationalError in [%s]" % (self.debug_info, create_query)
                     raise excep
 
         self.store_new.commit()
@@ -41,14 +50,45 @@ class TableReplacer:
         self.store_new.close()
 
     def initialize(self):
-        print "Initialized method, not implemented"
+        pass
 
     def epilogue(self):
-        print "Epilogue method, not implemented"
+        pass
+
+    ## ------------------------------------------------
+    ## WARNING -this shit require almost a wiki page :D
+    def get_right_model_version(self, table_name):
+        """
+        I'm sad of this piece of code, but having an ORM that need the
+        intermediate version of the Models, bring this
+        """
+        if table_name == "Node" and self.start_ver == 0:
+            from globaleaks.db.update_1_2 import Node_version_1
+            return Node_version_1
+        else:
+            raise NotImplementedError
+
+    ## ------------------------------------------------
+    ## WARNING -this shit require almost a wiki page :D
+
+    def get_right_sql_version(self, query):
+        if query.startswith('\n\nCREATE TABLE node') and self.start_ver == 0:
+            return 'CREATE TABLE node (database_version INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
+                'description VARCHAR NOT NULL,email VARCHAR NOT NULL,hidden_service VARCHAR NOT NULL,id VARCHAR NOT NULL,'\
+                'languages BLOB NOT NULL, name VARCHAR NOT NULL, password VARCHAR NOT NULL, salt VARCHAR NOT NULL,'\
+                'receipt_salt VARCHAR NOT NULL,public_site VARCHAR NOT NULL,stats_update_time INTEGER NOT NULL,'\
+                'last_update VARCHAR,maximum_namesize INTEGER NOT NULL,maximum_descsize INTEGER NOT NULL,'\
+                'maximum_textsize INTEGER NOT NULL,maximum_filesize INTEGER NOT NULL,tor2web_admin INTEGER NOT NULL,'\
+                'tor2web_submission INTEGER NOT NULL,tor2web_tip INTEGER NOT NULL,tor2web_receiver INTEGER NOT NULL,'\
+                'tor2web_unauth INTEGER NOT NULL,exception_email VARCHAR NOT NULL,PRIMARY KEY (id)\n)'
+        return False
+    ## ------------------------------------------------
+    ## Here end the shit that require almost a wiki page
+
 
     def migrate_Context(self):
-        print "default Context migration assistant: #%d" % \
-              self.store_old.find(models.Context).count()
+        print "%s default Context migration assistant: #%d" % (
+            self.debug_info, self.store_old.find(models.Context).count())
 
         old_contexts = self.store_old.find(models.Context)
 
@@ -85,10 +125,10 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_Node(self):
-        print "default Node migration assistant"
+        print "%s default Node migration assistant" % self.debug_info
 
-        new_obj = models.Node()
-        on = self.store_old.find(models.Node).one()
+        new_obj = self.get_right_model_version("Node")()
+        on = self.store_old.find(self.get_right_model_version("Node")).one()
 
         new_obj.description = on.description
         new_obj.name = on.name
@@ -125,8 +165,8 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_ReceiverTip(self):
-        print "default ReceiverTip migration assistant: #%d" %\
-              self.store_old.find(models.ReceiverTip).count()
+        print "%s default ReceiverTip migration assistant: #%d" % (
+              self.debug_info, self.store_old.find(models.ReceiverTip).count() )
 
         old_receivertips = self.store_old.find(models.ReceiverTip)
 
@@ -148,8 +188,8 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_WhistleblowerTip(self):
-        print "default WhistleblowerTip migration assistant: #%d" %\
-              self.store_old.find(models.WhistleblowerTip).count()
+        print "%s default WhistleblowerTip migration assistant: #%d" % (
+              self.debug_info, self.store_old.find(models.WhistleblowerTip).count())
 
         old_wbtips = self.store_old.find(models.WhistleblowerTip)
 
@@ -171,8 +211,8 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_Comment(self):
-        print "default Comments migration assistant: #%d" %\
-            self.store_old.find(models.Comment).count()
+        print "%s default Comments migration assistant: #%d" % (
+            self.debug_info, self.store_old.find(models.Comment).count())
 
         old_comments = self.store_old.find(models.Comment)
 
@@ -192,8 +232,8 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_InternalTip(self):
-        print "default InternalTips migration assistant: #%d" %\
-            self.store_old.find(models.InternalTip).count()
+        print "%s default InternalTips migration assistant: #%d" % (
+            self.debug_info, self.store_old.find(models.InternalTip).count())
 
         old_itips = self.store_old.find(models.InternalTip)
 
@@ -220,8 +260,8 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_Receiver(self):
-        print "default Receivers migration assistant: #%d" %\
-            self.store_old.find(models.Receiver).count()
+        print "%s default Receivers migration assistant: #%d" % (
+            self.debug_info, self.store_old.find(models.Receiver).count())
 
         old_receivers = self.store_old.find(models.Receiver)
 
@@ -260,8 +300,8 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_InternalFile(self):
-        print "default InternalFiles migration assistant: #%d" %\
-            self.store_old.find(models.InternalFile).count()
+        print "%s default InternalFiles migration assistant: #%d" % (
+            self.debug_info, self.store_old.find(models.InternalFile).count() )
 
         old_internalfiles = self.store_old.find(models.InternalFile)
 
@@ -284,8 +324,8 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_ReceiverFile(self):
-        print "default ReceiverFile migration assistant: #%d" %\
-            self.store_old.find(models.ReceiverFile).count()
+        print "%s default ReceiverFile migration assistant: #%d" % (
+            self.debug_info, self.store_old.find(models.ReceiverFile).count() )
 
         old_receiverfiles = self.store_old.find(models.ReceiverFile)
 
@@ -309,7 +349,7 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_Notification(self):
-        print "default Notificationb migration assistant"
+        print "%s default Notificationb migration assistant" % self.debug_info
 
         on = self.store_old.find(models.Notification).one()
 
@@ -335,8 +375,8 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_ReceiverContext(self):
-        print "Migrate ReceiverContext reference tables: #%d" %\
-            self.store_old.find(models.ReceiverContext).count()
+        print "%s Migrate ReceiverContext reference tables: #%d" % (
+            self.debug_info, self.store_old.find(models.ReceiverContext).count() )
 
         rc_relship = self.store_old.find(models.ReceiverContext)
 
@@ -348,8 +388,8 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_ReceiverInternalTip(self):
-        print "Migrate ReceiverInternalTip reference tables: #%d" %\
-              self.store_old.find(models.ReceiverInternalTip).count()
+        print "%s Migrate ReceiverInternalTip reference tables: #%d" % (
+            self.debug_info, self.store_old.find(models.ReceiverInternalTip).count() )
 
         ri_relship = self.store_old.find(models.ReceiverInternalTip)
 

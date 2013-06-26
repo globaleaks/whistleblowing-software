@@ -177,13 +177,13 @@ class BaseHandler(RequestHandler):
         jmessage = valid_jmessage
         del valid_jmessage
 
-        if not all(BaseHandler.validate_type(jmessage[key], value) for key, value in
-                    message_template.iteritems()):
-            raise errors.InvalidInputFormat('wrong content 1')
+        for key, value in message_template.iteritems():
+            if not BaseHandler.validate_type(jmessage[key], value):
+                raise errors.InvalidInputFormat("REST integrity check 1, fail in %s" % key)
 
-        if not all(BaseHandler.validate_type(value, message_template[key]) for key, value in
-                   jmessage.iteritems()):
-            raise errors.InvalidInputFormat('wrong content 2')
+        for key, value in jmessage.iteritems():
+            if not BaseHandler.validate_type(value, message_template[key]):
+                raise errors.InvalidInputFormat("REST integrity check 2, fail in %s" % key)
 
         return True
 

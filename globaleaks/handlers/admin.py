@@ -5,7 +5,6 @@
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
 import os, shutil
-from random import randint
 
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
@@ -18,6 +17,7 @@ from globaleaks import utils, security
 from globaleaks.utils import log
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_manage
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 
 def admin_serialize_node(node):
     response = {
@@ -30,8 +30,8 @@ def admin_serialize_node(node):
         "stats_update_time": node.stats_update_time,
         "email": node.email,
         "version": GLSetting.version_string,
-        "languages": list(node.languages) if node.languages else [],
-        # extended settings info:
+        "languages_supported": node.languages_supported,
+        "languages_enabled": node.languages_enabled,
         'maximum_filesize': node.maximum_filesize,
         'maximum_namesize': node.maximum_namesize,
         'maximum_descsize': node.maximum_descsize,
@@ -61,7 +61,6 @@ def admin_serialize_context(context):
         "escalation_threshold": context.escalation_threshold,
         "fields": context.fields if context.fields else [],
         "receivers": [],
-        # extended settings info:
         "receipt_regexp": context.receipt_regexp,
         "receipt_description": context.receipt_description,
         "submission_introduction": context.submission_introduction,
@@ -141,6 +140,14 @@ def update_node(store, request):
         if not utils.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
             log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
             raise errors.InvalidInputFormat("Invalid hidden service")
+
+    # verify that the languages enabled are valid 'code' in the languages supported
+    node.languages_enabled = []
+    for lang_code in request['languages_enabled']:
+        if lang_code in LANGUAGES_SUPPORTED_CODES:
+            node.languages_enabled.append(lang_code)
+        else:
+            raise errors.InvalidInputFormat("Invalid lang code: %s" % lang_code)
 
     # name, description tor2web boolean value are acquired here
     node.update(request)
@@ -256,13 +263,13 @@ def create_context(store, request):
 
     # tip_timetolive and submission_timetolive need to be converted in seconds
     try:
-        context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
+        context.tip_timetolive = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
         raise errors.TimeToLiveInvalid("Submission", excep.message)
 
     try:
-        context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
+        context.submission_timetolive = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Submission: %s" % excep.message)
         raise errors.TimeToLiveInvalid("Tip", excep.message)

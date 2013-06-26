@@ -269,8 +269,8 @@ class MockDict():
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dumnmy.net",
             'stats_update_time':  2, # hours,
-            'languages':  [{ "code" : "it" , "name": "Italiano"},
-                           { "code" : "en" , "name" : "English" }],
+            'languages_supported':  [ ], # It's ignored, but expect a list
+            'languages_enabled':  [ "it" , "en" ],
             'password' : '',
             'old_password' : '',
             'salt': 'OMG!, the Rains of Castamere ;( ;(',
