@@ -57,7 +57,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     }
   }, true);
 
-  $scope.$watch('fileUploader.uploadingFiles', function(){
+  $scope.$watch('fileUploader', function(){
 
     if ($scope.fileUploader.uploadingFiles.length === 0)
       $scope.uploading = false;

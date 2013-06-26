@@ -126,7 +126,6 @@ angular.module('submissionUI', []).
 
         function progressMeter(e, data) {
           var progress_percent = parseInt(data.loaded / data.total * 100, 10);
-          $rootScope.fileUploader.cancelAll();
           $(element[0]).find('.progress .bar').css('width', progress_percent + '%');
         };
 
@@ -148,7 +147,8 @@ angular.module('submissionUI', []).
         });
 
         $rootScope.fileUploader.cancelAll = function() {
-          $.each($rootScope.fileUploader.uploadingFiles, function(fileInfo) {
+          $.each($rootScope.fileUploader.uploadingFiles, function(idx, fileInfo) {
+            console.log(fileInfo);
             fileInfo.abort();
           });
 
