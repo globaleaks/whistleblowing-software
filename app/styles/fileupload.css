@@ -25,3 +25,12 @@
 .progressMeter {
   margin-top: 20px;
 }
+
+.fade.in .uploading-files {
+  height: auto;
+}
+
+.fade .uploading-files {
+  height: 0px;
+}
+

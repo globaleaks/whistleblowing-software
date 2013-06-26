@@ -23,15 +23,17 @@
               <div class="bar" style="width:0%;"></div>
           </div>
         </div>
-        <h4>Uploading files</h4>
-        <button ng-click="fileUploader.cancelAll()">Cancel all</button>
-        <table role="presentation" class="table table-striped">
-          <tbody class="uploading-files-list">
-            <tr ng-repeat="file in fileUploader.uploadingFiles">
-              <td>{{file.name}}</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="row span6 uploading-files">
+          <h4>Uploading files</h4>
+          <table role="presentation" class="table table-striped">
+            <tbody class="uploading-files-list">
+              <tr ng-repeat="file in fileUploader.uploadingFiles">
+                <td>{{file.name}}</td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn btn-warning" ng-click="fileUploader.cancelAll()"><i class="icon-remove icon-white"></i> Cancel all</button>
+        </div>
       </div>
 
       <h4>Uploaded files</h4>
