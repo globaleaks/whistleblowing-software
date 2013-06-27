@@ -97,14 +97,14 @@
                       <div ng-repeat="context in admin.contexts">
                         <li class="selectionContextItem" ng-click="toggle(context)">
                           <div class="checkbox" ng-show="isSelected(context)"><span>&#10004;</span></div>
-                          <span>{{context.name}}</span> <p>{{context.description}}</p>
+                          <span>{{context.name[selected_language]}}</span> <p>{{context.description[selected_language]}}</p>
                         </li>
                       </div>
                     </ul>
                   </div>
 
                   <label>{{ "Description" | translate }}</label>
-                  <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
+                  <textarea ng-model="receiver.description[selected_language]">{{receiver.description[selected_language]}}</textarea>
 
                 </div>
 

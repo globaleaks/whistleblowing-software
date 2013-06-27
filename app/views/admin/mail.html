@@ -71,26 +71,26 @@
                 <h3>{{ "Notification templates" | translate }}</h3>
 
                 <label>{{ "Tip Email Subject" | translate }}</label>
-                <input type="text" ng-model="admin.notification.tip_mail_title" class="input-xlarge" />
+                <input type="text" ng-model="admin.notification.tip_mail_title[selected_language]" class="input-xlarge" />
 
                 <label>{{ "Tip Email template" | translate }}</label>
-                <textarea class="mobileTextArea" ng-model="admin.notification.tip_template"></textarea>
+                <textarea class="mobileTextArea" ng-model="admin.notification.tip_template[selected_language]"></textarea>
 
                 <label>{{ "Comment Email Subject" | translate }}</label>
-                <input type="text" ng-model="admin.notification.comment_mail_title" class="input-xlarge" />
+                <input type="text" ng-model="admin.notification.comment_mail_title[selected_language]" class="input-xlarge" />
 
                 <label>{{ "Comment Email template" | translate }}</label>
-                <textarea class="mobileTextArea" ng-model="admin.notification.comment_template"></textarea>
+                <textarea class="mobileTextArea" ng-model="admin.notification.comment_template[selected_language]"></textarea>
 
                 <label>{{ "File Email Subject" | translate }}</label>
-                <input type="text" ng-model="admin.notification.file_mail_title" class="input-xlarge"/>
+                <input type="text" ng-model="admin.notification.file_mail_title[selected_language]" class="input-xlarge"/>
 
                 <label>{{ "File Email template" | translate }}</label>
-                <textarea class="mobileTextArea" ng-model="admin.notification.file_template"></textarea>
+                <textarea class="mobileTextArea" ng-model="admin.notification.file_template[selected_language]"></textarea>
 
                 <!--
                 <label>{{ "Activation Email template" | translate }}</label>
-                <textarea class="mobileTextArea" ng-model="admin.notification.activation_template"></textarea>
+                <textarea class="mobileTextArea" ng-model="admin.notification.activation_template[selected_language]"></textarea>
                 -->
               </div>
 
@@ -111,5 +111,3 @@
     </div>
   </div>
 </div>
-
-
