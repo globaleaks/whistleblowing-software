@@ -48,7 +48,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         'old_password': "",
         'username' : "irrelevant",
         'notification_fields' : {'mail_address': 'am_i_ignored_or_not@email.xxx'},
-        'description' : "A new description",
+        'description' : { "en" : "A new description" },
         "comment_notification": True,
         "file_notification": True,
         "tip_notification": False,
@@ -93,19 +93,19 @@ class TestReceiverSetKey(helpers.TestHandler):
 
         mail_support = MailNotification()
 
-        dummy_template = "In %EventTime% you've got a crush for Taryn Southern, yay!!"\
-                            "more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY "\
-                            "and know that you're not alone!"
+        dummy_template = { "en" : "In %EventTime% you've got a crush for Taryn Southern, yay!!"
+                            "more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY "
+                            "and know that you're not alone!" }
 
         mock_event = Event(type=u'tip', trigger='Tip',
-                    notification_settings= dummy_template,
-                    trigger_info={'creation_date': '2013-05-13T17:49:26.105485', 'id': 'useless' },
-                    node_info=MockDict().dummyNode,
-                    receiver_info=self.receiver_desc,
-                    context_info={'name': 'all our bases belong to you' },
-                    plugin=MailNotification()  )
+                    notification_settings = dummy_template,
+                    trigger_info = {'creation_date': '2013-05-13T17:49:26.105485', 'id': 'useless' },
+                    node_info = MockDict().dummyNode,
+                    receiver_info = MockDict().dummyReceiver,
+                    context_info = MockDict().dummyContext,
+                    plugin = MailNotification()  )
 
-        mail_content = mail_support.format_template(dummy_template, mock_event)
+        mail_content = mail_support.format_template(dummy_template['en'], mock_event)
 
         # setup the GPG key before
         GLSetting.gpgroot = GPGROOT

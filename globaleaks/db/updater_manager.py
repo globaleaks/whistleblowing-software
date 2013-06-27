@@ -55,14 +55,17 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             raise excep
 
         for model_name in orm_classes_list:
+
             migrate_function = 'migrate_%s' % model_name.__name__
             function_pointer = getattr(updater_code, migrate_function)
+
             try:
                 function_pointer()
             except Exception as excep:
-                print "Failure in %s: %s " % (migrate_function, excep.message)
+                print "Failure in %s: %s " % (migrate_function, excep)
                 raise excep
 
+        # epilogue can be used to perform operation once, not related to the tables
         updater_code.epilogue()
         updater_code.close()
 

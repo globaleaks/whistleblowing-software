@@ -9,6 +9,8 @@
 
 from globaleaks.rest.base import formFieldsDict, uuid_regexp
 
+# a lots of dict here are used to supports languages
+
 authDict = {
     'username' : unicode,
     'password' : unicode,
@@ -93,7 +95,7 @@ adminNotificationDesc = {
 adminContextDesc = {
     'name': dict,
     'description': dict,
-    'receipt_regexp': dict,
+    'receipt_regexp': unicode,
     'receipt_description': dict,
     'submission_introduction': dict,
     'submission_disclaimer': dict,
@@ -112,7 +114,7 @@ adminReceiverDesc =  {
     'password' : unicode,
     'notification_fields' : dict,
     'name' : unicode,
-    'description' : unicode,
+    'description' : dict,
     'contexts' : [ uuid_regexp ],
     'receiver_level' : int,
     'can_delete_submission' : bool,

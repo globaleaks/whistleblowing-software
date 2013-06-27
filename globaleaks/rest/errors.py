@@ -15,14 +15,19 @@ class GLException(HTTPError):
     log_message = "GLException"
     error_code = 0
     status_code = 500 # generic Server error
+
     def __init__(self):
-        pass
+        self.record()
 
     def __repr__(self):
         return "%s: <<%s>> (%d) HTTP:%d" % (
             self.__class__.__name__, self.reason,
             self.error_code, self.status_code
         )
+
+    def record(self):
+        log_message = "[GLE] %s  (code %d http %d)" % ( self.reason, self.error_code, self.status_code)
+        print log_message
 
 class InvalidInputFormat(GLException):
     """
@@ -34,6 +39,7 @@ class InvalidInputFormat(GLException):
 
     def __init__(self, wrong_source):
         self.reason = "Invalid Input Format [%s]" % wrong_source
+        self.record()
 
 
 class StatsNotCollectedError(GLException):
@@ -114,6 +120,7 @@ class ExpectedUniqueField(GLException):
 
     def __init__(self, key, existent_value):
         self.reason = "A field expected to be unique is already present (%s:%s)" % (key, existent_value)
+        self.record()
 
 
 class ReceiverGusNotFound(GLException):
@@ -143,6 +150,7 @@ class SubmissionFailFields(GLException):
 
     def __init__(self, wrong_fields):
         self.reason = "Submission do not validate the input fields [%s]" % wrong_fields
+        self.record()
 
 class InvalidTipAuthToken(GLException):
     """
@@ -208,6 +216,7 @@ class NotAuthenticated(GLException):
             self.reason = "Not Authenticated"
         else:
             self.reason = ("Not Authenticated: %s" % details)
+        self.record()
 
 class InternalServerError(GLException):
     """
@@ -220,6 +229,7 @@ class InternalServerError(GLException):
         self.reason = "Internal Server Error"
         if details:
             self.reason += " (%s)" % details
+        self.record()
 
 
 class NoEmailSpecified(GLException):
@@ -309,6 +319,7 @@ class SessionExpired(GLException):
 
     def __init__(self, lifetime, role):
         self.reason = "The time for your role (%s) is %s" % (role, lifetime)
+        self.record()
 
 class TimeToLiveInvalid(GLException):
     """
@@ -320,3 +331,4 @@ class TimeToLiveInvalid(GLException):
 
     def __init__(self, errorstr, kind):
         self.reason = "Invalid timerange supply for %s: %s" % (kind, errorstr)
+        self.record()

@@ -28,6 +28,7 @@ fileDict = {
 }
 
 formFieldsDict = {
+            "key": unicode,
             "presentation_order": int,
             "name": dict,
             "required": bool,

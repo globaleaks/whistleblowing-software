@@ -21,7 +21,7 @@ CREATE TABLE context (
     file_required INTEGER NOT NULL,
     id VARCHAR NOT NULL,
     last_update VARCHAR,
-    name VARCHAR NOT NULL,
+    name BLOB NOT NULL,
     selectable_receiver INTEGER NOT NULL,
     tip_max_access INTEGER NOT NULL,
     tip_timetolive INTEGER NOT NULL,

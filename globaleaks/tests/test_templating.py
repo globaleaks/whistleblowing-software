@@ -48,20 +48,23 @@ class notifTemplateTest(TestWithDB):
             self.createdContext = yield admin.create_context(self.mockContext)
             self.assertTrue(self.createdContext.has_key('context_gus'))
         except Exception as excep:
-            print excep; raise excep
+            self.assertFalse(True)
+            raise excep
 
         try:
             self.mockReceiver['contexts'] = [ self.createdContext['context_gus'] ]
             self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
             self.assertTrue(self.createdReceiver.has_key('receiver_gus'))
         except Exception as excep:
-            print excep; raise excep
+            self.assertFalse(True)
+            raise excep
 
         try:
             self.createdNode = yield admin.update_node(self.mockNode)
             self.assertTrue(self.createdNode.has_key('version'))
         except Exception as excep:
-            print excep; raise excep
+            self.assertFalse(True)
+            raise excep
 
 
     @inlineCallbacks
@@ -108,17 +111,17 @@ class notifTemplateTest(TestWithDB):
             raise AssertionError("path mistake ?")
 
         with open(CNT) as f:
-            self.Comment_notif_template = f.read()
+            self.Comment_notif_template = { "en" : f.read() }
 
         with open(TNT) as f:
-            self.Tip_notifi_template = f.read()
+            self.Tip_notifi_template = { "en" : f.read() }
 
         with open(FNT) as f:
-            self.File_notifi_template = f.read()
+            self.File_notifi_template = { "en" : f.read() }
 
-        self.assertGreater(self.Comment_notif_template, 0)
-        self.assertGreater(self.Tip_notifi_template, 0)
-        self.assertGreater(self.File_notifi_template, 0)
+        self.assertGreater(self.Comment_notif_template['en'], 0)
+        self.assertGreater(self.Tip_notifi_template['en'], 0)
+        self.assertGreater(self.File_notifi_template['en'], 0)
 
 
     @inlineCallbacks
@@ -142,9 +145,9 @@ class notifTemplateTest(TestWithDB):
             print excep; raise excep
 
         # with the event, we can finally call the template filler
-        gentext = MailNotification().format_template(self.Tip_notifi_template, self.event)
+        gentext = MailNotification().format_template(self.Tip_notifi_template['en'], self.event)
 
-        self.assertSubstring(self.createdContext['name'], gentext)
+        self.assertSubstring(self.createdContext['name']['en'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
         self.assertSubstring(self.createdNode['public_site'], gentext)
         self.assertSubstring(self.createdNode['hidden_service'], gentext)
@@ -178,8 +181,8 @@ class notifTemplateTest(TestWithDB):
         yield self._fill_event(u'tip', 'Tip', created_rtip[0])
 
         # with the event, we can finally call the format checks
-        gentext = MailNotification().format_template(self.Tip_notifi_template, self.event)
+        gentext = MailNotification().format_template(self.Tip_notifi_template['en'], self.event)
 
-        self.assertSubstring(self.createdContext['name'], gentext)
+        self.assertSubstring(self.createdContext['name']['en'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
         self.assertNotSubstring("%TipT2WURL%", gentext)

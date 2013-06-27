@@ -10,6 +10,7 @@ from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, U
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 from globaleaks.utils import datetime_now
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 
 
 def uuid():
@@ -34,6 +35,7 @@ def gltextv(self, attr, value):
         (len(value) > GLSetting.memory_copy.maximum_namesize or len(value) == 0)):
         raise errors.InvalidInputFormat("name length need to be > 0 and " \
                             "< of %d" % GLSetting.memory_copy.maximum_namesize)
+    # TODO this at the moment is not used again, because need to be moved on gllocalv
     elif attr == 'description' and len(value) > GLSetting.memory_copy.maximum_descsize:
         raise errors.InvalidInputFormat("unicode description has a length " \
                             "limit of %d" % GLSetting.memory_copy.maximum_descsize)
@@ -47,15 +49,16 @@ def gltextv(self, attr, value):
 def gldictv(self, attr, value):
     """
     Validate dict content, every key, if unicode, have not to
-    overcome the generic lenght limit.
+    overcome the generic length limit.
     """
+    if not value:
+        return {}
+
     try:
         assert isinstance(value, dict)
     except AssertionError:
         raise errors.InvalidInputFormat("(%s) Not a dict as expected" % attr)
 
-    if not value:
-        return value
 
     for key, subvalue in value.iteritems():
         if isinstance(subvalue, unicode):
@@ -66,6 +69,25 @@ def gldictv(self, attr, value):
 
     return value
 
+
+def gllocalv(self, attr, value):
+    """
+    Validate a dict containing
+    """
+    try:
+        assert isinstance(value, dict)
+    except AssertionError:
+        raise errors.InvalidInputFormat("(%s) expect a localized dict" % attr)
+
+    if not value:
+        print "Importing an empty localized dict -- debug string --"
+        return value
+
+    for lang, text in value.iteritems():
+        if lang not in LANGUAGES_SUPPORTED_CODES:
+            raise errors.InvalidInputFormat("(%s) invalid language code in %s" % (lang, attr) )
+
+    return value
 
 
 class Model(Storm):
@@ -80,7 +102,6 @@ class Model(Storm):
     def __init__(self, attrs=None):
         if attrs is not None:
             self.update(attrs)
-
 
     def __new__(cls, *args, **kw):
         cls.__storm_table__ = cls.__name__.lower()
@@ -168,7 +189,6 @@ class Context(Model):
     """
     __storm_table__ = 'context'
 
-    name = Unicode(validator=gltextv)
     fields = Pickle()
 
     selectable_receiver = Bool()
@@ -185,10 +205,11 @@ class Context(Model):
     tags = Pickle()
 
     # localized stuff
-    description = Pickle()
-    receipt_description = Pickle()
-    submission_introduction = Pickle()
-    submission_disclaimer = Pickle()
+    name = Pickle(validator=gllocalv)
+    description = Pickle(validator=gllocalv)
+    receipt_description = Pickle(validator=gllocalv)
+    submission_introduction = Pickle(validator=gllocalv)
+    submission_disclaimer = Pickle(validator=gllocalv)
 
     #receivers = ReferenceSet(
     #                         Context.id,
@@ -196,6 +217,7 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
+    unicode_keys = [ ]
     localized_strings = ['name', 'description', 'receipt_description',
                     'submission_introduction', 'submission_disclaimer' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
@@ -365,7 +387,7 @@ class Node(Model):
     database_version = Int()
 
     # localized string
-    description = Pickle()
+    description = Pickle(validator=gllocalv)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -411,17 +433,17 @@ class Notification(Model):
 
     # In the future these would be Markdown, but at the moment
     # are just localized dicts
-    tip_template = Pickle()
-    file_template = Pickle()
-    comment_template = Pickle()
-    activation_template = Pickle()
+    tip_template = Pickle(validator=gllocalv)
+    file_template = Pickle(validator=gllocalv)
+    comment_template = Pickle(validator=gllocalv)
+    activation_template = Pickle(validator=gllocalv)
     # these four template would be in the unicode_key implicit
     # expected fields, when Client/Backend are updated in their usage
 
-    tip_mail_title = Pickle()
-    file_mail_title = Pickle()
-    comment_mail_title = Pickle()
-    activation_mail_title = Pickle()
+    tip_mail_title = Pickle(validator=gllocalv)
+    file_mail_title = Pickle(validator=gllocalv)
+    comment_mail_title = Pickle(validator=gllocalv)
+    activation_mail_title = Pickle(validator=gllocalv)
 
     unicode_keys = ['server', 'username', 'password' ]
     localized_strings = [ 'tip_template', 'file_template', 'comment_template',
@@ -441,7 +463,7 @@ class Receiver(Model):
     name = Unicode(validator=gltextv)
 
     # localization string
-    description = Pickle()
+    description = Pickle(validator=gllocalv)
 
     # Authentication variables
     username = Unicode()
