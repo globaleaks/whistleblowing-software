@@ -73,15 +73,18 @@ def start_asynchronous():
 
     deliver_sched = delivery_sched.APSDelivery()
     deliver_sched.force_execution(GLAsynchronous, seconds=5)
-    GLAsynchronous.add_interval_job(deliver_sched.operation, seconds=15)
+    GLAsynchronous.add_interval_job(deliver_sched.operation,
+        seconds=GLSetting.delivery_seconds_delta)
 
     notify_sched = notification_sched.APSNotification()
     notify_sched.force_execution(GLAsynchronous, seconds=7)
-    GLAsynchronous.add_interval_job(notify_sched.operation, minutes=5)
+    GLAsynchronous.add_interval_job(notify_sched.operation,
+        minutes=GLSetting.notification_minutes_delta)
 
     clean_sched = cleaning_sched.APSCleaning()
     clean_sched.force_execution(GLAsynchronous, seconds=10)
-    GLAsynchronous.add_interval_job(clean_sched.operation, hours=4)
+    GLAsynchronous.add_interval_job(clean_sched.operation,
+        hours=GLSetting.cleaning_hours_delta)
 
     #stats_sched = statistics_sched.APSStatistics()
     #stats_sched.force_execution(GLAsynchronous, seconds=9)

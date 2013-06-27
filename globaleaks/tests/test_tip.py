@@ -50,7 +50,9 @@ class TTip(helpers.TestWithDB):
         'name': u'first', 'description': u"I'm tha 1st",
         'receiver_level': u'1', 'can_delete_submission': True,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
-        'comment_notification': True, 'tip_notification': False,
+        'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
+        'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
+        'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
     }
 
     tipReceiver2 = {
@@ -58,7 +60,9 @@ class TTip(helpers.TestWithDB):
         'name': u'second', 'description': u"I'm tha 2nd",
         'receiver_level': u'1', 'can_delete_submission': False,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
-        'comment_notification': True, 'tip_notification': False,
+        'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
+        'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
+        'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
     }
 
     tipSubmission = {
@@ -127,6 +131,7 @@ class TestTipInstance(TTip):
         if not self.receipt:
             self.receipt = yield submission.create_whistleblower_tip(self.submission_desc)
 
+        self.assertGreater(len(self.receipt), 5)
         self.assertTrue(re.match(GLSetting.defaults.receipt_regexp, self.receipt) )
 
     @inlineCallbacks
@@ -144,11 +149,9 @@ class TestTipInstance(TTip):
     def wb_auth_with_bad_receipt(self):
 
         fakereceipt = u"1234567890"
-        try:
-            yield authentication.login_wb(fakereceipt)
-            self.assertTrue(False)
-        except errors.InvalidAuthRequest:
-            self.assertTrue(True)
+
+        retval = yield authentication.login_wb(fakereceipt)
+        self.assertFalse(retval)
 
     @inlineCallbacks
     def wb_retrive_tip_data(self):

@@ -70,7 +70,6 @@ class TestGL(TestWithDB):
         except Exception as excp:
             print "Fail fill_data/create_context: %s" % excp
 
-        self.dummyContext['contexts'] = [ self.dummyContext['context_gus'] ]
         self.dummySubmission['context_gus'] = self.dummyContext['context_gus']
         self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
 
@@ -241,9 +240,10 @@ class MockDict():
                         u'value': u'buh ?'}],
             'selectable_receiver': False,
             'tip_max_access': 10,
-            # _timetolive are expressed in seconds!
-            'tip_timetolive': 200,
-            'submission_timetolive': 100,
+            # tip_timetolive is expressed in days
+            'tip_timetolive': 20,
+            # submission_timetolive is expressed in hours
+            'submission_timetolive': 48,
             'file_max_download' :1,
             'escalation_threshold': 1,
             'receivers' : [],
@@ -269,8 +269,8 @@ class MockDict():
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dumnmy.net",
             'stats_update_time':  2, # hours,
-            'languages':  [{ "code" : "it" , "name": "Italiano"},
-                           { "code" : "en" , "name" : "English" }],
+            'languages_supported':  [ ], # It's ignored, but expect a list
+            'languages_enabled':  [ "it" , "en" ],
             'password' : '',
             'old_password' : '',
             'salt': 'OMG!, the Rains of Castamere ;( ;(',

@@ -8,4 +8,4 @@ transaction==1.4.1
 txsocksx==0.0.2
 PyCrypto==2.6
 scrypt==0.5.5
-Pillow==2.0.0
+python_gnupg==0.3.4

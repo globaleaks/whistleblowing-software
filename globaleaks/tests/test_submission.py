@@ -3,7 +3,7 @@ import re
 
 from twisted.internet.defer import inlineCallbacks
 
-# ovverride GLsetting
+# override GLSetting
 from globaleaks.settings import GLSetting, transact
 from globaleaks.tests import helpers
 
@@ -248,7 +248,3 @@ class TestSubmission(helpers.TestGL):
             self.assertTrue(True)
             return
         self.assertTrue(False)
-
-        # self.assertRaises(errors.SubmissionConcluded,
-        #   (yield submission.update_submission(status['submission_gus'], status, finalize=True)) )
-
