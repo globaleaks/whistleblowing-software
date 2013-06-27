@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-27 21:29+0000\n"
+"PO-Revision-Date: 2013-06-27 23:41+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -355,7 +355,7 @@ msgstr ""
 msgid "Submission Disclaimer"
 msgstr ""
 
-msgid "Submisson hours life"
+msgid "Submission lifetime"
 msgstr ""
 
 msgid "Tip day life"
