@@ -77,8 +77,7 @@ angular.module('submissionUI', []).
         action: '@',
         // This tells to create a two way data binding with what is passed
         // inside of the element attributes (ex. file-upload="someModel")
-        uploadedFiles: '=',
-        uploadingFiles: '=',
+        fileUploader: '=',
         maximumFilesize: '='
       },
 
@@ -87,8 +86,8 @@ angular.module('submissionUI', []).
 
         function add(e, data) {
           for (var file in data.files) {
-            var file_info,
-              file_id;
+            var fileInfo,
+              fileID;
 
             if (data.files[file].size >= scope.maximumFilesize) {
               var error = {};
@@ -107,20 +106,21 @@ angular.module('submissionUI', []).
               continue;
             };
 
-            file_id = $rootScope.uploadedFiles.length + file;
-            file_info = {'name': data.files[file].name,
+            fileID = $rootScope.fileUploader.uploadedFiles.length + file;
+            fileInfo = {'name': data.files[file].name,
               'filesize': data.files[file].size,
               'error': 'None',
               'type': data.files[file].type,
               'last_modified_date': data.files[file].lastModifiedDate,
-              'file_id': file_id
+              'file_id': fileID
             };
 
-            $rootScope.uploadingFiles.push(file_info);
+            var jqXHR = data.submit();
+            fileInfo.abort = function() {
+              jqXHR.abort();
+            }
+            $rootScope.fileUploader.uploadingFiles.push(fileInfo);
             scope.$apply();
-          }
-          if (data.files.length > 0) {
-            data.submit();
           }
         };
 
@@ -130,18 +130,32 @@ angular.module('submissionUI', []).
         };
 
         function done(e, data) {
-          var file_info = data.result[0],
-            textStatus = data.textStatus,
-            item_id;
+          var fileInfo = data.result[0],
+            textStatus = data.textStatus;
 
-          $rootScope.uploadedFiles.push(file_info);
-          $rootScope.uploadingFiles.pop(file_info);
+          $rootScope.fileUploader.uploadedFiles.push(fileInfo);
+          $rootScope.fileUploader.uploadingFiles.pop(fileInfo);
           scope.$apply();
         };
 
-        $(element[0]).fileupload({progress: progressMeter,
-          progressall: progressMeter, add: add, done: done,
-          headers: headers});
+        $(element[0]).fileupload({
+          headers: headers,
+          progress: progressMeter,
+          progressall: progressMeter,
+          add: add,
+          done: done,
+        });
+
+        $rootScope.fileUploader.cancelAll = function() {
+          $.each($rootScope.fileUploader.uploadingFiles, function(idx, fileInfo) {
+            console.log(fileInfo);
+            fileInfo.abort();
+          });
+
+          $(element[0]).find('.progress .bar').css('width', 0 + '%');
+          $rootScope.fileUploader.uploadingFiles = [];
+        }
+
       }
     }
 }]).

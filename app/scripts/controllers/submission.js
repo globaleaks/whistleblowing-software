@@ -31,8 +31,9 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     });
   };
 
-  $rootScope.uploadedFiles = [];
-  $rootScope.uploadingFiles = [];
+  $rootScope.fileUploader = {};
+  $rootScope.fileUploader.uploadedFiles = [];
+  $rootScope.fileUploader.uploadingFiles = [];
   $scope.uploading = false;
 
   $scope.disclaimer = {accepted: false};
@@ -56,9 +57,9 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     }
   }, true);
 
-  $scope.$watch('uploadingFiles', function(){
+  $scope.$watch('fileUploader', function(){
 
-    if ($scope.uploadingFiles.length === 0)
+    if ($scope.fileUploader.uploadingFiles.length === 0)
       $scope.uploading = false;
     else
       $scope.uploading = true;

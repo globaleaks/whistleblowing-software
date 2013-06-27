@@ -34,9 +34,9 @@
 
     <ul class="nav nav-tabs">
       <li ng-repeat="step in steps"
-        ng-class="{active: $index==getCurrentStepIndex()}">
+        ng-class="{active: $index==getCurrentStepIndex(), disabled: uploading}">
         <a href="javascript:void(0)"
-          ng-click="goToStep($index)">{{step}}</a>
+          ng-click="goToStep($index)" ng-disabled="uploading">{{step}}</a>
       </li>
     </ul>
 
@@ -88,8 +88,7 @@
           <div class="span6 submissionDetails" ng-include="Templates.submission.form"></div>
 
           <div file-upload action="/submission/{{submission.current_submission.submission_gus}}/file"
-               uploaded-files="uploadedFiles" uploading-files="uploadingFiles"
-               maximum-filesize="maximumFilesize"></div>
+               file-uploader="fileUploader" maximum-filesize="maximumFilesize"></div>
 
         </div>
 
@@ -135,11 +134,11 @@
     <div class="clearfix"></div>
     <ul class="pager pull-left">
 
-      <li ng-class="{disabled: !hasPreviousStep()}"
+      <li ng-class="{disabled: !hasPreviousStep() || uploading}"
           class="previous">
         <a ng-click="decrementStep()">&larr; {{ "Previous Step" | translate }}</a>
       </li>
-      <li class="next"
+      <li class="next" ng-class="{disabled: uploading}"
           ng-hide="!hasNextStep()">
         <a ng-click="incrementStep()">{{ "Next Step" | translate }} &rarr;</a>
       </li>
