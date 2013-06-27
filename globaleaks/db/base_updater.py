@@ -17,7 +17,7 @@ class TableReplacer:
         self.new_db_file = new_db_file
         self.start_ver = start_ver
 
-        self.std_fancy = " + "
+        self.std_fancy = " ł "
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         print "%s Opening old version DB: %s" % (self.debug_info, old_db_file)
@@ -396,7 +396,7 @@ class TableReplacer:
             new_obj.mark = oi.mark
             new_obj.size = oi.size
 
-            self.store_old.add(new_obj)
+            self.store_new.add(new_obj)
         self.store_new.commit()
 
     def migrate_ReceiverFile(self):
@@ -422,7 +422,9 @@ class TableReplacer:
             new_obj.mark = orf.mark
 
             self.store_new.add(new_obj)
+
         self.store_new.commit()
+
 
     def migrate_Notification(self):
         print "%s default Notificationb migration assistant" % self.debug_info
