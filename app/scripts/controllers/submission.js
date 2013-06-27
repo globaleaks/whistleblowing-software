@@ -10,6 +10,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     });
   }
 
+  $scope.receiptConfimation = "";
+
   Node.get(function(node_info){
     $scope.node_info = node_info;
   });
@@ -26,6 +28,9 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
   });
 
   $scope.view_tip = function(receipt) {
+    if ($scope.receiptConfirmation != receipt)
+      return;
+
     WhistleblowerTip(receipt, function(tip_id){
       $location.path('/status/' + tip_id);
     });
