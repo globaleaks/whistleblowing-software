@@ -459,6 +459,14 @@ if [ "$?" -ne "0" ]; then
     exit 1
 fi
 
+# Iptables NAT support check
+    iptables -nvL -t nat >/dev/null 2>&1
+    if [ "$?" -ne "0" ]; then
+        echo "Error: your linux machine does not support iptables NAT, required by GlobaLeaks network sandboxing"
+        echo "       If you are running on a Virtual Server you need to enable Iptables NAT support"
+        exit 1
+    fi
+
 # Preliminary Requirements Check
 REQS=(apt-get chmod echo gpg python mkdir tar wget)
 REQS_COUNT=${#REQS[@]}
