@@ -552,8 +552,9 @@ if [ -d /data/globaleaks/deb ]; then
 else
   add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/' 
   DO "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
-  DO "gpg --export B353922AE4457748559E777832E6792624045008 > $BUILD_DIR/globaleaks.pub" "0"
-  DO "apt-key add $BUILD_DIR/globaleaks.pub" "0"
+  # TODO: This should be fixed, because executing this command
+  # over DO() command escape the pipe character
+  gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -
   DO "apt-get update -y" "0"
   DO "apt-get install globaleaks -y" "0"
 fi
