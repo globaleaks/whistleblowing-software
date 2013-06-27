@@ -459,9 +459,9 @@ if [ "$?" -ne "0" ]; then
     exit 1
 fi
 
-# Iptables NAT support check
+# iptables NAT support check
 if [ "${TRAVIS}" == "true" ]; then
-	echo "Travis Environment: skipping Iptables NAT check support"
+    echo "Travis Environment: skipping iptables NAT check support"
 else
     iptables -nvL -t nat >/dev/null 2>&1
     if [ "$?" -ne "0" ]; then
