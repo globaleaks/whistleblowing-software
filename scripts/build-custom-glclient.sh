@@ -77,7 +77,12 @@ build_custom_glclient()
   cd GLCLient
   npm install -d
   grunt build
-  sudo mv $GLCLIENT_INSTALL_DIR $GLCLIENT_INSTALL_DIR.default
+
+  if [ ! -d  $GLCLIENT_INSTALL_DIR.default ]; then
+    echo "[+] Backing up default GLClient build... "
+    sudo mv $GLCLIENT_INSTALL_DIR $GLCLIENT_INSTALL_DIR.default
+  fi
+
   sudo mv build $GLCLIENT_INSTALL_DIR
 }
 
