@@ -21,3 +21,8 @@ fi
 if [ ! -f /etc/apparmor.d/usr.sbin.tor ]; then
   ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
 fi
+
+if [ ! "`grep "globaleaks" /etc/apparmor.d/local/system_tor`" ]; then
+  echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor 
+  echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
+fi
