@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-25 17:31+0000\n"
+"PO-Revision-Date: 2013-06-27 21:35+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -87,9 +87,34 @@ msgid "Submission Created!"
 msgstr "Δημιουργήθηκε υποβολή!"
 
 msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
-msgstr "Αυτός εδώ ο αριθμός είναι απόδειξη οτι θα σας κρατήσει καλή προσοχή από αυτό, δεδομένου ότι θα σας επιτρέψει να αποκτήσετε πρόσβαση της υποβολής σας"
+"This receipt will allow you to login as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"Through this system receivers will be able to ask you questions on the Tip "
+"and you will be able to write a reply."
+msgstr ""
+
+msgid ""
+"You will also be able to keep track of who as viewed your submission and "
+"downloaded the files."
+msgstr ""
+
+msgid "Moreover, it will allow you to add other files to your submission."
+msgstr ""
+
+msgid ""
+"Beware of the fact that this receipt, if fallen into the wrong hands, will "
+"lead to identifying you as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"If you are interested in keeping it, please save it in a secure place and "
+"make sure it does not fall into the wrong hands"
+msgstr ""
+
+msgid "Please copy in the box below you receipt to access the tip interface."
+msgstr ""
 
 msgid "View Tip"
 msgstr "Εμφάνιση συμβουλής"
@@ -369,45 +394,6 @@ msgstr "Αρχείο πρότυπου Email"
 msgid "Activation Email template"
 msgstr "Ενεργοποίηση του πρότυπου Email"
 
-msgid "Contexts list"
-msgstr "Λιστα πλαισιων"
-
-msgid "Delete"
-msgstr "Διαγραφή"
-
-msgid "Receivers"
-msgstr "Δέκτες"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Προσθήκη νέου πλαισίου"
-
-msgid "add"
-msgstr "προσθηκη"
-
 msgid "General information"
 msgstr "Γενικές πληροφορίες"
 
@@ -490,6 +476,45 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
+
+msgid "Contexts list"
+msgstr "Λιστα πλαισιων"
+
+msgid "Delete"
+msgstr "Διαγραφή"
+
+msgid "Receivers"
+msgstr "Δέκτες"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Προσθήκη νέου πλαισίου"
+
+msgid "add"
+msgstr "προσθηκη"
 
 msgid "Content Settin"
 msgstr "Περιεχόμενο Settin"
@@ -620,9 +645,6 @@ msgstr ""
 msgid "Save changes"
 msgstr "Αποθήκευση αλλαγών"
 
-msgid "Add files..."
-msgstr "Προσθήκη αρχείων..."
-
 msgid "Danger!"
 msgstr "Κίνδυνος!"
 
@@ -659,6 +681,9 @@ msgstr "κατεβαστε ενα αντιγραφο του tor browser bundle"
 
 msgid "before continuing."
 msgstr "πριν συνεχίσετε."
+
+msgid "Add files..."
+msgstr "Προσθήκη αρχείων..."
 
 msgid "Welcome back captain!"
 msgstr "Καλώς ήρθατε πίσω καπετάνιε!"

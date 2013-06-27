@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-25 17:31+0000\n"
+"PO-Revision-Date: 2013-06-27 21:35+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -86,9 +86,34 @@ msgid "Submission Created!"
 msgstr "Złożenie Utworzony!"
 
 msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
-msgstr "Numer ten tutaj jest paragon zachować dobrą opiekę to jak to pozwala na dostęp do przedłożenia"
+"This receipt will allow you to login as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"Through this system receivers will be able to ask you questions on the Tip "
+"and you will be able to write a reply."
+msgstr ""
+
+msgid ""
+"You will also be able to keep track of who as viewed your submission and "
+"downloaded the files."
+msgstr ""
+
+msgid "Moreover, it will allow you to add other files to your submission."
+msgstr ""
+
+msgid ""
+"Beware of the fact that this receipt, if fallen into the wrong hands, will "
+"lead to identifying you as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"If you are interested in keeping it, please save it in a secure place and "
+"make sure it does not fall into the wrong hands"
+msgstr ""
+
+msgid "Please copy in the box below you receipt to access the tip interface."
+msgstr ""
 
 msgid "View Tip"
 msgstr "Pokaż Porada"
@@ -368,45 +393,6 @@ msgstr ""
 msgid "Activation Email template"
 msgstr "Aktywacja Email szablon"
 
-msgid "Contexts list"
-msgstr "List Konteksty"
-
-msgid "Delete"
-msgstr "Usunąć"
-
-msgid "Receivers"
-msgstr "Odbiorniki"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Dodaj nowy kontekst"
-
-msgid "add"
-msgstr "Dodaj"
-
 msgid "General information"
 msgstr "Informacje ogólne"
 
@@ -489,6 +475,45 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
+
+msgid "Contexts list"
+msgstr "List Konteksty"
+
+msgid "Delete"
+msgstr "Usunąć"
+
+msgid "Receivers"
+msgstr "Odbiorniki"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Dodaj nowy kontekst"
+
+msgid "add"
+msgstr "Dodaj"
 
 msgid "Content Settin"
 msgstr "Zawartość Ustawień"
@@ -619,9 +644,6 @@ msgstr ""
 msgid "Save changes"
 msgstr "Zapisz zmiany"
 
-msgid "Add files..."
-msgstr "Dodaj pliki..."
-
 msgid "Danger!"
 msgstr "Niebezpieczeństwo!"
 
@@ -658,6 +680,9 @@ msgstr "pobrać kopię paczki Tor"
 
 msgid "before continuing."
 msgstr "przed kontynuowaniem."
+
+msgid "Add files..."
+msgstr "Dodaj pliki..."
 
 msgid "Welcome back captain!"
 msgstr "Witamy z powrotem kapitan!"

@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-25 17:31+0000\n"
+"PO-Revision-Date: 2013-06-27 21:35+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -88,9 +88,34 @@ msgid "Submission Created!"
 msgstr "Girdi Yaratıldı!"
 
 msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
-msgstr "Bu sayı makbuzunuzdur. Unutmayın veya kaydedin, çünkü girdinize erişmenizi sağlayacaktır."
+"This receipt will allow you to login as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"Through this system receivers will be able to ask you questions on the Tip "
+"and you will be able to write a reply."
+msgstr ""
+
+msgid ""
+"You will also be able to keep track of who as viewed your submission and "
+"downloaded the files."
+msgstr ""
+
+msgid "Moreover, it will allow you to add other files to your submission."
+msgstr ""
+
+msgid ""
+"Beware of the fact that this receipt, if fallen into the wrong hands, will "
+"lead to identifying you as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"If you are interested in keeping it, please save it in a secure place and "
+"make sure it does not fall into the wrong hands"
+msgstr ""
+
+msgid "Please copy in the box below you receipt to access the tip interface."
+msgstr ""
 
 msgid "View Tip"
 msgstr "İpucunu Görüntüleyin"
@@ -370,45 +395,6 @@ msgstr "Dosya e-posta şablonu"
 msgid "Activation Email template"
 msgstr "Etkinleştirme E-postası şablonu"
 
-msgid "Contexts list"
-msgstr "İçerik listesi"
-
-msgid "Delete"
-msgstr "Sil"
-
-msgid "Receivers"
-msgstr "Alıcılar"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submisson hours life"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Yeni içerik ekle"
-
-msgid "add"
-msgstr "ekle"
-
 msgid "General information"
 msgstr "Genel bilgi"
 
@@ -491,6 +477,45 @@ msgstr ""
 
 msgid "Update node and Tor2Web options"
 msgstr ""
+
+msgid "Contexts list"
+msgstr "İçerik listesi"
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Receivers"
+msgstr "Alıcılar"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Yeni içerik ekle"
+
+msgid "add"
+msgstr "ekle"
 
 msgid "Content Settin"
 msgstr "İçerik Ayarları"
@@ -621,9 +646,6 @@ msgstr ""
 msgid "Save changes"
 msgstr "Değişiklikleri kaydet"
 
-msgid "Add files..."
-msgstr "Dosya ekle..."
-
 msgid "Danger!"
 msgstr "Tehlike!"
 
@@ -660,6 +682,9 @@ msgstr " Tor tarayıcı paketinin bir kopyasını karşıdan yükle"
 
 msgid "before continuing."
 msgstr "devam etmeden önce."
+
+msgid "Add files..."
+msgstr "Dosya ekle..."
 
 msgid "Welcome back captain!"
 msgstr "Tekrar hoşgeldiniz!"
