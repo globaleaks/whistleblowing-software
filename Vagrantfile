@@ -45,7 +45,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  # config.vm.synced_folder "../data", "/vagrant_data"
+  config.vm.synced_folder ".", "/globaleaks"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -64,58 +64,39 @@ end
 $script = <<SCRIPT
 date > /etc/vagrant_provisioned_at
 
-echo " ********************************************************"
-echo "    STEP 1: Installing TOR"
-echo " ********************************************************"
+echo "********************************************************"
+echo "*   STEP 1: Install GlobaLeaks"
+echo "********************************************************"
 
-echo "deb http://deb.torproject.org/torproject.org precise main" >> /etc/apt/sources.list
-gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89
-gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
-apt-get update
-apt-get -y install tor tor-geoipdb torsocks
-update-rc.d tor defaults
-
-echo " ********************************************************"
-echo "   STEP 2: Installing GlobaLeaks"
-echo " ********************************************************"
-
-echo "deb http://deb.globaleaks.org/ unstable/" >> /etc/apt/sources.list
 gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x24045008
 gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -
-apt-get update
-apt-get -y install globaleaks
-update-rc.d globaleaks defaults
+/globaleaks/scripts/install-ubuntu-12_04.sh -y
 
-echo " ********************************************************"
-echo "   STEP 3: Configure TOR"
-echo " ********************************************************"
+echo "********************************************************"
+echo "*   STEP 2 - Create Your Hidden Service"
+echo "********************************************************"
 
 cat /usr/share/globaleaks/glbackend/torrc >> /etc/tor/torrc
-
-echo " ********************************************************"
-echo "   STEP 4 - Create Your Hidden Service"
-echo " ********************************************************"
-
 echo "HiddenServiceDir /var/globaleaks/torhs/" >> /etc/tor/torrc
 echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc
 
 /etc/init.d/tor restart
 
-echo " ********************************************************"
-echo "   STEP 5 - Start globaleaks"
-echo " ********************************************************"
+echo "********************************************************"
+echo "*   STEP 3 - Start globaleaks"
+echo "********************************************************"
 
 /etc/init.d/globaleaks start
 
-echo " ********************************************************"
-echo "                PLEASE JOT DOWN THIS ADDRESS"
-echo " ********************************************************"
+echo "********************************************************"
+echo "*                PLEASE JOT DOWN THIS ADDRESS"
+echo "********************************************************"
 
 cat /var/globaleaks/torhs/hostname
 
-echo " ********************************************************"
-echo "                PLEASE JOT DOWN THIS ADDRESS"
-echo " ********************************************************"
+echo "********************************************************"
+echo "*                PLEASE JOT DOWN THIS ADDRESS"
+echo "********************************************************"
 
 
 SCRIPT
