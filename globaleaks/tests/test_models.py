@@ -12,8 +12,10 @@ class TestModels(helpers.TestGL):
         context = Context(self.dummyContext)
         context.fields = self.dummyContext['fields']
         context.tags = self.dummyContext['tags']
-        context.submission_disclaimer = context.submission_introduction =\
-            context.receipt_regexp = context.receipt_description = u'W'
+        context.description = context.name = \
+            context.submission_disclaimer = context.submission_introduction = \
+            context.receipt_description = { "en" : u'Localized723' }
+        context.receipt_regexp = u"unipop547"
         store.add(context)
         return context.id
 
@@ -60,8 +62,10 @@ class TestModels(helpers.TestGL):
         context.fields = self.dummyContext['fields']
         context.fields = self.dummyContext['fields']
         context.tags = self.dummyContext['tags']
-        context.submission_disclaimer = context.submission_introduction =\
-            context.receipt_regexp = context.receipt_description = u'K'
+        context.description = context.name =\
+            context.submission_disclaimer = context.submission_introduction =\
+            context.receipt_description = { "en" : u'Localized76w' }
+        context.receipt_regexp = u"unipop09876"
 
         receiver1 = Receiver(self.dummyReceiver)
         receiver2 = Receiver(self.dummyReceiver)
@@ -89,18 +93,20 @@ class TestModels(helpers.TestGL):
         receiver.notification_fields = {'mail_address': 'y@y.it'}
 
         context1 = Context(self.dummyContext)
-        context1.name = "Valar Morghulis"
         context1.fields = self.dummyContext['fields']
         context1.tags = self.dummyContext['tags']
-        context1.submission_disclaimer = context1.submission_introduction =\
-            context1.receipt_regexp = context1.receipt_description = u'Y'
+        context1.description = context1.name =\
+            context1.submission_disclaimer = context1.submission_introduction =\
+            context1.receipt_description = { "en" : u'Valar Morghulis' }
+        context1.receipt_regexp = u"unipop254"
 
         context2 = Context(self.dummyContext)
-        context2.name = "Valar Dohaeris"
         context2.fields = self.dummyContext['fields']
         context2.tags = self.dummyContext['tags']
-        context2.submission_disclaimer = context2.submission_introduction =\
-            context2.receipt_regexp = context2.receipt_description = u'X'
+        context2.description = context2.name =\
+            context2.submission_disclaimer = context2.submission_introduction =\
+            context2.receipt_description = { "en" : u'Valar Dohaeris' }
+        context2.receipt_regexp = u"unipop43423"
 
         receiver.contexts.add(context1)
         receiver.contexts.add(context2)

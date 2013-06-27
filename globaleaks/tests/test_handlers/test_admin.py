@@ -86,7 +86,7 @@ class TestNodeInstance(helpers.TestHandler):
         except InvalidInputFormat:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep.message
+            print "Wrong exception: %s" % excep.log_message
             raise excep
 
 
@@ -101,7 +101,7 @@ class TestNotificationInstance(helpers.TestHandler):
         # load notification template
 
         notification = Notification()
-        notification.tip_template = "my dummy template %s:w"
+        notification.tip_template = { "en" : "my dummy template %EventName%" }
         # It's the only NOT NULL variable with CHECK
         notification.security = Notification._security_types[0]
         store.add(notification)
@@ -124,7 +124,7 @@ class TestContextsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-        self.dummyContext['name'] = "a random one to avoid dup %d" % random.randint(1, 1000)
+        self.dummyContext['name'] = { "en" : "a random one to avoid dup %d" % random.randint(1, 1000) }
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.post()
@@ -132,22 +132,6 @@ class TestContextsCollection(helpers.TestHandler):
         self.dummyContext['context_gus'] =  self.responses[0]['context_gus']
         self.dummyContext['creation_date'] = self.responses[0]['creation_date']
         self.assertEqual(self.responses[0], self.dummyContext)
-
-    @inlineCallbacks
-    def test_invalid_duplicated_context_name(self):
-        self.dummyContext['name'] = u'a random name %d, but' % random.randint(1,1000)
-
-        handler = self.request(self.dummyContext, role='admin')
-
-        try:
-            yield handler.post()
-            yield handler.post() # duplication happen here
-            self.assertTrue(False)
-        except errors.ExpectedUniqueField:
-            self.assertTrue(True)
-        except Exception as excep:
-            print "Wrong exception: %s" % excep.message
-            raise excep
 
 
 class TestContextInstance(helpers.TestHandler):
@@ -162,7 +146,7 @@ class TestContextInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_put(self):
 
-        self.dummyContext['description'] = u'how many readers remind of HIMEM.SYS?'
+        self.dummyContext['description'] = { "en" : u'how many readers remind of HIMEM.SYS?'}
         self.dummyContext['submission_timetolive'] = 48 # hours
         self.dummyContext['tip_timetolive'] = 25 # days
 
@@ -219,7 +203,7 @@ class TestReceiversCollection(helpers.TestHandler):
         except errors.NoEmailSpecified:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep.message
+            print "Wrong exception: %s" % excep.log_message
             raise excep
 
     @inlineCallbacks
@@ -236,7 +220,7 @@ class TestReceiversCollection(helpers.TestHandler):
         except errors.ExpectedUniqueField:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep.message
+            print "Wrong exception: %s" % excep.log_message
             raise excep
 
 
@@ -296,7 +280,7 @@ class TestReceiverInstance(helpers.TestHandler):
         except errors.ContextGusNotFound:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep.message
+            print "Wrong exception: %s" % excep.log_message
             raise excep
 
     @inlineCallbacks

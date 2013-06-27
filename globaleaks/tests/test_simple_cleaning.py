@@ -12,6 +12,7 @@ from globaleaks import models
 from globaleaks.utils import is_expired
 from globaleaks.settings import transact
 from globaleaks.tests.test_tip import TTip
+from globaleaks.tests import helpers
 
 STATIC_PASSWORD = u'bungabunga ;('
 
@@ -127,6 +128,7 @@ class TestCleaning(TTip):
     @inlineCallbacks
     def do_finalize_submission(self):
         self.submission_desc['finalize'] = True
+        self.submission_desc['wb_fields'] = helpers.fill_random_fields(self.context_desc)
         self.submission_desc = yield submission.update_submission(
             self.submission_desc['submission_gus'],
             self.submission_desc,

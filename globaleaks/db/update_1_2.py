@@ -148,6 +148,7 @@ class Replacer12(TableReplacer):
             new_fields = []
             for single_lf in ocntx.fields:
                 localized_f = {
+                    "key": single_lf['name'],
                     "name": { "en" : single_lf['name'] },
                     "presentation_order" : single_lf['presentation_order'],
                     "required" : single_lf['required'],
@@ -157,6 +158,9 @@ class Replacer12(TableReplacer):
                 new_fields.append(localized_f)
             new_obj.fields = new_fields
 
+            new_obj.name = {
+                    "en" : ocntx.name
+            }
             new_obj.description = {
                     "en" : ocntx.description
             }
@@ -170,7 +174,6 @@ class Replacer12(TableReplacer):
                     "en" : ocntx.submission_disclaimer
             }
 
-            new_obj.name = ocntx.name
             new_obj.id = ocntx.id
             new_obj.selectable_receiver = ocntx.selectable_receiver
             new_obj.escalation_threshold = ocntx.escalation_threshold

@@ -186,7 +186,7 @@ def fields_validation(fields_list):
     for field_desc in fields_list:
         check_type = field_desc['type']
         if not check_type in accepted_form_type:
-            raise errors.InvalidInputFormat("Wrong type '%s' in %s" %
+            raise errors.InvalidInputFormat("Fields validation deny '%s' in %s" %
                                             (check_type, field_desc['name']) )
 
 
@@ -210,15 +210,18 @@ def create_context(store, request):
     if not request['fields']:
         # When a new context is create, assign default fields, if not supply
         assigned_fields = [
-            {u'hint': u"Describe your tip-off with a line/title",
-             u'name': u'Short title', u'presentation_order': 1,
+            {u'hint': { "en" : u"Describe your tip-off with a line/title" },
+             u'name': { "en" : u'Short title' }, u'presentation_order': 1,
+             u'key': u'Short title',
              u'required': True, u'type': u'text', u'value': u'' },
-            {u'hint': u'Describe the details of your tip-off',
-              u'name': u'Full description', u'presentation_order': 2,
+            {u'hint': { "en" : u'Describe the details of your tip-off'},
+              u'key': u'Full description', u'presentation_order': 2,
+              u'name': { "en" : u'Full description' },
               u'required': True, u'type': u'text',
               u'value': u"" },
-            {u'hint': u"Describe the submitted files",
-             u'name': u'Files description', u'presentation_order': 3,
+            {u'hint': { "en" : u"Describe the submitted files" },
+             u'name': { "en" : u'Files description' },
+             u'key': u'Files description', u'presentation_order': 3,
              u'required': False, u'type': u'text', u'value': u'' },
         ]
     else:
@@ -231,24 +234,25 @@ def create_context(store, request):
     # These "advanced settings" fields are set here as default, because
     # The client at the moment send them empty.
     context.receipt_regexp = GLSetting.defaults.receipt_regexp
-    context.receipt_description ="This sequence here is your receipt "\
-    "keep good care of it as it will allow you to access your submission"
+    context.receipt_description = { "en" : "This sequence here is your receipt "
+            "keep good care of it as it will allow you to access your submission" }
 
-    context.submission_introduction = "Here you can submit your tip-off and the files"
-    context.submission_disclaimer = "Thank you for your contribution, your submission is complete"
+    context.submission_introduction = { "en" : "Here you can submit your tip-off and the files" }
+    context.submission_disclaimer = { "en" : "Thank you for your contribution, your submission is complete" }
 
     context.tags = request['tags']
 
-    if len(request['name']) < 1:
+    # Integrity checks related on name (need to exists, need to be unique)
+    # are performed only on the english language at the moment
+
+    try:
+        context_name = request['name']['en']
+    except Exception as excep:
+        raise errors.InvalidInputFormat("Missing english language in context name, requirement ATM")
+
+    if len(context_name) < 1:
         log.err("Invalid request: name is an empty string")
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
-
-    # Check that do not exists a Context with the proposed new name
-    homonymous = store.find(Context, Context.name == unicode(request['name'])).count()
-    if homonymous:
-        log.err("Creation error: already present context with the specified name: %s"
-                % request['name'])
-        raise errors.ExpectedUniqueField('name', request['name'])
 
     if context.escalation_threshold and context.selectable_receiver:
         log.err("Parameter conflict in context creation")
@@ -314,14 +318,6 @@ def update_context(store, context_gus, request):
 
     if not context:
          raise errors.ContextGusNotFound
-
-    # Check that do not exists already a Context with the proposed name
-    homonymous = store.find(Context,
-        ( Context.name == unicode(request['name']), Context.id != unicode(context_gus)) ).count()
-    if homonymous:
-        log.err("Update error: already present context with the specified name: %s" %
-                request['name'])
-        raise errors.ExpectedUniqueField('name', request['name'])
 
     for receiver in context.receivers:
         context.receivers.remove(receiver)

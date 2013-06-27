@@ -21,7 +21,7 @@ class TestEmail(helpers.TestGL):
         yield helpers.TestGL.setUp(self)
 
         self.recipe = yield submission.create_submission({
-            'wb_fields': helpers.MockDict().fill_random_fields(self.dummyContext),
+            'wb_fields': helpers.fill_random_fields(self.dummyContext),
             'context_gus': self.dummyContext['context_gus'],
             'receivers': [self.dummyReceiver['receiver_gus']],
             'files': [],
@@ -68,13 +68,13 @@ class TestEmail(helpers.TestGL):
             "port": 587,
             "username": "sendaccount@lists.globaleaks.org",
             "password": "sendaccount99",
-            "tip_template": u"tip tip",
-            "file_template": u"file file",
-            "activation_template": u"activation activation",
-            "comment_template": u"comment comment",
-            "tip_mail_title": u'title tip',
-            "comment_mail_title": u'title comment',
-            "file_mail_title": u'title file',
+            "tip_template": { "en" : u"tip tip"},
+            "file_template": { "en" : u"file file"},
+            "activation_template": { "en" : u"activation activation"},
+            "comment_template": { "en" : u"comment comment"},
+            "tip_mail_title": { "en" : u'title tip'},
+            "comment_mail_title": { "en" : u'title comment'},
+            "file_mail_title": { "en" : u'title file'} ,
             "security": u'TLS',
         }
 

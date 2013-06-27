@@ -145,37 +145,52 @@ def import_fields(submission, fields, expected_fields, strict_validation=False):
     strict_validation = required the presence of 'required' fields. Is not enforced
     if Submission would not be finalized yet.
     """
-    if strict_validation:
+    required_keys = optional_keys  = []
+
+    for sf in expected_fields:
+        assert sf.has_key(u'name')
+        assert sf.has_key(u'key')
+        assert sf.has_key(u'hint')
+        assert sf.has_key(u'presentation_order')
+        assert sf.has_key(u'value')
+        assert sf.has_key(u'type')
+        assert sf.has_key(u'required')
+
+        if sf['required']:
+            required_keys.append(sf.get(u'key'))
+        else:
+            optional_keys.append(sf.get(u'key'))
+
+    if strict_validation and not fields:
 
         if not fields:
             log.err("Missing submission in 'finalize' request")
             raise SubmissionFailFields("Missing submission!")
 
-        for entry in expected_fields:
-            if entry['required']:
-                if not fields.has_key(entry['name']):
-                    log.err("Submission has a required field (%s) missing" % entry['name'])
-                    raise SubmissionFailFields("Missing field '%s': Required" % entry['name'])
+    if strict_validation:
+
+        for required in required_keys:
+            if fields.has_key(required):
+                continue
+
+            log.err("Submission has a required field (%s) missing" % required)
+            raise SubmissionFailFields("Missing field '%s': Required" % required)
 
     if not fields:
         return
 
     imported_fields = {}
     for key, value in fields.iteritems():
-        key_exists = False
 
-        for entry in expected_fields:
-            if key == entry['name']:
-                key_exists = True
-                break
-
-        if not key_exists:
+        if key in required_keys or key in optional_keys:
+            imported_fields.update({key: value})
+        else:
             log.err("Submission contain an unexpected field %s" % key)
             raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
 
-        imported_fields.update({key: value})
-
     submission.wb_fields = imported_fields
+    log.debug("Submission fields updated (Not yet validated!) finalize: %s" %
+              "YES" if strict_validation else "NO")
 
 
 def force_schedule():
@@ -223,7 +238,7 @@ def create_submission(store, request, finalize):
     files = request.get('files', [])
     import_files(store, submission, files)
 
-    fields = request.get('wb_fields', [])
+    fields = request.get('wb_fields', {})
     import_fields(submission, fields, context.fields, strict_validation=finalize)
 
     submission_dict = wb_serialize_internaltip(submission)

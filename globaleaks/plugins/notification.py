@@ -77,7 +77,7 @@ class MailNotification(Notification):
             '%PublicSite%': node_desc['public_site'],
             '%ReceiverName%': receiver_desc['name'],
             '%ReceiverUsername%': receiver_desc['username'],
-            '%ContextName%' : context_desc['name'],
+            '%ContextName%' : context_desc['name']['en'], # localized!
         }
 
         if event_dicts.type == u'tip':
@@ -118,7 +118,6 @@ class MailNotification(Notification):
                 '%EventTime%': event_dicts.trigger_info['creation_date'],
             })
 
-
             partial = self._iterkeywords(template, template_keyword)
             body = self._iterkeywords(partial, tip_template_keyword)
             return body
@@ -147,7 +146,7 @@ class MailNotification(Notification):
             body = self._iterkeywords(partial, file_template_keyword)
             return body
 
-        raise AssertionError("Only Tip and Comment at the moment supported")
+        raise AssertionError("Tip/Comment/File at the moment supported")
 
     def do_notify(self, event):
 
@@ -157,21 +156,23 @@ class MailNotification(Notification):
             return None
 
         # XXX title maybe moved in Admin GUI and digest implemented (beta)
+        # XXX are localized forcefully via 'en' language, but need to be configurable
+        # by the receiver. in event can be keep track of the receiver preference
         if event.type == u'tip':
             body = self.format_template(
-                event.notification_settings['tip_template'], event)
+                event.notification_settings['tip_template']['en'], event)
             title = self.format_template(
-                event.notification_settings['tip_mail_title'], event)
+                event.notification_settings['tip_mail_title']['en'], event)
         elif event.type == u'comment':
             body = self.format_template(
-                event.notification_settings['comment_template'], event)
+                event.notification_settings['comment_template']['en'], event)
             title = self.format_template(
-                event.notification_settings['comment_mail_title'], event)
+                event.notification_settings['comment_mail_title']['en'], event)
         elif event.type == u'file':
             body = self.format_template(
-                event.notification_settings['file_template'], event)
+                event.notification_settings['file_template']['en'], event)
             title = self.format_template(
-                event.notification_settings['file_mail_title'], event)
+                event.notification_settings['file_mail_title']['en'], event)
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 

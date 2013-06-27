@@ -37,12 +37,14 @@ class SubmissionTest(helpers.TestGL):
     aContext1 = TTip.tipContext
 
     aContext2 = {
-        'name': u'UNUSED', 'description': u'UNUSED',
+        'name': { "en" : u'UNUSED'} , 'description': { "en" : u'UNUSED' },
         'escalation_threshold': u'0', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
         'receivers': [], 'fields': [], 'submission_timetolive': 100,
         'receipt_regexp': GLSetting.defaults.receipt_regexp,
-        'receipt_description': u"blah", 'submission_introduction': u"bleh", 'submission_disclaimer': u"bloh",
+        'receipt_description': { "en" : u"blah" },
+        'submission_introduction': { "en" : u"bleh" },
+        'submission_disclaimer': { "en" : u"bloh" },
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
     }
 
@@ -156,6 +158,10 @@ class TestTipInstance(SubmissionTest):
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['receiver_gus']  ]
         submission_request['context_gus'] = SubmissionTest.context_used['context_gus']
+
+        submission_request['wb_fields'][u'Short title'] = u"Theon GreyJoy it's a lamer"
+        submission_request['wb_fields'][u'Full description'] = u"You know nothing John Snow"
+        submission_request['wb_fields'][u'Files description'] = u"yawn, unicode"
         submission_request['finalize'] = True
 
         try:
@@ -170,13 +176,14 @@ class TestTipInstance(SubmissionTest):
             self.assertTrue(False, msg=str(e))
 
     @inlineCallbacks
-    def test_5_fail_create_huge_submission(self):
+    def test_6_fail_create_huge_submission(self):
         submission_request = dict(SubmissionTest.aSubmission)
 
         submission_request['receivers'] = [ SubmissionTest.receiver_used['receiver_gus']  ]
         submission_request['context_gus'] = SubmissionTest.context_used['context_gus']
         submission_request['wb_fields'][u'Short title'] = unicode("A" * 1000 * 1000)
         submission_request['wb_fields'][u'Full description'] = u"You know nothing John Snow"
+        submission_request['wb_fields'][u'Files description'] = u"fuck the pain away"
 
         submission_request['finalize'] = True
 

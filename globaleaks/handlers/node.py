@@ -22,7 +22,7 @@ def anon_serialize_node(store):
 
     return {
       'name': unicode(node.name),
-      'description': unicode(node.description),
+      'description': node.description,
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
@@ -59,7 +59,7 @@ def anon_serialize_context(context):
 
     context_dict.update({
         "context_gus": unicode(context.id),
-        "description": unicode(context.description),
+        "description": context.description,
         "escalation_threshold": None,
         "fields": list(context.fields or []),
         "file_max_download": int(context.file_max_download),

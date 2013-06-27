@@ -46,22 +46,22 @@ def initialize_node(store, results, only_node, email_templates):
     # our defaults for free, because we're like Gandhi of the mail accounts.
     notification.server = u"mail.headstrong.de"
     notification.port = 587
-    # port 587/SMTP-TLS or 465/SMTPS a scelta
+    # port 587/SMTP-TLS or 465/SMTPS
     notification.username = u"sendaccount@lists.globaleaks.org"
     notification.password = u"sendaccount99"
     notification.security = models.Notification._security_types[0] # TLS
 
     # Those fields are sets as default in order to show to the Admin the various 'variables'
     # used in the template.
-    notification.tip_template = email_templates['tip']
-    notification.tip_mail_title = "From %ContextName% a new Tip in %EventTime%"
-    notification.file_template = email_templates['file']
-    notification.file_mail_title = "From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)"
-    notification.comment_template = email_templates['comment']
-    notification.comment_mail_title = "From %ContextName% a new comment in %EventTime%"
+    notification.tip_template = { "en" : email_templates['tip'] }
+    notification.tip_mail_title = { "en" : "From %ContextName% a new Tip in %EventTime%" }
+    notification.file_template = { "en" : email_templates['file'] }
+    notification.file_mail_title = { "en" : "From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)" }
+    notification.comment_template = { "en" : email_templates['comment'] }
+    notification.comment_mail_title = { "en" : "From %ContextName% a new comment in %EventTime%" }
 
-    notification.activation_template = "*Not Yet implemented*"
-    notification.activation_mail_title = "TODO"
+    notification.activation_template = { "en" : "*Not Yet implemented*" }
+    notification.activation_mail_title = { "en" : "**Not Yet implemented" }
 
     store.add(notification)
 
@@ -111,7 +111,7 @@ def create_tables(create_node=True):
 
         only_node = {
             'name':  u"MissingConfLeaks",
-            'description':  u"Please, set me: description",
+            'description':  dict({ "en" : u"Please, set me: localized description" }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"email@dumnmy.net",

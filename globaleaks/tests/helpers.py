@@ -72,6 +72,7 @@ class TestGL(TestWithDB):
 
         self.dummySubmission['context_gus'] = self.dummyContext['context_gus']
         self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
+        self.dummySubmission['wb_fields'] = fill_random_fields(self.dummyContext)
 
         try:
             self.dummySubmission = yield create_submission(self.dummySubmission, finalize=True)
@@ -199,8 +200,9 @@ class MockDict():
             'receiver_gus': unicode(uuid.uuid4()),
             'password': DEFAULT_PASSWORD,
             'name': u'Ned Stark',
-            'description': u'King MockDummy Receiver',
+            'description': { "en" : u'King MockDummy Receiver' },
             'notification_fields': {'mail_address': u'maker@iz.cool.yeah'},
+            'username': u'maker@iz.cool.yeah',
             'can_delete_submission': True,
             'receiver_level': 1,
             'contexts' : [],
@@ -212,28 +214,37 @@ class MockDict():
 
         self.dummyContext = {
             'context_gus': unicode(uuid.uuid4()),
-            'name': u'created by shooter',
-            'description': u'This is the update',
-            'fields': [{u'hint': u'autovelox',
-                        u'name': u'city and space',
+            # localized stuff
+            'name': { "en" : u'created by shooter' },
+            'receipt_description': { "en" : u'xx' },
+            'submission_introduction': { "en" : u'yy' },
+            'submission_disclaimer': { "en" : u'kk' },
+            'description': { "en" : u'This is the update' },
+            # fields, usually overwritten in content by fill_random_fields
+            'fields': [{u'hint': { "en" : u'autovelox' },
+                        u'key': u'city and space',
+                        u'name': { "en" : u'city and space' },
                         u'presentation_order': 1,
                         u'required': True,
                         u'type': u'text',
                         u'value': u"Yadda I'm default with apostrophe"},
-                       {u'hint': u'name of the sun',
-                        u'name': u'ß@ł€¶ -- Spécìàlé €$£ char',
+                       {u'hint': { "en" : u'name of the sun' },
+                        u'key': u'ß@ł€¶ -- Spécìàlé €$£ char',
+                        u'name': { "en" : u'ß@ł€¶ -- Spécìàlé €$£ char' },
                         u'presentation_order': 2,
                         u'required': True,
                         u'type': u'checkboxes',
                         u'value': u"I'm the sun, I've not name"},
-                       {u'hint': u'put the number ',
-                        u'name': u'dict2 whatEver',
+                       {u'hint': { "en" : u'put the number '} ,
+                        u'key': u'dict2 whatEver',
+                        u'name': { "en" : u'dict2 whatEver' },
                         u'presentation_order': 3,
                         u'required': True,
                         u'type': u'text',
                         u'value': u'666 the default value'},
-                       {u'hint': u'details:',
-                        u'name': u'dict3 cdcd',
+                       {u'hint': { "en" : u'details:' },
+                        u'key': u'dict3 cdcd',
+                        u'name': { "en" : u'dict3 cdcd' },
                         u'presentation_order': 4,
                         u'required': False,
                         u'type': u'text',
@@ -249,22 +260,19 @@ class MockDict():
             'receivers' : [],
             'tags': [],
             'receipt_regexp': u'[A-Z]{4}\+[0-9]{5}',
-            'receipt_description': u'xx',
-            'submission_introduction': u'yy',
-            'submission_disclaimer': u'kk',
             'file_required': False,
         }
 
         self.dummySubmission = {
             'context_gus': '',
-            'wb_fields': self.fill_random_fields(self.dummyContext),
+            'wb_fields': fill_random_fields(self.dummyContext),
             'finalize': False,
             'receivers': [],
         }
 
         self.dummyNode = {
             'name':  u"Please, set me: name/title",
-            'description':  u"Please, set me: description",
+            'description':  { "en" : u"Please, set me: description" },
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dumnmy.net",
@@ -293,26 +301,37 @@ class MockDict():
             'username': u'staceppa',
             'password': u'antani',
             'security': u'SSL',
-            'tip_template': u'tip message: %sNodeName%',
-            'comment_template': u'comment message: %sNodeName%',
-            'file_template': u'file message: %sNodeName%',
-            'activation_template': u'activation message: %sNodeName%',
-            'tip_mail_title': u'xxx',
-            'comment_mail_title': u'yyy',
-            'file_mail_title': u'kkk',
-            'activation_mail_title': u'uuu',
+            'tip_template': { "en" : u'tip message: %sNodeName%' },
+            'comment_template': { "en" : u'comment message: %sNodeName%' },
+            'file_template': { "en" : u'file message: %sNodeName%' },
+            'activation_template': { "en" : u'activation message: %sNodeName%' },
+            'tip_mail_title': { "en" : u'xxx' },
+            'comment_mail_title': { "en" : u'yyy' },
+            'file_mail_title': { "en" : u'kkk' },
+            'activation_mail_title': { "en" : u'uuu'},
         }
 
-    def fill_random_fields(self, context_dict):
-        """
-        The type is not jet checked/enforced/validated
-        """
-        assert len(context_dict['fields']) > 1
 
-        ret_dict = {}
-        for sf in context_dict['fields']:
+def fill_random_fields(context_dict):
+    """
+    getting the context dict, take 'fields'.
+    then populate a valid dict of key : value, usable as wb_fields
+    """
+    assert len(context_dict['fields']) > 1
 
-            assert sf.has_key(u'name')
-            ret_dict.update({ sf[u'name'] : ''.join(unichr(x) for x in range(0x400, 0x4FF))})
+    ret_dict = {}
+    for sf in context_dict['fields']:
 
-        return ret_dict
+        assert sf.has_key(u'name')
+        assert sf['name'].has_key("en")
+        assert sf.has_key(u'key')
+        assert sf.has_key(u'hint')
+        assert sf.has_key(u'presentation_order')
+        assert sf.has_key(u'value')
+        assert sf.has_key(u'type')
+        assert sf.has_key(u'required')
+
+        unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
+        ret_dict.update({ sf.get(u'key') : unicode_weird })
+
+    return ret_dict
