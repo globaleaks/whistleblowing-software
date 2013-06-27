@@ -68,11 +68,18 @@ build_custom_glclient()
   TEMPLATE_NAME=$TEMPLATES_DIR
   SED_REGEXP="s/selected_theme = 'default';/selected_theme = '${TEMPLATE_NAME}';/"
   THEMES_FILE=$TMP_DIR/GLCLient/app/scripts/themes.js
+  INDEX_FILE=$TMP_DIR/GLCLient/app/index.html
+  STYLES=""
   echo "[+] Building custom GLClient with template: ${TEMPLATE_NAME}... "
   cd $TMP_DIR
   echo "[+] Cloning latest GLCLient version... "
   git clone https://github.com/globaleaks/GLClient.git GLCLient
   cat $THEMES_FILE | sed -e $SED_REGEXP > $THEMES_FILE
+  for template_file in `find $TEMPLATES_DIR/styles/`;do
+    if [[ "$template_file" == *css* ]];then
+      cat $template_file >> $TMP_DIR/GLCLient/app/styles/custom-glclient.css
+    fi
+  done
   cp -R $TEMPLATES_DIR $TMP_DIR/GLCLient/app/templates/${TEMPLATE_NAME}
   cd GLCLient
   npm install -d
@@ -84,6 +91,8 @@ build_custom_glclient()
   fi
 
   sudo mv build $GLCLIENT_INSTALL_DIR
+  cd /
+  rm -rf $TMP_DIR
 }
 
 if [ ! $1 ];then
