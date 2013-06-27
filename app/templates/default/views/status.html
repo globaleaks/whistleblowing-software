@@ -118,7 +118,7 @@
         <tbody id="receiverListBody">
           <tr ng-repeat="receiver in tip.receivers">
             <td>{{receiver.name}}</td>
-            <td>{{receiver.description}}</td>
+            <td>{{receiver.description[selected_language]}}</td>
             <td>{{receiver.access_counter}}</td>
           </tr>
         </tbody>

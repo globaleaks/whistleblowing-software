@@ -48,7 +48,7 @@
 
         <p ng-show="node_info.configured">{{ "I want to report on" | translate }}
         <select class="contexts" ng-model="submission.current_context"
-                ng-options="context as context.name for context in submission.contexts">
+                ng-options="context as context.name[selected_language] for context in submission.contexts">
         </select>
         </p>
 
@@ -68,7 +68,7 @@
               </div>
               <div class="span3">
                 <h3>{{receiver.name}}</h3>
-                <p>{{receiver.description}}</p>
+                <p>{{receiver.description[selected_language]}}</p>
               </div>
             </div>
 
@@ -81,7 +81,7 @@
       <div ng-switch-when="2 Fill out your submission">
 
         <p class="lead">{{ "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files" | translate }}</p>
-        <p>{{submission.current_context.description}}</p>
+        <p>{{submission.current_context.description[selected_language]}}</p>
 
         <div class="row">
 
