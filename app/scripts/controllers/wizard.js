@@ -10,6 +10,9 @@ GLClient.controller('WizardCtrl',
 
   // Go to a defined step index
   $scope.goToStep = function(index) {
+    if ( $scope.uploading )
+      return;
+
     if ( !_.isUndefined($scope.steps[index]) )
     {
       $scope.selection = $scope.steps[index];
@@ -31,6 +34,9 @@ GLClient.controller('WizardCtrl',
   };
 
   $scope.incrementStep = function() {
+    if ( $scope.uploading )
+      return;
+
     if ( $scope.hasNextStep() )
     {
       var stepIndex = $scope.getCurrentStepIndex();
@@ -40,6 +46,9 @@ GLClient.controller('WizardCtrl',
   };
 
   $scope.decrementStep = function() {
+    if ( $scope.uploading )
+      return;
+
     if ( $scope.hasPreviousStep() )
     {
       var stepIndex = $scope.getCurrentStepIndex();
