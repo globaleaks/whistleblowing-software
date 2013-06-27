@@ -144,8 +144,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
 }]).
   // In here we have all the functions that have to do with performing
   // submission requests to the backend
-  factory('Submission', ['$resource', 'Node', 'Contexts', 'Receivers',
-          function($resource, Node, Contexts, Receivers) {
+  factory('Submission', ['$rootScope', '$resource', 'Node', 'Contexts', 'Receivers',
+          function($rootScope, $resource, Node, Contexts, Receivers) {
 
     var submissionResource = $resource('/submission/:submission_id/',
         {submission_id: '@submission_gus'},
@@ -178,7 +178,6 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       self.contexts = [];
       self.receivers = [];
       self.current_context = {};
-      self.selected_language = null;
       self.maximum_filesize = null;
       self.current_context_receivers = [];
       self.receivers_selected = {};
@@ -198,7 +197,6 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       };
 
       Node.get(function(node_info) {
-        self.selected_language = node_info.languages[0].code;
         self.maximum_filesize = node_info.maximum_filesize;
 
         Contexts.query(function(contexts){
@@ -257,7 +255,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
 
         // Set the submission field values
         _.each(self.current_context.fields, function(field, k) {
-          self.current_submission.wb_fields[field.name] = field.value;
+          self.current_submission.wb_fields[field.key] = field.value;
         });
 
         // Set the currently selected receivers
