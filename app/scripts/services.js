@@ -471,7 +471,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
     }
 
 }]).
-  factory('Admin', ['$resource', function($resource) {
+  factory('Admin', ['$rootScope','$resource', function($rootScope, $resource) {
 
     function Admin() {
       var self = this,
@@ -499,11 +499,11 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       self.create_context = function(context_name) {
         var context = new adminContextsResource;
 
-        context.name = context_name;
-        context.description = '';
+        context.name = {};
+        context.name[$rootScope.selected_language] = context_name;
+        context.description = {};
 
         context.fields = [];
-        // context.languages = [];
         context.receivers = [];
 
         context.escalation_threshold = 0;
@@ -514,9 +514,9 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         context.tip_timetolive = (3600 * 24) * 15; 
         context.submission_timetolive = (3600 * 24) * 2;
         context.receipt_regexp = '';
-        context.receipt_description = '';
-        context.submission_introduction = '';
-        context.submission_disclaimer = '';
+        context.receipt_description = {};
+        context.submission_introduction = {};
+        context.submission_disclaimer = {};
         context.tags = [];
 
         context.$save(function(new_context){
