@@ -46,8 +46,8 @@ def authenticated(role):
                     raise errors.SessionExpired(copy_lifetime, copy_role)
 
                 log.debug("Authentication OK (%s)" % role )
-                # timestamp it's no more used in fact, but I'll keep for stats in testing env
-                GLSetting.sessions[cls.current_user.id].timestamp = time.time()
+                # update the access time to the latest
+                GLSetting.sessions[cls.current_user.id].borndate = utils.datetime_now()
                 return method_handler(cls, *args, **kwargs)
 
             # else, if role != cls.current_user.role
@@ -206,7 +206,6 @@ class AuthenticationHandler(BaseHandler):
         # Key = session_id, values "last access" "id" "role"
         new_session = OD(
                borndate=utils.datetime_now(),
-               timestamp=time.time(),
                id=self.session_id,
                role=role,
                user_id=user_id
