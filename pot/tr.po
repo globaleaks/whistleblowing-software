@@ -6,7 +6,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-27 21:29+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Turkish (http://www.transifex.com/projects/p/globaleaks/language/tr/)\n"
 "MIME-Version: 1.0\n"
@@ -15,6 +15,137 @@ msgstr ""
 "Language: tr\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
+msgid "Welcome to"
+msgstr ""
+
+msgid "Blow the Whistle"
+msgstr "İhbar Et"
+
+msgid "Your node is not configured! Please, proceed via"
+msgstr "Düğümünüz yapılandırılmamış! Şununla devam edeceksiniz:"
+
+msgid "Admin interface and configure at least one context"
+msgstr "Yönetici arayüzü, en az bir içerik düzenle"
+
+msgid "Loading..."
+msgstr "Yüklüyor..."
+
+msgid "Are you a whistleblower?"
+msgstr "İhbarcı mısınız?"
+
+msgid "Enter your receipt"
+msgstr "Makbuzunu gir"
+
+msgid "Are you a receiver?"
+msgstr "Alıcı mısın?"
+
+msgid "This is the"
+msgstr "Bu"
+
+msgid "Login page"
+msgstr "Giriş sayfası"
+
+msgid "What is this about?"
+msgstr "Bu ne hakkında?"
+
+msgid "How you can transform information into action!"
+msgstr "Bilginizi harekete geçirebilirsiniz!"
+
+msgid ""
+"Through this platform you will be able to report on wrongdoing. This "
+"platform is running the"
+msgstr "Bu platformdan yanlış kullanımları ihbar edebilirsiniz. Bu platform şunu kullanmaktadır:"
+
+msgid "GlobaLeaks software"
+msgstr "GlobaLeaks yazılımı"
+
+msgid ""
+"that is specifically designed to protect the identity of the reporter and of"
+" the ones running the platform."
+msgstr "bu özellikle bilgi veren kişinin ve platformu çalıştıranların kimliğini korumak amacıyla tasarlanmıştır."
+
+msgid "This software is developed by the non-profit organization"
+msgstr "Bu yazılım kâr amacı gütmeyen kuruluş tarafından geliştirilmiştir"
+
+msgid "We are supported also by your donations. Visit our"
+msgstr "Bağışlarınızla da destekleniyoruz. Ziyaret et"
+
+msgid "donation page"
+msgstr "bağış sayfası"
+
+msgid "to help us further support the development of GlobaLeaks."
+msgstr "ile bize daha fazla yardım etmek için GlobaLeaks gelişimini destekle."
+
+msgid "Tip Status Page"
+msgstr "İpucu Durum Sayfası"
+
+msgid "Files"
+msgstr "Dosyalar"
+
+msgid "security check"
+msgstr ""
+
+msgid "download"
+msgstr ""
+
+msgid "Security Check"
+msgstr ""
+
+msgid "Use the"
+msgstr "Kullan:"
+
+msgid "sha256 hash"
+msgstr "sha256 özeti"
+
+msgid "to verify the file integrity"
+msgstr "dosya bütünlüğünü doğrulamak için"
+
+msgid ""
+"On unix based systems this can be done by running the following command"
+msgstr ""
+
+msgid "Still calculating hash"
+msgstr ""
+
+msgid "done"
+msgstr ""
+
+msgid "No file has been uploaded!"
+msgstr "Dosya(lar) karşıya yüklenmedi!"
+
+msgid "Comments"
+msgstr "Yorumlar"
+
+msgid "Whistleblower"
+msgstr "İhbarcı"
+
+msgid "System"
+msgstr "Sistem"
+
+msgid "Malformed source"
+msgstr "Kusurlu kaynak"
+
+msgid "Add Comment"
+msgstr "Yorum Ekle"
+
+msgid "Receiver List"
+msgstr "Alıcı Listesi"
+
+msgid "Name"
+msgstr "Ad"
+
+msgid "Description"
+msgstr "Açıklama"
+
+msgid "Access counter"
+msgstr "Erişim sayacı"
+
+msgid "The requested tip does not exist or has expired."
+msgstr "Talep edilen ipucu yok ya da geçerliliği kalkmış."
+
+msgid "Loading Tip page..."
+msgstr "İpucu sayfas yükleniyor..."
+
 msgid "New Submission"
 msgstr "Yeni Girdi"
 
@@ -22,9 +153,6 @@ msgid ""
 "You can customize this section by editing "
 "GLClient/app/templates/default/views/submission/main.html"
 msgstr "Bu bölümü GLClient/app/templates/default/views/submission/main.html 'i düzenleyerek özelleştirebilirsiniz"
-
-msgid "Loading..."
-msgstr "Yüklüyor..."
 
 msgid "This node is not configured."
 msgstr "Bu nod yapılandırılmamış."
@@ -88,247 +216,42 @@ msgid "Submission Created!"
 msgstr "Girdi Yaratıldı!"
 
 msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
-msgstr "Bu sayı makbuzunuzdur. Unutmayın veya kaydedin, çünkü girdinize erişmenizi sağlayacaktır."
+"This receipt will allow you to login as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"Through this system receivers will be able to ask you questions on the Tip "
+"and you will be able to write a reply."
+msgstr ""
+
+msgid ""
+"You will also be able to keep track of who as viewed your submission and "
+"downloaded the files."
+msgstr ""
+
+msgid "Moreover, it will allow you to add other files to your submission."
+msgstr ""
+
+msgid ""
+"Beware of the fact that this receipt, if fallen into the wrong hands, will "
+"lead to identifying you as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"If you are interested in keeping it, please save it in a secure place and "
+"make sure it does not fall into the wrong hands"
+msgstr ""
+
+msgid "Please copy in the box below you receipt to access the tip interface."
+msgstr ""
 
 msgid "View Tip"
 msgstr "İpucunu Görüntüleyin"
 
-msgid "Welcome to"
-msgstr ""
-
-msgid "Blow the Whistle"
-msgstr "İhbar Et"
-
-msgid "Your node is not configured! Please, proceed via"
-msgstr "Düğümünüz yapılandırılmamış! Şununla devam edeceksiniz:"
-
-msgid "Admin interface and configure at least one context"
-msgstr "Yönetici arayüzü, en az bir içerik düzenle"
-
-msgid "Are you a whistleblower?"
-msgstr "İhbarcı mısınız?"
-
-msgid "Enter your receipt"
-msgstr "Makbuzunu gir"
-
-msgid "Are you a receiver?"
-msgstr "Alıcı mısın?"
-
-msgid "This is the"
-msgstr "Bu"
-
-msgid "Login page"
-msgstr "Giriş sayfası"
-
-msgid "What is this about?"
-msgstr "Bu ne hakkında?"
-
-msgid "How you can transform information into action!"
-msgstr "Bilginizi harekete geçirebilirsiniz!"
-
 msgid ""
-"Through this platform you will be able to report on wrongdoing. This "
-"platform is running the"
-msgstr "Bu platformdan yanlış kullanımları ihbar edebilirsiniz. Bu platform şunu kullanmaktadır:"
-
-msgid "GlobaLeaks software"
-msgstr "GlobaLeaks yazılımı"
-
-msgid ""
-"that is specifically designed to protect the identity of the reporter and of"
-" the ones running the platform."
-msgstr "bu özellikle bilgi veren kişinin ve platformu çalıştıranların kimliğini korumak amacıyla tasarlanmıştır."
-
-msgid "This software is developed by the non-profit organization"
-msgstr "Bu yazılım kâr amacı gütmeyen kuruluş tarafından geliştirilmiştir"
-
-msgid "We are supported also by your donations. Visit our"
-msgstr "Bağışlarınızla da destekleniyoruz. Ziyaret et"
-
-msgid "donation page"
-msgstr "bağış sayfası"
-
-msgid "to help us further support the development of GlobaLeaks."
-msgstr "ile bize daha fazla yardım etmek için GlobaLeaks gelişimini destekle."
-
-msgid "Tip Status Page"
-msgstr "İpucu Durum Sayfası"
-
-msgid "Files"
-msgstr "Dosyalar"
-
-msgid "security check"
-msgstr "güvenlik kontrolu"
-
-msgid "download"
-msgstr "karşıdan yükle"
-
-msgid "Security Check"
-msgstr "Güvenlik Kontrol"
-
-msgid "Use the"
-msgstr "Kullan:"
-
-msgid "sha256 hash"
-msgstr "sha256 özeti"
-
-msgid "to verify the file integrity"
-msgstr "dosya bütünlüğünü doğrulamak için"
-
-msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "Unix bazlı sistemlerde bunu şu komutayla yapabilirsiniz: "
-
-msgid "Still calculating hash"
-msgstr "Özet hâla hesaplanıyor..."
-
-msgid "done"
-msgstr "bitti"
-
-msgid "No file has been uploaded!"
-msgstr "Dosya(lar) karşıya yüklenmedi!"
-
-msgid "Comments"
-msgstr "Yorumlar"
-
-msgid "Whistleblower"
-msgstr "İhbarcı"
-
-msgid "System"
-msgstr "Sistem"
-
-msgid "Malformed source"
-msgstr "Kusurlu kaynak"
-
-msgid "Add Comment"
-msgstr "Yorum Ekle"
-
-msgid "Receiver List"
-msgstr "Alıcı Listesi"
-
-msgid "Name"
-msgstr "Ad"
-
-msgid "Description"
-msgstr "Açıklama"
-
-msgid "Access counter"
-msgstr "Erişim sayacı"
-
-msgid "The requested tip does not exist or has expired."
-msgstr "Talep edilen ipucu yok ya da geçerliliği kalkmış."
-
-msgid "Loading Tip page..."
-msgstr "İpucu sayfas yükleniyor..."
-
-msgid "Fields"
-msgstr "Alanlar"
-
-msgid "add field"
-msgstr "alan ekle"
-
-msgid "click to close"
-msgstr "kapatmak için tıkla"
-
-msgid "delete"
-msgstr "sil"
-
-msgid "Hint"
-msgstr "İpucu"
-
-msgid "Required"
-msgstr "Zorunlu"
-
-msgid "Type"
-msgstr "Tip"
-
-msgid "Text"
-msgstr "Metin"
-
-msgid "Radio Buttons"
-msgstr "Radyo Düğmeleri"
-
-msgid "Drop Menu (Select)"
-msgstr "İnen Menü (Seçiniz)"
-
-msgid "Multi-Select"
-msgstr "Çoklu Seçim"
-
-msgid "Checkboxes"
-msgstr "Onay Kutuları"
-
-msgid "Paragraph(s)"
-msgstr "Paragraf(lar)"
-
-msgid "Number"
-msgstr "Sayı"
-
-msgid "Url"
-msgstr "Url"
-
-msgid "Phone"
-msgstr "Telefon"
-
-msgid "Email"
-msgstr "E-posta"
-
-msgid "add option"
-msgstr "seçenek ekle"
-
-msgid "Files overview"
-msgstr "Dosyalar Genel Bakış"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "Bu arayüzü düğümünüzdeki anormallikleri bulmanızda yardımcı olacaktır."
-
-msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "Aşağıdaki tablo girdi rehberindeki dosyaları ve dahili veritabanı ile ilişkilerini gösterir."
-
-msgid "Info"
-msgstr "Bilgi "
-
-msgid "Size"
-msgstr "Boyut"
-
-msgid "References"
-msgstr "Referanslar"
-
-msgid "Password management"
-msgstr "Şifre yönetimi"
-
-msgid "Current Password"
-msgstr "Mevcut Şifre"
-
-msgid "Required old password confirm"
-msgstr "Zorunlu eski şifre onayla"
-
-msgid "New Password"
-msgstr "Yeni Şifre"
-
-msgid "Your password is unsafe, it should have"
-msgstr "Şifreniz güvenli değil, şifreniz şunları içermeli"
-
-msgid "At least one letter"
-msgstr "En az bir harf"
-
-msgid "At least one number"
-msgstr "En az bir sayı"
-
-msgid "At least 8 keypress long"
-msgstr "En az 8 tuşa basma süresi kadar"
-
-msgid "Retype again your new password"
-msgstr "Yeni şifreni tekrar gir "
-
-msgid "The two passwords do not match"
-msgstr "Bu iki şifre eşleşmiyor"
-
-msgid "Save"
-msgstr "Kaydet"
+"This number here is your receipt keep good care of it as it will allow you "
+"to access your submission"
+msgstr "Bu sayı makbuzunuzdur. Unutmayın veya kaydedin, çünkü girdinize erişmenizi sağlayacaktır."
 
 msgid "General information"
 msgstr "Genel bilgi"
@@ -341,6 +264,9 @@ msgstr "Mevcut girişim logosu"
 
 msgid "Node name"
 msgstr "Nod adı"
+
+msgid "Email"
+msgstr "E-posta"
 
 msgid "Tor Hidden Service (hostname)"
 msgstr "Tor Gizli Servisi (sunucu adı)"
@@ -413,6 +339,119 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
+msgid "Contexts list"
+msgstr "İçerik listesi"
+
+msgid "Save"
+msgstr "Kaydet"
+
+msgid "Delete"
+msgstr "Sil"
+
+msgid "Receivers"
+msgstr "Alıcılar"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Yeni içerik ekle"
+
+msgid "add"
+msgstr "ekle"
+
+msgid "Fields"
+msgstr "Alanlar"
+
+msgid "add field"
+msgstr "alan ekle"
+
+msgid "click to close"
+msgstr "kapatmak için tıkla"
+
+msgid "delete"
+msgstr "sil"
+
+msgid "Hint"
+msgstr "İpucu"
+
+msgid "Required"
+msgstr "Zorunlu"
+
+msgid "Type"
+msgstr "Tip"
+
+msgid "Text"
+msgstr "Metin"
+
+msgid "Radio Buttons"
+msgstr "Radyo Düğmeleri"
+
+msgid "Drop Menu (Select)"
+msgstr "İnen Menü (Seçiniz)"
+
+msgid "Multi-Select"
+msgstr "Çoklu Seçim"
+
+msgid "Checkboxes"
+msgstr "Onay Kutuları"
+
+msgid "Paragraph(s)"
+msgstr "Paragraf(lar)"
+
+msgid "Number"
+msgstr "Sayı"
+
+msgid "Url"
+msgstr "Url"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "add option"
+msgstr "seçenek ekle"
+
+msgid "Files overview"
+msgstr "Dosyalar Genel Bakış"
+
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "Bu arayüzü düğümünüzdeki anormallikleri bulmanızda yardımcı olacaktır."
+
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "Aşağıdaki tablo girdi rehberindeki dosyaları ve dahili veritabanı ile ilişkilerini gösterir."
+
+msgid "Info"
+msgstr "Bilgi "
+
+msgid "Size"
+msgstr "Boyut"
+
+msgid "References"
+msgstr "Referanslar"
+
 msgid "Username"
 msgstr "Kullanıcı adı"
 
@@ -452,44 +491,62 @@ msgstr "Dosya e-posta şablonu"
 msgid "Activation Email template"
 msgstr "Etkinleştirme E-postası şablonu"
 
-msgid "Contexts list"
-msgstr "İçerik listesi"
+msgid "Password management"
+msgstr "Şifre yönetimi"
 
-msgid "Delete"
-msgstr "Sil"
+msgid "Current Password"
+msgstr "Mevcut Şifre"
 
-msgid "Receivers"
-msgstr "Alıcılar"
+msgid "Required old password confirm"
+msgstr "Zorunlu eski şifre onayla"
 
-msgid "Advanced settings"
-msgstr ""
+msgid "New Password"
+msgstr "Yeni Şifre"
 
-msgid "Submission Disclaimer"
-msgstr ""
+msgid "Your password is unsafe, it should have"
+msgstr "Şifreniz güvenli değil, şifreniz şunları içermeli"
 
-msgid "Submisson hours life"
-msgstr ""
+msgid "At least one letter"
+msgstr "En az bir harf"
 
-msgid "Tip day life"
-msgstr ""
+msgid "At least one number"
+msgstr "En az bir sayı"
 
-msgid "File Required"
-msgstr ""
+msgid "At least 8 keypress long"
+msgstr "En az 8 tuşa basma süresi kadar"
 
-msgid "Receipt regexp"
-msgstr ""
+msgid "Retype again your new password"
+msgstr "Yeni şifreni tekrar gir "
 
-msgid "Receipt description"
-msgstr ""
+msgid "The two passwords do not match"
+msgstr "Bu iki şifre eşleşmiyor"
 
-msgid "Submission Introduction"
-msgstr ""
+msgid "Receiver list"
+msgstr "Alıcı listesi"
 
-msgid "Add new context"
-msgstr "Yeni içerik ekle"
+msgid "Select file"
+msgstr "Dosya seç"
 
-msgid "add"
-msgstr "ekle"
+msgid "upload"
+msgstr "karşıya yükle"
+
+msgid "Receiver name too long"
+msgstr "Alıcı ismi çok uzun"
+
+msgid "Email Address (Username)"
+msgstr "E-posta Adresi (Kullanıcı Adı)"
+
+msgid "Invalid email address"
+msgstr "Geçersiz e-posta adresi"
+
+msgid "Contexts"
+msgstr "İçerikler"
+
+msgid "Add new receiver"
+msgstr "Yeni alıcı ekle"
+
+msgid "Email Address"
+msgstr "E-posta Adresi"
 
 msgid "Content Settin"
 msgstr "İçerik Ayarları"
@@ -533,50 +590,20 @@ msgid ""
 "node."
 msgstr "Bu arayüz düğümünüzün kullanıcılarının faaliyetlerini gösterir. Anormallikleri belirlemek ve düğümünüzün Alıcılarını desteklemek konusunda yardımcı olabilir."
 
-msgid "Receiver list"
-msgstr "Alıcı listesi"
+msgid "Welcome back captain!"
+msgstr "Tekrar hoşgeldiniz!"
 
-msgid "Select file"
-msgstr "Dosya seç"
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Buradan GLClient fonksiyonlarını taklit ederek sıradan hata ayıklama işlemlerinde bulunabilirsiniz."
 
-msgid "upload"
-msgstr "karşıya yükle"
+msgid "Cookies are not enabled!"
+msgstr "Cookies etkinleştirilmedi!"
 
-msgid "Receiver name too long"
-msgstr "Alıcı ismi çok uzun"
+msgid "You will not be able to login."
+msgstr "Giriş yapmanız mümkün olmayacaktır."
 
-msgid "Email Address (Username)"
-msgstr "E-posta Adresi (Kullanıcı Adı)"
-
-msgid "Invalid email address"
-msgstr "Geçersiz e-posta adresi"
-
-msgid "Contexts"
-msgstr "İçerikler"
-
-msgid "Add new receiver"
-msgstr "Yeni alıcı ekle"
-
-msgid "Email Address"
-msgstr "E-posta Adresi"
-
-msgid "Tips"
-msgstr "İpuçları"
-
-msgid "Preferences"
-msgstr "Tercihleriniz"
-
-msgid "Tip ID"
-msgstr "İpucu kimliği"
-
-msgid "Age"
-msgstr "Yaş"
-
-msgid "Views"
-msgstr "Görünümler"
-
-msgid "Last Access"
-msgstr "Son Erişim"
+msgid "Login"
+msgstr "Giriş"
 
 msgid "Preferences and password management"
 msgstr "Tercihler ve şifre yönetimi"
@@ -616,6 +643,33 @@ msgstr ""
 
 msgid "Update notification settings"
 msgstr ""
+
+msgid "Tips"
+msgstr "İpuçları"
+
+msgid "Preferences"
+msgstr "Tercihleriniz"
+
+msgid "Tip ID"
+msgstr "İpucu kimliği"
+
+msgid "Age"
+msgstr "Yaş"
+
+msgid "Views"
+msgstr "Görünümler"
+
+msgid "Last Access"
+msgstr "Son Erişim"
+
+msgid "Success!"
+msgstr "Başardınız!"
+
+msgid "Currently logged in "
+msgstr "Oturum açık"
+
+msgid "logout"
+msgstr "çıkış"
 
 msgid "Save changes"
 msgstr "Değişiklikleri kaydet"
@@ -659,27 +713,3 @@ msgstr " Tor tarayıcı paketinin bir kopyasını karşıdan yükle"
 
 msgid "before continuing."
 msgstr "devam etmeden önce."
-
-msgid "Welcome back captain!"
-msgstr "Tekrar hoşgeldiniz!"
-
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "Buradan GLClient fonksiyonlarını taklit ederek sıradan hata ayıklama işlemlerinde bulunabilirsiniz."
-
-msgid "Cookies are not enabled!"
-msgstr "Cookies etkinleştirilmedi!"
-
-msgid "You will not be able to login."
-msgstr "Giriş yapmanız mümkün olmayacaktır."
-
-msgid "Login"
-msgstr "Giriş"
-
-msgid "Success!"
-msgstr "Başardınız!"
-
-msgid "Currently logged in "
-msgstr "Oturum açık"
-
-msgid "logout"
-msgstr "çıkış"

@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-21 23:56+0000\n"
+"PO-Revision-Date: 2013-06-27 21:29+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/projects/p/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -13,6 +13,137 @@ msgstr ""
 "Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Welcome to"
+msgstr ""
+
+msgid "Blow the Whistle"
+msgstr "Leadom a fülest!"
+
+msgid "Your node is not configured! Please, proceed via"
+msgstr "Nem állított be csomópontot! Kérjük, haladjon tovább a következővel:"
+
+msgid "Admin interface and configure at least one context"
+msgstr "Admin felület és beállítások legalább egy kontextus alapján"
+
+msgid "Loading..."
+msgstr "Töltés..."
+
+msgid "Are you a whistleblower?"
+msgstr "Szivárogtatni szeretne?"
+
+msgid "Enter your receipt"
+msgstr "Azonosító beírása"
+
+msgid "Are you a receiver?"
+msgstr "Ön fogadja a dokumentumokat?"
+
+msgid "This is the"
+msgstr "Ez a "
+
+msgid "Login page"
+msgstr "Bejelentkezés"
+
+msgid "What is this about?"
+msgstr "Miről van itt szó?"
+
+msgid "How you can transform information into action!"
+msgstr "Hogyan lehet az információból tetteket csinálni?!?"
+
+msgid ""
+"Through this platform you will be able to report on wrongdoing. This "
+"platform is running the"
+msgstr "Ezen a platformon keresztül küldhet jelentéseket a visszaélésekről. Ez platform a következő rendszert használja:"
+
+msgid "GlobaLeaks software"
+msgstr "GlobaLeaks szoftver"
+
+msgid ""
+"that is specifically designed to protect the identity of the reporter and of"
+" the ones running the platform."
+msgstr "amely kifejezetten az újságíró és az üzemeltetők személyazonosságának védelmét szolgálja."
+
+msgid "This software is developed by the non-profit organization"
+msgstr "Ezt a szoftvert az alábbi civil szervezet fejlesztette:"
+
+msgid "We are supported also by your donations. Visit our"
+msgstr "Szolgáltatásunk fenntartásához hozzájárulnak az Ön adományai is. Látogasson el az oldalunkra:"
+
+msgid "donation page"
+msgstr "adomány oldal"
+
+msgid "to help us further support the development of GlobaLeaks."
+msgstr "a GlobaLeaks fejlesztésének támogatásához."
+
+msgid "Tip Status Page"
+msgstr "Füles oldala"
+
+msgid "Files"
+msgstr "Fájlok"
+
+msgid "security check"
+msgstr ""
+
+msgid "download"
+msgstr ""
+
+msgid "Security Check"
+msgstr ""
+
+msgid "Use the"
+msgstr "Használja a/az"
+
+msgid "sha256 hash"
+msgstr "sha256 hash"
+
+msgid "to verify the file integrity"
+msgstr "a fájl integritásának ellenőrzéséhez"
+
+msgid ""
+"On unix based systems this can be done by running the following command"
+msgstr ""
+
+msgid "Still calculating hash"
+msgstr ""
+
+msgid "done"
+msgstr ""
+
+msgid "No file has been uploaded!"
+msgstr "Nem töltött fel fájlt!"
+
+msgid "Comments"
+msgstr "Megjegyzések"
+
+msgid "Whistleblower"
+msgstr "Szivárogtató"
+
+msgid "System"
+msgstr "Rendszer"
+
+msgid "Malformed source"
+msgstr "Hibás forrás"
+
+msgid "Add Comment"
+msgstr "Hozzászólás írása"
+
+msgid "Receiver List"
+msgstr "Fogadók listája"
+
+msgid "Name"
+msgstr "Név"
+
+msgid "Description"
+msgstr "Leírás"
+
+msgid "Access counter"
+msgstr "Hozzáférés számláló"
+
+msgid "The requested tip does not exist or has expired."
+msgstr "A lekérdezett füles nem létezik, vagy lejárt."
+
+msgid "Loading Tip page..."
+msgstr "Füles oldalának betöltése..."
+
 msgid "New Submission"
 msgstr "Új feltöltés"
 
@@ -20,9 +151,6 @@ msgid ""
 "You can customize this section by editing "
 "GLClient/app/templates/default/views/submission/main.html"
 msgstr "Ezt a részt a GLClient/app/templates/default/views/submission/main.html szerkesztésével változtathatja meg"
-
-msgid "Loading..."
-msgstr "Töltés..."
 
 msgid "This node is not configured."
 msgstr "Ezt a csomópontot nem konfigurálták."
@@ -86,247 +214,42 @@ msgid "Submission Created!"
 msgstr "Feltöltés kész!"
 
 msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
-msgstr "Ez a szám az Ön azonosítója, őrizze meg, mert csak ezzel tudja elérni a feltöltött dokumentumokat."
+"This receipt will allow you to login as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"Through this system receivers will be able to ask you questions on the Tip "
+"and you will be able to write a reply."
+msgstr ""
+
+msgid ""
+"You will also be able to keep track of who as viewed your submission and "
+"downloaded the files."
+msgstr ""
+
+msgid "Moreover, it will allow you to add other files to your submission."
+msgstr ""
+
+msgid ""
+"Beware of the fact that this receipt, if fallen into the wrong hands, will "
+"lead to identifying you as the whistleblower for this Tip."
+msgstr ""
+
+msgid ""
+"If you are interested in keeping it, please save it in a secure place and "
+"make sure it does not fall into the wrong hands"
+msgstr ""
+
+msgid "Please copy in the box below you receipt to access the tip interface."
+msgstr ""
 
 msgid "View Tip"
 msgstr "Füles megtekintése"
 
-msgid "Welcome to"
-msgstr ""
-
-msgid "Blow the Whistle"
-msgstr "Leadom a fülest!"
-
-msgid "Your node is not configured! Please, proceed via"
-msgstr "Nem állított be csomópontot! Kérjük, haladjon tovább a következővel:"
-
-msgid "Admin interface and configure at least one context"
-msgstr "Admin felület és beállítások legalább egy kontextus alapján"
-
-msgid "Are you a whistleblower?"
-msgstr "Szivárogtatni szeretne?"
-
-msgid "Enter your receipt"
-msgstr "Azonosító beírása"
-
-msgid "Are you a receiver?"
-msgstr "Ön fogadja a dokumentumokat?"
-
-msgid "This is the"
-msgstr "Ez a "
-
-msgid "Login page"
-msgstr "Bejelentkezés"
-
-msgid "What is this about?"
-msgstr "Miről van itt szó?"
-
-msgid "How you can transform information into action!"
-msgstr "Hogyan lehet az információból tetteket csinálni?!?"
-
 msgid ""
-"Through this platform you will be able to report on wrongdoing. This "
-"platform is running the"
-msgstr "Ezen a platformon keresztül küldhet jelentéseket a visszaélésekről. Ez platform a következő rendszert használja:"
-
-msgid "GlobaLeaks software"
-msgstr "GlobaLeaks szoftver"
-
-msgid ""
-"that is specifically designed to protect the identity of the reporter and of"
-" the ones running the platform."
-msgstr "amely kifejezetten az újságíró és az üzemeltetők személyazonosságának védelmét szolgálja."
-
-msgid "This software is developed by the non-profit organization"
-msgstr "Ezt a szoftvert az alábbi civil szervezet fejlesztette:"
-
-msgid "We are supported also by your donations. Visit our"
-msgstr "Szolgáltatásunk fenntartásához hozzájárulnak az Ön adományai is. Látogasson el az oldalunkra:"
-
-msgid "donation page"
-msgstr "adomány oldal"
-
-msgid "to help us further support the development of GlobaLeaks."
-msgstr "a GlobaLeaks fejlesztésének támogatásához."
-
-msgid "Tip Status Page"
-msgstr "Füles oldala"
-
-msgid "Files"
-msgstr "Fájlok"
-
-msgid "security check"
-msgstr "biztonsági ellenőrzés"
-
-msgid "download"
-msgstr "letöltés"
-
-msgid "Security Check"
-msgstr "Biztonsági ellenőrzés"
-
-msgid "Use the"
-msgstr "Használja a/az"
-
-msgid "sha256 hash"
-msgstr "sha256 hash"
-
-msgid "to verify the file integrity"
-msgstr "a fájl integritásának ellenőrzéséhez"
-
-msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "Az unix alapú rendszereknél ezt a következő parancs futtatásával teheti meg:"
-
-msgid "Still calculating hash"
-msgstr "Még mindig a hash-t számláljuk"
-
-msgid "done"
-msgstr "kész"
-
-msgid "No file has been uploaded!"
-msgstr "Nem töltött fel fájlt!"
-
-msgid "Comments"
-msgstr "Megjegyzések"
-
-msgid "Whistleblower"
-msgstr "Szivárogtató"
-
-msgid "System"
-msgstr "Rendszer"
-
-msgid "Malformed source"
-msgstr "Hibás forrás"
-
-msgid "Add Comment"
-msgstr "Hozzászólás írása"
-
-msgid "Receiver List"
-msgstr "Fogadók listája"
-
-msgid "Name"
-msgstr "Név"
-
-msgid "Description"
-msgstr "Leírás"
-
-msgid "Access counter"
-msgstr "Hozzáférés számláló"
-
-msgid "The requested tip does not exist or has expired."
-msgstr "A lekérdezett füles nem létezik, vagy lejárt."
-
-msgid "Loading Tip page..."
-msgstr "Füles oldalának betöltése..."
-
-msgid "Fields"
-msgstr "Mezők"
-
-msgid "add field"
-msgstr "mező hozzáadása"
-
-msgid "click to close"
-msgstr "a bezáráshoz kattinston ide"
-
-msgid "delete"
-msgstr "törlés"
-
-msgid "Hint"
-msgstr "Tipp"
-
-msgid "Required"
-msgstr "Kötelező"
-
-msgid "Type"
-msgstr "Típus"
-
-msgid "Text"
-msgstr "Szöveg"
-
-msgid "Radio Buttons"
-msgstr "Rádiógombok"
-
-msgid "Drop Menu (Select)"
-msgstr "Legördülő menü (Válasszon)"
-
-msgid "Multi-Select"
-msgstr "Több kiválasztása egyszerre"
-
-msgid "Checkboxes"
-msgstr "Ellenőrző lista"
-
-msgid "Paragraph(s)"
-msgstr "Bekezdés(ek)"
-
-msgid "Number"
-msgstr "Szám"
-
-msgid "Url"
-msgstr "Link url"
-
-msgid "Phone"
-msgstr "Telefonszám"
-
-msgid "Email"
-msgstr "E-mail"
-
-msgid "add option"
-msgstr "opció hozzáadása"
-
-msgid "Files overview"
-msgstr "Fájlok listája"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "Ez a felület segít Önnek a csomópont anomáliák kiszűrésében."
-
-msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "Az alábbi táblázat a beküldött dokumentumok mappáit mutatja meg, és azt, hol van a helyük a belső adatbázisban."
-
-msgid "Info"
-msgstr "Információk"
-
-msgid "Size"
-msgstr "Méret"
-
-msgid "References"
-msgstr "Hivatkozások"
-
-msgid "Password management"
-msgstr "Jelszó megváltoztatása"
-
-msgid "Current Password"
-msgstr "Jelenlegi jelszó"
-
-msgid "Required old password confirm"
-msgstr "Régi jelszó megerősítése"
-
-msgid "New Password"
-msgstr "Új jelszó"
-
-msgid "Your password is unsafe, it should have"
-msgstr "A megadott jelszó nem biztonságos, a következőket kell tartalmaznia:"
-
-msgid "At least one letter"
-msgstr "Legaláb egy betűt"
-
-msgid "At least one number"
-msgstr "Legalább egy szám legyen"
-
-msgid "At least 8 keypress long"
-msgstr "Legalább 8 leütés hosszú"
-
-msgid "Retype again your new password"
-msgstr "Új jelszó megerősítése"
-
-msgid "The two passwords do not match"
-msgstr "Nem egyeznek a beírt jelszavak"
-
-msgid "Save"
-msgstr "Mentés"
+"This number here is your receipt keep good care of it as it will allow you "
+"to access your submission"
+msgstr "Ez a szám az Ön azonosítója, őrizze meg, mert csak ezzel tudja elérni a feltöltött dokumentumokat."
 
 msgid "General information"
 msgstr "Általános információk"
@@ -339,6 +262,9 @@ msgstr "Jelenlegi kezdeményezés logója"
 
 msgid "Node name"
 msgstr "Csomópont neve"
+
+msgid "Email"
+msgstr "E-mail"
 
 msgid "Tor Hidden Service (hostname)"
 msgstr "Tor rejtett szolgáltatás (szolgáltató neve)"
@@ -411,6 +337,119 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
+msgid "Contexts list"
+msgstr "Kontextusok listája"
+
+msgid "Save"
+msgstr "Mentés"
+
+msgid "Delete"
+msgstr "Törlés"
+
+msgid "Receivers"
+msgstr "Fogadók"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submisson hours life"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Új kontextus hozzáadása"
+
+msgid "add"
+msgstr "hozzáadás"
+
+msgid "Fields"
+msgstr "Mezők"
+
+msgid "add field"
+msgstr "mező hozzáadása"
+
+msgid "click to close"
+msgstr "a bezáráshoz kattinston ide"
+
+msgid "delete"
+msgstr "törlés"
+
+msgid "Hint"
+msgstr "Tipp"
+
+msgid "Required"
+msgstr "Kötelező"
+
+msgid "Type"
+msgstr "Típus"
+
+msgid "Text"
+msgstr "Szöveg"
+
+msgid "Radio Buttons"
+msgstr "Rádiógombok"
+
+msgid "Drop Menu (Select)"
+msgstr "Legördülő menü (Válasszon)"
+
+msgid "Multi-Select"
+msgstr "Több kiválasztása egyszerre"
+
+msgid "Checkboxes"
+msgstr "Ellenőrző lista"
+
+msgid "Paragraph(s)"
+msgstr "Bekezdés(ek)"
+
+msgid "Number"
+msgstr "Szám"
+
+msgid "Url"
+msgstr "Link url"
+
+msgid "Phone"
+msgstr "Telefonszám"
+
+msgid "add option"
+msgstr "opció hozzáadása"
+
+msgid "Files overview"
+msgstr "Fájlok listája"
+
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "Ez a felület segít Önnek a csomópont anomáliák kiszűrésében."
+
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "Az alábbi táblázat a beküldött dokumentumok mappáit mutatja meg, és azt, hol van a helyük a belső adatbázisban."
+
+msgid "Info"
+msgstr "Információk"
+
+msgid "Size"
+msgstr "Méret"
+
+msgid "References"
+msgstr "Hivatkozások"
+
 msgid "Username"
 msgstr "Felhasználónév"
 
@@ -450,44 +489,62 @@ msgstr "Fájl e-mail sablonja"
 msgid "Activation Email template"
 msgstr "E-mail sablon az aktiváláshoz"
 
-msgid "Contexts list"
-msgstr "Kontextusok listája"
+msgid "Password management"
+msgstr "Jelszó megváltoztatása"
 
-msgid "Delete"
-msgstr "Törlés"
+msgid "Current Password"
+msgstr "Jelenlegi jelszó"
 
-msgid "Receivers"
-msgstr "Fogadók"
+msgid "Required old password confirm"
+msgstr "Régi jelszó megerősítése"
 
-msgid "Advanced settings"
-msgstr ""
+msgid "New Password"
+msgstr "Új jelszó"
 
-msgid "Submission Disclaimer"
-msgstr ""
+msgid "Your password is unsafe, it should have"
+msgstr "A megadott jelszó nem biztonságos, a következőket kell tartalmaznia:"
 
-msgid "Submisson hours life"
-msgstr ""
+msgid "At least one letter"
+msgstr "Legaláb egy betűt"
 
-msgid "Tip day life"
-msgstr ""
+msgid "At least one number"
+msgstr "Legalább egy szám legyen"
 
-msgid "File Required"
-msgstr ""
+msgid "At least 8 keypress long"
+msgstr "Legalább 8 leütés hosszú"
 
-msgid "Receipt regexp"
-msgstr ""
+msgid "Retype again your new password"
+msgstr "Új jelszó megerősítése"
 
-msgid "Receipt description"
-msgstr ""
+msgid "The two passwords do not match"
+msgstr "Nem egyeznek a beírt jelszavak"
 
-msgid "Submission Introduction"
-msgstr ""
+msgid "Receiver list"
+msgstr "Fogadók listája"
 
-msgid "Add new context"
-msgstr "Új kontextus hozzáadása"
+msgid "Select file"
+msgstr "Fájl kiválasztása"
 
-msgid "add"
-msgstr "hozzáadás"
+msgid "upload"
+msgstr "feltöltés"
+
+msgid "Receiver name too long"
+msgstr "Fogadó neve túl hosszú"
+
+msgid "Email Address (Username)"
+msgstr "E-mail cím (felhasználónév)"
+
+msgid "Invalid email address"
+msgstr "Hibás e-mail cím"
+
+msgid "Contexts"
+msgstr "Kontextus"
+
+msgid "Add new receiver"
+msgstr "Új fogadó hozzáadása"
+
+msgid "Email Address"
+msgstr "E-mail cím"
 
 msgid "Content Settin"
 msgstr "Tartalom beállítása"
@@ -531,50 +588,20 @@ msgid ""
 "node."
 msgstr "Ez a felület a csomópont felhasználóinak aktivitását mutatja. Ez segíthet az anomáliák felderítésében, és a csomópont fogadóinak támogatásában."
 
-msgid "Receiver list"
-msgstr "Fogadók listája"
+msgid "Welcome back captain!"
+msgstr "Isten hozta újra itt, Kapitány!"
 
-msgid "Select file"
-msgstr "Fájl kiválasztása"
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Innen futtathat általános hibaelhárító műveleteket a GLClient emulációjával."
 
-msgid "upload"
-msgstr "feltöltés"
+msgid "Cookies are not enabled!"
+msgstr "Nem lehet sütiket használni!"
 
-msgid "Receiver name too long"
-msgstr "Fogadó neve túl hosszú"
+msgid "You will not be able to login."
+msgstr "Nem fog tudni bejelentkezni."
 
-msgid "Email Address (Username)"
-msgstr "E-mail cím (felhasználónév)"
-
-msgid "Invalid email address"
-msgstr "Hibás e-mail cím"
-
-msgid "Contexts"
-msgstr "Kontextus"
-
-msgid "Add new receiver"
-msgstr "Új fogadó hozzáadása"
-
-msgid "Email Address"
-msgstr "E-mail cím"
-
-msgid "Tips"
-msgstr "Fülesek"
-
-msgid "Preferences"
-msgstr "Beállítások"
-
-msgid "Tip ID"
-msgstr "Füles azonosítója"
-
-msgid "Age"
-msgstr "Életkor"
-
-msgid "Views"
-msgstr "Nézettség"
-
-msgid "Last Access"
-msgstr "Legutóbbi belépés"
+msgid "Login"
+msgstr "Bejelentkezés"
 
 msgid "Preferences and password management"
 msgstr "Beállítások és jelszó megváltoztatása"
@@ -614,6 +641,33 @@ msgstr ""
 
 msgid "Update notification settings"
 msgstr ""
+
+msgid "Tips"
+msgstr "Fülesek"
+
+msgid "Preferences"
+msgstr "Beállítások"
+
+msgid "Tip ID"
+msgstr "Füles azonosítója"
+
+msgid "Age"
+msgstr "Életkor"
+
+msgid "Views"
+msgstr "Nézettség"
+
+msgid "Last Access"
+msgstr "Legutóbbi belépés"
+
+msgid "Success!"
+msgstr "Sikerült!"
+
+msgid "Currently logged in "
+msgstr "Jelenleg bejelentkezve mint"
+
+msgid "logout"
+msgstr "kilépés"
 
 msgid "Save changes"
 msgstr "Változtatások mentése"
@@ -657,27 +711,3 @@ msgstr "tor böngésző letöltése"
 
 msgid "before continuing."
 msgstr "mielőtt folytatja."
-
-msgid "Welcome back captain!"
-msgstr "Isten hozta újra itt, Kapitány!"
-
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "Innen futtathat általános hibaelhárító műveleteket a GLClient emulációjával."
-
-msgid "Cookies are not enabled!"
-msgstr "Nem lehet sütiket használni!"
-
-msgid "You will not be able to login."
-msgstr "Nem fog tudni bejelentkezni."
-
-msgid "Login"
-msgstr "Bejelentkezés"
-
-msgid "Success!"
-msgstr "Sikerült!"
-
-msgid "Currently logged in "
-msgstr "Jelenleg bejelentkezve mint"
-
-msgid "logout"
-msgstr "kilépés"
