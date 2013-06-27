@@ -179,7 +179,6 @@ class TestHandler(TestGL):
             session_id = '4tehlulz'
             new_session = OD(
                    borndate=utils.datetime_now(),
-                   timestamp=time.time(),
                    id=session_id,
                    role=role,
                    user_id=user_id

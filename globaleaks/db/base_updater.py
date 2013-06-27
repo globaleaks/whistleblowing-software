@@ -18,7 +18,7 @@ class TableReplacer:
         self.start_ver = start_ver
 
         self.std_fancy = " + "
-        self.debug_info = "   [%d => %d ]" %  (start_ver, start_ver + 1)
+        self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         print "%s Opening old version DB: %s" % (self.debug_info, old_db_file)
         old_database = create_database("sqlite:%s" % self.old_db_file)
