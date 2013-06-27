@@ -237,10 +237,15 @@ def find_current_db_version(dirpath, filearray):
             return detected_version, abspath
 
 
-def check_db_files(db_dir_path):
+def check_db_files():
     """
     """
     from globaleaks.db import updater_manager
+
+    try:
+        db_dir_path = GLSetting.gldb_path
+    except Exception as excep:
+        import pdb; pdb.set_trace()
 
     for (path, dirs, files) in os.walk(db_dir_path):
 
@@ -250,9 +255,13 @@ def check_db_files(db_dir_path):
             if starting_ver < GLSetting.db_version:
                 print "Performing update of Database from version %d to version %d" %\
                       (starting_ver, GLSetting.db_version)
-                updater_manager.perform_version_update(starting_ver, GLSetting.db_version, abspath)
-                print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
-            else:
+                try:
+                    updater_manager.perform_version_update(starting_ver, GLSetting.db_version, abspath)
+                    print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
+                except Exception as excep:
+                    print "GlobaLeaks database version %d: update failure :(" % GLSetting.db_version
+                    quit(-1)
+
                 print "Database version detected: %d" % GLSetting.db_version
 
         except AssertionError:
@@ -286,7 +295,7 @@ def run_glbackend():
 
 # Check DB version and eventually convert them,
 # this step is made before the twisted start
-check_db_files(GLSetting.gldb_path)
+check_db_files()
 
 
 # "And now his watch begins"

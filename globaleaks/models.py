@@ -105,6 +105,7 @@ class Model(Storm):
         cls_unicode_keys = getattr(self, "unicode_keys")
         cls_int_keys = getattr(self, "int_keys")
         cls_bool_keys = getattr(self, "bool_keys")
+        cls_localized_keys = getattr(self, "localized_strings")
 
         for k in cls_unicode_keys:
             value = unicode(attrs[k])
@@ -121,8 +122,21 @@ class Model(Storm):
                 value = False
             else:
                 value = bool(attrs[k])
-
             setattr(self, k, value)
+
+        for k in cls_localized_keys:
+            value = attrs[k]
+            setattr(self, k, value)
+            # value is a list with { lang: 'en', 'text': "shit" },
+            #                      { lang: 'mi', 'text': "leganord" }
+            # print "checking %s on %s" % (k, value)
+            # if len(k) > 0:
+            #     if value[0].has_key('lang') and value[0].has_key('text'):
+            #         setattr(self, k, value)
+            #     else:
+            #         raise ValueError("Invalid keys in %s" % k)
+            # else:
+            #     raise ValueError("Missing translated dict in %s" % k)
 
 
     def __repr___(self):
@@ -155,7 +169,6 @@ class Context(Model):
     __storm_table__ = 'context'
 
     name = Unicode(validator=gltextv)
-    description = Unicode(validator=gltextv)
     fields = Pickle()
 
     selectable_receiver = Bool()
@@ -164,20 +177,18 @@ class Context(Model):
     tip_max_access = Int()
     file_max_download = Int()
     file_required = Bool()
-
-    # both expressed in seconds
     tip_timetolive = Int()
     submission_timetolive = Int()
-
-    last_update = DateTime()
-
-    # advanced settings
     receipt_regexp = Unicode()
-    receipt_description = Unicode()
-    submission_introduction = Unicode()
-    submission_disclaimer = Unicode()
+    last_update = DateTime()
     file_required = Bool()
     tags = Pickle()
+
+    # localized stuff
+    description = Pickle()
+    receipt_description = Pickle()
+    submission_introduction = Pickle()
+    submission_disclaimer = Pickle()
 
     #receivers = ReferenceSet(
     #                         Context.id,
@@ -185,7 +196,7 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
-    unicode_keys = ['name', 'description', 'receipt_description',
+    localized_strings = ['name', 'description', 'receipt_description',
                     'submission_introduction', 'submission_disclaimer' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
                  'file_max_download', 'submission_timetolive' ]
@@ -341,7 +352,6 @@ class Node(Model):
     """
     __storm_table__ = 'node'
 
-    description = Unicode(validator=gltextv)
     name = Unicode(validator=gltextv)
     public_site = Unicode(validator=gltextv)
     hidden_service = Unicode()
@@ -353,6 +363,9 @@ class Node(Model):
     password = Unicode()
     last_update = DateTime()
     database_version = Int()
+
+    # localized string
+    description = Pickle()
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -371,12 +384,13 @@ class Node(Model):
 
     exception_email = Unicode()
 
-    unicode_keys = ['name', 'description', 'public_site',
+    unicode_keys = ['name', 'public_site',
                     'email', 'hidden_service', 'exception_email' ]
     int_keys = [ 'stats_update_time', 'maximum_namesize', 'maximum_descsize',
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_tip', 'tor2web_unauth' ]
+    localized_strings = [ 'description' ]
 
 
 class Notification(Model):
@@ -395,24 +409,25 @@ class Notification(Model):
     security = Unicode()
     _security_types = [ u'TLS', u'SSL' ]
 
-    # In the future these would be Markdown!
-    tip_template = Unicode()
-    file_template = Unicode()
-    comment_template = Unicode()
-    activation_template = Unicode()
+    # In the future these would be Markdown, but at the moment
+    # are just localized dicts
+    tip_template = Pickle()
+    file_template = Pickle()
+    comment_template = Pickle()
+    activation_template = Pickle()
     # these four template would be in the unicode_key implicit
     # expected fields, when Client/Backend are updated in their usage
 
-    tip_mail_title = Unicode()
-    file_mail_title = Unicode()
-    comment_mail_title = Unicode()
-    activation_mail_title = Unicode()
+    tip_mail_title = Pickle()
+    file_mail_title = Pickle()
+    comment_mail_title = Pickle()
+    activation_mail_title = Pickle()
 
-    unicode_keys = ['server', 'username', 'password', 'tip_template',
-                    'file_template', 'comment_template', 'activation_template',
-                    'tip_mail_title', 'comment_mail_title', 'file_mail_title',
-                    'activation_mail_title' ]
-    int_keys = ['port']
+    unicode_keys = ['server', 'username', 'password' ]
+    localized_strings = [ 'tip_template', 'file_template', 'comment_template',
+                         'activation_template', 'tip_mail_title', 'comment_mail_title',
+                         'file_mail_title', 'activation_mail_title' ]
+    int_keys = [ 'port' ]
     bool_keys = []
 
 
@@ -424,7 +439,9 @@ class Receiver(Model):
     __storm_table__ = 'receiver'
 
     name = Unicode(validator=gltextv)
-    description = Unicode(validator=gltextv)
+
+    # localization string
+    description = Pickle()
 
     # Authentication variables
     username = Unicode()
@@ -469,7 +486,8 @@ class Receiver(Model):
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-    unicode_keys = ['name', 'description' ]
+    unicode_keys = ['name' ]
+    localized_strings = [ 'description' ]
     int_keys = [ 'receiver_level' ]
     bool_keys = [ 'can_delete_submission', 'tip_notification',
                   'comment_notification', 'file_notification' ]

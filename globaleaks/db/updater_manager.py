@@ -22,7 +22,6 @@ def perform_version_update(starting_ver, ending_ver, start_path):
         "12" : Replacer12
     }
 
-    aimed_version = 0
     while starting_ver < ending_ver:
 
         if not starting_ver:
@@ -46,13 +45,13 @@ def perform_version_update(starting_ver, ending_ver, start_path):
         try:
             updater_code = releases_supported[update_key](old_db_file, new_db_file, starting_ver)
         except Exception as excep:
-            print excep.message
+            print "__init__ updater_code: %s " % excep.message
             raise excep
 
         try:
             updater_code.initialize()
         except Exception as excep:
-            print excep.message
+            print "initialize of updater class: %s " % excep.message
             raise excep
 
         for model_name in orm_classes_list:
@@ -61,7 +60,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             try:
                 function_pointer()
             except Exception as excep:
-                print excep.message
+                print "Failure in %s: %s " % (migrate_function, excep.message)
                 raise excep
 
         updater_code.epilogue()
