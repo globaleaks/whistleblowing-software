@@ -7,43 +7,44 @@
           class="input {{field.type}}"
           ng-class="field.required && 'required'">
           <label>
-            {{field.name}}
+            {{field.name[selected_language]}}
             <span class="order">{{field.order}}</span>
-            <a href="" data-content="{{field.hint}}"
-              data-trigger="hover" bs-popover="{{field.name}}">
+            <a href="" data-content="{{field.hint[selected_language]}}"
+              data-trigger="hover" bs-popover="{{field.name[selected_language]}}">
               <i class="icon-question-sign"></i>
             </a>
           </label>
           <div ng-switch on="field.type">
-
           <input ng-switch-when="checkbox" type="checkbox"
             ng-model="field.value"
             value="{{field.value}}"
             id="field"
-            placeholder="{{field.placeholder}}">
+            placeholder="{{field.placeholder[selected_language]}}">
 
           <input ng-switch-when="text" type="text"
             ng-model="field.value"
             ng-required="field.required"
             value="{{field.value}}"
-            placeholder="{{field.placeholder}}">
+            placeholder="{{field.placeholder[selected_language]}}">
 
           <textarea ng-switch-when="textarea"
             ng-model="field.value"
-            placeholder="{{field.placeholder}}">{{field.value}}</textarea>
+            placeholder="{{field.placeholder[selected_language]}}">{{field.value}}</textarea>
 
           <select ng-switch-when="select"
             ng-model="field.value" >
-            <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
+            <option ng-repeat="option in field.options[selected_language]"
+                    value="{{option.value}}">{{option.name}}</option>
           </select>
 
           <select ng-switch-when="multiple"
             ng-model="field.value" multiple>
-            <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
+            <option ng-repeat="option in field.options[selected_language]"
+                    value="{{option.value}}">{{option.name}}</option>
           </select>
 
           <fieldset ng-switch-when="radio">
-            <label ng-repeat="option in field.options">
+            <label ng-repeat="option in field.options[selected_language]">
               <input type="radio" ng-model="field.value" value="{{option.value}}">
               {{option.name}}
             </label>
