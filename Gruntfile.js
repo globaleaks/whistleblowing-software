@@ -276,9 +276,8 @@ module.exports = function(grunt) {
           if (content) {
             var potFile = "pot/" + language.code + ".po";
 
-            console.log("Found translation for " + language.code);
             fs.writeFileSync(potFile, content);
-            console.log("Written translation for " + language.name + " to " + potFile);
+            console.log(" { \"code\": \"" + language.code + "\", \"name\": \"" + language.name +"\" },");
             supported_languages[language.code] = language.name;
           }
           fetched_languages += 1;
