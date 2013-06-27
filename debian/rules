@@ -4,9 +4,9 @@
 	dh $@ --with python2 --buildsystem=python_distutils
 
 override_dh_install:
-	dh_install --fail-missing
 	mkdir debian/globaleaks/etc
 	mkdir debian/globaleaks/etc/apparmor.d
 	mkdir debian/globaleaks/etc/apparmor.d/local
 	cp debian/globaleaks.apparmor-profile debian/globaleaks/etc/apparmor.d/usr.bin.globaleaks
 	dh_apparmor --profile-name=usr.bin.globaleaks
+	dh_install --fail-missing
