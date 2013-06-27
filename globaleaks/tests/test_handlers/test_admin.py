@@ -59,7 +59,6 @@ class TestNodeInstance(helpers.TestHandler):
             print "Wrong exception: %s" % excep
             self.assertFalse(True)
 
-
     @inlineCallbacks
     def test_put_update_node_invalid_hidden(self):
         self.dummyNode['hidden_service'] = 'http://www.scroogle.com'

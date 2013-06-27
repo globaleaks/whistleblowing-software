@@ -14,7 +14,7 @@ CREATE TABLE comment (
 
 CREATE TABLE context (
     creation_date VARCHAR NOT NULL,
-    description VARCHAR NOT NULL,
+    description BLOB NOT NULL,
     escalation_threshold INTEGER,
     fields BLOB NOT NULL,
     file_max_download INTEGER NOT NULL,
@@ -25,11 +25,11 @@ CREATE TABLE context (
     selectable_receiver INTEGER NOT NULL,
     tip_max_access INTEGER NOT NULL,
     tip_timetolive INTEGER NOT NULL,
-    receipt_regexp VARCHAR NOT NULL,
-    receipt_description VARCHAR NOT NULL,
-    submission_introduction VARCHAR NOT NULL,
-    submission_disclaimer VARCHAR NOT NULL,
     submission_timetolive INTEGER NOT NULL,
+    receipt_regexp VARCHAR NOT NULL,
+    receipt_description BLOB NOT NULL,
+    submission_introduction BLOB NOT NULL,
+    submission_disclaimer BLOB NOT NULL,
     tags BLOB,
     PRIMARY KEY (id)
 );
@@ -83,7 +83,7 @@ CREATE TABLE internaltip (
 CREATE TABLE node (
     database_version INTEGER NOT NULL,
     creation_date VARCHAR NOT NULL,
-    description VARCHAR NOT NULL,
+    description BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
     id VARCHAR NOT NULL,
@@ -116,14 +116,14 @@ CREATE TABLE notification (
     password VARCHAR,
     username VARCHAR,
     security VARCHAR NOT NULL CHECK (security IN ('TLS', 'SSL')),
-    tip_template VARCHAR,
-    tip_mail_title VARCHAR,
-    file_template VARCHAR,
-    file_mail_title VARCHAR,
-    comment_template VARCHAR,
-    comment_mail_title VARCHAR,
-    activation_template VARCHAR,
-    activation_mail_title VARCHAR,
+    tip_template BLOB,
+    tip_mail_title BLOB,
+    file_template BLOB,
+    file_mail_title BLOB,
+    comment_template BLOB,
+    comment_mail_title BLOB,
+    activation_template BLOB,
+    activation_mail_title BLOB,
     id VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
@@ -131,7 +131,7 @@ CREATE TABLE notification (
 CREATE TABLE receiver (
     can_delete_submission INTEGER NOT NULL,
     creation_date VARCHAR NOT NULL,
-    description VARCHAR NOT NULL,
+    description BLOB NOT NULL,
     id VARCHAR NOT NULL,
     last_access VARCHAR,
     last_update VARCHAR,

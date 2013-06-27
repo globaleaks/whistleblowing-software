@@ -29,7 +29,7 @@ receiverReceiverDesc = {
     'old_password': unicode,
     'username' : unicode,
     'notification_fields' : dict,
-    'description' : unicode,
+    'description' : dict,
     'gpg_key_armor': unicode,
     'gpg_key_remove': bool,
     "gpg_enable_notification": bool,
@@ -38,7 +38,8 @@ receiverReceiverDesc = {
     "file_notification": bool,
     "tip_notification": bool,
     # remind:
-    # notification language, and a default need to be provided
+    # notification language, a default need to be provided
+    # and need to be sets by receiver (atm: 'en')
 }
 
 actorsCommentDesc = {
@@ -52,7 +53,7 @@ actorsTipOpsDesc = {
 
 adminNodeDesc = {
     'name': unicode,
-    'description' : unicode,
+    'description' : dict,
     'hidden_service' : unicode,
     'public_site' : unicode,
     'stats_update_time' : int,
@@ -79,20 +80,23 @@ adminNotificationDesc = {
     'security': unicode, # 'TLS' or 'SSL' only
     'username': unicode,
     'password': unicode,
-    # all these would become dict
-    'tip_template': unicode,
-    'tip_mail_title': unicode,
-    'comment_template': unicode,
-    'comment_mail_title': unicode,
-    'file_template': unicode,
-    'file_mail_title': unicode,
-    'activation_template': unicode,
-    'activation_mail_title': unicode,
+    'tip_template': dict,
+    'tip_mail_title': dict,
+    'comment_template': dict,
+    'comment_mail_title': dict,
+    'file_template': dict,
+    'file_mail_title': dict,
+    'activation_template': dict,
+    'activation_mail_title': dict,
 }
 
 adminContextDesc = {
-    'name': unicode,
-    'description': unicode,
+    'name': dict,
+    'description': dict,
+    'receipt_regexp': dict,
+    'receipt_description': dict,
+    'submission_introduction': dict,
+    'submission_disclaimer': dict,
     'selectable_receiver': bool,
     'tip_max_access' : int,
     'tip_timetolive' : int,
@@ -100,10 +104,6 @@ adminContextDesc = {
     'escalation_threshold' : int,
     'receivers' : [ uuid_regexp ],
     'fields': [ formFieldsDict ],
-    'receipt_regexp': unicode,
-    'receipt_description': unicode,
-    'submission_introduction': unicode,
-    'submission_disclaimer': unicode,
     'file_required': bool,
     'tags' : [ unicode ]
 }
