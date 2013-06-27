@@ -27,7 +27,7 @@ from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 from storm import tracer
 
-from globaleaks import __version__
+from globaleaks import __version__, DATABASE_VERSION
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -91,7 +91,7 @@ class GLSettingsClass:
         self.error_reporting_username= "stackexception@globaleaks.org"
         self.error_reporting_password= "stackexception99"
         self.error_reporting_server = "box549.bluehost.com"
-        self.error_reporting_port = 465
+        self.error_reporting_port = 25
 
         # debug defaults
         self.storm_debug = False
@@ -121,6 +121,11 @@ class GLSettingsClass:
 
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
+
+        # default timings for scheduled jobs
+        self.cleaning_hours_delta = 5 # runner.py function expect hours
+        self.notification_minutes_delta = 2 # runner.py function expect minutes
+        self.delivery_seconds_delta = 30 # runner.py function expect seconds
 
         self.defaults = OD()
         # Default values, used to initialize DB at the first start,
@@ -178,6 +183,7 @@ class GLSettingsClass:
         self.start_clean = False
         self.twistd_log = False
         self.devel_mode = False
+        self.glc_path = None
 
 
         # Number of failed login enough to generate an alarm
@@ -190,26 +196,39 @@ class GLSettingsClass:
         # Number of log files to conserve.
         self.maximum_rotated_log_files = 100
 
+        # Database version tracking
+        self.db_version = DATABASE_VERSION
+
 
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
+        self.gpgroot = os.path.abspath(os.path.join(self.working_path, 'gnupg'))
         self.cyclone_io_path = os.path.abspath(os.path.join(self.log_path, "jsondump"))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
-        self.db_file = 'sqlite:' + os.path.abspath(os.path.join(self.gldb_path, 'glbackend.db'))
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
+        self.file_versioned_db = 'sqlite:' + \
+                                 os.path.abspath(os.path.join(self.gldb_path,
+                                     'glbackend-%d.db' % DATABASE_VERSION))
 
-    def set_devel_mode(self):
+    def set_devel_mode(self, glcp=None):
+        self.devel_mode = True
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
-        self.glclient_path = os.path.abspath(
-            os.path.join(self.root_path, '..', 'GLClient', 'app'))
+        if not glcp:
+            self.glclient_path = os.path.abspath(os.path.join(
+                self.root_path, "..", "GLClient", "app"))
+            # this happen on unitTest execution, I'm skipping the print below
+        else:
+            self.glclient_path = os.path.abspath(os.path.join(self.root_path, glcp))
+            print "Development mode: serving GLClient from %s" % self.glclient_path
+
 
     def load_cmdline_options(self):
         """
@@ -271,10 +290,8 @@ class GLSettingsClass:
 
         self.working_path = self.cmdline_options.working_path
 
-        # if devel_mode == True we do some hacks on paths and config values
-        self.devel_mode = self.cmdline_options.devel_mode
-        if self.devel_mode:
-            self.set_devel_mode()
+        if self.cmdline_options.devel_mode:
+            self.set_devel_mode(self.cmdline_options.glc_path)
 
         self.eval_paths()
 
@@ -360,6 +377,7 @@ class GLSettingsClass:
         create_directory(self.torhs_path)
 
         if self.cyclone_debug >= 0:
+            print "creating ", self.cyclone_io_path, self.cyclone_debug, self.cyclone_debug_counter
             create_directory(self.cyclone_io_path)
 
         # detect new_environment also if the logo is missing
@@ -499,7 +517,7 @@ class transact(object):
         Returns a reference to Storm Store
         """
         zstorm = ZStorm()
-        zstorm.set_default_uri(GLSetting.store_name, GLSetting.db_file + '?foreign_keys=ON')
+        zstorm.set_default_uri(GLSetting.store_name, GLSetting.file_versioned_db + '?foreign_keys=ON')
         return zstorm.get(GLSetting.store_name)
 
     def _wrap(self, function, *args, **kwargs):

@@ -1,19 +1,8 @@
-# Getting Started
-
-See the wiki page of the main package: [GlobaLeaks documentation](https://github.com/globaleaks/GlobaLeaks/wiki), if you're interested
-in run or use GlobaLeaks
-
-If you're a developer interested in get the hands in the software, here some pointers:
-See wiki page [Setting up Development Environment](https://github.com/globaleaks/GLBackend/wiki/Setting-up-development-environment)
-
 # GLBackend
 
-This is the server side component of GlobaLeaks. It is through this piece of
-software that the Node Administrator is able to anonymously setup and expose
-GlobaLeaks Node.
+GLBackend is the Backend part of a larger Whistleblowing project called  [GlobaLeaks](https://github.com/globaleaks/GlobaLeaks/wiki/) and is mainly developed using [Cyclone](https://github.com/fiorix/cyclone)/[Twisted](https://twistedmatrix.com).
 
-It is implemented based on Twisted (using cyclone) and uses Storm as a
-database.
-
-**Warning** This version of software is under development and should be used with care.
-
+More information can be found at:
+- [GlobaLeaks documentation](https://github.com/globaleaks/GlobaLeaks/wiki)
+- [GLBackend documentation](https://github.com/globaleaks/GLBackend/wiki)
+- [GLClient documentation](https://github.com/globaleaks/GLClient/wiki)

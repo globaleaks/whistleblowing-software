@@ -4,9 +4,7 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
-import os
-from PIL import Image, ImageDraw
-from random import randint
+import os, shutil
 
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
@@ -18,6 +16,8 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security
 from globaleaks.utils import log
 from globaleaks.db import import_memory_variables
+from globaleaks.security import gpg_options_manage
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 
 def admin_serialize_node(node):
     response = {
@@ -30,8 +30,8 @@ def admin_serialize_node(node):
         "stats_update_time": node.stats_update_time,
         "email": node.email,
         "version": GLSetting.version_string,
-        "languages": list(node.languages) if node.languages else [],
-        # extended settings info:
+        "languages_supported": node.languages_supported,
+        "languages_enabled": node.languages_enabled,
         'maximum_filesize': node.maximum_filesize,
         'maximum_namesize': node.maximum_namesize,
         'maximum_descsize': node.maximum_descsize,
@@ -54,18 +54,18 @@ def admin_serialize_context(context):
         "last_update": utils.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
-        "tip_timetolive": context.tip_timetolive,
-        "submission_timetolive": context.submission_timetolive,
+        # tip expressed in day, submission in hours
+        "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
+        "submission_timetolive": context.submission_timetolive / (60 * 60),
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
         "fields": context.fields if context.fields else [],
         "receivers": [],
-        # extended settings info:
         "receipt_regexp": context.receipt_regexp,
         "receipt_description": context.receipt_description,
         "submission_introduction": context.submission_introduction,
         "submission_disclaimer": context.submission_disclaimer,
-        "tags": context.tags,
+        "tags": context.tags if context.tags else u"",
         "file_required": context.file_required,
     }
     
@@ -89,6 +89,13 @@ def admin_serialize_receiver(receiver):
         "password": u"",
         "contexts": [],
         "tags": receiver.tags,
+        "gpg_key_info": receiver.gpg_key_info,
+        "gpg_key_armor": receiver.gpg_key_armor,
+        "gpg_key_remove": False,
+        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
+        "gpg_key_status": receiver.gpg_key_status,
+        "gpg_enable_notification": receiver.gpg_enable_notification,
+        "gpg_enable_files": receiver.gpg_enable_files,
         "comment_notification": receiver.comment_notification,
         "tip_notification": receiver.tip_notification,
         "file_notification": receiver.file_notification,
@@ -123,8 +130,6 @@ def update_node(store, request):
     if len(request['old_password']) and len(request['password']):
         node.password = security.change_password(node.password,
                                     request['old_password'], request['password'], node.salt)
-        log.info("Administrator password update %s => %s" %
-                 (request['old_password'], request['password'] ))
 
     if len(request['public_site']) > 1:
         if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
@@ -135,6 +140,14 @@ def update_node(store, request):
         if not utils.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
             log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
             raise errors.InvalidInputFormat("Invalid hidden service")
+
+    # verify that the languages enabled are valid 'code' in the languages supported
+    node.languages_enabled = []
+    for lang_code in request['languages_enabled']:
+        if lang_code in LANGUAGES_SUPPORTED_CODES:
+            node.languages_enabled.append(lang_code)
+        else:
+            raise errors.InvalidInputFormat("Invalid lang code: %s" % lang_code)
 
     # name, description tor2web boolean value are acquired here
     node.update(request)
@@ -248,8 +261,21 @@ def create_context(store, request):
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
-    store.add(context)
+    # tip_timetolive and submission_timetolive need to be converted in seconds
+    try:
+        context.tip_timetolive = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Tip: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Submission", excep.message)
 
+    try:
+        context.submission_timetolive = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Submission: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Tip", excep.message)
+    # and of timing fixes
+
+    store.add(context)
     return admin_serialize_context(context)
 
 @transact
@@ -309,8 +335,23 @@ def update_context(store, context_gus, request):
         context.receivers.add(receiver)
 
     context.update(request)
+
+    # tip_timetolive and submission_timetolive need to be converted in seconds
+    try:
+        context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Tip: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Submission", excep.message)
+
+    try:
+        context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Submission: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Tip", excep.message)
+    # and of timing fixes
+
     context.fields = request['fields']
-    context.tags = request['tags']
+    context.tags = None # request['tags']
     context.last_update = utils.datetime_now()
 
     return admin_serialize_context(context)
@@ -350,25 +391,18 @@ def get_receiver_list(store):
 
 def create_random_receiver_portrait(receiver_uuid):
     """
-    Create a simple random gradient image, useful to recognize
-    different Receivers by eye, until they do not change a portrait
+    By default take a picture and put in the receiver face,
+    we've choose Vittorio Arrigoni portrait, as reference for all the
+    nameless journalists around the world, that want spread the truth.
     """
-    img = Image.new("RGB", (300,300), "#FFFFFF")
-    draw = ImageDraw.Draw(img)
-
-    r,g,b = randint(0,255), randint(0,255), randint(0,255)
-    dr = (randint(0,255) - r)/300.
-    dg = (randint(0,255) - g)/300.
-    db = (randint(0,255) - b)/300.
-    for i in range(300):
-        r,g,b = r+dr, g+dg, b+db
-        draw.line((i,0,i,300), fill=(int(r),int(g),int(b)))
-
-    img.thumbnail((120, 120), Image.ANTIALIAS)
-    img.save(os.path.join(GLSetting.static_path, "%s_120.png" % receiver_uuid),"PNG")
-    img.thumbnail((40, 40), Image.ANTIALIAS)
-    img.save(os.path.join(GLSetting.static_path, "%s_40.png" % receiver_uuid),"PNG")
-    # perhaps think that we do not want OS operations during a receiver creation operations ?
+    try:
+        shutil.copy(
+            os.path.join(GLSetting.static_source, "vittorio_arrigoni_tribute.jpeg"),
+            os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
+        )
+    except Exception as excep:
+        log.err("Unable to copy default receiver portrait in a new receiver! %s" % excep.message)
+        raise excep
 
 
 @transact
@@ -395,6 +429,11 @@ def create_receiver(store, request):
     receiver.failed_login = 0
     receiver.tags = request['tags']
 
+    # The various options related in manage GPG keys are used here.
+    gpg_options_manage(receiver, request)
+
+    log.debug("Creating receiver %s" % (receiver.username))
+
     # A password strength checker need to be implemented in the client, but here a
     # minimal check is put
     if not len(request['password']) >= security.MINIMUM_PASSWORD_LENGTH:
@@ -410,11 +449,12 @@ def create_receiver(store, request):
     for context_id in contexts:
         context = store.find(Context, Context.id == context_id).one()
         if not context:
-            log.err("Creation error: unexistent receiver can't be associated")
+            log.err("Creation error: invalid Context can't be associated")
             raise errors.ContextGusNotFound
         context.receivers.add(receiver)
 
     return admin_serialize_receiver(receiver)
+
 
 @transact
 def get_receiver(store, id):
@@ -459,6 +499,9 @@ def update_receiver(store, id, request):
     receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.tags = request['tags']
+
+    # The various options related in manage GPG keys are used here.
+    gpg_options_manage(receiver, request)
 
     if len(request['password']):
         # admin override password without effort :)
@@ -832,6 +875,3 @@ class NotificationInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(response)
 
-
-# Removed from the Admin API
-# plugin_descriptive_list = yield PluginManager.get_all()

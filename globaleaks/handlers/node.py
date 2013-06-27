@@ -26,7 +26,8 @@ def anon_serialize_node(store):
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
-      'languages': list(node.languages or []),
+      'languages_enabled': node.languages_enabled,
+      'languages_supported': node.languages_supported,
       'configured': True if associated else False,
       # extended settings info:
       'maximum_namesize': node.maximum_namesize,

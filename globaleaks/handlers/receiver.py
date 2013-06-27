@@ -3,19 +3,18 @@
 #   ********
 #
 # Implement the classes handling the requests performed to /receiver/* URI PATH
-# Used by receivers in the GlobaLeaks Node.
+# Used by receivers to update personal preferences and access to personal data
 
-from globaleaks.utils import pretty_date_time, pretty_diff_now, acquire_mail_address
-from globaleaks.handlers.base import BaseHandler
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, InternalFile
+from globaleaks.utils import pretty_date_time, pretty_diff_now, acquire_mail_address, log, acquire_bool
+from globaleaks.handlers.base import BaseHandler
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-
 from globaleaks.rest import requests
-from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
-from globaleaks.security import change_password
+from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified, GPGKeyInvalid
+from globaleaks.security import change_password, gpg_options_manage
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver):
@@ -28,6 +27,17 @@ def receiver_serialize_receiver(receiver):
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.username,
+        "gpg_key_info": receiver.gpg_key_info,
+        "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
+        "gpg_key_remove": False,
+        "gpg_key_armor": receiver.gpg_key_armor,
+        "gpg_key_status": receiver.gpg_key_status,
+        "gpg_enable_notification": receiver.gpg_enable_notification,
+        "gpg_enable_files": receiver.gpg_enable_files,
+        "tags": receiver.tags,
+        "tip_notification" : receiver.tip_notification,
+        "file_notification" : receiver.file_notification,
+        "comment_notification" : receiver.comment_notification,
         "notification_fields": dict(receiver.notification_fields),
         "failed_login": receiver.failed_login,
         "contexts": []
@@ -58,6 +68,7 @@ def update_receiver_settings(store, user_id, request):
     old_password = request.get('old_password')
 
     if len(new_password) and len(old_password):
+        # may raise exception change_password itself
         receiver.password = change_password(receiver.password,
                                             old_password, new_password, receiver.username)
 
@@ -65,7 +76,12 @@ def update_receiver_settings(store, user_id, request):
     if not mail_address:
         raise NoEmailSpecified
 
-    receiver.notification_fields = request['notification_fields']
+    # receiver.notification_fields is not update until GLClient supports them
+    receiver.tip_notification = acquire_bool(request['tip_notification'])
+    receiver.comment_notification = acquire_bool(request['comment_notification'])
+    receiver.file_notification = acquire_bool(request['file_notification'])
+
+    gpg_options_manage(receiver, request)
 
     return receiver_serialize_receiver(receiver)
 

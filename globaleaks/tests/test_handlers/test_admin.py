@@ -6,7 +6,7 @@ from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.handlers import admin
 from globaleaks.settings import transact
-from globaleaks.utils import log
+from globaleaks import __version__
 
 # special guest:
 from globaleaks.models import Notification
@@ -14,9 +14,12 @@ from globaleaks.models import Notification
 class TestNodeInstance(helpers.TestHandler):
     _handler = admin.NodeInstance
 
+    @inlineCallbacks
     def test_get(self):
         handler = self.request(role='admin')
-        return handler.get()
+        yield handler.get()
+
+        self.assertTrue(self.responses[0]['version'], __version__)
 
     @inlineCallbacks
     def test_put_update_node(self):
@@ -26,15 +29,35 @@ class TestNodeInstance(helpers.TestHandler):
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
 
-        self.dummyNode['creation_date'] = self.responses[0]['creation_date']
-        self.dummyNode['last_update'] = self.responses[0]['last_update']
+        # These values are not returned
         del self.dummyNode['password']
         del self.dummyNode['old_password']
         del self.dummyNode['salt']
         del self.dummyNode['salt_receipt']
+
+        self.assertTrue(self.responses[0]['version'], __version__)
         del self.responses[0]['version']
 
+        # these values can't be set by GLC
+        self.dummyNode['languages_supported'] = self.responses[0]['languages_supported']
+        self.dummyNode['creation_date'] = self.responses[0]['creation_date']
+        self.dummyNode['last_update'] = self.responses[0]['last_update']
+
         self.assertEqual(self.responses[0], self.dummyNode)
+
+    @inlineCallbacks
+    def test_put_update_node_invalid_lang(self):
+        self.dummyNode['languages_enabled'] = ["en", "shit" ]
+
+        handler = self.request(self.dummyNode, role='admin')
+        try:
+            yield handler.put()
+            self.assertTrue(False)
+        except InvalidInputFormat as excep:
+            self.assertSubstring("Invalid lang code: shit", excep.reason)
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            self.assertFalse(True)
 
     @inlineCallbacks
     def test_put_update_node_invalid_hidden(self):
@@ -63,7 +86,7 @@ class TestNodeInstance(helpers.TestHandler):
         except InvalidInputFormat:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep
+            print "Wrong exception: %s" % excep.message
             raise excep
 
 
@@ -83,7 +106,6 @@ class TestNotificationInstance(helpers.TestHandler):
         notification.security = Notification._security_types[0]
         store.add(notification)
 
-
     @inlineCallbacks
     def test_update_notification(self):
         yield self.mock_initialize_notification
@@ -102,7 +124,6 @@ class TestContextsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-        del self.dummyContext['contexts'] # why is here !?
         self.dummyContext['name'] = "a random one to avoid dup %d" % random.randint(1, 1000)
 
         handler = self.request(self.dummyContext, role='admin')
@@ -114,7 +135,6 @@ class TestContextsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_invalid_duplicated_context_name(self):
-        del self.dummyContext['contexts']
         self.dummyContext['name'] = u'a random name %d, but' % random.randint(1,1000)
 
         handler = self.request(self.dummyContext, role='admin')
@@ -126,7 +146,7 @@ class TestContextsCollection(helpers.TestHandler):
         except errors.ExpectedUniqueField:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep
+            print "Wrong exception: %s" % excep.message
             raise excep
 
 
@@ -137,17 +157,20 @@ class TestContextInstance(helpers.TestHandler):
     def test_get(self):
         handler = self.request(role='admin')
         yield handler.get(self.dummyContext['context_gus'])
-        del self.dummyContext['contexts']
         self.assertEqual(self.responses[0], self.dummyContext)
 
     @inlineCallbacks
     def test_put(self):
+
         self.dummyContext['description'] = u'how many readers remind of HIMEM.SYS?'
-        del self.dummyContext['contexts'] # I don't know what's doing here!!?
+        self.dummyContext['submission_timetolive'] = 48 # hours
+        self.dummyContext['tip_timetolive'] = 25 # days
+
         handler = self.request(self.dummyContext, role='admin')
         yield handler.put(self.dummyContext['context_gus'])
         self.dummyContext['creation_date'] = self.responses[0]['creation_date']
         self.dummyContext['last_update'] = self.responses[0]['last_update']
+
         self.assertEqual(self.responses[0], self.dummyContext)
 
 
@@ -196,7 +219,7 @@ class TestReceiversCollection(helpers.TestHandler):
         except errors.NoEmailSpecified:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep
+            print "Wrong exception: %s" % excep.message
             raise excep
 
     @inlineCallbacks
@@ -213,7 +236,7 @@ class TestReceiversCollection(helpers.TestHandler):
         except errors.ExpectedUniqueField:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep
+            print "Wrong exception: %s" % excep.message
             raise excep
 
 
@@ -273,7 +296,7 @@ class TestReceiverInstance(helpers.TestHandler):
         except errors.ContextGusNotFound:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep
+            print "Wrong exception: %s" % excep.message
             raise excep
 
     @inlineCallbacks

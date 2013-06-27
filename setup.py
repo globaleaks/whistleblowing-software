@@ -40,7 +40,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "f718c89daa4daf9c93866d0ec4fbe442c2277c8595dec27eaa5e71f1"
+    glclient_hash = "dc668d8f85a4bd0df688ebf884089366272d56739316372512ca2c4b"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
@@ -55,6 +55,7 @@ def uncompress_glclient(glclient_path):
     shutil.move(glclient_path, 'glclient')
     print "    ...done."
 
+# remind ask to evilaliv3: why is here this function ? 
 def build_glclient():
     print "[+] Building GLClient..."
     os.chdir(glclient_path)
@@ -63,15 +64,17 @@ def build_glclient():
     os.chdir('..')
     print "    ...done."
 
+def get_requires():
+    with open('requirements.txt') as f:
+        requires = map(pip_to_requirements, f.readlines())
+        return requires
+
+
 if not os.path.isdir(os.path.abspath(os.path.join(os.path.dirname(__file__), 'glclient'))):
     download_glclient()
     verify_glclient()
     uncompress_glclient(glclient_path)
 glclient_path = 'glclient'
-
-requires = []
-with open('requirements.txt') as f:
-    requires = map(pip_to_requirements, f.readlines())
 
 data_files = [
     ('/usr/share/globaleaks/glclient', [
@@ -104,5 +107,5 @@ setup(
         'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
     scripts=["bin/globaleaks"],
-    requires = requires
+    requires = get_requires(),
 )

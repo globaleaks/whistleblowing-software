@@ -12,10 +12,9 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, GLSetting
 
-from globaleaks.utils import log, pretty_date_time, is_expired
+from globaleaks.utils import log, pretty_date_time, is_expired, iso2dateobj
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import InternalTip, ReceiverTip, ReceiverFile, InternalFile, Comment
-from datetime import datetime
+from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment
 
 __all__ = ['APSCleaning']
 
@@ -52,13 +51,6 @@ def get_tiptime_by_marker(store, marker):
 
     return tipinfo_list
 
-def iso2dateobj(str) :
-    try:
-        ret = datetime.strptime(str, "%Y-%m-%dT%H:%M:%S")
-    except ValueError :
-        ret = datetime.strptime(str, "%Y-%m-%dT%H:%M:%S.%f")
-        ret.replace(microsecond=0)
-    return ret
 
 @transact
 def itip_cleaning(store, id):
@@ -135,6 +127,28 @@ class APSCleaning(GLJob):
         comment and tip related.
         """
         try:
+            # this list is create otherwise, a "del" on the list under loop, will
+            # raise the exception "dictionary has changed length during interaction"
+            sid_to_remove = []
+
+            for session_id in GLSetting.sessions:
+                checkd_session = GLSetting.sessions[session_id]
+
+                if is_expired(checkd_session.borndate, seconds=GLSetting.defaults.lifetimes[checkd_session.role]):
+                    sid_to_remove.append(session_id)
+
+            for expired_sid in sid_to_remove:
+                del GLSetting.sessions[expired_sid]
+
+            if len(sid_to_remove):
+                log.debug("Expired %d sessions" % len(sid_to_remove))
+
+        except Exception as excep:
+            log.err("Exception failure in session cleaning routine (%s)" % excep.message)
+            sys.excepthook(*sys.exc_info())
+
+
+        try:
             submissions = yield get_tiptime_by_marker(InternalTip._marker[0]) # Submission
             log.debug("(Cleaning routines) %d unfinished Submission are check if expired" % len(submissions))
             for submission in submissions:
@@ -150,5 +164,6 @@ class APSCleaning(GLJob):
                     log.info("Deleting an expired Tip (creation date: %s) files %d comments %d" %
                              (tip['creation_date'], tip['files'], tip['comments']) )
                     yield itip_cleaning(tip['id'])
-        except:
+        except Exception as excep:
+            log.err("Exception failure in submission/tip cleaning routine (%s)" % excep.message)
             sys.excepthook(*sys.exc_info())

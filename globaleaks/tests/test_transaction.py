@@ -63,6 +63,7 @@ class TestTransaction(helpers.TestGL):
             receiver = Receiver(self.dummyReceiver)
             receiver.password = self.dummyReceiver['password']
             receiver.username = self.dummyReceiver['notification_fields']['mail_address']
+            receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
             receiver.failed_login = 0
             receiver.notification_fields = self.dummyReceiver['notification_fields']
             store.add(receiver)
@@ -75,6 +76,7 @@ class TestTransaction(helpers.TestGL):
         receiver = Receiver(self.dummyReceiver)
         receiver.password = self.dummyReceiver['password']
         receiver.username = self.dummyReceiver['notification_fields']['mail_address']
+        receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
         receiver.failed_login = 0
         receiver.notification_fields = self.dummyReceiver['notification_fields']
         store.add(receiver)
