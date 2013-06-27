@@ -55,12 +55,12 @@ build_custom_glclient()
     command -v npm >/dev/null 2>&1 ) || {
     echo "[+] Node JS does not appear to be installed."
     while true; do
-        read -p "Should we install them?" yn
-        case $yn in
-            [Yy]* ) install_glclient_dependencies; break;;
-            [Nn]* ) usage; exit;;
-            * ) echo "I only understand yes or no, what do you want from me?";;
-        esac
+      read -p "Should we install them? (y|n) " yn
+      case $yn in
+          [Yy]* ) install_glclient_dependencies; break;;
+          [Nn]* ) usage; exit;;
+          * ) echo "I only understand yes or no, what do you want from me?";;
+      esac
     done
   }
 
