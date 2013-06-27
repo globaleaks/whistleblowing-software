@@ -4,6 +4,10 @@ if [ ! $GLCLIENT_INSTALL_DIR ];then
   GLCLIENT_INSTALL_DIR=/usr/share/globaleaks/glclient
 fi
 
+if [ ! $GLCLIENT_TAG ];then
+  GLCLIENT_TAG="v"`python -c 'import globaleaks;print globaleaks.__version__'`
+fi
+
 usage()
 {
 cat << EOF
@@ -65,15 +69,19 @@ build_custom_glclient()
   }
 
   TMP_DIR=`mktemp -d /tmp/GLClient_tmp.XXXXXXX`
-  TEMPLATE_NAME=$TEMPLATES_DIR
+  TEMPLATE_NAME=`basename $TEMPLATES_DIR`
   SED_REGEXP="s/selected_theme = 'default';/selected_theme = '${TEMPLATE_NAME}';/"
   THEMES_FILE=$TMP_DIR/GLCLient/app/scripts/themes.js
   INDEX_FILE=$TMP_DIR/GLCLient/app/index.html
   STYLES=""
   echo "[+] Building custom GLClient with template: ${TEMPLATE_NAME}... "
-  cd $TMP_DIR
   echo "[+] Cloning latest GLCLient version... "
-  git clone https://github.com/globaleaks/GLClient.git GLCLient
+  CWD=`pwd`
+  git clone https://github.com/globaleaks/GLClient.git $TMP_DIR/GLCLient
+  cd $TMP_DIR/GLCLient
+  echo "[+] Checking out ${GLCLIENT_TAG} revision"
+  git checkout $GLCLIENT_TAG
+  cd $CWD
   cat $THEMES_FILE | sed -e $SED_REGEXP > $THEMES_FILE
   for template_file in `find $TEMPLATES_DIR/styles/`;do
     if [[ "$template_file" == *css* ]];then
@@ -81,15 +89,18 @@ build_custom_glclient()
     fi
   done
   cp -R $TEMPLATES_DIR $TMP_DIR/GLCLient/app/templates/${TEMPLATE_NAME}
-  cd GLCLient
+
+  cd $TMP_DIR/GLCLient
   npm install -d
   grunt build
 
   if [ ! -d  $GLCLIENT_INSTALL_DIR.default ]; then
     echo "[+] Backing up default GLClient build... "
     sudo mv $GLCLIENT_INSTALL_DIR $GLCLIENT_INSTALL_DIR.default
+  else
+    echo "[+] Cleaning up currently installed custom build... "
+    rm -rf $GLCLIENT_INSTALL_DIR
   fi
-
   sudo mv build $GLCLIENT_INSTALL_DIR
   cd /
   rm -rf $TMP_DIR
