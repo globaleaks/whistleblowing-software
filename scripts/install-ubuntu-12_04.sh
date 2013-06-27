@@ -487,7 +487,7 @@ fi
 
 echo "Installing python-setuptools, python-software-properties, gcc, python-dev"
 DO "apt-get update -y" "0"
-DO "apt-get install python-setuptools python-software-properties gcc python-dev -y" "0"
+DO "apt-get install python-pip python-setuptools python-software-properties gcc python-dev -y" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
 DO "cd ${BUILD_DIR}/" "0"
