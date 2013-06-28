@@ -26,7 +26,7 @@ angular.module('GLClientFilters', []).
       if ( hash in Translations ){
         return Translations[hash][$cookies['language']];
       } else {
-        return input;  
+        return input;
       }
     }
 }]);
