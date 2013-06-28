@@ -70,7 +70,7 @@ build_custom_glclient()
 
   TMP_DIR=`mktemp -d /tmp/GLClient_tmp.XXXXXXX`
   TEMPLATE_NAME=`basename $TEMPLATES_DIR`
-  SED_REGEXP="s/selected_theme = 'default';/selected_theme = '${TEMPLATE_NAME}';/"
+  SED_REGEXP="s/default/${TEMPLATE_NAME}/"
   THEMES_FILE=$TMP_DIR/GLCLient/app/scripts/themes.js
   INDEX_FILE=$TMP_DIR/GLCLient/app/index.html
   STYLES=""
