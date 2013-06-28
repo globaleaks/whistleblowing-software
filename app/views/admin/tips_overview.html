@@ -41,8 +41,8 @@
       <tbody id="tipListBody">
         <tr ng-repeat="tip in tips">
           <td>{{tip.status}}</td>
-          <td>{{tip.creation_date}}</td>
-          <td>{{tip.wb_last_access}} ({{tip.wb_access_counter}})</td>
+          <td>{{tip.creation_date | date:'fullDate'}}</td>
+          <td>{{tip.wb_last_access | date:'fullDate'}} ({{tip.wb_access_counter}})</td>
 
           <td>
             <ul>
@@ -62,7 +62,7 @@
             </ul>
           </td>
 
-          <td>{{tip.expiration_date}}</td>
+          <td>{{tip.expiration_date | date:'fullDate'}}</td>
           <td><a href="/#/admin/contexts">{{tip.context_name[selected_language]}}</a></td>
           <td>
             <ul>
