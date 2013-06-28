@@ -111,7 +111,7 @@ build_custom_glclient()
     rm -rf $GLCLIENT_INSTALL_DIR
   fi
   sudo mv build $GLCLIENT_INSTALL_DIR
-  sudo mv $TMP_DIR/staticdata/* $GLCLIENT_INSTALL_DIR
+  sudo cp -R $TMP_DIR/staticdata/* $GLCLIENT_INSTALL_DIR
   cd /
   rm -rf $TMP_DIR
 }
