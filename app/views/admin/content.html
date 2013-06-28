@@ -70,6 +70,16 @@
           </div>
         </div>
 
+        <div class="row">
+          <div class="span9">
+            <label>{{ "Enabled languages" | translate }}</label>
+            <div ng-repeat="language in admin.node.languages_supported">
+              <label><input type="checkbox" ng-model="enabled_languages[language.code]"> {{language.name}}</label>
+            </div>
+          </div>
+
+        </div>
+
         <label>{{ "Tor Hidden Service (hostname)" | translate }}</label>
         <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
                ng-pattern="/^http://[0-9a-z]{16}\.onion$/">
