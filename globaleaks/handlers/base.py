@@ -296,7 +296,8 @@ class BaseHandler(RequestHandler):
         if exception and hasattr(exception, 'error_code'):
             self.set_status(status_code)
             self.finish({'error_message': exception.reason,
-                'error_code' : exception.error_code})
+                'error_code' : exception.error_code,
+                'arguments': exception.arguments })
         else:
             RequestHandler.write_error(self, status_code, **kw)
 

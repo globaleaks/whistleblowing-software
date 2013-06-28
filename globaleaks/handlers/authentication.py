@@ -53,7 +53,7 @@ def authenticated(role):
             # else, if role != cls.current_user.role
             log.err("Authenticated with a different required user: now %s, expected %s" %
                     (cls.current_user.role, role) )
-            raise errors.NotAuthenticated("Good login in wrong scope: you %s, expected %s" %
+            raise errors.InvalidScopeAuth("Good login in wrong scope: you %s, expected %s" %
                                           (cls.current_user.role, role) )
 
         return call_handler
