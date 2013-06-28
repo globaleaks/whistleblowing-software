@@ -84,11 +84,19 @@ build_custom_glclient()
   cd $CWD
   cat $THEMES_FILE | sed -e $SED_REGEXP > $TMP_DIR/themes.js
   cat $TMP_DIR/themes.js > $THEMES_FILE
-  for template_file in `find $TEMPLATES_DIR/styles/`;do
+  mkdir $TMP_DIR/staticdata/
+  for template_file in `find $TEMPLATES_DIR/styles/ -type f`;do
     if [[ "$template_file" == *css* ]];then
       cat $template_file >> $TMP_DIR/GLCLient/app/styles/custom-glclient.css
+    else
+      cp $template_file $TMP_DIR/staticdata/
     fi
   done
+
+  if [ -d $TEMPLATES_DIR/images/ ];then
+    cp -R $TEMPLATES_DIR/images/ $TMP_DIR/staticdata/
+  fi
+
   cp -R $TEMPLATES_DIR $TMP_DIR/GLCLient/app/templates/${TEMPLATE_NAME}
 
   cd $TMP_DIR/GLCLient
@@ -103,6 +111,7 @@ build_custom_glclient()
     rm -rf $GLCLIENT_INSTALL_DIR
   fi
   sudo mv build $GLCLIENT_INSTALL_DIR
+  sudo mv $TMP_DIR/staticdata/* $GLCLIENT_INSTALL_DIR
   cd /
   rm -rf $TMP_DIR
 }
