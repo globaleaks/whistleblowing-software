@@ -12,7 +12,7 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks import models
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.utils import pretty_date_time, pretty_diff_now, log
+from globaleaks.utils import pretty_date_time, log
 
 
 @transact
@@ -25,7 +25,7 @@ def collect_tip_overview(store):
         tip_description = {
             "id": itip.id,
             "creation_date": pretty_date_time(itip.creation_date),
-            "creation_lifetime": pretty_diff_now(itip.creation_date),
+            "creation_lifetime": pretty_date_time(itip.creation_date),
             "expiration_date": pretty_date_time(itip.expiration_date),
             "context_id": itip.context_id,
             "context_name": itip.context.name,
@@ -64,7 +64,7 @@ def collect_tip_overview(store):
         for comment in itip.comments:
             tip_description['comments'].append({
                 'type': comment.type,
-                'lifetime': pretty_diff_now(comment.creation_date),
+                'lifetime': pretty_date_time(comment.creation_date),
             })
 
         # whistleblower tip has not a reference from itip, then:
@@ -74,7 +74,7 @@ def collect_tip_overview(store):
         if wbtip is not None:
             tip_description.update({
                 'wb_access_counter': wbtip.access_counter,
-                'wb_last_access': pretty_diff_now(wbtip.last_access)
+                'wb_last_access': pretty_date_time(wbtip.last_access)
             })
         else:
             tip_description.update({
@@ -115,7 +115,7 @@ def collect_users_overview(store):
                 'id': rfile.id,
                 'file_name': rfile.internalfile.name,
                 'downloads': rfile.downloads,
-                'last_access': pretty_diff_now(rfile.last_access),
+                'last_access': pretty_date_time(rfile.last_access),
                 'status': rfile.mark,
             })
 
@@ -124,8 +124,8 @@ def collect_users_overview(store):
             user_description['receivertips'].append({
                 'internaltip_id': rtip.id,
                 'status': rtip.mark,
-                'last_access': pretty_diff_now(rtip.last_access),
-                'notification_date': pretty_diff_now(rtip.notification_date),
+                'last_access': pretty_date_time(rtip.last_access),
+                'notification_date': pretty_date_time(rtip.notification_date),
                 'access_counter': rtip.access_counter,
             })
 

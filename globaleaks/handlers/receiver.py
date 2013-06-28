@@ -7,7 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils import pretty_date_time, pretty_diff_now, acquire_mail_address, log, acquire_bool
+from globaleaks.utils import pretty_date_time, acquire_mail_address, log, acquire_bool
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact
@@ -137,8 +137,8 @@ def serialize_tip_summary(rtip, file_associated):
         'access_counter': rtip.access_counter,
         # XXX total sum or personal expression ?
         'expressed_pertinence': rtip.expressed_pertinence,
-        'creation_date' : unicode(pretty_diff_now(rtip.creation_date)),
-        'last_access' : unicode(pretty_diff_now(rtip.last_access)),
+        'creation_date' : unicode(pretty_date_time(rtip.creation_date)),
+        'last_access' : unicode(pretty_date_time(rtip.last_access)),
         'id' : rtip.id,
         'files_number': file_associated,
     }

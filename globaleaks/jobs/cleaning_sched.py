@@ -165,6 +165,7 @@ class APSCleaning(GLJob):
                     log.info("Deleting an expired Tip (creation date: %s) files %d comments %d" %
                              (tip['creation_date'], tip['files'], tip['comments']) )
                     yield itip_cleaning(tip['id'])
+
         except Exception as excep:
             log.err("Exception failure in submission/tip cleaning routine (%s)" % excep.message)
             sys.excepthook(*sys.exc_info())
