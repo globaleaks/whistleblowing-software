@@ -3,13 +3,207 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 18:48+0000\n"
+"PO-Revision-Date: 2013-06-28 22:17+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "correctAnswer || !answered\">{{ \"Warning! You are not Anonymous."
+msgstr "correctAnswer || !answered\">{{ \"Warning! You are not Anonymous."
+
+msgid "!correctAnswer && answered\">{{ \"Wrong Answer!"
+msgstr "!correctAnswer && answered\">{{ \"Wrong Answer!"
+
+msgid ""
+"With a HTTPS submission you are exposing yourself to the risks that someone "
+"else* will know that you have submitted something, without knowing what you "
+"have submitted."
+msgstr "With a HTTPS submission you are exposing yourself to the risks that someone else* will know that you have submitted something, without knowing what you have submitted."
+
+msgid ""
+"Instead with Anonymous Submission you are fully protected, is not even "
+"possible for a third party to know that you have submitted something."
+msgstr "Instead with Anonymous Submission you are fully protected, is not even possible for a third party to know that you have submitted something."
+
+msgid "We strongly advise you to go for an Anonymous Submission."
+msgstr "We strongly advise you to go for an Anonymous Submission."
+
+msgid ""
+"To make Anonymous Submission, instead of your usual Web Browser (Internet "
+"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+msgstr "To make Anonymous Submission, instead of your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+
+msgid "that’s a special software designed to enable Anonymous Web Browsing."
+msgstr "that’s a special software designed to enable Anonymous Web Browsing."
+
+msgid "Which of the following statements is true?"
+msgstr "Which of the following statements is true?"
+
+msgid ""
+"You are aware of the risks involved, go ahead, consider yourself warned."
+msgstr "You are aware of the risks involved, go ahead, consider yourself warned."
+
+msgid ""
+"If you want protection of your identity and the content of your message, you"
+" should try to achieve anonimity by using the"
+msgstr "If you want protection of your identity and the content of your message, you should try to achieve anonimity by using the"
+
+msgid ""
+"https://www.torproject.org/download\">Tor browser bundle</a> {{ \"to submit"
+msgstr "https://www.torproject.org/download\">Tor browser bundle</a> {{ \"to submit"
+
+msgid "btn\">{{ \"Next"
+msgstr "btn\">{{ \"Next"
+
+msgid "btn\">{{ \"Back"
+msgstr "btn\">{{ \"Back"
+
+msgid "btn btn-success\">{{ \"Proceed"
+msgstr "btn btn-success\">{{ \"Proceed"
+
+msgid "btn\">{{ \"Back to start"
+msgstr "btn\">{{ \"Back to start"
+
+msgid "btn btn-warning\">{{ \"Proceed to submission"
+msgstr "btn btn-warning\">{{ \"Proceed to submission"
+
+msgid "Welcome to"
+msgstr "Welcome to"
+
+msgid "btn btn-primary btn-large\">{{ \"Blow the Whistle"
+msgstr "btn btn-primary btn-large\">{{ \"Blow the Whistle"
+
+msgid ""
+"node_info.configured\">{{ \"Your node is not configured! Please, proceed via"
+msgstr "node_info.configured\">{{ \"Your node is not configured! Please, proceed via"
+
+msgid ""
+"/#/admin/contexts\">{{ \"Admin interface and configure at least one context"
+msgstr "/#/admin/contexts\">{{ \"Admin interface and configure at least one context"
+
+msgid "Loading..."
+msgstr "Loading..."
+
+msgid "Are you a whistleblower?"
+msgstr "Are you a whistleblower?"
+
+msgid "Enter your receipt"
+msgstr "Enter your receipt"
+
+msgid "Are you a receiver?"
+msgstr "Are you a receiver?"
+
+msgid "This is the"
+msgstr "This is the"
+
+msgid "#/login\">{{ \"Login page"
+msgstr "#/login\">{{ \"Login page"
+
+msgid "What is this about?"
+msgstr "What is this about?"
+
+msgid "homeIntro-byline\">{{ \"How you can transform information into action!"
+msgstr "homeIntro-byline\">{{ \"How you can transform information into action!"
+
+msgid ""
+"Through this platform you will be able to report on wrongdoing. This "
+"platform is running the"
+msgstr "Through this platform you will be able to report on wrongdoing. This platform is running the"
+
+msgid "https://globaleaks.org/\">{{ \"GlobaLeaks software"
+msgstr "https://globaleaks.org/\">{{ \"GlobaLeaks software"
+
+msgid ""
+"that is specifically designed to protect the identity of the reporter and of"
+" the ones running the platform."
+msgstr "that is specifically designed to protect the identity of the reporter and of the ones running the platform."
+
+msgid "This software is developed by the non-profit organization"
+msgstr "This software is developed by the non-profit organization"
+
+msgid "We are supported also by your donations. Visit our"
+msgstr "We are supported also by your donations. Visit our"
+
+msgid ""
+"http://logioshermes.org/home/about-mission/support-us/\">{{ \"donation page"
+msgstr "http://logioshermes.org/home/about-mission/support-us/\">{{ \"donation page"
+
+msgid "to help us further support the development of GlobaLeaks."
+msgstr "to help us further support the development of GlobaLeaks."
+
+msgid "Tip Status Page"
+msgstr "Tip Status Page"
+
+msgid "Files"
+msgstr "Files"
+
+msgid "show only files not yet downloaded"
+msgstr "show only files not yet downloaded"
+
+msgid "show all the files"
+msgstr "show all the files"
+
+msgid "icon-download\"></i> {{ \"download"
+msgstr "icon-download\"></i> {{ \"download"
+
+msgid "show sha256 checksum"
+msgstr "show sha256 checksum"
+
+msgid "(click again to hide)"
+msgstr "(click again to hide)"
+
+msgid "Use the"
+msgstr "Use the"
+
+msgid "https://en.wikipedia.org/wiki/SHA-2\">{{ \"sha256 hash"
+msgstr "https://en.wikipedia.org/wiki/SHA-2\">{{ \"sha256 hash"
+
+msgid "to verify the file integrity"
+msgstr "to verify the file integrity"
+
+msgid ""
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr "On unix based systems this can be done by running the following command in the directory of the files"
+
+msgid "span4\" ng-hide=\"tip.files\"><p>{{ \"No file has been uploaded!"
+msgstr "span4\" ng-hide=\"tip.files\"><p>{{ \"No file has been uploaded!"
+
+msgid "Comments"
+msgstr "Comments"
+
+msgid "Whistleblower"
+msgstr "Whistleblower"
+
+msgid "System"
+msgstr "System"
+
+msgid "Malformed source"
+msgstr "Malformed source"
+
+msgid "btn btn-success\" ng-click=\"newComment()\">{{ \"Add Comment"
+msgstr "btn btn-success\" ng-click=\"newComment()\">{{ \"Add Comment"
+
+msgid "Receiver List"
+msgstr "Receiver List"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Access counter"
+msgstr "Access counter"
+
+msgid "The requested tip does not exist or has expired."
+msgstr "The requested tip does not exist or has expired."
+
+msgid "Loading Tip page..."
+msgstr "Loading Tip page..."
 
 msgid "New Submission"
 msgstr "New Submission"
@@ -18,9 +212,6 @@ msgid ""
 "You can customize this section by editing "
 "GLClient/app/templates/default/views/submission/main.html"
 msgstr "You can customize this section by editing GLClient/app/templates/default/views/submission/main.html"
-
-msgid "Loading..."
-msgstr "Loading..."
 
 msgid "This node is not configured."
 msgstr "This node is not configured."
@@ -31,21 +222,21 @@ msgstr "You will not be able to perform a submission."
 msgid "Admin please configure a Context and associated Receivers using"
 msgstr "Admin please configure a Context and associated Receivers using"
 
-msgid "Admin management interface"
-msgstr "Admin management interface"
+msgid "/#/admin/contexts\">{{ \"Admin management interface"
+msgstr "/#/admin/contexts\">{{ \"Admin management interface"
 
 msgid ""
-"Choose the context and receivers that will be sure to transform your "
-"submission into action!"
-msgstr "Choose the context and receivers that will be sure to transform your submission into action!"
+"lead\">{{ \"Choose the context and receivers that will be sure to transform "
+"your submission into action!"
+msgstr "lead\">{{ \"Choose the context and receivers that will be sure to transform your submission into action!"
 
-msgid "I want to report on"
-msgstr "I want to report on"
+msgid "node_info.configured\">{{ \"I want to report on"
+msgstr "node_info.configured\">{{ \"I want to report on"
 
 msgid ""
-"Enter the information that is relevant to your submission and possibly "
-"upload the relevant accompanying files"
-msgstr "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files"
+"lead\">{{ \"Enter the information that is relevant to your submission and "
+"possibly upload the relevant accompanying files"
+msgstr "lead\">{{ \"Enter the information that is relevant to your submission and possibly upload the relevant accompanying files"
 
 msgid ""
 "To ensure your anonymity be sure that you are visiting this site using the"
@@ -68,14 +259,17 @@ msgstr "Please do not submit your report on a PC provided by your employer. Part
 msgid "By checking the box below you agree to these terms and conditions."
 msgstr "By checking the box below you agree to these terms and conditions."
 
-msgid "Agree"
-msgstr "Agree"
+msgid "checkbox\" ng-model=\"disclaimer.accepted\" value=\"true\"> {{ \"Agree"
+msgstr "checkbox\" ng-model=\"disclaimer.accepted\" value=\"true\"> {{ \"Agree"
 
-msgid "Previous Step"
-msgstr "Previous Step"
+msgid "decrementStep()\">&larr; {{ \"Previous Step"
+msgstr "decrementStep()\">&larr; {{ \"Previous Step"
 
-msgid "Next Step"
-msgstr "Next Step"
+msgid "incrementStep()\">{{ \"Next Step"
+msgstr "incrementStep()\">{{ \"Next Step"
+
+msgid "uploading || !disclaimer.accepted \">{{ \"Submit"
+msgstr "uploading || !disclaimer.accepted \">{{ \"Submit"
 
 msgid "Submit"
 msgstr "Submit"
@@ -113,299 +307,38 @@ msgstr "If you are interested in keeping it, please save it in a secure place an
 msgid "Please copy in the box below you receipt to access the tip interface."
 msgstr "Please copy in the box below you receipt to access the tip interface."
 
-msgid "View Tip"
-msgstr "View Tip"
+msgid "btn btn-primary\">{{ \"View Tip"
+msgstr "btn btn-primary\">{{ \"View Tip"
 
-msgid "Warning! You are not Anonymous."
-msgstr "Warning! You are not Anonymous."
+msgid "icon-lock\"></i> {{ \"security check"
+msgstr "icon-lock\"></i> {{ \"security check"
 
-msgid "Wrong Answer!"
-msgstr "Wrong Answer!"
-
-msgid ""
-"With a HTTPS submission you are exposing yourself to the risks that someone "
-"else* will know that you have submitted something, without knowing what you "
-"have submitted."
-msgstr "With a HTTPS submission you are exposing yourself to the risks that someone else* will know that you have submitted something, without knowing what you have submitted."
+msgid "Security Check"
+msgstr "Security Check"
 
 msgid ""
-"Instead with Anonymous Submission you are fully protected, is not even "
-"possible for a third party to know that you have submitted something."
-msgstr "Instead with Anonymous Submission you are fully protected, is not even possible for a third party to know that you have submitted something."
+"On unix based systems this can be done by running the following command"
+msgstr "On unix based systems this can be done by running the following command"
 
-msgid "We strongly advise you to go for an Anonymous Submission."
-msgstr "We strongly advise you to go for an Anonymous Submission."
+msgid "None\"' class=\"label label-warning\">{{ \"Still calculating hash"
+msgstr "None\"' class=\"label label-warning\">{{ \"Still calculating hash"
 
-msgid ""
-"To make Anonymous Submission, instead of your usual Web Browser (Internet "
-"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
-msgstr "To make Anonymous Submission, instead of your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, Etc) you should use the"
-
-msgid "that’s a special software designed to enable Anonymous Web Browsing."
-msgstr "that’s a special software designed to enable Anonymous Web Browsing."
+msgid "btn btn-success\" ng-click=\"closeSecurityCheck()\">{{ \"done"
+msgstr "btn btn-success\" ng-click=\"closeSecurityCheck()\">{{ \"done"
 
 msgid ""
-"You are aware of the risks involved, go ahead, consider yourself warned."
-msgstr "You are aware of the risks involved, go ahead, consider yourself warned."
+"This number here is your receipt keep good care of it as it will allow you "
+"to access your submission"
+msgstr "This number here is your receipt keep good care of it as it will allow you to access your submission"
 
-msgid ""
-"If you want protection of your identity and the content of your message, you"
-" should try to achieve anonimity by using the"
-msgstr "If you want protection of your identity and the content of your message, you should try to achieve anonimity by using the"
+msgid "view_tip(submission.receipt)\" class=\"btn btn-primary\">{{ \"View Tip"
+msgstr "view_tip(submission.receipt)\" class=\"btn btn-primary\">{{ \"View Tip"
 
-msgid "to submit"
-msgstr "to submit"
+msgid "Content Settings"
+msgstr "Content Settings"
 
-msgid "Next"
-msgstr "Next"
-
-msgid "Back"
-msgstr "Back"
-
-msgid "Proceed"
-msgstr "Proceed"
-
-msgid "Back to start"
-msgstr "Back to start"
-
-msgid "Proceed to submission"
-msgstr "Proceed to submission"
-
-msgid "Welcome to"
-msgstr "Welcome to"
-
-msgid "Blow the Whistle"
-msgstr "Blow the Whistle"
-
-msgid "Your node is not configured! Please, proceed via"
-msgstr "Your node is not configured! Please, proceed via"
-
-msgid "Admin interface and configure at least one context"
-msgstr "Admin interface and configure at least one context"
-
-msgid "Are you a whistleblower?"
-msgstr "Are you a whistleblower?"
-
-msgid "Enter your receipt"
-msgstr "Enter your receipt"
-
-msgid "Are you a receiver?"
-msgstr "Are you a receiver?"
-
-msgid "This is the"
-msgstr "This is the"
-
-msgid "Login page"
-msgstr "Login page"
-
-msgid "What is this about?"
-msgstr "What is this about?"
-
-msgid "How you can transform information into action!"
-msgstr "How you can transform information into action!"
-
-msgid ""
-"Through this platform you will be able to report on wrongdoing. This "
-"platform is running the"
-msgstr "Through this platform you will be able to report on wrongdoing. This platform is running the"
-
-msgid "GlobaLeaks software"
-msgstr "GlobaLeaks software"
-
-msgid ""
-"that is specifically designed to protect the identity of the reporter and of"
-" the ones running the platform."
-msgstr "that is specifically designed to protect the identity of the reporter and of the ones running the platform."
-
-msgid "This software is developed by the non-profit organization"
-msgstr "This software is developed by the non-profit organization"
-
-msgid "We are supported also by your donations. Visit our"
-msgstr "We are supported also by your donations. Visit our"
-
-msgid "donation page"
-msgstr "donation page"
-
-msgid "to help us further support the development of GlobaLeaks."
-msgstr "to help us further support the development of GlobaLeaks."
-
-msgid "Tip Status Page"
-msgstr "Tip Status Page"
-
-msgid "Files"
-msgstr "Files"
-
-msgid "show only files not yet downloaded"
-msgstr "show only files not yet downloaded"
-
-msgid "show all the files"
-msgstr "show all the files"
-
-msgid "download"
-msgstr "download"
-
-msgid "show sha256 checksum"
-msgstr "show sha256 checksum"
-
-msgid "(click again to hide)"
-msgstr "(click again to hide)"
-
-msgid "Use the"
-msgstr "Use the"
-
-msgid "sha256 hash"
-msgstr "sha256 hash"
-
-msgid "to verify the file integrity"
-msgstr "to verify the file integrity"
-
-msgid ""
-"On unix based systems this can be done by running the following command in "
-"the directory of the files"
-msgstr "On unix based systems this can be done by running the following command in the directory of the files"
-
-msgid "No file has been uploaded!"
-msgstr "No file has been uploaded!"
-
-msgid "Comments"
-msgstr "Comments"
-
-msgid "Whistleblower"
-msgstr "Whistleblower"
-
-msgid "System"
-msgstr "System"
-
-msgid "Malformed source"
-msgstr "Malformed source"
-
-msgid "Add Comment"
-msgstr "Add Comment"
-
-msgid "Receiver List"
-msgstr "Receiver List"
-
-msgid "Name"
-msgstr "Name"
-
-msgid "Description"
-msgstr "Description"
-
-msgid "Access counter"
-msgstr "Access counter"
-
-msgid "The requested tip does not exist or has expired."
-msgstr "The requested tip does not exist or has expired."
-
-msgid "Loading Tip page..."
-msgstr "Loading Tip page..."
-
-msgid "Files overview"
-msgstr "Files overview"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "This interface may help you spot anomalies in your Node."
-
-msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "The table below shows the files present in the submission directory, and their relationship with the internal database."
-
-msgid "Info"
-msgstr "Info"
-
-msgid "Size"
-msgstr "Size"
-
-msgid "References"
-msgstr "References"
-
-msgid "Password management"
-msgstr "Password management"
-
-msgid "Current Password"
-msgstr "Current Password"
-
-msgid "Required old password confirm"
-msgstr "Required old password confirm"
-
-msgid "New Password"
-msgstr "New Password"
-
-msgid "Your password is unsafe, it should have"
-msgstr "Your password is unsafe, it should have"
-
-msgid "At least one letter"
-msgstr "At least one letter"
-
-msgid "At least one number"
-msgstr "At least one number"
-
-msgid "At least 8 keypress long"
-msgstr "At least 8 keypress long"
-
-msgid "Retype again your new password"
-msgstr "Retype again your new password"
-
-msgid "The two passwords do not match"
-msgstr "The two passwords do not match"
-
-msgid "Save"
-msgstr "Save"
-
-msgid "Fields"
-msgstr "Fields"
-
-msgid "add field"
-msgstr "add field"
-
-msgid "click to close"
-msgstr "click to close"
-
-msgid "delete"
-msgstr "delete"
-
-msgid "Hint"
-msgstr "Hint"
-
-msgid "Required"
-msgstr "Required"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Text"
-msgstr "Text"
-
-msgid "Radio Buttons"
-msgstr "Radio Buttons"
-
-msgid "Drop Menu (Select)"
-msgstr "Drop Menu (Select)"
-
-msgid "Multi-Select"
-msgstr "Multi-Select"
-
-msgid "Checkboxes"
-msgstr "Checkboxes"
-
-msgid "Paragraph(s)"
-msgstr "Paragraph(s)"
-
-msgid "Number"
-msgstr "Number"
-
-msgid "Url"
-msgstr "Url"
-
-msgid "Phone"
-msgstr "Phone"
-
-msgid "Email"
-msgstr "Email"
-
-msgid "add option"
-msgstr "add option"
+msgid "Administration Interface"
+msgstr "Administration Interface"
 
 msgid "General information"
 msgstr "General information"
@@ -419,6 +352,9 @@ msgstr "Current initiative logo"
 msgid "Node name"
 msgstr "Node name"
 
+msgid "Email"
+msgstr "Email"
+
 msgid "Enabled languages"
 msgstr "Enabled languages"
 
@@ -426,16 +362,17 @@ msgid "Tor Hidden Service (hostname)"
 msgstr "Tor Hidden Service (hostname)"
 
 msgid ""
-"Invalid format for hidden service (should be http://thirteenchars123.onion)"
-msgstr "Invalid format for hidden service (should be http://thirteenchars123.onion)"
+"contentForm.hidden_service.$error.pattern\">{{ \"Invalid format for hidden "
+"service (should be http://thirteenchars123.onion)"
+msgstr "contentForm.hidden_service.$error.pattern\">{{ \"Invalid format for hidden service (should be http://thirteenchars123.onion)"
 
 msgid "Tor2web Public Site (url)"
 msgstr "Tor2web Public Site (url)"
 
 msgid ""
-"Invalid format for public site (should be "
-"https://thirteenchars123.tor2web.org)"
-msgstr "Invalid format for public site (should be https://thirteenchars123.tor2web.org)"
+"contentForm.public_site.$error.pattern\">{{ \"Invalid format for public site"
+" (should be https://thirteenchars123.tor2web.org)"
+msgstr "contentForm.public_site.$error.pattern\">{{ \"Invalid format for public site (should be https://thirteenchars123.tor2web.org)"
 
 msgid "Edit Tor2Web accessibility table "
 msgstr "Edit Tor2Web accessibility table "
@@ -448,8 +385,8 @@ msgstr "Edit Tor2Web accessibility table - [click again to close and don't edit 
 msgid "Permit Administative login via Tor2Web"
 msgstr "Permit Administative login via Tor2Web"
 
-msgid "now Enabled:"
-msgstr "now Enabled:"
+msgid "btn-info\">{{ \"now Enabled:"
+msgstr "btn-info\">{{ \"now Enabled:"
 
 msgid ""
 "Admin can access via Tor2Web. It's safe only if you're using a dedicated "
@@ -487,26 +424,23 @@ msgstr "Whistleblowers can perform submission with their anonymity at risks, via
 msgid "Note: Need to be clicked two times, to disable an access"
 msgstr "Note: Need to be clicked two times, to disable an access"
 
-msgid "Update node"
-msgstr "Update node"
+msgid "updateNode(admin.node)\">{{ \"Update node"
+msgstr "updateNode(admin.node)\">{{ \"Update node"
 
-msgid "Update node and Tor2Web options"
-msgstr "Update node and Tor2Web options"
+msgid "updateNode(admin.node)\">{{ \"Update node and Tor2Web options"
+msgstr "updateNode(admin.node)\">{{ \"Update node and Tor2Web options"
 
-msgid "Tip Overview"
-msgstr "Tip Overview"
-
-msgid ""
-"This interface may help you understand how the Node is used by the "
-"whistleblower. We present you with the submissions present on the node and a"
-" few statistics on the kind of usage (activity, files, comments)."
-msgstr "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions present on the node and a few statistics on the kind of usage (activity, files, comments)."
+msgid "Contexts Configuration"
+msgstr "Contexts Configuration"
 
 msgid "Contexts list"
 msgstr "Contexts list"
 
-msgid "Delete"
-msgstr "Delete"
+msgid "update(context)\">{{ \"Save"
+msgstr "update(context)\">{{ \"Save"
+
+msgid "delete(context)\">{{ \"Delete"
+msgstr "delete(context)\">{{ \"Delete"
 
 msgid "Receivers"
 msgstr "Receivers"
@@ -538,41 +472,88 @@ msgstr "Submission Introduction"
 msgid "Add new context"
 msgstr "Add new context"
 
-msgid "add"
-msgstr "add"
+msgid "admin.create_context(new_context_name)\">{{ \"add"
+msgstr "admin.create_context(new_context_name)\">{{ \"add"
 
-msgid "Content Settin"
-msgstr "Content Settin"
+msgid "Fields"
+msgstr "Fields"
 
-msgid "Receivers Configuration"
-msgstr "Receivers Configuration"
+msgid "addField(context)\"><i class=\"icon-plus-sign\"></i> {{ \"add field"
+msgstr "addField(context)\"><i class=\"icon-plus-sign\"></i> {{ \"add field"
 
-msgid "Contexts Configuration"
-msgstr "Contexts Configuration"
+msgid "click to close"
+msgstr "click to close"
+
+msgid "deleteField(field)\" class=\"delete\">{{ \"delete"
+msgstr "deleteField(field)\" class=\"delete\">{{ \"delete"
+
+msgid "Hint"
+msgstr "Hint"
+
+msgid "Required"
+msgstr "Required"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "text\">{{ \"Text"
+msgstr "text\">{{ \"Text"
+
+msgid "radio\">{{ \"Radio Buttons"
+msgstr "radio\">{{ \"Radio Buttons"
+
+msgid "select\">{{ \"Drop Menu (Select)"
+msgstr "select\">{{ \"Drop Menu (Select)"
+
+msgid "multiple\">{{ \"Multi-Select"
+msgstr "multiple\">{{ \"Multi-Select"
+
+msgid "checkboxes\">{{ \"Checkboxes"
+msgstr "checkboxes\">{{ \"Checkboxes"
+
+msgid "textarea\">{{ \"Paragraph(s)"
+msgstr "textarea\">{{ \"Paragraph(s)"
+
+msgid "number\">{{ \"Number"
+msgstr "number\">{{ \"Number"
+
+msgid "url\">{{ \"Url"
+msgstr "url\">{{ \"Url"
+
+msgid "phone\">{{ \"Phone"
+msgstr "phone\">{{ \"Phone"
+
+msgid "email\">{{ \"Email"
+msgstr "email\">{{ \"Email"
+
+msgid "icon-plus-sign\"></i> {{ \"add option"
+msgstr "icon-plus-sign\"></i> {{ \"add option"
+
+msgid "File Overview"
+msgstr "File Overview"
+
+msgid "Files overview"
+msgstr "Files overview"
+
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "This interface may help you spot anomalies in your Node."
+
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "The table below shows the files present in the submission directory, and their relationship with the internal database."
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "References"
+msgstr "References"
 
 msgid "Mail Configuration"
 msgstr "Mail Configuration"
-
-msgid "Admin password"
-msgstr "Admin password"
-
-msgid "Users Overview"
-msgstr "Users Overview"
-
-msgid "Tips Overview"
-msgstr "Tips Overview"
-
-msgid "Files Overview"
-msgstr "Files Overview"
-
-msgid "Users overview"
-msgstr "Users overview"
-
-msgid ""
-"This interface shows the activity of the users of your node. This may be "
-"helpful in detecting anomalies and supporting the Receivers for of your "
-"node."
-msgstr "This interface shows the activity of the users of your node. This may be helpful in detecting anomalies and supporting the Receivers for of your node."
 
 msgid "Username"
 msgstr "Username"
@@ -588,6 +569,9 @@ msgstr "SMTP server port"
 
 msgid "Transport Security"
 msgstr "Transport Security"
+
+msgid "update(admin.notification)\">{{ \"Save"
+msgstr "update(admin.notification)\">{{ \"Save"
 
 msgid "Notification templates"
 msgstr "Notification templates"
@@ -613,23 +597,79 @@ msgstr "File Email template"
 msgid "Activation Email template"
 msgstr "Activation Email template"
 
+msgid "Advanced Configuration"
+msgstr "Advanced Configuration"
+
+msgid "Password management"
+msgstr "Password management"
+
+msgid "Current Password"
+msgstr "Current Password"
+
+msgid ""
+"text-error\" ng-show=\"missing_old_password\">{{ \"Required old password "
+"confirm"
+msgstr "text-error\" ng-show=\"missing_old_password\">{{ \"Required old password confirm"
+
+msgid "New Password"
+msgstr "New Password"
+
+msgid ""
+"text-error\" ng-show=\"unsafe_password\">{{ \"Your password is unsafe, it "
+"should have"
+msgstr "text-error\" ng-show=\"unsafe_password\">{{ \"Your password is unsafe, it should have"
+
+msgid "text-error\" ng-hide=\"pwdHasLetter\">{{ \"At least one letter"
+msgstr "text-error\" ng-hide=\"pwdHasLetter\">{{ \"At least one letter"
+
+msgid "text-error\" ng-hide=\"pwdHasNumber\">{{ \"At least one number"
+msgstr "text-error\" ng-hide=\"pwdHasNumber\">{{ \"At least one number"
+
+msgid "text-error\" ng-hide=\"pwdValidLength\">{{ \"At least 8 keypress long"
+msgstr "text-error\" ng-hide=\"pwdValidLength\">{{ \"At least 8 keypress long"
+
+msgid "Retype again your new password"
+msgstr "Retype again your new password"
+
+msgid "text-error\" ng-show=\"mismatch_password\">{{ \"The two passwords do not match"
+msgstr "text-error\" ng-show=\"mismatch_password\">{{ \"The two passwords do not match"
+
+msgid "updateNode(admin.node)\">{{ \"Save"
+msgstr "updateNode(admin.node)\">{{ \"Save"
+
+msgid "Receivers Configuration"
+msgstr "Receivers Configuration"
+
 msgid "Receiver list"
 msgstr "Receiver list"
 
-msgid "Select file"
-msgstr "Select file"
+msgid "update(receiver)\">{{ \"Save"
+msgstr "update(receiver)\">{{ \"Save"
 
-msgid "upload"
-msgstr "upload"
+msgid "delete(receiver)\">{{ \"Delete"
+msgstr "delete(receiver)\">{{ \"Delete"
 
-msgid "Receiver name too long"
-msgstr "Receiver name too long"
+msgid "btn selectFile\">{{ \"Select file"
+msgstr "btn selectFile\">{{ \"Select file"
+
+msgid "{'btn-success': fileSelected}\">{{ \"upload"
+msgstr "{'btn-success': fileSelected}\">{{ \"upload"
+
+msgid ""
+"text-error\" ng-show=\"receiverForm.name.$error.maxlength\">{{ \"Receiver "
+"name too long"
+msgstr "text-error\" ng-show=\"receiverForm.name.$error.maxlength\">{{ \"Receiver name too long"
 
 msgid "Email Address (Username)"
 msgstr "Email Address (Username)"
 
-msgid "Invalid email address"
-msgstr "Invalid email address"
+msgid ""
+"text-error\" ng-show=\"receiverForm.email.$error.email\">{{ \"Invalid email "
+"address"
+msgstr "text-error\" ng-show=\"receiverForm.email.$error.email\">{{ \"Invalid email address"
+
+msgid "'If left empty, the system sets globaleaks'\">{{ \"Password"
+msgstr "'If left empty, the system sets globaleaks'\">{{ \"Password"
 
 msgid "Contexts"
 msgstr "Contexts"
@@ -637,26 +677,90 @@ msgstr "Contexts"
 msgid "Add new receiver"
 msgstr "Add new receiver"
 
+msgid ""
+"text-error\" ng-show=\"newReceiver.name.$error.maxlength\">{{ \"Receiver "
+"name too long"
+msgstr "text-error\" ng-show=\"newReceiver.name.$error.maxlength\">{{ \"Receiver name too long"
+
 msgid "Email Address"
 msgstr "Email Address"
 
-msgid "Tips"
-msgstr "Tips"
+msgid ""
+"text-error\" ng-show=\"newReceiver.email.$error.email\">{{ \"Invalid email "
+"address"
+msgstr "text-error\" ng-show=\"newReceiver.email.$error.email\">{{ \"Invalid email address"
 
-msgid "Preferences"
-msgstr "Preferences"
+msgid "btn\" ng-disabled=\"newReceiver.$invalid\" ng-click=\"add_receiver()\">{{ \"add"
+msgstr "btn\" ng-disabled=\"newReceiver.$invalid\" ng-click=\"add_receiver()\">{{ \"add"
 
-msgid "Tip ID"
-msgstr "Tip ID"
+msgid "icon-chevron-right\"></i>{{ \"Content Settin"
+msgstr "icon-chevron-right\"></i>{{ \"Content Settin"
 
-msgid "Age"
-msgstr "Age"
+msgid "icon-chevron-right\"></i>{{ \"Receivers Configuration"
+msgstr "icon-chevron-right\"></i>{{ \"Receivers Configuration"
 
-msgid "Views"
-msgstr "Views"
+msgid "icon-chevron-right\"></i>{{ \"Contexts Configuration"
+msgstr "icon-chevron-right\"></i>{{ \"Contexts Configuration"
 
-msgid "Last Access"
-msgstr "Last Access"
+msgid "icon-chevron-right\"></i>{{ \"Mail Configuration"
+msgstr "icon-chevron-right\"></i>{{ \"Mail Configuration"
+
+msgid "icon-chevron-right\"></i>{{ \"Admin password"
+msgstr "icon-chevron-right\"></i>{{ \"Admin password"
+
+msgid "icon-chevron-right\"></i>{{ \"Users Overview"
+msgstr "icon-chevron-right\"></i>{{ \"Users Overview"
+
+msgid "icon-chevron-right\"></i>{{ \"Tips Overview"
+msgstr "icon-chevron-right\"></i>{{ \"Tips Overview"
+
+msgid "icon-chevron-right\"></i>{{ \"Files Overview"
+msgstr "icon-chevron-right\"></i>{{ \"Files Overview"
+
+msgid "Tip Overview"
+msgstr "Tip Overview"
+
+msgid ""
+"This interface may help you understand how the Node is used by the "
+"whistleblower. We present you with the submissions present on the node and a"
+" few statistics on the kind of usage (activity, files, comments)."
+msgstr "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions present on the node and a few statistics on the kind of usage (activity, files, comments)."
+
+msgid "Users Overview"
+msgstr "Users Overview"
+
+msgid "Users overview"
+msgstr "Users overview"
+
+msgid ""
+"This interface shows the activity of the users of your node. This may be "
+"helpful in detecting anomalies and supporting the Receivers for of your "
+"node."
+msgstr "This interface shows the activity of the users of your node. This may be helpful in detecting anomalies and supporting the Receivers for of your node."
+
+msgid "Welcome back captain!"
+msgstr "Welcome back captain!"
+
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "From here you can run common debug tasks emulating GLClient functions"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Cookies are not enabled!"
+msgstr "Cookies are not enabled!"
+
+msgid "You will not be able to login."
+msgstr "You will not be able to login."
+
+msgid "login(loginUsername, loginPassword, loginRole)\">{{ \"Login"
+msgstr "login(loginUsername, loginPassword, loginRole)\">{{ \"Login"
+
+msgid "Your Preferences"
+msgstr "Your Preferences"
+
+msgid "Receiver Interface"
+msgstr "Receiver Interface"
 
 msgid "Preferences and password management"
 msgstr "Preferences and password management"
@@ -697,48 +801,26 @@ msgstr "Note: Need to be clicked two times, to disable an access."
 msgid "Update notification settings"
 msgstr "Update notification settings"
 
-msgid "Save changes"
-msgstr "Save changes"
+msgid "icon-chevron-right\"></i>{{ \"Tips"
+msgstr "icon-chevron-right\"></i>{{ \"Tips"
 
-msgid "Danger!"
-msgstr "Danger!"
+msgid "icon-chevron-right\"></i>{{ \"Preferences"
+msgstr "icon-chevron-right\"></i>{{ \"Preferences"
 
-msgid "Congratulations!"
-msgstr "Congratulations!"
+msgid "Your Tips"
+msgstr "Your Tips"
 
-msgid ""
-"It appears you are using Tor. To better protect your anonymity, be sure that"
-" you are using the"
-msgstr "It appears you are using Tor. To better protect your anonymity, be sure that you are using the"
+msgid "Tip ID"
+msgstr "Tip ID"
 
-msgid ""
-"Keep in mind that using Tor Browser Bundle does not replace good security "
-"practices and it cannot protect you in the event your computer has been "
-"compromised. You are strongly advised to read the"
-msgstr "Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the"
+msgid "Age"
+msgstr "Age"
 
-msgid "manual for practical security best practices."
-msgstr "manual for practical security best practices."
+msgid "Views"
+msgstr "Views"
 
-msgid "Warning!"
-msgstr "Warning!"
-
-msgid ""
-"We were not able to determine if you are anonymous or not, please proceed "
-"with care"
-msgstr "We were not able to determine if you are anonymous or not, please proceed with care"
-
-msgid "It appears your are not using Tor, thus you are strongly advised to "
-msgstr "It appears your are not using Tor, thus you are strongly advised to "
-
-msgid "download a copy of the tor browser bundle"
-msgstr "download a copy of the tor browser bundle"
-
-msgid "before continuing."
-msgstr "before continuing."
-
-msgid "Add files..."
-msgstr "Add files..."
+msgid "Last Access"
+msgstr "Last Access"
 
 msgid "Your user has reach the maximum amount of access for this Tip"
 msgstr "Your user has reach the maximum amount of access for this Tip"
@@ -839,17 +921,59 @@ msgstr "Pertinence evaluation has been already expressed"
 msgid "Resource can be accessed only within Tor network"
 msgstr "Resource can be accessed only within Tor network"
 
-msgid "Welcome back captain!"
-msgstr "Welcome back captain!"
+msgid "Success!"
+msgstr "Success!"
 
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "From here you can run common debug tasks emulating GLClient functions"
+msgid "Currently logged in "
+msgstr "Currently logged in "
 
-msgid "Cookies are not enabled!"
-msgstr "Cookies are not enabled!"
+msgid "btn btn-danger\" ng-click=\"logout()\">{{ \"logout"
+msgstr "btn btn-danger\" ng-click=\"logout()\">{{ \"logout"
 
-msgid "You will not be able to login."
-msgstr "You will not be able to login."
+msgid "target.$save()\" class=\"btn btn-success\">{{ \"Save changes"
+msgstr "target.$save()\" class=\"btn btn-success\">{{ \"Save changes"
 
-msgid "Login"
-msgstr "Login"
+msgid "Add files..."
+msgstr "Add files..."
+
+msgid "!displayBox\" class=\"label label-important\">{{ \"Danger!"
+msgstr "!displayBox\" class=\"label label-important\">{{ \"Danger!"
+
+msgid "label label-success\">{{ \"Congratulations!"
+msgstr "label label-success\">{{ \"Congratulations!"
+
+msgid ""
+"It appears you are using Tor. To better protect your anonymity, be sure that"
+" you are using the"
+msgstr "It appears you are using Tor. To better protect your anonymity, be sure that you are using the"
+
+msgid ""
+"Keep in mind that using Tor Browser Bundle does not replace good security "
+"practices and it cannot protect you in the event your computer has been "
+"compromised. You are strongly advised to read the"
+msgstr "Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the"
+
+msgid "manual for practical security best practices."
+msgstr "manual for practical security best practices."
+
+msgid "label label-important\">{{ \"Warning!"
+msgstr "label label-important\">{{ \"Warning!"
+
+msgid ""
+"We were not able to determine if you are anonymous or not, please proceed "
+"with care"
+msgstr "We were not able to determine if you are anonymous or not, please proceed with care"
+
+msgid "label label-important\">{{ \"Danger!"
+msgstr "label label-important\">{{ \"Danger!"
+
+msgid "It appears your are not using Tor, thus you are strongly advised to "
+msgstr "It appears your are not using Tor, thus you are strongly advised to "
+
+msgid ""
+"https://www.torproject.org/download/download\">{{ \"download a copy of the "
+"tor browser bundle"
+msgstr "https://www.torproject.org/download/download\">{{ \"download a copy of the tor browser bundle"
+
+msgid "before continuing."
+msgstr "before continuing."

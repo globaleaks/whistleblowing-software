@@ -307,7 +307,7 @@ module.exports = function(grunt) {
       gt = new Gettext(),
       strings,
       translations = {},
-      translationStringRegexp = /\{\{\s+"(.+?)"\s+\|\s+translate\s+\}\}/gi,
+      translationStringRegexp = /"(.+?)"\s+\|\s+translate/gi,
       translationStringCount = 0;
 
     gt.addTextdomain("en");
@@ -335,7 +335,7 @@ module.exports = function(grunt) {
     fs.writeFileSync("pot/en.po", gt.compilePO("en"));
 
     console.log("Written " + translationStringCount + " string to pot/en.po.");
-
+    
     updateTxSource(done);
 
   });
