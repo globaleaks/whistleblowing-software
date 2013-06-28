@@ -64,7 +64,7 @@ def anon_serialize_context(context):
         "fields": list(context.fields or []),
         "file_max_download": int(context.file_max_download),
         "file_required": context.file_required,
-        "name": unicode(context.name),
+        "name": dict(context.name),
         "selectable_receiver": bool(context.selectable_receiver),
         "tip_max_access": int(context.tip_max_access),
         "tip_timetolive": int(context.tip_timetolive),
