@@ -80,7 +80,6 @@ def gllocalv(self, attr, value):
         raise errors.InvalidInputFormat("(%s) expect a localized dict" % attr)
 
     if not value:
-        print "Importing an empty localized dict -- debug string --"
         return value
 
     for lang, text in value.iteritems():
