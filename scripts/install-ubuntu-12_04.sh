@@ -459,6 +459,18 @@ if [ "$?" -ne "0" ]; then
     exit 1
 fi
 
+# iptables NAT support check
+if [ "${TRAVIS}" == "true" ]; then
+    echo "Travis Environment: skipping iptables NAT check support"
+else
+    iptables -nvL -t nat >/dev/null 2>&1
+    if [ "$?" -ne "0" ]; then
+        echo "Error: your linux machine does not support iptables NAT, required by GlobaLeaks network sandboxing"
+        echo "       If you are running on a Virtual Server you need to enable Iptables NAT support"
+        exit 1
+    fi
+fi
+
 # Preliminary Requirements Check
 REQS=(apt-get chmod echo gpg python mkdir tar wget)
 REQS_COUNT=${#REQS[@]}
@@ -487,7 +499,7 @@ fi
 
 echo "Installing python-setuptools, python-software-properties, gcc, python-dev"
 DO "apt-get update -y" "0"
-DO "apt-get install python-setuptools python-software-properties gcc python-dev -y" "0"
+DO "apt-get install python-pip python-setuptools python-software-properties gcc python-dev -y" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
 DO "cd ${BUILD_DIR}/" "0"
@@ -552,7 +564,9 @@ if [ -d /data/globaleaks/deb ]; then
 else
   add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/' 
   DO "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
-  DO "gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -" "0"
+  # TODO: This should be fixed, because executing this command
+  # over DO() command escape the pipe character
+  gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -
   DO "apt-get update -y" "0"
   DO "apt-get install globaleaks -y" "0"
 fi
