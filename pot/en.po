@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 23:09+0000\n"
+"PO-Revision-Date: 2013-06-28 23:16+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -81,8 +81,8 @@ msgstr "Proceed to submission"
 msgid "Welcome to"
 msgstr "Welcome to"
 
-msgid "btn btn-primary btn-large\">{{ \"Blow the Whistle"
-msgstr "btn btn-primary btn-large\">{{ \"Blow the Whistle"
+msgid "Blow the Whistle"
+msgstr "Blow the Whistle"
 
 msgid "Your node is not configured! Please, proceed via"
 msgstr "Your node is not configured! Please, proceed via"
@@ -383,9 +383,6 @@ msgstr "Admin can access via Tor2Web. It's safe only if you're using a dedicated
 
 msgid "Permit Receiver preferences management via Tor2Web"
 msgstr "Permit Receiver preferences management via Tor2Web"
-
-msgid "btn-info\">{{ \"now Enabled:"
-msgstr "btn-info\">{{ \"now Enabled:"
 
 msgid ""
 "Receivers can access via Tor2Web. It's dangerous, and we suggest some "
