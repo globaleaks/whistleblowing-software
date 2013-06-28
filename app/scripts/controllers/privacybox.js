@@ -1,8 +1,8 @@
 GLClient.controller('PrivacyBoxCtrl',
-  ['$scope', '$http',
-  function($scope, $http) {
+  ['$scope', '$http', '$rootScope',
+  function($scope, $http, $rootScope) {
 
-    $scope.privacy = 'unknown';
+    $rootScope.privacy = 'unknown';
 
     /** XXX we are making the *strong* assumption that the GlobaLeaks instances
      *  will only be served as a Tor Hidden Service.
@@ -15,9 +15,9 @@ GLClient.controller('PrivacyBoxCtrl',
      **/
 
     if (window.location.hostname.match(/^[a-z0-9]{16}\.onion$/)) {
-      $scope.privacy = 'high';
+      $rootScope.privacy = 'high';
     } else {
-      $scope.privacy = 'low';
+      $rootScope.privacy = 'low';
     }
 
     $scope.displayBox = true;

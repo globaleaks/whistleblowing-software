@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-27 23:41+0000\n"
+"PO-Revision-Date: 2013-06-28 01:10+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -13,137 +13,6 @@ msgstr ""
 "Language: pl\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-msgid "Welcome to"
-msgstr ""
-
-msgid "Blow the Whistle"
-msgstr "Zrób końcówki"
-
-msgid "Your node is not configured! Please, proceed via"
-msgstr "Węzeł nie został skonfigurowany! Proszę przejść przez"
-
-msgid "Admin interface and configure at least one context"
-msgstr "Admin interfejs i skonfigurować co najmniej jeden kontekst"
-
-msgid "Loading..."
-msgstr "ładowanie..."
-
-msgid "Are you a whistleblower?"
-msgstr ""
-
-msgid "Enter your receipt"
-msgstr "Wpisz swój odbioru"
-
-msgid "Are you a receiver?"
-msgstr "Czy jesteś odbiornik?"
-
-msgid "This is the"
-msgstr "To jest"
-
-msgid "Login page"
-msgstr "Zaloguj stronę"
-
-msgid "What is this about?"
-msgstr "O co chodzi?"
-
-msgid "How you can transform information into action!"
-msgstr "Jak można przekształcić informacje w działania!"
-
-msgid ""
-"Through this platform you will be able to report on wrongdoing. This "
-"platform is running the"
-msgstr "Dzięki tej platformie będzie można zgłosić się na popełnienie przestępstwa. Platforma ta jest systemem"
-
-msgid "GlobaLeaks software"
-msgstr "GlobaLeaks oprogramowanie"
-
-msgid ""
-"that is specifically designed to protect the identity of the reporter and of"
-" the ones running the platform."
-msgstr ""
-
-msgid "This software is developed by the non-profit organization"
-msgstr "Ten program został opracowany przez organizację bez zysku"
-
-msgid "We are supported also by your donations. Visit our"
-msgstr "Wspierają nas także swoimi darowizn. Odwiedź naszą"
-
-msgid "donation page"
-msgstr "strona darowizna"
-
-msgid "to help us further support the development of GlobaLeaks."
-msgstr "pomóc nam w dalszym ciągu wspierać rozwój GlobaLeaks."
-
-msgid "Tip Status Page"
-msgstr "Strona Pozycja Rada"
-
-msgid "Files"
-msgstr "Plik"
-
-msgid "security check"
-msgstr ""
-
-msgid "download"
-msgstr ""
-
-msgid "Security Check"
-msgstr ""
-
-msgid "Use the"
-msgstr "Używaj"
-
-msgid "sha256 hash"
-msgstr "sha256 hash"
-
-msgid "to verify the file integrity"
-msgstr "do weryfikacji integralności plików"
-
-msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr ""
-
-msgid "Still calculating hash"
-msgstr ""
-
-msgid "done"
-msgstr ""
-
-msgid "No file has been uploaded!"
-msgstr "No plik został wgrany!"
-
-msgid "Comments"
-msgstr "Komentarze"
-
-msgid "Whistleblower"
-msgstr "Whistleblower"
-
-msgid "System"
-msgstr "Systemu"
-
-msgid "Malformed source"
-msgstr "Błędny źródło"
-
-msgid "Add Comment"
-msgstr "Dodaj komentarz"
-
-msgid "Receiver List"
-msgstr "Lista odbiornik"
-
-msgid "Name"
-msgstr "Imię"
-
-msgid "Description"
-msgstr "Opis"
-
-msgid "Access counter"
-msgstr "Dostęp licznik"
-
-msgid "The requested tip does not exist or has expired."
-msgstr ""
-
-msgid "Loading Tip page..."
-msgstr "Ładowanie strony Porada..."
-
 msgid "New Submission"
 msgstr "Nowa Subskrypcja"
 
@@ -151,6 +20,9 @@ msgid ""
 "You can customize this section by editing "
 "GLClient/app/templates/default/views/submission/main.html"
 msgstr "Możesz dostosować ten punkt edytując GLClient/app/templates/default/views/submission/main.html"
+
+msgid "Loading..."
+msgstr "ładowanie..."
 
 msgid "This node is not configured."
 msgstr "Ten węzeł nie jest skonfigurowany."
@@ -246,10 +118,241 @@ msgstr ""
 msgid "View Tip"
 msgstr "Pokaż Porada"
 
-msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
+msgid "Welcome to"
 msgstr ""
+
+msgid "Blow the Whistle"
+msgstr "Zrób końcówki"
+
+msgid "Your node is not configured! Please, proceed via"
+msgstr "Węzeł nie został skonfigurowany! Proszę przejść przez"
+
+msgid "Admin interface and configure at least one context"
+msgstr "Admin interfejs i skonfigurować co najmniej jeden kontekst"
+
+msgid "Are you a whistleblower?"
+msgstr ""
+
+msgid "Enter your receipt"
+msgstr "Wpisz swój odbioru"
+
+msgid "Are you a receiver?"
+msgstr "Czy jesteś odbiornik?"
+
+msgid "This is the"
+msgstr "To jest"
+
+msgid "Login page"
+msgstr "Zaloguj stronę"
+
+msgid "What is this about?"
+msgstr "O co chodzi?"
+
+msgid "How you can transform information into action!"
+msgstr "Jak można przekształcić informacje w działania!"
+
+msgid ""
+"Through this platform you will be able to report on wrongdoing. This "
+"platform is running the"
+msgstr "Dzięki tej platformie będzie można zgłosić się na popełnienie przestępstwa. Platforma ta jest systemem"
+
+msgid "GlobaLeaks software"
+msgstr "GlobaLeaks oprogramowanie"
+
+msgid ""
+"that is specifically designed to protect the identity of the reporter and of"
+" the ones running the platform."
+msgstr ""
+
+msgid "This software is developed by the non-profit organization"
+msgstr "Ten program został opracowany przez organizację bez zysku"
+
+msgid "We are supported also by your donations. Visit our"
+msgstr "Wspierają nas także swoimi darowizn. Odwiedź naszą"
+
+msgid "donation page"
+msgstr "strona darowizna"
+
+msgid "to help us further support the development of GlobaLeaks."
+msgstr "pomóc nam w dalszym ciągu wspierać rozwój GlobaLeaks."
+
+msgid "Tip Status Page"
+msgstr "Strona Pozycja Rada"
+
+msgid "Files"
+msgstr "Plik"
+
+msgid "show only files not yet downloaded"
+msgstr ""
+
+msgid "show all the files"
+msgstr ""
+
+msgid "download"
+msgstr ""
+
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr ""
+
+msgid "Use the"
+msgstr "Używaj"
+
+msgid "sha256 hash"
+msgstr "sha256 hash"
+
+msgid "to verify the file integrity"
+msgstr "do weryfikacji integralności plików"
+
+msgid ""
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr ""
+
+msgid "No file has been uploaded!"
+msgstr "No plik został wgrany!"
+
+msgid "Comments"
+msgstr "Komentarze"
+
+msgid "Whistleblower"
+msgstr "Whistleblower"
+
+msgid "System"
+msgstr "Systemu"
+
+msgid "Malformed source"
+msgstr "Błędny źródło"
+
+msgid "Add Comment"
+msgstr "Dodaj komentarz"
+
+msgid "Receiver List"
+msgstr "Lista odbiornik"
+
+msgid "Name"
+msgstr "Imię"
+
+msgid "Description"
+msgstr "Opis"
+
+msgid "Access counter"
+msgstr "Dostęp licznik"
+
+msgid "The requested tip does not exist or has expired."
+msgstr ""
+
+msgid "Loading Tip page..."
+msgstr "Ładowanie strony Porada..."
+
+msgid "Files overview"
+msgstr "Przegląd pliki"
+
+msgid "This interface may help you spot anomalies in your Node."
+msgstr ""
+
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "Tabela poniżej pokazuje pliki obecne w katalogu wniosków oraz ich stosunków z wewnętrznej bazy danych."
+
+msgid "Info"
+msgstr "informacji"
+
+msgid "Size"
+msgstr "Rozmiar"
+
+msgid "References"
+msgstr "Referencje"
+
+msgid "Password management"
+msgstr "zarządzanie hasłami"
+
+msgid "Current Password"
+msgstr "Aktualne hasło"
+
+msgid "Required old password confirm"
+msgstr "Wymagany stare hasło potwierdzić"
+
+msgid "New Password"
+msgstr "Nowe hasło"
+
+msgid "Your password is unsafe, it should have"
+msgstr "Twoje hasło jest niebezpieczny, powinien on mieć"
+
+msgid "At least one letter"
+msgstr "Co najmniej jedną literę"
+
+msgid "At least one number"
+msgstr "Co najmniej jeden numer"
+
+msgid "At least 8 keypress long"
+msgstr "Co najmniej 8 przyciśnięcie długo"
+
+msgid "Retype again your new password"
+msgstr "Ponownie wpisz ponownie nowe hasło"
+
+msgid "The two passwords do not match"
+msgstr "Te dwa hasła nie są takie same"
+
+msgid "Save"
+msgstr "Oszczędzać"
+
+msgid "Fields"
+msgstr "Obszary"
+
+msgid "add field"
+msgstr "dodać pole"
+
+msgid "click to close"
+msgstr "Kliknij do zamknięcia"
+
+msgid "delete"
+msgstr "usunąć"
+
+msgid "Hint"
+msgstr "Napomknąć"
+
+msgid "Required"
+msgstr "Wymagane"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Text"
+msgstr "Tekst"
+
+msgid "Radio Buttons"
+msgstr "Przyciski"
+
+msgid "Drop Menu (Select)"
+msgstr "Menu upadku (Wybierz)"
+
+msgid "Multi-Select"
+msgstr "Wielu Wybierz"
+
+msgid "Checkboxes"
+msgstr "Pola wyboru"
+
+msgid "Paragraph(s)"
+msgstr "Ustęp(ptk)"
+
+msgid "Number"
+msgstr "Numer"
+
+msgid "Url"
+msgstr "Strona"
+
+msgid "Phone"
+msgstr "Telefon"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "add option"
+msgstr "dodać opcję"
 
 msgid "General information"
 msgstr "Informacje ogólne"
@@ -263,8 +366,8 @@ msgstr "Ta inicjatywa logo"
 msgid "Node name"
 msgstr "Nazwa węzła"
 
-msgid "Email"
-msgstr "Email"
+msgid "Enabled languages"
+msgstr ""
 
 msgid "Tor Hidden Service (hostname)"
 msgstr "Usług ukrytych Tor (nazwa hosta)"
@@ -337,215 +440,6 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
-msgid "Contexts list"
-msgstr "List Konteksty"
-
-msgid "Save"
-msgstr "Oszczędzać"
-
-msgid "Delete"
-msgstr "Usunąć"
-
-msgid "Receivers"
-msgstr "Odbiorniki"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submission lifetime"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Dodaj nowy kontekst"
-
-msgid "add"
-msgstr "Dodaj"
-
-msgid "Fields"
-msgstr "Obszary"
-
-msgid "add field"
-msgstr "dodać pole"
-
-msgid "click to close"
-msgstr "Kliknij do zamknięcia"
-
-msgid "delete"
-msgstr "usunąć"
-
-msgid "Hint"
-msgstr "Napomknąć"
-
-msgid "Required"
-msgstr "Wymagane"
-
-msgid "Type"
-msgstr "Typ"
-
-msgid "Text"
-msgstr "Tekst"
-
-msgid "Radio Buttons"
-msgstr "Przyciski"
-
-msgid "Drop Menu (Select)"
-msgstr "Menu upadku (Wybierz)"
-
-msgid "Multi-Select"
-msgstr "Wielu Wybierz"
-
-msgid "Checkboxes"
-msgstr "Pola wyboru"
-
-msgid "Paragraph(s)"
-msgstr "Ustęp(ptk)"
-
-msgid "Number"
-msgstr "Numer"
-
-msgid "Url"
-msgstr "Strona"
-
-msgid "Phone"
-msgstr "Telefon"
-
-msgid "add option"
-msgstr "dodać opcję"
-
-msgid "Files overview"
-msgstr "Przegląd pliki"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr ""
-
-msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "Tabela poniżej pokazuje pliki obecne w katalogu wniosków oraz ich stosunków z wewnętrznej bazy danych."
-
-msgid "Info"
-msgstr "informacji"
-
-msgid "Size"
-msgstr "Rozmiar"
-
-msgid "References"
-msgstr "Referencje"
-
-msgid "Username"
-msgstr "Nazwa użytkownika"
-
-msgid "Password"
-msgstr "Hasło"
-
-msgid "SMTP server address"
-msgstr "Adres serwera SMTP"
-
-msgid "SMTP server port"
-msgstr "Port serwera SMTP"
-
-msgid "Transport Security"
-msgstr "Bezpieczeństwo transportu"
-
-msgid "Notification templates"
-msgstr ""
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr "Rada szablon Email"
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "Komentarz szablon Wyślij"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr ""
-
-msgid "Activation Email template"
-msgstr "Aktywacja Email szablon"
-
-msgid "Password management"
-msgstr "zarządzanie hasłami"
-
-msgid "Current Password"
-msgstr "Aktualne hasło"
-
-msgid "Required old password confirm"
-msgstr "Wymagany stare hasło potwierdzić"
-
-msgid "New Password"
-msgstr "Nowe hasło"
-
-msgid "Your password is unsafe, it should have"
-msgstr "Twoje hasło jest niebezpieczny, powinien on mieć"
-
-msgid "At least one letter"
-msgstr "Co najmniej jedną literę"
-
-msgid "At least one number"
-msgstr "Co najmniej jeden numer"
-
-msgid "At least 8 keypress long"
-msgstr "Co najmniej 8 przyciśnięcie długo"
-
-msgid "Retype again your new password"
-msgstr "Ponownie wpisz ponownie nowe hasło"
-
-msgid "The two passwords do not match"
-msgstr "Te dwa hasła nie są takie same"
-
-msgid "Receiver list"
-msgstr "Lista odbiorniki"
-
-msgid "Select file"
-msgstr "Wybierz plik"
-
-msgid "upload"
-msgstr "załadować"
-
-msgid "Receiver name too long"
-msgstr "Nazwa odbiorcy zbyt długo"
-
-msgid "Email Address (Username)"
-msgstr "Adres email (nazwa użytkownika)"
-
-msgid "Invalid email address"
-msgstr "Błędny adres e-mail"
-
-msgid "Contexts"
-msgstr "Konteksty"
-
-msgid "Add new receiver"
-msgstr "Dodaj nowy odbiornik"
-
-msgid "Email Address"
-msgstr "Adres e-mail"
-
 msgid "Content Settin"
 msgstr "Zawartość Ustawień"
 
@@ -588,20 +482,128 @@ msgid ""
 "node."
 msgstr ""
 
-msgid "Welcome back captain!"
-msgstr "Witamy z powrotem kapitan!"
+msgid "Username"
+msgstr "Nazwa użytkownika"
 
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "Stąd można uruchomić wspólne zadania funkcje debugowania emulacji GLClient"
+msgid "Password"
+msgstr "Hasło"
 
-msgid "Cookies are not enabled!"
-msgstr "Cookies nie są aktywne!"
+msgid "SMTP server address"
+msgstr "Adres serwera SMTP"
 
-msgid "You will not be able to login."
-msgstr "Nie będziesz mógł się zalogować."
+msgid "SMTP server port"
+msgstr "Port serwera SMTP"
 
-msgid "Login"
-msgstr "Dostęp"
+msgid "Transport Security"
+msgstr "Bezpieczeństwo transportu"
+
+msgid "Notification templates"
+msgstr ""
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr "Rada szablon Email"
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "Komentarz szablon Wyślij"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr ""
+
+msgid "Activation Email template"
+msgstr "Aktywacja Email szablon"
+
+msgid "Contexts list"
+msgstr "List Konteksty"
+
+msgid "Delete"
+msgstr "Usunąć"
+
+msgid "Receivers"
+msgstr "Odbiorniki"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submission lifetime"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Dodaj nowy kontekst"
+
+msgid "add"
+msgstr "Dodaj"
+
+msgid "Receiver list"
+msgstr "Lista odbiorniki"
+
+msgid "Select file"
+msgstr "Wybierz plik"
+
+msgid "upload"
+msgstr "załadować"
+
+msgid "Receiver name too long"
+msgstr "Nazwa odbiorcy zbyt długo"
+
+msgid "Email Address (Username)"
+msgstr "Adres email (nazwa użytkownika)"
+
+msgid "Invalid email address"
+msgstr "Błędny adres e-mail"
+
+msgid "Contexts"
+msgstr "Konteksty"
+
+msgid "Add new receiver"
+msgstr "Dodaj nowy odbiornik"
+
+msgid "Email Address"
+msgstr "Adres e-mail"
+
+msgid "Tips"
+msgstr "Porady"
+
+msgid "Preferences"
+msgstr "Preferencje"
+
+msgid "Tip ID"
+msgstr "Rada ID"
+
+msgid "Age"
+msgstr "Wiek"
+
+msgid "Views"
+msgstr "Wizyty"
+
+msgid "Last Access"
+msgstr "Ostatnia Wizyta"
 
 msgid "Preferences and password management"
 msgstr "Preferencje i zarządzanie hasłami"
@@ -642,38 +644,8 @@ msgstr ""
 msgid "Update notification settings"
 msgstr ""
 
-msgid "Tips"
-msgstr "Porady"
-
-msgid "Preferences"
-msgstr "Preferencje"
-
-msgid "Tip ID"
-msgstr "Rada ID"
-
-msgid "Age"
-msgstr "Wiek"
-
-msgid "Views"
-msgstr "Wizyty"
-
-msgid "Last Access"
-msgstr "Ostatnia Wizyta"
-
-msgid "Success!"
-msgstr "Zakończony!"
-
-msgid "Currently logged in "
-msgstr "Obecnie zalogowany"
-
-msgid "logout"
-msgstr "wyloguj"
-
 msgid "Save changes"
 msgstr "Zapisz zmiany"
-
-msgid "Add files..."
-msgstr "Dodaj pliki..."
 
 msgid "Danger!"
 msgstr "Niebezpieczeństwo!"
@@ -711,3 +683,30 @@ msgstr "pobrać kopię paczki Tor"
 
 msgid "before continuing."
 msgstr "przed kontynuowaniem."
+
+msgid "Add files..."
+msgstr "Dodaj pliki..."
+
+msgid "Welcome back captain!"
+msgstr "Witamy z powrotem kapitan!"
+
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Stąd można uruchomić wspólne zadania funkcje debugowania emulacji GLClient"
+
+msgid "Cookies are not enabled!"
+msgstr "Cookies nie są aktywne!"
+
+msgid "You will not be able to login."
+msgstr "Nie będziesz mógł się zalogować."
+
+msgid "Login"
+msgstr "Dostęp"
+
+msgid "Success!"
+msgstr "Zakończony!"
+
+msgid "Currently logged in "
+msgstr "Obecnie zalogowany"
+
+msgid "logout"
+msgstr "wyloguj"
