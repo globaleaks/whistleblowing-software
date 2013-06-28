@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-27 23:41+0000\n"
+"PO-Revision-Date: 2013-06-28 01:10+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Arabic (http://www.transifex.com/projects/p/globaleaks/language/ar/)\n"
 "MIME-Version: 1.0\n"
@@ -13,137 +13,6 @@ msgstr ""
 "Language: ar\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
 
-msgid "Welcome to"
-msgstr ""
-
-msgid "Blow the Whistle"
-msgstr ""
-
-msgid "Your node is not configured! Please, proceed via"
-msgstr "لم يتمّ تشكيل عقدتك! الرجاء واصل\\ي عن طريق"
-
-msgid "Admin interface and configure at least one context"
-msgstr "واجهة المديرية وشكّل\\ي سياقاً واحداً على الأقلّ"
-
-msgid "Loading..."
-msgstr "جاري التحميل"
-
-msgid "Are you a whistleblower?"
-msgstr ""
-
-msgid "Enter your receipt"
-msgstr ""
-
-msgid "Are you a receiver?"
-msgstr "هل أنت من المرسل إليهم؟"
-
-msgid "This is the"
-msgstr "هذا هو"
-
-msgid "Login page"
-msgstr "صحفة الاتّصال"
-
-msgid "What is this about?"
-msgstr ""
-
-msgid "How you can transform information into action!"
-msgstr "كيف يمكنك تحويل المعلومات إلى الفعل!"
-
-msgid ""
-"Through this platform you will be able to report on wrongdoing. This "
-"platform is running the"
-msgstr ""
-
-msgid "GlobaLeaks software"
-msgstr "برنامج GlobaLeaks"
-
-msgid ""
-"that is specifically designed to protect the identity of the reporter and of"
-" the ones running the platform."
-msgstr ""
-
-msgid "This software is developed by the non-profit organization"
-msgstr ""
-
-msgid "We are supported also by your donations. Visit our"
-msgstr ""
-
-msgid "donation page"
-msgstr "صفحة الهبة"
-
-msgid "to help us further support the development of GlobaLeaks."
-msgstr "لتدعمنا في تطوير GlobaLeaks"
-
-msgid "Tip Status Page"
-msgstr "صفحة التلميحات"
-
-msgid "Files"
-msgstr "الملفّات"
-
-msgid "security check"
-msgstr ""
-
-msgid "download"
-msgstr ""
-
-msgid "Security Check"
-msgstr ""
-
-msgid "Use the"
-msgstr "استعمل\\ي"
-
-msgid "sha256 hash"
-msgstr "دالة تجزئِة\\هاش sha256"
-
-msgid "to verify the file integrity"
-msgstr "َالتأكّد على سلامة الملفّ"
-
-msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr ""
-
-msgid "Still calculating hash"
-msgstr ""
-
-msgid "done"
-msgstr ""
-
-msgid "No file has been uploaded!"
-msgstr "لم يتمّ تحميل أي ملفّ!"
-
-msgid "Comments"
-msgstr "تعليقات"
-
-msgid "Whistleblower"
-msgstr ""
-
-msgid "System"
-msgstr "نظام"
-
-msgid "Malformed source"
-msgstr "مصدر غير صحيح"
-
-msgid "Add Comment"
-msgstr "أضف تعليقاً"
-
-msgid "Receiver List"
-msgstr "قائمة المرسل إليهم"
-
-msgid "Name"
-msgstr "اسم"
-
-msgid "Description"
-msgstr "وصف"
-
-msgid "Access counter"
-msgstr ""
-
-msgid "The requested tip does not exist or has expired."
-msgstr "ليس التلميح المطلوب موجوداً"
-
-msgid "Loading Tip page..."
-msgstr ""
-
 msgid "New Submission"
 msgstr "تقديم جديد"
 
@@ -151,6 +20,9 @@ msgid ""
 "You can customize this section by editing "
 "GLClient/app/templates/default/views/submission/main.html"
 msgstr "يمكنك تخصيص هذا القسم عن طرِيق تعديل الملفّ GLClient/app/templates/default/views/submission/main.html"
+
+msgid "Loading..."
+msgstr "جاري التحميل"
 
 msgid "This node is not configured."
 msgstr "لم يتمّ تشكيل هذا العقدة"
@@ -246,10 +118,241 @@ msgstr ""
 msgid "View Tip"
 msgstr "َانظر إلى التلميح"
 
-msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
+msgid "Welcome to"
 msgstr ""
+
+msgid "Blow the Whistle"
+msgstr ""
+
+msgid "Your node is not configured! Please, proceed via"
+msgstr "لم يتمّ تشكيل عقدتك! الرجاء واصل\\ي عن طريق"
+
+msgid "Admin interface and configure at least one context"
+msgstr "واجهة المديرية وشكّل\\ي سياقاً واحداً على الأقلّ"
+
+msgid "Are you a whistleblower?"
+msgstr ""
+
+msgid "Enter your receipt"
+msgstr ""
+
+msgid "Are you a receiver?"
+msgstr "هل أنت من المرسل إليهم؟"
+
+msgid "This is the"
+msgstr "هذا هو"
+
+msgid "Login page"
+msgstr "صحفة الاتّصال"
+
+msgid "What is this about?"
+msgstr ""
+
+msgid "How you can transform information into action!"
+msgstr "كيف يمكنك تحويل المعلومات إلى الفعل!"
+
+msgid ""
+"Through this platform you will be able to report on wrongdoing. This "
+"platform is running the"
+msgstr ""
+
+msgid "GlobaLeaks software"
+msgstr "برنامج GlobaLeaks"
+
+msgid ""
+"that is specifically designed to protect the identity of the reporter and of"
+" the ones running the platform."
+msgstr ""
+
+msgid "This software is developed by the non-profit organization"
+msgstr ""
+
+msgid "We are supported also by your donations. Visit our"
+msgstr ""
+
+msgid "donation page"
+msgstr "صفحة الهبة"
+
+msgid "to help us further support the development of GlobaLeaks."
+msgstr "لتدعمنا في تطوير GlobaLeaks"
+
+msgid "Tip Status Page"
+msgstr "صفحة التلميحات"
+
+msgid "Files"
+msgstr "الملفّات"
+
+msgid "show only files not yet downloaded"
+msgstr ""
+
+msgid "show all the files"
+msgstr ""
+
+msgid "download"
+msgstr ""
+
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr ""
+
+msgid "Use the"
+msgstr "استعمل\\ي"
+
+msgid "sha256 hash"
+msgstr "دالة تجزئِة\\هاش sha256"
+
+msgid "to verify the file integrity"
+msgstr "َالتأكّد على سلامة الملفّ"
+
+msgid ""
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr ""
+
+msgid "No file has been uploaded!"
+msgstr "لم يتمّ تحميل أي ملفّ!"
+
+msgid "Comments"
+msgstr "تعليقات"
+
+msgid "Whistleblower"
+msgstr ""
+
+msgid "System"
+msgstr "نظام"
+
+msgid "Malformed source"
+msgstr "مصدر غير صحيح"
+
+msgid "Add Comment"
+msgstr "أضف تعليقاً"
+
+msgid "Receiver List"
+msgstr "قائمة المرسل إليهم"
+
+msgid "Name"
+msgstr "اسم"
+
+msgid "Description"
+msgstr "وصف"
+
+msgid "Access counter"
+msgstr ""
+
+msgid "The requested tip does not exist or has expired."
+msgstr "ليس التلميح المطلوب موجوداً"
+
+msgid "Loading Tip page..."
+msgstr ""
+
+msgid "Files overview"
+msgstr "ملخّص الملفّات"
+
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "قد تساعدك هذه الواجهة أن تكتشف\\ي الأشياء غير المتوقّعة في عقدتك"
+
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr ""
+
+msgid "Info"
+msgstr "معلومات"
+
+msgid "Size"
+msgstr "حجم"
+
+msgid "References"
+msgstr "منابع"
+
+msgid "Password management"
+msgstr "خيارات كلمة السرّ"
+
+msgid "Current Password"
+msgstr "كلمة السرّ الحالية"
+
+msgid "Required old password confirm"
+msgstr ""
+
+msgid "New Password"
+msgstr ""
+
+msgid "Your password is unsafe, it should have"
+msgstr "كلمة سرّك ليست قوية، من اللازم أن تكون فيها"
+
+msgid "At least one letter"
+msgstr "حرف واحد على الأقلّ"
+
+msgid "At least one number"
+msgstr ""
+
+msgid "At least 8 keypress long"
+msgstr "ثمانية أحراف على الأقلّ"
+
+msgid "Retype again your new password"
+msgstr ""
+
+msgid "The two passwords do not match"
+msgstr "لا تتطابق كلمتا السرّ"
+
+msgid "Save"
+msgstr "حفظ"
+
+msgid "Fields"
+msgstr "حقول"
+
+msgid "add field"
+msgstr "أضف حقلاً"
+
+msgid "click to close"
+msgstr "انقر\\ي لغلق الصفحة"
+
+msgid "delete"
+msgstr "حذف"
+
+msgid "Hint"
+msgstr "تلميح"
+
+msgid "Required"
+msgstr "مطلوب"
+
+msgid "Type"
+msgstr "نوع"
+
+msgid "Text"
+msgstr "النصّ"
+
+msgid "Radio Buttons"
+msgstr "ازرار الخيار"
+
+msgid "Drop Menu (Select)"
+msgstr "أنزل القائمة ﴿انتق\\ي﴾"
+
+msgid "Multi-Select"
+msgstr "إنتقاء متعدّد"
+
+msgid "Checkboxes"
+msgstr "خانات الاختيار"
+
+msgid "Paragraph(s)"
+msgstr "فقرة\\فقرات"
+
+msgid "Number"
+msgstr "رقم"
+
+msgid "Url"
+msgstr "عنوان إنترنت"
+
+msgid "Phone"
+msgstr "هاتف"
+
+msgid "Email"
+msgstr "بريد إلكتروني"
+
+msgid "add option"
+msgstr "أضف خياراً"
 
 msgid "General information"
 msgstr "معلومات عامّة"
@@ -263,8 +366,8 @@ msgstr ""
 msgid "Node name"
 msgstr "اسم العقدة"
 
-msgid "Email"
-msgstr "بريد إلكتروني"
+msgid "Enabled languages"
+msgstr ""
 
 msgid "Tor Hidden Service (hostname)"
 msgstr ""
@@ -337,215 +440,6 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
-msgid "Contexts list"
-msgstr ""
-
-msgid "Save"
-msgstr "حفظ"
-
-msgid "Delete"
-msgstr "حذف"
-
-msgid "Receivers"
-msgstr "المرسل إليهم"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submission lifetime"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "أضف سياقاً جديداً"
-
-msgid "add"
-msgstr "أضف"
-
-msgid "Fields"
-msgstr "حقول"
-
-msgid "add field"
-msgstr "أضف حقلاً"
-
-msgid "click to close"
-msgstr "انقر\\ي لغلق الصفحة"
-
-msgid "delete"
-msgstr "حذف"
-
-msgid "Hint"
-msgstr "تلميح"
-
-msgid "Required"
-msgstr "مطلوب"
-
-msgid "Type"
-msgstr "نوع"
-
-msgid "Text"
-msgstr "النصّ"
-
-msgid "Radio Buttons"
-msgstr "ازرار الخيار"
-
-msgid "Drop Menu (Select)"
-msgstr "أنزل القائمة ﴿انتق\\ي﴾"
-
-msgid "Multi-Select"
-msgstr "إنتقاء متعدّد"
-
-msgid "Checkboxes"
-msgstr "خانات الاختيار"
-
-msgid "Paragraph(s)"
-msgstr "فقرة\\فقرات"
-
-msgid "Number"
-msgstr "رقم"
-
-msgid "Url"
-msgstr "عنوان إنترنت"
-
-msgid "Phone"
-msgstr "هاتف"
-
-msgid "add option"
-msgstr "أضف خياراً"
-
-msgid "Files overview"
-msgstr "ملخّص الملفّات"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "قد تساعدك هذه الواجهة أن تكتشف\\ي الأشياء غير المتوقّعة في عقدتك"
-
-msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr ""
-
-msgid "Info"
-msgstr "معلومات"
-
-msgid "Size"
-msgstr "حجم"
-
-msgid "References"
-msgstr "منابع"
-
-msgid "Username"
-msgstr "معرّف"
-
-msgid "Password"
-msgstr "كلمة السرّ"
-
-msgid "SMTP server address"
-msgstr "عنوان الخادم SMTP"
-
-msgid "SMTP server port"
-msgstr "منفذ الخادم SMTP"
-
-msgid "Transport Security"
-msgstr ""
-
-msgid "Notification templates"
-msgstr ""
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr ""
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "نموذج لرسالة التعليق الإلكترونية"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr "نموذج رسالة الملفّ"
-
-msgid "Activation Email template"
-msgstr ""
-
-msgid "Password management"
-msgstr "خيارات كلمة السرّ"
-
-msgid "Current Password"
-msgstr "كلمة السرّ الحالية"
-
-msgid "Required old password confirm"
-msgstr ""
-
-msgid "New Password"
-msgstr ""
-
-msgid "Your password is unsafe, it should have"
-msgstr "كلمة سرّك ليست قوية، من اللازم أن تكون فيها"
-
-msgid "At least one letter"
-msgstr "حرف واحد على الأقلّ"
-
-msgid "At least one number"
-msgstr ""
-
-msgid "At least 8 keypress long"
-msgstr "ثمانية أحراف على الأقلّ"
-
-msgid "Retype again your new password"
-msgstr ""
-
-msgid "The two passwords do not match"
-msgstr "لا تتطابق كلمتا السرّ"
-
-msgid "Receiver list"
-msgstr "قائمة المرسل إليهم"
-
-msgid "Select file"
-msgstr "انتق\\ي ملفّاً"
-
-msgid "upload"
-msgstr "تحميل"
-
-msgid "Receiver name too long"
-msgstr "اسم المرسل إليه أطول من اللازم"
-
-msgid "Email Address (Username)"
-msgstr "عنوان البريد الإلكتروني"
-
-msgid "Invalid email address"
-msgstr "عنوان بريد إلكتروني غير صحيح"
-
-msgid "Contexts"
-msgstr "سياقات"
-
-msgid "Add new receiver"
-msgstr "أضف مستلماً جديداً"
-
-msgid "Email Address"
-msgstr "عنوان البريد الإلكتروني"
-
 msgid "Content Settin"
 msgstr "زر الخيار"
 
@@ -588,20 +482,128 @@ msgid ""
 "node."
 msgstr "هذه الواجهة تبيّن لك نشاطات مستخدمي عقدتك. قد تساعدك هذا أن تكتشف\\ي الأشياء غير المتوقّعة وتدعم المرسل إليهم لعقدتك."
 
-msgid "Welcome back captain!"
-msgstr "أهلاً بك يا كابتن!"
+msgid "Username"
+msgstr "معرّف"
 
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "من هذه الصفحة يمكنك تنفيذ مهامّ التصحيح التي تقلّد عمليات GLClient"
+msgid "Password"
+msgstr "كلمة السرّ"
 
-msgid "Cookies are not enabled!"
+msgid "SMTP server address"
+msgstr "عنوان الخادم SMTP"
+
+msgid "SMTP server port"
+msgstr "منفذ الخادم SMTP"
+
+msgid "Transport Security"
 msgstr ""
 
-msgid "You will not be able to login."
-msgstr "لن يمكنك الاتّصال"
+msgid "Notification templates"
+msgstr ""
 
-msgid "Login"
-msgstr "اتّصال"
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr ""
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "نموذج لرسالة التعليق الإلكترونية"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr "نموذج رسالة الملفّ"
+
+msgid "Activation Email template"
+msgstr ""
+
+msgid "Contexts list"
+msgstr ""
+
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Receivers"
+msgstr "المرسل إليهم"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submission lifetime"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "أضف سياقاً جديداً"
+
+msgid "add"
+msgstr "أضف"
+
+msgid "Receiver list"
+msgstr "قائمة المرسل إليهم"
+
+msgid "Select file"
+msgstr "انتق\\ي ملفّاً"
+
+msgid "upload"
+msgstr "تحميل"
+
+msgid "Receiver name too long"
+msgstr "اسم المرسل إليه أطول من اللازم"
+
+msgid "Email Address (Username)"
+msgstr "عنوان البريد الإلكتروني"
+
+msgid "Invalid email address"
+msgstr "عنوان بريد إلكتروني غير صحيح"
+
+msgid "Contexts"
+msgstr "سياقات"
+
+msgid "Add new receiver"
+msgstr "أضف مستلماً جديداً"
+
+msgid "Email Address"
+msgstr "عنوان البريد الإلكتروني"
+
+msgid "Tips"
+msgstr "تلميحات"
+
+msgid "Preferences"
+msgstr "خيارات"
+
+msgid "Tip ID"
+msgstr "رقم التلميح"
+
+msgid "Age"
+msgstr ""
+
+msgid "Views"
+msgstr "عدد المشاهدات"
+
+msgid "Last Access"
+msgstr "الاتّصال السابق"
 
 msgid "Preferences and password management"
 msgstr "َالخيارات وكلمة السرّ"
@@ -642,38 +644,8 @@ msgstr ""
 msgid "Update notification settings"
 msgstr ""
 
-msgid "Tips"
-msgstr "تلميحات"
-
-msgid "Preferences"
-msgstr "خيارات"
-
-msgid "Tip ID"
-msgstr "رقم التلميح"
-
-msgid "Age"
-msgstr ""
-
-msgid "Views"
-msgstr "عدد المشاهدات"
-
-msgid "Last Access"
-msgstr "الاتّصال السابق"
-
-msgid "Success!"
-msgstr "نجحت!"
-
-msgid "Currently logged in "
-msgstr "في حالة الاتّصال"
-
-msgid "logout"
-msgstr "انقطاع"
-
 msgid "Save changes"
 msgstr "حفظ التغييرات"
-
-msgid "Add files..."
-msgstr "أضف الملفّات"
 
 msgid "Danger!"
 msgstr "خطر!"
@@ -711,3 +683,30 @@ msgstr ""
 
 msgid "before continuing."
 msgstr "قبل المواصلة"
+
+msgid "Add files..."
+msgstr "أضف الملفّات"
+
+msgid "Welcome back captain!"
+msgstr "أهلاً بك يا كابتن!"
+
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "من هذه الصفحة يمكنك تنفيذ مهامّ التصحيح التي تقلّد عمليات GLClient"
+
+msgid "Cookies are not enabled!"
+msgstr ""
+
+msgid "You will not be able to login."
+msgstr "لن يمكنك الاتّصال"
+
+msgid "Login"
+msgstr "اتّصال"
+
+msgid "Success!"
+msgstr "نجحت!"
+
+msgid "Currently logged in "
+msgstr "في حالة الاتّصال"
+
+msgid "logout"
+msgstr "انقطاع"

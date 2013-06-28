@@ -3,144 +3,13 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-27 23:41+0000\n"
+"PO-Revision-Date: 2013-06-28 01:10+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgid "Welcome to"
-msgstr "Welcome to"
-
-msgid "Blow the Whistle"
-msgstr "Blow the Whistle"
-
-msgid "Your node is not configured! Please, proceed via"
-msgstr "Your node is not configured! Please, proceed via"
-
-msgid "Admin interface and configure at least one context"
-msgstr "Admin interface and configure at least one context"
-
-msgid "Loading..."
-msgstr "Loading..."
-
-msgid "Are you a whistleblower?"
-msgstr "Are you a whistleblower?"
-
-msgid "Enter your receipt"
-msgstr "Enter your receipt"
-
-msgid "Are you a receiver?"
-msgstr "Are you a receiver?"
-
-msgid "This is the"
-msgstr "This is the"
-
-msgid "Login page"
-msgstr "Login page"
-
-msgid "What is this about?"
-msgstr "What is this about?"
-
-msgid "How you can transform information into action!"
-msgstr "How you can transform information into action!"
-
-msgid ""
-"Through this platform you will be able to report on wrongdoing. This "
-"platform is running the"
-msgstr "Through this platform you will be able to report on wrongdoing. This platform is running the"
-
-msgid "GlobaLeaks software"
-msgstr "GlobaLeaks software"
-
-msgid ""
-"that is specifically designed to protect the identity of the reporter and of"
-" the ones running the platform."
-msgstr "that is specifically designed to protect the identity of the reporter and of the ones running the platform."
-
-msgid "This software is developed by the non-profit organization"
-msgstr "This software is developed by the non-profit organization"
-
-msgid "We are supported also by your donations. Visit our"
-msgstr "We are supported also by your donations. Visit our"
-
-msgid "donation page"
-msgstr "donation page"
-
-msgid "to help us further support the development of GlobaLeaks."
-msgstr "to help us further support the development of GlobaLeaks."
-
-msgid "Tip Status Page"
-msgstr "Tip Status Page"
-
-msgid "Files"
-msgstr "Files"
-
-msgid "security check"
-msgstr "security check"
-
-msgid "download"
-msgstr "download"
-
-msgid "Security Check"
-msgstr "Security Check"
-
-msgid "Use the"
-msgstr "Use the"
-
-msgid "sha256 hash"
-msgstr "sha256 hash"
-
-msgid "to verify the file integrity"
-msgstr "to verify the file integrity"
-
-msgid ""
-"On unix based systems this can be done by running the following command"
-msgstr "On unix based systems this can be done by running the following command"
-
-msgid "Still calculating hash"
-msgstr "Still calculating hash"
-
-msgid "done"
-msgstr "done"
-
-msgid "No file has been uploaded!"
-msgstr "No file has been uploaded!"
-
-msgid "Comments"
-msgstr "Comments"
-
-msgid "Whistleblower"
-msgstr "Whistleblower"
-
-msgid "System"
-msgstr "System"
-
-msgid "Malformed source"
-msgstr "Malformed source"
-
-msgid "Add Comment"
-msgstr "Add Comment"
-
-msgid "Receiver List"
-msgstr "Receiver List"
-
-msgid "Name"
-msgstr "Name"
-
-msgid "Description"
-msgstr "Description"
-
-msgid "Access counter"
-msgstr "Access counter"
-
-msgid "The requested tip does not exist or has expired."
-msgstr "The requested tip does not exist or has expired."
-
-msgid "Loading Tip page..."
-msgstr "Loading Tip page..."
 
 msgid "New Submission"
 msgstr "New Submission"
@@ -149,6 +18,9 @@ msgid ""
 "You can customize this section by editing "
 "GLClient/app/templates/default/views/submission/main.html"
 msgstr "You can customize this section by editing GLClient/app/templates/default/views/submission/main.html"
+
+msgid "Loading..."
+msgstr "Loading..."
 
 msgid "This node is not configured."
 msgstr "This node is not configured."
@@ -244,10 +116,241 @@ msgstr "Please copy in the box below you receipt to access the tip interface."
 msgid "View Tip"
 msgstr "View Tip"
 
+msgid "Welcome to"
+msgstr "Welcome to"
+
+msgid "Blow the Whistle"
+msgstr "Blow the Whistle"
+
+msgid "Your node is not configured! Please, proceed via"
+msgstr "Your node is not configured! Please, proceed via"
+
+msgid "Admin interface and configure at least one context"
+msgstr "Admin interface and configure at least one context"
+
+msgid "Are you a whistleblower?"
+msgstr "Are you a whistleblower?"
+
+msgid "Enter your receipt"
+msgstr "Enter your receipt"
+
+msgid "Are you a receiver?"
+msgstr "Are you a receiver?"
+
+msgid "This is the"
+msgstr "This is the"
+
+msgid "Login page"
+msgstr "Login page"
+
+msgid "What is this about?"
+msgstr "What is this about?"
+
+msgid "How you can transform information into action!"
+msgstr "How you can transform information into action!"
+
 msgid ""
-"This number here is your receipt keep good care of it as it will allow you "
-"to access your submission"
-msgstr "This number here is your receipt keep good care of it as it will allow you to access your submission"
+"Through this platform you will be able to report on wrongdoing. This "
+"platform is running the"
+msgstr "Through this platform you will be able to report on wrongdoing. This platform is running the"
+
+msgid "GlobaLeaks software"
+msgstr "GlobaLeaks software"
+
+msgid ""
+"that is specifically designed to protect the identity of the reporter and of"
+" the ones running the platform."
+msgstr "that is specifically designed to protect the identity of the reporter and of the ones running the platform."
+
+msgid "This software is developed by the non-profit organization"
+msgstr "This software is developed by the non-profit organization"
+
+msgid "We are supported also by your donations. Visit our"
+msgstr "We are supported also by your donations. Visit our"
+
+msgid "donation page"
+msgstr "donation page"
+
+msgid "to help us further support the development of GlobaLeaks."
+msgstr "to help us further support the development of GlobaLeaks."
+
+msgid "Tip Status Page"
+msgstr "Tip Status Page"
+
+msgid "Files"
+msgstr "Files"
+
+msgid "show only files not yet downloaded"
+msgstr "show only files not yet downloaded"
+
+msgid "show all the files"
+msgstr "show all the files"
+
+msgid "download"
+msgstr "download"
+
+msgid "show sha256 checksum"
+msgstr "show sha256 checksum"
+
+msgid "(click again to hide)"
+msgstr "(click again to hide)"
+
+msgid "Use the"
+msgstr "Use the"
+
+msgid "sha256 hash"
+msgstr "sha256 hash"
+
+msgid "to verify the file integrity"
+msgstr "to verify the file integrity"
+
+msgid ""
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr "On unix based systems this can be done by running the following command in the directory of the files"
+
+msgid "No file has been uploaded!"
+msgstr "No file has been uploaded!"
+
+msgid "Comments"
+msgstr "Comments"
+
+msgid "Whistleblower"
+msgstr "Whistleblower"
+
+msgid "System"
+msgstr "System"
+
+msgid "Malformed source"
+msgstr "Malformed source"
+
+msgid "Add Comment"
+msgstr "Add Comment"
+
+msgid "Receiver List"
+msgstr "Receiver List"
+
+msgid "Name"
+msgstr "Name"
+
+msgid "Description"
+msgstr "Description"
+
+msgid "Access counter"
+msgstr "Access counter"
+
+msgid "The requested tip does not exist or has expired."
+msgstr "The requested tip does not exist or has expired."
+
+msgid "Loading Tip page..."
+msgstr "Loading Tip page..."
+
+msgid "Files overview"
+msgstr "Files overview"
+
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "This interface may help you spot anomalies in your Node."
+
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "The table below shows the files present in the submission directory, and their relationship with the internal database."
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Size"
+msgstr "Size"
+
+msgid "References"
+msgstr "References"
+
+msgid "Password management"
+msgstr "Password management"
+
+msgid "Current Password"
+msgstr "Current Password"
+
+msgid "Required old password confirm"
+msgstr "Required old password confirm"
+
+msgid "New Password"
+msgstr "New Password"
+
+msgid "Your password is unsafe, it should have"
+msgstr "Your password is unsafe, it should have"
+
+msgid "At least one letter"
+msgstr "At least one letter"
+
+msgid "At least one number"
+msgstr "At least one number"
+
+msgid "At least 8 keypress long"
+msgstr "At least 8 keypress long"
+
+msgid "Retype again your new password"
+msgstr "Retype again your new password"
+
+msgid "The two passwords do not match"
+msgstr "The two passwords do not match"
+
+msgid "Save"
+msgstr "Save"
+
+msgid "Fields"
+msgstr "Fields"
+
+msgid "add field"
+msgstr "add field"
+
+msgid "click to close"
+msgstr "click to close"
+
+msgid "delete"
+msgstr "delete"
+
+msgid "Hint"
+msgstr "Hint"
+
+msgid "Required"
+msgstr "Required"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Text"
+msgstr "Text"
+
+msgid "Radio Buttons"
+msgstr "Radio Buttons"
+
+msgid "Drop Menu (Select)"
+msgstr "Drop Menu (Select)"
+
+msgid "Multi-Select"
+msgstr "Multi-Select"
+
+msgid "Checkboxes"
+msgstr "Checkboxes"
+
+msgid "Paragraph(s)"
+msgstr "Paragraph(s)"
+
+msgid "Number"
+msgstr "Number"
+
+msgid "Url"
+msgstr "Url"
+
+msgid "Phone"
+msgstr "Phone"
+
+msgid "Email"
+msgstr "Email"
+
+msgid "add option"
+msgstr "add option"
 
 msgid "General information"
 msgstr "General information"
@@ -261,8 +364,8 @@ msgstr "Current initiative logo"
 msgid "Node name"
 msgstr "Node name"
 
-msgid "Email"
-msgstr "Email"
+msgid "Enabled languages"
+msgstr "Enabled languages"
 
 msgid "Tor Hidden Service (hostname)"
 msgstr "Tor Hidden Service (hostname)"
@@ -335,215 +438,6 @@ msgstr "Update node"
 msgid "Update node and Tor2Web options"
 msgstr "Update node and Tor2Web options"
 
-msgid "Contexts list"
-msgstr "Contexts list"
-
-msgid "Save"
-msgstr "Save"
-
-msgid "Delete"
-msgstr "Delete"
-
-msgid "Receivers"
-msgstr "Receivers"
-
-msgid "Advanced settings"
-msgstr "Advanced settings"
-
-msgid "Submission Disclaimer"
-msgstr "Submission Disclaimer"
-
-msgid "Submission lifetime"
-msgstr "Submission lifetime"
-
-msgid "Tip day life"
-msgstr "Tip day life"
-
-msgid "File Required"
-msgstr "File Required"
-
-msgid "Receipt regexp"
-msgstr "Receipt regexp"
-
-msgid "Receipt description"
-msgstr "Receipt description"
-
-msgid "Submission Introduction"
-msgstr "Submission Introduction"
-
-msgid "Add new context"
-msgstr "Add new context"
-
-msgid "add"
-msgstr "add"
-
-msgid "Fields"
-msgstr "Fields"
-
-msgid "add field"
-msgstr "add field"
-
-msgid "click to close"
-msgstr "click to close"
-
-msgid "delete"
-msgstr "delete"
-
-msgid "Hint"
-msgstr "Hint"
-
-msgid "Required"
-msgstr "Required"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Text"
-msgstr "Text"
-
-msgid "Radio Buttons"
-msgstr "Radio Buttons"
-
-msgid "Drop Menu (Select)"
-msgstr "Drop Menu (Select)"
-
-msgid "Multi-Select"
-msgstr "Multi-Select"
-
-msgid "Checkboxes"
-msgstr "Checkboxes"
-
-msgid "Paragraph(s)"
-msgstr "Paragraph(s)"
-
-msgid "Number"
-msgstr "Number"
-
-msgid "Url"
-msgstr "Url"
-
-msgid "Phone"
-msgstr "Phone"
-
-msgid "add option"
-msgstr "add option"
-
-msgid "Files overview"
-msgstr "Files overview"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "This interface may help you spot anomalies in your Node."
-
-msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "The table below shows the files present in the submission directory, and their relationship with the internal database."
-
-msgid "Info"
-msgstr "Info"
-
-msgid "Size"
-msgstr "Size"
-
-msgid "References"
-msgstr "References"
-
-msgid "Username"
-msgstr "Username"
-
-msgid "Password"
-msgstr "Password"
-
-msgid "SMTP server address"
-msgstr "SMTP server address"
-
-msgid "SMTP server port"
-msgstr "SMTP server port"
-
-msgid "Transport Security"
-msgstr "Transport Security"
-
-msgid "Notification templates"
-msgstr "Notification templates"
-
-msgid "Tip Email Subject"
-msgstr "Tip Email Subject"
-
-msgid "Tip Email template"
-msgstr "Tip Email template"
-
-msgid "Comment Email Subject"
-msgstr "Comment Email Subject"
-
-msgid "Comment Email template"
-msgstr "Comment Email template"
-
-msgid "File Email Subject"
-msgstr "File Email Subject"
-
-msgid "File Email template"
-msgstr "File Email template"
-
-msgid "Activation Email template"
-msgstr "Activation Email template"
-
-msgid "Password management"
-msgstr "Password management"
-
-msgid "Current Password"
-msgstr "Current Password"
-
-msgid "Required old password confirm"
-msgstr "Required old password confirm"
-
-msgid "New Password"
-msgstr "New Password"
-
-msgid "Your password is unsafe, it should have"
-msgstr "Your password is unsafe, it should have"
-
-msgid "At least one letter"
-msgstr "At least one letter"
-
-msgid "At least one number"
-msgstr "At least one number"
-
-msgid "At least 8 keypress long"
-msgstr "At least 8 keypress long"
-
-msgid "Retype again your new password"
-msgstr "Retype again your new password"
-
-msgid "The two passwords do not match"
-msgstr "The two passwords do not match"
-
-msgid "Receiver list"
-msgstr "Receiver list"
-
-msgid "Select file"
-msgstr "Select file"
-
-msgid "upload"
-msgstr "upload"
-
-msgid "Receiver name too long"
-msgstr "Receiver name too long"
-
-msgid "Email Address (Username)"
-msgstr "Email Address (Username)"
-
-msgid "Invalid email address"
-msgstr "Invalid email address"
-
-msgid "Contexts"
-msgstr "Contexts"
-
-msgid "Add new receiver"
-msgstr "Add new receiver"
-
-msgid "Email Address"
-msgstr "Email Address"
-
 msgid "Content Settin"
 msgstr "Content Settin"
 
@@ -586,20 +480,128 @@ msgid ""
 "node."
 msgstr "This interface shows the activity of the users of your node. This may be helpful in detecting anomalies and supporting the Receivers for of your node."
 
-msgid "Welcome back captain!"
-msgstr "Welcome back captain!"
+msgid "Username"
+msgstr "Username"
 
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "From here you can run common debug tasks emulating GLClient functions"
+msgid "Password"
+msgstr "Password"
 
-msgid "Cookies are not enabled!"
-msgstr "Cookies are not enabled!"
+msgid "SMTP server address"
+msgstr "SMTP server address"
 
-msgid "You will not be able to login."
-msgstr "You will not be able to login."
+msgid "SMTP server port"
+msgstr "SMTP server port"
 
-msgid "Login"
-msgstr "Login"
+msgid "Transport Security"
+msgstr "Transport Security"
+
+msgid "Notification templates"
+msgstr "Notification templates"
+
+msgid "Tip Email Subject"
+msgstr "Tip Email Subject"
+
+msgid "Tip Email template"
+msgstr "Tip Email template"
+
+msgid "Comment Email Subject"
+msgstr "Comment Email Subject"
+
+msgid "Comment Email template"
+msgstr "Comment Email template"
+
+msgid "File Email Subject"
+msgstr "File Email Subject"
+
+msgid "File Email template"
+msgstr "File Email template"
+
+msgid "Activation Email template"
+msgstr "Activation Email template"
+
+msgid "Contexts list"
+msgstr "Contexts list"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Receivers"
+msgstr "Receivers"
+
+msgid "Advanced settings"
+msgstr "Advanced settings"
+
+msgid "Submission Disclaimer"
+msgstr "Submission Disclaimer"
+
+msgid "Submission lifetime"
+msgstr "Submission lifetime"
+
+msgid "Tip day life"
+msgstr "Tip day life"
+
+msgid "File Required"
+msgstr "File Required"
+
+msgid "Receipt regexp"
+msgstr "Receipt regexp"
+
+msgid "Receipt description"
+msgstr "Receipt description"
+
+msgid "Submission Introduction"
+msgstr "Submission Introduction"
+
+msgid "Add new context"
+msgstr "Add new context"
+
+msgid "add"
+msgstr "add"
+
+msgid "Receiver list"
+msgstr "Receiver list"
+
+msgid "Select file"
+msgstr "Select file"
+
+msgid "upload"
+msgstr "upload"
+
+msgid "Receiver name too long"
+msgstr "Receiver name too long"
+
+msgid "Email Address (Username)"
+msgstr "Email Address (Username)"
+
+msgid "Invalid email address"
+msgstr "Invalid email address"
+
+msgid "Contexts"
+msgstr "Contexts"
+
+msgid "Add new receiver"
+msgstr "Add new receiver"
+
+msgid "Email Address"
+msgstr "Email Address"
+
+msgid "Tips"
+msgstr "Tips"
+
+msgid "Preferences"
+msgstr "Preferences"
+
+msgid "Tip ID"
+msgstr "Tip ID"
+
+msgid "Age"
+msgstr "Age"
+
+msgid "Views"
+msgstr "Views"
+
+msgid "Last Access"
+msgstr "Last Access"
 
 msgid "Preferences and password management"
 msgstr "Preferences and password management"
@@ -640,38 +642,8 @@ msgstr "Note: Need to be clicked two times, to disable an access."
 msgid "Update notification settings"
 msgstr "Update notification settings"
 
-msgid "Tips"
-msgstr "Tips"
-
-msgid "Preferences"
-msgstr "Preferences"
-
-msgid "Tip ID"
-msgstr "Tip ID"
-
-msgid "Age"
-msgstr "Age"
-
-msgid "Views"
-msgstr "Views"
-
-msgid "Last Access"
-msgstr "Last Access"
-
-msgid "Success!"
-msgstr "Success!"
-
-msgid "Currently logged in "
-msgstr "Currently logged in "
-
-msgid "logout"
-msgstr "logout"
-
 msgid "Save changes"
 msgstr "Save changes"
-
-msgid "Add files..."
-msgstr "Add files..."
 
 msgid "Danger!"
 msgstr "Danger!"
@@ -709,3 +681,30 @@ msgstr "download a copy of the tor browser bundle"
 
 msgid "before continuing."
 msgstr "before continuing."
+
+msgid "Add files..."
+msgstr "Add files..."
+
+msgid "Welcome back captain!"
+msgstr "Welcome back captain!"
+
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "From here you can run common debug tasks emulating GLClient functions"
+
+msgid "Cookies are not enabled!"
+msgstr "Cookies are not enabled!"
+
+msgid "You will not be able to login."
+msgstr "You will not be able to login."
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Success!"
+msgstr "Success!"
+
+msgid "Currently logged in "
+msgstr "Currently logged in "
+
+msgid "logout"
+msgstr "logout"
