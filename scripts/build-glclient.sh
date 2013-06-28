@@ -100,10 +100,11 @@ build_glclient()
       echo "Using a clean cloned GLClient directory"
       echo "Checking out $TAG (if existent, using master HEAD instead)"
       git checkout $TAG || git checkout HEAD
+      GLCLIENT_REVISION=$TAG
+    else
+      GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
     fi
   fi
-
-  GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
   echo "Revision used: ${GLCLIENT_REVISION}"
 
