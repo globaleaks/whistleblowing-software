@@ -7,27 +7,12 @@ from globaleaks.rest import errors
 from globaleaks.security import gpg_encrypt
 from globaleaks.handlers import receiver
 from globaleaks.settings import GLSetting
-from globaleaks.utils import timelapse_represent
 from globaleaks.tests.helpers import MockDict
 
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
 
 GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
-
-class TestPrettyUtils(unittest.TestCase):
-
-    def test_pretty_years(self):
-
-        # values expressed in seconds
-        one_hour = 3600
-        one_day = one_hour * 24
-        one_year = one_day * 365
-
-        self.assertEqual(timelapse_represent(one_hour), "1 hour")
-        self.assertEqual(timelapse_represent(one_day), "1 day")
-        self.assertEqual(timelapse_represent(one_year), "1 year")
-
 
 class TestReceiverSetKey(helpers.TestHandler):
     _handler = receiver.ReceiverInstance

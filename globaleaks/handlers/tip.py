@@ -24,9 +24,9 @@ def actor_serialize_internal_tip(internaltip):
         'context_id': unicode(internaltip.context.id),
         # compatibility, until client is not ready to be aligned
         'context_gus': unicode(internaltip.context.id),
-        'creation_date' : unicode(utils.pretty_diff_now(internaltip.creation_date)),
+        'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
         # XXX not yet used
-        'last_activity' : unicode(utils.pretty_date_time(internaltip.creation_date)),
+        'last_activity' : unicode(pretty_date_time(internaltip.creation_date)),
         'expiration_date' : unicode(utils.pretty_date_time(internaltip.expiration_date)),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
@@ -48,7 +48,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
         'name' : unicode(internalfile.name),
         'sha2sum' : unicode(internalfile.sha2sum),
         'content_type' : unicode(internalfile.content_type),
-        'creation_date' : unicode(utils.pretty_diff_now(internalfile.creation_date)),
+        'creation_date' : unicode(pretty_date_time(internalfile.creation_date)),
         'size': int(internalfile.size),
         'downloads': unicode(receiverfile.downloads)
     }

@@ -15,7 +15,7 @@ from Crypto.Hash import SHA512
 from gnupg import GPG
 
 from globaleaks.rest import errors
-from globaleaks.utils import log, timelapse_represent
+from globaleaks.utils import log
 from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
 
