@@ -28,12 +28,12 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             old_db_file = os.path.abspath(os.path.join(
                 GLSetting.gldb_path, 'glbackend.db'))
             backup_file = os.path.abspath(os.path.join(
-                GLSetting.gldb_path, 'old_glbackend.db'))
+                GLSetting.gldb_path, 'conversion_backup_%d_%d.db' % (starting_ver, starting_ver +1)))
         else:
             old_db_file = os.path.abspath(os.path.join(
                 GLSetting.gldb_path, 'glbackend-%d.db' % starting_ver))
             backup_file = os.path.abspath(os.path.join(
-                GLSetting.gldb_path, 'old_glbackend-%d.db' % starting_ver))
+                GLSetting.gldb_path, 'conversion_backup_%d_%d.db' % (starting_ver, starting_ver +1)))
 
         new_db_file = os.path.abspath(os.path.join(GLSetting.gldb_path, 'glbackend-%d.db' % (starting_ver +1)))
         print "  Updating DB from version %d to version %d" % (starting_ver, starting_ver +1)

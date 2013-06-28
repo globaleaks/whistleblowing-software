@@ -147,19 +147,14 @@ def import_fields(submission, fields, expected_fields, strict_validation=False):
     """
     required_keys = optional_keys  = []
 
-    for sf in expected_fields:
-        assert sf.has_key(u'name')
-        assert sf.has_key(u'key')
-        assert sf.has_key(u'hint')
-        assert sf.has_key(u'presentation_order')
-        assert sf.has_key(u'value')
-        assert sf.has_key(u'type')
-        assert sf.has_key(u'required')
-
-        if sf['required']:
-            required_keys.append(sf.get(u'key'))
-        else:
-            optional_keys.append(sf.get(u'key'))
+    try:
+        for sf in expected_fields:
+            if sf['required']:
+                required_keys.append(sf.get(u'key'))
+            else:
+                optional_keys.append(sf.get(u'key'))
+    except Exception:
+        raise SubmissionFailFields("Malformed submission!")
 
     if strict_validation and not fields:
 
