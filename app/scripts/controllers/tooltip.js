@@ -12,9 +12,10 @@ function($scope, $rootScope, Authentication, $location,
   $scope.language = $cookies['language'];
 
   Node.get(function(node_info) {
-    $scope.supported_languages = {};
-    $.each(node_info.languages_supported, function(idx, lang){
-      $scope.supported_languages[lang.code] = lang.name;
+    $rootScope.available_languages = {};
+    $rootScope.languages_supported = Translations.supported_languages;
+    $.each(node_info.languages_enabled, function(idx, lang) {
+      $rootScope.available_languages[lang] = Translations.supported_languages[lang];
     });
   });
 
