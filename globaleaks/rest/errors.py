@@ -15,6 +15,7 @@ class GLException(HTTPError):
     log_message = "GLException"
     error_code = 0
     status_code = 500 # generic Server error
+    arguments = []
 
     def __init__(self):
         self.record()
@@ -39,6 +40,7 @@ class InvalidInputFormat(GLException):
 
     def __init__(self, wrong_source):
         self.reason = "Invalid Input Format [%s]" % wrong_source
+        self.arguments.append(wrong_source)
         self.record()
 
 
@@ -120,6 +122,8 @@ class ExpectedUniqueField(GLException):
 
     def __init__(self, key, existent_value):
         self.reason = "A field expected to be unique is already present (%s:%s)" % (key, existent_value)
+        self.arguments.append(key)
+        self.arguments.append(existent_value)
         self.record()
 
 
@@ -150,7 +154,9 @@ class SubmissionFailFields(GLException):
 
     def __init__(self, wrong_fields):
         self.reason = "Submission do not validate the input fields [%s]" % wrong_fields
+        self.arguments.append(wrong_fields)
         self.record()
+
 
 class InvalidTipAuthToken(GLException):
     """
@@ -161,13 +167,18 @@ class InvalidTipAuthToken(GLException):
     error_code = 23
     status_code = 401 # Unauthorized
 
-class PluginNameNotFound(GLException):
+class InvalidScopeAuth(GLException):
     """
-    Plugin Name do not exists between the available plugins
+    A good login password combo is provided, but in the wrong scope (happen
+    sometime when developers works with multiple accounts)
     """
-    reason = "Plugin Name not found"
     error_code = 24
-    status_code = 404 # Unauthorized
+    status_code = 403 # Forbidden
+
+    def __init__(self, details):
+        self.reason = ("Invalid Authenticated in scope: %s" % details)
+        self.arguments.append(details)
+
 
 class ForbiddenOperation(GLException):
     """
@@ -184,7 +195,6 @@ class FileGusNotFound(GLException):
     reason = "Not found a File with the specified GUS identifier"
     error_code = 26
     status_code = 404 # Not Found
-
 
 class SubmissionConcluded(GLException):
     """
@@ -210,13 +220,7 @@ class NotAuthenticated(GLException):
     """
     error_code = 30
     status_code = 412 # Precondition Failed
-
-    def __init__(self, details=None):
-        if not details:
-            self.reason = "Not Authenticated"
-        else:
-            self.reason = ("Not Authenticated: %s" % details)
-        self.record()
+    reason = "Not Authenticated"
 
 class InternalServerError(GLException):
     """
@@ -225,10 +229,9 @@ class InternalServerError(GLException):
     error_code = 31
     status_code = 505
 
-    def __init__(self, details=None):
-        self.reason = "Internal Server Error"
-        if details:
-            self.reason += " (%s)" % details
+    def __init__(self, details):
+        self.reason = "Internal Server Error (%s)" % details
+        self.arguments.append(details)
         self.record()
 
 
@@ -299,8 +302,9 @@ class HTTPRawLimitReach(GLException):
     """
     error_code = 39
     status_code = 400 # Generic 400 error
-    reason = ("The upload request overcome the Md limits (%dMd)" %
+    reason = ("The upload request overcome the Mb limits (%d Mb)" %
           (GLSetting.memory_copy.maximum_filesize / 1024 * 1024) )
+    arguments = [ (GLSetting.memory_copy.maximum_filesize / 1024 * 1024) ]
 
 class GPGKeyInvalid(GLException):
     """
@@ -319,7 +323,10 @@ class SessionExpired(GLException):
 
     def __init__(self, lifetime, role):
         self.reason = "The time for your role (%s) is %s" % (role, lifetime)
+        self.arguments.append(role)
+        self.arguments.append(lifetime)
         self.record()
+
 
 class TimeToLiveInvalid(GLException):
     """
@@ -331,4 +338,6 @@ class TimeToLiveInvalid(GLException):
 
     def __init__(self, errorstr, kind):
         self.reason = "Invalid timerange supply for %s: %s" % (kind, errorstr)
+        self.arguments.append(kind)
+        self.arguments.append(errorstr)
         self.record()

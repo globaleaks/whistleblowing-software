@@ -226,7 +226,7 @@ class StaticFileCollection(BaseHandler):
             raise errors.InternalServerError(excpd.strerror)
         except Exception as excpd:
             log.err("Not handled exception: %s" % excpd.__repr__())
-            raise errors.InternalServerError()
+            raise errors.InternalServerError(excpd.__repr__())
 
         for file_desc in file_list:
             log.debug("Admin uploaded new static file: %s" % file_desc['filename'] )
@@ -247,7 +247,7 @@ class StaticFileCollection(BaseHandler):
                 except Exception as excpd:
                     log.err("Invalid Image Library operation [%s] with Node logo %s" %
                             (selected_file['filename'], excpd) )
-                    raise errors.InternalServerError()
+                    raise errors.InternalServerError(excpd.__repr__())
             else:
                 try:
                     receiver_name = yield import_receiver_pic(selected_file, specified_keyword)
@@ -259,7 +259,7 @@ class StaticFileCollection(BaseHandler):
                 except Exception as excpd:
                     log.err("Invalid Image Library operation [%s] with Receiver %s portrait %s" %
                             (selected_file['filename'], specified_keyword, excpd) )
-                    raise errors.InternalServerError()
+                    raise errors.InternalServerError(excpd.__repr__())
 
         self.set_status(201) # Created
         self.finish(result_list)
