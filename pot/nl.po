@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 18:37+0000\n"
+"PO-Revision-Date: 2013-06-28 18:48+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -743,6 +743,105 @@ msgstr "voordat u verder gaat"
 msgid "Add files..."
 msgstr "Voeg bestanden toe"
 
+msgid "Your user has reach the maximum amount of access for this Tip"
+msgstr ""
+
+msgid "The specified comment was not found"
+msgstr ""
+
+msgid "Not found a Context with the specified GUS identifier"
+msgstr ""
+
+msgid "Some parameters explicit in the context creation can't works together"
+msgstr ""
+
+msgid "You've reached the maximum amount of download for this file"
+msgstr ""
+
+msgid "A field expected to be unique is already present ("
+msgstr ""
+
+msgid "Not found a File with the specified GUS identifier"
+msgstr ""
+
+msgid "Operation Forbidden"
+msgstr ""
+
+msgid "GLTypesError not set"
+msgstr ""
+
+msgid "The GPG key proposed can't be imported"
+msgstr ""
+
+msgid "The upload request overcome the Mb limits (31457280 Mb)"
+msgstr ""
+
+msgid "Internal Server Error ("
+msgstr ""
+
+msgid "Authentication Failed"
+msgstr ""
+
+msgid "The specified host do not match a configured one"
+msgstr ""
+
+msgid "Invalid Input Format ["
+msgstr ""
+
+msgid "The specified old password is not valid"
+msgstr ""
+
+msgid "Invalid Authenticated in scope:"
+msgstr ""
+
+msgid "Authentication in Tip failed"
+msgstr ""
+
+msgid "No email was specified"
+msgstr ""
+
+msgid "Node not found"
+msgstr ""
+
+msgid "Not Authenticated"
+msgstr ""
+
+msgid "Not found a Receiver with the specified GUS identifier"
+msgstr ""
+
+msgid "The file uploaded has a reserved name"
+msgstr ""
+
+msgid "The time for your role ("
+msgstr ""
+
+msgid ") is"
+msgstr ""
+
+msgid "Statistics Disabled"
+msgstr ""
+
+msgid "The submission tried to be update has been already finalized"
+msgstr ""
+
+msgid "Submission do not validate the input fields ["
+msgstr ""
+
+msgid "Not found a Submission with the specified GUS identifier"
+msgstr ""
+
+msgid "Invalid timerange supply for"
+msgstr ""
+
+msgid "Not found a Tip with the specified GUS identifier"
+msgstr ""
+
+msgid "Pertinence evaluation has been already expressed"
+msgstr ""
+
+msgid "Resource can be accessed only within Tor network"
+msgstr ""
+
 msgid "Welcome back captain!"
 msgstr "Welkom terug!"
 
@@ -757,12 +856,3 @@ msgstr "U kunt niet inloggen"
 
 msgid "Login"
 msgstr "Log in"
-
-msgid "Success!"
-msgstr "Succes!"
-
-msgid "Currently logged in "
-msgstr "Nu ingelogged"
-
-msgid "logout"
-msgstr "Log uit"
