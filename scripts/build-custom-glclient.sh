@@ -82,7 +82,8 @@ build_custom_glclient()
   echo "[+] Checking out ${GLCLIENT_TAG} revision"
   git checkout $GLCLIENT_TAG
   cd $CWD
-  cat $THEMES_FILE | sed -e $SED_REGEXP > $THEMES_FILE
+  cat $THEMES_FILE | sed -e $SED_REGEXP > $TMP_DIR/themes.js
+  cat $TMP_DIR/themes.js > $THEMES_FILE
   for template_file in `find $TEMPLATES_DIR/styles/`;do
     if [[ "$template_file" == *css* ]];then
       cat $template_file >> $TMP_DIR/GLCLient/app/styles/custom-glclient.css
