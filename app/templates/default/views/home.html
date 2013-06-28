@@ -1,6 +1,93 @@
+<div
+  class="not-anonymous-question modal"
+  ng-show="showQuestions">
+  <div class="modal-header">
+    <h3 ng-show="correctAnswer || !answered">{{ "Warning! You are not Anonymous." | translate }}</h3>
+    <h3 ng-show="!correctAnswer && answered">{{ "Wrong Answer!" | translate }}</h3>
+  </div>
+  <div class="modal-body" ng-switch on="step">
+    <div class="explaination" ng-switch-when="1">
+      <p>
+      {{ "With a HTTPS submission you are exposing yourself to the risks that someone else* will know that you have submitted something, without knowing what you have submitted." | translate }}
+      </p>
+
+      <p>
+      {{ "Instead with Anonymous Submission you are fully protected, is not even possible for a third party to know that you have submitted something." | translate }}
+      </p>
+      
+      <p>
+      {{ "We strongly advise you to go for an Anonymous Submission." | translate }}
+      </p>
+
+      <p>
+      {{ "To make Anonymous Submission, instead of your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, Etc) you should use the" | translate }}
+      <a href="https://www.torproject.org/download">Tor Browser Bundle</a>,
+      {{ "that’s a special software designed to enable Anonymous Web Browsing." | translate }}
+      </p>
+
+    </div>
+
+    <div class="question" ng-hide="answered" ng-switch-when="2">
+      <p class="lead">
+      {{ "Which of the following statements is true?" | translate}}
+      </p>
+    
+      <input type="radio" ng-model="answer.value" value="a"> https protects my identity, but not the content of my leak<br/>
+      <input type="radio" ng-model="answer.value" value="b"> https protects the content of my leak of my message but not my identity<br/>
+      <input type="radio" ng-model="answer.value" value="c"> https does not protect the content of my leak nor my identity<br/>
+      <input type="radio" ng-model="answer.value" value="d"> https does protect my identity and the content of my leak<br/>
+    </div>
+    
+    <div ng-switch on="answer.value" ng-switch-when="3">
+      <div ng-switch-when="b" class="correct-answer">
+          <p>
+          {{ "You are aware of the risks involved, go ahead, consider yourself warned." | translate }}
+          </p>
+      </div>
+
+      <div class="wrong-answer" ng-switch-default>
+        <p>
+        {{ "If you want protection of your identity and the content of your message, you should try to achieve anonimity by using the" | translate }}
+        <a href="https://www.torproject.org/download">Tor browser bundle</a> {{ "to submit" | translate }}
+        </p>
+      </div>
+
+    </div>
+
+  </div>
+  <div class="modal-footer" ng-switch on="step">
+    <div ng-switch-when="1">
+      <a ng-click="goToStep(2)"
+         class="btn">{{ "Next" | translate }}</a>
+    </div>
+    
+    <div ng-switch-when="2">
+      <a ng-click="goToStep(1)"
+         class="btn">{{ "Back" | translate }}</a>
+      
+       <a ng-click="checkAnswer()"
+         ng-disabled="!answer.value"
+         class="btn btn-success">{{ "Proceed" | translate }}</a>
+    </div>
+
+    <div ng-switch-when="3">
+      <a ng-click="goToStart()"
+         ng-hide="correctAnswer"
+         class="btn">{{ "Back to start" | translate }}</a>
+
+      <a ng-click="goToSubmission()"
+         ng-hide="!correctAnswer"
+         ng-disabled="!answer.value"
+         class="btn btn-warning">{{ "Proceed to submission" | translate }}</a>
+
+    </div>
+
+  </div>
+</div>
+
 <div class="jumbotron homeSplash" ng-show="node_info.name">
     <h1>{{ "Welcome to" | translate }} {{node_info.name}}</h1>
-    <a href="#/submission" ng-hide="!node_info.configured"
+    <a ng-click="goToSubmission()" ng-hide="!node_info.configured"
         class="btn btn-primary btn-large">{{ "Blow the Whistle" | translate }}</a>
 
     <div ng-hide="node_info.configured">{{ "Your node is not configured! Please, proceed via" | translate }}
