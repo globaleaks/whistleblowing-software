@@ -10,7 +10,8 @@
         <div ng-switch-when="high" class="semaphore btn-success"></div>
         <div ng-switch-when="unknown" class="semaphore btn-warning"></div>
         <div ng-switch-when="low" class="semaphore btn-danger">
-          <span ng-show="!displayBox" class="label label-important">{{ "Danger!" | translate }}</span>
+          <span ng-show="!displayBox" class="label label-important">
+            {{ "Danger!" | translate }}</span>
         </div>
 
       </div>
@@ -27,7 +28,8 @@
 
           <div ng-switch-when="high">
 
-            <span class="label label-success">{{ "Congratulations!" | translate }}</span>
+            <span class="label label-success">
+              {{ "Congratulations!" | translate }}</span>
             <p>{{ "It appears you are using Tor. To better protect your anonymity, be sure that you are using the" | translate }} 
             <a href="https://www.torproject.org/download/download">Tor Browser Bundle</a>.
             {{ "Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the" | translate }} <a href="https://securityinabox.org/">security in a box</a> 
@@ -36,16 +38,20 @@
 
           <div ng-switch-when="unknown">
 
-            <span class="label label-important">{{ "Warning!" | translate }}</span>
+            <span class="label label-important">
+              {{ "Warning!" | translate }}</span>
             <p>{{ "We were not able to determine if you are anonymous or not, please proceed with care" | translate }}</p>
 
           </div>
 
           <div ng-switch-when="low">
 
-            <span class="label label-important">{{ "Danger!" | translate }}</span>
+            <span class="label label-important">
+              {{ "Danger!" | translate }}</span>
             <p>{{ "It appears your are not using Tor, thus you are strongly advised to " | translate }}
-            <a href="https://www.torproject.org/download/download">{{ "download a copy of the tor browser bundle" | translate }}</a> {{ "before continuing." | translate }}</p>
+            <a href="https://www.torproject.org/download/download">
+              {{ "download a copy of the tor browser bundle" | translate }}</a>
+              {{ "before continuing." | translate }}</p>
 
           </div>
         </div>

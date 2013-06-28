@@ -25,7 +25,9 @@
   <h2>{{ "This node is not configured." | translate }}</h2>
   <p>{{ "You will not be able to perform a submission." | translate }}<br>
   {{ "Admin please configure a Context and associated Receivers using" | translate }}
-  <a href="/#/admin/contexts">{{ "Admin management interface" | translate }}</a>.</p>
+  <a href="/#/admin/contexts">
+    {{ "Admin management interface" | translate }}
+  </a>.</p>
 </div>
 
 <div ng-cloak ng-controller="WizardCtrl" class="container" ng-show="node_info.name && node_info.configured">
@@ -44,9 +46,11 @@
 
       <!-- First Step -->
       <div ng-switch-when="1 Receiver selection" class="receiverCards">
-        <p class="lead">{{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}</p>
+        <p class="lead">
+        {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}</p>
 
-        <p ng-show="node_info.configured">{{ "I want to report on" | translate }}
+        <p ng-show="node_info.configured">
+        {{ "I want to report on" | translate }}
 
         <select class="contexts" ng-model="submission.current_context"
                 ng-options="context as context.name[selected_language] for context in submission.contexts">
@@ -83,7 +87,8 @@
       <!-- Second Step -->
       <div ng-switch-when="2 Fill out your submission">
 
-        <p class="lead">{{ "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files" | translate }}</p>
+        <p class="lead">
+        {{ "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files" | translate }}</p>
         <p>{{submission.current_context.description[selected_language]}}</p>
 
         <div class="row">
@@ -106,7 +111,7 @@
           <div class="span12">
             <p>
             {{ "To ensure your anonymity be sure that you are visiting this site using the" | translate }}
-            You acknowledge that failure to do so will result in the inability to technically protect your anonymity.
+            {{ "You acknowledge that failure to do so will result in the inability to technically protect your anonymity." | translate }}
             </p>
 
             <p>
@@ -122,7 +127,8 @@
               {{ "By checking the box below you agree to these terms and conditions." | translate }}
             </p>
             <label class="checkbox">
-              <input type="checkbox" ng-model="disclaimer.accepted" value="true"> {{ "Agree" | translate }}
+              <input type="checkbox" ng-model="disclaimer.accepted" value="true"> 
+              {{ "Agree" | translate }}
             </label>
 
           </div>
@@ -139,17 +145,20 @@
 
       <li ng-class="{disabled: !hasPreviousStep() || uploading}"
           class="previous">
-        <a ng-click="decrementStep()">&larr; {{ "Previous Step" | translate }}</a>
+        <a ng-click="decrementStep()">&larr; 
+          {{ "Previous Step" | translate }}</a>
       </li>
       <li class="next" ng-class="{disabled: uploading}"
           ng-hide="!hasNextStep()">
-        <a ng-click="incrementStep()">{{ "Next Step" | translate }} &rarr;</a>
+        <a ng-click="incrementStep()">
+          {{ "Next Step" | translate }} &rarr;</a>
       </li>
 
       <li class="next"
           ng-show="!hasNextStep()">
         <button class="btn btn-success" ng-click="submit()"
-                ng-disabled="uploading || !disclaimer.accepted ">{{ "Submit" | translate }}</button>
+                ng-disabled="uploading || !disclaimer.accepted ">
+                {{ "Submit" | translate }}</button>
       </li>
 
     </ul>
@@ -202,7 +211,8 @@
   <div class="modal-footer">
     <a ng-click="view_tip(submission.receipt)"
        ng-disabled="submission.receipt != receiptConfirmation"
-       class="btn btn-primary">{{ "View Tip" | translate }}</a>
+       class="btn btn-primary">
+       {{ "View Tip" | translate }}</a>
   </div>
 </div>
 <!-- End -->

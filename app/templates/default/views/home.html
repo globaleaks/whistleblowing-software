@@ -2,8 +2,12 @@
   class="not-anonymous-question modal"
   ng-show="showQuestions">
   <div class="modal-header">
-    <h3 ng-show="correctAnswer || !answered">{{ "Warning! You are not Anonymous." | translate }}</h3>
-    <h3 ng-show="!correctAnswer && answered">{{ "Wrong Answer!" | translate }}</h3>
+    <h3 ng-show="correctAnswer || !answered">
+      {{ "Warning! You are not Anonymous." | translate }}
+    </h3>
+    <h3 ng-show="!correctAnswer && answered">
+      {{ "Wrong Answer!" | translate }}
+    </h3>
   </div>
   <div class="modal-body" ng-switch on="step">
     <div class="explaination" ng-switch-when="1">
@@ -32,10 +36,14 @@
       {{ "Which of the following statements is true?" | translate}}
       </p>
     
-      <input type="radio" ng-model="answer.value" value="a"> https protects my identity, but not the content of my leak<br/>
-      <input type="radio" ng-model="answer.value" value="b"> https protects the content of my leak of my message but not my identity<br/>
-      <input type="radio" ng-model="answer.value" value="c"> https does not protect the content of my leak nor my identity<br/>
-      <input type="radio" ng-model="answer.value" value="d"> https does protect my identity and the content of my leak<br/>
+      <input type="radio" ng-model="answer.value" value="a"> 
+      {{ "https protects my identity, but not the content of my leak" | translate }}<br/>
+      <input type="radio" ng-model="answer.value" value="b"> 
+      {{ "https protects the content of my leak of my message but not my identity | translate }}<br/>
+      <input type="radio" ng-model="answer.value" value="c"> 
+      {{ "https does not protect the content of my leak nor my identity" | translate }}<br/>
+      <input type="radio" ng-model="answer.value" value="d"> 
+      {{ "https does protect my identity and the content of my leak" | translate }}<br/>
     </div>
     
     <div ng-switch on="answer.value" ng-switch-when="3">
@@ -48,7 +56,8 @@
       <div class="wrong-answer" ng-switch-default>
         <p>
         {{ "If you want protection of your identity and the content of your message, you should try to achieve anonimity by using the" | translate }}
-        <a href="https://www.torproject.org/download">Tor browser bundle</a> {{ "to submit" | translate }}
+        <a href="https://www.torproject.org/download">Tor browser bundle</a> 
+        {{ "to submit" | translate }}
         </p>
       </div>
 
@@ -57,28 +66,30 @@
   </div>
   <div class="modal-footer" ng-switch on="step">
     <div ng-switch-when="1">
-      <a ng-click="goToStep(2)"
-         class="btn">{{ "Next" | translate }}</a>
+      <a ng-click="goToStep(2)" class="btn">
+         {{ "Next" | translate }}
+       </a>
     </div>
     
     <div ng-switch-when="2">
-      <a ng-click="goToStep(1)"
-         class="btn">{{ "Back" | translate }}</a>
+      <a ng-click="goToStep(1)" class="btn">
+         {{ "Back" | translate }}
+       </a>
       
-       <a ng-click="checkAnswer()"
-         ng-disabled="!answer.value"
-         class="btn btn-success">{{ "Proceed" | translate }}</a>
+       <a ng-click="checkAnswer()" ng-disabled="!answer.value" class="btn btn-success">
+         {{ "Proceed" | translate }}
+       </a>
     </div>
 
     <div ng-switch-when="3">
-      <a ng-click="goToStart()"
-         ng-hide="correctAnswer"
-         class="btn">{{ "Back to start" | translate }}</a>
+      <a ng-click="goToStart()" ng-hide="correctAnswer" class="btn">
+         {{ "Back to start" | translate }}
+       </a>
 
-      <a ng-click="goToSubmission()"
-         ng-hide="!correctAnswer"
-         ng-disabled="!answer.value"
-         class="btn btn-warning">{{ "Proceed to submission" | translate }}</a>
+      <a ng-click="goToSubmission()" ng-hide="!correctAnswer"
+         ng-disabled="!answer.value" class="btn btn-warning">
+         {{ "Proceed to submission" | translate }}
+      </a>
 
     </div>
 
@@ -86,16 +97,23 @@
 </div>
 
 <div class="jumbotron homeSplash" ng-show="node_info.name">
-    <h1>{{ "Welcome to" | translate }} {{node_info.name}}</h1>
+    <h1>
+      {{ "Welcome to" | translate }} {{node_info.name}}
+    </h1>
     <a ng-click="goToSubmission()" ng-hide="!node_info.configured"
         class="btn btn-primary btn-large">{{ "Blow the Whistle" | translate }}</a>
 
-    <div ng-hide="node_info.configured">{{ "Your node is not configured! Please, proceed via" | translate }}
-        <a href="/#/admin/contexts">{{ "Admin interface and configure at least one context" | translate }}</a>
+    <div ng-hide="node_info.configured">
+      {{ "Your node is not configured! Please, proceed via" | translate }}
+        <a href="/#/admin/contexts">
+          {{ "Admin interface and configure at least one context" | translate }}
+        </a>
     </div>
 </div>
 <div class="jumbotron homeSplash" ng-show="!node_info.name">
-    <h1>{{ "Loading..." | translate }}</h1>
+    <h1>
+      {{ "Loading..." | translate }}
+    </h1>
 </div>
 
 <div class="container" ng-show="node_info.description">
@@ -103,24 +121,43 @@
 
     <p class="lead">{{node_info.description[selected_language]}}</p>
 
-    <h1>{{ "Are you a whistleblower?" | translate }}</h1>
-    <label>{{ "Enter your receipt" | translate }}<br/>
+    <h1>
+      {{ "Are you a whistleblower?" | translate }}
+    </h1>
+    <label>
+      {{ "Enter your receipt" | translate }}<br/>
       <input type="text" ng-model="receipt">
     </label>
     <a ng-click="view_tip(receipt)" class="btn btn-primary">View Tip</a>
 
-    <h1>{{ "Are you a receiver?" | translate }}</h1>
-    <p>{{ "This is the" | translate }} <a href="#/login">{{ "Login page" | translate }}</a>.</p>
+    <h1>
+      {{ "Are you a receiver?" | translate }}
+    </h1>
+    <p>
+    {{ "This is the" | translate }} 
+    <a href="#/login">
+      {{ "Login page" | translate }}
+    </a>.</p>
 
-    <h1>{{ "What is this about?" | translate }}</h1>
-    <p class="homeIntro-byline">{{ "How you can transform information into action!" | translate }}</p>
-    <p>{{ "Through this platform you will be able to report on wrongdoing. This platform is running the" | translate }} <a href="https://globaleaks.org/">{{ "GlobaLeaks software" | translate }}</a>
-    , {{ "that is specifically designed to protect the identity of the reporter and of the ones running the platform." | translate }}</p>
+    <h1>
+      {{ "What is this about?" | translate }}
+    </h1>
+    <p class="homeIntro-byline">
+    {{ "How you can transform information into action!" | translate }}
+    </p>
+    <p>
+    {{ "Through this platform you will be able to report on wrongdoing. This platform is running the" | translate }}
+    <a href="https://globaleaks.org/">
+      {{ "GlobaLeaks software" | translate }}
+    </a> ,  
+    {{ "that is specifically designed to protect the identity of the reporter and of the ones running the platform." | translate }}
+    </p>
     <p>
     {{ "This software is developed by the non-profit organization" | translate }}
     <a href="http://www.logioshermes.org/">Hermes Center for Transparency and Digital Human Rights</a>.
     {{ "We are supported also by your donations. Visit our" | translate }} <a
-      href="http://logioshermes.org/home/about-mission/support-us/">{{ "donation page" | translate }}</a>
+      href="http://logioshermes.org/home/about-mission/support-us/">
+      {{ "donation page" | translate }}</a>
     {{ "to help us further support the development of GlobaLeaks." | translate }}
     </p>
 

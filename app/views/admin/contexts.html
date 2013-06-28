@@ -41,10 +41,12 @@
                   <div class="span4 editButtons" ng-show="editing">
                     <button class="btn btn-success saveContext"
                             ng-disabled="contextForm.$pristine"
-                            ng-click="update(context)">{{ "Save" | translate }}</button>
+                            ng-click="update(context)">
+                            {{ "Save" | translate }}</button>
 
                     <button class="btn btn-danger deleteContext"
-                            ng-click="delete(context)">{{ "Delete" | translate }}</button>
+                            ng-click="delete(context)">
+                            {{ "Delete" | translate }}</button>
                   </div>
 
                 </div>
@@ -178,7 +180,8 @@
               <div class="row">
                 <div class="span4">
                   <button class="btn" ng-disabled="newContext.$invalid"
-                          ng-click="admin.create_context(new_context_name)">{{ "add" | translate }}</button>
+                          ng-click="admin.create_context(new_context_name)">
+                          {{ "add" | translate }}</button>
                 </div>
               </div>
             </form>

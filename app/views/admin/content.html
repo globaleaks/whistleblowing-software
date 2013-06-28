@@ -35,10 +35,12 @@
                 <div class="fileselector">
                   <input type="file" class="file"
                          name="profile">
-                  <button class="btn selectFile">Select file</button>
+                  <button class="btn selectFile">
+                    {{ "Select file" | translate }}</button>
                 </div>
                 <button class="btn upload" ng-disabled="!fileSelected"
-                        ng-class="{'btn-success': fileSelected}">upload</button>
+                        ng-class="{'btn-success': fileSelected}">
+                        {{ "upload" | translate }}</button>
 
               </div>
             </div>
@@ -83,14 +85,14 @@
         <label>{{ "Tor Hidden Service (hostname)" | translate }}</label>
         <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
                ng-pattern="/^http://[0-9a-z]{16}\.onion$/">
-        <p class="text-error"
-        ng-show="contentForm.hidden_service.$error.pattern">{{ "Invalid format for hidden service (should be http://thirteenchars123.onion)" | translate }}</p>
+        <p class="text-error" ng-show="contentForm.hidden_service.$error.pattern">
+        {{ "Invalid format for hidden service (should be http://thirteenchars123.onion)" | translate }}</p>
 
         <label>{{ "Tor2web Public Site (url)" | translate }}</label>
         <input type="url" name="public_site" ng-model="admin.node.public_site"
                ng-pattern="/^https://[0-9a-z.:]*$/">
-        <p class="text-error"
-        ng-show="contentForm.public_site.$error.pattern">{{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}</p>
+        <p class="text-error" ng-show="contentForm.public_site.$error.pattern">
+        {{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}</p>
 
         <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
 
@@ -110,7 +112,8 @@
                   {{ "Permit Administative login via Tor2Web" | translate }}
               </label>
               <label ng-show="admin.node.tor2web_admin" >
-                  <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                  <span class="btn-info">
+                    {{ "now Enabled:" | translate }}</span>
                   {{ "Admin can access via Tor2Web. It's safe only if you're using a dedicated Tor2Web server." | translate }}
               </label>
             </div>
@@ -171,10 +174,12 @@
         <br>
         <button class="btn btn-success" ng-hide="tor2web_editing"
                 ng-disabled="contentForm.$invalid "
-                ng-click="updateNode(admin.node)">{{ "Update node" | translate }}</button>
+                ng-click="updateNode(admin.node)">
+                {{ "Update node" | translate }}</button>
         <button class="btn btn-success" ng-show="tor2web_editing"
                 ng-disabled="contentForm.$invalid "
-                ng-click="updateNode(admin.node)">{{ "Update node and Tor2Web options" | translate }}</button>
+                ng-click="updateNode(admin.node)">
+                {{ "Update node and Tor2Web options" | translate }}</button>
 
       </form>
     </div>
