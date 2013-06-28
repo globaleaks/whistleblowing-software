@@ -1,6 +1,8 @@
 <div class="jumbotron subhead">
   <div class="container">
-    <h1>{{ "Tip Status Page" | translate }}</h1>
+    <h1>
+      {{ "Tip Status Page" | translate }}
+    </h1>
   </div>
 </div>
 <div ng-cloak class="container statusPage" ng-show="tip.im_whistleblower || tip.im_receiver">
@@ -13,7 +15,9 @@
     </div>
 
     <div class="span8">
-      <h3>{{ "Files" | translate }}</h3>
+      <h3>
+        {{ "Files" | translate }}
+      </h3>
       <div class="well" ng-show="tip.files">
         <h4>{{file.name}}</h4>
         <ul class="unstyled">
@@ -27,14 +31,18 @@
             <div ng-show="file.downloads == 0 && show_new_files">
               <a ng-cloak ng-show="tip.im_receiver"
                  class="btn btn-small" href="{{file.href}}">
-                 <i class="icon-download"></i> {{ "download" | translate }} ({{file.downloads}}/{{tip.download_limit}})
+                 <i class="icon-download"></i> 
+                 {{ "download" | translate }}
+                 ({{file.downloads}}/{{tip.download_limit}})
               </a>
               <i class="icon-book"></i> {{file.name}}
             </div>
             <div ng-show="!show_new_files">
               <a ng-cloak ng-show="tip.im_receiver"
                  class="btn btn-small" href="{{file.href}}">
-                 <i class="icon-download"></i> {{ "download" | translate }} ({{file.downloads}}/{{tip.download_limit}})
+                 <i class="icon-download"></i> 
+                 {{ "download" | translate }} 
+                 ({{file.downloads}}/{{tip.download_limit}})
               </a>
               <i class="icon-book"></i> {{file.name}}
             </div>
@@ -53,7 +61,11 @@
       </div>
       <div class="well" ng-show="security_checksum">
         <p>
-          {{ "Use the" | translate }} <a href="https://en.wikipedia.org/wiki/SHA-2">{{ "sha256 hash" | translate }}</a> {{ "to verify the file integrity" | translate }}.
+          {{ "Use the" | translate }} 
+          <a href="https://en.wikipedia.org/wiki/SHA-2">
+            {{ "sha256 hash" | translate }}
+          </a> 
+          {{ "to verify the file integrity" | translate }}.
           <br>
           {{ "On unix based systems this can be done by running the following command in the directory of the files" | translate }}:
         </p>
@@ -65,7 +77,9 @@
         </div>
       </div>
 
-      <div class="span4" ng-hide="tip.files"><p>{{ "No file has been uploaded!" | translate }}</p></div>
+      <div class="span4" ng-hide="tip.files"><p>
+        {{ "No file has been uploaded!" | translate }}
+      </p></div>
 
       <div ng-cloak ng-show="tip.im_whistleblower">
         <div file-upload action="/tip/{{whistleblower_tip_id}}/upload"
@@ -77,12 +91,16 @@
   <div class="row">
 
     <div class="span4">
-      <h3>{{ "Comments" | translate }}</h3>
+      <h3>
+        {{ "Comments" | translate }}
+      </h3>
       <div ng-repeat="comment in tip.comments">
         <div ng-switch on="comment.source">
 
           <div ng-switch-when="whistleblower" class="alert alert-info">
-            <strong>{{ "Whistleblower" | translate }}</strong> {{comment.content}}
+            <strong>
+              {{ "Whistleblower" | translate }}
+            </strong> {{comment.content}}
           </div>
 
           <div ng-switch-when="receiver" class="alert alert-success">
@@ -90,18 +108,24 @@
           </div>
 
           <div ng-switch-when="system" class="alert alert-warning">
-            <strong>{{ "System" | translate }}</strong> {{comment.content}}
+            <strong>
+              {{ "System" | translate }}
+            </strong> {{comment.content}}
           </div>
 
           <div ng-switch-default class="alert alert-danger">
-            <strong>{{ "Malformed source" | translate }}</strong>
+            <strong>
+              {{ "Malformed source" | translate }}
+            </strong>
           </div>
 
         </div>
       </div>
 
       <textarea ng-model="newCommentContent"></textarea>
-      <button class="btn btn-success" ng-click="newComment()">{{ "Add Comment" | translate }}</button>
+      <button class="btn btn-success" ng-click="newComment()">
+        {{ "Add Comment" | translate }}
+      </button>
     </div>
 
     <div class="span8">
@@ -132,7 +156,7 @@
 <div ng-cloack class="container" ng-show="!tip">
   <div class="row">
     <div class="span4">
-      <h3>{{ "The requested tip does not exist or has expired." | translate }}"</h3>
+      <h3>{{ "The requested tip does not exist or has expired." | translate }}</h3>
     </div>
    </div>
 </div>

@@ -24,7 +24,7 @@
           </div>
         </div>
         <div class="row span6 uploading-files">
-          <h4>Uploading files</h4>
+          <h4>{{ "Uploading files" | translate }}</h4>
           <table role="presentation" class="table table-striped">
             <tbody class="uploading-files-list">
               <tr ng-repeat="file in fileUploader.uploadingFiles">
@@ -32,11 +32,12 @@
               </tr>
             </tbody>
           </table>
-          <button type="button" class="btn btn-warning" ng-click="fileUploader.cancelAll()"><i class="icon-remove icon-white"></i> Cancel all</button>
+          <button type="button" class="btn btn-warning" ng-click="fileUploader.cancelAll()"><i class="icon-remove icon-white"></i> 
+            {{ "Cancel all" | translate }}</button>
         </div>
       </div>
 
-      <h4>Uploaded files</h4>
+      <h4>{{ "Uploaded files" | translate }}</h4>
       <table role="presentation" class="table table-striped">
         <tbody class="uploaded-files-list">
           <tr ng-repeat="file in fileUploader.uploadedFiles">

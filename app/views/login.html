@@ -13,19 +13,20 @@
   <div class="row" ng-show="cookiesEnabled()">
     <div class="span9">
       <form name="loginForm" novalidate>
-        <label>Username:
+        <label>{{ "Username:" | translate }}
           <input type="text" name="username"
             ng-model="loginUsername" required>
         </label>
 
-        <label>Password:
+        <label>{{ "Password:" | translate }}
           <input type="password" name="password"
             ng-model="loginPassword" required>
         </label>
 
         <button class="btn btn-success"
           ng-disable="loginForm.$invalid"
-          ng-click="login(loginUsername, loginPassword, loginRole)">{{ "Login" | translate }}</button>
+          ng-click="login(loginUsername, loginPassword, loginRole)">
+          {{ "Login" | translate }}</button>
 
       </form>
     </div>

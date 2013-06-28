@@ -156,8 +156,10 @@
 
 <div class="toolTip" ng-controller="toolTipCtrl">
   <div class="logout alert" ng-hide="!session_id">
-    <label>{{ "Currently logged in " | translate }} (<a href="{{auth_landing_page}}">{{role}}</a>)</label>
-    <button class="btn btn-danger" ng-click="logout()">{{ "logout" | translate }}</button>
+    <label>{{ "Currently logged in " | translate }} 
+      (<a href="{{auth_landing_page}}">{{role}}</a>)</label>
+    <button class="btn btn-danger" ng-click="logout()">
+      {{ "logout" | translate }}</button>
   </div>
   <div class="languagePick">
     <select ng-model="language"
