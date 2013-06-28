@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 01:10+0000\n"
+"PO-Revision-Date: 2013-06-28 17:23+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -14,110 +14,60 @@ msgstr ""
 "Language: el\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "New Submission"
-msgstr "Νέα υποβολή"
+msgid "Warning! You are not Anonymous."
+msgstr ""
 
-msgid ""
-"You can customize this section by editing "
-"GLClient/app/templates/default/views/submission/main.html"
-msgstr "Μπορείτε να προσαρμόσετε αυτό το τμήμα από την επεξεργασία GLClient / app / templates / default / απόψεις / υποβολής / main.html"
-
-msgid "Loading..."
-msgstr "Φόρτωση..."
-
-msgid "This node is not configured."
-msgstr "Αυτός ο κόμβος δεν έχει ρυθμιστεί."
-
-msgid "You will not be able to perform a submission."
-msgstr "Δεν θα είστε σε θέση να εκτελέσετε την υποβολή της πρότασης."
-
-msgid "Admin please configure a Context and associated Receivers using"
-msgstr "Διαχειριστής μπορείτε να ρυθμίσετε ένα πλαίσιο και των συναφών Δέκτες χρησιμοποιώντας"
-
-msgid "Admin management interface"
-msgstr "Διαχειριστής περιβάλλοντος διαχείρισης"
-
-msgid ""
-"Choose the context and receivers that will be sure to transform your "
-"submission into action!"
-msgstr "Επιλέξτε το πλαίσιο και τους δέικτες που θα είστε σίγουρος για να μετατραπει την υποβολή σας σε δράση!"
-
-msgid "I want to report on"
-msgstr "Θέλω να αναφέρω την"
-
-msgid ""
-"Enter the information that is relevant to your submission and possibly "
-"upload the relevant accompanying files"
-msgstr "Εισάγετε τις πληροφορίες που είναι σχετικές με την υποβολή σας και, ενδεχομένως, να πρεπει να ανεβάσετε τα σχετικά συνοδευτικά αρχεία"
-
-msgid ""
-"To ensure your anonymity be sure that you are visiting this site using the"
-msgstr "Για να εξασφαλιστεί η ανωνυμία σας και να είστε σίγουροι οτι επισκεφθεικατε αυτη την σελιδα χρησιμοποιηστε το"
-
-msgid "To further enhance your security, please follow these instructions:"
-msgstr "Για την περαιτέρω ενίσχυση της ασφάλειας σας, ακολουθήστε τις παρακάτω οδηγίες:"
-
-msgid ""
-"In the event that you would like to remain anonymous, do not submit any "
-"personal information. (e.g. your name or relationship to the offender. Do "
-"not submit any information that can be traced back to you.)"
-msgstr "Σε περίπτωση που θα θέλατε να διατηρήσετε την ανωνυμία σας, μην υποβάλλετε τα προσωπικά σας στοιχεία. (π.χ. το όνομά σας ή σχέση με τον δράστη. Μην υποβάλετε όλες τις πληροφορίες που μπορούν να αναχθούν σε σας.)"
-
-msgid ""
-"Please do not submit your report on a PC provided by your employer. "
-"Particularly an intranet connection may jeopardize your anonymity."
-msgstr "Σας παρακαλούμε να μην υποβάλετε την έκθεσή σας σε έναν υπολογιστή που παρέχεται από τον εργοδότη σας. Ιδιαίτερα μια σύνδεση intranet μπορεί να θέσει σε κίνδυνο την ανωνυμία σας."
-
-msgid "By checking the box below you agree to these terms and conditions."
-msgstr "Ελέγχοντας το πλαίσιο κάτω από σας συμφωνείτε με αυτούς τους όρους και τις προϋποθέσεις."
-
-msgid "Agree"
-msgstr "Αποδοχη"
-
-msgid "Previous Step"
-msgstr "προηγούμενο βήμα"
-
-msgid "Next Step"
-msgstr "Επόμενο βήμα"
-
-msgid "Submit"
-msgstr "Υποβολή"
-
-msgid "Submission Created!"
-msgstr "Δημιουργήθηκε υποβολή!"
-
-msgid ""
-"This receipt will allow you to login as the whistleblower for this Tip."
+msgid "Wrong Answer!"
 msgstr ""
 
 msgid ""
-"Through this system receivers will be able to ask you questions on the Tip "
-"and you will be able to write a reply."
+"With a HTTPS submission you are exposing yourself to the risks that someone "
+"else* will know that you have submitted something, without knowing what you "
+"have submitted."
 msgstr ""
 
 msgid ""
-"You will also be able to keep track of who as viewed your submission and "
-"downloaded the files."
+"Instead with Anonymous Submission you are fully protected, is not even "
+"possible for a third party to know that you have submitted something."
 msgstr ""
 
-msgid "Moreover, it will allow you to add other files to your submission."
-msgstr ""
-
-msgid ""
-"Beware of the fact that this receipt, if fallen into the wrong hands, will "
-"lead to identifying you as the whistleblower for this Tip."
+msgid "We strongly advise you to go for an Anonymous Submission."
 msgstr ""
 
 msgid ""
-"If you are interested in keeping it, please save it in a secure place and "
-"make sure it does not fall into the wrong hands"
+"To make Anonymous Submission, instead of your usual Web Browser (Internet "
+"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
 msgstr ""
 
-msgid "Please copy in the box below you receipt to access the tip interface."
+msgid "that’s a special software designed to enable Anonymous Web Browsing."
 msgstr ""
 
-msgid "View Tip"
-msgstr "Εμφάνιση συμβουλής"
+msgid ""
+"You are aware of the risks involved, go ahead, consider yourself warned."
+msgstr ""
+
+msgid ""
+"If you want protection of your identity and the content of your message, you"
+" should try to achieve anonimity by using the"
+msgstr ""
+
+msgid "to submit"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Proceed"
+msgstr ""
+
+msgid "Back to start"
+msgstr ""
+
+msgid "Proceed to submission"
+msgstr ""
 
 msgid "Welcome to"
 msgstr ""
@@ -130,6 +80,9 @@ msgstr "Ο κόμβος σας δεν έχει ρυθμιστεί! Παρακα�
 
 msgid "Admin interface and configure at least one context"
 msgstr "Διαχειριστής interface και ρυθμίση τουλάχιστον ένoς πλαίσιου"
+
+msgid "Loading..."
+msgstr "Φόρτωση..."
 
 msgid "Are you a whistleblower?"
 msgstr "Είσαι ένας πληροφοριοδότης;"
@@ -248,112 +201,128 @@ msgstr "Η ζητούμενη συμβουλή δεν υπάρχει ή έχει
 msgid "Loading Tip page..."
 msgstr "Φόρτωσης της σελίδας συμβουλων..."
 
-msgid "Files overview"
-msgstr "Επισκοπηση αρχειων"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "Αυτή η διεπαφή μπορεί να σας βοηθήσει να εντοπίσετε ανωμαλίες στον κόμβο σας."
+msgid "New Submission"
+msgstr "Νέα υποβολή"
 
 msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "Ο παρακάτω πίνακας δείχνει τα αρχεία που υπάρχουν στον κατάλογο υποβολής, και η σχέση τους με την εσωτερική βάση δεδομένων."
+"You can customize this section by editing "
+"GLClient/app/templates/default/views/submission/main.html"
+msgstr "Μπορείτε να προσαρμόσετε αυτό το τμήμα από την επεξεργασία GLClient / app / templates / default / απόψεις / υποβολής / main.html"
 
-msgid "Info"
-msgstr "Πληροφορία"
+msgid "This node is not configured."
+msgstr "Αυτός ο κόμβος δεν έχει ρυθμιστεί."
 
-msgid "Size"
-msgstr "Μέγεθος"
+msgid "You will not be able to perform a submission."
+msgstr "Δεν θα είστε σε θέση να εκτελέσετε την υποβολή της πρότασης."
 
-msgid "References"
-msgstr "Αναφορές"
+msgid "Admin please configure a Context and associated Receivers using"
+msgstr "Διαχειριστής μπορείτε να ρυθμίσετε ένα πλαίσιο και των συναφών Δέκτες χρησιμοποιώντας"
 
-msgid "Password management"
-msgstr "Διαχείριση κωδικού πρόσβασης"
+msgid "Admin management interface"
+msgstr "Διαχειριστής περιβάλλοντος διαχείρισης"
 
-msgid "Current Password"
-msgstr "Τρέχον Κωδικός"
+msgid ""
+"Choose the context and receivers that will be sure to transform your "
+"submission into action!"
+msgstr "Επιλέξτε το πλαίσιο και τους δέικτες που θα είστε σίγουρος για να μετατραπει την υποβολή σας σε δράση!"
 
-msgid "Required old password confirm"
-msgstr "Υποχρεωτικη επιβεβαιωση παλιου κωδικου"
+msgid "I want to report on"
+msgstr "Θέλω να αναφέρω την"
 
-msgid "New Password"
-msgstr "Νεος Κωδικός"
+msgid ""
+"Enter the information that is relevant to your submission and possibly "
+"upload the relevant accompanying files"
+msgstr "Εισάγετε τις πληροφορίες που είναι σχετικές με την υποβολή σας και, ενδεχομένως, να πρεπει να ανεβάσετε τα σχετικά συνοδευτικά αρχεία"
 
-msgid "Your password is unsafe, it should have"
-msgstr "Ο κωδικός πρόσβασής σας δεν είναι ασφαλής, θα πρέπει να έχει"
+msgid ""
+"To ensure your anonymity be sure that you are visiting this site using the"
+msgstr "Για να εξασφαλιστεί η ανωνυμία σας και να είστε σίγουροι οτι επισκεφθεικατε αυτη την σελιδα χρησιμοποιηστε το"
 
-msgid "At least one letter"
-msgstr "Τουλάχιστον ένα γράμμα"
+msgid "To further enhance your security, please follow these instructions:"
+msgstr "Για την περαιτέρω ενίσχυση της ασφάλειας σας, ακολουθήστε τις παρακάτω οδηγίες:"
 
-msgid "At least one number"
-msgstr "Τουλάχιστον έναν αριθμό"
+msgid ""
+"In the event that you would like to remain anonymous, do not submit any "
+"personal information. (e.g. your name or relationship to the offender. Do "
+"not submit any information that can be traced back to you.)"
+msgstr "Σε περίπτωση που θα θέλατε να διατηρήσετε την ανωνυμία σας, μην υποβάλλετε τα προσωπικά σας στοιχεία. (π.χ. το όνομά σας ή σχέση με τον δράστη. Μην υποβάλετε όλες τις πληροφορίες που μπορούν να αναχθούν σε σας.)"
 
-msgid "At least 8 keypress long"
-msgstr "Τουλάχιστον 8 πάτηματα μακρια"
+msgid ""
+"Please do not submit your report on a PC provided by your employer. "
+"Particularly an intranet connection may jeopardize your anonymity."
+msgstr "Σας παρακαλούμε να μην υποβάλετε την έκθεσή σας σε έναν υπολογιστή που παρέχεται από τον εργοδότη σας. Ιδιαίτερα μια σύνδεση intranet μπορεί να θέσει σε κίνδυνο την ανωνυμία σας."
 
-msgid "Retype again your new password"
-msgstr "Πληκτρολογήστε ξανά τον νέο κωδικό πρόσβασης"
+msgid "By checking the box below you agree to these terms and conditions."
+msgstr "Ελέγχοντας το πλαίσιο κάτω από σας συμφωνείτε με αυτούς τους όρους και τις προϋποθέσεις."
 
-msgid "The two passwords do not match"
-msgstr "Οι δύο κωδικοί δεν ταιριάζουν"
+msgid "Agree"
+msgstr "Αποδοχη"
 
-msgid "Save"
-msgstr "Αποθήκευση"
+msgid "Previous Step"
+msgstr "προηγούμενο βήμα"
 
-msgid "Fields"
-msgstr "Πεδία"
+msgid "Next Step"
+msgstr "Επόμενο βήμα"
 
-msgid "add field"
-msgstr "προσθηκη τομεα"
+msgid "Submit"
+msgstr "Υποβολή"
 
-msgid "click to close"
-msgstr "κάντε κλικ για να κλείσει"
+msgid "Submission Created!"
+msgstr "Δημιουργήθηκε υποβολή!"
 
-msgid "delete"
-msgstr "Διαγραφή"
+msgid ""
+"This receipt will allow you to login as the whistleblower for this Tip."
+msgstr ""
 
-msgid "Hint"
-msgstr "Υπαινιγμός"
+msgid ""
+"Through this system receivers will be able to ask you questions on the Tip "
+"and you will be able to write a reply."
+msgstr ""
 
-msgid "Required"
-msgstr "Απαιτείται"
+msgid ""
+"You will also be able to keep track of who as viewed your submission and "
+"downloaded the files."
+msgstr ""
 
-msgid "Type"
-msgstr "Τυπος"
+msgid "Moreover, it will allow you to add other files to your submission."
+msgstr ""
 
-msgid "Text"
-msgstr "Κείμενο"
+msgid ""
+"Beware of the fact that this receipt, if fallen into the wrong hands, will "
+"lead to identifying you as the whistleblower for this Tip."
+msgstr ""
 
-msgid "Radio Buttons"
-msgstr "Ραδιοπλήκτρα"
+msgid ""
+"If you are interested in keeping it, please save it in a secure place and "
+"make sure it does not fall into the wrong hands"
+msgstr ""
 
-msgid "Drop Menu (Select)"
-msgstr "Μενού Drop (Επιλογή)"
+msgid "Please copy in the box below you receipt to access the tip interface."
+msgstr ""
 
-msgid "Multi-Select"
-msgstr "Πολλαπλοι επιλογή"
+msgid "View Tip"
+msgstr "Εμφάνιση συμβουλής"
 
-msgid "Checkboxes"
-msgstr "Πλαίσια ελέγχου"
+msgid "security check"
+msgstr ""
 
-msgid "Paragraph(s)"
-msgstr "Παράγραφος(-ες)"
+msgid "Security Check"
+msgstr ""
 
-msgid "Number"
-msgstr "Αριθμός"
+msgid ""
+"On unix based systems this can be done by running the following command"
+msgstr ""
 
-msgid "Url"
-msgstr "Διεύθυνση"
+msgid "Still calculating hash"
+msgstr ""
 
-msgid "Phone"
-msgstr "Τηλεφωνο"
+msgid "done"
+msgstr ""
 
-msgid "Email"
-msgstr "Email"
-
-msgid "add option"
-msgstr "προσθήκη επιλογής"
+msgid ""
+"This number here is your receipt keep good care of it as it will allow you "
+"to access your submission"
+msgstr ""
 
 msgid "General information"
 msgstr "Γενικές πληροφορίες"
@@ -366,6 +335,9 @@ msgstr "Σημερινό λογότυπο της πρωτοβουλίας"
 
 msgid "Node name"
 msgstr "Ονομα κόμβου"
+
+msgid "Email"
+msgstr "Email"
 
 msgid "Enabled languages"
 msgstr ""
@@ -441,6 +413,215 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
+msgid "Contexts list"
+msgstr "Λιστα πλαισιων"
+
+msgid "Save"
+msgstr "Αποθήκευση"
+
+msgid "Delete"
+msgstr "Διαγραφή"
+
+msgid "Receivers"
+msgstr "Δέκτες"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submission lifetime"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr ""
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Προσθήκη νέου πλαισίου"
+
+msgid "add"
+msgstr "προσθηκη"
+
+msgid "Fields"
+msgstr "Πεδία"
+
+msgid "add field"
+msgstr "προσθηκη τομεα"
+
+msgid "click to close"
+msgstr "κάντε κλικ για να κλείσει"
+
+msgid "delete"
+msgstr "Διαγραφή"
+
+msgid "Hint"
+msgstr "Υπαινιγμός"
+
+msgid "Required"
+msgstr "Απαιτείται"
+
+msgid "Type"
+msgstr "Τυπος"
+
+msgid "Text"
+msgstr "Κείμενο"
+
+msgid "Radio Buttons"
+msgstr "Ραδιοπλήκτρα"
+
+msgid "Drop Menu (Select)"
+msgstr "Μενού Drop (Επιλογή)"
+
+msgid "Multi-Select"
+msgstr "Πολλαπλοι επιλογή"
+
+msgid "Checkboxes"
+msgstr "Πλαίσια ελέγχου"
+
+msgid "Paragraph(s)"
+msgstr "Παράγραφος(-ες)"
+
+msgid "Number"
+msgstr "Αριθμός"
+
+msgid "Url"
+msgstr "Διεύθυνση"
+
+msgid "Phone"
+msgstr "Τηλεφωνο"
+
+msgid "add option"
+msgstr "προσθήκη επιλογής"
+
+msgid "Files overview"
+msgstr "Επισκοπηση αρχειων"
+
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "Αυτή η διεπαφή μπορεί να σας βοηθήσει να εντοπίσετε ανωμαλίες στον κόμβο σας."
+
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "Ο παρακάτω πίνακας δείχνει τα αρχεία που υπάρχουν στον κατάλογο υποβολής, και η σχέση τους με την εσωτερική βάση δεδομένων."
+
+msgid "Info"
+msgstr "Πληροφορία"
+
+msgid "Size"
+msgstr "Μέγεθος"
+
+msgid "References"
+msgstr "Αναφορές"
+
+msgid "Username"
+msgstr "Όνομα Χρήστη"
+
+msgid "Password"
+msgstr "Κωδικός"
+
+msgid "SMTP server address"
+msgstr "Διεύθυνση του διακομιστή SMTP"
+
+msgid "SMTP server port"
+msgstr "SMTP υποδοχη διακομιστη"
+
+msgid "Transport Security"
+msgstr "Ασφάλεια Μεταφορών"
+
+msgid "Notification templates"
+msgstr "Πρότυπα ειδοποίησης"
+
+msgid "Tip Email Subject"
+msgstr ""
+
+msgid "Tip Email template"
+msgstr "Συμβουλή πρότυπο Email"
+
+msgid "Comment Email Subject"
+msgstr ""
+
+msgid "Comment Email template"
+msgstr "Σχόλιο πρότυπου Email"
+
+msgid "File Email Subject"
+msgstr ""
+
+msgid "File Email template"
+msgstr "Αρχείο πρότυπου Email"
+
+msgid "Activation Email template"
+msgstr "Ενεργοποίηση του πρότυπου Email"
+
+msgid "Password management"
+msgstr "Διαχείριση κωδικού πρόσβασης"
+
+msgid "Current Password"
+msgstr "Τρέχον Κωδικός"
+
+msgid "Required old password confirm"
+msgstr "Υποχρεωτικη επιβεβαιωση παλιου κωδικου"
+
+msgid "New Password"
+msgstr "Νεος Κωδικός"
+
+msgid "Your password is unsafe, it should have"
+msgstr "Ο κωδικός πρόσβασής σας δεν είναι ασφαλής, θα πρέπει να έχει"
+
+msgid "At least one letter"
+msgstr "Τουλάχιστον ένα γράμμα"
+
+msgid "At least one number"
+msgstr "Τουλάχιστον έναν αριθμό"
+
+msgid "At least 8 keypress long"
+msgstr "Τουλάχιστον 8 πάτηματα μακρια"
+
+msgid "Retype again your new password"
+msgstr "Πληκτρολογήστε ξανά τον νέο κωδικό πρόσβασης"
+
+msgid "The two passwords do not match"
+msgstr "Οι δύο κωδικοί δεν ταιριάζουν"
+
+msgid "Receiver list"
+msgstr "Λίστα δέκτων"
+
+msgid "Select file"
+msgstr "Επιλογή αρχείου"
+
+msgid "upload"
+msgstr "Μεταφόρτωση"
+
+msgid "Receiver name too long"
+msgstr "Το ονομα του δέκτη ειναι πολύ μεγάλο"
+
+msgid "Email Address (Username)"
+msgstr "Διεύθυνση Email (Ονομα χρηστη)"
+
+msgid "Invalid email address"
+msgstr "Άκυρη διεύθυνση email"
+
+msgid "Contexts"
+msgstr "Πλαίσια"
+
+msgid "Add new receiver"
+msgstr "Προσθήκη νέου δέκτη"
+
+msgid "Email Address"
+msgstr "Διεύθυνση Email "
+
 msgid "Content Settin"
 msgstr "Περιεχόμενο Settin"
 
@@ -483,128 +664,20 @@ msgid ""
 "node."
 msgstr "Αυτή η διεπαφή δείχνει τη δραστηριότητα των χρηστών του κόμβου σας. Αυτό μπορεί να είναι χρήσιμο για ανίχνευση ανωμαλιών και υποστήριξη των παραλήπτων του κόμβου σας."
 
-msgid "Username"
-msgstr "Όνομα Χρήστη"
+msgid "Welcome back captain!"
+msgstr "Καλώς ήρθατε πίσω καπετάνιε!"
 
-msgid "Password"
-msgstr "Κωδικός"
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Από εδώ μπορείτε να εκτελέσετε κοινές εργασίες debug και GLClient λειτουργίες"
 
-msgid "SMTP server address"
-msgstr "Διεύθυνση του διακομιστή SMTP"
+msgid "Cookies are not enabled!"
+msgstr "Τα cookies δεν είναι ενεργοποιημένα!"
 
-msgid "SMTP server port"
-msgstr "SMTP υποδοχη διακομιστη"
+msgid "You will not be able to login."
+msgstr "Δεν θα είστε σε θέση να συνδεθείτε."
 
-msgid "Transport Security"
-msgstr "Ασφάλεια Μεταφορών"
-
-msgid "Notification templates"
-msgstr "Πρότυπα ειδοποίησης"
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr "Συμβουλή πρότυπο Email"
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "Σχόλιο πρότυπου Email"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr "Αρχείο πρότυπου Email"
-
-msgid "Activation Email template"
-msgstr "Ενεργοποίηση του πρότυπου Email"
-
-msgid "Contexts list"
-msgstr "Λιστα πλαισιων"
-
-msgid "Delete"
-msgstr "Διαγραφή"
-
-msgid "Receivers"
-msgstr "Δέκτες"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submission lifetime"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Προσθήκη νέου πλαισίου"
-
-msgid "add"
-msgstr "προσθηκη"
-
-msgid "Receiver list"
-msgstr "Λίστα δέκτων"
-
-msgid "Select file"
-msgstr "Επιλογή αρχείου"
-
-msgid "upload"
-msgstr "Μεταφόρτωση"
-
-msgid "Receiver name too long"
-msgstr "Το ονομα του δέκτη ειναι πολύ μεγάλο"
-
-msgid "Email Address (Username)"
-msgstr "Διεύθυνση Email (Ονομα χρηστη)"
-
-msgid "Invalid email address"
-msgstr "Άκυρη διεύθυνση email"
-
-msgid "Contexts"
-msgstr "Πλαίσια"
-
-msgid "Add new receiver"
-msgstr "Προσθήκη νέου δέκτη"
-
-msgid "Email Address"
-msgstr "Διεύθυνση Email "
-
-msgid "Tips"
-msgstr "Συμβουλές"
-
-msgid "Preferences"
-msgstr "Προτιμήσεις"
-
-msgid "Tip ID"
-msgstr "Συμβουλή ID"
-
-msgid "Age"
-msgstr "Ηλικία"
-
-msgid "Views"
-msgstr "Εμφανισεις"
-
-msgid "Last Access"
-msgstr "Τελευταία πρόσβαση"
+msgid "Login"
+msgstr "Σύνδεση"
 
 msgid "Preferences and password management"
 msgstr "Προτιμήσεις και διαχείριση κωδικού πρόσβασης"
@@ -645,8 +718,38 @@ msgstr ""
 msgid "Update notification settings"
 msgstr ""
 
+msgid "Tips"
+msgstr "Συμβουλές"
+
+msgid "Preferences"
+msgstr "Προτιμήσεις"
+
+msgid "Tip ID"
+msgstr "Συμβουλή ID"
+
+msgid "Age"
+msgstr "Ηλικία"
+
+msgid "Views"
+msgstr "Εμφανισεις"
+
+msgid "Last Access"
+msgstr "Τελευταία πρόσβαση"
+
+msgid "Success!"
+msgstr "Επιτυχια!"
+
+msgid "Currently logged in "
+msgstr "Αυτή τη στιγμή είστε συνδεδεμένοι "
+
+msgid "logout"
+msgstr "αποσύνδεση"
+
 msgid "Save changes"
 msgstr "Αποθήκευση αλλαγών"
+
+msgid "Add files..."
+msgstr "Προσθήκη αρχείων..."
 
 msgid "Danger!"
 msgstr "Κίνδυνος!"
@@ -684,30 +787,3 @@ msgstr "κατεβαστε ενα αντιγραφο του tor browser bundle"
 
 msgid "before continuing."
 msgstr "πριν συνεχίσετε."
-
-msgid "Add files..."
-msgstr "Προσθήκη αρχείων..."
-
-msgid "Welcome back captain!"
-msgstr "Καλώς ήρθατε πίσω καπετάνιε!"
-
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "Από εδώ μπορείτε να εκτελέσετε κοινές εργασίες debug και GLClient λειτουργίες"
-
-msgid "Cookies are not enabled!"
-msgstr "Τα cookies δεν είναι ενεργοποιημένα!"
-
-msgid "You will not be able to login."
-msgstr "Δεν θα είστε σε θέση να συνδεθείτε."
-
-msgid "Login"
-msgstr "Σύνδεση"
-
-msgid "Success!"
-msgstr "Επιτυχια!"
-
-msgid "Currently logged in "
-msgstr "Αυτή τη στιγμή είστε συνδεδεμένοι "
-
-msgid "logout"
-msgstr "αποσύνδεση"

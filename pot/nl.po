@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 01:10+0000\n"
+"PO-Revision-Date: 2013-06-28 17:23+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -14,6 +14,193 @@ msgstr ""
 "Language: nl\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+msgid "Warning! You are not Anonymous."
+msgstr ""
+
+msgid "Wrong Answer!"
+msgstr ""
+
+msgid ""
+"With a HTTPS submission you are exposing yourself to the risks that someone "
+"else* will know that you have submitted something, without knowing what you "
+"have submitted."
+msgstr ""
+
+msgid ""
+"Instead with Anonymous Submission you are fully protected, is not even "
+"possible for a third party to know that you have submitted something."
+msgstr ""
+
+msgid "We strongly advise you to go for an Anonymous Submission."
+msgstr ""
+
+msgid ""
+"To make Anonymous Submission, instead of your usual Web Browser (Internet "
+"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+msgstr ""
+
+msgid "that’s a special software designed to enable Anonymous Web Browsing."
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved, go ahead, consider yourself warned."
+msgstr ""
+
+msgid ""
+"If you want protection of your identity and the content of your message, you"
+" should try to achieve anonimity by using the"
+msgstr ""
+
+msgid "to submit"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Proceed"
+msgstr ""
+
+msgid "Back to start"
+msgstr ""
+
+msgid "Proceed to submission"
+msgstr ""
+
+msgid "Welcome to"
+msgstr "Welkom bij"
+
+msgid "Blow the Whistle"
+msgstr "Blow the Whistle"
+
+msgid "Your node is not configured! Please, proceed via"
+msgstr "Uw node is niet geconfigureerd! Ga verder via"
+
+msgid "Admin interface and configure at least one context"
+msgstr "Admin Interface en configureer in ieder geval een categorie"
+
+msgid "Loading..."
+msgstr "Laden..."
+
+msgid "Are you a whistleblower?"
+msgstr "Bent u een klokkenluider?"
+
+msgid "Enter your receipt"
+msgstr "Vul het nummer van uw ontvangstbewijs in"
+
+msgid "Are you a receiver?"
+msgstr "Bent u een ontvanger?"
+
+msgid "This is the"
+msgstr "Dit is de"
+
+msgid "Login page"
+msgstr "Login pagina"
+
+msgid "What is this about?"
+msgstr "Waar gaat dit over?"
+
+msgid "How you can transform information into action!"
+msgstr "Hoe u informatie om kan zetten in actie!"
+
+msgid ""
+"Through this platform you will be able to report on wrongdoing. This "
+"platform is running the"
+msgstr "Via dit platform bent u in staat om misstanden te rapporteren. Dit platform draait het"
+
+msgid "GlobaLeaks software"
+msgstr "GlobaLeaks software"
+
+msgid ""
+"that is specifically designed to protect the identity of the reporter and of"
+" the ones running the platform."
+msgstr "Dit is speciaal ontworpen om de identiteit van de informatie aandrager te beschermen en de identiteit van de platformbeheerder"
+
+msgid "This software is developed by the non-profit organization"
+msgstr "Deze software is ontwikkeld door een non-profit organisatie"
+
+msgid "We are supported also by your donations. Visit our"
+msgstr "Wij zijn ook afhankelijk van uw donaties. Bezoek onze"
+
+msgid "donation page"
+msgstr "Pagina donateurs"
+
+msgid "to help us further support the development of GlobaLeaks."
+msgstr "om ons te helpen bij de verdere ontwikkeling van GlobaLeaks."
+
+msgid "Tip Status Page"
+msgstr "Statusoverzicht tips"
+
+msgid "Files"
+msgstr "Documenten"
+
+msgid "show only files not yet downloaded"
+msgstr "Toon alleen de bestanden die nog niet gedownload zijn"
+
+msgid "show all the files"
+msgstr "Toon alle bestanden"
+
+msgid "download"
+msgstr "Download"
+
+msgid "show sha256 checksum"
+msgstr ""
+
+msgid "(click again to hide)"
+msgstr "(klik nog een keer om te verbergen)"
+
+msgid "Use the"
+msgstr "Gebruik de"
+
+msgid "sha256 hash"
+msgstr "sha256 hash"
+
+msgid "to verify the file integrity"
+msgstr "om de betrouwbaarheid van het bestand te verifiëren"
+
+msgid ""
+"On unix based systems this can be done by running the following command in "
+"the directory of the files"
+msgstr ""
+
+msgid "No file has been uploaded!"
+msgstr "Er is geen bestand geupload!"
+
+msgid "Comments"
+msgstr "Commentaar"
+
+msgid "Whistleblower"
+msgstr "Klokkenluider"
+
+msgid "System"
+msgstr "Systeem"
+
+msgid "Malformed source"
+msgstr "Incorrect bestand"
+
+msgid "Add Comment"
+msgstr "Voeg een commentaar toe"
+
+msgid "Receiver List"
+msgstr "Lijst ontvangers"
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "Description"
+msgstr "Omschrijving"
+
+msgid "Access counter"
+msgstr "Aantal bezoekers"
+
+msgid "The requested tip does not exist or has expired."
+msgstr "De gevraagde tip bestaat niet meer of is verlopen"
+
+msgid "Loading Tip page..."
+msgstr "Lasen Tips pagina"
+
 msgid "New Submission"
 msgstr "Nieuwe inzending"
 
@@ -21,9 +208,6 @@ msgid ""
 "You can customize this section by editing "
 "GLClient/app/templates/default/views/submission/main.html"
 msgstr "U kunt deze sectie aanpassen door GLClient/app/templates/default/views/submission/main.html te bewerken"
-
-msgid "Loading..."
-msgstr "Laden..."
 
 msgid "This node is not configured."
 msgstr "Deze node is niet geconfigureerd"
@@ -40,7 +224,7 @@ msgstr "Administratie management interface"
 msgid ""
 "Choose the context and receivers that will be sure to transform your "
 "submission into action!"
-msgstr "Kies de categorie waaronder uw bestanden vallen en de ontvangers die de bestanden zullen ontvangen."
+msgstr "Kies de categorie waaronder uw bestanden vallen en selecteer de media organisatie(s) die de bestanden zullen ontvangen."
 
 msgid "I want to report on"
 msgstr "Ik wil rapporteren over"
@@ -111,7 +295,7 @@ msgstr ""
 msgid ""
 "If you are interested in keeping it, please save it in a secure place and "
 "make sure it does not fall into the wrong hands"
-msgstr ""
+msgstr "Wanneer u dit bestand wilt houden, bewaar het dan op een veilige plaats en laat het niet in verkeerde handen vallen."
 
 msgid "Please copy in the box below you receipt to access the tip interface."
 msgstr ""
@@ -119,187 +303,157 @@ msgstr ""
 msgid "View Tip"
 msgstr "Kijkers tip"
 
-msgid "Welcome to"
+msgid "security check"
 msgstr ""
 
-msgid "Blow the Whistle"
-msgstr "Blow the Whistle"
-
-msgid "Your node is not configured! Please, proceed via"
-msgstr "Uw node is niet geconfigureerd! Ga verder via"
-
-msgid "Admin interface and configure at least one context"
-msgstr "Admin Interface en configureer in ieder geval een categorie"
-
-msgid "Are you a whistleblower?"
-msgstr "Bent u een klokkenluider?"
-
-msgid "Enter your receipt"
-msgstr "Vul het nummer van uw ontvangstbewijs in"
-
-msgid "Are you a receiver?"
-msgstr "Bent u een ontvanger?"
-
-msgid "This is the"
-msgstr "Dit is de"
-
-msgid "Login page"
-msgstr "Login pagina"
-
-msgid "What is this about?"
-msgstr "Waar gaat dit over?"
-
-msgid "How you can transform information into action!"
-msgstr "Hoe u informatie om kan zetten in actie!"
+msgid "Security Check"
+msgstr ""
 
 msgid ""
-"Through this platform you will be able to report on wrongdoing. This "
-"platform is running the"
-msgstr "Via dit platform bent u in staat om misstanden te rapporteren. Dit platform draait het"
+"On unix based systems this can be done by running the following command"
+msgstr ""
 
-msgid "GlobaLeaks software"
-msgstr "GlobaLeaks software"
+msgid "Still calculating hash"
+msgstr ""
+
+msgid "done"
+msgstr ""
 
 msgid ""
-"that is specifically designed to protect the identity of the reporter and of"
-" the ones running the platform."
-msgstr "Dit is speciaal ontworpen om de identiteit van de informatie aandrager te beschermen en de identiteit van de platformbeheerder"
-
-msgid "This software is developed by the non-profit organization"
-msgstr "Deze software is ontwikkeld door een non-profit organisatie"
-
-msgid "We are supported also by your donations. Visit our"
-msgstr "Wij zijn ook afhankelijk van uw donaties. Bezoek onze"
-
-msgid "donation page"
-msgstr "Pagina donateurs"
-
-msgid "to help us further support the development of GlobaLeaks."
-msgstr "om ons te helpen bij de verdere ontwikkeling van GlobaLeaks."
-
-msgid "Tip Status Page"
-msgstr "Statusoverzicht tips"
-
-msgid "Files"
-msgstr "Documenten"
-
-msgid "show only files not yet downloaded"
+"This number here is your receipt keep good care of it as it will allow you "
+"to access your submission"
 msgstr ""
 
-msgid "show all the files"
-msgstr ""
+msgid "General information"
+msgstr "Algemene informatie"
 
-msgid "download"
-msgstr ""
+msgid "You're running GlobaLeaks version"
+msgstr "U gebruikt GlobaLeaks versie"
 
-msgid "show sha256 checksum"
-msgstr ""
+msgid "Current initiative logo"
+msgstr "Logo huidig initiatief"
 
-msgid "(click again to hide)"
-msgstr ""
+msgid "Node name"
+msgstr "Naam node"
 
-msgid "Use the"
-msgstr "Gebruik de"
+msgid "Email"
+msgstr "Email"
 
-msgid "sha256 hash"
-msgstr "sha256 hash"
+msgid "Enabled languages"
+msgstr "Schakel talen in"
 
-msgid "to verify the file integrity"
-msgstr "om de betrouwbaarheid van het bestand te verifiëren"
+msgid "Tor Hidden Service (hostname)"
+msgstr "Tor Hidden Service (hostnaam)"
 
 msgid ""
-"On unix based systems this can be done by running the following command in "
-"the directory of the files"
-msgstr ""
+"Invalid format for hidden service (should be http://thirteenchars123.onion)"
+msgstr "Ongeldig formaat voor verborgen service (moeten http://thirteenchars123.onion zijn)"
 
-msgid "No file has been uploaded!"
-msgstr "Er is geen bestand geupload!"
-
-msgid "Comments"
-msgstr "Commentaar"
-
-msgid "Whistleblower"
-msgstr "Klokkenluider"
-
-msgid "System"
-msgstr "Systeem"
-
-msgid "Malformed source"
-msgstr "Incorrect bestand"
-
-msgid "Add Comment"
-msgstr "Voeg een commentaar toe"
-
-msgid "Receiver List"
-msgstr "Lijst ontvangers"
-
-msgid "Name"
-msgstr "Naam"
-
-msgid "Description"
-msgstr "Omschrijving"
-
-msgid "Access counter"
-msgstr "Aantal bezoekers"
-
-msgid "The requested tip does not exist or has expired."
-msgstr "De gevraagde tip bestaat niet meer of is verlopen"
-
-msgid "Loading Tip page..."
-msgstr "Lasen Tips pagina"
-
-msgid "Files overview"
-msgstr "Overzicht bestanden"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "Deze interface kan je helpen anomaliën in je Node te detecteren."
+msgid "Tor2web Public Site (url)"
+msgstr "Tor2web Publieke Site (url)"
 
 msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "De tabel hieronder toont de bestanden die beschikbaar zijn in de bijdrage directory and hun relaties met de interne database."
+"Invalid format for public site (should be "
+"https://thirteenchars123.tor2web.org)"
+msgstr "Ongeldig formaat voor publieke website (zou https://thirteenchars123.tor2web.org moeten zijn)"
 
-msgid "Info"
-msgstr "Informatie"
+msgid "Edit Tor2Web accessibility table "
+msgstr ""
 
-msgid "Size"
-msgstr "Grootte"
+msgid ""
+"Edit Tor2Web accessibility table - [click again to close and don't edit "
+"options] "
+msgstr ""
 
-msgid "References"
-msgstr "Referenties"
+msgid "Permit Administative login via Tor2Web"
+msgstr ""
 
-msgid "Password management"
-msgstr "Wachtwoord beheer"
+msgid "now Enabled:"
+msgstr "Nu geactiveerd:"
 
-msgid "Current Password"
-msgstr "Huidig wachtwoord"
+msgid ""
+"Admin can access via Tor2Web. It's safe only if you're using a dedicated "
+"Tor2Web server."
+msgstr ""
 
-msgid "Required old password confirm"
-msgstr "Verplicht het oude wachtwoord te bevestigen"
+msgid "Permit Receiver preferences management via Tor2Web"
+msgstr ""
 
-msgid "New Password"
-msgstr "Nieuw wachtwoord"
+msgid ""
+"Receivers can access via Tor2Web. It's dangerous, and we suggest some "
+"training with Tor and Enigmail."
+msgstr ""
 
-msgid "Your password is unsafe, it should have"
-msgstr "Uw wachtwoord is niet veilig, gebruik"
+msgid "Permit Tip access, file download and upload via Tor2Web"
+msgstr ""
 
-msgid "At least one letter"
-msgstr "Tenminste 1 letter"
+msgid "Tip can access via Tor2Web, by whistleblowers and receiver."
+msgstr ""
 
-msgid "At least one number"
-msgstr "Tenminste een cijfer"
+msgid "Permit Public resources access via Tor2Web"
+msgstr ""
 
-msgid "At least 8 keypress long"
-msgstr "Tenminste 8 karakters"
+msgid "Public GlobaLeaks resource can access via Tor2Web. No dangers on it."
+msgstr ""
 
-msgid "Retype again your new password"
-msgstr "Typ uw wachtwoord opnieuw"
+msgid "Permit Submission via Tor2Web"
+msgstr ""
 
-msgid "The two passwords do not match"
-msgstr "De twee wachtwoorden komen niet overeen"
+msgid ""
+"Whistleblowers can perform submission with their anonymity at risks, via "
+"Tor2Web."
+msgstr ""
+
+msgid "Note: Need to be clicked two times, to disable an access"
+msgstr ""
+
+msgid "Update node"
+msgstr ""
+
+msgid "Update node and Tor2Web options"
+msgstr ""
+
+msgid "Contexts list"
+msgstr "Lijst met categorieën"
 
 msgid "Save"
 msgstr "Bewaar"
+
+msgid "Delete"
+msgstr "Verwijder"
+
+msgid "Receivers"
+msgstr "Ontvangers"
+
+msgid "Advanced settings"
+msgstr "Meer instellingen"
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Submission lifetime"
+msgstr ""
+
+msgid "Tip day life"
+msgstr ""
+
+msgid "File Required"
+msgstr "Bestand nodig"
+
+msgid "Receipt regexp"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Voeg een nieuwe categoerie toe"
+
+msgid "add"
+msgstr "voeg toe"
 
 msgid "Fields"
 msgstr "Velden"
@@ -349,97 +503,124 @@ msgstr "Url"
 msgid "Phone"
 msgstr "Telefoon"
 
-msgid "Email"
-msgstr "Email"
-
 msgid "add option"
 msgstr "Voeg een optie toe"
 
-msgid "General information"
-msgstr "Algemene informatie"
+msgid "Files overview"
+msgstr "Overzicht bestanden"
 
-msgid "You're running GlobaLeaks version"
-msgstr ""
-
-msgid "Current initiative logo"
-msgstr "Logo huidig initiatief"
-
-msgid "Node name"
-msgstr "Naam node"
-
-msgid "Enabled languages"
-msgstr ""
-
-msgid "Tor Hidden Service (hostname)"
-msgstr "Tor Hidden Service (hostnaam)"
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "Deze interface kan je helpen anomaliën in je Node te detecteren."
 
 msgid ""
-"Invalid format for hidden service (should be http://thirteenchars123.onion)"
-msgstr "Ongeldig formaat voor verborgen service (moeten http://thirteenchars123.onion zijn)"
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "De tabel hieronder toont de bestanden die beschikbaar zijn in de bijdrage directory and hun relaties met de interne database."
 
-msgid "Tor2web Public Site (url)"
-msgstr "Tor2web Publieke Site (url)"
+msgid "Info"
+msgstr "Informatie"
 
-msgid ""
-"Invalid format for public site (should be "
-"https://thirteenchars123.tor2web.org)"
-msgstr "Ongeldig formaat voor publieke website (zou https://thirteenchars123.tor2web.org moeten zijn)"
+msgid "Size"
+msgstr "Grootte"
 
-msgid "Edit Tor2Web accessibility table "
+msgid "References"
+msgstr "Referenties"
+
+msgid "Username"
+msgstr "Genruikersnaam"
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid "SMTP server address"
+msgstr "SMTP server adres"
+
+msgid "SMTP server port"
+msgstr "SMTP server port"
+
+msgid "Transport Security"
+msgstr "Transport Security"
+
+msgid "Notification templates"
+msgstr "Bericht templates"
+
+msgid "Tip Email Subject"
 msgstr ""
 
-msgid ""
-"Edit Tor2Web accessibility table - [click again to close and don't edit "
-"options] "
+msgid "Tip Email template"
+msgstr "Tip E-mail template"
+
+msgid "Comment Email Subject"
 msgstr ""
 
-msgid "Permit Administative login via Tor2Web"
-msgstr ""
+msgid "Comment Email template"
+msgstr "Reactie e-mail template"
 
-msgid "now Enabled:"
-msgstr ""
+msgid "File Email Subject"
+msgstr "Bestandsnaam e-mail"
 
-msgid ""
-"Admin can access via Tor2Web. It's safe only if you're using a dedicated "
-"Tor2Web server."
-msgstr ""
+msgid "File Email template"
+msgstr "Bestand e-mail template"
 
-msgid "Permit Receiver preferences management via Tor2Web"
-msgstr ""
+msgid "Activation Email template"
+msgstr "Activeer e-mail template"
 
-msgid ""
-"Receivers can access via Tor2Web. It's dangerous, and we suggest some "
-"training with Tor and Enigmail."
-msgstr ""
+msgid "Password management"
+msgstr "Wachtwoord beheer"
 
-msgid "Permit Tip access, file download and upload via Tor2Web"
-msgstr ""
+msgid "Current Password"
+msgstr "Huidig wachtwoord"
 
-msgid "Tip can access via Tor2Web, by whistleblowers and receiver."
-msgstr ""
+msgid "Required old password confirm"
+msgstr "Verplicht het oude wachtwoord te bevestigen"
 
-msgid "Permit Public resources access via Tor2Web"
-msgstr ""
+msgid "New Password"
+msgstr "Nieuw wachtwoord"
 
-msgid "Public GlobaLeaks resource can access via Tor2Web. No dangers on it."
-msgstr ""
+msgid "Your password is unsafe, it should have"
+msgstr "Uw wachtwoord is niet veilig, gebruik"
 
-msgid "Permit Submission via Tor2Web"
-msgstr ""
+msgid "At least one letter"
+msgstr "Tenminste 1 letter"
 
-msgid ""
-"Whistleblowers can perform submission with their anonymity at risks, via "
-"Tor2Web."
-msgstr ""
+msgid "At least one number"
+msgstr "Tenminste een cijfer"
 
-msgid "Note: Need to be clicked two times, to disable an access"
-msgstr ""
+msgid "At least 8 keypress long"
+msgstr "Tenminste 8 karakters"
 
-msgid "Update node"
-msgstr ""
+msgid "Retype again your new password"
+msgstr "Typ uw wachtwoord opnieuw"
 
-msgid "Update node and Tor2Web options"
-msgstr ""
+msgid "The two passwords do not match"
+msgstr "De twee wachtwoorden komen niet overeen"
+
+msgid "Receiver list"
+msgstr "Lijst ontvangers"
+
+msgid "Select file"
+msgstr "Selecteer een bestand"
+
+msgid "upload"
+msgstr "upload"
+
+msgid "Receiver name too long"
+msgstr "Naam ontvanger te lang"
+
+msgid "Email Address (Username)"
+msgstr "Emailadres (Gebruikersnaam)"
+
+msgid "Invalid email address"
+msgstr "Incorrect email adres"
+
+msgid "Contexts"
+msgstr "Categorieën"
+
+msgid "Add new receiver"
+msgstr "Voeg een nieuwe ontvanger toe"
+
+msgid "Email Address"
+msgstr "Email Adres"
 
 msgid "Content Settin"
 msgstr "Inhouds instellingen"
@@ -483,128 +664,20 @@ msgid ""
 "node."
 msgstr "Deze interface toont de activiteit van de gebruikers van uw node. Dit kan nuttig zijn bij het opsporen van afwijkingen en het ondersteunen van de ontvangers voor uw node."
 
-msgid "Username"
-msgstr "Genruikersnaam"
+msgid "Welcome back captain!"
+msgstr "Welkom terug!"
 
-msgid "Password"
-msgstr "Wachtwoord"
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Vanaf hier kunt u normale debug opdrachten draaien door de GLClient functies te emuleren"
 
-msgid "SMTP server address"
-msgstr "SMTP server adres"
+msgid "Cookies are not enabled!"
+msgstr "Cookies zijn niet ingeschakeld!"
 
-msgid "SMTP server port"
-msgstr "SMTP server port"
+msgid "You will not be able to login."
+msgstr "U kunt niet inloggen"
 
-msgid "Transport Security"
-msgstr "Transport Security"
-
-msgid "Notification templates"
-msgstr "Bericht templates"
-
-msgid "Tip Email Subject"
-msgstr ""
-
-msgid "Tip Email template"
-msgstr "Tip E-mail template"
-
-msgid "Comment Email Subject"
-msgstr ""
-
-msgid "Comment Email template"
-msgstr "Reactie e-mail template"
-
-msgid "File Email Subject"
-msgstr ""
-
-msgid "File Email template"
-msgstr "Bestand e-mail template"
-
-msgid "Activation Email template"
-msgstr "Activeer e-mail template"
-
-msgid "Contexts list"
-msgstr "Lijst met categorieën"
-
-msgid "Delete"
-msgstr "Verwijder"
-
-msgid "Receivers"
-msgstr "Ontvangers"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submission lifetime"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Voeg een nieuwe categoerie toe"
-
-msgid "add"
-msgstr "voeg toe"
-
-msgid "Receiver list"
-msgstr "Lijst ontvangers"
-
-msgid "Select file"
-msgstr "Selecteer een bestand"
-
-msgid "upload"
-msgstr "upload"
-
-msgid "Receiver name too long"
-msgstr "Naam ontvanger te lang"
-
-msgid "Email Address (Username)"
-msgstr "Emailadres (Gebruikersnaam)"
-
-msgid "Invalid email address"
-msgstr "Incorrect email adres"
-
-msgid "Contexts"
-msgstr "Categorieën"
-
-msgid "Add new receiver"
-msgstr "Voeg een nieuwe ontvanger toe"
-
-msgid "Email Address"
-msgstr "Email Adres"
-
-msgid "Tips"
-msgstr "Tips"
-
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-msgid "Tip ID"
-msgstr "Tip ID"
-
-msgid "Age"
-msgstr "Leeftijd"
-
-msgid "Views"
-msgstr "Aantal keer bekeken"
-
-msgid "Last Access"
-msgstr "Laatste toegang"
+msgid "Login"
+msgstr "Log in"
 
 msgid "Preferences and password management"
 msgstr "Voorkeuren en wachtwoord beheer"
@@ -613,7 +686,7 @@ msgid "Your username"
 msgstr "Uw gebruikersnaam"
 
 msgid "Change password"
-msgstr ""
+msgstr "Wijzig het wachtwoord"
 
 msgid "Notification settings"
 msgstr ""
@@ -645,8 +718,38 @@ msgstr ""
 msgid "Update notification settings"
 msgstr ""
 
+msgid "Tips"
+msgstr "Tips"
+
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+msgid "Tip ID"
+msgstr "Tip ID"
+
+msgid "Age"
+msgstr "Leeftijd"
+
+msgid "Views"
+msgstr "Aantal keer bekeken"
+
+msgid "Last Access"
+msgstr "Laatste toegang"
+
+msgid "Success!"
+msgstr "Succes!"
+
+msgid "Currently logged in "
+msgstr "Nu ingelogged"
+
+msgid "logout"
+msgstr "Log uit"
+
 msgid "Save changes"
 msgstr "Bewaar wijzigingen"
+
+msgid "Add files..."
+msgstr "Voeg bestanden toe"
 
 msgid "Danger!"
 msgstr "Pas op!"
@@ -684,30 +787,3 @@ msgstr "Download een kopie van de Tor Browser"
 
 msgid "before continuing."
 msgstr "voordat u verder gaat"
-
-msgid "Add files..."
-msgstr "Voeg bestanden toe"
-
-msgid "Welcome back captain!"
-msgstr "Welkom terug!"
-
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "Vanaf hier kunt u normale debug opdrachten draaien door de GLClient functies te emuleren"
-
-msgid "Cookies are not enabled!"
-msgstr "Cookies zijn niet ingeschakeld!"
-
-msgid "You will not be able to login."
-msgstr "U kunt niet inloggen"
-
-msgid "Login"
-msgstr "Log in"
-
-msgid "Success!"
-msgstr "Succes!"
-
-msgid "Currently logged in "
-msgstr "Nu ingelogged"
-
-msgid "logout"
-msgstr "Log uit"
