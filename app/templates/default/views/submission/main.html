@@ -47,10 +47,13 @@
         <p class="lead">{{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}</p>
 
         <p ng-show="node_info.configured">{{ "I want to report on" | translate }}
+
         <select class="contexts" ng-model="submission.current_context"
                 ng-options="context as context.name[selected_language] for context in submission.contexts">
         </select>
         </p>
+
+        <p>{{submission.current_context.description[selected_language]}}</p>
 
         <div ng-repeat="receiver in submission.current_context_receivers">
 
