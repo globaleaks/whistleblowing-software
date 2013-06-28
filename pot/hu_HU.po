@@ -1,10 +1,11 @@
 # 
 # Translators:
 # lemarietta <marietta@boun.cr>, 2013
+# lemarietta <marietta@boun.cr>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 18:48+0000\n"
+"PO-Revision-Date: 2013-06-28 23:42+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Hungarian (Hungary) (http://www.transifex.com/projects/p/globaleaks/language/hu_HU/)\n"
 "MIME-Version: 1.0\n"
@@ -12,111 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: hu_HU\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgid "New Submission"
-msgstr "Új feltöltés"
-
-msgid ""
-"You can customize this section by editing "
-"GLClient/app/templates/default/views/submission/main.html"
-msgstr "Ezt a részt a GLClient/app/templates/default/views/submission/main.html szerkesztésével változtathatja meg"
-
-msgid "Loading..."
-msgstr "Töltés..."
-
-msgid "This node is not configured."
-msgstr "Ezt a csomópontot nem konfigurálták."
-
-msgid "You will not be able to perform a submission."
-msgstr "Nem fog tudni dokumentumot feltölteni."
-
-msgid "Admin please configure a Context and associated Receivers using"
-msgstr "Admin, kérjük, állítsa be a Kontextust és a felvett Fogadókat ezzel:"
-
-msgid "Admin management interface"
-msgstr "Admin felület"
-
-msgid ""
-"Choose the context and receivers that will be sure to transform your "
-"submission into action!"
-msgstr "Válassza ki a kontextust és a fogadókat, akik a beküldött dokumentumokat tettekké alakítják!"
-
-msgid "I want to report on"
-msgstr "Szeretnék dokumentumot küldeni ide:"
-
-msgid ""
-"Enter the information that is relevant to your submission and possibly "
-"upload the relevant accompanying files"
-msgstr "Adja meg a beküldéshez fontosnak tartott információkat, és lehetőleg töltsön fel ehhez kapcsolódó fájlokat."
-
-msgid ""
-"To ensure your anonymity be sure that you are visiting this site using the"
-msgstr "Anonimitásának biztosításához győződjön meg arról, hogy az oldalt a következővel kereste fel"
-
-msgid "To further enhance your security, please follow these instructions:"
-msgstr "Biztonságának megerősítéséhez, kérjük, kövesse az alábbi instrukciókat:"
-
-msgid ""
-"In the event that you would like to remain anonymous, do not submit any "
-"personal information. (e.g. your name or relationship to the offender. Do "
-"not submit any information that can be traced back to you.)"
-msgstr "Ha meg szeretné őrizni névtelenségét, ne küldjön el semmilyen személyes információt! (Pl. a nevét vagy azt, hogy milyen kapcsolatban áll a bűnelkövetővel. Ne küldjön el semmi olyan információt, amely alapján visszakereshető lenne a kiléte!)"
-
-msgid ""
-"Please do not submit your report on a PC provided by your employer. "
-"Particularly an intranet connection may jeopardize your anonymity."
-msgstr "Ne küldjön semmit a munkáltatója által biztosított számítógépről, különösen ne használjon erre intranet hálózatot, mert azon keresztül nem biztosítható a névtelensége!"
-
-msgid "By checking the box below you agree to these terms and conditions."
-msgstr "Az alábbi doboz kipipálásával beleegyezik a felhasználási feltételekbe."
-
-msgid "Agree"
-msgstr "Megértettem"
-
-msgid "Previous Step"
-msgstr "Vissza"
-
-msgid "Next Step"
-msgstr "Következő"
-
-msgid "Submit"
-msgstr "Küldés"
-
-msgid "Submission Created!"
-msgstr "Feltöltés kész!"
-
-msgid ""
-"This receipt will allow you to login as the whistleblower for this Tip."
-msgstr ""
-
-msgid ""
-"Through this system receivers will be able to ask you questions on the Tip "
-"and you will be able to write a reply."
-msgstr ""
-
-msgid ""
-"You will also be able to keep track of who as viewed your submission and "
-"downloaded the files."
-msgstr ""
-
-msgid "Moreover, it will allow you to add other files to your submission."
-msgstr ""
-
-msgid ""
-"Beware of the fact that this receipt, if fallen into the wrong hands, will "
-"lead to identifying you as the whistleblower for this Tip."
-msgstr ""
-
-msgid ""
-"If you are interested in keeping it, please save it in a secure place and "
-"make sure it does not fall into the wrong hands"
-msgstr ""
-
-msgid "Please copy in the box below you receipt to access the tip interface."
-msgstr ""
-
-msgid "View Tip"
-msgstr "Füles megtekintése"
 
 msgid "Warning! You are not Anonymous."
 msgstr ""
@@ -144,6 +40,22 @@ msgid ""
 msgstr ""
 
 msgid "that’s a special software designed to enable Anonymous Web Browsing."
+msgstr ""
+
+msgid "Which of the following statements is true?"
+msgstr ""
+
+msgid "https protects my identity, but not the content of my leak"
+msgstr ""
+
+msgid ""
+"https protects the content of my leak of my message but not my identity"
+msgstr ""
+
+msgid "https does not protect the content of my leak nor my identity"
+msgstr ""
+
+msgid "https does protect my identity and the content of my leak"
 msgstr ""
 
 msgid ""
@@ -184,6 +96,9 @@ msgstr "Nem állított be csomópontot! Kérjük, haladjon tovább a következő
 
 msgid "Admin interface and configure at least one context"
 msgstr "Admin felület és beállítások legalább egy kontextus alapján"
+
+msgid "Loading..."
+msgstr "Töltés..."
 
 msgid "Are you a whistleblower?"
 msgstr "Szivárogtatni szeretne?"
@@ -302,112 +217,118 @@ msgstr "A lekérdezett füles nem létezik, vagy lejárt."
 msgid "Loading Tip page..."
 msgstr "Füles oldalának betöltése..."
 
-msgid "Files overview"
-msgstr "Fájlok listája"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "Ez a felület segít Önnek a csomópont anomáliák kiszűrésében."
+msgid "New Submission"
+msgstr "Új feltöltés"
 
 msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "Az alábbi táblázat a beküldött dokumentumok mappáit mutatja meg, és azt, hol van a helyük a belső adatbázisban."
+"You can customize this section by editing "
+"GLClient/app/templates/default/views/submission/main.html"
+msgstr "Ezt a részt a GLClient/app/templates/default/views/submission/main.html szerkesztésével változtathatja meg"
 
-msgid "Info"
-msgstr "Információk"
+msgid "This node is not configured."
+msgstr "Ezt a csomópontot nem konfigurálták."
 
-msgid "Size"
-msgstr "Méret"
+msgid "You will not be able to perform a submission."
+msgstr "Nem fog tudni dokumentumot feltölteni."
 
-msgid "References"
-msgstr "Hivatkozások"
+msgid "Admin please configure a Context and associated Receivers using"
+msgstr "Admin, kérjük, állítsa be a Kontextust és a felvett Fogadókat ezzel:"
 
-msgid "Password management"
-msgstr "Jelszó megváltoztatása"
+msgid "Admin management interface"
+msgstr "Admin felület"
 
-msgid "Current Password"
-msgstr "Jelenlegi jelszó"
+msgid ""
+"Choose the context and receivers that will be sure to transform your "
+"submission into action!"
+msgstr "Válassza ki a kontextust és a fogadókat, akik a beküldött dokumentumokat tettekké alakítják!"
 
-msgid "Required old password confirm"
-msgstr "Régi jelszó megerősítése"
+msgid "I want to report on"
+msgstr "Szeretnék dokumentumot küldeni ide:"
 
-msgid "New Password"
-msgstr "Új jelszó"
+msgid ""
+"Enter the information that is relevant to your submission and possibly "
+"upload the relevant accompanying files"
+msgstr "Adja meg a beküldéshez fontosnak tartott információkat, és lehetőleg töltsön fel ehhez kapcsolódó fájlokat."
 
-msgid "Your password is unsafe, it should have"
-msgstr "A megadott jelszó nem biztonságos, a következőket kell tartalmaznia:"
+msgid ""
+"To ensure your anonymity be sure that you are visiting this site using the"
+msgstr "Anonimitásának biztosításához győződjön meg arról, hogy az oldalt a következővel kereste fel"
 
-msgid "At least one letter"
-msgstr "Legaláb egy betűt"
+msgid ""
+"You acknowledge that failure to do so will result in the inability to "
+"technically protect your anonymity."
+msgstr ""
 
-msgid "At least one number"
-msgstr "Legalább egy szám legyen"
+msgid "To further enhance your security, please follow these instructions:"
+msgstr "Biztonságának megerősítéséhez, kérjük, kövesse az alábbi instrukciókat:"
 
-msgid "At least 8 keypress long"
-msgstr "Legalább 8 leütés hosszú"
+msgid ""
+"In the event that you would like to remain anonymous, do not submit any "
+"personal information. (e.g. your name or relationship to the offender. Do "
+"not submit any information that can be traced back to you.)"
+msgstr "Ha meg szeretné őrizni névtelenségét, ne küldjön el semmilyen személyes információt! (Pl. a nevét vagy azt, hogy milyen kapcsolatban áll a bűnelkövetővel. Ne küldjön el semmi olyan információt, amely alapján visszakereshető lenne a kiléte!)"
 
-msgid "Retype again your new password"
-msgstr "Új jelszó megerősítése"
+msgid ""
+"Please do not submit your report on a PC provided by your employer. "
+"Particularly an intranet connection may jeopardize your anonymity."
+msgstr "Ne küldjön semmit a munkáltatója által biztosított számítógépről, különösen ne használjon erre intranet hálózatot, mert azon keresztül nem biztosítható a névtelensége!"
 
-msgid "The two passwords do not match"
-msgstr "Nem egyeznek a beírt jelszavak"
+msgid "By checking the box below you agree to these terms and conditions."
+msgstr "Az alábbi doboz kipipálásával beleegyezik a felhasználási feltételekbe."
 
-msgid "Save"
-msgstr "Mentés"
+msgid "Agree"
+msgstr "Megértettem"
 
-msgid "Fields"
-msgstr "Mezők"
+msgid "Previous Step"
+msgstr "Vissza"
 
-msgid "add field"
-msgstr "mező hozzáadása"
+msgid "Next Step"
+msgstr "Következő"
 
-msgid "click to close"
-msgstr "a bezáráshoz kattinston ide"
+msgid "Submit"
+msgstr "Küldés"
 
-msgid "delete"
-msgstr "törlés"
+msgid "Submission Created!"
+msgstr "Feltöltés kész!"
 
-msgid "Hint"
-msgstr "Tipp"
+msgid ""
+"This receipt will allow you to login as the whistleblower for this Tip."
+msgstr ""
 
-msgid "Required"
-msgstr "Kötelező"
+msgid ""
+"Through this system receivers will be able to ask you questions on the Tip "
+"and you will be able to write a reply."
+msgstr ""
 
-msgid "Type"
-msgstr "Típus"
+msgid ""
+"You will also be able to keep track of who as viewed your submission and "
+"downloaded the files."
+msgstr ""
 
-msgid "Text"
-msgstr "Szöveg"
+msgid "Moreover, it will allow you to add other files to your submission."
+msgstr ""
 
-msgid "Radio Buttons"
-msgstr "Rádiógombok"
+msgid ""
+"Beware of the fact that this receipt, if fallen into the wrong hands, will "
+"lead to identifying you as the whistleblower for this Tip."
+msgstr ""
 
-msgid "Drop Menu (Select)"
-msgstr "Legördülő menü (Válasszon)"
+msgid ""
+"If you are interested in keeping it, please save it in a secure place and "
+"make sure it does not fall into the wrong hands"
+msgstr ""
 
-msgid "Multi-Select"
-msgstr "Több kiválasztása egyszerre"
+msgid "Please copy in the box below you receipt to access the tip interface."
+msgstr ""
 
-msgid "Checkboxes"
-msgstr "Ellenőrző lista"
+msgid "View Tip"
+msgstr "Füles megtekintése"
 
-msgid "Paragraph(s)"
-msgstr "Bekezdés(ek)"
+msgid "Content Settings"
+msgstr ""
 
-msgid "Number"
-msgstr "Szám"
-
-msgid "Url"
-msgstr "Link url"
-
-msgid "Phone"
-msgstr "Telefonszám"
-
-msgid "Email"
-msgstr "E-mail"
-
-msgid "add option"
-msgstr "opció hozzáadása"
+msgid "Administration Interface"
+msgstr ""
 
 msgid "General information"
 msgstr "Általános információk"
@@ -418,8 +339,17 @@ msgstr ""
 msgid "Current initiative logo"
 msgstr "Jelenlegi kezdeményezés logója"
 
+msgid "Select file"
+msgstr "Fájl kiválasztása"
+
+msgid "upload"
+msgstr "feltöltés"
+
 msgid "Node name"
 msgstr "Csomópont neve"
+
+msgid "Email"
+msgstr "E-mail"
 
 msgid "Enabled languages"
 msgstr ""
@@ -495,17 +425,14 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
-msgid "Tip Overview"
-msgstr "Füles leírása"
-
-msgid ""
-"This interface may help you understand how the Node is used by the "
-"whistleblower. We present you with the submissions present on the node and a"
-" few statistics on the kind of usage (activity, files, comments)."
-msgstr "Ez a felület segít Önnek abban, hogy megértse, hogyan használja a csomópontot a szivárogtató. Megmutatjuk önnek, mit töltöttek fel a csomóponton keresztül és a felhasználói statisztikákat (aktivitás, fájlok, hozzászólások)."
+msgid "Contexts Configuration"
+msgstr "Kontextus konfigurálása"
 
 msgid "Contexts list"
 msgstr "Kontextusok listája"
+
+msgid "Save"
+msgstr "Mentés"
 
 msgid "Delete"
 msgstr "Törlés"
@@ -543,38 +470,82 @@ msgstr "Új kontextus hozzáadása"
 msgid "add"
 msgstr "hozzáadás"
 
-msgid "Content Settin"
-msgstr "Tartalom beállítása"
+msgid "Fields"
+msgstr "Mezők"
 
-msgid "Receivers Configuration"
-msgstr "Fogadó létrehozása"
+msgid "add field"
+msgstr "mező hozzáadása"
 
-msgid "Contexts Configuration"
-msgstr "Kontextus konfigurálása"
+msgid "click to close"
+msgstr "a bezáráshoz kattinston ide"
+
+msgid "delete"
+msgstr "törlés"
+
+msgid "Hint"
+msgstr "Tipp"
+
+msgid "Required"
+msgstr "Kötelező"
+
+msgid "Type"
+msgstr "Típus"
+
+msgid "Text"
+msgstr "Szöveg"
+
+msgid "Radio Buttons"
+msgstr "Rádiógombok"
+
+msgid "Drop Menu (Select)"
+msgstr "Legördülő menü (Válasszon)"
+
+msgid "Multi-Select"
+msgstr "Több kiválasztása egyszerre"
+
+msgid "Checkboxes"
+msgstr "Ellenőrző lista"
+
+msgid "Paragraph(s)"
+msgstr "Bekezdés(ek)"
+
+msgid "Number"
+msgstr "Szám"
+
+msgid "Url"
+msgstr "Link url"
+
+msgid "Phone"
+msgstr "Telefonszám"
+
+msgid "add option"
+msgstr "opció hozzáadása"
+
+msgid "File Overview"
+msgstr ""
+
+msgid "Files overview"
+msgstr "Fájlok listája"
+
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "Ez a felület segít Önnek a csomópont anomáliák kiszűrésében."
+
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "Az alábbi táblázat a beküldött dokumentumok mappáit mutatja meg, és azt, hol van a helyük a belső adatbázisban."
+
+msgid "Info"
+msgstr "Információk"
+
+msgid "Size"
+msgstr "Méret"
+
+msgid "References"
+msgstr "Hivatkozások"
 
 msgid "Mail Configuration"
 msgstr "E-mail beállítások"
-
-msgid "Admin password"
-msgstr "Admin jelszó"
-
-msgid "Users Overview"
-msgstr "Felhasználói vélemények"
-
-msgid "Tips Overview"
-msgstr "Fülesek leírása"
-
-msgid "Files Overview"
-msgstr "Fájlok listája"
-
-msgid "Users overview"
-msgstr "Felhasználók listája"
-
-msgid ""
-"This interface shows the activity of the users of your node. This may be "
-"helpful in detecting anomalies and supporting the Receivers for of your "
-"node."
-msgstr "Ez a felület a csomópont felhasználóinak aktivitását mutatja. Ez segíthet az anomáliák felderítésében, és a csomópont fogadóinak támogatásában."
 
 msgid "Username"
 msgstr "Felhasználónév"
@@ -615,14 +586,44 @@ msgstr "Fájl e-mail sablonja"
 msgid "Activation Email template"
 msgstr "E-mail sablon az aktiváláshoz"
 
+msgid "Advanced Configuration"
+msgstr ""
+
+msgid "Password management"
+msgstr "Jelszó megváltoztatása"
+
+msgid "Current Password"
+msgstr "Jelenlegi jelszó"
+
+msgid "Required old password confirm"
+msgstr "Régi jelszó megerősítése"
+
+msgid "New Password"
+msgstr "Új jelszó"
+
+msgid "Your password is unsafe, it should have"
+msgstr "A megadott jelszó nem biztonságos, a következőket kell tartalmaznia:"
+
+msgid "At least one letter"
+msgstr "Legaláb egy betűt"
+
+msgid "At least one number"
+msgstr "Legalább egy szám legyen"
+
+msgid "At least 8 keypress long"
+msgstr "Legalább 8 leütés hosszú"
+
+msgid "Retype again your new password"
+msgstr "Új jelszó megerősítése"
+
+msgid "The two passwords do not match"
+msgstr "Nem egyeznek a beírt jelszavak"
+
+msgid "Receivers Configuration"
+msgstr "Fogadó létrehozása"
+
 msgid "Receiver list"
 msgstr "Fogadók listája"
-
-msgid "Select file"
-msgstr "Fájl kiválasztása"
-
-msgid "upload"
-msgstr "feltöltés"
 
 msgid "Receiver name too long"
 msgstr "Fogadó neve túl hosszú"
@@ -642,23 +643,65 @@ msgstr "Új fogadó hozzáadása"
 msgid "Email Address"
 msgstr "E-mail cím"
 
-msgid "Tips"
-msgstr "Fülesek"
+msgid "Content Settin"
+msgstr "Tartalom beállítása"
 
-msgid "Preferences"
-msgstr "Beállítások"
+msgid "Admin password"
+msgstr "Admin jelszó"
 
-msgid "Tip ID"
-msgstr "Füles azonosítója"
+msgid "Users Overview"
+msgstr "Felhasználói vélemények"
 
-msgid "Age"
-msgstr "Életkor"
+msgid "Tips Overview"
+msgstr "Fülesek leírása"
 
-msgid "Views"
-msgstr "Nézettség"
+msgid "Files Overview"
+msgstr "Fájlok listája"
 
-msgid "Last Access"
-msgstr "Legutóbbi belépés"
+msgid "Tip Overview"
+msgstr "Füles leírása"
+
+msgid ""
+"This interface may help you understand how the Node is used by the "
+"whistleblower. We present you with the submissions present on the node and a"
+" few statistics on the kind of usage (activity, files, comments)."
+msgstr "Ez a felület segít Önnek abban, hogy megértse, hogyan használja a csomópontot a szivárogtató. Megmutatjuk önnek, mit töltöttek fel a csomóponton keresztül és a felhasználói statisztikákat (aktivitás, fájlok, hozzászólások)."
+
+msgid "Users overview"
+msgstr "Felhasználók listája"
+
+msgid ""
+"This interface shows the activity of the users of your node. This may be "
+"helpful in detecting anomalies and supporting the Receivers for of your "
+"node."
+msgstr "Ez a felület a csomópont felhasználóinak aktivitását mutatja. Ez segíthet az anomáliák felderítésében, és a csomópont fogadóinak támogatásában."
+
+msgid "Welcome back captain!"
+msgstr "Isten hozta újra itt, Kapitány!"
+
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Innen futtathat általános hibaelhárító műveleteket a GLClient emulációjával."
+
+msgid "Login"
+msgstr "Bejelentkezés"
+
+msgid "Cookies are not enabled!"
+msgstr "Nem lehet sütiket használni!"
+
+msgid "You will not be able to login."
+msgstr "Nem fog tudni bejelentkezni."
+
+msgid "Username:"
+msgstr ""
+
+msgid "Password:"
+msgstr ""
+
+msgid "Your Preferences"
+msgstr ""
+
+msgid "Receiver Interface"
+msgstr ""
 
 msgid "Preferences and password management"
 msgstr "Beállítások és jelszó megváltoztatása"
@@ -699,48 +742,26 @@ msgstr ""
 msgid "Update notification settings"
 msgstr ""
 
-msgid "Save changes"
-msgstr "Változtatások mentése"
+msgid "Tips"
+msgstr "Fülesek"
 
-msgid "Danger!"
-msgstr "Veszély!"
+msgid "Preferences"
+msgstr "Beállítások"
 
-msgid "Congratulations!"
-msgstr "Gratulálunk!"
+msgid "Your Tips"
+msgstr ""
 
-msgid ""
-"It appears you are using Tor. To better protect your anonymity, be sure that"
-" you are using the"
-msgstr "Úgy tűnik, hogy csatlakozott a Torhoz. Névtelenségének megőrzéséhez ellenőrizze, hogy a következőt használja-e:"
+msgid "Tip ID"
+msgstr "Füles azonosítója"
 
-msgid ""
-"Keep in mind that using Tor Browser Bundle does not replace good security "
-"practices and it cannot protect you in the event your computer has been "
-"compromised. You are strongly advised to read the"
-msgstr "A Tor böngésző nem helyettesíti a megfelelő biztonsági előírások alkalmazását, és nem tudja Önt megóvni, ha a számítógépe már kompromittálódott. Fontos, hogy olvassa el a következőt:"
+msgid "Age"
+msgstr "Életkor"
 
-msgid "manual for practical security best practices."
-msgstr "biztonsági tanácsok kézikönyve"
+msgid "Views"
+msgstr "Nézettség"
 
-msgid "Warning!"
-msgstr "Figyelem!"
-
-msgid ""
-"We were not able to determine if you are anonymous or not, please proceed "
-"with care"
-msgstr "Nem tudtuk kideríteni, hogy anonim-e a hozzáférése, kérjük, hogy legyen körültekintő a továbbiakban"
-
-msgid "It appears your are not using Tor, thus you are strongly advised to "
-msgstr "Úgy tűnik, hogy nem csatlakozott a Torhoz, mindenképpen javasoljuk, hogy tegye meg"
-
-msgid "download a copy of the tor browser bundle"
-msgstr "tor böngésző letöltése"
-
-msgid "before continuing."
-msgstr "mielőtt folytatja."
-
-msgid "Add files..."
-msgstr "Fájlok hozzáadása..."
+msgid "Last Access"
+msgstr "Legutóbbi belépés"
 
 msgid "Your user has reach the maximum amount of access for this Tip"
 msgstr ""
@@ -841,17 +862,63 @@ msgstr ""
 msgid "Resource can be accessed only within Tor network"
 msgstr ""
 
-msgid "Welcome back captain!"
-msgstr "Isten hozta újra itt, Kapitány!"
+msgid "Success!"
+msgstr ""
 
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "Innen futtathat általános hibaelhárító műveleteket a GLClient emulációjával."
+msgid "Currently logged in "
+msgstr ""
 
-msgid "Cookies are not enabled!"
-msgstr "Nem lehet sütiket használni!"
+msgid "logout"
+msgstr ""
 
-msgid "You will not be able to login."
-msgstr "Nem fog tudni bejelentkezni."
+msgid "Save changes"
+msgstr "Változtatások mentése"
 
-msgid "Login"
-msgstr "Bejelentkezés"
+msgid "Add files..."
+msgstr "Fájlok hozzáadása..."
+
+msgid "Uploading files"
+msgstr ""
+
+msgid "Cancel all"
+msgstr ""
+
+msgid "Uploaded files"
+msgstr ""
+
+msgid "Danger!"
+msgstr "Veszély!"
+
+msgid "Congratulations!"
+msgstr "Gratulálunk!"
+
+msgid ""
+"It appears you are using Tor. To better protect your anonymity, be sure that"
+" you are using the"
+msgstr "Úgy tűnik, hogy csatlakozott a Torhoz. Névtelenségének megőrzéséhez ellenőrizze, hogy a következőt használja-e:"
+
+msgid ""
+"Keep in mind that using Tor Browser Bundle does not replace good security "
+"practices and it cannot protect you in the event your computer has been "
+"compromised. You are strongly advised to read the"
+msgstr "A Tor böngésző nem helyettesíti a megfelelő biztonsági előírások alkalmazását, és nem tudja Önt megóvni, ha a számítógépe már kompromittálódott. Fontos, hogy olvassa el a következőt:"
+
+msgid "manual for practical security best practices."
+msgstr "biztonsági tanácsok kézikönyve"
+
+msgid "Warning!"
+msgstr "Figyelem!"
+
+msgid ""
+"We were not able to determine if you are anonymous or not, please proceed "
+"with care"
+msgstr "Nem tudtuk kideríteni, hogy anonim-e a hozzáférése, kérjük, hogy legyen körültekintő a továbbiakban"
+
+msgid "It appears your are not using Tor, thus you are strongly advised to "
+msgstr "Úgy tűnik, hogy nem csatlakozott a Torhoz, mindenképpen javasoljuk, hogy tegye meg"
+
+msgid "download a copy of the tor browser bundle"
+msgstr "tor böngésző letöltése"
+
+msgid "before continuing."
+msgstr "mielőtt folytatja."

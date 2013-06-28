@@ -2,11 +2,14 @@
 # Translators:
 # uovobw <uovobw@gmail.com>, 2013
 # hermes <info@logioshermes.org>, 2013
+# hermes <info@logioshermes.org>, 2013
 # okno <mail@pawelzorzan.eu>, 2013
+# okno <mail@pawelzorzan.eu>, 2013
+# uovobw <uovobw@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 18:48+0000\n"
+"PO-Revision-Date: 2013-06-28 23:42+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
@@ -14,111 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Language: it\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-
-msgid "New Submission"
-msgstr "Nuovo invio dati"
-
-msgid ""
-"You can customize this section by editing "
-"GLClient/app/templates/default/views/submission/main.html"
-msgstr "Puoi personalizzare questa sezione editando il file "
-
-msgid "Loading..."
-msgstr "Caricamento..."
-
-msgid "This node is not configured."
-msgstr "Questo nodo non e' configurato"
-
-msgid "You will not be able to perform a submission."
-msgstr "Non sarai in grado di inviare il tuo contributo"
-
-msgid "Admin please configure a Context and associated Receivers using"
-msgstr "Amministratore per favore configura un contesto e i riceventi associati usando"
-
-msgid "Admin management interface"
-msgstr "Interfaccia amministrazione"
-
-msgid ""
-"Choose the context and receivers that will be sure to transform your "
-"submission into action!"
-msgstr "Scegli il contesto e i riceventi si faranno carico di trasformare la tua informazione in una azione!"
-
-msgid "I want to report on"
-msgstr "Vorrei riportare malapratica riguardo"
-
-msgid ""
-"Enter the information that is relevant to your submission and possibly "
-"upload the relevant accompanying files"
-msgstr "Inserisci le informazioni che sono rilevanti al tuo invio dati e se necessario invia anche i file ad essere collegate"
-
-msgid ""
-"To ensure your anonymity be sure that you are visiting this site using the"
-msgstr "Per aumentare il tuo anonimato assicurati di star visitando il sito usando"
-
-msgid "To further enhance your security, please follow these instructions:"
-msgstr "Per migliorare ulteriormente la tua sicurezza, segui queste istruzioni"
-
-msgid ""
-"In the event that you would like to remain anonymous, do not submit any "
-"personal information. (e.g. your name or relationship to the offender. Do "
-"not submit any information that can be traced back to you.)"
-msgstr "Nel caso in cui volessi rimanere anonimo, non inviare nessun tipo di dati personali. (per esempio, il tuo nome o il tuo rapporto nei confronti del cattivo. Non inviare alcuna informazione che potrebbe essere utilizzata per tracciarti)"
-
-msgid ""
-"Please do not submit your report on a PC provided by your employer. "
-"Particularly an intranet connection may jeopardize your anonymity."
-msgstr "Per favore non inviare alcun dato da un PC fornitoti dal tuo datore di lavoro. Una connessione in una rete locale potrebbe mettere a repentaglio il tuo anonimato"
-
-msgid "By checking the box below you agree to these terms and conditions."
-msgstr "Selezionando la spunta qui sotto accetti i termini e le condizioni"
-
-msgid "Agree"
-msgstr "Accetto"
-
-msgid "Previous Step"
-msgstr "Passo precedente"
-
-msgid "Next Step"
-msgstr "Passo successivo"
-
-msgid "Submit"
-msgstr "Invia"
-
-msgid "Submission Created!"
-msgstr "Dati inviati!"
-
-msgid ""
-"This receipt will allow you to login as the whistleblower for this Tip."
-msgstr ""
-
-msgid ""
-"Through this system receivers will be able to ask you questions on the Tip "
-"and you will be able to write a reply."
-msgstr ""
-
-msgid ""
-"You will also be able to keep track of who as viewed your submission and "
-"downloaded the files."
-msgstr ""
-
-msgid "Moreover, it will allow you to add other files to your submission."
-msgstr ""
-
-msgid ""
-"Beware of the fact that this receipt, if fallen into the wrong hands, will "
-"lead to identifying you as the whistleblower for this Tip."
-msgstr ""
-
-msgid ""
-"If you are interested in keeping it, please save it in a secure place and "
-"make sure it does not fall into the wrong hands"
-msgstr ""
-
-msgid "Please copy in the box below you receipt to access the tip interface."
-msgstr ""
-
-msgid "View Tip"
-msgstr "Mostra suggerimento"
 
 msgid "Warning! You are not Anonymous."
 msgstr ""
@@ -146,6 +44,22 @@ msgid ""
 msgstr ""
 
 msgid "that’s a special software designed to enable Anonymous Web Browsing."
+msgstr ""
+
+msgid "Which of the following statements is true?"
+msgstr ""
+
+msgid "https protects my identity, but not the content of my leak"
+msgstr ""
+
+msgid ""
+"https protects the content of my leak of my message but not my identity"
+msgstr ""
+
+msgid "https does not protect the content of my leak nor my identity"
+msgstr ""
+
+msgid "https does protect my identity and the content of my leak"
 msgstr ""
 
 msgid ""
@@ -186,6 +100,9 @@ msgstr "Il tuo nodo non e' configurato! Per favore procedia a"
 
 msgid "Admin interface and configure at least one context"
 msgstr "Dal pannello di amministazione configura almeno un contesto"
+
+msgid "Loading..."
+msgstr "Caricamento..."
 
 msgid "Are you a whistleblower?"
 msgstr "Vuoi segnalare attività illecite o fraudolente?"
@@ -304,112 +221,118 @@ msgstr "L'informazione richiesta non esiste o e' scaduta"
 msgid "Loading Tip page..."
 msgstr "Pagina del suggerimento in caricamento..."
 
-msgid "Files overview"
-msgstr "Panoramica dei files"
-
-msgid "This interface may help you spot anomalies in your Node."
-msgstr "Questa interfaccia potrebbe aiutarti a individuare anomalie nel tuo Nodo"
+msgid "New Submission"
+msgstr "Nuovo invio dati"
 
 msgid ""
-"The table below shows the files present in the submission directory, and "
-"their relationship with the internal database."
-msgstr "La tabella qui sotto mostra i file presenti nella directory delle informazioni e le loro relazioni all'interno del database"
+"You can customize this section by editing "
+"GLClient/app/templates/default/views/submission/main.html"
+msgstr "Puoi personalizzare questa sezione editando il file "
 
-msgid "Info"
-msgstr "Informazioni"
+msgid "This node is not configured."
+msgstr "Questo nodo non e' configurato"
 
-msgid "Size"
-msgstr "Dimensione"
+msgid "You will not be able to perform a submission."
+msgstr "Non sarai in grado di inviare il tuo contributo"
 
-msgid "References"
-msgstr "Referenze"
+msgid "Admin please configure a Context and associated Receivers using"
+msgstr "Amministratore per favore configura un contesto e i riceventi associati usando"
 
-msgid "Password management"
-msgstr "Gestione password"
+msgid "Admin management interface"
+msgstr "Interfaccia amministrazione"
 
-msgid "Current Password"
-msgstr "Password attuale"
+msgid ""
+"Choose the context and receivers that will be sure to transform your "
+"submission into action!"
+msgstr "Scegli il contesto e i riceventi si faranno carico di trasformare la tua informazione in una azione!"
 
-msgid "Required old password confirm"
-msgstr "Richiesta conferma della vecchia password"
+msgid "I want to report on"
+msgstr "Vorrei riportare malapratica riguardo"
 
-msgid "New Password"
-msgstr "Nuova Password"
+msgid ""
+"Enter the information that is relevant to your submission and possibly "
+"upload the relevant accompanying files"
+msgstr "Inserisci le informazioni che sono rilevanti al tuo invio dati e se necessario invia anche i file ad essere collegate"
 
-msgid "Your password is unsafe, it should have"
-msgstr "La tua password non e' sicura, dovrebbe avere"
+msgid ""
+"To ensure your anonymity be sure that you are visiting this site using the"
+msgstr "Per aumentare il tuo anonimato assicurati di star visitando il sito usando"
 
-msgid "At least one letter"
-msgstr "Almeno una lettera"
+msgid ""
+"You acknowledge that failure to do so will result in the inability to "
+"technically protect your anonymity."
+msgstr ""
 
-msgid "At least one number"
-msgstr "Almeno un numero"
+msgid "To further enhance your security, please follow these instructions:"
+msgstr "Per migliorare ulteriormente la tua sicurezza, segui queste istruzioni"
 
-msgid "At least 8 keypress long"
-msgstr "almeno 8 caratteri"
+msgid ""
+"In the event that you would like to remain anonymous, do not submit any "
+"personal information. (e.g. your name or relationship to the offender. Do "
+"not submit any information that can be traced back to you.)"
+msgstr "Nel caso in cui volessi rimanere anonimo, non inviare nessun tipo di dati personali. (per esempio, il tuo nome o il tuo rapporto nei confronti del cattivo. Non inviare alcuna informazione che potrebbe essere utilizzata per tracciarti)"
 
-msgid "Retype again your new password"
-msgstr "Conferma la tua nuova password"
+msgid ""
+"Please do not submit your report on a PC provided by your employer. "
+"Particularly an intranet connection may jeopardize your anonymity."
+msgstr "Per favore non inviare alcun dato da un PC fornitoti dal tuo datore di lavoro. Una connessione in una rete locale potrebbe mettere a repentaglio il tuo anonimato"
 
-msgid "The two passwords do not match"
-msgstr "Le due password non corrispondono"
+msgid "By checking the box below you agree to these terms and conditions."
+msgstr "Selezionando la spunta qui sotto accetti i termini e le condizioni"
 
-msgid "Save"
-msgstr "Salva"
+msgid "Agree"
+msgstr "Accetto"
 
-msgid "Fields"
-msgstr "Campi"
+msgid "Previous Step"
+msgstr "Passo precedente"
 
-msgid "add field"
-msgstr "aggiungi campo"
+msgid "Next Step"
+msgstr "Passo successivo"
 
-msgid "click to close"
-msgstr "Clickka per chiudere"
+msgid "Submit"
+msgstr "Invia"
 
-msgid "delete"
-msgstr "Cancella"
+msgid "Submission Created!"
+msgstr "Dati inviati!"
 
-msgid "Hint"
-msgstr "Suggerimento"
+msgid ""
+"This receipt will allow you to login as the whistleblower for this Tip."
+msgstr ""
 
-msgid "Required"
-msgstr "Richiesto"
+msgid ""
+"Through this system receivers will be able to ask you questions on the Tip "
+"and you will be able to write a reply."
+msgstr ""
 
-msgid "Type"
-msgstr "Tipo"
+msgid ""
+"You will also be able to keep track of who as viewed your submission and "
+"downloaded the files."
+msgstr ""
 
-msgid "Text"
-msgstr "Testo"
+msgid "Moreover, it will allow you to add other files to your submission."
+msgstr ""
 
-msgid "Radio Buttons"
-msgstr "Bottoni a selezione multipla"
+msgid ""
+"Beware of the fact that this receipt, if fallen into the wrong hands, will "
+"lead to identifying you as the whistleblower for this Tip."
+msgstr ""
 
-msgid "Drop Menu (Select)"
-msgstr "Menu' a tendina (selezione)"
+msgid ""
+"If you are interested in keeping it, please save it in a secure place and "
+"make sure it does not fall into the wrong hands"
+msgstr ""
 
-msgid "Multi-Select"
-msgstr "Selezione multipla"
+msgid "Please copy in the box below you receipt to access the tip interface."
+msgstr ""
 
-msgid "Checkboxes"
-msgstr "Lista spuntata"
+msgid "View Tip"
+msgstr "Mostra suggerimento"
 
-msgid "Paragraph(s)"
-msgstr "Paragrafo(i)"
+msgid "Content Settings"
+msgstr ""
 
-msgid "Number"
-msgstr "Numero"
-
-msgid "Url"
-msgstr "Url"
-
-msgid "Phone"
-msgstr "Telefono"
-
-msgid "Email"
-msgstr "Email"
-
-msgid "add option"
-msgstr "Aggiungi opzione"
+msgid "Administration Interface"
+msgstr ""
 
 msgid "General information"
 msgstr "Informazioni generali"
@@ -420,8 +343,17 @@ msgstr ""
 msgid "Current initiative logo"
 msgstr "Logo corrente dell'iniziativa"
 
+msgid "Select file"
+msgstr "Seleziona file"
+
+msgid "upload"
+msgstr "Upload"
+
 msgid "Node name"
 msgstr "Nome del nodo"
+
+msgid "Email"
+msgstr "Email"
 
 msgid "Enabled languages"
 msgstr ""
@@ -497,17 +429,14 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
-msgid "Tip Overview"
-msgstr "Panoramica suggerimenti"
-
-msgid ""
-"This interface may help you understand how the Node is used by the "
-"whistleblower. We present you with the submissions present on the node and a"
-" few statistics on the kind of usage (activity, files, comments)."
-msgstr "Questa interfaccia potrebbe aiutarti a capire in che modo il Nodo viene usato dai fornitori di informazioni. Ti verra' fornito un elenco delle informazioni inviate al nodo e un po di statistiche sul tipo di utilizzo (attivita', file, commenti)."
+msgid "Contexts Configuration"
+msgstr "Configurazione Contesti"
 
 msgid "Contexts list"
 msgstr "Lista dei contesti"
+
+msgid "Save"
+msgstr "Salva"
 
 msgid "Delete"
 msgstr "Cancella"
@@ -545,38 +474,82 @@ msgstr "Aggiungi nuovo contesto"
 msgid "add"
 msgstr "Aggiungi"
 
-msgid "Content Settin"
-msgstr "Configurazioni del contenuto"
+msgid "Fields"
+msgstr "Campi"
 
-msgid "Receivers Configuration"
-msgstr "Configurazione dei Riceventi"
+msgid "add field"
+msgstr "aggiungi campo"
 
-msgid "Contexts Configuration"
-msgstr "Configurazione Contesti"
+msgid "click to close"
+msgstr "Clickka per chiudere"
+
+msgid "delete"
+msgstr "Cancella"
+
+msgid "Hint"
+msgstr "Suggerimento"
+
+msgid "Required"
+msgstr "Richiesto"
+
+msgid "Type"
+msgstr "Tipo"
+
+msgid "Text"
+msgstr "Testo"
+
+msgid "Radio Buttons"
+msgstr "Bottoni a selezione multipla"
+
+msgid "Drop Menu (Select)"
+msgstr "Menu' a tendina (selezione)"
+
+msgid "Multi-Select"
+msgstr "Selezione multipla"
+
+msgid "Checkboxes"
+msgstr "Lista spuntata"
+
+msgid "Paragraph(s)"
+msgstr "Paragrafo(i)"
+
+msgid "Number"
+msgstr "Numero"
+
+msgid "Url"
+msgstr "Url"
+
+msgid "Phone"
+msgstr "Telefono"
+
+msgid "add option"
+msgstr "Aggiungi opzione"
+
+msgid "File Overview"
+msgstr ""
+
+msgid "Files overview"
+msgstr "Panoramica dei files"
+
+msgid "This interface may help you spot anomalies in your Node."
+msgstr "Questa interfaccia potrebbe aiutarti a individuare anomalie nel tuo Nodo"
+
+msgid ""
+"The table below shows the files present in the submission directory, and "
+"their relationship with the internal database."
+msgstr "La tabella qui sotto mostra i file presenti nella directory delle informazioni e le loro relazioni all'interno del database"
+
+msgid "Info"
+msgstr "Informazioni"
+
+msgid "Size"
+msgstr "Dimensione"
+
+msgid "References"
+msgstr "Referenze"
 
 msgid "Mail Configuration"
 msgstr "Configurazione Mail"
-
-msgid "Admin password"
-msgstr "Password amministratore"
-
-msgid "Users Overview"
-msgstr "Panoramica utenti"
-
-msgid "Tips Overview"
-msgstr "Panoramica dei suggerimenti"
-
-msgid "Files Overview"
-msgstr "Panoramica dei file"
-
-msgid "Users overview"
-msgstr "Panoramica utenti"
-
-msgid ""
-"This interface shows the activity of the users of your node. This may be "
-"helpful in detecting anomalies and supporting the Receivers for of your "
-"node."
-msgstr "Questa interfaccia mostra l'attivita' degli utenti del tuo nodo. Questo potrebbe essere utile nel rilevare anomalie e nel supportare i Riceventi del tuo nodo"
 
 msgid "Username"
 msgstr "Username"
@@ -617,14 +590,44 @@ msgstr "Modello email di File"
 msgid "Activation Email template"
 msgstr "Modello della mail di attivazione"
 
+msgid "Advanced Configuration"
+msgstr ""
+
+msgid "Password management"
+msgstr "Gestione password"
+
+msgid "Current Password"
+msgstr "Password attuale"
+
+msgid "Required old password confirm"
+msgstr "Richiesta conferma della vecchia password"
+
+msgid "New Password"
+msgstr "Nuova Password"
+
+msgid "Your password is unsafe, it should have"
+msgstr "La tua password non e' sicura, dovrebbe avere"
+
+msgid "At least one letter"
+msgstr "Almeno una lettera"
+
+msgid "At least one number"
+msgstr "Almeno un numero"
+
+msgid "At least 8 keypress long"
+msgstr "almeno 8 caratteri"
+
+msgid "Retype again your new password"
+msgstr "Conferma la tua nuova password"
+
+msgid "The two passwords do not match"
+msgstr "Le due password non corrispondono"
+
+msgid "Receivers Configuration"
+msgstr "Configurazione dei Riceventi"
+
 msgid "Receiver list"
 msgstr "Lista dei riceventi"
-
-msgid "Select file"
-msgstr "Seleziona file"
-
-msgid "upload"
-msgstr "Upload"
 
 msgid "Receiver name too long"
 msgstr "Nome del ricevente troppo lungo"
@@ -644,23 +647,65 @@ msgstr "Aggiungi nuovo Ricevente"
 msgid "Email Address"
 msgstr "Indirizzo Email"
 
-msgid "Tips"
-msgstr "suggerimenti"
+msgid "Content Settin"
+msgstr "Configurazioni del contenuto"
 
-msgid "Preferences"
-msgstr "Preferenze"
+msgid "Admin password"
+msgstr "Password amministratore"
 
-msgid "Tip ID"
-msgstr "ID del suggerimento"
+msgid "Users Overview"
+msgstr "Panoramica utenti"
 
-msgid "Age"
-msgstr "Eta'"
+msgid "Tips Overview"
+msgstr "Panoramica dei suggerimenti"
 
-msgid "Views"
-msgstr "Viste"
+msgid "Files Overview"
+msgstr "Panoramica dei file"
 
-msgid "Last Access"
-msgstr "Ultimo accesso"
+msgid "Tip Overview"
+msgstr "Panoramica suggerimenti"
+
+msgid ""
+"This interface may help you understand how the Node is used by the "
+"whistleblower. We present you with the submissions present on the node and a"
+" few statistics on the kind of usage (activity, files, comments)."
+msgstr "Questa interfaccia potrebbe aiutarti a capire in che modo il Nodo viene usato dai fornitori di informazioni. Ti verra' fornito un elenco delle informazioni inviate al nodo e un po di statistiche sul tipo di utilizzo (attivita', file, commenti)."
+
+msgid "Users overview"
+msgstr "Panoramica utenti"
+
+msgid ""
+"This interface shows the activity of the users of your node. This may be "
+"helpful in detecting anomalies and supporting the Receivers for of your "
+"node."
+msgstr "Questa interfaccia mostra l'attivita' degli utenti del tuo nodo. Questo potrebbe essere utile nel rilevare anomalie e nel supportare i Riceventi del tuo nodo"
+
+msgid "Welcome back captain!"
+msgstr "Bentornato a bordo, capitano!"
+
+msgid "From here you can run common debug tasks emulating GLClient functions"
+msgstr "Da qui puoi lanciare i comandi di debug che emulano le funzioni di un GLClient"
+
+msgid "Login"
+msgstr "Login"
+
+msgid "Cookies are not enabled!"
+msgstr "I cookies non sono abilitati"
+
+msgid "You will not be able to login."
+msgstr "Non sarai in grado di fare login"
+
+msgid "Username:"
+msgstr ""
+
+msgid "Password:"
+msgstr ""
+
+msgid "Your Preferences"
+msgstr ""
+
+msgid "Receiver Interface"
+msgstr ""
 
 msgid "Preferences and password management"
 msgstr "Gestione password e sicurezza"
@@ -701,48 +746,26 @@ msgstr ""
 msgid "Update notification settings"
 msgstr ""
 
-msgid "Save changes"
-msgstr "Salva"
+msgid "Tips"
+msgstr "suggerimenti"
 
-msgid "Danger!"
-msgstr "Pericolo!"
+msgid "Preferences"
+msgstr "Preferenze"
 
-msgid "Congratulations!"
-msgstr "Congratulazioni!"
+msgid "Your Tips"
+msgstr ""
 
-msgid ""
-"It appears you are using Tor. To better protect your anonymity, be sure that"
-" you are using the"
-msgstr "Sembra che tu stia usando Tor. Per meglio proteggere il tuo anonimato, assicurati di star usando"
+msgid "Tip ID"
+msgstr "ID del suggerimento"
 
-msgid ""
-"Keep in mind that using Tor Browser Bundle does not replace good security "
-"practices and it cannot protect you in the event your computer has been "
-"compromised. You are strongly advised to read the"
-msgstr "Ricorda sempre che usare il Tor Browser Bundle non basta e non si sostituisce alle buone norme di sicurezza, per esempio non puo' proteggerti se il tuo computer e' stato compromesso. Ti raccomandiamo di leggere il"
+msgid "Age"
+msgstr "Eta'"
 
-msgid "manual for practical security best practices."
-msgstr "manuale per le buone norme pratiche riguardo la sicurezza"
+msgid "Views"
+msgstr "Viste"
 
-msgid "Warning!"
-msgstr "Attenzione"
-
-msgid ""
-"We were not able to determine if you are anonymous or not, please proceed "
-"with care"
-msgstr "Non siamo stati in grado di determinare se sei anonimo o meno, per favore fai attenzione"
-
-msgid "It appears your are not using Tor, thus you are strongly advised to "
-msgstr "Sembrerebbe che tu non stia usando Tor, di conseguenza ti raccomandiamo fortemente di"
-
-msgid "download a copy of the tor browser bundle"
-msgstr "Scarica una copia del Tor Browser Bundle"
-
-msgid "before continuing."
-msgstr "Prima di continuare"
-
-msgid "Add files..."
-msgstr "Aggiungi files..."
+msgid "Last Access"
+msgstr "Ultimo accesso"
 
 msgid "Your user has reach the maximum amount of access for this Tip"
 msgstr ""
@@ -843,17 +866,63 @@ msgstr ""
 msgid "Resource can be accessed only within Tor network"
 msgstr ""
 
-msgid "Welcome back captain!"
-msgstr "Bentornato a bordo, capitano!"
+msgid "Success!"
+msgstr ""
 
-msgid "From here you can run common debug tasks emulating GLClient functions"
-msgstr "Da qui puoi lanciare i comandi di debug che emulano le funzioni di un GLClient"
+msgid "Currently logged in "
+msgstr ""
 
-msgid "Cookies are not enabled!"
-msgstr "I cookies non sono abilitati"
+msgid "logout"
+msgstr ""
 
-msgid "You will not be able to login."
-msgstr "Non sarai in grado di fare login"
+msgid "Save changes"
+msgstr "Salva"
 
-msgid "Login"
-msgstr "Login"
+msgid "Add files..."
+msgstr "Aggiungi files..."
+
+msgid "Uploading files"
+msgstr ""
+
+msgid "Cancel all"
+msgstr ""
+
+msgid "Uploaded files"
+msgstr ""
+
+msgid "Danger!"
+msgstr "Pericolo!"
+
+msgid "Congratulations!"
+msgstr "Congratulazioni!"
+
+msgid ""
+"It appears you are using Tor. To better protect your anonymity, be sure that"
+" you are using the"
+msgstr "Sembra che tu stia usando Tor. Per meglio proteggere il tuo anonimato, assicurati di star usando"
+
+msgid ""
+"Keep in mind that using Tor Browser Bundle does not replace good security "
+"practices and it cannot protect you in the event your computer has been "
+"compromised. You are strongly advised to read the"
+msgstr "Ricorda sempre che usare il Tor Browser Bundle non basta e non si sostituisce alle buone norme di sicurezza, per esempio non puo' proteggerti se il tuo computer e' stato compromesso. Ti raccomandiamo di leggere il"
+
+msgid "manual for practical security best practices."
+msgstr "manuale per le buone norme pratiche riguardo la sicurezza"
+
+msgid "Warning!"
+msgstr "Attenzione"
+
+msgid ""
+"We were not able to determine if you are anonymous or not, please proceed "
+"with care"
+msgstr "Non siamo stati in grado di determinare se sei anonimo o meno, per favore fai attenzione"
+
+msgid "It appears your are not using Tor, thus you are strongly advised to "
+msgstr "Sembrerebbe che tu non stia usando Tor, di conseguenza ti raccomandiamo fortemente di"
+
+msgid "download a copy of the tor browser bundle"
+msgstr "Scarica una copia del Tor Browser Bundle"
+
+msgid "before continuing."
+msgstr "Prima di continuare"
