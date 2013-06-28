@@ -10,7 +10,7 @@ function($scope, $rootScope, Authentication, $location,
   $scope.auth_landing_page = $cookies['auth_landing_page'];
   $scope.role = $cookies['role'];
   $scope.language = $cookies['language'];
-
+  
   Node.get(function(node_info) {
     $rootScope.available_languages = {};
     $rootScope.languages_supported = Translations.supported_languages;
