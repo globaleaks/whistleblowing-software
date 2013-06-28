@@ -509,8 +509,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         context.tip_max_access = 42;
         context.selectable_receiver = true;
         context.file_required = false;
-        context.tip_timetolive = (3600 * 24) * 15; 
-        context.submission_timetolive = (3600 * 24) * 2;
+        context.tip_timetolive = 15;
+        context.submission_timetolive = 48;
         context.receipt_regexp = '';
         context.receipt_description = {};
         context.submission_introduction = {};

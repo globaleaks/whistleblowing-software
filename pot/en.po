@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 01:10+0000\n"
+"PO-Revision-Date: 2013-06-28 18:37+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -115,6 +115,61 @@ msgstr "Please copy in the box below you receipt to access the tip interface."
 
 msgid "View Tip"
 msgstr "View Tip"
+
+msgid "Warning! You are not Anonymous."
+msgstr "Warning! You are not Anonymous."
+
+msgid "Wrong Answer!"
+msgstr "Wrong Answer!"
+
+msgid ""
+"With a HTTPS submission you are exposing yourself to the risks that someone "
+"else* will know that you have submitted something, without knowing what you "
+"have submitted."
+msgstr "With a HTTPS submission you are exposing yourself to the risks that someone else* will know that you have submitted something, without knowing what you have submitted."
+
+msgid ""
+"Instead with Anonymous Submission you are fully protected, is not even "
+"possible for a third party to know that you have submitted something."
+msgstr "Instead with Anonymous Submission you are fully protected, is not even possible for a third party to know that you have submitted something."
+
+msgid "We strongly advise you to go for an Anonymous Submission."
+msgstr "We strongly advise you to go for an Anonymous Submission."
+
+msgid ""
+"To make Anonymous Submission, instead of your usual Web Browser (Internet "
+"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+msgstr "To make Anonymous Submission, instead of your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+
+msgid "that’s a special software designed to enable Anonymous Web Browsing."
+msgstr "that’s a special software designed to enable Anonymous Web Browsing."
+
+msgid ""
+"You are aware of the risks involved, go ahead, consider yourself warned."
+msgstr "You are aware of the risks involved, go ahead, consider yourself warned."
+
+msgid ""
+"If you want protection of your identity and the content of your message, you"
+" should try to achieve anonimity by using the"
+msgstr "If you want protection of your identity and the content of your message, you should try to achieve anonimity by using the"
+
+msgid "to submit"
+msgstr "to submit"
+
+msgid "Next"
+msgstr "Next"
+
+msgid "Back"
+msgstr "Back"
+
+msgid "Proceed"
+msgstr "Proceed"
+
+msgid "Back to start"
+msgstr "Back to start"
+
+msgid "Proceed to submission"
+msgstr "Proceed to submission"
 
 msgid "Welcome to"
 msgstr "Welcome to"
@@ -438,6 +493,54 @@ msgstr "Update node"
 msgid "Update node and Tor2Web options"
 msgstr "Update node and Tor2Web options"
 
+msgid "Tip Overview"
+msgstr "Tip Overview"
+
+msgid ""
+"This interface may help you understand how the Node is used by the "
+"whistleblower. We present you with the submissions present on the node and a"
+" few statistics on the kind of usage (activity, files, comments)."
+msgstr "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions present on the node and a few statistics on the kind of usage (activity, files, comments)."
+
+msgid "Contexts list"
+msgstr "Contexts list"
+
+msgid "Delete"
+msgstr "Delete"
+
+msgid "Receivers"
+msgstr "Receivers"
+
+msgid "Advanced settings"
+msgstr "Advanced settings"
+
+msgid "Submission Disclaimer"
+msgstr "Submission Disclaimer"
+
+msgid "Incomplete submissions expiry time (hours)"
+msgstr "Incomplete submissions expiry time (hours)"
+
+msgid "Submitted Tip expiry time (days)"
+msgstr "Submitted Tip expiry time (days)"
+
+msgid "Receipt fromat (regular expression) "
+msgstr "Receipt fromat (regular expression) "
+
+msgid "Require almost one file on Tip"
+msgstr "Require almost one file on Tip"
+
+msgid "Receipt description"
+msgstr "Receipt description"
+
+msgid "Submission Introduction"
+msgstr "Submission Introduction"
+
+msgid "Add new context"
+msgstr "Add new context"
+
+msgid "add"
+msgstr "add"
+
 msgid "Content Settin"
 msgstr "Content Settin"
 
@@ -461,15 +564,6 @@ msgstr "Tips Overview"
 
 msgid "Files Overview"
 msgstr "Files Overview"
-
-msgid "Tip Overview"
-msgstr "Tip Overview"
-
-msgid ""
-"This interface may help you understand how the Node is used by the "
-"whistleblower. We present you with the submissions present on the node and a"
-" few statistics on the kind of usage (activity, files, comments)."
-msgstr "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions present on the node and a few statistics on the kind of usage (activity, files, comments)."
 
 msgid "Users overview"
 msgstr "Users overview"
@@ -518,45 +612,6 @@ msgstr "File Email template"
 
 msgid "Activation Email template"
 msgstr "Activation Email template"
-
-msgid "Contexts list"
-msgstr "Contexts list"
-
-msgid "Delete"
-msgstr "Delete"
-
-msgid "Receivers"
-msgstr "Receivers"
-
-msgid "Advanced settings"
-msgstr "Advanced settings"
-
-msgid "Submission Disclaimer"
-msgstr "Submission Disclaimer"
-
-msgid "Submission lifetime"
-msgstr "Submission lifetime"
-
-msgid "Tip day life"
-msgstr "Tip day life"
-
-msgid "File Required"
-msgstr "File Required"
-
-msgid "Receipt regexp"
-msgstr "Receipt regexp"
-
-msgid "Receipt description"
-msgstr "Receipt description"
-
-msgid "Submission Introduction"
-msgstr "Submission Introduction"
-
-msgid "Add new context"
-msgstr "Add new context"
-
-msgid "add"
-msgstr "add"
 
 msgid "Receiver list"
 msgstr "Receiver list"

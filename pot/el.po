@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 01:10+0000\n"
+"PO-Revision-Date: 2013-06-28 18:37+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Greek (http://www.transifex.com/projects/p/globaleaks/language/el/)\n"
 "MIME-Version: 1.0\n"
@@ -118,6 +118,61 @@ msgstr ""
 
 msgid "View Tip"
 msgstr "Εμφάνιση συμβουλής"
+
+msgid "Warning! You are not Anonymous."
+msgstr ""
+
+msgid "Wrong Answer!"
+msgstr ""
+
+msgid ""
+"With a HTTPS submission you are exposing yourself to the risks that someone "
+"else* will know that you have submitted something, without knowing what you "
+"have submitted."
+msgstr ""
+
+msgid ""
+"Instead with Anonymous Submission you are fully protected, is not even "
+"possible for a third party to know that you have submitted something."
+msgstr ""
+
+msgid "We strongly advise you to go for an Anonymous Submission."
+msgstr ""
+
+msgid ""
+"To make Anonymous Submission, instead of your usual Web Browser (Internet "
+"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+msgstr ""
+
+msgid "that’s a special software designed to enable Anonymous Web Browsing."
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved, go ahead, consider yourself warned."
+msgstr ""
+
+msgid ""
+"If you want protection of your identity and the content of your message, you"
+" should try to achieve anonimity by using the"
+msgstr ""
+
+msgid "to submit"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Proceed"
+msgstr ""
+
+msgid "Back to start"
+msgstr ""
+
+msgid "Proceed to submission"
+msgstr ""
 
 msgid "Welcome to"
 msgstr ""
@@ -441,6 +496,54 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
+msgid "Tip Overview"
+msgstr "Επισκοπηση συμβουλης"
+
+msgid ""
+"This interface may help you understand how the Node is used by the "
+"whistleblower. We present you with the submissions present on the node and a"
+" few statistics on the kind of usage (activity, files, comments)."
+msgstr "Αυτή η διεπαφή μπορεί να σας βοηθήσει να καταλάβετε πώς ο κόμβος χρησιμοποιείται από τον πληροφοριοδότη. Σας παρουσιάζουμε τους ισχυρισμούς παρουσιάσης στον κόμβο και μερικά στατιστικά στοιχεία σχετικά με το είδος της χρήσης (δραστηριότητα, τα αρχεία, τα σχόλια)."
+
+msgid "Contexts list"
+msgstr "Λιστα πλαισιων"
+
+msgid "Delete"
+msgstr "Διαγραφή"
+
+msgid "Receivers"
+msgstr "Δέκτες"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Incomplete submissions expiry time (hours)"
+msgstr ""
+
+msgid "Submitted Tip expiry time (days)"
+msgstr ""
+
+msgid "Receipt fromat (regular expression) "
+msgstr ""
+
+msgid "Require almost one file on Tip"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Προσθήκη νέου πλαισίου"
+
+msgid "add"
+msgstr "προσθηκη"
+
 msgid "Content Settin"
 msgstr "Περιεχόμενο Settin"
 
@@ -464,15 +567,6 @@ msgstr "Επισκοπηση συμβουλων"
 
 msgid "Files Overview"
 msgstr "Επισκοπηση αρχειων"
-
-msgid "Tip Overview"
-msgstr "Επισκοπηση συμβουλης"
-
-msgid ""
-"This interface may help you understand how the Node is used by the "
-"whistleblower. We present you with the submissions present on the node and a"
-" few statistics on the kind of usage (activity, files, comments)."
-msgstr "Αυτή η διεπαφή μπορεί να σας βοηθήσει να καταλάβετε πώς ο κόμβος χρησιμοποιείται από τον πληροφοριοδότη. Σας παρουσιάζουμε τους ισχυρισμούς παρουσιάσης στον κόμβο και μερικά στατιστικά στοιχεία σχετικά με το είδος της χρήσης (δραστηριότητα, τα αρχεία, τα σχόλια)."
 
 msgid "Users overview"
 msgstr "Επισκοπηση χρηστων"
@@ -521,45 +615,6 @@ msgstr "Αρχείο πρότυπου Email"
 
 msgid "Activation Email template"
 msgstr "Ενεργοποίηση του πρότυπου Email"
-
-msgid "Contexts list"
-msgstr "Λιστα πλαισιων"
-
-msgid "Delete"
-msgstr "Διαγραφή"
-
-msgid "Receivers"
-msgstr "Δέκτες"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submission lifetime"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Προσθήκη νέου πλαισίου"
-
-msgid "add"
-msgstr "προσθηκη"
 
 msgid "Receiver list"
 msgstr "Λίστα δέκτων"

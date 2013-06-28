@@ -5,7 +5,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 01:10+0000\n"
+"PO-Revision-Date: 2013-06-28 18:37+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -40,7 +40,7 @@ msgstr "Administratie management interface"
 msgid ""
 "Choose the context and receivers that will be sure to transform your "
 "submission into action!"
-msgstr "Kies de categorie waaronder uw bestanden vallen en de ontvangers die de bestanden zullen ontvangen."
+msgstr "Kies de categorie waaronder uw bestanden vallen en selecteer de media organisatie(s) die de bestanden zullen ontvangen."
 
 msgid "I want to report on"
 msgstr "Ik wil rapporteren over"
@@ -111,7 +111,7 @@ msgstr ""
 msgid ""
 "If you are interested in keeping it, please save it in a secure place and "
 "make sure it does not fall into the wrong hands"
-msgstr ""
+msgstr "Wanneer u dit bestand wilt houden, bewaar het dan op een veilige plaats en laat het niet in verkeerde handen vallen."
 
 msgid "Please copy in the box below you receipt to access the tip interface."
 msgstr ""
@@ -119,8 +119,63 @@ msgstr ""
 msgid "View Tip"
 msgstr "Kijkers tip"
 
-msgid "Welcome to"
+msgid "Warning! You are not Anonymous."
 msgstr ""
+
+msgid "Wrong Answer!"
+msgstr ""
+
+msgid ""
+"With a HTTPS submission you are exposing yourself to the risks that someone "
+"else* will know that you have submitted something, without knowing what you "
+"have submitted."
+msgstr ""
+
+msgid ""
+"Instead with Anonymous Submission you are fully protected, is not even "
+"possible for a third party to know that you have submitted something."
+msgstr ""
+
+msgid "We strongly advise you to go for an Anonymous Submission."
+msgstr ""
+
+msgid ""
+"To make Anonymous Submission, instead of your usual Web Browser (Internet "
+"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+msgstr ""
+
+msgid "that’s a special software designed to enable Anonymous Web Browsing."
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved, go ahead, consider yourself warned."
+msgstr ""
+
+msgid ""
+"If you want protection of your identity and the content of your message, you"
+" should try to achieve anonimity by using the"
+msgstr ""
+
+msgid "to submit"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Proceed"
+msgstr ""
+
+msgid "Back to start"
+msgstr ""
+
+msgid "Proceed to submission"
+msgstr ""
+
+msgid "Welcome to"
+msgstr "Welkom bij"
 
 msgid "Blow the Whistle"
 msgstr "Blow the Whistle"
@@ -184,19 +239,19 @@ msgid "Files"
 msgstr "Documenten"
 
 msgid "show only files not yet downloaded"
-msgstr ""
+msgstr "Toon alleen de bestanden die nog niet gedownload zijn"
 
 msgid "show all the files"
-msgstr ""
+msgstr "Toon alle bestanden"
 
 msgid "download"
-msgstr ""
+msgstr "Download"
 
 msgid "show sha256 checksum"
 msgstr ""
 
 msgid "(click again to hide)"
-msgstr ""
+msgstr "(klik nog een keer om te verbergen)"
 
 msgid "Use the"
 msgstr "Gebruik de"
@@ -359,7 +414,7 @@ msgid "General information"
 msgstr "Algemene informatie"
 
 msgid "You're running GlobaLeaks version"
-msgstr ""
+msgstr "U gebruikt GlobaLeaks versie"
 
 msgid "Current initiative logo"
 msgstr "Logo huidig initiatief"
@@ -368,7 +423,7 @@ msgid "Node name"
 msgstr "Naam node"
 
 msgid "Enabled languages"
-msgstr ""
+msgstr "Schakel talen in"
 
 msgid "Tor Hidden Service (hostname)"
 msgstr "Tor Hidden Service (hostnaam)"
@@ -397,7 +452,7 @@ msgid "Permit Administative login via Tor2Web"
 msgstr ""
 
 msgid "now Enabled:"
-msgstr ""
+msgstr "Nu geactiveerd:"
 
 msgid ""
 "Admin can access via Tor2Web. It's safe only if you're using a dedicated "
@@ -441,6 +496,54 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
+msgid "Tip Overview"
+msgstr "Overzicht tips"
+
+msgid ""
+"This interface may help you understand how the Node is used by the "
+"whistleblower. We present you with the submissions present on the node and a"
+" few statistics on the kind of usage (activity, files, comments)."
+msgstr "Deze interface helpt u te begrijpen hoe de Node is gebruikt door de lekker. We laten u de geüploade bestanden zien die aanwezig zijn op de Node en een aantal statistieken over het gebruik (activiteit, bestanden, comments)"
+
+msgid "Contexts list"
+msgstr "Lijst met categorieën"
+
+msgid "Delete"
+msgstr "Verwijder"
+
+msgid "Receivers"
+msgstr "Ontvangers"
+
+msgid "Advanced settings"
+msgstr "Meer instellingen"
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Incomplete submissions expiry time (hours)"
+msgstr ""
+
+msgid "Submitted Tip expiry time (days)"
+msgstr ""
+
+msgid "Receipt fromat (regular expression) "
+msgstr ""
+
+msgid "Require almost one file on Tip"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Voeg een nieuwe categoerie toe"
+
+msgid "add"
+msgstr "voeg toe"
+
 msgid "Content Settin"
 msgstr "Inhouds instellingen"
 
@@ -464,15 +567,6 @@ msgstr "Overzicht tips"
 
 msgid "Files Overview"
 msgstr "Bestandsoverzicht"
-
-msgid "Tip Overview"
-msgstr "Overzicht tips"
-
-msgid ""
-"This interface may help you understand how the Node is used by the "
-"whistleblower. We present you with the submissions present on the node and a"
-" few statistics on the kind of usage (activity, files, comments)."
-msgstr "Deze interface helpt u te begrijpen hoe de Node is gebruikt door de lekker. We laten u de geüploade bestanden zien die aanwezig zijn op de Node en een aantal statistieken over het gebruik (activiteit, bestanden, comments)"
 
 msgid "Users overview"
 msgstr "Overzicht gebruikers"
@@ -514,52 +608,13 @@ msgid "Comment Email template"
 msgstr "Reactie e-mail template"
 
 msgid "File Email Subject"
-msgstr ""
+msgstr "Bestandsnaam e-mail"
 
 msgid "File Email template"
 msgstr "Bestand e-mail template"
 
 msgid "Activation Email template"
 msgstr "Activeer e-mail template"
-
-msgid "Contexts list"
-msgstr "Lijst met categorieën"
-
-msgid "Delete"
-msgstr "Verwijder"
-
-msgid "Receivers"
-msgstr "Ontvangers"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submission lifetime"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Voeg een nieuwe categoerie toe"
-
-msgid "add"
-msgstr "voeg toe"
 
 msgid "Receiver list"
 msgstr "Lijst ontvangers"
@@ -613,7 +668,7 @@ msgid "Your username"
 msgstr "Uw gebruikersnaam"
 
 msgid "Change password"
-msgstr ""
+msgstr "Wijzig het wachtwoord"
 
 msgid "Notification settings"
 msgstr ""
