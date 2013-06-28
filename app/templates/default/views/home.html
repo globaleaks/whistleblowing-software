@@ -101,7 +101,8 @@
       {{ "Welcome to" | translate }} {{node_info.name}}
     </h1>
     <a ng-click="goToSubmission()" ng-hide="!node_info.configured"
-        class="btn btn-primary btn-large">{{ "Blow the Whistle" | translate }}</a>
+        class="btn btn-primary btn-large">
+        {{ "Blow the Whistle" | translate }}</a>
 
     <div ng-hide="node_info.configured">
       {{ "Your node is not configured! Please, proceed via" | translate }}
