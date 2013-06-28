@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 18:37+0000\n"
+"PO-Revision-Date: 2013-06-28 18:48+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -740,6 +740,105 @@ msgstr "before continuing."
 msgid "Add files..."
 msgstr "Add files..."
 
+msgid "Your user has reach the maximum amount of access for this Tip"
+msgstr "Your user has reach the maximum amount of access for this Tip"
+
+msgid "The specified comment was not found"
+msgstr "The specified comment was not found"
+
+msgid "Not found a Context with the specified GUS identifier"
+msgstr "Not found a Context with the specified GUS identifier"
+
+msgid "Some parameters explicit in the context creation can't works together"
+msgstr "Some parameters explicit in the context creation can't works together"
+
+msgid "You've reached the maximum amount of download for this file"
+msgstr "You've reached the maximum amount of download for this file"
+
+msgid "A field expected to be unique is already present ("
+msgstr "A field expected to be unique is already present ("
+
+msgid "Not found a File with the specified GUS identifier"
+msgstr "Not found a File with the specified GUS identifier"
+
+msgid "Operation Forbidden"
+msgstr "Operation Forbidden"
+
+msgid "GLTypesError not set"
+msgstr "GLTypesError not set"
+
+msgid "The GPG key proposed can't be imported"
+msgstr "The GPG key proposed can't be imported"
+
+msgid "The upload request overcome the Mb limits (31457280 Mb)"
+msgstr "The upload request overcome the Mb limits (31457280 Mb)"
+
+msgid "Internal Server Error ("
+msgstr "Internal Server Error ("
+
+msgid "Authentication Failed"
+msgstr "Authentication Failed"
+
+msgid "The specified host do not match a configured one"
+msgstr "The specified host do not match a configured one"
+
+msgid "Invalid Input Format ["
+msgstr "Invalid Input Format ["
+
+msgid "The specified old password is not valid"
+msgstr "The specified old password is not valid"
+
+msgid "Invalid Authenticated in scope:"
+msgstr "Invalid Authenticated in scope:"
+
+msgid "Authentication in Tip failed"
+msgstr "Authentication in Tip failed"
+
+msgid "No email was specified"
+msgstr "No email was specified"
+
+msgid "Node not found"
+msgstr "Node not found"
+
+msgid "Not Authenticated"
+msgstr "Not Authenticated"
+
+msgid "Not found a Receiver with the specified GUS identifier"
+msgstr "Not found a Receiver with the specified GUS identifier"
+
+msgid "The file uploaded has a reserved name"
+msgstr "The file uploaded has a reserved name"
+
+msgid "The time for your role ("
+msgstr "The time for your role ("
+
+msgid ") is"
+msgstr ") is"
+
+msgid "Statistics Disabled"
+msgstr "Statistics Disabled"
+
+msgid "The submission tried to be update has been already finalized"
+msgstr "The submission tried to be update has been already finalized"
+
+msgid "Submission do not validate the input fields ["
+msgstr "Submission do not validate the input fields ["
+
+msgid "Not found a Submission with the specified GUS identifier"
+msgstr "Not found a Submission with the specified GUS identifier"
+
+msgid "Invalid timerange supply for"
+msgstr "Invalid timerange supply for"
+
+msgid "Not found a Tip with the specified GUS identifier"
+msgstr "Not found a Tip with the specified GUS identifier"
+
+msgid "Pertinence evaluation has been already expressed"
+msgstr "Pertinence evaluation has been already expressed"
+
+msgid "Resource can be accessed only within Tor network"
+msgstr "Resource can be accessed only within Tor network"
+
 msgid "Welcome back captain!"
 msgstr "Welcome back captain!"
 
@@ -754,12 +853,3 @@ msgstr "You will not be able to login."
 
 msgid "Login"
 msgstr "Login"
-
-msgid "Success!"
-msgstr "Success!"
-
-msgid "Currently logged in "
-msgstr "Currently logged in "
-
-msgid "logout"
-msgstr "logout"

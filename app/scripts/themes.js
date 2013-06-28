@@ -1,5 +1,7 @@
 angular.module('GLClient.themes', [])
   .factory('Templates', function() {
+      // XXX do not add the "default" string to this file as it is used by
+      // build-custom-glclient.sh for matching.
       var selected_theme = 'default';
 
       return {
