@@ -113,28 +113,28 @@
                       <div class="span4">
                           <br>
                           <br>
-                          <label>{{ "Submission lifetime" | translate }}</label>
+                          <label>{{ "Incomplete submissions expiry time (hours)" | translate }}</label>
                           <input type="number"
                                  required
                                  ng-model="context.submission_timetolive"
                                  value="{{context.submission_timetolive}}">
 
-                          <label>{{ "Tip day life" | translate }}</label>
+                          <label>{{ "Submitted Tip expiry time (days)" | translate }}</label>
                           <input type="number"
                                  required
                                  ng-model="context.tip_timetolive"
                                  value="{{context.tip_timetolive}}">
+                          <label>{{ "Receipt fromat (regular expression) " | translate }}</label>
+                              <input type="text"
+                                     required
+                                     ng-model="context.receipt_regexp"
+                                     value="{{context.receipt_regexp}}">
                           <label>
                               <input type="checkbox"
                                      value="context.file_required"
                                      ng-model="context.file_required" />
-                              {{ "File Required" | translate }}
+                              {{ "Require almost one file on Tip" | translate }}
                           </label>
-                          <label>{{ "Receipt regexp" | translate }}</label>
-                          <input type="text"
-                                 required
-                                 ng-model="context.receipt_regexp"
-                                 value="{{context.receipt_regexp}}">
                           <!--
                           <label>Tags</label>
                           <input type="text"

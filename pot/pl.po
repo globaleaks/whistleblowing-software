@@ -4,7 +4,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 01:10+0000\n"
+"PO-Revision-Date: 2013-06-28 18:37+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Polish (http://www.transifex.com/projects/p/globaleaks/language/pl/)\n"
 "MIME-Version: 1.0\n"
@@ -117,6 +117,61 @@ msgstr ""
 
 msgid "View Tip"
 msgstr "Pokaż Porada"
+
+msgid "Warning! You are not Anonymous."
+msgstr ""
+
+msgid "Wrong Answer!"
+msgstr ""
+
+msgid ""
+"With a HTTPS submission you are exposing yourself to the risks that someone "
+"else* will know that you have submitted something, without knowing what you "
+"have submitted."
+msgstr ""
+
+msgid ""
+"Instead with Anonymous Submission you are fully protected, is not even "
+"possible for a third party to know that you have submitted something."
+msgstr ""
+
+msgid "We strongly advise you to go for an Anonymous Submission."
+msgstr ""
+
+msgid ""
+"To make Anonymous Submission, instead of your usual Web Browser (Internet "
+"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+msgstr ""
+
+msgid "that’s a special software designed to enable Anonymous Web Browsing."
+msgstr ""
+
+msgid ""
+"You are aware of the risks involved, go ahead, consider yourself warned."
+msgstr ""
+
+msgid ""
+"If you want protection of your identity and the content of your message, you"
+" should try to achieve anonimity by using the"
+msgstr ""
+
+msgid "to submit"
+msgstr ""
+
+msgid "Next"
+msgstr ""
+
+msgid "Back"
+msgstr ""
+
+msgid "Proceed"
+msgstr ""
+
+msgid "Back to start"
+msgstr ""
+
+msgid "Proceed to submission"
+msgstr ""
 
 msgid "Welcome to"
 msgstr ""
@@ -440,6 +495,54 @@ msgstr ""
 msgid "Update node and Tor2Web options"
 msgstr ""
 
+msgid "Tip Overview"
+msgstr "Przegląd Porada"
+
+msgid ""
+"This interface may help you understand how the Node is used by the "
+"whistleblower. We present you with the submissions present on the node and a"
+" few statistics on the kind of usage (activity, files, comments)."
+msgstr "Ten interfejs może pomóc zrozumieć, jak węzeł jest używany przez informatora. Prezentujemy Państwu przesłanie przedstawienia na węźle i kilka statystyk dotyczących rodzaju użytkowania (działalność, plików, komentarzy)."
+
+msgid "Contexts list"
+msgstr "List Konteksty"
+
+msgid "Delete"
+msgstr "Usunąć"
+
+msgid "Receivers"
+msgstr "Odbiorniki"
+
+msgid "Advanced settings"
+msgstr ""
+
+msgid "Submission Disclaimer"
+msgstr ""
+
+msgid "Incomplete submissions expiry time (hours)"
+msgstr ""
+
+msgid "Submitted Tip expiry time (days)"
+msgstr ""
+
+msgid "Receipt fromat (regular expression) "
+msgstr ""
+
+msgid "Require almost one file on Tip"
+msgstr ""
+
+msgid "Receipt description"
+msgstr ""
+
+msgid "Submission Introduction"
+msgstr ""
+
+msgid "Add new context"
+msgstr "Dodaj nowy kontekst"
+
+msgid "add"
+msgstr "Dodaj"
+
 msgid "Content Settin"
 msgstr "Zawartość Ustawień"
 
@@ -463,15 +566,6 @@ msgstr "Przegląd Porady"
 
 msgid "Files Overview"
 msgstr "Przegląd Pliki"
-
-msgid "Tip Overview"
-msgstr "Przegląd Porada"
-
-msgid ""
-"This interface may help you understand how the Node is used by the "
-"whistleblower. We present you with the submissions present on the node and a"
-" few statistics on the kind of usage (activity, files, comments)."
-msgstr "Ten interfejs może pomóc zrozumieć, jak węzeł jest używany przez informatora. Prezentujemy Państwu przesłanie przedstawienia na węźle i kilka statystyk dotyczących rodzaju użytkowania (działalność, plików, komentarzy)."
 
 msgid "Users overview"
 msgstr "Przegląd użytkowników"
@@ -520,45 +614,6 @@ msgstr ""
 
 msgid "Activation Email template"
 msgstr "Aktywacja Email szablon"
-
-msgid "Contexts list"
-msgstr "List Konteksty"
-
-msgid "Delete"
-msgstr "Usunąć"
-
-msgid "Receivers"
-msgstr "Odbiorniki"
-
-msgid "Advanced settings"
-msgstr ""
-
-msgid "Submission Disclaimer"
-msgstr ""
-
-msgid "Submission lifetime"
-msgstr ""
-
-msgid "Tip day life"
-msgstr ""
-
-msgid "File Required"
-msgstr ""
-
-msgid "Receipt regexp"
-msgstr ""
-
-msgid "Receipt description"
-msgstr ""
-
-msgid "Submission Introduction"
-msgstr ""
-
-msgid "Add new context"
-msgstr "Dodaj nowy kontekst"
-
-msgid "add"
-msgstr "Dodaj"
 
 msgid "Receiver list"
 msgstr "Lista odbiorniki"
