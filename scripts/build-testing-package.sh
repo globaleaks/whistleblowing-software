@@ -15,7 +15,6 @@ OPTIONS:
 EOF
 }
 
-SIGN=1
 while getopts “hc:b:” OPTION
 do
   case $OPTION in
