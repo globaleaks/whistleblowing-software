@@ -1,5 +1,6 @@
 # 
 # Translators:
+# Jvb <drwhax@gmail.com>, 2013
 # miekevanheesewijk <mieke@netdem.nl>, 2013
 # miekevanheesewijk <mieke@netdem.nl>, 2013
 # nllz <niels@digitaldissidents.org>, 2013
@@ -7,7 +8,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 23:42+0000\n"
+"PO-Revision-Date: 2013-06-30 10:25+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "Language-Team: Dutch (http://www.transifex.com/projects/p/globaleaks/language/nl/)\n"
 "MIME-Version: 1.0\n"
@@ -17,75 +18,76 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 msgid "Warning! You are not Anonymous."
-msgstr ""
+msgstr "Pas op! U bent momenteel niet anoniem."
 
 msgid "Wrong Answer!"
-msgstr ""
+msgstr "Verkeerde antwoord!"
 
 msgid ""
 "With a HTTPS submission you are exposing yourself to the risks that someone "
-"else* will know that you have submitted something, without knowing what you "
+"else will know that you have submitted something, without knowing what you "
 "have submitted."
 msgstr ""
 
 msgid ""
-"Instead with Anonymous Submission you are fully protected, is not even "
-"possible for a third party to know that you have submitted something."
+"Instead with an Anonymous Submission you are fully protected, it is not "
+"possible for a third party to know that you have submitted something nor "
+"what you have submitted."
 msgstr ""
 
 msgid "We strongly advise you to go for an Anonymous Submission."
-msgstr ""
+msgstr "Wij adviseren u ten eerste om naar de Anonieme Indiening te gaan."
 
 msgid ""
-"To make Anonymous Submission, instead of your usual Web Browser (Internet "
-"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+"To make an Anonymous Submission, instead of using your usual Web Browser "
+"(Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the"
 msgstr ""
 
 msgid "that’s a special software designed to enable Anonymous Web Browsing."
-msgstr ""
+msgstr "dat is speciale software die ontworpen is om je anoniem op internet te begeven"
 
 msgid "Which of the following statements is true?"
-msgstr ""
+msgstr "Welke van de volgende beweringen is waar?"
 
 msgid "https protects my identity, but not the content of my leak"
-msgstr ""
+msgstr "https beschermt mijn identiteit, maar niet de inhoud van mijn documenten"
 
 msgid ""
 "https protects the content of my leak of my message but not my identity"
-msgstr ""
+msgstr "HTTPS beschermd tegen de content van mijn lek maar niet mijn identiteit"
 
 msgid "https does not protect the content of my leak nor my identity"
-msgstr ""
+msgstr "https beschermt mijn identiteit en de inhoud van mijn documenten niet "
 
 msgid "https does protect my identity and the content of my leak"
-msgstr ""
+msgstr "https beschermt mijn identiteit en de inhoud van mijn documenten"
 
 msgid ""
 "You are aware of the risks involved, go ahead, consider yourself warned."
-msgstr ""
+msgstr "Je bent je bewust van de risico's, ga je gang, beschouw jezelf gewaarschuwd."
 
 msgid ""
 "If you want protection of your identity and the content of your message, you"
 " should try to achieve anonimity by using the"
-msgstr ""
+msgstr "Als u bescherming van uw identiteit en de inhoud van uw bericht wilt, moet je proberen om anonimiteit te bereiken door het gebruik van de"
 
 msgid "to submit"
-msgstr ""
+msgstr "om in te dienen"
 
 msgid "Next"
-msgstr ""
+msgstr "Volgende"
 
 msgid "Back"
-msgstr ""
+msgstr "Terug"
 
 msgid "Proceed"
-msgstr ""
+msgstr "Gaat u verder"
 
 msgid "Back to start"
-msgstr ""
+msgstr "Terug naar start"
 
 msgid "Proceed to submission"
-msgstr ""
+msgstr "Gaat u verder met uw uploaden van uw documenten"
 
 msgid "Welcome to"
 msgstr "Welkom bij"
@@ -164,7 +166,7 @@ msgid "download"
 msgstr "Download"
 
 msgid "show sha256 checksum"
-msgstr ""
+msgstr "Laat sha256 checksums zien"
 
 msgid "(click again to hide)"
 msgstr "(klik nog een keer om te verbergen)"
@@ -181,7 +183,7 @@ msgstr "om de betrouwbaarheid van het bestand te verifiëren"
 msgid ""
 "On unix based systems this can be done by running the following command in "
 "the directory of the files"
-msgstr ""
+msgstr "Op unix gebaseerde systemen kan dit alleen gebeuren door het uitvoeren van het volgende commando in de map van de bestanden."
 
 msgid "No file has been uploaded!"
 msgstr "Er is geen bestand geupload!"
@@ -259,7 +261,7 @@ msgstr "Om ervoor te zorgen uw anonimiteit gegarandeerd kan worden, bezoekt u de
 msgid ""
 "You acknowledge that failure to do so will result in the inability to "
 "technically protect your anonymity."
-msgstr ""
+msgstr "Je erkent dat het niet behalen van de resultaten zal leiden tot het onvermogen van technisch bescherming van uw anonimiteit."
 
 msgid "To further enhance your security, please follow these instructions:"
 msgstr "Om uw veiligheid verder te verbeteren, volg de volgende instructies:"
@@ -295,25 +297,25 @@ msgstr "Bijdrage gecreëerd "
 
 msgid ""
 "This receipt will allow you to login as the whistleblower for this Tip."
-msgstr ""
+msgstr "Dit ontvangstbewijs geeft je de mogelijk om in te loggen als de klokkenluider voor deze Tip."
 
 msgid ""
 "Through this system receivers will be able to ask you questions on the Tip "
 "and you will be able to write a reply."
-msgstr ""
+msgstr "Via dit systeem zijn ontvangers in staat om vragen te stellen over de Tip en jij kunt antwoorden hierop."
 
 msgid ""
 "You will also be able to keep track of who as viewed your submission and "
 "downloaded the files."
-msgstr ""
+msgstr "Je kunt ook bijhouden wie je indiening heeft gezien en gedownload."
 
 msgid "Moreover, it will allow you to add other files to your submission."
-msgstr ""
+msgstr "Bovendien zal het u toestaan ​​om andere bestanden toe te voegen aan uw indiening."
 
 msgid ""
 "Beware of the fact that this receipt, if fallen into the wrong hands, will "
 "lead to identifying you as the whistleblower for this Tip."
-msgstr ""
+msgstr "Pas op voor het feit dat als het ontvangstbewijs in de verkeerde handen valt, dit te herleiden is dat jij de klokkenluider bent voor deze Tip."
 
 msgid ""
 "If you are interested in keeping it, please save it in a secure place and "
@@ -321,16 +323,16 @@ msgid ""
 msgstr "Wanneer u dit bestand wilt houden, bewaar het dan op een veilige plaats en laat het niet in verkeerde handen vallen."
 
 msgid "Please copy in the box below you receipt to access the tip interface."
-msgstr ""
+msgstr "Kopieër alstublieft in het vak hieronder het ontvangstbewijs om toegang te krijgen tot de Tip interface."
 
 msgid "View Tip"
 msgstr "Kijkers tip"
 
 msgid "Content Settings"
-msgstr ""
+msgstr "Inhoud instellingen"
 
 msgid "Administration Interface"
-msgstr ""
+msgstr "Administratie Interface"
 
 msgid "General information"
 msgstr "Algemene informatie"
@@ -372,60 +374,54 @@ msgid ""
 msgstr "Ongeldig formaat voor publieke website (zou https://thirteenchars123.tor2web.org moeten zijn)"
 
 msgid "Edit Tor2Web accessibility table "
-msgstr ""
+msgstr "Wijzig hier de Tor2Web toegankelijkheidstabel"
 
-msgid ""
-"Edit Tor2Web accessibility table - [click again to close and don't edit "
-"options] "
+msgid "Edit Tor2Web accessibility table - [click again to close]"
 msgstr ""
 
 msgid "Permit Administative login via Tor2Web"
-msgstr ""
+msgstr "Sta een administratieve login toe via Tor2Web"
 
 msgid "now Enabled:"
 msgstr "Nu geactiveerd:"
 
 msgid ""
-"Admin can access via Tor2Web. It's safe only if you're using a dedicated "
+"Admin can access via Tor2Web. This is safe only if you're using a dedicated "
 "Tor2Web server."
 msgstr ""
 
 msgid "Permit Receiver preferences management via Tor2Web"
-msgstr ""
+msgstr "Toelaten ontvanger voorkeurs beheer via Tor2Web"
 
 msgid ""
-"Receivers can access via Tor2Web. It's dangerous, and we suggest some "
-"training with Tor and Enigmail."
+"Receivers can access via Tor2Web. This is dangerous and it's recommended "
+"instead to train receivers in the use of Tor and Enigmail."
 msgstr ""
 
 msgid "Permit Tip access, file download and upload via Tor2Web"
+msgstr "Toelaten Tip toegang, downloaden bestand en uploaden via Tor2Web"
+
+msgid "Tip can be accessed via Tor2Web by whistleblowers and receiver."
 msgstr ""
 
-msgid "Tip can access via Tor2Web, by whistleblowers and receiver."
-msgstr ""
-
-msgid "Permit Public resources access via Tor2Web"
-msgstr ""
-
-msgid "Public GlobaLeaks resource can access via Tor2Web. No dangers on it."
-msgstr ""
-
-msgid "Permit Submission via Tor2Web"
+msgid "Permit access of public resources via Tor2Web"
 msgstr ""
 
 msgid ""
-"Whistleblowers can perform submission with their anonymity at risks, via "
-"Tor2Web."
+"Public GlobaLeaks resources can be accessed via Tor2Web. This is safe to do."
 msgstr ""
 
-msgid "Note: Need to be clicked two times, to disable an access"
+msgid "Permit Submissions via Tor2Web"
+msgstr ""
+
+msgid "Whistleblowers can perform submission with no anonymity via Tor2Web."
 msgstr ""
 
 msgid "Update node"
-msgstr ""
+msgstr "Update node"
 
 msgid "Update node and Tor2Web options"
-msgstr ""
+msgstr "Update node en Tor2Web opties"
 
 msgid "Contexts Configuration"
 msgstr "Instellen Categorieën "
@@ -446,24 +442,24 @@ msgid "Advanced settings"
 msgstr "Meer instellingen"
 
 msgid "Submission Disclaimer"
-msgstr ""
+msgstr "Disclaimer voor ontvangers"
 
 msgid "Incomplete submissions expiry time (hours)"
-msgstr ""
+msgstr "Incomplete indienings vervaltijd (uren)"
 
 msgid "Submitted Tip expiry time (days)"
+msgstr "Ingezonden Tip vervaltijd (dagen)"
+
+msgid "Receipt format (regular expression)"
 msgstr ""
 
-msgid "Receipt fromat (regular expression) "
-msgstr ""
-
-msgid "Require almost one file on Tip"
+msgid "Require at least one file to be uploaded"
 msgstr ""
 
 msgid "Receipt description"
-msgstr ""
+msgstr "Beschrijving ontvangstbewijs"
 
-msgid "Submission Introduction"
+msgid "Submission introduction text"
 msgstr ""
 
 msgid "Add new context"
@@ -524,13 +520,13 @@ msgid "add option"
 msgstr "Voeg een optie toe"
 
 msgid "File Overview"
-msgstr ""
+msgstr "Overzicht bestanden"
 
 msgid "Files overview"
 msgstr "Overzicht bestanden"
 
 msgid "This interface may help you spot anomalies in your Node."
-msgstr "Deze interface kan je helpen anomaliën in je Node te detecteren."
+msgstr "Deze interface kan je helpen afwijkingen in je Node te detecteren."
 
 msgid ""
 "The table below shows the files present in the submission directory, and "
@@ -568,13 +564,13 @@ msgid "Notification templates"
 msgstr "Bericht templates"
 
 msgid "Tip Email Subject"
-msgstr ""
+msgstr "Tip Email Onderwerp"
 
 msgid "Tip Email template"
 msgstr "Tip E-mail template"
 
 msgid "Comment Email Subject"
-msgstr ""
+msgstr "Reactie Email Onderwerp"
 
 msgid "Comment Email template"
 msgstr "Reactie e-mail template"
@@ -589,7 +585,7 @@ msgid "Activation Email template"
 msgstr "Activeer e-mail template"
 
 msgid "Advanced Configuration"
-msgstr ""
+msgstr "Geavanceerde configuratie"
 
 msgid "Password management"
 msgstr "Wachtwoord beheer"
@@ -694,16 +690,16 @@ msgid "You will not be able to login."
 msgstr "U kunt niet inloggen"
 
 msgid "Username:"
-msgstr ""
+msgstr "Gebruikersnaam:"
 
 msgid "Password:"
-msgstr ""
+msgstr "Wachtwoord:"
 
 msgid "Your Preferences"
-msgstr ""
+msgstr "Uw voorkeuren"
 
 msgid "Receiver Interface"
-msgstr ""
+msgstr "Ontvangersinterface"
 
 msgid "Preferences and password management"
 msgstr "Voorkeuren en wachtwoord beheer"
@@ -711,38 +707,45 @@ msgstr "Voorkeuren en wachtwoord beheer"
 msgid "Your username"
 msgstr "Uw gebruikersnaam"
 
+msgid "Old password confirmation required"
+msgstr ""
+
+msgid "At least 8 characters"
+msgstr ""
+
+msgid "Type your new password again"
+msgstr ""
+
 msgid "Change password"
 msgstr "Wijzig het wachtwoord"
 
 msgid "Notification settings"
-msgstr ""
+msgstr "Notificatie instellingen"
 
 msgid "Enable Tip notification"
-msgstr ""
+msgstr "Tip melding aanzetten"
 
-msgid "Every new Tip for you, will trigger an email with the link."
+msgid "Every new Tip you receive will trigger an email with a link to it."
 msgstr ""
 
 msgid "Enable Comment notification"
-msgstr ""
+msgstr "Aanzetten commentaar notificatie"
 
 msgid ""
-"Every comment, written by whistleblower or receivers, trigger an email."
+"Every comment, written by the whistleblower or the receivers, will trigger "
+"an email."
 msgstr ""
 
 msgid "Enable File notification"
-msgstr ""
+msgstr "Aanzetten Bestand notificatie"
 
 msgid ""
-"Every file available for download, its notified bvia mail, with related "
-"info."
-msgstr ""
-
-msgid "Note: Need to be clicked two times, to disable an access."
+"For every file available for download you will be notified via email with "
+"related information."
 msgstr ""
 
 msgid "Update notification settings"
-msgstr ""
+msgstr "Update notificatie instellingen"
 
 msgid "Tips"
 msgstr "Tips"
@@ -751,7 +754,7 @@ msgid "Preferences"
 msgstr "Voorkeuren"
 
 msgid "Your Tips"
-msgstr ""
+msgstr "Uw ingezonden bestanden"
 
 msgid "Tip ID"
 msgstr "Tip ID"
@@ -766,112 +769,112 @@ msgid "Last Access"
 msgstr "Laatste toegang"
 
 msgid "Your user has reach the maximum amount of access for this Tip"
-msgstr ""
+msgstr "Jou gebruiker heeft het maximale aantal toegang bereikt voor deze Tip"
 
 msgid "The specified comment was not found"
-msgstr ""
+msgstr "De opgegeven reactie werd niet gevonden"
 
 msgid "Not found a Context with the specified GUS identifier"
-msgstr ""
+msgstr "Niet gevonden: Een Context met de gespecificeerde GUS identificator"
 
 msgid "Some parameters explicit in the context creation can't works together"
-msgstr ""
+msgstr "Sommige parameters expliciet in de context creatie kunnen niet samen werken"
 
 msgid "You've reached the maximum amount of download for this file"
-msgstr ""
+msgstr "Je hebt het maximale aantal downloads bereikt voor dit bestand"
 
 msgid "A field expected to be unique is already present ("
-msgstr ""
+msgstr "Een veld welke verwacht is uniek te zijn is al present ("
 
 msgid "Not found a File with the specified GUS identifier"
-msgstr ""
+msgstr "Niet gevonden: Een bestand met de gespecifieerde GUS identificator"
 
 msgid "Operation Forbidden"
-msgstr ""
+msgstr "Operatie Verboden"
 
 msgid "GLTypesError not set"
-msgstr ""
+msgstr "GLTypesError niet ingesteld"
 
 msgid "The GPG key proposed can't be imported"
-msgstr ""
+msgstr "De voorgestelde GPG sleutel kan niet worden geimporteerd"
 
 msgid "The upload request overcome the Mb limits (31457280 Mb)"
-msgstr ""
+msgstr "De upload aanvraag overstijgt het Mb limiet (31457280 Mb)"
 
 msgid "Internal Server Error ("
-msgstr ""
+msgstr "Interne Server Error ("
 
 msgid "Authentication Failed"
-msgstr ""
+msgstr "Authenticatie is gefaald"
 
 msgid "The specified host do not match a configured one"
-msgstr ""
+msgstr "De gespecificeerde host matched niet met de geconfigureerde"
 
 msgid "Invalid Input Format ["
-msgstr ""
+msgstr "Ongeldig Input Formaat ["
 
 msgid "The specified old password is not valid"
-msgstr ""
+msgstr "Het gespecificeerde oude wachtwoord is niet geldig"
 
 msgid "Invalid Authenticated in scope:"
-msgstr ""
+msgstr "Ongeldig geauthenticeerd in scope:"
 
 msgid "Authentication in Tip failed"
-msgstr ""
+msgstr "Authenticatie in Tip is mislukt"
 
 msgid "No email was specified"
-msgstr ""
+msgstr "Geen email was gespecificeerd"
 
 msgid "Node not found"
-msgstr ""
+msgstr "Node is niet gevonden"
 
 msgid "Not Authenticated"
-msgstr ""
+msgstr "Niet geverifieerd"
 
 msgid "Not found a Receiver with the specified GUS identifier"
-msgstr ""
+msgstr "Niet gevonden: Een ontvanger met de gespecificeerde GUS identificator"
 
 msgid "The file uploaded has a reserved name"
-msgstr ""
+msgstr "Het geüploade bestand heeft een gereserveerde naam"
 
 msgid "The time for your role ("
-msgstr ""
+msgstr "De tijd voor uw rol ("
 
 msgid ") is"
-msgstr ""
+msgstr ") is"
 
 msgid "Statistics Disabled"
-msgstr ""
+msgstr "Statistieken zijn uitgeschakeld"
 
 msgid "The submission tried to be update has been already finalized"
-msgstr ""
+msgstr "De indiening heeft geprobeerd te updaten welke al reeds is afgesloten"
 
 msgid "Submission do not validate the input fields ["
-msgstr ""
+msgstr "Indiening valideerd niet de invoervelden ["
 
 msgid "Not found a Submission with the specified GUS identifier"
-msgstr ""
+msgstr "Niet gevonden: Een indiening met de gespecificeerde GUS identificator"
 
 msgid "Invalid timerange supply for"
-msgstr ""
+msgstr "Ongeldige voorziening van tijdsbereik"
 
 msgid "Not found a Tip with the specified GUS identifier"
-msgstr ""
+msgstr "Niet gevonden: Een tip met de gespecificeerde GUS identificator"
 
 msgid "Pertinence evaluation has been already expressed"
-msgstr ""
+msgstr "Relevantie evaluatie is al uitgesproken"
 
 msgid "Resource can be accessed only within Tor network"
-msgstr ""
+msgstr "Bron is alleen toegankelijk binnen Tor netwerk"
 
 msgid "Success!"
-msgstr ""
+msgstr "Succes!"
 
 msgid "Currently logged in "
-msgstr ""
+msgstr "Nu bent u ingelogd"
 
 msgid "logout"
-msgstr ""
+msgstr "uitloggen"
 
 msgid "Save changes"
 msgstr "Bewaar wijzigingen"
@@ -880,13 +883,13 @@ msgid "Add files..."
 msgstr "Voeg bestanden toe"
 
 msgid "Uploading files"
-msgstr ""
+msgstr "Bestanden aan het uploaden"
 
 msgid "Cancel all"
-msgstr ""
+msgstr "Annuleer alles"
 
 msgid "Uploaded files"
-msgstr ""
+msgstr "Geuploade bestanden"
 
 msgid "Danger!"
 msgstr "Pas op!"
@@ -914,7 +917,7 @@ msgstr "Waarschuwing!"
 msgid ""
 "We were not able to determine if you are anonymous or not, please proceed "
 "with care"
-msgstr "We kunnen niet nagaan of u anoniem bent, vervolg voorzichtig"
+msgstr "We kunnen niet nagaan of u op dit moment anoniem bent, vervolg voorzichtig"
 
 msgid "It appears your are not using Tor, thus you are strongly advised to "
 msgstr "U gebruikt geen Tor, u wordt dringend geadviseerd dit wel te doen"
