@@ -107,12 +107,6 @@
                   <div class="row" ng-show="advanced_edit">
 
                       <div class="span4">
-                          <label>{{ "Submission Disclaimer" | translate }}</label>
-                          <textarea required
-                                    ng-model="context.submission_disclaimer[selected_language]">{{context.submission_disclaimer[selected_language]}}</textarea>
-                      </div>
-
-                      <div class="span4">
                           <br>
                           <br>
                           <label>{{ "Incomplete submissions expiry time (hours)" | translate }}</label>
@@ -148,19 +142,6 @@
                           <br>
                       </div>
 
-                      <div class="span4">
-                          <label>{{ "Receipt description" | translate }}</label>
-                          <textarea required
-                                    ng-model="context.receipt_description[selected_language]">{{context.recepit_description[selected_language]}}
-                          </textarea>
-                      </div>
-
-                      <div class="span4">
-                          <label>{{ "Submission introduction text" | translate }}</label>
-                          <textarea required
-                                    ng-model="context.submission_introduction[selected_language]">{{context.submission_introduction[selected_language]}}
-                          </textarea>
-                      </div>
                   </div>
 
               </div>
