@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-28 23:42+0000\n"
+"PO-Revision-Date: 2013-06-30 10:25+0000\n"
 "Last-Translator: hermes <info@logioshermes.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,22 +19,23 @@ msgstr "Wrong Answer!"
 
 msgid ""
 "With a HTTPS submission you are exposing yourself to the risks that someone "
-"else* will know that you have submitted something, without knowing what you "
+"else will know that you have submitted something, without knowing what you "
 "have submitted."
-msgstr "With a HTTPS submission you are exposing yourself to the risks that someone else* will know that you have submitted something, without knowing what you have submitted."
+msgstr "With a HTTPS submission you are exposing yourself to the risks that someone else will know that you have submitted something, without knowing what you have submitted."
 
 msgid ""
-"Instead with Anonymous Submission you are fully protected, is not even "
-"possible for a third party to know that you have submitted something."
-msgstr "Instead with Anonymous Submission you are fully protected, is not even possible for a third party to know that you have submitted something."
+"Instead with an Anonymous Submission you are fully protected, it is not "
+"possible for a third party to know that you have submitted something nor "
+"what you have submitted."
+msgstr "Instead with an Anonymous Submission you are fully protected, it is not possible for a third party to know that you have submitted something nor what you have submitted."
 
 msgid "We strongly advise you to go for an Anonymous Submission."
 msgstr "We strongly advise you to go for an Anonymous Submission."
 
 msgid ""
-"To make Anonymous Submission, instead of your usual Web Browser (Internet "
-"Explorer, Chrome, Firefox, Opera, Etc) you should use the"
-msgstr "To make Anonymous Submission, instead of your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, Etc) you should use the"
+"To make an Anonymous Submission, instead of using your usual Web Browser "
+"(Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the"
+msgstr "To make an Anonymous Submission, instead of using your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the"
 
 msgid "that’s a special software designed to enable Anonymous Web Browsing."
 msgstr "that’s a special software designed to enable Anonymous Web Browsing."
@@ -369,10 +370,8 @@ msgstr "Invalid format for public site (should be https://thirteenchars123.tor2w
 msgid "Edit Tor2Web accessibility table "
 msgstr "Edit Tor2Web accessibility table "
 
-msgid ""
-"Edit Tor2Web accessibility table - [click again to close and don't edit "
-"options] "
-msgstr "Edit Tor2Web accessibility table - [click again to close and don't edit options] "
+msgid "Edit Tor2Web accessibility table - [click again to close]"
+msgstr "Edit Tor2Web accessibility table - [click again to close]"
 
 msgid "Permit Administative login via Tor2Web"
 msgstr "Permit Administative login via Tor2Web"
@@ -381,40 +380,36 @@ msgid "now Enabled:"
 msgstr "now Enabled:"
 
 msgid ""
-"Admin can access via Tor2Web. It's safe only if you're using a dedicated "
+"Admin can access via Tor2Web. This is safe only if you're using a dedicated "
 "Tor2Web server."
-msgstr "Admin can access via Tor2Web. It's safe only if you're using a dedicated Tor2Web server."
+msgstr "Admin can access via Tor2Web. This is safe only if you're using a dedicated Tor2Web server."
 
 msgid "Permit Receiver preferences management via Tor2Web"
 msgstr "Permit Receiver preferences management via Tor2Web"
 
 msgid ""
-"Receivers can access via Tor2Web. It's dangerous, and we suggest some "
-"training with Tor and Enigmail."
-msgstr "Receivers can access via Tor2Web. It's dangerous, and we suggest some training with Tor and Enigmail."
+"Receivers can access via Tor2Web. This is dangerous and it's recommended "
+"instead to train receivers in the use of Tor and Enigmail."
+msgstr "Receivers can access via Tor2Web. This is dangerous and it's recommended instead to train receivers in the use of Tor and Enigmail."
 
 msgid "Permit Tip access, file download and upload via Tor2Web"
 msgstr "Permit Tip access, file download and upload via Tor2Web"
 
-msgid "Tip can access via Tor2Web, by whistleblowers and receiver."
-msgstr "Tip can access via Tor2Web, by whistleblowers and receiver."
+msgid "Tip can be accessed via Tor2Web by whistleblowers and receiver."
+msgstr "Tip can be accessed via Tor2Web by whistleblowers and receiver."
 
-msgid "Permit Public resources access via Tor2Web"
-msgstr "Permit Public resources access via Tor2Web"
-
-msgid "Public GlobaLeaks resource can access via Tor2Web. No dangers on it."
-msgstr "Public GlobaLeaks resource can access via Tor2Web. No dangers on it."
-
-msgid "Permit Submission via Tor2Web"
-msgstr "Permit Submission via Tor2Web"
+msgid "Permit access of public resources via Tor2Web"
+msgstr "Permit access of public resources via Tor2Web"
 
 msgid ""
-"Whistleblowers can perform submission with their anonymity at risks, via "
-"Tor2Web."
-msgstr "Whistleblowers can perform submission with their anonymity at risks, via Tor2Web."
+"Public GlobaLeaks resources can be accessed via Tor2Web. This is safe to do."
+msgstr "Public GlobaLeaks resources can be accessed via Tor2Web. This is safe to do."
 
-msgid "Note: Need to be clicked two times, to disable an access"
-msgstr "Note: Need to be clicked two times, to disable an access"
+msgid "Permit Submissions via Tor2Web"
+msgstr "Permit Submissions via Tor2Web"
+
+msgid "Whistleblowers can perform submission with no anonymity via Tor2Web."
+msgstr "Whistleblowers can perform submission with no anonymity via Tor2Web."
 
 msgid "Update node"
 msgstr "Update node"
@@ -449,17 +444,17 @@ msgstr "Incomplete submissions expiry time (hours)"
 msgid "Submitted Tip expiry time (days)"
 msgstr "Submitted Tip expiry time (days)"
 
-msgid "Receipt fromat (regular expression) "
-msgstr "Receipt fromat (regular expression) "
+msgid "Receipt format (regular expression)"
+msgstr "Receipt format (regular expression)"
 
-msgid "Require almost one file on Tip"
-msgstr "Require almost one file on Tip"
+msgid "Require at least one file to be uploaded"
+msgstr "Require at least one file to be uploaded"
 
 msgid "Receipt description"
 msgstr "Receipt description"
 
-msgid "Submission Introduction"
-msgstr "Submission Introduction"
+msgid "Submission introduction text"
+msgstr "Submission introduction text"
 
 msgid "Add new context"
 msgstr "Add new context"
@@ -706,6 +701,15 @@ msgstr "Preferences and password management"
 msgid "Your username"
 msgstr "Your username"
 
+msgid "Old password confirmation required"
+msgstr "Old password confirmation required"
+
+msgid "At least 8 characters"
+msgstr "At least 8 characters"
+
+msgid "Type your new password again"
+msgstr "Type your new password again"
+
 msgid "Change password"
 msgstr "Change password"
 
@@ -715,26 +719,24 @@ msgstr "Notification settings"
 msgid "Enable Tip notification"
 msgstr "Enable Tip notification"
 
-msgid "Every new Tip for you, will trigger an email with the link."
-msgstr "Every new Tip for you, will trigger an email with the link."
+msgid "Every new Tip you receive will trigger an email with a link to it."
+msgstr "Every new Tip you receive will trigger an email with a link to it."
 
 msgid "Enable Comment notification"
 msgstr "Enable Comment notification"
 
 msgid ""
-"Every comment, written by whistleblower or receivers, trigger an email."
-msgstr "Every comment, written by whistleblower or receivers, trigger an email."
+"Every comment, written by the whistleblower or the receivers, will trigger "
+"an email."
+msgstr "Every comment, written by the whistleblower or the receivers, will trigger an email."
 
 msgid "Enable File notification"
 msgstr "Enable File notification"
 
 msgid ""
-"Every file available for download, its notified bvia mail, with related "
-"info."
-msgstr "Every file available for download, its notified bvia mail, with related info."
-
-msgid "Note: Need to be clicked two times, to disable an access."
-msgstr "Note: Need to be clicked two times, to disable an access."
+"For every file available for download you will be notified via email with "
+"related information."
+msgstr "For every file available for download you will be notified via email with related information."
 
 msgid "Update notification settings"
 msgstr "Update notification settings"
