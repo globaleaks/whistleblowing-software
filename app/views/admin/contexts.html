@@ -126,7 +126,7 @@
                                  required
                                  ng-model="context.tip_timetolive"
                                  value="{{context.tip_timetolive}}">
-                          <label>{{ "Receipt fromat (regular expression) " | translate }}</label>
+                          <label>{{ "Receipt format (regular expression)" | translate }}</label>
                               <input type="text"
                                      required
                                      ng-model="context.receipt_regexp"
@@ -135,7 +135,7 @@
                               <input type="checkbox"
                                      value="context.file_required"
                                      ng-model="context.file_required" />
-                              {{ "Require almost one file on Tip" | translate }}
+                              {{ "Require at least one file to be uploaded" | translate }}
                           </label>
                           <!--
                           <label>Tags</label>
@@ -156,7 +156,7 @@
                       </div>
 
                       <div class="span4">
-                          <label>{{ "Submission Introduction" | translate }}</label>
+                          <label>{{ "Submission introduction text" | translate }}</label>
                           <textarea required
                                     ng-model="context.submission_introduction[selected_language]">{{context.submission_introduction[selected_language]}}
                           </textarea>
