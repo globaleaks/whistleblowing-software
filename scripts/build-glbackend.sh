@@ -111,7 +111,7 @@ build_glbackend()
 
   echo "Revision used: ${GLBACKEND_REVISION}"
 
-  pip install -r requirements.txt
+  sudo pip install -r requirements.txt
 
   unzip ${GLC_BUILD}/*.zip -d .
   mv glclient* glclient
