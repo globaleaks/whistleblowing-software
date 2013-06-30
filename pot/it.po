@@ -7,11 +7,12 @@
 # okno <mail@pawelzorzan.eu>, 2013
 # okno <mail@pawelzorzan.eu>, 2013
 # uovobw <uovobw@gmail.com>, 2013
+# Yvette Agostini <yvette.agostini@gmail.com>, 2013
 msgid ""
 msgstr ""
 "Project-Id-Version: GlobaLeaks\n"
-"PO-Revision-Date: 2013-06-30 10:25+0000\n"
-"Last-Translator: hermes <info@logioshermes.org>\n"
+"PO-Revision-Date: 2013-06-30 13:03+0000\n"
+"Last-Translator: Yvette Agostini <yvette.agostini@gmail.com>\n"
 "Language-Team: Italian (http://www.transifex.com/projects/p/globaleaks/language/it/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,13 +30,13 @@ msgid ""
 "With a HTTPS submission you are exposing yourself to the risks that someone "
 "else will know that you have submitted something, without knowing what you "
 "have submitted."
-msgstr ""
+msgstr "Se usi una Submission HTTPS ti esponi al rischio che qualcuno possa sapere che ha sottomesso qualcosa, pur senza sapere che cosa esattamente hai sottomesso."
 
 msgid ""
 "Instead with an Anonymous Submission you are fully protected, it is not "
 "possible for a third party to know that you have submitted something nor "
 "what you have submitted."
-msgstr ""
+msgstr "Inveche sono una Submission Anonima sei completamente protetto; non e' possibile per nessuno sapere cosa hai sottomesso e neppure se hai fatto una Submission o no."
 
 msgid "We strongly advise you to go for an Anonymous Submission."
 msgstr "Ti suggeriamo vivamente di scegliere una Trasmissione Anonima."
@@ -43,7 +44,7 @@ msgstr "Ti suggeriamo vivamente di scegliere una Trasmissione Anonima."
 msgid ""
 "To make an Anonymous Submission, instead of using your usual Web Browser "
 "(Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the"
-msgstr ""
+msgstr "Per fare una Submission Anonima, invece di usare in tuo normale browser web r (Internet Explorer, Chrome, Firefox, Opera, etc.) devi utilizzare il "
 
 msgid "that’s a special software designed to enable Anonymous Web Browsing."
 msgstr " che e' un software speciale progettato per consentire un browsing del web completamente anonimo."
@@ -379,7 +380,7 @@ msgid "Edit Tor2Web accessibility table "
 msgstr "Modifica la tabella di accessibilità di Tor2Web"
 
 msgid "Edit Tor2Web accessibility table - [click again to close]"
-msgstr ""
+msgstr "Modifica la tabella di accessibilita' di Tor2Web - [clicca nuovamente per chiudere]"
 
 msgid "Permit Administative login via Tor2Web"
 msgstr "Consenti il login alla sezione Amministrazione via Tor2Web"
@@ -390,7 +391,7 @@ msgstr "ora sei Abilitato:"
 msgid ""
 "Admin can access via Tor2Web. This is safe only if you're using a dedicated "
 "Tor2Web server."
-msgstr ""
+msgstr "Admin puo' accedere via Tor2Web. Questo e' sicuro solo se stai usando un server Tor2Web dedicato."
 
 msgid "Permit Receiver preferences management via Tor2Web"
 msgstr "Consenti la gestione delle preferenze del Receiver via Tor2Web"
@@ -398,26 +399,26 @@ msgstr "Consenti la gestione delle preferenze del Receiver via Tor2Web"
 msgid ""
 "Receivers can access via Tor2Web. This is dangerous and it's recommended "
 "instead to train receivers in the use of Tor and Enigmail."
-msgstr ""
+msgstr "I Receivers possono accedere via Tor2Web. Questo è pericoloso e si raccomanda invece di formare i Receveirs all'utilizzo di Tor ed Enigmail."
 
 msgid "Permit Tip access, file download and upload via Tor2Web"
 msgstr "Consente l'accesso ai Tip, il download e l'upload dei files via Tor2Web"
 
 msgid "Tip can be accessed via Tor2Web by whistleblowers and receiver."
-msgstr ""
+msgstr "Whistleblower e Receiver possono accedere al Tip via Tor2Web"
 
 msgid "Permit access of public resources via Tor2Web"
-msgstr ""
+msgstr "Consenti accesso via Tor2Web alle risorse pubbliche "
 
 msgid ""
 "Public GlobaLeaks resources can be accessed via Tor2Web. This is safe to do."
-msgstr ""
+msgstr "E' possibile accedere via Tor2Web alle risorse pubbliche di Globaleaks. E' sicuro procedere in questo modo."
 
 msgid "Permit Submissions via Tor2Web"
-msgstr ""
+msgstr "Consenti Submission via Tor2Web"
 
 msgid "Whistleblowers can perform submission with no anonymity via Tor2Web."
-msgstr ""
+msgstr "I Whisteblower possono fare Submissione senza essere anonimi via Tor2Web."
 
 msgid "Update node"
 msgstr "Aggiorna il nodo"
@@ -453,16 +454,16 @@ msgid "Submitted Tip expiry time (days)"
 msgstr "Scadenza del Tip inviato (giorni)"
 
 msgid "Receipt format (regular expression)"
-msgstr ""
+msgstr "Formato della ricevuta (espressione regolare)"
 
 msgid "Require at least one file to be uploaded"
-msgstr ""
+msgstr "E' richiesto almenu un file da uploadare."
 
 msgid "Receipt description"
 msgstr "Descrizione della ricevuta"
 
 msgid "Submission introduction text"
-msgstr ""
+msgstr "Testo introduttivo delle Submission"
 
 msgid "Add new context"
 msgstr "Aggiungi nuovo contesto"
@@ -710,13 +711,13 @@ msgid "Your username"
 msgstr "Il tuo nome utente"
 
 msgid "Old password confirmation required"
-msgstr ""
+msgstr "E' necessario confermare la tua vecchia password"
 
 msgid "At least 8 characters"
-msgstr ""
+msgstr "Almeno 8 caratteri"
 
 msgid "Type your new password again"
-msgstr ""
+msgstr "Riscrivi la tua nuova password"
 
 msgid "Change password"
 msgstr "Cambiare la password"
@@ -728,7 +729,7 @@ msgid "Enable Tip notification"
 msgstr "Abilita la notifica dei Tip"
 
 msgid "Every new Tip you receive will trigger an email with a link to it."
-msgstr ""
+msgstr "Una mail contenente il link al Tip è inviata per ogni nuovo Tip ricevuto."
 
 msgid "Enable Comment notification"
 msgstr "Abilita la notifica dei Commenti"
@@ -736,7 +737,7 @@ msgstr "Abilita la notifica dei Commenti"
 msgid ""
 "Every comment, written by the whistleblower or the receivers, will trigger "
 "an email."
-msgstr ""
+msgstr "Per ogni commento ricevuto, riceverai una notifica via email."
 
 msgid "Enable File notification"
 msgstr "Abilita la notifica per i file"
@@ -744,7 +745,7 @@ msgstr "Abilita la notifica per i file"
 msgid ""
 "For every file available for download you will be notified via email with "
 "related information."
-msgstr ""
+msgstr "Per ogni nuovo file disponibile,  riceverai una notifica via email."
 
 msgid "Update notification settings"
 msgstr "Aggiorna le impostazioni di notifica"
