@@ -393,7 +393,7 @@ def create_random_receiver_portrait(receiver_uuid):
     """
     try:
         shutil.copy(
-            os.path.join(GLSetting.static_source, "vittorio_arrigoni_tribute.jpeg"),
+            os.path.join(GLSetting.static_source, "default-profile-picture.png"),
             os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
         )
     except Exception as excep:
