@@ -15,6 +15,7 @@ OPTIONS:
 EOF
 }
 
+AUTOYES=0
 while getopts “yhv:” OPTION
 do
   case $OPTION in
