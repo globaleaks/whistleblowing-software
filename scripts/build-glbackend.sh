@@ -111,7 +111,9 @@ build_glbackend()
 
   echo "Revision used: ${GLBACKEND_REVISION}"
 
-  sudo pip install -r requirements.txt
+  if [ "${TRAVIS}" == "true" ]; then
+    sudo pip install -r requirements.txt
+  fi
 
   unzip ${GLC_BUILD}/*.zip -d .
   mv glclient* glclient
