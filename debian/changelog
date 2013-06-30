@@ -1,3 +1,9 @@
+globaleaks (2.23.1-0) unstable; urgency=high
+
+  * GlobaLeaks Alpha - Full support for it, nl, vi
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 30 Jun 2013 16:05:42 +0002
+
 globaleaks (2.23-0) unstable; urgency=high
 
   * GlobaLeaks Alpha - Supported languages 
