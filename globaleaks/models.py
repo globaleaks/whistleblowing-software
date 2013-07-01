@@ -136,9 +136,9 @@ class Model(Storm):
             setattr(self, k, value)
 
         for k in cls_bool_keys:
-            if attrs[k] == 'true':
+            if attrs[k] == 'true' or attrs[k] == u'true':
                 value = True
-            elif attrs[k] == 'false':
+            elif attrs[k] == 'false' or attrs[k] == u'false':
                 value = False
             else:
                 value = bool(attrs[k])
