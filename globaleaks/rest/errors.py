@@ -303,8 +303,8 @@ class HTTPRawLimitReach(GLException):
     error_code = 39
     status_code = 400 # Generic 400 error
     reason = ("The upload request overcome the Mb limits (%d Mb)" %
-          (GLSetting.memory_copy.maximum_filesize / 1024 * 1024) )
-    arguments = [ (GLSetting.memory_copy.maximum_filesize / 1024 * 1024) ]
+          GLSetting.memory_copy.maximum_filesize )
+    arguments = [ GLSetting.memory_copy.maximum_filesize ]
 
 class GPGKeyInvalid(GLException):
     """

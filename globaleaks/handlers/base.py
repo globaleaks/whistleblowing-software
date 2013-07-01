@@ -69,13 +69,20 @@ def add_globaleaks_headers(self):
     self.set_header("X-Frame-Options", "deny")
 
 class GLHTTPServer(HTTPConnection):
+
     def lineReceiver(self, line):
         HTTPConnection.lineReceived(self, line)
 
     def rawDataReceived(self, data):
-        if self.content_length > GLSetting.memory_copy.maximum_filesize:
-            log.err("Tried upload larger than expected (%dMb)" %
-                    (self.content_length / (1024 * 1024)) )
+
+        megabytes = self.content_length / (1024 * 1024)
+
+        # less than 1 megabytes is always accepted
+        if megabytes > GLSetting.memory_copy.maximum_filesize:
+
+            log.err("Tried upload larger than expected (%dMb > %dMb)" %
+                    (megabytes,
+                     GLSetting.memory_copy.maximum_filesize) )
 
             # In HTTP Protocol errors need to be managed differently than handlers
             raise errors.HTTPRawLimitReach
