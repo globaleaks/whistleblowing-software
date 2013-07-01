@@ -73,22 +73,53 @@ class GLHTTPServer(HTTPConnection):
     def lineReceiver(self, line):
         HTTPConnection.lineReceived(self, line)
 
-    def rawDataReceived(self, data):
+    def _on_headers(self, data):
+        try:
+            data = native_str(data.decode("latin1"))
+            eol = data.find("\r\n")
+            start_line = data[:eol]
+            try:
+                method, uri, version = start_line.split(" ")
+            except ValueError:
+                raise _BadRequestException("Malformed HTTP request line")
+            if not version.startswith("HTTP/"):
+                raise _BadRequestException(
+                        "Malformed HTTP version in HTTP Request-Line")
+            headers = httputil.HTTPHeaders.parse(data[eol:])
+            self._request = HTTPRequest(
+                connection=self, method=method, uri=uri, version=version,
+                headers=headers, remote_ip=self._remote_ip)
 
-        megabytes = self.content_length / (1024 * 1024)
+            content_length = int(headers.get("Content-Length", 0))
+            if content_length:
+                if headers.get("Expect") == "100-continue":
+                    self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
 
-        # less than 1 megabytes is always accepted
-        if megabytes > GLSetting.memory_copy.maximum_filesize:
+                megabytes = content_length / (1024 * 1024)
 
-            log.err("Tried upload larger than expected (%dMb > %dMb)" %
-                    (megabytes,
-                     GLSetting.memory_copy.maximum_filesize) )
+                # less than 1 megabytes is always accepted
+                if megabytes > GLSetting.memory_copy.maximum_filesize:
 
-            # In HTTP Protocol errors need to be managed differently than handlers
-            raise errors.HTTPRawLimitReach
+                    log.err("Tried upload larger than expected (%dMb > %dMb)" %
+                            (megabytes,
+                             GLSetting.memory_copy.maximum_filesize) )
 
-        HTTPConnection.rawDataReceived(self, data)
+                    # In HTTP Protocol errors need to be managed differently than handlers
+                    raise errors.HTTPRawLimitReach
 
+                if content_length < 100000:
+                    self._contentbuffer = StringIO()
+                else:
+                    self._contentbuffer = TemporaryFile()
+
+                self.content_length = content_length
+                self.setRawMode()
+                return
+
+            self.request_callback(self._request)
+        except _BadRequestException, e:
+            log.msg("Malformed HTTP request from %s: %s", self._remote_ip, e)
+            self.transport.loseConnection()
 
 class BaseHandler(RequestHandler):
     def set_default_headers(self):
