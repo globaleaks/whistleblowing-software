@@ -13,7 +13,7 @@ script:
   - cd /data/globaleaks/GLBackend_trial && trial globaleaks
   - git clone https://github.com/globaleaks/GlobaLeaks /data/globaleaks/GlobaLeaks
   - cd /data/globaleaks/GlobaLeaks && (git checkout ${TRAVIS_BRANCH} || git checkout HEAD)
-  - /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh -c${TRAVIS_BRANCH} -b${TRAVIS_BRANCH} -y
+  - /data/globaleaks/GlobaLeaks/scripts/build-testing-package.sh -c${TRAVIS_BRANCH} -b${TRAVIS_BRANCH}
   - sudo -i bash -x -c 'add-apt-repository "deb http://deb.torproject.org/torproject.org $(lsb_release -s -c) main"'
   - sudo -i bash -x -c 'gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89'
   - sudo -i bash -x -c 'gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | sudo apt-key add -'
@@ -33,5 +33,6 @@ script:
   - sudo -i bash -x -c 'echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc'
   - sudo -i bash -x -c '/etc/init.d/tor restart'
   - sudo TRAVIS=true -i bash -x -c '/etc/init.d/globaleaks restart'
+  - sleep 10
   - curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
 
