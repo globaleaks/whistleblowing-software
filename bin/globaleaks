@@ -4,18 +4,91 @@
 from __future__ import with_statement
 
 import os
-import sys
 import random
+import re
+import sys
+
+import pip
+from pkg_resources import parse_version
+
+def pip_version_check(path):
+    def version_number_compare(version1, version2):
+        return cmp(parse_version(version1), parse_version(version2))
+
+    installed_packages = dict()
+    for dist in pip.get_installed_distributions(local_only=False):
+        installed_packages[dist.project_name.lower()] = dist.version
+
+    unmet_requirements = []
+    with open(path, "r") as rf:
+        p = re.compile('\s*(?P<package>[a-zA-Z0-9_.]+)(?P<condition>([<=>]){2}|([<>]){1})?(?P<version>\S+)?')
+        while 1:
+            requirement = rf.readline().strip()
+            if not requirement:
+                break
+            match = p.match(requirement)
+            if match:
+                package = match.group('package').lower()
+                version = match.group('version')
+                condition = match.group('condition')
+
+                if package in installed_packages:
+                    pass
+                elif package.replace('_', '-') in installed_packages:
+                    package = package.replace('_', '-')
+                else:
+                    unmet_requirements.append(requirement)
+                    continue
+
+                if condition:
+                    installed_version = installed_packages[package]
+                    check = version_number_compare(installed_version, version)
+                    if condition == "<":
+                        if check >= 0:
+                            unmet_requirements.append(requirement)
+                            continue
+                    elif condition == "<=":
+                        if check > 0:
+                            unmet_requirements.append(requirement)
+                            continue
+                    elif condition == "==":
+                        if check != 0:
+                            unmet_requirements.append(requirement)
+                            continue
+                    elif condition == ">=":
+                        if check < 0:
+                            unmet_requirements.append(requirement)
+                            continue
+                    elif condition == ">":
+                        if check <= 0:
+                            unmet_requirements.append(requirement)
+                            continue
+
+    if unmet_requirements:
+        print "Some GlobaLeaks requirements are unmet\n"
+        print "Unmet requirements:"
+        for unmet_requirement in unmet_requirements:
+            print "\t" + unmet_requirement
+        print "\n"
+        print "The problem can be solved by:"
+        print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki/Linux"
+        print "2) Installing missing requirements using pip install -r requirements.txt"
+        quit(-1)
 
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
+path = '/usr/share/globaleaks/glbackend/requirements.txt'
+if os.path.exists(path):
+    pip_version_check(path)
+else:
+    pip_version_check(os.path.join(root, 'requirements.txt'))
+
 from globaleaks import DATABASE_VERSION
 from globaleaks.utils import query_yes_no
 from globaleaks.settings import GLSetting
 from twisted.python import usage
-
 
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
