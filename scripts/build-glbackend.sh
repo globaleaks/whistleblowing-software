@@ -139,7 +139,7 @@ build_glbackend()
   mv ${GLBACKEND_TMP}/dist ${GLB_BUILD}
 }
 
-if [ $AUTOYES ]; then
+if [ $AUTOYES -eq 1 ]; then
   auto_setup_env
 else
   interactive_setup_env

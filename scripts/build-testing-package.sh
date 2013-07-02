@@ -50,7 +50,7 @@ if [ ! -f ${DIR}/.environment_setupped ]; then
     touch ${DIR}/.environment_setupped
 fi
 
-if [ $AUTOYES ]; then
+if [ $AUTOYES -eq 1 ]; then
   OPTS="-y"
 else
   OPTS=""

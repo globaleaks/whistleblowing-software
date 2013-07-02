@@ -138,7 +138,7 @@ build_glclient()
   shasum -a 224 ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
 }
 
-if [ $AUTOYES ]; then
+if [ $AUTOYES -eq 1 ]; then
   auto_env_setup
 else
   interactive_env_setup
