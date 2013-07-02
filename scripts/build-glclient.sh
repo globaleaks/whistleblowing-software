@@ -145,10 +145,6 @@ else
 fi
 build_glclient
 
-if [ "${TRAVIS}" != "true" ]; then
-  cp ${GLC_BUILD}/glclient-* /data/websites/builds/GLClient/
-fi
-
 echo "[+] All done!"
 echo ""
 echo "GLClient build is now present in ${GLC_BUILD}"
