@@ -14,15 +14,15 @@ angular.module('submissionUI', []).
       link: function(scope, element, attrs) {
         var selectFileButton = element.find('button.selectFile'),
           uploadButton = element.find('button.upload'),
-          img_receiver = element.parent().parent().find('img.baseimage')[0],
+          img_receiver = element.parent().parent().find('img.baseimage'),
           headers = {'X-Session': $cookies['session_id']};
 
-        img_receiver.onload = function(){
+        img_receiver.hover(function(){
           // Resize the overlay black image to match the icon size.
           var upload_file = element.parent().parent().find('.uploadfile');
-          upload_file.css('width', img_receiver.width + 10);
-          upload_file.css('height', img_receiver.width - 20);
-        };
+          upload_file.css('width', img_receiver[0].width + 10);
+          upload_file.css('height', img_receiver[0].height - 20);
+        });
 
         $(element).find('input[type="file"]').change(function(){
           scope.changeProfile();
