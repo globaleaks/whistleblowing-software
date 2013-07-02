@@ -77,6 +77,8 @@ class GLHTTPServer(HTTPConnection):
         HTTPConnection._on_headers(self, data)
 
         if self.content_length:
+            megabytes = self.content_length / (1024 * 1024)
+
             # less than 1 megabytes is always accepted
             if megabytes > GLSetting.memory_copy.maximum_filesize:
 

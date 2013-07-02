@@ -313,8 +313,8 @@ def mail_exception(etype, value, tback):
                      "", str(etype))
     tmp = []
 
-    tmp.append("From: %s" % GLSetting.error_reporting_username)
-    tmp.append("To: %s" % GLSetting.error_reporting_username)
+    tmp.append("From: %s" % GLSetting.memory_copy.notif_username)
+    tmp.append("To: %s" % GLSetting.memory_copy.notif_username)
     tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
     tmp.append("Content-Transfer-Encoding: 8bit\n")
@@ -333,13 +333,14 @@ def mail_exception(etype, value, tback):
     log.err(traceinfo)
     log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, info_string) )
 
-    sendmail(GLSetting.error_reporting_username,
-             GLSetting.error_reporting_password,
-             GLSetting.error_reporting_username,
+    sendmail(GLSetting.memory_copy.notif_username,
+             GLSetting.memory_copy.notif_password,
+             GLSetting.memory_copy.notif_username,
              GLSetting.memory_copy.exception_email,
              message,
-             GLSetting.error_reporting_server,
-             GLSetting.error_reporting_port, None)
+             GLSetting.memory_copy.notif_server,
+             GLSetting.memory_copy.notif_port,
+             GLSetting.memory_copy.notif_security)
 
 mail_exception.mail_counter = 0
 

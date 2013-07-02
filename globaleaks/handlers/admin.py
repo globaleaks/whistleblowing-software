@@ -818,8 +818,6 @@ def update_notification(store, request):
         log.err("Database error or application error: %s", str(e))
         raise e
 
-    # XXX support languages here
-
     security = str(request.get('security', u'')).upper()
     if security in Notification._security_types:
         notif.security = security
@@ -867,6 +865,9 @@ class NotificationInstance(BaseHandler):
             requests.adminNotificationDesc)
 
         response = yield update_notification(request)
+
+        # align the memory variables with the new updated data
+        yield import_memory_variables()
 
         self.set_status(202) # Updated
         self.finish(response)
