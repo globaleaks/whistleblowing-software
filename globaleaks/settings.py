@@ -61,12 +61,6 @@ class GLSettingsClass:
         # store name
         self.store_name = 'main_store'
 
-        # unhandled Python Exception are reported via mail
-        self.error_reporting_username= "stackexception@globaleaks.org"
-        self.error_reporting_password= "stackexception99"
-        self.error_reporting_server = "box549.bluehost.com"
-        self.error_reporting_port = 25
-
         # debug defaults
         self.storm_debug = False
         self.cyclone_debug = -1
@@ -137,6 +131,11 @@ class GLSettingsClass:
         self.memory_copy.tor2web_unauth = self.defaults.tor2web_unauth
         self.memory_copy.exception_email = self.defaults.exception_email
         # updated by globaleaks/db/__init__.import_memory_variables
+        self.memory_copy.notif_server = None
+        self.memory_copy.notif_port = None
+        self.memory_copy.notif_username = None
+        self.memory_copy.notif_security = None
+        # import_memory_variables is called after create_tables and node+notif updating
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
@@ -158,7 +157,6 @@ class GLSettingsClass:
         self.twistd_log = False
         self.devel_mode = False
         self.glc_path = None
-
 
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
