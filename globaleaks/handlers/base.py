@@ -18,8 +18,11 @@ import os
 from twisted.python.failure import Failure
 from twisted.internet import fdesc
 from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, StaticFileHandler, RedirectHandler
-from cyclone.httpserver import HTTPConnection
-from cyclone import escape
+from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
+from cyclone import escape, httputil
+from cyclone.escape import native_str
+from io import BytesIO as StringIO
+from tempfile import TemporaryFile
 
 from globaleaks.utils import log, mail_exception
 from globaleaks.settings import GLSetting
@@ -74,9 +77,6 @@ class GLHTTPServer(HTTPConnection):
     file_upload = False
     uploaded_file = {}
 
-    def lineReceiver(self, line):
-        HTTPConnection.lineReceived(self, line)
-
     def rawDataReceived(self, data):
         if self.content_length is not None:
             data, rest = data[:self.content_length], data[self.content_length:]
@@ -95,52 +95,86 @@ class GLHTTPServer(HTTPConnection):
             self.setLineMode(rest)
 
     def _on_headers(self, data):
-        HTTPConnection._on_headers(self, data)
+        try:
+            data = native_str(data.decode("latin1"))
+            eol = data.find("\r\n")
+            start_line = data[:eol]
+            try:
+                method, uri, version = start_line.split(" ")
+            except ValueError:
+                raise _BadRequestException("Malformed HTTP request line")
+            if not version.startswith("HTTP/"):
+                raise _BadRequestException(
+                        "Malformed HTTP version in HTTP Request-Line")
+            headers = httputil.HTTPHeaders.parse(data[eol:])
+            self._request = HTTPRequest(
+                connection=self, method=method, uri=uri, version=version,
+                headers=headers, remote_ip=self._remote_ip)
 
-        if self.content_length:
-            c_d_header = self._request.headers.get("Content-Disposition")
-            if c_d_header is not None:
-                c_d_header = c_d_header.lower()
-                m = content_disposition_re.match(c_d_header)
-                content_length = self._request.headers['Content-Length'].lower()
-                if m is None or content_length is None:
-                    raise Exception
-                self.file_upload = True
-                self.uploaded_file['filename'] = m.group(1)
-                self.uploaded_file['content_type'] = self._request.headers['Content-Type']
-                self.uploaded_file['body'] = self._contentbuffer
-                self.uploaded_file['body_len'] = int(content_length)
-            
-            megabytes = self.content_length / (1024 * 1024)
+            content_length = int(headers.get("Content-Length", 0))
+            self.content_length = content_length
 
-            if self.file_upload:
-                limit_type = "upload"
-                limit = GLSetting.memory_copy.maximum_filesize
-            else:
-                limit_type = "json"
-                limit = 1000000 # 1MB fixme: add GLSetting.memory_copy.maximum_jsonsize
-                                # is 1MB probably too high. probably this variable must be
-                                # in kB
+            if content_length:
+                if headers.get("Expect") == "100-continue":
+                    self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
 
-            # less than 1 megabytes is always accepted
-            if megabytes > limit:
+                if content_length < 100000:
+                    self._contentbuffer = StringIO()
+                else:
+                    self._contentbuffer = TemporaryFile()
+                
+                c_d_header = self._request.headers.get("Content-Disposition")
+                if c_d_header is not None:
+                    c_d_header = c_d_header.lower()
+                    m = content_disposition_re.match(c_d_header)
+                    content_length = self._request.headers['Content-Length'].lower()
+                    if m is None or content_length is None:
+                        raise Exception
+                    self.file_upload = True
+                    self.uploaded_file['filename'] = m.group(1)
+                    self.uploaded_file['content_type'] = self._request.headers['Content-Type']
+                    self.uploaded_file['body'] = self._contentbuffer
+                    self.uploaded_file['body_len'] = int(content_length)
+                
+                megabytes = int(content_length) / (1024 * 1024)
 
-                log.err("Tried %s request larger than expected (%dMb > %dMb)" %
-                        (limit_type,
-                         megabytes,
-                         limit))
+                if self.file_upload:
+                    limit_type = "upload"
+                    limit = GLSetting.memory_copy.maximum_filesize
+                else:
+                    limit_type = "json"
+                    limit = 1000000 # 1MB fixme: add GLSetting.memory_copy.maximum_jsonsize
+                                    # is 1MB probably too high. probably this variable must be
+                                    # in kB
 
-                # In HTTP Protocol errors need to be managed differently than handlers
-                raise errors.HTTPRawLimitReach
+                # less than 1 megabytes is always accepted
+                if megabytes > limit:
+
+                    log.err("Tried %s request larger than expected (%dMb > %dMb)" %
+                            (limit_type,
+                             megabytes,
+                             limit))
+
+                    # In HTTP Protocol errors need to be managed differently than handlers
+                    raise errors.HTTPRawLimitReach
+
+                self.setRawMode()
+                return
+
+            self.request_callback(self._request)
+        except Exception as e:
+            log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, e))
+            self._request.finish()
+            self.transport.loseConnection()
 
     def _on_request_body(self, data):
         self._request.body = data
         content_type = self._request.headers.get("Content-Type", "")
         if self._request.method in ("POST", "PATCH", "PUT"):
             if content_type.startswith("application/x-www-form-urlencoded"):
-                raise errors.InvalidInputFormat
+                raise errors.InvalidInputFormat("content type application/x-www-form-urlencoded not supported")
             elif content_type.startswith("multipart/form-data"):
-                raise errors.InvalidInputFormat
+                raise errors.InvalidInputFormat("content type multipart/form-data not supported")
         self.request_callback(self._request)
 
 class BaseHandler(RequestHandler):
