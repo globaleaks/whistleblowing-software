@@ -25,6 +25,8 @@ from globaleaks.utils import log, mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
+content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"")
+
 def validate_host(host_key):
     """
     validate_host checks in the GLSetting list of valid 'Host:' values
@@ -69,25 +71,77 @@ def add_globaleaks_headers(self):
     self.set_header("X-Frame-Options", "deny")
 
 class GLHTTPServer(HTTPConnection):
+    file_upload = False
+    uploaded_file = {}
 
     def lineReceiver(self, line):
         HTTPConnection.lineReceived(self, line)
+
+    def rawDataReceived(self, data):
+        if self.content_length is not None:
+            data, rest = data[:self.content_length], data[self.content_length:]
+            self.content_length -= len(data)
+        else:
+            rest = ''
+
+        self._contentbuffer.write(data)
+        if self.content_length == 0:
+            self._contentbuffer.seek(0, 0)
+            if self.file_upload:
+                self._on_request_body(self.uploaded_file)
+            else:
+                self._on_request_body(self._contentbuffer.read())
+            self.content_length = self._contentbuffer = None
+            self.setLineMode(rest)
 
     def _on_headers(self, data):
         HTTPConnection._on_headers(self, data)
 
         if self.content_length:
+            c_d_header = self._request.headers.get("Content-Disposition")
+            if c_d_header is not None:
+                c_d_header = c_d_header.lower()
+                m = content_disposition_re.match(c_d_header)
+                content_length = self._request.headers['Content-Length'].lower()
+                if m is None or content_length is None:
+                    raise Exception
+                self.file_upload = True
+                self.uploaded_file['filename'] = m.group(1)
+                self.uploaded_file['content_type'] = self._request.headers['Content-Type']
+                self.uploaded_file['body'] = self._contentbuffer
+                self.uploaded_file['body_len'] = int(content_length)
+            
             megabytes = self.content_length / (1024 * 1024)
 
-            # less than 1 megabytes is always accepted
-            if megabytes > GLSetting.memory_copy.maximum_filesize:
+            if self.file_upload:
+                limit_type = "upload"
+                limit = GLSetting.memory_copy.maximum_filesize
+            else:
+                limit_type = "json"
+                limit = 1000000 # 1MB fixme: add GLSetting.memory_copy.maximum_jsonsize
+                                # is 1MB probably too high. probably this variable must be
+                                # in kB
 
-                log.err("Tried upload larger than expected (%dMb > %dMb)" %
-                        (megabytes,
-                         GLSetting.memory_copy.maximum_filesize))
+            # less than 1 megabytes is always accepted
+            if megabytes > limit:
+
+                log.err("Tried %s request larger than expected (%dMb > %dMb)" %
+                        (limit_type,
+                         megabytes,
+                         limit))
 
                 # In HTTP Protocol errors need to be managed differently than handlers
                 raise errors.HTTPRawLimitReach
+
+    def _on_request_body(self, data):
+        self._request.body = data
+        content_type = self._request.headers.get("Content-Type", "")
+        if self._request.method in ("POST", "PATCH", "PUT"):
+            if content_type.startswith("application/x-www-form-urlencoded"):
+                raise errors.InvalidInputFormat
+            elif content_type.startswith("multipart/form-data"):
+                raise errors.InvalidInputFormat
+        self.request_callback(self._request)
 
 class BaseHandler(RequestHandler):
     def set_default_headers(self):
