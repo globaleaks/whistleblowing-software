@@ -89,6 +89,8 @@ class GLHTTPServer(HTTPConnection):
             self._contentbuffer.seek(0, 0)
             if self.file_upload:
                 self._on_request_body(self.uploaded_file)
+                self.file_upload = False
+                self.uploaded_file = {}
             else:
                 self._on_request_body(self._contentbuffer.read())
             self.content_length = self._contentbuffer = None
