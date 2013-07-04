@@ -16,7 +16,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security
 from globaleaks.utils import log
 from globaleaks.db import import_memory_variables
-from globaleaks.security import gpg_options_manage
+from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
 def admin_serialize_node(node):
@@ -426,7 +426,7 @@ def create_receiver(store, request):
     receiver.tags = request['tags']
 
     # The various options related in manage GPG keys are used here.
-    gpg_options_manage(receiver, request)
+    gpg_options_parse(receiver, request)
 
     log.debug("Creating receiver %s" % (receiver.username))
 

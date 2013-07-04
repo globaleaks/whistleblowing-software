@@ -11,7 +11,7 @@ from cyclone import mail
 
 from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
-from globaleaks.security import gpg_encrypt
+from globaleaks.security import GLBGPG
 from globaleaks.models import Receiver
 from globaleaks.settings import GLSetting
 
@@ -180,7 +180,9 @@ class MailNotification(Notification):
         if event.receiver_info['gpg_key_status'] == Receiver._gpg_types[1] and \
            event.receiver_info['gpg_enable_notification']:
             try:
-                gpg_encrypt(body, event.receiver_info)
+                gpob = GLBGPG(event.receiver_info)
+                body = gpob.encrypt_message(body)
+                gpob.destroy_environment()
             except Exception as excep:
                 log.err("Unable to instance GPG interface object! (notification+encryption)")
                 return None

@@ -14,7 +14,7 @@ from globaleaks.settings import transact
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified, GPGKeyInvalid
-from globaleaks.security import change_password, gpg_options_manage
+from globaleaks.security import change_password, gpg_options_parse
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver):
@@ -81,7 +81,7 @@ def update_receiver_settings(store, user_id, request):
     receiver.comment_notification = acquire_bool(request['comment_notification'])
     receiver.file_notification = acquire_bool(request['file_notification'])
 
-    gpg_options_manage(receiver, request)
+    gpg_options_parse(receiver, request)
 
     return receiver_serialize_receiver(receiver)
 
