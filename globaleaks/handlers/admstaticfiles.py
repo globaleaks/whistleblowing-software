@@ -45,25 +45,23 @@ def get_stored_files():
     return stored_list
 
 
-def get_files_info(filesinupload):
+def get_file_info(uploaded_file):
     """
     @param filesinupload: the bulk of Cyclone upload data
     @return: list of files with content_type and size.
     """
-    files_list = []
-    for single_file in filesinupload:
-        file_desc = {
-            'filename': single_file['filename'],
-            'content_type': single_file['content_type'],
-            'size': len(single_file['body']),
-            '_gl_file_path': single_file['_gl_file_path'],
-        }
-        files_list.append(file_desc)
 
-    return files_list
+    file_desc = {
+        'filename': uploaded_file['filename'],
+        'content_type': uploaded_file['content_type'],
+        'size': uploaded_file['body_len'],
+        '_gl_file_path': uploaded_file['_gl_file_path'],
+    }
+
+    return file_desc
 
 
-def dump_static_files(filesinupload):
+def dump_static_file(uploaded_file):
     """
     @param files: files uploaded in Cyclone upload
     @return: a relationship dict linking the filename with the random
@@ -71,20 +69,25 @@ def dump_static_files(filesinupload):
     """
 
     # if someone of this function return an Exception OSError, is catch by handler
-    for single_file in filesinupload:
-        filelocation = single_file['_gl_file_path']
+    filelocation = uploaded_file['_gl_file_path']
 
-        if os.path.exists(filelocation):
-            log.err("Path %s exists and would be overwritten with %d bytes" %
-                (filelocation, len(single_file['body']) ) )
-        else:
-            log.debug("Creating %s with %d bytes" %
-                (filelocation, len(single_file['body']) ) )
+    if os.path.exists(filelocation):
+        log.err("Path %s exists and would be overwritten with %d bytes" %
+            (filelocation, uploaded_file['body_len'] ) )
+    else:
+        log.debug("Creating %s with %d bytes" %
+            (filelocation, uploaded_file['body_len'] ) )
 
-        with open(filelocation, 'w+') as fd:
-            fdesc.writeToFD(fd.fileno(), single_file['body'])
+    with open(filelocation, 'w+') as fd:
+        fdesc.setNonBlocking(fd.fileno())
+        data = uploaded_file['body'].read(4000) # 4kb
+        while data != "":
+            if not fdesc.writeToFD(fd.fileno(), data):
+                log.debug("Non blocking file has reported an issue")
+                raise errors.InternalServerError("buffer not available")
+            data = uploaded_file['body'].read(4000) # 4kb
 
-    return get_files_info(filesinupload)
+    return get_file_info(uploaded_file)
 
 def reserved_name_check(target_string):
     """
@@ -195,70 +198,63 @@ class StaticFileCollection(BaseHandler):
         result_list = []
         start_time = time.time()
 
-        if not self.request.files:
-            raise errors.InvalidInputFormat("Missing POST elements")
-
-        file_array, files = self.request.files.popitem()
+        uploaded_file = self.request.body
 
         # Do not accept file with reserved filename
         try:
-            for single_file_block in files:
-                fname = single_file_block['filename']
-                reserved_name = reserved_name_check(fname)
-                if len(files) > 1 and reserved_name:
-                    raise errors.ReservedFileName
+            fname = uploaded_file['filename']
+            if reserved_name_check(fname):
+                raise errors.ReservedFileName
 
-                # not very clean, but files after this validation step has the path added
-                # to the Cyclone request
-                single_file_block['_gl_file_path'] =  os.path.join(GLSetting.static_path, fname)
+            # not very clean, but files after this validation step has the path added
+            # to the Cyclone request
+            uploaded_file['_gl_file_path'] =  os.path.join(GLSetting.static_path, fname)
 
         except Exception as excpd:
             log.err("Invalid stuff received: %s" % excpd)
             raise errors.InvalidInputFormat("filename is missing in uploaded file block")
 
-        # First iterloop, dumps the files in the filesystem,
-        # and exception raised here would prevent the InternalFile recordings
+        # First: dumps the file in the filesystem,
+        #        and exception raised here would prevent the InternalFile recordings
         try:
-            file_list = dump_static_files(files)
+            dumped_file = dump_static_file(uploaded_file)
         except OSError as excpd:
-            inf_list = get_files_info(files)
+            inf_list = get_file_info(files)
             log.err("OSError while create a new static file [%s]: %s" % (str(inf_list), excpd))
             raise errors.InternalServerError(excpd.strerror)
         except Exception as excpd:
             log.err("Not handled exception: %s" % excpd.__repr__())
             raise errors.InternalServerError(excpd.__repr__())
 
-        for file_desc in file_list:
-            log.debug("Admin uploaded new static file: %s" % file_desc['filename'] )
-            file_desc['elapsed_time'] = time.time() - start_time
-            result_list.append(file_desc)
+        log.debug("Admin uploaded new static file: %s" % dumped_file['filename'] )
+        dumped_file['elapsed_time'] = time.time() - start_time
+        result_list.append(dumped_file)
 
-        # checks if the file is single, and if special meaning is specified, in this case,
+        # if special meaning is specified, in this case,
         # the original name of the file is changed with the appropriate one.
-        if len(file_list) == 1 and reserved_name_check(self.request.query):
+        if reserved_name_check(self.request.query):
 
             specified_keyword = self.request.query
-            selected_file = file_list[0]
 
             if specified_keyword == GLSetting.reserved_nodelogo_name:
                 try:
-                    import_node_logo(selected_file)
-                    log.debug("Successful imported %s as new Node logo" % selected_file['filename'])
+                    import_node_logo(dumped_file)
+                    log.debug("Successful imported %s as new Node logo" % uploaded_file['filename'])
                 except Exception as excpd:
                     log.err("Invalid Image Library operation [%s] with Node logo %s" %
-                            (selected_file['filename'], excpd) )
+                            (uploaded_file['filename'], excpd) )
                     raise errors.InternalServerError(excpd.__repr__())
             else:
                 try:
-                    receiver_name = yield import_receiver_pic(selected_file, specified_keyword)
+                    receiver_name = yield import_receiver_pic(dumped_file, specified_keyword)
                     log.debug("Successful imported %s as portrait of %s" %
-                              (selected_file['filename'], receiver_name) )
+                              (uploaded_file['filename'], receiver_name) )
                 except errors.ReceiverGusNotFound as excpd:
                     log.err("Invalid Receiver ID specified: %s" % specified_keyword)
                     raise excpd
                 except Exception as excpd:
                     log.err("Invalid Image Library operation [%s] with Receiver %s portrait %s" %
-                            (selected_file['filename'], specified_keyword, excpd) )
+                            (uploaded_file['filename'], specified_keyword, excpd) )
                     raise errors.InternalServerError(excpd.__repr__())
 
         self.set_status(201) # Created
