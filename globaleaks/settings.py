@@ -75,6 +75,7 @@ class GLSettingsClass:
 
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        self.pid_path = '/var/run/globaleaks'
         self.working_path = '/var/globaleaks'
         self.static_source = '/usr/share/globaleaks/glbackend'
         self.glclient_path = '/usr/share/globaleaks/glclient'
@@ -175,7 +176,7 @@ class GLSettingsClass:
 
 
     def eval_paths(self):
-        self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
+        self.pidfile_path = os.path.join(self.pid_path, 'globaleaks-' + str(self.bind_port) + '.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
@@ -193,6 +194,7 @@ class GLSettingsClass:
 
     def set_devel_mode(self, glcp=None):
         self.devel_mode = True
+        self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
         if not glcp:
