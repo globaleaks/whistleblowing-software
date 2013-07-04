@@ -112,11 +112,21 @@
 
                   <label>{{ "Description" | translate }}</label>
                   <textarea ng-model="receiver.description[selected_language]">{{receiver.description[selected_language]}}</textarea>
+                </div>
 
+                <button class="btn btn-info"
+                    ng-click="advanced_edit = !advanced_edit"
+                    ng-init="advanced_edit=false">
+                    Advanced settings (GPG key management)
+                </button>
+
+                <div class="row" ng-show="advanced_edit">
+                  <div class="span4">
+                    <textarea ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
+                  </div>
                 </div>
 
               </div>
-
             </div>
           </form>
         </div>

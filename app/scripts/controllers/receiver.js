@@ -45,10 +45,6 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
       $scope.preferences.password = '';
       $scope.preferences.old_password = '';
 
-      /* default until GPG UI don't come back */
-      $scope.preferences.gpg_key_armor = '';
-      $scope.preferences.gpg_key_armor = '';
-
       if ($scope.preferences.gpg_key_armor != undefined &&
           $scope.preferences.gpg_key_armor != '') {
         $scope.preferences.gpg_key_remove = false;
@@ -67,8 +63,3 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
     }
 
 }]);
-
-
-
-
-
