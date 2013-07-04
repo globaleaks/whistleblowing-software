@@ -430,12 +430,7 @@ def create_receiver(store, request):
 
     log.debug("Creating receiver %s" % (receiver.username))
 
-    # A password strength checker need to be implemented in the client, but here a
-    # minimal check is put
-    if not len(request['password']) >= security.MINIMUM_PASSWORD_LENGTH:
-        log.err("Password of almost %d byte needed " % security.MINIMUM_PASSWORD_LENGTH)
-        raise errors.InvalidInputFormat("Password of almost %d byte needed " %
-                                        security.MINIMUM_PASSWORD_LENGTH)
+    security.check_password_format(request['password'])
     receiver.password = security.hash_password(request['password'], mail_address)
 
     store.add(receiver)
@@ -500,7 +495,7 @@ def update_receiver(store, id, request):
     gpg_options_manage(receiver, request)
 
     if len(request['password']):
-        # admin override password without effort :)
+        security.check_password_format(request['password'])
         receiver.password = security.hash_password(request['password'], mail_address)
 
     contexts = request.get('contexts', [])
