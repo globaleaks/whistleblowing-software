@@ -42,7 +42,7 @@ if [[ "$EUID" -ne "0" ]]; then
    exit 0
 fi
 
-GLBACKEND_PIDFILE=${WORKING_DIR}/twistd.pid
+GLBACKEND_PIDFILE=/var/run/globaleaks/globaleaks-${LISTENING_PORT}.pid
 
 if [ "${TRAVIS}" == "true" ]; then
     NETWORK_SANDBOXING=0
