@@ -55,6 +55,10 @@ var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServic
         templateUrl: 'views/admin/mail.html',
         controller: 'AdminCtrl',
       }).
+      when('/admin/advanced_settings', {
+        templateUrl: 'views/admin/advanced.html',
+        controller: 'AdminCtrl',
+      }).
 
       when('/admin/password', {
         templateUrl: 'views/admin/password.html',
