@@ -445,7 +445,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
             scope.missing_old_password = true;
         }
 
-        if (scope.$eval(old_password) != undefined && (scope.$eval(old_password)).length > 1 )  {
+        if (scope.$eval(old_password) != undefined && (scope.$eval(old_password)).length >= 1 )  {
             scope.missing_old_password = false;
         }
       }
