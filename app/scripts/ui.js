@@ -37,7 +37,8 @@ angular.module('submissionUI', []).
           $(uploadButton).click(function() {
             console.log("uploading to " + url);
             var fileUploader = $(element).fileupload({url: url,
-                                                      headers: headers}),
+                                                      headers: headers,
+                                                      multipart: false}),
               filesList = element.find('input.file')[0].files;
 
             $(element).fileupload('send', {files: filesList}).
@@ -142,6 +143,7 @@ angular.module('submissionUI', []).
           headers: headers,
           progress: progressMeter,
           progressall: progressMeter,
+          multipart: false,
           add: add,
           done: done,
         });
