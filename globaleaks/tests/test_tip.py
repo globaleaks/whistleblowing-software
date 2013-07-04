@@ -11,7 +11,7 @@ from globaleaks.handlers import tip, base, admin, submission, authentication
 from globaleaks.jobs import delivery_sched
 from globaleaks import models
 
-STATIC_PASSWORD = u'bungabunga ;('
+STATIC_PASSWORD = u'bungabunga ;( 12345'
 
 class MockHandler(base.BaseHandler):
 

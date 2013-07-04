@@ -14,6 +14,8 @@ from globaleaks.settings import transact
 from globaleaks.tests.test_tip import TTip
 from globaleaks.tests import helpers
 
+from io import BytesIO as StringIO
+
 STATIC_PASSWORD = u'bungabunga ;('
 
 class MockHandler(base.BaseHandler):
@@ -42,18 +44,19 @@ class TTip(helpers.TestWithDB):
     tipOptions = TTip.tipOptions
     commentCreation = TTip.commentCreation
 
-    dummyFiles = []
-    dummyFiles.append({
-        'body': 'aaaaaa',
-        'content_type': 'application/octect',
-        'filename': 'filename1'
-    })
+    dummyFile1 = {}
+    dummyFile1['body'] = StringIO()
+    dummyFile1['body'].write(str('aaaaaa'))
+    dummyFile1['body_len'] = len(dummyFile1['body'].read())
+    dummyFile1['content_type'] = 'application/octect'
+    dummyFile1['filename'] = 'filename1'
+    dummyFile2 = {}
+    dummyFile2['body'] = StringIO()
+    dummyFile2['body'].write(str('aaaaa'))
+    dummyFile2['body_len'] = len(dummyFile2['body'].read())
+    dummyFile2['content_type'] = 'application/octect'
+    dummyFile2['filename'] = 'filename2'
 
-    dummyFiles.append({
-        'body': 'aaaaaa',
-        'content_type': 'application/octect',
-        'filename': 'filename2'
-    })
 
 
 class TestCleaning(TTip):
@@ -77,22 +80,27 @@ class TestCleaning(TTip):
         self.assertEqual(store.find(models.Comment).count(), 0)
 
     @inlineCallbacks
-    def emulate_files_upload(self, associated_submission_id):
-        relationship = files.dump_files_fs(self.dummyFiles)
+    def emulate_file_upload(self, associated_submission_id):
+        relationship1 = files.dump_file_fs(self.dummyFile1)
 
-        self.file_list = yield files.register_files_db(
-            self.dummyFiles, relationship, associated_submission_id,
+        self.registered_file1 = yield files.register_file_db(
+            self.dummyFile1, relationship1, associated_submission_id,
         )
-        self.assertEqual(len(self.file_list), 2)
 
+        relationship2 = files.dump_file_fs(self.dummyFile2)
+
+        self.registered_file2 = yield files.register_file_db(
+            self.dummyFile2, relationship2, associated_submission_id,
+        )
 
     @inlineCallbacks
     def do_create_internalfiles(self):
-        yield self.emulate_files_upload(self.submission_desc['submission_gus'],)
-        # fill self.file_list
-        for file_desc in self.file_list:
-            keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(file_desc.keys())
-            self.assertFalse(keydiff)
+        yield self.emulate_file_upload(self.submission_desc['submission_gus'],)
+        keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file1.keys())
+        self.assertFalse(keydiff)
+        keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file2.keys())
+        self.assertFalse(keydiff)
+
 
     @inlineCallbacks
     def do_setup_tip_environment(self):

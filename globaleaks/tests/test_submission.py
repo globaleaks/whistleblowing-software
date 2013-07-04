@@ -16,21 +16,23 @@ from globaleaks.rest import errors
 
 from Crypto.Hash import SHA256
 
+from io import BytesIO as StringIO
+
 class TestSubmission(helpers.TestGL):
     filename = ''.join(unichr(x) for x in range(0x400, 0x4FF))
     body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
-    dummyFiles = []
-    dummyFiles.append({
-        'body': body[0:GLSetting.defaults.maximum_textsize].encode('utf-8'),
-        'content_type': 'application/octect',
-        'filename': 'aaaaaa'
-    })
-
-    dummyFiles.append({
-        'body': 'aaaaaa',
-        'content_type': 'application/octect',
-        'filename': filename[0:GLSetting.defaults.maximum_namesize]
-    })
+    dummyFile1 = {}
+    dummyFile1['body'] = StringIO()
+    dummyFile1['body'].write(body[0:GLSetting.defaults.maximum_textsize].encode('utf-8'))
+    dummyFile1['body_len'] = len(dummyFile1['body'].read())
+    dummyFile1['content_type'] = 'application/octect'
+    dummyFile1['filename'] = 'aaaaaa'
+    dummyFile2 = {}
+    dummyFile2['body'] = StringIO()
+    dummyFile2['body'].write(str('aaaaaa'))
+    dummyFile2['body_len'] = len(dummyFile2['body'].read())
+    dummyFile2['content_type'] = 'application/octect'
+    dummyFile2['filename'] = filename[0:GLSetting.defaults.maximum_namesize]
 
     # --------------------------------------------------------- #
     @inlineCallbacks
@@ -46,21 +48,27 @@ class TestSubmission(helpers.TestGL):
         self.assertTrue(retval)
 
     @inlineCallbacks
-    def emulate_files_upload(self, associated_submission_id):
-        relationship = files.dump_files_fs(self.dummyFiles)
+    def emulate_file_upload(self, associated_submission_id):
+        relationship1 = files.dump_file_fs(self.dummyFile1)
 
-        self.file_list = yield files.register_files_db(
-            self.dummyFiles, relationship, associated_submission_id,
+        self.registered_file1 = yield files.register_file_db(
+            self.dummyFile1, relationship1, associated_submission_id,
         )
-        self.assertEqual(len(self.file_list), 2)
+
+        relationship2 = files.dump_file_fs(self.dummyFile2)
+
+        self.registered_file2 = yield files.register_file_db(
+            self.dummyFile2, relationship2, associated_submission_id,
+        )
+
 
     @inlineCallbacks
     def test_create_internalfiles(self):
-        yield self.emulate_files_upload(self.dummySubmission['submission_gus'])
-        # fill self.file_list
-        for file_desc in self.file_list:
-            keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(file_desc.keys())
-            self.assertFalse(keydiff)
+        yield self.emulate_file_upload(self.dummySubmission['submission_gus'])
+        keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file1.keys())
+        self.assertFalse(keydiff)
+        keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file2.keys())
+        self.assertFalse(keydiff)
 
     @transact
     def _force_finalize(self, store, submission_id):
@@ -70,7 +78,7 @@ class TestSubmission(helpers.TestGL):
     @inlineCallbacks
     def test_create_receiverfiles(self):
         # test made to approach a strange behaviour...
-        yield self.emulate_files_upload(self.dummySubmission['submission_gus'])
+        yield self.emulate_file_upload(self.dummySubmission['submission_gus'])
         yield self._force_finalize(self.dummySubmission['submission_gus'])
 
         filesdict = yield delivery_sched.file_preprocess()
@@ -114,7 +122,7 @@ class TestSubmission(helpers.TestGL):
         status = yield submission.create_submission(submission_desc, finalize=False)
 
         # --- Emulate file upload before assign them to the submission
-        yield self.emulate_files_upload(status['submission_gus'])
+        yield self.emulate_file_upload(status['submission_gus'])
 
         # delivery_sched.file_preprocess works only on finalized submission!
         status['finalize'] = True
@@ -134,12 +142,12 @@ class TestSubmission(helpers.TestGL):
         # Checks the SHA2SUM computed
         for random_f_id, sha2sum in processdict.iteritems():
             sha = SHA256.new()
-            sha.update(self.dummyFiles[0]['body'])
+            sha.update(self.dummyFile1['body'].read())
             if sha2sum == sha.hexdigest():
                 continue
 
             sha = SHA256.new()
-            sha.update(self.dummyFiles[1]['body'])
+            sha.update(self.dummyFile2['body'].read())
             if sha2sum == sha.hexdigest():
                 continue
 
@@ -161,7 +169,7 @@ class TestSubmission(helpers.TestGL):
         new_r = dict(self.dummyReceiver)
         new_r['name'] = new_r['username'] =\
         new_r['notification_fields']['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
-        new_r['password'] = u'not missing!'
+        new_r['password'] = helpers.VALID_PASSWORD1
         # localized dict required in desc
         new_r['description'] = { 'en' : "am I ignored ? %s" % descpattern }
         return new_r
