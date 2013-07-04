@@ -25,6 +25,7 @@ profile usr.bin.globaleaks {
     deny /bin/dash rx,
 
     /var/globaleaks/** rwk,
+    /var/run/globaleaks/globaleaks-*.pid rw,
     owner /tmp/** rwkl,
     owner /var/tmp/** rwkl,
 }
