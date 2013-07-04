@@ -89,7 +89,7 @@ angular.module('submissionUI', []).
             var fileInfo,
               fileID;
 
-            if (data.files[file].size >= scope.maximumFilesize) {
+            if (data.files[file].size >= (scope.maximumFilesize * 1024 * 1024) ) {
               var error = {};
 
               error.message = data.files[file].name +

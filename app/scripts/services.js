@@ -298,7 +298,6 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         receiversResource.query(tipID, function(receiversCollection){
 
           self.tip = result;
-          console.log(result);
           self.tip.receivers = receiversCollection;
 
           commentsResource.query(tipID, function(commentsCollection){
@@ -345,7 +344,6 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       tip_id += randomString(CHARS, 4);
       tip_id += '-';
       tip_id += randomString(CHARS, 12);
-      console.log(tip_id);
 
       return tip_id;
     };
@@ -505,8 +503,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         context.receivers = [];
 
         context.escalation_threshold = 0;
-        context.file_max_download = 42;
-        context.tip_max_access = 42;
+        context.file_max_download = 3;
+        context.tip_max_access = 50;
         context.selectable_receiver = true;
         context.file_required = false;
         context.tip_timetolive = 15;
