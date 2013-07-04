@@ -1,10 +1,9 @@
 import os
 from twisted.internet.defer import inlineCallbacks
-from twisted.trial import unittest
 
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
-from globaleaks.security import gpg_encrypt
+from globaleaks.security import GLBGPG
 from globaleaks.handlers import receiver
 from globaleaks.settings import GLSetting
 from globaleaks.tests.helpers import MockDict
@@ -74,7 +73,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.assertFailure(d, errors.GPGKeyInvalid)
         return d
 
-    def test_gpg_encryption(self):
+    def test_Class_encryption_message(self):
 
         mail_support = MailNotification()
 
@@ -101,28 +100,59 @@ class TestReceiverSetKey(helpers.TestHandler):
             'username': u'fake@username.net',
         }
 
-        encrypted_body = gpg_encrypt(mail_content, fake_receiver_desc)
+        gpob = GLBGPG(fake_receiver_desc)
+        self.assertTrue(gpob.validate_key(DeveloperKey.__doc__))
+
+        encrypted_body = gpob.encrypt_message(mail_content)
         self.assertSubstring('-----BEGIN PGP MESSAGE-----', encrypted_body)
 
+    def test_Class_encryption_file(self):
 
-    @inlineCallbacks
-    def test_expired_key_error(self):
+        # setup the GPG key before
+        GLSetting.gpgroot = GPGROOT
 
-        self.receiver_only_update['gpg_key_armor'] = unicode(ExpiredKey.__doc__)
-        self.receiver_only_update['gpg_key_remove'] = False
-        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
-        yield handler.put()
-        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
-            u'C6DAF5B34D5960883C7A9552AACA3A01C2752D4B')
+        print os.getcwd()
+        tempsource = os.path.join(os.getcwd(), "temp_source.txt")
+        with file(tempsource, 'w+') as f:
+            f.write("\n\nDecrypt the Cat!\n\nhttp://tobtu.com/decryptocat.php\n\n")
+
+            f.seek(0)
+
+            fake_receiver_desc = {
+                'gpg_key_armor': unicode(DeveloperKey.__doc__),
+                'gpg_key_fingerprint': u"341F1A8CE2B4F4F4174D7C21B842093DC6765430",
+                'username': u'fake@username.net',
+                }
+
+            # these are the same lines used in delivery_sched.py
+            gpoj = GLBGPG(fake_receiver_desc)
+            gpoj.validate_key(DeveloperKey.__doc__)
+            encrypted_file_path = gpoj.encrypt_file(f)
+            gpoj.destroy_environment()
+
+            print encrypted_file_path
+            self.assertSubstring('-----BEGIN PGP MESSAGE-----', encrypted_file_path)
+            # TODO IS NOT A PATH --- need to be changed
+
+
+#    @inlineCallbacks
+#    def test_expired_key_error(self):
+#
+#        self.receiver_only_update['gpg_key_armor'] = unicode(ExpiredKey.__doc__)
+#        self.receiver_only_update['gpg_key_remove'] = False
+#        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+#        yield handler.put()
+#        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
+#            u'C6DAF5B34D5960883C7A9552AACA3A01C2752D4B')
 
         # ok, now has been imported the key, but we can't perform encryption
-        body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
-        fake_serialized_receiver = {
-            'gpg_key_armor': unicode(ExpiredKey.__doc__),
-            'gpg_key_fingerprint': self.responses[0]['gpg_key_fingerprint'],
-            'username': 'fake@username.net',
-        }
-        self.assertRaises(errors.GPGKeyInvalid, gpg_encrypt, body, fake_serialized_receiver)
+#        body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
+#        fake_serialized_receiver = {
+#            'gpg_key_armor': unicode(ExpiredKey.__doc__),
+#            'gpg_key_fingerprint': self.responses[0]['gpg_key_fingerprint'],
+#            'username': 'fake@username.net',
+#        }
+#        self.assertRaises(errors.GPGKeyInvalid, gpg_encrypt, body, fake_serialized_receiver)
 
 
 class HermesGlobaleaksKey:
