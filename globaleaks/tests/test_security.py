@@ -4,6 +4,8 @@ import binascii
 from Crypto.Hash import SHA512
 from twisted.trial import unittest
 
+from globaleaks.tests import helpers
+
 from globaleaks.security import get_salt, hash_password, check_password, change_password, SALT_LENGTH
 
 class TestPasswordManagement(unittest.TestCase):
@@ -49,12 +51,12 @@ class TestPasswordManagement(unittest.TestCase):
 
     def test_change_password(self):
         dummy_salt_input = "xxxxxxxx"
-        first_pass = "first_password"
-        second_pass = "second_password"
+        first_pass = helpers.VALID_PASSWORD1
+        second_pass = helpers.VALID_PASSWORD2
         dummy_salt = get_salt(dummy_salt_input)
 
         # as first we hash a "first_password" like has to be:
-        hashed1 = binascii.b2a_hex(scrypt.hash(first_pass, dummy_salt))
+        hashed1 = binascii.b2a_hex(scrypt.hash(str(first_pass), dummy_salt))
 
         # now emulate the change unsing the globaleaks.security module
         hashed2 = change_password(hashed1, first_pass, second_pass, dummy_salt_input)
@@ -62,6 +64,6 @@ class TestPasswordManagement(unittest.TestCase):
         # verify that second stored pass is the same
         self.assertEqual(
             hashed2,
-            binascii.b2a_hex(scrypt.hash(second_pass, dummy_salt) )
+            binascii.b2a_hex(scrypt.hash(str(second_pass), dummy_salt) )
         )
 
