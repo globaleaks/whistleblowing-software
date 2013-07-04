@@ -38,76 +38,68 @@ def serialize_file(internalfile):
     return file_desc
 
 @transact
-def register_files_db(store, files, relationship, internaltip_id):
+def register_file_db(store, uploaded_file, filepath, internaltip_id):
     internaltip = store.find(models.InternalTip, models.InternalTip.id == internaltip_id).one()
 
     if not internaltip:
         log.err("File submission register in a submission that's no more")
         raise errors.TipGusNotFound
 
-    files_list = []
-    i = 0
-    for single_file in files:
-        original_fname = single_file['filename']
+    original_fname = uploaded_file['filename']
 
-        try:
-            new_file = models.InternalFile()
+    try:
+        new_file = models.InternalFile()
 
-            new_file.name = original_fname
-            new_file.content_type = single_file.get('content_type')
-            new_file.mark = models.InternalFile._marker[0]
-            new_file.size = len(single_file['body'])
-            new_file.internaltip_id = unicode(internaltip_id)
-            new_file.file_path = relationship[i]
+        new_file.name = original_fname
+        new_file.content_type = uploaded_file['content_type']
+        new_file.mark = models.InternalFile._marker[0]
+        new_file.size = uploaded_file['body_len']
+        new_file.internaltip_id = unicode(internaltip_id)
+        new_file.file_path = filepath
 
-            store.add(new_file)
-            store.commit()
-            i += 1
-        except Exception as excep:
-            log.err("Unable to commit new InternalFile %s: %s" % (original_fname.encode('utf-8'), excep))
-            raise excep
+        store.add(new_file)
+        store.commit()
+    except Exception as excep:
+        log.err("Unable to commit new InternalFile %s: %s" % (original_fname.encode('utf-8'), excep))
+        raise excep
 
-        # I'm forcing commits because I've got some inconsistencies
-        # in this ReferenceSets. need to be investigated if needed.
-        try:
-            internaltip.internalfiles.add(new_file)
-            store.commit()
-        except Exception as excep:
-            log.err("Unable to reference InternalFile %s in InternalTip: %s" % (original_fname, excep))
-            raise excep
+    # I'm forcing commits because I've got some inconsistencies
+    # in this ReferenceSets. need to be investigated if needed.
+    try:
+        #internaltip.internalfiles.add(new_file)
+        store.commit()
+    except Exception as excep:
+        log.err("Unable to reference InternalFile %s in InternalTip: %s" % (original_fname, excep))
+        raise excep
 
-        files_list.append(serialize_file(new_file))
-        log.debug("Added to the DB, file %s" % original_fname)
+    log.debug("Added to the DB, file %s" % original_fname)
 
-    return files_list
+    return serialize_file(new_file)
 
-def dump_files_fs(files):
+
+def dump_file_fs(uploaded_file):
     """
-    @param files: files uploaded in Cyclone upload
-    @return: a relationship dict linking the filename with the random
-        filename saved in the disk
+    @param files: a file
+    @return: a filepath linking the filename with the random
+             filename saved in the disk
     """
-    files_saved = {}
-    i = 0
-    for single_file in files:
-        saved_name = rstr.xeger(r'[A-Za-z]{26}')
-        filelocation = os.path.join(GLSetting.submission_path, saved_name)
+    
+    saved_name = rstr.xeger(r'[A-Za-z]{26}')
+    filelocation = os.path.join(GLSetting.submission_path, saved_name)
 
-        log.debug("Start saving %d bytes from file [%s]" %
-                  (len(single_file['body']), single_file['filename'].encode('utf-8')))
+    log.debug("Start saving %d bytes from file [%s]" %
+              (uploaded_file['body_len'], uploaded_file['filename'].encode('utf-8')))
 
-        with open(filelocation, 'w+') as fd:
-            fdesc.setNonBlocking(fd.fileno())
-            if not fdesc.writeToFD(fd.fileno(), single_file['body']):
+    with open(filelocation, 'w+') as fd:
+        fdesc.setNonBlocking(fd.fileno())
+        data = uploaded_file['body'].read(4000) # 4kb
+        while data != "":
+            if not fdesc.writeToFD(fd.fileno(), data):
                 log.debug("Non blocking file has reported an issue")
                 raise errors.InternalServerError("buffer not available")
+            data = uploaded_file['body'].read(4000) # 4kb
 
-        files_saved.update({i : saved_name })
-
-        i += 1
-
-    return files_saved
-
+    return saved_name
 
 @transact
 def get_tip_by_submission(store, id):
@@ -163,30 +155,25 @@ class FileHandler(BaseHandler):
         # more than 1), because all files are delivered in the same time.
         start_time = time.time()
 
-        try:
-            file_array, files = self.request.files.popitem()
-        except Exception as excep:
-            log.err("Unable to accept file uploaded: %s" % excep)
-            raise errors.InvalidInputFormat("files array malformed")
+        uploaded_file = self.request.body
 
         try:
-            # First iterloop, dumps the files in the filesystem,
+            # First: dump the file in the filesystem,
             # and exception raised here would prevent the InternalFile recordings
-            relationship = dump_files_fs(files)
+            filepath = dump_file_fs(uploaded_file)
         except Exception as excep:
             log.err("Unable to save a file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
         try:
-            # Second iterloop, create the objects in the database
-            file_list = yield register_files_db(files, relationship, itip_id)
+            # Second: register the file in the database
+            registered_file = yield register_file_db(uploaded_file, filepath, itip_id)
         except Exception as excep:
             log.err("Unable to register file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
-        for file_desc in file_list:
-            file_desc['elapsed_time'] = time.time() - start_time
-            result_list.append(file_desc)
+        registered_file['elapsed_time'] = time.time() - start_time
+        result_list.append(registered_file)
 
         self.set_status(201) # Created
         self.write(result_list)
