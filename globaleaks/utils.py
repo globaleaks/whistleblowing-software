@@ -314,7 +314,7 @@ def mail_exception(etype, value, tback):
     tmp = []
 
     tmp.append("From: %s" % GLSetting.error_reporting_username)
-    tmp.append("To: %s" % GLSetting.error_reporting_username)
+    tmp.append("To: %s" % GLSetting.memory_copy.exception_email)
     tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
     tmp.append("Content-Transfer-Encoding: 8bit\n")
@@ -327,6 +327,10 @@ def mail_exception(etype, value, tback):
     tmp.append(traceinfo)
 
     info_string = '\n'.join(tmp)
+
+    if type(info_string) == unicode:
+        info_string = info_string.encode(encoding='utf-8', errors='ignore')
+
     message = StringIO(info_string)
 
     log.err(error_message)
@@ -339,7 +343,8 @@ def mail_exception(etype, value, tback):
              GLSetting.memory_copy.exception_email,
              message,
              GLSetting.error_reporting_server,
-             GLSetting.error_reporting_port, None)
+             GLSetting.error_reporting_port,
+             GLSetting.error_reporting_security)
 
 mail_exception.mail_counter = 0
 

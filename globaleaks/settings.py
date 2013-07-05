@@ -62,10 +62,11 @@ class GLSettingsClass:
         self.store_name = 'main_store'
 
         # unhandled Python Exception are reported via mail
-        self.error_reporting_username= "stackexception@globaleaks.org"
-        self.error_reporting_password= "stackexception99"
-        self.error_reporting_server = "box549.bluehost.com"
-        self.error_reporting_port = 25
+        self.error_reporting_username= "sendaccount@lists.globaleaks.org"
+        self.error_reporting_password= "sendaccount99"
+        self.error_reporting_server = "mail.headstrong.de"
+        self.error_reporting_port = 587
+        self.error_reporting_security = "TLS"
 
         # debug defaults
         self.storm_debug = False
@@ -117,7 +118,7 @@ class GLSettingsClass:
         self.defaults.maximum_descsize = 1024
         self.defaults.maximum_textsize = 2048
         self.defaults.maximum_filesize = 30 # expressed in megabytes
-        self.defaults.exception_email = u"stackexception@lists.globaleaks.org"
+        self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
         # Context dependent values:
         self.defaults.receipt_regexp = u'[0-9]{10}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
