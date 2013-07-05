@@ -1,6 +1,51 @@
 GLClient.controller('AdminReceiversCtrl', ['$scope',
 function($scope) {
 
+  $scope.delete = function(receiver) {
+    var idx = _.indexOf($scope.admin.receivers, receiver);
+
+    receiver.$delete(function(){
+      $scope.admin.receivers.splice(idx, 1);
+    });
+
+  };
+}]);
+
+GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher',
+  function($scope, passwordWatcher) {
+
+    passwordWatcher($scope, 'receiver.password');
+
+    $scope.editing = false;
+
+    $scope.toggleEditing = function() {
+      $scope.editing = $scope.editing ^ 1;
+    }
+
+    $scope.isSelected = function(context) {
+      if ($scope.receiver.contexts.indexOf(context.context_gus) !== -1) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+
+    $scope.toggle = function(context) {
+      var idx = $scope.receiver.contexts.indexOf(context.context_gus)
+      if (idx === -1) {
+        $scope.receiver.contexts.push(context.context_gus);
+      } else {
+        $scope.receiver.contexts.splice(idx, 1);
+      }
+    }
+
+}]);
+
+GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
+  function($scope, passwordWatcher) {
+
+    passwordWatcher($scope, 'new_receiver.password');
+
   $scope.new_receiver = {};
 
   $scope.add_receiver = function() {
@@ -35,40 +80,5 @@ function($scope) {
     });
 
   };
-
-  $scope.delete = function(receiver) {
-    var idx = _.indexOf($scope.admin.receivers, receiver);
-
-    receiver.$delete(function(){
-      $scope.admin.receivers.splice(idx, 1);
-    });
-
-  };
-}]);
-
-GLClient.controller('AdminReceiversEditorCtrl', ['$scope',
-  function($scope) {
-    $scope.editing = false;
-
-    $scope.toggleEditing = function() {
-      $scope.editing = $scope.editing ^ 1;
-    }
-
-    $scope.isSelected = function(context) {
-      if ($scope.receiver.contexts.indexOf(context.context_gus) !== -1) {
-        return true;
-      } else {
-        return false;
-      }
-    }
-
-    $scope.toggle = function(context) {
-      var idx = $scope.receiver.contexts.indexOf(context.context_gus)
-      if (idx === -1) {
-        $scope.receiver.contexts.push(context.context_gus);
-      } else {
-        $scope.receiver.contexts.splice(idx, 1);
-      }
-    }
 
 }]);

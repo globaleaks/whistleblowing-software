@@ -399,6 +399,52 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
   }
 
 }).
+  factory('passwordWatcher', ['$parse', function($parse) {
+    return function(scope, password) {
+      /** This is used to watch the new password and check that is 
+       *  effectively the same. Sets a local variable mismatch_password.
+       *
+       *  @param {obj} scope the scope under which we should register watchers
+       *                     and insert the mismatch_password field.
+       *  @param {string} old_password the old password model name.
+       *  @param {string} password the new password model name.
+       *  @param {string} check_password need to be equal to the new password.
+       **/
+      scope.unsafe_password = false;
+      scope.pwdValidLength = true;
+      scope.pwdHasLetter = true;
+      scope.pwdHasNumber = true;
+
+      var validatePasswordChange = function() {
+        if (typeof scope.$eval(password) != 'undefined' && scope.$eval(password) != '') {
+            scope.pwdValidLength = ( scope.$eval(password)).length >= 8 ? true : false;
+            scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password) )) ? true : false;
+            scope.pwdHasNumber = ( /\d/.test(scope.$eval(password) )) ? true : false;
+
+            if (scope.pwdValidLength && scope.pwdHasLetter && scope.pwdHasNumber) {
+              scope.unsafe_password = false;
+            } else {
+              scope.unsafe_password = true;
+            }
+        } else {
+            /*
+             * This values permits to not show errors when
+             * the user has not yed typed any password.
+             */
+            scope.unsafe_password = false
+            scope.pwdValidLength = true;
+            scope.pwdHasLetter = true;
+            scope.pwdHasNumber = true;
+        }
+      }
+
+      scope.$watch(password, function(){
+          validatePasswordChange();
+      }, true);
+
+    }
+
+}]).
   factory('changePasswordWatcher', ['$parse', function($parse) {
     return function(scope, old_password, password, check_password) {
       /** This is used to watch the new password and check that is 
@@ -420,16 +466,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
 
       var validatePasswordChange = function() {
 
-        if (scope.$eval(password) == scope.$eval(check_password) ) {
-            scope.mismatch_password = false;
-        }
-
-        /* when is not yet written is undefined, then do not show the error */
-        if (scope.$eval(password) == undefined ) {
-            scope.mismatch_password = false;
-        }
-
-        if (scope.mismatch_password && scope.$eval(password) != undefined) {
+        if (typeof scope.$eval(password) != 'undefined' && scope.$eval(password) != '') {
 
             scope.pwdValidLength = ( scope.$eval(password)).length >= 8 ? true : false;
             scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password) )) ? true : false;
@@ -440,18 +477,35 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
             } else {
               scope.unsafe_password = true;
             }
-            scope.missing_old_password = true;
+        } else {
+            /*
+             * This values permits to not show errors when
+             * the user has not yed typed any password.
+             */
+            scope.unsafe_password = false
+            scope.pwdValidLength = true;
+            scope.pwdHasLetter = true;
+            scope.pwdHasNumber = true;
         }
 
-        if (scope.$eval(old_password) != undefined && (scope.$eval(old_password)).length >= 1 )  {
+        if (typeof scope.$eval(password) != 'undefined' && (typeof scope.$eval(check_password) != 'undefined')) {
+            if (scope.$eval(password) == scope.$eval(check_password)) {
+                scope.mismatch_password = false;
+            } else {
+                scope.mismatch_password = true;                
+            }
+        } else {
+            scope.mismatch_password = false;
+        }
+
+        if (typeof scope.$eval(old_password) != 'undefined' && (scope.$eval(old_password)).length >= 1 )  {
             scope.missing_old_password = false;
+        } else {
+            scope.missing_old_password = true;
         }
       }
 
-      /* initializing here the variable that trigger "password mismatch"
-       * we avoid that is show as invalid since the page load */
       scope.$watch(password, function(){
-          scope.mismatch_password = true;
           validatePasswordChange();
       }, true);
 
@@ -460,7 +514,6 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       }, true);
 
       scope.$watch(check_password, function(){
-          scope.mismatch_password = true;
           validatePasswordChange();
       }, true);
 

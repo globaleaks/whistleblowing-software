@@ -40,7 +40,7 @@
 
                   <div class="span4 editButtons" ng-show="editing">
                     <button class="btn btn-success saveReceiver"
-                          ng-disabled="receiverForm.$invalid"
+                          ng-disabled="receiverForm.$invalid || unsafe_password"
                           ng-click="update(receiver)">
                           {{ "Save" | translate }}</button>
 
@@ -93,6 +93,14 @@
                     {{ "Password" | translate }}</label>
                   <!-- remind: this need to be random & mailed to the inactive user -->
                   <input type="password" ng-model="receiver.password">
+                  <p class="text-error" ng-show="unsafe_password">
+                  {{ "The choosen password is unsafe, it should have" | translate }}:</p>
+                  <li class="text-error" ng-hide="pwdHasLetter">
+                  {{ "At least one letter" | translate }}</li>
+                  <li class="text-error" ng-hide="pwdHasNumber">
+                  {{ "At least one number" | translate }}</li>
+                  <li class="text-error" ng-hide="pwdValidLength">
+                  {{ "At least 8 keypress long" | translate }}</li>
 
                 </div>
 
@@ -121,7 +129,8 @@
           </form>
         </div>
         <!-- End Receiver List -->
-
+      </div>
+      <div ng-controller="AdminReceiverAddCtrl">
         <!-- BEGIN Addition of receiver -->
         <div class="row">
           <form name="newReceiver">
@@ -151,12 +160,20 @@
                   <div class="span4">
                     <label>{{ "Password" | translate }}</label>
                     <input type="password" ng-model="new_receiver.password" required>
+                    <p class="text-error" ng-show="unsafe_password">
+                    {{ "The choosen password is unsafe, it should have" | translate }}:</p>
+                    <li class="text-error" ng-hide="pwdHasLetter">
+                    {{ "At least one letter" | translate }}</li>
+                    <li class="text-error" ng-hide="pwdHasNumber">
+                    {{ "At least one number" | translate }}</li>
+                    <li class="text-error" ng-hide="pwdValidLength">
+                    {{ "At least 8 keypress long" | translate }}</li>
                   </div>
                 </div>
 
               <div class="row">
                 <div class="span4">
-                  <button class="btn" ng-disabled="newReceiver.$invalid" ng-click="add_receiver()">
+                  <button class="btn" ng-disabled="newReceiver.$invalid || unsafe_password" ng-click="add_receiver()">
                     {{ "add" | translate }}</button>
                 </div>
               </div>
