@@ -40,7 +40,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "8549e51eaf93a219a8adc4d8165e68cbc41aa7c4a6217164e591a27c"
+    glclient_hash = "377e116f5a065a96ff571fc6088bb338fef4d1a4a810a5d7e0b44c5a"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
@@ -89,7 +89,8 @@ data_files = [
     ]),
     ('/usr/share/globaleaks/glbackend',  [
     'requirements.txt',
-    'staticdata/globaleaks_logo.png'
+    'staticdata/globaleaks_logo.png',
+    'staticdata/default-profile-picture.png'
     ])
 ]
 
