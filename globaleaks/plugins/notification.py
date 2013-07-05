@@ -179,12 +179,21 @@ class MailNotification(Notification):
         # If the receiver has encryption enabled (for notification), encrypt the mail body
         if event.receiver_info['gpg_key_status'] == Receiver._gpg_types[1] and \
            event.receiver_info['gpg_enable_notification']:
+
             try:
                 gpob = GLBGPG(event.receiver_info)
+
+                if not gpob.validate_key(event.receiver_info['gpg_key_armor']):
+                    log.err("unable to validated GPG key for receiver %s" %
+                            event.receiver_info['username'])
+                    return None
+
                 body = gpob.encrypt_message(body)
                 gpob.destroy_environment()
+
             except Exception as excep:
-                log.err("Unable to instance GPG interface object! (notification+encryption)")
+                log.err("Error in GPG interface object (%s)! (notification+encryption)" %
+                        event.receiver_info['username'])
                 return None
 
         self.host = str(event.notification_settings['server'])

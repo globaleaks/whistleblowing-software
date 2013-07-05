@@ -497,7 +497,7 @@ def update_receiver(store, id, request):
     receiver.tags = request['tags']
 
     # The various options related in manage GPG keys are used here.
-    gpg_options_manage(receiver, request)
+    gpg_options_parse(receiver, request)
 
     if len(request['password']):
         # admin override password without effort :)

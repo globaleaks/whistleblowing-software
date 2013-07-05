@@ -16,7 +16,7 @@ from Crypto.Random import random
 from gnupg import GPG
 
 from globaleaks.rest import errors
-from globaleaks.utils import log
+from globaleaks.utils import log, acquire_bool
 from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
 
@@ -165,30 +165,35 @@ class GLBGPG:
         return True
 
 
-    def encrypt_file(self, plainpath):
+    def encrypt_file(self, plainpath, output_path):
         """
         @param gpg_key_armor:
         @param plainpath:
         @return:
         """
-
         if not self.validate_key(self.receiver_desc['gpg_key_armor']):
             raise errors.GPGKeyInvalid
 
         encrypt_obj = self.gpgh.encrypt_file(plainpath, str(self.receiver_desc['gpg_key_fingerprint']))
 
-        if encrypt_obj.ok:
-            log.debug("Encrypting for %s (%s) file %s (%d boh ?)" %
-                      (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
-                       plainpath, len(str(encrypt_obj))) )
+        if not encrypt_obj.ok:
+            # continue here if is not ok
+            log.err("Falure in encrypting file %s %s (%s)" % ( plainpath,
+                    self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint']) )
+            log.err(encrypt_obj.stderr)
+            raise errors.GPGKeyInvalid
 
-            return str(encrypt_obj)
+        log.debug("Encrypting for %s (%s) file %s (%d boh ?)" %
+                  (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
+                  plainpath, len(str(encrypt_obj))) )
 
-        # continue here if is not ok
-        log.err("Falure in encrypting file %s %s (%s)" % ( plainpath,
-                self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint']) )
-        log.err(encrypt_obj.stderr)
-        raise errors.GPGKeyInvalid
+        encrypted_path = os.path.join(output_path, "gpg_encrypted-%d-%d" %
+                                      (random.randint(0, 0xFFFF), random.randint(0, 0xFFFF)))
+
+        with file(encrypted_path, "w+") as f:
+            f.write(str(encrypt_obj))
+
+        return encrypted_path
 
 
     def encrypt_message(self, plaintext):
@@ -212,22 +217,21 @@ class GLBGPG:
         # This second argument may be a list of fingerprint, not just one
         encrypt_obj = self.gpgh.encrypt(plaintext, str(self.receiver_desc['gpg_key_fingerprint']) )
 
-        if encrypt_obj.ok:
-            log.debug("Encrypting for %s (%s) %d byte of plain data (%d cipher output)" %
-                      (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
-                       len(plaintext), len(str(encrypt_obj))) )
+        if not encrypt_obj.ok:
+            # else, is not .ok
+            log.err("Falure in encrypting %d bytes for %s (%s)" % (len(plaintext),
+                    self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint']) )
+            log.err(encrypt_obj.stderr)
+            raise errors.GPGKeyInvalid
 
-            return str(encrypt_obj)
+        log.debug("Encrypting for %s (%s) %d byte of plain data (%d cipher output)" %
+                  (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
+                   len(plaintext), len(str(encrypt_obj))) )
 
-        # else, is not .ok
-        log.err("Falure in encrypting %d bytes for %s (%s)" % (len(plaintext),
-                self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint']) )
-        log.err(encrypt_obj.stderr)
-        raise errors.GPGKeyInvalid
+        return str(encrypt_obj)
 
 
     def destroy_environment(self):
-
         try:
             shutil.rmtree(self.gpgh.gnupghome)
         except Exception as excep:
@@ -263,12 +267,11 @@ def gpg_options_parse(receiver, request):
     new_gpg_key = request.get('gpg_key_armor', None)
     remove_key = request.get('gpg_key_remove', False)
 
-    encrypt_notification = request.get('gpg_enable_notification', False)
-    encrypt_file = request.get('gpg_enable_files', False)
+    encrypt_notification = acquire_bool(request.get('gpg_enable_notification', False))
+    encrypt_file = acquire_bool(request.get('gpg_enable_files', False))
 
+    # set a default status
     receiver.gpg_key_status = Receiver._gpg_types[0]
-    receiver.gpg_enable_notificiation = False
-    receiver.gpg_enable_files = False
 
     if remove_key:
         log.debug("User %s request to remove GPG key (%s)" %
@@ -295,16 +298,10 @@ def gpg_options_parse(receiver, request):
 
         gnob.destroy_environment()
 
-    if encrypt_file or encrypt_notification:
-        if receiver.gpg_key_status == Receiver._gpg_types[1]:
-            receiver.gpg_enable_files = encrypt_file
-            receiver.gpg_enable_notification = encrypt_notification
-            log.debug("Receiver %s sets GPG usage: notification %s, file %s" %
+    if receiver.gpg_key_status == Receiver._gpg_types[1]:
+        receiver.gpg_enable_files = encrypt_file
+        receiver.gpg_enable_notification = encrypt_notification
+        log.debug("Receiver %s sets GPG usage: notification %s, file %s" %
                 (receiver.username,
                  "YES" if encrypt_notification else "NO",
-                 "YES" if encrypt_file else "NO")
-            )
-        else:
-            log.err("Gpg unset, but %s has put True in notif/file encryption ?" % receiver.username)
-            # Just a silent error logging.
-
+                 "YES" if encrypt_file else "NO") )
