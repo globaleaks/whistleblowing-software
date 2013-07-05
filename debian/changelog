@@ -1,3 +1,9 @@
+globaleaks (2.23.2-0) unstable; urgency=high
+
+  * GlobaLeaks Alpha - Various bugfix, Updated Translations
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 05 Jul 2013 17:45:42 +0002
+
 globaleaks (2.23.1-0) unstable; urgency=high
 
   * GlobaLeaks Alpha - Full support for it, nl, vi
