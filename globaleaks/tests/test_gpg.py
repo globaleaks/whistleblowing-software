@@ -111,7 +111,6 @@ class TestReceiverSetKey(helpers.TestHandler):
         # setup the GPG key before
         GLSetting.gpgroot = GPGROOT
 
-        print os.getcwd()
         tempsource = os.path.join(os.getcwd(), "temp_source.txt")
         with file(tempsource, 'w+') as f:
             f.write("\n\nDecrypt the Cat!\n\nhttp://tobtu.com/decryptocat.php\n\n")
@@ -127,12 +126,13 @@ class TestReceiverSetKey(helpers.TestHandler):
             # these are the same lines used in delivery_sched.py
             gpoj = GLBGPG(fake_receiver_desc)
             gpoj.validate_key(DeveloperKey.__doc__)
-            encrypted_file_path = gpoj.encrypt_file(f)
+            encrypted_file_path = gpoj.encrypt_file(f, "/tmp")
             gpoj.destroy_environment()
 
-            print encrypted_file_path
-            self.assertSubstring('-----BEGIN PGP MESSAGE-----', encrypted_file_path)
-            # TODO IS NOT A PATH --- need to be changed
+            with file(encrypted_file_path, "r") as f:
+                first_line = f.readline()
+
+            self.assertSubstring('-----BEGIN PGP MESSAGE-----', first_line)
 
 
 #    @inlineCallbacks

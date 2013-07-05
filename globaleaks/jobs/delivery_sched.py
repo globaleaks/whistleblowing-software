@@ -101,7 +101,7 @@ def receiver_file_align(store, filesdict, processdict):
                     received_desc = admin_serialize_receiver(receiver)
                     gpoj = GLBGPG(received_desc)
                     gpoj.validate_key(received_desc['gpg_key_armor'])
-                    encrypted_file_path = gpoj.encrypt_file(ifile.file_path, )
+                    encrypted_file_path = gpoj.encrypt_file(ifile.file_path, GLSetting.submission_path)
                     gpoj.destroy_environment()
 
                     log.debug("Generated encrypted version of %s for %s in %s" % (

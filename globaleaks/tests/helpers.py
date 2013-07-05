@@ -209,6 +209,10 @@ class MockDict():
             'tip_notification': True,
             'file_notification': True,
             'comment_notification': True,
+            'gpg_key_armor': u'',
+            'gpg_key_remove': False,
+            "gpg_enable_notification": False,
+            "gpg_enable_files": False,
         }
 
         self.dummyContext = {
