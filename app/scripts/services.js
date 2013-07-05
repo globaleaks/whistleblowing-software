@@ -488,14 +488,14 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
             scope.pwdHasNumber = true;
         }
 
-        if (typeof scope.$eval(password) != 'undefined' && (typeof scope.$eval(check_password) != 'undefined')) {
+        if ((typeof scope.$eval(password) == 'undefined') && (typeof scope.$eval(check_password) == 'undefined')) {
+            scope.mismatch_password = false;
+        } else {
             if (scope.$eval(password) == scope.$eval(check_password)) {
                 scope.mismatch_password = false;
             } else {
                 scope.mismatch_password = true;                
             }
-        } else {
-            scope.mismatch_password = false;
         }
 
         if (typeof scope.$eval(old_password) != 'undefined' && (scope.$eval(old_password)).length >= 1 )  {
