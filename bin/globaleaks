@@ -85,8 +85,8 @@ if os.path.exists(path):
 else:
     pip_version_check(os.path.join(root, 'requirements.txt'))
 
-from globaleaks import DATABASE_VERSION
-from globaleaks.utils import query_yes_no
+from globaleaks import runner, DATABASE_VERSION
+from globaleaks.utils import log, mail_exception, query_yes_no, caller_name
 from globaleaks.settings import GLSetting
 from twisted.python import usage
 
@@ -250,7 +250,20 @@ elif GLSetting.cmdline_options.kill:
         os.remove(GLSetting.pidfile_path)
     except Exception as excep:
         print "Unable kill PID found in %s: kill option ignored (%s)" %\
-              ( GLSetting.pidfile_path, excep)
+              (GLSetting.pidfile_path, excep)
+
+##########################
+# Security UMASK hardening
+os.umask(077)
+
+orig_umask = os.umask
+
+def umask(mask):
+    log.debug("attempt to call umask by %s with value %o; forcing umask(077)" % (caller_name(), mask))
+    return orig_umask(077)
+
+os.umask = umask
+#########################
 
 GLSetting.drop_privileges()
 GLSetting.create_directories()
@@ -346,9 +359,6 @@ def check_db_files():
 
 
 def run_glbackend():
-    from globaleaks import runner
-
-    from globaleaks.utils import log, mail_exception
     log.start_logging()
 
     sys.excepthook = mail_exception

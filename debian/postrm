@@ -1,5 +1,9 @@
 #!/bin/bash
 
+if [ -d /var/run/globaleaks ]; then
+  rm -r /var/run/globaleaks
+fi
+
 #        .;''-.
 #      .' |    `._
 #     /`  ;       `'.
@@ -36,7 +40,7 @@
 #                  ;;;  ,' |    `
 #                      /   '
 
-cat ${BASH_SOURCE[0]} | tail -n 41 | head -n 34
+cat ${BASH_SOURCE[0]} | tail -n 41 | head -n 35
 
 echo "[+] Sorry to hear you did not enjoy your leaking experience"
 echo "    send us an email to info@globaleaks.org"
