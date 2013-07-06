@@ -93,10 +93,8 @@ angular.module('submissionUI', []).
             if (data.files[file].size >= (scope.maximumFilesize * 1024 * 1024) ) {
               var error = {};
 
-              error.message = data.files[file].name +
-                  " is too big. (Maximum filesize: " +
-                  (scope.maximumFilesize / (1024*1024)) + " MB)";
               error.code = 39;
+              error.arguments = Array(scope.maximumFilesize + '')
 
               if (!$rootScope.errors) {
                 $rootScope.errors = [];
