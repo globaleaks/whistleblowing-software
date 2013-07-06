@@ -28,7 +28,7 @@
         </div>
 
         <div ng-switch-when="19">
-          {{ "A field expected to be unique is already present (" | translate }}{{error.arguments[0]}}:{{error.arguments[1]}})
+          {{ "A field expected to be unique is already present" | translate }} ({{error.arguments[0]}}:{{error.arguments[1]}})
         </div>
 
         <div ng-switch-when="26">
@@ -48,11 +48,11 @@
         </div>
 
         <div ng-switch-when="39">
-          {{ "The upload request overcome the Mb limits (31457280 Mb)" | translate }}
+          {{ "The upload request overcome the MB limits" | translate }} ({{error.arguments[0]}} MB)
         </div>
 
         <div ng-switch-when="31">
-          {{ "Internal Server Error (" | translate }}{{error.arguments[0]}})
+          {{ "Internal Server Error" | translate }} ({{error.arguments[0]}})
         </div>
 
         <div ng-switch-when="29">
@@ -64,7 +64,7 @@
         </div>
 
         <div ng-switch-when="10">
-          {{ "Invalid Input Format [" | translate }}{{error.arguments[0]}}]
+          {{ "Invalid Input Format" | translate }} [{{error.arguments[0]}}]
         </div>
 
         <div ng-switch-when="34">
@@ -72,7 +72,7 @@
         </div>
 
         <div ng-switch-when="24">
-          {{ "Invalid Authenticated in scope:" | translate }}{{error.arguments[0]}}
+          {{ "Invalid Authentication in scope" | translate }}: {{error.arguments[0]}}
         </div>
 
         <div ng-switch-when="23">
@@ -100,7 +100,7 @@
         </div>
 
         <div ng-switch-when="41">
-          {{ "The time for your role (" | translate }}{{error.arguments[0]}}{{ ") is" | translate }}{{error.arguments[1]}}
+          {{ "The time for your role" | translate }} ({{error.arguments[0]}}) {{ "is" | translate }}{{error.arguments[1]}}
         </div>
 
         <div ng-switch-when="11">
@@ -112,7 +112,7 @@
         </div>
 
         <div ng-switch-when="22">
-          {{ "Submission do not validate the input fields [" | translate }}{{error.arguments[0]}}]
+          {{ "Submission do not validate the input fields" | translate }} [{{error.arguments[0]}}]
         </div>
 
         <div ng-switch-when="21">
@@ -120,7 +120,7 @@
         </div>
 
         <div ng-switch-when="42">
-          {{ "Invalid timerange supply for" | translate }}{{error.arguments[0]}}:{{error.arguments[1]}}
+          {{ "Invalid timerange supplied for" | translate }} {{error.arguments[0]}}:{{error.arguments[1]}}
         </div>
 
         <div ng-switch-when="13">
