@@ -265,7 +265,6 @@ def umask(mask):
 os.umask = umask
 #########################
 
-GLSetting.drop_privileges()
 GLSetting.create_directories()
 GLSetting.check_directories()
 
