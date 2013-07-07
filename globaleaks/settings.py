@@ -328,7 +328,6 @@ class GLSettingsClass:
             if not os.path.exists(path):
                 try:
                     os.mkdir(path)
-                    os.chown(path, self.uid, self.gid)
                     self.log_debug("Created directoy %s" % path)
                     return True
                 except OSError as excep:
@@ -404,6 +403,12 @@ class GLSettingsClass:
         '''
         if path is None:
             path = self.working_path
+
+        try:
+            os.chown(path,self.uid,self.gid)
+            os.chmod(path,0700)
+        except:
+            print('File permissions on {0} not updated due to error.'.format(os.path.join(path,item)))
 
         for item in glob.glob(path + '/*'):
             if os.path.isdir(item):
