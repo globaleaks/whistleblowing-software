@@ -72,7 +72,7 @@ def pip_version_check(path):
         print "\n"
         print "The problem can be solved by:"
         print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki"
-        print "2) Installing missing requirements using pip install -r requirements.txt"
+        print "2) Installing missing requirements using pip install -r /usr/share/globaleaks/glbackend/requirements.txt"
         quit(-1)
 
 this_directory = os.path.dirname(__file__)
