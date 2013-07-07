@@ -71,7 +71,7 @@ def pip_version_check(path):
             print "\t" + unmet_requirement
         print "\n"
         print "The problem can be solved by:"
-        print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki/Linux"
+        print "1) Following the guidelines at https://github.com/globaleaks/GlobaLeaks/wiki"
         print "2) Installing missing requirements using pip install -r requirements.txt"
         quit(-1)
 
