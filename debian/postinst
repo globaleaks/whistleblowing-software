@@ -7,11 +7,13 @@ fi
 if [ ! -d /var/globaleaks ]; then
   mkdir -p /var/globaleaks
   chown globaleaks:globaleaks /var/globaleaks
+  chmod 700 /var/globaleaks
 fi
 
 if [ ! -d /var/run/globaleaks ]; then
   mkdir -p /var/run/globaleaks
   chown globaleaks:globaleaks /var/run/globaleaks
+  chmod 700 /var/run/globaleaks
 fi
 
 python -mcompileall `python -c "import os, globaleaks;print os.path.dirname(globaleaks.__file__)"` >/dev/null 2>&1
