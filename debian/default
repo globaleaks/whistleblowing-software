@@ -12,7 +12,7 @@ HOSTS_LIST=127.0.0.1,localhost
 
 # APPARMOR_SANDBOXING = 0/1
 #   permits to enable apparmor sandboxing; requires apparmor
-APPARMOR_SANDBOXING=0
+APPARMOR_SANDBOXING=1
 
 # NETWORKSANDBOX = 0/1
 #   permits to enable network sandboxing; requires iptables
