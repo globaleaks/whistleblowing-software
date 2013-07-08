@@ -8,6 +8,7 @@
 
 import os
 import sys
+import glob
 import shutil
 import traceback
 import logging
@@ -69,6 +70,7 @@ class GLSettingsClass:
 
         # files and paths
         self.root_path = os.path.abspath(os.path.join(os.path.dirname(__file__), '..'))
+        self.pid_path = '/var/run/globaleaks'
         self.working_path = '/var/globaleaks'
         self.static_source = '/usr/share/globaleaks/glbackend'
         self.glclient_path = '/usr/share/globaleaks/glclient'
@@ -110,7 +112,7 @@ class GLSettingsClass:
         self.defaults.maximum_descsize = 1024
         self.defaults.maximum_textsize = 2048
         self.defaults.maximum_filesize = 30 # expressed in megabytes
-        self.defaults.exception_email = u"stackexception@lists.globaleaks.org"
+        self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
         # Context dependent values:
         self.defaults.receipt_regexp = u'[0-9]{10}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
@@ -173,7 +175,7 @@ class GLSettingsClass:
 
 
     def eval_paths(self):
-        self.pidfile_path = os.path.join(self.working_path, 'twistd.pid')
+        self.pidfile_path = os.path.join(self.pid_path, 'globaleaks-' + str(self.bind_port) + '.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
@@ -191,6 +193,7 @@ class GLSettingsClass:
 
     def set_devel_mode(self, glcp=None):
         self.devel_mode = True
+        self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
         if not glcp:
@@ -390,6 +393,33 @@ class GLSettingsClass:
             if not os.access(rdonly, os.R_OK|os.X_OK):
                 raise Exception("read capability missing in: %s" % rdonly)
 
+    def fix_file_permissions(self, path=None):
+        '''
+        Recursively updates file permissions on a given path.
+        UID and GID default to -1, and mode is required
+        '''
+        if not path:
+            path = self.working_path
+
+        try:
+            os.chown(path,self.uid,self.gid)
+            os.chmod(path,0700)
+        except Exception as excep:
+            print "Unable to update permissions on %s: %s" % (path, excep)
+            quit(-1)
+
+        for item in glob.glob(path + '/*'):
+            if os.path.isdir(item):
+                self.fix_file_permissions(os.path.join(path,item))
+            else:
+                target = os.path.join(path, item)
+                try:
+                    os.chown(target, self.uid, self.gid)
+                    os.chmod(target, 0700)
+                except Exception as excep:
+                    print "Unable to update permissions on %s: %s" % (target, excep)
+                    quit(-1)
+
     def remove_directories(self):
         for root, dirs, files in os.walk(self.working_path, topdown=False):
             for name in files:
@@ -523,7 +553,5 @@ class transact(object):
 
         return result
 
-
 transact.tp.start()
 reactor.addSystemEventTrigger('after', 'shutdown', transact.tp.stop)
-

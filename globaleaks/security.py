@@ -7,6 +7,7 @@
 
 import scrypt
 import binascii
+import re
 import time
 import os
 import shutil
@@ -21,11 +22,6 @@ from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
-
-# this value can be incremented, but instead of the backend enforcing, we
-# need a GLClient password strength checker
-MINIMUM_PASSWORD_LENGTH = 4
-
 
 def get_salt(salt_input):
     """
@@ -60,6 +56,20 @@ def hash_password(proposed_password, salt_input):
     return binascii.b2a_hex(hashed_passwd)
 
 
+def check_password_format(password):
+    """
+    @param password:
+        a password to be validated
+
+    # A password strength checker need to be implemented in the client;
+    # here is implemented a simple validation.
+    """
+    m1 = re.match(r'.{8,}', password)
+    m2 = re.match(r'.*\d.*', password)
+    m3 = re.match(r'.*[A-Za-z].*', password)
+    if m1 is None or m2 is None or m3 is None:
+        raise errors.InvalidInputFormat("password requirements unmet")
+
 def check_password(guessed_password, base64_stored, salt_input):
     guessed_password = guessed_password.encode('utf-8')
     salt = get_salt(salt_input)
@@ -88,6 +98,8 @@ def change_password(base64_stored, old_password, new_password, salt_input):
     if not check_password(old_password, base64_stored, salt_input):
         log.err("old_password provided do match")
         raise errors.InvalidOldPassword
+
+    check_password_format(new_password)
 
     return hash_password(new_password, salt_input)
 

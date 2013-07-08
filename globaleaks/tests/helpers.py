@@ -20,7 +20,9 @@ from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, utils, models
 
-DEFAULT_PASSWORD = u'yustapassword'
+VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
+VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
+INVALID_PASSWORD = u'antani'
 transact.tp = FakeThreadPool()
 
 transact.debug = True
@@ -197,7 +199,7 @@ class MockDict():
 
         self.dummyReceiver = {
             'receiver_gus': unicode(uuid.uuid4()),
-            'password': DEFAULT_PASSWORD,
+            'password': VALID_PASSWORD1,
             'old_password': None,
             'name': u'Ned Stark',
             'description': { "en" : u'King MockDummy Receiver' },

@@ -1,0 +1,8 @@
+#!/bin/sh
+# This is the pre installation script for globaleaks
+
+lsb_release -c | grep precise >/dev/null 2>&-
+if [ "$?" -ne "0" ]; then
+    echo "Error: Currently GlobaLeaks offers only Ubuntu 12.04 (precise) support"
+    exit 1
+fi

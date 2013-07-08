@@ -176,7 +176,7 @@ class InvalidScopeAuth(GLException):
     status_code = 403 # Forbidden
 
     def __init__(self, details):
-        self.reason = ("Invalid Authenticated in scope: %s" % details)
+        self.reason = ("Invalid Authentication in scope: %s" % details)
         self.arguments.append(details)
 
 

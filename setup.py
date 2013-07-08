@@ -40,7 +40,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "3e76cb71247fe3b26fb19f9201e0dc2b0f700c30430bfa7cd84cc815"
+    glclient_hash = "3eb612be1fbfdb69a88c79f3a00142af0ddf64ef26778a82c3969ae3"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
@@ -87,7 +87,11 @@ data_files = [
     os.path.join(glclient_path, 'images', 'glyphicons-halflings.png'),
     os.path.join(glclient_path, 'images', 'glyphicons-halflings-white.png')
     ]),
-    ('/usr/share/globaleaks/glbackend',  ['staticdata/globaleaks_logo.png'])
+    ('/usr/share/globaleaks/glbackend',  [
+    'requirements.txt',
+    'staticdata/globaleaks_logo.png',
+    'staticdata/default-profile-picture.png'
+    ])
 ]
 
 setup(
