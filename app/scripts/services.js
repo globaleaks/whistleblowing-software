@@ -416,7 +416,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       scope.pwdHasNumber = true;
 
       var validatePasswordChange = function() {
-        if (typeof scope.$eval(password) != 'undefined' && scope.$eval(password) != '') {
+        if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
             scope.pwdValidLength = ( scope.$eval(password)).length >= 8 ? true : false;
             scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password) )) ? true : false;
             scope.pwdHasNumber = ( /\d/.test(scope.$eval(password) )) ? true : false;
@@ -466,7 +466,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
 
       var validatePasswordChange = function() {
 
-        if (typeof scope.$eval(password) != 'undefined' && scope.$eval(password) != '') {
+        if (scope.$eval(password) !== undefined && scope.$eval(password) != '') {
 
             scope.pwdValidLength = ( scope.$eval(password)).length >= 8 ? true : false;
             scope.pwdHasLetter = ( /[A-z]/.test(scope.$eval(password) )) ? true : false;
@@ -488,7 +488,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
             scope.pwdHasNumber = true;
         }
 
-        if ((typeof scope.$eval(password) == 'undefined') && (typeof scope.$eval(check_password) == 'undefined')) {
+        if ((scope.$eval(password) === undefined) && (scope.$eval(check_password) === undefined)) {
             scope.mismatch_password = false;
         } else {
             if (scope.$eval(password) == scope.$eval(check_password)) {
@@ -498,7 +498,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
             }
         }
 
-        if (typeof scope.$eval(old_password) != 'undefined' && (scope.$eval(old_password)).length >= 1 )  {
+        if (scope.$eval(old_password) !== undefined && (scope.$eval(old_password)).length >= 1 )  {
             scope.missing_old_password = false;
         } else {
             scope.missing_old_password = true;

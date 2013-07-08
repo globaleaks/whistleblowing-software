@@ -47,11 +47,11 @@ function($rootScope, $scope, $http, $location, Admin, Translations) {
   // if they are not present
   $scope.updateNode = function(node) {
 
-    if (typeof(node.password) === "undefined")
+    if (node.password === undefined)
       node.password = "";
-    if (typeof(node.check_password) === "undefined")
+    if (node.check_password === undefined)
       node.password = "";
-    if (typeof(node.old_password) === "undefined")
+    if (node.old_password === undefined)
       node.old_password = "";
     $scope.update(node);
   }

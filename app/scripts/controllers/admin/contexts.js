@@ -2,6 +2,7 @@ GLClient.controller('AdminContextsCtrl',
     ['$scope', '$rootScope', 'Admin',
     function($scope, $rootScope, Admin) {
 
+
   $scope.delete = function(context) {
     var idx = _.indexOf($scope.admin.contexts, context);
 
@@ -16,6 +17,10 @@ GLClient.controller('AdminContextsCtrl',
       context.fields = [];
     }
     context.fields.push({presentation_order: 0,
+                        name: {},
+                        hint: {},
+                        key: '',
+                        value: '',
                         type: 'text',
                         required: false});
   }
@@ -67,7 +72,7 @@ GLClient.controller('AdminContextsEditorCtrl', ['$scope',
 
     $scope.editing = false;
 
-    if ($scope.context.description === "") {
+    if ($scope.context.description === undefined) {
       $scope.editing = true;
     }
 
