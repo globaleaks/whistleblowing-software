@@ -396,29 +396,32 @@ class GLSettingsClass:
             if not os.access(rdonly, os.R_OK|os.X_OK):
                 raise Exception("read capability missing in: %s" % rdonly)
 
-    def fix_file_permissions(self, path = None):
+    def fix_file_permissions(self, path=None):
         '''
         Recursively updates file permissions on a given path.
         UID and GID default to -1, and mode is required
         '''
-        if path is None:
+        if not path:
             path = self.working_path
 
         try:
             os.chown(path,self.uid,self.gid)
             os.chmod(path,0700)
-        except:
-            print('File permissions on {0} not updated due to error.'.format(os.path.join(path,item)))
+        except Exception as excep:
+            print "Unable to update permissions on %s: %s" % (path, excep)
+            quit(-1)
 
         for item in glob.glob(path + '/*'):
             if os.path.isdir(item):
                 self.fix_file_permissions(os.path.join(path,item))
             else:
+                target = os.path.join(path, item)
                 try:
-                    os.chown(os.path.join(path,item),self.uid,self.gid)
-                    os.chmod(os.path.join(path,item),0700)
-                except:
-                    print('File permissions on {0} not updated due to error.'.format(os.path.join(path,item)))
+                    os.chown(target, self.uid, self.gid)
+                    os.chmod(target, 0700)
+                except Exception as excep:
+                    print "Unable to update permissions on %s: %s" % (target, excep)
+                    quit(-1)
 
     def remove_directories(self):
         for root, dirs, files in os.walk(self.working_path, topdown=False):
