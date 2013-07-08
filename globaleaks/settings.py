@@ -404,21 +404,25 @@ class GLSettingsClass:
         if not path:
             path = self.working_path
 
+        # we need to avoid changing permissions to torhs directory and its files
+        if path == os.path.join(self.working_path, 'torhs'):
+            return
+
         try:
-            os.chown(path,self.uid,self.gid)
-            os.chmod(path,0700)
+            if path != self.working_path:
+                os.chown(path,self.uid,self.gid)
+                os.chmod(path,0700)
         except Exception as excep:
             print "Unable to update permissions on %s: %s" % (path, excep)
             quit(-1)
 
         for item in glob.glob(path + '/*'):
             if os.path.isdir(item):
-                self.fix_file_permissions(os.path.join(path,item))
+                self.fix_file_permissions(item)
             else:
-                target = os.path.join(path, item)
                 try:
-                    os.chown(target, self.uid, self.gid)
-                    os.chmod(target, 0700)
+                    os.chown(item, self.uid, self.gid)
+                    os.chmod(item, 0700)
                 except Exception as excep:
                     print "Unable to update permissions on %s: %s" % (target, excep)
                     quit(-1)
