@@ -5,12 +5,17 @@ if ! id -u globaleaks >/dev/null 2>&1; then
 fi
 
 if [ ! -d /var/globaleaks ]; then
-  mkdir -p /var/globaleaks/
+  mkdir -p /var/globaleaks
+  chown globaleaks:globaleaks /var/globaleaks
+  chmod 700 /var/globaleaks
 fi
 
-chown globaleaks:globaleaks /var/globaleaks
+if [ ! -d /var/run/globaleaks ]; then
+  mkdir -p /var/run/globaleaks
+  chown globaleaks:globaleaks /var/run/globaleaks
+  chmod 700 /var/run/globaleaks
+fi
 
-echo "[+] Compiling python files"
 python -mcompileall `python -c "import os, globaleaks;print os.path.dirname(globaleaks.__file__)"` >/dev/null 2>&1
 
 if [ ! -d /var/globaleaks/torhs ]; then
