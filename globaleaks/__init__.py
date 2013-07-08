@@ -10,16 +10,16 @@ DATABASE_VERSION = 2
 # copy paste format from 'grunt makeTranslations'
 LANGUAGES_SUPPORTED = [
                     { "code": "ar", "name": "Arabic" },
-                    { "code": "en", "name": "English"},
-                    { "code": "nl", "name": "Dutch"},
                     { "code": "de", "name": "German"},
                     { "code": "el", "name": "Greek"},
+                    { "code": "en", "name": "English"},
                     { "code": "hu_HU", "name": "Hungarian (Hungary)"},
                     { "code": "it", "name": "Italian"},
+                    { "code": "nl", "name": "Dutch"},
                     { "code": "pl", "name": "Polish"},
                     { "code": "tr", "name": "Turkish"},
+                    { "code": "vi", "name": "Vietnamese"},
                 ]
 
-LANGUAGES_SUPPORTED_CODES = [ "ar", "en", "nl", "de",
-                              "el", "hu_HU", "it",
-                              "pl", "tr" ]
+LANGUAGES_SUPPORTED_CODES = [ "ar", "de", "el", "en", "hu_HU",
+                              "it", "nl", "pl", "pl", "tr", "vi" ]
