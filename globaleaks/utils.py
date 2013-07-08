@@ -31,7 +31,7 @@ from twisted.python.failure import Failure
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
-from globaleaks import __version__
+from globaleaks import __version__, LANGUAGES_SUPPORTED_CODES
 
 
 class Logger(object):
@@ -426,4 +426,21 @@ def caller_name(skip=2):
         name.append( codename ) # function or a method
     del parentframe
     return ".".join(name)
+
+def optlang(localized_dict, default_lang):
+
+    # default behavior until:
+    # https://github.com/globaleaks/GlobaLeaks/issues/411#issuecomment-20628513
+    if not default_lang:
+        default_lang = 'en'
+
+    if not default_lang in LANGUAGES_SUPPORTED_CODES:
+        raise Exception("%s not in %s" % (default_lang, LANGUAGES_SUPPORTED_CODES))
+
+    if localized_dict.has_key(default_lang):
+        return localized_dict[default_lang]
+
+def optlang_fiels(localized_fields, default_lang):
+    pass
+
 
