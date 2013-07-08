@@ -14,7 +14,7 @@ from globaleaks.handlers.authentication import transport_security_check
 from globaleaks import models
 
 @transact
-def anon_serialize_node(store):
+def anon_serialize_node(store, default_lang):
     node = store.find(models.Node).one()
 
     # Contexts and Receivers relationship
@@ -22,7 +22,7 @@ def anon_serialize_node(store):
 
     return {
       'name': unicode(node.name),
-      'description': node.description,
+      'description': utils.optlang(node.description, default_lang),
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
@@ -41,7 +41,7 @@ def anon_serialize_node(store):
       'tor2web_unauth': node.tor2web_unauth,
     }
 
-def anon_serialize_context(context):
+def anon_serialize_context(context, default_lang):
     """
     @param context: a valid Storm object
     @return: a dict describing the contexts available for submission,
@@ -59,23 +59,23 @@ def anon_serialize_context(context):
 
     context_dict.update({
         "context_gus": unicode(context.id),
-        "description": context.description,
+        "description": utils.optlang(context.description, default_lang),
         "escalation_threshold": None,
         "fields": list(context.fields or []),
         "file_max_download": int(context.file_max_download),
         "file_required": context.file_required,
-        "name": dict(context.name),
+        "name": utils.optlang(context.name, default_lang),
         "selectable_receiver": bool(context.selectable_receiver),
         "tip_max_access": int(context.tip_max_access),
         "tip_timetolive": int(context.tip_timetolive),
-        "receipt_description": unicode(context.receipt_description),
-        "submission_introduction": unicode(context.submission_introduction),
-        "submission_disclaimer": unicode(context.submission_disclaimer),
+        "receipt_description": u'NYI', # unicode(context.receipt_description), # optlang
+        "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
+        "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
     })
     return context_dict
 
 
-def anon_serialize_receiver(receiver):
+def anon_serialize_receiver(receiver, default_lang):
     """
     @param receiver: a valid Storm object
     @return: a dict describing the receivers available in the node
@@ -96,7 +96,7 @@ def anon_serialize_receiver(receiver):
         "can_delete_submission": receiver.can_delete_submission,
         "creation_date": utils.pretty_date_time(receiver.creation_date),
         "update_date": utils.pretty_date_time(receiver.last_update),
-        "description": receiver.description,
+        "description": utils.optlang(receiver.description, default_lang),
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
@@ -121,7 +121,7 @@ class InfoCollection(BaseHandler):
         Response: publicNodeDesc
         Errors: NodeNotFound
         """
-        response = yield anon_serialize_node()
+        response = yield anon_serialize_node(self.get_default_lang())
         self.finish(response)
 
 # U2 Submission create
@@ -152,7 +152,7 @@ def get_public_context_list(store):
     contexts = store.find(models.Context)
 
     for context in contexts:
-        context_desc = anon_serialize_context(context)
+        context_desc = anon_serialize_context(context, self.get_default_lang())
         # context not yet ready for submission return None
         if context_desc:
             context_list.append(context_desc)
@@ -184,7 +184,7 @@ def get_public_receiver_list(store):
     receivers = store.find(models.Receiver)
 
     for receiver in receivers:
-        receiver_desc = anon_serialize_receiver(receiver)
+        receiver_desc = anon_serialize_receiver(receiver, self.get_default_lang())
         # receiver not yet ready for submission return None
         if receiver_desc:
             receiver_list.append(receiver_desc)
