@@ -1,11 +1,14 @@
+# -*- encoding: utf-8 -*-
+
 import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
-from globaleaks.security import GLBGPG
+from globaleaks.security import GLBGPG, gpg_options_parse
 from globaleaks.handlers import receiver
-from globaleaks.settings import GLSetting
+from globaleaks.handlers.admin import admin_serialize_receiver
+from globaleaks.settings import GLSetting, transact
 from globaleaks.tests.helpers import MockDict
 from globaleaks.models import Receiver
 
@@ -13,6 +16,15 @@ from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
 
 GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
+
+
+@transact
+def transact_dummy_whatever(store, receiver_id, mock_request):
+
+    thedummy = store.find(Receiver, Receiver.id == receiver_id).one()
+    gpg_options_parse(thedummy, mock_request)
+    return admin_serialize_receiver(thedummy)
+
 
 class TestReceiverSetKey(helpers.TestHandler):
     _handler = receiver.ReceiverInstance
@@ -48,9 +60,9 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.assertEqual(self.responses[0]['gpg_key_info'], None)
 
     @inlineCallbacks
-    def test_update_key(self):
+    def test_handler_update_key(self):
 
-        self.receiver_only_update = dict(self.dummyReceiver)
+        self.receiver_only_update = dict(MockDict().dummyReceiver)
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
@@ -66,17 +78,27 @@ class TestReceiverSetKey(helpers.TestHandler):
         yield handler.put()
         self.assertEqual(self.responses[1]['gpg_key_fingerprint'],
             u'12CB52E0D793A11CAF0360F8839B5DED0050B3C1')
-
         # and the key has been updated!
 
-    def test_handler_put_malformed_gpg_key(self):
+    @inlineCallbacks
+    def test_transact_malformed_key(self):
 
-        receiver_bad_update = dict(self.dummyReceiver)
-        receiver_bad_update['gpg_key_armor'] = str((HermesGlobaleaksKey.__doc__).replace('A', 'B'))
-        handler = self.request(receiver_bad_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
-        d = handler.put()
-        self.assertFailure(d, errors.GPGKeyInvalid)
-        return d
+        self.receiver_only_update = dict(MockDict().dummyReceiver)
+        self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__).replace('A', 'B')
+        self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
+        self.receiver_only_update['gpg_key_remove'] = False
+
+        try:
+            serialized_result = yield transact_dummy_whatever(self.dummyReceiver['receiver_gus'],
+                self.receiver_only_update)
+            print "Invalid results!"
+            self.assertTrue(False)
+        except errors.GPGKeyInvalid:
+
+            self.assertTrue(True)
+        except Exception as excep:
+            print "Invalid exception! %s" % excep
+            self.assertTrue(False)
 
     def test_Class_encryption_message(self):
 
@@ -142,24 +164,26 @@ class TestReceiverSetKey(helpers.TestHandler):
             self.assertSubstring('-----BEGIN PGP MESSAGE-----', first_line)
 
 
-#    @inlineCallbacks
-#    def test_expired_key_error(self):
-#
-#        self.receiver_only_update['gpg_key_armor'] = unicode(ExpiredKey.__doc__)
-#        self.receiver_only_update['gpg_key_remove'] = False
-#        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
-#        yield handler.put()
-#        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
-#            u'C6DAF5B34D5960883C7A9552AACA3A01C2752D4B')
+    @inlineCallbacks
+    def test_expired_key_error(self):
+
+        self.receiver_only_update['gpg_key_armor'] = unicode(ExpiredKey.__doc__)
+        self.receiver_only_update['gpg_key_remove'] = False
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+        yield handler.put()
+        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
+            u'C6DAF5B34D5960883C7A9552AACA3A01C2752D4B')
 
         # ok, now has been imported the key, but we can't perform encryption
-#        body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
-#        fake_serialized_receiver = {
-#            'gpg_key_armor': unicode(ExpiredKey.__doc__),
-#            'gpg_key_fingerprint': self.responses[0]['gpg_key_fingerprint'],
-#            'username': 'fake@username.net',
-#        }
-#        self.assertRaises(errors.GPGKeyInvalid, gpg_encrypt, body, fake_serialized_receiver)
+        body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
+        fake_serialized_receiver = {
+            'gpg_key_armor': unicode(ExpiredKey.__doc__),
+            'gpg_key_fingerprint': self.responses[0]['gpg_key_fingerprint'],
+            'username': u'fake@username.net',
+        }
+        gpob = GLBGPG(fake_serialized_receiver)
+        self.assertTrue(gpob.validate_key(DeveloperKey.__doc__))
+        self.assertRaises(errors.GPGKeyInvalid, gpob.encrypt_message, body)
 
 
 class HermesGlobaleaksKey:

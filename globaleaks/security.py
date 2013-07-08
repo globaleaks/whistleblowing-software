@@ -144,22 +144,70 @@ class GLBGPG:
         self.receiver_desc = receiver_desc
         log.debug("GPG object initialized for receiver %s" % receiver_desc['username'])
 
+    def sanitize_gpg_string(self, received_gpgasc):
+        """
+        @param received_gpgasc: A gpg armored key
+        @return: Sanitized string or raise InvalidInputFormat
+
+        This function validate the integrity of a GPG key
+        """
+        lines = received_gpgasc.split("\n")
+        sanitized = ""
+
+        start = 0
+        if not len(lines[start]):
+            start += 1
+
+        if lines[start] != '-----BEGIN PGP PUBLIC KEY BLOCK-----':
+            raise errors.InvalidInputFormat("GPG invalid format")
+        else:
+            sanitized += lines[start] + "\n"
+
+        i = 0
+        while i < len(lines):
+
+            # the C language as left some archetypes in my code
+            # [ITA] https://www.youtube.com/watch?v=7jI4DnRJP3k
+            i += 1
+
+            if len(lines[i]) < 2:
+                continue
+
+            main_content = re.compile( r"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$" , re.UNICODE)
+            base64only = main_content.findall(lines[i])
+
+            if len(base64only) == 1:
+                sanitized += str(base64only[0]) + "\n"
+
+            # this GPG/PGP format it's different from the common base64 ? dunno
+            if len(lines[i]) == 5 and lines[i][0] == '=':
+                sanitized += str(lines[i]) + "\n"
+
+            if lines[i] == '-----END PGP PUBLIC KEY BLOCK-----':
+                sanitized += lines[i] + "\n"
+                return sanitized
+
+        raise errors.InvalidInputFormat("GPG invalid format")
 
     def validate_key(self, armored_key):
         """
         @param armored_key:
         @return: True or False, True only if a key is effectively importable and listed.
         """
+
+        # or raise InvalidInputFormat
+        sanitized_gpgasc = self.sanitize_gpg_string(armored_key)
+
         try:
-            self.ke = self.gpgh.import_keys(armored_key)
+            self.ke = self.gpgh.import_keys(sanitized_gpgasc)
         except Exception as excep:
             log.err("Error in GPG import_keys: %s" % excep.message)
             return False
 
         # Error reported in stderr may just be warning, this is because is not raise an exception here
-        #if self.ke.stderr:
-        #    log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
-        #            (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
+        if self.ke.stderr:
+            log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
+                    (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
         #
         # ---- at the moment only warning message being repeated, can be used to clean this code
 

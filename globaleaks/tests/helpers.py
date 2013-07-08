@@ -200,7 +200,7 @@ class MockDict():
         self.dummyReceiver = {
             'receiver_gus': unicode(uuid.uuid4()),
             'password': VALID_PASSWORD1,
-            'old_password': None,
+            'old_password': u"",
             'name': u'Ned Stark',
             'description': { "en" : u'King MockDummy Receiver' },
             'notification_fields': {'mail_address': u'maker@iz.cool.yeah'},
