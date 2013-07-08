@@ -18,7 +18,7 @@ from storm.twisted.testing import FakeThreadPool
 from globaleaks.settings import GLSetting, transact
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-from globaleaks import db, utils
+from globaleaks import db, utils, models
 
 DEFAULT_PASSWORD = u'yustapassword'
 transact.tp = FakeThreadPool()
@@ -198,6 +198,7 @@ class MockDict():
         self.dummyReceiver = {
             'receiver_gus': unicode(uuid.uuid4()),
             'password': DEFAULT_PASSWORD,
+            'old_password': None,
             'name': u'Ned Stark',
             'description': { "en" : u'King MockDummy Receiver' },
             'notification_fields': {'mail_address': u'maker@iz.cool.yeah'},
@@ -211,8 +212,10 @@ class MockDict():
             'comment_notification': True,
             'gpg_key_armor': u'',
             'gpg_key_remove': False,
-            "gpg_enable_notification": False,
-            "gpg_enable_files": False,
+            'gpg_enable_notification': False,
+            'gpg_enable_files': False,
+            'gpg_key_status': models.Receiver._gpg_types[0] # disabled
+
         }
 
         self.dummyContext = {

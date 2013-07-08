@@ -100,8 +100,13 @@ def receiver_file_align(store, filesdict, processdict):
                 try:
                     received_desc = admin_serialize_receiver(receiver)
                     gpoj = GLBGPG(received_desc)
-                    gpoj.validate_key(received_desc['gpg_key_armor'])
-                    encrypted_file_path = gpoj.encrypt_file(ifile.file_path, GLSetting.submission_path)
+
+                    if not gpoj.validate_key(received_desc['gpg_key_armor']):
+                        raise Exception("Unable to validate key")
+
+                    ifile_abs = os.path.join(GLSetting.submission_path, ifile.file_path)
+                    with file(ifile_abs, "r") as f:
+                        encrypted_file_path = gpoj.encrypt_file(ifile_abs, f, GLSetting.submission_path)
                     gpoj.destroy_environment()
 
                     log.debug("Generated encrypted version of %s for %s in %s" % (
@@ -110,11 +115,10 @@ def receiver_file_align(store, filesdict, processdict):
                     receiverfile.file_path = encrypted_file_path
                 except Exception as excep:
                     log.err("Error when encrypting %s for %s: %s" % (
-                        ifile.name, receiver.username, excep.message
-                    ))
-                    # In this case, fallback in plain text, or what ? I say fallback
-                    # has to be an option but not be the default, or would
-                    # act as a protocol downgrade attack vector.
+                        ifile.name, receiver.username, str(excep) ))
+                    # In the failure case, fallback in plain text, or what ?
+                    # I say fallback has to be an option but not be the default,
+                    # or would act as a protocol downgrade attack vector.
             else:
                 receiverfile.file_path = ifile.file_path
 

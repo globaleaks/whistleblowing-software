@@ -159,7 +159,7 @@ class APSNotification(GLJob):
             notify = event.plugin.do_notify(event)
 
             if not notify:
-                log.err("Event %s has nothing to notify ?" % str(event))
+                log.err("Event %s has nothing to notify ?" % str(event.trigger_info))
                 continue
 
             notify.addCallback(self.tip_notification_succeeded, tip_id)
@@ -277,7 +277,7 @@ class APSNotification(GLJob):
             notify = event.plugin.do_notify(event)
 
             if not notify:
-                log.err("Event %s has nothing to notify ?" % str(event))
+                log.err("Event %s has nothing to notify ?" % str(event.trigger_info))
                 continue
 
             notify.addCallback(self.comment_notification_succeeded, comment_id, receiver_id)
@@ -393,7 +393,7 @@ class APSNotification(GLJob):
             notify = event.plugin.do_notify(event)
 
             if not notify:
-                log.err("Event %s has nothing to notify ?" % str(event))
+                log.err("Event %s has nothing to notify ?" % str(event.trigger_info))
                 continue
 
             notify.addCallback(self.receiverfile_notification_succeeded, receiverfile_id, receiver_id)
