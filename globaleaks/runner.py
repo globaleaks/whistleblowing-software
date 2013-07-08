@@ -4,6 +4,7 @@
 # along the Asynchronous event schedule
 
 from twisted.application import app
+from twisted.internet.error import CannotListenError
 from apscheduler.scheduler import Scheduler
 
 from globaleaks.utils import log
@@ -94,6 +95,9 @@ from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 ServerOptions = ServerOptions
 
 def globaleaks_start():
+    GLSetting.fix_file_permissions()
+    GLSetting.drop_privileges()
+
     if not GLSetting.accepted_hosts:
         log.err("Missing a list of hosts usable to contact GLBackend, abort")
         return False
@@ -122,12 +126,20 @@ class GLBaseRunnerUnix(UnixApplicationRunner):
         Run the application.
         """
 
-        self.startApplication(self.application)
+        try:
+            self.startApplication(self.application)
+        except CannotListenError as excep:
+            log.err("Unable to listen on the requested port: %s" % excep)
+            quit(-1)
+        except Exception as excep:
+            log.err("Unable to start application: %s" % excep)
+            quit(-1)
 
         if globaleaks_start():
             self.startReactor(None, self.oldstdout, self.oldstderr)
         else:
             log.err("Cannot start GlobaLeaks; please manual check the error.")
+            quit(-1)
 
         self.removePID(self.config['pidfile'])
 
