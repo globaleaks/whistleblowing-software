@@ -1,8 +1,14 @@
+globaleaks (2.23.8-0) unstable; urgency=low
+
+  * GlobaLeaks Alpha - Packaging fix
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 08 Jul 2013 18:43:42 +0002
+
 globaleaks (2.23.7-0) unstable; urgency=low
 
   * GlobaLeaks Alpha - Various bugfix, Added Vietnamese Translation
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 08 Jul 2013 15:43:42 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 08 Jul 2013 15:43:42 +0002
 
 globaleaks (2.23.6-0) unstable; urgency=low
 
