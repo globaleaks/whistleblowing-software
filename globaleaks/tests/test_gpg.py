@@ -7,6 +7,7 @@ from globaleaks.security import GLBGPG
 from globaleaks.handlers import receiver
 from globaleaks.settings import GLSetting
 from globaleaks.tests.helpers import MockDict
+from globaleaks.models import Receiver
 
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
@@ -19,12 +20,13 @@ class TestReceiverSetKey(helpers.TestHandler):
     receiver_desc = {
         'username': 'vecna@useless_information_on_this_test.org',
         'name': 'assertion',
-        'gpg_key_fingerprint': '341F1A8CE2B4F4F4174D7C21B842093DC6765430' }
+        'gpg_key_fingerprint': '341F1A8CE2B4F4F4174D7C21B842093DC6765430',
+        'gpg_key_status': Receiver._gpg_types[1] }
 
     receiver_only_update = {
         'gpg_key_armor': None, 'gpg_key_remove': False,
         "gpg_key_info": None, "gpg_key_fingerprint": None,
-        "gpg_key_status": None, # It's ignored what a Client send here
+        'gpg_key_status': Receiver._gpg_types[0], # Disabled
         "gpg_enable_notification": False,  "gpg_enable_files": False,
 
         'name' : "irrelevant",
@@ -48,12 +50,15 @@ class TestReceiverSetKey(helpers.TestHandler):
     @inlineCallbacks
     def test_update_key(self):
 
+        self.receiver_only_update = dict(self.dummyReceiver)
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
+        self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
         handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
             u'341F1A8CE2B4F4F4174D7C21B842093DC6765430')
+        self.assertEqual(self.responses[0]['gpg_key_status'], Receiver._gpg_types[1])
 
         self.receiver_only_update['gpg_key_armor'] = unicode(HermesGlobaleaksKey.__doc__)
         self.receiver_only_update['gpg_key_remove'] = False
@@ -66,7 +71,7 @@ class TestReceiverSetKey(helpers.TestHandler):
 
     def test_handler_put_malformed_gpg_key(self):
 
-        receiver_bad_update = dict(self.receiver_only_update)
+        receiver_bad_update = dict(self.dummyReceiver)
         receiver_bad_update['gpg_key_armor'] = str((HermesGlobaleaksKey.__doc__).replace('A', 'B'))
         handler = self.request(receiver_bad_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
         d = handler.put()
@@ -97,6 +102,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         fake_receiver_desc = {
             'gpg_key_armor': unicode(DeveloperKey.__doc__),
             'gpg_key_fingerprint': u"341F1A8CE2B4F4F4174D7C21B842093DC6765430",
+            'gpg_key_status': Receiver._gpg_types[1],
             'username': u'fake@username.net',
         }
 
@@ -119,6 +125,7 @@ class TestReceiverSetKey(helpers.TestHandler):
 
             fake_receiver_desc = {
                 'gpg_key_armor': unicode(DeveloperKey.__doc__),
+                'gpg_key_status': Receiver._gpg_types[1],
                 'gpg_key_fingerprint': u"341F1A8CE2B4F4F4174D7C21B842093DC6765430",
                 'username': u'fake@username.net',
                 }
@@ -126,7 +133,7 @@ class TestReceiverSetKey(helpers.TestHandler):
             # these are the same lines used in delivery_sched.py
             gpoj = GLBGPG(fake_receiver_desc)
             gpoj.validate_key(DeveloperKey.__doc__)
-            encrypted_file_path = gpoj.encrypt_file(f, "/tmp")
+            encrypted_file_path = gpoj.encrypt_file(tempsource, f, "/tmp")
             gpoj.destroy_environment()
 
             with file(encrypted_file_path, "r") as f:

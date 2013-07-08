@@ -114,16 +114,23 @@ class GLBGPG:
         """
         every time is needed, a new keyring is created here.
         """
+
+        if receiver_desc.has_key('gpg_key_status') and \
+           receiver_desc['gpg_key_status'] != Receiver._gpg_types[1]: # Enabled
+            log.err("Requested GPG initialization for a receiver without GPG configured! %s" %
+                    receiver_desc['username'])
+            raise AssertionError
+
         try:
             temp_gpgroot = os.path.join(GLSetting.gpgroot, "%s" % random.randint(0, 0xFFFF) )
-            os.makedirs(temp_gpgroot)
+            os.makedirs(temp_gpgroot, mode=0700)
             self.gpgh = GPG(gnupghome=temp_gpgroot, options="--trust-model always")
         except Exception as excep:
             log.err("Unable to instance GPG object: %s" % str(excep))
             raise excep
 
         self.receiver_desc = receiver_desc
-        log.debug("GPG for receiver %s")
+        log.debug("GPG object initialized for receiver %s" % receiver_desc['username'])
 
 
     def validate_key(self, armored_key):
@@ -131,13 +138,18 @@ class GLBGPG:
         @param armored_key:
         @return: True or False, True only if a key is effectively importable and listed.
         """
-
-        self.ke = self.gpgh.import_keys(armored_key)
+        try:
+            self.ke = self.gpgh.import_keys(armored_key)
+        except Exception as excep:
+            log.err("Error in GPG import_keys: %s" % excep.message)
+            return False
 
         # Error reported in stderr may just be warning, this is because is not raise an exception here
-        if self.ke.stderr:
-            log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
-                    (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
+        #if self.ke.stderr:
+        #    log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
+        #            (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
+        #
+        # ---- at the moment only warning message being repeated, can be used to clean this code
 
         if not (hasattr(self.ke, 'results') and len(self.ke.results) == 1 and self.ke.results[0].has_key('fingerprint')):
             log.err("User error: unable to import GPG key in the keyring")
@@ -147,16 +159,23 @@ class GLBGPG:
         self.fingerprint = self.ke.results[0]['fingerprint']
 
         # looking if the key is effectively reachable
-        all_keys = self.gpgh.list_keys()
+        try:
+            all_keys = self.gpgh.list_keys()
+        except Exception as excep:
+            log.err("Error in GPG list_keys: %s" % excep.message)
+            return False
 
         self.keyinfo = u""
         for key in all_keys:
             if key['fingerprint'] == self.fingerprint:
 
                 self.keyinfo += "Key length %s" % key['length']
-                for uid in key['uids']:
-                    self.keyinfo += "\n\t%s" % uid
-
+                try:
+                    for uid in key['uids']:
+                        self.keyinfo += "\n\t%s" % uid
+                except Exception as excep:
+                    log.err("Error in GPG key format/properties")
+                    return False
 
         if not len(self.keyinfo):
             log.err("Key apparently imported but unable to be extracted info")
@@ -165,7 +184,7 @@ class GLBGPG:
         return True
 
 
-    def encrypt_file(self, plainpath, output_path):
+    def encrypt_file(self, plainpath, filestream, output_path):
         """
         @param gpg_key_armor:
         @param plainpath:
@@ -174,7 +193,7 @@ class GLBGPG:
         if not self.validate_key(self.receiver_desc['gpg_key_armor']):
             raise errors.GPGKeyInvalid
 
-        encrypt_obj = self.gpgh.encrypt_file(plainpath, str(self.receiver_desc['gpg_key_fingerprint']))
+        encrypt_obj = self.gpgh.encrypt_file(filestream, str(self.receiver_desc['gpg_key_fingerprint']))
 
         if not encrypt_obj.ok:
             # continue here if is not ok
@@ -187,11 +206,21 @@ class GLBGPG:
                   (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
                   plainpath, len(str(encrypt_obj))) )
 
-        encrypted_path = os.path.join(output_path, "gpg_encrypted-%d-%d" %
-                                      (random.randint(0, 0xFFFF), random.randint(0, 0xFFFF)))
+        encrypted_path = os.path.join( os.path.abspath(output_path),
+                                       "gpg_encrypted-%d-%d" %
+                                       (random.randint(0, 0xFFFF), random.randint(0, 0xFFFF)))
 
-        with file(encrypted_path, "w+") as f:
+        if os.path.isfile(encrypted_path):
+            log.err("Unexpected unpredictable unbelievable error! %s" % encrypted_path)
+            raise errors.InternalServerError("random error in GPG encrypted output")
+
+        try:
+            f = open(encrypted_path, "w+")
             f.write(str(encrypt_obj))
+        except Exception as excep:
+            log.err("Error in writing GPG file output: %s (%s) bytes %d" %
+                    (excep.message, encrypted_path, len(str(encrypt_obj)) ))
+            raise errors.InternalServerError("Error in writing [%s]" % excep.message )
 
         return encrypted_path
 
