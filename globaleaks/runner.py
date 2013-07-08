@@ -97,6 +97,7 @@ ServerOptions = ServerOptions
 def globaleaks_start():
     GLSetting.fix_file_permissions()
     GLSetting.drop_privileges()
+    GLSetting.check_directories()
 
     if not GLSetting.accepted_hosts:
         log.err("Missing a list of hosts usable to contact GLBackend, abort")
