@@ -266,7 +266,6 @@ os.umask = umask
 #########################
 
 GLSetting.create_directories()
-GLSetting.check_directories()
 
 backend_script = os.path.join(GLSetting.root_path, 'globaleaks', 'backend.py')
 
