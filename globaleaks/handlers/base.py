@@ -129,12 +129,11 @@ class GLHTTPServer(HTTPConnection):
                 if c_d_header is not None:
                     c_d_header = c_d_header.lower()
                     m = content_disposition_re.match(c_d_header)
-                    content_length = self._request.headers['Content-Length'].lower()
-                    if m is None or content_length is None:
+                    if m is None:
                         raise Exception
                     self.file_upload = True
                     self.uploaded_file['filename'] = m.group(1)
-                    self.uploaded_file['content_type'] = self._request.headers['Content-Type']
+                    self.uploaded_file['content_type'] =  self._request.headers.get("Content-Type", 'application/octet-stream')
                     self.uploaded_file['body'] = self._contentbuffer
                     self.uploaded_file['body_len'] = int(content_length)
                 
