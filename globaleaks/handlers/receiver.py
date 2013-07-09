@@ -107,7 +107,7 @@ class ReceiverInstance(BaseHandler):
         """
 
         receiver_status = yield get_receiver_settings(self.current_user['user_id'],
-            self.get_default_lang())
+            self.request.language)
 
         self.set_status(200)
         self.finish(receiver_status)
@@ -126,7 +126,7 @@ class ReceiverInstance(BaseHandler):
         request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 
         receiver_status = yield update_receiver_settings(self.current_user['user_id'],
-            request, self.get_default_lang())
+            request, self.request.language)
 
         self.set_status(200)
         self.finish(receiver_status)
