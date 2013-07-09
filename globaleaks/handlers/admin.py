@@ -339,7 +339,7 @@ def update_context(store, context_gus, request, language):
         context.name[language] )
     request['description'] = acquire_localized(request['description'], language,
         context.description[language] )
-    request['receipt_description'] = acquire_localized(request['description'],
+    request['receipt_description'] = acquire_localized(request['receipt_description'],
         language, context.receipt_description[language] )
     request['submission_introduction'] = acquire_localized(request['submission_introduction'],
         language, context.submission_introduction[language])
