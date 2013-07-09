@@ -7,6 +7,9 @@ profile usr.bin.globaleaks {
 
     capability setgid,
     capability setuid,
+    capability fsetid,
+    capability fowner,
+    capability chown,
 
     /proc/*/mounts r,
 
@@ -24,8 +27,10 @@ profile usr.bin.globaleaks {
     deny /usr/lib/python2.7/dist-packages/globaleaks/** rwlk,
     deny /bin/dash rx,
 
+    /var/globaleaks/ r,
     /var/globaleaks/** rwk,
     /run/globaleaks/globaleaks-*.pid rw,
+
     owner /tmp/** rwkl,
     owner /var/tmp/** rwkl,
 }
