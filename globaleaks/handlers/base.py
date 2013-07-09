@@ -74,11 +74,9 @@ def add_globaleaks_headers(self):
     self.set_header("X-Frame-Options", "deny")
 
     lang = self.request.headers.get('GL-Language', None)
-    print "tyyy", lang
 
     if not lang:
         lang = self.request.headers.get('Accepted-Language', None)
-        print "xxx", lang
 
     # TODO if not lang default of the Node (need update DB)
     if not lang:
