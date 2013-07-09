@@ -59,12 +59,12 @@ def admin_serialize_context(context, default_lang):
         "submission_timetolive": context.submission_timetolive / (60 * 60),
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
-        "fields": context.fields if context.fields else [],
+        "fields": utils.optlang_fields(context.fields, default_lang) if context.fields else [],
         "receivers": [],
         "receipt_regexp": context.receipt_regexp,
-        "receipt_description": u'NYI', # context.receipt_description,
-        "submission_introduction": u'NYI', # context.submission_introduction,
-        "submission_disclaimer": u'NYI', # context.submission_disclaimer,
+        "receipt_description": u'NYI', # context.receipt_description, # optlang
+        "submission_introduction": u'NYI', # context.submission_introduction, # optlang
+        "submission_disclaimer": u'NYI', # context.submission_disclaimer, # optlang
         "tags": context.tags if context.tags else u"",
         "file_required": context.file_required,
     }

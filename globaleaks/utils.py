@@ -444,8 +444,26 @@ def system_default_lang():
     # TODO
     return 'en'
 
-def optlang_fiels(localized_fields, default_lang):
-    print localized_fields
-    pass
+def optlang_fields(localized_fields, default_lang):
 
+    retlist = []
+    for field in localized_fields:
+        monolang = {
+            "presentation_order": field['presentation_order'],
+            "required": field['required'],
+            "type": field['type'],
+            "key": field['key']
+        }
+        try:
+            monolang.update({"hint" : field['hint'][unicode(default_lang)]})
+        except KeyError:
+            monolang.update({"hint" : u""})
+        try:
+            monolang.update({"name" : field['name'][unicode(default_lang)]})
+        except KeyError:
+            monolang.update({"name" : u""})
+
+        retlist.append(monolang)
+
+    return retlist
 

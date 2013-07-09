@@ -61,7 +61,7 @@ def anon_serialize_context(context, default_lang):
         "context_gus": unicode(context.id),
         "description": utils.optlang(context.description, default_lang),
         "escalation_threshold": None,
-        "fields": list(context.fields or []),
+        "fields": utils.optlang_fields(context.fields, default_lang) if context.fields else [],
         "file_max_download": int(context.file_max_download),
         "file_required": context.file_required,
         "name": utils.optlang(context.name, default_lang),

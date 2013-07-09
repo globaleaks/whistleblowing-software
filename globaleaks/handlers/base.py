@@ -181,11 +181,8 @@ class GLHTTPServer(HTTPConnection):
 class BaseHandler(RequestHandler):
 
     def get_default_lang(self):
-        try:
-            default_lang = self.request.headers.get('GL-Language')
-        except Exception:
-            default_lang = 'en'
-        return  default_lang
+        # At the moment the default is 'en', but need to be a Node value
+        return self.request.headers.get('GL-Language', 'en')
 
     def set_default_headers(self):
         add_globaleaks_headers(self)
