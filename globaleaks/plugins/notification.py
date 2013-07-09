@@ -77,7 +77,7 @@ class MailNotification(Notification):
             '%PublicSite%': node_desc['public_site'],
             '%ReceiverName%': receiver_desc['name'],
             '%ReceiverUsername%': receiver_desc['username'],
-            '%ContextName%' : context_desc['name']['en'], # localized!
+            '%ContextName%' : context_desc['name'],
         }
 
         if event_dicts.type == u'tip':
@@ -155,24 +155,23 @@ class MailNotification(Notification):
             log.info('invalid configuration for admin email!')
             return None
 
-        # XXX title maybe moved in Admin GUI and digest implemented (beta)
-        # XXX are localized forcefully via 'en' language, but need to be configurable
-        # by the receiver. in event can be keep track of the receiver preference
+        # At the moment the language used is a system language, not
+        # Receiver preferences language ?
         if event.type == u'tip':
             body = self.format_template(
-                event.notification_settings['tip_template']['en'], event)
+                event.notification_settings['tip_template'], event)
             title = self.format_template(
-                event.notification_settings['tip_mail_title']['en'], event)
+                event.notification_settings['tip_mail_title'], event)
         elif event.type == u'comment':
             body = self.format_template(
-                event.notification_settings['comment_template']['en'], event)
+                event.notification_settings['comment_template'], event)
             title = self.format_template(
-                event.notification_settings['comment_mail_title']['en'], event)
+                event.notification_settings['comment_mail_title'], event)
         elif event.type == u'file':
             body = self.format_template(
-                event.notification_settings['file_template']['en'], event)
+                event.notification_settings['file_template'], event)
             title = self.format_template(
-                event.notification_settings['file_mail_title']['en'], event)
+                event.notification_settings['file_mail_title'], event)
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 
@@ -182,7 +181,7 @@ class MailNotification(Notification):
             try:
                 gpg_encrypt(body, event.receiver_info)
             except Exception as excep:
-                log.err("Unable to instance GPG interface object! (notification+encryption)")
+                log.err("Unable to instance GPG interface object! (notification+encryption) %s" % excep)
                 return None
 
         self.host = str(event.notification_settings['server'])

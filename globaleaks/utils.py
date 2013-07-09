@@ -440,7 +440,12 @@ def optlang(localized_dict, default_lang):
     if localized_dict.has_key(default_lang):
         return localized_dict[default_lang]
 
+def system_default_lang():
+    # TODO
+    return 'en'
+
 def optlang_fiels(localized_fields, default_lang):
+    print localized_fields
     pass
 
 

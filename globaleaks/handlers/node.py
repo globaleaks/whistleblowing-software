@@ -147,12 +147,12 @@ class StatsCollection(BaseHandler):
 
 
 @transact
-def get_public_context_list(store):
+def get_public_context_list(store, default_lang):
     context_list = []
     contexts = store.find(models.Context)
 
     for context in contexts:
-        context_desc = anon_serialize_context(context, self.get_default_lang())
+        context_desc = anon_serialize_context(context, default_lang)
         # context not yet ready for submission return None
         if context_desc:
             context_list.append(context_desc)
@@ -175,16 +175,16 @@ class ContextsCollection(BaseHandler):
         Response: publicContextList
         Errors: None
         """
-        response = yield get_public_context_list()
+        response = yield get_public_context_list(self.get_default_lang())
         self.finish(response)
 
 @transact
-def get_public_receiver_list(store):
+def get_public_receiver_list(store, default_lang):
     receiver_list = []
     receivers = store.find(models.Receiver)
 
     for receiver in receivers:
-        receiver_desc = anon_serialize_receiver(receiver, self.get_default_lang())
+        receiver_desc = anon_serialize_receiver(receiver, default_lang)
         # receiver not yet ready for submission return None
         if receiver_desc:
             receiver_list.append(receiver_desc)
@@ -205,6 +205,6 @@ class ReceiversCollection(BaseHandler):
         Response: publicReceiverList
         Errors: None
         """
-        response = yield get_public_receiver_list()
+        response = yield get_public_receiver_list(self.get_default_lang())
         self.finish(response)
 
