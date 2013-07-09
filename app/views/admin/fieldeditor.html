@@ -7,9 +7,9 @@
 </div>
 <div ng-repeat="field in context.fields" class="contextFields" ng-controller="AdminFieldEditorCtrl">
   <div class="field" ng-hide="editing" ng-click="editing=true">
-    <span>{{field.name[selected_language]}}</span>
-    <a href="" data-content="{{field.hint[selected_language]}}"
-       data-trigger="hover" bs-popover="{{field.name[selected_language]}}">
+    <span>{{field.name}}</span>
+    <a href="" data-content="{{field.hint}}"
+       data-trigger="hover" bs-popover="{{field.name}}">
       <i class="icon-question-sign"></i>
     </a>
     <i class="type" ng-class="{'icon-font': field.type=='text',
@@ -18,7 +18,7 @@
   <div class="fieldEditor" ng-show="editing">
 
     <div class="fieldEditorHeader field" ng-click="editing=false" ng-class='{invalid: newField.$invalid}'>
-      {{field.name[selected_language]}} <span>{{ "click to close" | translate }}</span>
+      {{field.name}} <span>{{ "click to close" | translate }}</span>
     </div>
 
     <div ng-form name="newField">
@@ -27,10 +27,10 @@
           <a ng-click="deleteField(field)" class="delete">
             {{ "delete" | translate }}</a>
           <label>{{ "Name" | translate }}</label>
-          <input type="text" ng-model="field.name[selected_language]" required>
+          <input type="text" ng-model="field.name" required>
 
           <label>{{ "Hint" | translate }}</label>
-          <input type="text" ng-model="field.hint[selected_language]" required>
+          <input type="text" ng-model="field.hint" required>
 
           <label>{{ "Required" | translate }}
           <input type="checkbox" ng-model="field.required">
