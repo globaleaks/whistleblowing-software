@@ -325,12 +325,24 @@ class BaseHandler(RequestHandler):
             GLSetting.cyclone_debug_counter += 1
 
             try:
-                content = "\n" +("=" * 15) + ("Request %d=\n" % GLSetting.cyclone_debug_counter )
-                content += "url: " + self.request.full_url() + "\n"
+                content = (">" * 15)
+                content += (" Request %d " % GLSetting.cyclone_debug_counter)
+                content += (">" * 15) + "\n\n" 
+
+                content += self.request.method + " " + self.request.full_url() + "\n\n"
+
                 content += "headers:\n"
-                for k, v in sorted(self.request.headers.get_all()):
+                for k, v in self.request.headers.get_all():
                     content += "%s: %s\n" % (k, v)
-                content += "\nbody: " + str(self.request.body) + "\n"
+
+                if type(self.request.body) == dict and 'body' in self.request.body:
+                    # this is needed due to cyclone hack for file uploads
+                    body = self.request.body['body'].read()
+                else:
+                    body = self.request.body
+
+                if len(body):
+                    content += "\nbody:\n" + body + "\n"
 
                 self.do_verbose_log(content)
 
@@ -357,10 +369,17 @@ class BaseHandler(RequestHandler):
         """
         if hasattr(self, 'globaleaks_io_debug'):
             try:
-                content = "\n" +("-" * 15) + ("Response %d=\n" % self.globaleaks_io_debug)
-                content += "url: " + str(self.request.full_url() + "\n")
-                content += "code: " + str(self._status_code) + "\n"
-                content += "body: " + str(self._write_buffer) + "\n"
+                content = ("<" * 15)
+                content += (" Response %d " % self.globaleaks_io_debug)
+                content += ("<" * 15) + "\n\n"
+                content += "status code: " + str(self._status_code) + "\n\n"
+
+                content += "headers:\n"
+                for k, v in self._headers.iteritems():
+                    content += "%s: %s\n" % (k, v)
+
+                if self._write_buffer is not None:
+                    content += "\nbody: " + str(self._write_buffer) + "\n"
 
                 self.do_verbose_log(content)
             except Exception as excep:
@@ -374,15 +393,9 @@ class BaseHandler(RequestHandler):
         """
         Record in the verbose log the content as defined by Cyclone wrappers.
         """
-        filename = "%s%s" % (self.request.method.upper(), self.request.uri.replace("/", "_") )
-        # this is not a security bug, no arbitrary patch can reach this point,
-        # but only the one accepted by the API definitions
-
-        logfpath = os.path.join(GLSetting.cyclone_io_path, filename)
-
         try:
-            with open(logfpath, 'a+') as fd:
-                fdesc.writeToFD(fd.fileno(), content)
+            with open(GLSetting.cyclonelogfile, 'a+') as fd:
+                fdesc.writeToFD(fd.fileno(), content + "\n")
         except Exception as excep:
             log.err("Unable to open %s: %s" % (logfpath, excep.message))
 
