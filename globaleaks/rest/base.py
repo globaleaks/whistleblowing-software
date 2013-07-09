@@ -5,11 +5,6 @@
 #
 #   Contains all the logic handle input and output validation.
 
-import inspect
-import json
-from datetime import datetime
-from globaleaks.rest.errors import InvalidInputFormat
-
 
 uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
 
@@ -30,9 +25,9 @@ fileDict = {
 formFieldsDict = {
             "key": unicode,
             "presentation_order": int,
-            "name": dict,
+            "name": unicode,
             "required": bool,
-            "hint": dict,
+            "hint": unicode,
             "type": unicode
 }
 

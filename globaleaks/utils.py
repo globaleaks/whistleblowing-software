@@ -442,6 +442,7 @@ def optlang(localized_dict, default_lang):
 
 def system_default_lang():
     # TODO
+    # Accepted language and then default of Node via admin (required DB upgrade)
     return 'en'
 
 def optlang_fields(localized_fields, default_lang):
@@ -456,14 +457,31 @@ def optlang_fields(localized_fields, default_lang):
         }
         try:
             monolang.update({"hint" : field['hint'][unicode(default_lang)]})
-        except KeyError:
+        except Exception:
             monolang.update({"hint" : u""})
         try:
             monolang.update({"name" : field['name'][unicode(default_lang)]})
-        except KeyError:
+        except Exception:
             monolang.update({"name" : u""})
 
         retlist.append(monolang)
 
     return retlist
 
+
+def acquire_localized(localized_text, selected_lang, previous_value=None):
+
+    if not selected_lang in LANGUAGES_SUPPORTED_CODES:
+        raise Exception("%s not in %s" % (selected_lang, LANGUAGES_SUPPORTED_CODES))
+
+    retval = {}
+
+    if previous_value:
+        retval.update({ selected_lang : localized_text })
+        return retval
+
+    if not localized_text or not len(localized_text):
+        return { selected_lang: u'' }
+
+        # else, the other language do not exist/are flushed
+    return { selected_lang : localized_text }

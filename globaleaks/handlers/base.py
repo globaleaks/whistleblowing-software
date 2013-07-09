@@ -73,6 +73,21 @@ def add_globaleaks_headers(self):
     # to mitigate clickjaking attacks on iframes
     self.set_header("X-Frame-Options", "deny")
 
+    lang = self.request.headers.get('GL-Language', None)
+    print "tyyy", lang
+
+    if not lang:
+        lang = self.request.headers.get('Accepted-Language', None)
+        print "xxx", lang
+
+    # TODO if not lang default of the Node (need update DB)
+    if not lang:
+        lang = 'en'
+
+    # At the moment the default is 'en', but need to be a Node value
+    self.request.language = lang
+
+
 class GLHTTPServer(HTTPConnection):
     file_upload = False
     uploaded_file = {}
@@ -179,10 +194,6 @@ class GLHTTPServer(HTTPConnection):
         self.request_callback(self._request)
 
 class BaseHandler(RequestHandler):
-
-    def get_default_lang(self):
-        # At the moment the default is 'en', but need to be a Node value
-        return self.request.headers.get('GL-Language', 'en')
 
     def set_default_headers(self):
         add_globaleaks_headers(self)

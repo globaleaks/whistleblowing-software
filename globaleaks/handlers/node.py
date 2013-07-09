@@ -121,7 +121,7 @@ class InfoCollection(BaseHandler):
         Response: publicNodeDesc
         Errors: NodeNotFound
         """
-        response = yield anon_serialize_node(self.get_default_lang())
+        response = yield anon_serialize_node(self.request.language)
         self.finish(response)
 
 # U2 Submission create
@@ -175,7 +175,7 @@ class ContextsCollection(BaseHandler):
         Response: publicContextList
         Errors: None
         """
-        response = yield get_public_context_list(self.get_default_lang())
+        response = yield get_public_context_list(self.request.language)
         self.finish(response)
 
 @transact
@@ -205,6 +205,6 @@ class ReceiversCollection(BaseHandler):
         Response: publicReceiverList
         Errors: None
         """
-        response = yield get_public_receiver_list(self.get_default_lang())
+        response = yield get_public_receiver_list(self.request.language)
         self.finish(response)
 

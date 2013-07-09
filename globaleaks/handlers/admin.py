@@ -13,16 +13,16 @@ from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks import utils, security
-from globaleaks.utils import log
+from globaleaks import utils, security, models
+from globaleaks.utils import log, acquire_localized
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_manage
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
-def admin_serialize_node(node, default_lang):
+def admin_serialize_node(node, language):
     response = {
         "name": node.name,
-        "description": utils.optlang(node.description, default_lang),
+        "description": utils.optlang(node.description, language),
         "creation_date": utils.pretty_date_time(node.creation_date),
         "last_update": utils.pretty_date_time(node.last_update),
         "hidden_service": node.hidden_service,
@@ -45,11 +45,11 @@ def admin_serialize_node(node, default_lang):
     }
     return response
 
-def admin_serialize_context(context, default_lang):
+def admin_serialize_context(context, language):
     context_dict = {
         "context_gus": context.id,
-        "name": utils.optlang(context.name, default_lang),
-        "description": utils.optlang(context.description, default_lang),
+        "name": utils.optlang(context.name, language),
+        "description": utils.optlang(context.description, language),
         "creation_date": utils.pretty_date_time(context.creation_date),
         "last_update": utils.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
@@ -59,7 +59,7 @@ def admin_serialize_context(context, default_lang):
         "submission_timetolive": context.submission_timetolive / (60 * 60),
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
-        "fields": utils.optlang_fields(context.fields, default_lang) if context.fields else [],
+        "fields": utils.optlang_fields(context.fields, language) if context.fields else [],
         "receivers": [],
         "receipt_regexp": context.receipt_regexp,
         "receipt_description": u'NYI', # context.receipt_description, # optlang
@@ -74,11 +74,11 @@ def admin_serialize_context(context, default_lang):
 
     return context_dict
 
-def admin_serialize_receiver(receiver, default_lang):
+def admin_serialize_receiver(receiver, language):
     receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
-        "description": utils.optlang(receiver.description, default_lang),
+        "description": utils.optlang(receiver.description, language),
         "creation_date": utils.pretty_date_time(receiver.creation_date),
         "last_update": utils.pretty_date_time(receiver.last_update),
         "receiver_level": receiver.receiver_level,
@@ -107,11 +107,11 @@ def admin_serialize_receiver(receiver, default_lang):
 
 
 @transact
-def get_node(store, default_lang):
-    return admin_serialize_node(store.find(Node).one(), default_lang)
+def get_node(store, language):
+    return admin_serialize_node(store.find(Node).one(), language)
 
 @transact
-def update_node(store, request):
+def update_node(store, request, language):
     """
     Update the node, setting the last update time on it.
 
@@ -149,6 +149,9 @@ def update_node(store, request):
         else:
             raise errors.InvalidInputFormat("Invalid lang code: %s" % lang_code)
 
+    request['description'] = acquire_localized(request['description'], language,
+        node.description[language] )
+
     # name, description tor2web boolean value are acquired here
     node.update(request)
     node.last_update = utils.datetime_now()
@@ -156,7 +159,7 @@ def update_node(store, request):
     return admin_serialize_node(node)
 
 @transact
-def get_context_list(store, default_lang):
+def get_context_list(store, language):
     """
     Returns:
         (dict) the current context list serialized.
@@ -165,7 +168,7 @@ def get_context_list(store, default_lang):
     context_list = []
 
     for context in contexts:
-        context_list.append(admin_serialize_context(context, default_lang))
+        context_list.append(admin_serialize_context(context, language))
 
     return context_list
 
@@ -191,7 +194,7 @@ def fields_validation(fields_list):
 
 
 @transact
-def create_context(store, request, default_lang):
+def create_context(store, request, language):
     """
     Creates a new context from the request of a client.
 
@@ -205,6 +208,13 @@ def create_context(store, request, default_lang):
         (dict) representing the configured context
     """
     receivers = request.get('receivers', [])
+
+    request['name'] = acquire_localized(request['description'], language )
+    request['description'] = acquire_localized(request['description'], language )
+    request['receipt_description'] = acquire_localized(request['description'], language )
+    request['submission_introduction'] = acquire_localized(request['submission_introduction'], language)
+    request['submission_disclaimer'] = acquire_localized(request['submission_disclaimer'], language)
+
     context = Context(request)
 
     if not request['fields']:
@@ -231,14 +241,8 @@ def create_context(store, request, default_lang):
     fields_validation(assigned_fields)
     context.fields = assigned_fields
 
-    # These "advanced settings" fields are set here as default, because
-    # The client at the moment send them empty.
+    # verify if the default is provided by GLC
     context.receipt_regexp = GLSetting.defaults.receipt_regexp
-    context.receipt_description = { "en" : "This sequence here is your receipt "
-            "keep good care of it as it will allow you to access your submission" }
-
-    context.submission_introduction = { "en" : "Here you can submit your tip-off and the files" }
-    context.submission_disclaimer = { "en" : "Thank you for your contribution, your submission is complete" }
 
     context.tags = request['tags']
 
@@ -247,9 +251,9 @@ def create_context(store, request, default_lang):
 
     try:
         # XXX this is the only insertion that *NEED* a GL-Language header
-        context_name = request['name'][default_lang]
+        context_name = request['name'][language]
     except Exception as excep:
-        raise errors.InvalidInputFormat("Missing selected %s language in context creatione (name field)" % default_lang)
+        raise errors.InvalidInputFormat("Missing selected %s language in context creatione (name field)" % language)
 
     if len(context_name) < 1:
         log.err("Invalid request: name is an empty string")
@@ -281,10 +285,10 @@ def create_context(store, request, default_lang):
     # and of timing fixes
 
     store.add(context)
-    return admin_serialize_context(context, default_lang)
+    return admin_serialize_context(context, language)
 
 @transact
-def get_context(store, context_gus, default_lang):
+def get_context(store, context_gus, language):
     """
     Returns:
         (dict) the currently configured node.
@@ -295,10 +299,10 @@ def get_context(store, context_gus, default_lang):
         log.err("Requested invalid context")
         raise errors.ContextGusNotFound
 
-    return admin_serialize_context(context, default_lang)
+    return admin_serialize_context(context, language)
 
 @transact
-def update_context(store, context_gus, request, default_lang):
+def update_context(store, context_gus, request, language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
@@ -331,6 +335,17 @@ def update_context(store, context_gus, request, default_lang):
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
+    request['name'] = acquire_localized(request['description'], language,
+        context.name[language] )
+    request['description'] = acquire_localized(request['description'], language,
+        context.description[language] )
+    request['receipt_description'] = acquire_localized(request['description'],
+        language, context.receipt_description[language] )
+    request['submission_introduction'] = acquire_localized(request['submission_introduction'],
+        language, context.submission_introduction[language])
+    request['submission_disclaimer'] = acquire_localized(request['submission_disclaimer'],
+        language, context.submission_disclaimer[language])
+
     context.update(request)
 
     # tip_timetolive and submission_timetolive need to be converted in seconds
@@ -351,7 +366,7 @@ def update_context(store, context_gus, request, default_lang):
     context.tags = None # request['tags']
     context.last_update = utils.datetime_now()
 
-    return admin_serialize_context(context, default_lang)
+    return admin_serialize_context(context, language)
 
 @transact
 def delete_context(store, context_gus):
@@ -372,7 +387,7 @@ def delete_context(store, context_gus):
 
 
 @transact
-def get_receiver_list(store, default_lang):
+def get_receiver_list(store, language):
     """
     Returns:
         (list) the list of receivers
@@ -381,7 +396,7 @@ def get_receiver_list(store, default_lang):
 
     receivers = store.find(Receiver)
     for receiver in receivers:
-        receiver_list.append(admin_serialize_receiver(receiver, default_lang))
+        receiver_list.append(admin_serialize_receiver(receiver, language))
 
     return receiver_list
 
@@ -403,7 +418,7 @@ def create_random_receiver_portrait(receiver_uuid):
 
 
 @transact
-def create_receiver(store, request, default_lang):
+def create_receiver(store, request, language):
     """
     Creates a new receiver.
     Returns:
@@ -418,6 +433,8 @@ def create_receiver(store, request, default_lang):
     if homonymous:
         log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
+
+    request['description'] = acquire_localized(request['description'], language)
 
     receiver = Receiver(request)
 
@@ -445,11 +462,11 @@ def create_receiver(store, request, default_lang):
             raise errors.ContextGusNotFound
         context.receivers.add(receiver)
 
-    return admin_serialize_receiver(receiver, default_lang)
+    return admin_serialize_receiver(receiver, language)
 
 
 @transact
-def get_receiver(store, id, default_lang):
+def get_receiver(store, id, language):
     """
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
     not exist.
@@ -463,11 +480,11 @@ def get_receiver(store, id, default_lang):
         log.err("Requested invalid receiver")
         raise errors.ReceiverGusNotFound
 
-    return admin_serialize_receiver(receiver, default_lang)
+    return admin_serialize_receiver(receiver, language)
 
 
 @transact
-def update_receiver(store, id, request, default_lang):
+def update_receiver(store, id, request, language):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
@@ -514,7 +531,7 @@ def update_receiver(store, id, request, default_lang):
     receiver.update(request)
     receiver.last_update = utils.datetime_now()
 
-    return admin_serialize_receiver(receiver, default_lang)
+    return admin_serialize_receiver(receiver, language)
 
 @transact
 def delete_receiver(store, id):
@@ -555,7 +572,7 @@ class NodeInstance(BaseHandler):
         Response: adminNodeDesc
         Errors: NodeNotFound
         """
-        node_description = yield get_node(self.get_default_lang())
+        node_description = yield get_node(self.request.language)
         self.set_status(200)
         self.finish(node_description)
 
@@ -573,12 +590,12 @@ class NodeInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                 requests.adminNodeDesc)
 
-        yield update_node(request, self.get_default_lang() )
+        yield update_node(request, self.request.language)
 
         # align the memory variables with the new updated data
         yield import_memory_variables()
 
-        node_description = yield get_node(self.get_default_lang())
+        node_description = yield get_node(self.request.language)
 
         self.set_status(202) # Updated
         self.finish(node_description)
@@ -599,7 +616,7 @@ class ContextsCollection(BaseHandler):
         Response: adminContextList
         Errors: None
         """
-        response = yield get_context_list(self.get_default_lang())
+        response = yield get_context_list(self.request.language)
 
         self.set_status(200)
         self.finish(response)
@@ -615,7 +632,7 @@ class ContextsCollection(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.adminContextDesc)
 
-        response = yield create_context(request, self.get_default_lang())
+        response = yield create_context(request, self.request.language)
 
         self.set_status(201) # Created
         self.finish(response)
@@ -635,7 +652,7 @@ class ContextInstance(BaseHandler):
         Response: adminContextDesc
         Errors: ContextGusNotFound, InvalidInputFormat
         """
-        response = yield get_context(context_gus, self.get_default_lang())
+        response = yield get_context(context_gus, self.request.language)
         self.set_status(200)
         self.finish(response)
 
@@ -652,7 +669,7 @@ class ContextInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.adminContextDesc)
 
-        response = yield update_context(context_gus, request, self.get_default_lang())
+        response = yield update_context(context_gus, request, self.request.language)
 
         self.set_status(202) # Updated
         self.finish(response)
@@ -686,7 +703,7 @@ class ReceiversCollection(BaseHandler):
 
         Admin operation: return all the receiver present in the Node
         """
-        response = yield get_receiver_list(self.get_default_lang())
+        response = yield get_receiver_list(self.request.language)
 
         self.set_status(200)
         self.finish(response)
@@ -705,7 +722,7 @@ class ReceiversCollection(BaseHandler):
         request = self.validate_message(self.request.body,
                 requests.adminReceiverDesc)
 
-        response = yield create_receiver(request, self.get_default_lang())
+        response = yield create_receiver(request, self.request.language)
 
         self.set_status(201) # Created
         self.finish(response)
@@ -732,7 +749,7 @@ class ReceiverInstance(BaseHandler):
 
         Get an existent Receiver instance.
         """
-        response = yield get_receiver(receiver_gus, self.get_default_lang())
+        response = yield get_receiver(receiver_gus, self.request.language)
 
         self.set_status(200)
         self.finish(response)
@@ -750,7 +767,7 @@ class ReceiverInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.adminReceiverDesc)
 
-        response = yield update_receiver(receiver_gus, request, self.get_default_lang())
+        response = yield update_receiver(receiver_gus, request, self.request.language)
 
         self.set_status(201)
         self.finish(response)
@@ -773,36 +790,36 @@ class ReceiverInstance(BaseHandler):
 
 # Notification section:
 
-def admin_serialize_notification(notif, default_lang):
+def admin_serialize_notification(notif, language):
     notification_dict = {
         'server': notif.server if notif.server else u"",
         'port': notif.port if notif.port else u"",
         'username': notif.username if notif.username else u"",
         'password': notif.password if notif.password else u"",
         'security': notif.security if notif.security else u"",
-        'tip_template': utils.optlang(notif.tip_template, default_lang),
-        'tip_mail_title': utils.optlang(notif.tip_mail_title, default_lang),
-        'file_template': utils.optlang(notif.file_template, default_lang),
-        'file_mail_title': utils.optlang(notif.file_mail_title, default_lang),
-        'comment_template': utils.optlang(notif.comment_template, default_lang),
-        'comment_mail_title': utils.optlang(notif.comment_mail_title, default_lang),
-        'activation_template': utils.optlang(notif.activation_template, default_lang),
-        'activation_mail_title': utils.optlang(notif.activation_mail_title, default_lang),
+        'tip_template': utils.optlang(notif.tip_template, language),
+        'tip_mail_title': utils.optlang(notif.tip_mail_title, language),
+        'file_template': utils.optlang(notif.file_template, language),
+        'file_mail_title': utils.optlang(notif.file_mail_title, language),
+        'comment_template': utils.optlang(notif.comment_template, language),
+        'comment_mail_title': utils.optlang(notif.comment_mail_title, language),
+        'activation_template': utils.optlang(notif.activation_template, language),
+        'activation_mail_title': utils.optlang(notif.activation_mail_title, language),
     }
     return notification_dict
 
 @transact
-def get_notification(store, default_lang):
+def get_notification(store, language):
     try:
         notif = store.find(Notification).one()
     except Exception as excep:
         log.err("Database error when getting Notification table: %s" % str(excep))
         raise excep
 
-    return admin_serialize_notification(notif, default_lang)
+    return admin_serialize_notification(notif, language)
 
 @transact
-def update_notification(store, request, default_lang):
+def update_notification(store, request, language):
 
     try:
         notif = store.find(Notification).one()
@@ -817,8 +834,25 @@ def update_notification(store, request, default_lang):
         log.err("Invalid request: Security option not recognized")
         raise errors.InvalidInputFormat("Security selection not recognized")
 
+    request['tip_template'] = acquire_localized(request['tip_template'], language,
+        notif.tip_template[language] )
+    request['file_template'] = acquire_localized(request['file_template'], language,
+        notif.file_template[language] )
+    request['comment_template'] = acquire_localized(request['comment_template'],
+        language, notif.comment_template[language] )
+
+    request['tip_mail_title'] = acquire_localized(request['tip_mail_title'],
+        language, notif.tip_mail_title[language])
+    request['file_mail_title'] = acquire_localized(request['file_mail_title'],
+        language, notif.file_mail_title[language])
+    request['comment_mail_title'] = acquire_localized(request['comment_mail_title'],
+        language, notif.comment_mail_title[language])
+
+    # temporary hack
+    request['activation_mail_title'] = request['activation_template'] = { language : u'' }
+
     notif.update(request)
-    return admin_serialize_notification(notif, default_lang)
+    return admin_serialize_notification(notif, language)
 
 
 class NotificationInstance(BaseHandler):
@@ -837,7 +871,7 @@ class NotificationInstance(BaseHandler):
         Response: adminNotificationDesc
         Errors: None (return empty configuration, at worst)
         """
-        notification_desc = yield get_notification(self.get_default_lang())
+        notification_desc = yield get_notification(self.request.language)
         self.set_status(200)
         self.finish(notification_desc)
 
@@ -856,7 +890,7 @@ class NotificationInstance(BaseHandler):
         request = self.validate_message(self.request.body,
             requests.adminNotificationDesc)
 
-        response = yield update_notification(request, self.get_default_lang())
+        response = yield update_notification(request, self.request.language)
 
         self.set_status(202) # Updated
         self.finish(response)
