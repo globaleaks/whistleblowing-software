@@ -19,10 +19,10 @@ from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_manage
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
-def admin_serialize_node(node):
+def admin_serialize_node(node, default_lang):
     response = {
         "name": node.name,
-        "description": node.description,
+        "description": utils.optlang(node.description, default_lang),
         "creation_date": utils.pretty_date_time(node.creation_date),
         "last_update": utils.pretty_date_time(node.last_update),
         "hidden_service": node.hidden_service,
@@ -45,11 +45,11 @@ def admin_serialize_node(node):
     }
     return response
 
-def admin_serialize_context(context):
+def admin_serialize_context(context, default_lang):
     context_dict = {
         "context_gus": context.id,
-        "name": context.name,
-        "description": context.description,
+        "name": utils.optlang(context.name, default_lang),
+        "description": utils.optlang(context.description, default_lang),
         "creation_date": utils.pretty_date_time(context.creation_date),
         "last_update": utils.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
@@ -62,9 +62,9 @@ def admin_serialize_context(context):
         "fields": context.fields if context.fields else [],
         "receivers": [],
         "receipt_regexp": context.receipt_regexp,
-        "receipt_description": context.receipt_description,
-        "submission_introduction": context.submission_introduction,
-        "submission_disclaimer": context.submission_disclaimer,
+        "receipt_description": u'NYI', # context.receipt_description,
+        "submission_introduction": u'NYI', # context.submission_introduction,
+        "submission_disclaimer": u'NYI', # context.submission_disclaimer,
         "tags": context.tags if context.tags else u"",
         "file_required": context.file_required,
     }
@@ -74,11 +74,11 @@ def admin_serialize_context(context):
 
     return context_dict
 
-def admin_serialize_receiver(receiver):
+def admin_serialize_receiver(receiver, default_lang):
     receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
-        "description": receiver.description,
+        "description": utils.optlang(receiver.description, default_lang),
         "creation_date": utils.pretty_date_time(receiver.creation_date),
         "last_update": utils.pretty_date_time(receiver.last_update),
         "receiver_level": receiver.receiver_level,
@@ -107,8 +107,8 @@ def admin_serialize_receiver(receiver):
 
 
 @transact
-def get_node(store):
-    return admin_serialize_node(store.find(Node).one())
+def get_node(store, default_lang):
+    return admin_serialize_node(store.find(Node).one(), default_lang)
 
 @transact
 def update_node(store, request):
@@ -156,7 +156,7 @@ def update_node(store, request):
     return admin_serialize_node(node)
 
 @transact
-def get_context_list(store):
+def get_context_list(store, default_lang):
     """
     Returns:
         (dict) the current context list serialized.
@@ -165,7 +165,7 @@ def get_context_list(store):
     context_list = []
 
     for context in contexts:
-        context_list.append(admin_serialize_context(context))
+        context_list.append(admin_serialize_context(context, default_lang))
 
     return context_list
 
@@ -191,7 +191,7 @@ def fields_validation(fields_list):
 
 
 @transact
-def create_context(store, request):
+def create_context(store, request, default_lang):
     """
     Creates a new context from the request of a client.
 
@@ -246,9 +246,10 @@ def create_context(store, request):
     # are performed only on the english language at the moment
 
     try:
-        context_name = request['name']['en']
+        # XXX this is the only insertion that *NEED* a GL-Language header
+        context_name = request['name'][default_lang]
     except Exception as excep:
-        raise errors.InvalidInputFormat("Missing english language in context name, requirement ATM")
+        raise errors.InvalidInputFormat("Missing selected %s language in context creatione (name field)" % default_lang)
 
     if len(context_name) < 1:
         log.err("Invalid request: name is an empty string")
@@ -280,10 +281,10 @@ def create_context(store, request):
     # and of timing fixes
 
     store.add(context)
-    return admin_serialize_context(context)
+    return admin_serialize_context(context, default_lang)
 
 @transact
-def get_context(store, context_gus):
+def get_context(store, context_gus, default_lang):
     """
     Returns:
         (dict) the currently configured node.
@@ -294,10 +295,10 @@ def get_context(store, context_gus):
         log.err("Requested invalid context")
         raise errors.ContextGusNotFound
 
-    return admin_serialize_context(context)
+    return admin_serialize_context(context, default_lang)
 
 @transact
-def update_context(store, context_gus, request):
+def update_context(store, context_gus, request, default_lang):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
@@ -350,7 +351,7 @@ def update_context(store, context_gus, request):
     context.tags = None # request['tags']
     context.last_update = utils.datetime_now()
 
-    return admin_serialize_context(context)
+    return admin_serialize_context(context, default_lang)
 
 @transact
 def delete_context(store, context_gus):
@@ -371,7 +372,7 @@ def delete_context(store, context_gus):
 
 
 @transact
-def get_receiver_list(store):
+def get_receiver_list(store, default_lang):
     """
     Returns:
         (list) the list of receivers
@@ -380,7 +381,7 @@ def get_receiver_list(store):
 
     receivers = store.find(Receiver)
     for receiver in receivers:
-        receiver_list.append(admin_serialize_receiver(receiver))
+        receiver_list.append(admin_serialize_receiver(receiver, default_lang))
 
     return receiver_list
 
@@ -402,7 +403,7 @@ def create_random_receiver_portrait(receiver_uuid):
 
 
 @transact
-def create_receiver(store, request):
+def create_receiver(store, request, default_lang):
     """
     Creates a new receiver.
     Returns:
@@ -444,11 +445,11 @@ def create_receiver(store, request):
             raise errors.ContextGusNotFound
         context.receivers.add(receiver)
 
-    return admin_serialize_receiver(receiver)
+    return admin_serialize_receiver(receiver, default_lang)
 
 
 @transact
-def get_receiver(store, id):
+def get_receiver(store, id, default_lang):
     """
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
     not exist.
@@ -462,11 +463,11 @@ def get_receiver(store, id):
         log.err("Requested invalid receiver")
         raise errors.ReceiverGusNotFound
 
-    return admin_serialize_receiver(receiver)
+    return admin_serialize_receiver(receiver, default_lang)
 
 
 @transact
-def update_receiver(store, id, request):
+def update_receiver(store, id, request, default_lang):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
@@ -513,7 +514,7 @@ def update_receiver(store, id, request):
     receiver.update(request)
     receiver.last_update = utils.datetime_now()
 
-    return admin_serialize_receiver(receiver)
+    return admin_serialize_receiver(receiver, default_lang)
 
 @transact
 def delete_receiver(store, id):
@@ -524,14 +525,10 @@ def delete_receiver(store, id):
         log.err("Invalid receiver requested in removal")
         raise errors.ReceiverGusNotFound
 
-    portrait_120 = os.path.join(GLSetting.static_path, "%s_120.png" % id)
-    portrait_40 = os.path.join(GLSetting.static_path, "%s_40.png" % id)
+    portrait = os.path.join(GLSetting.static_path, "%s.png" % id)
 
-    if os.path.exists(portrait_120):
-        os.unlink(portrait_120)
-
-    if os.path.exists(portrait_40):
-        os.unlink(portrait_40)
+    if os.path.exists(portrait):
+        os.unlink(portrait)
 
     store.remove(receiver)
 
@@ -558,7 +555,7 @@ class NodeInstance(BaseHandler):
         Response: adminNodeDesc
         Errors: NodeNotFound
         """
-        node_description = yield get_node()
+        node_description = yield get_node(self.get_default_lang())
         self.set_status(200)
         self.finish(node_description)
 
@@ -576,12 +573,12 @@ class NodeInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                 requests.adminNodeDesc)
 
-        yield update_node(request)
+        yield update_node(request, self.get_default_lang() )
 
         # align the memory variables with the new updated data
         yield import_memory_variables()
 
-        node_description = yield get_node()
+        node_description = yield get_node(self.get_default_lang())
 
         self.set_status(202) # Updated
         self.finish(node_description)
@@ -602,7 +599,7 @@ class ContextsCollection(BaseHandler):
         Response: adminContextList
         Errors: None
         """
-        response = yield get_context_list()
+        response = yield get_context_list(self.get_default_lang())
 
         self.set_status(200)
         self.finish(response)
@@ -618,7 +615,7 @@ class ContextsCollection(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.adminContextDesc)
 
-        response = yield create_context(request)
+        response = yield create_context(request, self.get_default_lang())
 
         self.set_status(201) # Created
         self.finish(response)
@@ -638,7 +635,7 @@ class ContextInstance(BaseHandler):
         Response: adminContextDesc
         Errors: ContextGusNotFound, InvalidInputFormat
         """
-        response = yield get_context(context_gus)
+        response = yield get_context(context_gus, self.get_default_lang())
         self.set_status(200)
         self.finish(response)
 
@@ -655,7 +652,7 @@ class ContextInstance(BaseHandler):
         request = self.validate_message(self.request.body,
                                         requests.adminContextDesc)
 
-        response = yield update_context(context_gus, request)
+        response = yield update_context(context_gus, request, self.get_default_lang())
 
         self.set_status(202) # Updated
         self.finish(response)
@@ -689,7 +686,7 @@ class ReceiversCollection(BaseHandler):
 
         Admin operation: return all the receiver present in the Node
         """
-        response = yield get_receiver_list()
+        response = yield get_receiver_list(self.get_default_lang())
 
         self.set_status(200)
         self.finish(response)
@@ -708,7 +705,7 @@ class ReceiversCollection(BaseHandler):
         request = self.validate_message(self.request.body,
                 requests.adminReceiverDesc)
 
-        response = yield create_receiver(request)
+        response = yield create_receiver(request, self.get_default_lang())
 
         self.set_status(201) # Created
         self.finish(response)
@@ -735,7 +732,7 @@ class ReceiverInstance(BaseHandler):
 
         Get an existent Receiver instance.
         """
-        response = yield get_receiver(receiver_gus)
+        response = yield get_receiver(receiver_gus, self.get_default_lang())
 
         self.set_status(200)
         self.finish(response)
@@ -753,7 +750,7 @@ class ReceiverInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.adminReceiverDesc)
 
-        response = yield update_receiver(receiver_gus, request)
+        response = yield update_receiver(receiver_gus, request, self.get_default_lang())
 
         self.set_status(201)
         self.finish(response)
@@ -776,44 +773,42 @@ class ReceiverInstance(BaseHandler):
 
 # Notification section:
 
-def admin_serialize_notification(notif):
+def admin_serialize_notification(notif, default_lang):
     notification_dict = {
         'server': notif.server if notif.server else u"",
         'port': notif.port if notif.port else u"",
         'username': notif.username if notif.username else u"",
         'password': notif.password if notif.password else u"",
         'security': notif.security if notif.security else u"",
-        'tip_template': notif.tip_template if notif.tip_template else u"",
-        'tip_mail_title': notif.tip_mail_title if notif.tip_mail_title else u"",
-        'file_template': notif.file_template if notif.file_template else u"",
-        'file_mail_title': notif.file_mail_title if notif.file_mail_title else u"",
-        'comment_template': notif.comment_template if notif.comment_template else u"",
-        'comment_mail_title': notif.comment_mail_title if notif.comment_mail_title else u"",
-        'activation_template': notif.activation_template if notif.activation_template else u"",
-        'activation_mail_title': notif.activation_mail_title if notif.activation_mail_title else u"",
+        'tip_template': utils.optlang(notif.tip_template, default_lang),
+        'tip_mail_title': utils.optlang(notif.tip_mail_title, default_lang),
+        'file_template': utils.optlang(notif.file_template, default_lang),
+        'file_mail_title': utils.optlang(notif.file_mail_title, default_lang),
+        'comment_template': utils.optlang(notif.comment_template, default_lang),
+        'comment_mail_title': utils.optlang(notif.comment_mail_title, default_lang),
+        'activation_template': utils.optlang(notif.activation_template, default_lang),
+        'activation_mail_title': utils.optlang(notif.activation_mail_title, default_lang),
     }
     return notification_dict
 
 @transact
-def get_notification(store):
+def get_notification(store, default_lang):
     try:
         notif = store.find(Notification).one()
     except Exception as excep:
         log.err("Database error when getting Notification table: %s" % str(excep))
         raise excep
 
-    return admin_serialize_notification(notif)
+    return admin_serialize_notification(notif, default_lang)
 
 @transact
-def update_notification(store, request):
+def update_notification(store, request, default_lang):
 
     try:
         notif = store.find(Notification).one()
-    except Exception, e:
-        log.err("Database error or application error: %s", str(e))
-        raise e
-
-    # XXX support languages here
+    except Exception as excep:
+        log.err("Database error or application error: %s" % excep )
+        raise excep
 
     security = str(request.get('security', u'')).upper()
     if security in Notification._security_types:
@@ -823,7 +818,7 @@ def update_notification(store, request):
         raise errors.InvalidInputFormat("Security selection not recognized")
 
     notif.update(request)
-    return admin_serialize_notification(notif)
+    return admin_serialize_notification(notif, default_lang)
 
 
 class NotificationInstance(BaseHandler):
@@ -842,7 +837,7 @@ class NotificationInstance(BaseHandler):
         Response: adminNotificationDesc
         Errors: None (return empty configuration, at worst)
         """
-        notification_desc = yield get_notification()
+        notification_desc = yield get_notification(self.get_default_lang())
         self.set_status(200)
         self.finish(notification_desc)
 
@@ -861,7 +856,7 @@ class NotificationInstance(BaseHandler):
         request = self.validate_message(self.request.body,
             requests.adminNotificationDesc)
 
-        response = yield update_notification(request)
+        response = yield update_notification(request, self.get_default_lang())
 
         self.set_status(202) # Updated
         self.finish(response)

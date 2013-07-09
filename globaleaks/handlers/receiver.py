@@ -7,21 +7,21 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils import pretty_date_time, acquire_mail_address, log, acquire_bool
+from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, optlang
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests
-from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified, GPGKeyInvalid
+from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
 from globaleaks.security import change_password, gpg_options_manage
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
-def receiver_serialize_receiver(receiver):
+def receiver_serialize_receiver(receiver, default_lang):
     description = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
-        "description": receiver.description,
+        "description": optlang(receiver.description, default_lang),
         "update_date": pretty_date_time(receiver.last_update),
         "creation_date": pretty_date_time(receiver.creation_date),
         "receiver_level": receiver.receiver_level,
@@ -49,16 +49,16 @@ def receiver_serialize_receiver(receiver):
     return description
 
 @transact
-def get_receiver_settings(store, user_id):
+def get_receiver_settings(store, user_id, default_lang):
     receiver = store.find(Receiver, Receiver.id== unicode(user_id)).one()
 
     if not receiver:
         raise ReceiverGusNotFound
 
-    return receiver_serialize_receiver(receiver)
+    return receiver_serialize_receiver(receiver, default_lang)
 
 @transact
-def update_receiver_settings(store, user_id, request):
+def update_receiver_settings(store, user_id, request, default_lang):
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
 
     if not receiver:
@@ -68,7 +68,6 @@ def update_receiver_settings(store, user_id, request):
     old_password = request.get('old_password')
 
     if len(new_password) and len(old_password):
-        # may raise exception change_password itself
         receiver.password = change_password(receiver.password,
                                             old_password, new_password, receiver.username)
 
@@ -83,7 +82,7 @@ def update_receiver_settings(store, user_id, request):
 
     gpg_options_manage(receiver, request)
 
-    return receiver_serialize_receiver(receiver)
+    return receiver_serialize_receiver(receiver, default_lang)
 
 
 class ReceiverInstance(BaseHandler):
@@ -107,7 +106,8 @@ class ReceiverInstance(BaseHandler):
         Errors: TipGusNotFound, InvalidInputFormat, InvalidTipAuthToken
         """
 
-        receiver_status = yield get_receiver_settings(self.current_user['user_id'])
+        receiver_status = yield get_receiver_settings(self.current_user['user_id'],
+            self.get_default_lang())
 
         self.set_status(200)
         self.finish(receiver_status)
@@ -125,7 +125,8 @@ class ReceiverInstance(BaseHandler):
         """
         request = self.validate_message(self.request.body, requests.receiverReceiverDesc)
 
-        receiver_status = yield update_receiver_settings(self.current_user['user_id'], request)
+        receiver_status = yield update_receiver_settings(self.current_user['user_id'],
+            request, self.get_default_lang())
 
         self.set_status(200)
         self.finish(receiver_status)

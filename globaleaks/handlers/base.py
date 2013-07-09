@@ -184,7 +184,7 @@ class BaseHandler(RequestHandler):
         try:
             default_lang = self.request.headers.get('GL-Language')
         except Exception:
-            default_lang = None
+            default_lang = 'en'
         return  default_lang
 
     def set_default_headers(self):
