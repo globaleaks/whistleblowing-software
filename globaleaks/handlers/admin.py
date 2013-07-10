@@ -435,8 +435,8 @@ def create_receiver(store, request, language=GLSetting.default_language):
     if homonymous:
         log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
-
-    request['description'] = acquire_localized(request['description'], language)
+    
+    request['description'] = {language: request['description']}
 
     receiver = Receiver(request)
 
