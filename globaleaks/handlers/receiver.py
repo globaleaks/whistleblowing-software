@@ -7,7 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, optlang
+from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact, GLSetting
