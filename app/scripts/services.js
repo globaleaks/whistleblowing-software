@@ -548,9 +548,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       self.create_context = function(context_name) {
         var context = new adminContextsResource;
 
-        context.name = {};
-        context.name[$rootScope.selected_language] = context_name;
-        context.description = {};
+        context.name = context_name;
+        context.description = "";
 
         context.fields = [];
         context.receivers = [];
@@ -563,9 +562,9 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
         context.receipt_regexp = '';
-        context.receipt_description = {};
-        context.submission_introduction = {};
-        context.submission_disclaimer = {};
+        context.receipt_description = "";
+        context.submission_introduction = "";
+        context.submission_disclaimer = "";
         context.tags = [];
 
         context.$save(function(new_context){
@@ -591,9 +590,16 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
     var $rootScope = angular.injector(['ng']).get('$rootScope'),
       globaleaksRequestInterceptor = function(data, headers) {
 
+        var extra_headers = {};
+
         if ($.cookie('session_id')) {
-          headers = angular.extend(headers(),{'X-Session': $.cookie('session_id')});
+          extra_headers['X-Session'] = $.cookie('session_id');
         };
+        if ($.cookie('language')) {
+          extra_headers['GL-Language'] = $.cookie('language');
+        };
+
+        headers = angular.extend(headers(), extra_headers);
         return data;
     };
     $httpProvider.responseInterceptors.push('globaleaksInterceptor');

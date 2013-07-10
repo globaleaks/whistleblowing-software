@@ -17,8 +17,8 @@ GLClient.controller('AdminContextsCtrl',
       context.fields = [];
     }
     context.fields.push({presentation_order: 0,
-                        name: {},
-                        hint: {},
+                        name: "",
+                        hint: "",
                         key: '',
                         value: '',
                         type: 'text',
