@@ -59,7 +59,7 @@ class APSNotification(GLJob):
         if not notif.server:
             return None
 
-        return admin_serialize_notification(notif, utils.system_default_lang())
+        return admin_serialize_notification(notif, GLSetting.default_language)
 
 
     @transact
@@ -88,7 +88,7 @@ class APSNotification(GLJob):
         )
 
         node_desc = admin.admin_serialize_node(store.find(models.Node).one(),
-            utils.system_default_lang())
+            GLSetting.default_language)
 
         if not_notified_tips.count():
             log.debug("Receiver Tips found to be notified: %d" % not_notified_tips.count() )
@@ -99,9 +99,9 @@ class APSNotification(GLJob):
                 log.err("(tip_notification) Integrity failure: missing InternalTip|Context")
                 continue
 
-            context_desc = admin.admin_serialize_context(rtip.internaltip.context, utils.system_default_lang())
+            context_desc = admin.admin_serialize_context(rtip.internaltip.context, GLSetting.default_language)
 
-            receiver_desc = admin.admin_serialize_receiver(rtip.receiver, utils.system_default_lang())
+            receiver_desc = admin.admin_serialize_receiver(rtip.receiver, GLSetting.default_language)
             if  not receiver_desc.has_key('notification_fields') or\
                 not rtip.receiver.notification_fields.has_key('mail_address'):
                 log.err("Receiver %s lack of email address!" % rtip.receiver.name)
@@ -189,7 +189,7 @@ class APSNotification(GLJob):
             models.Comment.mark == models.Comment._marker[0]
         )
 
-        node_desc = admin.admin_serialize_node(store.find(models.Node).one(), utils.system_default_lang())
+        node_desc = admin.admin_serialize_node(store.find(models.Node).one(), GLSetting.default_language)
 
         if not_notified_comments.count():
             log.debug("Comments found to be notified: %d" % not_notified_comments.count() )
@@ -210,7 +210,7 @@ class APSNotification(GLJob):
                 log.err("(comment_notification) Integrity check failure Context")
                 continue
 
-            context_desc = admin.admin_serialize_context(comment.internaltip.context, utils.system_default_lang())
+            context_desc = admin.admin_serialize_context(comment.internaltip.context, GLSetting.default_language)
 
             # XXX BUG! All notification is marked as correctly send,
             # This can't be managed by callback, and can't be managed by actual DB design
@@ -218,7 +218,7 @@ class APSNotification(GLJob):
 
             for receiver in comment.internaltip.receivers:
 
-                receiver_desc = admin.admin_serialize_receiver(receiver, utils.system_default_lang())
+                receiver_desc = admin.admin_serialize_receiver(receiver, GLSetting.default_language)
                 if  not receiver_desc.has_key('notification_fields') or\
                     not receiver.notification_fields.has_key('mail_address'):
                     log.err("Receiver %s lack of email address!" % receiver.name)
@@ -309,7 +309,7 @@ class APSNotification(GLJob):
             models.ReceiverFile.mark == models.ReceiverFile._marker[0]
         )
 
-        node_desc = admin.admin_serialize_node(store.find(models.Node).one(), utils.system_default_lang())
+        node_desc = admin.admin_serialize_node(store.find(models.Node).one(), GLSetting.default_language)
 
         if not_notified_rfiles.count():
             log.debug("Receiverfiles found to be notified: %d" % not_notified_rfiles.count() )
@@ -329,7 +329,7 @@ class APSNotification(GLJob):
                 continue
 
             context_desc = admin.admin_serialize_context(rfile.internalfile.internaltip.context,
-                utils.system_default_lang())
+                GLSetting.default_language)
 
             receiver_desc = admin.admin_serialize_receiver(rfile.receiver)
             if  not receiver_desc.has_key('notification_fields') or \
