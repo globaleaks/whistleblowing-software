@@ -14,7 +14,7 @@ from globaleaks.models import Receiver, Context, Node, Notification
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security, models
-from globaleaks.utils import log
+from globaleaks.utils import log, l10n
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_manage
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -43,10 +43,7 @@ def admin_serialize_node(node, language=GLSetting.default_language):
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
     }
 
-    if language in node.description:
-        response["description"] = node.description[language]
-    else:
-        response["description"] = node.description[GLSetting.default_language]
+    response["description"] = l10n(node.description, language)
 
     return response
 
@@ -72,10 +69,7 @@ def admin_serialize_context(context, language=GLSetting.default_language):
     }
     
     for attr in ["name", "description", "fields"]:
-        if language in getattr(context, attr):
-            context_dict[attr] = getattr(context, attr)[language]
-        else:
-            context_dict[attr] = getattr(context, attr)[GLSetting.default_language]
+        context_dict[attr] = l10n(getattr(context, attr), language)
 
     for receiver in context.receivers:
         context_dict['receivers'].append(receiver.id)
@@ -108,13 +102,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.default_language):
         "file_notification": receiver.file_notification,
     }
 
-    if language in receiver.description: 
-        receiver_dict["description"] = receiver.description[language]
-    else:
-        receiver_dict["description"] = receiver.description[GLSetting.default_language]
-
-    for context in receiver.contexts:
-        receiver_dict['contexts'].append(context.id)
+    receiver_dict["description"] = l10n(receiver.description, language)
 
     return receiver_dict
 
@@ -810,10 +798,7 @@ def admin_serialize_notification(notif, language=GLSetting.default_language):
     for attr in ['tip_template', 'tip_mail_title', 'file_template',
             'file_mail_title', 'comment_template', 'comment_mail_title',
             'activation_template', 'activation_mail_title']:
-        if language in getattr(notif, attr):
-            notification_dict[attr] = getattr(notif, attr)[language]
-        else:
-            notification_dict[attr] = getattr(notif, attr)[GLSetting.default_language]
+        notification_dict[attr] = l10n(getattr(notif, attr), language)
 
     return notification_dict
 

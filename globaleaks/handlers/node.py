@@ -8,6 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import utils
+from globaleaks.utils import l10n
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check
@@ -40,10 +41,7 @@ def anon_serialize_node(store, language=GLSetting.default_language):
       'tor2web_unauth': node.tor2web_unauth,
     }
     
-    if language in node.description:
-        node_dict['description'] = node.description[language]
-    else:
-        node_dict['description'] = node.description[GLSetting.default_language]
+    node_dict['description'] = l10n(node.description, language)
 
     return node_dict
 
@@ -65,12 +63,9 @@ def anon_serialize_context(context, language=GLSetting.default_language):
 
     context_dict.update({
         "context_gus": unicode(context.id),
-        "description": context.description[language],
         "escalation_threshold": None,
-        "fields": context.fields[language] if context.fields else [],
         "file_max_download": int(context.file_max_download),
         "file_required": context.file_required,
-        "name": context.name[language],
         "selectable_receiver": bool(context.selectable_receiver),
         "tip_max_access": int(context.tip_max_access),
         "tip_timetolive": int(context.tip_timetolive),
@@ -78,6 +73,17 @@ def anon_serialize_context(context, language=GLSetting.default_language):
         "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
         "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
     })
+
+    context_dict['name'] = l10n(context.name, language)
+
+    context_dict['description'] = l10n(context.description, language)
+
+    if context.fields:
+        context_dict['fields'] = l10n(context.fields, language)
+    else: 
+        context_dict['fields'] = []
+
+
     return context_dict
 
 
@@ -102,12 +108,14 @@ def anon_serialize_receiver(receiver, language=GLSetting.default_language):
         "can_delete_submission": receiver.can_delete_submission,
         "creation_date": utils.pretty_date_time(receiver.creation_date),
         "update_date": utils.pretty_date_time(receiver.last_update),
-        "description": receiver.description[language],
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "tags": receiver.tags,
     })
+
+    receiver_dict['description'] = l10n(receiver.description, language)
+
     return receiver_dict
 
 
