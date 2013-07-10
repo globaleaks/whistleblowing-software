@@ -60,7 +60,7 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
 
     // Under here go default settings
     receiver.contexts =  [];
-    receiver.description = {};
+    receiver.description = "";
     receiver.can_delete_submission = true;
     receiver.receiver_level = 1;
     receiver.tags = [];
