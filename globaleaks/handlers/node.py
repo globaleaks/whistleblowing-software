@@ -81,7 +81,7 @@ def anon_serialize_context(context, language=GLSetting.default_language):
     return context_dict
 
 
-def anon_serialize_receiver(receiver, default_lang):
+def anon_serialize_receiver(receiver, language=GLSetting.default_language):
     """
     @param receiver: a valid Storm object
     @return: a dict describing the receivers available in the node
