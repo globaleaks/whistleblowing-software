@@ -234,9 +234,13 @@ def create_context(store, request, language=GLSetting.default_language):
         assigned_fields = sample_context_fields
     else:
         assigned_fields = request['fields']
-
+    
     # may raise InvalidInputFormat if fields format do not fit
     fields_validation(assigned_fields)
+    
+    for idx, _ in enumerate(assigned_fields):
+        assigned_fields[idx]['key'] = unicode(assigned_fields[idx]['name'])
+
     context.fields = {}
     context.fields[language] = assigned_fields
 
@@ -355,6 +359,9 @@ def update_context(store, context_gus, request, language=GLSetting.default_langu
     #     log.err("Invalid timing configured for Submission: %s" % excep.message)
     #     raise errors.TimeToLiveInvalid("Tip", excep.message)
     # and of timing fixes
+
+    for idx, _ in enumerate(request['fields']):
+        request['fields'][idx]['key'] = unicode(request['fields'][idx]['name'])
 
     context.fields[language] = request['fields']
     context.tags = None # request['tags']
