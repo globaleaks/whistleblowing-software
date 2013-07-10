@@ -7,7 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool
+from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact, GLSetting
@@ -42,10 +42,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.default_language):
         "contexts": []
     }
 
-    if language in receiver.description:
-        receiver_dict["description"] = receiver.description[language]
-    else:
-        receiver_dict["description"] = receiver.description[GLSetting.default_language]
+    receiver_dict["description"] = l10n(receiver.description, language)
 
     for context in receiver.contexts:
         receiver_dict['contexts'].append(context.id)

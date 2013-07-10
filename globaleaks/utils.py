@@ -406,6 +406,14 @@ def acquire_bool(boolvalue):
         return False
     raise AssertionError("BaseHandler validator is not working")
 
+def l10n(var, language):
+    if language in var: 
+        return var[language]
+    elif GLSetting.default_language in var:
+        return var[GLSetting.default_language]
+    else:
+        return ''
+
 def caller_name(skip=2):
     """Get a name of a caller in the format module.class.method
     
