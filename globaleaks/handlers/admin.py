@@ -14,7 +14,7 @@ from globaleaks.models import Receiver, Context, Node, Notification
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security, models
-from globaleaks.utils import log, acquire_localized
+from globaleaks.utils import log
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_manage
 from globaleaks import LANGUAGES_SUPPORTED_CODES
