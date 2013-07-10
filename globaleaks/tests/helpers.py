@@ -201,7 +201,7 @@ class MockDict():
             'receiver_gus': unicode(uuid.uuid4()),
             'password': VALID_PASSWORD1,
             'name': u'Ned Stark',
-            'description': { "en" : u'King MockDummy Receiver' },
+            'description': u'King MockDummy Receiver',
             'notification_fields': {'mail_address': u'maker@iz.cool.yeah'},
             'username': u'maker@iz.cool.yeah',
             'can_delete_submission': True,
@@ -216,36 +216,36 @@ class MockDict():
         self.dummyContext = {
             'context_gus': unicode(uuid.uuid4()),
             # localized stuff
-            'name': { "en" : u'created by shooter' },
-            'receipt_description': { "en" : u'xx' },
-            'submission_introduction': { "en" : u'yy' },
-            'submission_disclaimer': { "en" : u'kk' },
-            'description': { "en" : u'This is the update' },
+            'name': u'created by shooter',
+            'receipt_description': u'xx',
+            'submission_introduction': u'yy',
+            'submission_disclaimer': u'kk',
+            'description': u'This is the update',
             # fields, usually overwritten in content by fill_random_fields
-            'fields': [{u'hint': { "en" : u'autovelox' },
+            'fields': [{u'hint': u'autovelox',
                         u'key': u'city and space',
-                        u'name': { "en" : u'city and space' },
+                        u'name': u'city and space',
                         u'presentation_order': 1,
                         u'required': True,
                         u'type': u'text',
                         u'value': u"Yadda I'm default with apostrophe"},
-                       {u'hint': { "en" : u'name of the sun' },
+                       {u'hint': u'name of the sun',
                         u'key': u'ß@ł€¶ -- Spécìàlé €$£ char',
-                        u'name': { "en" : u'ß@ł€¶ -- Spécìàlé €$£ char' },
+                        u'name': u'ß@ł€¶ -- Spécìàlé €$£ char',
                         u'presentation_order': 2,
                         u'required': True,
                         u'type': u'checkboxes',
                         u'value': u"I'm the sun, I've not name"},
-                       {u'hint': { "en" : u'put the number '} ,
+                       {u'hint': u'put the number ',
                         u'key': u'dict2 whatEver',
-                        u'name': { "en" : u'dict2 whatEver' },
+                        u'name': u'dict2 whatEver',
                         u'presentation_order': 3,
                         u'required': True,
                         u'type': u'text',
                         u'value': u'666 the default value'},
-                       {u'hint': { "en" : u'details:' },
+                       {u'hint': u'details:',
                         u'key': u'dict3 cdcd',
-                        u'name': { "en" : u'dict3 cdcd' },
+                        u'name': u'dict3 cdcd',
                         u'presentation_order': 4,
                         u'required': False,
                         u'type': u'text',
@@ -273,7 +273,7 @@ class MockDict():
 
         self.dummyNode = {
             'name':  u"Please, set me: name/title",
-            'description':  { "en" : u"Please, set me: description" },
+            'description':  u"Please, set me: description",
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dumnmy.net",
@@ -302,14 +302,14 @@ class MockDict():
             'username': u'staceppa',
             'password': u'antani',
             'security': u'SSL',
-            'tip_template': { "en" : u'tip message: %sNodeName%' },
-            'comment_template': { "en" : u'comment message: %sNodeName%' },
-            'file_template': { "en" : u'file message: %sNodeName%' },
-            'activation_template': { "en" : u'activation message: %sNodeName%' },
-            'tip_mail_title': { "en" : u'xxx' },
-            'comment_mail_title': { "en" : u'yyy' },
-            'file_mail_title': { "en" : u'kkk' },
-            'activation_mail_title': { "en" : u'uuu'},
+            'tip_template': u'tip message: %sNodeName%',
+            'comment_template': u'comment message: %sNodeName%',
+            'file_template': u'file message: %sNodeName%',
+            'activation_template': u'activation message: %sNodeName%',
+            'tip_mail_title': u'xxx',
+            'comment_mail_title': u'yyy',
+            'file_mail_title': u'kkk',
+            'activation_mail_title': u'uuu',
         }
 
 
@@ -324,7 +324,6 @@ def fill_random_fields(context_dict):
     for sf in context_dict['fields']:
 
         assert sf.has_key(u'name')
-        assert sf['name'].has_key("en")
         assert sf.has_key(u'key')
         assert sf.has_key(u'hint')
         assert sf.has_key(u'presentation_order')
