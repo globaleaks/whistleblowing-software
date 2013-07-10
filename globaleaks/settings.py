@@ -40,6 +40,36 @@ verbosity_dict = {
 
 from storm.zope.zstorm import ZStorm
 
+sample_context_fields = [
+        {
+            'name': u'Short title', 
+            'hint': u"Describe your Tip with a short title",
+            'presentation_order': 1,
+            'key': u'Short title',
+            'required': True,
+            'type': u'text', 
+            'value': u''
+        },
+        {
+            'name': u'Full description',
+            'hint': u'Describe the details of your Tip',
+            'key': u'Full description',
+            'presentation_order': 2,
+            'required': True, 
+            'type': u'text',
+            'value': u"" 
+        },
+        {   
+            'name': u'Files description',
+            'hint': u"Describe the submitted files",
+            'key': u'Files description',
+            'presentation_order': 3,
+            'required': False,
+            'type': u'text',
+            'value': u'' 
+        },
+] 
+
 class GLSettingsClass:
 
     def __init__(self):
@@ -104,6 +134,8 @@ class GLSettingsClass:
         self.notification_minutes_delta = 2 # runner.py function expect minutes
         self.delivery_seconds_delta = 30 # runner.py function expect seconds
 
+        self.default_language = 'en'
+
         self.defaults = OD()
         # Default values, used to initialize DB at the first start,
         # or whenever the value is not supply by client.
@@ -124,6 +156,7 @@ class GLSettingsClass:
         self.defaults.receipt_regexp = u'[0-9]{10}'
         self.defaults.tip_seconds_of_life = (3600 * 24) * 15
         self.defaults.submission_seconds_of_life = (3600 * 24) * 3
+        self.defaults.languages_enabled = ['en']
 
         self.memory_copy = OD()
         # Some operation, like check for maximum file, can't access
