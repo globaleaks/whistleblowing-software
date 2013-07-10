@@ -10,18 +10,17 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, optlang
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
-from globaleaks.settings import transact
+from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests
 from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
 from globaleaks.security import change_password, gpg_options_manage
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
-def receiver_serialize_receiver(receiver, default_lang):
-    description = {
+def receiver_serialize_receiver(receiver, language=GLSetting.default_language):
+    receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
-        "description": optlang(receiver.description, default_lang),
         "update_date": pretty_date_time(receiver.last_update),
         "creation_date": pretty_date_time(receiver.creation_date),
         "receiver_level": receiver.receiver_level,
@@ -43,13 +42,18 @@ def receiver_serialize_receiver(receiver, default_lang):
         "contexts": []
     }
 
-    for context in receiver.contexts:
-        description['contexts'].append(context.id)
+    if language in receiver.description:
+        receiver_dict["description"] = receiver.description[language]
+    else:
+        receiver_dict["description"] = receiver.description[GLSetting.default_language]
 
-    return description
+    for context in receiver.contexts:
+        receiver_dict['contexts'].append(context.id)
+
+    return receiver_dict
 
 @transact
-def get_receiver_settings(store, user_id, default_lang):
+def get_receiver_settings(store, user_id, language=GLSetting.default_language):
     receiver = store.find(Receiver, Receiver.id== unicode(user_id)).one()
 
     if not receiver:
@@ -58,8 +62,9 @@ def get_receiver_settings(store, user_id, default_lang):
     return receiver_serialize_receiver(receiver, default_lang)
 
 @transact
-def update_receiver_settings(store, user_id, request, default_lang):
+def update_receiver_settings(store, user_id, request, language=GLSetting.default_language):
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
+    receiver.description[language] = request.get('description')
 
     if not receiver:
         raise ReceiverGusNotFound
