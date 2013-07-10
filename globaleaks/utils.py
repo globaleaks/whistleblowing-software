@@ -43,6 +43,17 @@ class Logger(object):
             return msg.encode('utf-8')
         return str(msg)
 
+    def exception(self, error):
+        """
+        Error can either be an error message to print to stdout and to the logfile
+        or it can be a twisted.python.failure.Failure instance.
+        """
+        if isinstance(error, Failure):
+            error.printTraceback()
+        else:
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            traceback.print_exception(exc_type, exc_value, exc_traceback)
+
     def info(self, msg):
         if GLSetting.loglevel <= logging.INFO:
             #twlog.info("[-] %s" % self._str(msg))

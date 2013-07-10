@@ -146,14 +146,15 @@ def import_fields(submission, fields, expected_fields, strict_validation=False):
     if Submission would not be finalized yet.
     """
     required_keys = optional_keys  = []
-
+    
     try:
         for sf in expected_fields:
             if sf['required']:
                 required_keys.append(sf.get(u'key'))
             else:
                 optional_keys.append(sf.get(u'key'))
-    except Exception:
+    except Exception, e:
+        log.exception(e)
         raise SubmissionFailFields("Malformed submission!")
 
     if strict_validation and not fields:
