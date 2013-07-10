@@ -35,7 +35,7 @@
               <div class="row" ng-click="toggleEditing()">
                 <div class="span9 editorHeader contextEditorHeader">
                   <div class="span4">
-                    <span>{{context.name[selected_language]}}</span>
+                    <span>{{context.name}}</span>
                   </div>
 
                   <div class="span4 editButtons" ng-show="editing">
@@ -60,11 +60,11 @@
                     <label>{{ "Name" | translate }}</label>
                     <input type="text"
                            required
-                           ng-model="context.name[selected_language]"
-                           value="{{context.name[selected_language]}}">
+                           ng-model="context.name"
+                           value="{{context.name}}">
                     <label>{{ "Description" | translate }}</label>
                     <textarea required
-                              ng-model="context.description[selected_language]">{{context.description[selected_language]}}</textarea>
+                              ng-model="context.description">{{context.description}}</textarea>
 
                   </div>
 
