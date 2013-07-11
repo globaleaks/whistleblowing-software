@@ -43,6 +43,17 @@ class Logger(object):
             return msg.encode('utf-8')
         return str(msg)
 
+    def exception(self, error):
+        """
+        Error can either be an error message to print to stdout and to the logfile
+        or it can be a twisted.python.failure.Failure instance.
+        """
+        if isinstance(error, Failure):
+            error.printTraceback()
+        else:
+            exc_type, exc_value, exc_traceback = sys.exc_info()
+            traceback.print_exception(exc_type, exc_value, exc_traceback)
+
     def info(self, msg):
         if GLSetting.loglevel <= logging.INFO:
             #twlog.info("[-] %s" % self._str(msg))
@@ -395,6 +406,16 @@ def acquire_bool(boolvalue):
         return False
     raise AssertionError("BaseHandler validator is not working")
 
+def l10n(var, language):
+    if not var:
+        return u''
+    if language in var:
+        return var[language]
+    elif GLSetting.default_language in var:
+        return var[GLSetting.default_language]
+    else:
+        return u''
+
 def caller_name(skip=2):
     """Get a name of a caller in the format module.class.method
     
@@ -426,62 +447,3 @@ def caller_name(skip=2):
         name.append( codename ) # function or a method
     del parentframe
     return ".".join(name)
-
-def optlang(localized_dict, default_lang):
-
-    # default behavior until:
-    # https://github.com/globaleaks/GlobaLeaks/issues/411#issuecomment-20628513
-    if not default_lang:
-        default_lang = 'en'
-
-    if not default_lang in LANGUAGES_SUPPORTED_CODES:
-        raise Exception("%s not in %s" % (default_lang, LANGUAGES_SUPPORTED_CODES))
-
-    if localized_dict.has_key(default_lang):
-        return localized_dict[default_lang]
-
-def system_default_lang():
-    # TODO
-    # Accepted language and then default of Node via admin (required DB upgrade)
-    return 'en'
-
-def optlang_fields(localized_fields, default_lang):
-
-    retlist = []
-    for field in localized_fields:
-        monolang = {
-            "presentation_order": field['presentation_order'],
-            "required": field['required'],
-            "type": field['type'],
-            "key": field['key']
-        }
-        try:
-            monolang.update({"hint" : field['hint'][unicode(default_lang)]})
-        except Exception:
-            monolang.update({"hint" : u""})
-        try:
-            monolang.update({"name" : field['name'][unicode(default_lang)]})
-        except Exception:
-            monolang.update({"name" : u""})
-
-        retlist.append(monolang)
-
-    return retlist
-
-
-def acquire_localized(localized_text, selected_lang, previous_value=None):
-
-    if not selected_lang in LANGUAGES_SUPPORTED_CODES:
-        raise Exception("%s not in %s" % (selected_lang, LANGUAGES_SUPPORTED_CODES))
-
-    retval = {}
-
-    if previous_value:
-        retval.update({ selected_lang : localized_text })
-        return retval
-
-    if not localized_text or not len(localized_text):
-        return { selected_lang: u'' }
-
-        # else, the other language do not exist/are flushed
-    return { selected_lang : localized_text }

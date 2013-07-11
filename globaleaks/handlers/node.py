@@ -8,21 +8,21 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import utils
-from globaleaks.settings import transact
+from globaleaks.utils import l10n
+from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check
 from globaleaks import models
 
 @transact
-def anon_serialize_node(store, default_lang):
+def anon_serialize_node(store, language=GLSetting.default_language):
     node = store.find(models.Node).one()
 
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
-
-    return {
+    
+    node_dict = {
       'name': unicode(node.name),
-      'description': utils.optlang(node.description, default_lang),
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
@@ -40,8 +40,12 @@ def anon_serialize_node(store, default_lang):
       'tor2web_receiver': node.tor2web_receiver,
       'tor2web_unauth': node.tor2web_unauth,
     }
+    
+    node_dict['description'] = l10n(node.description, language)
 
-def anon_serialize_context(context, default_lang):
+    return node_dict
+
+def anon_serialize_context(context, language=GLSetting.default_language):
     """
     @param context: a valid Storm object
     @return: a dict describing the contexts available for submission,
@@ -59,12 +63,9 @@ def anon_serialize_context(context, default_lang):
 
     context_dict.update({
         "context_gus": unicode(context.id),
-        "description": utils.optlang(context.description, default_lang),
         "escalation_threshold": None,
-        "fields": utils.optlang_fields(context.fields, default_lang) if context.fields else [],
         "file_max_download": int(context.file_max_download),
         "file_required": context.file_required,
-        "name": utils.optlang(context.name, default_lang),
         "selectable_receiver": bool(context.selectable_receiver),
         "tip_max_access": int(context.tip_max_access),
         "tip_timetolive": int(context.tip_timetolive),
@@ -72,10 +73,21 @@ def anon_serialize_context(context, default_lang):
         "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
         "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
     })
+
+    context_dict['name'] = l10n(context.name, language)
+
+    context_dict['description'] = l10n(context.description, language)
+
+    if context.fields:
+        context_dict['fields'] = l10n(context.fields, language)
+    else: 
+        context_dict['fields'] = []
+
+
     return context_dict
 
 
-def anon_serialize_receiver(receiver, default_lang):
+def anon_serialize_receiver(receiver, language=GLSetting.default_language):
     """
     @param receiver: a valid Storm object
     @return: a dict describing the receivers available in the node
@@ -96,12 +108,14 @@ def anon_serialize_receiver(receiver, default_lang):
         "can_delete_submission": receiver.can_delete_submission,
         "creation_date": utils.pretty_date_time(receiver.creation_date),
         "update_date": utils.pretty_date_time(receiver.last_update),
-        "description": utils.optlang(receiver.description, default_lang),
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "tags": receiver.tags,
     })
+
+    receiver_dict['description'] = l10n(receiver.description, language)
+
     return receiver_dict
 
 

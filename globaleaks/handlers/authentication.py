@@ -80,7 +80,7 @@ def transport_security_check(wrapped_handler_role):
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
             """
-            GLSettings contain the copy of the latest admin configuration, this
+            GLSetting contain the copy of the latest admin configuration, this
             enhance performance instead of searching in te DB at every handler
             connection.
             """

@@ -101,7 +101,7 @@ class TestNotificationInstance(helpers.TestHandler):
         # load notification template
 
         notification = Notification()
-        notification.tip_template = { "en" : "my dummy template %EventName%" }
+        notification.tip_template = "my dummy template %EventName%"
         # It's the only NOT NULL variable with CHECK
         notification.security = Notification._security_types[0]
         store.add(notification)
@@ -124,7 +124,7 @@ class TestContextsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-        self.dummyContext['name'] = { "en" : "a random one to avoid dup %d" % random.randint(1, 1000) }
+        self.dummyContext['name'] = "a random one to avoid dup %d" % random.randint(1, 1000)
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.post()
@@ -146,7 +146,7 @@ class TestContextInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_put(self):
 
-        self.dummyContext['description'] = { "en" : u'how many readers remind of HIMEM.SYS?'}
+        self.dummyContext['description'] = u'how many readers remind of HIMEM.SYS?'
         self.dummyContext['submission_timetolive'] = 48 # hours
         self.dummyContext['tip_timetolive'] = 25 # days
 

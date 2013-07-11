@@ -336,8 +336,7 @@ class TimeToLiveInvalid(GLException):
     error_code =  42
     status_code = 406
 
-    def __init__(self, errorstr, kind):
-        self.reason = "Invalid timerange supply for %s: %s" % (kind, errorstr)
+    def __init__(self, kind):
+        self.reason = "Invalid timerange supply for %s" % kind
         self.arguments.append(kind)
-        self.arguments.append(errorstr)
         self.record()

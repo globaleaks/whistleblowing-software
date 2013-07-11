@@ -146,14 +146,15 @@ def import_fields(submission, fields, expected_fields, strict_validation=False):
     if Submission would not be finalized yet.
     """
     required_keys = optional_keys  = []
-
+    
     try:
         for sf in expected_fields:
             if sf['required']:
                 required_keys.append(sf.get(u'key'))
             else:
                 optional_keys.append(sf.get(u'key'))
-    except Exception:
+    except Exception, e:
+        log.exception(e)
         raise SubmissionFailFields("Malformed submission!")
 
     if strict_validation and not fields:
@@ -199,7 +200,7 @@ def force_schedule():
 
 
 @transact
-def create_submission(store, request, finalize):
+def create_submission(store, request, finalize, language=GLSetting.default_language):
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
 
     if not context:
@@ -234,13 +235,13 @@ def create_submission(store, request, finalize):
     import_files(store, submission, files)
 
     fields = request.get('wb_fields', {})
-    import_fields(submission, fields, context.fields, strict_validation=finalize)
+    import_fields(submission, fields, context.fields[language], strict_validation=finalize)
 
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict
 
 @transact
-def update_submission(store, id, request, finalize):
+def update_submission(store, id, request, finalize, language=GLSetting.default_language):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
     if not submission:
@@ -269,7 +270,7 @@ def update_submission(store, id, request, finalize):
     import_files(store, submission, files)
 
     fields = request.get('wb_fields', [])
-    import_fields(submission, fields, submission.context.fields, strict_validation=finalize)
+    import_fields(submission, fields, submission.context.fields[language], strict_validation=finalize)
 
     if finalize:
         submission.mark = InternalTip._marker[1] # Finalized
@@ -383,7 +384,7 @@ class SubmissionInstance(BaseHandler):
         else:
             finalize = False
 
-        status = yield update_submission(submission_gus, request, finalize)
+        status = yield update_submission(submission_gus, request, finalize, self.request.language)
 
         if finalize:
             receipt = yield create_whistleblower_tip(status)

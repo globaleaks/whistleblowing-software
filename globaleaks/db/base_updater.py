@@ -62,6 +62,8 @@ class TableReplacer:
         I'm sad of this piece of code, but having an ORM that need the
         intermediate version of the Models, bring this
         """
+        if self.start_ver == 2:
+            return getattr(models, table_name)
         if table_name == "Node" and self.start_ver == 0:
             from globaleaks.db.update_1_2 import Node_version_1
             return Node_version_1
@@ -220,11 +222,13 @@ class TableReplacer:
         new_obj.maximum_textsize = on.maximum_textsize
 
         new_obj.database_version = on.database_version
-
         new_obj.hidden_service = on.hidden_service
         new_obj.id = on.id
 
-        new_obj.languages = on.languages
+        # Imported from the 2 to 3
+        new_obj.languages_supported = on.languages_supported
+        new_obj.languages_enabled = on.languages_enabled
+
         new_obj.password = on.password
         new_obj.public_site = on.public_site
         new_obj.receipt_salt = on.receipt_salt
