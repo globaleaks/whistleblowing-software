@@ -126,6 +126,11 @@ def update_node(store, request, language=GLSetting.default_language):
     """
     node = store.find(Node).one()
 
+    for attr in getattr(node, "localized_strings"):
+        new_value = unicode(request[attr])
+        request[attr] = getattr(node, attr)
+        request[attr][language] = new_value
+
     if len(request['old_password']) and len(request['password']):
         node.password = security.change_password(node.password,
                                     request['old_password'], request['password'], node.salt)
@@ -149,7 +154,7 @@ def update_node(store, request, language=GLSetting.default_language):
             raise errors.InvalidInputFormat("Invalid lang code: %s" % lang_code)
     
     # name, description tor2web boolean value are acquired here
-    node.description[language] = request['description'] 
+    node.update(request) 
 
     node.last_update = utils.datetime_now()
 
@@ -212,6 +217,7 @@ def create_context(store, request, language=GLSetting.default_language):
                  'submission_introduction', 'submission_disclaimer']:
         v[attr] = {}
         v[attr][language] = unicode(request[attr])
+
     request = v
 
     context = Context(request)
@@ -315,6 +321,11 @@ def update_context(store, context_gus, request, language=GLSetting.default_langu
     if not context:
          raise errors.ContextGusNotFound
 
+    for attr in getattr(context, "localized_strings"):
+        new_value = unicode(request[attr])
+        request[attr] = getattr(node, attr)
+        request[attr][language] = new_value
+
     for receiver in context.receivers:
         context.receivers.remove(receiver)
 
@@ -326,12 +337,6 @@ def update_context(store, context_gus, request, language=GLSetting.default_langu
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
    
-    for attr in ['name', 'description', 'receipt_description',
-                 'submission_introduction', 'submission_disclaimer']:
-        new_value = unicode(request[attr])
-        request[attr] = getattr(context, attr)
-        request[attr][language] = new_value
-
     # tip_timetolive and submission_timetolive need to be converted in seconds
     try:
         context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
@@ -479,8 +484,10 @@ def update_receiver(store, id, request, language=GLSetting.default_language):
     """
     receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
-    new_receiver_description = request.get('description')
-    request['description'][language] = new_receiver_description
+    for attr in getattr(receiver, "localized_strings"):
+        new_value = unicode(request[attr])
+        request[attr] = getattr(node, attr)
+        request[attr][language] = new_value
 
     if not receiver:
         raise errors.ReceiverGusNotFound
@@ -816,20 +823,17 @@ def update_notification(store, request, language=GLSetting.default_language):
         log.err("Database error or application error: %s" % excep )
         raise excep
 
+    for attr in getattr(notif, "localized_strings"):
+        new_value = unicode(request[attr])
+        request[attr] = getattr(node, attr)
+        request[attr][language] = new_value
+
     security = str(request.get('security', u'')).upper()
     if security in Notification._security_types:
         notif.security = security
     else:
         log.err("Invalid request: Security option not recognized")
         raise errors.InvalidInputFormat("Security selection not recognized")
-
-    for attr in ['tip_template', 'file_template', 'comment_template',
-            'tip_mail_title', 'file_mail_title', 'comment_mail_title',
-            'activation_mail_title', 'activation_template']:
-        new_value = unicode(request[attr])
-        request[attr] = getattr(notif, attr)
-        request[attr][language] = new_value 
-
 
     notif.update(request)
     return admin_serialize_notification(notif, language)
