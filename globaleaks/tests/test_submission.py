@@ -171,7 +171,7 @@ class TestSubmission(helpers.TestGL):
         new_r['notification_fields']['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
         new_r['password'] = helpers.VALID_PASSWORD1
         # localized dict required in desc
-        new_r['description'] = { 'en' : "am I ignored ? %s" % descpattern }
+        new_r['description'] =  "am I ignored ? %s" % descpattern 
         return new_r
 
     @inlineCallbacks
