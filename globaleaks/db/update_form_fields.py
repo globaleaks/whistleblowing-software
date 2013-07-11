@@ -65,7 +65,7 @@ def get_all_languages(fields):
             all_languages.add(language)
     return all_languages
 
-old_fields = [
+default_fields = [
     {"name": {"en": "Short title"},
      "hint": {"en": "Describe your tip-off with a line/title"},
      "required": True,
@@ -89,21 +89,21 @@ old_fields = [
      "type": "text"}
 ]
 
-default_language = 'en'
+def fields_conversion(old_fields):
 
-all_languages = get_all_languages(old_fields)
-new_fields = {}
-for language in all_languages:
-    new_fields[language] = old_fields
-    for idx, _ in enumerate(new_fields[language]):
-        try:
-            new_fields[language][idx]['name'] = unicode(old_fields[idx]['name'][language])
-        except KeyError:
-            new_fields[language][idx]['name'] = unicode(old_fields[idx]['name'][default_language])
-        try:
-            new_fields[language][idx]['hint'] = unicode(old_fields[idx]['hint'][language])
-        except KeyError:
-            new_fields[language][idx]['hint'] = unicode(old_fields[idx]['hint'][default_language])
+    default_language = 'en'
+    all_languages = get_all_languages(old_fields)
+    new_fields = {}
+    for language in all_languages:
+        new_fields[language] = old_fields
+        for idx, _ in enumerate(new_fields[language]):
+            try:
+                new_fields[language][idx]['name'] = unicode(old_fields[idx]['name'][language])
+            except KeyError:
+                new_fields[language][idx]['name'] = unicode(old_fields[idx]['name'][default_language])
+            try:
+                new_fields[language][idx]['hint'] = unicode(old_fields[idx]['hint'][language])
+            except KeyError:
+                new_fields[language][idx]['hint'] = unicode(old_fields[idx]['hint'][default_language])
 
-print new_fields
-
+    return new_fields

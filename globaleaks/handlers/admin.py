@@ -261,20 +261,18 @@ def create_context(store, request, language=GLSetting.default_language):
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
-    # XXX This crap is commented out.
-    # # tip_timetolive and submission_timetolive need to be converted in seconds
-    # try:
-    #     context.tip_timetolive = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
-    # except Exception as excep:
-    #     log.err("Invalid timing configured for Tip: %s" % excep.message)
-    #     raise errors.TimeToLiveInvalid("Submission", excep.message)
+    # tip_timetolive and submission_timetolive need to be converted in seconds
+    try:
+        context.tip_timetolive = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Tip: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Submission")
 
-    # try:
-    #     context.submission_timetolive = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
-    # except Exception as excep:
-    #     log.err("Invalid timing configured for Submission: %s" % excep.message)
-    #     raise errors.TimeToLiveInvalid("Tip", excep.message)
-    # and of timing fixes
+    try:
+        context.submission_timetolive = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Submission: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Tip")
 
     store.add(context)
 
@@ -333,20 +331,18 @@ def update_context(store, context_gus, request, language=GLSetting.default_langu
         request[attr] = getattr(context, attr)
         request[attr][language] = new_value
 
-    # XXX this crap is commmented out
-    # # tip_timetolive and submission_timetolive need to be converted in seconds
-    # try:
-    #     context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
-    # except Exception as excep:
-    #     log.err("Invalid timing configured for Tip: %s" % excep.message)
-    #     raise errors.TimeToLiveInvalid("Submission", excep.message)
+    # tip_timetolive and submission_timetolive need to be converted in seconds
+    try:
+        context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Tip: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Submission")
 
-    # try:
-    #     context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
-    # except Exception as excep:
-    #     log.err("Invalid timing configured for Submission: %s" % excep.message)
-    #     raise errors.TimeToLiveInvalid("Tip", excep.message)
-    # and of timing fixes
+    try:
+        context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Submission: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Tip")
 
     for idx, _ in enumerate(request['fields']):
         request['fields'][idx]['key'] = unicode(request['fields'][idx]['name'])
