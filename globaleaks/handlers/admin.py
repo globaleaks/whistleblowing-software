@@ -6,7 +6,7 @@
 #
 import os, shutil
 
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, GLSetting, sample_context_fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
@@ -14,15 +14,14 @@ from globaleaks.models import Receiver, Context, Node, Notification
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security, models
-from globaleaks.utils import log, acquire_localized
+from globaleaks.utils import log, l10n
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_manage
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
-def admin_serialize_node(node, language):
+def admin_serialize_node(node, language=GLSetting.default_language):
     response = {
         "name": node.name,
-        "description": utils.optlang(node.description, language),
         "creation_date": utils.pretty_date_time(node.creation_date),
         "last_update": utils.pretty_date_time(node.last_update),
         "hidden_service": node.hidden_service,
@@ -43,13 +42,14 @@ def admin_serialize_node(node, language):
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
     }
+
+    response["description"] = l10n(node.description, language)
+
     return response
 
-def admin_serialize_context(context, language):
+def admin_serialize_context(context, language=GLSetting.default_language):
     context_dict = {
         "context_gus": context.id,
-        "name": utils.optlang(context.name, language),
-        "description": utils.optlang(context.description, language),
         "creation_date": utils.pretty_date_time(context.creation_date),
         "last_update": utils.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
@@ -59,7 +59,6 @@ def admin_serialize_context(context, language):
         "submission_timetolive": context.submission_timetolive / (60 * 60),
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
-        "fields": utils.optlang_fields(context.fields, language) if context.fields else [],
         "receivers": [],
         "receipt_regexp": context.receipt_regexp,
         "receipt_description": u'NYI', # context.receipt_description, # optlang
@@ -69,16 +68,18 @@ def admin_serialize_context(context, language):
         "file_required": context.file_required,
     }
     
+    for attr in ["name", "description", "fields"]:
+        context_dict[attr] = l10n(getattr(context, attr), language)
+
     for receiver in context.receivers:
         context_dict['receivers'].append(receiver.id)
 
     return context_dict
 
-def admin_serialize_receiver(receiver, language):
+def admin_serialize_receiver(receiver, language=GLSetting.default_language):
     receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
-        "description": utils.optlang(receiver.description, language),
         "creation_date": utils.pretty_date_time(receiver.creation_date),
         "last_update": utils.pretty_date_time(receiver.last_update),
         "receiver_level": receiver.receiver_level,
@@ -100,18 +101,18 @@ def admin_serialize_receiver(receiver, language):
         "tip_notification": receiver.tip_notification,
         "file_notification": receiver.file_notification,
     }
-    for context in receiver.contexts:
-        receiver_dict['contexts'].append(context.id)
+
+    receiver_dict["description"] = l10n(receiver.description, language)
 
     return receiver_dict
 
 
 @transact
-def get_node(store, language):
+def get_node(store, language=GLSetting.default_language):
     return admin_serialize_node(store.find(Node).one(), language)
 
 @transact
-def update_node(store, request, language):
+def update_node(store, request, language=GLSetting.default_language):
     """
     Update the node, setting the last update time on it.
 
@@ -148,18 +149,16 @@ def update_node(store, request, language):
             node.languages_enabled.append(lang_code)
         else:
             raise errors.InvalidInputFormat("Invalid lang code: %s" % lang_code)
-
-    request['description'] = acquire_localized(request['description'], language,
-        node.description[language] )
-
+    
     # name, description tor2web boolean value are acquired here
-    node.update(request)
+    node.description[language] = request['description'] 
+
     node.last_update = utils.datetime_now()
 
-    return admin_serialize_node(node)
+    return admin_serialize_node(node, language)
 
 @transact
-def get_context_list(store, language):
+def get_context_list(store, language=GLSetting.default_language):
     """
     Returns:
         (dict) the current context list serialized.
@@ -194,7 +193,7 @@ def fields_validation(fields_list):
 
 
 @transact
-def create_context(store, request, language):
+def create_context(store, request, language=GLSetting.default_language):
     """
     Creates a new context from the request of a client.
 
@@ -209,37 +208,29 @@ def create_context(store, request, language):
     """
     receivers = request.get('receivers', [])
 
-    request['name'] = acquire_localized(request['description'], language )
-    request['description'] = acquire_localized(request['description'], language )
-    request['receipt_description'] = acquire_localized(request['description'], language )
-    request['submission_introduction'] = acquire_localized(request['submission_introduction'], language)
-    request['submission_disclaimer'] = acquire_localized(request['submission_disclaimer'], language)
+    v = dict(request)
+    for attr in ['name', 'description', 'receipt_description',
+                 'submission_introduction', 'submission_disclaimer']:
+        v[attr] = {}
+        v[attr][language] = unicode(request[attr])
+    request = v
 
     context = Context(request)
 
     if not request['fields']:
         # When a new context is create, assign default fields, if not supply
-        assigned_fields = [
-            {u'hint': { "en" : u"Describe your tip-off with a line/title" },
-             u'name': { "en" : u'Short title' }, u'presentation_order': 1,
-             u'key': u'Short title',
-             u'required': True, u'type': u'text', u'value': u'' },
-            {u'hint': { "en" : u'Describe the details of your tip-off'},
-              u'key': u'Full description', u'presentation_order': 2,
-              u'name': { "en" : u'Full description' },
-              u'required': True, u'type': u'text',
-              u'value': u"" },
-            {u'hint': { "en" : u"Describe the submitted files" },
-             u'name': { "en" : u'Files description' },
-             u'key': u'Files description', u'presentation_order': 3,
-             u'required': False, u'type': u'text', u'value': u'' },
-        ]
+        assigned_fields = sample_context_fields
     else:
         assigned_fields = request['fields']
-
+    
     # may raise InvalidInputFormat if fields format do not fit
     fields_validation(assigned_fields)
-    context.fields = assigned_fields
+    
+    for idx, _ in enumerate(assigned_fields):
+        assigned_fields[idx]['key'] = unicode(assigned_fields[idx]['name'])
+
+    context.fields = {}
+    context.fields[language] = assigned_fields
 
     # verify if the default is provided by GLC
     context.receipt_regexp = GLSetting.defaults.receipt_regexp
@@ -275,20 +266,20 @@ def create_context(store, request, language):
         context.tip_timetolive = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Submission", excep.message)
+        raise errors.TimeToLiveInvalid("Submission")
 
     try:
         context.submission_timetolive = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Submission: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Tip", excep.message)
-    # and of timing fixes
+        raise errors.TimeToLiveInvalid("Tip")
 
     store.add(context)
+
     return admin_serialize_context(context, language)
 
 @transact
-def get_context(store, context_gus, language):
+def get_context(store, context_gus, language=GLSetting.default_language):
     """
     Returns:
         (dict) the currently configured node.
@@ -302,7 +293,7 @@ def get_context(store, context_gus, language):
     return admin_serialize_context(context, language)
 
 @transact
-def update_context(store, context_gus, request, language):
+def update_context(store, context_gus, request, language=GLSetting.default_language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
@@ -311,7 +302,6 @@ def update_context(store, context_gus, request, language):
 
     Args:
         context_gus:
-            (unicode) the context_gus of the context to update
 
         request:
             (dict) the request to use to set the attributes of the Context
@@ -334,38 +324,34 @@ def update_context(store, context_gus, request, language):
             log.err("Update error: unexistent receiver can't be associated")
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
-
-    request['name'] = acquire_localized(request['description'], language,
-        context.name[language] )
-    request['description'] = acquire_localized(request['description'], language,
-        context.description[language] )
-    request['receipt_description'] = acquire_localized(request['receipt_description'],
-        language, context.receipt_description[language] )
-    request['submission_introduction'] = acquire_localized(request['submission_introduction'],
-        language, context.submission_introduction[language])
-    request['submission_disclaimer'] = acquire_localized(request['submission_disclaimer'],
-        language, context.submission_disclaimer[language])
-
-    context.update(request)
+   
+    for attr in ['name', 'description', 'receipt_description',
+                 'submission_introduction', 'submission_disclaimer']:
+        new_value = unicode(request[attr])
+        request[attr] = getattr(context, attr)
+        request[attr][language] = new_value
 
     # tip_timetolive and submission_timetolive need to be converted in seconds
     try:
         context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Submission", excep.message)
+        raise errors.TimeToLiveInvalid("Submission")
 
     try:
         context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Submission: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Tip", excep.message)
-    # and of timing fixes
+        raise errors.TimeToLiveInvalid("Tip")
 
-    context.fields = request['fields']
+    for idx, _ in enumerate(request['fields']):
+        request['fields'][idx]['key'] = unicode(request['fields'][idx]['name'])
+
+    context.fields[language] = request['fields']
     context.tags = None # request['tags']
     context.last_update = utils.datetime_now()
-
+    context.update(request)
+    
     return admin_serialize_context(context, language)
 
 @transact
@@ -387,7 +373,7 @@ def delete_context(store, context_gus):
 
 
 @transact
-def get_receiver_list(store, language):
+def get_receiver_list(store, language=GLSetting.default_language):
     """
     Returns:
         (list) the list of receivers
@@ -418,7 +404,7 @@ def create_random_receiver_portrait(receiver_uuid):
 
 
 @transact
-def create_receiver(store, request, language):
+def create_receiver(store, request, language=GLSetting.default_language):
     """
     Creates a new receiver.
     Returns:
@@ -433,8 +419,8 @@ def create_receiver(store, request, language):
     if homonymous:
         log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
-
-    request['description'] = acquire_localized(request['description'], language)
+    
+    request['description'] = {language: request['description']}
 
     receiver = Receiver(request)
 
@@ -466,7 +452,7 @@ def create_receiver(store, request, language):
 
 
 @transact
-def get_receiver(store, id, language):
+def get_receiver(store, id, language=GLSetting.default_language):
     """
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
     not exist.
@@ -484,13 +470,18 @@ def get_receiver(store, id, language):
 
 
 @transact
-def update_receiver(store, id, request, language):
+def update_receiver(store, id, request, language=GLSetting.default_language):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
     not exist.
     """
     receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
+
+    new_receiver_description = request.get('description')
+    request['description'] = receiver.description
+    request['description'][language] = new_receiver_description
+
 
     if not receiver:
         raise errors.ReceiverGusNotFound
@@ -653,6 +644,7 @@ class ContextInstance(BaseHandler):
         Errors: ContextGusNotFound, InvalidInputFormat
         """
         response = yield get_context(context_gus, self.request.language)
+
         self.set_status(200)
         self.finish(response)
 
@@ -790,26 +782,24 @@ class ReceiverInstance(BaseHandler):
 
 # Notification section:
 
-def admin_serialize_notification(notif, language):
+def admin_serialize_notification(notif, language=GLSetting.default_language):
     notification_dict = {
         'server': notif.server if notif.server else u"",
         'port': notif.port if notif.port else u"",
         'username': notif.username if notif.username else u"",
         'password': notif.password if notif.password else u"",
         'security': notif.security if notif.security else u"",
-        'tip_template': utils.optlang(notif.tip_template, language),
-        'tip_mail_title': utils.optlang(notif.tip_mail_title, language),
-        'file_template': utils.optlang(notif.file_template, language),
-        'file_mail_title': utils.optlang(notif.file_mail_title, language),
-        'comment_template': utils.optlang(notif.comment_template, language),
-        'comment_mail_title': utils.optlang(notif.comment_mail_title, language),
-        'activation_template': utils.optlang(notif.activation_template, language),
-        'activation_mail_title': utils.optlang(notif.activation_mail_title, language),
     }
+
+    for attr in ['tip_template', 'tip_mail_title', 'file_template',
+            'file_mail_title', 'comment_template', 'comment_mail_title',
+            'activation_template', 'activation_mail_title']:
+        notification_dict[attr] = l10n(getattr(notif, attr), language)
+
     return notification_dict
 
 @transact
-def get_notification(store, language):
+def get_notification(store, language=GLSetting.default_language):
     try:
         notif = store.find(Notification).one()
     except Exception as excep:
@@ -819,7 +809,7 @@ def get_notification(store, language):
     return admin_serialize_notification(notif, language)
 
 @transact
-def update_notification(store, request, language):
+def update_notification(store, request, language=GLSetting.default_language):
 
     try:
         notif = store.find(Notification).one()
@@ -834,22 +824,13 @@ def update_notification(store, request, language):
         log.err("Invalid request: Security option not recognized")
         raise errors.InvalidInputFormat("Security selection not recognized")
 
-    request['tip_template'] = acquire_localized(request['tip_template'], language,
-        notif.tip_template[language] )
-    request['file_template'] = acquire_localized(request['file_template'], language,
-        notif.file_template[language] )
-    request['comment_template'] = acquire_localized(request['comment_template'],
-        language, notif.comment_template[language] )
+    for attr in ['tip_template', 'file_template', 'comment_template',
+            'tip_mail_title', 'file_mail_title', 'comment_mail_title',
+            'activation_mail_title', 'activation_template']:
+        new_value = unicode(request[attr])
+        request[attr] = getattr(notif, attr)
+        request[attr][language] = new_value 
 
-    request['tip_mail_title'] = acquire_localized(request['tip_mail_title'],
-        language, notif.tip_mail_title[language])
-    request['file_mail_title'] = acquire_localized(request['file_mail_title'],
-        language, notif.file_mail_title[language])
-    request['comment_mail_title'] = acquire_localized(request['comment_mail_title'],
-        language, notif.comment_mail_title[language])
-
-    # temporary hack
-    request['activation_mail_title'] = request['activation_template'] = { language : u'' }
 
     notif.update(request)
     return admin_serialize_notification(notif, language)

@@ -30,7 +30,7 @@ def initialize_node(store, results, only_node, email_templates):
 
     node.languages_supported = LANGUAGES_SUPPORTED
     # by default, only english is the surely present language
-    node.languages_enabled = [ 'en' ]
+    node.languages_enabled = GLSetting.defaults.languages_enabled
 
     # Salt for admin password is a safe random string different in every Node.
     node.salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
@@ -44,24 +44,24 @@ def initialize_node(store, results, only_node, email_templates):
     notification = models.Notification()
 
     # our defaults for free, because we're like Gandhi of the mail accounts.
-    notification.server = u"mail.headstrong.de"
-    notification.port = 587
+    notification.server = GLSetting.error_reporting_server
+    notification.port = GLSetting.error_reporting_port
     # port 587/SMTP-TLS or 465/SMTPS
-    notification.username = u"sendaccount@lists.globaleaks.org"
-    notification.password = u"sendaccount99"
-    notification.security = models.Notification._security_types[0] # TLS
+    notification.username = GLSetting.error_reporting_username
+    notification.password = GLSetting.error_reporting_password
+    notification.security = GLSetting.error_reporting_security # TLS
 
     # Those fields are sets as default in order to show to the Admin the various 'variables'
     # used in the template.
-    notification.tip_template = { "en" : email_templates['tip'] }
-    notification.tip_mail_title = { "en" : "From %ContextName% a new Tip in %EventTime%" }
-    notification.file_template = { "en" : email_templates['file'] }
-    notification.file_mail_title = { "en" : "From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)" }
-    notification.comment_template = { "en" : email_templates['comment'] }
-    notification.comment_mail_title = { "en" : "From %ContextName% a new comment in %EventTime%" }
+    notification.tip_template = { GLSetting.default_language: email_templates['tip'] }
+    notification.tip_mail_title = { GLSetting.default_language: "From %ContextName% a new Tip in %EventTime%" }
+    notification.file_template = { GLSetting.default_language: email_templates['file'] }
+    notification.file_mail_title = { GLSetting.default_language: "From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)" }
+    notification.comment_template = { GLSetting.default_language: email_templates['comment'] }
+    notification.comment_mail_title = { GLSetting.default_language: "From %ContextName% a new comment in %EventTime%" }
 
-    notification.activation_template = { "en" : "*Not Yet implemented*" }
-    notification.activation_mail_title = { "en" : "**Not Yet implemented" }
+    notification.activation_template = { GLSetting.default_language: "*Not Yet implemented*" }
+    notification.activation_mail_title = { GLSetting.default_language: "**Not Yet implemented" }
 
     store.add(notification)
 
@@ -111,7 +111,7 @@ def create_tables(create_node=True):
 
         only_node = {
             'name':  u"MissingConfLeaks",
-            'description':  dict({ "en" : u"Please, set me: localized description" }),
+            'description':  dict({ GLSetting.default_language: u"This is the description of your node. PLEASE CHANGE ME." }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"email@dumnmy.net",
