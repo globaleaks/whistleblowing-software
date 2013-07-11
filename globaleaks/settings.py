@@ -183,13 +183,13 @@ class GLSettingsClass:
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.gpgroot = os.path.abspath(os.path.join(self.working_path, 'gnupg'))
-        self.cyclone_io_path = os.path.abspath(os.path.join(self.log_path, "jsondump"))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
+        self.cyclonelogfile =  os.path.abspath(os.path.join(self.log_path, "cyclone.log"))
         self.file_versioned_db = 'sqlite:' + \
                                  os.path.abspath(os.path.join(self.gldb_path,
                                      'glbackend-%d.db' % DATABASE_VERSION))
@@ -353,10 +353,6 @@ class GLSettingsClass:
         create_directory(self.submission_path)
         create_directory(self.log_path)
         create_directory(self.torhs_path)
-
-        if self.cyclone_debug >= 0:
-            print "creating ", self.cyclone_io_path, self.cyclone_debug, self.cyclone_debug_counter
-            create_directory(self.cyclone_io_path)
 
         # detect new_environment also if the logo is missing
         # XXX may not be right to the Admin. but I'm in bugfixing prerelease :P

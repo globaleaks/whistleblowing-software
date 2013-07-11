@@ -50,45 +50,82 @@ class TestAuthentication(helpers.TestHandler):
 
     @inlineCallbacks
     def test_successful_admin_logout(self):
+        # Login
         handler = self.request({
             'username': 'admin',
             'password': 'globaleaks',
             'role': 'admin'
         })
         success = yield handler.post()
+        self.assertTrue(handler.current_user is None)
         self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
-        handler = self.request()
+        # Logout
+        session_id = self.responses[0]['session_id']
+        handler = self.request({}, headers={'X-Session': session_id})
+        success = yield handler.delete()
+        self.assertTrue(handler.current_user is not None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
+
+        # A second logout must not be accepted (this validate also X-Session reuse)
+        handler = self.request({}, headers={'X-Session': session_id})
         success = yield handler.delete()
         self.assertTrue(handler.current_user is None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
     @inlineCallbacks
     def test_successful_receiver_logout(self):
+        # Login
         handler = self.request({
             'username': self.dummyReceiver['username'],
             'password': helpers.VALID_PASSWORD1,
             'role': 'receiver'
         })
         success = yield handler.post()
+        self.assertTrue(handler.current_user is None)
         self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
-        handler = self.request()
+        # Logout
+        session_id = self.responses[0]['session_id']
+        handler = self.request({}, headers={'X-Session': session_id})
+        success = yield handler.delete()
+        self.assertTrue(handler.current_user is not None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
+
+        # A second logout must not be accepted (this validate also X-Session reuse)
+        handler = self.request({}, headers={'X-Session': session_id})
         success = yield handler.delete()
         self.assertTrue(handler.current_user is None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
+
 
     @inlineCallbacks
     def test_successful_whistleblower_logout(self):
+        # Login
         handler = self.request({
             'username': '',
             'password': self.dummyWBTip,
             'role': 'wb'
         })
         success = yield handler.post()
+        self.assertTrue(handler.current_user is None)
         self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
-        handler = self.request()
+        # Logout
+        session_id = self.responses[0]['session_id']
+        handler = self.request({}, headers={'X-Session': session_id})
+        success = yield handler.delete()
+        self.assertTrue(handler.current_user is not None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
+
+        # A second logout must not be accepted (this validate also X-Session reuse)
+        handler = self.request({}, headers={'X-Session': session_id})
         success = yield handler.delete()
         self.assertTrue(handler.current_user is None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
     def test_invalid_admin_login_wrong_password(self):
         handler = self.request({
