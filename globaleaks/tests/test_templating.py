@@ -110,6 +110,7 @@ class notifTemplateTest(TestWithDB):
         if not os.path.isfile(CNT):
             raise AssertionError("path mistake ?")
 
+        # here is fine the localization, it's DB feeding
         with open(CNT) as f:
             self.Comment_notif_template = { "en" : f.read() }
 
@@ -122,6 +123,7 @@ class notifTemplateTest(TestWithDB):
         self.assertGreater(self.Comment_notif_template['en'], 0)
         self.assertGreater(self.Tip_notifi_template['en'], 0)
         self.assertGreater(self.File_notifi_template['en'], 0)
+
 
 
     @inlineCallbacks
@@ -145,9 +147,9 @@ class notifTemplateTest(TestWithDB):
             print excep; raise excep
 
         # with the event, we can finally call the template filler
-        gentext = MailNotification().format_template(self.Tip_notifi_template['en'], self.event)
+        gentext = MailNotification().format_template(self.Tip_notifi_template, self.event)
 
-        self.assertSubstring(self.createdContext['name']['en'], gentext)
+        self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
         self.assertSubstring(self.createdNode['public_site'], gentext)
         self.assertSubstring(self.createdNode['hidden_service'], gentext)
@@ -181,8 +183,8 @@ class notifTemplateTest(TestWithDB):
         yield self._fill_event(u'tip', 'Tip', created_rtip[0])
 
         # with the event, we can finally call the format checks
-        gentext = MailNotification().format_template(self.Tip_notifi_template['en'], self.event)
+        gentext = MailNotification().format_template(self.Tip_notifi_template, self.event)
 
-        self.assertSubstring(self.createdContext['name']['en'], gentext)
+        self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
         self.assertNotSubstring("%TipT2WURL%", gentext)

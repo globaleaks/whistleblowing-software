@@ -147,6 +147,7 @@ class Model(Storm):
         for k in cls_localized_keys:
             value = attrs[k]
             setattr(self, k, value)
+
             # value is a list with { lang: 'en', 'text': "shit" },
             #                      { lang: 'mi', 'text': "leganord" }
             # print "checking %s on %s" % (k, value)
