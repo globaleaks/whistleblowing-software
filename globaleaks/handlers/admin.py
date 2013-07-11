@@ -54,21 +54,19 @@ def admin_serialize_context(context, language=GLSetting.default_language):
         "last_update": utils.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
-        # tip expressed in day, submission in hours
-        "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
-        "submission_timetolive": context.submission_timetolive / (60 * 60),
         "file_max_download": context.file_max_download,
         "escalation_threshold": context.escalation_threshold,
         "receivers": [],
         "receipt_regexp": context.receipt_regexp,
-        "receipt_description": u'NYI', # context.receipt_description, # optlang
-        "submission_introduction": u'NYI', # context.submission_introduction, # optlang
-        "submission_disclaimer": u'NYI', # context.submission_disclaimer, # optlang
         "tags": context.tags if context.tags else u"",
         "file_required": context.file_required,
+        # tip expressed in day, submission in hours
+        "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
+        "submission_timetolive": context.submission_timetolive / (60 * 60),
     }
-    
-    for attr in ["name", "description", "fields"]:
+
+    for attr in ['name', 'description', 'receipt_description',
+                 'submission_introduction', 'submission_disclaimer', 'fields' ]:
         context_dict[attr] = l10n(getattr(context, attr), language)
 
     for receiver in context.receivers:
@@ -172,9 +170,9 @@ def get_context_list(store, language=GLSetting.default_language):
     return context_list
 
 
-def fields_validation(fields_list):
+def fields_validation(fields_blob):
 
-    if not len(fields_list):
+    if not len(fields_blob):
         raise errors.InvalidInputFormat("Missing fields list")
 
     # the required keys are already validated by validate_jmessage
@@ -185,11 +183,12 @@ def fields_validation(fields_list):
                            "checkboxes",  "textarea", "number",
                            "url", "phone", "email" ]
 
-    for field_desc in fields_list:
-        check_type = field_desc['type']
-        if not check_type in accepted_form_type:
-            raise errors.InvalidInputFormat("Fields validation deny '%s' in %s" %
-                                            (check_type, field_desc['name']) )
+    for lang, fields_list in fields_blob.iteritems():
+        for field_desc in fields_list:
+            check_type = field_desc['type']
+            if not check_type in accepted_form_type:
+                raise errors.InvalidInputFormat("Fields validation deny '%s' in %s" %
+                                                (check_type, field_desc['name']) )
 
 
 @transact
@@ -225,9 +224,11 @@ def create_context(store, request, language=GLSetting.default_language):
     
     # may raise InvalidInputFormat if fields format do not fit
     fields_validation(assigned_fields)
-    
-    for idx, _ in enumerate(assigned_fields):
-        assigned_fields[idx]['key'] = unicode(assigned_fields[idx]['name'])
+
+    # Creation of 'key' it's required in the software, but not provided by GLClient
+    for lang, fields in assigned_fields.iteritems():
+        for idx, _ in enumerate(fields):
+            assigned_fields[lang][idx]['key'] = unicode(assigned_fields[lang][idx]['name'])
 
     context.fields = {}
     context.fields[language] = assigned_fields
@@ -479,9 +480,7 @@ def update_receiver(store, id, request, language=GLSetting.default_language):
     receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
     new_receiver_description = request.get('description')
-    request['description'] = receiver.description
     request['description'][language] = new_receiver_description
-
 
     if not receiver:
         raise errors.ReceiverGusNotFound

@@ -222,34 +222,32 @@ class MockDict():
             'submission_disclaimer': u'kk',
             'description': u'This is the update',
             # fields, usually overwritten in content by fill_random_fields
-            'fields': [{u'hint': u'autovelox',
-                        u'key': u'city and space',
-                        u'name': u'city and space',
-                        u'presentation_order': 1,
-                        u'required': True,
-                        u'type': u'text',
-                        u'value': u"Yadda I'm default with apostrophe"},
-                       {u'hint': u'name of the sun',
-                        u'key': u'ß@ł€¶ -- Spécìàlé €$£ char',
-                        u'name': u'ß@ł€¶ -- Spécìàlé €$£ char',
-                        u'presentation_order': 2,
-                        u'required': True,
-                        u'type': u'checkboxes',
-                        u'value': u"I'm the sun, I've not name"},
-                       {u'hint': u'put the number ',
-                        u'key': u'dict2 whatEver',
-                        u'name': u'dict2 whatEver',
-                        u'presentation_order': 3,
-                        u'required': True,
-                        u'type': u'text',
-                        u'value': u'666 the default value'},
-                       {u'hint': u'details:',
-                        u'key': u'dict3 cdcd',
-                        u'name': u'dict3 cdcd',
-                        u'presentation_order': 4,
-                        u'required': False,
-                        u'type': u'text',
-                        u'value': u'buh ?'}],
+            'fields': dict({'en':
+                 [{"name": "Short title",
+                   "hint": "Describe your tip-off with a line/title",
+                   "required": True,
+                   "presentation_order": 1,
+                   "value": "",
+                   "key": "Short title",
+                   "type": "text"
+                  },
+                  {"name": "Full description",
+                   "hint": "Describe the details of your tip-off",
+                   "required": True,
+                    "presentation_order": 2,
+                    "value": "",
+                    "key": "Full description",
+                    "type": "text"
+                  },
+                  {"name": "Files description",
+                   "hint": "Describe the submitted files",
+                   "required": False,
+                   "presentation_order": 3,
+                   "value": "",
+                   "key": "Files description",
+                   "type": "text"}
+                 ]
+                }),
             'selectable_receiver': False,
             'tip_max_access': 10,
             # tip_timetolive is expressed in days
@@ -313,15 +311,18 @@ class MockDict():
         }
 
 
-def fill_random_fields(context_dict):
+def fill_random_fields(context_desc):
     """
     getting the context dict, take 'fields'.
     then populate a valid dict of key : value, usable as wb_fields
+
     """
-    assert len(context_dict['fields']) > 1
+    assert context_desc
+    fields_list = context_desc['fields']['en']
+    assert len(fields_list) > 1
 
     ret_dict = {}
-    for sf in context_dict['fields']:
+    for sf in fields_list:
 
         assert sf.has_key(u'name')
         assert sf.has_key(u'key')
@@ -329,7 +330,7 @@ def fill_random_fields(context_dict):
         assert sf.has_key(u'presentation_order')
         assert sf.has_key(u'value')
         assert sf.has_key(u'type')
-        assert sf.has_key(u'required')
+        # assert sf.has_key(u'required')
 
         unicode_weird = ''.join(unichr(x) for x in range(0x400, 0x4FF) )
         ret_dict.update({ sf.get(u'key') : unicode_weird })
