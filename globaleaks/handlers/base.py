@@ -476,7 +476,6 @@ class BaseHandler(RequestHandler):
             mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
-
 class BaseStaticFileHandler(StaticFileHandler):
     def set_default_headers(self):
         add_globaleaks_headers(self)
