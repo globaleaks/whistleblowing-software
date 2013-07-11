@@ -1,3 +1,8 @@
+# LOGLEVEL = [log_level]
+#   permits to configure theh globaleaks debug loglevel
+#   DEBUG, INFO, ERROR, CRITICAL
+LOGLEVEL=CRITICAL
+
 # USER = [user_name]
 #   permits to configure the USER privileges of the globaleaks process
 USER=globaleaks

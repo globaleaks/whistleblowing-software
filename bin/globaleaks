@@ -75,6 +75,8 @@ def pip_version_check(path):
         print "2) Installing missing requirements using pip install -r /usr/share/globaleaks/glbackend/requirements.txt"
         quit(-1)
 
+sys.excepthook = None
+
 this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)

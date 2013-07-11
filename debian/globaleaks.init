@@ -154,7 +154,12 @@ do_start()
         log_end_msg 1 "Globlaleaks is not installed"
         exit 1
     fi
-    GLBACKEND_ARGS="--port=${LISTENING_PORT} --accept-host=${HOSTS_LIST} --user=${USER} --group=${GROUP} --working-path=${WORKING_DIR}"
+
+    GLBACKEND_ARGS="--port=${LISTENING_PORT}
+                    --accept-host=${HOSTS_LIST}
+                    --user=${USER} --group=${GROUP}
+                    --working-path=${WORKING_DIR}
+                    --loglevel=${LOGLEVEL}"
 
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 

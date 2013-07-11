@@ -36,7 +36,7 @@ environments: media, activism, corporations, public agencies.
 
 2. Is GlobaLeaks sending me this Mail?
 
-No, this mail has been sent to you by the Node called %NoneName% They are running the
+No, this mail has been sent to you by the Node called %NodeName% They are running the
 GlobaLeaks Platform, but are not directly tied to the GlobaLeaks organization. GlobaLeaks
 (https://globaleaks.org) will never be directly affiliated with any real world
 WhistleBlowing sites, GlobaLeaks will only provide software and technical support.
