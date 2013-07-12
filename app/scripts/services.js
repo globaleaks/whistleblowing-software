@@ -561,7 +561,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         context.file_required = false;
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
-        context.receipt_regexp = '';
+        context.receipt_regexp = "[A-Z]{4}\+[0-9]{5}";
         context.receipt_description = "";
         context.submission_introduction = "";
         context.submission_disclaimer = "";
