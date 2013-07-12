@@ -57,7 +57,7 @@ def gldictv(self, attr, value):
     try:
         assert isinstance(value, dict)
     except AssertionError:
-        raise errors.InvalidInputFormat("(%s) Not a dict as expected" % attr)
+        raise errors.InvalidInputFormat("(%s) dict expected" % attr)
 
 
     for key, subvalue in value.iteritems():
@@ -77,7 +77,7 @@ def gllocalv(self, attr, value):
     try:
         assert isinstance(value, dict)
     except AssertionError:
-        raise errors.InvalidInputFormat("(%s) expect a localized dict" % attr)
+        raise errors.InvalidInputFormat("(%s) localized dict expected" % attr)
 
     if not value:
         return value
@@ -147,7 +147,6 @@ class Model(Storm):
         for k in cls_localized_keys:
             value = attrs[k]
             setattr(self, k, value)
-
             # value is a list with { lang: 'en', 'text': "shit" },
             #                      { lang: 'mi', 'text': "leganord" }
             # print "checking %s on %s" % (k, value)
@@ -217,7 +216,7 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
-    unicode_keys = [ ]
+    unicode_keys = [ 'receipt_regexp' ]
     localized_strings = ['name', 'description', 'receipt_description',
                     'submission_introduction', 'submission_disclaimer' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',

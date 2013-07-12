@@ -56,7 +56,7 @@ def get_receiver_settings(store, user_id, language=GLSetting.default_language):
     if not receiver:
         raise ReceiverGusNotFound
 
-    return receiver_serialize_receiver(receiver, default_lang)
+    return receiver_serialize_receiver(receiver, language)
 
 @transact
 def update_receiver_settings(store, user_id, request, language=GLSetting.default_language):
@@ -84,7 +84,7 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.default
 
     gpg_options_manage(receiver, request)
 
-    return receiver_serialize_receiver(receiver, default_lang)
+    return receiver_serialize_receiver(receiver, language)
 
 
 class ReceiverInstance(BaseHandler):

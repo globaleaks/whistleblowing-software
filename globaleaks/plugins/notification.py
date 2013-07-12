@@ -52,8 +52,6 @@ class MailNotification(Notification):
         if isinstance(template, dict):
             partial_template = template[GLSetting.default_language]
         else:
-            import traceback
-            traceback.print_stack()
             partial_template = template
             # this is wrong!
 

@@ -148,12 +148,11 @@ def import_fields(submission, fields, configured_fields, strict_validation=False
     required_keys = optional_keys  = []
     
     try:
-        for lang, expected_fields in configured_fields.iteritems():
-            for sf in expected_fields:
-                if sf['required']:
-                    required_keys.append(sf.get(u'key'))
-                else:
-                    optional_keys.append(sf.get(u'key'))
+        for expected_field in configured_fields:
+            if expected_field['required']:
+                required_keys.append(expected_field.get(u'key'))
+            else:
+                optional_keys.append(expected_field.get(u'key'))
     except Exception, e:
         log.exception(e)
         raise SubmissionFailFields("Malformed submission!")
