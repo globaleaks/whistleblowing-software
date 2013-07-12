@@ -58,7 +58,7 @@ def admin_serialize_context(context, language=GLSetting.default_language):
         "escalation_threshold": context.escalation_threshold,
         "receivers": [],
         "receipt_regexp": context.receipt_regexp,
-        "tags": context.tags if context.tags else u"",
+        "tags": context.tags if context.tags else [],
         "file_required": context.file_required,
         # tip expressed in day, submission in hours
         "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
@@ -68,7 +68,7 @@ def admin_serialize_context(context, language=GLSetting.default_language):
     for attr in ['name', 'description', 'receipt_description',
                  'submission_introduction', 'submission_disclaimer', 'fields' ]:
         context_dict[attr] = l10n(getattr(context, attr), language)
-
+    
     for receiver in context.receivers:
         context_dict['receivers'].append(receiver.id)
 
@@ -101,6 +101,9 @@ def admin_serialize_receiver(receiver, language=GLSetting.default_language):
     }
 
     receiver_dict["description"] = l10n(receiver.description, language)
+
+    for context in receiver.contexts:
+        receiver_dict['contexts'].append(context.id)
 
     return receiver_dict
 
@@ -188,12 +191,11 @@ def fields_validation(fields_blob):
                            "checkboxes",  "textarea", "number",
                            "url", "phone", "email" ]
 
-    for lang, fields_list in fields_blob.iteritems():
-        for field_desc in fields_list:
-            check_type = field_desc['type']
-            if not check_type in accepted_form_type:
-                raise errors.InvalidInputFormat("Fields validation deny '%s' in %s" %
-                                                (check_type, field_desc['name']) )
+    for field_desc in fields_blob:
+        check_type = field_desc['type']
+        if not check_type in accepted_form_type:
+            raise errors.InvalidInputFormat("Fields validation deny '%s' in %s" %
+                                            (check_type, field_desc['name']) )
 
 
 @transact
@@ -213,8 +215,20 @@ def create_context(store, request, language=GLSetting.default_language):
     receivers = request.get('receivers', [])
 
     v = dict(request)
+
+    if not request['fields']:
+        # When a new context is created, assign default fields, if not supply
+        assigned_fields = sample_context_fields
+    else:
+        assigned_fields = request['fields']
+
+    # may raise InvalidInputFormat if fields format do not fit
+    fields_validation(assigned_fields)
+    
+    v['fields'] = assigned_fields
+
     for attr in ['name', 'description', 'receipt_description',
-                 'submission_introduction', 'submission_disclaimer']:
+                 'submission_introduction', 'submission_disclaimer', 'fields']:
         v[attr] = {}
         v[attr][language] = unicode(request[attr])
 
@@ -222,27 +236,12 @@ def create_context(store, request, language=GLSetting.default_language):
 
     context = Context(request)
 
-    if not request['fields']:
-        # When a new context is create, assign default fields, if not supply
-        assigned_fields = sample_context_fields
-    else:
-        assigned_fields = request['fields']
-    
-    # may raise InvalidInputFormat if fields format do not fit
-    fields_validation(assigned_fields)
-
     # Creation of 'key' it's required in the software, but not provided by GLClient
-    for lang, fields in assigned_fields.iteritems():
-        for idx, _ in enumerate(fields):
-            assigned_fields[lang][idx]['key'] = unicode(assigned_fields[lang][idx]['name'])
+    for idx, _ in enumerate(assigned_fields):
+        assigned_fields[idx]['key'] = unicode(assigned_fields[idx]['name'])
 
     context.fields = {}
     context.fields[language] = assigned_fields
-
-    # verify if the default is provided by GLC
-    context.receipt_regexp = GLSetting.defaults.receipt_regexp
-
-    context.tags = request['tags']
 
     # Integrity checks related on name (need to exists, need to be unique)
     # are performed only on the english language at the moment
@@ -270,13 +269,17 @@ def create_context(store, request, language=GLSetting.default_language):
 
     # tip_timetolive and submission_timetolive need to be converted in seconds
     try:
-        context.tip_timetolive = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
+        # FIXME
+        pass
+        #context.tip_timetolive = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
         raise errors.TimeToLiveInvalid("Submission")
 
     try:
-        context.submission_timetolive = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
+        # FIXME
+        pass
+        #context.submission_timetolive = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Submission: %s" % excep.message)
         raise errors.TimeToLiveInvalid("Tip")
@@ -321,11 +324,17 @@ def update_context(store, context_gus, request, language=GLSetting.default_langu
     if not context:
          raise errors.ContextGusNotFound
 
-    for attr in getattr(context, "localized_strings"):
-        new_value = unicode(request[attr])
-        request[attr] = getattr(node, attr)
-        request[attr][language] = new_value
+    v = dict(request)
 
+    for attr in getattr(Context, "localized_strings"):
+        v[attr] = getattr(context, attr)
+        v[attr][language] = unicode(request[attr])
+
+    v['fields'] = dict(getattr(context, 'fields'))
+    v['fields'][language] = request['fields']
+    
+    request = v
+    
     for receiver in context.receivers:
         context.receivers.remove(receiver)
 
@@ -336,25 +345,29 @@ def update_context(store, context_gus, request, language=GLSetting.default_langu
             log.err("Update error: unexistent receiver can't be associated")
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
-   
+
     # tip_timetolive and submission_timetolive need to be converted in seconds
     try:
-        context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
+        # FIXME
+        pass
+        # context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
         raise errors.TimeToLiveInvalid("Submission")
 
     try:
-        context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
+        # FIXME
+        pass
+        # context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Submission: %s" % excep.message)
         raise errors.TimeToLiveInvalid("Tip")
 
-    for idx, _ in enumerate(request['fields']):
-        request['fields'][idx]['key'] = unicode(request['fields'][idx]['name'])
+    for lang, fields in request['fields'].iteritems():
+        for idx, _ in enumerate(fields):
+            request['fields'][lang][idx]['key'] = unicode(request['fields'][lang][idx]['name'])
 
-    context.fields[language] = request['fields']
-    context.tags = None # request['tags']
+    context.fields = request['fields']
     context.last_update = utils.datetime_now()
     context.update(request)
     
@@ -416,6 +429,15 @@ def create_receiver(store, request, language=GLSetting.default_language):
     Returns:
         (dict) the configured receiver
     """
+
+    v = dict(request)
+
+    for attr in getattr(Receiver, "localized_strings"):
+        v[attr] = {}
+        v[attr][language] = unicode(request[attr])
+        
+    request = v
+    
     mail_address = utils.acquire_mail_address(request)
     if not mail_address:
         raise errors.NoEmailSpecified
@@ -425,8 +447,6 @@ def create_receiver(store, request, language=GLSetting.default_language):
     if homonymous:
         log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
-    
-    request['description'] = {language: request['description']}
 
     receiver = Receiver(request)
 
@@ -469,7 +489,7 @@ def get_receiver(store, id, language=GLSetting.default_language):
     receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
     if not receiver:
-        log.err("Requested invalid receiver")
+        log.err("Requested in receiver")
         raise errors.ReceiverGusNotFound
 
     return admin_serialize_receiver(receiver, language)
@@ -484,10 +504,13 @@ def update_receiver(store, id, request, language=GLSetting.default_language):
     """
     receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
-    for attr in getattr(receiver, "localized_strings"):
-        new_value = unicode(request[attr])
-        request[attr] = getattr(node, attr)
-        request[attr][language] = new_value
+    v = dict(request)
+
+    for attr in getattr(Receiver, "localized_strings"):
+        v[attr] = getattr(receiver, attr)
+        v[attr][language] = unicode(request[attr])
+
+    request = v
 
     if not receiver:
         raise errors.ReceiverGusNotFound
@@ -825,7 +848,7 @@ def update_notification(store, request, language=GLSetting.default_language):
 
     for attr in getattr(notif, "localized_strings"):
         new_value = unicode(request[attr])
-        request[attr] = getattr(node, attr)
+        request[attr] = getattr(notif, attr)
         request[attr][language] = new_value
 
     security = str(request.get('security', u'')).upper()

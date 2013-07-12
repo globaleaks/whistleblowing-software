@@ -36,20 +36,20 @@ class TTip(helpers.TestWithDB):
     # and is not a pattern defile
 
     tipContext = {
-        'name': { "en" : u'CtxName' }, 'description': { "en" : u'dummy context with default fields' },
+        'name': u'CtxName', 'description': u'dummy context with default fields',
         'escalation_threshold': u'1', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'fields': [], 'submission_timetolive': 100,
         'receipt_regexp': GLSetting.defaults.receipt_regexp,
-        'receipt_description': { "en" : u"blah" },
-        'submission_introduction': { "en" : u"bleh" },
-        'submission_disclaimer': { "en" : u"bloh" },
+        'receipt_description': u"blah",
+        'submission_introduction': u"bleh",
+        'submission_disclaimer': u"bloh",
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
     }
 
     tipReceiver1 = {
         'notification_fields': {'mail_address': u'first@winstonsmith.org' },
-        'name': u'first', 'description': { "en" : u"I'm tha 1st" },
+        'name': u'first', 'description': u"I'm tha 1st",
         'receiver_level': u'1', 'can_delete_submission': True,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
@@ -59,7 +59,7 @@ class TTip(helpers.TestWithDB):
 
     tipReceiver2 = {
         'notification_fields': {'mail_address': u'second@winstonsmith.org' },
-        'name': u'second', 'description': { "en" : u"I'm tha 2nd" },
+        'name': u'second', 'description': u"I'm tha 2nd",
         'receiver_level': u'1', 'can_delete_submission': False,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
@@ -118,7 +118,7 @@ class TestTipInstance(TTip):
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['context_gus']])
 
         self.tipSubmission['context_gus'] = self.context_desc['context_gus']
-        basehandler.validate_jmessage( self.tipSubmission, requests.wbSubmissionDesc)
+        basehandler.validate_jmessage(self.tipSubmission, requests.wbSubmissionDesc)
 
         self.submission_desc = yield submission.create_submission(self.tipSubmission, finalize=True)
 
