@@ -41,7 +41,6 @@ def anon_serialize_node(store, language=GLSetting.default_language):
       'tor2web_unauth': node.tor2web_unauth,
     }
 
-    node_dict['name'] = l10n(node.name, language)
     node_dict['description'] = l10n(node.description, language)
 
     return node_dict

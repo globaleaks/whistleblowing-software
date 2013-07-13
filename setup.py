@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 #-*- coding: utf-8 -*-
-
 import os
 import re
 import sys
@@ -40,7 +39,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "a7e4f7f9f3866133bbe2085feb748d298f6794fa9434a5e006b6dd79"
+    glclient_hash = "5c13fc4b5d903b9655b8dc509df56db2ac75b2b0774b7e69350b41f8"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
