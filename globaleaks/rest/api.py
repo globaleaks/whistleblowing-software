@@ -126,6 +126,10 @@ spec.append(
 
 ## Static files services (would remain also if Client is not served by Backend)
 spec.append(
+    (r'/(favicon.ico)', BaseStaticFileHandler, {'path': GLSetting.static_path })
+)
+
+spec.append(
     (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path })
 )
 
