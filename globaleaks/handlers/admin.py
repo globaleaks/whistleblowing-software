@@ -197,6 +197,25 @@ def fields_validation(fields_blob):
             raise errors.InvalidInputFormat("Fields validation deny '%s' in %s" %
                                             (check_type, field_desc['name']) )
 
+def acquire_context_timetolive(request):
+
+    try:
+        submission_ttl = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Submission: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Tip")
+
+    try:
+        tip_ttl = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
+    except Exception as excep:
+        log.err("Invalid timing configured for Tip: %s" % excep.message)
+        raise errors.TimeToLiveInvalid("Submission")
+
+    if submission_ttl > tip_ttl:
+        raise errors.TimeToLiveInvalid("Submission can't live more time than a Tip")
+
+    return (submission_ttl, tip_ttl)
+
 
 @transact
 def create_context(store, request, language=GLSetting.default_language):
@@ -267,22 +286,8 @@ def create_context(store, request, language=GLSetting.default_language):
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
-    # tip_timetolive and submission_timetolive need to be converted in seconds
-    try:
-        # FIXME
-        pass
-        #context.tip_timetolive = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
-    except Exception as excep:
-        log.err("Invalid timing configured for Tip: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Submission")
-
-    try:
-        # FIXME
-        pass
-        #context.submission_timetolive = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
-    except Exception as excep:
-        log.err("Invalid timing configured for Submission: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Tip")
+    # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
+    (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
 
     store.add(context)
 
@@ -346,22 +351,8 @@ def update_context(store, context_gus, request, language=GLSetting.default_langu
             raise errors.ReceiverGusNotFound
         context.receivers.add(receiver)
 
-    # tip_timetolive and submission_timetolive need to be converted in seconds
-    try:
-        # FIXME
-        pass
-        # context.tip_timetolive = utils.seconds_convert(context.tip_timetolive, (24 * 60 * 60), min=1)
-    except Exception as excep:
-        log.err("Invalid timing configured for Tip: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Submission")
-
-    try:
-        # FIXME
-        pass
-        # context.submission_timetolive = utils.seconds_convert(context.submission_timetolive, (60 * 60), min=1)
-    except Exception as excep:
-        log.err("Invalid timing configured for Submission: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Tip")
+    # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
+    (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
 
     for lang, fields in request['fields'].iteritems():
         for idx, _ in enumerate(fields):

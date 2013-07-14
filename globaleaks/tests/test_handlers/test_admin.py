@@ -146,14 +146,39 @@ class TestContextInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_put(self):
         self.dummyContext['description'] = u'how many readers remind of HIMEM.SYS?'
-        self.dummyContext['submission_timetolive'] = 48 # hours
-        self.dummyContext['tip_timetolive'] = 25 # days
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.put(self.dummyContext['context_gus'])
         self.dummyContext['creation_date'] = self.responses[0]['creation_date']
         self.dummyContext['last_update'] = self.responses[0]['last_update']
         self.assertEqual(self.responses[0]['description'], self.dummyContext['description'])
+
+    @inlineCallbacks
+    def test_update_context_timetolive(self):
+        self.dummyContext['submission_timetolive'] = random.randint(1, 24) # hours
+        self.dummyContext['tip_timetolive'] = random.randint(1, 1000) # days
+
+        handler = self.request(self.dummyContext, role='admin')
+        yield handler.put(self.dummyContext['context_gus'])
+
+        self.assertEqual(self.responses[0]['submission_timetolive'], self.dummyContext['submission_timetolive'])
+        self.assertEqual(self.responses[0]['tip_timetolive'], self.dummyContext['tip_timetolive'])
+
+    @inlineCallbacks
+    def test_update_context_invalid_timetolive(self):
+        self.dummyContext['submission_timetolive'] = 1000 # hours
+        self.dummyContext['tip_timetolive'] = 3 # days
+
+        # 1000 hours are more than three days, and a Tip can't live less than a submission
+        handler = self.request(self.dummyContext, role='admin')
+        try:
+            yield handler.put(self.dummyContext['context_gus'])
+            self.assertTrue(False)
+        except errors.TimeToLiveInvalid:
+            self.assertTrue(True)
+        except Exception as excep:
+            print "Wrong exception: %s" % excep
+            self.assertTrue(False)
 
 
 class TestReceiversCollection(helpers.TestHandler):
@@ -205,7 +230,6 @@ class TestReceiversCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post_duplicated_username(self):
-        return
         self.dummyReceiver['name'] = 'beppe'
         self.dummyReceiver['notification_fields']['mail_address'] = "evilamaker.py@vecllais.naif"
         self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
@@ -227,7 +251,6 @@ class TestReceiverInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get(self):
-        return
         handler = self.request(role='admin')
         yield handler.get(self.dummyReceiver['receiver_gus'])
         del self.dummyReceiver['contexts']
@@ -236,7 +259,6 @@ class TestReceiverInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_put_change_password(self):
-        return
         self.dummyReceiver['context_gus'] = ''
         del self.dummyReceiver['username']
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
@@ -250,7 +272,6 @@ class TestReceiverInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_put_with_password_empty(self):
-        return
         self.dummyReceiver['context_gus'] = ''
         del self.dummyReceiver['username']
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
@@ -264,7 +285,6 @@ class TestReceiverInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_put_invalid_context_gus(self):
-        return
         self.dummyReceiver['name'] = u'justalazyupdate'
         # keep the context_gus wrong but matching eventually regexp
         import uuid
@@ -286,7 +306,6 @@ class TestReceiverInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_delete(self):
-        return
         handler = self.request(self.dummyReceiver, role='admin')
         try:
             yield handler.delete(self.dummyReceiver['receiver_gus'])

@@ -219,8 +219,7 @@ class Context(Model):
     unicode_keys = [ 'receipt_regexp' ]
     localized_strings = ['name', 'description', 'receipt_description',
                     'submission_introduction', 'submission_disclaimer' ]
-    int_keys = [ 'escalation_threshold', 'tip_max_access', 'tip_timetolive',
-                 'file_max_download', 'submission_timetolive' ]
+    int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download' ]
     bool_keys = [ 'selectable_receiver', 'file_required' ]
 
 
