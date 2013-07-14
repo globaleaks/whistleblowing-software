@@ -1,5 +1,6 @@
 # -*- encoding: utf-8 -*-
 import os
+import sys
 
 from globaleaks.utils import GLSetting
 from globaleaks.models import models as orm_classes_list
@@ -23,64 +24,87 @@ def perform_version_update(starting_ver, ending_ver, start_path):
         "12" : Replacer12,
         "23" : Replacer23,
     }
+    
+    to_delete_on_fail = []
+    to_rename_on_success = []
 
-    while starting_ver < ending_ver:
+    try:
 
-        if not starting_ver:
-            old_db_file = os.path.abspath(os.path.join(
-                GLSetting.gldb_path, 'glbackend.db'))
-            backup_file = os.path.abspath(os.path.join(
-                GLSetting.gldb_path, 'conversion_backup_%d_%d.db' % (starting_ver, starting_ver +1)))
-        else:
-            old_db_file = os.path.abspath(os.path.join(
-                GLSetting.gldb_path, 'glbackend-%d.db' % starting_ver))
-            backup_file = os.path.abspath(os.path.join(
-                GLSetting.gldb_path, 'conversion_backup_%d_%d.db' % (starting_ver, starting_ver +1)))
+        while starting_ver < ending_ver:
 
-        new_db_file = os.path.abspath(os.path.join(GLSetting.gldb_path, 'glbackend-%d.db' % (starting_ver +1)))
-        print "  Updating DB from version %d to version %d" % (starting_ver, starting_ver +1)
+            if not starting_ver:
+                old_db_file = os.path.abspath(os.path.join(
+                    GLSetting.gldb_path, 'glbackend.db'))
+                backup_file = os.path.abspath(os.path.join(
+                    GLSetting.gldb_path, 'conversion_backup_%d_%d.db' % (starting_ver, starting_ver + 1)))
+            else:
+                old_db_file = os.path.abspath(os.path.join(
+                    GLSetting.gldb_path, 'glbackend-%d.db' % starting_ver))
+                backup_file = os.path.abspath(os.path.join(
+                    GLSetting.gldb_path, 'conversion_backup_%d_%d.db' % (starting_ver, starting_ver + 1)))
 
-        update_key = "%d%d" % (starting_ver, starting_ver + 1)
-        if not releases_supported.has_key(update_key):
-            raise NotImplementedError
+            new_db_file = os.path.abspath(os.path.join(GLSetting.gldb_path, 'glbackend-%d.db' % (starting_ver + 1)))
+            
+            to_delete_on_fail.append(new_db_file)
+            to_rename_on_success.append((old_db_file, backup_file))
+            
+            print "  Updating DB from version %d to version %d" % (starting_ver, starting_ver + 1)
 
-        try:
-            updater_code = releases_supported[update_key](old_db_file, new_db_file, starting_ver)
-        except Exception as excep:
-            print "__init__ updater_code: %s " % excep.message
-            raise excep
-
-        try:
-            updater_code.initialize()
-        except Exception as excep:
-            print "initialize of updater class: %s " % excep.message
-            raise excep
-
-        for model_name in orm_classes_list:
-
-            migrate_function = 'migrate_%s' % model_name.__name__
-            function_pointer = getattr(updater_code, migrate_function)
+            update_key = "%d%d" % (starting_ver, starting_ver + 1)
+            if not releases_supported.has_key(update_key):
+                raise NotImplementedError
 
             try:
-                function_pointer()
+                updater_code = releases_supported[update_key](old_db_file, new_db_file, starting_ver)
             except Exception as excep:
-                print "Failure in %s: %s " % (migrate_function, excep)
+                print "__init__ updater_code: %s " % excep.message
+                raise
+
+            try:
+                updater_code.initialize()
+            except Exception as excep:
+                print "initialize of updater class: %s " % excep.message
                 raise excep
 
-        # epilogue can be used to perform operation once, not related to the tables
-        updater_code.epilogue()
-        updater_code.close()
+            for model_name in orm_classes_list:
 
-        starting_ver += 1
+                migrate_function = 'migrate_%s' % model_name.__name__
+                function_pointer = getattr(updater_code, migrate_function)
 
+                try:
+                    function_pointer()
+                except Exception as excep:
+                    print "Failure in %s: %s " % (migrate_function, excep)
+                    print "Verbose exception traceback:"
+                    import traceback
+                    exc_type, exc_value, exc_traceback = sys.exc_info()
+                    traceback.print_tb(exc_traceback)
+                    raise
+
+            # epilogue can be used to perform operation once, not related to the tables
+            updater_code.epilogue()
+            updater_code.close()
+            
+            starting_ver += 1
+
+    except:
+        # Remediate action on fail:
+        #    created files during update must be deleted
+        for f in to_delete_on_fail:
+            os.remove(f)
+        # propagate the exception
+        raise
+
+    # Finalize action on success:
+    #    converted files must be renamed
+    for f in to_rename_on_success:
+        old_db_file = f[0]
+        backup_file = f[1]
         if os.path.isfile(backup_file):
             try:
                 os.unlink(backup_file)
             except Exception as excep:
                 print "Error in unlink and old version backup files: %s" % excep.message
-                raise excep
+                raise
 
         os.rename(old_db_file, backup_file)
-
-
-
