@@ -37,14 +37,14 @@ class SubmissionTest(helpers.TestGL):
     aContext1 = TTip.tipContext
 
     aContext2 = {
-        'name': { "en" : u'UNUSED'} , 'description': { "en" : u'UNUSED' },
+        'name': u'UNUSED', 'description': u'UNUSED',
         'escalation_threshold': u'0', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
         'receivers': [], 'fields': [], 'submission_timetolive': 100,
         'receipt_regexp': GLSetting.defaults.receipt_regexp,
-        'receipt_description': { "en" : u"blah" },
-        'submission_introduction': { "en" : u"bleh" },
-        'submission_disclaimer': { "en" : u"bloh" },
+        'receipt_description': u"blah",
+        'submission_introduction': u"bleh",
+        'submission_disclaimer': u"bloh",
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
     }
 
@@ -72,7 +72,6 @@ class TestTipInstance(SubmissionTest):
         SubmissionTest.context_used['selectable_receiver'] = True
         SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['context_gus'],
             SubmissionTest.context_used)
-
         basehandler.validate_jmessage( SubmissionTest.aContext2, requests.adminContextDesc)
         SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
 

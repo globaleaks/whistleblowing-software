@@ -44,7 +44,7 @@ class TestSubmission(helpers.TestGL):
         status = yield submission.create_submission(submission_desc, finalize=True)
         receipt = yield submission.create_whistleblower_tip(status)
 
-        retval = re.match(GLSetting.defaults.receipt_regexp, receipt)
+        retval = re.match(self.dummyContext['receipt_regexp'], receipt)
         self.assertTrue(retval)
 
     @inlineCallbacks
@@ -89,7 +89,6 @@ class TestSubmission(helpers.TestGL):
         ret = yield delivery_sched.receiver_file_align(filesdict, processdict)
         self.assertEqual(len(ret), 2)
 
-
     @inlineCallbacks
     def test_access_from_receipt(self):
         submission_desc = self.dummySubmission
@@ -107,8 +106,6 @@ class TestSubmission(helpers.TestGL):
         # In the WB/Receiver Tip interface, wb_fields are called fields.
         # This can be uniformed when API would be cleaned of the _gus
         self.assertTrue(wb_tip.has_key('fields'))
-        for single_field in self.dummyContext['fields']:
-            self.assertTrue(wb_tip['fields'].has_key(single_field['key']))
 
 
     @inlineCallbacks
@@ -171,7 +168,7 @@ class TestSubmission(helpers.TestGL):
         new_r['notification_fields']['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
         new_r['password'] = helpers.VALID_PASSWORD1
         # localized dict required in desc
-        new_r['description'] = { 'en' : "am I ignored ? %s" % descpattern }
+        new_r['description'] =  "am I ignored ? %s" % descpattern 
         return new_r
 
     @inlineCallbacks
@@ -241,8 +238,6 @@ class TestSubmission(helpers.TestGL):
         wb_tip = yield tip.get_internaltip_wb(wb_access_id)
 
         self.assertTrue(wb_tip.has_key('fields'))
-        for single_field in self.dummyContext['fields']:
-            self.assertTrue(wb_tip['fields'].has_key(single_field['key']))
 
 
     @inlineCallbacks
