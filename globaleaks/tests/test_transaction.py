@@ -60,7 +60,8 @@ class TestTransaction(helpers.TestGL):
     @transact
     def _transact_with_stuff(self, store):
         try:
-            receiver = Receiver(self.dummyReceiver)
+            r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+            receiver = Receiver(r)
             receiver.password = self.dummyReceiver['password']
             receiver.username = self.dummyReceiver['notification_fields']['mail_address']
             receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
@@ -73,7 +74,8 @@ class TestTransaction(helpers.TestGL):
 
     @transact
     def _transact_with_stuff_failing(self, store):
-        receiver = Receiver(self.dummyReceiver)
+        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+        receiver = Receiver(r)
         receiver.password = self.dummyReceiver['password']
         receiver.username = self.dummyReceiver['notification_fields']['mail_address']
         receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!

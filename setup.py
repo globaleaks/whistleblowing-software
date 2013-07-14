@@ -89,6 +89,7 @@ data_files = [
     ]),
     ('/usr/share/globaleaks/glbackend',  [
     'requirements.txt',
+    'staticdata/favicon.ico',
     'staticdata/globaleaks_logo.png',
     'staticdata/default-profile-picture.png'
     ])

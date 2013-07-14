@@ -9,7 +9,8 @@ from globaleaks.rest import errors
 class TestModels(helpers.TestGL):
     @transact
     def context_add(self, store):
-        context = Context(self.dummyContext)
+        c = self.localization_set(self.dummyContext, Context, 'en')
+        context = Context(c)
         context.fields = self.dummyContext['fields']
         context.tags = self.dummyContext['tags']
         context.description = context.name = \
@@ -34,7 +35,8 @@ class TestModels(helpers.TestGL):
 
     @transact
     def receiver_add(self, store):
-        receiver = Receiver(self.dummyReceiver)
+        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+        receiver = Receiver(r)
         receiver.password = self.dummyReceiver['password']
         receiver.username = self.dummyReceiver['notification_fields']['mail_address']
         receiver.gpg_key_status = Receiver._gpg_types[0]
@@ -58,7 +60,10 @@ class TestModels(helpers.TestGL):
 
     @transact
     def create_context_with_receivers(self, store):
-        context = Context(self.dummyContext)
+        c = self.localization_set(self.dummyContext, Context, 'en')
+        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+
+        context = Context(c)
         context.fields = self.dummyContext['fields']
         context.fields = self.dummyContext['fields']
         context.tags = self.dummyContext['tags']
@@ -67,8 +72,8 @@ class TestModels(helpers.TestGL):
             context.receipt_description = { "en" : u'Localized76w' }
         context.receipt_regexp = u"unipop09876"
 
-        receiver1 = Receiver(self.dummyReceiver)
-        receiver2 = Receiver(self.dummyReceiver)
+        receiver1 = Receiver(r)
+        receiver2 = Receiver(r)
 
         # Avoid receivers with the same username!
         receiver1.password = receiver2.username = unicode("xxx")
@@ -85,14 +90,17 @@ class TestModels(helpers.TestGL):
 
     @transact
     def create_receiver_with_contexts(self, store):
-        receiver = Receiver(self.dummyReceiver)
+        c = self.localization_set(self.dummyContext, Context, 'en')
+        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+
+        receiver = Receiver(r)
         receiver.password = unicode("xxx")
         receiver.username = unicode("yyy")
         receiver.gpg_key_status = Receiver._gpg_types[0]
         receiver.failed_login = 0
         receiver.notification_fields = {'mail_address': 'y@y.it'}
 
-        context1 = Context(self.dummyContext)
+        context1 = Context(c)
         context1.fields = self.dummyContext['fields']
         context1.tags = self.dummyContext['tags']
         context1.description = context1.name =\
@@ -100,7 +108,7 @@ class TestModels(helpers.TestGL):
             context1.receipt_description = { "en" : u'Valar Morghulis' }
         context1.receipt_regexp = u"unipop254"
 
-        context2 = Context(self.dummyContext)
+        context2 = Context(c)
         context2.fields = self.dummyContext['fields']
         context2.tags = self.dummyContext['tags']
         context2.description = context2.name =\

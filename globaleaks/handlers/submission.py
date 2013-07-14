@@ -134,11 +134,11 @@ def import_files(store, submission, files):
     store.commit()
 
 
-def import_fields(submission, fields, expected_fields, strict_validation=False):
+def import_fields(submission, fields, configured_fields, strict_validation=False):
     """
     @param submission: the Storm object
     @param fields: the received fields
-    @param expected_fields: the Context defined fields
+    @param configured_fields: the Context defined fields
     @return: update the object of raise an Exception if a required field
         is missing, or if received field do not match the expected shape
 
@@ -148,11 +148,11 @@ def import_fields(submission, fields, expected_fields, strict_validation=False):
     required_keys = optional_keys  = []
     
     try:
-        for sf in expected_fields:
-            if sf['required']:
-                required_keys.append(sf.get(u'key'))
+        for expected_field in configured_fields:
+            if expected_field['required']:
+                required_keys.append(expected_field.get(u'key'))
             else:
-                optional_keys.append(sf.get(u'key'))
+                optional_keys.append(expected_field.get(u'key'))
     except Exception, e:
         log.exception(e)
         raise SubmissionFailFields("Malformed submission!")

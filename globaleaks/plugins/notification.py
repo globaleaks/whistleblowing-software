@@ -49,10 +49,14 @@ class MailNotification(Notification):
 
 
     def _iterkeywords(self, template, keywords):
-        partial_template = template
+        if isinstance(template, dict):
+            partial_template = template[GLSetting.default_language]
+        else:
+            partial_template = template
+            # this is wrong!
 
         for key, var in keywords.iteritems():
-            partial_template =  partial_template.replace(key, var)
+            partial_template = partial_template.replace(key, var)
 
         return partial_template
 

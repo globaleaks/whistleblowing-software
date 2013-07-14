@@ -14,8 +14,8 @@ class TestJobs(helpers.TestGL):
     @inlineCallbacks
     def test_tip_creation(self):
 
-        receivers = yield get_public_receiver_list()
-        contexts = yield get_public_context_list()
+        receivers = yield get_public_receiver_list('en')
+        contexts = yield get_public_context_list('en')
 
         yield create_submission(self.dummySubmission, finalize=True)
         created_tips = yield delivery_sched.tip_creation()

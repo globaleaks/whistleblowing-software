@@ -33,7 +33,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         'old_password': "",
         'username' : "irrelevant",
         'notification_fields' : {'mail_address': 'am_i_ignored_or_not@email.xxx'},
-        'description' : { "en" : "A new description" },
+        'description' : "A new description",
         "comment_notification": True,
         "file_notification": True,
         "tip_notification": False,
