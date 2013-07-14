@@ -13,6 +13,7 @@ class TestModels(helpers.TestGL):
         context = Context(c)
         context.fields = self.dummyContext['fields']
         context.tags = self.dummyContext['tags']
+        context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name = \
             context.submission_disclaimer = context.submission_introduction = \
             context.receipt_description = { "en" : u'Localized723' }
@@ -67,6 +68,7 @@ class TestModels(helpers.TestGL):
         context.fields = self.dummyContext['fields']
         context.fields = self.dummyContext['fields']
         context.tags = self.dummyContext['tags']
+        context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name =\
             context.submission_disclaimer = context.submission_introduction =\
             context.receipt_description = { "en" : u'Localized76w' }
@@ -103,6 +105,7 @@ class TestModels(helpers.TestGL):
         context1 = Context(c)
         context1.fields = self.dummyContext['fields']
         context1.tags = self.dummyContext['tags']
+        context1.submission_timetolive = context1.tip_timetolive = 1000
         context1.description = context1.name =\
             context1.submission_disclaimer = context1.submission_introduction =\
             context1.receipt_description = { "en" : u'Valar Morghulis' }
@@ -111,6 +114,7 @@ class TestModels(helpers.TestGL):
         context2 = Context(c)
         context2.fields = self.dummyContext['fields']
         context2.tags = self.dummyContext['tags']
+        context2.submission_timetolive = context2.tip_timetolive = 1000
         context2.description = context2.name =\
             context2.submission_disclaimer = context2.submission_introduction =\
             context2.receipt_description = { "en" : u'Valar Dohaeris' }

@@ -155,8 +155,8 @@ class TestContextInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_update_context_timetolive(self):
-        self.dummyContext['submission_timetolive'] = random.randint(1, 24) # hours
-        self.dummyContext['tip_timetolive'] = random.randint(1, 1000) # days
+        self.dummyContext['submission_timetolive'] = 23 # hours
+        self.dummyContext['tip_timetolive'] = 100 # days
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.put(self.dummyContext['context_gus'])
