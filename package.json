@@ -1,7 +1,7 @@
 {
   "author": "Random GlobaLeaks Developers",
   "name": "GLClient",
-  "version": "2.23.10",
+  "version": "2.23.11",
   "dependencies": {},
   "devDependencies": {
     "jquery": "*",
