@@ -76,7 +76,8 @@ def fields_conversion(old_fields):
     all_languages = get_all_languages(old_fields)
     new_fields = {}
     for language in all_languages:
-        new_fields[language] = old_fields
+        import copy
+        new_fields[language] = copy.deepcopy(old_fields)
         for idx, _ in enumerate(new_fields[language]):
             try:
                 new_fields[language][idx]['name'] = unicode(old_fields[idx]['name'][language])
