@@ -23,6 +23,7 @@ def anon_serialize_node(store, language=GLSetting.default_language):
     
     node_dict = {
       'name': unicode(node.name),
+      'presentation': unicode(node.presentation),
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),

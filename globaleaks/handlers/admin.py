@@ -22,6 +22,7 @@ from globaleaks import LANGUAGES_SUPPORTED_CODES
 def admin_serialize_node(node, language=GLSetting.default_language):
     response = {
         "name": node.name,
+        "presentation": node.presentation,
         "creation_date": utils.pretty_date_time(node.creation_date),
         "last_update": utils.pretty_date_time(node.last_update),
         "hidden_service": node.hidden_service,
@@ -43,7 +44,8 @@ def admin_serialize_node(node, language=GLSetting.default_language):
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
     }
 
-    response["description"] = l10n(node.description, language)
+    for attr in ['presentation', 'description' ]:
+        response[attr] = l10n(getattr(node, attr), language)
 
     return response
 

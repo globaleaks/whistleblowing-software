@@ -328,12 +328,7 @@ def check_db_files():
     """
     from globaleaks.db import updater_manager
 
-    try:
-        db_dir_path = GLSetting.gldb_path
-    except Exception as excep:
-        import pdb; pdb.set_trace()
-
-    for (path, dirs, files) in os.walk(db_dir_path):
+    for (path, dirs, files) in os.walk(GLSetting.gldb_path):
 
         try:
             starting_ver, abspath = find_current_db_version(path, files)

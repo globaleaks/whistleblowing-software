@@ -112,6 +112,7 @@ def create_tables(create_node=True):
         only_node = {
             'name':  u"MissingConfLeaks",
             'description':  dict({ GLSetting.default_language: u"This is the description of your node. PLEASE CHANGE ME." }),
+            'presentation':  dict({ GLSetting.default_language: u"®Welcome®message®" }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"email@dumnmy.net",

@@ -18,11 +18,13 @@ def perform_version_update(starting_ver, ending_ver, start_path):
     from globaleaks.db.update_0_1 import Replacer01
     from globaleaks.db.update_1_2 import Replacer12
     from globaleaks.db.update_2_3 import Replacer23
+    from globaleaks.db.update_3_4 import Replacer34
 
     releases_supported = {
         "01" : Replacer01,
         "12" : Replacer12,
         "23" : Replacer23,
+        "34" : Replacer34,
     }
     
     to_delete_on_fail = []
@@ -36,12 +38,12 @@ def perform_version_update(starting_ver, ending_ver, start_path):
                 old_db_file = os.path.abspath(os.path.join(
                     GLSetting.gldb_path, 'glbackend.db'))
                 backup_file = os.path.abspath(os.path.join(
-                    GLSetting.gldb_path, 'conversion_backup_%d_%d.db' % (starting_ver, starting_ver + 1)))
+                    GLSetting.gldb_path, 'conversion_backup_%d_%d.olddb' % (starting_ver, starting_ver + 1)))
             else:
                 old_db_file = os.path.abspath(os.path.join(
                     GLSetting.gldb_path, 'glbackend-%d.db' % starting_ver))
                 backup_file = os.path.abspath(os.path.join(
-                    GLSetting.gldb_path, 'conversion_backup_%d_%d.db' % (starting_ver, starting_ver + 1)))
+                    GLSetting.gldb_path, 'conversion_backup_%d_%d.olddb' % (starting_ver, starting_ver + 1)))
 
             new_db_file = os.path.abspath(os.path.join(GLSetting.gldb_path, 'glbackend-%d.db' % (starting_ver + 1)))
             

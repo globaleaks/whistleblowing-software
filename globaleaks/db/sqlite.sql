@@ -84,6 +84,7 @@ CREATE TABLE node (
     database_version INTEGER NOT NULL,
     creation_date VARCHAR NOT NULL,
     description BLOB NOT NULL,
+    presentation BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
     id VARCHAR NOT NULL,
