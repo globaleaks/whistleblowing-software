@@ -104,7 +104,7 @@ build_glbackend()
     if test $TAG; then
       echo "Using a clean cloned GLBackend directory"
       echo "Checking out $TAG (if existent, using master HEAD instead)"
-      git checkout $TAG || git checkout HEAD
+      git checkout $TAG >& /dev/null || git checkout HEAD >& /dev/null
     fi
   fi
 
