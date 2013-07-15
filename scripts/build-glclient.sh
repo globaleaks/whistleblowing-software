@@ -96,17 +96,15 @@ build_glclient()
 
   if test ${USING_EXISTENT_DIR}; then
     echo "Using GLClient existent directory and respective HEAD"
-    GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
   else
     if test $TAG; then
       echo "Using a clean cloned GLClient directory"
       echo "Checking out $TAG (if existent, using master HEAD instead)"
-      git checkout $TAG || git checkout HEAD
-      GLCLIENT_REVISION=$TAG
-    else
-      GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
+      git checkout $TAG >& /dev/null || git checkout HEAD >& /dev/null
     fi
   fi
+
+  GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
   echo "Revision used: ${GLCLIENT_REVISION}"
 
