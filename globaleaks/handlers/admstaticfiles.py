@@ -12,7 +12,7 @@ from __future__ import with_statement
 import time
 import re
 
-from twisted.internet import fdesc
+from twisted.internet import threads
 from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
 
@@ -79,12 +79,10 @@ def dump_static_file(uploaded_file):
             (filelocation, uploaded_file['body_len'] ) )
 
     with open(filelocation, 'w+') as fd:
-        fdesc.setNonBlocking(fd.fileno())
+        uploaded_file['body'].seek(0, 0)
         data = uploaded_file['body'].read(4000) # 4kb
         while data != "":
-            if not fdesc.writeToFD(fd.fileno(), data):
-                log.debug("Non blocking file has reported an issue")
-                raise errors.InternalServerError("buffer not available")
+            os.write(fd.fileno(), data)
             data = uploaded_file['body'].read(4000) # 4kb
 
     return get_file_info(uploaded_file)
@@ -217,7 +215,7 @@ class StaticFileCollection(BaseHandler):
         # First: dumps the file in the filesystem,
         #        and exception raised here would prevent the InternalFile recordings
         try:
-            dumped_file = dump_static_file(uploaded_file)
+            dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file)
         except OSError as excpd:
             inf_list = get_file_info(files)
             log.err("OSError while create a new static file [%s]: %s" % (str(inf_list), excpd))
