@@ -16,7 +16,7 @@ from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.jobs.delivery_sched import APSDelivery
 from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
-from globaleaks.utils import log, utc_future_date, pretty_date_time, datetime_now
+from globaleaks.utils import log, utc_future_date, pretty_date_time, datetime_now, naturalize_fields
 from globaleaks.third_party import rstr
 from globaleaks.rest.errors import *
 
@@ -134,7 +134,7 @@ def import_files(store, submission, files):
     store.commit()
 
 
-def import_fields(submission, fields, configured_fields, strict_validation=False):
+def import_fields(submission, fields, configured_fields_list, strict_validation=False):
     """
     @param submission: the Storm object
     @param fields: the received fields
@@ -146,13 +146,15 @@ def import_fields(submission, fields, configured_fields, strict_validation=False
     if Submission would not be finalized yet.
     """
     required_keys = optional_keys  = []
-    
+
+    assert isinstance(configured_fields_list, list)
+
     try:
-        for expected_field in configured_fields:
-            if expected_field['required']:
-                required_keys.append(expected_field.get(u'key'))
+        for single_field in configured_fields_list:
+            if single_field.has_key('required'):
+                required_keys.append(single_field.get(u'key'))
             else:
-                optional_keys.append(expected_field.get(u'key'))
+                optional_keys.append(single_field.get(u'key'))
     except Exception, e:
         log.exception(e)
         raise SubmissionFailFields("Malformed submission!")
@@ -235,7 +237,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     import_files(store, submission, files)
 
     fields = request.get('wb_fields', {})
-    import_fields(submission, fields, context.fields[language], strict_validation=finalize)
+    import_fields(submission, fields, naturalize_fields(context.fields), strict_validation=finalize)
 
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict
@@ -270,7 +272,7 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
     import_files(store, submission, files)
 
     fields = request.get('wb_fields', [])
-    import_fields(submission, fields, submission.context.fields[language], strict_validation=finalize)
+    import_fields(submission, fields, naturalize_fields(submission.context.fields), strict_validation=finalize)
 
     if finalize:
         submission.mark = InternalTip._marker[1] # Finalized
