@@ -416,6 +416,25 @@ def l10n(var, language):
     else:
         return u''
 
+def naturalize_fields(fields_blob):
+    """
+    @param fields_blob: the context fields
+    @return: a dict of fields not realted to the language.
+
+    This function just extract the fields from the languages of fields list,
+    and this is required for the import_fields function in handlers/submission.py
+
+    without this function, GLClient language may lead to errors, and the
+    GLClient language used in submission is not relevant for the fields validation.
+
+    just take the first language configured, and return the real fields
+    """
+    assert isinstance(fields_blob, dict)
+    assert len(set(fields_blob)) > 0
+
+    for lang, fields in fields_blob.iteritems():
+        return fields
+
 def caller_name(skip=2):
     """Get a name of a caller in the format module.class.method
     
