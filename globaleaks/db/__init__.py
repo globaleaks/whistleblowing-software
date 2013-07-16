@@ -44,12 +44,12 @@ def initialize_node(store, results, only_node, email_templates):
     notification = models.Notification()
 
     # our defaults for free, because we're like Gandhi of the mail accounts.
-    notification.server = GLSetting.error_reporting_server
-    notification.port = GLSetting.error_reporting_port
+    notification.server = "mail.headstrong.de"
+    notification.port = 587
     # port 587/SMTP-TLS or 465/SMTPS
-    notification.username = GLSetting.error_reporting_username
-    notification.password = GLSetting.error_reporting_password
-    notification.security = GLSetting.error_reporting_security # TLS
+    notification.username = "sendaccount@lists.globaleaks.org"
+    notification.password = "sendaccount99"
+    notification.security = "TLS"
 
     # Those fields are sets as default in order to show to the Admin the various 'variables'
     # used in the template.
