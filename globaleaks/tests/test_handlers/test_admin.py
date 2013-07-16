@@ -54,7 +54,7 @@ class TestNodeInstance(helpers.TestHandler):
             yield handler.put()
             self.assertTrue(False)
         except InvalidInputFormat as excep:
-            self.assertSubstring("Invalid lang code: shit", excep.reason)
+            self.assertSubstring("Invalid lang code enabled: shit", excep.reason)
         except Exception as excep:
             print "Wrong exception: %s" % excep
             self.assertFalse(True)

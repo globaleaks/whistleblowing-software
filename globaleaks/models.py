@@ -376,13 +376,15 @@ class Node(Model):
     public_site = Unicode(validator=gltextv)
     hidden_service = Unicode()
     email = Unicode()
-    languages_supported = Pickle()
-    languages_enabled = Pickle()
     salt = Unicode()
     receipt_salt = Unicode()
     password = Unicode()
     last_update = DateTime()
     database_version = Int()
+
+    languages_supported = Pickle()
+    languages_enabled = Pickle()
+    default_language = Unicode()
 
     # localized string
     description = Pickle(validator=gllocalv)
@@ -405,8 +407,8 @@ class Node(Model):
 
     exception_email = Unicode()
 
-    unicode_keys = ['name', 'public_site',
-                    'email', 'hidden_service', 'exception_email' ]
+    unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
+                    'exception_email', 'default_language' ]
     int_keys = [ 'stats_update_time', 'maximum_namesize', 'maximum_descsize',
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',

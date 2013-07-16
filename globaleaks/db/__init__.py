@@ -53,15 +53,22 @@ def initialize_node(store, results, only_node, email_templates):
 
     # Those fields are sets as default in order to show to the Admin the various 'variables'
     # used in the template.
-    notification.tip_template = { GLSetting.default_language: email_templates['tip'] }
-    notification.tip_mail_title = { GLSetting.default_language: "From %ContextName% a new Tip in %EventTime%" }
-    notification.file_template = { GLSetting.default_language: email_templates['file'] }
-    notification.file_mail_title = { GLSetting.default_language: "From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)" }
-    notification.comment_template = { GLSetting.default_language: email_templates['comment'] }
-    notification.comment_mail_title = { GLSetting.default_language: "From %ContextName% a new comment in %EventTime%" }
-
-    notification.activation_template = { GLSetting.default_language: "*Not Yet implemented*" }
-    notification.activation_mail_title = { GLSetting.default_language: "**Not Yet implemented" }
+    notification.tip_template = { GLSetting.memory_copy.default_language:
+                                  email_templates['tip'] }
+    notification.tip_mail_title = { GLSetting.memory_copy.default_language:
+                                    "From %ContextName% a new Tip in %EventTime%" }
+    notification.file_template = { GLSetting.memory_copy.default_language:
+                                   email_templates['file'] }
+    notification.file_mail_title = { GLSetting.memory_copy.default_language:
+                                     "From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)" }
+    notification.comment_template = { GLSetting.memory_copy.default_language:
+                                      email_templates['comment'] }
+    notification.comment_mail_title = { GLSetting.memory_copy.default_language:
+                                        "From %ContextName% a new comment in %EventTime%" }
+    notification.activation_template = { GLSetting.memory_copy.default_language:
+                                         "*Not Yet implemented*" }
+    notification.activation_mail_title = { GLSetting.memory_copy.default_language:
+                                           "**Not Yet implemented" }
 
     store.add(notification)
 
@@ -111,8 +118,10 @@ def create_tables(create_node=True):
 
         only_node = {
             'name':  u"MissingConfLeaks",
-            'description':  dict({ GLSetting.default_language: u"This is the description of your node. PLEASE CHANGE ME." }),
-            'presentation':  dict({ GLSetting.default_language: u"®Welcome®message®" }),
+            'description':  dict({ GLSetting.memory_copy.default_language:
+                                       u"This is the description of your node. PLEASE CHANGE ME." }),
+            'presentation':  dict({ GLSetting.memory_copy.default_language :
+                                        u"®Welcome®message®" }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"email@dumnmy.net",
@@ -128,6 +137,7 @@ def create_tables(create_node=True):
             'tor2web_receiver' : GLSetting.defaults.tor2web_receiver,
             'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
             'exception_email' : GLSetting.defaults.exception_email,
+            'default_language' : GLSetting.memory_copy.default_language,
         }
 
         email_templates = {}
@@ -237,6 +247,7 @@ def import_memory_variables(store):
     GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 
     GLSetting.memory_copy.exception_email = node.exception_email
+    GLSetting.memory_copy.default_language = node.default_language
 
     # Email settings are copyed because they are used when
     notif = store.find(models.Notification).one()

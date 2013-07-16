@@ -17,7 +17,7 @@ from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
 from globaleaks.security import change_password, gpg_options_parse
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
-def receiver_serialize_receiver(receiver, language=GLSetting.default_language):
+def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
@@ -50,7 +50,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.default_language):
     return receiver_dict
 
 @transact
-def get_receiver_settings(store, user_id, language=GLSetting.default_language):
+def get_receiver_settings(store, user_id, language=GLSetting.memory_copy.default_language):
     receiver = store.find(Receiver, Receiver.id== unicode(user_id)).one()
 
     if not receiver:
@@ -59,7 +59,7 @@ def get_receiver_settings(store, user_id, language=GLSetting.default_language):
     return receiver_serialize_receiver(receiver, language)
 
 @transact
-def update_receiver_settings(store, user_id, request, language=GLSetting.default_language):
+def update_receiver_settings(store, user_id, request, language=GLSetting.memory_copy.default_language):
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
     receiver.description[language] = request.get('description')
 

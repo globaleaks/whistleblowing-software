@@ -50,7 +50,7 @@ class MailNotification(Notification):
 
     def _iterkeywords(self, template, keywords):
         if isinstance(template, dict):
-            partial_template = template[GLSetting.default_language]
+            partial_template = template[GLSetting.memory_copy.default_language]
         else:
             partial_template = template
             # this is wrong!

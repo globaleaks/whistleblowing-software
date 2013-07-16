@@ -411,8 +411,8 @@ def l10n(var, language):
         return u''
     if language in var:
         return var[language]
-    elif GLSetting.default_language in var:
-        return var[GLSetting.default_language]
+    elif GLSetting.memory_copy.default_language in var:
+        return var[GLSetting.memory_copy.default_language]
     else:
         return u''
 
