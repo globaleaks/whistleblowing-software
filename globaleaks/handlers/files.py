@@ -9,7 +9,7 @@
 from __future__ import with_statement
 import time
 
-from twisted.internet import fdesc
+from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import os
 
@@ -91,12 +91,12 @@ def dump_file_fs(uploaded_file):
               (uploaded_file['body_len'], uploaded_file['filename'].encode('utf-8')))
 
     with open(filelocation, 'w+') as fd:
-        fdesc.setNonBlocking(fd.fileno())
-        data = uploaded_file['body'].read(4000) # 4kb
+        uploaded_file['body'].seek(0, 0)
+        data = uploaded_file['body'].read() # 4kb
+        total_length = 0
         while data != "":
-            if not fdesc.writeToFD(fd.fileno(), data):
-                log.debug("Non blocking file has reported an issue")
-                raise errors.InternalServerError("buffer not available")
+            total_length = total_length + len(data)
+            os.write(fd.fileno(), data)
             data = uploaded_file['body'].read(4000) # 4kb
 
     return saved_name
@@ -160,7 +160,7 @@ class FileHandler(BaseHandler):
         try:
             # First: dump the file in the filesystem,
             # and exception raised here would prevent the InternalFile recordings
-            filepath = dump_file_fs(uploaded_file)
+            filepath = yield threads.deferToThread(dump_file_fs, uploaded_file)
         except Exception as excep:
             log.err("Unable to save a file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
