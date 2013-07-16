@@ -15,7 +15,7 @@ from globaleaks.handlers.authentication import transport_security_check
 from globaleaks import models
 
 @transact
-def anon_serialize_node(store, language=GLSetting.default_language):
+def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
     node = store.find(models.Node).one()
 
     # Contexts and Receivers relationship
@@ -29,6 +29,7 @@ def anon_serialize_node(store, language=GLSetting.default_language):
       'email': unicode(node.email),
       'languages_enabled': node.languages_enabled,
       'languages_supported': node.languages_supported,
+      'default_language' : node.default_language,
       'configured': True if associated else False,
       # extended settings info:
       'maximum_namesize': node.maximum_namesize,
@@ -46,7 +47,7 @@ def anon_serialize_node(store, language=GLSetting.default_language):
 
     return node_dict
 
-def anon_serialize_context(context, language=GLSetting.default_language):
+def anon_serialize_context(context, language=GLSetting.memory_copy.default_language):
     """
     @param context: a valid Storm object
     @return: a dict describing the contexts available for submission,
@@ -76,7 +77,6 @@ def anon_serialize_context(context, language=GLSetting.default_language):
     })
 
     context_dict['name'] = l10n(context.name, language)
-
     context_dict['description'] = l10n(context.description, language)
 
     if context.fields:
@@ -84,11 +84,10 @@ def anon_serialize_context(context, language=GLSetting.default_language):
     else: 
         context_dict['fields'] = []
 
-
     return context_dict
 
 
-def anon_serialize_receiver(receiver, language=GLSetting.default_language):
+def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     """
     @param receiver: a valid Storm object
     @return: a dict describing the receivers available in the node

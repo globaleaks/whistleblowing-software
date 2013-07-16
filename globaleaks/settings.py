@@ -127,8 +127,6 @@ class GLSettingsClass:
         self.notification_minutes_delta = 2 # runner.py function expect minutes
         self.delivery_seconds_delta = 30 # runner.py function expect seconds
 
-        self.default_language = 'en'
-
         self.defaults = OD()
         # Default values, used to initialize DB at the first start,
         # or whenever the value is not supply by client.
@@ -166,6 +164,7 @@ class GLSettingsClass:
         self.memory_copy.tor2web_unauth = self.defaults.tor2web_unauth
         self.memory_copy.exception_email = self.defaults.exception_email
         # updated by globaleaks/db/__init__.import_memory_variables
+        self.memory_copy.default_language = 'en'
         self.memory_copy.notif_server = None
         self.memory_copy.notif_port = None
         self.memory_copy.notif_username = None

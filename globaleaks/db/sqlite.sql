@@ -90,6 +90,7 @@ CREATE TABLE node (
     id VARCHAR NOT NULL,
     languages_enabled BLOB NOT NULL,
     languages_supported BLOB NOT NULL,
+    default_language VARCHAR NOT NULL,
     name VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
     salt VARCHAR NOT NULL,

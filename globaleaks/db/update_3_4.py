@@ -36,13 +36,14 @@ class Replacer34(TableReplacer):
 
     def migrate_Node(self):
 
-        print "%s Node migration assistant (presentation)" % self.std_fancy
+        print "%s Node migration assistant (presentation, default_language)" % self.std_fancy
 
         old_node = self.store_old.find(Node_version_3).one()
         new_node = Node()
 
         # version 4 new entries!
         new_node.presentation = dict({ "en" : "Welcome @ %s" % old_node.name })
+        new_node.default_language = 'en'
 
         new_node.id = old_node.id
         new_node.name = old_node.name

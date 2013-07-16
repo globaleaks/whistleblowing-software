@@ -299,6 +299,7 @@ class MockDict():
             'stats_update_time':  2, # hours,
             'languages_supported':  [ ], # It's ignored, but expect a list
             'languages_enabled':  [ "it" , "en" ],
+            'default_language': 'en',
             'password' : '',
             'old_password' : '',
             'salt': 'OMG!, the Rains of Castamere ;( ;(',

@@ -200,7 +200,7 @@ def force_schedule():
 
 
 @transact
-def create_submission(store, request, finalize, language=GLSetting.default_language):
+def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
 
     if not context:
@@ -241,7 +241,7 @@ def create_submission(store, request, finalize, language=GLSetting.default_langu
     return submission_dict
 
 @transact
-def update_submission(store, id, request, finalize, language=GLSetting.default_language):
+def update_submission(store, id, request, finalize, language=GLSetting.memory_copy.default_language):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
     if not submission:

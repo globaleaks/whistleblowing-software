@@ -19,7 +19,7 @@ from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
-def admin_serialize_node(node, language=GLSetting.default_language):
+def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
     response = {
         "name": node.name,
         "presentation": node.presentation,
@@ -32,6 +32,7 @@ def admin_serialize_node(node, language=GLSetting.default_language):
         "version": GLSetting.version_string,
         "languages_supported": node.languages_supported,
         "languages_enabled": node.languages_enabled,
+        "default_language" : node.default_language,
         'maximum_filesize': node.maximum_filesize,
         'maximum_namesize': node.maximum_namesize,
         'maximum_descsize': node.maximum_descsize,
@@ -49,7 +50,7 @@ def admin_serialize_node(node, language=GLSetting.default_language):
 
     return response
 
-def admin_serialize_context(context, language=GLSetting.default_language):
+def admin_serialize_context(context, language=GLSetting.memory_copy.default_language):
     context_dict = {
         "context_gus": context.id,
         "creation_date": utils.pretty_date_time(context.creation_date),
@@ -76,7 +77,7 @@ def admin_serialize_context(context, language=GLSetting.default_language):
 
     return context_dict
 
-def admin_serialize_receiver(receiver, language=GLSetting.default_language):
+def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
@@ -111,11 +112,11 @@ def admin_serialize_receiver(receiver, language=GLSetting.default_language):
 
 
 @transact
-def get_node(store, language=GLSetting.default_language):
+def get_node(store, language=GLSetting.memory_copy.default_language):
     return admin_serialize_node(store.find(Node).one(), language)
 
 @transact
-def update_node(store, request, language=GLSetting.default_language):
+def update_node(store, request, language=GLSetting.memory_copy.default_language):
     """
     Update the node, setting the last update time on it.
 
@@ -156,8 +157,11 @@ def update_node(store, request, language=GLSetting.default_language):
         if lang_code in LANGUAGES_SUPPORTED_CODES:
             node.languages_enabled.append(lang_code)
         else:
-            raise errors.InvalidInputFormat("Invalid lang code: %s" % lang_code)
-    
+            raise errors.InvalidInputFormat("Invalid lang code enabled: %s" % lang_code)
+
+    if not request['default_language'] in LANGUAGES_SUPPORTED_CODES:
+        raise errors.InvalidInputFormat("Invalid lang code as default")
+
     # name, description tor2web boolean value are acquired here
     node.update(request) 
 
@@ -166,7 +170,7 @@ def update_node(store, request, language=GLSetting.default_language):
     return admin_serialize_node(node, language)
 
 @transact
-def get_context_list(store, language=GLSetting.default_language):
+def get_context_list(store, language=GLSetting.memory_copy.default_language):
     """
     Returns:
         (dict) the current context list serialized.
@@ -220,7 +224,7 @@ def acquire_context_timetolive(request):
 
 
 @transact
-def create_context(store, request, language=GLSetting.default_language):
+def create_context(store, request, language=GLSetting.memory_copy.default_language):
     """
     Creates a new context from the request of a client.
 
@@ -296,7 +300,7 @@ def create_context(store, request, language=GLSetting.default_language):
     return admin_serialize_context(context, language)
 
 @transact
-def get_context(store, context_gus, language=GLSetting.default_language):
+def get_context(store, context_gus, language=GLSetting.memory_copy.default_language):
     """
     Returns:
         (dict) the currently configured node.
@@ -310,7 +314,7 @@ def get_context(store, context_gus, language=GLSetting.default_language):
     return admin_serialize_context(context, language)
 
 @transact
-def update_context(store, context_gus, request, language=GLSetting.default_language):
+def update_context(store, context_gus, request, language=GLSetting.memory_copy.default_language):
     """
     Updates the specified context. If the key receivers is specified we remove
     the current receivers of the Context and reset set it to the new specified
@@ -385,7 +389,7 @@ def delete_context(store, context_gus):
 
 
 @transact
-def get_receiver_list(store, language=GLSetting.default_language):
+def get_receiver_list(store, language=GLSetting.memory_copy.default_language):
     """
     Returns:
         (list) the list of receivers
@@ -416,7 +420,7 @@ def create_random_receiver_portrait(receiver_uuid):
 
 
 @transact
-def create_receiver(store, request, language=GLSetting.default_language):
+def create_receiver(store, request, language=GLSetting.memory_copy.default_language):
     """
     Creates a new receiver.
     Returns:
@@ -471,7 +475,7 @@ def create_receiver(store, request, language=GLSetting.default_language):
 
 
 @transact
-def get_receiver(store, id, language=GLSetting.default_language):
+def get_receiver(store, id, language=GLSetting.memory_copy.default_language):
     """
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
     not exist.
@@ -489,7 +493,7 @@ def get_receiver(store, id, language=GLSetting.default_language):
 
 
 @transact
-def update_receiver(store, id, request, language=GLSetting.default_language):
+def update_receiver(store, id, request, language=GLSetting.memory_copy.default_language):
     """
     Updates the specified receiver with the details.
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
@@ -804,7 +808,7 @@ class ReceiverInstance(BaseHandler):
 
 # Notification section:
 
-def admin_serialize_notification(notif, language=GLSetting.default_language):
+def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_language):
     notification_dict = {
         'server': notif.server if notif.server else u"",
         'port': notif.port if notif.port else u"",
@@ -821,7 +825,7 @@ def admin_serialize_notification(notif, language=GLSetting.default_language):
     return notification_dict
 
 @transact
-def get_notification(store, language=GLSetting.default_language):
+def get_notification(store, language=GLSetting.memory_copy.default_language):
     try:
         notif = store.find(Notification).one()
     except Exception as excep:
@@ -831,7 +835,7 @@ def get_notification(store, language=GLSetting.default_language):
     return admin_serialize_notification(notif, language)
 
 @transact
-def update_notification(store, request, language=GLSetting.default_language):
+def update_notification(store, request, language=GLSetting.memory_copy.default_language):
 
     try:
         notif = store.find(Notification).one()
