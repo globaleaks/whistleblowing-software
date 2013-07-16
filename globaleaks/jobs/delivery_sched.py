@@ -16,9 +16,11 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
-                              ReceiverFile
+                              ReceiverFile, Receiver
 from globaleaks.settings import transact, GLSetting
 from globaleaks.utils import get_file_checksum, log, pretty_date_time
+from globaleaks.security import GLBGPG
+from globaleaks.handlers.admin import admin_serialize_receiver
 
 __all__ = ['APSDelivery']
 
@@ -92,8 +94,34 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile.receiver_id = receiver.id
             receiverfile.internalfile_id = ifile.id
             receiverfile.internaltip_id = ifile.internaltip.id
-            # Is the same until end-to-end crypto is not supported
-            receiverfile.file_path = ifile.file_path
+
+            # the lines below are copyed / tested in test_gpg.py
+            if receiver.gpg_key_status == Receiver._gpg_types[1] and receiver.gpg_enable_files:
+                try:
+                    received_desc = admin_serialize_receiver(receiver)
+                    gpoj = GLBGPG(received_desc)
+
+                    if not gpoj.validate_key(received_desc['gpg_key_armor']):
+                        raise Exception("Unable to validate key")
+
+                    ifile_abs = os.path.join(GLSetting.submission_path, ifile.file_path)
+                    with file(ifile_abs, "r") as f:
+                        encrypted_file_path = gpoj.encrypt_file(ifile_abs, f, GLSetting.submission_path)
+                    gpoj.destroy_environment()
+
+                    log.debug("Generated encrypted version of %s for %s in %s" % (
+                        ifile.name, receiver.username, encrypted_file_path ))
+
+                    receiverfile.file_path = encrypted_file_path
+                except Exception as excep:
+                    log.err("Error when encrypting %s for %s: %s" % (
+                        ifile.name, receiver.username, str(excep) ))
+                    # In the failure case, fallback in plain text, or what ?
+                    # I say fallback has to be an option but not be the default,
+                    # or would act as a protocol downgrade attack vector.
+            else:
+                receiverfile.file_path = ifile.file_path
+
             receiverfile.mark = ReceiverFile._marker[0] # not notified
 
             store.add(receiverfile)
