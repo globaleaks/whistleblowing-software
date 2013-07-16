@@ -107,7 +107,7 @@ def create_tables(create_node=True):
     deferred = create_tables_transaction()
     if create_node:
 
-        log.debug("Node initialization with dummy values")
+        log.debug("Node initialization with defaults values")
 
         only_node = {
             'name':  u"MissingConfLeaks",
@@ -238,4 +238,12 @@ def import_memory_variables(store):
 
     GLSetting.memory_copy.exception_email = node.exception_email
 
+    # Email settings are copyed because they are used when
+    notif = store.find(models.Notification).one()
+
+    GLSetting.memory_copy.notif_server = notif.server
+    GLSetting.memory_copy.notif_port = notif.port
+    GLSetting.memory_copy.notif_password = notif.password
+    GLSetting.memory_copy.notif_username = notif.username
+    GLSetting.memory_copy.notif_security = notif.security
 

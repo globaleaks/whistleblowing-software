@@ -16,7 +16,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security, models
 from globaleaks.utils import log, l10n
 from globaleaks.db import import_memory_variables
-from globaleaks.security import gpg_options_manage
+from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
 def admin_serialize_node(node, language=GLSetting.default_language):
@@ -449,7 +449,7 @@ def create_receiver(store, request, language=GLSetting.default_language):
     receiver.tags = request['tags']
 
     # The various options related in manage GPG keys are used here.
-    gpg_options_manage(receiver, request)
+    gpg_options_parse(receiver, request)
 
     log.debug("Creating receiver %s" % (receiver.username))
 
@@ -523,7 +523,7 @@ def update_receiver(store, id, request, language=GLSetting.default_language):
     receiver.tags = request['tags']
 
     # The various options related in manage GPG keys are used here.
-    gpg_options_manage(receiver, request)
+    gpg_options_parse(receiver, request)
 
     if len(request['password']):
         security.check_password_format(request['password'])
@@ -891,6 +891,9 @@ class NotificationInstance(BaseHandler):
             requests.adminNotificationDesc)
 
         response = yield update_notification(request, self.request.language)
+
+        # align the memory variables with the new updated data
+        yield import_memory_variables()
 
         self.set_status(202) # Updated
         self.finish(response)
