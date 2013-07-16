@@ -182,6 +182,10 @@ GLSetting.parser.add_option("-C", "--glc-path", type='string',
             "(must be used together with --devel-mode)",
     dest="glc_path", default=GLSetting.glc_path)
 
+GLSetting.parser.add_option("-R", "--ramdisk", type="string",
+    help="optionally specify a path used by GnuGP operations [default: absent]",
+    dest="ramdisk")
+
 GLSetting.parser.add_option("-v", "--version", action='store_true',
     help="show the version of the software (spoiler: %s)" % GLSetting.version_string,
     dest="version")

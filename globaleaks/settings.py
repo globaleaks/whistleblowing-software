@@ -104,6 +104,7 @@ class GLSettingsClass:
         self.working_path = '/var/globaleaks'
         self.static_source = '/usr/share/globaleaks/glbackend'
         self.glclient_path = '/usr/share/globaleaks/glclient'
+        self.ramdisk_path = None
         self.eval_paths()
 
         # list of plugins available in the software
@@ -211,7 +212,6 @@ class GLSettingsClass:
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
         self.gldb_path = os.path.abspath(os.path.join(self.working_path, 'db'))
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
-        self.gpgroot = os.path.abspath(os.path.join(self.working_path, 'gnupg'))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
@@ -222,6 +222,13 @@ class GLSettingsClass:
         self.file_versioned_db = 'sqlite:' + \
                                  os.path.abspath(os.path.join(self.gldb_path,
                                      'glbackend-%d.db' % DATABASE_VERSION))
+
+        # gnupg path is used by GPG as temporary directory with keyring and files encryption.
+        if self.ramdisk_path:
+            self.gpgroot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
+        else:
+            self.gpgroot = os.path.abspath(os.path.join(self.working_path, 'gnupg'))
+
 
     def set_devel_mode(self, glcp=None):
         self.devel_mode = True
@@ -267,6 +274,9 @@ class GLSettingsClass:
         if not self.validate_port(self.cmdline_options.socks_port):
             quit(-1)
         self.socks_port = self.cmdline_options.socks_port
+
+        if self.cmdline_options.ramdisk:
+            self.ramdisk_path = self.cmdline_options.ramdisk
 
         if self.tor_socks_enable:
             # convert socks addr in IP and perform a test connection
