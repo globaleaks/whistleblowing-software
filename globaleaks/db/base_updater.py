@@ -55,42 +55,42 @@ class TableReplacer:
     def epilogue(self):
         pass
 
-    ## ------------------------------------------------
-    ## WARNING -this shit require almost a wiki page :D
-    def get_right_model_version(self, table_name):
+    def get_right_model(self, table_name, version):
         """
         I'm sad of this piece of code, but having an ORM that need the
         intermediate version of the Models, bring this
         """
-        if table_name == "Node" and self.start_ver < 1:
-            from globaleaks.db.update_1_2 import Node_version_1
-            return Node_version_1
-        elif table_name == "Node" and self.start_ver < 2:
-            from globaleaks.db.update_3_4 import Node_version_3
-            return Node_version_3
-        elif table_name == "Notification" and self.start_ver < 3:
-            from globaleaks.db.update_1_2 import Notification_version_1
-            return Notification_version_1
-        elif table_name == "Context" and self.start_ver < 3:
-            from globaleaks.db.update_1_2 import Context_version_1
-            return Context_version_1
-        elif table_name == "Receiver" and self.start_ver < 3:
-            from globaleaks.db.update_1_2 import Receiver_version_1
-            return Receiver_version_1
-        elif self.start_ver < 4:
-            return getattr(models, table_name)
-        else:
-            # wrost case scenario:
-            print "Not implemented usage of get_right_model_version %s (%s %d)" % (
+        from globaleaks.db.update_0_1 import Receiver_version_0
+        from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
+        from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
+
+        table_history = {
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, models.ReceiverFile ],
+            'Context' : [ Context_version_1, None, models.Context, None, None ],
+            'Node' : [ Node_version_1, Node_version_3, None, None, models.Node ],
+            'Receiver': [ Receiver_version_0, Receiver_version_1, models.Receiver, None, None ],
+            'Notification': [ Notification_version_1, None, models.Notification, None, None ],
+        }
+
+        if not table_history.has_key(table_name):
+            print "Not implemented usage of get_right_model %s (%s %d)" % (
                 __file__, table_name, self.start_ver)
             raise NotImplementedError
 
+        histcounter = 0
+        last_attr = None
 
-    ## ------------------------------------------------
-    ## WARNING -this shit require almost a wiki page :D
+        while histcounter <= version:
+            if table_history[table_name][histcounter]:
+                last_attr = table_history[table_name][histcounter]
+            histcounter += 1
+
+        assert last_attr
+        return last_attr
+
 
     def get_right_sql_version(self, query):
-        if query.startswith('\n\nCREATE TABLE node (') and self.start_ver < 1:
+        if query.startswith('\n\nCREATE TABLE node (') and self.start_ver == 0 :
             return 'CREATE TABLE node (database_version INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
                    'description VARCHAR NOT NULL,email VARCHAR NOT NULL,hidden_service VARCHAR NOT NULL,id VARCHAR NOT NULL,'\
                    'languages BLOB NOT NULL, name VARCHAR NOT NULL, password VARCHAR NOT NULL, salt VARCHAR NOT NULL,'\
@@ -99,7 +99,7 @@ class TableReplacer:
                    'maximum_textsize INTEGER NOT NULL,maximum_filesize INTEGER NOT NULL,tor2web_admin INTEGER NOT NULL,'\
                    'tor2web_submission INTEGER NOT NULL,tor2web_tip INTEGER NOT NULL,tor2web_receiver INTEGER NOT NULL,'\
                    'tor2web_unauth INTEGER NOT NULL,exception_email VARCHAR NOT NULL,PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE node (') and self.start_ver < 2:
+        elif query.startswith('\n\nCREATE TABLE node (') and self.start_ver < 3:
             return 'CREATE TABLE node ( database_version INTEGER NOT NULL, creation_date VARCHAR NOT NULL,'\
                    'description BLOB NOT NULL, email VARCHAR NOT NULL, hidden_service VARCHAR NOT NULL,'\
                    'id VARCHAR NOT NULL, languages_enabled BLOB NOT NULL, languages_supported BLOB NOT NULL,'\
@@ -109,7 +109,7 @@ class TableReplacer:
                    'maximum_textsize INTEGER NOT NULL, maximum_filesize INTEGER NOT NULL, tor2web_admin INTEGER NOT NULL,'\
                    'tor2web_submission INTEGER NOT NULL, tor2web_tip INTEGER NOT NULL, tor2web_receiver INTEGER NOT NULL,'\
                    'tor2web_unauth INTEGER NOT NULL, exception_email VARCHAR NOT NULL, PRIMARY KEY (id) )'
-        elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 3:
+        elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 2:
             return 'CREATE TABLE context (creation_date VARCHAR NOT NULL, description VARCHAR NOT NULL,'\
                    'escalation_threshold INTEGER,fields BLOB NOT NULL,file_max_download INTEGER NOT NULL,'\
                    'file_required INTEGER NOT NULL,id VARCHAR NOT NULL,last_update VARCHAR,'\
@@ -117,7 +117,7 @@ class TableReplacer:
                    'tip_timetolive INTEGER NOT NULL,receipt_regexp VARCHAR NOT NULL,receipt_description VARCHAR NOT NULL,'\
                    'submission_introduction VARCHAR NOT NULL, submission_disclaimer VARCHAR NOT NULL,'\
                    'submission_timetolive INTEGER NOT NULL, tags BLOB, PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver < 3:
+        elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver < 2:
             return 'CREATE TABLE receiver (can_delete_submission INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
                    'description VARCHAR NOT NULL,id VARCHAR NOT NULL,last_access VARCHAR,last_update VARCHAR,'\
                    'name VARCHAR NOT NULL,tags BLOB,comment_notification INTEGER NOT NULL,'\
@@ -133,6 +133,15 @@ class TableReplacer:
                    'file_mail_title VARCHAR,comment_template VARCHAR,comment_mail_title VARCHAR,'\
                    'activation_template VARCHAR,activation_mail_title VARCHAR,'\
                    'id VARCHAR NOT NULL,PRIMARY KEY (id))'
+        elif query.startswith('\n\nCREATE TABLE receiverfile (') and self.start_ver < 3:
+            return "CREATE TABLE receiverfile ( file_path VARCHAR, downloads INTEGER NOT NULL,"\
+                   "creation_date VARCHAR NOT NULL, last_access VARCHAR, id VARCHAR NOT NULL,"\
+                   "internalfile_id VARCHAR NOT NULL, receiver_id VARCHAR NOT NULL, internaltip_id VARCHAR NOT NULL,"\
+                   "mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled')),"\
+                   "FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,"\
+                   "FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,"\
+                   "FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,"\
+                   "PRIMARY KEY (id))"
         return False
 
     ## ------------------------------------------------
@@ -140,13 +149,13 @@ class TableReplacer:
 
     def migrate_Context(self):
         print "%s default Context migration assistant: #%d" % (
-            self.debug_info, self.store_old.find(self.get_right_model_version("Context")).count())
+            self.debug_info, self.store_old.find(self.get_right_model("Context", self.start_ver)).count())
 
-        old_contexts = self.store_old.find(self.get_right_model_version("Context"))
+        old_contexts = self.store_old.find(self.get_right_model("Context", self.start_ver))
 
         for oc in old_contexts:
 
-            new_obj = self.get_right_model_version("Context")()
+            new_obj = self.get_right_model("Context", self.start_ver + 1)()
             new_obj.id = oc.id
 
             new_obj.creation_date = oc.creation_date
@@ -179,8 +188,8 @@ class TableReplacer:
     def migrate_Node(self):
         print "%s default Node migration assistant" % self.debug_info
 
-        new_obj = self.get_right_model_version("Node")()
-        on = self.store_old.find(self.get_right_model_version("Node")).one()
+        new_obj = self.get_right_model("Node", self.start_ver)()
+        on = self.store_old.find(self.get_right_model("Node", self.start_ver + 1)).one()
 
         new_obj.description = on.description
         new_obj.name = on.name
@@ -315,13 +324,13 @@ class TableReplacer:
 
     def migrate_Receiver(self):
         print "%s default Receivers migration assistant: #%d" % (
-            self.debug_info, self.store_old.find(models.Receiver).count())
+            self.debug_info, self.store_old.find(self.get_right_model("Receiver", self.start_ver)).count())
 
-        old_receivers = self.store_old.find(self.get_right_model_version("Receiver"))
+        old_receivers = self.store_old.find(self.get_right_model("Receiver", self.start_ver))
 
         for orcvr in old_receivers:
 
-            new_obj = self.get_right_model_version("Receiver")()
+            new_obj = self.get_right_model("Receiver", self.start_ver +1)()
 
             new_obj.username = orcvr.username
             new_obj.id = orcvr.id
@@ -354,7 +363,7 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_InternalFile(self):
-        print "%s default InternalFiles migration assistant: #%d" % (
+        print "%s default InternalFile migration assistant: #%d" % (
             self.debug_info, self.store_old.find(models.InternalFile).count() )
 
         old_internalfiles = self.store_old.find(models.InternalFile)
@@ -379,13 +388,13 @@ class TableReplacer:
 
     def migrate_ReceiverFile(self):
         print "%s default ReceiverFile migration assistant: #%d" % (
-            self.debug_info, self.store_old.find(models.ReceiverFile).count() )
+            self.debug_info, self.store_old.find(self.get_right_model("ReceiverFile", self.start_ver)).count() )
 
-        old_receiverfiles = self.store_old.find(models.ReceiverFile)
+        old_receiverfiles = self.store_old.find(self.get_right_model("ReceiverFile", self.start_ver))
 
         for orf in old_receiverfiles:
 
-            new_obj = models.ReceiverFile()
+            new_obj = self.get_right_model("ReceiverFile", self.start_ver + 1)()
 
             new_obj.id = orf.id
             new_obj.internalfile_id = orf.internalfile_id
@@ -405,11 +414,11 @@ class TableReplacer:
 
 
     def migrate_Notification(self):
-        print "%s default Notificationb migration assistant" % self.debug_info
+        print "%s default Notification migration assistant" % self.debug_info
 
-        on = self.store_old.find(self.get_right_model_version("Notification")).one()
+        on = self.store_old.find(self.get_right_model("Notification", self.start_ver)).one()
 
-        new_obj = self.get_right_model_version("Notification")()
+        new_obj = self.get_right_model("Notification", self.start_ver +1)()
 
         new_obj.id = on.id
         new_obj.creation_date = on.creation_date
@@ -430,7 +439,7 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_ReceiverContext(self):
-        print "%s Migrate ReceiverContext reference tables: #%d" % (
+        print "%s default ReceiverContext migration of reference tables: #%d" % (
             self.debug_info, self.store_old.find(models.ReceiverContext).count() )
 
         rc_relship = self.store_old.find(models.ReceiverContext)
@@ -443,7 +452,7 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_ReceiverInternalTip(self):
-        print "%s Migrate ReceiverInternalTip reference tables: #%d" % (
+        print "%s default ReceiverInternalTip migration of reference tables: #%d" % (
             self.debug_info, self.store_old.find(models.ReceiverInternalTip).count() )
 
         ri_relship = self.store_old.find(models.ReceiverInternalTip)

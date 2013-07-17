@@ -102,7 +102,7 @@ class Replacer12(TableReplacer):
         print "%s Node migration assistant, now you can configure languages" % self.std_fancy
 
         old_node = self.store_old.find(Node_version_1).one()
-        new_node = Node()
+        new_node = self.get_right_model("Node", 2)()
 
         new_node.id = old_node.id
         new_node.name = old_node.name
@@ -143,7 +143,7 @@ class Replacer12(TableReplacer):
 
         for ocntx in old_contexts:
 
-            new_obj = Context()
+            new_obj = self.get_right_model("Context", 2)()
 
             new_fields = []
             for single_lf in ocntx.fields:
@@ -199,7 +199,7 @@ class Replacer12(TableReplacer):
 
         for orcvr in old_receivers:
 
-            new_obj = Receiver()
+            new_obj = self.get_right_model("Receiver", 2)()
 
             new_obj.username = orcvr.username
             new_obj.id = orcvr.id
@@ -231,7 +231,7 @@ class Replacer12(TableReplacer):
         print "%s Notification migration assistant, extension with languages supports" % self.std_fancy
 
         old_notif= self.store_old.find(Notification_version_1).one()
-        new_notif= Notification()
+        new_notif= self.get_right_model("Notification", 2)()
 
         new_notif.id = old_notif.id
         new_notif.server = old_notif.server

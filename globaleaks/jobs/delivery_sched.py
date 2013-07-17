@@ -113,6 +113,8 @@ def receiver_file_align(store, filesdict, processdict):
                         ifile.name, receiver.username, encrypted_file_path ))
 
                     receiverfile.file_path = encrypted_file_path
+                    receiverfile.status = ReceiverFile._status_list[2] # encrypted
+
                 except Exception as excep:
                     log.err("Error when encrypting %s for %s: %s" % (
                         ifile.name, receiver.username, str(excep) ))
@@ -123,6 +125,7 @@ def receiver_file_align(store, filesdict, processdict):
                 receiverfile.file_path = ifile.file_path
 
             receiverfile.mark = ReceiverFile._marker[0] # not notified
+            receiverfile.status = ReceiverFile._status_list[1] # reference
 
             store.add(receiverfile)
             store.commit()
