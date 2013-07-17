@@ -319,6 +319,13 @@ class ReceiverFile(Model):
 
     mark = Unicode()
     _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled' ]
+
+    status = Unicode()
+    _status_list = [ u'cloned', u'reference', u'encrypted' ]
+    # cloned = file is copyed in the disk, receiverfile.file_path address to a copy
+    # reference = receiverfile.file_path reference internalfile.file_path
+    # encrypted = receiverfile.file_path is an encrypted file dedicated for the receiver
+
     ## NO *_keys = It's created without initializing dict
 
 

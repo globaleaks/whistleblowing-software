@@ -18,7 +18,7 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils import log, pretty_date_time
 from globaleaks.rest import errors
-from globaleaks import models
+from globaleaks.models import ReceiverFile, ReceiverTip, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.third_party import rstr
 
 
@@ -39,7 +39,7 @@ def serialize_file(internalfile):
 
 @transact
 def register_file_db(store, uploaded_file, filepath, internaltip_id):
-    internaltip = store.find(models.InternalTip, models.InternalTip.id == internaltip_id).one()
+    internaltip = store.find(InternalTip, InternalTip.id == internaltip_id).one()
 
     if not internaltip:
         log.err("File submission register in a submission that's no more")
@@ -48,11 +48,11 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
     original_fname = uploaded_file['filename']
 
     try:
-        new_file = models.InternalFile()
+        new_file = InternalFile()
 
         new_file.name = original_fname
         new_file.content_type = uploaded_file['content_type']
-        new_file.mark = models.InternalFile._marker[0]
+        new_file.mark = InternalFile._marker[0]
         new_file.size = uploaded_file['body_len']
         new_file.internaltip_id = unicode(internaltip_id)
         new_file.file_path = filepath
@@ -105,15 +105,14 @@ def dump_file_fs(uploaded_file):
 def get_tip_by_submission(store, id):
 
     try:
-        itip = store.find(models.InternalTip,
-                          models.InternalTip.id == unicode(id)).one()
+        itip = store.find(InternalTip, InternalTip.id == unicode(id)).one()
     except Exception as excep:
         log.err("get_tip_by_submission: Error in store.find: %s" % excep)
         raise errors.SubmissionGusNotFound
 
     if not itip:
         raise errors.SubmissionGusNotFound
-    elif itip.mark != models.InternalTip._marker[0]:
+    elif itip.mark != InternalTip._marker[0]:
         raise errors.SubmissionConcluded
     else:
         return itip.id
@@ -122,8 +121,8 @@ def get_tip_by_submission(store, id):
 def get_tip_by_wbtip(store, wb_tip_id):
 
     try:
-        wb_tip = store.find(models.WhistleblowerTip,
-                            models.WhistleblowerTip.id == wb_tip_id).one()
+        wb_tip = store.find(WhistleblowerTip,
+                            WhistleblowerTip.id == wb_tip_id).one()
     except Exception as excep:
         log.err("get_tip_by_wtipid (1) Error in store.find: %s" % excep)
         raise errors.SubmissionGusNotFound
@@ -132,8 +131,8 @@ def get_tip_by_wbtip(store, wb_tip_id):
         raise errors.InvalidTipAuthToken
 
     try:
-        itip = store.find(models.InternalTip,
-                          models.InternalTip.id == wb_tip.internaltip_id).one()
+        itip = store.find(InternalTip,
+                          InternalTip.id == wb_tip.internaltip_id).one()
     except Exception as excep:
         log.err("get_tip_by_wtipid (2) Error in store.find: %s" % excep)
         raise errors.SubmissionGusNotFound
@@ -227,10 +226,10 @@ def serialize_receiver_file(receiverfile, internalfile):
     file_desc = {
         'size' : internalfile.size,
         'content_type' : internalfile.content_type,
-        'name' : internalfile.name,
+        'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
         'creation_date': pretty_date_time(internalfile.creation_date),
         'downloads' : receiverfile.downloads,
-        'path' : internalfile.file_path if internalfile.file_path else receiverfile.file_path,
+        'path' : receiverfile.file_path,
         'sha2sum' : internalfile.sha2sum,
     }
     return file_desc
@@ -241,11 +240,11 @@ def download_file(store, tip_id, file_id):
     Auth temporary disabled, just Tip_id and File_id required
     """
 
-    receivertip = store.find(models.ReceiverTip, models.ReceiverTip.id == unicode(tip_id)).one()
+    receivertip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id)).one()
     if not receivertip:
         raise errors.TipGusNotFound
 
-    file = store.find(models.ReceiverFile, models.ReceiverFile.id == unicode(file_id)).one()
+    file = store.find(ReceiverFile, ReceiverFile.id == unicode(file_id)).one()
     if not file:
         raise errors.FileGusNotFound
 
