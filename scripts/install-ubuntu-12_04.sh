@@ -499,7 +499,10 @@ fi
 
 echo "Installing python-setuptools, python-software-properties, gcc, python-dev"
 DO "apt-get update -y" "0"
-DO "apt-get install python-pip python-setuptools python-software-properties gcc python-dev -y" "0"
+DO "apt-get install python-software-properties" "0"
+add-apt-repository -y 'deb http://de.archive.ubuntu.com/ubuntu/ precise universe'
+DO "apt-get update -y" "0"
+DO "apt-get install python-pip python-setuptools python-dev gcc -y" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
 DO "cd ${BUILD_DIR}/" "0"
@@ -562,7 +565,7 @@ if [ -d /data/globaleaks/deb ]; then
   DO "apt-get update -y" "0"
   DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew" "0"
 else
-  add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/' 
+  add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/'
   DO "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
   # TODO: This should be fixed, because executing this command
   # over DO() command escape the pipe character
