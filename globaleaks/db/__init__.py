@@ -121,7 +121,7 @@ def create_tables(create_node=True):
             'description':  dict({ GLSetting.memory_copy.default_language:
                                        u"This is the description of your node. PLEASE CHANGE ME." }),
             'presentation':  dict({ GLSetting.memory_copy.default_language :
-                                        u"®Welcome®message®" }),
+                                        u"Welcome to GlobaLeaks™" }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"email@dumnmy.net",
