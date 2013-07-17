@@ -1,5 +1,6 @@
 import re
 
+from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
@@ -81,13 +82,13 @@ class TestCleaning(TTip):
 
     @inlineCallbacks
     def emulate_file_upload(self, associated_submission_id):
-        relationship1 = files.dump_file_fs(self.dummyFile1)
+        relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
 
         self.registered_file1 = yield files.register_file_db(
             self.dummyFile1, relationship1, associated_submission_id,
         )
 
-        relationship2 = files.dump_file_fs(self.dummyFile2)
+        relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
 
         self.registered_file2 = yield files.register_file_db(
             self.dummyFile2, relationship2, associated_submission_id,
