@@ -45,7 +45,9 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     """
     rfile_dict = {
         'href' : unicode("/tip/" + receivertip_id + "/download/" + receiverfile.id),
-        'name' : unicode(internalfile.name),
+        # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
+        'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
+        'encrypted': True if receiverfile.status == ReceiverFile._status_list[2] else False,
         'sha2sum' : unicode(internalfile.sha2sum),
         'content_type' : unicode(internalfile.content_type),
         'creation_date' : unicode(pretty_date_time(internalfile.creation_date)),

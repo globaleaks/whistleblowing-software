@@ -95,13 +95,15 @@ class Replacer23(TableReplacer):
     def migrate_Context(self):
 
         print "%s Context migration assistant, extending : #%d" % (
-            self.std_fancy, self.store_old.find(Context).count() )
+            self.std_fancy, self.store_old.find(self.get_right_model("Context", 2)).count() )
 
-        old_contexts = self.store_old.find(Context)
+        # Remind: commonly here is searched for Context_version_$OLD, but in this rare case
+        # there is not a change in the Model (only in the content of a single field)
+        old_contexts = self.store_old.find(self.get_right_model("Context", 2))
 
         for ocntx in old_contexts:
 
-            new_obj = Context()
+            new_obj = self.get_right_model("Context", 3)()
 
             # the only conversion in this revision, its here:
             new_obj.fields = fields_conversion(ocntx.fields)
