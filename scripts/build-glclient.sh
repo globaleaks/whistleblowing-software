@@ -15,6 +15,7 @@ OPTIONS:
 EOF
 }
 
+AUTOYES=0
 while getopts “yhv:” OPTION
 do
   case $OPTION in
@@ -99,12 +100,11 @@ build_glclient()
     if test $TAG; then
       echo "Using a clean cloned GLClient directory"
       echo "Checking out $TAG (if existent, using master HEAD instead)"
-      git checkout $TAG || git checkout HEAD
-      GLCLIENT_REVISION=$TAG
-    else
-      GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
+      git checkout $TAG >& /dev/null || git checkout HEAD >& /dev/null
     fi
   fi
+
+  GLCLIENT_REVISION=`git rev-parse HEAD | cut -c 1-8`
 
   echo "Revision used: ${GLCLIENT_REVISION}"
 
@@ -137,16 +137,12 @@ build_glclient()
   shasum -a 224 ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
 }
 
-if [ $AUTOYES ]; then
+if [ $AUTOYES -eq 1 ]; then
   auto_env_setup
 else
   interactive_env_setup
 fi
 build_glclient
-
-if [ "${TRAVIS}" != "true" ]; then
-  cp ${GLC_BUILD}/glclient-* /data/websites/builds/GLClient/
-fi
 
 echo "[+] All done!"
 echo ""

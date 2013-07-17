@@ -17,7 +17,8 @@ EOF
 }
 
 SIGN=1
-while getopts “yhv:n” OPTION
+AUTOYES=0
+while getopts “hv:ny” OPTION
 do
   case $OPTION in
     h)
@@ -103,7 +104,7 @@ build_glbackend()
     if test $TAG; then
       echo "Using a clean cloned GLBackend directory"
       echo "Checking out $TAG (if existent, using master HEAD instead)"
-      git checkout $TAG || git checkout HEAD
+      git checkout $TAG >& /dev/null || git checkout HEAD >& /dev/null
     fi
   fi
 
@@ -140,7 +141,7 @@ build_glbackend()
   mv ${GLBACKEND_TMP}/dist ${GLB_BUILD}
 }
 
-if [ $AUTOYES ]; then
+if [ $AUTOYES -eq 1 ]; then
   auto_setup_env
 else
   interactive_setup_env
