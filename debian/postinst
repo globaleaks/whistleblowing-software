@@ -21,6 +21,7 @@ python -mcompileall `python -c "import os, globaleaks;print os.path.dirname(glob
 if [ ! -d /var/globaleaks/torhs ]; then
   mkdir -p /var/globaleaks/torhs/
   chown debian-tor:debian-tor /var/globaleaks/torhs/
+  chmod 700 /var/globaleaks/torhs
 fi
 
 if [ ! -f /etc/apparmor.d/usr.sbin.tor ]; then
