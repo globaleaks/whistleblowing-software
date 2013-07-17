@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Node, Model
+from globaleaks.models import Model, ReceiverFile
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
 class Node_version_3(Model):
@@ -32,6 +32,18 @@ class Node_version_3(Model):
     exception_email = Unicode()
 
 
+class ReceiverFile_version_3(Model):
+    __storm_table__ = 'receiverfile'
+
+    internaltip_id = Unicode()
+    internalfile_id = Unicode()
+    receiver_id = Unicode()
+    file_path = Unicode()
+    downloads = Int()
+    last_access = DateTime()
+    mark = Unicode()
+
+
 class Replacer34(TableReplacer):
 
     def migrate_Node(self):
@@ -39,7 +51,7 @@ class Replacer34(TableReplacer):
         print "%s Node migration assistant (presentation, default_language)" % self.std_fancy
 
         old_node = self.store_old.find(Node_version_3).one()
-        new_node = Node()
+        new_node = self.get_right_model("Node", 4)()
 
         # version 4 new entries!
         new_node.presentation = dict({ "en" : "Welcome @ %s" % old_node.name })
@@ -53,7 +65,6 @@ class Replacer34(TableReplacer):
         new_node.salt = old_node.salt
         new_node.receipt_salt = old_node.receipt_salt
         new_node.password = old_node.password
-        new_node.last_update = old_node.last_update
         new_node.database_version = 2
         new_node.stats_update_time = old_node.stats_update_time
         new_node.maximum_descsize = old_node.maximum_descsize
@@ -69,8 +80,38 @@ class Replacer34(TableReplacer):
         new_node.description = old_node.description
         new_node.languages_enabled = old_node.languages_enabled
         new_node.languages_supported = old_node.languages_supported
+        new_node.last_update = old_node.last_update
+        new_node.creation_date = old_node.creation_date
 
         self.store_new.add(new_node)
         self.store_new.commit()
 
+    def migrate_ReceiverFile(self):
 
+        assert ReceiverFile._status_list[0] == 'cloned'
+        assert ReceiverFile._status_list[1] == 'reference'
+        assert ReceiverFile._status_list[2] == 'encrypted'
+
+        print "%s ReceiverFile migration assistant, (supporting encrypted download): #%d" % (
+            self.std_fancy, self.store_old.find(ReceiverFile_version_3).count() )
+
+        old_rf = self.store_old.find(ReceiverFile_version_3)
+
+        for orf in old_rf:
+
+            new_obj = self.get_right_model("ReceiverFile", 4)()
+
+            # the default status is reference, before encryption is enabled
+            new_obj.status = ReceiverFile._status_list[1] # reference
+
+            new_obj.id = orf.id
+            new_obj.internaltip_id = orf.internaltip_id
+            new_obj.internalfile_id = orf.internalfile_id
+            new_obj.receiver_id = orf.receiver_id
+            new_obj.file_path = orf.file_path
+            new_obj.creation_date = orf.creation_date
+            new_obj.mark = orf.mark
+            new_obj.downloads = orf.downloads
+
+            self.store_new.add(new_obj)
+        self.store_new.commit()
