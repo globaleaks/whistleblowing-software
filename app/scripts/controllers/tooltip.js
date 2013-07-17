@@ -23,7 +23,8 @@ function($scope, $rootScope, Authentication, $location,
   $scope.logout = Authentication.logout;
 
   $scope.$watch("language", function(){
-    $cookies['language'] = $scope.language;
+    $.cookie('language', $scope.language);
+    $rootScope.selected_language = $scope.language;
     $route.reload();
   });
 
