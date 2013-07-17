@@ -57,6 +57,13 @@ build_custom_glclient()
   ( command -v git >/dev/null 2>&1 &&
     command -v node >/dev/null 2>&1 &&
     command -v npm >/dev/null 2>&1 ) || {
+    RELEASE="`lsb_release -c|cut -f 2`"
+    if [ $RELEASE != "precise" ]; then
+      echo "[+] You are not running Ubuntu 12.04 LTS"
+      echo "[!] You must install node on your own."
+      echo "See: https://github.com/joyent/node/wiki/Installation"
+      exit 1
+    fi
     echo "[+] Node JS does not appear to be installed."
     while true; do
       read -p "Should we install them? (y|n) " yn
