@@ -18,6 +18,7 @@ from globaleaks.utils import log, l10n
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
+from globaleaks.third_party import rstr
 
 def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
     response = {
@@ -50,7 +51,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
 
     return response
 
-def admin_serialize_context(context, language=GLSetting.memory_copy.default_language):
+def admin_serialize_context(context, receipt_output, language=GLSetting.memory_copy.default_language):
     context_dict = {
         "context_gus": context.id,
         "creation_date": utils.pretty_date_time(context.creation_date),
@@ -61,6 +62,7 @@ def admin_serialize_context(context, language=GLSetting.memory_copy.default_lang
         "escalation_threshold": context.escalation_threshold,
         "receivers": [],
         "receipt_regexp": context.receipt_regexp,
+        "receipt_example": receipt_output,
         "tags": context.tags if context.tags else [],
         "file_required": context.file_required,
         # tip expressed in day, submission in hours
@@ -179,7 +181,8 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
     context_list = []
 
     for context in contexts:
-        context_list.append(admin_serialize_context(context, language))
+        receipt_example = generate_example_receipt(context.receipt_regexp)
+        context_list.append(admin_serialize_context(context, receipt_example, language))
 
     return context_list
 
@@ -222,6 +225,22 @@ def acquire_context_timetolive(request):
 
     return (submission_ttl, tip_ttl)
 
+def generate_example_receipt(regexp):
+    """
+    @param regexp:
+    @return:
+
+    this function it's used to show to the Admin an example of the
+    receipt_regexp configured, and if an error happen, it's
+    works as validator.
+    """
+    try:
+        return_value_receipt = unicode( rstr.xeger(regexp) )
+    except Exception:
+        log.err("Invalid receipt regexp: %s" % regexp)
+        raise errors.InvalidReceiptRegexp
+
+    return return_value_receipt
 
 @transact
 def create_context(store, request, language=GLSetting.memory_copy.default_language):
@@ -272,7 +291,6 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
     # are performed only on the english language at the moment
 
     try:
-        # XXX this is the only insertion that *NEED* a GL-Language header
         context_name = request['name'][language]
     except Exception as excep:
         raise errors.InvalidInputFormat("Missing selected %s language in context creatione (name field)" % language)
@@ -280,6 +298,10 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
     if len(context_name) < 1:
         log.err("Invalid request: name is an empty string")
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
+
+    if len(context.receipt_regexp) < 4:
+        log.err("Fixing receipt regexp < 4 byte with fixme-[0-9]{13}-please")
+        context.receipt_regexp = u"fixme-[0-9]{13}-please"
 
     if context.escalation_threshold and context.selectable_receiver:
         log.err("Parameter conflict in context creation")
@@ -297,7 +319,8 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
 
     store.add(context)
 
-    return admin_serialize_context(context, language)
+    receipt_example = generate_example_receipt(context.receipt_regexp)
+    return admin_serialize_context(context, receipt_example, language)
 
 @transact
 def get_context(store, context_gus, language=GLSetting.memory_copy.default_language):
@@ -311,7 +334,8 @@ def get_context(store, context_gus, language=GLSetting.memory_copy.default_langu
         log.err("Requested invalid context")
         raise errors.ContextGusNotFound
 
-    return admin_serialize_context(context, language)
+    receipt_example = generate_example_receipt(context.receipt_regexp)
+    return admin_serialize_context(context, receipt_example, language)
 
 @transact
 def update_context(store, context_gus, request, language=GLSetting.memory_copy.default_language):
@@ -364,11 +388,16 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
         for idx, _ in enumerate(fields):
             request['fields'][lang][idx]['key'] = unicode(request['fields'][lang][idx]['name'])
 
+    if len(context.receipt_regexp) < 4:
+        log.err("Fixing receipt regexp < 4 byte with fixme-[0-9]{13}-please")
+        context.receipt_regexp = u"fixme-[0-9]{13}-please"
+
     context.fields = request['fields']
     context.last_update = utils.datetime_now()
     context.update(request)
-    
-    return admin_serialize_context(context, language)
+
+    receipt_example = generate_example_receipt(context.receipt_regexp)
+    return admin_serialize_context(context, receipt_example, language)
 
 @transact
 def delete_context(store, context_gus):

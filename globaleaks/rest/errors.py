@@ -340,3 +340,11 @@ class TimeToLiveInvalid(GLException):
         self.reason = "Invalid timerange supply for %s" % kind
         self.arguments.append(kind)
         self.record()
+
+class InvalidReceiptRegexp(GLException):
+    """
+    context.receipt_regexp don't works
+    """
+    error_code = 43
+    status_code = 406
+    reason = "The receipt regexp is an invalid regexp"
