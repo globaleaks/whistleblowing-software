@@ -518,7 +518,11 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       }, true);
 
     }
-
+}]).
+  factory('changeParamsWatcher', ['$parse', function($parse) {
+    return function(scope) {
+        /* To be implemented */
+    }
 }]).
   factory('Admin', ['$rootScope','$resource', function($rootScope, $resource) {
 
