@@ -315,18 +315,18 @@ class TestTipInstance(TTip):
         self.assertEqual(len(cl), 3)
 
     @inlineCallbacks
-    def wb_get_receiver_list(self):
-        receiver_list = yield tip.get_receiver_list_wb(self.wb_tip_id)
+    def wb_get_receiver_list(self, default_lang):
+        receiver_list = yield tip.get_receiver_list_wb(self.wb_tip_id, default_lang)
         self.assertEqual(len(receiver_list), 2)
         self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
 
     @inlineCallbacks
-    def receiver_get_receiver_list(self):
-        receiver_list = yield tip.get_receiver_list_receiver(self.receiver1_desc['receiver_gus'], self.rtip1_id)
+    def receiver_get_receiver_list(self, default_lang):
+        receiver_list = yield tip.get_receiver_list_receiver(self.receiver1_desc['receiver_gus'], self.rtip1_id, default_lang)
         self.assertEqual(len(receiver_list), 2)
         self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
 
-        receiver_list = yield tip.get_receiver_list_receiver(self.receiver2_desc['receiver_gus'], self.rtip2_id)
+        receiver_list = yield tip.get_receiver_list_receiver(self.receiver2_desc['receiver_gus'], self.rtip2_id, default_lang)
         self.assertEqual(len(receiver_list), 2)
         self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
 
@@ -393,8 +393,8 @@ class TestTipInstance(TTip):
         yield self.receiver_2_get_banned_for_too_much_access()
         yield self.receiver_RW_comments()
         yield self.wb_RW_comments()
-        yield self.wb_get_receiver_list()
-        yield self.receiver_get_receiver_list()
+        yield self.wb_get_receiver_list(GLSetting.memory_copy.default_language)
+        yield self.receiver_get_receiver_list(GLSetting.memory_copy.default_language)
         yield self.receiver2_fail_in_delete_internal_tip()
         yield self.receiver2_personal_delete()
         yield self.receiver1_see_system_comments()

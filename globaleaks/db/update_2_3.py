@@ -94,7 +94,7 @@ class Replacer23(TableReplacer):
 
     def migrate_Context(self):
 
-        print "%s Context migration assistant, extending : #%d" % (
+        print "%s Context migration assistant, changing fields format: #%d" % (
             self.std_fancy, self.store_old.find(self.get_right_model("Context", 2)).count() )
 
         # Remind: commonly here is searched for Context_version_$OLD, but in this rare case

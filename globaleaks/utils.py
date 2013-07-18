@@ -124,13 +124,18 @@ def get_file_checksum(filepath):
     sha = SHA256.new()
 
     chunk_size = 8192
+    total_len = 0
 
     with open(filepath, 'rb') as fp:
         while True:
             chunk = fp.read(chunk_size)
             if len(chunk) == 0:
                 break
+            total_len += len(chunk)
             sha.update(chunk)
+
+    if not total_len:
+        log.debug("checksum of %s computed, but the file is empty" % filepath)
 
     return sha.hexdigest()
 
