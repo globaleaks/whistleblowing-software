@@ -23,7 +23,6 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
     
     node_dict = {
       'name': unicode(node.name),
-      'presentation': unicode(node.presentation),
       'hidden_service': unicode(node.hidden_service),
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
@@ -44,6 +43,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
     }
 
     node_dict['description'] = l10n(node.description, language)
+    node_dict['presentation'] = l10n(node.presentation, language)
 
     return node_dict
 

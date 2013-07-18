@@ -10,11 +10,16 @@ profile usr.bin.globaleaks {
     capability fsetid,
     capability fowner,
     capability chown,
+    capability dac_override,
 
     /proc/*/mounts r,
 
     /usr/bin/ r,
     /usr/bin/globaleaks r,
+
+    /bin/sh ix,
+    /bin/dash ix,
+    /usr/bin/gpg ix,
 
     /usr/share/globaleaks/** r,
     /usr/share/pyshared/** r,
@@ -25,10 +30,9 @@ profile usr.bin.globaleaks {
     /etc/mime.types r,
 
     deny /usr/lib/python2.7/dist-packages/globaleaks/** rwlk,
-    deny /bin/dash rx,
 
     /var/globaleaks/ r,
-    /var/globaleaks/** rwk,
+    /var/globaleaks/** lrwk,
     /run/globaleaks/globaleaks-*.pid rw,
 
     owner /tmp/** rwkl,
