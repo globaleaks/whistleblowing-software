@@ -130,6 +130,10 @@ spec.append(
 )
 
 spec.append(
+    (r'/(robots.txt)', BaseStaticFileHandler, {'path': GLSetting.static_path })
+)
+
+spec.append(
     (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path })
 )
 
