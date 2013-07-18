@@ -20,20 +20,29 @@ from Crypto.Hash import SHA256
 from io import BytesIO as StringIO
 
 class TestSubmission(helpers.TestGL):
-    filename = ''.join(unichr(x) for x in range(0x400, 0x4FF))
-    body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
-    dummyFile1 = {}
-    dummyFile1['body'] = StringIO()
-    dummyFile1['body'].write(body[0:GLSetting.defaults.maximum_textsize].encode('utf-8'))
-    dummyFile1['body_len'] = len(dummyFile1['body'].read())
-    dummyFile1['content_type'] = 'application/octect'
-    dummyFile1['filename'] = 'aaaaaa'
-    dummyFile2 = {}
-    dummyFile2['body'] = StringIO()
-    dummyFile2['body'].write(str('aaaaaa'))
-    dummyFile2['body_len'] = len(dummyFile2['body'].read())
-    dummyFile2['content_type'] = 'application/octect'
-    dummyFile2['filename'] = filename[0:GLSetting.defaults.maximum_namesize]
+
+    def setUp(self):
+
+        filename = ''.join(unichr(x) for x in range(0x400, 0x4FF))
+        body = ''.join(unichr(x) for x in range(0x370, 0x3FF))
+
+        self.dummyFile1 = {}
+        self.dummyFile1['body'] = StringIO()
+        self.dummyFile1['body'].write(body[0:GLSetting.defaults.maximum_textsize].encode('utf-8'))
+        self.dummyFile1['body_len'] = len(self.dummyFile1['body'].getvalue())
+        self.dummyFile1['content_type'] = 'application/octect'
+        self.dummyFile1['filename'] = 'aaaaaa'
+
+        self.dummyFile2 = {}
+        self.dummyFile2['body'] = StringIO()
+        self.dummyFile2['body'].write(str('aaaaba'))
+        self.dummyFile2['body_len'] = len(self.dummyFile2['body'].getvalue())
+        self.dummyFile2['content_type'] = 'application/octect'
+        self.dummyFile2['filename'] = filename[0:GLSetting.defaults.maximum_namesize]
+
+        print self.dummyFile2['body'].getvalue()
+
+        return self._setUp()
 
     # --------------------------------------------------------- #
     @inlineCallbacks
@@ -139,14 +148,14 @@ class TestSubmission(helpers.TestGL):
 
         # Checks the SHA2SUM computed
         for random_f_id, sha2sum in processdict.iteritems():
-            sha = SHA256.new()
-            sha.update(self.dummyFile1['body'].read())
-            if sha2sum == sha.hexdigest():
-                continue
 
-            sha = SHA256.new()
-            sha.update(self.dummyFile2['body'].read())
-            if sha2sum == sha.hexdigest():
+            shaA = SHA256.new()
+            shaA.update(self.dummyFile1['body'].getvalue())
+
+            shaB = SHA256.new()
+            shaB.update(self.dummyFile2['body'].getvalue())
+
+            if sha2sum == shaA.hexdigest() or sha2sum == shaB.hexdigest():
                 continue
 
             self.assertTrue(False) # Checksum expected unable to be computed
