@@ -71,8 +71,7 @@
 
                 <div class="table-bordered" >
                     <label>
-                        <input type="checkbox" ng-model="preferences.tip_notification"
-                               ng-true-value="true" ng-false-value="false" />
+                        <input type="checkbox" ng-model="preferences.tip_notification" />
                         {{ "Enable Tip notification" | translate }}
                     </label>
                     <label ng-show="preferences.tip_notification" >
@@ -84,8 +83,7 @@
 
                 <div class="table-bordered" >
                     <label>
-                        <input type="checkbox" ng-model="preferences.comment_notification"
-                               ng-true-value="true" ng-false-value="false" />
+                        <input type="checkbox" ng-model="preferences.comment_notification" />
                         {{ "Enable Comment notification" | translate }}
                     </label>
                     <label ng-show="preferences.comment_notification" >
@@ -97,8 +95,7 @@
 
                 <div class="table-bordered" >
                     <label>
-                        <input type="checkbox" ng-model="preferences.file_notification"
-                               ng-true-value="true" ng-false-value="false" />
+                        <input type="checkbox" ng-model="preferences.file_notification" />
                         {{ "Enable File notification" | translate }}
                     </label>
                     <label ng-show="preferences.file_notification" >
@@ -133,8 +130,7 @@
 
           <div class="table-bordered">
             <label>
-              <input type="checkbox" ng-model="preferences.gpg_enable_notification"
-                     ng-true-value="true" ng-false-value="false" />
+              <input type="checkbox" ng-model="preferences.gpg_enable_notification" />
               {{ "Enable encrypted notification" | translate }}
             </label>
             <label ng-show="preferences.gpg_enable_notification" >
@@ -145,8 +141,7 @@
 
           <div class="table-bordered">
             <label>
-              <input type="checkbox" ng-model="preferences.gpg_enable_files"
-                     ng-true-value="true" ng-false-value="false" />
+              <input type="checkbox" ng-model="preferences.gpg_enable_files" />
               {{ "Enable file encryptrion" | translate }}
             </label>
             <label ng-show="preferences.gpg_enable_files" >
@@ -198,9 +193,7 @@
         </div>
 
         <label ng-show="preferences.gpg_key_fingerprint">
-          <input type="checkbox"
-                 ng-true-value="true" ng-false-value="false"
-                 ng-init="preferences.gpg_key_remove = false" />
+          <input type="checkbox" ng-init="preferences.gpg_key_remove = false" />
                  {{ "Remove your GPG key" | translate }}
         </label>
 
