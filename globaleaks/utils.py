@@ -33,7 +33,6 @@ from Crypto.Hash import SHA256
 from globaleaks.settings import GLSetting
 from globaleaks import __version__, LANGUAGES_SUPPORTED_CODES
 
-
 class Logger(object):
     """
     Customized LogPublisher
