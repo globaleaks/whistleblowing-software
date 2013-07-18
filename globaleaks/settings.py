@@ -505,12 +505,15 @@ class transact(object):
     Because Storm sucks.
     """
     tp = ThreadPool(0, GLSetting.db_thread_pool_size)
-    _debug = False
 
     def __init__(self, method):
         self.store = None
         self.method = method
         self.instance = None
+        self.debug = GLSetting.storm_debug
+
+        if self.debug:
+            tracer.debug(self.debug, sys.stdout)
 
     def __get__(self, instance, owner):
         self.instance = instance
@@ -518,34 +521,6 @@ class transact(object):
 
     def __call__(self,  *args, **kwargs):
         return self.run(self._wrap, self.method, *args, **kwargs)
-
-    @property
-    def debug(self):
-        """
-        Whenever you need to trace the database operation on a specific
-        function decorated with @transact, just do:
-           function.debug = True
-           or either
-           self.function.debug = True
-           or even
-           Class.function.debug = True
-        """
-        return self._debug
-
-    @debug.setter
-    def debug(self, value):
-        """
-        Setter method for debug property.
-        """
-        self._debug = value
-        tracer.debug(self._debug, sys.stdout)
-
-    @debug.deleter
-    def debug(self):
-        """
-        Deleter method for debug property.
-        """
-        self.debug = False
 
     @staticmethod
     def run(function, *args, **kwargs):
