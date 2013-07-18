@@ -522,12 +522,6 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
   factory('changeParamsWatcher', ['$parse', function($parse) {
     return function(scope) {
         /* To be implemented */
-      var validateParamsChange = function() {
-      }
-
-      scope.$watch("admin", function(){
-          validatePasswordChange();
-      }, true);
     }
 }]).
   factory('Admin', ['$rootScope','$resource', function($rootScope, $resource) {
