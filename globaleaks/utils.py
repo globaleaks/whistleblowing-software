@@ -233,36 +233,6 @@ def sendmail(authentication_username, authentication_password, from_address,
 
     result_deferred = Deferred()
 
-    context_factory = ClientContextFactory()
-    context_factory.method = SSL.SSLv3_METHOD
-
-    if security != "SSL":
-        requireTransportSecurity = True
-    else:
-        requireTransportSecurity = False
-
-    factory = ESMTPSenderFactory(
-        authentication_username,
-        authentication_password,
-        from_address,
-        to_address,
-        message_file,
-        result_deferred,
-        contextFactory=context_factory,
-        requireAuthentication=(authentication_username and authentication_password),
-        requireTransportSecurity=requireTransportSecurity)
-
-    def protocolConnectionLost(self, reason=protocol.connectionDone):
-        """We are no longer connected"""
-        if isinstance(reason, Failure):
-            if not isinstance(reason.value, error.ConnectionDone):
-                log.err("Failed to contact %s:%d (ConnectionLost Error %s)"
-                        % (smtp_host, smtp_port, reason.type))
-                log.err(reason)
-
-        self.setTimeout(None)
-        self.mailFile = None
-
     def printError(reason, event):
         if isinstance(reason, Failure):
             reason = reason.type
@@ -278,17 +248,50 @@ def sendmail(authentication_username, authentication_password, from_address,
                 (smtp_host, smtp_port, reason))
         log.err(reason)
 
+    def handle_error(reason, *args, **kwargs):
+        printError(reason, event)
+        return result_deferred.errback(reason)
+
+    context_factory = ClientContextFactory()
+    context_factory.method = SSL.SSLv3_METHOD
+
+    if security != "SSL":
+        requireTransportSecurity = True
+    else:
+        requireTransportSecurity = False
+
+    esmtp_deferred = Deferred()
+    esmtp_deferred.addErrback(handle_error, event)
+    esmtp_deferred.addCallback(result_deferred.callback)
+
+    factory = ESMTPSenderFactory(
+        authentication_username,
+        authentication_password,
+        from_address,
+        to_address,
+        message_file,
+        esmtp_deferred,
+        contextFactory=context_factory,
+        requireAuthentication=(authentication_username and authentication_password),
+        requireTransportSecurity=requireTransportSecurity)
+
+    def protocolConnectionLost(self, reason=protocol.connectionDone):
+        """We are no longer connected"""
+        if isinstance(reason, Failure):
+            if not isinstance(reason.value, error.ConnectionDone):
+                log.err("Failed to contact %s:%d (ConnectionLost Error %s)"
+                        % (smtp_host, smtp_port, reason.type))
+                log.err(reason)
+
+        self.setTimeout(None)
+        self.mailFile = None
+
     def sendError(self, exc):
         if exc.code and exc.resp:
             log.err("Failed to contact %s:%d (STMP Error: %.3d %s)"
                     % (smtp_host, smtp_port, exc.code, exc.resp))
         SMTPClient.sendError(self, exc)
 
-
-    # TODO:
-    # be sure that all the possibile errors can have the 'event' argument
-    # because at the moment SSL errors are not catch by printError :(
-    result_deferred.addErrback(printError, event)
     factory.protocol.sendError = sendError
     factory.protocol.connectionLost = protocolConnectionLost
 
@@ -302,8 +305,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
 
     d = endpoint.connect(factory)
-    d.addErrback(printError)
-    d.addErrback(result_deferred.errback)
+    d.addErrback(handle_error, event)
 
     return result_deferred
 

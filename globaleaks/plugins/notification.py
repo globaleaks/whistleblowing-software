@@ -220,6 +220,7 @@ class MailNotification(Notification):
                                       self.host, self.port, self.security, event)
         log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
                   (self.host, self.port, receiver_mail, self.security))
+
         return self.finished
 
     def mail_flush(self, authentication_username, authentication_password, from_address,
