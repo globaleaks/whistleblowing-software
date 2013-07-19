@@ -333,7 +333,7 @@ class GLBGPG:
 # when admin configure a new key (at the moment, Admin GUI do not
 # permit to sets preferences, but still the same function is
 # used.
-def gpg_options_parse(receiver, request):
+def gpg_options_parse(receiver_user, receiver, request):
     """
     @param receiver: the Storm object
     @param request: the Dict receiver by the Internets
@@ -364,7 +364,7 @@ def gpg_options_parse(receiver, request):
 
     if remove_key:
         log.debug("User %s request to remove GPG key (%s)" %
-                  (receiver.username, receiver.gpg_key_fingerprint))
+                  (receiver_user.username, receiver.gpg_key_fingerprint))
 
         # In all the cases below, the key is marked disabled as request
         receiver.gpg_key_status = Receiver._gpg_types[0] # Disabled
@@ -373,7 +373,7 @@ def gpg_options_parse(receiver, request):
 
     if new_gpg_key:
 
-        fake_receiver_dict = { 'username' : receiver.username }
+        fake_receiver_dict = { 'username' : receiver_user.username }
         gnob = GLBGPG(fake_receiver_dict)
         if not gnob.validate_key(new_gpg_key):
             raise errors.GPGKeyInvalid
@@ -391,6 +391,6 @@ def gpg_options_parse(receiver, request):
         receiver.gpg_enable_files = encrypt_file
         receiver.gpg_enable_notification = encrypt_notification
         log.debug("Receiver %s sets GPG usage: notification %s, file %s" %
-                (receiver.username,
+                (receiver_user.username,
                  "YES" if encrypt_notification else "NO",
                  "YES" if encrypt_file else "NO") )

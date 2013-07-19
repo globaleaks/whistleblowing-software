@@ -40,8 +40,6 @@ class TestSubmission(helpers.TestGL):
         self.dummyFile2['content_type'] = 'application/octect'
         self.dummyFile2['filename'] = filename[0:GLSetting.defaults.maximum_namesize]
 
-        print self.dummyFile2['body'].getvalue()
-
         return self._setUp()
 
     # --------------------------------------------------------- #

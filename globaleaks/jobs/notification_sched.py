@@ -101,7 +101,8 @@ class APSNotification(GLJob):
 
             context_desc = admin.admin_serialize_context(rtip.internaltip.context, GLSetting.memory_copy.default_language)
 
-            receiver_desc = admin.admin_serialize_receiver(rtip.receiver, GLSetting.memory_copy.default_language)
+            receiver_user = store.find(models.User, models.User.id == rtip.receiver.user_id).one()
+            receiver_desc = admin.admin_serialize_receiver(receiver_user, rtip.receiver, GLSetting.memory_copy.default_language)
             if  not receiver_desc.has_key('notification_fields') or\
                 not rtip.receiver.notification_fields.has_key('mail_address'):
                 log.err("Receiver %s lack of email address!" % rtip.receiver.name)
@@ -109,7 +110,7 @@ class APSNotification(GLJob):
 
             # check if the receiver has the Tip notification enabled or not
             if not receiver_desc['tip_notification']:
-                log.debug("Receiver %s has tip notification disabled" % rtip.receiver.username)
+                log.debug("Receiver %s has tip notification disabled" % receiver_user.username)
                 rtip.mark = models.ReceiverTip._marker[3] # 'disabled'
                 store.commit()
                 continue
@@ -137,7 +138,9 @@ class APSNotification(GLJob):
         if not rtip:
             raise errors.TipGusNotFound
 
-        log.debug("Email: +[Success] Notification Tip receiver %s" % rtip.receiver.username)
+        receiver_user = store.find(models.User, models.User.id == rtip.receiver.user_id).one()
+
+        log.debug("Email: +[Success] Notification Tip receiver %s" % receiver_user.username)
         rtip.mark = models.ReceiverTip._marker[1] # 'notified'
 
     @transact
@@ -150,7 +153,9 @@ class APSNotification(GLJob):
         if not rtip:
             raise errors.TipGusNotFound
 
-        log.debug("Email: -[Fail] Notification Tip receiver %s" % rtip.receiver.username)
+        receiver_user = store.find(models.User, models.User.id == rtip.receiver.user_id).one()
+
+        log.debug("Email: -[Fail] Notification Tip receiver %s" % receiver_user.username)
         rtip.mark = models.ReceiverTip._marker[2] # 'unable to notify'
 
     def do_tip_notification(self, tip_events):
@@ -218,7 +223,8 @@ class APSNotification(GLJob):
 
             for receiver in comment.internaltip.receivers:
 
-                receiver_desc = admin.admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
+                receiver_user = store.find(models.User, models.User.id == receiver.user_id).one()
+                receiver_desc = admin.admin_serialize_receiver(receiver_user, receiver, GLSetting.memory_copy.default_language)
                 if  not receiver_desc.has_key('notification_fields') or\
                     not receiver.notification_fields.has_key('mail_address'):
                     log.err("Receiver %s lack of email address!" % receiver.name)
@@ -229,13 +235,13 @@ class APSNotification(GLJob):
                 # if two receiver has the same name, and one has notification disabled
                 # also the homonymous would get the notification dropped.
                 if comment._types == models.Comment._types[0] and comment.author == receiver.name:
-                    log.debug("Receiver is the Author (%s): skipped" % receiver.username)
+                    log.debug("Receiver is the Author (%s): skipped" % receiver_user.username)
                     continue
 
                 # check if the receiver has the Comment notification enabled or not
                 if not receiver.comment_notification:
                     log.debug("Receiver %s has comment notification disabled: skipped [source: %s]" % (
-                        receiver.username, comment.author))
+                        receiver_user.username, comment.author))
                     continue
 
                 event = Event(type=u'comment', trigger='Comment',
@@ -256,9 +262,13 @@ class APSNotification(GLJob):
         This is called when the comment notification has succeeded
         """
         receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
+
         if not receiver:
             raise errors.ReceiverGusNotFound
-        log.debug("Email: +[Success] Notification of comment receiver %s" % receiver.username)
+
+        receiver_user = store.find(models.User, models.User.id == receiver.user_id).one()
+
+        log.debug("Email: +[Success] Notification of comment receiver %s" % receiver_user.username)
 
     @transact
     def comment_notification_failed(self, store, failure, comment_id, receiver_id):
@@ -266,9 +276,13 @@ class APSNotification(GLJob):
         This is called when the comment notification has failed.
         """
         receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
+
         if not receiver:
             raise errors.ReceiverGusNotFound
-        log.debug("Email: -[Fail] Notification of comment receiver %s" % receiver.username)
+
+        receiver_user = store.find(models.User, models.User.id == receiver.user_id).one()
+
+        log.debug("Email: -[Fail] Notification of comment receiver %s" % receiver_user.username)
 
     def do_comment_notification(self, comment_events):
         l = []
@@ -331,16 +345,17 @@ class APSNotification(GLJob):
             context_desc = admin.admin_serialize_context(rfile.internalfile.internaltip.context,
                 GLSetting.memory_copy.default_language)
 
-            receiver_desc = admin.admin_serialize_receiver(rfile.receiver)
+            receiver_user = store.find(models.User, models.User.id == rfile.receiver.user_id).one()
+            receiver_desc = admin.admin_serialize_receiver(receiver_user, rfile.receiver, GLSetting.memory_copy.default_language)
             if  not receiver_desc.has_key('notification_fields') or \
                 not rfile.receiver.notification_fields.has_key('mail_address'):
-                log.err("Receiver %s lack of email address!" % rfile.receiver.name)
+                log.err("Receiver %s lack of email address!" % receiver_user.name)
                 continue
 
             # check if the receiver has the File notification enabled or not
             if not rfile.receiver.file_notification:
                 log.debug("Receiver %s has file notification disabled: %s skipped" % (
-                    rfile.receiver.username, rfile.internalfile.name ))
+                    receiver_user.username, rfile.internalfile.name ))
                 rfile.mark = models.ReceiverTip._marker[3] # 'disabled'
                 store.commit()
                 continue
@@ -363,12 +378,14 @@ class APSNotification(GLJob):
         This is called when the Receiver File notification has succeeded
         """
         rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == receiverfile_id).one()
-        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
         if not rfile:
             raise errors.FileGusNotFound
 
-        log.debug("Email: +[Success] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, receiver.username))
+        receiver_user = store.find(models.User, models.User.id == rfile.receiver.user_id).one()
+
+        log.debug("Email: +[Success] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, receiver_user.username))
+
         rfile.mark = models.ReceiverFile._marker[1] # 'notified'
 
     @transact
@@ -377,14 +394,14 @@ class APSNotification(GLJob):
         This is called when the Receiver File notification has failed.
         """
         rfile = store.find(models.ReceiverFile, models.ReceiverFile.id == receiverfile_id).one()
-        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
 
         if not rfile:
             raise errors.FileGusNotFound
-        if not receiver:
-            raise errors.ReceiverGusNotFound
 
-        log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, receiver.username))
+        receiver_user = store.find(models.User, models.User.id == rfile.receiver.user_id).one()
+
+        log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, receiver_user.username))
+
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
 
     def do_receiverfile_notification(self, receiverfile_events):

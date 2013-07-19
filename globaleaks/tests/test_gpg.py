@@ -10,7 +10,7 @@ from globaleaks.handlers import receiver
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.settings import GLSetting, transact
 from globaleaks.tests.helpers import MockDict
-from globaleaks.models import Receiver
+from globaleaks.models import Receiver, User
 
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
@@ -21,9 +21,10 @@ GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 @transact
 def transact_dummy_whatever(store, receiver_id, mock_request):
 
-    thedummy = store.find(Receiver, Receiver.id == receiver_id).one()
-    gpg_options_parse(thedummy, mock_request)
-    return admin_serialize_receiver(thedummy)
+    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+    receiver_user = store.find(User, User.id == receiver.user_id).one()
+    gpg_options_parse(receiver_user, receiver, mock_request)
+    return admin_serialize_receiver(receiver_user, receiver)
 
 
 class TestReceiverSetKey(helpers.TestHandler):
@@ -41,7 +42,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         'gpg_key_status': Receiver._gpg_types[0], # Disabled
         "gpg_enable_notification": False,  "gpg_enable_files": False,
 
-        'name' : "irrelevant",
+        'name' : "irrilevant",
         'password' : "",
         'old_password': "",
         'username' : "irrelevant",
@@ -63,6 +64,9 @@ class TestReceiverSetKey(helpers.TestHandler):
     def test_handler_update_key(self):
 
         self.receiver_only_update = dict(MockDict().dummyReceiver)
+
+        self.receiver_only_update['password'] = self.dummyReceiver['password']
+        self.receiver_only_update['old_password'] = self.dummyReceiver['password']
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
@@ -82,7 +86,6 @@ class TestReceiverSetKey(helpers.TestHandler):
 
     @inlineCallbacks
     def test_transact_malformed_key(self):
-
         self.receiver_only_update = dict(MockDict().dummyReceiver)
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__).replace('A', 'B')
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
