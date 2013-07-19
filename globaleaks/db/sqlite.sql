@@ -50,6 +50,7 @@ CREATE TABLE internalfile (
 
 CREATE TABLE receiverfile (
     file_path VARCHAR,
+    size INTEGER NOT NULL,
     downloads INTEGER NOT NULL,
     creation_date VARCHAR NOT NULL,
     last_access VARCHAR,
