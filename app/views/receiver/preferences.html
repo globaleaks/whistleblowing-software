@@ -118,8 +118,7 @@
 
         <h4>Encryption settings</h4>
 
-        <div ng-show="preferences.gpg_key_fingerprint"
-             ng-init="preferences.gpg_key_remove = false">
+        <div ng-show="preferences.gpg_key_fingerprint">
 
           <p>
             {{ "You have an active Key" | translate }}
@@ -189,11 +188,11 @@
           <p>
             {{ "Copy/Paste here the PGP Key Armor:" | translate }}
           </p>
-          <textarea ng-model="pasted_gpg_key_armor"></textarea>
+          <textarea ng-model="preferences.gpg_key_armor"></textarea>
         </div>
 
         <label ng-show="preferences.gpg_key_fingerprint">
-          <input type="checkbox" ng-init="preferences.gpg_key_remove = false" />
+          <input type="checkbox" ng-model="preferences.gpg_key_remove" />
                  {{ "Remove your GPG key" | translate }}
         </label>
 
