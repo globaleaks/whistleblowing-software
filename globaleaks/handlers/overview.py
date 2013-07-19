@@ -43,13 +43,14 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
             continue
 
         for rtip in itip.receivertips:
+            receiver_user = store.find(User, User.id == rtip.receiver.user_id).one()
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,
                 'notification_date': pretty_date_time(rtip.notification_date),
                 # 'creation_date': pretty_date_time(rtip.creation_date),
                 'status': rtip.mark,
                 'receiver_id': rtip.receiver.id,
-                'receiver_username': rtip.receiver.username,
+                'receiver_username': receiver_user.username,
                 'receiver_name': rtip.receiver.name,
                 # last_access censored willingly
             })
@@ -95,11 +96,12 @@ def collect_users_overview(store):
     all_receivers = store.find(models.Receiver)
 
     for receiver in all_receivers:
+        receiver_user = store.find(User, User.id == receiver.user_id).one()
         # all public of private infos are stripped, because know between the Admin resources
         user_description = {
             'id': receiver.id,
             'name': receiver.name,
-            'failed_login': receiver.failed_login,
+            'failed_login': receiver_user.failed_login_count,
             'receiverfiles': [],
             'receivertips': [],
             'gpg_key_status': receiver.gpg_key_status,

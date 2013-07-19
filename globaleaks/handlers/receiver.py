@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, User
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests
@@ -17,7 +17,7 @@ from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
 from globaleaks.security import change_password, gpg_options_parse
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
-def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
+def receiver_serialize_receiver(receiver_user, receiver, language=GLSetting.memory_copy.default_language):
     receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
@@ -25,7 +25,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "creation_date": pretty_date_time(receiver.creation_date),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
-        "username": receiver.username,
+        "username": receiver_user.username,
         "gpg_key_info": receiver.gpg_key_info,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "gpg_key_remove": False,
@@ -38,7 +38,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "file_notification" : receiver.file_notification,
         "comment_notification" : receiver.comment_notification,
         "notification_fields": dict(receiver.notification_fields),
-        "failed_login": receiver.failed_login,
+        "failed_login": receiver_user.failed_login_count,
         "contexts": []
     }
 
@@ -56,7 +56,9 @@ def get_receiver_settings(store, user_id, language=GLSetting.memory_copy.default
     if not receiver:
         raise ReceiverGusNotFound
 
-    return receiver_serialize_receiver(receiver, language)
+    receiver_user = store.find(User, User.id == receiver.user_id).one()
+
+    return receiver_serialize_receiver(receiver_user, receiver, language)
 
 @transact
 def update_receiver_settings(store, user_id, request, language=GLSetting.memory_copy.default_language):
@@ -66,12 +68,16 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
     if not receiver:
         raise ReceiverGusNotFound
 
+    receiver_user = store.find(User, User.id == receiver.user_id).one()
+
     new_password = request.get('password')
     old_password = request.get('old_password')
 
     if len(new_password) and len(old_password):
-        receiver.password = change_password(receiver.password,
-                                            old_password, new_password, receiver.username)
+        receiver_user.password = change_password(receiver_user.password,
+                                                 old_password,
+                                                 new_password,
+                                                 receiver_user.salt)
 
     mail_address = acquire_mail_address(request)
     if not mail_address:
@@ -82,9 +88,9 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
     receiver.comment_notification = acquire_bool(request['comment_notification'])
     receiver.file_notification = acquire_bool(request['file_notification'])
 
-    gpg_options_parse(receiver, request)
+    gpg_options_parse(receiver_user, receiver, request)
 
-    return receiver_serialize_receiver(receiver, language)
+    return receiver_serialize_receiver(receiver_user, receiver, language)
 
 
 class ReceiverInstance(BaseHandler):

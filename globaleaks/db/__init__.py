@@ -7,7 +7,7 @@ import os
 from twisted.internet.defer import succeed
 from storm.exceptions import OperationalError
 
-from globaleaks.utils import log, datetime_now
+from globaleaks.utils import log, datetime_now, datetime_null
 from globaleaks.settings import transact, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
@@ -32,14 +32,29 @@ def initialize_node(store, results, only_node, email_templates):
     # by default, only english is the surely present language
     node.languages_enabled = GLSetting.defaults.languages_enabled
 
-    # Salt for admin password is a safe random string different in every Node.
-    node.salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
-    node.password = hash_password(u"globaleaks", node.salt)
-
     node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
 
     node.creation_date = datetime_now()
     store.add(node)
+
+    admin_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+    admin_password = hash_password(u"globaleaks", admin_salt)
+
+    admin_dict = {
+            'username': u'admin',
+            'password': admin_password,
+            'salt': admin_salt,
+            'role': u'admin',
+            'state': u'enabled',
+            'failed_login_count': 0,
+    }
+
+    admin = models.User(admin_dict)
+
+    admin.last_login = datetime_null()
+    admin.first_failed = datetime_null()
+
+    store.add(admin)
 
     notification = models.Notification()
 

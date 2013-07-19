@@ -150,6 +150,12 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
     delta = timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
     return datetime.utcnow() + delta
 
+def datetime_null():
+    """
+    @return: a datetime object representing a null date
+    """
+    return datetime.fromtimestamp(0)
+
 def datetime_now():
     """
     @return: a datetime object of now, coherent with the timezone

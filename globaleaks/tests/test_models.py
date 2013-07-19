@@ -7,6 +7,9 @@ from globaleaks.settings import transact
 from globaleaks.rest import errors
 
 class TestModels(helpers.TestGL):
+
+    receiver_inc = 0
+
     @transact
     def context_add(self, store):
         c = self.localization_set(self.dummyContext, Context, 'en')
@@ -37,13 +40,23 @@ class TestModels(helpers.TestGL):
     @transact
     def receiver_add(self, store):
         r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+        receiver_user = User(self.dummyReceiverUser)
+        receiver_user.last_login = self.dummyReceiverUser['last_login']
+        receiver_user.first_failed = self.dummyReceiverUser['first_failed']
+
+        receiver_user.username = str(self.receiver_inc) + self.dummyReceiver['notification_fields']['mail_address']
+        receiver_user.password = self.dummyReceiverUser['password']
+        store.add(receiver_user)
+
         receiver = Receiver(r)
-        receiver.password = self.dummyReceiver['password']
-        receiver.username = self.dummyReceiver['notification_fields']['mail_address']
+        receiver.user_id = receiver_user.id
         receiver.gpg_key_status = Receiver._gpg_types[0]
-        receiver.failed_login = 0
         receiver.notification_fields = self.dummyReceiver['notification_fields']
+
         store.add(receiver)
+
+        self.receiver_inc = self.receiver_inc + 1
+
         return receiver.id
 
     @transact
@@ -64,6 +77,21 @@ class TestModels(helpers.TestGL):
         c = self.localization_set(self.dummyContext, Context, 'en')
         r = self.localization_set(self.dummyReceiver, Receiver, 'en')
 
+        receiver_user1 = User(self.dummyReceiverUser)
+        receiver_user1.last_login = self.dummyReceiverUser['last_login']
+        receiver_user1.first_failed = self.dummyReceiverUser['first_failed']
+
+        receiver_user2 = User(self.dummyReceiverUser)
+        receiver_user2.last_login = self.dummyReceiverUser['last_login']
+        receiver_user2.first_failed = self.dummyReceiverUser['first_failed']
+
+        # Avoid receivers with the same username!
+        receiver_user1.username = unicode("xxx")
+        receiver_user2.username = unicode("yyy")
+
+        store.add(receiver_user1)
+        store.add(receiver_user2)
+
         context = Context(c)
         context.fields = self.dummyContext['fields']
         context.fields = self.dummyContext['fields']
@@ -77,17 +105,16 @@ class TestModels(helpers.TestGL):
         receiver1 = Receiver(r)
         receiver2 = Receiver(r)
 
-        # Avoid receivers with the same username!
-        receiver1.password = receiver2.username = unicode("xxx")
-        receiver1.username = receiver2.password = unicode("yyy")
-
-        receiver1.failed_login = receiver2.failed_login = 0
+        receiver1.user_id = receiver_user1.id
+        receiver2.user_id = receiver_user2.id 
         receiver1.gpg_key_status = receiver2.gpg_key_status = Receiver._gpg_types[0]
         receiver1.notification_fields = receiver2.notification_fields = {'mail_address': 'x@x.it'}
 
         context.receivers.add(receiver1)
         context.receivers.add(receiver2)
+
         store.add(context)
+
         return context.id
 
     @transact
@@ -95,11 +122,18 @@ class TestModels(helpers.TestGL):
         c = self.localization_set(self.dummyContext, Context, 'en')
         r = self.localization_set(self.dummyReceiver, Receiver, 'en')
 
+        receiver_user = User(self.dummyReceiverUser)
+        receiver_user.last_login = self.dummyReceiverUser['last_login']
+        receiver_user.first_failed = self.dummyReceiverUser['first_failed']
+
+        # Avoid receivers with the same username!
+        receiver_user.username = unicode("xxx")
+
+        store.add(receiver_user)
+
         receiver = Receiver(r)
-        receiver.password = unicode("xxx")
-        receiver.username = unicode("yyy")
+        receiver.user_id = receiver_user.id
         receiver.gpg_key_status = Receiver._gpg_types[0]
-        receiver.failed_login = 0
         receiver.notification_fields = {'mail_address': 'y@y.it'}
 
         context1 = Context(c)
