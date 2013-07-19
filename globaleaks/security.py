@@ -282,7 +282,7 @@ class GLBGPG:
                     (excep.message, encrypted_path, len(str(encrypt_obj)) ))
             raise errors.InternalServerError("Error in writing [%s]" % excep.message )
 
-        return encrypted_path
+        return (encrypted_path, len(str(encrypt_obj)))
 
 
     def encrypt_message(self, plaintext):

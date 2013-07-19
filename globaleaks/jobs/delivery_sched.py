@@ -106,13 +106,14 @@ def receiver_file_align(store, filesdict, processdict):
 
                     ifile_abs = os.path.join(GLSetting.submission_path, ifile.file_path)
                     with file(ifile_abs, "r") as f:
-                        encrypted_file_path = gpoj.encrypt_file(ifile_abs, f, GLSetting.submission_path)
+                        encrypted_file_path, encrypted_file_size = gpoj.encrypt_file(ifile_abs, f, GLSetting.submission_path)
                     gpoj.destroy_environment()
 
                     log.debug("Generated encrypted version of %s for %s in %s" % (
                         ifile.name, receiver.username, encrypted_file_path ))
 
                     receiverfile.file_path = encrypted_file_path
+                    receiverfile.size = encrypted_file_size
                     receiverfile.status = ReceiverFile._status_list[2] # encrypted
 
                 except Exception as excep:
@@ -123,9 +124,10 @@ def receiver_file_align(store, filesdict, processdict):
                     # or would act as a protocol downgrade attack vector.
             else:
                 receiverfile.file_path = ifile.file_path
+                receiverfile.size = ifile.size
+                receiverfile.status = ReceiverFile._status_list[1] # reference
 
             receiverfile.mark = ReceiverFile._marker[0] # not notified
-            receiverfile.status = ReceiverFile._status_list[1] # reference
 
             store.add(receiverfile)
             store.commit()

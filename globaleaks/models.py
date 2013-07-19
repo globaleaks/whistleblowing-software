@@ -314,6 +314,7 @@ class ReceiverFile(Model):
     #internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
 
     file_path = Unicode()
+    size = Int()
     downloads = Int()
     last_access = DateTime()
 

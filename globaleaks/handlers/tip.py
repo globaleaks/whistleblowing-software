@@ -50,7 +50,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
         'sha2sum' : unicode(internalfile.sha2sum),
         'content_type' : unicode(internalfile.content_type),
         'creation_date' : unicode(pretty_date_time(internalfile.creation_date)),
-        'size': int(internalfile.size),
+        'size': int(receiverfile.size),
         'downloads': unicode(receiverfile.downloads)
     }
     return rfile_dict

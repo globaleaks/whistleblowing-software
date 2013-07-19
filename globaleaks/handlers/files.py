@@ -224,7 +224,7 @@ class FileInstance(FileHandler):
 def serialize_receiver_file(receiverfile, internalfile):
 
     file_desc = {
-        'size' : internalfile.size,
+        'size' : receiverfile.size,
         'content_type' : internalfile.content_type,
         'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
         'creation_date': pretty_date_time(internalfile.creation_date),
