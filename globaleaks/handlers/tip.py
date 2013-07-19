@@ -457,7 +457,7 @@ def serialize_receiver(receiver, access_counter, language=GLSetting.memory_copy.
     for context in receiver.contexts:
         receiver_dict['contexts'].append(unicode(context.id))
 
-    receiver_dict["description"] = l10n(receiver.description, language),
+    receiver_dict["description"] = l10n(receiver.description, language)
 
     return receiver_dict
 
