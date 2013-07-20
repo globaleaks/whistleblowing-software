@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Model, ReceiverFile
+from globaleaks.models import Model, ReceiverFile, InternalFile
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
 class Node_version_3(Model):
@@ -103,6 +103,9 @@ class Replacer34(TableReplacer):
 
             # the default status is reference, before encryption is enabled
             new_obj.status = ReceiverFile._status_list[1] # reference
+            # and then, the length of the file remain the same (reference don't works in migration!)
+            internal_related = self.store_old.find(InternalFile, InternalFile.id == orf.internalfile_id).one()
+            new_obj.size = internal_related.size
 
             new_obj.id = orf.id
             new_obj.internaltip_id = orf.internaltip_id
