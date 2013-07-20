@@ -155,7 +155,7 @@ class TestReceiverSetKey(helpers.TestHandler):
             # these are the same lines used in delivery_sched.py
             gpoj = GLBGPG(fake_receiver_desc)
             gpoj.validate_key(DeveloperKey.__doc__)
-            encrypted_file_path = gpoj.encrypt_file(tempsource, f, "/tmp")
+            encrypted_file_path, encrypted_file_size = gpoj.encrypt_file(tempsource, f, "/tmp")
             gpoj.destroy_environment()
 
             with file(encrypted_file_path, "r") as f:
