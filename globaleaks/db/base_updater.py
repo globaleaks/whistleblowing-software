@@ -65,10 +65,11 @@ class TableReplacer:
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
 
         table_history = {
-            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, models.ReceiverFile ],
-            'Context' : [ Context_version_1, None, models.Context, None, None ],
             'Node' : [ Node_version_1, Node_version_3, None, None, models.Node ],
+            'User' : [ models.User, None, None, None, None, None ],
+            'Context' : [ Context_version_1, None, models.Context, None, None ],
             'Receiver': [ Receiver_version_0, Receiver_version_1, models.Receiver, None, None ],
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, models.ReceiverFile ],
             'Notification': [ Notification_version_1, None, models.Notification, None, None ],
         }
 
@@ -238,6 +239,27 @@ class TableReplacer:
             new_node.default_language = on.default_language
 
         self.store_new.add(new_obj)
+        self.store_new.commit()
+
+    def migrate_User(self):
+        print "%s default User migration assistant: #%d" % (
+              self.debug_info, self.store_old.find(models.User).count() )
+
+        old_users = self.store_old.find(models.User)
+
+        for old_user in old_users:
+
+            new_obj = models.User()
+            new_obj.username = old_user.username
+            new_obj.password = old_user.password
+            new_obj.salt = old_user.salt
+            new_obj.role = old_user.role
+            new_obj.state = old_user.state
+            new_obj.last_login = old_user.last_login
+            new_obj.first_failed = old_user.first_failed
+            new_obj.failed_login_count = old_user.failed_login_count
+
+            self.store_new.add(new_obj)
         self.store_new.commit()
 
     def migrate_ReceiverTip(self):

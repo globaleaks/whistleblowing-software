@@ -43,7 +43,7 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
             continue
 
         for rtip in itip.receivertips:
-            receiver_user = store.find(User, User.id == rtip.receiver.user_id).one()
+            receiver_user = store.find(models.User, User.id == rtip.receiver.user_id).one()
             tip_description['receivertips'].append({
                 'access_counter': rtip.access_counter,
                 'notification_date': pretty_date_time(rtip.notification_date),
@@ -96,7 +96,7 @@ def collect_users_overview(store):
     all_receivers = store.find(models.Receiver)
 
     for receiver in all_receivers:
-        receiver_user = store.find(User, User.id == receiver.user_id).one()
+        receiver_user = store.find(models.User, User.id == receiver.user_id).one()
         # all public of private infos are stripped, because know between the Admin resources
         user_description = {
             'id': receiver.id,
