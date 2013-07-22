@@ -65,7 +65,7 @@ class Replacer34(TableReplacer):
         new_node.salt = old_node.salt
         new_node.receipt_salt = old_node.receipt_salt
         new_node.password = old_node.password
-        new_node.database_version = 2
+        new_node.database_version = 4
         new_node.stats_update_time = old_node.stats_update_time
         new_node.maximum_descsize = old_node.maximum_descsize
         new_node.maximum_filesize = old_node.maximum_filesize
