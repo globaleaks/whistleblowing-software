@@ -117,6 +117,13 @@ class TableReplacer:
                    'tip_timetolive INTEGER NOT NULL,receipt_regexp VARCHAR NOT NULL,receipt_description VARCHAR NOT NULL,'\
                    'submission_introduction VARCHAR NOT NULL, submission_disclaimer VARCHAR NOT NULL,'\
                    'submission_timetolive INTEGER NOT NULL, tags BLOB, PRIMARY KEY (id))'
+        elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver == 0:
+            return 'CREATE TABLE receiver (can_delete_submission INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
+                   'description VARCHAR NOT NULL,id VARCHAR NOT NULL,last_access VARCHAR,last_update VARCHAR,'\
+                   'name VARCHAR NOT NULL,tags BLOB,comment_notification INTEGER NOT NULL,'\
+                   'file_notification INTEGER NOT NULL,tip_notification INTEGER NOT NULL,'\
+                   'notification_fields BLOB NOT NULL, password VARCHAR,failed_login INTEGER NOT NULL,'\
+                   'receiver_level INTEGER NOT NULL,username VARCHAR NOT NULL,PRIMARY KEY (id))'
         elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver < 2:
             return 'CREATE TABLE receiver (can_delete_submission INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
                    'description VARCHAR NOT NULL,id VARCHAR NOT NULL,last_access VARCHAR,last_update VARCHAR,'\
@@ -134,14 +141,14 @@ class TableReplacer:
                    'activation_template VARCHAR,activation_mail_title VARCHAR,'\
                    'id VARCHAR NOT NULL,PRIMARY KEY (id))'
         elif query.startswith('\n\nCREATE TABLE receiverfile (') and self.start_ver < 3:
-            return "CREATE TABLE receiverfile ( file_path VARCHAR, downloads INTEGER NOT NULL,"\
-                   "creation_date VARCHAR NOT NULL, last_access VARCHAR, id VARCHAR NOT NULL,"\
-                   "internalfile_id VARCHAR NOT NULL, receiver_id VARCHAR NOT NULL, internaltip_id VARCHAR NOT NULL,"\
-                   "mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled')),"\
-                   "FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,"\
-                   "FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,"\
-                   "FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,"\
-                   "PRIMARY KEY (id))"
+            return 'CREATE TABLE receiverfile ( file_path VARCHAR, downloads INTEGER NOT NULL,'\
+                   'creation_date VARCHAR NOT NULL, last_access VARCHAR, id VARCHAR NOT NULL,'\
+                   'internalfile_id VARCHAR NOT NULL, receiver_id VARCHAR NOT NULL, internaltip_id VARCHAR NOT NULL,'\
+                   'mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled')),'\
+                   'FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,'\
+                   'FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,'\
+                   'FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,'\
+                   'PRIMARY KEY (id))'
         return False
 
     ## ------------------------------------------------
@@ -208,10 +215,6 @@ class TableReplacer:
         new_obj.hidden_service = on.hidden_service
         new_obj.id = on.id
 
-        # Imported from the 2 to 3
-        new_obj.languages_supported = on.languages_supported
-        new_obj.languages_enabled = on.languages_enabled
-
         new_obj.password = on.password
         new_obj.public_site = on.public_site
         new_obj.receipt_salt = on.receipt_salt
@@ -223,6 +226,16 @@ class TableReplacer:
         new_obj.tor2web_submission = on.tor2web_submission
         new_obj.tor2web_tip = on.tor2web_tip
         new_obj.tor2web_unauth = on.tor2web_unauth
+
+        # version 3 new entries:
+        if self.start_ver >= 3:
+            new_obj.languages_supported = on.languages_supported
+            new_obj.languages_enabled = on.languages_enabled
+
+        # version 4 new entries!
+        if self.start_ver >= 4:
+            new_node.presentation = on.presentation
+            new_node.default_language = on.default_language
 
         self.store_new.add(new_obj)
         self.store_new.commit()
@@ -349,10 +362,12 @@ class TableReplacer:
 
             new_obj.failed_login = orcvr.failed_login
 
-            new_obj.gpg_key_armor = orcvr.gpg_key_armor
-            new_obj.gpg_key_fingerprint = orcvr.gpg_key_fingerprint
-            new_obj.gpg_key_info = orcvr.gpg_key_info
-            new_obj.gpg_key_status = orcvr.gpg_key_status
+            # version 1 new entries!
+            if self.start_ver >= 1:
+                new_obj.gpg_key_armor = orcvr.gpg_key_armor
+                new_obj.gpg_key_fingerprint = orcvr.gpg_key_fingerprint
+                new_obj.gpg_key_info = orcvr.gpg_key_info
+                new_obj.gpg_key_status = orcvr.gpg_key_status
 
             new_obj.receiver_level = orcvr.receiver_level
 
@@ -407,6 +422,11 @@ class TableReplacer:
             new_obj.downloads = orf.downloads
             new_obj.file_path = orf.file_path
             new_obj.mark = orf.mark
+
+            # version 4 new entries!
+            if self.start_ver >= 4:
+                new_obj.status = orf.status
+                new_obj.size = orf.size
 
             self.store_new.add(new_obj)
 

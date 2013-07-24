@@ -12,11 +12,11 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks import models
 
 from twisted.internet.defer import inlineCallbacks
-from globaleaks.utils import pretty_date_time, log
+from globaleaks.utils import pretty_date_time, log, l10n
 
 
 @transact
-def collect_tip_overview(store):
+def collect_tip_overview(store, language=GLSetting.memory_copy.default_language):
 
     tip_description_list = []
     all_itips = store.find(models.InternalTip)
@@ -28,13 +28,14 @@ def collect_tip_overview(store):
             "creation_lifetime": pretty_date_time(itip.creation_date),
             "expiration_date": pretty_date_time(itip.expiration_date),
             "context_id": itip.context_id,
-            "context_name": itip.context.name,
             "pertinence_counter": itip.pertinence_counter,
             "status": itip.mark,
             "receivertips": [],
             "internalfiles": [],
             "comments": [],
         }
+ 
+        tip_description['context_name'] = l10n(itip.context.name, language)
 
         # strip uncompleted submission, until GLClient open new submission
         # also if no data has been supply
@@ -219,7 +220,7 @@ class Tips(BaseHandler):
         Response: TipsOverviewList
         Errors: None
         """
-        tips_complete_list = yield collect_tip_overview()
+        tips_complete_list = yield collect_tip_overview(self.request.language)
 
         self.set_status(200)
         self.finish(tips_complete_list)

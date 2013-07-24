@@ -126,10 +126,11 @@ class Replacer12(TableReplacer):
         new_node.tor2web_unauth = old_node.tor2web_unauth
         new_node.exception_email = old_node.exception_email
 
+        new_node.description = { "en" : old_node.description }
+
         # The new fields, the last version of 'languages' is ignored
         new_node.languages_enabled = [ "en" ]
         new_node.languages_supported = LANGUAGES_SUPPORTED
-        new_node.description = { "en" : old_node.description }
 
         self.store_new.add(new_node)
         self.store_new.commit()
