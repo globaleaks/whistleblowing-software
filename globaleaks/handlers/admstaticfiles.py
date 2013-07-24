@@ -22,7 +22,7 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.utils import log
 from globaleaks.rest import errors
 from globaleaks.rest.base import uuid_regexp
-from globaleaks.models import Receiver
+from globaleaks.models import User, Receiver
 
 
 def get_description_by_stat(statstruct, name):
@@ -165,7 +165,7 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    receiver_user = store.find(models.User, models.User.id == receiver.user_id).one()
+    receiver_user = store.find(User, User.id == receiver.user_id).one()
 
     receiver_pic = os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
 
