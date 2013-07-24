@@ -5,6 +5,7 @@
 # GlobaLeaks Utility Functions
 
 from datetime import datetime, timedelta
+import cgi
 import inspect
 import logging
 import re
@@ -27,11 +28,36 @@ from twisted.protocols import tls
 
 from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
+from twisted.python import util
 from twisted.python.failure import Failure
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
 from globaleaks import __version__, LANGUAGES_SUPPORTED_CODES
+
+def sanitize_str(s):
+    """
+    This function encodes the following characters
+    using HTML encoding: < > & ' " \ / 
+    """
+    s = cgi.escape(s, True)
+    s = s.replace("'", "&#x2F;")
+    s = s.replace("/", "&#47;")
+    s = s.replace("\\", "&#92;")
+    return s
+
+class GLLogObserver(twlog.FileLogObserver):
+    def emit(self, eventDict):
+        text = twlog.textFromEventDict(eventDict)
+        if text is None:
+            return
+
+        timeStr = self.formatTime(eventDict['time'])
+        fmtDict = {'system': eventDict['system'], 'text': text.replace("\n", "\n\t")}
+        msgStr = twlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
+
+        util.untilConcludes(self.write, timeStr + " " + sanitize_str(msgStr))
+        util.untilConcludes(self.flush)  # Hoorj!
 
 class Logger(object):
     """
@@ -39,7 +65,8 @@ class Logger(object):
     """
     def _str(self, msg):
         if isinstance(msg, unicode):
-            return msg.encode('utf-8')
+            msg = msg.encode('utf-8')
+
         return str(msg)
 
     def exception(self, error):
@@ -55,7 +82,6 @@ class Logger(object):
 
     def info(self, msg):
         if GLSetting.loglevel <= logging.INFO:
-            #twlog.info("[-] %s" % self._str(msg))
             print "[-] %s" % self._str(msg)
 
     def err(self, msg):
@@ -63,7 +89,6 @@ class Logger(object):
 
     def debug(self, msg):
         if GLSetting.loglevel <= logging.DEBUG:
-            #twlog.debug("[D] %s" % self._str(msg))
             print "[D] %s" % self._str(msg)
 
     def msg(self, msg):
@@ -81,7 +106,7 @@ class Logger(object):
             logfile = twlogfile.LogFile(name, directory,
                                         rotateLength=GLSetting.log_file_size,
                                         maxRotatedFiles=GLSetting.maximum_rotated_log_files)
-            twlog.addObserver(twlog.FileLogObserver(logfile).emit)
+            twlog.addObserver(GLLogObserver(logfile).emit)
 
 log = Logger()
 
