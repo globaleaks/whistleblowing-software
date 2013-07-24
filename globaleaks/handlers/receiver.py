@@ -17,7 +17,7 @@ from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
 from globaleaks.security import change_password, gpg_options_parse
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
-def receiver_serialize_receiver(receiver_user, receiver, language=GLSetting.memory_copy.default_language):
+def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
@@ -25,7 +25,7 @@ def receiver_serialize_receiver(receiver_user, receiver, language=GLSetting.memo
         "creation_date": pretty_date_time(receiver.creation_date),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
-        "username": receiver_user.username,
+        "username": receiver.user.username,
         "gpg_key_info": receiver.gpg_key_info,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "gpg_key_remove": False,
@@ -38,7 +38,7 @@ def receiver_serialize_receiver(receiver_user, receiver, language=GLSetting.memo
         "file_notification" : receiver.file_notification,
         "comment_notification" : receiver.comment_notification,
         "notification_fields": dict(receiver.notification_fields),
-        "failed_login": receiver_user.failed_login_count,
+        "failed_login": receiver.user.failed_login_count,
         "contexts": []
     }
 
@@ -56,9 +56,7 @@ def get_receiver_settings(store, user_id, language=GLSetting.memory_copy.default
     if not receiver:
         raise ReceiverGusNotFound
 
-    receiver_user = store.find(User, User.id == receiver.user_id).one()
-
-    return receiver_serialize_receiver(receiver_user, receiver, language)
+    return receiver_serialize_receiver(receiver, language)
 
 @transact
 def update_receiver_settings(store, user_id, request, language=GLSetting.memory_copy.default_language):
@@ -68,16 +66,14 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
     if not receiver:
         raise ReceiverGusNotFound
 
-    receiver_user = store.find(User, User.id == receiver.user_id).one()
-
     new_password = request.get('password')
     old_password = request.get('old_password')
 
     if len(new_password) and len(old_password):
-        receiver_user.password = change_password(receiver_user.password,
+        receiver.user.password = change_password(receiver.user.password,
                                                  old_password,
                                                  new_password,
-                                                 receiver_user.salt)
+                                                 receiver.user.salt)
 
     mail_address = acquire_mail_address(request)
     if not mail_address:
@@ -88,9 +84,9 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
     receiver.comment_notification = acquire_bool(request['comment_notification'])
     receiver.file_notification = acquire_bool(request['file_notification'])
 
-    gpg_options_parse(receiver_user, receiver, request)
+    gpg_options_parse(receiver, request)
 
-    return receiver_serialize_receiver(receiver_user, receiver, language)
+    return receiver_serialize_receiver(receiver, language)
 
 
 class ReceiverInstance(BaseHandler):

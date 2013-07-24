@@ -80,7 +80,7 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
 
     return context_dict
 
-def admin_serialize_receiver(receiver_user, receiver, language=GLSetting.memory_copy.default_language):
+def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
     receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
@@ -88,9 +88,9 @@ def admin_serialize_receiver(receiver_user, receiver, language=GLSetting.memory_
         "last_update": utils.pretty_date_time(receiver.last_update),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
-        "username": receiver_user.username,
+        "username": receiver.user.username,
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
-        "failed_login": receiver_user.failed_login_count,
+        "failed_login": receiver.user.failed_login_count,
         "password": u"",
         "contexts": [],
         "tags": receiver.tags,
@@ -432,8 +432,7 @@ def get_receiver_list(store, language=GLSetting.memory_copy.default_language):
 
     receivers = store.find(Receiver)
     for receiver in receivers:
-        receiver_user = store.find(User, User.id == receiver.user_id).one()
-        receiver_list.append(admin_serialize_receiver(receiver_user, receiver, language))
+        receiver_list.append(admin_serialize_receiver(receiver, language))
 
     return receiver_list
 
@@ -501,15 +500,15 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
     store.add(receiver_user)
 
     receiver = Receiver(request)
-    receiver.user_id = receiver_user.id
+    receiver.user = receiver_user
 
     receiver.notification_fields = request.get('notification_fields')
     receiver.tags = request.get('tags')
 
     # The various options related in manage GPG keys are used here.
-    gpg_options_parse(receiver_user, receiver, request)
+    gpg_options_parse(receiver, request)
 
-    log.debug("Creating receiver %s" % (receiver_user.username))
+    log.debug("Creating receiver %s" % (receiver.user.username))
 
     store.add(receiver)
 
@@ -523,7 +522,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
             raise errors.ContextGusNotFound
         context.receivers.add(receiver)
 
-    return admin_serialize_receiver(receiver_user, receiver, language)
+    return admin_serialize_receiver(receiver, language)
 
 
 @transact
@@ -541,9 +540,7 @@ def get_receiver(store, id, language=GLSetting.memory_copy.default_language):
         log.err("Requested in receiver")
         raise errors.ReceiverGusNotFound
 
-    receiver_user = store.find(User, User.id == receiver.user_id).one()
-
-    return admin_serialize_receiver(receiver_user, receiver, language)
+    return admin_serialize_receiver(receiver, language)
 
 
 @transact
@@ -566,8 +563,6 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    receiver_user = store.find(User, User.id == receiver.user_id).one()
-
     mail_address = utils.acquire_mail_address(request)
     if not mail_address:
         raise errors.NoEmailSpecified
@@ -581,13 +576,13 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
     receiver.tags = request['tags']
 
     # The various options related in manage GPG keys are used here.
-    gpg_options_parse(receiver_user, receiver, request)
+    gpg_options_parse(receiver, request)
 
 
     password = request.get('password')
     if len(password):
         security.check_password_format(password)
-        receiver_user.password = security.hash_password(password, receiver_user.salt)
+        receiver.user.password = security.hash_password(password, receiver.user.salt)
 
     contexts = request.get('contexts', [])
 
@@ -604,7 +599,7 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
     receiver.update(request)
     receiver.last_update = utils.datetime_now()
 
-    return admin_serialize_receiver(receiver_user, receiver, language)
+    return admin_serialize_receiver(receiver, language)
 
 @transact
 def delete_receiver(store, id):
@@ -615,14 +610,12 @@ def delete_receiver(store, id):
         log.err("Invalid receiver requested in removal")
         raise errors.ReceiverGusNotFound
 
-    receiver_user = store.find(User, User.id == receiver.user_id).one()
-
     portrait = os.path.join(GLSetting.static_path, "%s.png" % id)
 
     if os.path.exists(portrait):
         os.unlink(portrait)
 
-    store.remove(receiver_user)
+    store.remove(receiver.user)
 
 
 # ---------------------------------

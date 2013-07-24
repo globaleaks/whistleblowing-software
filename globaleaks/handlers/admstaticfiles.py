@@ -165,8 +165,6 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    receiver_user = store.find(User, User.id == receiver.user_id).one()
-
     receiver_pic = os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
 
     try:
@@ -179,7 +177,7 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
         raise excep
 
     log.debug("Moved received file %s [%d bytes] for user %s with path: %s " %
-              (filedesc['filename'], filedesc['size'], receiver_user.username, receiver_pic) )
+              (filedesc['filename'], filedesc['size'], receiver.user.username, receiver_pic) )
 
     return receiver.name
 
