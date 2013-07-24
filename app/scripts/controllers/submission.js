@@ -43,9 +43,9 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
 
   $scope.disclaimer = {accepted: false};
   $scope.steps = [
-    '1 Receiver selection',
-    '2 Fill out your submission',
-    '3 Final Step'
+    '1',
+    '2',
+    '3'
   ];
 
   // Watch for changes in certain variables

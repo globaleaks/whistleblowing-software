@@ -37,14 +37,30 @@
       <li ng-repeat="step in steps"
         ng-class="{active: $index==getCurrentStepIndex(), disabled: uploading}">
         <a href="javascript:void(0)"
-          ng-click="goToStep($index)" ng-disabled="uploading">{{step}}</a>
+          ng-click="goToStep($index)" ng-disabled="uploading">
+          <div ng-switch on="step">
+
+            <span ng-switch-when="1">
+              1 - {{ "Receiver selection" | translate }}
+            </span>
+
+            <span ng-switch-when="2">
+              2 - {{ "Fill out your submission" | translate }}
+            </span>
+
+            <span ng-switch-when="3">
+              3 - {{ "Final Step" | translate }}
+            </span>
+
+          </div>
+        </a>
       </li>
     </ul>
 
     <div ng-switch on="selection">
 
       <!-- First Step -->
-      <div ng-switch-when="1 Receiver selection" class="receiverCards">
+      <div ng-switch-when="1" class="receiverCards">
         <p class="lead">
         {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}</p>
 
@@ -84,7 +100,7 @@
       <!-- /1 -->
 
       <!-- Second Step -->
-      <div ng-switch-when="2 Fill out your submission">
+      <div ng-switch-when="2">
 
         <p class="lead">
         {{ "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files" | translate }}</p>
@@ -103,7 +119,7 @@
       <!-- /2 -->
 
       <!-- Third Step -->
-      <div ng-switch-when="3 Final Step">
+      <div ng-switch-when="3">
 
         <div class="row">
 
