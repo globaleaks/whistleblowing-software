@@ -1,9 +1,9 @@
 teemed %ReceiverName%,
 
-This is an E-Mail message to notify you that a Whistleblower has update the sumbmission with
-new material: %FileName% (%FileSize%, %FileType%).
+This is an E-Mail message to notify you that a Whistleblower
+has updated a submission with new material.
 
-This is happen in %ContextName%, at %EventTime%.
+This has happened in %ContextName% at %EventTime%.
 
 Take Care,
 A Random GlobaLeaks Node
