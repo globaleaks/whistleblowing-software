@@ -87,7 +87,14 @@
               <label><input type="checkbox" ng-model="enabled_languages[language.code]"> {{language.name}}</label>
             </div>
           </div>
+        </div>
 
+        <div class="row">
+          <div class="span9">
+            <label>{{ "Default language" | translate }}</label>
+            <select ng-model="admin.node.default_language"
+                    ng-options="code as name for (code, name) in available_languages"></select>
+          </div>
         </div>
 
         <label>{{ "Tor Hidden Service (hostname)" | translate }}</label>
