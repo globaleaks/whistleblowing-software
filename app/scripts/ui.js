@@ -25,7 +25,7 @@ angular.module('submissionUI', []).
 
         function progressMeter(e, data) {
           var progress_percent = parseInt(data.loaded / data.total * 100, 10);
-          $(element).find('.uploadProgress .progress .bar').css('width', progress_percent + '%');
+          $(element).parent().find('.uploadProgress .progress .bar').css('width', progress_percent + '%');
         };
 
         $(element).find('input[type="file"]').change(function(){
@@ -38,9 +38,10 @@ angular.module('submissionUI', []).
               url: url,
               headers: headers,
               multipart: false,
+              progress: progressMeter,
               progressall: progressMeter,
               add: function(e, data){
-                $(element).find('.uploadProgress').show();
+                $(element).parent().find('.uploadProgress').show();
                 var filesList = $(element).find('input[type="file"]')[0].files,
                   jqXHR = data.submit({files: filesList});
                 
@@ -49,6 +50,8 @@ angular.module('submissionUI', []).
                     original_src = img_receiver[0].src;
 
                     img_receiver[0].src = original_src+'?'+ Math.random();
+
+                    $(element).parent().find('.uploadProgress').hide();
                 });
               }
             });
