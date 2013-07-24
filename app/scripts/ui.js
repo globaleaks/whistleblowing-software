@@ -19,44 +19,39 @@ angular.module('submissionUI', []).
 
         img_receiver.hover(function(){
           // Resize the overlay black image to match the icon size.
-          var upload_file = element.parent().parent().find('.uploadfile');
+          var upload_file = element.parent().parent().find('.changePicture');
           upload_file.css('width', img_receiver[0].width + 10);
-          upload_file.css('height', img_receiver[0].height - 20);
         });
+
+        function progressMeter(e, data) {
+          var progress_percent = parseInt(data.loaded / data.total * 100, 10);
+          $(element).find('.uploadProgress .progress .bar').css('width', progress_percent + '%');
+        };
 
         $(element).find('input[type="file"]').change(function(){
           scope.changeProfile();
         });
 
         scope.$watch(attrs.src, function(){
-          var url = attrs.src;
+          var url = attrs.src,
+            fileUploader = $(element).fileupload({
+              url: url,
+              headers: headers,
+              multipart: false,
+              progressall: progressMeter,
+              add: function(e, data){
+                $(element).find('.uploadProgress').show();
+                var filesList = $(element).find('input[type="file"]')[0].files,
+                  jqXHR = data.submit({files: filesList});
+                
+                jqXHR.success(function(result, textStatus, jqXHR) {
+                    console.log("Successfully uploaded");
+                    original_src = img_receiver[0].src;
 
-          if (url[0] === "'")
-            url = url.replace(/'/g, "");
-
-          $(uploadButton).click(function() {
-            console.log("uploading to " + url);
-            var fileUploader = $(element).fileupload({url: url,
-                                                      headers: headers,
-                                                      multipart: false}),
-              filesList = element.find('input.file')[0].files;
-
-            $(element).fileupload('send', {files: filesList}).
-              success(function(result, textStatus, jqXHR) {
-                console.log("Successfully uploaded");
-                  original_src = img_receiver.src;
-
-                img_receiver.src = original_src+'?'+ Math.random();
-                element.parent().hide();
-            }).
-              error(function(jqXHR, textStatus, error) {
-                console.log("There was a problem");
-            }).
-              complete(function(result, textStatus, jqXHR) {
-                console.log("All complete");
+                    img_receiver[0].src = original_src+'?'+ Math.random();
+                });
+              }
             });
-
-          });
 
         });
       }
