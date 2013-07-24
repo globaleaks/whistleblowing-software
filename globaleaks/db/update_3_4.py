@@ -32,30 +32,6 @@ class Node_version_3(Model):
     tor2web_unauth = Bool()
     exception_email = Unicode()
 
-class Receiver_version_3(Model):
-    __storm_table__ = 'receiver'
-
-    name = Unicode()
-    description = Pickle()
-    username = Unicode()
-    password = Unicode()
-    gpg_key_info = Unicode()
-    gpg_key_fingerprint = Unicode()
-    gpg_key_status = Unicode()
-    gpg_key_armor = Unicode()
-    gpg_enable_notification = Bool()
-    gpg_enable_files = Bool()
-    notification_fields = Pickle()
-    can_delete_submission = Bool()
-    receiver_level = Int()
-    failed_login = Int()
-    last_update = DateTime()
-    last_access = DateTime()
-    tags = Pickle()
-    tip_notification = Bool()
-    comment_notification = Bool()
-    file_notification = Bool()
-
 class ReceiverFile_version_3(Model):
     __storm_table__ = 'receiverfile'
 
@@ -67,14 +43,13 @@ class ReceiverFile_version_3(Model):
     last_access = DateTime()
     mark = Unicode()
 
-
 class Replacer34(TableReplacer):
 
     def migrate_Node(self):
 
         print "%s Node migration assistant (presentation, default_language, support of User table)" % self.std_fancy
 
-        old_node = self.store_old.find(Node_version_3).one()
+        old_node = self.store_old.find(self.get_right_model("Node", 3)).one()
 
         admin_dict = {
             'username': u'admin',
@@ -135,9 +110,9 @@ class Replacer34(TableReplacer):
 
     def migrate_Receiver(self):
         print "%s Receiver migration assistant, (support for User table): #%d" % (
-            self.std_fancy, self.store_old.find(Receiver_version_3).count() )
+            self.std_fancy, self.store_old.find(self.get_right_model("Receiver", 3)).count() )
 
-        old_rs = self.store_old.find(Receiver_version_3)
+        old_rs = self.store_old.find(self.get_right_model("Receiver", 3))
 
         for old_r in old_rs:
 
