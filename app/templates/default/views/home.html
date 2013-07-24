@@ -97,16 +97,8 @@
 
 <div class="jumbotron homeSplash" ng-show="node_info.name">
 
-    <div class="row">
-        <div class="span4">
-            <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
-        </div>
-        <div class="span12">
-            <h1>
-                {{ node_info.presentation }}
-            </h1>
-        </div>
-    </div>
+    <img ng-src="/static/globaleaks_logo.png">
+    <h1>{{ node_info.presentation }}</h1>
 
     <div ng-show="node_info.configured">
         <a ng-click="goToSubmission()" class="btn btn-primary btn-large">
@@ -127,7 +119,7 @@
 </div>
 
 <div class="container" ng-show="node_info.description">
-  <div>
+  <div class="homeIntro">
 
     <h3 class="lead">{{node_info.description}}</h3>
 
