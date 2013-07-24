@@ -7,6 +7,7 @@ import os
 import random
 import re
 import sys
+import traceback
 
 import pip
 from pkg_resources import parse_version
@@ -345,6 +346,9 @@ def check_db_files():
                     print "GlobaLeaks database version %d: update complete!" % GLSetting.db_version
                 except Exception as excep:
                     print "GlobaLeaks database version %d: update failure :(" % GLSetting.db_version
+                    print "Verbose exception traceback:"
+                    exc_type, exc_value, exc_traceback = sys.exc_info()
+                    traceback.print_tb(exc_traceback)
                     quit(-1)
 
                 print "Database version detected: %d" % GLSetting.db_version

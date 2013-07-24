@@ -77,10 +77,6 @@ def perform_version_update(starting_ver, ending_ver, start_path):
                     function_pointer()
                 except Exception as excep:
                     print "Failure in %s: %s " % (migrate_function, excep)
-                    print "Verbose exception traceback:"
-                    import traceback
-                    exc_type, exc_value, exc_traceback = sys.exc_info()
-                    traceback.print_tb(exc_traceback)
                     raise
 
             # epilogue can be used to perform operation once, not related to the tables

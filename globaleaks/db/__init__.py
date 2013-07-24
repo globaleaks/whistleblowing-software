@@ -29,6 +29,7 @@ def initialize_node(store, results, only_node, email_templates):
     node.database_version = DATABASE_VERSION
 
     node.languages_supported = LANGUAGES_SUPPORTED
+
     # by default, only english is the surely present language
     node.languages_enabled = GLSetting.defaults.languages_enabled
 
