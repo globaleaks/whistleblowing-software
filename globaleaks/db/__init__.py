@@ -71,15 +71,15 @@ def initialize_node(store, results, only_node, email_templates):
     notification.tip_template = { GLSetting.memory_copy.default_language:
                                   email_templates['tip'] }
     notification.tip_mail_title = { GLSetting.memory_copy.default_language:
-                                    "From %ContextName% a new Tip in %EventTime%" }
+                                    "From %ContextName% a new Tip (%EventTime%)" }
     notification.file_template = { GLSetting.memory_copy.default_language:
                                    email_templates['file'] }
     notification.file_mail_title = { GLSetting.memory_copy.default_language:
-                                     "From %ContextName% a new file appended in a tip (%EventTime%, %FileType%)" }
+                                     "From %ContextName% a new file appended to a tip (%EventTime%)" }
     notification.comment_template = { GLSetting.memory_copy.default_language:
                                       email_templates['comment'] }
     notification.comment_mail_title = { GLSetting.memory_copy.default_language:
-                                        "From %ContextName% a new comment in %EventTime%" }
+                                        "From %ContextName% a new comment (%EventTime%)" }
     notification.activation_template = { GLSetting.memory_copy.default_language:
                                          "*Not Yet implemented*" }
     notification.activation_mail_title = { GLSetting.memory_copy.default_language:

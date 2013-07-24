@@ -4,7 +4,7 @@ This is an E-Mail message to notify you that someone has selected you as a valua
 of WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created
 by the GlobaLeaks Node %NodeName%, in "%ContextName%".
 
-This tip-off has been sent to you by an anonymous whistleblower. She/He would like it for you
+This tip-off has been sent to you by an anonymous whistleblower. She/He would like you
 to pay special attention to the information and material contained therein. Please consider
 that whistleblowers often expose themselves to high personal risks in order to protect the
 public good. Therefore the material that they provide with this tip-off should be considered
@@ -36,10 +36,10 @@ environments: media, activism, corporations, public agencies.
 
 2. Is GlobaLeaks sending me this Mail?
 
-No, this mail has been sent to you by the Node called %NodeName% They are running the
-GlobaLeaks Platform, but are not directly tied to the GlobaLeaks organization. GlobaLeaks
-(https://globaleaks.org) will never be directly affiliated with any real world
-WhistleBlowing sites, GlobaLeaks will only provide software and technical support.
+No, this mail has been sent to you by the Node called %NodeName% that is running the
+GlobaLeaks Platform, but is not directly tied to the GlobaLeaks organization.
+GlobaLeaks (https://globaleaks.org) will never be directly affiliated with any real world
+WhistleBlowing site and will only provide software and technical support.
 
 3. Why am I receiving this?
 
@@ -47,7 +47,7 @@ You're receiving this communication because an anonymous whistleblower has chose
 trustworthy contact for releasing confidential and/or important information that could be of
 utmost importance.
 
-For any other inquire please refer to the GlobaLeaks website at https://globaleaks.org
+For any other inquiry please refer to the GlobaLeaks website at https://globaleaks.org
 
 Take Care,
 A Random GlobaLeaks Node
