@@ -563,7 +563,9 @@ done
 if [ -d /data/globaleaks/deb ]; then
   echo "Installing Deb package from local dir /data/globaleaks/deb"
   cd /data/globaleaks/deb/ && dpkg-scanpackages . /dev/null | gzip -c -9 > /data/globaleaks/deb/Packages.gz
-  echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list
+  if [ ! "`grep "deb file:///data/globaleaks/deb/ /" /etc/apt/sources.list`" ]; then
+    echo 'deb file:///data/globaleaks/deb/ /' >> /etc/apt/sources.list
+  fi
   DO "apt-get update -y" "0"
   DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew" "0"
 else
@@ -576,5 +578,3 @@ else
   DO "apt-get update -y" "0"
   DO "apt-get install globaleaks -y" "0"
 fi
-
-update-rc.d globaleaks defaults # Set globaleaks to automatically start on-boot
