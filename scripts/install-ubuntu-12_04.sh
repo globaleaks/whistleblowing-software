@@ -500,6 +500,7 @@ fi
 echo "Installing python-setuptools, python-software-properties, gcc, python-dev"
 DO "apt-get update -y" "0"
 DO "apt-get install python-software-properties -y" "0"
+echo "Adding Ubuntu Universe repository"
 add-apt-repository -y 'deb http://de.archive.ubuntu.com/ubuntu/ precise universe'
 DO "apt-get update -y" "0"
 DO "apt-get install python-pip python-setuptools python-dev gcc -y" "0"
