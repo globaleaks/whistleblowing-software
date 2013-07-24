@@ -61,7 +61,7 @@
                     <input type="text"
                            required
                            ng-model="context.name"
-                           value="{{context.name}}">
+                           value="{{context.name}}" />
                     <label>{{ "Description" | translate }}</label>
                     <textarea required
                               ng-model="context.description">{{context.description}}</textarea>
@@ -113,22 +113,21 @@
                           <input type="number"
                                  required
                                  ng-model="context.submission_timetolive"
-                                 value="{{context.submission_timetolive}}">
-
+                                 value="{{context.submission_timetolive}}" />
                           <label>{{ "Submitted Tip expiry time (days)" | translate }}</label>
                           <input type="number"
                                  required
                                  ng-model="context.tip_timetolive"
-                                 value="{{context.tip_timetolive}}">
+                                 value="{{context.tip_timetolive}}" />
                           <label>{{ "Receipt format (regular expression)" | translate }}</label>
                               <input type="text"
                                      required
                                      ng-model="context.receipt_regexp"
-                                     value="{{context.receipt_regexp}}">
+                                     value="{{context.receipt_regexp}}" />
                           <label>
                               <input type="checkbox"
-                                     value="context.file_required"
-                                     ng-model="context.file_required" />
+                                     ng-model="context.file_required"
+                                     value="{{context.file_required}}" />
                               {{ "Require at least one file to be uploaded" | translate }}
                           </label>
                           <!--

@@ -92,18 +92,18 @@
       </a>
 
     </div>
-
   </div>
 </div>
 
 <div class="jumbotron homeSplash" ng-show="node_info.name">
-    <h1>
-      {{ "Welcome to" | translate }} {{node_info.name}}
-    </h1>
-    <a ng-click="goToSubmission()" ng-hide="!node_info.configured"
-        class="btn btn-primary btn-large">
-        {{ "Blow the Whistle" | translate }}</a>
 
+    <img ng-src="/static/globaleaks_logo.png">
+    <h1>{{ node_info.presentation }}</h1>
+
+    <div ng-show="node_info.configured">
+        <a ng-click="goToSubmission()" class="btn btn-primary btn-large">
+            {{ "Blow the Whistle" | translate }}</a>
+    </div>
     <div ng-hide="node_info.configured">
       {{ "Your node is not configured! Please, proceed via" | translate }}
         <a href="/#/admin/contexts">
@@ -111,6 +111,7 @@
         </a>
     </div>
 </div>
+
 <div class="jumbotron homeSplash" ng-show="!node_info.name">
     <h1>
       {{ "Loading..." | translate }}
@@ -120,26 +121,30 @@
 <div class="container" ng-show="node_info.description">
   <div class="homeIntro">
 
-    <p class="lead">{{node_info.description}}</p>
+    <h3 class="lead">{{node_info.description}}</h3>
 
-    <h1>
-      {{ "Are you a whistleblower?" | translate }}
-    </h1>
-    <label>
-      {{ "Enter your receipt" | translate }}<br/>
-      <input type="text" ng-model="receipt">
-    </label>
-    <a ng-click="view_tip(receipt)" class="btn btn-primary">
-      {{ "View Tip" | translate }}
-    </a>
-    <h1>
-      {{ "Are you a receiver?" | translate }}
-    </h1>
-    <p>
-    {{ "This is the" | translate }} 
-    <a href="#/login">
-      {{ "Login page" | translate }}
-    </a>.</p>
+    <div class="span6">
+        <h1>
+            {{ "Are you a whistleblower?" | translate }}
+        </h1>
+        <label>
+            {{ "Enter your receipt" | translate }}<br/>
+            <input type="text" ng-model="receipt">
+        </label>
+        <a ng-click="view_tip(receipt)" class="btn btn-primary">
+            {{ "View Tip" | translate }}
+        </a>
+    </div >
+    <div class="span6">
+        <h1>
+          {{ "Are you a receiver?" | translate }}
+        </h1>
+        <p>
+        {{ "This is the" | translate }}
+        <a href="#/login">
+          {{ "Login page" | translate }}
+        </a>.</p>
+    </div >
 
     <h1>
       {{ "What is this about?" | translate }}

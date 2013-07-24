@@ -1,5 +1,5 @@
 <div ng-include="'views/header.html'"
-  onload='header_title="Content Settings" | translate;
+  onload='header_title="Advanced Settings" | translate;
   header_subtitle="Administration Interface" | translate'>
 </div>
 
@@ -14,8 +14,7 @@
       ng-include="'views/admin/sidebar.html'">
     </div>
     <!-- End Nav Bar -->
-    <div class="span9">
-
+    <div class="span9" ng-controller="AdminAdvancedCtrl">
       <h3>
         {{ "Advanced Settings" | translate }}
       </h3>
@@ -48,8 +47,7 @@
         <div ng-show="tor2web_editing">
             <div class="table-bordered">
               <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_admin"
-                         ng-true-value="true" ng-false-value="false" />
+                  <input type="checkbox" ng-model="admin.node.tor2web_admin" />
                   {{ "Permit Administative login via Tor2Web" | translate }}
               </label>
               <label ng-show="admin.node.tor2web_admin" >
@@ -61,8 +59,7 @@
 
             <div class="table-bordered" >
               <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_receiver"
-                         ng-true-value="true" ng-false-value="false" />
+                  <input type="checkbox" ng-model="admin.node.tor2web_receiver" />
                   {{ "Permit Receiver preferences management via Tor2Web" | translate }}
               </label>
               <label ng-show="admin.node.tor2web_receiver" >
@@ -74,8 +71,7 @@
 
             <div class="table-bordered" >
               <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_tip"
-                         ng-true-value="true" ng-false-value="false" />
+                  <input type="checkbox" ng-model="admin.node.tor2web_tip" />
                   {{ "Permit Tip access, file download and upload via Tor2Web" | translate }}
               </label>
               <label ng-show="admin.node.tor2web_tip" >
@@ -87,8 +83,7 @@
 
             <div class="table-bordered" >
               <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_unauth"
-                         ng-true-value="true" ng-false-value="false" />
+                  <input type="checkbox" ng-model="admin.node.tor2web_unauth" />
                   {{ "Permit access of public resources via Tor2Web" | translate }}
               </label>
               <label ng-show="admin.node.tor2web_unauth" >
@@ -100,8 +95,7 @@
 
             <div class="table-bordered" >
               <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_submission"
-                         ng-true-value="true" ng-false-value="false" />
+                  <input type="checkbox" ng-model="admin.node.tor2web_submission" />
                   {{ "Permit Submissions via Tor2Web" | translate }}
               </label>
               <label ng-show="admin.node.tor2web_submission" >
