@@ -67,6 +67,8 @@ class Replacer01(TableReplacer):
             new_obj.gpg_key_fingerprint = None
             new_obj.gpg_key_info = None
             new_obj.gpg_key_status = Receiver._gpg_types[0] # Disable
+            new_obj.gpg_enable_notification = False
+            new_obj.gpg_enable_files = False
 
             self.store_new.add(new_obj)
 
