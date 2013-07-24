@@ -112,15 +112,12 @@ def insert_random_delay():
     time.sleep(centisec)
 
 
-# GPG has not a dedicated class, because one of the function is callend inside a transact, and
-# I'm not quite confident on creating an object that operates on the filesystem knowing
-# that would be run also on the Storm cycle.
-#
-# functions
-# base_import_key
-
-
 class GLBGPG:
+    """
+    GPG has not a dedicated class, because one of the function is callend inside a transact, and
+    I'm not quite confident on creating an object that operates on the filesystem knowing
+    that would be run also on the Storm cycle.
+    """
 
     def __init__(self, receiver_desc):
         """
@@ -327,14 +324,13 @@ class GLBGPG:
             log.err("Unable to clean temporary GPG environment: %s: %s" % (self.gpgh.gnupghome, excep))
 
 
-
-
-# This is called in a @transact, when receiver update prefs and
-# when admin configure a new key (at the moment, Admin GUI do not
-# permit to sets preferences, but still the same function is
-# used.
 def gpg_options_parse(receiver, request):
     """
+    This is called in a @transact, when receiver update prefs and
+    when admin configure a new key (at the moment, Admin GUI do not
+    permit to sets preferences, but still the same function is
+    used.
+
     @param receiver: the Storm object
     @param request: the Dict receiver by the Internets
     @return: None
@@ -394,3 +390,39 @@ def gpg_options_parse(receiver, request):
                 (receiver.username,
                  "YES" if encrypt_notification else "NO",
                  "YES" if encrypt_file else "NO") )
+
+
+def get_expirations(keylist):
+    """
+    This function is not implemented in GPG object class because need to operate
+    on the whole keys
+    """
+
+    try:
+        temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % random.randint(0, 0xFFFF) )
+        os.makedirs(temp_gpgroot, mode=0700)
+        gpexpire= GPG(gnupghome=temp_gpgroot, options="--trust-model always")
+    except Exception as excep:
+        log.err("Unable to setup expiration check environment")
+        raise excep
+
+    try:
+        for key in keylist:
+            gpexpire.import_keys(key)
+    except Exception as excep:
+        log.err("Error in GPG import_keys: %s" % excep.message)
+        raise excep
+
+    try:
+        all_keys = gpexpire.list_keys()
+    except Exception as excep:
+        log.err("Error in GPG list_keys: %s" % excep.message)
+        raise excep
+
+    expirations = {}
+    for ak in all_keys:
+        expirations.update({ ak['fingerprint'] : ak['date']})
+
+    return expirations
+
+

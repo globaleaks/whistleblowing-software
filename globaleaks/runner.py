@@ -52,7 +52,7 @@ def start_asynchronous():
     not executed by globaleaks.run_app, then is called by the
     OS-depenedent runner below
     """
-    from globaleaks.jobs import notification_sched, statistics_sched, \
+    from globaleaks.jobs import notification_sched, gpgexpire_sched, \
         delivery_sched, cleaning_sched
 
     # When the application boot, maybe because has been after a restart, then
@@ -86,6 +86,10 @@ def start_asynchronous():
     clean_sched.force_execution(GLAsynchronous, seconds=10)
     GLAsynchronous.add_interval_job(clean_sched.operation,
         hours=GLSetting.cleaning_hours_delta)
+
+    expiration_sched = gpgexpire_sched.GPGEXpireCheck()
+    expiration_sched.force_execution(GLAsynchronous, seconds=40)
+    GLAsynchronous.add_interval_job(expiration_sched.operation, hours=23)
 
     #stats_sched = statistics_sched.APSStatistics()
     #stats_sched.force_execution(GLAsynchronous, seconds=9)

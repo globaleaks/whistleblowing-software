@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
 
 import os
+import datetime
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
-from globaleaks.security import GLBGPG, gpg_options_parse
+from globaleaks.security import GLBGPG, gpg_options_parse, get_expirations
 from globaleaks.handlers import receiver
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.settings import GLSetting, transact
@@ -155,13 +156,17 @@ class TestReceiverSetKey(helpers.TestHandler):
             # these are the same lines used in delivery_sched.py
             gpoj = GLBGPG(fake_receiver_desc)
             gpoj.validate_key(DeveloperKey.__doc__)
-            encrypted_file_path = gpoj.encrypt_file(tempsource, f, "/tmp")
+            encrypted_file_path, encrypted_file_size = gpoj.encrypt_file(tempsource, f, "/tmp")
             gpoj.destroy_environment()
 
             with file(encrypted_file_path, "r") as f:
                 first_line = f.readline()
 
             self.assertSubstring('-----BEGIN PGP MESSAGE-----', first_line)
+
+            with file(encrypted_file_path, "r") as f:
+                whole = f.read()
+            self.assertEqual(encrypted_file_size, len(whole))
 
 
     @inlineCallbacks
@@ -184,6 +189,32 @@ class TestReceiverSetKey(helpers.TestHandler):
         gpob = GLBGPG(fake_serialized_receiver)
         self.assertTrue(gpob.validate_key(DeveloperKey.__doc__))
         self.assertRaises(errors.GPGKeyInvalid, gpob.encrypt_message, body)
+
+
+    @inlineCallbacks
+    def test_expiration_checks(self):
+
+        keylist = [ HermesGlobaleaksKey.__doc__, DeveloperKey.__doc__, ExpiredKey.__doc__ ]
+
+        expiration_list = get_expirations(keylist)
+
+        for keyid, sincepoch in expiration_list.iteritems():
+            expiration_t = datetime.datetime.utcfromtimestamp(int(sincepoch))
+            print expiration_t
+            print datetime.date.today()
+            lowurgency = datetime.timedelta(weeks=2)
+            highurgengy =datetime.timedelta(days=3)
+            today1 = datetime.date.today() + lowurgency
+            today2 = datetime.date.today() + highurgency
+
+            if today1 < lowurgency:
+                print keyid, "low"
+            if today2 < highurgeny:
+                print keyid, "high"
+
+        self.assertFalse(True)
+
+
 
 
 class HermesGlobaleaksKey:
