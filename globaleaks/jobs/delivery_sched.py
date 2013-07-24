@@ -16,7 +16,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
-                              ReceiverFile, Receiver
+                              ReceiverFile, Receiver, User
 from globaleaks.settings import transact, GLSetting
 from globaleaks.utils import get_file_checksum, log, pretty_date_time
 from globaleaks.security import GLBGPG
@@ -95,12 +95,12 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile.internalfile_id = ifile.id
             receiverfile.internaltip_id = ifile.internaltip.id
 
+            receiver_user = store.find(User, User.id == receiver.user_id).one()
+            received_desc = admin_serialize_receiver(receiver_user, receiver, GLSetting.memory_copy.default_language)
+
             # the lines below are copyed / tested in test_gpg.py
             if receiver.gpg_key_status == Receiver._gpg_types[1] and receiver.gpg_enable_files:
                 try:
-                    receiver_user = store.find(models.User, models.User.id == receiver.user_id).one()
-
-                    received_desc = admin_serialize_receiver(receiver)
                     gpoj = GLBGPG(received_desc)
 
                     if not gpoj.validate_key(received_desc['gpg_key_armor']):
