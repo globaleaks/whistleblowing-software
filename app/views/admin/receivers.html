@@ -120,11 +120,28 @@
 
                   <label>{{ "Description" | translate }}</label>
                   <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
+                </div>
 
+                <button class="btn btn-info"
+                    ng-click="advanced_edit = !advanced_edit"
+                    ng-init="advanced_edit=false">
+                    {{ "PGP key management" | translate }}
+                </button>
+
+                <div class="row" ng-show="advanced_edit">
+                  <div class="span4">
+                    <textarea ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
+                  </div>
+                  <!-- here another span4 shall fit well, but IDK which kind of preferences can be show here -->
+                  <div class="span8">
+                      <div ng-show="receiver.gpg_key_info">
+                          {{ "Key details" | translate }}
+                          <pre>{{receiver.gpg_key_info}}</pre>
+                      </div>
+                  </div>
                 </div>
 
               </div>
-
             </div>
           </form>
         </div>

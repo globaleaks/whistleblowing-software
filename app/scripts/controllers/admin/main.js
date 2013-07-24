@@ -69,11 +69,17 @@ function($rootScope, $scope, $http, $location, Admin, Translations) {
 
 }]);
 
-GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changePasswordWatcher',
+GLClient.controller('AdminPasswordCtrl', ['$scope', 'changePasswordWatcher',
                     function($scope, changePasswordWatcher) {
     changePasswordWatcher($scope, "admin.node.old_password",
         "admin.node.password", "admin.node.check_password");
 }]);
+
+GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changeParamsWatcher',
+                    function($scope, changeParamsWatcher) {
+    changeParamsWatcher($scope);
+}]);
+
 
 GLClient.controller('ImageUploadCtrl', ['$scope', function($scope){
     $scope.uploadfile = false;
