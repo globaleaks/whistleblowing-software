@@ -3,16 +3,18 @@ GLClient.controller('toolTipCtrl',
    '$location', '$cookies', 'Translations', 'Node', '$route',
 function($scope, $rootScope, Authentication, $location,
          $cookies, Translations, Node, $route) {
-  if (!$cookies['language'])
-    $cookies['language'] = 'en';
 
   $scope.session_id = $cookies['session_id'];
   $scope.auth_landing_page = $cookies['auth_landing_page'];
   $scope.role = $cookies['role'];
-  $scope.language = $cookies['language'];
-  $rootScope.selected_language = $scope.language;
   
   Node.get(function(node_info) {
+    if (!$cookies['language'])
+      $cookies['language'] = node_info.default_language;
+
+    $scope.language = $cookies['language'];
+    $rootScope.selected_language = $scope.language;
+
     var language_count = 0;
     $rootScope.available_languages = {};
     $rootScope.languages_supported = Translations.supported_languages;
