@@ -27,24 +27,22 @@
           <div class="profile" ng-mouseenter="openUploader()"
                ng-mouseleave="closeUploader()">
 
-            <div ng-show="uploadfile || fileSelected" class="uploadfile">
-
-              <div pragmatic-file-upload ng-src="'/admin/staticfiles?globaleaks_logo'">
-
-                <button class="close" ng-click="closeProfile()">×</button>
+            <div ng-show="uploadfile" class="uploadfile">
+              <div class="changePicture"
+                   pragmatic-file-upload ng-src="/admin/staticfiles?globaleaks_logo">
                 <div class="fileselector">
-                  <input type="file" class="file"
-                         name="profile">
-                  <button class="btn selectFile">
-                    {{ "Select file" | translate }}</button>
+                  <input type="file">
                 </div>
-                <button class="btn upload" ng-disabled="!fileSelected"
-                        ng-class="{'btn-success': fileSelected}">
-                        {{ "upload" | translate }}</button>
-
+                <span>
+                  {{ "Change picture" | translate }}
+                </span>
+              </div>
+              <div class="uploadProgress hide">
+                <div class="progress progress-striped">
+                  <div class="bar" style="width: 0%;"></div>
+                </div>
               </div>
             </div>
-
             <img ng-src="/static/globaleaks_logo.png" class="img-polaroid baseimage">
 
           </div>
