@@ -576,5 +576,3 @@ else
   DO "apt-get update -y" "0"
   DO "apt-get install globaleaks -y" "0"
 fi
-
-update-rc.d globaleaks defaults # Set globaleaks to automatically start on-boot
