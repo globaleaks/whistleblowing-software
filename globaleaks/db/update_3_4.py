@@ -160,7 +160,7 @@ class Replacer34(TableReplacer):
             self.store_new.add(receiver_user)
 
             # version 5 new entry!
-            new_obj.user_id = receiver_user.id
+            new_obj.user = receiver_user
 
             # these fields do not exist anymore
             # new_obj.username = old_obj.username
