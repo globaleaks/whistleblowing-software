@@ -10,7 +10,7 @@ from globaleaks.handlers import receiver
 from globaleaks.handlers.admin import admin_serialize_receiver
 from globaleaks.settings import GLSetting, transact
 from globaleaks.tests.helpers import MockDict
-from globaleaks.models import Receiver, User
+from globaleaks.models import Receiver
 
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
@@ -22,9 +22,8 @@ GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 def transact_dummy_whatever(store, receiver_id, mock_request):
 
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
-    receiver_user = store.find(User, User.id == receiver.user_id).one()
-    gpg_options_parse(receiver_user, receiver, mock_request)
-    return admin_serialize_receiver(receiver_user, receiver)
+    gpg_options_parse(receiver, mock_request)
+    return admin_serialize_receiver(receiver)
 
 
 class TestReceiverSetKey(helpers.TestHandler):

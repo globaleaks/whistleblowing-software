@@ -95,8 +95,7 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile.internalfile_id = ifile.id
             receiverfile.internaltip_id = ifile.internaltip.id
 
-            receiver_user = store.find(User, User.id == receiver.user_id).one()
-            received_desc = admin_serialize_receiver(receiver_user, receiver, GLSetting.memory_copy.default_language)
+            received_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
 
             # the lines below are copyed / tested in test_gpg.py
             if receiver.gpg_key_status == Receiver._gpg_types[1] and receiver.gpg_enable_files:
@@ -112,7 +111,7 @@ def receiver_file_align(store, filesdict, processdict):
                     gpoj.destroy_environment()
 
                     log.debug("Generated encrypted version of %s for %s in %s" % (
-                        ifile.name, receiver_user.username, encrypted_file_path ))
+                        ifile.name, receiver.user.username, encrypted_file_path ))
 
                     receiverfile.file_path = encrypted_file_path
                     receiverfile.size = encrypted_file_size
@@ -120,7 +119,7 @@ def receiver_file_align(store, filesdict, processdict):
 
                 except Exception as excep:
                     log.err("Error when encrypting %s for %s: %s" % (
-                        ifile.name, receiver_user.username, str(excep) ))
+                        ifile.name, receiver.user.username, str(excep) ))
                     # In the failure case, fallback in plain text, or what ?
                     # I say fallback has to be an option but not be the default,
                     # or would act as a protocol downgrade attack vector.

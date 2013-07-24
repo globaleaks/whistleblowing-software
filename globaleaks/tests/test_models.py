@@ -49,7 +49,7 @@ class TestModels(helpers.TestGL):
         store.add(receiver_user)
 
         receiver = Receiver(r)
-        receiver.user_id = receiver_user.id
+        receiver.user = receiver_user
         receiver.gpg_key_status = Receiver._gpg_types[0]
         receiver.notification_fields = self.dummyReceiver['notification_fields']
 
@@ -105,8 +105,8 @@ class TestModels(helpers.TestGL):
         receiver1 = Receiver(r)
         receiver2 = Receiver(r)
 
-        receiver1.user_id = receiver_user1.id
-        receiver2.user_id = receiver_user2.id 
+        receiver1.user = receiver_user1
+        receiver2.user = receiver_user2
         receiver1.gpg_key_status = receiver2.gpg_key_status = Receiver._gpg_types[0]
         receiver1.notification_fields = receiver2.notification_fields = {'mail_address': 'x@x.it'}
 
@@ -132,7 +132,7 @@ class TestModels(helpers.TestGL):
         store.add(receiver_user)
 
         receiver = Receiver(r)
-        receiver.user_id = receiver_user.id
+        receiver.user = receiver_user
         receiver.gpg_key_status = Receiver._gpg_types[0]
         receiver.notification_fields = {'mail_address': 'y@y.it'}
 

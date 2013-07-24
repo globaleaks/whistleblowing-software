@@ -166,8 +166,9 @@ CREATE TABLE receiver (
     gpg_enable_notification INTEGER,
     gpg_enable_files INTEGER,
     receiver_level INTEGER NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
     FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
+
 );
 
 CREATE TABLE receiver_context (
