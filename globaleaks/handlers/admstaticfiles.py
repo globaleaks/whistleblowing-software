@@ -22,8 +22,7 @@ from globaleaks.handlers.authentication import transport_security_check, authent
 from globaleaks.utils import log
 from globaleaks.rest import errors
 from globaleaks.rest.base import uuid_regexp
-from globaleaks.models import User, Receiver
-
+from globaleaks import models
 
 def get_description_by_stat(statstruct, name):
     stored_file_desc =  {
@@ -160,7 +159,7 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
     https://github.com/globaleaks/GlobaLeaks/issues/247
 
     """
-    receiver = store.find(Receiver, Receiver.id == unicode(receiver_uuid)).one()
+    receiver = store.find(models.Receiver, models.Receiver.id == unicode(receiver_uuid)).one()
 
     if not receiver:
         raise errors.ReceiverGusNotFound
