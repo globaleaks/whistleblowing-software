@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, User
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests
@@ -25,7 +25,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "creation_date": pretty_date_time(receiver.creation_date),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
-        "username": receiver.username,
+        "username": receiver.user.username,
         "gpg_key_info": receiver.gpg_key_info,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "gpg_key_remove": False,
@@ -38,7 +38,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "file_notification" : receiver.file_notification,
         "comment_notification" : receiver.comment_notification,
         "notification_fields": dict(receiver.notification_fields),
-        "failed_login": receiver.failed_login,
+        "failed_login": receiver.user.failed_login_count,
         "contexts": []
     }
 
@@ -70,8 +70,10 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
     old_password = request.get('old_password')
 
     if len(new_password) and len(old_password):
-        receiver.password = change_password(receiver.password,
-                                            old_password, new_password, receiver.username)
+        receiver.user.password = change_password(receiver.user.password,
+                                                 old_password,
+                                                 new_password,
+                                                 receiver.user.salt)
 
     mail_address = acquire_mail_address(request)
     if not mail_address:

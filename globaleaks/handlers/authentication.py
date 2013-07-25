@@ -4,7 +4,7 @@ from storm.exceptions import NotOneError
 from twisted.internet.defer import inlineCallbacks
 from cyclone.util import ObjectDict as OD
 
-from globaleaks.models import Node
+from globaleaks.models import Node, User
 from globaleaks.settings import transact, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
@@ -142,25 +142,28 @@ def login_receiver(store, username, password):
     """
     accept_credential = False
 
-    receiver = store.find(Receiver, (Receiver.username == unicode(username))).one()
+    receiver_user = store.find(User, User.username == username).one()
 
-    if not receiver:
+    if not receiver_user or receiver_user.role != 'receiver':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        security.insert_random_delay()
         return False
 
-    if not security.check_password(password, receiver.password, receiver.username):
-        security.insert_random_delay()
-        receiver.failed_login += 1
+    receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
+
+    if not security.check_password(password, receiver_user.password, receiver_user.salt):
+        receiver_user.failed_login_count += 1
+        if receiver_user.failed_login_count == 1:
+            receiver_user.fist_failed = utils.datetime_now()
     else:
         accept_credential = True
         log.debug("Receiver: Authorized receiver %s" % username)
-        receiver.failed_login = 0
-        receiver.last_access = utils.datetime_now()
+        receiver_user.failed_login_count = 0
+        receiver_user.last_login = utils.datetime_now()
+        receiver_user.first_failed = utils.datetime_null()
 
-    if receiver.failed_login >= GLSetting.failed_login_alarm:
+    if receiver_user.failed_login_count >= GLSetting.failed_login_alarm:
         log.err("Warning: Receiver %s has failed %d times the password" %\
-                (username, receiver.failed_login) )
+                (username, receiver_user.failed_login_count) )
         # TODO we've to trigger lockout
         # https://github.com/globaleaks/GlobaLeaks/issues/48
 
@@ -171,16 +174,27 @@ def login_receiver(store, username, password):
 
 
 @transact
-def login_admin(store, password):
-    node = store.find(Node).one()
+def login_admin(store, username, password):
+    admin = store.find(User, (User.username == unicode(username))).one()
 
-    if not security.check_password(password, node.password, node.salt):
+    admin_user = store.find(User, User.username == username).one()
+
+    if not admin_user or admin_user.role != 'admin':
+        log.debug("Receiver: Fail auth, username %s do not exists" % username)
+        return False
+
+    if not security.check_password(password, admin.password, admin.salt):
         log.debug("Admin login: Invalid password")
+        admin.failed_login_count += 1
+        if admin.failed_login_count == 1:
+            admin_user.first_failed = utils.datetime_now()
         return False
     else:
-        log.debug("Admin login: Valid password")
-        return 'admin'
-
+        log.debug("Receiver: Authorized receiver %s" % username)
+        admin_user.failed_login_count = 0
+        admin_user.last_login = utils.datetime_now()
+        admin_user.first_failed = utils.datetime_null()
+        return username
 
 class AuthenticationHandler(BaseHandler):
     """
@@ -228,7 +242,7 @@ class AuthenticationHandler(BaseHandler):
         # Then verify credential, if the channel shall be trusted
         if role == 'admin':
             # username is ignored
-            user_id = yield login_admin(password)
+            user_id = yield login_admin(username, password)
         elif role == 'wb':
             # username is ignored
             user_id = yield login_wb(password)

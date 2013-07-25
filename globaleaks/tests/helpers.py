@@ -16,16 +16,22 @@ from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks.settings import GLSetting, transact
-from globaleaks.handlers.admin import create_context, create_receiver
+from globaleaks.handlers.admin import create_context, create_receiver, update_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-from globaleaks import db, utils, models
+from globaleaks import db, utils, models, security
+from globaleaks.third_party import rstr
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
+VALID_SALT1 = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+VALID_SALT2 = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+VALID_HASH1 = security.hash_password(VALID_PASSWORD1, VALID_SALT1)
+VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
+
 INVALID_PASSWORD = u'antani'
+
 transact.tp = FakeThreadPool()
 
-transact.debug = True
 class TestWithDB(unittest.TestCase):
     def setUp(self):
         GLSetting.set_devel_mode()
@@ -55,6 +61,7 @@ class TestGL(TestWithDB):
         self.dummyContext = dummyStuff.dummyContext
         self.dummySubmission = dummyStuff.dummySubmission
         self.dummyNotification = dummyStuff.dummyNotification
+        self.dummyReceiverUser = dummyStuff.dummyReceiverUser
         self.dummyReceiver = dummyStuff.dummyReceiver
         self.dummyNode = dummyStuff.dummyNode
 
@@ -62,6 +69,7 @@ class TestGL(TestWithDB):
     def fill_data(self):
         try:
             receiver = yield create_receiver(self.dummyReceiver)
+
             self.dummyReceiver['receiver_gus'] = receiver['receiver_gus']
         except Exception as excp:
             print "Fail fill_data/create_receiver: %s" % excp
@@ -210,14 +218,24 @@ class MockDict():
 
     def __init__(self):
 
+        self.dummyReceiverUser = {
+            'username': u'maker@iz.cool.yeah',
+            'password': VALID_HASH1,
+            'salt': VALID_SALT1,
+            'role': u'admin',
+            'state': u'enabled',
+            'last_login': utils.datetime_null(),
+            'first_failed': utils.datetime_null(),
+            'failed_login_count': 0
+        }
+
         self.dummyReceiver = {
             'receiver_gus': unicode(uuid.uuid4()),
             'password': VALID_PASSWORD1,
-            'old_password': u"",
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
-            'notification_fields': {'mail_address': u'maker@iz.cool.yeah'},
-            'username': u'maker@iz.cool.yeah',
+            'notification_fields': {'mail_address': self.dummyReceiverUser['username']},
+            'username': self.dummyReceiverUser['username'],
             'can_delete_submission': True,
             'receiver_level': 1,
             'contexts' : [],

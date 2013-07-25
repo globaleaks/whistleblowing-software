@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Model, ReceiverFile, InternalFile
+from globaleaks.models import Model, ReceiverFile, InternalFile, User
+from globaleaks.utils import datetime_null
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
 class Node_version_3(Model):
@@ -31,7 +32,6 @@ class Node_version_3(Model):
     tor2web_unauth = Bool()
     exception_email = Unicode()
 
-
 class ReceiverFile_version_3(Model):
     __storm_table__ = 'receiverfile'
 
@@ -43,26 +43,43 @@ class ReceiverFile_version_3(Model):
     last_access = DateTime()
     mark = Unicode()
 
-
 class Replacer34(TableReplacer):
 
     def migrate_Node(self):
 
-        print "%s Node migration assistant (presentation, default_language)" % self.std_fancy
+        print "%s Node migration assistant (presentation, default_language, support of User table)" % self.std_fancy
 
-        old_node = self.store_old.find(Node_version_3).one()
+        old_node = self.store_old.find(self.get_right_model("Node", 3)).one()
+
+        admin_dict = {
+            'username': u'admin',
+            'password': old_node.password,
+            'salt': old_node.salt,
+            'role': u'admin',
+            'state': u'enabled',
+            'failed_login_count': 0,
+        }
+
+        admin_user = self.get_right_model("User", 4)(admin_dict)
+        admin_user.last_login = datetime_null()
+        admin_user.first_failed = datetime_null()
+
+        self.store_new.add(admin_user)
+
         new_node = self.get_right_model("Node", 4)()
 
         # version 4 new entries!
         new_node.presentation = dict({ "en" : "Welcome @ %s" % old_node.name })
         new_node.default_language = 'en'
+        # salt and password do not exist anymore
+        # new_node.salt = old_node.salt
+        # new_node.password = old_node.password
 
         new_node.id = old_node.id
         new_node.name = old_node.name
         new_node.public_site = old_node.public_site
         new_node.hidden_service = old_node.hidden_service
         new_node.email = old_node.email
-        new_node.salt = old_node.salt
         new_node.receipt_salt = old_node.receipt_salt
         new_node.password = old_node.password
         new_node.database_version = 4
@@ -84,6 +101,66 @@ class Replacer34(TableReplacer):
         new_node.creation_date = old_node.creation_date
 
         self.store_new.add(new_node)
+
+        self.store_new.commit()
+
+    def migrate_User(self):
+        # the table is created here and filled in migrate_Node and migrate_Receiver
+        pass
+
+    def migrate_Receiver(self):
+        print "%s Receiver migration assistant, (support for User table): #%d" % (
+            self.std_fancy, self.store_old.find(self.get_right_model("Receiver", 3)).count() )
+
+        old_rs = self.store_old.find(self.get_right_model("Receiver", 3))
+
+        for old_r in old_rs:
+
+            new_obj = self.get_right_model("Receiver", 4)()
+            
+            receiver_user_dict = {
+                    'username': old_r.username,
+                    'password': old_r.password,
+                    'salt': old_r.username, # in this version the email
+                                            # was used as salt
+                    'role': u'receiver',
+                    'state': u'enabled',
+                    'failed_login_count': 0,
+            }
+
+            receiver_user = User(receiver_user_dict)
+            receiver_user.last_login = datetime_null()
+            receiver_user.first_failed = datetime_null()
+
+            self.store_new.add(receiver_user)
+
+            # version 5 new entry!
+            new_obj.user = receiver_user
+
+            # these fields do not exist anymore
+            # new_obj.username = old_obj.username
+            # new_obj.password = old_obj.password
+            # new_obj.last_access = old_obj.last_access
+
+            new_obj.name = old_r.name
+            new_obj.description = old_r.description
+            new_obj.gpg_key_info = old_r.gpg_key_info
+            new_obj.gpg_key_fingerprint = old_r.gpg_key_fingerprint
+            new_obj.gpg_key_status = old_r.gpg_key_status
+            new_obj.gpg_key_armor = old_r.gpg_key_armor
+            new_obj.gpg_enable_notification = old_r.gpg_enable_notification
+            new_obj.gpg_enable_files = old_r.gpg_enable_files
+            new_obj.notification_fields = old_r.notification_fields
+            new_obj.can_delete_submission = old_r.can_delete_submission
+            new_obj.receiver_level = old_r.receiver_level
+            new_obj.failed_login = old_r.failed_login
+            new_obj.last_update = old_r.last_update
+            new_obj.tags = old_r.tags
+            new_obj.tip_notification = old_r.tip_notification
+            new_obj.comment_notification = old_r.comment_notification
+            new_obj.file_notification = old_r.file_notification
+
+            self.store_new.add(new_obj)
         self.store_new.commit()
 
     def migrate_ReceiverFile(self):

@@ -1,7 +1,8 @@
 # -*- encoding: utf-8 -*-
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Context
+from globaleaks.models import Model, Context
+from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
 """
 The goal of this thing is to migrate something like this:
@@ -61,6 +62,30 @@ to This
 }
 
 """
+
+class Receiver_version_2(Model):
+    __storm_table__ = 'receiver'
+
+    name = Unicode()
+    description = Pickle()
+    username = Unicode()
+    password = Unicode()
+    gpg_key_info = Unicode()
+    gpg_key_fingerprint = Unicode()
+    gpg_key_status = Unicode()
+    gpg_key_armor = Unicode()
+    gpg_enable_notification = Bool()
+    gpg_enable_files = Bool()
+    notification_fields = Pickle()
+    can_delete_submission = Bool()
+    receiver_level = Int()
+    failed_login = Int()
+    last_update = DateTime()
+    last_access = DateTime()
+    tags = Pickle()
+    tip_notification = Bool()
+    comment_notification = Bool()
+    file_notification = Bool()
 
 def get_all_languages(fields):
     all_languages = set()

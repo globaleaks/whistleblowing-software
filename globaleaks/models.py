@@ -94,11 +94,12 @@ class Model(Storm):
     Base class for working the database
     """
     id = Unicode(primary=True, default_factory=uuid)
+    creation_date = DateTime(default_factory=datetime_now)
     # Note on creation last_update and last_access may be out of sync by some
     # seconds.
-    creation_date = DateTime(default_factory=datetime_now)
 
     def __init__(self, attrs=None):
+
         if attrs is not None:
             self.update(attrs)
 
@@ -182,9 +183,34 @@ class Model(Storm):
 
         return dict((key, getattr(self, key)) for key in filter)
 
+
+class User(Model):
+    """
+    This model keeps track of globaleaks users
+    """
+    __storm_table__ = 'user'
+
+    username = Unicode()
+    password = Unicode()
+    salt = Unicode()
+    role = Unicode()
+    state = Unicode()
+    last_login = DateTime()
+    first_failed = DateTime()
+    failed_login_count = Int()
+
+    _roles = [ u'admin', u'receiver' ]
+    _states = [ u'disabled', u'to_be_activated', u'enabled', u'temporary_blocked']
+
+    unicode_keys = [ 'username', 'password', 'salt', 'role', 'state' ]
+    localized_strings = [ ]
+    int_keys = [ 'failed_login_count' ]
+    bool_keys = [ ]
+
+
 class Context(Model):
     """
-    This models keeps track of specific contexts settings
+    This model keeps track of specific contexts settings
     """
     __storm_table__ = 'context'
 
@@ -244,7 +270,6 @@ class InternalTip(Model):
 
     wb_fields = Pickle(validator=gldictv)
     pertinence_counter = Int()
-    creation_date = DateTime()
     expiration_date = DateTime()
     last_activity = DateTime()
 
@@ -384,9 +409,7 @@ class Node(Model):
     public_site = Unicode(validator=gltextv)
     hidden_service = Unicode()
     email = Unicode()
-    salt = Unicode()
     receipt_salt = Unicode()
-    password = Unicode()
     last_update = DateTime()
     database_version = Int()
 
@@ -469,14 +492,14 @@ class Receiver(Model):
     """
     __storm_table__ = 'receiver'
 
+    user_id = Unicode()
+
+    # Receiver.user = Reference(Receiver.user_id, User.id)
+
     name = Unicode(validator=gltextv)
 
     # localization string
     description = Pickle(validator=gllocalv)
-
-    # Authentication variables
-    username = Unicode()
-    password = Unicode()
 
     # of GPG key fields
     gpg_key_info = Unicode()
@@ -499,10 +522,7 @@ class Receiver(Model):
     # of receivers body. if threshold is configured in the context. default 1
     receiver_level = Int()
 
-    failed_login = Int()
-
     last_update = DateTime()
-    last_access = DateTime(default_factory=datetime_now)
 
     # Group which the Receiver is part of
     tags = Pickle()
@@ -555,6 +575,8 @@ class ReceiverInternalTip(object):
     receiver_id = Unicode()
     internaltip_id = Unicode()
 
+Receiver.user = Reference(Receiver.user_id, User.id)
+
 Receiver.internaltips = ReferenceSet(Receiver.id,
                                      ReceiverInternalTip.receiver_id,
                                      ReceiverInternalTip.internaltip_id,
@@ -600,6 +622,6 @@ Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 
 
-models = [Node, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
+models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
           Receiver, ReceiverContext, InternalFile, ReceiverFile, Notification ]
 

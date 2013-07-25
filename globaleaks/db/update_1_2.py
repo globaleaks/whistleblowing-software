@@ -225,6 +225,7 @@ class Replacer12(TableReplacer):
             new_obj.description = { "en" : orcvr.description }
 
             self.store_new.add(new_obj)
+
         self.store_new.commit()
 
     def migrate_Notification(self):
