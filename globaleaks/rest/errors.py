@@ -348,3 +348,12 @@ class InvalidReceiptRegexp(GLException):
     error_code = 43
     status_code = 406
     reason = "The receipt regexp is an invalid regexp"
+
+class GPGKeyIDNotUnique(GLException):
+    """
+    A GPG key id need to be unique in the node
+    Remind: not yet used
+    """
+    error_code = 44
+    status_code =  406
+    reason = "GPG Key ID it's already used by another receiver"

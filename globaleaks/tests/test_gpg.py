@@ -8,7 +8,7 @@ from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.security import GLBGPG, gpg_options_parse, get_expirations
 from globaleaks.handlers import receiver
-from globaleaks.handlers.admin import admin_serialize_receiver
+from globaleaks.handlers.admin import admin_serialize_receiver, create_receiver
 from globaleaks.settings import GLSetting, transact
 from globaleaks.tests.helpers import MockDict
 from globaleaks.models import Receiver
@@ -41,7 +41,6 @@ class TestReceiverSetKey(helpers.TestHandler):
         "gpg_key_info": None, "gpg_key_fingerprint": None,
         'gpg_key_status': Receiver._gpg_types[0], # Disabled
         "gpg_enable_notification": False,  "gpg_enable_files": False,
-
         'name' : "irrelevant",
         'password' : "",
         'old_password': "",
@@ -168,7 +167,6 @@ class TestReceiverSetKey(helpers.TestHandler):
                 whole = f.read()
             self.assertEqual(encrypted_file_size, len(whole))
 
-
     @inlineCallbacks
     def test_expired_key_error(self):
 
@@ -190,30 +188,55 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.assertTrue(gpob.validate_key(DeveloperKey.__doc__))
         self.assertRaises(errors.GPGKeyInvalid, gpob.encrypt_message, body)
 
+#    @inlineCallbacks
+#    def test_invalid_duplicated_key(self):
+#
+#        self.receiver_only_update = dict(MockDict().dummyReceiver)
+#        self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
+#        self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
+#        self.receiver_only_update['gpg_key_remove'] = False
+#        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+#        yield handler.put()
+#        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
+#            u'341F1A8CE2B4F4F4174D7C21B842093DC6765430')
+#        self.assertEqual(self.responses[0]['gpg_key_status'], Receiver._gpg_types[1])
+#
+#        # second receiver creation!
+#        new_receiver = dict(MockDict().dummyReceiver)
+#        new_receiver['name'] = new_receiver['username'] = \
+#            new_receiver['notification_fields']['mail_address'] = "quercia@nana.ptg"
+#        new_receiver_output = yield create_receiver(new_receiver)
+#
+#        self.assertGreater(new_receiver_output['receiver_gus'], 10)
+#        self.assertNotEqual(self.dummyReceiver['receiver_gus'], new_receiver_output['receiver_gus'])
+#
+#        handler = self.request(self.receiver_only_update, role='receiver', user_id=new_receiver_output['receiver_gus'])
+#        try:
+#            yield handler.put()
+#            self.assertTrue(False)
+#        except
+#        except Exception as excep:
 
-    @inlineCallbacks
+
     def test_expiration_checks(self):
 
         keylist = [ HermesGlobaleaksKey.__doc__, DeveloperKey.__doc__, ExpiredKey.__doc__ ]
 
         expiration_list = get_expirations(keylist)
 
+
+        today_dt = datetime.date.today()
+
         for keyid, sincepoch in expiration_list.iteritems():
-            expiration_t = datetime.datetime.utcfromtimestamp(int(sincepoch))
-            print expiration_t
-            print datetime.date.today()
-            lowurgency = datetime.timedelta(weeks=2)
-            highurgengy =datetime.timedelta(days=3)
-            today1 = datetime.date.today() + lowurgency
-            today2 = datetime.date.today() + highurgency
 
-            if today1 < lowurgency:
-                print keyid, "low"
-            if today2 < highurgeny:
-                print keyid, "high"
+            expiration_dt = datetime.datetime.utcfromtimestamp(int(sincepoch)).date()
 
-        self.assertFalse(True)
+            # simply, all the keys here are expired
+            if expiration_dt < today_dt:
+                continue
 
+            self.assertTrue(False)
+        self.assertTrue(True)
 
 
 

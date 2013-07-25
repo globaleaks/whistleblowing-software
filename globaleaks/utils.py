@@ -225,7 +225,8 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param authentication_secret: account password
     @param from_address: the from address field of the email
     @param to_address: the to address field of the email
-    @param message_file: the message content
+    @param message_file: the message content,
+        string and unicode are converted in StringIO
     @param smtp_host: the smtp host
     @param smtp_port: the smtp port
     @param event: the event description, needed to keep track of failure/success
@@ -263,6 +264,14 @@ def sendmail(authentication_username, authentication_password, from_address,
     esmtp_deferred = Deferred()
     esmtp_deferred.addErrback(handle_error, event)
     esmtp_deferred.addCallback(result_deferred.callback)
+
+    if isinstance(message_file, unicode) or isinstance(message_file, str):
+        message_file = StringIO(str(message_file))
+    elif isinstance(message_file, StringIO):
+        pass
+    else:
+        log.err("Invalid usage of 'sendmail' function")
+        raise AssertionError("message wrong type: %s" % type(message_file))
 
     factory = ESMTPSenderFactory(
         authentication_username,
