@@ -88,7 +88,7 @@ def start_asynchronous():
         hours=GLSetting.cleaning_hours_delta)
 
     expiration_sched = gpgexpire_sched.GPGExpireCheck()
-    expiration_sched.force_execution(GLAsynchronous, seconds=1)
+    expiration_sched.force_execution(GLAsynchronous, seconds=50)
     GLAsynchronous.add_interval_job(expiration_sched.operation, hours=23)
 
     #stats_sched = statistics_sched.APSStatistics()
