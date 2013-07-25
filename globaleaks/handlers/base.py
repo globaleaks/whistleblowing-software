@@ -24,7 +24,7 @@ from cyclone.escape import native_str
 from io import BytesIO as StringIO
 from tempfile import TemporaryFile
 
-from globaleaks.utils import log, mail_exception
+from globaleaks.utils import log, sanitize_str, mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
@@ -407,6 +407,8 @@ class BaseHandler(RequestHandler):
         """
         Record in the verbose log the content as defined by Cyclone wrappers.
         """
+        content = sanitize_str(content)        
+
         try:
             with open(GLSetting.cyclonelogfile, 'a+') as fd:
                 fdesc.writeToFD(fd.fileno(), content + "\n")
