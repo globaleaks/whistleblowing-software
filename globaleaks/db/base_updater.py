@@ -60,15 +60,17 @@ class TableReplacer:
         I'm sad of this piece of code, but having an ORM that need the
         intermediate version of the Models, bring this
         """
-        from globaleaks.db.update_0_1 import Receiver_version_0
+        from globaleaks.db.update_0_1 import Node_version_0, Receiver_version_0
         from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
+        from globaleaks.db.update_2_3 import Receiver_version_2
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
 
         table_history = {
-            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, models.ReceiverFile ],
+            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node ],
+            'User' : [ models.User, None, None, None, None, None ],
             'Context' : [ Context_version_1, None, models.Context, None, None ],
-            'Node' : [ Node_version_1, Node_version_3, None, None, models.Node ],
-            'Receiver': [ Receiver_version_0, Receiver_version_1, models.Receiver, None, None ],
+            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver ],
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, models.ReceiverFile ],
             'Notification': [ Notification_version_1, None, models.Notification, None, None ],
         }
 
@@ -87,7 +89,6 @@ class TableReplacer:
 
         assert last_attr
         return last_attr
-
 
     def get_right_sql_version(self, query):
         if query.startswith('\n\nCREATE TABLE node (') and self.start_ver == 0 :
@@ -117,14 +118,7 @@ class TableReplacer:
                    'tip_timetolive INTEGER NOT NULL,receipt_regexp VARCHAR NOT NULL,receipt_description VARCHAR NOT NULL,'\
                    'submission_introduction VARCHAR NOT NULL, submission_disclaimer VARCHAR NOT NULL,'\
                    'submission_timetolive INTEGER NOT NULL, tags BLOB, PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver == 0:
-            return 'CREATE TABLE receiver (can_delete_submission INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
-                   'description VARCHAR NOT NULL,id VARCHAR NOT NULL,last_access VARCHAR,last_update VARCHAR,'\
-                   'name VARCHAR NOT NULL,tags BLOB,comment_notification INTEGER NOT NULL,'\
-                   'file_notification INTEGER NOT NULL,tip_notification INTEGER NOT NULL,'\
-                   'notification_fields BLOB NOT NULL, password VARCHAR,failed_login INTEGER NOT NULL,'\
-                   'receiver_level INTEGER NOT NULL,username VARCHAR NOT NULL,PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver < 2:
+        elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver < 3:
             return 'CREATE TABLE receiver (can_delete_submission INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
                    'description VARCHAR NOT NULL,id VARCHAR NOT NULL,last_access VARCHAR,last_update VARCHAR,'\
                    'name VARCHAR NOT NULL,tags BLOB,comment_notification INTEGER NOT NULL,'\
@@ -144,7 +138,7 @@ class TableReplacer:
             return 'CREATE TABLE receiverfile ( file_path VARCHAR, downloads INTEGER NOT NULL,'\
                    'creation_date VARCHAR NOT NULL, last_access VARCHAR, id VARCHAR NOT NULL,'\
                    'internalfile_id VARCHAR NOT NULL, receiver_id VARCHAR NOT NULL, internaltip_id VARCHAR NOT NULL,'\
-                   'mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled')),'\
+                   'mark VARCHAR NOT NULL CHECK (mark IN ("not notified", "notified", "unable to notify", "disabled")),'\
                    'FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,'\
                    'FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,'\
                    'FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,'\
@@ -227,8 +221,12 @@ class TableReplacer:
         new_obj.tor2web_tip = on.tor2web_tip
         new_obj.tor2web_unauth = on.tor2web_unauth
 
-        # version 3 new entries:
-        if self.start_ver >= 3:
+        # version 2 new entries:            
+        if self.start_ver < 2:
+            new_obj.languages = on.languages
+
+        # version 2 new entries:
+        if self.start_ver >= 2:
             new_obj.languages_supported = on.languages_supported
             new_obj.languages_enabled = on.languages_enabled
 
@@ -238,6 +236,31 @@ class TableReplacer:
             new_node.default_language = on.default_language
 
         self.store_new.add(new_obj)
+
+        self.store_new.commit()
+
+    def migrate_User(self):
+        if self.start_ver <= 4:
+            return
+
+        print "%s default User migration assistant: #%d" % (
+              self.debug_info, self.store_old.find(models.User).count() )
+
+        old_users = self.store_old.find(models.User)
+
+        for old_user in old_users:
+
+            new_obj = models.User()
+            new_obj.username = old_user.username
+            new_obj.password = old_user.password
+            new_obj.salt = old_user.salt
+            new_obj.role = old_user.role
+            new_obj.state = old_user.state
+            new_obj.last_login = old_user.last_login
+            new_obj.first_failed = old_user.first_failed
+            new_obj.failed_login_count = old_user.failed_login_count
+
+            self.store_new.add(new_obj)
         self.store_new.commit()
 
     def migrate_ReceiverTip(self):

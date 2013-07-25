@@ -22,9 +22,9 @@ GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 @transact
 def transact_dummy_whatever(store, receiver_id, mock_request):
 
-    thedummy = store.find(Receiver, Receiver.id == receiver_id).one()
-    gpg_options_parse(thedummy, mock_request)
-    return admin_serialize_receiver(thedummy)
+    receiver = store.find(Receiver, Receiver.id == receiver_id).one()
+    gpg_options_parse(receiver, mock_request)
+    return admin_serialize_receiver(receiver)
 
 
 class TestReceiverSetKey(helpers.TestHandler):
@@ -63,6 +63,9 @@ class TestReceiverSetKey(helpers.TestHandler):
     def test_handler_update_key(self):
 
         self.receiver_only_update = dict(MockDict().dummyReceiver)
+
+        self.receiver_only_update['password'] = self.dummyReceiver['password']
+        self.receiver_only_update['old_password'] = self.dummyReceiver['password']
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
         self.receiver_only_update['gpg_key_remove'] = False
@@ -82,7 +85,6 @@ class TestReceiverSetKey(helpers.TestHandler):
 
     @inlineCallbacks
     def test_transact_malformed_key(self):
-
         self.receiver_only_update = dict(MockDict().dummyReceiver)
         self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__).replace('A', 'B')
         self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set

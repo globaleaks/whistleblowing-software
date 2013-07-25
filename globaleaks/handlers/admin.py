@@ -10,11 +10,12 @@ from globaleaks.settings import transact, GLSetting, sample_context_fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
-from globaleaks.models import Receiver, Context, Node, Notification
+from globaleaks.models import Receiver, Context, Node, Notification, User
 
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security, models
-from globaleaks.utils import log, l10n
+
+from globaleaks.utils import log, datetime_now, datetime_null, l10n
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -87,9 +88,9 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "last_update": utils.pretty_date_time(receiver.last_update),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
-        "username": receiver.username,
+        "username": receiver.user.username,
         "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
-        "failed_login": receiver.failed_login,
+        "failed_login": receiver.user.failed_login_count,
         "password": u"",
         "contexts": [],
         "tags": receiver.tags,
@@ -139,9 +140,13 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
         request[attr] = getattr(node, attr)
         request[attr][language] = new_value
 
-    if len(request['old_password']) and len(request['password']):
-        node.password = security.change_password(node.password,
-                                    request['old_password'], request['password'], node.salt)
+    password = request.get('password')
+    old_password = request.get('old_password')
+
+    if len(password) and len(old_password):
+        admin = store.find(User, (User.username == unicode('admin'))).one()
+        admin.password = security.change_password(admin.password,
+                                    old_password, password, admin.salt)
 
     if len(request['public_site']) > 1:
         if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
@@ -469,27 +474,44 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
         raise errors.NoEmailSpecified
 
     # Pretend that username is unique:
-    homonymous = store.find(Receiver, Receiver.username == mail_address).count()
+    homonymous = store.find(User, User.username == mail_address).count()
     if homonymous:
         log.err("Creation error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
 
-    receiver = Receiver(request)
+    password = request.get('password')
 
-    receiver.username = mail_address
-    receiver.notification_fields = request['notification_fields']
-    receiver.failed_login = 0
-    receiver.tags = request['tags']
+    security.check_password_format(password)
+    receiver_salt = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
+    receiver_password = security.hash_password(password, receiver_salt)
+
+    receiver_user_dict = {
+            'username': mail_address,
+            'password': receiver_password,
+            'salt': receiver_salt,
+            'role': u'receiver',
+            'state': u'enabled',
+            'failed_login_count': 0,
+    }
+
+    receiver_user = models.User(receiver_user_dict)
+    receiver_user.last_login = datetime_null()
+    receiver_user.first_failed = datetime_null()
+    store.add(receiver_user)
+
+    receiver = Receiver(request)
+    receiver.user = receiver_user
+
+    receiver.notification_fields = request.get('notification_fields')
+    receiver.tags = request.get('tags')
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
 
-    log.debug("Creating receiver %s" % (receiver.username))
-
-    security.check_password_format(request['password'])
-    receiver.password = security.hash_password(request['password'], mail_address)
+    log.debug("Creating receiver %s" % (receiver.user.username))
 
     store.add(receiver)
+
     create_random_receiver_portrait(receiver.id)
 
     contexts = request.get('contexts', [])
@@ -545,22 +567,22 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
     if not mail_address:
         raise errors.NoEmailSpecified
 
-    homonymous = store.find(Receiver,
-        ( Receiver.username == mail_address, Receiver.id != unicode(id)) ).count()
-    if homonymous:
+    homonymous = store.find(User, User.username == mail_address).one()
+    if homonymous and homonymous.id != receiver.user_id:
         log.err("Update error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
 
-    receiver.username = mail_address
     receiver.notification_fields = request['notification_fields']
     receiver.tags = request['tags']
 
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
 
-    if len(request['password']):
-        security.check_password_format(request['password'])
-        receiver.password = security.hash_password(request['password'], mail_address)
+
+    password = request.get('password')
+    if len(password):
+        security.check_password_format(password)
+        receiver.user.password = security.hash_password(password, receiver.user.salt)
 
     contexts = request.get('contexts', [])
 
@@ -593,7 +615,7 @@ def delete_receiver(store, id):
     if os.path.exists(portrait):
         os.unlink(portrait)
 
-    store.remove(receiver)
+    store.remove(receiver.user)
 
 
 # ---------------------------------

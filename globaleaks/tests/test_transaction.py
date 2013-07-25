@@ -5,7 +5,7 @@ from storm import exceptions
 from globaleaks.tests import helpers
 
 from globaleaks.settings import transact
-from globaleaks.models import Receiver
+from globaleaks.models import Receiver, User
 
 class TestTransaction(helpers.TestGL):
 
@@ -59,28 +59,37 @@ class TestTransaction(helpers.TestGL):
 
     @transact
     def _transact_with_stuff(self, store):
-        try:
-            r = self.localization_set(self.dummyReceiver, Receiver, 'en')
-            receiver = Receiver(r)
-            receiver.password = self.dummyReceiver['password']
-            receiver.username = self.dummyReceiver['notification_fields']['mail_address']
-            receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
-            receiver.failed_login = 0
-            receiver.notification_fields = self.dummyReceiver['notification_fields']
-            store.add(receiver)
-        except Exception as e:
-            print e
+        r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+        receiver_user = User(self.dummyReceiverUser)
+        receiver_user.last_login = self.dummyReceiverUser['last_login']
+        receiver_user.first_failed = self.dummyReceiverUser['first_failed']
+
+        # Avoid receivers with the same username!
+        receiver_user.username = unicode("xxx")
+
+        store.add(receiver_user)
+ 
+        receiver = Receiver(r)
+        receiver.user_id = receiver_user.id
+        receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
+        receiver.notification_fields = self.dummyReceiver['notification_fields']
+        store.add(receiver)
+
         return receiver.id
 
     @transact
     def _transact_with_stuff_failing(self, store):
         r = self.localization_set(self.dummyReceiver, Receiver, 'en')
+        receiver_user = User(self.dummyReceiverUser)
+        receiver_user.last_login = self.dummyReceiverUser['last_login']
+        receiver_user.first_failed = self.dummyReceiverUser['first_failed']
+        store.add(receiver_user)
+
         receiver = Receiver(r)
-        receiver.password = self.dummyReceiver['password']
-        receiver.username = self.dummyReceiver['notification_fields']['mail_address']
+        receiver.user_id = receiver_user.id
         receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
-        receiver.failed_login = 0
         receiver.notification_fields = self.dummyReceiver['notification_fields']
         store.add(receiver)
+
         raise exceptions.DisconnectionError
 

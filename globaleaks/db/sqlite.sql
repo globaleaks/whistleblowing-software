@@ -1,9 +1,25 @@
 PRAGMA foreign_keys = ON;
 
-CREATE TABLE comment (
-    author VARCHAR NOT NULL,
-    creation_date VARCHAR NOT NULL,
+CREATE TABLE user (
     id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    username VARCHAR NOT NULL,
+    password VARCHAR NOT NULL,
+    salt VARCHAR NOT NULL,
+    role VARCHAR NOT NULL CHECK (role IN ('admin', 'receiver')),
+    state VARCHAR NOT NULL CHECK (state IN ('disabled', 'to_be_activated', 'enabled', 'temporary_blocked')),
+    last_login VARCHAR NOT NULL,
+    last_update VARCHAR, 
+    first_failed VARCHAR NOT NULL,
+    failed_login_count INTEGER NOT NULL,
+    PRIMARY KEY (id),
+    UNIQUE (username)
+);
+
+CREATE TABLE comment (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    author VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower', 'system')),
     mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify')),
@@ -13,13 +29,13 @@ CREATE TABLE comment (
 );
 
 CREATE TABLE context (
+    id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     description BLOB NOT NULL,
     escalation_threshold INTEGER,
     fields BLOB NOT NULL,
     file_max_download INTEGER NOT NULL,
     file_required INTEGER NOT NULL,
-    id VARCHAR NOT NULL,
     last_update VARCHAR,
     name BLOB NOT NULL,
     selectable_receiver INTEGER NOT NULL,
@@ -35,26 +51,26 @@ CREATE TABLE context (
 );
 
 CREATE TABLE internalfile (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
     content_type VARCHAR NOT NULL,
-    creation_date VARCHAR,
     file_path VARCHAR,
     mark VARCHAR NOT NULL CHECK (mark IN ('not processed', 'ready', 'blocked', 'stored')),
     name VARCHAR NOT NULL,
     sha2sum VARCHAR,
     size INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
-    id VARCHAR NOT NULL,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE receiverfile (
+    id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
     file_path VARCHAR,
     size INTEGER NOT NULL,
     downloads INTEGER NOT NULL,
-    creation_date VARCHAR NOT NULL,
     last_access VARCHAR,
-    id VARCHAR NOT NULL,
     internalfile_id VARCHAR NOT NULL,
     receiver_id VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
@@ -67,8 +83,9 @@ CREATE TABLE receiverfile (
 );
 
 CREATE TABLE internaltip (
-    access_limit INTEGER NOT NULL,
+    id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
+    access_limit INTEGER NOT NULL,
     download_limit INTEGER NOT NULL,
     escalation_threshold INTEGER,
     expiration_date VARCHAR NOT NULL,
@@ -77,25 +94,22 @@ CREATE TABLE internaltip (
     mark VARCHAR NOT NULL CHECK (mark IN ('submission', 'finalize', 'first', 'second')),
     pertinence_counter INTEGER NOT NULL,
     context_id VARCHAR NOT NULL,
-    id VARCHAR NOT NULL,
     FOREIGN KEY(context_id) REFERENCES context(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE node (
-    database_version INTEGER NOT NULL,
+    id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
+    database_version INTEGER NOT NULL,
     description BLOB NOT NULL,
     presentation BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
-    id VARCHAR NOT NULL,
     languages_enabled BLOB NOT NULL,
     languages_supported BLOB NOT NULL,
     default_language VARCHAR NOT NULL,
     name VARCHAR NOT NULL,
-    password VARCHAR NOT NULL,
-    salt VARCHAR NOT NULL,
     receipt_salt VARCHAR NOT NULL,
     public_site VARCHAR NOT NULL,
     stats_update_time INTEGER NOT NULL,
@@ -114,6 +128,7 @@ CREATE TABLE node (
 );
 
 CREATE TABLE notification (
+    id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
     server VARCHAR,
     port INTEGER,
@@ -128,16 +143,15 @@ CREATE TABLE notification (
     comment_mail_title BLOB,
     activation_template BLOB,
     activation_mail_title BLOB,
-    id VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
 
 CREATE TABLE receiver (
-    can_delete_submission INTEGER NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    description BLOB NOT NULL,
     id VARCHAR NOT NULL,
-    last_access VARCHAR,
+    user_id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    can_delete_submission INTEGER NOT NULL,
+    description BLOB NOT NULL,
     last_update VARCHAR,
     name VARCHAR NOT NULL,
     tags BLOB,
@@ -151,11 +165,10 @@ CREATE TABLE receiver (
     gpg_key_armor VARCHAR,
     gpg_enable_notification INTEGER,
     gpg_enable_files INTEGER,
-    password VARCHAR,
-    failed_login INTEGER NOT NULL,
     receiver_level INTEGER NOT NULL,
-    username VARCHAR NOT NULL,
-    PRIMARY KEY (id)
+    PRIMARY KEY (id),
+    FOREIGN KEY(user_id) REFERENCES user(id) ON DELETE CASCADE
+
 );
 
 CREATE TABLE receiver_context (
@@ -175,10 +188,10 @@ CREATE TABLE receiver_internaltip (
 );
 
 CREATE TABLE receivertip (
-    access_counter INTEGER NOT NULL,
-    creation_date VARCHAR NOT NULL,
-    expressed_pertinence INTEGER NOT NULL,
     id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    access_counter INTEGER NOT NULL,
+    expressed_pertinence INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
     notification_date VARCHAR,
@@ -190,14 +203,12 @@ CREATE TABLE receivertip (
 );
 
 CREATE TABLE whistleblowertip (
-    access_counter INTEGER NOT NULL,
-    creation_date VARCHAR NOT NULL,
     id VARCHAR NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    access_counter INTEGER NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
     receipt_hash VARCHAR NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE
 );
-
-

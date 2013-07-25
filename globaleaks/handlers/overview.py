@@ -49,7 +49,7 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
                 # 'creation_date': pretty_date_time(rtip.creation_date),
                 'status': rtip.mark,
                 'receiver_id': rtip.receiver.id,
-                'receiver_username': rtip.receiver.username,
+                'receiver_username': rtip.receiver.user.username,
                 'receiver_name': rtip.receiver.name,
                 # last_access censored willingly
             })
@@ -99,7 +99,7 @@ def collect_users_overview(store):
         user_description = {
             'id': receiver.id,
             'name': receiver.name,
-            'failed_login': receiver.failed_login,
+            'failed_login': receiver.user.failed_login_count,
             'receiverfiles': [],
             'receivertips': [],
             'gpg_key_status': receiver.gpg_key_status,
