@@ -167,7 +167,10 @@ class GLBGPG:
             # [ITA] https://www.youtube.com/watch?v=7jI4DnRJP3k
             i += 1
 
-            if len(lines[i]) < 2:
+            try:
+                if len(lines[i]) < 2:
+                    continue
+            except IndexError:
                 continue
 
             main_content = re.compile( r"^(?:[A-Za-z0-9+/]{4})*(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?$" , re.UNICODE)
