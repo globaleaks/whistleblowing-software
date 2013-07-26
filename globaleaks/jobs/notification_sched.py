@@ -137,7 +137,7 @@ class APSNotification(GLJob):
         if not rtip:
             raise errors.TipGusNotFound
 
-        log.debug("Email: +[Success] Notification Tip receiver %s" % receiver.user.username)
+        log.debug("Email: +[Success] Notification Tip receiver %s" % rtip.receiver.user.username)
         rtip.mark = models.ReceiverTip._marker[1] # 'notified'
 
     @transact
@@ -150,7 +150,7 @@ class APSNotification(GLJob):
         if not rtip:
             raise errors.TipGusNotFound
 
-        log.debug("Email: -[Fail] Notification Tip receiver %s" % receiver.user.username)
+        log.debug("Email: -[Fail] Notification Tip receiver %s" % rtip.receiver.user.username)
         rtip.mark = models.ReceiverTip._marker[2] # 'unable to notify'
 
     def do_tip_notification(self, tip_events):
@@ -338,13 +338,13 @@ class APSNotification(GLJob):
             receiver_desc = admin.admin_serialize_receiver(rfile.receiver, GLSetting.memory_copy.default_language)
             if  not receiver_desc.has_key('notification_fields') or \
                 not rfile.receiver.notification_fields.has_key('mail_address'):
-                log.err("Receiver %s lack of email address!" % receiver.user.name)
+                log.err("Receiver %s lack of email address!" % rfile.receiver.user.name)
                 continue
 
             # check if the receiver has the File notification enabled or not
             if not rfile.receiver.file_notification:
                 log.debug("Receiver %s has file notification disabled: %s skipped" % (
-                    receiver.user.username, rfile.internalfile.name ))
+                    rfile.receiver.user.username, rfile.internalfile.name ))
                 rfile.mark = models.ReceiverTip._marker[3] # 'disabled'
                 store.commit()
                 continue
@@ -371,7 +371,7 @@ class APSNotification(GLJob):
         if not rfile:
             raise errors.FileGusNotFound
 
-        log.debug("Email: +[Success] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, receiver.user.username))
+        log.debug("Email: +[Success] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
 
         rfile.mark = models.ReceiverFile._marker[1] # 'notified'
 
@@ -385,7 +385,7 @@ class APSNotification(GLJob):
         if not rfile:
             raise errors.FileGusNotFound
 
-        log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, receiver.user.username))
+        log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
 
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
 

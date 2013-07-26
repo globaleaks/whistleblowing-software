@@ -44,9 +44,9 @@ def check_expiration_date(store):
 
             if keytrack.has_key(sr.gpg_key_fingerprint):
                 print "umh, duplicated key fingerprint between %s and %s" %\
-                      (sr.username, keytrack[sr.gpg_key_fingerprint])
+                      (sr.user.username, keytrack[sr.gpg_key_fingerprint])
 
-            keytrack.update({sr.gpg_key_fingerprint : sr.username })
+            keytrack.update({sr.gpg_key_fingerprint : sr.user.username })
 
     if not keytrack:
         log.debug("PGP/GPG key expiration check: no keys configured in this node")
