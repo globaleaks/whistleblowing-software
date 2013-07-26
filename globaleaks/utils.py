@@ -14,12 +14,13 @@ import sys
 import time
 import traceback
 
+import cStringIO
+import StringIO
+
 from OpenSSL import SSL
+
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from txsocksx.client import SOCKS5ClientEndpoint
-
-from StringIO import StringIO
-
 from twisted.internet import reactor, protocol, error
 from twisted.internet.defer import Deferred
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient
@@ -296,10 +297,10 @@ def sendmail(authentication_username, authentication_password, from_address,
     esmtp_deferred.addErrback(handle_error, event)
     esmtp_deferred.addCallback(result_deferred.callback)
 
-    if isinstance(message_file, unicode) or isinstance(message_file, str):
-        message_file = StringIO(str(message_file))
-    elif isinstance(message_file, StringIO):
-        pass
+    if isinstance(message_file, cStringIO.InputType):
+       pass
+    elif isinstance(message_file, unicode) or isinstance(message_file, str):
+        message_file = StringIO.StringIO(str(message_file))
     else:
         log.err("Invalid usage of 'sendmail' function")
         raise AssertionError("message wrong type: %s" % type(message_file))
@@ -389,7 +390,7 @@ def mail_exception(etype, value, tback):
     if type(info_string) == unicode:
         info_string = info_string.encode(encoding='utf-8', errors='ignore')
 
-    message = StringIO(info_string)
+    message = StringIO.StringIO(info_string)
 
     log.err(error_message)
     log.err(traceinfo)
