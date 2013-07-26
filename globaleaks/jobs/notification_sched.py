@@ -235,7 +235,7 @@ class APSNotification(GLJob):
                 # check if the receiver has the Comment notification enabled or not
                 if not receiver.comment_notification:
                     log.debug("Receiver %s has comment notification disabled: skipped [source: %s]" % (
-                        receiver.username, comment.author))
+                        receiver.user.username, comment.author))
                     continue
 
                 event = Event(type=u'comment', trigger='Comment',
