@@ -138,6 +138,29 @@
                           <pre>{{receiver.gpg_key_info}}</pre>
                       </div>
                   </div>
+
+                  <div class="table-bordered">
+                    <label>
+                      <input type="checkbox" ng-model="receiver.gpg_enable_notification" />
+                      {{ "Enable encrypted notification" | translate }}
+                    </label>
+                    <label ng-show="receiver.gpg_enable_notification" >
+                      <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                      {{ "Every notification you'll receive will be encrypted with your GPG key." | translate }}
+                    </label>
+                  </div>
+
+                  <div class="table-bordered">
+                    <label>
+                      <input type="checkbox" ng-model="receiver.gpg_enable_files" />
+                      {{ "Enable file encryption" | translate }}
+                      </label>
+                      <label ng-show="receiver.gpg_enable_files" >
+                      <span class="btn-info">{{ "now Enabled:" | translate }}</span>
+                      {{ "Every file you'll download will be encrypted with your GPG key." | translate }}
+                      </label>
+                  </div>
+
                 </div>
 
               </div>
