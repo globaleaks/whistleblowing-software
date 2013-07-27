@@ -187,7 +187,7 @@ def import_fields(submission, fields, configured_fields_list, strict_validation=
             raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
 
     submission.wb_fields = imported_fields
-    log.debug("Submission fields updated (Not yet validated!) finalize: %s" %
+    log.debug("Submission fields updated - finalize: %s" %
               "YES" if strict_validation else "NO")
 
 

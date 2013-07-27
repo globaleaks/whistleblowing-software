@@ -205,11 +205,9 @@ class GLBGPG:
             return False
 
         # Error reported in stderr may just be warning, this is because is not raise an exception here
-        if self.ke.stderr:
-            log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
-                    (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
-        #
-        # ---- at the moment only warning message being repeated, can be used to clean this code
+        # if self.ke.stderr:
+        #     log.err("Receiver %s in uploaded GPG key has raise and alarm:\n< %s >" %
+        #             (self.receiver_desc['username'], (self.ke.stderr.replace("\n", "\n  "))[:-3]))
 
         if not (hasattr(self.ke, 'results') and len(self.ke.results) == 1 and self.ke.results[0].has_key('fingerprint')):
             log.err("User error: unable to import GPG key in the keyring")
