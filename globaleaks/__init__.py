@@ -13,6 +13,7 @@ LANGUAGES_SUPPORTED = [
                     { "code": "de", "name": "German"},
                     { "code": "el", "name": "Greek"},
                     { "code": "en", "name": "English"},
+                    { "code": "fr", "name": "French"},
                     { "code": "hu_HU", "name": "Hungarian (Hungary)"},
                     { "code": "it", "name": "Italian"},
                     { "code": "nl", "name": "Dutch"},
@@ -21,5 +22,5 @@ LANGUAGES_SUPPORTED = [
                     { "code": "vi", "name": "Vietnamese"},
                 ]
 
-LANGUAGES_SUPPORTED_CODES = [ "ar", "de", "el", "en", "hu_HU",
+LANGUAGES_SUPPORTED_CODES = [ "ar", "de", "el", "en", "fr", "hu_HU",
                               "it", "nl", "pl", "pl", "tr", "vi" ]
