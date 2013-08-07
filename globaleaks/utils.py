@@ -460,6 +460,8 @@ def l10n(var, language):
         return var[language]
     elif GLSetting.memory_copy.default_language in var:
         return var[GLSetting.memory_copy.default_language]
+    elif len(var):
+        return var.values()[0]
     else:
         return u''
 
