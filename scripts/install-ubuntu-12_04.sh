@@ -499,12 +499,6 @@ if [[ "$EUID" -ne "0" ]]; then
     exit 1
 fi
 
-lsb_release -c | grep precise >/dev/null 2>&-
-if [ "$?" -ne "0" ]; then
-    echo "Error: Currently install script offers only Ubuntu 12.04 support"
-    exit 1
-fi
-
 # iptables NAT support check
 if [ "${TRAVIS}" == "true" ]; then
     echo "Travis Environment: skipping iptables NAT check support"
