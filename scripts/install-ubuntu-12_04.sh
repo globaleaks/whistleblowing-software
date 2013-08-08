@@ -6,6 +6,37 @@ DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 BUILD_DIR=/tmp/glbuilding.$RANDOM
 BUILD_LOG=${BUILD_DIR}.log
 TMP_KEYRING=${BUILD_DIR}/tmpkeyring.gpg
+DISTRO='unknown'
+DISTRO_VERSION='unknown'
+
+if [ -f /etc/redhat-release ]; then
+  DISTRO="fedora"
+# Debian/Ubuntu
+elif [ -r /lib/lsb/init-functions ]; then
+  if [ "$( lsb_release -is )" == "Debian" ]; then
+    DISTRO="debian"
+    DISTRO_VERSION="$( lsb_release -ci )"
+  else
+    DISTRO="ubuntu"
+    DISTRO_VERSION="$( lsb_release -ci )"
+  fi
+fi
+
+echo "Performing installation on $DISTRO - $DISTRO_VERSION"
+
+if [ $DISTRO != 'ubuntu' ]; then
+  echo "!!!!!!!!!!!! WARNING !!!!!!!!!!!!"
+  echo "You are attempting to install GlobaLeaks on an unsupported platform."
+  echo "Do you wish to continue at your own risk [Y|N]? "
+  read ans
+  if [ $ans = y -o $ans = Y -o $ans = yes -o $ans = Yes -o $ans = YES ]
+  then
+    echo "Ok, you wanted it!"
+  else
+    echo "Ok, no worries. Still friends, right?"
+    exit
+  fi
+fi
 
 usage()
 {
@@ -58,6 +89,21 @@ DO () {
         cat ${BUILD_LOG}
         exit 1
     fi
+}
+
+add_repository () {
+  # Distro independent function for adding a line to apt sources.list
+  REPO="$(echo $1 | sed s/DISTRO_VERSION/$DISTRO_VERSION/)"
+  if which add-apt-repository >/dev/null 2>&1;then
+    add-apt-repository -y "$REPO"
+  else
+    if grep -Fxq "$REPO" /etc/apt/sources.list
+    then
+      echo "Repository already present. Not adding it..."
+    else
+      echo $REPO >> /etc/apt/sources.list
+    fi
+  fi
 }
 
 vercomp () {
@@ -500,9 +546,11 @@ fi
 echo "Installing python-setuptools, python-software-properties, gcc, python-dev"
 DO "apt-get update -y" "0"
 DO "apt-get install python-software-properties -y" "0"
-echo "Adding Ubuntu Universe repository"
-add-apt-repository -y 'deb http://de.archive.ubuntu.com/ubuntu/ precise universe'
-DO "apt-get update -y" "0"
+if [ $DISTRO == 'ubuntu' ];then
+  echo "Adding Ubuntu Universe repository"
+  add-apt-repository -y 'deb http://de.archive.ubuntu.com/ubuntu/ precise universe'
+  DO "apt-get update -y" "0"
+fi
 DO "apt-get install python-pip python-setuptools python-dev gcc -y" "0"
 DO "mkdir -p ${BUILD_DIR}" "0"
 DO "chmod 700 ${BUILD_DIR}" "0"
@@ -570,7 +618,7 @@ if [ -d /data/globaleaks/deb ]; then
   DO "apt-get install globaleaks -y --force-yes -o Dpkg::Options::=--force-confdef -o Dpkg::Options::=--force-confnew" "0"
 else
   echo "Fetching Deb package from remote repository http://deb.globaleaks.org/"
-  add-apt-repository -y 'deb http://deb.globaleaks.org/ unstable/'
+  add_repository 'deb http://deb.globaleaks.org/ unstable/'
   DO "gpg --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 0x24045008" "0"
   # TODO: This should be fixed, because executing this command
   # over DO() command escape the pipe character
