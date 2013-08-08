@@ -108,6 +108,6 @@ setup(
         'globaleaks.jobs', 'globaleaks.plugins',
         'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
-    scripts=["bin/globaleaks"],
+    scripts=["bin/globaleaks", "scripts/glclient-build"],
     requires = get_requires(),
 )
