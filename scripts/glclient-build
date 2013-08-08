@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ ! $GLCLIENT_INSTALL_DIR ];then
-  GLCLIENT_INSTALL_DIR=/usr/share/globaleaks/glclient
+  GLCLIENT_INSTALL_DIR=/var/globaleaks/custom-glclient
 fi
 
 if [ ! $GLCLIENT_TAG ];then
@@ -34,12 +34,8 @@ get_sudo()
 restore_default_glclient()
 {
   echo "[+] Restoring to default GLClient... "
-  if [ -d $GLCLIENT_INSTALL_DIR.default ];then
-    mv $GLCLIENT_INSTALL_DIR.default $GLCLIENT_INSTALL_DIR
-    echo "[*] Restored."
-  else
-    echo "[!] No default installation of GLCLient was found!"
-  fi
+  rm -rf $GLCLIENT_INSTALL_DIR
+  echo "[*] Restored."
 }
 
 install_glclient_dependencies()
@@ -110,13 +106,9 @@ build_custom_glclient()
   npm install -d
   grunt build
 
-  if [ ! -d  $GLCLIENT_INSTALL_DIR.default ]; then
-    echo "[+] Backing up default GLClient build... "
-    sudo mv $GLCLIENT_INSTALL_DIR $GLCLIENT_INSTALL_DIR.default
-  else
-    echo "[+] Cleaning up currently installed custom build... "
-    rm -rf $GLCLIENT_INSTALL_DIR
-  fi
+  echo "[+] Cleaning up currently installed custom build... "
+  rm -rf $GLCLIENT_INSTALL_DIR
+
   sudo mv build $GLCLIENT_INSTALL_DIR
   sudo cp -R $TMP_DIR/staticdata/* $GLCLIENT_INSTALL_DIR
   cd /

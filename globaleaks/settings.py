@@ -228,7 +228,11 @@ class GLSettingsClass:
             self.gpgroot = os.path.abspath(os.path.join(self.ramdisk_path, 'gnupg'))
         else:
             self.gpgroot = os.path.abspath(os.path.join(self.working_path, 'gnupg'))
-
+        
+        # If we see that there is a custom build of GLClient, use that one.
+        custom_glclient_path = '/var/globaleaks/custom-glclient'
+        if os.path.exists(custom_glclient_path):
+            self.glclient_path = custom_glclient_path
 
     def set_devel_mode(self, glcp=None):
         self.devel_mode = True
