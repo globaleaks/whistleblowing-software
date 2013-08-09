@@ -33,10 +33,4 @@ if [ ! "`grep "globaleaks" /etc/apparmor.d/local/system_tor`" ]; then
   echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
 fi
 
-if [ -f /etc/apparmor.d/usr.bin.globaleaks ]; then
-	/etc/init.d/apparmor recache
-fi
-
 #DEBHELPER#
-
-exit 0
