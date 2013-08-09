@@ -1,3 +1,15 @@
+globaleaks (2.23.12.2-0) unstable; urgency=low
+
+  * GlobaLeaks Alpha - Add support for building custom GLClient
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 9 Aug 2013 11:15:42 +0002
+
+globaleaks (2.23.12.1-0) unstable; urgency=low
+
+  * GlobaLeaks Alpha - Testing out debian support
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 8 Aug 2013 16:15:42 +0002
+
 globaleaks (2.23.12-0) unstable; urgency=low
 
   * GlobaLeaks Alpha - GPG Included, Bugfixes, Lanaguages
