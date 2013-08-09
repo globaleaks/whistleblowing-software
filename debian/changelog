@@ -4,7 +4,6 @@ globaleaks (2.23.13-0) unstable; urgency=low
 
  -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 9 Aug 2013 15:50:42 +0002
 
-
 globaleaks (2.23.12.3-0) unstable; urgency=low
 
   * GlobaLeaks Alpha - Fixed debian packaging
