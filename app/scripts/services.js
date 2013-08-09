@@ -599,6 +599,11 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         if ($.cookie('session_id')) {
           extra_headers['X-Session'] = $.cookie('session_id');
         };
+
+        if ($.cookie('XSRF-TOKEN')) {
+          extra_headers['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
+        }
+
         if ($.cookie('language')) {
           extra_headers['GL-Language'] = $.cookie('language');
         };
