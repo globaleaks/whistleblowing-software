@@ -61,7 +61,7 @@
 
                     <div ng-show="uploadfile" class="uploadfile">
                       <div class="changePicture"
-                           pragmatic-file-upload src="/admin/staticfiles?{{receiver.receiver_gus}}">
+                        pragmatic-file-upload src="/admin/staticfiles?{{receiver.receiver_gus}}">
                         <div class="fileselector">
                           <input type="file">
                         </div>
@@ -75,7 +75,7 @@
                         </div>
                       </div>
                     </div>
-                    <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-polaroid baseimage">
+                    <img ng-src="/static/{{receiver.receiver_gus}}.png?{{randomFluff}}" class="img-polaroid baseimage">
                   </div>
 
                   <label>{{ "Name" | translate }}</label>

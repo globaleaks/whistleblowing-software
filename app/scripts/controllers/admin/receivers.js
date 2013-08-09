@@ -1,6 +1,6 @@
 GLClient.controller('AdminReceiversCtrl', ['$scope',
 function($scope) {
-
+  $scope.randomFluff = Math.round(Math.random()*1000000);
   $scope.delete = function(receiver) {
     var idx = _.indexOf($scope.admin.receivers, receiver);
 
