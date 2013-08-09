@@ -62,6 +62,7 @@ sjcl.misc.cachedPbkdf2=function(a,b){var c=sjcl.misc.V,d;b=b||{};d=b.iter||1E3;c
 <script type="text/javascript">
 sjcl.random.setDefaultParanoia(9);
 sjcl.random.startCollectors();
+sjcl.random.addEntropy(new Date().toString());
 
 function getRandomRange(start, end) {
   var rw = sjcl.random.randomWords(1),
