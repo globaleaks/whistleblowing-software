@@ -11,7 +11,7 @@ import os
 
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles, overview
-from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
+from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler, DevNullHandler
 from globaleaks.rest.base import uuid_regexp
 
 
@@ -117,6 +117,10 @@ spec = [
 #if settings.config.debug.testing:
 spec.append(
     (r'/test/(.*)', BaseStaticFileHandler, {'path': os.path.join(GLSetting.glclient_path, '..', 'test')})
+)
+
+spec.append(
+    (r'/dev/null(.*)', DevNullHandler)
 )
 
 ## Utility redirect,
