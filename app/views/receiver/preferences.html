@@ -134,7 +134,7 @@
             </label>
             <label ng-show="preferences.gpg_enable_notification" >
               <span class="btn-info">{{ "now Enabled:" | translate }}</span>
-              {{ "Every notification you'll receive will be encrypted with your GPG key." | translate }}
+              {{ "Every notification you'll receive will be encrypted with your PGP key." | translate }}
             </label>
           </div>
 
@@ -145,7 +145,7 @@
             </label>
             <label ng-show="preferences.gpg_enable_files" >
               <span class="btn-info">{{ "now Enabled:" | translate }}</span>
-              {{ "Every file you'll download will be encrypted with your GPG key." | translate }}
+              {{ "Every file you'll download will be encrypted with your PGP key." | translate }}
             </label>
           </div>
 
@@ -155,7 +155,7 @@
                 ng-show="preferences.gpg_key_fingerprint"
                 ng-click="expose_gpg_key = ! expose_gpg_key"
                 ng-init="expose_gpg_key=false">
-                {{ "see GPG key details" | translate }}
+                {{ "see PGP key details" | translate }}
         </button>
 
         <div ng-show="expose_gpg_key"
@@ -193,7 +193,7 @@
 
         <label ng-show="preferences.gpg_key_fingerprint">
           <input type="checkbox" ng-model="preferences.gpg_key_remove" />
-                 {{ "Remove your GPG key" | translate }}
+                 {{ "Remove your PGP key" | translate }}
         </label>
 
         <div>

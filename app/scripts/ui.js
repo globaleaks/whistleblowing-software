@@ -15,7 +15,8 @@ angular.module('submissionUI', []).
         var selectFileButton = element.find('button.selectFile'),
           uploadButton = element.find('button.upload'),
           img_receiver = element.parent().parent().find('img.baseimage'),
-          headers = {'X-Session': $cookies['session_id']};
+          headers = {'X-Session': $cookies['session_id'],
+                     'X-XSRF-TOKEN': $cookies['XSRF-TOKEN']};
 
         img_receiver.hover(function(){
           // Resize the overlay black image to match the icon size.
@@ -81,7 +82,8 @@ angular.module('submissionUI', []).
       },
 
       link: function(scope, element, attrs) {
-        var headers = {'X-Session': $cookies['session_id']};
+        var headers = {'X-Session': $cookies['session_id'],
+                       'X-XSRF-TOKEN': $cookies['XSRF-TOKEN']};
 
         function add(e, data) {
           for (var file in data.files) {

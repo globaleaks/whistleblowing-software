@@ -20,7 +20,7 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
 
     $scope.pass_save = function() {
 
-      /* default until GPG UI don't come back */
+      /* default until PGP UI don't come back */
       $scope.preferences.gpg_key_armor = '';
       $scope.preferences.gpg_key_armor = '';
 
