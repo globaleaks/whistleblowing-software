@@ -9,6 +9,7 @@
 
 import httplib
 import types
+import random
 import collections
 import json
 import re
@@ -517,3 +518,14 @@ class BaseRedirectHandler(RedirectHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
+class DevNullHandler(RequestHandler):
+    """
+    This handler is used to generate decoy traffic.
+    """
+    size = 1024
+
+    def get(self, garbage=None):
+        self.write("A" * random.randint(0, self.size))
+
+    def post(self, garbage=None):
+        self.write("A" * random.randint(0, self.size))
