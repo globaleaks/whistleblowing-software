@@ -463,7 +463,9 @@ class Notification(Model):
     port = Int()
     username = Unicode()
     password = Unicode()
-    source_from = Unicode()
+
+    source_name = Unicode(validator=gltextv)
+    source_email = Unicode(validator=gltextv)
 
     security = Unicode()
     _security_types = [ u'TLS', u'SSL' ]

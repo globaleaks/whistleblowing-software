@@ -107,7 +107,9 @@ class GPGExpireCheck(GLJob):
 
                 mail_building = []
 
-                mail_building.append("From: %s" % GLSetting.memory_copy.notif_username)
+                mail_building.append("From: \"%s\" <%s>" % (
+                    GLSetting.memory_copy.notif_source_name,
+                    GLSetting.memory_copy.notif_source_email ) )
                 mail_building.append("To: %s" % recipient)
                 mail_building.append("Subject: GPG expiration date is incoming")
                 mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
