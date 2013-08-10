@@ -50,16 +50,21 @@
           <li ng-repeat="file in tip.files">
             <div ng-show="file.downloads == 0 && show_new_files">
               <a ng-cloak ng-show="tip.im_receiver"
-                 class="btn btn-small" href="{{file.href}}">
+                 ng-click="increaseDownloadCount(file)"
+                 ng-disabled="file.downloads >= current_context.file_max_downloads"
+                class="btn btn-small" ng-href="{{file.href}}">
                  <i class="icon-download"></i> 
                  {{ "download" | translate }}
                  ({{file.downloads}}/{{tip.download_limit}})
               </a>
               <i class="icon-book"></i> {{file.name}}
             </div>
+
             <div ng-show="!show_new_files">
               <a ng-cloak ng-show="tip.im_receiver"
-                 class="btn btn-small" href="{{file.href}}">
+                 ng-click="increaseDownloadCount(file)"
+                 ng-disabled="file.downloads >= current_context.file_max_download"
+                 class="btn btn-small" ng-href="{{file.href}}">
                  <i class="icon-download"></i> 
                  {{ "download" | translate }} 
                  ({{file.downloads}}/{{tip.download_limit}})

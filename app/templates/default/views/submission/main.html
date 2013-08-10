@@ -98,7 +98,7 @@
               </div>
             </div>
 
-            <div class="receiverCard span5"
+            <div class="receiverCard span5" ng-hide="idx >= ((submission.current_context_receivers.length - 1)/2)"
                  ng-class="{selected: submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]}"
                  ng-class-odd="{receiverCardOdd: true}"
                  ng-class-even="{receiverCardEven: true}">

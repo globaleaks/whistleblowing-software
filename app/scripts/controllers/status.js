@@ -32,7 +32,6 @@ GLClient.controller('StatusCtrl',
       angular.forEach($scope.current_context.fields,
                       function(field){
         if ( field.key  == field_name ) {
-          console.log(field);
           return field; 
         }
       });
@@ -41,6 +40,14 @@ GLClient.controller('StatusCtrl',
     $scope.newComment = function() {
       $scope.tip.comments.newComment($scope.newCommentContent);
       $scope.newCommentContent = '';
+    };
+
+    $scope.increaseDownloadCount = function(file) {
+      if (file.downloads < $scope.current_context.file_max_downloads) {
+        file.downloads = parseInt(file.downloads) + 1;
+        return true;
+      }
+      return false;
     };
 
     if ($cookies['role'] === 'wb') {
