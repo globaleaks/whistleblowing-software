@@ -9,8 +9,28 @@
   <div class="row">
     <div class="span4">
       <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
-        <dt>{{fieldName}}</dt>
-        <dd>{{fieldValue}}</dd>
+        <dt>{{fieldFormat[fieldName].name}} ({{fieldFormat[fieldName].hint}})</dt>
+        
+        <div ng-switch on="fieldFormat[fieldName].type">
+          
+          <dd ng-switch-when="checkboxes">
+            <ul>
+              <li ng-repeat="checkbox in fieldFormat[fieldName].options">
+              {{checkbox.name}} 
+              <span ng-hide="fieldValue[checkbox.name]">&#9744;</span> 
+              <span ng-show="fieldValue[checkbox.name]">&#9745;</span>
+              </li>
+            </ul>
+          </dd>
+
+          <dd ng-switch-when="multiple">
+            <ul>
+              <li ng-repeat="selection in fieldValue">{{selection}}</li>
+            </ul>
+
+          <dd ng-switch-default>{{fieldValue}}</dd>
+
+        </div>
       </dl>
     </div>
 
