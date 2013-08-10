@@ -89,6 +89,8 @@ angular.module('resourceServices.authentication', ['ngCookies'])
 angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices.authentication']).
   factory('globaleaksInterceptor', ['$q', '$rootScope', '$location',
   function($q, $rootScope, $location) {
+    var requestTimeout = 30000,
+
     $rootScope.showRequestBox = false;
 
     /* This interceptor is responsible for keeping track of the HTTP requests
@@ -97,6 +99,32 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
       if (!$rootScope.pendingRequests)
         $rootScope.pendingRequests = [];
 
+      var Fairy = function(promise) {
+        this.promise = promise;
+        this.timeout = function() {
+          var error = {},
+            source_path = $location.path();
+
+          error.message = "Request timed out";
+          error.code = 100;
+          error.url = '/';
+
+          if (!$rootScope.errors) {
+            $rootScope.errors = [];
+          }
+          $rootScope.errors.push(error);
+          $rootScope.pendingRequests.pop(this);
+        }
+      },
+      fairy = new Fairy(promise);
+
+      function timedOut(fairy) {
+        return function() {
+          fairy.timeout();
+          $rootScope.$digest();
+        }
+      }
+      
       $rootScope.$watch('pendingRequests', function(){
         if ($rootScope.pendingRequests.length === 0) {
           $rootScope.showRequestBox = false;
@@ -107,7 +135,15 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
 
       $rootScope.pendingRequests.push(promise);
 
+      window.setTimeout(timedOut(fairy), requestTimeout);
+
       return promise.then(function(response) {
+
+        fairy.timeout = function() {
+          // We override the instance method if the promise actually works.
+          return true;
+        };
+
         $rootScope.pendingRequests.pop(promise);
         return response;
       }, function(response) {
