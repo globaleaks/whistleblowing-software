@@ -336,9 +336,11 @@ class ReceiverFile(Model):
     internaltip_id = Unicode()
     internalfile_id = Unicode()
     receiver_id = Unicode()
+    receiver_tip_id = Unicode()
     #internalfile = Reference(ReceiverFile.internalfile_id, InternalFile.id)
     #receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
     #internaltip = Reference(ReceiverFile.internaltip_id, InternalTip.id)
+    #receiver_tip = Reference(ReceiverFile.receiver_tip_id, ReceiverTip.id)
 
     file_path = Unicode()
     size = Int()
@@ -346,7 +348,7 @@ class ReceiverFile(Model):
     last_access = DateTime()
 
     mark = Unicode()
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled' ]
+    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
 
     status = Unicode()
     _status_list = [ u'cloned', u'reference', u'encrypted' ]
@@ -495,7 +497,6 @@ class Receiver(Model):
     __storm_table__ = 'receiver'
 
     user_id = Unicode()
-
     # Receiver.user = Reference(Receiver.user_id, User.id)
 
     name = Unicode(validator=gltextv)
@@ -608,6 +609,9 @@ ReceiverFile.receiver = Reference(ReceiverFile.receiver_id, Receiver.id)
 
 ReceiverFile.internaltip = Reference(ReceiverFile.internaltip_id,
                                      InternalTip.id)
+
+ReceiverFile.receiver_tip = Reference(ReceiverFile.receiver_tip_id,
+                                      ReceiverTip.id)
 
 WhistleblowerTip.internaltip = Reference(WhistleblowerTip.internaltip_id,
                                          InternalTip.id)
