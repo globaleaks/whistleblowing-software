@@ -348,6 +348,8 @@ class MockDict():
             'username': u'staceppa',
             'password': u'antani',
             'security': u'SSL',
+            'source_name': u'UnitTest Helper Name',
+            'source_email': u'unit@test.helper',
             'tip_template': u'tip message: %sNodeName%',
             'comment_template': u'comment message: %sNodeName%',
             'file_template': u'file message: %sNodeName%',
