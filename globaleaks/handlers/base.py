@@ -456,8 +456,8 @@ class BaseHandler(BaseBaseHandler):
         else:
             RequestHandler.write(self, chunk)
 
-
-    def get_current_user(self):
+    @property
+    def current_user(self):
         session_id = self.request.headers.get('X-Session')
         if not session_id:
             return None
