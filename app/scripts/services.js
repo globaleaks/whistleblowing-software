@@ -565,6 +565,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         context.file_max_download = 3;
         context.tip_max_access = 50;
         context.selectable_receiver = true;
+        context.select_all_receivers = true;
         context.file_required = false;
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
