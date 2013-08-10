@@ -2,7 +2,6 @@
 from globaleaks.settings import GLSetting, transact
 from globaleaks.tests import helpers
 
-from globaleaks import settings
 from globaleaks import models
 from globaleaks.handlers import submission
 from globaleaks.jobs import delivery_sched
@@ -68,6 +67,8 @@ class TestEmail(helpers.TestGL):
             "port": 587,
             "username": "sendaccount@lists.globaleaks.org",
             "password": "sendaccount99",
+            "source_name" : "Unit Test Name",
+            "source_email" : "unit@test.mail",
             "tip_template": { "en" : u"tip tip"},
             "file_template": { "en" : u"file file"},
             "activation_template": { "en" : u"activation activation"},
