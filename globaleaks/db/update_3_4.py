@@ -169,7 +169,7 @@ class Replacer34(TableReplacer):
         assert ReceiverFile._status_list[1] == 'reference'
         assert ReceiverFile._status_list[2] == 'encrypted'
 
-        print "%s ReceiverFile migration assistant, (supporting encrypted download): #%d" % (
+        print "%s ReceiverFile migration assistant, (supporting size, statuses): #%d" % (
             self.std_fancy, self.store_old.find(ReceiverFile_version_3).count() )
 
         old_rf = self.store_old.find(ReceiverFile_version_3)

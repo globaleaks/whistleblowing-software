@@ -1,11 +1,10 @@
 # -*- encoding: utf-8 -*-
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Model, ReceiverFile, InternalFile, User
-from globaleaks.utils import datetime_null
+from globaleaks.models import Model, ReceiverTip
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
-class Context_version_3(Model):
+class Context_version_2(Model):
     __storm_table__ = 'context'
 
     fields = Pickle()
@@ -25,7 +24,19 @@ class Context_version_3(Model):
     receipt_description = Pickle()
     submission_introduction = Pickle()
     submission_disclaimer = Pickle()
-    select_all_receivers = Bool()
+
+class ReceiverFile_version_4(Model):
+    __storm_table__ = 'receiverfile'
+
+    internaltip_id = Unicode()
+    internalfile_id = Unicode()
+    receiver_id = Unicode()
+    file_path = Unicode()
+    size = Int()
+    downloads = Int()
+    last_access = DateTime()
+    mark = Unicode()
+    status = Unicode()
 
 
 class Replacer45(TableReplacer):
@@ -33,9 +44,8 @@ class Replacer45(TableReplacer):
     def migrate_Context(self):
 
         print "%s Context migration assistant (added select_all_receivers field)" % self.std_fancy
-
         old_contexts = self.store_old.find(self.get_right_model("Context", 4))
-        
+
         for old_context in old_contexts:
 
             new_context = self.get_right_model("Context", 5)()
@@ -63,3 +73,37 @@ class Replacer45(TableReplacer):
             self.store_new.add(new_context)
 
         self.store_new.commit()
+
+    def migrate_ReceiverFile(self):
+
+        print "%s ReceiverFile migration assistante (added ReceiverTip reference)" % self.std_fancy
+        old_rcfs = self.store_old.find(self.get_right_model("ReceiverFile", 4))
+
+        for orf in old_rcfs:
+
+            new_rf = self.get_right_model("ReceiverFile", 5)()
+
+            new_rf.id = orf.id
+            new_rf.internaltip_id = orf.internaltip_id
+            new_rf.internalfile_id =  orf.internalfile_id
+            new_rf.receiver_id =  orf.receiver_id
+            new_rf.file_path = orf.file_path
+            new_rf.size = orf.size
+            new_rf.downloads = orf.downloads
+            new_rf.last_access =  orf.last_access
+            new_rf.mark = orf.mark
+            new_rf.status = orf.status
+
+            # The first time ReceiverTip is changed, need to be used
+            # self.get_right_model("ReceiverTip", 4) instead of ReceiverTip
+            receiver_tip = self.store_old.find(ReceiverTip,
+                    (
+                        ReceiverTip.internaltip_id == orf.internaltip_id,
+                        ReceiverTip.receiver_id == orf.receiver_id
+                    ) ).one()
+            new_rf.receiver_tip_id = receiver_tip.id
+
+            self.store_new.add(new_rf)
+
+        self.store_new.commit()
+
