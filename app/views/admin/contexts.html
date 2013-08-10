@@ -130,6 +130,13 @@
                                      value="{{context.file_required}}" />
                               {{ "Require at least one file to be uploaded" | translate }}
                           </label>
+                          <label>
+                              <input type="checkbox"
+                                     ng-model="context.select_all_receivers"
+                                     value="{{context.select_all_receivers}}" />
+                              {{ "Select all receivers by default" | translate }}
+                          </label>
+
                           <!--
                           <label>Tags</label>
                           <input type="text"
