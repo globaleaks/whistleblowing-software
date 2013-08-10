@@ -107,7 +107,8 @@ adminContextDesc = {
     'receivers' : [ uuid_regexp ],
     'fields': [ formFieldsDict ],
     'file_required': bool,
-    'tags' : [ unicode ]
+    'tags' : [ unicode ],
+    'select_all_receivers': bool
 }
 
 adminReceiverDesc =  {

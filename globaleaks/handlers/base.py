@@ -101,7 +101,7 @@ class GLHTTPServer(HTTPConnection):
                     self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
 
                 if content_length < 100000:
-                    self._contentbuffer = StringIO()
+                    self._contentbuffer = StringIO('')
                 else:
                     self._contentbuffer = TemporaryFile()
                 
