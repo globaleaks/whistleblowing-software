@@ -9,6 +9,7 @@
 
 import httplib
 import types
+import random
 import collections
 import json
 import re
@@ -51,40 +52,6 @@ def validate_host(host_key):
     log.debug("Error in host requested: %s not accepted between: %s " %
               (host_key, GLSetting.accepted_hosts))
     return False
-
-def add_globaleaks_headers(self):
-    # In this function are written some security enforcements
-    # related to WebServer versioning and XSS attacks.
-    # The function must be called by all request HANDLER defined using:
-    # def set_default_header(self):
-    #     add_globaleaks_headers(self)
-
-    # to avoid version attacks
-    self.set_header("Server", "globaleaks")
-      
-    # to reduce possibility for XSS attacks.
-    self.set_header("X-Content-Type-Options", "nosniff")
-
-    # to mitigate information leakage on Browser/Proxy Cache
-    self.set_header("Cache-control", "no-cache, no-store")
-    self.set_header("Pragma", "no-cache")
-    self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
-
-    # to mitigate clickjaking attacks on iframes
-    self.set_header("X-Frame-Options", "deny")
-
-    lang = self.request.headers.get('GL-Language', None)
-
-    if not lang:
-        lang = self.request.headers.get('Accepted-Language', None)
-
-    # TODO if not lang default of the Node (need update DB)
-    if not lang:
-        lang = 'en'
-
-    # At the moment the default is 'en', but need to be a Node value
-    self.request.language = lang
-
 
 class GLHTTPServer(HTTPConnection):
     file_upload = False
@@ -191,11 +158,56 @@ class GLHTTPServer(HTTPConnection):
                 raise errors.InvalidInputFormat("content type multipart/form-data not supported")
         self.request_callback(self._request)
 
-class BaseHandler(RequestHandler):
+
+class BaseBaseHandler(RequestHandler):
+    xsrf_cookie_name = "XSRF-TOKEN"
 
     def set_default_headers(self):
-        add_globaleaks_headers(self)
+        # In this function are written some security enforcements
+        # related to WebServer versioning and XSS attacks.
+        """
+            just reading the property is enough to
+            set the cookie as a side effect.
+        """
+        self.xsrf_token
 
+        # to avoid version attacks
+        self.set_header("Server", "globaleaks")
+
+        # to reduce possibility for XSS attacks.
+        self.set_header("X-Content-Type-Options", "nosniff")
+
+        # to mitigate information leakage on Browser/Proxy Cache
+        self.set_header("Cache-control", "no-cache, no-store")
+        self.set_header("Pragma", "no-cache")
+        self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
+
+        # to mitigate clickjaking attacks on iframes
+        self.set_header("X-Frame-Options", "deny")
+
+        lang = self.request.headers.get('GL-Language', None)
+
+        if not lang:
+            lang = self.request.headers.get('Accepted-Language', None)
+
+        # TODO if not lang default of the Node (need update DB)
+        if not lang:
+           lang = 'en'
+
+        # At the moment the default is 'en', but need to be a Node value
+        self.request.language = lang
+
+    def check_xsrf_cookie(self):
+        """
+            Override needed to change name of header name
+        """
+        token = self.request.headers.get("X-XSRF-TOKEN")
+        if not token:
+            raise HTTPError(403, "X-XSRF-TOKEN argument missing from POST")
+        if self.xsrf_token != token:
+            raise HTTPError(403, "XSRF cookie does not match POST argument")
+
+class BaseHandler(BaseBaseHandler):
     @staticmethod
     def validate_python_type(value, python_type):
         """
@@ -330,6 +342,13 @@ class BaseHandler(RequestHandler):
         Is used also to log the complete request, if the option is
         command line specified
         """
+
+        """
+            just reading the property is enough to
+            set the cookie as a side effect).
+        """
+        self.xsrf_token
+
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
@@ -491,10 +510,7 @@ class BaseHandler(RequestHandler):
             mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
-class BaseStaticFileHandler(StaticFileHandler):
-    def set_default_headers(self):
-        add_globaleaks_headers(self)
-
+class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
     def prepare(self):
         """
         This method is called by cyclone,and perform 'Host:' header
@@ -506,10 +522,7 @@ class BaseStaticFileHandler(StaticFileHandler):
             raise errors.InvalidHostSpecified
 
 
-class BaseRedirectHandler(RedirectHandler):
-    def set_default_headers(self):
-        add_globaleaks_headers(self)
-
+class BaseRedirectHandler(BaseBaseHandler, RedirectHandler):
     def prepare(self):
         """
         Same reason of StaticFileHandler
@@ -517,3 +530,14 @@ class BaseRedirectHandler(RedirectHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
+class DevNullHandler(RequestHandler):
+    """
+    This handler is used to generate decoy traffic.
+    """
+    size = 1024
+
+    def get(self, garbage=None):
+        self.write("A" * random.randint(0, self.size))
+
+    def post(self, garbage=None):
+        self.write("A" * random.randint(0, self.size))

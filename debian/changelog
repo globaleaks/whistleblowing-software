@@ -1,3 +1,15 @@
+globaleaks (2.23.14-0) unstable; urgency=low
+
+  * GlobaLeaks Alpha - Seeding
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 9 Aug 2013 16:10:42 +0002
+
+globaleaks (2.23.13-0) unstable; urgency=low
+
+  * GlobaLeaks Alpha - Add support for decoy traffic
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 9 Aug 2013 15:50:42 +0002
+
 globaleaks (2.23.12.3-0) unstable; urgency=low
 
   * GlobaLeaks Alpha - Fixed debian packaging
