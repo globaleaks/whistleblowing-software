@@ -15,10 +15,16 @@ from globaleaks.settings import GLSetting
 from globaleaks.rest import api
 from globaleaks.handlers.base import GLHTTPServer
 
+from Crypto.Random import random
+
 application = Application('GLBackend')
 
+settings = dict(cookie_secret=random.getrandbits(128),
+                xsrf_cookies=True,
+                debug=GLSetting.cyclone_debug)
+
 # Initialize the web API event listener, handling all the synchronous operations
-GLBackendAPIFactory = web.Application(api.spec, debug=GLSetting.cyclone_debug)
+GLBackendAPIFactory = web.Application(api.spec, **settings)
 GLBackendAPIFactory.protocol = GLHTTPServer
 GLBackendAPI = internet.TCPServer(GLSetting.bind_port, GLBackendAPIFactory)
 GLBackendAPI.setServiceParent(application)
