@@ -74,25 +74,48 @@
 
         <p>{{submission.current_context.description}}</p>
 
-        <div ng-repeat="receiver in submission.current_context_receivers">
+        <div ng-repeat="(idx, receiver) in submission.current_context_receivers">
+          <div ng-hide="idx >= submission.current_context_receivers.length/2" class="row">
 
-          <div class="receiverCard span5"
-               ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}"
-               ng-class-odd="{receiverCardOdd: true}"
-               ng-class-even="{receiverCardEven: true}">
+            <div class="receiverCard span5"
+                 ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}"
+                 ng-class-odd="{receiverCardOdd: true}"
+                 ng-class-even="{receiverCardEven: true}">
 
+              <input ng-model="submission.receivers_selected[receiver.receiver_gus]"
+                     type="checkbox" value="{{receiver.receiver_gus}}"
+                     class="receiverSelection" ng-show="submission.current_context.selectable_receiver">
 
-            <input ng-model="submission.receivers_selected[receiver.receiver_gus]"
-                   type="checkbox" value="{{receiver.receiver_gus}}"
-                   class="receiverSelection" ng-show="submission.current_context.selectable_receiver">
-            <div class="row">
-              <div class="span2">
-                <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-polaroid">
+              <div class="row">
+                <div class="span2">
+                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-polaroid">
+                </div>
+
+                <div class="span3">
+                  <h3>{{receiver.name}}</h3>
+                  <p>{{receiver.description}}</p>
+                </div>
               </div>
-              <div class="span3">
-                <h3>{{receiver.name}}</h3>
-                <p>{{receiver.description}}</p>
+            </div>
 
+            <div class="receiverCard span5"
+                 ng-class="{selected: submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]}"
+                 ng-class-odd="{receiverCardOdd: true}"
+                 ng-class-even="{receiverCardEven: true}">
+
+              <input ng-model="submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]"
+                     type="checkbox" value="{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}"
+                     class="receiverSelection" ng-show="submission.current_context.selectable_receiver">
+
+              <div class="row">
+                <div class="span2">
+                  <img ng-src="/static/{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}.png" class="img-polaroid">
+                </div>
+
+                <div class="span3">
+                  <h3>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].name}}</h3>
+                  <p>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].description}}</p>
+                </div>
               </div>
             </div>
 

@@ -1,16 +1,42 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$routeParams', 'Tip', '$cookies',
-  function($scope, $rootScope, $routeParams, Tip, $cookies) {
+  ['$scope', '$rootScope', '$routeParams', 'Tip', '$cookies', 'Contexts',
+  function($scope, $rootScope, $routeParams, Tip, $cookies, Contexts) {
     $scope.tip_id = $routeParams.tip_id;
 
-    var TipID = {tip_id: $scope.tip_id};
+    $rootScope.fileUploader = {};
+    $rootScope.fileUploader.uploadedFiles = [];
+    $rootScope.fileUploader.uploadingFiles = [];
 
+    var TipID = {tip_id: $scope.tip_id};
     new Tip(TipID, function(tip){
-      $scope.tip = tip;
-      $rootScope.fileUploader = {};
-      $rootScope.fileUploader.uploadedFiles = [];
-      $rootScope.fileUploader.uploadingFiles = [];
+
+      Contexts.query(function(contexts){
+        $scope.tip = tip;
+        $scope.contexts = contexts;
+        $scope.fieldFormat = {};
+
+        angular.forEach(contexts, function(context, k){
+          if (context.context_gus == $scope.tip.context_gus) {
+            $scope.current_context = context;
+          }
+        });
+        angular.forEach($scope.current_context.fields,
+                        function(field){
+          $scope.fieldFormat[field.key] = field; 
+        });
+
+      });
     });
+
+    $scope.getField = function(field_name) {
+      angular.forEach($scope.current_context.fields,
+                      function(field){
+        if ( field.key  == field_name ) {
+          console.log(field);
+          return field; 
+        }
+      });
+    };
 
     $scope.newComment = function() {
       $scope.tip.comments.newComment($scope.newCommentContent);
