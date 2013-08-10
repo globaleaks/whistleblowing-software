@@ -61,7 +61,7 @@
 
                     <div ng-show="uploadfile" class="uploadfile">
                       <div class="changePicture"
-                           pragmatic-file-upload src="/admin/staticfiles?{{receiver.receiver_gus}}">
+                        pragmatic-file-upload src="/admin/staticfiles?{{receiver.receiver_gus}}">
                         <div class="fileselector">
                           <input type="file">
                         </div>
@@ -75,7 +75,7 @@
                         </div>
                       </div>
                     </div>
-                    <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-polaroid baseimage">
+                    <img ng-src="/static/{{receiver.receiver_gus}}.png?{{randomFluff}}" class="img-polaroid baseimage">
                   </div>
 
                   <label>{{ "Name" | translate }}</label>
@@ -145,8 +145,9 @@
                       {{ "Enable encrypted notification" | translate }}
                     </label>
                     <label ng-show="receiver.gpg_enable_notification" >
-                      <span class="btn-info">{{ "now Enabled:" | translate }}</span>
-                      {{ "Every notification you'll receive will be encrypted with your PGP key." | translate }}
+                      <span class="btn-info">
+                        {{ "now Enabled:" | translate }}</span>
+                      {{ "Every notification you'll receive will be encrypted with your GPG key." | translate }}
                     </label>
                   </div>
 
@@ -156,8 +157,9 @@
                       {{ "Enable file encryption" | translate }}
                       </label>
                       <label ng-show="receiver.gpg_enable_files" >
-                      <span class="btn-info">{{ "now Enabled:" | translate }}</span>
-                      {{ "Every file you'll download will be encrypted with your PGP key." | translate }}
+                      <span class="btn-info">
+                        {{ "now Enabled:" | translate }}</span>
+                      {{ "Every file you'll download will be encrypted with your GPG key." | translate }}
                       </label>
                   </div>
 
