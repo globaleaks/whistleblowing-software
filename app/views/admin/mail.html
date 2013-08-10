@@ -29,6 +29,14 @@
             <div class="row">
                 <div class="span9">
 
+                <label>{{ "Source Name" | translate }}</label>
+                <input type="text"
+                       ng-model="admin.notification.source_name" required>
+
+                <label>{{ "Source Email" | translate }}</label>
+                <input type="text"
+                       ng-model="admin.notification.source_email" required>
+
                 <label>{{ "Username" | translate }}</label>
                 <input type="text"
                        ng-model="admin.notification.username" required>
