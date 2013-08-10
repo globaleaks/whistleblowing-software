@@ -163,7 +163,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
 
     };
 
-    return function(fn, select_all_receivers) {
+    return function(fn) {
       /**
        * This factory returns a Submission object that will call the fn
        * callback once all the information necessary for creating a submission
@@ -192,7 +192,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           if (self.current_context.receivers.indexOf(receiver.receiver_gus) !== -1) {
             self.current_context_receivers.push(receiver);
             self.receivers_selected[receiver.receiver_gus] = true;
-            if (select_all_receivers == false) {
+            if ( self.current_context.select_all_receivers == false ) {
               self.receivers_selected[receiver.receiver_gus] = false;
             }
           };
@@ -212,7 +212,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           });
         });
       });
-
+     
       /**
        * @name Submission.create
        * @description

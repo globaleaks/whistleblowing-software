@@ -14,18 +14,22 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
 
   Node.get(function(node_info){
     $scope.node_info = node_info;
+
+    new Submission(function(submission){
+      $scope.maximumFilesize = submission.maximum_filesize;
+
+      $scope.current_context = submission.current_context;
+
+      $scope.submission = submission;
+      $scope.submit = $scope.submission.submit;
+
+      checkReceiverSelected();
+      
+
+    });
+
   });
 
-  new Submission(function(submission, $scope.current_context.select_all_receivers){
-    $scope.submission = submission;
-    $scope.maximumFilesize = submission.maximum_filesize;
-
-    $scope.current_context = submission.current_context;
-
-    $scope.submit = $scope.submission.submit;
-    checkReceiverSelected();
-
-  });
 
   $scope.view_tip = function(receipt) {
     if ($scope.receiptConfirmation != receipt)
