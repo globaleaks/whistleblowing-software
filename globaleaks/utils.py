@@ -301,7 +301,6 @@ def sendmail(authentication_username, authentication_password, from_address,
     elif isinstance(message_file, unicode) or isinstance(message_file, str):
         message_file = cStringIO.StringIO(str(message_file))
     else:
-        print message_file.__name__
         log.err("Invalid usage of 'sendmail' function")
         raise AssertionError("message wrong type: %s" % type(message_file))
 
