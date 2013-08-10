@@ -64,14 +64,15 @@ class TableReplacer:
         from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
         from globaleaks.db.update_2_3 import Receiver_version_2
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
+        from globaleaks.db.update_4_5 import Context_version_2
 
         table_history = {
-            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node ],
-            'User' : [ models.User, None, None, None, None, None ],
-            'Context' : [ Context_version_1, None, models.Context, None, None ],
-            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver ],
-            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, models.ReceiverFile ],
-            'Notification': [ Notification_version_1, None, models.Notification, None, None ],
+            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None ],
+            'User' : [ models.User, None, None, None, None, None, None ],
+            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context ],
+            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None ],
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, models.ReceiverFile, None ],
+            'Notification': [ Notification_version_1, None, models.Notification, None, None, None ],
         }
 
         if not table_history.has_key(table_name):
@@ -118,6 +119,13 @@ class TableReplacer:
                    'tip_timetolive INTEGER NOT NULL,receipt_regexp VARCHAR NOT NULL,receipt_description VARCHAR NOT NULL,'\
                    'submission_introduction VARCHAR NOT NULL, submission_disclaimer VARCHAR NOT NULL,'\
                    'submission_timetolive INTEGER NOT NULL, tags BLOB, PRIMARY KEY (id))'
+        elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 5:
+            return 'CREATE TABLE context (id VARCHAR NOT NULL, creation_date VARCHAR NOT NULL, description BLOB NOT NULL,'\
+                    'escalation_threshold INTEGER, fields BLOB NOT NULL, file_max_download INTEGER NOT NULL, file_required INTEGER NOT NULL,'
+                    'last_update VARCHAR, name BLOB NOT NULL, selectable_receiver INTEGER NOT NULL, tip_max_access INTEGER NOT NULL,'
+                    'tip_timetolive INTEGER NOT NULL, submission_timetolive INTEGER NOT NULL, receipt_regexp VARCHAR NOT NULL,'
+                    'receipt_description BLOB NOT NULL, submission_introduction BLOB NOT NULL, submission_disclaimer BLOB NOT NULL,'
+                    'tags BLOB, PRIMARY KEY (id))'
         elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver < 3:
             return 'CREATE TABLE receiver (can_delete_submission INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
                    'description VARCHAR NOT NULL,id VARCHAR NOT NULL,last_access VARCHAR,last_update VARCHAR,'\
