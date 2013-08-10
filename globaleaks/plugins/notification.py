@@ -210,8 +210,8 @@ class MailNotification(Notification):
         to_addrs = [ receiver_mail ]
 
         # Compose the email having the system+subject+recipient data
-        message = mail.Message(from_addr='"%s" <%s>' % (
-                                   event.notification_settings['source_name'],
+        message = mail.Message(from_addr='%s' % (
+                                   # event.notification_settings['source_name'],
                                    event.notification_settings['source_email']),
                                to_addrs=to_addrs,
                                subject=title,
