@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Model, ReceiverTip
+from globaleaks.models import Model, ReceiverTip, Notification
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
 class Context_version_2(Model):
@@ -37,6 +37,24 @@ class ReceiverFile_version_4(Model):
     last_access = DateTime()
     mark = Unicode()
     status = Unicode()
+
+class Notification_version_2(Model):
+    __storm_table__ = 'notification'
+
+    server = Unicode()
+    port = Int()
+    username = Unicode()
+    password = Unicode()
+    security = Unicode()
+
+    tip_template = Pickle()
+    file_template = Pickle()
+    comment_template = Pickle()
+    activation_template = Pickle()
+    tip_mail_title = Pickle()
+    file_mail_title = Pickle()
+    comment_mail_title = Pickle()
+    activation_mail_title = Pickle()
 
 
 class Replacer45(TableReplacer):
@@ -106,4 +124,35 @@ class Replacer45(TableReplacer):
             self.store_new.add(new_rf)
 
         self.store_new.commit()
+
+    def migrate_Notification(self):
+        print "%s Notification migration assistante (added mail From: field)" % self.std_fancy
+
+        on = self.store_old.find(self.get_right_model("Notification", 4)).one()
+
+        # remind, need to be update when Notification became updated!
+        new_obj = Notification()
+
+        new_obj.id = on.id
+        new_obj.creation_date = on.creation_date
+        new_obj.password = on.password
+        new_obj.port = on.port
+        new_obj.security = on.security
+        new_obj.server = on.server
+        new_obj.username = on.username
+
+        new_obj.comment_mail_title = on.comment_mail_title
+        new_obj.comment_template = on.comment_template
+        new_obj.file_mail_title = on.file_mail_title
+        new_obj.file_template = on.file_template
+        new_obj.tip_mail_title = on.tip_mail_title
+        new_obj.tip_template = on.tip_template
+
+        node_info = self.store_old.find(self.get_right_model("Node", 4)).one()
+        new_obj.source_from = '"%s" <%s>' % (node_info.name, on.username)
+
+        self.store_new.add(new_obj)
+        self.store_new.commit()
+
+
 

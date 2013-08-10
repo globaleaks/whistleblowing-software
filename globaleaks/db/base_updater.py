@@ -64,7 +64,7 @@ class TableReplacer:
         from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
         from globaleaks.db.update_2_3 import Receiver_version_2
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
-        from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4
+        from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
 
         table_history = {
             'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None ],
@@ -72,7 +72,7 @@ class TableReplacer:
             'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context ],
             'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None ],
             'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile ],
-            'Notification': [ Notification_version_1, None, models.Notification, None, None, None ],
+            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification ],
         }
 
         if not table_history.has_key(table_name):
@@ -141,6 +141,13 @@ class TableReplacer:
                    'tip_template VARCHAR,tip_mail_title VARCHAR,file_template VARCHAR,'\
                    'file_mail_title VARCHAR,comment_template VARCHAR,comment_mail_title VARCHAR,'\
                    'activation_template VARCHAR,activation_mail_title VARCHAR,'\
+                   'id VARCHAR NOT NULL,PRIMARY KEY (id))'
+        elif query.startswith('\n\nCREATE TABLE notification (') and self.start_ver < 4:
+            return 'CREATE TABLE notification (creation_date VARCHAR NOT NULL,server VARCHAR,' \
+                   'port INTEGER,password VARCHAR,username VARCHAR,security VARCHAR NOT NULL,' \
+                   'tip_template BLOB,tip_mail_title BLOB,file_template BLOB,' \
+                   'file_mail_title BLOB,comment_template BLOB,comment_mail_title BLOB,' \
+                   'activation_template BLOB,activation_mail_title BLOB,' \
                    'id VARCHAR NOT NULL,PRIMARY KEY (id))'
         elif query.startswith('\n\nCREATE TABLE receiverfile (') and self.start_ver < 3:
             return 'CREATE TABLE receiverfile ( file_path VARCHAR, downloads INTEGER NOT NULL,'\
