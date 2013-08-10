@@ -114,10 +114,10 @@ spec = [
 
 ## Enable end to end testing directory ##
 # * /test
-#if settings.config.debug.testing:
-spec.append(
-    (r'/test/(.*)', BaseStaticFileHandler, {'path': os.path.join(GLSetting.glclient_path, '..', 'test')})
-)
+if GLSetting.cyclone_debug:
+    spec.append(
+        (r'/test/(.*)', BaseStaticFileHandler, {'path': os.path.join(GLSetting.glclient_path, '..', 'test')})
+    )
 
 spec.append(
     (r'/dev/null', DevNullHandler)
