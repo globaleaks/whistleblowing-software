@@ -11,7 +11,7 @@ import os
 
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles, overview
-from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler, DevNullHandler
+from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler, DevNullHandler, DecoyIFRAMEHandler
 from globaleaks.rest.base import uuid_regexp
 
 
@@ -120,6 +120,9 @@ spec.append(
 )
 
 spec.append(
+    (r'/dev/null', DevNullHandler)
+)
+spec.append(
     (r'/dev/null(.*)', DevNullHandler)
 )
 
@@ -139,6 +142,12 @@ spec.append(
 
 spec.append(
     (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path })
+)
+
+spec.append(
+    (r'/(decoy.html)', DecoyIFRAMEHandler,
+        {'path': GLSetting.glclient_path }
+    )
 )
 
 ## Main Web app ##

@@ -15,7 +15,6 @@ import time
 import traceback
 
 import cStringIO
-import StringIO
 
 from OpenSSL import SSL
 
@@ -300,8 +299,9 @@ def sendmail(authentication_username, authentication_password, from_address,
     if isinstance(message_file, cStringIO.InputType):
        pass
     elif isinstance(message_file, unicode) or isinstance(message_file, str):
-        message_file = StringIO.StringIO(str(message_file))
+        message_file = cStringIO.StringIO(str(message_file))
     else:
+        print message_file.__name__
         log.err("Invalid usage of 'sendmail' function")
         raise AssertionError("message wrong type: %s" % type(message_file))
 
@@ -390,7 +390,7 @@ def mail_exception(etype, value, tback):
     if type(info_string) == unicode:
         info_string = info_string.encode(encoding='utf-8', errors='ignore')
 
-    message = StringIO.StringIO(info_string)
+    message = cStringIO.StringIO(info_string)
 
     log.err(error_message)
     log.err(traceinfo)
