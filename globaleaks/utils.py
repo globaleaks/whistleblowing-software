@@ -48,6 +48,11 @@ def sanitize_str(s):
 
 class GLLogObserver(twlog.FileLogObserver):
     def emit(self, eventDict):
+        if 'failure' in eventDict:
+            vf = eventDict['failure']
+            e_t, e_v, e_tb = vf.type, vf.value, vf.getTracebackObject()
+            sys.excepthook(e_t, e_v, e_tb)
+
         text = twlog.textFromEventDict(eventDict)
         if text is None:
             return
