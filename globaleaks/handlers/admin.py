@@ -867,6 +867,8 @@ def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_l
         'username': notif.username if notif.username else u"",
         'password': notif.password if notif.password else u"",
         'security': notif.security if notif.security else u"",
+        'source_name' : notif.source_name,
+        'source_email' : notif.source_email
     }
 
     for attr in ['tip_template', 'tip_mail_title', 'file_template',

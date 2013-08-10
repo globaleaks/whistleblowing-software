@@ -149,7 +149,8 @@ class Replacer45(TableReplacer):
         new_obj.tip_template = on.tip_template
 
         node_info = self.store_old.find(self.get_right_model("Node", 4)).one()
-        new_obj.source_from = '"%s" <%s>' % (node_info.name, on.username)
+        new_obj.source_name = node_info.name
+        new_obj.source_email = on.username
 
         self.store_new.add(new_obj)
         self.store_new.commit()

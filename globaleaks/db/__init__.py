@@ -67,6 +67,9 @@ def initialize_node(store, results, only_node, email_templates):
     notification.password = "sendaccount99"
     notification.security = "TLS"
 
+    notification.source_name = "Default GlobaLeaks sender"
+    notification.source_email = notification.username
+
     # Those fields are sets as default in order to show to the Admin the various 'variables'
     # used in the template.
     notification.tip_template = { GLSetting.memory_copy.default_language:

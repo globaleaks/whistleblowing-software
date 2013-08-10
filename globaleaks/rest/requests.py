@@ -82,6 +82,8 @@ adminNotificationDesc = {
     'security': unicode, # 'TLS' or 'SSL' only
     'username': unicode,
     'password': unicode,
+    'source_name' : unicode,
+    'source_email' : unicode,
     'tip_template': unicode,
     'tip_mail_title': unicode,
     'comment_template': unicode,
