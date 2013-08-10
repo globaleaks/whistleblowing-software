@@ -45,6 +45,7 @@ class TTip(helpers.TestWithDB):
         'submission_introduction': u"bleh",
         'submission_disclaimer': u"bloh",
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
+        'select_all_receivers': True,
     }
 
     tipReceiver1 = {
