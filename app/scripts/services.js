@@ -89,7 +89,7 @@ angular.module('resourceServices.authentication', ['ngCookies'])
 angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices.authentication']).
   factory('globaleaksInterceptor', ['$q', '$rootScope', '$location',
   function($q, $rootScope, $location) {
-    var requestTimeout = 30000,
+    var requestTimeout = 30000;
 
     $rootScope.showRequestBox = false;
 
