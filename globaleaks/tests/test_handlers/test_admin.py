@@ -174,7 +174,7 @@ class TestContextInstance(helpers.TestHandler):
         try:
             yield handler.put(self.dummyContext['context_gus'])
             self.assertTrue(False)
-        except errors.TimeToLiveInvalid:
+        except errors.InvalidTipSubmCombo:
             self.assertTrue(True)
         except Exception as excep:
             print "Wrong exception: %s" % excep
