@@ -305,6 +305,7 @@ class MockDict():
             'tags': [],
             'receipt_regexp': u'[A-Z]{4}\+[0-9]{5}',
             'file_required': False,
+            'select_all_receivers': True,
         }
 
         self.dummySubmission = {

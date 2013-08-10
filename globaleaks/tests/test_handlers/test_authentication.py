@@ -65,7 +65,7 @@ class TestAuthentication(helpers.TestHandler):
         session_id = self.responses[0]['session_id']
         handler = self.request({}, headers={'X-Session': session_id})
         success = yield handler.delete()
-        self.assertTrue(handler.current_user is not None)
+        self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
         # A second logout must not be accepted (this validate also X-Session reuse)
@@ -91,7 +91,7 @@ class TestAuthentication(helpers.TestHandler):
         session_id = self.responses[0]['session_id']
         handler = self.request({}, headers={'X-Session': session_id})
         success = yield handler.delete()
-        self.assertTrue(handler.current_user is not None)
+        self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
         # A second logout must not be accepted (this validate also X-Session reuse)
@@ -118,7 +118,7 @@ class TestAuthentication(helpers.TestHandler):
         session_id = self.responses[0]['session_id']
         handler = self.request({}, headers={'X-Session': session_id})
         success = yield handler.delete()
-        self.assertTrue(handler.current_user is not None)
+        self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
         # A second logout must not be accepted (this validate also X-Session reuse)
