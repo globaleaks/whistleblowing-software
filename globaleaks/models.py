@@ -242,11 +242,13 @@ class Context(Model):
     #                         ReceiverContext.receiver_id,
     #                         Receiver.id)
 
+    select_all_receivers = Bool()
+
     unicode_keys = [ 'receipt_regexp' ]
     localized_strings = ['name', 'description', 'receipt_description',
                     'submission_introduction', 'submission_disclaimer' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download' ]
-    bool_keys = [ 'selectable_receiver', 'file_required' ]
+    bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers' ]
 
 
 class InternalTip(Model):

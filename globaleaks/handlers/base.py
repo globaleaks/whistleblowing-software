@@ -101,7 +101,7 @@ class GLHTTPServer(HTTPConnection):
                     self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
 
                 if content_length < 100000:
-                    self._contentbuffer = StringIO()
+                    self._contentbuffer = StringIO('')
                 else:
                     self._contentbuffer = TemporaryFile()
                 
@@ -456,8 +456,8 @@ class BaseHandler(BaseBaseHandler):
         else:
             RequestHandler.write(self, chunk)
 
-
-    def get_current_user(self):
+    @property
+    def current_user(self):
         session_id = self.request.headers.get('X-Session')
         if not session_id:
             return None
@@ -530,14 +530,38 @@ class BaseRedirectHandler(BaseBaseHandler, RedirectHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
+class DecoyIFRAMEHandler(StaticFileHandler):
+    """
+    This is a static file handler for the decoy traffic widget.
+
+    We create a new one, because this way we don't set certain headers.
+    """
+    def prepare(self):
+        # to avoid version attacks
+        self.set_header("Server", "globaleaks")
+
+        # to reduce possibility for XSS attacks.
+        self.set_header("X-Content-Type-Options", "nosniff")
+
+        # to mitigate information leakage on Browser/Proxy Cache
+        self.set_header("Cache-control", "no-cache, no-store")
+        self.set_header("Pragma", "no-cache")
+        self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
+
 class DevNullHandler(RequestHandler):
     """
     This handler is used to generate decoy traffic.
     """
     size = 1024
 
-    def get(self, garbage=None):
+    def get(self, *args):
         self.write("A" * random.randint(0, self.size))
 
-    def post(self, garbage=None):
+    def post(self, *args):
         self.write("A" * random.randint(0, self.size))
+
+    def check_xsrf_cookie(self):
+        """
+        We override it because this is just a /dev/null handler.
+        """
+        pass

@@ -69,6 +69,7 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         # tip expressed in day, submission in hours
         "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
         "submission_timetolive": context.submission_timetolive / (60 * 60),
+        "select_all_receivers": context.select_all_receivers
     }
 
     for attr in ['name', 'description', 'receipt_description',
