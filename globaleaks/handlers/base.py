@@ -182,8 +182,9 @@ class BaseBaseHandler(RequestHandler):
         self.set_header("Pragma", "no-cache")
         self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
 
-        # to mitigate clickjaking attacks on iframes
-        self.set_header("X-Frame-Options", "deny")
+        if not GLSetting.cyclone_debug:
+            # to mitigate clickjaking attacks on iframes
+            self.set_header("X-Frame-Options", "deny")
 
         lang = self.request.headers.get('GL-Language', None)
 
@@ -313,7 +314,7 @@ class BaseHandler(BaseBaseHandler):
         try:
             jmessage = json.loads(message)
         except ValueError:
-            raise errors.InvalidInputFormat("Invalid JSON message")
+            raise errors.InvalidInputFormat("Invalid JSON format")
 
         if BaseHandler.validate_jmessage(jmessage, message_template):
             return jmessage

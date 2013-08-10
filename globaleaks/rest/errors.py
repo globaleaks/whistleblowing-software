@@ -109,7 +109,7 @@ class AccessLimitExceeded(GLException):
     """
     The access counter for a Tip has reached the limit
     """
-    reason = "Your user has reach the maximum amount of access for this Tip"
+    reason = "The receiver has reach the maximum amount of access for this Tip"
     error_code = 18
     status_code = 503 # Servie Unavailable
 
@@ -314,38 +314,11 @@ class GPGKeyInvalid(GLException):
     status_code = 406
     reason = "The GPG key proposed can't be imported"
 
-class SessionExpired(GLException):
-    """
-    Raised by GLHTTPServer, when a raw upload is bigger than acceptable
-    """
-    error_code = 41
-    status_code = 400 # Generic 400 error
-
-    def __init__(self, lifetime, role):
-        self.reason = "The time for your role (%s) is %s" % (role, lifetime)
-        self.arguments.append(role)
-        self.arguments.append(lifetime)
-        self.record()
-
-
-class TimeToLiveInvalid(GLException):
-    """
-    tip_timetolive and submission_timetolive maybe proposed of weird values,
-    here is catch
-    """
-    error_code =  42
-    status_code = 406
-
-    def __init__(self, kind):
-        self.reason = "Invalid timerange supply for %s" % kind
-        self.arguments.append(kind)
-        self.record()
-
 class InvalidReceiptRegexp(GLException):
     """
     context.receipt_regexp don't works
     """
-    error_code = 43
+    error_code = 41
     status_code = 406
     reason = "The receipt regexp is an invalid regexp"
 
@@ -354,6 +327,51 @@ class GPGKeyIDNotUnique(GLException):
     A GPG key id need to be unique in the node
     Remind: not yet used
     """
-    error_code = 44
+    error_code = 42
     status_code =  406
     reason = "GPG Key ID it's already used by another receiver"
+
+class AdminSessionExpired(GLException):
+    error_code = 43
+    status_code = 419 # Authentication Timeout
+    reason = "The time for you Administrator is expired (max time: %s seconds) " % \
+             GLSetting.defaults.lifetimes['admin']
+
+class WbSessionExpired(GLException):
+    error_code = 44
+    status_code = 419 # Authentication Timeout
+    reason = "The time for you whistleblower is expired (max time: %s seconds) " % \
+             GLSetting.defaults.lifetimes['wb']
+
+class ReceiverSessionExpired(GLException):
+    error_code = 45
+    status_code = 419 # Authentication Timeout
+    reason = "The time for you receiver is expired (max time: %s seconds) " % \
+             GLSetting.defaults.lifetimes['receiver']
+
+class InvalidTipTimeToLive(GLException):
+    """
+    tip_timetolive and submission_timetolive maybe proposed of weird values,
+    here is catch
+    """
+    error_code =  46
+    status_code = 406
+    reason = "Invalid timerange in Tip time to live"
+
+class InvalidSubmTimeToLive(GLException):
+    """
+    tip_timetolive and submission_timetolive maybe proposed of weird values,
+    here is catch
+    """
+    error_code =  47
+    status_code = 406
+    reason = "Invalid timerange in Submission time to live"
+
+class InvalidTipSubmCombo(GLException):
+    """
+    tip_timetolive and submission_timetolive maybe proposed of weird values,
+    here is catch
+    """
+    error_code =  48
+    status_code = 406
+    reason = "Submission time to life can't be more than Tip"
