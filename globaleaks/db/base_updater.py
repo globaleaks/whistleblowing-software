@@ -64,14 +64,14 @@ class TableReplacer:
         from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
         from globaleaks.db.update_2_3 import Receiver_version_2
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
-        from globaleaks.db.update_4_5 import Context_version_2
+        from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4
 
         table_history = {
             'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None ],
             'User' : [ models.User, None, None, None, None, None, None ],
             'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context ],
             'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None ],
-            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, models.ReceiverFile, None ],
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile ],
             'Notification': [ Notification_version_1, None, models.Notification, None, None, None ],
         }
 
@@ -119,12 +119,12 @@ class TableReplacer:
                    'tip_timetolive INTEGER NOT NULL,receipt_regexp VARCHAR NOT NULL,receipt_description VARCHAR NOT NULL,'\
                    'submission_introduction VARCHAR NOT NULL, submission_disclaimer VARCHAR NOT NULL,'\
                    'submission_timetolive INTEGER NOT NULL, tags BLOB, PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 5:
+        elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 4:
             return 'CREATE TABLE context (id VARCHAR NOT NULL, creation_date VARCHAR NOT NULL, description BLOB NOT NULL,'\
-                    'escalation_threshold INTEGER, fields BLOB NOT NULL, file_max_download INTEGER NOT NULL, file_required INTEGER NOT NULL,'
-                    'last_update VARCHAR, name BLOB NOT NULL, selectable_receiver INTEGER NOT NULL, tip_max_access INTEGER NOT NULL,'
-                    'tip_timetolive INTEGER NOT NULL, submission_timetolive INTEGER NOT NULL, receipt_regexp VARCHAR NOT NULL,'
-                    'receipt_description BLOB NOT NULL, submission_introduction BLOB NOT NULL, submission_disclaimer BLOB NOT NULL,'
+                    'escalation_threshold INTEGER, fields BLOB NOT NULL, file_max_download INTEGER NOT NULL, file_required INTEGER NOT NULL,'\
+                    'last_update VARCHAR, name BLOB NOT NULL, selectable_receiver INTEGER NOT NULL, tip_max_access INTEGER NOT NULL,'\
+                    'tip_timetolive INTEGER NOT NULL, submission_timetolive INTEGER NOT NULL, receipt_regexp VARCHAR NOT NULL,'\
+                    'receipt_description BLOB NOT NULL, submission_introduction BLOB NOT NULL, submission_disclaimer BLOB NOT NULL,'\
                     'tags BLOB, PRIMARY KEY (id))'
         elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver < 3:
             return 'CREATE TABLE receiver (can_delete_submission INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
@@ -146,6 +146,16 @@ class TableReplacer:
             return 'CREATE TABLE receiverfile ( file_path VARCHAR, downloads INTEGER NOT NULL,'\
                    'creation_date VARCHAR NOT NULL, last_access VARCHAR, id VARCHAR NOT NULL,'\
                    'internalfile_id VARCHAR NOT NULL, receiver_id VARCHAR NOT NULL, internaltip_id VARCHAR NOT NULL,'\
+                   'mark VARCHAR NOT NULL CHECK (mark IN ("not notified", "notified", "unable to notify", "disabled")),'\
+                   'FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,'\
+                   'FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,'\
+                   'FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,'\
+                   'PRIMARY KEY (id))'
+        elif query.startswith('\n\nCREATE TABLE receiverfile (') and self.start_ver < 4:
+            return 'CREATE TABLE receiverfile ( file_path VARCHAR, downloads INTEGER NOT NULL,size INTEGER NOT NULL,'\
+                   'creation_date VARCHAR NOT NULL,last_access VARCHAR,id VARCHAR NOT NULL,'\
+                   'internalfile_id VARCHAR NOT NULL,receiver_id VARCHAR NOT NULL,internaltip_id VARCHAR NOT NULL,'\
+                   'status VARCHAR NOT NULL CHECK (status IN ("cloned", "reference", "encrypted")),' \
                    'mark VARCHAR NOT NULL CHECK (mark IN ("not notified", "notified", "unable to notify", "disabled")),'\
                    'FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,'\
                    'FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,'\
@@ -217,10 +227,8 @@ class TableReplacer:
         new_obj.hidden_service = on.hidden_service
         new_obj.id = on.id
 
-        new_obj.password = on.password
         new_obj.public_site = on.public_site
         new_obj.receipt_salt = on.receipt_salt
-        new_obj.salt = on.salt
         new_obj.stats_update_time = on.stats_update_time
 
         new_obj.tor2web_admin = on.tor2web_admin
@@ -240,8 +248,13 @@ class TableReplacer:
 
         # version 4 new entries!
         if self.start_ver >= 4:
-            new_node.presentation = on.presentation
-            new_node.default_language = on.default_language
+            new_obj.presentation = on.presentation
+            new_obj.default_language = on.default_language
+
+        # version 4 has introduced User table
+        if self.start_ver < 4:
+            new_obj.password = on.password
+            new_obj.salt = on.salt
 
         self.store_new.add(new_obj)
 
@@ -376,10 +389,8 @@ class TableReplacer:
 
             new_obj = self.get_right_model("Receiver", self.start_ver +1)()
 
-            new_obj.username = orcvr.username
             new_obj.id = orcvr.id
             new_obj.name = orcvr.name
-            new_obj.password = orcvr.password
             new_obj.description = orcvr.description
 
             new_obj.can_delete_submission = orcvr.can_delete_submission
@@ -388,10 +399,11 @@ class TableReplacer:
             new_obj.file_notification = orcvr.file_notification
 
             new_obj.creation_date = orcvr.creation_date
-            new_obj.last_access = orcvr.last_access
             new_obj.last_update = orcvr.last_update
 
-            new_obj.failed_login = orcvr.failed_login
+            new_obj.receiver_level = orcvr.receiver_level
+            new_obj.notification_fields = orcvr.notification_fields
+            new_obj.tags = orcvr.tags
 
             # version 1 new entries!
             if self.start_ver >= 1:
@@ -400,10 +412,15 @@ class TableReplacer:
                 new_obj.gpg_key_info = orcvr.gpg_key_info
                 new_obj.gpg_key_status = orcvr.gpg_key_status
 
-            new_obj.receiver_level = orcvr.receiver_level
+            # version 4 has introduced User table
+            if self.start_ver < 4:
+                new_obj.username = orcvr.username
+                new_obj.password = orcvr.password
+                new_obj.last_access = orcvr.last_access
+                new_obj.failed_login = orcvr.failed_login
 
-            new_obj.notification_fields = orcvr.notification_fields
-            new_obj.tags = orcvr.tags
+            if self.start_ver >= 4:
+                new_obj.user_id = orcvr.user.id
 
             self.store_new.add(new_obj)
         self.store_new.commit()

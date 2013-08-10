@@ -26,7 +26,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
         "12" : Replacer12,
         "23" : Replacer23,
         "34" : Replacer34,
-        "45" : Replacer34,
+        "45" : Replacer45,
     }
     
     to_delete_on_fail = []
