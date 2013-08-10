@@ -484,7 +484,7 @@ class Notification(Model):
     comment_mail_title = Pickle(validator=gllocalv)
     activation_mail_title = Pickle(validator=gllocalv)
 
-    unicode_keys = ['server', 'username', 'password' ]
+    unicode_keys = ['server', 'username', 'password', 'source_name', 'source_email' ]
     localized_strings = [ 'tip_template', 'file_template', 'comment_template',
                          'activation_template', 'tip_mail_title', 'comment_mail_title',
                          'file_mail_title', 'activation_mail_title' ]

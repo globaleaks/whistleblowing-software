@@ -276,4 +276,6 @@ def import_memory_variables(store):
     GLSetting.memory_copy.notif_password = str(notif.password)
     GLSetting.memory_copy.notif_username = str(notif.username)
     GLSetting.memory_copy.notif_security = str(notif.security)
+    GLSetting.memory_copy.notif_source_name = str(notif.source_name)
+    GLSetting.memory_copy.notif_source_email = str(notif.source_email)
 
