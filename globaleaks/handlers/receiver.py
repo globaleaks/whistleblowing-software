@@ -9,11 +9,10 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, User
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
-from globaleaks.rest import requests
-from globaleaks.rest.errors import ReceiverGusNotFound, NoEmailSpecified
+from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, gpg_options_parse
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
@@ -54,7 +53,7 @@ def get_receiver_settings(store, user_id, language=GLSetting.memory_copy.default
     receiver = store.find(Receiver, Receiver.id== unicode(user_id)).one()
 
     if not receiver:
-        raise ReceiverGusNotFound
+        raise errors.ReceiverGusNotFound
 
     return receiver_serialize_receiver(receiver, language)
 
@@ -64,7 +63,7 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
     receiver.description[language] = request.get('description')
 
     if not receiver:
-        raise ReceiverGusNotFound
+        raise errors.ReceiverGusNotFound
 
     new_password = request.get('password')
     old_password = request.get('old_password')
@@ -77,7 +76,7 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
 
     mail_address = acquire_mail_address(request)
     if not mail_address:
-        raise NoEmailSpecified
+        raise errors.NoEmailSpecified
 
     # receiver.notification_fields is not update until GLClient supports them
     receiver.tip_notification = acquire_bool(request['tip_notification'])

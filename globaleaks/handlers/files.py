@@ -113,6 +113,7 @@ def get_tip_by_submission(store, id):
     if not itip:
         raise errors.SubmissionGusNotFound
     elif itip.mark != InternalTip._marker[0]:
+        log.err("Denied access on a concluded submission")
         raise errors.SubmissionConcluded
     else:
         return itip.id
@@ -124,7 +125,7 @@ def get_tip_by_wbtip(store, wb_tip_id):
         wb_tip = store.find(WhistleblowerTip,
                             WhistleblowerTip.id == wb_tip_id).one()
     except Exception as excep:
-        log.err("get_tip_by_wtipid (1) Error in store.find: %s" % excep)
+        log.err("get_tip_by_wtipid, reference (1) is missing: %s" % excep)
         raise errors.SubmissionGusNotFound
 
     if not wb_tip:
@@ -134,7 +135,7 @@ def get_tip_by_wbtip(store, wb_tip_id):
         itip = store.find(InternalTip,
                           InternalTip.id == wb_tip.internaltip_id).one()
     except Exception as excep:
-        log.err("get_tip_by_wtipid (2) Error in store.find: %s" % excep)
+        log.err("get_tip_by_wtipid, reference (2) is missing: %s" % excep)
         raise errors.SubmissionGusNotFound
 
     if not itip:
@@ -244,20 +245,20 @@ def download_file(store, tip_id, file_id):
     if not receivertip:
         raise errors.TipGusNotFound
 
-    file = store.find(ReceiverFile, ReceiverFile.id == unicode(file_id)).one()
-    if not file:
+    file_obj = store.find(ReceiverFile, ReceiverFile.id == unicode(file_id)).one()
+    if not file_obj:
         raise errors.FileGusNotFound
 
     log.debug("Download of %s downloads: %d with limit of %s for %s" %
-              (file.internalfile.name, file.downloads,
-               file.internalfile.internaltip.download_limit, receivertip.receiver.name) )
+              (file_obj.internalfile.name, file_obj.downloads,
+               file_obj.internalfile.internaltip.download_limit, receivertip.receiver.name) )
 
-    if file.downloads == file.internalfile.internaltip.download_limit:
+    if file_obj.downloads == file_obj.internalfile.internaltip.download_limit:
         raise errors.DownloadLimitExceeded
 
-    file.downloads += 1
+    file_obj.downloads += 1
 
-    return serialize_receiver_file(file, file.internalfile)
+    return serialize_receiver_file(file_obj, file_obj.internalfile)
 
 
 class Download(BaseHandler):
