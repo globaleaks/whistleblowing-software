@@ -345,7 +345,16 @@ class APSNotification(GLJob):
             if not rfile.receiver.file_notification:
                 log.debug("Receiver %s has file notification disabled: %s skipped" % (
                     rfile.receiver.user.username, rfile.internalfile.name ))
-                rfile.mark = models.ReceiverTip._marker[3] # 'disabled'
+                rfile.mark = models.ReceiverFile._marker[3] # 'disabled'
+                store.commit()
+                continue
+
+            # by ticket https://github.com/globaleaks/GlobaLeaks/issues/444
+            # send notification of file only if notification of tip is already on send status
+            if rfile.receiver_tip.mark == models.ReceiverTip._marker[0]: # 'not notified'
+                rfile.mark = models.ReceiverFile._marker[4] # 'skipped'
+                log.debug("Skipped notification of %s (for %s) because Tip not yet notified" %
+                          (rfile.internalfile.name, rfile.receiver.name) )
                 store.commit()
                 continue
 

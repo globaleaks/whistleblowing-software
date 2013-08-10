@@ -95,6 +95,12 @@ def receiver_file_align(store, filesdict, processdict):
             receiverfile.internalfile_id = ifile.id
             receiverfile.internaltip_id = ifile.internaltip.id
 
+            # added this reference to help in:
+            # https://github.com/globaleaks/GlobaLeaks/issues/444
+            receiver_tip = store.find(ReceiverTip, ( ReceiverTip.internaltip_id == ifile.internaltip_id,
+                                      ReceiverTip.receiver_id == receiver.id) ).one()
+            receiverfile.receiver_tip_id = receiver_tip.id
+
             received_desc = admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
 
             # the lines below are copyed / tested in test_gpg.py
@@ -109,6 +115,9 @@ def receiver_file_align(store, filesdict, processdict):
                     with file(ifile_abs, "r") as f:
                         encrypted_file_path, encrypted_file_size = gpoj.encrypt_file(ifile_abs, f, GLSetting.submission_path)
                     gpoj.destroy_environment()
+
+                    assert encrypted_file_size > 1
+                    assert os.path.isfile(encrypted_file_path)
 
                     log.debug("Generated encrypted version of %s for %s in %s" % (
                         ifile.name, receiver.user.username, encrypted_file_path ))
