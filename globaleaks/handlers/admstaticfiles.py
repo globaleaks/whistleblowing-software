@@ -141,8 +141,8 @@ def import_node_logo(filedesc):
         log.err("OS Error in moving received file to be node logo! %s" % excep.message)
         raise excep
 
-    log.debug("Moved received file %s [%d bytes] with path: %s " %
-              (filedesc['filename'], filedesc['size'], logopath) )
+    log.debug("Moved received file %s [%s bytes] with path: %s " %
+              (filedesc['filename'], str(filedesc['size']), logopath) )
 
 
 @transact
@@ -175,8 +175,9 @@ def import_receiver_pic(store, filedesc, receiver_uuid):
         log.err("OS Error in moving received file to be receiver portrait! %s" % excep.message)
         raise excep
 
-    log.debug("Moved received file %s [%d bytes] for user %s with path: %s " %
-              (filedesc['filename'], filedesc['size'], receiver.user.username, receiver_pic) )
+    log.debug("Moved received file %s [%s bytes] for user %s with path: %s " %
+              (filedesc['filename'], str(filedesc['size']),
+               receiver.user.username, receiver_pic) )
 
     return receiver.name
 
@@ -217,7 +218,8 @@ class StaticFileCollection(BaseHandler):
         try:
             dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file)
         except OSError as excpd:
-            inf_list = get_file_info(files)
+            inf_list = get_file_info(uploaded_file)
+            # I never tried effectively this error
             log.err("OSError while create a new static file [%s]: %s" % (str(inf_list), excpd))
             raise errors.InternalServerError(excpd.strerror)
         except Exception as excpd:
@@ -265,7 +267,6 @@ class StaticFileCollection(BaseHandler):
         """
         Return the list of static files, with few filesystem info
         """
-
         self.set_status(200)
         self.finish(get_stored_files())
 

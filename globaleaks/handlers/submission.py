@@ -18,7 +18,7 @@ from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
 from globaleaks.utils import log, utc_future_date, pretty_date_time, datetime_now, naturalize_fields
 from globaleaks.third_party import rstr
-from globaleaks.rest.errors import *
+from globaleaks.rest import errors
 
 
 def wb_serialize_internaltip(internaltip):
@@ -102,10 +102,10 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
 
         if not receiver:
             log.err("Receiver requested do not exist: %s" % receiver_id)
-            raise ReceiverGusNotFound
+            raise errors.ReceiverGusNotFound
 
         if not context in receiver.contexts:
-            raise InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
+            raise errors.InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
 
         submission.receivers.add(receiver)
         log.debug("+receiver [%s] In tip (%s) #%d" %\
@@ -113,7 +113,7 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
 
     if required and submission.receivers.count() == 0:
         log.err("Receivers required to be selected, not empty")
-        raise SubmissionFailFields("Needed almost one Receiver selected")
+        raise errors.SubmissionFailFields("Needed almost one Receiver selected")
 
 
 # Remind: it's a store without @transaction because called by a @ŧransact
@@ -126,7 +126,7 @@ def import_files(store, submission, files):
             raise e
         if not ifile:
             log.err("Invalid File requested %s" % file_id)
-            raise FileGusNotFound
+            raise errors.FileGusNotFound
 
         ifile.internaltip_id = submission.id
 
@@ -157,13 +157,13 @@ def import_fields(submission, fields, configured_fields_list, strict_validation=
                 optional_keys.append(single_field.get(u'key'))
     except Exception, e:
         log.exception(e)
-        raise SubmissionFailFields("Malformed submission!")
+        raise errors.SubmissionFailFields("Malformed submission!")
 
     if strict_validation and not fields:
 
         if not fields:
             log.err("Missing submission in 'finalize' request")
-            raise SubmissionFailFields("Missing submission!")
+            raise errors.SubmissionFailFields("Missing submission!")
 
     if strict_validation:
 
@@ -172,7 +172,7 @@ def import_fields(submission, fields, configured_fields_list, strict_validation=
                 continue
 
             log.err("Submission has a required field (%s) missing" % required)
-            raise SubmissionFailFields("Missing field '%s': Required" % required)
+            raise errors.SubmissionFailFields("Missing field '%s': Required" % required)
 
     if not fields:
         return
@@ -184,7 +184,7 @@ def import_fields(submission, fields, configured_fields_list, strict_validation=
             imported_fields.update({key: value})
         else:
             log.err("Submission contain an unexpected field %s" % key)
-            raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
+            raise errors.SubmissionFailFields("Submitted field '%s' not expected in context" % key)
 
     submission.wb_fields = imported_fields
     log.debug("Submission fields updated - finalize: %s" %
@@ -207,7 +207,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
 
     if not context:
         log.err("Context requested %s do not exist" % request['context_gus'])
-        raise ContextGusNotFound
+        raise errors.ContextGusNotFound
 
     submission = InternalTip()
 
@@ -248,22 +248,22 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
 
     if not submission:
         log.err("Invalid Submission requested %s in PUT" % id)
-        raise SubmissionGusNotFound
+        raise errors.SubmissionGusNotFound
 
     if submission.mark != InternalTip._marker[0]:
         log.err("Submission %s do not permit update (status %s)" % (id, submission.mark))
-        raise SubmissionConcluded
+        raise errors.SubmissionConcluded
 
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
     if not context:
         log.err("Context requested %s do not exist in UPDATE" % request['context_gus'])
-        raise ContextGusNotFound
+        raise errors.ContextGusNotFound
 
     # Can't be changed context in the middle of a Submission
     if submission.context_id != context.id:
         log.err("Context can't be changed in the middle (before %s, now %s)" %\
                 (submission.context_id, context.id))
-        raise ContextGusNotFound
+        raise errors.ContextGusNotFound
 
     receivers = request.get('receivers', [])
     import_receivers(store, submission, receivers, context, required=finalize)
@@ -286,7 +286,7 @@ def get_submission(store, id):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
     if not submission:
         log.err("Invalid Submission requested %s in GET" % id)
-        raise SubmissionGusNotFound
+        raise errors.SubmissionGusNotFound
 
     return wb_serialize_internaltip(submission)
 
@@ -296,11 +296,11 @@ def delete_submission(store, id):
 
     if not submission:
         log.err("Invalid Submission requested %s in DELETE" % id)
-        raise SubmissionGusNotFound
+        raise errors.SubmissionGusNotFound
 
     if submission.mark != submission._marked[0]:
         log.err("Submission %s already concluded (status: %s)" % (id, submission.mark))
-        raise SubmissionConcluded
+        raise errors.SubmissionConcluded
 
     store.delete(submission)
 

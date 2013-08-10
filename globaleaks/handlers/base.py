@@ -314,7 +314,7 @@ class BaseHandler(BaseBaseHandler):
         try:
             jmessage = json.loads(message)
         except ValueError:
-            raise errors.InvalidInputFormat("Invalid JSON message")
+            raise errors.InvalidInputFormat("Invalid JSON format")
 
         if BaseHandler.validate_jmessage(jmessage, message_template):
             return jmessage

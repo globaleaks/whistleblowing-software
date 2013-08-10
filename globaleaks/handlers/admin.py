@@ -218,16 +218,16 @@ def acquire_context_timetolive(request):
         submission_ttl = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Submission: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Tip")
+        raise errors.InvalidTipTimeToLive()
 
     try:
         tip_ttl = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
-        raise errors.TimeToLiveInvalid("Submission")
+        raise errors.InvalidSubmTimeToLive()
 
     if submission_ttl > tip_ttl:
-        raise errors.TimeToLiveInvalid("Submission can't live more time than a Tip")
+        raise errors.InvalidTipSubmCombo()
 
     return (submission_ttl, tip_ttl)
 

@@ -14,7 +14,6 @@ from globaleaks import models
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import pretty_date_time, log, l10n
 
-
 @transact
 def collect_tip_overview(store, language=GLSetting.memory_copy.default_language):
 
