@@ -198,6 +198,13 @@ class TestHandler(TestGL):
                                          connection=connection)
 
         handler = self._handler(application, request)
+
+        @classmethod
+        def mock_pass(cls, *args):
+            pass
+        # so that we don't complain about XSRF
+        handler.check_xsrf_cookie = mock_pass
+
         if role:
             session_id = '4tehlulz'
             new_session = OD(
