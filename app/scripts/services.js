@@ -228,6 +228,9 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           if (self.current_context.receivers.indexOf(receiver.receiver_gus) !== -1) {
             self.current_context_receivers.push(receiver);
             self.receivers_selected[receiver.receiver_gus] = true;
+            if ( self.current_context.select_all_receivers == false ) {
+              self.receivers_selected[receiver.receiver_gus] = false;
+            }
           };
         });
       };
@@ -245,7 +248,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
           });
         });
       });
-
+     
       /**
        * @name Submission.create
        * @description
@@ -598,6 +601,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         context.file_max_download = 3;
         context.tip_max_access = 50;
         context.selectable_receiver = true;
+        context.select_all_receivers = true;
         context.file_required = false;
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
