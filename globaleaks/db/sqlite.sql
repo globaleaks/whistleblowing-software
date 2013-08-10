@@ -136,6 +136,7 @@ CREATE TABLE notification (
     port INTEGER,
     password VARCHAR,
     username VARCHAR,
+    source_from VARCHAR,
     security VARCHAR NOT NULL CHECK (security IN ('TLS', 'SSL')),
     tip_template BLOB,
     tip_mail_title BLOB,
