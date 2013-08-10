@@ -36,14 +36,25 @@ def authenticated(role):
                 session_info = GLSetting.sessions[cls.current_user.id]
 
                 if utils.is_expired(session_info.borndate,
-                    seconds=GLSetting.defaults.lifetimes[cls.current_user.role]):
+                                    seconds=GLSetting.defaults.lifetimes[cls.current_user.role]):
 
                     copy_role = cls.current_user.role
-                    copy_lifetime = GLSetting.defaults.lifetimes[cls.current_user.role]
+
+                    log.debug("Authentication Expired (%s) %s seconds" % (
+                        copy_role,
+                        cls.current_user.role[GLSetting.defaults.lifetimes]) )
+
                     del GLSetting.sessions[cls.current_user.id]
 
-                    log.debug("Authentication Expired (%s) %s seconds" % (copy_role, copy_lifetime))
-                    raise errors.SessionExpired(copy_lifetime, copy_role)
+                    # TODO possible extension of debug in error: print the request failed
+                    if copy_role == 'admin':
+                        raise errors.AdminSessionExpired()
+                    elif copy_role == 'wb':
+                        raise errors.WbSessionExpired()
+                    elif copy_role == 'receiver':
+                        raise errors.ReceiverSessionExpired()
+                    else:
+                        raise AssertionError
 
                 log.debug("Authentication OK (%s)" % role )
                 # update the access time to the latest
@@ -249,7 +260,7 @@ class AuthenticationHandler(BaseHandler):
         elif role == 'receiver':
             user_id = yield login_receiver(username, password)
         else:
-            raise errors.InvalidInputFormat(role)
+            raise errors.InvalidInputFormat("Authentication role %s" % str(role) )
 
         if not user_id:
             raise errors.InvalidAuthRequest
