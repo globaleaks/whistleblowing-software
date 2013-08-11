@@ -28,7 +28,7 @@
     <tbody id="tipListTableBody">
       <tr ng-repeat="tip in tips" class="{{tip.parity}}">
         <td><a href="/#/status/{{tip.id}}">{{tip.id}}</a></td>
-        <td>{{tip.creation_date}}</td>
+        <td>{{tip.creation_date | date:'fullDate'}}</td>
         <td>{{tip.access_counter}}</td>
         <td>{{tip.last_access}}</td>
         <td>{{tip.files_number}}</td>
