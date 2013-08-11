@@ -7,8 +7,6 @@
 # When new Notification/Delivery will starts to exists, this code would come back to be
 # one of the various plugins (used by default, but still an optional adoptions)
 
-from cyclone import mail
-
 from globaleaks.utils import log, sendmail
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBGPG
@@ -205,21 +203,26 @@ class MailNotification(Notification):
         self.password = str(event.notification_settings['password'])
         self.security = str(event.notification_settings['security'])
 
-        # to_addres maybe a list of addresses
         receiver_mail = event.receiver_info['notification_fields']['mail_address']
-        to_addrs = [ receiver_mail ]
 
         # Compose the email having the system+subject+recipient data
-        message = mail.Message(# from_addr="\"%s <%s>\"" % (
-                               # event.notification_settings['source_name'],
-                               from_addr=event.notification_settings['source_email'],
-                               to_addrs=to_addrs,
-                               subject=title,
-                               message=body)
+        mail_building = []
+        mail_building.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
+                                                    GLSetting.memory_copy.notif_source_email ) )
+        mail_building.append("To: %s" % receiver_mail)
+        # XXX here can be catch the subject (may change if encrypted or whatever)
+        mail_building.append("Subject: %s" % title)
+        mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
+        mail_building.append("Content-Transfer-Encoding: 8bit\n")
+        mail_building.append(body)
 
-        self.finished = self.mail_flush(self.username, self.password,
-                                      message.from_addr, message.to_addrs, message.render(),
-                                      self.host, self.port, self.security, event)
+        self.finished = self.mail_flush(self.username,
+                                        self.password,
+                                        event.notification_settings['source_email'],
+                                        [ receiver_mail ],
+                                        "\n".join(mail_building),
+                                        self.host, self.port, self.security, event)
+
         log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
                   (self.host, self.port, receiver_mail, self.security))
 
