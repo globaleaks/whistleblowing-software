@@ -52,6 +52,9 @@ def create_whistleblower_tip(store, submission):
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
     """
+    from Crypto import Random
+    Random.atfork()
+
     assert submission is not None and submission.has_key('id')
 
     wbtip = WhistleblowerTip()
