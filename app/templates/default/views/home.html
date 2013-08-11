@@ -101,14 +101,18 @@
     <h1>{{ node_info.presentation }}</h1>
     
     <div ng-show="node_info.configured">
-      <span ng-show="!node_info.tor2web_submission && !anonymous" class="label label-warning">
-        {{ "You are connecting to the node not anonymously and this node only supports anonymous submissions" | translate }}
+      <div ng-show="!node_info.tor2web_submission && !anonymous" class="row">
+        <p class="text-error">
+          {{ "You are connecting to the node not anonymously and this node only supports anonymous submissions" | translate }}
 
-      </span>
+        </p>
+      </div>
+      <div class="row">
         <a ng-click="goToSubmission()"
           ng-disabled="!node_info.tor2web_submission && !anonymous"
           class="btn btn-primary btn-large">
             {{ "Blow the Whistle" | translate }}</a>
+      </div>
     </div>
 
     <div ng-hide="node_info.configured">
