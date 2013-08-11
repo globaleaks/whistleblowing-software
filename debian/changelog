@@ -1,3 +1,9 @@
+globaleaks (2.24.0-0) unstable; urgency=low
+
+  * GlobaLeaks 2.24.0 Release
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 11 Aug 2013 16:10:42 +0002
+
 globaleaks (2.23.14-0) unstable; urgency=low
 
   * GlobaLeaks Alpha - Seeding
