@@ -47,11 +47,7 @@ GLClient.controller('StatusCtrl',
     };
 
     $scope.increaseDownloadCount = function(file) {
-      if (file.downloads < $scope.current_context.file_max_downloads) {
-        file.downloads = parseInt(file.downloads) + 1;
-        return true;
-      }
-      return false;
+      file.downloads = parseInt(file.downloads) + 1;
     };
 
 }]);
