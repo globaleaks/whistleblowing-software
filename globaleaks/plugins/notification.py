@@ -7,7 +7,7 @@
 # When new Notification/Delivery will starts to exists, this code would come back to be
 # one of the various plugins (used by default, but still an optional adoptions)
 
-from globaleaks.utils import log, sendmail
+from globaleaks.utils import log, sendmail, very_pretty_date_time
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBGPG
 from globaleaks.models import Receiver
@@ -117,7 +117,8 @@ class MailNotification(Notification):
                     })
 
             tip_template_keyword.update({
-                '%EventTime%': event_dicts.trigger_info['creation_date'],
+                '%EventTime%':
+                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
             })
 
             partial = self._iterkeywords(template, template_keyword)
@@ -128,7 +129,8 @@ class MailNotification(Notification):
 
             comment_template_keyword = {
                 '%CommentSource%': event_dicts.trigger_info['source'],
-                '%EventTime%': event_dicts.trigger_info['creation_date'],
+                '%EventTime%':
+                       very_pretty_date_time(event_dicts.trigger_info['creation_date']),
             }
 
             partial = self._iterkeywords(template, template_keyword)
@@ -139,7 +141,8 @@ class MailNotification(Notification):
 
             file_template_keyword = {
                 '%FileName%': event_dicts.trigger_info['name'],
-                '%EventTime%': event_dicts.trigger_info['creation_date'],
+                '%EventTime%':
+                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
                 '%FileSize%': event_dicts.trigger_info['size'],
                 '%FileType%': event_dicts.trigger_info['content_type'],
             }

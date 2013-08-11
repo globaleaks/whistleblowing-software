@@ -17,6 +17,7 @@ import traceback
 import cStringIO
 
 from OpenSSL import SSL
+from storm.tz import tzoffset
 
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from txsocksx.client import SOCKS5ClientEndpoint
@@ -225,6 +226,18 @@ def pretty_date_time(when):
     else:
         return when.isoformat()
 
+def very_pretty_date_time(isowhen):
+    """
+    print date used in email templating plugin/notification.py
+    """
+    x = datetime(year=int(isowhen[0:4]),
+                 month=int(isowhen[5:7]),
+                 day=int(isowhen[8:10]),
+                 hour=int(isowhen[11:13]),
+                 minute=int(isowhen[14:16]),
+                 second=int(isowhen[17:19]) )
+
+    return x.strftime("%H:%M, %A %d %B %Y")
 
 def seconds_convert(value, conversion_factor, min=0, max=0):
     """
