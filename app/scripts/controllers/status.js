@@ -3,6 +3,10 @@ GLClient.controller('StatusCtrl',
   function($scope, $rootScope, $routeParams, Tip, $cookies, Contexts) {
     $scope.tip_id = $routeParams.tip_id;
 
+    if ($cookies['role'] === 'wb') {
+      $rootScope.whistleblower_tip_id = $cookies['tip_id'];
+    }
+
     $rootScope.fileUploader = {};
     $rootScope.fileUploader.uploadedFiles = [];
     $rootScope.fileUploader.uploadingFiles = [];
@@ -49,10 +53,6 @@ GLClient.controller('StatusCtrl',
       }
       return false;
     };
-
-    if ($cookies['role'] === 'wb') {
-      $rootScope.whistleblower_tip_id = $cookies['tip_id'];
-    }
 
 }]);
 
