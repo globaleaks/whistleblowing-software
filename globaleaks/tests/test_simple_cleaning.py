@@ -258,10 +258,14 @@ class FinalizedTipCleaning(TestCleaning):
         yield self.do_setup_tip_environment()
         yield self.do_create_internalfiles()
         yield self.do_finalize_submission()
+
+        # now its before because receiverfile need receivertip!
+        yield self.do_create_receivers_tip()
+
         filesdict = yield delivery_sched.file_preprocess()
         processdict = yield delivery_sched.file_process(filesdict)
         receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
-        yield self.do_create_receivers_tip()
+
         yield self.tip_not_expired()
         yield self.force_tip_expire()
         yield self.test_cleaning()

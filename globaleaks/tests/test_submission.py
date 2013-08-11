@@ -89,6 +89,10 @@ class TestSubmission(helpers.TestGL):
         yield self.emulate_file_upload(self.dummySubmission['submission_gus'])
         yield self._force_finalize(self.dummySubmission['submission_gus'])
 
+        # create receivertip its NEEDED to create receiverfile
+        yield delivery_sched.tip_creation()
+        # No tests here, may be written
+
         filesdict = yield delivery_sched.file_preprocess()
 
         processdict = delivery_sched.file_process(filesdict)

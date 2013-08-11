@@ -376,9 +376,9 @@ def mail_exception(etype, value, tback):
                      "", str(etype))
     tmp = []
 
-    # tmp.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
-    #                                  GLSetting.memory_copy.notif_source_email) )
-    tmp.append("From: %s" % GLSetting.memory_copy.notif_source_email)
+    # tmp.append("From: \"%s <%s>\"" % (GLSetting.memory_copy.notif_source_name,
+    #                                 GLSetting.memory_copy.notif_source_email) )
+    tmp.append("From: %s" % GLSetting.memory_copy.notif_source_name)
     tmp.append("To: %s" % GLSetting.memory_copy.notif_username)
     tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
