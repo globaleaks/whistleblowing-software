@@ -20,11 +20,11 @@ angular.module('GLClientFilters', []).
       }
     }
 }).
-  filter('translate', ['$cookies', 'Translations', function($cookies, Translations) {
+  filter('translate', ['Translations', function(Translations) {
     return function(input) {
       var hash = md5(input);
       if ( hash in Translations ){
-        return Translations[hash][$cookies['language']];
+        return Translations[hash][$.cookie('language')];
       } else {
         return input;
       }

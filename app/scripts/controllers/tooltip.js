@@ -1,18 +1,18 @@
 GLClient.controller('toolTipCtrl',
   ['$scope', '$rootScope', 'Authentication',
-   '$location', '$cookies', 'Translations', 'Node', '$route',
+   '$location', 'Translations', 'Node', '$route',
 function($scope, $rootScope, Authentication, $location,
-         $cookies, Translations, Node, $route) {
+         Translations, Node, $route) {
 
-  $scope.session_id = $cookies['session_id'];
-  $scope.auth_landing_page = $cookies['auth_landing_page'];
-  $scope.role = $cookies['role'];
+  $scope.session_id = $.cookie('session_id');
+  $scope.auth_landing_page = $.cookie('auth_landing_page');
+  $scope.role = $.cookie('role');
   
   Node.get(function(node_info) {
-    if (!$cookies['language'])
-      $cookies['language'] = node_info.default_language;
+    if (!$.cookie('language')
+      $.cookie('language', node_info.default_language);
 
-    $scope.language = $cookies['language'];
+    $scope.language = $.cookie('language');
     $rootScope.selected_language = $scope.language;
 
     var language_count = 0;
@@ -38,11 +38,11 @@ function($scope, $rootScope, Authentication, $location,
   });
 
   $scope.$watch(function(scope){
-    return $cookies['session_id'];
+    return $.cookie('session_id');
   }, function(newVal, oldVal){
-    $scope.session_id = $cookies['session_id'];
-    $scope.auth_landing_page = $cookies['auth_landing_page'];
-    $scope.role = $cookies['role'];
+    $scope.session_id = $.cookie('session_id');
+    $scope.auth_landing_page = $.cookie('auth_landing_page');
+    $scope.role = $.cookie('role');
   });
 
 }]);
