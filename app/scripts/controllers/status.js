@@ -1,10 +1,10 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$routeParams', 'Tip', '$cookies', 'Contexts',
-  function($scope, $rootScope, $routeParams, Tip, $cookies, Contexts) {
+  ['$scope', '$rootScope', '$routeParams', 'Tip', 'Contexts',
+  function($scope, $rootScope, $routeParams, Tip, Contexts) {
     $scope.tip_id = $routeParams.tip_id;
 
-    if ($cookies['role'] === 'wb') {
-      $rootScope.whistleblower_tip_id = $cookies['tip_id'];
+    if ($.cookie('role') === 'wb') {
+      $rootScope.whistleblower_tip_id = $.cookie('tip_id');
     }
 
     $rootScope.fileUploader = {};

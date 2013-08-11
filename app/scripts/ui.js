@@ -7,7 +7,7 @@
 // with it.
 // To learn more see: http://docs.angularjs.org/guide/directive
 angular.module('submissionUI', []).
-  directive('pragmaticFileUpload', ['$cookies', function($cookies){
+  directive('pragmaticFileUpload', [function(){
 
     return {
 
@@ -15,8 +15,8 @@ angular.module('submissionUI', []).
         var selectFileButton = element.find('button.selectFile'),
           uploadButton = element.find('button.upload'),
           img_receiver = element.parent().parent().find('img.baseimage'),
-          headers = {'X-Session': $cookies['session_id'],
-                     'X-XSRF-TOKEN': $cookies['XSRF-TOKEN']};
+          headers = {'X-Session': $.cookie('session_id'),
+                     'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
 
         img_receiver.hover(function(){
           // Resize the overlay black image to match the icon size.
@@ -62,8 +62,8 @@ angular.module('submissionUI', []).
     }
 }]).
   // XXX this needs some major refactoring.
-  directive('fileUpload', ['$rootScope', '$cookies', 'Node',
-            function($rootScope, $cookies, Node){
+  directive('fileUpload', ['$rootScope', 'Node',
+            function($rootScope, Node){
 
     // The purpose of this directive is to register the jquery-fileupload
     // plugin
@@ -82,8 +82,8 @@ angular.module('submissionUI', []).
       },
 
       link: function(scope, element, attrs) {
-        var headers = {'X-Session': $cookies['session_id'],
-                       'X-XSRF-TOKEN': $cookies['XSRF-TOKEN']};
+        var headers = {'X-Session': $.cookie('session_id'),
+                       'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
 
         function add(e, data) {
           for (var file in data.files) {
