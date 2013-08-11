@@ -22,6 +22,9 @@ def initialize_node(store, results, only_node, email_templates):
     function outside the node, and inquire fucking YHWH about the
     callbacks existence/usage
     """
+    from Crypto import Random
+    Random.atfork()
+
     node = models.Node(only_node)
 
     # Increment this value every time sqlite.sql change, and develop
