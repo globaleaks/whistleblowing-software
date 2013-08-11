@@ -268,7 +268,7 @@ class TableReplacer:
         self.store_new.commit()
 
     def migrate_User(self):
-        if self.start_ver <= 4:
+        if self.start_ver < 4:
             return
 
         print "%s default User migration assistant: #%d" % (
