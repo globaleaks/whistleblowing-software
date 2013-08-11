@@ -37,7 +37,7 @@
           <tr ng-repeat="file in files">
             <td>{{file.name}}<br>
                <input class="span2" id="appendedPrependedInput" type="text"
-               value="{{file.creation_date}} {{file.itip}}" expand-to="500"><br>
+               value="{{file.creation_date | date:'fullDate'}}  {{file.itip}}" expand-to="500"><br>
                <input class="span2" id="appendedPrependedInput" type="text"
                value="{{file.path}}" expand-to="500">
             </td>
