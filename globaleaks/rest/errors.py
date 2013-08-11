@@ -227,7 +227,7 @@ class InternalServerError(GLException):
     Error in interaction with the OS
     """
     error_code = 31
-    status_code = 505
+    status_code = 500
 
     def __init__(self, details):
         self.reason = "Internal Server Error (%s)" % details
