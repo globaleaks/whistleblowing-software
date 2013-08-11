@@ -9,8 +9,9 @@ function($scope, $rootScope, Authentication, $location,
   $scope.role = $.cookie('role');
   
   Node.get(function(node_info) {
-    if (!$.cookie('language')
+    if (!$.cookie('language')) {
       $.cookie('language', node_info.default_language);
+    }
 
     $scope.language = $.cookie('language');
     $rootScope.selected_language = $scope.language;
