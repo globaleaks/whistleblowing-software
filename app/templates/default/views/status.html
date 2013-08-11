@@ -148,7 +148,8 @@
       </div>
 
       <textarea ng-model="newCommentContent"></textarea>
-      <button class="btn btn-success" ng-click="newComment()">
+      <button class="btn btn-success" ng-click="newComment()"
+              ng-disabled="!newCommentContent || newCommentContent == ''">
         {{ "Add Comment" | translate }}
       </button>
     </div>
