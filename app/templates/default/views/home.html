@@ -99,11 +99,18 @@
 
     <img ng-src="/static/globaleaks_logo.png">
     <h1>{{ node_info.presentation }}</h1>
-
+    
     <div ng-show="node_info.configured">
-        <a ng-click="goToSubmission()" class="btn btn-primary btn-large">
+      <span ng-show="!node_info.tor2web_submission && !anonymous" class="label label-warning">
+        {{ "You are connecting to the node not anonymously and this node only supports anonymous submissions" | translate }}
+
+      </span>
+        <a ng-click="goToSubmission()"
+          ng-disabled="!node_info.tor2web_submission && !anonymous"
+          class="btn btn-primary btn-large">
             {{ "Blow the Whistle" | translate }}</a>
     </div>
+
     <div ng-hide="node_info.configured">
       {{ "Your node is not configured! Please, proceed via" | translate }}
         <a href="/#/admin/contexts">
