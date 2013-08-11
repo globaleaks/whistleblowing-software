@@ -206,7 +206,6 @@ class GLSettingsClass:
         # Database version tracking
         self.db_version = DATABASE_VERSION
 
-
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks-' + str(self.bind_port) + '.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
