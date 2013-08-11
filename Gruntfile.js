@@ -332,6 +332,7 @@ module.exports = function(grunt) {
         var filepath = path.join('app/views/', subdir || '', filename || '');
         extractPotFromFilepath(filepath);
     });
+    extractPotFromFilepath('app/index.html');
 
     fs.writeFileSync("pot/en.po", gt.compilePO("en"));
 
