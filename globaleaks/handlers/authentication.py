@@ -225,6 +225,9 @@ class AuthenticationHandler(BaseHandler):
                 case of an admin it will be set to 'admin', in the case of the
                 'wb' it will be the whistleblower id.
         """
+        from Crypto import Random
+        Random.atfork()
+
         self.session_id = rstr.xeger(r'[A-Za-z0-9]{42}')
 
         # This is the format to preserve sessions in memory
