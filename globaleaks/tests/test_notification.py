@@ -1,17 +1,19 @@
-# ovverride GLsetting
-from globaleaks.settings import GLSetting, transact
-from globaleaks.tests import helpers
+from twisted.internet import defer
+from twisted.internet.defer import inlineCallbacks
 
+# override GLsetting
+from globaleaks.settings import GLSetting, transact
+
+GLSetting.notification_plugins = ['MailNotification']
+GLSetting.memory_copy.notif_source_name = "name fake"
+GLSetting.memory_copy.notif_source_email = "mail@fake.xxx"
+
+from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.handlers import submission
 from globaleaks.jobs import delivery_sched
 from globaleaks.jobs.notification_sched import APSNotification
-from twisted.internet import defer
-from twisted.internet.defer import inlineCallbacks
-
 from globaleaks.plugins import notification
-
-GLSetting.notification_plugins = ['MailNotification']
 
 class TestEmail(helpers.TestGL):
 
@@ -57,9 +59,11 @@ class TestEmail(helpers.TestGL):
     def test_sendmail(self):
         def success(*result):
             print 'message sent', result
+            self.assertTrue(True)
 
         def failure(result):
             print 'failure', result
+            self.assertTrue(False)
 
         aps = APSNotification()
         aps.notification_settings = {
