@@ -279,6 +279,7 @@ class TableReplacer:
         for old_user in old_users:
 
             new_obj = models.User()
+            new_obj.id = old_user.id
             new_obj.username = old_user.username
             new_obj.password = old_user.password
             new_obj.salt = old_user.salt
