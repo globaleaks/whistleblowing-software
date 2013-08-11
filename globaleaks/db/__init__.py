@@ -262,11 +262,18 @@ def import_memory_variables(store):
     GLSetting.memory_copy.maximum_descsize = node.maximum_descsize
     GLSetting.memory_copy.maximum_textsize = node.maximum_textsize
 
-    GLSetting.memory_copy.tor2web_admin = node.tor2web_admin
-    GLSetting.memory_copy.tor2web_submission = node.tor2web_submission
-    GLSetting.memory_copy.tor2web_tip = node.tor2web_tip
-    GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
-    GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
+    if GLSetting.devel_mode:
+        GLSetting.memory_copy.tor2web_admin = True
+        GLSetting.memory_copy.tor2web_submission = True
+        GLSetting.memory_copy.tor2web_tip = True
+        GLSetting.memory_copy.tor2web_receiver = True
+        GLSetting.memory_copy.tor2web_unauth = True
+    else:
+        GLSetting.memory_copy.tor2web_admin = node.tor2web_admin
+        GLSetting.memory_copy.tor2web_submission = node.tor2web_submission
+        GLSetting.memory_copy.tor2web_tip = node.tor2web_tip
+        GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
+        GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 
     GLSetting.memory_copy.exception_email = node.exception_email
     GLSetting.memory_copy.default_language = node.default_language

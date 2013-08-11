@@ -35,11 +35,14 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'maximum_descsize': node.maximum_descsize,
       'maximum_textsize': node.maximum_textsize,
       'maximum_filesize': node.maximum_filesize,
-      'tor2web_admin': node.tor2web_admin,
-      'tor2web_submission': node.tor2web_submission,
-      'tor2web_tip': node.tor2web_tip,
-      'tor2web_receiver': node.tor2web_receiver,
-      'tor2web_unauth': node.tor2web_unauth,
+      # public serialization use GLSetting memory var, and
+      # not the real one, because needs to bypass
+      # Tor2Web unsafe deny default settings
+      'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
+      'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
+      'tor2web_tip': GLSetting.memory_copy.tor2web_tip,
+      'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
+      'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
     }
 
     node_dict['description'] = l10n(node.description, language)
