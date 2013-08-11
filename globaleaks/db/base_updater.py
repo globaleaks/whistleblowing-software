@@ -421,7 +421,7 @@ class TableReplacer:
                 new_obj.gpg_key_status = orcvr.gpg_key_status
 
             # version 4 has introduced User table
-            if self.start_ver < 4:
+            if self.start_ver < 3:
                 new_obj.username = orcvr.username
                 new_obj.password = orcvr.password
                 new_obj.last_access = orcvr.last_access
