@@ -42,7 +42,7 @@ def authenticated(role):
 
                     log.debug("Authentication Expired (%s) %s seconds" % (
                         copy_role,
-                        cls.current_user.role[GLSetting.defaults.lifetimes]) )
+                        GLSetting.defaults.lifetimes[cls.current_user.role] ))
 
                     del GLSetting.sessions[cls.current_user.id]
 

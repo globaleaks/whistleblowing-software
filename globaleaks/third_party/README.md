@@ -23,3 +23,8 @@ but GLBackend is using Crypto.Random safe generation, and then a patch has been 
 **committed unmodified**: https://github.com/globaleaks/GLBackend/commit/d55007115d8a0f153148c8c3392dcaf52aa83c6c
 
 **patch using Crypto.Random**: https://github.com/globaleaks/GLBackend/commit/deed6084ccc8deadddd60ba47902712ca963c202
+
+# Usage
+
+    import globaleaks.third_party.rstr
+    random_output = rstr.xeger('[A-Z]{100}')
