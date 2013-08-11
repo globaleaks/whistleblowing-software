@@ -43,7 +43,8 @@
 
           <div class="message">
             <h1>Please wait...</h1>
-            <p class="lead">Anonymity is important, but it's kind of slow :(</p>
+            <p class="lead">
+            {{ "Anonymity is important, but it's kind of slow :(" | translate }}</p>
             <i class="icon-star" ng-repeat="request in pendingRequests"></i>
           </div>
         </div>
@@ -60,16 +61,13 @@
                 <br><br>
                 <h1>Error! :(</h1>
                 <p>
-                Your browser is not running Javascript, and It's required to use GlobaLeaks
-                anonymous submission client, because is entirely Javascript based.<br><br>
+                {{ "Your browser is not running Javascript, and It's required to use GlobaLeaks anonymous submission client, because is entirely Javascript based." | translate }}
+                <br><br>
 
-                It's common believe that Javascript and security don't sound well together,
-                for this reason we suggest to use GlobaLeaks, with Tor Browser Bundle, an
-                extremely tuned FireFox browser with Tor integrated.
+                {{ "It's common believe that Javascript and security don't sound well together, for this reason we suggest to use GlobaLeaks, with Tor Browser Bundle, an extremely tuned FireFox browser with Tor integrated." | translate }}
 
-                Here you can found and download the latest release of: <a
-                    href="http://www.torproject.us/projects/torbrowser.html">Tor Browser
-                    Bundle</a>.
+                {{ "Here you can found and download the latest release of: " | translate }}
+                <a href="http://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>.
                 </p>
             </div>
             <br>
@@ -81,10 +79,14 @@
             </p>
             <ul class="footer-links">
               <li>
-                <a href="https://globaleaks.org">GlobaLeaks website</a>
+                <a href="https://globaleaks.org">
+                  {{ "GlobaLeaks website" | translate }}
+                </a>
               </li>
               <li>
-                <a href="https://github.com/globaleaks/GlobaLeaks/wiki">GlobaLeaks wiki</a>
+                <a href="https://github.com/globaleaks/GlobaLeaks/wiki">
+                  {{ "GlobaLeaks wiki" | translate }}
+                </a>
               </li>
             </ul>
           </div>
