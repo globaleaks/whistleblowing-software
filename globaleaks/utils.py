@@ -376,9 +376,8 @@ def mail_exception(etype, value, tback):
                      "", str(etype))
     tmp = []
 
-    # tmp.append("From: \"%s <%s>\"" % (GLSetting.memory_copy.notif_source_name,
-    #                                 GLSetting.memory_copy.notif_source_email) )
-    tmp.append("From: %s" % GLSetting.memory_copy.notif_source_name)
+    tmp.append("From: \"%s <%s>\"" % (GLSetting.memory_copy.notif_source_name,
+                                    GLSetting.memory_copy.notif_source_email) )
     tmp.append("To: %s" % GLSetting.memory_copy.notif_username)
     tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
@@ -402,14 +401,14 @@ def mail_exception(etype, value, tback):
     log.err(traceinfo)
     log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, info_string) )
 
-    sendmail(GLSetting.memory_copy.notif_username,
-             GLSetting.memory_copy.notif_password,
-             GLSetting.memory_copy.notif_username,
-             GLSetting.memory_copy.exception_email,
-             message,
-             GLSetting.memory_copy.notif_server,
-             GLSetting.memory_copy.notif_port,
-             GLSetting.memory_copy.notif_security)
+    sendmail(authentication_username=GLSetting.memory_copy.notif_username,
+             authentication_password=GLSetting.memory_copy.notif_password,
+             from_address=GLSetting.memory_copy.notif_username,
+             to_address=GLSetting.memory_copy.exception_email,
+             message_file=message,
+             smtp_host=GLSetting.memory_copy.notif_server,
+             smtp_port=GLSetting.memory_copy.notif_port,
+             security=GLSetting.memory_copy.notif_security)
 
 mail_exception.mail_counter = 0
 

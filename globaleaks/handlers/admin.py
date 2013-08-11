@@ -576,9 +576,11 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
     receiver.notification_fields = request['notification_fields']
     receiver.tags = request['tags']
 
+    # the email address it's also the username, stored in User
+    receiver.user.username = mail_address
+
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
-
 
     password = request.get('password')
     if len(password):
