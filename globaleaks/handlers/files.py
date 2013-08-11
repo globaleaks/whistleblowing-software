@@ -83,7 +83,9 @@ def dump_file_fs(uploaded_file):
     @return: a filepath linking the filename with the random
              filename saved in the disk
     """
-    
+    from Crypto.Random import atfork
+    atfork()
+
     saved_name = rstr.xeger(r'[A-Za-z]{26}')
     filelocation = os.path.join(GLSetting.submission_path, saved_name)
 

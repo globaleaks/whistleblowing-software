@@ -279,6 +279,7 @@ class TableReplacer:
         for old_user in old_users:
 
             new_obj = models.User()
+            new_obj.id = old_user.id
             new_obj.username = old_user.username
             new_obj.password = old_user.password
             new_obj.salt = old_user.salt
@@ -420,7 +421,7 @@ class TableReplacer:
                 new_obj.gpg_key_status = orcvr.gpg_key_status
 
             # version 4 has introduced User table
-            if self.start_ver < 4:
+            if self.start_ver < 3:
                 new_obj.username = orcvr.username
                 new_obj.password = orcvr.password
                 new_obj.last_access = orcvr.last_access

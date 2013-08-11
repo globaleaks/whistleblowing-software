@@ -21,6 +21,9 @@ from globaleaks.handlers.submission import create_submission, create_whistleblow
 from globaleaks import db, utils, models, security
 from globaleaks.third_party import rstr
 
+from Crypto import Random
+Random.atfork()
+
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
 VALID_SALT1 = security.get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
