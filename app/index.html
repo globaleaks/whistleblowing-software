@@ -35,14 +35,22 @@
     <!-- <body ng-app="GLClientDev"> -->
 
         <!--[if lt IE 7]>
-            <p class="chromeframe">You are using an outdated browser. <a href="http://browsehappy.com/">Upgrade your browser today</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to better experience this site.</p>
+            <p class="chromeframe">
+              {{ "You are using an outdated browser." | translate }}
+              <a href="http://browsehappy.com/"> 
+              {{ "Upgrade your browser today" | translate }}</a> 
+              {{ "or" | translate }}
+              <a href="http://www.google.com/chromeframe/?redirect=true">
+              {{ "install Google Chrome Frame" | translate }}
+              </a> {{ "to better experience this site." | translate }}
+              </p>
         <![endif]-->
 
         <div class="pending-requests" ng-show="showRequestBox">
           <div class="spinner" spinner></div>
 
           <div class="message">
-            <h1>Please wait...</h1>
+            <h1>{{ "Please wait" | translate }}...</h1>
             <p class="lead">
             {{ "Anonymity is important, but it's kind of slow :(" | translate }}</p>
             <i class="icon-star" ng-repeat="request in pendingRequests"></i>
