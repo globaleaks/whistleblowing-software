@@ -511,6 +511,10 @@ class TableReplacer:
         new_obj.tip_mail_title = on.tip_mail_title
         new_obj.tip_template = on.tip_template
 
+        if self.start_ver > 4:
+            new_obj.source_name = on.source_name
+            new_obj.source_email = on.source_email
+
         self.store_new.add(new_obj)
         self.store_new.commit()
 
