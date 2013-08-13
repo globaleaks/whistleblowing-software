@@ -62,7 +62,7 @@ class TestTransaction(helpers.TestGL):
         r = self.localization_set(self.dummyReceiver, Receiver, 'en')
         receiver_user = User(self.dummyReceiverUser)
         receiver_user.last_login = self.dummyReceiverUser['last_login']
-        receiver_user.first_failed = self.dummyReceiverUser['first_failed']
+        receiver_user.last_failed_attempt = self.dummyReceiverUser['last_failed_attempt']
 
         # Avoid receivers with the same username!
         receiver_user.username = unicode("xxx")
@@ -82,7 +82,7 @@ class TestTransaction(helpers.TestGL):
         r = self.localization_set(self.dummyReceiver, Receiver, 'en')
         receiver_user = User(self.dummyReceiverUser)
         receiver_user.last_login = self.dummyReceiverUser['last_login']
-        receiver_user.first_failed = self.dummyReceiverUser['first_failed']
+        receiver_user.last_failed_attempt = self.dummyReceiverUser['last_failed_attempt']
         store.add(receiver_user)
 
         receiver = Receiver(r)
