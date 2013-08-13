@@ -65,14 +65,15 @@ class TableReplacer:
         from globaleaks.db.update_2_3 import Receiver_version_2
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
         from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
+        from globaleaks.db.update_5_6 import User_version_4
 
         table_history = {
-            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None ],
-            'User' : [ models.User, None, None, None, None, None, None ],
-            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context ],
-            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None ],
-            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile ],
-            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification ],
+            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None, None ],
+            'User' : [ User_version_4, None, None, None, None, None, None, models.User],
+            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context, None ],
+            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None, None ],
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile, None ],
+            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification, None ],
         }
 
         if not table_history.has_key(table_name):
@@ -110,7 +111,14 @@ class TableReplacer:
                    'last_update VARCHAR, maximum_namesize INTEGER NOT NULL, maximum_descsize INTEGER NOT NULL,'\
                    'maximum_textsize INTEGER NOT NULL, maximum_filesize INTEGER NOT NULL, tor2web_admin INTEGER NOT NULL,'\
                    'tor2web_submission INTEGER NOT NULL, tor2web_tip INTEGER NOT NULL, tor2web_receiver INTEGER NOT NULL,'\
-                   'tor2web_unauth INTEGER NOT NULL, exception_email VARCHAR NOT NULL, PRIMARY KEY (id) )'
+                   'tor2web_unauth INTEGER NOT NULL, exception_email VARCHAR NOT NULL, PRIMARY KEY (id))'
+        elif query.startswith('\n\nCREATE TABLE user (') and self.start_ver < 5:
+            return 'CREATE TABLE user (id VARCHAR NOT NULL,'\
+                   'creation_date VARCHAR NOT NULL, username VARCHAR NOT NULL, password VARCHAR NOT NULL,'\
+                   'salt VARCHAR NOT NULL, role VARCHAR NOT NULL CHECK (role IN (\'admin\', \'receiver\')),'\
+                   'state VARCHAR NOT NULL CHECK (state IN (\'disabled\', \'to_be_activated\', \'enabled\', \'temporary_blocked\')),'\
+                   'last_login VARCHAR NOT NULL, last_update VARCHAR, first_failed VARCHAR NOT NULL,'\
+                   'failed_login_count INTEGER NOT NULL, PRIMARY KEY (id), UNIQUE (username))'
         elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 2:
             return 'CREATE TABLE context (creation_date VARCHAR NOT NULL, description VARCHAR NOT NULL,'\
                    'escalation_threshold INTEGER,fields BLOB NOT NULL,file_max_download INTEGER NOT NULL,'\
@@ -207,6 +215,10 @@ class TableReplacer:
 
             new_obj.fields = oc.fields
             new_obj.tags = oc.tags
+            
+            # version 5 new entries:
+            if self.start_ver >= 5:
+                new_obj.select_all_receivers = oc.select_all_receivers
 
             self.store_new.add(new_obj)
         self.store_new.commit()
@@ -286,7 +298,12 @@ class TableReplacer:
             new_obj.role = old_user.role
             new_obj.state = old_user.state
             new_obj.last_login = old_user.last_login
-            new_obj.first_failed = old_user.first_failed
+
+            if self.start_ver < 5:
+                new_obj.first_failed = old_user.first_failed
+            else:
+                new_obj.last_failed_attempt = old_user.last_failed_attempt
+
             new_obj.failed_login_count = old_user.failed_login_count
 
             self.store_new.add(new_obj)
@@ -395,8 +412,8 @@ class TableReplacer:
 
         for orcvr in old_receivers:
 
-            new_obj = self.get_right_model("Receiver", self.start_ver +1)()
-
+            new_obj = self.get_right_model("Receiver", self.start_ver + 1)()
+            
             new_obj.id = orcvr.id
             new_obj.name = orcvr.name
             new_obj.description = orcvr.description
@@ -412,7 +429,6 @@ class TableReplacer:
             new_obj.receiver_level = orcvr.receiver_level
             new_obj.notification_fields = orcvr.notification_fields
             new_obj.tags = orcvr.tags
-
             # version 1 new entries!
             if self.start_ver >= 1:
                 new_obj.gpg_key_armor = orcvr.gpg_key_armor
@@ -510,6 +526,10 @@ class TableReplacer:
         new_obj.file_template = on.file_template
         new_obj.tip_mail_title = on.tip_mail_title
         new_obj.tip_template = on.tip_template
+        
+        if self.start_ver > 4:
+            new_obj.source_name = on.source_name
+            new_obj.source_email = on.source_email
 
         if self.start_ver > 4:
             new_obj.source_name = on.source_name

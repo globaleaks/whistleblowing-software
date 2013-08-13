@@ -196,6 +196,9 @@ class GLSettingsClass:
         # Number of failed login enough to generate an alarm
         self.failed_login_alarm = 5
 
+        # Number of minutes in which a user is prevented to login in case of triggered alarm
+        self.failed_login_block_time = 5
+
         # Size in bytes of every log file. Once this size is reached the
         # logfile is rotated.
         # Default: 1M

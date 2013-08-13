@@ -500,7 +500,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
 
     receiver_user = models.User(receiver_user_dict)
     receiver_user.last_login = datetime_null()
-    receiver_user.first_failed = datetime_null()
+    receiver_user.last_failed_attempt = datetime_null()
     store.add(receiver_user)
 
     receiver = Receiver(request)
