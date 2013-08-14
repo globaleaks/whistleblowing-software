@@ -428,7 +428,7 @@ class TableReplacer:
                 new_obj.failed_login = orcvr.failed_login
 
             if self.start_ver >= 4:
-                new_obj.user_id = orcvr.user.id
+                new_obj.user_id = orcvr.user_id
 
             self.store_new.add(new_obj)
         self.store_new.commit()
