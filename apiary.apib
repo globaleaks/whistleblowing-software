@@ -160,7 +160,7 @@ POST /submission
 }
 
 Returns the currently submitted fields and material filenames and size, this is the only interface giving back the complete submission status
-GET /submission/<submission_id>
+GET /submission/{submission_id}
 < 200
 < Content-Type: application/json
 {
@@ -185,7 +185,7 @@ GET /submission/<submission_id>
 
 Update a submission with new fields values. Returns the updated submission in a JSON array
 If finalize is set to true finalize the submission and get back the submission receipt number.
-PUT /submission/<submission_id>
+PUT /submission/{submission_id}
 {"context_gus":"d1c364a2-65ed-4794-9664-7edb9858e0e6","wb_fields":{"Full description":"22","Short title":"11"},"finalize":true,"files":["00186c18-5909-4cd3-ba48-041dc16a4741"],"receivers":["63793685-b9a0-4ead-812d-4af62800017c"]}
 < 200
 < Content-Type: application/json
@@ -214,7 +214,7 @@ PUT /submission/<submission_id>
 }
 
 Upload a file to the selected submission_id. Returns a JSON array with file information and the file id to integrate in the submission.
-POST /submission/<submission_id>/file
+POST /submission/{submission_id}/file
 > Content-Disposition: attachment; filename="1375208531.png"
 > Content-Length: 27130
 > Content-Type: image/png
@@ -246,7 +246,7 @@ POST /authentication
 {"user_id": "91a0e7c9-e704-47fb-8198-84ed707be19e", "session_id": "LqK8tfPKdKQF8LT8KlHBivVn9GuMTV0e66UyZmqm6y"}
 
 Returns the corrispondent submission to the tip_id sent parameter. Needs a X-Session value to be sent in the headers to authenticate the request.
-GET /tip/<tip_id>
+GET /tip/{tip_id}
 > X-Session: session_id
 < 201
 < Content-Type: application/json
@@ -276,7 +276,7 @@ GET /tip/<tip_id>
 
 
 Write a new comment for a tip. Requires the session_id and tip_id. Returns the sent comment JSON object.
-POST /tip/<tip_id>/comments
+POST /tip/{tip_id}/comments
 > Content-Type: application/json
 > X-Session: session_id
 {"tip_id":"e78dfb77-9553-4b0d-a6f6-7b076adc62f5", "content":"commentTest"}
@@ -293,7 +293,7 @@ POST /tip/<tip_id>/comments
 ]
 
 Returns all the comments for a specified tip
-GET /tip/<receipt_id/comments
+GET /tip/{receipt_id}/comments
 > X-Session: session_id
 < 201
 [
@@ -314,7 +314,7 @@ GET /tip/<receipt_id/comments
 ]
 
 Returns all the receivers for a specified tip with their relative access counter.
-GET /tip/<tip_id>/receivers
+GET /tip/{tip_id}/receivers
 > X-Session: session_id
 < 201
 < Content-Type: application/json
@@ -351,7 +351,7 @@ GET /tip/<tip_id>/receivers
 ]
 
 Upload a file to the selected tip. Returns a JSON array with file information.
-POST /tip/<tip_id>/file
+POST /tip/{tip_id}/file
 > Content-Disposition: attachment; filename="1375888134.png"
 > Content-Length: 43271
 > Content-Type: image/png
