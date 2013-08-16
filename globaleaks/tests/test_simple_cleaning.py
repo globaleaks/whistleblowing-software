@@ -13,7 +13,6 @@ from globaleaks import models
 from globaleaks.utils import is_expired
 from globaleaks.settings import transact
 from globaleaks.tests.test_tip import TTip
-from globaleaks.tests import helpers
 
 from io import BytesIO as StringIO
 
@@ -262,9 +261,16 @@ class FinalizedTipCleaning(TestCleaning):
         # now its before because receiverfile need receivertip!
         yield self.do_create_receivers_tip()
 
-        filesdict = yield delivery_sched.file_preprocess()
-        processdict = yield delivery_sched.file_process(filesdict)
-        receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
+        rfilesl = yield delivery_sched.receiverfile_planning()
+        checksums = delivery_sched.fsops_compute_checksum(rfilesl)
+
+        for (fid, status, fpath, receiver_desc) in rfilesl:
+            flen = checksums[fid]['olen']
+
+            rfd = yield delivery_sched.receiverfile_create(fid,
+                        status, fpath, flen, checksums[fid]['checksum'], receiver_desc)
+
+            self.assertEqual(rfd['status'], u'reference')
 
         yield self.tip_not_expired()
         yield self.force_tip_expire()

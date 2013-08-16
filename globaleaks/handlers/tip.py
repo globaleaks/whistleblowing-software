@@ -67,8 +67,8 @@ def wb_serialize_file(internalfile):
 
 
 @transact
-def get_files_wb(store, tip_id):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
+def get_files_wb(store, wb_tip_id):
+    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
 
     file_list = []
     for internalfile in wbtip.internaltip.internalfiles:

@@ -167,7 +167,7 @@ def get_file_checksum(filepath):
     if not total_len:
         log.debug("checksum of %s computed, but the file is empty" % filepath)
 
-    return sha.hexdigest()
+    return ( sha.hexdigest(), total_len )
 
 ## time facilities ##
 
