@@ -226,7 +226,6 @@ class TestReceiverSetKey(helpers.TestHandler):
 
         expiration_list = get_expirations(keylist)
 
-
         today_dt = datetime.date.today()
 
         for keyid, sincepoch in expiration_list.iteritems():

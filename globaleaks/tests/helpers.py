@@ -2,7 +2,6 @@
 
 import os
 import json
-import time
 import uuid
 
 from cyclone import httpserver
@@ -16,12 +15,13 @@ from twisted.internet.defer import inlineCallbacks
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks.settings import GLSetting, transact
-from globaleaks.handlers.admin import create_context, create_receiver, update_receiver
+from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, utils, models, security
 from globaleaks.third_party import rstr
 
 from Crypto import Random
+
 Random.atfork()
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
@@ -81,6 +81,7 @@ class TestGL(TestWithDB):
             self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
             context = yield create_context(self.dummyContext)
             self.dummyContext['context_gus'] = context['context_gus']
+            assert self.dummyContext['']
 
         except Exception as excp:
             print "Fail fill_data/create_context: %s" % excp
@@ -100,6 +101,11 @@ class TestGL(TestWithDB):
             self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
         except Exception as excp:
             print "Fail fill_data/create_whistleblower: %s" % excp
+
+        assert self.dummyContext.has_key('context_gus')
+        assert self.dummyReceiver.has_key('receiver_gus')
+        assert self.dummySubmission.has_key('submission_gus')
+
 
 
     def localization_set(self, dict_l, dict_c, language):
