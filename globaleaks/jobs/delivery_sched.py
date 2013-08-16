@@ -26,6 +26,7 @@ __all__ = ['APSDelivery']
 
 def serialize_internalfile(ifile):
     ifile_dict = {
+        'id': ifile.id,
         'internaltip_id' : ifile.internaltip_id,
         'name' : ifile.name,
         'sha2sum' : ifile.sha2sum,
@@ -53,6 +54,7 @@ def get_files_by_itip(store, itip_id):
 
 def serialize_receiverfile(rfile):
     rfile_dict = {
+        'id' : rfile.id,
         'internaltip_id' : rfile.internaltip_id,
         'internalfile_id' : rfile.internalfile_id,
         'receiver_id' : rfile.receiver_id,

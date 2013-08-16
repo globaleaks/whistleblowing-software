@@ -68,12 +68,21 @@ class TestGL(TestWithDB):
         self.dummyReceiver = dummyStuff.dummyReceiver
         self.dummyNode = dummyStuff.dummyNode
 
+    def receiver_assertion(self, source_r, created_r):
+        self.assertEqual(source_r['name'], created_r['name'], "name")
+        self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], "delete")
+        self.assertEqual(source_r['gpg_enable_files'], created_r['gpg_enable_files'], "GPGf")
+
+    def context_assertion(self, source_c, created_c):
+        self.assertEqual(source_c['tip_max_access'], created_c['tip_max_access'])
+
     @inlineCallbacks
     def fill_data(self):
         try:
             receiver = yield create_receiver(self.dummyReceiver)
 
             self.dummyReceiver['receiver_gus'] = receiver['receiver_gus']
+            self.receiver_assertion(self.dummyReceiver, receiver)
         except Exception as excp:
             print "Fail fill_data/create_receiver: %s" % excp
 
@@ -81,7 +90,6 @@ class TestGL(TestWithDB):
             self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
             context = yield create_context(self.dummyContext)
             self.dummyContext['context_gus'] = context['context_gus']
-            assert self.dummyContext['']
 
         except Exception as excp:
             print "Fail fill_data/create_context: %s" % excp
@@ -263,8 +271,8 @@ class MockDict():
             'gpg_key_fingerprint' : u'',
             'gpg_key_status': models.Receiver._gpg_types[0], # disabled
             'gpg_key_armor' : u'',
-            'gpg_enable_notification': True,
-            'gpg_enable_files': True,
+            'gpg_enable_notification': False,
+            'gpg_enable_files': False,
             'gpg_key_remove': False
         }
 
