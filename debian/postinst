@@ -1,28 +1,7 @@
 #!/bin/sh
 # This is the post installation script for globaleaks
-if ! id -u globaleaks >/dev/null 2>&1; then
-  useradd globaleaks -u 1337 -b /var/globaleaks/ -s /bin/false
-fi
 
-if [ ! -d /var/globaleaks ]; then
-  mkdir -p /var/globaleaks
-  chown globaleaks:debian-tor /var/globaleaks
-  chmod 750 /var/globaleaks
-fi
-
-if [ ! -d /var/run/globaleaks ]; then
-  mkdir -p /var/run/globaleaks
-  chown globaleaks:globaleaks /var/run/globaleaks
-  chmod 750 /var/run/globaleaks
-fi
-
-python -mcompileall `python -c "import os, globaleaks;print os.path.dirname(globaleaks.__file__)"` >/dev/null 2>&1
-
-if [ ! -d /var/globaleaks/torhs ]; then
-  mkdir -p /var/globaleaks/torhs/
-  chown debian-tor:debian-tor /var/globaleaks/torhs/
-  chmod 700 /var/globaleaks/torhs
-fi
+/usr/bin/gl-fix-permissions
 
 if [ ! -f /etc/apparmor.d/usr.sbin.tor ]; then
   ln -s /etc/apparmor.d/system_tor /etc/apparmor.d/usr.sbin.tor
@@ -32,5 +11,7 @@ if [ ! "`grep "globaleaks" /etc/apparmor.d/local/system_tor`" ]; then
   echo "/var/globaleaks/torhs/ w," >> /etc/apparmor.d/local/system_tor 
   echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
 fi
+
+python -mcompileall `python -c "import os, globaleaks;print os.path.dirname(globaleaks.__file__)"` >/dev/null 2>
 
 #DEBHELPER#
