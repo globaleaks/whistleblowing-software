@@ -12,6 +12,8 @@ from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
 
+from Crypto import Random
+from io import BytesIO as StringIO
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks.settings import GLSetting, transact
@@ -20,7 +22,6 @@ from globaleaks.handlers.submission import create_submission, create_whistleblow
 from globaleaks import db, utils, models, security
 from globaleaks.third_party import rstr
 
-from Crypto import Random
 
 Random.atfork()
 
@@ -34,6 +35,20 @@ VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
 INVALID_PASSWORD = u'antani'
 
 transact.tp = FakeThreadPool()
+
+class UTlog():
+
+    def err(self, stuff):
+        print "[E]", stuff
+
+    def debug(self, stuff):
+        print "[D]", stuff
+
+from globaleaks.utils import log
+# I'm trying by feeling
+log.err = UTlog().err
+log.debug = UTlog().debug
+# woha and it's working! I'm starting to thing like python want!
 
 class TestWithDB(unittest.TestCase):
     def setUp(self):
@@ -376,6 +391,17 @@ class MockDict():
             'file_mail_title': u'kkk',
             'activation_mail_title': u'uuu',
         }
+
+        unicode_body = ''.join(unichr(x) for x in range(0x070, 0x3FF))
+
+        self.dummyFile = {
+            'body' : StringIO(),
+            'body_len' : len(unicode_body),
+            'filename' : ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type' : 'application/octect',
+        }
+
+        self.dummyFile['body'].write(unicode_body.encode('utf-8'))
 
 
 def fill_random_fields(context_desc):
