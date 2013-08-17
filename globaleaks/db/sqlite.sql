@@ -10,7 +10,7 @@ CREATE TABLE user (
     state VARCHAR NOT NULL CHECK (state IN ('disabled', 'to_be_activated', 'enabled', 'temporary_blocked')),
     last_login VARCHAR NOT NULL,
     last_update VARCHAR, 
-    first_failed VARCHAR NOT NULL,
+    last_failed_attempt VARCHAR NOT NULL,
     failed_login_count INTEGER NOT NULL,
     PRIMARY KEY (id),
     UNIQUE (username)

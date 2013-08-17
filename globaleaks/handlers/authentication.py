@@ -1,4 +1,6 @@
 import time
+from datetime import timedelta
+
 from storm.exceptions import NotOneError
 
 from twisted.internet.defer import inlineCallbacks
@@ -177,60 +179,74 @@ def login_receiver(store, username, password):
     This login receiver need to collect also the amount of unsuccessful
     consecutive logins, because this element may bring to password lockdown.
     """
-    accept_credential = False
-
     receiver_user = store.find(User, User.username == username).one()
 
     if not receiver_user or receiver_user.role != 'receiver':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
         return False
 
-    receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
+    if  receiver_user.state == u'temporary_blocked':
+       delta = timedelta(seconds=GLSetting.failed_login_block_time*60)
+       if  receiver_user.last_failed_attempt + delta >= utils.datetime_now():
+           log.debug("Receiver login: Still Blocked by bruteforce protection")
+           receiver_user.failed_login_count += 1
+           receiver_user.last_failed_attempt = utils.datetime_now()
+           # we need to force the commit due to the raised exception
+           store.commit()
+           raise errors.TooMuchFailedLogins() # still blocked
+       else:
+           receiver_user.state == u'enabled'
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
+        log.debug("Receiver login: Invalid password")
         receiver_user.failed_login_count += 1
-        if receiver_user.failed_login_count == 1:
-            receiver_user.fist_failed = utils.datetime_now()
+        receiver_user.last_failed_attempt = utils.datetime_now()
+        if receiver_user.failed_login_count >= GLSetting.failed_login_alarm:
+            log.debug("Receiver login: Blocked by bruteforce protection")
+            receiver_user.state = u'temporary_blocked'
+        return False
     else:
-        accept_credential = True
         log.debug("Receiver: Authorized receiver %s" % username)
         receiver_user.failed_login_count = 0
+        receiver_user.last_failed_attempt = utils.datetime_null()
         receiver_user.last_login = utils.datetime_now()
-        receiver_user.first_failed = utils.datetime_null()
 
-    if receiver_user.failed_login_count >= GLSetting.failed_login_alarm:
-        log.err("Warning: Receiver %s has failed %d times the password" %\
-                (username, receiver_user.failed_login_count) )
-        # TODO we've to trigger lockout
-        # https://github.com/globaleaks/GlobaLeaks/issues/48
-
-    if accept_credential:
-        return unicode(receiver.id)
-    else:
-        return False
-
+        receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
+        return receiver.id
 
 @transact
 def login_admin(store, username, password):
-    admin = store.find(User, (User.username == unicode(username))).one()
-
     admin_user = store.find(User, User.username == username).one()
 
     if not admin_user or admin_user.role != 'admin':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
         return False
 
-    if not security.check_password(password, admin.password, admin.salt):
+    if admin_user.state == u'temporary_blocked':
+       delta = timedelta(seconds=GLSetting.failed_login_block_time*60)
+       if admin_user.last_failed_attempt + delta >= utils.datetime_now():
+           log.debug("Admin login: Still Blocked by bruteforce protection")
+           admin_user.failed_login_count += 1
+           admin_user.last_failed_attempt = utils.datetime_now()
+           # we need to force the commit due to the raised exception
+           store.commit()
+           raise errors.TooMuchFailedLogins() # still blocked
+       else:
+           admin_user.state == u'enabled'
+
+    if not security.check_password(password, admin_user.password, admin_user.salt):
         log.debug("Admin login: Invalid password")
-        admin.failed_login_count += 1
-        if admin.failed_login_count == 1:
-            admin_user.first_failed = utils.datetime_now()
+        admin_user.failed_login_count += 1
+        admin_user.last_failed_attempt = utils.datetime_now()
+        if admin_user.failed_login_count >= GLSetting.failed_login_alarm:
+            log.debug("Admin login: Blocked by bruteforce protection")
+            admin_user.state = u'temporary_blocked'
         return False
     else:
-        log.debug("Receiver: Authorized receiver %s" % username)
+        log.debug("Admin: Authorized receiver %s" % username)
         admin_user.failed_login_count = 0
+        admin_user.last_failed_attempt = utils.datetime_null()
         admin_user.last_login = utils.datetime_now()
-        admin_user.first_failed = utils.datetime_null()
         return username
 
 class AuthenticationHandler(BaseHandler):
