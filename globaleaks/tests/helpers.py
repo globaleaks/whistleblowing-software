@@ -211,7 +211,7 @@ class TestHandler(TestGL):
         if role:
             session_id = '4tehlulz'
             new_session = OD(
-                   borndate=utils.datetime_now(),
+                   refreshdate=utils.datetime_now(),
                    id=session_id,
                    role=role,
                    user_id=user_id

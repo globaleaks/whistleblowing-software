@@ -637,9 +637,9 @@ class NodeInstance(BaseHandler):
 
     /node
     """
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -650,9 +650,9 @@ class NodeInstance(BaseHandler):
         self.set_status(200)
         self.finish(node_description)
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def put(self, *uriargs):
         """
         Request: adminNodeDesc
@@ -681,9 +681,9 @@ class ContextsCollection(BaseHandler):
 
     /admin/context
     """
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -695,9 +695,9 @@ class ContextsCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def post(self, *uriargs):
         """
         Request: adminContextDesc
@@ -717,9 +717,9 @@ class ContextInstance(BaseHandler):
     classic CRUD in the single Context resource.
     """
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def get(self, context_gus, *uriargs):
         """
         Parameters: context_gus
@@ -731,9 +731,9 @@ class ContextInstance(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @inlineCallbacks
-    @authenticated('admin')
     @transport_security_check('admin')
+    @authenticated('admin')
+    @inlineCallbacks
     def put(self, context_gus, *uriargs):
         """
         Request: adminContextDesc
@@ -767,9 +767,9 @@ class ReceiversCollection(BaseHandler):
     List all available receivers present in the node.
     """
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -783,9 +783,9 @@ class ReceiversCollection(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def post(self, *uriargs):
         """
         Request: adminReceiverDesc
@@ -813,9 +813,9 @@ class ReceiverInstance(BaseHandler):
     implemented in handlers.receiver
     """
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def get(self, receiver_gus, *uriargs):
         """
         Parameters: receiver_gus
@@ -829,9 +829,9 @@ class ReceiverInstance(BaseHandler):
         self.set_status(200)
         self.finish(response)
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def put(self, receiver_gus, *uriargs):
         """
         Request: adminReceiverDesc
@@ -925,9 +925,9 @@ class NotificationInstance(BaseHandler):
     Manage Notification settings (account details and template)
     """
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -938,9 +938,9 @@ class NotificationInstance(BaseHandler):
         self.set_status(200)
         self.finish(notification_desc)
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def put(self, *uriargs):
         """
         Request: adminNotificationDesc

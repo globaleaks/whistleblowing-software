@@ -99,9 +99,9 @@ class ReceiverInstance(BaseHandler):
     GET and PUT /receiver/preferences
     """
 
-    @inlineCallbacks
     @transport_security_check('receiver')
     @authenticated('receiver')
+    @inlineCallbacks
     def get(self):
         """
         Parameters: None
@@ -116,9 +116,9 @@ class ReceiverInstance(BaseHandler):
         self.finish(receiver_status)
 
 
-    @inlineCallbacks
     @transport_security_check('receiver')
     @authenticated('receiver')
+    @inlineCallbacks
     def put(self):
         """
         Parameters: None
@@ -175,9 +175,9 @@ class TipsCollection(BaseHandler):
     GET /tips/<receiver_token_auth/tip
     """
 
-    @inlineCallbacks
     @transport_security_check('receiver')
     @authenticated('receiver')
+    @inlineCallbacks
     def get(self):
         """
         Parameters: tip_auth_token

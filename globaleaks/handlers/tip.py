@@ -9,7 +9,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check
+from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
 from globaleaks.utils import log, pretty_date_time, l10n
 
@@ -254,8 +254,9 @@ class TipInstance(BaseHandler):
     tip_id is either a receiver_tip_gus or a whistleblower auth token
     """
 
-    @inlineCallbacks
     @transport_security_check('tip')
+    @unauthenticated
+    @inlineCallbacks
     def get(self, tip_id, *uriargs):
         """
         Parameters: None
@@ -276,8 +277,9 @@ class TipInstance(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
-    @inlineCallbacks
     @transport_security_check('tip')
+    @unauthenticated
+    @inlineCallbacks
     def put(self, tip_id, *uriargs):
         """
         Request: actorsTipOpsDesc
@@ -308,8 +310,9 @@ class TipInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish()
 
-    @inlineCallbacks
     @transport_security_check('tip')
+    @unauthenticated
+    @inlineCallbacks
     def delete(self, tip_id, *uriargs):
         """
         Request: None
@@ -407,8 +410,9 @@ class TipCommentCollection(BaseHandler):
     permitted.
     """
 
-    @inlineCallbacks
     @transport_security_check('tip')
+    @unauthenticated
+    @inlineCallbacks
     def get(self, tip_id, *uriargs):
         """
         Parameters: None
@@ -424,8 +428,9 @@ class TipCommentCollection(BaseHandler):
         self.set_status(200)
         self.finish(comment_list)
 
-    @inlineCallbacks
     @transport_security_check('tip')
+    @unauthenticated
+    @inlineCallbacks
     def post(self, tip_id, *uriargs):
         """
         Request: actorsCommentDesc
@@ -495,8 +500,9 @@ class TipReceiversCollection(BaseHandler):
     GET /tip/<auth_tip_id>/receivers
     """
 
-    @inlineCallbacks
     @transport_security_check('tip')
+    @unauthenticated
+    @inlineCallbacks
     def get(self, tip_id):
         """
         Parameters: None
