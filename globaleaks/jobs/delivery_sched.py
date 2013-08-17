@@ -122,16 +122,15 @@ def receiverfile_planning(store):
                     (filex.file_path, excep.strerror) )
                 continue
 
-        # we want works in file with Tip 'finalize' or 'first'
-        # and File 'ready'. Tips may have two status both valid.
-        # THEN, InternalFile(s) are marked as 'locked', so if a delivery scheduler
-        # forced or planned, pass thru, don't touch the file already queued
+        # here we want to work on files with (Tip = 'finalize' or 'first' ) and (File = 'ready')
+        # infact Tips may have two status both valid.
+        # if these conditions are met the InternalFile(s) is/are marked as 'locked',
+        # so that if a forced or planned delivery scheduler runs it doesn't touch the file already queued.
         if (filex.internaltip.mark == InternalTip._marker[1] or \
-                        filex.internaltip.mark == InternalTip._marker[2]) and \
-                        filex.mark == InternalFile._marker[0]:
+            filex.internaltip.mark == InternalTip._marker[2]) and \
+            (filex.mark == InternalFile._marker[0]):
             filex.mark = InternalFile._marker[1] # 'locked'
         else:
-            # print "skipping tip", filex.internaltip.mark, "and file", filex.mark
             continue
 
         try:
@@ -194,13 +193,12 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
         path of encrypted file,
         length of the encrypted file
 
-    this function is used to encrypt a file to a specific
-    recipient. also if commonly 'receiver_desc' is expected
-    as second argument, a simpler dict can be used.
-    the key required are check on top
+    this function is used to encrypt a file for a specific recipient.
+    commonly 'receiver_desc' is expected as second argument;
+    anyhow a simpler dict can be used.
 
-    added this reference to help in:
-    https://github.com/globaleaks/GlobaLeaks/issues/444
+    required keys are checked on top
+
     """
     assert isinstance(recipient_gpg, dict), "invalid recipient"
     assert recipient_gpg.has_key('gpg_key_armor'), "missing key"
@@ -263,7 +261,7 @@ def receiverfile_create(store, fid, status, fpath, flen, cksum, receiver_desc):
 
         # Receiver Tip reference
         rtrf = store.find(ReceiverTip, ReceiverTip.internaltip_id == ifile.internaltip_id,
-                            ReceiverTip.receiver_id == receiver_desc['receiver_gus']).one()
+                          ReceiverTip.receiver_id == receiver_desc['receiver_gus']).one()
         receiverfile.receiver_tip_id = rtrf.id
 
         # inherit by previous operation and checks
@@ -386,8 +384,8 @@ class APSDelivery(GLJob):
     @inlineCallbacks
     def operation(self):
         """
-        Goal of this function is process/validate the files, compute checksum, and
-        apply the delivery method configured.
+        Goal of this function is to process/validate files, compute their checksums and
+        apply the configured delivery method.
         """
 
         try:
@@ -399,17 +397,26 @@ class APSDelivery(GLJob):
             log.err("Exception in asyncronous delivery job: %s" % excep )
             sys.excepthook(*sys.exc_info())
 
-        # ==> Files && Files update, Exception handled inside, InternalFile
-        #     sets as 'locked' status
+        # ==> Files && Files update,
+        #     InternalFile set as 'locked' status
+        #
+        # all exceptions handled inside.
+        #     
+        # the function returns a list of lists:
+        #     [ "file_id", status, "f_path", len, "receiver_desc" ]
         rfileslist = yield receiverfile_planning()
-        # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
 
         if not rfileslist:
             return
 
-        # compute checksum, processing the file on the disk ( outside the transactions)
+        # computes checksum and  processes the file on the disk here,
+        # outside of the SQL transaction.
+        #
+        # all exceptions handled inside.
+        #
+        # the function returns a dict 
+        #     { "file_uuid" : [ file_len, checksum ] }
         checksums = fsops_compute_checksum(rfileslist)
-        # return a dict { "file_uuid" : [ file_len, checksum ] }, Exception handled inside
 
         log.debug("Delivery task: received %d new file, generating %d receiver file" % (
             len(checksums), len(rfileslist)))
@@ -434,9 +441,8 @@ class APSDelivery(GLJob):
                         (fpath, receiver_desc['name'], excep))
                 continue
 
-        # This loop permit to remove internalfile no more useful
-        # after the receivertip. In example: all the receiver has
-        # GPG key, and reference it's useless.
+        # This loop permits to remove internalfile that is no more useful after the creation of receivertip.
+        # e.g.: all the receiver have GPG key and so the reference is useless.
         ifile_track = {}
         for ifile_id, check in checksums.iteritems():
             almost_one_reference = False
@@ -454,7 +460,7 @@ class APSDelivery(GLJob):
                     log.err("Unable to remove ifile in %s: %s" % (
                         path, str(excep)
                     ))
-                    # In DB remain in status 'locked', may arise suspects anyway
+                    # In DB remain registered the  status 'locked'; may arise suspects anyway
                     continue
 
                 ifile_track.update({fid: InternalFile._marker[3] }) # Removed
