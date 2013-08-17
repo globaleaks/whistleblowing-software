@@ -15,7 +15,7 @@ from globaleaks.models import Receiver, Context, Node, Notification, User
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security, models
 
-from globaleaks.utils import log, datetime_now, datetime_null, l10n
+from globaleaks.utils import log, datetime_null, l10n
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -100,11 +100,11 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "gpg_key_remove": False,
         "gpg_key_fingerprint": receiver.gpg_key_fingerprint,
         "gpg_key_status": receiver.gpg_key_status,
-        "gpg_enable_notification": receiver.gpg_enable_notification,
-        "gpg_enable_files": receiver.gpg_enable_files,
-        "comment_notification": receiver.comment_notification,
-        "tip_notification": receiver.tip_notification,
-        "file_notification": receiver.file_notification,
+        "gpg_enable_notification": True if receiver.gpg_enable_notification else False,
+        "gpg_enable_files": True if receiver.gpg_enable_files else False,
+        "comment_notification": True if receiver.comment_notification else False,
+        "tip_notification": True if receiver.tip_notification else False,
+        "file_notification": True if receiver.file_notification else False,
     }
 
     receiver_dict["description"] = l10n(receiver.description, language)
@@ -444,8 +444,6 @@ def get_receiver_list(store, language=GLSetting.memory_copy.default_language):
 def create_random_receiver_portrait(receiver_uuid):
     """
     By default take a picture and put in the receiver face,
-    we've choose Vittorio Arrigoni portrait, as reference for all the
-    nameless journalists around the world, that want spread the truth.
     """
     try:
         shutil.copy(

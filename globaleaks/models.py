@@ -351,10 +351,12 @@ class ReceiverFile(Model):
     _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
 
     status = Unicode()
-    _status_list = [ u'cloned', u'reference', u'encrypted' ]
-    # cloned = file is copyed in the disk, receiverfile.file_path address to a copy
+    _status_list = [ u'cloned', u'reference', u'encrypted', u'unavailable' ]
+    # cloned = file is copied on the disk; receiverfile.file_path address this copy
     # reference = receiverfile.file_path reference internalfile.file_path
-    # encrypted = receiverfile.file_path is an encrypted file dedicated for the receiver
+    # encrypted = receiverfile.file_path is an encrypted file for the specific receiver
+    # unavailable = the file was supposed to be encrypted but something didn't work
+    #                   (e.g.: the key is broken or expired)
 
     ## NO *_keys = It's created without initializing dict
 
@@ -375,10 +377,16 @@ class InternalFile(Model):
 
     content_type = Unicode()
     size = Int()
+    ## NO *_keys = It's created without initializing dict
 
     mark = Unicode()
-    _marker = [ u'not processed', u'ready', u'blocked', u'stored' ]
-    ## NO *_keys = It's created without initializing dict
+    _marker = [ u'not processed', u'locked', u'ready', u'delivered' ]
+    # 'not processed' = submission time
+    # 'ready' = processed in ReceiverTip, available for usage
+    # 'delivered' = the file need to stay on DB, but from the disk has been deleted
+    # happen when GPG encryption is present in the whole Receiver group.
+    # 'locked' = the file is under process by delivery scheduler
+
 
 
 class Comment(Model):

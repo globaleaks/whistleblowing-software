@@ -7,15 +7,11 @@ from twisted.internet.defer import inlineCallbacks
 # override GLSetting
 from globaleaks.settings import GLSetting, transact
 from globaleaks.tests import helpers
-
 from globaleaks import models
-
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
 from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
-
-from Crypto.Hash import SHA256
 
 from io import BytesIO as StringIO
 
@@ -85,21 +81,47 @@ class TestSubmission(helpers.TestGL):
 
     @inlineCallbacks
     def test_create_receiverfiles(self):
-        # test made to approach a strange behaviour...
+
         yield self.emulate_file_upload(self.dummySubmission['submission_gus'])
         yield self._force_finalize(self.dummySubmission['submission_gus'])
 
         # create receivertip its NEEDED to create receiverfile
-        yield delivery_sched.tip_creation()
-        # No tests here, may be written
+        rt = yield delivery_sched.tip_creation()
+        self.assertTrue(isinstance(rt, list))
 
-        filesdict = yield delivery_sched.file_preprocess()
+        rfileslist = yield delivery_sched.receiverfile_planning()
+        # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
+        self.assertTrue(isinstance(rfileslist, list))
 
-        processdict = delivery_sched.file_process(filesdict)
-        # return a dict { "file_uuid" : checksum }
+        # compute checksum, processing the file on the disk ( outside the transactions)
+        checksums = delivery_sched.fsops_compute_checksum(rfileslist)
+        # return a dict { "file_uuid" : [ file_len, checksum ] }, Exception handled inside
 
-        ret = yield delivery_sched.receiver_file_align(filesdict, processdict)
-        self.assertEqual(len(ret), 2)
+        for (fid, status, fpath, receiver_desc) in rfileslist:
+
+            # this is the plain text length (and checksum)
+            flen = checksums[fid]['olen']
+
+            rfdesc = yield delivery_sched.receiverfile_create(fid,
+                                    status, fpath, flen,
+                                    checksums[fid]['checksum'], receiver_desc)
+            self.assertEqual(rfdesc['mark'], u'not notified')
+            self.assertEqual(rfdesc['receiver_id'], receiver_desc['receiver_gus'])
+            self.assertEqual(rfdesc['internalfile_id'], fid)
+
+        fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['submission_gus'])
+        self.assertTrue(isinstance(fil, list))
+        self.assertEqual(len(fil), 2)
+        self.assertEqual(fil[0]['sha2sum'], checksums[fil[0]['id']]['checksum'] )
+
+        rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['submission_gus'])
+        self.assertTrue(isinstance(rfi, list))
+        self.assertEqual(len(rfi), 2)
+        self.assertEqual(rfi[0]['mark'], u'not notified')
+        self.assertEqual(rfi[1]['mark'], u'not notified')
+        self.assertEqual(rfi[0]['status'], u'reference')
+        self.assertEqual(rfi[1]['status'], u'reference')
+
 
     @inlineCallbacks
     def test_access_from_receipt(self):
@@ -119,60 +141,6 @@ class TestSubmission(helpers.TestGL):
         # This can be uniformed when API would be cleaned of the _gus
         self.assertTrue(wb_tip.has_key('fields'))
 
-
-    @inlineCallbacks
-    def test_submission_with_files(self):
-        justemptrydb = yield delivery_sched.tip_creation()
-        submission_desc = self.dummySubmission
-        submission_desc['finalize'] = False
-        del submission_desc['submission_gus']
-        submission_desc['receivers'] = []
-
-        status = yield submission.create_submission(submission_desc, finalize=False)
-
-        # --- Emulate file upload before assign them to the submission
-        yield self.emulate_file_upload(status['submission_gus'])
-
-        # delivery_sched.file_preprocess works only on finalized submission!
-        status['finalize'] = True
-        status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
-
-        # the files are related to internaltip_id, then appears aligned also if not explicit in the
-        # update_submission
-        self.assertEqual(len(status['files']), 2)
-
-        # and now check the files
-        filesdict = yield delivery_sched.file_preprocess()
-        self.assertEqual(len(filesdict), 2)
-
-        processdict = delivery_sched.file_process(filesdict)
-        self.assertEqual(len(processdict), 2)
-
-        # Checks the SHA2SUM computed
-        for random_f_id, sha2sum in processdict.iteritems():
-
-            shaA = SHA256.new()
-            shaA.update(self.dummyFile1['body'].getvalue())
-
-            shaB = SHA256.new()
-            shaB.update(self.dummyFile2['body'].getvalue())
-
-            if sha2sum == shaA.hexdigest() or sha2sum == shaB.hexdigest():
-                continue
-
-            self.assertTrue(False) # Checksum expected unable to be computed
-
-        # Create receiver Tip, for the only receiver present in the context
-        new_rtip = yield delivery_sched.tip_creation()
-        self.assertEqual(len(new_rtip), 1)
-
-        # generate two receiverfile (one receiver, two file), when submission is completed
-        receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
-        self.assertEqual(len(receiverfile_list), 2)
-
-        # it's used : get_files_receiver(receiver_id, tip_id)
-        receiver_files = yield tip.get_files_receiver(status['receivers'][0], new_rtip[0])
-        self.assertEqual(len(receiver_files), 2)
 
     def get_new_receiver_desc(self, descpattern):
         new_r = dict(self.dummyReceiver)
