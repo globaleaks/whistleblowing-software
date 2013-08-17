@@ -2,17 +2,20 @@
 
 import os
 import datetime
+from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.security import GLBGPG, gpg_options_parse, get_expirations
-from globaleaks.handlers import receiver
-from globaleaks.handlers.admin import admin_serialize_receiver, create_receiver
+from globaleaks.handlers import receiver, files
+from globaleaks.handlers.admin import admin_serialize_receiver, create_receiver, create_context, get_context_list
+from globaleaks.handlers.submission import create_submission, update_submission
 from globaleaks.settings import GLSetting, transact
 from globaleaks.tests.helpers import MockDict
 from globaleaks.models import Receiver
 
+from globaleaks.jobs.delivery_sched import APSDelivery, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
 
@@ -190,6 +193,71 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.assertTrue(gpob.validate_key(DeveloperKey.__doc__))
         self.assertRaises(errors.GPGKeyInvalid, gpob.encrypt_message, body)
 
+    @inlineCallbacks
+    def test_submission_file_delivery_gpg(self):
+
+        new_context = dict(MockDict().dummyContext)
+        new_context['name'] = "this uniqueness is no more checked due to the lang"
+        new_context_output = yield create_context(new_context)
+        self.context_assertion(new_context, new_context_output)
+
+        doubletest = yield get_context_list('en')
+        self.assertEqual(len(doubletest), 2)
+
+        yanr = dict(MockDict().dummyReceiver)
+        yanr['name'] = yanr['notification_fields']['mail_address'] = "quercia@nana.ptg"
+        yanr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
+        yanr['gpg_enable_files'] = True
+        yanr['contexts'] = [ new_context_output['context_gus']]
+        yanr_output = yield create_receiver(yanr)
+        self.receiver_assertion(yanr, yanr_output)
+
+        asdr = dict(MockDict().dummyReceiver)
+        asdr['name'] = asdr['notification_fields']['mail_address'] = "nocibo@rocco.tnc"
+        asdr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
+        asdr['gpg_enable_files'] = True
+        asdr['contexts'] = [ new_context_output['context_gus']]
+        asdr_output = yield create_receiver(asdr)
+        self.receiver_assertion(asdr, asdr_output)
+
+        new_subm = dict(MockDict().dummySubmission)
+        new_subm['finalize'] = False
+        new_subm['context_gus'] = new_context_output['context_gus']
+        new_subm['receivers'] = [ asdr_output['receiver_gus'],
+                                  yanr_output['receiver_gus'] ]
+        new_subm_output = yield create_submission(new_subm, False)
+        # self.submission_assertion(new_subm, new_subm_output)
+
+        new_file = dict(MockDict().dummyFile)
+
+        relationship1 = yield threads.deferToThread(files.dump_file_fs, new_file)
+        self.registered_file1 = yield files.register_file_db(
+            new_file, relationship1, new_subm_output['submission_gus'] )
+
+        new_subm['submission_gus'] = new_subm_output['submission_gus']
+        new_subm['finalize'] = True
+        new_subm_output = yield update_submission(new_subm['submission_gus'], new_subm, True)
+
+        yield APSDelivery().operation()
+
+        # now get a lots of receivertips/receiverfiles and check!
+        ifilist = yield get_files_by_itip(new_subm_output['submission_gus'])
+
+        self.assertTrue(isinstance(ifilist, list))
+        self.assertEqual(len(ifilist), 1)
+        self.assertEqual(ifilist[0]['mark'], u'delivered')
+
+        rfilist = yield get_receiverfile_by_itip(new_subm_output['submission_gus'])
+
+        self.assertTrue(isinstance(ifilist, list))
+        self.assertEqual(len(rfilist), 2)
+        self.assertLess(ifilist[0]['size'], rfilist[0]['size'])
+        self.assertLess(ifilist[0]['size'], rfilist[1]['size'])
+        self.assertEqual(rfilist[0]['status'], u"encrypted" )
+
+
+
+
 #    @inlineCallbacks
 #    def test_invalid_duplicated_key(self):
 #
@@ -225,7 +293,6 @@ class TestReceiverSetKey(helpers.TestHandler):
         keylist = [ HermesGlobaleaksKey.__doc__, DeveloperKey.__doc__, ExpiredKey.__doc__ ]
 
         expiration_list = get_expirations(keylist)
-
 
         today_dt = datetime.date.today()
 

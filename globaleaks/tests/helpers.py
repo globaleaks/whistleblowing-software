@@ -2,7 +2,6 @@
 
 import os
 import json
-import time
 import uuid
 
 from cyclone import httpserver
@@ -13,15 +12,17 @@ from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
 
+from Crypto import Random
+from io import BytesIO as StringIO
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks.settings import GLSetting, transact
-from globaleaks.handlers.admin import create_context, create_receiver, update_receiver
+from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, utils, models, security
 from globaleaks.third_party import rstr
 
-from Crypto import Random
+
 Random.atfork()
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
@@ -34,6 +35,20 @@ VALID_HASH2 = security.hash_password(VALID_PASSWORD2, VALID_SALT2)
 INVALID_PASSWORD = u'antani'
 
 transact.tp = FakeThreadPool()
+
+class UTlog():
+
+    def err(self, stuff):
+        print "[E]", stuff
+
+    def debug(self, stuff):
+        print "[D]", stuff
+
+from globaleaks.utils import log
+# I'm trying by feeling
+log.err = UTlog().err
+log.debug = UTlog().debug
+# woha and it's working! I'm starting to thing like python want!
 
 class TestWithDB(unittest.TestCase):
     def setUp(self):
@@ -68,12 +83,21 @@ class TestGL(TestWithDB):
         self.dummyReceiver = dummyStuff.dummyReceiver
         self.dummyNode = dummyStuff.dummyNode
 
+    def receiver_assertion(self, source_r, created_r):
+        self.assertEqual(source_r['name'], created_r['name'], "name")
+        self.assertEqual(source_r['can_delete_submission'], created_r['can_delete_submission'], "delete")
+        self.assertEqual(source_r['gpg_enable_files'], created_r['gpg_enable_files'], "GPGf")
+
+    def context_assertion(self, source_c, created_c):
+        self.assertEqual(source_c['tip_max_access'], created_c['tip_max_access'])
+
     @inlineCallbacks
     def fill_data(self):
         try:
             receiver = yield create_receiver(self.dummyReceiver)
 
             self.dummyReceiver['receiver_gus'] = receiver['receiver_gus']
+            self.receiver_assertion(self.dummyReceiver, receiver)
         except Exception as excp:
             print "Fail fill_data/create_receiver: %s" % excp
 
@@ -100,6 +124,11 @@ class TestGL(TestWithDB):
             self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
         except Exception as excp:
             print "Fail fill_data/create_whistleblower: %s" % excp
+
+        assert self.dummyContext.has_key('context_gus')
+        assert self.dummyReceiver.has_key('receiver_gus')
+        assert self.dummySubmission.has_key('submission_gus')
+
 
 
     def localization_set(self, dict_l, dict_c, language):
@@ -257,8 +286,8 @@ class MockDict():
             'gpg_key_fingerprint' : u'',
             'gpg_key_status': models.Receiver._gpg_types[0], # disabled
             'gpg_key_armor' : u'',
-            'gpg_enable_notification': True,
-            'gpg_enable_files': True,
+            'gpg_enable_notification': False,
+            'gpg_enable_files': False,
             'gpg_key_remove': False
         }
 
@@ -362,6 +391,17 @@ class MockDict():
             'file_mail_title': u'kkk',
             'activation_mail_title': u'uuu',
         }
+
+        unicode_body = ''.join(unichr(x) for x in range(0x070, 0x3FF))
+
+        self.dummyFile = {
+            'body' : StringIO(),
+            'body_len' : len(unicode_body),
+            'filename' : ''.join(unichr(x) for x in range(0x400, 0x40A)),
+            'content_type' : 'application/octect',
+        }
+
+        self.dummyFile['body'].write(unicode_body.encode('utf-8'))
 
 
 def fill_random_fields(context_desc):
