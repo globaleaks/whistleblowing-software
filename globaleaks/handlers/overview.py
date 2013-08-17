@@ -210,9 +210,9 @@ class Tips(BaseHandler):
     /admin/overview/tips
     """
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -232,9 +232,9 @@ class Users(BaseHandler):
     /admin/overview/users
     """
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -254,9 +254,9 @@ class Files(BaseHandler):
     /admin/overview/files
     """
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None

@@ -1,8 +1,120 @@
-from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
-from globaleaks.handlers import authentication, admin
+from globaleaks.handlers import authentication, admin, base
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
+from globaleaks import utils
+
+from cyclone.util import ObjectDict
+
+from twisted.internet.defer import inlineCallbacks
+
+class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
+    @authentication.unauthenticated
+    def get(self, *uriargs):
+        self.set_status(200)
+        self.finish("test")
+
+class ClassToTestAuthenticatedDecorator(base.BaseHandler):
+    @authentication.authenticated('admin')
+    def get(self, *uriargs):
+        self.set_status(200)
+        self.finish("test")
+
+class TestSessionUpdateOnUnauthRequests(helpers.TestHandler):
+    _handler = ClassToTestUnauthenticatedDecorator
+
+    @inlineCallbacks
+    def test_successful_session_update_on_unauth_request(self):
+        
+        date1 = utils.datetime_now()
+        
+        GLSetting.sessions = {}
+        GLSetting.sessions[u'antani'] = ObjectDict()
+        GLSetting.sessions[u'antani']['user_id'] = u'admin'
+        GLSetting.sessions[u'antani']['role'] = u'admin'
+        GLSetting.sessions[u'antani']['id'] = u'antani'
+        GLSetting.sessions[u'antani']['refreshdate'] = date1
+
+        handler = self.request({}, headers={'X-Session': 'antani'})
+        yield handler.get()
+        
+        date2 = GLSetting.sessions.values()[0].refreshdate
+        
+        self.assertNotEqual(date1, date2)
+
+class TestSessionUpdateOnAuthRequests(helpers.TestHandler):
+    _handler = ClassToTestAuthenticatedDecorator
+
+    @inlineCallbacks
+    def test_successful_session_update_on_auth_request(self):
+        
+        date1 = utils.datetime_now()
+        
+        GLSetting.sessions = {}
+        GLSetting.sessions[u'antani'] = ObjectDict()
+        GLSetting.sessions[u'antani']['user_id'] = u'admin'
+        GLSetting.sessions[u'antani']['role'] = u'admin'
+        GLSetting.sessions[u'antani']['id'] = u'antani'
+        GLSetting.sessions[u'antani']['refreshdate'] = date1
+
+        handler = self.request({}, headers={'X-Session': 'antani'})
+        yield handler.get()
+        
+        date2 = GLSetting.sessions.values()[0].refreshdate
+        
+        self.assertNotEqual(date1, date2)
+
+class TestSessionExpiryOnUnauthRequests(helpers.TestHandler):
+    _handler = ClassToTestUnauthenticatedDecorator
+
+    @inlineCallbacks
+    def test_successful_session_update_on_unauth_request(self):
+        
+        date1 = utils.datetime_null() # oh a very old date!
+        
+        GLSetting.sessions = {}
+        GLSetting.sessions[u'antani'] = ObjectDict()
+        GLSetting.sessions[u'antani']['user_id'] = u'admin'
+        GLSetting.sessions[u'antani']['role'] = u'admin'
+        GLSetting.sessions[u'antani']['id'] = u'antani'
+        GLSetting.sessions[u'antani']['refreshdate'] = date1
+
+        handler = self.request({}, headers={'X-Session': 'antani'})
+        
+        # this request raise an exception for session expiration
+        try:
+            yield handler.get()
+        except:
+            pass
+        
+        self.assertTrue(handler.current_user is None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
+
+class TestSessionExpiryOnAuthRequests(helpers.TestHandler):
+    _handler = ClassToTestAuthenticatedDecorator
+
+    @inlineCallbacks
+    def test_successful_session_update_on_auth_request(self):
+        
+        date1 = utils.datetime_null() # oh a very old date!
+        
+        GLSetting.sessions = {}
+        GLSetting.sessions[u'antani'] = ObjectDict()
+        GLSetting.sessions[u'antani']['user_id'] = u'admin'
+        GLSetting.sessions[u'antani']['role'] = u'admin'
+        GLSetting.sessions[u'antani']['id'] = u'antani'
+        GLSetting.sessions[u'antani']['refreshdate'] = date1
+
+        handler = self.request({}, headers={'X-Session': 'antani'})
+        
+        # this request raise an exception for session expiration
+        try:
+            yield handler.get()
+        except:
+            pass
+        
+        self.assertTrue(handler.current_user is None)
+        self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
 class TestAuthentication(helpers.TestHandler):
     _handler = authentication.AuthenticationHandler
@@ -16,6 +128,7 @@ class TestAuthentication(helpers.TestHandler):
         })
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
     def test_accept_admin_login_in_tor2web(self):
@@ -27,6 +140,7 @@ class TestAuthentication(helpers.TestHandler):
         GLSetting.memory_copy.tor2web_admin = True
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
     def test_successful_receiver_login(self):
@@ -37,6 +151,7 @@ class TestAuthentication(helpers.TestHandler):
         })
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
     def test_successful_whistleblower_login(self):
@@ -47,6 +162,7 @@ class TestAuthentication(helpers.TestHandler):
         })
         success = yield handler.post()
         self.assertTrue('session_id' in self.responses[0])
+        self.assertEqual(len(GLSetting.sessions.keys()), 1)
 
     @inlineCallbacks
     def test_successful_admin_logout(self):

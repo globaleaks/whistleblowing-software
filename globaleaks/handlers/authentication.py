@@ -13,6 +13,32 @@ from globaleaks.utils import log
 from globaleaks.third_party import rstr
 from globaleaks import security, utils
 
+def update_session(user):
+    """
+    Returns True if the session is still valid, False instead.
+    Timed out sessions are destroyed.
+    """
+    session_info = GLSetting.sessions[user.id]
+    
+    if utils.is_expired(session_info.refreshdate,
+                        seconds=GLSetting.defaults.lifetimes[user.role]):
+
+        log.debug("Authentication Expired (%s) %s seconds" % (
+                  user.role,
+                  GLSetting.defaults.lifetimes[user.role] ))
+
+        del GLSetting.sessions[user.id]
+        
+        return False
+
+    else:
+
+        # update the access time to the latest
+        GLSetting.sessions[user.id].refreshdate = utils.datetime_now()
+
+        return True
+
+
 def authenticated(role):
     """
     Decorator for authenticated sessions.
@@ -31,34 +57,22 @@ def authenticated(role):
             if not cls.current_user:
                 raise errors.NotAuthenticated
 
+            # we need to copy the role as after update_session it may no exist anymore
+            copy_role = cls.current_user.role
+
+            if not update_session(cls.current_user):
+                # TODO possible extension of debug in error: print the request failed
+                if copy_role == 'admin':
+                    raise errors.AdminSessionExpired()
+                elif copy_role == 'wb':
+                    raise errors.WbSessionExpired()
+                elif copy_role == 'receiver':
+                    raise errors.ReceiverSessionExpired()
+                else:
+                    raise AssertionError
+
             if role == cls.current_user.role:
-
-                session_info = GLSetting.sessions[cls.current_user.id]
-
-                if utils.is_expired(session_info.borndate,
-                                    seconds=GLSetting.defaults.lifetimes[cls.current_user.role]):
-
-                    copy_role = cls.current_user.role
-
-                    log.debug("Authentication Expired (%s) %s seconds" % (
-                        copy_role,
-                        GLSetting.defaults.lifetimes[cls.current_user.role] ))
-
-                    del GLSetting.sessions[cls.current_user.id]
-
-                    # TODO possible extension of debug in error: print the request failed
-                    if copy_role == 'admin':
-                        raise errors.AdminSessionExpired()
-                    elif copy_role == 'wb':
-                        raise errors.WbSessionExpired()
-                    elif copy_role == 'receiver':
-                        raise errors.ReceiverSessionExpired()
-                    else:
-                        raise AssertionError
-
                 log.debug("Authentication OK (%s)" % role )
-                # update the access time to the latest
-                GLSetting.sessions[cls.current_user.id].borndate = utils.datetime_now()
                 return method_handler(cls, *args, **kwargs)
 
             # else, if role != cls.current_user.role
@@ -70,6 +84,18 @@ def authenticated(role):
         return call_handler
     return wrapper
 
+def unauthenticated(method_handler):
+    """
+    Decorator for unauthenticated requests.
+    If the user is logged in an authenticated sessions it does refresh the session.
+    """
+    def call_handler(cls, *args, **kwargs):
+        if cls.current_user:
+            update_session(cls.current_user)
+
+        return method_handler(cls, *args, **kwargs)
+
+    return call_handler
 
 def get_tor2web_header(request_headers):
     """
@@ -233,7 +259,7 @@ class AuthenticationHandler(BaseHandler):
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
         new_session = OD(
-               borndate=utils.datetime_now(),
+               refreshdate=utils.datetime_now(),
                id=self.session_id,
                role=role,
                user_id=user_id

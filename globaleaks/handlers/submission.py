@@ -11,7 +11,7 @@ from globaleaks.settings import transact
 from globaleaks.models import *
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check
+from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.jobs.notification_sched import APSNotification
 from globaleaks.jobs.delivery_sched import APSDelivery
 from globaleaks.runner import GLAsynchronous
@@ -315,8 +315,9 @@ class SubmissionCreate(BaseHandler):
     returning a submission_gus, usable in update operation.
     """
 
-    @inlineCallbacks
     @transport_security_check('submission')
+    @unauthenticated
+    @inlineCallbacks
     def post(self, *uriargs):
         """
         Request: wbSubmissionDesc
@@ -356,8 +357,9 @@ class SubmissionInstance(BaseHandler):
     Relay in the client-server update and exchange of the submissionStatus message.
     """
 
-    @inlineCallbacks
     @transport_security_check('submission')
+    @unauthenticated
+    @inlineCallbacks
     def get(self, submission_gus, *uriargs):
         """
         Parameters: submission_gus
@@ -371,8 +373,9 @@ class SubmissionInstance(BaseHandler):
         self.set_status(200)
         self.finish(submission)
 
-    @inlineCallbacks
     @transport_security_check('submission')
+    @unauthenticated
+    @inlineCallbacks
     def put(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus
@@ -402,8 +405,9 @@ class SubmissionInstance(BaseHandler):
         self.finish(status)
 
 
-    @inlineCallbacks
     @transport_security_check('submission')
+    @unauthenticated
+    @inlineCallbacks
     def delete(self, submission_gus, *uriargs):
         """
         Parameter: submission_gus
