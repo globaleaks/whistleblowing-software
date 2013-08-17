@@ -300,7 +300,7 @@ class TestAuthentication(helpers.TestHandler):
             'role': 'receiver'
         })
 
-        failed_login = 8
+        failed_login = 5
         for i in xrange(0, failed_login):
             try:
                 failure = yield handler.post()
@@ -315,4 +315,74 @@ class TestAuthentication(helpers.TestHandler):
         self.assertTrue(receiver_status.has_key('failed_login'))
         self.assertEqual(receiver_status['failed_login'], failed_login)
 
+    @inlineCallbacks
+    def test_failed_login_counter_reset(self):
+        handler = self.request({
+            'username': self.dummyReceiver['username'],
+            'password': 'INVALIDPASSWORD',
+            'role': 'receiver'
+        })
+
+        failed_login = 4
+        for i in xrange(0, failed_login):
+            try:
+                failure = yield handler.post()
+                print type(failure)
+            except errors.InvalidAuthRequest:
+                continue
+            except Exception as excep:
+                print excep, "Has been raised wrongly"
+                self.assertTrue(False)
+
+        receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
+        self.assertTrue(receiver_status.has_key('failed_login'))
+        self.assertEqual(receiver_status['failed_login'], failed_login)
+
+        handler = self.request({
+            'username': self.dummyReceiver['username'],
+            'password': helpers.VALID_PASSWORD1,
+            'role': 'receiver'
+        })  
+            
+        success = yield handler.post()
+
+        receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
+        self.assertTrue(receiver_status.has_key('failed_login'))
+        self.assertEqual(receiver_status['failed_login'], 0)
+
+    @inlineCallbacks
+    def test_bruteforce_login_protection(self):
+        handler = self.request({
+            'username': self.dummyReceiver['username'],
+            'password': 'INVALIDPASSWORD',
+            'role': 'receiver'
+        })
+
+        failed_login = 5
+        for i in xrange(0, failed_login):
+            try:
+                failure = yield handler.post()
+                print type(failure)
+            except errors.InvalidAuthRequest:
+                continue
+            except Exception as excep:
+                print excep, "Has been raised wrongly"
+                self.assertTrue(False)
+
+        failed_login = 5
+        for i in xrange(0, failed_login):
+            try:
+                failure = yield handler.post()
+                print type(failure)
+            except errors.TooMuchFailedLogins:
+                continue
+            except Exception as excep:
+                print excep, "Has been raised wrongly"
+                self.assertTrue(False)
+
+        receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
+        self.assertTrue(receiver_status.has_key('failed_login'))
+        self.assertEqual(receiver_status['failed_login'], 10)
+        
+        
 

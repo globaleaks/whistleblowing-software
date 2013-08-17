@@ -42,7 +42,7 @@ class TestModels(helpers.TestGL):
         r = self.localization_set(self.dummyReceiver, Receiver, 'en')
         receiver_user = User(self.dummyReceiverUser)
         receiver_user.last_login = self.dummyReceiverUser['last_login']
-        receiver_user.first_failed = self.dummyReceiverUser['first_failed']
+        receiver_user.last_failed_attempt = self.dummyReceiverUser['last_failed_attempt']
 
         receiver_user.username = str(self.receiver_inc) + self.dummyReceiver['notification_fields']['mail_address']
         receiver_user.password = self.dummyReceiverUser['password']
@@ -79,11 +79,11 @@ class TestModels(helpers.TestGL):
 
         receiver_user1 = User(self.dummyReceiverUser)
         receiver_user1.last_login = self.dummyReceiverUser['last_login']
-        receiver_user1.first_failed = self.dummyReceiverUser['first_failed']
+        receiver_user1.last_failed_attempt = self.dummyReceiverUser['last_failed_attempt']
 
         receiver_user2 = User(self.dummyReceiverUser)
         receiver_user2.last_login = self.dummyReceiverUser['last_login']
-        receiver_user2.first_failed = self.dummyReceiverUser['first_failed']
+        receiver_user2.last_failed_attempt = self.dummyReceiverUser['last_failed_attempt']
 
         # Avoid receivers with the same username!
         receiver_user1.username = unicode("xxx")
@@ -124,7 +124,7 @@ class TestModels(helpers.TestGL):
 
         receiver_user = User(self.dummyReceiverUser)
         receiver_user.last_login = self.dummyReceiverUser['last_login']
-        receiver_user.first_failed = self.dummyReceiverUser['first_failed']
+        receiver_user.last_failed_attempt = self.dummyReceiverUser['last_failed_attempt']
 
         # Avoid receivers with the same username!
         receiver_user.username = unicode("xxx")

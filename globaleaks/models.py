@@ -196,7 +196,7 @@ class User(Model):
     role = Unicode()
     state = Unicode()
     last_login = DateTime()
-    first_failed = DateTime()
+    last_failed_attempt = DateTime()
     failed_login_count = Int()
 
     _roles = [ u'admin', u'receiver' ]
