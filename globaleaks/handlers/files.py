@@ -15,7 +15,7 @@ from cyclone.web import os
 
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated
+from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils import log, pretty_date_time
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, ReceiverTip, InternalTip, InternalFile, WhistleblowerTip
@@ -188,9 +188,9 @@ class FileAdd(FileHandler):
     WhistleBlower interface for upload a new file in an already completed submission
     """
 
-    @inlineCallbacks
     @transport_security_check('tip')
     @authenticated('wb')
+    @inlineCallbacks
     def post(self, wb_tip_id, *args):
         """
         Parameter: submission_gus
@@ -209,8 +209,9 @@ class FileInstance(FileHandler):
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
 
-    @inlineCallbacks
     @transport_security_check('submission')
+    @unauthenticated
+    @inlineCallbacks
     def post(self, submission_id, *args):
         """
         Parameter: submission_gus
@@ -265,6 +266,7 @@ def download_file(store, tip_id, file_id):
 
 class Download(BaseHandler):
 
+    @unauthenticated
     @inlineCallbacks
     def get(self, tip_gus, file_gus, *uriargs):
 

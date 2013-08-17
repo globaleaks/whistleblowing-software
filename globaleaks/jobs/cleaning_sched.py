@@ -134,7 +134,7 @@ class APSCleaning(GLJob):
             for session_id in GLSetting.sessions:
                 checkd_session = GLSetting.sessions[session_id]
 
-                if is_expired(checkd_session.borndate, seconds=GLSetting.defaults.lifetimes[checkd_session.role]):
+                if is_expired(checkd_session.refreshdate, seconds=GLSetting.defaults.lifetimes[checkd_session.role]):
                     sid_to_remove.append(session_id)
 
             for expired_sid in sid_to_remove:

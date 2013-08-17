@@ -187,9 +187,9 @@ class StaticFileCollection(BaseHandler):
     Complete CRUD implementation using the filename instead of UUIDs
     """
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def post(self, *args):
         """
         Upload a new files (one or more)

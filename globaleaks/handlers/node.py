@@ -11,7 +11,7 @@ from globaleaks import utils
 from globaleaks.utils import l10n
 from globaleaks.settings import transact, GLSetting
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check
+from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models
 
 @transact
@@ -131,8 +131,9 @@ class InfoCollection(BaseHandler):
     Contains System-wide properties.
     """
 
-    @inlineCallbacks
     @transport_security_check("unauth")
+    @unauthenticated
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -152,7 +153,7 @@ class StatsCollection(BaseHandler):
     Interface for the public statistics, configured between the Node settings and the
     Contexts settings
     """
-
+    @unauthenticated
     def get(self, *uriargs):
         """
         Parameters: None
@@ -185,8 +186,9 @@ class ContextsCollection(BaseHandler):
     and would be memorized in a third party indexer service. This is way some dates
     are returned within.
     """
-    @inlineCallbacks
     @transport_security_check("unauth")
+    @unauthenticated
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
@@ -215,8 +217,9 @@ class ReceiversCollection(BaseHandler):
     Return the description of all the receivers visible from the outside.
     """
 
-    @inlineCallbacks
     @transport_security_check("unauth")
+    @unauthenticated
+    @inlineCallbacks
     def get(self, *uriargs):
         """
         Parameters: None
