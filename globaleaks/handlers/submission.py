@@ -123,8 +123,7 @@ def import_files(store, submission, files):
     @param submission: the Storm obj
     @param files: the list of InternalFiles UUIDs
     @return:
-        Look if all the files specified in the list exists,
-        and if exis
+        Look if all the files specified in the list exist
     """
     for file_id in files:
         try:

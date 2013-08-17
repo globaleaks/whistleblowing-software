@@ -352,10 +352,11 @@ class ReceiverFile(Model):
 
     status = Unicode()
     _status_list = [ u'cloned', u'reference', u'encrypted', u'unavailable' ]
-    # cloned = file is copyed in the disk, receiverfile.file_path address to a copy
+    # cloned = file is copied on the disk; receiverfile.file_path address this copy
     # reference = receiverfile.file_path reference internalfile.file_path
-    # encrypted = receiverfile.file_path is an encrypted file dedicated for the receiver
-    # unavailable = would be encrypted but your key is broken/expired/something don't work
+    # encrypted = receiverfile.file_path is an encrypted file for the specific receiver
+    # unavailable = the file was supposed to be encrypted but something didn't work
+    #                   (e.g.: the key is broken or expired)
 
     ## NO *_keys = It's created without initializing dict
 
