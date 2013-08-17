@@ -120,7 +120,7 @@ def receiverfile_planning(store):
             except OSError as excep:
                 log.err("Unable to remove %s in integrity fixing routine: %s" %
                     (filex.file_path, excep.strerror) )
-            continue
+                continue
 
         # we want works in file with Tip 'finalize' or 'first'
         # and File 'ready'. Tips may have two status both valid.
@@ -361,6 +361,26 @@ def tip_creation(store):
     #    internaltip.mark = internaltip._marker[3]
 
 
+@transact
+def do_final_internalfile_update(store, ifile_track):
+
+    assert isinstance(ifile_track, dict), "ifile_track is wrong"
+    for file_id, status in ifile_track.iteritems():
+        ifil = store.find(InternalFile, InternalFile.id == unicode(file_id)).one()
+
+        try:
+            ifil.mark = status
+            store.commit()
+        except Exception as excep:
+            log.err("Unable to commit final mod in InternalFile: %s" % excep)
+            continue
+
+        log.debug("Status sets for ifile %s = %s" %(
+            file_id, status
+        ))
+
+
+
 class APSDelivery(GLJob):
 
     @inlineCallbacks
@@ -421,23 +441,26 @@ class APSDelivery(GLJob):
         for ifile_id, check in checksums.iteritems():
             almost_one_reference = False
 
-            for (fid, status, path, flen, receiver_desc) in rfileslist:
+            for (fid, status, fname, receiver_desc) in rfileslist:
                 if ifile_id == fid and status == 'reference':
                     almost_one_reference = True
 
             if not almost_one_reference:
-                log.debug("Removing useless plain file: %s" % path)
+                log.debug("Removing useless plain file: %s" % fname)
+                path = os.path.join(GLSetting.submission_path, fname)
                 try:
                     os.unlink(path)
                 except Exception as excep:
                     log.err("Unable to remove ifile in %s: %s" % (
                         path, str(excep)
                     ))
+                    # In DB remain in status 'locked', may arise suspects anyway
                     continue
 
                 ifile_track.update({fid: InternalFile._marker[3] }) # Removed
             else:
                 ifile_track.update({fid: InternalFile._marker[2] }) # Ready
 
+        yield do_final_internalfile_update(ifile_track)
         # completed in love! http://www.youtube.com/watch?v=CqLAwt8T3Ps
 
