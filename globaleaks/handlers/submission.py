@@ -87,8 +87,9 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
         store.commit()
 
         reloaded_submission = store.find(InternalTip, InternalTip.id == submission.id).one()
-        log.debug("Fixed receivers corpus by Context (%d) on %s" %\
-                (reloaded_submission.receivers.count(), submission.id) )
+        log.debug("Context [%s] has a fixed receivers corpus #%d SID = %s" %
+                (reloaded_submission.context.name[GLSetting.memory_copy.default_language],
+                 reloaded_submission.receivers.count(), submission.id) )
         return
 
     # Clean the previous list of selected Receiver
@@ -99,12 +100,9 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
     for receiver_id in receiver_id_list:
         try:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
-        except Exception as e:
-            log.err("Storm/SQL Error: %s (import_receivers)" % e)
-            raise e
-
-        if not receiver:
-            log.err("Receiver requested do not exist: %s" % receiver_id)
+        except Exception as excep:
+            log.err("Receiver requested (%s) can't be found: %s" %
+                    (receiver_id, excep))
             raise errors.ReceiverGusNotFound
 
         if not context in receiver.contexts:
@@ -121,14 +119,19 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
 
 # Remind: it's a store without @transaction because called by a @ŧransact
 def import_files(store, submission, files):
+    """
+    @param submission: the Storm obj
+    @param files: the list of InternalFiles UUIDs
+    @return:
+        Look if all the files specified in the list exists,
+        and if exis
+    """
     for file_id in files:
         try:
             ifile = store.find(InternalFile, InternalFile.id == unicode(file_id)).one()
-        except Exception, e:
-            log.err("Storm/SQL Error: %s (import_files)" % e)
-            raise e
-        if not ifile:
-            log.err("Invalid File requested %s" % file_id)
+        except Exception as excep:
+            log.err("Storm error, not found %s file in import_files (%s)" %
+                    (file_id, excep))
             raise errors.FileGusNotFound
 
         ifile.internaltip_id = submission.id
@@ -191,7 +194,7 @@ def import_fields(submission, fields, configured_fields_list, strict_validation=
 
     submission.wb_fields = imported_fields
     log.debug("Submission fields updated - finalize: %s" %
-              "YES" if strict_validation else "NO")
+             ("YES" if strict_validation else "NO") )
 
 
 def force_schedule():
@@ -209,7 +212,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
 
     if not context:
-        log.err("Context requested %s do not exist" % request['context_gus'])
+        log.err("Context requested: [%s] not found!" % request['context_gus'])
         raise errors.ContextGusNotFound
 
     submission = InternalTip()
@@ -229,9 +232,9 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
 
     try:
         store.add(submission)
-    except Exception, e:
-        log.err("Storm/SQL Error: %s (create_submission)" % e)
-        raise e
+    except Exception as excep:
+        log.err("Storm/SQL Error: %s (create_submission)" % excep)
+        raise errors.InternalServerError("Unable to commit on DB")
 
     receivers = request.get('receivers', [])
     import_receivers(store, submission, receivers, context, required=finalize)
