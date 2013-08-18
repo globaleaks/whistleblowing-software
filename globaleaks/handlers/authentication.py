@@ -189,10 +189,6 @@ def login_receiver(store, username, password):
        delta = timedelta(seconds=GLSetting.failed_login_block_time*60)
        if  receiver_user.last_failed_attempt + delta >= utils.datetime_now():
            log.debug("Receiver login: Still Blocked by bruteforce protection")
-           receiver_user.failed_login_count += 1
-           receiver_user.last_failed_attempt = utils.datetime_now()
-           # we need to force the commit due to the raised exception
-           store.commit()
            raise errors.TooMuchFailedLogins() # still blocked
        else:
            receiver_user.state == u'enabled'
@@ -226,10 +222,6 @@ def login_admin(store, username, password):
        delta = timedelta(seconds=GLSetting.failed_login_block_time*60)
        if admin_user.last_failed_attempt + delta >= utils.datetime_now():
            log.debug("Admin login: Still Blocked by bruteforce protection")
-           admin_user.failed_login_count += 1
-           admin_user.last_failed_attempt = utils.datetime_now()
-           # we need to force the commit due to the raised exception
-           store.commit()
            raise errors.TooMuchFailedLogins() # still blocked
        else:
            admin_user.state == u'enabled'
