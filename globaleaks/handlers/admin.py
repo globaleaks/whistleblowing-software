@@ -15,7 +15,7 @@ from globaleaks.models import Receiver, Context, Node, Notification, User
 from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security, models
 
-from globaleaks.utils import log, datetime_null, l10n
+from globaleaks.utils import log, datetime_null, l10n, naturalize_fields
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -193,14 +193,17 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
     return context_list
 
 
-def fields_validation(fields_blob):
+def validate_and_fix_fields(fields_blob, previous_fields):
+    """
+    the required keys are already validated by validate_jmessage
+    with globaleaks/rest/base.py formFieldDict
+    here are validated the types and the internal format
 
-    if not len(fields_blob):
-        raise errors.InvalidInputFormat("Missing fields list")
-
-    # the required keys are already validated by validate_jmessage
-    # with globaleaks/rest/base.py formFieldDict
-    # here are validated the types and the internal format
+    previous_fields are fields already present in a different language. we
+    need here to enforce that different language share the same
+    sequence/keyname/types of fields between others.
+    """
+    assert isinstance(fields_blob, list), "missing field list"
 
     accepted_form_type = [ "text", "radio", "select", "multiple",
                            "checkboxes",  "textarea", "number",
@@ -211,6 +214,36 @@ def fields_validation(fields_blob):
         if not check_type in accepted_form_type:
             raise errors.InvalidInputFormat("Fields validation deny '%s' in %s" %
                                             (check_type, field_desc['name']) )
+
+    # Creation of 'key' it's required in the software, but not provided by GLClient
+    for idx, _ in enumerate(fields_blob):
+        fields_blob[idx]['key'] = unicode(fields_blob[idx]['name'])
+
+    # checks with the previous fields, if present, the presence of the same keys
+    if not previous_fields:
+        return fields_blob
+
+    assert isinstance(previous_fields, dict), "invalid previous_fields"
+
+    keys_list = []
+    for established_f in naturalize_fields(previous_fields):
+        keys_list.append(established_f['key'])
+
+    for proposed_f in fields_blob:
+        if proposed_f['key'] in keys_list:
+            keys_list.remove(proposed_f['key'])
+        else:
+            raise errors.InvalidInputFormat(
+                "Fields proposed do not match with previous language schema (Unexpected %s) "
+                % proposed_f['key'])
+
+    if keys_list:
+        raise errors.InvalidInputFormat(
+            "Fields proposed do not match with previous language schema (Missing %s) "
+            % str(keys_list))
+
+    return fields_blob
+
 
 def acquire_context_timetolive(request):
 
@@ -269,19 +302,8 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
 
     v = dict(request)
 
-    if not request['fields']:
-        # When a new context is created, assign default fields, if not supply
-        assigned_fields = sample_context_fields
-    else:
-        assigned_fields = request['fields']
-
-    # may raise InvalidInputFormat if fields format do not fit
-    fields_validation(assigned_fields)
-    
-    v['fields'] = assigned_fields
-
     for attr in ['name', 'description', 'receipt_description',
-                 'submission_introduction', 'submission_disclaimer', 'fields']:
+                 'submission_introduction', 'submission_disclaimer' ]:
         v[attr] = {}
         v[attr][language] = unicode(request[attr])
 
@@ -289,16 +311,18 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
 
     context = Context(request)
 
-    # Creation of 'key' it's required in the software, but not provided by GLClient
-    for idx, _ in enumerate(assigned_fields):
-        assigned_fields[idx]['key'] = unicode(assigned_fields[idx]['name'])
+    if not request['fields']:
+        # When a new context is created, assign default fields, if not supply
+        assigned_fields = sample_context_fields
+    else:
+        # may raise InvalidInputFormat if fields format do not fit
+        assigned_fields = validate_and_fix_fields(request['fields'], None)
 
-    context.fields = {}
-    context.fields[language] = assigned_fields
+    # in create, only one language can be submitted, here is initialized
+    context.fields = dict({language : assigned_fields})
 
     # Integrity checks related on name (need to exists, need to be unique)
-    # are performed only on the english language at the moment
-
+    # are performed only using the default language at the moment
     try:
         context_name = request['name'][language]
     except Exception as excep:
@@ -374,9 +398,6 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
         v[attr] = getattr(context, attr)
         v[attr][language] = unicode(request[attr])
 
-    v['fields'] = dict(getattr(context, 'fields'))
-    v['fields'][language] = request['fields']
-    
     request = v
     
     for receiver in context.receivers:
@@ -393,17 +414,16 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
     # tip_timetolive and submission_timetolive need to be converted in seconds since hours and days
     (context.submission_timetolive, context.tip_timetolive) = acquire_context_timetolive(request)
 
-    for lang, fields in request['fields'].iteritems():
-        for idx, _ in enumerate(fields):
-            request['fields'][lang][idx]['key'] = unicode(request['fields'][lang][idx]['name'])
-
     if len(context.receipt_regexp) < 4:
         log.err("Fixing receipt regexp < 4 byte with fixme-[0-9]{13}-please")
         context.receipt_regexp = u"fixme-[0-9]{13}-please"
 
-    context.fields = request['fields']
     context.last_update = utils.datetime_now()
     context.update(request)
+
+    # Fields acquire start here
+    context.fields.update({ language : validate_and_fix_fields(request['fields'], context.fields)})
+    # Fields acquire need these stuff
 
     receipt_example = generate_example_receipt(context.receipt_regexp)
     return admin_serialize_context(context, receipt_example, language)
