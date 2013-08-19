@@ -139,24 +139,35 @@ def import_files(store, submission, files):
     store.commit()
 
 
-def import_fields(submission, fields, configured_fields_list, strict_validation=False):
+def import_fields(submission, wb_fields, configured_fields_list, strict_validation=False):
     """
     @param submission: the Storm object
-    @param fields: the received fields
-    @param configured_fields: the Context defined fields
+    @param wb_fields: the received wb_fields
+    @param configured_fields: the Context defined wb_fields
     @return: update the object of raise an Exception if a required field
         is missing, or if received field do not match the expected shape
 
-    strict_validation = required the presence of 'required' fields. Is not enforced
+    strict_validation = required the presence of 'required' wb_fields. Is not enforced
     if Submission would not be finalized yet.
     """
-    required_keys = optional_keys  = []
+    required_keys = list()
+    optional_keys  = list()
 
-    assert isinstance(configured_fields_list, list)
+    assert isinstance(configured_fields_list, list), "context expected wb_fields"
+    assert isinstance(wb_fields, dict), "receiver wb_fields"
+
+    if not wb_fields and not strict_validation:
+        return
+
+    if strict_validation and not wb_fields:
+
+        if not wb_fields:
+            log.err("Missing submission in 'finalize' request")
+            raise errors.SubmissionFailFields("Missing submission!")
 
     try:
         for single_field in configured_fields_list:
-            if single_field.has_key('required'):
+            if single_field['required'] == True:
                 required_keys.append(single_field.get(u'key'))
             else:
                 optional_keys.append(single_field.get(u'key'))
@@ -164,26 +175,25 @@ def import_fields(submission, fields, configured_fields_list, strict_validation=
         log.exception(e)
         raise errors.SubmissionFailFields("Malformed submission!")
 
-    if strict_validation and not fields:
-
-        if not fields:
-            log.err("Missing submission in 'finalize' request")
-            raise errors.SubmissionFailFields("Missing submission!")
-
     if strict_validation:
 
+        log.debug("strict validation: %s (optional %s)" % (required_keys, optional_keys))
+
         for required in required_keys:
-            if fields.has_key(required):
+
+            if wb_fields.has_key(required) and len(wb_fields[required]) > 4:
+            # the keys are always provided by GLClient! also if the content is empty.
+            # then is not difficult check a test len(text) > $blah, but other checks are...
                 continue
 
             log.err("Submission has a required field (%s) missing" % required)
             raise errors.SubmissionFailFields("Missing field '%s': Required" % required)
 
-    if not fields:
+    if not wb_fields:
         return
 
     imported_fields = {}
-    for key, value in fields.iteritems():
+    for key, value in wb_fields.iteritems():
 
         if key in required_keys or key in optional_keys:
             imported_fields.update({key: value})
@@ -194,7 +204,6 @@ def import_fields(submission, fields, configured_fields_list, strict_validation=
     submission.wb_fields = imported_fields
     log.debug("Submission fields updated - finalize: %s" %
              ("YES" if strict_validation else "NO") )
-
 
 def force_schedule():
     # force mail sending, is called force_execution to be sure that Scheduler
@@ -242,7 +251,8 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     import_files(store, submission, files)
 
     fields = request.get('wb_fields', {})
-    import_fields(submission, fields, naturalize_fields(context.fields), strict_validation=finalize)
+    naturalized = naturalize_fields(context.fields)
+    import_fields(submission, fields, naturalized, strict_validation=finalize)
 
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict

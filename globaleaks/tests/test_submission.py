@@ -41,7 +41,7 @@ class TestSubmission(helpers.TestGL):
     # --------------------------------------------------------- #
     @inlineCallbacks
     def test_create_submission(self):
-        submission_desc = self.dummySubmission
+        submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         del submission_desc['submission_gus']
 
@@ -125,7 +125,7 @@ class TestSubmission(helpers.TestGL):
 
     @inlineCallbacks
     def test_access_from_receipt(self):
-        submission_desc = self.dummySubmission
+        submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         del submission_desc['submission_gus']
 
@@ -141,6 +141,59 @@ class TestSubmission(helpers.TestGL):
         # This can be uniformed when API would be cleaned of the _gus
         self.assertTrue(wb_tip.has_key('fields'))
 
+    @inlineCallbacks
+    def test_submission_with_files(self):
+        justemptrydb = yield delivery_sched.tip_creation()
+        submission_desc = dict(self.dummySubmission)
+        submission_desc['finalize'] = False
+        del submission_desc['submission_gus']
+        submission_desc['receivers'] = []
+
+        status = yield submission.create_submission(submission_desc, finalize=False)
+
+        # --- Emulate file upload before assign them to the submission
+        yield self.emulate_file_upload(status['submission_gus'])
+
+        # delivery_sched.file_preprocess works only on finalized submission!
+        status['finalize'] = True
+        status = yield submission.update_submission(status['submission_gus'], status, finalize=True)
+
+        # the files are related to internaltip_id, then appears aligned also if not explicit in the
+        # update_submission
+        self.assertEqual(len(status['files']), 2)
+
+        # and now check the files
+        filesdict = yield delivery_sched.file_preprocess()
+        self.assertEqual(len(filesdict), 2)
+
+        processdict = delivery_sched.file_process(filesdict)
+        self.assertEqual(len(processdict), 2)
+
+        # Checks the SHA2SUM computed
+        for random_f_id, sha2sum in processdict.iteritems():
+
+            shaA = SHA256.new()
+            shaA.update(self.dummyFile1['body'].getvalue())
+
+            shaB = SHA256.new()
+            shaB.update(self.dummyFile2['body'].getvalue())
+
+            if sha2sum == shaA.hexdigest() or sha2sum == shaB.hexdigest():
+                continue
+
+            self.assertTrue(False) # Checksum expected unable to be computed
+
+        # Create receiver Tip, for the only receiver present in the context
+        new_rtip = yield delivery_sched.tip_creation()
+        self.assertEqual(len(new_rtip), 1)
+
+        # generate two receiverfile (one receiver, two file), when submission is completed
+        receiverfile_list = yield delivery_sched.receiver_file_align(filesdict, processdict)
+        self.assertEqual(len(receiverfile_list), 2)
+
+        # it's used : get_files_receiver(receiver_id, tip_id)
+        receiver_files = yield tip.get_files_receiver(status['receivers'][0], new_rtip[0])
+        self.assertEqual(len(receiver_files), 2)
 
     def get_new_receiver_desc(self, descpattern):
         new_r = dict(self.dummyReceiver)
@@ -173,7 +226,7 @@ class TestSubmission(helpers.TestGL):
         context_status = yield update_context(self.dummyContext['context_gus'], self.dummyContext)
 
         # Create a new request with selected three of the four receivers
-        submission_request= self.dummySubmission
+        submission_request= dict(self.dummySubmission)
         # submission_request['context_gus'] = context_status['context_gus']
         submission_request['submission_gus'] = submission_request['id'] = ''
         submission_request['finalize'] = False
@@ -200,7 +253,7 @@ class TestSubmission(helpers.TestGL):
 
     @inlineCallbacks
     def test_update_submission(self):
-        submission_desc = self.dummySubmission
+        submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = False
         submission_desc['context_gus'] = self.dummyContext['context_gus']
         submission_desc['submission_gus'] = submission_desc['id'] = submission_desc['mark'] = None
@@ -222,7 +275,7 @@ class TestSubmission(helpers.TestGL):
 
     @inlineCallbacks
     def test_unable_to_access_finalized(self):
-        submission_desc = self.dummySubmission
+        submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         submission_desc['context_gus'] = self.dummyContext['context_gus']
 
@@ -233,3 +286,41 @@ class TestSubmission(helpers.TestGL):
             self.assertTrue(True)
             return
         self.assertTrue(False)
+
+
+    @inlineCallbacks
+    def test_fields_validator_all_fields(self):
+
+        sbmt = dict(self.dummySubmission)
+
+        sbmt['wb_fields'] = {}
+        for sf in self.dummyContext['fields']:
+
+            if sf['type'] != u"text":
+                assert self['type'] == u'text', \
+                    "Dummy fields had only 'text' when this test has been dev"
+
+            sbmt['wb_fields'].update({ sf['key'] : "something" })
+
+        try:
+            status = yield submission.create_submission(sbmt, finalize=True)
+            self.assertEqual(status['wb_fields'], sbmt['wb_fields'] )
+        except Exception as excep:
+            print "Unexpected error: %s", excep
+            self.assertTrue(False)
+
+    @inlineCallbacks
+    def test_fields_fail_missing_required(self):
+
+        sbmt = dict(self.dummySubmission)
+
+        sbmt['wb_fields'] = {'One': 'Two', 'Three': 'Four'}
+
+        try:
+            yield submission.create_submission(sbmt, finalize=True)
+            self.assertTrue(False)
+        except Exception as excep:
+            self.assertEqual(excep.reason,
+                             u"Submission do not validate the input fields [Missing field 'Short title': Required]")
+
+
