@@ -193,6 +193,9 @@ do_start()
 
     # This is a little hack to avoid python doing os.chdir('.') and getting mad.
     cd /tmp
+
+    gl-fix-permissions
+
     if ${STARTCMD}; then
         log_end_msg 0 "started."
     else
