@@ -66,6 +66,7 @@ class TableReplacer:
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
         from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
         from globaleaks.db.update_5_6 import User_version_4
+        from globaleaks.db.update_6_7 import User_version_6
 
         table_history = {
             'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None, None ],
@@ -118,6 +119,13 @@ class TableReplacer:
                    'salt VARCHAR NOT NULL, role VARCHAR NOT NULL CHECK (role IN (\'admin\', \'receiver\')),'\
                    'state VARCHAR NOT NULL CHECK (state IN (\'disabled\', \'to_be_activated\', \'enabled\', \'temporary_blocked\')),'\
                    'last_login VARCHAR NOT NULL, last_update VARCHAR, first_failed VARCHAR NOT NULL,'\
+                   'failed_login_count INTEGER NOT NULL, PRIMARY KEY (id), UNIQUE (username))'
+        elif query.startswith('\n\nCREATE TABLE user (') and self.start_ver < 6:
+            return 'CREATE TABLE user (id VARCHAR NOT NULL,'\
+                   'creation_date VARCHAR NOT NULL, username VARCHAR NOT NULL, password VARCHAR NOT NULL,'\
+                   'salt VARCHAR NOT NULL, role VARCHAR NOT NULL CHECK (role IN (\'admin\', \'receiver\')),'\
+                   'state VARCHAR NOT NULL CHECK (state IN (\'disabled\', \'to_be_activated\', \'enabled\', \'temporary_blocked\')),'\
+                   'last_login VARCHAR NOT NULL, last_update VARCHAR, last_failed_attempt VARCHAR NOT NULL,'\
                    'failed_login_count INTEGER NOT NULL, PRIMARY KEY (id), UNIQUE (username))'
         elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 2:
             return 'CREATE TABLE context (creation_date VARCHAR NOT NULL, description VARCHAR NOT NULL,'\
