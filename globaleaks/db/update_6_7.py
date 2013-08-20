@@ -5,7 +5,7 @@ from globaleaks.models import Model, User
 from globaleaks.utils import datetime_null
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
-class User_version_4(Model):
+class User_version_6(Model):
     __storm_table__ = 'user'
 
     username = Unicode()
@@ -14,16 +14,16 @@ class User_version_4(Model):
     role = Unicode()
     state = Unicode()
     last_login = DateTime()
-    first_failed = DateTime()
+    last_failed_attempt = DateTime()
     failed_login_count = Int()
 
-class Replacer56(TableReplacer):
+class Replacer67(TableReplacer):
 
     def migrate_User(self):
         print "%s User migration assistant: #%d" % (
-              self.debug_info, self.store_old.find(self.get_right_model("User", 6)).count() )
+              self.debug_info, self.store_old.find(self.get_right_model("User", 7)).count() )
 
-        old_users = self.store_old.find(self.get_right_model("User", 5))
+        old_users = self.store_old.find(self.get_right_model("User", 6))
 
         for old_user in old_users:
 
@@ -35,16 +35,11 @@ class Replacer56(TableReplacer):
             new_obj.role = old_user.role
             new_obj.state = old_user.state
             new_obj.last_login = old_user.last_login
-            
-            # first_failed field has been removed
-            # new_obj.first_failed = old_user.first_failed
-            
-            # last_failed_attempt has been introduced
-            new_obj.last_failed_attempt = datetime_null()
-
-            new_obj.failed_login_count = old_user.failed_login_count
-
             new_obj.creation_date = old_user.creation_date
+            new_obj.failed_login_count = old_user.failed_login_count
+            
+            # last_failed_attempt field has been removed
+            # new_obj.last_failed_attempt = ...
 
             self.store_new.add(new_obj)
         self.store_new.commit()

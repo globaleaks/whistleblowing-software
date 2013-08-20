@@ -66,14 +66,15 @@ class TableReplacer:
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
         from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
         from globaleaks.db.update_5_6 import User_version_4
+        from globaleaks.db.update_6_7 import User_version_6
 
         table_history = {
-            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None, None ],
-            'User' : [ User_version_4, None, None, None, None, None, None, models.User],
-            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context, None ],
-            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None, None ],
-            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile, None ],
-            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification, None ],
+            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None, None, None ],
+            'User' : [ User_version_4, None, None, None, None, None, User_version_6, models.User ],
+            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context, None, None ],
+            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None, None, None ],
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile, None, None ],
+            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification, None, None ],
         }
 
         if not table_history.has_key(table_name):
@@ -118,6 +119,13 @@ class TableReplacer:
                    'salt VARCHAR NOT NULL, role VARCHAR NOT NULL CHECK (role IN (\'admin\', \'receiver\')),'\
                    'state VARCHAR NOT NULL CHECK (state IN (\'disabled\', \'to_be_activated\', \'enabled\', \'temporary_blocked\')),'\
                    'last_login VARCHAR NOT NULL, last_update VARCHAR, first_failed VARCHAR NOT NULL,'\
+                   'failed_login_count INTEGER NOT NULL, PRIMARY KEY (id), UNIQUE (username))'
+        elif query.startswith('\n\nCREATE TABLE user (') and self.start_ver < 6:
+            return 'CREATE TABLE user (id VARCHAR NOT NULL,'\
+                   'creation_date VARCHAR NOT NULL, username VARCHAR NOT NULL, password VARCHAR NOT NULL,'\
+                   'salt VARCHAR NOT NULL, role VARCHAR NOT NULL CHECK (role IN (\'admin\', \'receiver\')),'\
+                   'state VARCHAR NOT NULL CHECK (state IN (\'disabled\', \'to_be_activated\', \'enabled\', \'temporary_blocked\')),'\
+                   'last_login VARCHAR NOT NULL, last_update VARCHAR, last_failed_attempt VARCHAR NOT NULL,'\
                    'failed_login_count INTEGER NOT NULL, PRIMARY KEY (id), UNIQUE (username))'
         elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 2:
             return 'CREATE TABLE context (creation_date VARCHAR NOT NULL, description VARCHAR NOT NULL,'\
@@ -292,6 +300,7 @@ class TableReplacer:
 
             new_obj = models.User()
             new_obj.id = old_user.id
+            new_obj.creation_date = old_user.creation_date
             new_obj.username = old_user.username
             new_obj.password = old_user.password
             new_obj.salt = old_user.salt
@@ -301,8 +310,6 @@ class TableReplacer:
 
             if self.start_ver < 5:
                 new_obj.first_failed = old_user.first_failed
-            else:
-                new_obj.last_failed_attempt = old_user.last_failed_attempt
 
             new_obj.failed_login_count = old_user.failed_login_count
 
@@ -320,6 +327,7 @@ class TableReplacer:
             new_obj = models.ReceiverTip()
 
             new_obj.id = ort.id
+            new_obj.creation_date = ort.creation_date
             new_obj.internaltip_id = ort.internaltip_id
             new_obj.receiver_id = ort.receiver_id
 
