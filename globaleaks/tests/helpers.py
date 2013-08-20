@@ -22,8 +22,14 @@ from globaleaks.handlers.submission import create_submission, create_whistleblow
 from globaleaks import db, utils, models, security
 from globaleaks.third_party import rstr
 
-
 Random.atfork()
+
+sleep_list = []
+
+def fake_sleep(seconds):
+    sleep_list.append(seconds)
+
+utils.sleep = fake_sleep
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
@@ -52,9 +58,13 @@ log.debug = UTlog().debug
 
 class TestWithDB(unittest.TestCase):
     def setUp(self):
+        global sleep_list
+        sleep_list = []
         GLSetting.set_devel_mode()
         GLSetting.scheduler_threadpool = FakeThreadPool()
         GLSetting.sessions = {}
+        GLSetting.failed_login_attempts = dict()
+        GLSetting.failed_login_attempts_wb = 0
         GLSetting.working_path = os.path.abspath(os.path.join(GLSetting.root_path, 'testing_dir'))
         GLSetting.eval_paths()
         GLSetting.remove_directories()

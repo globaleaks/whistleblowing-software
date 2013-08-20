@@ -104,14 +104,6 @@ def change_password(base64_stored, old_password, new_password, salt_input):
     return hash_password(new_password, salt_input)
 
 
-def insert_random_delay():
-    """
-    Time path analysis tests countermeasure
-    """
-    centisec = random.randint(1, 100) / 100.0
-    time.sleep(centisec)
-
-
 class GLBGPG:
     """
     GPG has not a dedicated class, because one of the function is callend inside a transact, and

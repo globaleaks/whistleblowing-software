@@ -41,7 +41,7 @@ class SubmissionTest(helpers.TestGL):
         'escalation_threshold': u'0', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': True,
         'receivers': [], 'fields': [], 'submission_timetolive': 100,
-        'receipt_regexp': GLSetting.defaults.receipt_regexp,
+        'receipt_regexp': u"[0-9]{10}",
         'receipt_description': u"blah",
         'submission_introduction': u"bleh",
         'submission_disclaimer': u"bloh",

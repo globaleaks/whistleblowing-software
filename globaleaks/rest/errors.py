@@ -375,14 +375,3 @@ class InvalidTipSubmCombo(GLException):
     error_code =  48
     status_code = 406
     reason = "Submission time to life can't be more than Tip"
-
-class TooMuchFailedLogins(GLException):
-    """
-    tip_timetolive and submission_timetolive maybe proposed of weird values,
-    here is catch
-    """
-    error_code =  49
-    status_code = 403
-    reason = "User login blocked for %s minutes due to multiple failed logins" %\
-             GLSetting.failed_login_block_time
-    arguments = [ GLSetting.failed_login_block_time ]

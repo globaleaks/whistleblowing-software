@@ -134,6 +134,7 @@ class Replacer23(TableReplacer):
             new_obj.fields = fields_conversion(ocntx.fields)
 
             new_obj.id = ocntx.id
+            new_obj.creation_date = ocntx.creation_date
             new_obj.selectable_receiver = ocntx.selectable_receiver
             new_obj.escalation_threshold = ocntx.escalation_threshold
             new_obj.tip_max_access = ocntx.tip_max_access
