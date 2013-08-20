@@ -174,10 +174,11 @@ class GLSettingsClass:
 
         # a dict to keep track of the lifetime of the session. at the moment
         # not exported in the UI.
+        # https://github.com/globaleaks/GlobaLeaks/issues/510
         self.defaults.lifetimes = {}
-        self.defaults.lifetimes['admin'] = 300
-        self.defaults.lifetimes['receiver'] = 600
-        self.defaults.lifetimes['wb'] = 36000
+        self.defaults.lifetimes['admin'] = (60 * 60)
+        self.defaults.lifetimes['receiver'] = (60 * 60)
+        self.defaults.lifetimes['wb'] = (60 * 60)
 
         # SOCKS default
         self.socks_host = "127.0.0.1"
