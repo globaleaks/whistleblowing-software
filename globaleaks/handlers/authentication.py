@@ -3,6 +3,7 @@ import time
 from storm.exceptions import NotOneError
 
 from twisted.internet.defer import inlineCallbacks
+from twisted.internet import defer, reactor
 from cyclone.util import ObjectDict as OD
 
 from globaleaks.models import Node, User
@@ -15,6 +16,15 @@ from globaleaks.third_party import rstr
 from globaleaks import security, utils
 
 from Crypto import Random
+
+@defer.inlineCallbacks
+def sleep(timeout):
+    def callbackDeferred():
+        d.callback(True)
+
+    d = defer.Deferred()
+    reactor.callLater(timeout, callbackDeferred)
+    yield d
 
 def update_session(user):
     """
@@ -308,7 +318,7 @@ class AuthenticationHandler(BaseHandler):
                     'user_id': unicode(self.current_user.user_id)})
 
     @unauthenticated
-    @inlineCallbacks
+    @defer.inlineCallbacks
     def post(self):
         """
         This is the /login handler expecting login/password/role,

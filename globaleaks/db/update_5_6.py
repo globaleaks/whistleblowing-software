@@ -75,6 +75,8 @@ class Replacer56(TableReplacer):
             new_obj.mark = orf.mark
             new_obj.downloads = orf.downloads
 
+            new_obj.creation_date = old_user.creation_date
+
             self.store_new.add(new_obj)
         self.store_new.commit()
 
