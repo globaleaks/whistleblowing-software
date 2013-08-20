@@ -369,20 +369,9 @@ class TestAuthentication(helpers.TestHandler):
                 print excep, "Has been raised wrongly"
                 self.assertTrue(False)
 
-        failed_login = 5
-        for i in xrange(0, failed_login):
-            try:
-                failure = yield handler.post()
-                print type(failure)
-            except errors.TooMuchFailedLogins:
-                continue
-            except Exception as excep:
-                print excep, "Has been raised wrongly"
-                self.assertTrue(False)
-
         receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
         self.assertTrue(receiver_status.has_key('failed_login'))
-        self.assertEqual(receiver_status['failed_login'], 10)
+        self.assertEqual(receiver_status['failed_login'], 5)
         
         
 
