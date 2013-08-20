@@ -17,15 +17,6 @@ from globaleaks import security, utils
 
 from Crypto import Random
 
-@defer.inlineCallbacks
-def sleep(timeout):
-    def callbackDeferred():
-        d.callback(True)
-
-    d = defer.Deferred()
-    reactor.callLater(timeout, callbackDeferred)
-    yield d
-
 def update_session(user):
     """
     Returns True if the session is still valid, False instead.
