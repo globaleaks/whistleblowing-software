@@ -64,40 +64,20 @@ end
 $script = <<SCRIPT
 date > /etc/vagrant_provisioned_at
 
-echo "********************************************************"
-echo "*   STEP 1: Install GlobaLeaks"
-echo "********************************************************"
+echo "Installing or updating Globalekas... "
 
-gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x24045008
-gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -
 /globaleaks/scripts/install-ubuntu-12_04.sh -y
 
-echo "********************************************************"
-echo "*   STEP 2 - Create Your Hidden Service"
-echo "********************************************************"
-
-cat /usr/share/globaleaks/glbackend/torrc >> /etc/tor/torrc
-echo "HiddenServiceDir /var/globaleaks/torhs/" >> /etc/tor/torrc
-echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc
+echo "Restarting TOR daemon... "
 
 /etc/init.d/tor restart
 
-echo "********************************************************"
-echo "*   STEP 3 - Start globaleaks"
-echo "********************************************************"
+echo "Starting GlobalLeaks daemon... "
 
 /etc/init.d/globaleaks start
 
-echo "********************************************************"
-echo "*                PLEASE JOT DOWN THIS ADDRESS"
-echo "********************************************************"
-
+echo "Your hostname is: "
 cat /var/globaleaks/torhs/hostname
-
-echo "********************************************************"
-echo "*                PLEASE JOT DOWN THIS ADDRESS"
-echo "********************************************************"
-
 
 SCRIPT
 
