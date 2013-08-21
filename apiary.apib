@@ -245,12 +245,17 @@ POST /authentication
 < Content-Type: application/json
 {"user_id": "91a0e7c9-e704-47fb-8198-84ed707be19e", "session_id": "LqK8tfPKdKQF8LT8KlHBivVn9GuMTV0e66UyZmqm6y"}
 
-Allows the user to refresh the sessions. Returns the session token if still valid. 
+Allows the application to refresh an authenticated session. Returns the session token if still valid. 
 GET /authentication
 > X-Session: session_id
 < 200
 < Content-Type: application/json
 {"user_id": "91a0e7c9-e704-47fb-8198-84ed707be19e", "session_id": "LqK8tfPKdKQF8LT8KlHBivVn9GuMTV0e66UyZmqm6y"}
+
+Allows the application to delete an authenticated session.
+DELETE /authentication
+> X-Session: session_id
+< 200
 
 Returns the corrisponding submission to the tip_id sent parameter. Needs a X-Session value to be sent in the headers to authenticate the request.
 GET /tip/{tip_id}
