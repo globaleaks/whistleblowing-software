@@ -73,8 +73,8 @@ def authenticated(role):
                 else:
                     raise AssertionError
 
-            if role == cls.current_user.role:
-                log.debug("Authentication OK (%s)" % role )
+            if role == '*' or role == cls.current_user.role:
+                log.debug("Authentication OK (%s)" % cls.current_user.role )
                 return method_handler(cls, *args, **kwargs)
 
             # else, if role != cls.current_user.role
@@ -275,7 +275,18 @@ class AuthenticationHandler(BaseHandler):
         GLSetting.sessions[self.session_id] = new_session
         return self.session_id
 
+    @authenticated('*')
+    def get(self):
+        if self.current_user:
+            try:
+                session = GLSetting.sessions[self.current_user.id]
+            except KeyError:
+                raise errors.NotAuthenticated
 
+        self.write({'session_id': self.current_user.id,
+                    'user_id': unicode(self.current_user.user_id)})
+
+    @unauthenticated
     @inlineCallbacks
     def post(self):
         """
@@ -302,10 +313,10 @@ class AuthenticationHandler(BaseHandler):
         if not user_id:
             raise errors.InvalidAuthRequest
 
-        self.write({'session_id': self.generate_session(role, user_id) ,
+        self.write({'session_id': self.generate_session(role, user_id),
                     'user_id': unicode(user_id)})
 
-
+    @authenticated('*')
     def delete(self):
         """
         Logout the user.
