@@ -166,7 +166,6 @@ module.exports = function(grunt) {
     grunt.file.copy('tmp/styles.css', 'build/styles.css');
     grunt.file.copy('tmp/scripts.js', 'build/scripts.js');
     grunt.file.copy('tmp/index.html', 'build/index.html');
-    grunt.file.copy('tmp/decoy.html', 'build/decoy.html');
 
     grunt.file.recurse('tmp/images', function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/images', subdir || '', filename || ''));
