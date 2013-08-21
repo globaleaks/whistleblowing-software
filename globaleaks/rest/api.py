@@ -11,7 +11,7 @@ import os
 
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles, overview
-from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler, DevNullHandler, DecoyIFRAMEHandler
+from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.rest.base import uuid_regexp
 
 
@@ -119,13 +119,6 @@ if GLSetting.cyclone_debug:
         (r'/test/(.*)', BaseStaticFileHandler, {'path': os.path.join(GLSetting.glclient_path, '..', 'test')})
     )
 
-spec.append(
-    (r'/dev/null', DevNullHandler)
-)
-spec.append(
-    (r'/dev/null(.*)', DevNullHandler)
-)
-
 ## Utility redirect,
 spec.append(
     (r'/login', BaseRedirectHandler, {'url': '/#/login'} )
@@ -142,12 +135,6 @@ spec.append(
 
 spec.append(
     (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path })
-)
-
-spec.append(
-    (r'/(decoy.html)', DecoyIFRAMEHandler,
-        {'path': GLSetting.glclient_path }
-    )
 )
 
 ## Main Web app ##
