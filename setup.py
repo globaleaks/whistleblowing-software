@@ -80,7 +80,6 @@ data_files = [
     os.path.join(glclient_path, 'index.html'),
     os.path.join(glclient_path, 'styles.css'),
     os.path.join(glclient_path, 'scripts.js'),
-    os.path.join(glclient_path, 'decoy.html'),
     ]),
     ('/usr/share/globaleaks/glclient/images', [
     os.path.join(glclient_path, 'images', 'flags.png'),

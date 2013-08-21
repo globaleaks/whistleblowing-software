@@ -530,39 +530,3 @@ class BaseRedirectHandler(BaseBaseHandler, RedirectHandler):
         """
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
-
-class DecoyIFRAMEHandler(StaticFileHandler):
-    """
-    This is a static file handler for the decoy traffic widget.
-
-    We create a new one, because this way we don't set certain headers.
-    """
-    def prepare(self):
-        # to avoid version attacks
-        self.set_header("Server", "globaleaks")
-
-        # to reduce possibility for XSS attacks.
-        self.set_header("X-Content-Type-Options", "nosniff")
-
-        # to mitigate information leakage on Browser/Proxy Cache
-        self.set_header("Cache-control", "no-cache, no-store")
-        self.set_header("Pragma", "no-cache")
-        self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
-
-class DevNullHandler(RequestHandler):
-    """
-    This handler is used to generate decoy traffic.
-    """
-    size = 1024
-
-    def get(self, *args):
-        self.write("A" * random.randint(0, self.size))
-
-    def post(self, *args):
-        self.write("A" * random.randint(0, self.size))
-
-    def check_xsrf_cookie(self):
-        """
-        We override it because this is just a /dev/null handler.
-        """
-        pass
