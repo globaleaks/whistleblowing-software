@@ -186,7 +186,12 @@ class TestAuthentication(helpers.TestHandler):
 
         # A second logout must not be accepted (this validate also X-Session reuse)
         handler = self.request({}, headers={'X-Session': session_id})
-        success = yield handler.delete()
+
+        try:
+            success = yield handler.delete()
+        except errors.NotAuthenticated:
+            self.assertTrue(True)
+
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
@@ -212,7 +217,12 @@ class TestAuthentication(helpers.TestHandler):
 
         # A second logout must not be accepted (this validate also X-Session reuse)
         handler = self.request({}, headers={'X-Session': session_id})
-        success = yield handler.delete()
+
+        try:
+            success = yield handler.delete()
+        except errors.NotAuthenticated:
+            self.assertTrue(True)
+
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
@@ -239,7 +249,12 @@ class TestAuthentication(helpers.TestHandler):
 
         # A second logout must not be accepted (this validate also X-Session reuse)
         handler = self.request({}, headers={'X-Session': session_id})
-        success = yield handler.delete()
+
+        try:
+            success = yield handler.delete()
+        except errors.NotAuthenticated:
+            self.assertTrue(True)
+
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
