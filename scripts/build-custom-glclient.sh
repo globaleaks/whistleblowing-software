@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 if [ ! $GLCLIENT_INSTALL_DIR ];then
   GLCLIENT_INSTALL_DIR=/usr/share/globaleaks/glclient
