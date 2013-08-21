@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder ".", "/globaleaks"
+  # config.vm.synced_folder ".", "/globaleaks"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -67,12 +67,34 @@ end
 $script = <<SCRIPT
 date > /etc/vagrant_provisioned_at
 
-echo "Installing or updating Globalekas... "
+echo "Installing Tor"
 
-/globaleaks/scripts/install-ubuntu-12_04.sh -y
+apt-get update -y
+apt-get install python-software-properties -y
+add-apt-repository 'deb http://deb.torproject.org/torproject.org precise main'
+gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+apt-get update -y
+apt-get install tor tor-geoipdb curl -y
+update-rc.d tor defaults
 
-echo "Restarting TOR daemon... "
+echo "Installing Globalekas... "
 
+apt-get install curl -y
+curl https://raw.github.com/globaleaks/GlobaLeaks/master/scripts/install-ubuntu-12_04.sh > install-ubuntu-12_04.sh
+chmod +x install-ubuntu-12_04.sh
+./install-ubuntu-12_04.sh -y
+
+echo "Configuring and Restarting TOR daemon... "
+
+echo "VirtualAddrNetwork 10.23.47.0/10" >> /etc/tor/torrc
+echo "AutomapHostsOnResolve 1" >> /etc/tor/torrc
+echo "TransPort 9040" >> /etc/tor/torrc
+echo "TransListenAddress 127.0.0.1" >> /etc/tor/torrc
+echo "DNSPort 5353" >> /etc/tor/torrc
+echo "DNSListenAddress 127.0.0.1" >> /etc/tor/torrc
+echo "HiddenServiceDir /var/globaleaks/torhs/" >> /etc/tor/torrc
+echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc
 /etc/init.d/tor restart
 
 echo "Starting GlobalLeaks daemon... "
