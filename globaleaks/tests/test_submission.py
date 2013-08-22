@@ -41,7 +41,7 @@ class TestSubmission(helpers.TestGL):
     # --------------------------------------------------------- #
     @inlineCallbacks
     def test_create_submission(self):
-        submission_desc = self.dummySubmission
+        submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         del submission_desc['submission_gus']
 
@@ -125,7 +125,7 @@ class TestSubmission(helpers.TestGL):
 
     @inlineCallbacks
     def test_access_from_receipt(self):
-        submission_desc = self.dummySubmission
+        submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         del submission_desc['submission_gus']
 
@@ -140,7 +140,6 @@ class TestSubmission(helpers.TestGL):
         # In the WB/Receiver Tip interface, wb_fields are called fields.
         # This can be uniformed when API would be cleaned of the _gus
         self.assertTrue(wb_tip.has_key('fields'))
-
 
     def get_new_receiver_desc(self, descpattern):
         new_r = dict(self.dummyReceiver)
@@ -173,7 +172,7 @@ class TestSubmission(helpers.TestGL):
         context_status = yield update_context(self.dummyContext['context_gus'], self.dummyContext)
 
         # Create a new request with selected three of the four receivers
-        submission_request= self.dummySubmission
+        submission_request= dict(self.dummySubmission)
         # submission_request['context_gus'] = context_status['context_gus']
         submission_request['submission_gus'] = submission_request['id'] = ''
         submission_request['finalize'] = False
@@ -200,7 +199,7 @@ class TestSubmission(helpers.TestGL):
 
     @inlineCallbacks
     def test_update_submission(self):
-        submission_desc = self.dummySubmission
+        submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = False
         submission_desc['context_gus'] = self.dummyContext['context_gus']
         submission_desc['submission_gus'] = submission_desc['id'] = submission_desc['mark'] = None
@@ -222,7 +221,7 @@ class TestSubmission(helpers.TestGL):
 
     @inlineCallbacks
     def test_unable_to_access_finalized(self):
-        submission_desc = self.dummySubmission
+        submission_desc = dict(self.dummySubmission)
         submission_desc['finalize'] = True
         submission_desc['context_gus'] = self.dummyContext['context_gus']
 
@@ -233,3 +232,41 @@ class TestSubmission(helpers.TestGL):
             self.assertTrue(True)
             return
         self.assertTrue(False)
+
+
+    @inlineCallbacks
+    def test_fields_validator_all_fields(self):
+
+        sbmt = dict(self.dummySubmission)
+
+        sbmt['wb_fields'] = {}
+        for sf in self.dummyContext['fields']:
+
+            if sf['type'] != u"text":
+                assert self['type'] == u'text', \
+                    "Dummy fields had only 'text' when this test has been dev"
+
+            sbmt['wb_fields'].update({ sf['key'] : "something" })
+
+        try:
+            status = yield submission.create_submission(sbmt, finalize=True)
+            self.assertEqual(status['wb_fields'], sbmt['wb_fields'] )
+        except Exception as excep:
+            print "Unexpected error: %s", excep
+            self.assertTrue(False)
+
+    @inlineCallbacks
+    def test_fields_fail_missing_required(self):
+
+        sbmt = dict(self.dummySubmission)
+
+        sbmt['wb_fields'] = {'One': 'Two', 'Three': 'Four'}
+
+        try:
+            yield submission.create_submission(sbmt, finalize=True)
+            self.assertTrue(False)
+        except Exception as excep:
+            self.assertEqual(excep.reason,
+                             u"Submission do not validate the input fields [Missing field 'Short title': Required]")
+
+
