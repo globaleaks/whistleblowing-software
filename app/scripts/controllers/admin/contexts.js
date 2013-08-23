@@ -22,6 +22,7 @@ GLClient.controller('AdminContextsCtrl',
                         key: '',
                         value: '',
                         type: 'text',
+                        preview: false,
                         required: false});
   }
 
