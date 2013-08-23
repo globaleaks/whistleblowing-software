@@ -18,10 +18,8 @@ from globaleaks.models import *
 from globaleaks.rest import errors
 
 
-def actor_serialize_internal_tip(internaltip):
+def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
     itip_dict = {
-        'context_id': unicode(internaltip.context.id),
-        # compatibility, until client is not ready to be aligned
         'context_gus': unicode(internaltip.context.id),
         'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
         # XXX not yet used
@@ -34,6 +32,12 @@ def actor_serialize_internal_tip(internaltip):
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
         'fields' : dict(internaltip.wb_fields),
     }
+
+    # context_name and context_description are localized field
+    for attr in ['name', 'description' ]:
+        key = "context_%s" % attr
+        itip_dict[key] = l10n(getattr(internaltip.context, attr), language)
+
     return itip_dict
 
 def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
@@ -119,7 +123,7 @@ def strong_receiver_validate(store, user_id, tip_id):
 
 
 @transact
-def get_internaltip_wb(store, tip_id):
+def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_language):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
     if not wbtip or not wbtip.internaltip:
@@ -134,7 +138,7 @@ def get_internaltip_wb(store, tip_id):
     return tip_desc
 
 @transact
-def get_internaltip_receiver(store, user_id, tip_id):
+def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
     tip_desc = actor_serialize_internal_tip(rtip.internaltip)
@@ -267,11 +271,11 @@ class TipInstance(BaseHandler):
         the format, help in addressing which kind of Tip need to be handled.
         """
         if self.is_whistleblower:
-            answer = yield get_internaltip_wb(self.current_user['user_id'])
+            answer = yield get_internaltip_wb(self.current_user['user_id'], self.request.language)
             answer['files'] = yield get_files_wb(self.current_user['user_id'])
         else:
             yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
-            answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id)
+            answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id, self.request.language)
             answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
         self.set_status(200)
