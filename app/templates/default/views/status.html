@@ -8,6 +8,23 @@
 <div ng-cloak class="container statusPage" ng-show="tip.im_whistleblower || tip.im_receiver">
   <div class="row">
     <div class="span4">
+
+      {{ "Context details" | translate }}
+      <a
+          ng-click="no_cinfo = !no_cinfo"
+          ng-init="no_cinfo = false">{{ "click to close" | translate }}
+      </a>
+
+      <div ng-hide="no_cinfo" class="table-bordered">
+          <b>{{ tip.context_name }}</b><br>
+          {{ tip.context_description }} <!-- TODO click to see more -->
+      </div>
+
+      <div class="table-bordered">
+          {{ "This this has been submitted in" | translate }}
+          {{ tip.creation_date | date:"fullDate" }}
+      </div>
+
       <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
         <dt>{{fieldFormat[fieldName].name}} ({{fieldFormat[fieldName].hint}})</dt>
         
