@@ -26,6 +26,7 @@ formFieldsDict = {
             "presentation_order": int,
             "name": unicode,
             "required": bool,
+            "preview": bool,
             "hint": unicode,
             "type": unicode
 }
