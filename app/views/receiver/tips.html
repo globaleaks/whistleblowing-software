@@ -17,22 +17,25 @@
    <table class="table table-striped table-bordered dataTable" id="tipList">
     <thead>
       <tr>
-        <th>{{ "Tip ID" | translate }}</th>
-        <th>{{ "Age" | translate }}</th>
-        <th>{{ "Views" | translate }}</th>
+        <th>{{ "Accesses" | translate }}</th>
+        <th>{{ "Creation" | translate }}</th>
         <th>{{ "Last Access" | translate }}</th>
+        <th>{{ "Preview" | translate }}</th>
         <th>{{ "Files" | translate }}</th>
       </tr>
     </thead>
 
     <tbody id="tipListTableBody">
       <tr ng-repeat="tip in tips" class="{{tip.parity}}">
-        <td><a href="/#/status/{{tip.id}}">{{tip.id}}</a></td>
-        <td>{{tip.creation_date | date:'fullDate'}}</td>
-        <td>{{tip.access_counter}}</td>
-        <td>{{tip.last_access}}</td>
+        <td><a href="/#/status/{{tip.id}}">{{tip.access_counter}}</a></td>
+        <td>{{tip.creation_date | date:'fullDate' }}</td>
+        <td>{{tip.last_access | date:'fullDate' }}</td>
+        <td>
+            <span ng-repeat="entry in tip.preview">
+            <b>{{entry.key}}</b> {{entry.text}}
+            </span>
+        </td>
         <td>{{tip.files_number}}</td>
-        <!-- {{tip.pertinence}} -->
       </tr>
     </tbody>
   </table>
