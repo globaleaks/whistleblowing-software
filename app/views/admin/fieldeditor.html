@@ -36,6 +36,10 @@
           <input type="checkbox" ng-model="field.required">
           </label>
 
+          <label>{{ "Show in preview" | translate }}
+          <input type="checkbox" ng-model="field.preview">
+          </label>
+
           <label>{{ "Type" | translate }}</label>
           <select id="editFieldType" ng-model="field.type" ng-required>
             <option value="text">
