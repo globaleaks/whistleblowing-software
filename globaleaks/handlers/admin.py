@@ -193,7 +193,7 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
     return context_list
 
 
-def validate_and_fix_fields(fields_blob, previous_fields):
+def validate_and_fix_fields(fields_blob, thislang, previous_fields):
     """
     the required keys are already validated by validate_jmessage
     with globaleaks/rest/base.py formFieldDict
@@ -202,6 +202,10 @@ def validate_and_fix_fields(fields_blob, previous_fields):
     previous_fields are fields already present in a different language. we
     need here to enforce that different language share the same
     sequence/keyname/types of fields between others.
+
+    =====> Its difficult to be managed, because when a fields
+    is update, we have to update also others languages fields.
+    and this is not yet implemented (therefore, only a log.debug is show)
     """
     assert isinstance(fields_blob, list), "missing field list"
 
@@ -233,12 +237,14 @@ def validate_and_fix_fields(fields_blob, previous_fields):
         if proposed_f['key'] in keys_list:
             keys_list.remove(proposed_f['key'])
         else:
-            raise errors.InvalidInputFormat(
+            # raise errors.InvalidInputFormat(
+            log.debug(
                 "Fields proposed do not match with previous language schema (Unexpected %s) "
                 % proposed_f['key'])
 
     if keys_list:
-        raise errors.InvalidInputFormat(
+        # raise errors.InvalidInputFormat(
+        log.debug(
             "Fields proposed do not match with previous language schema (Missing %s) "
             % str(keys_list))
 
@@ -316,7 +322,7 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
         assigned_fields = sample_context_fields
     else:
         # may raise InvalidInputFormat if fields format do not fit
-        assigned_fields = validate_and_fix_fields(request['fields'], None)
+        assigned_fields = validate_and_fix_fields(request['fields'], language, None)
 
     # in create, only one language can be submitted, here is initialized
     context.fields = dict({language : assigned_fields})
@@ -421,8 +427,10 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
     context.last_update = utils.datetime_now()
     context.update(request)
 
-    # Fields acquire start here
-    context.fields.update({ language : validate_and_fix_fields(request['fields'], context.fields)})
+    # Fields acquire its an update based on the language, and checks here if
+    # the keys are respected between different languages
+    context.fields.update({ language :
+                        validate_and_fix_fields(request['fields'], language, context.fields)})
     # Fields acquire need these stuff
 
     receipt_example = generate_example_receipt(context.receipt_regexp)
