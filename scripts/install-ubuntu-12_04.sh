@@ -93,7 +93,7 @@ DO () {
 
 add_repository () {
   # Distro independent function for adding a line to apt sources.list
-  REPO="$(echo $1 | sed s/DISTRO_VERSION/$DISTRO_VERSION/)"
+  REPO="$(echo $1 | sed 's/DISTRO_VERSION/${DISTRO_VERSION}/')"
   if which add-apt-repository >/dev/null 2>&1;then
     add-apt-repository -y "$REPO"
   else
@@ -542,7 +542,7 @@ DO "apt-get update -y" "0"
 DO "apt-get install python-software-properties -y" "0"
 if [ $DISTRO == 'ubuntu' ];then
   echo "Adding Ubuntu Universe repository"
-  add-apt-repository -y 'deb http://de.archive.ubuntu.com/ubuntu/ precise universe'
+  add_repository 'deb http://de.archive.ubuntu.com/ubuntu/ precise universe'
   DO "apt-get update -y" "0"
 fi
 DO "apt-get install python-pip python-setuptools python-dev gcc -y" "0"
