@@ -155,6 +155,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
         error.message = response.data.error_message;
         error.code = response.data.error_code;
         error.url = response.config.url;
+        error.arguments = response.data.arguments;
 
         if (error.code == 30) {
           $.removeCookie('session_id');
