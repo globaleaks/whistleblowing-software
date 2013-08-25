@@ -130,6 +130,8 @@ def get_internaltip_wb(store, tip_id):
     tip_desc['id'] = unicode(wbtip.id)
     tip_desc['im_whistleblower'] = True
     tip_desc['im_receiver'] = False
+    tip_desc['potential_expiration_date'] = u"ignored"
+    tip_desc['extend'] = False
 
     return tip_desc
 
@@ -144,6 +146,10 @@ def get_internaltip_receiver(store, user_id, tip_id):
     tip_desc['receiver_id'] = unicode(user_id)
     tip_desc['im_whistleblower'] = False
     tip_desc['im_receiver'] = True
+    # this field "inform" the receiver of the new expiration date that can
+    # be set, only if PUT with extend = True is updated
+    tip_desc['potential_expiration_date'] = u"666"
+    tip_desc['extend'] = False
 
     return tip_desc
 
