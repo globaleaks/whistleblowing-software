@@ -138,14 +138,11 @@ class StaticFileCollection(BaseHandler):
 
         uploaded_file = self.request.body
 
-        # evilaliv3: currently the static file upload is used to handle only
+        # currently the static file upload is used to handle only
         # images uploads for Node and for Receivers so that all the logic
         # is embedded here.
-        # if in future we will need to other functionalities (I expect so)
-        # we will need some of this logic and its configuration variables in
-        # GLSetting or something else; by the way this overhead is now not needed.
-        supported_extensions = (".jpg", "jpeg", ".png", ".gif")
-        if not uploaded_file['filename'].lower().endswith(supported_extensions):
+
+        if not uploaded_file['filename'].lower().endswith(GLSetting.supported_extensions):
             raise errors.InvalidInputFormat("file extension not supported")
 
         if reserved_name_check(uploaded_file['filename']):
