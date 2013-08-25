@@ -32,6 +32,9 @@ Vagrant.configure("2") do |config|
   # accessing "localhost:8080" will access port 80 on the guest machine.
   # config.vm.network :forwarded_port, guest: 80, host: 8080
 
+  # Forward globaleaks daemon port to get access from localhost
+  config.vm.network :forwarded_port, guest: 8082, host: 8082 
+
   # Create a private network, which allows host-only access to the machine
   # using a specific IP.
   # config.vm.network :private_network, ip: "192.168.33.10"
@@ -45,7 +48,7 @@ Vagrant.configure("2") do |config|
   # the path on the host to the actual folder. The second argument is
   # the path on the guest to mount the folder. And the optional third
   # argument is a set of non-required options.
-  config.vm.synced_folder ".", "/globaleaks"
+  # config.vm.synced_folder ".", "/globaleaks"
 
   # Provider-specific configuration so you can fine-tune various
   # backing providers for Vagrant. These expose provider-specific options.
@@ -64,40 +67,42 @@ end
 $script = <<SCRIPT
 date > /etc/vagrant_provisioned_at
 
-echo "********************************************************"
-echo "*   STEP 1: Install GlobaLeaks"
-echo "********************************************************"
+echo "Installing Tor"
 
-gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x24045008
-gpg --export B353922AE4457748559E777832E6792624045008 | apt-key add -
-/globaleaks/scripts/install-ubuntu-12_04.sh -y
+apt-get update -y
+apt-get install python-software-properties -y
+add-apt-repository 'deb http://deb.torproject.org/torproject.org precise main'
+gpg --keyserver x-hkp://pool.sks-keyservers.net --recv-keys 0x886DDD89
+gpg --export A3C4F0F979CAA22CDBA8F512EE8CBC9E886DDD89 | apt-key add -
+apt-get update -y
+apt-get install tor tor-geoipdb curl -y
+update-rc.d tor defaults
 
-echo "********************************************************"
-echo "*   STEP 2 - Create Your Hidden Service"
-echo "********************************************************"
+echo "Installing Globalekas... "
 
-cat /usr/share/globaleaks/glbackend/torrc >> /etc/tor/torrc
+apt-get install curl -y
+curl https://raw.github.com/globaleaks/GlobaLeaks/master/scripts/install-ubuntu-12_04.sh > install-ubuntu-12_04.sh
+chmod +x install-ubuntu-12_04.sh
+./install-ubuntu-12_04.sh -y
+
+echo "Configuring and Restarting TOR daemon... "
+
+echo "VirtualAddrNetwork 10.23.47.0/10" >> /etc/tor/torrc
+echo "AutomapHostsOnResolve 1" >> /etc/tor/torrc
+echo "TransPort 9040" >> /etc/tor/torrc
+echo "TransListenAddress 127.0.0.1" >> /etc/tor/torrc
+echo "DNSPort 5353" >> /etc/tor/torrc
+echo "DNSListenAddress 127.0.0.1" >> /etc/tor/torrc
 echo "HiddenServiceDir /var/globaleaks/torhs/" >> /etc/tor/torrc
 echo "HiddenServicePort 80 127.0.0.1:8082" >> /etc/tor/torrc
-
 /etc/init.d/tor restart
 
-echo "********************************************************"
-echo "*   STEP 3 - Start globaleaks"
-echo "********************************************************"
+echo "Starting GlobalLeaks daemon... "
 
 /etc/init.d/globaleaks start
 
-echo "********************************************************"
-echo "*                PLEASE JOT DOWN THIS ADDRESS"
-echo "********************************************************"
-
+echo "Your hostname is: "
 cat /var/globaleaks/torhs/hostname
-
-echo "********************************************************"
-echo "*                PLEASE JOT DOWN THIS ADDRESS"
-echo "********************************************************"
-
 
 SCRIPT
 

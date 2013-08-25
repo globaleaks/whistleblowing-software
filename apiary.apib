@@ -1,0 +1,383 @@
+HOST: https://ymasaptkeux3qgbc.tor2web.org
+
+--- GlobaLeaks v0.2 API ---
+---
+Welcome to the our sample API documentation. All comments can be written in (support [Markdown](http://daringfireball.net/projects/markdown/syntax) syntax)
+---
+
+--
+Public API
+API accessible to all the users
+--
+Returns information on the GlobaLeaks node.
+GET /node
+< 200
+< Content-Type: application/json
+{
+   "description":"GlobaLeaks node for testing my dissertation project.",
+   "maximum_namesize":128,
+   "name":"NewcastleLeaks",
+   "tor2web_admin":false,
+   "tor2web_unauth":true,
+   "maximum_filesize":31457280,
+   "email":"lorenzo@primiterra.it",
+   "languages":[
+      {
+         "code":"it",
+         "name":"Italiano"
+      },
+      {
+         "code":"en",
+         "name":"English"
+      }
+   ],
+   "tor2web_receiver":false,
+   "tor2web_submission":false,
+   "tor2web_tip":false,
+   "public_site":"https://ymasaptkeux3qgbc.tor2web.blutmagie.de",
+   "maximum_textsize":2048,
+   "configured":true,
+   "hidden_service":"http://ymasaptkeux3qgbc.onion",
+   "maximum_descsize":1024
+}
+
+Returns an array with  all the contexts of the GlobaLeaks node. Every object includes submission fields and a list of receiver gus.
+GET /contexts
+< 200
+< Content-Type: application/json
+[
+   {
+      "receipt_description":"This sequence here is your receipt keep good care of it as it will allow you to access your submission",
+      "description":"?",
+      "name":"Second",
+      "receivers":[
+         "24602346-eb5e-4c49-bef3-0769790717f4",
+         "63793685-b9a0-4ead-812d-4af62800017c"
+      ],
+      "fields":[
+         {
+            "name":"Short title",
+            "presentation_order":1,
+            "hint":"Describe your tip-off with a line/title",
+            "required":true,
+            "value":"",
+            "type":"text"
+         },
+         {
+            "name":"Full description",
+            "presentation_order":2,
+            "hint":"Describe the details of your tip-off",
+            "required":true,
+            "value":"",
+            "type":"text"
+         },
+         {
+            "name":"Files description",
+            "presentation_order":3,
+            "hint":"Describe the submitted files",
+            "required":false,
+            "value":"",
+            "type":"text"
+         }
+      ],
+      "selectable_receiver":true,
+      "context_gus":"d1c364a2-65ed-4794-9664-7edb9858e0e6",
+      "tip_timetolive":1296000,
+      "escalation_threshold":null,
+      "submission_introduction":"Here you can submit your tip-off and the files",
+      "file_max_download":42,
+      "tip_max_access":42,
+      "file_required":false,
+      "submission_disclaimer":"Thank you for your contribution, your submission is complete"
+   }
+]
+
+Returns all the receivers of a GlobaLeaks node. Every receiver has personal information and a list of context he is enabled to.
+GET /receivers
+< 200
+< Content-Type: application/json
+[
+   {
+      "update_date":"Never",
+      "description":"",
+      "tags":[
+      ],
+      "contexts":[
+         "70b70b4a-a3dd-4e9a-b907-06a6ffbe391e",
+         "d1c364a2-65ed-4794-9664-7edb9858e0e6"
+      ],
+      "can_delete_submission":true,
+      "creation_date":"2013-06-17T14:59:36.438000",
+      "receiver_level":1,
+      "receiver_gus":"63793685-b9a0-4ead-812d-4af62800017c",
+      "name":"Lorenzo"
+   },
+   {
+      "update_date":"Never",
+      "description":"",
+      "tags":[
+      ],
+      "contexts":[
+         "d1c364a2-65ed-4794-9664-7edb9858e0e6"
+      ],
+      "can_delete_submission":true,
+      "creation_date":"2013-06-17T15:13:46.887787",
+      "receiver_level":1,
+      "receiver_gus":"24602346-eb5e-4c49-bef3-0769790717f4",
+      "name":"Tom"
+   }
+]
+
+--
+Submission API
+Used to create and update a submission
+--
+
+This creates an empty submission the specific context and returns the Id to be used when referencing it as a whistleblower. Id is a random 64bit integer
+POST /submission
+> Content-Type: application/json
+{"context_gus":"70b70b4a-a3dd-4e9a-b907-06a6ffbe391e","wb_fields":{},"files":[],"finalize":false,"receivers":[]}
+< 201
+< Content-Type: application/json
+{
+   "wb_fields":{
+   },
+   "pertinence":"0",
+   "receivers":[
+   ],
+   "expiration_date":"2013-08-11T16:02:47.223001",
+   "access_limit":42,
+   "receipt":"",
+   "context_gus":"70b70b4a-a3dd-4e9a-b907-06a6ffbe391e",
+   "creation_date":"2013-07-27T16:02:47.223102",
+   "mark":"submission",
+   "download_limit":42,
+   "submission_gus":"955ce8ef-2416-4674-bb4a-a1b6fbc166f2",
+   "escalation_threshold":"0",
+   "id":"955ce8ef-2416-4674-bb4a-a1b6fbc166f2",
+   "files":[
+   ]
+}
+
+Returns the currently submitted fields and material filenames and size, this is the only interface giving back the complete submission status
+GET /submission/{submission_id}
+< 200
+< Content-Type: application/json
+{
+   "wb_fields":{
+   },
+   "pertinence":"0",
+   "receivers":[
+   ],
+   "expiration_date":"2013-08-11T16:02:47.223001",
+   "access_limit":42,
+   "receipt":"",
+   "context_gus":"70b70b4a-a3dd-4e9a-b907-06a6ffbe391e",
+   "creation_date":"2013-07-27T16:02:47.223102",
+   "mark":"submission",
+   "download_limit":42,
+   "submission_gus":"955ce8ef-2416-4674-bb4a-a1b6fbc166f2",
+   "escalation_threshold":"0",
+   "id":"955ce8ef-2416-4674-bb4a-a1b6fbc166f2",
+   "files":[
+   ]
+}
+
+Update a submission with new fields values. Returns the updated submission in a JSON array
+If finalize is set to true finalize the submission and get back the submission receipt number.
+PUT /submission/{submission_id}
+{"context_gus":"d1c364a2-65ed-4794-9664-7edb9858e0e6","wb_fields":{"Full description":"22","Short title":"11"},"finalize":true,"files":["00186c18-5909-4cd3-ba48-041dc16a4741"],"receivers":["63793685-b9a0-4ead-812d-4af62800017c"]}
+< 200
+< Content-Type: application/json
+{
+   "wb_fields":{
+      "Full description":"22",
+      "Short title":"11"
+   },
+   "pertinence":"0",
+   "receivers":[
+      "63793685-b9a0-4ead-812d-4af62800017c"
+   ],
+   "expiration_date":"2013-08-15T14:15:11.180227",
+   "access_limit":42,
+   "receipt":"9666383729",
+   "context_gus":"d1c364a2-65ed-4794-9664-7edb9858e0e6",
+   "creation_date":"2013-07-31T14:15:11.180766",
+   "mark":"finalize",
+   "download_limit":42,
+   "submission_gus":"00778607-0df5-4139-b415-5ada02b4c98a",
+   "escalation_threshold":"0",
+   "id":"00778607-0df5-4139-b415-5ada02b4c98a",
+   "files":[
+      "00186c18-5909-4cd3-ba48-041dc16a4741"
+   ]
+}
+
+Upload a file to the selected submission_id. Returns a JSON array with file information and the file id to integrate in the submission.
+POST /submission/{submission_id}/file
+> Content-Disposition: attachment; filename="1375208531.png"
+> Content-Length: 27130
+> Content-Type: image/png
+< 200
+< Content-Type: application/json
+[
+   {
+      "name":"1375208531.png",
+      "creation_date":"2013-07-30T18:21:38.654586",
+      "elapsed_time":0.7045769691467285,
+      "content_type":"image/png",
+      "mark":"not processed",
+      "id":"00186c18-5909-4cd3-ba48-041dc16a4741",
+      "size":27130
+   }
+]
+   
+--
+Tip API
+Used to login and retrieve a tip
+--
+
+Returns a session token to access the specified submission, which id was passed inside of the request password headers. And a user_id that will be used as receipt_id.
+POST /authentication
+> Content-Type: application/json
+{"username":"wb","password":"5864037396","role":"wb"}
+< 201
+< Content-Type: application/json
+{"user_id": "91a0e7c9-e704-47fb-8198-84ed707be19e", "session_id": "LqK8tfPKdKQF8LT8KlHBivVn9GuMTV0e66UyZmqm6y"}
+
+Allows the application to refresh an authenticated session. Returns the session token if still valid. 
+GET /authentication
+> X-Session: session_id
+< 200
+< Content-Type: application/json
+{"user_id": "91a0e7c9-e704-47fb-8198-84ed707be19e", "session_id": "LqK8tfPKdKQF8LT8KlHBivVn9GuMTV0e66UyZmqm6y"}
+
+Allows the application to delete an authenticated session.
+DELETE /authentication
+> X-Session: session_id
+< 200
+
+Returns the corrisponding submission to the tip_id sent parameter. Needs a X-Session value to be sent in the headers to authenticate the request.
+GET /tip/{tip_id}
+> X-Session: session_id
+< 201
+< Content-Type: application/json
+{
+   "files":[
+   ],
+   "pertinence":"0",
+   "im_whistleblower":true,
+   "context_id":"d1c364a2-65ed-4794-9664-7edb9858e0e6",
+   "access_limit":42,
+   "expiration_date":"2013-08-09T13:41:04.815883",
+   "context_gus":"d1c364a2-65ed-4794-9664-7edb9858e0e6",
+   "access_counter":0,
+   "creation_date":"2013-07-25T13:41:04.815928",
+   "escalation_threshold":"0",
+   "last_activity":"2013-07-25T13:41:04.815928",
+   "download_limit":42,
+   "im_receiver":false,
+   "fields":{
+      "Full description":"this description",
+      "Files description":"no files",
+      "Short title":"This is my title"
+   },
+   "mark":"first",
+   "id":"91a0e7c9-e704-47fb-8198-84ed707be19e"
+}
+
+
+Write a new comment for a tip. Requires the session_id and tip_id. Returns the sent comment JSON object.
+POST /tip/{tip_id}/comments
+> Content-Type: application/json
+> X-Session: session_id
+{"tip_id":"e78dfb77-9553-4b0d-a6f6-7b076adc62f5", "content":"commentTest"}
+< 201
+< Content-Type: application/json
+[
+   {
+      "content":"commentTest",
+      "source":"whistleblower",
+      "comment_id":"54bba720-ba60-4d1a-848c-d8cb1946d79e",
+      "author":"whistleblower",
+      "creation_date":"2013-08-06T15:47:01.877532"
+   }
+]
+
+Returns all the comments for a specified tip
+GET /tip/{receipt_id}/comments
+> X-Session: session_id
+< 201
+[
+   {
+      "content":"commentTest",
+      "source":"whistleblower",
+      "comment_id":"54bba720-ba60-4d1a-848c-d8cb1946d79e",
+      "author":"whistleblower",
+      "creation_date":"2013-08-06T15:47:01.877532"
+   },
+   {
+      "content":"fuffa",
+      "source":"whistleblower",
+      "comment_id":"80ed4ba4-a350-4103-b68b-812e0efb94e1",
+      "author":"whistleblower",
+      "creation_date":"2013-08-06T16:02:37.820577"
+   }
+]
+
+Returns all the receivers for a specified tip with their relative access counter.
+GET /tip/{tip_id}/receivers
+> X-Session: session_id
+< 201
+< Content-Type: application/json
+[
+   {
+      "name":"John",
+      "tags":[
+      ],
+      "contexts":[
+         "03c28a7b-6fe4-476d-b55d-6bb3ea2fca01",
+         "6b16d055-819f-4ae8-ade8-69e204afb080"
+      ],
+      "can_delete_submission":true,
+      "access_counter":0,
+      "receiver_level":1,
+      "receiver_gus":"89973c09-9dd0-408c-af66-341477d1a470",
+      "description":""
+   },
+   {
+      "name":"Lorenzo",
+      "tags":[
+      ],
+      "contexts":[
+         "03c28a7b-6fe4-476d-b55d-6bb3ea2fca01",
+         "f239263d-9bdc-4996-b07c-fe0d453e5354",
+         "6b16d055-819f-4ae8-ade8-69e204afb080"
+      ],
+      "can_delete_submission":true,
+      "access_counter":0,
+      "receiver_level":1,
+      "receiver_gus":"292511e0-fad5-477f-8050-05bf510a682f",
+      "description":""
+   }
+]
+
+Upload a file to the selected tip. Returns a JSON array with file information.
+POST /tip/{tip_id}/file
+> Content-Disposition: attachment; filename="1375888134.png"
+> Content-Length: 43271
+> Content-Type: image/png
+> X-Session: session_id
+< 200
+< Content-Type: application/json
+[
+   {
+      "name":"1375888134.png",
+      "creation_date":"2013-08-07T15:08:41.264087",
+      "elapsed_time":0.36124110221862793,
+      "content_type":"image/png",
+      "mark":"not processed",
+      "id":"3ccce04e-1ea4-4254-9fac-344378814fb4",
+      "size":43271
+   }
+]

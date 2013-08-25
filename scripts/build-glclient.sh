@@ -1,4 +1,5 @@
 #!/bin/bash
+#!/bin/bash
 DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
 . ${DIR}/common_inc.sh
 
@@ -108,13 +109,17 @@ build_glclient()
 
   echo "Revision used: ${GLCLIENT_REVISION}"
 
-  if [ -f ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz ]; then
-    echo "${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz already present"
+  if not test $TAG; then
+    TAG=${GLCLIENT_REVISION}
+  fi
+
+  if [ -f ${GLC_BUILD}/glclient-${TAG}.tar.gz ]; then
+    echo "${GLC_BUILD}/glclient-${TAG}.tar.gz already present"
     exit
   fi
 
-  if [ -f ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip ]; then
-    echo "${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip already present"
+  if [ -f ${GLC_BUILD}/glclient-${TAG}.zip ]; then
+    echo "${GLC_BUILD}/glclient-${TAG}.zip already present"
     exit
   fi
 
@@ -125,16 +130,16 @@ build_glclient()
   mkdir -p ${GLC_BUILD}
 
   echo "[+] Creating compressed archives"
-  mv build glclient-${GLCLIENT_REVISION}
-  tar czf ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz glclient-${GLCLIENT_REVISION}/
-  md5sum ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz.md5.txt
-  sha1sum ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz.sha1.txt
-  shasum -a 224 ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.tar.gz.sha224.txt
+  mv build glclient-${TAG}
+  tar czf ${GLC_BUILD}/glclient-${TAG}.tar.gz glclient-${TAG}/
+  md5sum ${GLC_BUILD}/glclient-${TAG}.tar.gz > ${GLC_BUILD}/glclient-${TAG}.tar.gz.md5.txt
+  sha1sum ${GLC_BUILD}/glclient-${TAG}.tar.gz > ${GLC_BUILD}/glclient-${TAG}.tar.gz.sha1.txt
+  shasum -a 224 ${GLC_BUILD}/glclient-${TAG}.tar.gz > ${GLC_BUILD}/glclient-${TAG}.tar.gz.sha224.txt
 
-  zip -r ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip glclient-${GLCLIENT_REVISION}/
-  md5sum ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.md5.txt
-  sha1sum ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha1.txt
-  shasum -a 224 ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip > ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
+  zip -r ${GLC_BUILD}/glclient-${TAG}.zip glclient-${TAG}/
+  md5sum ${GLC_BUILD}/glclient-${TAG}.zip > ${GLC_BUILD}/glclient-${TAG}.zip.md5.txt
+  sha1sum ${GLC_BUILD}/glclient-${TAG}.zip > ${GLC_BUILD}/glclient-${TAG}.zip.sha1.txt
+  shasum -a 224 ${GLC_BUILD}/glclient-${TAG}.zip > ${GLC_BUILD}/glclient-${TAG}.zip.sha224.txt
 }
 
 if [ $AUTOYES -eq 1 ]; then
@@ -148,4 +153,4 @@ echo "[+] All done!"
 echo ""
 echo "GLClient build is now present in ${GLC_BUILD}"
 echo "GLClient hash: "
-cat ${GLC_BUILD}/glclient-${GLCLIENT_REVISION}.zip.sha224.txt
+cat ${GLC_BUILD}/glclient-${TAG}.zip.sha224.txt
