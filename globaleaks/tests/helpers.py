@@ -307,7 +307,8 @@ class MockDict():
                    "presentation_order": 1,
                    "value": "",
                    "key": "Short title",
-                   "type": "text"
+                   "type": "text",
+                   "preview": True
                   },
                   {"name": "Full description",
                    "hint": "Describe the details of your tip-off",
@@ -315,7 +316,8 @@ class MockDict():
                     "presentation_order": 2,
                     "value": "",
                     "key": "Full description",
-                    "type": "text"
+                    "type": "text",
+                    "preview": True
                   },
                   {"name": "Files description",
                    "hint": "Describe the submitted files",
@@ -323,7 +325,9 @@ class MockDict():
                    "presentation_order": 3,
                    "value": "",
                    "key": "Files description",
-                   "type": "text"}
+                   "type": "text",
+                   "preview": True
+                  }
                  ],
             'selectable_receiver': False,
             'tip_max_access': 10,
