@@ -20,7 +20,7 @@ class User_version_4(Model):
 class Replacer56(TableReplacer):
 
     def migrate_User(self):
-        print "%s User migration assistant: #%d" % (
+        print "%s User upgrade (bruteforce detection supported): #%d" % (
               self.debug_info, self.store_old.find(self.get_right_model("User", 6)).count() )
 
         old_users = self.store_old.find(self.get_right_model("User", 5))
@@ -39,11 +39,7 @@ class Replacer56(TableReplacer):
             # first_failed field has been removed
             # new_obj.first_failed = old_user.first_failed
             
-            # last_failed_attempt has been introduced
-            new_obj.last_failed_attempt = datetime_null()
-
             new_obj.failed_login_count = old_user.failed_login_count
-
             new_obj.creation_date = old_user.creation_date
 
             self.store_new.add(new_obj)

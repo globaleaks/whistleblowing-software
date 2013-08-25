@@ -66,15 +66,14 @@ class TableReplacer:
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
         from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
         from globaleaks.db.update_5_6 import User_version_4
-        from globaleaks.db.update_6_7 import User_version_6
 
         table_history = {
-            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None, None, None ],
-            'User' : [ User_version_4, None, None, None, None, None, User_version_6, models.User ],
-            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context, None, None ],
-            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None, None, None ],
-            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile, None, None ],
-            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification, None, None ],
+            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None, None ],
+            'User' : [ User_version_4, None, None, None, None, None, models.User ],
+            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context, None ],
+            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None, None ],
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile, None ],
+            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification, None ],
         }
 
         if not table_history.has_key(table_name):
@@ -90,7 +89,7 @@ class TableReplacer:
                 last_attr = table_history[table_name][histcounter]
             histcounter += 1
 
-        assert last_attr
+        assert last_attr, "Invalid developer brainsync in get_right_model()"
         return last_attr
 
     def get_right_sql_version(self, query):
