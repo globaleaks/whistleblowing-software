@@ -21,7 +21,7 @@ class TestJobs(helpers.TestGL):
         created_tips = yield delivery_sched.tip_creation()
         receiver_tips = yield get_receiver_tip_list(self.dummyReceiver['receiver_gus'])
 
-        expected_keys = ['access_counter', 'creation_date', 'expressed_pertinence', 'id', 'files_number', 'last_access']
+        expected_keys = ['access_counter', 'creation_date', 'expressed_pertinence', 'id', 'files_number', 'last_access', 'preview']
         self.assertEqual(set(receiver_tips[0].keys()), set(expected_keys))
 
 
