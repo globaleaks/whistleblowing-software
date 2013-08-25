@@ -47,7 +47,8 @@ sample_context_fields = [
             'presentation_order': 1,
             'key': u'Short title',
             'required': True,
-            'type': u'text', 
+            'preview': True,
+            'type': u'text',
             'value': u''
         },
         {
@@ -55,7 +56,8 @@ sample_context_fields = [
             'hint': u'Describe the details of your Tip',
             'key': u'Full description',
             'presentation_order': 2,
-            'required': True, 
+            'required': True,
+            'preview': True,
             'type': u'text',
             'value': u"" 
         },
@@ -65,6 +67,7 @@ sample_context_fields = [
             'key': u'Files description',
             'presentation_order': 3,
             'required': False,
+            'preview': False,
             'type': u'text',
             'value': u'' 
         },
