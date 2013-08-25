@@ -50,7 +50,18 @@ GLClient.controller('StatusCtrl',
       file.downloads = parseInt(file.downloads) + 1;
     };
 
-}]);
+    $scope.extendTip = function() {
+       $scope.tip.extend = true;
+
+       // XXX this should be returned by the backend, but is not.
+       $scope.tip.total_delete = false;
+       $scope.tip.is_pertinent = false;
+
+       $scope.tip.$update();
+    }
+
+
+  }]);
 
 GLClient.controller('FileDetailsCtrl', ['$scope', function($scope){
     $scope.securityCheckOpen = false;
