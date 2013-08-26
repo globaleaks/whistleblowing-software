@@ -174,14 +174,14 @@
         </tbody>
       </table>
       </div>
-      <div ng-show="tip.im_receiver">
+      <div ng-show="tip.im_receiver_postponer">
           <a ng-init="expirebutton = false" ng-click="expirebutton =! expirebutton">
               {{ "Postpone Tip expiration date" | translate }}
           </a>
           <div ng-show="expirebutton">
             <p>
               {{ "I want extend the Tip expiration date to" | translate }}
-              {{ tip.potential_expiration_date }}
+              {{ tip.potential_expiration_date | date:'fullDate' }}
             </p>
             <button type="submit" class="btn btn-success" ng-click="extendTip()" >extend</button>
           </div>
