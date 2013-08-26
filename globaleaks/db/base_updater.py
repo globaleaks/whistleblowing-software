@@ -119,13 +119,6 @@ class TableReplacer:
                    'state VARCHAR NOT NULL CHECK (state IN (\'disabled\', \'to_be_activated\', \'enabled\', \'temporary_blocked\')),'\
                    'last_login VARCHAR NOT NULL, last_update VARCHAR, first_failed VARCHAR NOT NULL,'\
                    'failed_login_count INTEGER NOT NULL, PRIMARY KEY (id), UNIQUE (username))'
-        elif query.startswith('\n\nCREATE TABLE user (') and self.start_ver < 6:
-            return 'CREATE TABLE user (id VARCHAR NOT NULL,'\
-                   'creation_date VARCHAR NOT NULL, username VARCHAR NOT NULL, password VARCHAR NOT NULL,'\
-                   'salt VARCHAR NOT NULL, role VARCHAR NOT NULL CHECK (role IN (\'admin\', \'receiver\')),'\
-                   'state VARCHAR NOT NULL CHECK (state IN (\'disabled\', \'to_be_activated\', \'enabled\', \'temporary_blocked\')),'\
-                   'last_login VARCHAR NOT NULL, last_update VARCHAR, last_failed_attempt VARCHAR NOT NULL,'\
-                   'failed_login_count INTEGER NOT NULL, PRIMARY KEY (id), UNIQUE (username))'
         elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 2:
             return 'CREATE TABLE context (creation_date VARCHAR NOT NULL, description VARCHAR NOT NULL,'\
                    'escalation_threshold INTEGER,fields BLOB NOT NULL,file_max_download INTEGER NOT NULL,'\
@@ -450,7 +443,7 @@ class TableReplacer:
                 new_obj.last_access = orcvr.last_access
                 new_obj.failed_login = orcvr.failed_login
 
-            if self.start_ver >= 4:
+            if self.start_ver > 4:
                 new_obj.user_id = orcvr.user_id
 
             self.store_new.add(new_obj)
