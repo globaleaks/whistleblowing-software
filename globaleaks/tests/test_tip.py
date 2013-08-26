@@ -40,7 +40,7 @@ class TTip(helpers.TestWithDB):
         'escalation_threshold': u'1', 'tip_max_access': u'2',
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'fields': [], 'submission_timetolive': 100,
-        'receipt_regexp': GLSetting.defaults.receipt_regexp,
+        'receipt_regexp': u"[0-9]{10}",
         'receipt_description': u"blah",
         'submission_introduction': u"bleh",
         'submission_disclaimer': u"bloh",
@@ -136,7 +136,7 @@ class TestTipInstance(TTip):
             self.receipt = yield submission.create_whistleblower_tip(self.submission_desc)
 
         self.assertGreater(len(self.receipt), 5)
-        self.assertTrue(re.match(GLSetting.defaults.receipt_regexp, self.receipt) )
+        self.assertTrue(re.match(u"[0-9]{10}", self.receipt) )
 
     @inlineCallbacks
     def wb_auth_with_receipt(self):

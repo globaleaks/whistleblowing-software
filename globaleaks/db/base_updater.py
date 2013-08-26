@@ -69,7 +69,7 @@ class TableReplacer:
 
         table_history = {
             'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None, None ],
-            'User' : [ User_version_4, None, None, None, None, None, None, models.User],
+            'User' : [ User_version_4, None, None, None, None, None, models.User ],
             'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context, None ],
             'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None, None ],
             'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile, None ],
@@ -89,7 +89,7 @@ class TableReplacer:
                 last_attr = table_history[table_name][histcounter]
             histcounter += 1
 
-        assert last_attr
+        assert last_attr, "Invalid developer brainsync in get_right_model()"
         return last_attr
 
     def get_right_sql_version(self, query):
@@ -292,6 +292,7 @@ class TableReplacer:
 
             new_obj = models.User()
             new_obj.id = old_user.id
+            new_obj.creation_date = old_user.creation_date
             new_obj.username = old_user.username
             new_obj.password = old_user.password
             new_obj.salt = old_user.salt
@@ -301,8 +302,6 @@ class TableReplacer:
 
             if self.start_ver < 5:
                 new_obj.first_failed = old_user.first_failed
-            else:
-                new_obj.last_failed_attempt = old_user.last_failed_attempt
 
             new_obj.failed_login_count = old_user.failed_login_count
 
@@ -320,6 +319,7 @@ class TableReplacer:
             new_obj = models.ReceiverTip()
 
             new_obj.id = ort.id
+            new_obj.creation_date = ort.creation_date
             new_obj.internaltip_id = ort.internaltip_id
             new_obj.receiver_id = ort.receiver_id
 
@@ -443,7 +443,7 @@ class TableReplacer:
                 new_obj.last_access = orcvr.last_access
                 new_obj.failed_login = orcvr.failed_login
 
-            if self.start_ver >= 4:
+            if self.start_ver > 4:
                 new_obj.user_id = orcvr.user_id
 
             self.store_new.add(new_obj)
