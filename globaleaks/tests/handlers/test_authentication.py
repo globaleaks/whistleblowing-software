@@ -185,7 +185,12 @@ class TestAuthentication(helpers.TestHandler):
 
         # A second logout must not be accepted (this validate also X-Session reuse)
         handler = self.request({}, headers={'X-Session': session_id})
-        success = yield handler.delete()
+
+        try:
+            success = yield handler.delete()
+        except errors.NotAuthenticated:
+            self.assertTrue(True)
+
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
@@ -211,7 +216,12 @@ class TestAuthentication(helpers.TestHandler):
 
         # A second logout must not be accepted (this validate also X-Session reuse)
         handler = self.request({}, headers={'X-Session': session_id})
-        success = yield handler.delete()
+
+        try:
+            success = yield handler.delete()
+        except errors.NotAuthenticated:
+            self.assertTrue(True)
+
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
@@ -238,7 +248,12 @@ class TestAuthentication(helpers.TestHandler):
 
         # A second logout must not be accepted (this validate also X-Session reuse)
         handler = self.request({}, headers={'X-Session': session_id})
-        success = yield handler.delete()
+
+        try:
+            success = yield handler.delete()
+        except errors.NotAuthenticated:
+            self.assertTrue(True)
+
         self.assertTrue(handler.current_user is None)
         self.assertEqual(len(GLSetting.sessions.keys()), 0)
 
@@ -322,7 +337,7 @@ class TestAuthentication(helpers.TestHandler):
             'role': 'receiver'
         })
 
-        failed_login = 42
+        failed_login = 7
         for i in xrange(0, failed_login):
             try:
                 failure = yield handler.post()
@@ -334,7 +349,10 @@ class TestAuthentication(helpers.TestHandler):
                 self.assertTrue(False)
 
         receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
-        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiver['username']], 42)
+
+        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiver['username']], failed_login)
+        self.assertTrue(receiver_status.has_key('failed_login'))
+        self.assertEqual(receiver_status['failed_login'], failed_login )
 
         # validate incremental delay
         for i in xrange(1, len(helpers.sleep_list)):
