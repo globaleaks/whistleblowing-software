@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
-from globaleaks.utils import log, pretty_date_time, l10n
+from globaleaks.utils import log, pretty_date_time, l10n, utc_future_date
 
 from globaleaks.settings import transact
 from globaleaks.models import *
@@ -33,6 +33,26 @@ def actor_serialize_internal_tip(internaltip):
         'pertinence' : unicode(internaltip.pertinence_counter),
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
         'fields' : dict(internaltip.wb_fields),
+
+        # these fields are default false and selected as true only
+        # if the receiver has the possibility. anyway are put here
+        # because whistleblowers may have other flag, and I prefer
+        # avoid in splitting shared default value among the handlers
+        'im_whistleblower' : False,
+        'im_receiver' : False,
+
+        # This field is used angualr.js side, to know if show the option at
+        # users interfaces. It's enabled node level by the admin
+        'im_receiver_postponer' : True, # internaltip.context.node.postpone_superpower,
+        # these two fields are at the moment unsend by the client, but kept
+        # maintained in unitTest. (tickets in wishlist)
+        'is_pertinent' : False,
+        'global_delete' : False,
+        # this field "inform" the receiver of the new expiration date that can
+        # be set, only if PUT with extend = True is updated
+        'potential_expiration_date' : \
+            pretty_date_time(utc_future_date(seconds=internaltip.context.submission_timetolive)),
+        'extend' : False,
     }
     return itip_dict
 
@@ -128,10 +148,8 @@ def get_internaltip_wb(store, tip_id):
     tip_desc = actor_serialize_internal_tip(wbtip.internaltip)
     tip_desc['access_counter'] = int(wbtip.access_counter)
     tip_desc['id'] = unicode(wbtip.id)
+
     tip_desc['im_whistleblower'] = True
-    tip_desc['im_receiver'] = False
-    tip_desc['potential_expiration_date'] = u"ignored"
-    tip_desc['extend'] = False
 
     return tip_desc
 
@@ -144,12 +162,8 @@ def get_internaltip_receiver(store, user_id, tip_id):
     tip_desc['expressed_pertinence'] = int(rtip.expressed_pertinence)
     tip_desc['id'] = unicode(rtip.id)
     tip_desc['receiver_id'] = unicode(user_id)
-    tip_desc['im_whistleblower'] = False
+
     tip_desc['im_receiver'] = True
-    # this field "inform" the receiver of the new expiration date that can
-    # be set, only if PUT with extend = True is updated
-    tip_desc['potential_expiration_date'] = u"666"
-    tip_desc['extend'] = False
 
     return tip_desc
 
@@ -242,6 +256,40 @@ def manage_pertinence(store, user_id, tip_id, vote):
     rtip.internaltip.pertinence_counter = vote_sum
     return vote_sum
 
+@transact
+def postpone_expiration_date(store, user_id, tip_id):
+
+    rtip = strong_receiver_validate(store, user_id, tip_id)
+
+    rtip.internaltip.expiration_date = \
+        utc_future_date(seconds=rtip.internaltip.context.tip_timetolive)
+
+    log.debug(" [%s] in %s has extended expiration time to %s" % (
+        rtip.receiver.name,
+        pretty_date_time(datetime_now()),
+        pretty_date_time(utc_future_date(seconds=rtip.internaltip.context.submission_timetolive))
+    ))
+
+    comment = Comment()
+    """
+    system_content = dict({ 'receiver_name': rtip.receiver.name,
+          'now' : pretty_date_time(datetime_now()),
+          'expire_on' : pretty_date_time(utc_future_date(seconds=
+          rtip.internaltip.context.submission_timetolive)) })
+    """
+    comment.content = "%s %s %s " % (
+                   rtip.receiver.name,
+                   pretty_date_time(datetime_now()),
+                   pretty_date_time(utc_future_date(seconds=rtip.internaltip.context.submission_timetolive)) )
+
+    comment.internaltip_id = rtip.internaltip.id
+    comment.author = u'System' # The printed line
+    comment.type = Comment._types[2] # System
+    comment.mark = Comment._marker[0] # Not Notified
+
+    store.add(comment)
+    rtip.internaltip.comments.add(comment)
+
 
 class TipInstance(BaseHandler):
     """
@@ -307,11 +355,14 @@ class TipInstance(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
 
-        if request['global_delete']:
+        if False and request['global_delete']: # disabled because client have not to send them,
             yield delete_internal_tip(self.current_user['user_id'], tip_id)
 
-        elif request['is_pertinent']:
+        elif False and request['is_pertinent']: # disabled too
             yield manage_pertinence(self.current_user['user_id'], tip_id, request['is_pertinent'])
+
+        elif request['extend']:
+            yield postpone_expiration_date(self.current_user['user_id'], tip_id)
 
         self.set_status(202) # Updated
         self.finish()
