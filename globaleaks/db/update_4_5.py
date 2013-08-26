@@ -69,6 +69,7 @@ class Replacer45(TableReplacer):
             new_context = self.get_right_model("Context", 5)()
 
             new_context.id = old_context.id
+            new_context.creation_date = old_context.creation_date
             new_context.selectable_receiver = old_context.selectable_receiver
             new_context.escalation_threshold = old_context.escalation_threshold
             new_context.tip_max_access = old_context.tip_max_access
@@ -102,6 +103,7 @@ class Replacer45(TableReplacer):
             new_rf = self.get_right_model("ReceiverFile", 5)()
 
             new_rf.id = orf.id
+            new_rf.creation_date = orf.creation_date
             new_rf.internaltip_id = orf.internaltip_id
             new_rf.internalfile_id =  orf.internalfile_id
             new_rf.receiver_id =  orf.receiver_id
@@ -155,5 +157,5 @@ class Replacer45(TableReplacer):
         self.store_new.add(new_obj)
         self.store_new.commit()
 
-
-
+    def migrate_User(self):
+        pass

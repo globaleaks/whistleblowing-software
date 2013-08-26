@@ -7,11 +7,10 @@ CREATE TABLE user (
     password VARCHAR NOT NULL,
     salt VARCHAR NOT NULL,
     role VARCHAR NOT NULL CHECK (role IN ('admin', 'receiver')),
-    state VARCHAR NOT NULL CHECK (state IN ('disabled', 'to_be_activated', 'enabled', 'temporary_blocked')),
+    state VARCHAR NOT NULL CHECK (state IN ('disabled', 'to_be_activated', 'enabled')),
     last_login VARCHAR NOT NULL,
-    last_update VARCHAR, 
-    last_failed_attempt VARCHAR NOT NULL,
-    failed_login_count INTEGER NOT NULL,
+    last_update VARCHAR,
+    failed_login_count INTEGER NOT NULL, 
     PRIMARY KEY (id),
     UNIQUE (username)
 );
