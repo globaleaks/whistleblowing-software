@@ -7,7 +7,7 @@ from globaleaks.tests import helpers
 
 from globaleaks.rest import errors, requests
 from globaleaks.rest.base import uuid_regexp
-from globaleaks.handlers import tip, base, admin, submission, authentication
+from globaleaks.handlers import tip, base, admin, submission, authentication, receiver
 from globaleaks.jobs import delivery_sched
 from globaleaks import models
 
@@ -255,6 +255,18 @@ class TestTipInstance(TTip):
         self.assertEqual(vote_sum, 1)
 
     @inlineCallbacks
+    def receiver1_get_tip_list(self):
+        tiplist = yield receiver.get_receiver_tip_list(self.receiver1_desc['receiver_gus'])
+
+        # this test has been added to test issue/515
+        self.assertTrue(isinstance(tiplist, list))
+        self.assertTrue(isinstance(tiplist[0], dict))
+        self.assertTrue(isinstance(tiplist[0]['preview'], list))
+        self.assertTrue(isinstance(tiplist[0]['preview'][0], dict))
+        self.assertTrue(tiplist[0]['preview'][0].has_key('key'))
+        self.assertTrue(tiplist[0]['preview'][0].has_key('text'))
+
+    @inlineCallbacks
     def receiver2_express_negative_vote(self):
         vote_sum = yield tip.manage_pertinence(
             self.receiver2_desc['receiver_gus'], self.rtip2_id, False)
@@ -388,6 +400,8 @@ class TestTipInstance(TTip):
         yield self.access_receivers_tip()
         yield self.strong_receiver_auth()
         yield self.increment_access_counter()
+        # this is the only test on receiver handler and not in tip handler:
+        yield self.receiver1_get_tip_list()
         yield self.receiver1_express_positive_vote()
         yield self.receiver2_express_negative_vote()
         yield self.receiver2_fail_double_vote()

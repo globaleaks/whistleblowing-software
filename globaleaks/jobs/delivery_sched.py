@@ -105,7 +105,7 @@ def receiverfile_planning(store):
     for filex in files:
 
         if not filex.internaltip:
-            log.err("(file_preprocess) Integrity failure: the file %s of %s"\
+            log.err("Integrity failure: the file %s of %s"\
                     "has not an InternalTip assigned (path: %s)" %
                     (filex.name, pretty_date_time(filex.creation_date), filex.file_path) )
 
@@ -343,7 +343,9 @@ def tip_creation(store):
 
         internaltip.mark = internaltip._marker[2]
 
-    log.debug("finalized Submission has created %d ReceiverTip(s)" % len(created_rtip))
+    if len(created_rtip):
+        log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtip))
+
     return created_rtip
 
     # update below with the return_dict

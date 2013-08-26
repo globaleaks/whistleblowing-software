@@ -67,7 +67,7 @@ def dump_static_file(uploaded_file):
         filename saved in the disk
     """
 
-    # if someone of this function return an Exception OSError, is catch by handler
+    # exceptions of type OSError raised inside this function are handled by handler
     filelocation = uploaded_file['_gl_file_path']
 
     if os.path.exists(filelocation):
@@ -113,74 +113,14 @@ def reserved_name_check(target_string):
 
     return False
 
-def import_node_logo(filedesc):
-    """
-    @param filedesc: a dict with 'filename', 'content_type' and 'size' keys
-
-    This function, just move the received file to globaleaks_logo.png
-    At the moment do not check content-type validity nor perform resize.
-
-    This change has been introduced for the tickets:
-    https://github.com/globaleaks/GlobaLeaks/issues/246
-    https://github.com/globaleaks/GlobaLeaks/issues/146
-    https://github.com/globaleaks/GlobaLeaks/issues/247
-
-    TODO, introduce a check that verify file is an Image ?
-    https://github.com/globaleaks/GlobaLeaks/issues/298
-    still we need a library to assign the right content-type
-
-    """
-    logopath = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_nodelogo_name)
-
-    try:
-        if os.path.isfile(logopath):
-            os.unlink(logopath)
-
-        os.rename(filedesc['_gl_file_path'], logopath)
-    except Exception as excep:
-        log.err("OS Error in moving received file to be node logo! %s" % excep.message)
-        raise excep
-
-    log.debug("Moved received file %s [%s bytes] with path: %s " %
-              (filedesc['filename'], str(filedesc['size']), logopath) )
-
-
 @transact
-def import_receiver_pic(store, filedesc, receiver_uuid):
-    """
-    @param filedesc: a dict with 'filename', 'content_type' and 'size' keys
-
-    This function, just move the received file to $UUID.png
-    At the moment do not check content-type validity nor perform resize.
-
-    This change has been introduced for the tickets:
-    https://github.com/globaleaks/GlobaLeaks/issues/246
-    https://github.com/globaleaks/GlobaLeaks/issues/146
-    https://github.com/globaleaks/GlobaLeaks/issues/247
-
-    """
+def receiver_pic_path(store, receiver_uuid):
     receiver = store.find(models.Receiver, models.Receiver.id == unicode(receiver_uuid)).one()
 
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    receiver_pic = os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
-
-    try:
-        if os.path.isfile(receiver_pic):
-            os.unlink(receiver_pic)
-
-        os.rename(filedesc['_gl_file_path'], receiver_pic)
-    except Exception as excep:
-        log.err("OS Error in moving received file to be receiver portrait! %s" % excep.message)
-        raise excep
-
-    log.debug("Moved received file %s [%s bytes] for user %s with path: %s " %
-              (filedesc['filename'], str(filedesc['size']),
-               receiver.user.username, receiver_pic) )
-
-    return receiver.name
-
+    return os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
 
 class StaticFileCollection(BaseHandler):
     """
@@ -192,30 +132,49 @@ class StaticFileCollection(BaseHandler):
     @inlineCallbacks
     def post(self, *args):
         """
-        Upload a new files (one or more)
+        Upload a new file
         """
-        result_list = []
         start_time = time.time()
 
         uploaded_file = self.request.body
 
-        # Do not accept file with reserved filename
+        # currently the static file upload is used to handle only
+        # images uploads for Node and for Receivers so that all the logic
+        # is embedded here.
+
+        if not uploaded_file['filename'].lower().endswith(GLSetting.supported_extensions):
+            raise errors.InvalidInputFormat("file extension not supported")
+
+        if reserved_name_check(uploaded_file['filename']):
+            raise errors.ReservedFileName
+
+        # if special meaning is specified, in this case,
+        # the original name of the file is changed with the appropriate one.
+        if reserved_name_check(self.request.query):
+            specified_keyword = self.request.query
+
+            if specified_keyword == GLSetting.reserved_nodelogo_name:
+                try:
+                    uploaded_file['_gl_file_path'] = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_nodelogo_name)
+                    log.debug("Received request to update Node logo in %s" % uploaded_file['filename'])
+                except Exception as excpd:
+                    log.err("Exception raised while saving Node logo: %s" % excpd)
+                    raise errors.InternalServerError(excpd.__repr__())
+            else:
+                try:
+                    uploaded_file['_gl_file_path'] = yield receiver_pic_path(specified_keyword)
+                    log.debug("Received request to update Receiver portrait for %s" % specified_keyword)
+                except errors.ReceiverGusNotFound as excpd:
+                    log.err("Invalid Receiver ID specified: %s" % specified_keyword)
+                    raise excpd
+                except Exception as excpd:
+                    log.err("Exception raised while saving Receiver %s portrait %s" %
+                            (specified_keyword, excpd))
+                    raise errors.InternalServerError(excpd.__repr__())
+
         try:
-            fname = uploaded_file['filename']
-            if reserved_name_check(fname):
-                raise errors.ReservedFileName
-
-            # not very clean, but files after this validation step has the path added
-            # to the Cyclone request
-            uploaded_file['_gl_file_path'] =  os.path.join(GLSetting.static_path, fname)
-
-        except Exception as excpd:
-            log.err("Invalid stuff received: %s" % excpd)
-            raise errors.InvalidInputFormat("filename is missing in uploaded file block")
-
-        # First: dumps the file in the filesystem,
-        #        and exception raised here would prevent the InternalFile recordings
-        try:
+            # the dump of the file is done here in the latest stage to
+            # avoid writing non tracked files on the file system in case of exceptions
             dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file)
         except OSError as excpd:
             inf_list = get_file_info(uploaded_file)
@@ -226,39 +185,12 @@ class StaticFileCollection(BaseHandler):
             log.err("Not handled exception: %s" % excpd.__repr__())
             raise errors.InternalServerError(excpd.__repr__())
 
-        log.debug("Admin uploaded new static file: %s" % dumped_file['filename'] )
         dumped_file['elapsed_time'] = time.time() - start_time
-        result_list.append(dumped_file)
 
-        # if special meaning is specified, in this case,
-        # the original name of the file is changed with the appropriate one.
-        if reserved_name_check(self.request.query):
-
-            specified_keyword = self.request.query
-
-            if specified_keyword == GLSetting.reserved_nodelogo_name:
-                try:
-                    import_node_logo(dumped_file)
-                    log.debug("Successful imported %s as new Node logo" % uploaded_file['filename'])
-                except Exception as excpd:
-                    log.err("Invalid Image Library operation [%s] with Node logo %s" %
-                            (uploaded_file['filename'], excpd) )
-                    raise errors.InternalServerError(excpd.__repr__())
-            else:
-                try:
-                    receiver_name = yield import_receiver_pic(dumped_file, specified_keyword)
-                    log.debug("Successful imported %s as portrait of %s" %
-                              (uploaded_file['filename'], receiver_name) )
-                except errors.ReceiverGusNotFound as excpd:
-                    log.err("Invalid Receiver ID specified: %s" % specified_keyword)
-                    raise excpd
-                except Exception as excpd:
-                    log.err("Invalid Image Library operation [%s] with Receiver %s portrait %s" %
-                            (uploaded_file['filename'], specified_keyword, excpd) )
-                    raise errors.InternalServerError(excpd.__repr__())
+        log.debug("Admin uploaded new static file: %s" % dumped_file['filename'])
 
         self.set_status(201) # Created
-        self.finish(result_list)
+        self.finish(dumped_file)
 
 
     @transport_security_check('admin')
@@ -269,7 +201,6 @@ class StaticFileCollection(BaseHandler):
         """
         self.set_status(200)
         self.finish(get_stored_files())
-
 
 
 class StaticFileInstance(BaseHandler):
