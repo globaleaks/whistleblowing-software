@@ -22,8 +22,9 @@ CREATE TABLE comment (
     author VARCHAR NOT NULL,
     internaltip_id VARCHAR NOT NULL,
     type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower', 'system')),
-    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify')),
+    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled', 'skipped')),
     content VARCHAR NOT NULL,
+    system_content BLOB,
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,
     PRIMARY KEY (id)
 );
@@ -125,6 +126,7 @@ CREATE TABLE node (
     tor2web_tip INTEGER NOT NULL,
     tor2web_receiver INTEGER NOT NULL,
     tor2web_unauth INTEGER NOT NULL,
+    postpone_superpower INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
@@ -199,7 +201,7 @@ CREATE TABLE receivertip (
     internaltip_id VARCHAR NOT NULL,
     last_access VARCHAR,
     notification_date VARCHAR,
-    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled')),
+    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled', 'skipped')),
     receiver_id VARCHAR NOT NULL,
     PRIMARY KEY (id),
     FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,

@@ -73,6 +73,7 @@ adminNodeDesc = {
     'tor2web_tip': bool,
     'tor2web_receiver': bool,
     'tor2web_unauth': bool,
+    'postpone_superpower': bool,
     'exception_email': unicode,
 }
 
