@@ -306,7 +306,7 @@ class ReceiverTip(Model):
     notification_date = DateTime()
     mark = Unicode()
 
-    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled' ]
+    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
 
     ## NO *_keys = It's created without initializing dict
 
@@ -399,11 +399,13 @@ class Comment(Model):
 
     author = Unicode()
     content = Unicode(validator=gltextv)
+    # In case of syastem_content usage, content has repr() equiv
+    system_content = Pickle()
 
     type = Unicode()
     _types = [ u'receiver', u'whistleblower', u'system' ]
     mark = Unicode()
-    _marker = [ u'not notified', u'notified', u'unable to notify' ]
+    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
     ## NO *_keys = It's created without initializing dict
 
 
@@ -448,6 +450,9 @@ class Node(Model):
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
 
+    # receiver capability apply to all the receivers
+    postpone_superpower = Bool()
+
     exception_email = Unicode()
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
@@ -455,7 +460,7 @@ class Node(Model):
     int_keys = [ 'stats_update_time', 'maximum_namesize', 'maximum_descsize',
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                  'tor2web_tip', 'tor2web_unauth' ]
+                  'tor2web_tip', 'tor2web_unauth', 'postpone_superpower' ]
     localized_strings = [ 'description', 'presentation' ]
 
 

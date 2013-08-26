@@ -41,7 +41,8 @@ def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.def
 
         # This field is used angualr.js side, to know if show the option at
         # users interfaces. It's enabled node level by the admin
-        'im_receiver_postponer' : True, # internaltip.context.node.postpone_superpower,
+        'im_receiver_postponer' : False,
+
         # these two fields are at the moment unsend by the client, but kept
         # maintained in unitTest. (tickets in wishlist)
         'is_pertinent' : False,
@@ -200,7 +201,12 @@ def delete_receiver_tip(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
     comment = Comment()
+
     comment.content = "%s personally remove from this Tip" % rtip.receiver.name
+    comment.system_content = dict({ "type" : 2,
+                                    "receiver_name" : rtip.receiver.name,
+                                    "now": pretty_date_time(datetime_now()) })
+
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
     comment.type = Comment._types[2] # System
@@ -401,6 +407,7 @@ def serialize_comment(comment):
         'comment_id' : unicode(comment.id),
         'source' : unicode(comment.type),
         'content' : unicode(comment.content),
+        'system_content' : comment.system_content if comment.system_content else {},
         'author' : unicode(comment.author),
         'creation_date' : unicode(pretty_date_time(comment.creation_date))
     }
