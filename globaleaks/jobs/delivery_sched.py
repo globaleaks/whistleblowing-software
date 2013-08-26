@@ -343,7 +343,9 @@ def tip_creation(store):
 
         internaltip.mark = internaltip._marker[2]
 
-    log.debug("finalized Submission has created %d ReceiverTip(s)" % len(created_rtip))
+    if len(created_rtip):
+        log.debug("The finalized submissions had created %d ReceiverTip(s)" % len(created_rtip))
+
     return created_rtip
 
     # update below with the return_dict

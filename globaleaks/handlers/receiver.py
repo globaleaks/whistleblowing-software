@@ -7,7 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n
+from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n, naturalize_fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact, GLSetting
@@ -137,15 +137,29 @@ class ReceiverInstance(BaseHandler):
 
 def serialize_tip_summary(rtip, file_associated):
 
-    return {
+    single_tip_sum = dict({
+        # expiry time ?
+        # context_id ?
         'access_counter': rtip.access_counter,
-        # XXX total sum or personal expression ?
         'expressed_pertinence': rtip.expressed_pertinence,
         'creation_date' : unicode(pretty_date_time(rtip.creation_date)),
         'last_access' : unicode(pretty_date_time(rtip.last_access)),
         'id' : rtip.id,
         'files_number': file_associated,
-    }
+    })
+
+    preview_data = []
+    for sf in naturalize_fields(rtip.internaltip.context.fields):
+
+        if sf['preview'] == True and sf['type'] == u'text':
+            # preview in a format angular.js likes
+            entry = dict({ 'key' : sf['key'],
+                           'text': rtip.internaltip.wb_fields[sf['key']] })
+            preview_data.append(entry)
+
+    single_tip_sum.update({ 'preview' : preview_data })
+    print "XX", single_tip_sum
+    return single_tip_sum
 
 
 @transact
