@@ -45,6 +45,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'tor2web_tip': GLSetting.memory_copy.tor2web_tip,
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
+        'postpone_superpower': node.postpone_superpower,
     }
 
     for attr in ['presentation', 'description' ]:

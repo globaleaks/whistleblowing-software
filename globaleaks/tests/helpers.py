@@ -375,6 +375,7 @@ class MockDict():
             'tor2web_tip' : True,
             'tor2web_receiver' : True,
             'tor2web_unauth' : True,
+            'postpone_superpower' : False,
             'exception_email' : GLSetting.defaults.exception_email,
         }
 
