@@ -157,5 +157,5 @@ class Replacer45(TableReplacer):
         self.store_new.add(new_obj)
         self.store_new.commit()
 
-
-
+    def migrate_User(self):
+        pass
