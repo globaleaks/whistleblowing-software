@@ -37,6 +37,19 @@
         <input type="text" ng-model="admin.node.maximum_descsize" />
         <br>
 
+        <div class="table-bordered">
+           <label>
+              <input type="checkbox" ng-model="admin.node.postpone_superpower" />
+              {{ "Permit Recivers to postpone expiration date of the Tips" | translate }}
+           </label>
+           <label ng-show="admin.node.postpone_superpower" >
+              <span class="btn-info">
+                 {{ "now Enabled:" | translate }}
+              </span>
+              {{ "A receiver can postpone how many times wants, all the receivers had the same privileges." | translate }}
+           </label>
+        </div>
+
         <a ng-click="tor2web_editing = !tor2web_editing" ng-init="tor2web_editing = false" ng-show="!tor2web_editing">
             {{ "Edit Tor2Web accessibility table " | translate }}
         </a>
