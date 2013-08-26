@@ -135,7 +135,18 @@
           <div ng-switch-when="system" class="alert alert-warning">
             <strong>
               {{ "System" | translate }}
-            </strong> {{comment.content}}
+            </strong>
+              <!-- {{comment.content}} -->
+              <div ng-switch on="comment.system_content.type">
+                 <div ng-switch-when="1">
+                     {{ "The user" | translate }}
+                     {{comment.system_content.receiver_name}}
+                     {{ "In date" | translate }}
+                     {{comment.system_content.now | date:'fullDate' }}
+                     {{ "has postponed Tip expiration to" | translate }}
+                     {{comment.system_content.expire_on | date:'fullDate' }}
+                 </div>
+              </div>
           </div>
 
           <div ng-switch-default class="alert alert-danger">
