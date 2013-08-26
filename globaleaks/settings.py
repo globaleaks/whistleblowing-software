@@ -38,8 +38,6 @@ verbosity_dict = {
     'CRITICAL': logging.CRITICAL
 }
 
-from storm.zope.zstorm import ZStorm
-
 sample_context_fields = [
         {
             'name': u'Short title', 
@@ -122,6 +120,7 @@ class GLSettingsClass:
         self.staticfile_regexp = r'(\w+)\.(\w+)'
         self.staticfile_overwrite = False
         self.reserved_nodelogo_name = "globaleaks_logo" # .png
+        self.supported_extensions = (".jpg", ".jpeg", ".png", ".gif")
 
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
