@@ -149,14 +149,19 @@ class GLHTTPServer(HTTPConnection):
             self.transport.loseConnection()
 
     def _on_request_body(self, data):
-        self._request.body = data
-        content_type = self._request.headers.get("Content-Type", "")
-        if self._request.method in ("POST", "PATCH", "PUT"):
-            if content_type.startswith("application/x-www-form-urlencoded"):
-                raise errors.InvalidInputFormat("content type application/x-www-form-urlencoded not supported")
-            elif content_type.startswith("multipart/form-data"):
-                raise errors.InvalidInputFormat("content type multipart/form-data not supported")
-        self.request_callback(self._request)
+        try:
+            self._request.body = data
+            content_type = self._request.headers.get("Content-Type", "")
+            if self._request.method in ("POST", "PATCH", "PUT"):
+                if content_type.startswith("application/x-www-form-urlencoded"):
+                    raise errors.InvalidInputFormat("content type application/x-www-form-urlencoded not supported")
+                elif content_type.startswith("multipart/form-data"):
+                    raise errors.InvalidInputFormat("content type multipart/form-data not supported")
+            self.request_callback(self._request)
+        except Exception as e:
+            log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, e))
+            self._request.finish()
+            self.transport.loseConnection()
 
 
 class BaseBaseHandler(RequestHandler):
