@@ -47,7 +47,7 @@ def wb_serialize_internaltip(internaltip):
     return response
 
 @transact
-def create_whistleblower_tip(store, submission):
+def create_whistleblower_tip(store, submission_desc):
     """
     The plaintext receipt is returned only now, and then is
     stored hashed in the WBtip table
@@ -55,25 +55,27 @@ def create_whistleblower_tip(store, submission):
     from Crypto import Random
     Random.atfork()
 
-    assert submission is not None and submission.has_key('id')
+    assert submission_desc is not None and submission_desc.has_key('id')
 
     wbtip = WhistleblowerTip()
 
-    context = store.find(Context, Context.id == submission['context_gus']).one()
+    context = store.find(Context, Context.id == submission_desc['context_gus']).one()
 
     return_value_receipt = unicode( rstr.xeger(context.receipt_regexp) )
     node = store.find(Node).one()
     wbtip.receipt_hash = security.hash_password(return_value_receipt, node.receipt_salt)
 
     wbtip.access_counter = 0
-    wbtip.internaltip_id = submission['id']
+    wbtip.internaltip_id = submission_desc['id']
     store.add(wbtip)
 
     return return_value_receipt
 
 
 # Remind: it's a store without @transaction because called by a @ŧransact
-def import_receivers(store, submission, receiver_id_list, context, required=False):
+def import_receivers(store, submission, receiver_id_list, required=False):
+    context = submission.context
+
     # As first we check if Context has some policies
     if not context.selectable_receiver:
         for receiver in context.receivers:
@@ -94,10 +96,17 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
 
     # Clean the previous list of selected Receiver
     for prevrec in submission.receivers:
-        submission.receivers.remove(prevrec)
+        try:
+            submission.receivers.remove(prevrec)
+        except Exception as excep:
+            log.err("Unable to remove receiver from Tip, before new reassignment")
+            raise excep
+
+    store.commit()
 
     # without contexts policies, import WB requests and checks consistency
-    for receiver_id in receiver_id_list:
+    sorted_receiver_id_list = list(set(receiver_id_list))
+    for receiver_id in sorted_receiver_id_list:
         try:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         except Exception as excep:
@@ -108,7 +117,12 @@ def import_receivers(store, submission, receiver_id_list, context, required=Fals
         if not context in receiver.contexts:
             raise errors.InvalidInputFormat("Forged receiver selection, you fuzzer! <:")
 
-        submission.receivers.add(receiver)
+        try:
+            submission.receivers.add(receiver)
+        except Exception as excep:
+            log.err("Receiver %s can't be assigned to the tip [%s]" % (receiver_id, excep) )
+            continue
+
         log.debug("+receiver [%s] In tip (%s) #%d" %\
                 (receiver.name, submission.id, submission.receivers.count() ) )
 
@@ -217,8 +231,8 @@ def force_schedule():
 
 @transact
 def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
-    context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
 
+    context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
     if not context:
         log.err("Context requested: [%s] not found!" % request['context_gus'])
         raise errors.ContextGusNotFound
@@ -244,50 +258,102 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
         log.err("Storm/SQL Error: %s (create_submission)" % excep)
         raise errors.InternalServerError("Unable to commit on DB")
 
-    receivers = request.get('receivers', [])
-    import_receivers(store, submission, receivers, context, required=finalize)
-
     files = request.get('files', [])
-    import_files(store, submission, files)
+    try:
+        import_files(store, submission, files)
+    except Exception as excep:
+        log.err("subm_creat - Invalid operation in import_files : %s" % excep)
+        store.remove(submission)
+        store.commit()
+        raise excep
 
     fields = request.get('wb_fields', {})
-    naturalized = naturalize_fields(context.fields)
-    import_fields(submission, fields, naturalized, strict_validation=finalize)
+    try:
+        naturalized = naturalize_fields(context.fields)
+        import_fields(submission, fields, naturalized, strict_validation=finalize)
+    except Exception as excep:
+        log.err("subm_creat - Invalid operation in import_fields : %s" % excep)
+        store.remove(submission)
+        store.commit()
+        raise excep
+
+    receivers = request.get('receivers', [])
+    try:
+        import_receivers(store, submission, receivers, required=finalize)
+    except Exception as excep:
+        log.err("subm_creat - Invalid operation in import_receivers: %s" % excep)
+        store.remove(submission)
+        store.commit()
+        raise excep
 
     submission_dict = wb_serialize_internaltip(submission)
     return submission_dict
 
 @transact
 def update_submission(store, id, request, finalize, language=GLSetting.memory_copy.default_language):
+
+    context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
+    if not context:
+        log.err("Context requested: [%s] not found!" % request['context_gus'])
+        raise errors.ContextGusNotFound
+
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
 
     if not submission:
-        log.err("Invalid Submission requested %s in PUT" % id)
-        raise errors.SubmissionGusNotFound
+
+        log.debug("Creating a new submission in update!")
+        submission = InternalTip()
+
+        submission.escalation_threshold = context.escalation_threshold
+        submission.access_limit = context.tip_max_access
+        submission.download_limit = context.file_max_download
+        submission.expiration_date = utc_future_date(seconds=context.tip_timetolive)
+        submission.pertinence_counter = 0
+        submission.context_id = context.id
+        submission.creation_date = datetime_now()
+        submission.mark = InternalTip._marker[0] # Submission
+
+        try:
+            store.add(submission)
+        except Exception as excep:
+            log.err("Storm/SQL Error: %s (update_submission)" % excep)
+            raise errors.InternalServerError("Unable to commit on DB")
+
+    # this may happen if a submission try to update a context
+    if submission.context_id != context.id:
+        log.err("Can't be changed context in a submission update")
+        raise errors.ContextGusNotFound("Context are immutable")
 
     if submission.mark != InternalTip._marker[0]:
         log.err("Submission %s do not permit update (status %s)" % (id, submission.mark))
         raise errors.SubmissionConcluded
 
-    context = store.find(Context, Context.id == unicode(request['context_gus'])).one()
-    if not context:
-        log.err("Context requested %s do not exist in UPDATE" % request['context_gus'])
-        raise errors.ContextGusNotFound
-
-    # Can't be changed context in the middle of a Submission
-    if submission.context_id != context.id:
-        log.err("Context can't be changed in the middle (before %s, now %s)" %\
-                (submission.context_id, context.id))
-        raise errors.ContextGusNotFound
-
-    receivers = request.get('receivers', [])
-    import_receivers(store, submission, receivers, context, required=finalize)
-
     files = request.get('files', [])
-    import_files(store, submission, files)
+    try:
+        import_files(store, submission, files)
+    except Exception as excep:
+        log.err("subm_update - Invalid operation in import_files : %s" % excep)
+        store.remove(submission)
+        store.commit()
+        raise excep
 
     fields = request.get('wb_fields', [])
-    import_fields(submission, fields, naturalize_fields(submission.context.fields), strict_validation=finalize)
+    try:
+        import_fields(submission, fields, naturalize_fields(submission.context.fields), strict_validation=finalize)
+    except Exception as excep:
+        log.err("subm_update - Invalid operation in import_fields : %s" % excep)
+        store.remove(submission)
+        store.commit()
+        raise excep
+
+    receivers = request.get('receivers', [])
+    try:
+        import_receivers(store, submission, receivers, required=finalize)
+    except Exception as excep:
+        log.err("subm_update - Invalid operation in import_receivers : %s" % excep)
+        store.remove(submission)
+        store.commit()
+        raise excep
 
     if finalize:
         submission.mark = InternalTip._marker[1] # Finalized
@@ -317,7 +383,7 @@ def delete_submission(store, id):
         log.err("Submission %s already concluded (status: %s)" % (id, submission.mark))
         raise errors.SubmissionConcluded
 
-    store.delete(submission)
+    store.remove(submission)
 
 
 class SubmissionCreate(BaseHandler):
