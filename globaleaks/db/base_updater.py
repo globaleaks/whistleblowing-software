@@ -65,15 +65,16 @@ class TableReplacer:
         from globaleaks.db.update_2_3 import Receiver_version_2
         from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
         from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
-        from globaleaks.db.update_5_6 import User_version_4
+        from globaleaks.db.update_5_6 import User_version_4, Comment_version_0, Node_version_4
 
         table_history = {
-            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None, None ],
-            'User' : [ User_version_4, None, None, None, None, None, None, models.User],
+            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, Node_version_4, None, models.Node ],
+            'User' : [ User_version_4, None, None, None, None, None, models.User],
             'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context, None ],
             'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None, None ],
             'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile, None ],
             'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification, None ],
+            'Comment': [ Comment_version_0, None, None, None, None, None, None, models.Comment ]
         }
 
         if not table_history.has_key(table_name):
@@ -499,6 +500,9 @@ class TableReplacer:
             if self.start_ver >= 4:
                 new_obj.status = orf.status
                 new_obj.size = orf.size
+
+            if self.start_ver >= 5:
+                new_obj.receiver_tip_id = orf.receiver_tip_id
 
             self.store_new.add(new_obj)
 
