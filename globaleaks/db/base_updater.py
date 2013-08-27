@@ -443,7 +443,7 @@ class TableReplacer:
                 new_obj.last_access = orcvr.last_access
                 new_obj.failed_login = orcvr.failed_login
 
-            if self.start_ver > 4:
+            if self.start_ver > 3:
                 new_obj.user_id = orcvr.user_id
 
             self.store_new.add(new_obj)
