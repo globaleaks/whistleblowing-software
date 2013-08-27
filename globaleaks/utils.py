@@ -22,7 +22,7 @@ from storm.tz import tzoffset
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from txsocksx.client import SOCKS5ClientEndpoint
 from twisted.internet import reactor, protocol, error
-from twisted.internet.defer import Deferred
+from twisted.internet.defer import Deferred, inlineCallbacks
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient
 from twisted.internet.ssl import ClientContextFactory
 from twisted.protocols import tls
@@ -35,6 +35,14 @@ from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
 from globaleaks import __version__, LANGUAGES_SUPPORTED_CODES
+
+def sleep(timeout):
+    def callbackDeferred():
+        d.callback(True)
+
+    d = Deferred()
+    reactor.callLater(timeout, callbackDeferred)
+    return d
 
 def sanitize_str(s):
     """

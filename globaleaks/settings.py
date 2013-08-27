@@ -115,6 +115,8 @@ class GLSettingsClass:
 
         # session tracking, in the singleton classes
         self.sessions = dict()
+        self.failed_login_attempts = dict() # statisticals, referred to latest_period
+        self.failed_login_attempts_wb = 0   # and resetted by session_management sched
 
         # static file rules
         self.staticfile_regexp = r'(\w+)\.(\w+)'
@@ -126,9 +128,10 @@ class GLSettingsClass:
         self.accepted_hosts = "127.0.0.1,localhost"
 
         # default timings for scheduled jobs
-        self.cleaning_hours_delta = 5 # runner.py function expect hours
-        self.notification_minutes_delta = 2 # runner.py function expect minutes
-        self.delivery_seconds_delta = 30 # runner.py function expect seconds
+        self.session_management_minutes_delta = 1 # runner.py function expects minutes
+        self.cleaning_hours_delta = 5             # runner.py function expects hours
+        self.notification_minutes_delta = 2       # runner.py function expects minutes
+        self.delivery_seconds_delta = 30          # runner.py function expects seconds
 
         self.defaults = OD()
         # Default values, used to initialize DB at the first start,

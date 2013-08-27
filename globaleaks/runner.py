@@ -52,8 +52,9 @@ def start_asynchronous():
     not executed by globaleaks.run_app, then is called by the
     OS-depenedent runner below
     """
-    from globaleaks.jobs import notification_sched, gpgexpire_sched, \
-        delivery_sched, cleaning_sched
+    from globaleaks.jobs import session_management_sched, \
+                                notification_sched, gpgexpire_sched, \
+                                delivery_sched, cleaning_sched
 
     # When the application boot, maybe because has been after a restart, then
     # with the method *.force_execution, we reschedule the execution of all the
@@ -71,6 +72,11 @@ def start_asynchronous():
     #         GLAsynchronous.print_jobs()
     # GLAsynchronous.add_listener(event_debug_listener,
     #       EVENT_JOB_EXECUTED | EVENT_JOB_ERROR | EVENT_JOB_MISSED)
+
+    session_manage_sched = session_management_sched.APSSessionManagement()
+    session_manage_sched.force_execution(GLAsynchronous, seconds=1)
+    GLAsynchronous.add_interval_job(session_manage_sched.operation,
+        minutes=GLSetting.session_management_minutes_delta)
 
     deliver_sched = delivery_sched.APSDelivery()
     deliver_sched.force_execution(GLAsynchronous, seconds=5)
