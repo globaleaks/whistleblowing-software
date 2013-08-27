@@ -142,6 +142,7 @@ class Replacer34(TableReplacer):
             # new_obj.password = old_obj.password
             # new_obj.last_access = old_obj.last_access
 
+            new_obj.creation_date = old_r.creation_date
             new_obj.name = old_r.name
             new_obj.description = old_r.description
             new_obj.gpg_key_info = old_r.gpg_key_info

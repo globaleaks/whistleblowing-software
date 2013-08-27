@@ -1,5 +1,4 @@
 import time
-from datetime import timedelta
 
 from storm.exceptions import NotOneError
 
@@ -14,6 +13,8 @@ from globaleaks.rest import errors, requests
 from globaleaks.utils import log
 from globaleaks.third_party import rstr
 from globaleaks import security, utils
+
+from Crypto import Random
 
 def update_session(user):
     """
@@ -166,6 +167,7 @@ def login_wb(store, receipt):
 
     if not wb_tip:
         log.debug("Whistleblower: Invalid receipt")
+        GLSetting.failed_login_attempts_wb += 1
         return False
 
     log.debug("Whistleblower: Valid receipt")
@@ -185,28 +187,18 @@ def login_receiver(store, username, password):
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
         return False
 
-    if  receiver_user.state == u'temporary_blocked':
-       delta = timedelta(seconds=GLSetting.failed_login_block_time*60)
-       if  receiver_user.last_failed_attempt + delta >= utils.datetime_now():
-           log.debug("Receiver login: Still Blocked by bruteforce protection")
-           raise errors.TooMuchFailedLogins() # still blocked
-       else:
-           receiver_user.state == u'enabled'
-
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
         log.debug("Receiver login: Invalid password")
         receiver_user.failed_login_count += 1
-        receiver_user.last_failed_attempt = utils.datetime_now()
-        if receiver_user.failed_login_count >= GLSetting.failed_login_alarm:
-            log.debug("Receiver login: Blocked by bruteforce protection")
-            receiver_user.state = u'temporary_blocked'
+        if username in GLSetting.failed_login_attempts:
+            GLSetting.failed_login_attempts[username] += 1
+        else:
+            GLSetting.failed_login_attempts[username] = 1
+
         return False
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
-        receiver_user.failed_login_count = 0
-        receiver_user.last_failed_attempt = utils.datetime_null()
         receiver_user.last_login = utils.datetime_now()
-
         receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
         return receiver.id
 
@@ -218,26 +210,16 @@ def login_admin(store, username, password):
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
         return False
 
-    if admin_user.state == u'temporary_blocked':
-       delta = timedelta(seconds=GLSetting.failed_login_block_time*60)
-       if admin_user.last_failed_attempt + delta >= utils.datetime_now():
-           log.debug("Admin login: Still Blocked by bruteforce protection")
-           raise errors.TooMuchFailedLogins() # still blocked
-       else:
-           admin_user.state == u'enabled'
-
     if not security.check_password(password, admin_user.password, admin_user.salt):
         log.debug("Admin login: Invalid password")
         admin_user.failed_login_count += 1
-        admin_user.last_failed_attempt = utils.datetime_now()
-        if admin_user.failed_login_count >= GLSetting.failed_login_alarm:
-            log.debug("Admin login: Blocked by bruteforce protection")
-            admin_user.state = u'temporary_blocked'
+        if username in GLSetting.failed_login_attempts:
+            GLSetting.failed_login_attempts[username] += 1
+        else:
+            GLSetting.failed_login_attempts[username] = 1
         return False
     else:
         log.debug("Admin: Authorized receiver %s" % username)
-        admin_user.failed_login_count = 0
-        admin_user.last_failed_attempt = utils.datetime_null()
         admin_user.last_login = utils.datetime_now()
         return username
 
@@ -250,6 +232,46 @@ class AuthenticationHandler(BaseHandler):
     """
     session_id = None
 
+    def random_login_delay(self, user):
+        """
+        in case of failed_login_attempts introduces
+        an exponential increasing delay between 0 and 42 seconds
+        
+        the function implements the following table:
+            ----------------------------------
+           | failed_attempts |      delay     |
+           | 0               | 0              |
+           | 1               | 1              |
+           | 2               | random(2, 4)   |
+           | 3               | random(3, 9)   |
+           | 4               | random(4, 16)  |
+           | 5               | random(5, 26)  |
+           | 6               | random(6, 36 ) |
+           | 7               | random(7, 42)  |
+           | N               | random(N, 42)  |
+            ----------------------------------
+        """
+        if user == 'wb':
+            failed_attempts = GLSetting.failed_login_attempts_wb
+        else:
+            if user in GLSetting.failed_login_attempts:
+                failed_attempts = GLSetting.failed_login_attempts[user]
+            else:
+                failed_attempts = 0
+
+        if failed_attempts:
+            min = failed_attempts if failed_attempts < 42 else 42
+    
+            n = failed_attempts * failed_attempts
+            if n < 42:
+                max = n
+            else:
+                max = 42
+
+            return Random.random.randint(min, max)
+        
+        return 0
+
     def generate_session(self, role, user_id):
         """
         Args:
@@ -259,7 +281,6 @@ class AuthenticationHandler(BaseHandler):
                 case of an admin it will be set to 'admin', in the case of the
                 'wb' it will be the whistleblower id.
         """
-        from Crypto import Random
         Random.atfork()
 
         self.session_id = rstr.xeger(r'[A-Za-z0-9]{42}')
@@ -297,6 +318,10 @@ class AuthenticationHandler(BaseHandler):
         username = request['username']
         password = request['password']
         role = request['role']
+        
+        delay = self.random_login_delay(username)
+        if delay:
+            yield utils.sleep(delay)
 
         # Then verify credential, if the channel shall be trusted
         if role == 'admin':

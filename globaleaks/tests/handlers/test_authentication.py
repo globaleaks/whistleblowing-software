@@ -25,7 +25,6 @@ class TestSessionUpdateOnUnauthRequests(helpers.TestHandler):
 
     @inlineCallbacks
     def test_successful_session_update_on_unauth_request(self):
-        
         date1 = utils.datetime_now()
         
         GLSetting.sessions = {}
@@ -68,7 +67,7 @@ class TestSessionExpiryOnUnauthRequests(helpers.TestHandler):
     _handler = ClassToTestUnauthenticatedDecorator
 
     @inlineCallbacks
-    def test_successful_session_update_on_unauth_request(self):
+    def test_successful_session_expiry_on_unauth_request(self):
         
         date1 = utils.datetime_null() # oh a very old date!
         
@@ -94,7 +93,7 @@ class TestSessionExpiryOnAuthRequests(helpers.TestHandler):
     _handler = ClassToTestAuthenticatedDecorator
 
     @inlineCallbacks
-    def test_successful_session_update_on_auth_request(self):
+    def test_successful_session_expiry_on_auth_request(self):
         
         date1 = utils.datetime_null() # oh a very old date!
         
@@ -327,53 +326,18 @@ class TestAuthentication(helpers.TestHandler):
                 self.assertTrue(False)
 
         receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
-        self.assertTrue(receiver_status.has_key('failed_login'))
-        self.assertEqual(receiver_status['failed_login'], failed_login)
-
-    @inlineCallbacks
-    def test_failed_login_counter_reset(self):
-        handler = self.request({
-            'username': self.dummyReceiver['username'],
-            'password': 'INVALIDPASSWORD',
-            'role': 'receiver'
-        })
-
-        failed_login = 4
-        for i in xrange(0, failed_login):
-            try:
-                failure = yield handler.post()
-                print type(failure)
-            except errors.InvalidAuthRequest:
-                continue
-            except Exception as excep:
-                print excep, "Has been raised wrongly"
-                self.assertTrue(False)
-
-        receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
-        self.assertTrue(receiver_status.has_key('failed_login'))
-        self.assertEqual(receiver_status['failed_login'], failed_login)
-
-        handler = self.request({
-            'username': self.dummyReceiver['username'],
-            'password': helpers.VALID_PASSWORD1,
-            'role': 'receiver'
-        })  
-            
-        success = yield handler.post()
-
-        receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
-        self.assertTrue(receiver_status.has_key('failed_login'))
-        self.assertEqual(receiver_status['failed_login'], 0)
+        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiver['username']], failed_login)
 
     @inlineCallbacks
     def test_bruteforce_login_protection(self):
+
         handler = self.request({
             'username': self.dummyReceiver['username'],
             'password': 'INVALIDPASSWORD',
             'role': 'receiver'
         })
 
-        failed_login = 5
+        failed_login = 7
         for i in xrange(0, failed_login):
             try:
                 failure = yield handler.post()
@@ -385,8 +349,12 @@ class TestAuthentication(helpers.TestHandler):
                 self.assertTrue(False)
 
         receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
-        self.assertTrue(receiver_status.has_key('failed_login'))
-        self.assertEqual(receiver_status['failed_login'], 5)
-        
-        
 
+        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiver['username']], failed_login)
+        self.assertTrue(receiver_status.has_key('failed_login'))
+        self.assertEqual(receiver_status['failed_login'], failed_login )
+
+        # validate incremental delay
+        for i in xrange(1, len(helpers.sleep_list)):
+            self.assertTrue(i <= helpers.sleep_list[i])
+            
