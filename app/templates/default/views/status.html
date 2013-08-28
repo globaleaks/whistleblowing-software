@@ -124,8 +124,8 @@
       </p></div>
 
       <div ng-cloak ng-show="tip.im_whistleblower">
-        <div file-upload action="/tip/{{whistleblower_tip_id}}/upload"
-             file-uploader="fileUploader"></div>
+        <div ng-include="'views/widgets/fileupload.html'" class="span4">
+        </div>
       </div>
     </div>
   </div>
