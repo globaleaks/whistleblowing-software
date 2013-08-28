@@ -49,7 +49,7 @@ install_glclient_dependencies()
   sudo add-apt-repository ppa:chris-lea/node.js -y
   sudo apt-get update -y
   sudo apt-get install nodejs -y
-  sudo npm install -g grunt-cli
+  sudo npm install -g grunt-cli bower
 }
 
 build_custom_glclient()
@@ -108,6 +108,7 @@ build_custom_glclient()
 
   cd $TMP_DIR/GLCLient
   npm install -d
+  bower update
   grunt build
 
   if [ ! -d  $GLCLIENT_INSTALL_DIR.default ]; then
