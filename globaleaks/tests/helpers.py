@@ -274,7 +274,6 @@ class MockDict():
             'role': u'admin',
             'state': u'enabled',
             'last_login': utils.datetime_null(),
-            'last_failed_attempt': utils.datetime_null(),
             'failed_login_count': 0
         }
 

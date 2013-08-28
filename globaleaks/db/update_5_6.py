@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Model, User
+from globaleaks.models import Model, User, ReceiverTip
 from globaleaks.utils import datetime_null
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 from globaleaks import DATABASE_VERSION
@@ -17,6 +17,13 @@ class User_version_4(Model):
     last_login = DateTime()
     first_failed = DateTime()
     failed_login_count = Int()
+
+    # this all are needed due to the addition of the table inside version 4
+    unicode_keys = [ 'username', 'password', 'salt', 'role', 'state' ]
+    localized_strings = [ ]
+    int_keys = [ 'failed_login_count' ]
+    bool_keys = [ ]
+
 
 class Node_version_4(Model):
     __storm_table__ = 'node'
@@ -110,8 +117,6 @@ class Replacer56(TableReplacer):
             new_obj.creation_date = orf.creation_date
             new_obj.mark = orf.mark
             new_obj.downloads = orf.downloads
-
-            new_obj.creation_date = old_user.creation_date
 
             self.store_new.add(new_obj)
         self.store_new.commit()

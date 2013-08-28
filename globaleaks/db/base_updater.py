@@ -114,7 +114,17 @@ class TableReplacer:
                    'maximum_textsize INTEGER NOT NULL, maximum_filesize INTEGER NOT NULL, tor2web_admin INTEGER NOT NULL,'\
                    'tor2web_submission INTEGER NOT NULL, tor2web_tip INTEGER NOT NULL, tor2web_receiver INTEGER NOT NULL,'\
                    'tor2web_unauth INTEGER NOT NULL, exception_email VARCHAR NOT NULL, PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE user (') and self.start_ver < 5:
+        elif query.startswith('\n\nCREATE TABLE node (') and self.start_ver < 6:
+            return 'CREATE TABLE node ( database_version INTEGER NOT NULL, creation_date VARCHAR NOT NULL,'\
+                   'description BLOB NOT NULL, presentation BLOB NOT NULL, email VARCHAR NOT NULL, hidden_service VARCHAR NOT NULL,'\
+                   'id VARCHAR NOT NULL, languages_enabled BLOB NOT NULL, languages_supported BLOB NOT NULL,'\
+                   'name VARCHAR NOT NULL, default_language VARCHAR NOT NULL,'\
+                   'receipt_salt VARCHAR NOT NULL, public_site VARCHAR NOT NULL, stats_update_time INTEGER NOT NULL,'\
+                   'last_update VARCHAR, maximum_namesize INTEGER NOT NULL, maximum_descsize INTEGER NOT NULL,'\
+                   'maximum_textsize INTEGER NOT NULL, maximum_filesize INTEGER NOT NULL, tor2web_admin INTEGER NOT NULL,'\
+                   'tor2web_submission INTEGER NOT NULL, tor2web_tip INTEGER NOT NULL, tor2web_receiver INTEGER NOT NULL,'\
+                   'tor2web_unauth INTEGER NOT NULL, exception_email VARCHAR NOT NULL, PRIMARY KEY (id))'
+        elif query.startswith('\n\nCREATE TABLE user (') and self.start_ver < 3:
             return 'CREATE TABLE user (id VARCHAR NOT NULL,'\
                    'creation_date VARCHAR NOT NULL, username VARCHAR NOT NULL, password VARCHAR NOT NULL,'\
                    'salt VARCHAR NOT NULL, role VARCHAR NOT NULL CHECK (role IN (\'admin\', \'receiver\')),'\
@@ -126,7 +136,7 @@ class TableReplacer:
                    'creation_date VARCHAR NOT NULL, username VARCHAR NOT NULL, password VARCHAR NOT NULL,'\
                    'salt VARCHAR NOT NULL, role VARCHAR NOT NULL CHECK (role IN (\'admin\', \'receiver\')),'\
                    'state VARCHAR NOT NULL CHECK (state IN (\'disabled\', \'to_be_activated\', \'enabled\', \'temporary_blocked\')),'\
-                   'last_login VARCHAR NOT NULL, last_update VARCHAR, last_failed_attempt VARCHAR NOT NULL,'\
+                   'last_login VARCHAR NOT NULL, last_update VARCHAR,'\
                    'failed_login_count INTEGER NOT NULL, PRIMARY KEY (id), UNIQUE (username))'
         elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 2:
             return 'CREATE TABLE context (creation_date VARCHAR NOT NULL, description VARCHAR NOT NULL,'\
@@ -368,7 +378,7 @@ class TableReplacer:
         print "%s default Comments migration assistant: #%d" % (
             self.debug_info, self.store_old.find(models.Comment).count())
 
-        old_comments = self.store_old.find(models.Comment)
+        old_comments = self.store_old.find(self.get_right_model("Comment", self.start_ver))
 
         for oc in old_comments:
 
@@ -383,6 +393,7 @@ class TableReplacer:
             new_obj.type = oc.type
 
             self.store_new.add(new_obj)
+
         self.store_new.commit()
 
     def migrate_InternalTip(self):
