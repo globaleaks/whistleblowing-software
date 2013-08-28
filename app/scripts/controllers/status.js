@@ -5,12 +5,42 @@ GLClient.controller('StatusCtrl',
 
     if ($.cookie('role') === 'wb') {
       $rootScope.whistleblower_tip_id = $.cookie('tip_id');
+
+      var url = '/tip/' + $rootScope.whistleblower_tip_id + '/upload',
+        headers = {};
+      if ($.cookie('session_id')) {
+        headers['X-Session'] = $.cookie('session_id');
+      };
+
+      if ($.cookie('XSRF-TOKEN')) {
+        headers['X-XSRF-TOKEN'] = $.cookie('XSRF-TOKEN');
+      }
+
+      if ($.cookie('language')) {
+        headers['GL-Language'] = $.cookie('language');
+      };
+
+      $scope.options = {
+        url: url,
+        multipart: false,
+        headers: headers,
+        autoUpload: true,
+      };
+
+      $scope.queue = [];
+
+      $scope.$watch('queue', function(){
+        $scope.uploading = false;
+        if ($scope.queue) {
+          $scope.queue.forEach(function(k){
+            if (!k.id)
+              $scope.uploading = true;
+          });
+        }
+      }, true);
+
     }
-
-    $rootScope.fileUploader = {};
-    $rootScope.fileUploader.uploadedFiles = [];
-    $rootScope.fileUploader.uploadingFiles = [];
-
+    
     var TipID = {tip_id: $scope.tip_id};
     new Tip(TipID, function(tip){
 

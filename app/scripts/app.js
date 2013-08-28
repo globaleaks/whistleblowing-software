@@ -1,7 +1,7 @@
 'use strict';
 
 var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServices',
-    'submissionUI', 'GLClientFilters', 'GLClient.themes', 'GLClient.translations']).
+    'submissionUI', 'GLClientFilters', 'GLClient.themes', 'GLClient.translations', 'blueimp.fileupload']).
   config(['$routeProvider', function($routeProvider) {
     var Templates = angular.injector(['GLClient.themes']).get('Templates');
 
