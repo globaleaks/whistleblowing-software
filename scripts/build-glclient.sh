@@ -125,6 +125,7 @@ build_glclient()
 
   echo "[+] Building GLClient"
   npm install -d
+  bower update
   grunt build
 
   mkdir -p ${GLC_BUILD}
