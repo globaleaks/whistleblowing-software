@@ -161,7 +161,7 @@ class Replacer34(TableReplacer):
             new_obj.comment_notification = old_r.comment_notification
             new_obj.file_notification = old_r.file_notification
 
-            self.store_new.add(new_obj)
+            #self.store_new.add(new_obj)
         self.store_new.commit()
 
     def migrate_ReceiverFile(self):
