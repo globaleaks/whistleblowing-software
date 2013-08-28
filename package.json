@@ -2,7 +2,9 @@
   "author": "Random GlobaLeaks Developers",
   "name": "GLClient",
   "version": "2.24.9",
-  "dependencies": {},
+  "dependencies": {
+    "bower": "*"
+  },
   "devDependencies": {
     "jquery": "*",
     "mocha": "*",

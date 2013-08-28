@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('resourceServices.authentication', ['ngCookies'])
+angular.module('resourceServices.authentication', [])
   .factory('Authentication', ['$http', '$location', '$routeParams', '$rootScope',
     function($http, $location, $routeParams, $rootScope){
       function Session(){
@@ -86,7 +86,7 @@ angular.module('resourceServices.authentication', ['ngCookies'])
       };
       return new Session;
 }]);
-angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices.authentication']).
+angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
   factory('globaleaksInterceptor', ['$q', '$rootScope', '$location',
   function($q, $rootScope, $location) {
     var requestTimeout = 30000;
@@ -256,7 +256,7 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
        * Create a new submission based on the currently selected context.
        *
        * */
-      self.create = function() {
+      self.create = function(cb) {
         self.current_submission = new submissionResource({
           context_gus: self.current_context.context_gus,
           wb_fields: {}, files: [], finalize: false, receivers: []
@@ -271,6 +271,8 @@ angular.module('resourceServices', ['ngResource', 'ngCookies', 'resourceServices
             }
           });
           self.current_submission.wb_fields = {};
+          if (cb)
+            cb();
         });
 
       };
