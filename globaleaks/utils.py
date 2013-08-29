@@ -413,10 +413,10 @@ def mail_exception(etype, value, tback):
 
     info_string = '\n'.join(tmp)
 
-    if mail_exception.mail_counter > 30:
-        log.debug("Exception not reported because exception counter > 30 (%d)" % mail_exception.mail_counter)
-        log.debug("Anyway, that's your stacktrace: \n%s" % info_string )
-        return # suppress every notification over the 30th
+    #if mail_exception.mail_counter > 30:
+    #    log.debug("Exception not reported because exception counter > 30 (%d)" % mail_exception.mail_counter)
+    #    log.debug("Anyway, that's your stacktrace: \n%s" % info_string )
+    #    return # suppress every notification over the 30th
 
     if type(info_string) == unicode:
         info_string = info_string.encode(encoding='utf-8', errors='ignore')
