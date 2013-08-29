@@ -2,7 +2,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 # Override the GLSetting with test values
-from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
 
 from globaleaks.rest import requests
@@ -54,7 +53,7 @@ class SubmissionTest(helpers.TestGL):
 
     aSubmission = {
         # here too, are checked the default fields
-        'wb_fields': { u'Short title': None, u'Full description': None },
+        'wb_fields': { u'Short title': 'default', u'Full description': 'default' },
         'context_gus': '', 'receivers': [], 'files': [], 'finalize': False
     }
 
@@ -67,14 +66,22 @@ class TestTipInstance(SubmissionTest):
         
         basehandler = MockHandler()
 
-        basehandler.validate_jmessage( SubmissionTest.aContext1, requests.adminContextDesc)
-        SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
-        # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
-        SubmissionTest.context_used['selectable_receiver'] = True
-        SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['context_gus'],
-            SubmissionTest.context_used)
-        basehandler.validate_jmessage( SubmissionTest.aContext2, requests.adminContextDesc)
-        SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
+        # context creation
+        try:
+            basehandler.validate_jmessage( SubmissionTest.aContext1, requests.adminContextDesc)
+            SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
+            # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
+            SubmissionTest.context_used['selectable_receiver'] = True
+            SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['context_gus'],
+                SubmissionTest.context_used)
+            basehandler.validate_jmessage( SubmissionTest.aContext2, requests.adminContextDesc)
+            SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
+        except Exception as excep:
+            log.err("Unable to create context used/unused in UT: %s" % excep.message)
+            raise excep
+
+        self.assertTrue(len(SubmissionTest.context_used['context_gus']) > 1)
+        self.assertTrue(len(SubmissionTest.context_unused['context_gus']) > 1)
 
         SubmissionTest.aReceiver1['contexts'] = [ SubmissionTest.context_used['context_gus'] ]
         basehandler.validate_jmessage( SubmissionTest.aReceiver1, requests.adminReceiverDesc )
@@ -150,7 +157,6 @@ class TestTipInstance(SubmissionTest):
         except Exception, e:
             log.debug("Unexpected Exception %s" % str(e) )
             self.assertTrue(False, msg=str(e))
-
 
     @inlineCallbacks
     def test_5_create_valid_submission(self):
