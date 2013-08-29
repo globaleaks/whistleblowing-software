@@ -10,7 +10,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     });
 
   }
-
+  
+  $rootScope.invalidForm = true;
   $scope.receiptConfimation = "";
 
   Node.get(function(node_info){
@@ -25,7 +26,6 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
       $scope.submit = $scope.submission.submit;
 
       checkReceiverSelected();
-      
 
     });
 
@@ -98,7 +98,12 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     }
   }, true);
 
-}]);
+}]).
+  controller('SubmissionFormController', ['$scope', '$rootScope', function($scope, $rootScope){
+    $scope.$watch('submissionForm.$valid', function() {
+      $rootScope.invalidForm = $scope.submissionForm.$invalid;
+    }, true);
+}])
 
 angular.module('GLClient.fileuploader', ['blueimp.fileupload'])
   .config(['$httpProvider', 'fileUploadProvider',
