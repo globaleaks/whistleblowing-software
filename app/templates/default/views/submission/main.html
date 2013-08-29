@@ -138,8 +138,10 @@
 
         <div class="row">
 
-          <div class="span6 submissionDetails" ng-include="Templates.submission.form"></div>
-          
+            <div ng-form="submissionForm" ng-controller="SubmissionFormController"> 
+              <div class="span6 submissionDetails" ng-include="Templates.submission.form"></div>
+            </div>
+
           <div ng-include="'views/widgets/fileupload.html'" class="span4">
           </div>
 
@@ -184,6 +186,7 @@
       <!-- /3 -->
 
     </div>
+
     <!-- END steps -->
     <div class="clearfix"></div>
     <ul class="pager pull-left">
@@ -201,17 +204,17 @@
 
       <li class="next"
           ng-show="!hasNextStep()">
+
         <button class="btn btn-success" ng-click="submit()"
-                ng-disabled="uploading || !disclaimer.accepted ">
+                ng-disabled="uploading || !disclaimer.accepted || invalidForm">
                 {{ "Submit" | translate }}</button>
       </li>
 
     </ul>
 
     <div class="pull-right">
-
       <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()"
-              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted">
+              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || invalidForm">
               {{ "Submit" | translate }}
       </button>
 
