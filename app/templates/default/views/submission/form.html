@@ -1,7 +1,7 @@
-<form name="submissionForm" novalidate>
-  <fieldset>
-    <legend>Details</legend>
-    <div ng-repeat="field in submission.current_context.fields">
+<fieldset>
+  <legend>Details</legend>
+  <div ng-repeat="field in submission.current_context.fields">
+    <div ng-form name="subForm">
       <div ng-switch on="field.type">
         <div ng-switch-default
           class="input {{field.type}}"
@@ -19,11 +19,13 @@
             ng-model="field.value"
             value="{{field.value}}"
             id="field"
+            name="input"
             placeholder="{{field.placeholder}}">
 
           <input ng-switch-when="text" type="text"
             ng-model="field.value"
             ng-required="field.required"
+            name="input"
             value="{{field.value}}"
             placeholder="{{field.placeholder}}">
 
@@ -32,12 +34,14 @@
             placeholder="{{field.placeholder}}">{{field.value}}</textarea>
 
           <select ng-switch-when="select"
+            name="input"
             ng-model="field.value" >
             <option ng-repeat="option in field.options"
                     value="{{option.value}}">{{option.name}}</option>
           </select>
 
           <select ng-switch-when="multiple"
+            name="input"
             ng-model="field.value" multiple>
             <option ng-repeat="option in field.options"
                     value="{{option.value}}">{{option.name}}</option>
@@ -53,6 +57,7 @@
           <fieldset ng-switch-when="checkboxes">
             <label ng-repeat="option in field.options">
               <input type="checkbox"
+              name="input"
               ng-model="field.value[option.name]"
               value="{{option.value}}">
               {{option.name}}
@@ -62,13 +67,19 @@
           <input ng-switch-default type="text"
             ng-model="field.value"
             ng-required="field.required"
+            name="input"
             value="{{field.value}}"
             placeholder="{{field.placeholder}}"/>
 
           </div ng-switch>
         </div>
       </div ng-switch>
-    </div>
-  </fieldset>
-</form>
 
+      <p class="text-error" ng-show="subForm.input.$error.required">
+      {{"This field cannot be empty" | translate }}
+      </p>
+
+    </div ng-form>
+
+  </div>
+</fieldset>
