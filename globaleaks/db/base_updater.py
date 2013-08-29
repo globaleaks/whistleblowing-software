@@ -4,6 +4,14 @@ from globaleaks import models
 from storm.exceptions import OperationalError
 from storm.locals import *
 from globaleaks.settings import GLSetting
+from globaleaks import DATABASE_VERSION
+
+from storm.properties import PropertyColumn
+from storm.variables import BoolVariable, DateTimeVariable, DateVariable
+from storm.variables import DecimalVariable, EnumVariable
+from storm.variables import FloatVariable, IntVariable, RawStrVariable
+from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
+
 
 # This code is take directly from the GlobaLeaks-pre-model-refactor
 
@@ -89,6 +97,12 @@ def generateCreateQuery(model):
     return query
 
 
+from globaleaks.db.update_0_1 import Node_version_0, Receiver_version_0
+from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
+from globaleaks.db.update_2_3 import Receiver_version_2
+from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
+from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
+from globaleaks.db.update_5_6 import User_version_4, Comment_version_0, Node_version_4
 
 class TableReplacer:
     """
@@ -104,6 +118,26 @@ class TableReplacer:
         self.std_fancy = " ł "
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
+        self.table_history = {
+            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, Node_version_4, models.Node ],
+            'User' : [ None, None, None, None, User_version_4, models.User],
+            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context ],
+            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, models.Receiver, None, None ],
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile ],
+            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification ],
+            'Comment': [ Comment_version_0, None, None, None, None, models.Comment ],
+            'InternalTip' : [ models.InternalTip, None, None, None, None, None ],
+            'InternalFile' : [ models.InternalFile, None, None, None, None, None ],
+            'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None, None, None ],
+            'ReceiverTip' : [ models.ReceiverTip, None, None, None, None, None ]
+        }
+
+        for k, v in self.table_history:
+            if len(v) != DATABASE_VERSION:
+                raise AssertionError("yo dev: I'm expecting a table with only %s statuses (%s)" %
+                                     (DATABASE_VERSION, k))
+
+
         print "%s Opening old version DB: %s" % (self.debug_info, old_db_file)
         old_database = create_database("sqlite:%s" % self.old_db_file)
         self.store_old = Store(old_database)
@@ -113,19 +147,15 @@ class TableReplacer:
         new_database = create_database("sqlite:%s" % new_db_file)
         self.store_new = Store(new_database)
 
-        with open(GLSetting.db_schema_file) as f:
-            create_queries = ''.join(f.readlines()).split(';')
-            for create_query in create_queries:
+        for k, v in self.table_history:
 
-                intermediate_sql = self.get_right_sql_version(create_query)
-                if intermediate_sql:
-                    create_query = intermediate_sql
+            create_query = self.get_right_sql_version(k, self.start_ver +1)
 
-                try:
-                    self.store_new.execute(create_query+';')
-                except OperationalError as excep:
-                    print "%s OperationalError in [%s]" % (self.debug_info, create_query)
-                    raise excep
+            try:
+                self.store_new.execute(create_query+';')
+            except OperationalError as excep:
+                print "%s OperationalError in [%s]" % (self.debug_info, create_query)
+                raise excep
 
         self.store_new.commit()
 
@@ -140,28 +170,8 @@ class TableReplacer:
         pass
 
     def get_right_model(self, table_name, version):
-        """
-        I'm sad of this piece of code, but having an ORM that need the
-        intermediate version of the Models, bring this
-        """
-        from globaleaks.db.update_0_1 import Node_version_0, Receiver_version_0
-        from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
-        from globaleaks.db.update_2_3 import Receiver_version_2
-        from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
-        from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
-        from globaleaks.db.update_5_6 import User_version_4, Comment_version_0, Node_version_4
 
-        table_history = {
-            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, Node_version_4, models.Node ],
-            'User' : [ User_version_4, None, None, None, None, models.User],
-            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context ],
-            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, models.Receiver, None, None ],
-            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile ],
-            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification ],
-            'Comment': [ Comment_version_0, None, None, None, None, None, models.Comment ]
-        }
-
-        if not table_history.has_key(table_name):
+        if not self.table_history.has_key(table_name):
             print "Not implemented usage of get_right_model %s (%s %d)" % (
                 __file__, table_name, self.start_ver)
             raise NotImplementedError
@@ -170,18 +180,24 @@ class TableReplacer:
         last_attr = None
 
         while histcounter <= version:
-            if table_history[table_name][histcounter]:
-                last_attr = table_history[table_name][histcounter]
+            if self.table_history[table_name][histcounter]:
+                last_attr = self.table_history[table_name][histcounter]
             histcounter += 1
 
         assert last_attr, "Invalid developer brainsync in get_right_model()"
         return last_attr
 
     def get_right_sql_version(self, model_name, version):
+        """
+        @param model_name:
+        @param version:
+        @return:
+            The SQL right for the stuff we've
+        """
 
-    modelobj = self.get_right_model(model_name, version)
-	right_query = generateCreateQuery(modelobj)
-	return right_query
+        modelobj = self.get_right_model(model_name, version)
+        right_query = generateCreateQuery(modelobj)
+        return right_query
 
     def migrate_Context(self):
         print "%s default Context migration assistant: #%d" % (
