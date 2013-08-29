@@ -10,7 +10,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     });
 
   }
-
+  
+  $rootScope.invalidForm = true;
   $scope.receiptConfimation = "";
 
   Node.get(function(node_info){
@@ -25,7 +26,6 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
       $scope.submit = $scope.submission.submit;
 
       checkReceiverSelected();
-      
 
     });
 
@@ -74,6 +74,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
           multipart: false,
           headers: headers,
           autoUpload: true,
+          maxFileSize: $scope.node_info.maximum_filesize * 1024 * 1024,
         };
         
       });
@@ -98,16 +99,17 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     }
   }, true);
 
-}]);
+}]).
+  controller('SubmissionFormController', ['$scope', '$rootScope', function($scope, $rootScope){
+    $scope.$watch('submissionForm.$valid', function() {
+      $rootScope.invalidForm = $scope.submissionForm.$invalid;
+    }, true);
+}])
 
 angular.module('GLClient.fileuploader', ['blueimp.fileupload'])
   .config(['$httpProvider', 'fileUploadProvider',
     function ($httpProvider, fileUploadProvider) {
       delete $httpProvider.defaults.headers.common['X-Requested-With'];
-      angular.extend(fileUploadProvider.defaults, {
-        multipart: false,
-        maxFileSize: 5000000,
-      });
     }
 ])
   .controller('FileDestroyController', [
