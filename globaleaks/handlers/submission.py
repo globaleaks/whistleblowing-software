@@ -333,8 +333,6 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
         import_files(store, submission, files)
     except Exception as excep:
         log.err("subm_update - Invalid operation in import_files : %s" % excep)
-        store.remove(submission)
-        store.commit()
         raise excep
 
     fields = request.get('wb_fields', [])
@@ -342,8 +340,6 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
         import_fields(submission, fields, naturalize_fields(submission.context.fields), strict_validation=finalize)
     except Exception as excep:
         log.err("subm_update - Invalid operation in import_fields : %s" % excep)
-        store.remove(submission)
-        store.commit()
         raise excep
 
     receivers = request.get('receivers', [])
@@ -351,8 +347,6 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
         import_receivers(store, submission, receivers, required=finalize)
     except Exception as excep:
         log.err("subm_update - Invalid operation in import_receivers : %s" % excep)
-        store.remove(submission)
-        store.commit()
         raise excep
 
     if finalize:
