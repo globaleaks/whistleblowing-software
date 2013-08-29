@@ -195,7 +195,7 @@ def import_fields(submission, wb_fields, configured_fields_list, strict_validati
 
         for required in required_keys:
 
-            if wb_fields.has_key(required) and len(wb_fields[required]) > 4:
+            if wb_fields.has_key(required) and len(wb_fields[required]) > 1:
             # the keys are always provided by GLClient! also if the content is empty.
             # then is not difficult check a test len(text) > $blah, but other checks are...
                 continue
