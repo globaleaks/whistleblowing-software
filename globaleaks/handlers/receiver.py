@@ -158,7 +158,6 @@ def serialize_tip_summary(rtip, file_associated):
             preview_data.append(entry)
 
     single_tip_sum.update({ 'preview' : preview_data })
-    print "XX", single_tip_sum
     return single_tip_sum
 
 
