@@ -151,6 +151,7 @@ class Replacer45(TableReplacer):
         new_obj.tip_template = on.tip_template
 
         node_info = self.store_old.find(self.get_right_model("Node", 4)).one()
+        # The two new fields, avail since version 5
         new_obj.source_name = node_info.name
         new_obj.source_email = on.username
 

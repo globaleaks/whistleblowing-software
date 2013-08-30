@@ -125,7 +125,7 @@ CREATE TABLE node (
     tor2web_tip INTEGER NOT NULL,
     tor2web_receiver INTEGER NOT NULL,
     tor2web_unauth INTEGER NOT NULL,
-    postpone_superpower INTEGER NOT NULL,
+    postpone_superpower INTEGER,
     exception_email VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
