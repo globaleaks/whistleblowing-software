@@ -1,3 +1,10 @@
+globaleaks (2.24.12.1-0) unstable; urgency=low
+
+  * GlobaLeaks 2.24.12.1 Release
+  * Includes fix for glclient-build
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 30 Aug 2013 17:24:42 +0002
+
 globaleaks (2.24.12-0) unstable; urgency=low
 
   * GlobaLeaks 2.24.12 Release
