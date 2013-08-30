@@ -274,7 +274,6 @@ class MockDict():
             'role': u'admin',
             'state': u'enabled',
             'last_login': utils.datetime_null(),
-            'last_failed_attempt': utils.datetime_null(),
             'failed_login_count': 0
         }
 
@@ -385,6 +384,7 @@ class MockDict():
             'tor2web_tip' : True,
             'tor2web_receiver' : True,
             'tor2web_unauth' : True,
+            'postpone_superpower' : False,
             'exception_email' : GLSetting.defaults.exception_email,
         }
 

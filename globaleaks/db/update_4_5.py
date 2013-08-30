@@ -87,6 +87,8 @@ class Replacer45(TableReplacer):
             new_context.submission_disclaimer = old_context.submission_disclaimer
             new_context.tags = old_context.tags
             new_context.fields = old_context.fields
+
+            # that's the new field here
             new_context.select_all_receivers = True
 
             self.store_new.add(new_context)
@@ -151,11 +153,9 @@ class Replacer45(TableReplacer):
         new_obj.tip_template = on.tip_template
 
         node_info = self.store_old.find(self.get_right_model("Node", 4)).one()
+        # The two new fields, avail since version 5
         new_obj.source_name = node_info.name
         new_obj.source_email = on.username
 
         self.store_new.add(new_obj)
         self.store_new.commit()
-
-    def migrate_User(self):
-        pass

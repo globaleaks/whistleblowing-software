@@ -1,9 +1,99 @@
 # -*- encoding: utf-8 -*-
+import os
 
 from globaleaks import models
 from storm.exceptions import OperationalError
 from storm.locals import *
 from globaleaks.settings import GLSetting
+from globaleaks import DATABASE_VERSION
+
+from storm.properties import PropertyColumn
+from storm.variables import BoolVariable, DateTimeVariable
+from storm.variables import EnumVariable, IntVariable, RawStrVariable
+from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
+
+
+# This code is take directly from the GlobaLeaks-pre-model-refactor
+
+def variableToSQLite(var_type):
+    """
+    We take as input a storm.variable and we output the SQLite string it
+    represents.
+    """
+    sqlite_type = "VARCHAR"
+    if isinstance(var_type, BoolVariable):
+        sqlite_type = "INTEGER"
+    elif isinstance(var_type, DateTimeVariable):
+        pass
+    elif isinstance(var_type, EnumVariable):
+        sqlite_type = "BLOB"
+    elif isinstance(var_type, IntVariable):
+        sqlite_type = "INTEGER"
+    elif isinstance(var_type, RawStrVariable):
+        sqlite_type = "BLOB"
+    elif isinstance(var_type, UnicodeVariable):
+        pass
+    elif isinstance(var_type, JSONVariable):
+        sqlite_type = "BLOB"
+    elif isinstance(var_type, PickleVariable):
+        sqlite_type = "BLOB"
+    else:
+        raise AssertionError("Invalid var_type: %s" % var_type)
+
+    return "%s" % sqlite_type
+
+def varsToParametersSQLite(variables, primary_keys):
+    """
+    Takes as input a list of variables (convered to SQLite syntax and in the
+    form of strings) and primary_keys.
+    Outputs these variables converted into paramter syntax for SQLites.
+
+    ex.
+        variables: ["var1 INTEGER", "var2 BOOL", "var3 INTEGER"]
+        primary_keys: ["var1"]
+
+        output: "(var1 INTEGER, var2 BOOL, var3 INTEGER PRIMARY KEY (var1))"
+    """
+    params = "("
+    for var in variables[:-1]:
+        params += "%s %s, " % (var[0], var[1])
+    if len(primary_keys) > 0:
+        params += "%s %s, " % variables[-1]
+        params += "PRIMARY KEY ("
+        for key in primary_keys[:-1]:
+            params += "%s, " % key
+        params += "%s))" % primary_keys[-1]
+    else:
+        params += "%s %s)" % variables[-1]
+    return params
+
+def generateCreateQuery(model):
+    """
+    This takes as input a Storm model and outputs the creation query for it.
+    """
+    prehistory = model.__storm_table__.find("_version_")
+    if prehistory != -1:
+        table_name = model.__storm_table__[:prehistory]
+    else:
+        table_name = model.__storm_table__
+
+    query = "CREATE TABLE "+ table_name + " "
+
+    variables = []
+    primary_keys = []
+
+    for attr in dir(model):
+        a = getattr(model, attr)
+        if isinstance(a, PropertyColumn):
+            var_stype = a.variable_factory()
+            var_type = variableToSQLite(var_stype)
+            name = a.name
+            variables.append((name, var_type))
+            if a.primary:
+                primary_keys.append(name)
+
+    query += varsToParametersSQLite(variables, primary_keys)
+    return query
 
 
 class TableReplacer:
@@ -13,12 +103,42 @@ class TableReplacer:
 
     def __init__(self, old_db_file, new_db_file, start_ver):
 
+        from globaleaks.db.update_0_1 import Node_version_0, Receiver_version_0
+        from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
+        from globaleaks.db.update_2_3 import Receiver_version_2
+        from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
+        from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
+        from globaleaks.db.update_5_6 import User_version_4, Comment_version_0, Node_version_4
+
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
         self.start_ver = start_ver
 
         self.std_fancy = " ł "
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
+
+        self.table_history = {
+            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, Node_version_4, models.Node ],
+            'User' : [ None, None, None, User_version_4, None, models.User ],
+            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context ],
+            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None ],
+            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile ],
+            'Notification': [ Notification_version_1, None, Notification_version_2, None, models.Notification, None ],
+            'Comment': [ Comment_version_0, None, None, None, None, models.Comment ],
+            'InternalTip' : [ models.InternalTip, None, None, None, None, None ],
+            'InternalFile' : [ models.InternalFile, None, None, None, None, None ],
+            'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None, None, None ],
+            'ReceiverTip' : [ models.ReceiverTip, None, None, None, None, None ],
+            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None, None, None, None ],
+            'ReceiverContext' : [ models.ReceiverContext, None, None, None, None, None ],
+        }
+
+        for k, v in self.table_history.iteritems():
+            if len(v) != DATABASE_VERSION:
+                print "yo dev: I'm expecting a table with only %s statuses (%s)" % (DATABASE_VERSION, k)
+                raise Exception("yo dev: I'm expecting a table with only %s statuses (%s)" %
+                                     (DATABASE_VERSION, k))
+
 
         print "%s Opening old version DB: %s" % (self.debug_info, old_db_file)
         old_database = create_database("sqlite:%s" % self.old_db_file)
@@ -29,19 +149,38 @@ class TableReplacer:
         new_database = create_database("sqlite:%s" % new_db_file)
         self.store_new = Store(new_database)
 
-        with open(GLSetting.db_schema_file) as f:
-            create_queries = ''.join(f.readlines()).split(';')
-            for create_query in create_queries:
+        if self.start_ver + 1 == DATABASE_VERSION:
+            # use the good SQL file!
+            print "%s Initializing definited schema from %s" % (self.debug_info, GLSetting.db_schema_file)
 
-                intermediate_sql = self.get_right_sql_version(create_query)
-                if intermediate_sql:
-                    create_query = intermediate_sql
+            if not os.access(GLSetting.db_schema_file, os.R_OK):
+                print "Unable to access %s" % GLSetting.db_schema_file
+                raise Exception("Unable to access db schema file")
 
-                try:
-                    self.store_new.execute(create_query+';')
-                except OperationalError as excep:
-                    print "%s OperationalError in [%s]" % (self.debug_info, create_query)
-                    raise excep
+            with open(GLSetting.db_schema_file) as f:
+                create_queries = ''.join(f.readlines()).split(';')
+                for create_query in create_queries:
+                    try:
+                        self.store_new.execute(create_query+';')
+                    except OperationalError:
+                        print "OperationalError in [%s]" % create_query
+
+            self.store_new.commit()
+            return
+            # return here and manage the migrant versions here:
+
+        for k, v in self.table_history.iteritems():
+
+            create_query = self.get_right_sql_version(k, self.start_ver +1)
+            if not create_query:
+                # table not present in the version
+                continue
+
+            try:
+                self.store_new.execute(create_query+';')
+            except OperationalError as excep:
+                print "%s OperationalError in [%s]" % (self.debug_info, create_query)
+                raise excep
 
         self.store_new.commit()
 
@@ -56,27 +195,8 @@ class TableReplacer:
         pass
 
     def get_right_model(self, table_name, version):
-        """
-        I'm sad of this piece of code, but having an ORM that need the
-        intermediate version of the Models, bring this
-        """
-        from globaleaks.db.update_0_1 import Node_version_0, Receiver_version_0
-        from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
-        from globaleaks.db.update_2_3 import Receiver_version_2
-        from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
-        from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
-        from globaleaks.db.update_5_6 import User_version_4
 
-        table_history = {
-            'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, models.Node, None, None ],
-            'User' : [ User_version_4, None, None, None, None, None, models.User ],
-            'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context, None ],
-            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None, None ],
-            'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile, None ],
-            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification, None ],
-        }
-
-        if not table_history.has_key(table_name):
+        if not self.table_history.has_key(table_name):
             print "Not implemented usage of get_right_model %s (%s %d)" % (
                 __file__, table_name, self.start_ver)
             raise NotImplementedError
@@ -84,102 +204,38 @@ class TableReplacer:
         histcounter = 0
         last_attr = None
 
-        while histcounter <= version:
-            if table_history[table_name][histcounter]:
-                last_attr = table_history[table_name][histcounter]
+        while histcounter < version:
+
+            if histcounter == DATABASE_VERSION:
+                break
+
+            if self.table_history[table_name][histcounter]:
+                last_attr = self.table_history[table_name][histcounter]
+                # print "Updated %s at version %d < %d = %s" %( table_name, histcounter, version, last_attr)
+                # extremely useful when debug is needed
+
             histcounter += 1
 
-        assert last_attr, "Invalid developer brainsync in get_right_model()"
+        if not last_attr:
+            # table not present in this version
+            return None
+
         return last_attr
 
-    def get_right_sql_version(self, query):
-        if query.startswith('\n\nCREATE TABLE node (') and self.start_ver == 0 :
-            return 'CREATE TABLE node (database_version INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
-                   'description VARCHAR NOT NULL,email VARCHAR NOT NULL,hidden_service VARCHAR NOT NULL,id VARCHAR NOT NULL,'\
-                   'languages BLOB NOT NULL, name VARCHAR NOT NULL, password VARCHAR NOT NULL, salt VARCHAR NOT NULL,'\
-                   'receipt_salt VARCHAR NOT NULL,public_site VARCHAR NOT NULL,stats_update_time INTEGER NOT NULL,'\
-                   'last_update VARCHAR,maximum_namesize INTEGER NOT NULL,maximum_descsize INTEGER NOT NULL,'\
-                   'maximum_textsize INTEGER NOT NULL,maximum_filesize INTEGER NOT NULL,tor2web_admin INTEGER NOT NULL,'\
-                   'tor2web_submission INTEGER NOT NULL,tor2web_tip INTEGER NOT NULL,tor2web_receiver INTEGER NOT NULL,'\
-                   'tor2web_unauth INTEGER NOT NULL,exception_email VARCHAR NOT NULL,PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE node (') and self.start_ver < 3:
-            return 'CREATE TABLE node ( database_version INTEGER NOT NULL, creation_date VARCHAR NOT NULL,'\
-                   'description BLOB NOT NULL, email VARCHAR NOT NULL, hidden_service VARCHAR NOT NULL,'\
-                   'id VARCHAR NOT NULL, languages_enabled BLOB NOT NULL, languages_supported BLOB NOT NULL,'\
-                   'name VARCHAR NOT NULL, password VARCHAR NOT NULL, salt VARCHAR NOT NULL,'\
-                   'receipt_salt VARCHAR NOT NULL, public_site VARCHAR NOT NULL, stats_update_time INTEGER NOT NULL,'\
-                   'last_update VARCHAR, maximum_namesize INTEGER NOT NULL, maximum_descsize INTEGER NOT NULL,'\
-                   'maximum_textsize INTEGER NOT NULL, maximum_filesize INTEGER NOT NULL, tor2web_admin INTEGER NOT NULL,'\
-                   'tor2web_submission INTEGER NOT NULL, tor2web_tip INTEGER NOT NULL, tor2web_receiver INTEGER NOT NULL,'\
-                   'tor2web_unauth INTEGER NOT NULL, exception_email VARCHAR NOT NULL, PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE user (') and self.start_ver < 5:
-            return 'CREATE TABLE user (id VARCHAR NOT NULL,'\
-                   'creation_date VARCHAR NOT NULL, username VARCHAR NOT NULL, password VARCHAR NOT NULL,'\
-                   'salt VARCHAR NOT NULL, role VARCHAR NOT NULL CHECK (role IN (\'admin\', \'receiver\')),'\
-                   'state VARCHAR NOT NULL CHECK (state IN (\'disabled\', \'to_be_activated\', \'enabled\', \'temporary_blocked\')),'\
-                   'last_login VARCHAR NOT NULL, last_update VARCHAR, first_failed VARCHAR NOT NULL,'\
-                   'failed_login_count INTEGER NOT NULL, PRIMARY KEY (id), UNIQUE (username))'
-        elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 2:
-            return 'CREATE TABLE context (creation_date VARCHAR NOT NULL, description VARCHAR NOT NULL,'\
-                   'escalation_threshold INTEGER,fields BLOB NOT NULL,file_max_download INTEGER NOT NULL,'\
-                   'file_required INTEGER NOT NULL,id VARCHAR NOT NULL,last_update VARCHAR,'\
-                   'name VARCHAR NOT NULL,selectable_receiver INTEGER NOT NULL,tip_max_access INTEGER NOT NULL,'\
-                   'tip_timetolive INTEGER NOT NULL,receipt_regexp VARCHAR NOT NULL,receipt_description VARCHAR NOT NULL,'\
-                   'submission_introduction VARCHAR NOT NULL, submission_disclaimer VARCHAR NOT NULL,'\
-                   'submission_timetolive INTEGER NOT NULL, tags BLOB, PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE context') and self.start_ver < 4:
-            return 'CREATE TABLE context (id VARCHAR NOT NULL, creation_date VARCHAR NOT NULL, description BLOB NOT NULL,'\
-                    'escalation_threshold INTEGER, fields BLOB NOT NULL, file_max_download INTEGER NOT NULL, file_required INTEGER NOT NULL,'\
-                    'last_update VARCHAR, name BLOB NOT NULL, selectable_receiver INTEGER NOT NULL, tip_max_access INTEGER NOT NULL,'\
-                    'tip_timetolive INTEGER NOT NULL, submission_timetolive INTEGER NOT NULL, receipt_regexp VARCHAR NOT NULL,'\
-                    'receipt_description BLOB NOT NULL, submission_introduction BLOB NOT NULL, submission_disclaimer BLOB NOT NULL,'\
-                    'tags BLOB, PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE receiver (') and self.start_ver < 3:
-            return 'CREATE TABLE receiver (can_delete_submission INTEGER NOT NULL,creation_date VARCHAR NOT NULL,'\
-                   'description VARCHAR NOT NULL,id VARCHAR NOT NULL,last_access VARCHAR,last_update VARCHAR,'\
-                   'name VARCHAR NOT NULL,tags BLOB,comment_notification INTEGER NOT NULL,'\
-                   'file_notification INTEGER NOT NULL,tip_notification INTEGER NOT NULL,'\
-                   'notification_fields BLOB NOT NULL,gpg_key_status VARCHAR NOT NULL,gpg_key_info VARCHAR,'\
-                   'gpg_key_fingerprint VARCHAR,gpg_key_armor VARCHAR,gpg_enable_notification INTEGER,'\
-                   'gpg_enable_files INTEGER,password VARCHAR,failed_login INTEGER NOT NULL,'\
-                   'receiver_level INTEGER NOT NULL,username VARCHAR NOT NULL,PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE notification (') and self.start_ver < 3:
-            return 'CREATE TABLE notification (creation_date VARCHAR NOT NULL,server VARCHAR,'\
-                   'port INTEGER,password VARCHAR,username VARCHAR,security VARCHAR NOT NULL,'\
-                   'tip_template VARCHAR,tip_mail_title VARCHAR,file_template VARCHAR,'\
-                   'file_mail_title VARCHAR,comment_template VARCHAR,comment_mail_title VARCHAR,'\
-                   'activation_template VARCHAR,activation_mail_title VARCHAR,'\
-                   'id VARCHAR NOT NULL,PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE notification (') and self.start_ver < 4:
-            return 'CREATE TABLE notification (creation_date VARCHAR NOT NULL,server VARCHAR,' \
-                   'port INTEGER,password VARCHAR,username VARCHAR,security VARCHAR NOT NULL,' \
-                   'tip_template BLOB,tip_mail_title BLOB,file_template BLOB,' \
-                   'file_mail_title BLOB,comment_template BLOB,comment_mail_title BLOB,' \
-                   'activation_template BLOB,activation_mail_title BLOB,' \
-                   'id VARCHAR NOT NULL,PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE receiverfile (') and self.start_ver < 3:
-            return 'CREATE TABLE receiverfile ( file_path VARCHAR, downloads INTEGER NOT NULL,'\
-                   'creation_date VARCHAR NOT NULL, last_access VARCHAR, id VARCHAR NOT NULL,'\
-                   'internalfile_id VARCHAR NOT NULL, receiver_id VARCHAR NOT NULL, internaltip_id VARCHAR NOT NULL,'\
-                   'mark VARCHAR NOT NULL CHECK (mark IN ("not notified", "notified", "unable to notify", "disabled")),'\
-                   'FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,'\
-                   'FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,'\
-                   'FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,'\
-                   'PRIMARY KEY (id))'
-        elif query.startswith('\n\nCREATE TABLE receiverfile (') and self.start_ver < 4:
-            return 'CREATE TABLE receiverfile ( file_path VARCHAR, downloads INTEGER NOT NULL,size INTEGER NOT NULL,'\
-                   'creation_date VARCHAR NOT NULL,last_access VARCHAR,id VARCHAR NOT NULL,'\
-                   'internalfile_id VARCHAR NOT NULL,receiver_id VARCHAR NOT NULL,internaltip_id VARCHAR NOT NULL,'\
-                   'status VARCHAR NOT NULL CHECK (status IN ("cloned", "reference", "encrypted")),' \
-                   'mark VARCHAR NOT NULL CHECK (mark IN ("not notified", "notified", "unable to notify", "disabled")),'\
-                   'FOREIGN KEY(internalfile_id) REFERENCES internalfile(id) ON DELETE CASCADE,'\
-                   'FOREIGN KEY(receiver_id) REFERENCES receiver(id) ON DELETE CASCADE,'\
-                   'FOREIGN KEY(internaltip_id) REFERENCES internaltip(id) ON DELETE CASCADE,'\
-                   'PRIMARY KEY (id))'
-        return False
+    def get_right_sql_version(self, model_name, version):
+        """
+        @param model_name:
+        @param version:
+        @return:
+            The SQL right for the stuff we've
+        """
 
-    ## ------------------------------------------------
-    ## Here end the shit that require almost a wiki page
+        modelobj = self.get_right_model(model_name, version)
+        if not modelobj:
+            return None
+
+        right_query = generateCreateQuery(modelobj)
+        return right_query
 
     def migrate_Context(self):
         print "%s default Context migration assistant: #%d" % (
@@ -217,7 +273,7 @@ class TableReplacer:
             new_obj.tags = oc.tags
             
             # version 5 new entries:
-            if self.start_ver >= 5:
+            if self.start_ver > 5:
                 new_obj.select_all_receivers = oc.select_all_receivers
 
             self.store_new.add(new_obj)
@@ -226,8 +282,8 @@ class TableReplacer:
     def migrate_Node(self):
         print "%s default Node migration assistant" % self.debug_info
 
-        new_obj = self.get_right_model("Node", self.start_ver)()
-        on = self.store_old.find(self.get_right_model("Node", self.start_ver + 1)).one()
+        on = self.store_old.find(self.get_right_model("Node", self.start_ver)).one()
+        new_obj = self.get_right_model("Node", self.start_ver + 1)()
 
         new_obj.description = on.description
         new_obj.name = on.name
@@ -275,8 +331,10 @@ class TableReplacer:
             new_obj.password = on.password
             new_obj.salt = on.salt
 
-        self.store_new.add(new_obj)
+        if self.start_ver > 5:
+            new_obj.postpone_superpower = on.postpone_superpower
 
+        self.store_new.add(new_obj)
         self.store_new.commit()
 
     def migrate_User(self):
@@ -300,8 +358,8 @@ class TableReplacer:
             new_obj.state = old_user.state
             new_obj.last_login = old_user.last_login
 
-            if self.start_ver < 5:
-                new_obj.first_failed = old_user.first_failed
+            #if self.start_ver < 5:
+            #    new_obj.first_failed = old_user.first_failed
 
             new_obj.failed_login_count = old_user.failed_login_count
 
@@ -359,7 +417,7 @@ class TableReplacer:
         print "%s default Comments migration assistant: #%d" % (
             self.debug_info, self.store_old.find(models.Comment).count())
 
-        old_comments = self.store_old.find(models.Comment)
+        old_comments = self.store_old.find(self.get_right_model("Comment", self.start_ver))
 
         for oc in old_comments:
 
@@ -374,6 +432,7 @@ class TableReplacer:
             new_obj.type = oc.type
 
             self.store_new.add(new_obj)
+
         self.store_new.commit()
 
     def migrate_InternalTip(self):
@@ -429,6 +488,7 @@ class TableReplacer:
             new_obj.receiver_level = orcvr.receiver_level
             new_obj.notification_fields = orcvr.notification_fields
             new_obj.tags = orcvr.tags
+
             # version 1 new entries!
             if self.start_ver >= 1:
                 new_obj.gpg_key_armor = orcvr.gpg_key_armor
@@ -443,7 +503,7 @@ class TableReplacer:
                 new_obj.last_access = orcvr.last_access
                 new_obj.failed_login = orcvr.failed_login
 
-            if self.start_ver > 3:
+            if self.start_ver > 4:
                 new_obj.user_id = orcvr.user_id
 
             self.store_new.add(new_obj)
@@ -500,6 +560,9 @@ class TableReplacer:
                 new_obj.status = orf.status
                 new_obj.size = orf.size
 
+            if self.start_ver >= 5:
+                new_obj.receiver_tip_id = orf.receiver_tip_id
+
             self.store_new.add(new_obj)
 
         self.store_new.commit()
@@ -527,10 +590,6 @@ class TableReplacer:
         new_obj.tip_mail_title = on.tip_mail_title
         new_obj.tip_template = on.tip_template
         
-        if self.start_ver > 4:
-            new_obj.source_name = on.source_name
-            new_obj.source_email = on.source_email
-
         if self.start_ver > 4:
             new_obj.source_name = on.source_name
             new_obj.source_email = on.source_email

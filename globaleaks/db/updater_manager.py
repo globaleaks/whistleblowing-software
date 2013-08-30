@@ -61,10 +61,11 @@ def perform_version_update(starting_ver, ending_ver, start_path):
                 raise NotImplementedError
 
             try:
+                # Here is instanced the migration class
                 updater_code = releases_supported[update_key](old_db_file, new_db_file, starting_ver)
             except Exception as excep:
                 print "__init__ updater_code: %s " % excep.message
-                raise
+                raise excep
 
             try:
                 updater_code.initialize()
@@ -81,7 +82,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
                     function_pointer()
                 except Exception as excep:
                     print "Failure in %s: %s " % (migrate_function, excep)
-                    raise
+                    raise excep
 
             # epilogue can be used to perform operation once, not related to the tables
             updater_code.epilogue()
@@ -89,13 +90,20 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             
             starting_ver += 1
 
-    except:
+    except Exception as excep:
         # Remediate action on fail:
         #    created files during update must be deleted
+        if not to_delete_on_fail:
+            print "No file to be deleted, but exception happen!", excep
+            raise excep
+
         for f in to_delete_on_fail:
-            os.remove(f)
+            if os.path.isfile(f):
+                os.remove(f)
+            else:
+                print "Invalid file %s in %s" % (f, to_delete_on_fail)
         # propagate the exception
-        raise
+        raise excep
 
     # Finalize action on success:
     #    converted files must be renamed
@@ -107,6 +115,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
                 os.unlink(backup_file)
             except Exception as excep:
                 print "Error in unlink and old version backup files: %s" % excep.message
-                raise
+                raise excep
 
+        print "- renaming", old_db_file, "as", backup_file
         os.rename(old_db_file, backup_file)
