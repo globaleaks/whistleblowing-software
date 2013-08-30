@@ -51,16 +51,12 @@ class Replacer34(TableReplacer):
 
         old_node = self.store_old.find(self.get_right_model("Node", 3)).one()
 
-        admin_dict = {
-            'username': u'admin',
-            'password': old_node.password,
-            'salt': old_node.salt,
-            'role': u'admin',
-            'state': u'enabled',
-            'failed_login_count': 0,
-        }
-
-        admin_user = self.get_right_model("User", 4)(admin_dict)
+        admin_user = self.get_right_model("User", 4)()
+        admin_user.username = u'admin'
+        admin_user.password = old_node.password
+        admin_user.salt = old_node.salt
+        admin_user.role = u'admin'
+        admin_user.failed_login_count = 0
         admin_user.last_login = datetime_null()
         admin_user.first_failed = datetime_null()
 
@@ -118,24 +114,22 @@ class Replacer34(TableReplacer):
 
             new_obj = self.get_right_model("Receiver", 4)()
             
-            receiver_user_dict = {
-                    'username': old_r.username,
-                    'password': old_r.password,
-                    'salt': old_r.username, # in this version the email
-                                            # was used as salt
-                    'role': u'receiver',
-                    'state': u'enabled',
-                    'failed_login_count': 0,
-            }
+            receiver_user = self.get_right_model("User", 4)()
 
-            receiver_user = User(receiver_user_dict)
+            receiver_user.username = old_r.username
+            receiver_user.password = old_r.password
+            # Migrated receiver has email as salt
+            receiver_user.salt = old_r.username
+            receiver_user.role = u'receiver'
+            receiver_user.state = u'enabled'
+            receiver_user.failed_login_count = 0
             receiver_user.last_login = datetime_null()
             receiver_user.first_failed = datetime_null()
 
             self.store_new.add(receiver_user)
 
             # version 5 new entry!
-            new_obj.user = receiver_user
+            new_obj.user_id = receiver_user.id
 
             # these fields do not exist anymore
             # new_obj.username = old_obj.username
@@ -161,7 +155,7 @@ class Replacer34(TableReplacer):
             new_obj.comment_notification = old_r.comment_notification
             new_obj.file_notification = old_r.file_notification
 
-            #self.store_new.add(new_obj)
+            self.store_new.add(new_obj)
         self.store_new.commit()
 
     def migrate_ReceiverFile(self):
