@@ -178,7 +178,7 @@ class FileHandler(BaseHandler):
         result_list.append(registered_file)
 
         self.set_status(201) # Created
-        self.write(result_list)
+        self.write({'files': result_list})
 
 
 # This is different from FileInstance,just because there are a different authentication requirements
