@@ -47,7 +47,7 @@ CREATE TABLE context (
     submission_introduction BLOB NOT NULL,
     submission_disclaimer BLOB NOT NULL,
     tags BLOB,
-    select_all_receivers INTEGER NOT NULL,
+    select_all_receivers INTEGER,
     PRIMARY KEY (id)
 );
 

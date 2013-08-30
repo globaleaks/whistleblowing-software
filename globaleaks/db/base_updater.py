@@ -151,6 +151,7 @@ class TableReplacer:
 
         if self.start_ver + 1 == DATABASE_VERSION:
             # use the good SQL file!
+            print "%s Initializing definited schema from %s" % (self.debug_info, GLSetting.db_schema_file)
 
             if not os.access(GLSetting.db_schema_file, os.R_OK):
                 print "Unable to access %s" % GLSetting.db_schema_file
@@ -203,15 +204,17 @@ class TableReplacer:
         histcounter = 0
         last_attr = None
 
-        while histcounter <= version:
+        while histcounter < version:
+
+            if histcounter == DATABASE_VERSION:
+                break
 
             if self.table_history[table_name][histcounter]:
                 last_attr = self.table_history[table_name][histcounter]
-                print "Updated %s at version %d" %( table_name, histcounter)
+                # print "Updated %s at version %d < %d = %s" %( table_name, histcounter, version, last_attr)
+                # extremely useful when debug is needed
 
             histcounter += 1
-            if histcounter == (DATABASE_VERSION - 1):
-                break
 
         if not last_attr:
             # table not present in this version
@@ -232,7 +235,6 @@ class TableReplacer:
             return None
 
         right_query = generateCreateQuery(modelobj)
-        print version, right_query
         return right_query
 
     def migrate_Context(self):
@@ -271,7 +273,7 @@ class TableReplacer:
             new_obj.tags = oc.tags
             
             # version 5 new entries:
-            if self.start_ver >= 5:
+            if self.start_ver > 5:
                 new_obj.select_all_receivers = oc.select_all_receivers
 
             self.store_new.add(new_obj)
@@ -467,7 +469,6 @@ class TableReplacer:
 
         old_receivers = self.store_old.find(self.get_right_model("Receiver", self.start_ver))
 
-        print self.get_right_model("Receiver", self.start_ver)
         for orcvr in old_receivers:
 
             new_obj = self.get_right_model("Receiver", self.start_ver + 1)()
