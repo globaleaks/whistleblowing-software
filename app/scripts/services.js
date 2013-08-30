@@ -325,7 +325,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('Tip', ['$resource', 'Receivers',
           function($resource, Receivers) {
     var receiversResource = $resource('/tip/:tip_id/receivers', {tip_id: '@tip_id'}, {}),
-      tipResource = $resource('/tip/:tip_id', {tip_id: '@tip_id'}, {}),
+      tipResource = $resource('/tip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}}),
       commentsResource = $resource('/tip/:tip_id/comments', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
@@ -333,7 +333,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       self.tip = {};
       self.tip.comments = [];
       self.tip.receivers = [];
-
 
       tipResource.get(tipID, function(result){
 
