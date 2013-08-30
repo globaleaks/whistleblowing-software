@@ -152,7 +152,18 @@
           <div ng-switch-when="system" class="alert alert-warning">
             <strong>
               {{ "System" | translate }}
-            </strong> {{comment.content}}
+            </strong>
+              <!-- {{comment.content}} -->
+              <div ng-switch on="comment.system_content.type">
+                 <div ng-switch-when="1">
+                     {{ "The user" | translate }}
+                     {{comment.system_content.receiver_name}}
+                     {{ "In date" | translate }}
+                     {{comment.system_content.now | date:'fullDate' }}
+                     {{ "has postponed Tip expiration to" | translate }}
+                     {{comment.system_content.expire_on | date:'fullDate' }}
+                 </div>
+              </div>
           </div>
 
           <div ng-switch-default class="alert alert-danger">
@@ -190,6 +201,18 @@
           </tr>
         </tbody>
       </table>
+      </div>
+      <div ng-show="tip.im_receiver_postponer">
+          <a ng-init="expirebutton = false" ng-click="expirebutton =! expirebutton">
+              {{ "Postpone Tip expiration date" | translate }}
+          </a>
+          <div ng-show="expirebutton">
+            <p>
+              {{ "I want extend the Tip expiration date to" | translate }}
+              {{ tip.potential_expiration_date | date:'fullDate' }}
+            </p>
+            <button type="submit" class="btn btn-success" ng-click="extendTip()" >extend</button>
+          </div>
       </div>
     </div>
 
