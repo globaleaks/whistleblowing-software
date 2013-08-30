@@ -87,6 +87,8 @@ class Replacer45(TableReplacer):
             new_context.submission_disclaimer = old_context.submission_disclaimer
             new_context.tags = old_context.tags
             new_context.fields = old_context.fields
+
+            # that's the new field here
             new_context.select_all_receivers = True
 
             self.store_new.add(new_context)

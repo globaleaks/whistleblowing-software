@@ -87,7 +87,6 @@ class Replacer56(TableReplacer):
         enforced and sets the receiver_tip_id, that before was not assigned,
         that's the reason why all the get_right_model() here address to version 6
         """
-
         print "%s ReceiverFile migration assistant, (receiver tip reference): #%d" % (
             self.std_fancy, self.store_old.find(self.get_right_model("ReceiverFile", 6)).count() )
 
