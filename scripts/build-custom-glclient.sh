@@ -108,7 +108,7 @@ build_custom_glclient()
 
   cd $TMP_DIR/GLCLient
   npm install -d
-  bower update
+  bower update -f
   grunt build
 
   if [ ! -d  $GLCLIENT_INSTALL_DIR.default ]; then
