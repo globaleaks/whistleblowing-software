@@ -16,6 +16,7 @@ class User_version_4(Model):
     last_login = DateTime()
     first_failed = DateTime()
     failed_login_count = Int()
+    # last_failed_attempt = DateTime()
 
 class Node_version_4(Model):
     __storm_table__ = 'node'
@@ -66,6 +67,7 @@ class Replacer56(TableReplacer):
             new_obj = self.get_right_model("User", 6)()
 
             # last_failed_attempt is throw away!
+            # first_failed too!
             new_obj.id = old_user.id
             new_obj.username = old_user.username
             new_obj.password = old_user.password
@@ -82,7 +84,8 @@ class Replacer56(TableReplacer):
     def migrate_ReceiverFile(self):
         """
         This version do not need a new model/SQL, because just had
-        enforced and sets the receiver_tip_id, that before was not assigned
+        enforced and sets the receiver_tip_id, that before was not assigned,
+        that's the reason why all the get_right_model() here address to version 6
         """
 
         print "%s ReceiverFile migration assistant, (receiver tip reference): #%d" % (

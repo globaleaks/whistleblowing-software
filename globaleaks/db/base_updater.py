@@ -1,4 +1,5 @@
 # -*- encoding: utf-8 -*-
+import os
 
 from globaleaks import models
 from storm.exceptions import OperationalError
@@ -7,9 +8,8 @@ from globaleaks.settings import GLSetting
 from globaleaks import DATABASE_VERSION
 
 from storm.properties import PropertyColumn
-from storm.variables import BoolVariable, DateTimeVariable, DateVariable
-from storm.variables import DecimalVariable, EnumVariable
-from storm.variables import FloatVariable, IntVariable, RawStrVariable
+from storm.variables import BoolVariable, DateTimeVariable
+from storm.variables import EnumVariable, IntVariable, RawStrVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
 
 
@@ -25,15 +25,8 @@ def variableToSQLite(var_type):
         sqlite_type = "INTEGER"
     elif isinstance(var_type, DateTimeVariable):
         pass
-        sqlite_type = ""
-    elif isinstance(var_type, DateVariable):
-        pass
-    elif isinstance(var_type, DecimalVariable):
-        pass
     elif isinstance(var_type, EnumVariable):
         sqlite_type = "BLOB"
-    elif isinstance(var_type, FloatVariable):
-        sqlite_type = "REAL"
     elif isinstance(var_type, IntVariable):
         sqlite_type = "INTEGER"
     elif isinstance(var_type, RawStrVariable):
@@ -45,7 +38,7 @@ def variableToSQLite(var_type):
     elif isinstance(var_type, PickleVariable):
         sqlite_type = "BLOB"
     else:
-	raise AssertionError("Invalid var_type: %s" % var_type)
+        raise AssertionError("Invalid var_type: %s" % var_type)
 
     return "%s" % sqlite_type
 
@@ -63,7 +56,7 @@ def varsToParametersSQLite(variables, primary_keys):
     """
     params = "("
     for var in variables[:-1]:
-        params += "%s %s, " % var
+        params += "%s %s, " % (var[0], var[1])
     if len(primary_keys) > 0:
         params += "%s %s, " % variables[-1]
         params += "PRIMARY KEY ("
@@ -126,11 +119,11 @@ class TableReplacer:
 
         self.table_history = {
             'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, Node_version_4, models.Node ],
-            'User' : [ None, None, None, None, User_version_4, models.User],
+            'User' : [ None, None, None, User_version_4, None, models.User ],
             'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context ],
             'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None ],
             'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile ],
-            'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification ],
+            'Notification': [ Notification_version_1, None, Notification_version_2, None, models.Notification, None ],
             'Comment': [ Comment_version_0, None, None, None, None, models.Comment ],
             'InternalTip' : [ models.InternalTip, None, None, None, None, None ],
             'InternalFile' : [ models.InternalFile, None, None, None, None, None ],
@@ -155,6 +148,25 @@ class TableReplacer:
 
         new_database = create_database("sqlite:%s" % new_db_file)
         self.store_new = Store(new_database)
+
+        if self.start_ver + 1 == DATABASE_VERSION:
+            # use the good SQL file!
+
+            if not os.access(GLSetting.db_schema_file, os.R_OK):
+                print "Unable to access %s" % GLSetting.db_schema_file
+                raise Exception("Unable to access db schema file")
+
+            with open(GLSetting.db_schema_file) as f:
+                create_queries = ''.join(f.readlines()).split(';')
+                for create_query in create_queries:
+                    try:
+                        self.store_new.execute(create_query+';')
+                    except OperationalError:
+                        print "OperationalError in [%s]" % create_query
+
+            self.store_new.commit()
+            return
+            # return here and manage the migrant versions here:
 
         for k, v in self.table_history.iteritems():
 
@@ -192,9 +204,14 @@ class TableReplacer:
         last_attr = None
 
         while histcounter <= version:
+
             if self.table_history[table_name][histcounter]:
                 last_attr = self.table_history[table_name][histcounter]
+                print "Updated %s at version %d" %( table_name, histcounter)
+
             histcounter += 1
+            if histcounter == (DATABASE_VERSION - 1):
+                break
 
         if not last_attr:
             # table not present in this version
@@ -339,8 +356,8 @@ class TableReplacer:
             new_obj.state = old_user.state
             new_obj.last_login = old_user.last_login
 
-            if self.start_ver < 5:
-                new_obj.first_failed = old_user.first_failed
+            #if self.start_ver < 5:
+            #    new_obj.first_failed = old_user.first_failed
 
             new_obj.failed_login_count = old_user.failed_login_count
 
@@ -572,10 +589,6 @@ class TableReplacer:
         new_obj.tip_mail_title = on.tip_mail_title
         new_obj.tip_template = on.tip_template
         
-        if self.start_ver > 4:
-            new_obj.source_name = on.source_name
-            new_obj.source_email = on.source_email
-
         if self.start_ver > 4:
             new_obj.source_name = on.source_name
             new_obj.source_email = on.source_email
