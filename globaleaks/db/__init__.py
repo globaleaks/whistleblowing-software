@@ -56,7 +56,6 @@ def initialize_node(store, results, only_node, email_templates):
     admin = models.User(admin_dict)
 
     admin.last_login = datetime_null()
-    admin.last_failed_attempt = datetime_null()
 
     store.add(admin)
 
@@ -158,6 +157,7 @@ def create_tables(create_node=True):
             'tor2web_tip' : GLSetting.defaults.tor2web_tip,
             'tor2web_receiver' : GLSetting.defaults.tor2web_receiver,
             'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
+            'postpone_superpower' : False, # disabled by default
             'exception_email' : GLSetting.defaults.exception_email,
             'default_language' : GLSetting.memory_copy.default_language,
         }

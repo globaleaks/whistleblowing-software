@@ -45,6 +45,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'tor2web_tip': GLSetting.memory_copy.tor2web_tip,
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
+        'postpone_superpower': node.postpone_superpower,
     }
 
     for attr in ['presentation', 'description' ]:
@@ -73,8 +74,10 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
     }
 
     for attr in ['name', 'description', 'receipt_description',
-                 'submission_introduction', 'submission_disclaimer', 'fields' ]:
+                 'submission_introduction', 'submission_disclaimer' ]:
         context_dict[attr] = l10n(getattr(context, attr), language)
+
+    context_dict['fields'] = serialize_fields(l10n(context.fields, language))
     
     for receiver in context.receivers:
         context_dict['receivers'].append(receiver.id)
@@ -113,6 +116,30 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         receiver_dict['contexts'].append(context.id)
 
     return receiver_dict
+
+
+def serialize_fields(ctxfields):
+    """
+    @param ctxfields:
+    @return:
+
+        This code is useful only in the August 2013, it enforce
+        that fields need the 'preview' keyword, just because
+        maybe the DB contains a dict without preview.
+    """
+
+    if not isinstance(ctxfields, list):
+        print "ctxfields = %s" % type(ctxfields)
+
+    ret_list = []
+    for sf in ctxfields:
+        if not sf.has_key('preview'):
+            sf.update({'preview': False})
+
+        ret_list.append(sf)
+
+    return ret_list
+
 
 
 @transact
@@ -526,7 +553,6 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
 
     receiver_user = models.User(receiver_user_dict)
     receiver_user.last_login = datetime_null()
-    receiver_user.last_failed_attempt = datetime_null()
     store.add(receiver_user)
 
     receiver = Receiver(request)
