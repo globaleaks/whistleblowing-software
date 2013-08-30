@@ -97,7 +97,9 @@ module.exports = function(grunt) {
     // update references in HTML/CSS to revved files
     usemin: {
       html: ['tmp/templates/**/*.html', 
-             'tmp/views/**/*.html'],
+             'tmp/views/**/*.html',
+             'tmp/index.html',
+            ],
       css: [
         'tmp/components/bootstrap/docs/assets/css/bootstrap.css',
         'tmp/components/angular-ui/build/angular-ui.css',
