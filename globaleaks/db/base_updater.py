@@ -78,7 +78,13 @@ def generateCreateQuery(model):
     """
     This takes as input a Storm model and outputs the creation query for it.
     """
-    query = "CREATE TABLE "+ model.__storm_table__ + " "
+    prehistory = model.__storm_table__.find("_version_")
+    if prehistory != -1:
+        table_name = model.__storm_table__[:prehistory]
+    else:
+        table_name = model.__storm_table__
+
+    query = "CREATE TABLE "+ table_name + " "
 
     variables = []
     primary_keys = []
@@ -97,19 +103,19 @@ def generateCreateQuery(model):
     return query
 
 
-from globaleaks.db.update_0_1 import Node_version_0, Receiver_version_0
-from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
-from globaleaks.db.update_2_3 import Receiver_version_2
-from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
-from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
-from globaleaks.db.update_5_6 import User_version_4, Comment_version_0, Node_version_4
-
 class TableReplacer:
     """
     This is the base class used by every Updater
     """
 
     def __init__(self, old_db_file, new_db_file, start_ver):
+
+        from globaleaks.db.update_0_1 import Node_version_0, Receiver_version_0
+        from globaleaks.db.update_1_2 import Node_version_1, Notification_version_1, Context_version_1, Receiver_version_1
+        from globaleaks.db.update_2_3 import Receiver_version_2
+        from globaleaks.db.update_3_4 import ReceiverFile_version_3, Node_version_3
+        from globaleaks.db.update_4_5 import Context_version_2, ReceiverFile_version_4, Notification_version_2
+        from globaleaks.db.update_5_6 import User_version_4, Comment_version_0, Node_version_4
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -122,19 +128,22 @@ class TableReplacer:
             'Node' : [ Node_version_0, Node_version_1, Node_version_3, None, Node_version_4, models.Node ],
             'User' : [ None, None, None, None, User_version_4, models.User],
             'Context' : [ Context_version_1, None, Context_version_2, None, None, models.Context ],
-            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, models.Receiver, None, None ],
+            'Receiver': [ Receiver_version_0, Receiver_version_1, Receiver_version_2, None, models.Receiver, None ],
             'ReceiverFile' : [ ReceiverFile_version_3, None, None, None, ReceiverFile_version_4, models.ReceiverFile ],
             'Notification': [ Notification_version_1, None, Notification_version_2, None, None, models.Notification ],
             'Comment': [ Comment_version_0, None, None, None, None, models.Comment ],
             'InternalTip' : [ models.InternalTip, None, None, None, None, None ],
             'InternalFile' : [ models.InternalFile, None, None, None, None, None ],
             'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None, None, None ],
-            'ReceiverTip' : [ models.ReceiverTip, None, None, None, None, None ]
+            'ReceiverTip' : [ models.ReceiverTip, None, None, None, None, None ],
+            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None, None, None, None ],
+            'ReceiverContext' : [ models.ReceiverContext, None, None, None, None, None ],
         }
 
-        for k, v in self.table_history:
+        for k, v in self.table_history.iteritems():
             if len(v) != DATABASE_VERSION:
-                raise AssertionError("yo dev: I'm expecting a table with only %s statuses (%s)" %
+                print "yo dev: I'm expecting a table with only %s statuses (%s)" % (DATABASE_VERSION, k)
+                raise Exception("yo dev: I'm expecting a table with only %s statuses (%s)" %
                                      (DATABASE_VERSION, k))
 
 
@@ -147,9 +156,12 @@ class TableReplacer:
         new_database = create_database("sqlite:%s" % new_db_file)
         self.store_new = Store(new_database)
 
-        for k, v in self.table_history:
+        for k, v in self.table_history.iteritems():
 
             create_query = self.get_right_sql_version(k, self.start_ver +1)
+            if not create_query:
+                # table not present in the version
+                continue
 
             try:
                 self.store_new.execute(create_query+';')
@@ -184,7 +196,10 @@ class TableReplacer:
                 last_attr = self.table_history[table_name][histcounter]
             histcounter += 1
 
-        assert last_attr, "Invalid developer brainsync in get_right_model()"
+        if not last_attr:
+            # table not present in this version
+            return None
+
         return last_attr
 
     def get_right_sql_version(self, model_name, version):
@@ -196,7 +211,11 @@ class TableReplacer:
         """
 
         modelobj = self.get_right_model(model_name, version)
+        if not modelobj:
+            return None
+
         right_query = generateCreateQuery(modelobj)
+        print version, right_query
         return right_query
 
     def migrate_Context(self):
