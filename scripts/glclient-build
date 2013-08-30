@@ -104,7 +104,7 @@ build_custom_glclient()
 
   cd $TMP_DIR/GLCLient
   npm install -d
-  bower update
+  bower update -f
   grunt build
 
   echo "[+] Cleaning up currently installed custom build... "
