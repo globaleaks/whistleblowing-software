@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
-from globaleaks.utils import log, pretty_date_time, l10n, utc_future_date
+from globaleaks.utils import log, pretty_date_time, l10n, utc_future_date, utc_dynamic_date
 
 from globaleaks.settings import transact
 from globaleaks.models import *
@@ -43,14 +43,15 @@ def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.def
         # users interfaces. It's enabled node level by the admin
         'im_receiver_postponer' : False,
 
-        # these two fields are at the moment unsend by the client, but kept
+        # these two fields are at the moment unsent by the client, but kept
         # maintained in unitTest. (tickets in wishlist)
         'is_pertinent' : False,
         'global_delete' : False,
         # this field "inform" the receiver of the new expiration date that can
         # be set, only if PUT with extend = True is updated
         'potential_expiration_date' : \
-            pretty_date_time(utc_future_date(seconds=internaltip.context.submission_timetolive)),
+            pretty_date_time(utc_dynamic_date(internaltip.expiration_date,
+                                      seconds=internaltip.context.tip_timetolive)),
         'extend' : False,
     }
 
@@ -280,23 +281,27 @@ def postpone_expiration_date(store, user_id, tip_id):
     log.debug(" [%s] in %s has extended expiration time to %s" % (
         rtip.receiver.name,
         pretty_date_time(datetime_now()),
-        pretty_date_time(utc_future_date(seconds=rtip.internaltip.context.submission_timetolive))
-    ))
+        pretty_date_time(utc_dynamic_date(rtip.internaltip.expiration_date,
+                         seconds=rtip.internaltip.context.tip_timetolive))))
 
     comment = Comment()
 
-    system_content = dict({
+    comment.system_content = dict({
            'type': "1", # the first kind of structured system_comments
            'receiver_name': rtip.receiver.name,
            'now' : pretty_date_time(datetime_now()),
-           'expire_on' : pretty_date_time(utc_future_date(seconds=
-                    rtip.internaltip.context.submission_timetolive)) })
-    comment.system_content = system_content
+           'expire_on' : pretty_date_time(utc_dynamic_date(
+                     rtip.internaltip.expiration_date,
+                     seconds=rtip.internaltip.context.tip_timetolive))
+    })
 
+    # remind: this is put just for debug, it's never used in the flow
+    # and a system comment may have nothing to say except the struct
     comment.content = "%s %s %s " % (
                    rtip.receiver.name,
                    pretty_date_time(datetime_now()),
-                   pretty_date_time(utc_future_date(seconds=rtip.internaltip.context.submission_timetolive)) )
+                   utc_dynamic_date(rtip.internaltip.expiration_date,
+                                    seconds=rtip.internaltip.context.tip_timetolive))
 
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
