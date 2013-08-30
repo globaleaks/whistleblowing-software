@@ -108,7 +108,7 @@ build_custom_glclient()
   grunt build
 
   echo "[+] Cleaning up currently installed custom build... "
-  rm -rf $GLCLIENT_INSTALL_DIR
+  sudo rm -rf $GLCLIENT_INSTALL_DIR
 
   sudo mv build $GLCLIENT_INSTALL_DIR
   sudo cp -R $TMP_DIR/staticdata/* $GLCLIENT_INSTALL_DIR
@@ -118,6 +118,12 @@ build_custom_glclient()
 
 if [ ! $1 ];then
   usage
+fi
+
+if [[ $EUID -eq 0 ]]; then
+  echo "!! This script should be run as a sudoer user!"
+  usage
+  exit 1
 fi
 
 while getopts "hrbi:" OPTION
