@@ -382,9 +382,5 @@ class FileRequiredMissing(GLException):
     the context enforce the presence.
     """
     error_code =  49
-    # 416 Requested Range Not Satisfiable
-    # mean: "The client has asked for a portion of the file,
-    # but the server cannot supply that portion." In this case,
-    # It's the opposite, server want a file, client has not provide :P
-    status_code = 416
-    reason = "A file is required to complete submission"
+    status_code = 406
+    reason = "A file attachment is required to complete the submission"
