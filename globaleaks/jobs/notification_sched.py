@@ -14,7 +14,7 @@ from globaleaks.rest import errors
 from globaleaks.jobs.base import GLJob
 from globaleaks.plugins.base import Event
 from globaleaks import models, utils
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils import log, pretty_date_time
 from globaleaks.plugins import notification
 from globaleaks.handlers import admin, tip
@@ -46,7 +46,7 @@ def serialize_internalfile(ifile):
 class APSNotification(GLJob):
     notification_settings = None
 
-    @transact
+    @transact_ro
     def _get_notification_settings(self, store):
         """
         notification setting need to contains bot template
@@ -250,7 +250,7 @@ class APSNotification(GLJob):
 
         return events
 
-    @transact
+    @transact_ro
     def comment_notification_succeeded(self, store, result, comment_id, receiver_id):
         """
         This is called when the comment notification has succeeded
@@ -262,7 +262,7 @@ class APSNotification(GLJob):
 
         log.debug("Email: +[Success] Notification of comment receiver %s" % receiver.user.username)
 
-    @transact
+    @transact_ro
     def comment_notification_failed(self, store, failure, comment_id, receiver_id):
         """
         This is called when the comment notification has failed.
@@ -380,9 +380,9 @@ class APSNotification(GLJob):
         if not rfile:
             raise errors.FileGusNotFound
 
-        log.debug("Email: +[Success] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
-
         rfile.mark = models.ReceiverFile._marker[1] # 'notified'
+
+        log.debug("Email: +[Success] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
 
     @transact
     def receiverfile_notification_failed(self, store, failure, receiverfile_id, receiver_id):
@@ -394,9 +394,9 @@ class APSNotification(GLJob):
         if not rfile:
             raise errors.FileGusNotFound
 
-        log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
-
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
+
+        log.debug("Email: -[Fail] Notification of receiverfile %s for receiver %s" % (rfile.internalfile.name, rfile.receiver.user.username))
 
     def do_receiverfile_notification(self, receiverfile_events):
         l = []

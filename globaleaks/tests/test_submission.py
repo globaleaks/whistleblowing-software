@@ -5,7 +5,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 # override GLSetting
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
