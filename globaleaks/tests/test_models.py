@@ -10,6 +10,26 @@ class TestModels(helpers.TestGL):
 
     receiver_inc = 0
 
+    @transact_ro
+    def _transact_ro_add_context(self, store):
+        c = self.localization_set(self.dummyContext, Context, 'en')
+        context = Context(c)
+        context.fields = self.dummyContext['fields']
+        context.tags = self.dummyContext['tags']
+        context.submission_timetolive = context.tip_timetolive = 1000
+        context.description = context.name = \
+            context.submission_disclaimer = context.submission_introduction = \
+            context.receipt_description = { "en" : u'Localized723' }
+        context.receipt_regexp = u"unipop547"
+        store.add(context)
+
+    @inlineCallbacks
+    def test_fail_to_add_context(self):
+
+        created_id = yield self._transact_ro_add_context()
+        test = yield self.context_get(created_id)
+        self.assertEqual(test, None)
+
     @transact
     def context_add(self, store):
         c = self.localization_set(self.dummyContext, Context, 'en')
