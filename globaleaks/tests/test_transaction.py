@@ -4,8 +4,8 @@ from storm import exceptions
 
 from globaleaks.tests import helpers
 
-from globaleaks.settings import transact
-from globaleaks.models import Receiver, User
+from globaleaks.settings import transact, transact_ro
+from globaleaks.models import *
 
 class TestTransaction(helpers.TestGL):
 
@@ -90,3 +90,31 @@ class TestTransaction(helpers.TestGL):
         store.add(receiver)
 
         raise exceptions.DisconnectionError
+
+    @transact_ro
+    def _transact_ro_add_context(self, store):
+        c = self.localization_set(self.dummyContext, Context, 'en')
+        context = Context(c)
+        context.fields = self.dummyContext['fields']
+        context.tags = self.dummyContext['tags']
+        context.submission_timetolive = context.tip_timetolive = 1000
+        context.description = context.name = \
+            context.submission_disclaimer = context.submission_introduction = \
+            context.receipt_description = { "en" : u'Localized723' }
+        context.receipt_regexp = u"unipop547"
+        store.add(context)
+        return context.id
+
+    @transact_ro
+    def context_get(self, store, context_id):
+        context = store.find(Context, Context.id == context_id).one()
+        if context is None:
+            return None
+        return context.id
+
+    @inlineCallbacks
+    def test_transact_ro(self):
+        created_id = yield self._transact_ro_add_context()
+        test = yield self.context_get(created_id)
+        self.assertEqual(test, None)
+
