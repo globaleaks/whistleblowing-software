@@ -176,7 +176,8 @@ def collect_files_overview(store):
                     (ifile.file_path, submission_dir) )
 
         else:
-            log.err("InternalFile %s has not a disk reference present")
+            log.err("InternalFile %s has not a disk reference present: %s" %
+                    (file_desc['name'], absfilepath) )
             file_desc['stored'] = False
 
         file_description_list.append(file_desc)
