@@ -132,12 +132,14 @@ def import_receivers(store, submission, receiver_id_list, required=False):
 
 
 # Remind: it's a store without @transaction because called by a @ŧransact
-def import_files(store, submission, files):
+def import_files(store, submission, files, finalize):
     """
     @param submission: the Storm obj
     @param files: the list of InternalFiles UUIDs
     @return:
-        Look if all the files specified in the list exist
+        Look if all the files specified in the list exist,
+        Look if the context *require* almost a file, raise
+            an error if missed
     """
     for file_id in files:
         try:
@@ -148,6 +150,11 @@ def import_files(store, submission, files):
             raise errors.FileGusNotFound
 
         ifile.internaltip_id = submission.id
+
+    if finalize and submission.context.file_required and not len(files):
+        log.debug("Missing file for a submission in context %s" %
+                  submission.context.name)
+        raise errors.FileRequiredMissing
 
     # commit before return
     store.commit()
@@ -260,7 +267,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
 
     files = request.get('files', [])
     try:
-        import_files(store, submission, files)
+        import_files(store, submission, files, finalize)
     except Exception as excep:
         log.err("subm_creat - Invalid operation in import_files : %s" % excep)
         store.remove(submission)
@@ -330,7 +337,7 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
 
     files = request.get('files', [])
     try:
-        import_files(store, submission, files)
+        import_files(store, submission, files, finalize)
     except Exception as excep:
         log.err("subm_update - Invalid operation in import_files : %s" % excep)
         raise excep

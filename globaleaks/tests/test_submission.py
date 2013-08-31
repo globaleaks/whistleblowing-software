@@ -10,7 +10,7 @@ from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
-from globaleaks.handlers.admin import update_context, create_receiver, get_receiver_list
+from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
 
 from io import BytesIO as StringIO
@@ -50,6 +50,26 @@ class TestSubmission(helpers.TestGL):
 
         retval = re.match(self.dummyContext['receipt_regexp'], receipt)
         self.assertTrue(retval)
+
+    @inlineCallbacks
+    def test_fail_submission_missing_file(self):
+
+        mycopy = dict(self.dummyContext)
+        mycopy['file_required'] = True
+
+        context_status = yield create_context(mycopy)
+        submission_desc = dict(self.dummySubmission)
+
+        submission_desc['context_gus'] = context_status['context_gus']
+        submission_desc['finalize'] = True
+        submission_desc['wb_fields'] = helpers.fill_random_fields(self.dummyContext)
+
+        try:
+            yield submission.create_submission(submission_desc, finalize=True)
+        except errors.FileRequiredMissing:
+            self.assertTrue(True)
+            return
+        self.assertTrue(False)
 
     @inlineCallbacks
     def emulate_file_upload(self, associated_submission_id):
