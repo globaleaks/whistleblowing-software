@@ -9,12 +9,12 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import utils
 from globaleaks.utils import l10n
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models
 
-@transact
+@transact_ro
 def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
     node = store.find(models.Node).one()
 
@@ -166,7 +166,7 @@ class StatsCollection(BaseHandler):
         pass
 
 
-@transact
+@transact_ro
 def get_public_context_list(store, default_lang):
     context_list = []
     contexts = store.find(models.Context)
@@ -199,7 +199,7 @@ class ContextsCollection(BaseHandler):
         response = yield get_public_context_list(self.request.language)
         self.finish(response)
 
-@transact
+@transact_ro
 def get_public_receiver_list(store, default_lang):
     receiver_list = []
     receivers = store.find(models.Receiver)
@@ -229,4 +229,3 @@ class ReceiversCollection(BaseHandler):
         """
         response = yield get_public_receiver_list(self.request.language)
         self.finish(response)
-

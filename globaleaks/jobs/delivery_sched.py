@@ -17,7 +17,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile, Receiver
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils import get_file_checksum, log, pretty_date_time
 from globaleaks.security import GLBGPG
 from globaleaks.handlers.admin import admin_serialize_receiver
@@ -37,7 +37,7 @@ def serialize_internalfile(ifile):
     }
     return ifile_dict
 
-@transact
+@transact_ro
 def get_files_by_itip(store, itip_id):
     try:
         ifiles = store.find(InternalFile, InternalFile.internaltip_id == unicode(itip_id))
@@ -68,7 +68,7 @@ def serialize_receiverfile(rfile):
     }
     return rfile_dict
 
-@transact
+@transact_ro
 def get_receiverfile_by_itip(store, itip_id):
     try:
         rfiles = store.find(ReceiverFile, ReceiverFile.internaltip_id == unicode(itip_id))

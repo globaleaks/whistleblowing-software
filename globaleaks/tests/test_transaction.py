@@ -90,4 +90,3 @@ class TestTransaction(helpers.TestGL):
         store.add(receiver)
 
         raise exceptions.DisconnectionError
-

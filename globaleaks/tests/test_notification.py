@@ -2,7 +2,7 @@ from twisted.internet import defer
 from twisted.internet.defer import inlineCallbacks
 
 # override GLsetting
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting, transact, transact_ro
 
 GLSetting.notification_plugins = ['MailNotification']
 GLSetting.memory_copy.notif_source_name = "name fake"

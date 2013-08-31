@@ -11,7 +11,7 @@ from globaleaks.security import GLBGPG, gpg_options_parse, get_expirations
 from globaleaks.handlers import receiver, files
 from globaleaks.handlers.admin import admin_serialize_receiver, create_receiver, create_context, get_context_list
 from globaleaks.handlers.submission import create_submission, update_submission
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.tests.helpers import MockDict
 from globaleaks.models import Receiver
 
@@ -22,9 +22,8 @@ from globaleaks.plugins.base import Event
 GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 
 
-@transact
+@transact_ro
 def transact_dummy_whatever(store, receiver_id, mock_request):
-
     receiver = store.find(Receiver, Receiver.id == receiver_id).one()
     gpg_options_parse(receiver, mock_request)
     return admin_serialize_receiver(receiver)
