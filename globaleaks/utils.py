@@ -179,6 +179,15 @@ def get_file_checksum(filepath):
 
 ## time facilities ##
 
+def utc_dynamic_date(start_date, seconds=0, minutes=0, hours=0):
+    """
+    @param start_date: a date stored in a db
+    seconds/minutes/hours = the amount of future you want
+    @return: a datetime object, as base of the sum
+    """
+    delta = timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
+    return start_date + delta
+
 def utc_future_date(seconds=0, minutes=0, hours=0):
     """
     @param seconds: get a datetime obj with now+hours
