@@ -10,7 +10,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n, naturalize_fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, gpg_options_parse
@@ -48,7 +48,7 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
 
     return receiver_dict
 
-@transact
+@transact_ro
 def get_receiver_settings(store, user_id, language=GLSetting.memory_copy.default_language):
     receiver = store.find(Receiver, Receiver.id== unicode(user_id)).one()
 
@@ -161,7 +161,7 @@ def serialize_tip_summary(rtip, file_associated):
     return single_tip_sum
 
 
-@transact
+@transact_ro
 def get_receiver_tip_list(store, user_id):
 
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()

@@ -517,6 +517,8 @@ class transact(object):
     Because Storm sucks.
     """
     tp = ThreadPool(0, GLSetting.db_thread_pool_size)
+    
+    readonly = False
 
     def __init__(self, method):
         self.store = None
@@ -576,11 +578,15 @@ class transact(object):
             # propagate the exception
             raise excep
         else:
-            self.store.commit()
+            if not self.readonly:
+                self.store.commit()
         finally:
             self.store.close()
 
         return result
+
+class transact_ro(transact):
+    readonly = True
 
 transact.tp.start()
 reactor.addSystemEventTrigger('after', 'shutdown', transact.tp.stop)

@@ -3,7 +3,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.tests import helpers
 
 from globaleaks.models import *
-from globaleaks.settings import transact
+from globaleaks.settings import transact, transact_ro
 from globaleaks.rest import errors
 
 class TestModels(helpers.TestGL):
@@ -24,7 +24,7 @@ class TestModels(helpers.TestGL):
         store.add(context)
         return context.id
 
-    @transact
+    @transact_ro
     def context_get(self, store, context_id):
         context = store.find(Context, Context.id == context_id).one()
         if context is None:
@@ -58,7 +58,7 @@ class TestModels(helpers.TestGL):
 
         return receiver.id
 
-    @transact
+    @transact_ro
     def receiver_get(self, store, receiver_id):
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
         if receiver is None:
@@ -155,7 +155,7 @@ class TestModels(helpers.TestGL):
         store.add(receiver)
         return receiver.id
 
-    @transact
+    @transact_ro
     def list_receivers_of_context(self, store, context_id):
         context = store.find(Context, Context.id == context_id).one()
         receivers = []
@@ -163,7 +163,7 @@ class TestModels(helpers.TestGL):
             receivers.append(receiver.id)
         return receivers
 
-    @transact
+    @transact_ro
     def list_context_of_receivers(self, store, receiver_id):
         receiver = store.find(Receiver, Receiver.id == receiver_id).one()
         contexts = []

@@ -7,7 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import transact
+from globaleaks.settings import transact, transact_ro
 from globaleaks.models import *
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
@@ -363,7 +363,7 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
     return submission_dict
 
 
-@transact
+@transact_ro
 def get_submission(store, id):
     submission = store.find(InternalTip, InternalTip.id == unicode(id)).one()
     if not submission:
@@ -501,5 +501,4 @@ class SubmissionInstance(BaseHandler):
 
         self.set_status(200) # Accepted
         self.finish()
-
 

@@ -16,7 +16,7 @@ from twisted.internet import threads
 from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils import log
@@ -113,7 +113,7 @@ def reserved_name_check(target_string):
 
     return False
 
-@transact
+@transact_ro
 def receiver_pic_path(store, receiver_uuid):
     receiver = store.find(models.Receiver, models.Receiver.id == unicode(receiver_uuid)).one()
 

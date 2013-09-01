@@ -6,7 +6,7 @@
 
 import os
 
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks import models
@@ -14,7 +14,7 @@ from globaleaks import models
 from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import pretty_date_time, log, l10n
 
-@transact
+@transact_ro
 def collect_tip_overview(store, language=GLSetting.memory_copy.default_language):
 
     tip_description_list = []
@@ -86,7 +86,7 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
     return tip_description_list
 
 
-@transact
+@transact_ro
 def collect_users_overview(store):
 
     users_description_list = []
@@ -133,7 +133,7 @@ def collect_users_overview(store):
 
     return users_description_list
 
-@transact
+@transact_ro
 def collect_files_overview(store):
 
     file_description_list = []
@@ -201,7 +201,6 @@ def collect_files_overview(store):
         file_description_list.append(file_desc)
 
     return file_description_list
-
 
 
 class Tips(BaseHandler):

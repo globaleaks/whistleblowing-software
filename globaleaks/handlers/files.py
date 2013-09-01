@@ -13,7 +13,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import os
 
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils import log, pretty_date_time
@@ -103,7 +103,7 @@ def dump_file_fs(uploaded_file):
 
     return saved_name
 
-@transact
+@transact_ro
 def get_tip_by_submission(store, id):
 
     try:
@@ -120,7 +120,7 @@ def get_tip_by_submission(store, id):
     else:
         return itip.id
 
-@transact
+@transact_ro
 def get_tip_by_wbtip(store, wb_tip_id):
 
     try:

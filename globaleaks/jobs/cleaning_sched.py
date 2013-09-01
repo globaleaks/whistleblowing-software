@@ -10,7 +10,7 @@ import sys
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import transact, transact_ro, GLSetting
 
 from globaleaks.utils import log, pretty_date_time, is_expired, iso2dateobj
 from globaleaks.jobs.base import GLJob
@@ -18,7 +18,7 @@ from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment
 
 __all__ = ['APSCleaning']
 
-@transact
+@transact_ro
 def get_tiptime_by_marker(store, marker):
     assert marker in InternalTip._marker
 

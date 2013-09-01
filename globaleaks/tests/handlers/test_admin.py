@@ -5,7 +5,7 @@ from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.handlers import admin
-from globaleaks.settings import transact
+from globaleaks.settings import transact, transact_ro
 from globaleaks import __version__
 
 # special guest:
