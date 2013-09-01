@@ -8,7 +8,7 @@
 
 import sys
 
-from twisted.internet.defer import inlineCallbacks, DeferredList
+from twisted.internet.defer import inlineCallbacks, returnValue
 
 from globaleaks.rest import errors
 from globaleaks.jobs.base import GLJob
@@ -153,21 +153,17 @@ class APSNotification(GLJob):
         log.debug("Email: -[Fail] Notification Tip receiver %s" % rtip.receiver.user.username)
         rtip.mark = models.ReceiverTip._marker[2] # 'unable to notify'
 
+    @inlineCallbacks
     def do_tip_notification(self, tip_events):
-        l = []
         for tip_id, event in tip_events:
 
             notify = event.plugin.do_notify(event)
-
-            if not notify:
-                log.err("Event %s has nothing to notify ?" % str(event.trigger_info))
-                continue
-
             notify.addCallback(self.tip_notification_succeeded, tip_id)
             notify.addErrback(self.tip_notification_failed, tip_id)
-            l.append(notify)
 
-        return DeferredList(l)
+            # we need to wait on single mail send basis to not be prone to DoS
+            # and be forced to open so many outgoing connections.
+            yield notify
 
     @transact
     def create_comment_notification_events(self, store):
@@ -275,24 +271,16 @@ class APSNotification(GLJob):
         log.debug("Email: -[Fail] Notification of comment receiver %s" % receiver.user.username)
 
     def do_comment_notification(self, comment_events):
-        l = []
         for comment_receiver_id, event in comment_events:
             comment_id, receiver_id = comment_receiver_id
 
             notify = event.plugin.do_notify(event)
-
-            if not notify:
-                log.err("Event %s has nothing to notify ?" % str(event.trigger_info))
-                continue
-
             notify.addCallback(self.comment_notification_succeeded, comment_id, receiver_id)
             notify.addErrback(self.comment_notification_failed, comment_id, receiver_id)
-            l.append(notify)
 
-        # we place all the notification events inside of a deferred list so
-        # that they can all run concurrently
-        return DeferredList(l)
-
+            # we need to wait on single mail send basis to not be prone to DoS
+            # and be forced to open so many outgoing connections.
+            yield notify
 
     @transact
     def create_file_notification_events(self, store):
@@ -399,21 +387,16 @@ class APSNotification(GLJob):
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
 
     def do_receiverfile_notification(self, receiverfile_events):
-        l = []
         for receiverfile_receiver_id, event in receiverfile_events:
             receiverfile_id, receiver_id = receiverfile_receiver_id
 
             notify = event.plugin.do_notify(event)
-
-            if not notify:
-                log.err("Event %s has nothing to notify ?" % str(event.trigger_info))
-                continue
-
             notify.addCallback(self.receiverfile_notification_succeeded, receiverfile_id, receiver_id)
             notify.addErrback(self.receiverfile_notification_failed, receiverfile_id, receiver_id)
-            l.append(notify)
 
-        return DeferredList(l)
+            # we need to wait on single mail send basis to not be prone to DoS
+            # and be forced to open so many outgoing connections.
+            yield notify
 
     @inlineCallbacks
     def operation(self):
@@ -439,10 +422,8 @@ class APSNotification(GLJob):
             comment_events = yield self.create_comment_notification_events()
             file_events = yield self.create_file_notification_events()
 
-            d1 = self.do_tip_notification(tip_events)
-            d2 = self.do_comment_notification(comment_events)
-            d3 = self.do_receiverfile_notification(file_events)
-
-            yield DeferredList([d1, d2, d3], consumeErrors=True)
+            self.do_tip_notification(tip_events)
+            self.do_comment_notification(comment_events)
+            self.do_receiverfile_notification(file_events)
         except:
             sys.excepthook(*sys.exc_info())
