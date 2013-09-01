@@ -8,7 +8,7 @@ from twisted.internet.defer import succeed
 from storm.exceptions import OperationalError
 
 from globaleaks.utils import log, datetime_now, datetime_null
-from globaleaks.settings import transact, ZStorm, GLSetting
+from globaleaks.settings import transact, transact_ro, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
 from globaleaks.security import hash_password, get_salt
@@ -249,7 +249,7 @@ def check_schema_version():
     return ret
 
 
-@transact
+@transact_ro
 def import_memory_variables(store):
     """
     to get fast checks, import (same) of the Node variable in GLSetting,

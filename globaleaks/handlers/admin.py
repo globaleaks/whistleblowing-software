@@ -6,7 +6,7 @@
 #
 import os, shutil
 
-from globaleaks.settings import transact, GLSetting, sample_context_fields
+from globaleaks.settings import transact, transact_ro, GLSetting, sample_context_fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
@@ -142,7 +142,7 @@ def serialize_fields(ctxfields):
 
 
 
-@transact
+@transact_ro
 def get_node(store, language=GLSetting.memory_copy.default_language):
     return admin_serialize_node(store.find(Node).one(), language)
 
@@ -204,7 +204,7 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
 
     return admin_serialize_node(node, language)
 
-@transact
+@transact_ro
 def get_context_list(store, language=GLSetting.memory_copy.default_language):
     """
     Returns:
@@ -310,7 +310,7 @@ def generate_example_receipt(regexp):
     Random.atfork()
 
     try:
-        return_value_receipt = unicode( rstr.xeger(regexp) )
+        return_value_receipt = unicode(rstr.xeger(regexp))
     except Exception:
         log.err("Invalid receipt regexp: %s" % regexp)
         raise errors.InvalidReceiptRegexp
@@ -388,7 +388,7 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
     receipt_example = generate_example_receipt(context.receipt_regexp)
     return admin_serialize_context(context, receipt_example, language)
 
-@transact
+@transact_ro
 def get_context(store, context_gus, language=GLSetting.memory_copy.default_language):
     """
     Returns:
@@ -481,7 +481,7 @@ def delete_context(store, context_gus):
     store.remove(context)
 
 
-@transact
+@transact_ro
 def get_receiver_list(store, language=GLSetting.memory_copy.default_language):
     """
     Returns:
@@ -581,7 +581,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
     return admin_serialize_receiver(receiver, language)
 
 
-@transact
+@transact_ro
 def get_receiver(store, id, language=GLSetting.memory_copy.default_language):
     """
     raises :class:`globaleaks.errors.ReceiverGusNotFound` if the receiver does
@@ -935,7 +935,7 @@ def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_l
 
     return notification_dict
 
-@transact
+@transact_ro
 def get_notification(store, language=GLSetting.memory_copy.default_language):
     try:
         notif = store.find(Notification).one()

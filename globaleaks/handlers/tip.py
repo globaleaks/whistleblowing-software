@@ -13,7 +13,7 @@ from globaleaks.handlers.authentication import transport_security_check, unauthe
 from globaleaks.rest import requests
 from globaleaks.utils import log, pretty_date_time, l10n, utc_future_date, utc_dynamic_date
 
-from globaleaks.settings import transact
+from globaleaks.settings import transact, transact_ro
 from globaleaks.models import *
 from globaleaks.rest import errors
 
@@ -92,7 +92,7 @@ def wb_serialize_file(internalfile):
     return wb_file_desc
 
 
-@transact
+@transact_ro
 def get_files_wb(store, wb_tip_id):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
 
@@ -102,7 +102,7 @@ def get_files_wb(store, wb_tip_id):
 
     return file_list
 
-@transact
+@transact_ro
 def get_files_receiver(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
@@ -144,7 +144,7 @@ def strong_receiver_validate(store, user_id, tip_id):
     return rtip
 
 
-@transact
+@transact_ro
 def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_language):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
@@ -159,7 +159,7 @@ def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_lan
 
     return tip_desc
 
-@transact
+@transact_ro
 def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
@@ -430,7 +430,7 @@ def get_comment_list(internaltip):
 
     return comment_list
 
-@transact
+@transact_ro
 def get_comment_list_wb(store, wb_tip_id):
     wb_tip = store.find(WhistleblowerTip,
                         WhistleblowerTip.id == unicode(wb_tip_id)).one()
@@ -439,7 +439,7 @@ def get_comment_list_wb(store, wb_tip_id):
 
     return get_comment_list(wb_tip.internaltip)
 
-@transact
+@transact_ro
 def get_comment_list_receiver(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
     return get_comment_list(rtip.internaltip)
@@ -545,7 +545,7 @@ def serialize_receiver(receiver, access_counter, language=GLSetting.memory_copy.
 
     return receiver_dict
 
-@transact
+@transact_ro
 def get_receiver_list_wb(store, wb_tip_id, language):
     wb_tip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
     if not wb_tip:
@@ -559,7 +559,7 @@ def get_receiver_list_wb(store, wb_tip_id, language):
     return receiver_list
 
 
-@transact
+@transact_ro
 def get_receiver_list_receiver(store, user_id, tip_id, language):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
@@ -569,7 +569,6 @@ def get_receiver_list_receiver(store, user_id, tip_id, language):
         receiver_list.append(serialize_receiver(rtip.receiver, rtip.access_counter, language ))
 
     return receiver_list
-
 
 
 class TipReceiversCollection(BaseHandler):
