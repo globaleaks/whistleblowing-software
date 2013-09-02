@@ -6,15 +6,15 @@
 #
 import os, shutil
 
+from Crypto import Random
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.settings import transact, transact_ro, GLSetting, sample_context_fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification, User
-
-from twisted.internet.defer import inlineCallbacks
 from globaleaks import utils, security, models
-
 from globaleaks.utils import log, datetime_null, l10n, naturalize_fields
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_parse
@@ -123,14 +123,11 @@ def serialize_fields(ctxfields):
     @param ctxfields:
     @return:
 
-        This code is useful only in the August 2013, it enforce
-        that fields need the 'preview' keyword, just because
-        maybe the DB contains a dict without preview.
+        This code is useful only in September August 2013,
+        Fields generated with version before 2.24 just
+        don't contain this keyword, and its just added
+        with a default False, until the admin enable it
     """
-
-    if not isinstance(ctxfields, list):
-        print "ctxfields = %s" % type(ctxfields)
-
     ret_list = []
     for sf in ctxfields:
         if not sf.has_key('preview'):
@@ -139,7 +136,6 @@ def serialize_fields(ctxfields):
         ret_list.append(sf)
 
     return ret_list
-
 
 
 @transact_ro
@@ -306,13 +302,12 @@ def generate_example_receipt(regexp):
     receipt_regexp configured, and if an error happen, it's
     works as validator.
     """
-    from Crypto import Random
     Random.atfork()
 
     try:
         return_value_receipt = unicode(rstr.xeger(regexp))
-    except Exception:
-        log.err("Invalid receipt regexp: %s" % regexp)
+    except Exception as excep:
+        log.err("Invalid receipt regexp: %s (%s)" % (regexp, excep) )
         raise errors.InvalidReceiptRegexp
 
     return return_value_receipt
