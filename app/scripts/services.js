@@ -601,7 +601,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
         context.escalation_threshold = 0;
         context.file_max_download = 3;
-        context.tip_max_access = 50;
+        context.tip_max_access = 500;
         context.selectable_receiver = true;
         context.select_all_receivers = true;
         context.file_required = false;
