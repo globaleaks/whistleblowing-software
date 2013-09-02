@@ -41,8 +41,13 @@ echo
 echo "[+] Sorry to hear you did not enjoy your leaking experience"
 echo "    send us an email to info@globaleaks.org"
 
-if [ -d /var/run/globaleaks ]; then
-  rm -r /var/run/globaleaks
+
+if [ "$1" = "purge" ]; then
+  echo "Forcefully purging all globaleaks data except /var/globaleaks/torhs directory"
+  rm -rf /var/globaleaks/db
+  rm -rf /var/globaleaks/files
+  rm -rf /var/globaleaks/log
+  rm -rf /var/run/globaleaks
 fi
 
 #DEBHELPER#
