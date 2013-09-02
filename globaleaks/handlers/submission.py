@@ -226,15 +226,6 @@ def import_fields(submission, wb_fields, configured_fields_list, strict_validati
     log.debug("Submission fields updated - finalize: %s" %
              ("YES" if strict_validation else "NO") )
 
-def force_schedule():
-    # force mail sending, is called force_execution to be sure that Scheduler
-    # run the Notification process, and not our callback+user event.
-    # after two second create the Receiver tip, after five loop over the emails
-    DeliverySched = APSDelivery()
-    DeliverySched.force_execution(GLAsynchronous, seconds=1)
-    NotifSched = APSNotification()
-    NotifSched.force_execution(GLAsynchronous, seconds=6)
-
 
 @transact
 def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
@@ -421,7 +412,6 @@ class SubmissionCreate(BaseHandler):
         if finalize:
             receipt = yield create_whistleblower_tip(status)
             status.update({'receipt': receipt})
-            force_schedule()
         else:
             status.update({'receipt' : ''})
 
@@ -476,7 +466,6 @@ class SubmissionInstance(BaseHandler):
         if finalize:
             receipt = yield create_whistleblower_tip(status)
             status.update({'receipt': receipt})
-            force_schedule()
         else:
             status.update({'receipt' : ''})
 
