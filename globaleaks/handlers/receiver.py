@@ -151,11 +151,14 @@ def serialize_tip_summary(rtip, file_associated):
     preview_data = []
     for sf in naturalize_fields(rtip.internaltip.context.fields):
 
-        if sf['preview'] == True and sf['type'] == u'text':
-            # preview in a format angular.js likes
-            entry = dict({ 'key' : sf['key'],
-                           'text': rtip.internaltip.wb_fields[sf['key']] })
-            preview_data.append(entry)
+        try:
+            if sf['preview'] == True and sf['type'] == u'text':
+                # preview in a format angular.js likes
+                entry = dict({'key' : sf['key'],
+                              'text': rtip.internaltip.wb_fields[sf['key']] })
+                preview_data.append(entry)
+        except KeyError:
+            continue
 
     single_tip_sum.update({ 'preview' : preview_data })
     return single_tip_sum
