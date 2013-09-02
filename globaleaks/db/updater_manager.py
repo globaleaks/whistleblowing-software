@@ -32,7 +32,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
     }
     
     to_delete_on_fail = []
-    to_rename_on_success = []
+    to_delete_on_success = []
 
     try:
 
@@ -52,7 +52,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             new_db_file = os.path.abspath(os.path.join(GLSetting.gldb_path, 'glbackend-%d.db' % (starting_ver + 1)))
             
             to_delete_on_fail.append(new_db_file)
-            to_rename_on_success.append((old_db_file, backup_file))
+            to_delete_on_success.append(old_db_file)
             
             print "  Updating DB from version %d to version %d" % (starting_ver, starting_ver + 1)
 
@@ -90,32 +90,27 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             
             starting_ver += 1
 
-    except Exception as excep:
+    except Exception as e:
         # Remediate action on fail:
         #    created files during update must be deleted
-        if not to_delete_on_fail:
-            print "No file to be deleted, but exception happen!", excep
-            raise excep
-
         for f in to_delete_on_fail:
-            if os.path.isfile(f):
+            try:
                 os.remove(f)
-            else:
-                print "Invalid file %s in %s" % (f, to_delete_on_fail)
+            except Exception as excep:
+                print "Error removing new db file on conversion fail: %s" % excep.message
+                # we can't stop if one files removal fails
+                # and we continue trying deleting others files
+                pass
         # propagate the exception
-        raise excep
+        raise e
 
     # Finalize action on success:
     #    converted files must be renamed
-    for f in to_rename_on_success:
-        old_db_file = f[0]
-        backup_file = f[1]
-        if os.path.isfile(backup_file):
-            try:
-                os.unlink(backup_file)
-            except Exception as excep:
-                print "Error in unlink and old version backup files: %s" % excep.message
-                raise excep
-
-        print "- renaming", old_db_file, "as", backup_file
-        os.rename(old_db_file, backup_file)
+    for f in to_delete_on_success:
+        try:
+            os.remove(f)
+        except Exception as excep:
+            print "Error removing old db file on conversion success: %s" % excep.message
+            # we can't stop if one files removal fails
+            # and we continue trying deleting others files
+            pass
