@@ -7,7 +7,7 @@ from twisted.application import app
 from twisted.internet.error import CannotListenError
 from apscheduler.scheduler import Scheduler
 
-from globaleaks.utils import log
+from globaleaks.utils import log, utc_future_date
 from globaleaks.db import create_tables, check_schema_version, import_memory_variables
 from globaleaks.settings import GLSetting
 
@@ -74,28 +74,29 @@ def start_asynchronous():
     #       EVENT_JOB_EXECUTED | EVENT_JOB_ERROR | EVENT_JOB_MISSED)
 
     session_manage_sched = session_management_sched.APSSessionManagement()
-    session_manage_sched.force_execution(GLAsynchronous, seconds=1)
     GLAsynchronous.add_interval_job(session_manage_sched.operation,
-        minutes=GLSetting.session_management_minutes_delta)
+                                    minutes=GLSetting.session_management_minutes_delta,
+                                    start_date=utc_future_date(seconds=3))
 
     deliver_sched = delivery_sched.APSDelivery()
-    deliver_sched.force_execution(GLAsynchronous, seconds=5)
     GLAsynchronous.add_interval_job(deliver_sched.operation,
-        seconds=GLSetting.delivery_seconds_delta)
+                                    seconds=GLSetting.delivery_seconds_delta,
+                                    start_date=utc_future_date(seconds=5))
 
     notify_sched = notification_sched.APSNotification()
-    notify_sched.force_execution(GLAsynchronous, seconds=7)
     GLAsynchronous.add_interval_job(notify_sched.operation,
-        minutes=GLSetting.notification_minutes_delta)
+                                    minutes=GLSetting.notification_minutes_delta,
+                                    start_date=utc_future_date(seconds=7))
 
     clean_sched = cleaning_sched.APSCleaning()
-    clean_sched.force_execution(GLAsynchronous, seconds=10)
     GLAsynchronous.add_interval_job(clean_sched.operation,
-        hours=GLSetting.cleaning_hours_delta)
+                                    hours=GLSetting.cleaning_hours_delta,
+                                    start_date=utc_future_date(seconds=10))
 
     expiration_sched = gpgexpire_sched.GPGExpireCheck()
-    expiration_sched.force_execution(GLAsynchronous, seconds=50)
-    GLAsynchronous.add_interval_job(expiration_sched.operation, hours=23)
+    GLAsynchronous.add_interval_job(expiration_sched.operation,
+                                    hours=23,
+                                    start_date=utc_future_date(seconds=50))
 
     #stats_sched = statistics_sched.APSStatistics()
     #stats_sched.force_execution(GLAsynchronous, seconds=9)
