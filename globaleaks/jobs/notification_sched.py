@@ -270,6 +270,7 @@ class APSNotification(GLJob):
 
         log.debug("Email: -[Fail] Notification of comment receiver %s" % receiver.user.username)
 
+    @inlineCallbacks
     def do_comment_notification(self, comment_events):
         for comment_receiver_id, event in comment_events:
             comment_id, receiver_id = comment_receiver_id
@@ -386,6 +387,7 @@ class APSNotification(GLJob):
 
         rfile.mark = models.ReceiverFile._marker[2] # 'unable to notify'
 
+    @inlineCallbacks
     def do_receiverfile_notification(self, receiverfile_events):
         for receiverfile_receiver_id, event in receiverfile_events:
             receiverfile_id, receiver_id = receiverfile_receiver_id
@@ -422,8 +424,8 @@ class APSNotification(GLJob):
             comment_events = yield self.create_comment_notification_events()
             file_events = yield self.create_file_notification_events()
 
-            self.do_tip_notification(tip_events)
-            self.do_comment_notification(comment_events)
-            self.do_receiverfile_notification(file_events)
+            yield self.do_tip_notification(tip_events)
+            yield self.do_comment_notification(comment_events)
+            yield self.do_receiverfile_notification(file_events)
         except:
             sys.excepthook(*sys.exc_info())
