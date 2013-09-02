@@ -6,24 +6,29 @@
   </div>
 </div>
 <div ng-cloak class="container statusPage" ng-show="tip.im_whistleblower || tip.im_receiver">
+  <div class="row" ng-show="tip.im_receiver && !preferences.gpg_enable_files">
+    <div class="span12">
+      <div class="alert">
+        <strong>{{ "Warning!" | translate }}</strong>
+        {{ "You have not configured your encryption keys, so the files will be stored on the globaleaks node un-encrypted." | translate }}
+        {{ "This may lead to unintended access to the files by the server administrator or in case of server seizing." | translate }}
+        {{ "Please configure your PGP keys in the receiver preference page." | translate }}
+      </div>
+    </div>
+  </div>
+
   <div class="row">
     <div class="span4">
-
-      {{ "Context details" | translate }}
-      <a
-          ng-click="no_cinfo = !no_cinfo"
-          ng-init="no_cinfo = false">{{ "click to close" | translate }}
-      </a>
-
-      <div ng-hide="no_cinfo" class="table-bordered">
-          <b>{{ tip.context_name }}</b><br>
-          {{ tip.context_description }} <!-- TODO click to see more -->
-      </div>
-
-      <div class="table-bordered">
-          {{ "This has been submitted at" | translate }}
-          {{ tip.creation_date | date:"fullDate" }}
-      </div>
+      
+      <dl>
+        <dt>{{ "Context details" | translate }}</dt>
+        <dd>
+          <strong>{{ tip.context_name }}</strong>
+          {{ tip.context_description }}
+        </dd>
+        <dt>{{ "Submission date" | translate }}</dt>
+        <dd>{{ tip.creation_date | date:"fullDate" }}</dd>
+      </dl>
 
       <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
         <dt>{{fieldFormat[fieldName].name}} ({{fieldFormat[fieldName].hint}})</dt>

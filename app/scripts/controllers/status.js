@@ -1,6 +1,6 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$routeParams', 'Tip', 'Contexts',
-  function($scope, $rootScope, $routeParams, Tip, Contexts) {
+  ['$scope', '$rootScope', '$routeParams', 'Tip', 'Contexts', 'ReceiverPreferences',
+  function($scope, $rootScope, $routeParams, Tip, Contexts, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
 
     if ($.cookie('role') === 'wb') {
@@ -39,6 +39,10 @@ GLClient.controller('StatusCtrl',
         }
       }, true);
 
+    }
+
+    if ($.cookie('role') == 'receiver') {
+      $scope.preferences = ReceiverPreferences.get();
     }
     
     var TipID = {tip_id: $scope.tip_id};
