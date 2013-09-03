@@ -494,16 +494,23 @@ def acquire_bool(boolvalue):
     raise AssertionError("BaseHandler validator is not working")
 
 def l10n(var, language):
+
+    assert isinstance(var, dict)
+
     if not var:
         return u''
     if language in var:
         return var[language]
-    elif GLSetting.memory_copy.default_language in var:
+    if GLSetting.memory_copy.default_language in var:
         return var[GLSetting.memory_copy.default_language]
-    elif len(var):
+    if len(var):
+        # This condition is never verified and maybe removed
+        import pdb; pdb.set_trace()
         return var.values()[0]
-    else:
-        return u''
+        # XXX TODO XXX
+
+    raise AssertionError("Developer failure")
+
 
 def naturalize_fields(fields_blob):
     """

@@ -118,7 +118,7 @@ class TestReceiverSetKey(helpers.TestHandler):
                     node_info = MockDict().dummyNode,
                     receiver_info = MockDict().dummyReceiver,
                     context_info = MockDict().dummyContext,
-                    plugin = MailNotification()  )
+                    plugin = MailNotification() )
 
         mail_content = mail_support.format_template(dummy_template['en'], mock_event)
 
