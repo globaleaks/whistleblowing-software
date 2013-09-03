@@ -252,7 +252,7 @@ class GLBGPG:
             log.err(encrypt_obj.stderr)
             raise errors.GPGKeyInvalid
 
-        log.debug("Encrypting for %s (%s) file %s (%d boh ?)" %
+        log.debug("Encrypting for %s (%s) file %s (%d bytes)" %
                   (self.receiver_desc['username'], self.receiver_desc['gpg_key_fingerprint'],
                   plainpath, len(str(encrypt_obj))) )
 
@@ -262,11 +262,11 @@ class GLBGPG:
 
         if os.path.isfile(encrypted_path):
             log.err("Unexpected unpredictable unbelievable error! %s" % encrypted_path)
-            raise errors.InternalServerError("random error in GPG encrypted output")
+            raise errors.InternalServerError("File conflict in GPG encrypted output")
 
         try:
-            f = open(encrypted_path, "w+")
-            f.write(str(encrypt_obj))
+            with open(encrypted_path, "w+") as f:
+                f.write(str(encrypt_obj))
         except Exception as excep:
             log.err("Error in writing GPG file output: %s (%s) bytes %d" %
                     (excep.message, encrypted_path, len(str(encrypt_obj)) ))
