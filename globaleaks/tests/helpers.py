@@ -3,6 +3,7 @@
 import os
 import json
 import uuid
+import random
 
 from cyclone import httpserver
 from cyclone.web import Application
@@ -138,7 +139,6 @@ class TestGL(TestWithDB):
         assert self.dummyContext.has_key('context_gus')
         assert self.dummyReceiver.has_key('receiver_gus')
         assert self.dummySubmission.has_key('submission_gus')
-
 
 
     def localization_set(self, dict_l, dict_c, language):
@@ -303,12 +303,12 @@ class MockDict():
         self.dummyContext = {
             'context_gus': unicode(uuid.uuid4()),
             # localized stuff
-            'name': u'created by shooter',
+            'name': u'Already localized name',
             'receipt_description': u'xx',
             'submission_introduction': u'yy',
             'submission_disclaimer': u'kk',
-            'description': u'This is the update',
-            # fields, usually overwritten in content by fill_random_fields
+            'description': u'Already localized desc',
+            # fields, usually filled in content by fill_random_fields
             'fields': [
                   {"name": "Short title",
                    "hint": "Describe your tip-off with a line/title",
@@ -362,7 +362,7 @@ class MockDict():
 
         self.dummyNode = {
             'name':  u"Please, set me: name/title",
-            'description':  u"Please, set me: description",
+            'description': u"Please, set me: description",
             'presentation': u'This is what appears on top',
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
@@ -388,6 +388,14 @@ class MockDict():
             'exception_email' : GLSetting.defaults.exception_email,
         }
 
+        self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',
+                                           '%PublicSite%', '%ReceiverName%',
+                                           '%ReceiverUsername%', '%ContextName%' ]
+        self.tip_template_keywords = [ '%TipTorURL%', '%TipT2WURL%', '%EventTime%' ]
+        self.comment_template_keywords = [ '%CommentSource%', '%EventTime%' ]
+        self.file_template_keywords = [ '%FileName%', '%EventTime%',
+                                        '%FileSize%', '%FileType%' ]
+
         self.dummyNotification = {
             'server': u'mail.foobar.xxx',
             'port': 12345,
@@ -396,9 +404,12 @@ class MockDict():
             'security': u'SSL',
             'source_name': u'UnitTest Helper Name',
             'source_email': u'unit@test.helper',
-            'tip_template': u'tip message: %sNodeName%',
-            'comment_template': u'comment message: %sNodeName%',
-            'file_template': u'file message: %sNodeName%',
+            'tip_template': template_keys(self.tip_template_keywords,
+                                          self.generic_template_keywords, "Tip"),
+            'comment_template': template_keys(self.comment_template_keywords,
+                                              self.generic_template_keywords, "Comment"),
+            'file_template':template_keys(self.file_template_keywords,
+                                          self.generic_template_keywords, "File"),
             'activation_template': u'activation message: %sNodeName%',
             'tip_mail_title': u'xxx',
             'comment_mail_title': u'yyy',
@@ -418,14 +429,29 @@ class MockDict():
         self.dummyFile['body'].write(unicode_body.encode('utf-8'))
 
 
+
+def template_keys(first_a, second_a, name):
+
+    ret_string = "[%s]" % name
+    for x in first_a:
+        ret_string += " %s" % x
+
+    ret_string += " == "
+
+    for x in second_a:
+        ret_string += " %s" % x
+
+    return ret_string
+
 def fill_random_fields(context_desc):
     """
     getting the context dict, take 'fields'.
     then populate a valid dict of key : value, usable as wb_fields
-
     """
-    assert context_desc
+
+    assert isinstance(context_desc, dict)
     fields_list = context_desc['fields']
+    assert isinstance(fields_list, list)
     assert len(fields_list) >= 1
 
     ret_dict = {}
@@ -443,3 +469,4 @@ def fill_random_fields(context_desc):
         ret_dict.update({ sf.get(u'key') : unicode_weird })
 
     return ret_dict
+
