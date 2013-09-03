@@ -265,9 +265,8 @@ class GLBGPG:
             raise errors.InternalServerError("File conflict in GPG encrypted output")
 
         try:
-            f = open(encrypted_path, "w+")
-            f.write(str(encrypt_obj))
-            f.close()
+            with open(encrypted_path, "w+") as f:
+                f.write(str(encrypt_obj))
         except Exception as excep:
             log.err("Error in writing GPG file output: %s (%s) bytes %d" %
                     (excep.message, encrypted_path, len(str(encrypt_obj)) ))
