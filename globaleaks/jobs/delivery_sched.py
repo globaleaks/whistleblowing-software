@@ -303,7 +303,6 @@ def create_receivertip(store, receiver, internaltip, tier):
     """
     Create ReceiverTip for the required tier of Receiver.
     """
-    # receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
     log.debug('Creating ReceiverTip for: %s (level %d in request %d)'
             % (receiver.name, receiver.receiver_level, tier))
 
@@ -318,8 +317,6 @@ def create_receivertip(store, receiver, internaltip, tier):
     receivertip.mark = ReceiverTip._marker[0]
 
     store.add(receivertip)
-
-    log.debug('Created! [/#/status/%s]' % receivertip.id)
 
     return receivertip.id
 
