@@ -250,7 +250,7 @@ def receiverfile_create(store, fid, status, fpath, flen, cksum, receiver_desc):
         else:
             assert ifile.sha2sum == cksum, "checksum fail!"
 
-        log.debug("ReceiverFile creation for user %s, file %s (%d %s)"
+        log.debug("ReceiverFile creation for user %s, file %s (%d bytes %s)"
                 % (receiver_desc['name'], ifile.name, flen, status ) )
         receiverfile = ReceiverFile()
 
