@@ -8,8 +8,8 @@ import random
 import re
 import sys
 import traceback
-
 import pip
+
 from pkg_resources import parse_version
 
 def pip_version_check(path):
@@ -297,10 +297,21 @@ sys.argv[1:] = args
 
 
 def find_current_db_version(dirpath, filearray):
-    """
-    """
+
     glbackend_file_present = 0
     for single_file in filearray:
+
+        # -journal file may remain if GLB crashes badly
+        if single_file.endswith('-journal'):
+            print "Found a DB journal file! %s: removing" % single_file
+            try:
+                os.unlink(os.path.join(dirpath, single_file))
+                continue
+            except Exception as excep:
+                print "Unable to remove %s: %s" % \
+                      (os.unlink(os.path.join(dirpath, single_file)), excep)
+                # this would lead quitting for "too much DBs" below
+
         if single_file[:len('glbackend')] == 'glbackend':
             glbackend_file_present += 1
 
