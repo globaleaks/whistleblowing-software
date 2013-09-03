@@ -13,28 +13,25 @@ import os
 import sys
 import time
 import traceback
-
 import cStringIO
 
-from OpenSSL import SSL
-from storm.tz import tzoffset
-
 from twisted.internet.endpoints import TCP4ClientEndpoint
-from txsocksx.client import SOCKS5ClientEndpoint
 from twisted.internet import reactor, protocol, error
-from twisted.internet.defer import Deferred, inlineCallbacks
+from twisted.internet.defer import Deferred
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient
 from twisted.internet.ssl import ClientContextFactory
 from twisted.protocols import tls
-
 from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
+
+from OpenSSL import SSL
+from txsocksx.client import SOCKS5ClientEndpoint
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
-from globaleaks import __version__, LANGUAGES_SUPPORTED_CODES
+from globaleaks import __version__
 
 def sleep(timeout):
     def callbackDeferred():
@@ -56,7 +53,16 @@ def sanitize_str(s):
     return s
 
 class GLLogObserver(twlog.FileLogObserver):
+
+    suppressed = 0
+    limit_suppressed = 5
+
+    event_list = []
+    skipped = 0
+    limit_skipped = 10
+
     def emit(self, eventDict):
+
         if 'failure' in eventDict:
             vf = eventDict['failure']
             e_t, e_v, e_tb = vf.type, vf.value, vf.getTracebackObject()
@@ -70,8 +76,28 @@ class GLLogObserver(twlog.FileLogObserver):
         fmtDict = {'system': eventDict['system'], 'text': text.replace("\n", "\n\t")}
         msgStr = twlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
 
-        util.untilConcludes(self.write, timeStr + " " + sanitize_str(msgStr))
-        util.untilConcludes(self.flush)  # Hoorj!
+        GLLogObserver.event_list.append(timeStr + " " + sanitize_str(msgStr))
+        GLLogObserver.skipped += 1
+
+        if GLLogObserver.suppressed == GLLogObserver.limit_suppressed:
+            log.info("!! has been suppressed %d log lines" % GLLogObserver.limit_suppressed)
+            GLLogObserver.suppressed = 0
+
+        try:
+            if GLLogObserver.skipped == GLLogObserver.limit_skipped:
+                for string_logged in GLLogObserver.event_list:
+                    util.untilConcludes(self.write, string_logged)
+
+                util.untilConcludes(self.flush)
+                GLLogObserver.skipped = 0
+                GLLogObserver.event_list = []
+
+            # util.untilConcludes(self.write, timeStr + " " + sanitize_str(msgStr))
+            # util.untilConcludes(self.flush) # Hoorj!
+        except Exception as excep:
+            GLLogObserver.suppressed += 1
+            pass
+
 
 class Logger(object):
     """
