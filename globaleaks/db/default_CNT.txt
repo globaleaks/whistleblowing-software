@@ -1,4 +1,4 @@
-teemed %ReceiverName%,
+Esteemed %ReceiverName%,
 
 This is an E-Mail message to notify you that %ReceiverName%
 has added a comment to a previously notified submission.
