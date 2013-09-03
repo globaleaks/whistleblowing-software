@@ -1,4 +1,4 @@
-teemed %ReceiverName%,
+Esteemed %ReceiverName%,
 
 This is an E-Mail message to notify you that a Whistleblower
 has updated a submission with new material.

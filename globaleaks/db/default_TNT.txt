@@ -1,4 +1,4 @@
-teemed %ReceiverName%,
+Esteemed %ReceiverName%,
 
 This is an E-Mail message to notify you that someone has selected you as a valuable recipient
 of WhistleBlowing material in the form of a Globaleaks tip-off. This message has been created
