@@ -9,15 +9,22 @@ import urllib2
 from zipfile import ZipFile
 from distutils.core import setup
 
+######################################################################
+# Temporary fix to https://github.com/globaleaks/GlobaLeaks/issues/572
+#                  https://github.com/habnabit/txsocksx/issues/5
+from distutils import version
+version.StrictVersion = version.LooseVersion
+######################################################################
+
 from globaleaks import __version__
 
 def pip_to_requirements(s):
     """
     Change a PIP-style requirements.txt string into one suitable for setup.py
     """
-
-    m = re.match('(.*)([>=]=[.0-9]*).*', s)
+    m = re.match('(.*)([>=]=[.0-9a-zA-Z]*).*', s)
     if m:
+        print '%s (%s)' % (m.group(1), m.group(2))
         return '%s (%s)' % (m.group(1), m.group(2))
     return s.strip()
 
