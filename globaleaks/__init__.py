@@ -3,7 +3,7 @@
 # In here we shall keep track of all variables and objects that should be
 # instantiated only once and be common to pieces of GLBackend code.
 
-__version__ = '2.24.15'
+__version__ = '2.24.16'
 DATABASE_VERSION = 6
 
 # Add here by hand the languages supported!
