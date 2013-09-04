@@ -26,7 +26,7 @@ def serialize_receivertip(rtip):
         'last_access' : unicode(pretty_date_time(rtip.last_access)),
         'expressed_pertinence' : unicode(rtip.expressed_pertinence),
         'access_counter' : int(rtip.access_counter),
-        }
+    }
     return rtip_dict
 
 def serialize_internalfile(ifile):
