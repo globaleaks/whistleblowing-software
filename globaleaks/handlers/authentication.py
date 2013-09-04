@@ -278,6 +278,7 @@ class AuthenticationHandler(BaseHandler):
             else:
                 max = 42
 
+            Random.atfork()
             return Random.random.randint(min, max)
         
         return 0
