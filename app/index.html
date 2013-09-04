@@ -29,6 +29,12 @@
 
         <!-- endbuild -->
 
+        <style type="text/css">
+          [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+            display: none !important;
+          }
+        </style>
+
     </head>
     <body ng-app="GLClient" ng-controller="MainCtrl">
     <!-- This is the mocked app for development -->
@@ -51,7 +57,7 @@
           <h2 style="text-align: center">Starting GlobaLeaks...</h2>
         </div>
        
-        <div class="pending-requests" ng-cloak ng-show="showRequestBox">
+        <div class="pending-requests" ng-cloak ng-hide="!showRequestBox">
           <div class="spinner" spinner></div>
 
           <div class="message">
@@ -91,7 +97,7 @@
             <br>
         </noscript>
 
-        <footer class="footer hide" ng-show="started" ng-cloak>
+        <footer class="footer" ng-show="started" ng-cloak>
           <div class="container">
             <p>
             Copyright 2011-2013 <a href="http://www.logioshermes.org/">Hermes Center for Transparency and Digital Human Rights</a>
