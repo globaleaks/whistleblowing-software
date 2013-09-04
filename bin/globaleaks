@@ -44,11 +44,6 @@ def pip_version_check(path):
                 if condition:
                     installed_version = installed_packages[package]
 
-                    # https://github.com/globaleaks/GlobaLeaks/issues/572
-                    if len(installed_version) > 5 and installed_version[-3:-1] == 'rc':
-                        installed_version = installed_version[:-3]
-                    # just strip the 0rc? used by mistake in txsockx-1.13.0.0rc2
-
                     check = version_number_compare(installed_version, version)
                     if condition == "<":
                         if check >= 0:
