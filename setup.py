@@ -24,7 +24,6 @@ def pip_to_requirements(s):
     """
     m = re.match('(.*)([>=]=[.0-9a-zA-Z]*).*', s)
     if m:
-        print '%s (%s)' % (m.group(1), m.group(2))
         return '%s (%s)' % (m.group(1), m.group(2))
     return s.strip()
 
