@@ -13,7 +13,7 @@ import os
 import sys
 import time
 import traceback
-import cStringIO
+import StringIO
 
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.internet import reactor, protocol, error
@@ -317,12 +317,13 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param authentication_secret: account password
     @param from_address: the from address field of the email
     @param to_address: the to address field of the email
-    @param message_file: the message content,
-        string and unicode are converted in StringIO
+    @param message_file: the message content NEED be string or unicode
     @param smtp_host: the smtp host
     @param smtp_port: the smtp port
     @param event: the event description, needed to keep track of failure/success
+    @param security: may need to be STRING, here is converted at start
     """
+    security = str(security)
 
     result_deferred = Deferred()
 
@@ -345,36 +346,48 @@ def sendmail(authentication_username, authentication_password, from_address,
         printError(reason, event)
         return result_deferred.errback(reason)
 
-    context_factory = ClientContextFactory()
-    context_factory.method = SSL.SSLv3_METHOD
+    try:
+        context_factory = ClientContextFactory()
+        context_factory.method = SSL.SSLv3_METHOD
+    except Exception as excep:
+        log.err("sendmail: unable to create ClientContextFactory: %s" % str(excep))
+        raise excep
 
     if security != "SSL":
         requireTransportSecurity = True
     else:
         requireTransportSecurity = False
 
-    esmtp_deferred = Deferred()
-    esmtp_deferred.addErrback(handle_error, event)
-    esmtp_deferred.addCallback(result_deferred.callback)
+    try:
+        esmtp_deferred = Deferred()
+        esmtp_deferred.addErrback(handle_error, event)
+        esmtp_deferred.addCallback(result_deferred.callback)
+    except Exception as excep:
+        log.err("sendmail: unable to create Deferred and callbacks: %s" % str(excep))
+        raise excep
 
-    if isinstance(message_file, cStringIO.InputType):
-       pass
-    elif isinstance(message_file, unicode) or isinstance(message_file, str):
-        message_file = cStringIO.StringIO(str(message_file))
+    # we've https://github.com/powdahound/twisted/blob/master/twisted/protocols/tls.py
+    if isinstance(message_file, unicode):
+        message_file = StringIO.StringIO(message_file.encode('unicode_escape'))
+    elif isinstance(message_file, str):
+        message_file = StringIO.StringIO(message_file.encode('string_escape'))
     else:
-        log.err("Invalid usage of 'sendmail' function")
-        raise AssertionError("message wrong type: %s" % type(message_file))
+        raise TypeError("Invalid message_file format!")
 
-    factory = ESMTPSenderFactory(
-        authentication_username,
-        authentication_password,
-        from_address,
-        to_address,
-        message_file,
-        esmtp_deferred,
-        contextFactory=context_factory,
-        requireAuthentication=(authentication_username and authentication_password),
-        requireTransportSecurity=requireTransportSecurity)
+    try:
+        factory = ESMTPSenderFactory(
+            authentication_username,
+            authentication_password,
+            from_address,
+            to_address,
+            message_file,
+            esmtp_deferred,
+            contextFactory=context_factory,
+            requireAuthentication=(authentication_username and authentication_password),
+            requireTransportSecurity=requireTransportSecurity)
+    except Exception as excep:
+        log.err("sendmail: unable to create ESMTPSenderFactory: %s" % str(excep))
+        raise excep
 
     def protocolConnectionLost(self, reason=protocol.connectionDone):
         """We are no longer connected"""
@@ -456,8 +469,6 @@ def mail_exception(etype, value, tback):
     if type(info_string) == unicode:
         info_string = info_string.encode(encoding='utf-8', errors='ignore')
 
-    message = cStringIO.StringIO(info_string)
-
     log.err(error_message)
     log.err(traceinfo)
     log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, info_string) )
@@ -466,7 +477,7 @@ def mail_exception(etype, value, tback):
              authentication_password=GLSetting.memory_copy.notif_password,
              from_address=GLSetting.memory_copy.notif_username,
              to_address=GLSetting.memory_copy.exception_email,
-             message_file=message,
+             message_file=info_string,
              smtp_host=GLSetting.memory_copy.notif_server,
              smtp_port=GLSetting.memory_copy.notif_port,
              security=GLSetting.memory_copy.notif_security)

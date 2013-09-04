@@ -196,38 +196,45 @@ class MailNotification(Notification):
                 gpob.destroy_environment()
 
             except Exception as excep:
-                log.err("Error in GPG interface object (%s)! (notification+encryption)" %
-                        event.receiver_info['username'])
+                log.err("Error in GPG interface object (for %s: %s)! (notification+encryption)" %
+                        (event.receiver_info['username'], str(excep) ))
                 return None
 
-        self.host = str(event.notification_settings['server'])
+        self.host = unicode(event.notification_settings['server'])
         self.port = int(event.notification_settings['port'])
-        self.username = str(event.notification_settings['username'])
-        self.password = str(event.notification_settings['password'])
-        self.security = str(event.notification_settings['security'])
+        self.username = unicode(event.notification_settings['username'])
+        self.password = unicode(event.notification_settings['password'])
+        self.security = unicode(event.notification_settings['security'])
 
         receiver_mail = event.receiver_info['notification_fields']['mail_address']
 
         # Compose the email having the system+subject+recipient data
-        mail_building = []
-        mail_building.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
-                                                    GLSetting.memory_copy.notif_source_email ) )
-        mail_building.append("To: %s" % receiver_mail)
-        # XXX here can be catch the subject (may change if encrypted or whatever)
-        mail_building.append("Subject: %s" % title)
-        mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
-        mail_building.append("Content-Transfer-Encoding: 8bit\n")
-        mail_building.append(body)
+        try:
+            mail_building = []
+            mail_building.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
+                                                        GLSetting.memory_copy.notif_source_email ) )
+            mail_building.append("To: %s" % receiver_mail)
+            # XXX here can be catch the subject (may change if encrypted or whatever)
+            mail_building.append("Subject: %s" % title)
+            mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
+            mail_building.append("Content-Transfer-Encoding: 8bit\n")
+            mail_building.append(body)
+        except Exception as excep:
+            log.err("Unable to build mail: %s" % str(excep))
+            mail_building = [ "Error :( ", str(excep) ]
 
         self.finished = self.mail_flush(self.username,
                                         self.password,
                                         event.notification_settings['source_email'],
                                         [ receiver_mail ],
                                         "\n".join(mail_building),
-                                        self.host, self.port, self.security, event)
+                                        unicode(self.host),
+                                        int(self.port),
+                                        unicode(self.security),
+                                        event)
 
         log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
-                  (self.host, self.port, receiver_mail, self.security))
+              (self.host, self.port, receiver_mail, self.security))
 
         return self.finished
 
