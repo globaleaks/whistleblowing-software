@@ -358,15 +358,14 @@ def sendmail(authentication_username, authentication_password, from_address,
     else:
         requireTransportSecurity = False
 
-    try:
-        esmtp_deferred = Deferred()
-        esmtp_deferred.addErrback(handle_error, event)
-        esmtp_deferred.addCallback(result_deferred.callback)
-    except Exception as excep:
-        log.err("sendmail: unable to create Deferred and callbacks: %s" % str(excep))
-        raise excep
-
-    # we've https://github.com/powdahound/twisted/blob/master/twisted/protocols/tls.py
+    esmtp_deferred = Deferred()
+    esmtp_deferred.addErrback(handle_error, event)
+    esmtp_deferred.addCallback(result_deferred.callback)
+    
+    # XXX this will make unicode chars not display properly in emails. A long
+    # term fix for this should be thought of.
+    # This is a bug inside of twisted tls that does not take as arguments unicode.
+    # https://github.com/powdahound/twisted/blob/master/twisted/protocols/tls.py
     if isinstance(message_file, unicode):
         message_file = StringIO.StringIO(message_file.encode('unicode_escape'))
     elif isinstance(message_file, str):
@@ -374,20 +373,16 @@ def sendmail(authentication_username, authentication_password, from_address,
     else:
         raise TypeError("Invalid message_file format!")
 
-    try:
-        factory = ESMTPSenderFactory(
-            authentication_username,
-            authentication_password,
-            from_address,
-            to_address,
-            message_file,
-            esmtp_deferred,
-            contextFactory=context_factory,
-            requireAuthentication=(authentication_username and authentication_password),
-            requireTransportSecurity=requireTransportSecurity)
-    except Exception as excep:
-        log.err("sendmail: unable to create ESMTPSenderFactory: %s" % str(excep))
-        raise excep
+    factory = ESMTPSenderFactory(
+        authentication_username,
+        authentication_password,
+        from_address,
+        to_address,
+        message_file,
+        esmtp_deferred,
+        contextFactory=context_factory,
+        requireAuthentication=(authentication_username and authentication_password),
+        requireTransportSecurity=requireTransportSecurity)
 
     def protocolConnectionLost(self, reason=protocol.connectionDone):
         """We are no longer connected"""
