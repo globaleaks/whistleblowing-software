@@ -20,5 +20,5 @@ LANGUAGES_SUPPORTED = [
                     { "code": "vi", "name": "Vietnamese"},
                 ]
 
-LANGUAGES_SUPPORTED_CODES = [ "en", "fr", "hu_HU", "it", "nl"
+LANGUAGES_SUPPORTED_CODES = [ "en", "fr", "hu_HU", "it", "nl",
                               "pt_BR", "ru", "tr", "vi" ]
