@@ -32,7 +32,7 @@ module.exports = function(grunt) {
         'app/scripts/**/*.js',
         'app/views/**/*.html',
         'app/templates/**/*.html',
-        'app/images/**/*'
+        'app/img/**/*'
       ],
       tasks: ['build', 'reload']
     },
@@ -155,7 +155,7 @@ module.exports = function(grunt) {
   /* grunt.loadNpmTasks('grunt-bower-task'); */
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
-    var images_src = 'tmp/images/**';
+    var images_src = 'tmp/img/**';
 
     var rm_rf = function(dir) {
       var s = fs.statSync(dir);
@@ -170,14 +170,14 @@ module.exports = function(grunt) {
     };
 
     grunt.file.mkdir('build');
-    grunt.file.mkdir('build/images');
+    grunt.file.mkdir('build/img');
 
     grunt.file.copy('tmp/styles.css', 'build/styles.css');
     grunt.file.copy('tmp/scripts.js', 'build/scripts.js');
     grunt.file.copy('tmp/index.html', 'build/index.html');
 
-    grunt.file.recurse('tmp/images', function(absdir, rootdir, subdir, filename) {
-        grunt.file.copy(absdir, path.join('build/images', subdir || '', filename || ''));
+    grunt.file.recurse('tmp/img', function(absdir, rootdir, subdir, filename) {
+        grunt.file.copy(absdir, path.join('build/img', subdir || '', filename || ''));
     });
 
     rm_rf('tmp');

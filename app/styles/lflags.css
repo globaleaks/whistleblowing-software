@@ -5,7 +5,7 @@
 	width: 16px;
 	height: 11px;
   margin-right: .3em;
-	background:url(../images/flags.png) no-repeat
+	background:url(../img/flags.png) no-repeat
 }
 
 .lflag.lflag-en {background-position: -176px -44px}
