@@ -5,6 +5,7 @@
 
 from twisted.application import app
 from twisted.internet.error import CannotListenError
+from twisted.internet.defer import inlineCallbacks
 from apscheduler.scheduler import Scheduler
 
 from globaleaks.utils import log, utc_future_date
@@ -119,9 +120,10 @@ def globaleaks_start():
 
     d = create_tables()
     @d.addCallback
+    @inlineCallbacks
     def cb(res):
         start_asynchronous()
-        import_memory_variables()
+        yield import_memory_variables()
 
         log.msg("GLBackend is now running")
         for host in GLSetting.accepted_hosts:

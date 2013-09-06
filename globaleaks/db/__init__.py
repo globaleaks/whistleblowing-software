@@ -7,6 +7,7 @@ import os
 from twisted.internet.defer import succeed
 from storm.exceptions import OperationalError
 
+from globaleaks.rest import errors
 from globaleaks.utils import log, datetime_now, datetime_null
 from globaleaks.settings import transact, transact_ro, ZStorm, GLSetting
 from globaleaks import models
@@ -255,37 +256,40 @@ def import_memory_variables(store):
     to get fast checks, import (same) of the Node variable in GLSetting,
     this function is called every time that Node is updated.
     """
-    node = store.find(models.Node).one()
+    try:
+        node = store.find(models.Node).one()
 
-    GLSetting.memory_copy.maximum_filesize = node.maximum_filesize
-    GLSetting.memory_copy.maximum_namesize = node.maximum_namesize
-    GLSetting.memory_copy.maximum_descsize = node.maximum_descsize
-    GLSetting.memory_copy.maximum_textsize = node.maximum_textsize
+        GLSetting.memory_copy.maximum_filesize = node.maximum_filesize
+        GLSetting.memory_copy.maximum_namesize = node.maximum_namesize
+        GLSetting.memory_copy.maximum_descsize = node.maximum_descsize
+        GLSetting.memory_copy.maximum_textsize = node.maximum_textsize
 
-    if GLSetting.devel_mode:
-        GLSetting.memory_copy.tor2web_admin = True
-        GLSetting.memory_copy.tor2web_submission = True
-        GLSetting.memory_copy.tor2web_tip = True
-        GLSetting.memory_copy.tor2web_receiver = True
-        GLSetting.memory_copy.tor2web_unauth = True
-    else:
-        GLSetting.memory_copy.tor2web_admin = node.tor2web_admin
-        GLSetting.memory_copy.tor2web_submission = node.tor2web_submission
-        GLSetting.memory_copy.tor2web_tip = node.tor2web_tip
-        GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
-        GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
+        if GLSetting.devel_mode:
+            GLSetting.memory_copy.tor2web_admin = True
+            GLSetting.memory_copy.tor2web_submission = True
+            GLSetting.memory_copy.tor2web_tip = True
+            GLSetting.memory_copy.tor2web_receiver = True
+            GLSetting.memory_copy.tor2web_unauth = True
+        else:
+            GLSetting.memory_copy.tor2web_admin = node.tor2web_admin
+            GLSetting.memory_copy.tor2web_submission = node.tor2web_submission
+            GLSetting.memory_copy.tor2web_tip = node.tor2web_tip
+            GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
+            GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 
-    GLSetting.memory_copy.exception_email = node.exception_email
-    GLSetting.memory_copy.default_language = node.default_language
+        GLSetting.memory_copy.exception_email = node.exception_email
+        GLSetting.memory_copy.default_language = node.default_language
 
-    # Email settings are copyed because they are used when
-    notif = store.find(models.Notification).one()
+        # Email settings are copyed because they are used when
+        notif = store.find(models.Notification).one()
 
-    GLSetting.memory_copy.notif_server = str(notif.server)
-    GLSetting.memory_copy.notif_port = int(notif.port)
-    GLSetting.memory_copy.notif_password = str(notif.password)
-    GLSetting.memory_copy.notif_username = str(notif.username)
-    GLSetting.memory_copy.notif_security = str(notif.security)
-    GLSetting.memory_copy.notif_source_name = str(notif.source_name)
-    GLSetting.memory_copy.notif_source_email = str(notif.source_email)
+        GLSetting.memory_copy.notif_server = notif.server
+        GLSetting.memory_copy.notif_port = int(notif.port)
+        GLSetting.memory_copy.notif_password = notif.password
+        GLSetting.memory_copy.notif_username = notif.username
+        GLSetting.memory_copy.notif_security = notif.security
+        GLSetting.memory_copy.notif_source_name = notif.source_name
+        GLSetting.memory_copy.notif_source_email = notif.source_email
 
+    except Exception as e:
+        raise errors.InvalidInputFormat("Cannot import memory variables: %s" % e)
