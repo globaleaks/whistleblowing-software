@@ -12,7 +12,4 @@ if [ ! "`grep "globaleaks" /etc/apparmor.d/local/system_tor`" ]; then
   echo "/var/globaleaks/torhs/** rwk," >> /etc/apparmor.d/local/system_tor
 fi
 
-python -mcompileall `python -c "import os, globaleaks;print os.path.dirname(globaleaks.__file__)"` >/dev/null 2>&1
-
-
 #DEBHELPER#

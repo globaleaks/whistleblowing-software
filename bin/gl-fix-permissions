@@ -12,17 +12,17 @@ fi
 if [ ! -d /var/globaleaks ]; then
   mkdir -p /var/globaleaks
   chown globaleaks:debian-tor /var/globaleaks
-  chmod 02750 /var/globaleaks
-fi
-
-if [ ! -d /var/run/globaleaks ]; then
-  mkdir -p /var/run/globaleaks
-  chown globaleaks:globaleaks /var/run/globaleaks
-  chmod 02750 /var/run/globaleaks
+  chmod 750 /var/globaleaks
 fi
 
 if [ ! -d /var/globaleaks/torhs ]; then
   mkdir -p /var/globaleaks/torhs/
   chown debian-tor:debian-tor /var/globaleaks/torhs/
-  chmod 02700 /var/globaleaks/torhs
+  chmod 700 /var/globaleaks/torhs
+fi
+
+if [ ! -d /var/run/globaleaks ]; then
+  mkdir -p /var/run/globaleaks
+  chown globaleaks:globaleaks /var/run/globaleaks
+  chmod 750 /var/run/globaleaks
 fi
