@@ -143,10 +143,13 @@ class GLHTTPServer(HTTPConnection):
                 return
 
             self.request_callback(self._request)
-        except Exception as e:
-            log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, e))
-            self._request.finish()
-            self.transport.loseConnection()
+        except Exception as exception:
+            log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, exception))
+            log.exception(exception)
+            if self._request:
+                self._request.finish()
+            if self.transport:
+                self.transport.loseConnection()
 
     def _on_request_body(self, data):
         try:
@@ -158,10 +161,13 @@ class GLHTTPServer(HTTPConnection):
                 elif content_type.startswith("multipart/form-data"):
                     raise errors.InvalidInputFormat("content type multipart/form-data not supported")
             self.request_callback(self._request)
-        except Exception as e:
-            log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, e))
-            self._request.finish()
-            self.transport.loseConnection()
+        except Exception as exception:
+            log.msg("Malformed HTTP request from %s: %s" % (self._remote_ip, exception))
+            log.exception(exception)
+            if self._request:
+                self._request.finish()
+            if self.transport:
+                self.transport.loseConnection()
 
 
 class BaseBaseHandler(RequestHandler):
