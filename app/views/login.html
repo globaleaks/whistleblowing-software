@@ -10,6 +10,15 @@
       <p>{{ "You will not be able to login." | translate }}</p>
     </div>
   </div>
+
+  <div class="row" ng-cloak ng-show="errors[0].code == 29">
+    <div class="span9">
+      <div class="alert alert-error">
+        <strong>{{ "Authentication Failed" | translate }}</strong>
+      </div>
+    </div>
+  </div>
+
   <div class="row" ng-show="cookiesEnabled()">
     <div class="span9">
       <form name="loginForm" novalidate>
