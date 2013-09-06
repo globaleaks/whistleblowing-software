@@ -283,13 +283,13 @@ def import_memory_variables(store):
         # Email settings are copyed because they are used when
         notif = store.find(models.Notification).one()
 
-        GLSetting.memory_copy.notif_server = notif.server
+        GLSetting.memory_copy.notif_server = str(notif.server)
         GLSetting.memory_copy.notif_port = int(notif.port)
-        GLSetting.memory_copy.notif_password = notif.password
-        GLSetting.memory_copy.notif_username = notif.username
-        GLSetting.memory_copy.notif_security = notif.security
-        GLSetting.memory_copy.notif_source_name = notif.source_name
-        GLSetting.memory_copy.notif_source_email = notif.source_email
+        GLSetting.memory_copy.notif_password = notif.password.encode('utf-8')
+        GLSetting.memory_copy.notif_username = str(notif.username)
+        GLSetting.memory_copy.notif_security = str(notif.security)
+        GLSetting.memory_copy.notif_source_name = notif.source_name.encode('utf-8')
+        GLSetting.memory_copy.notif_source_email = str(notif.source_email)
 
     except Exception as e:
         raise errors.InvalidInputFormat("Cannot import memory variables: %s" % e)
