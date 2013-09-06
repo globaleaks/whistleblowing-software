@@ -101,7 +101,16 @@ angular.module('submissionUI', []).
 }).
   directive('fadeout', function(){
     return function(scope, element, attrs) {
-      element.fadeOut(3000);
+      var fadeout_delay = 3000;
+
+      element.mouseenter(function(){
+        element.stop().animate({opacity:'100'});
+      });
+      element.mouseleave(function(){
+        element.fadeOut(fadeout_delay);
+      });
+
+      element.fadeOut(fadeout_delay);
     };
 }).
   directive('expandTo', function() {
