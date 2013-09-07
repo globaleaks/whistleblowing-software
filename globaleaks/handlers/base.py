@@ -256,34 +256,34 @@ class BaseHandler(BaseBaseHandler):
             return False
 
     @staticmethod
-    def validate_type(value, type):
+    def validate_type(value, gl_type):
         # if it's callable, than assumes is a primitive class
-        if callable(type):
-            retval = BaseHandler.validate_python_type(value, type)
+        if callable(gl_type):
+            retval = BaseHandler.validate_python_type(value, gl_type)
             if not retval:
-                log.err("-- Invalid python_type, in [%s] expected %s" % (value, type))
+                log.err("-- Invalid python_type, in [%s] expected %s" % (value, gl_type))
             return retval
         # value as "{foo:bar}"
-        elif isinstance(type, collections.Mapping):
-            retval = BaseHandler.validate_jmessage(value, type)
+        elif isinstance(gl_type, collections.Mapping):
+            retval = BaseHandler.validate_jmessage(value, gl_type)
             if not retval:
-                log.err("-- Invalid JSON/dict [%s] expected %s" % (value, type))
+                log.err("-- Invalid JSON/dict [%s] expected %s" % (value, gl_type))
             return retval
         # regexp
-        elif isinstance(type, str):
-            retval = BaseHandler.validate_GLtype(value, type)
+        elif isinstance(gl_type, str):
+            retval = BaseHandler.validate_GLtype(value, gl_type)
             if not retval:
-                log.err("-- Failed Match in regexp [%s] against %s" % (value, type))
+                log.err("-- Failed Match in regexp [%s] against %s" % (value, gl_type))
             return retval
         # value as "[ type ]"
-        elif isinstance(type, collections.Iterable):
+        elif isinstance(gl_type, collections.Iterable):
             # empty list is ok
             if len(value) == 0:
                 return True
             else:
-                retval = all(BaseHandler.validate_type(x, type[0]) for x in value)
+                retval = all(BaseHandler.validate_type(x, gl_type[0]) for x in value)
                 if not retval:
-                    log.err("-- List validation failed [%s] of %s" % (value, type))
+                    log.err("-- List validation failed [%s] of %s" % (value, gl_type))
                 return retval
         else:
             raise AssertionError
