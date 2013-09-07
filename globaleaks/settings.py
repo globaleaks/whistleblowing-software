@@ -471,7 +471,7 @@ class GLSettingsClass:
                     os.chown(item, self.uid, self.gid)
                     os.chmod(item, 0700)
                 except Exception as excep:
-                    print "Unable to update permissions on %s: %s" % (target, excep)
+                    print "Unable to update permissions on %s: %s" % (item, excep)
                     quit(-1)
 
     def remove_directories(self):
