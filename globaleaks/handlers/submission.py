@@ -150,7 +150,7 @@ def import_files(store, submission, files, finalize):
             raise errors.FileGusNotFound
 
         ifile.internaltip_id = submission.id
-
+    
     if finalize and submission.context.file_required and not len(files):
         log.debug("Missing file for a submission in context %s" %
                   submission.context.name)

@@ -250,7 +250,7 @@ class BaseHandler(BaseBaseHandler):
         """
         Return True if the python class matches the given regexp.
         """
-        if isinstance(value, str):
+        if isinstance(value, (str, unicode)):
             return bool(re.match(gl_type, value))
         else:
             return False
