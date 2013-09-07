@@ -92,9 +92,12 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
   $scope.$watch('queue', function(){
     $scope.uploading = false;
     if ($scope.queue) {
+      $scope.submission.current_submission.files = [];
       $scope.queue.forEach(function(k){
         if (!k.id)
           $scope.uploading = true;
+        else
+          $scope.submission.current_submission.files.push(k.id);
       });
     }
   }, true);
