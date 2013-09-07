@@ -250,8 +250,10 @@ class BaseHandler(BaseBaseHandler):
         """
         Return True if the python class matches the given regexp.
         """
-        return bool(re.match(gl_type, value))
-
+        if isinstance(value, str):
+            return bool(re.match(gl_type, value))
+        else:
+            return False
 
     @staticmethod
     def validate_type(value, type):
