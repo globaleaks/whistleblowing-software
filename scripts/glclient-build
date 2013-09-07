@@ -97,7 +97,7 @@ build_custom_glclient()
   done
 
   if [ -d $TEMPLATES_DIR/img/ ];then
-    cp -R $TEMPLATES_DIR/img/ $TMP_DIR/staticdata/
+    cp -R $TEMPLATES_DIR/img/ $TMP_DIR/staticdata/img/
   fi
 
   cp -R $TEMPLATES_DIR $TMP_DIR/GLCLient/app/templates/${TEMPLATE_NAME}
