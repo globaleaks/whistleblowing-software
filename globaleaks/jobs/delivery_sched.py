@@ -122,10 +122,14 @@ def receiverfile_planning(store):
                     (filex.file_path, excep.strerror) )
                 continue
 
-        # here we want to work on files with (Tip = 'finalize' or 'first' ) and (File = 'ready')
-        # infact Tips may have two status both valid.
+        # here we select the file which deserve to be processed.
+        # They need to be:
+        #   From a Tip in (Tip = 'finalize' or 'first' )
+        #   From an InternalFile (File = 'ready')
+        # Tips may have two statuses both valid.
         # if these conditions are met the InternalFile(s) is/are marked as 'locked',
-        # so that if a forced or planned delivery scheduler runs it doesn't touch the file already queued.
+        # Whenever a delivery scheduler run, do not touch 'locked' file, and if 'locked' file
+        # appears in the Admin interface of file overview, this mean that something is broken.
         if (filex.internaltip.mark == InternalTip._marker[1] or \
             filex.internaltip.mark == InternalTip._marker[2]) and \
             (filex.mark == InternalFile._marker[0]):
@@ -140,52 +144,17 @@ def receiverfile_planning(store):
                 if receiver_desc['gpg_key_status'] == Receiver._gpg_types[1] and receiver_desc['gpg_enable_files']:
                     rfileslist.append([ filex.id,
                                         ReceiverFile._status_list[2], # encrypted
-                                        filex.file_path, receiver_desc ])
+                                        filex.file_path, filex.size, receiver_desc ])
                 else:
                     rfileslist.append([ filex.id,
                                         ReceiverFile._status_list[1], # reference
-                                        filex.file_path, receiver_desc ])
+                                        filex.file_path, filex.size, receiver_desc ])
         except Exception as excep:
             log.debug("Invalid Storm operation in checking for GPG cap: %s" % excep)
             continue
 
     return rfileslist
 
-
-# It's not a transact because works on FS
-def fsops_compute_checksum(rfilelist):
-    """
-    @param rfilelist:
-        $id
-        $status
-        $path
-        $receiver description dict
-    @return:
-    """
-
-    assert isinstance(rfilelist, list)
-    assert len(rfilelist) >= 1
-
-    # extract only the single file_id : file_path
-    filesdict = {}
-    for rfileblob in rfilelist:
-
-        if filesdict.has_key(rfileblob[0]):
-            assert filesdict[rfileblob[0]] == rfileblob[2], "Invalid path/id"
-
-        filesdict.update({rfileblob[0]:rfileblob[2]})
-
-    # loop and compute checksum
-    processdict = {}
-    for file_id, file_path in filesdict.iteritems():
-
-        file_location = os.path.join(GLSetting.submission_path, file_path)
-        checksum, orig_len = get_file_checksum(file_location)
-        processdict.update({file_id : { 'checksum': checksum,
-                                        'olen': orig_len }
-        })
-
-    return processdict
 
 def fsops_gpg_encrypt(fpath, recipient_gpg):
     """
@@ -234,21 +203,14 @@ def fsops_gpg_encrypt(fpath, recipient_gpg):
 
 
 @transact
-def receiverfile_create(store, fid, status, fpath, flen, cksum, receiver_desc):
+def receiverfile_create(store, fid, status, fpath, flen, receiver_desc):
 
     assert type(1) == type(flen)
-    assert isinstance(status, unicode) and isinstance(cksum, str)
     assert isinstance(receiver_desc, dict)
     assert os.path.isfile(os.path.join(GLSetting.submission_path, fpath))
 
     try:
         ifile = store.find(InternalFile, InternalFile.id == unicode(fid)).one()
-
-        # update the internalfile with the computed sha
-        if not ifile.sha2sum:
-            ifile.sha2sum = unicode(cksum)
-        else:
-            assert ifile.sha2sum == cksum, "checksum fail!"
 
         log.debug("ReceiverFile creation for user %s, file %s (%d bytes %s)"
                 % (receiver_desc['name'], ifile.name, flen, status ) )
@@ -369,7 +331,7 @@ def do_final_internalfile_update(store, ifile_track):
             ifil.mark = status
             store.commit()
         except Exception as excep:
-            log.err("Unable to commit final mod in InternalFile: %s" % excep)
+            log.err("Unable to switch mode in InternalFile %s: %s" % (ifil.name, excep) )
             continue
 
         log.debug("Status sets for ifile %s = %s" %(
@@ -408,22 +370,19 @@ class APSDelivery(GLJob):
         if not rfileslist:
             return
 
-        # computes checksum and  processes the file on the disk here,
-        # outside of the SQL transaction.
-        #
-        # all exceptions handled inside.
-        #
-        # the function returns a dict 
-        #     { "file_uuid" : [ file_len, checksum ] }
-        checksums = fsops_compute_checksum(rfileslist)
+        # Remind: *HERE* can be performed operation in filesystem (before checksum
+        # was computed, now has been moved, anyway future filetype checks would be
+        # here
+        # Here need to be done because is outside of the DB transact thread
 
-        log.debug("Delivery task: received %d new file, generating %d receiver file" % (
-            len(checksums), len(rfileslist)))
+        log.debug("Delivery task: generating %d ReceiverFile(s)" % len(rfileslist) )
 
-        for (fid, status, fpath, receiver_desc) in rfileslist:
+        ifile_track = {}
+        # would collect { 'internalfile_id' : 'new_status' }, initialized here and filled below
+        for (fid, status, fpath, flen, receiver_desc) in rfileslist:
 
-            # this is the plain text length (and checksum)
-            flen = checksums[fid]['olen']
+            if not ifile_track.has_key(fid):
+                ifile_track.update({fid : None })
 
             if status == ReceiverFile._status_list[2]: # 'encrypted'
                 try:
@@ -434,19 +393,22 @@ class APSDelivery(GLJob):
                     continue
 
             try:
-                yield receiverfile_create(fid, status, fpath, flen, checksums[fid]['checksum'], receiver_desc)
+                yield receiverfile_create(fid, status, fpath, flen, receiver_desc)
             except Exception as excep:
                 log.err("Unable to create receiverfile from %s for %s: %s" %
                         (fpath, receiver_desc['name'], excep))
                 continue
 
+        # extract only the internalfile effectively
+
+
         # This loop permits to remove internalfile that is no more useful after the creation of receivertip.
         # e.g.: all the receiver have GPG key and so the reference is useless.
-        ifile_track = {}
-        for ifile_id, check in checksums.iteritems():
+
+        for ifile_id, empty_status in ifile_track.iteritems():
             almost_one_reference = False
 
-            for (fid, status, fname, receiver_desc) in rfileslist:
+            for (fid, status, fname, flen, receiver_desc) in rfileslist:
                 if ifile_id == fid and status == 'reference':
                     almost_one_reference = True
 
@@ -459,13 +421,13 @@ class APSDelivery(GLJob):
                     log.err("Unable to remove ifile in %s: %s" % (
                         path, str(excep)
                     ))
-                    # In DB remain registered the  status 'locked'; may arise suspects anyway
+                    # In DB the ifile remain with status 'locked'; this may arise suspects
+                    # but still this error need to be properly handled/reported
                     continue
 
-                ifile_track.update({fid: InternalFile._marker[3] }) # Removed
+                ifile_track.update({ifile_id: InternalFile._marker[3] }) # Removed
             else:
-                ifile_track.update({fid: InternalFile._marker[2] }) # Ready
+                ifile_track.update({ifile_id: InternalFile._marker[2] }) # Ready
 
         yield do_final_internalfile_update(ifile_track)
-        # completed in love! http://www.youtube.com/watch?v=CqLAwt8T3Ps
 

@@ -371,8 +371,8 @@ class InternalFile(Model):
     internaltip_id = Unicode()
     #internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
-    name = Unicode(validator=gltextv)
-    sha2sum = Unicode()
+    name = Unicode(validator=gltextv) # TODO rename in 'filename' to do not overcome on 'name' size limit
+    sha2sum = Unicode() # TODO make it NOT NULL at the next DB version
     file_path = Unicode()
 
     content_type = Unicode()
