@@ -25,14 +25,6 @@ class MailNotification(Notification):
     # But at the first presence of a different notification plugin, need to be resumed and
     # integrated in the validation messages.
 
-    def __init__(self):
-        self.host = None
-        self.port = None
-        self.username = None
-        self.password = None
-        self.security = None
-        self.finished = None
-
     def validate_admin_opt(self, pushed_af):
         fields = ['server', 'port', 'username', 'password']
         if all(field in pushed_af for field in fields):
@@ -200,12 +192,6 @@ class MailNotification(Notification):
                         (event.receiver_info['username'], str(excep) ))
                 return None
 
-        self.host = str(event.notification_settings['server'])
-        self.port = int(event.notification_settings['port'])
-        self.username = str(event.notification_settings['username'])
-        self.password = str(event.notification_settings['password'])
-        self.security = str(event.notification_settings['security'])
-
         receiver_mail = event.receiver_info['notification_fields']['mail_address']
 
         # Compose the email having the system+subject+recipient data
@@ -234,15 +220,17 @@ class MailNotification(Notification):
         self.finished = self.mail_flush(event.notification_settings['source_email'],
                                         [ receiver_mail ], message, event)
 
-        log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
-              (self.host, self.port, receiver_mail, self.security))
-
         return self.finished
 
     def mail_flush(self, from_address, to_address, message_file, event):
         """
         This function just wrap the sendmail call, using the system memory variables.
         """
+        log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
+                  (GLSetting.memory_copy.notif_server,
+                   GLSetting.memory_copy.notif_port,
+                   to_address[0], GLSetting.memory_copy.notif_security))
+
         return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                         authentication_password=GLSetting.memory_copy.notif_password,
                         from_address= from_address,
