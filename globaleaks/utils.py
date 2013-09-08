@@ -4,7 +4,6 @@
 #
 # GlobaLeaks Utility Functions
 
-from datetime import datetime, timedelta
 import cgi
 import inspect
 import logging
@@ -15,6 +14,7 @@ import time
 import traceback
 import StringIO
 
+from datetime import datetime, timedelta
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.internet import reactor, protocol, error
 from twisted.internet.defer import Deferred
@@ -29,6 +29,7 @@ from twisted.python.failure import Failure
 from OpenSSL import SSL
 from txsocksx.client import SOCKS5ClientEndpoint
 from Crypto.Hash import SHA256
+from email import utils as mailutils
 
 from globaleaks.settings import GLSetting
 from globaleaks import __version__
@@ -441,11 +442,25 @@ def collapse_mail_content(mixed_list):
     # term fix for this should be thought of.
     # This is a bug inside of twisted tls that does not take as arguments unicode.
     # https://github.com/powdahound/twisted/blob/master/twisted/protocols/tls.py
+    try:
+        message_file = StringIO.StringIO(
+            safe_line.encode('unicode_escape').replace(carriage_return, "\n")
+        )
+        return message_file
+    except Exception as excep:
+        log.err("Unable to encode and email: %s" % excep)
+        return None
 
-    message_file = StringIO.StringIO(
-        safe_line.encode('unicode_escape').replace(carriage_return, "\n")
-    )
-    return message_file
+
+def rfc822_date():
+    """
+    holy stackoverflow:
+    http://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
+    """
+    nowdt = datetime.now()
+    nowtuple = nowdt.timetuple()
+    nowtimestamp = time.mktime(nowtuple)
+    return mailutils.formatdate(nowtimestamp)
 
 
 def mail_exception(etype, value, tback):
@@ -467,8 +482,12 @@ def mail_exception(etype, value, tback):
 
     exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
                      "", str(etype))
+
+    log.err("Exception mail! [%d]" % mail_exception.mail_counter)
+
     tmp = []
 
+    tmp.append("Date: %s" % rfc822_date())
     tmp.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
                                     GLSetting.memory_copy.notif_source_email) )
     tmp.append("To: %s" % GLSetting.memory_copy.exception_email)
@@ -486,14 +505,14 @@ def mail_exception(etype, value, tback):
 
     mail_content = collapse_mail_content(tmp)
 
+    if not mail_content or GLSetting.loglevel == logging.DEBUG:
+        log.err(error_message)
+        log.err(traceinfo)
+
     #if mail_exception.mail_counter > 30:
     #    log.debug("Exception not reported because exception counter > 30 (%d)" % mail_exception.mail_counter)
     #    log.debug("Anyway, that's your stacktrace: \n%s" % info_string )
     #    return # suppress every notification over the 30th
-
-    log.err("Error mail number %d" % mail_exception.mail_counter)
-    log.err(error_message)
-    log.err(traceinfo)
 
     sendmail(authentication_username=GLSetting.memory_copy.notif_username,
              authentication_password=GLSetting.memory_copy.notif_password,
