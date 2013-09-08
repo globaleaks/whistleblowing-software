@@ -200,11 +200,11 @@ class MailNotification(Notification):
                         (event.receiver_info['username'], str(excep) ))
                 return None
 
-        self.host = unicode(event.notification_settings['server'])
+        self.host = str(event.notification_settings['server'])
         self.port = int(event.notification_settings['port'])
-        self.username = unicode(event.notification_settings['username'])
-        self.password = unicode(event.notification_settings['password'])
-        self.security = unicode(event.notification_settings['security'])
+        self.username = str(event.notification_settings['username'])
+        self.password = str(event.notification_settings['password'])
+        self.security = str(event.notification_settings['security'])
 
         receiver_mail = event.receiver_info['notification_fields']['mail_address']
 
@@ -219,6 +219,12 @@ class MailNotification(Notification):
             mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
             mail_building.append("Content-Transfer-Encoding: 8bit\n")
             mail_building.append(body)
+
+            message = '\n'.join(mail_building)
+
+            if type(message) == unicode:
+                messagge = message.encode(encoding='utf-8', errors='ignore')
+
         except Exception as excep:
             log.err("Unable to build mail: %s" % str(excep))
             mail_building = [ "Error :( ", str(excep) ]
@@ -227,10 +233,10 @@ class MailNotification(Notification):
                                         self.password,
                                         event.notification_settings['source_email'],
                                         [ receiver_mail ],
-                                        "\n".join(mail_building),
-                                        unicode(self.host),
-                                        int(self.port),
-                                        unicode(self.security),
+                                        message,
+                                        self.host,
+                                        self.port,
+                                        self.security,
                                         event)
 
         log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
