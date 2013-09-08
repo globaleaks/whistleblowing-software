@@ -1,3 +1,9 @@
+globaleaks (2.25-0) unstable; urgency=low
+
+  * GlobaLeaks 2.25 Release
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 8 Sep 2013 22:32:59 +0002
+
 globaleaks (2.24.22.1) unstable; urgency=low
 
   * GlobaLeaks 2.24.22.1 Release
