@@ -478,6 +478,12 @@ def mail_exception(etype, value, tback):
         log.err("Exception unhandled inside generator (GeneratorExit)")
         return
 
+    if etype == AssertionError and value.message == "Request closed":
+        # https://github.com/facebook/tornado/issues/473
+        # https://github.com/globaleaks/GlobaLeaks/issues/166
+        # we need a bypass and also echoing something is bad on this condition.
+        return
+
     mail_exception.mail_counter += 1
 
     exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
