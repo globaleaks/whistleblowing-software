@@ -7,7 +7,7 @@
 # When new Notification/Delivery will starts to exists, this code would come back to be
 # one of the various plugins (used by default, but still an optional adoptions)
 
-from globaleaks.utils import log, sendmail, very_pretty_date_time
+from globaleaks.utils import log, sendmail, very_pretty_date_time, collapse_mail_content, rfc822_date
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBGPG
 from globaleaks.models import Receiver
@@ -24,14 +24,6 @@ class MailNotification(Notification):
     # receiver_fields = {'mail_address' : 'text'}
     # But at the first presence of a different notification plugin, need to be resumed and
     # integrated in the validation messages.
-
-    def __init__(self):
-        self.host = None
-        self.port = None
-        self.username = None
-        self.password = None
-        self.security = None
-        self.finished = None
 
     def validate_admin_opt(self, pushed_af):
         fields = ['server', 'port', 'username', 'password']
@@ -200,46 +192,52 @@ class MailNotification(Notification):
                         (event.receiver_info['username'], str(excep) ))
                 return None
 
-        self.host = unicode(event.notification_settings['server'])
-        self.port = int(event.notification_settings['port'])
-        self.username = unicode(event.notification_settings['username'])
-        self.password = unicode(event.notification_settings['password'])
-        self.security = unicode(event.notification_settings['security'])
-
         receiver_mail = event.receiver_info['notification_fields']['mail_address']
 
         # Compose the email having the system+subject+recipient data
-        try:
-            mail_building = []
-            mail_building.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
-                                                        GLSetting.memory_copy.notif_source_email ) )
-            mail_building.append("To: %s" % receiver_mail)
-            # XXX here can be catch the subject (may change if encrypted or whatever)
-            mail_building.append("Subject: %s" % title)
-            mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
-            mail_building.append("Content-Transfer-Encoding: 8bit\n")
-            mail_building.append(body)
-        except Exception as excep:
-            log.err("Unable to build mail: %s" % str(excep))
-            mail_building = [ "Error :( ", str(excep) ]
+        mail_building = []
+        mail_building.append("Date: %s" % rfc822_date())
+        mail_building.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
+                                                    GLSetting.memory_copy.notif_source_email ) )
+        mail_building.append("To: %s" % receiver_mail)
 
-        self.finished = self.mail_flush(self.username,
-                                        self.password,
-                                        event.notification_settings['source_email'],
-                                        [ receiver_mail ],
-                                        "\n".join(mail_building),
-                                        unicode(self.host),
-                                        int(self.port),
-                                        unicode(self.security),
-                                        event)
+        # XXX here can be catch the subject (may change if encrypted or whatever)
+        mail_building.append("Subject: %s" % title)
+        mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
+        mail_building.append("Content-Transfer-Encoding: 8bit")
 
-        log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
-              (self.host, self.port, receiver_mail, self.security))
+        # appending 'None' it's used to mean "\n" without being escaped by collapse_mail_content
+        mail_building.append(None)
+        mail_building.append(body)
+
+        message = collapse_mail_content(mail_building)
+
+        if not message:
+            log.err("Unable to format (and then notify!) email for %s" % receiver_mail)
+            log.debug(mail_building)
+            return None
+
+        self.finished = self.mail_flush(event.notification_settings['source_email'],
+                                        [ receiver_mail ], message, event)
 
         return self.finished
 
-    def mail_flush(self, authentication_username, authentication_password, from_address,
-                 to_address, message_file, smtp_host, smtp_port, security, event):
-        return sendmail(authentication_username, authentication_password, from_address,
-                        to_address, message_file, smtp_host, smtp_port, security, event)
+    def mail_flush(self, from_address, to_address, message_file, event):
+        """
+        This function just wrap the sendmail call, using the system memory variables.
+        """
+        log.debug('Email: connecting to [%s:%d] to notify %s using [%s]' %
+                  (GLSetting.memory_copy.notif_server,
+                   GLSetting.memory_copy.notif_port,
+                   to_address[0], GLSetting.memory_copy.notif_security))
+
+        return sendmail(authentication_username=GLSetting.memory_copy.notif_username,
+                        authentication_password=GLSetting.memory_copy.notif_password,
+                        from_address= from_address,
+                        to_address= to_address,
+                        message_file=message_file,
+                        smtp_host=GLSetting.memory_copy.notif_server,
+                        smtp_port=GLSetting.memory_copy.notif_port,
+                        security=GLSetting.memory_copy.notif_security,
+                        event=event)
 

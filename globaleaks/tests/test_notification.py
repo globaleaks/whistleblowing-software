@@ -33,8 +33,7 @@ class TestEmail(helpers.TestGL):
         # This mocks out the MailNotification plugin so it does not actually
         # require to perform a connection to send an email.
         # XXX we probably want to create a proper mock of the ESMTPSenderFactory
-        def mail_flush_mock(self, authentication_username, authentication_password, from_address,
-                          to_address, message_file, smtp_host, smtp_port, security, event):
+        def mail_flush_mock(self, from_address, to_address, message_file, event):
             return defer.succeed(None)
 
         notification.MailNotification.mail_flush = mail_flush_mock
