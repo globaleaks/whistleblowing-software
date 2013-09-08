@@ -1,5 +1,6 @@
 from __future__ import unicode_literals
 import re
+import os
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
@@ -12,8 +13,20 @@ from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
 from globaleaks.rest import errors
+from globaleaks.utils import get_file_checksum
+from globaleaks.models import InternalTip
 
 from io import BytesIO as StringIO
+
+@transact_ro
+def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
+    file_list = []
+    itip = store.find(InternalTip, InternalTip.id == internaltip_id).one()
+
+    for internalfile in itip.internalfiles:
+        file_list.append(tip.wb_serialize_file(internalfile))
+    return file_list
+
 
 class TestSubmission(helpers.TestGL):
 
@@ -73,17 +86,22 @@ class TestSubmission(helpers.TestGL):
 
     @inlineCallbacks
     def emulate_file_upload(self, associated_submission_id):
-        relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
 
+        (relationship1, cksum1, size1) = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
+        self.assertEqual(size1, self.dummyFile1['body_len'])
         self.registered_file1 = yield files.register_file_db(
-            self.dummyFile1, relationship1, associated_submission_id,
+            self.dummyFile1, relationship1, cksum1, associated_submission_id,
         )
 
-        relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
-
+        (relationship2, cksum2, size2) = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
+        self.assertEqual(size2, self.dummyFile2['body_len'])
         self.registered_file2 = yield files.register_file_db(
-            self.dummyFile2, relationship2, associated_submission_id,
-        )
+            self.dummyFile2, relationship2, cksum2, associated_submission_id,
+            )
+
+        # well... why not ? :
+        self.assertNotEqual(size1, self.dummyFile2['body_len'])
+
 
 
     @inlineCallbacks
@@ -113,18 +131,10 @@ class TestSubmission(helpers.TestGL):
         # return a list of lists [ "file_id", status, "f_path", len, "receiver_desc" ]
         self.assertTrue(isinstance(rfileslist, list))
 
-        # compute checksum, processing the file on the disk ( outside the transactions)
-        checksums = delivery_sched.fsops_compute_checksum(rfileslist)
-        # return a dict { "file_uuid" : [ file_len, checksum ] }, Exception handled inside
-
-        for (fid, status, fpath, receiver_desc) in rfileslist:
-
-            # this is the plain text length (and checksum)
-            flen = checksums[fid]['olen']
+        for (fid, status, fpath, flen, receiver_desc) in rfileslist:
 
             rfdesc = yield delivery_sched.receiverfile_create(fid,
-                                    status, fpath, flen,
-                                    checksums[fid]['checksum'], receiver_desc)
+                                    status, fpath, flen, receiver_desc)
             self.assertEqual(rfdesc['mark'], u'not notified')
             self.assertEqual(rfdesc['receiver_id'], receiver_desc['receiver_gus'])
             self.assertEqual(rfdesc['internalfile_id'], fid)
@@ -132,7 +142,6 @@ class TestSubmission(helpers.TestGL):
         fil = yield delivery_sched.get_files_by_itip(self.dummySubmission['submission_gus'])
         self.assertTrue(isinstance(fil, list))
         self.assertEqual(len(fil), 2)
-        self.assertEqual(fil[0]['sha2sum'], checksums[fil[0]['id']]['checksum'] )
 
         rfi = yield delivery_sched.get_receiverfile_by_itip(self.dummySubmission['submission_gus'])
         self.assertTrue(isinstance(rfi, list))
@@ -141,6 +150,14 @@ class TestSubmission(helpers.TestGL):
         self.assertEqual(rfi[1]['mark'], u'not notified')
         self.assertEqual(rfi[0]['status'], u'reference')
         self.assertEqual(rfi[1]['status'], u'reference')
+
+        # verify the checksum returned by whistleblower POV, I'm not using
+        #  wfv = yield tip.get_files_wb()
+        # because is not generated a WhistleblowerTip in this test
+        wbfls = yield collect_ifile_as_wb_without_wbtip(self.dummySubmission['submission_gus'])
+        self.assertEqual(len(wbfls), 2)
+        self.assertEqual(wbfls[0]['sha2sum'], fil[0]['sha2sum'])
+        self.assertEqual(wbfls[1]['sha2sum'], fil[1]['sha2sum'])
 
 
     @inlineCallbacks
