@@ -206,7 +206,7 @@
           ng-show="!hasNextStep()">
 
         <button class="btn btn-success" ng-click="submit()"
-                ng-disabled="uploading || !disclaimer.accepted || invalidForm">
+                ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
                 {{ "Submit" | translate }}</button>
       </li>
 
@@ -214,7 +214,7 @@
 
     <div class="pull-right">
       <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()"
-              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || invalidForm">
+              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
               {{ "Submit" | translate }}
       </button>
 

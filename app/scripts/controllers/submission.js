@@ -83,8 +83,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     }
   }, false);
 
-  $scope.$watch('receivers_selected', function() {
-    if ($scope.receivers_selected) {
+  $scope.$watch('submission.receivers_selected', function() {
+    if ($scope.submission) {
       checkReceiverSelected();
     }
   }, true);
