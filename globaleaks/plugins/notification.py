@@ -7,7 +7,7 @@
 # When new Notification/Delivery will starts to exists, this code would come back to be
 # one of the various plugins (used by default, but still an optional adoptions)
 
-from globaleaks.utils import log, sendmail, very_pretty_date_time, collapse_mail_content
+from globaleaks.utils import log, sendmail, very_pretty_date_time, collapse_mail_content, rfc822_date
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBGPG
 from globaleaks.models import Receiver
@@ -210,6 +210,7 @@ class MailNotification(Notification):
 
         # Compose the email having the system+subject+recipient data
         mail_building = []
+        mail_building.append("Date: %s" % rfc822_date())
         mail_building.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
                                                     GLSetting.memory_copy.notif_source_email ) )
         mail_building.append("To: %s" % receiver_mail)
@@ -224,6 +225,11 @@ class MailNotification(Notification):
         mail_building.append(body)
 
         message = collapse_mail_content(mail_building)
+
+        if not message:
+            log.err("Unable to format (and then notify!) email for %s" % receiver_mail)
+            log.debug(mail_building)
+            return None
 
         self.finished = self.mail_flush(event.notification_settings['source_email'],
                                         [ receiver_mail ], message, event)
