@@ -4,7 +4,6 @@
 #
 # GlobaLeaks Utility Functions
 
-from datetime import datetime, timedelta
 import cgi
 import inspect
 import logging
@@ -15,6 +14,7 @@ import time
 import traceback
 import StringIO
 
+from datetime import datetime, timedelta
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.internet import reactor, protocol, error
 from twisted.internet.defer import Deferred
@@ -29,6 +29,7 @@ from twisted.python.failure import Failure
 from OpenSSL import SSL
 from txsocksx.client import SOCKS5ClientEndpoint
 from Crypto.Hash import SHA256
+from email import utils as mailutils
 
 from globaleaks.settings import GLSetting
 from globaleaks import __version__
@@ -317,7 +318,7 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param authentication_secret: account password
     @param from_address: the from address field of the email
     @param to_address: the to address field of the email
-    @param message_file: the message content NEED be string or unicode
+    @param message_file: the message content its a StringIO
     @param smtp_host: the smtp host
     @param smtp_port: the smtp port
     @param event: the event description, needed to keep track of failure/success
@@ -361,17 +362,6 @@ def sendmail(authentication_username, authentication_password, from_address,
     esmtp_deferred = Deferred()
     esmtp_deferred.addErrback(handle_error, event)
     esmtp_deferred.addCallback(result_deferred.callback)
-    
-    # XXX this will make unicode chars not display properly in emails. A long
-    # term fix for this should be thought of.
-    # This is a bug inside of twisted tls that does not take as arguments unicode.
-    # https://github.com/powdahound/twisted/blob/master/twisted/protocols/tls.py
-    if isinstance(message_file, unicode):
-        message_file = StringIO.StringIO(message_file.encode('unicode_escape'))
-    elif isinstance(message_file, str):
-        message_file = StringIO.StringIO(message_file.encode('string_escape'))
-    else:
-        raise TypeError("Invalid message_file format!")
 
     factory = ESMTPSenderFactory(
         authentication_username,
@@ -419,6 +409,60 @@ def sendmail(authentication_username, authentication_password, from_address,
     return result_deferred
 
 
+def collapse_mail_content(mixed_list):
+    """
+    @param mixed_list: The email are composed using [].append, here the list arrive
+    @return: a StringIO
+
+    The function sanitize, escape and handle mixed string/unicode and return an utf-8
+    StringIO variable, required by twisted.
+
+    This function use the "\n" after the encoding has been done, this avoid wrong conversion
+    or needed control chars
+    """
+    carriage_return = "_somethingunique12345"
+
+    safe_line = unicode()
+    for line in mixed_list:
+
+        if isinstance(line, unicode):
+            if line.find("\n"):
+                line = line.replace("\n", carriage_return)
+            safe_line += u"%s%s" % (line.encode('unicode_escape'), carriage_return)
+        elif isinstance(line, str):
+            if line.find("\n"):
+                line = line.replace("\n", carriage_return)
+            safe_line += u"%s%s" % (line.encode('string_escape'), carriage_return)
+        elif line == None:
+            safe_line += u"%s%s" % (carriage_return, carriage_return)
+        else:
+            raise TypeError("Unable to escape/encode the message file")
+
+    # XXX this will make unicode chars not display properly in emails. A long
+    # term fix for this should be thought of.
+    # This is a bug inside of twisted tls that does not take as arguments unicode.
+    # https://github.com/powdahound/twisted/blob/master/twisted/protocols/tls.py
+    try:
+        message_file = StringIO.StringIO(
+            safe_line.encode('unicode_escape').replace(carriage_return, "\n")
+        )
+        return message_file
+    except Exception as excep:
+        log.err("Unable to encode and email: %s" % excep)
+        return None
+
+
+def rfc822_date():
+    """
+    holy stackoverflow:
+    http://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
+    """
+    nowdt = datetime.utcnow()
+    nowtuple = nowdt.timetuple()
+    nowtimestamp = time.mktime(nowtuple)
+    return mailutils.formatdate(nowtimestamp)
+
+
 def mail_exception(etype, value, tback):
     """
     Formats traceback and exception data and emails the error,
@@ -431,48 +475,50 @@ def mail_exception(etype, value, tback):
     """
     # this is an hack because inside the Generator, not a great stacktrace is produced
     if(etype == GeneratorExit):
-        log.err("Exception unhandled inside generator")
+        log.err("Exception unhandled inside generator (GeneratorExit)")
         return
 
     mail_exception.mail_counter += 1
 
     exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
                      "", str(etype))
+
+    log.err("Exception mail! [%d]" % mail_exception.mail_counter)
+
     tmp = []
 
+    tmp.append("Date: %s" % rfc822_date())
     tmp.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
                                     GLSetting.memory_copy.notif_source_email) )
     tmp.append("To: %s" % GLSetting.memory_copy.exception_email)
     tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
     tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
-    tmp.append("Content-Transfer-Encoding: 8bit\n")
-    tmp.append("Source: %s\n" % " ".join(os.uname()))
-    tmp.append("Version: %s\n" % __version__)
+    tmp.append("Content-Transfer-Encoding: 8bit")
+    tmp.append(None)
+    tmp.append("Source: %s" % " ".join(os.uname()))
+    tmp.append("Version: %s" % __version__)
     error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
     tmp.append(error_message)
 
     traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
     tmp.append(traceinfo)
 
-    info_string = '\n'.join(tmp)
+    mail_content = collapse_mail_content(tmp)
+
+    if not mail_content or GLSetting.loglevel == logging.DEBUG:
+        log.err(error_message)
+        log.err(traceinfo)
 
     #if mail_exception.mail_counter > 30:
     #    log.debug("Exception not reported because exception counter > 30 (%d)" % mail_exception.mail_counter)
     #    log.debug("Anyway, that's your stacktrace: \n%s" % info_string )
     #    return # suppress every notification over the 30th
 
-    if type(info_string) == unicode:
-        info_string = info_string.encode(encoding='utf-8', errors='ignore')
-
-    log.err(error_message)
-    log.err(traceinfo)
-    log.debug("Exception Mail (%d):\n%s" % (mail_exception.mail_counter, info_string) )
-
     sendmail(authentication_username=GLSetting.memory_copy.notif_username,
              authentication_password=GLSetting.memory_copy.notif_password,
              from_address=GLSetting.memory_copy.notif_username,
              to_address=GLSetting.memory_copy.exception_email,
-             message_file=info_string,
+             message_file=mail_content,
              smtp_host=GLSetting.memory_copy.notif_server,
              smtp_port=GLSetting.memory_copy.notif_port,
              security=GLSetting.memory_copy.notif_security)
