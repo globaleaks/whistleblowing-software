@@ -58,10 +58,6 @@ class GLLogObserver(twlog.FileLogObserver):
     suppressed = 0
     limit_suppressed = 5
 
-    event_list = []
-    skipped = 0
-    limit_skipped = 10
-
     def emit(self, eventDict):
         return
 
@@ -78,24 +74,14 @@ class GLLogObserver(twlog.FileLogObserver):
         fmtDict = {'system': eventDict['system'], 'text': text.replace("\n", "\n\t")}
         msgStr = twlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
 
-        GLLogObserver.event_list.append(timeStr + " " + sanitize_str(msgStr))
-        GLLogObserver.skipped += 1
-
         if GLLogObserver.suppressed == GLLogObserver.limit_suppressed:
-            log.info("!! has been suppressed %d log lines" % GLLogObserver.limit_suppressed)
+            log.info("!! has been suppressed %d log lines due to error flood" %
+                     GLLogObserver.limit_suppressed)
             GLLogObserver.suppressed = 0
 
         try:
-            if GLLogObserver.skipped == GLLogObserver.limit_skipped:
-                for string_logged in GLLogObserver.event_list:
-                    util.untilConcludes(self.write, string_logged)
-
-                util.untilConcludes(self.flush)
-                GLLogObserver.skipped = 0
-                GLLogObserver.event_list = []
-
-            # util.untilConcludes(self.write, timeStr + " " + sanitize_str(msgStr))
-            # util.untilConcludes(self.flush) # Hoorj!
+            util.untilConcludes(self.write, timeStr + " " + sanitize_str(msgStr))
+            util.untilConcludes(self.flush) # Hoorj!
         except Exception as excep:
             GLLogObserver.suppressed += 1
             pass
