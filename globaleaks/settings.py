@@ -255,6 +255,13 @@ class GLSettingsClass:
             self.glclient_path = os.path.abspath(os.path.join(self.root_path, glcp))
             print "Development mode: serving GLClient from %s" % self.glclient_path
 
+    def enable_debug_mode(self):
+        import signal
+        def start_pdb(signal, trace):
+            import pdb
+            pdb.set_trace()
+            
+        signal.signal(signal.SIGQUIT, start_pdb)
 
     def load_cmdline_options(self):
         """
@@ -276,6 +283,8 @@ class GLSettingsClass:
         self.bind_port = self.cmdline_options.port
 
         self.cyclone_debug = self.cmdline_options.io
+        if self.cyclone_debug:
+            self.enable_debug_mode()
 
         self.accepted_hosts = self.cmdline_options.host_list.replace(" ", "").split(",")
 
