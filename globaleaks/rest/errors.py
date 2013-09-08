@@ -15,7 +15,6 @@ class GLException(HTTPError):
     log_message = "GLException"
     error_code = 0
     status_code = 500 # generic Server error
-    arguments = []
 
     def __init__(self):
         self.record()
@@ -30,6 +29,7 @@ class GLException(HTTPError):
         log_message = "[GLE] %s  (code %d http %d)" % ( self.reason, self.error_code, self.status_code)
         print log_message
 
+
 class InvalidInputFormat(GLException):
     """
     The expected format described in the REST specification is not
@@ -40,6 +40,7 @@ class InvalidInputFormat(GLException):
 
     def __init__(self, wrong_source):
         self.reason = "Invalid Input Format [%s]" % wrong_source
+        self.arguments = []
         self.arguments.append(wrong_source)
         self.record()
 
@@ -122,6 +123,7 @@ class ExpectedUniqueField(GLException):
 
     def __init__(self, key, existent_value):
         self.reason = "A field expected to be unique is already present (%s:%s)" % (key, existent_value)
+        self.arguments = []
         self.arguments.append(key)
         self.arguments.append(existent_value)
         self.record()
@@ -154,6 +156,7 @@ class SubmissionFailFields(GLException):
 
     def __init__(self, wrong_fields):
         self.reason = "Submission do not validate the input fields [%s]" % wrong_fields
+        self.arguments = []
         self.arguments.append(wrong_fields)
         self.record()
 
@@ -177,6 +180,7 @@ class InvalidScopeAuth(GLException):
 
     def __init__(self, details):
         self.reason = ("Invalid Authentication in scope: %s" % details)
+        self.arguments = []
         self.arguments.append(details)
 
 
@@ -231,6 +235,7 @@ class InternalServerError(GLException):
 
     def __init__(self, details):
         self.reason = "Internal Server Error (%s)" % details
+        self.arguments = []
         self.arguments.append(details)
         self.record()
 
@@ -302,9 +307,12 @@ class HTTPRawLimitReach(GLException):
     """
     error_code = 39
     status_code = 400 # Generic 400 error
-    reason = ("The upload request overcome the Mb limits (%d Mb)" %
-          GLSetting.memory_copy.maximum_filesize )
-    arguments = [ GLSetting.memory_copy.maximum_filesize ]
+
+    def __init__(self, wrong_source):
+        self.reason = ("The upload request overcome the Mb limits (%d Mb)" %
+                      GLSetting.memory_copy.maximum_filesize )
+        self.arguments = []
+        self.arguments = [ GLSetting.memory_copy.maximum_filesize ]
 
 class GPGKeyInvalid(GLException):
     """
