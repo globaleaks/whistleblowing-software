@@ -457,7 +457,7 @@ def rfc822_date():
     holy stackoverflow:
     http://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
     """
-    nowdt = datetime.now()
+    nowdt = datetime.utcnow()
     nowtuple = nowdt.timetuple()
     nowtimestamp = time.mktime(nowtuple)
     return mailutils.formatdate(nowtimestamp)
