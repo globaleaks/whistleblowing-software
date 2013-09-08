@@ -13,7 +13,7 @@ import os
 import shutil
 
 from Crypto.Hash import SHA512
-from Crypto.Random import random
+from Crypto.Random import random, atfork
 from gnupg import GPG
 
 from globaleaks.rest import errors
@@ -115,19 +115,20 @@ class GLBGPG:
         """
         every time is needed, a new keyring is created here.
         """
+        atfork()
 
         if receiver_desc.has_key('gpg_key_status') and \
            receiver_desc['gpg_key_status'] != Receiver._gpg_types[1]: # Enabled
             log.err("Requested GPG initialization for a receiver without GPG configured! %s" %
                     receiver_desc['username'])
-            raise AssertionError
+            raise Exception("Requested GPG init for user without GPG [%s]" % receiver_desc['username'])
 
         try:
             temp_gpgroot = os.path.join(GLSetting.gpgroot, "%s" % random.randint(0, 0xFFFF) )
             os.makedirs(temp_gpgroot, mode=0700)
             self.gpgh = GPG(gnupghome=temp_gpgroot, options="--trust-model always")
         except Exception as excep:
-            log.err("Unable to instance GPG object: %s" % str(excep))
+            log.err("Unable to instance GPG object: %s" % excep)
             raise excep
 
         self.receiver_desc = receiver_desc
@@ -179,7 +180,7 @@ class GLBGPG:
                 sanitized += lines[i] + "\n"
                 return sanitized
 
-        raise errors.InvalidInputFormat("GPG invalid format")
+        raise errors.InvalidInputFormat("Malformed PGP key block")
 
     def validate_key(self, armored_key):
         """
@@ -193,7 +194,7 @@ class GLBGPG:
         try:
             self.ke = self.gpgh.import_keys(sanitized_gpgasc)
         except Exception as excep:
-            log.err("Error in GPG import_keys: %s" % excep.message)
+            log.err("Error in GPG import_keys: %s" % excep)
             return False
 
         # Error reported in stderr may just be warning, this is because is not raise an exception here
@@ -212,7 +213,7 @@ class GLBGPG:
         try:
             all_keys = self.gpgh.list_keys()
         except Exception as excep:
-            log.err("Error in GPG list_keys: %s" % excep.message)
+            log.err("Error in GPG list_keys: %s" % excep)
             return False
 
         self.keyinfo = u""
@@ -224,7 +225,7 @@ class GLBGPG:
                     for uid in key['uids']:
                         self.keyinfo += "\n\t%s" % uid
                 except Exception as excep:
-                    log.err("Error in GPG key format/properties")
+                    log.err("Error in GPG key format/properties: %s" % excep)
                     return False
 
         if not len(self.keyinfo):
@@ -267,12 +268,13 @@ class GLBGPG:
         try:
             with open(encrypted_path, "w+") as f:
                 f.write(str(encrypt_obj))
+
+            return (encrypted_path, len(str(encrypt_obj)))
+
         except Exception as excep:
             log.err("Error in writing GPG file output: %s (%s) bytes %d" %
                     (excep.message, encrypted_path, len(str(encrypt_obj)) ))
             raise errors.InternalServerError("Error in writing [%s]" % excep.message )
-
-        return (encrypted_path, len(str(encrypt_obj)))
 
 
     def encrypt_message(self, plaintext):
@@ -352,8 +354,8 @@ def gpg_options_parse(receiver, request):
     receiver.gpg_key_status = Receiver._gpg_types[0]
 
     if remove_key:
-        log.debug("User %s request to remove GPG key (%s)" %
-                  (receiver.user.username, receiver.gpg_key_fingerprint))
+        log.debug("User %s %s request to remove GPG key (%s)" %
+                  (receiver.name, receiver.user.username, receiver.gpg_key_fingerprint))
 
         # In all the cases below, the key is marked disabled as request
         receiver.gpg_key_status = Receiver._gpg_types[0] # Disabled
@@ -390,26 +392,27 @@ def get_expirations(keylist):
     This function is not implemented in GPG object class because need to operate
     on the whole keys
     """
+    atfork()
 
     try:
         temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % random.randint(0, 0xFFFF) )
         os.makedirs(temp_gpgroot, mode=0700)
         gpexpire= GPG(gnupghome=temp_gpgroot, options="--trust-model always")
     except Exception as excep:
-        log.err("Unable to setup expiration check environment")
+        log.err("Unable to setup expiration check environment: %s" % excep)
         raise excep
 
     try:
         for key in keylist:
             gpexpire.import_keys(key)
     except Exception as excep:
-        log.err("Error in GPG import_keys: %s" % excep.message)
+        log.err("Error in GPG import_keys: %s" % excep)
         raise excep
 
     try:
         all_keys = gpexpire.list_keys()
     except Exception as excep:
-        log.err("Error in GPG list_keys: %s" % excep.message)
+        log.err("Error in GPG list_keys: %s" % excep)
         raise excep
 
     expirations = {}

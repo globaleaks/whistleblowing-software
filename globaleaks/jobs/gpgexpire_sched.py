@@ -13,7 +13,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import Receiver
 from globaleaks.settings import transact, GLSetting
-from globaleaks.utils import sendmail, log
+from globaleaks.utils import sendmail, log, rfc822_date, collapse_mail_content
 from globaleaks.security import get_expirations
 
 __all__ = ['GPGExpireCheck']
@@ -43,8 +43,8 @@ def check_expiration_date(store):
             keylist.append(sr.gpg_key_armor)
 
             if keytrack.has_key(sr.gpg_key_fingerprint):
-                print "umh, duplicated key fingerprint between %s and %s" %\
-                      (sr.user.username, keytrack[sr.gpg_key_fingerprint])
+                log.err("[!?] Duplicated key fingerprint between %s and %s" %
+                        (sr.user.username, keytrack[sr.gpg_key_fingerprint]))
 
             keytrack.update({sr.gpg_key_fingerprint : sr.user.username })
 
@@ -107,25 +107,34 @@ class GPGExpireCheck(GLJob):
 
                 mail_building = []
 
+                mail_building.append("Date: %s" % rfc822_date())
                 mail_building.append("From: \"%s\" <%s>" %
                                      ( GLSetting.memory_copy.notif_source_name,
                                        GLSetting.memory_copy.notif_source_email ) )
                 mail_building.append("To: %s" % recipient)
-                mail_building.append("Subject: GPG expiration date is incoming")
+                mail_building.append("Subject: Your PGP key expiration date is coming")
                 mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
-                mail_building.append("Content-Transfer-Encoding: 8bit\n")
+                mail_building.append("Content-Transfer-Encoding: 8bit")
+                mail_building.append(None)
                 mail_building.append(message)
+
+                mail_content = collapse_mail_content(mail_building)
+
+                if not mail_content:
+                    log.err("Unable to format (and then notify!) PGP key incoming expiration for %s" % recipient)
+                    log.debug(mail_building)
+                    return
 
                 sendmail(GLSetting.memory_copy.notif_username,
                          GLSetting.memory_copy.notif_password,
                          GLSetting.memory_copy.notif_username,
                          [ recipient ],
-                         "\n".join(mail_building),
+                         mail_content,
                          GLSetting.memory_copy.notif_server,
                          GLSetting.memory_copy.notif_port,
                          GLSetting.memory_copy.notif_security)
 
-
         except Exception as excep:
-            print "Error in key scheduler whatever"
+            log.err("Error in PGP key expiration check: %s (failure ignored)" % excep)
+            return
 

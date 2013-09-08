@@ -94,10 +94,10 @@ def start_asynchronous():
                                     hours=GLSetting.cleaning_hours_delta,
                                     start_date=utc_future_date(seconds=10))
 
-    expiration_sched = gpgexpire_sched.GPGExpireCheck()
-    GLAsynchronous.add_interval_job(expiration_sched.operation,
-                                    hours=23,
-                                    start_date=utc_future_date(seconds=50))
+    # expiration_sched = gpgexpire_sched.GPGExpireCheck()
+    # GLAsynchronous.add_interval_job(expiration_sched.operation,
+    #                                 hours=23,
+    #                                 start_date=utc_future_date(seconds=50))
 
     #stats_sched = statistics_sched.APSStatistics()
     #stats_sched.force_execution(GLAsynchronous, seconds=9)
