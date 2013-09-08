@@ -446,15 +446,21 @@ class BaseHandler(BaseBaseHandler):
             with open(GLSetting.cyclonelogfile, 'a+') as fd:
                 fdesc.writeToFD(fd.fileno(), content + "\n")
         except Exception as excep:
-            log.err("Unable to open %s: %s" % (logfpath, excep.message))
+            log.err("Unable to open %s: %s" % (GLSetting.cyclonelogfile, excep))
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
         if exception and hasattr(exception, 'error_code'):
+
+            error_dict = {}
+            error_dict.update({'error_message': exception.reason, 'error_code' : exception.error_code })
+            if hasattr(exception, 'arguments'):
+                error_dict.update({'arguments': exception.arguments })
+            else:
+                error_dict.update({'arguments': [] })
+
             self.set_status(status_code)
-            self.finish({'error_message': exception.reason,
-                'error_code' : exception.error_code,
-                'arguments': exception.arguments })
+            self.finish(error_dict)
         else:
             RequestHandler.write_error(self, status_code, **kw)
 
