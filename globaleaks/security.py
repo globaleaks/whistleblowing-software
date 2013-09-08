@@ -13,7 +13,7 @@ import os
 import shutil
 
 from Crypto.Hash import SHA512
-from Crypto.Random import random
+from Crypto.Random import random, atfork
 from gnupg import GPG
 
 from globaleaks.rest import errors
@@ -115,6 +115,7 @@ class GLBGPG:
         """
         every time is needed, a new keyring is created here.
         """
+        atfork()
 
         if receiver_desc.has_key('gpg_key_status') and \
            receiver_desc['gpg_key_status'] != Receiver._gpg_types[1]: # Enabled
@@ -390,6 +391,7 @@ def get_expirations(keylist):
     This function is not implemented in GPG object class because need to operate
     on the whole keys
     """
+    atfork()
 
     try:
         temp_gpgroot = os.path.join(GLSetting.gpgroot, "-expiration_check-%s" % random.randint(0, 0xFFFF) )
