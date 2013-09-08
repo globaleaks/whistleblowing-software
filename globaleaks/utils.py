@@ -63,6 +63,7 @@ class GLLogObserver(twlog.FileLogObserver):
     limit_skipped = 10
 
     def emit(self, eventDict):
+        return
 
         if 'failure' in eventDict:
             vf = eventDict['failure']
