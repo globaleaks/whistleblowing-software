@@ -580,6 +580,8 @@ class transact(object):
         else:
             if not self.readonly:
                 self.store.commit()
+            else:
+                self.store.flush()
         finally:
             self.store.close()
 
