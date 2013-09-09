@@ -83,6 +83,7 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
 
         tip_description_list.append(tip_description)
 
+    tip_description_list.reverse()
     return tip_description_list
 
 
@@ -131,6 +132,7 @@ def collect_users_overview(store):
 
         users_description_list.append(user_description)
 
+    users_description_list.reverse()
     return users_description_list
 
 @transact_ro
@@ -200,6 +202,7 @@ def collect_files_overview(store):
 
         file_description_list.append(file_desc)
 
+    file_description_list.reverse()
     return file_description_list
 
 
