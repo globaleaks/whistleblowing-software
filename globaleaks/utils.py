@@ -59,7 +59,6 @@ class GLLogObserver(twlog.FileLogObserver):
     limit_suppressed = 5
 
     def emit(self, eventDict):
-        return
 
         if 'failure' in eventDict:
             vf = eventDict['failure']
