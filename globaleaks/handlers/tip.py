@@ -100,6 +100,7 @@ def get_files_wb(store, wb_tip_id):
     for internalfile in wbtip.internaltip.internalfiles:
         file_list.append(wb_serialize_file(internalfile))
 
+    file_list.reverse()
     return file_list
 
 @transact_ro
@@ -114,6 +115,7 @@ def get_files_receiver(store, user_id, tip_id):
         internalfile = receiverfile.internalfile
         files_list.append(receiver_serialize_file(internalfile, receiverfile, tip_id))
 
+    files_list.reverse()
     return files_list
 
 def strong_receiver_validate(store, user_id, tip_id):
