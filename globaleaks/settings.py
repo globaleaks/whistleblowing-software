@@ -582,6 +582,7 @@ class transact(object):
                 self.store.commit()
             else:
                 self.store.flush()
+                self.store.invalidate()
         finally:
             self.store.close()
 
