@@ -949,16 +949,19 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
         log.err("Database error or application error: %s" % excep )
         raise excep
 
-    for attr in getattr(notif, "localized_strings"):
-        new_value = unicode(request[attr])
-        request[attr] = getattr(notif, attr)
-        request[attr][language] = new_value
+    v = dict(request)
 
-    security = str(request.get('security', u'')).upper()
-    if security in Notification._security_types:
-        notif.security = security
+    for attr in getattr(notif, "localized_strings"):
+        v[attr] = getattr(notif, attr)
+        v[attr][language] = unicode(request[attr])
+
+    request = v
+
+    if request['security'] in Notification._security_types:
+        notif.security = request['security']
     else:
         log.err("Invalid request: Security option not recognized")
+        log.debug("Invalid Security value: %s" % request['security'])
         raise errors.InvalidInputFormat("Security selection not recognized")
 
     notif.update(request)
