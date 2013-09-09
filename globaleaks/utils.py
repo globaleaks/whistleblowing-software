@@ -56,7 +56,8 @@ def sanitize_str(s):
 class GLLogObserver(twlog.FileLogObserver):
 
     suppressed = 0
-    limit_suppressed = 5
+    limit_suppressed = 1
+    last_exception_msg = ""
 
     def emit(self, eventDict):
 
@@ -74,15 +75,21 @@ class GLLogObserver(twlog.FileLogObserver):
         msgStr = twlog._safeFormat("[%(system)s] %(text)s\n", fmtDict)
 
         if GLLogObserver.suppressed == GLLogObserver.limit_suppressed:
-            log.info("!! has been suppressed %d log lines due to error flood" %
-                     GLLogObserver.limit_suppressed)
+            # This code path flush the status of the broken log, in the case a flood is happen
+            # for few moment or in the case something goes wrong when logging below.
+            log.info("!! has been suppressed %d log lines due to error flood (last error %s)" %
+                     (GLLogObserver.limit_suppressed, GLLogObserver.last_exception_msg) )
+
             GLLogObserver.suppressed = 0
+            GLLogObserver.limit_suppressed += 5
+            GLLogObserver.last_exception_msg = ""
 
         try:
             util.untilConcludes(self.write, timeStr + " " + sanitize_str(msgStr))
             util.untilConcludes(self.flush) # Hoorj!
         except Exception as excep:
             GLLogObserver.suppressed += 1
+            GLLogObserver.last_exception_msg = str(excep)
             pass
 
 
