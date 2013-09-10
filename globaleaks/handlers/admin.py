@@ -164,10 +164,10 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
         request[attr] = getattr(node, attr)
         request[attr][language] = new_value
 
-    password = request.get('password')
-    old_password = request.get('old_password')
+    password = request.get('password', None)
+    old_password = request.get('old_password', None)
 
-    if len(password) and len(old_password):
+    if password and old_password and len(password) and len(old_password):
         admin = store.find(User, (User.username == unicode('admin'))).one()
         admin.password = security.change_password(admin.password,
                                     old_password, password, admin.salt)
