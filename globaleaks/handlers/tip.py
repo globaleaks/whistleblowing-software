@@ -277,6 +277,11 @@ def postpone_expiration_date(store, user_id, tip_id):
 
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
+    node = store.find(Node).one()
+
+    if not node.postpone_superpower:
+        raise errors.ExtendTipLifeNotEnabled()
+
     rtip.internaltip.expiration_date = \
         utc_future_date(seconds=rtip.internaltip.context.tip_timetolive)
 
@@ -308,7 +313,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
     comment.type = Comment._types[2] # System
-    comment.mark = Comment._marker[0] # Not Notified
+    comment.mark = Comment._marker[4] # skipped
 
     store.add(comment)
     rtip.internaltip.comments.add(comment)
