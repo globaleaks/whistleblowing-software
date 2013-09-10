@@ -9,8 +9,6 @@
 
 from globaleaks.rest.base import formFieldsDict, uuid_regexp
 
-# a lots of dict here are used to supports languages
-
 authDict = {
     'username' : unicode,
     'password' : unicode,
