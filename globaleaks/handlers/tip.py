@@ -7,6 +7,7 @@
 #   executed with /tip/* URI PATH interaction.
 
 from twisted.internet.defer import inlineCallbacks
+from storm.expr import Desc
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
@@ -108,14 +109,13 @@ def get_files_receiver(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
     receiver_files = store.find(ReceiverFile,
-        (ReceiverFile.internaltip_id == rtip.internaltip_id, ReceiverFile.receiver_id == rtip.receiver_id) )
+        (ReceiverFile.internaltip_id == rtip.internaltip_id, ReceiverFile.receiver_id == rtip.receiver_id))
 
     files_list = []
     for receiverfile in receiver_files:
         internalfile = receiverfile.internalfile
         files_list.append(receiver_serialize_file(internalfile, receiverfile, tip_id))
 
-    files_list.reverse()
     return files_list
 
 def strong_receiver_validate(store, user_id, tip_id):
