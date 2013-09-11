@@ -8,6 +8,12 @@ FLOSS.
 This is the main repository that serves to keep track of the overall
 development of the GlobaLeaks platform as a whole.
 
+To learn how to setup your own GlobaLeaks, look at [Globaleaks Wiki
+documentation] (https://github.com/globaleaks/GlobaLeaks/wiki)
+
+
+Join our [Development Mailing List](http://lists.globaleaks.org/info/dev)
+
 Here we collect all the knowledge that is not specific to the client or backend
 component.
 
@@ -17,8 +23,6 @@ This is a full rewrite and it collects all of the experience and knowledge
 gained in building [GlobaLeaks
 0.1](https://github.com/globaleaks/GlobaLeaks-0.1).
 
-To learn how to setup your own GlobaLeaks, look at [Globaleaks Wiki
-documentation] (https://github.com/globaleaks/GlobaLeaks/wiki)
 
 The main components of GlobaLeaks 0.2 are
 [GLClient](https://github.com/globaleaks/GLClient) and
