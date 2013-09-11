@@ -11,6 +11,7 @@ profile usr.bin.globaleaks {
     capability fowner,
     capability chown,
     capability dac_override,
+    capability sys_tty_config,
 
     /proc/*/mounts r,
 
