@@ -6,6 +6,7 @@
 # Used by receivers to update personal preferences and access to personal data
 
 from twisted.internet.defer import inlineCallbacks
+from storm.expr import Desc
 
 from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n, naturalize_fields
 from globaleaks.handlers.base import BaseHandler
@@ -14,6 +15,7 @@ from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, gpg_options_parse
+
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
@@ -140,6 +142,7 @@ def get_receiver_tip_list(store, user_id):
 
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver.id)
+    rtiplist.order_by(Desc(ReceiverTip.creation_date))
 
     rtip_summary_list = []
 
@@ -175,7 +178,6 @@ def get_receiver_tip_list(store, user_id):
         single_tip_sum.update({ 'preview' : preview_data })
         rtip_summary_list.append(single_tip_sum)
 
-    rtip_summary_list.reverse()
     return rtip_summary_list
 
 
