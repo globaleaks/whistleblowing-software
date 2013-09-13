@@ -1,3 +1,9 @@
+globaleaks (2.27.1-0) unstable; urgency=low
+
+  * GlobaLeaks 2.27.1 Release (Memory leak fix, Czech Translation added)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 10 Sep 2013 11:17:59 +0002
+
 globaleaks (2.27-0) unstable; urgency=low
 
   * GlobaLeaks 2.27 Release

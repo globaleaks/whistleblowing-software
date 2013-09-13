@@ -3,12 +3,13 @@
 # In here we shall keep track of all variables and objects that should be
 # instantiated only once and be common to pieces of GLBackend code.
 
-__version__ = '2.27'
+__version__ = '2.27.1'
 DATABASE_VERSION = 6
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt makeTranslations'
 LANGUAGES_SUPPORTED = [
+                    { "code": "cs", "name": "Czech" },
                     { "code": "en", "name": "English"},
                     { "code": "fr", "name": "French"},
                     { "code": "hu_HU", "name": "Hungarian (Hungary)"},
@@ -20,5 +21,5 @@ LANGUAGES_SUPPORTED = [
                     { "code": "vi", "name": "Vietnamese"},
                 ]
 
-LANGUAGES_SUPPORTED_CODES = [ "en", "fr", "hu_HU", "it", "nl",
+LANGUAGES_SUPPORTED_CODES = [ "cs", "en", "fr", "hu_HU", "it", "nl",
                               "pt_BR", "ru", "tr", "vi" ]
