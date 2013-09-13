@@ -344,6 +344,52 @@ class TestTipInstance(TTip):
         self.assertEqual(receiver_list[0]['access_counter'] + receiver_list[1]['access_counter'], 3)
 
     @inlineCallbacks
+    def fail_postpone_expiration_date(self):
+        tip_expiring = yield tip.get_internaltip_receiver(
+            self.receiver1_desc['receiver_gus'], self.rtip1_id)
+
+        try:
+            yield tip.postpone_expiration_date(
+                    self.receiver2_desc['receiver_gus'],
+                    self.rtip2_id)
+        except errors.ExtendTipLifeNotEnabled:
+            self.assertTrue(True)
+        except Exception, e:
+            self.assertTrue(False)
+            raise e
+
+        tip_not_extended = yield tip.get_internaltip_receiver(
+            self.receiver1_desc['receiver_gus'], self.rtip1_id)
+
+        self.assertEqual(tip_expiring['expiration_date'], tip_not_extended['expiration_date'])
+
+    @inlineCallbacks
+    def update_node_properties(self):
+        node_desc = yield admin.get_node()
+        self.assertEqual(node_desc['postpone_superpower'], False)
+        node_desc['postpone_superpower'] = True
+        node_desc = yield admin.update_node(node_desc)
+        self.assertEqual(node_desc['postpone_superpower'], True)
+
+    @inlineCallbacks
+    def success_postpone_expiration_date(self):
+        """
+        Tests with receiver1 and update with receiver2 is equal
+        to use the the same receiver
+        """
+        tip_expiring = yield tip.get_internaltip_receiver(
+            self.receiver1_desc['receiver_gus'], self.rtip1_id)
+
+        yield tip.postpone_expiration_date(
+                    self.receiver2_desc['receiver_gus'],
+                    self.rtip2_id)
+
+        tip_extended = yield tip.get_internaltip_receiver(
+            self.receiver1_desc['receiver_gus'], self.rtip1_id)
+
+        self.assertNotEqual(tip_expiring['expiration_date'], tip_extended['expiration_date'])
+
+    @inlineCallbacks
     def receiver2_fail_in_delete_internal_tip(self):
         try:
             yield tip.delete_internal_tip(self.receiver2_desc['receiver_gus'],
@@ -365,11 +411,16 @@ class TestTipInstance(TTip):
         cl = yield tip.get_comment_list_receiver(self.receiver1_desc['receiver_gus'],
                                         self.rtip1_id)
 
-        self.assertEqual(len(cl), 4)
+        self.assertEqual(len(cl), 5)
         self.assertEqual(cl[0]['source'], models.Comment._types[0]) # Receiver (Rcvr1)
         self.assertEqual(cl[1]['source'], models.Comment._types[0]) # Receiver (Rcvr2)
         self.assertEqual(cl[2]['source'], models.Comment._types[1]) # Wb
-        self.assertEqual(cl[3]['source'], models.Comment._types[2]) # System
+
+        self.assertEqual(cl[3]['source'], models.Comment._types[2]) # System (date extension)
+        self.assertEqual(cl[3]['system_content']['receiver_name'], self.receiver2_desc['name'])
+        self.assertTrue(cl[3]['system_content'].has_key('now'))
+
+        self.assertEqual(cl[4]['source'], models.Comment._types[2]) # System
 
 
     @inlineCallbacks
@@ -410,6 +461,11 @@ class TestTipInstance(TTip):
         yield self.wb_RW_comments()
         yield self.wb_get_receiver_list(GLSetting.memory_copy.default_language)
         yield self.receiver_get_receiver_list(GLSetting.memory_copy.default_language)
+        # test expiration date
+        yield self.fail_postpone_expiration_date()
+        yield self.update_node_properties()
+        yield self.success_postpone_expiration_date()
+        # end of test
         yield self.receiver2_fail_in_delete_internal_tip()
         yield self.receiver2_personal_delete()
         yield self.receiver1_see_system_comments()

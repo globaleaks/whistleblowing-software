@@ -29,21 +29,19 @@ class TestNodeInstance(helpers.TestHandler):
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
 
-        # These values are not returned
-        del self.dummyNode['password']
-        del self.dummyNode['old_password']
-        del self.dummyNode['salt']
-        del self.dummyNode['salt_receipt']
-
+        self.assertTrue(isinstance(self.responses[0], dict))
         self.assertTrue(self.responses[0]['version'], __version__)
-        del self.responses[0]['version']
 
-        # these values can't be set by GLC
-        self.dummyNode['languages_supported'] = self.responses[0]['languages_supported']
-        self.dummyNode['creation_date'] = self.responses[0]['creation_date']
-        self.dummyNode['last_update'] = self.responses[0]['last_update']
+        for response_key in self.responses[0].keys():
 
-        self.assertEqual(self.responses[0], self.dummyNode)
+            # some keys are added by GLB, and can't be compared
+            if response_key in ['password', 'languages_supported',
+                                'creation_date', 'last_update', 'version' ]:
+                continue
+
+            self.assertEqual(self.responses[0][response_key],
+                             self.dummyNode[response_key])
+
 
     @inlineCallbacks
     def test_put_update_node_invalid_lang(self):
@@ -141,7 +139,28 @@ class TestContextInstance(helpers.TestHandler):
     def test_get(self):
         handler = self.request(role='admin')
         yield handler.get(self.dummyContext['context_gus'])
-        self.assertEqual(self.responses[0]['name'], self.dummyContext['name'])
+
+        self.assertTrue(isinstance(self.responses[0], dict))
+
+        for response_key in self.responses[0].keys():
+
+            # some keys are added by GLB, and can't be compared
+            if response_key in ['creation_date', 'last_update', 'receipt_example']:
+                continue
+
+            # the localized strings are kept in one side as localized l10n
+            # and in the other as dict.
+            if response_key in ['name', 'description',
+                                'receipt_description',
+                                'submission_introduction',
+                                'submission_disclaimer' ]:
+                # print self.responses[0][response_key]
+                # print self.dummyContext[response_key]
+                continue
+
+            self.assertEqual(self.responses[0][response_key],
+                             self.dummyContext[response_key])
+
 
     @inlineCallbacks
     def test_put(self):
