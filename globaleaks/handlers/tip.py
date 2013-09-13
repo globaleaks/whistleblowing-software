@@ -7,6 +7,7 @@
 #   executed with /tip/* URI PATH interaction.
 
 from twisted.internet.defer import inlineCallbacks
+from storm.expr import Desc
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
@@ -100,6 +101,7 @@ def get_files_wb(store, wb_tip_id):
     for internalfile in wbtip.internaltip.internalfiles:
         file_list.append(wb_serialize_file(internalfile))
 
+    file_list.reverse()
     return file_list
 
 @transact_ro
@@ -107,7 +109,7 @@ def get_files_receiver(store, user_id, tip_id):
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
     receiver_files = store.find(ReceiverFile,
-        (ReceiverFile.internaltip_id == rtip.internaltip_id, ReceiverFile.receiver_id == rtip.receiver_id) )
+        (ReceiverFile.internaltip_id == rtip.internaltip_id, ReceiverFile.receiver_id == rtip.receiver_id))
 
     files_list = []
     for receiverfile in receiver_files:
@@ -275,6 +277,11 @@ def postpone_expiration_date(store, user_id, tip_id):
 
     rtip = strong_receiver_validate(store, user_id, tip_id)
 
+    node = store.find(Node).one()
+
+    if not node.postpone_superpower:
+        raise errors.ExtendTipLifeNotEnabled()
+
     rtip.internaltip.expiration_date = \
         utc_future_date(seconds=rtip.internaltip.context.tip_timetolive)
 
@@ -306,7 +313,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
     comment.type = Comment._types[2] # System
-    comment.mark = Comment._marker[0] # Not Notified
+    comment.mark = Comment._marker[4] # skipped
 
     store.add(comment)
     rtip.internaltip.comments.add(comment)
