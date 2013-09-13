@@ -6,12 +6,14 @@
 
 import os
 
+from twisted.internet.defer import inlineCallbacks
+from storm.expr import Desc
+
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks import models
 
-from twisted.internet.defer import inlineCallbacks
 from globaleaks.utils import pretty_date_time, log, l10n
 
 @transact_ro
@@ -19,6 +21,7 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
 
     tip_description_list = []
     all_itips = store.find(models.InternalTip)
+    all_itips.order_by(Desc(models.InternalTip.creation_date))
 
     for itip in all_itips:
         tip_description = {
@@ -141,6 +144,7 @@ def collect_files_overview(store):
     submission_dir = os.path.join(GLSetting.working_path, GLSetting.submission_path)
     disk_files = os.listdir(submission_dir)
     stored_ifiles = store.find(models.InternalFile)
+    stored_ifiles.order_by(Desc(models.InternalFile.creation_date))
 
     for ifile in stored_ifiles:
 
