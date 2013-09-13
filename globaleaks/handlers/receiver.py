@@ -6,6 +6,7 @@
 # Used by receivers to update personal preferences and access to personal data
 
 from twisted.internet.defer import inlineCallbacks
+from storm.expr import Desc
 
 from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n, naturalize_fields
 from globaleaks.handlers.base import BaseHandler
@@ -14,6 +15,7 @@ from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests, errors
 from globaleaks.security import change_password, gpg_options_parse
+
 
 # https://www.youtube.com/watch?v=BMxaLEGCVdg
 def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default_language):
@@ -135,41 +137,12 @@ class ReceiverInstance(BaseHandler):
         self.finish(receiver_status)
 
 
-def serialize_tip_summary(rtip, file_associated):
-
-    single_tip_sum = dict({
-        # expiry time ?
-        # context_id ?
-        'access_counter': rtip.access_counter,
-        'expressed_pertinence': rtip.expressed_pertinence,
-        'creation_date' : unicode(pretty_date_time(rtip.creation_date)),
-        'last_access' : unicode(pretty_date_time(rtip.last_access)),
-        'id' : rtip.id,
-        'files_number': file_associated,
-    })
-
-    preview_data = []
-    for sf in naturalize_fields(rtip.internaltip.context.fields):
-
-        try:
-            if sf['preview'] == True and sf['type'] == u'text':
-                # preview in a format angular.js likes
-                entry = dict({'key' : sf['key'],
-                              'text': rtip.internaltip.wb_fields[sf['key']] })
-                preview_data.append(entry)
-        except KeyError:
-            continue
-
-    single_tip_sum.update({ 'preview' : preview_data })
-    return single_tip_sum
-
-
 @transact_ro
 def get_receiver_tip_list(store, user_id):
 
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
-
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver.id)
+    rtiplist.order_by(Desc(ReceiverTip.creation_date))
 
     rtip_summary_list = []
 
@@ -179,7 +152,31 @@ def get_receiver_tip_list(store, user_id):
             (ReceiverFile.internaltip_id == rtip.internaltip.id,
              ReceiverFile.receiver_id == user_id)).count()
 
-        rtip_summary_list.append(serialize_tip_summary(rtip, rfiles_n))
+        single_tip_sum = dict({
+            # expiry time ?
+            # context_id ?
+            'access_counter': rtip.access_counter,
+            'expressed_pertinence': rtip.expressed_pertinence,
+            'creation_date' : unicode(pretty_date_time(rtip.creation_date)),
+            'last_access' : unicode(pretty_date_time(rtip.last_access)),
+            'id' : rtip.id,
+            'files_number': rfiles_n,
+        })
+
+        preview_data = []
+        for sf in naturalize_fields(rtip.internaltip.context.fields):
+
+            try:
+                if sf['preview'] == True and sf['type'] == u'text':
+                    # preview in a format angular.js likes
+                    entry = dict({'key' : sf['key'],
+                                  'text': rtip.internaltip.wb_fields[sf['key']] })
+                    preview_data.append(entry)
+            except KeyError:
+                continue
+
+        single_tip_sum.update({ 'preview' : preview_data })
+        rtip_summary_list.append(single_tip_sum)
 
     return rtip_summary_list
 
