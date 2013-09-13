@@ -50,7 +50,7 @@ def hash_password(proposed_password, salt_input):
 
     if not len(proposed_password):
         log.err("password string has been not really provided (0 len)")
-        raise errors.InvalidInputFormat("password expected for receiver")
+        raise errors.InvalidInputFormat("Missing password")
 
     hashed_passwd = scrypt.hash(proposed_password, salt)
     return binascii.b2a_hex(hashed_passwd)

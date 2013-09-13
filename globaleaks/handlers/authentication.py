@@ -1,13 +1,10 @@
-import time
-
 from storm.exceptions import NotOneError
 
-from twisted.internet.defer import inlineCallbacks
 from twisted.internet import defer, reactor
 from cyclone.util import ObjectDict as OD
 
 from globaleaks.models import Node, User
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
