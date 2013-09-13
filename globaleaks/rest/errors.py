@@ -392,3 +392,11 @@ class FileRequiredMissing(GLException):
     error_code =  49
     status_code = 406
     reason = "A file attachment is required to complete the submission"
+
+class ExtendTipLifeNotEnabled(GLException):
+    """
+    ability to postpone expiration date is not enabled in the node
+    """
+    error_code =  50
+    status_code = 403
+    reason = "This node do not permit expiration date extensions"
