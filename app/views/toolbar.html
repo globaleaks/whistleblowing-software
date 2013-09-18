@@ -8,7 +8,7 @@
       <div ng-switch on="error.code">
 
         <div ng-switch-when="18">
-          {{ "Your user has reach the maximum amount of access for this Tip" | translate }}
+          {{ "Your user has reached the maximum amount of access for this Tip" | translate }}
         </div>
 
         <div ng-switch-when="35">
@@ -20,7 +20,7 @@
         </div>
 
         <div ng-switch-when="17">
-          {{ "Some parameters explicit in the context creation can't works together" | translate }}
+          {{ "Some parameters provided in the context creation can't work together" | translate }}
         </div>
 
         <div ng-switch-when="33">
@@ -48,7 +48,7 @@
         </div>
 
         <div ng-switch-when="39">
-          {{ "The upload request overcome the MB limits" | translate }} ({{error.arguments[0]}} MB)
+          {{ "The upload request overcomes the MB limits" | translate }} ({{error.arguments[0]}} MB)
         </div>
 
         <div ng-switch-when="31">
@@ -60,7 +60,7 @@
         </div>
 
         <div ng-switch-when="36">
-          {{ "The specified host do not match a configured one" | translate }}
+          {{ "The specified host does not match a configured one" | translate }}
         </div>
 
         <div ng-switch-when="10">
@@ -108,11 +108,11 @@
         </div>
 
         <div ng-switch-when="28">
-          {{ "The submission tried to be update has been already finalized" | translate }}
+          {{ "The submission tried to be updated has been already finalized" | translate }}
         </div>
 
         <div ng-switch-when="22">
-          {{ "Submission do not validate the input fields" | translate }} [{{error.arguments[0]}}]
+          {{ "Submission does not validate the input fields" | translate }} [{{error.arguments[0]}}]
         </div>
 
         <div ng-switch-when="21">
@@ -120,7 +120,7 @@
         </div>
 
         <div ng-switch-when="42">
-          {{ "Invalid timerange supplied for" | translate }} {{error.arguments[0]}}:{{error.arguments[1]}}
+          {{ "Invalid time range supplied for" | translate }} {{error.arguments[0]}}:{{error.arguments[1]}}
         </div>
 
         <div ng-switch-when="13">
