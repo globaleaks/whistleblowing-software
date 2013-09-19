@@ -6,6 +6,14 @@ if [ "$?" -ne "0" ]; then
     echo "WARNING! Currently GlobaLeaks offers only Ubuntu 12.04 (precise) support"
 fi
 
+if [ -f /etc/rc2.d/S20globaleaks ]; then
+    # older versions of the globaleaks deb installed globaleaks with
+    # default sequence (20). The following commands make the manual fixes
+    # needed in order to have GlobaLeaks started after Tor.
+    update-rc.d -f globaleaks remove
+    update-rc.d globaleaks defaults 99
+fi
+
 #DEBHELPER#
 
 exit 0
