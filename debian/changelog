@@ -1,3 +1,9 @@
+globaleaks (2.27.9-0) unstable; urgency=low
+
+  * GlobaLeaks 2.27.9 Release (Italian Translation Updated due to an adopter request)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 20 Sep 2013 00:20:59 +0002
+
 globaleaks (2.27.8-0) unstable; urgency=low
 
   * GlobaLeaks 2.27.8 Release (Network Sandboxing Fixes)
