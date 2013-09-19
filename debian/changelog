@@ -1,3 +1,9 @@
+globaleaks (2.27.6-0) unstable; urgency=low
+
+  * GlobaLeaks 2.27.6 Release (Serbian Translation Updated due to an adopter request)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 19 Sep 2013 17:09:59 +0002
+
 globaleaks (2.27.5-0) unstable; urgency=low
 
   * GlobaLeaks 2.27.5 Release (Minor Fix)
