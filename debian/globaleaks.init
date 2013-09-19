@@ -185,9 +185,12 @@ do_start()
         exit 1
     fi
 
-    GLBACKEND_ARGS="--ip=${ALLOWED_DST_IP[@]}
+    IPS=`echo ${ALLOWED_DST_IP[@]} | tr -d ' '`
+    HOSTS=`echo ${HOSTS_LIST} | tr -d ' '`
+
+    GLBACKEND_ARGS="--ip=${IPS}
                     --port=${LISTENING_PORT}
-                    --accept-host=${HOSTS_LIST}
+                    --accept-host=${HOSTS}
                     --user=${USER} --group=${GROUP}
                     --working-path=${WORKING_DIR}
                     --loglevel=${LOGLEVEL}"
