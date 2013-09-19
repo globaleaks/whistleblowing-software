@@ -127,8 +127,12 @@ def globaleaks_start():
         yield import_memory_variables()
 
         log.msg("GLBackend is now running")
+        for ip in GLSetting.bind_addresses:
+            log.msg("Visit http://%s:%d to interact with me" % (ip, GLSetting.bind_port))
+
         for host in GLSetting.accepted_hosts:
-            log.msg("Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port))
+            if host not in GLSetting.bind_addresses:
+                log.msg("Visit http://%s:%d to interact with me" % (host, GLSetting.bind_port))
 
     return True
 

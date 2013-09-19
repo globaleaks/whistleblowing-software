@@ -87,6 +87,8 @@ class GLSettingsClass:
         # threads sizes
         self.db_thread_pool_size = 1
 
+        self.bind_addresses = '127.0.0.1'
+
         # bind port
         self.bind_port = 8082
 
@@ -278,6 +280,8 @@ class GLSettingsClass:
 
         self.loglevel = verbosity_dict[self.cmdline_options.loglevel]
 
+        self.bind_addresses = self.cmdline_options.ip.replace(" ", "").split(",")
+
         if not self.validate_port(self.cmdline_options.port):
             quit(-1)
         self.bind_port = self.cmdline_options.port
@@ -286,7 +290,8 @@ class GLSettingsClass:
         if self.cyclone_debug:
             self.enable_debug_mode()
 
-        self.accepted_hosts = self.cmdline_options.host_list.replace(" ", "").split(",")
+        self.accepted_hosts = list(set(self.bind_addresses + \
+                                       self.cmdline_options.host_list.replace(" ", "").split(",")))
 
         self.tor_socks_enable = not self.cmdline_options.disable_tor_socks
 
