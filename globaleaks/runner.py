@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 from apscheduler.scheduler import Scheduler
 
 from globaleaks.utils import log, utc_future_date
-from globaleaks.db import create_tables, check_schema_version, import_memory_variables
+from globaleaks.db import create_tables, check_schema_version, update_supported_languages, import_memory_variables
 from globaleaks.settings import GLSetting
 
 # The scheduler is a global variable, because can be used to force execution
@@ -123,6 +123,7 @@ def globaleaks_start():
     @inlineCallbacks
     def cb(res):
         start_asynchronous()
+        yield update_supported_languages()
         yield import_memory_variables()
 
         log.msg("GLBackend is now running")
