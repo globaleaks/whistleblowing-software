@@ -185,7 +185,8 @@ do_start()
         exit 1
     fi
 
-    GLBACKEND_ARGS="--port=${LISTENING_PORT}
+    GLBACKEND_ARGS="--ip=${ALLOWED_DST_IP[@]}
+                    --port=${LISTENING_PORT}
                     --accept-host=${HOSTS_LIST}
                     --user=${USER} --group=${GROUP}
                     --working-path=${WORKING_DIR}
