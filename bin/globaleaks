@@ -134,6 +134,10 @@ GLSetting.parser.add_option("-j", "--jsondump", type="int",
     help="enable JSON I/O logging and limists number of Requests/Responses (-1=disabled, 0=unlimited) [default: %default]",
     dest="io", default=GLSetting.cyclone_debug)
 
+GLSetting.parser.add_option("-i", "--ip", type="string",
+    help="IP address(s) used for listening [default: %default]",
+    dest="ip", default=GLSetting.bind_addresses)
+
 GLSetting.parser.add_option("-p", "--port", type="int",
     help="TCP port used for listening [default: %default]",
     dest="port", default=GLSetting.bind_port)
