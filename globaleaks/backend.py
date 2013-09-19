@@ -26,8 +26,10 @@ settings = dict(cookie_secret=random.getrandbits(128),
 # Initialize the web API event listener, handling all the synchronous operations
 GLBackendAPIFactory = web.Application(api.spec, **settings)
 GLBackendAPIFactory.protocol = GLHTTPServer
-GLBackendAPI = internet.TCPServer(GLSetting.bind_port, GLBackendAPIFactory)
-GLBackendAPI.setServiceParent(application)
+
+for ip in GLSetting.bind_addresses:
+    GLBackendAPI = internet.TCPServer(GLSetting.bind_port, GLBackendAPIFactory, interface=ip)
+    GLBackendAPI.setServiceParent(application)
 
 # define exit behaviour
 
