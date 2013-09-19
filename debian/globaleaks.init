@@ -122,7 +122,11 @@ network_sandboxing_start()
         do
             iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
         done
-        iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT}  -j DROP
+        for IP_SRC in "${ALLOWED_DST_IP[@]}"
+        do
+            iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -s ${IP_SRC} -j ACCEPT
+        done
+        iptables -A INPUT -p tcp -d ${IP_DST} --dport ${LISTENING_PORT} -j DROP
     done
 
     # OUTBOUND
@@ -185,8 +189,8 @@ do_start()
         exit 1
     fi
 
-    IPS=`echo ${ALLOWED_DST_IP[@]} | tr -d ' '`
-    HOSTS=`echo ${HOSTS_LIST} | tr -d ' '`
+    IPS=`echo ${ALLOWED_DST_IP[@]} | tr ' ' ','`
+    HOSTS=`echo ${HOSTS_LIST} | tr ' ' ','`
 
     GLBACKEND_ARGS="--ip=${IPS}
                     --port=${LISTENING_PORT}
