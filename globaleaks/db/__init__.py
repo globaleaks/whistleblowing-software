@@ -249,6 +249,17 @@ def check_schema_version():
 
     return ret
 
+@transact
+def update_supported_languages(store):
+    """
+    the function updates the node supported languages setting present in the db
+    with the hardcoded value LANGUAGES_SUPPORTED present in globaleaks/__init__.py
+    """
+    try:
+        node = store.find(models.Node).one()
+        node.languages_supported = LANGUAGES_SUPPORTED
+    except Exception as e:
+        raise errors.InvalidInputFormat("Cannot update supported languages: %s" % e)
 
 @transact_ro
 def import_memory_variables(store):
