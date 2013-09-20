@@ -53,8 +53,8 @@ build_custom_glclient()
   ( command -v git >/dev/null 2>&1 &&
     command -v node >/dev/null 2>&1 &&
     command -v npm >/dev/null 2>&1 &&
-    command -v bower >/dev/null 2&>1 &&
-    command -v grunt >/dev/null 2&>1) || {
+    command -v bower >/dev/null 2>&1 &&
+    command -v grunt >/dev/null 2>&1) || {
     RELEASE="`lsb_release -c|cut -f 2`"
     if [ $RELEASE != "precise" ]; then
       echo "[+] You are not running Ubuntu 12.04 LTS"
@@ -113,9 +113,11 @@ build_custom_glclient()
   sudo rm -rf $GLCLIENT_INSTALL_DIR
 
   sudo mv build $GLCLIENT_INSTALL_DIR
-  sudo cp -R $TMP_DIR/staticdata/* $GLCLIENT_INSTALL_DIR
+  if [ "$(ls -A $TMP_DIR/staticdata/)" ]; then
+      sudo cp -R $TMP_DIR/staticdata/* $GLCLIENT_INSTALL_DIR
+  fi
   cd /
-  rm -rf $TMP_DIR
+  #rm -rf $TMP_DIR
 }
 
 if [ ! $1 ];then
