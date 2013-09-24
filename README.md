@@ -12,7 +12,7 @@ To learn how to setup your own GlobaLeaks, look at [Globaleaks Wiki
 documentation] (https://github.com/globaleaks/GlobaLeaks/wiki)
 
 
-Join our [Development Mailing List](http://lists.globaleaks.org/info/dev)
+Join our [Development Mailing List](http://lists.globaleaks.org/listinfo/dev)
 
 Here we collect all the knowledge that is not specific to the client or backend
 component.
