@@ -1,3 +1,9 @@
+globaleaks (2.27.11-0) unstable; urgency=low
+
+  * GlobaLeaks 2.27.11 Release (Performance fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Fri, 27 Sep 2013 00:15:59 +0002
+
 globaleaks (2.27.10-0) unstable; urgency=low
 
   * GlobaLeaks 2.27.10 Release (Italian Translation Updated due to an adopter request)
