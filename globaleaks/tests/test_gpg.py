@@ -62,6 +62,26 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.assertEqual(self.responses[0]['gpg_key_info'], None)
 
     @inlineCallbacks
+    def test_default_encryption_enable(self):
+
+        self.receiver_only_update = dict(MockDict().dummyReceiver)
+
+        self.receiver_only_update['password'] = self.dummyReceiver['password']
+        self.receiver_only_update['old_password'] = self.dummyReceiver['password']
+        self.receiver_only_update['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
+        self.receiver_only_update['gpg_key_status'] = None # Test, this field is ignored and set
+        self.receiver_only_update['gpg_key_remove'] = False
+        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
+        yield handler.put()
+        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
+                         u'341F1A8CE2B4F4F4174D7C21B842093DC6765430')
+        self.assertEqual(self.responses[0]['gpg_key_status'], Receiver._gpg_types[1])
+
+        self.receiver_only_update['gpg_key_armor'] = unicode(HermesGlobaleaksKey.__doc__)
+        self.assertEqual(self.responses[0]['gpg_enable_notification'], True)
+        self.assertEqual(self.responses[0]['gpg_enable_files'], True)
+
+    @inlineCallbacks
     def test_handler_update_key(self):
 
         self.receiver_only_update = dict(MockDict().dummyReceiver)
