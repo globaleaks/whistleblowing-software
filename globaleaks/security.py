@@ -359,8 +359,19 @@ def gpg_options_parse(receiver, request):
 
         # In all the cases below, the key is marked disabled as request
         receiver.gpg_key_status = Receiver._gpg_types[0] # Disabled
-        receiver.gpg_key_info = receiver.gpg_key_armor = receiver.gpg_key_fingerprint = None
-        receiver.gpg_enable_files = receiver.gpg_enable_notification = False
+        receiver.gpg_key_info = None
+        receiver.gpg_key_armor = None
+        receiver.gpg_key_fingerprint = None
+        receiver.gpg_enable_files = False
+        receiver.gpg_enable_notification = False
+
+    if receiver.gpg_key_status == Receiver._gpg_types[1]:
+        receiver.gpg_enable_files = encrypt_file
+        receiver.gpg_enable_notification = encrypt_notification
+        log.debug("Receiver %s sets GPG usage: notification %s, file %s" %
+                  (receiver.user.username,
+                   "YES" if encrypt_notification else "NO",
+                   "YES" if encrypt_file else "NO") )
 
     if new_gpg_key:
 
@@ -369,22 +380,17 @@ def gpg_options_parse(receiver, request):
         if not gnob.validate_key(new_gpg_key):
             raise errors.GPGKeyInvalid
 
-        log.debug("GPG Key import success: %s" % gnob.keyinfo)
+        log.debug("GPG Key imported and enabled in file and notification: %s" % gnob.keyinfo)
 
         receiver.gpg_key_info = gnob.keyinfo
         receiver.gpg_key_fingerprint = gnob.fingerprint
         receiver.gpg_key_status = Receiver._gpg_types[1] # Enabled
         receiver.gpg_key_armor = new_gpg_key
+        # default enabled https://github.com/globaleaks/GlobaLeaks/issues/620
+        receiver.gpg_enable_files = True
+        receiver.gpg_enable_notification = True
 
         gnob.destroy_environment()
-
-    if receiver.gpg_key_status == Receiver._gpg_types[1]:
-        receiver.gpg_enable_files = encrypt_file
-        receiver.gpg_enable_notification = encrypt_notification
-        log.debug("Receiver %s sets GPG usage: notification %s, file %s" %
-                (receiver.user.username,
-                 "YES" if encrypt_notification else "NO",
-                 "YES" if encrypt_file else "NO") )
 
 
 def get_expirations(keylist):
