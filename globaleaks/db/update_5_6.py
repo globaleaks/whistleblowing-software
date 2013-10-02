@@ -1,11 +1,12 @@
 # -*- encoding: utf-8 -*-
 
+from storm.locals import Bool, Pickle, Unicode, Int, DateTime
+
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model, ReceiverTip
-from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 from globaleaks import DATABASE_VERSION
 
-class User_version_4(Model):
+class User_version_5(Model):
     __storm_table__ = 'user'
 
     username = Unicode()
@@ -16,9 +17,8 @@ class User_version_4(Model):
     last_login = DateTime()
     first_failed = DateTime()
     failed_login_count = Int()
-    # last_failed_attempt = DateTime()
 
-class Node_version_4(Model):
+class Node_version_5(Model):
     __storm_table__ = 'node'
 
     name = Unicode()
@@ -45,7 +45,7 @@ class Node_version_4(Model):
     tor2web_unauth = Bool()
     exception_email = Unicode()
 
-class Comment_version_0(Model):
+class Comment_version_5(Model):
     __storm_table__ = 'comment'
 
     internaltip_id = Unicode()
@@ -118,7 +118,7 @@ class Replacer56(TableReplacer):
         self.store_new.commit()
 
     def migrate_Node(self):
-        print "%s Node migration assistant: (Supports or receiver with postpone superpower) #%d" % (
+        print "%s Node migration assistant: (Supports of receiver with postpone superpower) #%d" % (
             self.debug_info, self.store_old.find(self.get_right_model("Node", 5)).count() )
 
         old_node = self.store_old.find(self.get_right_model("Node", 5)).one()
