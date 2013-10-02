@@ -46,8 +46,8 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'postpone_superpower': node.postpone_superpower,
     }
 
-    node_dict['description'] = l10n(node.description, language)
-    node_dict['presentation'] = l10n(node.presentation, language)
+    for attr in ['presentation', 'description', 'footer' ]:
+        node_dict[attr] = l10n(getattr(node, attr), language)
 
     return node_dict
 
