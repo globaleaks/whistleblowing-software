@@ -68,6 +68,13 @@ This comment is needed in order to push the following strings on transifex
             </div>
 
             <div class="form-group">
+              <label>{{ "Footer" | translate }}</label>
+              <div>
+                <textarea class="form-control" ng-model="admin.node.footer">{{admin.node.footer}}</textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
               <label>{{ "Enabled languages" | translate }}</label>
               <div ng-repeat="language in admin.node.languages_supported">
                 <input ng-model="enabled_languages[language.code]" type="checkbox">
