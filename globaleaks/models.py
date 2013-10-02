@@ -434,6 +434,7 @@ class Node(Model):
     # localized string
     description = Pickle(validator=gllocalv)
     presentation = Pickle(validator=gllocalv)
+    footer = Pickle(validator=gllocalv)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -461,7 +462,7 @@ class Node(Model):
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_tip', 'tor2web_unauth', 'postpone_superpower' ]
-    localized_strings = [ 'description', 'presentation' ]
+    localized_strings = [ 'description', 'presentation', 'footer' ]
 
 
 class Notification(Model):

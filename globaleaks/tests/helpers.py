@@ -364,6 +364,7 @@ class MockDict():
             'name':  u"Please, set me: name/title",
             'description': u"Please, set me: description",
             'presentation': u'This is what appears on top',
+            'footer': u'check it out https://www.youtube.com/franksentus ;)',
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dumnmy.net",
