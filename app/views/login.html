@@ -19,6 +19,10 @@
     </div>
   </div>
 
+  <div class="alert alert-error" ng-show="notificationRedirect()">
+    {{ "You require to login with username and password to access Tip" | translate }}
+  </div>
+
   <div class="row" ng-show="cookiesEnabled()">
     <div class="span9">
       <form name="loginForm" novalidate>

@@ -428,6 +428,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('cookiesEnabled', function(){
 
   return function() {
+
     var enabled = false;
     document.cookie = 'cookiesenabled=true;';
     if (document.cookie == "") {
@@ -438,7 +439,17 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     }
     return enabled;
   }
+}).
+  factory('notificationRedirect', function(){
 
+  return function() {
+
+    var im_a_notif_redirect = false;
+    if (document.location.href.indexOf('src=%2Fstatus%2F') > -1) {
+      im_a_notif_redirect = true;
+    }
+    return im_a_notif_redirect;
+  }
 }).
   factory('passwordWatcher', ['$parse', function($parse) {
     return function(scope, password) {
@@ -484,7 +495,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       }, true);
 
     }
-
 }]).
   factory('changePasswordWatcher', ['$parse', function($parse) {
     return function(scope, old_password, password, check_password) {
