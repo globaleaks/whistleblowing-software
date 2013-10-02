@@ -120,7 +120,10 @@ def get_files_receiver(store, user_id, tip_id):
 
 def strong_receiver_validate(store, user_id, tip_id):
     """
-    Utility: TODO description
+    This authentication check verify various condition:
+    1) a receiver need to be authenticated with a receiver session token
+    2) a receiver is asking for a Tip with an existing tip_id
+    3) the authenticated receiver has to be the receiver assigned to the tip_id
     """
 
     rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id)).one()
@@ -135,12 +138,6 @@ def strong_receiver_validate(store, user_id, tip_id):
 
     if receiver.id != rtip.receiver.id:
         # This in attack!!
-        raise errors.TipGusNotFound
-
-    if not rtip.internaltip:
-        # inconsistency! InternalTip removed but rtip not
-        log.debug("Inconsintency + Access deny to a receiver on an expired submission! (%s)" %
-                  receiver.name)
         raise errors.TipGusNotFound
 
     return rtip
@@ -329,11 +326,6 @@ class TipInstance(BaseHandler):
     promote, and perform other operation in this closed environment.
     In the request is present an unique token, aim to authenticate the users accessing to the
     resource, and giving accountability in resource accesses.
-    Some limitation in access, security extensions an special token can exists, implemented by
-    the extensions plugins.
-
-    /tip/<tip_id>/
-    tip_id is either a receiver_tip_gus or a whistleblower auth token
     """
 
     @transport_security_check('tip')
@@ -345,19 +337,31 @@ class TipInstance(BaseHandler):
         Response: actorsTipDesc
         Errors: InvalidTipAuthToken
 
-        tip_id can be: a tip_gus for a receiver, or a WhistleBlower receipt, understand
-        the format, help in addressing which kind of Tip need to be handled.
+        tip_id can be a valid tip_id (Receiver case) or a random one (because is
+        ignored, only authenticated user with whistleblower token can access to
+        the wb_tip, this is why tip_is is not checked if self.is_whistleblower)
+
+        This method is decorated as @unauthenticated because in the handler are
+        managed differently the various cases.
         """
-        if self.is_whistleblower:
+
+        if not self.current_user:
+
+            self.redirect("/#/login?src=%%2Fstatus%%2F%s" % tip_id)
+
+        elif self.is_whistleblower:
             answer = yield get_internaltip_wb(self.current_user['user_id'], self.request.language)
             answer['files'] = yield get_files_wb(self.current_user['user_id'])
+
+            self.set_status(200)
+            self.finish(answer)
         else:
             yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
             answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id, self.request.language)
             answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
-        self.set_status(200)
-        self.finish(answer)
+            self.set_status(200)
+            self.finish(answer)
 
     @transport_security_check('tip')
     @unauthenticated
@@ -506,13 +510,19 @@ class TipCommentCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        if self.is_whistleblower:
+        if not self.current_user:
+            self.redirect("/#/login?src=%%2Fstatus%%2F%s" % tip_id)
+
+        elif self.is_whistleblower:
             comment_list = yield get_comment_list_wb(self.current_user['user_id'])
+
+            self.set_status(200)
+            self.finish(comment_list)
         else:
             comment_list = yield get_comment_list_receiver(self.current_user['user_id'], tip_id)
 
-        self.set_status(200)
-        self.finish(comment_list)
+            self.set_status(200)
+            self.finish(comment_list)
 
     @transport_security_check('tip')
     @unauthenticated
@@ -594,13 +604,17 @@ class TipReceiversCollection(BaseHandler):
         Response: actorsReceiverList
         Errors: InvalidTipAuthToken
         """
-        if self.is_whistleblower:
-            answer = yield get_receiver_list_wb(self.current_user['user_id'], self.request.language)
-        elif self.is_receiver:
-            answer = yield get_receiver_list_receiver(self.current_user['user_id'], tip_id, self.request.language)
-        else:
-            raise errors.NotAuthenticated
+        if not self.current_user:
+            self.redirect("/#/login?src=%%2Fstatus%%2F%s" % tip_id)
 
-        self.set_status(200)
-        self.finish(answer)
+        elif self.is_whistleblower:
+            answer = yield get_receiver_list_wb(self.current_user['user_id'], self.request.language)
+
+            self.set_status(200)
+            self.finish(answer)
+        else:
+            answer = yield get_receiver_list_receiver(self.current_user['user_id'], tip_id, self.request.language)
+
+            self.set_status(200)
+            self.finish(answer)
 
