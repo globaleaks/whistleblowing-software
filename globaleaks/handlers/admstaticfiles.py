@@ -44,31 +44,27 @@ def get_stored_files():
     return stored_list
 
 
-def get_file_info(uploaded_file):
+def get_file_info(uploaded_file, filelocation):
     """
-    @param filesinupload: the bulk of Cyclone upload data
+    @param uploaded_file: the bulk of Cyclone upload data
+           filelocation: the absolute path where the file goes
     @return: list of files with content_type and size.
     """
 
-    file_desc = {
+    return {
         'filename': uploaded_file['filename'],
         'content_type': uploaded_file['content_type'],
         'size': uploaded_file['body_len'],
-        '_gl_file_path': uploaded_file['_gl_file_path'],
+        'filelocation': filelocation,
     }
 
-    return file_desc
 
-
-def dump_static_file(uploaded_file):
+def dump_static_file(uploaded_file, filelocation):
     """
     @param files: files uploaded in Cyclone upload
     @return: a relationship dict linking the filename with the random
         filename saved in the disk
     """
-
-    # exceptions of type OSError raised inside this function are handled by handler
-    filelocation = uploaded_file['_gl_file_path']
 
     if os.path.exists(filelocation):
         log.err("Path %s exists and would be overwritten with %d bytes" %
@@ -84,7 +80,7 @@ def dump_static_file(uploaded_file):
             os.write(fd.fileno(), data)
             data = uploaded_file['body'].read(4000) # 4kb
 
-    return get_file_info(uploaded_file)
+    return get_file_info(uploaded_file, filelocation)
 
 def reserved_name_check(target_string):
     """
@@ -140,50 +136,58 @@ class StaticFileCollection(BaseHandler):
 
         # currently the static file upload is used to handle only
         # images uploads for Node and for Receivers so that all the logic
-        # is embedded here.
+        # is embedded here. As also a dirty Input Validation (because body is
+        # a file stream, not a python dict. really, test with:
+        # print self.request.body
+
+        if len(uploaded_file.keys()) != 4:
+            raise errors.InvalidInputFormat("Expected four keys in StaticFileCollection")
+
+        for filekey in uploaded_file.keys():
+            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
+                raise errors.InvalidInputFormat(
+                    "Invalid JSON key in StaticFileCollection (%s)" % filekey)
 
         if not uploaded_file['filename'].lower().endswith(GLSetting.supported_extensions):
-            raise errors.InvalidInputFormat("file extension not supported")
+            log.debug("Invalid extension in %s (permitted only %s)" %
+                      (uploaded_file['filename'], GLSetting.supported_extensions))
+            raise errors.InvalidInputFormat("File extension not supported")
 
-        if reserved_name_check(uploaded_file['filename']):
-            raise errors.ReservedFileName
+        if not reserved_name_check(self.request.query):
+            raise errors.InvalidInputFormat("Only Logo and Receiver pic are permitted")
 
-        # if special meaning is specified, in this case,
-        # the original name of the file is changed with the appropriate one.
-        if reserved_name_check(self.request.query):
-            specified_keyword = self.request.query
+        requested_fname = self.request.query
+        # the 'filename' key present in the uploaded_file dict, is ignored
 
-            if specified_keyword == GLSetting.reserved_nodelogo_name:
-                try:
-                    uploaded_file['_gl_file_path'] = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_nodelogo_name)
-                    log.debug("Received request to update Node logo in %s" % uploaded_file['filename'])
-                except Exception as excpd:
-                    log.err("Exception raised while saving Node logo: %s" % excpd)
-                    raise errors.InternalServerError(excpd.__repr__())
-            else:
-                try:
-                    uploaded_file['_gl_file_path'] = yield receiver_pic_path(specified_keyword)
-                    log.debug("Received request to update Receiver portrait for %s" % specified_keyword)
-                except errors.ReceiverGusNotFound as excpd:
-                    log.err("Invalid Receiver ID specified: %s" % specified_keyword)
-                    raise excpd
-                except Exception as excpd:
-                    log.err("Exception raised while saving Receiver %s portrait %s" %
-                            (specified_keyword, excpd))
-                    raise errors.InternalServerError(excpd.__repr__())
+        if requested_fname == GLSetting.reserved_nodelogo_name:
+            try:
+                gl_file_path = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_nodelogo_name)
+                log.debug("Received request to update Node logo in %s" % uploaded_file['filename'])
+            except Exception as excpd:
+                log.err("Exception raised while saving Node logo: %s" % excpd)
+                raise errors.InternalServerError(excpd.__repr__())
+        else:
+            try:
+                gl_file_path = yield receiver_pic_path(requested_fname)
+                log.debug("Received request to update Receiver portrait for %s" % requested_fname)
+            except errors.ReceiverGusNotFound as excpd:
+                log.err("Invalid Receiver ID specified: %s" % requested_fname)
+                raise excpd
+            except Exception as excpd:
+                log.err("Exception raised while saving Receiver %s portrait %s" %
+                        (requested_fname, excpd))
+                raise errors.InternalServerError(excpd.__repr__())
 
         try:
             # the dump of the file is done here in the latest stage to
             # avoid writing non tracked files on the file system in case of exceptions
-            dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file)
+            dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file, gl_file_path)
         except OSError as excpd:
-            inf_list = get_file_info(uploaded_file)
-            # I never tried effectively this error
-            log.err("OSError while create a new static file [%s]: %s" % (str(inf_list), excpd))
+            log.err("OSError while create a new static file [%s]: %s" % (gl_file_path, excpd) )
             raise errors.InternalServerError(excpd.strerror)
         except Exception as excpd:
-            log.err("Not handled exception: %s" % excpd.__repr__())
-            raise errors.InternalServerError(excpd.__repr__())
+            log.err("Unexpected exception: %s" % excpd.message)
+            raise errors.InternalServerError(excpd.message)
 
         dumped_file['elapsed_time'] = time.time() - start_time
 

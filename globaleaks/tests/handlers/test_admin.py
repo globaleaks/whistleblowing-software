@@ -1,15 +1,18 @@
+# -*- coding: utf-8 -*-
 import random
+import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest.errors import InvalidInputFormat
 from globaleaks.tests import helpers
 from globaleaks.rest import errors
-from globaleaks.handlers import admin
-from globaleaks.settings import transact, transact_ro
+from globaleaks.handlers import admin, admstaticfiles
+from globaleaks.settings import transact, GLSetting
 from globaleaks import __version__
 
 # special guest:
 from globaleaks.models import Notification
+from io import BytesIO as StringIO
 
 class TestNodeInstance(helpers.TestHandler):
     _handler = admin.NodeInstance
@@ -320,7 +323,7 @@ class TestReceiverInstance(helpers.TestHandler):
         except errors.ContextGusNotFound:
             self.assertTrue(True)
         except Exception as excep:
-            print "Wrong exception: %s" % excep.log_message
+            print "Wrong exception: %s" % excep
             raise excep
 
     @inlineCallbacks
@@ -338,3 +341,51 @@ class TestReceiverInstance(helpers.TestHandler):
             self.assertTrue(False)
         except errors.ReceiverGusNotFound:
             self.assertTrue(True)
+
+
+class TestAdminStaticFile(helpers.TestHandler):
+    """
+    Sadly we can't use the official handler test, because in a
+    file upload, Cyclone and GL patches transform the body in a StringIO.
+
+    So the code in GLBackend expect a StringIO. If here I use the handlers,
+    with a StringIO inside, can't be JSON-ized.
+
+    If I send a real dict to the handler, the GLBackend code fail, because
+    expect a StringIO.
+
+    If I support in the handler both kind of data, well, no. I would not
+    change the handler code just to fit our test.
+
+    So... that's shit, but _post hanlder is tested in a more direct way
+    """
+    _handler = admstaticfiles.StaticFileCollection
+
+    crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
+    def test_asf_reserved_name_check(self):
+
+        self.assertTrue( admstaticfiles.reserved_name_check("86a4ffc4-26d4-4942-a3bd-9fc1f5d48453") )
+        self.assertTrue( admstaticfiles.reserved_name_check('globaleaks_logo') )
+        self.assertFalse( admstaticfiles.reserved_name_check('dirty_random_crap') )
+        self.assertRaises(errors.ReservedFileName,
+                          admstaticfiles.reserved_name_check,
+                          u'globaleaks_logo_FxHtHA_$RANDOM(³³³)')
+
+    @inlineCallbacks
+    def test_get(self):
+
+        fakeFile = dict()
+        fakeFile['body'] = StringIO()
+        fakeFile['body'].write(TestAdminStaticFile.crappyjunk)
+        fakeFile['body_len'] = len(TestAdminStaticFile.crappyjunk)
+        fakeFile['content_type'] = 'image/jpeg'
+        fakeFile['filename'] = 'imag0005.jpg'
+
+        realpath = os.path.join(GLSetting.static_path, "ouffff")
+        dumped_file = yield admstaticfiles.dump_static_file(fakeFile, realpath)
+        self.assertTrue(dumped_file.has_key('filelocation'))
+
+        handler = self.request(role='admin')
+        yield handler.get()
+        self.assertTrue( isinstance(self.responses[0], list) )
