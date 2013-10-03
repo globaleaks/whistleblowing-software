@@ -29,6 +29,19 @@
             <div class="row">
                 <div class="span9">
 
+		<div class="table-bordered">
+		   <label>
+		      <input type="checkbox" ng-model="admin.notification.disable" />
+		      {{ "Disable email notification" | translate }}
+		   </label>
+		   <label ng-show="admin.notification.disable" >
+		      <span class="alert-error">
+                        {{ "Email notification is disabled" | translate }}
+                      </span>
+                     {{ "Unsent emails will be spooled when the option will be re-enabled." | translate }}
+		   </label>
+		</div>
+
                 <label>{{ "Source Name" | translate }}</label>
                 <input type="text"
                        ng-model="admin.notification.source_name" required>
@@ -121,3 +134,16 @@
     </div>
   </div>
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
