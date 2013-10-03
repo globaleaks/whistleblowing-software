@@ -424,8 +424,28 @@ class APSNotification(GLJob):
             comment_events = yield self.create_comment_notification_events()
             file_events = yield self.create_file_notification_events()
 
-            yield self.do_tip_notification(tip_events)
-            yield self.do_comment_notification(comment_events)
-            yield self.do_receiverfile_notification(file_events)
-        except:
-            sys.excepthook(*sys.exc_info())
+        except Exception as excep:
+            log.err("Error in notification event creation: %s" % excep)
+            log.debug(sys.exc_info())
+            return
+
+        try:
+            if tip_events:
+                yield self.do_tip_notification(tip_events)
+        except Exception as excep:
+            log.err("Error in Tip notification: %s" % excep)
+            log.debug(sys.exc_info())
+
+        try:
+            if comment_events:
+                yield self.do_comment_notification(comment_events)
+        except Exception as excep:
+            log.err("Error in Comment notification: %s" % excep)
+            log.debug(sys.exc_info())
+
+        try:
+            if file_events:
+                yield self.do_receiverfile_notification(file_events)
+        except Exception as excep:
+            log.err("Error in File notification: %s" % excep)
+            log.debug(sys.exc_info())
