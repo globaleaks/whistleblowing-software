@@ -920,7 +920,8 @@ def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_l
         'password': notif.password if notif.password else u"",
         'security': notif.security if notif.security else u"",
         'source_name' : notif.source_name,
-        'source_email' : notif.source_email
+        'source_email' : notif.source_email,
+        'disable': GLSetting.notification_temporary_disable,
     }
 
     for attr in ['tip_template', 'tip_mail_title', 'file_template',
@@ -965,6 +966,14 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
         raise errors.InvalidInputFormat("Security selection not recognized")
 
     notif.update(request)
+
+    if request['disable'] != GLSetting.notification_temporary_disable:
+        log.msg("Switching notification mode: was %s and now is %s" %
+                ("DISABLE" if GLSetting.notification_temporary_disable else "ENABLE",
+                 "DISABLE" if request['disable'] else "ENABLE")
+        )
+        GLSetting.notification_temporary_disable = request['disable']
+
     return admin_serialize_notification(notif, language)
 
 
