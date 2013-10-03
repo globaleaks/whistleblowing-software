@@ -91,6 +91,7 @@ adminNotificationDesc = {
     'file_mail_title': unicode,
     'activation_template': unicode,
     'activation_mail_title': unicode,
+    'disable': bool,
 }
 
 adminContextDesc = {

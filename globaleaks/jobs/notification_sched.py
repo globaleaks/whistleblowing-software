@@ -420,6 +420,10 @@ class APSNotification(GLJob):
                 log.err("Node has not Notification configured, Notification disabled!")
                 return
 
+            if GLSetting.notification_temporary_disable:
+                log.err("Node has Notification temporary disabled")
+                return
+
             tip_events = yield self.create_tip_notification_events()
             comment_events = yield self.create_comment_notification_events()
             file_events = yield self.create_file_notification_events()

@@ -192,6 +192,12 @@ class GLSettingsClass:
         self.socks_port = 9050
         self.tor_socks_enable = True
 
+        # https://github.com/globaleaks/GlobaLeaks/issues/647
+        # we've struck a notification settings in a server, due to an
+        # error looping thru email. A temporary way to disable mail
+        # is put here. A globaleaks restart cause the email to restart.
+        self.notification_temporary_disable = False
+
         self.user = getpass.getuser()
         self.group = getpass.getuser()
         self.uid = os.getuid()
