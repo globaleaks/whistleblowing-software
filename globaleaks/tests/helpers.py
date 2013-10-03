@@ -415,6 +415,7 @@ class MockDict():
             'comment_mail_title': u'yyy',
             'file_mail_title': u'kkk',
             'activation_mail_title': u'uuu',
+            'disable': False,
         }
 
         unicode_body = ''.join(unichr(x) for x in range(0x070, 0x3FF))
