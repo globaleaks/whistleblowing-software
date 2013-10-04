@@ -97,8 +97,8 @@ class GLSettingsClass:
 
         # debug defaults
         self.storm_debug = False
-        self.cyclone_debug = -1
-        self.cyclone_debug_counter = 0
+        self.http_log = -1
+        self.http_log_counter = 0
         self.loglevel = "CRITICAL"
 
         # files and paths
@@ -234,7 +234,7 @@ class GLSettingsClass:
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
         self.logfile = os.path.abspath(os.path.join(self.log_path, 'globaleaks.log'))
-        self.cyclonelogfile =  os.path.abspath(os.path.join(self.log_path, "cyclone.log"))
+        self.httplogfile =  os.path.abspath(os.path.join(self.log_path, "http.log"))
         self.file_versioned_db = 'sqlite:' + \
                                  os.path.abspath(os.path.join(self.gldb_path,
                                      'glbackend-%d.db' % DATABASE_VERSION))
@@ -250,18 +250,15 @@ class GLSettingsClass:
         if os.path.exists(custom_glclient_path):
             self.glclient_path = custom_glclient_path
 
-    def set_devel_mode(self, glcp=None):
+    def set_devel_mode(self):
         self.devel_mode = True
         self.pid_path = os.path.join(self.root_path, 'workingdir')
         self.working_path = os.path.join(self.root_path, 'workingdir')
         self.static_source = os.path.join(self.root_path, 'staticdata')
-        if not glcp:
-            self.glclient_path = os.path.abspath(os.path.join(
-                self.root_path, "..", "GLClient", "app"))
-            # this happen on unitTest execution, I'm skipping the print below
-        else:
-            self.glclient_path = os.path.abspath(os.path.join(self.root_path, glcp))
-            print "Development mode: serving GLClient from %s" % self.glclient_path
+        self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "GLClient", "app"))
+
+    def set_glc_path(self, glcp):
+        self.glclient_path = os.path.abspath(os.path.join(self.root_path, glcp))
 
     def enable_debug_mode(self):
         import signal
@@ -292,9 +289,7 @@ class GLSettingsClass:
             quit(-1)
         self.bind_port = self.cmdline_options.port
 
-        self.cyclone_debug = self.cmdline_options.io
-        if self.cyclone_debug:
-            self.enable_debug_mode()
+        self.http_log = self.cmdline_options.http_log
 
         self.accepted_hosts = list(set(self.bind_addresses + \
                                        self.cmdline_options.host_list.replace(" ", "").split(",")))
@@ -340,13 +335,19 @@ class GLSettingsClass:
         self.working_path = self.cmdline_options.working_path
 
         if self.cmdline_options.devel_mode:
-            self.set_devel_mode(self.cmdline_options.glc_path)
+            print "Enabling Development Mode"
+            self.set_devel_mode()
+
+        if self.cmdline_options.glc_path:
+            self.set_glc_path(self.cmdline_options.glc_path)
 
         self.eval_paths()
 
         # special evaluation of glclient directory:
         indexfile = os.path.join(self.glclient_path, 'index.html')
-        if not os.path.isfile(indexfile):
+        if os.path.isfile(indexfile):
+            print "Serving GLClient from %s" % self.glclient_path
+        else:
             print "Invalid directory of GLCLient: %s: index.html not found" % self.glclient_path
             quit(-1)
 
