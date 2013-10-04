@@ -126,10 +126,6 @@ GLSetting.parser.add_option("-s", "--storm-debug", action='store_true',
     help="enable storm debugging [default: %default]",
     dest="storm_debug", default=GLSetting.storm_debug)
 
-GLSetting.parser.add_option("-t", "--twistd-log", action='store_true',
-    help="enable the twistd log file (default: %default)",
-    dest="twistd_log", default=GLSetting.twistd_log)
-
 GLSetting.parser.add_option("-j", "--http-log", type="int",
     help="enable HTTP I/O logging and limit the number of logged Requests/Responses (-1=disabled, 0=unlimited) [default: %default]",
     dest="http_log", default=GLSetting.http_log)
@@ -290,11 +286,8 @@ if GLSetting.nodaemon:
 #args +=['--gid', GLSetting.group]args +=['--rundir', GLSetting.working_path]
 args +=['--pidfile', GLSetting.pidfile_path]
 
-if GLSetting.twistd_log:
-    args +=['--logfile', os.path.join(GLSetting.log_path, 'twistd.log')]
-else:
-    # logfile can't be disabled in twistd, can only be trashed the content
-    args +=['--logfile', os.devnull]
+# we disable twistd logging as we manage only a globaleaks controlled logging
+args +=['--logfile', os.devnull]
 
 sys.argv[1:] = args
 

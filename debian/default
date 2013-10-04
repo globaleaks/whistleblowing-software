@@ -20,14 +20,6 @@ HTTPLOG=-1
 #      1: enabled
 STORMDEBUG=0
 
-# TWISTDLOG = [0/1]
-#   permits to enable twistd logging
-#
-#   Examples:
-#      0: disabled
-#      1: enabled
-TWISTDLOG=0
-
 # USER = [user_name]
 #   permits to configure the USER privileges of the globaleaks process
 USER=globaleaks

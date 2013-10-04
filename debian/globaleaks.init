@@ -205,10 +205,6 @@ do_start()
        GLBACKEND_ARGS+=" --storm-debug"
    fi
 
-   if [ "${TWISTDLOG}" -eq "1" ]; then
-       GLBACKEND_ARGS+=" --twistd-log"
-   fi
-
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 
     read_pid
