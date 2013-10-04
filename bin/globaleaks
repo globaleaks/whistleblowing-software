@@ -130,9 +130,9 @@ GLSetting.parser.add_option("-t", "--twistd-log", action='store_true',
     help="enable the twistd log file (default: %default)",
     dest="twistd_log", default=GLSetting.twistd_log)
 
-GLSetting.parser.add_option("-j", "--jsondump", type="int",
-    help="enable JSON I/O logging and limists number of Requests/Responses (-1=disabled, 0=unlimited) [default: %default]",
-    dest="io", default=GLSetting.cyclone_debug)
+GLSetting.parser.add_option("-j", "--http-log", type="int",
+    help="enable HTTP I/O logging and limit the number of logged Requests/Responses (-1=disabled, 0=unlimited) [default: %default]",
+    dest="http_log", default=GLSetting.http_log)
 
 GLSetting.parser.add_option("-i", "--ip", type="string",
     help="IP address(s) used for listening [default: %default]",
@@ -180,12 +180,11 @@ GLSetting.parser.add_option("-k", "--kill", type="int",
     dest="kill", default=0)
 
 GLSetting.parser.add_option("-z", "--devel-mode", action='store_true',
-    help="override --working-path with 'workingdir/' [default: %default]",
+    help="hack some configs and enable some additional features useful during development' [default: %default]",
     dest="devel_mode", default=GLSetting.devel_mode)
 
 GLSetting.parser.add_option("-C", "--glc-path", type='string',
-    help="specify GLClient path [default: %default] "\
-            "(must be used together with --devel-mode)",
+    help="specify GLClient path [default: %default]",
     dest="glc_path", default=GLSetting.glc_path)
 
 GLSetting.parser.add_option("-R", "--ramdisk", type="string",
@@ -203,8 +202,6 @@ if GLSetting.cmdline_options.version:
     print "GlobaLeaks Version:", GLSetting.version_string
     print "GlobaLeaks DB version:", DATABASE_VERSION
     quit()
-
-GLSetting.load_cmdline_options()
 
 print colorize("""
 MMMMMMMMM.$$$$$$$$$$$$$$$Z.DNNNNNNNNNNNNNNN .NNNNNNNNNNNNNNNZ.NNNNNNNNNNNNNNNN M
@@ -231,7 +228,6 @@ M.$ZZZZZZZZZZZZZ$ . .     . .NNNNN.   . .     .NNNN:            NNNNNNNNNNNNNM M
 M.ZZZZZZZZZZZZZZ$ . .       .NNNNN.         ..NNNNN:          .NNNNNNNNNNNNNNM M
 """, random.choice(('RED', 'GREEN', 'BLUE', 'YELLOW', 'CYAN')))
 
-
 header = [
     [15*" "+"  ____ _       _          ", " _ ", 15*" "+" _ "+18*" "],
     [15*" "+"/ ____| |     | |         ", "| |", 15*" "+"| |"+18*" "],
@@ -250,6 +246,8 @@ print ("Alpha release of GlobaLeaks %s\n"
        "Actually, you may require our supports to makes GL works: irc.oftc.net #globaleaks can help you" %
         GLSetting.version_string)
 print ("And don't forget to read docs in: https://github.com/globaleaks/GlobaLeaks/wiki\n")
+
+GLSetting.load_cmdline_options()
 
 if GLSetting.start_clean:
     if query_yes_no("Globaleaks --start-clean is going to delete %s\nAre you sure?" % GLSetting.working_path, "no"):

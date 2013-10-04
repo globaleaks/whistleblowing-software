@@ -197,7 +197,17 @@ do_start()
                     --accept-host=${HOSTS}
                     --user=${USER} --group=${GROUP}
                     --working-path=${WORKING_DIR}
-                    --loglevel=${LOGLEVEL}"
+                    --loglevel=${LOGLEVEL}
+                    --httplog=${HTTPLOG}"
+
+    
+   if [ "${STORMDEBUG}" -eq "1" ]; then
+       GLBACKEND_ARGS+=" --storm-debug"
+   fi
+
+   if [ "${TWISTDLOG}" -eq "1" ]; then
+       GLBACKEND_ARGS+=" --twistd-log"
+   fi
 
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 

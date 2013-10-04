@@ -114,7 +114,7 @@ spec = [
 
 ## Enable end to end testing directory ##
 # * /test
-if GLSetting.cyclone_debug:
+if GLSetting.devel_mode:
     spec.append(
         (r'/test/(.*)', BaseStaticFileHandler, {'path': os.path.join(GLSetting.glclient_path, '..', 'test')})
     )

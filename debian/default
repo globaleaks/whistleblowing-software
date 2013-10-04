@@ -1,7 +1,32 @@
 # LOGLEVEL = [log_level]
-#   permits to configure theh globaleaks debug loglevel
+#   permits to configure the globaleaks debug loglevel
 #   DEBUG, INFO, ERROR, CRITICAL
 LOGLEVEL=CRITICAL
+
+# HTTPLOG = [http log_level]
+#   permits to configure the number of globaleaks http loglevel
+#
+#   Examples:
+#     -1: disabled
+#      N: logs the first N requests/responses
+#      0: unlimited 
+HTTPLOG=-1
+
+# STORMDEBUG = [0/1]
+#   permits to enable storm query debugging
+#
+#   Examples:
+#      0: disabled
+#      1: enabled
+STORMDEBUG=0
+
+# TWISTDLOG = [0/1]
+#   permits to enable twistd logging
+#
+#   Examples:
+#      0: disabled
+#      1: enabled
+TWISTDLOG=0
 
 # USER = [user_name]
 #   permits to configure the USER privileges of the globaleaks process
@@ -15,11 +40,11 @@ GROUP=globaleaks
 #   permits to configure a list of hosts at which globaleaks will be reachable
 HOSTS_LIST=127.0.0.1,localhost
 
-# APPARMOR_SANDBOXING = 0/1
+# APPARMOR_SANDBOXING = [0/1]
 #   permits to enable apparmor sandboxing; requires apparmor
 APPARMOR_SANDBOXING=1
 
-# NETWORKSANDBOX = 0/1
+# NETWORKSANDBOX = [0/1]
 #   permits to enable network sandboxing; requires iptables
 NETWORK_SANDBOXING=1
 

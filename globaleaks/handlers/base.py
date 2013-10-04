@@ -193,7 +193,7 @@ class BaseBaseHandler(RequestHandler):
         self.set_header("Pragma", "no-cache")
         self.set_header("Expires", "Mon, 01-Jan-1990 00:00:00")
 
-        if not GLSetting.cyclone_debug:
+        if not GLSetting.devel_mode:
             # to mitigate clickjaking attacks on iframes
             self.set_header("X-Frame-Options", "deny")
 
@@ -367,13 +367,14 @@ class BaseHandler(BaseBaseHandler):
             raise errors.InvalidHostSpecified
 
         # if 0 is infinite logging of the requests
-        if GLSetting.cyclone_debug >= 0:
+        if GLSetting.http_log >= 0:
 
-            GLSetting.cyclone_debug_counter += 1
+            GLSetting.http_log_counter += 1
+            print  GLSetting.http_log_counter
 
             try:
                 content = (">" * 15)
-                content += (" Request %d " % GLSetting.cyclone_debug_counter)
+                content += (" Request %d " % GLSetting.http_log_counter)
                 content += (">" * 15) + "\n\n" 
 
                 content += self.request.method + " " + self.request.full_url() + "\n\n"
@@ -398,11 +399,11 @@ class BaseHandler(BaseBaseHandler):
                 return
 
             # save in the request the numeric ID of the request, so the answer can be correlated
-            self.globaleaks_io_debug = GLSetting.cyclone_debug_counter
+            self.globaleaks_io_debug = GLSetting.http_log_counter
 
-            if GLSetting.cyclone_debug > 0 and GLSetting.cyclone_debug_counter >= GLSetting.cyclone_debug:
-                log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.cyclone_debug)
-                GLSetting.cyclone_debug = -1
+            if GLSetting.http_log > 0 and GLSetting.http_log_counter > GLSetting.http_log:
+                log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.http_log)
+                GLSetting.http_log = -1
 
 
     def flush(self, include_footers=False):
@@ -443,10 +444,10 @@ class BaseHandler(BaseBaseHandler):
         content = sanitize_str(content)        
 
         try:
-            with open(GLSetting.cyclonelogfile, 'a+') as fd:
+            with open(GLSetting.httplogfile, 'a+') as fd:
                 fdesc.writeToFD(fd.fileno(), content + "\n")
         except Exception as excep:
-            log.err("Unable to open %s: %s" % (GLSetting.cyclonelogfile, excep))
+            log.err("Unable to open %s: %s" % (GLSetting.httplogfile, excep))
 
     def write_error(self, status_code, **kw):
         exception = kw.get('exception')
@@ -513,7 +514,7 @@ class BaseHandler(BaseBaseHandler):
             exc_type, exc_value, exc_tb = sys.exc_info()
  
         if isinstance(e, (HTTPError, HTTPAuthenticationRequired)):
-            if GLSetting.cyclone_debug and e.log_message:
+            if GLSetting.http_log and e.log_message:
                 format = "%d %s: " + e.log_message
                 args = [e.status_code, self._request_summary()] + list(e.args)
                 msg = lambda *args: format % args
@@ -525,7 +526,7 @@ class BaseHandler(BaseBaseHandler):
                 return self.send_error(e.status_code, exception=e)
         else:
             log.err("Uncaught exception %s %s %s" % (exc_type, exc_value, exc_tb) )
-            if GLSetting.cyclone_debug:
+            if GLSetting.http_log:
                 log.msg(e)
             mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)

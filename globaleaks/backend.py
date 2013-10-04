@@ -21,7 +21,7 @@ application = Application('GLBackend')
 
 settings = dict(cookie_secret=random.getrandbits(128),
                 xsrf_cookies=True,
-                debug=GLSetting.cyclone_debug)
+                debug=GLSetting.http_log)
 
 # Initialize the web API event listener, handling all the synchronous operations
 GLBackendAPIFactory = web.Application(api.spec, **settings)
