@@ -512,11 +512,6 @@ def mail_exception(etype, value, tback):
             log.err(error_message)
             log.err(traceinfo)
 
-        #if mail_exception.mail_counter > 30:
-        #    log.debug("Exception not reported because exception counter > 30 (%d)" % mail_exception.mail_counter)
-        #    log.debug("Anyway, that's your stacktrace: \n%s" % info_string )
-        #    return # suppress every notification over the 30th
-
         sendmail(authentication_username=GLSetting.memory_copy.notif_username,
                  authentication_password=GLSetting.memory_copy.notif_password,
                  from_address=GLSetting.memory_copy.notif_username,
