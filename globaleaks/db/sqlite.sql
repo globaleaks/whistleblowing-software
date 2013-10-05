@@ -107,6 +107,7 @@ CREATE TABLE node (
     database_version INTEGER NOT NULL,
     description BLOB NOT NULL,
     presentation BLOB NOT NULL,
+    footer BLOB NOT NULL,
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
     languages_enabled BLOB NOT NULL,

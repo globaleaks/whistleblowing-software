@@ -48,7 +48,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'postpone_superpower': node.postpone_superpower,
     }
 
-    for attr in ['presentation', 'description' ]:
+    for attr in ['presentation', 'description', 'footer' ]:
         response[attr] = l10n(getattr(node, attr), language)
 
     return response
