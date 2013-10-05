@@ -592,6 +592,9 @@ def naturalize_fields(fields_blob):
 
     just return the first argument, because has been already validated
     by validate_and_fix_fields function in admin.py
+
+    this function has an implicit bug: the name of the
+    fields, different between language, are cutted off here.
     """
     assert isinstance(fields_blob, dict)
     assert len(set(fields_blob)) > 0
@@ -635,3 +638,161 @@ def caller_name(skip=2):
         name.append( codename ) # function or a method
     del parentframe
     return ".".join(name)
+
+## Fields utils ##
+
+class Fields:
+
+    accepted_form_type = [ "text", "radio", "select", "multiple",
+                           "checkboxes",  "textarea", "number",
+                           "url", "phone", "email" ]
+
+    def debug_status(self, developer_reminder):
+
+        log.debug("%s lang [%s] and fields #%d" % (
+            developer_reminder,
+            self._localization.keys(), len(self._fields.keys()) ))
+        for lang in self._localization.keys():
+            log.debug(" \__ lang %s has %d keys" %
+                      (lang, len(self._localization.keys()))
+            )
+
+    # context.unique_fields context.localized_fields
+    def __init__(self, localization=None, fields=None):
+
+        self._localization = localization if localization else {}
+        self._fields = fields if fields else {}
+        self.debug_status('__init__')
+
+
+    def context_import(self, context_storm_object):
+
+        assert hasattr(context_storm_object, '__storm_table__'), \
+            "context_import expect only a Storm object"
+        assert hasattr(context_storm_object, 'localized_fields'), \
+            "missing localized fields"
+        assert hasattr(context_storm_object, 'unique_fields'), \
+            "missing unique fields"
+
+        self.debug_status('context_import')
+        context_storm_object.localized_fields = self._localization
+        context_storm_object.unique_fields = self._fields
+
+    def update_fields(self, language, admin_data):
+        """
+        update_fields imply create_fields
+
+        @param language:
+        @param admin_data:
+        @return:
+
+        This function shall be used in two cases:
+        1) a new field has been added with the language
+        2) a new language has been provided
+        """
+        from globaleaks.rest.errors import InvalidInputFormat
+        import uuid as u
+
+        self.debug_status('before update')
+
+        for field_desc in admin_data:
+            check_type = field_desc['type']
+            if not check_type in Fields.accepted_form_type:
+                raise InvalidInputFormat("Fields validation deny '%s' in %s" %
+                                                (check_type, field_desc['name']) )
+
+            if field_desc.has_key(u'key') and \
+                            len(field_desc.get(u'key')) == len(unicode(u.uuid4())):
+                print "key recogniezed and retrivered %s" % key
+                key = field_desc.get(u'key')
+            else:
+                print "creating new key for %s" % field_desc
+                key = unicode(u.uuid4())
+
+            self._fields[key] = dict(field_desc)
+            if not self._localization.has_key(language):
+                self._localization[language] = dict()
+
+            self._localization[language][key] = dict()
+
+            # init localization track
+            self._localization[language][key].update({'name' : field_desc['name']})
+            self._localization[language][key].update({'hint' : field_desc['hint']})
+
+            del self._fields[key]['name']
+            del self._fields[key]['hint']
+            del self._fields[key]['key']
+
+        self.debug_status('after update')
+
+    def validate_fields(self, wb_fields, strict_validation):
+        """
+        @param wb_fields: the received wb_fields
+        @param configured_fields: the Context defined wb_fields
+        @return: update the object of raise an Exception if a required field
+            is missing, or if received field do not match the expected shape
+
+        strict_validation = required the presence of 'required' wb_fields.
+        Is not enforced if Submission would not be finalized yet.
+        """
+        from globaleaks.rest.errors import SubmissionFailFields
+
+        assert self._fields
+
+        required_keys = list()
+        optional_keys  = list()
+
+        self.debug_status('fields validation')
+        try:
+            for k, v in self._fields.iteritems():
+
+                if v['required'] == True:
+                    required_keys.append(k)
+                else:
+                    optional_keys.append(k)
+        except Exception as excep:
+            log.err("Internal error in processing required keys: %s" % excep)
+            raise excep
+
+        for key, value in wb_fields.iteritems():
+
+            if not key in required_keys and not key in optional_keys:
+                log.err("Submission contain an unexpected field %s" % key)
+                raise SubmissionFailFields("Submitted field '%s' not expected in context" % key)
+
+        if not strict_validation:
+            return
+
+        log.debug("fields strict validation: %s (optional %s)" % (required_keys, optional_keys))
+
+        for required in required_keys:
+
+            if wb_fields.has_key(required) and len(wb_fields[required]) > 0:
+            # the keys are always provided by GLClient! also if the content is empty.
+            # then is not difficult check a test len(text) > $blah, but other checks are...
+                continue
+
+            log.err("Submission has a required field (%s) missing" % required)
+            raise SubmissionFailFields("Missing field '%s': Required" % required)
+
+    def dump_fields(self, language):
+
+        fields_list = []
+        for k, v in self._fields.iteritems():
+
+            v['key'] = k
+
+            if self._localization.has_key(language) and self._localization[language].has_key(k):
+                v['name'] = self._localization[language][k]['name']
+                v['hint'] = self._localization[language][k]['hint']
+            else:
+                v['name'] = u'Translation missing!'
+                v['hint'] = u'Translation missing!'
+
+            fields_list.append(v)
+
+        return fields_list
+
+
+
+
