@@ -17,8 +17,8 @@ import StringIO
 from datetime import datetime, timedelta
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.internet import reactor, protocol, error
-from twisted.internet.defer import Deferred
-from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient
+from twisted.internet.defer import Deferred, AlreadyCalledError
+from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient, SMTPError
 from twisted.internet.ssl import ClientContextFactory
 from twisted.protocols import tls
 from twisted.python import log as twlog
@@ -299,6 +299,16 @@ def iso2dateobj(str) :
         ret = datetime.strptime(str, "%Y-%m-%dT%H:%M:%S.%f")
         ret.replace(microsecond=0)
     return ret
+    
+def rfc822_date():
+    """
+    holy stackoverflow:
+    http://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
+    """
+    nowdt = datetime.utcnow()
+    nowtuple = nowdt.timetuple()
+    nowtimestamp = time.mktime(nowtuple)
+    return mailutils.formatdate(nowtimestamp)
 
 ## Mail utilities ##
 
@@ -317,10 +327,6 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param event: the event description, needed to keep track of failure/success
     @param security: may need to be STRING, here is converted at start
     """
-    security = str(security)
-
-    result_deferred = Deferred()
-
     def printError(reason, event):
         if isinstance(reason, Failure):
             reason = reason.type
@@ -340,33 +346,6 @@ def sendmail(authentication_username, authentication_password, from_address,
         printError(reason, event)
         return result_deferred.errback(reason)
 
-    try:
-        context_factory = ClientContextFactory()
-        context_factory.method = SSL.SSLv3_METHOD
-    except Exception as excep:
-        log.err("sendmail: unable to create ClientContextFactory: %s" % str(excep))
-        raise excep
-
-    if security != "SSL":
-        requireTransportSecurity = True
-    else:
-        requireTransportSecurity = False
-
-    esmtp_deferred = Deferred()
-    esmtp_deferred.addErrback(handle_error, event)
-    esmtp_deferred.addCallback(result_deferred.callback)
-
-    factory = ESMTPSenderFactory(
-        authentication_username,
-        authentication_password,
-        from_address,
-        to_address,
-        message_file,
-        esmtp_deferred,
-        contextFactory=context_factory,
-        requireAuthentication=(authentication_username and authentication_password),
-        requireTransportSecurity=requireTransportSecurity)
-
     def protocolConnectionLost(self, reason=protocol.connectionDone):
         """We are no longer connected"""
         if isinstance(reason, Failure):
@@ -384,20 +363,51 @@ def sendmail(authentication_username, authentication_password, from_address,
                     % (smtp_host, smtp_port, exc.code, exc.resp))
         SMTPClient.sendError(self, exc)
 
-    factory.protocol.sendError = sendError
-    factory.protocol.connectionLost = protocolConnectionLost
+    try:
+        security = str(security)
+        result_deferred = Deferred()
+        context_factory = ClientContextFactory()
+        context_factory.method = SSL.SSLv3_METHOD
 
-    if security == "SSL":
-        factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
+        if security != "SSL":
+            requireTransportSecurity = True
+        else:
+            requireTransportSecurity = False
 
-    if GLSetting.tor_socks_enable:
-        socksProxy = TCP4ClientEndpoint(reactor, GLSetting.socks_host, GLSetting.socks_port)
-        endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
-    else:
-        endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
+        esmtp_deferred = Deferred()
+        esmtp_deferred.addErrback(handle_error, event)
+        esmtp_deferred.addCallback(result_deferred.callback)
 
-    d = endpoint.connect(factory)
-    d.addErrback(handle_error, event)
+        factory = ESMTPSenderFactory(
+            authentication_username,
+            authentication_password,
+            from_address,
+            to_address,
+            message_file,
+            esmtp_deferred,
+            contextFactory=context_factory,
+            requireAuthentication=(authentication_username and authentication_password),
+            requireTransportSecurity=requireTransportSecurity)
+
+        factory.protocol.sendError = sendError
+        factory.protocol.connectionLost = protocolConnectionLost
+
+        if security == "SSL":
+            factory = tls.TLSMemoryBIOFactory(context_factory, True, factory)
+
+        if GLSetting.tor_socks_enable:
+            socksProxy = TCP4ClientEndpoint(reactor, GLSetting.socks_host, GLSetting.socks_port)
+            endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
+        else:
+            endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
+
+        d = endpoint.connect(factory)
+        d.addErrback(handle_error, event)
+
+    except Exception as excep:
+        # we strongly need to avoid raising exception inside email logic to avoid chained errors
+        log.err("unexpected exception in sendmail: %s" % str(excep))
+        return defer.fail()
 
     return result_deferred
 
@@ -444,31 +454,23 @@ def collapse_mail_content(mixed_list):
         log.err("Unable to encode and email: %s" % excep)
         return None
 
-
-def rfc822_date():
-    """
-    holy stackoverflow:
-    http://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
-    """
-    nowdt = datetime.utcnow()
-    nowtuple = nowdt.timetuple()
-    nowtimestamp = time.mktime(nowtuple)
-    return mailutils.formatdate(nowtimestamp)
-
-
 def mail_exception(etype, value, tback):
     """
     Formats traceback and exception data and emails the error,
     This would be enabled only in the testing phase and testing release,
     not in production release.
-
-    @param etype: Exception class type
-    @param value: Exception string value
-    @param tback: Traceback string data
     """
-    # this is an hack because inside the Generator, not a great stacktrace is produced
-    if(etype == GeneratorExit):
-        log.err("Exception unhandled inside generator (GeneratorExit)")
+
+    if isinstance(value, GeneratorExit) or \
+       isinstance(value, AlreadyCalledError) or \
+       isinstance(value, SMTPError):
+        # we need to bypass email notification for some exception that:
+        # 1) raise frequently or lie in a twisted bug;
+        # 2) lack of useful stacktraces;
+        # 3) can be cause of email storm amplification
+        #
+        # this kind of exception can be simply logged error logs.
+        log.err("Unhandled exception [mail suppressed] (%s)" % str(etype))
         return
 
     if etype == AssertionError and value.message == "Request closed":
@@ -477,50 +479,52 @@ def mail_exception(etype, value, tback):
         # we need a bypass and also echoing something is bad on this condition.
         return
 
-    mail_exception.mail_counter += 1
+    try:
 
-    exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
-                     "", str(etype))
+        mail_exception.mail_counter += 1
 
-    log.err("Exception mail! [%d]" % mail_exception.mail_counter)
+        exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
+                         "", str(etype))
 
-    tmp = []
+        log.err("Exception mail! [%d]" % mail_exception.mail_counter)
 
-    tmp.append("Date: %s" % rfc822_date())
-    tmp.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
-                                    GLSetting.memory_copy.notif_source_email) )
-    tmp.append("To: %s" % GLSetting.memory_copy.exception_email)
-    tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
-    tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
-    tmp.append("Content-Transfer-Encoding: 8bit")
-    tmp.append(None)
-    tmp.append("Source: %s" % " ".join(os.uname()))
-    tmp.append("Version: %s" % __version__)
-    error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
-    tmp.append(error_message)
+        tmp = []
 
-    traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
-    tmp.append(traceinfo)
+        tmp.append("Date: %s" % rfc822_date())
+        tmp.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
+                                        GLSetting.memory_copy.notif_source_email) )
+        tmp.append("To: %s" % GLSetting.memory_copy.exception_email)
+        tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
+        tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
+        tmp.append("Content-Transfer-Encoding: 8bit")
+        tmp.append(None)
+        tmp.append("Source: %s" % " ".join(os.uname()))
+        tmp.append("Version: %s" % __version__)
+        error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
+        tmp.append(error_message)
 
-    mail_content = collapse_mail_content(tmp)
+        traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
+        tmp.append(traceinfo)
 
-    if not mail_content or GLSetting.loglevel == logging.DEBUG:
-        log.err(error_message)
-        log.err(traceinfo)
+        mail_content = collapse_mail_content(tmp)
 
-    #if mail_exception.mail_counter > 30:
-    #    log.debug("Exception not reported because exception counter > 30 (%d)" % mail_exception.mail_counter)
-    #    log.debug("Anyway, that's your stacktrace: \n%s" % info_string )
-    #    return # suppress every notification over the 30th
+        if not mail_content or GLSetting.loglevel == logging.DEBUG:
+            log.err(error_message)
+            log.err(traceinfo)
 
-    sendmail(authentication_username=GLSetting.memory_copy.notif_username,
-             authentication_password=GLSetting.memory_copy.notif_password,
-             from_address=GLSetting.memory_copy.notif_username,
-             to_address=GLSetting.memory_copy.exception_email,
-             message_file=mail_content,
-             smtp_host=GLSetting.memory_copy.notif_server,
-             smtp_port=GLSetting.memory_copy.notif_port,
-             security=GLSetting.memory_copy.notif_security)
+        sendmail(authentication_username=GLSetting.memory_copy.notif_username,
+                 authentication_password=GLSetting.memory_copy.notif_password,
+                 from_address=GLSetting.memory_copy.notif_username,
+                 to_address=GLSetting.memory_copy.exception_email,
+                 message_file=mail_content,
+                 smtp_host=GLSetting.memory_copy.notif_server,
+                 smtp_port=GLSetting.memory_copy.notif_port,
+                 security=GLSetting.memory_copy.notif_security)
+                 
+    except Exception as excep:
+        # we strongly need to avoid raising exception inside email logic to avoid chained errors
+        log.err("Unexpected exception in mail_exception: %s" % str(excep))
+        return defer.fail()
 
 mail_exception.mail_counter = 0
 
