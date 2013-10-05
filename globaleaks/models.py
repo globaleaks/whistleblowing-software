@@ -98,6 +98,12 @@ class Model(Storm):
     # Note on creation last_update and last_access may be out of sync by some
     # seconds.
 
+    # initialize empty list for the base classes
+    unicode_keys = [ ]
+    localized_strings = [ ]
+    int_keys = [ ]
+    bool_keys = [ ]
+
     def __init__(self, attrs=None):
 
         if attrs is not None:
@@ -202,10 +208,7 @@ class User(Model):
     _states = [ u'disabled', u'to_be_activated', u'enabled']
 
     unicode_keys = [ 'username', 'password', 'salt', 'role', 'state' ]
-    localized_strings = [ ]
     int_keys = [ 'failed_login_count' ]
-
-    bool_keys = [ ]
 
 
 class Context(Model):
@@ -214,7 +217,21 @@ class Context(Model):
     """
     __storm_table__ = 'context'
 
-    fields = Pickle()
+    # Unique fields is a dict with a unique ID as key,
+    # and as value another dict, containing the field
+    # descriptive values:
+    # "presentation_order" : int
+    # "preview" : bool
+    # "required" : bool
+    # "type" : unicode
+    # "options" : dict (optional!)
+    unique_fields = Pickle()
+
+    # Localized fields is a dict having as keys, the same
+    # keys of unique_fields, and as value a dict, containing:
+    # 'name' : unicode
+    # 'hint' : unicode
+    localized_fields = Pickle()
 
     selectable_receiver = Bool()
     escalation_threshold = Int()
@@ -502,7 +519,6 @@ class Notification(Model):
                          'activation_template', 'tip_mail_title', 'comment_mail_title',
                          'file_mail_title', 'activation_mail_title' ]
     int_keys = [ 'port' ]
-    bool_keys = []
 
 
 class Receiver(Model):
