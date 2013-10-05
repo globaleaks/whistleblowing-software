@@ -3,7 +3,6 @@
 import os
 import json
 import uuid
-import random
 
 from cyclone import httpserver
 from cyclone.web import Application
@@ -17,7 +16,7 @@ from Crypto import Random
 from io import BytesIO as StringIO
 from storm.twisted.testing import FakeThreadPool
 
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting, transact, sample_context_fields
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, utils, models, security
@@ -309,35 +308,7 @@ class MockDict():
             'submission_disclaimer': u'kk',
             'description': u'Already localized desc',
             # fields, usually filled in content by fill_random_fields
-            'fields': [
-                  {"name": "Short title",
-                   "hint": "Describe your tip-off with a line/title",
-                   "required": True,
-                   "presentation_order": 1,
-                   "value": "",
-                   "key": "Short title",
-                   "type": "text",
-                   "preview": True
-                  },
-                  {"name": "Full description",
-                   "hint": "Describe the details of your tip-off",
-                   "required": True,
-                    "presentation_order": 2,
-                    "value": "",
-                    "key": "Full description",
-                    "type": "text",
-                    "preview": True
-                  },
-                  {"name": "Files description",
-                   "hint": "Describe the submitted files",
-                   "required": False,
-                   "presentation_order": 3,
-                   "value": "",
-                   "key": "Files description",
-                   "type": "text",
-                   "preview": True
-                  }
-                 ],
+            'fields': list(sample_context_fields),
             'selectable_receiver': False,
             'tip_max_access': 10,
             # tip_timetolive is expressed in days
