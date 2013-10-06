@@ -349,7 +349,7 @@ background-color: whiteSmoke;
 
 /* Display the pending requests */
 .pending-requests {
-  position: absolute;
+  position: fixed;
   top: 100px;
   z-index: 999;
   width: 400px;
