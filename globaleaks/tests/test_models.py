@@ -5,6 +5,7 @@ from globaleaks.tests import helpers
 from globaleaks.models import *
 from globaleaks.settings import transact, transact_ro
 from globaleaks.rest import errors
+from globaleaks.utils import Fields
 
 class TestModels(helpers.TestGL):
 
@@ -14,7 +15,11 @@ class TestModels(helpers.TestGL):
     def context_add(self, store):
         c = self.localization_set(self.dummyContext, Context, 'en')
         context = Context(c)
-        context.fields = self.dummyContext['fields']
+
+        fo = Fields()
+        fo.update_fields('en', self.dummyContext['fields'])
+        fo.context_import(context)
+
         context.tags = self.dummyContext['tags']
         context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name = \
@@ -90,8 +95,11 @@ class TestModels(helpers.TestGL):
         store.add(receiver_user2)
 
         context = Context(c)
-        context.fields = self.dummyContext['fields']
-        context.fields = self.dummyContext['fields']
+
+        fo = Fields()
+        fo.update_fields('en', self.dummyContext['fields'])
+        fo.context_import(context)
+
         context.tags = self.dummyContext['tags']
         context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name =\
@@ -133,7 +141,11 @@ class TestModels(helpers.TestGL):
         receiver.notification_fields = {'mail_address': 'y@y.it'}
 
         context1 = Context(c)
-        context1.fields = self.dummyContext['fields']
+
+        fo = Fields()
+        fo.update_fields('en', self.dummyContext['fields'])
+        fo.context_import(context1)
+
         context1.tags = self.dummyContext['tags']
         context1.submission_timetolive = context1.tip_timetolive = 1000
         context1.description = context1.name =\
@@ -142,7 +154,9 @@ class TestModels(helpers.TestGL):
         context1.receipt_regexp = u"unipop254"
 
         context2 = Context(c)
-        context2.fields = self.dummyContext['fields']
+
+        fo.context_import(context2)
+
         context2.tags = self.dummyContext['tags']
         context2.submission_timetolive = context2.tip_timetolive = 1000
         context2.description = context2.name =\

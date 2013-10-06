@@ -10,6 +10,7 @@ from globaleaks.rest.base import uuid_regexp
 from globaleaks.handlers import tip, base, admin, submission, authentication, receiver
 from globaleaks.jobs import delivery_sched
 from globaleaks import models
+from globaleaks.settings import sample_context_fields
 
 STATIC_PASSWORD = u'bungabunga ;( 12345'
 
@@ -37,9 +38,9 @@ class TTip(helpers.TestWithDB):
 
     tipContext = {
         'name': u'CtxName', 'description': u'dummy context with default fields',
-        'escalation_threshold': u'1', 'tip_max_access': u'2',
+        'escalation_threshold': u'1', 'tip_max_access': u'2', 'fields' : sample_context_fields,
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
-        'receivers': [], 'fields': [], 'submission_timetolive': 100,
+        'receivers': [], 'submission_timetolive': 100,
         'receipt_regexp': u"[0-9]{10}",
         'receipt_description': u"blah",
         'submission_introduction': u"bleh",
@@ -68,13 +69,6 @@ class TTip(helpers.TestWithDB):
         'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
     }
 
-    tipSubmission = {
-        'wb_fields': {u'Short title': u'https://dailyfoodporn.wordpress.com',
-                      u'Full description': u'http://www.zerocalcare.it/',
-                      u'Files description' : u'http://www.giantitp.com'},
-        'context_gus': '', 'receivers': [], 'files': [], 'finalize': True
-    }
-
     tipOptions = {
         'total_delete': False,
         'is_pertinent': False,
@@ -83,7 +77,6 @@ class TTip(helpers.TestWithDB):
     commentCreation = {
         'content': '',
     }
-
 
 class TestTipInstance(TTip):
     _handler = tip.TipInstance
@@ -118,12 +111,13 @@ class TestTipInstance(TTip):
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['context_gus']])
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['context_gus']])
 
-        self.tipSubmission['context_gus'] = self.context_desc['context_gus']
-        basehandler.validate_jmessage(self.tipSubmission, requests.wbSubmissionDesc)
+        dummySubmissionDict = helpers.get_dummy_submission(
+            self.context_desc['context_gus'], self.context_desc['fields'])
+        basehandler.validate_jmessage(dummySubmissionDict, requests.wbSubmissionDesc)
 
-        self.submission_desc = yield submission.create_submission(self.tipSubmission, finalize=True)
+        self.submission_desc = yield submission.create_submission(dummySubmissionDict, finalize=True)
 
-        self.assertEqual(self.submission_desc['wb_fields'], self.tipSubmission['wb_fields'])
+        self.assertEqual(self.submission_desc['wb_fields'], dummySubmissionDict['wb_fields'])
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[1])
         # Ok, now the submission has been finalized, the tests can start.
 
