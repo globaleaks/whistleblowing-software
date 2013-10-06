@@ -103,6 +103,7 @@ class TableReplacer:
     def __init__(self, old_db_file, new_db_file, start_ver):
 
         from globaleaks.db.update_5_6 import User_version_5, Comment_version_5, Node_version_5
+        from globaleaks.db.update_6_7 import Node_version_6, Context_version_6
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -112,19 +113,19 @@ class TableReplacer:
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         self.table_history = {
-            'Node' : [ Node_version_5, models.Node ],
-            'User' : [ User_version_5, models.User ],
-            'Context' : [ models.Context, None ],
-            'Receiver': [ models.Receiver, None ],
-            'ReceiverFile' : [ models.ReceiverFile, None ],
-            'Notification': [ models.Notification, None ],
-            'Comment': [ Comment_version_5, models.Comment ],
-            'InternalTip' : [ models.InternalTip, None ],
-            'InternalFile' : [ models.InternalFile, None ],
-            'WhistleblowerTip' : [ models.WhistleblowerTip, None ],
-            'ReceiverTip' : [ models.ReceiverTip, None ],
-            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None ],
-            'ReceiverContext' : [ models.ReceiverContext, None ],
+            'Node' : [ Node_version_5, Node_version_6, models.Node ],
+            'User' : [ User_version_5, models.User, None ],
+            'Context' : [ Context_version_6, None, models.Context ],
+            'Receiver': [ models.Receiver, None, None ],
+            'ReceiverFile' : [ models.ReceiverFile, None, None ],
+            'Notification': [ models.Notification, None, None ],
+            'Comment': [ Comment_version_5, models.Comment, None ],
+            'InternalTip' : [ models.InternalTip, None, None ],
+            'InternalFile' : [ models.InternalFile, None, None ],
+            'WhistleblowerTip' : [ models.WhistleblowerTip, None, None ],
+            'ReceiverTip' : [ models.ReceiverTip, None, None ],
+            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None ],
+            'ReceiverContext' : [ models.ReceiverContext, None, None ],
         }
 
         for k, v in self.table_history.iteritems():
@@ -133,7 +134,7 @@ class TableReplacer:
             assert len(v) == (DATABASE_VERSION + 1 - 5), \
                 "I'm expecting a table with %d statuses (%s)" % (DATABASE_VERSION, k)
 
-        print "%s Opening old version DB: %s" % (self.debug_info, old_db_file)
+        print "%s Opening old DB: %s" % (self.debug_info, old_db_file)
         old_database = create_database("sqlite:%s" % self.old_db_file)
         self.store_old = Store(old_database)
 
@@ -143,8 +144,8 @@ class TableReplacer:
         self.store_new = Store(new_database)
 
         if self.start_ver + 1 == DATABASE_VERSION:
-            # use the good SQL file!
-            print "%s Initializing definited schema from %s" % (self.debug_info, GLSetting.db_schema_file)
+
+            print "%s Acquire SQL schema %s" % (self.debug_info, GLSetting.db_schema_file)
 
             if not os.access(GLSetting.db_schema_file, os.R_OK):
                 print "Unable to access %s" % GLSetting.db_schema_file
@@ -200,18 +201,18 @@ class TableReplacer:
 
         if self.table_history[table_name][table_index]:
             # print "Immediate return %s = %s at version %d" % \
-            #      ( table_name, self.table_history[table_name][table_index], version )
+            #       ( table_name, self.table_history[table_name][table_index], version )
             return self.table_history[table_name][table_index]
 
         # else, it's none, and we've to take the previous valid version
         #
         # print "Requested version %d of %s need to be collected in the past" %\
-        #      (version, table_name)
+        #       (version, table_name)
 
         while version >= 0:
             if self.table_history[table_name][table_index]:
-                # print ".. returning %s = %s" %\
-                #       ( table_name, self.table_history[table_name][table_index] )
+            # print ".. returning %s = %s" %\
+            #           ( table_name, self.table_history[table_name][table_index] )
                 return self.table_history[table_name][table_index]
             table_index -= 1
 

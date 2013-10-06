@@ -104,7 +104,6 @@ CREATE TABLE internaltip (
 CREATE TABLE node (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
-    database_version INTEGER NOT NULL,
     description BLOB NOT NULL,
     presentation BLOB NOT NULL,
     footer BLOB NOT NULL,

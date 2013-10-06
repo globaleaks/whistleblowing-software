@@ -4,7 +4,7 @@
 # instantiated only once and be common to pieces of GLBackend code.
 
 __version__ = '2.27.11'
-DATABASE_VERSION = 6
+DATABASE_VERSION = 7
 
 # Add here by hand the languages supported!
 # copy paste format from 'grunt makeTranslations'

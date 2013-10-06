@@ -28,10 +28,6 @@ def initialize_node(store, results, only_node, email_templates):
 
     node = models.Node(only_node)
 
-    # Increment this value every time sqlite.sql change, and develop
-    # a migration script.
-    node.database_version = DATABASE_VERSION
-
     node.languages_supported = LANGUAGES_SUPPORTED
 
     # by default, only english is the surely present language
