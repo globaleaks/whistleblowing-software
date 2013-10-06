@@ -3,8 +3,8 @@
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
-from globaleaks.models import Model, ReceiverTip
-from globaleaks import DATABASE_VERSION
+from globaleaks.models import Model
+from uuid import uuid4
 
 class Node_version_6(Model):
     __storm_table__ = 'node'
@@ -34,10 +34,86 @@ class Node_version_6(Model):
     postpone_superpower = Bool()
     exception_email = Unicode()
 
+class Context_version_6(Model):
+    __storm_table__ = 'context'
+
+    # that's the change, from fields split in
+    # localized_fields and unique_fields
+    fields = Pickle()
+
+    selectable_receiver = Bool()
+    escalation_threshold = Int()
+    tip_max_access = Int()
+    file_max_download = Int()
+    file_required = Bool()
+    tip_timetolive = Int()
+    submission_timetolive = Int()
+    receipt_regexp = Unicode()
+    last_update = DateTime()
+    file_required = Bool()
+    tags = Pickle()
+    name = Pickle()
+    description = Pickle()
+    receipt_description = Pickle()
+    submission_introduction = Pickle()
+    submission_disclaimer = Pickle()
+    select_all_receivers = Bool()
+
+
 class Replacer67(TableReplacer):
 
+    def migrate_Context(self):
+        print "%s Context migration assistant: (fields localization refactor) #%d" % (
+            self.std_fancy, self.store_old.find(self.get_right_model("Context", 6)).count() )
+
+        old_contexts = self.store_old.find(self.get_right_model("Context", 6))
+
+        for old_obj in old_contexts:
+
+            new_obj = self.get_right_model("Context", 7)()
+
+            new_obj.localized_fields = {}
+            new_obj.unique_fields = {}
+
+            # Storm internals simply reversed
+            for k, v in old_obj._storm_columns.iteritems():
+
+                if v.name == 'fields':
+
+                    old_fields = getattr(old_obj, 'fields')
+
+                    lang_code = old_fields.keys()[0]
+                    fields_list = old_fields.values()[0]
+
+                    print "  <> Context %s (#%d fields)" % (old_obj.name, len(fields_list))
+
+                    for field_desc in fields_list:
+
+                        key = unicode(uuid4())
+                        new_obj.localized_fields[lang_code] = {}
+
+                        new_obj.localized_fields[lang_code][key] = {
+                            'name' : field_desc['name'],
+                            'hint' : field_desc['hint']
+                        }
+
+                        # copy all the dict content and remove the useless
+                        new_obj.unique_fields[key] = dict(field_desc)
+
+                        del new_obj.unique_fields[key]['name']
+                        del new_obj.unique_fields[key]['key']
+                        del new_obj.unique_fields[key]['hint']
+
+                else:
+                    setattr(new_obj, v.name, getattr(old_obj, v.name) )
+
+            self.store_new.add(new_obj)
+        self.store_new.commit()
+
+
     def migrate_Node(self):
-        print "%s Node migration assistant: (footer and theme supports)" % self.debug_info
+        print "%s Node migration assistant: (footer and theme supports)" % self.std_fancy
+        # plus, has been removed database_version, because misleading and unused
 
         old_node = self.store_old.find(self.get_right_model("Node", 6)).one()
 
@@ -53,7 +129,6 @@ class Replacer67(TableReplacer):
         new_node.email = old_node.email
 
         new_node.postpone_superpower = old_node.postpone_superpower
-        new_node.database_version = DATABASE_VERSION
         new_node.stats_update_time = old_node.stats_update_time
         new_node.maximum_descsize = old_node.maximum_descsize
         new_node.maximum_filesize = old_node.maximum_filesize

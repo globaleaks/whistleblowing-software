@@ -442,7 +442,6 @@ class Node(Model):
     email = Unicode()
     receipt_salt = Unicode()
     last_update = DateTime()
-    database_version = Int()
 
     languages_supported = Pickle()
     languages_enabled = Pickle()
