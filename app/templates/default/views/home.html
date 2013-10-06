@@ -107,12 +107,24 @@
 
         </p>
       </div>
-      <div class="row">
+      <div class="row" ng-cloak ng-show="!node_info.tor2web_submission && !anonymous">
+        <button
+          class="btn btn-danger btn-large disabled">
+            {{ "Whistleblowing disabled" | translate }}</button>
+      </div>
+
+      <div class="row" ng-cloak ng-show="node_info.tor2web_submission && anonymous">
         <a ng-click="goToSubmission()"
-          ng-disabled="!node_info.tor2web_submission && !anonymous"
           class="btn btn-primary btn-large">
             {{ "Blow the Whistle" | translate }}</a>
       </div>
+
+      <div class="row" ng-cloak ng-show="node_info.tor2web_submission && !anonymous">
+        <a ng-click="goToSubmission()"
+          class="btn btn-warning btn-large">
+            {{ "Blow the Whistle" | translate }}</a>
+      </div>
+
     </div>
 
     <div ng-hide="node_info.configured">
