@@ -194,7 +194,7 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
         raise errors.InvalidInputFormat("Invalid lang code as default")
 
     # name, description tor2web boolean value are acquired here
-    node.update(request) 
+    node.update(request)
 
     node.last_update = utils.datetime_now()
 
