@@ -198,7 +198,7 @@ do_start()
                     --user=${USER} --group=${GROUP}
                     --working-path=${WORKING_DIR}
                     --loglevel=${LOGLEVEL}
-                    --httplog=${HTTPLOG}"
+                    --http-log=${HTTPLOG}"
 
     
    if [ "${STORMDEBUG}" -eq "1" ]; then
