@@ -28,7 +28,7 @@ USER=globaleaks
 #   permits to configure the GROUP privileges of the globaleaks process
 GROUP=globaleaks
 
-# HOST = [ip_address, hostname, other_hostname]
+# HOSTS_LIST = [ip_address, hostname, other_hostname]
 #   permits to configure a list of hosts at which globaleaks will be reachable
 HOSTS_LIST=127.0.0.1,localhost
 
@@ -36,19 +36,19 @@ HOSTS_LIST=127.0.0.1,localhost
 #   permits to enable apparmor sandboxing; requires apparmor
 APPARMOR_SANDBOXING=1
 
-# NETWORKSANDBOX = [0/1]
+# NETWORK_SANDBOXING = [0/1]
 #   permits to enable network sandboxing; requires iptables
 NETWORK_SANDBOXING=1
 
-# ALLOWED_DST_IP = ( ip_address1 ip_address2 ... )
+# ALLOWED_SRC_IP = ( ip_address1 ip_address2 ... )
 #   permits to configure a list of ip address used for outbound connections
 ALLOWED_SRC_IP=( 127.0.0.1 )
 
-# ALLOWED_SRC_IP = ( ip_address1 ip_address2 ... )
+# ALLOWED_DST_IP = ( ip_address1 ip_address2 ... )
 #   permits to configure a list of ip address used for inbound connections
 ALLOWED_DST_IP=( 127.0.0.1 )
 
-# LISTENINGPORT = [port_number]
+# LISTENING_PORT = [port_number]
 #   permits to configure a port at which globaleaks process will bind to
 LISTENING_PORT=8082
 
