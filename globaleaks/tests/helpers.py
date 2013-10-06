@@ -415,6 +415,32 @@ def template_keys(first_a, second_a, name):
 
     return ret_string
 
+
+def get_dummy_submission(context_gus, context_admin_data_fields):
+    """
+    this may works until the content of the fields do not start to be validated. like
+    numbers shall contain only number, and not URL.
+    This validation would not be implemented in validate_jmessage but in utils.Fields
+
+    need to be enhanced generating appropriate data based on the fields.type
+    """
+
+    dummySubmissionDict = {}
+    dummySubmissionDict['wb_fields'] = {}
+
+    dummyvalue = "https://dailyfoodporn.wordpress.com && " \
+                 "http://www.zerocalcare.it/ && " \
+                 "http://www.giantitp.com"
+
+    for field_desc in context_admin_data_fields:
+        dummySubmissionDict['wb_fields'][field_desc['key']] = dummyvalue
+
+    dummySubmissionDict['receivers'] = []
+    dummySubmissionDict['files'] = []
+    dummySubmissionDict['finalize'] = True
+    dummySubmissionDict['context_gus'] = context_gus
+    return dummySubmissionDict
+
 def fill_random_fields(context_desc):
     """
     getting the context dict, take 'fields'.

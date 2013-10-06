@@ -6,6 +6,7 @@ from globaleaks.tests import helpers
 
 from globaleaks.settings import transact, transact_ro
 from globaleaks.models import *
+from globaleaks.utils import Fields
 
 class TestTransaction(helpers.TestGL):
 
@@ -95,7 +96,11 @@ class TestTransaction(helpers.TestGL):
     def _transact_ro_add_context(self, store):
         c = self.localization_set(self.dummyContext, Context, 'en')
         context = Context(c)
-        context.fields = self.dummyContext['fields']
+
+        fo = Fields()
+        fo.update_fields('en', self.dummyContext['fields'])
+        fo.context_import(context)
+
         context.tags = self.dummyContext['tags']
         context.submission_timetolive = context.tip_timetolive = 1000
         context.description = context.name = \

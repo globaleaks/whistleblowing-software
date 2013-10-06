@@ -5,7 +5,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 # override GLSetting
-from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.settings import GLSetting, transact
 from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
@@ -276,17 +276,29 @@ class TestSubmission(helpers.TestGL):
             self.assertTrue(False)
 
     @inlineCallbacks
-    def test_fields_fail_missing_required(self):
+    def test_fields_fail_unexpected_presence(self):
 
-        sbmt = dict(self.dummySubmission)
-
-        sbmt['wb_fields'] = {'One': 'Two', 'Three': 'Four'}
+        sbmt = helpers.get_dummy_submission(self.dummySubmission['context_gus'], self.dummyContext['fields'])
+        sbmt['wb_fields'].update({ 'alien' : 'predator' })
 
         try:
             yield submission.create_submission(sbmt, finalize=True)
             self.assertTrue(False)
         except Exception as excep:
             self.assertEqual(excep.reason,
-                             u"Submission do not validate the input fields [Missing field 'Short title': Required]")
+                             u"Submission do not validate the input fields [Submitted field 'alien' not expected in context]")
+
+    @inlineCallbacks
+    def test_fields_fail_missing_required(self):
+
+        required_key = self.dummyContext['fields'][0]['key']
+        sbmt = helpers.get_dummy_submission(self.dummySubmission['context_gus'], self.dummyContext['fields'])
+        del sbmt['wb_fields'][required_key]
+
+        try:
+            yield submission.create_submission(sbmt, finalize=True)
+            self.assertTrue(False)
+        except Exception as excep:
+            self.assertTrue(excep.reason.startswith(u"Submission do not validate the input fields [Missing field"))
 
 
