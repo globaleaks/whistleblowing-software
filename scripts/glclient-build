@@ -125,7 +125,7 @@ if [ ! $1 ];then
 fi
 
 if [[ $EUID -eq 0 ]]; then
-  echo "!! This script should be run as a sudoer user!"
+  echo "!! This script must not be run as root. Please execute it as a normal user with sudo!"
   usage
   exit 1
 fi
