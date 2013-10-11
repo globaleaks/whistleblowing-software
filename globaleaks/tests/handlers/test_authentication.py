@@ -1,12 +1,12 @@
+from cyclone.util import ObjectDict
+from twisted.internet.defer import inlineCallbacks
+
 from globaleaks.tests import helpers
 from globaleaks.handlers import authentication, admin, base
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks import utils
 
-from cyclone.util import ObjectDict
-
-from twisted.internet.defer import inlineCallbacks
 
 class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
     @authentication.unauthenticated

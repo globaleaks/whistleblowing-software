@@ -126,7 +126,7 @@ def receiverfile_planning(store):
         # infact Tips may have two status both valid.
         # if these conditions are met the InternalFile(s) is/are marked as 'locked',
         # so that if a forced or planned delivery scheduler runs it doesn't touch the file already queued.
-        if (filex.internaltip.mark == InternalTip._marker[1] or \
+        if (filex.internaltip.mark == InternalTip._marker[1] or
             filex.internaltip.mark == InternalTip._marker[2]) and \
             (filex.mark == InternalFile._marker[0]):
             filex.mark = InternalFile._marker[1] # 'locked'
@@ -380,8 +380,9 @@ def do_final_internalfile_update(store, ifile_track):
 
 class APSDelivery(GLJob):
 
+    @staticmethod
     @inlineCallbacks
-    def operation(self):
+    def operation():
         """
         Goal of this function is to process/validate files, compute their checksums and
         apply the configured delivery method.

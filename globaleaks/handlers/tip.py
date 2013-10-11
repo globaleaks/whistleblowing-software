@@ -7,7 +7,6 @@
 #   executed with /tip/* URI PATH interaction.
 
 from twisted.internet.defer import inlineCallbacks
-from storm.expr import Desc
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated

@@ -12,9 +12,6 @@ from globaleaks.models import *
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
-from globaleaks.jobs.notification_sched import APSNotification
-from globaleaks.jobs.delivery_sched import APSDelivery
-from globaleaks.runner import GLAsynchronous
 from globaleaks.rest import requests
 from globaleaks.utils import log, utc_future_date, pretty_date_time, datetime_now, naturalize_fields
 from globaleaks.third_party import rstr
@@ -188,7 +185,7 @@ def import_fields(submission, wb_fields, configured_fields_list, strict_validati
 
     try:
         for single_field in configured_fields_list:
-            if single_field['required'] == True:
+            if single_field['required']:
                 required_keys.append(single_field.get(u'key'))
             else:
                 optional_keys.append(single_field.get(u'key'))

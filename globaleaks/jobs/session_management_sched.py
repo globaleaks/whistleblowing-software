@@ -7,18 +7,16 @@
 
 import sys
 
-from twisted.internet.defer import inlineCallbacks
-
-from globaleaks.settings import transact, GLSetting
+from globaleaks.settings import GLSetting
 from globaleaks.utils import log, is_expired
 from globaleaks.jobs.base import GLJob
-from globaleaks.models import User
 
 
 __all__ = ['APSSessionManagement']
 
 class APSSessionManagement(GLJob):
-    def operation(self):
+    @staticmethod
+    def operation():
         """
         This scheduler is responsible of:
             - Removal of expired sessions

@@ -10,7 +10,8 @@ from globaleaks.jobs.base import GLJob
 
 class APSStatistics(GLJob):
 
-    def operation(self):
+    @staticmethod
+    def operation():
         """
         Every node has two timeframe which the statistics are collected
         inside. All the operation happening during a timeframe

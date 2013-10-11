@@ -13,8 +13,9 @@ import sys
 import time
 import traceback
 import StringIO
-
 from datetime import datetime, timedelta
+from email import utils as mailutils
+
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.internet import reactor, protocol, error
 from twisted.internet.defer import Deferred, AlreadyCalledError
@@ -25,14 +26,13 @@ from twisted.python import log as twlog
 from twisted.python import logfile as twlogfile
 from twisted.python import util
 from twisted.python.failure import Failure
-
 from OpenSSL import SSL
 from txsocksx.client import SOCKS5ClientEndpoint
 from Crypto.Hash import SHA256
-from email import utils as mailutils
 
 from globaleaks.settings import GLSetting
 from globaleaks import __version__
+
 
 def sleep(timeout):
     def callbackDeferred():
@@ -157,7 +157,7 @@ def query_yes_no(question, default="no"):
     The "answer" return value is one of "yes" or "no".
     """
     valid = {"y":True, "n":False}
-    if default == None:
+    if default is None:
         prompt = " [y/n] "
     elif default == "yes":
         prompt = " [Y/n] "
@@ -195,7 +195,7 @@ def get_file_checksum(filepath):
     if not total_len:
         log.debug("checksum of %s computed, but the file is empty" % filepath)
 
-    return ( sha.hexdigest(), total_len )
+    return sha.hexdigest(), total_len
 
 ## time facilities ##
 
@@ -436,7 +436,7 @@ def collapse_mail_content(mixed_list):
             if line.find("\n"):
                 line = line.replace("\n", carriage_return)
             safe_line += u"%s%s" % (line.encode('string_escape'), carriage_return)
-        elif line == None:
+        elif line is None:
             safe_line += u"%s%s" % (carriage_return, carriage_return)
         else:
             raise TypeError("Unable to escape/encode the message file")
@@ -488,18 +488,18 @@ def mail_exception(etype, value, tback):
 
         log.err("Exception mail! [%d]" % mail_exception.mail_counter)
 
-        tmp = []
+        tmp = ["Date: %s" % rfc822_date(),
+               "From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
+                                      GLSetting.memory_copy.notif_source_email),
+               "To: %s" % GLSetting.memory_copy.exception_email,
+               "Subject: GLBackend Exception %s [%d]" % (
+                   __version__, mail_exception.mail_counter),
+               "Content-Type: text/plain; charset=ISO-8859-1",
+               "Content-Transfer-Encoding: 8bit",
+               None,
+               "Source: %s" % " ".join(os.uname()),
+               "Version: %s" % __version__]
 
-        tmp.append("Date: %s" % rfc822_date())
-        tmp.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
-                                        GLSetting.memory_copy.notif_source_email) )
-        tmp.append("To: %s" % GLSetting.memory_copy.exception_email)
-        tmp.append("Subject: GLBackend Exception %s [%d]" % (__version__, mail_exception.mail_counter) )
-        tmp.append("Content-Type: text/plain; charset=ISO-8859-1")
-        tmp.append("Content-Transfer-Encoding: 8bit")
-        tmp.append(None)
-        tmp.append("Source: %s" % " ".join(os.uname()))
-        tmp.append("Version: %s" % __version__)
         error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
         tmp.append(error_message)
 
@@ -569,7 +569,7 @@ def acquire_bool(boolvalue):
 
     if boolvalue == 'true' or boolvalue == u'true' or boolvalue == True:
         return True
-    if boolvalue == 'false' or boolvalue == u'false' or boolvalue == False or boolvalue == None:
+    if boolvalue == 'false' or boolvalue == u'false' or boolvalue == False or boolvalue is None:
         return False
 
     raise AssertionError("BaseHandler validator is not working")

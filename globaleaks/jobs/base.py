@@ -4,7 +4,6 @@
 #
 # Base class for implement the scheduled tasks
 
-import sys
 from datetime import datetime
 
 from globaleaks import utils

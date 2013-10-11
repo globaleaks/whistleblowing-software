@@ -198,20 +198,20 @@ class MailNotification(Notification):
         receiver_mail = event.receiver_info['notification_fields']['mail_address']
 
         # Compose the email having the system+subject+recipient data
-        mail_building = []
-        mail_building.append("Date: %s" % rfc822_date())
-        mail_building.append("From: \"%s\" <%s>" % (GLSetting.memory_copy.notif_source_name,
-                                                    GLSetting.memory_copy.notif_source_email ) )
-        mail_building.append("To: %s" % receiver_mail)
+        mail_building = ["Date: %s" % rfc822_date(),
+                         "From: \"%s\" <%s>" % (
+                             GLSetting.memory_copy.notif_source_name,
+                             GLSetting.memory_copy.notif_source_email ),
+                         "To: %s" % receiver_mail,
+                         "Subject: %s" % title,
+                         "Content-Type: text/plain; charset=ISO-8859-1",
+                         "Content-Transfer-Encoding: 8bit",
+                         None,
+                         body]
 
         # XXX here can be catch the subject (may change if encrypted or whatever)
-        mail_building.append("Subject: %s" % title)
-        mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
-        mail_building.append("Content-Transfer-Encoding: 8bit")
 
         # appending 'None' it's used to mean "\n" without being escaped by collapse_mail_content
-        mail_building.append(None)
-        mail_building.append(body)
 
         message = collapse_mail_content(mail_building)
 
@@ -225,7 +225,8 @@ class MailNotification(Notification):
 
         return self.finished
 
-    def mail_flush(self, from_address, to_address, message_file, event):
+    @staticmethod
+    def mail_flush(from_address, to_address, message_file, event):
         """
         This function just wrap the sendmail call, using the system memory variables.
         """

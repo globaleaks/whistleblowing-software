@@ -3,18 +3,15 @@
 import os
 import json
 import uuid
-import random
+from io import BytesIO as StringIO
 
 from cyclone import httpserver
 from cyclone.web import Application
 from cyclone.util import ObjectDict as OD
-
 from twisted.trial import unittest
 from twisted.test import proto_helpers
 from twisted.internet.defer import inlineCallbacks
-
 from Crypto import Random
-from io import BytesIO as StringIO
 from storm.twisted.testing import FakeThreadPool
 
 from globaleaks.settings import GLSetting, transact
@@ -22,6 +19,7 @@ from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, utils, models, security
 from globaleaks.third_party import rstr
+
 
 Random.atfork()
 
@@ -45,10 +43,12 @@ transact.tp = FakeThreadPool()
 
 class UTlog():
 
-    def err(self, stuff):
+    @staticmethod
+    def err(stuff):
         print "[E]", stuff
 
-    def debug(self, stuff):
+    @staticmethod
+    def debug(stuff):
         print "[D]", stuff
 
 from globaleaks.utils import log
@@ -164,7 +164,6 @@ class TestHandler(TestGL):
         yield TestGL.setUp(self)
         self.responses = []
 
-        @classmethod
         def mock_write(cls, response=None):
             # !!!
             # Here we are making the assumption that every time write() get's
@@ -241,7 +240,6 @@ class TestHandler(TestGL):
 
         handler = self._handler(application, request)
 
-        @classmethod
         def mock_pass(cls, *args):
             pass
         # so that we don't complain about XSRF

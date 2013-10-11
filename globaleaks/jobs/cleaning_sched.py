@@ -114,8 +114,9 @@ def debug_count_itips_by_marker(store):
 
 
 class APSCleaning(GLJob):
+    @staticmethod
     @inlineCallbacks
-    def operation(self):
+    def operation():
         """
         Goal of this function is to check all the submission not
         finalized, and, if the expiration time sets in the context has

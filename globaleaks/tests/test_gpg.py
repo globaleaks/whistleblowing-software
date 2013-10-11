@@ -11,7 +11,7 @@ from globaleaks.security import GLBGPG, gpg_options_parse, get_expirations
 from globaleaks.handlers import receiver, files
 from globaleaks.handlers.admin import admin_serialize_receiver, create_receiver, create_context, get_context_list
 from globaleaks.handlers.submission import create_submission, update_submission
-from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.tests.helpers import MockDict
 from globaleaks.models import Receiver
 

@@ -1,6 +1,5 @@
 # -*- encoding: utf-8 -*-
 import os
-import sys
 
 from globaleaks.utils import GLSetting
 from globaleaks.models import models as orm_classes_list

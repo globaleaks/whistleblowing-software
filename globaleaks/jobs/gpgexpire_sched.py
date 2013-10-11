@@ -50,7 +50,7 @@ def check_expiration_date(store):
 
     if not keytrack:
         log.debug("PGP/GPG key expiration check: no keys configured in this node")
-        return (dict({}), dict({}), dict({}) )
+        return dict({}), dict({}), dict({})
 
     dates = get_expirations(keylist)
 
@@ -81,13 +81,14 @@ def check_expiration_date(store):
         else:
             expired_keys.update({ keytrack[keyid]: sincepoch })
 
-    return (expiring_keys_2w, expiring_keys_3d, expired_keys)
+    return expiring_keys_2w, expiring_keys_3d, expired_keys
 
 
 class GPGExpireCheck(GLJob):
 
+    @staticmethod
     @inlineCallbacks
-    def operation(self):
+    def operation():
 
         try:
             (two_weeks, three_days, gone) = yield check_expiration_date()
@@ -105,18 +106,15 @@ class GPGExpireCheck(GLJob):
 
             for recipient, message in messages.iteritems():
 
-                mail_building = []
-
-                mail_building.append("Date: %s" % rfc822_date())
-                mail_building.append("From: \"%s\" <%s>" %
-                                     ( GLSetting.memory_copy.notif_source_name,
-                                       GLSetting.memory_copy.notif_source_email ) )
-                mail_building.append("To: %s" % recipient)
-                mail_building.append("Subject: Your PGP key expiration date is coming")
-                mail_building.append("Content-Type: text/plain; charset=ISO-8859-1")
-                mail_building.append("Content-Transfer-Encoding: 8bit")
-                mail_building.append(None)
-                mail_building.append(message)
+                mail_building = ["Date: %s" % rfc822_date(),
+                                 "From: \"%s\" <%s>" %
+                                 ( GLSetting.memory_copy.notif_source_name,
+                                   GLSetting.memory_copy.notif_source_email ),
+                                 "To: %s" % recipient,
+                                 "Subject: Your PGP key expiration date is coming",
+                                 "Content-Type: text/plain; charset=ISO-8859-1",
+                                 "Content-Transfer-Encoding: 8bit", None,
+                                 message]
 
                 mail_content = collapse_mail_content(mail_building)
 

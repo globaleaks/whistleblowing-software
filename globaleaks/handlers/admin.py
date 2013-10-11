@@ -4,7 +4,8 @@
 #   *****
 # Implementation of the code executed when an HTTP client reach /admin/* URI
 #
-import os, shutil
+import os
+import shutil
 
 from Crypto import Random
 from twisted.internet.defer import inlineCallbacks
@@ -291,7 +292,7 @@ def acquire_context_timetolive(request):
     if submission_ttl > tip_ttl:
         raise errors.InvalidTipSubmCombo()
 
-    return (submission_ttl, tip_ttl)
+    return submission_ttl, tip_ttl
 
 def generate_example_receipt(regexp):
     """
@@ -559,7 +560,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
     # The various options related in manage GPG keys are used here.
     gpg_options_parse(receiver, request)
 
-    log.debug("Creating receiver %s" % (receiver.user.username))
+    log.debug("Creating receiver %s" % receiver.user.username)
 
     store.add(receiver)
 

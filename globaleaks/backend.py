@@ -11,11 +11,11 @@
 from twisted.application.service import Application
 from twisted.application import internet
 from cyclone import web
+from Crypto.Random import random
+
 from globaleaks.settings import GLSetting
 from globaleaks.rest import api
 from globaleaks.handlers.base import GLHTTPServer
-
-from Crypto.Random import random
 
 application = Application('GLBackend')
 

@@ -1,7 +1,7 @@
 from storm.exceptions import NotOneError
-
 from twisted.internet import defer, reactor
 from cyclone.util import ObjectDict as OD
+from Crypto import Random
 
 from globaleaks.models import Node, User
 from globaleaks.settings import transact, GLSetting
@@ -12,8 +12,6 @@ from globaleaks.utils import log
 from globaleaks.third_party import rstr
 from globaleaks import security, utils
 
-from Crypto import Random
-
 @defer.inlineCallbacks
 def sleep(timeout):
     def callbackDeferred():
@@ -22,6 +20,47 @@ def sleep(timeout):
     d = defer.Deferred()
     reactor.callLater(timeout, callbackDeferred)
     yield d
+
+def random_login_delay(user):
+    """
+    in case of failed_login_attempts introduces
+    an exponential increasing delay between 0 and 42 seconds
+
+        the function implements the following table:
+            ----------------------------------
+           | failed_attempts |      delay     |
+           | 0               | 0              |
+           | 1               | 1              |
+           | 2               | random(2, 4)   |
+           | 3               | random(3, 9)   |
+           | 4               | random(4, 16)  |
+           | 5               | random(5, 26)  |
+           | 6               | random(6, 36 ) |
+           | 7               | random(7, 42)  |
+           | N               | random(N, 42)  |
+            ----------------------------------
+        """
+    if user == 'wb':
+        failed_attempts = GLSetting.failed_login_attempts_wb
+    else:
+        if user in GLSetting.failed_login_attempts:
+            failed_attempts = GLSetting.failed_login_attempts[user]
+        else:
+            failed_attempts = 0
+
+    if failed_attempts:
+        min = failed_attempts if failed_attempts < 42 else 42
+
+        n = failed_attempts * failed_attempts
+        if n < 42:
+            max = n
+        else:
+            max = 42
+
+        Random.atfork()
+        return Random.random.randint(min, max)
+
+    return 0
 
 def update_session(user):
     """
@@ -239,47 +278,6 @@ class AuthenticationHandler(BaseHandler):
     """
     session_id = None
 
-    def random_login_delay(self, user):
-        """
-        in case of failed_login_attempts introduces
-        an exponential increasing delay between 0 and 42 seconds
-        
-        the function implements the following table:
-            ----------------------------------
-           | failed_attempts |      delay     |
-           | 0               | 0              |
-           | 1               | 1              |
-           | 2               | random(2, 4)   |
-           | 3               | random(3, 9)   |
-           | 4               | random(4, 16)  |
-           | 5               | random(5, 26)  |
-           | 6               | random(6, 36 ) |
-           | 7               | random(7, 42)  |
-           | N               | random(N, 42)  |
-            ----------------------------------
-        """
-        if user == 'wb':
-            failed_attempts = GLSetting.failed_login_attempts_wb
-        else:
-            if user in GLSetting.failed_login_attempts:
-                failed_attempts = GLSetting.failed_login_attempts[user]
-            else:
-                failed_attempts = 0
-
-        if failed_attempts:
-            min = failed_attempts if failed_attempts < 42 else 42
-    
-            n = failed_attempts * failed_attempts
-            if n < 42:
-                max = n
-            else:
-                max = 42
-
-            Random.atfork()
-            return Random.random.randint(min, max)
-        
-        return 0
-
     def generate_session(self, role, user_id):
         """
         Args:
@@ -327,7 +325,7 @@ class AuthenticationHandler(BaseHandler):
         password = request['password']
         role = request['role']
         
-        delay = self.random_login_delay(username)
+        delay = random_login_delay(username)
         if delay:
             yield utils.sleep(delay)
 
