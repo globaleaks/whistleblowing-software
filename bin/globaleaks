@@ -83,11 +83,11 @@ this_directory = os.path.dirname(__file__)
 root = os.path.abspath(os.path.join(this_directory, '..'))
 sys.path.insert(0, root)
 
-path = '/usr/share/globaleaks/glbackend/requirements.txt'
+path = os.path.join(root, 'requirements.txt')
 if os.path.exists(path):
     pip_version_check(path)
 else:
-    pip_version_check(os.path.join(root, 'requirements.txt'))
+    pip_version_check('/usr/share/globaleaks/glbackend/requirements.txt')
 
 from globaleaks import runner, DATABASE_VERSION
 from globaleaks.utils import log, mail_exception, query_yes_no, caller_name
