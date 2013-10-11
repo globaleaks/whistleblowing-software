@@ -393,7 +393,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'uglify', 'usemin', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'uglify', 'usemin', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('dev',
     ['reload', 'watch']);
