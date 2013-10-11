@@ -54,7 +54,7 @@ class TestModels(helpers.TestGL):
 
         store.add(receiver)
 
-        self.receiver_inc = self.receiver_inc + 1
+        self.receiver_inc += 1
 
         return receiver.id
 

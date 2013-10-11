@@ -5,13 +5,12 @@
 #
 # GlobaLeaks security functions
 
-import scrypt
 import binascii
 import re
-import time
 import os
 import shutil
 
+import scrypt
 from Crypto.Hash import SHA512
 from Crypto.Random import random, atfork
 from gnupg import GPG
@@ -20,6 +19,7 @@ from globaleaks.rest import errors
 from globaleaks.utils import log, acquire_bool
 from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
+
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
@@ -269,7 +269,7 @@ class GLBGPG:
             with open(encrypted_path, "w+") as f:
                 f.write(str(encrypt_obj))
 
-            return (encrypted_path, len(str(encrypt_obj)))
+            return encrypted_path, len(str(encrypt_obj))
 
         except Exception as excep:
             log.err("Error in writing GPG file output: %s (%s) bytes %d" %

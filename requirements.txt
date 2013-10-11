@@ -7,6 +7,6 @@ Storm==0.20
 transaction==1.4.1
 txsocksx==1.13.0.0rc2
 Parsley==1.2
-PyCrypto==2.6
+pycrypto==2.6
 scrypt==0.6.1
 python_gnupg==0.3.5

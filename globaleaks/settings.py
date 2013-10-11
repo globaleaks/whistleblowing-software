@@ -12,14 +12,13 @@ import glob
 import shutil
 import traceback
 import logging
-import transaction
 import socket
-
 import pwd
 import grp
 import getpass
-
 from optparse import OptionParser
+
+import transaction
 from twisted.python.threadpool import ThreadPool
 from twisted.internet import reactor
 from twisted.internet.threads import deferToThreadPool
@@ -29,6 +28,7 @@ from cyclone.web import HTTPError
 from cyclone.util import ObjectDict as OD
 
 from globaleaks import __version__, DATABASE_VERSION
+
 
 verbosity_dict = {
     'DEBUG': logging.DEBUG,
@@ -463,10 +463,10 @@ class GLSettingsClass:
                 raise Exception("read capability missing in: %s" % rdonly)
 
     def fix_file_permissions(self, path=None):
-        '''
+        """
         Recursively updates file permissions on a given path.
         UID and GID default to -1, and mode is required
-        '''
+        """
         if not path:
             path = self.working_path
 
@@ -583,7 +583,7 @@ class transact(object):
                 result = function(self.instance, self.store, *args, **kwargs)
             else:
                 result = function(self.store, *args, **kwargs)
-        except (exceptions.IntegrityError, exceptions.DisconnectionError) as ex:
+        except (exceptions.IntegrityError, exceptions.DisconnectionError):
             transaction.abort()
             result = None
         except HTTPError as excep:

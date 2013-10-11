@@ -1,16 +1,16 @@
 # -*- encoding: utf-8 -*-
 import os
 
-from globaleaks import models
 from storm.exceptions import OperationalError
 from storm.locals import *
-from globaleaks.settings import GLSetting
-from globaleaks import DATABASE_VERSION
-
 from storm.properties import PropertyColumn
 from storm.variables import BoolVariable, DateTimeVariable
 from storm.variables import EnumVariable, IntVariable, RawStrVariable
 from storm.variables import UnicodeVariable, JSONVariable, PickleVariable
+
+from globaleaks import models
+from globaleaks.settings import GLSetting
+from globaleaks import DATABASE_VERSION
 
 # This code is take directly from the GlobaLeaks-pre-model-refactor
 

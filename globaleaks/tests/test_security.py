@@ -1,12 +1,12 @@
-import scrypt
 import binascii
 
+import scrypt
 from Crypto.Hash import SHA512
 from twisted.trial import unittest
 
 from globaleaks.tests import helpers
-
 from globaleaks.security import get_salt, hash_password, check_password, change_password, SALT_LENGTH
+
 
 class TestPasswordManagement(unittest.TestCase):
 

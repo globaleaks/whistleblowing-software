@@ -9,7 +9,7 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import utils
 from globaleaks.utils import l10n
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models

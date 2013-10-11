@@ -9,7 +9,7 @@ import os
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.settings import transact, transact_ro, GLSetting
+from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks import models

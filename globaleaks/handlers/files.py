@@ -97,7 +97,7 @@ def dump_file_fs(uploaded_file):
         data = uploaded_file['body'].read() # 4kb
         total_length = 0
         while data != "":
-            total_length = total_length + len(data)
+            total_length += len(data)
             os.write(fd.fileno(), data)
             data = uploaded_file['body'].read(4096) # 4kb
 

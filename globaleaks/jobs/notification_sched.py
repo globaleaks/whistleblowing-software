@@ -8,12 +8,12 @@
 
 import sys
 
-from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.rest import errors
 from globaleaks.jobs.base import GLJob
 from globaleaks.plugins.base import Event
-from globaleaks import models, utils
+from globaleaks import models
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils import log, pretty_date_time
 from globaleaks.plugins import notification

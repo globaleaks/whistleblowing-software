@@ -17,33 +17,6 @@ __all__ = ['GLAsynchronous']
 
 GLAsynchronous = Scheduler()
 
-class GLBaseRunner(app.ApplicationRunner):
-    """
-    This is a specialized runner that is responsible for starting the specified
-    service.
-    The purpose of it is to do the equivalent of what would be done with
-    launching twistd from command line (daemonizing the process, creating the
-    PID file, etc).
-    """
-    def preApplication(self):
-        """
-        We don't actually want to override this method since there is nothing
-        interesting to do in here.
-        """
-        log.debug("%s %s " % (__file__, __name__),
-                  "Class GLBaseRunner", "preApplication")
-
-    def postApplication(self):
-        """
-        We must place all the operations to be done before the starting of the
-        application.
-        Here we will take care of the launching of the reactor and the
-        operations to be done after it's shutdown.
-        """
-        log.debug("%s %s " % (__file__, __name__),
-                  "Class GLBaseRunner", "postApplication")
-
-
 def start_asynchronous():
     """
     Initialize the asynchronous operation, scheduled in the system
@@ -54,8 +27,7 @@ def start_asynchronous():
     OS-depenedent runner below
     """
     from globaleaks.jobs import session_management_sched, \
-                                notification_sched, gpgexpire_sched, \
-                                delivery_sched, cleaning_sched
+                                notification_sched, delivery_sched, cleaning_sched
 
     # When the application boot, maybe because has been after a restart, then
     # with the method *.force_execution, we reschedule the execution of all the

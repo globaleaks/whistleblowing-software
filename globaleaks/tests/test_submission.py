@@ -5,7 +5,7 @@ from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
 # override GLSetting
-from globaleaks.settings import GLSetting, transact, transact_ro
+from globaleaks.settings import GLSetting, transact
 from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
@@ -89,9 +89,9 @@ class TestSubmission(helpers.TestGL):
     @inlineCallbacks
     def test_create_internalfiles(self):
         yield self.emulate_file_upload(self.dummySubmission['submission_gus'])
-        keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file1.keys())
+        keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file1.keys())
         self.assertFalse(keydiff)
-        keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file2.keys())
+        keydiff = {'size', 'content_type', 'name', 'creation_date', 'id'} - set(self.registered_file2.keys())
         self.assertFalse(keydiff)
 
     @transact

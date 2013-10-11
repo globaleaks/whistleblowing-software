@@ -9,12 +9,12 @@
 
 import httplib
 import types
-import random
 import collections
 import json
 import re
 import sys
-import os
+from io import BytesIO as StringIO
+from tempfile import TemporaryFile
 
 from twisted.python.failure import Failure
 from twisted.internet import fdesc
@@ -22,12 +22,11 @@ from cyclone.web import RequestHandler, HTTPError, HTTPAuthenticationRequired, S
 from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone import escape, httputil
 from cyclone.escape import native_str
-from io import BytesIO as StringIO
-from tempfile import TemporaryFile
 
 from globaleaks.utils import log, sanitize_str, mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
+
 
 content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"")
 
@@ -357,10 +356,8 @@ class BaseHandler(BaseBaseHandler):
         command line specified
         """
 
-        """
-            just reading the property is enough to
-            set the cookie as a side effect).
-        """
+        # just reading the property is enough to
+        # set the cookie as a side effect).
         self.xsrf_token
 
         if not validate_host(self.request.host):
@@ -401,7 +398,7 @@ class BaseHandler(BaseBaseHandler):
             # save in the request the numeric ID of the request, so the answer can be correlated
             self.globaleaks_io_debug = GLSetting.http_log_counter
 
-            if GLSetting.http_log > 0 and GLSetting.http_log_counter > GLSetting.http_log:
+            if 0 < GLSetting.http_log < GLSetting.http_log_counter:
                 log.debug("Reached I/O logging limit of %d requests: disabling" % GLSetting.http_log)
                 GLSetting.http_log = -1
 

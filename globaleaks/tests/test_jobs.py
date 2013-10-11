@@ -1,7 +1,6 @@
 from twisted.internet.defer import inlineCallbacks
 
 # ovverride GLsetting
-from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
 
 from globaleaks.jobs import delivery_sched
