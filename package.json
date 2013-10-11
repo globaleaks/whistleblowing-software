@@ -1,7 +1,7 @@
 {
   "author": "Random GlobaLeaks Developers",
   "name": "GLClient",
-  "version": "2.27.15",
+  "version": "2.27.16",
   "dependencies": {
     "bower": "*"
   },
@@ -20,7 +20,7 @@
     "grunt-contrib-watch": "0.5.3",
     "grunt-manifest": "0.4.0",
     "grunt-reload": "0.2.0",
-    "grunt-usemin": "~0.1.9",
+    "grunt-usemin": "0.1.12",
     "jquery": "1.8.3",
     "mocha": "1.13.0",
     "node-gettext": "0.2.14",
