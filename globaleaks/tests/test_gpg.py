@@ -33,9 +33,9 @@ class TestReceiverSetKey(helpers.TestHandler):
     _handler = receiver.ReceiverInstance
 
     receiver_desc = {
-        'username': 'vecna@useless_information_on_this_test.org',
+        'username': 'evilaliv3@useless_information_on_this_test.org',
         'name': 'assertion',
-        'gpg_key_fingerprint': '341F1A8CE2B4F4F4174D7C21B842093DC6765430',
+        'gpg_key_fingerprint': 'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE',
         'gpg_key_status': Receiver._gpg_types[1] }
 
     receiver_only_update = {
@@ -74,7 +74,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
-                         u'341F1A8CE2B4F4F4174D7C21B842093DC6765430')
+                         u'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE')
         self.assertEqual(self.responses[0]['gpg_key_status'], Receiver._gpg_types[1])
 
         self.receiver_only_update['gpg_key_armor'] = unicode(HermesGlobaleaksKey.__doc__)
@@ -94,7 +94,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
         yield handler.put()
         self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
-            u'341F1A8CE2B4F4F4174D7C21B842093DC6765430')
+            u'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE')
         self.assertEqual(self.responses[0]['gpg_key_status'], Receiver._gpg_types[1])
 
         self.receiver_only_update['gpg_key_armor'] = unicode(HermesGlobaleaksKey.__doc__)
@@ -147,7 +147,7 @@ class TestReceiverSetKey(helpers.TestHandler):
 
         fake_receiver_desc = {
             'gpg_key_armor': unicode(DeveloperKey.__doc__),
-            'gpg_key_fingerprint': u"341F1A8CE2B4F4F4174D7C21B842093DC6765430",
+            'gpg_key_fingerprint': u"C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE",
             'gpg_key_status': Receiver._gpg_types[1],
             'username': u'fake@username.net',
         }
@@ -172,7 +172,7 @@ class TestReceiverSetKey(helpers.TestHandler):
             fake_receiver_desc = {
                 'gpg_key_armor': unicode(DeveloperKey.__doc__),
                 'gpg_key_status': Receiver._gpg_types[1],
-                'gpg_key_fingerprint': u"341F1A8CE2B4F4F4174D7C21B842093DC6765430",
+                'gpg_key_fingerprint': u"C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE",
                 'username': u'fake@username.net',
                 }
 
@@ -287,7 +287,7 @@ class TestReceiverSetKey(helpers.TestHandler):
 #        handler = self.request(self.receiver_only_update, role='receiver', user_id=self.dummyReceiver['receiver_gus'])
 #        yield handler.put()
 #        self.assertEqual(self.responses[0]['gpg_key_fingerprint'],
-#            u'341F1A8CE2B4F4F4174D7C21B842093DC6765430')
+#            u'C1ED5C8FDB6A1C74A807569591EC9BB8D9A950DE')
 #        self.assertEqual(self.responses[0]['gpg_key_status'], Receiver._gpg_types[1])
 #
 #        # second receiver creation!
@@ -462,72 +462,50 @@ class DeveloperKey:
 -----BEGIN PGP PUBLIC KEY BLOCK-----
 Version: GnuPG v1.4.11 (GNU/Linux)
 
-mQGiBEqTwO0RBACqVdgJXs/vKv76HIudqQc9y/xSLoCxGd8mAxqjXn9fONAIrzDY
-j79s1UMFCS8iTEH9EQGyv0JfCKXUcD1HFmKfZO8YfiBSM17SS+inPuV5+ZeQxvNh
-ppzgit4jx+0DVMgBWYf/CvT5mPAFzA1U7mZFid/y/ITvEDeq42beOOXYkwCg/bUT
-iw4R+Z0Q6LX++xhcidAQvqcD/iDACormazMFabPg45Bf7/lIHor2wGkzx46FuXbu
-nxYyUXJQ88mU7szbhHdYhD2a3J1R/fUXuLsgQophWFBCKkq4YC3GKksKlQGKPgdS
-WMxjxel4iaQJ5IZ48M+W/Y0eT+DSvARZw+IUr3q89JhS7mcxISlbocLz9Z32AGIj
-olcxBACNUw6cJ7p5nCYjw9f+KQyU0NNx2/hGg+SBLRWiV5SaIarGDJG/KHurvsOA
-yzjLEupXQvtaEyh5IeRu3rGr4hAfbtsIXRw8E055VBkwzXRN1rpcvumzayMW+OT8
-M5lbU8u/5+PNTfmjOJsLdp40WWBRQrCr1F/xu3lyjQg0P78gu7QwQ2xhdWRpbyBB
-Z29zdGkgPGNsYXVkaW8uYWdvc3RpQGxvZ2lvc2hlcm1lcy5vcmc+iGgEExEIACgC
-GwMFCQfDDL8GCwkIBwMCBhUIAgkKCwQWAgMBAh4BAheABQJQeqODAAoJELhCCT3G
-dlQwFfoAoIHqBJwQXb4uggiGJyqhLBENcU1XAKDIKet7mFlE4r3gfaWCmjevm+TT
-MrQ7dmVjbmEgKGEgUmFuZG9tIEdsb2JhTGVrcyBEZXZlbG9wZXIpIDx2ZWNuYUBn
-bG9iYWxlYWtzLm9yZz6IaAQTEQgAKAUCUHWpWAIbAwUJB8MMvwYLCQgHAwIGFQgC
-CQoLBBYCAwECHgECF4AACgkQuEIJPcZ2VDDJVQCfbrtSyDNA3PSco8ILcPOUDSXr
-sYAAn0X93PosYlznhqA3iiqEjPJm7X10tBh2ZWNuYSA8dmVjbmFAczBmdHBqLm9y
-Zz6IawQTEQgAKwIbAwUJB8MMvwYLCQgHAwIGFQgCCQoLBBYCAwECHgECF4AFAlB6
-o4MCGQEACgkQuEIJPcZ2VDBwlQCgu6Izv6NgQDKceRl43WWImtnJy0UAoPJNU3PW
-r8q9nN64lzqRLxA27YPmtBx2ZWNuYSA8dmVjbmFAZGVsaXJhbmRvbS5uZXQ+iGgE
-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
-=bDVx
+mQGiBEoHECwRBACDiq9qi2gtsehmK1AffXyXHD6f3eQ2YCMxGzdFmvfCnt6k2qFC
+FCx44GDlolkeeWb8nRWMOYkHeRzAqbAubB059ufxNo04XXjdVVztmxQYZ+5JbOzu
+k4NorCs0m9IG6djAbB5pmJA48hNM5cmP3KtoJURwzts8oYutoTap5Sj/4wCgl1Xw
+OUueV+o6/5sJ2km+HOqgP08D/A7fqPqFqx8b2MUmIt1v6olxsOyg1ArZgcmAxYfc
+ew3CMSgDJc9GdP4mMne2sqAD7wZ1THjAIBYggeg1wJWfmFOlA/do5nsoKBpuL67q
+kLSjf8Hp5kYYqZnM2OEygTWGRYvbwvTMdJiCokHMW/S1IyqSKuatVV+1zFNmtcZi
+r+EdA/oC6G+Gl65EJv0/2q/iEQypwsXrI9lhMOfoZiWgLI/utmtJP7K2Y3u+8VTG
+rEbIEj7R5p26ssPCxNy+XhchIktuZeMaenbkSmEsHeeUGCoX3adbMR6fYTctEWpP
+ti8OvxNkvrIwsxTSAbtM6Jv7SdJkvSWcfk6i+X33EP9IdrD+eLRBR2lvdmFubmkg
+J2V2aWxhbGl2MycgUGVsbGVyYW5vIDxnaW92YW5uaS5wZWxsZXJhbm9AZXZpbGFs
+aXYzLm9yZz6IawQTEQIAKwIbAwYLCQgHAwIGFQgCCQoLBBYCAwECHgECF4ACGQEF
+AlFZX6QFCQsUtnIACgkQkeybuNmpUN73TgCfZlkI4ao1ywV7QR3Xx2+Y88BgNsgA
+ninRQUukeLSC3H852TAJv1wxQ3wBtDlHaW92YW5uaSAnZXZpbGFsaXYzJyBQZWxs
+ZXJhbm8gPGV2aWxhbGl2M0BnbG9iYWxlYWtzLm9yZz6IaAQTEQIAKAIbAwYLCQgH
+AwIGFQgCCQoLBBYCAwECHgECF4AFAlFZX6QFCQsUtnIACgkQkeybuNmpUN7CIwCg
+gOkYHS/VLxNnzqYA/S+TRaXy4BUAnjF6Dd/jau7/IwL97F+AJ9Dwfu3TtERHaW92
+YW5uaSAnZXZpbGFsaXYzJyBQZWxsZXJhbm8gPGdpb3Zhbm5pLnBlbGxlcmFub0Bs
+b2dpb3NoZXJtZXMub3JnPohoBBMRAgAoAhsDBgsJCAcDAgYVCAIJCgsEFgIDAQIe
+AQIXgAUCUVlfpAUJCxS2cgAKCRCR7Ju42alQ3hWoAJ96OJm89VSMdIIpW9dXyyOk
+nXiiRACghz9pWkMUAM0/vAmdBMqPbsqQzk25BA0ESgcQLBAQAKgkGO7el8NgAaX+
+ksA7zMFz7+03vVMB/FQ7gllPU9rS7QoawsOsAEKKGQvvyhT6KFvAU4ut/07zpVjQ
+x9bPoyreE6v7IMa48WQTG9cEwrWqapYryNBxKju8XYApkhV46vEnHgH3E+Zut3XH
+LihT8/vyVrfv2Hxe0q1wbuizCGRMOgRZ5Ktn5ZPwazfp9lAyfBCApzmKdzIxIJ3u
+rdoDU/sNMJvX334/mS+xReDngYc5cQJ9tA2IWHo8GtrOQGM5D/hMfXmClSfdRG3P
+jpxVvLMV7hxeQzSlSu0Z9UUSC33nuhWfUtazSvUR7uEF9GVYrDYjOiTI0aaunIdo
+E8V+4g2+nyoPBKUA7psiJSaWgjITkmNtX+n7JVoCtsRCCOb5tFe31p4n061Cd9V5
+6ME2U2mK/TxAZ4/Czr1ocJG2M3mlUgmky6aLKQIcWLLrca8z2Gem8Ef9tx6/j90f
+FyS+MFlIGohkCFN1AzpcWY2w7F7RmvewYFqZHH3hk+VP+xI4xCAMx84wEmcVd4XW
+Sam/edcGOTsVnZOj44ePgirQjuws+SlPC4z34xGsoZpT2fBudHG92gdb8TRbXGM2
+5IUAsSLSllI/oq+yE3V+Hj2Hz/rCWFNVkViOcguIA9TYmXclCvGxlVEk18oyeE7h
+ZOBSE5uWII2U5JYkTwVN4oJO3wmbAAMFD/9qi/91xyRCmltKy6Pb51I69WZNrOwq
+YYYG3wuNH7DcSA/+7nTcH5WPFeiGZYB2QD9/nC1Sv0RxmnuMasU53fbgrf8+oqwF
+8VuYQ0lmz2clxCl7WyqF2hrCg6gsXwcOw3rkxb4bkt/p17FXQZ1vZaSa9cr3hSZD
+ZqJ+LsMrvof0zyl3sTE7CdXF0uHLHhBaYeRLQGsOr+pUu09kjuAf68ksDCEPhIE5
+WvhR1Esi29OZMBhwyQMWlbh+hij5OiJnMV+dvN1NqG8TYO/bcpc51EfSY46lTzVX
+mUVZylUXDV7+Ghp9OETBWm8Tc1RCDLvTdPkJeybmkPb3cQYstgL/vx0CWpvkNAt3
+nLozDH43Ep34+su7QINDZ+uYwLvcHvkToceGghZu1uGlg2nuCwFz7Xxw1TKw0pPU
+MPvEgd30udNoVL80C4iv42V5NAo6eNvrKr7evzL3F+tM/uegDb9ffNtcEYK1uiCN
+3jp/dukLnV3pvFRswAYHHUkw1hSXFq3AiVzbxY6YCAYpBk6v96kRtPePr5RnfNxq
+lCd8yu/YnOwc4P+Xt7dYCJYRDEds209RNtujAl+dDTnW7zR0p8mycNyB9PdMhuoA
+ajPgbCSvefQhxSkKTCKuoO77iPaTZsNIWBqh9pzcR8rmFAdRGBCWVKtpTcLiZn/j
+9wQjtv8VJWDWu4hPBBgRAgAPAhsMBQJRWV/PBQkLFLafAAoJEJHsm7jZqVDegZoA
+nRDMINePXcFzxkdVHgKpzUrXlfrBAKCSUbYHucAwQ3LKcjc2AGpUL51RGA==
+=BATO
 -----END PGP PUBLIC KEY BLOCK-----
     """
     pass
