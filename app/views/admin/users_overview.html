@@ -1,7 +1,5 @@
-<div ng-include="'views/header.html'"
-  onload='header_title="Users Overview" | translate;
-  header_subtitle="Administration Interface" | translate'
->
+<div ng-include="'views/header.html'" onload="header_title='Users Overview' | translate;
+  header_subtitle='Administration Interface' | translate">
 </div>
 
 <div class="container config-page" ng-controller="OverviewCtrl">
@@ -12,12 +10,11 @@
             This is the ng-inlcude directive:
             http://docs.angularjs.org/api/ng.directive:ngInclude
       -->
-    <div class="span3 config-sidebar"
-      ng-include="'views/admin/sidebar.html'">
+    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'">
     </div>
     <!-- End Nav Bar -->
 
-   <div class="span9">
+   <div class="col-md-9">
 
        <h1>{{ "Users overview" | translate }}</h1>
        <p>
@@ -59,4 +56,3 @@
 </div> <!-- span9 -->
 </div> <!-- row -->
 </div> <!-- container + controller -->
-

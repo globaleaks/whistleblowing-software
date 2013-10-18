@@ -1,40 +1,37 @@
-<div ng-include="'views/header.html'"
-  onload='header_title="Login" | translate;
-  header_subtitle=""'>
+<div ng-include="'views/header.html'" onload="header_title='Login' | translate;
+  header_subtitle=''">
 </div>
 
 <div class="container config-page">
   <div class="row" ng-hide="cookiesEnabled()">
-    <div class="span9">
+    <div class="col-md-9">
       <h2>{{ "Cookies are not enabled!" | translate }}</h2>
       <p>{{ "You will not be able to login." | translate }}</p>
     </div>
   </div>
 
-  <div class="row" ng-cloak ng-show="errors[0].code == 29">
-    <div class="span9">
-      <div class="alert alert-error">
+  <div class="row" ng-cloak="" ng-show="errors[0].code == 29">
+    <div class="col-md-9">
+      <div class="alert alert-error alert-warning">
         <strong>{{ "Authentication Failed" | translate }}</strong>
       </div>
     </div>
   </div>
 
   <div class="row" ng-show="cookiesEnabled()">
-    <div class="span9">
-      <form name="loginForm" novalidate>
+    <div class="col-md-9">
+      <form name="loginForm" novalidate="">
         <label>{{ "Username:" | translate }}
-          <input type="text" name="username"
-            ng-model="loginUsername" required>
+          <input class="form-control" name="username" ng-model="loginUsername" required="" type="text">
         </label>
 
         <label>{{ "Password:" | translate }}
-          <input type="password" name="password"
-            ng-model="loginPassword" required>
+          <input class="form-control" name="password" ng-model="loginPassword" required="" type="password">
         </label>
 
-        <button class="btn btn-success"
-          ng-disable="loginForm.$invalid"
-          ng-click="login(loginUsername, loginPassword, loginRole)">
+        <br />
+
+        <button class="btn btn-success" ng-disable="loginForm.$invalid" ng-click="login(loginUsername, loginPassword, loginRole)">
           {{ "Login" | translate }}</button>
 
       </form>

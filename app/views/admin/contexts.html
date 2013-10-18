@@ -1,7 +1,5 @@
-<div ng-include="'views/header.html'"
-  onload='header_title="Contexts Configuration" | translate;
-  header_subtitle="Administration Interface" | translate'
->
+<div ng-include="'views/header.html'" onload="header_title='Contexts Configuration' | translate;
+  header_subtitle='Administration Interface' | translate">
 </div>
 
 
@@ -13,72 +11,63 @@
             This is the ng-inlcude directive:
             http://docs.angularjs.org/api/ng.directive:ngInclude
       -->
-    <div class="span3 config-sidebar"
-      ng-include="'views/admin/sidebar.html'">
+    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'">
     </div>
     <!-- End Nav Bar -->
 
-    <div class="span9">
+    <div class="col-md-9">
 
       <!-- ContextList -->
       <div ng-controller="AdminContextsCtrl">
         <div class="row">
-          <div class="span4">
+          <div>
             <h3>{{ "Contexts list" | translate }}</h3>
           </div>
         </div>
 
         <div class="row" ng-repeat="context in admin.contexts">
           <form name="contextForm" ng-controller="AdminContextsEditorCtrl">
-            <div class="span9 configItem contextItem">
+            <div class="configItem contextItem">
 
               <div class="row" ng-click="toggleEditing()">
-                <div class="span9 editorHeader contextEditorHeader">
-                  <div class="span4">
+                <div class="editorHeader contextEditorHeader">
+                  <div class="col-md-6">
                     <span>{{context.name}}</span>
                   </div>
 
-                  <div class="span4 editButtons" ng-show="editing">
-                    <button class="btn btn-success saveContext"
-                            ng-disabled="contextForm.$pristine"
-                            ng-click="update(context)">
-                            {{ "Save" | translate }}</button>
+                  <div class="col-md-6 editButtons" ng-show="editing">
+                    <button class="btn btn-success saveContext" ng-disabled="contextForm.$pristine" ng-click="update(context)">
+                      {{ "Save" | translate }}
+                    </button>
 
-                    <button class="btn btn-danger deleteContext"
-                            ng-click="delete(context)">
-                            {{ "Delete" | translate }}</button>
+                    <button class="btn btn-danger deleteContext" ng-click="delete(context)">
+                      {{ "Delete" | translate }}
+                    </button>
                   </div>
 
                 </div>
               </div>
 
-              <div class="row editor contextEditor" ng-show="editing">
-
+              <div class="editor contextEditor" ng-show="editing">
                 <div class="row">
 
-                  <div class="span4">
+                  <div class="col-md-6">
                     <label>{{ "Name" | translate }}</label>
-                    <input type="text"
-                           required
-                           ng-model="context.name"
-                           value="{{context.name}}" />
+                    <input class="form-control" required="" ng-model="context.name" value="{{context.name}}" type="text">
                     <label>{{ "Description" | translate }}</label>
-                    <textarea required
-                              ng-model="context.description">{{context.description}}</textarea>
-
+                    <textarea required="" ng-model="context.description">{{context.description}}</textarea>
+                    <div ng-include="'views/admin/fieldeditor.html'"></div>
                   </div>
 
-                  <div class="span4">
+                  <div class="col-md-6">
                     <label>{{ "Receivers" | translate }}</label>
                     <div class="selectionList">
 
-                      <div ng-repeat="receiver in admin.receivers"
-                           ng-class='{row: ($index % 3 == 2) || $last}'>
+                      <div ng-repeat="receiver in admin.receivers" ng-class="{row: ($index % 3 == 2) || $last}">
 
                         <div class="selectionElement">
-                          <div class="selectionDetails" ng-click="toggle(receiver)"
-                               ng-class="{selected: isSelected(receiver)}">
-                            <img ng-src="/static/{{receiver.receiver_gus}}.png" width="40" height="40">
+                          <div class="selectionDetails" ng-click="toggle(receiver)" ng-class="{selected: isSelected(receiver)}">
+                            <img ng-src="/static/{{receiver.receiver_gus}}.png" height="40" width="40">
                             <span>{{receiver.name}}</span>
                           </div>
                         </div>
@@ -91,90 +80,58 @@
                 </div>
 
                 <div class="row">
-
-                  <div class="offset4 span4">
-                    <div ng-include="'views/admin/fieldeditor.html'"></div>
-                  </div>
-
-                </div>
-
-                  <button class="btn btn-info"
-                          ng-click="advanced_edit = !advanced_edit"
-                          ng-init="advanced_edit=false">
+                  <div class="col-md-12">
+                    <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">
                       {{ "Advanced settings" | translate }}
-                  </button>
+                    </button>
+                    </div>
 
-                  <div class="row" ng-show="advanced_edit">
+                    <div ng-show="advanced_edit">
+                        <div class="col-md-6">
+                            <br />
+                            <br />
+                            <label>{{ "Incomplete submissions expiry time (hours)" | translate }}</label>
+                            <input class="form-control" required="" ng-model="context.submission_timetolive" value="{{context.submission_timetolive}}" type="number">
 
-                      <div class="span4">
-                          <br>
-                          <br>
-                          <label>{{ "Incomplete submissions expiry time (hours)" | translate }}</label>
-                          <input type="number"
-                                 required
-                                 ng-model="context.submission_timetolive"
-                                 value="{{context.submission_timetolive}}" />
+                            <label>{{ "Maxiumum file downloads" | translate }}</label>
+                            <input class="form-control" required="" ng-model="context.file_max_download" value="{{context.file_max_download}}" type="number">
 
-                          <label>{{ "Maxiumum file downloads" | translate }}</label>
-                          <input type="number"
-                                 required
-                                 ng-model="context.file_max_download"
-                                 value="{{context.file_max_download}}" />
-
-                          <label>{{ "Submitted Tip expiry time (days)" | translate }}</label>
-                          <input type="number"
-                                 required
-                                 ng-model="context.tip_timetolive"
-                                 value="{{context.tip_timetolive}}" />
-                          <label>{{ "Receipt format (regular expression)" | translate }}</label>
-                              <input type="text"
-                                     required
-                                     ng-model="context.receipt_regexp"
-                                     value="{{context.receipt_regexp}}" />
-                          <label>
-                              <input type="checkbox"
-                                     ng-model="context.file_required"
-                                     value="{{context.file_required}}" />
+                            <label>{{ "Submitted Tip expiry time (days)" | translate }}</label>
+                            <input class="form-control" required="" ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number">
+                            <label>{{ "Receipt format (regular expression)" | translate }}</label>
+                            <input class="form-control" required="" ng-model="context.receipt_regexp" value="{{context.receipt_regexp}}" type="text">
+                            <label>
+                              <input ng-model="context.file_required" value="{{context.file_required}}" type="checkbox">
                               {{ "Require at least one file to be uploaded" | translate }}
-                          </label>
-                          <label>
-                              <input type="checkbox"
-                                     ng-model="context.select_all_receivers"
-                                     value="{{context.select_all_receivers}}" />
+                            </label>
+                            <label>
+                              <input ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox">
                               {{ "Select all receivers by default" | translate }}
-                          </label>
+                            </label>
 
-                          <!--
-                          <label>Tags</label>
-                          <input type="text"
-                                 required
-                                 ng-model="context.tags"
-                                 value="{{context.tags}}">
-                          -->
-                          <br>
-                          <br>
-                      </div>
-
+                            <br />
+                            <br />
+                        </div>
+                    </div>
                   </div>
-
+                </div>
               </div>
             </div>
           </form>
         </div>
 
         <div class="row">
-          <div class="span9 configRow addContext">
+          <div class="col-md-9 configRow addContext">
             <h4>{{ "Add new context" | translate }}</h4>
             <form name="newContext">
               <div class="row">
-                <div class="span4">
-                  <input type="text" ng-model="new_context_name" required>
+                <div class="col-md-6">
+                  <input class="form-control" ng-model="new_context_name" required="" type="text">
                 </div>
               </div>
               <div class="row">
-                <div class="span4">
-                  <button class="btn" ng-disabled="newContext.$invalid"
-                          ng-click="admin.create_context(new_context_name)">
+                <div class="col-md-6">
+                  <button class="btn btn-default" ng-disabled="newContext.$invalid" ng-click="admin.create_context(new_context_name)">
                           {{ "add" | translate }}</button>
                 </div>
               </div>

@@ -4,21 +4,21 @@
   <noscript><input type="hidden" name="redirect" value="http://blueimp.github.io/jQuery-File-Upload/"></noscript>
   <!-- The fileupload-buttonbar contains buttons to add/delete files and start/cancel the upload -->
   <div class="row fileupload-buttonbar">
-    <div class="span7">
+    <div class="col-md-7">
       <!-- The fileinput-button span is used to style the file input field as button -->
       <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
-        <i class="glyphicon glyphicon-plus"></i>
+        <i class="glyphicon glyphglyphicon glyphicon-plus"></i>
         <span>{{ "Add files" | translate }}</span>
-        <input type="file" name="files[]" multiple ng-disabled="disabled">
+        <input class="form-control" name="files[]" multiple="" ng-disabled="disabled" type="file">
       </span>
       <!-- The loading indicator is shown during file processing -->
       <div class="fileupload-loading"></div>
     </div>
     <!-- The global progress information -->
-    <div class="span5 fade" data-ng-class="{in: active()}">
+    <div class="col-md-4 fade" data-ng-class="{in: active()}">
       <!-- The global progress bar -->
       <div class="progress progress-striped active" data-file-upload-progress="progress()">
-        <div class="bar-success bar" data-ng-style="{width: num + '%'}"></div>
+        <div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div>
       </div>
       <!-- The extended global progress information -->
       <div class="progress-extended">&nbsp;</div>
@@ -27,35 +27,35 @@
 
   <!-- The table listing the files available for upload/download -->
   <table class="table table-striped files ng-cloak">
-    <tr data-ng-repeat="file in queue">
-      <td data-ng-switch data-on="!!file.thumbnailUrl">
+    <tbody><tr data-ng-repeat="file in queue">
+      <td data-ng-switch="" data-on="!!file.thumbnailUrl">
         <div class="preview" data-ng-switch-when="true">
-          <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery><img data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
+          <a data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery=""><img data-ng-src="{{file.thumbnailUrl}}" alt=""></a>
         </div>
-        <div class="preview" data-ng-switch-default data-file-upload-preview="file"></div>
+        <div class="preview" data-ng-switch-default="" data-file-upload-preview="file"></div>
       </td>
       <td>
-        <p class="name" data-ng-switch data-on="!!file.url">
-        <span data-ng-switch-when="true" data-ng-switch data-on="!!file.thumbnailUrl">
-          <a data-ng-switch-when="true" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery>{{file.name}}</a>
-          <a data-ng-switch-default data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
+        <p class="name" data-ng-switch="" data-on="!!file.url">
+        <span data-ng-switch-when="true" data-ng-switch="" data-on="!!file.thumbnailUrl">
+          <a data-ng-switch-when="true" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}" data-gallery="">{{file.name}}</a>
+          <a data-ng-switch-default="" data-ng-href="{{file.url}}" title="{{file.name}}" download="{{file.name}}">{{file.name}}</a>
         </span>
-        <span data-ng-switch-default>{{file.name}}</span>
+        <span data-ng-switch-default="">{{file.name}}</span>
         </p>
-        <div data-ng-show="file.error"><span class="label label-important">Error</span> {{file.error}}</div>
+        <div data-ng-show="file.error"><span class="label label-danger">Error</span> {{file.error}}</div>
       </td>
       <td>
         <p class="size">{{file.size | formatFileSize}}</p>
         <div class="progress progress-striped active fade" data-ng-class="{pending: 'in'}[file.$state()]" data-file-upload-progress="file.$progress()">
-          <div class="bar-success bar" data-ng-style="{width: num + '%'}"></div>
+          <div class="progress-bar progress-bar-success" data-ng-style="{width: num + '%'}"></div>
         </div>
       </td>
       <td>
         <button type="button" class="btn btn-warning cancel" data-ng-click="file.$cancel()" data-ng-hide="file.id">
-          <i class="glyphicon glyphicon-ban-circle"></i>
+          <i class="glyphicon glyphglyphicon glyphicon-ban-circle"></i>
           <span>{{ "Cancel" | translate }}</span>
         </button>
       </td>
     </tr>
-  </table>
+  </tbody></table>
 </form>

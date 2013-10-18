@@ -1,11 +1,11 @@
 <div class="messageConsole">
 
   <div ng-repeat="error in errors">
-    <div class="alert alert-error errorMessage" fadeout>
+    <div class="alert alert-error errorMessage alert-warning alert-dismissable" fadeout="">
       <button type="button" class="close" data-dismiss="alert">×</button>
       <p><strong>{{error.url}}</strong>
 
-      <div ng-switch on="error.code">
+      </p><div ng-switch="" on="error.code">
 
         <div ng-switch-when="18">
           {{ "Your user has reached the maximum amount of access for this Tip" | translate }}
@@ -147,13 +147,13 @@
           {{ "Request timed out" | translate }}
         </div>
       </div>
-      </p>
+      <p></p>
 
     </div>
   </div>
 
   <div ng-repeat="success in successes">
-    <div class="alert alert-success successMessage" fadeout>
+    <div class="alert alert-success successMessage alert-dismissable" fadeout="">
       <button type="button" class="close" data-dismiss="alert">×</button>
       <p><strong>{{ "Success!" | translate }}</strong> {{success.message}}</p>
     </div>
@@ -162,15 +162,14 @@
 </div>
 
 <div class="toolTip" ng-controller="toolTipCtrl">
-  <div class="logout alert" ng-hide="!session_id">
+  <div class="logout alert alert-warning" ng-hide="!session_id">
     <label>{{ "Currently logged in " | translate }} 
       (<a href="{{auth_landing_page}}">{{role}}</a>)</label>
     <button class="btn btn-danger" ng-click="logout()">
       {{ "logout" | translate }}</button>
   </div>
   <div class="languagePick" ng-show="show_language_selector">
-    <select ng-model="language"
-      ng-options="lang_code as lang_name for (lang_code, lang_name) in available_languages">
+    <select ng-model="language" ng-options="lang_code as lang_name for (lang_code, lang_name) in available_languages">
     </select>
   </div>
 </div>

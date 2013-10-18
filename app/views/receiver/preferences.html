@@ -1,48 +1,43 @@
-<div ng-include="'views/header.html'"
-     onload='header_title="Your Preferences" | translate;
-     header_subtitle="Receiver Interface" | translate'>
+<div ng-include="'views/header.html'" onload="header_title='Your Preferences' | translate;
+     header_subtitle='Receiver Interface' | translate">
 </div>
 
 <div class="container config-page">
   <div class="row">
 
-    <div class="span3 config-sidebar"
-         ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl">
+    <div class="col-md-3 config-sidebar" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl">
     </div>
 
-    <div class="span9">
+    <div class="col-md-9">
 
       <div class="row">
         <form class="config-form">
-            <div class="span4">
+            <div class="col-md-4">
 
             <h4>{{ "Preferences and password management" | translate }}</h4>
-            <br>
+            <br />
 
             <p>{{ "Your username" | translate }}: {{preferences.username}}</p>
 
             <label><b>{{ "Current Password" | translate }}</b></label>
-            <input type="password"
-            ng-model="preferences.old_password">
-            <p class="text-error" ng-show="missing_old_password">
+            <input class="form-control" ng-model="preferences.old_password" type="password">
+            <p class="has-error" ng-show="missing_old_password">
             {{ "Old password confirmation required" | translate }}</p>
 
             <label><b>{{ "New Password" | translate }}</b></label>
-            <input type="password"
-            ng-model="preferences.password" >
-            <p class="text-error" ng-show="unsafe_password">
+            <input class="form-control" ng-model="preferences.password" type="password">
+            <p class="has-error" ng-show="unsafe_password">
             {{ "The choosen password is unsafe, it should have" | translate }}:</p>
-            <li class="text-error" ng-hide="pwdHasLetter">
+            <li class="has-error" ng-hide="pwdHasLetter">
             {{ "At least one letter" | translate }}</li>
-            <li class="text-error" ng-hide="pwdHasNumber">
+            <li class="has-error" ng-hide="pwdHasNumber">
             {{ "At least one number" | translate }}</li>
-            <li class="text-error" ng-hide="pwdValidLength">
+            <li class="has-error" ng-hide="pwdValidLength">
             {{ "At least 8 characters" | translate }}</li>
 
             <label><b>{{ "Type your new password again" | translate }}</b></label>
-            <input type="password"
-            ng-model="preferences.check_password">
-            <p class="text-error" ng-show="mismatch_password">
+            <input class="form-control" ng-model="preferences.check_password" type="password">
+            <p class="has-error" ng-show="mismatch_password">
             {{ "The two passwords do not match" | translate }}</p>
 
           </div>
@@ -50,11 +45,9 @@
       </div>
 
       <div class="row">
-          <div class="span4">
+          <div class="col-md-4">
 
-            <button type="submit" class="btn btn-success"
-                ng-disabled="mismatch_password || unsafe_password || missing_old_password"
-                ng-click="pass_save()">
+            <button type="submit" class="btn btn-success" ng-disabled="mismatch_password || unsafe_password || missing_old_password" ng-click="pass_save()">
                 {{ "Change password" | translate }}
             </button>
 
@@ -63,42 +56,42 @@
 
       <form class="config-form">
         <div class="row">
-            <div class="span4">
+            <div class="col-md-4">
 
                 <h4>
                     {{ "Notification settings" | translate }}
                 </h4>
 
-                <div class="table-bordered" >
+                <div class="table-bordered">
                     <label>
-                        <input type="checkbox" ng-model="preferences.tip_notification" />
+                        <input ng-model="preferences.tip_notification" type="checkbox">
                         {{ "Enable Tip notification" | translate }}
                     </label>
-                    <label ng-show="preferences.tip_notification" >
+                    <label ng-show="preferences.tip_notification">
                         <span class="btn-info">
                           {{ "now Enabled:" | translate }}</span>
                         {{ "Every new Tip you receive will trigger an email with a link to it." | translate }}
                     </label>
                 </div>
 
-                <div class="table-bordered" >
+                <div class="table-bordered">
                     <label>
-                        <input type="checkbox" ng-model="preferences.comment_notification" />
+                        <input ng-model="preferences.comment_notification" type="checkbox">
                         {{ "Enable Comment notification" | translate }}
                     </label>
-                    <label ng-show="preferences.comment_notification" >
+                    <label ng-show="preferences.comment_notification">
                         <span class="btn-info">
                           {{ "now Enabled:" | translate }}</span>
                         {{ "Every comment, written by the whistleblower or the receivers, will trigger an email." | translate }}
                     </label>
                 </div>
 
-                <div class="table-bordered" >
+                <div class="table-bordered">
                     <label>
-                        <input type="checkbox" ng-model="preferences.file_notification" />
+                        <input ng-model="preferences.file_notification" type="checkbox">
                         {{ "Enable File notification" | translate }}
                     </label>
-                    <label ng-show="preferences.file_notification" >
+                    <label ng-show="preferences.file_notification">
                         <span class="btn-info">
                           {{ "now Enabled:" | translate }}</span>
                         {{ "For every file available for download you will be notified via email with related information." | translate }}
@@ -106,7 +99,7 @@
                 </div>
 
                 <div>
-                    <button type="submit" class="btn btn-success" ng-click="pref_save()" >
+                    <button type="submit" class="btn btn-success" ng-click="pref_save()">
                         {{ "Update notification settings" | translate }}
                     </button>
                 </div>
@@ -114,7 +107,7 @@
         </div>
 
         <div class="row">
-        <div class="span4">
+        <div class="col-md-4">
 
         <h4>Encryption settings</h4>
 
@@ -122,17 +115,17 @@
 
           <p>
             {{ "You have an active Key" | translate }}
-            <br>
+            <br />
             {{ "The fingerprint is:" | translate }}
             <b>{{preferences.gpg_key_fingerprint}}</b>
           </p>
 
           <div class="table-bordered">
             <label>
-              <input type="checkbox" ng-model="preferences.gpg_enable_notification" />
+              <input ng-model="preferences.gpg_enable_notification" type="checkbox">
               {{ "Enable encrypted notification" | translate }}
             </label>
-            <label ng-show="preferences.gpg_enable_notification" >
+            <label ng-show="preferences.gpg_enable_notification">
               <span class="btn-info">
                 {{ "now Enabled:" | translate }}</span>
               {{ "Every notification you'll receive will be encrypted with your GPG key." | translate }}
@@ -141,10 +134,10 @@
 
           <div class="table-bordered">
             <label>
-              <input type="checkbox" ng-model="preferences.gpg_enable_files" />
+              <input ng-model="preferences.gpg_enable_files" type="checkbox">
               {{ "Enable file encryption" | translate }}
             </label>
-            <label ng-show="preferences.gpg_enable_files" >
+            <label ng-show="preferences.gpg_enable_files">
               <span class="btn-info">
                 {{ "now Enabled:" | translate }}</span>
               {{ "Every file you'll download will be encrypted with your GPG key." | translate }}
@@ -153,22 +146,15 @@
 
         </div>
 
-        <button class="btn btn-info"
-                ng-show="preferences.gpg_key_fingerprint"
-                ng-click="expose_gpg_key = ! expose_gpg_key"
-                ng-init="expose_gpg_key=false">
+        <button class="btn btn-info" ng-show="preferences.gpg_key_fingerprint" ng-click="expose_gpg_key = ! expose_gpg_key" ng-init="expose_gpg_key=false">
                 {{ "see PGP key details" | translate }}
         </button>
 
-        <div ng-show="expose_gpg_key"
-             ng-show="expose_gpg_key && preferences.gpg_key_info">
+        <div ng-show="expose_gpg_key">
           <pre>{{preferences.gpg_key_info}}</pre>
         </div>
 
-        <button class="btn btn-danger"
-                ng-hide="preferences.gpg_key_fingerprint"
-                ng-click="gpg_marketing = ! gpg_marketing"
-                ng-init="gpg_marketing=false">
+        <button class="btn btn-danger" ng-hide="preferences.gpg_key_fingerprint" ng-click="gpg_marketing = ! gpg_marketing" ng-init="gpg_marketing=false">
                 {{ "You've not encryption enabled!" | translate }}
         </button>
 
@@ -180,8 +166,7 @@
         </div>
 
         <div class="clearfix">
-          <a ng-init="send_key=false"
-             ng-click="send_key = ! send_key">
+          <a ng-init="send_key=false" ng-click="send_key = ! send_key">
              {{ "Submit a gpg key" | translate }}
           </a>
         </div>
@@ -194,12 +179,12 @@
         </div>
 
         <label ng-show="preferences.gpg_key_fingerprint">
-          <input type="checkbox" ng-model="preferences.gpg_key_remove" />
+          <input ng-model="preferences.gpg_key_remove" type="checkbox">
                  {{ "Remove your PGP key" | translate }}
         </label>
 
         <div>
-          <button type="submit" class="btn btn-success" ng-click="pref_save()" >
+          <button type="submit" class="btn btn-success" ng-click="pref_save()">
             {{ "Update notification and encryption settings" | translate }}
           </button>
         </div>
