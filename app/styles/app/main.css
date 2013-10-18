@@ -1,5 +1,9 @@
 /* Base class, inspired by bootstrap jumbotron */
 
+textarea {
+  display: block;
+}
+
 .jumbotron {
   position: relative;
   padding: 40px 0;
@@ -33,7 +37,7 @@
 }
 
 .jumbotron h1 {
-  font-size: 60px;
+  font-size: 40px;
   font-weight: bold;
   letter-spacing: -2px;
   line-height: 1;
@@ -63,7 +67,7 @@
   border-bottom: 1px solid #ddd;
 }
 .subhead h1 {
-  font-size: 60px;
+  font-size: 40px;
 }
 .subhead p {
   margin-bottom: 20px;
@@ -94,7 +98,7 @@
 }
 
 .homeSplash h1 {
-  font-size: 100px;
+  font-size: 40px;
   font-weight: bold;
   letter-spacing: -2px;
   line-height: 1;
@@ -140,8 +144,7 @@
 
 .homeIntro h1 {
   margin: 60px 0 10px 0;
-  font-size: 60px;
-  font-weight: 200;
+  font-size: 40px;
   line-height: 1;
   letter-spacing: -1px;
 }
@@ -165,28 +168,21 @@
 
 /* Footer */
 .footer {
-padding: 70px 0;
-margin-top: 70px;
-border-top: 1px solid #E5E5E5;
-background-color: whiteSmoke;
+  padding: 70px 0;
+  margin-top: 70px;
+  border-top: 1px solid #E5E5E5;
+  background-color: whiteSmoke;
+  text-align: center;
 }
-
 
 .footer p {
   margin-bottom: 0;
   color: #777;
 }
-.footer-links {
-  margin: 10px 0;
-}
-.footer-links li {
-  display: inline;
-  margin-right: 10px;
-}
 
 /* Just some styles to use for this demo, you can remove them
    for your project. */
-.demo .span4 {
+.demo {
     text-align: center;
 }
 .demo ul {
@@ -292,12 +288,11 @@ background-color: whiteSmoke;
 /* Privacy box stuff */
 
 .privacyBox {
-  position: absolute;
+  position: fixed;
   left: 20px;
   top: 10px;
   z-index: 9999;
   display: block;
-  width: 500px;
 }
 
 .semaphore {
@@ -332,15 +327,21 @@ background-color: whiteSmoke;
 
 .informationBox {
   padding: 20px;
-  margin-bottom: 30px;
   font-size: 18px;
   font-weight: 200;
   line-height: 30px;
   color: inherit;
-  background-color: #eeeeee;
-  -webkit-border-radius: 6px;
-  -moz-border-radius: 6px;
   border-radius: 6px;
+  width: 500px;
+  color: #c09853;
+  padding: 15px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  color: #c09853;
+  background-color: #fcf8e3;
+
 }
 
 .shasum {
@@ -368,4 +369,14 @@ background-color: whiteSmoke;
 
 .spinner {
   padding-bottom: 100px;
+}
+
+/* minor hacks needed to not modify some code written for angular and bootstrap 2.0.3 */
+
+.has-error {
+  color: #b94a48;
+}
+
+.modal {
+  display: inline;
 }

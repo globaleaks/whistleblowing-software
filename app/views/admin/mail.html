@@ -1,7 +1,5 @@
-<div ng-include="'views/header.html'"
-     onload='header_title="Mail Configuration" | translate;
-  header_subtitle="Administration Interface" | translate'
->
+<div ng-include="'views/header.html'" onload="header_title='Mail Configuration' | translate;
+  header_subtitle='Administration Interface' | translate">
 </div>
 
 <div class="container config-page">
@@ -12,29 +10,27 @@
             This is the ng-inlcude directive:
             http://docs.angularjs.org/api/ng.directive:ngInclude
       -->
-    <div class="span3 config-sidebar"
-         ng-include="'views/admin/sidebar.html'">
+    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'">
     </div>
     <!-- End Nav Bar -->
 
 
-    <div class="span9">
+    <div class="col-md-9">
 
       <!-- Notification -->
       <div class="row">
-        <div class="span9">
+        <div class="col-md-9">
           <h3>Email Account</h3>
           <form name="notificationForm" class="config-form">
 
             <div class="row">
-                <div class="span9">
-
+              <div class="col-md-6">
 		<div class="table-bordered">
 		   <label>
-		      <input type="checkbox" ng-model="admin.notification.disable" />
+		      <input ng-model="admin.notification.disable" type="checkbox">
 		      {{ "Disable email notification" | translate }}
 		   </label>
-		   <label ng-show="admin.notification.disable" >
+		   <label ng-show="admin.notification.disable">
 		      <span class="alert-error">
                         {{ "Email notification is disabled" | translate }}
                       </span>
@@ -43,69 +39,57 @@
 		</div>
 
                 <label>{{ "Source Name" | translate }}</label>
-                <input type="text"
-                       ng-model="admin.notification.source_name" required>
+                <input class="form-control" ng-model="admin.notification.source_name" required="" type="text">
 
                 <label>{{ "Source Email" | translate }}</label>
-                <input type="text"
-                       ng-model="admin.notification.source_email" required>
+                <input class="form-control" ng-model="admin.notification.source_email" required="" type="text">
 
                 <label>{{ "Username" | translate }}</label>
-                <input type="text"
-                       ng-model="admin.notification.username" required>
+                <input class="form-control" ng-model="admin.notification.username" required="" type="text">
 
                 <label>{{ "Password" | translate }}</label>
-                <input type="password"
-                       ng-model="admin.notification.password" required>
+                <input class="form-control" ng-model="admin.notification.password" required="" type="password">
 
                 <label>{{ "SMTP server address" | translate }}</label>
-                <input type="text"
-                       ng-model="admin.notification.server" required>
+                <input class="form-control" ng-model="admin.notification.server" required="" type="text">
 
                 <label>{{ "SMTP server port" | translate }}</label>
-                <input type="text"
-                       ng-model="admin.notification.port" required>
+                <input class="form-control" ng-model="admin.notification.port" required="" type="text">
 
                 <label>{{ "Transport Security" | translate }}</label>
-                <select ng-model="admin.notification.security" required>
-                  <option value='SSL'>SMTPS</option>
-                  <option value='TLS'>SMTP/TLS</option>
+                <select ng-model="admin.notification.security" required="">
+                  <option value="SSL">SMTPS</option>
+                  <option value="TLS">SMTP/TLS</option>
                 </select>
 
               </div>
-
             </div>
 
             <div class="row">
-
-              <div class="span9">
-                <button class="btn btn-success"
-                        ng-disabled="notificationForm.$invalid || notificationForm.$pristine"
-                        ng-click="update(admin.notification)">
+              <div class="col-md-6">
+                <button class="btn btn-success" ng-disabled="notificationForm.$invalid || notificationForm.$pristine" ng-click="update(admin.notification)">
                         {{ "Save" | translate }}</button>
               </div>
-
             </div>
 
             <div class="row">
-
-              <div class="span9">
+              <div class="col-md-6">
                 <h3>{{ "Notification templates" | translate }}</h3>
 
                 <label>{{ "Tip Email Subject" | translate }}</label>
-                <input type="text" ng-model="admin.notification.tip_mail_title" class="input-xlarge" />
+                <input ng-model="admin.notification.tip_mail_title" class="input-xlarge form-control" type="text">
 
                 <label>{{ "Tip Email template" | translate }}</label>
                 <textarea class="mobileTextArea" ng-model="admin.notification.tip_template"></textarea>
 
                 <label>{{ "Comment Email Subject" | translate }}</label>
-                <input type="text" ng-model="admin.notification.comment_mail_title" class="input-xlarge" />
+                <input ng-model="admin.notification.comment_mail_title" class="input-xlarge form-control" type="text">
 
                 <label>{{ "Comment Email template" | translate }}</label>
                 <textarea class="mobileTextArea" ng-model="admin.notification.comment_template"></textarea>
 
                 <label>{{ "File Email Subject" | translate }}</label>
-                <input type="text" ng-model="admin.notification.file_mail_title" class="input-xlarge"/>
+                <input ng-model="admin.notification.file_mail_title" class="input-xlarge form-control" type="text">
 
                 <label>{{ "File Email template" | translate }}</label>
                 <textarea class="mobileTextArea" ng-model="admin.notification.file_template"></textarea>
@@ -119,11 +103,10 @@
             </div>
 
             <div class="row">
-              <div class="span9">
-                <button class="btn btn-success"
-                        ng-disabled="notificationForm.$invalid || notificationForm.$pristine"
-                        ng-click="update(admin.notification)">
-                        {{ "Save" | translate }}</button>
+              <div class="col-md-6">
+                <button class="btn btn-success" ng-disabled="notificationForm.$invalid || notificationForm.$pristine" ng-click="update(admin.notification)">
+                  {{ "Save" | translate }}
+                </button>
               </div>
             </div>
           </form>
@@ -134,16 +117,3 @@
     </div>
   </div>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-

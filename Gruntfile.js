@@ -32,7 +32,8 @@ module.exports = function(grunt) {
         'app/scripts/**/*.js',
         'app/views/**/*.html',
         'app/templates/**/*.html',
-        'app/img/**/*'
+        'app/img/**/*',
+        'app/fonts/*',
       ],
       tasks: ['build', 'reload']
     },
@@ -71,6 +72,23 @@ module.exports = function(grunt) {
       globals: {
         angular: true
       }
+    },
+
+    minify: {
+      dynamic_mappings: {
+        // Grunt will search for "**/*.js" under "lib/" when the "minify" task
+        // runs and build the appropriate src-dest file mappings then, so you
+        // don't need to update the Gruntfile when files are added or removed.
+        files: [
+          {
+            expand: true,     // Enable dynamic expansion.
+            cwd: 'lib/',      // Src matches are relative to this path.
+            src: ['**/*.js'], // Actual pattern(s) to match.
+            dest: 'build/',   // Destination path prefix.
+            ext: '.min.js',   // Dest filepaths will have this extension.
+          },
+        ],
+      },
     },
 
     // Build configuration
@@ -153,8 +171,6 @@ module.exports = function(grunt) {
   /* grunt.loadNpmTasks('grunt-bower-task'); */
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
-    var images_src = 'tmp/img/**';
-
     var rm_rf = function(dir) {
       var s = fs.statSync(dir);
 
@@ -169,6 +185,7 @@ module.exports = function(grunt) {
 
     grunt.file.mkdir('build');
     grunt.file.mkdir('build/img');
+    grunt.file.mkdir('build/fonts');
 
     grunt.file.copy('tmp/styles.css', 'build/styles.css');
     grunt.file.copy('tmp/scripts.js', 'build/scripts.js');
@@ -176,6 +193,10 @@ module.exports = function(grunt) {
 
     grunt.file.recurse('tmp/img', function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/img', subdir || '', filename || ''));
+    });
+
+    grunt.file.recurse('tmp/fonts', function(absdir, rootdir, subdir, filename) {
+        grunt.file.copy(absdir, path.join('build/fonts', subdir || '', filename || ''));
     });
 
     rm_rf('tmp');

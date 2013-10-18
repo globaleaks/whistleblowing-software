@@ -1,6 +1,5 @@
-<div ng-include="'views/header.html'"
-     onload='header_title="Receivers Configuration" | translate;
-     header_subtitle="Administration Interface" | translate'>
+<div ng-include="'views/header.html'" onload="header_title='Receivers Configuration' | translate;
+     header_subtitle='Administration Interface' | translate">
 </div>
 
 <div class="container config-page">
@@ -11,17 +10,16 @@
             This is the ng-inlcude directive:
             http://docs.angularjs.org/api/ng.directive:ngInclude
       -->
-    <div class="span3 config-sidebar"
-         ng-include="'views/admin/sidebar.html'">
+    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'">
     </div>
     <!-- End Nav Bar -->
 
-    <div class="span9">
+    <div class="col-md-9">
 
       <!-- ReceiverList -->
       <div ng-controller="AdminReceiversCtrl">
         <div class="row">
-          <div class="span4">
+          <div class="col-md-9">
             <h3>{{ "Receiver list" | translate }}</h3>
           </div>
         </div>
@@ -30,141 +28,119 @@
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
 
           <form name="receiverForm" class="receiverConfig" ng-controller="AdminReceiversEditorCtrl">
-            <div class="span9 configItem receiverItem">
-
+            <div class="configItem receiverItem">
               <div class="row" ng-click="toggleEditing()">
-                <div class="span9 editorHeader receiverEditorHeader">
-                  <div class="span4">
+                <div class="editorHeader receiverEditorHeader">
+                  <div class="col-md-6">
                     <span>{{receiver.name}}</span>
                   </div>
 
-                  <div class="span4 editButtons" ng-show="editing">
-                    <button class="btn btn-success saveReceiver"
-                          ng-disabled="receiverForm.$invalid || unsafe_password"
-                          ng-click="update(receiver)">
+                  <div class="col-md-6 editButtons" ng-show="editing">
+                    <button class="btn btn-success saveReceiver" ng-disabled="receiverForm.$invalid || unsafe_password" ng-click="update(receiver)">
                           {{ "Save" | translate }}</button>
 
-                    <button class="btn btn-danger deleteReceiver"
-                          ng-click="delete(receiver)">
+                    <button class="btn btn-danger deleteReceiver" ng-click="delete(receiver)">
                           {{ "Delete" | translate }}</button>
                   </div>
 
                 </div>
-
               </div>
 
-              <div class="row editor receiverEditor" ng-show="editing">
-
-                <div class="span4 imageUpload" ng-controller="ImageUploadCtrl">
-                  <div class="profile" ng-mouseenter="openUploader()"
-                       ng-mouseleave="closeUploader()">
-
-                    <div ng-show="uploadfile" class="uploadfile">
-                      <div class="changePicture"
-                        pragmatic-file-upload src="/admin/staticfiles?{{receiver.receiver_gus}}">
-                        <div class="fileselector">
-                          <input type="file">
-                        </div>
-                        <span>
-                          {{ "Change picture" | translate }}
-                        </span>
-                      </div>
-                      <div class="uploadProgress hide">
-                        <div class="progress progress-striped">
-                          <div class="bar" style="width: 0%;"></div>
+              <div class="editor receiverEditor" ng-show="editing">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="imageUpload" ng-controller="ImageUploadCtrl">
+                      <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
+                        <img ng-src="/static/{{receiver.receiver_gus}}.png?{{randomFluff}}" class="img-polaroid baseimage">
+                        <div ng-show="uploadfile" class="uploadfile">
+                          <div class="uploadfile changePicture fileselector" pragmatic-file-upload="" src="/admin/staticfiles?{{receiver.receiver_gus}}">
+                            <input class="form-control" type="file">
+                            {{ "Change picture" | translate }}
+                          </div>
+                          <div class="uploadProgress hide">
+                            <div class="progress progress-striped">
+                              <div class="progress-bar" style="width: 0%;"></div>
+                            </div>
+                          </div>
                         </div>
                       </div>
                     </div>
-                    <img ng-src="/static/{{receiver.receiver_gus}}.png?{{randomFluff}}" class="img-polaroid baseimage">
-                  </div>
 
-                  <label>{{ "Name" | translate }}</label>
-                  <input type="text" name="name" ng-maxlength="40" ng-model="receiver.name" required>
-                  <p class="text-error" ng-show="receiverForm.name.$error.maxlength">
-                  {{ "Receiver name too long" | translate }}</p>
+                    <label>{{ "Name" | translate }}</label>
+                    <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" required="" type="text">
+                    <p class="has-error" ng-show="receiverForm.name.$error.maxlength">
+                    {{ "Receiver name too long" | translate }}</p>
 
-                  <label>{{ "Email Address (Username)" | translate }}</label>
-                  <input type="email" name="email" ng-model="receiver.notification_fields.mail_address" required>
-                  <p class="text-error" ng-show="receiverForm.email.$error.email">
-                  {{ "Invalid email address" | translate }}</p>
+                    <label>{{ "Email Address (Username)" | translate }}</label>
+                    <input class="form-control" name="email" ng-model="receiver.notification_fields.mail_address" required="" type="email">
+                    <p class="has-error" ng-show="receiverForm.email.$error.email">
+                    {{ "Invalid email address" | translate }}</p>
 
-                  <label bs-popover="'If left empty, the system sets globaleaks'">
-                    {{ "Password" | translate }}</label>
-                  <!-- remind: this need to be random & mailed to the inactive user -->
-                  <input type="password" ng-model="receiver.password">
-                  <p class="text-error" ng-show="unsafe_password">
-                  {{ "The choosen password is unsafe, it should have" | translate }}:</p>
-                  <li class="text-error" ng-hide="pwdHasLetter">
-                  {{ "At least one letter" | translate }}</li>
-                  <li class="text-error" ng-hide="pwdHasNumber">
-                  {{ "At least one number" | translate }}</li>
-                  <li class="text-error" ng-hide="pwdValidLength">
-                  {{ "At least 8 keypress long" | translate }}</li>
+                    <label bs-popover="'If left empty, the system sets globaleaks'">
+                      {{ "Password" | translate }}</label>
+                    <!-- remind: this need to be random & mailed to the inactive user -->
+                    <input class="form-control" ng-model="receiver.password" type="password">
+                    <p class="has-error" ng-show="unsafe_password">
+                    {{ "The choosen password is unsafe, it should have" | translate }}:</p>
+                    <li class="has-error" ng-hide="pwdHasLetter">
+                    {{ "At least one letter" | translate }}</li>
+                    <li class="has-error" ng-hide="pwdHasNumber">
+                    {{ "At least one number" | translate }}</li>
+                    <li class="has-error" ng-hide="pwdValidLength">
+                    {{ "At least 8 keypress long" | translate }}</li>
 
-                </div>
+                    <label>{{ "Description" | translate }}</label>
+                    <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
 
-                <div class="span4">
-                  <label>{{ "Contexts" | translate }}</label>
-                  <div class="selectionList">
+                    <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">
+                      {{ "PGP key management" | translate }}
+                    </button>
 
-                    <ul>
-                      <div ng-repeat="context in admin.contexts">
-                        <li class="selectionContextItem" ng-click="toggle(context)">
-                          <div class="checkbox" ng-show="isSelected(context)"><span>&#10004;</span></div>
-                          <span>{{context.name}}</span> <p>{{context.description}}</p>
-                        </li>
-                      </div>
-                    </ul>
-                  </div>
+                    <div ng-show="advanced_edit">
+                      <textarea ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
+                    </div>
+                    <!-- here another span4 shall fit well, but IDK which kind of preferences can be show here -->
+                    <div ng-show="receiver.gpg_key_info">
+                      {{ "Key details" | translate }}
+                      <pre>{{receiver.gpg_key_info}}</pre>
+                    </div>
 
-                  <label>{{ "Description" | translate }}</label>
-                  <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
-                </div>
-
-                <button class="btn btn-info"
-                    ng-click="advanced_edit = !advanced_edit"
-                    ng-init="advanced_edit=false">
-                    {{ "PGP key management" | translate }}
-                </button>
-
-                <div class="row" ng-show="advanced_edit">
-                  <div class="span4">
-                    <textarea ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
-                  </div>
-                  <!-- here another span4 shall fit well, but IDK which kind of preferences can be show here -->
-                  <div class="span8">
-                      <div ng-show="receiver.gpg_key_info">
-                          {{ "Key details" | translate }}
-                          <pre>{{receiver.gpg_key_info}}</pre>
-                      </div>
-                  </div>
-
-                  <div class="table-bordered">
-                    <label>
-                      <input type="checkbox" ng-model="receiver.gpg_enable_notification" />
-                      {{ "Enable encrypted notification" | translate }}
-                    </label>
-                    <label ng-show="receiver.gpg_enable_notification" >
-                      <span class="btn-info">
-                        {{ "now Enabled:" | translate }}</span>
-                      {{ "Every notification you'll receive will be encrypted with your GPG key." | translate }}
-                    </label>
-                  </div>
-
-                  <div class="table-bordered">
-                    <label>
-                      <input type="checkbox" ng-model="receiver.gpg_enable_files" />
-                      {{ "Enable file encryption" | translate }}
+                    <div class="table-bordered">
+                      <input ng-model="receiver.gpg_enable_notification" type="checkbox">
+                      <label>{{ "Enable encrypted notification" | translate }}</label>
+                      <label ng-show="receiver.gpg_enable_notification">
+                        <span class="btn-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "Every notification you'll receive will be encrypted with your GPG key." | translate }}
                       </label>
-                      <label ng-show="receiver.gpg_enable_files" >
-                      <span class="btn-info">
-                        {{ "now Enabled:" | translate }}</span>
-                      {{ "Every file you'll download will be encrypted with your GPG key." | translate }}
+                    </div>
+
+                    <div class="table-bordered">
+                      <input ng-model="receiver.gpg_enable_files" type="checkbox">
+                      <label>{{ "Enable file encryption" | translate }}</label>
+                      <label ng-show="receiver.gpg_enable_files">
+                        <span class="btn-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "Every file you'll download will be encrypted with your GPG key." | translate }}
                       </label>
+                    </div>
                   </div>
-
+                  <div class="col-md-6">
+                    <label>{{ "Contexts" | translate }}</label>
+                    <div class="selectionList">
+                      <ul>
+                        <div ng-repeat="context in admin.contexts">
+                          <li class="selectionContextItem" ng-click="toggle(context)">
+                            <div class="checkbox" ng-show="isSelected(context)"><span>✔</span></div>
+                            <span>{{context.name}}</span> <p>{{context.description}}</p>
+                          </li>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
                 </div>
-
               </div>
             </div>
           </form>
@@ -175,22 +151,20 @@
         <!-- BEGIN Addition of receiver -->
         <div class="row">
           <form name="newReceiver">
-            <div class="configRow span9 addReceiver">
+            <div class="configRow addReceiver col-md-9">
               <h4>{{ "Add new receiver" | translate }}</h4>
 
                 <div class="row">
-
-                  <div class="span4">
-
+                  <div class="col-md-6">
                     <label>{{ "Name" | translate }}</label>
-                    <input type="text" name="name" ng-maxlength="40" ng-model="new_receiver.name" required>
-                    <p class="text-error" ng-show="newReceiver.name.$error.maxlength">
+                    <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" required="" type="text">
+                    <p class="has-error" ng-show="newReceiver.name.$error.maxlength">
                     {{ "Receiver name too long" | translate }}</p>
                     <!-- XXX fix this so that it works on right to left languages. -->
                     <label>{{ "Email Address" | translate }} 
                       ({{ "Username" | translate }})</label>
-                    <input type="email" name="email" ng-model="new_receiver.email" required>
-                    <p class="text-error" ng-show="newReceiver.email.$error.email">
+                    <input class="form-control" name="email" ng-model="new_receiver.email" required="" type="email">
+                    <p class="has-error" ng-show="newReceiver.email.$error.email">
                     {{ "Invalid email address" | translate }}</p>
 
                   </div>
@@ -198,23 +172,23 @@
                 </div>
 
                 <div class="row">
-                  <div class="span4">
+                  <div class="col-md-6">
                     <label>{{ "Password" | translate }}</label>
-                    <input type="password" ng-model="new_receiver.password" required>
-                    <p class="text-error" ng-show="unsafe_password">
+                    <input class="form-control" ng-model="new_receiver.password" required="" type="password">
+                    <p class="has-error" ng-show="unsafe_password">
                     {{ "The choosen password is unsafe, it should have" | translate }}:</p>
-                    <li class="text-error" ng-hide="pwdHasLetter">
+                    <li class="has-error" ng-hide="pwdHasLetter">
                     {{ "At least one letter" | translate }}</li>
-                    <li class="text-error" ng-hide="pwdHasNumber">
+                    <li class="has-error" ng-hide="pwdHasNumber">
                     {{ "At least one number" | translate }}</li>
-                    <li class="text-error" ng-hide="pwdValidLength">
+                    <li class="has-error" ng-hide="pwdValidLength">
                     {{ "At least 8 keypress long" | translate }}</li>
                   </div>
                 </div>
 
               <div class="row">
-                <div class="span4">
-                  <button class="btn" ng-disabled="newReceiver.$invalid || unsafe_password" ng-click="add_receiver()">
+                <div class="col-md-6">
+                  <button class="btn btn-default" ng-disabled="newReceiver.$invalid || unsafe_password" ng-click="add_receiver()">
                     {{ "add" | translate }}</button>
                 </div>
               </div>
@@ -229,5 +203,3 @@
     </div>
   </div>
 </div>
-
-
