@@ -149,13 +149,21 @@
             <h1>
                 {{ "Are you a whistleblower?" | translate }}
             </h1>
-            <label>
-                {{ "Enter your receipt" | translate }}<br />
-                <input class="form-control" ng-model="receipt" type="text">
-            </label>
-            <a ng-click="view_tip(receipt)" class="btn btn-primary">
-                {{ "View Tip" | translate }}
-            </a>
+            <form class="form-horizontal" role="form">
+                <div class="form-group">
+                    <label class="col-lg-4">
+                        {{ "Enter your receipt" | translate }}
+                    </label>
+                    <div class="col-lg-6">
+                        <input class="form-control" ng-model="receipt" type="text">
+                    </div>
+                    <div class="col-lg-2">
+                        <a ng-click="view_tip(receipt)" class="btn btn-primary">
+                            {{ "View Tip" | translate }}
+                        </a>
+                    </div>
+                </div>
+            </form>
         </div>
         <div class="col-md-6">
             <h1>
