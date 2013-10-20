@@ -14,15 +14,15 @@
     <!-- End Nav Bar -->
     <div class="col-md-9">
 
-      <h3>
-        {{ "General information" | translate }}
-      </h3>
+      <h1>
+        {{ "Content Settings" | translate }}
+      </h1>
       <p><b>{{ "You're running GlobaLeaks version" | translate }} {{admin.node.version}}</b></p>
 
       <form name="contentForm" class="form-inline" novalidate="">
 
         <div class="row">
-          <div class="form-group">
+          <div class="form-group col-md-6">
             <label>{{ "Current initiative logo" | translate }}</label>
             <div class="imageUpload" ng-controller="ImageUploadCtrl">
               <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
