@@ -64,11 +64,13 @@
             {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}</p>
 
             <p ng-show="node_info.configured">
-            {{ "I want to report on" | translate }}
+            {{ "I want to report on" | translate }}</p>
 
             <select class="contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts">
             </select>
-            </p>
+
+            <br />Lek naar HDCMedia als u wilt lekken naar Almere Vandaag, De Gooi- en Eemlander, Haarlems Dagblad, IJmuider Courant, Noordholland Dagblad of het Leidsch Dagblad.<br /><br /> Om effectief te lekken doet u er verstandig aan maar drie media te selecteren. </p>
+
         </div>
         <div class="contextPick" ng-hide="submission.contexts.length > 1">
           {{ "I want to report on" | translate }}: <span class="label label-default">{{submission.current_context.name}}</span>

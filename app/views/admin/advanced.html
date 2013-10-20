@@ -25,19 +25,22 @@
 
               <form name="contentForm" novalidate="">
 
-                <label>{{ "Exception mail address" | translate }}</label>
-                <input class="form-control" ng-model="admin.node.exception_email" type="text">
-                <br />
+                <div class="form-group">
+                  <label>{{ "Exception mail address" | translate }}</label>
+                  <input class="form-control" ng-model="admin.node.exception_email" type="text">
+                </div>
 
-                <label>{{ "File size limit (in Megabytes)" | translate }}</label>
-                <input class="form-control" ng-model="admin.node.maximum_filesize" type="text">
-                <br />
+                <div class="form-group">
+                  <label>{{ "File size limit (in Megabytes)" | translate }}</label>
+                  <input class="form-control" ng-model="admin.node.maximum_filesize" type="text">
+                </div>
 
-                <label>{{ "Text size limit (in bytes)" | translate }}</label>
-                <input class="form-control" ng-model="admin.node.maximum_descsize" type="text">
-                <br />
+                <div class="form-group">
+                  <label>{{ "Text size limit (in bytes)" | translate }}</label>
+                  <input class="form-control" ng-model="admin.node.maximum_descsize" type="text">
+                </div>
 
-                <div class="table-bordered">
+                <div class="form-group">
                   <label>
                     <input ng-model="admin.node.postpone_superpower" type="checkbox">
                     {{ "Permit Receivers to postpone expiration date of the Tips" | translate }}
@@ -58,11 +61,9 @@
                 </a>
 
                 <div ng-show="tor2web_editing">
-                  <div class="table-bordered">
-                    <label>
-                      <input ng-model="admin.node.tor2web_admin" type="checkbox">
-                      {{ "Permit administrative login via Tor2Web" | translate }}
-                    </label>
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_admin" type="checkbox">
+                    <label>{{ "Permit administrative login via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_admin">
                       <span class="btn-info">
                         {{ "now Enabled:" | translate }}
@@ -71,11 +72,9 @@
                     </label>
                   </div>
 
-                  <div class="table-bordered">
-                    <label>
-                      <input ng-model="admin.node.tor2web_receiver" type="checkbox">
-                      {{ "Permit Receiver preferences management via Tor2Web" | translate }}
-                    </label>
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_receiver" type="checkbox">
+                    <label>{{ "Permit Receiver preferences management via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_receiver">
                       <span class="btn-info">
                         {{ "now Enabled:" | translate }}
@@ -84,11 +83,9 @@
                     </label>
                   </div>
 
-                  <div class="table-bordered">
-                    <label>
-                      <input ng-model="admin.node.tor2web_tip" type="checkbox">
-                      {{ "Permit Tip access, file download and upload via Tor2Web" | translate }}
-                    </label>
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_tip" type="checkbox">
+                    <label>{{ "Permit Tip access, file download and upload via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_tip">
                       <span class="btn-info">
                         {{ "now Enabled:" | translate }}
@@ -97,11 +94,9 @@
                     </label>
                   </div>
 
-                  <div class="table-bordered">
-                    <label>
-                      <input ng-model="admin.node.tor2web_unauth" type="checkbox">
-                      {{ "Permit access of public resources via Tor2Web" | translate }}
-                    </label>
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_unauth" type="checkbox">
+                    <label>{{ "Permit access of public resources via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_unauth">
                       <span class="btn-info">
                         {{ "now Enabled:" | translate }}
@@ -110,11 +105,9 @@
                     </label>
                   </div>
 
-                  <div class="table-bordered">
-                    <label>
-                      <input ng-model="admin.node.tor2web_submission" type="checkbox">
-                      {{ "Permit Submissions via Tor2Web" | translate }}
-                    </label>
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_submission" type="checkbox">
+                    <label>{{ "Permit Submissions via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_submission">
                       <span class="btn-info">
                         {{ "now Enabled:" | translate }}
@@ -123,10 +116,14 @@
                     </label>
                   </div>
                 </div>
+
                 <br />
+                <br />
+
                 <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
                   {{ "Update Advanced settings" | translate }}
                 </button>
+
               </form>
             </div>
         </div>

@@ -19,21 +19,21 @@
   </div>
 
   <div class="row" ng-show="cookiesEnabled()">
-    <div class="col-md-9">
-      <form name="loginForm" novalidate="">
-        <label>{{ "Username:" | translate }}
+    <div class="col-md-4">
+      <form class=form-inline" name="loginForm" novalidate="">
+        <div class="form-group">
+          <label>{{ "Username:" | translate }}</label>
           <input class="form-control" name="username" ng-model="loginUsername" required="" type="text">
-        </label>
+        </div>
 
-        <label>{{ "Password:" | translate }}
+        <div class="form-group">
+          <label>{{ "Password:" | translate }}</label>
           <input class="form-control" name="password" ng-model="loginPassword" required="" type="password">
-        </label>
-
-        <br />
+        </div>
 
         <button class="btn btn-success" ng-disable="loginForm.$invalid" ng-click="login(loginUsername, loginPassword, loginRole)">
-          {{ "Login" | translate }}</button>
-
+          {{ "Login" | translate }}
+        </button>
       </form>
     </div>
   </div>
