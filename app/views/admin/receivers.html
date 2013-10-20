@@ -86,7 +86,9 @@
                     </div>
 
                     <div class="form-group">
-                      <label bs-popover="'If left empty, the system sets globaleaks'">{{ "Password" | translate }}</label>
+                      <label bs-popover="'If left empty, the system sets globaleaks'">
+                        {{ "Password" | translate }}
+                      </label>
                       <!-- remind: this need to be random & mailed to the inactive user -->
                       <input class="form-control" ng-model="receiver.password" type="password">
                       <p class="has-error" ng-show="unsafe_password">
@@ -172,7 +174,9 @@
                     <div class="form-group">
                       <label>{{ "Name" | translate }}</label>
                       <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" required="" type="text">
-                      <p class="has-error" ng-show="newReceiver.name.$error.maxlength">{{ "Receiver name too long" | translate }}</p>
+                      <p class="has-error" ng-show="newReceiver.name.$error.maxlength">
+                          {{ "Receiver name too long" | translate }}
+                      </p>
                       <!-- XXX fix this so that it works on right to left languages. -->
                     </div>
                     <div class="form-group">
