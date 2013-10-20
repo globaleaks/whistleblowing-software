@@ -1,3 +1,9 @@
+globaleaks (2.27.19-0) unstable; urgency=low
+
+  * GlobaLeaks 2.27.19 Release (style corrections)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 20 Oct 2013 23:34:59 +0002
+
 globaleaks (2.27.18-0) unstable; urgency=low
 
   * GlobaLeaks 2.27.18 Release (bootstrap framework updated to version 3.0.0)
