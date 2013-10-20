@@ -1,3 +1,9 @@
+globaleaks (2.27.18-0) unstable; urgency=low
+
+  * GlobaLeaks 2.27.18 Release (bootstrap framework updated to version 3.0.0)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 20 Oct 2013 21:54:59 +0002
+
 globaleaks (2.27.17-0) unstable; urgency=low
 
   * GlobaLeaks 2.27.17 Release (Python code corrections thans to pycharm analysis)
