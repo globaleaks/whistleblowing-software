@@ -46,7 +46,6 @@
   padding-left: 20px;
   padding-top: 10px;
   padding-bottom: 10px;
-  width: 200px;
   margin-bottom: 20px;
   position: relative;
 
@@ -69,10 +68,6 @@
   margin-top: 10px;
 }
 
-.fieldEditorHeader {
-  height: 22px;
-}
-
 .fieldEditorHeader span {
   margin-right: 10px;
   font-style: italic;
@@ -81,10 +76,6 @@
 
 .fieldEditorHeader.invalid {
   background-color: #EB6C6C;
-}
-
-.fieldEditor {
-  margin-bottom: 20px;
 }
 
 .fieldEditorBody {
@@ -111,7 +102,6 @@
 
 .editorHeader {
   background-color: rgb(252, 252, 252);
-  border-bottom: 1px solid rgb(204, 204, 204);
 }
 
 .editorHeader:hover {
@@ -123,16 +113,14 @@
   font-size: 20px;
   line-height: 1;
   font-weight: bold;
-
   display: block;
   padding: 20px;
 }
 
 .editor {
-  padding: 20px;
-  margin: 0;
   background-color: rgb(240, 240, 240);
   border-bottom: 1px solid rgb(204, 204, 204);
+  padding: 20px;
 }
 
 .editor img {
@@ -154,7 +142,6 @@
   bottom: 10px;
   padding-top: 5px;
   padding-bottom: 5px;
-  width: 100%;
   height: 20px;
   text-align: center;
   background-color: #0088cc;

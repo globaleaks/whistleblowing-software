@@ -1,85 +1,56 @@
 <fieldset>
   <legend>Details</legend>
   <div ng-repeat="field in submission.current_context.fields">
-    <div ng-form name="subForm">
-      <div ng-switch on="field.type">
-        <div ng-switch-default
-          class="input {{field.type}}"
-          ng-class="field.required && 'required'">
+    <div ng-form="" name="subForm">
+      <div ng-switch="" on="field.type">
+        <div ng-switch-default="" class="input {{field.type}}" ng-class="field.required && 'required'">
           <label>
             {{field.name}}
             <span class="order">{{field.order}}</span>
-            <a href="" data-content="{{field.hint}}"
-              data-trigger="hover" bs-popover="{{field.name}}">
-              <i class="icon-question-sign"></i>
+            <a href="" data-content="{{field.hint}}" data-trigger="hover" bs-popover="{{field.name}}">
+              <i class="glyphicon glyphicon-question-sign"></i>
             </a>
           </label>
-          <div ng-switch on="field.type">
-          <input ng-switch-when="checkbox" type="checkbox"
-            ng-model="field.value"
-            value="{{field.value}}"
-            id="field"
-            name="input"
-            placeholder="{{field.placeholder}}">
+          <div ng-switch="" on="field.type">
+          <input ng-switch-when="checkbox" ng-model="field.value" value="{{field.value}}" id="field" name="input" placeholder="{{field.placeholder}}" type="checkbox">
 
-          <input ng-switch-when="text" type="text"
-            ng-model="field.value"
-            ng-required="field.required"
-            name="input"
-            value="{{field.value}}"
-            placeholder="{{field.placeholder}}">
+          <input class="form-control" ng-switch-when="text" ng-model="field.value" ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
 
-          <textarea ng-switch-when="textarea"
-            ng-model="field.value"
-            placeholder="{{field.placeholder}}">{{field.value}}</textarea>
+          <textarea ng-switch-when="textarea" ng-model="field.value" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
 
-          <select ng-switch-when="select"
-            name="input"
-            ng-model="field.value" >
-            <option ng-repeat="option in field.options"
-                    value="{{option.value}}">{{option.name}}</option>
+          <select ng-switch-when="select" name="input" ng-model="field.value">
+            <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
           </select>
 
-          <select ng-switch-when="multiple"
-            name="input"
-            ng-model="field.value" multiple>
-            <option ng-repeat="option in field.options"
-                    value="{{option.value}}">{{option.name}}</option>
+          <select ng-switch-when="multiple" name="input" ng-model="field.value" multiple="">
+            <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
           </select>
 
           <fieldset ng-switch-when="radio">
             <label ng-repeat="option in field.options">
-              <input type="radio" ng-model="field.value" value="{{option.value}}">
+              <input ng-model="field.value" value="{{option.value}}" type="radio">
               {{option.name}}
             </label>
           </fieldset>
 
           <fieldset ng-switch-when="checkboxes">
             <label ng-repeat="option in field.options">
-              <input type="checkbox"
-              name="input"
-              ng-model="field.value[option.name]"
-              value="{{option.value}}">
+              <input name="input" ng-model="field.value[option.name]" value="{{option.value}}" type="checkbox">
               {{option.name}}
             </label>
           </fieldset>
 
-          <input ng-switch-default type="text"
-            ng-model="field.value"
-            ng-required="field.required"
-            name="input"
-            value="{{field.value}}"
-            placeholder="{{field.placeholder}}"/>
+          <input class="form-control" ng-switch-default="" ng-model="field.value" ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
 
-          </div ng-switch>
+          </div>
         </div>
-      </div ng-switch>
+      </div>
 
-      <p class="text-error" ng-show="subForm.input.$error.required">
+      <p class="has-error" ng-show="subForm.input.$error.required">
       {{"This field cannot be empty" | translate }}
       </p>
 
-    </div ng-form>
+    </div>
 
   </div>
 </fieldset>

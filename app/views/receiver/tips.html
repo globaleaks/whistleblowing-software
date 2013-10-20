@@ -1,18 +1,16 @@
-<div ng-include="'views/header.html'"
-     onload='header_title="Your Tips" | translate;
-             header_subtitle="Receiver Interface" | translate'>
+<div ng-include="'views/header.html'" onload="header_title='Your Tips' | translate;
+             header_subtitle='Receiver Interface' | translate">
 </div>
 
 <div class="container config-page">
 
 <div class="row">
 
-  <div class="span3 config-sidebar"
-       ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl">
+  <div class="col-md-3 config-sidebar" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl">
   </div>
 
   <!-- Begin main content -->
-  <div class="span9">
+  <div class="col-md-9">
    <div class="table-container">
    <table class="table table-striped table-bordered dataTable" id="tipList">
     <thead>

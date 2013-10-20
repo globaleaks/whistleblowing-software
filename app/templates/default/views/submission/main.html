@@ -1,12 +1,12 @@
 <div class="jumbotron subhead">
-  <div ng-cloak class="container">
+  <div ng-cloak="" class="container">
 
     <div class="row">
-      <div class="span2">
+      <div class="col-md-2">
         <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
       </div>
 
-      <div class="span10">
+      <div class="col-md-9">
         <!-- XXX come up with a way to make this inherit from the header.html template -->
         <h1>{{ "New Submission" | translate }}</h1>
       </div>
@@ -20,25 +20,23 @@
     <h2>{{ "Loading..." | translate }}</h2>
 </div>
 
-<div ng-cloak class="container" ng-show="!node_info.configured && node_info.name">
+<div ng-cloak="" class="container" ng-show="!node_info.configured && node_info.name">
   <h2>{{ "This node is not configured." | translate }}</h2>
-  <p>{{ "You will not be able to perform a submission." | translate }}<br>
+  <p>{{ "You will not be able to perform a submission." | translate }}<br />
   {{ "Admin please configure at least one Context and associated Receivers using" | translate }}
   <a href="/#/admin/contexts">
     {{ "Admin management interface" | translate }}
   </a>.</p>
 </div>
 
-<div ng-cloak ng-controller="WizardCtrl" class="container" ng-show="node_info.name && node_info.configured">
+<div ng-cloak="" ng-controller="WizardCtrl" class="container" ng-show="node_info.name && node_info.configured">
 
   <div class="tabbable tabs-below">
 
     <ul class="nav nav-tabs">
-      <li ng-repeat="step in steps"
-        ng-class="{active: $index==getCurrentStepIndex(), disabled: uploading}">
-        <a href="javascript:void(0)"
-          ng-click="goToStep($index)" ng-disabled="uploading">
-          <div ng-switch on="step">
+      <li ng-repeat="step in steps" ng-class="{active: $index==getCurrentStepIndex(), disabled: uploading}">
+        <a href="javascript:void(0)" ng-click="goToStep($index)" ng-disabled="uploading">
+          <div ng-switch="" on="step">
 
             <span ng-switch-when="1">
               1 - {{ "Receiver selection" | translate }}
@@ -57,7 +55,7 @@
       </li>
     </ul>
 
-    <div ng-switch on="selection">
+    <div ng-switch="" on="selection">
 
       <!-- First Step -->
       <div ng-switch-when="1" class="receiverCards">
@@ -66,15 +64,16 @@
             {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}</p>
 
             <p ng-show="node_info.configured">
-            {{ "I want to report on" | translate }}
+            {{ "I want to report on" | translate }}</p>
 
-            <select class="contexts" ng-model="submission.current_context"
-                    ng-options="context as context.name for context in submission.contexts">
+            <select class="contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts">
             </select>
-            </p>
+
+            <br />Lek naar HDCMedia als u wilt lekken naar Almere Vandaag, De Gooi- en Eemlander, Haarlems Dagblad, IJmuider Courant, Noordholland Dagblad of het Leidsch Dagblad.<br /><br /> Om effectief te lekken doet u er verstandig aan maar drie media te selecteren. </p>
+
         </div>
         <div class="contextPick" ng-hide="submission.contexts.length > 1">
-          {{ "I want to report on" | translate }}: <span class="label">{{submission.current_context.name}}</span>
+          {{ "I want to report on" | translate }}: <span class="label label-default">{{submission.current_context.name}}</span>
         </div>
 
         <p>{{submission.current_context.description}}</p>
@@ -82,42 +81,32 @@
         <div ng-repeat="(idx, receiver) in submission.current_context_receivers">
           <div ng-hide="idx >= submission.current_context_receivers.length/2" class="row">
 
-            <div class="receiverCard span5"
-                 ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}"
-                 ng-class-odd="{receiverCardOdd: true}"
-                 ng-class-even="{receiverCardEven: true}">
+            <div class="receiverCard col-sm-5 col-md-4" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-class-odd="{receiverCardOdd: true}" ng-class-even="{receiverCardEven: true}">
 
-              <input ng-model="submission.receivers_selected[receiver.receiver_gus]"
-                     type="checkbox" value="{{receiver.receiver_gus}}"
-                     class="receiverSelection" ng-show="submission.current_context.selectable_receiver">
+              <input ng-model="submission.receivers_selected[receiver.receiver_gus]" value="{{receiver.receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox">
 
               <div class="row">
-                <div class="span2">
+                <div class="col-md-2">
                   <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-polaroid">
                 </div>
 
-                <div class="span3">
+                <div class="col-md-3">
                   <h3>{{receiver.name}}</h3>
                   <p>{{receiver.description}}</p>
                 </div>
               </div>
             </div>
 
-            <div class="receiverCard span5" ng-hide="idx >= ((submission.current_context_receivers.length - 1)/2)"
-                 ng-class="{selected: submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]}"
-                 ng-class-odd="{receiverCardOdd: true}"
-                 ng-class-even="{receiverCardEven: true}">
+            <div class="receiverCard col-sm-5 col-md-4" ng-hide="idx >= ((submission.current_context_receivers.length - 1)/2)" ng-class="{selected: submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]}" ng-class-odd="{receiverCardOdd: true}" ng-class-even="{receiverCardEven: true}">
 
-              <input ng-model="submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]"
-                     type="checkbox" value="{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}"
-                     class="receiverSelection" ng-show="submission.current_context.selectable_receiver">
+              <input ng-model="submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]" value="{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox">
 
               <div class="row">
-                <div class="span2">
+                <div class="col-md-2">
                   <img ng-src="/static/{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}.png" class="img-polaroid">
                 </div>
 
-                <div class="span3">
+                <div class="col-md-3">
                   <h3>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].name}}</h3>
                   <p>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].description}}</p>
                 </div>
@@ -139,10 +128,10 @@
         <div class="row">
 
             <div ng-form="submissionForm" ng-controller="SubmissionFormController"> 
-              <div class="span6 submissionDetails" ng-include="Templates.submission.form"></div>
+              <div class="col-md-6 submissionDetails" ng-include="Templates.submission.form"></div>
             </div>
 
-          <div ng-include="'views/widgets/fileupload.html'" class="span4">
+          <div ng-include="'views/widgets/fileupload.html'" class="col-md-4">
           </div>
 
         </div>
@@ -155,7 +144,7 @@
 
         <div class="row">
 
-          <div class="span12">
+          <div class="col-md-12">
             <p>
             {{ "To ensure your anonymity be sure that you are visiting this site using the" | translate }}
             <a href="http://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>
@@ -177,10 +166,10 @@
             <p>
               {{ "By checking the box below you agree to these terms and conditions." | translate }}
             </p>
-            <label class="checkbox">
-              <input type="checkbox" ng-model="disclaimer.accepted" value="true"> 
+            <div class="checkbox"><label class="">
+              <input ng-model="disclaimer.accepted" value="true" type="checkbox"> 
               {{ "Agree" | translate }}
-            </label>
+            </label></div>
 
           </div>
 
@@ -195,30 +184,25 @@
     <div class="clearfix"></div>
     <ul class="pager pull-left">
 
-      <li ng-class="{disabled: !hasPreviousStep() || uploading}"
-          class="previous">
-        <a ng-click="decrementStep()">&larr; 
+      <li ng-class="{disabled: !hasPreviousStep() || uploading}" class="previous">
+        <a ng-click="decrementStep()">← 
           {{ "Previous Step" | translate }}</a>
       </li>
-      <li class="next" ng-class="{disabled: uploading}"
-          ng-hide="!hasNextStep()">
+      <li class="next" ng-class="{disabled: uploading}" ng-hide="!hasNextStep()">
         <a ng-click="incrementStep()">
-          {{ "Next Step" | translate }} &rarr;</a>
+          {{ "Next Step" | translate }} →</a>
       </li>
 
-      <li class="next"
-          ng-show="!hasNextStep()">
+      <li class="next" ng-show="!hasNextStep()">
 
-        <button class="btn btn-success" ng-click="submit()"
-                ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
+        <button class="btn btn-success" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
                 {{ "Submit" | translate }}</button>
       </li>
 
     </ul>
 
     <div class="pull-right">
-      <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()"
-              ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
+      <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()" ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
               {{ "Submit" | translate }}
       </button>
 
@@ -229,43 +213,43 @@
 </div>
 
 <!-- This will be visualized once the subission is created -->
-<div
-  class="submission-receipt modal"
-  ng-show="submission.completed">
-  <div class="modal-header">
-    <h3>{{ "Submission Created!" | translate }}</h3>
-  </div>
-  <div class="modal-body">
+<div class="submission-receipt modal" ng-show="submission.completed">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>{{ "Submission Created!" | translate }}</h3>
+      </div>
+      <div class="modal-body">
 
-    <p>
-    {{ "This receipt will allow you to login as the whistleblower for this Tip." | translate }}
-    {{ "Through this system receivers will be able to ask you questions on the Tip and you will be able to write a reply." | translate }} 
-    {{ "You will also be able to keep track of who has viewed your submission and downloaded the files." | translate }}
-    {{ "Moreover, it will allow you to add other files to your submission." | translate }} 
-    </p>
+        <p>
+        {{ "This receipt will allow you to login as the whistleblower for this Tip." | translate }}
+        {{ "Through this system receivers will be able to ask you questions on the Tip and you will be able to write a reply." | translate }} 
+        {{ "You will also be able to keep track of who has viewed your submission and downloaded the files." | translate }}
+        {{ "Moreover, it will allow you to add other files to your submission." | translate }} 
+        </p>
 
-    <p>
-    {{ "Beware of the fact that this receipt, if fallen into the wrong hands, will lead to identifying you as the whistleblower for this Tip." | translate }}
-    </p>
+        <p>
+        {{ "Beware of the fact that this receipt, if fallen into the wrong hands, will lead to identifying you as the whistleblower for this Tip." | translate }}
+        </p>
     
-    <p>
-    {{ "If you are interested in keeping it, please save it in a secure place and make sure it does not fall into the wrong hands" | translate }} 
-    </p>
+        <p>
+        {{ "If you are interested in keeping it, please save it in a secure place and make sure it does not fall into the wrong hands" | translate }} 
+        </p>
 
-    <h2>{{submission.receipt}}</h2>
+        <h2>{{submission.receipt}}</h2>
 
-    <p>
-    {{ "Please copy in the box below your receipt to access the tip interface." | translate }} 
-    </p>
-    <input type="text" ng-model="receiptConfirmation">
+        <p>
+        {{ "Please copy in the box below your receipt to access the tip interface." | translate }} 
+        </p>
+        <input class="form-control" ng-model="receiptConfirmation" type="text">
 
-  </div>
-  <div class="modal-footer">
-    <a ng-click="view_tip(submission.receipt)"
-       ng-disabled="submission.receipt != receiptConfirmation"
-       class="btn btn-primary">
-       {{ "View Tip" | translate }}</a>
+      </div>
+      <div class="modal-footer">
+        <a ng-click="view_tip(submission.receipt)" ng-disabled="submission.receipt != receiptConfirmation" class="btn btn-primary">
+           {{ "View Tip" | translate }}
+        </a>
+      </div>
+    </div>
   </div>
 </div>
 <!-- End -->
-
