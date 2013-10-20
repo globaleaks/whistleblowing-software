@@ -45,7 +45,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "2b7505e3745bc487e5f9e6f3b1e40a5119456e65d9e377438a8c75d9"
+    glclient_hash = "a034499d23e97ada02b71a1a69258e88aa1c28779a029c6d20c2dc46"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
@@ -87,11 +87,14 @@ data_files = [
     os.path.join(glclient_path, 'styles.css'),
     os.path.join(glclient_path, 'scripts.js'),
     ]),
+    ('/usr/share/globaleaks/glclient/fonts', [
+    os.path.join(glclient_path, 'fonts', 'glyphicons-halflings-regular.eot'),
+    os.path.join(glclient_path, 'fonts', 'glyphicons-halflings-regular.svg'),
+    os.path.join(glclient_path, 'fonts', 'glyphicons-halflings-regular.ttf'),
+    os.path.join(glclient_path, 'fonts', 'glyphicons-halflings-regular.woff'),
+    ]),
     ('/usr/share/globaleaks/glclient/img', [
-    os.path.join(glclient_path, 'img', 'flags.png'),
     os.path.join(glclient_path, 'img', 'loading.gif'),
-    os.path.join(glclient_path, 'img', 'glyphicons-halflings.png'),
-    os.path.join(glclient_path, 'img', 'glyphicons-halflings-white.png')
     ]),
     ('/usr/share/globaleaks/glbackend',  [
     'requirements.txt',
