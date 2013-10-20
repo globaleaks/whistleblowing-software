@@ -63,17 +63,18 @@
             <p class="lead">
             {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}</p>
 
-            <p ng-show="node_info.configured">
-            {{ "I want to report on" | translate }}</p>
+            <span class="lead" ng-show="node_info.configured">
+            {{ "I want to report on" | translate }}</span>
 
             <select class="contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts">
             </select>
 
-            <br />Lek naar HDCMedia als u wilt lekken naar Almere Vandaag, De Gooi- en Eemlander, Haarlems Dagblad, IJmuider Courant, Noordholland Dagblad of het Leidsch Dagblad.<br /><br /> Om effectief te lekken doet u er verstandig aan maar drie media te selecteren. </p>
-
         </div>
         <div class="contextPick" ng-hide="submission.contexts.length > 1">
-          {{ "I want to report on" | translate }}: <span class="label label-default">{{submission.current_context.name}}</span>
+          <span class="lead">
+          {{ "I want to report on" | translate }}: 
+          </span>
+          <span class="label label-default">{{submission.current_context.name}}</span>
         </div>
 
         <p>{{submission.current_context.description}}</p>
@@ -81,32 +82,38 @@
         <div ng-repeat="(idx, receiver) in submission.current_context_receivers">
           <div ng-hide="idx >= submission.current_context_receivers.length/2" class="row">
 
-            <div class="receiverCard col-sm-5 col-md-4" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-class-odd="{receiverCardOdd: true}" ng-class-even="{receiverCardEven: true}">
-
-              <input ng-model="submission.receivers_selected[receiver.receiver_gus]" value="{{receiver.receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox">
+            <div class="receiverCard col-md-5" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-class-odd="{receiverCardOdd: true}" ng-class-even="{receiverCardEven: true}">
 
               <div class="row">
-                <div class="col-md-2">
-                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-polaroid">
+                <div class="col-md-9">
+                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-polaroid col-md-9">
                 </div>
+                <div class="col-md-1">
+                  <input ng-model="submission.receivers_selected[receiver.receiver_gus]" value="{{receiver.receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox"> 
+                </div>
+              </div>
 
-                <div class="col-md-3">
+              <div class="row">
+                <div class="col-md-12">
                   <h3>{{receiver.name}}</h3>
                   <p>{{receiver.description}}</p>
                 </div>
               </div>
             </div>
 
-            <div class="receiverCard col-sm-5 col-md-4" ng-hide="idx >= ((submission.current_context_receivers.length - 1)/2)" ng-class="{selected: submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]}" ng-class-odd="{receiverCardOdd: true}" ng-class-even="{receiverCardEven: true}">
-
-              <input ng-model="submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]" value="{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox">
+            <div class="receiverCard col-md-5" ng-hide="idx >= ((submission.current_context_receivers.length - 1)/2)" ng-class="{selected: submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]}" ng-class-odd="{receiverCardOdd: true}" ng-class-even="{receiverCardEven: true}">
 
               <div class="row">
-                <div class="col-md-2">
-                  <img ng-src="/static/{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}.png" class="img-polaroid">
+                <div class="col-md-9">
+                  <img ng-src="/static/{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}.png" class="img-polaroid col-md-9">
                 </div>
+                <div class="col-md-1">
+                  <input ng-model="submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]" value="{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox">
+                </div>
+              </div>
 
-                <div class="col-md-3">
+              <div class="row">
+                <div class="col-md-12">
                   <h3>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].name}}</h3>
                   <p>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].description}}</p>
                 </div>
@@ -145,25 +152,25 @@
         <div class="row">
 
           <div class="col-md-12">
-            <p>
+            <p class="lead">
             {{ "To ensure your anonymity be sure that you are visiting this site using the" | translate }}
             <a href="http://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>
             </p>
 
-            <p>
+            <p class="lead">
             {{ "You acknowledge that failure to do so will result in the inability to technically protect your anonymity." | translate }}
             </p>
 
-            <p>
+            <p class="lead">
               {{ "To further enhance your security, please follow these instructions:" | translate }}
             </p>
 
-            <ul>
+            <ul class="lead">
               <li>{{ "In the event that you would like to remain anonymous, do not submit any personal information. (e.g. your name or relationship to the offender. Do not submit any information that can be traced back to you.)" | translate }}</li>
               <li>{{ "Please do not submit your report on a PC provided by your employer. Particularly an intranet connection may jeopardize your anonymity." | translate }}</li>
             </ul>
 
-            <p>
+            <p class="lead">
               {{ "By checking the box below you agree to these terms and conditions." | translate }}
             </p>
             <div class="checkbox"><label class="">
