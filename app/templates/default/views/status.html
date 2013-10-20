@@ -5,10 +5,10 @@
     </h1>
   </div>
 </div>
-<div ng-cloak class="container statusPage" ng-show="tip.im_whistleblower || tip.im_receiver">
+<div ng-cloak="" class="container statusPage" ng-show="tip.im_whistleblower || tip.im_receiver">
   <div class="row" ng-show="tip.im_receiver && !preferences.gpg_enable_files">
-    <div class="span12">
-      <div class="alert">
+    <div class="col-md-12">
+      <div class="alert alert-warning">
         <strong>{{ "Warning!" | translate }}</strong>
         {{ "You have not configured your encryption keys, so the files will be stored on the globaleaks node un-encrypted." | translate }}
         {{ "This may lead to unintended access to the files by the server administrator or in case of server seizing." | translate }}
@@ -18,7 +18,7 @@
   </div>
 
   <div class="row">
-    <div class="span4">
+    <div class="col-md-4">
       
       <dl>
         <dt>{{ "Context details" | translate }}</dt>
@@ -33,14 +33,14 @@
       <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
         <dt>{{fieldFormat[fieldName].name}} ({{fieldFormat[fieldName].hint}})</dt>
         
-        <div ng-switch on="fieldFormat[fieldName].type">
+        <div ng-switch="" on="fieldFormat[fieldName].type">
           
           <dd ng-switch-when="checkboxes">
             <ul>
               <li ng-repeat="checkbox in fieldFormat[fieldName].options">
               {{checkbox.name}} 
-              <span ng-hide="fieldValue[checkbox.name]">&#9744;</span> 
-              <span ng-show="fieldValue[checkbox.name]">&#9745;</span>
+              <span ng-hide="fieldValue[checkbox.name]">☐</span> 
+              <span ng-show="fieldValue[checkbox.name]">☑</span>
               </li>
             </ul>
           </dd>
@@ -50,19 +50,19 @@
               <li ng-repeat="selection in fieldValue">{{selection}}</li>
             </ul>
 
-          <dd ng-switch-default>{{fieldValue}}</dd>
+          </dd><dd ng-switch-default="">{{fieldValue}}</dd>
 
         </div>
       </dl>
     </div>
 
-    <div class="span8">
+    <div class="col-md-8">
       <h3>
         {{ "Files" | translate }}
       </h3>
       <div class="well" ng-show="tip.files">
         <h4>{{file.name}}</h4>
-        <ul class="unstyled">
+        <ul class="list-unstyled">
           <a class="input-small" ng-click="show_new_files = !show_new_files" ng-init="show_new_files = false" ng-show="!show_new_files && tip.im_receiver">
             {{ "show only files not yet downloaded" | translate }}
           </a>
@@ -71,27 +71,21 @@
           </a>
           <li ng-repeat="file in tip.files">
             <div ng-show="file.downloads == 0 && show_new_files">
-              <a ng-cloak ng-show="tip.im_receiver"
-                 ng-click="increaseDownloadCount(file)"
-                 ng-disabled="file.downloads >= current_context.file_max_downloads"
-                class="btn btn-small" ng-href="{{file.href}}">
-                 <i class="icon-download"></i> 
+              <a ng-cloak="" ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-default btn-sm" ng-href="{{file.href}}">
+                 <i class="glyphicon glyphicon-download"></i> 
                  {{ "download" | translate }}
                  ({{file.downloads}}/{{tip.download_limit}})
               </a>
-              <i class="icon-book"></i> {{file.name}}
+              <i class="glyphicon glyphicon-book"></i> {{file.name}}
             </div>
 
             <div ng-show="!show_new_files">
-              <a ng-cloak ng-show="tip.im_receiver"
-                 ng-click="increaseDownloadCount(file)"
-                 ng-disabled="file.downloads >= current_context.file_max_download"
-                 class="btn btn-small" ng-href="{{file.href}}">
-                 <i class="icon-download"></i> 
+              <a ng-cloak="" ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_download" class="btn btn-default btn-sm" ng-href="{{file.href}}">
+                 <i class="glyphicon glyphicon-download"></i> 
                  {{ "download" | translate }} 
                  ({{file.downloads}}/{{tip.download_limit}})
               </a>
-              <i class="icon-book"></i> {{file.name}}
+              <i class="glyphicon glyphicon-book"></i> {{file.name}}
             </div>
 
           </li>
@@ -113,7 +107,7 @@
             {{ "sha256 hash" | translate }}
           </a> 
           {{ "to verify the file integrity" | translate }}.
-          <br>
+          <br />
           {{ "On unix based systems this can be done by running the following command in the directory of the files" | translate }}:
         </p>
         <b>$ shasum -a 256 *</b>
@@ -124,12 +118,12 @@
         </div>
       </div>
 
-      <div class="span4" ng-hide="tip.files"><p>
+      <div class="col-md-4" ng-hide="tip.files"><p>
         {{ "No file has been uploaded!" | translate }}
       </p></div>
 
-      <div ng-cloak ng-show="tip.im_whistleblower">
-        <div ng-include="'views/widgets/fileupload.html'" class="span4">
+      <div ng-cloak="" ng-show="tip.im_whistleblower">
+        <div ng-include="'views/widgets/fileupload.html'" class="col-md-4">
         </div>
       </div>
     </div>
@@ -137,12 +131,12 @@
 
   <div class="row">
 
-    <div class="span4">
+    <div class="col-md-4">
       <h3>
         {{ "Comments" | translate }}
       </h3>
       <div ng-repeat="comment in tip.comments">
-        <div ng-switch on="comment.source">
+        <div ng-switch="" on="comment.source">
 
           <div ng-switch-when="whistleblower" class="alert alert-info">
             <strong>
@@ -159,7 +153,7 @@
               {{ "System" | translate }}
             </strong>
               <!-- {{comment.content}} -->
-              <div ng-switch on="comment.system_content.type">
+              <div ng-switch="" on="comment.system_content.type">
                  <div ng-switch-when="1">
                      {{ "The user" | translate }}
                      {{comment.system_content.receiver_name}}
@@ -171,7 +165,7 @@
               </div>
           </div>
 
-          <div ng-switch-default class="alert alert-danger">
+          <div ng-switch-default="" class="alert alert-danger">
             <strong>
               {{ "Malformed source" | translate }}
             </strong>
@@ -181,13 +175,12 @@
       </div>
 
       <textarea ng-model="newCommentContent"></textarea>
-      <button class="btn btn-success" ng-click="newComment()"
-              ng-disabled="!newCommentContent || newCommentContent == ''">
+      <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
         {{ "Add Comment" | translate }}
       </button>
     </div>
 
-    <div class="span8">
+    <div class="col-md-8">
       <h3>{{ "Receiver List" | translate }}</h3>
       <div class="table-container">
       <table class="table table-striped table-bordered dataTable" id="receiverList">
@@ -216,7 +209,7 @@
               {{ "I want extend the Tip expiration date to" | translate }}
               {{ tip.potential_expiration_date | date:'fullDate' }}
             </p>
-            <button type="submit" class="btn btn-success" ng-click="extendTip()" >extend</button>
+            <button type="submit" class="btn btn-success" ng-click="extendTip()">extend</button>
           </div>
       </div>
     </div>
@@ -224,17 +217,17 @@
   </div>
 </div>
 
-<div ng-cloack class="container" ng-show="!tip">
+<div ng-cloack="" class="container" ng-show="!tip">
   <div class="row">
-    <div class="span4">
+    <div class="col-md-4">
       <h3>{{ "The requested tip does not exist or has expired." | translate }}</h3>
     </div>
    </div>
 </div>
 
-<div ng-cloak class="container statusPage" ng-show="tip.im_whistleblower && tip.im_receiver">
+<div ng-cloak="" class="container statusPage" ng-show="tip.im_whistleblower && tip.im_receiver">
   <div class="row">
-      <div class="span4">
+      <div class="col-md-4">
         {{ "Loading Tip page..." | translate }}
        </div>
    </div>

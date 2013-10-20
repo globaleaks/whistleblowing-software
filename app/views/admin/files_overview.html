@@ -1,7 +1,5 @@
-<div ng-include="'views/header.html'"
-  onload='header_title="Files Overview" | translate;
-  header_subtitle="Administration Interface" | translate'
->
+<div ng-include="'views/header.html'" onload="header_title='Files Overview' | translate;
+  header_subtitle='Administration Interface' | translate">
 </div>
 
 <div class="container config-page" ng-controller="OverviewCtrl">
@@ -12,16 +10,15 @@
             This is the ng-inlcude directive:
             http://docs.angularjs.org/api/ng.directive:ngInclude
       -->
-    <div class="span3 config-sidebar"
-      ng-include="'views/admin/sidebar.html'">
+    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'">
     </div>
     <!-- End Nav Bar -->
 
-   <div class="span9">
+   <div class="col-md-9">
 
        <h1>{{ "Files overview" | translate }}</h1>
        <p>
-       {{ "This interface may help you spot anomalies in your Node." | translate }}<br>
+       {{ "This interface may help you spot anomalies in your Node." | translate }}<br />
        {{ "The table below shows the files present in the submission directory, and their relationship with the internal database." | translate }}</p>
       <div class="table-container">
       <table class="table table-striped table-bordered dataTable" id="fileList">
@@ -35,11 +32,9 @@
         </thead>
         <tbody id="fileListBody">
           <tr ng-repeat="file in files">
-            <td>{{file.name}}<br>
-               <input class="span2" id="appendedPrependedInput" type="text"
-               value="{{file.creation_date | date:'fullDate'}}  {{file.itip}}" expand-to="500"><br>
-               <input class="span2" id="appendedPrependedInput" type="text"
-               value="{{file.path}}" expand-to="500">
+            <td>{{file.name}}<br />
+               <input class="col-md-2 form-control" id="appendedPrependedInput" value="{{file.creation_date | date:'fullDate'}}  {{file.itip}}" expand-to="500" type="text"><br />
+               <input class="col-md-2 form-control" id="appendedPrependedInput" value="{{file.path}}" expand-to="500" type="text">
             </td>
             <td>{{file.content_type}}</td>
             <td>{{file.size}}</td>
@@ -49,7 +44,6 @@
       </table>
   </div> <!-- table-container -->
 
-</div> <!-- span9 -->
+</div> <!-- col-md-9 -->
 </div> <!-- row -->
 </div> <!-- container + controller -->
-

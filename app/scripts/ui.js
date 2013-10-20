@@ -21,7 +21,7 @@ angular.module('submissionUI', []).
         img_receiver.hover(function(){
           // Resize the overlay black image to match the icon size.
           var upload_file = element.parent().parent().find('.changePicture');
-          upload_file.css('width', img_receiver[0].width + 10);
+          upload_file.css('width', img_receiver[0].width);
         });
 
         function progressMeter(e, data) {

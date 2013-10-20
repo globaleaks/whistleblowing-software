@@ -1,6 +1,5 @@
-<div ng-include="'views/header.html'"
-  onload='header_title="Advanced Settings" | translate;
-  header_subtitle="Administration Interface" | translate'>
+<div ng-include="'views/header.html'" onload="header_title='Advanced Settings' | translate;
+  header_subtitle='Administration Interface' | translate">
 </div>
 
 <div class="container config-page">
@@ -10,123 +9,124 @@
             This is the ng-inlcude directive:
             http://docs.angularjs.org/api/ng.directive:ngInclude
       -->
-    <div class="span3 config-sidebar"
-      ng-include="'views/admin/sidebar.html'">
-    </div>
+    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
     <!-- End Nav Bar -->
-    <div class="span9" ng-controller="AdminAdvancedCtrl">
-      <h3>
-        {{ "Advanced Settings" | translate }}
-      </h3>
-      <p><b>{{ "You're running GlobaLeaks version" | translate }} {{admin.node.version}}</b></p>
+    <div class="col-md-9" ng-controller="AdminAdvancedCtrl">
 
-      <p>{{ "This section contains settings that may make your installation not work properly. Please refer to the " | translate }}
-      <a href="https://github.com/globaleaks/GlobaLeaks/wiki/Advanced-configuration">Advanced configuration</a>.</p>
+        <div class="row">
+            <div class="col-md-6">
+              <h3>
+                {{ "Advanced Settings" | translate }}
+              </h3>
+              <p><b>{{ "You're running GlobaLeaks version" | translate }} {{admin.node.version}}</b></p>
 
-      <form name="contentForm" novalidate>
+              <p>{{ "This section contains settings that may make your installation not work properly. Please refer to the " | translate }}
+              <a href="https://github.com/globaleaks/GlobaLeaks/wiki/Advanced-configuration">Advanced configuration</a>.</p>
 
-        <label>{{ "Exception mail address" | translate }}</label>
-        <input type="text" ng-model="admin.node.exception_email" />
-        <br>
+              <form name="contentForm" novalidate="">
 
-        <label>{{ "File size limit (in Megabytes)" | translate }}</label>
-        <input type="text" ng-model="admin.node.maximum_filesize" />
-        <br>
+                <div class="form-group">
+                  <label>{{ "Exception mail address" | translate }}</label>
+                  <input class="form-control" ng-model="admin.node.exception_email" type="text">
+                </div>
 
-        <label>{{ "Text size limit (in bytes)" | translate }}</label>
-        <input type="text" ng-model="admin.node.maximum_descsize" />
-        <br>
+                <div class="form-group">
+                  <label>{{ "File size limit (in Megabytes)" | translate }}</label>
+                  <input class="form-control" ng-model="admin.node.maximum_filesize" type="text">
+                </div>
 
-        <div class="table-bordered">
-           <label>
-              <input type="checkbox" ng-model="admin.node.postpone_superpower" />
-              {{ "Permit Receivers to postpone expiration date of the Tips" | translate }}
-           </label>
-           <label ng-show="admin.node.postpone_superpower" >
-              <span class="btn-info">
-                 {{ "now Enabled:" | translate }}
-              </span>
-              {{ "A receiver can postpone how many times he wants, all the receivers have the same privileges." | translate }}
-           </label>
+                <div class="form-group">
+                  <label>{{ "Text size limit (in bytes)" | translate }}</label>
+                  <input class="form-control" ng-model="admin.node.maximum_descsize" type="text">
+                </div>
+
+                <div class="form-group">
+                  <label>
+                    <input ng-model="admin.node.postpone_superpower" type="checkbox">
+                    {{ "Permit Receivers to postpone expiration date of the Tips" | translate }}
+                  </label>
+                  <label ng-show="admin.node.postpone_superpower">
+                    <span class="btn-info">
+                    {{ "now Enabled:" | translate }}
+                    </span>
+                    {{ "A receiver can postpone how many times he wants, all the receivers have the same privileges." | translate }}
+                  </label>
+                </div>
+
+                <a ng-click="tor2web_editing = !tor2web_editing" ng-init="tor2web_editing = false" ng-show="!tor2web_editing">
+                {{ "Edit Tor2Web accessibility table " | translate }}
+                </a>
+                <a ng-click="tor2web_editing = !tor2web_editing" ng-show="tor2web_editing">
+                {{ "Edit Tor2Web accessibility table - [click again to close]" | translate }}
+                </a>
+
+                <div ng-show="tor2web_editing">
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_admin" type="checkbox">
+                    <label>{{ "Permit administrative login via Tor2Web" | translate }}</label>
+                    <label ng-show="admin.node.tor2web_admin">
+                      <span class="btn-info">
+                        {{ "now Enabled:" | translate }}
+                      </span>
+                      {{ "Admin can access via Tor2Web. This is safe only if you're using a dedicated Tor2Web server." | translate }}
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_receiver" type="checkbox">
+                    <label>{{ "Permit Receiver preferences management via Tor2Web" | translate }}</label>
+                    <label ng-show="admin.node.tor2web_receiver">
+                      <span class="btn-info">
+                        {{ "now Enabled:" | translate }}
+                      </span>
+                      {{ "Receivers can access via Tor2Web. This is dangerous and it's recommended instead to train receivers in the use of Tor and Enigmail." | translate }}
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_tip" type="checkbox">
+                    <label>{{ "Permit Tip access, file download and upload via Tor2Web" | translate }}</label>
+                    <label ng-show="admin.node.tor2web_tip">
+                      <span class="btn-info">
+                        {{ "now Enabled:" | translate }}
+                      </span>
+                      {{ "Tip can be accessed via Tor2Web by whistleblowers and receiver." | translate }}
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_unauth" type="checkbox">
+                    <label>{{ "Permit access of public resources via Tor2Web" | translate }}</label>
+                    <label ng-show="admin.node.tor2web_unauth">
+                      <span class="btn-info">
+                        {{ "now Enabled:" | translate }}
+                      </span>
+                      {{ "Public GlobaLeaks resources can be accessed via Tor2Web. This is safe to do." | translate }}
+                    </label>
+                  </div>
+
+                  <div class="form-group">
+                    <input ng-model="admin.node.tor2web_submission" type="checkbox">
+                    <label>{{ "Permit Submissions via Tor2Web" | translate }}</label>
+                    <label ng-show="admin.node.tor2web_submission">
+                      <span class="btn-info">
+                        {{ "now Enabled:" | translate }}
+                      </span>
+                      {{ "Whistleblowers can perform submissions with no anonymity via Tor2Web." | translate }}
+                    </label>
+                  </div>
+                </div>
+
+                <br />
+                <br />
+
+                <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
+                  {{ "Update Advanced settings" | translate }}
+                </button>
+
+              </form>
+            </div>
         </div>
-
-        <a ng-click="tor2web_editing = !tor2web_editing" ng-init="tor2web_editing = false" ng-show="!tor2web_editing">
-            {{ "Edit Tor2Web accessibility table " | translate }}
-        </a>
-        <a ng-click="tor2web_editing = !tor2web_editing" ng-show="tor2web_editing">
-            {{ "Edit Tor2Web accessibility table - [click again to close]" | translate }}
-        </a>
-
-        <div ng-show="tor2web_editing">
-            <div class="table-bordered">
-              <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_admin" />
-                  {{ "Permit administrative login via Tor2Web" | translate }}
-              </label>
-              <label ng-show="admin.node.tor2web_admin" >
-                  <span class="btn-info">
-                    {{ "now Enabled:" | translate }}</span>
-                  {{ "Admin can access via Tor2Web. This is safe only if you're using a dedicated Tor2Web server." | translate }}
-              </label>
-            </div>
-
-            <div class="table-bordered" >
-              <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_receiver" />
-                  {{ "Permit Receiver preferences management via Tor2Web" | translate }}
-              </label>
-              <label ng-show="admin.node.tor2web_receiver" >
-                  <span class="btn-info">
-                    {{ "now Enabled:" | translate }}</span>
-                  {{ "Receivers can access via Tor2Web. This is dangerous and it's recommended instead to train receivers in the use of Tor and Enigmail." | translate }}
-              </label>
-            </div>
-
-            <div class="table-bordered" >
-              <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_tip" />
-                  {{ "Permit Tip access, file download and upload via Tor2Web" | translate }}
-              </label>
-              <label ng-show="admin.node.tor2web_tip" >
-                  <span class="btn-info">
-                    {{ "now Enabled:" | translate }}</span>
-                  {{ "Tip can be accessed via Tor2Web by whistleblowers and receiver." | translate }}
-              </label>
-            </div>
-
-            <div class="table-bordered" >
-              <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_unauth" />
-                  {{ "Permit access of public resources via Tor2Web" | translate }}
-              </label>
-              <label ng-show="admin.node.tor2web_unauth" >
-                  <span class="btn-info">
-                    {{ "now Enabled:" | translate }}</span>
-                  {{ "Public GlobaLeaks resources can be accessed via Tor2Web. This is safe to do." | translate }}
-              </label>
-            </div>
-
-            <div class="table-bordered" >
-              <label>
-                  <input type="checkbox" ng-model="admin.node.tor2web_submission" />
-                  {{ "Permit Submissions via Tor2Web" | translate }}
-              </label>
-              <label ng-show="admin.node.tor2web_submission" >
-                  <span class="btn-info">
-                    {{ "now Enabled:" | translate }}</span>
-                  {{ "Whistleblowers can perform submissions with no anonymity via Tor2Web." | translate }}
-              </label>
-            </div>
-        </div>
-
-        <br>
-        <button class="btn btn-success"
-                ng-disabled="contentForm.$invalid "
-                ng-click="updateNode(admin.node)">
-                {{ "Update Advanced settings" | translate }}</button>
-
-      </form>
     </div>
   </div>
 </div>
-

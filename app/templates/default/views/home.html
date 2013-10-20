@@ -1,96 +1,97 @@
-<div
-  class="not-anonymous-question modal"
-  ng-show="showQuestions">
-  <div class="modal-header">
-    <h3 ng-show="correctAnswer || !answered">
-      {{ "Warning! You are not Anonymous." | translate }}
-    </h3>
-    <h3 ng-show="!correctAnswer && answered">
-      {{ "Wrong Answer!" | translate }}
-    </h3>
-  </div>
-  <div class="modal-body" ng-switch on="step">
-    <div class="explaination" ng-switch-when="1">
-      <p>
-      {{ "With a HTTPS submission you are exposing yourself to the risks that someone else will know that you have submitted something, without knowing what you have submitted." | translate }}
-      </p>
-
-      <p>
-      {{ "Instead with an Anonymous Submission you are fully protected, it is not possible for a third party to know that you have submitted something nor what you have submitted." | translate }}
-      </p>
-      
-      <p>
-      {{ "We strongly advise you to go for an Anonymous Submission." | translate }}
-      </p>
-
-      <p>
-      {{ "To make an Anonymous Submission, instead of using your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the" | translate }}
-      <a href="https://www.torproject.org/download">Tor Browser Bundle</a>,
-      {{ "this is a special piece of software designed to enable Anonymous Web Browsing." | translate }}
-      </p>
-
-    </div>
-
-    <div class="question" ng-hide="answered" ng-switch-when="2">
-      <p class="lead">
-      {{ "Which of the following statements is true?" | translate}}
-      </p>
-    
-      <input type="radio" ng-model="answer.value" value="a"> 
-      {{ "https protects my identity, but not the content of my leak" | translate }}<br/>
-      <input type="radio" ng-model="answer.value" value="b"> 
-      {{ "https protects the content of my leak but not my identity" | translate }}<br/>
-      <input type="radio" ng-model="answer.value" value="c"> 
-      {{ "https does not protect the content of my leak nor my identity" | translate }}<br/>
-      <input type="radio" ng-model="answer.value" value="d"> 
-      {{ "https does protect my identity and the content of my leak" | translate }}<br/>
-    </div>
-    
-    <div ng-switch on="answer.value" ng-switch-when="3">
-      <div ng-switch-when="b" class="correct-answer">
+<div class="not-anonymous-question modal" ng-show="showQuestions">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 ng-show="correctAnswer || !answered">
+          {{ "Warning! You are not Anonymous." | translate }}
+        </h3>
+        <h3 ng-show="!correctAnswer && answered">
+          {{ "Wrong Answer!" | translate }}
+        </h3>
+      </div>
+      <div class="modal-body" ng-switch="" on="step">
+        <div class="explaination" ng-switch-when="1">
           <p>
-          {{ "You are aware of the risks involved, go ahead, consider yourself warned." | translate }}
+          {{ "With a HTTPS submission you are exposing yourself to the risks that someone else will know that you have submitted something, without knowing what you have submitted." | translate }}
           </p>
-      </div>
 
-      <div class="wrong-answer" ng-switch-default>
-        <p>
-        {{ "If you want protection of your identity and the content of your message, you should try to achieve anonimity by using the" | translate }}
-        <a href="https://www.torproject.org/download">Tor browser bundle</a> 
-        {{ "to submit" | translate }}
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-  <div class="modal-footer" ng-switch on="step">
-    <div ng-switch-when="1">
-      <a ng-click="goToStep(2)" class="btn">
-         {{ "Next" | translate }}
-       </a>
-    </div>
-    
-    <div ng-switch-when="2">
-      <a ng-click="goToStep(1)" class="btn">
-         {{ "Back" | translate }}
-       </a>
+          <p>
+          {{ "Instead with an Anonymous Submission you are fully protected, it is not possible for a third party to know that you have submitted something nor what you have submitted." | translate }}
+          </p>
       
-       <a ng-click="checkAnswer()" ng-disabled="!answer.value" class="btn btn-success">
-         {{ "Proceed" | translate }}
-       </a>
-    </div>
+          <p>
+          {{ "We strongly advise you to go for an Anonymous Submission." | translate }}
+          </p>
 
-    <div ng-switch-when="3">
-      <a ng-click="goToStart()" ng-hide="correctAnswer" class="btn">
-         {{ "Back to start" | translate }}
-       </a>
+          <p>
+          {{ "To make an Anonymous Submission, instead of using your usual Web Browser (Internet Explorer, Chrome, Firefox, Opera, etc.) you should use the" | translate }}
+          <a href="https://www.torproject.org/download">Tor Browser Bundle</a>,
+          {{ "this is a special piece of software designed to enable Anonymous Web Browsing." | translate }}
+          </p>
 
-      <a ng-click="goToSubmission()" ng-hide="!correctAnswer"
-         ng-disabled="!answer.value" class="btn btn-warning">
-         {{ "Proceed to submission" | translate }}
-      </a>
+        </div>
 
+        <div class="question" ng-hide="answered" ng-switch-when="2">
+           <p class="lead">
+           {{ "Which of the following statements is true?" | translate}}
+           </p>
+    
+           <input ng-model="answer.value" value="a" type="radio"> 
+           {{ "https protects my identity, but not the content of my leak" | translate }}<br />
+           <input ng-model="answer.value" value="b" type="radio"> 
+           {{ "https protects the content of my leak but not my identity" | translate }}<br />
+           <input ng-model="answer.value" value="c" type="radio"> 
+           {{ "https does not protect the content of my leak nor my identity" | translate }}<br />
+           <input ng-model="answer.value" value="d" type="radio"> 
+           {{ "https does protect my identity and the content of my leak" | translate }}<br />
+        </div>
+    
+        <div ng-switch="" on="answer.value" ng-switch-when="3">
+          <div ng-switch-when="b" class="correct-answer">
+              <p>
+              {{ "You are aware of the risks involved, go ahead, consider yourself warned." | translate }}
+              </p>
+          </div>
+
+          <div class="wrong-answer" ng-switch-default="">
+            <p>
+            {{ "If you want protection of your identity and the content of your message, you should try to achieve anonimity by using the" | translate }}
+            <a href="https://www.torproject.org/download">Tor browser bundle</a> 
+            {{ "to submit" | translate }}
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="modal-footer" ng-switch="" on="step">
+        <div ng-switch-when="1">
+           <a ng-click="goToStep(2)" class="btn btn-default">
+             {{ "Next" | translate }}
+           </a>
+        </div>
+    
+        <div ng-switch-when="2">
+           <a ng-click="goToStep(1)" class="btn btn-default">
+             {{ "Back" | translate }}
+           </a>
+      
+           <a ng-click="checkAnswer()" ng-disabled="!answer.value" class="btn btn-success">
+             {{ "Proceed" | translate }}
+           </a>
+        </div>
+
+        <div ng-switch-when="3">
+          <a ng-click="goToStart()" ng-hide="correctAnswer" class="btn btn-default">
+             {{ "Back to start" | translate }}
+           </a>
+
+          <a ng-click="goToSubmission()" ng-hide="!correctAnswer" ng-disabled="!answer.value" class="btn btn-warning">
+             {{ "Proceed to submission" | translate }}
+          </a>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>
@@ -102,26 +103,23 @@
     
     <div ng-show="node_info.configured">
       <div ng-show="!node_info.tor2web_submission && !anonymous" class="row">
-        <p class="text-error">
+        <p class="has-error">
           {{ "You are connecting to the node not anonymously and this node only supports anonymous submissions" | translate }}
 
         </p>
       </div>
-      <div class="row" ng-cloak ng-show="!node_info.tor2web_submission && !anonymous">
-        <button
-          class="btn btn-danger btn-large disabled">
+      <div class="row" ng-cloak="" ng-show="!node_info.tor2web_submission && !anonymous">
+        <button class="btn btn-danger disabled btn-lg">
             {{ "Whistleblowing disabled" | translate }}</button>
       </div>
 
-      <div class="row" ng-cloak ng-show="node_info.tor2web_submission && anonymous">
-        <a ng-click="goToSubmission()"
-          class="btn btn-primary btn-large">
+      <div class="row" ng-cloak="" ng-show="node_info.tor2web_submission && anonymous">
+        <a ng-click="goToSubmission()" class="btn btn-primary btn-lg">
             {{ "Blow the Whistle" | translate }}</a>
       </div>
 
-      <div class="row" ng-cloak ng-show="node_info.tor2web_submission && !anonymous">
-        <a ng-click="goToSubmission()"
-          class="btn btn-warning btn-large">
+      <div class="row" ng-cloak="" ng-show="node_info.tor2web_submission && !anonymous">
+        <a ng-click="goToSubmission()" class="btn btn-warning btn-lg">
             {{ "Blow the Whistle" | translate }}</a>
       </div>
 
@@ -146,50 +144,51 @@
 
     <h3 class="lead">{{node_info.description}}</h3>
 
-    <div class="span6">
-        <h1>
-            {{ "Are you a whistleblower?" | translate }}
-        </h1>
-        <label>
-            {{ "Enter your receipt" | translate }}<br/>
-            <input type="text" ng-model="receipt">
-        </label>
-        <a ng-click="view_tip(receipt)" class="btn btn-primary">
-            {{ "View Tip" | translate }}
-        </a>
-    </div >
-    <div class="span6">
-        <h1>
-          {{ "Are you a receiver?" | translate }}
-        </h1>
+    <div class="row">
+        <div class="col-md-6">
+            <h1>
+                {{ "Are you a whistleblower?" | translate }}
+            </h1>
+            <label>
+                {{ "Enter your receipt" | translate }}<br />
+                <input class="form-control" ng-model="receipt" type="text">
+            </label>
+            <a ng-click="view_tip(receipt)" class="btn btn-primary">
+                {{ "View Tip" | translate }}
+            </a>
+        </div>
+        <div class="col-md-6">
+            <h1>
+              {{ "Are you a receiver?" | translate }}
+            </h1>
+            <p>
+            {{ "This is the" | translate }}
+            <a href="#/login">
+              {{ "Login page" | translate }}
+            </a>.</p>
+        </div>
+    </div>
+
+    <br />
+    <br />
+
+    <div class="row">
+      <div class="col-md-12">
         <p>
-        {{ "This is the" | translate }}
-        <a href="#/login">
-          {{ "Login page" | translate }}
-        </a>.</p>
-    </div >
-
-    <h1>
-      {{ "What is this about?" | translate }}
-    </h1>
-    <p class="homeIntro-byline">
-    {{ "How you can transform information into action!" | translate }}
-    </p>
-    <p>
-    {{ "Through this platform you will be able to report on wrongdoing. This platform is running the" | translate }}
-    <a href="https://globaleaks.org/">
-      {{ "GlobaLeaks software" | translate }}
-    </a> ,  
-    {{ "that is specifically designed to protect the identity of the reporter and of the ones running the platform." | translate }}
-    </p>
-    <p>
-    {{ "This software is developed by the non-profit organization" | translate }}
-    <a href="http://www.logioshermes.org/">Hermes Center for Transparency and Digital Human Rights</a>.
-    {{ "We are supported also by your donations. Visit our" | translate }} <a
-      href="http://logioshermes.org/home/about-mission/support-us/">
-      {{ "donation page" | translate }}</a>
-    {{ "to help us further support the development of GlobaLeaks." | translate }}
-    </p>
-
+        {{ "Through this platform you will be able to report on wrongdoing. This platform is running the" | translate }}
+        <a href="https://globaleaks.org/">
+          {{ "GlobaLeaks software" | translate }}
+        </a> ,  
+        {{ "that is specifically designed to protect the identity of the reporter and of the ones running the platform." | translate }}
+        </p>
+        <p>
+        {{ "This software is developed by the non-profit organization" | translate }}
+        <a href="http://www.logioshermes.org/">Hermes Center for Transparency and Digital Human Rights</a>.
+        {{ "We are supported also by your donations. Visit our" | translate }} <a href="http://logioshermes.org/home/about-mission/support-us/">
+          {{ "donation page" | translate }}</a>
+        {{ "to help us further support the development of GlobaLeaks." | translate }}
+        </p>
+      </div>
+    </div>
   </div>
 </div>

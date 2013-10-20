@@ -3,28 +3,29 @@
 
   <div class="row" ng-mouseenter="showBox()" ng-mouseleave="hideBox()">
 
-    <div class="semaphores span1" ng-class="boxes">
+    <div class="semaphores col-md-1" ng-class="boxes">
 
-      <div ng-switch on="privacy">
+      <div ng-switch="" on="privacy">
 
         <div ng-switch-when="high" class="semaphore btn-success"></div>
         <div ng-switch-when="unknown" class="semaphore btn-warning"></div>
         <div ng-switch-when="low" class="semaphore btn-danger">
-          <span ng-show="!displayBox" class="label label-important">
-            {{ "Danger!" | translate }}</span>
+          <span ng-show="!displayBox" class="label label-danger">
+            {{ "Danger!" | translate }}
+          </span>
         </div>
 
       </div>
 
     </div>
 
-    <div class="informationBoxes span4">
+    <div class="informationBoxes">
 
       <div class="informationBox privacyInformation" ng-show="displayBox">
 
-        <button type="button" class="close" ng-click="hideBox()">&times;</button>
+        <button type="button" class="close" ng-click="hideBox()">×</button>
 
-        <div ng-switch on="privacy">
+        <div ng-switch="" on="privacy">
 
           <div ng-switch-when="high">
 
@@ -38,7 +39,7 @@
 
           <div ng-switch-when="unknown">
 
-            <span class="label label-important">
+            <span class="label label-danger">
               {{ "Warning!" | translate }}</span>
             <p>{{ "We were not able to determine if you are anonymous or not, please proceed with care" | translate }}</p>
 
@@ -46,7 +47,7 @@
 
           <div ng-switch-when="low">
 
-            <span class="label label-important">
+            <span class="label label-danger">
               {{ "Danger!" | translate }}</span>
             <p>{{ "It appears your are not using Tor, thus you are strongly advised to " | translate }}
             <a href="https://www.torproject.org/download/download">

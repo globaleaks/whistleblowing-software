@@ -1,6 +1,5 @@
-<div ng-include="'views/header.html'"
-  onload='header_title="Content Settings" | translate;
-  header_subtitle="Administration Interface" | translate'>
+<div ng-include="'views/header.html'" onload="header_title='Content Settings' | translate;
+  header_subtitle='Administration Interface' | translate">
 </div>
 
 <div class="container config-page">
@@ -10,114 +9,105 @@
             This is the ng-inlcude directive:
             http://docs.angularjs.org/api/ng.directive:ngInclude
       -->
-    <div class="span3 config-sidebar"
-      ng-include="'views/admin/sidebar.html'">
+    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'">
     </div>
     <!-- End Nav Bar -->
-    <div class="span9">
+    <div class="col-md-9">
 
       <h3>
         {{ "General information" | translate }}
       </h3>
       <p><b>{{ "You're running GlobaLeaks version" | translate }} {{admin.node.version}}</b></p>
 
-      <label>{{ "Current initiative logo" | translate }}</label>
-      <form name="contentForm" novalidate>
-        <div class="imageUpload" ng-controller="ImageUploadCtrl">
-          <div class="profile" ng-mouseenter="openUploader()"
-               ng-mouseleave="closeUploader()">
+      <form name="contentForm" class="form-inline" novalidate="">
 
-            <div ng-show="uploadfile" class="uploadfile">
-              <div class="changePicture"
-                   pragmatic-file-upload ng-src="/admin/staticfiles?globaleaks_logo">
-                <div class="fileselector">
-                  <input type="file">
+        <div class="row">
+          <div class="form-group">
+            <label>{{ "Current initiative logo" | translate }}</label>
+            <div class="imageUpload" ng-controller="ImageUploadCtrl">
+              <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
+                <div ng-show="uploadfile" class="uploadfile">
+                  <div class="changePicture" pragmatic-file-upload="" ng-src="/admin/staticfiles?globaleaks_logo">
+                    <div class="fileselector">
+                      <input class="form-control" type="file">
+                    </div>
+                    <span>
+                      {{ "Change picture" | translate }}
+                    </span>
+                  </div>
+                  <div class="uploadProgress hide">
+                    <div class="progress progress-striped">
+                      <div class="progress-bar" style="width: 0%;"></div>
+                    </div>
+                  </div>
                 </div>
-                <span>
-                  {{ "Change picture" | translate }}
-                </span>
-              </div>
-              <div class="uploadProgress hide">
-                <div class="progress progress-striped">
-                  <div class="bar" style="width: 0%;"></div>
-                </div>
+                <img ng-src="/static/globaleaks_logo.png" class="img-polaroid baseimage">
               </div>
             </div>
-            <img ng-src="/static/globaleaks_logo.png" class="img-polaroid baseimage">
-
           </div>
         </div>
 
         <div class="row">
-          <div class="span9">
+          <div class="form-group col-md-6">
             <label>{{ "Node name" | translate }}</label>
-            <input type="text" ng-model="admin.node.name" value="{{admin.node.name}}">
+            <input class="form-control" ng-model="admin.node.name" value="{{admin.node.name}}" type="text">
           </div>
         </div>
 
-        <!-- Description -->
         <div class="row">
-          <div class="span9">
+          <div class="form-group col-md-6">
             <label>{{ "Description" | translate }}</label>
             <textarea ng-model="admin.node.description">{{admin.node.description}}</textarea>
           </div>
         </div>
 
-        <!-- Presentation -->
         <div class="row">
-          <div class="span9">
-             <label>{{ "Presentation" | translate }}</label>
-             <textarea ng-model="admin.node.presentation">{{admin.node.presentation}}</textarea>
+          <div class="form-group col-md-6">
+            <label>{{ "Presentation" | translate }}</label>
+            <textarea ng-model="admin.node.presentation">{{admin.node.presentation}}</textarea>
           </div>
         </div>
 
-        <!--
         <div class="row">
-          <div class="span9">
-            <label>{{ "Email" | translate }}</label>
-            <input type="email" ng-model="admin.node.email">
-          </div>
-        </div>
-        -->
-
-        <div class="row">
-          <div class="span9">
+          <div class="form-group col-md-6">
             <label>{{ "Enabled languages" | translate }}</label>
             <div ng-repeat="language in admin.node.languages_supported">
-              <label><input type="checkbox" ng-model="enabled_languages[language.code]"> {{language.name}}</label>
+              <label><input ng-model="enabled_languages[language.code]" type="checkbox"> {{language.name}}</label>
             </div>
           </div>
         </div>
 
         <div class="row">
-          <div class="span9">
+          <div class="form-group col-md-6">
             <label>{{ "Default language" | translate }}</label>
-            <select ng-model="admin.node.default_language"
-                    ng-options="code as name for (code, name) in available_languages"></select>
+            <select ng-model="admin.node.default_language" ng-options="code as name for (code, name) in available_languages"></select>
           </div>
         </div>
 
-        <label>{{ "Tor Hidden Service (hostname)" | translate }}</label>
-        <input type="text" name="hidden_service" ng-model="admin.node.hidden_service"
-               ng-pattern="/^http://[0-9a-z]{16}\.onion$/">
-        <p class="text-error" ng-show="contentForm.hidden_service.$error.pattern">
-        {{ "Invalid format for hidden service (should be http://thirteenchars123.onion)" | translate }}</p>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label>{{ "Tor Hidden Service (hostname)" | translate }}</label>
+            <input class="form-control" name="hidden_service" ng-model="admin.node.hidden_service" ng-pattern="/^http://[0-9a-z]{16}\.onion$/" type="text">
+            <p class="has-error" ng-show="contentForm.hidden_service.$error.pattern">
+            {{ "Invalid format for hidden service (should be http://thirteenchars123.onion)" | translate }}</p>
+          </div>
+        </div>
 
-        <label>{{ "Tor2web Public Site (url)" | translate }}</label>
-        <input type="url" name="public_site" ng-model="admin.node.public_site"
-               ng-pattern="/^https://[0-9a-z.:]*$/">
-        <p class="text-error" ng-show="contentForm.public_site.$error.pattern">
-        {{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}</p>
+        <div class="row">
+          <div class="form-group col-md-6">
+            <label>{{ "Tor2web Public Site (url)" | translate }}</label>
+            <input class="form-control" name="public_site" ng-model="admin.node.public_site" ng-pattern="/^https://[0-9a-z.:]*$/" type="url">
+            <p class="has-error" ng-show="contentForm.public_site.$error.pattern">
+            {{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}</p>
+          </div>
+        </div>
 
-        <!-- <div ng-include="'views/admin/content/internationalization.html'"> -->
+        <br />
+        <br />
 
-        <br>
-        <button class="btn btn-success"
-                ng-disabled="contentForm.$invalid "
-                ng-click="updateNode(admin.node)">
-                {{ "Update node" | translate }}</button>
-      </form>
-    </div>
+        <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
+            {{ "Update node" | translate }}</button>
+
+    </form>
   </div>
 </div>
-
