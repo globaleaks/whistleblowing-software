@@ -50,47 +50,59 @@
                 <div class="row">
                   <div class="col-md-6">
                     <div class="imageUpload" ng-controller="ImageUploadCtrl">
-                      <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
-                        <img ng-src="/static/{{receiver.receiver_gus}}.png?{{randomFluff}}" class="img-polaroid baseimage">
-                        <div ng-show="uploadfile" class="uploadfile">
-                          <div class="uploadfile changePicture fileselector" pragmatic-file-upload="" src="/admin/staticfiles?{{receiver.receiver_gus}}">
-                            <input class="form-control" type="file">
-                            {{ "Change picture" | translate }}
-                          </div>
-                          <div class="uploadProgress hide">
-                            <div class="progress progress-striped">
-                              <div class="progress-bar" style="width: 0%;"></div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                       <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
+                         <div ng-show="uploadfile" class="uploadfile">
+                           <div class="changePicture"
+                             pragmatic-file-upload src="/admin/staticfiles?{{receiver.receiver_gus}}">
+                             <div class="fileselector">
+                               <input type="file">
+                             </div>
+                             <span>
+                               {{ "Change picture" | translate }}
+                             </span>
+                           </div>
+                           <div class="uploadProgress hide">
+                             <div class="progress progress-striped">
+                               <div class="bar" style="width: 0%;"></div>
+                             </div>
+                           </div>
+                         </div>
+                         <img ng-src="/static/{{receiver.receiver_gus}}.png?{{randomFluff}}" class="img-polaroid baseimage">
+                       </div>
                     </div>
 
-                    <label>{{ "Name" | translate }}</label>
-                    <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" required="" type="text">
-                    <p class="has-error" ng-show="receiverForm.name.$error.maxlength">
-                    {{ "Receiver name too long" | translate }}</p>
+                    <div class="form-group">
+                      <label>{{ "Name" | translate }}</label>
+                      <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" required="" type="text">
+                      <p class="has-error" ng-show="receiverForm.name.$error.maxlength">
+                      {{ "Receiver name too long" | translate }}</p>
+                    </div>
 
-                    <label>{{ "Email Address (Username)" | translate }}</label>
-                    <input class="form-control" name="email" ng-model="receiver.notification_fields.mail_address" required="" type="email">
-                    <p class="has-error" ng-show="receiverForm.email.$error.email">
-                    {{ "Invalid email address" | translate }}</p>
+                    <div class="form-group">
+                      <label>{{ "Email Address (Username)" | translate }}</label>
+                      <input class="form-control" name="email" ng-model="receiver.notification_fields.mail_address" required="" type="email">
+                      <p class="has-error" ng-show="receiverForm.email.$error.email">
+                      {{ "Invalid email address" | translate }}</p>
+                    </div>
 
-                    <label bs-popover="'If left empty, the system sets globaleaks'">
-                      {{ "Password" | translate }}</label>
-                    <!-- remind: this need to be random & mailed to the inactive user -->
-                    <input class="form-control" ng-model="receiver.password" type="password">
-                    <p class="has-error" ng-show="unsafe_password">
-                    {{ "The choosen password is unsafe, it should have" | translate }}:</p>
-                    <li class="has-error" ng-hide="pwdHasLetter">
-                    {{ "At least one letter" | translate }}</li>
-                    <li class="has-error" ng-hide="pwdHasNumber">
-                    {{ "At least one number" | translate }}</li>
-                    <li class="has-error" ng-hide="pwdValidLength">
-                    {{ "At least 8 keypress long" | translate }}</li>
+                    <div class="form-group">
+                      <label bs-popover="'If left empty, the system sets globaleaks'">{{ "Password" | translate }}</label>
+                      <!-- remind: this need to be random & mailed to the inactive user -->
+                      <input class="form-control" ng-model="receiver.password" type="password">
+                      <p class="has-error" ng-show="unsafe_password">
+                      {{ "The choosen password is unsafe, it should have" | translate }}:</p>
+                      <li class="has-error" ng-hide="pwdHasLetter">
+                      {{ "At least one letter" | translate }}</li>
+                      <li class="has-error" ng-hide="pwdHasNumber">
+                      {{ "At least one number" | translate }}</li>
+                      <li class="has-error" ng-hide="pwdValidLength">
+                      {{ "At least 8 keypress long" | translate }}</li>
+                    </div>
 
-                    <label>{{ "Description" | translate }}</label>
-                    <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
+                    <div class="form-group">
+                      <label>{{ "Description" | translate }}</label>
+                      <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
+                    </div>
 
                     <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">
                       {{ "PGP key management" | translate }}
@@ -98,33 +110,34 @@
 
                     <div ng-show="advanced_edit">
                       <textarea ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
-                    </div>
-                    <!-- here another span4 shall fit well, but IDK which kind of preferences can be show here -->
-                    <div ng-show="receiver.gpg_key_info">
-                      {{ "Key details" | translate }}
-                      <pre>{{receiver.gpg_key_info}}</pre>
-                    </div>
+                      <!-- here another span4 shall fit well, but IDK which kind of preferences can be show here -->
 
-                    <div class="table-bordered">
-                      <input ng-model="receiver.gpg_enable_notification" type="checkbox">
-                      <label>{{ "Enable encrypted notification" | translate }}</label>
-                      <label ng-show="receiver.gpg_enable_notification">
-                        <span class="btn-info">
-                          {{ "now Enabled:" | translate }}
-                        </span>
-                        {{ "Every notification you'll receive will be encrypted with your GPG key." | translate }}
-                      </label>
-                    </div>
+                      <div ng-show="receiver.gpg_key_info">
+                        {{ "Key details" | translate }}
+                        <pre>{{receiver.gpg_key_info}}</pre>
+                      </div>
 
-                    <div class="table-bordered">
-                      <input ng-model="receiver.gpg_enable_files" type="checkbox">
-                      <label>{{ "Enable file encryption" | translate }}</label>
-                      <label ng-show="receiver.gpg_enable_files">
-                        <span class="btn-info">
-                          {{ "now Enabled:" | translate }}
-                        </span>
-                        {{ "Every file you'll download will be encrypted with your GPG key." | translate }}
-                      </label>
+                      <div class="form-group">
+                        <input ng-model="receiver.gpg_enable_notification" type="checkbox">
+                        <label>{{ "Enable encrypted notification" | translate }}</label>
+                        <label ng-show="receiver.gpg_enable_notification">
+                          <span class="btn-info">
+                            {{ "now Enabled:" | translate }}
+                          </span>
+                          {{ "Every notification you'll receive will be encrypted with your GPG key." | translate }}
+                        </label>
+                      </div>
+
+                      <div class="form-group">
+                        <input ng-model="receiver.gpg_enable_files" type="checkbox">
+                        <label>{{ "Enable file encryption" | translate }}</label>
+                        <label ng-show="receiver.gpg_enable_files">
+                          <span class="btn-info">
+                            {{ "now Enabled:" | translate }}
+                          </span>
+                          {{ "Every file you'll download will be encrypted with your GPG key." | translate }}
+                        </label>
+                      </div>
                     </div>
                   </div>
                   <div class="col-md-6">
@@ -156,33 +169,40 @@
 
                 <div class="row">
                   <div class="col-md-6">
-                    <label>{{ "Name" | translate }}</label>
-                    <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" required="" type="text">
-                    <p class="has-error" ng-show="newReceiver.name.$error.maxlength">
-                    {{ "Receiver name too long" | translate }}</p>
-                    <!-- XXX fix this so that it works on right to left languages. -->
-                    <label>{{ "Email Address" | translate }} 
-                      ({{ "Username" | translate }})</label>
-                    <input class="form-control" name="email" ng-model="new_receiver.email" required="" type="email">
-                    <p class="has-error" ng-show="newReceiver.email.$error.email">
-                    {{ "Invalid email address" | translate }}</p>
-
+                    <div class="form-group">
+                      <label>{{ "Name" | translate }}</label>
+                      <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" required="" type="text">
+                      <p class="has-error" ng-show="newReceiver.name.$error.maxlength">{{ "Receiver name too long" | translate }}</p>
+                      <!-- XXX fix this so that it works on right to left languages. -->
+                    </div>
+                    <div class="form-group">
+                      <label>
+                        {{ "Email Address" | translate }} 
+                        ({{ "Username" | translate }})
+                      </label>
+                      <input class="form-control" name="email" ng-model="new_receiver.email" required="" type="email">
+                      <p class="has-error" ng-show="newReceiver.email.$error.email">
+                        {{ "Invalid email address" | translate }}
+                      </p>
+                    </div>
                   </div>
 
                 </div>
 
                 <div class="row">
                   <div class="col-md-6">
-                    <label>{{ "Password" | translate }}</label>
-                    <input class="form-control" ng-model="new_receiver.password" required="" type="password">
-                    <p class="has-error" ng-show="unsafe_password">
-                    {{ "The choosen password is unsafe, it should have" | translate }}:</p>
-                    <li class="has-error" ng-hide="pwdHasLetter">
-                    {{ "At least one letter" | translate }}</li>
-                    <li class="has-error" ng-hide="pwdHasNumber">
-                    {{ "At least one number" | translate }}</li>
-                    <li class="has-error" ng-hide="pwdValidLength">
-                    {{ "At least 8 keypress long" | translate }}</li>
+                    <div class="form-group">
+                      <label>{{ "Password" | translate }}</label>
+                      <input class="form-control" ng-model="new_receiver.password" required="" type="password">
+                      <p class="has-error" ng-show="unsafe_password">
+                      {{ "The choosen password is unsafe, it should have" | translate }}:</p>
+                      <li class="has-error" ng-hide="pwdHasLetter">
+                      {{ "At least one letter" | translate }}</li>
+                      <li class="has-error" ng-hide="pwdHasNumber">
+                      {{ "At least one number" | translate }}</li>
+                      <li class="has-error" ng-hide="pwdValidLength">
+                      {{ "At least 8 keypress long" | translate }}</li>
+                    </div>
                   </div>
                 </div>
 

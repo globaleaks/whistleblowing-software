@@ -1,5 +1,6 @@
+<br />
 <div class="row">
-  <div class="col-md-4">
+  <div class="col-md-12">
     <label>{{ "Fields" | translate }}</label>
     <a ng-click="addField(context)"><i class="glyphicon glyphicon-plus-sign"></i> 
       {{ "add field" | translate }}</a>
@@ -25,41 +26,47 @@
         <div class="col-md-10">
           <a ng-click="deleteField(field)" class="delete">
             {{ "delete" | translate }}</a>
-          <label>{{ "Name" | translate }}</label>
-          <input class="form-control" ng-model="field.name" required="" type="text">
-          <label>{{ "Hint" | translate }}</label>
-          <input class="form-control" ng-model="field.hint" required="" type="text">
-          <div class="table-bordered">
+          <div class="form-group">
+            <label>{{ "Name" | translate }}</label>
+            <input class="form-control" ng-model="field.name" required="" type="text">
+          </div>
+          <div class="form-group">
+            <label>{{ "Hint" | translate }}</label>
+            <input class="form-control" ng-model="field.hint" required="" type="text">
+          </div>
+          <div class="form-group">
             <input ng-model="field.required" type="checkbox">
             <label>{{ "Required" | translate }}</label>
           </div>
-          <div class="table-bordered">
+          <div class="form-group">
             <input ng-model="field.preview" type="checkbox">
             <label>{{ "Show in preview" | translate }}</label>
           </div>
-          <label>{{ "Type" | translate }}</label>
-          <select id="editFieldType" ng-model="field.type" ng-required="">
-            <option value="text">
-            {{ "Text" | translate }}</option>
-            <option value="radio">
-            {{ "Radio Buttons" | translate }}</option>
-            <option value="select">
-            {{ "Drop Menu (Select)" | translate }}</option>
-            <option value="multiple">
-            {{ "Multi-Select" | translate }}</option>
-            <option value="checkboxes">
-            {{ "Checkboxes" | translate }}</option>
-            <option value="textarea">
-            {{ "Paragraph(s)" | translate }}</option>
-            <option value="number">
-            {{ "Number" | translate }}</option>
-            <option value="url">
-            {{ "Url" | translate }}</option>
-            <option value="phone">
-            {{ "Phone" | translate }}</option>
-            <option value="email">
-            {{ "Email" | translate }}</option>
-          </select>
+          <div class="form-group">
+            <label>{{ "Type" | translate }}</label>
+            <select id="editFieldType" ng-model="field.type" ng-required="">
+              <option value="text">
+              {{ "Text" | translate }}</option>
+              <option value="radio">
+              {{ "Radio Buttons" | translate }}</option>
+              <option value="select">
+              {{ "Drop Menu (Select)" | translate }}</option>
+              <option value="multiple">
+              {{ "Multi-Select" | translate }}</option>
+              <option value="checkboxes">
+              {{ "Checkboxes" | translate }}</option>
+              <option value="textarea">
+              {{ "Paragraph(s)" | translate }}</option>
+              <option value="number">
+              {{ "Number" | translate }}</option>
+              <option value="url">
+              {{ "Url" | translate }}</option>
+              <option value="phone">
+              {{ "Phone" | translate }}</option>
+              <option value="email">
+              {{ "Email" | translate }}</option>
+            </select>
+          </div>
 
           <div ng-switch="" on="typeSwitch(field.type)">
             <div ng-switch-default=""></div>
@@ -67,8 +74,10 @@
             <div ng-switch-when="multiple">
               <div ng-repeat="option in field.options">
                 <form class="form-inline">
-                  <label>{{ "Name" | translate }}</label>
-                  <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" required="" type="text">
+                  <div class="form-group">
+                    <label>{{ "Name" | translate }}</label>
+                    <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" required="" type="text">
+                  </div>
                 </form>
               </div>
               <button class="btn btn-info" ng-click="addOption(field)">
