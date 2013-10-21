@@ -121,9 +121,9 @@ def get_files_receiver(store, user_id, tip_id):
 def strong_receiver_validate(store, user_id, tip_id):
     """
     This authentication check verify various condition:
-    1) a receiver need to be authenticated with a receiver session token
-    2) a receiver is asking for a Tip with an existing tip_id
-    3) the authenticated receiver has to be the receiver assigned to the tip_id
+    1) a receiver needs to be authenticated with a receiver session token
+    2) the tip provided by the receiver must exist
+    3) the receiver trying to authenticate for the tip has to be the receiver assigned to the tip_id
     """
 
     rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id)).one()
@@ -341,8 +341,8 @@ class TipInstance(BaseHandler):
         ignored, only authenticated user with whistleblower token can access to
         the wb_tip, this is why tip_is is not checked if self.is_whistleblower)
 
-        This method is decorated as @unauthenticated because in the handler are
-        managed differently the various cases.
+        This method is decorated as @unauthenticated because in the handler
+        the various cases are managed differently.
         """
 
         if not self.current_user:
