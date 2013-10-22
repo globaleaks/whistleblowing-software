@@ -1,7 +1,15 @@
-<div ng-include="'views/header.html'" onload="header_title='Contexts Configuration' | translate;
-  header_subtitle='Administration Interface' | translate">
-</div>
+<!-- 
 
+This comment is needed in order to push the following strings on transifex
+
+{{ "Contexts Configuration" | translate }}
+{{ "Administration Interface" | translate }}
+
+-->
+<div ng-include="'views/header.html'"
+     onload="header_title='Contexts Configuration';
+             header_subtitle='Administration Interface'">
+</div>
 
 <div class="container config-page">
 
