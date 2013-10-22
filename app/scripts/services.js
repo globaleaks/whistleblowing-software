@@ -444,11 +444,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
   return function() {
 
-    var im_a_notif_redirect = false;
+    var notification_redirect = false;
     if (document.location.href.indexOf('src=%2Fstatus%2F') > -1) {
-      im_a_notif_redirect = true;
+      notification_redirect = true;
     }
-    return im_a_notif_redirect;
+    return notifcation_redirect;
   }
 }).
   factory('passwordWatcher', ['$parse', function($parse) {
