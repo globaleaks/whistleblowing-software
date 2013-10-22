@@ -1,8 +1,10 @@
 'use strict';
 
 GLClient.controller('LoginCtrl', ['$scope', '$location',
-                    '$routeParams', 'Authentication', 'cookiesEnabled',
-  function($scope, $location, $routeParams, Authentication, cookiesEnabled) {
+                    '$routeParams', 'Authentication', 
+		    'cookiesEnabled', 'notificationRedirect',
+  function($scope, $location, $routeParams, Authentication, 
+	cookiesEnabled, notificationRedirect) {
     var src = $routeParams['src'];
 
     $scope.loginUsername = "";
@@ -15,6 +17,7 @@ GLClient.controller('LoginCtrl', ['$scope', '$location',
     };
 
     $scope.cookiesEnabled = cookiesEnabled;
+    $scope.notificationRedirect = notificationRedirect;
 
     $scope.login = Authentication.login;
 
