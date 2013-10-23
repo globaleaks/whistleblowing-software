@@ -448,7 +448,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     if (document.location.href.indexOf('src=%2Fstatus%2F') > -1) {
       notification_redirect = true;
     }
-    return notifcation_redirect;
+    return notification_redirect;
   }
 }).
   factory('passwordWatcher', ['$parse', function($parse) {

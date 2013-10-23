@@ -49,7 +49,7 @@ This comment is needed in order to push the following strings on transifex
                   <input class="form-control" ng-model="admin.node.maximum_descsize" type="text">
                 </div>
 
-                <div class="form-group">
+                <div class="form-group table-bordered">
                   <label>
                     <input ng-model="admin.node.postpone_superpower" type="checkbox">
                     {{ "Permit Receivers to postpone expiration date of the Tips" | translate }}
@@ -70,7 +70,7 @@ This comment is needed in order to push the following strings on transifex
                 </a>
 
                 <div ng-show="tor2web_editing">
-                  <div class="form-group">
+                  <div class="form-group table-bordered">
                     <input ng-model="admin.node.tor2web_admin" type="checkbox">
                     <label>{{ "Permit administrative login via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_admin">
@@ -81,7 +81,7 @@ This comment is needed in order to push the following strings on transifex
                     </label>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group table-bordered">
                     <input ng-model="admin.node.tor2web_receiver" type="checkbox">
                     <label>{{ "Permit Receiver preferences management via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_receiver">
@@ -92,7 +92,7 @@ This comment is needed in order to push the following strings on transifex
                     </label>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group table-bordered">
                     <input ng-model="admin.node.tor2web_tip" type="checkbox">
                     <label>{{ "Permit Tip access, file download and upload via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_tip">
@@ -103,7 +103,7 @@ This comment is needed in order to push the following strings on transifex
                     </label>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group table-bordered">
                     <input ng-model="admin.node.tor2web_unauth" type="checkbox">
                     <label>{{ "Permit access of public resources via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_unauth">
@@ -114,7 +114,7 @@ This comment is needed in order to push the following strings on transifex
                     </label>
                   </div>
 
-                  <div class="form-group">
+                  <div class="form-group table-bordered">
                     <input ng-model="admin.node.tor2web_submission" type="checkbox">
                     <label>{{ "Permit Submissions via Tor2Web" | translate }}</label>
                     <label ng-show="admin.node.tor2web_submission">
@@ -125,9 +125,6 @@ This comment is needed in order to push the following strings on transifex
                     </label>
                   </div>
                 </div>
-
-                <br />
-                <br />
 
                 <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
                   {{ "Update Advanced settings" | translate }}

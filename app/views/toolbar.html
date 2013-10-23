@@ -169,7 +169,7 @@
       {{ "logout" | translate }}</button>
   </div>
   <div class="languagePick" ng-show="show_language_selector">
-    <select ng-model="language" ng-options="lang_code as lang_name for (lang_code, lang_name) in available_languages">
+    <select ng-model="language" ng-options="lang_code as lang_name for (lang_code, lang_name) in available_languages" class="form-control">
     </select>
   </div>
 </div>

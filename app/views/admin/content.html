@@ -28,95 +28,88 @@ This comment is needed in order to push the following strings on transifex
       </h1>
       <p><b>{{ "You're running GlobaLeaks version" | translate }} {{admin.node.version}}</b></p>
 
-      <form name="contentForm" class="form-inline" novalidate="">
+      <form name="contentForm" novalidate="">
 
         <div class="row">
-          <div class="form-group col-md-6">
-            <label>{{ "Current initiative logo" | translate }}</label>
-            <div class="imageUpload" ng-controller="ImageUploadCtrl">
-              <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
-                <div ng-show="uploadfile" class="uploadfile">
-                  <div class="changePicture" pragmatic-file-upload="" ng-src="/admin/staticfiles?globaleaks_logo">
-                    <div class="fileselector">
-                      <input class="form-control" type="file">
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{ "Current initiative logo" | translate }}</label>
+              <div class="imageUpload" ng-controller="ImageUploadCtrl">
+                <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
+                  <div ng-show="uploadfile" class="uploadfile">
+                    <div class="changePicture" pragmatic-file-upload="" ng-src="/admin/staticfiles?globaleaks_logo">
+                      <div class="fileselector">
+                        <input class="form-control" type="file">
+                      </div>
+                      <span>
+                        {{ "Change picture" | translate }}
+                      </span>
                     </div>
-                    <span>
-                      {{ "Change picture" | translate }}
-                    </span>
-                  </div>
-                  <div class="uploadProgress hide">
-                    <div class="progress progress-striped">
-                      <div class="progress-bar" style="width: 0%;"></div>
+                    <div class="uploadProgress hide">
+                      <div class="progress progress-striped">
+                        <div class="progress-bar" style="width: 0%;"></div>
+                      </div>
                     </div>
                   </div>
+                  <img ng-src="/static/globaleaks_logo.png" class="img-polaroid baseimage">
                 </div>
-                <img ng-src="/static/globaleaks_logo.png" class="img-polaroid baseimage">
               </div>
             </div>
-          </div>
-        </div>
 
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label>{{ "Node name" | translate }}</label>
-            <input class="form-control" ng-model="admin.node.name" value="{{admin.node.name}}" type="text">
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label>{{ "Description" | translate }}</label>
-            <textarea ng-model="admin.node.description">{{admin.node.description}}</textarea>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label>{{ "Presentation" | translate }}</label>
-            <textarea ng-model="admin.node.presentation">{{admin.node.presentation}}</textarea>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label>{{ "Enabled languages" | translate }}</label>
-            <div ng-repeat="language in admin.node.languages_supported">
-              <label><input ng-model="enabled_languages[language.code]" type="checkbox"> {{language.name}}</label>
+            <div class="form-group">
+              <label>{{ "Node name" | translate }}</label>
+              <input class="form-control" ng-model="admin.node.name" value="{{admin.node.name}}" type="text">
             </div>
+
+            <div class="form-group">
+              <label>{{ "Description" | translate }}</label>
+              <div>
+                <textarea class="form-control" ng-model="admin.node.description">{{admin.node.description}}</textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>{{ "Presentation" | translate }}</label>
+              <div>
+                <textarea class="form-control" ng-model="admin.node.presentation">{{admin.node.presentation}}</textarea>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>{{ "Enabled languages" | translate }}</label>
+              <div ng-repeat="language in admin.node.languages_supported">
+                <input ng-model="enabled_languages[language.code]" type="checkbox">
+                <label>{{language.name}}</label>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>{{ "Default language" | translate }}</label>
+              <select class="form-control" ng-model="admin.node.default_language" ng-options="code as name for (code, name) in available_languages"></select>
+            </div>
+
+            <div class="form-group">
+              <label>{{ "Tor Hidden Service (hostname)" | translate }}</label>
+              <input class="form-control" name="hidden_service" ng-model="admin.node.hidden_service" ng-pattern="/^http://[0-9a-z]{16}\.onion$/" type="text">
+              <p class="has-error" ng-show="contentForm.hidden_service.$error.pattern">
+                {{ "Invalid format for hidden service (should be http://thirteenchars123.onion)" | translate }}
+              </p>
+            </div>
+
+            <div class="form-group">
+              <label>{{ "Tor2web Public Site (url)" | translate }}</label>
+              <input class="form-control" name="public_site" ng-model="admin.node.public_site" ng-pattern="/^https://[0-9a-z.:]*$/" type="url">
+              <p class="has-error" ng-show="contentForm.public_site.$error.pattern">
+                {{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}
+              </p>
+            </div>
+
+            <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
+              {{ "Update node" | translate }}
+            </button>
           </div>
         </div>
-
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label>{{ "Default language" | translate }}</label>
-            <select ng-model="admin.node.default_language" ng-options="code as name for (code, name) in available_languages"></select>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label>{{ "Tor Hidden Service (hostname)" | translate }}</label>
-            <input class="form-control" name="hidden_service" ng-model="admin.node.hidden_service" ng-pattern="/^http://[0-9a-z]{16}\.onion$/" type="text">
-            <p class="has-error" ng-show="contentForm.hidden_service.$error.pattern">
-            {{ "Invalid format for hidden service (should be http://thirteenchars123.onion)" | translate }}</p>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="form-group col-md-6">
-            <label>{{ "Tor2web Public Site (url)" | translate }}</label>
-            <input class="form-control" name="public_site" ng-model="admin.node.public_site" ng-pattern="/^https://[0-9a-z.:]*$/" type="url">
-            <p class="has-error" ng-show="contentForm.public_site.$error.pattern">
-            {{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}</p>
-          </div>
-        </div>
-
-        <br />
-        <br />
-
-        <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
-            {{ "Update node" | translate }}</button>
-
-    </form>
+      </form>
+    </div>
   </div>
 </div>

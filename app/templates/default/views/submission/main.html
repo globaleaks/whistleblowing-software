@@ -173,10 +173,10 @@
             <p class="lead">
               {{ "By checking the box below you agree to these terms and conditions." | translate }}
             </p>
-            <div class="checkbox"><label class="">
+            <div class="form-group">
               <input ng-model="disclaimer.accepted" value="true" type="checkbox"> 
-              {{ "Agree" | translate }}
-            </label></div>
+              <label>{{ "Agree" | translate }}</label>
+            </div>
 
           </div>
 
@@ -192,25 +192,28 @@
     <ul class="pager pull-left">
 
       <li ng-class="{disabled: !hasPreviousStep() || uploading}" class="previous">
-        <a ng-click="decrementStep()">← 
-          {{ "Previous Step" | translate }}</a>
+        <a ng-click="decrementStep()">
+          ← {{ "Previous Step" | translate }}
+        </a>
       </li>
       <li class="next" ng-class="{disabled: uploading}" ng-hide="!hasNextStep()">
         <a ng-click="incrementStep()">
-          {{ "Next Step" | translate }} →</a>
+          {{ "Next Step" | translate }} →
+        </a>
       </li>
 
       <li class="next" ng-show="!hasNextStep()">
 
         <button class="btn btn-success" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
-                {{ "Submit" | translate }}</button>
+          {{ "Submit" | translate }}
+        </button>
       </li>
 
     </ul>
 
     <div class="pull-right">
       <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()" ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
-              {{ "Submit" | translate }}
+        {{ "Submit" | translate }}
       </button>
 
     </div>

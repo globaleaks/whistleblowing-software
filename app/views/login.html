@@ -1,5 +1,13 @@
-<div ng-include="'views/header.html'" onload="header_title='Login' | translate;
-  header_subtitle=''">
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+{{ "Login" | translate }}
+
+-->
+<div ng-include="'views/header.html'"
+     onload="header_title='Login';
+             header_subtitle=''">
 </div>
 
 <div class="container config-page">
