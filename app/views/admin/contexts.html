@@ -65,7 +65,9 @@ This comment is needed in order to push the following strings on transifex
                     </div>
                     <div class="form-group">
                       <label>{{ "Description" | translate }}</label>
-                      <textarea required="" ng-model="context.description">{{context.description}}</textarea>
+                      <div>
+                        <textarea class="form-control" required="" ng-model="context.description">{{context.description}}</textarea>
+                      </div>
                     </div>
                     <div ng-include="'views/admin/fieldeditor.html'"></div>
                   </div>

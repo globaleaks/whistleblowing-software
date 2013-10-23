@@ -112,7 +112,9 @@ This comment is needed in order to push the following strings on transifex
 
                     <div class="form-group">
                       <label>{{ "Description" | translate }}</label>
-                      <textarea ng-model="receiver.description">{{receiver.description}}</textarea>
+                      <div>
+                        <textarea class="form-control" ng-model="receiver.description">{{receiver.description}}</textarea>
+                      </div>
                     </div>
 
                     <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">
@@ -120,7 +122,9 @@ This comment is needed in order to push the following strings on transifex
                     </button>
 
                     <div ng-show="advanced_edit">
-                      <textarea ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
+                      <div>
+                        <textarea class="form-control" ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
+                      </div>
                       <!-- here another span4 shall fit well, but IDK which kind of preferences can be show here -->
 
                       <div ng-show="receiver.gpg_key_info">
@@ -128,7 +132,7 @@ This comment is needed in order to push the following strings on transifex
                         <pre>{{receiver.gpg_key_info}}</pre>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group table-bordered">
                         <input ng-model="receiver.gpg_enable_notification" type="checkbox">
                         <label>{{ "Enable encrypted notification" | translate }}</label>
                         <label ng-show="receiver.gpg_enable_notification">
@@ -139,7 +143,7 @@ This comment is needed in order to push the following strings on transifex
                         </label>
                       </div>
 
-                      <div class="form-group">
+                      <div class="form-group table-bordered">
                         <input ng-model="receiver.gpg_enable_files" type="checkbox">
                         <label>{{ "Enable file encryption" | translate }}</label>
                         <label ng-show="receiver.gpg_enable_files">
