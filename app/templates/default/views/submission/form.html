@@ -16,7 +16,7 @@
 
           <input class="form-control" ng-switch-when="text" ng-model="field.value" ng-required="field.required" name="input" value="{{field.value}}" placeholder="{{field.placeholder}}" type="text">
 
-          <textarea ng-switch-when="textarea" ng-model="field.value" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
+          <textarea class="form-control" ng-switch-when="textarea" ng-model="field.value" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
 
           <select ng-switch-when="select" name="input" ng-model="field.value">
             <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
