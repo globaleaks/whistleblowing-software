@@ -258,6 +258,11 @@ def update_supported_languages(store):
     try:
         node = store.find(models.Node).one()
         node.languages_supported = LANGUAGES_SUPPORTED
+
+        # this fix is needed to remove languages whose support is removed
+        # (for language passed from a support >= 50% to a support of <50%)
+        node.languages_enabled = [l for l in node.languages_enabled if l in LANGUAGES_SUPPORTED_CODES]
+
     except Exception as e:
         raise errors.InvalidInputFormat("Cannot update supported languages: %s" % e)
 
