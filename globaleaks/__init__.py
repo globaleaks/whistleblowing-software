@@ -3,7 +3,7 @@
 # In here we shall keep track of all variables and objects that should be
 # instantiated only once and be common to pieces of GLBackend code.
 
-__version__ = '2.27.20'
+__version__ = '2.27.21'
 DATABASE_VERSION = 6
 
 # Add here by hand the languages supported!
@@ -24,4 +24,4 @@ LANGUAGES_SUPPORTED = [
                     { "code": "vi", "name": "Vietnamese"},
                 ]
 
-LANGUAGES_SUPPORTED_CODES = [d['code'] for d in LANGUAGES_SUPPORTED]
+LANGUAGES_SUPPORTED_CODES = [i['code'] for i in LANGUAGES_SUPPORTED]
