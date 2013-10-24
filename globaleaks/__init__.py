@@ -12,6 +12,7 @@ LANGUAGES_SUPPORTED = [
                     { "code": "cs", "name": "Czech" },
                     { "code": "de", "name": "German" },
                     { "code": "en", "name": "English"},
+                    { "code": "es", "name": "Spanish" },
                     { "code": "fr", "name": "French"},
                     { "code": "hu_HU", "name": "Hungarian (Hungary)"},
                     { "code": "it", "name": "Italian"},
@@ -20,9 +21,7 @@ LANGUAGES_SUPPORTED = [
                     { "code": "ru", "name": "Russian" },
                     { "code": "sr_RS", "name": "Serbian (Serbia)" },
                     { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
-                    { "code": "tr", "name": "Turkish"},
                     { "code": "vi", "name": "Vietnamese"},
                 ]
 
-LANGUAGES_SUPPORTED_CODES = [ "cs", "de", "en", "fr", "hu_HU", "it", "nl",
-                              "pt_BR", "ru", "sr_RS", "sr_RS@latin", "tr", "vi" ]
+LANGUAGES_SUPPORTED_CODES = [d['code'] for d in LANGUAGES_SUPPORTED]
