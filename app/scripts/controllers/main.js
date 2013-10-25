@@ -1,5 +1,4 @@
-GLClient.controller('MainCtrl', ['$scope', 'Templates',
-    function($scope, Templates) {
-  $scope.Templates = Templates;
+GLClient.controller('MainCtrl', ['$scope',
+    function($scope) {
   $scope.started = true;
 }]);
