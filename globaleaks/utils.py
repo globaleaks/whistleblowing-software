@@ -18,7 +18,7 @@ from email import utils as mailutils
 
 from twisted.internet.endpoints import TCP4ClientEndpoint
 from twisted.internet import reactor, protocol, error
-from twisted.internet.defer import Deferred, AlreadyCalledError
+from twisted.internet.defer import Deferred, AlreadyCalledError, fail
 from twisted.mail.smtp import ESMTPSenderFactory, SMTPClient, SMTPError
 from twisted.internet.ssl import ClientContextFactory
 from twisted.protocols import tls
@@ -407,7 +407,7 @@ def sendmail(authentication_username, authentication_password, from_address,
     except Exception as excep:
         # we strongly need to avoid raising exception inside email logic to avoid chained errors
         log.err("unexpected exception in sendmail: %s" % str(excep))
-        return defer.fail()
+        return fail()
 
     return result_deferred
 
@@ -524,7 +524,7 @@ def mail_exception(etype, value, tback):
     except Exception as excep:
         # we strongly need to avoid raising exception inside email logic to avoid chained errors
         log.err("Unexpected exception in mail_exception: %s" % str(excep))
-        return defer.fail()
+        return fail()
 
 mail_exception.mail_counter = 0
 
