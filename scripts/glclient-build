@@ -4,10 +4,6 @@ if [ ! $GLCLIENT_INSTALL_DIR ];then
   GLCLIENT_INSTALL_DIR=/var/globaleaks/custom-glclient
 fi
 
-if [ ! $GLCLIENT_TAG ];then
-  GLCLIENT_TAG="v"`python -c 'import globaleaks;print globaleaks.__version__'`
-fi
-
 usage()
 {
 cat << EOF
@@ -84,7 +80,7 @@ build_custom_glclient()
   git checkout $GLCLIENT_TAG
   cd $CWD
 
-  cp -R $CUSTOM_GLCLIENT_DIR $TMP_DIR/GLCLient/app/
+  cp -R $CUSTOM_GLCLIENT_DIR/* $TMP_DIR/GLCLient/app/
 
   cd $TMP_DIR/GLCLient
   npm install -d
@@ -95,7 +91,7 @@ build_custom_glclient()
   sudo rm -rf $GLCLIENT_INSTALL_DIR
 
   sudo mv build $GLCLIENT_INSTALL_DIR
-  rm -rf $TMP_DIR
+  #rm -rf $TMP_DIR
 }
 
 if [ ! $1 ];then
@@ -108,7 +104,7 @@ if [[ $EUID -eq 0 ]]; then
   exit 1
 fi
 
-while getopts "hrpi:" OPTION
+while getopts "hrp:v:i" OPTION
 do
   case $OPTION in
     h)
@@ -117,6 +113,7 @@ do
       ;;
     r)
       restore_default_glclient
+      exit 0
       ;;
     p)
       if [ ! $2 ];then
@@ -126,8 +123,9 @@ do
       fi
 
       CUSTOM_GLCLIENT_DIR=$2
-      get_sudo
-      build_custom_glclient
+      ;;
+    v)
+      GLCLIENT_TAG=$OPTARG
       ;;
     i)
       get_sudo
@@ -139,3 +137,10 @@ do
       ;;
   esac
 done
+
+if [ ! $GLCLIENT_TAG ];then
+  GLCLIENT_TAG="v"`python -c 'import globaleaks;print globaleaks.__version__'`
+fi
+
+get_sudo
+build_custom_glclient
