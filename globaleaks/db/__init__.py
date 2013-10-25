@@ -13,7 +13,7 @@ from globaleaks.settings import transact, transact_ro, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
 from globaleaks.security import hash_password, get_salt
-from globaleaks import DATABASE_VERSION, LANGUAGES_SUPPORTED
+from globaleaks import DATABASE_VERSION, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 
 
 @transact
