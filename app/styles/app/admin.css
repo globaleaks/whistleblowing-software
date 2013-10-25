@@ -23,6 +23,11 @@
   top: 20px;
   right: 20px;
 }
+@media (max-width: 550px) {
+  .toolTip {
+    position: absolute;
+  }
+}
 
 .fileDetails {
   list-style: none;
