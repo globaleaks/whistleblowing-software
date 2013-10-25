@@ -12,18 +12,8 @@ This comment is needed in order to push the following strings on transifex
 </div>
 
 <div class="container config-page">
-
   <div class="row">
-    <!-- Begin Nav Bar -->
-    <!--  Note the use of "''", yeah two of them.
-            This is the ng-inlcude directive:
-            http://docs.angularjs.org/api/ng.directive:ngInclude
-      -->
-    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'">
-    </div>
-    <!-- End Nav Bar -->
-
-
+    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
       <!-- Notification -->
@@ -77,7 +67,7 @@ This comment is needed in order to push the following strings on transifex
 
                 <div class="form-group">
                   <label>{{ "Transport Security" | translate }}</label>
-                  <select ng-model="admin.notification.security" required="">
+                  <select class="form-control" ng-model="admin.notification.security" required="">
                     <option value="SSL">SMTPS</option>
                     <option value="TLS">SMTP/TLS</option>
                   </select>
