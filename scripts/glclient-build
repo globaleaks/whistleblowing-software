@@ -16,7 +16,7 @@ usage: ./build-custom-glclient.sh options
 OPTIONS:
     -h                         Show this message
     -r                         Restore to default GLClient installation
-    -b <path to templates>     Build custom GLCLient version
+    -p <path to custom-gl>     Build custom GLCLient version
     -i                         Install GLClient dependencies
 EOF
 }
@@ -74,12 +74,8 @@ build_custom_glclient()
   }
 
   TMP_DIR=`mktemp -d /tmp/GLClient_tmp.XXXXXXX`
-  TEMPLATE_NAME=`basename $TEMPLATES_DIR`
-  SED_REGEXP="s/default/${TEMPLATE_NAME}/"
-  THEMES_FILE=$TMP_DIR/GLCLient/app/scripts/themes.js
   INDEX_FILE=$TMP_DIR/GLCLient/app/index.html
-  STYLES=""
-  echo "[+] Building custom GLClient with template: ${TEMPLATE_NAME}... "
+  echo "[+] Building custom GLClient using: ${CUSTOM_GLCLIENT_DIR}... "
   echo "[+] Cloning latest GLCLient version... "
   CWD=`pwd`
   git clone https://github.com/globaleaks/GLClient.git $TMP_DIR/GLCLient
@@ -87,22 +83,8 @@ build_custom_glclient()
   echo "[+] Checking out ${GLCLIENT_TAG} revision"
   git checkout $GLCLIENT_TAG
   cd $CWD
-  cat $THEMES_FILE | sed -e $SED_REGEXP > $TMP_DIR/themes.js
-  cat $TMP_DIR/themes.js > $THEMES_FILE
-  mkdir $TMP_DIR/staticdata/
-  for template_file in `find $TEMPLATES_DIR/styles/ -type f`;do
-    if [[ "$template_file" == *css* ]];then
-      cat $template_file >> $TMP_DIR/GLCLient/app/styles/custom-glclient.css
-    else
-      cp $template_file $TMP_DIR/staticdata/
-    fi
-  done
 
-  if [ -d $TEMPLATES_DIR/img/ ];then
-    cp -R $TEMPLATES_DIR/img/ $TMP_DIR/staticdata/img/
-  fi
-
-  cp -R $TEMPLATES_DIR $TMP_DIR/GLCLient/app/templates/${TEMPLATE_NAME}
+  cp -R $CUSTOM_GLCLIENT_DIR $TMP_DIR/GLCLient/app/
 
   cd $TMP_DIR/GLCLient
   npm install -d
@@ -113,11 +95,7 @@ build_custom_glclient()
   sudo rm -rf $GLCLIENT_INSTALL_DIR
 
   sudo mv build $GLCLIENT_INSTALL_DIR
-  if [ "$(ls -A $TMP_DIR/staticdata/)" ]; then
-      sudo cp -R $TMP_DIR/staticdata/* $GLCLIENT_INSTALL_DIR
-  fi
-  cd /
-  #rm -rf $TMP_DIR
+  rm -rf $TMP_DIR
 }
 
 if [ ! $1 ];then
@@ -130,7 +108,7 @@ if [[ $EUID -eq 0 ]]; then
   exit 1
 fi
 
-while getopts "hrbi:" OPTION
+while getopts "hrpi:" OPTION
 do
   case $OPTION in
     h)
@@ -140,14 +118,14 @@ do
     r)
       restore_default_glclient
       ;;
-    b)
+    p)
       if [ ! $2 ];then
-        echo "[!] Missing template directory path."
+        echo "[!] Missing custom-gl path."
         usage
         exit 1
       fi
 
-      TEMPLATES_DIR=$2
+      CUSTOM_GLCLIENT_DIR=$2
       get_sudo
       build_custom_glclient
       ;;
