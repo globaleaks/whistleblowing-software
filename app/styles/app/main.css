@@ -103,6 +103,17 @@ textarea {
   letter-spacing: -2px;
   line-height: 1;
 }
+@media (max-width: 750px) {
+  .homeSplash h1 {
+    font-size: 64px;
+  }
+}
+@media (max-width: 550px) {
+  .homeSplash h1 {
+    font-size: 40px;
+  }
+}
+
 .homeSplash p {
   font-size: 40px;
   font-weight: 200;
@@ -135,6 +146,11 @@ textarea {
   -webkit-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
      -moz-box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
           box-shadow: inset 0 2px 4px rgba(0,0,0,.1), 0 1px 0 rgba(255,255,255,.1);
+}
+@media (max-width: 550px) {
+  .homeSplash .btn {
+    margin-top: 10px;
+  }
 }
 
 .homeIntro {
@@ -289,6 +305,20 @@ textarea {
   display: block;
 }
 
+@media (max-width: 750px) {
+  .informationBox {
+    width: 60%;
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+@media (max-width: 550px) {
+  .informationBox {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
+
 .semaphore {
   width: 20px;
   height: 20px;
@@ -373,4 +403,13 @@ textarea {
 
 .modal {
   display: inline;
+}
+@media (max-width: 550px) {
+  .modal.not-anonymous-question {
+    top: 120px;
+    z-index: 10001;
+  }
+  .modal.not-anonymous-question h3 {
+    font-size: 18px;
+  }
 }
