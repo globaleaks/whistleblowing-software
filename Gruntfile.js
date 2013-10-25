@@ -31,7 +31,6 @@ module.exports = function(grunt) {
         'app/styles/**/*.css',
         'app/scripts/**/*.js',
         'app/views/**/*.html',
-        'app/templates/**/*.html',
         'app/img/**/*',
         'app/fonts/*',
       ],
@@ -114,8 +113,7 @@ module.exports = function(grunt) {
 
     // update references in HTML/CSS to revved files
     usemin: {
-      html: ['tmp/templates/**/*.html', 
-             'tmp/views/**/*.html',
+      html: ['tmp/views/**/*.html',
              'tmp/index.html',
             ],
       css: [
@@ -139,7 +137,7 @@ module.exports = function(grunt) {
     ngtemplates:  {
       GLClient: {
             options: {base: 'app/'},
-            src: [ 'app/views/**/*.html', 'app/templates/**/*.html'],
+            src: ['app/views/**/*.html'],
             dest: 'tmp/scripts/templates.js'
           }
     }
@@ -349,11 +347,6 @@ module.exports = function(grunt) {
         translationStringCount += 1;
       }
     };
-
-    grunt.file.recurse('app/templates/', function(absdir, rootdir, subdir, filename) {
-        var filepath = path.join('app/templates/', subdir || '', filename || '');
-        extractPotFromFilepath(filepath);
-    });
 
     grunt.file.recurse('app/views/', function(absdir, rootdir, subdir, filename) {
         var filepath = path.join('app/views/', subdir || '', filename || '');

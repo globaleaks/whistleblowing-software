@@ -1,8 +1,10 @@
 'use strict';
 
 var GLClient = angular.module('GLClient', [
-    'GLClient.templates', 'resourceServices', 'submissionUI',
-    'GLClientFilters', 'GLClient.translations', 'blueimp.fileupload'
+    'GLClient.templates',
+    'resourceServices', 'submissionUI',
+    'GLClientFilters', 'GLClient.translations',
+    'blueimp.fileupload'
   ]).
   config(['$routeProvider', function($routeProvider) {
 
