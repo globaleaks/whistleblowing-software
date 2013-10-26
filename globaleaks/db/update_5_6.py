@@ -58,7 +58,7 @@ class Replacer56(TableReplacer):
 
     def migrate_User(self):
         print "%s User migration, enhancement anti bruteforce techniques: #%d" % (
-              self.debug_info, self.store_old.find(self.get_right_model("User", 5)).count() )
+              self.std_fancy, self.store_old.find(self.get_right_model("User", 5)).count() )
 
         old_users = self.store_old.find(self.get_right_model("User", 5))
 
@@ -119,7 +119,7 @@ class Replacer56(TableReplacer):
 
     def migrate_Node(self):
         print "%s Node migration assistant: (Supports of receiver with postpone superpower) #%d" % (
-            self.debug_info, self.store_old.find(self.get_right_model("Node", 5)).count() )
+            self.std_fancy, self.store_old.find(self.get_right_model("Node", 5)).count() )
 
         old_node = self.store_old.find(self.get_right_model("Node", 5)).one()
 

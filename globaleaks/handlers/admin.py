@@ -16,7 +16,7 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification, User
 from globaleaks import utils, security, models
-from globaleaks.utils import log, datetime_null, l10n, naturalize_fields
+from globaleaks.utils import log, datetime_null, l10n, Fields
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -49,7 +49,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'postpone_superpower': node.postpone_superpower,
     }
 
-    for attr in ['presentation', 'description' ]:
+    for attr in ['presentation', 'description', 'footer' ]:
         response[attr] = l10n(getattr(node, attr), language)
 
     return response
@@ -78,8 +78,9 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
                  'submission_introduction', 'submission_disclaimer' ]:
         context_dict[attr] = l10n(getattr(context, attr), language)
 
-    context_dict['fields'] = serialize_fields(l10n(context.fields, language))
-    
+    fo = Fields(context.localized_fields, context.unique_fields)
+    context_dict['fields'] = fo.dump_fields(language)
+
     for receiver in context.receivers:
         context_dict['receivers'].append(receiver.id)
 
@@ -117,27 +118,6 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         receiver_dict['contexts'].append(context.id)
 
     return receiver_dict
-
-
-def serialize_fields(ctxfields):
-    """
-    @param ctxfields:
-    @return:
-
-        This code is useful only in September August 2013,
-        Fields generated with version before 2.24 just
-        don't contain this keyword, and its just added
-        with a default False, until the admin enable it
-    """
-    ret_list = []
-    for sf in ctxfields:
-        if not sf.has_key('preview'):
-            sf.update({'preview': False})
-
-        ret_list.append(sf)
-
-    return ret_list
-
 
 @transact_ro
 def get_node(store, language=GLSetting.memory_copy.default_language):
@@ -217,64 +197,6 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
     return context_list
 
 
-def validate_and_fix_fields(fields_blob, thislang, previous_fields):
-    """
-    the required keys are already validated by validate_jmessage
-    with globaleaks/rest/base.py formFieldDict
-    here are validated the types and the internal format
-
-    previous_fields are fields already present in a different language. we
-    need here to enforce that different language share the same
-    sequence/keyname/types of fields between others.
-
-    =====> Its difficult to be managed, because when a fields
-    is update, we have to update also others languages fields.
-    and this is not yet implemented (therefore, only a log.debug is show)
-    """
-    assert isinstance(fields_blob, list), "missing field list"
-
-    accepted_form_type = [ "text", "radio", "select", "multiple",
-                           "checkboxes",  "textarea", "number",
-                           "url", "phone", "email" ]
-
-    for field_desc in fields_blob:
-        check_type = field_desc['type']
-        if not check_type in accepted_form_type:
-            raise errors.InvalidInputFormat("Fields validation deny '%s' in %s" %
-                                            (check_type, field_desc['name']) )
-
-    # Creation of 'key' it's required in the software, but not provided by GLClient
-    for idx, _ in enumerate(fields_blob):
-        fields_blob[idx]['key'] = unicode(fields_blob[idx]['name'])
-
-    # checks with the previous fields, if present, the presence of the same keys
-    if not previous_fields:
-        return fields_blob
-
-    assert isinstance(previous_fields, dict), "invalid previous_fields"
-
-    keys_list = []
-    for established_f in naturalize_fields(previous_fields):
-        keys_list.append(established_f['key'])
-
-    for proposed_f in fields_blob:
-        if proposed_f['key'] in keys_list:
-            keys_list.remove(proposed_f['key'])
-        else:
-            # raise errors.InvalidInputFormat(
-            log.debug(
-                "Fields proposed do not match with previous language schema (Unexpected %s) "
-                % proposed_f['key'])
-
-    if keys_list:
-        # raise errors.InvalidInputFormat(
-        log.debug(
-            "Fields proposed do not match with previous language schema (Missing %s) "
-            % str(keys_list))
-
-    return fields_blob
-
-
 def acquire_context_timetolive(request):
 
     try:
@@ -342,27 +264,32 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
 
     if not request['fields']:
         # When a new context is created, assign default fields, if not supply
-        assigned_fields = sample_context_fields
+        admin_data_fields = sample_context_fields
     else:
-        # may raise InvalidInputFormat if fields format do not fit
-        assigned_fields = validate_and_fix_fields(request['fields'], language, None)
+        admin_data_fields = request['fields']
 
-    # in create, only one language can be submitted, here is initialized
-    context.fields = dict({language : assigned_fields})
+    try:
+        fo = Fields(context.localized_fields, context.unique_fields)
+        fo.update_fields(language, admin_data_fields)
+        fo.context_import(context)
+    except Exception as excep:
+        log.err("Unable to create fields: %s" % excep)
+        raise excep
 
     # Integrity checks related on name (need to exists, need to be unique)
-    # are performed only using the default language at the moment
+    # are performed only using the default language at the moment (XXX)
     try:
         context_name = request['name'][language]
     except Exception as excep:
-        raise errors.InvalidInputFormat("Missing selected %s language in context creatione (name field)" % language)
+        raise errors.InvalidInputFormat("language %s do not provide name: %s" %
+                                       (language, excep) )
 
     if len(context_name) < 1:
         log.err("Invalid request: name is an empty string")
         raise errors.InvalidInputFormat("Context name is missing (1 char required)")
 
-    if len(context.receipt_regexp) < 4:
-        log.err("Fixing receipt regexp < 4 byte with fixme-[0-9]{13}-please")
+    if context.receipt_regexp == u'' or context.receipt_regexp == None:
+        log.err("Missing receipt regexp, using default fixme-[0-9]{13}-please")
         context.receipt_regexp = u"fixme-[0-9]{13}-please"
 
     if context.escalation_threshold and context.selectable_receiver:
@@ -447,14 +374,16 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
         log.err("Fixing receipt regexp < 4 byte with fixme-[0-9]{13}-please")
         context.receipt_regexp = u"fixme-[0-9]{13}-please"
 
+    try:
+        fo = Fields(context.localized_fields, context.unique_fields)
+        fo.update_fields(language, request['fields'])
+        fo.context_import(context)
+    except Exception as excep:
+        log.err("Unable to update fields: %s" % excep)
+        raise excep
+
     context.last_update = utils.datetime_now()
     context.update(request)
-
-    # Fields acquire its an update based on the language, and checks here if
-    # the keys are respected between different languages
-    context.fields.update({ language :
-                        validate_and_fix_fields(request['fields'], language, context.fields)})
-    # Fields acquire need these stuff
 
     receipt_example = generate_example_receipt(context.receipt_regexp)
     return admin_serialize_context(context, receipt_example, language)

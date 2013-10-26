@@ -98,6 +98,12 @@ class Model(Storm):
     # Note on creation last_update and last_access may be out of sync by some
     # seconds.
 
+    # initialize empty list for the base classes
+    unicode_keys = [ ]
+    localized_strings = [ ]
+    int_keys = [ ]
+    bool_keys = [ ]
+
     def __init__(self, attrs=None):
 
         if attrs is not None:
@@ -202,10 +208,7 @@ class User(Model):
     _states = [ u'disabled', u'to_be_activated', u'enabled']
 
     unicode_keys = [ 'username', 'password', 'salt', 'role', 'state' ]
-    localized_strings = [ ]
     int_keys = [ 'failed_login_count' ]
-
-    bool_keys = [ ]
 
 
 class Context(Model):
@@ -214,7 +217,21 @@ class Context(Model):
     """
     __storm_table__ = 'context'
 
-    fields = Pickle()
+    # Unique fields is a dict with a unique ID as key,
+    # and as value another dict, containing the field
+    # descriptive values:
+    # "presentation_order" : int
+    # "preview" : bool
+    # "required" : bool
+    # "type" : unicode
+    # "options" : dict (optional!)
+    unique_fields = Pickle()
+
+    # Localized fields is a dict having as keys, the same
+    # keys of unique_fields, and as value a dict, containing:
+    # 'name' : unicode
+    # 'hint' : unicode
+    localized_fields = Pickle()
 
     selectable_receiver = Bool()
     escalation_threshold = Int()
@@ -424,7 +441,6 @@ class Node(Model):
     email = Unicode()
     receipt_salt = Unicode()
     last_update = DateTime()
-    database_version = Int()
 
     languages_supported = Pickle()
     languages_enabled = Pickle()
@@ -433,6 +449,7 @@ class Node(Model):
     # localized string
     description = Pickle(validator=gllocalv)
     presentation = Pickle(validator=gllocalv)
+    footer = Pickle(validator=gllocalv)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -460,7 +477,7 @@ class Node(Model):
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_tip', 'tor2web_unauth', 'postpone_superpower' ]
-    localized_strings = [ 'description', 'presentation' ]
+    localized_strings = [ 'description', 'presentation', 'footer' ]
 
 
 class Notification(Model):
@@ -501,7 +518,6 @@ class Notification(Model):
                          'activation_template', 'tip_mail_title', 'comment_mail_title',
                          'file_mail_title', 'activation_mail_title' ]
     int_keys = [ 'port' ]
-    bool_keys = []
 
 
 class Receiver(Model):

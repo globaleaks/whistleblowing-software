@@ -15,9 +15,11 @@ def perform_version_update(starting_ver, ending_ver, start_path):
     assert starting_ver < ending_ver
 
     from globaleaks.db.update_5_6 import Replacer56
+    from globaleaks.db.update_6_7 import Replacer67
 
     releases_supported = {
         "56" : Replacer56,
+        "67" : Replacer67,
     }
     
     to_delete_on_fail = []
@@ -52,7 +54,7 @@ def perform_version_update(starting_ver, ending_ver, start_path):
 
             update_key = "%d%d" % (starting_ver, starting_ver + 1)
             if not releases_supported.has_key(update_key):
-                raise NotImplementedError
+                raise NotImplementedError("mistake detect! %s" % update_key)
 
             try:
                 # Here is instanced the migration class
@@ -84,19 +86,20 @@ def perform_version_update(starting_ver, ending_ver, start_path):
             
             starting_ver += 1
 
-    except Exception as e:
+    except Exception as except_info:
+        print "Internal error triggered: %s" % except_info
         # Remediate action on fail:
         #    created files during update must be deleted
         for f in to_delete_on_fail:
             try:
                 os.remove(f)
             except Exception as excep:
-                print "Error removing new db file on conversion fail: %s" % excep.message
+                print "Error removing new db file on conversion fail: %s" % excep
                 # we can't stop if one files removal fails
                 # and we continue trying deleting others files
                 pass
         # propagate the exception
-        raise e
+        raise except_info
 
     # Finalize action on success:
     #    converted files must be renamed

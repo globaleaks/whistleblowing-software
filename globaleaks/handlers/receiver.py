@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n, naturalize_fields
+from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n, Fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -164,16 +164,14 @@ def get_receiver_tip_list(store, user_id):
         })
 
         preview_data = []
-        for sf in naturalize_fields(rtip.internaltip.context.fields):
 
-            try:
-                if sf['preview'] == True and sf['type'] == u'text':
-                    # preview in a format angular.js likes
-                    entry = dict({'key' : sf['key'],
-                                  'text': rtip.internaltip.wb_fields[sf['key']] })
-                    preview_data.append(entry)
-            except KeyError:
-                continue
+        fo = Fields(rtip.internaltip.context.localized_fields, rtip.internaltip.context.unique_fields)
+        for preview_key in fo.get_preview_keys():
+
+            # preview in a format angular.js likes
+            entry = dict({'key' : preview_key,
+                          'text': rtip.internaltip.wb_fields[preview_key] })
+            preview_data.append(entry)
 
         single_tip_sum.update({ 'preview' : preview_data })
         rtip_summary_list.append(single_tip_sum)

@@ -13,6 +13,7 @@ import shutil
 import traceback
 import logging
 import socket
+import uuid
 import pwd
 import grp
 import getpass
@@ -43,7 +44,7 @@ sample_context_fields = [
             'name': u'Short title', 
             'hint': u"Describe your Tip with a short title",
             'presentation_order': 1,
-            'key': u'Short title',
+            'key': unicode(uuid.uuid4()),
             'required': True,
             'preview': True,
             'type': u'text',
@@ -51,18 +52,18 @@ sample_context_fields = [
         },
         {
             'name': u'Full description',
-            'hint': u'Describe the details of your Tip',
-            'key': u'Full description',
+            'hint': u'Describe the details of your Submission',
+            'key': unicode(uuid.uuid4()),
             'presentation_order': 2,
             'required': True,
             'preview': True,
             'type': u'text',
-            'value': u"" 
+            'value': u''
         },
         {   
             'name': u'Files description',
             'hint': u"Describe the submitted files",
-            'key': u'Files description',
+            'key': unicode(uuid.uuid4()),
             'presentation_order': 3,
             'required': False,
             'preview': False,

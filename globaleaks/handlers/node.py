@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import utils
-from globaleaks.utils import l10n
+from globaleaks.utils import l10n, Fields
 from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
@@ -46,8 +46,8 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'postpone_superpower': node.postpone_superpower,
     }
 
-    node_dict['description'] = l10n(node.description, language)
-    node_dict['presentation'] = l10n(node.presentation, language)
+    for attr in ['presentation', 'description', 'footer' ]:
+        node_dict[attr] = l10n(getattr(node, attr), language)
 
     return node_dict
 
@@ -84,10 +84,8 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
     context_dict['name'] = l10n(context.name, language)
     context_dict['description'] = l10n(context.description, language)
 
-    if context.fields:
-        context_dict['fields'] = l10n(context.fields, language)
-    else: 
-        context_dict['fields'] = []
+    fo = Fields(context.localized_fields, context.unique_fields)
+    context_dict['fields'] = fo.dump_fields(language)
 
     return context_dict
 

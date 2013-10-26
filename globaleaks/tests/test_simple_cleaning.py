@@ -41,7 +41,6 @@ class TTip(helpers.TestWithDB):
     tipContext = TTip.tipContext
     tipReceiver1 = TTip.tipReceiver1
     tipReceiver2 = TTip.tipReceiver2
-    tipSubmission = TTip.tipSubmission
     tipOptions = TTip.tipOptions
     commentCreation = TTip.commentCreation
 
@@ -127,12 +126,12 @@ class TestCleaning(TTip):
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['context_gus']])
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['context_gus']])
 
-        self.tipSubmission['context_gus'] = self.context_desc['context_gus']
-        basehandler.validate_jmessage( self.tipSubmission, requests.wbSubmissionDesc)
+        dummySubmission = helpers.get_dummy_submission(self.context_desc['context_gus'], self.context_desc['fields'])
+        basehandler.validate_jmessage( dummySubmission, requests.wbSubmissionDesc)
 
-        self.submission_desc = yield submission.create_submission(self.tipSubmission, finalize=False)
+        self.submission_desc = yield submission.create_submission(dummySubmission, finalize=False)
 
-        self.assertEqual(self.submission_desc['wb_fields'], self.tipSubmission['wb_fields'])
+        self.assertEqual(self.submission_desc['wb_fields'], dummySubmission['wb_fields'])
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[0])
 
     @inlineCallbacks

@@ -13,7 +13,7 @@ from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
-from globaleaks.utils import log, utc_future_date, pretty_date_time, datetime_now, naturalize_fields
+from globaleaks.utils import log, utc_future_date, pretty_date_time, datetime_now, Fields
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 
@@ -157,73 +157,6 @@ def import_files(store, submission, files, finalize):
     store.commit()
 
 
-def import_fields(submission, wb_fields, configured_fields_list, strict_validation=False):
-    """
-    @param submission: the Storm object
-    @param wb_fields: the received wb_fields
-    @param configured_fields: the Context defined wb_fields
-    @return: update the object of raise an Exception if a required field
-        is missing, or if received field do not match the expected shape
-
-    strict_validation = required the presence of 'required' wb_fields. Is not enforced
-    if Submission would not be finalized yet.
-    """
-    required_keys = list()
-    optional_keys  = list()
-
-    assert isinstance(configured_fields_list, list), "context expected wb_fields"
-    assert isinstance(wb_fields, dict), "receiver wb_fields"
-
-    if not wb_fields and not strict_validation:
-        return
-
-    if strict_validation and not wb_fields:
-
-        if not wb_fields:
-            log.err("Missing submission in 'finalize' request")
-            raise errors.SubmissionFailFields("Missing submission!")
-
-    try:
-        for single_field in configured_fields_list:
-            if single_field['required']:
-                required_keys.append(single_field.get(u'key'))
-            else:
-                optional_keys.append(single_field.get(u'key'))
-    except Exception, e:
-        log.exception(e)
-        raise errors.SubmissionFailFields("Malformed submission!")
-
-    if strict_validation:
-
-        log.debug("strict validation: %s (optional %s)" % (required_keys, optional_keys))
-
-        for required in required_keys:
-
-            if wb_fields.has_key(required) and len(wb_fields[required]) > 0:
-            # the keys are always provided by GLClient! also if the content is empty.
-            # then is not difficult check a test len(text) > $blah, but other checks are...
-                continue
-
-            log.err("Submission has a required field (%s) missing" % required)
-            raise errors.SubmissionFailFields("Missing field '%s': Required" % required)
-
-    if not wb_fields:
-        return
-
-    imported_fields = {}
-    for key, value in wb_fields.iteritems():
-
-        if key in required_keys or key in optional_keys:
-            imported_fields.update({key: value})
-        else:
-            log.err("Submission contain an unexpected field %s" % key)
-            raise errors.SubmissionFailFields("Submitted field '%s' not expected in context" % key)
-
-    submission.wb_fields = imported_fields
-    log.debug("Submission fields updated - finalize: %s" %
-             ("YES" if strict_validation else "NO") )
-
-
 @transact
 def create_submission(store, request, finalize, language=GLSetting.memory_copy.default_language):
 
@@ -257,17 +190,18 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     try:
         import_files(store, submission, files, finalize)
     except Exception as excep:
-        log.err("subm_creat - Invalid operation in import_files : %s" % excep)
+        log.err("Submission create: files import fail: %s" % excep)
         store.remove(submission)
         store.commit()
         raise excep
 
-    fields = request.get('wb_fields', {})
+    wb_fields = request.get('wb_fields', {})
     try:
-        naturalized = naturalize_fields(context.fields)
-        import_fields(submission, fields, naturalized, strict_validation=finalize)
+        fo = Fields(context.localized_fields, context.unique_fields)
+        fo.validate_fields(wb_fields, strict_validation=finalize)
+        submission.wb_fields = wb_fields
     except Exception as excep:
-        log.err("subm_creat - Invalid operation in import_fields : %s" % excep)
+        log.err("Submission create: fields validation fail: %s" % excep)
         store.remove(submission)
         store.commit()
         raise excep
@@ -276,7 +210,7 @@ def create_submission(store, request, finalize, language=GLSetting.memory_copy.d
     try:
         import_receivers(store, submission, receivers, required=finalize)
     except Exception as excep:
-        log.err("subm_creat - Invalid operation in import_receivers: %s" % excep)
+        log.err("Submission reate: receivers import fail: %s" % excep)
         store.remove(submission)
         store.commit()
         raise excep
@@ -327,15 +261,17 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
     try:
         import_files(store, submission, files, finalize)
     except Exception as excep:
-        log.err("subm_update - Invalid operation in import_files : %s" % excep)
+        log.err("Submission update: files import fail: %s" % excep)
         log.exception(excep)
         raise excep
 
-    fields = request.get('wb_fields', [])
+    wb_fields = request.get('wb_fields', [])
     try:
-        import_fields(submission, fields, naturalize_fields(submission.context.fields), strict_validation=finalize)
+        fo = Fields(context.localized_fields, context.unique_fields)
+        fo.validate_fields(wb_fields, strict_validation=finalize)
+        submission.wb_fields = wb_fields
     except Exception as excep:
-        log.err("subm_update - Invalid operation in import_fields : %s" % excep)
+        log.err("Submission update: fields validation fail: %s" % excep)
         log.exception(excep)
         raise excep
 
@@ -343,7 +279,7 @@ def update_submission(store, id, request, finalize, language=GLSetting.memory_co
     try:
         import_receivers(store, submission, receivers, required=finalize)
     except Exception as excep:
-        log.err("subm_update - Invalid operation in import_receivers : %s" % excep)
+        log.err("Submission update: receiver import fail: %s" % excep)
         log.exception(excep)
         raise excep
 
