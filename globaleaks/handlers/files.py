@@ -12,6 +12,7 @@ import time
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 from cyclone.web import os
+from Crypto.Hash import SHA256
 
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
@@ -33,12 +34,13 @@ def serialize_file(internalfile):
         'creation_date': pretty_date_time(internalfile.creation_date),
         'id' : internalfile.id,
         'mark' : internalfile.mark,
+        'sha2sum': internalfile.sha2sum,
     }
 
     return file_desc
 
 @transact
-def register_file_db(store, uploaded_file, filepath, internaltip_id):
+def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
     internaltip = store.find(InternalTip, InternalTip.id == internaltip_id).one()
 
     if not internaltip:
@@ -52,7 +54,8 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
 
         new_file.name = original_fname
         new_file.content_type = uploaded_file['content_type']
-        new_file.mark = InternalFile._marker[0]
+        new_file.mark = InternalFile._marker[0] # 'not processed'
+        new_file.sha2sum = cksum
         new_file.size = uploaded_file['body_len']
         new_file.internaltip_id = unicode(internaltip_id)
         new_file.file_path = filepath
@@ -72,7 +75,7 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
         log.err("Unable to reference InternalFile %s in InternalTip: %s" % (original_fname, excep))
         raise excep
 
-    log.debug("Added to the DB, file %s" % original_fname)
+    log.debug("=> Recorded new InternalFile %s (%s)" % (original_fname, cksum) )
 
     return serialize_file(new_file)
 
@@ -80,8 +83,11 @@ def register_file_db(store, uploaded_file, filepath, internaltip_id):
 def dump_file_fs(uploaded_file):
     """
     @param files: a file
-    @return: a filepath linking the filename with the random
+    @return: three variables:
+        #0 a filepath linking the filename with the random
              filename saved in the disk
+        #1 SHA256 checksum of the file
+        #3 size in bytes of the files
     """
     from Crypto.Random import atfork
     atfork()
@@ -92,16 +98,25 @@ def dump_file_fs(uploaded_file):
     log.debug("Start saving %d bytes from file [%s]" %
               (uploaded_file['body_len'], uploaded_file['filename'].encode('utf-8')))
 
+    # checksum is computed here, because don't slow down the operation
+    # enough to postpone in a scheduled job.
+    # https://github.com/globaleaks/GlobaLeaks/issues/600
+
+    sha = SHA256.new()
     with open(filelocation, 'w+') as fd:
         uploaded_file['body'].seek(0, 0)
+
         data = uploaded_file['body'].read() # 4kb
         total_length = 0
+
         while data != "":
-            total_length += len(data)
+            total_length = total_length + len(data)
+            sha.update(data)
             os.write(fd.fileno(), data)
             data = uploaded_file['body'].read(4096) # 4kb
 
-    return saved_name
+    return (saved_name, sha.hexdigest(), total_length)
+
 
 @transact_ro
 def get_tip_by_submission(store, id):
@@ -146,7 +161,6 @@ def get_tip_by_wbtip(store, wb_tip_id):
         return itip.id
 
 
-
 class FileHandler(BaseHandler):
 
     @inlineCallbacks
@@ -162,14 +176,19 @@ class FileHandler(BaseHandler):
         try:
             # First: dump the file in the filesystem,
             # and exception raised here would prevent the InternalFile recordings
-            filepath = yield threads.deferToThread(dump_file_fs, uploaded_file)
+            (filepath, cksum, size) = yield threads.deferToThread(dump_file_fs, uploaded_file)
         except Exception as excep:
             log.err("Unable to save a file in filesystem: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
 
+        # integrity check: has been saved the same amount of byte declared ?
+        if size != uploaded_file['body_len']:
+            raise errors.InternalServerError("File has been truncated (%d saved on %d bytes)" %
+                                             (size, uploaded_file['body_len']))
+
         try:
             # Second: register the file in the database
-            registered_file = yield register_file_db(uploaded_file, filepath, itip_id)
+            registered_file = yield register_file_db(uploaded_file, filepath, cksum, itip_id)
         except Exception as excep:
             log.err("Unable to register file in DB: %s" % excep)
             raise errors.InternalServerError("Unable to accept new files")
