@@ -28,10 +28,6 @@ def initialize_node(store, results, only_node, email_templates):
 
     node = models.Node(only_node)
 
-    # Increment this value every time sqlite.sql change, and develop
-    # a migration script.
-    node.database_version = DATABASE_VERSION
-
     node.languages_supported = LANGUAGES_SUPPORTED
 
     # by default, only english is the surely present language
@@ -144,6 +140,8 @@ def create_tables(create_node=True):
                                        u"This is the description of your node. PLEASE CHANGE ME." }),
             'presentation':  dict({ GLSetting.memory_copy.default_language :
                                         u"Welcome to GlobaLeaks™" }),
+            'footer': dict({ GLSetting.memory_copy.default_language :
+                                 u"Copyright 2011-2013 Hermes Center for Transparency and Digital Human Rights" }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"email@dumnmy.net",

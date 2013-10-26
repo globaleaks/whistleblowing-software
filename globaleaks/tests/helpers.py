@@ -3,8 +3,8 @@
 import os
 import json
 import uuid
-from io import BytesIO as StringIO
 
+from io import BytesIO as StringIO
 from cyclone import httpserver
 from cyclone.web import Application
 from cyclone.util import ObjectDict as OD
@@ -14,7 +14,7 @@ from twisted.internet.defer import inlineCallbacks
 from Crypto import Random
 from storm.twisted.testing import FakeThreadPool
 
-from globaleaks.settings import GLSetting, transact
+from globaleaks.settings import GLSetting, transact, sample_context_fields
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
 from globaleaks import db, utils, models, security
@@ -307,35 +307,7 @@ class MockDict():
             'submission_disclaimer': u'kk',
             'description': u'Already localized desc',
             # fields, usually filled in content by fill_random_fields
-            'fields': [
-                  {"name": "Short title",
-                   "hint": "Describe your tip-off with a line/title",
-                   "required": True,
-                   "presentation_order": 1,
-                   "value": "",
-                   "key": "Short title",
-                   "type": "text",
-                   "preview": True
-                  },
-                  {"name": "Full description",
-                   "hint": "Describe the details of your tip-off",
-                   "required": True,
-                    "presentation_order": 2,
-                    "value": "",
-                    "key": "Full description",
-                    "type": "text",
-                    "preview": True
-                  },
-                  {"name": "Files description",
-                   "hint": "Describe the submitted files",
-                   "required": False,
-                   "presentation_order": 3,
-                   "value": "",
-                   "key": "Files description",
-                   "type": "text",
-                   "preview": True
-                  }
-                 ],
+            'fields': list(sample_context_fields),
             'selectable_receiver': False,
             'tip_max_access': 10,
             # tip_timetolive is expressed in days
@@ -362,6 +334,7 @@ class MockDict():
             'name':  u"Please, set me: name/title",
             'description': u"Please, set me: description",
             'presentation': u'This is what appears on top',
+            'footer': u'check it out https://www.youtube.com/franksentus ;)',
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dumnmy.net",
@@ -441,6 +414,32 @@ def template_keys(first_a, second_a, name):
         ret_string += " %s" % x
 
     return ret_string
+
+
+def get_dummy_submission(context_gus, context_admin_data_fields):
+    """
+    this may works until the content of the fields do not start to be validated. like
+    numbers shall contain only number, and not URL.
+    This validation would not be implemented in validate_jmessage but in utils.Fields
+
+    need to be enhanced generating appropriate data based on the fields.type
+    """
+
+    dummySubmissionDict = {}
+    dummySubmissionDict['wb_fields'] = {}
+
+    dummyvalue = "https://dailyfoodporn.wordpress.com && " \
+                 "http://www.zerocalcare.it/ && " \
+                 "http://www.giantitp.com"
+
+    for field_desc in context_admin_data_fields:
+        dummySubmissionDict['wb_fields'][field_desc['key']] = dummyvalue
+
+    dummySubmissionDict['receivers'] = []
+    dummySubmissionDict['files'] = []
+    dummySubmissionDict['finalize'] = True
+    dummySubmissionDict['context_gus'] = context_gus
+    return dummySubmissionDict
 
 def fill_random_fields(context_desc):
     """
