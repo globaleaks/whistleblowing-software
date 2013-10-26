@@ -249,9 +249,12 @@ class TestReceiverSetKey(helpers.TestHandler):
 
         new_file = dict(MockDict().dummyFile)
 
-        relationship1 = yield threads.deferToThread(files.dump_file_fs, new_file)
+        (relationship1, cksum, fsize) = yield threads.deferToThread(files.dump_file_fs, new_file)
+        # encrypted output is always greater than the not encrypted
+        self.assertGreater(fsize, new_file['body_len'])
+
         self.registered_file1 = yield files.register_file_db(
-            new_file, relationship1, new_subm_output['submission_gus'] )
+            new_file, relationship1, cksum, new_subm_output['submission_gus'] )
 
         new_subm['submission_gus'] = new_subm_output['submission_gus']
         new_subm['finalize'] = True
@@ -273,7 +276,9 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.assertLess(ifilist[0]['size'], rfilist[0]['size'])
         self.assertLess(ifilist[0]['size'], rfilist[1]['size'])
         self.assertEqual(rfilist[0]['status'], u"encrypted" )
+        # completed in love! http://www.youtube.com/watch?v=CqLAwt8T3Ps
 
+        # TODO checks the lacking of the plaintext file!, then would be completed in absolute love
 
 
 
