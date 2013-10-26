@@ -96,9 +96,11 @@ This comment is needed in order to push the following strings on transifex
               </p>
             </div>
 
-            <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
-              {{ "Update node" | translate }}
-            </button>
+            <div class="form-group">
+              <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
+                {{ "Update node" | translate }}
+              </button>
+            </div>
           </div>
         </div>
       </form>

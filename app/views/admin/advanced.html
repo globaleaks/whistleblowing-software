@@ -56,10 +56,10 @@ This comment is needed in order to push the following strings on transifex
                 </div>
 
                 <a ng-click="tor2web_editing = !tor2web_editing" ng-init="tor2web_editing = false" ng-show="!tor2web_editing">
-                {{ "Edit Tor2Web accessibility table " | translate }}
+                  {{ "Edit Tor2Web accessibility table " | translate }}
                 </a>
                 <a ng-click="tor2web_editing = !tor2web_editing" ng-show="tor2web_editing">
-                {{ "Edit Tor2Web accessibility table - [click again to close]" | translate }}
+                  {{ "Edit Tor2Web accessibility table - [click again to close]" | translate }}
                 </a>
 
                 <div ng-show="tor2web_editing">
@@ -118,11 +118,12 @@ This comment is needed in order to push the following strings on transifex
                     </label>
                   </div>
                 </div>
-
-                <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
-                  {{ "Update Advanced settings" | translate }}
-                </button>
-
+ 
+                <div class="form-group">
+                  <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
+                    {{ "Update Advanced settings" | translate }}
+                  </button>
+                </div>
               </form>
             </div>
         </div>
