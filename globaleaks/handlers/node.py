@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import utils
-from globaleaks.utils import l10n, Fields
+from globaleaks.utils import Rosetta, Fields
 from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
@@ -46,8 +46,10 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'postpone_superpower': node.postpone_superpower,
     }
 
-    for attr in ['presentation', 'description', 'footer' ]:
-        node_dict[attr] = l10n(getattr(node, attr), language)
+    mo = Rosetta()
+    mo.acquire_storm_object(node)
+    for attr in mo.get_localized_attrs():
+        node_dict[attr] = mo.dump_translated(attr, language)
 
     return node_dict
 
@@ -81,8 +83,10 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "select_all_receivers": context.select_all_receivers
     })
 
-    context_dict['name'] = l10n(context.name, language)
-    context_dict['description'] = l10n(context.description, language)
+    mo = Rosetta()
+    mo.acquire_storm_object(context)
+    context_dict['name'] = mo.dump_translated('name', language)
+    context_dict['description'] = mo.dump_translated('description', language)
 
     fo = Fields(context.localized_fields, context.unique_fields)
     context_dict['fields'] = fo.dump_fields(language)
@@ -117,7 +121,9 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         "tags": receiver.tags,
     })
 
-    receiver_dict['description'] = l10n(receiver.description, language)
+    mo = Rosetta()
+    mo.acquire_storm_object(receiver)
+    receiver_dict['description'] = mo.dump_translated('description', language)
 
     return receiver_dict
 
