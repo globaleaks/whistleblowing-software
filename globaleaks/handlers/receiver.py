@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, l10n, Fields
+from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting
@@ -43,7 +43,9 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "contexts": []
     }
 
-    receiver_dict["description"] = l10n(receiver.description, language)
+    mo = Rosetta()
+    mo.acquire_storm_object(receiver)
+    receiver_dict["description"] = mo.dump_translated('description', language)
 
     for context in receiver.contexts:
         receiver_dict['contexts'].append(context.id)

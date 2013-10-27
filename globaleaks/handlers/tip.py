@@ -11,7 +11,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
-from globaleaks.utils import log, pretty_date_time, l10n, utc_future_date, utc_dynamic_date
+from globaleaks.utils import log, pretty_date_time, Rosetta, utc_future_date, utc_dynamic_date
 
 from globaleaks.settings import transact, transact_ro
 from globaleaks.models import *
@@ -56,9 +56,11 @@ def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.def
     }
 
     # context_name and context_description are localized field
+    mo = Rosetta()
+    mo.acquire_storm_object(internaltip.context)
     for attr in ['name', 'description' ]:
         key = "context_%s" % attr
-        itip_dict[key] = l10n(getattr(internaltip.context, attr), language)
+        itip_dict[key] = mo.dump_translated(attr, language)
 
     return itip_dict
 
@@ -557,7 +559,9 @@ def serialize_receiver(receiver, access_counter, language=GLSetting.memory_copy.
     for context in receiver.contexts:
         receiver_dict['contexts'].append(unicode(context.id))
 
-    receiver_dict["description"] = l10n(receiver.description, language)
+    mo = Rosetta()
+    mo.acquire_storm_object(receiver)
+    receiver_dict["description"] = mo.dump_translated("description", language)
 
     return receiver_dict
 

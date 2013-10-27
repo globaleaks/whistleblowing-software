@@ -16,14 +16,14 @@ from globaleaks.handlers.authentication import authenticated, transport_security
 from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification, User
 from globaleaks import utils, security, models
-from globaleaks.utils import log, datetime_null, l10n, Fields
+from globaleaks.utils import log, datetime_null, Fields, Rosetta
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.third_party import rstr
 
 def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
-    response = {
+    node_dict = {
         "name": node.name,
         "presentation": node.presentation,
         "creation_date": utils.pretty_date_time(node.creation_date),
@@ -49,10 +49,12 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'postpone_superpower': node.postpone_superpower,
     }
 
-    for attr in ['presentation', 'description', 'footer' ]:
-        response[attr] = l10n(getattr(node, attr), language)
+    mo = Rosetta()
+    mo.acquire_storm_object(node)
+    for attr in mo.get_localized_attrs():
+        node_dict[attr] = mo.dump_translated(attr, language)
 
-    return response
+    return node_dict
 
 def admin_serialize_context(context, receipt_output, language=GLSetting.memory_copy.default_language):
     context_dict = {
@@ -74,9 +76,10 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "select_all_receivers": context.select_all_receivers
     }
 
-    for attr in ['name', 'description', 'receipt_description',
-                 'submission_introduction', 'submission_disclaimer' ]:
-        context_dict[attr] = l10n(getattr(context, attr), language)
+    mo = Rosetta()
+    mo.acquire_storm_object(context)
+    for attr in mo.get_localized_attrs():
+        context_dict[attr] = mo.dump_translated(attr, language)
 
     fo = Fields(context.localized_fields, context.unique_fields)
     context_dict['fields'] = fo.dump_fields(language)
@@ -112,7 +115,11 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "file_notification": True if receiver.file_notification else False,
     }
 
-    receiver_dict["description"] = l10n(receiver.description, language)
+    # only 'description' at the moment is a localized object here
+    mo = Rosetta()
+    mo.acquire_storm_object(receiver)
+    for attr in mo.get_localized_attrs():
+        receiver_dict[attr] = mo.dump_translated(attr, language)
 
     for context in receiver.contexts:
         receiver_dict['contexts'].append(context.id)
@@ -854,10 +861,10 @@ def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_l
         'disable': GLSetting.notification_temporary_disable,
     }
 
-    for attr in ['tip_template', 'tip_mail_title', 'file_template',
-            'file_mail_title', 'comment_template', 'comment_mail_title',
-            'activation_template', 'activation_mail_title']:
-        notification_dict[attr] = l10n(getattr(notif, attr), language)
+    mo = Rosetta()
+    mo.acquire_storm_object(notif)
+    for attr in mo.get_localized_attrs():
+        notification_dict[attr] = mo.dump_translated(attr, language)
 
     return notification_dict
 
