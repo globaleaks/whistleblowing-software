@@ -9,7 +9,7 @@ import types
 from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, Unicode, Storm
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
-from globaleaks.utils import datetime_now
+from globaleaks.utils.utility import datetime_now
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
 

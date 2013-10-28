@@ -17,7 +17,7 @@ from Crypto.Hash import SHA256
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
-from globaleaks.utils import log, pretty_date_time
+from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, ReceiverTip, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.third_party import rstr

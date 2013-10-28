@@ -8,12 +8,12 @@ from twisted.internet.defer import succeed
 from storm.exceptions import OperationalError
 
 from globaleaks.rest import errors
-from globaleaks.utils import log, datetime_now, datetime_null
+from globaleaks.utils.utility import log, datetime_now, datetime_null
 from globaleaks.settings import transact, transact_ro, ZStorm, GLSetting
 from globaleaks import models
 from globaleaks.third_party import rstr
 from globaleaks.security import hash_password, get_salt
-from globaleaks import DATABASE_VERSION, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
+from globaleaks import LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
 
 
 @transact

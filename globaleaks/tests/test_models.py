@@ -5,7 +5,7 @@ from globaleaks.tests import helpers
 from globaleaks.models import *
 from globaleaks.settings import transact, transact_ro
 from globaleaks.rest import errors
-from globaleaks.utils import Fields
+from globaleaks.utils.structures import Fields
 
 class TestModels(helpers.TestGL):
 

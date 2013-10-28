@@ -4,10 +4,10 @@ from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import sample_context_fields
 from globaleaks.tests import helpers
-from globaleaks.rest import requests
+from globaleaks.rest.requests import adminContextDesc, adminReceiverDesc
 from globaleaks.rest.errors import GLException, InvalidInputFormat
 from globaleaks.handlers import base, admin, submission
-from globaleaks.utils import log
+from globaleaks.utils.utility import log
 from globaleaks.tests.test_tip import TTip
 
 class MockHandler(base.BaseHandler):
@@ -64,13 +64,13 @@ class TestTipInstance(SubmissionTest):
 
         # context creation
         try:
-            basehandler.validate_jmessage( SubmissionTest.aContext1, requests.adminContextDesc)
+            basehandler.validate_jmessage( SubmissionTest.aContext1, adminContextDesc)
             SubmissionTest.context_used = yield admin.create_context(SubmissionTest.aContext1)
             # Correctly, TTip.tipContext has not selectable receiver, and we want test it in the 2nd test
             SubmissionTest.context_used['selectable_receiver'] = True
             SubmissionTest.context_used = yield admin.update_context(SubmissionTest.context_used['context_gus'],
                 SubmissionTest.context_used)
-            basehandler.validate_jmessage( SubmissionTest.aContext2, requests.adminContextDesc)
+            basehandler.validate_jmessage( SubmissionTest.aContext2, adminContextDesc)
             SubmissionTest.context_unused = yield admin.create_context(SubmissionTest.aContext2)
         except Exception as excep:
             log.err("Unable to create context used/unused in UT: %s" % excep.message)
@@ -80,11 +80,11 @@ class TestTipInstance(SubmissionTest):
         self.assertTrue(len(SubmissionTest.context_unused['context_gus']) > 1)
 
         SubmissionTest.aReceiver1['contexts'] = [ SubmissionTest.context_used['context_gus'] ]
-        basehandler.validate_jmessage( SubmissionTest.aReceiver1, requests.adminReceiverDesc )
+        basehandler.validate_jmessage( SubmissionTest.aReceiver1, adminReceiverDesc )
         SubmissionTest.receiver_used = yield admin.create_receiver(SubmissionTest.aReceiver1)
 
         SubmissionTest.aReceiver2['contexts'] = [ SubmissionTest.context_unused['context_gus'] ]
-        basehandler.validate_jmessage( SubmissionTest.aReceiver2, requests.adminReceiverDesc )
+        basehandler.validate_jmessage( SubmissionTest.aReceiver2, adminReceiverDesc )
         SubmissionTest.receiver_unused = yield admin.create_receiver(SubmissionTest.aReceiver2)
 
         self.assertTrue(SubmissionTest.receiver_used['name'] == SubmissionTest.aReceiver1['name'])

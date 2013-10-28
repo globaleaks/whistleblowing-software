@@ -15,8 +15,9 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import errors, requests
 from globaleaks.models import Receiver, Context, Node, Notification, User
-from globaleaks import utils, security, models
-from globaleaks.utils import log, datetime_null, Fields, Rosetta
+from globaleaks import security, models
+from globaleaks.utils import utility, structures
+from globaleaks.utils.utility import log
 from globaleaks.db import import_memory_variables
 from globaleaks.security import gpg_options_parse
 from globaleaks import LANGUAGES_SUPPORTED_CODES
@@ -26,8 +27,8 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
     node_dict = {
         "name": node.name,
         "presentation": node.presentation,
-        "creation_date": utils.pretty_date_time(node.creation_date),
-        "last_update": utils.pretty_date_time(node.last_update),
+        "creation_date": utility.pretty_date_time(node.creation_date),
+        "last_update": utility.pretty_date_time(node.last_update),
         "hidden_service": node.hidden_service,
         "public_site": node.public_site,
         "stats_update_time": node.stats_update_time,
@@ -49,7 +50,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'postpone_superpower': node.postpone_superpower,
     }
 
-    mo = Rosetta()
+    mo = structures.Rosetta()
     mo.acquire_storm_object(node)
     for attr in mo.get_localized_attrs():
         node_dict[attr] = mo.dump_translated(attr, language)
@@ -59,8 +60,8 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
 def admin_serialize_context(context, receipt_output, language=GLSetting.memory_copy.default_language):
     context_dict = {
         "context_gus": context.id,
-        "creation_date": utils.pretty_date_time(context.creation_date),
-        "last_update": utils.pretty_date_time(context.last_update),
+        "creation_date": utility.pretty_date_time(context.creation_date),
+        "last_update": utility.pretty_date_time(context.last_update),
         "selectable_receiver": context.selectable_receiver,
         "tip_max_access": context.tip_max_access,
         "file_max_download": context.file_max_download,
@@ -76,12 +77,12 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "select_all_receivers": context.select_all_receivers
     }
 
-    mo = Rosetta()
+    mo = structures.Rosetta()
     mo.acquire_storm_object(context)
     for attr in mo.get_localized_attrs():
         context_dict[attr] = mo.dump_translated(attr, language)
 
-    fo = Fields(context.localized_fields, context.unique_fields)
+    fo = structures.Fields(context.localized_fields, context.unique_fields)
     context_dict['fields'] = fo.dump_fields(language)
 
     for receiver in context.receivers:
@@ -93,8 +94,8 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
     receiver_dict = {
         "receiver_gus": receiver.id,
         "name": receiver.name,
-        "creation_date": utils.pretty_date_time(receiver.creation_date),
-        "last_update": utils.pretty_date_time(receiver.last_update),
+        "creation_date": utility.pretty_date_time(receiver.creation_date),
+        "last_update": utility.pretty_date_time(receiver.last_update),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
         "username": receiver.user.username,
@@ -116,7 +117,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
     }
 
     # only 'description' at the moment is a localized object here
-    mo = Rosetta()
+    mo = structures.Rosetta()
     mo.acquire_storm_object(receiver)
     for attr in mo.get_localized_attrs():
         receiver_dict[attr] = mo.dump_translated(attr, language)
@@ -161,12 +162,12 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
                                     old_password, password, admin.salt)
 
     if len(request['public_site']) > 1:
-        if not utils.acquire_url_address(request['public_site'], hidden_service=True, http=True):
+        if not utility.acquire_url_address(request['public_site'], hidden_service=True, http=True):
             log.err("Invalid public page regexp in [%s]" % request['public_site'])
             raise errors.InvalidInputFormat("Invalid public site")
 
     if len(request['hidden_service']) > 1:
-        if not utils.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
+        if not utility.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
             log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
             raise errors.InvalidInputFormat("Invalid hidden service")
 
@@ -184,7 +185,7 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
     # name, description tor2web boolean value are acquired here
     node.update(request)
 
-    node.last_update = utils.datetime_now()
+    node.last_update = utility.datetime_now()
 
     return admin_serialize_node(node, language)
 
@@ -207,13 +208,13 @@ def get_context_list(store, language=GLSetting.memory_copy.default_language):
 def acquire_context_timetolive(request):
 
     try:
-        submission_ttl = utils.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
+        submission_ttl = utility.seconds_convert(int(request['submission_timetolive']), (60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Submission: %s" % excep.message)
         raise errors.InvalidTipTimeToLive()
 
     try:
-        tip_ttl = utils.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
+        tip_ttl = utility.seconds_convert(int(request['tip_timetolive']), (24 * 60 * 60), min=1)
     except Exception as excep:
         log.err("Invalid timing configured for Tip: %s" % excep.message)
         raise errors.InvalidSubmTimeToLive()
@@ -276,7 +277,7 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
         admin_data_fields = request['fields']
 
     try:
-        fo = Fields(context.localized_fields, context.unique_fields)
+        fo = structures.Fields(context.localized_fields, context.unique_fields)
         fo.update_fields(language, admin_data_fields)
         fo.context_import(context)
     except Exception as excep:
@@ -382,14 +383,14 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
         context.receipt_regexp = u"fixme-[0-9]{13}-please"
 
     try:
-        fo = Fields(context.localized_fields, context.unique_fields)
+        fo = structures.Fields(context.localized_fields, context.unique_fields)
         fo.update_fields(language, request['fields'])
         fo.context_import(context)
     except Exception as excep:
         log.err("Unable to update fields: %s" % excep)
         raise excep
 
-    context.last_update = utils.datetime_now()
+    context.last_update = utility.datetime_now()
     context.update(request)
 
     receipt_example = generate_example_receipt(context.receipt_regexp)
@@ -458,7 +459,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
         
     request = v
     
-    mail_address = utils.acquire_mail_address(request)
+    mail_address = utility.acquire_mail_address(request)
     if not mail_address:
         raise errors.NoEmailSpecified
 
@@ -484,7 +485,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
     }
 
     receiver_user = models.User(receiver_user_dict)
-    receiver_user.last_login = datetime_null()
+    receiver_user.last_login = utility.datetime_null()
     store.add(receiver_user)
 
     receiver = Receiver(request)
@@ -551,7 +552,7 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
     if not receiver:
         raise errors.ReceiverGusNotFound
 
-    mail_address = utils.acquire_mail_address(request)
+    mail_address = utility.acquire_mail_address(request)
     if not mail_address:
         raise errors.NoEmailSpecified
 
@@ -587,7 +588,7 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
         receiver.contexts.add(context)
 
     receiver.update(request)
-    receiver.last_update = utils.datetime_now()
+    receiver.last_update = utility.datetime_now()
 
     return admin_serialize_receiver(receiver, language)
 
@@ -861,7 +862,7 @@ def admin_serialize_notification(notif, language=GLSetting.memory_copy.default_l
         'disable': GLSetting.notification_temporary_disable,
     }
 
-    mo = Rosetta()
+    mo = structures.Rosetta()
     mo.acquire_storm_object(notif)
     for attr in mo.get_localized_attrs():
         notification_dict[attr] = mo.dump_translated(attr, language)

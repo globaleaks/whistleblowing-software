@@ -18,7 +18,7 @@ from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalFile, InternalTip, ReceiverTip, \
                               ReceiverFile, Receiver
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.utils import get_file_checksum, log, pretty_date_time
+from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.security import GLBGPG
 from globaleaks.handlers.admin import admin_serialize_receiver
 
