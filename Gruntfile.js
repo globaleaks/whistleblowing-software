@@ -367,38 +367,35 @@ module.exports = function(grunt) {
     var done = this.async(),
       gt = new Gettext(),
       strings,
-      translations = {},
-      fileContents = fs.readFileSync("pot/en.po"),
-      output = "";
+      fileContents = fs.readFileSync("pot/en.po")
 
     fetchTxTranslations(function(supported_languages){
 
       gt.addTextdomain("en", fileContents);
       strings = gt.listKeys("en", "");
-      translations['supported_languages'] = supported_languages;
 
-      strings.forEach(function(string){
-        var md5sum = crypto.createHash('md5'),
-          digest;
-        md5sum.update(string);
-        digest = md5sum.digest('hex');
-        translations[digest] = {};
+      for (var lang_code in supported_languages) {
+        var translations = {},
+          output;
 
-        for (var lang_code in supported_languages) {
+        strings.forEach(function(string){
+
+          translations[string] = {};
+
           gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
-          translations[digest][lang_code] = gt.dgettext(lang_code, string);
-        };
-      });
+          translations[string][lang_code] = gt.dgettext(lang_code, string);
 
-      output += "angular.module('GLClient.translations', []).factory('Translations', function() { return ";
-      output += JSON.stringify(translations);
-      output += "});\n";
+        });
 
-      fs.writeFileSync("app/scripts/translations.js", output);
+        output = JSON.stringify(translations);
 
-      console.log("Translations file was written!");
+        fs.writeFileSync("app/scripts/l10n/" + lang_code + ".json", output);
 
-      });
+      };
+
+      console.log("Translations files was written!");
+
+    });
 
   });
 
