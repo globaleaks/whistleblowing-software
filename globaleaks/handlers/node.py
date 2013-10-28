@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks import utils
-from globaleaks.utils import Rosetta, Fields
+from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated

@@ -8,7 +8,7 @@ from twisted.internet.error import CannotListenError
 from twisted.internet.defer import inlineCallbacks
 from apscheduler.scheduler import Scheduler
 
-from globaleaks.utils import log, utc_future_date
+from globaleaks.utils.utility import log, utc_future_date
 from globaleaks.db import create_tables, check_schema_version, update_supported_languages, import_memory_variables
 from globaleaks.settings import GLSetting
 

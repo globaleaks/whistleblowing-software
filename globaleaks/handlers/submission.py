@@ -13,7 +13,8 @@ from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
-from globaleaks.utils import log, utc_future_date, pretty_date_time, datetime_now, Fields
+from globaleaks.utils.utility import log, utc_future_date, pretty_date_time, datetime_now
+from globaleaks.utils.structures import Fields
 from globaleaks.third_party import rstr
 from globaleaks.rest import errors
 

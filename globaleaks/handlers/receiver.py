@@ -8,7 +8,8 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.utils import pretty_date_time, acquire_mail_address, acquire_bool, Rosetta, Fields
+from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool
+from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
 from globaleaks.settings import transact, transact_ro, GLSetting

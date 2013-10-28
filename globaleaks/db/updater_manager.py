@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 import os
 
-from globaleaks.utils import GLSetting
+from globaleaks.settings import GLSetting
 from globaleaks.models import models as orm_classes_list
 
 def perform_version_update(starting_ver, ending_ver, start_path):

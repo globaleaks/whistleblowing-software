@@ -14,7 +14,8 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks import models
 
-from globaleaks.utils import pretty_date_time, log, Rosetta
+from globaleaks.utils.utility import pretty_date_time, log
+from globaleaks.utils.structures import Rosetta
 
 @transact_ro
 def collect_tip_overview(store, language=GLSetting.memory_copy.default_language):

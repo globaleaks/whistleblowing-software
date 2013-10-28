@@ -5,9 +5,7 @@
 # Base class for implement the scheduled tasks
 
 from datetime import datetime
-
-from globaleaks import utils
-from globaleaks.utils import log
+from globaleaks.utils.utility import log, utc_future_date, pretty_date_time
 
 class GLJob:
 
@@ -19,14 +17,14 @@ class GLJob:
         force execution do not execute immidiatly self.operation(),
         because we want be sure that is a thread start by APScheduler
         """
-        plan_exec = utils.utc_future_date(hours=0, seconds=seconds)
+        plan_exec = utc_future_date(hours=0, seconds=seconds)
         plan_exec += (datetime.now() - datetime.utcnow())
 
         try:
             aps.add_date_job(self.operation, plan_exec)
         except ValueError as exc:
             log.err("Failing in force schedule execution of %s planned at %s" %
-                      (self.__class__.__name__, utils.pretty_date_time(plan_exec)))
+                      (self.__class__.__name__, pretty_date_time(plan_exec)))
 
         log.debug("Forced execution of %s at %s" %
-                  (self.__class__.__name__, utils.pretty_date_time(plan_exec)))
+                  (self.__class__.__name__, pretty_date_time(plan_exec)))

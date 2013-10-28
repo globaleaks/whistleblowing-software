@@ -8,7 +8,7 @@
 import sys
 
 from globaleaks.settings import GLSetting
-from globaleaks.utils import log, is_expired
+from globaleaks.utils.utility import log, is_expired
 from globaleaks.jobs.base import GLJob
 
 

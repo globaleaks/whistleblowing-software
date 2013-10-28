@@ -23,7 +23,8 @@ from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone import escape, httputil
 from cyclone.escape import native_str
 
-from globaleaks.utils import log, sanitize_str, mail_exception
+from globaleaks.utils.utility import log, sanitize_str
+from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 

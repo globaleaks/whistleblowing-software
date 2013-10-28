@@ -11,8 +11,7 @@ import sys
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-
-from globaleaks.utils import log, pretty_date_time, is_expired, iso2dateobj
+from globaleaks.utils.utility import log, pretty_date_time, is_expired, iso2dateobj
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment
 

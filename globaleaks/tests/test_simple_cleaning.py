@@ -10,7 +10,7 @@ from globaleaks.rest.base import uuid_regexp
 from globaleaks.handlers import tip, base, admin, submission, files
 from globaleaks.jobs import delivery_sched, cleaning_sched
 from globaleaks import models
-from globaleaks.utils import is_expired
+from globaleaks.utils.utility import is_expired
 from globaleaks.settings import transact
 from globaleaks.tests.test_tip import TTip
 
