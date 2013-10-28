@@ -19,14 +19,4 @@ angular.module('GLClientFilters', []).
         return input;
       }
     }
-}).
-  filter('translate', ['Translations', function(Translations) {
-    return function(input) {
-      var hash = md5(input);
-      if ( hash in Translations ){
-        return Translations[hash][$.cookie('language')];
-      } else {
-        return input;
-      }
-    }
-}]);
+});
