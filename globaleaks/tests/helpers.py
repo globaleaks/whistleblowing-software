@@ -17,18 +17,12 @@ from storm.twisted.testing import FakeThreadPool
 from globaleaks.settings import GLSetting, transact, sample_context_fields
 from globaleaks.handlers.admin import create_context, create_receiver
 from globaleaks.handlers.submission import create_submission, create_whistleblower_tip
-from globaleaks import db, utils, models, security
+from globaleaks import db, models, security
+from globaleaks.utils.utility import datetime_null, datetime_now
 from globaleaks.third_party import rstr
 
 
 Random.atfork()
-
-sleep_list = []
-
-def fake_sleep(seconds):
-    sleep_list.append(seconds)
-
-utils.sleep = fake_sleep
 
 VALID_PASSWORD1 = u'justapasswordwithaletterandanumberandbiggerthan8chars'
 VALID_PASSWORD2 = u'justap455w0rdwithaletterandanumberandbiggerthan8chars'
@@ -51,7 +45,7 @@ class UTlog():
     def debug(stuff):
         print "[D]", stuff
 
-from globaleaks.utils import log
+from globaleaks.utils.utility import log
 # I'm trying by feeling
 log.err = UTlog().err
 log.debug = UTlog().debug
@@ -59,8 +53,6 @@ log.debug = UTlog().debug
 
 class TestWithDB(unittest.TestCase):
     def setUp(self):
-        global sleep_list
-        sleep_list = []
         GLSetting.set_devel_mode()
         GLSetting.scheduler_threadpool = FakeThreadPool()
         GLSetting.sessions = {}
@@ -248,7 +240,7 @@ class TestHandler(TestGL):
         if role:
             session_id = '4tehlulz'
             new_session = OD(
-                   refreshdate=utils.datetime_now(),
+                   refreshdate=datetime_now(),
                    id=session_id,
                    role=role,
                    user_id=user_id
@@ -271,7 +263,7 @@ class MockDict():
             'salt': VALID_SALT1,
             'role': u'admin',
             'state': u'enabled',
-            'last_login': utils.datetime_null(),
+            'last_login': datetime_null(),
             'failed_login_count': 0
         }
 
@@ -420,7 +412,7 @@ def get_dummy_submission(context_gus, context_admin_data_fields):
     """
     this may works until the content of the fields do not start to be validated. like
     numbers shall contain only number, and not URL.
-    This validation would not be implemented in validate_jmessage but in utils.Fields
+    This validation would not be implemented in validate_jmessage but in structures.Fields
 
     need to be enhanced generating appropriate data based on the fields.type
     """
