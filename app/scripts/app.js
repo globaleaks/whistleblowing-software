@@ -2,11 +2,13 @@
 
 var GLClient = angular.module('GLClient', [
     'GLClient.templates',
-    'resourceServices', 'submissionUI',
-    'GLClientFilters', 'GLClient.translations',
-    'blueimp.fileupload'
+    'resourceServices',
+    'submissionUI',
+    'GLClientFilters',
+    'blueimp.fileupload',
+    'pascalprecht.translate'
   ]).
-  config(['$routeProvider', function($routeProvider) {
+  config(['$routeProvider', '$translateProvider', function($routeProvider, $translateProvider) {
 
     $routeProvider.
       when('/', {
@@ -74,4 +76,11 @@ var GLClient = angular.module('GLClient', [
       otherwise({
         redirectTo: '/'
       })
+
+      $translateProvider.useStaticFilesLoader({
+        prefix: 'l10n/',
+        suffix: '.json'
+      });
+
+      $translateProvider.uses('en');
 }]);
