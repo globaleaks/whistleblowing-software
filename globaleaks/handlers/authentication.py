@@ -1,5 +1,13 @@
+# -*- coding: UTF-8
+#
+#   authentication
+#   **************
+#
+# Authentication, login failed count, session management, password checks
+
+from twisted.internet import reactor
+from twisted.internet.defer import Deferred, inlineCallbacks
 from storm.exceptions import NotOneError
-from twisted.internet import defer, reactor
 from cyclone.util import ObjectDict as OD
 from Crypto import Random
 
@@ -8,18 +16,21 @@ from globaleaks.settings import transact, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.utils import log
+from globaleaks.utils.utility import is_expired, log, datetime_now
 from globaleaks.third_party import rstr
-from globaleaks import security, utils
+from globaleaks import security
 
-@defer.inlineCallbacks
-def sleep(timeout):
+def security_sleep(timeout):
+    """
+    @param timeout: this sleep is called to slow down bruteforce attacks
+    @return:
+    """
     def callbackDeferred():
         d.callback(True)
 
-    d = defer.Deferred()
+    d = Deferred()
     reactor.callLater(timeout, callbackDeferred)
-    yield d
+    return d
 
 def random_login_delay(user):
     """
@@ -69,7 +80,7 @@ def update_session(user):
     """
     session_info = GLSetting.sessions[user.id]
     
-    if utils.is_expired(session_info.refreshdate,
+    if is_expired(session_info.refreshdate,
                         seconds=GLSetting.defaults.lifetimes[user.role]):
 
         log.debug("Authentication Expired (%s) %s seconds" % (
@@ -83,7 +94,7 @@ def update_session(user):
     else:
 
         # update the access time to the latest
-        GLSetting.sessions[user.id].refreshdate = utils.datetime_now()
+        GLSetting.sessions[user.id].refreshdate = datetime_now()
 
         return True
 
@@ -217,7 +228,7 @@ def login_wb(store, receipt):
         return False
 
     log.debug("Whistleblower: Valid receipt")
-    wb_tip.last_access = utils.datetime_now()
+    wb_tip.last_access = datetime_now()
     return unicode(wb_tip.id)
 
 
@@ -234,8 +245,8 @@ def login_receiver(store, username, password):
         return False
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
-        log.debug("Receiver login: Invalid password")
         receiver_user.failed_login_count += 1
+        log.debug("Receiver login: Invalid password (failed: %d)" % receiver_user.failed_login_count)
         if username in GLSetting.failed_login_attempts:
             GLSetting.failed_login_attempts[username] += 1
         else:
@@ -244,7 +255,7 @@ def login_receiver(store, username, password):
         return False
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
-        receiver_user.last_login = utils.datetime_now()
+        receiver_user.last_login = datetime_now()
         receiver = store.find(Receiver, (Receiver.user_id == receiver_user.id)).one()
         return receiver.id
 
@@ -257,8 +268,8 @@ def login_admin(store, username, password):
         return False
 
     if not security.check_password(password, admin_user.password, admin_user.salt):
-        log.debug("Admin login: Invalid password")
         admin_user.failed_login_count += 1
+        log.debug("Admin login: Invalid password (failed: %d)" % admin_user.failed_login_count)
         if username in GLSetting.failed_login_attempts:
             GLSetting.failed_login_attempts[username] += 1
         else:
@@ -266,7 +277,7 @@ def login_admin(store, username, password):
         return False
     else:
         log.debug("Admin: Authorized receiver %s" % username)
-        admin_user.last_login = utils.datetime_now()
+        admin_user.last_login = datetime_now()
         return username
 
 class AuthenticationHandler(BaseHandler):
@@ -294,7 +305,7 @@ class AuthenticationHandler(BaseHandler):
         # This is the format to preserve sessions in memory
         # Key = session_id, values "last access" "id" "role"
         new_session = OD(
-               refreshdate=utils.datetime_now(),
+               refreshdate=datetime_now(),
                id=self.session_id,
                role=role,
                user_id=user_id
@@ -314,7 +325,7 @@ class AuthenticationHandler(BaseHandler):
                     'user_id': unicode(self.current_user.user_id)})
 
     @unauthenticated
-    @defer.inlineCallbacks
+    @inlineCallbacks
     def post(self):
         """
         This is the /login handler expecting login/password/role,
@@ -327,7 +338,7 @@ class AuthenticationHandler(BaseHandler):
         
         delay = random_login_delay(username)
         if delay:
-            yield utils.sleep(delay)
+            yield security_sleep(delay)
 
         # Then verify credential, if the channel shall be trusted
         if role == 'admin':
