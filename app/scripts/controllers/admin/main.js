@@ -42,6 +42,7 @@ function($rootScope, $scope, $http, $location, Admin, Translations) {
       }
     });
     $scope.admin.node.languages_enabled = languages_enabled;
+
   }, true);
   // We need to have a special function for updating the node since we need to add old_password and password attribute
   // if they are not present
@@ -54,6 +55,7 @@ function($rootScope, $scope, $http, $location, Admin, Translations) {
     if (node.old_password === undefined)
       node.old_password = "";
     $scope.update(node);
+    $rootScope.language = node.languages_enabled[0];
   }
 
   $scope.update = function(model) {
