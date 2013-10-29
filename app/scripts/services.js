@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('resourceServices.authentication', [])
-  .factory('Authentication', ['$http', '$location', '$routeParams', '$rootScope',
-    function($http, $location, $routeParams, $rootScope){
+  .factory('Authentication', ['$http', '$location', '$routeParams',
+                              '$rootScope', '$timeout',
+    function($http, $location, $routeParams, $rootScope, $timeout){
       function Session(){
         var self = this,
           auth_landing_page;
@@ -19,6 +20,36 @@ angular.module('resourceServices.authentication', [])
           if(window.location.protocol === 'https:') {
             $.cookie(name, value, {secure: true});
           }
+        },
+
+        setExpiration = function(expirationDate) {
+          var current_date = new Date();
+
+          setCookie('session_expiration', expirationDate);
+          $rootScope.session_expiration = expirationDate;
+          $timeout(checkExpiration, expirationDate - current_date);
+        },
+
+        checkExpiration = function() {
+          var expiration_date = $.cookie('session_expiration');
+
+          if (expiration_date >= current_date) {
+            var error = {
+              'message': 'Session expired!',
+                 'code': 401,
+                  'url': $location.path(),
+            };
+
+            $rootScope.errors.push(error);
+
+            $timeout(function() {
+              $location.path('/login');
+              $location.search('src='+source_path);
+            }, 3000);
+
+          } else {
+            setExpiration(expiration_date);
+          }
         };
 
         self.login = function(username, password, role) {
@@ -33,8 +64,9 @@ angular.module('resourceServices.authentication', [])
 
               $rootScope.session_id = self.id;
               $rootScope.auth_role = role;
-
+              
               setCookie('session_id', response.session_id);
+              setExpiration(response.session_expiration);
               setCookie('role', self.role);
 
               if (role == 'admin') {
