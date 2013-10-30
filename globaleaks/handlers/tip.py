@@ -50,8 +50,7 @@ def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.def
         # this field "inform" the receiver of the new expiration date that can
         # be set, only if PUT with extend = True is updated
         'potential_expiration_date' : \
-            pretty_date_time(utc_dynamic_date(internaltip.expiration_date,
-                                      seconds=internaltip.context.tip_timetolive)),
+            utc_future_date(seconds=rtip.internaltip.context.tip_timetolive),
         'extend' : False,
     }
 
@@ -286,8 +285,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     log.debug(" [%s] in %s has extended expiration time to %s" % (
         rtip.receiver.name,
         pretty_date_time(datetime_now()),
-        pretty_date_time(utc_dynamic_date(rtip.internaltip.expiration_date,
-                         seconds=rtip.internaltip.context.tip_timetolive))))
+        pretty_date_time(rtip.internaltip.expiration_date)))
 
     comment = Comment()
 
@@ -305,8 +303,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     comment.content = "%s %s %s " % (
                    rtip.receiver.name,
                    pretty_date_time(datetime_now()),
-                   utc_dynamic_date(rtip.internaltip.expiration_date,
-                                    seconds=rtip.internaltip.context.tip_timetolive))
+                   prerry_date_time(rtip.internaltip.expiration_date))
 
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
