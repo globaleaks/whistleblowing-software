@@ -89,10 +89,12 @@ if os.path.exists(path):
 else:
     pip_version_check('/usr/share/globaleaks/glbackend/requirements.txt')
 
-from globaleaks import runner, DATABASE_VERSION
-from globaleaks.utils import log, mail_exception, query_yes_no, caller_name
-from globaleaks.settings import GLSetting
 from twisted.python import usage
+
+from globaleaks import runner, DATABASE_VERSION
+from globaleaks.utils.utility import log, query_yes_no, caller_name
+from globaleaks.utils.mailutils import mail_exception
+from globaleaks.settings import GLSetting
 
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222

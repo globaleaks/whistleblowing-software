@@ -7,7 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import utils
+from globaleaks.utils.utility import pretty_date_time
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
@@ -113,8 +113,8 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
 
     receiver_dict.update({
         "can_delete_submission": receiver.can_delete_submission,
-        "creation_date": utils.pretty_date_time(receiver.creation_date),
-        "update_date": utils.pretty_date_time(receiver.last_update),
+        "creation_date": pretty_date_time(receiver.creation_date),
+        "update_date": pretty_date_time(receiver.last_update),
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
