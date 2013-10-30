@@ -197,7 +197,7 @@ def utc_future_date(seconds=0, minutes=0, hours=0):
     @return: a datetime object
     """
     delta = timedelta(seconds=(seconds + (minutes * 60) + (hours * 3600)))
-    return datetime.utcnow() + delta
+    return datetime.utcnow() - timedelta(seconds=time.timezone) + delta
 
 def datetime_null():
     """
@@ -211,6 +211,15 @@ def datetime_now():
     """
     now = datetime.utcnow() - timedelta(seconds=time.timezone)
     return now
+
+def get_future_epoch(seconds=0):
+    """
+    @param seconds: optional, the second in
+        the future
+    @return: seconds since the Epoch
+    """
+    return int(time.time()) - time.timezone + seconds
+
 
 def is_expired(old_date, seconds=0, minutes=0, hours=0, day=0):
     """

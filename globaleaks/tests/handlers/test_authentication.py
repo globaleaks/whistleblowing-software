@@ -5,7 +5,7 @@ from globaleaks.tests import helpers
 from globaleaks.handlers import authentication, admin, base
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
-from globaleaks.utils.utility import datetime_now, datetime_null
+from globaleaks.utils.utility import datetime_now, datetime_null, get_future_epoch
 
 
 class ClassToTestUnauthenticatedDecorator(base.BaseHandler):
@@ -367,4 +367,23 @@ class TestAuthentication(helpers.TestHandler):
         self.assertTrue(len(sleep_list), failed_login)
         for i in xrange(1, len(sleep_list)):
             self.assertTrue(i <= sleep_list[i])
-            
+
+    @inlineCallbacks
+    def test_expiry_date(self):
+        auth_request = {
+            'username': self.dummyReceiverUser['username'],
+            'password': helpers.VALID_PASSWORD1,
+            'role': 'receiver'
+        }
+        handler = self.request(auth_request)
+        yield handler.post()
+
+        self.assertTrue('session_id' in self.responses[0])
+        self.assertTrue('session_expiration' in self.responses[0])
+
+        # may differ of one or two seconds ? may!
+        expected_expiration = get_future_epoch(GLSetting.defaults.lifetimes[auth_request['role']])
+        expiration_date = self.responses[0]['session_expiration']
+        self.assertApproximates(expected_expiration, expiration_date, 2)
+
+

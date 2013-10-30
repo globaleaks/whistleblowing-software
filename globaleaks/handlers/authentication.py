@@ -16,7 +16,7 @@ from globaleaks.settings import transact, GLSetting
 from globaleaks.models import Receiver, WhistleblowerTip
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.rest import errors, requests
-from globaleaks.utils.utility import is_expired, log, datetime_now
+from globaleaks.utils.utility import is_expired, log, datetime_now, get_future_epoch
 from globaleaks.third_party import rstr
 from globaleaks import security
 
@@ -95,6 +95,8 @@ def update_session(user):
 
         # update the access time to the latest
         GLSetting.sessions[user.id].refreshdate = datetime_now()
+        GLSetting.sessions[user.id].expirydate = get_future_epoch(
+            seconds=GLSetting.defaults.lifetimes[user.role])
 
         return True
 
@@ -308,7 +310,8 @@ class AuthenticationHandler(BaseHandler):
                refreshdate=datetime_now(),
                id=self.session_id,
                role=role,
-               user_id=user_id
+               user_id=user_id,
+               expirydate=get_future_epoch(seconds=GLSetting.defaults.lifetimes[role])
         )
         GLSetting.sessions[self.session_id] = new_session
         return self.session_id
@@ -321,8 +324,13 @@ class AuthenticationHandler(BaseHandler):
             except KeyError:
                 raise errors.NotAuthenticated
 
-        self.write({'session_id': self.current_user.id,
-                    'user_id': unicode(self.current_user.user_id)})
+        auth_answer = {
+            'session_id': self.current_user.id,
+            'user_id': unicode(self.current_user.user_id),
+            'session_expiration': int(self.current_user.expirydate)
+        }
+        self.write(auth_answer)
+
 
     @unauthenticated
     @inlineCallbacks
@@ -355,8 +363,14 @@ class AuthenticationHandler(BaseHandler):
         if not user_id:
             raise errors.InvalidAuthRequest
 
-        self.write({'session_id': self.generate_session(role, user_id),
-                    'user_id': unicode(user_id)})
+        new_session_id = self.generate_session(role, user_id)
+        auth_answer = {
+            'session_id': new_session_id,
+            'user_id': unicode(user_id),
+            'session_expiration': int(GLSetting.sessions[new_session_id].expirydate)
+        }
+        self.write(auth_answer)
+
 
     @authenticated('*')
     def delete(self):
