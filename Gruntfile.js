@@ -100,7 +100,7 @@ module.exports = function(grunt) {
     copy: {
         release: {
             files: [{
-                dest: 'tmp/', cwd: 'app/', src: ['**'], expand: true
+              dest: 'tmp/', cwd: 'app/', src: ['**'], expand: true
             }]
         }
     },
@@ -184,6 +184,7 @@ module.exports = function(grunt) {
     grunt.file.mkdir('build');
     grunt.file.mkdir('build/img');
     grunt.file.mkdir('build/fonts');
+    grunt.file.mkdir('build/l10n');
 
     grunt.file.copy('tmp/styles.css', 'build/styles.css');
     grunt.file.copy('tmp/scripts.js', 'build/scripts.js');
@@ -195,6 +196,10 @@ module.exports = function(grunt) {
 
     grunt.file.recurse('tmp/fonts', function(absdir, rootdir, subdir, filename) {
         grunt.file.copy(absdir, path.join('build/fonts', subdir || '', filename || ''));
+    });
+
+    grunt.file.recurse('tmp/l10n', function(absdir, rootdir, subdir, filename) {
+        grunt.file.copy(absdir, path.join('build/l10n', subdir || '', filename || ''));
     });
 
     rm_rf('tmp');
@@ -380,16 +385,14 @@ module.exports = function(grunt) {
 
         strings.forEach(function(string){
 
-          translations[string] = {};
-
           gt.addTextdomain(lang_code, fs.readFileSync("pot/" + lang_code + ".po"));
-          translations[string][lang_code] = gt.dgettext(lang_code, string);
+          translations[string] = gt.dgettext(lang_code, string);
 
         });
 
         output = JSON.stringify(translations);
 
-        fs.writeFileSync("app/scripts/l10n/" + lang_code + ".json", output);
+        fs.writeFileSync("app/l10n/" + lang_code + ".json", output);
 
       };
 
