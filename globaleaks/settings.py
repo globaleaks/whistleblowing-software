@@ -74,7 +74,17 @@ sample_context_fields = [
 
 class GLSettingsClass:
 
+    initialized = False
+
     def __init__(self):
+
+        if GLSettingsClass.initialized:
+            error_msg = "Singleton GLSettingClass instanced twice!"
+            print error_msg
+            raise Exception(error_msg)
+        else:
+            GLSettingsClass.initialized = True
+
         # command line parsing utils
         self.parser = OptionParser()
         self.cmdline_options = None
@@ -148,8 +158,7 @@ class GLSettingsClass:
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
         self.defaults.maximum_namesize = 128
-        self.defaults.maximum_descsize = 1024
-        self.defaults.maximum_textsize = 2048
+        self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30 # expressed in megabytes
         self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
         # Context dependent values:
@@ -165,7 +174,6 @@ class GLSettingsClass:
         self.memory_copy.maximum_filesize = self.defaults.maximum_filesize
         self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
         self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
-        self.memory_copy.maximum_descsize = self.defaults.maximum_descsize
         self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
         self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
         self.memory_copy.tor2web_tip = self.defaults.tor2web_tip

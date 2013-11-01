@@ -147,7 +147,6 @@ def create_tables(create_node=True):
             'email':  u"email@dumnmy.net",
             'stats_update_time':  2, # hours,
             # advanced settings
-            'maximum_descsize' : GLSetting.defaults.maximum_descsize,
             'maximum_filesize' : GLSetting.defaults.maximum_filesize,
             'maximum_namesize' : GLSetting.defaults.maximum_namesize,
             'maximum_textsize' : GLSetting.defaults.maximum_textsize,
@@ -275,7 +274,6 @@ def import_memory_variables(store):
 
         GLSetting.memory_copy.maximum_filesize = node.maximum_filesize
         GLSetting.memory_copy.maximum_namesize = node.maximum_namesize
-        GLSetting.memory_copy.maximum_descsize = node.maximum_descsize
         GLSetting.memory_copy.maximum_textsize = node.maximum_textsize
 
         GLSetting.memory_copy.tor2web_admin = node.tor2web_admin

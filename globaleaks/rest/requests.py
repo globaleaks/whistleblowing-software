@@ -65,7 +65,6 @@ adminNodeDesc = {
     'languages_enabled': [ unicode ],
     'languages_supported': list, # ignored
     'maximum_namesize': int,
-    'maximum_descsize': int,
     'maximum_textsize': int,
     'maximum_filesize': int,
     'tor2web_admin': bool,

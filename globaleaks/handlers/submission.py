@@ -7,7 +7,7 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.settings import transact, transact_ro
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.models import *
 from globaleaks import security
 from globaleaks.handlers.base import BaseHandler
