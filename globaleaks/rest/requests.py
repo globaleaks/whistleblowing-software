@@ -54,7 +54,7 @@ actorsTipOpsDesc = {
 adminNodeDesc = {
     'name': unicode,
     'description' : unicode,
-    # wtf come puo' "presentation" non essere davvero presente ?
+    'presentation' : unicode,
     'footer': unicode,
     'hidden_service' : unicode,
     'public_site' : unicode,
