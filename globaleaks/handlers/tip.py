@@ -50,7 +50,7 @@ def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.def
         # this field "inform" the receiver of the new expiration date that can
         # be set, only if PUT with extend = True is updated
         'potential_expiration_date' : \
-            utc_future_date(seconds=internaltip.context.tip_timetolive),
+            pretty_date_time(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'extend' : False,
     }
 
@@ -293,9 +293,10 @@ def postpone_expiration_date(store, user_id, tip_id):
            'type': "1", # the first kind of structured system_comments
            'receiver_name': rtip.receiver.name,
            'now' : pretty_date_time(datetime_now()),
-           'expire_on' : pretty_date_time(utc_dynamic_date(
-                     rtip.internaltip.expiration_date,
-                     seconds=rtip.internaltip.context.tip_timetolive))
+           #'expire_on' : pretty_date_time(utc_dynamic_date(
+           #          rtip.internaltip.expiration_date,
+           #          seconds=rtip.internaltip.context.tip_timetolive))
+           'expire_on' : pretty_date_time(rtip.internaltip.expiration_date)
     })
 
     # remind: this is put just for debug, it's never used in the flow

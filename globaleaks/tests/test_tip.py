@@ -1,6 +1,7 @@
 import re
 
 from twisted.internet.defer import inlineCallbacks
+from datetime import datetime, timedelta
 
 from globaleaks.settings import GLSetting
 from globaleaks.tests import helpers
@@ -13,6 +14,21 @@ from globaleaks import models
 from globaleaks.settings import sample_context_fields
 
 STATIC_PASSWORD = u'bungabunga ;( 12345'
+
+
+def vptd_dirty_copy(isowhen):
+    """
+    @param isowhen: a ISO representation of datetime object
+    @return: the datetime object. maybe exists a dedicated function to do this,
+        I've found/looked for because I'm silly.
+    """
+    x = datetime(year=int(isowhen[0:4]),
+                    month=int(isowhen[5:7]),
+                    day=int(isowhen[8:10]),
+                    hour=int(isowhen[11:13]),
+                    minute=int(isowhen[14:16]),
+                    second=int(isowhen[17:19]) )
+    return x
 
 class MockHandler(base.BaseHandler):
 
@@ -312,7 +328,6 @@ class TestTipInstance(TTip):
                                     self.rtip2_id)
         self.assertEqual(len(cl), 2)
 
-
     @inlineCallbacks
     def wb_RW_comments(self):
         self.commentCreation['content'] = unicode("I'm a WB comment")
@@ -358,6 +373,29 @@ class TestTipInstance(TTip):
         self.assertEqual(tip_expiring['expiration_date'], tip_not_extended['expiration_date'])
 
     @inlineCallbacks
+    def verify_default_expiration_date(self):
+        """
+        that's the date status in this test (tip ttl 200 days)
+
+        creation_date : 2013-10-31T21:22:14.481809
+        potential_expiration_date : 2014-05-19 21:22:16.677997
+        expiration_date : 2014-05-19T21:22:14.481711
+        """
+        context_list = yield admin.get_context_list()
+        self.assertTrue(isinstance(context_list, list))
+        self.assertEqual(len(context_list), 1)
+        tip_ttl = context_list[0]['tip_timetolive']
+
+        tip_expiring = yield tip.get_internaltip_receiver(
+            self.receiver1_desc['receiver_gus'], self.rtip1_id)
+
+        creation_date = vptd_dirty_copy(tip_expiring['creation_date'])
+        potential_exp_date = vptd_dirty_copy(tip_expiring['potential_expiration_date'])
+        expiration_date = vptd_dirty_copy(tip_expiring['expiration_date'])
+        # TODO think to more robust tests using timedelta and verify the dates / tip_ttl
+
+
+    @inlineCallbacks
     def update_node_properties(self):
         node_desc = yield admin.get_node()
         self.assertEqual(node_desc['postpone_superpower'], False)
@@ -382,6 +420,29 @@ class TestTipInstance(TTip):
             self.receiver1_desc['receiver_gus'], self.rtip1_id)
 
         self.assertNotEqual(tip_expiring['expiration_date'], tip_extended['expiration_date'])
+
+    @inlineCallbacks
+    def postpone_comment_content_check(self):
+        """
+           'type': "1", # the first kind of structured system_comments
+           'receiver_name': rtip.receiver.name,
+           'now' : pretty_date_time(datetime_now()),
+           'expire_on' : pretty_date_time(rtip.internaltip.expiration_date)
+        """
+        cl = yield tip.get_comment_list_receiver(self.receiver1_desc['receiver_gus'],
+                                                 self.rtip1_id)
+
+        self.assertEqual(cl[3]['source'], models.Comment._types[2]) # System (date extension)
+
+        sys_comm = cl[3]
+
+        self.assertEqual(sys_comm['system_content']['receiver_name'], self.receiver2_desc['name'])
+        self.assertTrue(sys_comm['system_content'].has_key('now'))
+        self.assertEqual(sys_comm['system_content']['type'], u"1")
+        new_expire = sys_comm['system_content']['expire_on']
+        new_expiration_date = vptd_dirty_copy(new_expire)
+        # TODO think to more robust tests using timedelta and verify new_expiration_date
+
 
     @inlineCallbacks
     def receiver2_fail_in_delete_internal_tip(self):
@@ -457,8 +518,10 @@ class TestTipInstance(TTip):
         yield self.receiver_get_receiver_list(GLSetting.memory_copy.default_language)
         # test expiration date
         yield self.fail_postpone_expiration_date()
+        yield self.verify_default_expiration_date()
         yield self.update_node_properties()
         yield self.success_postpone_expiration_date()
+        yield self.postpone_comment_content_check()
         # end of test
         yield self.receiver2_fail_in_delete_internal_tip()
         yield self.receiver2_personal_delete()
