@@ -39,7 +39,6 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         "default_language" : node.default_language,
         'maximum_filesize': node.maximum_filesize,
         'maximum_namesize': node.maximum_namesize,
-        'maximum_descsize': node.maximum_descsize,
         'maximum_textsize': node.maximum_textsize,
         'exception_email': node.exception_email,
         'tor2web_admin': GLSetting.memory_copy.tor2web_admin,

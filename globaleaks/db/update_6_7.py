@@ -9,6 +9,9 @@ from uuid import uuid4
 class Node_version_6(Model):
     __storm_table__ = 'node'
 
+    # this variable is removed since 6 to 7
+    maximum_descsize = Int()
+
     name = Unicode()
     public_site = Unicode()
     hidden_service = Unicode()
@@ -23,7 +26,6 @@ class Node_version_6(Model):
     presentation = Pickle()
     stats_update_time = Int()
     maximum_namesize = Int()
-    maximum_descsize = Int()
     maximum_textsize = Int()
     maximum_filesize = Int()
     tor2web_admin = Bool()
@@ -119,8 +121,11 @@ class Replacer67(TableReplacer):
 
         new_node = self.get_right_model("Node", 7)()
 
-        # the new entries
+        # the new entry
         new_node.footer = { 'en' : u"Copyright 2011-2013 Hermes Center for Transparency and Digital Human Rights" }
+
+        # the removed entry
+        # new_node.maximum_descsize = old_node.maximum_descsize
 
         new_node.id = old_node.id
         new_node.name = old_node.name
@@ -130,7 +135,6 @@ class Replacer67(TableReplacer):
 
         new_node.postpone_superpower = old_node.postpone_superpower
         new_node.stats_update_time = old_node.stats_update_time
-        new_node.maximum_descsize = old_node.maximum_descsize
         new_node.maximum_filesize = old_node.maximum_filesize
         new_node.maximum_namesize = old_node.maximum_namesize
         new_node.maximum_textsize = old_node.maximum_textsize

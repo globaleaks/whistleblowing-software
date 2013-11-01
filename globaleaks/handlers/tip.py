@@ -11,9 +11,9 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
-from globaleaks.utils.utility import log, pretty_date_time, utc_future_date, utc_dynamic_date
+from globaleaks.utils.utility import log, pretty_date_time, utc_future_date
 from globaleaks.utils.structures import Rosetta
-from globaleaks.settings import transact, transact_ro
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.models import *
 from globaleaks.rest import errors
 

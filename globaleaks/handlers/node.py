@@ -32,7 +32,6 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'configured': True if associated else False,
       # extended settings info:
       'maximum_namesize': node.maximum_namesize,
-      'maximum_descsize': node.maximum_descsize,
       'maximum_textsize': node.maximum_textsize,
       'maximum_filesize': node.maximum_filesize,
       # public serialization use GLSetting memory var, and

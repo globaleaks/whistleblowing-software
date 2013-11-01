@@ -338,7 +338,6 @@ class MockDict():
             'old_password' : '',
             'salt': 'OMG!, the Rains of Castamere ;( ;(',
             'salt_receipt': '<<the Lannisters send their regards>>',
-            'maximum_descsize' : GLSetting.defaults.maximum_descsize,
             'maximum_filesize' : GLSetting.defaults.maximum_filesize,
             'maximum_namesize' : GLSetting.defaults.maximum_namesize,
             'maximum_textsize' : GLSetting.defaults.maximum_textsize,

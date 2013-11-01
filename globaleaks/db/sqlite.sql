@@ -118,7 +118,6 @@ CREATE TABLE node (
     stats_update_time INTEGER NOT NULL,
     last_update VARCHAR,
     maximum_namesize INTEGER NOT NULL,
-    maximum_descsize INTEGER NOT NULL,
     maximum_textsize INTEGER NOT NULL,
     maximum_filesize INTEGER NOT NULL,
     tor2web_admin INTEGER NOT NULL,
