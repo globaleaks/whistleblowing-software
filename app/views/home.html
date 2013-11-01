@@ -147,34 +147,35 @@
 
     <div class="row">
         <div class="col-md-6">
-            <h1>
+            <h3>
                 {{ "Are you a whistleblower?" | translate }}
-            </h1>
+            </h3>
             <form class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="col-lg-4">
-                        {{ "Enter your receipt" | translate }}
-                    </label>
-                    <div class="col-lg-6">
-                        <input class="form-control" ng-model="receipt" type="text">
-                    </div>
-                    <div class="col-lg-2">
-                        <a ng-click="view_tip(receipt)" class="btn btn-primary">
-                            {{ "View Tip" | translate }}
-                        </a>
-                    </div>
+                  <label class="col-md-4">
+                    {{ "Enter your receipt" | translate }}
+                  </label>
+                  <div class="col-md-6">
+                    <input class="form-control" ng-model="receipt" type="text">
+                  </div>
+                  <div class="col-md-2">
+                    <a ng-click="view_tip(receipt)" class="btn btn-primary">
+                      {{ "View Tip" | translate }}
+                    </a>
+                  </div>
                 </div>
             </form>
         </div>
         <div class="col-md-6">
-            <h1>
+            <h3>
               {{ "Are you a receiver?" | translate }}
-            </h1>
+            </h3>
             <p>
-            {{ "This is the" | translate }}
-            <a href="#/login">
-              {{ "Login page" | translate }}
-            </a>.</p>
+              {{ "This is the" | translate }}
+              <a href="#/login">
+                {{ "Login page" | translate }}
+              </a>.
+            </p>
         </div>
     </div>
 
