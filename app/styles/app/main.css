@@ -329,10 +329,8 @@ textarea {
   border-bottom-left-radius: 20px;
   -webkit-box-shadow: rgb(0, 0, 0) 0px 0px 0px;
   box-shadow: rgb(0, 0, 0) 0px 0px 0px;
-  background-color: red;
   border-width: 2px;
   margin: 5px 0px 0px -2px;
-  border-color: rgb(153, 153, 153);
   border: 2px solid black;
 }
 

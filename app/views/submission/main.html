@@ -1,5 +1,5 @@
 <div class="jumbotron subhead">
-  <div ng-cloak="" class="container">
+  <div class="container ng-cloak">
 
     <div class="row">
       <div class="col-md-3">
@@ -20,7 +20,7 @@
     <h2>{{ "Loading..." | translate }}</h2>
 </div>
 
-<div ng-cloak="" class="container" ng-show="!node_info.configured && node_info.name">
+<div class="container ng-cloak" ng-show="!node_info.configured && node_info.name">
   <h2>{{ "This node is not configured." | translate }}</h2>
   <p>{{ "You will not be able to perform a submission." | translate }}<br />
   {{ "Admin please configure at least one Context and associated Receivers using" | translate }}
@@ -29,7 +29,7 @@
   </a>.</p>
 </div>
 
-<div ng-cloak="" ng-controller="WizardCtrl" class="container" ng-show="node_info.name && node_info.configured">
+<div ng-controller="WizardCtrl" class="container ng-cloak" ng-show="node_info.name && node_info.configured">
 
   <div class="tabbable tabs-below">
 
