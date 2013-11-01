@@ -101,28 +101,29 @@
     <img ng-src="/static/globaleaks_logo.png">
     <h1>{{ node_info.presentation }}</h1>
     
-    <div ng-show="node_info.configured">
-      <div ng-show="!node_info.tor2web_submission && !anonymous" class="row">
-        <p class="has-error">
-          {{ "You are connecting to the node not anonymously and this node only supports anonymous submissions" | translate }}
-
-        </p>
+    <div class="ng-cloak">
+      <div ng-show="node_info.configured">
+        <div ng-show="!node_info.tor2web_submission && !anonymous" class="row">
+          <p class="has-error">
+            {{ "You are connecting to the node not anonymously and this node only supports anonymous submissions" | translate }}
+          </p>
+        </div>
+        <div class="row" ng-show="!node_info.tor2web_submission && !anonymous">
+          <button class="btn btn-danger disabled btn-lg">
+            {{ "Whistleblowing disabled" | translate }}
+         </button>
+        </div>
+        <div class="row" ng-show="node_info.tor2web_submission && anonymous">
+          <a ng-click="goToSubmission()" class="btn btn-primary btn-lg">
+            {{ "Blow the Whistle" | translate }}
+          </a>
+        </div>
+        <div class="row" ng-show="node_info.tor2web_submission && !anonymous">
+          <a ng-click="goToSubmission()" class="btn btn-warning btn-lg">
+            {{ "Blow the Whistle" | translate }}
+          </a>
+        </div>
       </div>
-      <div class="row" ng-cloak="" ng-show="!node_info.tor2web_submission && !anonymous">
-        <button class="btn btn-danger disabled btn-lg">
-            {{ "Whistleblowing disabled" | translate }}</button>
-      </div>
-
-      <div class="row" ng-cloak="" ng-show="node_info.tor2web_submission && anonymous">
-        <a ng-click="goToSubmission()" class="btn btn-primary btn-lg">
-            {{ "Blow the Whistle" | translate }}</a>
-      </div>
-
-      <div class="row" ng-cloak="" ng-show="node_info.tor2web_submission && !anonymous">
-        <a ng-click="goToSubmission()" class="btn btn-warning btn-lg">
-            {{ "Blow the Whistle" | translate }}</a>
-      </div>
-
     </div>
 
     <div ng-hide="node_info.configured">
