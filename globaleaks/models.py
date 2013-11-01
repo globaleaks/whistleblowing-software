@@ -7,11 +7,8 @@
 import types
 
 from storm.locals import Bool, DateTime, Int, Pickle, Reference, ReferenceSet, Unicode, Storm
-from globaleaks.settings import GLSetting
-from globaleaks.rest import errors
 from globaleaks.utils.utility import datetime_now
-from globaleaks import LANGUAGES_SUPPORTED_CODES
-
+from globaleaks.utils.validator import shorttext_v, longtext_v, shortlocal_v, longlocal_v, dict_v
 
 def uuid():
     """
@@ -19,74 +16,6 @@ def uuid():
     """
     import uuid as u
     return unicode(u.uuid4())
-
-def gltextv(self, attr, value):
-    """
-    Just to avoid resources depletion by anonymous submissions,
-    a simple validation that should make the exhaustion slower.
-    """
-    try:
-        assert isinstance(value, unicode)
-    except AssertionError:
-        raise errors.InvalidInputFormat("Not an unicode as expected (%s = %s)" %
-                        (attr, value))
-
-    if (attr == 'name' and
-        (len(value) > GLSetting.memory_copy.maximum_namesize or len(value) == 0)):
-        raise errors.InvalidInputFormat("name length need to be > 0 and " \
-                            "< of %d" % GLSetting.memory_copy.maximum_namesize)
-    # TODO this at the moment is not used again, because need to be moved on gllocalv
-    elif attr == 'description' and len(value) > GLSetting.memory_copy.maximum_descsize:
-        raise errors.InvalidInputFormat("unicode description has a length " \
-                            "limit of %d" % GLSetting.memory_copy.maximum_descsize)
-    else:
-        if len(value) > GLSetting.memory_copy.maximum_textsize:
-            raise errors.InvalidInputFormat("unicode in %s overcome length " \
-                            "limit %d" % (attr, GLSetting.memory_copy.maximum_textsize))
-
-    return value
-
-def gldictv(self, attr, value):
-    """
-    Validate dict content, every key, if unicode, have not to
-    overcome the generic length limit.
-    """
-    if not value:
-        return {}
-
-    try:
-        assert isinstance(value, dict)
-    except AssertionError:
-        raise errors.InvalidInputFormat("(%s) dict expected" % attr)
-
-
-    for key, subvalue in value.iteritems():
-        if isinstance(subvalue, unicode):
-            if len(subvalue) > GLSetting.memory_copy.maximum_textsize:
-                raise errors.InvalidInputFormat("In dict %s the key %s" \
-                                "overcome length limit of %d" % (attr, key,
-                                GLSetting.memory_copy.maximum_textsize))
-
-    return value
-
-
-def gllocalv(self, attr, value):
-    """
-    Validate a dict containing
-    """
-    try:
-        assert isinstance(value, dict)
-    except AssertionError:
-        raise errors.InvalidInputFormat("(%s) localized dict expected" % attr)
-
-    if not value:
-        return value
-
-    for lang, text in value.iteritems():
-        if lang not in LANGUAGES_SUPPORTED_CODES:
-            raise errors.InvalidInputFormat("(%s) invalid language code in %s" % (lang, attr) )
-
-    return value
 
 
 class Model(Storm):
@@ -196,7 +125,7 @@ class User(Model):
     """
     __storm_table__ = 'user'
 
-    username = Unicode()
+    username = Unicode(validator=shorttext_v)
     password = Unicode()
     salt = Unicode()
     role = Unicode()
@@ -246,11 +175,11 @@ class Context(Model):
     tags = Pickle()
 
     # localized stuff
-    name = Pickle(validator=gllocalv)
-    description = Pickle(validator=gllocalv)
-    receipt_description = Pickle(validator=gllocalv)
-    submission_introduction = Pickle(validator=gllocalv)
-    submission_disclaimer = Pickle(validator=gllocalv)
+    name = Pickle(validator=shortlocal_v)
+    description = Pickle(validator=longlocal_v)
+    receipt_description = Pickle(validator=longlocal_v)
+    submission_introduction = Pickle(validator=longlocal_v)
+    submission_disclaimer = Pickle(validator=longlocal_v)
 
     #receivers = ReferenceSet(
     #                         Context.id,
@@ -286,7 +215,7 @@ class InternalTip(Model):
     #internalfiles = ReferenceSet(InternalTip.id, InternalFile.internaltip_id)
     #receivers = ReferenceSet(InternalTip.id, Receiver.id)
 
-    wb_fields = Pickle(validator=gldictv)
+    wb_fields = Pickle(validator=dict_v)
     pertinence_counter = Int()
     expiration_date = DateTime()
     last_activity = DateTime()
@@ -387,8 +316,8 @@ class InternalFile(Model):
     internaltip_id = Unicode()
     #internaltip = Reference(InternalFile.internaltip_id, InternalTip.id)
 
-    name = Unicode(validator=gltextv) # TODO rename in 'filename' to do not overcome on 'name' size limit
-    sha2sum = Unicode() # TODO make it NOT NULL at the next DB version
+    name = Unicode(validator=longtext_v)
+    sha2sum = Unicode()
     file_path = Unicode()
 
     content_type = Unicode()
@@ -414,8 +343,9 @@ class Comment(Model):
     internaltip_id = Unicode()
 
     author = Unicode()
-    content = Unicode(validator=gltextv)
-    # In case of syastem_content usage, content has repr() equiv
+    content = Unicode(validator=longtext_v)
+
+    # In case of system_content usage, content has repr() equiv
     system_content = Pickle()
 
     type = Unicode()
@@ -435,8 +365,8 @@ class Node(Model):
     """
     __storm_table__ = 'node'
 
-    name = Unicode(validator=gltextv)
-    public_site = Unicode(validator=gltextv)
+    name = Unicode(validator=shorttext_v)
+    public_site = Unicode()
     hidden_service = Unicode()
     email = Unicode()
     receipt_salt = Unicode()
@@ -447,9 +377,9 @@ class Node(Model):
     default_language = Unicode()
 
     # localized string
-    description = Pickle(validator=gllocalv)
-    presentation = Pickle(validator=gllocalv)
-    footer = Pickle(validator=gllocalv)
+    description = Pickle(validator=longlocal_v)
+    presentation = Pickle(validator=longlocal_v)
+    footer = Pickle(validator=longlocal_v)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -457,7 +387,6 @@ class Node(Model):
 
     # Advanced settings
     maximum_namesize = Int()
-    maximum_descsize = Int()
     maximum_textsize = Int()
     maximum_filesize = Int()
     tor2web_admin = Bool()
@@ -473,7 +402,7 @@ class Node(Model):
 
     unicode_keys = ['name', 'public_site', 'email', 'hidden_service',
                     'exception_email', 'default_language' ]
-    int_keys = [ 'stats_update_time', 'maximum_namesize', 'maximum_descsize',
+    int_keys = [ 'stats_update_time', 'maximum_namesize', 
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_tip', 'tor2web_unauth', 'postpone_superpower' ]
@@ -493,25 +422,25 @@ class Notification(Model):
     username = Unicode()
     password = Unicode()
 
-    source_name = Unicode(validator=gltextv)
-    source_email = Unicode(validator=gltextv)
+    source_name = Unicode(validator=shorttext_v)
+    source_email = Unicode(validator=shorttext_v)
 
     security = Unicode()
     _security_types = [ u'TLS', u'SSL' ]
 
     # In the future these would be Markdown, but at the moment
     # are just localized dicts
-    tip_template = Pickle(validator=gllocalv)
-    file_template = Pickle(validator=gllocalv)
-    comment_template = Pickle(validator=gllocalv)
-    activation_template = Pickle(validator=gllocalv)
+    tip_template = Pickle(validator=longlocal_v)
+    file_template = Pickle(validator=longlocal_v)
+    comment_template = Pickle(validator=longlocal_v)
+    activation_template = Pickle(validator=longlocal_v)
     # these four template would be in the unicode_key implicit
     # expected fields, when Client/Backend are updated in their usage
 
-    tip_mail_title = Pickle(validator=gllocalv)
-    file_mail_title = Pickle(validator=gllocalv)
-    comment_mail_title = Pickle(validator=gllocalv)
-    activation_mail_title = Pickle(validator=gllocalv)
+    tip_mail_title = Pickle(validator=longlocal_v)
+    file_mail_title = Pickle(validator=longlocal_v)
+    comment_mail_title = Pickle(validator=longlocal_v)
+    activation_mail_title = Pickle(validator=longlocal_v)
 
     unicode_keys = ['server', 'username', 'password', 'source_name', 'source_email' ]
     localized_strings = [ 'tip_template', 'file_template', 'comment_template',
@@ -530,10 +459,10 @@ class Receiver(Model):
     user_id = Unicode()
     # Receiver.user = Reference(Receiver.user_id, User.id)
 
-    name = Unicode(validator=gltextv)
+    name = Unicode(validator=shorttext_v)
 
     # localization string
-    description = Pickle(validator=gllocalv)
+    description = Pickle(validator=longlocal_v)
 
     # of GPG key fields
     gpg_key_info = Unicode()
