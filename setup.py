@@ -45,7 +45,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "2049f1e8ba6260c44d079c044fc16199f5360243c885f7ea7501d9ee"
+    glclient_hash = "7506c99a59fbbb24f22e73a97c1ca34010630501ea104b737c87b8ef"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
@@ -95,6 +95,23 @@ data_files = [
     ]),
     ('/usr/share/globaleaks/glclient/img', [
     os.path.join(glclient_path, 'img', 'loading.gif'),
+    ]),
+    ('/usr/share/globaleaks/glclient/l10n', [
+    os.path.join(glclient_path, 'l10n', 'ar.json'),
+    os.path.join(glclient_path, 'l10n', 'bg.json'),
+    os.path.join(glclient_path, 'l10n', 'cs.json'),
+    os.path.join(glclient_path, 'l10n', 'de.json'),
+    os.path.join(glclient_path, 'l10n', 'en.json'),
+    os.path.join(glclient_path, 'l10n', 'es.json'),
+    os.path.join(glclient_path, 'l10n', 'fr.json'),
+    os.path.join(glclient_path, 'l10n', 'hu_HU.json'),
+    os.path.join(glclient_path, 'l10n', 'it.json'),
+    os.path.join(glclient_path, 'l10n', 'nl.json'),
+    os.path.join(glclient_path, 'l10n', 'pt_BR.json'),
+    os.path.join(glclient_path, 'l10n', 'ru.json'),
+    os.path.join(glclient_path, 'l10n', 'sr_RS.json'),
+    os.path.join(glclient_path, 'l10n', 'sr_RS@latin.json'),
+    os.path.join(glclient_path, 'l10n', 'vi.json')
     ]),
     ('/usr/share/globaleaks/glbackend',  [
     'requirements.txt',

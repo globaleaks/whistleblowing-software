@@ -1,3 +1,9 @@
+globaleaks (2.28.1-0) unstable; urgency=low
+
+  * GlobaLeaks 2.28.1 Release (Packaging Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sat, 02 Nov 2013 11:36:59 +0002
+
 globaleaks (2.28-0) unstable; urgency=low
 
   * GlobaLeaks 2.28 Release (Packaging Fixes)
