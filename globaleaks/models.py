@@ -372,7 +372,6 @@ class Node(Model):
     receipt_salt = Unicode()
     last_update = DateTime()
 
-    languages_supported = Pickle()
     languages_enabled = Pickle()
     default_language = Unicode()
 

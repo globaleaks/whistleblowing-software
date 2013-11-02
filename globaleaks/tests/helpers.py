@@ -331,7 +331,7 @@ class MockDict():
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dumnmy.net",
             'stats_update_time':  2, # hours,
-            'languages_supported':  [ ], # It's ignored, but expect a list
+            'languages_supported': [], # ignored
             'languages_enabled':  [ "it" , "en" ],
             'default_language': 'en',
             'password' : '',

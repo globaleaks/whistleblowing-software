@@ -13,6 +13,7 @@ from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models
+from globaleaks import LANGUAGES_SUPPORTED
 
 @transact_ro
 def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
@@ -27,7 +28,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
       'languages_enabled': node.languages_enabled,
-      'languages_supported': node.languages_supported,
+      'languages_supported': LANGUAGES_SUPPORTED,
       'default_language' : node.default_language,
       'configured': True if associated else False,
       # extended settings info:
