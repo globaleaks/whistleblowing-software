@@ -205,12 +205,26 @@ def mail_exception(etype, value, tback):
         # we need a bypass and also echoing something is bad on this condition.
         return
 
+    # collection of the stacktrace info
+    exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
+                      "", str(etype))
+    error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
+    traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
+
+    # this function can be called and used only when GLBackend is running,
+    # if an exception is raise before GLSetting has been instanced and setup
+    # everything will go badly. Therefore there are checked the integrity of GLSettings
+    if not hasattr(GLSetting.memory_copy, 'notif_source_name') or \
+        not hasattr(GLSetting.memory_copy, 'notif_source_email') or \
+        not hasattr(GLSetting.memory_copy, 'exception_email'):
+        log.err("Exception before of GLSetting initialization")
+        print "**", error_message
+        print "**", traceinfo
+        return
+
     try:
 
         mail_exception.mail_counter += 1
-
-        exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",
-                         "", str(etype))
 
         log.err("Exception mail! [%d]" % mail_exception.mail_counter)
 
@@ -226,10 +240,7 @@ def mail_exception(etype, value, tback):
                "Source: %s" % " ".join(os.uname()),
                "Version: %s" % __version__]
 
-        error_message = "%s %s" % (exc_type.strip(), etype.__doc__)
         tmp.append(error_message)
-
-        traceinfo = '\n'.join(traceback.format_exception(etype, value, tback))
         tmp.append(traceinfo)
 
         mail_content = collapse_mail_content(tmp)
