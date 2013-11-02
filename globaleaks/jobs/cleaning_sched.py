@@ -11,8 +11,7 @@ import sys
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-
-from globaleaks.utils import log, pretty_date_time, is_expired, iso2dateobj
+from globaleaks.utils.utility import log, pretty_date_time, is_expired, iso2dateobj
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import InternalTip, ReceiverFile, InternalFile, Comment
 
@@ -123,7 +122,7 @@ class APSCleaning(GLJob):
         been reached, then clean the submission_gus along with the fields,
         and, if present, the uploaded folder/files.
 
-        Second goal of this function, is to check all the internaltips
+        Second goal of this function, is to check all the InternalTip(s)
         and their expiration date, if match, remove that, all the folder,
         comment and tip related.
         """

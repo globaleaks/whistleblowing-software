@@ -8,8 +8,9 @@ from twisted.internet.error import CannotListenError
 from twisted.internet.defer import inlineCallbacks
 from apscheduler.scheduler import Scheduler
 
-from globaleaks.utils import log, utc_future_date
-from globaleaks.db import create_tables, check_schema_version, update_supported_languages, import_memory_variables
+from globaleaks.utils.utility import log, utc_future_date
+from globaleaks.db import create_tables, check_schema_version
+from globaleaks.db.datainit import import_memory_variables, apply_cli_options
 from globaleaks.settings import GLSetting
 
 # The scheduler is a global variable, because can be used to force execution
@@ -95,8 +96,8 @@ def globaleaks_start():
     @inlineCallbacks
     def cb(res):
         start_asynchronous()
-        yield update_supported_languages()
         yield import_memory_variables()
+        yield apply_cli_options()
 
         log.msg("GLBackend is now running")
         for ip in GLSetting.bind_addresses:

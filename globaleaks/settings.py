@@ -13,6 +13,7 @@ import shutil
 import traceback
 import logging
 import socket
+import uuid
 import pwd
 import grp
 import getpass
@@ -43,7 +44,7 @@ sample_context_fields = [
             'name': u'Short title', 
             'hint': u"Describe your Tip with a short title",
             'presentation_order': 1,
-            'key': u'Short title',
+            'key': unicode(uuid.uuid4()),
             'required': True,
             'preview': True,
             'type': u'text',
@@ -51,18 +52,18 @@ sample_context_fields = [
         },
         {
             'name': u'Full description',
-            'hint': u'Describe the details of your Tip',
-            'key': u'Full description',
+            'hint': u'Describe the details of your Submission',
+            'key': unicode(uuid.uuid4()),
             'presentation_order': 2,
             'required': True,
             'preview': True,
             'type': u'text',
-            'value': u"" 
+            'value': u''
         },
         {   
             'name': u'Files description',
             'hint': u"Describe the submitted files",
-            'key': u'Files description',
+            'key': unicode(uuid.uuid4()),
             'presentation_order': 3,
             'required': False,
             'preview': False,
@@ -73,7 +74,17 @@ sample_context_fields = [
 
 class GLSettingsClass:
 
+    initialized = False
+
     def __init__(self):
+
+        if GLSettingsClass.initialized:
+            error_msg = "Singleton GLSettingClass instanced twice!"
+            print error_msg
+            raise Exception(error_msg)
+        else:
+            GLSettingsClass.initialized = True
+
         # command line parsing utils
         self.parser = OptionParser()
         self.cmdline_options = None
@@ -147,8 +158,7 @@ class GLSettingsClass:
         self.defaults.tor2web_receiver = False
         self.defaults.tor2web_unauth = True
         self.defaults.maximum_namesize = 128
-        self.defaults.maximum_descsize = 1024
-        self.defaults.maximum_textsize = 2048
+        self.defaults.maximum_textsize = 4096
         self.defaults.maximum_filesize = 30 # expressed in megabytes
         self.defaults.exception_email = u"globaleaks-stackexception@lists.globaleaks.org"
         # Context dependent values:
@@ -164,7 +174,6 @@ class GLSettingsClass:
         self.memory_copy.maximum_filesize = self.defaults.maximum_filesize
         self.memory_copy.maximum_textsize = self.defaults.maximum_textsize
         self.memory_copy.maximum_namesize = self.defaults.maximum_namesize
-        self.memory_copy.maximum_descsize = self.defaults.maximum_descsize
         self.memory_copy.tor2web_admin = self.defaults.tor2web_admin
         self.memory_copy.tor2web_submission = self.defaults.tor2web_submission
         self.memory_copy.tor2web_tip = self.defaults.tor2web_tip
@@ -303,6 +312,17 @@ class GLSettingsClass:
 
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk
+
+        # we're not performing here the checks because utility.acquire_url_address include
+        # GLSetting on top, and etc. require a cleaner function but still, checks are
+        # done in apply_cli_options. This cause don't exit if validation fail, but ignored.
+        if self.cmdline_options.hidden_service:
+            pass
+            # would be done in globaleaks.db.datainit.apply_cli_options()
+
+        if self.cmdline_options.public_website:
+            pass
+            # would be done in globaleaks.db.datainit.apply_cli_options()
 
         if self.tor_socks_enable:
             # convert socks addr in IP and perform a test connection

@@ -19,7 +19,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
-from globaleaks.utils import log
+from globaleaks.utils.utility import log
 from globaleaks.rest import errors
 from globaleaks.rest.base import uuid_regexp
 from globaleaks import models

@@ -13,7 +13,7 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.jobs.base import GLJob
 from globaleaks.models import Receiver
 from globaleaks.settings import transact, GLSetting
-from globaleaks.utils import sendmail, log, rfc822_date, collapse_mail_content
+from globaleaks.utils.mailutils import sendmail, log, rfc822_date, collapse_mail_content
 from globaleaks.security import get_expirations
 
 __all__ = ['GPGExpireCheck']

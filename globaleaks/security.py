@@ -16,7 +16,7 @@ from Crypto.Random import random, atfork
 from gnupg import GPG
 
 from globaleaks.rest import errors
-from globaleaks.utils import log, acquire_bool
+from globaleaks.utils.utility import log, acquire_bool
 from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
 

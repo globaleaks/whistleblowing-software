@@ -10,13 +10,14 @@ from globaleaks.rest.base import uuid_regexp
 from globaleaks.handlers import tip, base, admin, submission, files
 from globaleaks.jobs import delivery_sched, cleaning_sched
 from globaleaks import models
-from globaleaks.utils import is_expired
+from globaleaks.utils.utility import is_expired
 from globaleaks.settings import transact
 from globaleaks.tests.test_tip import TTip
 
 from io import BytesIO as StringIO
 
 STATIC_PASSWORD = u'bungabunga ;('
+dummy_sum = u'a1c2257ef58acffec9b0e2d165dc6be67c8d05f224116714e18bec972aea34c3'
 
 class MockHandler(base.BaseHandler):
 
@@ -40,7 +41,6 @@ class TTip(helpers.TestWithDB):
     tipContext = TTip.tipContext
     tipReceiver1 = TTip.tipReceiver1
     tipReceiver2 = TTip.tipReceiver2
-    tipSubmission = TTip.tipSubmission
     tipOptions = TTip.tipOptions
     commentCreation = TTip.commentCreation
 
@@ -81,19 +81,21 @@ class TestCleaning(TTip):
 
     @inlineCallbacks
     def emulate_file_upload(self, associated_submission_id):
-        relationship1 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
-
+        """
+        THIS IS A COPY OF emulate_file_upload from test_submission
+        """
+        (relationship1, cksum1, size1) = yield threads.deferToThread(files.dump_file_fs, self.dummyFile1)
+        self.assertEqual(size1, self.dummyFile1['body_len'])
         self.registered_file1 = yield files.register_file_db(
-            self.dummyFile1, relationship1, associated_submission_id,
-        )
+            self.dummyFile1, relationship1, cksum1, associated_submission_id,
+            )
 
-        relationship2 = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
-
+        (relationship2, cksum2, size2) = yield threads.deferToThread(files.dump_file_fs, self.dummyFile2)
+        self.assertEqual(size2, self.dummyFile2['body_len'])
         self.registered_file2 = yield files.register_file_db(
-            self.dummyFile2, relationship2, associated_submission_id,
-        )
+            self.dummyFile2, relationship2, cksum2, associated_submission_id,
+            )
 
-    @inlineCallbacks
     def do_create_internalfiles(self):
         yield self.emulate_file_upload(self.submission_desc['submission_gus'],)
         keydiff = set(['size', 'content_type', 'name', 'creation_date', 'id']) - set(self.registered_file1.keys())
@@ -124,12 +126,12 @@ class TestCleaning(TTip):
         self.assertEqual(self.receiver1_desc['contexts'], [ self.context_desc['context_gus']])
         self.assertEqual(self.receiver2_desc['contexts'], [ self.context_desc['context_gus']])
 
-        self.tipSubmission['context_gus'] = self.context_desc['context_gus']
-        basehandler.validate_jmessage( self.tipSubmission, requests.wbSubmissionDesc)
+        dummySubmission = helpers.get_dummy_submission(self.context_desc['context_gus'], self.context_desc['fields'])
+        basehandler.validate_jmessage( dummySubmission, requests.wbSubmissionDesc)
 
-        self.submission_desc = yield submission.create_submission(self.tipSubmission, finalize=False)
+        self.submission_desc = yield submission.create_submission(dummySubmission, finalize=False)
 
-        self.assertEqual(self.submission_desc['wb_fields'], self.tipSubmission['wb_fields'])
+        self.assertEqual(self.submission_desc['wb_fields'], dummySubmission['wb_fields'])
         self.assertEqual(self.submission_desc['mark'], models.InternalTip._marker[0])
 
     @inlineCallbacks
@@ -262,13 +264,11 @@ class FinalizedTipCleaning(TestCleaning):
         yield self.do_create_receivers_tip()
 
         rfilesl = yield delivery_sched.receiverfile_planning()
-        checksums = delivery_sched.fsops_compute_checksum(rfilesl)
 
-        for (fid, status, fpath, receiver_desc) in rfilesl:
-            flen = checksums[fid]['olen']
+        for (fid, status, fpath, flen, receiver_desc) in rfilesl:
 
             rfd = yield delivery_sched.receiverfile_create(fid,
-                        status, fpath, flen, checksums[fid]['checksum'], receiver_desc)
+                        status, fpath, flen, receiver_desc)
 
             self.assertEqual(rfd['status'], u'reference')
 
