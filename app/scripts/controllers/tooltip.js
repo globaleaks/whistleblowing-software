@@ -17,12 +17,16 @@ function($scope, $rootScope, Authentication, $location,
     $rootScope.selected_language = $scope.language;
 
     var language_count = 0;
+    $rootScope.available_languages = {}
     $rootScope.languages_supported = node_info.languages_enabled;
-    $.each(node_info.languages_enabled, function(idx, lang) {
-      language_count += 1;
+    $.each(node_info.languages_supported, function(idx) {
+      if ($.inArray(node_info.languages_supported[idx]['code'], node_info.languages_enabled) != -1) {
+        var code = node_info.languages_supported[idx]['code'];
+        var name = node_info.languages_supported[idx]['name'];
+        $rootScope.available_languages[code] = name;
+        language_count += 1;
+      }
     });
-
-    $rootScope.available_languages = node_info.languages_enabled;
 
     $rootScope.show_language_selector = false;
     if (language_count > 1)
@@ -35,7 +39,7 @@ function($scope, $rootScope, Authentication, $location,
   $scope.$watch("language", function(){
     $.cookie('language', $scope.language);
     $rootScope.selected_language = $scope.language;
-    if ($scope.language == undefined) {
+    if ($scope.language === undefined) {
         $translate.uses('en');
     } else {
         $translate.uses($scope.language);

@@ -19,11 +19,11 @@ function($rootScope, $scope, $http, $location, Admin) {
     if ($rootScope.languages_supported) {
       $scope.enabled_languages = {};
       $.each($rootScope.languages_supported, function(lang){
-        if (lang in $rootScope.available_languages) {
-          $scope.enabled_languages[lang] = true;
+        if ($rootScope.languages_supported[lang] in $rootScope.available_languages) {
+          $scope.enabled_languages[$rootScope.languages_supported[lang]] = true;
         }
         else {
-          $scope.enabled_languages[lang] = false;
+          $scope.enabled_languages[$rootScope.available_languages[lang]] = false;
         }
       });
     }
