@@ -45,7 +45,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "34a62bacd9ef5e4fda484f351c3282dd8468299caee19cdca77cd68b"
+    glclient_hash = "2049f1e8ba6260c44d079c044fc16199f5360243c885f7ea7501d9ee"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
@@ -115,8 +115,8 @@ setup(
     package_data = {'globaleaks': ['db/sqlite.sql', 'db/default_TNT.txt',
                                    'db/default_CNT.txt', 'db/default_FNT.txt']},
     packages=['globaleaks', 'globaleaks.db', 'globaleaks.handlers',
-        'globaleaks.jobs', 'globaleaks.plugins',
-        'globaleaks.rest', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
+        'globaleaks.jobs', 'globaleaks.plugins', 'globaleaks.rest',
+        'globaleaks.utils', 'globaleaks.third_party', 'globaleaks.third_party.rstr'],
     data_files=data_files,
     scripts=["bin/globaleaks", "scripts/glclient-build", 'bin/gl-reset-password', 'bin/gl-fix-permissions'],
     requires = get_requires(),
