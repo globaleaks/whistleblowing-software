@@ -377,7 +377,6 @@ def check_db_files():
             continue
 
 
-
 def run_glbackend():
     log.start_logging()
 
@@ -390,9 +389,18 @@ def run_glbackend():
         print "%s: %s" % (sys.argv[0], ue)
     else:
         print "Starting GlobaLeaks"
-        runner.GLBaseRunner(config).run()
-        # this is a blocking operation, until app exit
-        print "Exiting GlobaLeaks"
+        try:
+
+            runner.GLBaseRunner(config).run()
+
+            # this is a blocking operation, until app exit
+            print "Exiting GlobaLeaks"
+        except OSError as ose:
+            print "Unable to start globaleaks: %s: %s" % (ose.strerror, ose.filename)
+            quit(ose.errno)
+        except Exception as excep:
+            print "Unable to start globaleaks: %s" % excep
+            quit(-1)
 
 
 
