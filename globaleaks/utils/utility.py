@@ -316,6 +316,9 @@ def acquire_mail_address(request):
 
 def acquire_url_address(inputstring, hidden_service=False, http=False):
 
+    if inputstring.find(' ') != -1:
+        return False
+
     accepted = False
 
     if hidden_service and re.match("^http://[0-9a-z]{16}\.onion$", inputstring):
