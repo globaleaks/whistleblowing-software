@@ -7,92 +7,10 @@ import os
 from twisted.internet.defer import succeed
 from storm.exceptions import OperationalError
 
-from globaleaks.rest import errors
-from globaleaks.utils import log, datetime_now, datetime_null
-from globaleaks.settings import transact, transact_ro, ZStorm, GLSetting
+from globaleaks.utils.utility import log
+from globaleaks.settings import transact, ZStorm, GLSetting
 from globaleaks import models
-from globaleaks.third_party import rstr
-from globaleaks.security import hash_password, get_salt
-from globaleaks import DATABASE_VERSION, LANGUAGES_SUPPORTED, LANGUAGES_SUPPORTED_CODES
-
-
-@transact
-def initialize_node(store, results, only_node, email_templates):
-    """
-    TODO refactor with languages the email_template, develop a dedicated
-    function outside the node, and inquire fucking YHWH about the
-    callbacks existence/usage
-    """
-    from Crypto import Random
-    Random.atfork()
-
-    node = models.Node(only_node)
-
-    # Increment this value every time sqlite.sql change, and develop
-    # a migration script.
-    node.database_version = DATABASE_VERSION
-
-    node.languages_supported = LANGUAGES_SUPPORTED
-
-    # by default, only english is the surely present language
-    node.languages_enabled = GLSetting.defaults.languages_enabled
-
-    node.receipt_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
-
-    node.creation_date = datetime_now()
-    store.add(node)
-
-    admin_salt = get_salt(rstr.xeger('[A-Za-z0-9]{56}'))
-    admin_password = hash_password(u"globaleaks", admin_salt)
-
-    admin_dict = {
-            'username': u'admin',
-            'password': admin_password,
-            'salt': admin_salt,
-            'role': u'admin',
-            'state': u'enabled',
-            'failed_login_count': 0,
-    }
-
-    admin = models.User(admin_dict)
-
-    admin.last_login = datetime_null()
-
-    store.add(admin)
-
-    notification = models.Notification()
-
-    # our defaults for free, because we're like Gandhi of the mail accounts.
-    notification.server = "mail.headstrong.de"
-    notification.port = 587
-    # port 587/SMTP-TLS or 465/SMTPS
-    notification.username = "sendaccount@lists.globaleaks.org"
-    notification.password = "sendaccount99"
-    notification.security = "TLS"
-
-    notification.source_name = "Default GlobaLeaks sender"
-    notification.source_email = notification.username
-
-    # Those fields are sets as default in order to show to the Admin the various 'variables'
-    # used in the template.
-    notification.tip_template = { GLSetting.memory_copy.default_language:
-                                  email_templates['tip'] }
-    notification.tip_mail_title = { GLSetting.memory_copy.default_language:
-                                    "From %NodeName% a new Tip" }
-    notification.file_template = { GLSetting.memory_copy.default_language:
-                                   email_templates['file'] }
-    notification.file_mail_title = { GLSetting.memory_copy.default_language:
-                                     "From %NodeName% a new file appended to a tip" }
-    notification.comment_template = { GLSetting.memory_copy.default_language:
-                                      email_templates['comment'] }
-    notification.comment_mail_title = { GLSetting.memory_copy.default_language:
-                                        "From %NodeName% a new comment" }
-    notification.activation_template = { GLSetting.memory_copy.default_language:
-                                         "*Not Yet implemented*" }
-    notification.activation_mail_title = { GLSetting.memory_copy.default_language:
-                                           "**Not Yet implemented" }
-
-    store.add(notification)
+from globaleaks.db.datainit import initialize_node
 
 
 def init_models():
@@ -144,12 +62,13 @@ def create_tables(create_node=True):
                                        u"This is the description of your node. PLEASE CHANGE ME." }),
             'presentation':  dict({ GLSetting.memory_copy.default_language :
                                         u"Welcome to GlobaLeaks™" }),
+            'footer': dict({ GLSetting.memory_copy.default_language :
+                                 u"Copyright 2011-2013 Hermes Center for Transparency and Digital Human Rights" }),
             'hidden_service':  u"",
             'public_site':  u"",
             'email':  u"email@dumnmy.net",
             'stats_update_time':  2, # hours,
             # advanced settings
-            'maximum_descsize' : GLSetting.defaults.maximum_descsize,
             'maximum_filesize' : GLSetting.defaults.maximum_filesize,
             'maximum_namesize' : GLSetting.defaults.maximum_namesize,
             'maximum_textsize' : GLSetting.defaults.maximum_textsize,
@@ -248,57 +167,3 @@ def check_schema_version():
         store.close()
 
     return ret
-
-@transact
-def update_supported_languages(store):
-    """
-    the function updates the node supported languages setting present in the db
-    with the hardcoded value LANGUAGES_SUPPORTED present in globaleaks/__init__.py
-    """
-    try:
-        node = store.find(models.Node).one()
-        node.languages_supported = LANGUAGES_SUPPORTED
-
-        # this fix is needed to remove languages whose support is removed
-        # (for language passed from a support >= 50% to a support of <50%)
-        node.languages_enabled = [l for l in node.languages_enabled if l in LANGUAGES_SUPPORTED_CODES]
-
-    except Exception as e:
-        raise errors.InvalidInputFormat("Cannot update supported languages: %s" % e)
-
-@transact_ro
-def import_memory_variables(store):
-    """
-    to get fast checks, import (same) of the Node variable in GLSetting,
-    this function is called every time that Node is updated.
-    """
-    try:
-        node = store.find(models.Node).one()
-
-        GLSetting.memory_copy.maximum_filesize = node.maximum_filesize
-        GLSetting.memory_copy.maximum_namesize = node.maximum_namesize
-        GLSetting.memory_copy.maximum_descsize = node.maximum_descsize
-        GLSetting.memory_copy.maximum_textsize = node.maximum_textsize
-
-        GLSetting.memory_copy.tor2web_admin = node.tor2web_admin
-        GLSetting.memory_copy.tor2web_submission = node.tor2web_submission
-        GLSetting.memory_copy.tor2web_tip = node.tor2web_tip
-        GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
-        GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
-
-        GLSetting.memory_copy.exception_email = node.exception_email
-        GLSetting.memory_copy.default_language = node.default_language
-
-        # Email settings are copyed because they are used when
-        notif = store.find(models.Notification).one()
-
-        GLSetting.memory_copy.notif_server = str(notif.server)
-        GLSetting.memory_copy.notif_port = int(notif.port)
-        GLSetting.memory_copy.notif_password = notif.password.encode('utf-8')
-        GLSetting.memory_copy.notif_username = str(notif.username)
-        GLSetting.memory_copy.notif_security = str(notif.security)
-        GLSetting.memory_copy.notif_source_name = notif.source_name.encode('utf-8')
-        GLSetting.memory_copy.notif_source_email = str(notif.source_email)
-
-    except Exception as e:
-        raise errors.InvalidInputFormat("Cannot import memory variables: %s" % e)

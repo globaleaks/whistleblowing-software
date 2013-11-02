@@ -11,9 +11,9 @@ from twisted.internet.defer import inlineCallbacks
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks.rest import requests
-from globaleaks.utils import log, pretty_date_time, l10n, utc_future_date, utc_dynamic_date
-
-from globaleaks.settings import transact, transact_ro
+from globaleaks.utils.utility import log, pretty_date_time, utc_future_date
+from globaleaks.utils.structures import Rosetta
+from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.models import *
 from globaleaks.rest import errors
 
@@ -50,15 +50,16 @@ def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.def
         # this field "inform" the receiver of the new expiration date that can
         # be set, only if PUT with extend = True is updated
         'potential_expiration_date' : \
-            pretty_date_time(utc_dynamic_date(internaltip.expiration_date,
-                                      seconds=internaltip.context.tip_timetolive)),
+            pretty_date_time(utc_future_date(seconds=internaltip.context.tip_timetolive)),
         'extend' : False,
     }
 
     # context_name and context_description are localized field
+    mo = Rosetta()
+    mo.acquire_storm_object(internaltip.context)
     for attr in ['name', 'description' ]:
         key = "context_%s" % attr
-        itip_dict[key] = l10n(getattr(internaltip.context, attr), language)
+        itip_dict[key] = mo.dump_translated(attr, language)
 
     return itip_dict
 
@@ -284,8 +285,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     log.debug(" [%s] in %s has extended expiration time to %s" % (
         rtip.receiver.name,
         pretty_date_time(datetime_now()),
-        pretty_date_time(utc_dynamic_date(rtip.internaltip.expiration_date,
-                         seconds=rtip.internaltip.context.tip_timetolive))))
+        pretty_date_time(rtip.internaltip.expiration_date)))
 
     comment = Comment()
 
@@ -293,9 +293,10 @@ def postpone_expiration_date(store, user_id, tip_id):
            'type': "1", # the first kind of structured system_comments
            'receiver_name': rtip.receiver.name,
            'now' : pretty_date_time(datetime_now()),
-           'expire_on' : pretty_date_time(utc_dynamic_date(
-                     rtip.internaltip.expiration_date,
-                     seconds=rtip.internaltip.context.tip_timetolive))
+           #'expire_on' : pretty_date_time(utc_dynamic_date(
+           #          rtip.internaltip.expiration_date,
+           #          seconds=rtip.internaltip.context.tip_timetolive))
+           'expire_on' : pretty_date_time(rtip.internaltip.expiration_date)
     })
 
     # remind: this is put just for debug, it's never used in the flow
@@ -303,8 +304,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     comment.content = "%s %s %s " % (
                    rtip.receiver.name,
                    pretty_date_time(datetime_now()),
-                   utc_dynamic_date(rtip.internaltip.expiration_date,
-                                    seconds=rtip.internaltip.context.tip_timetolive))
+                   pretty_date_time(rtip.internaltip.expiration_date))
 
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
@@ -557,7 +557,9 @@ def serialize_receiver(receiver, access_counter, language=GLSetting.memory_copy.
     for context in receiver.contexts:
         receiver_dict['contexts'].append(unicode(context.id))
 
-    receiver_dict["description"] = l10n(receiver.description, language)
+    mo = Rosetta()
+    mo.acquire_storm_object(receiver)
+    receiver_dict["description"] = mo.dump_translated("description", language)
 
     return receiver_dict
 

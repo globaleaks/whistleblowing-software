@@ -14,7 +14,8 @@ from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks import models
 
-from globaleaks.utils import pretty_date_time, log, l10n
+from globaleaks.utils.utility import pretty_date_time, log
+from globaleaks.utils.structures import Rosetta
 
 @transact_ro
 def collect_tip_overview(store, language=GLSetting.memory_copy.default_language):
@@ -36,8 +37,10 @@ def collect_tip_overview(store, language=GLSetting.memory_copy.default_language)
             "internalfiles": [],
             "comments": [],
         }
- 
-        tip_description['context_name'] = l10n(itip.context.name, language)
+
+        mo = Rosetta()
+        mo.acquire_storm_object(itip.context)
+        tip_description['context_name'] = mo.dump_translated('name', language)
 
         # strip uncompleted submission, until GLClient open new submission
         # also if no data has been supply

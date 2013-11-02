@@ -7,12 +7,13 @@
 
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks import utils
-from globaleaks.utils import l10n
+from globaleaks.utils.utility import pretty_date_time
+from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.settings import transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, unauthenticated
 from globaleaks import models
+from globaleaks import LANGUAGES_SUPPORTED
 
 @transact_ro
 def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
@@ -27,12 +28,11 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'public_site': unicode(node.public_site),
       'email': unicode(node.email),
       'languages_enabled': node.languages_enabled,
-      'languages_supported': node.languages_supported,
+      'languages_supported': LANGUAGES_SUPPORTED,
       'default_language' : node.default_language,
       'configured': True if associated else False,
       # extended settings info:
       'maximum_namesize': node.maximum_namesize,
-      'maximum_descsize': node.maximum_descsize,
       'maximum_textsize': node.maximum_textsize,
       'maximum_filesize': node.maximum_filesize,
       # public serialization use GLSetting memory var, and
@@ -46,8 +46,10 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'postpone_superpower': node.postpone_superpower,
     }
 
-    node_dict['description'] = l10n(node.description, language)
-    node_dict['presentation'] = l10n(node.presentation, language)
+    mo = Rosetta()
+    mo.acquire_storm_object(node)
+    for attr in mo.get_localized_attrs():
+        node_dict[attr] = mo.dump_translated(attr, language)
 
     return node_dict
 
@@ -81,13 +83,13 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "select_all_receivers": context.select_all_receivers
     })
 
-    context_dict['name'] = l10n(context.name, language)
-    context_dict['description'] = l10n(context.description, language)
+    mo = Rosetta()
+    mo.acquire_storm_object(context)
+    context_dict['name'] = mo.dump_translated('name', language)
+    context_dict['description'] = mo.dump_translated('description', language)
 
-    if context.fields:
-        context_dict['fields'] = l10n(context.fields, language)
-    else: 
-        context_dict['fields'] = []
+    fo = Fields(context.localized_fields, context.unique_fields)
+    context_dict['fields'] = fo.dump_fields(language)
 
     return context_dict
 
@@ -111,15 +113,17 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
 
     receiver_dict.update({
         "can_delete_submission": receiver.can_delete_submission,
-        "creation_date": utils.pretty_date_time(receiver.creation_date),
-        "update_date": utils.pretty_date_time(receiver.last_update),
+        "creation_date": pretty_date_time(receiver.creation_date),
+        "update_date": pretty_date_time(receiver.last_update),
         "name": unicode(receiver.name),
         "receiver_gus": unicode(receiver.id),
         "receiver_level": int(receiver.receiver_level),
         "tags": receiver.tags,
     })
 
-    receiver_dict['description'] = l10n(receiver.description, language)
+    mo = Rosetta()
+    mo.acquire_storm_object(receiver)
+    receiver_dict['description'] = mo.dump_translated('description', language)
 
     return receiver_dict
 

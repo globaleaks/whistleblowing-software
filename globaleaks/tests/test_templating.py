@@ -8,7 +8,7 @@ from globaleaks.jobs import delivery_sched
 from globaleaks.plugins.base import Event
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.tests.helpers import MockDict
-from globaleaks.utils import datetime_now, pretty_date_time
+from globaleaks.utils.utility import datetime_now, pretty_date_time
 
 
 class notifTemplateTest(TestWithDB):

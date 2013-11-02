@@ -7,7 +7,8 @@
 # When new Notification/Delivery will starts to exists, this code would come back to be
 # one of the various plugins (used by default, but still an optional adoptions)
 
-from globaleaks.utils import log, sendmail, very_pretty_date_time, collapse_mail_content, rfc822_date
+from globaleaks.utils.utility import log, very_pretty_date_time
+from globaleaks.utils.mailutils import sendmail, collapse_mail_content, rfc822_date
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBGPG
 from globaleaks.models import Receiver

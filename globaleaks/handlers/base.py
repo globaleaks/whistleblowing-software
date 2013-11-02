@@ -23,7 +23,8 @@ from cyclone.httpserver import HTTPConnection, HTTPRequest, _BadRequestException
 from cyclone import escape, httputil
 from cyclone.escape import native_str
 
-from globaleaks.utils import log, sanitize_str, mail_exception
+from globaleaks.utils.utility import log, sanitize_str
+from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
@@ -199,13 +200,10 @@ class BaseBaseHandler(RequestHandler):
         lang = self.request.headers.get('GL-Language', None)
 
         if not lang:
-            lang = self.request.headers.get('Accepted-Language', None)
+            # before was used the Client language. but shall be unsupported
+            # lang = self.request.headers.get('Accepted-Language', None)
+            lang = GLSetting.memory_copy.default_language
 
-        # TODO if not lang default of the Node (need update DB)
-        if not lang:
-           lang = 'en'
-
-        # At the moment the default is 'en', but need to be a Node value
         self.request.language = lang
 
     def check_xsrf_cookie(self):
@@ -307,6 +305,13 @@ class BaseHandler(BaseBaseHandler):
                 raise errors.InvalidInputFormat('wrong schema: missing %s' % key)
             else:
                 valid_jmessage[key] = jmessage[key]
+
+        if GLSetting.loglevel == "DEBUG":
+            # check if wrong keys are reaching the GLBackend, they are
+            # stripped in the previous loop, because valid_jmessage is returned
+            for double_k in jmessage.keys():
+                if double_k not in message_template.keys():
+                    log.err("[!?] key %s not expected" % double_k)
 
         jmessage = valid_jmessage
         del valid_jmessage

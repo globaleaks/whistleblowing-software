@@ -89,10 +89,12 @@ if os.path.exists(path):
 else:
     pip_version_check('/usr/share/globaleaks/glbackend/requirements.txt')
 
-from globaleaks import runner, DATABASE_VERSION
-from globaleaks.utils import log, mail_exception, query_yes_no, caller_name
-from globaleaks.settings import GLSetting
 from twisted.python import usage
+
+from globaleaks import runner, DATABASE_VERSION
+from globaleaks.utils.utility import log, query_yes_no, caller_name
+from globaleaks.utils.mailutils import mail_exception
+from globaleaks.settings import GLSetting
 
 ###
 # eadem mutata resurgo https://gitorious.org/gulch-ann/gulch-ann/blobs/master/src/python/pyl.py#line222
@@ -154,6 +156,14 @@ GLSetting.parser.add_option("-P", "--socks-port", type="int",
 GLSetting.parser.add_option("-d", "--disable-tor-socks", action='store_true',
     help="disable Tor Socks for notifications [default: Tor enabled]",
     dest="disable_tor_socks", default=(not GLSetting.tor_socks_enable))
+
+GLSetting.parser.add_option("-H", "--hidden-service", type="string",
+    help="hidden service (http:// needed) [default: None]",
+    dest="hidden_service")
+
+GLSetting.parser.add_option("-T", "--tor2web", type="string",
+    help="public website url (https:// needed) [default: None]",
+    dest="public_website")
 
 GLSetting.parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
@@ -367,7 +377,6 @@ def check_db_files():
             continue
 
 
-
 def run_glbackend():
     log.start_logging()
 
@@ -380,9 +389,18 @@ def run_glbackend():
         print "%s: %s" % (sys.argv[0], ue)
     else:
         print "Starting GlobaLeaks"
-        runner.GLBaseRunner(config).run()
-        # this is a blocking operation, until app exit
-        print "Exiting GlobaLeaks"
+        try:
+
+            runner.GLBaseRunner(config).run()
+
+            # this is a blocking operation, until app exit
+            print "Exiting GlobaLeaks"
+        except OSError as ose:
+            print "Unable to start globaleaks: %s: %s" % (ose.strerror, ose.filename)
+            quit(ose.errno)
+        except Exception as excep:
+            print "Unable to start globaleaks: %s" % excep
+            quit(-1)
 
 
 
