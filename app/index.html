@@ -82,24 +82,11 @@
                 with Tor integrated.
 
                 Here you can found and download the latest release of:
-                <a href="http://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>.
+                <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>.
                 </p>
             </div>
             <br />
         </noscript>
-
-        <footer class="footer" ng-show="started" ng-cloak="">
-          <div class="container">
-            <p>
-            Copyright 2011-2013 <a href="http://www.logioshermes.org/">Hermes Center for Transparency and Digital Human Rights</a> - 
-            <a href="https://globaleaks.org">
-              {{ "GlobaLeaks website" | translate }}
-            </a> - <a href="https://github.com/globaleaks/GlobaLeaks/wiki">
-              {{ "GlobaLeaks wiki" | translate }}
-            </a>
-            </p>
-          </div>
-        </footer>
 
         <!-- build:js scripts.js -->
         <script src="components/jquery/jquery.js"></script>
@@ -111,7 +98,11 @@
         <script src="components/jquery.cookie/jquery.cookie.js"></script>
 
         <script src="components/angular/angular.js"></script>
+        <script src="components/angular-translate/angular-translate.js"></script>
+        <script src="components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+        <script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
         <script src="components/angular-resource/angular-resource.js"></script>
+
         <script src="components/angular-mocks/angular-mocks.js"></script>
         <script src="components/angular-ui/build/angular-ui.js"></script>
 
@@ -127,8 +118,6 @@
         <script src="scripts/vendor/spin.js"></script>
         <script src="scripts/vendor/md5.js"></script>
 
-        <script src="scripts/translations.js"></script>
-
         <script src="scripts/services.js"></script>
         <script src="scripts/templates.js"></script>
         <script src="scripts/app.js"></script>
@@ -141,7 +130,6 @@
         <script src="scripts/controllers/privacybox.js"></script>
         <script src="scripts/controllers/home.js"></script>
 
-        <script src="scripts/controllers/page.js"></script>
         <script src="scripts/controllers/status.js"></script>
         <script src="scripts/controllers/receiver.js"></script>
 
@@ -157,6 +145,5 @@
         <script src="scripts/controllers/tooltip.js"></script>
 
         <!-- endbuild -->
-
     
 </body></html>
