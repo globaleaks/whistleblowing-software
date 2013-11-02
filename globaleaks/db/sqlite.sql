@@ -110,7 +110,6 @@ CREATE TABLE node (
     email VARCHAR NOT NULL,
     hidden_service VARCHAR NOT NULL,
     languages_enabled BLOB NOT NULL,
-    languages_supported BLOB NOT NULL,
     default_language VARCHAR NOT NULL,
     name VARCHAR NOT NULL,
     receipt_salt VARCHAR NOT NULL,

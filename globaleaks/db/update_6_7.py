@@ -126,6 +126,8 @@ class Replacer67(TableReplacer):
 
         # the removed entry
         # new_node.maximum_descsize = old_node.maximum_descsize
+        # languages supported is updated with the package!
+        # new_node.languages_supported = old_node.languages_supported
 
         new_node.id = old_node.id
         new_node.name = old_node.name
@@ -151,7 +153,6 @@ class Replacer67(TableReplacer):
         new_node.description = old_node.description
         new_node.default_language = old_node.default_language
         new_node.languages_enabled = old_node.languages_enabled
-        new_node.languages_supported = old_node.languages_supported
 
         new_node.last_update = old_node.last_update
         new_node.creation_date = old_node.creation_date
