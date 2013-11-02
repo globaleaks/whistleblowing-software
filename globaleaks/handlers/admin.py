@@ -18,9 +18,9 @@ from globaleaks.models import Receiver, Context, Node, Notification, User
 from globaleaks import security, models
 from globaleaks.utils import utility, structures
 from globaleaks.utils.utility import log
-from globaleaks.db import import_memory_variables
+from globaleaks.db.datainit import import_memory_variables
 from globaleaks.security import gpg_options_parse
-from globaleaks import LANGUAGES_SUPPORTED_CODES
+from globaleaks import LANGUAGES_SUPPORTED_CODES, LANGUAGES_SUPPORTED
 from globaleaks.third_party import rstr
 
 def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
@@ -34,7 +34,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         "stats_update_time": node.stats_update_time,
         "email": node.email,
         "version": GLSetting.version_string,
-        "languages_supported": node.languages_supported,
+        "languages_supported": LANGUAGES_SUPPORTED,
         "languages_enabled": node.languages_enabled,
         "default_language" : node.default_language,
         'maximum_filesize': node.maximum_filesize,

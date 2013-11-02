@@ -313,6 +313,17 @@ class GLSettingsClass:
         if self.cmdline_options.ramdisk:
             self.ramdisk_path = self.cmdline_options.ramdisk
 
+        # we're not performing here the checks because utility.acquire_url_address include
+        # GLSetting on top, and etc. require a cleaner function but still, checks are
+        # done in apply_cli_options. This cause don't exit if validation fail, but ignored.
+        if self.cmdline_options.hidden_service:
+            pass
+            # would be done in globaleaks.db.datainit.apply_cli_options()
+
+        if self.cmdline_options.public_website:
+            pass
+            # would be done in globaleaks.db.datainit.apply_cli_options()
+
         if self.tor_socks_enable:
             # convert socks addr in IP and perform a test connection
             self.validate_socks()

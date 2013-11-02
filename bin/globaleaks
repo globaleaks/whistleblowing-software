@@ -157,6 +157,14 @@ GLSetting.parser.add_option("-d", "--disable-tor-socks", action='store_true',
     help="disable Tor Socks for notifications [default: Tor enabled]",
     dest="disable_tor_socks", default=(not GLSetting.tor_socks_enable))
 
+GLSetting.parser.add_option("-H", "--hidden-service", type="string",
+    help="hidden service (http:// needed) [default: None]",
+    dest="hidden_service")
+
+GLSetting.parser.add_option("-T", "--tor2web", type="string",
+    help="public website url (https:// needed) [default: None]",
+    dest="public_website")
+
 GLSetting.parser.add_option("-u", "--user", type="string",
     help="set the user to run as [default: current_user]",
     dest="user")
