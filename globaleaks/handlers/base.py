@@ -306,6 +306,13 @@ class BaseHandler(BaseBaseHandler):
             else:
                 valid_jmessage[key] = jmessage[key]
 
+        if GLSetting.loglevel == "DEBUG":
+            # check if wrong keys are reaching the GLBackend, they are
+            # stripped in the previous loop, because valid_jmessage is returned
+            for double_k in jmessage.keys():
+                if double_k not in message_template.keys():
+                    log.err("[!?] key %s not expected" % double_k)
+
         jmessage = valid_jmessage
         del valid_jmessage
 
