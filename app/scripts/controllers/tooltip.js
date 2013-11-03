@@ -44,6 +44,7 @@ function($scope, $rootScope, Authentication, $location,
     } else {
         $translate.uses($scope.language);
     }
+    $route.reload();
   });
 
   $scope.$watch(function(scope){
