@@ -56,6 +56,10 @@ class Fields:
 
         self.debug_status('before update')
 
+        # this variable collect the updated fields from the
+        # admin var, in order to keep track of the real existing keys
+        existing_keys = []
+
         for field_desc in admin_data:
 
             check_type = field_desc['type']
@@ -71,6 +75,8 @@ class Fields:
                 # print "creating new key for %s" % field_desc
                 key = unicode(uuid4())
 
+            existing_keys.append(key)
+
             self._fields[key] = dict(field_desc)
             if not self._localization.has_key(language):
                 self._localization[language] = dict()
@@ -84,6 +90,23 @@ class Fields:
             del self._fields[key]['name']
             del self._fields[key]['hint']
             del self._fields[key]['key']
+
+        # This variable keep track of the key that has not been updated,
+        # and then need to be removed.
+        removed_keys = []
+        for k, v in self._fields.iteritems():
+            if k not in existing_keys:
+                removed_keys.append(k)
+
+        for key in removed_keys:
+
+            # remove every language reference
+            for lang in self._localization:
+                del self._localization[lang][key]
+
+            # remove type, default reference
+            del self._fields[key]
+
 
         self.debug_status('after update')
 
