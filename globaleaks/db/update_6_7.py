@@ -5,6 +5,7 @@ from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 from globaleaks.db.base_updater import TableReplacer
 from globaleaks.models import Model
 from uuid import uuid4
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 
 class Node_version_6(Model):
     __storm_table__ = 'node'
@@ -70,6 +71,10 @@ class Replacer67(TableReplacer):
 
         old_contexts = self.store_old.find(self.get_right_model("Context", 6))
 
+        # getting the default language from Node
+        old_node = self.store_old.find(self.get_right_model("Node", 6)).one()
+        old_default_language = old_node.default_language
+
         for old_obj in old_contexts:
 
             new_obj = self.get_right_model("Context", 7)()
@@ -84,15 +89,26 @@ class Replacer67(TableReplacer):
 
                     old_fields = getattr(old_obj, 'fields')
 
-                    lang_code = old_fields.keys()[0]
-                    fields_list = old_fields.values()[0]
+                    # retrieve the default used fields to inherit good translated strings!
+                    try:
+                        fields_list = old_fields[old_default_language]
+                        lang_code = old_default_language
+                    except Exception:
+                        fields_list = old_fields.values()[0]
+                        lang_code = old_fields.keys()[0]
 
-                    print "  <> Context %s (#%d fields)" % (old_obj.name, len(fields_list))
+                    print "  <> Context %s (#%d fields) lang %s" % (old_obj.name, len(fields_list), lang_code)
 
+                    if lang_code not in LANGUAGES_SUPPORTED_CODES:
+                        print "!! Warning, language %s no more supported, renamed as 'English'"
+                        lang_code = 'en'
+
+                    new_obj.localized_fields[lang_code] = {}
+
+                    incremental_order = 0
                     for field_desc in fields_list:
 
                         key = unicode(uuid4())
-                        new_obj.localized_fields[lang_code] = {}
 
                         new_obj.localized_fields[lang_code][key] = {
                             'name' : field_desc['name'],
@@ -101,6 +117,11 @@ class Replacer67(TableReplacer):
 
                         # copy all the dict content and remove the useless
                         new_obj.unique_fields[key] = dict(field_desc)
+                        # this is part of https://github.com/globaleaks/GlobaLeaks/issues/700
+                        # and also when presentation_order is considered in GLClient
+                        # would be good having this one, because now are just '0's in every field
+                        new_obj.unique_fields[key]['presentation_order'] = incremental_order
+                        incremental_order += 1
 
                         del new_obj.unique_fields[key]['name']
                         del new_obj.unique_fields[key]['key']
