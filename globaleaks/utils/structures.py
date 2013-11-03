@@ -60,7 +60,10 @@ class Fields:
         # admin var, in order to keep track of the real existing keys
         existing_keys = []
 
-        for field_desc in admin_data:
+        # XXX admin_order would be removed when presentation_order
+        # is correctly implemented in GLClient
+        # https://github.com/globaleaks/GlobaLeaks/issues/700
+        for admin_order, field_desc in enumerate(admin_data):
 
             check_type = field_desc['type']
             if not check_type in Fields.accepted_form_type:
@@ -78,6 +81,9 @@ class Fields:
             existing_keys.append(key)
 
             self._fields[key] = dict(field_desc)
+            # XXX https://github.com/globaleaks/GlobaLeaks/issues/700
+            self._fields[key]['presentation_order'] = admin_order
+
             if not self._localization.has_key(language):
                 self._localization[language] = dict()
 
@@ -86,6 +92,8 @@ class Fields:
             # init localization track
             self._localization[language][key].update({'name' : field_desc['name']})
             self._localization[language][key].update({'hint' : field_desc['hint']})
+
+            # assign presentation order
 
             del self._fields[key]['name']
             del self._fields[key]['hint']
@@ -98,14 +106,19 @@ class Fields:
             if k not in existing_keys:
                 removed_keys.append(k)
 
+        # loop over the internal dict and remove the not updated keys
         for key in removed_keys:
 
-            # remove every language reference
             for lang in self._localization:
-                del self._localization[lang][key]
+                try:
+                    del self._localization[lang][key]
+                except KeyError as keyerr:
+                    log.err("Handled inconsistency (field delete) lang (%s) %s" % (lang, keyerr))
 
-            # remove type, default reference
-            del self._fields[key]
+            try:
+                del self._fields[key]
+            except KeyError as keyerr:
+                log.err("Handled inconsistency (field delete): %s" % keyerr)
 
 
         self.debug_status('after update')
@@ -161,7 +174,7 @@ class Fields:
 
     def dump_fields(self, language):
 
-        fields_list = []
+        ordered_field_list = {}
         sparecounter = 1
         for k, v in self._fields.iteritems():
 
@@ -175,7 +188,13 @@ class Fields:
                 v['hint'] = u"Missing '%s' translation %d" % (language, sparecounter)
                 sparecounter += 1
 
-            fields_list.append(v)
+            ordered_field_list.update({ v['presentation_order'] : v })
+
+        # XXX This is a workaround on
+        # https://github.com/globaleaks/GlobaLeaks/issues/700
+        fields_list = []
+        for order_counter in xrange(len(ordered_field_list.keys())):
+            fields_list.append(ordered_field_list[order_counter])
 
         return fields_list
 
