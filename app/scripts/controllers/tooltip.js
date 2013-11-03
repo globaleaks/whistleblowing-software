@@ -17,20 +17,18 @@ function($scope, $rootScope, Authentication, $location,
     $rootScope.selected_language = $scope.language;
 
     var language_count = 0;
-    $rootScope.available_languages = {}
+    $rootScope.available_languages = {};
     $rootScope.languages_supported = node_info.languages_enabled;
     $.each(node_info.languages_supported, function(idx) {
       if ($.inArray(node_info.languages_supported[idx]['code'], node_info.languages_enabled) != -1) {
+
         var code = node_info.languages_supported[idx]['code'];
-        var name = node_info.languages_supported[idx]['name'];
-        $rootScope.available_languages[code] = name;
+        $rootScope.available_languages[code] = node_info.languages_supported[idx]['name'];
         language_count += 1;
       }
     });
 
-    $rootScope.show_language_selector = false;
-    if (language_count > 1)
-      $rootScope.show_language_selector = true;
+    $rootScope.show_language_selector = (language_count > 1);
 
   });
 
