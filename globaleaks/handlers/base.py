@@ -372,7 +372,6 @@ class BaseHandler(BaseBaseHandler):
         if GLSetting.http_log >= 0:
 
             GLSetting.http_log_counter += 1
-            print  GLSetting.http_log_counter
 
             try:
                 content = (">" * 15)
