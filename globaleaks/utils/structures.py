@@ -7,6 +7,7 @@
 # supports extensions (without changing DB format)
 
 from globaleaks.utils.utility import log
+from globaleaks.settings import GLSetting
 
 class Fields:
 
@@ -174,27 +175,45 @@ class Fields:
 
     def dump_fields(self, language):
 
+        default_language = GLSetting.memory_copy.default_language
         ordered_field_list = {}
-        sparecounter = 1
+        presentation_fallback = 0
+
         for k, v in self._fields.iteritems():
 
             v['key'] = k
+            presentation_fallback += 1
 
             if self._localization.has_key(language) and self._localization[language].has_key(k):
                 v['name'] = self._localization[language][k]['name']
                 v['hint'] = self._localization[language][k]['hint']
+            elif self._localization.has_key(default_language) and self._localization[default_language].has_key(k):
+                v['name'] = u"*_Translate '%s' [%s]" % (language, self._localization[default_language][k]['name'])
+                v['hint'] = u"*_Translate '%s' [%s]" % (language, self._localization[default_language][k]['hint'])
             else:
-                v['name'] = u"Missing '%s' translation %d" % (language, sparecounter)
-                v['hint'] = u"Missing '%s' translation %d" % (language, sparecounter)
-                sparecounter += 1
+                v['name'] = u"Missing translation for lang '%s' " % language
+                v['hint'] = u"Missing translation for lang '%s' " % language
 
-            ordered_field_list.update({ v['presentation_order'] : v })
+            # this is required if some fields are stored in the DB without a presentation_order,
+            # it's something very rare, but still need to be handled for safety
+            # XXX can be removed in the next Fields refactoring with issue 700
+            if ordered_field_list.has_key(v['presentation_order']):
+                order = presentation_fallback
+            else:
+                order = v['presentation_order']
+
+            ordered_field_list.update({ order : v })
 
         # XXX This is a workaround on
         # https://github.com/globaleaks/GlobaLeaks/issues/700
         fields_list = []
-        for order_counter in xrange(len(ordered_field_list.keys())):
-            fields_list.append(ordered_field_list[order_counter])
+        try:
+            for field_ndx in ordered_field_list.keys():
+                fields_list.append(ordered_field_list[field_ndx])
+        except Exception as excep:
+            log.err("Unexpected problem in listing ordered fields: %s" % excep)
+            for _unused, field in ordered_field_list.iteritems():
+                fields_list.append(field)
 
         return fields_list
 
@@ -271,7 +290,6 @@ class Rosetta:
         for attr in self._localized_attrs:
             setattr(storm_object, attr, self._localized_strings[attr])
 
-
     def get_localized_attrs(self):
         assert self._localized_attrs, \
             "get_localized_attrs can be called only after acquire_storm_object"
@@ -282,14 +300,19 @@ class Rosetta:
         assert self._localized_strings, \
             "dump_translated can be called having localized strings"
 
+        default_language = GLSetting.memory_copy.default_language
+
         if not self._localized_strings.has_key(attrname):
-            return "@@ Missing value for '%s'" % attrname
+            return "!! Missing value for '%s'" % attrname
 
         translated_dict = self._localized_strings[attrname]
 
-        if not translated_dict.has_key(language):
-            return "## Missing translation for '%s' in '%s'" % \
+        if translated_dict.has_key(language):
+            return translated_dict[language]
+        elif translated_dict.has_key(default_language):
+            return "*_Translate in '%s' [%s]" % (language, translated_dict[default_language])
+        else:
+            return "# Missing translation for '%s' in '%s'" % \
                    (attrname, language)
 
-        return translated_dict[language]
 
