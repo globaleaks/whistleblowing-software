@@ -63,16 +63,13 @@ This comment is needed in order to push the following strings on transifex
                   <div class="col-md-6">
                     <label>{{ "Receivers" | translate }}</label>
                     <div class="selectionList">
-                      <div ng-repeat="row in admin.receivers | partition:2">
-                        <div ng-repeat="receiver in row">
-                          <div class="col-md-6">
-                            <div class="selectionDetails" ng-click="toggle(receiver)" ng-class="{selected: isSelected(receiver)}">
-                              <img class="col-md-12" ng-src="/static/{{receiver.receiver_gus}}.png">
-                              <span>{{receiver.name}}</span>
-                            </div>
+                      <div ng-repeat="receiver in admin.receivers" ng-class="{clearfix: ($index % 2 == 1) || $last}">
+                        <div class="col-md-6">
+                          <div class="selectionDetails" ng-click="toggle(receiver)" ng-class="{selected: isSelected(receiver)}">
+                            <img class="col-md-12" ng-src="/static/{{receiver.receiver_gus}}.png">
+                            <span>{{receiver.name}}</span>
                           </div>
                         </div>
-                        <div class="row"></div>
                       </div>
                     </div>
                   </div>
