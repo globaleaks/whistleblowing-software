@@ -5,7 +5,6 @@
   line-height: 20px;
   text-align: left;
   vertical-align: top;
-  /* border-top: 1px solid #dddddd; */
 }
 
 .configRow textarea {
@@ -227,48 +226,6 @@
 
 .selectionList .row {
   margin-left: 0px;
-}
-
-.selectionElement {
-  position: relative;
-  float: left;
-  width: 80px;
-}
-
-@media (max-width: 979px) and (min-width: 768px) {
-  .selectionElement {
-    width: 70px;
-  }
-}
-@media (min-width: 1200px) {
-  .selectionElement {
-    width: 100px;
-  }
-}
-
-.selectionElement img {
-  margin-left: 25px;
-}
-
-.selectionElement .selected img {
-  background-color: #51a351;
-}
-.selectionElement span {
-  display: block;
-  text-align: center;
-}
-.selectionElement .selector {
-  background-color: #ccc;
-  top: 15px;
-  left: 30px;
-  opacity: 0.5;
-  position: absolute;
-  height: 40px;
-  width: 40px;
-}
-.selectionElement .selector {
-  opacity: 1;
-  text-align: center;
 }
 
 .selectionDetails {
