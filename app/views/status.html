@@ -113,17 +113,19 @@
         <b>$ shasum -a 256 *</b>
         <div ng-repeat="file in tip.files">
           <code>
-            {{file.name}}   {{file.sha2sum}}
+            {{file.name}} {{file.sha2sum}}
           </code>
         </div>
       </div>
 
-      <div class="col-md-4" ng-hide="tip.files"><p>
-        {{ "No file has been uploaded!" | translate }}
-      </p></div>
+      <div class="col-md-4" ng-hide="tip.files">
+        <p>
+          {{ "No file has been uploaded!" | translate }}
+        </p>
+      </div>
 
       <div ng-show="tip.im_whistleblower" class="ng-cloak">
-        <div ng-include="'views/widgets/fileupload.html'" class="col-md-4">
+        <div class="col-md-6" ng-include="'views/widgets/fileupload.html'">
         </div>
       </div>
     </div>

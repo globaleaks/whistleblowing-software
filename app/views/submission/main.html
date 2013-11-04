@@ -134,13 +134,14 @@
 
         <div class="row">
 
-            <div ng-form="submissionForm" ng-controller="SubmissionFormController"> 
-              <div class="col-md-6 submissionDetails" ng-include="'views/submission/form.html'"></div>
-            </div>
-
-          <div ng-include="'views/widgets/fileupload.html'" class="col-md-4">
+          <div class="col-md-6" ng-form="submissionForm" ng-controller="SubmissionFormController"> 
+            <div class="submissionDetails" ng-include="'views/submission/form.html'"></div>
           </div>
 
+        </div>
+
+        <div class="row">
+          <div class="col-md-6" ng-include="'views/widgets/fileupload.html'"></div>
         </div>
 
       </div>
