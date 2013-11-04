@@ -19,3 +19,14 @@ More information can be found at:
 To build compressed and uglify GLClient:
 
    grunt build
+
+### Developer remind
+
+   $ grunt updateTranslations
+   Running "updateTranslationsSource" task
+   Warning: ENOENT, no such file or directory 'pot/en.po' Use --force to continue.
+   Aborted due to warnings.
+
+need to be fixed with: [mv globaleaks\_glclient-02-enpo.pot pot/en.po](https://www.transifex.com/projects/p/globaleaks/resource/glclient-02-enpo/download/pot/)
+
+
