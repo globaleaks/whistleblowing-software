@@ -45,7 +45,7 @@ def download_glclient():
 
 def verify_glclient():
     print "[+] Checking GLClient hash..."
-    glclient_hash = "d0dd56edc78175cec7f2ced018c674255302782b209ad992038ac803"
+    glclient_hash = "dd7230c6cff0a6a15e2501202e155a080daa187c35511da7618a9d02"
     with open('glclient.zip') as f:
         h = hashlib.sha224(f.read()).hexdigest()
         if not h == glclient_hash:
