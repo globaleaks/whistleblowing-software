@@ -1,8 +1,14 @@
+globaleaks (2.28.4-0) unstable; urgency=low
+
+  * GlobaLeaks 2.28.4 Release (Misc Fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 05 Nov 2013 10:19:59 +0002
+
 globaleaks (2.28.3-0) unstable; urgency=low
 
   * GlobaLeaks 2.28.3 Release (Misc Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 04 Nov 2013 00:50:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 05 Nov 2013 00:50:59 +0002
 
 globaleaks (2.28.2-0) unstable; urgency=low
 
