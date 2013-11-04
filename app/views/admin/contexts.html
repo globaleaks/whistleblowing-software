@@ -19,9 +19,7 @@ This comment is needed in order to push the following strings on transifex
       <!-- ContextList -->
       <div ng-controller="AdminContextsCtrl">
         <div class="row">
-          <div>
-            <h1>{{ "Contexts Configuration" | translate }}</h1>
-          </div>
+          <h1>{{ "Contexts Configuration" | translate }}</h1>
         </div>
 
         <div class="row" ng-repeat="context in admin.contexts">
@@ -65,13 +63,16 @@ This comment is needed in order to push the following strings on transifex
                   <div class="col-md-6">
                     <label>{{ "Receivers" | translate }}</label>
                     <div class="selectionList">
-                      <div ng-repeat="receiver in admin.receivers" ng-class="{row: ($index % 3 == 2) || $last}">
-                        <div class="selectionElement">
-                          <div class="selectionDetails" ng-click="toggle(receiver)" ng-class="{selected: isSelected(receiver)}">
-                            <img ng-src="/static/{{receiver.receiver_gus}}.png" height="40" width="40">
-                            <span>{{receiver.name}}</span>
+                      <div ng-repeat="row in admin.receivers | partition:2">
+                        <div ng-repeat="receiver in row">
+                          <div class="col-md-6">
+                            <div class="selectionDetails" ng-click="toggle(receiver)" ng-class="{selected: isSelected(receiver)}">
+                              <img class="col-md-12" ng-src="/static/{{receiver.receiver_gus}}.png">
+                              <span>{{receiver.name}}</span>
+                            </div>
                           </div>
                         </div>
+                        <div class="row"></div>
                       </div>
                     </div>
                   </div>

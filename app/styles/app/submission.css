@@ -5,7 +5,7 @@
 }
 
 .receiverCard {
-  margin: 15px 0;
+  margin-bottom: 20px;
   padding: 39px 19px 14px;
   background-color: white;
   border: 1px solid #DDD;
@@ -17,12 +17,4 @@
 
 .receiverCard.selected {
   background-color: #DFF0D8;
-}
-
-.receiverCard.receiverCardOdd {
-  margin-right: 5px;
-}
-
-.receiverCard.receiverCardEven {
-  margin-left: 5px;
 }
