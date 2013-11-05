@@ -2,9 +2,9 @@
 
 GLClient.controller('LoginCtrl', ['$scope', '$location',
                     '$routeParams', 'Authentication', 
-		    'cookiesEnabled', 'notificationRedirect',
-  function($scope, $location, $routeParams, Authentication, 
-	cookiesEnabled, notificationRedirect) {
+		    'cookiesEnabled',
+  function($scope, $location, $routeParams,
+           Authentication, cookiesEnabled) {
     var src = $routeParams['src'];
 
     $scope.loginUsername = "";
@@ -17,7 +17,6 @@ GLClient.controller('LoginCtrl', ['$scope', '$location',
     };
 
     $scope.cookiesEnabled = cookiesEnabled;
-    $scope.notificationRedirect = notificationRedirect;
 
     $scope.login = Authentication.login;
 
