@@ -127,10 +127,6 @@
   padding: 20px;
 }
 
-.editor img {
-  margin-bottom: 10px;
-}
-
 /** **/
 
 .imageUpload .profile {
@@ -143,10 +139,10 @@
 
 .imageUpload .profile .changePicture {
   position: absolute;
-  bottom: 10px;
+  bottom: 30px;
   padding-top: 5px;
   padding-bottom: 5px;
-  height: 20px;
+  height: 30px;
   text-align: center;
   background-color: #0088cc;
 }

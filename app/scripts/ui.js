@@ -18,12 +18,6 @@ angular.module('submissionUI', []).
           headers = {'X-Session': $.cookie('session_id'),
                      'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
 
-        img_receiver.hover(function(){
-          // Resize the overlay black image to match the icon size.
-          var upload_file = element.parent().parent().find('.changePicture');
-          upload_file.css('width', img_receiver[0].width);
-        });
-
         function progressMeter(e, data) {
           var progress_percent = parseInt(data.loaded / data.total * 100, 10);
           $(element).parent().find('.uploadProgress .progress .bar').css('width', progress_percent + '%');
@@ -47,7 +41,6 @@ angular.module('submissionUI', []).
                   jqXHR = data.submit({files: filesList});
                 
                 jqXHR.success(function(result, textStatus, jqXHR) {
-                    console.log("Successfully uploaded");
                     original_src = img_receiver[0].src;
 
                     img_receiver[0].src = original_src+'?'+ Math.random();

@@ -29,13 +29,13 @@ This comment is needed in order to push the following strings on transifex
               <div class="imageUpload" ng-controller="ImageUploadCtrl">
                 <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
                   <div ng-show="uploadfile" class="uploadfile">
-                    <div class="changePicture" pragmatic-file-upload="" ng-src="/admin/staticfiles?globaleaks_logo">
+                    <span class="col-md-12 changePicture">
+                      {{ "Change picture" | translate }}
+                    </span>
+                    <div pragmatic-file-upload="" ng-src="/admin/staticfiles?globaleaks_logo">
                       <div class="fileselector">
-                        <input class="form-control" type="file">
+                        <input type="file">
                       </div>
-                      <span>
-                        {{ "Change picture" | translate }}
-                      </span>
                     </div>
                     <div class="uploadProgress hide">
                       <div class="progress progress-striped">
@@ -43,7 +43,7 @@ This comment is needed in order to push the following strings on transifex
                       </div>
                     </div>
                   </div>
-                  <img ng-src="/static/globaleaks_logo.png" class="img-polaroid baseimage">
+                  <img ng-src="/static/globaleaks_logo.png" class="img-thumbnail baseimage">
                 </div>
               </div>
             </div>

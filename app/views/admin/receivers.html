@@ -50,22 +50,21 @@ This comment is needed in order to push the following strings on transifex
                     <div class="imageUpload" ng-controller="ImageUploadCtrl">
                        <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
                          <div ng-show="uploadfile" class="uploadfile">
-                           <div class="changePicture"
-                             pragmatic-file-upload src="/admin/staticfiles?{{receiver.receiver_gus}}">
+                           <span class="col-md-12 changePicture">
+                             {{ "Change picture" | translate }}
+                           </span>
+                           <div pragmatic-file-upload src="/admin/staticfiles?{{receiver.receiver_gus}}">
                              <div class="fileselector">
                                <input type="file">
                              </div>
-                             <span>
-                               {{ "Change picture" | translate }}
-                             </span>
                            </div>
                            <div class="uploadProgress hide">
                              <div class="progress progress-striped">
-                               <div class="bar" style="width: 0%;"></div>
+                               <div class="progress-bar" style="width: 0%;"></div>
                              </div>
                            </div>
                          </div>
-                         <img ng-src="/static/{{receiver.receiver_gus}}.png?{{randomFluff}}" class="img-polaroid baseimage">
+                         <img ng-src="/static/{{receiver.receiver_gus}}.png?{{randomFluff}}" class="img-thumbnail baseimage">
                        </div>
                     </div>
 
