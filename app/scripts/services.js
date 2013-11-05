@@ -471,17 +471,6 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
     return enabled;
   }
 }).
-  factory('notificationRedirect', function(){
-
-  return function() {
-
-    var notification_redirect = false;
-    if (document.location.href.indexOf('src=%2Fstatus%2F') > -1) {
-      notification_redirect = true;
-    }
-    return notification_redirect;
-  }
-}).
   factory('passwordWatcher', ['$parse', function($parse) {
     return function(scope, password) {
       /** This is used to watch the new password and check that is 
