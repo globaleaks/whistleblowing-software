@@ -605,17 +605,15 @@ class TipReceiversCollection(BaseHandler):
         Response: actorsReceiverList
         Errors: InvalidTipAuthToken
         """
-        if not self.current_user:
-            self.redirect("/#/login?src=%%2Fstatus%%2F%s" % tip_id)
-
-        elif self.is_whistleblower:
+        if self.is_whistleblower:
             answer = yield get_receiver_list_wb(self.current_user['user_id'], self.request.language)
 
-            self.set_status(200)
-            self.finish(answer)
-        else:
+        elif self.is_receiver:
             answer = yield get_receiver_list_receiver(self.current_user['user_id'], tip_id, self.request.language)
 
-            self.set_status(200)
-            self.finish(answer)
+        else:
+            raise errors.NotAuthenticated
+
+        self.set_status(200)
+        self.finish(answer)
 
