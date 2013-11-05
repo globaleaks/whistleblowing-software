@@ -1,3 +1,9 @@
+globaleaks (2.28.6-0) unstable; urgency=low
+
+  * GlobaLeaks 2.28.6 Release (Updated Vietnamese Translation)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 05 Nov 2013 02:14:59 +0002
+
 globaleaks (2.28.5-0) unstable; urgency=low
 
   * GlobaLeaks 2.28.5 Release (Added Bulgarian Translation)
