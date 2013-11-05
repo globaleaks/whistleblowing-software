@@ -131,7 +131,7 @@
 
 .imageUpload .profile {
   position: relative;
-  width: 140px;
+  width: 320px;
 }
 
 .imageUpload .profile .uploadfile {
@@ -139,12 +139,11 @@
 
 .imageUpload .profile .changePicture {
   position: absolute;
-  bottom: 30px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  height: 30px;
+  bottom: 0px;
+  padding: 5px;
   text-align: center;
   background-color: #0088cc;
+  z-index: 2;
 }
 
 .imageUpload .profile .uploadfile span {
@@ -160,22 +159,20 @@
   opacity: 0.8;
 }
 
-/** **/
-
-.fileselector {
+.imageUpload .profile .fileselector {
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: 3;
 }
 
-.fileselector input {
-  z-index: 2;
+.imageUpload .profile .fileselector input {
   position: relative;
   opacity: 0;
   height: 100%;
+  z-index: 4;
 }
 
 

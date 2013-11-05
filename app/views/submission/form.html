@@ -16,11 +16,11 @@
 
             <textarea class="form-control" ng-switch-when="textarea" ng-model="field.value" placeholder="{{field.placeholder}}">{{field.value}}</textarea>
 
-            <select ng-switch-when="select" name="input" ng-model="field.value">
+            <select class="form-control" ng-switch-when="select" name="input" ng-model="field.value">
               <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
             </select>
 
-            <select ng-switch-when="multiple" name="input" ng-model="field.value" multiple="">
+            <select class="form-control" ng-switch-when="multiple" name="input" ng-model="field.value" multiple="">
               <option ng-repeat="option in field.options" value="{{option.value}}">{{option.name}}</option>
             </select>
 
