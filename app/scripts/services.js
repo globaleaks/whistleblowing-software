@@ -319,12 +319,11 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        */
       self.submit = function() {
         if (!self.receivers_selected) {
-          console.log("Error: No receivers selected!");
           return;
         };
 
         if (!self.current_submission) {
-          console.log("Error: No current submission!");
+          return;
         };
 
         // Set the submission field values

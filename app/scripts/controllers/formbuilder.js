@@ -9,7 +9,6 @@ GLClient.controller('FormBuilderCtrl',
 
   $scope.editing = false;
   $scope.tokenize = function(slug1, slug2) {
-    console.log("running tokenize function");
     var result = slug1;
     result = result.replace(/[^-a-zA-Z0-9,&\s]+/ig, '');
     result = result.replace(/-/gi, "_");

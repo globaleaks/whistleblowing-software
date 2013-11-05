@@ -86,7 +86,7 @@
 
               <div class="row">
                 <div class="col-md-10">
-                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-polaroid">
+                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
                 </div>
                 <div class="col-md-1">
                   <input ng-model="submission.receivers_selected[receiver.receiver_gus]" value="{{receiver.receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox"> 
@@ -105,7 +105,7 @@
 
               <div class="row">
                 <div class="col-md-10">
-                  <img ng-src="/static/{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}.png" class="img-polaroid">
+                  <img ng-src="/static/{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}.png" class="img-thumbnail">
                 </div>
                 <div class="col-md-1">
                   <input ng-model="submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]" value="{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox">
