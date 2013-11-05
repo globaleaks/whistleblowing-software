@@ -1,7 +1,7 @@
 {
   "author": "Random GlobaLeaks Developers",
   "name": "GLClient",
-  "version": "2.28.6",
+  "version": "2.28.7",
   "dependencies": {
     "bower": "*"
   },
