@@ -12,25 +12,14 @@ This comment is needed in order to push the following strings on transifex
 </div>
 
 <div class="container config-page">
-
   <div class="row">
-    <!-- Begin Nav Bar -->
-    <!--  Note the use of "''", yeah two of them.
-            This is the ng-inlcude directive:
-            http://docs.angularjs.org/api/ng.directive:ngInclude
-      -->
-    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'">
-    </div>
-    <!-- End Nav Bar -->
-
+    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
       <!-- ContextList -->
       <div ng-controller="AdminContextsCtrl">
         <div class="row">
-          <div>
-            <h1>{{ "Contexts Configuration" | translate }}</h1>
-          </div>
+          <h1>{{ "Contexts Configuration" | translate }}</h1>
         </div>
 
         <div class="row" ng-repeat="context in admin.contexts">
@@ -74,10 +63,10 @@ This comment is needed in order to push the following strings on transifex
                   <div class="col-md-6">
                     <label>{{ "Receivers" | translate }}</label>
                     <div class="selectionList">
-                      <div ng-repeat="receiver in admin.receivers" ng-class="{row: ($index % 3 == 2) || $last}">
-                        <div class="selectionElement">
+                      <div ng-repeat="receiver in admin.receivers" ng-class="{clearfix: ($index % 2 == 1) || $last}">
+                        <div class="col-md-6">
                           <div class="selectionDetails" ng-click="toggle(receiver)" ng-class="{selected: isSelected(receiver)}">
-                            <img ng-src="/static/{{receiver.receiver_gus}}.png" height="40" width="40">
+                            <img class="col-md-12" ng-src="/static/{{receiver.receiver_gus}}.png">
                             <span>{{receiver.name}}</span>
                           </div>
                         </div>
@@ -124,19 +113,15 @@ This comment is needed in order to push the following strings on transifex
         </div>
 
         <div class="row">
-          <div class="col-md-9 configRow addContext">
-            <h4>{{ "Add new context" | translate }}</h4>
+          <div class="col-md-6 configRow addContext">
             <form name="newContext">
-              <div class="row">
-                <div class="col-md-6">
-                  <input class="form-control" ng-model="new_context_name" required="" type="text">
-                </div>
-              </div>
-
-              <button class="btn btn-default" ng-disabled="newContext.$invalid" ng-click="admin.create_context(new_context_name)">
+              <div class="form-group">
+                <label>{{ "Add new context" | translate }}</label>
+                <input class="form-control" ng-model="new_context_name" required="" type="text">
+                <button class="btn btn-default" ng-disabled="newContext.$invalid" ng-click="admin.create_context(new_context_name)">
                   {{ "add" | translate }}
-              </button
->
+                </button>
+              </div>
             </form>
           </div>
         </div>

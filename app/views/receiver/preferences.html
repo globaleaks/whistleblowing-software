@@ -13,10 +13,7 @@ This comment is needed in order to push the following strings on transifex
 
 <div class="container config-page">
   <div class="row">
-
-    <div class="col-md-3 config-sidebar" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl">
-    </div>
-
+    <div class="col-md-3 config-sidebar" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl"></div>
     <div class="col-md-9">
 
       <div class="row">
@@ -172,8 +169,8 @@ This comment is needed in order to push the following strings on transifex
 
             <div class="clearfix" ng-show="gpg_marketing">
               <p>
-                <a href="https://gnupg.org">GnuPG</a>
-                {{ " can be configured in order to deliver encrypted email and store encrypted files.  You've to copy paste the ascii version of your personal key, and then would be possibile update your encryption settings. Talk to your admin if you've doubts." | translate }}
+                <a href="https://gnupg.org">GnuPG</a>&nbsp;
+                {{ "can be configured in order to deliver encrypted email and store encrypted files. You've to copy and paste the ascii version of your personal key, and then it would be possibile update your encryption settings. If you've any doubts talk to your admin." | translate }}
               </p>
             </div>
 
@@ -195,7 +192,7 @@ This comment is needed in order to push the following strings on transifex
               <label>{{ "Remove your PGP key" | translate }}</label>
             </div>
 
-            <div>
+            <div class="form-group">
               <button type="submit" class="btn btn-success" ng-click="pref_save()">
                 {{ "Update notification and encryption settings" | translate }}
               </button>

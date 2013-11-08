@@ -5,7 +5,6 @@
   line-height: 20px;
   text-align: left;
   vertical-align: top;
-  /* border-top: 1px solid #dddddd; */
 }
 
 .configRow textarea {
@@ -128,15 +127,11 @@
   padding: 20px;
 }
 
-.editor img {
-  margin-bottom: 10px;
-}
-
 /** **/
 
 .imageUpload .profile {
   position: relative;
-  width: 140px;
+  width: 320px;
 }
 
 .imageUpload .profile .uploadfile {
@@ -144,12 +139,11 @@
 
 .imageUpload .profile .changePicture {
   position: absolute;
-  bottom: 10px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  height: 20px;
+  bottom: 0px;
+  padding: 5px;
   text-align: center;
   background-color: #0088cc;
+  z-index: 2;
 }
 
 .imageUpload .profile .uploadfile span {
@@ -165,22 +159,20 @@
   opacity: 0.8;
 }
 
-/** **/
-
-.fileselector {
+.imageUpload .profile .fileselector {
   position: absolute;
   left: 0;
   top: 0;
   height: 100%;
   width: 100%;
-  z-index: 1;
+  z-index: 3;
 }
 
-.fileselector input {
-  z-index: 2;
+.imageUpload .profile .fileselector input {
   position: relative;
   opacity: 0;
   height: 100%;
+  z-index: 4;
 }
 
 
@@ -229,50 +221,8 @@
   margin-left: 0px;
 }
 
-.selectionElement {
-  position: relative;
-  float: left;
-  width: 80px;
-}
-
-@media (max-width: 979px) and (min-width: 768px) {
-  .selectionElement {
-    width: 70px;
-  }
-}
-@media (min-width: 1200px) {
-  .selectionElement {
-    width: 100px;
-  }
-}
-
-.selectionElement img {
-  margin-left: 25px;
-}
-
-.selectionElement .selected img {
-  background-color: #51a351;
-}
-.selectionElement span {
-  display: block;
-  text-align: center;
-}
-.selectionElement .selector {
-  background-color: #ccc;
-  top: 15px;
-  left: 30px;
-  opacity: 0.5;
-  position: absolute;
-  height: 40px;
-  width: 40px;
-}
-.selectionElement .selector {
-  opacity: 1;
-  text-align: center;
-}
-
 .selectionDetails {
-  margin-left: 10px;
+  margin-bottom: 10px;
   padding: 3px 13px 3px 3px;
 }
 

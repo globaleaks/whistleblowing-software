@@ -5,7 +5,7 @@
     </h1>
   </div>
 </div>
-<div ng-cloak="" class="container statusPage" ng-show="tip.im_whistleblower || tip.im_receiver">
+<div class="container statusPage ng-cloak" ng-show="tip.im_whistleblower || tip.im_receiver">
   <div class="row" ng-show="tip.im_receiver && !preferences.gpg_enable_files">
     <div class="col-md-12">
       <div class="alert alert-warning">
@@ -71,7 +71,7 @@
           </a>
           <li ng-repeat="file in tip.files">
             <div ng-show="file.downloads == 0 && show_new_files">
-              <a ng-cloak="" ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-default btn-sm" ng-href="{{file.href}}">
+              <a ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}">
                  <i class="glyphicon glyphicon-download"></i> 
                  {{ "download" | translate }}
                  ({{file.downloads}}/{{tip.download_limit}})
@@ -80,7 +80,7 @@
             </div>
 
             <div ng-show="!show_new_files">
-              <a ng-cloak="" ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_download" class="btn btn-default btn-sm" ng-href="{{file.href}}">
+              <a ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_download" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}">
                  <i class="glyphicon glyphicon-download"></i> 
                  {{ "download" | translate }} 
                  ({{file.downloads}}/{{tip.download_limit}})
@@ -113,17 +113,19 @@
         <b>$ shasum -a 256 *</b>
         <div ng-repeat="file in tip.files">
           <code>
-            {{file.name}}   {{file.sha2sum}}
+            {{file.name}} {{file.sha2sum}}
           </code>
         </div>
       </div>
 
-      <div class="col-md-4" ng-hide="tip.files"><p>
-        {{ "No file has been uploaded!" | translate }}
-      </p></div>
+      <div class="col-md-4" ng-hide="tip.files">
+        <p>
+          {{ "No file has been uploaded!" | translate }}
+        </p>
+      </div>
 
-      <div ng-cloak="" ng-show="tip.im_whistleblower">
-        <div ng-include="'views/widgets/fileupload.html'" class="col-md-4">
+      <div ng-show="tip.im_whistleblower" class="ng-cloak">
+        <div class="col-md-6" ng-include="'views/widgets/fileupload.html'">
         </div>
       </div>
     </div>
@@ -217,7 +219,7 @@
   </div>
 </div>
 
-<div ng-cloak="" class="container statusPage" ng-show="tip.im_whistleblower && tip.im_receiver">
+<div class="container statusPage ng-cloak" ng-show="tip.im_whistleblower && tip.im_receiver">
   <div class="row">
       <div class="col-md-4">
         {{ "Loading Tip page..." | translate }}

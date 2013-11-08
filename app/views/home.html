@@ -101,28 +101,24 @@
     <img ng-src="/static/globaleaks_logo.png">
     <h1>{{ node_info.presentation }}</h1>
     
-    <div ng-show="node_info.configured">
-      <div ng-show="!node_info.tor2web_submission && !anonymous" class="row">
-        <p class="has-error">
-          {{ "You are connecting to the node not anonymously and this node only supports anonymous submissions" | translate }}
-
-        </p>
+    <div class="ng-cloak">
+      <div ng-show="node_info.configured">
+        <div class="row" ng-show="!node_info.tor2web_submission && !anonymous">
+          <p class="has-error">
+            {{ "You are connecting to the node not anonymously and this node only supports anonymous submissions" | translate }}
+          </p>
+        </div>
+        <div class="row" ng-show="!node_info.tor2web_submission && !anonymous">
+          <button class="btn btn-danger disabled btn-lg">
+            {{ "Whistleblowing disabled" | translate }}
+          </button>
+        </div>
+        <div class="row" ng-show="node_info.tor2web_submission || anonymous">
+          <a ng-click="goToSubmission()" class="btn btn-primary btn-lg">
+            {{ "Blow the Whistle" | translate }}
+          </a>
+        </div>
       </div>
-      <div class="row" ng-cloak="" ng-show="!node_info.tor2web_submission && !anonymous">
-        <button class="btn btn-danger disabled btn-lg">
-            {{ "Whistleblowing disabled" | translate }}</button>
-      </div>
-
-      <div class="row" ng-cloak="" ng-show="node_info.tor2web_submission && anonymous">
-        <a ng-click="goToSubmission()" class="btn btn-primary btn-lg">
-            {{ "Blow the Whistle" | translate }}</a>
-      </div>
-
-      <div class="row" ng-cloak="" ng-show="node_info.tor2web_submission && !anonymous">
-        <a ng-click="goToSubmission()" class="btn btn-warning btn-lg">
-            {{ "Blow the Whistle" | translate }}</a>
-      </div>
-
     </div>
 
     <div ng-hide="node_info.configured">
@@ -146,34 +142,35 @@
 
     <div class="row">
         <div class="col-md-6">
-            <h1>
+            <h3>
                 {{ "Are you a whistleblower?" | translate }}
-            </h1>
+            </h3>
             <form class="form-horizontal" role="form">
                 <div class="form-group">
-                    <label class="col-lg-4">
-                        {{ "Enter your receipt" | translate }}
-                    </label>
-                    <div class="col-lg-6">
-                        <input class="form-control" ng-model="receipt" type="text">
-                    </div>
-                    <div class="col-lg-2">
-                        <a ng-click="view_tip(receipt)" class="btn btn-primary">
-                            {{ "View Tip" | translate }}
-                        </a>
-                    </div>
+                  <label class="col-md-4">
+                    {{ "Enter your receipt" | translate }}
+                  </label>
+                  <div class="col-md-6">
+                    <input class="form-control" ng-model="receipt" type="text">
+                  </div>
+                  <div class="col-md-2">
+                    <a ng-click="view_tip(receipt)" class="btn btn-primary">
+                      {{ "View Tip" | translate }}
+                    </a>
+                  </div>
                 </div>
             </form>
         </div>
         <div class="col-md-6">
-            <h1>
+            <h3>
               {{ "Are you a receiver?" | translate }}
-            </h1>
+            </h3>
             <p>
-            {{ "This is the" | translate }}
-            <a href="#/login">
-              {{ "Login page" | translate }}
-            </a>.</p>
+              {{ "This is the" | translate }}
+              <a href="#/login">
+                {{ "Login page" | translate }}
+              </a>.
+            </p>
         </div>
     </div>
 
@@ -200,3 +197,9 @@
     </div>
   </div>
 </div>
+
+<footer class="footer">
+  <div class="container">
+    <p>{{node_info.footer}}</p>
+  </div>
+</footer>
