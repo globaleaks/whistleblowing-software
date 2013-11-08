@@ -4,21 +4,22 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
         <title></title>
         <meta name="description" content="">
+<<<<<<< HEAD
         <meta name="viewport" content="width=device-width,user-scalable=no">
+=======
+        <meta name="viewport" content="width=device-width, user-scalable=false">
+>>>>>>> c11922a2b8fd7bb3350a9d1a84ab88049c3dc1c0
 
         <!-- build:css styles.css -->
         <link rel="stylesheet" href="components/bootstrap/dist/css/bootstrap.css">
         <link rel="stylesheet" href="components/angular-ui/build/angular-ui.css">
+        <link rel="stylesheet" href="components/jquery-file-upload/css/jquery.fileupload.css">
         <link rel="stylesheet" href="components/jquery-file-upload/css/jquery.fileupload-ui.css">
 
-        <link rel="stylesheet" href="styles/lflags.css">
-
-        <link rel="stylesheet" href="styles/app/main.css">
-
-        <link rel="stylesheet" href="styles/app/about.css">
-        <link rel="stylesheet" href="styles/app/admin.css">
-        <link rel="stylesheet" href="styles/app/home.css">
-        <link rel="stylesheet" href="styles/app/submission.css">
+        <link rel="stylesheet" href="styles/main.css">
+        <link rel="stylesheet" href="styles/admin.css">
+        <link rel="stylesheet" href="styles/home.css">
+        <link rel="stylesheet" href="styles/submission.css">
 
         <link rel="stylesheet" href="styles/custom-glclient.css">
 
@@ -84,24 +85,11 @@
                 with Tor integrated.
 
                 Here you can found and download the latest release of:
-                <a href="http://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>.
+                <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>.
                 </p>
             </div>
             <br />
         </noscript>
-
-        <footer class="footer" ng-show="started" ng-cloak="">
-          <div class="container">
-            <p>
-            Copyright 2011-2013 <a href="http://www.logioshermes.org/">Hermes Center for Transparency and Digital Human Rights</a> - 
-            <a href="https://globaleaks.org">
-              {{ "GlobaLeaks website" | translate }}
-            </a> - <a href="https://github.com/globaleaks/GlobaLeaks/wiki">
-              {{ "GlobaLeaks wiki" | translate }}
-            </a>
-            </p>
-          </div>
-        </footer>
 
         <!-- build:js scripts.js -->
         <script src="components/jquery/jquery.js"></script>
@@ -113,26 +101,25 @@
         <script src="components/jquery.cookie/jquery.cookie.js"></script>
 
         <script src="components/angular/angular.js"></script>
+        <script src="components/angular-translate/angular-translate.js"></script>
+        <script src="components/angular-translate-loader-url/angular-translate-loader-url.js"></script>
+        <script src="components/angular-translate-loader-static-files/angular-translate-loader-static-files.js"></script>
         <script src="components/angular-resource/angular-resource.js"></script>
+
         <script src="components/angular-mocks/angular-mocks.js"></script>
         <script src="components/angular-ui/build/angular-ui.js"></script>
 
         <script src="components/jquery-file-upload/js/jquery.iframe-transport.js"></script>
         <script src="components/jquery-file-upload/js/jquery.fileupload.js"></script>
         <script src="components/jquery-file-upload/js/jquery.fileupload-process.js"></script>
-        
         <script src="components/jquery-file-upload/js/jquery.fileupload-validate.js"></script>
-
         <script src="components/jquery-file-upload/js/jquery.fileupload-angular.js"></script>
 
         <script src="components/angular-ui-bootstrap-bower/ui-bootstrap-tpls.js"></script>
         <script src="scripts/vendor/spin.js"></script>
         <script src="scripts/vendor/md5.js"></script>
 
-        <script src="scripts/translations.js"></script>
-
         <script src="scripts/services.js"></script>
-        <script src="scripts/themes.js"></script>
         <script src="scripts/templates.js"></script>
         <script src="scripts/app.js"></script>
 
@@ -144,7 +131,6 @@
         <script src="scripts/controllers/privacybox.js"></script>
         <script src="scripts/controllers/home.js"></script>
 
-        <script src="scripts/controllers/page.js"></script>
         <script src="scripts/controllers/status.js"></script>
         <script src="scripts/controllers/receiver.js"></script>
 
@@ -160,6 +146,5 @@
         <script src="scripts/controllers/tooltip.js"></script>
 
         <!-- endbuild -->
-
     
 </body></html>

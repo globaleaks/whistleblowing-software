@@ -1,5 +1,5 @@
 <div class="jumbotron subhead">
-  <div ng-cloak="" class="container">
+  <div class="container ng-cloak">
 
     <div class="row">
       <div class="col-md-3">
@@ -20,7 +20,7 @@
     <h2>{{ "Loading..." | translate }}</h2>
 </div>
 
-<div ng-cloak="" class="container" ng-show="!node_info.configured && node_info.name">
+<div class="container ng-cloak" ng-show="!node_info.configured && node_info.name">
   <h2>{{ "This node is not configured." | translate }}</h2>
   <p>{{ "You will not be able to perform a submission." | translate }}<br />
   {{ "Admin please configure at least one Context and associated Receivers using" | translate }}
@@ -29,7 +29,7 @@
   </a>.</p>
 </div>
 
-<div ng-cloak="" ng-controller="WizardCtrl" class="container submission" ng-show="node_info.name && node_info.configured">
+<div ng-controller="WizardCtrl" class="container submission ng-cloak" ng-show="node_info.name && node_info.configured">
 
   <div class="tabbable tabs-below">
 
@@ -80,13 +80,13 @@
         <p>{{submission.current_context.description}}</p>
 
         <div ng-repeat="(idx, receiver) in submission.current_context_receivers">
-          <div ng-hide="idx >= submission.current_context_receivers.length/2" class="row">
+          <div ng-hide="idx >= submission.current_context_receivers.length/2">
 
-            <div class="receiverCard col-md-5" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-class-odd="{receiverCardOdd: true}" ng-class-even="{receiverCardEven: true}">
+            <div class="receiverCard col-md-5" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
 
               <div class="row">
-                <div class="col-md-9">
-                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-polaroid col-md-9">
+                <div class="col-md-10">
+                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
                 </div>
                 <div class="col-md-1">
                   <input ng-model="submission.receivers_selected[receiver.receiver_gus]" value="{{receiver.receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox"> 
@@ -94,18 +94,18 @@
               </div>
 
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-11">
                   <h3>{{receiver.name}}</h3>
                   <p>{{receiver.description}}</p>
                 </div>
               </div>
             </div>
 
-            <div class="receiverCard col-md-5" ng-hide="idx >= ((submission.current_context_receivers.length - 1)/2)" ng-class="{selected: submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]}" ng-class-odd="{receiverCardOdd: true}" ng-class-even="{receiverCardEven: true}">
+            <div class="receiverCard col-md-offset-1 col-md-5" ng-hide="idx >= ((submission.current_context_receivers.length - 1)/2)" ng-class="{selected: submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]}">
 
               <div class="row">
-                <div class="col-md-9">
-                  <img ng-src="/static/{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}.png" class="img-polaroid col-md-9">
+                <div class="col-md-10">
+                  <img ng-src="/static/{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}.png" class="img-thumbnail">
                 </div>
                 <div class="col-md-1">
                   <input ng-model="submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]" value="{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox">
@@ -113,12 +113,14 @@
               </div>
 
               <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-11">
                   <h3>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].name}}</h3>
                   <p>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].description}}</p>
                 </div>
               </div>
             </div>
+
+            <div class="clearfix"></div>
 
           </div>
         </div>
@@ -134,13 +136,14 @@
 
         <div class="row">
 
-            <div ng-form="submissionForm" ng-controller="SubmissionFormController"> 
-              <div class="col-md-6 submissionDetails" ng-include="Templates.submission.form"></div>
-            </div>
-
-          <div ng-include="'views/widgets/fileupload.html'" class="col-md-4">
+          <div class="col-md-6" ng-form="submissionForm" ng-controller="SubmissionFormController"> 
+            <div class="submissionDetails" ng-include="'views/submission/form.html'"></div>
           </div>
 
+        </div>
+
+        <div class="row">
+          <div class="col-md-6" ng-include="'views/widgets/fileupload.html'"></div>
         </div>
 
       </div>
@@ -154,7 +157,7 @@
           <div class="col-md-12">
             <p class="lead">
             {{ "To ensure your anonymity be sure that you are visiting this site using the" | translate }}
-            <a href="http://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>
+            <a href="https://www.torproject.us/projects/torbrowser.html">Tor Browser Bundle</a>
             </p>
 
             <p class="lead">
@@ -202,21 +205,14 @@
         </a>
       </li>
 
-      <li class="next" ng-show="!hasNextStep()">
-
-        <button class="btn btn-success" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
-          {{ "Submit" | translate }}
-        </button>
-      </li>
-
     </ul>
 
     <div class="pull-right">
-      <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()" ng-hide="!hasNextStep()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
+      <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
         {{ "Submit" | translate }}
       </button>
-
     </div>
+
     <div class="clearfix"></div>
   </div>
 

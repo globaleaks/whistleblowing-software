@@ -1,6 +1,6 @@
 GLClient.controller('AdminCtrl',
-    ['$rootScope', '$scope', '$http', '$location', 'Admin', 'Translations',
-function($rootScope, $scope, $http, $location, Admin, Translations) {
+    ['$rootScope', '$scope', '$http', '$location', 'Admin',
+function($rootScope, $scope, $http, $location, Admin) {
 
   // XXX this should actually be defined per controller
   // otherwise every time you open a new page the button appears enabled
@@ -19,11 +19,11 @@ function($rootScope, $scope, $http, $location, Admin, Translations) {
     if ($rootScope.languages_supported) {
       $scope.enabled_languages = {};
       $.each($rootScope.languages_supported, function(lang){
-        if (lang in $rootScope.available_languages) {
-          $scope.enabled_languages[lang] = true;
+        if ($rootScope.languages_supported[lang] in $rootScope.available_languages) {
+          $scope.enabled_languages[$rootScope.languages_supported[lang]] = true;
         }
         else {
-          $scope.enabled_languages[lang] = false;
+          $scope.enabled_languages[$rootScope.available_languages[lang]] = false;
         }
       });
     }
@@ -35,13 +35,13 @@ function($rootScope, $scope, $http, $location, Admin, Translations) {
     var languages_enabled = [];
     $.each($scope.enabled_languages, function(lang, enabled) {
       if (enabled) {
-        $rootScope.available_languages[lang] = Translations.supported_languages[lang];
         languages_enabled.push(lang);
       } else {
         delete $rootScope.available_languages[lang];
       }
     });
     $scope.admin.node.languages_enabled = languages_enabled;
+
   }, true);
   // We need to have a special function for updating the node since we need to add old_password and password attribute
   // if they are not present
@@ -54,6 +54,7 @@ function($rootScope, $scope, $http, $location, Admin, Translations) {
     if (node.old_password === undefined)
       node.old_password = "";
     $scope.update(node);
+    $rootScope.language = node.languages_enabled[0];
   }
 
   $scope.update = function(model) {

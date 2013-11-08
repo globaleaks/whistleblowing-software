@@ -2,51 +2,52 @@
 <div class="row">
   <div class="col-md-12">
     <label>{{ "Fields" | translate }}</label>
-    <a ng-click="addField(context)"><i class="glyphicon glyphicon-plus-sign"></i> 
-      {{ "add field" | translate }}</a>
+    <a ng-click="addField(context)">
+      <i class="glyphicon glyphicon-plus-sign"></i> 
+      {{ "add field" | translate }}
+    </a>
   </div>
 </div>
 <div ng-repeat="field in context.fields" class="contextFields" ng-controller="AdminFieldEditorCtrl">
-  <div class="col-md-12 field" ng-hide="editing" ng-click="editing=true">
-    <span>{{field.name}}</span>
+  <div class="field" ng-hide="editing" ng-click="editing=true">
+    {{field.name}}
     <a href="" data-content="{{field.hint}}" data-trigger="hover" bs-popover="{{field.name}}">
       <i class="glyphicon glyphicon-question-sign"></i>
     </a>
     <i class="type" ng-class="{'glyphicon glyphicon-font': field.type=='text',
-                  'glyphicon glyphicon-align-left': field.type=='textarea'}"></i>
+                             'glyphicon glyphicon-align-left': field.type=='textarea'}"></i>
   </div>
   <div class="fieldEditor" ng-show="editing">
-
     <div class="fieldEditorHeader field" ng-click="editing=false" ng-class="{invalid: newField.$invalid}">
-      {{field.name}} <span>{{ "click to close" | translate }}</span>
+      {{field.name}}&nbsp;<span>{{ "click to close" | translate }}</span>
     </div>
 
     <div ng-form="" name="newField">
       <div class="row fieldEditorBody">
-        <div class="col-md-10">
           <a ng-click="deleteField(field)" class="delete">
-            {{ "delete" | translate }}</a>
-          <div class="form-group">
+            {{ "delete" | translate }}
+          </a>
+          <div class="row col-md-offset-1 col-md-10">
             <label>{{ "Name" | translate }}</label>
             <input class="form-control" ng-model="field.name" required="" type="text">
           </div>
-          <div class="form-group">
+          <div class="row col-md-offset-1 col-md-10">
             <label>{{ "Hint" | translate }}</label>
             <input class="form-control" ng-model="field.hint" required="" type="text">
           </div>
-          <div class="form-group">
+          <div class="row col-md-offset-1 col-md-10">
             <input ng-model="field.required" type="checkbox">
             <label>{{ "Required" | translate }}</label>
           </div>
-          <div class="form-group">
+          <div class="row col-md-offset-1 col-md-10">
             <input ng-model="field.preview" type="checkbox">
             <label>{{ "Show in preview" | translate }}</label>
           </div>
-          <div class="form-group">
+          <div class="row col-md-offset-1 col-md-10">
             <label>{{ "Type" | translate }}</label>
             <select id="editFieldType" class="form-control" ng-model="field.type" ng-required="">
               <option value="text">
-              {{ "Text" | translate }}</option>
+             {{ "Text" | translate }}</option>
               <option value="radio">
               {{ "Radio Buttons" | translate }}</option>
               <option value="select">
@@ -72,7 +73,7 @@
             <div ng-switch-default=""></div>
 
             <div ng-switch-when="multiple">
-              <div ng-repeat="option in field.options">
+              <div class="row col-md-offset-1 col-md-10" ng-repeat="option in field.options">
                 <form class="form-inline">
                   <div class="form-group">
                     <label>{{ "Name" | translate }}</label>
@@ -80,13 +81,16 @@
                   </div>
                 </form>
               </div>
-              <button class="btn btn-info" ng-click="addOption(field)">
-                <i class="glyphicon glyphicon-plus-sign"></i> 
-                {{ "add option" | translate }}
-              </button>
+              <div class="row col-md-offset-1 col-md-10">
+                <button class="btn btn-info" ng-click="addOption(field)">
+                  <i class="glyphicon glyphicon-plus-sign"></i> 
+                  {{ "add option" | translate }}
+                </button>
+              </div>
             </div>
           </div>
       </div>
     </div>
   </div>
 </div>
+<br />

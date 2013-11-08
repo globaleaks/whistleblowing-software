@@ -1,34 +1,28 @@
 'use strict';
 
-var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServices',
-    'submissionUI', 'GLClientFilters', 'GLClient.themes', 'GLClient.translations', 'blueimp.fileupload']).
-  config(['$routeProvider', function($routeProvider) {
-    var Templates = angular.injector(['GLClient.themes']).get('Templates');
+var GLClient = angular.module('GLClient', [
+    'GLClient.templates',
+    'resourceServices',
+    'submissionUI',
+    'GLClientFilters',
+    'blueimp.fileupload',
+    'pascalprecht.translate'
+  ]).
+  config(['$routeProvider', '$translateProvider', function($routeProvider, $translateProvider) {
 
     $routeProvider.
       when('/', {
-        templateUrl: Templates.home,
+        templateUrl: 'views/home.html',
         controller: 'HomeCtrl'
       }).
-
-      when('/about', {
-        templateUrl: Templates.about,
-        controller: 'PageCtrl',
-      }).
-
-
       when('/submission', {
-        templateUrl: Templates.submission.main,
+        templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
       }).
-
-
       when('/status/:tip_id', {
-        templateUrl: Templates.status,
+        templateUrl: 'views/status.html',
         controller: 'StatusCtrl',
       }).
-
-
       when('/receiver/preferences', {
         templateUrl: 'views/receiver/preferences.html',
         controller: 'ReceiverPreferencesCtrl'
@@ -37,8 +31,6 @@ var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServic
         templateUrl: 'views/receiver/tips.html',
         controller: 'ReceiverTipsCtrl'
       }).
-
-
       when('/admin/content', {
         templateUrl: 'views/admin/content.html',
         controller: 'AdminCtrl',
@@ -77,14 +69,18 @@ var GLClient = angular.module('GLClient', ['GLClient.templates', 'resourceServic
         templateUrl: 'views/admin/files_overview.html',
         controller: 'OverviewCtrl',
       }).
-
-
       when('/login', {
         templateUrl: 'views/login.html',
         controller: 'LoginCtrl',
       }).
-
       otherwise({
         redirectTo: '/'
       })
+
+      $translateProvider.useStaticFilesLoader({
+        prefix: 'l10n/',
+        suffix: '.json'
+      });
+
+      $translateProvider.uses('en');
 }]);

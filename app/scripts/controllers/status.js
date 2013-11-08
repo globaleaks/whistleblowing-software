@@ -41,7 +41,7 @@ GLClient.controller('StatusCtrl',
 
     }
 
-    if ($.cookie('role') == 'receiver') {
+    if ($.cookie('role') === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
     }
     
