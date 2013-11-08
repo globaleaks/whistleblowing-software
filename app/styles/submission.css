@@ -19,14 +19,6 @@
   background-color: #DFF0D8;
 }
 
-.receiverCard.receiverCardOdd {
-  margin-right: 5px;
-}
-
-.receiverCard.receiverCardEven {
-  margin-left: 5px;
-}
-
 @media (max-width: 550px) {
   .submission .nav.nav-tabs {
     display: none;
