@@ -34,5 +34,4 @@ script:
   - sudo -i bash -x -c '/etc/init.d/tor restart'
   - sudo TRAVIS=true -i bash -x -c '/etc/init.d/globaleaks restart'
   - sleep 10
-  - curl 127.0.0.1:8082 | grep "Hermes Center for Transparency and Digital Human Rights"
-
+  - curl 127.0.0.1:8082 | grep "GlobaLeaks"
