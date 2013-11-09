@@ -18,3 +18,14 @@
 .receiverCard.selected {
   background-color: #DFF0D8;
 }
+
+@media (max-width: 550px) {
+  .submission .nav.nav-tabs {
+    display: none;
+  }
+  
+  .receiverCard {
+    max-width: 95%;
+    word-wrap: break-word;
+  }
+}

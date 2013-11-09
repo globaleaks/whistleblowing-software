@@ -187,20 +187,6 @@ textarea {
   display: block;
 }
 
-@media (max-width: 750px) {
-  .informationBox {
-    width: 60%;
-    font-size: 16px;
-    line-height: 18px;
-  }
-}
-@media (max-width: 550px) {
-  .informationBox {
-    font-size: 14px;
-    line-height: 16px;
-  }
-}
-
 .semaphore {
   width: 20px;
   height: 20px;
@@ -247,6 +233,19 @@ textarea {
   background-color: #fcf8e3;
 
 }
+@media (max-width: 750px) {
+  .informationBox {
+    width: 60%;
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+@media (max-width: 550px) {
+  .informationBox {
+    font-size: 14px;
+    line-height: 16px;
+  }
+}
 
 .shasum {
   width: 500px;
@@ -292,4 +291,8 @@ textarea {
   .modal.not-anonymous-question h3 {
     font-size: 18px;
   }
+}
+
+.bootstrapping, .bootstrapping img {
+  max-width: 100%;
 }
