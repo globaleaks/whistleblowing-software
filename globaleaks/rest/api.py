@@ -112,13 +112,6 @@ spec = [
     (r'/admin/overview/files', overview.Files),
 ]
 
-## Enable end to end testing directory ##
-# * /test
-if GLSetting.devel_mode:
-    spec.append(
-        (r'/test/(.*)', BaseStaticFileHandler, {'path': os.path.join(GLSetting.glclient_path, '..', 'test')})
-    )
-
 ## Utility redirect,
 spec.append(
     (r'/login', BaseRedirectHandler, {'url': '/#/login'} )
