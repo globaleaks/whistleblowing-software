@@ -6,7 +6,7 @@
         <div ng-switch-default="" class="form-group input" ng-class="field.required && 'required'">
           <label>{{field.name}}</label>
           <span class="order">{{field.order}}</span>
-          <a href="" data-content="{{field.hint}}" data-trigger="hover" bs-popover="{{field.name}}">
+          <a href="" data-content="{{field.hint}}" popover="{{field.name}}" popover-placement="right" popover-trigger="mouseenter">
             <i class="glyphicon glyphicon-question-sign"></i>
           </a>
           <div ng-switch="" on="field.type">
