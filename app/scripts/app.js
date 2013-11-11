@@ -1,6 +1,8 @@
 'use strict';
 
 var GLClient = angular.module('GLClient', [
+    'ngRoute',
+    'ui.bootstrap',
     'GLClient.templates',
     'resourceServices',
     'submissionUI',

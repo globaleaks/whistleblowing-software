@@ -104,4 +104,12 @@ GLClient.controller('ImageUploadCtrl', ['$scope', function($scope){
       $scope.uploadfile = false;
     }
 
+    $scope.receiverImgUrl = function() {
+      return "/admin/staticfiles?" + $scope.receiver.receiver_gus;
+    }
+
+    $scope.receiverImgReloadUrl = function() {
+      return "/static/" + $scope.receiver.receiver_gus + ".png?" + $scope.randomFluff;
+    }
+
 }]);

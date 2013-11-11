@@ -11,7 +11,7 @@
 <div ng-repeat="field in context.fields" class="contextFields" ng-controller="AdminFieldEditorCtrl">
   <div class="field" ng-hide="editing" ng-click="editing=true">
     {{field.name}}
-    <a href="" data-content="{{field.hint}}" data-trigger="hover" bs-popover="{{field.name}}">
+    <a href="" data-content="{{field.hint}}" popover="{{field.name}}" popover-placement="right" popover-trigger="mouseenter">
       <i class="glyphicon glyphicon-question-sign"></i>
     </a>
     <i class="type" ng-class="{'glyphicon glyphicon-font': field.type=='text',

@@ -3,27 +3,11 @@ module.exports = function(grunt) {
   //
   // Grunt configuration:
   //
-  // https://github.com/cowboy/grunt/blob/master/docs/getting_started.md
-  //
   grunt.initConfig({
-
-    // compile .scss/.sass to .css using Compass
-    // compass: {
-    //   dev: {
-    //     options: {              // Target options
-    //       sassDir: 'app/styles/sass',
-    //       cssDir: 'app/styles',
-    //       environment: 'development'
-    //     }
-    //   }
-    // },
-
-    // generate application cache manifest
     manifest:{
       dest: 'tmp/'
     },
 
-    // default watch configuration
     watch: {
       files: [
         'app/*.html',
@@ -41,18 +25,10 @@ module.exports = function(grunt) {
         port: 6001,
     },
 
-    // default lint configuration, change this to match your setup:
-    // https://github.com/cowboy/grunt/blob/master/docs/task_lint.md#lint-built-in-task
     lint: {
-      files: [
-        'Gruntfile.js',
-        'app/scripts/**/*.js',
-        'spec/**/*.js'
-      ]
+      files: ['Gruntfile.js', 'app/scripts/**/*.js'],
     },
 
-    // specifying JSHint options and globals
-    // https://github.com/cowboy/grunt/blob/master/docs/task_lint.md#specifying-jshint-options-and-globals
     jshint: {
       all: ['Gruntfile.js', 'app/scripts/**/*.js'],
       options: {
@@ -72,26 +48,6 @@ module.exports = function(grunt) {
         angular: true
       }
     },
-
-    minify: {
-      dynamic_mappings: {
-        // Grunt will search for "**/*.js" under "lib/" when the "minify" task
-        // runs and build the appropriate src-dest file mappings then, so you
-        // don't need to update the Gruntfile when files are added or removed.
-        files: [
-          {
-            expand: true,     // Enable dynamic expansion.
-            cwd: 'lib/',      // Src matches are relative to this path.
-            src: ['**/*.js'], // Actual pattern(s) to match.
-            dest: 'build/',   // Destination path prefix.
-            ext: '.min.js',   // Dest filepaths will have this extension.
-          },
-        ],
-      },
-    },
-
-    // Build configuration
-    // -------------------
 
     clean: {
       release: ['tmp']
@@ -163,8 +119,7 @@ module.exports = function(grunt) {
   var path = require('path'),
     superagent = require('superagent'),
     fs = require('fs'),
-    Gettext = require("node-gettext"),
-    crypto = require('crypto');
+    Gettext = require("node-gettext")
 
   /* grunt.loadNpmTasks('grunt-bower-task'); */
 
