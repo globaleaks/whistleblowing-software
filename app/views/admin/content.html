@@ -74,6 +74,23 @@ This comment is needed in order to push the following strings on transifex
               </div>
             </div>
 
+            <!-- ouff, to be completed, almost the upload thing :( -->
+            <div class="form-group">
+              <label>{{ "Graphic customization" | translate }}</label>
+              <div class="uploadfile">
+                <div pragmatic-file-upload="" ng-src="/admin/staticfiles?custom_stylesheet">
+                   <div class="fileselector">
+                      <input type="file" class="btn btn-info" >
+                   </div>
+                </div>
+                <div class="uploadProgress hide">
+                   <div class="progress progress-striped">
+                      <div class="progress-bar" style="width: 0%;"></div>
+                   </div>
+                </div>
+               </div>
+            </div>
+
             <div class="form-group">
               <label>{{ "Enabled languages" | translate }}</label>
               <div ng-repeat="language in admin.node.languages_supported">
