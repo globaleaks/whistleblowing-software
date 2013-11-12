@@ -16,28 +16,37 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-3 config-sidebar" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl"></div>
     <!-- Begin main content -->
     <div class="col-md-9">
-      <div class="table-container">
-        <table class="table table-striped table-bordered dataTable" id="tipList">
+      <div class="table-responsive">
+        <table class="table table-striped table-bordered" id="tipList">
           <thead>
             <tr>
-              <th>{{ "Accesses" | translate }}</th>
-              <th>{{ "Creation" | translate }}</th>
+              <th class="col-md-1">{{ "Tip" | translate }}</th>
+              <th>{{ "Creation Date" | translate }}</th>
+              <th>{{ "Expiration Date" | translate }}</th>
               <th>{{ "Last Access" | translate }}</th>
+              <th class="col-md-2">{{ "Accesses" | translate }}</th>
+              <th class="col-md-1">{{ "Files" | translate }}</th>
               <th>{{ "Preview" | translate }}</th>
-              <th>{{ "Files" | translate }}</th>
             </tr>
           </thead>
           <tbody id="tipListTableBody">
             <tr ng-repeat="tip in tips" class="{{tip.parity}}">
-              <td><a href="/#/status/{{tip.id}}">{{tip.access_counter}}</a></td>
-              <td>{{tip.creation_date | date:'fullDate' }}</td>
-              <td>{{tip.last_access | date:'fullDate' }}</td>
+              <td class="col-md-1">
+                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}">
+                  <span class="glyphicon glyphicon-folder-close" ng-switch-when="0"></span>
+                  <span class="glyphicon glyphicon-folder-open" ng-switch-default></span>
+                </a>
+              </td>
+              <td>{{tip.creation_date | date:'yyyy-MM-dd HH:mm' }}</td>
+              <td>{{tip.expiration_date | date:'yyyy-MM-dd HH:mm' }}</td>
+              <td>{{tip.last_access | date:'yyyy-MM-dd HH:mm' }}</td>
+              <td class="col-md-2">{{tip.access_counter}}</td>
+              <td class="col-md-1">{{tip.files_number}}</td>
               <td>
                 <span ng-repeat="entry in tip.preview">
-                <b>{{entry.key}}</b> {{entry.text}}
+                  <b>{{entry.key}}</b> {{entry.text}}
                 </span>
               </td>
-              <td>{{tip.files_number}}</td>
             </tr>
           </tbody>
         </table>

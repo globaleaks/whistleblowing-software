@@ -27,7 +27,7 @@
           {{ tip.context_description }}
         </dd>
         <dt>{{ "Submission date" | translate }}</dt>
-        <dd>{{ tip.creation_date | date:"fullDate" }}</dd>
+        <dd>{{ tip.creation_date | date:'yyyy-MM-dd HH:mm' }}</dd>
       </dl>
 
       <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
@@ -160,9 +160,9 @@
                      {{ "The user" | translate }}
                      {{comment.system_content.receiver_name}}
                      {{ "In date" | translate }}
-                     {{comment.system_content.now | date:'fullDate' }}
+                     {{comment.system_content.now | date:'yyyy-MM-dd HH:mm' }}
                      {{ "has postponed Tip expiration to" | translate }}
-                     {{comment.system_content.expire_on | date:'fullDate' }}
+                     {{comment.system_content.expire_on | date:'yyyy-MM-dd HH:mm' }}
                  </div>
               </div>
           </div>
@@ -209,7 +209,7 @@
           <div ng-show="expirebutton">
             <p>
               {{ "I want extend the Tip expiration date to" | translate }}
-              {{ tip.potential_expiration_date | date:'fullDate' }}
+              {{ tip.potential_expiration_date | date:'yyyy-MM-dd HH:mm' }}
             </p>
             <button type="submit" class="btn btn-success" ng-click="extendTip()">extend</button>
           </div>
