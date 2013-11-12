@@ -161,20 +161,11 @@ textarea {
   height: 200px;
 }
 
-.table-container {
-    margin-top: 30px;
-}
-
-@font-face {
-    font-family: "Sansation Bold";
-    src: url('/fonts/Sansation_Bold.ttf') format("truetype");
-}
-
 .receipt {
     text-align: center;
 }
 .receipt h2 {
-    font-family: "Sansation Bold", sans-serif;
+    font-family: sans-serif
 }
 
 /* Privacy box stuff */
@@ -295,4 +286,9 @@ textarea {
 
 .bootstrapping, .bootstrapping img {
   max-width: 100%;
+}
+
+table {
+    table-layout: fixed;
+    word-wrap: break-word;
 }

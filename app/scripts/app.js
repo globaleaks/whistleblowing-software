@@ -9,7 +9,9 @@ var GLClient = angular.module('GLClient', [
     'GLClientFilters',
     'blueimp.fileupload',
     'pascalprecht.translate'
-  ]).
+  ], function($tooltipProvider) {
+     $tooltipProvider.options( {appendToBody: true} );
+  }).
   config(['$routeProvider', '$translateProvider', function($routeProvider, $translateProvider) {
 
     $routeProvider.

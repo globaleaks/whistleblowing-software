@@ -149,8 +149,11 @@ This comment is needed in order to push the following strings on transifex
                       <ul>
                         <div ng-repeat="context in admin.contexts">
                           <li class="selectionContextItem" ng-click="toggle(context)">
-                            <div class="checkbox" ng-show="isSelected(context)"><span>✔</span></div>
-                            <span>{{context.name}}</span> <p>{{context.description}}</p>
+                            <div class="checkbox">
+                              <div class="col-md-1"><span ng-show="isSelected(context)">✔</span></div>
+                              <div class="col-md-10"<span>{{context.name}}</span></div>
+                            </div>
+                            <br />
                           </li>
                         </div>
                       </ul>
