@@ -82,31 +82,55 @@ def dump_static_file(uploaded_file, filelocation):
 
     return get_file_info(uploaded_file, filelocation)
 
-def reserved_name_check(target_string):
+def reserved_name_check(target_string, original_fname):
     """
     @param target_string: its a string,
 
-      This function is used for two different reasons:
-
-        1) from the URI query, because if is present and match a reserved
-           pattern, than is because Admin want trigger a special behavior
-        2) from file upload data, because filename with reserved name need to
-           be deny
+      This function is used to test the requested name, and
+      remove those that eventually shall bring anomalies.
 
     @return: True if a match is found, False if not.
+        raise ReservedFileName if we don't like your parameter
     """
-    reserved_logo_namel = len(GLSetting.reserved_nodelogo_name)
-    if target_string[:reserved_logo_namel] == GLSetting.reserved_nodelogo_name:
+    image = False
+
+    reserved_logo_namel = len(GLSetting.reserved_names.logo)
+    if target_string[:reserved_logo_namel] == GLSetting.reserved_names.logo:
         if len(target_string) > reserved_logo_namel:
             raise errors.ReservedFileName
-        return True
+        image = True
 
-    # an UUID is long 36 byte
-    if re.match(uuid_regexp, target_string[:36]):
+    if re.match(uuid_regexp, target_string[:36]): # an UUID is long 36 byte
         if len(target_string) > 36:
             raise errors.ReservedFileName
-        return True
+        image = True
 
+    if image:
+        if original_fname.lower().endswith(GLSetting.images_extensions):
+            return True
+
+        # Invalid format check: this is not the right way, but at the
+        # moment we're not including any magic-* in fear of the code surface!
+        log.debug("Invalid image extension in %s (permitted only %s)" %
+                  (original_fname, GLSetting.images_extensions))
+        raise errors.InvalidInputFormat("Extension not accepted between images")
+
+    # If not image, check CSS
+    reserved_css_namel = len(GLSetting.reserved_names.css)
+    if target_string[:reserved_css_namel] == GLSetting.reserved_names.css:
+        if len(target_string) > reserved_css_namel:
+            raise errors.ReservedFileName
+
+        if original_fname.lower().endswith(GLSetting.css_extensions):
+            return True
+
+        # Extension error management: same comment of 19 lines ago
+        log.debug("Invalid CSS extension in %s (permitted only %s)" %
+                  (original_fname, GLSetting.css_extensions))
+        raise errors.InvalidInputFormat("Extension not accepted for CSS")
+
+    log.debug("Rejecting file request [%s] with original fname [%s]" %
+              (target_string, original_fname) )
     return False
 
 @transact_ro
@@ -137,8 +161,8 @@ class StaticFileCollection(BaseHandler):
         # currently the static file upload is used to handle only
         # images uploads for Node and for Receivers so that all the logic
         # is embedded here. As also a dirty Input Validation (because body is
-        # a file stream, not a python dict. really, test with:
-        # print self.request.body
+        # a file stream, not a python dict, and we're not checking exactly
+        # what's has been uploaded. this code is run only by admin, but: XXX remind
 
         if len(uploaded_file.keys()) != 4:
             raise errors.InvalidInputFormat("Expected four keys in StaticFileCollection")
@@ -148,23 +172,25 @@ class StaticFileCollection(BaseHandler):
                 raise errors.InvalidInputFormat(
                     "Invalid JSON key in StaticFileCollection (%s)" % filekey)
 
-        if not uploaded_file['filename'].lower().endswith(GLSetting.supported_extensions):
-            log.debug("Invalid extension in %s (permitted only %s)" %
-                      (uploaded_file['filename'], GLSetting.supported_extensions))
-            raise errors.InvalidInputFormat("File extension not supported")
-
-        if not reserved_name_check(self.request.query):
-            raise errors.InvalidInputFormat("Only Logo and Receiver pic are permitted")
+        if not reserved_name_check(self.request.query, uploaded_file['filename']):
+            raise errors.InvalidInputFormat("Unexpected name")
 
         requested_fname = self.request.query
         # the 'filename' key present in the uploaded_file dict, is ignored
 
-        if requested_fname == GLSetting.reserved_nodelogo_name:
+        if requested_fname == GLSetting.reserved_names.logo:
             try:
-                gl_file_path = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_nodelogo_name)
+                gl_file_path = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_names.logo)
                 log.debug("Received request to update Node logo in %s" % uploaded_file['filename'])
             except Exception as excpd:
-                log.err("Exception raised while saving Node logo: %s" % excpd)
+                log.err("Exception raise saving Node logo: %s" % excpd)
+                raise errors.InternalServerError(excpd.__repr__())
+        elif requested_fname == GLSetting.reserved_names.css:
+            try:
+                gl_file_path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
+                log.debug("Received request to update custom CSS with %s" % uploaded_file['filename'])
+            except Exception as excpd:
+                log.err("Exception raise saving custom CSS: %s" % excpd)
                 raise errors.InternalServerError(excpd.__repr__())
         else:
             try:
