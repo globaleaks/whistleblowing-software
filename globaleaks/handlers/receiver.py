@@ -156,14 +156,13 @@ def get_receiver_tip_list(store, user_id):
              ReceiverFile.receiver_id == user_id)).count()
 
         single_tip_sum = dict({
-            # expiry time ?
-            # context_id ?
-            'access_counter': rtip.access_counter,
+            'id' : rtip.id,
             'expressed_pertinence': rtip.expressed_pertinence,
             'creation_date' : unicode(pretty_date_time(rtip.creation_date)),
             'last_access' : unicode(pretty_date_time(rtip.last_access)),
-            'id' : rtip.id,
-            'files_number': rfiles_n,
+            'expiration_date' : unicode(pretty_date_time(rtip.internaltip.expiration_date)),
+            'access_counter': rtip.access_counter,
+            'files_number': rfiles_n
         })
 
         preview_data = []
