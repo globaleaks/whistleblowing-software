@@ -96,50 +96,55 @@ class GLHTTPServer(HTTPConnection):
             content_length = int(headers.get("Content-Length", 0))
             self.content_length = content_length
 
-            if content_length:
-                if headers.get("Expect") == "100-continue":
-                    self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
+            if content_length < 100000:
+                self._contentbuffer = StringIO('')
+            else:
+                self._contentbuffer = TemporaryFile()
 
-                if content_length < 100000:
-                    self._contentbuffer = StringIO('')
-                else:
-                    self._contentbuffer = TemporaryFile()
-                
-                c_d_header = self._request.headers.get("Content-Disposition")
-                if c_d_header is not None:
-                    c_d_header = c_d_header.lower()
-                    m = content_disposition_re.match(c_d_header)
-                    if m is None:
-                        raise Exception
-                    self.file_upload = True
-                    self.uploaded_file['filename'] = m.group(1)
-                    self.uploaded_file['content_type'] =  self._request.headers.get("Content-Type", 'application/octet-stream')
-                    self.uploaded_file['body'] = self._contentbuffer
-                    self.uploaded_file['body_len'] = int(content_length)
-                
-                megabytes = int(content_length) / (1024 * 1024)
+            if headers.get("Expect") == "100-continue":
+                self.transport.write("HTTP/1.1 100 (Continue)\r\n\r\n")
 
-                if self.file_upload:
-                    limit_type = "upload"
-                    limit = GLSetting.memory_copy.maximum_filesize
-                else:
-                    limit_type = "json"
-                    limit = 1000000 # 1MB fixme: add GLSetting.memory_copy.maximum_jsonsize
+            c_d_header = self._request.headers.get("Content-Disposition")
+            if c_d_header is not None:
+                c_d_header = c_d_header.lower()
+                m = content_disposition_re.match(c_d_header)
+                if m is None:
+                    raise Exception
+                self.file_upload = True
+                self.uploaded_file['filename'] = m.group(1)
+                self.uploaded_file['content_type'] =  self._request.headers.get("Content-Type", 'application/octet-stream')
+                self.uploaded_file['body'] = self._contentbuffer
+                self.uploaded_file['body_len'] = int(content_length)
+
+            megabytes = int(content_length) / (1024 * 1024)
+
+            if self.file_upload:
+               limit_type = "upload"
+               limit = GLSetting.memory_copy.maximum_filesize
+            else:
+               limit_type = "json"
+               limit = 1000000 # 1MB fixme: add GLSetting.memory_copy.maximum_jsonsize
                                     # is 1MB probably too high. probably this variable must be
                                     # in kB
 
-                # less than 1 megabytes is always accepted
-                if megabytes > limit:
+            # less than 1 megabytes is always accepted
+            if megabytes > limit:
 
-                    log.err("Tried %s request larger than expected (%dMb > %dMb)" %
-                            (limit_type,
-                             megabytes,
-                             limit))
+                log.err("Tried %s request larger than expected (%dMb > %dMb)" %
+                        (limit_type,
+                         megabytes,
+                         limit))
 
-                    # In HTTP Protocol errors need to be managed differently than handlers
-                    raise errors.HTTPRawLimitReach
+                # In HTTP Protocol errors need to be managed differently than handlers
+                raise errors.HTTPRawLimitReach
 
+            if content_length > 0:
                 self.setRawMode()
+                return
+            elif self.file_upload:
+                self._on_request_body(self.uploaded_file)
+                self.file_upload = False
+                self.uploaded_file = {}
                 return
 
             self.request_callback(self._request)

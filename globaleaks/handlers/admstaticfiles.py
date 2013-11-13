@@ -164,8 +164,8 @@ class StaticFileCollection(BaseHandler):
         # a file stream, not a python dict, and we're not checking exactly
         # what's has been uploaded. this code is run only by admin, but: XXX remind
 
-        if len(uploaded_file.keys()) != 4:
-            raise errors.InvalidInputFormat("Expected four keys in StaticFileCollection")
+        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
+            raise errors.InvalidInputFormat("Expected a dict of four keys in StaticFileCollection")
 
         for filekey in uploaded_file.keys():
             if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
