@@ -134,8 +134,11 @@ class GLSettingsClass:
         # static file rules
         self.staticfile_regexp = r'(\w+)\.(\w+)'
         self.staticfile_overwrite = False
-        self.reserved_nodelogo_name = "globaleaks_logo" # .png
-        self.supported_extensions = (".jpg", ".jpeg", ".png", ".gif")
+        self.images_extensions = (".jpg", ".jpeg", ".png", ".gif")
+        self.css_extensions = (".css")
+        self.reserved_names = OD()
+        self.reserved_names.logo = "globaleaks_logo" # .png
+        self.reserved_names.css = "custom_stylesheet" # .css
 
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
@@ -444,9 +447,9 @@ class GLSettingsClass:
         create_directory(self.log_path)
         create_directory(self.torhs_path)
 
-        # detect new_environment also if the logo is missing
-        # XXX may not be right to the Admin. but I'm in bugfixing prerelease :P
-        logo_path = os.path.join(self.static_path, "%s.png" % GLSetting.reserved_nodelogo_name)
+        logo_path = os.path.join(self.static_path, "%s.png" % GLSetting.reserved_names.logo)
+        # Missing default logo: is supposed we're initializing a new globaleaks directory
+        # happen in unitTest and when a new working directory is specify
         if not os.path.isfile(logo_path):
             new_environment = True
 
