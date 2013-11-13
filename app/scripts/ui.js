@@ -24,7 +24,7 @@ angular.module('submissionUI', []).
         };
 
         $(element).find('input[type="file"]').change(function(){
-          scope.changeProfile();
+          scope.markFileSelected();
         });
 
         scope.$watch(attrs.src, function(){

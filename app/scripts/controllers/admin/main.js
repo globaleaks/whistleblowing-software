@@ -82,18 +82,12 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changeParamsWatcher',
 }]);
 
 
-GLClient.controller('ImageUploadCtrl', ['$scope', function($scope){
+GLClient.controller('FileUploadCtrl', ['$scope', function($scope){
     $scope.uploadfile = false;
 
-    // Used to keep track of weather or not the profile file has been changed
-    // or not.
     $scope.fileSelected = false;
-    $scope.changeProfile = function() {
+    $scope.markFileSelected = function() {
       $scope.fileSelected = true;
-    }
-
-    $scope.closeProfile = function() {
-      $scope.fileSelected = $scope.uploadfile = false;
     }
 
     $scope.openUploader = function() {
@@ -101,7 +95,15 @@ GLClient.controller('ImageUploadCtrl', ['$scope', function($scope){
     }
 
     $scope.closeUploader = function() {
-      $scope.uploadfile = false;
+      $scope.uploadfile = $scope.fileSelected = false;
+    }
+
+    $scope.customCSSUrl = function() {
+      return "/admin/staticfiles?custom_stylesheet";
+    }
+
+    $scope.customCSSReloadUrl = function() {
+      return "/static" + "custom_stylesheet.css?" + $scope.randomFluff;
     }
 
     $scope.receiverImgUrl = function() {
