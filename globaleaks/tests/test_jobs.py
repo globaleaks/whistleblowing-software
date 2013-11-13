@@ -21,7 +21,7 @@ class TestJobs(helpers.TestGL):
 
         receiver_tips = yield get_receiver_tip_list(self.dummyReceiver['receiver_gus'])
 
-        expected_keys = ['access_counter', 'creation_date', 'expressed_pertinence', 'id', 'files_number', 'last_access', 'preview']
+        expected_keys = ['access_counter', 'creation_date', 'expiration_date',
+                         'expressed_pertinence', 'id', 'files_number', 'last_access', 'preview']
+
         self.assertEqual(set(receiver_tips[0].keys()), set(expected_keys))
-
-
