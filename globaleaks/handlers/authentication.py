@@ -168,14 +168,28 @@ def get_tor2web_header(request_headers):
     key_content = request_headers.get('X-Tor2Web', None)
     return True if key_content else False
 
+def accept_tor2web(role):
+    if role == 'tip' or role == 'wb':
+        return GLSetting.memory_copy.tor2web_tip
+
+    elif role == 'submission':
+        return GLSetting.memory_copy.tor2web_submission
+
+    elif role == 'receiver':
+        return GLSetting.memory_copy.tor2web_receiver
+
+    elif role == 'admin':
+        return GLSetting.memory_copy.tor2web_admin
+
+    else:
+        return GLSetting.memory_copy.tor2web_unauth
+
 def transport_security_check(wrapped_handler_role):
     """
     Decorator for enforce a minimum security on the transport mode.
-    Tor and Tor2Web has two different protection level, and some operation
-    maybe forbidden if in Tor2Web, return 417 (Expectation Fail)
+    Tor and Tor2web has two different protection level, and some operation
+    maybe forbidden if in Tor2web, return 417 (Expectation Fail)
     """
-    tor2web_roles = ['tip', 'submission', 'receiver', 'admin', 'unauth']
-
     def wrapper(method_handler):
         def call_handler(cls, *args, **kwargs):
             """
@@ -183,27 +197,19 @@ def transport_security_check(wrapped_handler_role):
             enhance performance instead of searching in te DB at every handler
             connection.
             """
+            tor2web_roles = ['tip', 'submission', 'receiver', 'admin', 'unauth']
+
             assert wrapped_handler_role in tor2web_roles
-            if wrapped_handler_role == 'tip':
-                accept_tor2web = GLSetting.memory_copy.tor2web_tip
-            elif wrapped_handler_role == 'submission':
-                accept_tor2web = GLSetting.memory_copy.tor2web_submission
-            elif wrapped_handler_role == 'receiver':
-                accept_tor2web = GLSetting.memory_copy.tor2web_receiver
-            elif wrapped_handler_role == 'admin':
-                accept_tor2web = GLSetting.memory_copy.tor2web_admin
-            else:
-                accept_tor2web = GLSetting.memory_copy.tor2web_unauth
 
             are_we_tor2web = get_tor2web_header(cls.request.headers)
 
-            if are_we_tor2web and accept_tor2web == False:
-                log.err("Receiver connection on Tor2Web for role %s: forbidden in %s" %
+            if are_we_tor2web and accept_tor2web(wrapped_handler_role) == False:
+                log.err("Denied request on Tor2web for role %s and resource '%s'" %
                     (wrapped_handler_role, cls.request.uri) )
                 raise errors.TorNetworkRequired
 
             if are_we_tor2web:
-                log.debug("Accepted Tor2Web connection for role '%s' in uri %s" %
+                log.debug("Accepted request on Tor2web for role '%s' and resource '%s'" %
                     (wrapped_handler_role, cls.request.uri) )
 
             return method_handler(cls, *args, **kwargs)
@@ -348,6 +354,16 @@ class AuthenticationHandler(BaseHandler):
         if delay:
             yield security_sleep(delay)
 
+        if role not in ['admin', 'wb', 'receiver']:
+           raise errors.InvalidInputFormat("Authentication role %s" % str(role) )
+
+        if get_tor2web_header(self.request.headers):
+            if accept_tor2web(role) == False:
+                log.err("Denied login request on Tor2web for role '%s'" % role)
+                raise errors.TorNetworkRequired
+            else:
+                log.debug("Accepted login request on Tor2web for role '%s'" % role)
+
         # Then verify credential, if the channel shall be trusted
         if role == 'admin':
             # username is ignored
@@ -357,8 +373,6 @@ class AuthenticationHandler(BaseHandler):
             user_id = yield login_wb(password)
         elif role == 'receiver':
             user_id = yield login_receiver(username, password)
-        else:
-            raise errors.InvalidInputFormat("Authentication role %s" % str(role) )
 
         if not user_id:
             raise errors.InvalidAuthRequest
