@@ -47,6 +47,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
         'postpone_superpower': node.postpone_superpower,
+        'reset_css': False,
     }
 
     mo = structures.Rosetta()
@@ -169,6 +170,20 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
         if not utility.acquire_url_address(request['hidden_service'], hidden_service=True, http=False):
             log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
             raise errors.InvalidInputFormat("Invalid hidden service")
+
+    # check the 'reset_css' boolean option: remove an existent custom CSS
+    if request['reset_css']:
+        custom_css_path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
+
+        if os.path.isfile(custom_css_path):
+            try:
+                os.unlink(custom_css_path)
+                log.debug("Reset on custom CSS done.")
+            except Exception as excep:
+                log.err("Unable to remove custom CSS: %s: %s" % (custom_css_path, excep))
+                raise errors.InternalServerError(excep)
+        else:
+            log.err("Requested CSS Reset, but custom CSS do not exists")
 
     # verify that the languages enabled are valid 'code' in the languages supported
     node.languages_enabled = []

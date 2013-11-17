@@ -7,11 +7,9 @@
 #   Read this if you want to have an overall view of what API calls are handled
 #   by what.
 
-import os
-
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles, overview
-from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
+from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler, CSSStaticFileHandler
 from globaleaks.rest.base import uuid_regexp
 
 
@@ -116,6 +114,16 @@ spec = [
 spec.append(
     (r'/login', BaseRedirectHandler, {'url': '/#/login'} )
 )
+
+## Special files (Custom CSS, $languages.json)
+
+spec.append(
+    (r'/(custom_stylesheet.css)', CSSStaticFileHandler, {
+        'path': GLSetting.static_path,
+        'default_filename': '/static/custom_stylesheet.css'
+    })
+)
+
 
 ## Static files services (would remain also if Client is not served by Backend)
 spec.append(

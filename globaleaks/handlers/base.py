@@ -13,6 +13,7 @@ import collections
 import json
 import re
 import sys
+import os
 from io import BytesIO as StringIO
 from tempfile import TemporaryFile
 
@@ -561,6 +562,23 @@ class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
         self.clear_header("Pragma")
         self.clear_header("Expires")
 
+
+class CSSStaticFileHandler(BaseStaticFileHandler):
+    """
+    This class is used to return the custom CSS file, if
+    the file is not present, is returned 200 with an empty content
+    """
+
+    def get(self, path, include_body=True):
+
+        path = self.parse_url_path(path)
+        abspath = os.path.abspath(os.path.join(self.root, path))
+        if os.path.isfile(abspath):
+            StaticFileHandler.get(self, path, include_body)
+        else:
+            # empty CSS and avoid 404 error log
+            self.set_status(200)
+            self.finish()
 
 
 class BaseRedirectHandler(BaseBaseHandler, RedirectHandler):
