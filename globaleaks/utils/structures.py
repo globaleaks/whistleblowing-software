@@ -217,15 +217,23 @@ class Fields:
 
         return fields_list
 
-    def get_preview_keys(self):
-        key_list = []
+    def get_preview_keys(self, language):
 
-        for key, field_desc in self._fields.iteritems():
+        default_language = GLSetting.memory_copy.default_language
+        key_label_dict = {}
+
+        for k, field_desc in self._fields.iteritems():
 
             if field_desc['preview'] == True and field_desc['type'] == u'text':
-                key_list.append(key)
 
-        return key_list
+                if self._localization.has_key(language) and self._localization[language].has_key(k):
+                    key_label_dict[k] = self._localization[language][k]['name']
+                elif self._localization.has_key(default_language) and self._localization[default_language].has_key(k):
+                    key_label_dict[k] = u"in '%s' [%s]" % (language, self._localization[default_language][k]['name'])
+                else:
+                    key_label_dict[k] = u"Missing '%s' language" % language
+
+        return key_label_dict
 
 # Localized strings utility management
 

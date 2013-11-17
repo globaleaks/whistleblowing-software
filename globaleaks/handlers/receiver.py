@@ -141,7 +141,7 @@ class ReceiverInstance(BaseHandler):
 
 
 @transact_ro
-def get_receiver_tip_list(store, user_id):
+def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default_language):
 
     receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
     rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver.id)
@@ -168,10 +168,10 @@ def get_receiver_tip_list(store, user_id):
         preview_data = []
 
         fo = Fields(rtip.internaltip.context.localized_fields, rtip.internaltip.context.unique_fields)
-        for preview_key in fo.get_preview_keys():
+        for preview_key, preview_label in fo.get_preview_keys(language).iteritems():
 
             # preview in a format angular.js likes
-            entry = dict({'key' : preview_key,
+            entry = dict({'label' : preview_label,
                           'text': rtip.internaltip.wb_fields[preview_key] })
             preview_data.append(entry)
 
@@ -198,7 +198,7 @@ class TipsCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        answer = yield get_receiver_tip_list(self.current_user['user_id'])
+        answer = yield get_receiver_tip_list(self.current_user['user_id'], self.request.language)
 
         self.set_status(200)
         self.finish(answer)
