@@ -257,7 +257,7 @@ class TestTipInstance(TTip):
         self.assertTrue(isinstance(tiplist[0], dict))
         self.assertTrue(isinstance(tiplist[0]['preview'], list))
         self.assertTrue(isinstance(tiplist[0]['preview'][0], dict))
-        self.assertTrue(tiplist[0]['preview'][0].has_key('key'))
+        self.assertTrue(tiplist[0]['preview'][0].has_key('label'))
         self.assertTrue(tiplist[0]['preview'][0].has_key('text'))
 
     @inlineCallbacks
