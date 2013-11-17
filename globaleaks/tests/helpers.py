@@ -348,6 +348,7 @@ class MockDict():
             'tor2web_unauth' : True,
             'postpone_superpower' : False,
             'exception_email' : GLSetting.defaults.exception_email,
+            'reset_css': False,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',
