@@ -1,3 +1,7 @@
+function CollapseDemoCtrl($scope) {
+  $scope.isCollapsed = false;
+}
+
 GLClient.controller('AdminCtrl',
     ['$rootScope', '$scope', '$http', '$location', 'Admin',
 function($rootScope, $scope, $http, $location, Admin) {
@@ -14,6 +18,10 @@ function($rootScope, $scope, $http, $location, Admin) {
   $scope.active[current_menu] = "active";
 
   $scope.admin = new Admin();
+
+  function CollapseLanguages($scope) {
+    $scope.isCollapsed = false;
+  }
 
   $rootScope.$watch('languages_supported', function(){
     if ($rootScope.languages_supported) {
@@ -81,8 +89,7 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changeParamsWatcher',
     changeParamsWatcher($scope);
 }]);
 
-
-GLClient.controller('FileUploadCtrl', ['$scope', function($scope){
+GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http){
     $scope.uploadfile = false;
 
     $scope.fileSelected = false;
@@ -96,6 +103,10 @@ GLClient.controller('FileUploadCtrl', ['$scope', function($scope){
 
     $scope.closeUploader = function() {
       $scope.uploadfile = $scope.fileSelected = false;
+    }
+
+    $scope.delete = function(url) {
+      return $http.delete(url);
     }
 
     $scope.customCSSUrl = function() {
