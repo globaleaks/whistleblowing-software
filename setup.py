@@ -118,8 +118,7 @@ data_files = [
     'staticdata/favicon.ico',
     'staticdata/robots.txt',
     'staticdata/globaleaks_logo.png',
-    'staticdata/default-profile-picture.png',
-    'staticdata/custom_stilesheet.css'
+    'staticdata/default-profile-picture.png'
     ])
 ]
 
