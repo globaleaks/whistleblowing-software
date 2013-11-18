@@ -1,11 +1,11 @@
 *.py[co]
 *.bak
 .*.swp
-*.DS_Store
 workingdir
 testing_dir
 *.egg-info
 *.log
 *_trial_temp*
 .idea/*
-glenv/
+glenv
+build
