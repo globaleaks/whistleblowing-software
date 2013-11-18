@@ -7,11 +7,11 @@
 #   Read this if you want to have an overall view of what API calls are handled
 #   by what.
 
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
-from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles, overview
+from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles, admlangfiles, overview
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler, CSSStaticFileHandler
 from globaleaks.rest.base import uuid_regexp
-
 
 # Here is mapped a path and the associated class to be invoked,
 # Two kind of Classes:
@@ -115,16 +115,6 @@ spec.append(
     (r'/login', BaseRedirectHandler, {'url': '/#/login'} )
 )
 
-## Special files (Custom CSS, $languages.json)
-
-spec.append(
-    (r'/(custom_stylesheet.css)', CSSStaticFileHandler, {
-        'path': GLSetting.static_path,
-        'default_filename': '/static/custom_stylesheet.css'
-    })
-)
-
-
 ## Static files services (would remain also if Client is not served by Backend)
 spec.append(
     (r'/(favicon.ico)', BaseStaticFileHandler, {'path': GLSetting.static_path })
@@ -136,6 +126,22 @@ spec.append(
 
 spec.append(
     (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path })
+)
+
+## Special files (Custom CSS, l10n/$lang.json)
+
+spec.append(
+    (r'/(custom_stylesheet.css)', CSSStaticFileHandler, {
+        'path': GLSetting.static_path,
+        'default_filename': '/static/custom_stylesheet.css'
+    })
+)
+
+spec.append(
+    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json', admlangfiles.LanguageFileHandler, {
+        'path': GLSetting.static_path,
+        'default_filename': '/static/custom_stylesheet.css'
+    })
 )
 
 ## Main Web app ##

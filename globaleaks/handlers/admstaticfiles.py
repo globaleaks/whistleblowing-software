@@ -9,11 +9,11 @@
 #`This code differs from handlers/file.py because files here are not tracked in the DB
 
 from __future__ import with_statement
+import os
 import time
 import re
 
 from twisted.internet import threads
-from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import GLSetting, transact_ro
@@ -156,21 +156,7 @@ class StaticFileCollection(BaseHandler):
         """
         start_time = time.time()
 
-        uploaded_file = self.request.body
-
-        # currently the static file upload is used to handle only
-        # images uploads for Node and for Receivers so that all the logic
-        # is embedded here. As also a dirty Input Validation (because body is
-        # a file stream, not a python dict, and we're not checking exactly
-        # what's has been uploaded. this code is run only by admin, but: XXX remind
-
-        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
-            raise errors.InvalidInputFormat("Expected a dict of four keys in StaticFileCollection")
-
-        for filekey in uploaded_file.keys():
-            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
-                raise errors.InvalidInputFormat(
-                    "Invalid JSON key in StaticFileCollection (%s)" % filekey)
+        uploaded_file = self.get_uploaded_file()
 
         if not reserved_name_check(self.request.query, uploaded_file['filename']):
             raise errors.InvalidInputFormat("Unexpected name")

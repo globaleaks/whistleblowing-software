@@ -22,7 +22,6 @@ from Crypto.Hash import SHA256
 
 from globaleaks.settings import GLSetting
 
-
 def sanitize_str(s):
     """
     This function encodes the following characters
