@@ -27,6 +27,7 @@ from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 from globaleaks import __version__
 
+from Crypto.Hash import SHA256
 
 def rfc822_date():
     """
@@ -187,23 +188,28 @@ def mail_exception(etype, value, tback):
     not in production release.
     """
 
+    sha256 = SHA256.new(str(value)).hexdigest()
+
     if isinstance(value, GeneratorExit) or \
        isinstance(value, AlreadyCalledError) or \
-       isinstance(value, SMTPError):
+       isinstance(value, SMTPError) or \
+       etype == AssertionError and value.message == "Request closed":
         # we need to bypass email notification for some exception that:
         # 1) raise frequently or lie in a twisted bug;
         # 2) lack of useful stacktraces;
         # 3) can be cause of email storm amplification
         #
         # this kind of exception can be simply logged error logs.
-        log.err("Unhandled exception [mail suppressed] (%s)" % str(etype))
+        log.err("exception mail suppressed for exception (%s) [reason: special exception]" % str(etype))
         return
-
-    if etype == AssertionError and value.message == "Request closed":
-        # https://github.com/facebook/tornado/issues/473
-        # https://github.com/globaleaks/GlobaLeaks/issues/166
-        # we need a bypass and also echoing something is bad on this condition.
-        return
+    elif sha256 in GLSetting.exceptions:
+        GLSetting.exceptions[sha256] += 1
+        if GLSetting.exceptions[sha256] > 5:
+            # if the threashold has been exceeded
+            log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % str(etype))
+            return
+    else:
+        GLSetting.exceptions[sha256] = 1
 
     # collection of the stacktrace info
     exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",

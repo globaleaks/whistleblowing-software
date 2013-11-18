@@ -234,6 +234,8 @@ class GLSettingsClass:
         # Database version tracking
         self.db_version = DATABASE_VERSION
 
+        self.exceptions = {}
+
     def eval_paths(self):
         self.pidfile_path = os.path.join(self.pid_path, 'globaleaks-' + str(self.bind_port) + '.pid')
         self.glfiles_path = os.path.abspath(os.path.join(self.working_path, 'files'))
@@ -241,6 +243,7 @@ class GLSettingsClass:
         self.log_path = os.path.abspath(os.path.join(self.working_path, 'log'))
         self.submission_path = os.path.abspath(os.path.join(self.glfiles_path, 'submission'))
         self.static_path = os.path.abspath(os.path.join(self.glfiles_path, 'static'))
+        self.static_path_l10n = os.path.abspath(os.path.join(self.static_path, 'l10n'))
         self.static_db_source = os.path.abspath(os.path.join(self.root_path, 'globaleaks', 'db'))
         self.torhs_path = os.path.abspath(os.path.join(self.working_path, 'torhs'))
         self.db_schema_file = os.path.join(self.static_db_source,'sqlite.sql')
@@ -261,6 +264,7 @@ class GLSettingsClass:
         if os.path.exists(custom_glclient_path):
             self.glclient_path = custom_glclient_path
 
+
     def set_devel_mode(self):
         self.devel_mode = True
         self.pid_path = os.path.join(self.root_path, 'workingdir')
@@ -268,8 +272,10 @@ class GLSettingsClass:
         self.static_source = os.path.join(self.root_path, 'staticdata')
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, "..", "GLClient", "app"))
 
+
     def set_glc_path(self, glcp):
         self.glclient_path = os.path.abspath(os.path.join(self.root_path, glcp))
+
 
     def enable_debug_mode(self):
         import signal
@@ -278,6 +284,7 @@ class GLSettingsClass:
             pdb.set_trace()
             
         signal.signal(signal.SIGQUIT, start_pdb)
+
 
     def load_cmdline_options(self):
         """
@@ -372,11 +379,13 @@ class GLSettingsClass:
             print "Invalid directory of GLCLient: %s: index.html not found" % self.glclient_path
             quit(-1)
 
+
     def validate_port(self, inquiry_port):
         if inquiry_port >= 65535 or inquiry_port < 0:
             print "Invalid port number ( > than 65535 can't work! )"
             return False
         return True
+
 
     def validate_socks(self):
         """
@@ -435,14 +444,10 @@ class GLSettingsClass:
         if create_directory(self.working_path):
             new_environment = True
 
-        if create_directory(self.gldb_path):
-            new_environment = True
-
+        create_directory(self.gldb_path)
         create_directory(self.glfiles_path)
-
-        if create_directory(self.static_path):
-            new_environment = True
-
+        create_directory(self.static_path)
+        create_directory(self.static_path_l10n)
         create_directory(self.submission_path)
         create_directory(self.log_path)
         create_directory(self.torhs_path)
