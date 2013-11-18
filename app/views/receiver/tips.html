@@ -42,6 +42,9 @@ This comment is needed in order to push the following strings on transifex
                   <span class="glyphicon glyphicon-folder-close" ng-switch-when="0"></span>
                   <span class="glyphicon glyphicon-folder-open" ng-switch-default></span>
                 </a>
+                <a ng-click="tip_delete(tip.id)">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </a>
               </td>
               <td>{{tip.creation_date | date:'yyyy-MM-dd HH:mm' }}</td>
               <td>{{tip.expiration_date | date:'yyyy-MM-dd HH:mm' }}</td>
@@ -49,9 +52,9 @@ This comment is needed in order to push the following strings on transifex
               <td class="col-md-2">{{tip.access_counter}}</td>
               <td class="col-md-1">{{tip.files_number}}</td>
               <td>
-                <span ng-repeat="entry in tip.preview">
+                <div ng-repeat="entry in tip.preview">
                   <b>{{entry.label}}</b> {{entry.text}}
-                </span>
+                </div>
               </td>
             </tr>
           </tbody>

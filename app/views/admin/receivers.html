@@ -35,10 +35,14 @@ This comment is needed in order to push the following strings on transifex
 
                   <div class="col-md-6 editButtons" ng-show="editing">
                     <button class="btn btn-success saveReceiver" ng-disabled="receiverForm.$invalid || unsafe_password" ng-click="update(receiver)">
-                          {{ "Save" | translate }}</button>
+                      <i class="glyphicon glyphicon-ok"></i>
+                      {{ "Save" | translate }}
+                    </button>
 
                     <button class="btn btn-danger deleteReceiver" ng-click="delete(receiver)">
-                          {{ "Delete" | translate }}</button>
+                      <i class="glyphicon glyphicon-remove"></i>
+                      {{ "Delete" | translate }}
+                    </button>
                   </div>
 
                 </div>
@@ -105,11 +109,17 @@ This comment is needed in order to push the following strings on transifex
                       </div>
                     </div>
 
+                    <div class="form-group table-bordered">
+                      <input ng-model="receiver.can_delete_submission" type="checkbox">
+                      <label>{{ "Can delete submissions" | translate}}</label>
+                    </div>
+
                     <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">
+                      <i class="glyphicon glyphicon-plus"></i>
                       {{ "PGP key management" | translate }}
                     </button>
 
-                    <div ng-show="advanced_edit">
+                    <div class="form-group" ng-show="advanced_edit">
                       <div>
                         <textarea class="form-control" ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
                       </div>
@@ -146,15 +156,10 @@ This comment is needed in order to push the following strings on transifex
                   <div class="col-md-6">
                     <label>{{ "Contexts" | translate }}</label>
                     <div class="selectionList">
-                      <ul>
-                        <div ng-repeat="context in admin.contexts">
-                          <li class="selectionContextItem" ng-click="toggle(context)">
-                            <div class="checkbox">
-                              <div class="col-md-1"><span ng-show="isSelected(context)">✔</span></div>
-                              <div class="col-md-10"<span>{{context.name}}</span></div>
-                            </div>
-                            <br />
-                          </li>
+                      <div ng-repeat="context in admin.contexts">
+                        <div class="selectionContextItem" ng-click="toggle(context)">
+                          <span class="col-md-1"><span ng-show="isSelected(context)">✔</span></span>
+                          <span class="col-md-10">{{context.name}}</span><br />
                         </div>
                       </ul>
                     </div>
@@ -220,8 +225,9 @@ This comment is needed in order to push the following strings on transifex
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <button class="btn btn-default" ng-disabled="newReceiver.$invalid || unsafe_password" ng-click="add_receiver()">
-                      {{ "add" | translate }}
+                    <button class="btn btn-success" ng-disabled="newReceiver.$invalid || unsafe_password" ng-click="add_receiver()">
+                      <i class="glyphicon glyphicon-ok"></i>
+                      {{ "Add" | translate }}
                     </button>
                   </div>
                 </div>

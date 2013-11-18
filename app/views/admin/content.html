@@ -80,7 +80,7 @@ This comment is needed in order to push the following strings on transifex
                 {{ "Graphic Customization" | translate }}
                 ({{ "CSS" | translate}})
               </label>
-              <div class="uploadfile" ng-controller="FileUploadCtrl">
+              <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
                 <span pragmatic-file-upload="" ng-src="/admin/staticfiles?custom_stylesheet">
                   <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
                     <span class="glyphicon glyphicon-plus"></span>
@@ -93,13 +93,15 @@ This comment is needed in order to push the following strings on transifex
                     <span class="progress-bar" style="width: 0%;"></span>
                   </span>
                 </span>
-                <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/custom_stylesheet.css' }}" target="_blank">
+                <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/custom_stylesheet.css'}}" download="{{'/custom_stylesheet.css'}}">
                   <span class="glyphicon glyphicon-download"></span>
-                  <span>{{ "View" | translate }}</span>
+                  <span>{{ "Download" | translate }}</span>
                 </a>
+                <div>
+                  <input ng-model="admin.node.reset_css" type="checkbox">
+                  <label>{{ "Reset custom CSS" | translate}}</label>
+                </div>
               </div>
-              <input ng-model="admin.node.reset_css" type="checkbox">
-              <label>{{ "Reset custom CSS" | translate}}</label>
             </div>
 
             <div class="form-group">
@@ -126,14 +128,18 @@ This comment is needed in order to push the following strings on transifex
                         <span class="progress-bar" style="width: 0%"></span>
                       </span>
                     </span>
-                    <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/l10n/' + language.code + '.json' }}" target="_blank">
+                    <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/l10n/' + language.code + '.json'}}" download="{{language.code + '.json'}}">
                       <span class="glyphicon glyphicon-download"></span>
-                      <span>{{ "View" | translate }}</span>
+                      <span>{{ "Download" | translate }}</span>
                     </a>
                     <a class="btn btn-danger" ng-class="{disabled: disabled}" ng-click="delete('/l10n/' + language.code + '.json')">
                       <span class="glyphicon glyphicon-trash"></span>
                       <span>{{ "Reset" | translate }}</span>
                     </a>
+                    <div>
+                      <input ng-model="admin.node.reset_css" type="checkbox">
+                      <label>{{ "Reset custom CSS" | translate}}</label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -162,6 +168,7 @@ This comment is needed in order to push the following strings on transifex
 
             <div class="form-group">
               <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
+                <i class="glyphicon glyphicon-ok"></i>
                 {{ "Update node" | translate }}
               </button>
             </div>

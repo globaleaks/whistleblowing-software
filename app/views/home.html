@@ -67,27 +67,32 @@
       <div class="modal-footer" ng-switch="" on="step">
         <div ng-switch-when="1">
            <a ng-click="goToStep(2)" class="btn btn-default">
-             {{ "Next" | translate }}
+             {{ "Next Step" | translate }}
+             <i class="glyphicon glyphicon-arrow-right"></i>
            </a>
         </div>
     
         <div ng-switch-when="2">
-           <a ng-click="goToStep(1)" class="btn btn-default">
-             {{ "Back" | translate }}
-           </a>
+          <a ng-click="goToStep(1)" class="btn btn-default">
+            <i class="glyphicon glyphicon-arrow-left"></i>
+            {{ "Previous Step" | translate }} 
+          </a>
       
-           <a ng-click="checkAnswer()" ng-disabled="!answer.value" class="btn btn-success">
-             {{ "Proceed" | translate }}
-           </a>
+          <a ng-click="checkAnswer()" ng-disabled="!answer.value" class="btn btn-success">
+            {{ "Proceed" | translate }}
+            <i class="glyphicon glyphicon-arrow-right"></i>
+          </a>
         </div>
 
         <div ng-switch-when="3">
           <a ng-click="goToStart()" ng-hide="correctAnswer" class="btn btn-default">
-             {{ "Back to start" | translate }}
-           </a>
+            <i class="glyphicon glyphicon-arrow-left"></i>
+            {{ "Back to start" | translate }}
+          </a>
 
           <a ng-click="goToSubmission()" ng-hide="!correctAnswer" ng-disabled="!answer.value" class="btn btn-warning">
-             {{ "Proceed to submission" | translate }}
+            {{ "Proceed to submission" | translate }}
+            <i class="glyphicon glyphicon-arrow-right"></i>
           </a>
 
         </div>
@@ -110,11 +115,13 @@
         </div>
         <div class="row" ng-show="!node_info.tor2web_submission && !anonymous">
           <button class="btn btn-danger disabled btn-lg">
+            <i class="glyphicon glyphicon-ban-circle"></i>
             {{ "Whistleblowing disabled" | translate }}
           </button>
         </div>
         <div class="row" ng-show="node_info.tor2web_submission || anonymous">
           <a ng-click="goToSubmission()" class="btn btn-primary btn-lg">
+            <i class="glyphicon glyphicon-upload"></i>
             {{ "Blow the Whistle" | translate }}
           </a>
         </div>
@@ -143,18 +150,19 @@
     <div class="row">
         <div class="col-md-6">
             <h3>
-                {{ "Are you a whistleblower?" | translate }}
+              {{ "Are you a whistleblower?" | translate }}
             </h3>
             <form class="form-horizontal" role="form">
                 <div class="form-group">
-                  <label class="col-md-4">
+                  <label class="col-md-12">
                     {{ "Enter your receipt" | translate }}
                   </label>
-                  <div class="col-md-6">
+                  <div class="col-md-offset-2 col-md-6">
                     <input class="form-control" ng-model="receipt" type="text">
                   </div>
                   <div class="col-md-2">
                     <a ng-click="view_tip(receipt)" class="btn btn-primary">
+                      <i class="glyphicon glyphicon-log-in"></i>
                       {{ "View Tip" | translate }}
                     </a>
                   </div>

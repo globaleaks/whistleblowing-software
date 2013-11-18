@@ -1,6 +1,6 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$routeParams', 'Tip', 'Contexts', 'ReceiverPreferences',
-  function($scope, $rootScope, $routeParams, Tip, Contexts, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Tip', 'Contexts', 'ReceiverPreferences',
+  function($scope, $rootScope, $location, $route, $routeParams, $http, Tip, Contexts, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
 
     if ($.cookie('role') === 'wb') {
@@ -92,8 +92,14 @@ GLClient.controller('StatusCtrl',
        $scope.tip.is_pertinent = false;
 
        $scope.tip.$update();
+       $scope.extendbutton = false;
+
+       $route.reload();
     }
 
+    $scope.deleteTip = function() {
+       return $http.delete('/tip/' + $scope.tip_id).success(function(data, status, headers, config){ $location.url('/receiver/tips'); });
+    }
 
   }]);
 

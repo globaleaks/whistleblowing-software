@@ -6,9 +6,28 @@ GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($sco
   $scope.active[current_menu] = "active";
 }]);
 
-GLClient.controller('ReceiverTipsCtrl', ['$scope', 'ReceiverTips',
-  function($scope, ReceiverTips) {
+GLClient.controller('ReceiverTipsCtrl', ['$scope', '$http', '$route', '$modal', 'ReceiverTips',
+  function($scope, $http, $route, $modal, ReceiverTips) {
   $scope.tips = ReceiverTips.query();
+
+  $scope.tip_delete = function (id) {
+    $scope.tip_id = id;
+    var modalInstance = $modal.open({
+      templateUrl: '/views/receiver/tip_delete_modal.html',
+      controller: ModalDeleteTipCtrl,
+      resolve: {
+        tip_id: function () {
+          return $scope.tip_id;
+        }
+      }
+    });
+
+    modalInstance.tip_delete_confirm = function (id) {
+      return $http.delete('/tip/' + id).success(function(data, status, headers, config){ $route.reload(); });
+    };
+
+  };
+
 }]);
 
 GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences', 'changePasswordWatcher',
@@ -64,3 +83,15 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
     }
 
 }]);
+
+var ModalDeleteTipCtrl = function ($scope, $modalInstance, tip_id) {
+
+  $scope.cancel = function () {
+    $modalInstance.close();
+  };
+
+  $scope.ok = function () {
+    $modalInstance.tip_delete_confirm(tip_id);
+    $modalInstance.close();
+  };
+};
