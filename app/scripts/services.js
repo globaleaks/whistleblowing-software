@@ -31,6 +31,7 @@ angular.module('resourceServices.authentication', [])
         },
 
         checkExpiration = function() {
+          var current_date = new Date();
           var expiration_date = $.cookie('session_expiration');
 
           if (expiration_date >= current_date) {

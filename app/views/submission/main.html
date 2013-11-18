@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="col-md-3">
-        <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
+        <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded col-md-12"></a>
       </div>
 
       <div class="col-md-9">
@@ -74,7 +74,7 @@
           <span class="lead">
           {{ "I want to report on" | translate }}: 
           </span>
-          <span class="label label-default">{{submission.current_context.name}}</span>
+          <span><b>{{submission.current_context.name}}</b></span>
         </div>
 
         <p>{{submission.current_context.description}}</p>
@@ -196,12 +196,14 @@
 
       <li ng-class="{disabled: !hasPreviousStep() || uploading}" class="previous">
         <a ng-click="decrementStep()">
-          ← {{ "Previous Step" | translate }}
+          <i class="glyphicon glyphicon-arrow-left"></i>
+          {{ "Previous Step" | translate }}
         </a>
       </li>
       <li class="next" ng-class="{disabled: uploading}" ng-hide="!hasNextStep()">
         <a ng-click="incrementStep()">
-          {{ "Next Step" | translate }} →
+          {{ "Next Step" | translate }}
+          <i class="glyphicon glyphicon-arrow-right"></i>
         </a>
       </li>
 
@@ -209,6 +211,7 @@
 
     <div class="pull-right">
       <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
+        <i class="glyphicon glyphicon-ok"></i>
         {{ "Submit" | translate }}
       </button>
     </div>

@@ -34,10 +34,12 @@ This comment is needed in order to push the following strings on transifex
 
                   <div class="col-md-6 editButtons" ng-show="editing">
                     <button class="btn btn-success saveContext" ng-disabled="contextForm.$pristine" ng-click="update(context)">
+                      <i class="glyphicon glyphicon-ok"></i>
                       {{ "Save" | translate }}
                     </button>
 
                     <button class="btn btn-danger deleteContext" ng-click="delete(context)">
+                      <i class="glyphicon glyphicon-remove"></i>
                       {{ "Delete" | translate }}
                     </button>
                   </div>
@@ -76,6 +78,7 @@ This comment is needed in order to push the following strings on transifex
                 </div>
 
                 <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">
+                  <i class="glyphicon glyphicon-plus"></i>
                   {{ "Advanced settings" | translate }}
                 </button>
  
@@ -113,18 +116,25 @@ This comment is needed in order to push the following strings on transifex
         </div>
 
         <div class="row">
-          <div class="col-md-6 configRow addContext">
-            <form name="newContext">
-              <div class="form-group">
-                <label>{{ "Add new context" | translate }}</label>
-                <input class="form-control" ng-model="new_context_name" required="" type="text">
-                <button class="btn btn-default" ng-disabled="newContext.$invalid" ng-click="admin.create_context(new_context_name)">
-                  {{ "add" | translate }}
-                </button>
-              </div>
-            </form>
+          <div class="col-md-6">
+            <div class="form-group">
+              <label>{{ "Add new context" | translate }}</label>
+              <input class="form-control" ng-model="new_context_name" required="" type="text">
+            </div>
           </div>
         </div>
+
+        <div class="row">
+          <div class="col-md-6">
+            <div class="form-group">
+              <button class="btn btn-success" ng-disabled="newContext.$invalid" ng-click="admin.create_context(new_context_name)">
+                <i class="glyphicon glyphicon-ok"></i>
+                {{ "Add" | translate }}
+              </button>
+            </div>
+          </div>
+        </div>
+
       </div>
       <!-- End Context List -->
     </div>

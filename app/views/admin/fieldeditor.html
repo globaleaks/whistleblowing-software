@@ -8,14 +8,12 @@
     </a>
   </div>
 </div>
-<div ng-repeat="field in context.fields" class="contextFields" ng-controller="AdminFieldEditorCtrl">
+<div ng-repeat="field in context.fields | orderBy:'presentation_order'" class="contextFields" ng-controller="AdminFieldEditorCtrl">
   <div class="field" ng-hide="editing" ng-click="editing=true">
-    {{field.name}}
+    {{field.name}}&nbsp;
     <a href="" data-content="{{field.hint}}" popover="{{field.name}}" popover-placement="right" popover-trigger="mouseenter">
       <i class="glyphicon glyphicon-question-sign"></i>
     </a>
-    <i class="type" ng-class="{'glyphicon glyphicon-font': field.type=='text',
-                             'glyphicon glyphicon-align-left': field.type=='textarea'}"></i>
   </div>
   <div class="fieldEditor" ng-show="editing">
     <div class="fieldEditorHeader field" ng-click="editing=false" ng-class="{invalid: newField.$invalid}">
@@ -68,6 +66,10 @@
               {{ "Email" | translate }}</option>
             </select>
           </div>
+          <div class="row col-md-offset-1 col-md-10">
+            <label>{{ "Presentation Order" | translate }}</label>
+            <input class="form-control" ng-model="field.presentation_order" type="number">
+          </div>
 
           <div ng-switch="" on="typeSwitch(field.type)">
             <div ng-switch-default=""></div>
@@ -84,7 +86,7 @@
               <div class="row col-md-offset-1 col-md-10">
                 <button class="btn btn-info" ng-click="addOption(field)">
                   <i class="glyphicon glyphicon-plus-sign"></i> 
-                  {{ "add option" | translate }}
+                  {{ "Add option" | translate }}
                 </button>
               </div>
             </div>

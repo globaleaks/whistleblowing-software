@@ -61,7 +61,8 @@ This comment is needed in order to push the following strings on transifex
           <div class="col-md-4">
 
             <button type="submit" class="btn btn-success" ng-disabled="mismatch_password || unsafe_password || missing_old_password" ng-click="pass_save()">
-                {{ "Change password" | translate }}
+              <i class="glyphicon glyphicon-ok"></i>
+              {{ "Change password" | translate }}
             </button>
 
         </div>
@@ -109,7 +110,8 @@ This comment is needed in order to push the following strings on transifex
                 </div>
 
                <button type="submit" class="btn btn-success" ng-click="pref_save()">
-                   {{ "Update notification settings" | translate }}
+                 <i class="glyphicon glyphicon-ok"></i>
+                 {{ "Update notification settings" | translate }}
                </button>
             </div>
         </div>
@@ -164,9 +166,12 @@ This comment is needed in order to push the following strings on transifex
               <pre>{{preferences.gpg_key_info}}</pre>
             </div>
 
-            <button class="btn btn-danger" ng-hide="preferences.gpg_key_fingerprint" ng-click="gpg_marketing = ! gpg_marketing" ng-init="gpg_marketing=false">
-              {{ "You've not enabled encryption!" | translate }}
-            </button>
+            <div class="form-group">
+              <button class="btn btn-danger" ng-hide="preferences.gpg_key_fingerprint" ng-click="gpg_marketing = ! gpg_marketing" ng-init="gpg_marketing=false">
+                <i class="glyphicon glyphicon-plus"></i>
+                {{ "You've not enabled encryption!" | translate }}
+              </button>
+            </div>
 
             <div class="clearfix" ng-show="gpg_marketing">
               <p>
@@ -175,10 +180,11 @@ This comment is needed in order to push the following strings on transifex
               </p>
             </div>
 
-            <div class="clearfix">
-              <a ng-init="send_key=false" ng-click="send_key = ! send_key">
-               {{ "Submit a gpg key" | translate }}
-              </a>
+            <div class="form-group">
+              <button class="btn btn-success" ng-init="send_key=false" ng-click="send_key = ! send_key">
+                <i class="glyphicon glyphicon-plus"></i>
+                {{ "Submit a gpg key" | translate }}
+              </button>
             </div>
 
             <div class="form-group" ng-show="send_key">
@@ -195,6 +201,7 @@ This comment is needed in order to push the following strings on transifex
 
             <div class="form-group">
               <button type="submit" class="btn btn-success" ng-click="pref_save()">
+                <i class="glyphicon glyphicon-ok"></i>
                 {{ "Update notification and encryption settings" | translate }}
               </button>
             </div>
