@@ -1,3 +1,4 @@
+# -*- coding: UTF-8
 #
 # Notification
 # ************
@@ -8,7 +9,7 @@
 # one of the various plugins (used by default, but still an optional adoptions)
 
 from globaleaks.utils.utility import log, very_pretty_date_time
-from globaleaks.utils.mailutils import sendmail, collapse_mail_content, rfc822_date
+from globaleaks.utils.mailutils import sendmail, MIME_mail_build
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBGPG
 from globaleaks.models import Receiver
@@ -198,27 +199,17 @@ class MailNotification(Notification):
 
         receiver_mail = event.receiver_info['notification_fields']['mail_address']
 
-        # Compose the email having the system+subject+recipient data
-        mail_building = ["Date: %s" % rfc822_date(),
-                         "From: \"%s\" <%s>" % (
-                             GLSetting.memory_copy.notif_source_name,
-                             GLSetting.memory_copy.notif_source_email ),
-                         "To: %s" % receiver_mail,
-                         "Subject: %s" % title,
-                         "Content-Type: text/plain; charset=ISO-8859-1",
-                         "Content-Transfer-Encoding: 8bit",
-                         None,
-                         body]
-
         # XXX here can be catch the subject (may change if encrypted or whatever)
-
-        # appending 'None' it's used to mean "\n" without being escaped by collapse_mail_content
-
-        message = collapse_mail_content(mail_building)
+        message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,
+                                  GLSetting.memory_copy.notif_source_email,
+                                  event.receiver_info['name'],
+                                  receiver_mail,
+                                  title,
+                                  body)
 
         if not message:
             log.err("Unable to format (and then notify!) email for %s" % receiver_mail)
-            log.debug(mail_building)
+            log.debug(body)
             return None
 
         self.finished = self.mail_flush(event.notification_settings['source_email'],

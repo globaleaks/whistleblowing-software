@@ -1,4 +1,5 @@
 # -*- coding: UTF-8
+#
 #   mailutils
 #   *********
 #
@@ -23,6 +24,11 @@ from twisted.python.failure import Failure
 from OpenSSL import SSL
 from txsocksx.client import SOCKS5ClientEndpoint
 
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.header import Header
+from email import Charset
+
 from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 from globaleaks import __version__
@@ -33,13 +39,13 @@ def rfc822_date():
     holy stackoverflow:
     http://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
     """
-    nowdt = datetime.utcnow()
+    nowdt = datetime.utcnow() - timedelta(seconds=time.timezone)
     nowtuple = nowdt.timetuple()
     nowtimestamp = time.mktime(nowtuple)
     return mailutils.formatdate(nowtimestamp)
 
 def sendmail(authentication_username, authentication_password, from_address,
-             to_address, message_file, smtp_host, smtp_port, security, event=None):
+             to_address, message_file, smtp_host, smtp_port, security, event):
     """
     Sends an email using SSLv3 over SMTP
 
@@ -50,8 +56,8 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param message_file: the message content its a StringIO
     @param smtp_host: the smtp host
     @param smtp_port: the smtp port
-    @param event: the event description, needed to keep track of failure/success
     @param security: may need to be STRING, here is converted at start
+    @param event: the event description, needed to keep track of failure/success
     """
     def printError(reason, event):
         if isinstance(reason, Failure):
@@ -69,6 +75,7 @@ def sendmail(authentication_username, authentication_password, from_address,
         log.err(reason)
 
     def handle_error(reason, *args, **kwargs):
+        # XXX event is not an argument here ?
         printError(reason, event)
         return result_deferred.errback(reason)
 
@@ -136,6 +143,52 @@ def sendmail(authentication_username, authentication_password, from_address,
         return fail()
 
     return result_deferred
+
+
+def MIME_mail_build(source_name, source_mail, receiver_name, receiver_mail, title, txt_body):
+
+    # Override python's weird assumption that utf-8 text should be encoded with
+    # base64, and instead use quoted-printable (for both subject and body).  I
+    # can't figure out a way to specify QP (quoted-printable) instead of base64 in
+    # a way that doesn't modify global state. :-(
+
+    Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')
+
+    # This example is of an email with text and html alternatives.
+    multipart = MIMEMultipart('alternative')
+
+    # We need to use Header objects here instead of just assigning the strings in
+    # order to get our headers properly encoded (with QP).
+    # You may want to avoid this if your headers are already ASCII, just so people
+    # can read the raw message without getting a headache.
+    multipart['Subject'] = Header(title.encode('utf-8'), 'UTF-8').encode()
+    multipart['Date'] = rfc822_date()
+
+    multipart['To'] = Header(receiver_name.encode('utf-8'), 'UTF-8').encode() + \
+                        " <" + receiver_mail + ">"
+
+    multipart['From'] = Header(source_name.encode('utf-8'), 'UTF-8').encode() + \
+                        " <" + source_mail + ">"
+
+    multipart['X-Mailer'] = "fnord"
+
+    # Attach the parts with the given encodings.
+    # html = '<html>...</html>'
+    # htmlpart = MIMEText(html.encode('utf-8'), 'html', 'UTF-8')
+    # multipart.attach(htmlpart)
+
+    textpart = MIMEText(txt_body.encode('utf-8'), 'plain', 'UTF-8')
+    multipart.attach(textpart)
+
+    # And here we have to instantiate a Generator object to convert the multipart
+    # object to a string (can't use multipart.as_string, because that escapes
+    # "From" lines).
+    try:
+        io = StringIO.StringIO(multipart.as_string())
+        return io
+    except Exception as excep:
+        log.err("Unable to encode and email: %s" % excep)
+        return None
 
 
 def collapse_mail_content(mixed_list):
