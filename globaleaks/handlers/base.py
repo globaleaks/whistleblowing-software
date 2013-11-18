@@ -175,7 +175,6 @@ class GLHTTPServer(HTTPConnection):
             if self.transport:
                 self.transport.loseConnection()
 
-
 class BaseBaseHandler(RequestHandler):
     xsrf_cookie_name = "XSRF-TOKEN"
 
@@ -538,6 +537,19 @@ class BaseHandler(BaseBaseHandler):
             mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
+    def get_uploaded_file(self):
+	uploaded_file = self.request.body
+
+        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
+            raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
+
+        for filekey in uploaded_file.keys():
+            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
+                raise errors.InvalidInputFormat(
+                    "Invalid JSON key in uploaded file (%s)" % filekey)
+
+	return uploaded_file
+
 class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
     def prepare(self):
         """
@@ -563,14 +575,27 @@ class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
         self.clear_header("Expires")
 
 
+    def get_uploaded_file(self):
+	uploaded_file = self.request.body
+
+        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
+            raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
+
+        for filekey in uploaded_file.keys():
+            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
+                raise errors.InvalidInputFormat(
+                    "Invalid JSON key in uploaded file (%s)" % filekey)
+
+	return uploaded_file
+
+
 class CSSStaticFileHandler(BaseStaticFileHandler):
     """
-    This class is used to return the custom CSS file, if
-    the file is not present, is returned 200 with an empty content
+    This class is used to return the custom CSS file; 
+    if the file is not present, 200 is returned with an empty content
     """
 
     def get(self, path, include_body=True):
-
         path = self.parse_url_path(path)
         abspath = os.path.abspath(os.path.join(self.root, path))
         if os.path.isfile(abspath):

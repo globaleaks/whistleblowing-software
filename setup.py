@@ -39,7 +39,7 @@ def get_requires():
         requires = map(pip_to_requirements, f.readlines())
         return requires
 
-def get_files(path):
+def list_files(path):
     result = []
     for f in os.listdir(path):
         result.append(os.path.join(path, f))
@@ -48,15 +48,15 @@ def get_files(path):
 
 data_files = [
     ('/usr/share/globaleaks/glclient',
-     get_files(os.path.join(glclient_path))),
+     list_files(os.path.join(glclient_path))),
     ('/usr/share/globaleaks/glclient/fonts',
-     get_files(os.path.join(glclient_path, 'fonts'))),
+     list_files(os.path.join(glclient_path, 'fonts'))),
     ('/usr/share/globaleaks/glclient/img',
-     get_files(os.path.join(glclient_path, 'img'))),
+     list_files(os.path.join(glclient_path, 'img'))),
     ('/usr/share/globaleaks/glclient/l10n',
-     get_files(os.path.join(glclient_path, 'l10n'))),
+     list_files(os.path.join(glclient_path, 'l10n'))),
     ('/usr/share/globaleaks/glbackend',
-     ['requirements.txt'] + get_files('staticdata'))
+     ['requirements.txt'] + list_files('staticdata'))
 ]
 
 print data_files
