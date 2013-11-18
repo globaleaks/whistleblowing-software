@@ -139,8 +139,7 @@ spec.append(
 
 spec.append(
     (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json', admlangfiles.LanguageFileHandler, {
-        'path': GLSetting.static_path,
-        'default_filename': '/static/custom_stylesheet.css'
+        'path': GLSetting.static_path
     })
 )
 
