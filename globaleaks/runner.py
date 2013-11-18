@@ -73,8 +73,9 @@ def start_asynchronous():
     #                                 start_date=utc_future_date(seconds=50))
 
     #stats_sched = statistics_sched.APSStatistics()
-    #stats_sched.force_execution(GLAsynchronous, seconds=9)
-    #GLAsynchronous.add_interval_job(stats_sched.operation, seconds=GLSetting.statistics_interval)
+    #GLAsynchronous.add_interval_job(stats_sched.operation,
+    #                                seconds=GLSetting.statistics_interval,
+    #                                start_date=utc_future_date(seconds=10))
 
 from twisted.scripts._twistd_unix import ServerOptions, UnixApplicationRunner
 ServerOptions = ServerOptions
