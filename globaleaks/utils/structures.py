@@ -161,7 +161,7 @@ class Fields:
         if not strict_validation:
             return
 
-        log.debug("fields strict validation: %s (optional %s)" % (required_keys, optional_keys))
+        #log.debug("fields strict validation: %s (optional %s)" % (required_keys, optional_keys))
 
         for required in required_keys:
 
