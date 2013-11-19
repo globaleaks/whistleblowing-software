@@ -95,18 +95,15 @@ spec = [
     (r'/admin/notification', admin.NotificationInstance),
 
     #  A7
-    (r'/admin/staticfiles', admstaticfiles.StaticFileCollection),
+    (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance),
 
     #  A8
-    (r'/admin/staticfiles/' + GLSetting.staticfile_regexp, admstaticfiles.StaticFileInstance),
-
-    #  A9
     (r'/admin/overview/tips', overview.Tips),
 
-    #  AA
+    #  A9
     (r'/admin/overview/users', overview.Users),
 
-    #  AB
+    #  AA
     (r'/admin/overview/files', overview.Files),
 ]
 

@@ -36,12 +36,10 @@ class LanguageFileHandler(BaseStaticFileHandler):
         return os.path.abspath(os.path.join(self.root, 'l10n', ('%s.json') % lang))
 
     @inlineCallbacks
-    def post(self, path):
+    def post(self, lang):
         """
         Upload a custom language file
         """
-        lang = os.path.join(self.parse_url_path(path))
-        print lang
         start_time = time.time()
 
         uploaded_file = self.get_uploaded_file()
@@ -63,8 +61,7 @@ class LanguageFileHandler(BaseStaticFileHandler):
         self.finish(dumped_file)
 
 
-    def get(self, path, include_body=True):
-        lang = os.path.join(self.parse_url_path(path))
+    def get(self, lang, include_body=True):
         if os.path.isfile(self.custom_langfile_path(lang)):
             StaticFileHandler.get(self, self.custom_langfile_path(lang), include_body)
         else:
@@ -73,12 +70,11 @@ class LanguageFileHandler(BaseStaticFileHandler):
             StaticFileHandler.get(self, self.langfile_path(lang), include_body)
 
 
-    def delete(self, path):
+    def delete(self, lang):
         """
         Parameter: filename
         Errors: LangFileNotFound
         """
-        lang = os.path.join(self.parse_url_path(path))
         if not os.path.exists(self.custom_langfile_path(lang)):
             raise errors.LangFileNotFound
 
