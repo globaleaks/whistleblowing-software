@@ -75,7 +75,7 @@
         </a>
         <div ng-show="extendbutton">
           <p class="alert alert-danger">
-            {{ "Clicking extend you will extend the Tip expiration date to:" | translate }}
+            {{ "Clicking extend, you will extend the Tip expiration date to:" | translate }}
             {{ tip.potential_expiration_date | date:'yyyy-MM-dd HH:mm' }}
             <br />
             <button type="submit" class="btn btn-danger" ng-click="extendTip()">
@@ -94,7 +94,7 @@
         <div ng-show="deletebutton">
           <p class="alert alert-danger">
             {{ "Are you sure you want to delete the tip?" | translate }}
-            {{ "Please take care that all the associated data will be lost." | translate}}
+            {{ "Please take care that all associated data will be properly deleted." | translate}}
             <br />
             <button type="submit" class="btn btn-danger" ng-click="deleteTip()">
               <i class="glyphicon glyphicon-trash"></i>

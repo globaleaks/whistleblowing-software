@@ -110,15 +110,15 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
     }
 
     $scope.customCSSUrl = function() {
-      return "/admin/staticfiles?custom_stylesheet";
+      return "/admin/staticfiles/custom_stylesheet";
     }
 
     $scope.customCSSReloadUrl = function() {
-      return "/static" + "custom_stylesheet.css?" + $scope.randomFluff;
+      return "/static" + "custom_stylesheet?" + $scope.randomFluff;
     }
 
     $scope.receiverImgUrl = function() {
-      return "/admin/staticfiles?" + $scope.receiver.receiver_gus;
+      return "/admin/staticfiles/" + $scope.receiver.receiver_gus;
     }
 
     $scope.receiverImgReloadUrl = function() {
