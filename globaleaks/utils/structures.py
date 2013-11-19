@@ -82,8 +82,6 @@ class Fields:
             existing_keys.append(key)
 
             self._fields[key] = dict(field_desc)
-            # XXX https://github.com/globaleaks/GlobaLeaks/issues/700
-            self._fields[key]['presentation_order'] = admin_order
 
             if not self._localization.has_key(language):
                 self._localization[language] = dict()
