@@ -5,12 +5,20 @@
       <h2>Delete Tip</h2>
     </div>
     <div class="modal-body">
-      <h3>{{ "Are you sure you want to delete the tip?" | translate }}</h3>
-      <h3 class="label label-danger">{{ "Please take care that all the associated data will be lost" | translate}}</h3>
+      <div class="alert alert-danger">
+        <h3>
+          {{ "Are you sure you want to delete the tip?" | translate }}
+          <br />
+          {{ "Please take care that all the associated data will be lost." | translate}}
+        </h3>
     </div>
     <div class="modal-footer">
-      <button type="button" class="btn" ng-click="cancel()">Close</button>
-      <button class="btn btn-primary" ng-click="ok(tip)">{{ "Confirm Deletion" | translate }}</button>
+      <button type="button" class="btn" ng-click="cancel()">
+        {{ "Cancel" | translate }}
+      </button>
+      <button class="btn btn-danger" ng-click="ok(tip)">
+        {{ "Confirm Deletion" | translate }}
+      </button>
     </div>
   </div>
 </div>
