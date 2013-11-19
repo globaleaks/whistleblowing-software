@@ -46,7 +46,7 @@ def rfc822_date():
     return mailutils.formatdate(nowtimestamp)
 
 def sendmail(authentication_username, authentication_password, from_address,
-             to_address, message_file, smtp_host, smtp_port, security, event):
+             to_address, message_file, smtp_host, smtp_port, security, event=None):
     """
     Sends an email using SSLv3 over SMTP
 
