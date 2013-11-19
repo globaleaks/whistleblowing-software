@@ -1,11 +1,11 @@
-Twisted==13.1.0
+Twisted==13.2.0
 apscheduler==2.1.1
 zope.component==4.1.0
 zope.interface==4.0.5
 cyclone==1.1
 Storm==0.20
 transaction==1.4.1
-txsocksx==1.13.0.0rc2
+txsocksx==1.13.0.1
 Parsley==1.2
 pycrypto==2.6
 scrypt==0.6.1

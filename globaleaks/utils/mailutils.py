@@ -61,8 +61,6 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param event: the event description, needed to keep track of failure/success
     """
     def printError(reason, event):
-        if isinstance(reason, Failure):
-            reason = reason.type
 
         # XXX is catch a wrong TCP port, but not wrong SSL protocol, here
         if event:
@@ -71,9 +69,10 @@ def sendmail(authentication_username, authentication_password, from_address,
         # TODO specify a ticket - make event an Obj instead of a namedtuple
         # TODO It's defined in plugin/base.py
 
-        log.err("Failed to contact %s:%d (Sock Error %s)" %
-                (smtp_host, smtp_port, reason))
-        log.err(reason)
+        if isinstance(reason, Failure):
+            log.err("Failed to contact %s:%d (Sock Error %s)" %
+                    (smtp_host, smtp_port, reason.type))
+            log.err(reason)
 
     def handle_error(reason, *args, **kwargs):
         # XXX event is not an argument here ?
@@ -131,7 +130,7 @@ def sendmail(authentication_username, authentication_password, from_address,
 
         if GLSetting.tor_socks_enable:
             socksProxy = TCP4ClientEndpoint(reactor, GLSetting.socks_host, GLSetting.socks_port)
-            endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
+            endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
         else:
             endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
 
