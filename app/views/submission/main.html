@@ -254,8 +254,9 @@
 
       </div>
       <div class="modal-footer">
-        <a ng-click="view_tip(submission.receipt)" ng-disabled="submission.receipt != receiptConfirmation" class="btn btn-primary">
-           {{ "View Tip" | translate }}
+        <a ng-click="view_tip(submission.receipt)" ng-disabled="submission.receipt != receiptConfirmation" class="btn btn-success">
+         <i class="glyphicon glyphicon-log-in"></i>
+         {{ "View Tip" | translate }}
         </a>
       </div>
     </div>

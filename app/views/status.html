@@ -18,10 +18,8 @@
     </div>
   </div>
 
-  <div class="col-md-4">
+  <div class="col-md-6">
     <div class="col-md-12">
-
-      <h3>{{ "Context details" | translate }}</h3>            
       <dl>
         <dt>{{ "Context" | translate }}</dt>
         <dd>
@@ -65,60 +63,9 @@
         </div>
       </dl>
     </div>
+  </div>
 
-    <div class="col-md-12">
-      <h3>
-        {{ "Comments" | translate }}
-      </h3>
-      <div ng-repeat="comment in tip.comments">
-        <div ng-switch="" on="comment.source">
-
-          <div ng-switch-when="whistleblower" class="alert alert-info">
-            <strong>
-              {{ "Whistleblower" | translate }}
-            </strong> {{comment.content}}
-          </div>
-
-          <div ng-switch-when="receiver" class="alert alert-success">
-            <strong>{{comment.author}}</strong> {{comment.content}}
-          </div>
-
-          <div ng-switch-when="system" class="alert alert-warning">
-            <strong>
-              {{ "System" | translate }}
-            </strong>
-              <!-- {{comment.content}} -->
-              <div ng-switch="" on="comment.system_content.type">
-                 <div ng-switch-when="1">
-                   {{ "The user" | translate }}
-                   {{comment.system_content.receiver_name}}
-                   {{ "In date" | translate }}
-                   {{comment.system_content.now | date:'yyyy-MM-dd HH:mm' }}
-                   {{ "has postponed Tip expiration to" | translate }}
-                   {{comment.system_content.expire_on | date:'yyyy-MM-dd HH:mm' }}
-                 </div>
-              </div>
-          </div>
-
-          <div ng-switch-default="" class="label label-danger">
-            <strong>
-              {{ "Malformed source" | translate }}
-            </strong>
-          </div>
-
-        </div>
-      </div>
-
-      <textarea ng-model="newCommentContent" class="form-control"></textarea>
-      <br />
-      <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
-        <i class="glyphicon glyphicon-comment"></i>
-        {{ "Add Comment" | translate }}
-      </button>
-    </div>
-   </div>
-
-  <div class="col-md-8">
+  <div class="col-md-6">
     <div class="col-md-12" ng-show="tip.im_receiver">
       <h3>{{ "Options" }}</h3>
       <div ng-show="tip.im_receiver_postponer">
@@ -256,6 +203,59 @@
       </div>
     </div>
   </div>
+  <hr>
+    <div class="col-md-12">
+      <h3>
+        {{ "Comments" | translate }}
+      </h3>
+      <div ng-repeat="comment in tip.comments">
+        <div ng-switch="" on="comment.source">
+
+          <div ng-switch-when="whistleblower" class="alert alert-info">
+            <strong>
+              {{ "Whistleblower" | translate }}
+            </strong> {{comment.content}}
+          </div>
+
+          <div ng-switch-when="receiver" class="alert alert-success">
+            <strong>{{comment.author}}</strong> {{comment.content}}
+          </div>
+
+          <div ng-switch-when="system" class="alert alert-warning">
+            <strong>
+              {{ "System" | translate }}
+            </strong>
+              <!-- {{comment.content}} -->
+              <div ng-switch="" on="comment.system_content.type">
+                 <div ng-switch-when="1">
+                   {{ "The user" | translate }}
+                   {{comment.system_content.receiver_name}}
+                   {{ "In date" | translate }}
+                   {{comment.system_content.now | date:'yyyy-MM-dd HH:mm' }}
+                   {{ "has postponed Tip expiration to" | translate }}
+                   {{comment.system_content.expire_on | date:'yyyy-MM-dd HH:mm' }}
+                 </div>
+              </div>
+          </div>
+
+          <div ng-switch-default="" class="label label-danger">
+            <strong>
+              {{ "Malformed source" | translate }}
+            </strong>
+          </div>
+
+        </div>
+      </div>
+
+      <textarea ng-model="newCommentContent" class="form-control"></textarea>
+      <br />
+      <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
+        <i class="glyphicon glyphicon-comment"></i>
+        {{ "Add Comment" | translate }}
+      </button>
+    </div>
+   </div>
+
 </div>
 
 <div class="container statusPage ng-cloak" ng-show="tip.im_whistleblower && tip.im_receiver">

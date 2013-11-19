@@ -32,6 +32,27 @@ GLClient.controller('ReceiverTipsCtrl', ['$scope', '$http', '$route', '$modal', 
 
 GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences', 'changePasswordWatcher',
   function($scope, $rootScope, ReceiverPreferences, changePasswordWatcher) {
+
+    $scope.tabs = [
+      { title:"Password Configuration", template:"/views/receiver/preferences_tab1.html",
+        ctrl: function($scope){
+          $scope.id = 1;
+        }    
+      },
+      { title:"Notification Settings", template:"/views/receiver/preferences_tab2.html",
+        ctrl: function($scope){
+          $scope.id = 2;
+        }
+      },
+      { title:"Encryption Settings", template:"/views/receiver/preferences_tab3.html",
+        ctrl: function($scope){
+          $scope.id = 3;
+        }
+      }
+    ];
+
+    $scope.navType = 'pills';
+
     $scope.preferences = ReceiverPreferences.get();
 
     changePasswordWatcher($scope, "preferences.old_password",
