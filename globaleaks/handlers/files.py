@@ -287,7 +287,7 @@ def download_file(store, tip_id, file_id):
 
 class Download(BaseHandler):
 
-    @authenticated('receiver')
+    @unauthenticated
     @inlineCallbacks
     def get(self, tip_gus, file_gus, *uriargs):
 
