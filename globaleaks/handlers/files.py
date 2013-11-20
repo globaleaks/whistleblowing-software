@@ -11,11 +11,11 @@ import time
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
-from cyclone.web import os
+from cyclone.web import os, StaticFileHandler
 from Crypto.Hash import SHA256
 
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.rest import errors
@@ -287,7 +287,7 @@ def download_file(store, tip_id, file_id):
 
 class Download(BaseHandler):
 
-    @unauthenticated
+    @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_gus, file_gus, *uriargs):
 
@@ -436,4 +436,20 @@ class ZipDownload(BaseHandler):
             pass
 
 
+class CSSStaticFileHandler(BaseStaticFileHandler):
+    """
+    This class is used to return the custom CSS file; 
+    if the file is not present, 200 is returned with an empty content
+    """
 
+    @unauthenticated
+    def get(self, path, include_body=True):
+        self.set_header('Content-Type', 'text/css')
+        path = self.parse_url_path(path)
+        abspath = os.path.abspath(os.path.join(self.root, path))
+        if os.path.isfile(abspath):
+            StaticFileHandler.get(self, path, include_body)
+        else:
+            # empty CSS and avoid 404 error log
+            self.set_status(200)
+            self.finish()

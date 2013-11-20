@@ -100,7 +100,7 @@ def reserved_name_check(target_string, original_fname):
             raise errors.ReservedFileName
         image = True
 
-    if re.match(uuid_regexp, target_string[:36]): # an UUID is long 36 byte
+    if re.match(uuid_regexp, target_string[:36]): # an UUID is long 36 bytes
         if len(target_string) > 36:
             raise errors.ReservedFileName
         image = True
@@ -124,7 +124,8 @@ def reserved_name_check(target_string, original_fname):
         if original_fname.lower().endswith(GLSetting.css_extensions):
             return True
 
-        # Extension error management: same comment of 19 lines ago
+        # Invalid format check: this is not the right way, but at the
+        # moment we're not including any magic-* in fear of the code surface!
         log.debug("Invalid CSS extension in %s (permitted only %s)" %
                   (original_fname, GLSetting.css_extensions))
         raise errors.InvalidInputFormat("Extension not accepted for CSS")
@@ -142,7 +143,7 @@ def receiver_pic_path(store, receiver_uuid):
 
     return os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
 
-class StaticFileCollection(BaseHandler):
+class StaticFileInstance(BaseHandler):
     """
     Complete CRUD implementation using the filename instead of UUIDs
     """
@@ -150,13 +151,13 @@ class StaticFileCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *args):
+    def post(self, filename):
         """
         Upload a new file
         """
         start_time = time.time()
 
-        uploaded_file = self.request.body
+        uploaded_file = self.get_uploaded_file()
 
         # currently the static file upload is used to handle only
         # images uploads for Node and for Receivers so that all the logic
@@ -164,28 +165,19 @@ class StaticFileCollection(BaseHandler):
         # a file stream, not a python dict, and we're not checking exactly
         # what's has been uploaded. this code is run only by admin, but: XXX remind
 
-        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
-            raise errors.InvalidInputFormat("Expected a dict of four keys in StaticFileCollection")
-
-        for filekey in uploaded_file.keys():
-            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
-                raise errors.InvalidInputFormat(
-                    "Invalid JSON key in StaticFileCollection (%s)" % filekey)
-
-        if not reserved_name_check(self.request.query, uploaded_file['filename']):
+        if not reserved_name_check(filename, uploaded_file['filename']):
             raise errors.InvalidInputFormat("Unexpected name")
 
-        requested_fname = self.request.query
-        # the 'filename' key present in the uploaded_file dict, is ignored
+        # the 'filename' key present in the uploaded_file dict is ignored
 
-        if requested_fname == GLSetting.reserved_names.logo:
+        if filename == GLSetting.reserved_names.logo:
             try:
                 gl_file_path = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_names.logo)
-                log.debug("Received request to update Node logo in %s" % uploaded_file['filename'])
+                log.debug("Received request to update Node logo with %s" % uploaded_file['filename'])
             except Exception as excpd:
                 log.err("Exception raise saving Node logo: %s" % excpd)
                 raise errors.InternalServerError(excpd.__repr__())
-        elif requested_fname == GLSetting.reserved_names.css:
+        elif filename == GLSetting.reserved_names.css:
             try:
                 gl_file_path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
                 log.debug("Received request to update custom CSS with %s" % uploaded_file['filename'])
@@ -194,14 +186,14 @@ class StaticFileCollection(BaseHandler):
                 raise errors.InternalServerError(excpd.__repr__())
         else:
             try:
-                gl_file_path = yield receiver_pic_path(requested_fname)
-                log.debug("Received request to update Receiver portrait for %s" % requested_fname)
+                gl_file_path = yield receiver_pic_path(filename)
+                log.debug("Received request to update Receiver portrait with %s" % filename)
             except errors.ReceiverGusNotFound as excpd:
-                log.err("Invalid Receiver ID specified: %s" % requested_fname)
+                log.err("Invalid Receiver ID specified: %s" % filename)
                 raise excpd
             except Exception as excpd:
-                log.err("Exception raised while saving Receiver %s portrait %s" %
-                        (requested_fname, excpd))
+                log.err("Exception raised while saving Receive portrait with %s: %s" %
+                        (filename, excpd))
                 raise errors.InternalServerError(excpd.__repr__())
 
         try:
@@ -232,12 +224,6 @@ class StaticFileCollection(BaseHandler):
         self.set_status(200)
         self.finish(get_stored_files())
 
-
-class StaticFileInstance(BaseHandler):
-    """
-    This interface do not support at the moment GET and PUT, because the only
-    useful function in this case is the single deletion.
-    """
 
     @transport_security_check('admin')
     @authenticated('admin')

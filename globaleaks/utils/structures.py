@@ -61,9 +61,6 @@ class Fields:
         # admin var, in order to keep track of the real existing keys
         existing_keys = []
 
-        # XXX admin_order would be removed when presentation_order
-        # is correctly implemented in GLClient
-        # https://github.com/globaleaks/GlobaLeaks/issues/700
         for admin_order, field_desc in enumerate(admin_data):
 
             check_type = field_desc['type']
@@ -82,8 +79,6 @@ class Fields:
             existing_keys.append(key)
 
             self._fields[key] = dict(field_desc)
-            # XXX https://github.com/globaleaks/GlobaLeaks/issues/700
-            self._fields[key]['presentation_order'] = admin_order
 
             if not self._localization.has_key(language):
                 self._localization[language] = dict()
@@ -93,8 +88,6 @@ class Fields:
             # init localization track
             self._localization[language][key].update({'name' : field_desc['name']})
             self._localization[language][key].update({'hint' : field_desc['hint']})
-
-            # assign presentation order
 
             del self._fields[key]['name']
             del self._fields[key]['hint']

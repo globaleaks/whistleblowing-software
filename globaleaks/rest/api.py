@@ -10,7 +10,7 @@
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
 from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles, admlangfiles, overview
-from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler, CSSStaticFileHandler
+from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.rest.base import uuid_regexp
 
 # Here is mapped a path and the associated class to be invoked,
@@ -98,18 +98,15 @@ spec = [
     (r'/admin/notification', admin.NotificationInstance),
 
     #  A7
-    (r'/admin/staticfiles', admstaticfiles.StaticFileCollection),
+    (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance),
 
     #  A8
-    (r'/admin/staticfiles/' + GLSetting.staticfile_regexp, admstaticfiles.StaticFileInstance),
-
-    #  A9
     (r'/admin/overview/tips', overview.Tips),
 
-    #  AA
+    #  A9
     (r'/admin/overview/users', overview.Users),
 
-    #  AB
+    #  AA
     (r'/admin/overview/files', overview.Files),
 ]
 
@@ -134,7 +131,7 @@ spec.append(
 ## Special files (Custom CSS, l10n/$lang.json)
 
 spec.append(
-    (r'/(custom_stylesheet.css)', CSSStaticFileHandler, {
+    (r'/(custom_stylesheet.css)', files.CSSStaticFileHandler, {
         'path': GLSetting.static_path,
         'default_filename': '/static/custom_stylesheet.css'
     })

@@ -748,9 +748,9 @@ class ContextInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(response)
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def delete(self, context_gus, *uriargs):
         """
         Request: adminContextDesc

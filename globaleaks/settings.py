@@ -132,13 +132,13 @@ class GLSettingsClass:
         self.failed_login_attempts_wb = 0   # and resetted by session_management sched
 
         # static file rules
-        self.staticfile_regexp = r'(\w+)\.(\w+)'
+        self.staticfile_regexp = r'(.*)'
         self.staticfile_overwrite = False
         self.images_extensions = (".jpg", ".jpeg", ".png", ".gif")
         self.css_extensions = (".css")
         self.reserved_names = OD()
-        self.reserved_names.logo = "globaleaks_logo" # .png
-        self.reserved_names.css = "custom_stylesheet" # .css
+        self.reserved_names.logo = "globaleaks_logo"
+        self.reserved_names.css = "custom_stylesheet"
 
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
