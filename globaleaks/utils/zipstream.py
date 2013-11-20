@@ -1,16 +1,17 @@
+# -*- coding: utf-8 -*-
+#
+#  zipstream
+#  *********
+#
+# Utility derived from https://github.com/SpiderOak/ZipStream
+# changed heavily for our purpose (that's the reason why is not in third party)
+# Initially derived from zipfile.py
 
-"""
-Iterable ZIP archive genrator.
-
-Derived directly from zipfile.py
-"""
 import struct, os, time, sys
 import binascii
+import zlib
 
-try:
-    import zlib # We may need its compression method
-except ImportError:
-    zlib = None
+from globaleaks.utils.utility import log
 
 __all__ = ["ZIP_STORED", "ZIP_DEFLATED", "ZipStream"]
 
@@ -171,34 +172,35 @@ class ZipInfo (object):
                  self.compress_type, dostime, dosdate, CRC,
                  compress_size, file_size,
                  len(self.filename), len(extra))
-        return header + self.filename + extra
 
+        # This operation causes that filename can't be unicode
+        # It's the first in this file
+        return header + self.filename + extra
 
 
 class ZipStream:
     """
     """
 
-    def __init__(self, path, arc_path='', compression=ZIP_DEFLATED):
-        if compression == ZIP_STORED:
-            pass
-        elif compression == ZIP_DEFLATED:
-            if not zlib:
-                raise RuntimeError,\
-                      "Compression requires the (missing) zlib module"
-        else:
-            raise RuntimeError, "That compression method is not supported"
+    def __init__(self, serialized_files):
+        """
+        @param path:
+        @param arc_path:
+        @param compression:
+        @return:
+        """
 
         self.filelist = []              # List of ZipInfo instances for archive
-        self.compression = compression  # Method of compression
-	self.path = path if isinstance(path, list) else [path] # source path / list of paths
-        self.arc_path = arc_path        # top level path in archive
+        self.compression = ZIP_DEFLATED  # Method of compression
+        self.serialized_files = serialized_files
         self.data_ptr = 0               # Keep track of location inside archive
 
     def __iter__(self):
-	for p in self.path:
-            for data in self.zip_path(p, self.arc_path):
-	        yield data
+
+        for sf in self.serialized_files:
+            log.debug("Compressing (%s)" % sf['name'])
+            for data in self.zip_file(sf['path'], sf['name']):
+                yield data
 
         yield self.archive_footer()
 
@@ -213,41 +215,9 @@ class ZipStream:
         self.data_ptr += len(data)
         return data
 
-    def zip_path(self, path, archive_dir_name):
-        """Recursively generate data to add directory tree or file pointed to by
-        path to the archive. Results in archive containing
-
-        archive_dir_name/basename(path)
-        archive_dir_name/basename(path)/*
-        archive_dir_name/basename(path)/*/*
-        .
-        .
-        .
-        
-
-        path -- path to file or directory
-        archive_dir_name -- name of containing directory in archive
+    def zip_file(self, filename, archive_name):
         """
-        if os.path.isdir(path):
-            dir_name = os.path.basename(path)
-            for name in os.listdir(path):
-                r_path = os.path.join(path, name)
-                r_archive_dir_name = os.path.join(archive_dir_name, dir_name)
-                for data in self.zip_path(r_path, r_archive_dir_name):
-                    yield data
-        else:
-            archive_path = os.path.join(archive_dir_name, os.path.basename(path))
-            for data in self.zip_file(path, archive_path):
-                yield data
-
-
-    def zip_file(self, filename, arcname=None, compress_type=None):
-        """Generates data to add file at 'filename' to an archive.
-
-        filename -- path to file to add to arcive
-        arcname -- path of file inside the archive
-        compress_type -- unused in ZipStream, just use self.compression
-
+        Generates data to add the file 'filename' with name 'archive_name'
 
         This function generates the data corresponding to the fields:
 
@@ -261,18 +231,11 @@ class ZipStream:
         st = os.stat(filename)
         mtime = time.localtime(st.st_mtime)
         date_time = mtime[0:6]
+
         # Create ZipInfo instance to store file information
-        if arcname is None:
-            arcname = filename
-        arcname = os.path.normpath(os.path.splitdrive(arcname)[1])
-        while arcname[0] in (os.sep, os.altsep):
-            arcname = arcname[1:]
-        zinfo = ZipInfo(arcname, date_time)
+        zinfo = ZipInfo(archive_name, date_time)
         zinfo.external_attr = (st[0] & 0xFFFF) << 16L      # Unix attributes
-        if compress_type is None:
-            zinfo.compress_type = self.compression
-        else:
-            zinfo.compress_type = compress_type
+        zinfo.compress_type = self.compression
 
         zinfo.file_size = st.st_size
         zinfo.header_offset = self.data_ptr    # Start of header bytes
@@ -282,12 +245,10 @@ class ZipStream:
         zinfo.compress_size = compress_size = 0
         zinfo.file_size = file_size = 0
         yield self.update_data_ptr(zinfo.FileHeader())
-        if zinfo.compress_type == ZIP_DEFLATED:
-            cmpr = zlib.compressobj(zlib.Z_DEFAULT_COMPRESSION,
-                 zlib.DEFLATED, -15)
-        else:
-            cmpr = None
-        while 1:
+
+        cmpr = zlib.compressobj(zlib.Z_DEFAULT_COMPRESSION)
+
+        while True:
             buf = fp.read(1024 * 8)
             if not buf:
                 break
@@ -298,6 +259,7 @@ class ZipStream:
                 compress_size = compress_size + len(buf)
             yield self.update_data_ptr(buf)
         fp.close()
+
         if cmpr:
             buf = cmpr.flush()
             compress_size = compress_size + len(buf)
@@ -305,6 +267,7 @@ class ZipStream:
             zinfo.compress_size = compress_size
         else:
             zinfo.compress_size = file_size
+
         zinfo.CRC = CRC
         zinfo.file_size = file_size
         yield self.update_data_ptr(zinfo.DataDescriptor())
@@ -396,17 +359,8 @@ class ZipStream:
                                  0, 0, count, count, pos2 - pos1, pos1, 0)
             data.append( self.update_data_ptr(endrec))
 
+        # This operation causes that filename can't be unicode
+        # It's the second in this file
         return ''.join(data)
 
-
-if __name__ == "__main__":
-    zipfile = sys.argv[1]
-    path = sys.argv[2]
-
-    zf = open(zipfile, 'wb')
-
-    for data in ZipStream(path):
-        zf.write(data)
-
-    zf.close()
 

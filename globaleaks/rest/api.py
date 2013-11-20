@@ -68,6 +68,9 @@ spec = [
     #  T5 = only Receiver, download the files
     (r'/tip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
 
+    #  T6 = only Receiver, download all the files in  zip
+    (r'/tip/' + uuid_regexp + '/zip', files.ZipDownload),
+
     ## Receiver Handlers ##
     #  R1
     (r'/receiver/preferences', receiver.ReceiverInstance),
