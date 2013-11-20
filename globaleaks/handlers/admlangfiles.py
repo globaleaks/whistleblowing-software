@@ -20,7 +20,7 @@ from cyclone.web import StaticFileHandler
 from globaleaks.settings import GLSetting
 from globaleaks.handlers.admstaticfiles import dump_static_file
 from globaleaks.handlers.base import BaseStaticFileHandler
-from globaleaks.handlers.authentication import transport_security_check, authenticated
+from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
 
@@ -63,7 +63,7 @@ class LanguageFileHandler(BaseStaticFileHandler):
         self.finish(dumped_file)
 
     @transport_security_check('admin')
-    @authenticated('admin')
+    @unauthenticated
     def get(self, lang, include_body=True):
         self.set_header('Content-Type', 'application/json')
         if os.path.isfile(self.custom_langfile_path(lang)):
