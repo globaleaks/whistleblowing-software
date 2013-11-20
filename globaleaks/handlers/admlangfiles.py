@@ -35,13 +35,13 @@ class LanguageFileHandler(BaseStaticFileHandler):
     def custom_langfile_path(self, lang):
         return os.path.abspath(os.path.join(self.root, 'l10n', ('%s.json') % lang))
 
+    @transport_security_check('admin')
+    @authenticated('admin')
     @inlineCallbacks
-    def post(self, path):
+    def post(self, lang):
         """
         Upload a custom language file
         """
-        lang = os.path.join(self.parse_url_path(path))
-        print lang
         start_time = time.time()
 
         uploaded_file = self.get_uploaded_file()
@@ -62,9 +62,10 @@ class LanguageFileHandler(BaseStaticFileHandler):
         self.set_status(201) # Created
         self.finish(dumped_file)
 
-
-    def get(self, path, include_body=True):
-        lang = os.path.join(self.parse_url_path(path))
+    @transport_security_check('admin')
+    @authenticated('admin')
+    def get(self, lang, include_body=True):
+        self.set_header('Content-Type', 'application/json')
         if os.path.isfile(self.custom_langfile_path(lang)):
             StaticFileHandler.get(self, self.custom_langfile_path(lang), include_body)
         else:
@@ -72,13 +73,13 @@ class LanguageFileHandler(BaseStaticFileHandler):
 	    self.root = os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n'))
             StaticFileHandler.get(self, self.langfile_path(lang), include_body)
 
-
-    def delete(self, path):
+    @transport_security_check('admin')
+    @authenticated('admin')
+    def delete(self, lang):
         """
         Parameter: filename
         Errors: LangFileNotFound
         """
-        lang = os.path.join(self.parse_url_path(path))
         if not os.path.exists(self.custom_langfile_path(lang)):
             raise errors.LangFileNotFound
 
