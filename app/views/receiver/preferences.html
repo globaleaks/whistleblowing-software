@@ -4,6 +4,9 @@ This comment is needed in order to push the following strings on transifex
 
 {{ "Preferences" | translate }}
 {{ "Receiver Interface" | translate }}
+{{ "Password Configuration" | translate }}
+{{ "Notification Settings" | translate }}
+{{ "Encryption Settings" | translate }}
 
 -->
 <div ng-include="'views/header.html'"
@@ -18,11 +21,10 @@ This comment is needed in order to push the following strings on transifex
 
       <div class="row">
         <form class="config-form">
-          <h1>{{ "Preferences" | translate }}</h1>
 
           <tabset>
             <tab ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
-            <div ng-include="tab.template" ng-controller="tab.ctrl"></div>
+            <div ng-include="tab.template" ng-controller="tab.ctrl" class="content-tab"></div>
             </tab>
           </tabset>
 

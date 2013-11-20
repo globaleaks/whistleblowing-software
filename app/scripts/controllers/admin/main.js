@@ -126,3 +126,53 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
     }
 
 }]);
+
+GLClient.controller('AdminContentCtrl', ['$scope', '$http', function($scope, $http){
+  $scope.tabs = [
+    { title:"Main Configuration", template:"/views/admin/content/tab1.html",
+      ctrl: function($scope){
+        $scope.id = 1;
+      }    
+    },
+    { title:"Theme Customization", template:"/views/admin/content/tab2.html",
+      ctrl: function($scope){
+        $scope.id = 2;
+      }
+    },
+    { title:"Translation Customization", template:"/views/admin/content/tab3.html",
+      ctrl: function($scope){
+        $scope.id = 3;
+      }
+    }
+  ];
+}]);
+
+GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http){
+  $scope.tabs = [
+    { title:"Main Configuration", template:"/views/admin/mail/tab1.html",
+      ctrl: function($scope){
+        $scope.id = 1;
+      }    
+    },
+    { title:"Notification Templates", template:"/views/admin/mail/tab2.html",
+      ctrl: function($scope){
+        $scope.id = 2;
+      }
+    }
+  ];
+}]);
+
+GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', function($scope, $http){
+  $scope.tabs = [
+    { title:"Main Configuration", template:"/views/admin/advanced/tab1.html",
+      ctrl: function($scope){
+        $scope.id = 1;
+      }    
+    },
+    { title:"Tor2web Settings", template:"/views/admin/advanced/tab2.html",
+      ctrl: function($scope){
+        $scope.id = 2;
+      }
+    }
+  ];
+}]);

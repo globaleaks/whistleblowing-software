@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>{{ "Languages Configuration" | translate }}</label>
+      <div ng-repeat="language in admin.node.languages_supported">
+        <div>
+          <input ng-model="enabled_languages[language.code]" type="checkbox">
+          <label>{{language.name}}</label>
+          <a ng-click="isCollapsed = !isCollapsed">
+            <i class="glyphicon glyphicon-plus-sign"></i>
+          </a>
+        </div>
+        <div ng-show="isCollapsed">
+          <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
+            <span pragmatic-file-upload="" ng-src="{{'/l10n/' + language.code + '.json' }}">
+              <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
+                <span class="glyphicon glyphicon-plus"></span>
+                <span>{{ "Load" | translate }}</span>
+                <input type="file" name="files[]" multiple ng-disabled="disabled">
+              </span>
+            </span>
+            <span class="uploadProgress hide">
+              <span class="progress progress-striped">
+                <span class="progress-bar" style="width: 0%"></span>
+              </span>
+            </span>
+            <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/l10n/' + language.code + '.json'}}" download="{{language.code + '.json'}}">
+              <span class="glyphicon glyphicon-download"></span>
+              <span>{{ "Download" | translate }}</span>
+            </a>
+            <a class="btn btn-danger" ng-class="{disabled: disabled}" ng-click="delete('/l10n/' + language.code + '.json')">
+              <span class="glyphicon glyphicon-trash"></span>
+              <span>{{ "Reset" | translate }}</span>
+            </a>
+            <div>
+              <input ng-model="admin.node.reset_css" type="checkbox">
+              <label>{{ "Reset custom CSS" | translate}}</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Default language" | translate }}</label>
+      <select class="form-control" ng-model="admin.node.default_language" ng-options="code as name for (code, name) in available_languages"></select>
+    </div>
+  </div>
+</div>

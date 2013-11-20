@@ -4,6 +4,9 @@ This comment is needed in order to push the following strings on transifex
 
 {{ "Content Settings" | translate }}
 {{ "Administration Interface" | translate }}
+{{ "Main Configuration" | translate }}
+{{ "Theme Customization" | translate }}
+{{ "Translation Customization" | translate }}
 
 -->
 <div ng-include="'views/header.html'"
@@ -15,166 +18,28 @@ This comment is needed in order to push the following strings on transifex
   <div class="row">
     <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
-      <h1>
-        {{ "Content Settings" | translate }}
-      </h1>
-      <p><b>{{ "You're running GlobaLeaks version" | translate }} {{admin.node.version}}</b></p>
+      <div class="row">
+        <form class="config-form" ng-controller="AdminContentCtrl">
 
-      <form name="contentForm" novalidate="">
+          <tabset>
+            <tab ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
+            <div ng-include="tab.template" ng-controller="tab.ctrl" class="content-tab"></div>
+            </tab>
+          </tabset>
 
-        <div class="row">
-          <div class="col-md-6">
-            <div class="form-group">
-              <label>{{ "Current initiative logo" | translate }}</label>
-              <div class="imageUpload" ng-controller="FileUploadCtrl">
-                <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
-                  <div ng-show="uploadfile" class="uploadfile">
-                    <span class="col-md-12 changePicture">
-                      {{ "Change picture" | translate }}
-                    </span>
-                    <div pragmatic-file-upload="" ng-src="/admin/staticfiles?globaleaks_logo">
-                      <div class="fileselector">
-                        <input type="file">
-                      </div>
-                    </div>
-                    <div class="uploadProgress hide">
-                      <div class="progress progress-striped">
-                        <div class="progress-bar" style="width: 0%"></div>
-                      </div>
-                    </div>
-                  </div>
-                  <img ng-src="/static/globaleaks_logo.png" class="img-thumbnail baseimage col-md-12">
-                </div>
+          <div class="row">
+            <div class="col-md-6">
+              <div class="form-group">
+                <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
+                  <i class="glyphicon glyphicon-ok"></i>
+                  {{ "Save" | translate }}
+                </button>
               </div>
-            </div>
-
-            <div class="form-group">
-              <label>{{ "Node name" | translate }}</label>
-              <input class="form-control" ng-model="admin.node.name" value="{{admin.node.name}}" type="text">
-            </div>
-
-            <div class="form-group">
-              <label>{{ "Description" | translate }}</label>
-              <div>
-                <textarea class="form-control" ng-model="admin.node.description">{{admin.node.description}}</textarea>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>{{ "Presentation" | translate }}</label>
-              <div>
-                <textarea class="form-control" ng-model="admin.node.presentation">{{admin.node.presentation}}</textarea>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>{{ "Footer" | translate }}</label>
-              <div>
-                <textarea class="form-control" ng-model="admin.node.footer">{{admin.node.footer}}</textarea>
-              </div>
-            </div>
-
-            <!-- ouff, to be completed, almost the upload thing :( -->
-            <div class="form-group">
-              <label>
-                {{ "Graphic Customization" | translate }}
-                ({{ "CSS" | translate}})
-              </label>
-              <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
-                <span pragmatic-file-upload="" ng-src="/admin/staticfiles/custom_stylesheet">
-                  <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
-                    <span class="glyphicon glyphicon-plus"></span>
-                    <span>{{ "Load" | translate }}</span>
-                    <input type="file" name="files[]" multiple ng-disabled="disabled">
-                  </span>
-                </span>
-                <span class="uploadProgress hide">
-                  <span class="progress progress-striped">
-                    <span class="progress-bar" style="width: 0%;"></span>
-                  </span>
-                </span>
-                <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/custom_stylesheet.css'}}" download="{{'/custom_stylesheet.css'}}">
-                  <span class="glyphicon glyphicon-download"></span>
-                  <span>{{ "Download" | translate }}</span>
-                </a>
-                <div>
-                  <input ng-model="admin.node.reset_css" type="checkbox">
-                  <label>{{ "Reset custom CSS" | translate}}</label>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>{{ "Languages Configuration" | translate }}</label>
-              <div ng-repeat="language in admin.node.languages_supported">
-                <div>
-                  <input ng-model="enabled_languages[language.code]" type="checkbox">
-                  <label>{{language.name}}</label>
-                  <a ng-click="isCollapsed = !isCollapsed">
-                    <i class="glyphicon glyphicon-plus-sign"></i>
-                  </a>
-                </div>
-                <div ng-show="isCollapsed">
-                  <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
-                    <span pragmatic-file-upload="" ng-src="{{'/l10n/' + language.code + '.json' }}">
-                      <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
-                        <span class="glyphicon glyphicon-plus"></span>
-                        <span>{{ "Load" | translate }}</span>
-                        <input type="file" name="files[]" multiple ng-disabled="disabled">
-                      </span>
-                    </span>
-                    <span class="uploadProgress hide">
-                      <span class="progress progress-striped">
-                        <span class="progress-bar" style="width: 0%"></span>
-                      </span>
-                    </span>
-                    <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/l10n/' + language.code + '.json'}}" download="{{language.code + '.json'}}">
-                      <span class="glyphicon glyphicon-download"></span>
-                      <span>{{ "Download" | translate }}</span>
-                    </a>
-                    <a class="btn btn-danger" ng-class="{disabled: disabled}" ng-click="delete('/l10n/' + language.code + '.json')">
-                      <span class="glyphicon glyphicon-trash"></span>
-                      <span>{{ "Reset" | translate }}</span>
-                    </a>
-                    <div>
-                      <input ng-model="admin.node.reset_css" type="checkbox">
-                      <label>{{ "Reset custom CSS" | translate}}</label>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="form-group">
-              <label>{{ "Default language" | translate }}</label>
-              <select class="form-control" ng-model="admin.node.default_language" ng-options="code as name for (code, name) in available_languages"></select>
-            </div>
-
-            <div class="form-group">
-              <label>{{ "Tor Hidden Service (hostname)" | translate }}</label>
-              <input class="form-control" name="hidden_service" ng-model="admin.node.hidden_service" ng-pattern="/^http://[0-9a-z]{16}\.onion$/" type="text">
-              <p class="has-error" ng-show="contentForm.hidden_service.$error.pattern">
-                {{ "Invalid format for hidden service (should be http://thirteenchars123.onion)" | translate }}
-              </p>
-            </div>
-
-            <div class="form-group">
-              <label>{{ "Tor2web Public Site (url)" | translate }}</label>
-              <input class="form-control" name="public_site" ng-model="admin.node.public_site" ng-pattern="/^https://[0-9a-z.:]*$/" type="url">
-              <p class="has-error" ng-show="contentForm.public_site.$error.pattern">
-                {{ "Invalid format for public site (should be https://thirteenchars123.tor2web.org)" | translate }}
-              </p>
-            </div>
-
-            <div class="form-group">
-              <button class="btn btn-success" ng-disabled="contentForm.$invalid " ng-click="updateNode(admin.node)">
-                <i class="glyphicon glyphicon-ok"></i>
-                {{ "Update node" | translate }}
-              </button>
             </div>
           </div>
-        </div>
-      </form>
+
+        </form>
+      </div>
     </div>
   </div>
 </div>

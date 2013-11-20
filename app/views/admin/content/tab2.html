@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group">
+      <label>
+        {{ "Graphic Customization" | translate }}
+        ({{ "CSS" | translate}})
+      </label>
+      <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
+        <span pragmatic-file-upload="" ng-src="/admin/staticfiles/custom_stylesheet">
+          <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span>{{ "Load" | translate }}</span>
+            <input type="file" name="files[]" multiple ng-disabled="disabled">
+          </span>
+        </span>
+        <span class="uploadProgress hide">
+          <span class="progress progress-striped">
+            <span class="progress-bar" style="width: 0%;"></span>
+          </span>
+        </span>
+        <a class="btn btn-primary" ng-class="{disabled: disabled}" ng-href="{{'/custom_stylesheet.css'}}" download="{{'/custom_stylesheet.css'}}">
+          <span class="glyphicon glyphicon-download"></span>
+          <span>{{ "Download" | translate }}</span>
+        </a>
+        <div>
+          <input ng-model="admin.node.reset_css" type="checkbox">
+          <label>{{ "Reset custom CSS" | translate}}</label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
