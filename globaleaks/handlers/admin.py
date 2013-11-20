@@ -193,8 +193,26 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
         else:
             raise errors.InvalidInputFormat("Invalid lang code enabled: %s" % lang_code)
 
-    if not request['default_language'] in LANGUAGES_SUPPORTED_CODES:
-        raise errors.InvalidInputFormat("Invalid lang code as default")
+    if not len(node.languages_enabled):
+        raise errors.InvalidInputFormat("Missing enabled languages")
+
+    # enforcing of default_language usage (need to be set, need to be _enabled)
+    if request['default_language']:
+
+        if request['default_language'] not in LANGUAGES_SUPPORTED_CODES:
+            raise errors.InvalidInputFormat("Invalid lang code as default")
+
+        if request['default_language'] not in node.languages_enabled:
+            node.default_language = node.languages_enabled[0]
+            log.err("Default language not in the enabled language: fallback in %s" %
+                    node.default_language)
+
+        node.default_language = request['default_language']
+
+    else:
+        node.default_language = node.languages_enabled[0]
+        log.err("Default language not set!? fallback on %s" % node.default_language)
+
 
     # name, description tor2web boolean value are acquired here
     node.update(request)
