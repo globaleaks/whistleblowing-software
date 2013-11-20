@@ -363,7 +363,7 @@ class TestAdminStaticFile(helpers.TestHandler):
 
     So... that's shit, but _post hanlder is tested in a more direct way
     """
-    _handler = admstaticfiles.StaticFileCollection
+    _handler = admstaticfiles.StaticFileInstance
 
     crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
