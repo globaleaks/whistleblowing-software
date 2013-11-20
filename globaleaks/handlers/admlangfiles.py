@@ -35,6 +35,8 @@ class LanguageFileHandler(BaseStaticFileHandler):
     def custom_langfile_path(self, lang):
         return os.path.abspath(os.path.join(self.root, 'l10n', ('%s.json') % lang))
 
+    @transport_security_check('admin')
+    @authenticated('admin')
     @inlineCallbacks
     def post(self, lang):
         """
@@ -60,8 +62,10 @@ class LanguageFileHandler(BaseStaticFileHandler):
         self.set_status(201) # Created
         self.finish(dumped_file)
 
-
+    @transport_security_check('admin')
+    @authenticated('admin')
     def get(self, lang, include_body=True):
+        self.set_header('Content-Type', 'application/json')
         if os.path.isfile(self.custom_langfile_path(lang)):
             StaticFileHandler.get(self, self.custom_langfile_path(lang), include_body)
         else:
@@ -69,7 +73,8 @@ class LanguageFileHandler(BaseStaticFileHandler):
 	    self.root = os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n'))
             StaticFileHandler.get(self, self.langfile_path(lang), include_body)
 
-
+    @transport_security_check('admin')
+    @authenticated('admin')
     def delete(self, lang):
         """
         Parameter: filename

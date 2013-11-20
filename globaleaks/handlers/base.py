@@ -29,7 +29,6 @@ from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
-
 content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"")
 
 def validate_host(host_key):
@@ -587,23 +586,6 @@ class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
                     "Invalid JSON key in uploaded file (%s)" % filekey)
 
 	return uploaded_file
-
-
-class CSSStaticFileHandler(BaseStaticFileHandler):
-    """
-    This class is used to return the custom CSS file; 
-    if the file is not present, 200 is returned with an empty content
-    """
-
-    def get(self, path, include_body=True):
-        path = self.parse_url_path(path)
-        abspath = os.path.abspath(os.path.join(self.root, path))
-        if os.path.isfile(abspath):
-            StaticFileHandler.get(self, path, include_body)
-        else:
-            # empty CSS and avoid 404 error log
-            self.set_status(200)
-            self.finish()
 
 
 class BaseRedirectHandler(BaseBaseHandler, RedirectHandler):
