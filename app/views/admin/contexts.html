@@ -16,11 +16,7 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
-      <!-- ContextList -->
       <div ng-controller="AdminContextsCtrl">
-        <div class="row">
-          <h1>{{ "Contexts Configuration" | translate }}</h1>
-        </div>
 
         <div class="row" ng-repeat="context in admin.contexts">
           <form name="contextForm" class="form-inline" ng-controller="AdminContextsEditorCtrl">
@@ -136,7 +132,6 @@ This comment is needed in order to push the following strings on transifex
         </div>
 
       </div>
-      <!-- End Context List -->
     </div>
   </div>
 </div>

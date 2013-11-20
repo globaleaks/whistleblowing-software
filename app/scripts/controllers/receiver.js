@@ -34,17 +34,17 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
   function($scope, $rootScope, ReceiverPreferences, changePasswordWatcher) {
 
     $scope.tabs = [
-      { title:"Password Configuration", template:"/views/receiver/preferences_tab1.html",
+      { title:"Password Configuration", template:"/views/receiver/preferences/tab1.html",
         ctrl: function($scope){
           $scope.id = 1;
         }    
       },
-      { title:"Notification Settings", template:"/views/receiver/preferences_tab2.html",
+      { title:"Notification Settings", template:"/views/receiver/preferences/tab2.html",
         ctrl: function($scope){
           $scope.id = 2;
         }
       },
-      { title:"Encryption Settings", template:"/views/receiver/preferences_tab3.html",
+      { title:"Encryption Settings", template:"/views/receiver/preferences/tab3.html",
         ctrl: function($scope){
           $scope.id = 3;
         }

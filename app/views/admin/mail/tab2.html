@@ -1,0 +1,41 @@
+<div class="row">
+  <div class="col-md-8">
+
+    <div class="form-group">
+      <label>{{ "Tip Email Subject" | translate }}</label>
+      <input ng-model="admin.notification.tip_mail_title" class="input-xlarge form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Tip Email template" | translate }}</label>
+      <div>
+        <textarea class="form-control mobileTextArea" ng-model="admin.notification.tip_template"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Comment Email Subject" | translate }}</label>
+      <input ng-model="admin.notification.comment_mail_title" class="input-xlarge form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Comment Email template" | translate }}</label>
+      <div>
+        <textarea class="form-control mobileTextArea" ng-model="admin.notification.comment_template"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{ "File Email Subject" | translate }}</label>
+      <input ng-model="admin.notification.file_mail_title" class="input-xlarge form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "File Email template" | translate }}</label>
+      <div>
+        <textarea class="form-control mobileTextArea" ng-model="admin.notification.file_template"></textarea>
+      </div>
+    </div>
+
+  </div>
+</div>
