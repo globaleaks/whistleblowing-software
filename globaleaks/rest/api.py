@@ -9,7 +9,9 @@
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
-from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles, admlangfiles, overview
+from globaleaks.handlers import node, submission, tip, admin, receiver, \
+                                files, authentication, admstaticfiles, \
+                                admlangfiles, overview, collection
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.rest.base import uuid_regexp
 
@@ -69,7 +71,7 @@ spec = [
     (r'/tip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
 
     #  T6 = only Receiver, download all the files in  zip
-    (r'/tip/' + uuid_regexp + '/collection(/(zipstored|zipdeflated))?', files.CollectionDownload),
+    (r'/tip/' + uuid_regexp + '/collection(/(zipstored|zipdeflated|tar|targz|tarbz2))?', collection.CollectionDownload),
 
     ## Receiver Handlers ##
     #  R1
