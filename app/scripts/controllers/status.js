@@ -101,6 +101,10 @@ GLClient.controller('StatusCtrl',
        return $http.delete('/tip/' + $scope.tip_id).success(function(data, status, headers, config){ $location.url('/receiver/tips'); });
     }
 
+    $scope.download = function(url) {
+       return $http.get(url);
+    }
+
   }]);
 
 GLClient.controller('FileDetailsCtrl', ['$scope', function($scope){

@@ -243,6 +243,11 @@ table {
   word-wrap: break-word;
 }
 
+.shasum {
+  word-wrap: break-word;
+  word-break: break-all;
+}
+
 .content-tab {
   padding-top: 20px;
 }
