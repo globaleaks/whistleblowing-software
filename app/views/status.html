@@ -18,192 +18,199 @@
     </div>
   </div>
 
-  <div class="col-md-6">
-    <div class="col-md-12">
-      <dl>
-        <dt>{{ "Context" | translate }}</dt>
-        <dd>
-          <strong>{{ tip.context_name }}</strong><br />
-          {{ tip.context_description }}
-        </dd>
+  <div class="row">
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <dl>
+          <dt>{{ tip.context_name }}</dt>
+          <dd>{{ tip.context_description }}</dd>
+          <dt>{{ "Submission date" | translate }}</dt>
+          <dd>{{ tip.creation_date | date:'yyyy-MM-dd HH:mm' }}</dd>
+        </dl>
+
         <br />
-        <dt>{{ "Submission date" | translate }}</dt>
-        <dd>{{ tip.creation_date | date:'yyyy-MM-dd HH:mm' }}</dd>
-      </dl>
 
-      <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
-        <dt>
-          <span>
-            {{fieldFormat[fieldName].name}}
-          </span>
-          <a popover="{{fieldFormat[fieldName].hint}}" popover-placement="right" popover-trigger="mouseenter">
-          <span class="glyphicon glyphicon-info-sign"></span>
-          </a>
-        </dt>
+        <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
+          <dt>
+            <span>
+              {{fieldFormat[fieldName].name}}
+            </span>
+            <a popover="{{fieldFormat[fieldName].hint}}" popover-placement="right" popover-trigger="mouseenter">
+            <span class="glyphicon glyphicon-info-sign"></span>
+            </a>
+          </dt>
         
-        <div ng-switch="" on="fieldFormat[fieldName].type">
-          
-          <dd ng-switch-when="checkboxes">
-            <ul>
-              <li ng-repeat="checkbox in fieldFormat[fieldName].options">
-              {{checkbox.name}} 
-              <span ng-hide="fieldValue[checkbox.name]">☐</span> 
-              <span ng-show="fieldValue[checkbox.name]">☑</span>
-              </li>
-            </ul>
-          </dd>
+          <div ng-switch="" on="fieldFormat[fieldName].type">
+      
+            <dd ng-switch-when="checkboxes">
+              <ul>
+                <li ng-repeat="checkbox in fieldFormat[fieldName].options">
+                {{checkbox.name}} 
+                <span ng-hide="fieldValue[checkbox.name]">☐</span> 
+                <span ng-show="fieldValue[checkbox.name]">☑</span>
+                </li>
+              </ul>
+            </dd>
 
-          <dd ng-switch-when="multiple">
-            <ul>
-              <li ng-repeat="selection in fieldValue">{{selection}}</li>
-            </ul>
+            <dd ng-switch-when="multiple">
+              <ul>
+                <li ng-repeat="selection in fieldValue">{{selection}}</li>
+              </ul>
 
-          </dd><dd ng-switch-default="">{{fieldValue}}</dd>
+            </dd>
+            <dd ng-switch-default="">{{fieldValue}}</dd>
 
-        </div>
-      </dl>
-    </div>
-  </div>
-
-  <div class="col-md-6">
-    <div class="col-md-12" ng-show="tip.im_receiver">
-      <h3>{{ "Options" }}</h3>
-      <div ng-show="tip.im_receiver_postponer">
-        <a ng-init="extendbutton = false" ng-click="extendbutton =! extendbutton">
-          <i class="glyphicon glyphicon-time"></i>
-          {{ "Postpone Tip expiration date" | translate }}
-        </a>
-        <div ng-show="extendbutton">
-          <p class="alert alert-danger">
-            {{ "Clicking extend, you will extend the Tip expiration date to:" | translate }}
-            {{ tip.potential_expiration_date | date:'yyyy-MM-dd HH:mm' }}
-            <br />
-            <button type="submit" class="btn btn-danger" ng-click="extendTip()">
-              <i class="glyphicon glyphicon-time"></i>
-              {{ "Confirm Extension" | translate }}
-            </button>
-          </p>
-          <br />
-        </div>
-      </div>
-      <div ng-show="tip.im_receiver_postponer">
-        <a ng-init="deletebutton = false" ng-click="deletebutton =! deletebutton">
-          <i class="glyphicon glyphicon-trash"></i>
-          {{ "Delete Tip" | translate }}
-        </a>
-        <div ng-show="deletebutton">
-          <p class="alert alert-danger">
-            {{ "Are you sure you want to delete the tip?" | translate }}
-            {{ "Please take care that all associated data will be properly deleted." | translate}}
-            <br />
-            <button type="submit" class="btn btn-danger" ng-click="deleteTip()">
-              <i class="glyphicon glyphicon-trash"></i>
-              {{ "Confirm Deletion" | translate }}
-            </button>
-          </p>
-        </div>
+          </div>
+        </dl>
       </div>
     </div>
 
-    <br />
-
-    <div class="col-md-12">
-      <h3>
-        {{ "Files" | translate }}
-      </h3>
-      <div class="well" ng-show="tip.files">
-        <h4>{{file.name}}</h4>
-        <ul class="list-unstyled">
-          <a class="input-small" ng-click="show_new_files = !show_new_files" ng-init="show_new_files = false" ng-show="!show_new_files && tip.im_receiver">
-            {{ "show only files not yet downloaded" | translate }}
+    <div class="col-md-6">
+      <div class="col-md-12" ng-show="tip.im_receiver">
+        <h3>{{ "Options" }}</h3>
+        <div ng-show="tip.im_receiver_postponer">
+          <a ng-init="extendbutton = false" ng-click="extendbutton =! extendbutton">
+            <i class="glyphicon glyphicon-time"></i>
+            {{ "Postpone Tip expiration date" | translate }}
           </a>
-          <a class="input-small" ng-click="show_new_files = !show_new_files" ng-show="show_new_files && tip.im_receiver">
-            {{ "show all the files" | translate }}
+          <div ng-show="extendbutton">
+            <p class="alert alert-danger">
+              {{ "Clicking extend, you will extend the Tip expiration date to:" | translate }}
+              {{ tip.potential_expiration_date | date:'yyyy-MM-dd HH:mm' }}
+              <br />
+              <button type="submit" class="btn btn-danger" ng-click="extendTip()">
+                <i class="glyphicon glyphicon-time"></i>
+                {{ "Confirm Extension" | translate }}
+              </button>
+            </p>
+            <br />
+          </div>
+        </div>
+        <div ng-show="tip.im_receiver_postponer">
+          <a ng-init="deletebutton = false" ng-click="deletebutton =! deletebutton">
+            <i class="glyphicon glyphicon-trash"></i>
+            {{ "Delete Tip" | translate }}
           </a>
-          <li ng-repeat="file in tip.files">
-            <div ng-show="file.downloads == 0 && show_new_files">
-              <a ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}">
-                 <i class="glyphicon glyphicon-download"></i> 
-                 {{ "download" | translate }}
-                 ({{file.downloads}}/{{tip.download_limit}})
-              </a>
-              <i class="glyphicon glyphicon-book"></i> {{file.name}}
-            </div>
-
-            <div ng-show="!show_new_files">
-              <a ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_download" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}">
-                 <i class="glyphicon glyphicon-download"></i> 
-                 {{ "download" | translate }} 
-                 ({{file.downloads}}/{{tip.download_limit}})
-              </a>
-              <i class="glyphicon glyphicon-book"></i> {{file.name}}
-            </div>
-
-          </li>
-          <a class="input-small" ng-click="security_checksum = !security_checksum" ng-init="security_checksum = false" ng-show="!security_checksum">
-            {{ "show sha256 checksum" | translate }}
-          </a>
-          <a class="input-small" ng-click="security_checksum = !security_checksum" ng-show="security_checksum">
-            {{ "show sha256 checksum" | translate }}
-            <i>
-              {{ "(click again to hide)" | translate }}
-            </i>
-          </a>
-        </ul>
+          <div ng-show="deletebutton">
+            <p class="alert alert-danger">
+              {{ "Are you sure you want to delete the tip?" | translate }}
+              {{ "Please take care that all associated data will be properly deleted." | translate}}
+              <br />
+              <button type="submit" class="btn btn-danger" ng-click="deleteTip()">
+                <i class="glyphicon glyphicon-trash"></i>
+                {{ "Confirm Deletion" | translate }}
+              </button>
+            </p>
+          </div>
+        </div>
       </div>
-      <div class="well" ng-show="security_checksum">
+
+      <br />
+
+      <div class="col-md-12">
+        <h3>
+          {{ "Files" | translate }}
+        </h3>
+        <div class="well" ng-show="tip.files">
+          <h4>{{file.name}}</h4>
+          <ul class="list-unstyled">
+            <a class="input-small" ng-href="/tip/{{tip.id}}/collection" ng-show="tip.im_receiver && (file.downloads <= current_context.file_max_downloads)" ng-click="increaseDownloadCount(file)">
+              {{ "download all the files" | translate }}
+            </a>
+            <br />
+            <a class="input-small" ng-click="show_new_files = !show_new_files" ng-init="show_new_files = false" ng-show="!show_new_files && tip.im_receiver">
+              {{ "show only files not yet downloaded" | translate }}
+            </a>
+            <a class="input-small" ng-click="show_new_files = !show_new_files" ng-show="show_new_files && tip.im_receiver">
+              {{ "show all the files" | translate }}
+            </a>
+            <li ng-repeat="file in tip.files">
+              <div ng-show="file.downloads == 0 && show_new_files">
+                <a ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
+                   <i class="glyphicon glyphicon-download"></i> 
+                   {{ "download" | translate }}
+                   ({{file.downloads}}/{{tip.download_limit}})
+                </a>
+                <i class="glyphicon glyphicon-book"></i> {{file.name}}
+              </div>
+
+              <div ng-show="!show_new_files">
+                <a ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_download" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
+                   <i class="glyphicon glyphicon-download"></i> 
+                   {{ "download" | translate }} 
+                   ({{file.downloads}}/{{tip.download_limit}})
+                </a>
+                <i class="glyphicon glyphicon-book"></i> {{file.name}}
+              </div>
+
+            </li>
+            <a class="input-small" ng-click="security_checksum = !security_checksum" ng-init="security_checksum = false" ng-show="!security_checksum">
+              {{ "show sha256 checksum" | translate }}
+            </a>
+            <a class="input-small" ng-click="security_checksum = !security_checksum" ng-show="security_checksum">
+              {{ "show sha256 checksum" | translate }}
+              <i>
+                {{ "(click again to hide)" | translate }}
+              </i>
+            </a>
+          </ul>
+        </div>
+        <div class="well" ng-show="security_checksum">
+          <p>
+            {{ "Use the" | translate }} 
+            <a href="https://en.wikipedia.org/wiki/SHA-2">
+              {{ "sha256 hash" | translate }}
+            </a> 
+            {{ "to verify the file integrity" | translate }}.
+            <br />
+            {{ "On unix based systems this can be done by running the following command in the directory of the files" | translate }}:
+          </p>
+          <b>$ shasum -a 256 *</b>
+          <div ng-repeat="file in tip.files">
+            <div class="label label-warning">
+              {{file.name}} {{file.sha2sum}}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" ng-hide="tip.files">
         <p>
-          {{ "Use the" | translate }} 
-          <a href="https://en.wikipedia.org/wiki/SHA-2">
-            {{ "sha256 hash" | translate }}
-          </a> 
-          {{ "to verify the file integrity" | translate }}.
-          <br />
-          {{ "On unix based systems this can be done by running the following command in the directory of the files" | translate }}:
+          {{ "No file has been uploaded!" | translate }}
         </p>
-        <b>$ shasum -a 256 *</b>
-        <div ng-repeat="file in tip.files">
-          <code>
-            {{file.name}} {{file.sha2sum}}
-          </code>
+      </div>
+
+      <div class="col-md-12" ng-show="tip.im_whistleblower">
+        <div ng-include="'views/widgets/fileupload.html'"></div>
+      </div>
+
+      <div class="col-md-12">
+        <h3>{{ "Receiver List" | translate }}</h3>
+        <div class="table-container">
+        <table class="table table-striped table-bordered dataTable" id="receiverList">
+          <thead>
+            <tr>
+              <th>{{ "Name" | translate }}</th>
+              <th>{{ "Description" | translate }}</th>
+              <th>{{ "Access counter" | translate }}</th>
+            </tr>
+          </thead>
+          <tbody id="receiverListBody">
+            <tr ng-repeat="receiver in tip.receivers">
+              <td>{{receiver.name}}</td>
+              <td>{{receiver.description}}</td>
+              <td>{{receiver.access_counter}}</td>
+            </tr>
+          </tbody>
+        </table>
         </div>
       </div>
     </div>
-
-    <div class="col-md-12" ng-hide="tip.files">
-      <p>
-        {{ "No file has been uploaded!" | translate }}
-      </p>
-    </div>
-
-   
-    <div class="col-md-12" ng-show="tip.im_whistleblower">
-      <div ng-include="'views/widgets/fileupload.html'"></div>
-    </div>
-
-    <div class="col-md-12">
-      <h3>{{ "Receiver List" | translate }}</h3>
-      <div class="table-container">
-      <table class="table table-striped table-bordered dataTable" id="receiverList">
-        <thead>
-          <tr>
-            <th>{{ "Name" | translate }}</th>
-            <th>{{ "Description" | translate }}</th>
-            <th>{{ "Access counter" | translate }}</th>
-          </tr>
-        </thead>
-        <tbody id="receiverListBody">
-          <tr ng-repeat="receiver in tip.receivers">
-            <td>{{receiver.name}}</td>
-            <td>{{receiver.description}}</td>
-            <td>{{receiver.access_counter}}</td>
-          </tr>
-        </tbody>
-      </table>
-      </div>
-    </div>
   </div>
+
   <hr>
+
+  <div class="row">
     <div class="col-md-12">
       <h3>
         {{ "Comments" | translate }}
@@ -255,6 +262,7 @@
       </button>
     </div>
    </div>
+ </div>
 
 </div>
 
