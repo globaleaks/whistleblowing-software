@@ -10,18 +10,14 @@ from __future__ import with_statement
 import time
 
 from twisted.internet import threads
-from twisted.internet.defer import inlineCallbacks, returnValue
-from twisted.web.server import NOT_DONE_YET
+from twisted.internet.defer import inlineCallbacks
 from cyclone.web import os, StaticFileHandler
 from Crypto.Hash import SHA256
-
-from tempfile import TemporaryFile
 
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, pretty_date_time
-from globaleaks.utils.zipstream import ZipStream, ZIP_STORED, ZIP_DEFLATED
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, ReceiverTip, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.third_party import rstr
@@ -339,77 +335,6 @@ def download_all_files(store, tip_id):
         files_list.append( serialize_receiver_file(sf, sf.internalfile) )
 
     return files_list
-
-class CollectionDownload(BaseHandler):
-
-    @unauthenticated
-    @inlineCallbacks
-    def get(self, tip_gus, path="/zipstored", compression="zipstored"):
-        if compression == 'zipstored':
-            zip_compression_type = ZIP_STORED
-            content_type='application/zip'
-        elif compression == 'zipdeflated':
-            zip_compression_type = ZIP_DEFLATED
-            content_type = 'application/zip'
-        else:
-            # just to be sure; by the way
-            # the regexp of rest/api.py should prevent this.
-            raise errors.InvalidInputFormat
-
-        files_dict = yield download_all_files(tip_gus)
-
-        if not files_dict:
-            raise errors.DownloadLimitExceeded
-
-        info  = "This is an archive of files downloaded from a GlobaLeaks node\n"
-        info += "[Some operational security tips will go here]\n\n"
-
-        sha = SHA256.new()
-
-        info += "%s%s%s%s%s\n" % ("Filename",
-                                  " "*(40-len("Filename")),
-                                  "Size (Bytes)",
-                                  " "*(15-len("Size (Bytes)")),
-                                  "SHA256")
-
-        total_size = 0
-        for filedesc in files_dict:
-
-            sha.update(filedesc['name'])
-
-            length1 = 40 - len(filedesc['name'])
-            length2 = 15 - len(str(filedesc['size']))
-
-            info += "%s%s%i%s%s\n" % (filedesc['name'],
-                                      " "*length1,
-                                      filedesc['size'],
-                                      " "*length2,
-                                      filedesc['sha2sum'])
-
-            total_size += filedesc['size']
-
-            filedesc['name'] = filedesc['name'].encode('utf-8')
-
-            # Update all the path with the absolute path
-            filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
-
-        info += "\nTotal size is: %s Bytes" % total_size
-
-        files_dict.append({ 'buf'  : info,
-                            'name' : "COLLECTION_INFO.txt" })
-
-        self.set_status(200)
-
-        self.set_header('X-Download-Options', 'noopen')
-        self.set_header('Content-Type', content_type)
-        self.set_header('Etag', '"%s"' % sha.hexdigest())
-        self.set_header('Content-Disposition','attachment; filename=\"collection.zip\"')
-
-        if compression in ['zipstored', 'zipdeflated']:
-            for data in ZipStream(files_dict, zip_compression_type):
-                self.write(data)
-
-        self.finish()
 
 class CSSStaticFileHandler(BaseStaticFileHandler):
     """
