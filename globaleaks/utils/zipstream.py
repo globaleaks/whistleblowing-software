@@ -4,17 +4,24 @@
 #  *********
 #
 # Utility derived from https://github.com/SpiderOak/ZipStream
-# changed heavily for our purpose (that's the reason why is not in third party)
+#                 that is initially derived from zipfile.py
+#
+# Changed heavily for our purpose (that's the reason why is not in third party)
 # Initially derived from zipfile.py
-
-import struct, os, time, sys
-import binascii
-import zlib
 
 from globaleaks.utils.utility import log
 
-__all__ = ["ZIP_STORED", "ZIP_DEFLATED", "ZipStream"]
+import struct, os, time, sys
+import binascii
 
+try:
+    import zlib # We may need its compression method
+    crc32 = zlib.crc32
+except ImportError:
+    zlib = None
+    crc32 = binascii.crc32
+
+__all__ = ["ZIP_STORED", "ZIP_DEFLATED", "ZipStream"]
 
 ZIP64_LIMIT= (1 << 31) - 1
 
@@ -24,24 +31,24 @@ ZIP_DEFLATED = 8
 # Other ZIP compression methods not supported
 
 # Here are some struct module formats for reading headers
-structEndArchive = "<4s4H2lH"     # 9 items, end of archive, 22 bytes
-stringEndArchive = "PK\005\006"   # magic number for end of archive record
-structCentralDir = "<4s4B4HlLL5HLl"# 19 items, central directory, 46 bytes
-stringCentralDir = "PK\001\002"   # magic number for central directory
-structFileHeader = "<4s2B4HlLL2H"  # 12 items, file header record, 30 bytes
-stringFileHeader = "PK\003\004"   # magic number for file header
-structEndArchive64Locator = "<4slql" # 4 items, locate Zip64 header, 20 bytes
+structEndArchive = "<4s4H2lH"            # 9 items, end of archive, 22 bytes
+stringEndArchive = "PK\005\006"          # magic number for end of archive record
+structCentralDir = "<4s4B4HlLL5HLl"      # 19 items, central directory, 46 bytes
+stringCentralDir = "PK\001\002"          # magic number for central directory
+structFileHeader = "<4s2B4HlLL2H"        # 12 items, file header record, 30 bytes
+stringFileHeader = "PK\003\004"          # magic number for file header
+structEndArchive64Locator = "<4slql"     # 4 items, locate Zip64 header, 20 bytes
 stringEndArchive64Locator = "PK\x06\x07" # magic token for locator header
-structEndArchive64 = "<4sqhhllqqqq" # 10 items, end of archive (Zip64), 56 bytes
-stringEndArchive64 = "PK\x06\x06" # magic token for Zip64 header
-stringDataDescriptor = "PK\x07\x08" # magic number for data descriptor
+structEndArchive64 = "<4sqhhllqqqq"      # 10 items, end of archive (Zip64), 56 bytes
+stringEndArchive64 = "PK\x06\x06"        # magic token for Zip64 header
+stringDataDescriptor = "PK\x07\x08"      # magic number for data descriptor
 
 # indexes of entries in the central directory structure
 _CD_SIGNATURE = 0
 _CD_CREATE_VERSION = 1
 _CD_CREATE_SYSTEM = 2
 _CD_EXTRACT_VERSION = 3
-_CD_EXTRACT_SYSTEM = 4                  # is this meaningful?
+_CD_EXTRACT_SYSTEM = 4
 _CD_FLAG_BITS = 5
 _CD_COMPRESS_TYPE = 6
 _CD_TIME = 7
@@ -60,7 +67,7 @@ _CD_LOCAL_HEADER_OFFSET = 18
 # indexes of entries in the local file header structure
 _FH_SIGNATURE = 0
 _FH_EXTRACT_VERSION = 1
-_FH_EXTRACT_SYSTEM = 2                  # is this meaningful?
+_FH_EXTRACT_SYSTEM = 2
 _FH_GENERAL_PURPOSE_FLAG_BITS = 3
 _FH_COMPRESSION_METHOD = 4
 _FH_LAST_MOD_TIME = 5
@@ -70,7 +77,6 @@ _FH_COMPRESSED_SIZE = 8
 _FH_UNCOMPRESSED_SIZE = 9
 _FH_FILENAME_LENGTH = 10
 _FH_EXTRA_FIELD_LENGTH = 11
-
 
 class ZipInfo (object):
     """Class with attributes describing each file in the ZIP archive."""
@@ -96,7 +102,7 @@ class ZipInfo (object):
             'file_size',
         )
 
-    def __init__(self, filename="NoName", date_time=(1980,1,1,0,0,0)):
+    def __init__(self, filename="NoName", date_time=(1980,1,1,0,0,0), compression=ZIP_STORED):
         self.orig_filename = filename   # Original file name in archive
 
         # Terminate the file name at the first null byte.  Null bytes in file
@@ -110,29 +116,38 @@ class ZipInfo (object):
         if os.sep != "/" and os.sep in filename:
             filename = filename.replace(os.sep, "/")
 
-        self.filename = filename        # Normalized file name
-        self.date_time = date_time      # year, month, day, hour, min, sec
+        self.filename = filename         # Normalized file name
+        self.date_time = date_time       # year, month, day, hour, min, sec
+
         # Standard values:
-        self.compress_type = ZIP_STORED # Type of compression for the file
-        self.comment = ""               # Comment for each file
-        self.extra = ""                 # ZIP extra data
-        if sys.platform == 'win32':
-            self.create_system = 0          # System which created ZIP archive
-        else:
-            # Assume everything else is unix-y
-            self.create_system = 3          # System which created ZIP archive
-        self.create_version = 20        # Version which created ZIP archive
-        self.extract_version = 20       # Version needed to extract archive
-        self.reserved = 0               # Must be zero
-        self.flag_bits = 0x08           # ZIP flag bits, bit 3 indicates presence of data descriptor
-        self.volume = 0                 # Volume number of file header
-        self.internal_attr = 0          # Internal attributes
-        self.external_attr = 0          # External file attributes
-        # Other attributes are set by class ZipFile:
-        # header_offset         Byte offset to the file header
-        # CRC                   CRC-32 of the uncompressed file
-        # compress_size         Size of the compressed file
-        # file_size             Size of the uncompressed file
+        self.compress_type = compression # Type of compression for the file
+        self.comment = ""                # Comment for each file
+        self.extra = ""                  # ZIP extra data
+
+        self.create_system = 0           # System which created ZIP archive
+                                         # 
+                                         # evilaliv3 :
+                                         #   To avoid a particular leak on the real OS
+                                         #   we declare always Windows.
+                                         #
+                                         #   And probably this zip file would be
+                                         #   also more compatible for some fucking
+                                         #   Windows archive!
+
+        self.create_version = 20         # Version which created ZIP archive
+        self.extract_version = 20        # Version needed to extract archive
+        self.reserved = 0                # Must be zero
+        self.flag_bits = 0x08            # ZIP flag bits, bit 3 indicates presence of data descriptor
+        self.volume = 0                  # Volume number of file header
+        self.internal_attr = 0           # Internal attributes
+
+        self.external_attr = 0600 << 16  # Security: Forced File Attributes
+
+        # Other attributes set by class ZipFile:
+        self.header_offset = 0           # Byte offset to the file header
+        self.CRC = 0
+        self.compress_size = 0
+        self.file_size = 0
 
     def DataDescriptor(self):
         if self.compress_size > ZIP64_LIMIT or self.file_size > ZIP64_LIMIT:
@@ -182,7 +197,7 @@ class ZipStream:
     """
     """
 
-    def __init__(self, serialized_files):
+    def __init__(self, files, compression=ZIP_STORED):
         """
         @param path:
         @param arc_path:
@@ -190,22 +205,33 @@ class ZipStream:
         @return:
         """
 
+        self.files = files
+        self.compression = compression
+
         self.filelist = []              # List of ZipInfo instances for archive
-        self.compression = ZIP_DEFLATED  # Method of compression
-        self.serialized_files = serialized_files
         self.data_ptr = 0               # Keep track of location inside archive
 
-    def __iter__(self):
+	self.time = time.localtime()[0:6] # Security: Forced Time
 
-        for sf in self.serialized_files:
-            log.debug("Compressing (%s)" % sf['name'])
-            for data in self.zip_file(sf['path'], sf['name']):
-                yield data
+
+    def __iter__(self):
+        for f in self.files:
+            log.debug("Compressing (%s)" % f['name'])
+
+            if 'path' in f:
+                for data in self.zip_file(f['path'], f['name']):
+                    yield data
+
+            elif 'buf' in f:
+                for data in self.zip_buf(f['buf'], f['name']):
+                    yield data
 
         yield self.archive_footer()
 
+
     def update_data_ptr(self, data):
-        """As data is added to the archive, update a pointer so we can determine
+        """
+        As data is added to the archive, update a pointer so we can determine
         the location of various structures as they are generated.
 
         data -- data to be added to archive
@@ -214,6 +240,7 @@ class ZipStream:
         """
         self.data_ptr += len(data)
         return data
+
 
     def zip_file(self, filename, archive_name):
         """
@@ -228,54 +255,88 @@ class ZipStream:
         as described in section V. of the PKZIP Application Note:
         http://www.pkware.com/business_and_developers/developer/appnote/
         """
-        st = os.stat(filename)
-        mtime = time.localtime(st.st_mtime)
-        date_time = mtime[0:6]
-
-        # Create ZipInfo instance to store file information
-        zinfo = ZipInfo(archive_name, date_time)
-        zinfo.external_attr = (st[0] & 0xFFFF) << 16L      # Unix attributes
-        zinfo.compress_type = self.compression
-
-        zinfo.file_size = st.st_size
-        zinfo.header_offset = self.data_ptr    # Start of header bytes
-
-        fp = open(filename, "rb")
-        zinfo.CRC = CRC = 0
-        zinfo.compress_size = compress_size = 0
-        zinfo.file_size = file_size = 0
+        zinfo = ZipInfo(archive_name, self.time, self.compression)
+        zinfo.header_offset = self.data_ptr
         yield self.update_data_ptr(zinfo.FileHeader())
 
-        cmpr = zlib.compressobj(zlib.Z_DEFAULT_COMPRESSION)
+        if zinfo.compress_type == ZIP_DEFLATED:
+            cmpr = zlib.compressobj(zlib.Z_DEFAULT_COMPRESSION, zlib.DEFLATED, -15)
+        else:
+            cmpr = None
 
-        while True:
-            buf = fp.read(1024 * 8)
-            if not buf:
-                break
-            file_size = file_size + len(buf)
-            CRC = binascii.crc32(buf, CRC)
-            if cmpr:
-                buf = cmpr.compress(buf)
-                compress_size = compress_size + len(buf)
-            yield self.update_data_ptr(buf)
-        fp.close()
+        with open(filename, "rb") as fp:
+            while 1:
+                buf = fp.read(1024 * 8)
+                if not buf:
+                   break
+                zinfo.file_size = zinfo.file_size + len(buf)
+                zinfo.CRC = binascii.crc32(buf, zinfo.CRC)
+                if cmpr:
+                    buf = cmpr.compress(buf)
+                    zinfo.compress_size = zinfo.compress_size + len(buf)
+                yield self.update_data_ptr(buf)
 
         if cmpr:
             buf = cmpr.flush()
-            compress_size = compress_size + len(buf)
+            zinfo.compress_size = zinfo.compress_size + len(buf)
             yield self.update_data_ptr(buf)
-            zinfo.compress_size = compress_size
         else:
-            zinfo.compress_size = file_size
+            zinfo.compress_size = zinfo.file_size
 
-        zinfo.CRC = CRC
-        zinfo.file_size = file_size
         yield self.update_data_ptr(zinfo.DataDescriptor())
+
+        self.filelist.append(zinfo)
+
+
+    def zip_buf(self, filebuf, archive_name):
+        """
+        Generates data to add the filebuf 'filebuf' as file with name 'archive_name'
+
+        This function generates the data corresponding to the fields:
+
+        [local file header n]
+        [file data n]
+        [data descriptor n]
+
+        as described in section V. of the PKZIP Application Note:
+        http://www.pkware.com/business_and_developers/developer/appnote/
+        """
+        zinfo = ZipInfo(archive_name, self.time, self.compression)
+        zinfo.header_offset = self.data_ptr
+
+        yield self.update_data_ptr(zinfo.FileHeader())
+
+        if zinfo.compress_type == ZIP_DEFLATED:
+            cmpr = zlib.compressobj(zlib.Z_DEFAULT_COMPRESSION, zlib.DEFLATED, -15)
+        else:
+            cmpr = None
+
+        zinfo.file_size = len(filebuf)
+        zinfo.CRC = binascii.crc32(filebuf, zinfo.CRC)
+
+        buf = filebuf
+
+        if cmpr:
+            buf = cmpr.compress(buf)
+            zinfo.compress_size = zinfo.compress_size + len(buf)
+
+        yield self.update_data_ptr(buf)
+
+        if cmpr:
+            buf = cmpr.flush()
+            zinfo.compress_size = zinfo.compress_size + len(buf)
+            yield self.update_data_ptr(buf)
+        else:
+            zinfo.compress_size = zinfo.file_size
+
+        yield self.update_data_ptr(zinfo.DataDescriptor())
+
         self.filelist.append(zinfo)
 
 
     def archive_footer(self):
-        """Returns data to finish off an archive based on the files already
+        """
+        Returns data to finish off an archive based on the files already
         added via zip_file(...).  The data returned corresponds to the fields:
 
         [archive decryption header] 
@@ -300,7 +361,7 @@ class ZipStream:
             if zinfo.file_size > ZIP64_LIMIT or zinfo.compress_size > ZIP64_LIMIT:
                 extra.append(zinfo.file_size)
                 extra.append(zinfo.compress_size)
-                file_size = 0xffffffff #-1
+                file_size = 0xffffffff     #-1
                 compress_size = 0xffffffff #-1
             else:
                 file_size = zinfo.file_size
@@ -331,10 +392,10 @@ class ZipStream:
                                   0, zinfo.internal_attr, zinfo.external_attr,
                                   header_offset)
             
-            data.append( self.update_data_ptr(centdir))
-            data.append( self.update_data_ptr(zinfo.filename))
-            data.append( self.update_data_ptr(extra_data))
-            data.append( self.update_data_ptr(zinfo.comment))
+            data.append(self.update_data_ptr(centdir))
+            data.append(self.update_data_ptr(zinfo.filename))
+            data.append(self.update_data_ptr(extra_data))
+            data.append(self.update_data_ptr(zinfo.comment))
 
         pos2 = self.data_ptr
         # Write end-of-zip-archive record
@@ -362,5 +423,3 @@ class ZipStream:
         # This operation causes that filename can't be unicode
         # It's the second in this file
         return ''.join(data)
-
-
