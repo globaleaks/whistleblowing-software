@@ -21,15 +21,14 @@ This comment is needed in order to push the following strings on transifex
 
       <div class="row">
         <form class="config-form">
-
           <tabset>
             <tab ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
             <div ng-include="tab.template" ng-controller="tab.ctrl" class="content-tab"></div>
             </tab>
           </tabset>
-
         </form>
-      </div>  
-    </div>
+      </div>
+
+    </div> 
   </div>
 </div>

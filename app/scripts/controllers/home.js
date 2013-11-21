@@ -59,5 +59,4 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
       $scope.goToStep(1);
     }
 
-
 }]);

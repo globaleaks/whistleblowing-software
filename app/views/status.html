@@ -104,108 +104,128 @@
           </div>
         </div>
       </div>
-
       <br />
-
-      <div class="col-md-12">
-        <h3>
-          {{ "Files" | translate }}
-        </h3>
-        <div class="well" ng-show="tip.files">
-          <h4>{{file.name}}</h4>
-          <ul class="list-unstyled">
-            <a class="input-small" ng-href="/tip/{{tip.id}}/collection" ng-show="tip.im_receiver && (file.downloads <= current_context.file_max_downloads)" ng-click="increaseDownloadCount(file)">
-              {{ "download all the files" | translate }}
-            </a>
-            <br />
-            <a class="input-small" ng-click="show_new_files = !show_new_files" ng-init="show_new_files = false" ng-show="!show_new_files && tip.im_receiver">
-              {{ "show only files not yet downloaded" | translate }}
-            </a>
-            <a class="input-small" ng-click="show_new_files = !show_new_files" ng-show="show_new_files && tip.im_receiver">
-              {{ "show all the files" | translate }}
-            </a>
-            <li ng-repeat="file in tip.files">
-              <div ng-show="file.downloads == 0 && show_new_files">
-                <a ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
-                   <i class="glyphicon glyphicon-download"></i> 
-                   {{ "download" | translate }}
-                   ({{file.downloads}}/{{tip.download_limit}})
-                </a>
-                <i class="glyphicon glyphicon-book"></i> {{file.name}}
-              </div>
-
-              <div ng-show="!show_new_files">
-                <a ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_download" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
-                   <i class="glyphicon glyphicon-download"></i> 
-                   {{ "download" | translate }} 
-                   ({{file.downloads}}/{{tip.download_limit}})
-                </a>
-                <i class="glyphicon glyphicon-book"></i> {{file.name}}
-              </div>
-
-            </li>
-            <a class="input-small" ng-click="security_checksum = !security_checksum" ng-init="security_checksum = false" ng-show="!security_checksum">
-              {{ "show sha256 checksum" | translate }}
-            </a>
-            <a class="input-small" ng-click="security_checksum = !security_checksum" ng-show="security_checksum">
-              {{ "show sha256 checksum" | translate }}
-              <i>
-                {{ "(click again to hide)" | translate }}
-              </i>
-            </a>
-          </ul>
-        </div>
-        <div class="well" ng-show="security_checksum">
-          <p>
-            {{ "Use the" | translate }} 
-            <a href="https://en.wikipedia.org/wiki/SHA-2">
-              {{ "sha256 hash" | translate }}
-            </a> 
-            {{ "to verify the file integrity" | translate }}.
-            <br />
-            {{ "On unix based systems this can be done by running the following command in the directory of the files" | translate }}:
-          </p>
-          <b>$ shasum -a 256 *</b>
-          <div ng-repeat="file in tip.files">
-            <div class="label label-warning">
-              {{file.name}} {{file.sha2sum}}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-12" ng-hide="tip.files">
-        <p>
-          {{ "No file has been uploaded!" | translate }}
-        </p>
-      </div>
-
-      <div class="col-md-12" ng-show="tip.im_whistleblower">
-        <div ng-include="'views/widgets/fileupload.html'"></div>
-      </div>
 
       <div class="col-md-12">
         <h3>{{ "Receiver List" | translate }}</h3>
         <div class="table-container">
-        <table class="table table-striped table-bordered dataTable" id="receiverList">
-          <thead>
-            <tr>
-              <th>{{ "Name" | translate }}</th>
-              <th>{{ "Description" | translate }}</th>
-              <th>{{ "Access counter" | translate }}</th>
-            </tr>
-          </thead>
-          <tbody id="receiverListBody">
-            <tr ng-repeat="receiver in tip.receivers">
-              <td>{{receiver.name}}</td>
-              <td>{{receiver.description}}</td>
-              <td>{{receiver.access_counter}}</td>
-            </tr>
-          </tbody>
-        </table>
+          <table class="table table-striped table-bordered dataTable" id="receiverList">
+            <thead>
+              <tr>
+                <th>{{ "Name" | translate }}</th>
+                <th>{{ "Description" | translate }}</th>
+                <th>{{ "Access counter" | translate }}</th>
+              </tr>
+            </thead>
+            <tbody id="receiverListBody">
+              <tr ng-repeat="receiver in tip.receivers">
+                <td>{{receiver.name}}</td>
+                <td>{{receiver.description}}</td>
+                <td>{{receiver.access_counter}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        {{ "Files" | translate }}
+      </h3>
+      <div class="well" ng-show="tip.files">
+        <a class="input-small" ng-href="/tip/{{tip.id}}/collection" ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)">
+          {{ "download all the files" | translate }}
+        </a>
+        <br />
+        <a class="input-small" ng-click="show_new_files = !show_new_files" ng-init="show_new_files = false" ng-show="tip.im_receiver && !show_new_files">
+          {{ "show only files not yet downloaded" | translate }}
+        </a>
+        <a class="input-small" ng-click="show_new_files = !show_new_files" ng-show="tip.im_receiver && show_new_files">
+          {{ "show all the files" | translate }}
+        </a>
+        <br /><br />
+        <div class="table-container">
+          <table class="table table-striped table-bordered dataTable" id="fileList">
+            <thead>
+              <tr>
+                <th>
+                  {{ "Filename" | translate }}
+                </th>
+                <th ng-show="tip.im_receiver">
+                  {{ "Download" | translate }}
+                </th>
+                <th ng-show="tip.im_receiver">
+                  {{ "Upload Date" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody id="fileListBody" ng-repeat="file in tip.files">
+              <tr ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+                <td>
+                  {{file.name}}
+                </td>
+                <td ng-show="tip.im_receiver">
+                  <a ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
+                    <i class="glyphicon glyphicon-download"></i> 
+                    {{ "download" | translate }}
+                    ({{file.downloads}}/{{tip.download_limit}})
+                  </a>
+                </td>
+                <td ng-show="tip.im_receiver">
+                  {{file.creation_date | date:'yyyy-MM-dd' }}
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br />
+
+        <a class="input-small" ng-click="security_checksum = !security_checksum" ng-init="security_checksum = false" ng-show="!security_checksum">
+          {{ "show sha256 checksum" | translate }}
+        </a>
+        <a class="input-small" ng-click="security_checksum = !security_checksum" ng-show="security_checksum">
+          {{ "show sha256 checksum" | translate }}
+          <i>
+            {{ "(click again to hide)" | translate }}
+          </i>
+        </a>
+      </div>
+      <div class="well" ng-show="security_checksum">
+        <p>
+          {{ "Use the" | translate }} 
+          <a href="https://en.wikipedia.org/wiki/SHA-2">
+            {{ "sha256 hash" | translate }}
+          </a> 
+          {{ "to verify the file integrity" | translate }}.
+          <br />
+          {{ "On unix based systems this can be done by running the following command in the directory of the files" | translate }}:
+        </p>
+        <b>$ shasum -a 256 *</b>
+        <div ng-repeat="file in tip.files">
+          <div class="label label-warning">
+            {{file.name}} {{file.sha2sum}}
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="col-md-12" ng-hide="tip.files">
+      <p>
+        {{ "No file has been uploaded!" | translate }}
+      </p>
+    </div>
+
+    <div class="col-md-12" ng-show="tip.im_whistleblower">
+      <div ng-include="'views/widgets/fileupload.html'"></div>
+    </div>
+
   </div>
 
   <hr>

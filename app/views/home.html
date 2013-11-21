@@ -2,6 +2,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true" ng-click="showQuestions = false">×</button>
         <h3 ng-show="correctAnswer || !answered">
           {{ "Warning! You are not Anonymous." | translate }}
         </h3>
@@ -121,7 +122,6 @@
         </div>
         <div class="row" ng-show="node_info.tor2web_submission || anonymous">
           <a ng-click="goToSubmission()" class="btn btn-primary btn-lg">
-            <i class="glyphicon glyphicon-upload"></i>
             {{ "Blow the Whistle" | translate }}
           </a>
         </div>
