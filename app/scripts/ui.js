@@ -76,12 +76,6 @@ angular.module('submissionUI', []).
       }, spinner = new Spinner(opts).spin(element[0]);
   };
 }).
-  directive('holder', function(){
-      return function(scope, element, attrs) {
-        var size = attrs.holder;
-        Holder.run();
-      };
-}).
   directive('fadeout', function(){
     return function(scope, element, attrs) {
       var fadeout_delay = 3000;
@@ -95,27 +89,4 @@ angular.module('submissionUI', []).
 
       element.fadeOut(fadeout_delay);
     };
-}).
-  directive('expandTo', function() {
-  // Used to expand the element to the target width when you over over it. Also
-  // makes sure that all the text is selected on a single click.
-  return function(scope, element, attrs) {
-    scope.$watch(attrs.expandTo, function(width){
-      var original_width = element.css('width'),
-        target_width = width + 'px';
-
-      element.mouseenter(function() {
-        element.css('width', target_width);
-      });
-
-      element.mouseleave(function() {
-        element.css('width', original_width);
-      });
-
-      element.click(function() {
-        element.select();
-      });
-
-    })
-  };
 });
