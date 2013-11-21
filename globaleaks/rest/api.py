@@ -69,7 +69,7 @@ spec = [
     (r'/tip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
 
     #  T6 = only Receiver, download all the files in  zip
-    (r'/tip/' + uuid_regexp + '/zip', files.ZipDownload),
+    (r'/tip/' + uuid_regexp + '/collection(/(zipstored|zipdeflated))?', files.CollectionDownload),
 
     ## Receiver Handlers ##
     #  R1

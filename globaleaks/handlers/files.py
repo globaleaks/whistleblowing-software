@@ -10,21 +10,21 @@ from __future__ import with_statement
 import time
 
 from twisted.internet import threads
-from twisted.internet.defer import inlineCallbacks
+from twisted.internet.defer import inlineCallbacks, returnValue
+from twisted.web.server import NOT_DONE_YET
 from cyclone.web import os, StaticFileHandler
 from Crypto.Hash import SHA256
+
+from tempfile import TemporaryFile
 
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log, pretty_date_time
+from globaleaks.utils.zipstream import ZipStream, ZIP_STORED, ZIP_DEFLATED
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, ReceiverTip, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.third_party import rstr
-from globaleaks.utils.zipstream import ZipStream
-
-
-__all__ = ['Download', 'FileInstance']
 
 def serialize_file(internalfile):
 
@@ -317,62 +317,6 @@ class Download(BaseHandler):
         self.finish()
 
 
-def create_supports_files(serialized_files):
-    """
-    zip_Etag, zip_name, files_dict = yield threads.deferToThread(create_supports_files, files_dict)
-
-    serialized_files has:
-    {
-     'name': u'imag0009.jpg',
-     'downloads': 0,
-     'creation_date': '2013-11-19T16:50:20.049692',
-     'sha2sum': u'd29d7a30eb85f3847adb128c2fd7f894ccfacf157851a6374efddf6c6bb0ffa2',
-     'content_type': u'image/jpeg',
-     'path': u'IXeIZckfQJaVRzoNPYnUfiIZfZ',
-     'size': 759738
-    }
-    """
-    import random
-    sha = SHA256.new()
-
-    # TODO - ramdisk ? dedicated directory ?
-    tmpfile = "/tmp/%s_%s.txt" % ( random.randint(1, 0xFFFF), random.randint(1, 0xFFFF) )
-
-    with file(tmpfile, 'w+') as f:
-
-        f.write("This is a compressed archive of files downloaded from a GlobaLeaks node\n")
-        f.write("[Some operational security tips will go here]\n\n")
-
-        total_size = 0
-        for filedesc in serialized_files:
-
-            sha.update(filedesc['name'])
-
-            linelength = 40
-            linelength -= len(filedesc['name'])
-
-            f.write("%s%s%s\n" % (filedesc['name'], " "*linelength, filedesc['size']) )
-            total_size += filedesc['size']
-
-            # Update all the path with the absolute path
-            filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
-            # Zip do not supports, apparently, unicode file name ?
-            # Need to be investigated
-            filedesc['name'] = str(filedesc['name'])
-
-        f.write("\nTotal size uncompressed: %s" % total_size)
-
-    Etag = sha.hexdigest()
-    # TODO enhancement name (codeword ? date ?)
-    name = "SubmissionArchive_%s.zip" % len(serialized_files)
-
-    # append the FileList.txt here generated to the archive
-    serialized_files.append({ 'path' : tmpfile,
-                              'name' : "FileList.txt" })
-
-    return Etag, name, serialized_files
-
-
 @transact
 def download_all_files(store, tip_id):
 
@@ -396,45 +340,76 @@ def download_all_files(store, tip_id):
 
     return files_list
 
-
-class ZipDownload(BaseHandler):
+class CollectionDownload(BaseHandler):
 
     @unauthenticated
     @inlineCallbacks
-    def get(self, tip_gus, *uriargs):
+    def get(self, tip_gus, path="/zipstored", compression="zipstored"):
+        if compression == 'zipstored':
+            zip_compression_type = ZIP_STORED
+            content_type='application/zip'
+        elif compression == 'zipdeflated':
+            zip_compression_type = ZIP_DEFLATED
+            content_type = 'application/zip'
+        else:
+            # just to be sure; by the way
+            # the regexp of rest/api.py should prevent this.
+            raise errors.InvalidInputFormat
 
         files_dict = yield download_all_files(tip_gus)
 
         if not files_dict:
             raise errors.DownloadLimitExceeded
 
-        zip_Etag, zip_name, files_dict = yield threads.deferToThread(create_supports_files, files_dict)
+        info  = "This is an archive of files downloaded from a GlobaLeaks node\n"
+        info += "[Some operational security tips will go here]\n\n"
 
-        # zip_cksum, zip_size, zip_name, zip_path = yield threads.deferToThread(zipfile_builder, path_list)
+        sha = SHA256.new()
+
+        info += "%s%s%s%s%s\n" % ("Filename",
+                                  " "*(40-len("Filename")),
+                                  "Size (Bytes)",
+                                  " "*(15-len("Size (Bytes)")),
+                                  "SHA256")
+
+        total_size = 0
+        for filedesc in files_dict:
+
+            sha.update(filedesc['name'])
+
+            length1 = 40 - len(filedesc['name'])
+            length2 = 15 - len(str(filedesc['size']))
+
+            info += "%s%s%i%s%s\n" % (filedesc['name'],
+                                      " "*length1,
+                                      filedesc['size'],
+                                      " "*length2,
+                                      filedesc['sha2sum'])
+
+            total_size += filedesc['size']
+
+            filedesc['name'] = filedesc['name'].encode('utf-8')
+
+            # Update all the path with the absolute path
+            filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
+
+        info += "\nTotal size is: %s Bytes" % total_size
+
+        files_dict.append({ 'buf'  : info,
+                            'name' : "COLLECTION_INFO.txt" })
 
         self.set_status(200)
 
         self.set_header('X-Download-Options', 'noopen')
-        self.set_header('Content-Type', 'application/zip')
-        self.set_header('Etag', '"%s"' % zip_Etag)
-        self.set_header('Content-Disposition','attachment; filename=\"%s\"' % zip_name)
+        self.set_header('Content-Type', content_type)
+        self.set_header('Etag', '"%s"' % sha.hexdigest())
+        self.set_header('Content-Disposition','attachment; filename=\"collection.zip\"')
 
-        for data in ZipStream(files_dict):
-            self.write(data)
+        if compression in ['zipstored', 'zipdeflated']:
+            for data in ZipStream(files_dict, zip_compression_type):
+                self.write(data)
 
         self.finish()
-
-        if files_dict[-1]['name'] == GLSetting.zipfile_name:
-            tmpzipfile = files_dict[-1]['path']
-            try:
-                # TODO, dedicated directory, scheduled cleaning, secure delete
-                os.unlink(tmpzipfile)
-            except Exception as excep:
-                log.err("Unable to remove temporary Zipfile %s: %s" % (tmpzipfile, excep) )
-        else:
-            # assertionfail ?
-            pass
-
 
 class CSSStaticFileHandler(BaseStaticFileHandler):
     """
