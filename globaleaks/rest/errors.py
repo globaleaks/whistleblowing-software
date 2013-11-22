@@ -415,3 +415,12 @@ class LangFileNotFound(GLException):
    reason = "Requested an operation on a non existent language file"
    error_code = 52
    status_code = 404
+
+class DirectoryTraversalError(GLException):
+   """
+   Blocked file operation out of the expected path
+   """
+   reason = "Blocked file operation out of the expected path"
+   error_code = 53
+   status_code = 403
+

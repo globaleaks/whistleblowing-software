@@ -24,6 +24,8 @@ from globaleaks.rest import errors
 from globaleaks.rest.base import uuid_regexp
 from globaleaks import models
 
+from globaleaks.security import directory_traversal_check
+
 def get_description_by_stat(statstruct, name):
     stored_file_desc =  {
             'filename': name,
@@ -82,6 +84,7 @@ def dump_static_file(uploaded_file, filelocation):
 
     return get_file_info(uploaded_file, filelocation)
 
+
 def reserved_name_check(target_string, original_fname):
     """
     @param target_string: its a string,
@@ -134,6 +137,7 @@ def reserved_name_check(target_string, original_fname):
               (target_string, original_fname) )
     return False
 
+
 @transact_ro
 def receiver_pic_path(store, receiver_uuid):
     receiver = store.find(models.Receiver, models.Receiver.id == unicode(receiver_uuid)).one()
@@ -142,6 +146,7 @@ def receiver_pic_path(store, receiver_uuid):
         raise errors.ReceiverGusNotFound
 
     return os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
+
 
 class StaticFileInstance(BaseHandler):
     """
@@ -217,7 +222,7 @@ class StaticFileInstance(BaseHandler):
 
     @transport_security_check('admin')
     @authenticated('admin')
-    def get(self, *args):
+    def get(self):
         """
         Return the list of static files, with few filesystem info
         """
@@ -227,19 +232,20 @@ class StaticFileInstance(BaseHandler):
 
     @transport_security_check('admin')
     @authenticated('admin')
-    def delete(self, filename, *args):
+    def delete(self, filename):
         """
         Parameter: filename
         Errors: StaticFileNotFound
         """
-        filelocation = os.path.join(GLSetting.static_path, filename)
+        path = os.path.join(GLSetting.static_path, filename)
+        directory_traversal_check(GLSetting.static_path, path)
 
-        if not os.path.exists(filelocation):
+        if not os.path.exists(path):
             raise errors.StaticFileNotFound
 
         # XXX if a reserved filename is requested, need to be handled in
         # a safe way: eg, if is a receiver, restore the default image.
-        os.unlink(filelocation)
+        os.remove(path)
 
         self.set_status(200)
         self.finish()

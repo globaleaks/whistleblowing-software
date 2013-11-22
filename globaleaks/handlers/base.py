@@ -174,7 +174,7 @@ class GLHTTPServer(HTTPConnection):
             if self.transport:
                 self.transport.loseConnection()
 
-class BaseBaseHandler(RequestHandler):
+class BaseHandler(RequestHandler):
     xsrf_cookie_name = "XSRF-TOKEN"
 
     def set_default_headers(self):
@@ -220,7 +220,7 @@ class BaseBaseHandler(RequestHandler):
         if self.xsrf_token != token:
             raise HTTPError(403, "XSRF cookie does not match POST argument")
 
-class BaseHandler(BaseBaseHandler):
+
     @staticmethod
     def validate_python_type(value, python_type):
         """
@@ -349,8 +349,8 @@ class BaseHandler(BaseBaseHandler):
         """
         pass
 
-    def initialize(self):
-        pass
+    #def initialize(self):
+    #    pass
 
     def on_connection_close(self, *args, **kwargs):
         pass
@@ -549,7 +549,7 @@ class BaseHandler(BaseBaseHandler):
 
 	return uploaded_file
 
-class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
+class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
     def prepare(self):
         """
         This method is called by cyclone,and perform 'Host:' header
@@ -567,7 +567,7 @@ class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
             just reading the property is enough to
             set the cookie as a side effect.
         """
-        BaseBaseHandler.set_default_headers(self)
+        BaseHandler.set_default_headers(self)
 
         self.clear_header("Cache-control")
         self.clear_header("Pragma")
@@ -588,7 +588,7 @@ class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
 	return uploaded_file
 
 
-class BaseRedirectHandler(BaseBaseHandler, RedirectHandler):
+class BaseRedirectHandler(BaseHandler, RedirectHandler):
     def prepare(self):
         """
         Same reason of StaticFileHandler

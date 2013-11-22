@@ -75,7 +75,7 @@ def itip_cleaning(store, id):
                 (abspath, id, ifname, ifile.size))
         else:
             try:
-                os.unlink(abspath)
+                os.remove(abspath)
             except OSError as excep:
                 log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
@@ -93,7 +93,7 @@ def itip_cleaning(store, id):
                 continue
     
             try:
-                os.unlink(abspath)
+                os.remove(abspath)
             except OSError as excep:
                 log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
