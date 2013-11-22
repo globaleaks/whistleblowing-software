@@ -29,7 +29,7 @@ from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
-content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"")
+content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"", re.IGNORECASE)
 
 def validate_host(host_key):
     """
@@ -106,7 +106,6 @@ class GLHTTPServer(HTTPConnection):
 
             c_d_header = self._request.headers.get("Content-Disposition")
             if c_d_header is not None:
-                c_d_header = c_d_header.lower()
                 m = content_disposition_re.match(c_d_header)
                 if m is None:
                     raise Exception
