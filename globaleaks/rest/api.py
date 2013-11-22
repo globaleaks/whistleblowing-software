@@ -70,7 +70,7 @@ spec = [
     #  T5 = only Receiver, download the files
     (r'/tip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
 
-    #  T6 = only Receiver, download all the files in  zip
+    #  T6 = only Receiver, download all the file in various archive formats
     (r'/tip/' + uuid_regexp + '/collection(/(zipstored|zipdeflated|tar|targz|tarbz2))?', collection.CollectionDownload),
 
     ## Receiver Handlers ##
