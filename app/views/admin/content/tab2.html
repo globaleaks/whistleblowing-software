@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-md-6">
+  <div class="col-md-12">
     <div class="form-group">
       <label>
         {{ "Graphic Customization" | translate }}
@@ -26,6 +26,60 @@
           <input ng-model="admin.node.reset_css" type="checkbox">
           <label>{{ "Reset custom CSS" | translate}}</label>
         </div>
+      </div>
+      <br /><br />
+      <label>
+        {{ "Load Custom File" | translate }}
+      </label>
+      <br />
+      {{ "The file will be available at the url: /static/$filename" }}
+      <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
+        <span pragmatic-file-upload="" ng-src="/admin/staticfiles/customization">
+          <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">
+            <span class="glyphicon glyphicon-plus"></span>
+            <span>{{ "Load" | translate }}</span>
+            <input type="file" name="files[]" multiple ng-disabled="disabled">
+          </span>
+        </span>
+        <span class="uploadProgress hide">
+          <span class="progress progress-striped">
+            <span class="progress-bar" style="width: 0%;"></span>
+          </span>
+        </span>
+      </div>
+      <div class="table-container">
+        <table class="table table-striped table-bordered dataTable" id="fileList">
+          <thead>
+            <tr>
+              <th>
+                {{ "Filename" | translate }}
+              </th>
+              <th ng-show="tip.im_receiver">
+                {{ "Download" | translate }}
+              </th>
+              <th ng-show="tip.im_receiver">
+                {{ "Upload Date" | translate }}
+              </th>
+            </tr>
+          </thead>
+          <tbody id="fileListBody" ng-repeat="file in tip.files">
+            <tr ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+              <td>
+                {{file.name}}
+              </td>
+              <td ng-show="tip.im_receiver">
+                <a ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
+                  <i class="glyphicon glyphicon-download"></i>
+                  {{ "download" | translate }}
+                  ({{file.downloads}}/{{tip.download_limit}})
+                </a>
+              </td>
+              <td ng-show="tip.im_receiver">
+                {{file.creation_date | date:'yyyy-MM-dd' }}
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
