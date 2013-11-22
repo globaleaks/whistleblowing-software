@@ -367,23 +367,6 @@ class TestAdminStaticFile(helpers.TestHandler):
 
     crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
-    def test_asf_reserved_name_check(self):
-
-        self.assertRaises(errors.InvalidInputFormat,
-                          admstaticfiles.reserved_name_check,
-                          u'86a4ffc4-26d4-4942-a3bd-9fc1f5d48453', 'whatever.tiff')
-        self.assertRaises(errors.ReservedFileName,
-                          admstaticfiles.reserved_name_check,
-                          u'globaleaks_logo_FxHtHA_$RANDOM(³³³)', 'something_plausible.png')
-
-        self.assertTrue( admstaticfiles.reserved_name_check('custom_stylesheet', 'myfunnycolors.css') )
-        self.assertTrue( admstaticfiles.reserved_name_check('globaleaks_logo', 'something.jpg') )
-        self.assertTrue( admstaticfiles.reserved_name_check('86a4ffc4-26d4-4942-a3bd-9fc1f5d48453',
-                                                            'whatever.jpeg' ) )
-
-        self.assertFalse( admstaticfiles.reserved_name_check('dirty_random_crap', 'ignored') )
-
-
     @inlineCallbacks
     def test_get(self):
 
