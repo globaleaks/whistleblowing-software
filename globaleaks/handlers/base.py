@@ -559,20 +559,6 @@ class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
-    def set_default_headers(self):
-        # In this function are written some security enforcements
-        # related to WebServer versioning and XSS attacks.
-        """
-            just reading the property is enough to
-            set the cookie as a side effect.
-        """
-        BaseHandler.set_default_headers(self)
-
-        self.clear_header("Cache-control")
-        self.clear_header("Pragma")
-        self.clear_header("Expires")
-
-
     def get_uploaded_file(self):
 	uploaded_file = self.request.body
 
