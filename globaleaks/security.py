@@ -20,8 +20,24 @@ from globaleaks.utils.utility import log, acquire_bool
 from globaleaks.settings import GLSetting
 from globaleaks.models import Receiver
 
-
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
+
+def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
+    """
+    check that an 'untrusted_path' match a 'trusted_absolute_path' prefix
+    """
+
+    if not os.path.isabs(trusted_absolute_prefix):
+        raise Exception("programming error: trusted_absolute_prefix is not an absolute path: %s" %
+                        trusted_absolute_prefix)
+
+    untrusted_path = os.path.abspath(untrusted_path)
+
+    if trusted_absolute_prefix != os.path.commonprefix([trusted_absolute_prefix, untrusted_path]):
+        log.err("Blocked file operation out of the expected path: (\"%s\], \"%s\"" %
+                trusted_absolute_prefix, untrusted_path)
+
+        raise error.DirectoryTraversalException
 
 def get_salt(salt_input):
     """

@@ -162,7 +162,8 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
             'last_access' : unicode(pretty_date_time(rtip.last_access)),
             'expiration_date' : unicode(pretty_date_time(rtip.internaltip.expiration_date)),
             'access_counter': rtip.access_counter,
-            'files_number': rfiles_n
+            'files_number': rfiles_n,
+            'comments_number': rtip.internaltip.comments.count()
         })
 
         preview_data = []
