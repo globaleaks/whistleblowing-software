@@ -23,6 +23,7 @@ from globaleaks.handlers.base import BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated, unauthenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
+from globaleaks.security import directory_traversal_check
 
 class LanguageFileHandler(BaseStaticFileHandler):
     """
@@ -33,7 +34,7 @@ class LanguageFileHandler(BaseStaticFileHandler):
         return os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n', ('%s.json') % lang))
 
     def custom_langfile_path(self, lang):
-        return os.path.abspath(os.path.join(self.root, 'l10n', ('%s.json') % lang))
+        return os.path.abspath(os.path.join(GLSetting.static_path_l10n, ('%s.json') % lang))
 
     @transport_security_check('admin')
     @authenticated('admin')
@@ -46,10 +47,13 @@ class LanguageFileHandler(BaseStaticFileHandler):
 
         uploaded_file = self.get_uploaded_file()
 
+        path = self.custom_langfile_path(lang)
+        directory_traversal_check(GLSetting.static_path_l10n, path)
+
         try:
-            dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file, self.custom_langfile_path(lang))
+            dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file, path)
         except OSError as excpd:
-            log.err("OSError while create a new custom lang file [%s]: %s" % (self.custom_langfile_path(lang), excpd))
+            log.err("OSError while create a new custom lang file [%s]: %s" % (path, excpd))
             raise errors.InternalServerError(excpd.strerror)
         except Exception as excpd:
             log.err("Unexpected exception: %s" % excpd)
@@ -66,12 +70,20 @@ class LanguageFileHandler(BaseStaticFileHandler):
     @unauthenticated
     def get(self, lang, include_body=True):
         self.set_header('Content-Type', 'application/json')
-        if os.path.isfile(self.custom_langfile_path(lang)):
-            StaticFileHandler.get(self, self.custom_langfile_path(lang), include_body)
+
+        path = self.custom_langfile_path(lang)
+        directory_traversal_check(GLSetting.static_path_l10n, path)
+
+        if os.path.exists(path):
+            StaticFileHandler.get(self, path, include_body)
         else:
-	    # to reuse use the StaticFile handler we need to change the root path
-	    self.root = os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n'))
-            StaticFileHandler.get(self, self.langfile_path(lang), include_body)
+            path = self.langfile_path(lang)
+            directory_traversal_check(GLSetting.glclient_path, path)
+
+            # to reuse use the StaticFile handler we need to change the root path
+            self.root = os.path.abspath(os.path.join(GLSetting.glclient_path, 'l10n'))
+
+            StaticFileHandler.get(self, path, include_body)
 
     @transport_security_check('admin')
     @authenticated('admin')
@@ -80,10 +92,13 @@ class LanguageFileHandler(BaseStaticFileHandler):
         Parameter: filename
         Errors: LangFileNotFound
         """
-        if not os.path.exists(self.custom_langfile_path(lang)):
+        path = self.custom_langfile_path(lang)
+        directory_traversal_check(GLSetting.static_path_l10n, path)
+
+        if not os.path.exists(path):
             raise errors.LangFileNotFound
 
-        os.unlink(self.custom_langfile_path(lang))
+        os.remove(path)
 
         self.set_status(200)
         self.finish()

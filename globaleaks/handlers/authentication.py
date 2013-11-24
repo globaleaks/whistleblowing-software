@@ -3,7 +3,7 @@
 #   authentication
 #   **************
 #
-# Authentication, login failed count, session management, password checks
+# Files collection handlers and utils
 
 from twisted.internet import reactor
 from twisted.internet.defer import Deferred, inlineCallbacks

@@ -177,7 +177,7 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
 
         if os.path.isfile(custom_css_path):
             try:
-                os.unlink(custom_css_path)
+                os.remove(custom_css_path)
                 log.debug("Reset on custom CSS done.")
             except Exception as excep:
                 log.err("Unable to remove custom CSS: %s: %s" % (custom_css_path, excep))
@@ -636,7 +636,7 @@ def delete_receiver(store, id):
     portrait = os.path.join(GLSetting.static_path, "%s.png" % id)
 
     if os.path.exists(portrait):
-        os.unlink(portrait)
+        os.remove(portrait)
 
     store.remove(receiver.user)
 
