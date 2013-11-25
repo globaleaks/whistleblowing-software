@@ -16,12 +16,12 @@ from globaleaks import models
 from globaleaks import LANGUAGES_SUPPORTED
 
 @transact_ro
-def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
+def anon_serialize_node(store, user, language=GLSetting.memory_copy.default_language):
     node = store.find(models.Node).one()
 
     # Contexts and Receivers relationship
     associated = store.find(models.ReceiverContext).count()
-    
+
     node_dict = {
       'name': unicode(node.name),
       'hidden_service': unicode(node.hidden_service),
@@ -43,7 +43,7 @@ def anon_serialize_node(store, language=GLSetting.memory_copy.default_language):
       'tor2web_tip': GLSetting.memory_copy.tor2web_tip,
       'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
       'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
-      'postpone_superpower': node.postpone_superpower,
+      'postpone_superpower': node.postpone_superpower
     }
 
     mo = Rosetta()
@@ -145,7 +145,7 @@ class InfoCollection(BaseHandler):
         Response: publicNodeDesc
         Errors: NodeNotFound
         """
-        response = yield anon_serialize_node(self.request.language)
+        response = yield anon_serialize_node(self.current_user, self.request.language)
         self.finish(response)
 
 # U2 Submission create

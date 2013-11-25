@@ -47,7 +47,7 @@ actorsCommentDesc = {
 }
 
 actorsTipOpsDesc = {
-    'total_delete' : bool,
+    'global_delete' : bool,
     'is_pertinent': bool
 }
 

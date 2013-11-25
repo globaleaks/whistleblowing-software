@@ -173,6 +173,8 @@ def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_c
     node = store.find(Node).one()
     tip_desc['im_receiver_postponer'] = node.postpone_superpower
 
+    tip_desc['can_delete_submission'] = rtip.receiver.can_delete_submission
+
     return tip_desc
 
 @transact
@@ -378,7 +380,7 @@ class TipInstance(BaseHandler):
         know which kind of operation has been requested. If a pertinence vote, would
         perform a refresh on get() API, if a delete, would bring the user in other places.
 
-        When an uber-receiver decide to "total delete" a Tip, is handled by this call.
+        When an uber-receiver decide to "global delete" a Tip, is handled by this call.
         """
 
         if self.is_whistleblower:
@@ -386,13 +388,10 @@ class TipInstance(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
 
-        if False and request['global_delete']: # disabled because client have not to send them,
-            yield delete_internal_tip(self.current_user['user_id'], tip_id)
-
-        elif False and request['is_pertinent']: # disabled too
+        if False and request['is_pertinent']: # disabled too
             yield manage_pertinence(self.current_user['user_id'], tip_id, request['is_pertinent'])
 
-        elif request['extend']:
+        if request['extend']:
             yield postpone_expiration_date(self.current_user['user_id'], tip_id)
 
         self.set_status(202) # Updated
@@ -411,7 +410,12 @@ class TipInstance(BaseHandler):
         if self.is_whistleblower:
             raise errors.ForbiddenOperation
 
-        yield delete_receiver_tip(self.current_user['user_id'], tip_id)
+        request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
+
+        if request['global_delete']:
+            yield delete_internal_tip(self.current_user['user_id'], tip_id)
+        else:
+            yield delete_receiver_tip(self.current_user['user_id'], tip_id)
 
         self.set_status(200) # Success
         self.finish()
