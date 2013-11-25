@@ -25,7 +25,7 @@
           <dt>{{ tip.context_name }}</dt>
           <dd>{{ tip.context_description }}</dd>
           <dt>{{ "Submission date" | translate }}</dt>
-          <dd>{{ tip.creation_date | date:'yyyy-MM-dd HH:mm' }}</dd>
+          <dd>{{ tip.creation_date | date:'dd-MM-yyyy HH:mm' }}</dd>
         </dl>
 
         <br />
@@ -76,7 +76,7 @@
           <div ng-show="extendbutton">
             <p class="alert alert-danger">
               {{ "Clicking extend, you will extend the Tip expiration date to:" | translate }}
-              {{ tip.potential_expiration_date | date:'yyyy-MM-dd HH:mm' }}
+              {{ tip.potential_expiration_date | date:'dd-MM-yyyy HH:mm' }}
               <br />
               <button type="submit" class="btn btn-danger" ng-click="extendTip()">
                 <i class="glyphicon glyphicon-time"></i>
@@ -86,7 +86,7 @@
             <br />
           </div>
         </div>
-        <div ng-show="tip.im_receiver_postponer">
+        <div ng-show="receiver.can_delete_submission">
           <a ng-init="deletebutton = false" ng-click="deletebutton =! deletebutton">
             <i class="glyphicon glyphicon-trash"></i>
             {{ "Delete Tip" | translate }}
@@ -178,7 +178,7 @@
                   </a>
                 </td>
                 <td ng-show="tip.im_receiver">
-                  {{file.creation_date | date:'yyyy-MM-dd' }}
+                  {{file.creation_date | date:'dd-MM-yyyy' }}
                 </td>
               </tr>
             </tbody>
@@ -258,9 +258,9 @@
                    {{ "The user" | translate }}
                    {{comment.system_content.receiver_name}}
                    {{ "In date" | translate }}
-                   {{comment.system_content.now | date:'yyyy-MM-dd HH:mm' }}
+                   {{comment.system_content.now | date:'dd-MM-yyyy HH:mm' }}
                    {{ "has postponed Tip expiration to" | translate }}
-                   {{comment.system_content.expire_on | date:'yyyy-MM-dd HH:mm' }}
+                   {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
                  </div>
               </div>
           </div>
