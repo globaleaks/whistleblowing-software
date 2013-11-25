@@ -44,14 +44,14 @@ This comment is needed in order to push the following strings on transifex
               <td class="col-md-4">
                 <ul>
                   <li ng-repeat="rtip in receiver.receivertips">
-                    {{rtip.status}} {{rtip.last_access}} ({{rtip.access_counter}})
+                    {{rtip.status}} {{rtip.last_access | date:'dd-MM-yyyy HH:mm'}} ({{rtip.access_counter}})
                   </li>
                 </ul>
               </td>
               <td class="col-md-3">
                 <ul>
                   <li ng-repeat="rfile in receiver.receiverfiles">
-                    {{rfile.file_name}} ({{rfile.downloads}}), {{rfile.last_access}}
+                    {{rfile.file_name}} ({{rfile.downloads}}), {{rfile.last_access | date:'dd-MM-yyyy HH:mm'}}
                   </li>
                 </ul>
               </td>

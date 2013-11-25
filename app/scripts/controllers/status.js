@@ -84,23 +84,6 @@ GLClient.controller('StatusCtrl',
       file.downloads = parseInt(file.downloads) + 1;
     };
 
-    $scope.extendTip = function() {
-       $scope.tip.extend = true;
-
-       // XXX this should be returned by the backend, but is not.
-       $scope.tip.total_delete = false;
-       $scope.tip.is_pertinent = false;
-
-       $scope.tip.$update();
-       $scope.extendbutton = false;
-
-       $route.reload();
-    }
-
-    $scope.deleteTip = function() {
-       return $http.delete('/tip/' + $scope.tip_id).success(function(data, status, headers, config){ $location.url('/receiver/tips'); });
-    }
-
     $scope.download = function(url) {
        return $http.get(url);
     }

@@ -37,14 +37,24 @@ This comment is needed in order to push the following strings on transifex
               <th>{{ "Preview" | translate }}</th>
             </tr>
           </thead>
-          <tbody id="tipListTableBody">
+          <tbody id="tipListTableBody" ng-controller="TipCtrl">
             <tr ng-repeat="tip in tips" class="{{tip.parity}}">
               <td class="col-md-2">
-                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}">
-                  <span class="glyphicon glyphicon-folder-close" ng-switch-when="0"></span>
-                  <span class="glyphicon glyphicon-folder-open" ng-switch-default></span>
+                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}" class="btn btn-xs btn-primary"
+                   popover="{{ 'Tip' | translate }}" popover-placement="top" popover-trigger="mouseenter">
+                  <i class="glyphicon glyphicon-folder-close" ng-switch-when="0"></i>
+                  <i class="glyphicon glyphicon-folder-open" ng-switch-default></i>
                 </a>
-                <a ng-click="tip_delete(tip.id)">
+                <a ng-show="tip.im_receiver_postponer" ng-click="tip_extend(tip.id)" class="btn btn-xs btn-warning"
+                   popover="{{ 'Postpone Tip expiration date' | translate }}" popover-placement="top" popover-trigger="mouseenter">
+                  <i class="glyphicon glyphicon-time"></i>
+                </a>
+                <a ng-click="tip_delete(tip.id, false)" class="btn btn-xs btn-warning"
+                   popover="{{ 'Delete Tip' | translate }}" popover-placement="top" popover-trigger="mouseenter">
+                  <i class="glyphicon glyphicon-trash"></i>
+                </a>
+                <a ng-show="session.permissions['can_delete_submission']" ng-click="tip_delete(tip.id, true)" class="btn btn-xs btn-danger"
+                   popover="{{ 'Delete Tip (Globablly)' | translate }}" popover-placement="top" popover-trigger="mouseenter">
                   <span class="glyphicon glyphicon-trash"></span>
                 </a>
                 <br /><br />
@@ -59,7 +69,7 @@ This comment is needed in order to push the following strings on transifex
                     <b>{{ "Creation" | translate }}:</b>
                   </span>
                   <span class="col-md-6">
-                    {{tip.creation_date | date:'yyyy-MM-dd HH:mm' }}
+                    {{tip.creation_date | date:'dd-MM-yyyy HH:mm' }}
                   </span>
                 </div>
                 <div class="row">
@@ -67,7 +77,7 @@ This comment is needed in order to push the following strings on transifex
                     <b>{{ "Expiration" | translate }}:</b>
                   </span>
                   <span class="col-md-6">
-                    {{tip.expiration_date | date:'yyyy-MM-dd HH:mm' }}
+                    {{tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}
                   </span>
                 </div>
                 <div class="row">
@@ -75,7 +85,7 @@ This comment is needed in order to push the following strings on transifex
                     <b>{{ "Last Access" | translate }}:</b>
                   </span>
                   <span class="col-md-6">
-                    {{tip.last_access | date:'yyyy-MM-dd HH:mm' }}
+                    {{tip.last_access | date:'dd-MM-yyyy HH:mm' }}
                   </span>
                 </div>
               </td>
