@@ -106,7 +106,13 @@ This comment is needed in order to push the following strings on transifex
 
                     <div class="form-group table-bordered">
                       <input ng-model="receiver.can_delete_submission" type="checkbox">
-                      <label>{{ "Can delete submissions" | translate}}</label>
+                      <label>{{ "Can delete submissions" | translate }}</label>
+                      <label ng-show="receiver.can_delete_submission">
+                        <span class="btn-info">
+                          {{ "now Enabled:" | translate }}
+                      </span>
+                      {{ "The Receiver will be now able to globally delete submissions and their content." | translate }}
+                      </label>
                     </div>
 
                     <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">

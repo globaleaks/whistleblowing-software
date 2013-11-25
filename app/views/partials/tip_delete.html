@@ -6,18 +6,23 @@
     </div>
     <div class="modal-body">
       <div class="alert alert-danger">
-        <h3>
+        <div ng-show="!global_delete">
           {{ "Are you sure you want to delete the tip?" | translate }}
           <br />
           {{ "Please take care that all associated data will be properly deleted." | translate}}
-        </h3>
+        </div>
+        <div ng-show="global_delete">
+          {{ "Are you sure you want to delete the tip globally?" | translate }}
+          <br />
+          {{ "Please take care that all associated data will be properly deleted and all receivers won't be able to further access to it." | translate}}
+        </div>
     </div>
     <div class="modal-footer">
       <button type="button" class="btn" ng-click="cancel()">
         <i class="glyphicon glyphicon-remove"></i>
         {{ "Cancel" | translate }}
       </button>
-      <button class="btn btn-danger" ng-click="ok(tip)">
+      <button class="btn btn-danger" ng-click="ok()">
         <i class="glyphicon glyphicon-ok"></i>
         {{ "Confirm Deletion" | translate }}
       </button>

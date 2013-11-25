@@ -37,9 +37,9 @@ This comment is needed in order to push the following strings on transifex
           <tbody id="tipListBody">
             <tr ng-repeat="tip in tips">
               <td>{{tip.status}}</td>
-              <td>{{tip.creation_date | date:'yyyy-MM-dd HH:mm'}}</td>
-              <td>{{tip.expiration_date | date:'yyyy-MM-dd HH:mm' }}</td>
-              <td>{{tip.wb_last_access | date:'yyyy-MM-dd HH:mm' }} ({{tip.wb_access_counter}})</td>
+              <td>{{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}</td>
+              <td>{{tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</td>
+              <td>{{tip.wb_last_access | date:'dd-MM-yyyy HH:mm' }} ({{tip.wb_access_counter}})</td>
               <td>
                 <ul>
                   <li ng-repeat="ifile in tip.internalfiles">
@@ -61,7 +61,7 @@ This comment is needed in order to push the following strings on transifex
               <td>
                 <ul>
                   <li ng-repeat="comment in tip.comments">
-                    {{comment.type}} ({{comment.lifetime | date:'yyyy-MM-dd HH:mm' }})
+                    {{comment.type}} ({{comment.lifetime | date:'dd-MM-yyyy HH:mm' }})
                   </li>
                 </ul>
               </td>

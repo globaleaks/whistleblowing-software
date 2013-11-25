@@ -18,14 +18,14 @@
     </div>
   </div>
 
-  <div class="row">
+  <div class="row" ng-controller="TipCtrl">
     <div class="col-md-6">
       <div class="col-md-12">
         <dl>
           <dt>{{ tip.context_name }}</dt>
           <dd>{{ tip.context_description }}</dd>
           <dt>{{ "Submission date" | translate }}</dt>
-          <dd>{{ tip.creation_date | date:'yyyy-MM-dd HH:mm' }}</dd>
+          <dd>{{ tip.creation_date | date:'dd-MM-yyyy HH:mm' }}</dd>
         </dl>
 
         <br />
@@ -68,41 +68,24 @@
     <div class="col-md-6">
       <div class="col-md-12" ng-show="tip.im_receiver">
         <h3>{{ "Options" }}</h3>
-        <div ng-show="tip.im_receiver_postponer">
-          <a ng-init="extendbutton = false" ng-click="extendbutton =! extendbutton">
+        <span ng-show="tip.im_receiver_postponer">
+          <button ng-click="tip_extend(tip.id)" class="btn btn-sm btn-warning">
             <i class="glyphicon glyphicon-time"></i>
             {{ "Postpone Tip expiration date" | translate }}
-          </a>
-          <div ng-show="extendbutton">
-            <p class="alert alert-danger">
-              {{ "Clicking extend, you will extend the Tip expiration date to:" | translate }}
-              {{ tip.potential_expiration_date | date:'yyyy-MM-dd HH:mm' }}
-              <br />
-              <button type="submit" class="btn btn-danger" ng-click="extendTip()">
-                <i class="glyphicon glyphicon-time"></i>
-                {{ "Confirm Extension" | translate }}
-              </button>
-            </p>
-            <br />
-          </div>
-        </div>
-        <div ng-show="tip.im_receiver_postponer">
-          <a ng-init="deletebutton = false" ng-click="deletebutton =! deletebutton">
+          </button>
+        </span>
+        <span>
+          <button ng-click="tip_delete(tip.id, false)" class="btn btn-sm btn-warning">
             <i class="glyphicon glyphicon-trash"></i>
             {{ "Delete Tip" | translate }}
-          </a>
-          <div ng-show="deletebutton">
-            <p class="alert alert-danger">
-              {{ "Are you sure you want to delete the tip?" | translate }}
-              {{ "Please take care that all associated data will be properly deleted." | translate}}
-              <br />
-              <button type="submit" class="btn btn-danger" ng-click="deleteTip()">
-                <i class="glyphicon glyphicon-trash"></i>
-                {{ "Confirm Deletion" | translate }}
-              </button>
-            </p>
-          </div>
-        </div>
+          </button>
+        </span>
+        <span ng-show="session.permissions['can_delete_submission']">
+          <button ng-click="tip_delete(tip.id, true)" class="btn btn-sm btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+            {{ "Delete Tip (Globally)" | translate }}
+          </button>
+        </span>
       </div>
       <br />
 
@@ -178,7 +161,7 @@
                   </a>
                 </td>
                 <td ng-show="tip.im_receiver">
-                  {{file.creation_date | date:'yyyy-MM-dd' }}
+                  {{file.creation_date | date:'dd-MM-yyyy' }}
                 </td>
               </tr>
             </tbody>
@@ -223,7 +206,7 @@
     </div>
 
     <div class="col-md-12" ng-show="tip.im_whistleblower">
-      <div ng-include="'views/widgets/fileupload.html'"></div>
+      <div ng-include="'views/partials/fileupload.html'"></div>
     </div>
 
   </div>
@@ -258,9 +241,9 @@
                    {{ "The user" | translate }}
                    {{comment.system_content.receiver_name}}
                    {{ "In date" | translate }}
-                   {{comment.system_content.now | date:'yyyy-MM-dd HH:mm' }}
+                   {{comment.system_content.now | date:'dd-MM-yyyy HH:mm' }}
                    {{ "has postponed Tip expiration to" | translate }}
-                   {{comment.system_content.expire_on | date:'yyyy-MM-dd HH:mm' }}
+                   {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
                  </div>
               </div>
           </div>

@@ -61,10 +61,12 @@ angular.module('resourceServices.authentication', [])
               self.id = response.session_id;
               self.user_id = response.user_id;
               self.username = username;
-              self.role = role;
+              self.role = role
 
               $rootScope.session_id = self.id;
               $rootScope.auth_role = role;
+              $rootScope.permissions = response.permissions;
+              $rootScope.session = response;
               
               setCookie('session_id', response.session_id);
               setExpiration(response.session_expiration);
@@ -116,7 +118,13 @@ angular.module('resourceServices.authentication', [])
                   $location.path('/login');
             });
         };
+
+        $http.get('/authentication').success(function(response){
+            $rootScope.session = response;
+        });
+
       };
+
       return new Session;
 }]);
 angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
