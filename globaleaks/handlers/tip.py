@@ -346,23 +346,16 @@ class TipInstance(BaseHandler):
         the various cases are managed differently.
         """
 
-        if not self.current_user:
-
-            self.redirect("/#/login?src=%%2Fstatus%%2F%s" % tip_id)
-
-        elif self.is_whistleblower:
+        if self.is_whistleblower:
             answer = yield get_internaltip_wb(self.current_user['user_id'], self.request.language)
             answer['files'] = yield get_files_wb(self.current_user['user_id'])
-
-            self.set_status(200)
-            self.finish(answer)
         else:
             yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
             answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id, self.request.language)
             answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
-            self.set_status(200)
-            self.finish(answer)
+        self.set_status(200)
+        self.finish(answer)
 
     @transport_security_check('tip')
     @unauthenticated
@@ -448,6 +441,7 @@ def get_comment_list(internaltip):
 def get_comment_list_wb(store, wb_tip_id):
     wb_tip = store.find(WhistleblowerTip,
                         WhistleblowerTip.id == unicode(wb_tip_id)).one()
+
     if not wb_tip:
         raise errors.TipReceiptNotFound
 
@@ -460,7 +454,8 @@ def get_comment_list_receiver(store, user_id, tip_id):
 
 @transact
 def create_comment_wb(store, wb_tip_id, request):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id== unicode(wb_tip_id)).one()
+    wbtip = store.find(WhistleblowerTip,
+                       WhistleblowerTip.id== unicode(wb_tip_id)).one()
 
     if not wbtip:
         raise errors.TipReceiptNotFound
@@ -513,19 +508,13 @@ class TipCommentCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        if not self.current_user:
-            self.redirect("/#/login?src=%%2Fstatus%%2F%s" % tip_id)
-
-        elif self.is_whistleblower:
+        if self.is_whistleblower:
             comment_list = yield get_comment_list_wb(self.current_user['user_id'])
-
-            self.set_status(200)
-            self.finish(comment_list)
         else:
             comment_list = yield get_comment_list_receiver(self.current_user['user_id'], tip_id)
 
-            self.set_status(200)
-            self.finish(comment_list)
+        self.set_status(200)
+        self.finish(comment_list)
 
     @transport_security_check('tip')
     @unauthenticated
@@ -569,7 +558,9 @@ def serialize_receiver(receiver, access_counter, language=GLSetting.memory_copy.
 
 @transact_ro
 def get_receiver_list_wb(store, wb_tip_id, language):
-    wb_tip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
+    wb_tip = store.find(WhistleblowerTip,
+                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
+
     if not wb_tip:
         raise errors.TipReceiptNotFound
 
@@ -587,7 +578,6 @@ def get_receiver_list_receiver(store, user_id, tip_id, language):
 
     receiver_list = []
     for rtip in rtip.internaltip.receivertips:
-
         receiver_list.append(serialize_receiver(rtip.receiver, rtip.access_counter, language ))
 
     return receiver_list
@@ -611,10 +601,8 @@ class TipReceiversCollection(BaseHandler):
         """
         if self.is_whistleblower:
             answer = yield get_receiver_list_wb(self.current_user['user_id'], self.request.language)
-
         elif self.is_receiver:
             answer = yield get_receiver_list_receiver(self.current_user['user_id'], tip_id, self.request.language)
-
         else:
             raise errors.NotAuthenticated
 
