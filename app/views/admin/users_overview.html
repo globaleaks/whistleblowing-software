@@ -42,18 +42,16 @@ This comment is needed in order to push the following strings on transifex
               <td class="col-md-3"><a href="/#/admin/receivers/">{{receiver.name}}</a></td>
               <td class="col-md-2">{{receiver.failed_login}}</td>
               <td class="col-md-4">
-                <ul>
-                  <li ng-repeat="rtip in receiver.receivertips">
-                    {{rtip.status}} {{rtip.last_access | date:'dd-MM-yyyy HH:mm'}} ({{rtip.access_counter}})
-                  </li>
-                </ul>
+                <div ng-repeat="rtip in receiver.receivertips">
+                  <span class="glyphicon glyphicon-book"></span>
+                  {{rtip.status}} {{rtip.last_access | date:'dd-MM-yyyy HH:mm'}} ({{rtip.access_counter}})
+                </div>
               </td>
               <td class="col-md-3">
-                <ul>
-                  <li ng-repeat="rfile in receiver.receiverfiles">
-                    {{rfile.file_name}} ({{rfile.downloads}}), {{rfile.last_access | date:'dd-MM-yyyy HH:mm'}}
-                  </li>
-                </ul>
+                <div ng-repeat="rfile in receiver.receiverfiles">
+                  <span class="glyphicon glyphicon-file"></span>
+                  {{rfile.file_name}} ({{rfile.downloads}}), {{rfile.last_access | date:'dd-MM-yyyy HH:mm'}}
+                </div>
               </td>
             </tr>
           </tbody>
