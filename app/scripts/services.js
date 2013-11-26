@@ -188,8 +188,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         $rootScope.pendingRequests.pop(promise);
         return response;
       }, function(response) {
-        /* When the response has failed write the rootScope errors array the
-        * error message. */
+        /* 
+           When the response has failed write the rootScope
+           errors array the error message.
+        */
         var error = {},
           source_path = $location.path();
 
@@ -198,19 +200,24 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         error.url = response.config.url;
         error.arguments = response.data.arguments;
 
-        if (error.code == 30) {
-          $.removeCookie('session_id');
-          // Only redirect if we are not on the login page
-          if ($location.path().indexOf('/login') === -1) {
-            $location.path('/login');
-            $location.search('src='+source_path);
-          };
-        };
+        if (!((response.config.url != '/authentication') && (error.code == 30))) {
 
-        if (!$rootScope.errors) {
-          $rootScope.errors = [];
+          if (error.code == 30) {
+            $.removeCookie('session_id');
+            // Only redirect if we are not on the login page
+            if ($location.path().indexOf('/login') === -1) {
+              $location.path('/login');
+              $location.search('src='+source_path);
+            };
+          };
+
+          if (!$rootScope.errors) {
+            $rootScope.errors = [];
+          }
+
+          $rootScope.errors.push(error);
+
         }
-        $rootScope.errors.push(error);
 
         $rootScope.pendingRequests.pop(promise);
         return $q.reject(response);

@@ -24,12 +24,11 @@
         <dl>
           <dt>{{ tip.context_name }}</dt>
           <dd>{{ tip.context_description }}</dd>
+          <br/>
           <dt>{{ "Submission date" | translate }}</dt>
           <dd>{{ tip.creation_date | date:'dd-MM-yyyy HH:mm' }}</dd>
         </dl>
-
         <br />
-
         <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
           <dt>
             <span>
@@ -74,16 +73,10 @@
             {{ "Postpone Tip expiration date" | translate }}
           </button>
         </span>
-        <span>
-          <button ng-click="tip_delete(tip.id, false)" class="btn btn-sm btn-warning">
-            <i class="glyphicon glyphicon-trash"></i>
-            {{ "Delete Tip" | translate }}
-          </button>
-        </span>
         <span ng-show="session.permissions['can_delete_submission']">
           <button ng-click="tip_delete(tip.id, true)" class="btn btn-sm btn-danger">
             <i class="glyphicon glyphicon-trash"></i>
-            {{ "Delete Tip (Globally)" | translate }}
+            {{ "Delete Tip" | translate }}
           </button>
         </span>
       </div>
@@ -143,8 +136,14 @@
                 <th ng-show="tip.im_receiver">
                   {{ "Download" | translate }}
                 </th>
-                <th ng-show="tip.im_receiver">
+                <th>
                   {{ "Upload Date" | translate }}
+                </th>
+                <th>
+                  {{ "Content Type" | translate }}
+                </th>
+                <th>
+                  {{ "File Size" | translate }}
                 </th>
               </tr>
             </thead>
@@ -154,14 +153,20 @@
                   {{file.name}}
                 </td>
                 <td ng-show="tip.im_receiver">
-                  <a ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-default btn-sm ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
+                  <button ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-xs btn-default ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
                     <i class="glyphicon glyphicon-download"></i> 
                     {{ "download" | translate }}
                     ({{file.downloads}}/{{tip.download_limit}})
-                  </a>
+                  </button>
                 </td>
-                <td ng-show="tip.im_receiver">
+                <td>
                   {{file.creation_date | date:'dd-MM-yyyy' }}
+                </td>
+                <td>
+                  {{file.content_type}}
+                </td>
+                <td>
+                  {{file.size}}
                 </td>
               </tr>
             </tbody>

@@ -49,10 +49,6 @@ This comment is needed in order to push the following strings on transifex
                    popover="{{ 'Postpone Tip expiration date' | translate }}" popover-placement="top" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-time"></i>
                 </a>
-                <a ng-click="tip_delete(tip.id, false)" class="btn btn-xs btn-warning"
-                   popover="{{ 'Delete Tip' | translate }}" popover-placement="top" popover-trigger="mouseenter">
-                  <i class="glyphicon glyphicon-trash"></i>
-                </a>
                 <a ng-show="session.permissions['can_delete_submission']" ng-click="tip_delete(tip.id, true)" class="btn btn-xs btn-danger"
                    popover="{{ 'Delete Tip (Globablly)' | translate }}" popover-placement="top" popover-trigger="mouseenter">
                   <span class="glyphicon glyphicon-trash"></span>
