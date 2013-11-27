@@ -13,11 +13,11 @@ import time
 import re
 
 from twisted.internet import threads
-from cyclone.web import os
+from cyclone.web import os, StaticFileHandler
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import GLSetting, transact_ro
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
@@ -25,6 +25,20 @@ from globaleaks.rest.base import uuid_regexp, receiver_img_regexp
 from globaleaks import models
 
 from globaleaks.security import directory_traversal_check
+
+def reserved_file_check(filename):
+    """
+    Return True if filename matchs a reserved filename, False instead.
+    """
+    if filename in [ 'globaleaks_logo.png',
+                     'custom_stylesheet.css'
+                   ]:
+        return True
+
+    if re.match(receiver_img_regexp, filename):
+        return True
+
+    return False
 
 def get_description_by_stat(statstruct, name):
     stored_file_desc =  {
@@ -40,8 +54,10 @@ def get_stored_files():
 
     for fname in storedfiles:
         filepath = os.path.join(GLSetting.static_path, fname)
-        statinfo = os.stat(filepath)
-        stored_list.append(get_description_by_stat(statinfo, fname))
+
+        if os.path.isfile(filepath) and not reserved_file_check(fname):
+            statinfo = os.stat(filepath)
+            stored_list.append(get_description_by_stat(statinfo, fname))
 
     return stored_list
 
@@ -95,7 +111,7 @@ def receiver_pic_path(store, receiver_uuid):
     return os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
 
 
-class StaticFileInstance(BaseHandler):
+class StaticFileInstance(BaseStaticFileHandler):
     """
     Complete CRUD implementation using the filename instead of UUIDs
     """
@@ -181,12 +197,20 @@ class StaticFileInstance(BaseHandler):
 
     @transport_security_check('admin')
     @authenticated('admin')
-    def get(self):
+    def get(self, filename):
         """
         Return the list of static files, with few filesystem info
         """
-        self.set_status(200)
-        self.finish(get_stored_files())
+        if filename == None or filename in ['', '/']:
+            self.set_status(200)
+            self.finish(get_stored_files())
+        else:
+            path = os.path.join(GLSetting.static_path, filename)
+            directory_traversal_check(GLSetting.static_path, path)
+            if os.path.exists(path):
+                StaticFileHandler.get(self, path)
+            else:
+                raise errors.StaticFileNotFound
 
 
     @transport_security_check('admin')

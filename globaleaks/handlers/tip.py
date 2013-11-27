@@ -88,6 +88,7 @@ def wb_serialize_file(internalfile):
         'name' : unicode(internalfile.name),
         'sha2sum' : unicode(internalfile.sha2sum),
         'content_type' : unicode(internalfile.content_type),
+        'creation_date' : unicode(pretty_date_time(internalfile.creation_date)),
         'size': int(internalfile.size),
     }
     return wb_file_desc

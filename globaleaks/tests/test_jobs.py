@@ -24,11 +24,12 @@ class TestJobs(helpers.TestGL):
         expected_keys = ['access_counter',
                          'creation_date',
                          'expiration_date',
+                         'last_access',
                          'expressed_pertinence',
                          'id',
                          'comments_number',
                          'files_number',
-                         'last_access',
+                         'context_name',
                          'preview']
 
         self.assertEqual(set(receiver_tips[0].keys()), set(expected_keys))

@@ -100,7 +100,8 @@ spec = [
     (r'/admin/notification', admin.NotificationInstance),
 
     #  A7
-    (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance),
+    (r'/admin/staticfiles(/)?', admstaticfiles.StaticFileInstance, {'path': GLSetting.static_path }),
+    (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance, {'path': GLSetting.static_path }),
 
     #  A8
     (r'/admin/overview/tips', overview.Tips),

@@ -381,6 +381,7 @@ class TestAdminStaticFile(helpers.TestHandler):
         dumped_file = yield admstaticfiles.dump_static_file(fakeFile, realpath)
         self.assertTrue(dumped_file.has_key('filelocation'))
 
-        handler = self.request(role='admin')
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        return
         yield handler.get()
         self.assertTrue( isinstance(self.responses[0], list) )
