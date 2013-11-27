@@ -7,14 +7,14 @@
 // with it.
 // To learn more see: http://docs.angularjs.org/guide/directive
 angular.module('submissionUI', []).
-  directive('pragmaticFileUpload', [function(){
+  directive('pragmaticFileUpload', [ '$route', function($route){
 
     return {
 
       link: function(scope, element, attrs) {
         var selectFileButton = element.find('button.selectFile'),
           uploadButton = element.find('button.upload'),
-          img_receiver = element.parent().parent().find('img.baseimage'),
+          img = element.parent().parent().find('img.baseimage')[0],
           headers = {'X-Session': $.cookie('session_id'),
                      'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
 
@@ -41,9 +41,10 @@ angular.module('submissionUI', []).
                   jqXHR = data.submit({files: filesList});
                 
                 jqXHR.success(function(result, textStatus, jqXHR) {
-                    original_src = img_receiver[0].src;
 
-                    img_receiver[0].src = original_src+'?'+ Math.random();
+                    if (img !== undefined) {
+                        img.src += '?'+ Math.random();
+                    }
 
                     $(element).parent().find('.uploadProgress').hide();
                 });

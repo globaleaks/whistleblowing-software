@@ -200,7 +200,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         error.url = response.config.url;
         error.arguments = response.data.arguments;
 
-        if (!((response.config.url != '/authentication') && (error.code == 30))) {
+        if (!((response.config.url == '/authentication') && (error.code == 30))) {
 
           if (error.code == 30) {
             $.removeCookie('session_id');
@@ -471,6 +471,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('FileOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/files');
+}]).
+  factory('StaticFiles', ['$resource', function($resource) {
+    return $resource('/admin/staticfiles');
 }]).
   factory('cookiesEnabled', function(){
 

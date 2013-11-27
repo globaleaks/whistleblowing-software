@@ -6,11 +6,12 @@
         <div>
           <input ng-model="enabled_languages[language.code]" type="checkbox">
           <label>{{language.name}}</label>
-          <a ng-click="isCollapsed = !isCollapsed">
-            <i class="glyphicon glyphicon-plus-sign"></i>
+          <a ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
+            <i class="glyphicon glyphicon-plus-sign" ng-show="isCollapsed"></i>
+            <i class="glyphicon glyphicon-minus-sign" ng-show="!isCollapsed"></i>
           </a>
         </div>
-        <div ng-show="isCollapsed">
+        <div ng-show="!isCollapsed">
           <div class="well well-large uploadfile" ng-controller="FileUploadCtrl">
             <span pragmatic-file-upload="" ng-src="{{'/l10n/' + language.code + '.json' }}">
               <span class="btn btn-success fileinput-button" ng-class="{disabled: disabled}">

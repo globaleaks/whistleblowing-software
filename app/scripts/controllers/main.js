@@ -1,6 +1,13 @@
-GLClient.controller('MainCtrl', ['$scope',
-    function($scope) {
+GLClient.controller('MainCtrl', ['$scope', '$http', '$route',
+    function($scope, $http, $route) {
   $scope.started = true;
+
+  $scope.delete = function(url) {
+    return $http.delete(url).success(function(response){
+               $route.reload();
+           });
+  }
+
 }]);
 
 angular.module('GLClient.fileuploader', ['blueimp.fileupload'])

@@ -62,7 +62,7 @@ This comment is needed in order to push the following strings on transifex
               <td class="col-md-4">
                 <div class="row">
                   <span class="col-md-6">
-                    <b>{{ "Creation" | translate }}:</b>
+                    <b>{{ "Submission" | translate }}:</b>
                   </span>
                   <span class="col-md-6">
                     {{tip.creation_date | date:'dd-MM-yyyy HH:mm' }}
@@ -96,6 +96,10 @@ This comment is needed in order to push the following strings on transifex
                 </div>
               </td>
               <td>
+                <div>
+                  <b>{{ "Context Name" | translate}}:</b>
+                  {{tip.context_name}}
+                <div>
                 <div ng-repeat="entry in tip.preview">
                   <b>{{entry.label}}:</b> {{entry.text}}
                 </div>
