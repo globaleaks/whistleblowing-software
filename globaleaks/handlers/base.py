@@ -173,6 +173,7 @@ class GLHTTPServer(HTTPConnection):
             if self.transport:
                 self.transport.loseConnection()
 
+
 class BaseHandler(RequestHandler):
     xsrf_cookie_name = "XSRF-TOKEN"
 
