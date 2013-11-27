@@ -143,6 +143,23 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', funct
   ];
 
   $scope.staticfiles = StaticFiles.query();
+
+  $scope.update_static_files = function() {
+    var updated_staticfiles = StaticFiles.query(function() {
+      $scope.staticfiles = updated_staticfiles;
+    });
+  }
+
+  $scope.uploadfinished = function() {
+    $scope.update_static_files();
+  }
+
+  $scope.delete = function(url) {
+    $http.delete(url).success(function(response) {
+       $scope.update_static_files();
+    });
+  }
+
 }]);
 
 GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http){

@@ -1,14 +1,8 @@
-GLClient.controller('MainCtrl', ['$scope', '$http', '$route',
-    function($scope, $http, $route) {
-  $scope.started = true;
-
-  $scope.delete = function(url) {
-    return $http.delete(url).success(function(response){
-               $route.reload();
-           });
+GLClient.controller('MainCtrl', ['$scope', '$http', '$route', 'StaticFiles',
+  function($scope, $http, $route, StaticFiles) {
+    $scope.started = true;
   }
-
-}]);
+]);
 
 angular.module('GLClient.fileuploader', ['blueimp.fileupload'])
   .config(['$httpProvider', 'fileUploadProvider',
