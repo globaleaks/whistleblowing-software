@@ -367,21 +367,66 @@ class TestAdminStaticFile(helpers.TestHandler):
 
     crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
+    # default files not filtered from get(/) handler
+    default_files = [ 'favicon.ico',
+                      'robots.txt',
+                      'default-profile-picture.png']
+
+    fakeFile = dict()
+    fakeFile['body'] = StringIO()
+    fakeFile['body'].write(crappyjunk)
+    fakeFile['body_len'] = len(crappyjunk)
+    fakeFile['content_type'] = 'image/jpeg'
+    fakeFile['filename'] = 'imag0005.jpg'
+
     @inlineCallbacks
-    def test_get(self):
+    def test_get_default_staticfile_list(self):
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.get('/')
+        self.assertTrue( isinstance(self.responses[0], list) )
 
-        fakeFile = dict()
-        fakeFile['body'] = StringIO()
-        fakeFile['body'].write(TestAdminStaticFile.crappyjunk)
-        fakeFile['body_len'] = len(TestAdminStaticFile.crappyjunk)
-        fakeFile['content_type'] = 'image/jpeg'
-        fakeFile['filename'] = 'imag0005.jpg'
+        # this check verifies that only not filtered default files are shown
+        for f in self.responses[0]:
+           self.assertTrue(f['filename'] in self.default_files)
 
-        realpath = os.path.join(GLSetting.static_path, "ouffff")
-        dumped_file = yield admstaticfiles.dump_static_file(fakeFile, realpath)
+
+    @inlineCallbacks
+    def test_get_list_with_one_custom_file(self):
+        realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
+        dumped_file = yield admstaticfiles.dump_static_file(self.fakeFile, realpath)
         self.assertTrue(dumped_file.has_key('filelocation'))
 
         handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
-        return
-        yield handler.get()
+        yield handler.get('/')
         self.assertTrue( isinstance(self.responses[0], list) )
+
+        for f in self.responses[0]:
+           self.assertTrue((f['filename'] in self.default_files) or 
+                           (f['filename'] == self.fakeFile['filename']))
+
+
+    @inlineCallbacks
+    def test_upload_a_file_then_download(self):
+        yield self.test_get_list_with_one_custom_file()
+
+        self.responses = []
+
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.get(self.fakeFile['filename'])
+        self.assertEqual(self.responses[0], self.crappyjunk)
+
+
+    @inlineCallbacks
+    def test_upload_a_file_then_delete_it(self):
+        yield self.test_get_list_with_one_custom_file()
+
+        self.responses = []
+
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.delete(self.fakeFile['filename'])
+
+        self.responses = []
+
+        yield handler.get('/')
+        for f in self.responses[0]:
+           self.assertTrue((f['filename'] in self.default_files))
