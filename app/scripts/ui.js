@@ -7,6 +7,52 @@
 // with it.
 // To learn more see: http://docs.angularjs.org/guide/directive
 angular.module('submissionUI', []).
+  directive('genericFileUpload', [ '$route', function($route){
+
+    return {
+
+      link: function(scope, element, attrs) {
+        var selectFileButton = element.find('button.selectFile'),
+          uploadButton = element.find('button.upload'),
+          headers = {'X-Session': $.cookie('session_id'),
+                     'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
+
+        function progressMeter(e, data) {
+          var progress_percent = parseInt(data.loaded / data.total * 100, 10);
+          $(element).parent().find('.uploadProgress .progress .bar').css('width', progress_percent + '%');
+        };
+
+        $(element).find('input[type="file"]').change(function(){
+          scope.markFileSelected();
+        });
+
+        scope.$watch(attrs.src, function(){
+          var url = attrs.src,
+            fileUploader = $(element).fileupload({
+              url: url,
+              headers: headers,
+              multipart: false,
+              progress: progressMeter,
+              progressall: progressMeter,
+              add: function(e, data){
+                $(element).parent().find('.uploadProgress').show();
+                var filesList = $(element).find('input[type="file"]')[0].files,
+                  jqXHR = data.submit({files: filesList});
+
+                jqXHR.success(function(result, textStatus, jqXHR) {
+
+		    scope.uploadfinished()
+
+                    $(element).parent().find('.uploadProgress').hide();
+                });
+              }
+            });
+
+        });
+      }
+    }
+}]).
+
   directive('pragmaticFileUpload', [ '$route', function($route){
 
     return {
@@ -39,7 +85,7 @@ angular.module('submissionUI', []).
                 $(element).parent().find('.uploadProgress').show();
                 var filesList = $(element).find('input[type="file"]')[0].files,
                   jqXHR = data.submit({files: filesList});
-                
+
                 jqXHR.success(function(result, textStatus, jqXHR) {
 
                     if (img !== undefined) {
