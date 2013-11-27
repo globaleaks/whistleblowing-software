@@ -105,10 +105,6 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
       $scope.uploadfile = $scope.fileSelected = false;
     }
 
-    $scope.delete = function(url) {
-      return $http.delete(url);
-    }
-
     $scope.customCSSUrl = function() {
       return "/admin/staticfiles/custom_stylesheet";
     }
@@ -127,7 +123,7 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
 
 }]);
 
-GLClient.controller('AdminContentCtrl', ['$scope', '$http', function($scope, $http){
+GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', function($scope, $http, StaticFiles){
   $scope.tabs = [
     { title:"Main Configuration", template:"/views/admin/content/tab1.html",
       ctrl: function($scope){
@@ -145,6 +141,8 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', function($scope, $ht
       }
     }
   ];
+
+  $scope.staticfiles = StaticFiles.query();
 }]);
 
 GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http){
