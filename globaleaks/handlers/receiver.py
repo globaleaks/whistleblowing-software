@@ -163,9 +163,12 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
             'expiration_date' : unicode(pretty_date_time(rtip.internaltip.expiration_date)),
             'access_counter': rtip.access_counter,
             'files_number': rfiles_n,
-            'comments_number': rtip.internaltip.comments.count(),
-            'context_name': rtip.internaltip.context.name
+            'comments_number': rtip.internaltip.comments.count()
         })
+
+        mo = Rosetta()
+        mo.acquire_storm_object(rtip.internaltip.context)
+        single_tip_sum["context_name"] = mo.dump_translated('name', language)
 
         preview_data = []
 
