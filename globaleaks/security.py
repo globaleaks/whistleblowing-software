@@ -35,9 +35,9 @@ def directory_traversal_check(trusted_absolute_prefix, untrusted_path):
 
     if trusted_absolute_prefix != os.path.commonprefix([trusted_absolute_prefix, untrusted_path]):
         log.err("Blocked file operation out of the expected path: (\"%s\], \"%s\"" %
-                trusted_absolute_prefix, untrusted_path)
+                (trusted_absolute_prefix, untrusted_path))
 
-        raise error.DirectoryTraversalException
+        raise errors.DirectoryTraversalError
 
 def get_salt(salt_input):
     """

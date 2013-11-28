@@ -1,11 +1,16 @@
 import binascii
 
+import os
 import scrypt
 from Crypto.Hash import SHA512
 from twisted.trial import unittest
 
 from globaleaks.tests import helpers
-from globaleaks.security import get_salt, hash_password, check_password, change_password, SALT_LENGTH
+from globaleaks.security import get_salt, hash_password, check_password, change_password, SALT_LENGTH, \
+                                directory_traversal_check
+
+from globaleaks.settings import GLSetting
+from globaleaks.rest import errors
 
 
 class TestPasswordManagement(unittest.TestCase):
@@ -67,3 +72,25 @@ class TestPasswordManagement(unittest.TestCase):
             binascii.b2a_hex(scrypt.hash(str(second_pass), dummy_salt) )
         )
 
+
+class TestFilesystemAccess(unittest.TestCase):
+
+    def test_directory_traversal_check_blocked(self):
+        try:
+            directory_traversal_check(GLSetting.static_path, "/etc/passwd")
+            self.assertTrue(False)
+        except errors.DirectoryTraversalError:
+            self.assertTrue(True)
+        except Exception as excep:
+            print "Wrong exception: %s" % excep.log_message
+            raise excep
+
+
+    def test_directory_traversal_check_allowed(self):
+        try: 
+            valid_access = os.path.join(GLSetting.static_path, "antani.txt")
+            directory_traversal_check(GLSetting.static_path, valid_access)
+            self.assertTrue(True)
+        except Exception as excep:
+            print "Exception %s" % excep.log_message
+            self.assertTrue(False)
