@@ -90,24 +90,22 @@
 
       <div class="col-md-12">
         <h3>{{ "Receiver List" | translate }}</h3>
-        <div class="table-container">
-          <table class="table table-striped table-bordered dataTable" id="receiverList">
-            <thead>
-              <tr>
-                <th>{{ "Name" | translate }}</th>
-                <th>{{ "Description" | translate }}</th>
-                <th>{{ "Access counter" | translate }}</th>
-              </tr>
-            </thead>
-            <tbody id="receiverListBody">
-              <tr ng-repeat="receiver in tip.receivers">
-                <td>{{receiver.name}}</td>
-                <td>{{receiver.description}}</td>
-                <td>{{receiver.access_counter}}</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+        <table class="table table-striped" id="receiverList">
+          <thead>
+            <tr>
+              <th>{{ "Name" | translate }}</th>
+              <th>{{ "Description" | translate }}</th>
+              <th>{{ "Access counter" | translate }}</th>
+            </tr>
+          </thead>
+          <tbody id="receiverListBody">
+            <tr ng-repeat="receiver in tip.receivers">
+              <td>{{receiver.name}}</td>
+              <td>{{receiver.description}}</td>
+              <td>{{receiver.access_counter}}</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
 
     </div>
@@ -133,7 +131,7 @@
         </a>
         <br /><br />
         <div class="table-container">
-          <table class="table table-striped table-bordered dataTable" id="fileList">
+          <table class="table table-striped" id="fileList">
             <thead>
               <tr>
                 <th>
