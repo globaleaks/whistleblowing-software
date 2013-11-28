@@ -386,8 +386,15 @@ class TestAdminStaticFile(helpers.TestHandler):
         self.assertTrue( isinstance(self.responses[0], list) )
 
         # this check verifies that only not filtered default files are shown
+        # other files shall be present and are ignored in this test
+        files_dict = {}
         for f in self.responses[0]:
-           self.assertTrue(f['filename'] in self.default_files)
+            self.assertTrue(f['size'] > 0)
+            files_dict[f['filename']] = f['size']
+
+        print files_dict.keys()
+        for system_names in self.default_files:
+            self.assertTrue(system_names in files_dict.keys())
 
 
     @inlineCallbacks
@@ -401,8 +408,11 @@ class TestAdminStaticFile(helpers.TestHandler):
         self.assertTrue( isinstance(self.responses[0], list) )
 
         for f in self.responses[0]:
-           self.assertTrue((f['filename'] in self.default_files) or 
-                           (f['filename'] == self.fakeFile['filename']))
+            if f['filename'] == self.fakeFile['filename']:
+                self.assertEqual(self.fakeFile['body_len'], f['size'])
+                return
+
+        self.assertTrue(False) # has never match the check before :(
 
 
     @inlineCallbacks
@@ -420,13 +430,25 @@ class TestAdminStaticFile(helpers.TestHandler):
     def test_upload_a_file_then_delete_it(self):
         yield self.test_get_list_with_one_custom_file()
 
+        files_dict = {}
+        for f in self.responses[0]:
+            files_dict[f['filename']] = f['size']
+
+        previous_filelist = len(files_dict.keys())
+
         self.responses = []
 
         handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
         yield handler.delete(self.fakeFile['filename'])
 
         self.responses = []
+        del files_dict
 
         yield handler.get('/')
+
+        files_dict = {}
         for f in self.responses[0]:
-           self.assertTrue((f['filename'] in self.default_files))
+            files_dict[f['filename']] = f['size']
+
+        self.assertGreater(previous_filelist, len(files_dict.keys()))
+        self.assertTrue(self.fakeFile['filename'] not in files_dict.keys())
