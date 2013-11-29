@@ -101,22 +101,21 @@ angular.module('resourceServices.authentication', [])
         self.logout = function() {
             var role = $.cookie('role');
 
-            return $http.delete('/authentication')
-              .success(function(response){
-                self.id = null;
-                self.username = null;
-                self.user_id = null;
+            $http.delete('/authentication');
 
-                $.removeCookie('session_id');
-                $.removeCookie('role');
-                $.removeCookie('auth_landing_page');
-                $.removeCookie('tip_id');
+            self.id = null;
+            self.username = null;
+            self.user_id = null;
 
-                if (role === 'wb')
-                  $location.path('/');
-                else
-                  $location.path('/login');
-            });
+            $.removeCookie('session_id');
+            $.removeCookie('role');
+            $.removeCookie('auth_landing_page');
+            $.removeCookie('tip_id');
+
+            if (role === 'wb')
+              $location.path('/');
+            else
+              $location.path('/login');
         };
 
         $http.get('/authentication').success(function(response){
