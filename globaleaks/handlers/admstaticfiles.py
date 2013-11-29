@@ -13,11 +13,11 @@ import time
 import re
 
 from twisted.internet import threads
-from cyclone.web import os, StaticFileHandler
+from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import GLSetting, transact_ro
-from globaleaks.handlers.base import BaseStaticFileHandler
+from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
@@ -197,24 +197,6 @@ class StaticFileInstance(BaseStaticFileHandler):
 
     @transport_security_check('admin')
     @authenticated('admin')
-    def get(self, filename):
-        """
-        Return the list of static files, with few filesystem info
-        """
-        if filename == None or filename in ['', '/']:
-            self.set_status(200)
-            self.finish(get_stored_files())
-        else:
-            path = os.path.join(GLSetting.static_path, filename)
-            directory_traversal_check(GLSetting.static_path, path)
-            if os.path.exists(path):
-                StaticFileHandler.get(self, path)
-            else:
-                raise errors.StaticFileNotFound
-
-
-    @transport_security_check('admin')
-    @authenticated('admin')
     def delete(self, filename):
         """
         Parameter: filename
@@ -232,3 +214,14 @@ class StaticFileInstance(BaseStaticFileHandler):
 
         self.set_status(200)
         self.finish()
+
+class StaticFileList(BaseHandler):
+    @transport_security_check('admin')
+    @authenticated('admin')
+    def get(self):
+        """
+        Return the list of static files, with few filesystem info
+        """
+        self.set_status(200)
+        self.finish(get_stored_files())
+
