@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool
+from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool, log
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
@@ -141,10 +141,9 @@ class ReceiverInstance(BaseHandler):
 
 
 @transact_ro
-def get_receiver_tip_list(store, user_id):
+def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default_language):
 
-    receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
-    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver.id)
+    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == user_id)
     rtiplist.order_by(Desc(ReceiverTip.creation_date))
 
     rtip_summary_list = []
@@ -162,17 +161,28 @@ def get_receiver_tip_list(store, user_id):
             'last_access' : unicode(pretty_date_time(rtip.last_access)),
             'expiration_date' : unicode(pretty_date_time(rtip.internaltip.expiration_date)),
             'access_counter': rtip.access_counter,
-            'files_number': rfiles_n
+            'files_number': rfiles_n,
+            'comments_number': rtip.internaltip.comments.count()
         })
+
+        mo = Rosetta()
+        mo.acquire_storm_object(rtip.internaltip.context)
+        single_tip_sum["context_name"] = mo.dump_translated('name', language)
 
         preview_data = []
 
         fo = Fields(rtip.internaltip.context.localized_fields, rtip.internaltip.context.unique_fields)
-        for preview_key in fo.get_preview_keys():
+        for preview_key, preview_label in fo.get_preview_keys(language).iteritems():
 
             # preview in a format angular.js likes
-            entry = dict({'key' : preview_key,
-                          'text': rtip.internaltip.wb_fields[preview_key] })
+            try:
+                entry = dict({'label' : preview_label,
+                              'text': rtip.internaltip.wb_fields[preview_key] })
+
+            except KeyError as xxx:
+                log.err("Legacy error: suppressed 'preview_keys' %s" % xxx.message )
+                continue
+
             preview_data.append(entry)
 
         single_tip_sum.update({ 'preview' : preview_data })
@@ -198,7 +208,7 @@ class TipsCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        answer = yield get_receiver_tip_list(self.current_user['user_id'])
+        answer = yield get_receiver_tip_list(self.current_user['user_id'], self.request.language)
 
         self.set_status(200)
         self.finish(answer)

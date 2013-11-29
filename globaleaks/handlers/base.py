@@ -13,6 +13,7 @@ import collections
 import json
 import re
 import sys
+import os
 from io import BytesIO as StringIO
 from tempfile import TemporaryFile
 
@@ -28,8 +29,7 @@ from globaleaks.utils.mailutils import mail_exception
 from globaleaks.settings import GLSetting
 from globaleaks.rest import errors
 
-
-content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"")
+content_disposition_re = re.compile(r"attachment; filename=\"(.+)\"", re.IGNORECASE)
 
 def validate_host(host_key):
     """
@@ -106,7 +106,6 @@ class GLHTTPServer(HTTPConnection):
 
             c_d_header = self._request.headers.get("Content-Disposition")
             if c_d_header is not None:
-                c_d_header = c_d_header.lower()
                 m = content_disposition_re.match(c_d_header)
                 if m is None:
                     raise Exception
@@ -175,8 +174,10 @@ class GLHTTPServer(HTTPConnection):
                 self.transport.loseConnection()
 
 
-class BaseBaseHandler(RequestHandler):
+class BaseHandler(RequestHandler):
     xsrf_cookie_name = "XSRF-TOKEN"
+
+    auth_type = "HEADER"
 
     def set_default_headers(self):
         # In this function are written some security enforcements
@@ -221,7 +222,7 @@ class BaseBaseHandler(RequestHandler):
         if self.xsrf_token != token:
             raise HTTPError(403, "XSRF cookie does not match POST argument")
 
-class BaseHandler(BaseBaseHandler):
+
     @staticmethod
     def validate_python_type(value, python_type):
         """
@@ -350,8 +351,8 @@ class BaseHandler(BaseBaseHandler):
         """
         pass
 
-    def initialize(self):
-        pass
+    #def initialize(self):
+    #    pass
 
     def on_connection_close(self, *args, **kwargs):
         pass
@@ -485,8 +486,15 @@ class BaseHandler(BaseBaseHandler):
 
     @property
     def current_user(self):
-        session_id = self.request.headers.get('X-Session')
-        if not session_id:
+        session_id = None
+
+        if self.auth_type == "HEADER":
+            session_id = self.request.headers.get('X-Session')
+        else: # auth_type == "COOKIE"
+            if 'session_id' in self.request.cookies:
+                session_id = self.request.cookies['session_id'].value
+
+        if session_id == None:
             return None
 
         try:
@@ -537,7 +545,20 @@ class BaseHandler(BaseBaseHandler):
             mail_exception(exc_type, exc_value, exc_tb)
             return self.send_error(500, exception=e)
 
-class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
+    def get_uploaded_file(self):
+	uploaded_file = self.request.body
+
+        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
+            raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
+
+        for filekey in uploaded_file.keys():
+            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
+                raise errors.InvalidInputFormat(
+                    "Invalid JSON key in uploaded file (%s)" % filekey)
+
+	return uploaded_file
+
+class BaseStaticFileHandler(BaseHandler, StaticFileHandler):
     def prepare(self):
         """
         This method is called by cyclone,and perform 'Host:' header
@@ -548,22 +569,21 @@ class BaseStaticFileHandler(BaseBaseHandler, StaticFileHandler):
         if not validate_host(self.request.host):
             raise errors.InvalidHostSpecified
 
-    def set_default_headers(self):
-        # In this function are written some security enforcements
-        # related to WebServer versioning and XSS attacks.
-        """
-            just reading the property is enough to
-            set the cookie as a side effect.
-        """
-        BaseBaseHandler.set_default_headers(self)
+    def get_uploaded_file(self):
+	uploaded_file = self.request.body
 
-        self.clear_header("Cache-control")
-        self.clear_header("Pragma")
-        self.clear_header("Expires")
+        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
+            raise errors.InvalidInputFormat("Expected a dict of four keys in uploaded file")
+
+        for filekey in uploaded_file.keys():
+            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
+                raise errors.InvalidInputFormat(
+                    "Invalid JSON key in uploaded file (%s)" % filekey)
+
+	return uploaded_file
 
 
-
-class BaseRedirectHandler(BaseBaseHandler, RedirectHandler):
+class BaseRedirectHandler(BaseHandler, RedirectHandler):
     def prepare(self):
         """
         Same reason of StaticFileHandler

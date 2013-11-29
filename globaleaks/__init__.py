@@ -3,6 +3,8 @@
 # In here we shall keep track of all variables and objects that should be
 # instantiated only once and be common to pieces of GLBackend code.
 
+import operator
+
 __version__ = '2.28.9'
 DATABASE_VERSION = 7
 
@@ -26,4 +28,8 @@ LANGUAGES_SUPPORTED = [
  { "code": "sr_RS@latin", "name": "Serbian (Latin) (Serbia)" },
 ]
 
+# Sorting the list of dict using the key 'code'
+LANGUAGES_SUPPORTED.sort(key=operator.itemgetter('code'))
+
+# Creating LANGUAGES_SUPPORTED_CODES form the ordered LANGUAGES_SUPPORTED
 LANGUAGES_SUPPORTED_CODES = [i['code'] for i in LANGUAGES_SUPPORTED]

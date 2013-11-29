@@ -116,7 +116,7 @@ def receiverfile_planning(store):
                 continue
 
             try:
-                os.unlink( os.path.join(GLSetting.submission_path, filex.file_path) )
+                os.remove(os.path.join(GLSetting.submission_path, filex.file_path))
             except OSError as excep:
                 log.err("Unable to remove %s in integrity fixing routine: %s" %
                     (filex.file_path, excep.strerror) )
@@ -417,7 +417,7 @@ class APSDelivery(GLJob):
                 log.debug("Removing useless plain file: %s" % fname)
                 path = os.path.join(GLSetting.submission_path, fname)
                 try:
-                    os.unlink(path)
+                    os.remove(path)
                 except Exception as excep:
                     log.err("Unable to remove ifile in %s: %s" % (
                         path, str(excep)

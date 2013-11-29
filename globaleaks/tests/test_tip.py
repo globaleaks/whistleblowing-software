@@ -86,7 +86,7 @@ class TTip(helpers.TestWithDB):
     }
 
     tipOptions = {
-        'total_delete': False,
+        'global_delete': False,
         'is_pertinent': False,
     }
 
@@ -193,10 +193,10 @@ class TestTipInstance(TTip):
     @inlineCallbacks
     def access_receivers_tip(self):
 
-        auth1 = yield authentication.login_receiver(self.receiver1_desc['username'], STATIC_PASSWORD)
+        auth1, _ = yield authentication.login_receiver(self.receiver1_desc['username'], STATIC_PASSWORD)
         self.assertEqual(auth1, self.receiver1_desc['receiver_gus'])
 
-        auth2 = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
+        auth2, _ = yield authentication.login_receiver(self.receiver2_desc['username'], STATIC_PASSWORD)
         self.assertEqual(auth2, self.receiver2_desc['receiver_gus'])
 
         # we does not know the association auth# sefl.rtip#_id
@@ -273,7 +273,7 @@ class TestTipInstance(TTip):
         self.assertTrue(isinstance(tiplist[0], dict))
         self.assertTrue(isinstance(tiplist[0]['preview'], list))
         self.assertTrue(isinstance(tiplist[0]['preview'][0], dict))
-        self.assertTrue(tiplist[0]['preview'][0].has_key('key'))
+        self.assertTrue(tiplist[0]['preview'][0].has_key('label'))
         self.assertTrue(tiplist[0]['preview'][0].has_key('text'))
 
     @inlineCallbacks
@@ -479,7 +479,7 @@ class TestTipInstance(TTip):
 
 
     @inlineCallbacks
-    def receiver1_total_delete_tip(self):
+    def receiver1_global_delete_tip(self):
 
         yield tip.delete_internal_tip(self.receiver1_desc['receiver_gus'],
             self.rtip1_id)
@@ -526,4 +526,4 @@ class TestTipInstance(TTip):
         yield self.receiver2_fail_in_delete_internal_tip()
         yield self.receiver2_personal_delete()
         yield self.receiver1_see_system_comments()
-        yield self.receiver1_total_delete_tip()
+        yield self.receiver1_global_delete_tip()

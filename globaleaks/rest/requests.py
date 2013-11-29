@@ -47,7 +47,7 @@ actorsCommentDesc = {
 }
 
 actorsTipOpsDesc = {
-    'total_delete' : bool,
+    'global_delete' : bool,
     'is_pertinent': bool
 }
 
@@ -74,6 +74,7 @@ adminNodeDesc = {
     'tor2web_unauth': bool,
     'postpone_superpower': bool,
     'exception_email': unicode,
+    'reset_css': bool,
 }
 
 adminNotificationDesc = {

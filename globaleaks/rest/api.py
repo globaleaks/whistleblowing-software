@@ -7,13 +7,13 @@
 #   Read this if you want to have an overall view of what API calls are handled
 #   by what.
 
-import os
-
+from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
-from globaleaks.handlers import node, submission, tip, admin, receiver, files, authentication, admstaticfiles, overview
+from globaleaks.handlers import node, submission, tip, admin, receiver, \
+                                files, authentication, admstaticfiles, \
+                                admlangfiles, overview, collection
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
 from globaleaks.rest.base import uuid_regexp
-
 
 # Here is mapped a path and the associated class to be invoked,
 # Two kind of Classes:
@@ -70,6 +70,9 @@ spec = [
     #  T5 = only Receiver, download the files
     (r'/tip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
 
+    #  T6 = only Receiver, download all the file in various archive formats
+    (r'/tip/' + uuid_regexp + '/collection(/(zipstored|zipdeflated|tar|targz|tarbz2))?', collection.CollectionDownload),
+
     ## Receiver Handlers ##
     #  R1
     (r'/receiver/preferences', receiver.ReceiverInstance),
@@ -97,18 +100,16 @@ spec = [
     (r'/admin/notification', admin.NotificationInstance),
 
     #  A7
-    (r'/admin/staticfiles', admstaticfiles.StaticFileCollection),
+    (r'/admin/staticfiles', admstaticfiles.StaticFileList),
+    (r'/admin/staticfiles/(.*)', admstaticfiles.StaticFileInstance, {'path': GLSetting.static_path }),
 
     #  A8
-    (r'/admin/staticfiles/' + GLSetting.staticfile_regexp, admstaticfiles.StaticFileInstance),
-
-    #  A9
     (r'/admin/overview/tips', overview.Tips),
 
-    #  AA
+    #  A9
     (r'/admin/overview/users', overview.Users),
 
-    #  AB
+    #  AA
     (r'/admin/overview/files', overview.Files),
 ]
 
@@ -128,6 +129,21 @@ spec.append(
 
 spec.append(
     (r'/static/(.*)', BaseStaticFileHandler, {'path': GLSetting.static_path })
+)
+
+## Special files (Custom CSS, l10n/$lang.json)
+
+spec.append(
+    (r'/(custom_stylesheet.css)', files.CSSStaticFileHandler, {
+        'path': GLSetting.static_path,
+        'default_filename': '/static/custom_stylesheet.css'
+    })
+)
+
+spec.append(
+    (r'/l10n/(' + '|'.join(LANGUAGES_SUPPORTED_CODES) + ').json', admlangfiles.LanguageFileHandler, {
+        'path': GLSetting.static_path
+    })
 )
 
 ## Main Web app ##

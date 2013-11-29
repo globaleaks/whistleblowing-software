@@ -363,41 +363,92 @@ class TestAdminStaticFile(helpers.TestHandler):
 
     So... that's shit, but _post hanlder is tested in a more direct way
     """
-    _handler = admstaticfiles.StaticFileCollection
+    _handler = admstaticfiles.StaticFileInstance
 
     crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
-    def test_asf_reserved_name_check(self):
+    # default files not filtered from get(/) handler
+    default_files = [ 'favicon.ico',
+                      'robots.txt',
+                      'default-profile-picture.png']
 
-        self.assertRaises(errors.InvalidInputFormat,
-                          admstaticfiles.reserved_name_check,
-                          u'86a4ffc4-26d4-4942-a3bd-9fc1f5d48453', 'whatever.tiff')
-        self.assertRaises(errors.ReservedFileName,
-                          admstaticfiles.reserved_name_check,
-                          u'globaleaks_logo_FxHtHA_$RANDOM(³³³)', 'something_plausible.png')
+    fakeFile = dict()
+    fakeFile['body'] = StringIO()
+    fakeFile['body'].write(crappyjunk)
+    fakeFile['body_len'] = len(crappyjunk)
+    fakeFile['content_type'] = 'image/jpeg'
+    fakeFile['filename'] = 'imag0005.jpg'
 
-        self.assertTrue( admstaticfiles.reserved_name_check('custom_stylesheet', 'myfunnycolors.css') )
-        self.assertTrue( admstaticfiles.reserved_name_check('globaleaks_logo', 'something.jpg') )
-        self.assertTrue( admstaticfiles.reserved_name_check('86a4ffc4-26d4-4942-a3bd-9fc1f5d48453',
-                                                            'whatever.jpeg' ) )
+    @inlineCallbacks
+    def test_get_default_staticfile_list(self):
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.get('/')
+        self.assertTrue( isinstance(self.responses[0], list) )
 
-        self.assertFalse( admstaticfiles.reserved_name_check('dirty_random_crap', 'ignored') )
+        # this check verifies that only not filtered default files are shown
+        # other files shall be present and are ignored in this test
+        files_dict = {}
+        for f in self.responses[0]:
+            self.assertTrue(f['size'] > 0)
+            files_dict[f['filename']] = f['size']
+
+        print files_dict.keys()
+        for system_names in self.default_files:
+            self.assertTrue(system_names in files_dict.keys())
 
 
     @inlineCallbacks
-    def test_get(self):
-
-        fakeFile = dict()
-        fakeFile['body'] = StringIO()
-        fakeFile['body'].write(TestAdminStaticFile.crappyjunk)
-        fakeFile['body_len'] = len(TestAdminStaticFile.crappyjunk)
-        fakeFile['content_type'] = 'image/jpeg'
-        fakeFile['filename'] = 'imag0005.jpg'
-
-        realpath = os.path.join(GLSetting.static_path, "ouffff")
-        dumped_file = yield admstaticfiles.dump_static_file(fakeFile, realpath)
+    def test_get_list_with_one_custom_file(self):
+        realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
+        dumped_file = yield admstaticfiles.dump_static_file(self.fakeFile, realpath)
         self.assertTrue(dumped_file.has_key('filelocation'))
 
-        handler = self.request(role='admin')
-        yield handler.get()
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.get('/')
         self.assertTrue( isinstance(self.responses[0], list) )
+
+        for f in self.responses[0]:
+            if f['filename'] == self.fakeFile['filename']:
+                self.assertEqual(self.fakeFile['body_len'], f['size'])
+                return
+
+        self.assertTrue(False) # has never match the check before :(
+
+
+    @inlineCallbacks
+    def test_upload_a_file_then_download(self):
+        yield self.test_get_list_with_one_custom_file()
+
+        self.responses = []
+
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.get(self.fakeFile['filename'])
+        self.assertEqual(self.responses[0], self.crappyjunk)
+
+
+    @inlineCallbacks
+    def test_upload_a_file_then_delete_it(self):
+        yield self.test_get_list_with_one_custom_file()
+
+        files_dict = {}
+        for f in self.responses[0]:
+            files_dict[f['filename']] = f['size']
+
+        previous_filelist = len(files_dict.keys())
+
+        self.responses = []
+
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.delete(self.fakeFile['filename'])
+
+        self.responses = []
+        del files_dict
+
+        yield handler.get('/')
+
+        files_dict = {}
+        for f in self.responses[0]:
+            files_dict[f['filename']] = f['size']
+
+        self.assertGreater(previous_filelist, len(files_dict.keys()))
+        self.assertTrue(self.fakeFile['filename'] not in files_dict.keys())
