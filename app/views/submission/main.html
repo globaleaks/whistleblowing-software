@@ -3,7 +3,7 @@
 
     <div class="row">
       <div class="col-md-3">
-        <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
+        <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded col-md-12"></a>
       </div>
 
       <div class="col-md-9">
@@ -74,55 +74,31 @@
           <span class="lead">
           {{ "I want to report on" | translate }}: 
           </span>
-          <span class="label label-default">{{submission.current_context.name}}</span>
+          <span><b>{{submission.current_context.name}}</b></span>
         </div>
 
         <p>{{submission.current_context.description}}</p>
 
         <div ng-repeat="(idx, receiver) in submission.current_context_receivers">
-          <div ng-hide="idx >= submission.current_context_receivers.length/2">
+          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index %2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
 
-            <div class="receiverCard col-md-5" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
-
-              <div class="row">
-                <div class="col-md-10">
-                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
-                </div>
-                <div class="col-md-1">
-                  <input ng-model="submission.receivers_selected[receiver.receiver_gus]" value="{{receiver.receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox"> 
-                </div>
+            <div class="row">
+              <div class="col-md-10">
+                <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
               </div>
-
-              <div class="row">
-                <div class="col-md-11">
-                  <h3>{{receiver.name}}</h3>
-                  <p>{{receiver.description}}</p>
-                </div>
+              <div class="col-md-1">
+                <input ng-model="submission.receivers_selected[receiver.receiver_gus]" value="{{receiver.receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox"> 
               </div>
             </div>
 
-            <div class="receiverCard col-md-offset-1 col-md-5" ng-hide="idx >= ((submission.current_context_receivers.length - 1)/2)" ng-class="{selected: submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]}">
-
-              <div class="row">
-                <div class="col-md-10">
-                  <img ng-src="/static/{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}.png" class="img-thumbnail">
-                </div>
-                <div class="col-md-1">
-                  <input ng-model="submission.receivers_selected[submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus]" value="{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox">
-                </div>
-              </div>
-
-              <div class="row">
-                <div class="col-md-11">
-                  <h3>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].name}}</h3>
-                  <p>{{submission.current_context_receivers[submission.current_context_receivers.length - idx - 1].description}}</p>
-                </div>
+            <div class="row">
+              <div class="col-md-11">
+                <h3>{{receiver.name}}</h3>
+                <p>{{receiver.description}}</p>
               </div>
             </div>
-
-            <div class="clearfix"></div>
-
           </div>
+
         </div>
       </div>
       <!-- /1 -->
@@ -143,7 +119,7 @@
         </div>
 
         <div class="row">
-          <div class="col-md-6" ng-include="'views/widgets/fileupload.html'"></div>
+          <div class="col-md-6" ng-include="'views/partials/fileupload.html'"></div>
         </div>
 
       </div>
@@ -196,12 +172,14 @@
 
       <li ng-class="{disabled: !hasPreviousStep() || uploading}" class="previous">
         <a ng-click="decrementStep()">
-          ← {{ "Previous Step" | translate }}
+          <i class="glyphicon glyphicon-arrow-left"></i>
+          {{ "Previous Step" | translate }}
         </a>
       </li>
       <li class="next" ng-class="{disabled: uploading}" ng-hide="!hasNextStep()">
         <a ng-click="incrementStep()">
-          {{ "Next Step" | translate }} →
+          {{ "Next Step" | translate }}
+          <i class="glyphicon glyphicon-arrow-right"></i>
         </a>
       </li>
 
@@ -209,6 +187,7 @@
 
     <div class="pull-right">
       <button class="btn btn-success" style="margin: 20px 0;" ng-click="submit()" ng-disabled="uploading || !disclaimer.accepted || invalidForm || !receiver_selected">
+        <i class="glyphicon glyphicon-ok"></i>
         {{ "Submit" | translate }}
       </button>
     </div>
@@ -251,8 +230,9 @@
 
       </div>
       <div class="modal-footer">
-        <a ng-click="view_tip(submission.receipt)" ng-disabled="submission.receipt != receiptConfirmation" class="btn btn-primary">
-           {{ "View Tip" | translate }}
+        <a ng-click="view_tip(submission.receipt)" ng-disabled="submission.receipt != receiptConfirmation" class="btn btn-success">
+         <i class="glyphicon glyphicon-log-in"></i>
+         {{ "View Tip" | translate }}
         </a>
       </div>
     </div>

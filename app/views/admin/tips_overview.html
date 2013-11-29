@@ -16,55 +16,144 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
-      <h1>{{ "Tips Overview" | translate }}</h1>
       <p>
       {{ "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions currently on the node and a few statistics on the kind of usage (activity, files, comments)." | translate }}
       </p>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-horizontal">
+            <span class="form-group col-md-6" ng-init="orderProp='creation_date'">
+              <label class="control-label col-md-4">
+                {{ "Order by:" | translate }}
+              </label>
+              <div class="col-md-6">
+                <select ng-model="orderProp" class="form-control">
+                  <option value="status">
+                    {{ "Status" | translate }}
+                  </option>
+                  <option value="creation_date">
+                    {{ "Creation" | translate }}
+                  </option>
+                  <option value="expiration_date">
+                    {{ "Expiration" | translate }}
+                  </option>
+                  <option value="wb_last_access">
+                    {{ "WB Last Access" | translate }}
+                  </option>
+                  <option value="context_name">
+                    {{ "Context Name" | translate }}
+                  </option>
+                </select>
+              </div>
+            </span>
+            <span class="form-group col-md-6" ng-init="reverse='true'">
+              <label class="control-label col-md-4">
+                {{ "Order:" | translate }}
+              </label>
+              <div class="col-md-4">
+                <select ng-model="reverse" class="form-control">
+                  <option value="true">
+                    {{ "Desc" | translate }}
+                  </option>
+                  <option value="false">
+                    {{ "Asc" | translate }}
+                  </option>
+                </select>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
       <div class="table-responsive">
-        <table class="table table-striped table-bordered" id="tipList">
+        <table class="table table-bordered" id="tipList">
           <thead>
             <tr>
-              <th>{{ "Status" | translate }}</th>
-              <th>{{ "Creation Date" | translate }}</th>
-              <th>{{ "Expiration Date" | translate }}</th>
-              <th>{{ "WB Last Access" | translate }}</th>
-              <th>{{ "Files" | translate }} </th>
-              <th>{{ "Receiver Tips" | translate }}</th>
-              <th>{{ "Context" | translate }}</th>
-              <th>{{ "Comments" | translate }}</th>
+              <th class="col-md-1">
+                {{ "Status" | translate }}
+              </th>
+              <th class="col-md-5">
+                {{ "Date" | translate }}
+              </th>
+              <th>{{ "Info" | translate }}</th>
             </tr>
           </thead>
 
           <tbody id="tipListBody">
-            <tr ng-repeat="tip in tips">
-              <td>{{tip.status}}</td>
-              <td>{{tip.creation_date | date:'yyyy-MM-dd HH:mm'}}</td>
-              <td>{{tip.expiration_date | date:'yyyy-MM-dd HH:mm' }}</td>
-              <td>{{tip.wb_last_access | date:'yyyy-MM-dd HH:mm' }} ({{tip.wb_access_counter}})</td>
-              <td>
-                <ul>
-                  <li ng-repeat="ifile in tip.internalfiles">
-                    {{ifile.name}} ({{ifile.size}}) {{ifile.content_type}}
-                   </li>
-                </ul>
+            <tr ng-repeat="tip in tips | orderBy:orderProp:reverse">
+              <td class="col-md-1">{{tip.status}}</td>
+              <td class="col-md-5">
+                <div class="row">
+                  <span class="col-md-6">
+                    <b>{{ "Creation Date" | translate }}</b>
+                  </span>
+                  <span class="col-md-6">
+                    {{tip.creation_date | date:'dd-MM-yyyy HH:mm'}}
+                  </span>
+                </div>
+                <div class="row">
+                  <span class="col-md-6">
+                    <b>{{ "Expiration Date" | translate }}</b>
+                  </span>
+                  <span class="col-md-6">
+                    {{tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}
+                  </span>
+                </div>
+                <div class="row">
+                  <span class="col-md-6">
+                    <b>{{ "WB Last Access" | translate }}</b>
+                  </span>
+                  <span class="col-md-6">
+                    {{tip.wb_last_access | date:'dd-MM-yyyy HH:mm' }} ({{tip.wb_access_counter}})
+                  </span>
+                </div>
               </td>
-              <td>
-                <ul>
-                  <li ng-repeat="rtip in tip.receivertips">
-                    {{rtip.status}} ({{rtip.access_counter}})
-                    <a href="/#/admin/receivers">{{rtip.receiver_name}}</a>
-                    {{rtip.receiver_username}}
-                  </li>
-                </ul>
-              </td>
-
-              <td><a href="/#/admin/contexts">{{tip.context_name}}</a></td>
-              <td>
-                <ul>
-                  <li ng-repeat="comment in tip.comments">
-                    {{comment.type}} ({{comment.lifetime | date:'yyyy-MM-dd HH:mm' }})
-                  </li>
-                </ul>
+              <td class="col-md-6">
+                <div class="row">
+                  <div class="col-md-12">
+                    <b>{{ "Context" | translate }}:</b>
+                    <a href="/#/admin/contexts">{{tip.context_name}}</a>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-md-12">
+                    <b>{{ "Receiver Tips" | translate }}:</b>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-offset-1 col-md-11">
+                    <div ng-repeat="rtip in tip.receivertips">
+                      <span class="glyphicon glyphicon-info-sign"></span>
+                      {{rtip.status}} ({{rtip.access_counter}})
+                      <a href="/#/admin/receivers">{{rtip.receiver_name}}</a>
+                      {{rtip.receiver_username}}
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-md-12">
+                    <b>{{ "Files" | translate }}:</b>
+                  </div>
+                  <div class="col-sm-offset-1 col-md-11">
+                    <div ng-repeat="ifile in tip.internalfiles">
+                       <span class="glyphicon glyphicon-file"></span>
+                      {{ifile.name}} ({{ifile.size}}) {{ifile.content_type}}
+                    </div>
+                  </div>
+                </div>
+                <br />
+                <div class="row">
+                  <div class="col-md-12">
+                    <b>{{ "Comments" | translate }}:</b>
+                  </div>
+                  <div class="col-sm-offset-1 col-md-11">
+                    <div ng-repeat="comment in tip.comments">
+                       <span class="glyphicon glyphicon-comment"></span>
+                      {{comment.type}} ({{comment.lifetime | date:'dd-MM-yyyy HH:mm' }})
+                    </div>
+                  </div>
+                </div>
               </td>
             </tr>
           </tbody>

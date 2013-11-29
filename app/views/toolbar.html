@@ -171,7 +171,9 @@
     <label>{{ "Currently logged in " | translate }} 
       (<a href="{{auth_landing_page}}">{{role}}</a>)</label>
     <button class="btn btn-danger" ng-click="logout()">
-      {{ "logout" | translate }}</button>
+      <i class="glyphicon glyphicon-log-out"></i>
+      {{ "Logout" | translate }}
+    </button>
   </div>
   <div class="languagePick" ng-show="show_language_selector">
     <select ng-model="language" ng-options="lang_code as lang_name for (lang_code, lang_name) in available_languages" class="form-control"></select>

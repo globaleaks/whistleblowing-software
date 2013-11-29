@@ -7,14 +7,13 @@
 // with it.
 // To learn more see: http://docs.angularjs.org/guide/directive
 angular.module('submissionUI', []).
-  directive('pragmaticFileUpload', [function(){
+  directive('genericFileUpload', [ '$route', function($route){
 
     return {
 
       link: function(scope, element, attrs) {
         var selectFileButton = element.find('button.selectFile'),
           uploadButton = element.find('button.upload'),
-          img_receiver = element.parent().parent().find('img.baseimage'),
           headers = {'X-Session': $.cookie('session_id'),
                      'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
 
@@ -39,11 +38,59 @@ angular.module('submissionUI', []).
                 $(element).parent().find('.uploadProgress').show();
                 var filesList = $(element).find('input[type="file"]')[0].files,
                   jqXHR = data.submit({files: filesList});
-                
-                jqXHR.success(function(result, textStatus, jqXHR) {
-                    original_src = img_receiver[0].src;
 
-                    img_receiver[0].src = original_src+'?'+ Math.random();
+                jqXHR.success(function(result, textStatus, jqXHR) {
+
+		    scope.uploadfinished()
+
+                    $(element).parent().find('.uploadProgress').hide();
+                });
+              }
+            });
+
+        });
+      }
+    }
+}]).
+
+  directive('pragmaticFileUpload', [ '$route', function($route){
+
+    return {
+
+      link: function(scope, element, attrs) {
+        var selectFileButton = element.find('button.selectFile'),
+          uploadButton = element.find('button.upload'),
+          img = element.parent().parent().find('img.baseimage')[0],
+          headers = {'X-Session': $.cookie('session_id'),
+                     'X-XSRF-TOKEN': $.cookie('XSRF-TOKEN')};
+
+        function progressMeter(e, data) {
+          var progress_percent = parseInt(data.loaded / data.total * 100, 10);
+          $(element).parent().find('.uploadProgress .progress .bar').css('width', progress_percent + '%');
+        };
+
+        $(element).find('input[type="file"]').change(function(){
+          scope.markFileSelected();
+        });
+
+        scope.$watch(attrs.src, function(){
+          var url = attrs.src,
+            fileUploader = $(element).fileupload({
+              url: url,
+              headers: headers,
+              multipart: false,
+              progress: progressMeter,
+              progressall: progressMeter,
+              add: function(e, data){
+                $(element).parent().find('.uploadProgress').show();
+                var filesList = $(element).find('input[type="file"]')[0].files,
+                  jqXHR = data.submit({files: filesList});
+
+                jqXHR.success(function(result, textStatus, jqXHR) {
+
+                    if (img !== undefined) {
+                        img.src += '?'+ Math.random();
+                    }
 
                     $(element).parent().find('.uploadProgress').hide();
                 });
@@ -76,12 +123,6 @@ angular.module('submissionUI', []).
       }, spinner = new Spinner(opts).spin(element[0]);
   };
 }).
-  directive('holder', function(){
-      return function(scope, element, attrs) {
-        var size = attrs.holder;
-        Holder.run();
-      };
-}).
   directive('fadeout', function(){
     return function(scope, element, attrs) {
       var fadeout_delay = 3000;
@@ -95,27 +136,4 @@ angular.module('submissionUI', []).
 
       element.fadeOut(fadeout_delay);
     };
-}).
-  directive('expandTo', function() {
-  // Used to expand the element to the target width when you over over it. Also
-  // makes sure that all the text is selected on a single click.
-  return function(scope, element, attrs) {
-    scope.$watch(attrs.expandTo, function(width){
-      var original_width = element.css('width'),
-        target_width = width + 'px';
-
-      element.mouseenter(function() {
-        element.css('width', target_width);
-      });
-
-      element.mouseleave(function() {
-        element.css('width', original_width);
-      });
-
-      element.click(function() {
-        element.select();
-      });
-
-    })
-  };
 });

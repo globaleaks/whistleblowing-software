@@ -1,4 +1,4 @@
-/*global window */
+/* global window */
 
 GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($scope, $location){
   var current_menu = $location.path().split('/').slice(-1);
@@ -6,13 +6,29 @@ GLClient.controller('ReceiverSidebarCtrl', ['$scope', '$location', function($sco
   $scope.active[current_menu] = "active";
 }]);
 
-GLClient.controller('ReceiverTipsCtrl', ['$scope', 'ReceiverTips',
-  function($scope, ReceiverTips) {
-  $scope.tips = ReceiverTips.query();
-}]);
-
 GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'ReceiverPreferences', 'changePasswordWatcher',
   function($scope, $rootScope, ReceiverPreferences, changePasswordWatcher) {
+
+    $scope.tabs = [
+      { title:"Password Configuration", template:"/views/receiver/preferences/tab1.html",
+        ctrl: function($scope){
+          $scope.id = 1;
+        }    
+      },
+      { title:"Notification Settings", template:"/views/receiver/preferences/tab2.html",
+        ctrl: function($scope){
+          $scope.id = 2;
+        }
+      },
+     { title:"Encryption Settings", template:"/views/receiver/preferences/tab3.html",
+        ctrl: function($scope){
+          $scope.id = 3;
+        }
+      }
+    ];
+
+    $scope.navType = 'pills';
+
     $scope.preferences = ReceiverPreferences.get();
 
     changePasswordWatcher($scope, "preferences.old_password",
@@ -63,4 +79,9 @@ GLClient.controller('ReceiverPreferencesCtrl', ['$scope', '$rootScope', 'Receive
       });
     }
 
+}]);
+
+GLClient.controller('ReceiverTipsCtrl', ['$scope', '$http', '$route', '$location', '$modal', 'ReceiverTips',
+  function($scope, $http, $route, $location, $modal, ReceiverTips) {
+  $scope.tips = ReceiverTips.query();
 }]);

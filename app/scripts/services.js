@@ -31,6 +31,7 @@ angular.module('resourceServices.authentication', [])
         },
 
         checkExpiration = function() {
+          var current_date = new Date();
           var expiration_date = $.cookie('session_expiration');
 
           if (expiration_date >= current_date) {
@@ -60,10 +61,12 @@ angular.module('resourceServices.authentication', [])
               self.id = response.session_id;
               self.user_id = response.user_id;
               self.username = username;
-              self.role = role;
+              self.role = role
 
               $rootScope.session_id = self.id;
               $rootScope.auth_role = role;
+              $rootScope.permissions = response.permissions;
+              $rootScope.session = response;
               
               setCookie('session_id', response.session_id);
               setExpiration(response.session_expiration);
@@ -98,24 +101,29 @@ angular.module('resourceServices.authentication', [])
         self.logout = function() {
             var role = $.cookie('role');
 
-            return $http.delete('/authentication')
-              .success(function(response){
-                self.id = null;
-                self.username = null;
-                self.user_id = null;
+            $http.delete('/authentication');
 
-                $.removeCookie('session_id');
-                $.removeCookie('role');
-                $.removeCookie('auth_landing_page');
-                $.removeCookie('tip_id');
+            self.id = null;
+            self.username = null;
+            self.user_id = null;
 
-                if (role === 'wb')
-                  $location.path('/');
-                else
-                  $location.path('/login');
-            });
+            $.removeCookie('session_id');
+            $.removeCookie('role');
+            $.removeCookie('auth_landing_page');
+            $.removeCookie('tip_id');
+
+            if (role === 'wb')
+              $location.path('/');
+            else
+              $location.path('/login');
         };
+
+        $http.get('/authentication').success(function(response){
+            $rootScope.session = response;
+        });
+
       };
+
       return new Session;
 }]);
 angular.module('resourceServices', ['ngResource', 'resourceServices.authentication']).
@@ -179,8 +187,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         $rootScope.pendingRequests.pop(promise);
         return response;
       }, function(response) {
-        /* When the response has failed write the rootScope errors array the
-        * error message. */
+        /* 
+           When the response has failed write the rootScope
+           errors array the error message.
+        */
         var error = {},
           source_path = $location.path();
 
@@ -189,19 +199,24 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         error.url = response.config.url;
         error.arguments = response.data.arguments;
 
-        if (error.code == 30) {
-          $.removeCookie('session_id');
-          // Only redirect if we are not on the login page
-          if ($location.path().indexOf('/login') === -1) {
-            $location.path('/login');
-            $location.search('src='+source_path);
-          };
-        };
+        if (!((response.config.url == '/authentication') && (error.code == 30))) {
 
-        if (!$rootScope.errors) {
-          $rootScope.errors = [];
+          if (error.code == 30) {
+            $.removeCookie('session_id');
+            // Only redirect if we are not on the login page
+            if ($location.path().indexOf('/login') === -1) {
+              $location.path('/login');
+              $location.search('src='+source_path);
+            };
+          };
+
+          if (!$rootScope.errors) {
+            $rootScope.errors = [];
+          }
+
+          $rootScope.errors.push(error);
+
         }
-        $rootScope.errors.push(error);
 
         $rootScope.pendingRequests.pop(promise);
         return $q.reject(response);
@@ -455,6 +470,9 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('FileOverview', ['$resource', function($resource) {
     return $resource('/admin/overview/files');
+}]).
+  factory('StaticFiles', ['$resource', function($resource) {
+    return $resource('/admin/staticfiles');
 }]).
   factory('cookiesEnabled', function(){
 

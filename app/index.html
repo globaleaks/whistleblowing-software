@@ -15,11 +15,11 @@
         <link rel="stylesheet" href="styles/admin.css">
         <link rel="stylesheet" href="styles/home.css">
         <link rel="stylesheet" href="styles/submission.css">
-        <link rel="stylesheet" href="styles/custom_stylesheet.css">
+        <link rel="stylesheet" href="styles/custom-glclient.css">
         <!-- endbuild -->
 
         <!-- stylesheet downloaded from the GLBackend -->
-        <link rel="stylesheet" href="/static/custom_stylesheet.css">
+        <link rel="stylesheet" href="/custom_stylesheet.css">
 
         <style type="text/css">
           [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
@@ -58,7 +58,7 @@
           </div>
         </div>
 
-        <div ng-include="'views/widgets/privacybox.html'"></div>
+        <div ng-include="'views/partials/privacybox.html'"></div>
 
         <div ng-include="'views/toolbar.html'"></div>
 
@@ -125,6 +125,7 @@
 
         <script src="scripts/controllers/status.js"></script>
         <script src="scripts/controllers/receiver.js"></script>
+        <script src="scripts/controllers/tip.js"></script>
 
         <script src="scripts/controllers/admin/main.js"></script>
         <script src="scripts/controllers/admin/receivers.js"></script>

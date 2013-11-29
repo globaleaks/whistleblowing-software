@@ -1,0 +1,54 @@
+<div class="row">
+  <div class="col-md-6">
+    <div class="form-group table-bordered">
+      <input ng-model="admin.notification.disable" type="checkbox">
+      <label>{{ "Disable email notification" | translate }}</label>
+      <div ng-show="admin.notification.disable">
+        <span class="label label-warning">
+          {{ "Email notification is disabled." | translate }} <br />
+        </span>
+        <span class="label label-warning">
+          {{ "Unsent emails will be spooled when the option will be re-enabled." | translate }}
+        </span>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Source Name" | translate }}</label>
+      <input class="form-control" ng-model="admin.notification.source_name" required="" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Source Email" | translate }}</label>
+      <input class="form-control" ng-model="admin.notification.source_email" required="" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Username" | translate }}</label>
+      <input class="form-control" ng-model="admin.notification.username" required="" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Password" | translate }}</label>
+      <input class="form-control" ng-model="admin.notification.password" required="" type="password">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "SMTP server address" | translate }}</label>
+      <input class="form-control" ng-model="admin.notification.server" required="" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "SMTP server port" | translate }}</label>
+      <input class="form-control" ng-model="admin.notification.port" required="" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Transport Security" | translate }}</label>
+      <select class="form-control" ng-model="admin.notification.security" required="">
+        <option value="SSL">SMTPS</option>
+        <option value="TLS">SMTP/TLS</option>
+      </select>
+    </div>
+  </div>
+</div>
