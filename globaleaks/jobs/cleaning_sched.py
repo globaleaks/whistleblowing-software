@@ -75,7 +75,7 @@ def itip_cleaning(store, id):
                 (abspath, id, ifname, ifile.size))
         else:
             try:
-                os.unlink(abspath)
+                os.remove(abspath)
             except OSError as excep:
                 log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
@@ -93,7 +93,7 @@ def itip_cleaning(store, id):
                 continue
     
             try:
-                os.unlink(abspath)
+                os.remove(abspath)
             except OSError as excep:
                 log.err("Unable to remove %s: %s" % (abspath, excep.strerror))
 
@@ -125,8 +125,12 @@ class APSCleaning(GLJob):
         Second goal of this function, is to check all the InternalTip(s)
         and their expiration date, if match, remove that, all the folder,
         comment and tip related.
+
+        Thir goal of this function is to reset the exception counter that
+        acts as limit for mail storm
         """
         try:
+            # First Goal
             submissions = yield get_tiptime_by_marker(InternalTip._marker[0]) # Submission
             log.debug("(Cleaning routines) %d unfinished Submission are check if expired" % len(submissions))
             for submission in submissions:
@@ -135,6 +139,7 @@ class APSCleaning(GLJob):
                              (submission['creation_date'], submission['files']) )
                     yield itip_cleaning(submission['id'])
 
+            # Second Goal
             tips = yield get_tiptime_by_marker(InternalTip._marker[2]) # First
             log.debug("(Cleaning routines) %d Tips stored are check if expired" % len(tips))
             for tip in tips:
@@ -142,6 +147,9 @@ class APSCleaning(GLJob):
                     log.info("Deleting an expired Tip (creation date: %s) files %d comments %d" %
                              (tip['creation_date'], tip['files'], tip['comments']) )
                     yield itip_cleaning(tip['id'])
+
+            # Third Goal: Reset of GLSetting.exceptions
+            GLSetting.exceptions = {}
 
         except Exception as excep:
             log.err("Exception failure in submission/tip cleaning routine (%s)" % excep.message)

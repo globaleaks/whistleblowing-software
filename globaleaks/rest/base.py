@@ -5,7 +5,8 @@
 #
 #   Contains all the logic handle input and output validation.
 
-uuid_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+uuid_regexp         = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12})'
+receiver_img_regexp = r'([a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}).png'
 
 dateType = r'(.*)'
 # contentType = r'(application|audio|text|video|image)'

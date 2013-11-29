@@ -172,7 +172,7 @@ class TestHandler(TestGL):
 
 
     def request(self, jbody=None, role=None, user_id=None, headers=None, body='',
-            remote_ip='0.0.0.0', method='MOCK'):
+                remote_ip='0.0.0.0', method='MOCK', kwargs={}):
 
         """
         Function userful for performing mock requests.
@@ -230,7 +230,7 @@ class TestHandler(TestGL):
                                          remote_ip=remote_ip,
                                          connection=connection)
 
-        handler = self._handler(application, request)
+        handler = self._handler(application, request, **kwargs)
 
         def mock_pass(cls, *args):
             pass
@@ -348,6 +348,7 @@ class MockDict():
             'tor2web_unauth' : True,
             'postpone_superpower' : False,
             'exception_email' : GLSetting.defaults.exception_email,
+            'reset_css': False,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',

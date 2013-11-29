@@ -47,6 +47,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
         'postpone_superpower': node.postpone_superpower,
+        'reset_css': False,
     }
 
     mo = structures.Rosetta()
@@ -170,6 +171,20 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
             log.err("Invalid hidden service regexp in [%s]" % request['hidden_service'])
             raise errors.InvalidInputFormat("Invalid hidden service")
 
+    # check the 'reset_css' boolean option: remove an existent custom CSS
+    if request['reset_css']:
+        custom_css_path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
+
+        if os.path.isfile(custom_css_path):
+            try:
+                os.remove(custom_css_path)
+                log.debug("Reset on custom CSS done.")
+            except Exception as excep:
+                log.err("Unable to remove custom CSS: %s: %s" % (custom_css_path, excep))
+                raise errors.InternalServerError(excep)
+        else:
+            log.err("Requested CSS Reset, but custom CSS do not exists")
+
     # verify that the languages enabled are valid 'code' in the languages supported
     node.languages_enabled = []
     for lang_code in request['languages_enabled']:
@@ -178,8 +193,24 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
         else:
             raise errors.InvalidInputFormat("Invalid lang code enabled: %s" % lang_code)
 
-    if not request['default_language'] in LANGUAGES_SUPPORTED_CODES:
-        raise errors.InvalidInputFormat("Invalid lang code as default")
+    if not len(node.languages_enabled):
+        raise errors.InvalidInputFormat("Missing enabled languages")
+
+    # enforcing of default_language usage (need to be set, need to be _enabled)
+    if request['default_language']:
+
+        if request['default_language'] not in LANGUAGES_SUPPORTED_CODES:
+            raise errors.InvalidInputFormat("Invalid lang code as default")
+
+        if request['default_language'] not in node.languages_enabled:
+            raise errors.InvalidInputFormat("Invalid lang code as default")
+
+        node.default_language = request['default_language']
+
+    else:
+        node.default_language = node.languages_enabled[0]
+        log.err("Default language not set!? fallback on %s" % node.default_language)
+
 
     # name, description tor2web boolean value are acquired here
     node.update(request)
@@ -603,7 +634,7 @@ def delete_receiver(store, id):
     portrait = os.path.join(GLSetting.static_path, "%s.png" % id)
 
     if os.path.exists(portrait):
-        os.unlink(portrait)
+        os.remove(portrait)
 
     store.remove(receiver.user)
 
@@ -733,9 +764,9 @@ class ContextInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish(response)
 
-    @inlineCallbacks
     @transport_security_check('admin')
     @authenticated('admin')
+    @inlineCallbacks
     def delete(self, context_gus, *uriargs):
         """
         Request: adminContextDesc

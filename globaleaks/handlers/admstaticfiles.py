@@ -17,12 +17,28 @@ from cyclone.web import os
 from twisted.internet.defer import inlineCallbacks
 
 from globaleaks.settings import GLSetting, transact_ro
-from globaleaks.handlers.base import BaseHandler
+from globaleaks.handlers.base import BaseHandler, BaseStaticFileHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.utils.utility import log
 from globaleaks.rest import errors
-from globaleaks.rest.base import uuid_regexp
+from globaleaks.rest.base import uuid_regexp, receiver_img_regexp
 from globaleaks import models
+
+from globaleaks.security import directory_traversal_check
+
+def reserved_file_check(filename):
+    """
+    Return True if filename matchs a reserved filename, False instead.
+    """
+    if filename in [ 'globaleaks_logo.png',
+                     'custom_stylesheet.css'
+                   ]:
+        return True
+
+    if re.match(receiver_img_regexp, filename):
+        return True
+
+    return False
 
 def get_description_by_stat(statstruct, name):
     stored_file_desc =  {
@@ -38,8 +54,10 @@ def get_stored_files():
 
     for fname in storedfiles:
         filepath = os.path.join(GLSetting.static_path, fname)
-        statinfo = os.stat(filepath)
-        stored_list.append(get_description_by_stat(statinfo, fname))
+
+        if os.path.isfile(filepath) and not reserved_file_check(fname):
+            statinfo = os.stat(filepath)
+            stored_list.append(get_description_by_stat(statinfo, fname))
 
     return stored_list
 
@@ -82,56 +100,6 @@ def dump_static_file(uploaded_file, filelocation):
 
     return get_file_info(uploaded_file, filelocation)
 
-def reserved_name_check(target_string, original_fname):
-    """
-    @param target_string: its a string,
-
-      This function is used to test the requested name, and
-      remove those that eventually shall bring anomalies.
-
-    @return: True if a match is found, False if not.
-        raise ReservedFileName if we don't like your parameter
-    """
-    image = False
-
-    reserved_logo_namel = len(GLSetting.reserved_names.logo)
-    if target_string[:reserved_logo_namel] == GLSetting.reserved_names.logo:
-        if len(target_string) > reserved_logo_namel:
-            raise errors.ReservedFileName
-        image = True
-
-    if re.match(uuid_regexp, target_string[:36]): # an UUID is long 36 byte
-        if len(target_string) > 36:
-            raise errors.ReservedFileName
-        image = True
-
-    if image:
-        if original_fname.lower().endswith(GLSetting.images_extensions):
-            return True
-
-        # Invalid format check: this is not the right way, but at the
-        # moment we're not including any magic-* in fear of the code surface!
-        log.debug("Invalid image extension in %s (permitted only %s)" %
-                  (original_fname, GLSetting.images_extensions))
-        raise errors.InvalidInputFormat("Extension not accepted between images")
-
-    # If not image, check CSS
-    reserved_css_namel = len(GLSetting.reserved_names.css)
-    if target_string[:reserved_css_namel] == GLSetting.reserved_names.css:
-        if len(target_string) > reserved_css_namel:
-            raise errors.ReservedFileName
-
-        if original_fname.lower().endswith(GLSetting.css_extensions):
-            return True
-
-        # Extension error management: same comment of 19 lines ago
-        log.debug("Invalid CSS extension in %s (permitted only %s)" %
-                  (original_fname, GLSetting.css_extensions))
-        raise errors.InvalidInputFormat("Extension not accepted for CSS")
-
-    log.debug("Rejecting file request [%s] with original fname [%s]" %
-              (target_string, original_fname) )
-    return False
 
 @transact_ro
 def receiver_pic_path(store, receiver_uuid):
@@ -142,7 +110,8 @@ def receiver_pic_path(store, receiver_uuid):
 
     return os.path.join(GLSetting.static_path, "%s.png" % receiver_uuid)
 
-class StaticFileCollection(BaseHandler):
+
+class StaticFileInstance(BaseStaticFileHandler):
     """
     Complete CRUD implementation using the filename instead of UUIDs
     """
@@ -150,66 +119,69 @@ class StaticFileCollection(BaseHandler):
     @transport_security_check('admin')
     @authenticated('admin')
     @inlineCallbacks
-    def post(self, *args):
+    def post(self, filename):
         """
         Upload a new file
         """
         start_time = time.time()
 
-        uploaded_file = self.request.body
+        uploaded_file = self.get_uploaded_file()
 
-        # currently the static file upload is used to handle only
-        # images uploads for Node and for Receivers so that all the logic
-        # is embedded here. As also a dirty Input Validation (because body is
-        # a file stream, not a python dict, and we're not checking exactly
-        # what's has been uploaded. this code is run only by admin, but: XXX remind
+        # This handler allow to upload files inside globaleaks static directory
+        #
+        # There 4 possibilities allowed are:
+        #
+        #   1) the destination is == GLSetting.reserved_names.logo
+        #   2) the destination is == GLSetting.reserved_names.cc
+        #   3) the "destination+".png" does not match receiver_img_regexp
+        #   4) the provided filename is a receiver uuid
 
-        if not isinstance(uploaded_file, dict) or len(uploaded_file.keys()) != 4:
-            raise errors.InvalidInputFormat("Expected a dict of four keys in StaticFileCollection")
+        #if not reserved_name_check(filename, uploaded_file['filename']):
+        #    raise errors.InvalidInputFormat("Unexpected name")
 
-        for filekey in uploaded_file.keys():
-            if filekey not in [u'body', u'body_len', u'content_type', u'filename']:
-                raise errors.InvalidInputFormat(
-                    "Invalid JSON key in StaticFileCollection (%s)" % filekey)
+        # the 'filename' key present in the uploaded_file dict is ignored
 
-        if not reserved_name_check(self.request.query, uploaded_file['filename']):
-            raise errors.InvalidInputFormat("Unexpected name")
-
-        requested_fname = self.request.query
-        # the 'filename' key present in the uploaded_file dict, is ignored
-
-        if requested_fname == GLSetting.reserved_names.logo:
+        if filename == GLSetting.reserved_names.logo:
             try:
-                gl_file_path = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_names.logo)
-                log.debug("Received request to update Node logo in %s" % uploaded_file['filename'])
+                path = os.path.join(GLSetting.static_path, "%s.png" % GLSetting.reserved_names.logo)
+                log.debug("Received request to update Node logo with %s" % uploaded_file['filename'])
             except Exception as excpd:
                 log.err("Exception raise saving Node logo: %s" % excpd)
                 raise errors.InternalServerError(excpd.__repr__())
-        elif requested_fname == GLSetting.reserved_names.css:
+
+        elif filename == GLSetting.reserved_names.css:
             try:
-                gl_file_path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
+                path = os.path.join(GLSetting.static_path, "%s.css" % GLSetting.reserved_names.css)
                 log.debug("Received request to update custom CSS with %s" % uploaded_file['filename'])
             except Exception as excpd:
                 log.err("Exception raise saving custom CSS: %s" % excpd)
                 raise errors.InternalServerError(excpd.__repr__())
+
+        elif filename == 'customization' and \
+             not re.match(receiver_img_regexp, uploaded_file['filename'] + ".png"):
+                path = os.path.join(GLSetting.static_path, uploaded_file['filename'])
+                log.debug("Received request to save %s in path %s" %
+                          (uploaded_file['filename'], path))
         else:
             try:
-                gl_file_path = yield receiver_pic_path(requested_fname)
-                log.debug("Received request to update Receiver portrait for %s" % requested_fname)
+                path = yield receiver_pic_path(filename)
+                log.debug("Received request to update Receiver portrait with %s" % filename)
             except errors.ReceiverGusNotFound as excpd:
-                log.err("Invalid Receiver ID specified: %s" % requested_fname)
+                log.err("Invalid Receiver ID specified: %s" % filename)
                 raise excpd
             except Exception as excpd:
-                log.err("Exception raised while saving Receiver %s portrait %s" %
-                        (requested_fname, excpd))
+                log.err("Exception raised while saving Receive portrait with %s: %s" %
+                        (filename, excpd))
                 raise errors.InternalServerError(excpd.__repr__())
+
+        directory_traversal_check(GLSetting.static_path, path)
 
         try:
             # the dump of the file is done here in the latest stage to
             # avoid writing non tracked files on the file system in case of exceptions
-            dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file, gl_file_path)
+            dumped_file = yield threads.deferToThread(dump_static_file, uploaded_file, path)
         except OSError as excpd:
-            log.err("OSError while create a new static file [%s]: %s" % (gl_file_path, excpd) )
+            log.err("OSError while create a new static file [%s]: %s" % (path, excpd) )
             raise errors.InternalServerError(excpd.strerror)
         except Exception as excpd:
             log.err("Unexpected exception: %s" % excpd.message)
@@ -225,35 +197,31 @@ class StaticFileCollection(BaseHandler):
 
     @transport_security_check('admin')
     @authenticated('admin')
-    def get(self, *args):
+    def delete(self, filename):
+        """
+        Parameter: filename
+        Errors: StaticFileNotFound
+        """
+        path = os.path.join(GLSetting.static_path, filename)
+        directory_traversal_check(GLSetting.static_path, path)
+
+        if not os.path.exists(path):
+            raise errors.StaticFileNotFound
+
+        # XXX if a reserved filename is requested, need to be handled in
+        # a safe way: eg, if is a receiver, restore the default image.
+        os.remove(path)
+
+        self.set_status(200)
+        self.finish()
+
+class StaticFileList(BaseHandler):
+    @transport_security_check('admin')
+    @authenticated('admin')
+    def get(self):
         """
         Return the list of static files, with few filesystem info
         """
         self.set_status(200)
         self.finish(get_stored_files())
 
-
-class StaticFileInstance(BaseHandler):
-    """
-    This interface do not support at the moment GET and PUT, because the only
-    useful function in this case is the single deletion.
-    """
-
-    @transport_security_check('admin')
-    @authenticated('admin')
-    def delete(self, filename, *args):
-        """
-        Parameter: filename
-        Errors: StaticFileNotFound
-        """
-        filelocation = os.path.join(GLSetting.static_path, filename)
-
-        if not os.path.exists(filelocation):
-            raise errors.StaticFileNotFound
-
-        # XXX if a reserved filename is requested, need to be handled in
-        # a safe way: eg, if is a receiver, restore the default image.
-        os.unlink(filelocation)
-
-        self.set_status(200)
-        self.finish()

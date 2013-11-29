@@ -12,6 +12,7 @@ from globaleaks import models
 from globaleaks.jobs import delivery_sched
 from globaleaks.handlers import files, authentication, submission, tip
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
+from globaleaks.handlers.receiver import TipsCollection
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 
@@ -316,5 +317,3 @@ class TestSubmission(helpers.TestGL):
             self.assertTrue(False)
         except Exception as excep:
             self.assertTrue(excep.reason.startswith(u"Submission do not validate the input fields [Missing field"))
-
-

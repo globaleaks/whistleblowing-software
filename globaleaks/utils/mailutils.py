@@ -1,4 +1,5 @@
 # -*- coding: UTF-8
+#
 #   mailutils
 #   *********
 #
@@ -23,17 +24,23 @@ from twisted.python.failure import Failure
 from OpenSSL import SSL
 from txsocksx.client import SOCKS5ClientEndpoint
 
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
+from email.header import Header
+from email import Charset
+
 from globaleaks.utils.utility import log
 from globaleaks.settings import GLSetting
 from globaleaks import __version__
 
+from Crypto.Hash import SHA256
 
 def rfc822_date():
     """
     holy stackoverflow:
     http://stackoverflow.com/questions/3453177/convert-python-datetime-to-rfc-2822
     """
-    nowdt = datetime.utcnow()
+    nowdt = datetime.utcnow() - timedelta(seconds=time.timezone)
     nowtuple = nowdt.timetuple()
     nowtimestamp = time.mktime(nowtuple)
     return mailutils.formatdate(nowtimestamp)
@@ -50,12 +57,10 @@ def sendmail(authentication_username, authentication_password, from_address,
     @param message_file: the message content its a StringIO
     @param smtp_host: the smtp host
     @param smtp_port: the smtp port
-    @param event: the event description, needed to keep track of failure/success
     @param security: may need to be STRING, here is converted at start
+    @param event: the event description, needed to keep track of failure/success
     """
     def printError(reason, event):
-        if isinstance(reason, Failure):
-            reason = reason.type
 
         # XXX is catch a wrong TCP port, but not wrong SSL protocol, here
         if event:
@@ -64,11 +69,13 @@ def sendmail(authentication_username, authentication_password, from_address,
         # TODO specify a ticket - make event an Obj instead of a namedtuple
         # TODO It's defined in plugin/base.py
 
-        log.err("Failed to contact %s:%d (Sock Error %s)" %
-                (smtp_host, smtp_port, reason))
-        log.err(reason)
+        if isinstance(reason, Failure):
+            log.err("Failed to contact %s:%d (Sock Error %s)" %
+                    (smtp_host, smtp_port, reason.type))
+            log.err(reason)
 
     def handle_error(reason, *args, **kwargs):
+        # XXX event is not an argument here ?
         printError(reason, event)
         return result_deferred.errback(reason)
 
@@ -123,7 +130,7 @@ def sendmail(authentication_username, authentication_password, from_address,
 
         if GLSetting.tor_socks_enable:
             socksProxy = TCP4ClientEndpoint(reactor, GLSetting.socks_host, GLSetting.socks_port)
-            endpoint = SOCKS5ClientEndpoint(smtp_host, smtp_port, socksProxy)
+            endpoint = SOCKS5ClientEndpoint(smtp_host.encode('utf-8'), smtp_port, socksProxy)
         else:
             endpoint = TCP4ClientEndpoint(reactor, smtp_host, smtp_port)
 
@@ -136,6 +143,52 @@ def sendmail(authentication_username, authentication_password, from_address,
         return fail()
 
     return result_deferred
+
+
+def MIME_mail_build(source_name, source_mail, receiver_name, receiver_mail, title, txt_body):
+
+    # Override python's weird assumption that utf-8 text should be encoded with
+    # base64, and instead use quoted-printable (for both subject and body).  I
+    # can't figure out a way to specify QP (quoted-printable) instead of base64 in
+    # a way that doesn't modify global state. :-(
+
+    Charset.add_charset('utf-8', Charset.QP, Charset.QP, 'utf-8')
+
+    # This example is of an email with text and html alternatives.
+    multipart = MIMEMultipart('alternative')
+
+    # We need to use Header objects here instead of just assigning the strings in
+    # order to get our headers properly encoded (with QP).
+    # You may want to avoid this if your headers are already ASCII, just so people
+    # can read the raw message without getting a headache.
+    multipart['Subject'] = Header(title.encode('utf-8'), 'UTF-8').encode()
+    multipart['Date'] = rfc822_date()
+
+    multipart['To'] = Header(receiver_name.encode('utf-8'), 'UTF-8').encode() + \
+                        " <" + receiver_mail + ">"
+
+    multipart['From'] = Header(source_name.encode('utf-8'), 'UTF-8').encode() + \
+                        " <" + source_mail + ">"
+
+    multipart['X-Mailer'] = "fnord"
+
+    # Attach the parts with the given encodings.
+    # html = '<html>...</html>'
+    # htmlpart = MIMEText(html.encode('utf-8'), 'html', 'UTF-8')
+    # multipart.attach(htmlpart)
+
+    textpart = MIMEText(txt_body.encode('utf-8'), 'plain', 'UTF-8')
+    multipart.attach(textpart)
+
+    # And here we have to instantiate a Generator object to convert the multipart
+    # object to a string (can't use multipart.as_string, because that escapes
+    # "From" lines).
+    try:
+        io = StringIO.StringIO(multipart.as_string())
+        return io
+    except Exception as excep:
+        log.err("Unable to encode and email: %s" % excep)
+        return None
 
 
 def collapse_mail_content(mixed_list):
@@ -187,23 +240,28 @@ def mail_exception(etype, value, tback):
     not in production release.
     """
 
+    sha256 = SHA256.new(str(value)).hexdigest()
+
     if isinstance(value, GeneratorExit) or \
        isinstance(value, AlreadyCalledError) or \
-       isinstance(value, SMTPError):
+       isinstance(value, SMTPError) or \
+       etype == AssertionError and value.message == "Request closed":
         # we need to bypass email notification for some exception that:
         # 1) raise frequently or lie in a twisted bug;
         # 2) lack of useful stacktraces;
         # 3) can be cause of email storm amplification
         #
         # this kind of exception can be simply logged error logs.
-        log.err("Unhandled exception [mail suppressed] (%s)" % str(etype))
+        log.err("exception mail suppressed for exception (%s) [reason: special exception]" % str(etype))
         return
-
-    if etype == AssertionError and value.message == "Request closed":
-        # https://github.com/facebook/tornado/issues/473
-        # https://github.com/globaleaks/GlobaLeaks/issues/166
-        # we need a bypass and also echoing something is bad on this condition.
-        return
+    elif sha256 in GLSetting.exceptions:
+        GLSetting.exceptions[sha256] += 1
+        if GLSetting.exceptions[sha256] > 5:
+            # if the threashold has been exceeded
+            log.err("exception mail suppressed for exception (%s) [reason: threshold exceeded]" % str(etype))
+            return
+    else:
+        GLSetting.exceptions[sha256] = 1
 
     # collection of the stacktrace info
     exc_type = re.sub("(<(type|class ')|'exceptions.|'>|__main__.)",

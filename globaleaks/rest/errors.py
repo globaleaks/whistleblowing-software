@@ -297,9 +297,9 @@ class ReservedFileName(GLException):
     The files uploaded in the static file directory, are also used for Receivers portrait
     and Node Logo.
     """
+    reason = "The file uploaded has a reserved name"
     error_code = 38
     status_code = 403 # Forbidden
-    reason = "The file uploaded has a reserved name"
 
 class HTTPRawLimitReach(GLException):
     """
@@ -316,45 +316,45 @@ class HTTPRawLimitReach(GLException):
 
 class GPGKeyInvalid(GLException):
     """
-    The proposed GPG key has an invalid format and can't be imported
+    The provided GPG key has an invalid format and can't be imported
     """
+    reason = "The proposed GPG key can't be imported"
     error_code = 40
     status_code = 406
-    reason = "The GPG key proposed can't be imported"
 
 class InvalidReceiptRegexp(GLException):
     """
     context.receipt_regexp don't works
     """
+    reason = "The provided receipt regexp is an invalid"
     error_code = 41
     status_code = 406
-    reason = "The receipt regexp is an invalid regexp"
 
 class GPGKeyIDNotUnique(GLException):
     """
     A GPG key id need to be unique in the node
     Remind: not yet used
     """
+    reason = "The GPG Key ID it's already used by another receiver"
     error_code = 42
     status_code =  406
-    reason = "GPG Key ID it's already used by another receiver"
 
 class AdminSessionExpired(GLException):
+    reason = "Admin session expired (max time: %s seconds) " % \
+             GLSetting.defaults.lifetimes['admin']
     error_code = 43
     status_code = 419 # Authentication Timeout
-    reason = "The time for you Administrator is expired (max time: %s seconds) " % \
-             GLSetting.defaults.lifetimes['admin']
 
 class WbSessionExpired(GLException):
+    reason = "Whistleblower session expired (max time: %s seconds) " % \
+             GLSetting.defaults.lifetimes['wb']
     error_code = 44
     status_code = 419 # Authentication Timeout
-    reason = "The time for you whistleblower is expired (max time: %s seconds) " % \
-             GLSetting.defaults.lifetimes['wb']
 
 class ReceiverSessionExpired(GLException):
     error_code = 45
     status_code = 419 # Authentication Timeout
-    reason = "The time for you receiver is expired (max time: %s seconds) " % \
+    reason = "Receiver session expired (max time: %s seconds) " % \
              GLSetting.defaults.lifetimes['receiver']
 
 class InvalidTipTimeToLive(GLException):
@@ -362,41 +362,65 @@ class InvalidTipTimeToLive(GLException):
     tip_timetolive and submission_timetolive maybe proposed of weird values,
     here is catch
     """
+    reason = "Invalid timerange provided for Tip time to live"
     error_code =  46
     status_code = 406
-    reason = "Invalid timerange in Tip time to live"
 
 class InvalidSubmTimeToLive(GLException):
     """
     tip_timetolive and submission_timetolive maybe proposed of weird values,
     here is catch
     """
+    reason = "Invalid timerange provided for Submission time to live"
     error_code =  47
     status_code = 406
-    reason = "Invalid timerange in Submission time to live"
 
 class InvalidTipSubmCombo(GLException):
     """
-    tip_timetolive and submission_timetolive maybe proposed of weird values,
-    here is catch
+    tip_timetolive and submission_timetolive can be proposed with weird values.
     """
+    reason = "Submission time to life can't be more than Tip"
     error_code =  48
     status_code = 406
-    reason = "Submission time to life can't be more than Tip"
 
 class FileRequiredMissing(GLException):
     """
     A submission has been finalized without a file, and
     the context enforce the presence.
     """
+    reason = "A file attachment is required to complete the submission"
     error_code =  49
     status_code = 406
-    reason = "A file attachment is required to complete the submission"
 
 class ExtendTipLifeNotEnabled(GLException):
     """
-    ability to postpone expiration date is not enabled in the node
+    Ability to postpone expiration date is not enabled in the node
     """
+    reason = "This node do not permit expiration date extensions"
     error_code =  50
     status_code = 403
-    reason = "This node do not permit expiration date extensions"
+
+class StaticFileNotFound(GLException):
+   """
+   It has been requested an operation on a non existent static file
+   """
+   reason = "Requested an operation on a non existent static file"
+   error_code = 51
+   status_code = 404
+
+class LangFileNotFound(GLException):
+   """
+   It has been requested an operation on a non existent language file
+   """
+   reason = "Requested an operation on a non existent language file"
+   error_code = 52
+   status_code = 404
+
+class DirectoryTraversalError(GLException):
+   """
+   Blocked file operation out of the expected path
+   """
+   reason = "Blocked file operation out of the expected path"
+   error_code = 53
+   status_code = 403
+
