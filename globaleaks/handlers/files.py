@@ -199,7 +199,7 @@ class FileHandler(BaseHandler):
         self.write({'files': result_list})
 
 
-# This is different from FileInstance,just because there are a different authentication requirements
+# This is different from FileInstance, just because there are a different authentication requirements
 class FileAdd(FileHandler):
     """
     T4
@@ -288,6 +288,7 @@ def download_all_files(store, user_id, tip_id):
 class Download(BaseHandler):
     auth_type = "COOKIE"
 
+    @transport_security_check('tip')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_gus, file_gus, *uriargs):
@@ -327,6 +328,7 @@ class CSSStaticFileHandler(BaseStaticFileHandler):
     if the file is not present, 200 is returned with an empty content
     """
 
+    @transport_security_check('unauth')
     @unauthenticated
     def get(self, path, include_body=True):
         self.set_header('Content-Type', 'text/css')
