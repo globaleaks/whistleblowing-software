@@ -8,7 +8,7 @@
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool
+from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool, log
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
@@ -173,8 +173,14 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
         for preview_key, preview_label in fo.get_preview_keys(language).iteritems():
 
             # preview in a format angular.js likes
-            entry = dict({'label' : preview_label,
-                          'text': rtip.internaltip.wb_fields[preview_key] })
+            try:
+                entry = dict({'label' : preview_label,
+                              'text': rtip.internaltip.wb_fields[preview_key] })
+
+            except KeyError as xxx:
+                log.err("Legacy error: suppressed 'preview_keys' %s" % xxx.message )
+                continue
+
             preview_data.append(entry)
 
         single_tip_sum.update({ 'preview' : preview_data })
