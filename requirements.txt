@@ -6,7 +6,6 @@ cyclone==1.1
 Storm==0.20
 transaction==1.4.1
 txsocksx==1.13.0.1
-Parsley==1.2
-pycrypto==2.6
+pycrypto==2.6.1
 scrypt==0.6.1
 python_gnupg==0.3.5
