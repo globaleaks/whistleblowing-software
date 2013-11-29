@@ -59,9 +59,6 @@ data_files = [
      ['requirements.txt'] + list_files('staticdata'))
 ]
 
-print data_files
-exit(1)
-
 setup(
     name="globaleaks",
     version = __version__,
