@@ -42,7 +42,9 @@ def get_requires():
 def list_files(path):
     result = []
     for f in os.listdir(path):
-        result.append(os.path.join(path, f))
+        f = os.path.join(path, f)
+        if os.path.isfile(f):
+            result.append(f)
 
     return result
 
@@ -58,9 +60,6 @@ data_files = [
     ('/usr/share/globaleaks/glbackend',
      ['requirements.txt'] + list_files('staticdata'))
 ]
-
-print data_files
-exit(1)
 
 setup(
     name="globaleaks",
