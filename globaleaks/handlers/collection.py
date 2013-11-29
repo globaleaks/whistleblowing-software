@@ -14,7 +14,7 @@ from Crypto.Hash import SHA256
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import download_all_files
-from globaleaks.handlers.authentication import authenticated
+from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.utils.zipstream import ZipStream, ZIP_STORED, ZIP_DEFLATED
@@ -31,6 +31,7 @@ class CollectionStreamer(object):
 class CollectionDownload(BaseHandler):
     auth_type = "COOKIE"
 
+    @transport_security_check('tip')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_gus, path, compression):

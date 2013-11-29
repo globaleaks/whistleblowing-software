@@ -66,7 +66,7 @@ class LanguageFileHandler(BaseStaticFileHandler):
         self.set_status(201) # Created
         self.finish(dumped_file)
 
-    @transport_security_check('admin')
+    @transport_security_check('unauth')
     @unauthenticated
     def get(self, lang, include_body=True):
         self.set_header('Content-Type', 'application/json')
