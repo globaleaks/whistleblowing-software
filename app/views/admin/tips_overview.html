@@ -19,6 +19,51 @@ This comment is needed in order to push the following strings on transifex
       <p>
       {{ "This interface may help you understand how the Node is used by the whistleblower. We present you with the submissions currently on the node and a few statistics on the kind of usage (activity, files, comments)." | translate }}
       </p>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-horizontal">
+            <span class="form-group col-md-6" ng-init="orderProp='creation_date'">
+              <label class="control-label col-md-4">
+                {{ "Order by:" | translate }}
+              </label>
+              <div class="col-md-6">
+                <select ng-model="orderProp" class="form-control">
+                  <option value="status">
+                    {{ "Status" | translate }}
+                  </option>
+                  <option value="creation_date">
+                    {{ "Creation" | translate }}
+                  </option>
+                  <option value="expiration_date">
+                    {{ "Expiration" | translate }}
+                  </option>
+                  <option value="wb_last_access">
+                    {{ "WB Last Access" | translate }}
+                  </option>
+                  <option value="context_name">
+                    {{ "Context Name" | translate }}
+                  </option>
+                </select>
+              </div>
+            </span>
+            <span class="form-group col-md-6" ng-init="reverse='true'">
+              <label class="control-label col-md-4">
+                {{ "Order:" | translate }}
+              </label>
+              <div class="col-md-4">
+                <select ng-model="reverse" class="form-control">
+                  <option value="true">
+                    {{ "Desc" | translate }}
+                  </option>
+                  <option value="false">
+                    {{ "Asc" | translate }}
+                  </option>
+                </select>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
       <div class="table-responsive">
         <table class="table table-bordered" id="tipList">
           <thead>
@@ -30,7 +75,7 @@ This comment is needed in order to push the following strings on transifex
           </thead>
 
           <tbody id="tipListBody">
-            <tr ng-repeat="tip in tips">
+            <tr ng-repeat="tip in tips | orderBy:orderProp:reverse">
               <td class="col-md-1">{{tip.status}}</td>
               <td class="col-md-5">
                 <div class="row">

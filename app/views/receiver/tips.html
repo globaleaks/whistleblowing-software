@@ -21,7 +21,58 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-3 config-sidebar" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl"></div>
     <!-- Begin main content -->
     <div class="col-md-9">
-      <div class="table-responsive">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-horizontal">
+            <span class="form-group col-md-6" ng-init="orderProp='creation_date'">
+              <label class="control-label col-md-4">
+                {{ "Order by:" | translate }}
+              </label>
+              <div class="col-md-6">
+              <select ng-model="orderProp" class="form-control">
+                <option value="creation_date">
+                  {{ "Creation" | translate }}
+                </option>
+                <option value="expiration_date">
+                  {{ "Expiration" | translate }}
+                </option>
+                <option value="last_access">
+                  {{ "Last Access" | translate }}
+                </option>
+                <option value="access_counter">
+                  {{ "Access Number" | translate }}
+                </option>
+                <option value="files_number">
+                  {{ "Files Number" | translate }}
+                </option>
+                <option value="comments_number">
+                  {{ "Comments Number" | translate }}
+                </option>
+                <option value="context_name">
+                  {{ "Context Name" | translate }}
+                </option>
+              </select>
+              </div>
+            </span>
+            <span class="form-group col-md-6" ng-init="reverse='true'">
+              <label class="control-label col-md-4">
+                {{ "Order:" | translate }}
+              </label>
+              <div class="col-md-4">
+                <select ng-model="reverse" class="form-control">
+                  <option value="true">
+                    {{ "Desc" | translate }}
+                  </option>
+                  <option value="false">
+                    {{ "Asc" | translate }}
+                  </option>
+                </select>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="table table-responsive">
         <table class="table table-bordered" id="tipList">
           <thead>
             <tr>
@@ -38,7 +89,7 @@ This comment is needed in order to push the following strings on transifex
             </tr>
           </thead>
           <tbody id="tipListTableBody" ng-controller="TipCtrl">
-            <tr ng-repeat="tip in tips" class="{{tip.parity}}">
+            <tr ng-repeat="tip in tips | orderBy:orderProp:reverse" class="{{tip.parity}}">
               <td class="col-md-2">
                 <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}" class="btn btn-xs btn-primary"
                    popover="{{ 'Tip' | translate }}" popover-placement="top" popover-trigger="mouseenter">
