@@ -84,8 +84,10 @@ GLClient.controller('StatusCtrl',
       file.downloads = parseInt(file.downloads) + 1;
     };
 
-    $scope.download = function(url) {
-       return $http.get(url);
+    $scope.increaseDownloadCounts = function() {
+        for (file in $scope.tip.files) {
+           $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
+        }
     }
 
   }]);

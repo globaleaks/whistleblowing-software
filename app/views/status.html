@@ -119,7 +119,7 @@
         {{ "Files" | translate }}
       </h3>
       <div class="well" ng-show="tip.files">
-        <a class="input-small" ng-href="/tip/{{tip.id}}/collection" ng-show="tip.im_receiver" ng-click="increaseDownloadCount(file)">
+        <a class="input-small" ng-href="/tip/{{tip.id}}/collection" ng-show="tip.im_receiver" ng-click="increaseDownloadCounts()">
           {{ "download all the files" | translate }}
         </a>
         <br />
