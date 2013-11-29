@@ -203,9 +203,7 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
             raise errors.InvalidInputFormat("Invalid lang code as default")
 
         if request['default_language'] not in node.languages_enabled:
-            node.default_language = node.languages_enabled[0]
-            log.err("Default language not in the enabled language: fallback in %s" %
-                    node.default_language)
+            raise errors.InvalidInputFormat("Invalid lang code as default")
 
         node.default_language = request['default_language']
 
