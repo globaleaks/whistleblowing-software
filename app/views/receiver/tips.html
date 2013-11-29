@@ -4,6 +4,11 @@ This comment is needed in order to push the following strings on transifex
 
 {{ "Your Tips" | translate }}
 {{ "Receiver Interface" | translate }}
+{{ "Creation Date" | translate }}
+{{ "Expiration Date" | translate }}
+{{ "Last Access" | translate }}
+{{ "Files" | translate }}
+{{ "Comments" | translate }}
 
 -->
 <div ng-include="'views/header.html'"
@@ -16,42 +21,139 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-3 config-sidebar" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl"></div>
     <!-- Begin main content -->
     <div class="col-md-9">
-      <div class="table-responsive">
-        <table class="table table-striped table-bordered" id="tipList">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="form-horizontal">
+            <span class="form-group col-md-6" ng-init="orderProp='creation_date'">
+              <label class="control-label col-md-4">
+                {{ "Order by:" | translate }}
+              </label>
+              <div class="col-md-6">
+              <select ng-model="orderProp" class="form-control">
+                <option value="creation_date">
+                  {{ "Creation" | translate }}
+                </option>
+                <option value="expiration_date">
+                  {{ "Expiration" | translate }}
+                </option>
+                <option value="last_access">
+                  {{ "Last Access" | translate }}
+                </option>
+                <option value="access_counter">
+                  {{ "Access Number" | translate }}
+                </option>
+                <option value="files_number">
+                  {{ "Files Number" | translate }}
+                </option>
+                <option value="comments_number">
+                  {{ "Comments Number" | translate }}
+                </option>
+                <option value="context_name">
+                  {{ "Context Name" | translate }}
+                </option>
+              </select>
+              </div>
+            </span>
+            <span class="form-group col-md-6" ng-init="reverse='true'">
+              <label class="control-label col-md-4">
+                {{ "Order:" | translate }}
+              </label>
+              <div class="col-md-4">
+                <select ng-model="reverse" class="form-control">
+                  <option value="true">
+                    {{ "Desc" | translate }}
+                  </option>
+                  <option value="false">
+                    {{ "Asc" | translate }}
+                  </option>
+                </select>
+              </div>
+            </span>
+          </div>
+        </div>
+      </div>
+      <div class="table table-responsive">
+        <table class="table table-bordered" id="tipList">
           <thead>
             <tr>
-              <th class="col-md-1">
+              <th class="col-md-2">
                 {{ "Tip" | translate }}
               </th>
-              <th>{{ "Creation Date" | translate }}</th>
-              <th>{{ "Expiration Date" | translate }}</th>
-              <th>{{ "Last Access" | translate }}</th>
-              <th class="col-md-2">
-                {{ "Accesses" | translate }}
+              <th class="col-md-4">
+                {{ "Date" | translate }}
               </th>
-              <th class="col-md-1">
-                {{ "Files" | translate }}
+              <th class="col-md-2">
+                {{ "Info" | translate }}
               </th>
               <th>{{ "Preview" | translate }}</th>
             </tr>
           </thead>
-          <tbody id="tipListTableBody">
-            <tr ng-repeat="tip in tips" class="{{tip.parity}}">
-              <td class="col-md-1">
-                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}">
-                  <span class="glyphicon glyphicon-folder-close" ng-switch-when="0"></span>
-                  <span class="glyphicon glyphicon-folder-open" ng-switch-default></span>
+          <tbody id="tipListTableBody" ng-controller="TipCtrl">
+            <tr ng-repeat="tip in tips | orderBy:orderProp:reverse" class="{{tip.parity}}">
+              <td class="col-md-2">
+                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}" class="btn btn-xs btn-primary"
+                   popover="{{ 'Tip' | translate }}" popover-placement="top" popover-trigger="mouseenter">
+                  <i class="glyphicon glyphicon-folder-close" ng-switch-when="0"></i>
+                  <i class="glyphicon glyphicon-folder-open" ng-switch-default></i>
                 </a>
+                <a ng-show="tip.im_receiver_postponer" ng-click="tip_extend(tip.id)" class="btn btn-xs btn-warning"
+                   popover="{{ 'Postpone Tip expiration date' | translate }}" popover-placement="top" popover-trigger="mouseenter">
+                  <i class="glyphicon glyphicon-time"></i>
+                </a>
+                <a ng-show="session.permissions['can_delete_submission']" ng-click="tip_delete(tip.id, true)" class="btn btn-xs btn-danger"
+                   popover="{{ 'Delete Tip (Globablly)' | translate }}" popover-placement="top" popover-trigger="mouseenter">
+                  <span class="glyphicon glyphicon-trash"></span>
+                </a>
+                <br /><br />
+                <div>
+                 <b>{{ "Accesses" | translate }}:</b>
+                 {{tip.access_counter}} 
+                <div>
               </td>
-              <td>{{tip.creation_date | date:'yyyy-MM-dd HH:mm' }}</td>
-              <td>{{tip.expiration_date | date:'yyyy-MM-dd HH:mm' }}</td>
-              <td>{{tip.last_access | date:'yyyy-MM-dd HH:mm' }}</td>
-              <td class="col-md-2">{{tip.access_counter}}</td>
-              <td class="col-md-1">{{tip.files_number}}</td>
+              <td class="col-md-4">
+                <div class="row">
+                  <span class="col-md-6">
+                    <b>{{ "Submission" | translate }}:</b>
+                  </span>
+                  <span class="col-md-6">
+                    {{tip.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                  </span>
+                </div>
+                <div class="row">
+                  <span class="col-md-6">
+                    <b>{{ "Expiration" | translate }}:</b>
+                  </span>
+                  <span class="col-md-6">
+                    {{tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}
+                  </span>
+                </div>
+                <div class="row">
+                  <span class="col-md-6">
+                    <b>{{ "Last Access" | translate }}:</b>
+                  </span>
+                  <span class="col-md-6">
+                    {{tip.last_access | date:'dd-MM-yyyy HH:mm' }}
+                  </span>
+                </div>
+              </td>
+              <td class="col-md-2">
+                <div>
+                  <b>{{ "Files" | translate }}:</b>
+                  {{tip.files_number}}
+                </div>
+                <div>
+                  <b>{{ "Comments" | translate }}:</b>
+                  {{tip.comments_number}}
+                </div>
+              </td>
               <td>
-                <span ng-repeat="entry in tip.preview">
-                  <b>{{entry.key}}</b> {{entry.text}}
-                </span>
+                <div>
+                  <b>{{ "Context Name" | translate}}:</b>
+                  {{tip.context_name}}
+                <div>
+                <div ng-repeat="entry in tip.preview">
+                  <b>{{entry.label}}:</b> {{entry.text}}
+                </div>
               </td>
             </tr>
           </tbody>

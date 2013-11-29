@@ -16,13 +16,8 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
-      <!-- ReceiverList -->
       <div ng-controller="AdminReceiversCtrl">
-        <div class="row">
-          <h1>{{ "Receivers Configuration" | translate }}</h1>
-        </div>
 
-        <!-- BEGIN reciever list -->
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
 
           <form name="receiverForm" class="receiverConfig" ng-controller="AdminReceiversEditorCtrl">
@@ -35,10 +30,14 @@ This comment is needed in order to push the following strings on transifex
 
                   <div class="col-md-6 editButtons" ng-show="editing">
                     <button class="btn btn-success saveReceiver" ng-disabled="receiverForm.$invalid || unsafe_password" ng-click="update(receiver)">
-                          {{ "Save" | translate }}</button>
+                      <i class="glyphicon glyphicon-ok"></i>
+                      {{ "Save" | translate }}
+                    </button>
 
                     <button class="btn btn-danger deleteReceiver" ng-click="delete(receiver)">
-                          {{ "Delete" | translate }}</button>
+                      <i class="glyphicon glyphicon-remove"></i>
+                      {{ "Delete" | translate }}
+                    </button>
                   </div>
 
                 </div>
@@ -105,11 +104,23 @@ This comment is needed in order to push the following strings on transifex
                       </div>
                     </div>
 
+                    <div class="form-group table-bordered">
+                      <input ng-model="receiver.can_delete_submission" type="checkbox">
+                      <label>{{ "Can delete submissions" | translate }}</label>
+                      <label ng-show="receiver.can_delete_submission">
+                        <span class="btn-info">
+                          {{ "now Enabled:" | translate }}
+                      </span>
+                      {{ "The Receiver will be now able to globally delete submissions and their content." | translate }}
+                      </label>
+                    </div>
+
                     <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">
+                      <i class="glyphicon glyphicon-plus"></i>
                       {{ "PGP key management" | translate }}
                     </button>
 
-                    <div ng-show="advanced_edit">
+                    <div class="form-group" ng-show="advanced_edit">
                       <div>
                         <textarea class="form-control" ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
                       </div>
@@ -127,7 +138,7 @@ This comment is needed in order to push the following strings on transifex
                           <span class="btn-info">
                             {{ "now Enabled:" | translate }}
                           </span>
-                          {{ "Every notification you'll receive will be encrypted with your GPG key." | translate }}
+                          {{ "Every notification you'll receive will be encrypted with your PGP key." | translate }}
                         </label>
                       </div>
 
@@ -138,7 +149,7 @@ This comment is needed in order to push the following strings on transifex
                           <span class="btn-info">
                             {{ "now Enabled:" | translate }}
                           </span>
-                          {{ "Every file you'll download will be encrypted with your GPG key." | translate }}
+                          {{ "Every file you'll download will be encrypted with your PGP key." | translate }}
                         </label>
                       </div>
                     </div>
@@ -146,15 +157,10 @@ This comment is needed in order to push the following strings on transifex
                   <div class="col-md-6">
                     <label>{{ "Contexts" | translate }}</label>
                     <div class="selectionList">
-                      <ul>
-                        <div ng-repeat="context in admin.contexts">
-                          <li class="selectionContextItem" ng-click="toggle(context)">
-                            <div class="checkbox">
-                              <div class="col-md-1"><span ng-show="isSelected(context)">✔</span></div>
-                              <div class="col-md-10"<span>{{context.name}}</span></div>
-                            </div>
-                            <br />
-                          </li>
+                      <div ng-repeat="context in admin.contexts">
+                        <div class="selectionContextItem" ng-click="toggle(context)">
+                          <span class="col-md-1"><span ng-show="isSelected(context)">✔</span></span>
+                          <span class="col-md-10">{{context.name}}</span><br />
                         </div>
                       </ul>
                     </div>
@@ -164,10 +170,8 @@ This comment is needed in order to push the following strings on transifex
             </div>
           </form>
         </div>
-        <!-- End Receiver List -->
       </div>
       <div ng-controller="AdminReceiverAddCtrl">
-        <!-- BEGIN Addition of receiver -->
         <div class="row">
           <form name="newReceiver">
             <div class="configRow addReceiver col-md-9">
@@ -220,8 +224,9 @@ This comment is needed in order to push the following strings on transifex
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <button class="btn btn-default" ng-disabled="newReceiver.$invalid || unsafe_password" ng-click="add_receiver()">
-                      {{ "add" | translate }}
+                    <button class="btn btn-success" ng-disabled="newReceiver.$invalid || unsafe_password" ng-click="add_receiver()">
+                      <i class="glyphicon glyphicon-ok"></i>
+                      {{ "Add" | translate }}
                     </button>
                   </div>
                 </div>
@@ -229,7 +234,6 @@ This comment is needed in order to push the following strings on transifex
             </div>
           </form>
         </div>
-        <!-- END Addition of receiver -->
       </div>
     </div>
   </div>

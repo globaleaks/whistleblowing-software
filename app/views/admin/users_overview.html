@@ -16,12 +16,11 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
-      <h1>{{ "Users Overview" | translate }}</h1>
       <p>
       {{ "This interface shows the activity of the users of your node. This may be helpful in detecting anomalies and supporting the Receivers of your node." | translate }}
       </p>
       <div class="table-responsive">
-        <table class="table table-striped table-bordered" id="receiverList">
+        <table class="table table-bordered" id="receiverList">
           <thead>
             <tr>
               <th class="col-md-3">
@@ -43,18 +42,16 @@ This comment is needed in order to push the following strings on transifex
               <td class="col-md-3"><a href="/#/admin/receivers/">{{receiver.name}}</a></td>
               <td class="col-md-2">{{receiver.failed_login}}</td>
               <td class="col-md-4">
-                <ul>
-                  <li ng-repeat="rtip in receiver.receivertips">
-                    {{rtip.status}} {{rtip.last_access}} ({{rtip.access_counter}})
-                  </li>
-                </ul>
+                <div ng-repeat="rtip in receiver.receivertips">
+                  <span class="glyphicon glyphicon-book"></span>
+                  {{rtip.status}} {{rtip.last_access | date:'dd-MM-yyyy HH:mm'}} ({{rtip.access_counter}})
+                </div>
               </td>
               <td class="col-md-3">
-                <ul>
-                  <li ng-repeat="rfile in receiver.receiverfiles">
-                    {{rfile.file_name}} ({{rfile.downloads}}), {{rfile.last_access}}
-                  </li>
-                </ul>
+                <div ng-repeat="rfile in receiver.receiverfiles">
+                  <span class="glyphicon glyphicon-file"></span>
+                  {{rfile.file_name}} ({{rfile.downloads}}), {{rfile.last_access | date:'dd-MM-yyyy HH:mm'}}
+                </div>
               </td>
             </tr>
           </tbody>

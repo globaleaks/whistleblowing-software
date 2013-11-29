@@ -1,6 +1,6 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$routeParams', 'Tip', 'Contexts', 'ReceiverPreferences',
-  function($scope, $rootScope, $routeParams, Tip, Contexts, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Tip', 'Contexts', 'ReceiverPreferences',
+  function($scope, $rootScope, $location, $route, $routeParams, $http, Tip, Contexts, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
 
     if ($.cookie('role') === 'wb') {
@@ -84,16 +84,11 @@ GLClient.controller('StatusCtrl',
       file.downloads = parseInt(file.downloads) + 1;
     };
 
-    $scope.extendTip = function() {
-       $scope.tip.extend = true;
-
-       // XXX this should be returned by the backend, but is not.
-       $scope.tip.total_delete = false;
-       $scope.tip.is_pertinent = false;
-
-       $scope.tip.$update();
+    $scope.increaseDownloadCounts = function() {
+        for (file in $scope.tip.files) {
+           $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
+        }
     }
-
 
   }]);
 

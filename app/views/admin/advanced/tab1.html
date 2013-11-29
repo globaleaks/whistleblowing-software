@@ -1,0 +1,37 @@
+<div class="row">
+  <div class="col-md-6">
+    <p><b>{{ "You're running GlobaLeaks version" | translate }} {{admin.node.version}}</b></p>
+
+    <p>{{ "This section contains settings that may make your installation not work properly. Please refer to the " | translate }}
+    <a href="https://github.com/globaleaks/GlobaLeaks/wiki/Advanced-configuration">Advanced configuration</a>.</p>
+
+    <div class="form-group">
+      <label>{{ "Exception mail address" | translate }}</label>
+      <input class="form-control" ng-model="admin.node.exception_email" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "File size limit (in Megabytes)" | translate }}</label>
+      <input class="form-control" ng-model="admin.node.maximum_filesize" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Text size limit (in bytes)" | translate }}</label>
+      <input class="form-control" ng-model="admin.node.maximum_descsize" type="text">
+    </div>
+
+    <div class="form-group table-bordered">
+      <label>
+        <input ng-model="admin.node.postpone_superpower" type="checkbox">
+        {{ "Permit Receivers to postpone expiration date of the Tips" | translate }}
+      </label>
+      <label ng-show="admin.node.postpone_superpower">
+        <span class="btn-info">
+        {{ "now Enabled:" | translate }}
+        </span>
+        {{ "A receiver can postpone how many times he wants, all the receivers have the same privileges." | translate }}
+      </label>
+    </div>
+
+  </div>
+</div>

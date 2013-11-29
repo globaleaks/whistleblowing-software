@@ -1,3 +1,7 @@
+function CollapseDemoCtrl($scope) {
+  $scope.isCollapsed = false;
+}
+
 GLClient.controller('AdminCtrl',
     ['$rootScope', '$scope', '$http', '$location', 'Admin',
 function($rootScope, $scope, $http, $location, Admin) {
@@ -14,6 +18,10 @@ function($rootScope, $scope, $http, $location, Admin) {
   $scope.active[current_menu] = "active";
 
   $scope.admin = new Admin();
+
+  function CollapseLanguages($scope) {
+    $scope.isCollapsed = false;
+  }
 
   $rootScope.$watch('languages_supported', function(){
     if ($rootScope.languages_supported) {
@@ -81,8 +89,7 @@ GLClient.controller('AdminAdvancedCtrl', ['$scope', 'changeParamsWatcher',
     changeParamsWatcher($scope);
 }]);
 
-
-GLClient.controller('FileUploadCtrl', ['$scope', function($scope){
+GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http){
     $scope.uploadfile = false;
 
     $scope.fileSelected = false;
@@ -99,19 +106,88 @@ GLClient.controller('FileUploadCtrl', ['$scope', function($scope){
     }
 
     $scope.customCSSUrl = function() {
-      return "/admin/staticfiles?custom_stylesheet";
+      return "/admin/staticfiles/custom_stylesheet";
     }
 
     $scope.customCSSReloadUrl = function() {
-      return "/static" + "custom_stylesheet.css?" + $scope.randomFluff;
+      return "/static" + "custom_stylesheet?" + $scope.randomFluff;
     }
 
     $scope.receiverImgUrl = function() {
-      return "/admin/staticfiles?" + $scope.receiver.receiver_gus;
+      return "/admin/staticfiles/" + $scope.receiver.receiver_gus;
     }
 
     $scope.receiverImgReloadUrl = function() {
       return "/static/" + $scope.receiver.receiver_gus + ".png?" + $scope.randomFluff;
     }
 
+}]);
+
+GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', function($scope, $http, StaticFiles){
+  $scope.tabs = [
+    { title:"Main Configuration", template:"/views/admin/content/tab1.html",
+      ctrl: function($scope){
+        $scope.id = 1;
+      }    
+    },
+    { title:"Theme Customization", template:"/views/admin/content/tab2.html",
+      ctrl: function($scope){
+        $scope.id = 2;
+      }
+    },
+    { title:"Translation Customization", template:"/views/admin/content/tab3.html",
+      ctrl: function($scope){
+        $scope.id = 3;
+      }
+    }
+  ];
+
+  $scope.staticfiles = StaticFiles.query();
+
+  $scope.update_static_files = function() {
+    var updated_staticfiles = StaticFiles.query(function() {
+      $scope.staticfiles = updated_staticfiles;
+    });
+  }
+
+  $scope.uploadfinished = function() {
+    $scope.update_static_files();
+  }
+
+  $scope.delete = function(url) {
+    $http.delete(url).success(function(response) {
+       $scope.update_static_files();
+    });
+  }
+
+}]);
+
+GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http){
+  $scope.tabs = [
+    { title:"Main Configuration", template:"/views/admin/mail/tab1.html",
+      ctrl: function($scope){
+        $scope.id = 1;
+      }    
+    },
+    { title:"Notification Templates", template:"/views/admin/mail/tab2.html",
+      ctrl: function($scope){
+        $scope.id = 2;
+      }
+    }
+  ];
+}]);
+
+GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', function($scope, $http){
+  $scope.tabs = [
+    { title:"Main Configuration", template:"/views/admin/advanced/tab1.html",
+      ctrl: function($scope){
+        $scope.id = 1;
+      }    
+    },
+    { title:"Tor2web Settings", template:"/views/admin/advanced/tab2.html",
+      ctrl: function($scope){
+        $scope.id = 2;
+      }
+    }
+  ];
 }]);

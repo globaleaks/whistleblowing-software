@@ -1,0 +1,78 @@
+<div class="col-md-8">
+  <div ng-show="preferences.gpg_key_fingerprint">
+
+    <p>
+      {{ "You have an active PGP key" | translate }}
+      <br />
+      {{ "The fingerprint is:" | translate }}
+      <b>{{preferences.gpg_key_fingerprint}}</b>
+    </p>
+
+    <div>
+      <pre>{{preferences.gpg_key_info}}</pre>
+    </div>
+
+    <div class="form-group table-bordered">
+      <label>
+        <input ng-model="preferences.gpg_enable_notification" type="checkbox">
+        {{ "Enable encrypted notification" | translate }}
+      </label>
+      <label ng-show="preferences.gpg_enable_notification">
+        <span class="btn-info">
+          {{ "now Enabled:" | translate }}
+        </span>
+        {{ "Every notification you'll receive will be encrypted with your PGP key." | translate }}
+      </label>
+    </div>
+
+    <div class="form-group table-bordered">
+      <label>
+        <input ng-model="preferences.gpg_enable_files" type="checkbox">
+        {{ "Enable file encryption" | translate }}
+      </label>
+      <label ng-show="preferences.gpg_enable_files">
+        <span class="btn-info">
+          {{ "now Enabled:" | translate }}
+        </span>
+        {{ "Every file you'll download will be encrypted with your PGP key." | translate }}
+      </label>
+    </div>
+
+  <div class="form-group table-bordered" ng-show="preferences.gpg_key_fingerprint">
+    <input ng-model="preferences.gpg_key_remove" type="checkbox">
+    <label>{{ "Remove your PGP key" | translate }}</label>
+  </div>
+  </div>
+
+  <div class="form-group">
+    <div class="alert alert-danger" ng-hide="preferences.gpg_key_fingerprint" ng-click="gpg_marketing = ! gpg_marketing" ng-init="gpg_marketing=false">
+      <b>{{ "You've not enabled encryption!" | translate }}</b>
+      <br /><br />
+      <div>
+        <a href="https://gnupg.org">GnuPG</a>
+        {{ "can be configured in order to deliver encrypted email and store encrypted files. You've to copy and paste the ascii version of your personal key, and then it would be possibile update your encryption settings. If you've any doubts talk to your admin." | translate }}
+      </div>
+     </div>
+  </div>
+
+  <div class="form-group" ng-hide="preferences.gpg_key_fingerprint">
+    <button class="btn btn-success" ng-init="send_key=false" ng-click="send_key = ! send_key">
+      <i class="glyphicon glyphicon-plus"></i>
+      {{ "Submit a PGP key" | translate }}
+    </button>
+
+    <div ng-show="send_key">
+      <label>{{ "Copy/Paste here the PGP Key Armor:" | translate }}</label>
+      <textarea class="form-control" ng-model="preferences.gpg_key_armor"></textarea>
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button type="submit" class="btn btn-success" ng-click="pref_save()">
+    <i class="glyphicon glyphicon-ok"></i>
+    {{ "Update notification and encryption settings" | translate }}
+    </button>
+  </div>
+</div>
+
+</div>
