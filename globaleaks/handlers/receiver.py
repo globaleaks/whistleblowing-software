@@ -143,8 +143,7 @@ class ReceiverInstance(BaseHandler):
 @transact_ro
 def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default_language):
 
-    receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
-    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == receiver.id)
+    rtiplist = store.find(ReceiverTip, ReceiverTip.receiver_id == user_id)
     rtiplist.order_by(Desc(ReceiverTip.creation_date))
 
     rtip_summary_list = []

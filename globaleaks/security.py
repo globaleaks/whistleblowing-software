@@ -18,7 +18,7 @@ from gnupg import GPG
 from globaleaks.rest import errors
 from globaleaks.utils.utility import log, acquire_bool
 from globaleaks.settings import GLSetting
-from globaleaks.models import Receiver
+from globaleaks.models import *
 
 SALT_LENGTH = (128 / 8) # 128 bits of unique salt
 
@@ -443,4 +443,19 @@ def get_expirations(keylist):
 
     return expirations
 
+def access_tip(store, user_id, tip_id):
+    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id),
+                                   ReceiverTip.receiver_id == user_id).one()
 
+    if not rtip:
+        raise errors.TipGusNotFound
+
+    return rtip
+
+def access_file(store, user_id, tip_id, file_id):
+    rfile = store.find(ReceiverFile, ReceiverFile.id == unicode(file_id),
+                                     ReceiverFile.receiver_id == user_id).one()
+    if not rfile:
+        raise errors.FileGusNotFound
+
+    return rfile

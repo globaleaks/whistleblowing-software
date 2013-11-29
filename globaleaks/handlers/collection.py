@@ -14,10 +14,11 @@ from Crypto.Hash import SHA256
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.files import download_all_files
-from globaleaks.handlers.authentication import unauthenticated
+from globaleaks.handlers.authentication import authenticated
 from globaleaks.rest import errors
 from globaleaks.settings import GLSetting
 from globaleaks.utils.zipstream import ZipStream, ZIP_STORED, ZIP_DEFLATED
+from globaleaks.security import access_tip
 
 class CollectionStreamer(object):
     def __init__(self, handler):
@@ -28,8 +29,9 @@ class CollectionStreamer(object):
           self.handler.write(data)
 
 class CollectionDownload(BaseHandler):
+    auth_type = "COOKIE"
 
-    @unauthenticated
+    @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_gus, path, compression):
 
@@ -39,34 +41,29 @@ class CollectionDownload(BaseHandler):
 
         if compression == 'zipstored':
             opts = { 'filename'         : 'collection.zip',
-                     'compression_type' : ZIP_STORED,
-                     'content_type'     : 'application/zip'}
+                     'compression_type' : ZIP_STORED}
 
         elif compression == 'zipdeflated':
             opts = { 'filename'         : 'collection.zip',
-                     'compression_type' : ZIP_DEFLATED,
-                     'content_type'     : 'application/zip'}
+                     'compression_type' : ZIP_DEFLATED}
 
         elif compression == 'tar':
             opts = { 'filename'         : 'collection.tar',
-                     'compression_type' : '',
-                     'content_type'     : 'application/tar'}
+                     'compression_type' : ''}
 
         elif compression == 'targz':
             opts = { 'filename'         : 'collection.tar.gz',
-                     'compression_type' : 'gz',
-                     'content_type'     : 'applicaion/tar.gz'}
+                     'compression_type' : 'gz'}
 
         elif compression == 'tarbz2':
             opts = { 'filename'         : 'collection.tar.bz2',
-                     'compression_type' : 'bz2',
-                     'content_type'     : 'application/tar'}
+                     'compression_type' : 'bz2'}
         else:
             # just to be sure; by the way
             # the regexp of rest/api.py should prevent this.
             raise errors.InvalidInputFormat("collection compression type not supported")
 
-        files_dict = yield download_all_files(tip_gus)
+        files_dict = yield download_all_files(self.current_user['user_id'], tip_gus)
 
         if not files_dict:
             raise errors.DownloadLimitExceeded
@@ -111,7 +108,7 @@ class CollectionDownload(BaseHandler):
         self.set_status(200)
 
         self.set_header('X-Download-Options', 'noopen')
-        self.set_header('Content-Type', opts['content_type'])
+        self.set_header('Content-Type', 'application/octet-stream')
         self.set_header('Etag', '"%s"' % sha.hexdigest())
         self.set_header('Content-Disposition','attachment; filename=\"' + opts['filename'] + '\"')
 

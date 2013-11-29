@@ -21,6 +21,7 @@ from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.rest import errors
 from globaleaks.models import ReceiverFile, ReceiverTip, InternalTip, InternalFile, WhistleblowerTip
 from globaleaks.third_party import rstr
+from globaleaks.security import access_tip, access_file
 
 def serialize_file(internalfile):
 
@@ -36,9 +37,25 @@ def serialize_file(internalfile):
 
     return file_desc
 
+def serialize_receiver_file(receiverfile):
+
+    internalfile = receiverfile.internalfile
+
+    file_desc = {
+        'size' : receiverfile.size,
+        'content_type' : internalfile.content_type,
+        'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
+        'creation_date': pretty_date_time(internalfile.creation_date),
+        'downloads' : receiverfile.downloads,
+        'path' : receiverfile.file_path,
+        'sha2sum' : internalfile.sha2sum,
+    }
+    return file_desc
+
 @transact
 def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
-    internaltip = store.find(InternalTip, InternalTip.id == internaltip_id).one()
+    internaltip = store.find(InternalTip,
+                             InternalTip.id == internaltip_id).one()
 
     if not internaltip:
         log.err("File submission register in a submission that's no more")
@@ -72,7 +89,7 @@ def register_file_db(store, uploaded_file, filepath, cksum, internaltip_id):
         log.err("Unable to reference InternalFile %s in InternalTip: %s" % (original_fname, excep))
         raise excep
 
-    log.debug("=> Recorded new InternalFile %s (%s)" % (original_fname, cksum) )
+    log.debug("=> Recorded new InternalFile %s (%s)" % (original_fname, cksum))
 
     return serialize_file(new_file)
 
@@ -116,46 +133,31 @@ def dump_file_fs(uploaded_file):
 
 
 @transact_ro
-def get_tip_by_submission(store, id):
+def get_tip_by_submission(store, itip_id):
 
-    try:
-        itip = store.find(InternalTip, InternalTip.id == unicode(id)).one()
-    except Exception as excep:
-        log.err("get_tip_by_submission: Error in store.find: %s" % excep)
-        raise errors.SubmissionGusNotFound
+    itip = store.find(InternalTip,
+                      InternalTip.id == itip_id).one()
 
     if not itip:
         raise errors.SubmissionGusNotFound
-    elif itip.mark != InternalTip._marker[0]:
+
+    if itip.mark != InternalTip._marker[0]:
         log.err("Denied access on a concluded submission")
         raise errors.SubmissionConcluded
     else:
         return itip.id
 
+
 @transact_ro
 def get_tip_by_wbtip(store, wb_tip_id):
 
-    try:
-        wb_tip = store.find(WhistleblowerTip,
-                            WhistleblowerTip.id == wb_tip_id).one()
-    except Exception as excep:
-        log.err("get_tip_by_wtipid, reference (1) is missing: %s" % excep)
-        raise errors.SubmissionGusNotFound
+    wb_tip = store.find(WhistleblowerTip,
+                        WhistleblowerTip.id == wb_tip_id).one()
 
     if not wb_tip:
         raise errors.InvalidTipAuthToken
 
-    try:
-        itip = store.find(InternalTip,
-                          InternalTip.id == wb_tip.internaltip_id).one()
-    except Exception as excep:
-        log.err("get_tip_by_wtipid, reference (2) is missing: %s" % excep)
-        raise errors.SubmissionGusNotFound
-
-    if not itip:
-        raise errors.SubmissionGusNotFound
-    else:
-        return itip.id
+    return wb_tip.internaltip.id
 
 
 class FileHandler(BaseHandler):
@@ -241,66 +243,72 @@ class FileInstance(FileHandler):
         yield self.handle_file_upload(itip_id)
 
 
-def serialize_receiver_file(receiverfile, internalfile):
-
-    file_desc = {
-        'size' : receiverfile.size,
-        'content_type' : internalfile.content_type,
-        'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
-        'creation_date': pretty_date_time(internalfile.creation_date),
-        'downloads' : receiverfile.downloads,
-        'path' : receiverfile.file_path,
-        'sha2sum' : internalfile.sha2sum,
-    }
-    return file_desc
-
 @transact
-def download_file(store, tip_id, file_id):
+def download_file(store, user_id, tip_id, file_id):
     """
     Auth temporary disabled, just Tip_id and File_id required
     """
 
-    receivertip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id)).one()
-    if not receivertip:
-        raise errors.TipGusNotFound
-
-    file_obj = store.find(ReceiverFile, ReceiverFile.id == unicode(file_id)).one()
-    if not file_obj:
-        raise errors.FileGusNotFound
+    rfile = access_file(store, user_id, tip_id, file_id)
 
     log.debug("Download of %s downloads: %d with limit of %s for %s" %
-              (file_obj.internalfile.name, file_obj.downloads,
-               file_obj.internalfile.internaltip.download_limit, receivertip.receiver.name) )
+              (rfile.internalfile.name, rfile.downloads,
+               rfile.internalfile.internaltip.download_limit, rfile.receiver.name) )
 
-    if file_obj.downloads == file_obj.internalfile.internaltip.download_limit:
+    if rfile.downloads == rfile.internalfile.internaltip.download_limit:
         raise errors.DownloadLimitExceeded
 
-    file_obj.downloads += 1
+    rfile.downloads += 1
 
-    return serialize_receiver_file(file_obj, file_obj.internalfile)
+    return serialize_receiver_file(rfile)
 
+
+@transact
+def download_all_files(store, user_id, tip_id):
+
+    rfiles = store.find(ReceiverFile,
+                        ReceiverFile.receiver_tip_id == unicode(tip_id),
+                        ReceiverFile.receiver_id == user_id)
+
+    files_list = []
+    for sf in rfiles:
+
+        if sf.downloads == sf.internalfile.internaltip.download_limit:
+            log.debug("massive file download for %s: skipped %s (limit %d reached)" % (
+                sf.receiver.name, sf.internalfile.name, sf.downloads
+            ))
+            continue
+
+        sf.downloads += 1
+        files_list.append(serialize_receiver_file(sf))
+
+    return files_list
 
 
 class Download(BaseHandler):
+    auth_type = "COOKIE"
 
-    @unauthenticated
+    @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_gus, file_gus, *uriargs):
 
         # tip_gus needed to authorized the download
 
-        file_details = yield download_file(tip_gus, file_gus)
+        rfile = yield download_file(self.current_user['user_id'],
+                                    tip_gus,
+                                    file_gus)
+
         # keys:  'file_path'  'sha2sum'  'size' : 'content_type' 'file_name'
 
         self.set_status(200)
 
         self.set_header('X-Download-Options', 'noopen')
         self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Content-Length', file_details['size'])
-        self.set_header('Etag', '"%s"' % file_details['sha2sum'])
-        self.set_header('Content-Disposition','attachment; filename=\"%s\"' % file_details['name'])
+        self.set_header('Content-Length', rfile['size'])
+        self.set_header('Etag', '"%s"' % rfile['sha2sum'])
+        self.set_header('Content-Disposition','attachment; filename=\"%s\"' % rfile['name'])
 
-        filelocation = os.path.join(GLSetting.submission_path, file_details['path'])
+        filelocation = os.path.join(GLSetting.submission_path, rfile['path'])
 
         with open(filelocation, "rb") as requestf:
             chunk_size = 8192
@@ -312,29 +320,6 @@ class Download(BaseHandler):
 
         self.finish()
 
-
-@transact
-def download_all_files(store, tip_id):
-
-    receivertip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id)).one()
-    if not receivertip:
-        raise errors.TipGusNotFound
-
-    files = store.find(ReceiverFile, ReceiverFile.receiver_tip_id == unicode(tip_id))
-
-    files_list = []
-    for sf in files:
-
-        if sf.downloads == sf.internalfile.internaltip.download_limit:
-            log.debug("massive file download for %s: skipped %s (limit %d reached)" % (
-                sf.receiver.name, sf.internalfile.name, sf.downloads
-            ))
-            continue
-
-        sf.downloads += 1
-        files_list.append( serialize_receiver_file(sf, sf.internalfile) )
-
-    return files_list
 
 class CSSStaticFileHandler(BaseStaticFileHandler):
     """
