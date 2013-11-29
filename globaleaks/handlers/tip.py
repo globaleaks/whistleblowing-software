@@ -16,6 +16,7 @@ from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.models import *
 from globaleaks.rest import errors
+from globaleaks.security import access_tip
 
 
 def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
@@ -107,7 +108,7 @@ def get_files_wb(store, wb_tip_id):
 
 @transact_ro
 def get_files_receiver(store, user_id, tip_id):
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
 
     receiver_files = store.find(ReceiverFile,
         (ReceiverFile.internaltip_id == rtip.internaltip_id, ReceiverFile.receiver_id == rtip.receiver_id))
@@ -119,36 +120,11 @@ def get_files_receiver(store, user_id, tip_id):
 
     return files_list
 
-def strong_receiver_validate(store, user_id, tip_id):
-    """
-    This authentication check verify various condition:
-    1) a receiver needs to be authenticated with a receiver session token
-    2) the tip provided by the receiver must exist
-    3) the receiver trying to authenticate for the tip has to be the receiver assigned to the tip_id
-    """
-
-    rtip = store.find(ReceiverTip, ReceiverTip.id == unicode(tip_id)).one()
-
-    if not rtip:
-        raise errors.TipGusNotFound
-
-    receiver = store.find(Receiver, Receiver.id == unicode(user_id)).one()
-
-    if not receiver:
-        raise errors.ReceiverGusNotFound
-
-    if receiver.id != rtip.receiver.id:
-        # This in attack!!
-        raise errors.TipGusNotFound
-
-    return rtip
-
-
 @transact_ro
 def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_language):
     wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
 
-    if not wbtip or not wbtip.internaltip:
+    if not wbtip:
         raise errors.TipReceiptNotFound
 
     tip_desc = actor_serialize_internal_tip(wbtip.internaltip)
@@ -161,7 +137,7 @@ def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_lan
 
 @transact_ro
 def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
 
     tip_desc = actor_serialize_internal_tip(rtip.internaltip)
     tip_desc['access_counter'] = int(rtip.access_counter)
@@ -180,7 +156,7 @@ def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_c
 
 @transact
 def increment_receiver_access_count(store, user_id, tip_id):
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
 
     rtip.access_counter += 1
     rtip.last_access = datetime_now()
@@ -201,10 +177,9 @@ def delete_receiver_tip(store, user_id, tip_id):
     This operation is permitted to every receiver, and trigger
     a System comment on the Tip history.
     """
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
 
     comment = Comment()
-
     comment.content = "%s personally remove from this Tip" % rtip.receiver.name
     comment.system_content = dict({ "type" : 2,
                                     "receiver_name" : rtip.receiver.name,
@@ -214,7 +189,7 @@ def delete_receiver_tip(store, user_id, tip_id):
     comment.author = u'System' # The printed line
     comment.type = Comment._types[2] # System
     comment.mark = Comment._marker[0] # Not Notified
-    store.add(comment)
+
     rtip.internaltip.comments.add(comment)
 
     store.remove(rtip)
@@ -224,18 +199,12 @@ def delete_receiver_tip(store, user_id, tip_id):
 def delete_internal_tip(store, user_id, tip_id):
     """
     Delete internalTip is possible only to Receiver with
-    the dedicated properties. The ON CASCADE directive in SQL
-    causes the removal of Comments, InternalFile, R|W tips
+    the dedicated property.
     """
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
 
     if rtip.receiver.can_delete_submission:
-        internaltip_backup = rtip.internaltip
-
-        for receivertip in rtip.internaltip.receivertips:
-            store.remove(receivertip)
-        store.remove(internaltip_backup)
-
+        store.remove(rtip)
     else:
         raise errors.ForbiddenOperation
 
@@ -248,7 +217,7 @@ def manage_pertinence(store, user_id, tip_id, vote):
     re-count the Overall Pertinence
     Assign the Overall Pertinence to the InternalTip
     """
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
 
     # expressed_pertinence has these meanings:
     # 0 = unassigned
@@ -275,7 +244,7 @@ def manage_pertinence(store, user_id, tip_id, vote):
 @transact
 def postpone_expiration_date(store, user_id, tip_id):
 
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
 
     node = store.find(Node).one()
 
@@ -291,7 +260,6 @@ def postpone_expiration_date(store, user_id, tip_id):
         pretty_date_time(rtip.internaltip.expiration_date)))
 
     comment = Comment()
-
     comment.system_content = dict({
            'type': "1", # the first kind of structured system_comments
            'receiver_name': rtip.receiver.name,
@@ -314,7 +282,6 @@ def postpone_expiration_date(store, user_id, tip_id):
     comment.type = Comment._types[2] # System
     comment.mark = Comment._marker[4] # skipped
 
-    store.add(comment)
     rtip.internaltip.comments.add(comment)
 
 
@@ -424,6 +391,7 @@ def serialize_comment(comment):
         'author' : unicode(comment.author),
         'creation_date' : unicode(pretty_date_time(comment.creation_date))
     }
+
     return comment_desc
 
 def get_comment_list(internaltip):
@@ -450,7 +418,7 @@ def get_comment_list_wb(store, wb_tip_id):
 
 @transact_ro
 def get_comment_list_receiver(store, user_id, tip_id):
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
     return get_comment_list(rtip.internaltip)
 
 @transact
@@ -468,14 +436,13 @@ def create_comment_wb(store, wb_tip_id, request):
     comment.type = Comment._types[1] # WB
     comment.mark = Comment._marker[0] # Not notified
 
-    store.add(comment)
     wbtip.internaltip.comments.add(comment)
 
     return serialize_comment(comment)
 
 @transact
 def create_comment_receiver(store, user_id, tip_id, request):
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
 
     comment = Comment()
     comment.content = request['content']
@@ -484,7 +451,6 @@ def create_comment_receiver(store, user_id, tip_id, request):
     comment.type = Comment._types[0] # Receiver
     comment.mark = Comment._marker[0] # Not notified
 
-    store.add(comment)
     rtip.internaltip.comments.add(comment)
 
     return serialize_comment(comment)
@@ -575,11 +541,11 @@ def get_receiver_list_wb(store, wb_tip_id, language):
 
 @transact_ro
 def get_receiver_list_receiver(store, user_id, tip_id, language):
-    rtip = strong_receiver_validate(store, user_id, tip_id)
+    rtip = access_tip(store, user_id, tip_id)
 
     receiver_list = []
     for rtip in rtip.internaltip.receivertips:
-        receiver_list.append(serialize_receiver(rtip.receiver, rtip.access_counter, language ))
+        receiver_list.append(serialize_receiver(rtip.receiver, rtip.access_counter, language))
 
     return receiver_list
 
