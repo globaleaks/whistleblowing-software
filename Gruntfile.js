@@ -104,7 +104,6 @@ module.exports = function(grunt) {
 
   });
 
-
   grunt.loadNpmTasks('grunt-usemin');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
@@ -113,9 +112,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-angular-templates');
   grunt.loadNpmTasks('grunt-contrib-copy');
   grunt.loadNpmTasks('grunt-contrib-clean');
-
-  // grunt.loadNpmTasks('grunt-contrib-compass');
-
   grunt.loadNpmTasks('grunt-reload');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-jshint');
@@ -124,8 +120,6 @@ module.exports = function(grunt) {
     superagent = require('superagent'),
     fs = require('fs'),
     Gettext = require("node-gettext")
-
-  /* grunt.loadNpmTasks('grunt-bower-task'); */
 
   grunt.registerTask('cleanupWorkingDirectory', function() {
     var rm_rf = function(dir) {
