@@ -95,8 +95,9 @@ module.exports = function(grunt) {
     // Put all angular.js templates into a single file
     ngtemplates:  {
       GLClient: {
+            cwd: 'app',
             options: {base: 'app/'},
-            src: ['app/views/**/*.html'],
+            src: ['views/**/*.html'],
             dest: 'tmp/scripts/templates.js'
           }
     }
