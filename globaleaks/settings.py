@@ -143,9 +143,6 @@ class GLSettingsClass:
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
 
-        # default filename added to the Zip files
-        self.zipfile_name = "FileList.txt"
-
         # default timings for scheduled jobs
         self.session_management_minutes_delta = 1 # runner.py function expects minutes
         self.cleaning_hours_delta = 5             # runner.py function expects hours
