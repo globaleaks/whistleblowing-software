@@ -64,7 +64,10 @@ module.exports = function(grunt) {
     // usemin handler should point to the file containing
     // the usemin blocks to be parsed
     'useminPrepare': {
-      html: 'tmp/index.html'
+      html: 'tmp/index.html',
+      options: {
+        dest: 'tmp'
+      }
     },
 
     // update references in HTML/CSS to revved files
@@ -362,7 +365,7 @@ module.exports = function(grunt) {
 
   // Run this to build your app. You should have run updateTranslations before you do so, if you have changed something in your translations.
   grunt.registerTask('build',
-    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'manifest', 'cleanupWorkingDirectory']);
+    ['clean', 'copy', 'ngtemplates', 'useminPrepare', 'concat', 'cssmin', 'usemin', 'uglify', 'manifest', 'cleanupWorkingDirectory']);
 
   grunt.registerTask('dev',
     ['reload', 'watch']);
