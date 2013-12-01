@@ -3,16 +3,13 @@
 var GLClient = angular.module('GLClient', [
     'ngRoute',
     'ui.bootstrap',
-    'GLClient.templates',
     'resourceServices',
     'submissionUI',
     'GLClientFilters',
     'blueimp.fileupload',
     'pascalprecht.translate'
-  ], function($tooltipProvider) {
-     $tooltipProvider.options( {appendToBody: true} );
-  }).
-  config(['$routeProvider', '$translateProvider', function($routeProvider, $translateProvider) {
+  ]).
+  config(['$routeProvider', '$translateProvider', '$tooltipProvider', function($routeProvider, $translateProvider, $tooltipProvider) {
 
     $routeProvider.
       when('/', {
@@ -87,4 +84,6 @@ var GLClient = angular.module('GLClient', [
       });
 
       $translateProvider.uses('en');
+
+      $tooltipProvider.options( {appendToBody: true} );
 }]);
