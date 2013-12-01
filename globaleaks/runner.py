@@ -3,9 +3,13 @@
 # Here is implemented the preApplication and postApplication method
 # along the Asynchronous event schedule
 
+import os
+
 from twisted.application import app
 from twisted.internet.error import CannotListenError
 from twisted.internet.defer import inlineCallbacks
+from twisted.python.util import untilConcludes
+
 from apscheduler.scheduler import Scheduler
 
 from globaleaks.utils.utility import log, utc_future_date
@@ -121,12 +125,20 @@ class GLBaseRunnerUnix(UnixApplicationRunner):
 
         try:
             self.startApplication(self.application)
-        except CannotListenError as excep:
-            log.err("Unable to listen on the requested port: %s" % excep)
-            quit(-1)
-        except Exception as excep:
-            log.err("Unable to start application: %s" % excep)
-            quit(-1)
+        except Exception as ex:
+            statusPipe = self.config.get("statusPipe", None)
+            if statusPipe is not None:
+                # Limit the total length to the passed string to 100
+                strippedError = str(ex)[:98]
+                untilConcludes(os.write, statusPipe, "1 %s" % (strippedError,))
+                untilConcludes(os.close, statusPipe)
+            self.removePID(self.config['pidfile'])
+            raise
+        else:
+            statusPipe = self.config.get("statusPipe", None)
+            if statusPipe is not None:
+                untilConcludes(os.write, statusPipe, "0")
+                untilConcludes(os.close, statusPipe)
 
         if globaleaks_start():
             self.startReactor(None, self.oldstdout, self.oldstderr)

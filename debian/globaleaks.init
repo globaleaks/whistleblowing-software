@@ -201,9 +201,9 @@ do_start()
                     --http-log=${HTTPLOG}"
 
     
-   if [ "${STORMDEBUG}" -eq "1" ]; then
-       GLBACKEND_ARGS+=" --storm-debug"
-   fi
+    if [ "${STORMDEBUG}" -eq "1" ]; then
+        GLBACKEND_ARGS+=" --storm-debug"
+    fi
 
     STARTCMD="${GLBACKEND_DAEMON} ${GLBACKEND_ARGS}"
 
