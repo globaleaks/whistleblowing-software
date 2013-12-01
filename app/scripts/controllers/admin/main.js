@@ -123,22 +123,31 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
 
 }]);
 
+AdminContentCtrlTAB1 = ['$scope', function($scope){
+        $scope.id = 1;
+}];
+AdminContentCtrlTAB2 = ['$scope', function($scope){
+        $scope.id = 2;
+}];
+AdminContentCtrlTAB3 = ['$scope', function($scope){
+        $scope.id = 3;
+}];
 GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', function($scope, $http, StaticFiles){
   $scope.tabs = [
-    { title:"Main Configuration", template:"/views/admin/content/tab1.html",
-      ctrl: function($scope){
-        $scope.id = 1;
-      }    
+    {
+      title:"Main Configuration",
+      template: "views/admin/content/tab1.html",
+      ctrl: AdminContentCtrlTAB1
     },
-    { title:"Theme Customization", template:"/views/admin/content/tab2.html",
-      ctrl: function($scope){
-        $scope.id = 2;
-      }
+    {
+      title:"Theme Customization",
+      template: "views/admin/content/tab2.html",
+      ctrl: AdminContentCtrlTAB2
     },
-    { title:"Translation Customization", template:"/views/admin/content/tab3.html",
-      ctrl: function($scope){
-        $scope.id = 3;
-      }
+    {
+      title: "Translation Customization",
+      template: "views/admin/content/tab3.html",
+      ctrl: AdminContentCtrlTAB3
     }
   ];
 
@@ -162,32 +171,44 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', funct
 
 }]);
 
+AdminMailCtrlTAB1 = ['$scope', function($scope){
+        $scope.id = 1;
+}];
+AdminMailCtrlTAB2 = ['$scope', function($scope){
+        $scope.id = 2;
+}];
 GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http){
   $scope.tabs = [
-    { title:"Main Configuration", template:"/views/admin/mail/tab1.html",
-      ctrl: function($scope){
-        $scope.id = 1;
-      }    
+    {
+      title:"Main Configuration",
+      template:"views/admin/mail/tab1.html",
+      ctrl: AdminMailCtrlTAB1
     },
-    { title:"Notification Templates", template:"/views/admin/mail/tab2.html",
-      ctrl: function($scope){
-        $scope.id = 2;
-      }
+    {
+      title:"Notification Templates",
+      template:"views/admin/mail/tab2.html",
+      ctrl: AdminMailCtrlTAB2
     }
   ];
 }]);
 
+AdminAdvancedCtrlTAB1 = ['$scope', function($scope){
+        $scope.id = 1;
+}];
+AdminAdvancedCtrlTAB2 = ['$scope', function($scope){
+        $scope.id = 2;
+}];
 GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', function($scope, $http){
   $scope.tabs = [
-    { title:"Main Configuration", template:"/views/admin/advanced/tab1.html",
-      ctrl: function($scope){
-        $scope.id = 1;
-      }    
+    {
+      title:"Main Configuration",
+      template:"views/admin/advanced/tab1.html",
+      ctrl: AdminAdvancedCtrlTAB1
     },
-    { title:"Tor2web Settings", template:"/views/admin/advanced/tab2.html",
-      ctrl: function($scope){
-        $scope.id = 2;
-      }
+    {
+      title:"Tor2web Settings",
+      template:"views/admin/advanced/tab2.html",
+      ctrl: AdminAdvancedCtrlTAB2
     }
   ];
 }]);
