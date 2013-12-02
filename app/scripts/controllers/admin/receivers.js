@@ -39,6 +39,21 @@ GLClient.controller('AdminReceiversEditorCtrl', ['$scope', 'passwordWatcher',
       }
     }
 
+    $scope.save_receiver = function() {
+
+      if ($scope.receiver.gpg_key_remove == true) {
+        $scope.receiver.gpg_key_armor = '';
+      }
+
+      if ($scope.receiver.gpg_key_armor !== undefined &&
+          $scope.receiver.gpg_key_armor != '') {
+        $scope.receiver.gpg_key_remove = false;
+      }
+
+      $scope.receiver.$update();
+
+    }
+
 }]);
 
 GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
@@ -54,9 +69,6 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
     receiver.name = $scope.new_receiver.name;
     receiver.password = $scope.new_receiver.password;
     receiver.notification_fields = {'mail_address': $scope.new_receiver.email};
-
-    // receiver.languages = [];
-    // receiver.tags = [];
 
     // Under here go default settings
     receiver.contexts =  [];

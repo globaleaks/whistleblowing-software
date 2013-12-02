@@ -1,8 +1,8 @@
 <div class="col-md-8">
-  <div ng-show="preferences.gpg_key_fingerprint">
+  <div ng-show="preferences.gpg_key_info">
 
     <p>
-      {{ "You have an active PGP key" | translate }}
+      {{ "PGP Key details" | translate }}
       <br />
       {{ "The fingerprint is:" | translate }}
       <b>{{preferences.gpg_key_fingerprint}}</b>
@@ -18,10 +18,16 @@
         {{ "Enable encrypted notification" | translate }}
       </label>
       <label ng-show="preferences.gpg_enable_notification">
-        <span class="btn-info">
+        <span class="btn btn-success">
           {{ "now Enabled:" | translate }}
         </span>
-        {{ "Every notification you'll receive will be encrypted with your PGP key." | translate }}
+        {{ "Every notification will be encrypted with the PGP key." | translate }}
+      </label>
+      <label ng-show="!preferences.gpg_enable_notification">
+        <span class="btn btn-danger">
+          {{ "now Disabled:" | translate }}
+        </span>
+        {{ "Every notification won't be encrypted." | translate }}
       </label>
     </div>
 
@@ -31,17 +37,23 @@
         {{ "Enable file encryption" | translate }}
       </label>
       <label ng-show="preferences.gpg_enable_files">
-        <span class="btn-info">
+        <span class="btn btn-success">
           {{ "now Enabled:" | translate }}
         </span>
-        {{ "Every file you'll download will be encrypted with your PGP key." | translate }}
+        {{ "Every downloaded file will be encrypted with the PGP key." | translate }}
+      </label>
+      <label ng-show="!preferences.gpg_enable_files">
+        <span class="btn btn-danger">
+          {{ "now Enabled:" | translate }}
+        </span>
+        {{ "Every downloaded file won't be encrypted." | translate }}
       </label>
     </div>
 
-  <div class="form-group table-bordered" ng-show="preferences.gpg_key_fingerprint">
-    <input ng-model="preferences.gpg_key_remove" type="checkbox">
-    <label>{{ "Remove your PGP key" | translate }}</label>
-  </div>
+    <div class="form-group table-bordered" ng-show="preferences.gpg_key_fingerprint">
+      <input ng-model="preferences.gpg_key_remove" type="checkbox">
+      <label>{{ "Remove the PGP key" | translate }}</label>
+    </div>
   </div>
 
   <div class="form-group">
@@ -56,13 +68,13 @@
   </div>
 
   <div class="form-group" ng-hide="preferences.gpg_key_fingerprint">
-    <button class="btn btn-success" ng-init="send_key=false" ng-click="send_key = ! send_key">
+    <button class="btn btn-success" ng-init="send_key=false" ng-click="send_key = !send_key">
       <i class="glyphicon glyphicon-plus"></i>
-      {{ "Submit a PGP key" | translate }}
+      {{ "Configure a PGP key" | translate }}
     </button>
 
     <div ng-show="send_key">
-      <label>{{ "Copy/Paste here the PGP Key Armor:" | translate }}</label>
+      <label>{{ "Copy and Paste here the PGP Key:" | translate }}</label>
       <textarea class="form-control" ng-model="preferences.gpg_key_armor"></textarea>
     </div>
   </div>

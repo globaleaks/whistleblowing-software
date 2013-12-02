@@ -29,7 +29,7 @@ This comment is needed in order to push the following strings on transifex
                   </div>
 
                   <div class="col-md-6 editButtons" ng-show="editing">
-                    <button class="btn btn-success saveReceiver" ng-disabled="receiverForm.$invalid || unsafe_password" ng-click="update(receiver)">
+                    <button class="btn btn-success saveReceiver" ng-disabled="receiverForm.$invalid || unsafe_password" ng-click="save_receiver()">
                       <i class="glyphicon glyphicon-ok"></i>
                       {{ "Save" | translate }}
                     </button>
@@ -115,19 +115,15 @@ This comment is needed in order to push the following strings on transifex
                       </label>
                     </div>
 
-                    <button class="btn btn-info" ng-click="advanced_edit = !advanced_edit" ng-init="advanced_edit=false">
-                      <i class="glyphicon glyphicon-plus"></i>
-                      {{ "PGP key management" | translate }}
-                    </button>
+                    <div class="form-group" ng-show="receiver.gpg_key_info">
+                      <p>
+                        {{ "PGP Key details" | translate }}
+                        <br />
+                        {{ "The fingerprint is:" | translate }}
+                        <b>{{receiver.gpg_key_fingerprint}}</b>
+                      </p>
 
-                    <div class="form-group" ng-show="advanced_edit">
                       <div>
-                        <textarea class="form-control" ng-model="receiver.gpg_key_armor">{{receiver.gpg_key_armor}}</textarea>
-                      </div>
-                      <!-- here another span4 shall fit well, but IDK which kind of preferences can be show here -->
-
-                      <div ng-show="receiver.gpg_key_info">
-                        {{ "Key details" | translate }}
                         <pre>{{receiver.gpg_key_info}}</pre>
                       </div>
 
@@ -135,10 +131,16 @@ This comment is needed in order to push the following strings on transifex
                         <input ng-model="receiver.gpg_enable_notification" type="checkbox">
                         <label>{{ "Enable encrypted notification" | translate }}</label>
                         <label ng-show="receiver.gpg_enable_notification">
-                          <span class="btn-info">
+                          <span class="btn btn-success">
                             {{ "now Enabled:" | translate }}
                           </span>
-                          {{ "Every notification you'll receive will be encrypted with your PGP key." | translate }}
+                          {{ "Every notification will be encrypted with the PGP key." | translate }}
+                        </label>
+                        <label ng-show="!receiver.gpg_enable_notification">
+                          <span class="btn btn-danger">
+                            {{ "now Disabled:" | translate }}
+                          </span>
+                          {{ "Every notification won't be encrypted." | translate }}
                         </label>
                       </div>
 
@@ -146,13 +148,42 @@ This comment is needed in order to push the following strings on transifex
                         <input ng-model="receiver.gpg_enable_files" type="checkbox">
                         <label>{{ "Enable file encryption" | translate }}</label>
                         <label ng-show="receiver.gpg_enable_files">
-                          <span class="btn-info">
+                          <span class="btn btn-success">
                             {{ "now Enabled:" | translate }}
                           </span>
-                          {{ "Every file you'll download will be encrypted with your PGP key." | translate }}
+                          {{ "Every downloaded file will be encrypted with the PGP key." | translate }}
+                        </label>
+                        <label ng-show="!receiver.gpg_enable_files">
+                          <span class="btn btn-danger">
+                            {{ "now Disabled:" | translate }}
+                          </span>
+                          {{ "Every downloaded file won't be encrypted." | translate }}
                         </label>
                       </div>
+
+                      <div class="form-group table-bordered">
+                        <input ng-model="receiver.gpg_key_remove" type="checkbox">
+                        <label>{{ "Remove the PGP key" | translate }}</label>
+                      </div>
+
                     </div>
+
+                    <div class="form-group" ng-hide="receiver.gpg_key_fingerprint">
+                      <div class="alert alert-danger" ng-hide="preferences.gpg_key_fingerprint">
+                        <b>{{ "Encryption not enabled!" | translate }}</b>
+                      </div>
+
+                      <button class="btn btn-info" ng-init="send_key=false" ng-click="send_key = !send_key">
+                        <i class="glyphicon glyphicon-plus"></i>
+                        {{ "Configure a PGP key" | translate }}
+                      </button>
+
+                      <div ng-show="send_key">
+                        <label>{{ "Copy and Paste here the PGP Key:" | translate }}</label>
+                        <textarea class="form-control" ng-model="receiver.gpg_key_armor"></textarea>
+                      </div>
+                    </div>
+
                   </div>
                   <div class="col-md-6">
                     <label>{{ "Contexts" | translate }}</label>
