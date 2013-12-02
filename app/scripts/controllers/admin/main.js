@@ -123,35 +123,24 @@ GLClient.controller('FileUploadCtrl', ['$scope', '$http', function($scope, $http
 
 }]);
 
-AdminContentCtrlTAB1 = ['$scope', function($scope){
-        $scope.id = 1;
-}];
-AdminContentCtrlTAB2 = ['$scope', function($scope){
-        $scope.id = 2;
-}];
-AdminContentCtrlTAB3 = ['$scope', function($scope){
-        $scope.id = 3;
-}];
 GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', function($scope, $http, StaticFiles){
   $scope.tabs = [
     {
       title:"Main Configuration",
       template: "views/admin/content/tab1.html",
-      ctrl: AdminContentCtrlTAB1
+      ctrl: TabCtrl
     },
     {
       title:"Theme Customization",
       template: "views/admin/content/tab2.html",
-      ctrl: AdminContentCtrlTAB2
+      ctrl: TabCtrl
     },
     {
       title: "Translation Customization",
       template: "views/admin/content/tab3.html",
-      ctrl: AdminContentCtrlTAB3
+      ctrl: TabCtrl
     }
   ];
-
-  $scope.staticfiles = StaticFiles.query();
 
   $scope.update_static_files = function() {
     var updated_staticfiles = StaticFiles.query(function() {
@@ -169,46 +158,36 @@ GLClient.controller('AdminContentCtrl', ['$scope', '$http', 'StaticFiles', funct
     });
   }
 
+  $scope.update_static_files();
+
 }]);
 
-AdminMailCtrlTAB1 = ['$scope', function($scope){
-        $scope.id = 1;
-}];
-AdminMailCtrlTAB2 = ['$scope', function($scope){
-        $scope.id = 2;
-}];
 GLClient.controller('AdminMailCtrl', ['$scope', '$http', function($scope, $http){
   $scope.tabs = [
     {
       title:"Main Configuration",
       template:"views/admin/mail/tab1.html",
-      ctrl: AdminMailCtrlTAB1
+      ctrl: TabCtrl
     },
     {
       title:"Notification Templates",
       template:"views/admin/mail/tab2.html",
-      ctrl: AdminMailCtrlTAB2
+      ctrl: TabCtrl
     }
   ];
 }]);
 
-AdminAdvancedCtrlTAB1 = ['$scope', function($scope){
-        $scope.id = 1;
-}];
-AdminAdvancedCtrlTAB2 = ['$scope', function($scope){
-        $scope.id = 2;
-}];
 GLClient.controller('AdminAdvancedCtrl', ['$scope', '$http', function($scope, $http){
   $scope.tabs = [
     {
       title:"Main Configuration",
       template:"views/admin/advanced/tab1.html",
-      ctrl: AdminAdvancedCtrlTAB1
+      ctrl: TabCtrl
     },
     {
       title:"Tor2web Settings",
       template:"views/admin/advanced/tab2.html",
-      ctrl: AdminAdvancedCtrlTAB2
+      ctrl: TabCtrl
     }
   ];
 }]);

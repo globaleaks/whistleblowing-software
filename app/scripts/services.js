@@ -98,10 +98,8 @@ angular.module('resourceServices.authentication', [])
           });
         };
 
-        self.logout = function() {
+        self.logout_performed = function() {
             var role = $.cookie('role');
-
-            $http.delete('/authentication');
 
             self.id = null;
             self.username = null;
@@ -116,6 +114,12 @@ angular.module('resourceServices.authentication', [])
               $location.path('/');
             else
               $location.path('/login');
+        }
+
+        self.logout = function() {
+
+            $http.delete('/authentication').success(self.logout_performed);
+
         };
 
         $http.get('/authentication').success(function(response){
