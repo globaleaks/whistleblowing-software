@@ -4,6 +4,10 @@ GLClient.controller('MainCtrl', ['$scope', '$http', '$route', 'StaticFiles',
   }
 ]);
 
+TabCtrl = ['$scope', function($scope) {
+  /* Empty controller function used to implement TAB pages */
+}];
+
 angular.module('GLClient.fileuploader', ['blueimp.fileupload'])
   .config(['$httpProvider', 'fileUploadProvider',
     function ($httpProvider, fileUploadProvider) {
