@@ -118,7 +118,8 @@ angular.module('resourceServices.authentication', [])
 
         self.logout = function() {
 
-            $http.delete('/authentication').success(self.logout_performed);
+            $http.delete('/authentication').then(self.logout_performed,
+                                                 self.logout_performed);
 
         };
 
