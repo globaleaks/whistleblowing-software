@@ -15,19 +15,6 @@
   background-color: #f9f9f9;
 }
 
-.toolTip {
-  width: 200px;
-  position: fixed;
-  z-index: 99999;
-  top: 20px;
-  right: 20px;
-}
-@media (max-width: 550px) {
-  .toolTip {
-    position: absolute;
-  }
-}
-
 .fileDetails {
   list-style: none;
   margin: 0 0 10px 20px;

@@ -108,7 +108,7 @@ This comment is needed in order to push the following strings on transifex
                       <input ng-model="receiver.can_delete_submission" type="checkbox">
                       <label>{{ "Can delete submissions" | translate }}</label>
                       <label ng-show="receiver.can_delete_submission">
-                        <span class="btn-info">
+                        <span class="label label-info">
                           {{ "now Enabled:" | translate }}
                       </span>
                       {{ "The Receiver will be now able to globally delete submissions and their content." | translate }}
@@ -131,13 +131,13 @@ This comment is needed in order to push the following strings on transifex
                         <input ng-model="receiver.gpg_enable_notification" type="checkbox">
                         <label>{{ "Enable encrypted notification" | translate }}</label>
                         <label ng-show="receiver.gpg_enable_notification">
-                          <span class="btn btn-success">
+                          <span class="label label-success">
                             {{ "now Enabled:" | translate }}
                           </span>
                           {{ "Every notification will be encrypted with the PGP key." | translate }}
                         </label>
                         <label ng-show="!receiver.gpg_enable_notification">
-                          <span class="btn btn-danger">
+                          <span class="label label-danger">
                             {{ "now Disabled:" | translate }}
                           </span>
                           {{ "Every notification won't be encrypted." | translate }}
@@ -148,13 +148,13 @@ This comment is needed in order to push the following strings on transifex
                         <input ng-model="receiver.gpg_enable_files" type="checkbox">
                         <label>{{ "Enable file encryption" | translate }}</label>
                         <label ng-show="receiver.gpg_enable_files">
-                          <span class="btn btn-success">
+                          <span class="label label-success">
                             {{ "now Enabled:" | translate }}
                           </span>
                           {{ "Every downloaded file will be encrypted with the PGP key." | translate }}
                         </label>
                         <label ng-show="!receiver.gpg_enable_files">
-                          <span class="btn btn-danger">
+                          <span class="label label-danger">
                             {{ "now Disabled:" | translate }}
                           </span>
                           {{ "Every downloaded file won't be encrypted." | translate }}

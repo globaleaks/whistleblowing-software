@@ -18,13 +18,13 @@
         {{ "Enable encrypted notification" | translate }}
       </label>
       <label ng-show="preferences.gpg_enable_notification">
-        <span class="btn btn-success">
+        <span class="label label-success">
           {{ "now Enabled:" | translate }}
         </span>
         {{ "Every notification will be encrypted with the PGP key." | translate }}
       </label>
       <label ng-show="!preferences.gpg_enable_notification">
-        <span class="btn btn-danger">
+        <span class="label label-danger">
           {{ "now Disabled:" | translate }}
         </span>
         {{ "Every notification won't be encrypted." | translate }}
@@ -37,13 +37,13 @@
         {{ "Enable file encryption" | translate }}
       </label>
       <label ng-show="preferences.gpg_enable_files">
-        <span class="btn btn-success">
+        <span class="label label-success">
           {{ "now Enabled:" | translate }}
         </span>
         {{ "Every downloaded file will be encrypted with the PGP key." | translate }}
       </label>
       <label ng-show="!preferences.gpg_enable_files">
-        <span class="btn btn-danger">
+        <span class="label label-danger">
           {{ "now Enabled:" | translate }}
         </span>
         {{ "Every downloaded file won't be encrypted." | translate }}

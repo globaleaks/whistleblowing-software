@@ -1,58 +1,62 @@
-<div class="privacyBox container"
-     ng-controller="PrivacyBoxCtrl">
-
-  <div class="row" ng-mouseenter="showBox()" ng-mouseleave="hideBox()">
-
-    <div class="semaphores col-md-1" ng-class="boxes">
-
-      <div ng-switch="" on="privacy">
-
-        <div ng-switch-when="high" class="semaphore btn-success"></div>
-        <div ng-switch-when="unknown" class="semaphore btn-warning"></div>
-        <div ng-switch-when="low" class="semaphore btn-danger">
-          <span ng-show="!displayBox" class="label label-danger">
-            {{ "Danger!" | translate }}
+<div class="privacyBox alert alert-warning" ng-controller="PrivacyBoxCtrl">
+  <div ng-mouseenter="showBox()" ng-mouseleave="hideBox()">
+    <div ng-switch="" on="privacy">
+      <button ng-show="displayBox" type="button" class="close" ng-click="hideBox()">×</button>
+      <div ng-switch-when="high">
+        <div ng-show="!displayBox">
+          <span class="label label-success">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            {{ "Congratulations!" | translate }}
           </span>
         </div>
-
-      </div>
-
-    </div>
-
-    <div class="informationBoxes">
-
-      <div class="informationBox privacyInformation" ng-show="displayBox">
-
-        <button type="button" class="close" ng-click="hideBox()">×</button>
-
-        <div ng-switch="" on="privacy">
-
-          <div ng-switch-when="high">
-
-            <span class="label label-success">
-              {{ "Congratulations!" | translate }}
-            </span>
+        <div ng-show="displayBox" class="privacyBox-ext">
+          <span class="label label-success">
+            <i class="glyphicon glyphicon-ok-circle"></i>
+            {{ "Congratulations!" | translate }}
+          </span>
+          <div>
             <p>
-              {{ "It appears you are using Tor. To better protect your anonymity, be sure that you are using the" | translate }} 
+              {{ "It appears you are using Tor. To better protect your anonymity, be sure that you are using the" | translate }}
               <a href="https://www.torproject.org/download/download">Tor Browser Bundle</a>.
-              {{ "Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the" | translate }} <a href="https://securityinabox.org/">security in a box</a>&nbsp;
+              {{ "Keep in mind that using Tor Browser Bundle does not replace good security practices and it cannot protect you in the event your computer has been compromised. You are strongly advised to read the" | translate }}
+              <a href="https://securityinabox.org/">security in a box</a>
               {{ "manual for practical security best practices." | translate }}
             </p>
           </div>
-
-          <div ng-switch-when="unknown">
-            <span class="label label-danger">
-              {{ "Warning!" | translate }}
-            </span>
-            <p>{{ "We were not able to determine if you are anonymous or not, please proceed with care" | translate }}</p>
-
+        </div>
+      </div>
+      <div ng-switch-when="unknown">
+        <div ng-show="!displayBox">
+          <span class="label label-danger">
+            <i class="glyphicon glyphicon-exclamation-sign"></i>
+            {{ "Warning!" | translate }}
+          </span>
+        </div>
+        <div ng-show="displayBox" class="privacyBox-ext">
+          <span class="label label-danger">
+            <i class="glyphicon glyphicon-exclamation-sign"></i>
+            {{ "Warning!" | translate }}
+          </span>
+          <div>
+            <p>
+              {{ "We were not able to determine if you are anonymous or not, please proceed with care" | translate }}
+            </p>
           </div>
-
-          <div ng-switch-when="low">
-
-            <span class="label label-danger">
-              {{ "Danger!" | translate }}
-            </span>
+        </div>
+      </div>
+      <div ng-switch-when="low">
+        <div ng-show="!displayBox">
+          <span class="label label-danger">
+            <i class="glyphicon glyphicon-warning-sign"></i>
+            {{ "Danger!" | translate }}
+          </span>
+        </div>
+        <div ng-show="displayBox" class="privacyBox-ext">
+          <span class="label label-danger">
+            <i class="glyphicon glyphicon-warning-sign"></i>
+            {{ "Danger!" | translate }}
+          </span>
+          <div>
             <p>
               {{ "It appears you are not using Tor, thus you are strongly advised to " | translate }}
               <a href="https://www.torproject.org/download/download">
@@ -62,10 +66,7 @@
             </p>
           </div>
         </div>
-
       </div>
-
     </div>
   </div>
-
 </div>

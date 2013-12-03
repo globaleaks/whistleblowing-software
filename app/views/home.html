@@ -104,10 +104,14 @@
 
 <div class="jumbotron homeSplash" ng-show="node_info.name">
 
-    <a href="/"><img ng-src="/static/globaleaks_logo.png"></a>
-    <h1>{{ node_info.presentation }}</h1>
+    <span id="LogoBox">
+      <a href="/"><img ng-src="/static/globaleaks_logo.png"></a>
+    </span>
+    <span id="NodePresentationBox">
+      <h1>{{ node_info.presentation }}</h1>
+    </span>
     
-    <div class="ng-cloak">
+    <div class="ng-cloak BlowTheWhisleBox">
       <div ng-show="node_info.configured">
         <div class="row" ng-show="!node_info.tor2web_submission && !anonymous">
           <p class="has-error">
@@ -147,45 +151,50 @@
 
     <h3 class="lead">{{node_info.description}}</h3>
 
-    <div class="row">
-        <div class="col-md-6">
-            <h3>
-              {{ "Are you a whistleblower?" | translate }}
-            </h3>
-            <form class="form-horizontal" role="form">
-                <div class="form-group">
-                  <label class="col-md-12">
-                    {{ "Enter your receipt" | translate }}
-                  </label>
-                  <div class="col-md-offset-2 col-md-6">
-                    <input class="form-control" ng-model="receipt" type="text">
-                  </div>
-                  <div class="col-md-2">
-                    <a ng-click="view_tip(receipt)" class="btn btn-primary">
-                      <i class="glyphicon glyphicon-log-in"></i>
-                      {{ "View Tip" | translate }}
-                    </a>
-                  </div>
-                </div>
-            </form>
+    <div class="row" id="WhisleblowerLoginBox">
+      <div class="col-md-offset-2 col-md-8">
+        <h3>
+          {{ "Are you a whistleblower?" | translate }}
+        </h3>
+        <form class="form-horizontal" role="form">
+          <div class="form-group">
+            <label class="row">
+              {{ "Enter your receipt" | translate }}
+            </label>
+            <div class="row">
+              <span class="col-md-offset-3 col-md-6">
+                <input class="form-control" ng-model="receipt" type="text">
+              </span>
+            </div>
+            <br />
+            <div class="row">
+              <a ng-click="view_tip(receipt)" class="btn btn-primary">
+                <i class="glyphicon glyphicon-log-in"></i>
+                {{ "View Tip" | translate }}
+              </a>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="row" id="ReceiverLoginBox">
+      <div class="col-md-offset-2 col-md-8">
+        <h3>
+          {{ "Are you a receiver?" | translate }}
+        </h3>
+        <div>
+          {{ "This is the" | translate }}
+          <a href="#/login">
+            {{ "Login page" | translate }}
+          </a>.
         </div>
-        <div class="col-md-6">
-            <h3>
-              {{ "Are you a receiver?" | translate }}
-            </h3>
-            <p>
-              {{ "This is the" | translate }}
-              <a href="#/login">
-                {{ "Login page" | translate }}
-              </a>.
-            </p>
-        </div>
+      </div>
     </div>
 
     <br />
     <br />
 
-    <div class="row">
+    <div class="row" id="GlobaleaksInfoBox">
       <div class="col-md-12">
         <p>
         {{ "Through this platform you will be able to report on wrongdoing. This platform is running the" | translate }}
@@ -206,7 +215,7 @@
   </div>
 </div>
 
-<footer class="footer">
+<footer class="footer" id="FooterBox">
   <div class="container">
     <p>{{node_info.footer}}</p>
   </div>
