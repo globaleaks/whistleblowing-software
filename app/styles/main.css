@@ -72,11 +72,6 @@
   display: none;
 }
 
-/* This is used to create a space of the size of the fixed with header */
-.spacer {
-  margin-bottom: 40px;
-}
-
 .messageConsole {
   width: 200px;
   position: fixed;
@@ -118,73 +113,32 @@
     font-family: sans-serif
 }
 
-/* Privacy box stuff */
-
 .privacyBox {
   position: fixed;
-  left: 20px;
   top: 10px;
-  z-index: 9999;
-  display: block;
-}
-
-.semaphore {
-  width: 20px;
-  height: 20px;
-
-  border-top-left-radius: 20px;
-  border-top-right-radius: 20px;
-  border-bottom-right-radius: 20px;
-  border-bottom-left-radius: 20px;
-  -webkit-box-shadow: rgb(0, 0, 0) 0px 0px 0px;
-  box-shadow: rgb(0, 0, 0) 0px 0px 0px;
-  border-width: 2px;
-  margin: 5px 0px 0px -2px;
-  border: 2px solid black;
-}
-
-.semaphore span {
-  margin-left: 25px;
-}
-
-.semaphores.open {
-  opacity: 1;
-}
-
-.semaphores.closed {
-  opacity: 0.5;
-}
-
-
-.informationBox {
-  padding: 20px;
-  font-size: 18px;
-  font-weight: 200;
-  line-height: 30px;
-  color: inherit;
-  border-radius: 6px;
-  width: 500px;
-  color: #c09853;
-  padding: 15px;
-  border: 1px solid transparent;
-  border-radius: 4px;
-  -webkit-border-radius: 4px;
-  -moz-border-radius: 4px;
-  color: #c09853;
+  left: 10px;
+  padding: 10px;
   background-color: #fcf8e3;
-
+  color: #c09853;
+  font-size: 20px;
+  z-index: 9999;
 }
-@media (max-width: 750px) {
-  .informationBox {
-    width: 60%;
-    font-size: 16px;
-    line-height: 18px;
-  }
+
+.privacyBox-ext {
+  width: 400px;
+}
+
+.toolTip {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 200px;
+  padding: 10px;
+  z-index: 99999;
 }
 @media (max-width: 550px) {
-  .informationBox {
-    font-size: 14px;
-    line-height: 16px;
+  .toolTip {
+    position: absolute;
   }
 }
 
