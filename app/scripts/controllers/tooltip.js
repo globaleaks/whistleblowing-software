@@ -9,21 +9,22 @@ function($scope, $rootScope, Authentication, $location,
   $scope.role = $.cookie('role');
   
   Node.get(function(node_info) {
-    if (!$.cookie('language')) {
+    if (!$.cookie('language') ||
+        $.inArray($.cookie('language'), node_info.languages_enabled == -1)) {
       $.cookie('language', node_info.default_language);
     }
 
-    $scope.language = $.cookie('language');
+    $rootScope.language = $.cookie('language');
     $rootScope.selected_language = $scope.language;
 
     var language_count = 0;
-    $rootScope.available_languages = {};
-    $rootScope.languages_supported = node_info.languages_enabled;
+    $rootScope.languages_supported = {};
+    $rootScope.languages_enabled = {};
     $.each(node_info.languages_supported, function(idx) {
-      if ($.inArray(node_info.languages_supported[idx]['code'], node_info.languages_enabled) != -1) {
-
-        var code = node_info.languages_supported[idx]['code'];
-        $rootScope.available_languages[code] = node_info.languages_supported[idx]['name'];
+      var code = node_info.languages_supported[idx]['code'];
+      $rootScope.languages_supported[code] = node_info.languages_supported[idx]['name'];
+      if ($.inArray(code, node_info.languages_enabled) != -1) {
+        $rootScope.languages_enabled[code] = node_info.languages_supported[idx]['name'];
         language_count += 1;
       }
     });
@@ -34,9 +35,9 @@ function($scope, $rootScope, Authentication, $location,
 
   $scope.logout = Authentication.logout;
 
-  $scope.$watch("language", function(){
-    $.cookie('language', $scope.language);
-    $rootScope.selected_language = $scope.language;
+  $rootScope.$watch("language", function() {
+    $.cookie('language', $rootScope.language);
+    $rootScope.selected_language = $rootScope.language;
     if ($scope.language === undefined) {
         $translate.uses('en');
     } else {
@@ -45,7 +46,11 @@ function($scope, $rootScope, Authentication, $location,
     $route.reload();
   });
 
-  $scope.$watch(function(scope){
+  $rootScope.$watch("languages_enabled", function() {
+    $route.reload();
+  });
+
+  $scope.$watch(function(scope) {
     return $.cookie('session_id');
   }, function(newVal, oldVal){
     $scope.session_id = $.cookie('session_id');
