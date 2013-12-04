@@ -4,7 +4,7 @@
       <label>{{ "Languages Configuration" | translate }}</label>
       <div ng-repeat="language in admin.node.languages_supported">
         <div>
-          <input ng-model="enabled_languages[language.code]" type="checkbox">
+          <input ng-model="languages_enabled_edit[language.code]" type="checkbox">
           <label>{{language.name}}</label>
           <a ng-init="isCollapsed = true" ng-click="isCollapsed = !isCollapsed">
             <i class="glyphicon glyphicon-plus-sign" ng-show="isCollapsed"></i>
@@ -40,7 +40,7 @@
 
     <div class="form-group">
       <label>{{ "Default language" | translate }}</label>
-      <select class="form-control" ng-model="admin.node.default_language" ng-options="code as name for (code, name) in available_languages"></select>
+      <select class="form-control" ng-model="admin.node.default_language" ng-options="code as name for (code, name) in languages_default_selector"></select>
     </div>
   </div>
 </div>

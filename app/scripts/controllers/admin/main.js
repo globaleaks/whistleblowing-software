@@ -3,8 +3,8 @@ function CollapseDemoCtrl($scope) {
 }
 
 GLClient.controller('AdminCtrl',
-    ['$rootScope', '$scope', '$http', '$location', 'Admin',
-function($rootScope, $scope, $http, $location, Admin) {
+    ['$rootScope', '$scope', '$http', '$route', '$location', 'Admin',
+function($rootScope, $scope, $http, $route, $location, Admin) {
 
   // XXX this should actually be defined per controller
   // otherwise every time you open a new page the button appears enabled
@@ -19,38 +19,53 @@ function($rootScope, $scope, $http, $location, Admin) {
 
   $scope.admin = new Admin();
 
+  $scope.languages_enabled_edit = {};
+  $scope.languages_default_selector = {};
+
   function CollapseLanguages($scope) {
     $scope.isCollapsed = false;
   }
 
-  $rootScope.$watch('languages_supported', function(){
-    if ($rootScope.languages_supported) {
-      $scope.enabled_languages = {};
+  $rootScope.$watch('languages_enabled', function(){
+    if ($rootScope.languages_enabled) {
+      $scope.languages_default_selector = {};
       $.each($rootScope.languages_supported, function(lang){
-        if ($rootScope.languages_supported[lang] in $rootScope.available_languages) {
-          $scope.enabled_languages[$rootScope.languages_supported[lang]] = true;
-        }
-        else {
-          $scope.enabled_languages[$rootScope.available_languages[lang]] = false;
+        if (lang in $rootScope.languages_enabled) {
+          $scope.languages_enabled_edit[lang] = true;
+        } else {
+          $scope.languages_enabled_edit[lang] = false;
         }
       });
     }
-  });
-
-  $scope.$watch('enabled_languages', function(){
-    if (!$scope.enabled_languages)
-      return;
-    var languages_enabled = [];
-    $.each($scope.enabled_languages, function(lang, enabled) {
-      if (enabled) {
-        languages_enabled.push(lang);
-      } else {
-        delete $rootScope.available_languages[lang];
-      }
-    });
-    $scope.admin.node.languages_enabled = languages_enabled;
 
   }, true);
+
+  $scope.$watch('languages_enabled_edit', function() {
+    if ($rootScope.languages_enabled) {
+      var languages_default_selector = {};
+      var change_default = false;
+      var language_selected = $scope.admin.node.default_language;
+      if (! $scope.languages_enabled_edit[$scope.admin.node.default_language]) {
+        change_default = true;
+      }
+
+      $.each($rootScope.languages_supported, function(lang) {
+        if ($scope.languages_enabled_edit[lang]) {
+          languages_default_selector[lang] = $scope.languages_supported[lang];
+
+          if (change_default === true) {
+            language_selected = lang;
+            change_default = false;
+          }
+        }
+      });
+
+      $scope.admin.node.default_language = language_selected;
+      $scope.languages_default_selector = languages_default_selector;
+
+    }
+  }, true);
+
   // We need to have a special function for updating the node since we need to add old_password and password attribute
   // if they are not present
   $scope.updateNode = function(node) {
@@ -61,8 +76,36 @@ function($rootScope, $scope, $http, $location, Admin) {
       node.password = "";
     if (node.old_password === undefined)
       node.old_password = "";
+
+    var languages_enabled = [];
+    $.each($scope.languages_enabled_edit, function(lang, enabled) {
+      if (enabled) {
+        languages_enabled.push(lang);
+      }
+    });
+
+    node.languages_enabled = languages_enabled;
+
+    var language_count = 0;
+    languages_enabled = {};
+
+    $.each(node.languages_supported, function(idx) {
+      var code = node.languages_supported[idx]['code'];
+      if ($.inArray(code, node.languages_enabled) != -1) {
+        languages_enabled[code] = node.languages_supported[idx]['name'];
+        language_count += 1;
+      }
+    });
+
+    $rootScope.languages_enabled = languages_enabled;
+    $rootScope.show_language_selector = (language_count > 1);
+
+    if ($.inArray($rootScope.language, node.languages_enabled) == -1) {
+      $rootScope.language = node.default_language;
+    }
+
     $scope.update(node);
-    $rootScope.language = node.languages_enabled[0];
+
   }
 
   $scope.update = function(model) {

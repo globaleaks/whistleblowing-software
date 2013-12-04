@@ -170,6 +170,6 @@
     </button>
   </div>
   <div class="languagePick alert alert-warning" ng-hide="!show_language_selector">
-    <select ng-model="language" ng-options="lang_code as lang_name for (lang_code, lang_name) in available_languages" class="form-control"></select>
+    <select ng-model="language" ng-options="lang_code as lang_name for (lang_code, lang_name) in languages_enabled" class="form-control"></select>
   </div>
 </div>
