@@ -131,14 +131,14 @@
     font-family: sans-serif
 }
 
-.PrivacyBox {
+#PrivacyBox {
   padding: 10px;
   background-color: #fcf8e3;
   color: #c09853;
   font-size: 20px;
 }
 
-.toolTip {
+#ToolTipBox {
   position: relative;
   float: right;
   top: 10px;

@@ -108,7 +108,11 @@
       <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
     </span>
     <span id="TitleBox">
-      <h1 id="titleboxh1logo">{{ node_info.presentation }}</h1>
+      <h1 id="titleboxh1logo">
+        <a href="/#/">
+          {{ node_info.presentation }}
+        </a>
+      </h1>
     </span>
     <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
   </div>
@@ -140,8 +144,8 @@
           </button>
         </div>
         <div class="row" ng-show="node_info.tor2web_submission || anonymous">
-          <i class="glyphicon glyphicon-bullhorn"></i>
           <a ng-click="goToSubmission()" class="btn btn-primary">
+            <i class="glyphicon glyphicon-bullhorn"></i>
             {{ "Blow the Whistle" | translate }}
           </a>
         </div>
