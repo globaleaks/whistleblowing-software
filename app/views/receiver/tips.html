@@ -11,14 +11,14 @@ This comment is needed in order to push the following strings on transifex
 {{ "Comments" | translate }}
 
 -->
-<div ng-include="'views/header.html'"
+<div ng-include="'views/partials/header.html'"
      onload="header_title='Your Tips';
              header_subtitle='Receiver Interface'">
 </div>
 
-<div class="container config-page">
+<div id="ContentBox" class="container">
   <div class="row">
-    <div class="col-md-3 config-sidebar" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl"></div>
+    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/receiver/sidebar.html'" ng-controller="ReceiverSidebarCtrl"></div>
     <!-- Begin main content -->
     <div class="col-md-9">
       <div class="row">

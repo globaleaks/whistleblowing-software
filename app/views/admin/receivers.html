@@ -6,21 +6,21 @@ This comment is needed in order to push the following strings on transifex
 {{ "Administration Interface" | translate }}
 
 -->
-<div ng-include="'views/header.html'"
+<div ng-include="'views/partials/header.html'"
      onload="header_title='Receivers Configuration';
              header_subtitle='Administration Interface'">
 </div>
 
-<div class="container config-page">
+<div id="ContentBox" class="container">
   <div class="row">
-    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
+    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
       <div ng-controller="AdminReceiversCtrl">
 
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
 
-          <form name="receiverForm" class="receiverConfig" ng-controller="AdminReceiversEditorCtrl">
+          <form name="receiverForm" ng-controller="AdminReceiversEditorCtrl">
             <div class="configItem receiverItem">
               <div class="row" ng-click="toggleEditing()">
                 <div class="editorHeader receiverEditorHeader">
@@ -47,40 +47,40 @@ This comment is needed in order to push the following strings on transifex
                 <div class="row">
                   <div class="col-md-6">
                     <div class="imageUpload" ng-controller="FileUploadCtrl">
-                       <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
-                         <div ng-show="uploadfile" class="uploadfile">
-                           <span class="col-md-12 changePicture">
-                             {{ "Change picture" | translate }}
-                           </span>
-                           <div pragmatic-file-upload ng-src="{{receiverImgUrl()}}">
-                             <div class="fileselector">
-                               <input type="file">
-                             </div>
-                           </div>
-                           <div class="uploadProgress hide">
-                             <div class="progress progress-striped">
-                               <div class="progress-bar" style="width: 0%;"></div>
-                             </div>
-                           </div>
-                         </div>
-                         <img ng-src="{{receiverImgReloadUrl()}}" class="img-thumbnail baseimage col-md-12">
-                       </div>
+                      <div class="profile" ng-mouseenter="openUploader()" ng-mouseleave="closeUploader()">
+                        <div ng-show="uploadfile" class="uploadfile">
+                          <span class="col-md-12 changePicture">
+                            {{ "Change picture" | translate }}
+                          </span>
+                          <div pragmatic-file-upload ng-src="{{receiverImgUrl()}}">
+                            <div class="fileselector">
+                              <input type="file">
+                            </div>
+                          </div>
+                          <div class="uploadProgress hide">
+                            <div class="progress progress-striped">
+                              <div class="progress-bar" style="width: 0%;"></div>
+                            </div>
+                          </div>
+                        </div>
+                        <img ng-src="{{receiverImgReloadUrl()}}" class="img-thumbnail baseimage">
+                      </div>
                     </div>
 
                     <div class="form-group">
                       <label>{{ "Name" | translate }}</label>
                       <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" required="" type="text">
                       <p class="has-error" ng-show="receiverForm.name.$error.maxlength">
-                      {{ "Receiver name too long" | translate }}</p>
+                        {{ "Receiver name too long" | translate }}
+                      </p>
                     </div>
-
                     <div class="form-group">
                       <label>{{ "Email Address (Username)" | translate }}</label>
                       <input class="form-control" name="email" ng-model="receiver.notification_fields.mail_address" required="" type="email">
                       <p class="has-error" ng-show="receiverForm.email.$error.email">
-                      {{ "Invalid email address" | translate }}</p>
+                        {{ "Invalid email address" | translate }}
+                      </p>
                     </div>
-
                     <div class="form-group">
                       <label>
                         {{ "Password" | translate }}
@@ -88,30 +88,32 @@ This comment is needed in order to push the following strings on transifex
                       <!-- remind: this need to be random & mailed to the inactive user -->
                       <input class="form-control" ng-model="receiver.password" type="password">
                       <p class="has-error" ng-show="unsafe_password">
-                      {{ "The choosen password is unsafe, it should have" | translate }}:</p>
+                        {{ "The choosen password is unsafe, it should have" | translate }}:
+                      </p>
                       <li class="has-error" ng-hide="pwdHasLetter">
-                      {{ "At least one letter" | translate }}</li>
+                        {{ "At least one letter" | translate }}
+                      </li>
                       <li class="has-error" ng-hide="pwdHasNumber">
-                      {{ "At least one number" | translate }}</li>
+                        {{ "At least one number" | translate }}
+                      </li>
                       <li class="has-error" ng-hide="pwdValidLength">
-                      {{ "At least 8 keypress long" | translate }}</li>
+                        {{ "At least 8 keypress long" | translate }}
+                      </li>
                     </div>
-
                     <div class="form-group">
                       <label>{{ "Description" | translate }}</label>
                       <div>
                         <textarea class="form-control" ng-model="receiver.description">{{receiver.description}}</textarea>
                       </div>
                     </div>
-
                     <div class="form-group table-bordered">
                       <input ng-model="receiver.can_delete_submission" type="checkbox">
                       <label>{{ "Can delete submissions" | translate }}</label>
                       <label ng-show="receiver.can_delete_submission">
                         <span class="label label-info">
                           {{ "now Enabled:" | translate }}
-                      </span>
-                      {{ "The Receiver will be now able to globally delete submissions and their content." | translate }}
+                        </span>
+                        {{ "The Receiver will be now able to globally delete submissions and their content." | translate }}
                       </label>
                     </div>
 
@@ -183,8 +185,8 @@ This comment is needed in order to push the following strings on transifex
                         <textarea class="form-control" ng-model="receiver.gpg_key_armor"></textarea>
                       </div>
                     </div>
-
                   </div>
+
                   <div class="col-md-6">
                     <label>{{ "Contexts" | translate }}</label>
                     <div class="selectionList">
@@ -199,15 +201,17 @@ This comment is needed in order to push the following strings on transifex
                 </div>
               </div>
             </div>
-          </form>
-        </div>
+          </div>
+        </form>
       </div>
+
+      <br /><br />
+
       <div ng-controller="AdminReceiverAddCtrl">
         <div class="row">
           <form name="newReceiver">
-            <div class="configRow addReceiver col-md-9">
+            <div class="addReceiver col-md-9">
               <h4>{{ "Add new receiver" | translate }}</h4>
-
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">

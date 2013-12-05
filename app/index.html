@@ -59,11 +59,12 @@
         </div>
 
         <div ng-include="'views/partials/privacybox.html'"></div>
-
-        <div ng-include="'views/partials/toolbar.html'"></div>
+        <div ng-include="'views/partials/messageconsole.html'"></div>
 
         <!-- In here is the main GLClient application content -->
-        <div class="page-content" ng-view=""></div>
+        <div id="PageBox" ng-view=""></div>
+
+        <div ng-include="'views/partials/footer.html'"></div>
 
         <noscript>
             <div class="container">

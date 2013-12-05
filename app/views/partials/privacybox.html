@@ -1,7 +1,7 @@
-<div class="privacyBox alert alert-warning" ng-controller="PrivacyBoxCtrl">
+<div class="PrivacyBox" ng-controller="PrivacyBoxCtrl">
   <div ng-mouseenter="showBox()" ng-mouseleave="hideBox()">
+    <button ng-show="displayBox" type="button" class="close" ng-click="hideBox()">×</button>
     <div ng-switch="" on="privacy">
-      <button ng-show="displayBox" type="button" class="close" ng-click="hideBox()">×</button>
       <div ng-switch-when="high">
         <div ng-show="!displayBox">
           <span class="label label-success">
@@ -9,7 +9,7 @@
             {{ "Congratulations!" | translate }}
           </span>
         </div>
-        <div ng-show="displayBox" class="privacyBox-ext">
+        <div ng-show="displayBox">
           <span class="label label-success">
             <i class="glyphicon glyphicon-ok-circle"></i>
             {{ "Congratulations!" | translate }}

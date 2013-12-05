@@ -6,20 +6,20 @@ This comment is needed in order to push the following strings on transifex
 {{ "Administration Interface" | translate }}
 
 -->
-<div ng-include="'views/header.html'"
+<div ng-include="'views/partials/header.html'"
      onload="header_title='Contexts Configuration';
              header_subtitle='Administration Interface'">
 </div>
 
-<div class="container config-page">
+<div id="ContentBox" class="container">
   <div class="row">
-    <div class="col-md-3 config-sidebar" ng-include="'views/admin/sidebar.html'"></div>
+    <div id="ConfigSidebarBox" class="col-md-3" ng-include="'views/admin/sidebar.html'"></div>
     <div class="col-md-9">
 
       <div ng-controller="AdminContextsCtrl">
 
         <div class="row" ng-repeat="context in admin.contexts">
-          <form name="contextForm" class="form-inline" ng-controller="AdminContextsEditorCtrl">
+          <form name="contextForm" ng-controller="AdminContextsEditorCtrl">
             <div class="configItem contextItem">
 
               <div class="row" ng-click="toggleEditing()">
@@ -48,7 +48,7 @@ This comment is needed in order to push the following strings on transifex
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>{{ "Name" | translate }}</label>
-                      <input class="form-control" required="" ng-model="context.name" value="{{context.name}}" type="text">
+                      <input class="form-control" required="" ng-maxlength="40" ng-model="context.name" value="{{context.name}}" type="text">
                     </div>
                     <div class="form-group">
                       <label>{{ "Description" | translate }}</label>
@@ -111,10 +111,12 @@ This comment is needed in order to push the following strings on transifex
           </form>
         </div>
 
+       <br /><br />
+
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
-              <label>{{ "Add new context" | translate }}</label>
+              <h4>{{ "Add new context" | translate }}</h4>
               <input class="form-control" ng-model="new_context_name" required="" type="text">
             </div>
           </div>
@@ -135,3 +137,5 @@ This comment is needed in order to push the following strings on transifex
     </div>
   </div>
 </div>
+
+<div ng-include="'views/partials/footer.html'"></div>
