@@ -1,0 +1,161 @@
+<div id="messageConsole">
+  <div ng-repeat="error in errors">
+    <div class="alert alert-error errorMessage alert-warning alert-dismissable" fadeout="">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <p><strong>{{error.url}}</strong></p>
+      <div ng-switch="" on="error.code">
+
+        <div ng-switch-when="18">
+          {{ "Your user has reached the maximum amount of access for this Tip" | translate }}
+        </div>
+
+        <div ng-switch-when="35">
+          {{ "The specified comment was not found" | translate }}
+        </div>
+
+        <div ng-switch-when="12">
+          {{ "Not found a Context with the specified GUS identifier" | translate }}
+        </div>
+
+        <div ng-switch-when="17">
+          {{ "Some parameters provided in the context creation can't work together" | translate }}
+        </div>
+
+        <div ng-switch-when="33">
+          {{ "You've reached the maximum amount of download for this file" | translate }}
+        </div>
+
+        <div ng-switch-when="19">
+          {{ "A field expected to be unique is already present" | translate }} ({{error.arguments[0]}}:{{error.arguments[1]}})
+        </div>
+
+        <div ng-switch-when="26">
+          {{ "Not found a File with the specified GUS identifier" | translate }}
+        </div>
+
+        <div ng-switch-when="25">
+          {{ "Operation Forbidden" | translate }}
+        </div>
+
+        <div ng-switch-when="0">
+          {{ "GLTypesError not set" | translate }}
+        </div>
+
+        <div ng-switch-when="40">
+          {{ "The PGP key proposed can't be imported" | translate }}
+        </div>
+
+        <div ng-switch-when="39">
+          {{ "The upload request overcomes the MB limits" | translate }} ({{error.arguments[0]}} MB)
+        </div>
+
+        <div ng-switch-when="31">
+          {{ "Internal Server Error" | translate }} ({{error.arguments[0]}})
+        </div>
+
+        <div ng-switch-when="29">
+          {{ "Authentication Failed" | translate }}
+        </div>
+
+        <div ng-switch-when="36">
+          {{ "The specified host does not match a configured one" | translate }}
+        </div>
+
+        <div ng-switch-when="10">
+          {{ "Invalid Input Format" | translate }} [{{error.arguments[0]}}]
+        </div>
+
+        <div ng-switch-when="34">
+          {{ "The specified old password is not valid" | translate }}
+        </div>
+
+        <div ng-switch-when="24">
+          {{ "Invalid Authentication in scope" | translate }}: {{error.arguments[0]}}
+        </div>
+
+        <div ng-switch-when="23">
+          {{ "Authentication in Tip failed" | translate }}
+        </div>
+
+        <div ng-switch-when="32">
+          {{ "No email was specified" | translate }}
+        </div>
+
+        <div ng-switch-when="16">
+          {{ "Node not found" | translate }}
+        </div>
+
+        <div ng-switch-when="30">
+          {{ "Not Authenticated" | translate }}
+        </div>
+
+        <div ng-switch-when="20">
+          {{ "Not found a Receiver with the specified GUS identifier" | translate }}
+        </div>
+
+        <div ng-switch-when="38">
+          {{ "The file uploaded has a reserved name" | translate }}
+        </div>
+
+        <div ng-switch-when="41">
+          {{ "The time for your role" | translate }} ({{error.arguments[0]}}) {{ "is" | translate }}{{error.arguments[1]}}
+        </div>
+
+        <div ng-switch-when="11">
+          {{ "Statistics Disabled" | translate }}
+        </div>
+
+        <div ng-switch-when="28">
+          {{ "The submission you tried to be update has been already finalized" | translate }}
+        </div>
+
+        <div ng-switch-when="22">
+          {{ "Submission does not validate the input fields" | translate }} [{{error.arguments[0]}}]
+        </div>
+
+        <div ng-switch-when="21">
+          {{ "Not found a Submission with the specified GUS identifier" | translate }}
+        </div>
+
+        <div ng-switch-when="42">
+          {{ "Invalid time range supplied for" | translate }} {{error.arguments[0]}}:{{error.arguments[1]}}
+        </div>
+
+        <div ng-switch-when="13">
+          {{ "Not found a Tip with the specified GUS identifier" | translate }}
+        </div>
+
+        <div ng-switch-when="15">
+          {{ "Pertinence evaluation has been already expressed" | translate }}
+        </div>
+
+        <div ng-switch-when="14">
+          {{ "Not found a Receiver with the specified GUS identifier" | translate }}
+        </div>
+
+        <div ng-switch-when="37">
+          {{ "Resource can be accessed only within Tor network" | translate }}
+        </div>
+
+        <div ng-switch-when="49">
+          {{ "A file attachment is required to complete the submission" | translate }}
+        </div>
+
+        <div ng-switch-when="100">
+          {{ "Request timed out" | translate }}
+        </div>
+
+        <div ng-switch-when="401">
+          {{ "Session expired" | translate }}
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div ng-repeat="success in successes">
+    <div class="alert alert-success successMessage alert-dismissable" fadeout="">
+      <button type="button" class="close" data-dismiss="alert">×</button>
+      <p><strong>{{ "Success!" | translate }}</strong> {{success.message}}</p>
+    </div>
+  </div>
+</div>
