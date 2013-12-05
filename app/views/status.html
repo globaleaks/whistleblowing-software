@@ -1,11 +1,22 @@
-<div class="jumbotron subhead">
-  <div class="container">
+<div id="HeaderBox" class="subhead">
+  <div id="HeaderBoxContent">
+    <span id="LogoBox">
+      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
+    </span>
+    <span id="TitleBox">
+      <h1 id="titleboxh1logo">{{ "New Submission" | translate }}</h1>
+    </span>
+    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+<div id="ContentBox" class="container statusPage ng-cloak" ng-show="tip.im_whistleblower || tip.im_receiver">
+  <div>
     <h1>
       {{ "Tip Status Page" | translate }}
     </h1>
   </div>
-</div>
-<div class="container statusPage ng-cloak" ng-show="tip.im_whistleblower || tip.im_receiver">
   <div class="row" ng-show="tip.im_receiver && !preferences.gpg_enable_files">
     <div class="col-md-12">
       <div class="alert alert-warning">
@@ -280,7 +291,7 @@
 
 </div>
 
-<div class="container statusPage ng-cloak" ng-show="tip.im_whistleblower && tip.im_receiver">
+<div class="statusPage ng-cloak" ng-show="tip.im_whistleblower && tip.im_receiver">
   <div class="row">
       <div class="col-md-4">
         {{ "Loading Tip page..." | translate }}

@@ -1,10 +1,11 @@
-/* Base class, inspired by bootstrap jumbotron */
+#PageBox {
+  width: 100%;
+}
 
-.jumbotron {
-  position: relative;
+#HeaderBox {
+  overflow: hidden;
   padding: 40px 0;
   color: #fff;
-  text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.4), 0 0 30px rgba(0,0,0,.075);
   background: #547980; /* Old browsers */
   background: -moz-linear-gradient(45deg,  #547980 0%, #45ada8 100%); /* FF3.6+ */
@@ -19,45 +20,21 @@
           box-shadow: inset 0 3px 7px rgba(0,0,0,.2), inset 0 -3px 7px rgba(0,0,0,.2);
 }
 
-/* Link styles (used on .masthead-links as well) */
-.jumbotron a {
-  color: #fff;
-  color: rgba(255,255,255,.5);
-  -webkit-transition: all .2s ease-in-out;
-     -moz-transition: all .2s ease-in-out;
-          transition: all .2s ease-in-out;
-}
-.jumbotron a:hover {
-  color: #fff;
-  text-shadow: 0 0 10px rgba(255,255,255,.25);
+#HeaderBox:after, #HeaderBox:after {
+    clear: both;
+    content: "";
+    display: block;
 }
 
-.jumbotron h1 {
-  font-size: 40px;
-  font-weight: bold;
-  letter-spacing: -2px;
-  line-height: 1;
+#HeaderBoxContent, #HeaderBoxHomeContent {
+  width: 95%;
+  margin: 0 auto;
 }
 
-.jumbotron p {
-  font-size: 24px;
-  font-weight: 300;
-  line-height: 1.25;
-  margin-bottom: 30px;
+#HeaderBoxHomeContent {
+  text-align: center;
 }
 
-.jumbotron .container {
-  position: relative;
-  z-index: 2;
-}
-
-.jumbotron select {
-  font-size: 15px;
-  font-weight: bold;
-  height: 30px;
-}
-/* Subhead (other pages)
-------------------------- */
 .subhead {
   text-align: left;
   border-bottom: 1px solid #ddd;
@@ -72,7 +49,11 @@
   display: none;
 }
 
-.messageConsole {
+#ContentBox {
+  margin: 50px auto;
+}
+
+#messageConsole {
   width: 200px;
   position: fixed;
   z-index: 99999;
@@ -80,23 +61,60 @@
   left: 20px;
 }
 
-
-.mobileTextArea {
-  resize: both;
-}
-
 /* Footer */
-.footer {
+#FooterBox {
   padding: 70px 0;
-  margin-top: 70px;
   border-top: 1px solid #E5E5E5;
   background-color: whiteSmoke;
   text-align: center;
 }
 
-.footer p {
+#FooterBox p {
   margin-bottom: 0;
   color: #777;
+}
+
+#LogoBox, #TitleBox, #ToolbarBox {
+  margin-left: 20px;
+  margin-right: 20px;
+}
+
+#LogoBox, #TitleBox {
+  float: left;
+}
+
+#ToolbarBox {
+  float: right;
+}
+
+#LogoBox {
+  max-width: 20%;
+}
+
+#TitleBox {
+  max-width: 60%;
+}
+
+#LogoBox h1 {
+  font-size: 40px;
+  font-weight: bold;
+  letter-spacing: -2px;
+  line-height: 1;
+}
+
+#LogoBox p {
+  font-size: 24px;
+  font-weight: 300;
+  line-height: 1.25;
+  margin-bottom: 30px;
+}
+
+#ToolbarBox {
+  max-width: 20%;
+}
+
+#BlowTheWislteBox, #WhisleblowerLoginBox, #ReceiverLoginBox {
+  margin-bottom: 30px;
 }
 
 /** Submission details **/
@@ -113,23 +131,16 @@
     font-family: sans-serif
 }
 
-.privacyBox {
-  position: fixed;
-  top: 10px;
-  left: 10px;
+.PrivacyBox {
   padding: 10px;
   background-color: #fcf8e3;
   color: #c09853;
   font-size: 20px;
-  z-index: 9999;
-}
-
-.privacyBox-ext {
-  width: 400px;
 }
 
 .toolTip {
-  position: fixed;
+  position: relative;
+  float: right;
   top: 10px;
   right: 10px;
   width: 200px;
@@ -152,8 +163,8 @@
   top: 100px;
   z-index: 999;
   width: 400px;
-  margin-left:-200px;
-  left:50%;
+  margin-left: -200px;
+  left: 50%;
 }
 
 .pending-requests .message {
@@ -204,4 +215,13 @@ table {
 
 .content-tab {
   padding-top: 20px;
+}
+
+.img-thumbnail {
+  position: relative;
+  width: 160px;
+}
+
+.mobileTextArea {
+  resize: both;
 }

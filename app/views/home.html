@@ -102,16 +102,31 @@
   </div>
 </div>
 
-<div class="jumbotron homeSplash" ng-show="node_info.name">
-
+<div id="HeaderBox" ng-show="node_info.name">
+  <div id="HeaderBoxContent">
     <span id="LogoBox">
-      <a href="/"><img ng-src="/static/globaleaks_logo.png"></a>
+      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
     </span>
-    <span id="NodePresentationBox">
-      <h1>{{ node_info.presentation }}</h1>
+    <span id="TitleBox">
+      <h1 id="titleboxh1logo">{{ node_info.presentation }}</h1>
     </span>
-    
-    <div class="ng-cloak BlowTheWhisleBox">
+    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+<div class="homeSplash" ng-show="!node_info.name">
+    <h1>
+      {{ "Loading..." | translate }}
+    </h1>
+</div>
+
+<div id="ContentBox" class="container"   ng-show="node_info.description">
+  <div class="homeIntro">
+
+    <h3 class="lead">{{node_info.description}}</h3>
+
+    <div id="BlowTheWhistleBox" class="ng-cloak row">
       <div ng-show="node_info.configured">
         <div class="row" ng-show="!node_info.tor2web_submission && !anonymous">
           <p class="has-error">
@@ -119,39 +134,26 @@
           </p>
         </div>
         <div class="row" ng-show="!node_info.tor2web_submission && !anonymous">
-          <button class="btn btn-danger disabled btn-lg">
+          <button class="btn btn-danger disabled">
             <i class="glyphicon glyphicon-ban-circle"></i>
             {{ "Whistleblowing disabled" | translate }}
           </button>
         </div>
         <div class="row" ng-show="node_info.tor2web_submission || anonymous">
-          <a ng-click="goToSubmission()" class="btn btn-primary btn-lg">
+          <a ng-click="goToSubmission()" class="btn btn-primary">
             {{ "Blow the Whistle" | translate }}
           </a>
         </div>
       </div>
-    </div>
-
-    <div ng-hide="node_info.configured">
-      {{ "Your node is not configured! Please, proceed via" | translate }}
+      <div ng-hide="node_info.configured">
+        {{ "Your node is not configured! Please, proceed via" | translate }}
         <a href="/#/admin/contexts">
           {{ "Admin interface and configure at least one context" | translate }}
         </a>
+      </div>
     </div>
-</div>
 
-<div class="jumbotron homeSplash" ng-show="!node_info.name">
-    <h1>
-      {{ "Loading..." | translate }}
-    </h1>
-</div>
-
-<div class="container" ng-show="node_info.description">
-  <div class="homeIntro">
-
-    <h3 class="lead">{{node_info.description}}</h3>
-
-    <div class="row" id="WhisleblowerLoginBox">
+    <div id="WhisleblowerLoginBox" class="row">
       <div class="col-md-offset-2 col-md-8">
         <h3>
           {{ "Are you a whistleblower?" | translate }}
@@ -177,7 +179,8 @@
         </form>
       </div>
     </div>
-    <div class="row" id="ReceiverLoginBox">
+
+    <div id="ReceiverLoginBox" class="row">
       <div class="col-md-offset-2 col-md-8">
         <h3>
           {{ "Are you a receiver?" | translate }}
@@ -191,10 +194,7 @@
       </div>
     </div>
 
-    <br />
-    <br />
-
-    <div class="row" id="GlobaleaksInfoBox">
+    <div id="GlobaleaksInfoBox" class="row">
       <div class="col-md-12">
         <p>
         {{ "Through this platform you will be able to report on wrongdoing. This platform is running the" | translate }}
@@ -214,9 +214,3 @@
     </div>
   </div>
 </div>
-
-<footer class="footer" id="FooterBox">
-  <div class="container">
-    <p>{{node_info.footer}}</p>
-  </div>
-</footer>

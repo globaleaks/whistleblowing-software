@@ -1,6 +1,15 @@
-GLClient.controller('MainCtrl', ['$scope', '$http', '$route', 'StaticFiles',
-  function($scope, $http, $route, StaticFiles) {
+GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', 'Node',
+  function($scope, $rootScope, $http, $route, Node) {
     $scope.started = true;
+
+    $rootScope.update_node_info = function() {
+      Node.get(function(node_info){
+        $scope.node_info = node_info;
+      });
+    }
+
+    $rootScope.update_node_info();
+
   }
 ]);
 

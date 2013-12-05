@@ -1,26 +1,21 @@
-<div class="jumbotron subhead">
-  <div class="container ng-cloak">
-
-    <div class="row">
-      <div class="col-md-3">
-        <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded col-md-12"></a>
-      </div>
-
-      <div class="col-md-9">
-        <!-- XXX come up with a way to make this inherit from the header.html template -->
-        <h1>{{ "New Submission" | translate }}</h1>
-      </div>
-
-    </div>
-
+<div id="HeaderBox" class="subhead">
+  <div id="HeaderBoxContent">
+    <span id="LogoBox">
+      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
+    </span>
+    <span id="TitleBox">
+      <h1 id="titleboxh1logo">{{ "New Submission" | translate }}</h1>
+    </span>
+    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
   </div>
+  <div class="clearfix"></div>
 </div>
 
-<div class="container" ng-show="!node_info.name">
+<div  ng-show="!node_info.name">
     <h2>{{ "Loading..." | translate }}</h2>
 </div>
 
-<div class="container ng-cloak" ng-show="!node_info.configured && node_info.name">
+<div class="ng-cloak" ng-show="!node_info.configured && node_info.name">
   <h2>{{ "This node is not configured." | translate }}</h2>
   <p>{{ "You will not be able to perform a submission." | translate }}<br />
   {{ "Admin please configure at least one Context and associated Receivers using" | translate }}
@@ -29,7 +24,7 @@
   </a>.</p>
 </div>
 
-<div ng-controller="WizardCtrl" class="container submission ng-cloak" ng-show="node_info.name && node_info.configured">
+<div ng-controller="WizardCtrl" id="ContentBox" class="container submission ng-cloak" ng-show="node_info.name && node_info.configured">
 
   <div class="tabbable tabs-below">
 

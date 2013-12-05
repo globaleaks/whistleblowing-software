@@ -1,14 +1,12 @@
 /** Configuration Pages **/
 
-.configRow {
-  padding: 8px;
+.configItem {
   line-height: 20px;
   text-align: left;
   vertical-align: top;
 }
 
-.configRow textarea {
-  width: 250px;
+.configItem textarea {
 }
 
 .odd {
@@ -22,11 +20,6 @@
 
 .invalidReceiver {
     background-color: red;
-}
-
-.config-page textarea {
-  width: 300px;
-  height: 200px;
 }
 
 .config-sidebar {
@@ -118,7 +111,7 @@
 
 .imageUpload .profile {
   position: relative;
-  width: 320px;
+  width: 160px;
 }
 
 .imageUpload .profile .uploadfile {
@@ -184,7 +177,7 @@
   -webkit-box-shadow: 2px 5px 5px -1px #ddd;
   box-shadow:         2px 5px 5px -1px #ddd;
   background-color: rgb(252, 252, 252);
-  margin-bottom: 20px;
+  margin-top: 20px;
 }
 
 .editButtons {

@@ -4,18 +4,27 @@ GLClient.controller('toolTipCtrl',
 function($scope, $rootScope, Authentication, $location,
          Node, $route, $translate) {
 
+  application_default_lang = 'en';
+
+  if ($.cookie('language'))
+    $scope.language = $.cookie('language');
+  else
+    $scope.language = application_default_lang;
+
+  $scope.selected_language = $scope.language;
+
   $scope.session_id = $.cookie('session_id');
   $scope.auth_landing_page = $.cookie('auth_landing_page');
   $scope.role = $.cookie('role');
-  
+ 
   Node.get(function(node_info) {
     if (!$.cookie('language') ||
         $.inArray($.cookie('language'), node_info.languages_enabled == -1)) {
       $.cookie('language', node_info.default_language);
     }
 
-    $rootScope.language = $.cookie('language');
-    $rootScope.selected_language = $scope.language;
+    $scope.language = $.cookie('language');
+    $scope.selected_language = $scope.language;
 
     var language_count = 0;
     $rootScope.languages_supported = {};
@@ -29,26 +38,26 @@ function($scope, $rootScope, Authentication, $location,
       }
     });
 
-    $rootScope.show_language_selector = (language_count > 1);
-
+    $scope.show_language_selector = (language_count > 1);
   });
 
   $scope.logout = Authentication.logout;
 
-  $rootScope.$watch("language", function() {
-    $.cookie('language', $rootScope.language);
-    $rootScope.selected_language = $rootScope.language;
-    if ($scope.language === undefined) {
-        $translate.uses('en');
-    } else {
-        $translate.uses($scope.language);
-    }
-    $route.reload();
-  });
+  $scope.$watch("language", function() {
 
-  $rootScope.$watch("languages_enabled", function() {
-    $route.reload();
-  });
+    if ($scope.language === undefined) {
+      $scope.language = application_default_lang
+    }
+
+    $.cookie('language', $scope.language);
+
+    $scope.selected_language = $scope.language;
+
+    $translate.uses($scope.language);
+
+    $rootScope.update_node_info()
+
+  }, true);
 
   $scope.$watch(function(scope) {
     return $.cookie('session_id');
