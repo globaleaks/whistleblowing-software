@@ -6,25 +6,22 @@ function($scope, $rootScope, Authentication, $location,
 
   application_default_lang = 'en';
 
-  if ($.cookie('language'))
+  if ($.cookie('language')) {
     $scope.language = $.cookie('language');
-  else
+  } else {
     $scope.language = application_default_lang;
-
-  $scope.selected_language = $scope.language;
+  }
 
   $scope.session_id = $.cookie('session_id');
   $scope.auth_landing_page = $.cookie('auth_landing_page');
   $scope.role = $.cookie('role');
  
   Node.get(function(node_info) {
-    if (!$.cookie('language') ||
-        $.inArray($.cookie('language'), node_info.languages_enabled == -1)) {
-      $.cookie('language', node_info.default_language);
+    if ($.inArray($scope.language, node_info.languages_enabled) == -1) {
+      $.cookie('language', node_info.default_language);  
+      $scope.language = node_info.default_language;
+      $translate.uses($scope.language);
     }
-
-    $scope.language = $.cookie('language');
-    $scope.selected_language = $scope.language;
 
     var language_count = 0;
     $rootScope.languages_supported = {};
@@ -43,21 +40,20 @@ function($scope, $rootScope, Authentication, $location,
 
   $scope.logout = Authentication.logout;
 
-  $scope.$watch("language", function() {
+  $scope.$watch("language", function(newVal, oldVal) {
 
-    if ($scope.language === undefined) {
-      $scope.language = application_default_lang
+    if (newVal && newVal !== oldVal) {
+
+      $.cookie('language', $scope.language);
+
+      $translate.uses($scope.language);
+
+      $rootScope.update_node_info();
+
+      $route.reload();
     }
 
-    $.cookie('language', $scope.language);
-
-    $scope.selected_language = $scope.language;
-
-    $translate.uses($scope.language);
-
-    $rootScope.update_node_info()
-
-  }, true);
+  });
 
   $scope.$watch(function(scope) {
     return $.cookie('session_id');
@@ -66,6 +62,8 @@ function($scope, $rootScope, Authentication, $location,
     $scope.auth_landing_page = $.cookie('auth_landing_page');
     $scope.role = $.cookie('role');
   });
+
+  $translate.uses($scope.language);
 
 }]);
 

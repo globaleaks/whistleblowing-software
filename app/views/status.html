@@ -5,7 +5,9 @@
     </span>
     <span id="TitleBox">
       <h1 id="titleboxh1logo">
-        {{ "Tip Status Page" | translate }}
+        <a href="/#/">
+          {{ "Tip Status Page" | translate }}
+        </a>
       </h1>
     </span>
     <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
@@ -132,7 +134,7 @@
         {{ "Files" | translate }}
       </h3>
       <div class="well" ng-show="tip.files">
-        <a class="input-small" ng-href="/tip/{{tip.id}}/collection" ng-show="tip.im_receiver" ng-click="increaseDownloadCounts()">
+        <a class="input-small" ng-href="/tip/{{tip.id}}/collection" ng-show="tip.im_receiver && show_download_all()" ng-click="increaseDownloadCounts()">
           {{ "download all the files" | translate }}
         </a>
         <br />
@@ -170,7 +172,7 @@
                   {{file.name}}
                 </td>
                 <td ng-show="tip.im_receiver">
-                  <a ng-click="increaseDownloadCount(file)" ng-disabled="file.downloads >= current_context.file_max_downloads" class="btn btn-xs btn-default ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
+                  <a ng-disabled="file.downloads >= tip.download_limit" ng-click="increaseDownloadCount(file)" class="btn btn-xs btn-default ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
                     <i class="glyphicon glyphicon-download"></i> 
                     {{ "download" | translate }}
                     ({{file.downloads}}/{{tip.download_limit}})

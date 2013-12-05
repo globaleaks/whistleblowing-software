@@ -85,9 +85,20 @@ GLClient.controller('StatusCtrl',
     };
 
     $scope.increaseDownloadCounts = function() {
-        for (file in $scope.tip.files) {
-           $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
+      for (file in $scope.tip.files) {
+       $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
+      }
+    }
+
+    $scope.show_download_all = function() {
+      download_all = false;
+      for (file in $scope.tip.files) {
+        if ($scope.tip.files[file].downloads < $scope.tip.download_limit) {
+          download_all = true;
         }
+      }
+
+      return download_all;
     }
 
   }]);
