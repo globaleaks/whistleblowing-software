@@ -10,9 +10,8 @@ from globaleaks.settings import GLSetting, transact, transact_ro
 from globaleaks.tests import helpers
 from globaleaks import models
 from globaleaks.jobs import delivery_sched
-from globaleaks.handlers import files, authentication, submission, tip
+from globaleaks.handlers import files, authentication, submission, wbtip
 from globaleaks.handlers.admin import create_context, update_context, create_receiver, get_receiver_list
-from globaleaks.handlers.receiver import TipsCollection
 from globaleaks.rest import errors
 from globaleaks.models import InternalTip
 
@@ -24,7 +23,7 @@ def collect_ifile_as_wb_without_wbtip(store, internaltip_id):
     itip = store.find(InternalTip, InternalTip.id == internaltip_id).one()
 
     for internalfile in itip.internalfiles:
-        file_list.append(tip.wb_serialize_file(internalfile))
+        file_list.append(wbtip.wb_serialize_file(internalfile))
     return file_list
 
 
@@ -172,7 +171,7 @@ class TestSubmission(helpers.TestGL):
         wb_access_id = yield authentication.login_wb(receipt)
 
         # remind: return a tuple (serzialized_itip, wb_itip)
-        wb_tip = yield tip.get_internaltip_wb(wb_access_id)
+        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
 
         # In the WB/Receiver Tip interface, wb_fields are called fields.
         # This can be uniformed when API would be cleaned of the _gus
@@ -251,7 +250,7 @@ class TestSubmission(helpers.TestGL):
         receipt = yield submission.create_whistleblower_tip(status)
         wb_access_id = yield authentication.login_wb(receipt)
 
-        wb_tip = yield tip.get_internaltip_wb(wb_access_id)
+        wb_tip = yield wbtip.get_internaltip_wb(wb_access_id)
 
         self.assertTrue(wb_tip.has_key('fields'))
 
