@@ -5,11 +5,11 @@
     </span>
     <span id="TitleBox">
       <h1 id="titleboxh1logo">
-        <a href="/#/">
-          {{ header_title | translate }}
-        </a>
+        {{ header_title | translate }}
       </h1>
-      <h3 id="titleboxh3tagline">{{ header_subtitle | translate }}</h3>
+      <h3 id="titleboxh3tagline">
+        {{ header_subtitle | translate }}
+      </h3>
     </span>
     <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
   </div>
