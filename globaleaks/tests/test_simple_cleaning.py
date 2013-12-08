@@ -7,7 +7,7 @@ from globaleaks.tests import helpers
 
 from globaleaks.rest import requests
 from globaleaks.rest.base import uuid_regexp
-from globaleaks.handlers import tip, base, admin, submission, files
+from globaleaks.handlers import base, admin, submission, files
 from globaleaks.jobs import delivery_sched, cleaning_sched
 from globaleaks import models
 from globaleaks.utils.utility import is_expired
@@ -60,7 +60,6 @@ class TTip(helpers.TestWithDB):
 
 
 class TestCleaning(TTip):
-    _handler = tip.TipInstance
 
     # Test model is a prerequisite for create e valid environment where Tip lives
 
