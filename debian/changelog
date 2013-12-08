@@ -1,62 +1,68 @@
+globaleaks (2.30.1) unstable; urgency=low
+
+  * GlobaLeaks 2.30.1 Release (Minor UI fixes)
+
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 08 Dec 2013 16:55:59 +0002
+
 globaleaks (2.30) unstable; urgency=low
 
   * GlobaLeaks 2.30 Release
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 05 Nov 2013 16:55:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 05 Dec 2013 16:55:59 +0002
 
 globaleaks (2.29.9-0) unstable; urgency=low
 
   * GlobaLeaks 2.29.9 Release (Pre 2.30: UI Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 05 Nov 2013 16:34:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Thu, 05 Dec 2013 16:34:59 +0002
 
 globaleaks (2.29.8-0) unstable; urgency=low
 
   * GlobaLeaks 2.29.8 Release (Pre 2.30: UI Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 03 Nov 2013 15:10:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 03 Dec 2013 15:10:59 +0002
 
 globaleaks (2.29.7-0) unstable; urgency=low
 
   * GlobaLeaks 2.29.7 Release (Pre 2.30: UI Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 03 Nov 2013 12:25:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 03 Dec 2013 12:25:59 +0002
 
 globaleaks (2.29.6-0) unstable; urgency=low
 
   * GlobaLeaks 2.29.6 Release (Pre 2.30: UI Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 03 Nov 2013 11:59:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Tue, 03 Dec 2013 11:59:59 +0002
 
 globaleaks (2.29.5-0) unstable; urgency=low
 
   * GlobaLeaks 2.29.5 Release (Pre 2.30: UI Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 02 Nov 2013 16:17:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 02 Dec 2013 16:17:59 +0002
 
 globaleaks (2.29.4-0) unstable; urgency=low
 
   * GlobaLeaks 2.29.4 Release (Pre 2.30: Packaging Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 02 Nov 2013 10:20:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Mon, 02 Dec 2013 10:20:59 +0002
 
 globaleaks (2.29.3-0) unstable; urgency=low
 
   * GlobaLeaks 2.29.3 Release (Pre 2.30: Packaging Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 01 Nov 2013 21:28:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 01 Dec 2013 21:28:59 +0002
 
 globaleaks (2.29.2-0) unstable; urgency=low
 
   * GlobaLeaks 2.29.2 Release (Pre 2.30: Packaging Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 01 Nov 2013 19:08:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 01 Dec 2013 19:08:59 +0002
 
 globaleaks (2.29.1-0) unstable; urgency=low
 
   * GlobaLeaks 2.29.1 Release (Pre 2.30: Packaging Fixes)
 
- -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 01 Nov 2013 17:04:59 +0002
+ -- GlobaLeaks software signing key <info@globaleaks.org>  Sun, 01 Dec 2013 17:04:59 +0002
 
 globaleaks (2.29-0) unstable; urgency=low
 
