@@ -91,6 +91,10 @@
   max-width: 20%;
 }
 
+#LogoBox img {
+  max-width: 100%;
+}
+
 #TitleBox {
   max-width: 60%;
 }
