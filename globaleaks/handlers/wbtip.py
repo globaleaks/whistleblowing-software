@@ -253,3 +253,4 @@ class WbTipReceiversCollection(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
+
