@@ -1,4 +1,4 @@
-<div class="not-anonymous-question modal" ng-show="showQuestions">
+<div id="SecurityAwarenessBox" class="not-anonymous-question modal" ng-show="showQuestions">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -124,7 +124,7 @@
 </div>
 
 <div id="ContentBox" class="container"   ng-show="node_info.description">
-  <div class="homeIntro">
+  <div id="HomePageBox">
 
     <h3 class="lead">{{node_info.description}}</h3>
 
@@ -156,7 +156,7 @@
       </div>
     </div>
 
-    <div id="WhisleblowerLoginBox" class="row">
+    <div id="WhistleblowerLoginBox" class="row">
       <div class="col-md-offset-2 col-md-8">
         <h3>
           {{ "Are you a whistleblower?" | translate }}
