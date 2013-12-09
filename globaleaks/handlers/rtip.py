@@ -31,7 +31,7 @@ def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
         'fields' : dict(internaltip.wb_fields),
 
-        # This field is used angualr.js side, to know if show the option at
+        # This field is used angualar.js side, to know if show the option at
         # users interfaces. It's enabled node level by the admin
         'im_receiver_postponer' : False,
 
@@ -96,7 +96,7 @@ def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_c
 
     tip_desc = receiver_serialize_internal_tip(rtip.internaltip)
 
-	# are added here because part of ReceiverTip, not InternalTip
+    # are added here because part of ReceiverTip, not InternalTip
     tip_desc['access_counter'] = int(rtip.access_counter)
     tip_desc['expressed_pertinence'] = int(rtip.expressed_pertinence)
     tip_desc['id'] = unicode(rtip.id)
@@ -272,7 +272,7 @@ class RTipInstance(BaseHandler):
     @inlineCallbacks
     def put(self, tip_id, *uriargs):
         """
-	Some special operation over the Tip are handled here
+        Some special operation over the Tip are handled here
         """
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
@@ -292,8 +292,8 @@ class RTipInstance(BaseHandler):
         Response: None
         Errors: ForbiddenOperation, TipGusNotFound
 
-	global delete: is removed InternalTip and all the things derived
-	personal delete: is removed the ReceiverTip and ReceiverFiles
+        global delete: is removed InternalTip and all the things derived
+        personal delete: is removed the ReceiverTip and ReceiverFiles
         """
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
@@ -305,7 +305,6 @@ class RTipInstance(BaseHandler):
 
         self.set_status(200) # Success
         self.finish()
-
 
 
 def receiver_serialize_comment(comment):
@@ -390,32 +389,28 @@ class RTipCommentCollection(BaseHandler):
         self.finish(answer)
 
 
-def serialize_receiver(receiver, access_counter, language=GLSetting.memory_copy.default_language):
-    receiver_dict = {
-        "can_delete_submission": receiver.can_delete_submission,
-        "name": unicode(receiver.name),
-        "receiver_gus": unicode(receiver.id),
-        "receiver_level": int(receiver.receiver_level),
-        "contexts": [],
-        "tags": receiver.tags,
-        "access_counter": access_counter,
-    }
-    for context in receiver.contexts:
-        receiver_dict['contexts'].append(unicode(context.id))
-
-    mo = Rosetta()
-    mo.acquire_storm_object(receiver)
-    receiver_dict["description"] = mo.dump_translated("description", language)
-
-    return receiver_dict
-
 @transact_ro
-def get_receiver_list_receiver(store, user_id, tip_id, language):
+def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
+
     rtip = access_tip(store, user_id, tip_id)
 
     receiver_list = []
     for rtip in rtip.internaltip.receivertips:
-        receiver_list.append(serialize_receiver(rtip.receiver, rtip.access_counter, language))
+
+        receiver_desc = {
+            "can_delete_submission": rtip.receiver.can_delete_submission,
+            "name": unicode(rtip.receiver.name),
+            "receiver_gus": unicode(rtip.receiver.id),
+            "receiver_level": int(rtip.receiver.receiver_level),
+            "tags": rtip.receiver.tags,
+            "access_counter": rtip.access_counter,
+        }
+
+        mo = Rosetta()
+        mo.acquire_storm_object(rtip.receiver)
+        receiver_desc["description"] = mo.dump_translated("description", language)
+
+        receiver_list.append(receiver_desc)
 
     return receiver_list
 
