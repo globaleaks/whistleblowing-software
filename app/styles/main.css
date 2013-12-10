@@ -158,7 +158,8 @@
 }
 
 .tab-content {
-  padding: 20px;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .shasum {
@@ -228,4 +229,13 @@ table {
 
 .mobileTextArea {
   resize: both;
+}
+
+#titleboxdefault {
+  display: block;
+}
+
+
+#titleboxwithtagline {
+  display: none;
 }

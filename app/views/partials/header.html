@@ -4,12 +4,23 @@
       <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
     </span>
     <span id="TitleBox">
-      <h1 id="titleboxh1logo">
-        {{ header_title | translate }}
-      </h1>
-      <h3 id="titleboxh3tagline">
-        {{ header_subtitle | translate }}
-      </h3>
+      <div id="titleboxdefault">
+        <div>
+          <h3>{{ header_subsection | translate }}</h3>
+        </div>
+        <div>
+          <h1>{{ header_section | translate }}</h1>
+        </div>
+      </div>
+      <div id="titleboxwithtagline">
+        <div id="logo"></div>
+        <div id="tagline">
+          {{ header_section | translate }}
+          <span ng-show="header_subsection">
+             - {{ header_subsection | translate }}
+          </span>
+        </div>
+      </div>
     </span>
     <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
   </div>
