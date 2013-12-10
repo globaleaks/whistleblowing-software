@@ -1,12 +1,10 @@
 GLClient.controller('StatusCtrl',
-  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Tip', 'Contexts', 'ReceiverPreferences',
-  function($scope, $rootScope, $location, $route, $routeParams, $http, Tip, Contexts, ReceiverPreferences) {
+  ['$scope', '$rootScope', '$location', '$route', '$routeParams', '$http', 'Tip', 'WBTip', 'Contexts', 'ReceiverPreferences',
+  function($scope, $rootScope, $location, $route, $routeParams, $http, Tip, WBTip, Contexts, ReceiverPreferences) {
     $scope.tip_id = $routeParams.tip_id;
 
     if ($.cookie('role') === 'wb') {
-      $rootScope.whistleblower_tip_id = $.cookie('tip_id');
-
-      var url = '/tip/' + $rootScope.whistleblower_tip_id + '/upload',
+      var url = '/wbtip/upload',
         headers = {};
       if ($.cookie('session_id')) {
         headers['X-Session'] = $.cookie('session_id');
@@ -39,41 +37,48 @@ GLClient.controller('StatusCtrl',
         }
       }, true);
 
+      new WBTip(function(tip){
+
+        Contexts.query(function(contexts){
+          $scope.tip = tip;
+          $scope.contexts = contexts;
+          $scope.fieldFormat = {};
+
+          angular.forEach(contexts, function(context, k){
+            if (context.context_gus == $scope.tip.context_gus) {
+              $scope.current_context = context;
+            }
+          });
+          angular.forEach($scope.current_context.fields,
+                          function(field){
+            $scope.fieldFormat[field.key] = field;
+          });
+
+        });
+      });
+
     }
 
     if ($.cookie('role') === 'receiver') {
       $scope.preferences = ReceiverPreferences.get();
-    }
     
-    var TipID = {tip_id: $scope.tip_id};
-    new Tip(TipID, function(tip){
+      var TipID = {tip_id: $scope.tip_id};
+      new Tip(TipID, function(tip){
 
-      Contexts.query(function(contexts){
-        $scope.tip = tip;
-        $scope.contexts = contexts;
-        $scope.fieldFormat = {};
+        Contexts.query(function(contexts){
+          $scope.tip = tip;
+          $scope.contexts = contexts;
+          $scope.fieldFormat = {};
 
-        angular.forEach(contexts, function(context, k){
-          if (context.context_gus == $scope.tip.context_gus) {
-            $scope.current_context = context;
-          }
-        });
-        angular.forEach($scope.current_context.fields,
-                        function(field){
-          $scope.fieldFormat[field.key] = field; 
-        });
-
-      });
-    });
-
-    $scope.getField = function(field_name) {
-      angular.forEach($scope.current_context.fields,
-                      function(field){
-        if ( field.key  == field_name ) {
-          return field; 
-        }
-      });
-    };
+          angular.forEach(contexts, function(context, k){
+            if (context.context_gus == $scope.tip.context_gus) {
+              $scope.current_context = context;
+            }
+          });
+          angular.forEach($scope.current_context.fields,
+                          function(field){
+            $scope.fieldFormat[field.key] = field; 
+          });
 
     $scope.newComment = function() {
       $scope.tip.comments.newComment($scope.newCommentContent);
@@ -85,21 +90,35 @@ GLClient.controller('StatusCtrl',
     };
 
     $scope.increaseDownloadCounts = function() {
-      for (file in $scope.tip.files) {
+      for (file in $scope.tip.files) { 
        $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
-      }
+      } 
     }
 
     $scope.show_download_all = function() {
       download_all = false;
-      for (file in $scope.tip.files) {
-        if ($scope.tip.files[file].downloads < $scope.tip.download_limit) {
+      
+      for (file in $scope.tip.files) { 
+        if ($scope.tip.files[file].downloads < $scope.tip.download_limit) { 
           download_all = true;
-        }
-      }
+        } 
+      } 
 
       return download_all;
     }
+
+        });
+      });
+    }
+
+    $scope.getField = function(field_name) {
+      angular.forEach($scope.current_context.fields,
+                      function(field){
+        if ( field.key  == field_name ) {
+          return field; 
+        }
+      });
+    };
 
   }]);
 

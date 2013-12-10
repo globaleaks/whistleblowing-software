@@ -1,3 +1,11 @@
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+{{ "Loading Tip page..." | translate }}
+
+-->
+
 <div id="HeaderBox" class="subhead">
   <div id="HeaderBoxContent">
     <span id="LogoBox">
@@ -13,22 +21,11 @@
   <div class="clearfix"></div>
 </div>
 
-<div id="ContentBox" class="container statusPage ng-cloak" ng-show="tip.im_whistleblower || tip.im_receiver">
+<div id="ContentBox" class="container statusPage ng-cloak">
   <div>
     <h1>
       {{ "Tip Status Page" | translate }}
     </h1>
-  </div>
-  <div class="row" ng-show="tip.im_receiver && !preferences.gpg_enable_files">
-    <div class="col-md-12">
-      <div class="alert alert-warning">
-        <i class="glyphicon glyphicon-warning-sign"></i>
-        <strong>{{ "Warning!" | translate }}</strong>
-        {{ "You have not configured your encryption keys, so the files will be stored on the globaleaks node un-encrypted." | translate }}
-        {{ "This may lead to unintended access to the files by the server administrator or in case of server seizing." | translate }}
-        {{ "Please configure your PGP keys in the receiver preference page." | translate }}
-      </div>
-    </div>
   </div>
 
   <div class="row" ng-controller="TipCtrl">
@@ -84,23 +81,6 @@
     </div>
 
     <div class="col-md-6">
-      <div class="col-md-12" ng-show="tip.im_receiver">
-        <h3>{{ "Options" }}</h3>
-        <span ng-show="tip.im_receiver_postponer">
-          <button ng-click="tip_extend(tip.id)" class="btn btn-sm btn-warning">
-            <i class="glyphicon glyphicon-time"></i>
-            {{ "Postpone Tip expiration date" | translate }}
-          </button>
-        </span>
-        <span ng-show="session.permissions['can_delete_submission']">
-          <button ng-click="tip_delete(tip.id, true)" class="btn btn-sm btn-danger">
-            <i class="glyphicon glyphicon-trash"></i>
-            {{ "Delete Tip" | translate }}
-          </button>
-        </span>
-      </div>
-      <br />
-
       <div class="col-md-12">
         <h3>{{ "Receiver List" | translate }}</h3>
         <table class="table table-striped" id="receiverList">
@@ -132,26 +112,12 @@
         {{ "Files" | translate }}
       </h3>
       <div class="well" ng-show="tip.files">
-        <a class="input-small" ng-href="/tip/{{tip.id}}/collection" ng-show="tip.im_receiver && show_download_all()" ng-click="increaseDownloadCounts()">
-          {{ "download all the files" | translate }}
-        </a>
-        <br />
-        <a class="input-small" ng-click="show_new_files = !show_new_files" ng-init="show_new_files = false" ng-show="tip.im_receiver && !show_new_files">
-          {{ "show only files not yet downloaded" | translate }}
-        </a>
-        <a class="input-small" ng-click="show_new_files = !show_new_files" ng-show="tip.im_receiver && show_new_files">
-          {{ "show all the files" | translate }}
-        </a>
-        <br /><br />
         <div class="table-container">
           <table class="table table-striped" id="fileList">
             <thead>
               <tr>
                 <th>
                   {{ "Filename" | translate }}
-                </th>
-                <th ng-show="tip.im_receiver">
-                  {{ "Download" | translate }}
                 </th>
                 <th>
                   {{ "Upload Date" | translate }}
@@ -168,13 +134,6 @@
               <tr ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
                 <td>
                   {{file.name}}
-                </td>
-                <td ng-show="tip.im_receiver">
-                  <a ng-disabled="file.downloads >= tip.download_limit" ng-click="increaseDownloadCount(file)" class="btn btn-xs btn-default ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
-                    <i class="glyphicon glyphicon-download"></i> 
-                    {{ "download" | translate }}
-                    ({{file.downloads}}/{{tip.download_limit}})
-                  </a>
                 </td>
                 <td>
                   {{file.creation_date | date:'dd-MM-yyyy' }}
@@ -229,7 +188,7 @@
       </p>
     </div>
 
-    <div class="col-md-12" ng-show="tip.im_whistleblower">
+    <div class="col-md-12">
       <div ng-include="'views/partials/fileupload.html'"></div>
     </div>
 
@@ -288,15 +247,6 @@
         {{ "Add Comment" | translate }}
       </button>
     </div>
-   </div>
- </div>
+  </div>
 
-</div>
-
-<div class="statusPage ng-cloak" ng-show="tip.im_whistleblower && tip.im_receiver">
-  <div class="row">
-      <div class="col-md-4">
-        {{ "Loading Tip page..." | translate }}
-       </div>
-   </div>
 </div>

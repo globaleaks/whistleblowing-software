@@ -83,8 +83,7 @@ angular.module('resourceServices.authentication', [])
                 auth_landing_page = "/receiver/tips";
               }
               if (role == 'wb') {
-                auth_landing_page = "/status/" + self.user_id;
-                setCookie('tip_id', self.user_id);
+                auth_landing_page = "/status";
               }
 
               setCookie('auth_landing_page', "/#" + auth_landing_page);
@@ -108,7 +107,6 @@ angular.module('resourceServices.authentication', [])
             $.removeCookie('session_id');
             $.removeCookie('role');
             $.removeCookie('auth_landing_page');
-            $.removeCookie('tip_id');
 
             if (role === 'wb')
               $location.path('/');
@@ -375,9 +373,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('Tip', ['$resource', 'Receivers',
           function($resource, Receivers) {
-    var receiversResource = $resource('/tip/:tip_id/receivers', {tip_id: '@tip_id'}, {}),
-      tipResource = $resource('/tip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}}),
-      commentsResource = $resource('/tip/:tip_id/comments', {tip_id: '@tip_id'}, {});
+
+    var tipResource = $resource('/rtip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}});
+    var receiversResource = $resource('/rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
+    var commentsResource = $resource('/rtip/:tip_id/comments', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
       var self = this;
@@ -411,41 +410,51 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
     };
 }]).
-  factory('WhistleblowerTip', ['$resource', 'Tip', 'Authentication', function($resource, Tip, Authentication){
-    var randomString = function(chars, length) {
-      // Generates a random string. Note: this is not cryptographically secure.
-      var ret = '';
-      for(var i=0;i<length;i++) {
-        ret += chars[Math.floor(Math.random()*chars.length)]
-      };
-      return ret
+  factory('WBTip', ['$resource', 'Receivers',
+          function($resource, Receivers) {
+
+    var tipResource = $resource('/wbtip', {}, {update: {method: 'PUT'}});
+    var receiversResource = $resource('/wbtip/receivers', {}, {});
+    var commentsResource = $resource('/wbtip/comments', {}, {});
+
+    return function(tipID, fn) {
+      var self = this;
+      self.tip = {};
+      self.tip.comments = [];
+      self.tip.receivers = [];
+
+      tipResource.get(tipID, function(result){
+
+        receiversResource.query(tipID, function(receiversCollection){
+
+          self.tip = result;
+          self.tip.receivers = receiversCollection;
+
+          commentsResource.query(tipID, function(commentsCollection){
+            self.tip.comments = commentsCollection;
+            self.tip.comments.newComment = function(content) {
+              var c = new commentsResource(tipID);
+              c.content = content;
+              c.$save(function(newComment) {
+                self.tip.comments.push(newComment);
+              });
+            };
+
+            // XXX perhaps make this return a lazyly instanced item.
+            // look at $resource code for inspiration.
+            fn(self.tip);
+          });
+        });
+      });
+
     };
-
-    var generateRandomTipID = function() {
-      // This will generate a random Tip ID that is a UUID4
-      var CHARS = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5',
-        '6', '7', '8', '9'],
-        tip_id = '';
-
-      tip_id += randomString(CHARS, 8);
-      tip_id += '-';
-      tip_id += randomString(CHARS, 4);
-      tip_id += '-';
-      tip_id += randomString(CHARS, 4);
-      tip_id += '-';
-      tip_id += randomString(CHARS, 4);
-      tip_id += '-';
-      tip_id += randomString(CHARS, 12);
-
-      return tip_id;
-    };
-
+}]).
+  factory('WhistleblowerTip', ['$resource', 'WBTip', 'Authentication', function($resource, WBTip, Authentication){
     return function(receipt, fn) {
-      var self = this,
-        tip_id = generateRandomTipID();
+      var self = this;
       Authentication.login('', receipt, 'wb')
       .then(function() {
-        fn(tip_id);
+        fn();
       });
     };
 }]).
