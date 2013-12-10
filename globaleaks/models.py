@@ -355,6 +355,25 @@ class Comment(Model):
     ## NO *_keys = It's created without initializing dict
 
 
+class Message(Model):
+    """
+    This table handle the direct messages between whistleblower and one
+    Receiver.
+    """
+    __storm_table__ = 'message'
+
+    receivertip_id = Unicode()
+    author = Unicode()
+    content = Unicode(validator=longtext_v)
+    visualized = Bool()
+
+    type = Unicode()
+    _types = [ u'receiver', u'whistleblower' ]
+    mark = Unicode()
+    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
+
+
+
 class Node(Model):
     """
     This table has only one instance, has the "id", but would not exists a second element
@@ -586,7 +605,9 @@ Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
 Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 
+Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
+
 
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
-          Receiver, ReceiverContext, InternalFile, ReceiverFile, Notification ]
+          Receiver, ReceiverContext, InternalFile, ReceiverFile, Notification, Message ]
 

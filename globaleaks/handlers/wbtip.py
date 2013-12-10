@@ -14,7 +14,7 @@ from globaleaks.rest import requests
 from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import WhistleblowerTip, Comment
+from globaleaks.models import WhistleblowerTip, Comment, Message, ReceiverTip
 from globaleaks.rest import errors
 
 
@@ -205,6 +205,8 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
     @return:
         This function contain the serialization of the receiver, this function is
         used only by /wbtip/receivers API
+
+        The returned struct contain information on read/unread messages
     """
 
     wb_tip = store.find(WhistleblowerTip,
@@ -216,11 +218,29 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
     receiver_list = []
     for rtip in wb_tip.internaltip.receivertips:
 
+        your_messages = store.find(Message,
+                                   Message.receivertip_id == rtip.id,
+                                   Message.type == u'whistleblower').count()
+
+        unread_messages = store.find(Message,
+                                     Message.receivertip_id == rtip.id,
+                                     Message.type == u'receiver',
+                                     Message.visualized == False).count()
+
+        read_messages = store.find(Message,
+                                   Message.receivertip_id == rtip.id,
+                                   Message.type == u'receiver',
+                                   Message.visualized == True).count()
+
         receiver_desc = {
             "name": unicode(rtip.receiver.name),
             "receiver_gus": unicode(rtip.receiver.id),
             "tags": rtip.receiver.tags,
             "access_counter" : rtip.access_counter,
+            "unread_messages" : unread_messages,
+            "read_messages" : read_messages,
+            "your_messages" : your_messages
+            # XXX ReceiverTip last activity ?
         }
 
         mo = Rosetta()
@@ -253,4 +273,104 @@ class WbTipReceiversCollection(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
+## Direct messages handling function
 
+def wb_serialize_message(msg):
+    return {
+        'id' : unicode(msg.id),
+        'creation_date' : unicode(pretty_date_time(msg.creation_date)),
+        'content' : unicode(msg.content),
+        'visualized' : bool(msg.visualized),
+        'type' : unicode(msg.type),
+        'author' : unicode(msg.author),
+        'mark' : unicode(msg.mark)
+    }
+
+@transact
+def get_messages_content(store, wb_tip_id, receiver_id):
+    """
+    Get the messages content and mark all the unread
+    messages as "read"
+    """
+    wb_tip = store.find(WhistleblowerTip,
+                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
+
+    if not wb_tip:
+        raise errors.TipReceiptNotFound
+
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wb_tip.internaltip.id,
+                      ReceiverTip.receiver_id == unicode(receiver_id)).one()
+
+    if not rtip:
+        raise errors.TipGusNotFound
+
+    messages = store.find(Message, Message.receivertip_id == rtip.id)
+
+    messages_list = []
+    for msg in messages:
+        messages_list.append(wb_serialize_message(msg))
+
+        if not msg.visualized and msg.type == u'receiver':
+            log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
+            msg.visualized = True
+
+    store.commit()
+    return messages_list
+
+
+@transact
+def create_message_wb(store, wb_tip_id, receiver_id, request):
+
+    wb_tip = store.find(WhistleblowerTip,
+                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
+
+    if not wb_tip:
+        raise errors.TipReceiptNotFound
+
+    rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wb_tip.internaltip.id,
+                                   ReceiverTip.receiver_id == unicode(receiver_id)).one()
+
+    if not rtip:
+        raise errors.TipGusNotFound
+
+    msg = Message()
+    msg.content = request['content']
+    msg.receivertip_id = rtip.id
+    msg.author = u'Whistleblower'
+    msg.visualized = False
+
+    # remind: is safest use this convention, and probably we've to
+    # change in the whole code the usage of Model._type[ndx]
+    msg.type = u'whistleblower'
+    msg.mark = u'not notified'
+
+    store.add(msg)
+    return wb_serialize_message(msg)
+
+
+class WbMessageCollection(BaseHandler):
+    """
+    W5
+    """
+
+    @transport_security_check('tip')
+    @authenticated('wb')
+    @inlineCallbacks
+    def get(self, receiver_id):
+
+        messages = yield get_messages_content(self.current_user['user_id'], receiver_id)
+
+        self.set_status(200)
+        self.finish(messages)
+
+    @transport_security_check('tip')
+    @authenticated('wb')
+    @inlineCallbacks
+    def post(self, receiver_id, request):
+
+        request = self.validate_message(self.request.body, requests.wbMessageDesc)
+
+        message = yield create_message_wb(self.current_user['user_id'], receiver_id, request)
+
+        self.set_status(201) # Created
+        self.finish(message)
