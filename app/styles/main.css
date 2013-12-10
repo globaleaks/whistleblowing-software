@@ -157,6 +157,10 @@
   }
 }
 
+.tab-content {
+  padding: 20px;
+}
+
 .shasum {
   width: 500px;
 }
@@ -215,10 +219,6 @@ table {
 .shasum {
   word-wrap: break-word;
   word-break: break-all;
-}
-
-.content-tab {
-  padding-top: 20px;
 }
 
 .img-thumbnail {

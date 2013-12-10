@@ -27,11 +27,11 @@
           </a>
           <div class="row col-md-offset-1 col-md-10">
             <label>{{ "Name" | translate }}</label>
-            <input class="form-control" ng-model="field.name" required="" type="text">
+            <input class="form-control" ng-model="field.name" type="text">
           </div>
           <div class="row col-md-offset-1 col-md-10">
             <label>{{ "Hint" | translate }}</label>
-            <input class="form-control" ng-model="field.hint" required="" type="text">
+            <input class="form-control" ng-model="field.hint" type="text">
           </div>
           <div class="row col-md-offset-1 col-md-10">
             <input ng-model="field.required" type="checkbox">
@@ -79,7 +79,7 @@
                 <form class="form-inline">
                   <div class="form-group">
                     <label>{{ "Name" | translate }}</label>
-                    <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" required="" type="text">
+                    <input class="form-control" placeholder="name" ng-model="option.name" ng-change="updateValue(option)" type="text">
                   </div>
                 </form>
               </div>

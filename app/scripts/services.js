@@ -266,7 +266,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       self.contexts = [];
       self.receivers = [];
-      self.current_context = {};
+      self.current_context = null;
       self.maximum_filesize = null;
       self.current_context_receivers = [];
       self.receivers_selected = {};
