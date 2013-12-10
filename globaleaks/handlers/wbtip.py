@@ -95,7 +95,7 @@ class WbTipInstance(BaseHandler):
     @transport_security_check('tip')
     @authenticated('wb')
     @inlineCallbacks
-    def get(self, *uriargs):
+    def get(self):
         """
         Parameters: None
         Response: actorsTipDesc
@@ -262,7 +262,7 @@ class WbTipReceiversCollection(BaseHandler):
     @transport_security_check('tip')
     @authenticated('wb')
     @inlineCallbacks
-    def get(self, tip_id):
+    def get(self):
         """
         Parameters: None
         Response: actorsReceiverList

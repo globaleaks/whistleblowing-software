@@ -63,7 +63,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     required to create the download link
     """
     rfile_dict = {
-        'href' : unicode("/tip/" + receivertip_id + "/download/" + receiverfile.id),
+        'href' : unicode("/rtip/" + receivertip_id + "/download/" + receiverfile.id),
         # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
         'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
         'encrypted': True if receiverfile.status == ReceiverFile._status_list[2] else False,

@@ -209,14 +209,14 @@ class FileAdd(FileHandler):
     @transport_security_check('tip')
     @authenticated('wb')
     @inlineCallbacks
-    def post(self, wb_tip_id, *args):
+    def post(self, *args):
         """
         Parameter: submission_gus
         Request: Unknown
         Response: Unknown
         Errors: SubmissionGusNotFound, SubmissionConcluded
         """
-        itip_id = yield get_tip_by_wbtip(wb_tip_id)
+        itip_id = yield get_tip_by_wbtip(self.current_user['user_id'])
 
         # Call the master class method
         yield self.handle_file_upload(itip_id)
