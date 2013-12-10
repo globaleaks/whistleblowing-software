@@ -1,0 +1,298 @@
+<div id="HeaderBox" class="subhead">
+  <div id="HeaderBoxContent">
+    <span id="LogoBox">
+      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
+    </span>
+    <span id="TitleBox">
+      <h1 id="titleboxh1logo">
+        {{ "Tip Status Page" | translate }}
+      </h1>
+    </span>
+    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
+  </div>
+  <div class="clearfix"></div>
+</div>
+
+<div id="ContentBox" class="container statusPage ng-cloak">
+  <div>
+    <h1>
+      {{ "Tip Status Page" | translate }}
+    </h1>
+  </div>
+  <div class="row" ng-show="!preferences.gpg_enable_files">
+    <div class="col-md-12">
+      <div class="alert alert-warning">
+        <i class="glyphicon glyphicon-warning-sign"></i>
+        <strong>{{ "Warning!" | translate }}</strong>
+        {{ "You have not configured your encryption keys, so the files will be stored on the globaleaks node un-encrypted." | translate }}
+        {{ "This may lead to unintended access to the files by the server administrator or in case of server seizing." | translate }}
+        {{ "Please configure your PGP keys in the receiver preference page." | translate }}
+      </div>
+    </div>
+  </div>
+
+  <div class="row" ng-controller="TipCtrl">
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <dl>
+          <dt>
+            {{ tip.context_name }}
+            <a popover="{{tip.context_description}}" popover-placement="right" popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-info-sign"></span>
+            </a>
+          </dt>
+          <br />
+          <dt>{{ "Submission date" | translate }}</dt>
+          <dd>{{ tip.creation_date | date:'dd-MM-yyyy HH:mm' }}</dd>
+          <br />
+          <dt>{{ "Expiration Date" | translate }}</dt>
+          <dd>{{ tip.expiration_date | date:'dd-MM-yyyy HH:mm' }}</dd>
+        </dl>
+        <dl ng-repeat="(fieldName, fieldValue) in tip.fields">
+          <dt>
+            <span>
+              {{fieldFormat[fieldName].name}}
+            </span>
+            <a popover="{{fieldFormat[fieldName].hint}}" popover-placement="right" popover-trigger="mouseenter">
+              <span class="glyphicon glyphicon-info-sign"></span>
+            </a>
+          </dt>
+        
+          <div ng-switch="" on="fieldFormat[fieldName].type">
+      
+            <dd ng-switch-when="checkboxes">
+              <ul>
+                <li ng-repeat="checkbox in fieldFormat[fieldName].options">
+                {{checkbox.name}} 
+                <span ng-hide="fieldValue[checkbox.name]">☐</span> 
+                <span ng-show="fieldValue[checkbox.name]">☑</span>
+                </li>
+              </ul>
+            </dd>
+
+            <dd ng-switch-when="multiple">
+              <ul>
+                <li ng-repeat="selection in fieldValue">{{selection}}</li>
+              </ul>
+
+            </dd>
+            <dd ng-switch-default="">{{fieldValue}}</dd>
+
+          </div>
+        </dl>
+      </div>
+    </div>
+
+    <div class="col-md-6">
+      <div class="col-md-12">
+        <h3>{{ "Options" }}</h3>
+        <span ng-show="tip.im_receiver_postponer">
+          <button ng-click="tip_extend(tip.id)" class="btn btn-sm btn-warning">
+            <i class="glyphicon glyphicon-time"></i>
+            {{ "Postpone Tip expiration date" | translate }}
+          </button>
+        </span>
+        <span ng-show="session.permissions['can_delete_submission']">
+          <button ng-click="tip_delete(tip.id, true)" class="btn btn-sm btn-danger">
+            <i class="glyphicon glyphicon-trash"></i>
+            {{ "Delete Tip" | translate }}
+          </button>
+        </span>
+      </div>
+      <br />
+
+      <div class="col-md-12">
+        <h3>{{ "Receiver List" | translate }}</h3>
+        <table class="table table-striped" id="receiverList">
+          <thead>
+            <tr>
+              <th>{{ "Name" | translate }}</th>
+              <th>{{ "Description" | translate }}</th>
+              <th>{{ "Access counter" | translate }}</th>
+            </tr>
+          </thead>
+          <tbody id="receiverListBody">
+            <tr ng-repeat="receiver in tip.receivers">
+              <td>{{receiver.name}}</td>
+              <td>{{receiver.description}}</td>
+              <td>{{receiver.access_counter}}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+    </div>
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        {{ "Files" | translate }}
+      </h3>
+      <div class="well" ng-show="tip.files">
+        <a class="input-small" ng-href="/rtip/{{tip.id}}/collection" ng-show="show_download_all()" ng-click="increaseDownloadCounts()">
+          {{ "download all the files" | translate }}
+        </a>
+        <br />
+        <a class="input-small" ng-click="show_new_files = !show_new_files" ng-init="show_new_files = false" ng-show="!show_new_files">
+          {{ "show only files not yet downloaded" | translate }}
+        </a>
+        <a class="input-small" ng-click="show_new_files = !show_new_files" ng-show="show_new_files">
+          {{ "show all the files" | translate }}
+        </a>
+        <br /><br />
+        <div class="table-container">
+          <table class="table table-striped" id="fileList">
+            <thead>
+              <tr>
+                <th>
+                  {{ "Filename" | translate }}
+                </th>
+                <th>
+                  {{ "Download" | translate }}
+                </th>
+                <th>
+                  {{ "Upload Date" | translate }}
+                </th>
+                <th>
+                  {{ "Content Type" | translate }}
+                </th>
+                <th>
+                  {{ "File Size" | translate }}
+                </th>
+              </tr>
+            </thead>
+            <tbody id="fileListBody" ng-repeat="file in tip.files">
+              <tr ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
+                <td>
+                  {{file.name}}
+                </td>
+                <td>
+                  <a ng-disabled="file.downloads >= tip.download_limit" ng-click="increaseDownloadCount(file)" class="btn btn-xs btn-default ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
+                    <i class="glyphicon glyphicon-download"></i> 
+                    {{ "download" | translate }}
+                    ({{file.downloads}}/{{tip.download_limit}})
+                  </a>
+                </td>
+                <td>
+                  {{file.creation_date | date:'dd-MM-yyyy' }}
+                </td>
+                <td>
+                  {{file.content_type}}
+                </td>
+                <td>
+                  {{file.size}} Bytes
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <br />
+
+        <a class="input-small" ng-click="security_checksum = !security_checksum" ng-init="security_checksum = false" ng-show="!security_checksum">
+          <i class="glyphicon glyphicon-plus-sign"></i>
+          {{ "show sha256 checksum" | translate }}
+        </a>
+        <a class="input-small" ng-click="security_checksum = !security_checksum" ng-show="security_checksum">
+          <i class="glyphicon glyphicon-minus-sign"></i>
+          {{ "show sha256 checksum" | translate }}
+          <i>
+            {{ "(click again to hide)" | translate }}
+          </i>
+        </a>
+      </div>
+      <div class="well" ng-show="security_checksum">
+        <p>
+          {{ "Use the" | translate }} 
+          <a href="https://en.wikipedia.org/wiki/SHA-2">
+            {{ "sha256 hash" | translate }}
+          </a> 
+          {{ "to verify the file integrity" | translate }}.
+          <br />
+          {{ "On unix based systems this can be done by running the following command in the directory of the files" | translate }}:
+        </p>
+        <b>$ shasum -a 256 *</b>
+        <div ng-repeat="file in tip.files">
+          <div class="label label-lg label-warning">
+            {{file.name}} {{file.sha2sum}}
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-12" ng-hide="tip.files">
+      <p>
+        {{ "No file has been uploaded!" | translate }}
+      </p>
+    </div>
+
+  </div>
+
+  <hr>
+
+  <div class="row">
+    <div class="col-md-12">
+      <h3>
+        {{ "Comments" | translate }}
+      </h3>
+      <div ng-repeat="comment in tip.comments">
+        <div ng-switch="" on="comment.source">
+
+          <div ng-switch-when="whistleblower" class="alert alert-info">
+            <strong>
+              {{ "Whistleblower" | translate }}
+            </strong> {{comment.content}}
+          </div>
+
+          <div ng-switch-when="receiver" class="alert alert-success">
+            <strong>{{comment.author}}</strong> {{comment.content}}
+          </div>
+
+          <div ng-switch-when="system" class="alert alert-warning">
+            <strong>
+              {{ "System" | translate }}
+            </strong>
+              <!-- {{comment.content}} -->
+              <div ng-switch="" on="comment.system_content.type">
+                 <div ng-switch-when="1">
+                   {{ "The user" | translate }}
+                   {{comment.system_content.receiver_name}}
+                   {{ "In date" | translate }}
+                   {{comment.system_content.now | date:'dd-MM-yyyy HH:mm' }}
+                   {{ "has postponed Tip expiration to" | translate }}
+                   {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
+                 </div>
+              </div>
+          </div>
+
+          <div ng-switch-default="" class="label label-danger">
+            <strong>
+              {{ "Malformed source" | translate }}
+            </strong>
+          </div>
+
+        </div>
+      </div>
+
+      <textarea ng-model="newCommentContent" class="form-control"></textarea>
+      <br />
+      <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
+        <i class="glyphicon glyphicon-comment"></i>
+        {{ "Add Comment" | translate }}
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+{{ "Loading Tip page..." | translate }}
+
+-->
+

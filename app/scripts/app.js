@@ -20,8 +20,12 @@ var GLClient = angular.module('GLClient', [
         templateUrl: 'views/submission/main.html',
         controller: 'SubmissionCtrl',
       }).
+      when('/status', {
+        templateUrl: 'views/whistleblower/tip.html',
+        controller: 'StatusCtrl',
+      }).
       when('/status/:tip_id', {
-        templateUrl: 'views/status.html',
+        templateUrl: 'views/receiver/tip.html',
         controller: 'StatusCtrl',
       }).
       when('/receiver/preferences', {
