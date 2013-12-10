@@ -52,29 +52,27 @@
       </li>
     </ul>
 
-    <div ng-switch="" on="selection">
+    <div ng-switch="" on="selection" class="tab-content">
 
       <!-- First Step -->
       <div ng-switch-when="1" class="receiverCards">
         <div class="contextPick" ng-show="submission.contexts.length > 1">
-            <p class="lead">
-            {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}</p>
+            <div class="lead">
+              {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}
+            </div>
 
             <span class="lead" ng-show="node_info.configured">
-            {{ "I want to report on" | translate }}</span>
+              {{ "I want to report on" | translate }}
+            </span>
 
             <select class="form-control contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts">
             </select>
 
         </div>
-        <div class="contextPick" ng-hide="submission.contexts.length > 1">
-          <span class="lead">
-          {{ "I want to report on" | translate }}: 
-          </span>
-          <span><b>{{submission.current_context.name}}</b></span>
-        </div>
 
-        <p>{{submission.current_context.description}}</p>
+        <div>
+          {{submission.current_context.receiver_introduction}}
+        </div>
 
         <div ng-repeat="(idx, receiver) in submission.current_context_receivers">
           <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
@@ -105,9 +103,12 @@
       <!-- Second Step -->
       <div ng-switch-when="2">
 
-        <p class="lead">
-        {{ "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files" | translate }}</p>
-        <p>{{submission.current_context.description}}</p>
+        <div class="lead">
+          {{ "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files" | translate }}
+        </div>
+        <div>
+          {{submission.current_context.fields_introduction}}
+        </div>
 
         <div class="row">
 
