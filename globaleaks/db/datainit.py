@@ -65,9 +65,9 @@ def initialize_node(store, results, only_node, email_templates):
 
     # Those fields are sets as default in order to show to the Admin the various 'variables'
     # used in the template.
-    notification.tip_template = { GLSetting.memory_copy.default_language:
+    notification.encrypted_tip_template = { GLSetting.memory_copy.default_language:
                                       email_templates['tip'] }
-    notification.tip_mail_title = { GLSetting.memory_copy.default_language:
+    notification.encrypted_tip_mail_title = { GLSetting.memory_copy.default_language:
                                         "From %NodeName% a new Tip" }
     notification.file_template = { GLSetting.memory_copy.default_language:
                                        email_templates['file'] }
@@ -77,9 +77,9 @@ def initialize_node(store, results, only_node, email_templates):
                                           email_templates['comment'] }
     notification.comment_mail_title = { GLSetting.memory_copy.default_language:
                                             "From %NodeName% a new comment" }
-    notification.activation_template = { GLSetting.memory_copy.default_language:
+    notification.plaintext_tip_template= { GLSetting.memory_copy.default_language:
                                              "*Not Yet implemented*" }
-    notification.activation_mail_title = { GLSetting.memory_copy.default_language:
+    notification.plaintext_tip_mail_title = { GLSetting.memory_copy.default_language:
                                                "**Not Yet implemented" }
 
     store.add(notification)
