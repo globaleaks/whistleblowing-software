@@ -106,11 +106,19 @@
   <div id="HeaderBoxContent">
     <span id="LogoBox">
       <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
+      <div id="titleboxdefault">
+        <div>
+          <h1>{{ node_info.subtitle | translate }}</h1>
+        </div>
+      </div>
     </span>
     <span id="TitleBox">
-      <h1 id="titleboxh1logo">
-        {{ node_info.presentation }}
-      </h1>
+      <div id="titleboxwithtagline">
+        <div id="logo"></div>
+        <div id="tagline">
+          {{ node_info.subtitle | translate }}
+        </div>
+      </div>
     </span>
     <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
   </div>
@@ -125,6 +133,8 @@
 
 <div id="ContentBox" class="container"   ng-show="node_info.description">
   <div id="HomePageBox">
+
+    <h1>{{ node_info.presentation }}</h1>
 
     <h3 class="lead">{{node_info.description}}</h3>
 
