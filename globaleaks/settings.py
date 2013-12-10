@@ -477,7 +477,7 @@ class GLSettingsClass:
         for path in (self.working_path, self.root_path, self.glclient_path,
                      self.glfiles_path, self.static_path, self.submission_path, self.log_path):
             if not os.path.exists(path):
-                raise Exception("%s does not exists!" % path)
+                raise Exception("%s does not exist!" % path)
 
         # Directory with Write + Read access
         for rdwr in (self.working_path,
