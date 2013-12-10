@@ -73,7 +73,7 @@ spec = [
     ## Whistleblower Tip Handlers
 
     #  W1
-    (r'/wbtip/', wbtip.WbTipInstance),
+    (r'/wbtip', wbtip.WbTipInstance),
 
     #  W2
     (r'/wbtip/comments', wbtip.WbTipCommentCollection),
