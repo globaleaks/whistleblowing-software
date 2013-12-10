@@ -7,6 +7,7 @@
 #   receiver side. These classes are executed in the /rtip/* URI PATH 
 
 from twisted.internet.defer import inlineCallbacks
+from storm.expr import Desc
 
 from globaleaks.handlers.base import BaseHandler
 from globaleaks.handlers.authentication import transport_security_check, authenticated
@@ -14,7 +15,7 @@ from globaleaks.rest import requests
 from globaleaks.utils.utility import log, pretty_date_time, utc_future_date, datetime_now
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import Node, Comment, ReceiverFile
+from globaleaks.models import Node, Comment, ReceiverFile, Message
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
@@ -436,3 +437,93 @@ class RTipReceiversCollection(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
+## Direct messages handling function,
+# they are quite similar to the Comment, at the moment.
+# differences: are personal, in the future can be E2E encrypted,
+#              and do not exist system messages
+
+def receiver_serialize_message(msg):
+
+    return {
+        'id' : unicode(msg.id),
+        'creation_date' : unicode(pretty_date_time(msg.creation_date)),
+        'content' : unicode(msg.content),
+        'visualized' : bool(msg.visualized),
+        'type' : unicode(msg.type),
+        'author' : unicode(msg.author),
+        'mark' : unicode(msg.mark)
+    }
+
+@transact_ro
+def get_messages_list(store, user_id, tip_id):
+
+    rtip = access_tip(store, user_id, tip_id)
+
+    msglist = store.find(Message, Message.receivertip_id == rtip.id)
+    msglist.order_by(Desc(Message.creation_date))
+
+    content_list = []
+    for msg in msglist:
+        content_list.append(receiver_serialize_message(msg))
+
+        if not msg.visualized and msg.type == u'whistleblower':
+            log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
+            msg.visualized = True
+
+    store.commit()
+    return content_list
+
+@transact
+def create_message_receiver(store, user_id, tip_id, request):
+
+    rtip = access_tip(store, user_id, tip_id)
+
+    msg = Message()
+    msg.content = request['content']
+    msg.receivertip_id = rtip.id
+    msg.author = rtip.receiver.name
+    msg.visualized = False
+
+    # remind: is safest use this convention, and probably we've to
+    # change in the whole code the usage of Model._type[ndx]
+    msg.type = u'receiver'
+    msg.mark = u'skipped'
+
+    store.add(msg)
+
+    return receiver_serialize_message(msg)
+
+
+class ReceiverMsgCollection(BaseHandler):
+    """
+    RT6
+    lost of all the messages exchanged with the WB, ability
+    to send direct message to the WB.
+    """
+
+    @transport_security_check('tip')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def get(self, tip_id):
+
+        answer = yield get_messages_list(self.current_user['user_id'], tip_id)
+
+        self.set_status(200)
+        self.finish(answer)
+
+    @transport_security_check('tip')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def post(self, tip_id):
+        """
+        Request: actorsCommentDesc
+        Response: actorsCommentDesc
+        Errors: InvalidTipAuthToken, InvalidInputFormat, TipGusNotFound, TipReceiptNotFound
+        """
+
+        request = self.validate_message(self.request.body, requests.receiverMessageDesc)
+
+        message = yield create_message_receiver(self.current_user['user_id'], tip_id, request)
+
+        self.set_status(201) # Created
+        self.finish(message)
