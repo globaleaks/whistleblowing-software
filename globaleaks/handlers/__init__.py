@@ -13,4 +13,4 @@
 #
 # See base.BaseHandler for details on the handlers.
 
-__all__ = ['base', 'node', 'admin', 'submission', 'tip', 'receiver', 'files']
+__all__ = ['base', 'node', 'admin', 'submission', 'wbtip', 'rtip', 'receiver', 'files']

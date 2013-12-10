@@ -9,7 +9,7 @@
 
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 from globaleaks.settings import GLSetting
-from globaleaks.handlers import node, submission, tip, admin, receiver, \
+from globaleaks.handlers import node, submission, rtip, wbtip, admin, receiver, \
                                 files, authentication, admstaticfiles, \
                                 admlangfiles, overview, collection
 from globaleaks.handlers.base import BaseStaticFileHandler, BaseRedirectHandler
@@ -24,7 +24,7 @@ from globaleaks.rest.base import uuid_regexp
 #         supports GET operation, returning a list of elements, and (maybe) POST
 #         for create a new elements of the collection.
 #
-# [ special guest: SubmissionCreate, our lovely black sheep ;) ]
+# [ special guest that do not respect this rule: SubmissionCreate ]
 
 spec = [
     ## Node Handler ##
@@ -53,27 +53,45 @@ spec = [
     #  U8
     (r'/authentication', authentication.AuthenticationHandler),
 
-    ## Tip Handlers ##
+    ## Receiver Tip Handlers ##
 
-    #  T1
-    (r'/tip/' + uuid_regexp, tip.TipInstance),
+    #  RT1
+    (r'/rtip/' + uuid_regexp, rtip.RTipInstance),
 
-    #  T2
-    (r'/tip/' + uuid_regexp + r'/comments', tip.TipCommentCollection),
+    #  RT2
+    (r'/rtip/' + uuid_regexp + r'/comments', rtip.RTipCommentCollection),
 
-    #  T3
-    (r'/tip/' + uuid_regexp + r'/receivers', tip.TipReceiversCollection),
+    #  RT3
+    (r'/rtip/' + uuid_regexp + r'/receivers', rtip.RTipReceiversCollection),
 
-    #  T4 = only the whistlebower can access to this interface, then the regexp match properly
-    (r'/tip/' + uuid_regexp + r'/upload', files.FileAdd),
+    #  RT4 (Download single file)
+    (r'/rtip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
 
-    #  T5 = only Receiver, download the files
-    (r'/tip/' + uuid_regexp + '/download/' + uuid_regexp, files.Download),
+    #  RT5 (Download all the file in various archive formats)
+    (r'/rtip/' + uuid_regexp + '/collection(/(zipstored|zipdeflated|tar|targz|tarbz2))?', collection.CollectionDownload),
 
-    #  T6 = only Receiver, download all the file in various archive formats
-    (r'/tip/' + uuid_regexp + '/collection(/(zipstored|zipdeflated|tar|targz|tarbz2))?', collection.CollectionDownload),
+    #  RT6 list of messages exchanged with the Wb
+    (r'/rtip/' + uuid_regexp + '/messages', rtip.ReceiverMsgCollection),
+
+    ## Whistleblower Tip Handlers
+
+    #  W1
+    (r'/wbtip', wbtip.WbTipInstance),
+
+    #  W2
+    (r'/wbtip/comments', wbtip.WbTipCommentCollection),
+
+    #  W3 receiver information + status of read/unread messages
+    (r'/wbtip/receivers', wbtip.WbTipReceiversCollection),
+
+    #  W4 (whistlebower can access to this interface, and upload new files)
+    (r'/wbtip/upload', files.FileAdd),
+
+    #  W5 interaction with a single receiver
+    (r'/wbtip/message/' + uuid_regexp, wbtip.WbMessageCollection),
 
     ## Receiver Handlers ##
+
     #  R1
     (r'/receiver/preferences', receiver.ReceiverInstance),
 

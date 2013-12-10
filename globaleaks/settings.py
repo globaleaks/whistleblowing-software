@@ -143,9 +143,6 @@ class GLSettingsClass:
         # acceptable 'Host:' header in HTTP request
         self.accepted_hosts = "127.0.0.1,localhost"
 
-        # default filename added to the Zip files
-        self.zipfile_name = "FileList.txt"
-
         # default timings for scheduled jobs
         self.session_management_minutes_delta = 1 # runner.py function expects minutes
         self.cleaning_hours_delta = 5             # runner.py function expects hours
@@ -480,7 +477,7 @@ class GLSettingsClass:
         for path in (self.working_path, self.root_path, self.glclient_path,
                      self.glfiles_path, self.static_path, self.submission_path, self.log_path):
             if not os.path.exists(path):
-                raise Exception("%s does not exists!" % path)
+                raise Exception("%s does not exist!" % path)
 
         # Directory with Write + Read access
         for rdwr in (self.working_path,

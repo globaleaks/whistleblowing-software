@@ -1,30 +1,29 @@
 # -*- coding: UTF-8
 #
-#   tip
-#   ***
+#   rtip
+#   ****
 #
-#   Contains all the logic for handling tip related operations, handled and
-#   executed with /tip/* URI PATH interaction.
+#   Contains all the logic for handling tip related operations, for the
+#   receiver side. These classes are executed in the /rtip/* URI PATH 
 
 from twisted.internet.defer import inlineCallbacks
+from storm.expr import Desc
 
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.handlers.authentication import transport_security_check, unauthenticated
+from globaleaks.handlers.authentication import transport_security_check, authenticated
 from globaleaks.rest import requests
-from globaleaks.utils.utility import log, pretty_date_time, utc_future_date
+from globaleaks.utils.utility import log, pretty_date_time, utc_future_date, datetime_now
 from globaleaks.utils.structures import Rosetta
 from globaleaks.settings import transact, transact_ro, GLSetting
-from globaleaks.models import *
+from globaleaks.models import Node, Comment, ReceiverFile, Message
 from globaleaks.rest import errors
 from globaleaks.security import access_tip
 
 
-def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
+def receiver_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.default_language):
     itip_dict = {
         'context_gus': unicode(internaltip.context.id),
         'creation_date' : unicode(pretty_date_time(internaltip.creation_date)),
-        # XXX not yet used
-        'last_activity' : unicode(pretty_date_time(internaltip.creation_date)),
         'expiration_date' : unicode(pretty_date_time(internaltip.expiration_date)),
         'download_limit' : int(internaltip.download_limit),
         'access_limit' : int(internaltip.access_limit),
@@ -33,14 +32,7 @@ def actor_serialize_internal_tip(internaltip, language=GLSetting.memory_copy.def
         'escalation_threshold' : unicode(internaltip.escalation_threshold),
         'fields' : dict(internaltip.wb_fields),
 
-        # these fields are default false and selected as true only
-        # if the receiver has the possibility. anyway are put here
-        # because whistleblowers may have other flag, and I prefer
-        # avoid in splitting shared default value among the handlers
-        'im_whistleblower' : False,
-        'im_receiver' : False,
-
-        # This field is used angualr.js side, to know if show the option at
+        # This field is used angualar.js side, to know if show the option at
         # users interfaces. It's enabled node level by the admin
         'im_receiver_postponer' : False,
 
@@ -71,7 +63,7 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     required to create the download link
     """
     rfile_dict = {
-        'href' : unicode("/tip/" + receivertip_id + "/download/" + receiverfile.id),
+        'href' : unicode("/rtip/" + receivertip_id + "/download/" + receiverfile.id),
         # if the ReceiverFile has encrypted status, we append ".pgp" to the filename, to avoid mistake on Receiver side.
         'name' : ("%s.pgp" % internalfile.name) if receiverfile.status == ReceiverFile._status_list[2] else internalfile.name,
         'encrypted': True if receiverfile.status == ReceiverFile._status_list[2] else False,
@@ -83,28 +75,6 @@ def receiver_serialize_file(internalfile, receiverfile, receivertip_id):
     }
     return rfile_dict
 
-
-def wb_serialize_file(internalfile):
-    wb_file_desc = {
-        'name' : unicode(internalfile.name),
-        'sha2sum' : unicode(internalfile.sha2sum),
-        'content_type' : unicode(internalfile.content_type),
-        'creation_date' : unicode(pretty_date_time(internalfile.creation_date)),
-        'size': int(internalfile.size),
-    }
-    return wb_file_desc
-
-
-@transact_ro
-def get_files_wb(store, wb_tip_id):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(wb_tip_id)).one()
-
-    file_list = []
-    for internalfile in wbtip.internaltip.internalfiles:
-        file_list.append(wb_serialize_file(internalfile))
-
-    file_list.reverse()
-    return file_list
 
 @transact_ro
 def get_files_receiver(store, user_id, tip_id):
@@ -120,36 +90,21 @@ def get_files_receiver(store, user_id, tip_id):
 
     return files_list
 
-@transact_ro
-def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_language):
-    wbtip = store.find(WhistleblowerTip, WhistleblowerTip.id == unicode(tip_id)).one()
-
-    if not wbtip:
-        raise errors.TipReceiptNotFound
-
-    tip_desc = actor_serialize_internal_tip(wbtip.internaltip)
-    tip_desc['access_counter'] = int(wbtip.access_counter)
-    tip_desc['id'] = unicode(wbtip.id)
-
-    tip_desc['im_whistleblower'] = True
-
-    return tip_desc
 
 @transact_ro
 def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
     rtip = access_tip(store, user_id, tip_id)
 
-    tip_desc = actor_serialize_internal_tip(rtip.internaltip)
+    tip_desc = receiver_serialize_internal_tip(rtip.internaltip)
+
+    # are added here because part of ReceiverTip, not InternalTip
     tip_desc['access_counter'] = int(rtip.access_counter)
     tip_desc['expressed_pertinence'] = int(rtip.expressed_pertinence)
     tip_desc['id'] = unicode(rtip.id)
     tip_desc['receiver_id'] = unicode(user_id)
 
-    tip_desc['im_receiver'] = True
-
     node = store.find(Node).one()
     tip_desc['im_receiver_postponer'] = node.postpone_superpower
-
     tip_desc['can_delete_submission'] = rtip.receiver.can_delete_submission
 
     return tip_desc
@@ -264,9 +219,6 @@ def postpone_expiration_date(store, user_id, tip_id):
            'type': "1", # the first kind of structured system_comments
            'receiver_name': rtip.receiver.name,
            'now' : pretty_date_time(datetime_now()),
-           #'expire_on' : pretty_date_time(utc_dynamic_date(
-           #          rtip.internaltip.expiration_date,
-           #          seconds=rtip.internaltip.context.tip_timetolive))
            'expire_on' : pretty_date_time(rtip.internaltip.expiration_date)
     })
 
@@ -285,20 +237,15 @@ def postpone_expiration_date(store, user_id, tip_id):
     rtip.internaltip.comments.add(comment)
 
 
-class TipInstance(BaseHandler):
+class RTipInstance(BaseHandler):
     """
-    T1
+    RT1
     This interface expose the Tip.
 
-    Tip is the safe area, created with an expiration time, where Receivers (and optionally)
-    Whistleblower can discuss about the submission, comments, collaborative voting, forward,
-    promote, and perform other operation in this closed environment.
-    In the request is present an unique token, aim to authenticate the users accessing to the
-    resource, and giving accountability in resource accesses.
     """
 
     @transport_security_check('tip')
-    @unauthenticated
+    @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id, *uriargs):
         """
@@ -314,43 +261,22 @@ class TipInstance(BaseHandler):
         the various cases are managed differently.
         """
 
-        if self.is_whistleblower:
-            answer = yield get_internaltip_wb(self.current_user['user_id'], self.request.language)
-            answer['files'] = yield get_files_wb(self.current_user['user_id'])
-        else:
-            yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
-            answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id, self.request.language)
-            answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
+        yield increment_receiver_access_count(self.current_user['user_id'], tip_id)
+        answer = yield get_internaltip_receiver(self.current_user['user_id'], tip_id, self.request.language)
+        answer['files'] = yield get_files_receiver(self.current_user['user_id'], tip_id)
 
         self.set_status(200)
         self.finish(answer)
 
     @transport_security_check('tip')
-    @unauthenticated
+    @authenticated('receiver')
     @inlineCallbacks
     def put(self, tip_id, *uriargs):
         """
-        Request: actorsTipOpsDesc
-        Response: None
-        Errors: InvalidTipAuthToken, InvalidInputFormat, ForbiddenOperation
-
-        This interface modify some tip status value. pertinence and complete removal
-        are handled here.
-
-        This interface return None, because may execute a delete operation. The client
-        know which kind of operation has been requested. If a pertinence vote, would
-        perform a refresh on get() API, if a delete, would bring the user in other places.
-
-        When an uber-receiver decide to "global delete" a Tip, is handled by this call.
+        Some special operation over the Tip are handled here
         """
 
-        if self.is_whistleblower:
-            raise errors.ForbiddenOperation
-
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
-
-        if False and request['is_pertinent']: # disabled too
-            yield manage_pertinence(self.current_user['user_id'], tip_id, request['is_pertinent'])
 
         if request['extend']:
             yield postpone_expiration_date(self.current_user['user_id'], tip_id)
@@ -359,17 +285,17 @@ class TipInstance(BaseHandler):
         self.finish()
 
     @transport_security_check('tip')
-    @unauthenticated
+    @authenticated('receiver')
     @inlineCallbacks
     def delete(self, tip_id, *uriargs):
         """
-        Request: None
+        Request: actorsTipOpsDesc
         Response: None
         Errors: ForbiddenOperation, TipGusNotFound
-        """
 
-        if self.is_whistleblower:
-            raise errors.ForbiddenOperation
+        global delete: is removed InternalTip and all the things derived
+        personal delete: is removed the ReceiverTip and ReceiverFiles
+        """
 
         request = self.validate_message(self.request.body, requests.actorsTipOpsDesc)
 
@@ -382,7 +308,7 @@ class TipInstance(BaseHandler):
         self.finish()
 
 
-def serialize_comment(comment):
+def receiver_serialize_comment(comment):
     comment_desc = {
         'comment_id' : unicode(comment.id),
         'source' : unicode(comment.type),
@@ -394,51 +320,17 @@ def serialize_comment(comment):
 
     return comment_desc
 
-def get_comment_list(internaltip):
-    """
-    @param internaltip:
-    This function is used by both Receiver and WB.
-    """
-
-    comment_list = []
-    for comment in internaltip.comments:
-        comment_list.append(serialize_comment(comment))
-
-    return comment_list
-
-@transact_ro
-def get_comment_list_wb(store, wb_tip_id):
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
-
-    if not wb_tip:
-        raise errors.TipReceiptNotFound
-
-    return get_comment_list(wb_tip.internaltip)
 
 @transact_ro
 def get_comment_list_receiver(store, user_id, tip_id):
     rtip = access_tip(store, user_id, tip_id)
-    return get_comment_list(rtip.internaltip)
 
-@transact
-def create_comment_wb(store, wb_tip_id, request):
-    wbtip = store.find(WhistleblowerTip,
-                       WhistleblowerTip.id== unicode(wb_tip_id)).one()
+    comment_list = []
+    for comment in rtip.internaltip.comments:
+        comment_list.append(receiver_serialize_comment(comment))
 
-    if not wbtip:
-        raise errors.TipReceiptNotFound
+    return comment_list
 
-    comment = Comment()
-    comment.content = request['content']
-    comment.internaltip_id = wbtip.internaltip.id
-    comment.author = u'whistleblower' # The printed line
-    comment.type = Comment._types[1] # WB
-    comment.mark = Comment._marker[0] # Not notified
-
-    wbtip.internaltip.comments.add(comment)
-
-    return serialize_comment(comment)
 
 @transact
 def create_comment_receiver(store, user_id, tip_id, request):
@@ -453,10 +345,10 @@ def create_comment_receiver(store, user_id, tip_id, request):
 
     rtip.internaltip.comments.add(comment)
 
-    return serialize_comment(comment)
+    return receiver_serialize_comment(comment)
 
 
-class TipCommentCollection(BaseHandler):
+class RTipCommentCollection(BaseHandler):
     """
     T2
     Interface use to read/write comments inside of a Tip, is not implemented as CRUD because we've not
@@ -466,7 +358,7 @@ class TipCommentCollection(BaseHandler):
     """
 
     @transport_security_check('tip')
-    @unauthenticated
+    @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id, *uriargs):
         """
@@ -475,16 +367,13 @@ class TipCommentCollection(BaseHandler):
         Errors: InvalidTipAuthToken
         """
 
-        if self.is_whistleblower:
-            comment_list = yield get_comment_list_wb(self.current_user['user_id'])
-        else:
-            comment_list = yield get_comment_list_receiver(self.current_user['user_id'], tip_id)
+        comment_list = yield get_comment_list_receiver(self.current_user['user_id'], tip_id)
 
         self.set_status(200)
         self.finish(comment_list)
 
     @transport_security_check('tip')
-    @unauthenticated
+    @authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id, *uriargs):
         """
@@ -495,62 +384,39 @@ class TipCommentCollection(BaseHandler):
 
         request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
-        if self.is_whistleblower:
-            answer = yield create_comment_wb(self.current_user['user_id'], request)
-        else:
-            answer = yield create_comment_receiver(self.current_user['user_id'], tip_id, request)
+        answer = yield create_comment_receiver(self.current_user['user_id'], tip_id, request)
 
         self.set_status(201) # Created
         self.finish(answer)
 
 
-def serialize_receiver(receiver, access_counter, language=GLSetting.memory_copy.default_language):
-    receiver_dict = {
-        "can_delete_submission": receiver.can_delete_submission,
-        "name": unicode(receiver.name),
-        "receiver_gus": unicode(receiver.id),
-        "receiver_level": int(receiver.receiver_level),
-        "contexts": [],
-        "tags": receiver.tags,
-        "access_counter": access_counter,
-    }
-    for context in receiver.contexts:
-        receiver_dict['contexts'].append(unicode(context.id))
-
-    mo = Rosetta()
-    mo.acquire_storm_object(receiver)
-    receiver_dict["description"] = mo.dump_translated("description", language)
-
-    return receiver_dict
-
 @transact_ro
-def get_receiver_list_wb(store, wb_tip_id, language):
-    wb_tip = store.find(WhistleblowerTip,
-                        WhistleblowerTip.id == unicode(wb_tip_id)).one()
+def get_receiver_list_receiver(store, user_id, tip_id, language=GLSetting.memory_copy.default_language):
 
-    if not wb_tip:
-        raise errors.TipReceiptNotFound
-
-    receiver_list = []
-    for rtip in wb_tip.internaltip.receivertips:
-
-        receiver_list.append(serialize_receiver( rtip.receiver, rtip.access_counter, language ))
-
-    return receiver_list
-
-
-@transact_ro
-def get_receiver_list_receiver(store, user_id, tip_id, language):
     rtip = access_tip(store, user_id, tip_id)
 
     receiver_list = []
     for rtip in rtip.internaltip.receivertips:
-        receiver_list.append(serialize_receiver(rtip.receiver, rtip.access_counter, language))
+
+        receiver_desc = {
+            "can_delete_submission": rtip.receiver.can_delete_submission,
+            "name": unicode(rtip.receiver.name),
+            "receiver_gus": unicode(rtip.receiver.id),
+            "receiver_level": int(rtip.receiver.receiver_level),
+            "tags": rtip.receiver.tags,
+            "access_counter": rtip.access_counter,
+        }
+
+        mo = Rosetta()
+        mo.acquire_storm_object(rtip.receiver)
+        receiver_desc["description"] = mo.dump_translated("description", language)
+
+        receiver_list.append(receiver_desc)
 
     return receiver_list
 
 
-class TipReceiversCollection(BaseHandler):
+class RTipReceiversCollection(BaseHandler):
     """
     T3
     This interface return the list of the Receiver active in a Tip.
@@ -558,7 +424,7 @@ class TipReceiversCollection(BaseHandler):
     """
 
     @transport_security_check('tip')
-    @unauthenticated
+    @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
         """
@@ -566,13 +432,98 @@ class TipReceiversCollection(BaseHandler):
         Response: actorsReceiverList
         Errors: InvalidTipAuthToken
         """
-        if self.is_whistleblower:
-            answer = yield get_receiver_list_wb(self.current_user['user_id'], self.request.language)
-        elif self.is_receiver:
-            answer = yield get_receiver_list_receiver(self.current_user['user_id'], tip_id, self.request.language)
-        else:
-            raise errors.NotAuthenticated
+        answer = yield get_receiver_list_receiver(self.current_user['user_id'], tip_id, self.request.language)
 
         self.set_status(200)
         self.finish(answer)
 
+## Direct messages handling function,
+# they are quite similar to the Comment, at the moment.
+# differences: are personal, in the future can be E2E encrypted,
+#              and do not exist system messages
+
+def receiver_serialize_message(msg):
+
+    return {
+        'id' : unicode(msg.id),
+        'creation_date' : unicode(pretty_date_time(msg.creation_date)),
+        'content' : unicode(msg.content),
+        'visualized' : bool(msg.visualized),
+        'type' : unicode(msg.type),
+        'author' : unicode(msg.author),
+        'mark' : unicode(msg.mark)
+    }
+
+@transact_ro
+def get_messages_list(store, user_id, tip_id):
+
+    rtip = access_tip(store, user_id, tip_id)
+
+    msglist = store.find(Message, Message.receivertip_id == rtip.id)
+    msglist.order_by(Desc(Message.creation_date))
+
+    content_list = []
+    for msg in msglist:
+        content_list.append(receiver_serialize_message(msg))
+
+        if not msg.visualized and msg.type == u'whistleblower':
+            log.debug("Marking as readed message [%s] from %s" % (msg.content, msg.author))
+            msg.visualized = True
+
+    store.commit()
+    return content_list
+
+@transact
+def create_message_receiver(store, user_id, tip_id, request):
+
+    rtip = access_tip(store, user_id, tip_id)
+
+    msg = Message()
+    msg.content = request['content']
+    msg.receivertip_id = rtip.id
+    msg.author = rtip.receiver.name
+    msg.visualized = False
+
+    # remind: is safest use this convention, and probably we've to
+    # change in the whole code the usage of Model._type[ndx]
+    msg.type = u'receiver'
+    msg.mark = u'skipped'
+
+    store.add(msg)
+
+    return receiver_serialize_message(msg)
+
+
+class ReceiverMsgCollection(BaseHandler):
+    """
+    RT6
+    lost of all the messages exchanged with the WB, ability
+    to send direct message to the WB.
+    """
+
+    @transport_security_check('tip')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def get(self, tip_id):
+
+        answer = yield get_messages_list(self.current_user['user_id'], tip_id)
+
+        self.set_status(200)
+        self.finish(answer)
+
+    @transport_security_check('tip')
+    @authenticated('receiver')
+    @inlineCallbacks
+    def post(self, tip_id):
+        """
+        Request: actorsCommentDesc
+        Response: actorsCommentDesc
+        Errors: InvalidTipAuthToken, InvalidInputFormat, TipGusNotFound, TipReceiptNotFound
+        """
+
+        request = self.validate_message(self.request.body, requests.actorsCommentDesc) 
+
+        message = yield create_message_receiver(self.current_user['user_id'], tip_id, request)
+
+        self.set_status(201) # Created
+        self.finish(message)
