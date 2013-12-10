@@ -11,7 +11,7 @@ from storm.expr import Desc
 from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool, log
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests, errors
@@ -154,6 +154,20 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
             (ReceiverFile.internaltip_id == rtip.internaltip.id,
              ReceiverFile.receiver_id == user_id)).count()
 
+        your_messages = store.find(Message,
+                                   Message.receivertip_id == rtip.id,
+                                   Message.type == u'receiver').count()
+
+        unread_messages = store.find(Message,
+                                     Message.receivertip_id == rtip.id,
+                                     Message.type == u'whistleblower',
+                                     Message.visualized == False).count()
+
+        read_messages = store.find(Message,
+                                   Message.receivertip_id == rtip.id,
+                                   Message.type == u'whistleblower',
+                                   Message.visualized == True).count()
+
         single_tip_sum = dict({
             'id' : rtip.id,
             'expressed_pertinence': rtip.expressed_pertinence,
@@ -162,7 +176,10 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
             'expiration_date' : unicode(pretty_date_time(rtip.internaltip.expiration_date)),
             'access_counter': rtip.access_counter,
             'files_number': rfiles_n,
-            'comments_number': rtip.internaltip.comments.count()
+            'comments_number': rtip.internaltip.comments.count(),
+            'unread_messages' : unread_messages,
+            'read_messages' : read_messages,
+            'your_messages' : your_messages
         })
 
         mo = Rosetta()

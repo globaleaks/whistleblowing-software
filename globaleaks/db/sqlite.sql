@@ -15,6 +15,19 @@ CREATE TABLE user (
     UNIQUE (username)
 );
 
+CREATE TABLE message (
+    id VARCHAR NOT NULL,
+    visualized INTEGER NOT NULL,
+    creation_date VARCHAR NOT NULL,
+    author VARCHAR NOT NULL,
+    receivertip_id VARCHAR NOT NULL,
+    type VARCHAR NOT NULL CHECK (type IN ('receiver', 'whistleblower' )),
+    mark VARCHAR NOT NULL CHECK (mark IN ('not notified', 'notified', 'unable to notify', 'disabled', 'skipped')),
+    content VARCHAR NOT NULL,
+    FOREIGN KEY(receivertip_id) REFERENCES receivertip(id) ON DELETE CASCADE,
+    PRIMARY KEY (id)
+);
+
 CREATE TABLE comment (
     id VARCHAR NOT NULL,
     creation_date VARCHAR NOT NULL,
