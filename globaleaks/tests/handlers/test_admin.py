@@ -347,7 +347,7 @@ class TestReceiverInstance(helpers.TestHandler):
             self.assertTrue(True)
 
 
-class TestAdminStaticFile(helpers.TestHandler):
+class TestAdminStaticFileInstance(helpers.TestHandler):
     """
     Sadly we can't use the official handler test, because in a
     file upload, Cyclone and GL patches transform the body in a StringIO.
@@ -367,6 +367,45 @@ class TestAdminStaticFile(helpers.TestHandler):
 
     crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
 
+    fakeFile = dict()
+    fakeFile['body'] = StringIO()
+    fakeFile['body'].write(crappyjunk)
+    fakeFile['body_len'] = len(crappyjunk)
+    fakeFile['content_type'] = 'image/jpeg'
+    fakeFile['filename'] = 'imag0005.jpg'
+
+    @inlineCallbacks
+    def test_file_download(self):
+        realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
+        dumped_file = yield admstaticfiles.dump_static_file(self.fakeFile, realpath)
+        self.assertTrue(dumped_file.has_key('filelocation'))
+
+        self.responses = []
+
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.get(self.fakeFile['filename'])
+        self.assertEqual(self.responses[0], self.crappyjunk)
+
+
+    @inlineCallbacks
+    def test_file_delete_it(self):
+        realpath = os.path.join(GLSetting.static_path, self.fakeFile['filename'])
+        dumped_file = yield admstaticfiles.dump_static_file(self.fakeFile, realpath)
+        self.assertTrue(dumped_file.has_key('filelocation'))
+
+        self.responses = []
+
+        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
+        yield handler.delete(self.fakeFile['filename'])
+
+
+class TestAdminStaticFileList(helpers.TestHandler):
+    """
+    """
+    _handler = admstaticfiles.StaticFileList
+
+    crappyjunk =  "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA"
+
     # default files not filtered from get(/) handler
     default_files = [ 'favicon.ico',
                       'robots.txt',
@@ -381,8 +420,8 @@ class TestAdminStaticFile(helpers.TestHandler):
 
     @inlineCallbacks
     def test_get_default_staticfile_list(self):
-        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
-        yield handler.get('/')
+        handler = self.request(role='admin')
+        yield handler.get()
         self.assertTrue( isinstance(self.responses[0], list) )
 
         # this check verifies that only not filtered default files are shown
@@ -403,8 +442,8 @@ class TestAdminStaticFile(helpers.TestHandler):
         dumped_file = yield admstaticfiles.dump_static_file(self.fakeFile, realpath)
         self.assertTrue(dumped_file.has_key('filelocation'))
 
-        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
-        yield handler.get('/')
+        handler = self.request(role='admin')
+        yield handler.get()
         self.assertTrue( isinstance(self.responses[0], list) )
 
         for f in self.responses[0]:
@@ -414,41 +453,3 @@ class TestAdminStaticFile(helpers.TestHandler):
 
         self.assertTrue(False) # has never match the check before :(
 
-
-    @inlineCallbacks
-    def test_upload_a_file_then_download(self):
-        yield self.test_get_list_with_one_custom_file()
-
-        self.responses = []
-
-        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
-        yield handler.get(self.fakeFile['filename'])
-        self.assertEqual(self.responses[0], self.crappyjunk)
-
-
-    @inlineCallbacks
-    def test_upload_a_file_then_delete_it(self):
-        yield self.test_get_list_with_one_custom_file()
-
-        files_dict = {}
-        for f in self.responses[0]:
-            files_dict[f['filename']] = f['size']
-
-        previous_filelist = len(files_dict.keys())
-
-        self.responses = []
-
-        handler = self.request(role='admin', kwargs={'path': GLSetting.static_path})
-        yield handler.delete(self.fakeFile['filename'])
-
-        self.responses = []
-        del files_dict
-
-        yield handler.get('/')
-
-        files_dict = {}
-        for f in self.responses[0]:
-            files_dict[f['filename']] = f['size']
-
-        self.assertGreater(previous_filelist, len(files_dict.keys()))
-        self.assertTrue(self.fakeFile['filename'] not in files_dict.keys())
