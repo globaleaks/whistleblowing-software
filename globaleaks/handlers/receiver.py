@@ -39,7 +39,8 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "tip_notification" : receiver.tip_notification,
         "file_notification" : receiver.file_notification,
         "comment_notification" : receiver.comment_notification,
-        "notification_fields": dict(receiver.notification_fields),
+        "message_notification" : receiver.message_notification,
+        "mail_address": receiver.mail_address,
         "failed_login": receiver.user.failed_login_count,
         "contexts": []
     }
@@ -83,8 +84,12 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
     if not mail_address:
         raise errors.NoEmailSpecified
 
-    # receiver.notification_fields is not update until GLClient supports them
+    if mail_address != receiver.mail_address:
+        log.info("Email change %s => %s" % (receiver.mail_address, mail_address))
+        receiver.mail_address = mail_address
+
     receiver.tip_notification = acquire_bool(request['tip_notification'])
+    receiver.message_notification = acquire_bool(request['message_notification'])
     receiver.comment_notification = acquire_bool(request['comment_notification'])
     receiver.file_notification = acquire_bool(request['file_notification'])
 
