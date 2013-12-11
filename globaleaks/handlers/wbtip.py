@@ -115,7 +115,7 @@ class WbTipInstance(BaseHandler):
 def wb_serialize_comment(comment):
     comment_desc = {
         'comment_id' : unicode(comment.id),
-        'source' : unicode(comment.type),
+        'type' : unicode(comment.type),
         'content' : unicode(comment.content),
         'system_content' : comment.system_content if comment.system_content else {},
         'author' : unicode(comment.author),
@@ -402,9 +402,9 @@ class WbMessageCollection(BaseHandler):
     @transport_security_check('tip')
     @authenticated('wb')
     @inlineCallbacks
-    def post(self, receiver_id, request):
+    def post(self, receiver_id):
 
-        request = self.validate_message(self.request.body, requests.wbMessageDesc)
+        request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
         message = yield create_message_wb(self.current_user['user_id'], receiver_id, request)
 
