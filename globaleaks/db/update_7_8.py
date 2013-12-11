@@ -177,8 +177,6 @@ class Replacer78(TableReplacer):
 
         old_contexts = self.store_old.find(self.get_right_model("Context", 7))
 
-        dead = [ 'receipt_description','submission_introduction','submission_disclaimer']
-
         for old_obj in old_contexts:
 
             new_obj = self.get_right_model("Context", 8)()
