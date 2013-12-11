@@ -36,8 +36,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     if ($scope.receiptConfirmation != receipt)
       return;
 
-    WhistleblowerTip(receipt, function(tip_id){
-      $location.path('/status/' + tip_id);
+    WhistleblowerTip(receipt, function(){
+      $location.path('/status/');
     });
   };
 
