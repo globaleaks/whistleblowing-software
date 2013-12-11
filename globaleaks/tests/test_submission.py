@@ -1,6 +1,6 @@
+# -*- encoding: utf-8 -*-
 from __future__ import unicode_literals
 import re
-import os
 
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
@@ -68,6 +68,9 @@ class TestSubmission(helpers.TestGL):
 
         mycopy = dict(self.dummyContext)
         mycopy['file_required'] = True
+
+        for attrname in models.Context.localized_strings:
+            mycopy[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
         context_status = yield create_context(mycopy)
         submission_desc = dict(self.dummySubmission)
@@ -204,6 +207,9 @@ class TestSubmission(helpers.TestGL):
                                            self.receivers[3]['receiver_gus'] ]
         self.dummyContext['selectable_receiver'] = True
         self.dummyContext['escalation_threshold'] = 0
+
+        for attrname in models.Context.localized_strings:
+            self.dummyContext[attrname] = u'⅛¡⅜⅛’ŊÑŦŊŊ’‘ª‘ª’‘ÐŊ'
 
         context_status = yield update_context(self.dummyContext['context_gus'], self.dummyContext)
 
