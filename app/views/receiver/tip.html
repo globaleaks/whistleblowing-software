@@ -234,21 +234,54 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-5">
       <h3>
         {{ "Comments" | translate }}
       </h3>
+      <textarea ng-model="newCommentContent" class="form-control"></textarea>
+      <br />
+      <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
+        <i class="glyphicon glyphicon-comment"></i>
+        {{ "Add Comment" | translate }}
+      </button>
+      <br /><br />
       <div ng-repeat="comment in tip.comments">
-        <div ng-switch="" on="comment.source">
+        <div ng-switch="" on="comment.type">
 
           <div ng-switch-when="whistleblower" class="alert alert-info">
-            <strong>
-              {{ "Whistleblower" | translate }}
-            </strong> {{comment.content}}
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+                  {{ "Whistleblower" | translate }}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div>
+              {{comment.content}}
+            </div>
           </div>
 
           <div ng-switch-when="receiver" class="alert alert-success">
-            <strong>{{comment.author}}</strong> {{comment.content}}
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{comment.author}}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div>
+              {{comment.content}}
+            </div>
           </div>
 
           <div ng-switch-when="system" class="alert alert-warning">
@@ -268,21 +301,64 @@
               </div>
           </div>
 
-          <div ng-switch-default="" class="label label-danger">
-            <strong>
-              {{ "Malformed source" | translate }}
-            </strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-offset-2 col-md-5">
+      <div>
+        <h3>
+          {{ "Private Messages with the Whistleblower" | translate }}
+        </h3>
+      </div>
+      <textarea ng-model="newMessageContent" class="form-control"></textarea>
+      <br />
+      <button class="btn btn-success" ng-click="newMessage()" ng-disabled="!newMessageContent || newMessageContent == ''">
+        <i class="glyphicon glyphicon-comment"></i>
+        {{ "Send Private Message" | translate }}
+      </button>
+      <br /><br />
+      <div ng-repeat="message in tip.messages">
+        <div ng-switch="" on="message.type">
+
+          <div ng-switch-when="whistleblower" class="alert alert-info">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{ "Whistleblower" | translate }}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div>
+              {{message.content}}
+            </div>
+          </div>
+
+          <div ng-switch-when="receiver" class="alert alert-success">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{message.author}}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div>
+              {{message.content}}
+            </div>
           </div>
 
         </div>
       </div>
-
-      <textarea ng-model="newCommentContent" class="form-control"></textarea>
-      <br />
-      <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
-        <i class="glyphicon glyphicon-comment"></i>
-        {{ "Add Comment" | translate }}
-      </button>
     </div>
   </div>
 

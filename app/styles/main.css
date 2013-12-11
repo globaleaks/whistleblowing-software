@@ -117,8 +117,9 @@
   max-width: 20%;
 }
 
-#BlowTheWislteBox, #WhisleblowerLoginBox, #ReceiverLoginBox {
-  margin-bottom: 30px;
+#HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox, #ReceiverLoginBox {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 /** Submission details **/
