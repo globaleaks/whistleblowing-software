@@ -47,7 +47,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
         'postpone_superpower': node.postpone_superpower,
-        'can_detele_submission': node.can_delete_submission,
+        'can_delete_submission': node.can_delete_submission,
         'reset_css': False,
     }
 
@@ -79,7 +79,8 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "postpone_superpower": context.postpone_superpower,
         "can_delete_submission": context.can_delete_submission,
         "require_file_description": context.require_file_description,
-        "delete_consensus_precentage": context.delete_consensus_percentage,
+        "delete_consensus_percentage": context.delete_consensus_percentage,
+        "maximum_selected_receiver": context.maximum_selected_receiver,
         "require_pgp": context.require_pgp,
     }
 
@@ -221,7 +222,11 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
 
 
     # name, description tor2web boolean value are acquired here
-    node.update(request)
+    try:
+        node.update(request)
+    except Exception as dberror:
+        log.err("Unable to update Node: %s" % dberror)
+        raise errors.InvalidInputFormat(dberror)
 
     node.last_update = utility.datetime_now()
 
@@ -296,17 +301,6 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
         (dict) representing the configured context
     """
     receivers = request.get('receivers', [])
-
-    # ----- TEMPORARY ------
-    request['receiver_introduction'] = u"Abba"
-    request['fields_introduction'] = u"dancing queen"
-    request['postpone_superpower'] = False
-    request['can_delete_submission'] = False
-    request['require_file_description'] = False
-    request['delete_consensus_percentage'] = 50
-    request['maximum_selected_receiver'] =100
-    request['require_pgp'] = False
-    # ---- UNTIL CLIENT IS NOT UPDATE ---
 
     mo = structures.Rosetta()
     mo.acquire_request(language, request, Context)
@@ -433,7 +427,12 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
         raise excep
 
     context.last_update = utility.datetime_now()
-    context.update(request)
+
+    try:
+        context.update(request)
+    except Exception as dberror:
+        log.err("Unable to update context %s: %s" % (context.name, dberror))
+        raise errors.InvalidInputFormat(dberror)
 
     receipt_example = generate_example_receipt(context.receipt_regexp)
     return admin_serialize_context(context, receipt_example, language)
@@ -623,8 +622,12 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
             raise errors.ContextGusNotFound
         receiver.contexts.add(context)
 
-    receiver.update(request)
     receiver.last_update = utility.datetime_now()
+    try:
+        receiver.update(request)
+    except Exception as dberror:
+        log.err("Unable to update receiver %s: %s" % (receiver.name, dberror))
+        raise errors.InvalidInputFormat(dberror)
 
     return admin_serialize_receiver(receiver, language)
 
@@ -930,7 +933,7 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
     mo = structures.Rosetta()
     mo.acquire_request(language, request, Notification)
     for attr in mo.get_localized_attrs():
-        request[attr] = mo.get_localized_dict(attr, language)
+        request[attr] = mo.get_localized_dict(attr)
 
     if request['security'] in Notification._security_types:
         notif.security = request['security']
@@ -939,7 +942,11 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
         log.debug("Invalid Security value: %s" % request['security'])
         raise errors.InvalidInputFormat("Security selection not recognized")
 
-    notif.update(request)
+    try:
+        notif.update(request)
+    except Exception as dberror:
+        log.err("Unable to update Notification: %s" % dberror)
+        raise errors.InvalidInputFormat(dberror)
 
     if request['disable'] != GLSetting.notification_temporary_disable:
         log.msg("Switching notification mode: was %s and now is %s" %
