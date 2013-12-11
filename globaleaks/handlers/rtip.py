@@ -311,7 +311,7 @@ class RTipInstance(BaseHandler):
 def receiver_serialize_comment(comment):
     comment_desc = {
         'comment_id' : unicode(comment.id),
-        'source' : unicode(comment.type),
+        'type' : unicode(comment.type),
         'content' : unicode(comment.content),
         'system_content' : comment.system_content if comment.system_content else {},
         'author' : unicode(comment.author),
@@ -521,7 +521,7 @@ class ReceiverMsgCollection(BaseHandler):
         Errors: InvalidTipAuthToken, InvalidInputFormat, TipGusNotFound, TipReceiptNotFound
         """
 
-        request = self.validate_message(self.request.body, requests.receiverMessageDesc)
+        request = self.validate_message(self.request.body, requests.actorsCommentDesc)
 
         message = yield create_message_receiver(self.current_user['user_id'], tip_id, request)
 
