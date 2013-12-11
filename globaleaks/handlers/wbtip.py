@@ -215,41 +215,77 @@ def get_receiver_list_wb(store, wb_tip_id, language=GLSetting.memory_copy.defaul
     if not wb_tip:
         raise errors.TipReceiptNotFound
 
-    receiver_list = []
-    for rtip in wb_tip.internaltip.receivertips:
+    # this part has been refactored in an hackathon
+    # the second part, was the only in place when we want to show only the
+    # REAL receivers involved.
+    # But, this give a bad feedback for the missing of rcvr list,
+    # when WB access after few seconds. then has been handled the case:
 
-        your_messages = store.find(Message,
-                                   Message.receivertip_id == rtip.id,
-                                   Message.type == u'whistleblower').count()
+    if not wb_tip.internaltip.receivertips.count():
+        receiver_list = []
 
-        unread_messages = store.find(Message,
-                                     Message.receivertip_id == rtip.id,
-                                     Message.type == u'receiver',
-                                     Message.visualized == False).count()
+        log.debug("Early access from the WB to the Tip (creation_date: %s),"\
+                  " Receiver not yet present: fallback on receiver list" %
+                  pretty_date_time(wb_tip.creation_date))
 
-        read_messages = store.find(Message,
-                                   Message.receivertip_id == rtip.id,
-                                   Message.type == u'receiver',
-                                   Message.visualized == True).count()
+        for receiver in wb_tip.internaltip.receivers:
 
-        receiver_desc = {
-            "name": unicode(rtip.receiver.name),
-            "receiver_gus": unicode(rtip.receiver.id),
-            "tags": rtip.receiver.tags,
-            "access_counter" : rtip.access_counter,
-            "unread_messages" : unread_messages,
-            "read_messages" : read_messages,
-            "your_messages" : your_messages
-            # XXX ReceiverTip last activity ?
-        }
+            # This is the reduced version of Receiver serialization
+            receiver_desc = {
+                "name": unicode(receiver.name),
+                "receiver_gus": unicode(receiver.id),
+                "tags": receiver.tags,
+                "access_counter" : 0,
+                "unread_messages" : 0,
+                "read_messages" : 0,
+                "your_messages" : 0,
+                # XXX ReceiverTip last activity ?
+            }
 
-        mo = Rosetta()
-        mo.acquire_storm_object(rtip.receiver)
-        receiver_desc["description"] = mo.dump_translated("description", language)
+            mo = Rosetta()
+            mo.acquire_storm_object(receiver)
+            receiver_desc["description"] = mo.dump_translated("description", language)
+            receiver_list.append(receiver_desc)
 
-        receiver_list.append(receiver_desc)
+        return receiver_list
+    else:
+        receiver_list = []
+        for rtip in wb_tip.internaltip.receivertips:
 
-    return receiver_list
+
+            your_messages = store.find(Message,
+                                       Message.receivertip_id == rtip.id,
+                                       Message.type == u'whistleblower').count()
+
+            unread_messages = store.find(Message,
+                                         Message.receivertip_id == rtip.id,
+                                         Message.type == u'receiver',
+                                         Message.visualized == False).count()
+
+            read_messages = store.find(Message,
+                                       Message.receivertip_id == rtip.id,
+                                       Message.type == u'receiver',
+                                       Message.visualized == True).count()
+
+            # if you change something here, check also 20 lines before!
+            receiver_desc = {
+                "name": unicode(rtip.receiver.name),
+                "receiver_gus": unicode(rtip.receiver.id),
+                "tags": rtip.receiver.tags,
+                "access_counter" : rtip.access_counter,
+                "unread_messages" : unread_messages,
+                "read_messages" : read_messages,
+                "your_messages" : your_messages
+                # XXX ReceiverTip last activity ?
+            }
+
+            mo = Rosetta()
+            mo.acquire_storm_object(rtip.receiver)
+            receiver_desc["description"] = mo.dump_translated("description", language)
+
+            receiver_list.append(receiver_desc)
+
+        return receiver_list
 
 
 class WbTipReceiversCollection(BaseHandler):

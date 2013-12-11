@@ -18,6 +18,7 @@ from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.utils.utility import log, pretty_date_time
 from globaleaks.plugins import notification
 from globaleaks.handlers import admin, rtip
+from globaleaks.models import Receiver, ReceiverTip
 
 def serialize_receivertip(rtip):
     rtip_dict = {
@@ -102,8 +103,7 @@ class APSNotification(GLJob):
             context_desc = admin.admin_serialize_context(rtip.internaltip.context, GLSetting.memory_copy.default_language)
 
             receiver_desc = admin.admin_serialize_receiver(rtip.receiver, GLSetting.memory_copy.default_language)
-            if  not receiver_desc.has_key('notification_fields') or\
-                not rtip.receiver.notification_fields.has_key('mail_address'):
+            if not receiver_desc.has_key('mail_address'):
                 log.err("Receiver %s lack of email address!" % rtip.receiver.name)
                 continue
 
@@ -166,6 +166,119 @@ class APSNotification(GLJob):
             yield notify
 
     @transact
+    def create_message_notification_events(self, store):
+        """
+        Creates events for performing notification of newly added messages.
+
+        Returns:
+            events: a list of tuples containing ((message_id, receiver_id), an instance of
+                :class:`globaleaks.plugins.base.Event`).
+
+
+        """
+        events = []
+        cplugin = GLSetting.notification_plugins[0]
+
+        plugin = getattr(notification, cplugin)()
+
+        not_notified_messages = store.find(models.Message,
+                                           models.Message.mark == models.Message._marker[0]
+        )
+
+        node_desc = admin.admin_serialize_node(store.find(models.Node).one(), GLSetting.memory_copy.default_language)
+
+        if not_notified_messages.count():
+            log.debug("Messages found to be notified: %d" % not_notified_messages.count() )
+
+        for message in not_notified_messages:
+
+            if message.receivertip is None:
+                log.err("Message %s has ReceiverTip broken reference" % message.id)
+                message.mark = models.Message._marker[2] # 'unable to notify'
+                continue
+
+            receiver = store.find(Receiver, Receiver.id == message.receivertip.receiver_id).one()
+            if not receiver:
+                log.err("Message %s do not find receiver!?" % message.id)
+
+            if not receiver.mail_address:
+                log.err("Receiver %s lack of email address!" % receiver.name)
+                continue
+
+            receiver_desc = admin.admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
+            log.debug("Messages receiver: %d" % message.internaltip.receivers.count())
+
+            context = message.receivertip.internaltip.context
+            if not context:
+                log.err("Reference chain fail!")
+                continue
+
+            context_desc = admin.admin_serialize_context(context, GLSetting.memory_copy.default_language)
+
+
+            message_desc = rtip.receiver_serialize_message(message)
+            message.mark = models.Message._marker[1] # 'notified'
+
+            if message._types == u"receiver":
+                log.debug("Receiver is the Author (%s): skipped" % receiver.user.username)
+                continue
+
+            # check if the receiver has the Message notification enabled or not
+            if not receiver.message_notification:
+                log.debug("Receiver %s has message notification disabled: skipped [source: %s]" % (
+                    receiver.user.username, message.author))
+                continue
+
+            event = Event(type=u'message', trigger='Message',
+                          notification_settings=self.notification_settings,
+                          trigger_info=message_desc,
+                          node_info=node_desc,
+                          receiver_info=receiver_desc,
+                          context_info=context_desc,
+                          plugin=plugin)
+
+            events.append(((unicode(message.id), unicode(receiver.id)), event))
+
+        return events
+
+    @transact_ro
+    def message_notification_succeeded(self, store, result, message_id, receiver_id):
+        """
+        This is called when the message notification has succeeded
+        """
+        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
+
+        if not receiver:
+            raise errors.ReceiverGusNotFound
+
+        log.debug("Email: +[Success] Notification of message receiver %s" % receiver.user.username)
+
+    @transact_ro
+    def message_notification_failed(self, store, failure, message_id, receiver_id):
+        """
+        This is called when the message notification has failed.
+        """
+        receiver = store.find(models.Receiver, models.Receiver.id == receiver_id).one()
+
+        if not receiver:
+            raise errors.ReceiverGusNotFound
+
+        log.debug("Email: -[Fail] Notification of message receiver %s" % receiver.user.username)
+
+    @inlineCallbacks
+    def do_message_notification(self, message_events):
+        for message_receiver_id, event in message_events:
+            message_id, receiver_id = message_receiver_id
+
+            notify = event.plugin.do_notify(event)
+            notify.addCallback(self.message_notification_succeeded, message_id, receiver_id)
+            notify.addErrback(self.message_notification_failed, message_id, receiver_id)
+
+            # we need to wait on single mail send basis to not be prone to DoS
+            # and be forced to open so many outgoing connections.
+            yield notify
+
+    @transact
     def create_comment_notification_events(self, store):
         """
         Creates events for performing notification of newly added comments.
@@ -215,8 +328,7 @@ class APSNotification(GLJob):
             for receiver in comment.internaltip.receivers:
 
                 receiver_desc = admin.admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
-                if  not receiver_desc.has_key('notification_fields') or\
-                    not receiver.notification_fields.has_key('mail_address'):
+                if not receiver_desc.has_key('mail_address'):
                     log.err("Receiver %s lack of email address!" % receiver.name)
                     continue
 
@@ -325,8 +437,7 @@ class APSNotification(GLJob):
                 GLSetting.memory_copy.default_language)
 
             receiver_desc = admin.admin_serialize_receiver(rfile.receiver, GLSetting.memory_copy.default_language)
-            if  not receiver_desc.has_key('notification_fields') or \
-                not rfile.receiver.notification_fields.has_key('mail_address'):
+            if not receiver_desc.has_key('mail_address'):
                 log.err("Receiver %s lack of email address!" % rfile.receiver.user.name)
                 continue
 
@@ -427,6 +538,7 @@ class APSNotification(GLJob):
             tip_events = yield self.create_tip_notification_events()
             comment_events = yield self.create_comment_notification_events()
             file_events = yield self.create_file_notification_events()
+            message_events = yield self.create_message_notification_events()
 
         except Exception as excep:
             log.err("Error in notification event creation: %s" % excep)

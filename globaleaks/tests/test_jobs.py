@@ -30,6 +30,8 @@ class TestJobs(helpers.TestGL):
                          'comments_number',
                          'files_number',
                          'context_name',
-                         'preview']
+                         'preview', 'read_messages',
+                         'unread_messages',
+                         'your_messages']
 
         self.assertEqual(set(receiver_tips[0].keys()), set(expected_keys))

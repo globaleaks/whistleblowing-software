@@ -1,3 +1,4 @@
+# -*- encoding: utf-8 -*-
 import re
 
 from twisted.internet.defer import inlineCallbacks
@@ -58,28 +59,37 @@ class TTip(helpers.TestWithDB):
         'tip_timetolive': 200, 'file_max_download': 2, 'selectable_receiver': False,
         'receivers': [], 'submission_timetolive': 100,
         'receipt_regexp': u"[0-9]{10}",
-        'receipt_description': u"blah",
-        'submission_introduction': u"bleh",
-        'submission_disclaimer': u"bloh",
         'file_required': False, 'tags' : [ u'one', u'two', u'y' ],
         'select_all_receivers': True,
+        'receiver_introduction': u"¡⅜⅛⅝⅞⅝⅛⅛¡⅛⅛⅛",
+        'fields_introduction': u"dcsdcsdc¼¼",
+        'postpone_superpower': False,
+        'can_delete_submission': False,
+        'maximum_selected_receiver': 0,
+        'require_file_description': False,
+        'delete_consensus_percentage': 0,
+        'require_pgp': False,
     }
 
     tipReceiver1 = {
-        'notification_fields': {'mail_address': u'first@winstonsmith.org' },
+        'mail_address': u'first@winstonsmith.org',
         'name': u'first', 'description': u"I'm tha 1st",
         'receiver_level': u'1', 'can_delete_submission': True,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
+        'message_notification': True,
+        'postpone_superpower': True,
         'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
         'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
     }
 
     tipReceiver2 = {
-        'notification_fields': {'mail_address': u'second@winstonsmith.org' },
+        'mail_address': u'second@winstonsmith.org',
         'name': u'second', 'description': u"I'm tha 2nd",
         'receiver_level': u'1', 'can_delete_submission': False,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
+        'message_notification': True,
+        'postpone_superpower': True,
         'comment_notification': True, 'tip_notification': False, 'gpg_key_status': u'Disabled',
         'gpg_key_info': None, 'gpg_key_fingerprint': None, 'gpg_key_remove': False,
         'gpg_enable_files': False, 'gpg_enable_notification': False, 'gpg_key_armor': None,
@@ -109,16 +119,27 @@ class TestTipInstance(TTip):
 
         basehandler = MockHandler()
 
+        stuff = u'⅛⅛⅛£"$"$¼³²¼²³¼²³“““““ð'
+        for attrname in models.Context.localized_strings:
+            self.tipContext[attrname] = stuff
+
         basehandler.validate_jmessage(self.tipContext, requests.adminContextDesc)
+
         self.context_desc = yield admin.create_context(self.tipContext)
 
         self.tipReceiver1['contexts'] = self.tipReceiver2['contexts'] = [ self.context_desc['context_gus'] ]
+
+        for attrname in models.Receiver.localized_strings:
+            self.tipReceiver1[attrname] = stuff
+            self.tipReceiver2[attrname] = stuff
+
         basehandler.validate_jmessage( self.tipReceiver1, requests.adminReceiverDesc )
         basehandler.validate_jmessage( self.tipReceiver2, requests.adminReceiverDesc )
 
         try:
             self.receiver1_desc = yield admin.create_receiver(self.tipReceiver1)
-        except Exception, e:
+        except Exception as exxx:
+            print "Exception: %s" % exxx
             self.assertTrue(False)
 
         self.receiver2_desc = yield admin.create_receiver(self.tipReceiver2)
@@ -395,6 +416,11 @@ class TestTipInstance(TTip):
         node_desc = yield admin.get_node()
         self.assertEqual(node_desc['postpone_superpower'], False)
         node_desc['postpone_superpower'] = True
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in models.Node.localized_strings:
+            node_desc[attrname] = stuff
+
         node_desc = yield admin.update_node(node_desc)
         self.assertEqual(node_desc['postpone_superpower'], True)
 

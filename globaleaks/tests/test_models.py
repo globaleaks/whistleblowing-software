@@ -48,14 +48,14 @@ class TestModels(helpers.TestGL):
         receiver_user = User(self.dummyReceiverUser)
         receiver_user.last_login = self.dummyReceiverUser['last_login']
 
-        receiver_user.username = str(self.receiver_inc) + self.dummyReceiver['notification_fields']['mail_address']
+        receiver_user.username = str(self.receiver_inc) + self.dummyReceiver['mail_address']
         receiver_user.password = self.dummyReceiverUser['password']
         store.add(receiver_user)
 
         receiver = Receiver(r)
         receiver.user = receiver_user
         receiver.gpg_key_status = Receiver._gpg_types[0]
-        receiver.notification_fields = self.dummyReceiver['notification_fields']
+        receiver.mail_address = self.dummyReceiver['mail_address']
 
         store.add(receiver)
 
@@ -113,7 +113,7 @@ class TestModels(helpers.TestGL):
         receiver1.user = receiver_user1
         receiver2.user = receiver_user2
         receiver1.gpg_key_status = receiver2.gpg_key_status = Receiver._gpg_types[0]
-        receiver1.notification_fields = receiver2.notification_fields = {'mail_address': 'x@x.it'}
+        receiver1.mail_address = receiver2.mail_address = 'x@x.it'
 
         context.receivers.add(receiver1)
         context.receivers.add(receiver2)
@@ -138,7 +138,7 @@ class TestModels(helpers.TestGL):
         receiver = Receiver(r)
         receiver.user = receiver_user
         receiver.gpg_key_status = Receiver._gpg_types[0]
-        receiver.notification_fields = {'mail_address': 'y@y.it'}
+        receiver.mail_address = unicode('y@y.it')
 
         context1 = Context(c)
 

@@ -103,6 +103,7 @@ class TestGL(TestWithDB):
             self.receiver_assertion(self.dummyReceiver, receiver)
         except Exception as excp:
             print "Fail fill_data/create_receiver: %s" % excp
+            raise  excp
 
         try:
             self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
@@ -111,6 +112,7 @@ class TestGL(TestWithDB):
 
         except Exception as excp:
             print "Fail fill_data/create_context: %s" % excp
+            raise  excp
 
         self.dummySubmission['context_gus'] = self.dummyContext['context_gus']
         self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
@@ -122,11 +124,13 @@ class TestGL(TestWithDB):
             self.dummySubmission['submission_gus'] = submission['submission_gus']
         except Exception as excp:
             print "Fail fill_data/create_submission: %s" % excp
+            raise  excp
 
         try:
             self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
         except Exception as excp:
             print "Fail fill_data/create_whistleblower: %s" % excp
+            raise  excp
 
         assert self.dummyContext.has_key('context_gus')
         assert self.dummyReceiver.has_key('receiver_gus')
@@ -272,15 +276,18 @@ class MockDict():
             'password': VALID_PASSWORD1,
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
-            'notification_fields': {'mail_address': self.dummyReceiverUser['username']},
-            'username': self.dummyReceiverUser['username'],
+            # Email can be different from the user, but at the creation time is used
+            # the same address, therefore we keep the same of dummyReceiver.username
+            'mail_address': self.dummyReceiverUser['username'],
             'can_delete_submission': True,
+            'postpone_superpower': False,
             'receiver_level': 1,
             'contexts' : [],
             'tags': [ u'first', u'second', u'third' ],
             'tip_notification': True,
             'file_notification': True,
             'comment_notification': True,
+            'message_notification': True,
             'gpg_key_info': u'',
             'gpg_key_fingerprint' : u'',
             'gpg_key_status': models.Receiver._gpg_types[0], # disabled
@@ -294,13 +301,11 @@ class MockDict():
             'context_gus': unicode(uuid.uuid4()),
             # localized stuff
             'name': u'Already localized name',
-            'receipt_description': u'xx',
-            'submission_introduction': u'yy',
-            'submission_disclaimer': u'kk',
             'description': u'Already localized desc',
             # fields, usually filled in content by fill_random_fields
             'fields': list(sample_context_fields),
             'selectable_receiver': False,
+            'select_all_receivers': True,
             'tip_max_access': 10,
             # tip_timetolive is expressed in days
             'tip_timetolive': 20,
@@ -312,7 +317,14 @@ class MockDict():
             'tags': [],
             'receipt_regexp': u'[A-Z]{4}\+[0-9]{5}',
             'file_required': False,
-            'select_all_receivers': True,
+            'receiver_introduction': u'These are our receivers',
+            'fields_introduction': u'These are our fields',
+            'postpone_superpower': False,
+            'can_delete_submission': False,
+            'maximum_selected_receiver': 0,
+            'require_file_description': False,
+            'delete_consensus_percentage': 0,
+            'require_pgp': False
         }
 
         self.dummySubmission = {
@@ -324,9 +336,10 @@ class MockDict():
 
         self.dummyNode = {
             'name':  u"Please, set me: name/title",
-            'description': u"Please, set me: description",
-            'presentation': u'This is what appears on top',
+            'description': u"Pleæs€, set m€: d€scription",
+            'presentation': u'This is whæt æpp€ærs on top',
             'footer': u'check it out https://www.youtube.com/franksentus ;)',
+            'subtitle': u'https://twitter.com/TheHackersNews/status/410457372042092544/photo/1',
             'hidden_service':  u"http://1234567890123456.onion",
             'public_site':  u"https://globaleaks.org",
             'email':  u"email@dumnmy.net",
@@ -334,26 +347,27 @@ class MockDict():
             'languages_supported': [], # ignored
             'languages_enabled':  [ "it" , "en" ],
             'default_language': 'en',
-            'password' : '',
-            'old_password' : '',
+            'password': '',
+            'old_password': '',
             'salt': 'OMG!, the Rains of Castamere ;( ;(',
             'salt_receipt': '<<the Lannisters send their regards>>',
-            'maximum_filesize' : GLSetting.defaults.maximum_filesize,
-            'maximum_namesize' : GLSetting.defaults.maximum_namesize,
-            'maximum_textsize' : GLSetting.defaults.maximum_textsize,
-            'tor2web_admin' : True,
-            'tor2web_submission' : True,
-            'tor2web_tip' : True,
-            'tor2web_receiver' : True,
-            'tor2web_unauth' : True,
-            'postpone_superpower' : False,
-            'exception_email' : GLSetting.defaults.exception_email,
+            'maximum_filesize': GLSetting.defaults.maximum_filesize,
+            'maximum_namesize': GLSetting.defaults.maximum_namesize,
+            'maximum_textsize': GLSetting.defaults.maximum_textsize,
+            'tor2web_admin': True,
+            'tor2web_submission': True,
+            'tor2web_tip': True,
+            'tor2web_receiver': True,
+            'tor2web_unauth': True,
+            'postpone_superpower': False,
+            'can_delete_submission': False,
+            'exception_email': GLSetting.defaults.exception_email,
             'reset_css': False,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',
                                            '%PublicSite%', '%ReceiverName%',
-                                           '%ReceiverUsername%', '%ContextName%' ]
+                                           '%ContextName%' ]
         self.tip_template_keywords = [ '%TipTorURL%', '%TipT2WURL%', '%EventTime%' ]
         self.comment_template_keywords = [ '%CommentSource%', '%EventTime%' ]
         self.file_template_keywords = [ '%FileName%', '%EventTime%',
@@ -362,22 +376,24 @@ class MockDict():
         self.dummyNotification = {
             'server': u'mail.foobar.xxx',
             'port': 12345,
-            'username': u'staceppa',
+            'username': u'xxxx@xxx.y',
             'password': u'antani',
             'security': u'SSL',
             'source_name': u'UnitTest Helper Name',
             'source_email': u'unit@test.helper',
-            'tip_template': template_keys(self.tip_template_keywords,
+            'encrypted_tip_template': template_keys(self.tip_template_keywords,
                                           self.generic_template_keywords, "Tip"),
+            'plaintext_tip_template': template_keys(self.tip_template_keywords,
+                                                    self.generic_template_keywords, "Tip"),
             'comment_template': template_keys(self.comment_template_keywords,
                                               self.generic_template_keywords, "Comment"),
             'file_template':template_keys(self.file_template_keywords,
                                           self.generic_template_keywords, "File"),
-            'activation_template': u'activation message: %sNodeName%',
-            'tip_mail_title': u'xxx',
+            'encrypted_tip_mail_title': u'xXx',
+            'plaintext_tip_mail_title': u'XxX',
+            'zip_description': u'TODO',
             'comment_mail_title': u'yyy',
             'file_mail_title': u'kkk',
-            'activation_mail_title': u'uuu',
             'disable': False,
         }
 
@@ -391,7 +407,6 @@ class MockDict():
         }
 
         self.dummyFile['body'].write(unicode_body.encode('utf-8'))
-
 
 
 def template_keys(first_a, second_a, name):

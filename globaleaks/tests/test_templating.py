@@ -9,6 +9,7 @@ from globaleaks.plugins.base import Event
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.tests.helpers import MockDict
 from globaleaks.utils.utility import datetime_now, pretty_date_time
+from globaleaks.models import Node
 
 
 class notifTemplateTest(TestWithDB):
@@ -18,7 +19,6 @@ class notifTemplateTest(TestWithDB):
         '%HiddenService%',
         '%PublicSite%',
         '%ReceiverName%',
-        '%ReceiverUsername%',
         '%ContextName%',
     ]
 
@@ -166,6 +166,8 @@ class notifTemplateTest(TestWithDB):
 
         # be sure of Tor2Web capability
         self.mockNode['tor2web_tip'] = False
+        for attrname in Node.localized_strings:
+            self.mockNode[attrname] = self.mockNode[attrname]['en']
         self.createdNode = yield admin.update_node(self.mockNode)
         yield admin.import_memory_variables()
 

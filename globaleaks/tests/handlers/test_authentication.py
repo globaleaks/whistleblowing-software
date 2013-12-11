@@ -198,7 +198,7 @@ class TestAuthentication(helpers.TestHandler):
     def test_successful_receiver_logout(self):
         # Login
         handler = self.request({
-            'username': self.dummyReceiver['username'],
+            'username': self.dummyReceiverUser['username'],
             'password': helpers.VALID_PASSWORD1,
             'role': 'receiver'
         })
@@ -309,7 +309,7 @@ class TestAuthentication(helpers.TestHandler):
     @inlineCallbacks
     def test_failed_login_counter(self):
         handler = self.request({
-            'username': self.dummyReceiver['username'],
+            'username': self.dummyReceiverUser['username'],
             'password': 'INVALIDPASSWORD',
             'role': 'receiver'
         })
@@ -328,13 +328,13 @@ class TestAuthentication(helpers.TestHandler):
         receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
         self.assertTrue(receiver_status.has_key('failed_login'))
         self.assertEqual(receiver_status['failed_login'], failed_login )
-        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiver['username']], failed_login)
+        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiverUser['username']], failed_login)
 
     @inlineCallbacks
     def test_bruteforce_login_protection(self):
 
         handler = self.request({
-            'username': self.dummyReceiver['username'],
+            'username': self.dummyReceiverUser['username'],
             'password': 'INVALIDPASSWORD',
             'role': 'receiver'
         })
@@ -359,7 +359,7 @@ class TestAuthentication(helpers.TestHandler):
 
         receiver_status = yield admin.get_receiver(self.dummyReceiver['receiver_gus'])
 
-        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiver['username']], failed_login)
+        self.assertEqual(GLSetting.failed_login_attempts[self.dummyReceiverUser['username']], failed_login)
         self.assertTrue(receiver_status.has_key('failed_login'))
         self.assertEqual(receiver_status['failed_login'], failed_login )
 
