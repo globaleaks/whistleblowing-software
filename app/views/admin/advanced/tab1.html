@@ -33,5 +33,25 @@
       </label>
     </div>
 
+    <div class="form-group table-bordered">
+      <label>
+        <input ng-model="admin.node.can_delete_submission " type="checkbox">
+        {{ "Permit Receivers to postpone expiration date of the Tips" | translate }}
+      </label>
+      <label ng-show="admin.node.can_delete_submission">
+        <span class="btn-info">
+        {{ "now Enabled:" | translate }}
+        </span>
+	<!-- for translations: this is the same statement from admin/receivers.html and admin/contexts.html + "globally" has to be removed, and here need to be specify that setting is applied node-wide  -->
+	{{ "The Receiver will be now able to globally delete submissions and their content." | translate }}
+      </label>
+    </div>
+
   </div>
 </div>
+
+
+
+
+
+

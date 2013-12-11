@@ -68,17 +68,19 @@ GLClient.controller('AdminReceiverAddCtrl', ['$scope', 'passwordWatcher',
 
     receiver.name = $scope.new_receiver.name;
     receiver.password = $scope.new_receiver.password;
-    receiver.notification_fields = {'mail_address': $scope.new_receiver.email};
+    receiver.mail_address = $scope.new_receiver.email;
 
     // Under here go default settings
     receiver.contexts =  [];
     receiver.description = "";
     receiver.can_delete_submission = false;
+    receiver.postpone_superpower = false;
     receiver.receiver_level = 1;
     receiver.tags = [];
     receiver.tip_notification = true;
     receiver.file_notification = true;
     receiver.comment_notification = false;
+    receiver.message_notification = true;
     receiver.gpg_key_info = '';
     receiver.gpg_key_fingerprint = '';
     receiver.gpg_key_remove = false;
