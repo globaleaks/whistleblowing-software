@@ -72,7 +72,6 @@ class MailNotification(Notification):
             '%HiddenService%': node_desc['hidden_service'],
             '%PublicSite%': node_desc['public_site'],
             '%ReceiverName%': receiver_desc['name'],
-            '%ReceiverUsername%': receiver_desc['username'],
             # context_name contains localized data, ad the moment
             # exported only with default language, because Receiver
             # can't yet configure its hown lang.
