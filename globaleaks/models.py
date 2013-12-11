@@ -436,7 +436,7 @@ class Node(Model):
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_tip', 'tor2web_unauth', 'postpone_superpower',
                   'can_delete_submission' ]
-    localized_strings = [ 'description', 'presentation', 'footer' ]
+    localized_strings = [ 'description', 'presentation', 'footer', 'subtitle' ]
 
 
 class Notification(Model):
