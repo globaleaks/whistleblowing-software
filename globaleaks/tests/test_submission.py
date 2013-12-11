@@ -180,7 +180,7 @@ class TestSubmission(helpers.TestGL):
     def get_new_receiver_desc(self, descpattern):
         new_r = dict(self.dummyReceiver)
         new_r['name'] = new_r['username'] =\
-        new_r['notification_fields']['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
+        new_r['mail_address'] = unicode("%s@%s.xxx" % (descpattern, descpattern))
         new_r['password'] = helpers.VALID_PASSWORD1
         # localized dict required in desc
         new_r['description'] =  "am I ignored ? %s" % descpattern 
