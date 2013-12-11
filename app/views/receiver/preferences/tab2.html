@@ -13,6 +13,19 @@
   </div>
 
   <div class="form-group table-bordered">
+    <input ng-model="preferences.message_notification" type="checkbox">
+    <label>
+      {{ "Enable Message notification" | translate }}
+    </label>
+    <div ng-show="preferences.message_notification">
+      <span class="btn-info">
+        {{ "now Enabled:" | translate }}
+      </span>
+      {{ "Every message, written specifically by the whistleblower for you, will trigger an email." | translate }}
+    </div>
+  </div>
+
+  <div class="form-group table-bordered">
     <input ng-model="preferences.comment_notification" type="checkbox">
     <label>
       {{ "Enable Comment notification" | translate }}

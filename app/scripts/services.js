@@ -739,9 +739,14 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
         context.receipt_regexp = "[0-9]{10}";
-        context.receipt_description = "";
-        context.submission_introduction = "";
-        context.submission_disclaimer = "";
+        context.receiver_introduction = "";
+        context.fields_introduction = "";
+	context.postpone_superpower = false;
+	context.can_delete_submission = false;
+	context.maximum_selected_receiver = 0;
+	context.require_file_description = false;
+	context.delete_consensus_percentage = 0;
+	context.require_pgp = false;
         context.tags = [];
 
         context.$save(function(new_context){
