@@ -66,7 +66,7 @@ class TTip(helpers.TestWithDB):
     }
 
     tipReceiver1 = {
-        'notification_fields': {'mail_address': u'first@winstonsmith.org' },
+        'mail_address': u'first@winstonsmith.org',
         'name': u'first', 'description': u"I'm tha 1st",
         'receiver_level': u'1', 'can_delete_submission': True,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,
@@ -76,7 +76,7 @@ class TTip(helpers.TestWithDB):
     }
 
     tipReceiver2 = {
-        'notification_fields': {'mail_address': u'second@winstonsmith.org' },
+        'mail_address': u'second@winstonsmith.org',
         'name': u'second', 'description': u"I'm tha 2nd",
         'receiver_level': u'1', 'can_delete_submission': False,
         'password': STATIC_PASSWORD, 'tags': [], 'file_notification': False,

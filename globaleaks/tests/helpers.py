@@ -103,6 +103,7 @@ class TestGL(TestWithDB):
             self.receiver_assertion(self.dummyReceiver, receiver)
         except Exception as excp:
             print "Fail fill_data/create_receiver: %s" % excp
+            raise  excp
 
         try:
             self.dummyContext['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
@@ -111,6 +112,7 @@ class TestGL(TestWithDB):
 
         except Exception as excp:
             print "Fail fill_data/create_context: %s" % excp
+            raise  excp
 
         self.dummySubmission['context_gus'] = self.dummyContext['context_gus']
         self.dummySubmission['receivers'] = [ self.dummyReceiver['receiver_gus'] ]
@@ -122,11 +124,13 @@ class TestGL(TestWithDB):
             self.dummySubmission['submission_gus'] = submission['submission_gus']
         except Exception as excp:
             print "Fail fill_data/create_submission: %s" % excp
+            raise  excp
 
         try:
             self.dummyWBTip = yield create_whistleblower_tip(self.dummySubmission)
         except Exception as excp:
             print "Fail fill_data/create_whistleblower: %s" % excp
+            raise  excp
 
         assert self.dummyContext.has_key('context_gus')
         assert self.dummyReceiver.has_key('receiver_gus')
@@ -272,7 +276,7 @@ class MockDict():
             'password': VALID_PASSWORD1,
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
-            'mail_address': self.dummyReceiverUser['username'],
+            'mail_address': u'thisemail@candifferfrom.usr',
             'can_delete_submission': True,
             'postpone_superpower': False,
             'receiver_level': 1,
@@ -370,7 +374,7 @@ class MockDict():
         self.dummyNotification = {
             'server': u'mail.foobar.xxx',
             'port': 12345,
-            'username': u'staceppa',
+            'username': u'xxxx@xxx.y',
             'password': u'antani',
             'security': u'SSL',
             'source_name': u'UnitTest Helper Name',

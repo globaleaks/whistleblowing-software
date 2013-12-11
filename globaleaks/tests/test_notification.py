@@ -48,7 +48,7 @@ class TestEmail(helpers.TestGL):
         store.add(self.rcv)
         store.commit()
 
-        self.rcv.notification_fields['mail_address'] = 'vecna@globaleaks.org'
+        self.rcv.mail_address = 'vecna@globaleaks.org'
         self.rcv.receiver_level = 1
 
         # Assign Receiver to the Context

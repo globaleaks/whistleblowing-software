@@ -154,11 +154,11 @@ class TestContextInstance(helpers.TestHandler):
             # the localized strings are kept in one side as localized l10n
             # and in the other as dict.
             if response_key in ['name', 'description',
-                                'receipt_description',
-                                'submission_introduction',
-                                'submission_disclaimer' ]:
-                # print self.responses[0][response_key]
-                # print self.dummyContext[response_key]
+                                'subtitle', 'footer', 'presentation',
+                                'receiver_introduction', 'fields_introduction' ]:
+                # XXX
+                print self.responses[0][response_key]
+                print self.dummyContext[response_key]
                 continue
 
             if response_key in ['fields']:
@@ -225,7 +225,7 @@ class TestReceiversCollection(helpers.TestHandler):
         self.dummyReceiver['name'] = 'beppe'
 
         new_email = "guy@globaleaks.xxx"
-        self.dummyReceiver['notification_fields']['mail_address'] = new_email
+        self.dummyReceiver['mail_address'] = new_email
         self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
 
         handler = self.request(self.dummyReceiver, role='admin')
@@ -240,7 +240,7 @@ class TestReceiversCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_post_invalid_mail_addr(self):
         self.dummyReceiver['name'] = 'beppe'
-        self.dummyReceiver['notification_fields']['mail_address'] = "[antani@xx.it"
+        self.dummyReceiver['mail_address'] = "[antani@xx.it"
         self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
 
         handler = self.request(self.dummyReceiver, role='admin')
@@ -257,7 +257,7 @@ class TestReceiversCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_post_duplicated_username(self):
         self.dummyReceiver['name'] = 'beppe'
-        self.dummyReceiver['notification_fields']['mail_address'] = "evilamaker.py@vecllais.naif"
+        self.dummyReceiver['mail_address'] = "evilamaker.py@vecllais.naif"
         self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
         handler = self.request(self.dummyReceiver, role='admin')
 
@@ -288,8 +288,7 @@ class TestReceiverInstance(helpers.TestHandler):
         self.dummyReceiver['context_gus'] = ''
         del self.dummyReceiver['username']
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver['notification_fields']['mail_address'] = \
-            u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver['password'] = u'12345678antani'
 
         handler = self.request(self.dummyReceiver, role='admin')
@@ -301,8 +300,7 @@ class TestReceiverInstance(helpers.TestHandler):
         self.dummyReceiver['context_gus'] = ''
         del self.dummyReceiver['username']
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver['notification_fields']['mail_address'] =\
-        u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver['password'] = u""
 
         handler = self.request(self.dummyReceiver, role='admin')
@@ -316,8 +314,7 @@ class TestReceiverInstance(helpers.TestHandler):
         import uuid
         self.dummyReceiver['contexts'] = [ unicode(uuid.uuid4()) ]
         self.dummyReceiver['name'] = u'another unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver['notification_fields']['mail_address'] =\
-            u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver['password'] = u'12345678andaletter'
 
         handler = self.request(self.dummyReceiver, role='admin')
