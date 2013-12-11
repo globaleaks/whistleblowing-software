@@ -88,7 +88,7 @@ spec = [
     (r'/wbtip/upload', files.FileAdd),
 
     #  W5 interaction with a single receiver
-    (r'/wbtip/message/' + uuid_regexp, wbtip.WbMessageCollection),
+    (r'/wbtip/messages/' + uuid_regexp, wbtip.WbMessageCollection),
 
     ## Receiver Handlers ##
 

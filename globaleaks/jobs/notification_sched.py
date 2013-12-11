@@ -200,7 +200,7 @@ class APSNotification(GLJob):
             # for every comment, iter on the associated receiver
             log.debug("Comments receiver: %d" % comment.internaltip.receivers.count())
 
-            comment_desc = rtip.serialize_comment(comment)
+            comment_desc = rtip.receiver_serialize_comment(comment)
 
             if not comment.internaltip.context:
                 log.err("(comment_notification) Integrity check failure Context")
