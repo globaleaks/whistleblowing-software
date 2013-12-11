@@ -197,7 +197,7 @@ class MailNotification(Notification):
                         (event.receiver_info['username'], str(excep) ))
                 return None
 
-        receiver_mail = event.receiver_info['notification_fields']['mail_address']
+        receiver_mail = event.receiver_info['mail_address']
 
         # XXX here can be catch the subject (may change if encrypted or whatever)
         message = MIME_mail_build(GLSetting.memory_copy.notif_source_name,

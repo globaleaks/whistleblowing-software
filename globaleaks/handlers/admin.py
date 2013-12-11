@@ -47,6 +47,7 @@ def admin_serialize_node(node, language=GLSetting.memory_copy.default_language):
         'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
         'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
         'postpone_superpower': node.postpone_superpower,
+        'can_detele_submission': node.can_delete_submission,
         'reset_css': False,
     }
 
@@ -74,7 +75,12 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         # tip expressed in day, submission in hours
         "tip_timetolive": context.tip_timetolive / (60 * 60 * 24),
         "submission_timetolive": context.submission_timetolive / (60 * 60),
-        "select_all_receivers": context.select_all_receivers
+        "select_all_receivers": context.select_all_receivers,
+        "postpone_superpower": context.postpone_superpower,
+        "can_delete_submission": context.can_delete_submission,
+        "require_file_description": context.require_file_description,
+        "delete_consensus_precentage": context.delete_consensus_percentage,
+        "require_pgp": context.require_pgp,
     }
 
     mo = structures.Rosetta()
@@ -98,8 +104,9 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "last_update": utility.pretty_date_time(receiver.last_update),
         "receiver_level": receiver.receiver_level,
         "can_delete_submission": receiver.can_delete_submission,
+        "postpone_superpower": receiver.postpone_superpower,
         "username": receiver.user.username,
-        "notification_fields": dict(receiver.notification_fields or {'mail_address': ''}),
+        'mail_address': receiver.mail_address,
         "failed_login": receiver.user.failed_login_count,
         "password": u"",
         "contexts": [],
@@ -114,6 +121,7 @@ def admin_serialize_receiver(receiver, language=GLSetting.memory_copy.default_la
         "comment_notification": True if receiver.comment_notification else False,
         "tip_notification": True if receiver.tip_notification else False,
         "file_notification": True if receiver.file_notification else False,
+        "message_notification": True if receiver.message_notification else False,
     }
 
     # only 'description' at the moment is a localized object here
@@ -148,10 +156,10 @@ def update_node(store, request, language=GLSetting.memory_copy.default_language)
     """
     node = store.find(Node).one()
 
-    for attr in getattr(node, "localized_strings"):
-        new_value = unicode(request[attr])
-        request[attr] = getattr(node, attr)
-        request[attr][language] = new_value
+    mo = structures.Rosetta()
+    mo.acquire_request(language, request, Node)
+    for attr in mo.get_localized_attrs():
+        request[attr] = mo.get_localized_dict(attr)
 
     password = request.get('password', None)
     old_password = request.get('old_password', None)
@@ -289,14 +297,21 @@ def create_context(store, request, language=GLSetting.memory_copy.default_langua
     """
     receivers = request.get('receivers', [])
 
-    v = dict(request)
+    # ----- TEMPORARY ------
+    request['receiver_introduction'] = u"Abba"
+    request['fields_introduction'] = u"dancing queen"
+    request['postpone_superpower'] = False
+    request['can_delete_submission'] = False
+    request['require_file_description'] = False
+    request['delete_consensus_percentage'] = 50
+    request['maximum_selected_receiver'] =100
+    request['require_pgp'] = False
+    # ---- UNTIL CLIENT IS NOT UPDATE ---
 
-    for attr in ['name', 'description', 'receipt_description',
-                 'submission_introduction', 'submission_disclaimer' ]:
-        v[attr] = {}
-        v[attr][language] = unicode(request[attr])
-
-    request = v
+    mo = structures.Rosetta()
+    mo.acquire_request(language, request, Context)
+    for attr in mo.get_localized_attrs():
+        request[attr] = mo.get_localized_dict(attr)
 
     context = Context(request)
 
@@ -386,14 +401,11 @@ def update_context(store, context_gus, request, language=GLSetting.memory_copy.d
     if not context:
          raise errors.ContextGusNotFound
 
-    v = dict(request)
+    mo = structures.Rosetta()
+    mo.acquire_request(language, request, Context)
+    for attr in mo.get_localized_attrs():
+        request[attr] = mo.get_localized_dict(attr)
 
-    for attr in getattr(Context, "localized_strings"):
-        v[attr] = getattr(context, attr)
-        v[attr][language] = unicode(request[attr])
-
-    request = v
-    
     for receiver in context.receivers:
         context.receivers.remove(receiver)
 
@@ -481,14 +493,11 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
         (dict) the configured receiver
     """
 
-    v = dict(request)
+    mo = structures.Rosetta()
+    mo.acquire_request(language, request, Receiver)
+    for attr in mo.get_localized_attrs():
+        request[attr] = mo.get_localized_dict(attr)
 
-    for attr in getattr(Receiver, "localized_strings"):
-        v[attr] = {}
-        v[attr][language] = unicode(request[attr])
-        
-    request = v
-    
     mail_address = utility.acquire_mail_address(request)
     if not mail_address:
         raise errors.NoEmailSpecified
@@ -521,7 +530,7 @@ def create_receiver(store, request, language=GLSetting.memory_copy.default_langu
     receiver = Receiver(request)
     receiver.user = receiver_user
 
-    receiver.notification_fields = request.get('notification_fields')
+    receiver.mail_address = request.get('mail_address')
     receiver.tags = request.get('tags')
 
     # The various options related in manage GPG keys are used here.
@@ -571,16 +580,13 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
     """
     receiver = store.find(Receiver, Receiver.id == unicode(id)).one()
 
-    v = dict(request)
-
-    for attr in getattr(Receiver, "localized_strings"):
-        v[attr] = getattr(receiver, attr)
-        v[attr][language] = unicode(request[attr])
-
-    request = v
-
     if not receiver:
         raise errors.ReceiverGusNotFound
+
+    mo = structures.Rosetta()
+    mo.acquire_request(language, request, Receiver)
+    for attr in mo.get_localized_attrs():
+        request[attr] = mo.get_localized_dict(attr)
 
     mail_address = utility.acquire_mail_address(request)
     if not mail_address:
@@ -591,7 +597,7 @@ def update_receiver(store, id, request, language=GLSetting.memory_copy.default_l
         log.err("Update error: already present receiver with the requested username: %s" % mail_address)
         raise errors.ExpectedUniqueField('mail_address', mail_address)
 
-    receiver.notification_fields = request['notification_fields']
+    receiver.mail_address = request['mail_address']
     receiver.tags = request['tags']
 
     # the email address it's also the username, stored in User
@@ -719,7 +725,10 @@ class ContextsCollection(BaseHandler):
         Response: adminContextDesc
         Errors: InvalidInputFormat, ReceiverGusNotFound
         """
-        request = self.validate_message(self.request.body, requests.adminContextDesc)
+        #request = self.validate_message(self.request.body, requests.adminContextDesc)
+        import json
+        request = json.loads(self.request.body)
+        # AAA TODO REMIND CRITIC TEST
 
         response = yield create_context(request, self.request.language)
 
@@ -918,13 +927,10 @@ def update_notification(store, request, language=GLSetting.memory_copy.default_l
         log.err("Database error or application error: %s" % excep )
         raise excep
 
-    v = dict(request)
-
-    for attr in getattr(notif, "localized_strings"):
-        v[attr] = getattr(notif, attr)
-        v[attr][language] = unicode(request[attr])
-
-    request = v
+    mo = structures.Rosetta()
+    mo.acquire_request(language, request, Notification)
+    for attr in mo.get_localized_attrs():
+        request[attr] = mo.get_localized_dict(attr, language)
 
     if request['security'] in Notification._security_types:
         notif.security = request['security']
