@@ -13,13 +13,15 @@
         </div>
       </div>
       <div id="titleboxwithtagline">
-        <div id="logo"></div>
-        <div id="tagline">
-          {{ header_section | translate }}
-          <span ng-show="header_subsection">
-             - {{ header_subsection | translate }}
-          </span>
-        </div>
+          <a href="/#/">
+            <div id="logo"></div>
+          </a>
+          <div id="tagline">
+            {{ header_section | translate }}
+            <span ng-show="header_subsection">
+               - {{ header_subsection | translate }}
+            </span>
+          </div>
       </div>
     </span>
     <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>

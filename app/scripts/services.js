@@ -374,37 +374,58 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('Tip', ['$resource', 'Receivers',
           function($resource, Receivers) {
 
-    var tipResource = $resource('/rtip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}});
+    var tipResource = $resource('/rtip/:tip_id', {tip_id: '@tip_id'}, {update: {method: 'PUT'}});
     var receiversResource = $resource('/rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
     var commentsResource = $resource('/rtip/:tip_id/comments', {tip_id: '@tip_id'}, {});
+    var messageResource = $resource('/rtip/:tip_id/messages', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
       var self = this;
       self.tip = {};
-      self.tip.comments = [];
-      self.tip.receivers = [];
 
       tipResource.get(tipID, function(result){
 
         receiversResource.query(tipID, function(receiversCollection){
 
           self.tip = result;
+
+          self.tip.comments = [];
+          self.tip.messages = [];
+
+          self.tip.newComment = function(content) {
+            var c = new commentsResource(tipID);
+            c.content = content;
+            c.$save(function(newComment) {
+              self.tip.comments.unshift(newComment);
+            });
+          };
+
+          self.tip.newMessage = function(content) {
+            var m = new messageResource(tipID);
+            m.content = content;
+            m.$save(function(newMessage) {
+              self.tip.messages.unshift(newMessage);
+            });
+          };
+
           self.tip.receivers = receiversCollection;
 
           commentsResource.query(tipID, function(commentsCollection){
             self.tip.comments = commentsCollection;
-            self.tip.comments.newComment = function(content) {
-              var c = new commentsResource(tipID);
-              c.content = content;
-              c.$save(function(newComment) {
-                self.tip.comments.push(newComment);
-              });
-            };
 
             // XXX perhaps make this return a lazyly instanced item.
             // look at $resource code for inspiration.
             fn(self.tip);
           });
+
+          messageResource.query(tipID, function(messageCollection){
+            self.tip.messages = messageCollection;
+
+            // XXX perhaps make this return a lazyly instanced item.
+            // look at $resource code for inspiration.
+            fn(self.tip);
+          });
+
         });
       });
 
@@ -413,37 +434,85 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('WBTip', ['$resource', 'Receivers',
           function($resource, Receivers) {
 
+    var forEach = angular.forEach;
+
     var tipResource = $resource('/wbtip', {}, {update: {method: 'PUT'}});
     var receiversResource = $resource('/wbtip/receivers', {}, {});
     var commentsResource = $resource('/wbtip/comments', {}, {});
+    var messageResource = $resource('/wbtip/messages/:receiver_gus', {receiver_gus: '@receiver_gus'}, {});
 
-    return function(tipID, fn) {
+    return function(fn) {
       var self = this;
       self.tip = {};
-      self.tip.comments = [];
-      self.tip.receivers = [];
 
-      tipResource.get(tipID, function(result){
+      tipResource.get(function(result) {
 
-        receiversResource.query(tipID, function(receiversCollection){
+        receiversResource.query(function(receiversCollection) {
 
           self.tip = result;
+          self.tip.comments = [];
+          self.tip.messages = [];
+          self.tip.receivers = [];
+          self.tip.msg_receivers_selector = [];
+          self.tip.msg_receiver_selected = null;
+
+          self.tip.newComment = function(content) {
+            var c = new commentsResource();
+            c.content = content;
+            c.$save(function(newComment) {
+              self.tip.comments.unshift(newComment);
+            });
+          };
+
+          self.tip.newMessage = function(content) {
+            var m = new messageResource({receiver_gus: self.tip.msg_receiver_selected});
+            m.content = content;
+            m.$save(function(newMessage) {
+              self.tip.messages.unshift(newMessage);
+            });
+          };
+
+          self.tip.updateMessages = function() {
+            if (self.tip.msg_receiver_selected) {
+              messageResource.query({receiver_gus: self.tip.msg_receiver_selected}, function(messageCollection){
+                self.tip.messages = messageCollection;
+
+                // XXX perhaps make this return a lazyly instanced item.
+                // look at $resource code for inspiration.
+                fn(self.tip);
+              });
+            }
+          }
+
           self.tip.receivers = receiversCollection;
 
-          commentsResource.query(tipID, function(commentsCollection){
-            self.tip.comments = commentsCollection;
-            self.tip.comments.newComment = function(content) {
-              var c = new commentsResource(tipID);
-              c.content = content;
-              c.$save(function(newComment) {
-                self.tip.comments.push(newComment);
+          Receivers.query(function(receivers) {
+
+            forEach(self.tip.receivers, function(r1) {
+              forEach(receivers, function(r2) {
+                if (r2.receiver_gus == r1.receiver_gus) {
+                  self.tip.msg_receivers_selector.push({
+                    key: r2.receiver_gus,
+                    value: r2.name
+                  });
+                }
               });
-            };
+            });
+
+            if (self.tip.msg_receiver_selected) {
+              self.tip.updateMessages();
+            }
+
+          });
+
+          commentsResource.query({}, function(commentsCollection){
+            self.tip.comments = commentsCollection;
 
             // XXX perhaps make this return a lazyly instanced item.
             // look at $resource code for inspiration.
             fn(self.tip);
           });
+
         });
       });
 

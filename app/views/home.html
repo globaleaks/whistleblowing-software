@@ -114,7 +114,9 @@
     </span>
     <span id="TitleBox">
       <div id="titleboxwithtagline">
-        <div id="logo"></div>
+        <a href="/#/">
+          <div id="logo"></div>
+        </a>
         <div id="tagline">
           {{ node_info.subtitle | translate }}
         </div>
@@ -134,9 +136,14 @@
 <div id="ContentBox" class="container"   ng-show="node_info.description">
   <div id="HomePageBox">
 
-    <h1>{{ node_info.presentation }}</h1>
-
-    <h3 class="lead">{{node_info.description}}</h3>
+    <div id="HomePageBoxHeader">
+      <div id="HomePageBoxNodePresentation">
+        {{ node_info.presentation }}
+      </div>
+      <div id="HomePageBoxNodeDescription">
+        {{node_info.description}}
+      </div>
+    </div>
 
     <div id="BlowTheWhistleBox" class="ng-cloak row">
       <div ng-show="node_info.configured">
@@ -168,9 +175,9 @@
 
     <div id="WhistleblowerLoginBox" class="row">
       <div class="col-md-offset-2 col-md-8">
-        <h3>
+        <div id="WhistleblowerLoginBoxHeader">
           {{ "Are you a whistleblower?" | translate }}
-        </h3>
+        </div>
         <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="row">
@@ -183,7 +190,7 @@
             </div>
             <br />
             <div class="row">
-              <a ng-click="view_tip(receipt)" class="btn btn-primary">
+              <a ng-click="view_tip(receipt)" class="btn btn-primary" ng-disabled="!receipt || receipt == ''">
                 <i class="glyphicon glyphicon-log-in"></i>
                 {{ "View Tip" | translate }}
               </a>
@@ -195,9 +202,9 @@
 
     <div id="ReceiverLoginBox" class="row">
       <div class="col-md-offset-2 col-md-8">
-        <h3>
+        <div id="ReceiverLoginBoxHeader">
           {{ "Are you a receiver?" | translate }}
-        </h3>
+        </div>
         <div>
           {{ "This is the" | translate }}
           <a href="#/login">

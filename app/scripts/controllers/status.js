@@ -57,6 +57,12 @@ GLClient.controller('StatusCtrl',
         });
       });
 
+      $scope.$watch('tip.msg_receiver_selected', function(){
+        if ($scope.tip) {
+          $scope.tip.updateMessages();
+        }
+      }, true);
+
     }
 
     if ($.cookie('role') === 'receiver') {
@@ -80,36 +86,42 @@ GLClient.controller('StatusCtrl',
             $scope.fieldFormat[field.key] = field; 
           });
 
-    $scope.newComment = function() {
-      $scope.tip.comments.newComment($scope.newCommentContent);
-      $scope.newCommentContent = '';
-    };
+          $scope.increaseDownloadCount = function(file) {
+            file.downloads = parseInt(file.downloads) + 1;
+          };
 
-    $scope.increaseDownloadCount = function(file) {
-      file.downloads = parseInt(file.downloads) + 1;
-    };
+          $scope.increaseDownloadCounts = function() {
+            for (file in $scope.tip.files) { 
+              $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
+            } 
+          }
 
-    $scope.increaseDownloadCounts = function() {
-      for (file in $scope.tip.files) { 
-       $scope.tip.files[file].downloads = parseInt($scope.tip.files[file].downloads) + 1;
-      } 
-    }
-
-    $scope.show_download_all = function() {
-      download_all = false;
+          $scope.show_download_all = function() {
+            download_all = false;
       
-      for (file in $scope.tip.files) { 
-        if ($scope.tip.files[file].downloads < $scope.tip.download_limit) { 
-          download_all = true;
-        } 
-      } 
+            for (file in $scope.tip.files) { 
+              if ($scope.tip.files[file].downloads < $scope.tip.download_limit) { 
+                download_all = true;
+              } 
+            } 
 
-      return download_all;
-    }
+            return download_all;
+          }
 
         });
       });
     }
+
+    $scope.newComment = function() {
+      $scope.tip.newComment($scope.newCommentContent);
+      $scope.newCommentContent = '';
+    };
+
+    $scope.newMessage = function() {
+      $scope.tip.newMessage($scope.newMessageContent);
+      $scope.newMessageContent = '';
+    };
+
 
     $scope.getField = function(field_name) {
       angular.forEach($scope.current_context.fields,
