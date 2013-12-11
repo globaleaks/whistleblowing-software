@@ -276,7 +276,9 @@ class MockDict():
             'password': VALID_PASSWORD1,
             'name': u'Ned Stark',
             'description': u'King MockDummy Receiver',
-            'mail_address': u'thisemail@candifferfrom.usr',
+            # Email can be different from the user, but at the creation time is used
+            # the same address, therefore we keep the same of dummyReceiver.username
+            'mail_address': self.dummyReceiverUser['username'],
             'can_delete_submission': True,
             'postpone_superpower': False,
             'receiver_level': 1,
@@ -299,12 +301,11 @@ class MockDict():
             'context_gus': unicode(uuid.uuid4()),
             # localized stuff
             'name': u'Already localized name',
-            'receiver_introduction': u'These are our receivers',
-            'fields_introduction': u'These are our fields',
             'description': u'Already localized desc',
             # fields, usually filled in content by fill_random_fields
             'fields': list(sample_context_fields),
             'selectable_receiver': False,
+            'select_all_receivers': True,
             'tip_max_access': 10,
             # tip_timetolive is expressed in days
             'tip_timetolive': 20,
@@ -316,7 +317,8 @@ class MockDict():
             'tags': [],
             'receipt_regexp': u'[A-Z]{4}\+[0-9]{5}',
             'file_required': False,
-            'select_all_receivers': True,
+            'receiver_introduction': u'These are our receivers',
+            'fields_introduction': u'These are our fields',
             'postpone_superpower': False,
             'can_delete_submission': False,
             'maximum_selected_receiver': 0,
@@ -365,7 +367,7 @@ class MockDict():
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',
                                            '%PublicSite%', '%ReceiverName%',
-                                           '%ReceiverUsername%', '%ContextName%' ]
+                                           '%ContextName%' ]
         self.tip_template_keywords = [ '%TipTorURL%', '%TipT2WURL%', '%EventTime%' ]
         self.comment_template_keywords = [ '%CommentSource%', '%EventTime%' ]
         self.file_template_keywords = [ '%FileName%', '%EventTime%',
@@ -389,6 +391,7 @@ class MockDict():
                                           self.generic_template_keywords, "File"),
             'encrypted_tip_mail_title': u'xXx',
             'plaintext_tip_mail_title': u'XxX',
+            'zip_description': u'TODO',
             'comment_mail_title': u'yyy',
             'file_mail_title': u'kkk',
             'disable': False,
@@ -404,7 +407,6 @@ class MockDict():
         }
 
         self.dummyFile['body'].write(unicode_body.encode('utf-8'))
-
 
 
 def template_keys(first_a, second_a, name):

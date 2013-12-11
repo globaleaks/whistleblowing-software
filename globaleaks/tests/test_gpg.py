@@ -52,6 +52,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         "comment_notification": True,
         "file_notification": True,
         "tip_notification": False,
+        "message_notification": False,
     }
 
     @inlineCallbacks
@@ -224,7 +225,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.assertEqual(len(doubletest), 2)
 
         yanr = dict(MockDict().dummyReceiver)
-        yanr['name'] = yanr['notification_fields']['mail_address'] = "quercia@nana.ptg"
+        yanr['name'] = yanr['mail_address'] = "quercia@nana.ptg"
         yanr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         yanr['gpg_enable_files'] = True
         yanr['contexts'] = [ new_context_output['context_gus']]
@@ -232,7 +233,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.receiver_assertion(yanr, yanr_output)
 
         asdr = dict(MockDict().dummyReceiver)
-        asdr['name'] = asdr['notification_fields']['mail_address'] = "nocibo@rocco.tnc"
+        asdr['name'] = asdr['mail_address'] = "nocibo@rocco.tnc"
         asdr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         asdr['gpg_enable_files'] = True
         asdr['contexts'] = [ new_context_output['context_gus']]
@@ -298,7 +299,7 @@ class TestReceiverSetKey(helpers.TestHandler):
 #        # second receiver creation!
 #        new_receiver = dict(MockDict().dummyReceiver)
 #        new_receiver['name'] = new_receiver['username'] = \
-#            new_receiver['notification_fields']['mail_address'] = "quercia@nana.ptg"
+#            new_receiver['mail_address'] = "quercia@nana.ptg"
 #        new_receiver_output = yield create_receiver(new_receiver)
 #
 #        self.assertGreater(new_receiver_output['receiver_gus'], 10)
