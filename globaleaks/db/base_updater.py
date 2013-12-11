@@ -104,6 +104,8 @@ class TableReplacer:
 
         from globaleaks.db.update_5_6 import User_version_5, Comment_version_5, Node_version_5
         from globaleaks.db.update_6_7 import Node_version_6, Context_version_6
+        from globaleaks.db.update_7_8 import Node_version_7, Notification_version_7, Context_version_7, \
+            Receiver_version_7, InternalFile_version_7
 
         self.old_db_file = old_db_file
         self.new_db_file = new_db_file
@@ -113,19 +115,20 @@ class TableReplacer:
         self.debug_info = "   [%d => %d] " % (start_ver, start_ver + 1)
 
         self.table_history = {
-            'Node' : [ Node_version_5, Node_version_6, models.Node ],
-            'User' : [ User_version_5, models.User, None ],
-            'Context' : [ Context_version_6, None, models.Context ],
-            'Receiver': [ models.Receiver, None, None ],
-            'ReceiverFile' : [ models.ReceiverFile, None, None ],
-            'Notification': [ models.Notification, None, None ],
-            'Comment': [ Comment_version_5, models.Comment, None ],
-            'InternalTip' : [ models.InternalTip, None, None ],
-            'InternalFile' : [ models.InternalFile, None, None ],
-            'WhistleblowerTip' : [ models.WhistleblowerTip, None, None ],
-            'ReceiverTip' : [ models.ReceiverTip, None, None ],
-            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None ],
-            'ReceiverContext' : [ models.ReceiverContext, None, None ],
+            'Node' : [ Node_version_5, Node_version_6, Node_version_7, models.Node ],
+            'User' : [ User_version_5, models.User, None, None ],
+            'Context' : [ Context_version_6, None, Context_version_7, models.Context ],
+            'Receiver': [ Receiver_version_7, None, None, models.Receiver ],
+            'ReceiverFile' : [ models.ReceiverFile, None, None, None ],
+            'Notification': [ Notification_version_7, None, None, models.Notification ],
+            'Comment': [ Comment_version_5, models.Comment, None, None ],
+            'InternalTip' : [ models.InternalTip, None, None, None ],
+            'InternalFile' : [ InternalFile_version_7, None, None, models.InternalFile ],
+            'WhistleblowerTip' : [ models.WhistleblowerTip, None, None, None ],
+            'ReceiverTip' : [ models.ReceiverTip, None, None, None ],
+            'ReceiverInternalTip' : [ models.ReceiverInternalTip, None, None, None ],
+            'ReceiverContext' : [ models.ReceiverContext, None, None, None ],
+            # remind: since 8 to 9, need to be added Message
         }
 
         for k, v in self.table_history.iteritems():
@@ -272,12 +275,6 @@ class TableReplacer:
         self._perform_copy_single("Node")
 
     def migrate_User(self):
-        """
-        It's created between 3 and 4, since 4 need to be migrated
-        """
-        if self.start_ver < 4:
-            return
-
         self._perform_copy_list("User")
 
     def migrate_ReceiverTip(self):
@@ -309,4 +306,13 @@ class TableReplacer:
 
     def migrate_ReceiverInternalTip(self):
         self._perform_copy_list("ReceiverInternalTip")
+
+    def migrate_Message(self):
+        """
+        has been created between 7 and 8!
+        """
+        if self.start_ver < 8:
+            return
+
+        self._perform_copy_list("User")
 

@@ -299,13 +299,11 @@ def acquire_mail_address(request):
         lowercase mail address if is valid
     """
 
-    if 'notification_fields' not in request:
+    if 'mail_address' not in request:
+        log.err("Missing mail_address in mail import check")
         return False
 
-    if 'mail_address' not in request['notification_fields']:
-        return False
-
-    mail_string = request['notification_fields']['mail_address'].lower()
+    mail_string = request['mail_address'].lower()
     if not re.match("^([\w-]+\.)*[\w-]+@([\w-]+\.)+[a-z]{2,4}$", mail_string):
         log.err("Invalid email address format [%s]" % mail_string)
         return False

@@ -72,7 +72,7 @@ class TestTransaction(helpers.TestGL):
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
         receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
-        receiver.notification_fields = self.dummyReceiver['notification_fields']
+        receiver.mail_address = self.dummyReceiver['mail_address']
         store.add(receiver)
 
         return receiver.id
@@ -87,7 +87,7 @@ class TestTransaction(helpers.TestGL):
         receiver = Receiver(r)
         receiver.user_id = receiver_user.id
         receiver.gpg_key_status = Receiver._gpg_types[0] # this is a required field!
-        receiver.notification_fields = self.dummyReceiver['notification_fields']
+        receiver.mail_address = self.dummyReceiver['mail_address']
         store.add(receiver)
 
         raise exceptions.DisconnectionError
