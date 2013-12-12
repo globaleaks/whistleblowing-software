@@ -79,7 +79,7 @@ def admin_serialize_context(context, receipt_output, language=GLSetting.memory_c
         "can_delete_submission": context.can_delete_submission,
         "require_file_description": context.require_file_description,
         "delete_consensus_percentage": context.delete_consensus_percentage,
-        "maximum_selected_receiver": context.maximum_selected_receiver,
+        "maximum_selectable_receivers": context.maximum_selectable_receivers,
         "require_pgp": context.require_pgp,
     }
 

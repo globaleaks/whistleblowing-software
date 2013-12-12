@@ -185,7 +185,7 @@ class Context(Model):
     postpone_superpower = Bool()
     can_delete_submission = Bool()
 
-    maximum_selected_receiver = Int()
+    maximum_selectable_receivers = Int()
     require_file_description = Bool()
     delete_consensus_percentage = Int()
     require_pgp = Bool()
@@ -194,7 +194,7 @@ class Context(Model):
     localized_strings = ['name', 'description',
                          'receiver_introduction', 'fields_introduction' ]
     int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download',
-                 'maximum_selected_receiver', 'delete_consensus_percentage' ]
+                 'maximum_selectable_receivers', 'delete_consensus_percentage' ]
     bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers',
                   'postpone_superpower', 'can_delete_submission',
                   'require_file_description', 'require_pgp' ]

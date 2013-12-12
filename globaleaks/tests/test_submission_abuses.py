@@ -50,7 +50,7 @@ class SubmissionTest(helpers.TestGL):
         'fields_introduction': u"dcsdcsdc¼¼",
         'postpone_superpower': False,
         'can_delete_submission': False,
-        'maximum_selected_receiver': 0,
+        'maximum_selectable_receivers': 0,
         'require_file_description': False,
         'delete_consensus_percentage': 0,
         'require_pgp': False,
