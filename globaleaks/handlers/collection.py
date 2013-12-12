@@ -121,8 +121,8 @@ class CollectionDownload(BaseHandler):
         for filedesc in files_dict:
             # Update all the path with the absolute path
             filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
-        formatted_coll = Templating().format_template(notif_dict['zip_description'], mock_event)
-        print formatted_coll
+
+        formatted_coll = Templating().format_template(notif_dict['zip_description'], mock_event).encode('utf-8')
         files_dict.append(
             { 'buf'  : formatted_coll,
               'name' : "COLLECTION_INFO.txt"
@@ -132,7 +132,6 @@ class CollectionDownload(BaseHandler):
 
         self.set_header('X-Download-Options', 'noopen')
         self.set_header('Content-Type', 'application/octet-stream')
-        self.set_header('Etag', '"%s"' % collection_tip_dict['etag_hash'] )
         self.set_header('Content-Disposition','attachment; filename=\"' + opts['filename'] + '\"')
 
         if compression in ['zipstored', 'zipdeflated']:
@@ -149,7 +148,7 @@ class CollectionDownload(BaseHandler):
                 elif 'buf' in f:
                     tarinfo = tarfile.TarInfo(f['name'])
                     tarinfo.size = len(f['buf'])
-                    tar.addfile(tarinfo, StringIO.StringIO(info))
+                    tar.addfile(tarinfo, StringIO.StringIO(formatted_coll))
 
             tar.close()
 
