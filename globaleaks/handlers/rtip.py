@@ -106,11 +106,11 @@ def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_c
     node = store.find(Node).one()
 
     tip_desc['im_receiver_postponer'] = (node.postpone_superpower or
-                                         rtip.context.postpone_superpower or
+                                         rtip.internaltip.context.postpone_superpower or
                                          rtip.receiver.postpone_superpower)
 
     tip_desc['can_delete_submission'] = (node.can_delete_submission or
-                                         rtip.context.can_delete_submission or
+                                         rtip.internaltip.context.can_delete_submission or
                                          rtip.receiver.can_delete_submission)
 
     return tip_desc
@@ -214,7 +214,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     node = store.find(Node).one()
 
     if not (node.postpone_superpower or
-            rtip.context.postpone_superpower or
+            rtip.internaltip.context.postpone_superpower or
             rtip.receiver.postpone_superpower):
 
         raise errors.ExtendTipLifeNotEnabled()
