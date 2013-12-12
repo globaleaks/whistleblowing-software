@@ -3,6 +3,7 @@
 from storm.locals import Bool, Pickle, Unicode, Int, DateTime
 
 from globaleaks.db.base_updater import TableReplacer
+from globaleaks.db import acquire_email_templates
 from globaleaks.models import Model
 from globaleaks import LANGUAGES_SUPPORTED_CODES
 
@@ -13,12 +14,6 @@ def every_language(default_text):
         return_dict.update({code : default_text})
 
     return return_dict
-
-ENCRYPTED_TIP_BODY = ""
-ENCRYPTED_TIP_TITLE = ""
-PLAINTEXT_TIP_BODY = ""
-PLAINTEXT_TIP_TITLE = ""
-ZIP_DESCRIPTION = ""
 
 
 class Context_version_7(Model):
@@ -277,19 +272,26 @@ class Replacer78(TableReplacer):
         for k, v in new_notification._storm_columns.iteritems():
 
             if v.name == 'encrypted_tip_template':
-                new_notification.encrypted_tip_template = every_language(ENCRYPTED_TIP_BODY)
+                new_notification.encrypted_tip_template = every_language(
+                        acquire_email_templates(
+                            'default_ENT.txt',
+                            "default Encrypted Tip notification not available! %NodeName% configure this!"))
                 continue
             if v.name == 'encrypted_tip_mail_title':
-                new_notification.encrypted_tip_mail_title = every_language(ENCRYPTED_TIP_TITLE)
+                new_notification.encrypted_tip_mail_title = every_language(
+                    "[%NodeName%][%TipUN%] Encrypted Tip")
                 continue
             if v.name == 'plaintext_tip_template':
-                new_notification.plaintext_tip_template  = every_language(PLAINTEXT_TIP_BODY)
+                new_notification.plaintext_tip_template  = old_notification.tip_template
                 continue
             if v.name == 'plaintext_tip_mail_title':
-                new_notification.plaintext_tip_mail_title = every_language(PLAINTEXT_TIP_TITLE)
+                new_notification.plaintext_tip_mail_title = old_notification.tip_mail_title
                 continue
             if v.name == 'zip_description':
-                new_notification.zip_description = every_language(ZIP_DESCRIPTION)
+                new_notification.zip_description = every_language(
+                        acquire_email_templates(
+                            'default_ZFC.txt',
+                            "default Zip Collection template not available! %NodeName% configure this!"))
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name) )
