@@ -112,13 +112,16 @@ This comment is needed in order to push the following strings on transifex
                     <label>{{ "Contexts" | translate }}</label>
                     <div class="selectionList">
                       <div ng-repeat="context in admin.contexts">
-                        <div class="selectionContextItem" ng-click="toggle(context)">
+                        <div class="row" ng-click="toggle(context)">
                           <span class="col-md-1">
                             <span ng-show="isSelected(context)">
-                              <i class="glyphicon glyphicon-ok"></i>
+                              <i class="glyphicon glyphicon-check"></i>
+                            </span>
+                            <span ng-show="!isSelected(context)">
+                              <i class="glyphicon glyphicon-unchecked"></i>
                             </span>
                           </span>
-                          <span class="col-md-10">{{context.name}}</span><br />
+                          <span class="col-md-10">{{context.name}}</span>
                         </div>
                       </ul>
                     </div>
@@ -238,8 +241,6 @@ This comment is needed in order to push the following strings on transifex
           </div>
         </form>
       </div>
-
-      <br /><br />
 
       <div ng-controller="AdminReceiverAddCtrl">
         <div class="row">

@@ -64,21 +64,26 @@
           {{submission.current_context.receiver_introduction}}
         </div>
 
-        <div ng-repeat="(idx, receiver) in submission.current_context_receivers">
-          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
+        <div ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'">
+          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-click="submission.receivers_selected[receiver.receiver_gus] = !submission.receivers_selected[receiver.receiver_gus]">
 
-            <div class="row">
+            <div class="row receiverCardTitle">
               <div class="col-md-10">
-                <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
+                {{receiver.name}}
               </div>
               <div class="col-md-1">
-                <input ng-model="submission.receivers_selected[receiver.receiver_gus]" value="{{receiver.receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox"> 
+                <div ng-show="submission.receivers_selected[receiver.receiver_gus]">
+                  <i class="glyphicon glyphicon-check"></i>
+                </div>
+                <div ng-show="!submission.receivers_selected[receiver.receiver_gus]">
+                  <i class="glyphicon glyphicon-unchecked"></i>
+                </div>
               </div>
             </div>
 
             <div class="row">
               <div class="col-md-11">
-                <h3>{{receiver.name}}</h3>
+                <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
                 <p>{{receiver.description}}</p>
               </div>
             </div>

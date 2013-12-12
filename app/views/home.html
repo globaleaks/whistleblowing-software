@@ -2,7 +2,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" aria-hidden="true" ng-click="showQuestions = false">×</button>
+        <button type="button" class="close" aria-hidden="true" ng-click="showQuestions = false">
+          <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+        </button>
         <h3 ng-show="correctAnswer || !answered">
           {{ "Warning! You are not Anonymous." | translate }}
         </h3>
