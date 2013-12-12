@@ -141,7 +141,6 @@ CREATE TABLE node (
     maximum_filesize INTEGER NOT NULL,
     tor2web_admin INTEGER NOT NULL,
     tor2web_submission INTEGER NOT NULL,
-    tor2web_tip INTEGER NOT NULL,
     tor2web_receiver INTEGER NOT NULL,
     tor2web_unauth INTEGER NOT NULL,
     postpone_superpower INTEGER NOT NULL,

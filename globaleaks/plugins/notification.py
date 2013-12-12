@@ -95,7 +95,7 @@ class MailNotification(Notification):
                         'ADMIN, CONFIGURE YOUR HIDDEN SERVICE (Advanced configuration)!'
                     })
 
-            if not GLSetting.memory_copy.tor2web_tip:
+            if not GLSetting.memory_copy.tor2web_receiver:
                 tip_template_keyword.update({
                     '%TipT2WURL%': "Ask to your admin about Tor"})
                     # https://github.com/globaleaks/GlobaLeaks/issues/268

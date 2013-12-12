@@ -100,7 +100,6 @@ def import_memory_variables(store):
 
         GLSetting.memory_copy.tor2web_admin = node.tor2web_admin
         GLSetting.memory_copy.tor2web_submission = node.tor2web_submission
-        GLSetting.memory_copy.tor2web_tip = node.tor2web_tip
         GLSetting.memory_copy.tor2web_receiver = node.tor2web_receiver
         GLSetting.memory_copy.tor2web_unauth = node.tor2web_unauth
 

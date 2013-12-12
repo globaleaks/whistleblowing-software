@@ -92,7 +92,7 @@ class WbTipInstance(BaseHandler):
     resource, and giving accountability in resource accesses.
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
     def get(self):
@@ -168,7 +168,7 @@ class WbTipCommentCollection(BaseHandler):
     permitted.
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
     def get(self, *uriargs):
@@ -182,7 +182,7 @@ class WbTipCommentCollection(BaseHandler):
         self.set_status(200)
         self.finish(wb_comment_list)
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
     def post(self, *uriargs):
@@ -295,7 +295,7 @@ class WbTipReceiversCollection(BaseHandler):
     GET /tip/<auth_tip_id>/receivers
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
     def get(self):
@@ -389,7 +389,7 @@ class WbMessageCollection(BaseHandler):
     W5
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
     def get(self, receiver_id):
@@ -399,7 +399,7 @@ class WbMessageCollection(BaseHandler):
         self.set_status(200)
         self.finish(messages)
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
     def post(self, receiver_id):

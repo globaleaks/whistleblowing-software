@@ -106,11 +106,11 @@ def get_internaltip_receiver(store, user_id, tip_id, language=GLSetting.memory_c
     node = store.find(Node).one()
 
     tip_desc['im_receiver_postponer'] = (node.postpone_superpower or
-                                         rtip.context.postpone_superpower or
+                                         rtip.internaltip.context.postpone_superpower or
                                          rtip.receiver.postpone_superpower)
 
     tip_desc['can_delete_submission'] = (node.can_delete_submission or
-                                         rtip.context.can_delete_submission or
+                                         rtip.internaltip.context.can_delete_submission or
                                          rtip.receiver.can_delete_submission)
 
     return tip_desc
@@ -167,7 +167,7 @@ def delete_internal_tip(store, user_id, tip_id):
     node = store.find(Node).one()
 
     if not (node.can_delete_submission or
-            rtip.context.can_delete_submission or
+            rtip.internaltip.context.can_delete_submission or
             rtip.receiver.can_delete_submission):
         raise errors.ForbiddenOperation
 
@@ -214,7 +214,7 @@ def postpone_expiration_date(store, user_id, tip_id):
     node = store.find(Node).one()
 
     if not (node.postpone_superpower or
-            rtip.context.postpone_superpower or
+            rtip.internaltip.context.postpone_superpower or
             rtip.receiver.postpone_superpower):
 
         raise errors.ExtendTipLifeNotEnabled()
@@ -257,7 +257,7 @@ class RTipInstance(BaseHandler):
 
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id, *uriargs):
@@ -281,7 +281,7 @@ class RTipInstance(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def put(self, tip_id, *uriargs):
@@ -297,7 +297,7 @@ class RTipInstance(BaseHandler):
         self.set_status(202) # Updated
         self.finish()
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def delete(self, tip_id, *uriargs):
@@ -370,7 +370,7 @@ class RTipCommentCollection(BaseHandler):
     permitted.
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id, *uriargs):
@@ -385,7 +385,7 @@ class RTipCommentCollection(BaseHandler):
         self.set_status(200)
         self.finish(comment_list)
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id, *uriargs):
@@ -436,7 +436,7 @@ class RTipReceiversCollection(BaseHandler):
     GET /tip/<auth_tip_id>/receivers
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
@@ -514,7 +514,7 @@ class ReceiverMsgCollection(BaseHandler):
     to send direct message to the WB.
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_id):
@@ -524,7 +524,7 @@ class ReceiverMsgCollection(BaseHandler):
         self.set_status(200)
         self.finish(answer)
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def post(self, tip_id):

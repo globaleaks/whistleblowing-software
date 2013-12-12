@@ -31,7 +31,7 @@ class CollectionStreamer(object):
 class CollectionDownload(BaseHandler):
     auth_type = "COOKIE"
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_gus, path, compression):

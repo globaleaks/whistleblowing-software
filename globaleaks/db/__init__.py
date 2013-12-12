@@ -76,7 +76,6 @@ def create_tables(create_node=True):
             'maximum_textsize' : GLSetting.defaults.maximum_textsize,
             'tor2web_admin' : GLSetting.defaults.tor2web_admin,
             'tor2web_submission' : GLSetting.defaults.tor2web_submission,
-            'tor2web_tip' : GLSetting.defaults.tor2web_tip,
             'tor2web_receiver' : GLSetting.defaults.tor2web_receiver,
             'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
             'postpone_superpower' : False, # disabled by default

@@ -356,7 +356,6 @@ class MockDict():
             'maximum_textsize': GLSetting.defaults.maximum_textsize,
             'tor2web_admin': True,
             'tor2web_submission': True,
-            'tor2web_tip': True,
             'tor2web_receiver': True,
             'tor2web_unauth': True,
             'postpone_superpower': False,

@@ -206,7 +206,7 @@ class FileAdd(FileHandler):
     WhistleBlower interface for upload a new file in an already completed submission
     """
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('wb')
     @inlineCallbacks
     def post(self, *args):
@@ -227,7 +227,7 @@ class FileInstance(FileHandler):
     WhistleBlower interface for upload a new file in a not yet completed submission
     """
 
-    @transport_security_check('submission')
+    @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
     def post(self, submission_id, *args):
@@ -288,7 +288,7 @@ def download_all_files(store, user_id, tip_id):
 class Download(BaseHandler):
     auth_type = "COOKIE"
 
-    @transport_security_check('tip')
+    @transport_security_check('wb')
     @authenticated('receiver')
     @inlineCallbacks
     def get(self, tip_gus, file_gus, *uriargs):
