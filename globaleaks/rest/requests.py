@@ -107,7 +107,7 @@ adminContextDesc = {
     'fields_introduction': unicode,
     'postpone_superpower': bool,
     'can_delete_submission': bool,
-    'maximum_selected_receiver': int,
+    'maximum_selectable_receivers': int,
     'require_file_description': bool,
     'delete_consensus_percentage': int,
     'require_pgp': bool,

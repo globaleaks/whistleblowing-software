@@ -63,7 +63,7 @@ CREATE TABLE context (
     select_all_receivers INTEGER NOT NULL,
     postpone_superpower INTEGER NOT NULL,
     can_delete_submission INTEGER NOT NULL,
-    maximum_selected_receiver INTEGER,
+    maximum_selectable_receivers INTEGER,
     require_file_description INTEGER NOT NULL,
     delete_consensus_percentage INTEGER,
     require_pgp INTEGER NOT NULL,

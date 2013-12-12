@@ -47,7 +47,7 @@ class Context_version_7(Model):
     # can_delete_submission = Bool()
 
     # + is added maximum number of selected receiver:
-    # maximum_selected_receiver = Int()
+    # maximum_selectable_receivers = Int()
 
     # + is added
     # require_file_description = Bool()
@@ -193,8 +193,8 @@ class Replacer78(TableReplacer):
                 if v.name == 'can_delete_submission':
                     new_obj.can_delete_submission = False
                     continue
-                if v.name == 'maximum_selected_receiver':
-                    new_obj.maximum_selected_receiver = 0
+                if v.name == 'maximum_selectable_receivers':
+                    new_obj.maximum_selectable_receivers = 0
                     continue
                 if v.name == 'require_file_description':
                     new_obj.require_file_description = False
