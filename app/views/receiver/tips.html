@@ -91,15 +91,15 @@ This comment is needed in order to push the following strings on transifex
           <tbody id="tipListTableBody" ng-controller="TipCtrl">
             <tr ng-repeat="tip in tips | orderBy:orderProp:reverse" class="{{tip.parity}}">
               <td class="col-md-2">
-                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}" class="btn btn-primary col-md-12" style="text-align: left"
+                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}"
                    popover="{{ 'Open Tip' | translate }}" popover-placement="top" popover-trigger="mouseenter">
-                  <span ng-switch-when="0">
-                    <span class="glyphicon glyphicon-folder-close"></span>&nbsp;
+                  <span ng-switch-when="0" class="btn btn-success col-md-12" style="text-align: left">
+                    <span class="glyphicon glyphicon-tint"></span>&nbsp;
                     {{ "Open" | translate }}
                     {{ "(New)" | translate }}
                   </span>
-                  <span ng-switch-default>
-                    <span class="glyphicon glyphicon-folder-open"></span>&nbsp;
+                  <span ng-switch-default class="btn btn-primary col-md-12" style="text-align: left">
+                    <span class="glyphicon glyphicon-tint"></span>&nbsp;
                     {{ "Open" | translate }}
                   </span>
                 </a>
