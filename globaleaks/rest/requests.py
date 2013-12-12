@@ -70,7 +70,6 @@ adminNodeDesc = {
     'maximum_filesize': int,
     'tor2web_admin': bool,
     'tor2web_submission': bool,
-    'tor2web_tip': bool,
     'tor2web_receiver': bool,
     'tor2web_unauth': bool,
     'postpone_superpower': bool,

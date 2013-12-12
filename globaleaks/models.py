@@ -419,7 +419,6 @@ class Node(Model):
     maximum_filesize = Int()
     tor2web_admin = Bool()
     tor2web_submission = Bool()
-    tor2web_tip = Bool()
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
 
@@ -434,7 +433,7 @@ class Node(Model):
     int_keys = [ 'stats_update_time', 'maximum_namesize', 
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                  'tor2web_tip', 'tor2web_unauth', 'postpone_superpower',
+                  'tor2web_unauth', 'postpone_superpower',
                   'can_delete_submission' ]
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle' ]
 

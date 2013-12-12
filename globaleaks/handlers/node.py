@@ -40,7 +40,6 @@ def anon_serialize_node(store, user, language=GLSetting.memory_copy.default_lang
       # Tor2Web unsafe deny default settings
       'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
       'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
-      'tor2web_tip': GLSetting.memory_copy.tor2web_tip,
       'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
       'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
       'postpone_superpower': node.postpone_superpower

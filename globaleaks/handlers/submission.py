@@ -322,7 +322,7 @@ class SubmissionCreate(BaseHandler):
     returning a submission_gus, usable in update operation.
     """
 
-    @transport_security_check('submission')
+    @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
     def post(self, *uriargs):
@@ -363,7 +363,7 @@ class SubmissionInstance(BaseHandler):
     Relay in the client-server update and exchange of the submissionStatus message.
     """
 
-    @transport_security_check('submission')
+    @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
     def get(self, submission_gus, *uriargs):
@@ -379,7 +379,7 @@ class SubmissionInstance(BaseHandler):
         self.set_status(200)
         self.finish(submission)
 
-    @transport_security_check('submission')
+    @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
     def put(self, submission_gus, *uriargs):
@@ -410,7 +410,7 @@ class SubmissionInstance(BaseHandler):
         self.finish(status)
 
 
-    @transport_security_check('submission')
+    @transport_security_check('wb')
     @unauthenticated
     @inlineCallbacks
     def delete(self, submission_gus, *uriargs):

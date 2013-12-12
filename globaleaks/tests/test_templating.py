@@ -165,7 +165,6 @@ class notifTemplateTest(TestWithDB):
         yield self._initialize()
 
         # be sure of Tor2Web capability
-        self.mockNode['tor2web_tip'] = False
         for attrname in Node.localized_strings:
             self.mockNode[attrname] = self.mockNode[attrname]['en']
         self.createdNode = yield admin.update_node(self.mockNode)
