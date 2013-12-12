@@ -126,7 +126,7 @@ GLClientDev.run(function($httpBackend) {
     "submission_timetolive": 42
   }];
 
-  var node_info = {
+  var node = {
       "description": "Please, set me: description",
       "email": "email@dumnmy.net",
       "hidden_service": "Please, set me: hidden service",
@@ -163,11 +163,11 @@ GLClientDev.run(function($httpBackend) {
         context_fields = {},
         context_receivers = [];
 
-    for (i in node_info.contexts) {
-      console.log(node_info.contexts[i]);
+    for (i in node.contexts) {
+      console.log(node.contexts[i]);
       console.log(context_gus);
-      if (context_gus == node_info.contexts[i].gus) {
-        selected_context = node_info.contexts[i];
+      if (context_gus == node.contexts[i].gus) {
+        selected_context = node.contexts[i];
         break;
       }
     }
@@ -198,7 +198,7 @@ GLClientDev.run(function($httpBackend) {
   /******************/
   // * /node U1
   // returns the node information
-  $httpBackend.whenGET('/node').respond(node_info);
+  $httpBackend.whenGET('/node').respond(node);
 
   // * /contexts
   $httpBackend.whenGET('/contexts').respond(contexts);

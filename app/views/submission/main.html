@@ -1,36 +1,13 @@
-<div id="HeaderBox" class="subhead">
-  <div id="HeaderBoxContent">
-    <span id="LogoBox">
-      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
-    </span>
-    <span id="TitleBox">
-      <div id="titleboxdefault">
-        <div>
-          <h3>{{ header_subsection | translate }}</h3>
-        </div>
-        <div>
-          <h1>{{ "Blow the Whistle" | translate }}</h1>
-        </div>
-      </div>
-      <div id="titleboxwithtagline">
-          <a href="/#/">
-            <div id="logo"></div>
-          </a>
-          <div id="tagline">
-            {{ "Blow the Whistle" | translate }}
-          </div>
-      </div>
-    </span>
-    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
-  </div>
-  <div class="clearfix"></div>
+<div ng-include="'views/partials/header.html'"
+     onload="header_subsection='';
+             header_section='Blow the Whistle'">
 </div>
 
-<div  ng-show="!node_info.name">
+<div  ng-show="!node.name">
     <h2>{{ "Loading..." | translate }}</h2>
 </div>
 
-<div class="ng-cloak" ng-show="!node_info.configured && node_info.name">
+<div class="ng-cloak" ng-show="!node.configured && node.name">
   <h2>{{ "This node is not configured." | translate }}</h2>
   <p>{{ "You will not be able to perform a submission." | translate }}<br />
   {{ "Admin please configure at least one Context and associated Receivers using" | translate }}
@@ -39,7 +16,7 @@
   </a>.</p>
 </div>
 
-<div ng-controller="WizardCtrl" id="ContentBox" class="container submission ng-cloak" ng-show="node_info.name && node_info.configured">
+<div ng-controller="WizardCtrl" id="ContentBox" class="container submission ng-cloak" ng-show="node.name && node.configured">
 
   <div class="tabbable tabs-below">
 
@@ -74,7 +51,7 @@
               {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}
             </div>
 
-            <span class="lead" ng-show="node_info.configured">
+            <span class="lead" ng-show="node.configured">
               {{ "I want to report on" | translate }}
             </span>
 

@@ -106,6 +106,8 @@ function($rootScope, $scope, $http, $route, $location, Admin) {
 
     $scope.update(node);
 
+    $rootScope.update_node();
+
     $route.reload();
   }
 
