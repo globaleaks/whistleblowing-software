@@ -145,18 +145,22 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       var Fairy = function(promise) {
         this.promise = promise;
         this.timeout = function() {
-          var error = {},
-            source_path = $location.path();
+          /*
+            Code commented out as unuseful from user of point of view
 
-          error.message = "Request timed out";
-          error.code = 100;
-          error.url = '/';
+            var error = {},
+              source_path = $location.path();
 
-          if (!$rootScope.errors) {
-            $rootScope.errors = [];
-          }
-          $rootScope.errors.push(error);
-          $rootScope.pendingRequests.pop(this);
+            error.message = "Request timed out";
+            error.code = 100;
+            error.url = '/';
+
+            if (!$rootScope.errors) {
+              $rootScope.errors = [];
+            }
+            $rootScope.errors.push(error);
+            $rootScope.pendingRequests.pop(this);
+          */
         }
       },
       fairy = new Fairy(promise);
@@ -583,6 +587,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        *  @param {string} password the new password model name.
        *  @param {string} check_password need to be equal to the new password.
        **/
+      scope.mismatch_password = false;
       scope.unsafe_password = false;
       scope.pwdValidLength = true;
       scope.pwdHasLetter = true;
@@ -660,14 +665,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             scope.pwdHasNumber = true;
         }
 
-        if ((scope.$eval(password) === undefined) && (scope.$eval(check_password) === undefined)) {
+        if (password === undefined || password === '' || (scope.$eval(password) == scope.$eval(check_password))) {
             scope.mismatch_password = false;
         } else {
-            if (scope.$eval(password) == scope.$eval(check_password)) {
-                scope.mismatch_password = false;
-            } else {
-                scope.mismatch_password = true;                
-            }
+            scope.mismatch_password = true;                
         }
 
         if (scope.$eval(old_password) !== undefined && (scope.$eval(old_password)).length >= 1 )  {

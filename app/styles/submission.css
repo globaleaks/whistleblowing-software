@@ -19,6 +19,10 @@
   background-color: #DFF0D8;
 }
 
+.receiverCardTitle {
+  font-size: 20px;
+}
+
 @media (max-width: 550px) {
   .submission .nav.nav-tabs {
     display: none;
