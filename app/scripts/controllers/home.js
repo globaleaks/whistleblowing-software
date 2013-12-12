@@ -34,7 +34,7 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
     }
 
     $scope.goToSubmission = function() {
-      if ( !$scope.anonymous && !$scope.node_info.tor2web_submission)
+      if ( !$scope.anonymous && !$scope.node.tor2web_submission)
         return;
 
       if ($scope.anonymous || $scope.correctAnswer) {

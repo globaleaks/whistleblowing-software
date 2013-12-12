@@ -286,8 +286,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         });
       };
 
-      Node.get(function(node_info) {
-        self.maximum_filesize = node_info.maximum_filesize;
+      Node.get(function(node) {
+        self.maximum_filesize = node.maximum_filesize;
 
         Contexts.query(function(contexts){
           self.contexts = contexts;

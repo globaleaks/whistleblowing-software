@@ -26,11 +26,6 @@
     display: block;
 }
 
-#HeaderBoxContent, #HeaderBoxHomeContent {
-  width: 95%;
-  margin: 0 auto;
-}
-
 #HeaderBoxHomeContent {
   text-align: center;
 }
@@ -74,9 +69,21 @@
   color: #777;
 }
 
-#LogoBox, #TitleBox, #ToolbarBox {
+#LogoBox, #TitleBox, #ToolbarBox, #SubTitleBox {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+h1, #HomePageBoxNodePresentation, #WhistleblowerLoginBoxHeader, #ReceiverLoginBoxHeader {
+  font-size: 60px;
+}
+
+h2, #HomePageBoxNodeDescription {
+  font-size: 36px;
+}
+
+h3, #SubTitleBox {
+  font-size: 20px;
 }
 
 #LogoBox, #TitleBox {
