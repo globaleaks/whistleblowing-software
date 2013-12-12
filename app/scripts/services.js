@@ -286,8 +286,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         });
       };
 
-      Node.get(function(node_info) {
-        self.maximum_filesize = node_info.maximum_filesize;
+      Node.get(function(node) {
+        self.maximum_filesize = node.maximum_filesize;
 
         Contexts.query(function(contexts){
           self.contexts = contexts;
@@ -374,7 +374,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
   factory('Tip', ['$resource', 'Receivers',
           function($resource, Receivers) {
 
-    var tipResource = $resource('/rtip/:tip_id', {tip_id: '@tip_id'}, {update: {method: 'PUT'}});
+    var tipResource = $resource('/rtip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}});
     var receiversResource = $resource('/rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
     var commentsResource = $resource('/rtip/:tip_id/comments', {tip_id: '@tip_id'}, {});
     var messageResource = $resource('/rtip/:tip_id/messages', {tip_id: '@tip_id'}, {});

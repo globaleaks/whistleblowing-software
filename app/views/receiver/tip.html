@@ -1,24 +1,18 @@
-<div id="HeaderBox" class="subhead">
-  <div id="HeaderBoxContent">
-    <span id="LogoBox">
-      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
-    </span>
-    <span id="TitleBox">
-      <h1 id="titleboxh1logo">
-        {{ "Tip Status Page" | translate }}
-      </h1>
-    </span>
-    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
-  </div>
-  <div class="clearfix"></div>
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+{{ "Loading Tip page..." | translate }}
+{{ "Tip Status Page" | translate }}
+
+-->
+
+<div ng-include="'views/partials/header.html'"
+     onload="header_subsection='';
+             header_section='Tip Status Page'">
 </div>
 
 <div id="ContentBox" class="container statusPage ng-cloak">
-  <div>
-    <h1>
-      {{ "Tip Status Page" | translate }}
-    </h1>
-  </div>
   <div class="row" ng-show="!preferences.gpg_enable_files">
     <div class="col-md-12">
       <div class="alert alert-warning">
@@ -285,20 +279,28 @@
           </div>
 
           <div ng-switch-when="system" class="alert alert-warning">
-            <strong>
-              {{ "System" | translate }}
-            </strong>
-              <!-- {{comment.content}} -->
-              <div ng-switch="" on="comment.system_content.type">
-                 <div ng-switch-when="1">
-                   {{ "The user" | translate }}
-                   {{comment.system_content.receiver_name}}
-                   {{ "In date" | translate }}
-                   {{comment.system_content.now | date:'dd-MM-yyyy HH:mm' }}
-                   {{ "has postponed Tip expiration to" | translate }}
-                   {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
-                 </div>
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+                  {{ "System" | translate }}
+                </strong>
               </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+
+            <!-- {{comment.content}} -->
+            <div ng-switch="" on="comment.system_content.type">
+               <div ng-switch-when="1">
+                 {{ "The user" | translate }}
+                 {{comment.system_content.receiver_name}}
+                 {{ "has postponed Tip expiration to" | translate }}
+                 {{comment.system_content.expire_on | date:'dd-MM-yyyy HH:mm' }}
+               </div>
+            </div>
           </div>
 
         </div>
@@ -314,7 +316,7 @@
       <textarea ng-model="newMessageContent" class="form-control"></textarea>
       <br />
       <button class="btn btn-success" ng-click="newMessage()" ng-disabled="!newMessageContent || newMessageContent == ''">
-        <i class="glyphicon glyphicon-comment"></i>
+        <i class="glyphicon glyphicon-envelope"></i>
         {{ "Send Private Message" | translate }}
       </button>
       <br /><br />

@@ -14,8 +14,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
   $rootScope.invalidForm = true;
   $scope.receiptConfimation = "";
 
-  Node.get(function(node_info){
-    $scope.node_info = node_info;
+  Node.get(function(node){
+    $scope.node = node;
 
     new Submission(function(submission){
       $scope.maximumFilesize = submission.maximum_filesize;
@@ -74,7 +74,7 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
           multipart: false,
           headers: headers,
           autoUpload: true,
-          maxFileSize: $scope.node_info.maximum_filesize * 1024 * 1024,
+          maxFileSize: $scope.node.maximum_filesize * 1024 * 1024,
         };
         
       });

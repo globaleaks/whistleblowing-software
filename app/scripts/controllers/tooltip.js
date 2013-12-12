@@ -16,21 +16,21 @@ function($scope, $rootScope, Authentication, $location,
   $scope.auth_landing_page = $.cookie('auth_landing_page');
   $scope.role = $.cookie('role');
  
-  Node.get(function(node_info) {
-    if ($.inArray($scope.language, node_info.languages_enabled) == -1) {
-      $.cookie('language', node_info.default_language);  
-      $scope.language = node_info.default_language;
+  Node.get(function(node) {
+    if ($.inArray($scope.language, node.languages_enabled) == -1) {
+      $.cookie('language', node.default_language);  
+      $scope.language = node.default_language;
       $translate.uses($scope.language);
     }
 
     var language_count = 0;
     $rootScope.languages_supported = {};
     $rootScope.languages_enabled = {};
-    $.each(node_info.languages_supported, function(idx) {
-      var code = node_info.languages_supported[idx]['code'];
-      $rootScope.languages_supported[code] = node_info.languages_supported[idx]['name'];
-      if ($.inArray(code, node_info.languages_enabled) != -1) {
-        $rootScope.languages_enabled[code] = node_info.languages_supported[idx]['name'];
+    $.each(node.languages_supported, function(idx) {
+      var code = node.languages_supported[idx]['code'];
+      $rootScope.languages_supported[code] = node.languages_supported[idx]['name'];
+      if ($.inArray(code, node.languages_enabled) != -1) {
+        $rootScope.languages_enabled[code] = node.languages_supported[idx]['name'];
         language_count += 1;
       }
     });
@@ -48,7 +48,7 @@ function($scope, $rootScope, Authentication, $location,
 
       $translate.uses($scope.language);
 
-      $rootScope.update_node_info();
+      $rootScope.update_node();
 
       $route.reload();
     }

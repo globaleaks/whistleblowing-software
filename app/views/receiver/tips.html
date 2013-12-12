@@ -91,12 +91,20 @@ This comment is needed in order to push the following strings on transifex
           <tbody id="tipListTableBody" ng-controller="TipCtrl">
             <tr ng-repeat="tip in tips | orderBy:orderProp:reverse" class="{{tip.parity}}">
               <td class="col-md-2">
-                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}" class="btn btn-xs btn-primary"
-                   popover="{{ 'Tip' | translate }}" popover-placement="top" popover-trigger="mouseenter">
-                  <i class="glyphicon glyphicon-folder-close" ng-switch-when="0"></i>
-                  <i class="glyphicon glyphicon-folder-open" ng-switch-default></i>
+                <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}"
+                   popover="{{ 'Open Tip' | translate }}" popover-placement="top" popover-trigger="mouseenter">
+                  <span ng-switch-when="0" class="btn btn-success col-md-12" style="text-align: left">
+                    <span class="glyphicon glyphicon-tint"></span>&nbsp;
+                    {{ "Open" | translate }}
+                    {{ "(New)" | translate }}
+                  </span>
+                  <span ng-switch-default class="btn btn-primary col-md-12" style="text-align: left">
+                    <span class="glyphicon glyphicon-tint"></span>&nbsp;
+                    {{ "Open" | translate }}
+                  </span>
                 </a>
-                <a ng-show="node_info.postpone_superpower" ng-click="tip_extend(tip.id)" class="btn btn-xs btn-warning"
+                <br /><br />
+                <a ng-show="node.postpone_superpower" ng-click="tip_extend(tip.id)" class="btn btn-xs btn-warning"
                    popover="{{ 'Postpone Tip expiration date' | translate }}" popover-placement="top" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-time"></i>
                 </a>

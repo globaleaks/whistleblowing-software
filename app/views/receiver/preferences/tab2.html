@@ -4,12 +4,12 @@
     <label>
       {{ "Enable Tip notification" | translate }}
     </label>
-    <label ng-show="preferences.tip_notification">
+    <div ng-show="preferences.tip_notification">
       <span class="btn-info">
         {{ "now Enabled:" | translate }}
       </span>
       {{ "Every new Tip you receive will trigger an email with a link to it." | translate }}
-    </label>
+    </div>
   </div>
 
   <div class="form-group table-bordered">

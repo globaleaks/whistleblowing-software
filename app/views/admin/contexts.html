@@ -96,13 +96,33 @@ This comment is needed in order to push the following strings on transifex
                       <label>{{ "Receipt format (regular expression)" | translate }}</label>
                       <input class="form-control" ng-model="context.receipt_regexp" value="{{context.receipt_regexp}}" type="text">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group table-bordered">
                       <input ng-model="context.file_required" value="{{context.file_required}}" type="checkbox">
                       <label>{{ "Require at least one file to be uploaded" | translate }}</label>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group table-bordered">
                       <input ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox">
                       <label>{{ "Select all receivers by default" | translate }}</label>
+                    </div>
+                    <div class="form-group table-bordered">
+                      <input ng-model="context.postpone_superpower" value="{{context.postpone_superpower}}" type="checkbox">
+                      <label>{{ "Permit Receivers to postpone expiration date of the Tips" | translate }}</label>
+                      <div ng-show="context.postpone_superpower">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "Receivers of this Context will be now able to postpone expiration date of the Tips." | translate }}
+                      </div>
+                    </div>
+                    <div class="form-group table-bordered">
+                      <input ng-model="context.can_delete_submission" value="{{context.can_delete_submission}}" type="checkbox">
+                      <label>{{ "Permit Receivers to delete Tips" | translate }}</label>
+                      <div ng-show="context.can_delete_submission">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "Receivers of this Context will be now able to delete Tips and their content." | translate }}
+                      </div>
                     </div>
                   </div>
                 </div>

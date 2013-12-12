@@ -113,7 +113,11 @@ This comment is needed in order to push the following strings on transifex
                     <div class="selectionList">
                       <div ng-repeat="context in admin.contexts">
                         <div class="selectionContextItem" ng-click="toggle(context)">
-                          <span class="col-md-1"><span ng-show="isSelected(context)">✔</span></span>
+                          <span class="col-md-1">
+                            <span ng-show="isSelected(context)">
+                              <i class="glyphicon glyphicon-ok"></i>
+                            </span>
+                          </span>
                           <span class="col-md-10">{{context.name}}</span><br />
                         </div>
                       </ul>
@@ -124,13 +128,36 @@ This comment is needed in order to push the following strings on transifex
                 <div class="row">
                   <div class="col-md-12">
                     <div class="form-group table-bordered">
-                      <input ng-model="receiver.can_delete_submission" type="checkbox">
-                      <label>{{ "Can delete submissions" | translate }}</label>
-                      <div ng-show="receiver.can_delete_submission">
+                      <input ng-model="receiver.postpone_superpower" type="checkbox" ng-disabled="node.postpone_superpower">
+                      <label>{{ "Permit the Receiver to postpone expiration date of the Tips" | translate }}</label>
+                      <div ng-show="receiver.postpone_superpower && !node.postpone_superpower">
                         <span class="label label-info">
                           {{ "now Enabled:" | translate }}
                         </span>
-                        {{ "The Receiver will be now able to globally delete submissions and their content." | translate }}
+                        {{ "The Receiver will be now able to postpone Tip expiration." | translate }}
+                      </div>
+                      <div ng-show="node.postpone_superpower">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "The setting is enabled at Node level."}}
+                      </div>
+                    </div>
+
+                    <div class="form-group table-bordered">
+                      <input ng-model="receiver.can_delete_submission" type="checkbox" ng-disabled="node.can_delete_submission">
+                      <label>{{ "Permit the Receiver to delete Tips" | translate }}</label>
+                      <div ng-show="receiver.can_delete_submission && !node.can_delete_submission">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "The Receiver will be now able to delete Tips and their content." | translate }}
+                      </div>
+                      <div ng-show="node.can_delete_submission">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "The setting is enabled at Node level."}}
                       </div>
                     </div>
 
@@ -193,11 +220,13 @@ This comment is needed in order to push the following strings on transifex
                       </div>
 
                       <button class="btn btn-info" ng-init="send_key=false" ng-click="send_key = !send_key">
-                        <i class="glyphicon glyphicon-plus"></i>
+                        <i class="glyphicon glyphicon-plus" ng-hide="send_key"></i>
+                        <i class="glyphicon glyphicon-minus" ng-show="send_key"></i>
                         {{ "Configure a PGP key" | translate }}
                       </button>
 
                       <div ng-show="send_key">
+                        <br />
                         <label>{{ "Copy and Paste here the PGP Key:" | translate }}</label>
                         <textarea class="form-control" ng-model="receiver.gpg_key_armor"></textarea>
                       </div>
