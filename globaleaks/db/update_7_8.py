@@ -83,11 +83,14 @@ class Node_version_7(Model):
     maximum_filesize = Int()
     tor2web_admin = Bool()
     tor2web_submission = Bool()
-    tor2web_tip = Bool()
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
     exception_email = Unicode()
     postpone_superpower = Bool()
+
+    # is deleted this field:
+    tor2web_tip = Bool()
+
     # + is added granular privileges with:
     # can_delete_submission = Bool()
     # + is added
