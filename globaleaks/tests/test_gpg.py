@@ -14,10 +14,10 @@ from globaleaks.handlers.submission import create_submission, update_submission
 from globaleaks.settings import GLSetting, transact_ro
 from globaleaks.tests.helpers import MockDict
 from globaleaks.models import Receiver
-
 from globaleaks.jobs.delivery_sched import APSDelivery, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
+from globaleaks.utils.templating import Templating
 
 GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 
@@ -127,8 +127,6 @@ class TestReceiverSetKey(helpers.TestHandler):
 
     def test_Class_encryption_message(self):
 
-        mail_support = MailNotification()
-
         dummy_template = { "en" : "In %EventTime% you've got a crush for Taryn Southern, yay!!"
                             "more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY "
                             "and know that you're not alone!" }
@@ -141,7 +139,7 @@ class TestReceiverSetKey(helpers.TestHandler):
                     context_info = MockDict().dummyContext,
                     plugin = MailNotification() )
 
-        mail_content = mail_support.format_template(dummy_template['en'], mock_event)
+        mail_content = Templating().format_template(dummy_template['en'], mock_event)
 
         # setup the GPG key before
         GLSetting.gpgroot = GPGROOT
