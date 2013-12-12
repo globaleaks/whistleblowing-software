@@ -40,6 +40,20 @@ def create_tables_transaction(store):
     # new is the only Models function executed without @transact, call .add, but
     # the called has to .commit and .close, operations commonly performed by decorator
 
+
+def acquire_email_templates(filename, fallback):
+
+    templ_f = os.path.join(GLSetting.static_db_source, filename)
+
+    if not os.path.isfile(templ_f):
+        return fallback
+
+    # else, load from the .txt files
+    with open( templ_f) as templfd:
+        template_text = templfd.read()
+        log.info("Loading %d bytes from template: %s" % (len(template_text), filename))
+        return template_text
+
 def create_tables(create_node=True):
     """
     Override transactor for testing.
@@ -84,31 +98,21 @@ def create_tables(create_node=True):
             'default_language' : GLSetting.memory_copy.default_language,
         }
 
-        email_templates = {}
+        templates = {}
 
-        tip_notif_templ= os.path.join(GLSetting.static_db_source, 'default_TNT.txt')
-        if os.path.isfile(tip_notif_templ):
-            with open( tip_notif_templ) as templfd:
-                email_templates['tip'] = templfd.read()
-        else:
-            email_templates['tip'] = "default Tip notification not available! %NodeName% configure this!"
-
-        comment_notif_templ= os.path.join(GLSetting.static_db_source, 'default_CNT.txt')
-        if os.path.isfile(comment_notif_templ):
-            with open( comment_notif_templ) as templfd:
-                email_templates['comment'] = templfd.read()
-        else:
-            email_templates['comment'] = "default Comment notification not available! %NodeName% configure this!"
-
-        file_notif_templ= os.path.join(GLSetting.static_db_source, 'default_FNT.txt')
-        if os.path.isfile(file_notif_templ):
-            with open(file_notif_templ) as templfd:
-                email_templates['file'] = templfd.read()
-        else:
-            email_templates['file'] = "default File notification not available! %NodeName% configure this!"
+        templates['encrypted_tip'] = acquire_email_templates('default_ENT.txt',
+            "default Encrypted Tip notification not available! %NodeName% configure this!")
+        templates['plaintext_tip'] = acquire_email_templates('default_TNT.txt',
+            "default Plaintext Tip notification not available! %NodeName% configure this!")
+        templates['comment'] = acquire_email_templates('default_CNT.txt',
+            "default Comment notification not available! %NodeName% configure this!")
+        templates['file'] = acquire_email_templates('default_FNT.txt',
+            "default File notification not available! %NodeName% configure this!")
+        templates['zip_collection'] = acquire_email_templates('default_ZFC.txt',
+            "default Zip Collection template not available! %NodeName% configure this!")
 
         # Initialize the node + notification table
-        deferred.addCallback(initialize_node, only_node, email_templates)
+        deferred.addCallback(initialize_node, only_node, templates)
 
     return deferred
 
