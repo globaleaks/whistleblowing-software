@@ -27,6 +27,7 @@ def serialize_receivertip(rtip):
         'last_access' : unicode(pretty_date_time(rtip.last_access)),
         'expressed_pertinence' : unicode(rtip.expressed_pertinence),
         'access_counter' : int(rtip.access_counter),
+        'wb_fields': dict(rtip.internaltip.wb_fields),
     }
     return rtip_dict
 
@@ -116,7 +117,12 @@ class APSNotification(GLJob):
 
             tip_desc = serialize_receivertip(rtip)
 
-            event = Event(type=u'tip', trigger='Tip',
+            if  receiver_desc['gpg_key_status'] == u'Enabled': # Receiver._gpg_types[1]
+                template_type = u'encrypted_tip'
+            else:
+                template_type = u'plaintext_tip'
+
+            event = Event(type=template_type, trigger='Tip',
                             notification_settings=self.notification_settings,
                             trigger_info=tip_desc,
                             node_info=node_desc,
@@ -206,7 +212,7 @@ class APSNotification(GLJob):
                 continue
 
             receiver_desc = admin.admin_serialize_receiver(receiver, GLSetting.memory_copy.default_language)
-            log.debug("Messages receiver: %d" % message.internaltip.receivers.count())
+            log.debug("Messages receiver: %s" % message.receivertip.receiver.name)
 
             context = message.receivertip.internaltip.context
             if not context:
@@ -214,7 +220,6 @@ class APSNotification(GLJob):
                 continue
 
             context_desc = admin.admin_serialize_context(context, GLSetting.memory_copy.default_language)
-
 
             message_desc = rtip.receiver_serialize_message(message)
             message.mark = models.Message._marker[1] # 'notified'
@@ -551,6 +556,7 @@ class APSNotification(GLJob):
         except Exception as excep:
             log.err("Error in Tip notification: %s" % excep)
             log.debug(sys.exc_info())
+            raise excep
 
         try:
             if comment_events:

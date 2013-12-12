@@ -133,7 +133,7 @@ class TestReceiverSetKey(helpers.TestHandler):
                             "more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY "
                             "and know that you're not alone!" }
 
-        mock_event = Event(type=u'tip', trigger='Tip',
+        mock_event = Event(type=u'encrypted_tip', trigger='Tip',
                     notification_settings = dummy_template,
                     trigger_info = {'creation_date': '2013-05-13T17:49:26.105485', 'id': 'useless' },
                     node_info = MockDict().dummyNode,
