@@ -190,6 +190,9 @@ class ZipInfo (object):
 
         # This operation causes that filename can't be unicode
         # It's the first in this file
+        if isinstance(self.filename, unicode):
+            self.filename = self.filename.encode('utf-8')
+
         return header + self.filename + extra
 
 
