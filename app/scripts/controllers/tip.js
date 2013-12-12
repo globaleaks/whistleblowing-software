@@ -21,18 +21,16 @@ GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$moda
   $scope.tip_extend = function (id) {
     $scope.tip_id = id;
 
-    var TipID = {tip_id: $scope.tip_id};
-    new Tip(TipID, function(tip){
-      var modalInstance = $modal.open({
-        templateUrl: 'views/partials/tip_extend.html',
-        controller: ModalPostponeTipCtrl,
-        resolve: {
-          tip: function () {
-          return tip;
-          }
+    var modalInstance = $modal.open({
+      templateUrl: 'views/partials/tip_extend.html',
+      controller: ModalPostponeTipCtrl,
+      resolve: {
+        tip_id: function () {
+          return $scope.tip_id;
         }
-      });
+      }
     });
+
   };
 
   $scope.$watch('msg_receiver_selected', function(){
@@ -60,7 +58,7 @@ GLClient.controller('TipCtrl', ['$scope', '$http', '$route', '$location', '$moda
 ModalDeleteTipCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance', 'tip_id', 'global_delete',
                      function ($scope, $http, $route, $location, $modalInstance, tip_id, global_delete) {
 
-  $scope.tip_id = tip_id 
+  $scope.tip_id = tip_id;
   $scope.global_delete = global_delete;
 
   $scope.cancel = function () {
@@ -74,10 +72,10 @@ ModalDeleteTipCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance'
   };
 }];
 
-ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', '$modalInstance', 'tip',
-                        function ($scope, $http, $route, $location, $modalInstance, tip) {
+ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', 'Tip', '$modalInstance', 'tip_id',
+                        function ($scope, $http, $route, $location, Tip, $modalInstance, tip_id) {
 
-  $scope.tip = tip
+  $scope.tip_id = tip_id;
 
   $scope.cancel = function () {
     $modalInstance.close();
@@ -85,6 +83,7 @@ ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', '$modalInstanc
 
   $scope.ok = function () {
      $modalInstance.close();
+
      $scope.tip.extend = true;
 
      // XXX this should be returned by the backend, but is not.
@@ -93,5 +92,11 @@ ModalPostponeTipCtrl = ['$scope', '$http', '$route', '$location', '$modalInstanc
      $scope.tip.$update();
      $route.reload();
   };
+
+  var TipID = {tip_id: $scope.tip_id};
+  new Tip(TipID, function(tip){
+    $scope.tip = tip;
+  });
+
 }];
 
