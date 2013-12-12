@@ -361,12 +361,15 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
                         WhistleblowerTip.id == unicode(wb_tip_id)).one()
 
     if not wb_tip:
+        log.err("Invalid wb_tip supply: %s" % wb_tip)
         raise errors.TipReceiptNotFound
 
     rtip = store.find(ReceiverTip, ReceiverTip.internaltip_id == wb_tip.internaltip.id,
                                    ReceiverTip.receiver_id == unicode(receiver_id)).one()
 
     if not rtip:
+        log.err("No ReceiverTip found: receiver_id %s itip %s" %
+                (receiver_id, wb_tip.internaltip.id))
         raise errors.TipGusNotFound
 
     msg = Message()
@@ -380,7 +383,12 @@ def create_message_wb(store, wb_tip_id, receiver_id, request):
     msg.type = u'whistleblower'
     msg.mark = u'not notified'
 
-    store.add(msg)
+    try:
+        store.add(msg)
+    except Exception as dberror:
+        log.err("Unable to add WB message from %s: %s" % (rtip.receiver.name, dberror))
+        raise dberror
+
     return wb_serialize_message(msg)
 
 
