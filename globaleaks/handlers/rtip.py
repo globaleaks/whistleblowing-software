@@ -143,8 +143,7 @@ def delete_receiver_tip(store, user_id, tip_id):
     comment = Comment()
     comment.content = "%s personally remove from this Tip" % rtip.receiver.name
     comment.system_content = dict({ "type" : 2,
-                                    "receiver_name" : rtip.receiver.name,
-                                    "now": pretty_date_time(datetime_now()) })
+                                    "receiver_name" : rtip.receiver.name})
 
     comment.internaltip_id = rtip.internaltip.id
     comment.author = u'System' # The printed line
@@ -237,7 +236,6 @@ def postpone_expiration_date(store, user_id, tip_id):
     comment.system_content = dict({
            'type': "1", # the first kind of structured system_comments
            'receiver_name': rtip.receiver.name,
-           'now' : pretty_date_time(datetime_now()),
            'expire_on' : pretty_date_time(rtip.internaltip.expiration_date)
     })
 
