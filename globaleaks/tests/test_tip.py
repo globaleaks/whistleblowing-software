@@ -453,7 +453,7 @@ class TestTipInstance(TTip):
         cl = yield rtip.get_comment_list_receiver(self.receiver1_desc['receiver_gus'],
                                                  self.rtip1_id)
 
-        self.assertEqual(cl[3]['source'], models.Comment._types[2]) # System (date extension)
+        self.assertEqual(cl[3]['type'], models.Comment._types[2]) # System (date extension)
 
         sys_comm = cl[3]
 
@@ -488,15 +488,15 @@ class TestTipInstance(TTip):
                                         self.rtip1_id)
 
         self.assertEqual(len(cl), 5)
-        self.assertEqual(cl[0]['source'], models.Comment._types[0]) # Receiver (Rcvr1)
-        self.assertEqual(cl[1]['source'], models.Comment._types[0]) # Receiver (Rcvr2)
-        self.assertEqual(cl[2]['source'], models.Comment._types[1]) # Wb
+        self.assertEqual(cl[0]['type'], models.Comment._types[0]) # Receiver (Rcvr1)
+        self.assertEqual(cl[1]['type'], models.Comment._types[0]) # Receiver (Rcvr2)
+        self.assertEqual(cl[2]['type'], models.Comment._types[1]) # Wb
 
-        self.assertEqual(cl[3]['source'], models.Comment._types[2]) # System (date extension)
+        self.assertEqual(cl[3]['type'], models.Comment._types[2]) # System (date extension)
         self.assertEqual(cl[3]['system_content']['receiver_name'], self.receiver2_desc['name'])
         self.assertTrue(cl[3]['system_content'].has_key('now'))
 
-        self.assertEqual(cl[4]['source'], models.Comment._types[2]) # System
+        self.assertEqual(cl[4]['type'], models.Comment._types[2]) # System
 
 
     @inlineCallbacks
