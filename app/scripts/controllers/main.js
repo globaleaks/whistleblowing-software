@@ -4,7 +4,7 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', 'Nod
 
     $rootScope.update_node = function() {
       Node.get(function(node){
-        $scope.node = node;
+        $rootScope.node = node;
       });
     }
 
