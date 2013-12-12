@@ -169,9 +169,9 @@ def delete_internal_tip(store, user_id, tip_id):
     if not (node.can_delete_submission or
             rtip.context.can_delete_submission or
             rtip.receiver.can_delete_submission):
-        store.remove(rtip.internaltip)
-    else:
         raise errors.ForbiddenOperation
+
+    store.remove(rtip.internaltip)
 
 
 @transact
