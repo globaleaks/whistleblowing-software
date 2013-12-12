@@ -18,8 +18,8 @@ GLClient.controller('HomeCtrl', ['$scope', '$location', 'Node', 'Authentication'
     }
 
     $scope.view_tip = function(receipt) {
-      WhistleblowerTip(receipt, function(tip_id) {
-        $location.path('/status/' + tip_id);
+      WhistleblowerTip(receipt, function() {
+        $location.path('/status');
       });
     };
 
