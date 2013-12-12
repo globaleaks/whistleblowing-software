@@ -123,6 +123,7 @@ class CollectionDownload(BaseHandler):
             filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
 
         formatted_coll = Templating().format_template(notif_dict['zip_description'], mock_event).encode('utf-8')
+        log.debug("Generating collection content with: %s" % formatted_coll)
         files_dict.append(
             { 'buf'  : formatted_coll,
               'name' : "COLLECTION_INFO.txt"
