@@ -15,6 +15,22 @@ from globaleaks.security import GLBGPG
 from globaleaks.models import Receiver
 from globaleaks.settings import GLSetting
 
+def dump_submission_fields(fields, wb_fields):
+
+    dumptext = u""
+    for sf in fields:
+        if sf['type'] != 'text':
+            log.debug("Ignored dump of field %s because is not a Text" % sf['name'])
+            continue
+
+        fnl = len(sf['name'])
+        # dumptext += ("="*fnl)+"\n"+sf['name']+"\n("+sf['hint']+")\n"+("="*fnl)+"\n"
+        dumptext += ("="*fnl)+"\n"+sf['name']+"\n"+("="*fnl)+"\n"
+        dumptext += wb_fields[ fields[0]['key'] ]+"\n\n"
+
+    return dumptext
+
+
 class MailNotification(Notification):
 
     plugin_name = u'Mail'
@@ -53,11 +69,10 @@ class MailNotification(Notification):
         return partial_template
 
 
-    # XXX shall be moved in notification_sched ? with the event selection ?
-    # ---> yes!
     def format_template(self, template, event_dicts):
         """
         TODO use http://docs.python.org/2/library/email
+        TODO move this function in a dedicated utility file ?
         """
 
         node_desc = event_dicts.node_info
@@ -78,9 +93,22 @@ class MailNotification(Notification):
             '%ContextName%' : context_desc['name'],
         }
 
-        if event_dicts.type == u'tip':
+        supported_event_types = [ u'file', u'comment', u'encrypted_tip', u'plaintext_tip']
+        if event_dicts.type not in supported_event_types:
+            raise AssertionError("%s at the moment supported: %s is NOT " % (supported_event_types, event_dicts.type))
 
-            tip_template_keyword = {}
+        tip_template_keyword = {}
+        if event_dicts.type == u'encrypted_tip':
+
+            # GLSetting.memory_copy.default_language is ignored here
+            # because the context_info is already localized
+            tip_template_keyword.update({
+                '%TipFields%':
+                    dump_submission_fields(event_dicts.context_info['fields'],
+                                           event_dicts.trigger_info['wb_fields'])
+            })
+
+        if event_dicts.type == u'encrypted_tip' or event_dicts.type == u'plaintext_tip':
 
             if len(node_desc['hidden_service']):
                 tip_template_keyword.update({
@@ -147,7 +175,8 @@ class MailNotification(Notification):
             body = self._iterkeywords(partial, file_template_keyword)
             return body
 
-        raise AssertionError("Tip/Comment/File at the moment supported")
+        raise AssertionError("No one can access to this section of code: has to be returned before!")
+
 
     def do_notify(self, event):
 
@@ -158,11 +187,16 @@ class MailNotification(Notification):
 
         # At the moment the language used is a system language, not
         # Receiver preferences language ?
-        if event.type == u'tip':
+        if event.type == u'encrypted_tip':
             body = self.format_template(
-                event.notification_settings['tip_template'], event)
+                event.notification_settings['encrypted_tip_template'], event)
             title = self.format_template(
-                event.notification_settings['tip_mail_title'], event)
+                event.notification_settings['encrypted_tip_mail_title'], event)
+        elif event.type == u'plaintext_tip':
+            body = self.format_template(
+                event.notification_settings['plaintext_tip_template'], event)
+            title = self.format_template(
+                event.notification_settings['plaintext_tip_mail_title'], event)
         elif event.type == u'comment':
             body = self.format_template(
                 event.notification_settings['comment_template'], event)

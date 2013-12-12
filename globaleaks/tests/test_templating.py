@@ -1,6 +1,8 @@
+# -*- encoding: utf-8 -*-
 import os
 
 from twisted.internet.defer import inlineCallbacks
+from storm.expr import Desc
 
 from globaleaks.tests.helpers import TestWithDB
 from globaleaks.handlers import admin, submission
@@ -8,8 +10,10 @@ from globaleaks.jobs import delivery_sched
 from globaleaks.plugins.base import Event
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.tests.helpers import MockDict
+from globaleaks.settings import transact_ro
 from globaleaks.utils.utility import datetime_now, pretty_date_time
-from globaleaks.models import Node
+from globaleaks.models import Node, InternalTip, ReceiverTip
+from globaleaks.jobs.notification_sched import serialize_receivertip
 
 
 class notifTemplateTest(TestWithDB):
@@ -27,6 +31,10 @@ class notifTemplateTest(TestWithDB):
         '%TipT2WURL%',
     ]
 
+    protected_keyword_list = [
+        '%TipFields%'
+    ]
+
     comment_keyword_list = [
         '%CommentSource%',
     ]
@@ -37,60 +45,54 @@ class notifTemplateTest(TestWithDB):
         '%FileSize%',
     ]
 
-    @inlineCallbacks
-    def _initialize(self):
 
-        self.mockContext = MockDict().dummyContext
-        self.mockReceiver = MockDict().dummyReceiver
-        self.mockNode = MockDict().dummyNode
+    @transact_ro
+    def get_a_fucking_random_submission(self, store):
 
-        try:
-            self.createdContext = yield admin.create_context(self.mockContext)
-            self.assertTrue(self.createdContext.has_key('context_gus'))
-        except Exception as excep:
-            self.assertFalse(True)
-            raise excep
+        aits = store.find(InternalTip)
+        if not aits.count():
+            # this cannot happen, but ...
+            raise Exception("in our Eternal Mangekyō Sharingan, not InternalTip are avail")
 
-        try:
-            self.mockReceiver['contexts'] = [ self.createdContext['context_gus'] ]
-            self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
-            self.assertTrue(self.createdReceiver.has_key('receiver_gus'))
-        except Exception as excep:
-            self.assertFalse(True)
-            raise excep
+        rits = store.find(ReceiverTip)
+        if not rits.count():
+            raise Exception("in our Eternal Mangekyō Sharingan, not ReceiverTip are avail")
 
-        try:
-            self.createdNode = yield admin.update_node(self.mockNode)
-            self.assertTrue(self.createdNode.has_key('version'))
-        except Exception as excep:
-            self.assertFalse(True)
-            raise excep
-
+        # just because 
+        # storm.exceptions.UnorderedError: Can't use first() on unordered result set
+        rits.order_by(Desc(ReceiverTip.id))
+        return serialize_receivertip(rits.first())
 
     @inlineCallbacks
     def _fill_event(self, type, trigger, trigger_id):
-
-        if type == u'tip' and trigger == 'Tip':
+        """
+        Here I'm testing only encrypted_tip because trigger a bigger
+        amount of %KeyWords%
+        """
+        if type == u'encrypted_tip' and trigger == 'Tip':
 
             receiver_dict = yield admin.get_receiver(self.createdReceiver['receiver_gus'])
             context_dict = yield admin.get_context(self.createdContext['context_gus'])
             notif_dict = yield admin.get_notification()
 
-            yield admin.import_memory_variables()
-            node_dict = yield admin.get_node()
+            try:
+                yield admin.import_memory_variables()
+                node_dict = yield admin.get_node()
+            except Exception as exxx:
+                print "Some random error with DB", exxx.__repr__()
+                raise exxx
+
+            tip_dict = yield self.get_a_fucking_random_submission()
 
             self.event = Event(
-                type = u'tip',
+                type = u'encrypted_tip',
                 trigger = 'Tip',
                 notification_settings = notif_dict,
                 node_info = node_dict,
                 receiver_info = receiver_dict,
                 context_info = context_dict,
                 plugin = None,
-                trigger_info = {
-                   'id': trigger_id,
-                   'creation_date': pretty_date_time(datetime_now())
-                }
+                trigger_info = tip_dict
             )
 
         elif type == u'comment' and trigger == 'Comment':
@@ -98,7 +100,7 @@ class notifTemplateTest(TestWithDB):
         elif type == u'file' and trigger == 'File':
             raise AssertionError("Not yet managed Mock files")
         else:
-            raise AssertionError("type and trigger maybe refactored, but you're using it bad")
+            raise AssertionError("Invalid combo: %s ~ %s" % (type, trigger))
 
 
     def _load_defaults(self):
@@ -124,14 +126,57 @@ class notifTemplateTest(TestWithDB):
         self.assertGreater(self.Tip_notifi_template['en'], 0)
         self.assertGreater(self.File_notifi_template['en'], 0)
 
-
-
     @inlineCallbacks
-    def test_keywords(self):
+    def test_keywords_conversion(self):
 
-        yield self._initialize()
-        self._load_defaults()
+        ### INITIALIZE BLOCK
+        self.mockContext = MockDict().dummyContext
+        self.mockReceiver = MockDict().dummyReceiver
+        self.mockNode = MockDict().dummyNode
 
+        try:
+            self.createdContext = yield admin.create_context(self.mockContext)
+            self.assertTrue(self.createdContext.has_key('context_gus'))
+        except Exception as excep:
+            raise excep
+
+        try:
+            self.mockReceiver['contexts'] = [ self.createdContext['context_gus'] ]
+
+            self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
+            self.assertTrue(self.createdReceiver.has_key('receiver_gus'))
+        except Exception as excep:
+            raise excep
+
+        try:
+            self.createdNode = yield admin.update_node(self.mockNode)
+            self.assertTrue(self.createdNode.has_key('version'))
+        except Exception as excep:
+            raise excep
+        ### END OF THE INITIALIZE BLOCK
+
+        self.Comment_notif_template = { 'en': u"" }
+        self.Tip_notifi_template = { 'en' : u"" }
+        self.File_notifi_template = { 'en' : u"" }
+
+        for k in notifTemplateTest.generic_keyword_list:
+            self.Comment_notif_template['en'] += " " + k
+            self.Tip_notifi_template['en'] += " " + k
+            self.File_notifi_template['en'] += " " + k
+
+        for k in notifTemplateTest.tip_keyword_list:
+            self.Tip_notifi_template['en'] += " " + k
+
+        for k in notifTemplateTest.protected_keyword_list:
+            self.Tip_notifi_template['en'] += " " + k
+
+        for k in notifTemplateTest.comment_keyword_list:
+            self.Comment_notif_template['en'] += " " + k
+
+        for k in notifTemplateTest.file_keyword_list:
+            self.File_notifi_template['en'] += " " + k
+
+        # THE REAL CONVERSION TEST START HERE:
         self.mockSubmission = MockDict().dummySubmission
         self.mockSubmission['finalize'] = True
         self.mockSubmission['context_gus'] = self.createdReceiver['contexts'][0]
@@ -142,7 +187,7 @@ class notifTemplateTest(TestWithDB):
         self.assertEqual(len(created_rtip), 1)
 
         try:
-            yield self._fill_event(u'tip', 'Tip', created_rtip[0])
+            yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
         except Exception as excep:
             print excep; raise excep
 
@@ -154,6 +199,63 @@ class notifTemplateTest(TestWithDB):
         self.assertSubstring(self.createdNode['public_site'], gentext)
         self.assertSubstring(self.createdNode['hidden_service'], gentext)
 
+        ## HERE ARE ADDED SOME CHECK
+        self.assertSubstring("=================", gentext)
+
+
+    @inlineCallbacks
+    def test_default_template_keywords(self):
+
+        self._load_defaults()
+
+        ### INITIALIZE BLOCK
+        self.mockContext = MockDict().dummyContext
+        self.mockReceiver = MockDict().dummyReceiver
+        self.mockNode = MockDict().dummyNode
+
+        try:
+            self.createdContext = yield admin.create_context(self.mockContext)
+            self.assertTrue(self.createdContext.has_key('context_gus'))
+        except Exception as excep:
+            raise excep
+
+        try:
+            self.mockReceiver['contexts'] = [ self.createdContext['context_gus'] ]
+
+            self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
+            self.assertTrue(self.createdReceiver.has_key('receiver_gus'))
+        except Exception as excep:
+            raise excep
+
+        try:
+            self.createdNode = yield admin.update_node(self.mockNode)
+            self.assertTrue(self.createdNode.has_key('version'))
+        except Exception as excep:
+            raise excep
+        ### END OF THE INITIALIZE BLOCK
+
+        # THE REAL CONVERSION TEST START HERE:
+        self.mockSubmission = MockDict().dummySubmission
+        self.mockSubmission['finalize'] = True
+        self.mockSubmission['context_gus'] = self.createdReceiver['contexts'][0]
+        self.mockSubmission['receivers'] = [ self.createdReceiver['receiver_gus'] ]
+        self.createdSubmission = yield submission.create_submission(self.mockSubmission, finalize=True)
+
+        created_rtip = yield delivery_sched.tip_creation()
+        self.assertEqual(len(created_rtip), 1)
+
+        try:
+            yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
+        except Exception as excep:
+            print excep; raise excep
+
+        # with the event, we can finally call the template filler
+        gentext = MailNotification().format_template(self.Tip_notifi_template, self.event)
+
+        self.assertSubstring(self.createdContext['name'], gentext)
+        self.assertSubstring(created_rtip[0], gentext)
+        self.assertSubstring(self.createdNode['public_site'], gentext)
+
 
     @inlineCallbacks
     def test_tor2web_absence(self):
@@ -162,7 +264,31 @@ class notifTemplateTest(TestWithDB):
         https://github.com/globaleaks/GlobaLeaks/issues/268
         """
 
-        yield self._initialize()
+        ### INITIALIZE BLOCK
+        self.mockContext = MockDict().dummyContext
+        self.mockReceiver = MockDict().dummyReceiver
+        self.mockNode = MockDict().dummyNode
+
+        try:
+            self.createdContext = yield admin.create_context(self.mockContext)
+            self.assertTrue(self.createdContext.has_key('context_gus'))
+        except Exception as excep:
+            raise excep
+
+        try:
+            self.mockReceiver['contexts'] = [ self.createdContext['context_gus'] ]
+
+            self.createdReceiver = yield admin.create_receiver(self.mockReceiver)
+            self.assertTrue(self.createdReceiver.has_key('receiver_gus'))
+        except Exception as excep:
+            raise excep
+
+        try:
+            self.createdNode = yield admin.update_node(self.mockNode)
+            self.assertTrue(self.createdNode.has_key('version'))
+        except Exception as excep:
+            raise excep
+        ### END OF THE INITIALIZE BLOCK
 
         # be sure of Tor2Web capability
         self.mockNode['tor2web_tip'] = False
@@ -182,7 +308,7 @@ class notifTemplateTest(TestWithDB):
         created_rtip = yield delivery_sched.tip_creation()
         self.assertEqual(len(created_rtip), 1)
 
-        yield self._fill_event(u'tip', 'Tip', created_rtip[0])
+        yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
         # with the event, we can finally call the format checks
         gentext = MailNotification().format_template(self.Tip_notifi_template, self.event)
