@@ -218,6 +218,12 @@ def postpone_expiration_date(store, user_id, tip_id):
             rtip.receiver.postpone_superpower):
 
         raise errors.ExtendTipLifeNotEnabled()
+    else:
+        log.debug("Postpone check: Node %s, Context %s, Receiver %s" %(
+            "True" if node.postpone_superpower else "False",
+            "True" if rtip.internaltip.context.postpone_superpower else "False",
+            "True" if rtip.receiver.postpone_superpower else "False"
+        ))
 
     rtip.internaltip.expiration_date = \
         utc_future_date(seconds=rtip.internaltip.context.tip_timetolive)
