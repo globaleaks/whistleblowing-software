@@ -82,17 +82,12 @@ class Model(Storm):
 
         for k in cls_localized_keys:
             value = attrs[k]
-            setattr(self, k, value)
-            # value is a list with { lang: 'en', 'text': "shit" },
-            #                      { lang: 'mi', 'text': "leganord" }
-            # print "checking %s on %s" % (k, value)
-            # if len(k) > 0:
-            #     if value[0].has_key('lang') and value[0].has_key('text'):
-            #         setattr(self, k, value)
-            #     else:
-            #         raise ValueError("Invalid keys in %s" % k)
-            # else:
-            #     raise ValueError("Missing translated dict in %s" % k)
+            previous = getattr(self, k)
+            if previous and isinstance(previous, dict):
+                previous.update(value)
+                setattr(self, k, previous)
+            else:
+                setattr(self, k, value)
 
 
     def __repr___(self):
