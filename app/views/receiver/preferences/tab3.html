@@ -69,7 +69,8 @@
 
   <div class="form-group" ng-hide="preferences.gpg_key_fingerprint">
     <button class="btn btn-success" ng-init="send_key=false" ng-click="send_key = !send_key">
-      <i class="glyphicon glyphicon-plus"></i>
+      <i class="glyphicon glyphicon-plus" ng-hide="send_key"></i>
+      <i class="glyphicon glyphicon-minus" ng-show="send_key"></i>
       {{ "Configure a PGP key" | translate }}
     </button>
 

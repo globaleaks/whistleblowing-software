@@ -1,29 +1,6 @@
-<div id="HeaderBox" class="subhead">
-  <div id="HeaderBoxContent">
-    <span id="LogoBox">
-      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
-    </span>
-    <span id="TitleBox">
-      <div id="titleboxdefault">
-        <div>
-          <h3>{{ header_subsection | translate }}</h3>
-        </div>
-        <div>
-          <h1>{{ "Blow the Whistle" | translate }}</h1>
-        </div>
-      </div>
-      <div id="titleboxwithtagline">
-          <a href="/#/">
-            <div id="logo"></div>
-          </a>
-          <div id="tagline">
-            {{ "Blow the Whistle" | translate }}
-          </div>
-      </div>
-    </span>
-    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
-  </div>
-  <div class="clearfix"></div>
+<div ng-include="'views/partials/header.html'"
+     onload="header_subsection='';
+             header_section='Blow the Whistle'">
 </div>
 
 <div  ng-show="!node.name">
