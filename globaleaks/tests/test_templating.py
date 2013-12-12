@@ -4,16 +4,14 @@ import os
 from twisted.internet.defer import inlineCallbacks
 from storm.expr import Desc
 
-from globaleaks.tests.helpers import TestWithDB
+from globaleaks.tests.helpers import TestWithDB, MockDict
 from globaleaks.handlers import admin, submission
 from globaleaks.jobs import delivery_sched
 from globaleaks.plugins.base import Event
-from globaleaks.plugins.notification import MailNotification
-from globaleaks.tests.helpers import MockDict
 from globaleaks.settings import transact_ro
-from globaleaks.utils.utility import datetime_now, pretty_date_time
 from globaleaks.models import Node, InternalTip, ReceiverTip
 from globaleaks.jobs.notification_sched import serialize_receivertip
+from globaleaks.utils.templating import Templating
 
 
 class notifTemplateTest(TestWithDB):
@@ -192,7 +190,7 @@ class notifTemplateTest(TestWithDB):
             print excep; raise excep
 
         # with the event, we can finally call the template filler
-        gentext = MailNotification().format_template(self.Tip_notifi_template, self.event)
+        gentext = Templating().format_template(self.Tip_notifi_template, self.event)
 
         self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
@@ -250,7 +248,7 @@ class notifTemplateTest(TestWithDB):
             print excep; raise excep
 
         # with the event, we can finally call the template filler
-        gentext = MailNotification().format_template(self.Tip_notifi_template, self.event)
+        gentext = Templating().format_template(self.Tip_notifi_template, self.event)
 
         self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)
@@ -310,7 +308,7 @@ class notifTemplateTest(TestWithDB):
         yield self._fill_event(u'encrypted_tip', 'Tip', created_rtip[0])
 
         # with the event, we can finally call the format checks
-        gentext = MailNotification().format_template(self.Tip_notifi_template, self.event)
+        gentext = Templating().format_template(self.Tip_notifi_template, self.event)
 
         self.assertSubstring(self.createdContext['name'], gentext)
         self.assertSubstring(created_rtip[0], gentext)

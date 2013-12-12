@@ -8,28 +8,13 @@
 # When new Notification/Delivery will starts to exists, this code would come back to be
 # one of the various plugins (used by default, but still an optional adoptions)
 
-from globaleaks.utils.utility import log, very_pretty_date_time
+from globaleaks.utils.utility import log
 from globaleaks.utils.mailutils import sendmail, MIME_mail_build
+from globaleaks.utils.templating import Templating
 from globaleaks.plugins.base import Notification
 from globaleaks.security import GLBGPG
 from globaleaks.models import Receiver
 from globaleaks.settings import GLSetting
-
-def dump_submission_fields(fields, wb_fields):
-
-    dumptext = u""
-    for sf in fields:
-        if sf['type'] != 'text':
-            log.debug("Ignored dump of field %s because is not a Text" % sf['name'])
-            continue
-
-        fnl = len(sf['name'])
-        # dumptext += ("="*fnl)+"\n"+sf['name']+"\n("+sf['hint']+")\n"+("="*fnl)+"\n"
-        dumptext += ("="*fnl)+"\n"+sf['name']+"\n"+("="*fnl)+"\n"
-        dumptext += wb_fields[ fields[0]['key'] ]+"\n\n"
-
-    return dumptext
-
 
 class MailNotification(Notification):
 
@@ -55,129 +40,6 @@ class MailNotification(Notification):
         log.debug("[%s] receiver_fields %s (with admin %s)" % ( self.__class__.__name__, receiver_fields, admin_fields))
         return True
 
-
-    def _iterkeywords(self, template, keywords):
-        if isinstance(template, dict):
-            partial_template = template[GLSetting.memory_copy.default_language]
-        else:
-            partial_template = template
-            # this is wrong!
-
-        for key, var in keywords.iteritems():
-            partial_template = partial_template.replace(key, var)
-
-        return partial_template
-
-
-    def format_template(self, template, event_dicts):
-        """
-        TODO use http://docs.python.org/2/library/email
-        TODO move this function in a dedicated utility file ?
-        """
-
-        node_desc = event_dicts.node_info
-        assert node_desc.has_key('name')
-        receiver_desc = event_dicts.receiver_info
-        assert receiver_desc.has_key('name')
-        context_desc = event_dicts.context_info
-        assert context_desc.has_key('name')
-
-        template_keyword = {
-            '%NodeName%': node_desc['name'],
-            '%HiddenService%': node_desc['hidden_service'],
-            '%PublicSite%': node_desc['public_site'],
-            '%ReceiverName%': receiver_desc['name'],
-            # context_name contains localized data, ad the moment
-            # exported only with default language, because Receiver
-            # can't yet configure its hown lang.
-            '%ContextName%' : context_desc['name'],
-        }
-
-        supported_event_types = [ u'file', u'comment', u'encrypted_tip', u'plaintext_tip']
-        if event_dicts.type not in supported_event_types:
-            raise AssertionError("%s at the moment supported: %s is NOT " % (supported_event_types, event_dicts.type))
-
-        tip_template_keyword = {}
-        if event_dicts.type == u'encrypted_tip':
-
-            # GLSetting.memory_copy.default_language is ignored here
-            # because the context_info is already localized
-            tip_template_keyword.update({
-                '%TipFields%':
-                    dump_submission_fields(event_dicts.context_info['fields'],
-                                           event_dicts.trigger_info['wb_fields'])
-            })
-
-        if event_dicts.type == u'encrypted_tip' or event_dicts.type == u'plaintext_tip':
-
-            if len(node_desc['hidden_service']):
-                tip_template_keyword.update({
-                    '%TipTorURL%':
-                        '%s/#/status/%s' %
-                            ( node_desc['hidden_service'],
-                              event_dicts.trigger_info['id']),
-                    })
-            else:
-                tip_template_keyword.update({
-                    '%TipTorURL%':
-                        'ADMIN, CONFIGURE YOUR HIDDEN SERVICE (Advanced configuration)!'
-                    })
-
-            if not GLSetting.memory_copy.tor2web_receiver:
-                tip_template_keyword.update({
-                    '%TipT2WURL%': "Ask to your admin about Tor"})
-                    # https://github.com/globaleaks/GlobaLeaks/issues/268
-            elif len(node_desc['public_site']):
-                tip_template_keyword.update({
-                    '%TipT2WURL%':
-                        '%s/#/status/%s' %
-                            ( node_desc['public_site'],
-                              event_dicts.trigger_info['id'] ),
-                    })
-            else:
-                tip_template_keyword.update({
-                    '%TipT2WURL%':
-                        'ADMIN, CONFIGURE YOUR PUBLIC SITE (Advanced configuration)'
-                    })
-
-            tip_template_keyword.update({
-                '%EventTime%':
-                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-            })
-
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, tip_template_keyword)
-            return body
-
-        if event_dicts.type == u'comment':
-
-            comment_template_keyword = {
-                '%CommentSource%': event_dicts.trigger_info['source'],
-                '%EventTime%':
-                       very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-            }
-
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, comment_template_keyword)
-            return body
-
-        if event_dicts.type == u'file':
-
-            file_template_keyword = {
-                '%FileName%': event_dicts.trigger_info['name'],
-                '%EventTime%':
-                    very_pretty_date_time(event_dicts.trigger_info['creation_date']),
-                '%FileSize%': event_dicts.trigger_info['size'],
-                '%FileType%': event_dicts.trigger_info['content_type'],
-            }
-
-            partial = self._iterkeywords(template, template_keyword)
-            body = self._iterkeywords(partial, file_template_keyword)
-            return body
-
-        raise AssertionError("No one can access to this section of code: has to be returned before!")
-
-
     def do_notify(self, event):
 
         # check if exists the conf
@@ -188,24 +50,24 @@ class MailNotification(Notification):
         # At the moment the language used is a system language, not
         # Receiver preferences language ?
         if event.type == u'encrypted_tip':
-            body = self.format_template(
+            body = Templating().format_template(
                 event.notification_settings['encrypted_tip_template'], event)
-            title = self.format_template(
+            title = Templating().format_template(
                 event.notification_settings['encrypted_tip_mail_title'], event)
         elif event.type == u'plaintext_tip':
-            body = self.format_template(
+            body = Templating().format_template(
                 event.notification_settings['plaintext_tip_template'], event)
-            title = self.format_template(
+            title = Templating().format_template(
                 event.notification_settings['plaintext_tip_mail_title'], event)
         elif event.type == u'comment':
-            body = self.format_template(
+            body = Templating().format_template(
                 event.notification_settings['comment_template'], event)
-            title = self.format_template(
+            title = Templating().format_template(
                 event.notification_settings['comment_mail_title'], event)
         elif event.type == u'file':
-            body = self.format_template(
+            body = Templating().format_template(
                 event.notification_settings['file_template'], event)
-            title = self.format_template(
+            title = Templating().format_template(
                 event.notification_settings['file_mail_title'], event)
         else:
             raise NotImplementedError("At the moment, only Tip expected")

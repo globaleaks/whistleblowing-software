@@ -28,6 +28,7 @@ def serialize_receivertip(rtip):
         'expressed_pertinence' : unicode(rtip.expressed_pertinence),
         'access_counter' : int(rtip.access_counter),
         'wb_fields': dict(rtip.internaltip.wb_fields),
+        'context_id': unicode(rtip.internaltip.context.id),
     }
     return rtip_dict
 
