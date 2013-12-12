@@ -122,7 +122,6 @@ class CollectionDownload(BaseHandler):
             # Update all the path with the absolute path
             filedesc['path'] = os.path.join(GLSetting.submission_path, filedesc['path'])
         formatted_coll = Templating().format_template(notif_dict['zip_description'], mock_event)
-        print formatted_coll
         files_dict.append(
             { 'buf'  : formatted_coll,
               'name' : "COLLECTION_INFO.txt"
