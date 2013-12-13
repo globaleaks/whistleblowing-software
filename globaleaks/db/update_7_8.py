@@ -93,6 +93,8 @@ class Node_version_7(Model):
     # can_delete_submission = Bool()
     # + is added
     # subtitle = Unicode()
+    # + is added
+    # ahmia = Bool()
 
 
 class Notification_version_7(Model):
@@ -329,6 +331,9 @@ class Replacer78(TableReplacer):
                 continue
             if v.name == 'subtitle':
                 new_node.subtitle = every_language(u"Optionally you can put a subtitle")
+                continue
+            if v.name == 'ahmia':
+                new_node.ahmia = False
                 continue
 
             setattr(new_node, v.name, getattr(old_node, v.name) )

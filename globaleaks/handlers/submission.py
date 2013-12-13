@@ -92,10 +92,8 @@ def import_receivers(store, submission, receiver_id_list, required=False):
                  reloaded_submission.receivers.count(), submission.id) )
         return
 
-    else:
-       if not context.select_all_receivers and \
-          len(receiver_id_list) > context.maximum_selectable_receivers:
-            raise errors.InvalidInputFormat("Provided an invalid number of Receivers")
+    # Before has been handled the 'fixed receiver corpus',
+    # Below we handle receiver personal selection
 
     # Clean the previous list of selected Receiver
     for prevrec in submission.receivers:
@@ -108,8 +106,13 @@ def import_receivers(store, submission, receiver_id_list, required=False):
     store.commit()
 
     # without contexts policies, import WB requests and checks consistency
-    sorted_receiver_id_list = list(set(receiver_id_list))
-    for receiver_id in sorted_receiver_id_list:
+
+    receiver_id_list = set(receiver_id_list)
+    if (not context.select_all_receivers) \
+        and len(receiver_id_list) > context.maximum_selectable_receivers:
+        raise errors.InvalidInputFormat("Provided an invalid number of Receivers")
+
+    for receiver_id in receiver_id_list:
         try:
             receiver = store.find(Receiver, Receiver.id == unicode(receiver_id)).one()
         except Exception as excep:

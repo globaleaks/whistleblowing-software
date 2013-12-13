@@ -94,6 +94,7 @@ def create_tables(create_node=True):
             'tor2web_unauth' : GLSetting.defaults.tor2web_unauth,
             'postpone_superpower' : False, # disabled by default
             'can_delete_submission' : False, # disabled too
+            'ahmia' : False, # disabled too
             'exception_email' : GLSetting.defaults.exception_email,
             'default_language' : GLSetting.memory_copy.default_language,
         }

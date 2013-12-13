@@ -77,6 +77,7 @@ adminNodeDesc = {
     'subtitle': unicode,
     'exception_email': unicode,
     'reset_css': bool,
+    'ahmia': bool,
 }
 
 adminNotificationDesc = {

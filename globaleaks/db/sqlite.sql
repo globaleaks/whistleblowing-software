@@ -146,6 +146,7 @@ CREATE TABLE node (
     tor2web_unauth INTEGER NOT NULL,
     postpone_superpower INTEGER NOT NULL,
     can_delete_submission INTEGER NOT NULL,
+    ahmia INTEGER NOT NULL,
     exception_email VARCHAR NOT NULL,
     PRIMARY KEY (id)
 );
