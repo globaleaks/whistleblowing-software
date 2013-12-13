@@ -80,7 +80,8 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "receipt_description": u'NYI', # unicode(context.receipt_description), # optlang
         "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
         "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
-        "select_all_receivers": context.select_all_receivers
+        "select_all_receivers": context.select_all_receivers,
+        "maximum_selectable_receivers": context.maximum_selectable_receivers
     })
 
     mo = Rosetta()
