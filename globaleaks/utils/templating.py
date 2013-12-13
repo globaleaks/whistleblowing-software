@@ -77,8 +77,10 @@ class Templating:
             '%PublicSite%': node_desc['public_site'],
             '%ReceiverName%': receiver_desc['name'],
             # context_name contains localized data, ad the moment
-            # exported only with default language, because Receiver
-            # can't yet configure its hown lang.
+            # exported only with default language, need to be changed
+            # notification_sched, checking the langage configured by
+            # the receiver. this would serialize correctly and make
+            # the variables come HERE/QUI/ICI
             '%ContextName%' : context_desc['name'],
             }
 
