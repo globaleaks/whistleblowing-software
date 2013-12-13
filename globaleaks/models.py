@@ -421,6 +421,7 @@ class Node(Model):
     # privileges configurable in node/context/receiver
     postpone_superpower = Bool()
     can_delete_submission = Bool()
+    ahmia = Bool()
 
     exception_email = Unicode()
 
@@ -430,7 +431,7 @@ class Node(Model):
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
                   'tor2web_unauth', 'postpone_superpower',
-                  'can_delete_submission' ]
+                  'can_delete_submission', 'ahmia' ]
     localized_strings = [ 'description', 'presentation', 'footer', 'subtitle' ]
 
 

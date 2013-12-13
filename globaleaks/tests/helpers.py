@@ -363,6 +363,7 @@ class MockDict():
             'can_delete_submission': False,
             'exception_email': GLSetting.defaults.exception_email,
             'reset_css': False,
+            'ahmia': False,
         }
 
         self.generic_template_keywords = [ '%NodeName%', '%HiddenService%',
