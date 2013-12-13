@@ -5,8 +5,7 @@
 }
 
 .receiverCard {
-  margin-bottom: 20px;
-  padding: 39px 19px 14px;
+  padding: 20px;
   background-color: white;
   border: 1px solid #DDD;
   -webkit-border-radius: 4px;
@@ -19,8 +18,12 @@
   background-color: #DFF0D8;
 }
 
-.receiverCardTitle {
+#ReceiverSelectionBoxBig .receiverCardTitle {
   font-size: 20px;
+}
+
+#ReceiverSelectionBoxBig .receiverCard {
+  margin-bottom: 20px;
 }
 
 @media (max-width: 550px) {
@@ -32,4 +35,8 @@
     max-width: 95%;
     word-wrap: break-word;
   }
+}
+
+#MaxSelectableReceiverBox {
+  margin-bottom: 30px;
 }

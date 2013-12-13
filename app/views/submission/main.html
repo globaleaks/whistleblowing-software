@@ -64,12 +64,16 @@
           {{submission.current_context.receiver_introduction}}
         </div>
 
-        <div id="ReceiverSelectionBox" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'">
-          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-click="switch_selection(receiver.receiver_gus)">
+        <div ng-show="submission.current_context.receiver_introduction != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
+          <div>{{ "Maximum number of Receivers selectable:" | translate }} {{submission.current_context.maximum_selectable_receivers}}</div>
+          <div>{{ "Receivers selected:" | translate }} {{selected_receivers_count()}}</div>
+        </div>
 
+        <div id="ReceiverSelectionBoxBig" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="!node.show_small_cards">
+          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-click="switch_selection(receiver.receiver_gus)">
             <div class="row receiverCardTitle">
               <div class="col-md-10">
-                {{receiver.name}}
+                <label>{{receiver.name}}</label>
               </div>
               <div class="col-md-1">
                 <div ng-show="submission.receivers_selected[receiver.receiver_gus]">
@@ -80,24 +84,43 @@
                 </div>
               </div>
             </div>
-
             <div class="row">
-              <div class="col-md-11">
+              <div class="col-md-5">
                 <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
+              </div>
+              <div class="col-md-offset-1 col-md-6">
                 <p>{{receiver.description}}</p>
               </div>
             </div>
           </div>
-
           <div class="clearfix" ng-show="$index % 2"></div>
-
         </div>
-        <div class="clearfix"></div>
 
-        <div ng-show="submission.current_context.receiver_introduction != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
-          <div>{{ "Maximum number of Receivers selectable:" | translate }} {{submission.current_context.maximum_selectable_receivers}}</div>
-          <div>{{ "Receivers selected:" | translate }} {{selected_receivers_count()}}</div>
+        <div id="ReceiverSelectionBoxSmall" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="node.show_small_cards">
+          <div class="form-group col-md-3">
+            <div ng-click="switch_selection(receiver.receiver_gus)" class="receiverCard" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
+              <div class="row receiverCardTitle">
+                <div class="col-md-9">
+                  <label>{{receiver.name}}</label>
+                </div>
+                <div class="col-md-1">
+                  <div ng-show="submission.receivers_selected[receiver.receiver_gus]">
+                    <i class="glyphicon glyphicon-check"></i>
+                  </div>
+                  <div ng-show="!submission.receivers_selected[receiver.receiver_gus]">
+                    <i class="glyphicon glyphicon-unchecked"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
+
       </div>
       <!-- /1 -->
 
