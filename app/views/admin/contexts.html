@@ -20,7 +20,7 @@ This comment is needed in order to push the following strings on transifex
 
         <div class="row" ng-repeat="context in admin.contexts">
           <form name="contextForm" ng-controller="AdminContextsEditorCtrl">
-            <div class="configItem contextItem">
+            <div class="configItem contextItem"  ng-class="{'configItemLast': $last}">
 
               <div class="row" ng-click="toggleEditing()">
                 <div class="editorHeader contextEditorHeader">
@@ -108,6 +108,10 @@ This comment is needed in order to push the following strings on transifex
                     <div class="form-group table-bordered">
                       <input ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox">
                       <label>{{ "Select all receivers by default" | translate }}</label>
+                    </div>
+                    <div class="form-group" ng-show="!context.select_all_receivers">
+                      <label>{{ "Max selectable receivers" | translate }} {{ "(0 = unlimited)" | translate }}</label>
+                      <input class="form-control" ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number">
                     </div>
                     <div class="form-group table-bordered">
                       <input ng-model="context.postpone_superpower" value="{{context.postpone_superpower}}" type="checkbox">
