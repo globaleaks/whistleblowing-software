@@ -69,6 +69,11 @@ class MailNotification(Notification):
                 event.notification_settings['file_template'], event)
             title = Templating().format_template(
                 event.notification_settings['file_mail_title'], event)
+        elif event.type == u'message':
+            body = Templating().format_template(
+                event.notification_settings['message_template'], event)
+            title = Templating().format_template(
+                event.notification_settings['message_mail_title'], event)
         else:
             raise NotImplementedError("At the moment, only Tip expected")
 

@@ -106,6 +106,8 @@ def create_tables(create_node=True):
             "default Plaintext Tip notification not available! %NodeName% configure this!")
         templates['comment'] = acquire_email_templates('default_CNT.txt',
             "default Comment notification not available! %NodeName% configure this!")
+        templates['message'] = acquire_email_templates('default_MNT.txt',
+             "default Message notification not available! %NodeName% configure this!")
         templates['file'] = acquire_email_templates('default_FNT.txt',
             "default File notification not available! %NodeName% configure this!")
         templates['zip_collection'] = acquire_email_templates('default_ZFC.txt',

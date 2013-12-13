@@ -119,6 +119,10 @@ class Notification_version_7(Model):
     # plaintext_tip_mail_title = Pickle()
     # zip_description = Pickle()
 
+    # + these two
+    # message_template = Pickle()
+    # message_mail_title = Pickle()
+
 
 class Receiver_version_7(Model):
     __storm_table__ = 'receiver'
@@ -292,6 +296,13 @@ class Replacer78(TableReplacer):
                         acquire_email_templates(
                             'default_ZFC.txt',
                             "default Zip Collection template not available! %NodeName% configure this!"))
+                continue
+            if v.name == 'message_template':
+                new_notification.message_template = every_language("Whistleblower: %MessageContent%")
+                # This IS NOT TO BE THE DEFAULT
+                continue
+            if v.name == 'message_mail_title':
+                new_notification.message_mail_title = every_language("[%NodeName%][%TipUN%] Message")
                 continue
 
             setattr(new_notification, v.name, getattr(old_notification, v.name) )
