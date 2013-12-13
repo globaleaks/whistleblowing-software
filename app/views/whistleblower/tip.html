@@ -1,36 +1,18 @@
-<div id="HeaderBox" class="subhead">
-  <div id="HeaderBoxContent">
-    <span id="LogoBox">
-      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
-    </span>
-    <span id="TitleBox">
-      <h1 id="titleboxh1logo">
-        {{ "Tip Status Page" | translate }}
-      </h1>
-    </span>
-    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
-  </div>
-  <div class="clearfix"></div>
+<!-- 
+
+This comment is needed in order to push the following strings on transifex
+
+{{ "Loading Tip page..." | translate }}
+{{ "Tip Status Page" | translate }}
+
+-->
+
+<div ng-include="'views/partials/header.html'"
+     onload="header_subsection='';
+             header_section='Tip Status Page'">
 </div>
 
-<div id="ContentBox" class="container statusPage ng-cloak" ng-show="tip.im_whistleblower || tip.im_receiver">
-  <div>
-    <h1>
-      {{ "Tip Status Page" | translate }}
-    </h1>
-  </div>
-  <div class="row" ng-show="tip.im_receiver && !preferences.gpg_enable_files">
-    <div class="col-md-12">
-      <div class="alert alert-warning">
-        <i class="glyphicon glyphicon-warning-sign"></i>
-        <strong>{{ "Warning!" | translate }}</strong>
-        {{ "You have not configured your encryption keys, so the files will be stored on the globaleaks node un-encrypted." | translate }}
-        {{ "This may lead to unintended access to the files by the server administrator or in case of server seizing." | translate }}
-        {{ "Please configure your PGP keys in the receiver preference page." | translate }}
-      </div>
-    </div>
-  </div>
-
+<div id="ContentBox" class="container statusPage ng-cloak">
   <div class="row" ng-controller="TipCtrl">
     <div class="col-md-6">
       <div class="col-md-12">
@@ -84,23 +66,6 @@
     </div>
 
     <div class="col-md-6">
-      <div class="col-md-12" ng-show="tip.im_receiver">
-        <h3>{{ "Options" }}</h3>
-        <span ng-show="tip.im_receiver_postponer">
-          <button ng-click="tip_extend(tip.id)" class="btn btn-sm btn-warning">
-            <i class="glyphicon glyphicon-time"></i>
-            {{ "Postpone Tip expiration date" | translate }}
-          </button>
-        </span>
-        <span ng-show="session.permissions['can_delete_submission']">
-          <button ng-click="tip_delete(tip.id, true)" class="btn btn-sm btn-danger">
-            <i class="glyphicon glyphicon-trash"></i>
-            {{ "Delete Tip" | translate }}
-          </button>
-        </span>
-      </div>
-      <br />
-
       <div class="col-md-12">
         <h3>{{ "Receiver List" | translate }}</h3>
         <table class="table table-striped" id="receiverList">
@@ -132,26 +97,12 @@
         {{ "Files" | translate }}
       </h3>
       <div class="well" ng-show="tip.files">
-        <a class="input-small" ng-href="/tip/{{tip.id}}/collection" ng-show="tip.im_receiver && show_download_all()" ng-click="increaseDownloadCounts()">
-          {{ "download all the files" | translate }}
-        </a>
-        <br />
-        <a class="input-small" ng-click="show_new_files = !show_new_files" ng-init="show_new_files = false" ng-show="tip.im_receiver && !show_new_files">
-          {{ "show only files not yet downloaded" | translate }}
-        </a>
-        <a class="input-small" ng-click="show_new_files = !show_new_files" ng-show="tip.im_receiver && show_new_files">
-          {{ "show all the files" | translate }}
-        </a>
-        <br /><br />
         <div class="table-container">
           <table class="table table-striped" id="fileList">
             <thead>
               <tr>
                 <th>
                   {{ "Filename" | translate }}
-                </th>
-                <th ng-show="tip.im_receiver">
-                  {{ "Download" | translate }}
                 </th>
                 <th>
                   {{ "Upload Date" | translate }}
@@ -168,13 +119,6 @@
               <tr ng-show="!show_new_files || (show_new_files && file.downloads == 0)">
                 <td>
                   {{file.name}}
-                </td>
-                <td ng-show="tip.im_receiver">
-                  <a ng-disabled="file.downloads >= tip.download_limit" ng-click="increaseDownloadCount(file)" class="btn btn-xs btn-default ng-cloak" ng-href="{{file.href}}" download="{{file.name}}">
-                    <i class="glyphicon glyphicon-download"></i> 
-                    {{ "download" | translate }}
-                    ({{file.downloads}}/{{tip.download_limit}})
-                  </a>
                 </td>
                 <td>
                   {{file.creation_date | date:'dd-MM-yyyy' }}
@@ -229,7 +173,7 @@
       </p>
     </div>
 
-    <div class="col-md-12" ng-show="tip.im_whistleblower">
+    <div class="col-md-12">
       <div ng-include="'views/partials/fileupload.html'"></div>
     </div>
 
@@ -238,21 +182,54 @@
   <hr>
 
   <div class="row">
-    <div class="col-md-12">
+    <div class="col-md-5">
       <h3>
         {{ "Comments" | translate }}
       </h3>
+      <textarea ng-model="newCommentContent" class="form-control"></textarea>
+      <br />
+      <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
+        <i class="glyphicon glyphicon-comment"></i>
+        {{ "Add Comment" | translate }}
+      </button>
+      <br /><br />
       <div ng-repeat="comment in tip.comments">
-        <div ng-switch="" on="comment.source">
+        <div ng-switch="" on="comment.type">
 
           <div ng-switch-when="whistleblower" class="alert alert-info">
-            <strong>
-              {{ "Whistleblower" | translate }}
-            </strong> {{comment.content}}
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+                  {{ "Whistleblower" | translate }}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div>
+              {{comment.content}}
+            </div>
           </div>
 
           <div ng-switch-when="receiver" class="alert alert-success">
-            <strong>{{comment.author}}</strong> {{comment.content}}
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{comment.author}}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ comment.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div>
+              {{comment.content}}
+            </div>
           </div>
 
           <div ng-switch-when="system" class="alert alert-warning">
@@ -272,31 +249,70 @@
               </div>
           </div>
 
-          <div ng-switch-default="" class="label label-danger">
-            <strong>
-              {{ "Malformed source" | translate }}
-            </strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-offset-2 col-md-5">
+      <div class="row">
+        <h3>
+          <div class="col-md-6">
+            {{ "Private Messages" | translate }}
+          </div>
+          <div class="col-md-6">
+            <select ng-model="tip.msg_receiver_selected" ng-options="obj.key as obj.value for obj in tip.msg_receivers_selector" class="form-control"></select>
+          </div>
+        </h3>
+      </div>
+      <textarea ng-model="newMessageContent" class="form-control"></textarea>
+      <br />
+      <button class="btn btn-success" ng-click="newMessage()" ng-disabled="!tip.msg_receiver_selected || tip.msg_receiver_selected == '' || !newMessageContent || newMessageContent == ''">
+        <i class="glyphicon glyphicon-comment"></i>
+        {{ "Send Private Message" | translate }}
+      </button>
+      <br /><br />
+      <div ng-repeat="message in tip.messages">
+        <div ng-switch="" on="message.type">
+
+          <div ng-switch-when="whistleblower" class="alert alert-info">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{ "Whistleblower" | translate }}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div>
+              {{message.content}}
+            </div>
+          </div>
+
+          <div ng-switch-when="receiver" class="alert alert-success">
+            <div class="row">
+              <div class="col-md-6">
+                <strong>
+		  {{message.author}}
+                </strong>
+              </div>
+              <div class="pull-right" style="margin-right:20px">
+                <strong>
+                  {{ message.creation_date | date:'dd-MM-yyyy HH:mm' }}
+                </strong>
+              </div>
+            </div>
+            <div>
+              {{message.content}}
+            </div>
           </div>
 
         </div>
       </div>
-
-      <textarea ng-model="newCommentContent" class="form-control"></textarea>
-      <br />
-      <button class="btn btn-success" ng-click="newComment()" ng-disabled="!newCommentContent || newCommentContent == ''">
-        <i class="glyphicon glyphicon-comment"></i>
-        {{ "Add Comment" | translate }}
-      </button>
     </div>
-   </div>
- </div>
+  </div>
 
-</div>
-
-<div class="statusPage ng-cloak" ng-show="tip.im_whistleblower && tip.im_receiver">
-  <div class="row">
-      <div class="col-md-4">
-        {{ "Loading Tip page..." | translate }}
-       </div>
-   </div>
 </div>

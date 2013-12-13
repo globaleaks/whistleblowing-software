@@ -2,13 +2,13 @@ GLClient.controller('MainCtrl', ['$scope', '$rootScope', '$http', '$route', 'Nod
   function($scope, $rootScope, $http, $route, Node) {
     $scope.started = true;
 
-    $rootScope.update_node_info = function() {
-      Node.get(function(node_info){
-        $scope.node_info = node_info;
+    $rootScope.update_node = function() {
+      Node.get(function(node){
+        $rootScope.node = node;
       });
     }
 
-    $rootScope.update_node_info();
+    $rootScope.update_node();
 
   }
 ]);

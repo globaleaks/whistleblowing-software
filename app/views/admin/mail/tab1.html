@@ -5,42 +5,40 @@
       <label>{{ "Disable email notification" | translate }}</label>
       <div ng-show="admin.notification.disable">
         <span class="label label-warning">
-          {{ "Email notification is disabled." | translate }} <br />
+          {{ "now Disabled:" | translate }} <br />
         </span>
-        <span class="label label-warning">
-          {{ "Unsent emails will be spooled when the option will be re-enabled." | translate }}
-        </span>
+        {{ "Unsent emails will be spooled when the option will be re-enabled." | translate }}
       </div>
     </div>
 
     <div class="form-group">
       <label>{{ "Source Name" | translate }}</label>
-      <input class="form-control" ng-model="admin.notification.source_name" required="" type="text">
+      <input class="form-control" ng-model="admin.notification.source_name" type="text">
     </div>
 
     <div class="form-group">
       <label>{{ "Source Email" | translate }}</label>
-      <input class="form-control" ng-model="admin.notification.source_email" required="" type="text">
+      <input class="form-control" ng-model="admin.notification.source_email" type="text">
     </div>
 
     <div class="form-group">
       <label>{{ "Username" | translate }}</label>
-      <input class="form-control" ng-model="admin.notification.username" required="" type="text">
+      <input class="form-control" ng-model="admin.notification.username" type="text">
     </div>
 
     <div class="form-group">
       <label>{{ "Password" | translate }}</label>
-      <input class="form-control" ng-model="admin.notification.password" required="" type="password">
+      <input class="form-control" ng-model="admin.notification.password" type="password">
     </div>
 
     <div class="form-group">
       <label>{{ "SMTP server address" | translate }}</label>
-      <input class="form-control" ng-model="admin.notification.server" required="" type="text">
+      <input class="form-control" ng-model="admin.notification.server" type="text">
     </div>
 
     <div class="form-group">
       <label>{{ "SMTP server port" | translate }}</label>
-      <input class="form-control" ng-model="admin.notification.port" required="" type="text">
+      <input class="form-control" ng-model="admin.notification.port" type="text">
     </div>
 
     <div class="form-group">

@@ -10,8 +10,8 @@ This comment is needed in order to push the following strings on transifex
 
 -->
 <div ng-include="'views/partials/header.html'"
-     onload="header_title='Content Settings';
-             header_subtitle='Administration Interface'">
+     onload="header_subsection='Content Settings';
+             header_section='Administration Interface'">
 </div>
 
 <div id="ContentBox" class="container">
@@ -21,9 +21,9 @@ This comment is needed in order to push the following strings on transifex
       <div class="row">
         <form class="config-form" ng-controller="AdminContentCtrl">
 
-          <tabset>
+          <tabset class="tab-content">
             <tab ng-repeat="tab in tabs" heading="{{ tab.title | translate }}" active="tab.active" disabled="tab.disabled">
-            <div ng-include="tab.template" ng-controller="tab.ctrl" class="content-tab"></div>
+            <div ng-include="tab.template" ng-controller="tab.ctrl"></div>
             </tab>
           </tabset>
 

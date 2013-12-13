@@ -83,8 +83,7 @@ angular.module('resourceServices.authentication', [])
                 auth_landing_page = "/receiver/tips";
               }
               if (role == 'wb') {
-                auth_landing_page = "/status/" + self.user_id;
-                setCookie('tip_id', self.user_id);
+                auth_landing_page = "/status";
               }
 
               setCookie('auth_landing_page', "/#" + auth_landing_page);
@@ -108,7 +107,6 @@ angular.module('resourceServices.authentication', [])
             $.removeCookie('session_id');
             $.removeCookie('role');
             $.removeCookie('auth_landing_page');
-            $.removeCookie('tip_id');
 
             if (role === 'wb')
               $location.path('/');
@@ -147,18 +145,22 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
       var Fairy = function(promise) {
         this.promise = promise;
         this.timeout = function() {
-          var error = {},
-            source_path = $location.path();
+          /*
+            Code commented out as unuseful from user of point of view
 
-          error.message = "Request timed out";
-          error.code = 100;
-          error.url = '/';
+            var error = {},
+              source_path = $location.path();
 
-          if (!$rootScope.errors) {
-            $rootScope.errors = [];
-          }
-          $rootScope.errors.push(error);
-          $rootScope.pendingRequests.pop(this);
+            error.message = "Request timed out";
+            error.code = 100;
+            error.url = '/';
+
+            if (!$rootScope.errors) {
+              $rootScope.errors = [];
+            }
+            $rootScope.errors.push(error);
+            $rootScope.pendingRequests.pop(this);
+          */
         }
       },
       fairy = new Fairy(promise);
@@ -266,7 +268,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 
       self.contexts = [];
       self.receivers = [];
-      self.current_context = {};
+      self.current_context = null;
       self.maximum_filesize = null;
       self.current_context_receivers = [];
       self.receivers_selected = {};
@@ -288,8 +290,8 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         });
       };
 
-      Node.get(function(node_info) {
-        self.maximum_filesize = node_info.maximum_filesize;
+      Node.get(function(node) {
+        self.maximum_filesize = node.maximum_filesize;
 
         Contexts.query(function(contexts){
           self.contexts = contexts;
@@ -375,77 +377,157 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 }]).
   factory('Tip', ['$resource', 'Receivers',
           function($resource, Receivers) {
-    var receiversResource = $resource('/tip/:tip_id/receivers', {tip_id: '@tip_id'}, {}),
-      tipResource = $resource('/tip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}}),
-      commentsResource = $resource('/tip/:tip_id/comments', {tip_id: '@tip_id'}, {});
+
+    var tipResource = $resource('/rtip/:tip_id', {tip_id: '@id'}, {update: {method: 'PUT'}});
+    var receiversResource = $resource('/rtip/:tip_id/receivers', {tip_id: '@tip_id'}, {});
+    var commentsResource = $resource('/rtip/:tip_id/comments', {tip_id: '@tip_id'}, {});
+    var messageResource = $resource('/rtip/:tip_id/messages', {tip_id: '@tip_id'}, {});
 
     return function(tipID, fn) {
       var self = this;
       self.tip = {};
-      self.tip.comments = [];
-      self.tip.receivers = [];
 
       tipResource.get(tipID, function(result){
 
         receiversResource.query(tipID, function(receiversCollection){
 
           self.tip = result;
+
+          self.tip.comments = [];
+          self.tip.messages = [];
+
+          self.tip.newComment = function(content) {
+            var c = new commentsResource(tipID);
+            c.content = content;
+            c.$save(function(newComment) {
+              self.tip.comments.unshift(newComment);
+            });
+          };
+
+          self.tip.newMessage = function(content) {
+            var m = new messageResource(tipID);
+            m.content = content;
+            m.$save(function(newMessage) {
+              self.tip.messages.unshift(newMessage);
+            });
+          };
+
           self.tip.receivers = receiversCollection;
 
           commentsResource.query(tipID, function(commentsCollection){
             self.tip.comments = commentsCollection;
-            self.tip.comments.newComment = function(content) {
-              var c = new commentsResource(tipID);
-              c.content = content;
-              c.$save(function(newComment) {
-                self.tip.comments.push(newComment);
-              });
-            };
 
             // XXX perhaps make this return a lazyly instanced item.
             // look at $resource code for inspiration.
             fn(self.tip);
           });
+
+          messageResource.query(tipID, function(messageCollection){
+            self.tip.messages = messageCollection;
+
+            // XXX perhaps make this return a lazyly instanced item.
+            // look at $resource code for inspiration.
+            fn(self.tip);
+          });
+
         });
       });
 
     };
 }]).
-  factory('WhistleblowerTip', ['$resource', 'Tip', 'Authentication', function($resource, Tip, Authentication){
-    var randomString = function(chars, length) {
-      // Generates a random string. Note: this is not cryptographically secure.
-      var ret = '';
-      for(var i=0;i<length;i++) {
-        ret += chars[Math.floor(Math.random()*chars.length)]
-      };
-      return ret
+  factory('WBTip', ['$resource', 'Receivers',
+          function($resource, Receivers) {
+
+    var forEach = angular.forEach;
+
+    var tipResource = $resource('/wbtip', {}, {update: {method: 'PUT'}});
+    var receiversResource = $resource('/wbtip/receivers', {}, {});
+    var commentsResource = $resource('/wbtip/comments', {}, {});
+    var messageResource = $resource('/wbtip/messages/:receiver_gus', {receiver_gus: '@receiver_gus'}, {});
+
+    return function(fn) {
+      var self = this;
+      self.tip = {};
+
+      tipResource.get(function(result) {
+
+        receiversResource.query(function(receiversCollection) {
+
+          self.tip = result;
+          self.tip.comments = [];
+          self.tip.messages = [];
+          self.tip.receivers = [];
+          self.tip.msg_receivers_selector = [];
+          self.tip.msg_receiver_selected = null;
+
+          self.tip.newComment = function(content) {
+            var c = new commentsResource();
+            c.content = content;
+            c.$save(function(newComment) {
+              self.tip.comments.unshift(newComment);
+            });
+          };
+
+          self.tip.newMessage = function(content) {
+            var m = new messageResource({receiver_gus: self.tip.msg_receiver_selected});
+            m.content = content;
+            m.$save(function(newMessage) {
+              self.tip.messages.unshift(newMessage);
+            });
+          };
+
+          self.tip.updateMessages = function() {
+            if (self.tip.msg_receiver_selected) {
+              messageResource.query({receiver_gus: self.tip.msg_receiver_selected}, function(messageCollection){
+                self.tip.messages = messageCollection;
+
+                // XXX perhaps make this return a lazyly instanced item.
+                // look at $resource code for inspiration.
+                fn(self.tip);
+              });
+            }
+          }
+
+          self.tip.receivers = receiversCollection;
+
+          Receivers.query(function(receivers) {
+
+            forEach(self.tip.receivers, function(r1) {
+              forEach(receivers, function(r2) {
+                if (r2.receiver_gus == r1.receiver_gus) {
+                  self.tip.msg_receivers_selector.push({
+                    key: r2.receiver_gus,
+                    value: r2.name
+                  });
+                }
+              });
+            });
+
+            if (self.tip.msg_receiver_selected) {
+              self.tip.updateMessages();
+            }
+
+          });
+
+          commentsResource.query({}, function(commentsCollection){
+            self.tip.comments = commentsCollection;
+
+            // XXX perhaps make this return a lazyly instanced item.
+            // look at $resource code for inspiration.
+            fn(self.tip);
+          });
+
+        });
+      });
+
     };
-
-    var generateRandomTipID = function() {
-      // This will generate a random Tip ID that is a UUID4
-      var CHARS = ['a', 'b', 'c', 'd', 'e', 'f', '0', '1', '2', '3', '4', '5',
-        '6', '7', '8', '9'],
-        tip_id = '';
-
-      tip_id += randomString(CHARS, 8);
-      tip_id += '-';
-      tip_id += randomString(CHARS, 4);
-      tip_id += '-';
-      tip_id += randomString(CHARS, 4);
-      tip_id += '-';
-      tip_id += randomString(CHARS, 4);
-      tip_id += '-';
-      tip_id += randomString(CHARS, 12);
-
-      return tip_id;
-    };
-
+}]).
+  factory('WhistleblowerTip', ['$resource', 'WBTip', 'Authentication', function($resource, WBTip, Authentication){
     return function(receipt, fn) {
-      var self = this,
-        tip_id = generateRandomTipID();
+      var self = this;
       Authentication.login('', receipt, 'wb')
       .then(function() {
-        fn(tip_id);
+        fn();
       });
     };
 }]).
@@ -505,6 +587,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
        *  @param {string} password the new password model name.
        *  @param {string} check_password need to be equal to the new password.
        **/
+      scope.mismatch_password = false;
       scope.unsafe_password = false;
       scope.pwdValidLength = true;
       scope.pwdHasLetter = true;
@@ -582,14 +665,10 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
             scope.pwdHasNumber = true;
         }
 
-        if ((scope.$eval(password) === undefined) && (scope.$eval(check_password) === undefined)) {
+        if (password === undefined || password === '' || (scope.$eval(password) == scope.$eval(check_password))) {
             scope.mismatch_password = false;
         } else {
-            if (scope.$eval(password) == scope.$eval(check_password)) {
-                scope.mismatch_password = false;
-            } else {
-                scope.mismatch_password = true;                
-            }
+            scope.mismatch_password = true;                
         }
 
         if (scope.$eval(old_password) !== undefined && (scope.$eval(old_password)).length >= 1 )  {
@@ -661,10 +740,16 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.tip_timetolive = 15;
         context.submission_timetolive = 48;
         context.receipt_regexp = "[0-9]{10}";
-        context.receipt_description = "";
-        context.submission_introduction = "";
-        context.submission_disclaimer = "";
+        context.receiver_introduction = "";
+        context.fields_introduction = "";
+	context.postpone_superpower = false;
+	context.can_delete_submission = false;
+	context.maximum_selectable_receivers = 0;
+	context.require_file_description = false;
+	context.delete_consensus_percentage = 0;
+	context.require_pgp = false;
         context.tags = [];
+        context.show_small_cards = false;
 
         context.$save(function(new_context){
           self.contexts.push(new_context);

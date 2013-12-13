@@ -30,6 +30,11 @@
     </div>
 
     <div class="form-group">
+      <label>{{ "Node Subtitle" | translate }}</label>
+      <input class="form-control" ng-model="admin.node.subtitle" value="{{admin.node.subtitle}}" type="text">
+    </div>
+
+    <div class="form-group">
       <label>{{ "Description" | translate }}</label>
       <div>
         <textarea class="form-control" ng-model="admin.node.description">{{admin.node.description}}</textarea>

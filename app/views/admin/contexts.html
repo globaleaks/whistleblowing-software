@@ -7,8 +7,8 @@ This comment is needed in order to push the following strings on transifex
 
 -->
 <div ng-include="'views/partials/header.html'"
-     onload="header_title='Contexts Configuration';
-             header_subtitle='Administration Interface'">
+     onload="header_subsection='Contexts Configuration';
+             header_section='Administration Interface'">
 </div>
 
 <div id="ContentBox" class="container">
@@ -20,7 +20,7 @@ This comment is needed in order to push the following strings on transifex
 
         <div class="row" ng-repeat="context in admin.contexts">
           <form name="contextForm" ng-controller="AdminContextsEditorCtrl">
-            <div class="configItem contextItem">
+            <div class="configItem contextItem"  ng-class="{'configItemLast': $last}">
 
               <div class="row" ng-click="toggleEditing()">
                 <div class="editorHeader contextEditorHeader">
@@ -48,12 +48,12 @@ This comment is needed in order to push the following strings on transifex
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>{{ "Name" | translate }}</label>
-                      <input class="form-control" required="" ng-maxlength="40" ng-model="context.name" value="{{context.name}}" type="text">
+                      <input class="form-control" ng-maxlength="40" ng-model="context.name" value="{{context.name}}" type="text">
                     </div>
                     <div class="form-group">
                       <label>{{ "Description" | translate }}</label>
                       <div>
-                        <textarea class="form-control" required="" ng-model="context.description">{{context.description}}</textarea>
+                        <textarea class="form-control" ng-model="context.description">{{context.description}}</textarea>
                       </div>
                     </div>
                     <div ng-include="'views/admin/fieldeditor.html'"></div>
@@ -62,11 +62,16 @@ This comment is needed in order to push the following strings on transifex
                     <label>{{ "Receivers" | translate }}</label>
                     <div class="selectionList">
                       <div ng-repeat="receiver in admin.receivers" ng-class="{clearfix: ($index % 2 == 1) || $last}">
-                        <div class="col-md-6">
-                          <div class="selectionDetails" ng-click="toggle(receiver)" ng-class="{selected: isSelected(receiver)}">
-                            <img class="col-md-12" ng-src="/static/{{receiver.receiver_gus}}.png">
-                            <span>{{receiver.name}}</span>
-                          </div>
+                        <div class="row" ng-click="toggle(receiver)">
+                          <span class="col-md-1">
+                            <span ng-show="isSelected(receiver)">
+                              <i class="glyphicon glyphicon-check"></i>
+                            </span>
+                            <span ng-show="!isSelected(receiver)">
+                              <i class="glyphicon glyphicon-unchecked"></i>
+                            </span>
+                          </span>
+                          <span class="col-md-12">{{receiver.name}}</span>
                         </div>
                       </div>
                     </div>
@@ -82,27 +87,55 @@ This comment is needed in order to push the following strings on transifex
                   <div class="col-md-6">
                     <div class="form-group">
                       <label>{{ "Incomplete submissions expiry time (hours)" | translate }}</label>
-                      <input class="form-control" required="" ng-model="context.submission_timetolive" value="{{context.submission_timetolive}}" type="number">
+                      <input class="form-control" ng-model="context.submission_timetolive" value="{{context.submission_timetolive}}" type="number">
                     </div>
                     <div class="form-group">
                       <label>{{ "Maximum file downloads" | translate }}</label>
-                      <input class="form-control" required="" ng-model="context.file_max_download" value="{{context.file_max_download}}" type="number">
+                      <input class="form-control" ng-model="context.file_max_download" value="{{context.file_max_download}}" type="number">
                     </div>
                     <div class="form-group">
                       <label>{{ "Submitted Tip expiry time (days)" | translate }}</label>
-                      <input class="form-control" required="" ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number">
+                      <input class="form-control" ng-model="context.tip_timetolive" value="{{context.tip_timetolive}}" type="number">
                     </div>
                     <div class="form-group">
                       <label>{{ "Receipt format (regular expression)" | translate }}</label>
-                      <input class="form-control" required="" ng-model="context.receipt_regexp" value="{{context.receipt_regexp}}" type="text">
+                      <input class="form-control" ng-model="context.receipt_regexp" value="{{context.receipt_regexp}}" type="text">
                     </div>
-                    <div class="form-group">
+                    <div class="form-group table-bordered">
                       <input ng-model="context.file_required" value="{{context.file_required}}" type="checkbox">
                       <label>{{ "Require at least one file to be uploaded" | translate }}</label>
                     </div>
-                    <div class="form-group">
+                    <div class="form-group table-bordered">
                       <input ng-model="context.select_all_receivers" value="{{context.select_all_receivers}}" type="checkbox">
                       <label>{{ "Select all receivers by default" | translate }}</label>
+                    </div>
+                    <div class="form-group" ng-show="!context.select_all_receivers">
+                      <label>{{ "Maximum number of Receivers selectable:" | translate }} {{ "(0 = unlimited)" | translate }}</label>
+                      <input class="form-control" ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number">
+                    </div>
+                    <div class="form-group table-bordered">
+                      <input ng-model="context.show_small_cards" value="{{context.show_small_cards}}" type="checkbox">
+                      <label>{{ "Show small receiver cards on submission interface" | translate }}</label>
+                    </div>
+                    <div class="form-group table-bordered">
+                      <input ng-model="context.postpone_superpower" value="{{context.postpone_superpower}}" type="checkbox">
+                      <label>{{ "Permit Receivers to postpone expiration date of the Tips" | translate }}</label>
+                      <div ng-show="context.postpone_superpower">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "Receivers of this Context will be now able to postpone expiration date of the Tips." | translate }}
+                      </div>
+                    </div>
+                    <div class="form-group table-bordered">
+                      <input ng-model="context.can_delete_submission" value="{{context.can_delete_submission}}" type="checkbox">
+                      <label>{{ "Permit Receivers to delete Tips" | translate }}</label>
+                      <div ng-show="context.can_delete_submission">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "Receivers of this Context will be now able to delete Tips and their content." | translate }}
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -111,13 +144,11 @@ This comment is needed in order to push the following strings on transifex
           </form>
         </div>
 
-       <br /><br />
-
         <div class="row">
           <div class="col-md-6">
             <div class="form-group">
               <h4>{{ "Add new context" | translate }}</h4>
-              <input class="form-control" ng-model="new_context_name" required="" type="text">
+              <input class="form-control" ng-model="new_context_name" type="text">
             </div>
           </div>
         </div>
