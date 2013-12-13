@@ -67,6 +67,7 @@ CREATE TABLE context (
     require_file_description INTEGER NOT NULL,
     delete_consensus_percentage INTEGER,
     require_pgp INTEGER NOT NULL,
+    show_small_cards INTEGER NOT NULL,
     PRIMARY KEY (id)
 );
 

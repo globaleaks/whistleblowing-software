@@ -69,6 +69,7 @@ class TTip(helpers.TestWithDB):
         'require_file_description': False,
         'delete_consensus_percentage': 0,
         'require_pgp': False,
+        'show_small_cards': False,
     }
 
     tipReceiver1 = {

@@ -324,7 +324,8 @@ class MockDict():
             'maximum_selectable_receivers': 0,
             'require_file_description': False,
             'delete_consensus_percentage': 0,
-            'require_pgp': False
+            'require_pgp': False,
+            'show_small_cards': False
         }
 
         self.dummySubmission = {

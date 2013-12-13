@@ -58,6 +58,9 @@ class Context_version_7(Model):
     # + is added
     # require_pgp = Bool()
 
+    # + is added
+    # show_small_cards = Bool()
+
 
 class Node_version_7(Model):
     __storm_table__ = 'node'
@@ -208,6 +211,9 @@ class Replacer78(TableReplacer):
                     continue
                 if v.name == 'require_pgp':
                     new_obj.require_pgp = False
+                    continue
+                if v.name == 'show_small_cards':
+                    new_obj.show_small_cards = False
                     continue
 
                 setattr(new_obj, v.name, getattr(old_obj, v.name) )
