@@ -463,6 +463,7 @@ def receiver_serialize_message(msg):
 
     return {
         'id' : unicode(msg.id),
+        # 'unique_number': unicode(msg.receivertip_id): THINK HOW CAN BE DONE ?
         'creation_date' : unicode(pretty_date_time(msg.creation_date)),
         'content' : unicode(msg.content),
         'visualized' : bool(msg.visualized),
