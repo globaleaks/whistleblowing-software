@@ -1,6 +1,8 @@
 <div id="PrivacyBox" ng-controller="PrivacyBoxCtrl">
   <div ng-mouseenter="showBox()" ng-mouseleave="hideBox()">
-    <button ng-show="displayBox" type="button" class="close" ng-click="hideBox()">×</button>
+    <button ng-show="displayBox" type="button" class="close" ng-click="hideBox()">
+    <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+    </button>
     <div ng-switch="" on="privacy">
       <div ng-switch-when="high">
         <div ng-show="!displayBox">

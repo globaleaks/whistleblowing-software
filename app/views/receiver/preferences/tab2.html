@@ -4,12 +4,25 @@
     <label>
       {{ "Enable Tip notification" | translate }}
     </label>
-    <label ng-show="preferences.tip_notification">
+    <div ng-show="preferences.tip_notification">
       <span class="btn-info">
         {{ "now Enabled:" | translate }}
       </span>
       {{ "Every new Tip you receive will trigger an email with a link to it." | translate }}
+    </div>
+  </div>
+
+  <div class="form-group table-bordered">
+    <input ng-model="preferences.message_notification" type="checkbox">
+    <label>
+      {{ "Enable Message notification" | translate }}
     </label>
+    <div ng-show="preferences.message_notification">
+      <span class="btn-info">
+        {{ "now Enabled:" | translate }}
+      </span>
+      {{ "Every message, written specifically by the whistleblower for you, will trigger an email." | translate }}
+    </div>
   </div>
 
   <div class="form-group table-bordered">
@@ -17,12 +30,12 @@
     <label>
       {{ "Enable Comment notification" | translate }}
     </label>
-    <label ng-show="preferences.comment_notification">
+    <div ng-show="preferences.comment_notification">
       <span class="btn-info">
         {{ "now Enabled:" | translate }}
       </span>
       {{ "Every comment, written by the whistleblower or the receivers, will trigger an email." | translate }}
-    </label>
+    </div>
   </div>
 
   <div class="form-group table-bordered">
@@ -30,12 +43,12 @@
     <label>
       {{ "Enable File notification" | translate }}
     </label>
-    <label ng-show="preferences.file_notification">
+    <div ng-show="preferences.file_notification">
       <span class="btn-info">
         {{ "now Enabled:" | translate }}
       </span>
       {{ "For every file available for download you will be notified via email with related information." | translate }}
-    </label>
+    </div>
   </div>
 
   <button type="submit" class="btn btn-success" ng-click="pref_save()">

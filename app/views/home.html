@@ -2,7 +2,9 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <button type="button" class="close" aria-hidden="true" ng-click="showQuestions = false">×</button>
+        <button type="button" class="close" aria-hidden="true" ng-click="showQuestions = false">
+          <i class="glyphicon glyphicon glyphicon-remove-circle"></i>
+        </button>
         <h3 ng-show="correctAnswer || !answered">
           {{ "Warning! You are not Anonymous." | translate }}
         </h3>
@@ -102,53 +104,68 @@
   </div>
 </div>
 
-<div id="HeaderBox" ng-show="node_info.name">
+<div id="HeaderBox" ng-show="node.name">
   <div id="HeaderBoxContent">
     <span id="LogoBox">
       <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
     </span>
     <span id="TitleBox">
-      <h1 id="titleboxh1logo">
-        {{ node_info.presentation }}
-      </h1>
+      <div id="titleboxwithtagline">
+        <a href="/#/">
+          <div id="logo"></div>
+        </a>
+        <div id="tagline">
+          {{ node.subtitle | translate }}
+        </div>
+      </div>
     </span>
     <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
   </div>
   <div class="clearfix"></div>
+  <div id="SubTitleBox">
+    {{ node.subtitle | translate }}
+  </div>
 </div>
 
-<div class="homeSplash" ng-show="!node_info.name">
+<div class="homeSplash" ng-show="!node.name">
     <h1>
       {{ "Loading..." | translate }}
     </h1>
 </div>
 
-<div id="ContentBox" class="container"   ng-show="node_info.description">
+<div id="ContentBox" class="container"   ng-show="node.description">
   <div id="HomePageBox">
 
-    <h3 class="lead">{{node_info.description}}</h3>
+    <div id="HomePageBoxHeader">
+      <div id="HomePageBoxNodePresentation">
+        {{ node.presentation }}
+      </div>
+      <div id="HomePageBoxNodeDescription">
+        {{node.description}}
+      </div>
+    </div>
 
     <div id="BlowTheWhistleBox" class="ng-cloak row">
-      <div ng-show="node_info.configured">
-        <div class="row" ng-show="!node_info.tor2web_submission && !anonymous">
+      <div ng-show="node.configured">
+        <div class="row" ng-show="!node.tor2web_submission && !anonymous">
           <p class="has-error">
             {{ "You are connecting to the node not anonymously and this node only supports anonymous submissions" | translate }}
           </p>
         </div>
-        <div class="row" ng-show="!node_info.tor2web_submission && !anonymous">
+        <div class="row" ng-show="!node.tor2web_submission && !anonymous">
           <button class="btn btn-danger disabled">
             <i class="glyphicon glyphicon-ban-circle"></i>
             {{ "Whistleblowing disabled" | translate }}
           </button>
         </div>
-        <div class="row" ng-show="node_info.tor2web_submission || anonymous">
+        <div class="row" ng-show="node.tor2web_submission || anonymous">
           <a ng-click="goToSubmission()" class="btn btn-primary">
             <i class="glyphicon glyphicon-bullhorn"></i>
             {{ "Blow the Whistle" | translate }}
           </a>
         </div>
       </div>
-      <div ng-hide="node_info.configured">
+      <div ng-hide="node.configured">
         {{ "Your node is not configured! Please, proceed via" | translate }}
         <a href="/#/admin/contexts">
           {{ "Admin interface and configure at least one context" | translate }}
@@ -158,9 +175,9 @@
 
     <div id="WhistleblowerLoginBox" class="row">
       <div class="col-md-offset-2 col-md-8">
-        <h3>
+        <div id="WhistleblowerLoginBoxHeader">
           {{ "Are you a whistleblower?" | translate }}
-        </h3>
+        </div>
         <form class="form-horizontal" role="form">
           <div class="form-group">
             <label class="row">
@@ -173,7 +190,7 @@
             </div>
             <br />
             <div class="row">
-              <a ng-click="view_tip(receipt)" class="btn btn-primary">
+              <a ng-click="view_tip(receipt)" class="btn btn-primary" ng-disabled="!receipt || receipt == ''">
                 <i class="glyphicon glyphicon-log-in"></i>
                 {{ "View Tip" | translate }}
               </a>
@@ -185,9 +202,9 @@
 
     <div id="ReceiverLoginBox" class="row">
       <div class="col-md-offset-2 col-md-8">
-        <h3>
+        <div id="ReceiverLoginBoxHeader">
           {{ "Are you a receiver?" | translate }}
-        </h3>
+        </div>
         <div>
           {{ "This is the" | translate }}
           <a href="#/login">

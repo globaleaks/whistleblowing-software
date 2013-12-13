@@ -9,7 +9,7 @@
     "chai": "1.8.1",
     "crypto": "0.0.3",
     "grunt": "0.4.2",
-    "grunt-angular-templates": "0.4.7",
+    "grunt-angular-templates": "0.5.0",
     "grunt-css": "0.5.4",
     "grunt-contrib-clean": "0.5.0",
     "grunt-contrib-concat": "0.3.0",
@@ -22,9 +22,9 @@
     "grunt-reload": "0.2.0",
     "grunt-usemin": "2.0.2",
     "jquery": "1.8.3",
-    "mocha": "1.14.0",
+    "mocha": "1.15.1",
     "node-gettext": "0.2.14",
-    "should": "2.1.0",
+    "should": "2.1.1",
     "superagent": "0.15.7",
     "supertest": "0.8.2"
   }

@@ -26,11 +26,6 @@
     display: block;
 }
 
-#HeaderBoxContent, #HeaderBoxHomeContent {
-  width: 95%;
-  margin: 0 auto;
-}
-
 #HeaderBoxHomeContent {
   text-align: center;
 }
@@ -74,9 +69,21 @@
   color: #777;
 }
 
-#LogoBox, #TitleBox, #ToolbarBox {
+#LogoBox, #TitleBox, #ToolbarBox, #SubTitleBox {
   margin-left: 20px;
   margin-right: 20px;
+}
+
+h1, #HomePageBoxNodePresentation, #WhistleblowerLoginBoxHeader, #ReceiverLoginBoxHeader {
+  font-size: 60px;
+}
+
+h2, #HomePageBoxNodeDescription {
+  font-size: 36px;
+}
+
+h3, #SubTitleBox {
+  font-size: 20px;
 }
 
 #LogoBox, #TitleBox {
@@ -117,8 +124,9 @@
   max-width: 20%;
 }
 
-#BlowTheWislteBox, #WhisleblowerLoginBox, #ReceiverLoginBox {
-  margin-bottom: 30px;
+#HomePageBoxHeader, #BlowTheWhistleBox, #WhistleblowerLoginBox, #ReceiverLoginBox {
+  margin-top: 25px;
+  margin-bottom: 25px;
 }
 
 /** Submission details **/
@@ -155,6 +163,11 @@
   .toolTip {
     position: absolute;
   }
+}
+
+.tab-content {
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .shasum {
@@ -217,10 +230,6 @@ table {
   word-break: break-all;
 }
 
-.content-tab {
-  padding-top: 20px;
-}
-
 .img-thumbnail {
   position: relative;
   width: 160px;
@@ -228,4 +237,13 @@ table {
 
 .mobileTextArea {
   resize: both;
+}
+
+#titleboxdefault {
+  display: block;
+}
+
+
+#titleboxwithtagline {
+  display: none;
 }

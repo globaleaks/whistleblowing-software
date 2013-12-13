@@ -17,7 +17,7 @@
 
     <div class="form-group">
       <label>{{ "Text size limit (in bytes)" | translate }}</label>
-      <input class="form-control" ng-model="admin.node.maximum_descsize" type="text">
+      <input class="form-control" ng-model="admin.node.maximum_textsize" type="text">
     </div>
 
     <div class="form-group table-bordered">
@@ -25,13 +25,32 @@
         <input ng-model="admin.node.postpone_superpower" type="checkbox">
         {{ "Permit Receivers to postpone expiration date of the Tips" | translate }}
       </label>
-      <label ng-show="admin.node.postpone_superpower">
+      <div ng-show="admin.node.postpone_superpower">
         <span class="btn-info">
         {{ "now Enabled:" | translate }}
         </span>
-        {{ "A receiver can postpone how many times he wants, all the receivers have the same privileges." | translate }}
+        {{ "Receivers will be now able to postpone Tips expiration." | translate }}
+      </div>
+    </div>
+
+    <div class="form-group table-bordered">
+      <label>
+        <input ng-model="admin.node.can_delete_submission " type="checkbox">
+        {{ "Permit Receivers to delete Tips" | translate }}
       </label>
+      <div ng-show="admin.node.can_delete_submission">
+        <span class="btn-info">
+        {{ "now Enabled:" | translate }}
+        </span>
+	{{ "Receivers will be now able to delete Tips and their content." | translate }}
+      </div>
     </div>
 
   </div>
 </div>
+
+
+
+
+
+

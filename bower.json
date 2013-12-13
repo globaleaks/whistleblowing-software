@@ -16,18 +16,18 @@
     "tests"
   ],
   "dependencies": {
-    "angular": "1.2.3",
-    "angular-resource": "1.2.3",
-    "angular-route": "1.2.3",
+    "angular": "1.2.4",
+    "angular-resource": "1.2.4",
+    "angular-route": "1.2.4",
     "angular-translate": "1.1.1",
     "angular-translate-loader-url": "0.1.5",
     "angular-translate-loader-static-files": "0.1.6",
     "angular-ui-bootstrap-bower": "0.6.0",
     "jquery": "2.0.3",
     "jquery.cookie": "1.4.0",
-    "jquery-file-upload": "9.4.2",
+    "jquery-file-upload": "9.5.1",
     "jquery-ui": "1.10.3",
-    "bootstrap": "3.0.2",
+    "bootstrap": "3.0.3",
     "underscore": "1.5.2"
   }
 }

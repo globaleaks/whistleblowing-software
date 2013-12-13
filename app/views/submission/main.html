@@ -1,23 +1,13 @@
-<div id="HeaderBox" class="subhead">
-  <div id="HeaderBoxContent">
-    <span id="LogoBox">
-      <a href="/#/"><img ng-src="/static/globaleaks_logo.png" class="img-rounded"></a>
-    </span>
-    <span id="TitleBox">
-      <h1 id="titleboxh1logo">
-        {{ "Blow the Whistle" | translate }}
-      </h1>
-    </span>
-    <span id="ToolbarBox" ng-include="'views/partials/toolbar.html'"></span>
-  </div>
-  <div class="clearfix"></div>
+<div ng-include="'views/partials/header.html'"
+     onload="header_subsection='';
+             header_section='Blow the Whistle'">
 </div>
 
-<div  ng-show="!node_info.name">
+<div  ng-show="!node.name">
     <h2>{{ "Loading..." | translate }}</h2>
 </div>
 
-<div class="ng-cloak" ng-show="!node_info.configured && node_info.name">
+<div class="ng-cloak" ng-show="!node.configured && node.name">
   <h2>{{ "This node is not configured." | translate }}</h2>
   <p>{{ "You will not be able to perform a submission." | translate }}<br />
   {{ "Admin please configure at least one Context and associated Receivers using" | translate }}
@@ -26,7 +16,7 @@
   </a>.</p>
 </div>
 
-<div ng-controller="WizardCtrl" id="ContentBox" class="container submission ng-cloak" ng-show="node_info.name && node_info.configured">
+<div ng-controller="WizardCtrl" id="ContentBox" class="container submission ng-cloak" ng-show="node.name && node.configured">
 
   <div class="tabbable tabs-below">
 
@@ -52,62 +42,97 @@
       </li>
     </ul>
 
-    <div ng-switch="" on="selection">
+    <div ng-switch="" on="selection" class="tab-content">
 
       <!-- First Step -->
       <div ng-switch-when="1" class="receiverCards">
         <div class="contextPick" ng-show="submission.contexts.length > 1">
-            <p class="lead">
-            {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}</p>
+            <div class="lead">
+              {{ "Choose the context and receivers that will be sure to transform your submission into action!" | translate }}
+            </div>
 
-            <span class="lead" ng-show="node_info.configured">
-            {{ "I want to report on" | translate }}</span>
+            <span class="lead" ng-show="node.configured">
+              {{ "I want to report on" | translate }}
+            </span>
 
             <select class="form-control contexts" ng-model="submission.current_context" ng-options="context as context.name for context in submission.contexts">
             </select>
 
         </div>
-        <div class="contextPick" ng-hide="submission.contexts.length > 1">
-          <span class="lead">
-          {{ "I want to report on" | translate }}: 
-          </span>
-          <span><b>{{submission.current_context.name}}</b></span>
+
+        <div id="ReceiverIntroductionBox">
+          {{submission.current_context.receiver_introduction}}
         </div>
 
-        <p>{{submission.current_context.description}}</p>
+        <div ng-show="submission.current_context.maximum_selectable_receivers != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
+          <div>{{ "Maximum number of Receivers selectable:" | translate }} {{submission.current_context.maximum_selectable_receivers}}</div>
+          <div>{{ "Receivers selected:" | translate }} {{selected_receivers_count()}}</div>
+        </div>
 
-        <div ng-repeat="(idx, receiver) in submission.current_context_receivers">
-          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
-
-            <div class="row">
+        <div id="ReceiverSelectionBoxBig" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="!submission.current_context.show_small_cards">
+          <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-click="switch_selection(receiver.receiver_gus)">
+            <div class="row receiverCardTitle">
               <div class="col-md-10">
-                <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
+                <label>{{receiver.name}}</label>
               </div>
               <div class="col-md-1">
-                <input ng-model="submission.receivers_selected[receiver.receiver_gus]" value="{{receiver.receiver_gus}}" class="receiverSelection" ng-show="submission.current_context.selectable_receiver" type="checkbox"> 
+                <div ng-show="submission.receivers_selected[receiver.receiver_gus]">
+                  <i class="glyphicon glyphicon-check"></i>
+                </div>
+                <div ng-show="!submission.receivers_selected[receiver.receiver_gus]">
+                  <i class="glyphicon glyphicon-unchecked"></i>
+                </div>
               </div>
             </div>
-
             <div class="row">
-              <div class="col-md-11">
-                <h3>{{receiver.name}}</h3>
+              <div class="col-md-5">
+                <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
+              </div>
+              <div class="col-md-offset-1 col-md-6">
                 <p>{{receiver.description}}</p>
               </div>
             </div>
           </div>
-
           <div class="clearfix" ng-show="$index % 2"></div>
-
         </div>
+
+        <div id="ReceiverSelectionBoxSmall" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="submission.current_context.show_small_cards">
+          <div class="form-group col-md-3">
+            <div ng-click="switch_selection(receiver.receiver_gus)" class="receiverCard" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
+              <div class="row receiverCardTitle">
+                <div class="col-md-9">
+                  <label>{{receiver.name}}</label>
+                </div>
+                <div class="col-md-1">
+                  <div ng-show="submission.receivers_selected[receiver.receiver_gus]">
+                    <i class="glyphicon glyphicon-check"></i>
+                  </div>
+                  <div ng-show="!submission.receivers_selected[receiver.receiver_gus]">
+                    <i class="glyphicon glyphicon-unchecked"></i>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                  <img ng-src="/static/{{receiver.receiver_gus}}.png" class="img-thumbnail">
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
       </div>
       <!-- /1 -->
 
       <!-- Second Step -->
       <div ng-switch-when="2">
 
-        <p class="lead">
-        {{ "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files" | translate }}</p>
-        <p>{{submission.current_context.description}}</p>
+        <div class="lead">
+          {{ "Enter the information that is relevant to your submission and possibly upload the relevant accompanying files" | translate }}
+        </div>
+        <div>
+          {{submission.current_context.fields_introduction}}
+        </div>
 
         <div class="row">
 

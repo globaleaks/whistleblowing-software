@@ -7,8 +7,8 @@ This comment is needed in order to push the following strings on transifex
 
 -->
 <div ng-include="'views/partials/header.html'"
-     onload="header_title='Receivers Configuration';
-             header_subtitle='Administration Interface'">
+     onload="header_subsection='Receivers Configuration';
+             header_section='Administration Interface'">
 </div>
 
 <div id="ContentBox" class="container">
@@ -21,7 +21,7 @@ This comment is needed in order to push the following strings on transifex
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
 
           <form name="receiverForm" ng-controller="AdminReceiversEditorCtrl">
-            <div class="configItem receiverItem">
+            <div class="configItem receiverItem" ng-class="{'configItemLast': $last}">
               <div class="row" ng-click="toggleEditing()">
                 <div class="editorHeader receiverEditorHeader">
                   <div class="col-md-6">
@@ -69,14 +69,14 @@ This comment is needed in order to push the following strings on transifex
 
                     <div class="form-group">
                       <label>{{ "Name" | translate }}</label>
-                      <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" required="" type="text">
+                      <input class="form-control" name="name" ng-maxlength="40" ng-model="receiver.name" type="text">
                       <p class="has-error" ng-show="receiverForm.name.$error.maxlength">
                         {{ "Receiver name too long" | translate }}
                       </p>
                     </div>
                     <div class="form-group">
                       <label>{{ "Email Address (Username)" | translate }}</label>
-                      <input class="form-control" name="email" ng-model="receiver.notification_fields.mail_address" required="" type="email">
+                      <input class="form-control" name="email" ng-model="receiver.mail_address" type="email">
                       <p class="has-error" ng-show="receiverForm.email.$error.email">
                         {{ "Invalid email address" | translate }}
                       </p>
@@ -106,15 +106,62 @@ This comment is needed in order to push the following strings on transifex
                         <textarea class="form-control" ng-model="receiver.description">{{receiver.description}}</textarea>
                       </div>
                     </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <label>{{ "Contexts" | translate }}</label>
+                    <div class="selectionList">
+                      <div ng-repeat="context in admin.contexts">
+                        <div class="row" ng-click="toggle(context)">
+                          <span class="col-md-1">
+                            <span ng-show="isSelected(context)">
+                              <i class="glyphicon glyphicon-check"></i>
+                            </span>
+                            <span ng-show="!isSelected(context)">
+                              <i class="glyphicon glyphicon-unchecked"></i>
+                            </span>
+                          </span>
+                          <span class="col-md-10">{{context.name}}</span>
+                        </div>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+                <div class="row">
+                  <div class="col-md-12">
                     <div class="form-group table-bordered">
-                      <input ng-model="receiver.can_delete_submission" type="checkbox">
-                      <label>{{ "Can delete submissions" | translate }}</label>
-                      <label ng-show="receiver.can_delete_submission">
+                      <input ng-model="receiver.postpone_superpower" type="checkbox" ng-disabled="node.postpone_superpower">
+                      <label>{{ "Permit the Receiver to postpone expiration date of the Tips" | translate }}</label>
+                      <div ng-show="receiver.postpone_superpower && !node.postpone_superpower">
                         <span class="label label-info">
                           {{ "now Enabled:" | translate }}
                         </span>
-                        {{ "The Receiver will be now able to globally delete submissions and their content." | translate }}
-                      </label>
+                        {{ "The Receiver will be now able to postpone Tip expiration." | translate }}
+                      </div>
+                      <div ng-show="node.postpone_superpower">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "The setting is enabled at Node level."}}
+                      </div>
+                    </div>
+
+                    <div class="form-group table-bordered">
+                      <input ng-model="receiver.can_delete_submission" type="checkbox" ng-disabled="node.can_delete_submission">
+                      <label>{{ "Permit the Receiver to delete Tips" | translate }}</label>
+                      <div ng-show="receiver.can_delete_submission && !node.can_delete_submission">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "The Receiver will be now able to delete Tips and their content." | translate }}
+                      </div>
+                      <div ng-show="node.can_delete_submission">
+                        <span class="label label-info">
+                          {{ "now Enabled:" | translate }}
+                        </span>
+                        {{ "The setting is enabled at Node level."}}
+                      </div>
                     </div>
 
                     <div class="form-group" ng-show="receiver.gpg_key_info">
@@ -132,35 +179,35 @@ This comment is needed in order to push the following strings on transifex
                       <div class="form-group table-bordered">
                         <input ng-model="receiver.gpg_enable_notification" type="checkbox">
                         <label>{{ "Enable encrypted notification" | translate }}</label>
-                        <label ng-show="receiver.gpg_enable_notification">
+                        <div ng-show="receiver.gpg_enable_notification">
                           <span class="label label-success">
                             {{ "now Enabled:" | translate }}
                           </span>
                           {{ "Every notification will be encrypted with the PGP key." | translate }}
-                        </label>
-                        <label ng-show="!receiver.gpg_enable_notification">
+                        </div>
+                        <div ng-show="!receiver.gpg_enable_notification">
                           <span class="label label-danger">
                             {{ "now Disabled:" | translate }}
                           </span>
                           {{ "Every notification won't be encrypted." | translate }}
-                        </label>
+                        </div>
                       </div>
 
                       <div class="form-group table-bordered">
                         <input ng-model="receiver.gpg_enable_files" type="checkbox">
                         <label>{{ "Enable file encryption" | translate }}</label>
-                        <label ng-show="receiver.gpg_enable_files">
+                        <div ng-show="receiver.gpg_enable_files">
                           <span class="label label-success">
                             {{ "now Enabled:" | translate }}
                           </span>
                           {{ "Every downloaded file will be encrypted with the PGP key." | translate }}
-                        </label>
-                        <label ng-show="!receiver.gpg_enable_files">
+                        </div>
+                        <div ng-show="!receiver.gpg_enable_files">
                           <span class="label label-danger">
                             {{ "now Disabled:" | translate }}
                           </span>
                           {{ "Every downloaded file won't be encrypted." | translate }}
-                        </label>
+                        </div>
                       </div>
 
                       <div class="form-group table-bordered">
@@ -176,26 +223,16 @@ This comment is needed in order to push the following strings on transifex
                       </div>
 
                       <button class="btn btn-info" ng-init="send_key=false" ng-click="send_key = !send_key">
-                        <i class="glyphicon glyphicon-plus"></i>
+                        <i class="glyphicon glyphicon-plus" ng-hide="send_key"></i>
+                        <i class="glyphicon glyphicon-minus" ng-show="send_key"></i>
                         {{ "Configure a PGP key" | translate }}
                       </button>
 
                       <div ng-show="send_key">
+                        <br />
                         <label>{{ "Copy and Paste here the PGP Key:" | translate }}</label>
                         <textarea class="form-control" ng-model="receiver.gpg_key_armor"></textarea>
                       </div>
-                    </div>
-                  </div>
-
-                  <div class="col-md-6">
-                    <label>{{ "Contexts" | translate }}</label>
-                    <div class="selectionList">
-                      <div ng-repeat="context in admin.contexts">
-                        <div class="selectionContextItem" ng-click="toggle(context)">
-                          <span class="col-md-1"><span ng-show="isSelected(context)">✔</span></span>
-                          <span class="col-md-10">{{context.name}}</span><br />
-                        </div>
-                      </ul>
                     </div>
                   </div>
                 </div>
@@ -204,8 +241,6 @@ This comment is needed in order to push the following strings on transifex
           </div>
         </form>
       </div>
-
-      <br /><br />
 
       <div ng-controller="AdminReceiverAddCtrl">
         <div class="row">
@@ -216,7 +251,7 @@ This comment is needed in order to push the following strings on transifex
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>{{ "Name" | translate }}</label>
-                    <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" required="" type="text">
+                    <input class="form-control" name="name" ng-maxlength="40" ng-model="new_receiver.name" type="text">
                     <p class="has-error" ng-show="newReceiver.name.$error.maxlength">
                       {{ "Receiver name too long" | translate }}
                     </p>
@@ -227,7 +262,7 @@ This comment is needed in order to push the following strings on transifex
                       {{ "Email Address" | translate }} 
                       ({{ "Username" | translate }})
                     </label>
-                    <input class="form-control" name="email" ng-model="new_receiver.email" required="" type="email">
+                    <input class="form-control" name="email" ng-model="new_receiver.email" type="email">
                     <p class="has-error" ng-show="newReceiver.email.$error.email">
                       {{ "Invalid email address" | translate }}
                     </p>
@@ -239,7 +274,7 @@ This comment is needed in order to push the following strings on transifex
                 <div class="col-md-6">
                   <div class="form-group">
                     <label>{{ "Password" | translate }}</label>
-                    <input class="form-control" ng-model="new_receiver.password" required="" type="password">
+                    <input class="form-control" ng-model="new_receiver.password" type="password">
                     <p class="has-error" ng-show="unsafe_password">
                       {{ "The choosen password is unsafe, it should have" | translate }}:
                     </p>
