@@ -26,13 +26,8 @@
     "jquery": "2.0.3",
     "jquery.cookie": "1.4.0",
     "jquery-file-upload": "9.5.1",
-<<<<<<< HEAD
-    "jquery-ui": "1.10.0",
-    "bootstrap": "3.0.3",
-=======
     "jquery-ui": "1.10.3",
-    "bootstrap": "3.0.2",
->>>>>>> b02010b8b560f7fa0bf74290dd70f80689d77bea
+    "bootstrap": "3.0.3",
     "underscore": "1.5.2"
   }
 }
