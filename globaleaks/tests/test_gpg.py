@@ -5,14 +5,13 @@ import datetime
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.security import GLBGPG, gpg_options_parse, get_expirations
 from globaleaks.handlers import receiver, files
 from globaleaks.handlers.admin import admin_serialize_receiver, create_receiver, create_context, get_context_list
 from globaleaks.handlers.submission import create_submission, update_submission
 from globaleaks.settings import GLSetting, transact_ro
-from globaleaks.tests.helpers import MockDict
+from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandler
 from globaleaks.models import Receiver
 from globaleaks.jobs.delivery_sched import APSDelivery, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.notification import MailNotification
@@ -29,7 +28,7 @@ def transact_dummy_whatever(store, receiver_id, mock_request):
     return admin_serialize_receiver(receiver)
 
 
-class TestReceiverSetKey(helpers.TestHandler):
+class TestReceiverSetKey(TestHandler):
     _handler = receiver.ReceiverInstance
 
     receiver_desc = {
@@ -133,7 +132,11 @@ class TestReceiverSetKey(helpers.TestHandler):
 
         mock_event = Event(type=u'encrypted_tip', trigger='Tip',
                     notification_settings = dummy_template,
-                    trigger_info = {'creation_date': '2013-05-13T17:49:26.105485', 'id': 'useless' },
+                    trigger_info = {
+                        'creation_date': '2013-05-13T17:49:26.105485',
+                        'id': 'useless',
+                        'wb_fields' : fill_random_fields(self.dummyContext),
+                    },
                     node_info = MockDict().dummyNode,
                     receiver_info = MockDict().dummyReceiver,
                     context_info = MockDict().dummyContext,
