@@ -92,6 +92,11 @@ def import_receivers(store, submission, receiver_id_list, required=False):
                  reloaded_submission.receivers.count(), submission.id) )
         return
 
+    else:
+       if not context.select_all_receivers and \
+          len(receiver_id_list) > context.maximum_selectable_receivers:
+            raise errors.InvalidInputFormat("Provided an invalid number of Receivers")
+
     # Clean the previous list of selected Receiver
     for prevrec in submission.receivers:
         try:
