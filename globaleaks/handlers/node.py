@@ -116,7 +116,6 @@ def anon_serialize_receiver(receiver, language=GLSetting.memory_copy.default_lan
         return None
 
     receiver_dict.update({
-        "can_delete_submission": receiver.can_delete_submission,
         "creation_date": pretty_date_time(receiver.creation_date),
         "update_date": pretty_date_time(receiver.last_update),
         "name": unicode(receiver.name),

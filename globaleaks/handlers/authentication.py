@@ -247,7 +247,7 @@ def login_receiver(store, username, password):
 
     if not receiver_user or receiver_user.role != 'receiver':
         log.debug("Receiver: Fail auth, username %s do not exists" % username)
-        return (False, None)
+        return False
 
     if not security.check_password(password, receiver_user.password, receiver_user.salt):
         receiver_user.failed_login_count += 1
@@ -257,7 +257,7 @@ def login_receiver(store, username, password):
         else:
             GLSetting.failed_login_attempts[username] = 1
 
-        return (False, None)
+        return False
     else:
         log.debug("Receiver: Authorized receiver %s" % username)
         receiver_user.last_login = datetime_now()
