@@ -71,7 +71,7 @@ def get_internaltip_wb(store, tip_id, language=GLSetting.memory_copy.default_lan
     if not wbtip:
         raise errors.TipReceiptNotFound
 
-    tip_desc = wb_serialize_tip(wbtip.internaltip)
+    tip_desc = wb_serialize_tip(wbtip.internaltip, language)
 
     # two elements from WhistleblowerTip
     tip_desc['access_counter'] = int(wbtip.access_counter)
