@@ -120,7 +120,8 @@ adminContextDesc = {
     'fields': [ formFieldsDict ],
     'file_required': bool,
     'tags' : [ unicode ],
-    'select_all_receivers': bool
+    'select_all_receivers': bool,
+    'show_small_cards': bool,
 }
 
 adminReceiverDesc =  {
