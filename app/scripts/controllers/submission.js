@@ -46,8 +46,8 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
   }
 
   $scope.selectable = function() {
-    if ($scope.select_all_receivers) {
-      return false;
+    if ($scope.current_context.select_all_receivers) {
+      return true;
     } if ( $scope.current_context.maximum_selectable_receivers == 0) {
       return true;
     }
