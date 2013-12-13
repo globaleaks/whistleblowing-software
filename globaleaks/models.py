@@ -82,17 +82,12 @@ class Model(Storm):
 
         for k in cls_localized_keys:
             value = attrs[k]
-            setattr(self, k, value)
-            # value is a list with { lang: 'en', 'text': "shit" },
-            #                      { lang: 'mi', 'text': "leganord" }
-            # print "checking %s on %s" % (k, value)
-            # if len(k) > 0:
-            #     if value[0].has_key('lang') and value[0].has_key('text'):
-            #         setattr(self, k, value)
-            #     else:
-            #         raise ValueError("Invalid keys in %s" % k)
-            # else:
-            #     raise ValueError("Missing translated dict in %s" % k)
+            previous = getattr(self, k)
+            if previous and isinstance(previous, dict):
+                previous.update(value)
+                setattr(self, k, previous)
+            else:
+                setattr(self, k, value)
 
 
     def __repr___(self):
@@ -177,9 +172,8 @@ class Context(Model):
     # localized stuff
     name = Pickle(validator=shortlocal_v)
     description = Pickle(validator=longlocal_v)
-    receipt_description = Pickle(validator=longlocal_v)
-    submission_introduction = Pickle(validator=longlocal_v)
-    submission_disclaimer = Pickle(validator=longlocal_v)
+    receiver_introduction = Pickle(validator=longlocal_v)
+    fields_introduction = Pickle(validator=longlocal_v)
 
     #receivers = ReferenceSet(
     #                         Context.id,
@@ -188,12 +182,23 @@ class Context(Model):
     #                         Receiver.id)
 
     select_all_receivers = Bool()
+    postpone_superpower = Bool()
+    can_delete_submission = Bool()
+
+    maximum_selectable_receivers = Int()
+    require_file_description = Bool()
+    delete_consensus_percentage = Int()
+    require_pgp = Bool()
+    show_small_cards = Bool()
 
     unicode_keys = [ 'receipt_regexp' ]
-    localized_strings = ['name', 'description', 'receipt_description',
-                    'submission_introduction', 'submission_disclaimer' ]
-    int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download' ]
-    bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers' ]
+    localized_strings = ['name', 'description',
+                         'receiver_introduction', 'fields_introduction' ]
+    int_keys = [ 'escalation_threshold', 'tip_max_access', 'file_max_download',
+                 'maximum_selectable_receivers', 'delete_consensus_percentage' ]
+    bool_keys = [ 'selectable_receiver', 'file_required', 'select_all_receivers',
+                  'postpone_superpower', 'can_delete_submission',
+                  'require_file_description', 'require_pgp', 'show_small_cards' ]
 
 
 class InternalTip(Model):
@@ -254,6 +259,7 @@ class ReceiverTip(Model):
     _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
 
     ## NO *_keys = It's created without initializing dict
+
 
 class WhistleblowerTip(Model):
     """
@@ -321,6 +327,7 @@ class InternalFile(Model):
     file_path = Unicode()
 
     content_type = Unicode()
+    description = Unicode(validator=longtext_v)
     size = Int()
     ## NO *_keys = It's created without initializing dict
 
@@ -331,7 +338,6 @@ class InternalFile(Model):
     # 'delivered' = the file need to stay on DB, but from the disk has been deleted
     # happen when GPG encryption is present in the whole Receiver group.
     # 'locked' = the file is under process by delivery scheduler
-
 
 
 class Comment(Model):
@@ -353,6 +359,24 @@ class Comment(Model):
     mark = Unicode()
     _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
     ## NO *_keys = It's created without initializing dict
+
+
+class Message(Model):
+    """
+    This table handle the direct messages between whistleblower and one
+    Receiver.
+    """
+    __storm_table__ = 'message'
+
+    receivertip_id = Unicode()
+    author = Unicode()
+    content = Unicode(validator=longtext_v)
+    visualized = Bool()
+
+    type = Unicode()
+    _types = [ u'receiver', u'whistleblower' ]
+    mark = Unicode()
+    _marker = [ u'not notified', u'notified', u'unable to notify', u'disabled', u'skipped' ]
 
 
 class Node(Model):
@@ -379,6 +403,7 @@ class Node(Model):
     description = Pickle(validator=longlocal_v)
     presentation = Pickle(validator=longlocal_v)
     footer = Pickle(validator=longlocal_v)
+    subtitle = Pickle(validator=longlocal_v)
 
     # Here is set the time frame for the stats publicly exported by the node.
     # Expressed in hours
@@ -390,12 +415,12 @@ class Node(Model):
     maximum_filesize = Int()
     tor2web_admin = Bool()
     tor2web_submission = Bool()
-    tor2web_tip = Bool()
     tor2web_receiver = Bool()
     tor2web_unauth = Bool()
 
-    # receiver capability apply to all the receivers
+    # privileges configurable in node/context/receiver
     postpone_superpower = Bool()
+    can_delete_submission = Bool()
 
     exception_email = Unicode()
 
@@ -404,8 +429,9 @@ class Node(Model):
     int_keys = [ 'stats_update_time', 'maximum_namesize', 
                  'maximum_textsize', 'maximum_filesize' ]
     bool_keys = [ 'tor2web_admin', 'tor2web_receiver', 'tor2web_submission',
-                  'tor2web_tip', 'tor2web_unauth', 'postpone_superpower' ]
-    localized_strings = [ 'description', 'presentation', 'footer' ]
+                  'tor2web_unauth', 'postpone_superpower',
+                  'can_delete_submission' ]
+    localized_strings = [ 'description', 'presentation', 'footer', 'subtitle' ]
 
 
 class Notification(Model):
@@ -427,24 +453,26 @@ class Notification(Model):
     security = Unicode()
     _security_types = [ u'TLS', u'SSL' ]
 
-    # In the future these would be Markdown, but at the moment
-    # are just localized dicts
-    tip_template = Pickle(validator=longlocal_v)
+    encrypted_tip_template = Pickle(validator=longlocal_v)
+    plaintext_tip_template = Pickle(validator=longlocal_v)
+    zip_description = Pickle(validator=longlocal_v)
     file_template = Pickle(validator=longlocal_v)
     comment_template = Pickle(validator=longlocal_v)
-    activation_template = Pickle(validator=longlocal_v)
-    # these four template would be in the unicode_key implicit
-    # expected fields, when Client/Backend are updated in their usage
+    message_template = Pickle(validator=longlocal_v)
 
-    tip_mail_title = Pickle(validator=longlocal_v)
+    encrypted_tip_mail_title = Pickle(validator=longlocal_v)
+    plaintext_tip_mail_title = Pickle(validator=longlocal_v)
     file_mail_title = Pickle(validator=longlocal_v)
     comment_mail_title = Pickle(validator=longlocal_v)
-    activation_mail_title = Pickle(validator=longlocal_v)
+    message_mail_title = Pickle(validator=longlocal_v)
 
     unicode_keys = ['server', 'username', 'password', 'source_name', 'source_email' ]
-    localized_strings = [ 'tip_template', 'file_template', 'comment_template',
-                         'activation_template', 'tip_mail_title', 'comment_mail_title',
-                         'file_mail_title', 'activation_mail_title' ]
+    localized_strings = [ 'encrypted_tip_template', 'file_template',
+                          'comment_template', 'plaintext_tip_template',
+                          'encrypted_tip_mail_title', 'comment_mail_title',
+                          'file_mail_title', 'plaintext_tip_mail_title',
+                          'message_template', 'message_mail_title',
+                          'zip_description' ]
     int_keys = [ 'port' ]
 
 
@@ -472,13 +500,13 @@ class Receiver(Model):
     gpg_enable_files = Bool()
 
     _gpg_types = [ u'Disabled', u'Enabled' ]
-    # would work fine also a Bool, but SQLITE validator is helpful here.
 
-    # User notification_variable
-    notification_fields = Pickle()
+    # Can be changed and can be different from username!
+    mail_address = Unicode()
 
     # Admin chosen options
     can_delete_submission = Bool()
+    postpone_superpower = Bool()
 
     # receiver_tier = 1 or 2. Mean being part of the first or second level
     # of receivers body. if threshold is configured in the context. default 1
@@ -493,17 +521,19 @@ class Receiver(Model):
     tip_notification = Bool()
     comment_notification = Bool()
     file_notification = Bool()
+    message_notification = Bool()
 
     # contexts = ReferenceSet("Context.id",
     #                         "ReceiverContext.context_id",
     #                         "ReceiverContext.receiver_id",
     #                         "Receiver.id")
 
-    unicode_keys = ['name' ]
+    unicode_keys = ['name', 'mail_address' ]
     localized_strings = [ 'description' ]
     int_keys = [ 'receiver_level' ]
     bool_keys = [ 'can_delete_submission', 'tip_notification',
-                  'comment_notification', 'file_notification' ]
+                  'comment_notification', 'file_notification',
+                  'message_notification', 'postpone_superpower' ]
 
 
 # Follow two classes used for Many to Many references
@@ -586,7 +616,9 @@ Receiver.tips = ReferenceSet(Receiver.id, ReceiverTip.receiver_id)
 
 Comment.internaltip = Reference(Comment.internaltip_id, InternalTip.id)
 
+Message.receivertip = Reference(Message.receivertip_id, ReceiverTip.id)
+
 
 models = [Node, User, Context, ReceiverTip, WhistleblowerTip, Comment, InternalTip,
-          Receiver, ReceiverContext, InternalFile, ReceiverFile, Notification ]
+          Receiver, ReceiverContext, InternalFile, ReceiverFile, Notification, Message ]
 

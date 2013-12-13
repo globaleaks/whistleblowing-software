@@ -245,8 +245,8 @@ class Rosetta:
                 self._localized_attrs, self._localized_strings ))
 
     def __init__(self):
-        self._localized_strings = None
-        self._localized_attrs = None
+        self._localized_strings = {}
+        self._localized_attrs = {}
 
     def acquire_storm_object(self, storm_object):
         assert hasattr(storm_object, '__storm_table__'), \
@@ -296,6 +296,18 @@ class Rosetta:
             "get_localized_attrs can be called only after acquire_storm_object"
 
         return self._localized_attrs
+
+    def get_localized_dict(self, attrname):
+        """
+        @param attrname: a valid key in self._localized_attrs
+        @return: the dict having languages as key
+        """
+        if self._localized_strings.has_key(attrname):
+            return self._localized_strings[attrname]
+        else:
+            log.debug("Empty localized dict for attr %s" % attrname)
+            return {}
+
 
     def dump_translated(self, attrname, language):
         assert self._localized_strings, \

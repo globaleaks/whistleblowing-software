@@ -9,6 +9,7 @@ from globaleaks.rest import errors
 from globaleaks.handlers import admin, admstaticfiles
 from globaleaks.settings import transact, GLSetting
 from globaleaks import __version__
+from globaleaks.models import Node, Context, Receiver
 
 # special guest:
 from globaleaks.models import Notification
@@ -28,6 +29,10 @@ class TestNodeInstance(helpers.TestHandler):
     def test_put_update_node(self):
         self.dummyNode['hidden_service'] = 'http://abcdef1234567890.onion'
         self.dummyNode['public_site'] = 'https://blogleaks.blogspot.com'
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Node.localized_strings:
+            self.dummyNode[attrname] = stuff
 
         handler = self.request(self.dummyNode, role='admin')
         yield handler.put()
@@ -125,14 +130,17 @@ class TestContextsCollection(helpers.TestHandler):
 
     @inlineCallbacks
     def test_post(self):
-        self.dummyContext['name'] = "a random one to avoid dup %d" % random.randint(1, 1000)
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Context.localized_strings:
+            self.dummyContext[attrname] = u"³²¼½¬¼³²"
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.post()
 
         self.dummyContext['context_gus'] =  self.responses[0]['context_gus']
         self.dummyContext['creation_date'] = self.responses[0]['creation_date']
-        self.assertEqual(self.responses[0]['name'], self.dummyContext['name'])
+        self.assertEqual(self.responses[0]['description'], stuff)
 
 
 class TestContextInstance(helpers.TestHandler):
@@ -154,11 +162,11 @@ class TestContextInstance(helpers.TestHandler):
             # the localized strings are kept in one side as localized l10n
             # and in the other as dict.
             if response_key in ['name', 'description',
-                                'receipt_description',
-                                'submission_introduction',
-                                'submission_disclaimer' ]:
-                # print self.responses[0][response_key]
-                # print self.dummyContext[response_key]
+                                'subtitle', 'footer', 'presentation',
+                                'receiver_introduction', 'fields_introduction' ]:
+                # XXX
+                print self.responses[0][response_key]
+                print self.dummyContext[response_key]
                 continue
 
             if response_key in ['fields']:
@@ -171,18 +179,25 @@ class TestContextInstance(helpers.TestHandler):
 
     @inlineCallbacks
     def test_put(self):
-        self.dummyContext['description'] = u'how many readers remind of HIMEM.SYS?'
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Context.localized_strings:
+            self.dummyContext[attrname] = u"³²¼½¬¼³²"
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.put(self.dummyContext['context_gus'])
         self.dummyContext['creation_date'] = self.responses[0]['creation_date']
         self.dummyContext['last_update'] = self.responses[0]['last_update']
-        self.assertEqual(self.responses[0]['description'], self.dummyContext['description'])
+        self.assertEqual(self.responses[0]['description'], stuff)
 
     @inlineCallbacks
     def test_update_context_timetolive(self):
         self.dummyContext['submission_timetolive'] = 23 # hours
         self.dummyContext['tip_timetolive'] = 100 # days
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Context.localized_strings:
+            self.dummyContext[attrname] = stuff
 
         handler = self.request(self.dummyContext, role='admin')
         yield handler.put(self.dummyContext['context_gus'])
@@ -194,6 +209,10 @@ class TestContextInstance(helpers.TestHandler):
     def test_update_context_invalid_timetolive(self):
         self.dummyContext['submission_timetolive'] = 1000 # hours
         self.dummyContext['tip_timetolive'] = 3 # days
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Context.localized_strings:
+            self.dummyContext[attrname] = stuff
 
         # 1000 hours are more than three days, and a Tip can't live less than a submission
         handler = self.request(self.dummyContext, role='admin')
@@ -225,8 +244,12 @@ class TestReceiversCollection(helpers.TestHandler):
         self.dummyReceiver['name'] = 'beppe'
 
         new_email = "guy@globaleaks.xxx"
-        self.dummyReceiver['notification_fields']['mail_address'] = new_email
+        self.dummyReceiver['mail_address'] = new_email
         self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Receiver.localized_strings:
+            self.dummyReceiver[attrname] = stuff
 
         handler = self.request(self.dummyReceiver, role='admin')
         yield handler.post()
@@ -240,8 +263,12 @@ class TestReceiversCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_post_invalid_mail_addr(self):
         self.dummyReceiver['name'] = 'beppe'
-        self.dummyReceiver['notification_fields']['mail_address'] = "[antani@xx.it"
+        self.dummyReceiver['mail_address'] = "[antani@xx.it"
         self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Receiver.localized_strings:
+            self.dummyReceiver[attrname] = stuff
 
         handler = self.request(self.dummyReceiver, role='admin')
 
@@ -257,8 +284,13 @@ class TestReceiversCollection(helpers.TestHandler):
     @inlineCallbacks
     def test_post_duplicated_username(self):
         self.dummyReceiver['name'] = 'beppe'
-        self.dummyReceiver['notification_fields']['mail_address'] = "evilamaker.py@vecllais.naif"
+        self.dummyReceiver['mail_address'] = "evilamaker.py@vecllais.naif"
         self.dummyReceiver['password'] = helpers.VALID_PASSWORD1
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Receiver.localized_strings:
+            self.dummyReceiver[attrname] = stuff
+
         handler = self.request(self.dummyReceiver, role='admin')
 
         try:
@@ -286,11 +318,13 @@ class TestReceiverInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_put_change_password(self):
         self.dummyReceiver['context_gus'] = ''
-        del self.dummyReceiver['username']
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver['notification_fields']['mail_address'] = \
-            u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver['password'] = u'12345678antani'
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Receiver.localized_strings:
+            self.dummyReceiver[attrname] = stuff
 
         handler = self.request(self.dummyReceiver, role='admin')
         yield handler.put(self.dummyReceiver['receiver_gus'])
@@ -299,11 +333,13 @@ class TestReceiverInstance(helpers.TestHandler):
     @inlineCallbacks
     def test_put_with_password_empty(self):
         self.dummyReceiver['context_gus'] = ''
-        del self.dummyReceiver['username']
         self.dummyReceiver['name'] = u'new unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver['notification_fields']['mail_address'] =\
-        u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver['password'] = u""
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Receiver.localized_strings:
+            self.dummyReceiver[attrname] = stuff
 
         handler = self.request(self.dummyReceiver, role='admin')
         yield handler.put(self.dummyReceiver['receiver_gus'])
@@ -316,9 +352,12 @@ class TestReceiverInstance(helpers.TestHandler):
         import uuid
         self.dummyReceiver['contexts'] = [ unicode(uuid.uuid4()) ]
         self.dummyReceiver['name'] = u'another unique name %d' % random.randint(1, 10000)
-        self.dummyReceiver['notification_fields']['mail_address'] =\
-            u'but%d@random.id' % random.randint(1, 1000)
+        self.dummyReceiver['mail_address'] = u'but%d@random.id' % random.randint(1, 1000)
         self.dummyReceiver['password'] = u'12345678andaletter'
+
+        stuff = u"³²¼½¬¼³²"
+        for attrname in Receiver.localized_strings:
+            self.dummyReceiver[attrname] = stuff
 
         handler = self.request(self.dummyReceiver, role='admin')
         try:

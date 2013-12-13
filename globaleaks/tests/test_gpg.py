@@ -5,19 +5,18 @@ import datetime
 from twisted.internet import threads
 from twisted.internet.defer import inlineCallbacks
 
-from globaleaks.tests import helpers
 from globaleaks.rest import errors
 from globaleaks.security import GLBGPG, gpg_options_parse, get_expirations
 from globaleaks.handlers import receiver, files
 from globaleaks.handlers.admin import admin_serialize_receiver, create_receiver, create_context, get_context_list
 from globaleaks.handlers.submission import create_submission, update_submission
 from globaleaks.settings import GLSetting, transact_ro
-from globaleaks.tests.helpers import MockDict
+from globaleaks.tests.helpers import MockDict, fill_random_fields, TestHandler
 from globaleaks.models import Receiver
-
 from globaleaks.jobs.delivery_sched import APSDelivery, get_files_by_itip, get_receiverfile_by_itip
 from globaleaks.plugins.notification import MailNotification
 from globaleaks.plugins.base import Event
+from globaleaks.utils.templating import Templating
 
 GPGROOT = os.path.join(os.getcwd(), "testing_dir", "gnupg")
 
@@ -29,7 +28,7 @@ def transact_dummy_whatever(store, receiver_id, mock_request):
     return admin_serialize_receiver(receiver)
 
 
-class TestReceiverSetKey(helpers.TestHandler):
+class TestReceiverSetKey(TestHandler):
     _handler = receiver.ReceiverInstance
 
     receiver_desc = {
@@ -47,11 +46,12 @@ class TestReceiverSetKey(helpers.TestHandler):
         'password' : "",
         'old_password': "",
         'username' : "irrelevant",
-        'notification_fields' : {'mail_address': 'am_i_ignored_or_not@email.xxx'},
+        'mail_address': 'am_i_ignored_or_not@email.xxx',
         'description' : "A new description",
         "comment_notification": True,
         "file_notification": True,
         "tip_notification": False,
+        "message_notification": False,
     }
 
     @inlineCallbacks
@@ -126,21 +126,23 @@ class TestReceiverSetKey(helpers.TestHandler):
 
     def test_Class_encryption_message(self):
 
-        mail_support = MailNotification()
-
         dummy_template = { "en" : "In %EventTime% you've got a crush for Taryn Southern, yay!!"
                             "more info on: https://www.youtube.com/watch?v=C7JZ4F3zJdY "
                             "and know that you're not alone!" }
 
-        mock_event = Event(type=u'tip', trigger='Tip',
+        mock_event = Event(type=u'encrypted_tip', trigger='Tip',
                     notification_settings = dummy_template,
-                    trigger_info = {'creation_date': '2013-05-13T17:49:26.105485', 'id': 'useless' },
+                    trigger_info = {
+                        'creation_date': '2013-05-13T17:49:26.105485',
+                        'id': 'useless',
+                        'wb_fields' : fill_random_fields(self.dummyContext),
+                    },
                     node_info = MockDict().dummyNode,
                     receiver_info = MockDict().dummyReceiver,
                     context_info = MockDict().dummyContext,
                     plugin = MailNotification() )
 
-        mail_content = mail_support.format_template(dummy_template['en'], mock_event)
+        mail_content = Templating().format_template(dummy_template['en'], mock_event)
 
         # setup the GPG key before
         GLSetting.gpgroot = GPGROOT
@@ -224,7 +226,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.assertEqual(len(doubletest), 2)
 
         yanr = dict(MockDict().dummyReceiver)
-        yanr['name'] = yanr['notification_fields']['mail_address'] = "quercia@nana.ptg"
+        yanr['name'] = yanr['mail_address'] = "quercia@nana.ptg"
         yanr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         yanr['gpg_enable_files'] = True
         yanr['contexts'] = [ new_context_output['context_gus']]
@@ -232,7 +234,7 @@ class TestReceiverSetKey(helpers.TestHandler):
         self.receiver_assertion(yanr, yanr_output)
 
         asdr = dict(MockDict().dummyReceiver)
-        asdr['name'] = asdr['notification_fields']['mail_address'] = "nocibo@rocco.tnc"
+        asdr['name'] = asdr['mail_address'] = "nocibo@rocco.tnc"
         asdr['gpg_key_armor'] = unicode(DeveloperKey.__doc__)
         asdr['gpg_enable_files'] = True
         asdr['contexts'] = [ new_context_output['context_gus']]
@@ -298,7 +300,7 @@ class TestReceiverSetKey(helpers.TestHandler):
 #        # second receiver creation!
 #        new_receiver = dict(MockDict().dummyReceiver)
 #        new_receiver['name'] = new_receiver['username'] = \
-#            new_receiver['notification_fields']['mail_address'] = "quercia@nana.ptg"
+#            new_receiver['mail_address'] = "quercia@nana.ptg"
 #        new_receiver_output = yield create_receiver(new_receiver)
 #
 #        self.assertGreater(new_receiver_output['receiver_gus'], 10)

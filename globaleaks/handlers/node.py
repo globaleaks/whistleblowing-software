@@ -40,10 +40,10 @@ def anon_serialize_node(store, user, language=GLSetting.memory_copy.default_lang
       # Tor2Web unsafe deny default settings
       'tor2web_admin': GLSetting.memory_copy.tor2web_admin,
       'tor2web_submission': GLSetting.memory_copy.tor2web_submission,
-      'tor2web_tip': GLSetting.memory_copy.tor2web_tip,
       'tor2web_receiver': GLSetting.memory_copy.tor2web_receiver,
       'tor2web_unauth': GLSetting.memory_copy.tor2web_unauth,
-      'postpone_superpower': node.postpone_superpower
+      'postpone_superpower': node.postpone_superpower,
+      'can_delete_submission': node.can_delete_submission
     }
 
     mo = Rosetta()
@@ -80,7 +80,10 @@ def anon_serialize_context(context, language=GLSetting.memory_copy.default_langu
         "receipt_description": u'NYI', # unicode(context.receipt_description), # optlang
         "submission_introduction": u'NYI', # unicode(context.submission_introduction), # optlang
         "submission_disclaimer": u'NYI', # unicode(context.submission_disclaimer), # optlang
-        "select_all_receivers": context.select_all_receivers
+        "select_all_receivers": context.select_all_receivers,
+        "maximum_selectable_receivers": context.maximum_selectable_receivers,
+        'require_pgp': context.require_pgp,
+        "show_small_cards": context.show_small_cards,
     })
 
     mo = Rosetta()

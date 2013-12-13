@@ -11,7 +11,7 @@ from storm.expr import Desc
 from globaleaks.utils.utility import pretty_date_time, acquire_mail_address, acquire_bool, log
 from globaleaks.utils.structures import Rosetta, Fields
 from globaleaks.handlers.base import BaseHandler
-from globaleaks.models import Receiver, ReceiverTip, ReceiverFile
+from globaleaks.models import Receiver, ReceiverTip, ReceiverFile, Message
 from globaleaks.settings import transact, transact_ro, GLSetting
 from globaleaks.handlers.authentication import authenticated, transport_security_check
 from globaleaks.rest import requests, errors
@@ -39,7 +39,8 @@ def receiver_serialize_receiver(receiver, language=GLSetting.memory_copy.default
         "tip_notification" : receiver.tip_notification,
         "file_notification" : receiver.file_notification,
         "comment_notification" : receiver.comment_notification,
-        "notification_fields": dict(receiver.notification_fields),
+        "message_notification" : receiver.message_notification,
+        "mail_address": receiver.mail_address,
         "failed_login": receiver.user.failed_login_count,
         "contexts": []
     }
@@ -83,8 +84,12 @@ def update_receiver_settings(store, user_id, request, language=GLSetting.memory_
     if not mail_address:
         raise errors.NoEmailSpecified
 
-    # receiver.notification_fields is not update until GLClient supports them
+    if mail_address != receiver.mail_address:
+        log.info("Email change %s => %s" % (receiver.mail_address, mail_address))
+        receiver.mail_address = mail_address
+
     receiver.tip_notification = acquire_bool(request['tip_notification'])
+    receiver.message_notification = acquire_bool(request['message_notification'])
     receiver.comment_notification = acquire_bool(request['comment_notification'])
     receiver.file_notification = acquire_bool(request['file_notification'])
 
@@ -154,6 +159,20 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
             (ReceiverFile.internaltip_id == rtip.internaltip.id,
              ReceiverFile.receiver_id == user_id)).count()
 
+        your_messages = store.find(Message,
+                                   Message.receivertip_id == rtip.id,
+                                   Message.type == u'receiver').count()
+
+        unread_messages = store.find(Message,
+                                     Message.receivertip_id == rtip.id,
+                                     Message.type == u'whistleblower',
+                                     Message.visualized == False).count()
+
+        read_messages = store.find(Message,
+                                   Message.receivertip_id == rtip.id,
+                                   Message.type == u'whistleblower',
+                                   Message.visualized == True).count()
+
         single_tip_sum = dict({
             'id' : rtip.id,
             'expressed_pertinence': rtip.expressed_pertinence,
@@ -162,7 +181,10 @@ def get_receiver_tip_list(store, user_id, language=GLSetting.memory_copy.default
             'expiration_date' : unicode(pretty_date_time(rtip.internaltip.expiration_date)),
             'access_counter': rtip.access_counter,
             'files_number': rfiles_n,
-            'comments_number': rtip.internaltip.comments.count()
+            'comments_number': rtip.internaltip.comments.count(),
+            'unread_messages' : unread_messages,
+            'read_messages' : read_messages,
+            'your_messages' : your_messages
         })
 
         mo = Rosetta()
