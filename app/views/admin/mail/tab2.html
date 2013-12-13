@@ -50,6 +50,18 @@
     </div>
 
     <div class="form-group">
+      <label>{{ "Message Email Subject" | translate }}</label>
+      <input ng-model="admin.notification.message_mail_title" class="input-xlarge form-control" type="text">
+    </div>
+
+    <div class="form-group">
+      <label>{{ "Message Email template" | translate }}</label>
+      <div>
+        <textarea class="form-control mobileTextArea" ng-model="admin.notification.message_template"></textarea>
+      </div>
+    </div>
+
+    <div class="form-group">
       <label>{{ "Zip Description template" | translate }}</label>
       <div>
         <textarea class="form-control mobileTextArea" ng-model="admin.notification.zip_description"></textarea>
