@@ -749,6 +749,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
 	context.delete_consensus_percentage = 0;
 	context.require_pgp = false;
         context.tags = [];
+        context.show_small_cards = false;
 
         context.$save(function(new_context){
           self.contexts.push(new_context);
