@@ -64,12 +64,12 @@
           {{submission.current_context.receiver_introduction}}
         </div>
 
-        <div ng-show="submission.current_context.receiver_introduction != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
+        <div ng-show="submission.current_context.maximum_selectable_receivers != 0 && !submission.current_context.select_all_receivers" id="MaxSelectableReceiverBox" class="clearfix">
           <div>{{ "Maximum number of Receivers selectable:" | translate }} {{submission.current_context.maximum_selectable_receivers}}</div>
           <div>{{ "Receivers selected:" | translate }} {{selected_receivers_count()}}</div>
         </div>
 
-        <div id="ReceiverSelectionBoxBig" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="!node.show_small_cards">
+        <div id="ReceiverSelectionBoxBig" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="!submission.current_context.show_small_cards">
           <div class="{{['receiverCard col-md-5', 'receiverCard col-md-5 col-md-offset-1'][$index % 2]}}" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}" ng-click="switch_selection(receiver.receiver_gus)">
             <div class="row receiverCardTitle">
               <div class="col-md-10">
@@ -96,7 +96,7 @@
           <div class="clearfix" ng-show="$index % 2"></div>
         </div>
 
-        <div id="ReceiverSelectionBoxSmall" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="node.show_small_cards">
+        <div id="ReceiverSelectionBoxSmall" ng-repeat="receiver in submission.current_context_receivers | orderBy:'name'" ng-show="submission.current_context.show_small_cards">
           <div class="form-group col-md-3">
             <div ng-click="switch_selection(receiver.receiver_gus)" class="receiverCard" ng-class="{selected: submission.receivers_selected[receiver.receiver_gus]}">
               <div class="row receiverCardTitle">

@@ -114,6 +114,10 @@ This comment is needed in order to push the following strings on transifex
                       <input class="form-control" ng-model="context.maximum_selectable_receivers" value="{{context.maximum_selectable_receivers}}" type="number">
                     </div>
                     <div class="form-group table-bordered">
+                      <input ng-model="context.show_small_cards" value="{{context.show_small_cards}}" type="checkbox">
+                      <label>{{ "Show small receiver cards on submission interface" | translate }}</label>
+                    </div>
+                    <div class="form-group table-bordered">
                       <input ng-model="context.postpone_superpower" value="{{context.postpone_superpower}}" type="checkbox">
                       <label>{{ "Permit Receivers to postpone expiration date of the Tips" | translate }}</label>
                       <div ng-show="context.postpone_superpower">
