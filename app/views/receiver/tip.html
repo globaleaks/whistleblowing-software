@@ -80,13 +80,13 @@ This comment is needed in order to push the following strings on transifex
     <div class="col-md-6">
       <div class="col-md-12">
         <h3>{{ "Options" }}</h3>
-        <span ng-show="tip.im_receiver_postponer">
+        <span ng-show="tip.postpone_superpower">
           <button ng-click="tip_extend(tip.id)" class="btn btn-sm btn-warning">
             <i class="glyphicon glyphicon-time"></i>
             {{ "Postpone Tip expiration date" | translate }}
           </button>
         </span>
-        <span ng-show="session.permissions['can_delete_submission']">
+        <span ng-show="tip.can_delete_submission">
           <button ng-click="tip_delete(tip.id, true)" class="btn btn-sm btn-danger">
             <i class="glyphicon glyphicon-trash"></i>
             {{ "Delete Tip" | translate }}
