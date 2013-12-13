@@ -94,7 +94,7 @@ This comment is needed in order to push the following strings on transifex
                 <a ng-switch="tip.access_counter" href="/#/status/{{tip.id}}"
                    popover="{{ 'Open Tip' | translate }}" popover-placement="top" popover-trigger="mouseenter">
                   <span ng-switch-when="0" class="btn btn-success col-md-12" style="text-align: left">
-                    <span class="glyphicon glyphicon-tint"></span>&nbsp;
+                    <span class="glyphicon glyphicon-tint col"></span>&nbsp;
                     {{ "Open" | translate }}
                     {{ "(New)" | translate }}
                   </span>
@@ -104,11 +104,11 @@ This comment is needed in order to push the following strings on transifex
                   </span>
                 </a>
                 <br /><br />
-                <a ng-show="node.postpone_superpower" ng-click="tip_extend(tip.id)" class="btn btn-xs btn-warning"
+                <a ng-show="tip.postpone_superpower" ng-click="tip_extend(tip.id)" class="btn btn-xs btn-warning"
                    popover="{{ 'Postpone Tip expiration date' | translate }}" popover-placement="top" popover-trigger="mouseenter">
                   <i class="glyphicon glyphicon-time"></i>
                 </a>
-                <a ng-show="session.permissions['can_delete_submission']" ng-click="tip_delete(tip.id, true)" class="btn btn-xs btn-danger"
+                <a ng-show="tip.can_delete_submission" ng-click="tip_delete(tip.id, true)" class="btn btn-xs btn-danger"
                    popover="{{ 'Delete Tip (Globablly)' | translate }}" popover-placement="top" popover-trigger="mouseenter">
                   <span class="glyphicon glyphicon-trash"></span>
                 </a>
