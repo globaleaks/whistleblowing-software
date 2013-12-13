@@ -2,15 +2,6 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
     'Submission', 'Receivers', 'WhistleblowerTip', function($scope, $rootScope,
       $location, Node, Submission, Receivers, WhistleblowerTip) {
 
-  var checkReceiverSelected = function() {
-    $scope.receiver_selected = false;
-    // Check if there is at least one selected receiver
-    angular.forEach($scope.submission.receivers_selected, function(receiver) {
-      $scope.receiver_selected = $scope.receiver_selected | receiver;
-    });
-
-  }
-  
   $rootScope.invalidForm = true;
   $scope.receiptConfimation = "";
 
@@ -31,6 +22,38 @@ GLClient.controller('SubmissionCtrl', ['$scope', '$rootScope', '$location', 'Nod
 
   });
 
+  var checkReceiverSelected = function() {
+    $scope.receiver_selected = false;
+    // Check if there is at least one selected receiver
+    angular.forEach($scope.submission.receivers_selected, function(receiver) {
+      $scope.receiver_selected = $scope.receiver_selected | receiver;
+    });
+
+  }
+
+  $scope.selected_receivers_count = function() {
+    var count = 0;
+
+    if ($scope.submission) {
+      angular.forEach($scope.submission.receivers_selected, function(selected) {
+        if (selected) {
+          count += 1;
+        }
+      });
+    }
+
+    return count;
+  }
+
+  $scope.selectable = function() {
+    return $scope.selected_receivers_count() < $scope.current_context.maximum_selectable_receivers;
+  }
+
+  $scope.switch_selection = function(receiver_gus) {
+    if ($scope.submission.receivers_selected[receiver_gus] || $scope.selectable()) {
+      $scope.submission.receivers_selected[receiver_gus] = !$scope.submission.receivers_selected[receiver_gus];
+    }
+  }
 
   $scope.view_tip = function(receipt) {
     if ($scope.receiptConfirmation != receipt)

@@ -21,7 +21,7 @@ This comment is needed in order to push the following strings on transifex
         <div class="row receiverList" ng-repeat="receiver in admin.receivers">
 
           <form name="receiverForm" ng-controller="AdminReceiversEditorCtrl">
-            <div class="configItem receiverItem">
+            <div class="configItem receiverItem" ng-class="{'configItemLast': $last}">
               <div class="row" ng-click="toggleEditing()">
                 <div class="editorHeader receiverEditorHeader">
                   <div class="col-md-6">

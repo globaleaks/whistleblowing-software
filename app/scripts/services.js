@@ -744,7 +744,7 @@ angular.module('resourceServices', ['ngResource', 'resourceServices.authenticati
         context.fields_introduction = "";
 	context.postpone_superpower = false;
 	context.can_delete_submission = false;
-	context.maximum_selected_receiver = 0;
+	context.maximum_selectable_receivers = 0;
 	context.require_file_description = false;
 	context.delete_consensus_percentage = 0;
 	context.require_pgp = false;

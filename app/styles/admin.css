@@ -4,6 +4,10 @@
   line-height: 20px;
   text-align: left;
   vertical-align: top;
+  margin-bottom: 5px;
+}
+
+.configItemLast {
   margin-bottom: 30px;
 }
 
